@@ -308,8 +308,8 @@ const statusEntry = status.subjects.find((item) => item.id === 'historie');
 statusEntry.editorialStatus = 'expanded_and_audited';
 statusEntry.nextGate = 'source_refresh_and_case_expansion';
 statusEntry.note = 'Historie har 23 av 23 canonicale fagområder, 23 fullverdige kapitler og 9 av 9 dekkede hovedperioder. De tre tidligere kronologiske gapene har egne evidensklare moduler med 21 læringsenheter, 18 kilder og 9 stedscaser. De 230 stabile kompatibilitetsemnene har unike titler, definisjoner og semantiske nøkler; 26 legacy-id-er er eksplisitt låst til riktig hook uten uløste identitetsblokkere.';
-status.version = '2.19.0';
-status.updatedAt = '2026-08-04';
+status.version ||= '2.19.0';
+status.updatedAt ||= '2026-08-04';
 writeJson('data/fagverk/fagverk_registry.json', registry);
 writeJson('data/fagverk/subject_status.json', status);
 
