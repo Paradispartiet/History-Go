@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.19.0",
-  "updatedAt": "2026-08-04",
+  "version": "2.20.0",
+  "updatedAt": "2026-08-08",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
     "genericForAllCanonicalPlaces": true,
@@ -1677,6 +1677,32 @@
           "briefFile": "data/fagverk/subkultur/kommersialisering_institusjonalisering_minne/brief.json",
           "editorialStatus": "chapter_ready",
           "claimTraceRequired": true
+        }
+      ]
+    },
+    "musikk": {
+      "title": "Musikkvitenskap",
+      "description": "Et kilde- og objektbasert læreverk om musikalsk analyse, framføring, historie, kultur, teknologi, persepsjon, institusjoner og nordiske og samiske musikkpraksiser.",
+      "canonicalModel": {
+        "scientificPackage": "data/fag/musikk/scientific_package.json",
+        "sourceOfTruth": true,
+        "note": "Kapitler materialiseres bare etter grønn fulltekst- og direkte-objektport."
+      },
+      "chapters": [
+        {
+          "id": "musikalsk-analyse-lyd-struktur",
+          "title": "Musikalsk analyse, lyd og struktur",
+          "subtitle": "Fra tidskodet lytting og rytmemåling til motiv, harmoni, klang og form",
+          "file": "data/fagverk/musikk/musikalsk-analyse-lyd-struktur.json",
+          "primary_domain_id": "musikalsk_analyse_lyd_struktur",
+          "emne_ids": [
+            "em_musikk_vit_analytisk_lytting_beskrivelse",
+            "em_musikk_vit_rytme_meter_groove_timing",
+            "em_musikk_vit_melodi_motiv_frasering",
+            "em_musikk_vit_harmoni_tonalitet_modalitet",
+            "em_musikk_vit_klang_tekstur_instrumentasjon",
+            "em_musikk_vit_form_prosess_improvisasjon"
+          ]
         }
       ]
     }
