@@ -18,7 +18,7 @@
     "schema": "history_go_fagverk_subject_inventory_v1",
     "version": "1.5.0",
     "updated_at": "2026-08-04",
-    "content_sha256": "beb00566c5753e1005a70d5a309b63982edb36711eb4ad60b1d2c0a1cd28ea09",
+    "content_sha256": "21b8c0c5305e1e2ca7ef3ec7cde137ac711c9bc603902f8d15c8e406632412f3",
     "root_subject_count": 17,
     "specialization_count": 1
   },
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "66e6166221cb3d850ea3be585b36a3f7a91f1b478e73b5a2976e3e69b825b9c9"
+    "content_sha256": "832b71fc72759893c7e4fa97de93cedba27a06396236b1ae7b907b3f141e7235"
   },
   "summary": {
     "subject_count": 18,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 5,
     "chapter_count": 67,
     "module_file_count": 168,
-    "package_file_count": 195,
+    "package_file_count": 197,
     "chapter_referenced_file_count": 285,
-    "referenced_file_count": 440,
+    "referenced_file_count": 441,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1277,7 +1277,9 @@
         "emneMappings",
         "scientificPackage",
         "coverageContract",
-        "topicFoundations"
+        "topicFoundations",
+        "subjectPathwaySchema",
+        "subjectPathwayPackage"
       ],
       "present_manifest_fields": [
         "coverageContract",
@@ -1289,13 +1291,15 @@
         "quizQuestionSchema",
         "quizStandard",
         "scientificPackage",
+        "subjectPathwayPackage",
+        "subjectPathwaySchema",
         "supersetQuizMal",
         "topicFoundations"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 11,
+      "package_file_count": 13,
       "required_package_file_count": 4,
-      "optional_package_file_count": 7,
+      "optional_package_file_count": 9,
       "package_files": [
         {
           "path": "data/fag/litteratur/emnemapping_litteratur_canonical_v4_5.json",
@@ -1355,7 +1359,7 @@
             "coverageContract"
           ],
           "exists": true,
-          "content_sha256": "7368856a3cabcad30b58b7236c059a3306f51d6f3784beb5dc51f75770a06bb2"
+          "content_sha256": "be7b7a742eae8a06d580bbde2288f5d6248a9913629b98786661bc9d34da5668"
         },
         {
           "path": "data/fag/litteratur/litteraturvitenskap_canonical_v1/index.json",
@@ -1367,7 +1371,7 @@
             "scientificPackage"
           ],
           "exists": true,
-          "content_sha256": "77878338d43e342f234131a42a60925ed27c23bd878e3b3561ff388f390b691a"
+          "content_sha256": "3d2c7320ff7958f54e3c7489a4e22cedff8a81f5ea13f6497913c599231be98e"
         },
         {
           "path": "data/fag/litteratur/litteraturvitenskap_canonical_v1/topic_foundations_v1.json",
@@ -1406,6 +1410,18 @@
           "content_sha256": "6f02fcd363bbacd3b16ff26ac23229798ad07a574f173ba112e13b532085c6b0"
         },
         {
+          "path": "data/quiz/litteratur/litteratur_subject_pathways_v1.json",
+          "required": false,
+          "fields": [
+            "subjectPathwayPackage"
+          ],
+          "key_paths": [
+            "subjectPathwayPackage"
+          ],
+          "exists": true,
+          "content_sha256": "c7d49e027681ccbb641ca51e62794bf7240bf5ad45e5e4919386f912a3117707"
+        },
+        {
           "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
           "required": false,
           "fields": [
@@ -1428,22 +1444,34 @@
           ],
           "exists": true,
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
+        },
+        {
+          "path": "data/quiz/regler/QUIZ_SUBJECT_PATHWAY_PACKAGE_SCHEMA_V1.json",
+          "required": false,
+          "fields": [
+            "subjectPathwaySchema"
+          ],
+          "key_paths": [
+            "subjectPathwaySchema"
+          ],
+          "exists": true,
+          "content_sha256": "f19ed931d5a47c3969551cf58d9895049a399aff71dc397a3ea63ac76e31d2c5"
         }
       ],
-      "package_content_sha256": "e80d872ee301aa77ec70c54df4237b136190c7bc50756927adea355a5f460bab",
+      "package_content_sha256": "e343d0fc163adaae3eecf78aac9fb43bdfbd5cc1dcb955c3b114e90b027d0607",
       "chapter_count": 0,
       "module_file_count": 0,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 0,
       "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 11,
+      "referenced_file_count": 13,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "ac3d62cb205690245a00a862fd621de82c2128dbc200773256dc0a4214c07f99",
-      "content_sha256": "e80d872ee301aa77ec70c54df4237b136190c7bc50756927adea355a5f460bab",
+      "structure_sha256": "99926d393ec27754b0768624e119da7190a0d3f2dbcb11c252eff0cbc27cc442",
+      "content_sha256": "e343d0fc163adaae3eecf78aac9fb43bdfbd5cc1dcb955c3b114e90b027d0607",
       "chapters": []
     },
     "media": {
@@ -3927,5 +3955,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "c192ba60794adf9d2f8f303f615c9eedd3c437caea5fd80b41dc5c8ddc6eddec"
+  "release_sha256": "610984bfbfef291a95a1aa0915ea41b562395ac2c5701defd620085eb03874f6"
 }
