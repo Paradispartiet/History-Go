@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "subject_id": "litteratur",
   "subject_title": "Litteraturvitenskap",
-  "status": "canonical_scientific_package_in_progress",
+  "status": "canonical_scientific_package_complete",
   "updated_at": "2026-08-07",
   "scope": "universell fagarkitektur med norsk, nordisk, samisk, komparativ og global dekning",
   "authority": {
@@ -71,7 +71,9 @@
       "contracts/eldre_litteratur_antik_middelalder_tidligmoderne_full_field_v1.json",
       "contracts/moderne_og_samtidig_litteraturhistorie_full_field_v1.json"
     ],
-    "editorial_quality": "editorial_quality_v1.json"
+    "editorial_quality": "editorial_quality_v1.json",
+    "subject_pathway_assessment": "../../../quiz/litteratur/litteratur_subject_pathways_v1.json",
+    "legacy_quiz_audit": "../../../quiz/litteratur/litteratur_legacy_quiz_audit_v1.json"
   },
   "summary": {
     "coverage_area_count": 28,
@@ -88,7 +90,11 @@
     "expanded_contract_fulfilled_count": 18,
     "editorial_ready_area_count": 28,
     "editorial_ready_topic_count": 168,
-    "editorial_completion_status": "168_of_168_articles_editorial_ready_complete"
+    "editorial_completion_status": "168_of_168_articles_editorial_ready_complete",
+    "assessment_pathway_count": 28,
+    "assessment_question_count": 140,
+    "assessment_article_coverage_count": 168,
+    "assessment_status": "audited"
   },
-  "release_rule": "Strukturell fullfeltdekning er oppnådd, men pakken kan ikke merkes redaksjonelt complete før editorial_quality_v1.json viser 28 av 28 områder og 168 av 168 artikler som editorial_ready_v1."
+  "release_rule": "Pakken er komplett når 28 av 28 områder og 168 av 168 artikler består redaksjonell port, og alle områder inngår i canonicale femtrinns vurderingsforløp med eksplisitte emne-, metode-, claim-, kilde- og Knowledge-bindinger."
 }
