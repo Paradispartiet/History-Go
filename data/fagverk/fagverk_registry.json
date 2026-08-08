@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.29.0",
+  "version": "2.30.0",
   "updatedAt": "2026-08-08",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -9,6 +9,7 @@
     "description": "Hvert canonical sted får en egen fagverkside som samler stedstekst, relevante fagområder, lærekapitler, begreper, emner, undermerker og videre utforskning.",
     "fallbackSubjectByCategory": {
       "politikk": "politikk",
+      "psykologi": "psykologi",
       "historie": "historie",
       "by": "by",
       "kunst": "kunst",
@@ -324,6 +325,17 @@
           ]
         }
       ]
+    },
+    "psykologi": {
+      "title": "Psykologi",
+      "description": "Et sted-, metode- og evidensbasert fagverk om psykisk helse, institusjoner og behandling, fagtradisjoner og teorier om sinnet, utvikling, oppvekst og læring, kognisjon, følelser og atferd, sosialpsykologi, normalitet og stigma samt traume, krise, resiliens og omsorg. Faget undersøker hvordan opplevelse, tenkning, følelse og handling kan studeres gjennom dokumenterte institusjoner, forskningsdesign, behandlingspraksiser og konkrete sosiale situasjoner, og skiller psykologisk analyse fra diagnostisering av enkeltpersoner.",
+      "canonicalModel": {
+        "manifest": "data/fag/fag_manifest.json",
+        "schemaFamily": "standard_canonical",
+        "sourceOfTruth": true,
+        "note": "Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er dekket i pensum, fagkart og mappingregister, med 58 løste metoder og 60 hooks. Ingen kapitler registreres før fulltekst, claims og inspectable kilder er produsert."
+      },
+      "chapters": []
     },
     "historie": {
       "title": "Historie",
