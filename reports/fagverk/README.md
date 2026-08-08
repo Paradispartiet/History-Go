@@ -20,6 +20,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `historie-subject-audit.json` — individuell strukturaudit for Historie gjennom standard canonical-adapteren.
 - `natur-pilot-audit.json` — individuell utbyggingsevidens for Natur: canonical tolvdelsrekkefølge, 65 emner, 45 metoder, 65 mappingrader, 110 hooks og 11 redigerte lærekapitler.
 - `religion-pilot-audit.json` — individuell fase-2-gate for Religion som `foundation_v1`: fire fagkart-eide fagområder, åtte aktive emner, åtte canonicale metoder, tre pensummoduler som progresjonslag og eksplisitte representasjonsprinsipper.
+- `scenekunst-phase3-audit.json` — individuell Fase 3-gate for Scenekunst som `foundation_v1`: fire fagkart-eide fagområder, åtte aktive emner, ni canonicale metoder, åtte mappinger, null syntetiske hooks og tre pensummoduler som separat progresjonslag.
 - `natur-quality-audit.json` — emne-, metode-, quiz-, Knowledge- og merkesidekvalitet for Natur & miljø.
 - `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 110 Natur-hooks og 65 emner, inkludert egne fagkartlag for artskunnskap, evolusjon, botanikk, zoologi og fysiologi.
 - `natur-universal-coverage-audit.json` — dokumenterer hvilke biologiske og geologiske fagområder som må materialiseres før Natur kan bli redaksjonelt komplett.
@@ -75,6 +76,8 @@ node scripts/audit-fagverk-natur-pilot.mjs --write-report
 node scripts/audit-fagverk-natur-pilot.mjs
 node scripts/audit-fagverk-religion-pilot.mjs --write-report
 node scripts/audit-fagverk-religion-pilot.mjs
+node scripts/audit-fagverk-scenekunst-phase3.mjs --write-report
+node scripts/audit-fagverk-scenekunst-phase3.mjs
 node scripts/audit-natur-subject-quality.mjs --write-report
 node scripts/audit-natur-subject-quality.mjs
 node scripts/audit-natur-fagkart-quality.mjs --write-report
