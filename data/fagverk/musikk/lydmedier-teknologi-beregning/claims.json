@@ -1,0 +1,232 @@
+{
+  "schema": "history_go_musikk_chapter_claims_v1",
+  "version": "1.0.0",
+  "status": "verified_projection",
+  "subject_id": "musikk",
+  "chapter_id": "lydmedier-teknologi-beregning",
+  "sourceAuthority": "canonical_fulltext_evidence_v1",
+  "projectionRule": "Claim text, source order and locators are copied unchanged from question-release-ready upstream evidence; every claim is used in chapter modules.",
+  "sources": [
+    {
+      "id": "prod_src_de_man_reiss_mix_evaluation_dataset_2017",
+      "publisher": "DAFx",
+      "url": "https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_49.pdf",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "PDF pp. 1–3 and 5–6; Sections 2.1, 3 and 5; Table 1",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/opptak_studio_som_instrument.json"
+      ]
+    },
+    {
+      "id": "prod_src_moriceau_yan_thibault_wanderley_dmi_obstacle_2024",
+      "publisher": "NIME",
+      "url": "https://nime.org/proceedings/2024/nime2024_48.pdf",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "PDF Sections 2–5; Figures 2–6; mapping and obstacle-course diagrams",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/instrument_grensesnitt_lydsystem.json"
+      ]
+    },
+    {
+      "id": "prod_src_spotify_home_personalization_part1_2021",
+      "publisher": "Spotify Engineering",
+      "url": "https://engineering.atspotify.com/2021/11/the-rise-and-lessons-learned-of-ml-models-to-personalize-content-on-home-part-i",
+      "full_text_status": "reviewed_institutional_fulltext",
+      "source_location": "HTML sections “Home @ Spotify”, “The road to simplicity and automation” and “How we unified training and serving data”",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/radio_plate_streaming_plattform.json"
+      ]
+    },
+    {
+      "id": "prod_src_cjeu_pelham_press_release_2019",
+      "publisher": "Court of Justice of the European Union",
+      "url": "https://curia.europa.eu/jcms/upload/docs/application/pdf/2019-07/cp190098en.pdf",
+      "full_text_status": "reviewed_official_fulltext",
+      "source_location": "PDF pp. 1–2; case facts and holdings; footnote 1; non-binding press-release notice",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/sampling_remiks_opphavsrett.json"
+      ]
+    },
+    {
+      "id": "prod_src_zalkow_muller_fmp_chromagram_notebook",
+      "publisher": "International Audio Laboratories Erlangen / FMP",
+      "url": "https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html",
+      "full_text_status": "reviewed_authoritative_notebook_fulltext",
+      "source_location": "HTML Sections “Chroma Features”, “Example: Burgmüller”, “libfmp Implementation” and “Further Notes”; code cells [5], [7] and [8]",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/mir_features_datasett_evaluering.json"
+      ]
+    },
+    {
+      "id": "src_melchiorre_rekabsaz_parada_brandl_lesota_schedl_gender_fairness_2021",
+      "publisher": "Elsevier / JKU HCAI",
+      "url": "https://hcai.at/assets/pdf/2021_ipm_rsfairness.pdf",
+      "full_text_status": "reviewed_author_uploaded_publisher_version",
+      "source_location": "PDF pp. 1–2, 6–9 and 18–24; Sections 1, 3–6; Tables 1–8",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/algoritmer_anbefaling_bias_reproduserbarhet.json"
+      ]
+    },
+    {
+      "id": "prod_src_cpjku_recommendation_systems_fairness_code",
+      "publisher": "CPJKU / GitHub",
+      "url": "https://github.com/CPJKU/recommendation_systems_fairness",
+      "full_text_status": "reviewed_source_code_repository",
+      "source_location": "README sections “Installation”, “Setup the data”, “Run an experiment”, “Running evaluation”, “Results and best configurations” and “Significance Testing”",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/algoritmer_anbefaling_bias_reproduserbarhet.json"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim_musikk_technology_mix_dataset_production_chain",
+      "claim": "Mix Evaluation Dataset binder 180 miksversjoner til en dokumentert produksjonskjede med råspor, utvalgte DAW-sesjoner og parameterinnstillinger samt nær 5000 vurderinger fra sju institusjoner i fem land; dermed kan miksvalg analyseres som mer enn en ferdig stereofil, men materialets vestlige sjanger- og deltakerskjevhet og varierende objektrettigheter hindrer generalisering til all studiopraksis.",
+      "status": "verified",
+      "claim_type_id": "historical_claim",
+      "source_ids": [
+        "prod_src_de_man_reiss_mix_evaluation_dataset_2017"
+      ],
+      "locators": [
+        "De Man & Reiss 2017, PDF pp. 1–2, Table 1 and Section 2.1: 180 mixes, participating sites and preserved production information",
+        "De Man & Reiss 2017, PDF pp. 2–3 and 5–6, Sections 3 and 5: available session objects, evaluation records, licenses and corpus skew"
+      ],
+      "method_protocol_ids": [
+        "kritisk_lytteanalyse",
+        "klang_spektralanalyse"
+      ],
+      "uncertainty": "History Go har kontrollert artikkelens dokumentasjon, men har ikke lastet ned, remikset eller sammenlignet alle lyd- og DAW-objektene uavhengig.",
+      "prohibited_inference": "Datasettet beviser ikke én riktig miks, universelle preferanser, produsentintensjon eller representativitet for sjangre, land og arbeidsformer utenfor utvalget.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/opptak_studio_som_instrument.json",
+      "upstream_claim_id": "claim_musikk_technology_mix_dataset_production_chain",
+      "used_in": [
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/01-studio-instrument-plattform.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_technology_tstick_karlax_mapping_obstacles",
+      "claim": "Moriceau og medforfatteres T-Stick- og Karlax-case viser at et digitalt instruments handlingsrom ikke sitter i kontrolleren alene: sensorstrøm, Max-patch, Webmapper eller annen mapping, lydmotor, programvareversjon og innøvd repertoar danner én framføringskjede, og blant annet Libmapper-obsolesens blir derfor et musikalsk så vel som teknisk hinder; sammenligningen dokumenterer to systemforløp, ikke en universell rangering av digitale instrumenter.",
+      "status": "verified",
+      "claim_type_id": "performance_comparison",
+      "source_ids": [
+        "prod_src_moriceau_yan_thibault_wanderley_dmi_obstacle_2024"
+      ],
+      "locators": [
+        "Moriceau et al. 2024, PDF Sections 2–3 and Figure 4: T-Stick sensing, Max and Webmapper mapping layers",
+        "Moriceau et al. 2024, PDF Sections 4–5: Karlax case, software dependencies and cross-case obstacle synthesis"
+      ],
+      "method_protocol_ids": [
+        "organologisk_proveniensanalyse"
+      ],
+      "uncertainty": "Casene er dokumentert av forskere og utøvere tett på systemene; History Go har ikke rekonstruert maskinvare, programvareversjoner eller konserthendelser.",
+      "prohibited_inference": "To case kan ikke bevise at én kontroller er best, at teknologien alene skaper uttrykket, eller at alle utøvere møter samme affordanser og hindringer.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/instrument_grensesnitt_lydsystem.json",
+      "upstream_claim_id": "claim_musikk_technology_tstick_karlax_mapping_obstacles",
+      "used_in": [
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/01-studio-instrument-plattform.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_technology_spotify_home_hybrid_curation_pipeline",
+      "claim": "Spotify Engineerings egen Home-beskrivelse deler anbefalingsløpet i kandidatgenerering og rangering og sier at hyller kan bygges av regler, redaktører eller trente modeller; samme dokument beskriver også en fire måneder lang forskjell mellom treningens og serveringens feature-transformasjon før felles kodevei og daglig datavalidering ble innført, noe som viser at plattformkuratering er en styrt produksjonskjede, men ikke hva en bestemt bruker faktisk så eller hvilken markedsvirkning kjeden hadde.",
+      "status": "verified",
+      "claim_type_id": "institutional_policy_claim",
+      "source_ids": [
+        "prod_src_spotify_home_personalization_part1_2021"
+      ],
+      "locators": [
+        "Spotify Engineering 2021, HTML paragraphs 4–19: candidate generation, ranking and heuristic/editorial/model curation",
+        "Spotify Engineering 2021, HTML paragraphs 37–49: four-month training-serving transformation mismatch, common code path and daily validation"
+      ],
+      "method_protocol_ids": [
+        "institusjons_policyanalyse",
+        "bransje_okonomisk_analyse"
+      ],
+      "uncertainty": "Kilden er en institusjonell selvbeskrivelse fra Spotify og gir ikke innsyn i full kode, treningsdata, terskler, eksperimentresultater eller senere systemversjoner.",
+      "prohibited_inference": "Arkitekturbeskrivelsen kan ikke brukes som bevis for nøytralitet, individuell eksponering, algoritmisk effekt, markedsmakt eller dagens komplette Spotify-system.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/radio_plate_streaming_plattform.json",
+      "upstream_claim_id": "claim_musikk_technology_spotify_home_hybrid_curation_pipeline",
+      "used_in": [
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/01-studio-instrument-plattform.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_technology_pelham_sample_case_boundary",
+      "claim": "CJEUs offisielle kommunikasjon om Pelham-saken identifiserer et om lag to sekunder langt rytmeutdrag fra Kraftwerks Metall auf Metall som skal ha blitt lagt i loop i Nur mir og skiller mellom gjenkjennelig sampling, modifisert bruk som ikke kan gjenkjennes med øret, og sitat som går i dialog med det identifiserbare verket; caset viser at lydobjekt, bearbeiding og rettslig kategori må spores hver for seg, men pressemeldingen er uttrykkelig uoffisiell og avgjør verken alle nasjonale etterfølgingssaker eller generell samplingrett.",
+      "status": "verified",
+      "claim_type_id": "institutional_policy_claim",
+      "source_ids": [
+        "prod_src_cjeu_pelham_press_release_2019"
+      ],
+      "locators": [
+        "CJEU Press Release 98/19, PDF p. 1, lines 11–38 and footnote 1: identified phonograms, approximate duration, looping and reproduction question",
+        "CJEU Press Release 98/19, PDF pp. 1–2, lines 39–80 and 87–93: recognisability, quotation conditions and non-binding status"
+      ],
+      "method_protocol_ids": [
+        "institusjons_policyanalyse"
+      ],
+      "uncertainty": "History Go bruker den offisielle pressemeldingen som avgrenset saksinngang og har ikke utført selvstendig lydsammenligning eller juridisk vurdering av senere nasjonal behandling.",
+      "prohibited_inference": "Caset er ikke juridisk rådgivning og kan ikke brukes til å hevde at all kort sampling er tillatt eller forbudt, at hørbar likhet alene beviser kopiering, eller at EU-regelen gjelder uendret i alle jurisdiksjoner.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/sampling_remiks_opphavsrett.json",
+      "upstream_claim_id": "claim_musikk_technology_pelham_sample_case_boundary",
+      "used_in": [
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/02-sampling-mir-anbefaling.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_technology_fmp_chromagram_representation_chain",
+      "claim": "FMP-notatboken gjør kromagrammet reproduserbart som en eksplisitt kjede fra lyd via STFT med N=4096 og hop H=512 til loggfrekvens og summering av tonehøyder modulo 12; Burgmüller-eksemplet viser at akkord- og frasefigurer blir synlige, men også at overtoner, inharmonisitet, stemming og oktavfolding fordeler energi til kromabånd som ikke er identiske med noterte grunntoner, så representasjonen er et parameterbundet trekk og ikke selve musikken eller en nøytral grunnsannhet.",
+      "status": "verified",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_zalkow_muller_fmp_chromagram_notebook"
+      ],
+      "locators": [
+        "Zalkow & Müller, FMP notebook, HTML lines 240–289 and code cell [5]: twelve chroma classes, modulo-12 aggregation, harmonic spill and Burgmüller example",
+        "Zalkow & Müller, FMP notebook, HTML lines 328–374 and code cells [7]–[8]: audio path, N=4096, H=512, libfmp pipeline and variant warnings"
+      ],
+      "method_protocol_ids": [
+        "beregningsbasert_mir",
+        "kritisk_lytteanalyse"
+      ],
+      "uncertainty": "History Go har kontrollert notatbokens kode- og parameterbeskrivelse, men har ikke kjørt miljøet eller verifisert numeriske matriser og figurer byte for byte.",
+      "prohibited_inference": "Kromagrammet kan ikke brukes som komplett tonefasit, universell representasjon for andre stemminger, automatisk harmonisk analyse eller bevis på musikalsk mening uten videre validering.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/mir_features_datasett_evaluering.json",
+      "upstream_claim_id": "claim_musikk_technology_fmp_chromagram_representation_chain",
+      "used_in": [
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/02-sampling-mir-anbefaling.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain",
+      "claim": "Melchiorre og medforfattere målte Recall, NDCG, diversity og coverage separat for manns- og kvinnegruppene i LFM-2b-DemoBias, rapporterte signifikante algoritmeavhengige ytelsesforskjeller og fant at resampling ga små fairnessforbedringer uten å fjerne avveiningene; companion-repositoriet gjør designet mer etterprøvbart gjennom eksplisitte datakolonner, standard/up-sample/down-sample-betingelser, fem folds og både rå og aggregerte metrikker, men den binære, selvrapporterte kjønnsvariabelen og Last.fm-utvalget avgrenser enhver normativ eller plattformgenerell slutning.",
+      "status": "verified",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_melchiorre_rekabsaz_parada_brandl_lesota_schedl_gender_fairness_2021",
+        "prod_src_cpjku_recommendation_systems_fairness_code"
+      ],
+      "locators": [
+        "Melchiorre et al. 2021, PDF pp. 1–2 and Sections 5–7: LFM-2b-DemoBias, binary-gender caveat, metrics, algorithm gaps, resampling and limitations",
+        "CPJKU recommendation_systems_fairness README, lines 164–209 and 228–291: data schema, experimental conditions, five folds, raw/aggregate outputs and significance tests"
+      ],
+      "method_protocol_ids": [
+        "beregningsbasert_mir",
+        "institusjons_policyanalyse"
+      ],
+      "uncertainty": "History Go har ikke lastet ned LFM-2b, trent modellene eller reprodusert tabellene; kodearkivet dokumenterer en kjørbar plan, men miljø-, data- og avhengighetsendringer kan påvirke replikasjon.",
+      "prohibited_inference": "Caset kan ikke redusere kjønn til en universell binær variabel, forklare alle observerte gap kausalt, rangere ett fairnessmål som moralsk fasit eller generalisere fra Last.fm til alle brukere og plattformer.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/algoritmer_anbefaling_bias_reproduserbarhet.json",
+      "upstream_claim_id": "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain",
+      "used_in": [
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/02-sampling-mir-anbefaling.json",
+        "data/fagverk/musikk/lydmedier-teknologi-beregning/03-anvendelse-kritikk-selvtest.json"
+      ]
+    }
+  ]
+}

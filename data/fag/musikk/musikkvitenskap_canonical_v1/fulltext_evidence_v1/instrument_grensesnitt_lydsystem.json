@@ -1,0 +1,207 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-sound-media-instrument_grensesnitt_lydsystem-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "lydmedier_teknologi_beregning",
+  "emne_id": "em_musikk_vit_instrument_grensesnitt_lydsystem",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/lydmedier_teknologi_beregning/instrument_grensesnitt_lydsystem.json",
+  "research_question": "Hvordan fordeles musikalsk handlingsrom og teknisk risiko mellom kropp, sensor, mapping, programvare og lydsyntese i digitale instrumenter?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_moriceau_yan_thibault_wanderley_dmi_obstacle_2024",
+      "bibliographic_identity": {
+        "creators": [
+          "Gaël Stéfan Moriceau",
+          "Yulin Yan",
+          "Dominic Thibault",
+          "Marcelo M. Wanderley"
+        ],
+        "year": 2024,
+        "title": "The Obstacle Course of DMI Performance: Two Case Studies with T-Stick and Karlax",
+        "publication": "Proceedings of the International Conference on New Interfaces for Musical Expression 2024"
+      },
+      "identifiers": {
+        "url": "https://nime.org/proceedings/2024/nime2024_48.pdf"
+      },
+      "registration_reason": "Open peer-reviewed case comparison that traces two performance systems through physical controllers, mappings, software dependencies and performance preparation.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://nime.org/proceedings/2024/nime2024_48.pdf",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_moriceau_yan_thibault_wanderley_dmi_obstacle_2024",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://nime.org/proceedings/2024/nime2024_48.pdf",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "PDF Sections 2–3 and Figures 2–4",
+          "section": "T-Stick system and mapping layers",
+          "supports": "The case traces sensor data through Max and Webmapper and identifies dependencies in the mapping and software chain."
+        },
+        {
+          "pages": "PDF Sections 4–5 and Figures 5–6",
+          "section": "Karlax comparison and cross-case synthesis",
+          "supports": "The authors compare the two performance systems and distinguish technical, mapping, rehearsal and obsolescence obstacles."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker NIME gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og tilknyttede objekter redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_tstick_karlax_performance_systems_2024",
+      "object_type": "instrument_eller_gjenstand",
+      "title": "T-Stick- og Karlax-systemene som dokumenterte digitale framføringsinstrumenter",
+      "persistent_url": "https://nime.org/papers/",
+      "provenance_source_ids": [
+        "prod_src_moriceau_yan_thibault_wanderley_dmi_obstacle_2024"
+      ],
+      "version_and_identity": {
+        "instruments": [
+          "T-Stick",
+          "Karlax"
+        ],
+        "study": "Two NIME 2024 performance case studies",
+        "chain": "Physical controller → sensing → mapping → software → sound/performance",
+        "comparisonUnit": "Documented technical and performance obstacles per system"
+      },
+      "locators": [
+        {
+          "locator": "NIME 2024 paper, Sections 2–3 and Figure 4",
+          "role": "T-Stick data path and mapping stack."
+        },
+        {
+          "locator": "NIME 2024 paper, Sections 4–5 and cross-case discussion",
+          "role": "Karlax path and comparison of performance obstacles."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent identity, version and at least two direct-object locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "NIME proceedings CC BY 4.0; instrument software and hardware components may have separate licenses.",
+        "license_source": "https://nime.org/papers/",
+        "commercial_compatibility_with_history_go": "resolved_for_external_link_and_metadata",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_technology_tstick_karlax_mapping_obstacles",
+      "statement": "Moriceau og medforfatteres T-Stick- og Karlax-case viser at et digitalt instruments handlingsrom ikke sitter i kontrolleren alene: sensorstrøm, Max-patch, Webmapper eller annen mapping, lydmotor, programvareversjon og innøvd repertoar danner én framføringskjede, og blant annet Libmapper-obsolesens blir derfor et musikalsk så vel som teknisk hinder; sammenligningen dokumenterer to systemforløp, ikke en universell rangering av digitale instrumenter.",
+      "claim_type_id": "performance_comparison",
+      "source_ids": [
+        "prod_src_moriceau_yan_thibault_wanderley_dmi_obstacle_2024"
+      ],
+      "locators": [
+        "Moriceau et al. 2024, PDF Sections 2–3 and Figure 4: T-Stick sensing, Max and Webmapper mapping layers",
+        "Moriceau et al. 2024, PDF Sections 4–5: Karlax case, software dependencies and cross-case obstacle synthesis"
+      ],
+      "method_protocol_ids": [
+        "organologisk_proveniensanalyse"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_tstick_karlax_performance_systems_2024",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "T-Stick- og Karlax-systemene som dokumenterte digitale framføringsinstrumenter"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Casene er dokumentert av forskere og utøvere tett på systemene; History Go har ikke rekonstruert maskinvare, programvareversjoner eller konserthendelser.",
+      "prohibited_inference": "To case kan ikke bevise at én kontroller er best, at teknologien alene skaper uttrykket, eller at alle utøvere møter samme affordanser og hindringer.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_technology_tstick_karlax_mapping_obstacles_scope",
+      "statement": "Slutningen gjelder de dokumenterte T-Stick- og Karlax-oppsettene og deres konkrete programvare- og framføringskjeder.",
+      "source_ids": [
+        "prod_src_moriceau_yan_thibault_wanderley_dmi_obstacle_2024"
+      ],
+      "locators": [
+        "Moriceau et al. 2024, PDF Sections 2–3 and Figure 4: T-Stick sensing, Max and Webmapper mapping layers"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_tstick_karlax_mapping_obstacles"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_tstick_karlax_mapping_obstacles_causality",
+      "statement": "Et teknisk eller mappingmessig hinder er ett ledd i praksisen og kan ikke alene forklare musikalsk uttrykk eller mestring.",
+      "source_ids": [
+        "prod_src_moriceau_yan_thibault_wanderley_dmi_obstacle_2024"
+      ],
+      "locators": [
+        "Moriceau et al. 2024, PDF Sections 2–3 and Figure 4: T-Stick sensing, Max and Webmapper mapping layers"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_tstick_karlax_mapping_obstacles"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_tstick_karlax_mapping_obstacles_rights",
+      "statement": "History Go kopierer ikke instrumentkode, firmware, lydfiler eller framføringsopptak; bare kilde- og systemmetadata brukes.",
+      "source_ids": [
+        "prod_src_moriceau_yan_thibault_wanderley_dmi_obstacle_2024"
+      ],
+      "locators": [
+        "Moriceau et al. 2024, PDF Sections 2–3 and Figure 4: T-Stick sensing, Max and Webmapper mapping layers"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_tstick_karlax_mapping_obstacles"
+      ],
+      "release_effect": "Bevarer external-link-and-metadata-only og dokumenterer reproduksjonsstatus."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "instrument_eller_gjenstand"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_tstick_karlax_performance_systems_2024",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_technology_tstick_karlax_mapping_obstacles"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må navngi systemledd og skille dokumentert teknisk avhengighet fra kunstnerisk årsak eller kvalitetsdom."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Casene er dokumentert av forskere og utøvere tett på systemene; History Go har ikke rekonstruert maskinvare, programvareversjoner eller konserthendelser."
+  }
+}

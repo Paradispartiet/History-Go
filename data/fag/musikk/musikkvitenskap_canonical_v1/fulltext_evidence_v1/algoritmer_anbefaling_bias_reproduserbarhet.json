@@ -1,0 +1,238 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-sound-media-algoritmer_anbefaling_bias_reproduserbarhet-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "lydmedier_teknologi_beregning",
+  "emne_id": "em_musikk_vit_algoritmer_anbefaling_bias_reproduserbarhet",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/lydmedier_teknologi_beregning/algoritmer_anbefaling_bias_reproduserbarhet.json",
+  "research_question": "Hvordan kan en fairness-påstand i musikkanbefaling kobles til datasett, gruppevariabel, algoritme, mål, resampling og kjørbar kode?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_cpjku_recommendation_systems_fairness_code",
+      "bibliographic_identity": {
+        "creators": [
+          "CPJKU Multimedia Mining and Search Group"
+        ],
+        "year": 2021,
+        "title": "recommendation_systems_fairness",
+        "publication": "GitHub research code repository accompanying Melchiorre et al. 2021"
+      },
+      "identifiers": {
+        "url": "https://github.com/CPJKU/recommendation_systems_fairness"
+      },
+      "registration_reason": "Companion repository linked by the authors’ publication page, with environment, data schema, sampling notebook, algorithm commands, five-fold outputs and significance-testing paths.",
+      "full_text_status": "reviewed_source_code_repository",
+      "full_text_access": "https://github.com/CPJKU/recommendation_systems_fairness",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "src_melchiorre_rekabsaz_parada_brandl_lesota_schedl_gender_fairness_2021",
+      "source_registration": "canonical_registry",
+      "registry_path": "data/fag/musikk/musikkvitenskap_canonical_v1/scholarly_source_registries_v1/mir_recommendation_reproducibility_v1.json",
+      "full_text_status": "reviewed_author_uploaded_publisher_version",
+      "full_text_access": "https://hcai.at/assets/pdf/2021_ipm_rsfairness.pdf",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "PDF pp. 1–2, Sections 1.1–1.2",
+          "section": "Dataset, groups, metrics and research questions",
+          "supports": "The paper identifies LFM-2b-DemoBias, binary reported-gender caveat, Recall, NDCG, diversity, coverage and group performance gaps."
+        },
+        {
+          "pages": "PDF Sections 5–7 and result tables",
+          "section": "Algorithms, resampling, results and limitations",
+          "supports": "The paper documents collaborative-filtering experiments, standard and resampled conditions, per-group metrics, compounding measures and limitations."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker Elsevier / JKU HCAI gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og tilknyttede objekter redistribueres ikke."
+    },
+    {
+      "source_id": "prod_src_cpjku_recommendation_systems_fairness_code",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_source_code_repository",
+      "full_text_access": "https://github.com/CPJKU/recommendation_systems_fairness",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "README lines 164–209",
+          "section": "Environment, data schema and experimental conditions",
+          "supports": "The repository specifies conda setup, LFM-2b paths, user/track/play-count and demographic columns, plus standard, up-sample and down-sample conditions."
+        },
+        {
+          "pages": "README lines 228–291",
+          "section": "Evaluation outputs and folds",
+          "supports": "The repository specifies evaluation commands, timestamped model selection, five folds, aggregate and raw metric files and significance-testing code."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker CPJKU / GitHub gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og tilknyttede objekter redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_cpjku_gender_fairness_code_lfm2b_chain",
+      "object_type": "datasett_og_kode",
+      "title": "CPJKU-kodekjeden for LFM-2b-DemoBias og kjønnsfordelt anbefalingsevaluering",
+      "persistent_url": "https://github.com/CPJKU/recommendation_systems_fairness",
+      "provenance_source_ids": [
+        "src_melchiorre_rekabsaz_parada_brandl_lesota_schedl_gender_fairness_2021",
+        "prod_src_cpjku_recommendation_systems_fairness_code"
+      ],
+      "version_and_identity": {
+        "repository": "CPJKU/recommendation_systems_fairness",
+        "paper": "Melchiorre et al. 2021",
+        "dataset": "LFM-2b / LFM-2b-DemoBias",
+        "conditions": [
+          "standard",
+          "up_sample",
+          "down_sample"
+        ],
+        "evaluation": [
+          "five folds",
+          "full_metrics.pkl",
+          "full_raw_metrics.pkl",
+          "significance testing"
+        ]
+      },
+      "locators": [
+        {
+          "locator": "Repository README, “Setup the data” and “Run an experiment”",
+          "role": "Data columns, paths, algorithms and resampling conditions."
+        },
+        {
+          "locator": "Repository README, “Running evaluation” through “Significance Testing”",
+          "role": "Model timestamps, five-fold result paths, raw/aggregate metrics and tests."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent identity, version and at least two direct-object locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "Paper is CC BY 4.0; no repository-wide software license was verified, and LFM-2b data has separate access terms.",
+        "license_source": "https://github.com/CPJKU/recommendation_systems_fairness",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain",
+      "statement": "Melchiorre og medforfattere målte Recall, NDCG, diversity og coverage separat for manns- og kvinnegruppene i LFM-2b-DemoBias, rapporterte signifikante algoritmeavhengige ytelsesforskjeller og fant at resampling ga små fairnessforbedringer uten å fjerne avveiningene; companion-repositoriet gjør designet mer etterprøvbart gjennom eksplisitte datakolonner, standard/up-sample/down-sample-betingelser, fem folds og både rå og aggregerte metrikker, men den binære, selvrapporterte kjønnsvariabelen og Last.fm-utvalget avgrenser enhver normativ eller plattformgenerell slutning.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_melchiorre_rekabsaz_parada_brandl_lesota_schedl_gender_fairness_2021",
+        "prod_src_cpjku_recommendation_systems_fairness_code"
+      ],
+      "locators": [
+        "Melchiorre et al. 2021, PDF pp. 1–2 and Sections 5–7: LFM-2b-DemoBias, binary-gender caveat, metrics, algorithm gaps, resampling and limitations",
+        "CPJKU recommendation_systems_fairness README, lines 164–209 and 228–291: data schema, experimental conditions, five folds, raw/aggregate outputs and significance tests"
+      ],
+      "method_protocol_ids": [
+        "beregningsbasert_mir",
+        "institusjons_policyanalyse"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_cpjku_gender_fairness_code_lfm2b_chain",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "CPJKU-kodekjeden for LFM-2b-DemoBias og kjønnsfordelt anbefalingsevaluering"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "History Go har ikke lastet ned LFM-2b, trent modellene eller reprodusert tabellene; kodearkivet dokumenterer en kjørbar plan, men miljø-, data- og avhengighetsendringer kan påvirke replikasjon.",
+      "prohibited_inference": "Caset kan ikke redusere kjønn til en universell binær variabel, forklare alle observerte gap kausalt, rangere ett fairnessmål som moralsk fasit eller generalisere fra Last.fm til alle brukere og plattformer.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_technology_lfm2b_gender_fairness_reproducibility_chain_scope",
+      "statement": "Resultatene gjelder LFM-2b-DemoBias, de valgte collaborative-filtering-algoritmene, målene og eksperimentbetingelsene.",
+      "source_ids": [
+        "src_melchiorre_rekabsaz_parada_brandl_lesota_schedl_gender_fairness_2021",
+        "prod_src_cpjku_recommendation_systems_fairness_code"
+      ],
+      "locators": [
+        "Melchiorre et al. 2021, PDF pp. 1–2 and Sections 5–7: LFM-2b-DemoBias, binary-gender caveat, metrics, algorithm gaps, resampling and limitations"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_lfm2b_gender_fairness_reproducibility_chain_category",
+      "statement": "Forfatterne markerer selv at den binære kjønnsregistreringen ikke representerer alle individer; kategorien er en databegrensning, ikke ontologisk fasit.",
+      "source_ids": [
+        "src_melchiorre_rekabsaz_parada_brandl_lesota_schedl_gender_fairness_2021",
+        "prod_src_cpjku_recommendation_systems_fairness_code"
+      ],
+      "locators": [
+        "Melchiorre et al. 2021, PDF pp. 1–2 and Sections 5–7: LFM-2b-DemoBias, binary-gender caveat, metrics, algorithm gaps, resampling and limitations"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_lfm2b_gender_fairness_reproducibility_chain_reproduction",
+      "statement": "Kode og README styrker sporbarheten, men History Go har ikke reprodusert kjøringene, og datasett og programvare har separate vilkår.",
+      "source_ids": [
+        "src_melchiorre_rekabsaz_parada_brandl_lesota_schedl_gender_fairness_2021",
+        "prod_src_cpjku_recommendation_systems_fairness_code"
+      ],
+      "locators": [
+        "Melchiorre et al. 2021, PDF pp. 1–2 and Sections 5–7: LFM-2b-DemoBias, binary-gender caveat, metrics, algorithm gaps, resampling and limitations"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain"
+      ],
+      "release_effect": "Bevarer external-link-and-metadata-only og dokumenterer reproduksjonsstatus."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "datasett_og_kode"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_cpjku_gender_fairness_code_lfm2b_chain",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må oppgi datasett, grupper, mål, algoritmebetingelse og reproduksjonsstatus og kan ikke gjøre fairness til ett universelt tall."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 2,
+    "canonical_fulltext_reviewed_source_count": 1,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "History Go har ikke lastet ned LFM-2b, trent modellene eller reprodusert tabellene; kodearkivet dokumenterer en kjørbar plan, men miljø-, data- og avhengighetsendringer kan påvirke replikasjon."
+  }
+}

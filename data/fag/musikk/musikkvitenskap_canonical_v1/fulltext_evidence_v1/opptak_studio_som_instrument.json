@@ -1,0 +1,203 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-sound-media-opptak_studio_som_instrument-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "lydmedier_teknologi_beregning",
+  "emne_id": "em_musikk_vit_opptak_studio_som_instrument",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/lydmedier_teknologi_beregning/opptak_studio_som_instrument.json",
+  "research_question": "Hvordan blir en miks et etterprøvbart produksjonsobjekt når råspor, miksversjon, parameterlogg og lyttevurdering holdes sammen?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_de_man_reiss_mix_evaluation_dataset_2017",
+      "bibliographic_identity": {
+        "creators": [
+          "Brecht De Man",
+          "Joshua D. Reiss"
+        ],
+        "year": 2017,
+        "title": "The Mix Evaluation Dataset",
+        "publication": "Proceedings of the 20th International Conference on Digital Audio Effects (DAFx-17)"
+      },
+      "identifiers": {
+        "url": "https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_49.pdf"
+      },
+      "registration_reason": "Open conference full text documenting a bounded collection of mixes, parameter settings, evaluations, licensing differences and reconstruction limits.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_49.pdf",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_de_man_reiss_mix_evaluation_dataset_2017",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_49.pdf",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "PDF pp. 1–2, Sections 1 and 2.1, Table 1",
+          "section": "Corpus and acquisition design",
+          "supports": "The paper identifies 180 mixes, the participating institutions and the distinction between raw tracks, stems, DAW sessions, parameter settings and mixes."
+        },
+        {
+          "pages": "PDF pp. 2–3, Section 3; pp. 5–6, Section 5",
+          "section": "Available objects, metadata and limits",
+          "supports": "The paper states which sessions can be recreated, identifies CC BY 4.0 and restricted subsets, and explicitly notes the Western genre and participant skew."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker DAFx gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og tilknyttede objekter redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_mix_evaluation_dataset_sessions_2017",
+      "object_type": "produksjonsspor",
+      "title": "Mix Evaluation Dataset — dokumenterte multisporsesjoner, miksversjoner og parameterlogger",
+      "persistent_url": "https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_49.pdf",
+      "provenance_source_ids": [
+        "prod_src_de_man_reiss_mix_evaluation_dataset_2017"
+      ],
+      "version_and_identity": {
+        "corpus": "180 mixes with parameter settings and close to 5000 evaluations",
+        "acquisition": "Seven institutions in five countries",
+        "version": "DAFx-17 documented release",
+        "representation": "Raw tracks, stems, mixes, selected DAW sessions, parameters and evaluation records"
+      },
+      "locators": [
+        {
+          "locator": "De Man & Reiss 2017, Table 1 and Section 2.1",
+          "role": "Identifies songs, mix counts, participant groups and which session materials are available."
+        },
+        {
+          "locator": "De Man & Reiss 2017, Section 3 and Conclusion",
+          "role": "Separates audio, parameters, ratings, metadata, licenses and corpus limitations."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent identity, version and at least two direct-object locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "Mixed object-level licenses; six complete songs reported as CC BY 4.0 while copyrighted subsets remain unavailable.",
+        "license_source": "https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_49.pdf",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_technology_mix_dataset_production_chain",
+      "statement": "Mix Evaluation Dataset binder 180 miksversjoner til en dokumentert produksjonskjede med råspor, utvalgte DAW-sesjoner og parameterinnstillinger samt nær 5000 vurderinger fra sju institusjoner i fem land; dermed kan miksvalg analyseres som mer enn en ferdig stereofil, men materialets vestlige sjanger- og deltakerskjevhet og varierende objektrettigheter hindrer generalisering til all studiopraksis.",
+      "claim_type_id": "historical_claim",
+      "source_ids": [
+        "prod_src_de_man_reiss_mix_evaluation_dataset_2017"
+      ],
+      "locators": [
+        "De Man & Reiss 2017, PDF pp. 1–2, Table 1 and Section 2.1: 180 mixes, participating sites and preserved production information",
+        "De Man & Reiss 2017, PDF pp. 2–3 and 5–6, Sections 3 and 5: available session objects, evaluation records, licenses and corpus skew"
+      ],
+      "method_protocol_ids": [
+        "kritisk_lytteanalyse",
+        "klang_spektralanalyse"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_mix_evaluation_dataset_sessions_2017",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "Mix Evaluation Dataset — dokumenterte multisporsesjoner, miksversjoner og parameterlogger"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "History Go har kontrollert artikkelens dokumentasjon, men har ikke lastet ned, remikset eller sammenlignet alle lyd- og DAW-objektene uavhengig.",
+      "prohibited_inference": "Datasettet beviser ikke én riktig miks, universelle preferanser, produsentintensjon eller representativitet for sjangre, land og arbeidsformer utenfor utvalget.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_technology_mix_dataset_production_chain_scope",
+      "statement": "Caset gjelder den dokumenterte DAFx-17-versjonen av Mix Evaluation Dataset, ikke all studioproduksjon eller hele Open Multitrack Testbed.",
+      "source_ids": [
+        "prod_src_de_man_reiss_mix_evaluation_dataset_2017"
+      ],
+      "locators": [
+        "De Man & Reiss 2017, PDF pp. 1–2, Table 1 and Section 2.1: 180 mixes, participating sites and preserved production information"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_mix_dataset_production_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_mix_dataset_production_chain_measurement",
+      "statement": "Parameterlogger og vurderinger gjør miksene sammenlignbare, men de gjør ikke preferanse til objektiv lydkvalitet eller én kausal effekt.",
+      "source_ids": [
+        "prod_src_de_man_reiss_mix_evaluation_dataset_2017"
+      ],
+      "locators": [
+        "De Man & Reiss 2017, PDF pp. 1–2, Table 1 and Section 2.1: 180 mixes, participating sites and preserved production information"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_mix_dataset_production_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_mix_dataset_production_chain_rights",
+      "statement": "Hver lydfil, sesjon og miks følger sin egen lisens; History Go lagrer bare parafrase, metadata og eksterne lokatorer.",
+      "source_ids": [
+        "prod_src_de_man_reiss_mix_evaluation_dataset_2017"
+      ],
+      "locators": [
+        "De Man & Reiss 2017, PDF pp. 1–2, Table 1 and Section 2.1: 180 mixes, participating sites and preserved production information"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_mix_dataset_production_chain"
+      ],
+      "release_effect": "Bevarer external-link-and-metadata-only og dokumenterer reproduksjonsstatus."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "produksjonsspor"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_mix_evaluation_dataset_sessions_2017",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_technology_mix_dataset_production_chain"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må skille råspor, miks, parameterlogg og vurdering og bevare corpus- og rettighetsgrensen."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "History Go har kontrollert artikkelens dokumentasjon, men har ikke lastet ned, remikset eller sammenlignet alle lyd- og DAW-objektene uavhengig."
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "schema": "history_go_fagverk_chapter_module_v1",
+  "version": "1.0.0",
+  "subject_id": "musikk",
+  "chapter_id": "lydmedier-teknologi-beregning",
+  "module_id": "01-studio-instrument-plattform",
+  "title": "Studio, instrument og plattform",
+  "role": "grunnlag",
+  "sections": [
+    {
+      "id": "miks_som_produksjonskjede",
+      "title": "Miksen som produksjonskjede",
+      "paragraphs": [
+        "Mix Evaluation Dataset gjør det mulig å skille råspor, stems, miksrender, DAW-sesjon, parameterinnstilling og lyttevurdering. De 180 miksene er derfor ikke 180 utskiftbare lydfiler, men versjonerte resultater med ulike grader av prosessinnsyn.",
+        "Når flere miksere arbeider med samme kildemateriale, kan nivå, panorering, prosessering og vurdering sammenlignes. Parameterlogger gjør likevel ikke smak til fysikalsk fasit: preferanse er et målt svar fra bestemte deltakere i bestemte oppsett.",
+        "Korpuset er sterkt, men skjevt mot vestlige sjangre, institusjoner og erfarne produsenter. Et produksjonsclaim må derfor navngi sesjon og tilgjengelige objektlag og avsluttes før universell studioteori."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_technology_mix_dataset_production_chain"
+        ],
+        [
+          "claim_musikk_technology_mix_dataset_production_chain"
+        ],
+        [
+          "claim_musikk_technology_mix_dataset_production_chain"
+        ]
+      ],
+      "concepts": [
+        "multispor",
+        "DAW-sesjon",
+        "parameterlogg",
+        "preferansemåling"
+      ]
+    },
+    {
+      "id": "instrumentet_som_system",
+      "title": "Instrumentet som system",
+      "paragraphs": [
+        "T-Stick og Karlax blir ikke analytisk forståelige som kabinetter alene. Sensorverdier må rutes, tolkes og mappes før lydmotoren svarer, og utøveren må lære nettopp denne versjonen av kjeden.",
+        "T-Stick-caset gjør mellomleddene synlige gjennom Max og Webmapper. Når Libmapper eller et annet programvareledd foreldes, forsvinner ikke bare en teknisk bekvemmelighet; innøvde gester, mappinger og repertoar kan miste sitt fungerende miljø.",
+        "Sammenligningen viser dermed distribuerte affordanser og hindringer. Den sier ikke at samme grensesnitt tilbyr samme mulighet til enhver kropp, eller at programvaren alene skaper uttrykket."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_technology_tstick_karlax_mapping_obstacles"
+        ],
+        [
+          "claim_musikk_technology_tstick_karlax_mapping_obstacles"
+        ],
+        [
+          "claim_musikk_technology_tstick_karlax_mapping_obstacles"
+        ]
+      ],
+      "concepts": [
+        "sensor",
+        "mapping",
+        "affordans",
+        "obsolesens"
+      ]
+    },
+    {
+      "id": "plattformens_synlige_og_usynlige_ledd",
+      "title": "Plattformens synlige og usynlige ledd",
+      "paragraphs": [
+        "Spotify beskriver Home som et toleddet system: først genereres kandidater, deretter rangeres de. Hyller kan komme fra regler, redaksjonell kuratering eller trente modeller, slik at én skjermflate samler ulike autoritetsformer.",
+        "Den samme teksten viser hvorfor teknisk drift er faglig relevant. En ulik feature-transformasjon i trening og servering kunne påvirke anbefalinger i fire måneder før felles kodevei og daglig validering ble innført.",
+        "Dette er verdifull institusjonell evidens om erklært arkitektur og feilretting. Uten eksponeringslogger, kode, terskler og uavhengig design kan den ikke vise hva én lytter mottok eller hvilken kulturell og økonomisk virkning systemet hadde."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_technology_spotify_home_hybrid_curation_pipeline"
+        ],
+        [
+          "claim_musikk_technology_spotify_home_hybrid_curation_pipeline"
+        ],
+        [
+          "claim_musikk_technology_spotify_home_hybrid_curation_pipeline"
+        ]
+      ],
+      "concepts": [
+        "kandidatgenerering",
+        "rangering",
+        "kuratering",
+        "training-serving skew"
+      ]
+    }
+  ],
+  "workedExamples": [
+    {
+      "id": "teknologisk_kjedekart",
+      "title": "Bygg et teknologisk kjedekart",
+      "steps": [
+        "Velg miks, instrument eller plattformdokument.",
+        "Tegn input, transformasjon, aktør, versjon og output.",
+        "Marker hvor rettighet, feil eller ukjent årsak bryter kjeden."
+      ],
+      "claimIds": [
+        "claim_musikk_technology_mix_dataset_production_chain",
+        "claim_musikk_technology_tstick_karlax_mapping_obstacles",
+        "claim_musikk_technology_spotify_home_hybrid_curation_pipeline"
+      ]
+    }
+  ],
+  "commonMisconceptions": [
+    {
+      "misconception": "Den ferdige miksen avslører hvilke valg produsenten gjorde.",
+      "correction": "Lyden må kobles til sesjon, parameterlogg eller prosesskilde før arbeidsvalget kan hevdes.",
+      "claimIds": [
+        "claim_musikk_technology_mix_dataset_production_chain"
+      ]
+    },
+    {
+      "misconception": "Et digitalt instrument har faste affordanser uavhengig av utøver og programvare.",
+      "correction": "Affordansen oppstår i en versjonert kropp–sensor–mapping–lyd-kjede.",
+      "claimIds": [
+        "claim_musikk_technology_tstick_karlax_mapping_obstacles"
+      ]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "id": "spor_teknologisk_kjede",
+      "title": "Spor en teknologisk kjede",
+      "prompt": "Velg ett case og lever objektidentitet, fem systemledd, ett feilsted og én forbudt slutning.",
+      "requiredMethodIds": [
+        "organologisk_proveniensanalyse"
+      ],
+      "claimIds": [
+        "claim_musikk_technology_mix_dataset_production_chain",
+        "claim_musikk_technology_tstick_karlax_mapping_obstacles",
+        "claim_musikk_technology_spotify_home_hybrid_curation_pipeline"
+      ]
+    }
+  ]
+}
