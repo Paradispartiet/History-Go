@@ -22,60 +22,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Map Sport canonical emne sets
+      - name: Materialize and validate Sport
+        run: node tools/materialize-sport-phase3-once.mjs
+      - name: Remove one-shot materializer and diagnostics
+        run: |
+          rm tools/materialize-sport-phase3-once.mjs
+          rm .github/workflows/temporary-materialize-sport-phase3.yml
+          rm -f reports/fagverk/sport-phase3-debug.txt
+      - name: Commit materialized tree
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
         run: |
-          node - <<'NODE' > /tmp/sport-phase3-debug.txt
-          const fs = require('fs');
-          const targetId = 'em_sport_kropp_konkurranse';
-          const read = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
-          const emneDoc = read('data/fag/sport/emner_sport_canonical_v4_5.json');
-          const mappingDoc = read('data/fag/sport/emnemapping_sport_canonical_v4_5.json');
-          const fagkart = read('data/fag/sport/fagkart_sport_canonical_v4_5.json');
-          const pensum = read('data/fag/sport/sportpensum_canonical_v4_5.json');
-          const emners = Array.isArray(emneDoc) ? emneDoc : (emneDoc.emner || []);
-          const mappings = Array.isArray(mappingDoc) ? mappingDoc : (mappingDoc.mappings || mappingDoc.emne_mappings || []);
-          const emneIds = emners.map((row) => row?.emne_id).filter(Boolean);
-          const mappingIds = mappings.map((row) => row?.emne_id).filter(Boolean);
-          const onlyEmners = emneIds.filter((id) => !mappingIds.includes(id));
-          const onlyMappings = mappingIds.filter((id) => !emneIds.includes(id));
-          const target = emners.find((row) => row?.emne_id === targetId) || null;
-          const mappingTarget = mappings.find((row) => row?.emne_id === targetId) || null;
-
-          function domainsFrom(doc) {
-            if (Array.isArray(doc?.domains)) return doc.domains;
-            if (Array.isArray(doc?.fagomrader)) return doc.fagomrader;
-            if (Array.isArray(doc?.areas)) return doc.areas;
-            return [];
-          }
-          function domainSummary(doc) {
-            return domainsFrom(doc).map((domain) => ({
-              id: domain?.domain_id || domain?.id || domain?.area_id || null,
-              title: domain?.title || domain?.name || null,
-              containsTarget: JSON.stringify(domain).includes(targetId)
-            }));
-          }
-
-          console.log(JSON.stringify({
-            emneCount: emneIds.length,
-            mappingCount: mappingIds.length,
-            uniqueEmneCount: new Set(emneIds).size,
-            uniqueMappingCount: new Set(mappingIds).size,
-            onlyEmners,
-            onlyMappings,
-            target,
-            mappingTarget,
-            fagkartDomains: domainSummary(fagkart),
-            pensumDomains: domainSummary(pensum)
-          }, null, 2));
-          NODE
-          cat /tmp/sport-phase3-debug.txt
-          mkdir -p reports/fagverk
-          cp /tmp/sport-phase3-debug.txt reports/fagverk/sport-phase3-debug.txt
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/fagverk/sport-phase3-debug.txt
+          git add -A
           git diff --cached --check
-          git commit -m 'Map Sport Fase 3 canonical emne sets'
+          git commit -m 'Materialiser Sport Fase 3'
           git push origin "HEAD:${HEAD_BRANCH}"
