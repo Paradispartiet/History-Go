@@ -32,10 +32,13 @@ jobs:
           NODE
       - name: Materialize and validate Sport
         run: node tools/materialize-sport-phase3-once.mjs
-      - name: Diagnose Sport audit stack after materialization failure
+      - name: Persist Sport audit stack after materialization failure
         if: failure()
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
         run: |
-          node --input-type=module - <<'NODE'
+          set +e
+          node --input-type=module - <<'NODE' > /tmp/sport-phase3-debug.txt 2>&1
           import { auditSportPhase3 } from './scripts/audit-fagverk-sport-phase3.mjs';
           try {
             auditSportPhase3({ writeReport: false, checkReport: false });
@@ -44,6 +47,17 @@ jobs:
             process.exitCode = 1;
           }
           NODE
+          set -e
+          cat /tmp/sport-phase3-debug.txt
+          git reset --hard HEAD
+          mkdir -p reports/fagverk
+          cp /tmp/sport-phase3-debug.txt reports/fagverk/sport-phase3-debug.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/fagverk/sport-phase3-debug.txt
+          git diff --cached --check
+          git commit -m 'Capture Sport Fase 3 audit stack'
+          git push origin "HEAD:${HEAD_BRANCH}"
       - name: Remove one-shot materializer
         run: |
           rm tools/materialize-sport-phase3-once.mjs
