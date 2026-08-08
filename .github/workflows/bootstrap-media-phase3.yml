@@ -1,0 +1,39 @@
+name: Bootstrap verified Media phase 3 tree
+
+on:
+  push:
+    branches:
+      - agent/materialiser-media-phase3
+    paths:
+      - ".media-phase3.patch.gz.b64"
+      - ".github/workflows/bootstrap-media-phase3.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bootstrap-media-phase3
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    name: Materialize SHA-locked Media tree
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/materialiser-media-phase3
+          fetch-depth: 0
+      - name: Apply verified patch and remove transport
+        env:
+          EXPECTED_TREE: 0af12ea62f5d0cf5ace82c4fffe076f7137c7cb1
+        run: |
+          base64 --decode .media-phase3.patch.gz.b64 | gzip --decompress > /tmp/media-phase3.patch
+          git apply --index /tmp/media-phase3.patch
+          git rm .media-phase3.patch.gz.b64 .github/workflows/bootstrap-media-phase3.yml
+          ACTUAL_TREE=$(git write-tree)
+          test "$ACTUAL_TREE" = "$EXPECTED_TREE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Materialiser Media som andre Fase 3-fag"
+          git push origin HEAD:agent/materialiser-media-phase3
