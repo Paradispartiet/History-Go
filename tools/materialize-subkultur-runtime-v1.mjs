@@ -179,8 +179,6 @@ const portalEntry = list(portal.categories).find((item) => item.id === 'subkultu
 if (!portalEntry) throw new Error('fagverk_portal mangler subkultur');
 portalEntry.subjectPage = 'fagverk.html?subject=subkultur';
 portalEntry.subjectStatus = 'materialized';
-portal.version = '1.5.0';
-portal.updatedAt = UPDATED_AT;
 expected(PATHS.portal, portal);
 
 const registry = readJson(PATHS.registry);

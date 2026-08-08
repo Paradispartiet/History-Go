@@ -218,6 +218,15 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(musikk.domainCount, 8);
   assert.equal(musikk.emneCount, 48);
   assert.equal(musikk.methodCount, 18);
+  const religion = result.materializedRows.find((row) => row.id === 'religion');
+  assert.ok(religion);
+  assert.equal(religion.schemaFamily, 'foundation_v1');
+  assert.equal(religion.adapter, 'standard');
+  assert.equal(religion.domainCount, 4);
+  assert.equal(religion.emneCount, 8);
+  assert.equal(religion.methodCount, 8);
+  assert.equal(religion.chapterCount, 0);
+  assert.ok(result.report.summary.adapterFamiliesExercised.includes('foundation_v1'));
   assert.equal(result.report.summary.politicsFallbacks, 0);
   assert.equal(result.report.summary.subjectPageLegacyDependencies, 0);
 });
