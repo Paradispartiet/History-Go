@@ -11,6 +11,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 
 - `subject-baseline.json` — levende projeksjon av 17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
 - `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
+- `musikk-subject-audit.json` — flerkapittelgate for Musikkvitenskap med exact canonical domene-, emne-, metode-, claim- og kildeprojeksjon fra frigitt fulltekstevidens.
 - `historie-subject-audit.json` — individuell strukturaudit for Historie gjennom standard canonical-adapteren.
 - `natur-pilot-audit.json` — individuell utbyggingsevidens for Natur: canonical tolvdelsrekkefølge, 65 emner, 45 metoder, 65 mappingrader, 110 hooks og 11 redigerte lærekapitler.
 - `natur-quality-audit.json` — emne-, metode-, quiz-, Knowledge- og merkesidekvalitet for Natur & miljø.
@@ -50,6 +51,8 @@ node scripts/audit-fagverk-subject-inventory.mjs --write-report
 node scripts/audit-fagverk-subject-inventory.mjs
 node scripts/audit-fagverk-general-engine.mjs --write-report
 node scripts/audit-fagverk-general-engine.mjs
+node scripts/audit-fagverk-musikk.mjs --write-report
+node scripts/audit-fagverk-musikk.mjs
 node scripts/audit-fagverk-historie.mjs --write-report
 node scripts/audit-fagverk-historie.mjs
 node scripts/audit-fagverk-natur-pilot.mjs --write-report
@@ -143,7 +146,7 @@ Motor-auditen feiler når:
 
 ## Gjeldende produksjonsstatus
 
-Musikk står `materialized`, `audited` og `chapters_in_progress`. Første fullverdige kapittel dekker alle seks emner i `musikalsk_analyse_lyd_struktur` med tre moduler, ni seksjoner, 27 fagavsnitt, 13 uendrede claims og 12 inspectable fulltekstkilder. Ett av åtte fagområder har nå redigert kapittel; historisk musikkvitenskap er neste kapittelport, og 36 temaer mangler fortsatt egen fulltekstfrigivelse.
+Musikk står `materialized`, `audited` og `chapters_in_progress`. To fullverdige kapitler dekker alle tolv emner i `musikalsk_analyse_lyd_struktur` og `historisk_musikkvitenskap_historiografi` med seks moduler, 18 seksjoner, 54 fagavsnitt, 19 uendrede claims og 26 inspectable fulltekstkilder. To av åtte fagområder har nå redigerte kapitler; etnomusikologi er neste kapittelport, og 36 temaer mangler fortsatt egen fulltekstfrigivelse.
 
 Historie står `materialized`, `audited` og `chapters_in_progress`. Fire av 23 fagområder har registrerte fullverdige kapitler: historisk tid og periodisering, kilder/arkiv/spor, makt/stat/institusjoner og middelalder/kirke/kongemakt. Nitten fagområder, universell theory-evidence og full publiseringsaudit gjenstår.
 

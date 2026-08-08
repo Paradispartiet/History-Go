@@ -1,0 +1,89 @@
+{
+  "schema": "history_go_fagverk_chapter_module_v1",
+  "version": "1.0.0",
+  "subject_id": "musikk",
+  "chapter_id": "historisk-musikkvitenskap-historiografi",
+  "module_id": "01-kilder-tidslag-kategorier",
+  "title": "Kilder, tidslag og historiske kategorier",
+  "role": "grunnlag",
+  "sections": [
+    {
+      "id": "kilden_har_en_overleveringskjede",
+      "title": "Kilden har en overleveringskjede",
+      "paragraphs": [
+        "En musikkhistorisk kilde må identifiseres før den tolkes. Griegs innspilling av «Brudefølget drar forbi» kan knyttes til Paris 2. mai 1903, Gramophone and Typewriter Limited, matrise 2151F og katalognummer 35517. Disse opplysningene avgrenser den historiske opptakssiden, men sier ikke at enhver senere lydfil gjengir hendelsen uten mellomledd.",
+        "Den hørbare tilgangen går gjennom bevarte eksemplarer, avspilling, overføring, restaurering og nettpublisering. SIMAX-, Marston- og Chasing the Butterfly-versjonene er derfor ikke bare beholdere for den samme lyden, men tekniske og redaksjonelle representasjoner med egne valg om blant annet tonehøyde, equalization og støybehandling.",
+        "Den eksakte fysiske platen og komplette transferkjeden bak Chasing the Butterfly-utdraget er ikke dokumentert i de gjennomgåtte sidene. Kildekritikken beholder derfor to utsagn samtidig: opptakssiden er identifisert, mens webfilens fullstendige proveniens forblir uavklart."
+      ],
+      "paragraphClaimIds": [
+        ["claim_musikk_history_grieg_2151f_provenance_derivative_chain"],
+        ["claim_musikk_history_grieg_2151f_provenance_derivative_chain"],
+        ["claim_musikk_history_grieg_2151f_provenance_derivative_chain"]
+      ],
+      "concepts": ["proveniens", "matrise", "overleveringskjede", "restaurering", "derivat"]
+    },
+    {
+      "id": "perioder_er_analysemodeller",
+      "title": "Perioder er analysemodeller",
+      "paragraphs": [
+        "Periodenavn ordner hendelser, men ordningen er ikke nøytral. I historieskrivingen om osmansk-tyrkisk musikk organiserer Berker forløpet gjennom komponistgrenser og stilbetegnelser som klassisk, neoklassisk, romantisk og reform. Resultatet er ett historisk kart, ikke selve tiden i ferdig oppdelte epoker.",
+        "Uslu foreslår i stedet en kronologi knyttet til skiftende kilderegimer og kunnskapsformer, fra arkeologiske og paleografiske spor til systematikere, klassisk tyrkisk musikk og popularisering. Når kildegrunnlaget og inndelingskriteriet endres, flyttes også brudd, kontinuiteter og synlige aktører.",
+        "Fırats sammenligning viser dessuten at et utvidet Kevserî-korpus kunne endre slutninger om 1700-tallet. God periodisering oppgir derfor både kildene, kriteriene og det alternative tidsskjemaet som kunne gitt en annen fortelling."
+      ],
+      "paragraphClaimIds": [
+        ["claim_musikk_history_periodization_ottoman_turkish_models_source_dependency"],
+        ["claim_musikk_history_periodization_ottoman_turkish_models_source_dependency"],
+        ["claim_musikk_history_periodization_ottoman_turkish_models_source_dependency"]
+      ],
+      "concepts": ["periodisering", "kilderegime", "kontinuitet", "brudd", "anakronisme"]
+    },
+    {
+      "id": "verk_og_kanon_historiseres",
+      "title": "Verk og kanon må historiseres",
+      "paragraphs": [
+        "William Crotchs «O Sing unto the Lord» fra 1794 ble produsert og vurdert som en Oxford-gradskomposisjon. Manuskriptet var dermed både musikalsk struktur og institusjonelt eksamensobjekt: det demonstrerte ferdigheter innen bestemte akademiske konvensjoner.",
+        "Objektet har navngitt komponist, sammenhengende struktur, arkividentitet og senere analytisk lesbarhet, men gradskomposisjonene sirkulerte i liten grad i offentlig konsert- og publiseringsliv. Fravær fra framføringskanonen opphever derfor verken objektets historiske eller musikkvitenskapelige verdi.",
+        "«Verk» og «kanon» beskriver i dette caset flere autoriseringsprosesser. Eksamen, arkiv, analyse, utgivelse og framføring gjør ulike egenskaper synlige. En historisk analyse må navngi hvilken status den undersøker i stedet for å bruke dagens verkbegrep som tidløs fasit."
+      ],
+      "paragraphClaimIds": [
+        ["claim_musikk_history_work_canon_oxford_degree_exercise_institutional_status"],
+        ["claim_musikk_history_work_canon_oxford_degree_exercise_institutional_status"],
+        ["claim_musikk_history_work_canon_oxford_degree_exercise_institutional_status"]
+      ],
+      "concepts": ["verkbegrep", "gradskomposisjon", "arkivkanon", "framføringskanon", "autorisering"]
+    }
+  ],
+  "workedExamples": [
+    {
+      "id": "grieg_1903_kildelag",
+      "title": "Skill opptaksside fra tilgangsfil",
+      "steps": [
+        "Identifiser dato, selskap, matrise og katalognummer.",
+        "List bevarings-, transfer-, restaurerings- og publiseringsledd.",
+        "Marker hvilke ledd som er dokumentert, og hvilke som mangler."
+      ],
+      "claimIds": ["claim_musikk_history_grieg_2151f_provenance_derivative_chain"]
+    }
+  ],
+  "commonMisconceptions": [
+    {
+      "misconception": "En katalogidentitet gjør den moderne lydfilen transparent.",
+      "correction": "Katalogen identifiserer opptakssiden; filens transfer- og restaureringshistorie må dokumenteres separat.",
+      "claimIds": ["claim_musikk_history_grieg_2151f_provenance_derivative_chain"]
+    },
+    {
+      "misconception": "Periodenavn er naturlige tidsenheter.",
+      "correction": "Perioder er kilde- og kriterieavhengige historiografiske modeller.",
+      "claimIds": ["claim_musikk_history_periodization_ottoman_turkish_models_source_dependency"]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "id": "sammenlign_periodiseringer",
+      "title": "Sammenlign to historiske kart",
+      "prompt": "Velg to periodiseringer av samme korpus, oppgi kriterium og kildetyper, og vis hvem eller hva som blir synlig og usynlig i hver modell.",
+      "requiredMethodIds": ["historiografisk_analyse", "historisk_kildekritikk"],
+      "claimIds": ["claim_musikk_history_periodization_ottoman_turkish_models_source_dependency"]
+    }
+  ]
+}
