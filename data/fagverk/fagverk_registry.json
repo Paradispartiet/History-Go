@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.25.0",
+  "version": "2.26.0",
   "updatedAt": "2026-08-08",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -10,12 +10,23 @@
     "fallbackSubjectByCategory": {
       "politikk": "politikk",
       "historie": "historie",
-      "by": "politikk",
+      "by": "by",
       "natur": "natur",
       "naeringsliv": "naeringsliv"
     }
   },
   "subjects": {
+    "by": {
+      "title": "By & arkitektur",
+      "description": "Et stedsnært fagverk om byliv, arkitektur, bolig og nabolag, planlegging, urbanisme, arbeid, historiske lag, makt, klima, helse, data og byregioner. Faget undersøker hvordan bygde omgivelser organiserer bevegelse, hverdagsliv, ressurser og konflikt gjennom observerbare spor og dokumenterte beslutninger.",
+      "canonicalModel": {
+        "manifest": "data/fag/fag_manifest.json",
+        "schemaFamily": "by_compatibility",
+        "sourceOfTruth": true,
+        "note": "Fagkartets tolv kategorier eier renderer-fagområdene. Pensummodulene og curriculum-arkitekturen eier progresjon, men skal ikke kopieres som parallelle renderer-fagområder."
+      },
+      "chapters": []
+    },
     "religion": {
       "title": "Religion",
       "description": "Et kildebasert og respektfullt fagverk om hellige rom, ritualer, religiøse tradisjoner, lokal religionshistorie, religion og samfunn samt pilegrim og hellige reiser. Faget skiller dokumentert observasjon fra antakelser om tro og behandler tradisjoner som internt mangfoldige.",
