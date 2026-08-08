@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.26.0",
+  "version": "2.27.0",
   "updatedAt": "2026-08-08",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -12,7 +12,8 @@
       "historie": "historie",
       "by": "by",
       "natur": "natur",
-      "naeringsliv": "naeringsliv"
+      "naeringsliv": "naeringsliv",
+      "vitenskap": "vitenskap"
     }
   },
   "subjects": {
@@ -24,6 +25,17 @@
         "schemaFamily": "by_compatibility",
         "sourceOfTruth": true,
         "note": "Fagkartets tolv kategorier eier renderer-fagområdene. Pensummodulene og curriculum-arkitekturen eier progresjon, men skal ikke kopieres som parallelle renderer-fagområder."
+      },
+      "chapters": []
+    },
+    "vitenskap": {
+      "title": "Vitenskap & teknologi",
+      "description": "Et kilde- og metodebasert fagverk om kunnskapsinstitusjoner, laboratorier, måling, eksperimenter, modeller, vitenskapelige paradigmer, teknologi, data, natur- og helsevitenskap, forskningsetikk og ekspertmakt. Faget undersøker både hvordan kunnskap produseres og hvor evidens, instrumenter, standarder og institusjonelle interesser setter grenser for påstandene.",
+      "canonicalModel": {
+        "manifest": "data/fag/fag_manifest.json",
+        "schemaFamily": "standard_canonical",
+        "sourceOfTruth": true,
+        "note": "Vitenskapsfagets seks fagområder eier toppstrukturen. Teknologi er en nested technology_scientific_v2_4-spesialisering under samme fag og badge, ikke et eget toppfag. Ingen kapitler registreres før fulltekst, claims og kilder er produsert."
       },
       "chapters": []
     },

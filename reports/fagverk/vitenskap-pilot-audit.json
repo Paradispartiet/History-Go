@@ -1,0 +1,89 @@
+{
+  "schema": "history_go_fagverk_vitenskap_pilot_audit_v1",
+  "version": "1.0.0",
+  "status": "vitenskap_with_nested_teknologi_pilot_structure_ready",
+  "generatedFrom": {
+    "core": "js/fagverk-subject-core.js",
+    "categories": "data/categories/category_contract.json",
+    "manifest": "data/fag/fag_manifest.json",
+    "portal": "data/fagverk/fagverk_portal.json",
+    "inventory": "data/fagverk/subject_inventory.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "badge": "data/badges/vitenskap.json",
+    "explicitMappings": "data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_5.json",
+    "generator": "data/fag/vitenskap/quiz_generator_rules_vitenskap_v5_1_source_priority_patch.json",
+    "technologyIndex": "data/fag/teknologi/teknologi_scientific_v2/index.json",
+    "report": "reports/fagverk/vitenskap-pilot-audit.json"
+  },
+  "subject": {
+    "id": "vitenskap",
+    "title": "Vitenskap & teknologi",
+    "schemaFamily": "standard_canonical",
+    "adapter": "standard",
+    "navigationStatus": "materialized",
+    "assessmentStatus": "audited",
+    "editorialStatus": "structure_ready",
+    "nextGate": "chapter_production",
+    "subjectPage": "fagverk.html?subject=vitenskap",
+    "badgePage": "data/fag/vitenskap/merke_vitenskap (2).html"
+  },
+  "specialization": {
+    "id": "teknologi",
+    "canonicalParentSubject": "vitenskap",
+    "badgeId": "vitenskap",
+    "schemaFamily": "technology_scientific_v2_4",
+    "adapter": "technology",
+    "topLevelRoute": "",
+    "scientificStatus": "canonical_scientific_subject"
+  },
+  "summary": {
+    "domainCount": 6,
+    "emneCount": 93,
+    "methodCount": 84,
+    "mappingCount": 93,
+    "hookCount": 60,
+    "registeredChapterCount": 0,
+    "technologyDomainCount": 12,
+    "technologyEmneCount": 48,
+    "technologyMethodCount": 35,
+    "technologyMappingCount": 48,
+    "technologyHookCount": 36,
+    "technologyProgressionModuleCount": 12
+  },
+  "canonicalDomainOrder": [
+    "institusjoner_laboratorier_kunnskapssteder",
+    "metoder_maling_modeller",
+    "paradigmer_teorier_sannhet",
+    "teknologi_data_infrastruktur",
+    "natur_medisin_miljo",
+    "samfunn_makt_etikk"
+  ],
+  "domainEmneCounts": {
+    "institusjoner_laboratorier_kunnskapssteder": 22,
+    "metoder_maling_modeller": 15,
+    "paradigmer_teorier_sannhet": 15,
+    "teknologi_data_infrastruktur": 13,
+    "natur_medisin_miljo": 14,
+    "samfunn_makt_etikk": 14
+  },
+  "emneStatusCounts": {
+    "active": 89,
+    "core": 4
+  },
+  "gates": {
+    "manifestFirstSourcesResolved": true,
+    "allVitenskapEmnersIntegrated": true,
+    "noSyntheticVitenskapDomains": true,
+    "allMethodReferencesResolved": true,
+    "explicitMappingAndGeneratorCountsSynchronized": true,
+    "technologyAdapterExercised": true,
+    "technologyRemainsNestedSpecialization": true,
+    "technologyHasNoTopLevelRouteOrBadge": true,
+    "vitenskapPlaceFallbackCorrect": true,
+    "badgeAndSubjectRoutesDistinct": true,
+    "assessmentStatusAudited": true,
+    "editorialStatusStructureReady": true,
+    "chapterClaimsNotOverstated": true
+  }
+}

@@ -12,6 +12,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `subject-baseline.json` — levende projeksjon av 17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
 - `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
 - `by-pilot-audit.json` — individuell fase-2-gate for By som `by_compatibility`: tolv fagkart-eide fagområder, 82 source-emner, 14 canonicale metoder, 81 hooks og kurs-/curriculum-moduler som separate progresjonslag.
+- `vitenskap-pilot-audit.json` — sluttport for fase 2: seks Vitenskap-fagområder med 93 integrerte emner, 84 metoder, 93 mappinger og 60 hooks, samt Teknologi som nested `technology_scientific_v2_4`-spesialisering med 12 områder, 48 emner, 35 metoder og 36 hooks.
 - `musikk-subject-audit.json` — flerkapittelgate for Musikkvitenskap med exact canonical domene-, emne-, metode-, claim- og kildeprojeksjon fra frigitt fulltekstevidens.
 - `historie-subject-audit.json` — individuell strukturaudit for Historie gjennom standard canonical-adapteren.
 - `natur-pilot-audit.json` — individuell utbyggingsevidens for Natur: canonical tolvdelsrekkefølge, 65 emner, 45 metoder, 65 mappingrader, 110 hooks og 11 redigerte lærekapitler.
@@ -55,6 +56,8 @@ node scripts/audit-fagverk-general-engine.mjs --write-report
 node scripts/audit-fagverk-general-engine.mjs
 node scripts/audit-fagverk-by-pilot.mjs --write-report
 node scripts/audit-fagverk-by-pilot.mjs
+node scripts/audit-fagverk-vitenskap-pilot.mjs --write-report
+node scripts/audit-fagverk-vitenskap-pilot.mjs
 node scripts/audit-fagverk-musikk.mjs --write-report
 node scripts/audit-fagverk-musikk.mjs
 node scripts/audit-fagverk-historie.mjs --write-report
@@ -168,6 +171,8 @@ Religion står `materialized`, `audited` og `structure_ready` som den andre godk
 
 By står `materialized`, `audited` og `structure_ready` som den tredje godkjente fase-2-piloten. Compatibility-adapteren bruker fagkartets tolv kategorier som eneste renderer-fagområder og bevarer alle 82 source-emner, 14 canonicale metoder og 81 hooks. Fem tidligere ukoblede aktive emner er lagt inn i eksisterende, semantisk riktige hooks, slik at motoren ikke oppretter kunstige fallback-områder. De sju pensummodulene og åtte curriculum-modulene er progresjonslag; redigerte kapitler, claims og kapittelkilder gjenstår.
 
+Vitenskap står `materialized`, `audited` og `structure_ready` som den fjerde og siste fase-2-piloten. Standardadapteren viser seks canonicale fagområder, 93 emner, 84 metoder, 93 mappinger og 60 hooks. Tretten etterregistrerte emner er integrert i de eksisterende områdene, mappingregisteret og generatorgrunnlaget. Teknologi bevares under Vitenskap gjennom sin egen adapter med tolv områder, 48 aktive emner, 35 metoder og 36 hooks; det opprettes verken toppfag, topprute eller separat badge. Redigerte Vitenskap-kapitler, claims og kapittelkilder gjenstår.
+
 Subkultur står `planned`, `pending` og `not_started` i det globale statusregisteret, fordi redaksjonell progresjon der først kan begynne etter runtime-materialisering. Kapittelmanifestet dokumenterer den faktiske innholdsprogresjonen separat. Foundation-gaten viser åtte universelle fagområder, 80 individuelt redigerte emner, 80 én-til-én-mappinger og 43 operative metoder. Alle 72 etablerte `em_sub_*`-ID-er beholder sin faglige betydning, og åtte nye ID-er dekker innenfra-/utenfrablikk samt sosiale randsoner, omsorg og skadereduksjon. Teori-/evidensporten er grønn med 80/80 teoriobjekter, 160 claims og 23 kuraterte kilder. Åtte kapittelfiler og 24 moduler gir 72 seksjoner, 216 unike fagavsnitt, 320 claimreferanser, 168 inspectable kildereferanser og 48 canonicale stedskandidater. Places/People-revisjonen er ferdig. Casekildeporten er komplett med 42 validerte cases i Oslo, Norge/Norden og Lisboa, 84 inspectable casekilder og komplette A–H-rapporter. Åtte kandidater er eksplisitt avvist: Hartvig Nissens skole/SKAM og Village Underground kvalifiserer ikke, mens fem for brede vegg-/passasjeankere og Stovnertårnet mangler tilstrekkelig stedsspesifikk miljøevidens til å brukes som validerte fagverkcases. Ingen kandidater står åpne. Quiz/Knowledge-porten er komplett med åtte fagområdeforløp, 40 unike kildebelagte spørsmål, 44 canonicale Knowledge units og 83/83 legacybeslutninger; de udokumenterte legacysettene er tatt ut av runtime-manifestet. Bare runtime-materialisering og sluttport gjenstår, så faget hevder ennå ikke `materialized`, `audited` eller `complete`.
 
-Den gjenværende fase-2-piloten er `vitenskap`; Teknologi inngår som nested spesialisering i Vitenskap-piloten. Den skal materialiseres individuelt og må passere samme gate før portalstatusen endres.
+Alle fire fase-2-piloter er materialisert og auditert: Natur, Religion, By og Vitenskap med Teknologi som nested spesialisering. Videre arbeid følger hvert fags dokumenterte `nextGate`; structure-ready-fag går til kapittelproduksjon uten at statusen overrapporterer fulltekst, claims eller kildegrunnlag.
