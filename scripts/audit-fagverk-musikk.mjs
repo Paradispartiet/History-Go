@@ -160,7 +160,7 @@ function buildReport(source, generalRow, chapterAudits, chapterAudit) {
   return {
     schema: 'history_go_fagverk_musikk_subject_audit_v1',
     version: '1.1.0',
-    status: 'phase_4_musikk_chapters_in_progress',
+    status: 'complete',
     generatedFrom: {
       manifest: P.manifest,
       portal: P.portal,
@@ -240,7 +240,7 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
   const registry = json(P.registry);
   const source = scientific(manifest.musikk);
   const statusEntry = status.subjects.find(entry => entry.id === 'musikk');
-  assert(statusEntry.navigationStatus === 'materialized' && statusEntry.assessmentStatus === 'audited' && statusEntry.editorialStatus === 'chapters_in_progress', 'Musikk-status er feil');
+  assert(statusEntry.navigationStatus === 'materialized' && statusEntry.assessmentStatus === 'audited' && statusEntry.editorialStatus === 'complete', 'Musikk-status er feil');
   assert(source.index.subject_id === 'musikk' && source.index.legacy_compatibility.scientific_authority === 'this_package', 'Musikk-authority er feil');
   const topics = source.modules.flatMap(module => module.topics || []);
   const methods = new Set(source.methods.protocols.map(method => method.method_id));
@@ -250,7 +250,7 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
   }
 
   const registryChapters = registry.subjects?.musikk?.chapters || [];
-  assert(registryChapters.length >= 2, 'Musikk mangler forventet kapittelfremdrift');
+  assert(registryChapters.length === source.domainCatalog.domains.length, 'Musikk må ha ett kapittel per canonicalt fagområde');
   const domainIds = registryChapters.map(record => record.primary_domain_id);
   assert(new Set(domainIds).size === domainIds.length, 'Musikk har flere kapitler for samme canonicale fagområde');
   const chapterAudits = registryChapters.map(record => auditChapter(record, source));
@@ -258,7 +258,7 @@ export function auditRepository({ writeReport = false, checkReport = true } = {}
 
   const general = auditGeneralRepository({ writeReport: false, checkReport: false });
   const generalRow = general.materializedRows.find(row => row.id === 'musikk');
-  assert(generalRow && generalRow.chapterCount === registryChapters.length && generalRow.editorialStatus === 'chapters_in_progress', 'Generell motor mangler Musikk-kapitler');
+  assert(generalRow && generalRow.chapterCount === registryChapters.length && generalRow.editorialStatus === 'complete', 'Generell motor mangler ferdig Musikk-fagverk');
   const report = buildReport(source, generalRow, chapterAudits, chapterAudit);
   if (writeReport) fs.writeFileSync(absolute(P.report), `${JSON.stringify(report, null, 2)}\n`);
   if (checkReport) assert(isDeepStrictEqual(json(P.report), report), `${P.report} er utdatert`);

@@ -41,3 +41,7 @@ Norsk/nordisk/samisk/stedsdossierene skiller nasjonal eller institusjonell merke
 Aktiv emnerevisjon: `musikkvitenskap-emnemigrasjon-v2-2026-07-27`
 
 Aktiv kilderevisjon: `musikkvitenskap-kildegrunnlag-atte-domener-v9-2026-07-30`
+
+## Fulltekst- og kapittelstatus
+
+Alle 48 temaer i de åtte canonicale domenene har nå egen fulltekstgjennomgang, identifisert direkte objekt, presise lokatorer, eksplisitt rettighetsmodus og en question-ready claim. Fagverkregisteret materialiserer åtte kapitler med exact canonical emne- og metodeprojeksjon. Bibliografisk kildegrunnlag, produksjonsutvidelser og kapitteltekst forblir separate lag; kapittelstatusen opphever ikke objektspesifikke samtykke-, fellesskaps-, tilgangs- eller gjenbruksgrenser.
