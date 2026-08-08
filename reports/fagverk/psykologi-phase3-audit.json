@@ -1,0 +1,68 @@
+{
+  "schema": "history_go_fagverk_psykologi_phase3_audit_v1",
+  "version": "1.0.0",
+  "status": "psykologi_phase_3_structure_ready",
+  "generatedFrom": {
+    "core": "js/fagverk-subject-core.js",
+    "categories": "data/categories/category_contract.json",
+    "manifest": "data/fag/fag_manifest.json",
+    "portal": "data/fagverk/fagverk_portal.json",
+    "inventory": "data/fagverk/subject_inventory.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "badge": "data/badges/psykologi.json",
+    "explicitMappings": "data/fag/psykologi/emnemapping_psykologi_canonical_v4_5.json",
+    "generator": "data/fag/psykologi/quiz_generator_rules_psykologi_v5_1_source_priority_patch.json",
+    "badgePage": "data/fag/psykologi/merke_psykologi (1).html",
+    "report": "reports/fagverk/psykologi-phase3-audit.json"
+  },
+  "subject": {
+    "id": "psykologi",
+    "title": "Psykologi",
+    "schemaFamily": "standard_canonical",
+    "adapter": "standard",
+    "navigationStatus": "materialized",
+    "assessmentStatus": "audited",
+    "editorialStatus": "structure_ready",
+    "nextGate": "chapter_production",
+    "subjectPage": "fagverk.html?subject=psykologi",
+    "badgePage": "data/fag/psykologi/merke_psykologi (1).html"
+  },
+  "summary": {
+    "domainCount": 6,
+    "emneCount": 58,
+    "methodCount": 58,
+    "mappingCount": 58,
+    "hookCount": 60,
+    "registeredChapterCount": 0,
+    "explicitMappingRowCount": 58
+  },
+  "canonicalDomainOrder": [
+    "psykisk_helse_institusjoner_behandling",
+    "fagtradisjoner_teori_sinnet",
+    "utvikling_oppvekst_laring",
+    "kognisjon_folelser_atferd",
+    "sosialpsykologi_normalitet_stigma",
+    "traume_krise_resiliens_omsorg"
+  ],
+  "domainEmneCounts": {
+    "psykisk_helse_institusjoner_behandling": 12,
+    "fagtradisjoner_teori_sinnet": 14,
+    "utvikling_oppvekst_laring": 9,
+    "kognisjon_folelser_atferd": 8,
+    "sosialpsykologi_normalitet_stigma": 8,
+    "traume_krise_resiliens_omsorg": 7
+  },
+  "gates": {
+    "allCanonicalEmnersInPensum": true,
+    "allCanonicalEmnersInFagkart": true,
+    "allCanonicalEmnersInMappingRegistry": true,
+    "allMethodReferencesResolved": true,
+    "generatorCountsSynchronized": true,
+    "badgeAndSubjectRoutesDistinct": true,
+    "doNotDiagnosePeopleGuardPresent": true,
+    "assessmentStatusAudited": true,
+    "editorialStatusStructureReady": true,
+    "chapterClaimsNotOverstated": true
+  }
+}

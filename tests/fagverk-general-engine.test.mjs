@@ -242,6 +242,16 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(media.mappingCount, 120);
   assert.equal(media.hookCount, 60);
   assert.equal(media.chapterCount, 0);
+  const psykologi = result.materializedRows.find((row) => row.id === 'psykologi');
+  assert.ok(psykologi);
+  assert.equal(psykologi.schemaFamily, 'standard_canonical');
+  assert.equal(psykologi.adapter, 'standard');
+  assert.equal(psykologi.domainCount, 6);
+  assert.equal(psykologi.emneCount, 58);
+  assert.equal(psykologi.methodCount, 58);
+  assert.equal(psykologi.mappingCount, 58);
+  assert.equal(psykologi.hookCount, 60);
+  assert.equal(psykologi.chapterCount, 0);
   const musikk = result.materializedRows.find((row) => row.id === 'musikk');
   assert.ok(musikk);
   assert.equal(musikk.domainCount, 8);

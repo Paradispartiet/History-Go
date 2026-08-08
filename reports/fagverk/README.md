@@ -13,6 +13,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
 - `kunst-phase3-audit.json` — individuell Fase 3-gate for Kunst: seks canonicale fagområder, 21 aktive emner, 21 metoder, 21 mappinger og 60 hooks uten syntetiske fagområder eller overrapporterte kapitler.
 - `media-phase3-audit.json` — individuell Fase 3-gate for Media: seks hovedområder, 120 aktive hovedemner, 163 samlede metoder, 120 mappinger og 60 hooks, samt Populærkultur som komplett nested mediefelt med 56 emner uten konkurrerende toppfag.
+- `psykologi-phase3-audit.json` — individuell Fase 3-gate for Psykologi: seks canonicale fagområder, 58 aktive emner, 58 metoder, 58 mappinger og 60 hooks, med full emnedekning og eksplisitt vern mot diagnostisering av enkeltpersoner.
 - `by-pilot-audit.json` — individuell fase-2-gate for By som `by_compatibility`: tolv fagkart-eide fagområder, 82 source-emner, 14 canonicale metoder, 81 hooks og kurs-/curriculum-moduler som separate progresjonslag.
 - `vitenskap-pilot-audit.json` — sluttport for fase 2: seks Vitenskap-fagområder med 93 integrerte emner, 84 metoder, 93 mappinger og 60 hooks, samt Teknologi som nested `technology_scientific_v2_4`-spesialisering med 12 områder, 48 emner, 35 metoder og 36 hooks.
 - `musikk-subject-audit.json` — flerkapittelgate for Musikkvitenskap med exact canonical domene-, emne-, metode-, claim- og kildeprojeksjon fra frigitt fulltekstevidens.
@@ -60,6 +61,8 @@ node scripts/audit-fagverk-kunst-phase3.mjs --write-report
 node scripts/audit-fagverk-kunst-phase3.mjs
 node scripts/audit-fagverk-media-phase3.mjs --write-report
 node scripts/audit-fagverk-media-phase3.mjs
+node scripts/audit-fagverk-psykologi-phase3.mjs --write-report
+node scripts/audit-fagverk-psykologi-phase3.mjs
 node scripts/audit-fagverk-by-pilot.mjs --write-report
 node scripts/audit-fagverk-by-pilot.mjs
 node scripts/audit-fagverk-vitenskap-pilot.mjs --write-report

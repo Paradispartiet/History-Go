@@ -9,16 +9,16 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "2.29.0",
+    "version": "2.30.0",
     "updated_at": "2026-08-08",
-    "content_sha256": "381cd560db079675131273518757b93cdc7f403f69c65c1d61ac675d770493f1"
+    "content_sha256": "37a6ac86d36fc652c8def9d52afa612b349735cb18009e78a9dba7672679ca8d"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
     "schema": "history_go_fagverk_subject_inventory_v1",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "updated_at": "2026-08-08",
-    "content_sha256": "a9cfaca234f5aaae71dd00cdd09104f6d3ad6b278d632a5ff66cd99e54432b89",
+    "content_sha256": "6b6bb5f12050bb3ca3217fdd6187ce22aa3301677b20c0acf3e368182e542e17",
     "root_subject_count": 17,
     "specialization_count": 1
   },
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "6d1010d175cf9369958176677eeae8d76ea682ecb8ad0b1f4f5ca039d3ece462"
+    "content_sha256": "991ddd98ddfc17cecd0956735aab15ee2bd482887e94104c7cd9205ee00aa205"
   },
   "summary": {
     "subject_count": 18,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 6,
     "chapter_count": 75,
     "module_file_count": 192,
-    "package_file_count": 199,
+    "package_file_count": 200,
     "chapter_referenced_file_count": 333,
-    "referenced_file_count": 491,
+    "referenced_file_count": 492,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -2874,7 +2874,7 @@
       ]
     },
     "psykologi": {
-      "title": "psykologi",
+      "title": "Psykologi",
       "kind": "subject",
       "parent_subject_id": null,
       "schema_family": "standard_canonical",
@@ -2890,9 +2890,11 @@
       "optional_manifest_fields": [
         "supersetQuizMal",
         "quizStandard",
-        "quizQuestionSchema"
+        "quizQuestionSchema",
+        "emneMappings"
       ],
       "present_manifest_fields": [
+        "emneMappings",
         "emner",
         "fagkart",
         "methods",
@@ -2902,10 +2904,22 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 7,
+      "package_file_count": 8,
       "required_package_file_count": 4,
-      "optional_package_file_count": 3,
+      "optional_package_file_count": 4,
       "package_files": [
+        {
+          "path": "data/fag/psykologi/emnemapping_psykologi_canonical_v4_5.json",
+          "required": false,
+          "fields": [
+            "emneMappings"
+          ],
+          "key_paths": [
+            "emneMappings"
+          ],
+          "exists": true,
+          "content_sha256": "b41d478c86732b5411ac21d6dd8ea331e83b6cd50685d1c3117728c6c8517446"
+        },
         {
           "path": "data/fag/psykologi/emner_psykologi_canonical_v4_5.json",
           "required": true,
@@ -2991,20 +3005,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "e0efdc0d258fa2fa5cfe3784849c3e175640b48a0c2fbf3f5c2e0d2dad414ba3",
+      "package_content_sha256": "99d35a4d11d9f71defe2bcec243fbf1f76840c14b5cf204fa04be88d8d2e69ee",
       "chapter_count": 0,
       "module_file_count": 0,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 0,
       "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 7,
+      "referenced_file_count": 8,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "090af8f6add45be6d7baf341f4248ea62f7a1305c9e52983ccbf458527f30432",
-      "content_sha256": "e0efdc0d258fa2fa5cfe3784849c3e175640b48a0c2fbf3f5c2e0d2dad414ba3",
+      "structure_sha256": "df892ece742a32737ccee26a0506d87f62ad9e753e37a808f4c922cc68eba1e8",
+      "content_sha256": "99d35a4d11d9f71defe2bcec243fbf1f76840c14b5cf204fa04be88d8d2e69ee",
       "chapters": []
     },
     "religion": {
@@ -4047,5 +4061,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "a292de9356583d89f644d98806d3b470fae4c82049fca243bfdbfd7b5f238d9d"
+  "release_sha256": "06903316bf69f1ed23f91705209d7b4086c48d61aee1ff0dc8947b09369c7f3a"
 }
