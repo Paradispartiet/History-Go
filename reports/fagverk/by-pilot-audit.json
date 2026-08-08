@@ -1,0 +1,90 @@
+{
+  "schema": "history_go_fagverk_by_pilot_audit_v1",
+  "version": "1.0.0",
+  "status": "by_compatibility_pilot_structure_ready",
+  "generatedFrom": {
+    "core": "js/fagverk-subject-core.js",
+    "categories": "data/categories/category_contract.json",
+    "manifest": "data/fag/fag_manifest.json",
+    "portal": "data/fagverk/fagverk_portal.json",
+    "inventory": "data/fagverk/subject_inventory.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "badge": "data/badges/by.json",
+    "report": "reports/fagverk/by-pilot-audit.json",
+    "curriculum": "data/fag/by/curriculum_architecture_by_v1.json",
+    "qualityContract": "data/fag/by/quality_contract_by_v1.json"
+  },
+  "subject": {
+    "id": "by",
+    "title": "By & arkitektur",
+    "schemaFamily": "by_compatibility",
+    "adapter": "by",
+    "navigationStatus": "materialized",
+    "assessmentStatus": "audited",
+    "editorialStatus": "structure_ready",
+    "nextGate": "chapter_production",
+    "subjectPage": "fagverk.html?subject=by",
+    "badgePage": "data/fag/by/merke_by.html"
+  },
+  "summary": {
+    "domainCount": 12,
+    "emneCount": 82,
+    "activeEmneCount": 74,
+    "methodCount": 14,
+    "mappingCount": 82,
+    "hookCount": 81,
+    "courseModuleCount": 7,
+    "curriculumModuleCount": 8,
+    "registeredChapterCount": 0
+  },
+  "canonicalDomainOrder": [
+    "byliv",
+    "arkitektur",
+    "bolig_og_nabolag",
+    "administrasjon_og_plan",
+    "urbanisme",
+    "arbeid_og_naering",
+    "historiske_lag",
+    "makt_og_konflikt",
+    "klima_og_helse",
+    "data_og_styring",
+    "regional_og_global",
+    "boligpolitikk_og_velferd"
+  ],
+  "primaryDomainEmneCounts": {
+    "byliv": 30,
+    "arkitektur": 12,
+    "bolig_og_nabolag": 5,
+    "administrasjon_og_plan": 3,
+    "urbanisme": 6,
+    "arbeid_og_naering": 8,
+    "historiske_lag": 2,
+    "makt_og_konflikt": 5,
+    "klima_og_helse": 4,
+    "data_og_styring": 4,
+    "regional_og_global": 2,
+    "boligpolitikk_og_velferd": 1
+  },
+  "emneStatusCounts": {
+    "active": 74,
+    "core": 4,
+    "planned": 4
+  },
+  "gates": {
+    "manifestFirstSourcesResolved": true,
+    "byCompatibilityAdapterExercised": true,
+    "fagkartOwnsRendererDomains": true,
+    "noSyntheticCompatibilityDomains": true,
+    "allSourceEmnersMapped": true,
+    "allActiveEmnersMapped": true,
+    "allMethodReferencesResolved": true,
+    "courseAndCurriculumModulesRemainProgressionOnly": true,
+    "qualityContractResolved": true,
+    "byPlaceFallbackCorrected": true,
+    "badgeAndSubjectRoutesDistinct": true,
+    "assessmentStatusAudited": true,
+    "editorialStatusStructureReady": true,
+    "chapterClaimsNotOverstated": true
+  }
+}

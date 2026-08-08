@@ -213,6 +213,15 @@ test('alle tolv Næringsliv-kapitler hydrerer renderbare eksempler, misoppfatnin
 test('materialisert fagside og committed fase-1-rapport passerer full audit', () => {
   const result = auditRepository();
   assert.ok(result.materializedRows.some((row) => row.id === 'politikk'));
+  const by = result.materializedRows.find((row) => row.id === 'by');
+  assert.ok(by);
+  assert.equal(by.schemaFamily, 'by_compatibility');
+  assert.equal(by.adapter, 'by');
+  assert.equal(by.domainCount, 12);
+  assert.equal(by.emneCount, 82);
+  assert.equal(by.methodCount, 14);
+  assert.equal(by.hookCount, 81);
+  assert.equal(by.chapterCount, 0);
   const musikk = result.materializedRows.find((row) => row.id === 'musikk');
   assert.ok(musikk);
   assert.equal(musikk.domainCount, 8);
@@ -226,6 +235,7 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(religion.emneCount, 8);
   assert.equal(religion.methodCount, 8);
   assert.equal(religion.chapterCount, 0);
+  assert.ok(result.report.summary.adapterFamiliesExercised.includes('by_compatibility'));
   assert.ok(result.report.summary.adapterFamiliesExercised.includes('foundation_v1'));
   assert.equal(result.report.summary.politicsFallbacks, 0);
   assert.equal(result.report.summary.subjectPageLegacyDependencies, 0);
