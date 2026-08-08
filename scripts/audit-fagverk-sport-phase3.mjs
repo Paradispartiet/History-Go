@@ -139,7 +139,7 @@ export function auditSportPhase3({ writeReport = false, checkReport = true } = {
   const hooks = source.fagkart.categories.flatMap((d) => d.topic_hooks || []);
   const hookIds = new Set(hooks.flatMap((h) => h.emne_ids || []));
   const mappingIds = new Set(explicitMappings.map((row) => row.emne_id));
-  assertExactCoverage('Sport', source.emners, ['pensum', pensumIds], ['fagkart', hookIds], ['mappingregister', mappingIds]);
+  assertExactCoverage('Sport', source.emners.emner, ['pensum', pensumIds], ['fagkart', hookIds], ['mappingregister', mappingIds]);
 
   const methodIds = new Set(source.methods.methods.map((method) => method.method_id));
   assert(methodIds.size === 109, 'Sport har feil antall unike metode-ID-er');
