@@ -1,0 +1,187 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-performance-kropp_gest_teknikk-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "framforing_praksis_samspill",
+  "emne_id": "em_musikk_vit_kropp_gest_teknikk",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/framforing_praksis_samspill/kropp_gest_teknikk.json",
+  "research_question": "Hva kan et kontrollert pianoduocase dokumentere om forholdet mellom observerbar hodegest og musikalsk inngang?",
+  "production_source_extensions": [],
+  "source_reviews": [
+    {
+      "source_id": "src_bishop_goebl_gesture_kinematics_piano_duos_2018",
+      "source_registration": "canonical_registry",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6132635/",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "PMC Methods, paragraphs 116–128 and 192–212",
+          "section": "Interactive duo and gesture-following designs",
+          "supports": "Eighteen pianists performed assigned leader/follower trials; 108 leader clips were converted to point-light stimuli for ten skilled musicians with synchronized audio, notation and MIDI tapping."
+        },
+        {
+          "pages": "PMC Results, paragraphs 298–303 and 351–367",
+          "section": "Gesture smoothness, magnitude and synchronizability",
+          "supports": "Greater jerk correlated with larger asynchrony and greater head-gesture magnitude with smaller asynchrony in the gesture-following task; the discussion bounds the result to the task and cue window."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker Psychological Research / PubMed Central gjennom bibliografisk identitet, parafrase og presise lokatorer. Fulltekst, lyd, bilder og deltakerdata redistribueres ikke.",
+      "registry_path": "../scholarly_source_registries_v1/embodiment_ensemble_coordination_v1.json"
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_bishop_goebl_pointlight_gesture_following_trials",
+      "object_type": "liveframføring",
+      "title": "Bishop–Goebl: 108 point-light leaderklipp fra pianoduoforsøket",
+      "persistent_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6132635/",
+      "provenance_source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "version_and_identity": {
+        "study": "Communication for Coordination",
+        "original_participants": "18 pianists in nine duos",
+        "follower_sample": "10 skilled musicians",
+        "stimuli": "108 selected leader performances from 270 recorded trials",
+        "representation": "60 fps point-light upper-body video with aligned leader audio and notation",
+        "task": "Silent cue-in followed by first-beat synchronization"
+      },
+      "locators": [
+        {
+          "locator": "PMC Methods :: paragraphs 116–128 :: nine duos, assigned leader/follower roles and consent",
+          "role": "Original performance context and participant identity."
+        },
+        {
+          "locator": "PMC Methods :: paragraphs 192–212 and Figure 3 :: 108 point-light clips with synchronized audio, notation and MIDI tapping",
+          "role": "Multimodal direct-object and observation chain."
+        }
+      ],
+      "inspection_chain": {
+        "publication_identity_status": "DOI, participant groups, task, stimulus count and apparatus exposed in open full text",
+        "participant_rights_status": "Article reports informed consent",
+        "history_go_independent_copy": false,
+        "history_go_independent_reanalysis": false
+      },
+      "rights": {
+        "license": "Article distributed under CC BY 4.0; participant recordings and underlying trial data are not redistributed.",
+        "license_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6132635/",
+        "commercial_compatibility_with_history_go": "resolved_for_external_link_and_metadata",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise lokatorer. Lyd, bilder, datafiler og fulltekst forblir hos kilden."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_performance_bishop_goebl_gesture_smoothness_magnitude",
+      "statement": "I Bishop og Goebls avgrensede gesture-following-oppgave ble større jerk i ledernes hodebevegelse forbundet med større første-slags-asynkroni, mens større gestutslag ble forbundet med mindre asynkroni; resultatet viser at målbare egenskaper ved den observerbare cue-gesten hang sammen med synkroniserbarhet i disse point-light-klippene, men dokumenterer ikke utøvernes indre erfaring eller en universell motorisk regel.",
+      "claim_type_id": "performance_comparison",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 192–212: 108 point-light leader clips, aligned audio/notation and tapping procedure",
+        "Bishop & Goebl 2018, PMC paragraphs 300–303 and 351–367: jerk/magnitude measures, correlations and task-bounded discussion"
+      ],
+      "method_protocol_ids": [
+        "komparativ_framforingsanalyse",
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_bishop_goebl_pointlight_gesture_following_trials",
+        "evidence_role": "controlled audiovisual gesture comparison",
+        "scope": "Selected cue-in clips from nine piano duos and a ten-musician gesture-following sample."
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Utvalget er lite og dominert av vestlig klassisk pianopraksis; stimuli reduserer kroppene til point-light-visning og den analyserte effekten gjelder første inngang.",
+      "prohibited_inference": "Korrelasjonene kan ikke generaliseres til alle instrumenter, hele framføringer, emosjon, indre erfaring eller en nødvendig årsakskjede fra gest til uttrykk.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_performance_bishop_goebl_gesture_smoothness_magnitude_scope",
+      "statement": "Resultatet gjelder 108 utvalgte cue-klipp og første inngang, ikke hele kroppens eller hele framføringens uttrykk.",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 192–212: 108 point-light leader clips, aligned audio/notation and tapping procedure"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_performance_bishop_goebl_gesture_smoothness_magnitude"
+      ],
+      "release_effect": "Begrenser slutningen til det identifiserte caset, objektet og tidsrommet."
+    },
+    {
+      "boundary_id": "boundary_musikk_performance_bishop_goebl_gesture_smoothness_magnitude_mediation",
+      "statement": "Point-light-representasjonen, audioen, partituret og oppgaveformen kan påvirke hva deltakerne bruker som signal.",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 300–303 and 351–367: jerk/magnitude measures, correlations and task-bounded discussion"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_performance_bishop_goebl_gesture_smoothness_magnitude"
+      ],
+      "release_effect": "Skiller observasjon eller måling fra intensjon, erfaring, årsak og generalisering."
+    },
+    {
+      "boundary_id": "boundary_musikk_performance_bishop_goebl_gesture_smoothness_magnitude_rights",
+      "statement": "Artikkelen er åpen, men History Go gjenbruker ikke identifiserbare deltakeropptak eller rådata.",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 300–303 and 351–367: jerk/magnitude measures, correlations and task-bounded discussion"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_performance_bishop_goebl_gesture_smoothness_magnitude"
+      ],
+      "release_effect": "Tvinger external_link_and_metadata_only og blokkerer kopiering, rehosting og embedding."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "liveframføring"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_bishop_goebl_pointlight_gesture_following_trials",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_performance_bishop_goebl_gesture_smoothness_magnitude"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må oppgi task, målt gestvariabel og første-inngangsomfang og må ikke tilskrive indre erfaring."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 1,
+    "production_extension_source_count": 0,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Utvalget er lite og dominert av vestlig klassisk pianopraksis; stimuli reduserer kroppene til point-light-visning og den analyserte effekten gjelder første inngang."
+  }
+}

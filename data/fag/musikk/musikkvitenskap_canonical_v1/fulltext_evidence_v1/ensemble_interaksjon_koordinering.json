@@ -1,0 +1,191 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-performance-ensemble_interaksjon_koordinering-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "framforing_praksis_samspill",
+  "emne_id": "em_musikk_vit_ensemble_interaksjon_koordinering",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/framforing_praksis_samspill/ensemble_interaksjon_koordinering.json",
+  "research_question": "Når dokumenterer samtidige bevegelser faktisk koordinering, og når gjør de det ikke?",
+  "production_source_extensions": [],
+  "source_reviews": [
+    {
+      "source_id": "src_bishop_goebl_gesture_kinematics_piano_duos_2018",
+      "source_registration": "canonical_registry",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6132635/",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "PMC Methods, paragraphs 116–128 and 321–342",
+          "section": "Interactive duo movement alignment",
+          "supports": "Leader and follower head-position, velocity and acceleration curves were cross-correlated per trial, with note asynchrony tested separately."
+        },
+        {
+          "pages": "PMC Results, paragraphs 324–342 and discussion 351–372",
+          "section": "Movement similarity null result",
+          "supports": "Some gesture curves aligned in time and form, but near-zero movement lag did not significantly improve first-note synchronization for position, velocity or acceleration."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker Psychological Research / PubMed Central gjennom bibliografisk identitet, parafrase og presise lokatorer. Fulltekst, lyd, bilder og deltakerdata redistribueres ikke.",
+      "registry_path": "../scholarly_source_registries_v1/embodiment_ensemble_coordination_v1.json"
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_bishop_goebl_interactive_duo_crosscorrelation_trials",
+      "object_type": "liveframføring",
+      "title": "Bishop–Goebl: interaktive pianoduoforsøk med gest- og notejustering",
+      "persistent_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6132635/",
+      "provenance_source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "version_and_identity": {
+        "study": "Communication for Coordination",
+        "ensemble": "Nine previously non-performing-together piano duos",
+        "roles": "Assigned leader and follower alternating across trials",
+        "repertoire": "15 adapted short passages, 2–4 bars",
+        "measures": [
+          "leader/follower head position",
+          "velocity",
+          "acceleration",
+          "first-note MIDI asynchrony"
+        ]
+      },
+      "locators": [
+        {
+          "locator": "PMC paragraphs 116–128 and Table 1 :: duo roles, participants and 15 passages",
+          "role": "Ensemble, role and repertoire control."
+        },
+        {
+          "locator": "PMC paragraphs 321–342 and Table 4 :: cross-correlations and separate note-asynchrony tests",
+          "role": "Signal/response and negative-result control."
+        }
+      ],
+      "inspection_chain": {
+        "role_identity_status": "Assigned roles and task are explicit",
+        "multimodal_alignment_status": "Motion curves and MIDI onset measures documented separately",
+        "participant_rights_status": "Article reports informed consent",
+        "history_go_independent_reanalysis": false
+      },
+      "rights": {
+        "license": "Article distributed under CC BY 4.0; participant motion/MIDI recordings are not redistributed.",
+        "license_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6132635/",
+        "commercial_compatibility_with_history_go": "resolved_for_external_link_and_metadata",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise lokatorer. Lyd, bilder, datafiler og fulltekst forblir hos kilden."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_performance_bishop_goebl_gesture_alignment_null_result",
+      "statement": "I Bishop og Goebls ni interaktive pianoduoer forekom leder–følger-bevegelser som lignet hverandre og lå nær hverandre i tid, men forsøk der maksimal gestkorrelasjon lå nær nullforsinkelse ga ikke signifikant bedre synkronisering av første tone for posisjon, hastighet eller akselerasjon; caset viser derfor at bevegelseslikhet og samtidighet ikke alene dokumenterer kausal ledelse, felles intensjon eller vellykket musikalsk koordinering.",
+      "claim_type_id": "performance_comparison",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 321–340 and Table 4: leader/follower head-motion cross-correlations",
+        "Bishop & Goebl 2018, PMC paragraphs 341–342 and 372: no significant first-note synchronization benefit from near-zero gesture lag"
+      ],
+      "method_protocol_ids": [
+        "komparativ_framforingsanalyse",
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_bishop_goebl_interactive_duo_crosscorrelation_trials",
+        "evidence_role": "multimodal signal/response comparison with a negative result",
+        "scope": "First entrances in nine assigned-role piano duos performing 15 short adapted passages."
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Nullfunnet gjelder valgt terskel, første note, utvalget og de målte hodekurvene; andre signaler, senere takter eller andre ensembleformer kan gi andre resultater.",
+      "prohibited_inference": "Resultatet beviser verken at gester er irrelevante, at duoene manglet felles intensjon, eller at samme mønster gjelder orkestre, band eller improviserende ensembler.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_performance_bishop_goebl_gesture_alignment_null_result_scope",
+      "statement": "Nullfunnet gjelder første inngang og tre målte hodekurver i ni pianoduoer.",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 321–340 and Table 4: leader/follower head-motion cross-correlations"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_performance_bishop_goebl_gesture_alignment_null_result"
+      ],
+      "release_effect": "Begrenser slutningen til det identifiserte caset, objektet og tidsrommet."
+    },
+    {
+      "boundary_id": "boundary_musikk_performance_bishop_goebl_gesture_alignment_null_result_mediation",
+      "statement": "Assigned roles, partitur, auditiv informasjon og forutgående forsøksinstruks kan koordinere spillet uten at bevegelseslikhet gjør det.",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 341–342 and 372: no significant first-note synchronization benefit from near-zero gesture lag"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_performance_bishop_goebl_gesture_alignment_null_result"
+      ],
+      "release_effect": "Skiller observasjon eller måling fra intensjon, erfaring, årsak og generalisering."
+    },
+    {
+      "boundary_id": "boundary_musikk_performance_bishop_goebl_gesture_alignment_null_result_rights",
+      "statement": "Samtykke er rapportert for studien; History Go publiserer ikke deltakerdata eller identifiserbare opptak.",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 341–342 and 372: no significant first-note synchronization benefit from near-zero gesture lag"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_performance_bishop_goebl_gesture_alignment_null_result"
+      ],
+      "release_effect": "Tvinger external_link_and_metadata_only og blokkerer kopiering, rehosting og embedding."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "liveframføring"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_bishop_goebl_interactive_duo_crosscorrelation_trials",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_performance_bishop_goebl_gesture_alignment_null_result"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må bevare nullfunnet og skille korrelert gest, noteutfall og påstand om ledelse."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 1,
+    "production_extension_source_count": 0,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Nullfunnet gjelder valgt terskel, første note, utvalget og de målte hodekurvene; andre signaler, senere takter eller andre ensembleformer kan gi andre resultater."
+  }
+}

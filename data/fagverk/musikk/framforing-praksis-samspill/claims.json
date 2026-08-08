@@ -1,0 +1,212 @@
+{
+  "schema": "history_go_musikk_chapter_claims_v1",
+  "version": "1.0.0",
+  "status": "verified_projection",
+  "subject_id": "musikk",
+  "chapter_id": "framforing-praksis-samspill",
+  "sourceAuthority": "canonical_fulltext_evidence_v1",
+  "projectionRule": "Claim text, source order and locators are copied unchanged from question-release-ready upstream evidence; every claim is used in chapter modules.",
+  "sources": [
+    {
+      "id": "prod_src_duinker_rebonds_structural_affordances_2021",
+      "publisher": "Music Theory Online",
+      "url": "https://mtosmt.org/issues/mto.21.27.4/mto.21.27.4.duinker.html",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "HTML paragraphs [1.2], [7.3]–[7.4], Examples 1, 15 and 16",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/fortolkning_framforingsvariasjon.json"
+      ]
+    },
+    {
+      "id": "src_bishop_goebl_gesture_kinematics_piano_duos_2018",
+      "publisher": "Psychological Research / PubMed Central",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6132635/",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "Methods and results: paragraphs 116–128, 192–212, 268–303 and 321–372",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/kropp_gest_teknikk.json",
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/ensemble_interaksjon_koordinering.json"
+      ]
+    },
+    {
+      "id": "prod_src_merimaa_peltonen_lokki_pori_rirs_2005",
+      "publisher": "Helsinki University of Technology / Aalto University",
+      "url": "https://legacy.spa.aalto.fi/projects/poririrs/",
+      "full_text_status": "reviewed_author_uploaded_manuscript",
+      "source_location": "Reference PDF sections 1–3, Figure 5, Table 2 and Appendix B",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/live_rom_akustikk_spatialitet.json"
+      ]
+    },
+    {
+      "id": "prod_src_mcdonald_taiko_baqueta_2022",
+      "publisher": "eScholarship, University of California",
+      "url": "https://escholarship.org/uc/item/4474f8jd",
+      "full_text_status": "reviewed_author_uploaded_manuscript",
+      "source_location": "Dissertation PDF pp. 1–3 and glossary p. 360",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/publikum_medproduksjon_ritual.json"
+      ]
+    },
+    {
+      "id": "prod_src_schuiling_clair_de_lune_talking_score_2023",
+      "publisher": "Music Theory Online",
+      "url": "https://www.mtosmt.org/issues/mto.23.29.1/mto.23.29.1.schuiling.html",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "HTML paragraphs [3.1] and [4.1]–[4.7], Examples 1–5 and embedded audio",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/notasjon_muntlighet_kreativ_praksis.json"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim_musikk_performance_rebonds_ruff_variation_kato_fischer_sietzen",
+      "claim": "I Duinkers identifiserte Rebonds B-korpus realiserer Kato, Fischer og Sietzen den samme noterte toslagsruff-figuren i takt 1–2 med tydelig ulik grad av lukket og åpen artikulasjon, mens Example 16 viser at figuren også kan løses med ulike hånd- og køllefordelinger; caset dokumenterer derfor framføringsvariasjon i et felles segment, men forskjellen kan ikke alene tilskrives en bestemt utøverintensjon eller rangeres som én riktig løsning.",
+      "status": "verified",
+      "claim_type_id": "performance_comparison",
+      "source_ids": [
+        "prod_src_duinker_rebonds_structural_affordances_2021"
+      ],
+      "locators": [
+        "Duinker 2021, Example 1 and paragraphs [1.2]–[1.3]: identified ten-recording corpus and common comparison parameters",
+        "Duinker 2021, paragraphs [7.3]–[7.4], Examples 15–16: Kato/Fischer/Sietzen ruff comparison and five sticking options"
+      ],
+      "method_protocol_ids": [
+        "komparativ_framforingsanalyse",
+        "notasjons_kildeanalyse"
+      ],
+      "uncertainty": "History Go bygger på Duinkers identifisering og innebygde eksempler og har ikke kontrollert kommersielle masterfiler, mikrofonering eller komplette utgaver uavhengig.",
+      "prohibited_inference": "Artikulasjons- og stickingforskjellene beviser ikke personlig intensjon, estetisk kvalitet, verkets eneste struktur eller generell Rebonds-praksis.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/fortolkning_framforingsvariasjon.json",
+      "upstream_claim_id": "claim_musikk_performance_rebonds_ruff_variation_kato_fischer_sietzen",
+      "used_in": [
+        "data/fagverk/musikk/framforing-praksis-samspill/01-fortolkning-kropp-koordinering.json",
+        "data/fagverk/musikk/framforing-praksis-samspill/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_performance_bishop_goebl_gesture_smoothness_magnitude",
+      "claim": "I Bishop og Goebls avgrensede gesture-following-oppgave ble større jerk i ledernes hodebevegelse forbundet med større første-slags-asynkroni, mens større gestutslag ble forbundet med mindre asynkroni; resultatet viser at målbare egenskaper ved den observerbare cue-gesten hang sammen med synkroniserbarhet i disse point-light-klippene, men dokumenterer ikke utøvernes indre erfaring eller en universell motorisk regel.",
+      "status": "verified",
+      "claim_type_id": "performance_comparison",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 192–212: 108 point-light leader clips, aligned audio/notation and tapping procedure",
+        "Bishop & Goebl 2018, PMC paragraphs 300–303 and 351–367: jerk/magnitude measures, correlations and task-bounded discussion"
+      ],
+      "method_protocol_ids": [
+        "komparativ_framforingsanalyse",
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "uncertainty": "Utvalget er lite og dominert av vestlig klassisk pianopraksis; stimuli reduserer kroppene til point-light-visning og den analyserte effekten gjelder første inngang.",
+      "prohibited_inference": "Korrelasjonene kan ikke generaliseres til alle instrumenter, hele framføringer, emosjon, indre erfaring eller en nødvendig årsakskjede fra gest til uttrykk.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/kropp_gest_teknikk.json",
+      "upstream_claim_id": "claim_musikk_performance_bishop_goebl_gesture_smoothness_magnitude",
+      "used_in": [
+        "data/fagverk/musikk/framforing-praksis-samspill/01-fortolkning-kropp-koordinering.json",
+        "data/fagverk/musikk/framforing-praksis-samspill/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_performance_bishop_goebl_gesture_alignment_null_result",
+      "claim": "I Bishop og Goebls ni interaktive pianoduoer forekom leder–følger-bevegelser som lignet hverandre og lå nær hverandre i tid, men forsøk der maksimal gestkorrelasjon lå nær nullforsinkelse ga ikke signifikant bedre synkronisering av første tone for posisjon, hastighet eller akselerasjon; caset viser derfor at bevegelseslikhet og samtidighet ikke alene dokumenterer kausal ledelse, felles intensjon eller vellykket musikalsk koordinering.",
+      "status": "verified",
+      "claim_type_id": "performance_comparison",
+      "source_ids": [
+        "src_bishop_goebl_gesture_kinematics_piano_duos_2018"
+      ],
+      "locators": [
+        "Bishop & Goebl 2018, PMC paragraphs 321–340 and Table 4: leader/follower head-motion cross-correlations",
+        "Bishop & Goebl 2018, PMC paragraphs 341–342 and 372: no significant first-note synchronization benefit from near-zero gesture lag"
+      ],
+      "method_protocol_ids": [
+        "komparativ_framforingsanalyse",
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "uncertainty": "Nullfunnet gjelder valgt terskel, første note, utvalget og de målte hodekurvene; andre signaler, senere takter eller andre ensembleformer kan gi andre resultater.",
+      "prohibited_inference": "Resultatet beviser verken at gester er irrelevante, at duoene manglet felles intensjon, eller at samme mønster gjelder orkestre, band eller improviserende ensembler.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/ensemble_interaksjon_koordinering.json",
+      "upstream_claim_id": "claim_musikk_performance_bishop_goebl_gesture_alignment_null_result",
+      "used_in": [
+        "data/fagverk/musikk/framforing-praksis-samspill/01-fortolkning-kropp-koordinering.json",
+        "data/fagverk/musikk/framforing-praksis-samspill/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_performance_pori_rir_positioned_measurement_chain",
+      "claim": "Pori-datasettet dokumenterer Promenadikeskus som et posisjonsavhengig akustisk objekt gjennom tre navngitte kildeposisjoner, tre scenemottakere og fire publikumsposisjoner, målt med logaritmiske sveip og flere mikrofontyper og behandlet som separate kilde–mottaker-par; materialet gjør romlige sammenligninger etterprøvbare, men ett impulsresponsmål eller ett sete kan ikke representere hele salen, en liveframføring eller estetisk kvalitet.",
+      "status": "verified",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_merimaa_peltonen_lokki_pori_rirs_2005"
+      ],
+      "locators": [
+        "Merimaa, Peltonen & Lokki 2005, Figure 5 and Table 2: S1–S3, P1–P3 and R1–R4 positions",
+        "Merimaa, Peltonen & Lokki 2005, sections 3.1–3.3 and 4: sources, microphones, logarithmic sweeps, acquisition and source/receiver compensation"
+      ],
+      "method_protocol_ids": [
+        "akustisk_rommaaling"
+      ],
+      "uncertainty": "Datasettet gjelder én historisk måledag og dokumenterte oppsett; beleggsgrad, senere romendringer og faktisk konsertproduksjon inngår ikke i det frigitte claimet.",
+      "prohibited_inference": "Målingene beviser ikke publikumsopplevelse, universell salrepresentasjon, musikalsk kvalitet eller at rommet alene forklarer en bestemt liveklang.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/live_rom_akustikk_spatialitet.json",
+      "upstream_claim_id": "claim_musikk_performance_pori_rir_positioned_measurement_chain",
+      "used_in": [
+        "data/fagverk/musikk/framforing-praksis-samspill/02-rom-publikum-notasjon.json",
+        "data/fagverk/musikk/framforing-praksis-samspill/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_performance_salvador_bon_odori_audience_roles_2017",
+      "claim": "Under Festival of Japanese Culture i Salvador i 2017 var publikum ikke bare en mottakerkategori: deltakerne ble invitert inn i en offentlig koreografert Bon Odori-syklus på åtte sanger, blant annet Ipê Ondo, innenfor en hendelse som også hadde et alter for avdøde; caset dokumenterer organiserte deltakerroller og observerbar medproduksjon, men ikke at alle tilstedeværende delte samme religiøse erfaring, affekt eller fortolkning.",
+      "status": "verified",
+      "claim_type_id": "ethnographic_claim",
+      "source_ids": [
+        "prod_src_mcdonald_taiko_baqueta_2022"
+      ],
+      "locators": [
+        "McDonald 2022, PDF pp. 1–3 (PDF pages 15–17): public choreography, eight-song cycle and Ipê Ondo",
+        "McDonald 2022, glossary p. 360 (PDF page 374): Bon Odori frame, deceased ancestors and Salvador altar"
+      ],
+      "method_protocol_ids": [
+        "etnografisk_feltarbeid",
+        "diskurs_representasjonsanalyse"
+      ],
+      "uncertainty": "Kilden er én forskers situerte hendelsesframstilling og gir ikke full oversikt over alle tilstedeværendes roller, ikke-deltakelse eller etterfølgende refleksjoner.",
+      "prohibited_inference": "Synlig dans, alter, repertoar eller intensitet kan ikke alene bevise enhetlig mening, emosjon, inkludering eller politisk og religiøs virkning.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/publikum_medproduksjon_ritual.json",
+      "upstream_claim_id": "claim_musikk_performance_salvador_bon_odori_audience_roles_2017",
+      "used_in": [
+        "data/fagverk/musikk/framforing-praksis-samspill/02-rom-publikum-notasjon.json",
+        "data/fagverk/musikk/framforing-praksis-samspill/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_performance_clair_de_lune_talking_score_remediation",
+      "claim": "Schuilings «Clair de Lune»-case viser at talking score-remedieringen ikke bare overfører et stabilt partiturinnhold: i taktene 27–28 gjør talesporet bassnotenes varighet til stemmedeling, mens taktene 19–24 og åpningstakten viser at stavsystem, hender, bindinger og pianotekstur ikke korresponderer entydig; representasjonen gjør musikken tilgjengelig gjennom nye lydlige og tekniske instrukser, men omfordeler samtidig oppmerksomhet, kognitiv belastning og utøverhandling.",
+      "status": "verified",
+      "claim_type_id": "score_or_representation_claim",
+      "source_ids": [
+        "prod_src_schuiling_clair_de_lune_talking_score_2023"
+      ],
+      "locators": [
+        "Schuiling 2023, paragraphs [3.1]–[3.6], Examples 1–2: talking-score formats and Clair de Lune opening",
+        "Schuiling 2023, paragraphs [4.4]–[4.7], Examples 4–5: ties, voice division, hands and bars 19–28"
+      ],
+      "method_protocol_ids": [
+        "notasjons_kildeanalyse"
+      ],
+      "uncertainty": "Analysen er Schuilings egen prøving av én talking score og dokumenterer ikke alle blinde musikeres bruk, læringsresultat eller foretrukne representasjon.",
+      "prohibited_inference": "Caset kan ikke brukes til å rangere talescore mot Braille eller trykk generelt, tilskrive alle brukere samme kognitive belastning eller gjøre én remediering til universell tilgjengelighetsløsning.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/notasjon_muntlighet_kreativ_praksis.json",
+      "upstream_claim_id": "claim_musikk_performance_clair_de_lune_talking_score_remediation",
+      "used_in": [
+        "data/fagverk/musikk/framforing-praksis-samspill/02-rom-publikum-notasjon.json",
+        "data/fagverk/musikk/framforing-praksis-samspill/03-anvendelse-kritikk-selvtest.json"
+      ]
+    }
+  ]
+}
