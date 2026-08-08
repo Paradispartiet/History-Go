@@ -21221,8 +21221,8 @@
   {
     "emne_id": "em_vit_sannhet_maling_modeller",
     "subject_id": "vitenskap",
-    "area_id": "vit_metode",
-    "area_label": "Vitenskapelig metode og sannhet",
+    "area_id": "paradigmer_teorier_sannhet",
+    "area_label": "Paradigmer, teorier og sannhet",
     "level": 2,
     "title": "Sannhetsproduksjon gjennom måling og modeller",
     "short_label": "Måling & modeller",
@@ -21290,15 +21290,8 @@
       "felt som marginaliseres fordi de ikke passer i modeller"
     ],
     "methods": [
-      "Spør hvilke fenomener som faktisk kan måles, og hva som faller utenfor.",
-      "Se etter hvordan målemetoder blir kalibrert og standardisert over tid.",
-      "Undersøk hvordan usikkerhet kommuniseres eller skjules i tall, grafer og modeller.",
-      "Spør hvem som definerer hva som teller som evidens i denne situasjonen.",
-      "Vurder hva som går tapt når virkeligheten forenkles til modeller og indikatorer.",
-      "Sammenlign hvordan ulike modeller beskriver det samme fenomenet, og hvilke antakelser som varierer.",
-      "Se etter hvilke data som regnes som støy og derfor filtreres bort.",
-      "Analyser hvordan resultater fra modeller brukes i beslutninger, og hvor mye rom det er for fortolkning.",
-      "Spør hvilke grupper eller perspektiver som ikke blir synlige gjennom målingene som brukes."
+      "met_vit_evidensanalyse",
+      "met_vit_modellanalyse"
     ],
     "analysis_axes": [
       "modell vs virkelighet",
@@ -21338,13 +21331,50 @@
     "related_routes": [],
     "related_places": [],
     "related_quizzes": [],
-    "status": "core"
+    "status": "core",
+    "analysis_procedure": [
+      "Spør hvilke fenomener som faktisk kan måles, og hva som faller utenfor.",
+      "Se etter hvordan målemetoder blir kalibrert og standardisert over tid.",
+      "Undersøk hvordan usikkerhet kommuniseres eller skjules i tall, grafer og modeller.",
+      "Spør hvem som definerer hva som teller som evidens i denne situasjonen.",
+      "Vurder hva som går tapt når virkeligheten forenkles til modeller og indikatorer.",
+      "Sammenlign hvordan ulike modeller beskriver det samme fenomenet, og hvilke antakelser som varierer.",
+      "Se etter hvilke data som regnes som støy og derfor filtreres bort.",
+      "Analyser hvordan resultater fra modeller brukes i beslutninger, og hvor mye rom det er for fortolkning.",
+      "Spør hvilke grupper eller perspektiver som ikke blir synlige gjennom målingene som brukes."
+    ],
+    "domain": "paradigmer_teorier_sannhet",
+    "logic_family": "paradigmer_teorier_sannhet",
+    "definition": "Emnet undersøker hvordan målinger, instrumenter og modeller gjør fenomener sammenlignbare, og hvordan valg av variabler, standarder og forenklinger former det som kan hevdes som vitenskapelig sant.",
+    "why_it_matters": "Det gjør det mulig å skille presisjon fra gyldighet og å vise hvor usikkerhet, modellvalg og utelatte erfaringer påvirker kunnskapsgrunnlaget.",
+    "method_ids": [
+      "met_vit_evidensanalyse",
+      "met_vit_modellanalyse"
+    ],
+    "recommended_methods": [
+      "met_vit_evidensanalyse",
+      "met_vit_modellanalyse"
+    ],
+    "primary_theory_hooks": [
+      "sannhet_som_praksis"
+    ],
+    "secondary_theory_hooks": [],
+    "reserve_theory_hooks": [],
+    "mapping_count": 1,
+    "mapping_pressure": "mapped",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "recommended_oslo_cases": [
+      "Observatoriet",
+      "Meteorologisk institutt",
+      "Universitetet i Oslo"
+    ]
   },
   {
     "emne_id": "em_vit_byen_som_kunnskapskart",
     "subject_id": "vitenskap",
-    "area_id": "vit_arena",
-    "area_label": "Vitenskapens steder og institusjoner",
+    "area_id": "institusjoner_laboratorier_kunnskapssteder",
+    "area_label": "Institusjoner, laboratorier og kunnskapssteder",
     "level": 2,
     "title": "Byen som kunnskapskart",
     "short_label": "Kunnskapskart",
@@ -21437,18 +21467,8 @@
       "hvordan språk, kultur og minoritetsposisjon påvirker opplevd tilgang til kunnskapsinstitusjoner"
     ],
     "methods": [
-      "Kartlegg på et kart hvor laboratorier, universiteter, forskningsparker, arkiver og fagbibliotek ligger i byen.",
-      "Se etter hvilke bydeler som har høy tetthet av kunnskapsinstitusjoner, og hvilke som nesten ikke har noen.",
-      "Undersøk hvilke former for kunnskap hver type institusjon er spesialisert på, og hvordan de kompletterer eller konkurrerer.",
-      "Spør hvem som har lett fysisk tilgang til disse institusjonene, og hvem som må reise langt eller mangler økonomi.",
-      "Sammenlign hvordan ulike områder omtales i byplanlegging: som kunnskapspark, campus, innovasjonsdistrikt – eller noe helt annet.",
-      "Studer hvordan forsknings- og utdanningsinstitusjoner påvirker boligpriser, næringsliv og transportstruktur.",
-      "Se etter fagfelt og miljøer som ikke har synlig plass i bybildet, selv om de er viktige for samfunnet.",
-      "Identifiser historiske kunnskapsbygg som har skiftet funksjon, og spør hva slags kunnskap som var sentral der før.",
-      "Analyser hvilke institusjoner som fungerer som maktsentre for ekspertise ved kriser og store samfunnsdebatter.",
-      "Se etter uformelle kunnskapsarenaer – makerspaces, frivillige møteplasser, åpne foredrag – og sammenlign dem med formelle institusjoner.",
-      "Utforsk hvordan digital infrastruktur (nettundervisning, datasentre) endrer behovet for fysisk nærvær i kunnskapsbyer.",
-      "Spør hvordan byen ville sett ut på et kart hvis du bare tegnet inn steder der kunnskap skapes og deles."
+      "met_vit_kunnskapsgeografisk_analyse",
+      "met_vit_institusjonsanalyse"
     ],
     "analysis_axes": [
       "senter vs periferi",
@@ -21490,13 +21510,54 @@
     "related_routes": [],
     "related_places": [],
     "related_quizzes": [],
-    "status": "core"
+    "status": "core",
+    "analysis_procedure": [
+      "Kartlegg på et kart hvor laboratorier, universiteter, forskningsparker, arkiver og fagbibliotek ligger i byen.",
+      "Se etter hvilke bydeler som har høy tetthet av kunnskapsinstitusjoner, og hvilke som nesten ikke har noen.",
+      "Undersøk hvilke former for kunnskap hver type institusjon er spesialisert på, og hvordan de kompletterer eller konkurrerer.",
+      "Spør hvem som har lett fysisk tilgang til disse institusjonene, og hvem som må reise langt eller mangler økonomi.",
+      "Sammenlign hvordan ulike områder omtales i byplanlegging: som kunnskapspark, campus, innovasjonsdistrikt – eller noe helt annet.",
+      "Studer hvordan forsknings- og utdanningsinstitusjoner påvirker boligpriser, næringsliv og transportstruktur.",
+      "Se etter fagfelt og miljøer som ikke har synlig plass i bybildet, selv om de er viktige for samfunnet.",
+      "Identifiser historiske kunnskapsbygg som har skiftet funksjon, og spør hva slags kunnskap som var sentral der før.",
+      "Analyser hvilke institusjoner som fungerer som maktsentre for ekspertise ved kriser og store samfunnsdebatter.",
+      "Se etter uformelle kunnskapsarenaer – makerspaces, frivillige møteplasser, åpne foredrag – og sammenlign dem med formelle institusjoner.",
+      "Utforsk hvordan digital infrastruktur (nettundervisning, datasentre) endrer behovet for fysisk nærvær i kunnskapsbyer.",
+      "Spør hvordan byen ville sett ut på et kart hvis du bare tegnet inn steder der kunnskap skapes og deles."
+    ],
+    "domain": "institusjoner_laboratorier_kunnskapssteder",
+    "logic_family": "institusjoner_laboratorier_kunnskapssteder",
+    "definition": "Emnet kartlegger hvordan universiteter, laboratorier, arkiver, sykehus, forskningsparker og uformelle kunnskapsarenaer fordeles og forbindes i byen.",
+    "why_it_matters": "Kunnskapsgeografien synliggjør hvem som får fysisk og institusjonell tilgang til ekspertise, utdanning, forskningsmidler og faglige nettverk.",
+    "method_ids": [
+      "met_vit_kunnskapsgeografisk_analyse",
+      "met_vit_institusjonsanalyse"
+    ],
+    "recommended_methods": [
+      "met_vit_kunnskapsgeografisk_analyse",
+      "met_vit_institusjonsanalyse"
+    ],
+    "primary_theory_hooks": [
+      "kunnskapskart_oslo"
+    ],
+    "secondary_theory_hooks": [],
+    "reserve_theory_hooks": [],
+    "mapping_count": 1,
+    "mapping_pressure": "mapped",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "recommended_oslo_cases": [
+      "Blindern",
+      "Forskningsparken",
+      "Observatoriet",
+      "OsloMet Pilestredet"
+    ]
   },
   {
     "emne_id": "em_vit_samfunnsrolle",
     "subject_id": "vitenskap",
-    "area_id": "vit_samfunn",
-    "area_label": "Vitenskapens samfunnsrolle",
+    "area_id": "samfunn_makt_etikk",
+    "area_label": "Samfunn, makt og etikk i vitenskap",
     "level": 2,
     "title": "Vitenskapens samfunnsrolle og autoritet",
     "short_label": "Samfunnsrolle",
@@ -21536,11 +21597,8 @@
       "kommunikasjon kan overselge sikkerhet"
     ],
     "methods": [
-      "Analyser hvordan vitenskap presenteres i offentlig debatt.",
-      "Se etter hva som regnes som legitim kunnskap – og hva som avvises.",
-      "Studer hvem som regnes som eksperter i ulike situasjoner.",
-      "Spør hvordan forskningsresultater brukes i politiske beslutninger.",
-      "Kartlegg vitenskapskontroverser og hvilke verdier som ligger bak."
+      "met_vit_ekspertmaktanalyse",
+      "met_vit_samfunnsanalyse"
     ],
     "analysis_axes": [
       "ekspertkunnskap vs lekfolkserfaring",
@@ -21561,13 +21619,46 @@
     "related_routes": [],
     "related_places": [],
     "related_quizzes": [],
-    "status": "core"
+    "status": "core",
+    "analysis_procedure": [
+      "Analyser hvordan vitenskap presenteres i offentlig debatt.",
+      "Se etter hva som regnes som legitim kunnskap – og hva som avvises.",
+      "Studer hvem som regnes som eksperter i ulike situasjoner.",
+      "Spør hvordan forskningsresultater brukes i politiske beslutninger.",
+      "Kartlegg vitenskapskontroverser og hvilke verdier som ligger bak."
+    ],
+    "domain": "samfunn_makt_etikk",
+    "logic_family": "samfunn_makt_etikk",
+    "definition": "Emnet analyserer hvordan vitenskapelig ekspertise får autoritet i offentlighet, forvaltning og politikk, og hvordan konsensus, uenighet og usikkerhet kommuniseres.",
+    "why_it_matters": "Det viser hvorfor faglig kvalitet alene ikke forklarer tillit: institusjoner, åpenhet, interesser, representasjon og bruk av evidens er også avgjørende.",
+    "method_ids": [
+      "met_vit_ekspertmaktanalyse",
+      "met_vit_samfunnsanalyse"
+    ],
+    "recommended_methods": [
+      "met_vit_ekspertmaktanalyse",
+      "met_vit_samfunnsanalyse"
+    ],
+    "primary_theory_hooks": [
+      "ekspertmakt"
+    ],
+    "secondary_theory_hooks": [],
+    "reserve_theory_hooks": [],
+    "mapping_count": 1,
+    "mapping_pressure": "mapped",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "recommended_oslo_cases": [
+      "Forskningsrådet",
+      "Universitetet i Oslo",
+      "Meteorologisk institutt"
+    ]
   },
   {
     "emne_id": "em_vit_hist_teknologi",
     "subject_id": "vitenskap",
-    "area_id": "vit_hist",
-    "area_label": "Vitenskapshistorie og teknologiutvikling",
+    "area_id": "teknologi_data_infrastruktur",
+    "area_label": "Teknologi, data og infrastruktur",
     "level": 2,
     "title": "Vitenskapshistorie og teknologiske skift",
     "short_label": "Vitenskapshistorie",
@@ -21620,11 +21711,8 @@
       "kunnskap utenfor den vestlige tradisjonen marginaliseres"
     ],
     "methods": [
-      "Se etter hvilke historier som regnes som store gjennombrudd – og hvilke som aldri nevnes.",
-      "Analyser hvem som framstår som helter og hvem som mangler navn.",
-      "Spør hvilke sosiale og økonomiske interesser som ble styrket av et teknologisk skift.",
-      "Kartlegg hvilke feilspor og mislykkede prosjekter som ble viktige læringsarenaer.",
-      "Undersøk hvordan hverdagslivet endrer seg når ny teknologi introduseres."
+      "met_vit_vitenskapshistorisk_analyse",
+      "met_vit_teknologianalyse"
     ],
     "analysis_axes": [
       "fremskritt vs kostnader",
@@ -21648,7 +21736,40 @@
     "related_routes": [],
     "related_places": [],
     "related_quizzes": [],
-    "status": "core"
+    "status": "core",
+    "analysis_procedure": [
+      "Se etter hvilke historier som regnes som store gjennombrudd – og hvilke som aldri nevnes.",
+      "Analyser hvem som framstår som helter og hvem som mangler navn.",
+      "Spør hvilke sosiale og økonomiske interesser som ble styrket av et teknologisk skift.",
+      "Kartlegg hvilke feilspor og mislykkede prosjekter som ble viktige læringsarenaer.",
+      "Undersøk hvordan hverdagslivet endrer seg når ny teknologi introduseres."
+    ],
+    "domain": "teknologi_data_infrastruktur",
+    "logic_family": "teknologi_data_infrastruktur",
+    "definition": "Emnet undersøker vitenskapelige og teknologiske skift som historiske prosesser med institusjoner, finansiering, forsøk, feilspor, standarder og materielle infrastrukturer.",
+    "why_it_matters": "Det hindrer at teknologi fremstilles som en selvvirkende fremskrittskraft og gjør det mulig å analysere både gjennombrudd, kostnader, vinnere og tapere.",
+    "method_ids": [
+      "met_vit_vitenskapshistorisk_analyse",
+      "met_vit_teknologianalyse"
+    ],
+    "recommended_methods": [
+      "met_vit_vitenskapshistorisk_analyse",
+      "met_vit_teknologianalyse"
+    ],
+    "primary_theory_hooks": [
+      "industri_og_forskning"
+    ],
+    "secondary_theory_hooks": [],
+    "reserve_theory_hooks": [],
+    "mapping_count": 1,
+    "mapping_pressure": "mapped",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "recommended_oslo_cases": [
+      "Norsk Teknisk Museum",
+      "Forskningsparken",
+      "Universitetet i Oslo"
+    ]
   },
   {
     "emne_id": "em_vit_kjemi_laboratorium",
@@ -21744,7 +21865,7 @@
     ],
     "methods": [
       "met_vit_laboratorieanalyse",
-      "met_vit_instrumentanalyse"
+      "met_vit_maleinstrumentanalyse"
     ],
     "analysis_axes": [
       "institusjon vs praksis",
@@ -21855,8 +21976,7 @@
     "mapping_pressure": "mapped",
     "generator_use_note": "Start fra konkret sted, institusjon, metode, instrument, observasjon, forskningsmiljø eller dokumentert praksis; bruk emnet som tolkningsramme, ikke som løs emneetikett.",
     "primary_theory_hooks": [
-      "laboratorium_som_virkelighetsrom",
-      "prover_og_materialer"
+      "laboratorium_som_virkelighetsrom"
     ],
     "secondary_theory_hooks": [],
     "reserve_theory_hooks": [],
@@ -21867,7 +21987,7 @@
     "theory_overreach_risk": "medium",
     "method_ids": [
       "met_vit_laboratorieanalyse",
-      "met_vit_instrumentanalyse"
+      "met_vit_maleinstrumentanalyse"
     ],
     "recommended_oslo_cases": [
       "Universitetets gamle kjemibygning",
@@ -21917,7 +22037,7 @@
     ],
     "recommended_methods": [
       "met_vit_laboratorieanalyse",
-      "met_vit_instrumentanalyse"
+      "met_vit_maleinstrumentanalyse"
     ]
   },
   {
@@ -22011,7 +22131,7 @@
     ],
     "methods": [
       "met_vit_eksperimentanalyse",
-      "met_vit_instrumentanalyse"
+      "met_vit_maleinstrumentanalyse"
     ],
     "analysis_axes": [
       "institusjon vs praksis",
@@ -22123,7 +22243,7 @@
     "theory_overreach_risk": "medium",
     "method_ids": [
       "met_vit_eksperimentanalyse",
-      "met_vit_instrumentanalyse"
+      "met_vit_maleinstrumentanalyse"
     ],
     "recommended_oslo_cases": [
       "Universitetets gamle kjemibygning",
@@ -22173,7 +22293,7 @@
     ],
     "recommended_methods": [
       "met_vit_eksperimentanalyse",
-      "met_vit_instrumentanalyse"
+      "met_vit_maleinstrumentanalyse"
     ]
   },
   {
@@ -22266,8 +22386,8 @@
       "vitenskapelig autoritet vs metodekritikk"
     ],
     "methods": [
-      "met_vit_feltobservasjon",
-      "met_vit_datakritikk"
+      "met_vit_feltarbeidsanalyse",
+      "met_vit_kildekritisk_analyse"
     ],
     "analysis_axes": [
       "institusjon vs praksis",
@@ -22380,8 +22500,8 @@
     "theory_progression_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
     "theory_overreach_risk": "medium",
     "method_ids": [
-      "met_vit_feltobservasjon",
-      "met_vit_datakritikk"
+      "met_vit_feltarbeidsanalyse",
+      "met_vit_kildekritisk_analyse"
     ],
     "recommended_oslo_cases": [
       "Tvergastein",
@@ -22432,8 +22552,8 @@
       "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
     ],
     "recommended_methods": [
-      "met_vit_feltobservasjon",
-      "met_vit_datakritikk"
+      "met_vit_feltarbeidsanalyse",
+      "met_vit_kildekritisk_analyse"
     ]
   },
   {
@@ -22906,10 +23026,7 @@
     "mapping_pressure": "mapped",
     "generator_use_note": "Start fra konkret sted, institusjon, metode, instrument, observasjon, forskningsmiljø eller dokumentert praksis; bruk emnet som tolkningsramme, ikke som løs emneetikett.",
     "primary_theory_hooks": [
-      "modell_og_simulering",
-      "teori_og_modell",
-      "beregning",
-      "datavisualisering"
+      "modell_og_simulering"
     ],
     "secondary_theory_hooks": [],
     "reserve_theory_hooks": [],
@@ -23066,7 +23183,7 @@
       "vitenskapelig autoritet vs metodekritikk"
     ],
     "methods": [
-      "met_vit_klinisk_studieanalyse",
+      "met_vit_evidensanalyse",
       "met_vit_institusjonsanalyse"
     ],
     "analysis_axes": [
@@ -23178,7 +23295,6 @@
     "mapping_pressure": "mapped",
     "generator_use_note": "Start fra konkret sted, institusjon, metode, instrument, observasjon, forskningsmiljø eller dokumentert praksis; bruk emnet som tolkningsramme, ikke som løs emneetikett.",
     "primary_theory_hooks": [
-      "sykehus_som_forskningssted",
       "medisin_og_evidens"
     ],
     "secondary_theory_hooks": [],
@@ -23189,7 +23305,7 @@
     "theory_progression_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
     "theory_overreach_risk": "medium",
     "method_ids": [
-      "met_vit_klinisk_studieanalyse",
+      "met_vit_evidensanalyse",
       "met_vit_institusjonsanalyse"
     ],
     "recommended_oslo_cases": [
@@ -23239,7 +23355,7 @@
       "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
     ],
     "recommended_methods": [
-      "met_vit_klinisk_studieanalyse",
+      "met_vit_evidensanalyse",
       "met_vit_institusjonsanalyse"
     ]
   },
@@ -23337,7 +23453,7 @@
     ],
     "methods": [
       "met_vit_systemanalyse",
-      "met_vit_feltobservasjon"
+      "met_vit_feltarbeidsanalyse"
     ],
     "analysis_axes": [
       "institusjon vs praksis",
@@ -23451,7 +23567,7 @@
     "theory_overreach_risk": "medium",
     "method_ids": [
       "met_vit_systemanalyse",
-      "met_vit_feltobservasjon"
+      "met_vit_feltarbeidsanalyse"
     ],
     "recommended_oslo_cases": [
       "Tvergastein",
@@ -23502,7 +23618,7 @@
     ],
     "recommended_methods": [
       "met_vit_systemanalyse",
-      "met_vit_feltobservasjon"
+      "met_vit_feltarbeidsanalyse"
     ]
   },
   {
@@ -23712,9 +23828,7 @@
     "mapping_pressure": "mapped",
     "generator_use_note": "Start fra konkret sted, institusjon, metode, instrument, observasjon, forskningsmiljø eller dokumentert praksis; bruk emnet som tolkningsramme, ikke som løs emneetikett.",
     "primary_theory_hooks": [
-      "forskningspark_og_innovasjon",
-      "industri_og_forskning",
-      "vitenskap_og_samfunnsendring"
+      "industri_og_forskning"
     ],
     "secondary_theory_hooks": [],
     "reserve_theory_hooks": [],
@@ -23871,7 +23985,7 @@
       "vitenskapelig autoritet vs metodekritikk"
     ],
     "methods": [
-      "met_vit_historisk_kildeanalyse",
+      "met_vit_vitenskapshistorisk_analyse",
       "met_vit_institusjonsanalyse"
     ],
     "analysis_axes": [
@@ -23983,8 +24097,7 @@
     "mapping_pressure": "mapped",
     "generator_use_note": "Start fra konkret sted, institusjon, metode, instrument, observasjon, forskningsmiljø eller dokumentert praksis; bruk emnet som tolkningsramme, ikke som løs emneetikett.",
     "primary_theory_hooks": [
-      "museum_arkiv_data",
-      "geologi_tid"
+      "museum_arkiv_data"
     ],
     "secondary_theory_hooks": [],
     "reserve_theory_hooks": [],
@@ -23994,7 +24107,7 @@
     "theory_progression_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
     "theory_overreach_risk": "medium",
     "method_ids": [
-      "met_vit_historisk_kildeanalyse",
+      "met_vit_vitenskapshistorisk_analyse",
       "met_vit_institusjonsanalyse"
     ],
     "recommended_oslo_cases": [
@@ -24044,7 +24157,7 @@
       "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
     ],
     "recommended_methods": [
-      "met_vit_historisk_kildeanalyse",
+      "met_vit_vitenskapshistorisk_analyse",
       "met_vit_institusjonsanalyse"
     ]
   }

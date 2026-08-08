@@ -20111,5 +20111,2414 @@
       "require_institution_method_model_instrument_or_discovery_anchor": true,
       "required_emne_prefix": "em_vit_"
     }
+  },
+  {
+    "emne_id": "em_vit_sannhet_maling_modeller",
+    "title": "Sannhetsproduksjon gjennom måling og modeller",
+    "mappings": [
+      {
+        "fagkart_kategori": "paradigmer_teorier_sannhet",
+        "fagkart_kategori_tittel": "Paradigmer, teorier og sannhet",
+        "topic_hook": "sannhet_som_praksis",
+        "topic_hook_tittel": "Sannhet som praksis",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "paradigm-theory-truth-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Thomas Kuhn",
+          "Karl Popper",
+          "Imre Lakatos",
+          "Paul Feyerabend",
+          "Helen Longino"
+        ],
+        "thinker_ids": [
+          "thomas_kuhn",
+          "karl_popper",
+          "imre_lakatos",
+          "paul_feyerabend",
+          "helen_longino"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "thomas_kuhn",
+            "karl_popper"
+          ],
+          [
+            "imre_lakatos",
+            "paul_feyerabend"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "universitet",
+          "bibliotek",
+          "museum",
+          "observatorium",
+          "institutt",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Observatoriet",
+          "Meteorologisk institutt",
+          "Universitetet i Oslo"
+        ],
+        "recommended_method_ids": [
+          "met_vit_evidensanalyse",
+          "met_vit_modellanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "sannhet_som_praksis"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Thomas Kuhn",
+      "Karl Popper",
+      "Imre Lakatos",
+      "Paul Feyerabend",
+      "Helen Longino"
+    ],
+    "canonical_thinker_ids": [
+      "thomas_kuhn",
+      "karl_popper",
+      "imre_lakatos",
+      "paul_feyerabend",
+      "helen_longino"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Observatoriet",
+      "Meteorologisk institutt",
+      "Universitetet i Oslo"
+    ],
+    "recommended_method_ids": [
+      "met_vit_evidensanalyse",
+      "met_vit_modellanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "high",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_byen_som_kunnskapskart",
+    "title": "Byen som kunnskapskart",
+    "mappings": [
+      {
+        "fagkart_kategori": "institusjoner_laboratorier_kunnskapssteder",
+        "fagkart_kategori_tittel": "Institusjoner, laboratorier og kunnskapssteder",
+        "topic_hook": "kunnskapskart_oslo",
+        "topic_hook_tittel": "Kunnskapskart i Oslo",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "institution-lab-place-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Bruno Latour",
+          "Robert K. Merton",
+          "Thomas Kuhn",
+          "Donna Haraway",
+          "Steven Shapin"
+        ],
+        "thinker_ids": [
+          "bruno_latour",
+          "robert_k_merton",
+          "thomas_kuhn",
+          "donna_haraway",
+          "steven_shapin"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "bruno_latour",
+            "robert_k_merton"
+          ],
+          [
+            "thomas_kuhn",
+            "donna_haraway"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "universitet",
+          "laboratorium",
+          "observatorium",
+          "institutt",
+          "museum",
+          "arkiv",
+          "sykehus",
+          "teknologibygg"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Blindern",
+          "Forskningsparken",
+          "Observatoriet",
+          "OsloMet Pilestredet"
+        ],
+        "recommended_method_ids": [
+          "met_vit_kunnskapsgeografisk_analyse",
+          "met_vit_institusjonsanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "kunnskapskart_oslo"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Bruno Latour",
+      "Robert K. Merton",
+      "Thomas Kuhn",
+      "Donna Haraway",
+      "Steven Shapin"
+    ],
+    "canonical_thinker_ids": [
+      "bruno_latour",
+      "robert_k_merton",
+      "thomas_kuhn",
+      "donna_haraway",
+      "steven_shapin"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Blindern",
+      "Forskningsparken",
+      "Observatoriet",
+      "OsloMet Pilestredet"
+    ],
+    "recommended_method_ids": [
+      "met_vit_kunnskapsgeografisk_analyse",
+      "met_vit_institusjonsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_samfunnsrolle",
+    "title": "Vitenskapens samfunnsrolle og autoritet",
+    "mappings": [
+      {
+        "fagkart_kategori": "samfunn_makt_etikk",
+        "fagkart_kategori_tittel": "Samfunn, makt og etikk i vitenskap",
+        "topic_hook": "ekspertmakt",
+        "topic_hook_tittel": "Ekspertmakt",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "science-society-power-ethics-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Robert K. Merton",
+          "Sheila Jasanoff",
+          "Donna Haraway",
+          "Ulrich Beck",
+          "Helen Longino"
+        ],
+        "thinker_ids": [
+          "robert_k_merton",
+          "sheila_jasanoff",
+          "donna_haraway",
+          "ulrich_beck",
+          "helen_longino"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "robert_k_merton",
+            "sheila_jasanoff"
+          ],
+          [
+            "donna_haraway",
+            "ulrich_beck"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "universitet",
+          "forskningsråd",
+          "departement",
+          "sykehus",
+          "museum",
+          "teknologibygg"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Forskningsrådet",
+          "Universitetet i Oslo",
+          "Meteorologisk institutt"
+        ],
+        "recommended_method_ids": [
+          "met_vit_ekspertmaktanalyse",
+          "met_vit_samfunnsanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "ekspertmakt"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Robert K. Merton",
+      "Sheila Jasanoff",
+      "Donna Haraway",
+      "Ulrich Beck",
+      "Helen Longino"
+    ],
+    "canonical_thinker_ids": [
+      "robert_k_merton",
+      "sheila_jasanoff",
+      "donna_haraway",
+      "ulrich_beck",
+      "helen_longino"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Forskningsrådet",
+      "Universitetet i Oslo",
+      "Meteorologisk institutt"
+    ],
+    "recommended_method_ids": [
+      "met_vit_ekspertmaktanalyse",
+      "met_vit_samfunnsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "high",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_hist_teknologi",
+    "title": "Vitenskapshistorie og teknologiske skift",
+    "mappings": [
+      {
+        "fagkart_kategori": "teknologi_data_infrastruktur",
+        "fagkart_kategori_tittel": "Teknologi, data og infrastruktur",
+        "topic_hook": "industri_og_forskning",
+        "topic_hook_tittel": "Industri og forskning",
+        "mapping_tier": "primary",
+        "priority_score": 9,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "institution-lab-place-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Bruno Latour",
+          "Robert K. Merton",
+          "Thomas Kuhn",
+          "Donna Haraway",
+          "Steven Shapin",
+          "Geoffrey Bowker",
+          "Susan Leigh Star",
+          "Lucy Suchman",
+          "Sheila Jasanoff",
+          "Ulrich Beck",
+          "Helen Longino"
+        ],
+        "thinker_ids": [
+          "bruno_latour",
+          "robert_k_merton",
+          "thomas_kuhn",
+          "donna_haraway",
+          "steven_shapin",
+          "geoffrey_bowker",
+          "susan_leigh_star",
+          "lucy_suchman",
+          "sheila_jasanoff",
+          "ulrich_beck",
+          "helen_longino"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "bruno_latour",
+            "donna_haraway"
+          ],
+          [
+            "geoffrey_bowker",
+            "susan_leigh_star"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "teknologibygg",
+          "datasenter",
+          "laboratorium",
+          "museum",
+          "forskningspark",
+          "universitet"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Norsk Teknisk Museum",
+          "Forskningsparken",
+          "Universitetet i Oslo"
+        ],
+        "recommended_method_ids": [
+          "met_vit_vitenskapshistorisk_analyse",
+          "met_vit_teknologianalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "industri_og_forskning"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Bruno Latour",
+      "Robert K. Merton",
+      "Thomas Kuhn",
+      "Donna Haraway",
+      "Steven Shapin",
+      "Geoffrey Bowker",
+      "Susan Leigh Star",
+      "Lucy Suchman",
+      "Sheila Jasanoff",
+      "Ulrich Beck",
+      "Helen Longino"
+    ],
+    "canonical_thinker_ids": [
+      "bruno_latour",
+      "robert_k_merton",
+      "thomas_kuhn",
+      "donna_haraway",
+      "steven_shapin",
+      "geoffrey_bowker",
+      "susan_leigh_star",
+      "lucy_suchman",
+      "sheila_jasanoff",
+      "ulrich_beck",
+      "helen_longino"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 11,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Norsk Teknisk Museum",
+      "Forskningsparken",
+      "Universitetet i Oslo"
+    ],
+    "recommended_method_ids": [
+      "met_vit_vitenskapshistorisk_analyse",
+      "met_vit_teknologianalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_kjemi_laboratorium",
+    "title": "Kjemi og laboratorium",
+    "mappings": [
+      {
+        "fagkart_kategori": "institusjoner_laboratorier_kunnskapssteder",
+        "fagkart_kategori_tittel": "Institusjoner, laboratorier og kunnskapssteder",
+        "topic_hook": "laboratorium_som_virkelighetsrom",
+        "topic_hook_tittel": "Laboratorium som virkelighetsrom",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "institution-lab-place-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Bruno Latour",
+          "Robert K. Merton",
+          "Thomas Kuhn",
+          "Donna Haraway",
+          "Steven Shapin",
+          "Karl Popper",
+          "Ian Hacking",
+          "Nancy Cartwright",
+          "Mary Morgan",
+          "Lorraine Daston",
+          "Geoffrey Bowker",
+          "Susan Leigh Star"
+        ],
+        "thinker_ids": [
+          "bruno_latour",
+          "robert_k_merton",
+          "thomas_kuhn",
+          "donna_haraway",
+          "steven_shapin",
+          "karl_popper",
+          "ian_hacking",
+          "nancy_cartwright",
+          "mary_morgan",
+          "lorraine_daston",
+          "geoffrey_bowker",
+          "susan_leigh_star"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "bruno_latour",
+            "robert_k_merton"
+          ],
+          [
+            "thomas_kuhn",
+            "donna_haraway"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "universitet",
+          "laboratorium",
+          "observatorium",
+          "institutt",
+          "museum",
+          "arkiv",
+          "sykehus",
+          "teknologibygg"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Universitetets gamle kjemibygning",
+          "Blindern",
+          "Forskningsparken"
+        ],
+        "recommended_method_ids": [
+          "met_vit_laboratorieanalyse",
+          "met_vit_maleinstrumentanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "laboratorium_som_virkelighetsrom"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Bruno Latour",
+      "Robert K. Merton",
+      "Thomas Kuhn",
+      "Donna Haraway",
+      "Steven Shapin",
+      "Karl Popper",
+      "Ian Hacking",
+      "Nancy Cartwright",
+      "Mary Morgan",
+      "Lorraine Daston",
+      "Geoffrey Bowker",
+      "Susan Leigh Star"
+    ],
+    "canonical_thinker_ids": [
+      "bruno_latour",
+      "robert_k_merton",
+      "thomas_kuhn",
+      "donna_haraway",
+      "steven_shapin",
+      "karl_popper",
+      "ian_hacking",
+      "nancy_cartwright",
+      "mary_morgan",
+      "lorraine_daston",
+      "geoffrey_bowker",
+      "susan_leigh_star"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 12,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Universitetets gamle kjemibygning",
+      "Blindern",
+      "Forskningsparken"
+    ],
+    "recommended_method_ids": [
+      "met_vit_laboratorieanalyse",
+      "met_vit_maleinstrumentanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_eksperiment_maling",
+    "title": "Eksperiment og måling",
+    "mappings": [
+      {
+        "fagkart_kategori": "metoder_maling_modeller",
+        "fagkart_kategori_tittel": "Metoder, måling og modeller",
+        "topic_hook": "eksperiment_variabler",
+        "topic_hook_tittel": "Eksperiment og variabler",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "method-measurement-model-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Karl Popper",
+          "Ian Hacking",
+          "Nancy Cartwright",
+          "Mary Morgan",
+          "Lorraine Daston"
+        ],
+        "thinker_ids": [
+          "karl_popper",
+          "ian_hacking",
+          "nancy_cartwright",
+          "mary_morgan",
+          "lorraine_daston"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "karl_popper",
+            "ian_hacking"
+          ],
+          [
+            "nancy_cartwright",
+            "mary_morgan"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "laboratorium",
+          "universitet",
+          "forskningssenter",
+          "observatorium",
+          "teknologibygg",
+          "datasenter"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Universitetets gamle kjemibygning",
+          "Meteorologisk institutt",
+          "Radiumhospitalet"
+        ],
+        "recommended_method_ids": [
+          "met_vit_eksperimentanalyse",
+          "met_vit_maleinstrumentanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "eksperiment_variabler"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Karl Popper",
+      "Ian Hacking",
+      "Nancy Cartwright",
+      "Mary Morgan",
+      "Lorraine Daston"
+    ],
+    "canonical_thinker_ids": [
+      "karl_popper",
+      "ian_hacking",
+      "nancy_cartwright",
+      "mary_morgan",
+      "lorraine_daston"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Universitetets gamle kjemibygning",
+      "Meteorologisk institutt",
+      "Radiumhospitalet"
+    ],
+    "recommended_method_ids": [
+      "met_vit_eksperimentanalyse",
+      "met_vit_maleinstrumentanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_feltarbeid_observasjon",
+    "title": "Feltarbeid og observasjon",
+    "mappings": [
+      {
+        "fagkart_kategori": "natur_medisin_miljo",
+        "fagkart_kategori_tittel": "Natur, medisin og miljø som vitenskap",
+        "topic_hook": "feltarbeid",
+        "topic_hook_tittel": "Feltarbeid",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "nature-medicine-environment-science-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Charles Darwin",
+          "Louis Pasteur",
+          "Rachel Carson",
+          "James Lovelock",
+          "Barbara McClintock"
+        ],
+        "thinker_ids": [
+          "charles_darwin",
+          "louis_pasteur",
+          "rachel_carson",
+          "james_lovelock",
+          "barbara_mclintock"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "charles_darwin",
+            "louis_pasteur"
+          ],
+          [
+            "rachel_carson",
+            "james_lovelock"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "sykehus",
+          "laboratorium",
+          "museum",
+          "park",
+          "natursted",
+          "feltstasjon",
+          "universitet"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Tvergastein",
+          "Botanisk hage",
+          "Meteorologisk institutt",
+          "Naturhistorisk museum"
+        ],
+        "recommended_method_ids": [
+          "met_vit_feltarbeidsanalyse",
+          "met_vit_kildekritisk_analyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "feltarbeid"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Charles Darwin",
+      "Louis Pasteur",
+      "Rachel Carson",
+      "James Lovelock",
+      "Barbara McClintock"
+    ],
+    "canonical_thinker_ids": [
+      "charles_darwin",
+      "louis_pasteur",
+      "rachel_carson",
+      "james_lovelock",
+      "barbara_mclintock"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Tvergastein",
+      "Botanisk hage",
+      "Meteorologisk institutt",
+      "Naturhistorisk museum"
+    ],
+    "recommended_method_ids": [
+      "met_vit_feltarbeidsanalyse",
+      "met_vit_kildekritisk_analyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_kunnskap_formidling_utdanning",
+    "title": "Kunnskap, formidling og utdanning",
+    "mappings": [
+      {
+        "fagkart_kategori": "samfunn_makt_etikk",
+        "fagkart_kategori_tittel": "Samfunn, makt og etikk i vitenskap",
+        "topic_hook": "offentlighet_og_formidling",
+        "topic_hook_tittel": "Offentlighet og formidling",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "science-society-power-ethics-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Robert K. Merton",
+          "Sheila Jasanoff",
+          "Donna Haraway",
+          "Ulrich Beck",
+          "Helen Longino"
+        ],
+        "thinker_ids": [
+          "robert_k_merton",
+          "sheila_jasanoff",
+          "donna_haraway",
+          "ulrich_beck",
+          "helen_longino"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "robert_k_merton",
+            "sheila_jasanoff"
+          ],
+          [
+            "donna_haraway",
+            "ulrich_beck"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "universitet",
+          "forskningsråd",
+          "departement",
+          "sykehus",
+          "museum",
+          "teknologibygg"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Gamlebyen skole",
+          "Naturhistorisk museum",
+          "Norsk Teknisk Museum",
+          "OsloMet Pilestredet",
+          "Rikshospitalet"
+        ],
+        "recommended_method_ids": [
+          "met_vit_institusjonsanalyse",
+          "met_vit_formidlingsanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "offentlighet_og_formidling"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Robert K. Merton",
+      "Sheila Jasanoff",
+      "Donna Haraway",
+      "Ulrich Beck",
+      "Helen Longino"
+    ],
+    "canonical_thinker_ids": [
+      "robert_k_merton",
+      "sheila_jasanoff",
+      "donna_haraway",
+      "ulrich_beck",
+      "helen_longino"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Gamlebyen skole",
+      "Naturhistorisk museum",
+      "Norsk Teknisk Museum",
+      "OsloMet Pilestredet",
+      "Rikshospitalet"
+    ],
+    "recommended_method_ids": [
+      "met_vit_institusjonsanalyse",
+      "met_vit_formidlingsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "high",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_matematikk_modellering",
+    "title": "Matematikk og modellering",
+    "mappings": [
+      {
+        "fagkart_kategori": "metoder_maling_modeller",
+        "fagkart_kategori_tittel": "Metoder, måling og modeller",
+        "topic_hook": "modell_og_simulering",
+        "topic_hook_tittel": "Modell og simulering",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "method-measurement-model-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Karl Popper",
+          "Ian Hacking",
+          "Nancy Cartwright",
+          "Mary Morgan",
+          "Lorraine Daston"
+        ],
+        "thinker_ids": [
+          "karl_popper",
+          "ian_hacking",
+          "nancy_cartwright",
+          "mary_morgan",
+          "lorraine_daston"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "karl_popper",
+            "ian_hacking"
+          ],
+          [
+            "nancy_cartwright",
+            "mary_morgan"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "laboratorium",
+          "universitet",
+          "forskningssenter",
+          "observatorium",
+          "teknologibygg",
+          "datasenter"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Abelhaugen",
+          "Universitetet i Oslo",
+          "Forskningsparken"
+        ],
+        "recommended_method_ids": [
+          "met_vit_modellanalyse",
+          "met_vit_beregningsanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "modell_og_simulering"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Karl Popper",
+      "Ian Hacking",
+      "Nancy Cartwright",
+      "Mary Morgan",
+      "Lorraine Daston"
+    ],
+    "canonical_thinker_ids": [
+      "karl_popper",
+      "ian_hacking",
+      "nancy_cartwright",
+      "mary_morgan",
+      "lorraine_daston"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Abelhaugen",
+      "Universitetet i Oslo",
+      "Forskningsparken"
+    ],
+    "recommended_method_ids": [
+      "met_vit_modellanalyse",
+      "met_vit_beregningsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_medisin_helse",
+    "title": "Medisin og helse",
+    "mappings": [
+      {
+        "fagkart_kategori": "natur_medisin_miljo",
+        "fagkart_kategori_tittel": "Natur, medisin og miljø som vitenskap",
+        "topic_hook": "medisin_og_evidens",
+        "topic_hook_tittel": "Medisin og evidens",
+        "mapping_tier": "primary",
+        "priority_score": 8,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "institution-lab-place-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Bruno Latour",
+          "Robert K. Merton",
+          "Thomas Kuhn",
+          "Donna Haraway",
+          "Steven Shapin",
+          "Karl Popper",
+          "Imre Lakatos",
+          "Paul Feyerabend",
+          "Helen Longino",
+          "Charles Darwin",
+          "Louis Pasteur",
+          "Rachel Carson"
+        ],
+        "thinker_ids": [
+          "bruno_latour",
+          "robert_k_merton",
+          "thomas_kuhn",
+          "donna_haraway",
+          "steven_shapin",
+          "karl_popper",
+          "imre_lakatos",
+          "paul_feyerabend",
+          "helen_longino",
+          "charles_darwin",
+          "louis_pasteur",
+          "rachel_carson"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "charles_darwin",
+            "louis_pasteur"
+          ],
+          [
+            "rachel_carson",
+            "james_lovelock"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "sykehus",
+          "laboratorium",
+          "museum",
+          "park",
+          "natursted",
+          "feltstasjon",
+          "universitet"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Rikshospitalet",
+          "Radiumhospitalet",
+          "Universitetet i Oslo"
+        ],
+        "recommended_method_ids": [
+          "met_vit_evidensanalyse",
+          "met_vit_institusjonsanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "medisin_og_evidens"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Bruno Latour",
+      "Robert K. Merton",
+      "Thomas Kuhn",
+      "Donna Haraway",
+      "Steven Shapin",
+      "Karl Popper",
+      "Imre Lakatos",
+      "Paul Feyerabend",
+      "Helen Longino",
+      "Charles Darwin",
+      "Louis Pasteur",
+      "Rachel Carson"
+    ],
+    "canonical_thinker_ids": [
+      "bruno_latour",
+      "robert_k_merton",
+      "thomas_kuhn",
+      "donna_haraway",
+      "steven_shapin",
+      "karl_popper",
+      "imre_lakatos",
+      "paul_feyerabend",
+      "helen_longino",
+      "charles_darwin",
+      "louis_pasteur",
+      "rachel_carson"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 12,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Rikshospitalet",
+      "Radiumhospitalet",
+      "Universitetet i Oslo"
+    ],
+    "recommended_method_ids": [
+      "met_vit_evidensanalyse",
+      "met_vit_institusjonsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_miljo_okologi_system",
+    "title": "Miljø, økologi og system",
+    "mappings": [
+      {
+        "fagkart_kategori": "natur_medisin_miljo",
+        "fagkart_kategori_tittel": "Natur, medisin og miljø som vitenskap",
+        "topic_hook": "okologi_system",
+        "topic_hook_tittel": "Økologi og system",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "nature-medicine-environment-science-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Charles Darwin",
+          "Louis Pasteur",
+          "Rachel Carson",
+          "James Lovelock",
+          "Barbara McClintock"
+        ],
+        "thinker_ids": [
+          "charles_darwin",
+          "louis_pasteur",
+          "rachel_carson",
+          "james_lovelock",
+          "barbara_mclintock"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "charles_darwin",
+            "louis_pasteur"
+          ],
+          [
+            "rachel_carson",
+            "james_lovelock"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "sykehus",
+          "laboratorium",
+          "museum",
+          "park",
+          "natursted",
+          "feltstasjon",
+          "universitet"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Tvergastein",
+          "Naturhistorisk museum",
+          "Botanisk hage"
+        ],
+        "recommended_method_ids": [
+          "met_vit_systemanalyse",
+          "met_vit_feltarbeidsanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "okologi_system"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Charles Darwin",
+      "Louis Pasteur",
+      "Rachel Carson",
+      "James Lovelock",
+      "Barbara McClintock"
+    ],
+    "canonical_thinker_ids": [
+      "charles_darwin",
+      "louis_pasteur",
+      "rachel_carson",
+      "james_lovelock",
+      "barbara_mclintock"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Tvergastein",
+      "Naturhistorisk museum",
+      "Botanisk hage"
+    ],
+    "recommended_method_ids": [
+      "met_vit_systemanalyse",
+      "met_vit_feltarbeidsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_teknologi_innovasjon",
+    "title": "Teknologi og innovasjon",
+    "mappings": [
+      {
+        "fagkart_kategori": "teknologi_data_infrastruktur",
+        "fagkart_kategori_tittel": "Teknologi, data og infrastruktur",
+        "topic_hook": "industri_og_forskning",
+        "topic_hook_tittel": "Industri og forskning",
+        "mapping_tier": "primary",
+        "priority_score": 9,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "institution-lab-place-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Bruno Latour",
+          "Robert K. Merton",
+          "Thomas Kuhn",
+          "Donna Haraway",
+          "Steven Shapin",
+          "Geoffrey Bowker",
+          "Susan Leigh Star",
+          "Lucy Suchman",
+          "Sheila Jasanoff",
+          "Ulrich Beck",
+          "Helen Longino"
+        ],
+        "thinker_ids": [
+          "bruno_latour",
+          "robert_k_merton",
+          "thomas_kuhn",
+          "donna_haraway",
+          "steven_shapin",
+          "geoffrey_bowker",
+          "susan_leigh_star",
+          "lucy_suchman",
+          "sheila_jasanoff",
+          "ulrich_beck",
+          "helen_longino"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "bruno_latour",
+            "donna_haraway"
+          ],
+          [
+            "geoffrey_bowker",
+            "susan_leigh_star"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "teknologibygg",
+          "datasenter",
+          "laboratorium",
+          "museum",
+          "forskningspark",
+          "universitet"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Forskningsparken",
+          "Arkitektur- og designhøgskolen i Oslo",
+          "Norsk Teknisk Museum"
+        ],
+        "recommended_method_ids": [
+          "met_vit_innovasjonsanalyse",
+          "met_vit_institusjonsanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "industri_og_forskning"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Bruno Latour",
+      "Robert K. Merton",
+      "Thomas Kuhn",
+      "Donna Haraway",
+      "Steven Shapin",
+      "Geoffrey Bowker",
+      "Susan Leigh Star",
+      "Lucy Suchman",
+      "Sheila Jasanoff",
+      "Ulrich Beck",
+      "Helen Longino"
+    ],
+    "canonical_thinker_ids": [
+      "bruno_latour",
+      "robert_k_merton",
+      "thomas_kuhn",
+      "donna_haraway",
+      "steven_shapin",
+      "geoffrey_bowker",
+      "susan_leigh_star",
+      "lucy_suchman",
+      "sheila_jasanoff",
+      "ulrich_beck",
+      "helen_longino"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 11,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Forskningsparken",
+      "Arkitektur- og designhøgskolen i Oslo",
+      "Norsk Teknisk Museum"
+    ],
+    "recommended_method_ids": [
+      "met_vit_innovasjonsanalyse",
+      "met_vit_institusjonsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
+  },
+  {
+    "emne_id": "em_vit_vitenskapshistorie_personer",
+    "title": "Vitenskapshistorie og personer",
+    "mappings": [
+      {
+        "fagkart_kategori": "institusjoner_laboratorier_kunnskapssteder",
+        "fagkart_kategori_tittel": "Institusjoner, laboratorier og kunnskapssteder",
+        "topic_hook": "museum_arkiv_data",
+        "topic_hook_tittel": "Museum, arkiv og data",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "institution-lab-place-first",
+        "science_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "institution_method_model_instrument_or_discovery_anchor_required": true,
+        "documented_scientific_context_required": true,
+        "use_note": "Primær kobling: bruk dette hooket som hovedbro mellom konkret institusjon/metode/instrument/modell/datasett/observasjon/gjennombrudd og vitenskapelig teori.",
+        "tenkere": [
+          "Bruno Latour",
+          "Robert K. Merton",
+          "Thomas Kuhn",
+          "Donna Haraway",
+          "Steven Shapin"
+        ],
+        "thinker_ids": [
+          "bruno_latour",
+          "robert_k_merton",
+          "thomas_kuhn",
+          "donna_haraway",
+          "steven_shapin"
+        ],
+        "norwegian_thinker_ids": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "norwegian_thinkers": [
+          "niels_henrik_abel",
+          "kristian_birkeland"
+        ],
+        "comparison_pairs": [
+          [
+            "bruno_latour",
+            "robert_k_merton"
+          ],
+          [
+            "thomas_kuhn",
+            "donna_haraway"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_institution_method_model_instrument_dataset_or_discovery",
+          "connect_visible_place_to_measurement_model_evidence_or_scientific_infrastructure",
+          "identify_how_knowledge_is_produced_standardized_or_contested",
+          "avoid_generic_science_as_progress_story"
+        ],
+        "best_place_types": [
+          "universitet",
+          "laboratorium",
+          "observatorium",
+          "institutt",
+          "museum",
+          "arkiv",
+          "sykehus",
+          "teknologibygg"
+        ],
+        "avoid_place_types": [
+          "ren_historisk_case_uten_vitenskapelig_metode_institusjon_eller_gjennombrudd",
+          "ren_teknologibruk_uten_forskningsspor_metode_eller_modell",
+          "ren_naturcase_uten_vitenskapelig_observasjon_maling_eller_kunnskapsproduksjon",
+          "sted_uten_institusjon_metode_instrument_modell_data_eller_vitenskapelig_kilde"
+        ],
+        "anti_patterns": [
+          "Hva betyr vitenskap generelt",
+          "Hvilken teori virker mest riktig",
+          "Hva synes du er mest vitenskapelig",
+          "Generisk vitenskapsspørsmål uten institusjon, metode, instrument, modell, data, observasjon, gjennombrudd eller kilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten institusjons-, metode-, instrument-, modell-, datasett-, observasjons-, gjennombrudds-, teknologi-, natur-/medisin-/miljø-, kontrovers- eller kildegrunnlag.",
+          "Ikke gjør et sted til vitenskap bare fordi det har teknologi, natur, helse eller utdanning, uten dokumentert vitenskapelig metode, institusjon, instrument, modell, forskningsmiljø eller kilde.",
+          "Ikke bland inn natur, by, politikk, næringsliv, psykologi, historie, media, kunst, litteratur, sport, musikk, populærkultur eller subkultur som hovedfag hvis vitenskap bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Abelhaugen",
+          "Universitetet i Oslo",
+          "Norsk Teknisk Museum"
+        ],
+        "recommended_method_ids": [
+          "met_vit_vitenskapshistorisk_analyse",
+          "met_vit_institusjonsanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_institution_method_model_instrument_or_discovery": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_vit_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "museum_arkiv_data"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase, kontrovers eller dokumentert vitenskapelig prosess tydelig støtter mer enn én analytisk hale.",
+    "science_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "institution_method_model_instrument_or_discovery_anchor_required": true,
+    "canonical_thinkers": [
+      "Bruno Latour",
+      "Robert K. Merton",
+      "Thomas Kuhn",
+      "Donna Haraway",
+      "Steven Shapin"
+    ],
+    "canonical_thinker_ids": [
+      "bruno_latour",
+      "robert_k_merton",
+      "thomas_kuhn",
+      "donna_haraway",
+      "steven_shapin"
+    ],
+    "norwegian_thinker_ids": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "norwegian_thinkers": [
+      "niels_henrik_abel",
+      "kristian_birkeland"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_theory_path": true,
+    "theory_sync_version": "v1-vitenskap",
+    "generator_theory_note": "Bruk konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd eller vitenskapelig prosess først; løft teori inn når vitenskapsankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Abelhaugen",
+      "Universitetet i Oslo",
+      "Norsk Teknisk Museum"
+    ],
+    "recommended_method_ids": [
+      "met_vit_vitenskapshistorisk_analyse",
+      "met_vit_institusjonsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset ved å starte i konkret institusjon, metode, instrument, modell, datasett, observasjon, gjennombrudd, teknologi, natur-/medisin-/miljøcase eller dokumentert vitenskapelig prosess.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "vitenskappensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_institution_method_model_instrument_or_discovery_anchor": true,
+      "required_emne_prefix": "em_vit_"
+    }
   }
 ]
