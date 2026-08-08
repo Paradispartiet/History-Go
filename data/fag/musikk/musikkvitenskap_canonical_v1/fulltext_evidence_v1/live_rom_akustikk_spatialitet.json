@@ -1,0 +1,224 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-performance-live_rom_akustikk_spatialitet-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "framforing_praksis_samspill",
+  "emne_id": "em_musikk_vit_live_rom_akustikk_spatialitet",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/framforing_praksis_samspill/live_rom_akustikk_spatialitet.json",
+  "research_question": "Hvordan dokumenteres romrespons uten å gjøre ett målepunkt til hele salens lyd eller kvalitet?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_merimaa_peltonen_lokki_pori_rirs_2005",
+      "bibliographic_identity": {
+        "creators": [
+          "Juha Merimaa",
+          "Timo Peltonen",
+          "Tapio Lokki"
+        ],
+        "year": 2005,
+        "title": "Concert Hall Impulse Responses — Pori, Finland: Reference",
+        "publication": "Helsinki University of Technology technical reference"
+      },
+      "identifiers": {
+        "url": "https://legacy.spa.aalto.fi/projects/poririrs/",
+        "pdf": "https://legacy.spa.aalto.fi/projects/poririrs/docs/poriref.pdf"
+      },
+      "registration_reason": "Author/institution-hosted documentation and downloadable room-impulse-response objects with explicit source/receiver positions, equipment, processing and reuse terms.",
+      "full_text_status": "reviewed_author_uploaded_manuscript",
+      "full_text_access": "https://legacy.spa.aalto.fi/projects/poririrs/docs/poriref.pdf",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_merimaa_peltonen_lokki_pori_rirs_2005",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_author_uploaded_manuscript",
+      "full_text_access": "https://legacy.spa.aalto.fi/projects/poririrs/docs/poriref.pdf",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Reference PDF pp. 1–6, sections 1–3 and Table 2",
+          "section": "Pori hall, source and receiver geometry",
+          "supports": "The 29 November 2002 campaign identifies a 700-seat hall, three source positions, three stage receivers and four audience receivers with explicit coordinates/rows."
+        },
+        {
+          "pages": "Reference PDF pp. 6–19, sections 3–5 and Appendix B",
+          "section": "Excitation, microphones, processing and rights",
+          "supports": "Logarithmic sweeps, multiple microphone types, source compensation, source–receiver pairing, 5.0 rendering and noncommercial dataset terms are documented."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker Helsinki University of Technology / Aalto University gjennom bibliografisk identitet, parafrase og presise lokatorer. Fulltekst, lyd, bilder og deltakerdata redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_pori_promenadikeskus_rir_dataset_2002",
+      "object_type": "akustisk_maaling",
+      "title": "Pori Promenadikeskus room impulse responses, målt 29. november 2002",
+      "persistent_url": "https://legacy.spa.aalto.fi/projects/poririrs/",
+      "provenance_source_ids": [
+        "prod_src_merimaa_peltonen_lokki_pori_rirs_2005"
+      ],
+      "version_and_identity": {
+        "venue": "Promenadikeskus concert hall, Pori, Finland",
+        "measurement_date": "2002-11-29",
+        "hall_capacity": 700,
+        "source_positions": [
+          "S1: 2.0 m from stage front, 1.6 m left of midline",
+          "S2: 5.2 m from stage front, 4.0 m right",
+          "S3: 7.4 m from stage front, 3.0 m left"
+        ],
+        "receiver_positions": [
+          "P1–P3 on stage",
+          "R1–R4 in audience rows 3, 7, 11 and 20"
+        ],
+        "excitation": "Omnidirectional loudspeaker and subwoofer with logarithmic sinusoidal sweeps",
+        "receivers": [
+          "DPA 4006 pair",
+          "Pearl TL-4 cardioid stereo",
+          "B&K HATS dummy head",
+          "SoundField MKV"
+        ]
+      },
+      "locators": [
+        {
+          "locator": "poriref.pdf :: Figure 5 and Table 2 :: S1–S3, P1–P3 and R1–R4",
+          "role": "Physical source/receiver geometry and seat/row identity."
+        },
+        {
+          "locator": "poriref.pdf :: sections 3.1–3.3 and 4 :: loudspeakers, microphones, sweep bands, acquisition and compensation",
+          "role": "Measurement and processing chain."
+        },
+        {
+          "locator": "Aalto Pori RIR download page :: documented source–receiver files",
+          "role": "Persistent external dataset access."
+        }
+      ],
+      "inspection_chain": {
+        "institutional_host_status": "Legacy Aalto/Helsinki University of Technology project site",
+        "measurement_documentation_status": "Date, hall, positions, equipment, stimulus and processing exposed",
+        "history_go_independent_copy": false,
+        "history_go_independent_reanalysis": false
+      },
+      "rights": {
+        "license": "Dataset is free for noncommercial research use with citation; commercial reuse requires written permission.",
+        "license_source": "https://legacy.spa.aalto.fi/projects/poririrs/",
+        "commercial_compatibility_with_history_go": "resolved_for_external_link_and_metadata",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise lokatorer. Lyd, bilder, datafiler og fulltekst forblir hos kilden."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_performance_pori_rir_positioned_measurement_chain",
+      "statement": "Pori-datasettet dokumenterer Promenadikeskus som et posisjonsavhengig akustisk objekt gjennom tre navngitte kildeposisjoner, tre scenemottakere og fire publikumsposisjoner, målt med logaritmiske sveip og flere mikrofontyper og behandlet som separate kilde–mottaker-par; materialet gjør romlige sammenligninger etterprøvbare, men ett impulsresponsmål eller ett sete kan ikke representere hele salen, en liveframføring eller estetisk kvalitet.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_merimaa_peltonen_lokki_pori_rirs_2005"
+      ],
+      "locators": [
+        "Merimaa, Peltonen & Lokki 2005, Figure 5 and Table 2: S1–S3, P1–P3 and R1–R4 positions",
+        "Merimaa, Peltonen & Lokki 2005, sections 3.1–3.3 and 4: sources, microphones, logarithmic sweeps, acquisition and source/receiver compensation"
+      ],
+      "method_protocol_ids": [
+        "akustisk_rommaaling"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_pori_promenadikeskus_rir_dataset_2002",
+        "evidence_role": "positioned and method-documented room measurement",
+        "scope": "Unoccupied Promenadikeskus measurement campaign on 29 November 2002 and released source–receiver responses."
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Datasettet gjelder én historisk måledag og dokumenterte oppsett; beleggsgrad, senere romendringer og faktisk konsertproduksjon inngår ikke i det frigitte claimet.",
+      "prohibited_inference": "Målingene beviser ikke publikumsopplevelse, universell salrepresentasjon, musikalsk kvalitet eller at rommet alene forklarer en bestemt liveklang.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_performance_pori_rir_positioned_measurement_chain_scope",
+      "statement": "Målingen gjelder salen og oppsettet 29. november 2002, ikke alle senere konfigurasjoner eller konserter.",
+      "source_ids": [
+        "prod_src_merimaa_peltonen_lokki_pori_rirs_2005"
+      ],
+      "locators": [
+        "Merimaa, Peltonen & Lokki 2005, Figure 5 and Table 2: S1–S3, P1–P3 and R1–R4 positions"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_performance_pori_rir_positioned_measurement_chain"
+      ],
+      "release_effect": "Begrenser slutningen til det identifiserte caset, objektet og tidsrommet."
+    },
+    {
+      "boundary_id": "boundary_musikk_performance_pori_rir_positioned_measurement_chain_mediation",
+      "statement": "Kilde, mottaker, mikrofon, sweep, prosessering og posisjon må følge enhver rompåstand.",
+      "source_ids": [
+        "prod_src_merimaa_peltonen_lokki_pori_rirs_2005"
+      ],
+      "locators": [
+        "Merimaa, Peltonen & Lokki 2005, sections 3.1–3.3 and 4: sources, microphones, logarithmic sweeps, acquisition and source/receiver compensation"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_performance_pori_rir_positioned_measurement_chain"
+      ],
+      "release_effect": "Skiller observasjon eller måling fra intensjon, erfaring, årsak og generalisering."
+    },
+    {
+      "boundary_id": "boundary_musikk_performance_pori_rir_positioned_measurement_chain_rights",
+      "statement": "Datasettene er ikke-kommersielle; History Go tilbyr bare ekstern lenke og metadata.",
+      "source_ids": [
+        "prod_src_merimaa_peltonen_lokki_pori_rirs_2005"
+      ],
+      "locators": [
+        "Merimaa, Peltonen & Lokki 2005, sections 3.1–3.3 and 4: sources, microphones, logarithmic sweeps, acquisition and source/receiver compensation"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_performance_pori_rir_positioned_measurement_chain"
+      ],
+      "release_effect": "Tvinger external_link_and_metadata_only og blokkerer kopiering, rehosting og embedding."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "akustisk_maaling"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_pori_promenadikeskus_rir_dataset_2002",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_performance_pori_rir_positioned_measurement_chain"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må navngi måledag, kilde/mottaker og metode og skille romrespons fra opplevelse og kvalitet."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Datasettet gjelder én historisk måledag og dokumenterte oppsett; beleggsgrad, senere romendringer og faktisk konsertproduksjon inngår ikke i det frigitte claimet."
+  }
+}
