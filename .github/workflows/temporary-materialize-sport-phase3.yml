@@ -22,85 +22,60 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Diagnose Sport method rows
-        run: |
-          node - <<'NODE'
-          const doc = require('./data/fag/sport/methods_sport_canonical_v4_5.json');
-          const rows = doc.methods;
-          const invalid = rows.map((row, index) => ({ index, type: row === null ? 'null' : typeof row, method_id: row?.method_id ?? null })).filter((item) => !item.method_id);
-          console.log(JSON.stringify({ rowCount: rows.length, validMethodIds: rows.filter((row) => typeof row?.method_id === 'string').length, invalid }, null, 2));
-          NODE
-      - name: Materialize and validate Sport
-        run: node tools/materialize-sport-phase3-once.mjs
-      - name: Persist Sport canonical trace after materialization failure
-        if: failure()
+      - name: Map Sport canonical emne sets
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
         run: |
-          node - <<'NODE' > /tmp/sport-phase3-debug.txt 2>&1
+          node - <<'NODE' > /tmp/sport-phase3-debug.txt
           const fs = require('fs');
-          const target = 'em_sport_kropp_konkurranse';
-          const files = [
-            'data/fag/sport/emner_sport_canonical_v4_5.json',
-            'data/fag/sport/pensum_sport_canonical_v4_5.json',
-            'data/fag/sport/fagkart_sport_canonical_v4_5.json',
-            'data/fag/sport/emnemapping_sport_canonical_v4_5.json'
-          ];
-          function find(value, path = '$', hits = []) {
-            if (Array.isArray(value)) {
-              value.forEach((item, index) => find(item, `${path}[${index}]`, hits));
-              return hits;
-            }
-            if (!value || typeof value !== 'object') return hits;
-            if (JSON.stringify(value).includes(target)) hits.push({ path, value });
-            for (const [key, item] of Object.entries(value)) {
-              if (item && typeof item === 'object') find(item, `${path}.${key}`, hits);
-            }
-            return hits;
+          const targetId = 'em_sport_kropp_konkurranse';
+          const read = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
+          const emneDoc = read('data/fag/sport/emner_sport_canonical_v4_5.json');
+          const mappingDoc = read('data/fag/sport/emnemapping_sport_canonical_v4_5.json');
+          const fagkart = read('data/fag/sport/fagkart_sport_canonical_v4_5.json');
+          const pensum = read('data/fag/sport/sportpensum_canonical_v4_5.json');
+          const emners = Array.isArray(emneDoc) ? emneDoc : (emneDoc.emner || []);
+          const mappings = Array.isArray(mappingDoc) ? mappingDoc : (mappingDoc.mappings || mappingDoc.emne_mappings || []);
+          const emneIds = emners.map((row) => row?.emne_id).filter(Boolean);
+          const mappingIds = mappings.map((row) => row?.emne_id).filter(Boolean);
+          const onlyEmners = emneIds.filter((id) => !mappingIds.includes(id));
+          const onlyMappings = mappingIds.filter((id) => !emneIds.includes(id));
+          const target = emners.find((row) => row?.emne_id === targetId) || null;
+          const mappingTarget = mappings.find((row) => row?.emne_id === targetId) || null;
+
+          function domainsFrom(doc) {
+            if (Array.isArray(doc?.domains)) return doc.domains;
+            if (Array.isArray(doc?.fagomrader)) return doc.fagomrader;
+            if (Array.isArray(doc?.areas)) return doc.areas;
+            return [];
           }
-          for (const file of files) {
-            const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
-            const hits = find(doc).filter((hit) => {
-              const parentDepth = (hit.path.match(/[.[]/g) || []).length;
-              return parentDepth <= 4;
-            });
-            console.log(`\n=== ${file} ===`);
-            console.log(JSON.stringify(hits, null, 2));
+          function domainSummary(doc) {
+            return domainsFrom(doc).map((domain) => ({
+              id: domain?.domain_id || domain?.id || domain?.area_id || null,
+              title: domain?.title || domain?.name || null,
+              containsTarget: JSON.stringify(domain).includes(targetId)
+            }));
           }
+
+          console.log(JSON.stringify({
+            emneCount: emneIds.length,
+            mappingCount: mappingIds.length,
+            uniqueEmneCount: new Set(emneIds).size,
+            uniqueMappingCount: new Set(mappingIds).size,
+            onlyEmners,
+            onlyMappings,
+            target,
+            mappingTarget,
+            fagkartDomains: domainSummary(fagkart),
+            pensumDomains: domainSummary(pensum)
+          }, null, 2));
           NODE
-          set +e
-          node --input-type=module - <<'NODE' >> /tmp/sport-phase3-debug.txt 2>&1
-          import { auditSportPhase3 } from './scripts/audit-fagverk-sport-phase3.mjs';
-          try {
-            auditSportPhase3({ writeReport: false, checkReport: false });
-          } catch (error) {
-            console.error('\n=== AUDIT STACK ===');
-            console.error(error.stack || error);
-            process.exitCode = 1;
-          }
-          NODE
-          set -e
           cat /tmp/sport-phase3-debug.txt
-          git reset --hard HEAD
           mkdir -p reports/fagverk
           cp /tmp/sport-phase3-debug.txt reports/fagverk/sport-phase3-debug.txt
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add reports/fagverk/sport-phase3-debug.txt
           git diff --cached --check
-          git commit -m 'Trace Sport Fase 3 canonical orphan'
-          git push origin "HEAD:${HEAD_BRANCH}"
-      - name: Remove one-shot materializer
-        run: |
-          rm tools/materialize-sport-phase3-once.mjs
-          rm .github/workflows/temporary-materialize-sport-phase3.yml
-      - name: Commit materialized tree
-        env:
-          HEAD_BRANCH: ${{ github.head_ref }}
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git diff --cached --check
-          git commit -m 'Materialiser Sport Fase 3'
+          git commit -m 'Map Sport Fase 3 canonical emne sets'
           git push origin "HEAD:${HEAD_BRANCH}"
