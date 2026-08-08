@@ -22,6 +22,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
+      - name: Diagnose Sport method rows
+        run: |
+          node - <<'NODE'
+          const doc = require('./data/fag/sport/methods_sport_canonical_v4_5.json');
+          const rows = doc.methods;
+          const invalid = rows.map((row, index) => ({ index, type: row === null ? 'null' : typeof row, method_id: row?.method_id ?? null })).filter((item) => !item.method_id);
+          console.log(JSON.stringify({ rowCount: rows.length, validMethodIds: rows.filter((row) => typeof row?.method_id === 'string').length, invalid }, null, 2));
+          NODE
       - name: Materialize and validate Sport
         run: node tools/materialize-sport-phase3-once.mjs
       - name: Remove one-shot materializer
