@@ -12,6 +12,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `subject-baseline.json` — levende projeksjon av 17 toppfag, én Teknologi-spesialisering, fire schemafamilier, 72 required kjernefiler og gjeldende navigasjons-, audit- og redaksjonell status.
 - `general-engine-audit.json` — evidens for den felles fagsidemotoren, manifest-first lasting, adaptergrensen, normalisert modell og fravær av politikkfallback.
 - `kunst-phase3-audit.json` — individuell Fase 3-gate for Kunst: seks canonicale fagområder, 21 aktive emner, 21 metoder, 21 mappinger og 60 hooks uten syntetiske fagområder eller overrapporterte kapitler.
+- `media-phase3-audit.json` — individuell Fase 3-gate for Media: seks hovedområder, 120 aktive hovedemner, 163 samlede metoder, 120 mappinger og 60 hooks, samt Populærkultur som komplett nested mediefelt med 56 emner uten konkurrerende toppfag.
 - `by-pilot-audit.json` — individuell fase-2-gate for By som `by_compatibility`: tolv fagkart-eide fagområder, 82 source-emner, 14 canonicale metoder, 81 hooks og kurs-/curriculum-moduler som separate progresjonslag.
 - `vitenskap-pilot-audit.json` — sluttport for fase 2: seks Vitenskap-fagområder med 93 integrerte emner, 84 metoder, 93 mappinger og 60 hooks, samt Teknologi som nested `technology_scientific_v2_4`-spesialisering med 12 områder, 48 emner, 35 metoder og 36 hooks.
 - `musikk-subject-audit.json` — flerkapittelgate for Musikkvitenskap med exact canonical domene-, emne-, metode-, claim- og kildeprojeksjon fra frigitt fulltekstevidens.
@@ -57,6 +58,8 @@ node scripts/audit-fagverk-general-engine.mjs --write-report
 node scripts/audit-fagverk-general-engine.mjs
 node scripts/audit-fagverk-kunst-phase3.mjs --write-report
 node scripts/audit-fagverk-kunst-phase3.mjs
+node scripts/audit-fagverk-media-phase3.mjs --write-report
+node scripts/audit-fagverk-media-phase3.mjs
 node scripts/audit-fagverk-by-pilot.mjs --write-report
 node scripts/audit-fagverk-by-pilot.mjs
 node scripts/audit-fagverk-vitenskap-pilot.mjs --write-report
@@ -178,4 +181,6 @@ Vitenskap står `materialized`, `audited` og `structure_ready` som den fjerde og
 
 Kunst står `materialized`, `audited` og `structure_ready` som det første individuelt materialiserte Fase 3-faget. Standardadapteren viser seks canonicale fagområder, 21 aktive emner, 21 metoder, 21 mappinger og 60 hooks. `Materialitet, teknikk og håndverk i kunst` er integrert i `Produksjon og praksis`, mens det eldre skjulte hookavviket for `Hverdagsestetikk` er lukket gjennom de allerede canonicale mappingene. Det er ikke opprettet syntetiske områder eller redaksjonelle kapitler; claims, kilder og fulltekstproduksjon gjenstår.
 
-Alle fire fase-2-piloter er materialisert og auditert: Natur, Religion, By og Vitenskap med Teknologi som nested spesialisering. Fase 3 materialiserer de resterende fagene individuelt; Kunst er første godkjente fag, og de øvrige planlagte fagene beholder tom subject-rute til deres egne porter består.
+Media står `materialized`, `audited` og `structure_ready` som det andre individuelt materialiserte Fase 3-faget. Standardadapteren viser seks canonicale hovedområder, 120 aktive hovedemner, 163 metoder i den samlede katalogen, 120 mappinger og 60 hovedhooks. `AV- og TV-produksjon` og `Kritikk og kommentar` er integrert i eksisterende områder og hooks. Populærkultur er bevart som et komplett nested mediefelt med seks områder, 56 emner, 48 metoder, 56 mappinger og 60 hooks uten egen portalpost eller toppfagsstatus. Det er ikke opprettet syntetiske områder eller redaksjonelle kapitler; claims, kilder og fulltekstproduksjon gjenstår.
+
+Alle fire fase-2-piloter er materialisert og auditert: Natur, Religion, By og Vitenskap med Teknologi som nested spesialisering. Fase 3 materialiserer de resterende fagene individuelt; Kunst og Media er godkjent, og de øvrige planlagte fagene beholder tom subject-rute til deres egne porter består.

@@ -1,0 +1,103 @@
+{
+  "schema": "history_go_fagverk_media_phase3_audit_v1",
+  "version": "1.0.0",
+  "status": "media_phase_3_structure_ready",
+  "generatedFrom": {
+    "core": "js/fagverk-subject-core.js",
+    "categories": "data/categories/category_contract.json",
+    "manifest": "data/fag/fag_manifest.json",
+    "portal": "data/fagverk/fagverk_portal.json",
+    "inventory": "data/fagverk/subject_inventory.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "badge": "data/badges/media.json",
+    "explicitMappings": "data/fag/media/emnemapping_media_canonical_v4_5.json",
+    "generator": "data/fag/media/quiz_generator_rules_media_v5_1_source_priority_patch.json",
+    "badgePage": "data/fag/media/merke_media.html",
+    "supplementPensum": "data/fag/media/populaerkultur_som_mediefelt/populaerkulturpensum_canonical_v4_5.json",
+    "supplementEmners": "data/fag/media/emner_media_populaerkultur_canonical_v4_5.json",
+    "supplementFagkart": "data/fag/media/populaerkultur_som_mediefelt/fagkart_populaerkultur_canonical_v4_5.json",
+    "supplementMappings": "data/fag/media/populaerkultur_som_mediefelt/emnemapping_populaerkultur_canonical_v4_5.json",
+    "report": "reports/fagverk/media-phase3-audit.json"
+  },
+  "subject": {
+    "id": "media",
+    "title": "Media",
+    "schemaFamily": "standard_canonical",
+    "adapter": "standard",
+    "navigationStatus": "materialized",
+    "assessmentStatus": "audited",
+    "editorialStatus": "structure_ready",
+    "nextGate": "chapter_production",
+    "subjectPage": "fagverk.html?subject=media",
+    "badgePage": "data/fag/media/merke_media.html"
+  },
+  "summary": {
+    "domainCount": 6,
+    "emneCount": 120,
+    "methodCount": 163,
+    "primaryMethodCount": 115,
+    "mappingCount": 120,
+    "hookCount": 60,
+    "registeredChapterCount": 0,
+    "explicitMappingRowCount": 120
+  },
+  "canonicalDomainOrder": [
+    "presse_redaksjoner_avishus",
+    "offentlighet_ytringsfrihet_etikk",
+    "kilder_kritikk_sannhet",
+    "plattformer_algoritmer_distribusjon",
+    "propaganda_pavirkning_informasjonskrig",
+    "medieokonomi_eierskap_arbeid"
+  ],
+  "domainEmneCounts": {
+    "presse_redaksjoner_avishus": 21,
+    "offentlighet_ytringsfrihet_etikk": 21,
+    "kilder_kritikk_sannhet": 20,
+    "plattformer_algoritmer_distribusjon": 20,
+    "propaganda_pavirkning_informasjonskrig": 18,
+    "medieokonomi_eierskap_arbeid": 20
+  },
+  "nestedSupplement": {
+    "id": "populaerkultur_som_mediefelt",
+    "status": "migrated_subfield",
+    "topLevelSubject": false,
+    "canonicalDomainOrder": [
+      "massemedier_formater_distribusjon",
+      "ikoner_kjendiser_karakterer",
+      "fandom_identitet_tilhorighet",
+      "internett_memer_plattformer",
+      "representasjon_normer_fantasi",
+      "steder_objekter_kommers_oppmerksomhet"
+    ],
+    "domainCount": 6,
+    "emneCount": 56,
+    "methodCount": 48,
+    "mappingCount": 56,
+    "hookCount": 60,
+    "domainEmneCounts": {
+      "massemedier_formater_distribusjon": 15,
+      "ikoner_kjendiser_karakterer": 13,
+      "fandom_identitet_tilhorighet": 7,
+      "internett_memer_plattformer": 7,
+      "representasjon_normer_fantasi": 8,
+      "steder_objekter_kommers_oppmerksomhet": 6
+    }
+  },
+  "gates": {
+    "phaseThreeIndividualMaterialization": true,
+    "manifestPointsToMainMediaCatalog": true,
+    "allMainMediaEmnersIntegrated": true,
+    "noSyntheticMainMediaDomains": true,
+    "allMainMethodReferencesResolved": true,
+    "explicitMappingAndGeneratorCountsSynchronized": true,
+    "twoLateMediaEmnersIntegratedInExistingDomainsAndHooks": true,
+    "popularCulturePreservedAsCompleteNestedField": true,
+    "noCompetingPopularCultureTopSubject": true,
+    "mediaPlaceFallbackCorrect": true,
+    "badgeAndSubjectRoutesDistinct": true,
+    "assessmentStatusAudited": true,
+    "editorialStatusStructureReady": true,
+    "chapterClaimsNotOverstated": true
+  }
+}

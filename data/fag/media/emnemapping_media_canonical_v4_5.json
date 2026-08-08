@@ -22118,5 +22118,355 @@
       "require_newsroom_public_sphere_source_or_platform_anchor": true,
       "required_emne_prefix": "em_media_"
     }
+  },
+  {
+    "emne_id": "em_media_av_og_tv_produksjon",
+    "title": "AV- og TV-produksjon",
+    "mappings": [
+      {
+        "fagkart_kategori": "presse_redaksjoner_avishus",
+        "fagkart_kategori_tittel": "Presse, redaksjoner og avishus",
+        "topic_hook": "redaksjon_og_desk",
+        "topic_hook_tittel": "Redaksjon og desk",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "broadcast-production-place-first",
+        "media_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "newsroom_public_sphere_source_or_platform_anchor_required": true,
+        "documented_media_context_required": true,
+        "use_note": "Start i et konkret kringkastingshus, studio, kontrollrom eller dokumentert produksjonsløp og vis hvordan redaksjonell og teknisk arbeidsdeling former publiseringen.",
+        "tenkere": [
+          "Walter Lippmann",
+          "James Carey",
+          "Gaye Tuchman",
+          "Herbert Gans",
+          "Michael Schudson"
+        ],
+        "thinker_ids": [
+          "walter_lippmann",
+          "james_carey",
+          "gaye_tuchman",
+          "herbert_gans",
+          "michael_schudson"
+        ],
+        "norwegian_figure_ids": [
+          "christian_friele",
+          "martin_etrheim"
+        ],
+        "norwegian_figures": [
+          "christian_friele",
+          "martin_etrheim"
+        ],
+        "comparison_pairs": [
+          [
+            "walter_lippmann",
+            "james_carey"
+          ],
+          [
+            "gaye_tuchman",
+            "herbert_gans"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_newsroom_source_publication_platform_case_or_media_place",
+          "connect_visible_place_to_journalism_public_sphere_source_work_or_distribution",
+          "identify_how_selection_framing_publishing_or_platform_visibility_shapes_public_facts",
+          "avoid_personal_media_preference_as_default"
+        ],
+        "best_place_types": [
+          "kringkastingshus",
+          "studio",
+          "redaksjon",
+          "mediehus",
+          "kontrollrom",
+          "produksjonslokale",
+          "arkiv"
+        ],
+        "avoid_place_types": [
+          "ren_film_tv_case_uten_journalistikk_redaksjon_offentlighet_eller_mediesystem",
+          "ren_populaerkulturcase_uten_medieproduksjon_publisering_eller_offentlighet",
+          "ren_politikkcase_uten_presse_offentlighet_kilder_eller_mediedekning",
+          "sted_uten_redaksjon_presse_kilde_plattform_publisering_offentlighet_eller_mediekilde"
+        ],
+        "anti_patterns": [
+          "Hva mener du om media",
+          "Hva er media generelt",
+          "Hvilken avis liker du best",
+          "Generisk mediaspørsmål uten redaksjon, kilde, sak, publisering, plattform, offentlighet, pressehistorie eller mediekilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten redaksjons-, kilde-, publiserings-, plattform-, pressehistorisk-, offentlighets- eller mediekildegrunnlag.",
+          "Ikke gjør et sted til Media bare fordi det er omtalt i media, uten dokumentert redaksjon, publisering, kildearbeid, pressehistorie, plattform eller offentlighetsfunksjon.",
+          "Ikke bland inn Film & TV, populærkultur, politikk, næringsliv, litteratur, kunst, musikk, by, historie, subkultur eller teknologi som hovedfag hvis Media bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "NRK Marienlyst",
+          "NRK Fjernsynshuset"
+        ],
+        "recommended_method_ids": [
+          "met_media_produksjonsanalyse",
+          "met_media_redaksjonsanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_newsroom_public_sphere_source_or_platform": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_media_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "redaksjon_og_desk"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når redaksjon, avis, mediehus, kilde, sak, publisering, plattform, offentlighet, pressehistorie eller dokumentert medieprosess tydelig støtter mer enn én analytisk hale.",
+    "media_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "newsroom_public_sphere_source_or_platform_anchor_required": true,
+    "canonical_thinkers": [
+      "Walter Lippmann",
+      "James Carey",
+      "Gaye Tuchman",
+      "Herbert Gans",
+      "Michael Schudson"
+    ],
+    "canonical_thinker_ids": [
+      "walter_lippmann",
+      "james_carey",
+      "gaye_tuchman",
+      "herbert_gans",
+      "michael_schudson"
+    ],
+    "norwegian_figure_ids": [
+      "christian_friele",
+      "martin_etrheim"
+    ],
+    "norwegian_figures": [
+      "christian_friele",
+      "martin_etrheim"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_figure_path": true,
+    "theory_sync_version": "v1-media",
+    "generator_theory_note": "Bruk konkret redaksjon, kilde, publisering, sak, plattform, offentlighet eller mediehus først; løft teori inn når mediaankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "NRK Marienlyst",
+      "NRK Fjernsynshuset"
+    ],
+    "recommended_method_ids": [
+      "met_media_produksjonsanalyse",
+      "met_media_redaksjonsanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset til dokumentert audiovisuell og TV-basert produksjon i kringkastingshus, studioer, kontrollrom og redaksjoner; ikke bruk det som generell Film & TV- eller scenekunstkategori.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "mediapensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_newsroom_public_sphere_source_or_platform_anchor": true,
+      "required_emne_prefix": "em_media_"
+    }
+  },
+  {
+    "emne_id": "em_media_kritikk_kommentar",
+    "title": "Kritikk og kommentar",
+    "mappings": [
+      {
+        "fagkart_kategori": "offentlighet_ytringsfrihet_etikk",
+        "fagkart_kategori_tittel": "Offentlighet, ytringsfrihet og medieetikk",
+        "topic_hook": "pressekritikk",
+        "topic_hook_tittel": "Pressekritikk",
+        "mapping_tier": "primary",
+        "priority_score": 10,
+        "set_phase_fit": [
+          "facts",
+          "bridge_facts_theory",
+          "late_theory"
+        ],
+        "question_surface_mode": "commentary-criticism-public-sphere-first",
+        "media_anchor_required": true,
+        "fact_anchor_required": true,
+        "source_anchor_required": true,
+        "external_claim_basis_required": true,
+        "newsroom_public_sphere_source_or_platform_anchor_required": true,
+        "documented_media_context_required": true,
+        "use_note": "Start i en konkret redaksjon, kommentarspalte, lederartikkel, anmeldelse eller dokumentert debattflate og vis hvordan redaksjonelle vurderinger former offentligheten.",
+        "tenkere": [
+          "Jürgen Habermas",
+          "Hannah Arendt",
+          "John Stuart Mill",
+          "Nancy Fraser",
+          "Clifford Christians"
+        ],
+        "thinker_ids": [
+          "jurgen_habermas",
+          "hannah_arendt",
+          "john_stuart_mill",
+          "nancy_fraser",
+          "clifford_christians"
+        ],
+        "norwegian_figure_ids": [
+          "christian_friele",
+          "martin_etrheim"
+        ],
+        "norwegian_figures": [
+          "christian_friele",
+          "martin_etrheim"
+        ],
+        "comparison_pairs": [
+          [
+            "jurgen_habermas",
+            "hannah_arendt"
+          ],
+          [
+            "john_stuart_mill",
+            "nancy_fraser"
+          ]
+        ],
+        "preferred_question_moves": [
+          "start_with_concrete_newsroom_source_publication_platform_case_or_media_place",
+          "connect_visible_place_to_journalism_public_sphere_source_work_or_distribution",
+          "identify_how_selection_framing_publishing_or_platform_visibility_shapes_public_facts",
+          "avoid_personal_media_preference_as_default"
+        ],
+        "best_place_types": [
+          "redaksjon",
+          "avishus",
+          "mediehus",
+          "presseklubb",
+          "kulturredaksjon",
+          "forlag",
+          "debattarena"
+        ],
+        "avoid_place_types": [
+          "ren_film_tv_case_uten_journalistikk_redaksjon_offentlighet_eller_mediesystem",
+          "ren_populaerkulturcase_uten_medieproduksjon_publisering_eller_offentlighet",
+          "ren_politikkcase_uten_presse_offentlighet_kilder_eller_mediedekning",
+          "sted_uten_redaksjon_presse_kilde_plattform_publisering_offentlighet_eller_mediekilde"
+        ],
+        "anti_patterns": [
+          "Hva mener du om media",
+          "Hva er media generelt",
+          "Hvilken avis liker du best",
+          "Generisk mediaspørsmål uten redaksjon, kilde, sak, publisering, plattform, offentlighet, pressehistorie eller mediekilde",
+          "Påstand hentet bare fra emnenavn eller teori",
+          "Ikke bruk emnet som synlig innhold uten redaksjons-, kilde-, publiserings-, plattform-, pressehistorisk-, offentlighets- eller mediekildegrunnlag.",
+          "Ikke gjør et sted til Media bare fordi det er omtalt i media, uten dokumentert redaksjon, publisering, kildearbeid, pressehistorie, plattform eller offentlighetsfunksjon.",
+          "Ikke bland inn Film & TV, populærkultur, politikk, næringsliv, litteratur, kunst, musikk, by, historie, subkultur eller teknologi som hovedfag hvis Media bare er sekundærlag."
+        ],
+        "theory_depth": "high",
+        "recommended_oslo_cases": [
+          "Dagbladet i Akersgata",
+          "Klassekampen-redaksjonen"
+        ],
+        "recommended_method_ids": [
+          "met_media_pressekritikkanalyse",
+          "met_media_debattanalyse"
+        ],
+        "generator_constraints": {
+          "require_concrete_newsroom_public_sphere_source_or_platform": true,
+          "require_external_claim_basis": true,
+          "do_not_generate_from_hook_label_only": true,
+          "do_not_generate_from_emne_label_only": true,
+          "required_emne_prefix": "em_media_"
+        }
+      }
+    ],
+    "mapping_status": "tiered+canonical",
+    "primary_hooks": [
+      "pressekritikk"
+    ],
+    "secondary_hooks": [],
+    "reserve_hooks": [],
+    "recommended_max_active_hooks": 4,
+    "generator_rule": "Bruk primære hooks først; aktiver sekundære/reserve bare når redaksjon, avis, mediehus, kilde, sak, publisering, plattform, offentlighet, pressehistorie eller dokumentert medieprosess tydelig støtter mer enn én analytisk hale.",
+    "media_anchor_required": true,
+    "source_anchor_required": true,
+    "external_claim_basis_required": true,
+    "newsroom_public_sphere_source_or_platform_anchor_required": true,
+    "canonical_thinkers": [
+      "Jürgen Habermas",
+      "Hannah Arendt",
+      "John Stuart Mill",
+      "Nancy Fraser",
+      "Clifford Christians"
+    ],
+    "canonical_thinker_ids": [
+      "jurgen_habermas",
+      "hannah_arendt",
+      "john_stuart_mill",
+      "nancy_fraser",
+      "clifford_christians"
+    ],
+    "norwegian_figure_ids": [
+      "christian_friele",
+      "martin_etrheim"
+    ],
+    "norwegian_figures": [
+      "christian_friele",
+      "martin_etrheim"
+    ],
+    "theory_diversity_score": 5,
+    "has_norwegian_figure_path": true,
+    "theory_sync_version": "v1-media",
+    "generator_theory_note": "Bruk konkret redaksjon, kilde, publisering, sak, plattform, offentlighet eller mediehus først; løft teori inn når mediaankeret allerede er etablert.",
+    "recommended_oslo_cases": [
+      "Dagbladet i Akersgata",
+      "Klassekampen-redaksjonen"
+    ],
+    "recommended_method_ids": [
+      "met_media_pressekritikkanalyse",
+      "met_media_debattanalyse"
+    ],
+    "overlap_risk": "medium",
+    "overlap_resolution_note": "Hold emnet avgrenset til redaksjonell kritikk, kommentarjournalistikk, spalter, anmeldelser og presseoffentlighet; ikke bruk det som generell politikk, litteraturkritikk eller sosial mediebruk.",
+    "theory_overreach_risk": "medium",
+    "progression_stage": "full_ladder",
+    "theory_spread_priority": "spread_more",
+    "canonical_status": "canonical",
+    "registry_version": "mediapensum_v4_5",
+    "min_recommended_oslo_cases": 2,
+    "case_gate_required": true,
+    "method_gate_required": true,
+    "recommended_max_primary_hooks": 4,
+    "generator_risk_mode": "guarded",
+    "canonical_file_role": "active",
+    "mapping_constraints": {
+      "min_case_count": 2,
+      "min_method_count": 1,
+      "max_primary_hooks": 4,
+      "risk_mode": "guarded",
+      "require_case_anchor_before_theory": true,
+      "require_external_claim_basis": true,
+      "require_newsroom_public_sphere_source_or_platform_anchor": true,
+      "required_emne_prefix": "em_media_"
+    }
   }
 ]
