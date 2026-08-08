@@ -146,7 +146,7 @@ Motor-auditen feiler når:
 
 ## Gjeldende produksjonsstatus
 
-Musikk står `materialized`, `audited` og `chapters_in_progress`. Fem fullverdige kapitler dekker alle 30 emner i `musikalsk_analyse_lyd_struktur`, `historisk_musikkvitenskap_historiografi`, `etnomusikologi_kultur_samfunn`, `framforing_praksis_samspill` og `lydmedier_teknologi_beregning` med 15 moduler, 45 seksjoner, 135 fagavsnitt, 37 uendrede claims og 42 inspiserbare kapittelkilder. Fem av åtte fagområder har nå redigerte kapitler; persepsjon, kognisjon og akustikk er neste kapittelport, og 18 temaer mangler fortsatt egen fulltekstfrigivelse.
+Musikk står `materialized`, `audited` og `complete`. Åtte fullverdige kapitler dekker alle 48 emner i de åtte canonicale fagområdene med 24 moduler, 72 seksjoner, 216 fagavsnitt, 55 uendrede claims og 67 unike inspiserbare kapittelkilder. Alle 48 temaer har løst fulltekst-, direkte-objekt- og rettighetsport. Videre arbeid er vedlikehold, kildeoppdatering og utvidelse med stedscase som følger den samme evidenskontrakten.
 
 Historie står `materialized`, `audited` og `chapters_in_progress`. Fire av 23 fagområder har registrerte fullverdige kapitler: historisk tid og periodisering, kilder/arkiv/spor, makt/stat/institusjoner og middelalder/kirke/kongemakt. Nitten fagområder, universell theory-evidence og full publiseringsaudit gjenstår.
 
