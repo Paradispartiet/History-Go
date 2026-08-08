@@ -32,17 +32,49 @@ jobs:
           NODE
       - name: Materialize and validate Sport
         run: node tools/materialize-sport-phase3-once.mjs
-      - name: Persist Sport audit stack after materialization failure
+      - name: Persist Sport canonical trace after materialization failure
         if: failure()
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
         run: |
+          node - <<'NODE' > /tmp/sport-phase3-debug.txt 2>&1
+          const fs = require('fs');
+          const target = 'em_sport_kropp_konkurranse';
+          const files = [
+            'data/fag/sport/emner_sport_canonical_v4_5.json',
+            'data/fag/sport/pensum_sport_canonical_v4_5.json',
+            'data/fag/sport/fagkart_sport_canonical_v4_5.json',
+            'data/fag/sport/emnemapping_sport_canonical_v4_5.json'
+          ];
+          function find(value, path = '$', hits = []) {
+            if (Array.isArray(value)) {
+              value.forEach((item, index) => find(item, `${path}[${index}]`, hits));
+              return hits;
+            }
+            if (!value || typeof value !== 'object') return hits;
+            if (JSON.stringify(value).includes(target)) hits.push({ path, value });
+            for (const [key, item] of Object.entries(value)) {
+              if (item && typeof item === 'object') find(item, `${path}.${key}`, hits);
+            }
+            return hits;
+          }
+          for (const file of files) {
+            const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const hits = find(doc).filter((hit) => {
+              const parentDepth = (hit.path.match(/[.[]/g) || []).length;
+              return parentDepth <= 4;
+            });
+            console.log(`\n=== ${file} ===`);
+            console.log(JSON.stringify(hits, null, 2));
+          }
+          NODE
           set +e
-          node --input-type=module - <<'NODE' > /tmp/sport-phase3-debug.txt 2>&1
+          node --input-type=module - <<'NODE' >> /tmp/sport-phase3-debug.txt 2>&1
           import { auditSportPhase3 } from './scripts/audit-fagverk-sport-phase3.mjs';
           try {
             auditSportPhase3({ writeReport: false, checkReport: false });
           } catch (error) {
+            console.error('\n=== AUDIT STACK ===');
             console.error(error.stack || error);
             process.exitCode = 1;
           }
@@ -56,7 +88,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add reports/fagverk/sport-phase3-debug.txt
           git diff --cached --check
-          git commit -m 'Capture Sport Fase 3 audit stack'
+          git commit -m 'Trace Sport Fase 3 canonical orphan'
           git push origin "HEAD:${HEAD_BRANCH}"
       - name: Remove one-shot materializer
         run: |
