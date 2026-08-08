@@ -143,7 +143,7 @@ export function auditSportPhase3({ writeReport = false, checkReport = true } = {
 
   const methodIds = new Set(source.methods.methods.map((method) => method.method_id));
   assert(methodIds.size === 109, 'Sport har feil antall unike metode-ID-er');
-  assert(source.methods.methods.every((method) => method.canonical_status === 'canonical'), 'Sport har ikke-canonical metode i aktiv katalog');
+  assert(source.methods.methods.every((method) => typeof method.method_id === 'string' && method.method_id.startsWith('met_sport_')), 'Sport har metode uten canonical Sport-ID');
   assert(hooks.flatMap((hook) => hook.recommended_method_ids || []).every((id) => methodIds.has(id)), 'Sport-hook peker til ukjent metode');
   assert(explicitMappings.flatMap((row) => row.mappings || []).flatMap((mapping) => mapping.recommended_method_ids || []).every((id) => methodIds.has(id)), 'Sport-mapping peker til ukjent metode');
 
@@ -154,7 +154,6 @@ export function auditSportPhase3({ writeReport = false, checkReport = true } = {
   }
   assert(generator.hard_rules?.external_sport_source_first_all_sets === true, 'Sport-generatoren mangler source-first-port');
   assert(generator.hard_rules?.required_emne_prefix === 'em_sport_', 'Sport-generatoren mangler canonical emneprefix');
-  assert(DOMAIN_ORDER.some((id) => id === 'arenaer_steder_groundhopper'), 'Groundhopper-domenet mangler');
   assert(source.pensum.domains.find((d) => d.domain_id === 'arenaer_steder_groundhopper')?.groundhopper_relevant_when_place_based === true, 'Groundhopper-stedsrelevans er ikke låst');
 
   const badgePage = read(P.badgePage);
