@@ -7,6 +7,12 @@ on:
     paths:
       - ".media-phase3.patch.gz.b64"
       - ".github/workflows/bootstrap-media-phase3.yml"
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
 
 permissions:
   contents: write
@@ -18,6 +24,7 @@ concurrency:
 jobs:
   materialize:
     name: Materialize SHA-locked Media tree
+    if: github.head_ref == 'agent/materialiser-media-phase3' || github.ref_name == 'agent/materialiser-media-phase3'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
