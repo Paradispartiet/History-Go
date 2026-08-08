@@ -1,0 +1,136 @@
+{
+  "schema": "history_go_fagverk_chapter_module_v1",
+  "version": "1.0.0",
+  "subject_id": "musikk",
+  "chapter_id": "persepsjon-kognisjon-akustikk",
+  "module_id": "01-signal-scene-tid",
+  "title": "Signal, auditiv scene og musikalsk tid",
+  "role": "grunnlag",
+  "sections": [
+    {
+      "id": "signal_og_persept",
+      "title": "Fra signal til klangpersept",
+      "paragraphs": [
+        "TPT-caset begynner med en identifisert stimulus: en 1,5 sekunders firetoners akkord der envelope, spectral flux eller spectral centroid manipuleres separat. Sliderresponsen er målet; den fysiske parameteren er ikke i seg selv den opplevde klangen.",
+        "Kortversjonens interne reliabilitet, test–retest og korrelasjoner med andre tester svarer på ulike spørsmål. De må rapporteres hver for seg før et instrument kan brukes som støtte for en bestemt claim.",
+        "Utvalget og de tre dimensjonene avgrenser resultatet. Et robust testformat gir ikke automatisk kulturinvariant klangteori eller klinisk diagnose."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_perception_tpt_timbre_measurement_chain"
+        ],
+        [
+          "claim_musikk_perception_tpt_timbre_measurement_chain"
+        ],
+        [
+          "claim_musikk_perception_tpt_timbre_measurement_chain"
+        ]
+      ],
+      "concepts": [
+        "psykoakustikk",
+        "spectral centroid",
+        "test–retest",
+        "persept"
+      ]
+    },
+    {
+      "id": "auditiv_scene",
+      "title": "Tre streams, oppmerksomhet og EEG",
+      "paragraphs": [
+        "Kojima–Kanoh-caset konstruerer tre programvaresyntetiserte tonestrømmer og ber deltakeren telle mål i én valgt stream. Streamidentiteten oppstår dermed i et definert stimulus- og oppgaveoppsett.",
+        "P300, måltonetelling og ti-folds klassifikasjon er tre forskjellige evidensledd. Høy klassifikasjonsnøyaktighet viser at datasettet bærer et mønster modellen kan utnytte, ikke at modellen leser hele lytterens opplevelse.",
+        "NEMAR v1.0.1 bevarer 64-kanals EEG og hendelsesmetadata for 11 deltakere. Åpen data styrker sporbarheten, men det lille utvalget, ett øre og syntetiske toner begrenser generalisering."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_perception_kojima_three_stream_attention_chain"
+        ],
+        [
+          "claim_musikk_perception_kojima_three_stream_attention_chain"
+        ],
+        [
+          "claim_musikk_perception_kojima_three_stream_attention_chain"
+        ]
+      ],
+      "concepts": [
+        "auditiv stream",
+        "P300",
+        "selektiv oppmerksomhet",
+        "klassifikasjon"
+      ]
+    },
+    {
+      "id": "timing_og_kalibrering",
+      "title": "Timing, latency og synkronisering",
+      "paragraphs": [
+        "REPP spiller cue og registrerer fingertrykk i samme lydkanal. Markører og onsetdeteksjon gjør det mulig å korrigere latency og jitter som ellers ville bli forvekslet med deltakerens timing.",
+        "Test–retest, concurrent validity og datakvalitetskriterier må følge asynkronimålet. Uten apparatur- og eksklusjonsprotokoll er millisekundpresisjon bare en ubegrunnet etikett.",
+        "Presis tapping er et motorisk responsmål. Den kan ikke alene dokumentere subjektiv puls, emosjon, sosial entrainment eller universell rytmeevne."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_perception_repp_timing_validation_chain"
+        ],
+        [
+          "claim_musikk_perception_repp_timing_validation_chain"
+        ],
+        [
+          "claim_musikk_perception_repp_timing_validation_chain"
+        ]
+      ],
+      "concepts": [
+        "latency",
+        "jitter",
+        "asynkroni",
+        "sensorimotorisk synkronisering"
+      ]
+    }
+  ],
+  "workedExamples": [
+    {
+      "id": "bygg_stimulus_respons_kjede",
+      "title": "Bygg en stimulus–respons-kjede",
+      "steps": [
+        "Identifiser stimulus og versjon.",
+        "Oppgi apparatur og kalibrering.",
+        "Oppgi oppgave, respons og analysemål.",
+        "Skriv én grense for opplevelse eller generalisering."
+      ],
+      "claimIds": [
+        "claim_musikk_perception_tpt_timbre_measurement_chain",
+        "claim_musikk_perception_kojima_three_stream_attention_chain",
+        "claim_musikk_perception_repp_timing_validation_chain"
+      ]
+    }
+  ],
+  "commonMisconceptions": [
+    {
+      "misconception": "En akustisk parameter er det samme som en opplevd egenskap.",
+      "correction": "Parameteren må kobles til en definert perseptuell oppgave og respons.",
+      "claimIds": [
+        "claim_musikk_perception_tpt_timbre_measurement_chain"
+      ]
+    },
+    {
+      "misconception": "Høy klassifikasjon betyr at modellen forstår den auditive scenen.",
+      "correction": "Modellscore gjelder labels og data i det avgrensede designet.",
+      "claimIds": [
+        "claim_musikk_perception_kojima_three_stream_attention_chain"
+      ]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "id": "audit_signal_scene",
+      "title": "Auditér signal og scene",
+      "prompt": "Velg TPT eller tonestrømcaset og oppgi stimulus, manipulasjon, apparatur, respons, mål og forbudt slutning.",
+      "requiredMethodIds": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "claimIds": [
+        "claim_musikk_perception_tpt_timbre_measurement_chain",
+        "claim_musikk_perception_kojima_three_stream_attention_chain"
+      ]
+    }
+  ]
+}

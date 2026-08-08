@@ -1,0 +1,135 @@
+{
+  "schema": "history_go_fagverk_chapter_module_v1",
+  "version": "1.0.0",
+  "subject_id": "musikk",
+  "chapter_id": "persepsjon-kognisjon-akustikk",
+  "module_id": "02-forventning-laering-inferens",
+  "title": "Familiaritet, læring og inferens",
+  "role": "fordypning",
+  "sections": [
+    {
+      "id": "familiaritet_emosjon_minne",
+      "title": "Familiaritet, emosjon og minne",
+      "paragraphs": [
+        "MUSIFEAST-17 binder hvert 30-sekundersklipp til metadata og separate normer for familiaritet, nytelse, valens, arousal og tanketyper. Dette gjør stimulusvalg etterprøvbart uten å gjøre dimensjonene identiske.",
+        "Aldersbalansering og 17 sjangre gir større variasjon enn et ad hoc-utvalg. Variasjon mellom sjanger, land og alder er samtidig et resultat som må bevares, ikke støy som kan glattes bort.",
+        "En rating av uttrykt valens er ikke nødvendigvis en indusert følelse; familiaritet er ikke automatisk episodisk minne. Claimet må navngi nøyaktig responsformat og lyttergruppe."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_perception_musifeast_familiarity_emotion_norms"
+        ],
+        [
+          "claim_musikk_perception_musifeast_familiarity_emotion_norms"
+        ],
+        [
+          "claim_musikk_perception_musifeast_familiarity_emotion_norms"
+        ]
+      ],
+      "concepts": [
+        "familiaritet",
+        "valens",
+        "arousal",
+        "selvrapport"
+      ]
+    },
+    {
+      "id": "ekspertise_som_profil",
+      "title": "Ekspertise som profil",
+      "paragraphs": [
+        "Gold-MSI erstatter et enkelt musiker/ikke-musiker-skille med fem delskalaer og en generell faktor. Dermed blir trening, engasjement, perseptuelle evner, sang og emosjonelt engasjement separate observerbare variabler.",
+        "Høy test–retest og moderate korrelasjoner med lyttetester viser stabilitet og sammenheng, men ikke identitet. Selvrapport kan ikke uten tap brukes som en objektiv ferdighetstest.",
+        "Tverrsnittsdata kan vise forskjeller knyttet til erfaring, men kan ikke alene forklare dem som treningseffekt. Språk, kultur, alder og sosial bakgrunn må følge ekspertiseclaimet."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_perception_gold_msi_multidimensional_expertise"
+        ],
+        [
+          "claim_musikk_perception_gold_msi_multidimensional_expertise"
+        ],
+        [
+          "claim_musikk_perception_gold_msi_multidimensional_expertise"
+        ]
+      ],
+      "concepts": [
+        "ekspertise",
+        "enkulturasjon",
+        "selvrapport",
+        "måleinvarians"
+      ]
+    },
+    {
+      "id": "design_og_inferens",
+      "title": "Fra design til gyldig inferens",
+      "paragraphs": [
+        "Gold-MSI-kjeden skiller itemutvikling fra bekreftende analyse gjennom en utviklings- og testdeling. Dette gjør det mulig å spørre om en struktur reproduseres i data som ikke valgte itemene.",
+        "Reliabilitet, konvergent validitet, diskriminant validitet og forklart varians er forskjellige porter. En høy score på én kan ikke reparere en uklar operasjonalisering eller skjev sampling.",
+        "At sosioøkonomiske modeller forklarte en begrenset del av variansen, er faglig informasjon. Signifikans er ikke effektstørrelse, prediksjon er ikke mekanisme, og modelltilpasning er ikke årsak."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_perception_gold_msi_split_sample_inference_chain"
+        ],
+        [
+          "claim_musikk_perception_gold_msi_split_sample_inference_chain"
+        ],
+        [
+          "claim_musikk_perception_gold_msi_split_sample_inference_chain"
+        ]
+      ],
+      "concepts": [
+        "operasjonalisering",
+        "split-sample",
+        "validitet",
+        "forklart varians"
+      ]
+    }
+  ],
+  "workedExamples": [
+    {
+      "id": "skill_fire_maletyper",
+      "title": "Skill fire måletyper",
+      "steps": [
+        "Velg ett stimulus eller instrument.",
+        "Skriv fysisk mål, atferdsmål, selvrapport og modellmål hver for seg.",
+        "Marker hvilke mål som faktisk finnes.",
+        "Stopp claimet ved første manglende ledd."
+      ],
+      "claimIds": [
+        "claim_musikk_perception_musifeast_familiarity_emotion_norms",
+        "claim_musikk_perception_gold_msi_multidimensional_expertise",
+        "claim_musikk_perception_gold_msi_split_sample_inference_chain"
+      ]
+    }
+  ],
+  "commonMisconceptions": [
+    {
+      "misconception": "En valensrating viser hvilken følelse musikken forårsaket.",
+      "correction": "Ratingen må defineres som uttrykt eller opplevd og støtter ikke årsak alene.",
+      "claimIds": [
+        "claim_musikk_perception_musifeast_familiarity_emotion_norms"
+      ]
+    },
+    {
+      "misconception": "År med trening er en full definisjon av musikalsk ekspertise.",
+      "correction": "Ekspertise er flerdimensjonal og alternative forklaringer må registreres.",
+      "claimIds": [
+        "claim_musikk_perception_gold_msi_multidimensional_expertise"
+      ]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "id": "revider_emosjonsclaim",
+      "title": "Revider et emosjonsclaim",
+      "prompt": "Omskriv «musikken gjør alle glade» med klipp, ratingdimensjon, utvalg, effekt og generaliseringsgrense.",
+      "requiredMethodIds": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "claimIds": [
+        "claim_musikk_perception_musifeast_familiarity_emotion_norms"
+      ]
+    }
+  ]
+}

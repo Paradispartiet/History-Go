@@ -1,0 +1,188 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-perception-gold_msi_expertise-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "persepsjon_kognisjon_akustikk",
+  "emne_id": "em_musikk_vit_ekspertise_laring_enkulturasjon",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/persepsjon_kognisjon_akustikk/ekspertise_laring_enkulturasjon.json",
+  "research_question": "Hvordan kan musikalsk ekspertise måles flerdimensjonalt uten å redusere den til profesjonstittel eller treningsår?",
+  "production_source_extensions": [],
+  "source_reviews": [
+    {
+      "source_id": "src_mullensiefen_gingras_musil_stewart_gold_msi_2014",
+      "source_registration": "canonical_registry",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0089642",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Studies 1–3; Tables 1–3",
+          "section": "Inventory construction, split-sample validation and reliability",
+          "supports": "The article develops five self-report facets/general factor on a large sample and reports internal and test–retest reliability."
+        },
+        {
+          "pages": "Study 4 and Discussion; listening-test correlations and limitations",
+          "section": "Self-report versus measured listening performance",
+          "supports": "The article reports moderate associations with objective listening tasks and explicitly discusses Western/general-population scope and non-causal interpretation."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker kilden gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og forskningsobjekter redistribueres ikke.",
+      "registry_path": "data/fag/musikk/musikkvitenskap_canonical_v1/scholarly_source_registries_v1/expertise_enculturation_methods_v1.json"
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_gold_msi_multidimensional_inventory",
+      "object_type": "selvrapport",
+      "title": "Gold-MSI: fem delskalaer og generell musikalsk sofistikasjon",
+      "persistent_url": "https://www.gold.ac.uk/music-mind-brain/gold-msi/",
+      "provenance_source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "version_and_identity": {
+        "instrument": "Goldsmiths Musical Sophistication Index",
+        "facets": [
+          "active engagement",
+          "perceptual abilities",
+          "musical training",
+          "singing abilities",
+          "emotional engagement"
+        ],
+        "general_factor": "General Musical Sophistication"
+      },
+      "locators": [
+        {
+          "locator": "Goldsmiths Gold-MSI page, “Features”",
+          "role": "Identifies five subscales, general factor and sensitivity beyond professional musicians."
+        },
+        {
+          "locator": "PLOS ONE 2014, Studies 3–4 and Tables 2–3",
+          "role": "Identifies reliability and relationships between self-report and listening tests."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent institutional instrument page and two construct/validation locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "Goldsmiths states materials may be used free of charge; History Go links externally and does not redistribute the instrument.",
+        "license_source": "https://www.gold.ac.uk/music-mind-brain/gold-msi/",
+        "commercial_compatibility_with_history_go": "compatible_for_external_reference",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_perception_gold_msi_multidimensional_expertise",
+      "statement": "Gold-MSI operasjonaliserer musikalsk ekspertise som fem selvrapporterte dimensjoner og en generell faktor i stedet for et binært musiker/ikke-musiker-skille; i hovedutvalget på 147 633 personer viste delskalaene høy test–retest-stabilitet og moderate sammenhenger med objektive lyttetester, men korrelasjonene mellom rapportert engasjement, trening og prestasjon fastslår verken at trening er eneste årsak eller at instrumentet er måleinvariant utenfor undersøkte språk og vestlige kontekster.",
+      "claim_type_id": "causal_claim",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Studies 1–3 and Tables 1–3: five-facet/general-factor construction, 147,633-person sample, reliability and split-sample validation",
+        "Müllensiefen et al. 2014, Study 4 and Discussion: self-report/listening-task correlations of roughly .30–.51 and explicit Western/general-population scope"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_gold_msi_multidimensional_inventory",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "Gold-MSI: fem delskalaer og generell musikalsk sofistikasjon"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "History Go har ikke administrert skalaen, testet norsk måleinvarians eller reanalysert BBC Lab UK-data; påstanden følger PLOS-artikkelens og Goldsmiths-sidens dokumenterte instrumentkjede.",
+      "prohibited_inference": "Caset kan ikke gjøre profesjonstittel, treningsår eller én totalscore til komplett ekspertise, inferere treningseffekt fra tverrsnittskorrelasjon eller behandle kulturelle grupper som homogene.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_gold_msi_expertise_scope",
+      "statement": "Gold-MSI måler fem selvrapporterte fasetter og en generell faktor i den beskrevne vestlige generalbefolkningen.",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Studies 1–3 and Tables 1–3: five-facet/general-factor construction, 147,633-person sample, reliability and split-sample validation"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_gold_msi_multidimensional_expertise"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_gold_msi_expertise_measure",
+      "statement": "Selvrapport og lyttetest er relaterte, men ikke identiske mål; moderate korrelasjoner tillater ikke utskifting uten tap.",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Study 4 and Discussion: self-report/listening-task correlations of roughly .30–.51 and explicit Western/general-population scope"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_gold_msi_multidimensional_expertise"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_gold_msi_expertise_generalization",
+      "statement": "Instrumentet etablerer ikke årsak fra trening til evne eller automatisk språk-, kultur- og aldersinvarians.",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Study 4 and Discussion: self-report/listening-task correlations of roughly .30–.51 and explicit Western/general-population scope"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_gold_msi_multidimensional_expertise"
+      ],
+      "release_effect": "Stopper universell, klinisk eller kulturelt uavgrenset generalisering."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "selvrapport"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_gold_msi_multidimensional_inventory",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_perception_gold_msi_multidimensional_expertise"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må oppgi ekspertisedefinisjon, delskala, sammenligningsmål, utvalg og kausalgrense."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 1,
+    "production_extension_source_count": 0,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "History Go har ikke administrert skalaen, testet norsk måleinvarians eller reanalysert BBC Lab UK-data; påstanden følger PLOS-artikkelens og Goldsmiths-sidens dokumenterte instrumentkjede."
+  }
+}
