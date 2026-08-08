@@ -1,0 +1,206 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-perception-tpt_timbre_measurement-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "persepsjon_kognisjon_akustikk",
+  "emne_id": "em_musikk_vit_psykoakustikk_tone_styrke_klang",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/persepsjon_kognisjon_akustikk/psykoakustikk_tone_styrke_klang.json",
+  "research_question": "Hvordan kobler Timbre Perception Test kontrollerte signalparametre til en avgrenset perseptuell reproduksjonsoppgave?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_lee_mullensiefen_tpt_2020",
+      "bibliographic_identity": {
+        "creators": [
+          "Harin Lee",
+          "Daniel Müllensiefen"
+        ],
+        "year": 2020,
+        "title": "The Timbre Perception Test (TPT): A new interactive musical assessment tool to measure timbre perception ability",
+        "publication": "Attention, Perception, & Psychophysics 82, 3658–3675"
+      },
+      "identifiers": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7536169/"
+      },
+      "registration_reason": "Åpen fulltekst dokumenterer stimulusgenerering, slideroppgave, kalibrering, reliabilitet og validering av det direkte testobjektet.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7536169/",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_lee_mullensiefen_tpt_2020",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7536169/",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Methods: Test development, stimuli and procedure; Figure 1",
+          "section": "Envelope, spectral flux and spectral centroid tasks",
+          "supports": "The test uses 1.5-second four-note chord stimuli and a slider to reproduce three separately manipulated timbre dimensions."
+        },
+        {
+          "pages": "Results: reliability and validity; Tables 2–4 and Figures 2–4",
+          "section": "Short-form calibration, test–retest and convergent measures",
+          "supports": "The 95-participant validation reports short-form reliability, test–retest reliability and correlations with other musical measures."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker kilden gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og forskningsobjekter redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_tpt_three_dimension_slider_task",
+      "object_type": "eksperimentdata",
+      "title": "TPTs versjonerte slideroppgave for envelope, spectral flux og spectral centroid",
+      "persistent_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7536169/",
+      "provenance_source_ids": [
+        "prod_src_lee_mullensiefen_tpt_2020"
+      ],
+      "version_and_identity": {
+        "test": "Timbre Perception Test",
+        "dimensions": [
+          "envelope",
+          "spectral flux",
+          "spectral centroid"
+        ],
+        "stimulus": "1.5-second C4–E4–G4–C5 chord",
+        "sample_size": 95
+      },
+      "locators": [
+        {
+          "locator": "Methods, “TPT testing dimensions” and stimulus-generation description",
+          "role": "Identifies the three acoustic controls, chord, duration and slider response."
+        },
+        {
+          "locator": "Results, short-version reliability and validity tables/figures",
+          "role": "Identifies the calibrated form, test–retest result and convergent correlations."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent test identity and two task/result locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "Article distributed as open access; test materials are used only by external reference.",
+        "license_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7536169/",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_perception_tpt_timbre_measurement_chain",
+      "statement": "Lee og Müllensiefens Timbre Perception Test operasjonaliserer klangpersepsjon som sliderbasert reproduksjon av tre kontrollerte dimensjoner—envelope, spectral flux og spectral centroid—i 1,5 sekunders firetoners stimuli; i utvalget på 95 deltakere hadde kortversjonen akseptabel intern reliabilitet, test–retest-korrelasjon på r = .79 og ulike korrelasjoner med selvrapportert musikalsk sofistikasjon og diskriminasjonstester, men resultatet validerer denne oppgaven og gjør ikke klang til én universell eller kontekstuavhengig evne.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_lee_mullensiefen_tpt_2020"
+      ],
+      "locators": [
+        "Lee & Müllensiefen 2020, Methods and Figure 1: 1.5-second chord stimuli and separate envelope, spectral-flux and spectral-centroid slider manipulations",
+        "Lee & Müllensiefen 2020, Results Tables 2–4 and Figures 2–4: 95-person calibration, short-form reliability, test–retest and convergent correlations"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_tpt_three_dimension_slider_task",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "TPTs versjonerte slideroppgave for envelope, spectral flux og spectral centroid"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "History Go har ikke kjørt TPT, kontrollmålt avspillingsnivå eller reanalysert deltakerdata; reliabilitet og korrelasjoner er hentet fra den publiserte valideringen.",
+      "prohibited_inference": "Caset kan ikke likestille fysisk signalparameter med opplevd klang, gjøre selvrapport til objektiv ferdighet, hevde årsak fra korrelasjon eller generalisere fra ett testformat og utvalg til all musikalsk lytting.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_tpt_timbre_measurement_scope",
+      "statement": "TPT-resultatene gjelder tre valgte klangdimensjoner, den oppgitte stimulus- og slideroppgaven og det undersøkte utvalget.",
+      "source_ids": [
+        "prod_src_lee_mullensiefen_tpt_2020"
+      ],
+      "locators": [
+        "Lee & Müllensiefen 2020, Methods and Figure 1: 1.5-second chord stimuli and separate envelope, spectral-flux and spectral-centroid slider manipulations"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_tpt_timbre_measurement_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_tpt_timbre_measurement_measure",
+      "statement": "Intern reliabilitet, test–retest og korrelasjon med andre mål er forskjellige kvalitetskriterier og kan ikke slås sammen til én sannhetsscore.",
+      "source_ids": [
+        "prod_src_lee_mullensiefen_tpt_2020"
+      ],
+      "locators": [
+        "Lee & Müllensiefen 2020, Results Tables 2–4 and Figures 2–4: 95-person calibration, short-form reliability, test–retest and convergent correlations"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_tpt_timbre_measurement_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_tpt_timbre_measurement_generalization",
+      "statement": "Valideringen etablerer ikke kulturinvariant klangpersepsjon, klinisk diagnostikk eller årsakseffekt av musikalsk erfaring.",
+      "source_ids": [
+        "prod_src_lee_mullensiefen_tpt_2020"
+      ],
+      "locators": [
+        "Lee & Müllensiefen 2020, Results Tables 2–4 and Figures 2–4: 95-person calibration, short-form reliability, test–retest and convergent correlations"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_tpt_timbre_measurement_chain"
+      ],
+      "release_effect": "Stopper universell, klinisk eller kulturelt uavgrenset generalisering."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "eksperimentdata"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_tpt_three_dimension_slider_task",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_perception_tpt_timbre_measurement_chain"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må navngi signalparameter, stimulus, responsmål, utvalg og valideringsmål og skille fysisk manipulasjon fra rapportert persepsjon."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "History Go har ikke kjørt TPT, kontrollmålt avspillingsnivå eller reanalysert deltakerdata; reliabilitet og korrelasjoner er hentet fra den publiserte valideringen."
+  }
+}

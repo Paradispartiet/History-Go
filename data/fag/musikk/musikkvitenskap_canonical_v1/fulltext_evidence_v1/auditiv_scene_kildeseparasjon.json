@@ -1,0 +1,247 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-perception-kojima_tone_stream_dataset-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "persepsjon_kognisjon_akustikk",
+  "emne_id": "em_musikk_vit_auditiv_scene_kildeseparasjon",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/persepsjon_kognisjon_akustikk/auditiv_scene_kildeseparasjon.json",
+  "research_question": "Hvordan kobles tre syntetiserte tonestrømmer, selektiv oppmerksomhet, EEG-hendelser og klassifikasjon uten å likestille modellscore med auditiv mening?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_kojima_kanoh_streams_2024",
+      "bibliographic_identity": {
+        "creators": [
+          "Simon Kojima",
+          "Shin'ichiro Kanoh"
+        ],
+        "year": 2024,
+        "title": "An auditory brain-computer interface based on selective attention to multiple tone streams",
+        "publication": "PLOS ONE 19(5), e0303565"
+      },
+      "identifiers": {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0303565"
+      },
+      "registration_reason": "Åpen primærstudie dokumenterer tonegenerering, ettøres presentasjon, oppmerksomhetsoppgave, EEG-opptak og klassifikasjon.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0303565",
+      "checked_at": "2026-08-08"
+    },
+    {
+      "source_id": "prod_src_kojima_kanoh_nemar_dataset_2026",
+      "bibliographic_identity": {
+        "creators": [
+          "Simon Kojima",
+          "Shin'ichiro Kanoh"
+        ],
+        "year": 2026,
+        "title": "Kojima et al. 2024 (Dataset A)—An auditory brain-computer interface based on selective attention to multiple tone streams, v1.0.1",
+        "publication": "NEMAR dataset, DOI 10.82901/nemar.nm000193"
+      },
+      "identifiers": {
+        "url": "https://nemar.org/dataset/nm000193"
+      },
+      "registration_reason": "Versjonert CC0-datasett gjør deltaker-, hendelses- og 64-kanals EEG-objektene inspiserbare.",
+      "full_text_status": "reviewed_open_dataset",
+      "full_text_access": "https://nemar.org/dataset/nm000193",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_kojima_kanoh_streams_2024",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0303565",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Methods: Auditory stimuli and experimental procedure; Figures 1–2",
+          "section": "Three-stream stimulus and attention task",
+          "supports": "Software-synthesized tones form three streams presented to the right ear while participants count targets in the attended stream."
+        },
+        {
+          "pages": "Methods/Results: EEG recording and classification; Figures 3–6",
+          "section": "P300 response and cross-validated classification",
+          "supports": "The paper reports 64-channel EEG at 1000 Hz, participant-level P300 patterns and 10-fold classification results."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker kilden gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og forskningsobjekter redistribueres ikke."
+    },
+    {
+      "source_id": "prod_src_kojima_kanoh_nemar_dataset_2026",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_open_dataset",
+      "full_text_access": "https://nemar.org/dataset/nm000193",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Dataset overview, version v1.0.1 and DOI",
+          "section": "Dataset identity, participants and task",
+          "supports": "The record identifies 11 healthy participants, auditory stream segregation/selective attention and a persistent dataset DOI."
+        },
+        {
+          "pages": "BIDS EEG files, event metadata and 64-channel modality record",
+          "section": "Signals, events and reuse object",
+          "supports": "The dataset exposes EEG/event objects for the three-stream task under CC0 metadata."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker kilden gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og forskningsobjekter redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_kojima_three_stream_bids_eeg_v1_0_1",
+      "object_type": "eksperimentdata",
+      "title": "NEMAR v1.0.1: tre tonestrømmer, hendelser og 64-kanals EEG fra 11 deltakere",
+      "persistent_url": "https://doi.org/10.82901/nemar.nm000193",
+      "provenance_source_ids": [
+        "prod_src_kojima_kanoh_streams_2024",
+        "prod_src_kojima_kanoh_nemar_dataset_2026"
+      ],
+      "version_and_identity": {
+        "dataset": "nm000193",
+        "version": "v1.0.1",
+        "participants": 11,
+        "task": "selective attention to three tone streams",
+        "sampling_hz": 1000
+      },
+      "locators": [
+        {
+          "locator": "NEMAR dataset overview and participants/task metadata",
+          "role": "Identifies version, sample, stream-attention task and DOI."
+        },
+        {
+          "locator": "NEMAR BIDS EEG/event inventory",
+          "role": "Identifies 64-channel recordings and event-linked experimental objects."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent dataset DOI, version and two dataset locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "Dataset record states CC0-1.0; History Go still uses external-link-and-metadata-only in this chapter.",
+        "license_source": "https://nemar.org/dataset/nm000193",
+        "commercial_compatibility_with_history_go": "compatible_for_metadata",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_perception_kojima_three_stream_attention_chain",
+      "statement": "Kojima og Kanoh lot 11 deltakere rette oppmerksomheten mot én av tre programvaresyntetiserte tonestrømmer i høyre øre og telle måltoner mens 64-kanals EEG ble registrert ved 1000 Hz; P300-mønstre og ti-folds klassifikasjon ga over 80 prosent nøyaktighet for fem deltakere og over 75 prosent for ni, men NEMAR-dataene viser en avgrenset oppmerksomhets- og klassifikasjonsoppgave, ikke at algoritmen måler hele den auditive scenen eller musikalsk mening.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_kojima_kanoh_streams_2024",
+        "prod_src_kojima_kanoh_nemar_dataset_2026"
+      ],
+      "locators": [
+        "Kojima & Kanoh 2024, Methods/Figures 1–2: software-synthesized three-stream stimulus, right-ear presentation, target counting and 11 participants",
+        "Kojima & Kanoh 2024, EEG and Results/Figures 3–6 plus NEMAR nm000193 v1.0.1: 64-channel 1000-Hz EEG, P300 and participant-level 10-fold classification"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_kojima_three_stream_bids_eeg_v1_0_1",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "NEMAR v1.0.1: tre tonestrømmer, hendelser og 64-kanals EEG fra 11 deltakere"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "History Go har ikke lastet ned EEG-filer, reprodusert preprocessing eller kjørt klassifikasjonen; resultatene og datasettidentiteten er kontrollert mot artikkel og NEMAR-post.",
+      "prohibited_inference": "Caset kan ikke likestille P300 eller klassifikasjonsnøyaktighet med subjektiv stream-opplevelse, forklare mekanismen kausalt uten flere kontroller eller generalisere fra 11 deltakere, ett øre og syntetiske toner til kompleks hverdags- og musikklytting.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_kojima_tone_stream_dataset_scope",
+      "statement": "Resultatene gjelder tre bestemte tonestrømmer, en target-counting-oppgave, høyre-øre-presentasjon og 11 deltakere.",
+      "source_ids": [
+        "prod_src_kojima_kanoh_streams_2024",
+        "prod_src_kojima_kanoh_nemar_dataset_2026"
+      ],
+      "locators": [
+        "Kojima & Kanoh 2024, Methods/Figures 1–2: software-synthesized three-stream stimulus, right-ear presentation, target counting and 11 participants"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_kojima_three_stream_attention_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_kojima_tone_stream_dataset_measure",
+      "statement": "P300, atferdsoppmerksomhet og klassifikasjonsnøyaktighet er ulike mål; de dokumenterer ikke identiske mentale prosesser.",
+      "source_ids": [
+        "prod_src_kojima_kanoh_streams_2024",
+        "prod_src_kojima_kanoh_nemar_dataset_2026"
+      ],
+      "locators": [
+        "Kojima & Kanoh 2024, EEG and Results/Figures 3–6 plus NEMAR nm000193 v1.0.1: 64-channel 1000-Hz EEG, P300 and participant-level 10-fold classification"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_kojima_three_stream_attention_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_kojima_tone_stream_dataset_generalization",
+      "statement": "Datasettet støtter reproduksjon av dette designet, men ikke klinisk bruk eller universell teori om auditiv sceneorganisering.",
+      "source_ids": [
+        "prod_src_kojima_kanoh_streams_2024",
+        "prod_src_kojima_kanoh_nemar_dataset_2026"
+      ],
+      "locators": [
+        "Kojima & Kanoh 2024, EEG and Results/Figures 3–6 plus NEMAR nm000193 v1.0.1: 64-channel 1000-Hz EEG, P300 and participant-level 10-fold classification"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_kojima_three_stream_attention_chain"
+      ],
+      "release_effect": "Stopper universell, klinisk eller kulturelt uavgrenset generalisering."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "eksperimentdata"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_kojima_three_stream_bids_eeg_v1_0_1",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_perception_kojima_three_stream_attention_chain"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må oppgi streamkonstruksjon, øre, oppgave, EEG-mål, utvalg og klassifikasjonsnivå og kan ikke gjøre modellprestasjon til perseptuell fasit."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 2,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 2,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "History Go har ikke lastet ned EEG-filer, reprodusert preprocessing eller kjørt klassifikasjonen; resultatene og datasettidentiteten er kontrollert mot artikkel og NEMAR-post."
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-perception-repp_timing_validation-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "persepsjon_kognisjon_akustikk",
+  "emne_id": "em_musikk_vit_rytme_entrainment_tidsoppfatning",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/persepsjon_kognisjon_akustikk/rytme_entrainment_tidsoppfatning.json",
+  "research_question": "Hvordan kan en tappingrespons tidsfestes og valideres når forbrukerutstyr introduserer latency, jitter og datakvalitetsfeil?",
+  "production_source_extensions": [],
+  "source_reviews": [
+    {
+      "source_id": "src_anglada_tort_harrison_jacoby_repp_2022",
+      "source_registration": "canonical_registry",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8853279/",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Methods and Experiments 1–2; Figures 1–3",
+          "section": "Signal chain, calibration and laboratory comparison",
+          "supports": "REPP records played cues and taps in one channel, detects markers/onsets and validates timing against laboratory hardware."
+        },
+        {
+          "pages": "Experiments 2–4, Results and Appendix; Tables/Figures 3–6",
+          "section": "Reliability, concurrent validity and online quality control",
+          "supports": "The study reports latency/jitter, test–retest, concurrent validity and explicit screening/failing criteria."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker kilden gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og forskningsobjekter redistribueres ikke.",
+      "registry_path": "data/fag/musikk/musikkvitenskap_canonical_v1/scholarly_source_registries_v1/rhythm_timing_entrainment_v1.json"
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_repp_calibration_and_tapping_validation",
+      "object_type": "eksperimentdata",
+      "title": "REPPs kalibrerings-, laboratorie- og nettdatasett for sensorimotorisk synkronisering",
+      "persistent_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8853279/",
+      "provenance_source_ids": [
+        "src_anglada_tort_harrison_jacoby_repp_2022"
+      ],
+      "version_and_identity": {
+        "system": "Rhythm ExPeriment Platform (REPP)",
+        "experiments": [
+          "hardware calibration",
+          "laboratory comparison",
+          "online test–retest",
+          "online complex-rhythm task"
+        ],
+        "measure": "cue–tap asynchrony"
+      },
+      "locators": [
+        {
+          "locator": "Experiments 1–2 and Figures 1–3",
+          "role": "Identifies marker/cue/tap signal chain, calibration and laboratory comparison."
+        },
+        {
+          "locator": "Experiments 3–4, Results and Appendix failing criteria",
+          "role": "Identifies online samples, reliability, validity, exclusions and quality controls."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent article identity and two experiment-data locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "Open-access article; experimental recordings and copyrighted music are not redistributed.",
+        "license_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8853279/",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_perception_repp_timing_validation_chain",
+      "statement": "REPP tidsfester cue og fingertrykk i samme lydkanal og bruker markører, kalibrering og kvalitetskriterier til å håndtere ukjent forbrukerlatens; valideringsserien rapporterte gjennomsnittlig latency og jitter innen 2 ms, test–retest på r = .87 i laboratorium og r = .80 på nett samt concurrent validity på r = .94, men tallene validerer målekjeden under de testede oppsettene og dokumenterer ikke alene subjektiv puls, glede eller sosial entrainment.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_anglada_tort_harrison_jacoby_repp_2022"
+      ],
+      "locators": [
+        "Anglada-Tort, Harrison & Jacoby 2022, Methods/Experiments 1–2 and Figures 1–3: one-channel cue/tap recording, marker alignment, calibration and laboratory comparison",
+        "Anglada-Tort, Harrison & Jacoby 2022, Experiments 2–4, Results and Appendix: average latency/jitter within 2 ms, test–retest r=.87 laboratory and r=.80 online, concurrent validity r=.94 and failing criteria"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_repp_calibration_and_tapping_validation",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "REPPs kalibrerings-, laboratorie- og nettdatasett for sensorimotorisk synkronisering"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "History Go har ikke installert REPP, gjentatt maskinvarekalibreringen eller reanalysert tappingopptak; rapporterte ytelser er knyttet til artikkelens versjon, apparatur og eksklusjonsregler.",
+      "prohibited_inference": "Caset kan ikke gjøre presis tapping til bevis for felles opplevelse, universell rytmeevne eller årsakseffekt av musikk; nettytelse kan ikke overføres til alle enheter uten ny kalibrering.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_repp_timing_validation_scope",
+      "statement": "Valideringstallene gjelder REPPs oppgitte signalbehandling, testede maskiner, stimuli og deltakerutvalg.",
+      "source_ids": [
+        "src_anglada_tort_harrison_jacoby_repp_2022"
+      ],
+      "locators": [
+        "Anglada-Tort, Harrison & Jacoby 2022, Methods/Experiments 1–2 and Figures 1–3: one-channel cue/tap recording, marker alignment, calibration and laboratory comparison"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_repp_timing_validation_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_repp_timing_validation_measure",
+      "statement": "Latency, jitter, test–retest og concurrent validity må rapporteres separat; de svarer på ulike målespørsmål.",
+      "source_ids": [
+        "src_anglada_tort_harrison_jacoby_repp_2022"
+      ],
+      "locators": [
+        "Anglada-Tort, Harrison & Jacoby 2022, Experiments 2–4, Results and Appendix: average latency/jitter within 2 ms, test–retest r=.87 laboratory and r=.80 online, concurrent validity r=.94 and failing criteria"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_repp_timing_validation_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_repp_timing_validation_generalization",
+      "statement": "Tappingasynkroni er et operasjonalisert motorisk mål og kan ikke alene bære påstander om emosjon, fellesskap eller universell tidsopplevelse.",
+      "source_ids": [
+        "src_anglada_tort_harrison_jacoby_repp_2022"
+      ],
+      "locators": [
+        "Anglada-Tort, Harrison & Jacoby 2022, Experiments 2–4, Results and Appendix: average latency/jitter within 2 ms, test–retest r=.87 laboratory and r=.80 online, concurrent validity r=.94 and failing criteria"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_repp_timing_validation_chain"
+      ],
+      "release_effect": "Stopper universell, klinisk eller kulturelt uavgrenset generalisering."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "eksperimentdata"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_repp_calibration_and_tapping_validation",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_perception_repp_timing_validation_chain"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må navngi cue, tappingmål, kalibrering, apparatur, eksklusjon og valideringsmål og skille målepresisjon fra subjektiv entrainment."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 1,
+    "production_extension_source_count": 0,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "History Go har ikke installert REPP, gjentatt maskinvarekalibreringen eller reanalysert tappingopptak; rapporterte ytelser er knyttet til artikkelens versjon, apparatur og eksklusjonsregler."
+  }
+}

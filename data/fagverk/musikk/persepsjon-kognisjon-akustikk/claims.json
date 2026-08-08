@@ -1,0 +1,230 @@
+{
+  "schema": "history_go_musikk_chapter_claims_v1",
+  "version": "1.0.0",
+  "status": "verified_projection",
+  "subject_id": "musikk",
+  "chapter_id": "persepsjon-kognisjon-akustikk",
+  "sourceAuthority": "canonical_fulltext_evidence_v1",
+  "projectionRule": "Claim text, source order and locators are copied unchanged from question-release-ready upstream evidence; every claim is used in chapter modules.",
+  "sources": [
+    {
+      "id": "prod_src_lee_mullensiefen_tpt_2020",
+      "publisher": "Springer / PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7536169/",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "Methods and Figures 1–4; reliability and validity tables",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/psykoakustikk_tone_styrke_klang.json"
+      ]
+    },
+    {
+      "id": "prod_src_kojima_kanoh_streams_2024",
+      "publisher": "PLOS ONE",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0303565",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "Methods and Figures 1–6",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/auditiv_scene_kildeseparasjon.json"
+      ]
+    },
+    {
+      "id": "prod_src_kojima_kanoh_nemar_dataset_2026",
+      "publisher": "NEMAR",
+      "url": "https://nemar.org/dataset/nm000193",
+      "full_text_status": "reviewed_open_dataset",
+      "source_location": "Dataset v1.0.1 overview and BIDS EEG/event inventory",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/auditiv_scene_kildeseparasjon.json"
+      ]
+    },
+    {
+      "id": "src_anglada_tort_harrison_jacoby_repp_2022",
+      "publisher": "Springer / PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8853279/",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "Experiments 1–4, Results and Appendix",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_entrainment_tidsoppfatning.json"
+      ]
+    },
+    {
+      "id": "prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025",
+      "publisher": "Springer / PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12181142/",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "Methods, Results and Discussion",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/forventning_minner_folelser.json"
+      ]
+    },
+    {
+      "id": "prod_src_musifeast17_osf_repository",
+      "publisher": "OSF",
+      "url": "https://osf.io/5ebz2/",
+      "full_text_status": "reviewed_open_dataset",
+      "source_location": "data/, stimuli/ and documentation",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/forventning_minner_folelser.json"
+      ]
+    },
+    {
+      "id": "src_mullensiefen_gingras_musil_stewart_gold_msi_2014",
+      "publisher": "PLOS ONE",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0089642",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "source_location": "Studies 1–5 and Tables 1–7",
+      "upstream_files": [
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/ekspertise_laring_enkulturasjon.json",
+        "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/eksperiment_design_maling_inferens.json"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim_musikk_perception_tpt_timbre_measurement_chain",
+      "claim": "Lee og Müllensiefens Timbre Perception Test operasjonaliserer klangpersepsjon som sliderbasert reproduksjon av tre kontrollerte dimensjoner—envelope, spectral flux og spectral centroid—i 1,5 sekunders firetoners stimuli; i utvalget på 95 deltakere hadde kortversjonen akseptabel intern reliabilitet, test–retest-korrelasjon på r = .79 og ulike korrelasjoner med selvrapportert musikalsk sofistikasjon og diskriminasjonstester, men resultatet validerer denne oppgaven og gjør ikke klang til én universell eller kontekstuavhengig evne.",
+      "status": "verified",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_lee_mullensiefen_tpt_2020"
+      ],
+      "locators": [
+        "Lee & Müllensiefen 2020, Methods and Figure 1: 1.5-second chord stimuli and separate envelope, spectral-flux and spectral-centroid slider manipulations",
+        "Lee & Müllensiefen 2020, Results Tables 2–4 and Figures 2–4: 95-person calibration, short-form reliability, test–retest and convergent correlations"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "uncertainty": "History Go har ikke kjørt TPT, kontrollmålt avspillingsnivå eller reanalysert deltakerdata; reliabilitet og korrelasjoner er hentet fra den publiserte valideringen.",
+      "prohibited_inference": "Caset kan ikke likestille fysisk signalparameter med opplevd klang, gjøre selvrapport til objektiv ferdighet, hevde årsak fra korrelasjon eller generalisere fra ett testformat og utvalg til all musikalsk lytting.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/psykoakustikk_tone_styrke_klang.json",
+      "upstream_claim_id": "claim_musikk_perception_tpt_timbre_measurement_chain",
+      "used_in": [
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/01-signal-scene-tid.json",
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_perception_kojima_three_stream_attention_chain",
+      "claim": "Kojima og Kanoh lot 11 deltakere rette oppmerksomheten mot én av tre programvaresyntetiserte tonestrømmer i høyre øre og telle måltoner mens 64-kanals EEG ble registrert ved 1000 Hz; P300-mønstre og ti-folds klassifikasjon ga over 80 prosent nøyaktighet for fem deltakere og over 75 prosent for ni, men NEMAR-dataene viser en avgrenset oppmerksomhets- og klassifikasjonsoppgave, ikke at algoritmen måler hele den auditive scenen eller musikalsk mening.",
+      "status": "verified",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_kojima_kanoh_streams_2024",
+        "prod_src_kojima_kanoh_nemar_dataset_2026"
+      ],
+      "locators": [
+        "Kojima & Kanoh 2024, Methods/Figures 1–2: software-synthesized three-stream stimulus, right-ear presentation, target counting and 11 participants",
+        "Kojima & Kanoh 2024, EEG and Results/Figures 3–6 plus NEMAR nm000193 v1.0.1: 64-channel 1000-Hz EEG, P300 and participant-level 10-fold classification"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "uncertainty": "History Go har ikke lastet ned EEG-filer, reprodusert preprocessing eller kjørt klassifikasjonen; resultatene og datasettidentiteten er kontrollert mot artikkel og NEMAR-post.",
+      "prohibited_inference": "Caset kan ikke likestille P300 eller klassifikasjonsnøyaktighet med subjektiv stream-opplevelse, forklare mekanismen kausalt uten flere kontroller eller generalisere fra 11 deltakere, ett øre og syntetiske toner til kompleks hverdags- og musikklytting.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/auditiv_scene_kildeseparasjon.json",
+      "upstream_claim_id": "claim_musikk_perception_kojima_three_stream_attention_chain",
+      "used_in": [
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/01-signal-scene-tid.json",
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_perception_repp_timing_validation_chain",
+      "claim": "REPP tidsfester cue og fingertrykk i samme lydkanal og bruker markører, kalibrering og kvalitetskriterier til å håndtere ukjent forbrukerlatens; valideringsserien rapporterte gjennomsnittlig latency og jitter innen 2 ms, test–retest på r = .87 i laboratorium og r = .80 på nett samt concurrent validity på r = .94, men tallene validerer målekjeden under de testede oppsettene og dokumenterer ikke alene subjektiv puls, glede eller sosial entrainment.",
+      "status": "verified",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_anglada_tort_harrison_jacoby_repp_2022"
+      ],
+      "locators": [
+        "Anglada-Tort, Harrison & Jacoby 2022, Methods/Experiments 1–2 and Figures 1–3: one-channel cue/tap recording, marker alignment, calibration and laboratory comparison",
+        "Anglada-Tort, Harrison & Jacoby 2022, Experiments 2–4, Results and Appendix: average latency/jitter within 2 ms, test–retest r=.87 laboratory and r=.80 online, concurrent validity r=.94 and failing criteria"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "uncertainty": "History Go har ikke installert REPP, gjentatt maskinvarekalibreringen eller reanalysert tappingopptak; rapporterte ytelser er knyttet til artikkelens versjon, apparatur og eksklusjonsregler.",
+      "prohibited_inference": "Caset kan ikke gjøre presis tapping til bevis for felles opplevelse, universell rytmeevne eller årsakseffekt av musikk; nettytelse kan ikke overføres til alle enheter uten ny kalibrering.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/rytme_entrainment_tidsoppfatning.json",
+      "upstream_claim_id": "claim_musikk_perception_repp_timing_validation_chain",
+      "used_in": [
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/01-signal-scene-tid.json",
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_perception_musifeast_familiarity_emotion_norms",
+      "claim": "MUSIFEAST-17 kobler 356 identifiserte instrumentale 30-sekundersklipp fra 17 sjangre til normdata fra 701 britiske og amerikanske deltakere mellom 18 og 75 år om blant annet familiaritet, nytelse, uttrykt valens/arousal og framkalte tanketyper; variasjon etter sjanger, land og alder gjør datasettet egnet til kontrollert stimulusvalg, men ratingene viser ikke at samme musikk induserer samme følelse, minne eller forventning hos andre lyttere.",
+      "status": "verified",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025",
+        "prod_src_musifeast17_osf_repository"
+      ],
+      "locators": [
+        "van der Walle et al. 2025, Methods: 356 instrumental 30-second clips across 17 genres, 701 UK/US participants aged 18–75 and familiarity/enjoyment/valence/arousal/thought measures",
+        "MUSIFEAST-17 OSF 5ebz2, data/ and stimuli/ documentation: participant/raw and clip-level norms plus versioned stimulus metadata"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "uncertainty": "History Go har ikke lastet ned eller lyttet gjennom alle kommersielle klipp, reanalysert rådata eller kontrollert hver enkelt lydrettighet; artikkel og OSF-struktur er brukt som dokumentert objektkjede.",
+      "prohibited_inference": "Caset kan ikke slå sammen uttrykt og opplevd emosjon, gjøre familiaritet til hukommelsesmekanisme, hevde kausal effekt fra normratinger eller generalisere UK/US-svar til alle kulturer og situasjoner.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/forventning_minner_folelser.json",
+      "upstream_claim_id": "claim_musikk_perception_musifeast_familiarity_emotion_norms",
+      "used_in": [
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/02-forventning-laering-inferens.json",
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_perception_gold_msi_multidimensional_expertise",
+      "claim": "Gold-MSI operasjonaliserer musikalsk ekspertise som fem selvrapporterte dimensjoner og en generell faktor i stedet for et binært musiker/ikke-musiker-skille; i hovedutvalget på 147 633 personer viste delskalaene høy test–retest-stabilitet og moderate sammenhenger med objektive lyttetester, men korrelasjonene mellom rapportert engasjement, trening og prestasjon fastslår verken at trening er eneste årsak eller at instrumentet er måleinvariant utenfor undersøkte språk og vestlige kontekster.",
+      "status": "verified",
+      "claim_type_id": "causal_claim",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Studies 1–3 and Tables 1–3: five-facet/general-factor construction, 147,633-person sample, reliability and split-sample validation",
+        "Müllensiefen et al. 2014, Study 4 and Discussion: self-report/listening-task correlations of roughly .30–.51 and explicit Western/general-population scope"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "uncertainty": "History Go har ikke administrert skalaen, testet norsk måleinvarians eller reanalysert BBC Lab UK-data; påstanden følger PLOS-artikkelens og Goldsmiths-sidens dokumenterte instrumentkjede.",
+      "prohibited_inference": "Caset kan ikke gjøre profesjonstittel, treningsår eller én totalscore til komplett ekspertise, inferere treningseffekt fra tverrsnittskorrelasjon eller behandle kulturelle grupper som homogene.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/ekspertise_laring_enkulturasjon.json",
+      "upstream_claim_id": "claim_musikk_perception_gold_msi_multidimensional_expertise",
+      "used_in": [
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/02-forventning-laering-inferens.json",
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/03-anvendelse-kritikk-selvtest.json"
+      ]
+    },
+    {
+      "id": "claim_musikk_perception_gold_msi_split_sample_inference_chain",
+      "claim": "Gold-MSI-studien skiller konstruktdefinisjon og itemreduksjon fra bekreftende testing ved å dele hovedutvalget i et utviklingsdatasett på 73 894 og et testdatasett på 73 739, og vurderer deretter intern reliabilitet, test–retest, konvergent/diskriminant validitet og sammenheng med lyttetester; at de sosioøkonomiske modellene bare forklarte 4,7–13,6 prosent av variansen viser hvorfor modelltilpasning og statistisk signifikans ikke alene gir praktisk betydning, mekanisme eller årsak.",
+      "status": "verified",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Studies 1–2: itemutvikling og reduksjon, deretter split i utviklingsdatasett n=73 894 og testdatasett n=73 739 for bekreftende analyse",
+        "Müllensiefen et al. 2014, Studies 3–5 and Tables 1–7: flere reliabilitetsmål, convergent/discriminant validity, listening-task correlations and socioeconomic models explaining only 4.7–13.6% of variance"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "uncertainty": "History Go har ikke reanalysert itemmatriser, faktorstruktur eller prediksjonsmodeller og vurderer designet slik det er dokumentert i den åpne artikkelen.",
+      "prohibited_inference": "Caset kan ikke gjøre split-sample alene til garanti mot overtilpasning, likestille reliabilitet med validitet, tolke forklart varians som årsak eller generalisere instrumentet uten ny sampling- og måleinvarianskontroll.",
+      "upstream_file": "data/fag/musikk/musikkvitenskap_canonical_v1/fulltext_evidence_v1/eksperiment_design_maling_inferens.json",
+      "upstream_claim_id": "claim_musikk_perception_gold_msi_split_sample_inference_chain",
+      "used_in": [
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/02-forventning-laering-inferens.json",
+        "data/fagverk/musikk/persepsjon-kognisjon-akustikk/03-anvendelse-kritikk-selvtest.json"
+      ]
+    }
+  ]
+}

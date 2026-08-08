@@ -1,0 +1,189 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-perception-gold_msi_split_sample_design-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "persepsjon_kognisjon_akustikk",
+  "emne_id": "em_musikk_vit_eksperiment_design_maling_inferens",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/persepsjon_kognisjon_akustikk/eksperiment_design_maling_inferens.json",
+  "research_question": "Hvordan bygges en måleinferens fra konstrukt og itemutvikling via trenings-/testsplit, reliabilitet og ekstern validering?",
+  "production_source_extensions": [],
+  "source_reviews": [
+    {
+      "source_id": "src_mullensiefen_gingras_musil_stewart_gold_msi_2014",
+      "source_registration": "canonical_registry",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0089642",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Study overview and Studies 1–2; sample split at n=73,894/73,739",
+          "section": "Construct operationalization and development/confirmation separation",
+          "supports": "The paper separates item development from confirmatory testing using training and test halves of the large online sample."
+        },
+        {
+          "pages": "Studies 3–5; Tables 1–7 and Discussion",
+          "section": "Reliability, convergent/discriminant validity and prediction limits",
+          "supports": "The article reports multiple reliability metrics, objective-task correlations and low explained variance for socioeconomic prediction models."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker kilden gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og forskningsobjekter redistribueres ikke.",
+      "registry_path": "data/fag/musikk/musikkvitenskap_canonical_v1/scholarly_source_registries_v1/expertise_enculturation_methods_v1.json"
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_gold_msi_split_sample_validation_design",
+      "object_type": "selvrapport",
+      "title": "Gold-MSI-designets konstrukt–item–split–reliabilitet–validitet-kjede",
+      "persistent_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0089642",
+      "provenance_source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "version_and_identity": {
+        "study": "Gold-MSI 2014",
+        "development_sample": 73894,
+        "confirmation_sample": 73739,
+        "stages": [
+          "item development",
+          "confirmatory structure",
+          "reliability",
+          "listening-test validation",
+          "socio-demographic models"
+        ]
+      },
+      "locators": [
+        {
+          "locator": "Studies 1–2, participant flow and split-sample description",
+          "role": "Identifies item reduction, development sample and independent confirmatory half."
+        },
+        {
+          "locator": "Studies 3–5, Tables 1–7",
+          "role": "Identifies reliability, convergent/discriminant measures and prediction limits."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent article identity and two design-stage locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "PLOS ONE article is open access; participant data and questionnaire materials are not redistributed here.",
+        "license_source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0089642",
+        "commercial_compatibility_with_history_go": "compatible_for_metadata",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_perception_gold_msi_split_sample_inference_chain",
+      "statement": "Gold-MSI-studien skiller konstruktdefinisjon og itemreduksjon fra bekreftende testing ved å dele hovedutvalget i et utviklingsdatasett på 73 894 og et testdatasett på 73 739, og vurderer deretter intern reliabilitet, test–retest, konvergent/diskriminant validitet og sammenheng med lyttetester; at de sosioøkonomiske modellene bare forklarte 4,7–13,6 prosent av variansen viser hvorfor modelltilpasning og statistisk signifikans ikke alene gir praktisk betydning, mekanisme eller årsak.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Studies 1–2: itemutvikling og reduksjon, deretter split i utviklingsdatasett n=73 894 og testdatasett n=73 739 for bekreftende analyse",
+        "Müllensiefen et al. 2014, Studies 3–5 and Tables 1–7: flere reliabilitetsmål, convergent/discriminant validity, listening-task correlations and socioeconomic models explaining only 4.7–13.6% of variance"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_gold_msi_split_sample_validation_design",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "Gold-MSI-designets konstrukt–item–split–reliabilitet–validitet-kjede"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "History Go har ikke reanalysert itemmatriser, faktorstruktur eller prediksjonsmodeller og vurderer designet slik det er dokumentert i den åpne artikkelen.",
+      "prohibited_inference": "Caset kan ikke gjøre split-sample alene til garanti mot overtilpasning, likestille reliabilitet med validitet, tolke forklart varians som årsak eller generalisere instrumentet uten ny sampling- og måleinvarianskontroll.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_gold_msi_split_sample_design_scope",
+      "statement": "Utviklings- og testdelingen reduserer én type overtilpasning, men erstatter ikke representativ sampling eller ekstern replikasjon.",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Studies 1–2: itemutvikling og reduksjon, deretter split i utviklingsdatasett n=73 894 og testdatasett n=73 739 for bekreftende analyse"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_gold_msi_split_sample_inference_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_gold_msi_split_sample_design_measure",
+      "statement": "Reliabilitet, konvergent validitet, diskriminant validitet og forklart varians er forskjellige inferensledd.",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Studies 3–5 and Tables 1–7: flere reliabilitetsmål, convergent/discriminant validity, listening-task correlations and socioeconomic models explaining only 4.7–13.6% of variance"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_gold_msi_split_sample_inference_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_gold_msi_split_sample_design_generalization",
+      "statement": "Signifikans og modelltilpasning dokumenterer ikke alene praktisk størrelse, mekanisme, kausalitet eller universell gyldighet.",
+      "source_ids": [
+        "src_mullensiefen_gingras_musil_stewart_gold_msi_2014"
+      ],
+      "locators": [
+        "Müllensiefen et al. 2014, Studies 3–5 and Tables 1–7: flere reliabilitetsmål, convergent/discriminant validity, listening-task correlations and socioeconomic models explaining only 4.7–13.6% of variance"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_gold_msi_split_sample_inference_chain"
+      ],
+      "release_effect": "Stopper universell, klinisk eller kulturelt uavgrenset generalisering."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "selvrapport"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_gold_msi_split_sample_validation_design",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_perception_gold_msi_split_sample_inference_chain"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må følge hypotese/konstrukt, operasjonalisering, utvalg, split, mål, modell, effekt/varians og generaliseringsgrense."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 1,
+    "production_extension_source_count": 0,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "History Go har ikke reanalysert itemmatriser, faktorstruktur eller prediksjonsmodeller og vurderer designet slik det er dokumentert i den åpne artikkelen."
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-perception-musifeast_familiarity_emotion-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "persepsjon_kognisjon_akustikk",
+  "emne_id": "em_musikk_vit_forventning_minner_følelser",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/persepsjon_kognisjon_akustikk/forventning_minner_folelser.json",
+  "research_question": "Hvordan kan familiaritet, minner og emosjonsvurderinger bindes til identifiserte musikkutdrag uten å gjøre rating til indusert følelse eller årsak?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025",
+      "bibliographic_identity": {
+        "creators": [
+          "Hazel Aileen van der Walle",
+          "Wei Wu",
+          "Elizabeth Hellmuth Margulis",
+          "Kelly Jakubowski"
+        ],
+        "year": 2025,
+        "title": "MUSIFEAST-17: MUsic Stimuli for imagination, familiarity, emotion, and Aesthetic STudies across 17 genres",
+        "publication": "Behavior Research Methods 57(7), 204"
+      },
+      "identifiers": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12181142/"
+      },
+      "registration_reason": "Åpen primærartikkel dokumenterer stimulusvalg, 701-deltakerutvalg, ratingdimensjoner og variasjon etter sjanger, alder og land.",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12181142/",
+      "checked_at": "2026-08-08"
+    },
+    {
+      "source_id": "prod_src_musifeast17_osf_repository",
+      "bibliographic_identity": {
+        "creators": [
+          "Hazel Aileen van der Walle",
+          "Wei Wu",
+          "Elizabeth Hellmuth Margulis",
+          "Kelly Jakubowski"
+        ],
+        "year": 2025,
+        "title": "MUSIFEAST-17 open stimulus and normative-data repository",
+        "publication": "OSF project 5ebz2 / GitHub HazelvdW/MUSIFEAST-17"
+      },
+      "identifiers": {
+        "url": "https://osf.io/5ebz2/"
+      },
+      "registration_reason": "Versjonert prosjekt inneholder metadata, rå/normerte data, stimulusbeskrivelse og 356 identifiserte klipp.",
+      "full_text_status": "reviewed_open_dataset",
+      "full_text_access": "https://osf.io/5ebz2/",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_publisher_fulltext",
+      "full_text_access": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12181142/",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Methods: stimulus selection, participants and measures",
+          "section": "356 clips, 17 genres and 701 UK/US adults",
+          "supports": "The paper documents 30-second instrumental excerpts, balanced adult age bands and familiarity, enjoyment, emotion and thought ratings."
+        },
+        {
+          "pages": "Results and Discussion; genre, country and age analyses",
+          "section": "Normative variation and use limits",
+          "supports": "The paper reports broad rating coverage and group variation while limiting ecological claims to UK/US listeners and the sampled repertoire."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker kilden gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og forskningsobjekter redistribueres ikke."
+    },
+    {
+      "source_id": "prod_src_musifeast17_osf_repository",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_open_dataset",
+      "full_text_access": "https://osf.io/5ebz2/",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Repository data/ and Raw_data_description.pdf",
+          "section": "Raw and normative variables",
+          "supports": "The repository identifies participant-level data and clip-level means/SDs for familiarity, valence, arousal, enjoyment and other dimensions."
+        },
+        {
+          "pages": "Repository stimuli/ metadata and collection-method files",
+          "section": "Stimulus identity and selection chain",
+          "supports": "The repository links 356 clip identifiers to genre/familiarity metadata and collection documentation."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker kilden gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og forskningsobjekter redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_musifeast17_stimuli_norms_v1",
+      "object_type": "eksperimentdata",
+      "title": "MUSIFEAST-17: 356 klipp med familiaritets-, valens-, arousal- og minnerelaterte normdata",
+      "persistent_url": "https://osf.io/5ebz2/",
+      "provenance_source_ids": [
+        "prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025",
+        "prod_src_musifeast17_osf_repository"
+      ],
+      "version_and_identity": {
+        "dataset": "MUSIFEAST-17",
+        "clips": 356,
+        "duration_seconds": 30,
+        "genres": 17,
+        "participants": 701,
+        "regions": [
+          "UK",
+          "US"
+        ],
+        "ages": "18–75"
+      },
+      "locators": [
+        {
+          "locator": "OSF data/MUSIFEAST17_all and Raw_data_description",
+          "role": "Identifies raw/normative rating columns and participant/clip linkage."
+        },
+        {
+          "locator": "OSF stimuli metadata and stimulus_collection_method",
+          "role": "Identifies clip IDs, genre/familiarity strata and selection chain."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent OSF identity and two data/stimulus locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "Repository metadata/code is openly licensed, while commercially released audio requires separate rights review.",
+        "license_source": "https://osf.io/5ebz2/",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_perception_musifeast_familiarity_emotion_norms",
+      "statement": "MUSIFEAST-17 kobler 356 identifiserte instrumentale 30-sekundersklipp fra 17 sjangre til normdata fra 701 britiske og amerikanske deltakere mellom 18 og 75 år om blant annet familiaritet, nytelse, uttrykt valens/arousal og framkalte tanketyper; variasjon etter sjanger, land og alder gjør datasettet egnet til kontrollert stimulusvalg, men ratingene viser ikke at samme musikk induserer samme følelse, minne eller forventning hos andre lyttere.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025",
+        "prod_src_musifeast17_osf_repository"
+      ],
+      "locators": [
+        "van der Walle et al. 2025, Methods: 356 instrumental 30-second clips across 17 genres, 701 UK/US participants aged 18–75 and familiarity/enjoyment/valence/arousal/thought measures",
+        "MUSIFEAST-17 OSF 5ebz2, data/ and stimuli/ documentation: participant/raw and clip-level norms plus versioned stimulus metadata"
+      ],
+      "method_protocol_ids": [
+        "eksperimentell_persepsjonsmetode"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_musifeast17_stimuli_norms_v1",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "MUSIFEAST-17: 356 klipp med familiaritets-, valens-, arousal- og minnerelaterte normdata"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "History Go har ikke lastet ned eller lyttet gjennom alle kommersielle klipp, reanalysert rådata eller kontrollert hver enkelt lydrettighet; artikkel og OSF-struktur er brukt som dokumentert objektkjede.",
+      "prohibited_inference": "Caset kan ikke slå sammen uttrykt og opplevd emosjon, gjøre familiaritet til hukommelsesmekanisme, hevde kausal effekt fra normratinger eller generalisere UK/US-svar til alle kulturer og situasjoner.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musifeast_familiarity_emotion_scope",
+      "statement": "Normene gjelder identifiserte klipp, oppgitte spørsmål og et aldersbalansert UK/US-utvalg.",
+      "source_ids": [
+        "prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025",
+        "prod_src_musifeast17_osf_repository"
+      ],
+      "locators": [
+        "van der Walle et al. 2025, Methods: 356 instrumental 30-second clips across 17 genres, 701 UK/US participants aged 18–75 and familiarity/enjoyment/valence/arousal/thought measures"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_musifeast_familiarity_emotion_norms"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musifeast_familiarity_emotion_measure",
+      "statement": "Familiaritet, nytelse, valens, arousal og minnerelaterte tanketyper er separate selvrapportmål og må ikke slås sammen.",
+      "source_ids": [
+        "prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025",
+        "prod_src_musifeast17_osf_repository"
+      ],
+      "locators": [
+        "MUSIFEAST-17 OSF 5ebz2, data/ and stimuli/ documentation: participant/raw and clip-level norms plus versioned stimulus metadata"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_musifeast_familiarity_emotion_norms"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, måling og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musifeast_familiarity_emotion_generalization",
+      "statement": "Et bredt sjangerutvalg øker variasjonen, men etablerer ikke universell emosjon, minne eller forventningsmekanisme.",
+      "source_ids": [
+        "prod_src_vanderwalle_wu_margulis_jakubowski_musifeast_2025",
+        "prod_src_musifeast17_osf_repository"
+      ],
+      "locators": [
+        "MUSIFEAST-17 OSF 5ebz2, data/ and stimuli/ documentation: participant/raw and clip-level norms plus versioned stimulus metadata"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_perception_musifeast_familiarity_emotion_norms"
+      ],
+      "release_effect": "Stopper universell, klinisk eller kulturelt uavgrenset generalisering."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "eksperimentdata"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_musifeast17_stimuli_norms_v1",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_perception_musifeast_familiarity_emotion_norms"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må navngi klipp, ratingdimensjon, utvalg og kontekst og skille uttrykt emosjon, opplevd emosjon, familiaritet og minner."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 2,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 2,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "History Go har ikke lastet ned eller lyttet gjennom alle kommersielle klipp, reanalysert rådata eller kontrollert hver enkelt lydrettighet; artikkel og OSF-struktur er brukt som dokumentert objektkjede."
+  }
+}
