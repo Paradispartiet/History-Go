@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.27.0",
+  "version": "2.28.0",
   "updatedAt": "2026-08-08",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -11,6 +11,7 @@
       "politikk": "politikk",
       "historie": "historie",
       "by": "by",
+      "kunst": "kunst",
       "natur": "natur",
       "naeringsliv": "naeringsliv",
       "vitenskap": "vitenskap"
@@ -25,6 +26,17 @@
         "schemaFamily": "by_compatibility",
         "sourceOfTruth": true,
         "note": "Fagkartets tolv kategorier eier renderer-fagområdene. Pensummodulene og curriculum-arkitekturen eier progresjon, men skal ikke kopieres som parallelle renderer-fagområder."
+      },
+      "chapters": []
+    },
+    "kunst": {
+      "title": "Kunst & kultur",
+      "description": "Et verk-, sted- og kildebasert fagverk om kunstfeltets institusjoner, kunstnerisk produksjon, materialer og teknikker, estetisk språk, kanon og legitimitet, publikum og offentlighet samt kunsthistoriske brudd og transformasjoner. Faget undersøker hvordan kunst blir laget, vist, samlet, tolket og omstridt gjennom konkrete verk, arbeidsprosesser, samlinger og dokumenterte institusjonelle rammer.",
+      "canonicalModel": {
+        "manifest": "data/fag/fag_manifest.json",
+        "schemaFamily": "standard_canonical",
+        "sourceOfTruth": true,
+        "note": "Kunstfagets seks canonicale fagområder eier rendererstrukturen. Alle 21 aktive emner er integrert i disse områdene og i de eksisterende fagkart-hookene. Ingen kapitler registreres før fulltekst, claims og inspectable kilder er produsert."
       },
       "chapters": []
     },

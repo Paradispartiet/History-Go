@@ -9,9 +9,9 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "2.27.0",
+    "version": "2.28.0",
     "updated_at": "2026-08-08",
-    "content_sha256": "e071aecb642e15c14ab985c22748f04427958185b03c0cdf4b6de40195e6e276"
+    "content_sha256": "74d99996ff22fd19c9b8a27ac0745fb320b54fb834586fe50ac1ef0f29b1b4fd"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "832b71fc72759893c7e4fa97de93cedba27a06396236b1ae7b907b3f141e7235"
+    "content_sha256": "cfaf28679ca46387a0cb0ec3b8e9b70527068cff5c801df030367d2f5566f5a8"
   },
   "summary": {
     "subject_count": 18,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 6,
     "chapter_count": 75,
     "module_file_count": 192,
-    "package_file_count": 197,
+    "package_file_count": 198,
     "chapter_referenced_file_count": 333,
-    "referenced_file_count": 489,
+    "referenced_file_count": 490,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1119,7 +1119,7 @@
       ]
     },
     "kunst": {
-      "title": "kunst",
+      "title": "Kunst & kultur",
       "kind": "subject",
       "parent_subject_id": null,
       "schema_family": "standard_canonical",
@@ -1142,6 +1142,7 @@
         "topicFoundations"
       ],
       "present_manifest_fields": [
+        "emneMappings",
         "emner",
         "fagkart",
         "methods",
@@ -1151,10 +1152,22 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 7,
+      "package_file_count": 8,
       "required_package_file_count": 4,
-      "optional_package_file_count": 3,
+      "optional_package_file_count": 4,
       "package_files": [
+        {
+          "path": "data/fag/kunst/emnemapping_kunst_canonical_v4_5.json",
+          "required": false,
+          "fields": [
+            "emneMappings"
+          ],
+          "key_paths": [
+            "emneMappings"
+          ],
+          "exists": true,
+          "content_sha256": "2e5d4f7ea0f355ce97532d7622e6c2b8de97d4634b4af659e34e84bf6c30abbe"
+        },
         {
           "path": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
           "required": true,
@@ -1177,7 +1190,7 @@
             "fagkart"
           ],
           "exists": true,
-          "content_sha256": "7426a1bf7642d8a55cbc214c4bd64693bcde0a263b2b42927205247970f502c1"
+          "content_sha256": "fb48d79431441aca14708ec59986b600d608c482f674d50d6572f9a754153553"
         },
         {
           "path": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
@@ -1189,7 +1202,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "a715f90e1c9306c4c0c5813075e7ffb9d2e4f2400191c98ac7557234ea0473fc"
+          "content_sha256": "755444672ef553031adad24bc8ad570ec311f64b01f8298eb29fb5fb89950c56"
         },
         {
           "path": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
@@ -1240,20 +1253,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "cba8fdb754df3a927791a765a0cca57db1f1918e040f75846dd4838c209d99c9",
+      "package_content_sha256": "7508fbcc72de7396b7d19efaeb03802a650e580af4678f757db3bdee82683eda",
       "chapter_count": 0,
       "module_file_count": 0,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 0,
       "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 7,
+      "referenced_file_count": 8,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "504a4cb3dd92bc181ce4041d3581d5041e27001d701a16b25ae6b5d3d17789ba",
-      "content_sha256": "cba8fdb754df3a927791a765a0cca57db1f1918e040f75846dd4838c209d99c9",
+      "structure_sha256": "cb9626aa41c12696d209c7a2ad88dfee476bb6d033fda768617dd5bf31a35fe6",
+      "content_sha256": "7508fbcc72de7396b7d19efaeb03802a650e580af4678f757db3bdee82683eda",
       "chapters": []
     },
     "litteratur": {
@@ -4020,5 +4033,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "44c58f9db327fe0a943292ace39c7c37fb09a224f444ad336ee9fb8ea7b4cd79"
+  "release_sha256": "195b64df262ddc8ad60536cb66f6246ba596fa1ba5269d5fa7483e464e8d4845"
 }
