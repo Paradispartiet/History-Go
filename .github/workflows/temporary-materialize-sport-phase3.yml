@@ -32,6 +32,18 @@ jobs:
           NODE
       - name: Materialize and validate Sport
         run: node tools/materialize-sport-phase3-once.mjs
+      - name: Diagnose Sport audit stack after materialization failure
+        if: failure()
+        run: |
+          node --input-type=module - <<'NODE'
+          import { auditSportPhase3 } from './scripts/audit-fagverk-sport-phase3.mjs';
+          try {
+            auditSportPhase3({ writeReport: false, checkReport: false });
+          } catch (error) {
+            console.error(error.stack || error);
+            process.exitCode = 1;
+          }
+          NODE
       - name: Remove one-shot materializer
         run: |
           rm tools/materialize-sport-phase3-once.mjs
