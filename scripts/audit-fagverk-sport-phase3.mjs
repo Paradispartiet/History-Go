@@ -28,6 +28,10 @@ const DOMAIN_ORDER = [
   'supportere_publikum_kultur',
   'inkludering_helse_lek_samfunn'
 ];
+const LEGACY_UMBRELLA_EMNE_IDS = [
+  'em_sport_idrettsgeografi',
+  'em_sport_kropp_konkurranse'
+];
 const abs = (p) => path.join(ROOT, p);
 const read = (p) => fs.readFileSync(abs(p), 'utf8');
 const json = (p) => JSON.parse(read(p));
@@ -49,6 +53,12 @@ function loadSource(CORE, manifestEntry) {
     source[field === 'emner' ? 'emners' : field] = json(relativePath);
   }
   return source;
+}
+
+function rawEmneRows(source) {
+  if (Array.isArray(source.emners)) return source.emners;
+  if (Array.isArray(source.emners?.emner)) return source.emners.emner;
+  return [];
 }
 
 function assertExactCoverage(label, expectedRows, ...idSets) {
@@ -107,6 +117,18 @@ export function auditSportPhase3({ writeReport = false, checkReport = true } = {
   assert(manifestEntry?.knowledgePolicy && manifestEntry?.knowledgeUnitSchema && manifestEntry?.knowledgeArchitecture, 'Sport må bevare Knowledge-kontraktene');
 
   const source = loadSource(CORE, manifestEntry);
+  const allSourceEmners = rawEmneRows(source);
+  const pensumIds = new Set(source.pensum.domains.flatMap((d) => d.emne_ids || []));
+  assert(pensumIds.size === 116, 'Sport-pensumet skal eie nøyaktig 116 aktive emner');
+  const canonicalEmners = allSourceEmners.filter((row) => pensumIds.has(row.emne_id));
+  const legacyUmbrellaIds = allSourceEmners
+    .filter((row) => !pensumIds.has(row.emne_id))
+    .map((row) => row.emne_id)
+    .sort();
+  assert(canonicalEmners.length === 116, 'Sport-emnefilen mangler aktive pensumemner');
+  assert(isDeepStrictEqual(legacyUmbrellaIds, [...LEGACY_UMBRELLA_EMNE_IDS].sort()), 'Sport-emnefilen har uventede rader utenfor canonical pensum');
+  source.emners = canonicalEmners;
+
   const model = CORE.normalizeSubject({
     subjectId: 'sport',
     categoryLabel: categories.labels.sport,
@@ -135,11 +157,10 @@ export function auditSportPhase3({ writeReport = false, checkReport = true } = {
   assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Sport-kapitler finnes');
   assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Sport-emne mangler løst metode-ID');
 
-  const pensumIds = new Set(source.pensum.domains.flatMap((d) => d.emne_ids || []));
   const hooks = source.fagkart.categories.flatMap((d) => d.topic_hooks || []);
   const hookIds = new Set(hooks.flatMap((h) => h.emne_ids || []));
   const mappingIds = new Set(explicitMappings.map((row) => row.emne_id));
-  assertExactCoverage('Sport', source.emners.emner, ['pensum', pensumIds], ['fagkart', hookIds], ['mappingregister', mappingIds]);
+  assertExactCoverage('Sport', canonicalEmners, ['pensum', pensumIds], ['fagkart', hookIds], ['mappingregister', mappingIds]);
 
   const methodIds = new Set(source.methods.methods.map((method) => method.method_id));
   assert(methodIds.size === 109, 'Sport har feil antall unike metode-ID-er');
@@ -184,7 +205,8 @@ export function auditSportPhase3({ writeReport = false, checkReport = true } = {
       mappingCount: model.summary.mappingCount,
       hookCount: model.summary.hookCount,
       registeredChapterCount: model.chapters.length,
-      explicitMappingRowCount: explicitMappings.length
+      explicitMappingRowCount: explicitMappings.length,
+      legacyUmbrellaEmneCount: legacyUmbrellaIds.length
     },
     canonicalDomainOrder: DOMAIN_ORDER,
     domainEmneCounts: Object.fromEntries(source.pensum.domains.map((d) => [d.domain_id, d.emne_ids.length])),
@@ -192,6 +214,7 @@ export function auditSportPhase3({ writeReport = false, checkReport = true } = {
       allCanonicalEmnersInPensum: true,
       allCanonicalEmnersInFagkart: true,
       allCanonicalEmnersInMappingRegistry: true,
+      legacyUmbrellaEmnersExcludedFromActiveSet: true,
       allMethodReferencesResolved: true,
       generatorCountsSynchronized: true,
       knowledgeContractsPreserved: true,
