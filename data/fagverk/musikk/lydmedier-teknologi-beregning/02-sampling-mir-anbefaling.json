@@ -1,0 +1,134 @@
+{
+  "schema": "history_go_fagverk_chapter_module_v1",
+  "version": "1.0.0",
+  "subject_id": "musikk",
+  "chapter_id": "lydmedier-teknologi-beregning",
+  "module_id": "02-sampling-mir-anbefaling",
+  "title": "Sampling, MIR og anbefaling",
+  "role": "fordypning",
+  "sections": [
+    {
+      "id": "sample_fra_lyd_til_rettslig_objekt",
+      "title": "Samplet fra lyd til rettslig objekt",
+      "paragraphs": [
+        "Pelham-caset låser både kilde og mål: et omtrent to sekunder langt rytmeutdrag fra Metall auf Metall skal ha blitt lagt i loop i Nur mir. Denne identiteten er nødvendig før rettslige kategorier diskuteres.",
+        "CJEU-kommunikasjonen skiller gjenkjennelig uttrekk, modifisert bruk som ikke kan gjenkjennes med øret, og sitat som går i dialog med et identifiserbart verk. Lengde alene er derfor ikke en komplett regel.",
+        "Pressemeldingen er samtidig uttrykkelig uoffisiell og ikke-bindende. En faglig framstilling kan forklare saksobjektet og domstolens oppgitte skillelinjer, men må stoppe før individuell juridisk rådgivning."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_technology_pelham_sample_case_boundary"
+        ],
+        [
+          "claim_musikk_technology_pelham_sample_case_boundary"
+        ],
+        [
+          "claim_musikk_technology_pelham_sample_case_boundary"
+        ]
+      ],
+      "concepts": [
+        "sample",
+        "fonogram",
+        "gjenkjennelighet",
+        "jurisdiksjon"
+      ]
+    },
+    {
+      "id": "fra_lyd_til_kromagram",
+      "title": "Fra lyd til kromagram",
+      "paragraphs": [
+        "FMP-notatboken begynner ikke med en ferdig feature. Lydfilen går gjennom STFT med N=4096 og hop H=512, videre til loggfrekvens og til slutt til tolv kromaklasser ved summering modulo 12.",
+        "Burgmüller-utdraget viser gevinsten: akkorder og fraser blir synlige som tidsmønstre. Samtidig sprer overtoner og inharmonisitet energi til bånd som ikke er identiske med notens grunntone.",
+        "Kromagrammet er derfor en operasjonalisering med bestemte tap. Oktavhøyde foldes bort, og stemming, vindu, hop, kompresjon og glatting kan endre matrisen og enhver senere evaluering."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_technology_fmp_chromagram_representation_chain"
+        ],
+        [
+          "claim_musikk_technology_fmp_chromagram_representation_chain"
+        ],
+        [
+          "claim_musikk_technology_fmp_chromagram_representation_chain"
+        ]
+      ],
+      "concepts": [
+        "STFT",
+        "kromagram",
+        "feature extraction",
+        "representasjonstap"
+      ]
+    },
+    {
+      "id": "fairness_som_eksperimentkjede",
+      "title": "Fairness som eksperimentkjede",
+      "paragraphs": [
+        "LFM-2b-DemoBias-caset binder anbefalingsresultater til navngitte brukergrupper og flere mål: Recall, NDCG, diversity og coverage. Forskjeller må rapporteres per algoritme og metrikk, ikke som én løs merkelapp om skjevhet.",
+        "Companion-koden gjør designet mer inspiserbart med datakolonner, standard-, opp- og nedsampling, fem folds og separate rå og aggregerte resultater. Reproduserbarhet er dermed en konkret kjede, ikke bare en lenke til GitHub.",
+        "Den binære kjønnsvariabelen og Last.fm-utvalget er samtidig harde grenser. Små fairnessforbedringer ved resampling er ikke fravær av konflikt, og ett gruppemål kan ikke representere alle lyttere, artister og plattforminteresser."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain"
+        ],
+        [
+          "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain"
+        ],
+        [
+          "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain"
+        ]
+      ],
+      "concepts": [
+        "LFM-2b",
+        "NDCG",
+        "resampling",
+        "fairnessgap"
+      ]
+    }
+  ],
+  "workedExamples": [
+    {
+      "id": "mir_fairness_reproduksjonskort",
+      "title": "Skriv et reproduksjonskort",
+      "steps": [
+        "Oppgi datasett eller lydobjekt og versjon.",
+        "Oppgi transformasjon, parametre, fold og mål.",
+        "Oppgi gruppe- eller representasjonsgrense og hva som ikke er kjørt."
+      ],
+      "claimIds": [
+        "claim_musikk_technology_fmp_chromagram_representation_chain",
+        "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain"
+      ]
+    }
+  ],
+  "commonMisconceptions": [
+    {
+      "misconception": "Et to sekunder langt sample er automatisk fritt eller forbudt.",
+      "correction": "Pelham-caset viser at objekt, bearbeiding, gjenkjennelighet, unntak og jurisdiksjon må skilles.",
+      "claimIds": [
+        "claim_musikk_technology_pelham_sample_case_boundary"
+      ]
+    },
+    {
+      "misconception": "Et kromagram er en objektiv utskrift av alle tonene.",
+      "correction": "Det er en parameterbundet, oktavfoldet representasjon påvirket av spektrum, stemming og prosessering.",
+      "claimIds": [
+        "claim_musikk_technology_fmp_chromagram_representation_chain"
+      ]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "id": "revider_benchmarkclaim",
+      "title": "Revider et benchmarkclaim",
+      "prompt": "Omskriv «modellen forstår harmonien og er rettferdig» til to separate claims med datasett, parametre, mål og grenser.",
+      "requiredMethodIds": [
+        "beregningsbasert_mir"
+      ],
+      "claimIds": [
+        "claim_musikk_technology_fmp_chromagram_representation_chain",
+        "claim_musikk_technology_lfm2b_gender_fairness_reproducibility_chain"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-sound-media-radio_plate_streaming_plattform-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "lydmedier_teknologi_beregning",
+  "emne_id": "em_musikk_vit_radio_plate_streaming_plattform",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/lydmedier_teknologi_beregning/radio_plate_streaming_plattform.json",
+  "research_question": "Hvordan blir musikk synlig på en strømmeplattform gjennom kombinasjonen av utvalg, rangering, regler, redaksjon og modellprediksjon?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_spotify_home_personalization_part1_2021",
+      "bibliographic_identity": {
+        "creators": [
+          "Annie Edmundson"
+        ],
+        "year": 2021,
+        "title": "The Rise (and Lessons Learned) of ML Models to Personalize Content on Home (Part I)",
+        "publication": "Spotify Engineering"
+      },
+      "identifiers": {
+        "url": "https://engineering.atspotify.com/2021/11/the-rise-and-lessons-learned-of-ml-models-to-personalize-content-on-home-part-i"
+      },
+      "registration_reason": "First-party full text that names the Home recommendation stages, curation modes, production models and a documented training-serving data mismatch.",
+      "full_text_status": "reviewed_institutional_fulltext",
+      "full_text_access": "https://engineering.atspotify.com/2021/11/the-rise-and-lessons-learned-of-ml-models-to-personalize-content-on-home-part-i",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_spotify_home_personalization_part1_2021",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_institutional_fulltext",
+      "full_text_access": "https://engineering.atspotify.com/2021/11/the-rise-and-lessons-learned-of-ml-models-to-personalize-content-on-home-part-i",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "HTML paragraphs 4–19, “Home @ Spotify”",
+          "section": "Selection and ranking architecture",
+          "supports": "Spotify describes candidate generation followed by ranking and distinguishes heuristics, manual editorial curation and trained-model predictions."
+        },
+        {
+          "pages": "HTML paragraphs 32–49, “How we unified training and serving data”",
+          "section": "Training-serving mismatch and validation",
+          "supports": "Spotify reports a four-month feature-transformation mismatch and the subsequent shared transformation and data-validation responses."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker Spotify Engineering gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og tilknyttede objekter redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_spotify_home_declared_curation_pipeline_2021",
+      "object_type": "institusjonsdokument",
+      "title": "Spotify Engineerings dokumenterte Home-kurerings- og valideringskjede",
+      "persistent_url": "https://engineering.atspotify.com/2021/11/the-rise-and-lessons-learned-of-ml-models-to-personalize-content-on-home-part-i",
+      "provenance_source_ids": [
+        "prod_src_spotify_home_personalization_part1_2021"
+      ],
+      "version_and_identity": {
+        "platform": "Spotify Home",
+        "date": "2021-11-15",
+        "authorRole": "Spotify engineer",
+        "stages": [
+          "candidate generation",
+          "ranking"
+        ],
+        "curationModes": [
+          "heuristics and rules",
+          "manual editorial curation",
+          "trained-model predictions"
+        ]
+      },
+      "locators": [
+        {
+          "locator": "Spotify Engineering 2021, “Home @ Spotify”, paragraphs 4–19",
+          "role": "Declared two-stage recommendation and three curation modes."
+        },
+        {
+          "locator": "Spotify Engineering 2021, “How we unified training and serving data”, paragraphs 37–49",
+          "role": "Declared feature mismatch, shared transformation path and daily validation."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent identity, version and at least two direct-object locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "Spotify site content; no redistribution license asserted.",
+        "license_source": "https://engineering.atspotify.com/2021/11/the-rise-and-lessons-learned-of-ml-models-to-personalize-content-on-home-part-i",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_technology_spotify_home_hybrid_curation_pipeline",
+      "statement": "Spotify Engineerings egen Home-beskrivelse deler anbefalingsløpet i kandidatgenerering og rangering og sier at hyller kan bygges av regler, redaktører eller trente modeller; samme dokument beskriver også en fire måneder lang forskjell mellom treningens og serveringens feature-transformasjon før felles kodevei og daglig datavalidering ble innført, noe som viser at plattformkuratering er en styrt produksjonskjede, men ikke hva en bestemt bruker faktisk så eller hvilken markedsvirkning kjeden hadde.",
+      "claim_type_id": "institutional_policy_claim",
+      "source_ids": [
+        "prod_src_spotify_home_personalization_part1_2021"
+      ],
+      "locators": [
+        "Spotify Engineering 2021, HTML paragraphs 4–19: candidate generation, ranking and heuristic/editorial/model curation",
+        "Spotify Engineering 2021, HTML paragraphs 37–49: four-month training-serving transformation mismatch, common code path and daily validation"
+      ],
+      "method_protocol_ids": [
+        "institusjons_policyanalyse",
+        "bransje_okonomisk_analyse"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_spotify_home_declared_curation_pipeline_2021",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "Spotify Engineerings dokumenterte Home-kurerings- og valideringskjede"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Kilden er en institusjonell selvbeskrivelse fra Spotify og gir ikke innsyn i full kode, treningsdata, terskler, eksperimentresultater eller senere systemversjoner.",
+      "prohibited_inference": "Arkitekturbeskrivelsen kan ikke brukes som bevis for nøytralitet, individuell eksponering, algoritmisk effekt, markedsmakt eller dagens komplette Spotify-system.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_technology_spotify_home_hybrid_curation_pipeline_scope",
+      "statement": "Caset gjelder Spotifys publiserte Home-arkitektur i november 2021, ikke hele plattformen eller senere versjoner.",
+      "source_ids": [
+        "prod_src_spotify_home_personalization_part1_2021"
+      ],
+      "locators": [
+        "Spotify Engineering 2021, HTML paragraphs 4–19: candidate generation, ranking and heuristic/editorial/model curation"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_spotify_home_hybrid_curation_pipeline"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_spotify_home_hybrid_curation_pipeline_institution",
+      "statement": "Førstepartsdokumentet viser hva Spotify oppgir om systemet, ikke en uavhengig effektmåling.",
+      "source_ids": [
+        "prod_src_spotify_home_personalization_part1_2021"
+      ],
+      "locators": [
+        "Spotify Engineering 2021, HTML paragraphs 4–19: candidate generation, ranking and heuristic/editorial/model curation"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_spotify_home_hybrid_curation_pipeline"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_spotify_home_hybrid_curation_pipeline_rights",
+      "statement": "History Go lagrer bare parafrase, publiseringsidentitet og eksterne seksjonslokatorer.",
+      "source_ids": [
+        "prod_src_spotify_home_personalization_part1_2021"
+      ],
+      "locators": [
+        "Spotify Engineering 2021, HTML paragraphs 4–19: candidate generation, ranking and heuristic/editorial/model curation"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_spotify_home_hybrid_curation_pipeline"
+      ],
+      "release_effect": "Bevarer external-link-and-metadata-only og dokumenterer reproduksjonsstatus."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "institusjonsdokument"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_spotify_home_declared_curation_pipeline_2021",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_technology_spotify_home_hybrid_curation_pipeline"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må skille erklært arkitektur fra observert brukerutfall og navngi dokumentets dato og institusjonelle posisjon."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Kilden er en institusjonell selvbeskrivelse fra Spotify og gir ikke innsyn i full kode, treningsdata, terskler, eksperimentresultater eller senere systemversjoner."
+  }
+}

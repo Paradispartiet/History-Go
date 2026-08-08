@@ -1,0 +1,211 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-sound-media-mir_features_datasett_evaluering-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "lydmedier_teknologi_beregning",
+  "emne_id": "em_musikk_vit_mir_features_datasett_evaluering",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/lydmedier_teknologi_beregning/mir_features_datasett_evaluering.json",
+  "research_question": "Hva bevares og hva fjernes når en lydfil representeres som et tolvdimensjonalt kromagram?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_zalkow_muller_fmp_chromagram_notebook",
+      "bibliographic_identity": {
+        "creators": [
+          "Frank Zalkow",
+          "Meinard Müller"
+        ],
+        "year": 2021,
+        "title": "Log-Frequency Spectrogram and Chromagram",
+        "publication": "FMP Notebooks"
+      },
+      "identifiers": {
+        "url": "https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html"
+      },
+      "registration_reason": "Executable scholarly notebook with equations, code, audio example, parameter values, visualization and explicit representation limits.",
+      "full_text_status": "reviewed_authoritative_notebook_fulltext",
+      "full_text_access": "https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_zalkow_muller_fmp_chromagram_notebook",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_authoritative_notebook_fulltext",
+      "full_text_access": "https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "HTML lines 240–289, “Chroma Features” and “Example: Burgmüller”",
+          "section": "Definition, aggregation and audible example",
+          "supports": "The notebook defines twelve chroma classes, sums pitch coefficients modulo 12 and shows harmonic spill and inharmonicity in a named score/audio example."
+        },
+        {
+          "pages": "HTML lines 328–374, “libfmp Implementation” and “Further Notes”",
+          "section": "Executable parameters and variants",
+          "supports": "The notebook specifies the audio path, STFT N=4096, hop H=512, code calls and cautions about tuning, compression, smoothing and alternative implementations."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker International Audio Laboratories Erlangen / FMP gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og tilknyttede objekter redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_fmp_burgmuller_chromagram_notebook",
+      "object_type": "datasett_og_kode",
+      "title": "FMP-kromagramnotatbok med Burgmüller-lyd, kode og parameterkjede",
+      "persistent_url": "https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html",
+      "provenance_source_ids": [
+        "prod_src_zalkow_muller_fmp_chromagram_notebook"
+      ],
+      "version_and_identity": {
+        "notebook": "C3S1_SpecLogFreq-Chromagram",
+        "audio": "FMP_C3_F05.wav, Burgmüller Op. 100 No. 2 excerpt",
+        "parameters": {
+          "n_fft": 4096,
+          "hop": 512,
+          "chromaBins": 12
+        },
+        "representations": [
+          "STFT",
+          "log-frequency spectrogram",
+          "chromagram"
+        ]
+      },
+      "locators": [
+        {
+          "locator": "FMP notebook, code cell [5] and lines 240–289",
+          "role": "Modulo-12 chroma aggregation and Burgmüller example."
+        },
+        {
+          "locator": "FMP notebook, code cell [7] and lines 328–355",
+          "role": "Audio path, N=4096, H=512 and reproducible libfmp chain."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent identity, version and at least two direct-object locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "FMP notebook and linked audio/code have component-specific terms; no redistribution is required here.",
+        "license_source": "https://www.audiolabs-erlangen.de/resources/MIR/FMP/C3/C3S1_SpecLogFreq-Chromagram.html",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_technology_fmp_chromagram_representation_chain",
+      "statement": "FMP-notatboken gjør kromagrammet reproduserbart som en eksplisitt kjede fra lyd via STFT med N=4096 og hop H=512 til loggfrekvens og summering av tonehøyder modulo 12; Burgmüller-eksemplet viser at akkord- og frasefigurer blir synlige, men også at overtoner, inharmonisitet, stemming og oktavfolding fordeler energi til kromabånd som ikke er identiske med noterte grunntoner, så representasjonen er et parameterbundet trekk og ikke selve musikken eller en nøytral grunnsannhet.",
+      "claim_type_id": "computational_measurement",
+      "source_ids": [
+        "prod_src_zalkow_muller_fmp_chromagram_notebook"
+      ],
+      "locators": [
+        "Zalkow & Müller, FMP notebook, HTML lines 240–289 and code cell [5]: twelve chroma classes, modulo-12 aggregation, harmonic spill and Burgmüller example",
+        "Zalkow & Müller, FMP notebook, HTML lines 328–374 and code cells [7]–[8]: audio path, N=4096, H=512, libfmp pipeline and variant warnings"
+      ],
+      "method_protocol_ids": [
+        "beregningsbasert_mir",
+        "kritisk_lytteanalyse"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_fmp_burgmuller_chromagram_notebook",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "FMP-kromagramnotatbok med Burgmüller-lyd, kode og parameterkjede"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "History Go har kontrollert notatbokens kode- og parameterbeskrivelse, men har ikke kjørt miljøet eller verifisert numeriske matriser og figurer byte for byte.",
+      "prohibited_inference": "Kromagrammet kan ikke brukes som komplett tonefasit, universell representasjon for andre stemminger, automatisk harmonisk analyse eller bevis på musikalsk mening uten videre validering.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_technology_fmp_chromagram_representation_chain_scope",
+      "statement": "Caset gjelder den navngitte FMP-notatboken, dens Burgmüller-utdrag og oppgitte parameterkjede.",
+      "source_ids": [
+        "prod_src_zalkow_muller_fmp_chromagram_notebook"
+      ],
+      "locators": [
+        "Zalkow & Müller, FMP notebook, HTML lines 240–289 and code cell [5]: twelve chroma classes, modulo-12 aggregation, harmonic spill and Burgmüller example"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_fmp_chromagram_representation_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_fmp_chromagram_representation_chain_representation",
+      "statement": "Tolvdimensjonal kromafolding fjerner oktavhøyde og påvirkes av overtoner, stemming, vindu, hop og videre prosessering.",
+      "source_ids": [
+        "prod_src_zalkow_muller_fmp_chromagram_notebook"
+      ],
+      "locators": [
+        "Zalkow & Müller, FMP notebook, HTML lines 240–289 and code cell [5]: twelve chroma classes, modulo-12 aggregation, harmonic spill and Burgmüller example"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_fmp_chromagram_representation_chain"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert objekt, metode, versjon og kontekst."
+    },
+    {
+      "boundary_id": "boundary_musikk_technology_fmp_chromagram_representation_chain_rights",
+      "statement": "History Go kjører eller redistribuerer ikke lyd, notebook eller figurer; bare metadata, parafrase og lokatorer lagres.",
+      "source_ids": [
+        "prod_src_zalkow_muller_fmp_chromagram_notebook"
+      ],
+      "locators": [
+        "Zalkow & Müller, FMP notebook, HTML lines 240–289 and code cell [5]: twelve chroma classes, modulo-12 aggregation, harmonic spill and Burgmüller example"
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_technology_fmp_chromagram_representation_chain"
+      ],
+      "release_effect": "Bevarer external-link-and-metadata-only og dokumenterer reproduksjonsstatus."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "datasett_og_kode"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_fmp_burgmuller_chromagram_notebook",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Object scope, uncertainty and prohibited inference are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_technology_fmp_chromagram_representation_chain"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må oppgi input, parametre, transformasjon og minst én representasjonsgrense."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "History Go har kontrollert notatbokens kode- og parameterbeskrivelse, men har ikke kjørt miljøet eller verifisert numeriske matriser og figurer byte for byte."
+  }
+}
