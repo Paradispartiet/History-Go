@@ -158,8 +158,6 @@ const inventory = readJson(PATHS.inventory);
 const inventoryEntry = list(inventory.subjects).find((item) => item.id === 'subkultur');
 if (!inventoryEntry) throw new Error('subject_inventory mangler subkultur');
 inventoryEntry.optionalManifestFields = [...new Set([...list(inventoryEntry.optionalManifestFields), 'runtimeManifest'])];
-inventory.version = '1.5.0';
-inventory.updatedAt = UPDATED_AT;
 expected(PATHS.inventory, inventory);
 
 const status = readJson(PATHS.status);
