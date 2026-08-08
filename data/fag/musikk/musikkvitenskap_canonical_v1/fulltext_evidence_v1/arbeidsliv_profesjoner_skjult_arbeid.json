@@ -1,0 +1,213 @@
+{
+  "schema": "history_go_musikk_fulltext_topic_evidence_v1",
+  "version": "1.0.0",
+  "revision": "musikk-fulltext-evidence-institutions-arbeidsliv_profesjoner_skjult_arbeid-v1-2026-08-08",
+  "status": "question_release_ready",
+  "subject_id": "musikk",
+  "domain_id": "institusjoner_okonomi_politikk_offentlighet",
+  "emne_id": "em_musikk_vit_arbeidsliv_profesjoner_skjult_arbeid",
+  "contract": "contract.json",
+  "upstream_dossier": "../source_dossiers_v1/institusjoner_okonomi_politikk_offentlighet/arbeidsliv_profesjoner_skjult_arbeid.json",
+  "research_question": "Hva kan Musicians' Census 2023 vise om roller, inntekt og synlighet blant respondentene, og hva forblir skjult uten kontrakts- og tidsbruksdata?",
+  "production_source_extensions": [
+    {
+      "source_id": "prod_src_musicians_census_financial_2023",
+      "bibliographic_identity": {
+        "creators": [
+          "Help Musicians",
+          "Musicians' Union",
+          "Walnut Unlimited"
+        ],
+        "year": 2023,
+        "title": "Musicians' Census 2023 — Financial Insight Report",
+        "publication": "Musicians' Census"
+      },
+      "identifiers": {
+        "url": "https://www.musicianscensus.co.uk/insight-reports"
+      },
+      "registration_reason": "Produksjonsspesifikk fulltekst som dokumenterer et avgrenset institusjonelt objekt, beslutnings- eller regelkjede, mål og eksplisitte inferensgrenser.",
+      "full_text_status": "reviewed_institutional_fulltext",
+      "full_text_access": "https://www.musicianscensus.co.uk/insight-reports",
+      "checked_at": "2026-08-08"
+    }
+  ],
+  "source_reviews": [
+    {
+      "source_id": "prod_src_musicians_census_financial_2023",
+      "source_registration": "production_extension",
+      "full_text_status": "reviewed_institutional_fulltext",
+      "full_text_access": "https://www.musicianscensus.co.uk/insight-reports",
+      "checked_at": "2026-08-08",
+      "locators": [
+        {
+          "pages": "Financial Insight Report, introduction and methodology; Help Musicians launch page, “Earnings”",
+          "section": "Sample and income measures",
+          "supports": "The sources identify 5,867 UK respondents, the self-report frame, average music income and the share below £14,000."
+        },
+        {
+          "pages": "Help Musicians launch page, “Portfolio careers”, “Career-restricting barriers” and “Resilience and agility”",
+          "section": "Roles, outside income and barriers",
+          "supports": "The release separates multiple music roles, outside income sources and cost-related career barriers."
+        }
+      ],
+      "rights_and_reuse_note": "History Go bruker Musicians' Census gjennom bibliografisk identitet, parafrase og presise lokatorer; fulltekst og underliggende objekter redistribueres ikke."
+    }
+  ],
+  "direct_objects": [
+    {
+      "object_id": "obj_musicians_census_2023_work_income_roles",
+      "object_type": "institusjonsdokument",
+      "title": "Musicians' Census 2023 — respondent-, rolle- og inntektskjeden",
+      "persistent_url": "https://www.musicianscensus.co.uk/insight-reports",
+      "provenance_source_ids": [
+        "prod_src_musicians_census_financial_2023"
+      ],
+      "version_and_identity": {
+        "institutions": [
+          "Help Musicians",
+          "Musicians' Union"
+        ],
+        "researchAgency": "Walnut Unlimited",
+        "geography": "United Kingdom",
+        "respondents": 5867,
+        "period": 2023,
+        "measures": [
+          "music income",
+          "portfolio roles",
+          "outside income",
+          "career barriers"
+        ]
+      },
+      "locators": [
+        {
+          "locator": "Financial Insight Report, introduction and earnings tables",
+          "role": "Defines respondent count, music-income bands and self-report frame."
+        },
+        {
+          "locator": "Help Musicians release, “Portfolio careers”, “Career-restricting barriers” and “Resilience and agility”",
+          "role": "Separates roles, outside income and reported barriers."
+        }
+      ],
+      "inspection_chain": {
+        "object_identity_status": "Persistent identity, version and at least two direct-object locators identified",
+        "history_go_independent_copy": false,
+        "history_go_independent_measurement": false
+      },
+      "rights": {
+        "license": "Institutional web publication; no redistribution license asserted for the full object.",
+        "license_source": "https://www.musicianscensus.co.uk/insight-reports",
+        "commercial_compatibility_with_history_go": "not_resolved",
+        "history_go_use_mode": "external_link_and_metadata_only",
+        "redistribution_allowed": false,
+        "modification_allowed": false,
+        "embedding_allowed": false,
+        "attribution_required": true,
+        "decision": "History Go lagrer bare bibliografisk identitet, parafrase, metode- og objektmetadata og presise eksterne lokatorer."
+      }
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "claim_musikk_institutions_census_portfolio_work_visibility",
+      "statement": "Musicians’ Census 2023 samlet selvrapport fra 5 867 britiske musikere og viser at en arbeidende musiker i gjennomsnitt hadde tre til fire roller i musikk, at 53 prosent oppga andre inntektskilder utenfor musikk, og at 43 prosent rapporterte under 14 000 pund i årlig musikkinntekt; tallene gjør porteføljearbeid og økonomiske vilkår synlige i respondentutvalget, men dokumenterer ikke alt ukreditert arbeid, faktisk tidsbruk eller hele den britiske musikerpopulasjonen.",
+      "claim_type_id": "institutional_policy_claim",
+      "source_ids": [
+        "prod_src_musicians_census_financial_2023"
+      ],
+      "locators": [
+        "Musicians' Census 2023 — Financial Insight Report: Financial Insight Report, introduction and methodology; Help Musicians launch page, “Earnings” — The sources identify 5,867 UK respondents, the self-report frame, average music income and the share below £14,000.",
+        "Musicians' Census 2023 — Financial Insight Report: Help Musicians launch page, “Portfolio careers”, “Career-restricting barriers” and “Resilience and agility” — The release separates multiple music roles, outside income sources and cost-related career barriers."
+      ],
+      "method_protocol_ids": [
+        "bransje_okonomisk_analyse"
+      ],
+      "object_scope": {
+        "direct_object_id": "obj_musicians_census_2023_work_income_roles",
+        "evidence_role": "bounded direct object for the topic research question",
+        "scope": "Musicians' Census 2023 — respondent-, rolle- og inntektskjeden"
+      },
+      "support_level": "claim_ready_editorial",
+      "uncertainty": "Undersøkelsen er selvrapportert og rekruttert gjennom digitale og formelle musikknettverk; History Go har ikke tilgang til mikrodatasettet eller uavhengig registerkobling.",
+      "prohibited_inference": "Caset kan ikke bruke respondentandeler som en full folketelling, gjøre krediterte roller til samlet arbeidsinnsats eller forklare inntektsforskjeller kausalt uten kontrakts-, tidsbruks- og sammenligningsdata.",
+      "reproducibility": {
+        "direct_object_status": "persistent URL and at least two locators verified",
+        "independent_reanalysis": false
+      }
+    }
+  ],
+  "boundary_records": [
+    {
+      "boundary_id": "boundary_musikk_institutions_census_portfolio_work_visibility_1",
+      "statement": "Resultatene gjelder de 5 867 respondentene i den britiske 2023-undersøkelsen.",
+      "source_ids": [
+        "prod_src_musicians_census_financial_2023"
+      ],
+      "locators": [
+        "The sources identify 5,867 UK respondents, the self-report frame, average music income and the share below £14,000."
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_institutions_census_portfolio_work_visibility"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert institusjon, objekt, periode og mål."
+    },
+    {
+      "boundary_id": "boundary_musikk_institutions_census_portfolio_work_visibility_2",
+      "statement": "Roller, inntektsandel og opplevde barrierer er forskjellige selvrapportmål.",
+      "source_ids": [
+        "prod_src_musicians_census_financial_2023"
+      ],
+      "locators": [
+        "The release separates multiple music roles, outside income sources and cost-related career barriers."
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_institutions_census_portfolio_work_visibility"
+      ],
+      "release_effect": "Begrenser slutningen til identifisert institusjon, objekt, periode og mål."
+    },
+    {
+      "boundary_id": "boundary_musikk_institutions_census_portfolio_work_visibility_3",
+      "statement": "Utvalget kan underdekke uformelt, ikke-digitalt, ulønnet og ukreditert arbeid.",
+      "source_ids": [
+        "prod_src_musicians_census_financial_2023"
+      ],
+      "locators": [
+        "The release separates multiple music roles, outside income sources and cost-related career barriers."
+      ],
+      "applies_to_claim_ids": [
+        "claim_musikk_institutions_census_portfolio_work_visibility"
+      ],
+      "release_effect": "Stopper kausal eller feltomfattende generalisering."
+    }
+  ],
+  "direct_object_gate": {
+    "required_before_question_release": true,
+    "accepted_object_types": [
+      "institusjonsdokument"
+    ],
+    "article_locators_satisfied": true,
+    "direct_music_object_locators_satisfied": true,
+    "minimum_direct_object_locator_count": 2,
+    "selected_object_id": "obj_musicians_census_2023_work_income_roles",
+    "resolved": [
+      "Persistent identity and at least two direct-object locators verified.",
+      "Institution, actors, version, denominator or population and observable outcome are explicit.",
+      "Rights resolved for external-link-and-metadata-only use."
+    ],
+    "unresolved": [],
+    "question_ready_claim_ids": [
+      "claim_musikk_institutions_census_portfolio_work_visibility"
+    ],
+    "question_release_ready": true,
+    "release_rule": "Spørsmål må oppgi respondentutvalg, selvrapport, mål og hvem eller hvilket arbeid som kan mangle."
+  },
+  "coverage": {
+    "fulltext_reviewed_source_count": 1,
+    "canonical_fulltext_reviewed_source_count": 0,
+    "production_extension_source_count": 1,
+    "direct_object_count": 1,
+    "claim_ready_editorial_count": 1,
+    "boundary_count": 3,
+    "question_release_ready_claim_count": 1,
+    "known_gap": "Undersøkelsen er selvrapportert og rekruttert gjennom digitale og formelle musikknettverk; History Go har ikke tilgang til mikrodatasettet eller uavhengig registerkobling."
+  }
+}

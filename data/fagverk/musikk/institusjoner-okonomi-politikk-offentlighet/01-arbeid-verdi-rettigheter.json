@@ -1,0 +1,140 @@
+{
+  "schema": "history_go_fagverk_musikk_chapter_module_v1",
+  "version": "1.0.0",
+  "subject_id": "musikk",
+  "chapter_id": "institusjoner-okonomi-politikk-offentlighet",
+  "module_id": "01-arbeid-verdi-rettigheter",
+  "title": "Arbeid, verdi og rettigheter",
+  "role": "grunnlag",
+  "sections": [
+    {
+      "id": "portefoljearbeid_og_synlighet",
+      "title": "Porteføljearbeid og synlighet",
+      "paragraphs": [
+        "Musicians’ Census begynner med et definert respondentutvalg og skiller roller i musikk fra inntektskilder utenfor musikk. Tre til fire roller er et gjennomsnitt i utvalget, ikke en komplett arbeidslogg.",
+        "Inntektsbånd, selvforsørgelse og karrierebarrierer er forskjellige mål. At 43 prosent rapporterte under 14 000 pund i musikkinntekt beskriver fordelingen blant respondentene, ikke timebetaling eller samlet husholdningsinntekt.",
+        "Skjult arbeid krever et fraværsregnskap: kreditering, kontrakt, faktisk tidsbruk, ulønnet arbeid og personer utenfor digitale bransjenettverk kan ikke rekonstrueres fra synlige roller alene."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_institutions_census_portfolio_work_visibility"
+        ],
+        [
+          "claim_musikk_institutions_census_portfolio_work_visibility"
+        ],
+        [
+          "claim_musikk_institutions_census_portfolio_work_visibility"
+        ]
+      ],
+      "concepts": [
+        "porteføljearbeid",
+        "selvrapport",
+        "kreditering",
+        "utvalgsbias"
+      ]
+    },
+    {
+      "id": "to_rettighetslag",
+      "title": "To rettighetslag og flere mellomledd",
+      "paragraphs": [
+        "CMA skiller publiseringsrettigheten i sangen fra innspillingsrettigheten i den konkrete masteren. En strømmetjeneste trenger tillatelse til begge, og pengestrømmen følger derfor flere kontrakts- og forhandlingsledd.",
+        "Publiseringsandel, labelselskapenes markedsandel og en artists illustrative betaling har ulike nevnere. De må aldri settes inn i én fordelingsbrøk uten at brutto, netto, territorium, år og kontraktsledd er definert.",
+        "Tolv millioner strømmer og omtrent 12 000 pund er CMAs illustrasjon, ikke en fast pris per strøm. Mindre enn én prosent nådde strømmetallet, og individuelle avtaler, recoupment og øvrige inntekter er ikke gitt av aggregatet."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_institutions_cma_streaming_rights_value_chain"
+        ],
+        [
+          "claim_musikk_institutions_cma_streaming_rights_value_chain"
+        ],
+        [
+          "claim_musikk_institutions_cma_streaming_rights_value_chain"
+        ]
+      ],
+      "concepts": [
+        "verkrettighet",
+        "innspillingsrettighet",
+        "royaltybase",
+        "nevner"
+      ]
+    },
+    {
+      "id": "arbeid_og_verdi_sammen",
+      "title": "Arbeid og verdi i samme audit",
+      "paragraphs": [
+        "Arbeidsmålet spør hvem som faktisk gjør oppgaven; verdikjedemålet spør hvem som kontrollerer rettighet, data og betaling. Samme synlige artistnavn kan derfor skjule flere arbeidere og flere økonomiske posisjoner.",
+        "En robust audit skriver ut rolle, kontrakt eller datakilde, tidsrom, brutto/netto-definisjon og manglende aktører. Først da kan en sammenligne vilkår uten å gjøre omsetning til arbeidsinnsats.",
+        "Census og CMA kan kombineres som to nivåer—selvrapporterte arbeidslivserfaringer og aggregert markedsstruktur—men de kan ikke kobles individ for individ eller brukes som et kausalt design."
+      ],
+      "paragraphClaimIds": [
+        [
+          "claim_musikk_institutions_census_portfolio_work_visibility",
+          "claim_musikk_institutions_cma_streaming_rights_value_chain"
+        ],
+        [
+          "claim_musikk_institutions_census_portfolio_work_visibility",
+          "claim_musikk_institutions_cma_streaming_rights_value_chain"
+        ],
+        [
+          "claim_musikk_institutions_census_portfolio_work_visibility",
+          "claim_musikk_institutions_cma_streaming_rights_value_chain"
+        ]
+      ],
+      "concepts": [
+        "arbeidsdeling",
+        "verdikjede",
+        "aggregat",
+        "inferensgrense"
+      ]
+    }
+  ],
+  "workedExamples": [
+    {
+      "id": "audit_portefolje_og_rettighet",
+      "title": "Auditér én arbeids- og rettighetskjede",
+      "steps": [
+        "Navngi arbeidsrolle og faktisk oppgave.",
+        "Navngi rettighetslag og mellomledd.",
+        "Definer inntektsmål og nevner.",
+        "List manglende arbeid, data og alternative forklaringer."
+      ],
+      "claimIds": [
+        "claim_musikk_institutions_census_portfolio_work_visibility",
+        "claim_musikk_institutions_cma_streaming_rights_value_chain"
+      ]
+    }
+  ],
+  "commonMisconceptions": [
+    {
+      "misconception": "En kreditert artist representerer alt arbeid og all inntekt i produksjonen.",
+      "correction": "Arbeidsroller, kreditering, rettigheter og betaling må spores separat.",
+      "claimIds": [
+        "claim_musikk_institutions_census_portfolio_work_visibility",
+        "claim_musikk_institutions_cma_streaming_rights_value_chain"
+      ]
+    },
+    {
+      "misconception": "Strømmer har én fast stykkpris.",
+      "correction": "Betaling avhenger av marked, rettighetslag, avtaler, brutto/netto og periode.",
+      "claimIds": [
+        "claim_musikk_institutions_cma_streaming_rights_value_chain"
+      ]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "id": "bygg_arbeids_verdikjede",
+      "title": "Bygg en arbeids- og verdikjede",
+      "prompt": "Velg Census- eller CMA-caset og oppgi aktør, rolle, datakilde, periode, mål, nevner og forbudt slutning.",
+      "requiredMethodIds": [
+        "bransje_okonomisk_analyse"
+      ],
+      "claimIds": [
+        "claim_musikk_institutions_census_portfolio_work_visibility",
+        "claim_musikk_institutions_cma_streaming_rights_value_chain"
+      ]
+    }
+  ],
+  "selfCheck": []
+}
