@@ -217,3 +217,10 @@ Kunst står `materialized`, `audited` og `structure_ready` som det første indiv
 Media står `materialized`, `audited` og `structure_ready` som det andre individuelt materialiserte Fase 3-faget. Standardadapteren viser seks canonicale hovedområder, 120 aktive hovedemner, 163 metoder i den samlede katalogen, 120 mappinger og 60 hovedhooks. `AV- og TV-produksjon` og `Kritikk og kommentar` er integrert i eksisterende områder og hooks. Populærkultur er bevart som et komplett nested mediefelt med seks områder, 56 emner, 48 metoder, 56 mappinger og 60 hooks uten egen portalpost eller toppfagsstatus. Det er ikke opprettet syntetiske områder eller redaksjonelle kapitler; claims, kilder og fulltekstproduksjon gjenstår.
 
 Alle fire fase-2-piloter er materialisert og auditert: Natur, Religion, By og Vitenskap med Teknologi som nested spesialisering. Fase 3 materialiserer de resterende fagene individuelt; Kunst og Media er godkjent, og de øvrige planlagte fagene beholder tom subject-rute til deres egne porter består.
+
+- `by-arkitektur-gatekant-makt-ombruk-phase4-audit.json` — andre Arkitektur-kapittelgate og Arkitektur-domenets 12/12-port: seks emner, seks metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder; Byliv 30/30 bevares.
+
+```bash
+node scripts/audit-fagverk-by-arkitektur-gatekant-makt-ombruk-phase4.mjs --write-report
+node scripts/audit-fagverk-by-arkitektur-gatekant-makt-ombruk-phase4.mjs
+```

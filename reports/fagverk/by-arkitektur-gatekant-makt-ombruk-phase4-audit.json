@@ -1,7 +1,7 @@
 {
-  "schema": "history_go_fagverk_by_arkitektur_type_skala_phase4_audit_v1",
+  "schema": "history_go_fagverk_by_arkitektur_gatekant_makt_ombruk_phase4_audit_v1",
   "version": "1.0.0",
-  "status": "by_phase_4_arkitektur_chapters_in_progress",
+  "status": "by_phase_4_arkitektur_domain_chapter_covered_subject_in_progress",
   "generatedFrom": {
     "core": "js/fagverk-subject-core.js",
     "categories": "data/categories/category_contract.json",
@@ -10,10 +10,10 @@
     "inventory": "data/fagverk/subject_inventory.json",
     "status": "data/fagverk/subject_status.json",
     "registry": "data/fagverk/fagverk_registry.json",
-    "chapter": "data/fagverk/by/arkitektur-type-skala-byform.json",
-    "brief": "data/fagverk/by/arkitektur-type-skala-byform/brief.json",
-    "claims": "data/fagverk/by/arkitektur-type-skala-byform/claims.json",
-    "report": "reports/fagverk/by-arkitektur-type-skala-phase4-audit.json"
+    "chapter": "data/fagverk/by/arkitektur-gatekant-makt-ombruk.json",
+    "brief": "data/fagverk/by/arkitektur-gatekant-makt-ombruk/brief.json",
+    "claims": "data/fagverk/by/arkitektur-gatekant-makt-ombruk/claims.json",
+    "report": "reports/fagverk/by-arkitektur-gatekant-makt-ombruk-phase4-audit.json"
   },
   "subject": {
     "id": "by",
@@ -26,15 +26,15 @@
     "registeredChapterCount": 7
   },
   "chapter": {
-    "id": "arkitektur-type-skala-byform",
-    "title": "Type, skala og byform: fra hageby til høyhus",
+    "id": "arkitektur-gatekant-makt-ombruk",
+    "title": "Gatekant, symbol og ombruk: hvordan arkitektur virker og styres",
     "primaryDomainId": "arkitektur",
-    "file": "data/fagverk/by/arkitektur-type-skala-byform.json",
+    "file": "data/fagverk/by/arkitektur-gatekant-makt-ombruk.json",
     "editorialStatus": "chapter_ready"
   },
   "summary": {
     "coveredEmneCount": 6,
-    "methodCount": 5,
+    "methodCount": 6,
     "moduleCount": 3,
     "sectionCount": 9,
     "sourceCount": 13,
@@ -47,23 +47,24 @@
     "canonicalBylivEmneCount": 30,
     "coveredBylivEmneCount": 30,
     "canonicalArchitectureEmneCount": 12,
-    "coveredArchitectureEmneCount": 6
+    "chapterCoveredArchitectureEmneCount": 12
   },
   "coverage": {
     "emneIds": [
-      "em_by_bygningstyper_og_typologier",
-      "em_by_boligstruktur",
-      "em_by_historiske_lag_i_hverdagsrom",
-      "em_by_skala_hoyde_volum",
-      "em_by_romlig_orden",
-      "em_by_estetikk_vs_funksjon"
+      "em_by_butikkfasader_vindusutstillinger",
+      "em_by_dodt_vs_aktivt_gateniva",
+      "em_by_gateliv_kantsoner",
+      "em_by_styring_forvaltning_planmakt",
+      "em_by_symbolsk_makt_og_representasjon",
+      "em_by_transformasjon_ombruk"
     ],
     "methodIds": [
       "met_feltobservasjon",
+      "met_gaanalyse",
       "met_morfologisk_analyse",
-      "met_gis_romlig_analyse",
-      "met_komparativ_caseanalyse",
-      "met_arkiv_minne_spor"
+      "met_aktoranalyse",
+      "met_for_etter",
+      "met_komparativ_caseanalyse"
     ],
     "relatedPlaceIds": [
       "ullevål_hageby",
@@ -88,31 +89,31 @@
   },
   "gates": {
     "canonicalStatusProgressionPreserved": true,
-    "firstArchitectureChapterPreservedAcrossSevenChapterRegistry": true,
+    "exactlySevenRegisteredByChapters": true,
     "allFiveBylivChaptersStillHydrate": true,
     "bylivThirtyOfThirtyPreserved": true,
+    "bothArchitectureChaptersRegistered": true,
+    "architectureTwelveOfTwelveCoveredExactlyOnce": true,
     "chapterHydratesThroughSharedRuntime": true,
     "sixCanonicalArchitectureEmnersCovered": true,
-    "architectureOwnershipDerivedFromNormalizedModel": true,
-    "noBylivOwnedCrossReferenceClaimedAsArchitecture": true,
-    "architectureDomainTwelveCanonicalEmnersConfirmed": true,
-    "fiveCanonicalMethodsResolved": true,
+    "sixCanonicalMethodsResolved": true,
     "threeEditedModulesPresent": true,
     "paragraphLevelClaimTraceComplete": true,
     "allClaimsVerifiedAndUsed": true,
     "everySourceUsedByClaim": true,
     "allClaimSourcesInspectable": true,
-    "highRiseStrategyDateAndEntitlementGuarded": true,
-    "heritageStatusRequiresRegisterEvidence": true,
-    "historicalSmåhusSourceNotPromotedToCurrentLaw": true,
-    "aestheticsUsesExplicitCriteria": true,
-    "observationStatusAndEvaluationSeparated": true,
+    "activeGroundFloorEvidenceGuarded": true,
+    "universalMainEntranceGuarded": true,
+    "reuseDecisionTradeoffsGuarded": true,
+    "useChangeAndHeritageRolesSeparated": true,
+    "planningPowerMappedToActorsAndDocuments": true,
+    "symbolicIntentNotFabricated": true,
     "workedExamplesRenderable": true,
     "misconceptionsRenderable": true,
     "applicationTasksRenderable": true,
     "selfCheckRenderable": true,
     "canonicalFieldPlacesResolved": true,
     "byEditorialAndSourceContractLocked": true,
-    "subjectCompletenessNotOverstated": true
+    "architectureCompleteWithoutSubjectCompletenessOverclaim": true
   }
 }
