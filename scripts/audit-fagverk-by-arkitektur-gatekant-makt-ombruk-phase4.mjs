@@ -128,12 +128,16 @@ export async function auditByArkitekturGatekantMaktOmbrukPhase4({writeReport=fal
   const rawText=JSON.stringify({rawChapter,brief,modules}).toLowerCase();
   for(const overclaim of ['glassfasade betyr aktiv førsteetasje','bakinngang oppfyller universell utforming','ombruk er alltid riktig','arkitekten ønsket å symbolisere']) assert(!rawText.includes(overclaim),`Forbudt overclaim: ${overclaim}`);
   for(const file of Object.values(PLACE_FILES)) assert(fs.existsSync(abs(file)),`Canonical feltcase mangler: ${file}`);
-  const hydrated=await CORE.hydrateChapter(rawChapter,{fetchJson:async(rel)=>json(rel)});
+
+  const fetchFile=async(file)=>json(file);
+  const hydrated=await CORE.hydrateChapter(chapterMeta,fetchFile);
   assert(hydrated.sections.length===9,'Hydrert kapittel mangler seksjoner');
-  assert(hydrated.workedExamples.length===2,'Kapittelet skal ha to worked examples');
-  assert(hydrated.commonMisconceptions.length===5,'Kapittelet skal ha fem misoppfatninger');
-  assert(hydrated.applicationTasks.length===4,'Kapittelet skal ha fire oppgaver');
-  assert(hydrated.selfCheck.length===6,'Kapittelet skal ha seks self-checks');
+  assert(hydrated.workedExamples.length===2 && hydrated.workedExamples.every((row)=>row.situation && row.analysis.length>=4),'Kapittelet skal hydrere to renderbare worked examples');
+  assert(hydrated.commonMisconceptions.length===5,'Kapittelet skal hydrere fem misoppfatninger');
+  assert(hydrated.applicationTasks.length===4,'Kapittelet skal hydrere fire oppgaver');
+  const selfCheck=modules.flatMap((module)=>Array.isArray(module.selfCheck)?module.selfCheck:[]);
+  assert(selfCheck.length===6 && selfCheck.every((row)=>row.question && row.answer),'Kapittelet skal ha seks self-checks');
+  assert(hydrated.sources.length===13 && hydrated.claims.length===18,'Claims/kilder ble ikke hydrert');
 
   const report={
     schema:'history_go_fagverk_by_arkitektur_gatekant_makt_ombruk_phase4_audit_v1',version:'1.0.0',status:'by_phase_4_arkitektur_domain_chapter_covered_subject_in_progress',generatedFrom:P,
