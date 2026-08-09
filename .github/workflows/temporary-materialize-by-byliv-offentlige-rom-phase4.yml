@@ -1,0 +1,60 @@
+name: Temporary materialize By Byliv phase 4
+
+on:
+  pull_request:
+    paths:
+      - "tools/materialize-by-byliv-offentlige-rom-phase4-once.mjs"
+      - ".github/workflows/temporary-materialize-by-byliv-offentlige-rom-phase4.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Materialize and validate By Byliv phase 4
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          set +e
+          node tools/materialize-by-byliv-offentlige-rom-phase4-once.mjs > /tmp/by-byliv-phase4.log 2>&1
+          status=$?
+          cat /tmp/by-byliv-phase4.log
+          if [ "$status" -ne 0 ]; then
+            git reset --hard HEAD
+            git clean -fd
+            mkdir -p reports/fagverk
+            cp /tmp/by-byliv-phase4.log reports/fagverk/by-byliv-offentlige-rom-phase4-latest-error.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add reports/fagverk/by-byliv-offentlige-rom-phase4-latest-error.txt
+            git diff --cached --check
+            git commit -m 'Capture By Byliv Phase 4 materialization failure'
+            git push origin "HEAD:${HEAD_BRANCH}"
+            exit "$status"
+          fi
+      - name: Remove one-shot materializer and diagnostics
+        run: |
+          rm tools/materialize-by-byliv-offentlige-rom-phase4-once.mjs
+          rm .github/workflows/temporary-materialize-by-byliv-offentlige-rom-phase4.yml
+          rm -f reports/fagverk/by-byliv-offentlige-rom-phase4-latest-error.txt
+      - name: Commit materialized tree
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Materialiser By Byliv Fase 4-kapittel'
+          git push origin "HEAD:${HEAD_BRANCH}"
