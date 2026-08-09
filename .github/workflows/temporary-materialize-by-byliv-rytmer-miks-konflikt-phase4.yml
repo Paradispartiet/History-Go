@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "tools/materialize-by-byliv-rytmer-miks-konflikt-phase4-once.mjs"
+      - "tools/patch-by-byliv-final-identity-guard-once.mjs"
       - ".github/workflows/temporary-materialize-by-byliv-rytmer-miks-konflikt-phase4.yml"
   workflow_dispatch:
 
@@ -26,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
+      - name: Align sensitive-identity guard
+        run: node tools/patch-by-byliv-final-identity-guard-once.mjs
       - name: Materialize and validate final Byliv chapter
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
@@ -57,6 +60,7 @@ jobs:
       - name: Remove one-shot materializer and diagnostics
         run: |
           rm tools/materialize-by-byliv-rytmer-miks-konflikt-phase4-once.mjs
+          rm tools/patch-by-byliv-final-identity-guard-once.mjs
           rm .github/workflows/temporary-materialize-by-byliv-rytmer-miks-konflikt-phase4.yml
           rm -f reports/fagverk/by-byliv-rytmer-miks-konflikt-phase4-latest-error.txt
       - name: Commit materialized tree
