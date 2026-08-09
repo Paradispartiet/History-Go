@@ -9,16 +9,16 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "2.31.0",
+    "version": "2.32.0",
     "updated_at": "2026-08-08",
-    "content_sha256": "ec933d761cc376adf58e81b418267e0e94e7daed4ec6ad47d6008937249781e3"
+    "content_sha256": "464f1d09dd50b73f17c5c25db81fa888ecc97d904c94bb0ea516b8598371ebcf"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
     "schema": "history_go_fagverk_subject_inventory_v1",
-    "version": "1.7.0",
+    "version": "1.8.0",
     "updated_at": "2026-08-08",
-    "content_sha256": "6b6bb5f12050bb3ca3217fdd6187ce22aa3301677b20c0acf3e368182e542e17",
+    "content_sha256": "9288178593a3aedac333aa7dfa5fc044c49b6c777f8fbd75619b9637fb675edc",
     "root_subject_count": 17,
     "specialization_count": 1
   },
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "991ddd98ddfc17cecd0956735aab15ee2bd482887e94104c7cd9205ee00aa205"
+    "content_sha256": "cf4a347f3ff702c35dc073a45ec2cb6f1c8e0fc5c0aacfb24e7856a6d40c2634"
   },
   "summary": {
     "subject_count": 18,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 6,
     "chapter_count": 75,
     "module_file_count": 192,
-    "package_file_count": 200,
+    "package_file_count": 201,
     "chapter_referenced_file_count": 333,
-    "referenced_file_count": 492,
+    "referenced_file_count": 493,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -3294,7 +3294,7 @@
       "chapters": []
     },
     "sport": {
-      "title": "sport",
+      "title": "Sport & lek",
       "kind": "subject",
       "parent_subject_id": null,
       "schema_family": "standard_canonical",
@@ -3313,9 +3313,11 @@
         "knowledgeUnitSchema",
         "knowledgeArchitecture",
         "quizStandard",
-        "quizQuestionSchema"
+        "quizQuestionSchema",
+        "emneMappings"
       ],
       "present_manifest_fields": [
+        "emneMappings",
         "emner",
         "fagkart",
         "knowledgeArchitecture",
@@ -3328,10 +3330,22 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 10,
+      "package_file_count": 11,
       "required_package_file_count": 4,
-      "optional_package_file_count": 6,
+      "optional_package_file_count": 7,
       "package_files": [
+        {
+          "path": "data/fag/sport/emnemapping_sport_canonical_v4_5.json",
+          "required": false,
+          "fields": [
+            "emneMappings"
+          ],
+          "key_paths": [
+            "emneMappings"
+          ],
+          "exists": true,
+          "content_sha256": "a75695b96cc0be0e77823cbf424961c4473aedd22c3c0bd159c0a59d063920ed"
+        },
         {
           "path": "data/fag/sport/emner_sport_canonical_v4_5.json",
           "required": true,
@@ -3453,14 +3467,14 @@
           "content_sha256": null
         }
       ],
-      "package_content_sha256": "005c7f738725a8e4ed148aacb3d85728402c66c61fd48a9d5c125ce527ea5adf",
+      "package_content_sha256": "c3192eff524cbcb12bf002528628cdac8e71193727d76cd8f88a896939e96a87",
       "chapter_count": 0,
       "module_file_count": 0,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 0,
       "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 10,
+      "referenced_file_count": 11,
       "missing_required_files": [],
       "missing_optional_files": [
         "README/KNOWLEDGE_MEMORY_CHAMBER.md"
@@ -3469,8 +3483,8 @@
       "missing_files": [
         "README/KNOWLEDGE_MEMORY_CHAMBER.md"
       ],
-      "structure_sha256": "77c00355a4eca39aba31d4572659daf25cc97bebc47aed7d5a0e3877efa516f4",
-      "content_sha256": "005c7f738725a8e4ed148aacb3d85728402c66c61fd48a9d5c125ce527ea5adf",
+      "structure_sha256": "b1f3f7d43885fc54691541e5be8523561f524a4e31fb5b9c5251b2202da4cfcc",
+      "content_sha256": "c3192eff524cbcb12bf002528628cdac8e71193727d76cd8f88a896939e96a87",
       "chapters": []
     },
     "subkultur": {
@@ -4061,5 +4075,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "d0c62dc00cd2944fa8e0e8f9b0044e5082b88d067a2a53245bef3e7ad3841136"
+  "release_sha256": "179ad25702c8c0c63295c3f955872ae8955bca6f769a441eb0122a2532b1ee8f"
 }

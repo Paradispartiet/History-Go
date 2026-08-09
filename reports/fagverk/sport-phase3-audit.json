@@ -1,0 +1,72 @@
+{
+  "schema": "history_go_fagverk_sport_phase3_audit_v1",
+  "version": "1.0.0",
+  "status": "sport_phase_3_structure_ready",
+  "generatedFrom": {
+    "core": "js/fagverk-subject-core.js",
+    "categories": "data/categories/category_contract.json",
+    "manifest": "data/fag/fag_manifest.json",
+    "portal": "data/fagverk/fagverk_portal.json",
+    "inventory": "data/fagverk/subject_inventory.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "badge": "data/badges/sport.json",
+    "explicitMappings": "data/fag/sport/emnemapping_sport_canonical_v4_5.json",
+    "generator": "data/fag/sport/quiz_generator_rules_sport_v5_1_source_priority_patch.json",
+    "badgePage": "data/fag/sport/merke_sport.html",
+    "report": "reports/fagverk/sport-phase3-audit.json"
+  },
+  "subject": {
+    "id": "sport",
+    "title": "Sport & lek",
+    "schemaFamily": "standard_canonical",
+    "adapter": "standard",
+    "navigationStatus": "materialized",
+    "assessmentStatus": "audited",
+    "editorialStatus": "structure_ready",
+    "nextGate": "chapter_production",
+    "subjectPage": "fagverk.html?subject=sport",
+    "badgePage": "data/fag/sport/merke_sport.html"
+  },
+  "summary": {
+    "domainCount": 6,
+    "emneCount": 116,
+    "methodCount": 109,
+    "mappingCount": 116,
+    "hookCount": 60,
+    "registeredChapterCount": 0,
+    "explicitMappingRowCount": 116,
+    "legacyUmbrellaEmneCount": 2
+  },
+  "canonicalDomainOrder": [
+    "arenaer_steder_groundhopper",
+    "regler_spill_konkurranse",
+    "kropp_trening_prestasjon",
+    "klubber_lag_frivillighet",
+    "supportere_publikum_kultur",
+    "inkludering_helse_lek_samfunn"
+  ],
+  "domainEmneCounts": {
+    "arenaer_steder_groundhopper": 20,
+    "regler_spill_konkurranse": 20,
+    "kropp_trening_prestasjon": 20,
+    "klubber_lag_frivillighet": 20,
+    "supportere_publikum_kultur": 17,
+    "inkludering_helse_lek_samfunn": 19
+  },
+  "gates": {
+    "allCanonicalEmnersInPensum": true,
+    "allCanonicalEmnersInFagkart": true,
+    "allCanonicalEmnersInMappingRegistry": true,
+    "legacyUmbrellaEmnersExcludedFromActiveSet": true,
+    "allMethodReferencesResolved": true,
+    "generatorCountsSynchronized": true,
+    "knowledgeContractsPreserved": true,
+    "sourceFirstGenerationLocked": true,
+    "groundhopperPlaceLogicPreserved": true,
+    "badgeAndSubjectRoutesDistinct": true,
+    "assessmentStatusAudited": true,
+    "editorialStatusStructureReady": true,
+    "chapterClaimsNotOverstated": true
+  }
+}
