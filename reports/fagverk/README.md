@@ -60,9 +60,13 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `politikk-rett-lov-rettssikkerhet-audit.json` — kapittelgate for 11 emner, 15 metoder, tre redigerte moduler, 44 sporede claims og 30 inspectable kilder.
 - `politikk-fordeling-velferd-ulikhet-audit.json` — kapittelgate for 9 emner, 15 metoder, tre redigerte moduler, 45 sporede claims og 30 inspectable kilder.
 
+- `by-urbanisme-idealer-forbindelser-fortetting-phase4-audit.json` — Urbanisme-domenets 6/6-port: seks canonicale eieremner, åtte metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kommunale kilder med eksplisitte vakter mellom planideal, gjennomføring og målt/observert effekt.
+
 ## Regenerering
 
 ```bash
+node scripts/audit-fagverk-by-urbanisme-idealer-forbindelser-fortetting-phase4.mjs --write-report
+node scripts/audit-fagverk-by-urbanisme-idealer-forbindelser-fortetting-phase4.mjs
 node scripts/audit-fagverk-subject-inventory.mjs --write-report
 node scripts/audit-fagverk-subject-inventory.mjs
 node scripts/audit-fagverk-general-engine.mjs --write-report
