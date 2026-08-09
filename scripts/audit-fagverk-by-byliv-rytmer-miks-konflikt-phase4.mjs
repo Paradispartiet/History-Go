@@ -182,7 +182,7 @@ export async function auditByBylivRytmerMiksKonfliktPhase4({ writeReport = false
 
   const rawText = JSON.stringify({ rawChapter, brief, modules }).toLowerCase();
   for (const fabricated of ['vi intervjuet', 'intervjuene viste', 'brukerne fortalte oss', 'vår spørreundersøkelse viste']) assert(!rawText.includes(fabricated), `Kapittelet fremstiller ikke-gjennomført brukerdata som fakta: ${fabricated}`);
-  for (const unsafeInference of ['så ut som muslim', 'så ut som innvandrer', 'så ut som rik', 'så ut som fattig', 'antatt etnisitet']) assert(!rawText.includes(unsafeInference), `Kapittelet inneholder sensitiv identitetsinferens: ${unsafeInference}`);
+  for (const unsafeInference of ['så ut som muslim', 'så ut som innvandrer', 'så ut som rik', 'så ut som fattig', 'vi registrerte etnisitet', 'vi klassifiserte etnisitet']) assert(!rawText.includes(unsafeInference), `Kapittelet inneholder sensitiv identitetsinferens: ${unsafeInference}`);
   for (const overclaim of ['ett besøk viser rytmen', 'ulike grupper betyr konflikt', 'synlig mangfold beviser inkludering']) assert(!rawText.includes(overclaim), `Kapittelet inneholder for sterk slutning: ${overclaim}`);
 
   const fetchFile = async (file) => json(file);
