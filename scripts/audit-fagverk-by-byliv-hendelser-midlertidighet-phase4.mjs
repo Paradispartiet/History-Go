@@ -170,7 +170,8 @@ export async function auditByBylivHendelserMidlertidighetPhase4({ writeReport = 
   assert(sourceIds.size === sources.length, 'Kilderegisteret har dupliserte source-ID-er');
   assert(claimIds.size === claims.length, 'Claims-registeret har dupliserte claim-ID-er');
   assert(sources.every((row) => /^https:\/\//.test(row.url || '') && row.publisher && row.source_location), 'Alle kilder skal ha https-URL, publisher og inspectable source_location');
-  assert(sources.filter((row) => row.type?.startsWith('datert-')).every((row) => /^\d{4}-\d{2}-\d{2}$/.test(row.published_at || '')), 'Daterte kilder mangler published_at');
+  assert(sources.filter((row) => row.published_at).every((row) => /^\d{4}-\d{2}-\d{2}$/.test(row.published_at)), 'Oppgitt published_at har ugyldig datoformat');
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(sources.find((row) => row.id === 'bym07-sommergater-2023')?.published_at || ''), '2023-pressemeldingen mangler eksplisitt publiseringsdato');
   assert(claims.every((claim) => claim.status === 'verified'), 'Alle kapittelclaims skal være verified');
   assert(claims.every((claim) => Array.isArray(claim.source_ids) && claim.source_ids.length && claim.source_ids.every((id) => sourceIds.has(id))), 'Claim peker til ukjent eller manglende kilde');
   const claimText = claims.map((claim) => claim.claim.toLowerCase()).join('\n');
@@ -178,8 +179,11 @@ export async function auditByBylivHendelserMidlertidighetPhase4({ writeReport = 
   for (const id of ['bym-08', 'bym-09']) {
     const claim = claims.find((row) => row.id === id);
     assert(claim && /20\d{2}/.test(claim.claim), `${id} mangler eksplisitt årstall`);
-    assert(claim.source_ids.some((sourceId) => sources.find((row) => row.id === sourceId)?.published_at), `${id} mangler datert kilde`);
   }
+  const summerSource = sources.find((row) => row.id === 'bym07-sommergater-2023');
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(summerSource?.published_at || ''), 'bym-08 mangler datert pressemeldingskilde');
+  const kirkegataSource = sources.find((row) => row.id === 'bym08-kirkegata-2022');
+  assert(kirkegataSource?.type === 'datert-prosjektside' && kirkegataSource.source_location && kirkegataSource.url?.startsWith('https://'), 'bym-09 mangler låst historisk 2022-prosjektside med locator');
   const pilotClaim = claims.find((row) => row.id === 'bym-17');
   assert(pilotClaim?.claim.includes('ikke i seg selv'), 'Pilotclaim må eksplisitt blokkere automatisk permanent effekt');
   assert(!pilotClaim?.claim.includes('beviser at'), 'Pilotclaim er formulert for absolutt');

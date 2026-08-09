@@ -1,5 +1,5 @@
 {
-  "schema": "history_go_fagverk_by_byliv_sosial_offentlighet_phase4_audit_v1",
+  "schema": "history_go_fagverk_by_byliv_hendelser_midlertidighet_phase4_audit_v1",
   "version": "1.0.0",
   "status": "by_phase_4_chapters_in_progress",
   "generatedFrom": {
@@ -11,12 +11,12 @@
     "status": "data/fagverk/subject_status.json",
     "registry": "data/fagverk/fagverk_registry.json",
     "sourceRegistry": "data/fag/by/source_registry_by_v1.json",
-    "siblingClaims": "data/fagverk/by/byliv-offentlige-rom/claims.json",
-    "siblingChapter": "data/fagverk/by/byliv-offentlige-rom.json",
-    "chapter": "data/fagverk/by/byliv-sosial-offentlighet.json",
-    "brief": "data/fagverk/by/byliv-sosial-offentlighet/brief.json",
-    "claims": "data/fagverk/by/byliv-sosial-offentlighet/claims.json",
-    "report": "reports/fagverk/by-byliv-sosial-offentlighet-phase4-audit.json"
+    "firstChapter": "data/fagverk/by/byliv-offentlige-rom.json",
+    "secondChapter": "data/fagverk/by/byliv-sosial-offentlighet.json",
+    "chapter": "data/fagverk/by/byliv-hendelser-midlertidighet.json",
+    "brief": "data/fagverk/by/byliv-hendelser-midlertidighet/brief.json",
+    "claims": "data/fagverk/by/byliv-hendelser-midlertidighet/claims.json",
+    "report": "reports/fagverk/by-byliv-hendelser-midlertidighet-phase4-audit.json"
   },
   "subject": {
     "id": "by",
@@ -29,18 +29,18 @@
     "registeredChapterCount": 3
   },
   "chapter": {
-    "id": "byliv-sosial-offentlighet",
-    "title": "Sosial offentlighet: møter, venting og lavterskel byliv",
+    "id": "byliv-hendelser-midlertidighet",
+    "title": "Hendelser og midlertidighet: når byrom skifter modus",
     "primaryDomainId": "byliv",
-    "file": "data/fagverk/by/byliv-sosial-offentlighet.json",
+    "file": "data/fagverk/by/byliv-hendelser-midlertidighet.json",
     "editorialStatus": "chapter_ready"
   },
   "summary": {
-    "coveredEmneCount": 7,
-    "methodCount": 3,
+    "coveredEmneCount": 6,
+    "methodCount": 4,
     "moduleCount": 3,
     "sectionCount": 9,
-    "sourceCount": 12,
+    "sourceCount": 13,
     "verifiedClaimCount": 18,
     "workedExampleCount": 2,
     "misconceptionCount": 5,
@@ -50,18 +50,18 @@
   },
   "coverage": {
     "emneIds": [
-      "em_by_sosiale_knutepunkt",
-      "em_by_tilfeldige_moter",
-      "em_by_lavterskel_moteplasser_uten_kjopspress",
-      "em_by_publikum_deltakelse_tilskuere",
-      "em_by_smaprat_blikk_sosial_koreografi",
-      "em_by_venting_som_bypraksis",
-      "em_by_tempo_sakte_rask_by"
+      "em_by_festivaler_arrangementer",
+      "em_by_hendelsesbasert_byliv_hoytider",
+      "em_by_midlertidige_installasjoner",
+      "em_by_sesongbruk_uteomrader",
+      "em_by_uformell_bruk_av_byrom",
+      "em_by_skate_gatekunst_improvisasjon"
     ],
     "methodIds": [
       "met_feltobservasjon",
       "met_gaanalyse",
-      "met_intervju_brukerperspektiv"
+      "met_for_etter",
+      "met_komparativ_caseanalyse"
     ],
     "relatedPlaceIds": [
       "youngstorget",
@@ -72,18 +72,19 @@
   },
   "gates": {
     "canonicalStatusProgressionPreserved": true,
-    "secondChapterPreservedAcrossThreeChapterRegistry": true,
-    "siblingChapterStillHydrates": true,
+    "exactlyThreeRegisteredByChapters": true,
+    "previousChaptersStillHydrate": true,
     "chapterHydratesThroughSharedRuntime": true,
-    "sevenCanonicalBylivEmnersCovered": true,
-    "threeCanonicalMethodsResolved": true,
+    "sixCanonicalBylivEmnersCovered": true,
+    "fourCanonicalMethodsResolved": true,
     "threeEditedModulesPresent": true,
     "paragraphLevelClaimTraceComplete": true,
     "allClaimsVerifiedAndUsed": true,
     "allClaimSourcesInspectable": true,
-    "verifiedSiblingSourceReuseLocked": true,
+    "temporalStatusClaimsGuarded": true,
+    "pilotNotPromotedToPermanentEffect": true,
+    "temporaryNotEquatedWithUnregulated": true,
     "evidenceStrengthPreserved": true,
-    "fabricatedInterviewEvidenceBlocked": true,
     "workedExamplesRenderable": true,
     "misconceptionsRenderable": true,
     "applicationTasksRenderable": true,
