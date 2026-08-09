@@ -1,0 +1,121 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "chapter_id": "arkitektur-type-skala-byform",
+  "primary_domain_id": "arkitektur",
+  "purpose": "Starte sammenhengende Arkitektur-produksjon med en kildebelagt analyse av bygningstyper, boligstruktur, historiske lag, skala/høyde/volum, romlig orden og estetikk/funksjon.",
+  "audience": "Brukere som kan se og bevege seg gjennom bygde omgivelser, men trenger et presist skille mellom type, stil, struktur, skala, vernestatus, estetisk vurdering og funksjon.",
+  "learningArc": [
+    "starte med bygningstype og fysisk organisering før stilnavn og vurdering",
+    "lese boligstruktur gjennom tomt, byggelinje, tetthet og forholdet mellom bygg og uteareal",
+    "registrere historiske lag som dokumenterbare spor og kontrollere formell vernestatus i riktige registre",
+    "analysere form, høyde, volum og proporsjon på både bygg- og områdenivå",
+    "lese romlig orden gjennom gater, kvartaler, kanter, sikt, åpninger og mellomrom",
+    "skille strategiske høyde- og kvalitetsrammer fra påstander om ett konkret bygg",
+    "diskutere estetikk med eksplisitte kriterier og samtidig holde funksjon som en egen analytisk dimensjon",
+    "avslutte med en beviskjede der observasjon, kart, arkivspor, regel-/strategikontekst og vurdering holdes tydelig atskilt"
+  ],
+  "requiredEmneIds": [
+    "em_by_bygningstyper_og_typologier",
+    "em_by_boligstruktur",
+    "em_by_historiske_lag_i_hverdagsrom",
+    "em_by_skala_hoyde_volum",
+    "em_by_romlig_orden",
+    "em_by_estetikk_vs_funksjon"
+  ],
+  "requiredMethodIds": [
+    "met_feltobservasjon",
+    "met_morfologisk_analyse",
+    "met_gis_romlig_analyse",
+    "met_komparativ_caseanalyse",
+    "met_arkiv_minne_spor"
+  ],
+  "requiredCriticalDistinctions": [
+    "bygningstype vs stil",
+    "type vs enkeltbygg",
+    "boligtype vs boligstruktur",
+    "tomtestruktur vs bygningsuttrykk",
+    "historisk preg vs dokumentert alder",
+    "historisk verdi vs formell vernestatus",
+    "høyde vs volum",
+    "volum vs proporsjon",
+    "byggskala vs områdeskala",
+    "romlig orden vs estetisk preferanse",
+    "strategisk høydeområde vs automatisk byggerett",
+    "kommunalt kvalitetsmål vs dokumentert lokal effekt",
+    "estetisk vurdering vs funksjonsanalyse",
+    "visuell kvalitet vs universell fasit",
+    "observasjon vs arkiv- eller registeropplysning"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "Oslo kommunes vedtatte arkitekturpolitikk for estetikk, funksjon, historiske lag, byrom, boligkvalitet og stedstilpasning",
+      "Oslo kommunes høyhusstrategi fra 2023 for eksplisitte høydeintervaller, geografiske rammer og kvalitetskrav",
+      "Oslo kommunes historiske Småhusplan-formidling som dokumentert plan- og typologikontekst, ikke som udokumentert påstand om dagens rettstilstand",
+      "Byantikvaren og Gul liste for vernestatus og kulturhistorisk registerkontekst",
+      "Direktoratet for byggkvalitet for byggeskikk, visuell kvalitet, form, volum, proporsjon og forholdet mellom estetikk, funksjon og omgivelser",
+      "canonical By-filer som emne-, metode- og progresjonsstyring, aldri som ekstern faktakilde"
+    ],
+    "minimumExternalSources": 12,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "currentStatusClaimsRequireCurrentSource": true
+  },
+  "scope": {
+    "included": [
+      "bygningstyper og typologiske sammenligninger",
+      "boligstruktur og morfologiske mønstre",
+      "historiske lag og formell kulturminne-/verneregisterkontekst",
+      "skala, høyde, volum og proporsjon",
+      "romlig orden i gate-, kvartals- og områdestruktur",
+      "estetikk og funksjon som relaterte, men forskjellige vurderingsdimensjoner",
+      "feltobservasjon, morfologisk analyse, GIS, komparativ caseanalyse og arkiv/minne/spor",
+      "Ullevål hageby, Rodeløkka, Barcode og Deichman Bjørvika som feltcase uten nye uverifiserte stedsspesifikke fakta"
+    ],
+    "excluded": [
+      "stilbestemmelse som presenteres som sikker bare fra et kort feltinntrykk uten nødvendig kildegrunnlag",
+      "påstand om alder eller vernestatus utledet bare fra at en bygning ser gammel ut",
+      "påstand om at høyde alene avgjør om et bygg er godt eller dårlig tilpasset",
+      "påstand om at Oslos høyhusstrategi gir automatisk byggerett i de nevnte områdene",
+      "påstand om at Småhusplan-artikkelen fra 2018 alene dokumenterer dagens komplette juridiske status",
+      "estetiske dommer presentert som objektive fakta uten eksplisitte kriterier",
+      "kausale påstander om bokvalitet eller byliv utledet bare fra bygningstype eller volum"
+    ]
+  },
+  "rejectedOrDeferred": [
+    {
+      "detail": "Rangering av Oslos vakreste eller styggeste bygg.",
+      "reason": "Kapittelet lærer eksplisitt kriteriebasert analyse, ikke smakskonkurranse."
+    },
+    {
+      "detail": "Automatisk stilklassifisering av feltcase fra bilde alene.",
+      "reason": "Stil- og periodisering må skilles fra type og trenger egnet dokumentasjon."
+    },
+    {
+      "detail": "Dagens juridiske småhusregime utledet fra en 2018-artikkel.",
+      "reason": "Kilden brukes som historisk plan- og typologikontekst, ikke som eneste nåtidsrettskilde."
+    },
+    {
+      "detail": "Vernestatus for feltcase uten direkte registeroppslag.",
+      "reason": "Gul liste og formelle plan-/verneregistre må brukes for slik status."
+    }
+  ],
+  "qa": {
+    "threeEditedModules": true,
+    "workedExamples": true,
+    "renderableWorkedExampleAnalysis": true,
+    "misconceptions": true,
+    "applicationTasks": true,
+    "selfCheck": true,
+    "canonicalPlaces": true,
+    "inspectableSources": true,
+    "paragraphLevelClaims": true,
+    "permanentAudit": true,
+    "ownerDomainGate": true,
+    "heritageStatusGuard": true,
+    "highRiseEntitlementGuard": true,
+    "aestheticCriteriaGuard": true,
+    "bylivThirtyOfThirtyPreserved": true
+  }
+}
