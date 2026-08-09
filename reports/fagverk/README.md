@@ -22,6 +22,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `religion-pilot-audit.json` — individuell fase-2-gate for Religion som `foundation_v1`: fire fagkart-eide fagområder, åtte aktive emner, åtte canonicale metoder, tre pensummoduler som progresjonslag og eksplisitte representasjonsprinsipper.
 - `scenekunst-phase3-audit.json` — individuell Fase 3-gate for Scenekunst som `foundation_v1`: fire fagkart-eide fagområder, åtte aktive emner, ni canonicale metoder, åtte mappinger, null syntetiske hooks og tre pensummoduler som separat progresjonslag.
 - `sport-phase3-audit.json` — individuell Fase 3-gate for Sport: seks canonicale fagområder, 116 aktive emner, 109 metoder, 116 mappinger og 60 hooks med bevart Knowledge- og Groundhopper-logikk.
+- `filosofi-phase3-audit.json` — individuell Fase 3-gate for Filosofi: 13 områder, 54 emner, 27 metoder, 37 hooks, 162 begreper og 157 teoretikeroppføringer med referanseintegritet.
 - `natur-quality-audit.json` — emne-, metode-, quiz-, Knowledge- og merkesidekvalitet for Natur & miljø.
 - `natur-fagkart-quality-audit.json` — kvalitets- og referansegate for alle 110 Natur-hooks og 65 emner, inkludert egne fagkartlag for artskunnskap, evolusjon, botanikk, zoologi og fysiologi.
 - `natur-universal-coverage-audit.json` — dokumenterer hvilke biologiske og geologiske fagområder som må materialiseres før Natur kan bli redaksjonelt komplett.
@@ -81,6 +82,8 @@ node scripts/audit-fagverk-scenekunst-phase3.mjs --write-report
 node scripts/audit-fagverk-scenekunst-phase3.mjs
 node scripts/audit-fagverk-sport-phase3.mjs --write-report
 node scripts/audit-fagverk-sport-phase3.mjs
+node scripts/audit-fagverk-filosofi-phase3.mjs --write-report
+node scripts/audit-fagverk-filosofi-phase3.mjs
 node scripts/audit-natur-subject-quality.mjs --write-report
 node scripts/audit-natur-subject-quality.mjs
 node scripts/audit-natur-fagkart-quality.mjs --write-report
