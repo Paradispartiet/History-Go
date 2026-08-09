@@ -59,6 +59,7 @@ jobs:
           rm tools/materialize-by-byliv-hendelser-midlertidighet-phase4-once.mjs
           rm .github/workflows/temporary-materialize-by-byliv-hendelser-midlertidighet-phase4.yml
           rm -f reports/fagverk/by-byliv-hendelser-midlertidighet-phase4-latest-error.txt
+          rm -f reports/fagverk/by-byliv-hendelser-midlertidighet-phase4-source-note.md
       - name: Commit materialized tree
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
