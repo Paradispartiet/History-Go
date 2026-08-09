@@ -9,9 +9,9 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "2.34.0",
+    "version": "2.35.0",
     "updated_at": "2026-08-09",
-    "content_sha256": "5bc992c187ef501f4ca8a06ba993394a316cee2db05b4e0bf46d85c797f73300"
+    "content_sha256": "7f44bbcbdcfe469d37cd6e88e6cb88af49e3f99e6f0190357e2cfd353b31d6ea"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -33,12 +33,12 @@
     "subject_count": 18,
     "root_subject_count": 17,
     "specialization_count": 1,
-    "chapter_subject_count": 6,
-    "chapter_count": 75,
-    "module_file_count": 192,
+    "chapter_subject_count": 7,
+    "chapter_count": 76,
+    "module_file_count": 195,
     "package_file_count": 202,
-    "chapter_referenced_file_count": 333,
-    "referenced_file_count": 494,
+    "chapter_referenced_file_count": 339,
+    "referenced_file_count": 500,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -50,7 +50,7 @@
       "schema_family": "by_compatibility",
       "pilot": true,
       "package_status": "complete",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -226,20 +226,29 @@
         }
       ],
       "package_content_sha256": "e03da357cc8f53e56c7941b8a2fc533a71acf1924521a83ffd8aee96d3e1cc19",
-      "chapter_count": 0,
-      "module_file_count": 0,
-      "brief_file_count": 0,
-      "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 12,
+      "chapter_count": 1,
+      "module_file_count": 3,
+      "brief_file_count": 1,
+      "claims_file_count": 1,
+      "chapter_referenced_file_count": 6,
+      "chapter_content_sha256": "d34ae278eee5fe464cef772ea2019b43b54f32d77f46487bc6790b65cb2f4f95",
+      "referenced_file_count": 18,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "3ea96832ef3fb3444a829b0c302bde487fd5e6b672f5e29bbbacb7e7f9a01d95",
-      "content_sha256": "e03da357cc8f53e56c7941b8a2fc533a71acf1924521a83ffd8aee96d3e1cc19",
-      "chapters": []
+      "structure_sha256": "daf2c8e02a5f78c80efd9d7d20f2251132866831418ee94fc77e80ad8ef69755",
+      "content_sha256": "52ebf0aee626e9f99bc35789dffdaf7c807f4963b4e85b04eaefa459c20d3e99",
+      "chapters": [
+        {
+          "chapter_id": "byliv-offentlige-rom",
+          "title": "Offentlige rom: opphold, bevegelse og møteplasser",
+          "file": "data/fagverk/by/byliv-offentlige-rom.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "d34ae278eee5fe464cef772ea2019b43b54f32d77f46487bc6790b65cb2f4f95"
+        }
+      ]
     },
     "film_tv": {
       "title": "Film & TV",
@@ -4089,5 +4098,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "57d9af6a8db2bfa5077da4dab6526886563e71e031589ae812c69af3f1a80c95"
+  "release_sha256": "37d902bc2a00704fe4094b6dd53f27299c73e81cc0b52e20e7920b058e950f0d"
 }

@@ -83,7 +83,7 @@ export function auditByPilot({ writeReport = false, checkReport = true } = {}) {
   assert(inventoryEntry?.schemaFamily === 'by_compatibility', 'By har feil schemafamilie');
   assert(inventoryEntry?.pilot === true, 'By er ikke registrert som fase-2-pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'By har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'By må stå structure_ready før kapittelproduksjon');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal stå chapters_in_progress etter første redigerte kapittel');
   assert(statusEntry?.nextGate === 'chapter_production', 'By har feil neste port');
   assert(registry.placePage?.fallbackSubjectByCategory?.by === 'by', 'By-steder faller fortsatt tilbake til Politikk-faget');
 
@@ -126,7 +126,7 @@ export function auditByPilot({ writeReport = false, checkReport = true } = {}) {
   assert(model.summary.methodCount === 14, 'By skal ha fjorten canonicale metoder');
   assert(model.summary.mappingCount === 82, 'By skal ha én normalisert primærmapping per emne');
   assert(model.summary.hookCount === 81, 'By skal ha 81 canonicale hooks');
-  assert(model.chapters.length === 0, 'Structure-ready kan ikke late som By-kapitler finnes');
+  assert(model.chapters.length === 1 && model.chapters[0].id === 'byliv-offentlige-rom', 'By skal registrere nøyaktig første Byliv-kapittel i Fase 4');
   assert(source.pensum.modules.length === 7, 'By skal bevare sju pensummoduler som progresjonslag');
   assert(curriculum.modules.length === 8, 'By skal bevare åtte curriculum-moduler som progresjonslag');
   assert(qualityContract.status === 'canonical', 'By-kvalitetskontrakten er ikke canonical');
@@ -160,7 +160,7 @@ export function auditByPilot({ writeReport = false, checkReport = true } = {}) {
   const report = {
     schema: 'history_go_fagverk_by_pilot_audit_v1',
     version: '1.0.0',
-    status: 'by_compatibility_pilot_structure_ready',
+    status: 'by_compatibility_pilot_chapters_in_progress',
     generatedFrom: { ...P, curriculum: curriculumPath, qualityContract: qualityContractPath },
     subject: {
       id: model.subject.id,
@@ -201,8 +201,8 @@ export function auditByPilot({ writeReport = false, checkReport = true } = {}) {
       byPlaceFallbackCorrected: true,
       badgeAndSubjectRoutesDistinct: true,
       assessmentStatusAudited: true,
-      editorialStatusStructureReady: true,
-      chapterClaimsNotOverstated: true
+      editorialStatusChaptersInProgress: true,
+      chapterProductionStartedWithoutCompletenessOverclaim: true
     }
   };
   const committed = committedProjection(report);

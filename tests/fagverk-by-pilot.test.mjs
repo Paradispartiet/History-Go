@@ -7,14 +7,14 @@ import { auditByPilot } from '../scripts/audit-fagverk-by-pilot.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('By er materialisert og auditert som structure-ready compatibility-pilot', () => {
+test('By er materialisert og auditert som chapters-in-progress compatibility-fag', () => {
   const { report } = auditByPilot();
   assert.equal(report.subject.id, 'by');
   assert.equal(report.subject.schemaFamily, 'by_compatibility');
   assert.equal(report.subject.adapter, 'by');
   assert.equal(report.subject.navigationStatus, 'materialized');
   assert.equal(report.subject.assessmentStatus, 'audited');
-  assert.equal(report.subject.editorialStatus, 'structure_ready');
+  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
   assert.deepEqual(report.summary, {
     domainCount: 12,
@@ -25,7 +25,7 @@ test('By er materialisert og auditert som structure-ready compatibility-pilot', 
     hookCount: 81,
     courseModuleCount: 7,
     curriculumModuleCount: 8,
-    registeredChapterCount: 0
+    registeredChapterCount: 1
   });
 });
 
