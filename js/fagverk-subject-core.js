@@ -475,7 +475,13 @@
     const source = input?.source || {};
     const pensum = source.pensum || {};
     const fagkart = source.fagkart || {};
-    const rawEmners = Array.isArray(source.emners) ? source.emners : list(source.emners?.emners);
+    const sourceRawEmners = Array.isArray(source.emners) ? source.emners : list(source.emners?.emners);
+    // Standard-canonical fag med eksplisitt emnemapping bruker pensumdomenene som autoritativt aktivt emnesett.
+    // Rå emnekataloger kan dermed bevare legacy-/paraplyrader uten at de materialiseres som aktive emner.
+    const domainOwnedEmneIds = new Set(rawDomainCandidates(adapter, pensum, fagkart).flatMap(candidateEmneIds));
+    const rawEmners = adapter === 'standard' && text(input?.manifestEntry?.emneMappings) && domainOwnedEmneIds.size
+      ? sourceRawEmners.filter((emne) => domainOwnedEmneIds.has(firstText(emne?.emne_id, emne?.id)))
+      : sourceRawEmners;
     const methods = normalizeMethods(source.methods || {});
     const concepts = normalizeConcepts(source.concepts || []);
     const { domains, domainsById, assignments } = normalizeDomains({ adapter, pensum, fagkart, emners: rawEmners, methods });

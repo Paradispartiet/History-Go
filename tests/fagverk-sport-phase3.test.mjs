@@ -25,7 +25,8 @@ test('Sport er individuelt materialisert og auditert som Fase 3-fag', () => {
     mappingCount: 116,
     hookCount: 60,
     registeredChapterCount: 0,
-    explicitMappingRowCount: 116
+    explicitMappingRowCount: 116,
+    legacyUmbrellaEmneCount: 2
   });
 });
 
@@ -49,6 +50,7 @@ test('alle Sport-emner er dekket i pensum, fagkart og mappingregister', () => {
   assert.equal(report.gates.allCanonicalEmnersInPensum, true);
   assert.equal(report.gates.allCanonicalEmnersInFagkart, true);
   assert.equal(report.gates.allCanonicalEmnersInMappingRegistry, true);
+  assert.equal(report.gates.legacyUmbrellaEmnersExcludedFromActiveSet, true);
   assert.equal(report.gates.allMethodReferencesResolved, true);
 });
 
