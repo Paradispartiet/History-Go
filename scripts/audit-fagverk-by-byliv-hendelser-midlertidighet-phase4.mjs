@@ -15,24 +15,25 @@ const P = Object.freeze({
   status: 'data/fagverk/subject_status.json',
   registry: 'data/fagverk/fagverk_registry.json',
   sourceRegistry: 'data/fag/by/source_registry_by_v1.json',
-  siblingClaims: 'data/fagverk/by/byliv-offentlige-rom/claims.json',
-  siblingChapter: 'data/fagverk/by/byliv-offentlige-rom.json',
-  chapter: 'data/fagverk/by/byliv-sosial-offentlighet.json',
-  brief: 'data/fagverk/by/byliv-sosial-offentlighet/brief.json',
-  claims: 'data/fagverk/by/byliv-sosial-offentlighet/claims.json',
-  report: 'reports/fagverk/by-byliv-sosial-offentlighet-phase4-audit.json'
+  firstChapter: 'data/fagverk/by/byliv-offentlige-rom.json',
+  secondChapter: 'data/fagverk/by/byliv-sosial-offentlighet.json',
+  chapter: 'data/fagverk/by/byliv-hendelser-midlertidighet.json',
+  brief: 'data/fagverk/by/byliv-hendelser-midlertidighet/brief.json',
+  claims: 'data/fagverk/by/byliv-hendelser-midlertidighet/claims.json',
+  report: 'reports/fagverk/by-byliv-hendelser-midlertidighet-phase4-audit.json'
 });
+
 const EXPECTED_EMNES = [
-  'em_by_sosiale_knutepunkt',
-  'em_by_tilfeldige_moter',
-  'em_by_lavterskel_moteplasser_uten_kjopspress',
-  'em_by_publikum_deltakelse_tilskuere',
-  'em_by_smaprat_blikk_sosial_koreografi',
-  'em_by_venting_som_bypraksis',
-  'em_by_tempo_sakte_rask_by'
+  'em_by_festivaler_arrangementer',
+  'em_by_hendelsesbasert_byliv_hoytider',
+  'em_by_midlertidige_installasjoner',
+  'em_by_sesongbruk_uteomrader',
+  'em_by_uformell_bruk_av_byrom',
+  'em_by_skate_gatekunst_improvisasjon'
 ];
-const EXPECTED_METHODS = ['met_feltobservasjon', 'met_gaanalyse', 'met_intervju_brukerperspektiv'];
+const EXPECTED_METHODS = ['met_feltobservasjon', 'met_gaanalyse', 'met_for_etter', 'met_komparativ_caseanalyse'];
 const EXPECTED_PLACES = ['youngstorget', 'radhusplassen', 'toyen_torg', 'birkelunden'];
+const EXPECTED_PREVIOUS = ['byliv-offentlige-rom', 'byliv-sosial-offentlighet'];
 const abs = (p) => path.join(ROOT, p);
 const read = (p) => fs.readFileSync(abs(p), 'utf8');
 const json = (p) => JSON.parse(read(p));
@@ -72,7 +73,7 @@ function committedProjection(report) {
   };
 }
 
-export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false, checkReport = true } = {}) {
+export async function auditByBylivHendelserMidlertidighetPhase4({ writeReport = false, checkReport = true } = {}) {
   const CORE = loadCore();
   const categories = json(P.categories);
   const manifest = json(P.manifest);
@@ -81,7 +82,6 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
   const status = json(P.status);
   const registry = json(P.registry);
   const sourceRegistry = json(P.sourceRegistry);
-  const siblingClaims = json(P.siblingClaims);
   const rawChapter = json(P.chapter);
   const brief = json(P.brief);
   const claimsDocument = json(P.claims);
@@ -89,8 +89,8 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
   const inventoryEntry = inventory.subjects.find((row) => row.id === 'by');
   const statusEntry = status.subjects.find((row) => row.id === 'by');
   const registrySubject = registry.subjects?.by;
-  const chapterMeta = registrySubject?.chapters?.find((row) => row.id === 'byliv-sosial-offentlighet');
-  const siblingMeta = registrySubject?.chapters?.find((row) => row.id === 'byliv-offentlige-rom');
+  const chapterMeta = registrySubject?.chapters?.find((row) => row.id === 'byliv-hendelser-midlertidighet');
+  const previousMeta = EXPECTED_PREVIOUS.map((id) => registrySubject?.chapters?.find((row) => row.id === id));
 
   assert(categories.fagSubjects.includes('by'), 'By mangler i canonical fagliste');
   assert(portalEntry?.subjectStatus === 'materialized', 'By er ikke materialisert');
@@ -100,12 +100,12 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal fortsatt stå chapters_in_progress');
   assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette sammenhengende kapittelproduksjon');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
-  assert(registrySubject.chapters.length === 3, 'By skal nå ha tre registrerte Fase 4-kapitler totalt');
-  assert(chapterMeta, 'Sosial offentlighet-kapittelet mangler i registry');
-  assert(siblingMeta, 'Første Byliv-kapittel ble borte fra registry');
-  assert(chapterMeta.file === P.chapter, 'Registry peker ikke til canonical sosial-offentlighet-kapittel');
+  assert(registrySubject.chapters.length === 3, 'Tredje By Fase 4-batch skal registrere nøyaktig tre kapitler totalt');
+  assert(chapterMeta, 'Hendelser/midlertidighet-kapittelet mangler i registry');
+  assert(previousMeta.every(Boolean), 'Et tidligere Byliv-kapittel ble borte fra registry');
+  assert(chapterMeta.file === P.chapter, 'Registry peker ikke til canonical hendelser/midlertidighet-kapittel');
   assert(chapterMeta.primary_domain_id === 'byliv', 'Kapittelet har feil primary domain');
-  assert(sameSet(chapterMeta.emne_ids || [], EXPECTED_EMNES), 'Registry har feil emnedekning for sosial offentlighet');
+  assert(sameSet(chapterMeta.emne_ids || [], EXPECTED_EMNES), 'Registry har feil emnedekning for hendelser/midlertidighet');
 
   const source = loadSource(CORE, manifest.by);
   const model = CORE.normalizeSubject({
@@ -122,7 +122,7 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
     source
   });
   assert(model.subject.adapter === 'by', 'By skal bruke by-adapteren');
-  assert(model.chapters.length === 3, 'Normalisert By-modell skal vise tre kapitler etter tredje Byliv-batch');
+  assert(model.chapters.length === 3, 'Normalisert By-modell skal vise tre kapitler');
   const modelEmnes = new Map(model.emners.map((row) => [row.id, row]));
   const modelMethods = new Map(model.methods.map((row) => [row.id, row]));
   for (const id of EXPECTED_EMNES) {
@@ -142,16 +142,18 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
   assert(rawChapter.briefFile === P.brief && rawChapter.claimsFile === P.claims, 'Kapittelroot peker ikke til brief og claims');
   for (const file of [...rawChapter.moduleFiles, rawChapter.briefFile, rawChapter.claimsFile]) assert(fs.existsSync(abs(file)), `Kapittelfil mangler: ${file}`);
 
-  assert(brief.chapter_id === 'byliv-sosial-offentlighet', 'Brief har feil kapittel-ID');
+  assert(brief.chapter_id === 'byliv-hendelser-midlertidighet', 'Brief har feil kapittel-ID');
   assert(brief.primary_domain_id === 'byliv', 'Brief har feil domain');
   assert(sameSet(brief.requiredEmneIds || [], EXPECTED_EMNES), 'Brief har feil obligatoriske emner');
   assert(sameSet(brief.requiredMethodIds || [], EXPECTED_METHODS), 'Brief har feil obligatoriske metoder');
-  assert(brief.sourceStrategy?.minimumExternalSources >= 10, 'Brief har for lavt kildekrav');
+  assert(brief.sourceStrategy?.minimumExternalSources >= 12, 'Brief har for lavt kildekrav');
   assert(brief.sourceStrategy?.claimLevelTrace === true && brief.sourceStrategy?.sourceLocationsRequired === true, 'Brief mangler claim-/locator-port');
-  assert(brief.sourceStrategy?.reuseVerifiedSiblingSourcesOnly === true, 'Brief tillater nye uverifiserte kilder i denne batchen');
-  assert(Array.isArray(brief.requiredCriticalDistinctions) && brief.requiredCriticalDistinctions.length >= 12, 'Brief mangler kritiske distinksjoner');
-  assert(brief.qa?.permanentAudit === true && brief.qa?.paragraphLevelClaims === true, 'Brief mangler permanent audit/paragraph claims');
-  assert((brief.scope?.excluded || []).some((text) => text.includes('intervju') && (text.includes('ikke gjennomført') || text.includes('ikke er gjennomført'))), 'Brief mangler eksplisitt grense mot oppdiktede intervjuinnsikter');
+  assert(brief.sourceStrategy?.currentStatusClaimsRequireDatedSource === true, 'Brief mangler temporal status-guard');
+  assert(Array.isArray(brief.requiredCriticalDistinctions) && brief.requiredCriticalDistinctions.length >= 14, 'Brief mangler kritiske distinksjoner');
+  assert(brief.qa?.permanentAudit === true && brief.qa?.paragraphLevelClaims === true && brief.qa?.temporalStatusGuard === true, 'Brief mangler permanent audit/claimtrace/temporal guard');
+  assert((brief.rejectedOrDeferred || []).some((row) => row.detail?.includes('SALT') && row.reason?.includes('status')), 'Brief mangler eksplisitt avgrensning mot raskt skiftende SALT-status');
+  assert((brief.scope?.excluded || []).some((text) => text.includes('midlertidige tiltak') && text.includes('uregulerte')), 'Brief blokkerer ikke eksplisitt midlertidig = uregulert');
+  assert((brief.scope?.excluded || []).some((text) => text.includes('pilot') && text.includes('permanent')), 'Brief blokkerer ikke eksplisitt pilot = permanent konklusjon');
 
   const modules = rawChapter.moduleFiles.map(json);
   const sections = modules.flatMap((module) => Array.isArray(module.sections) ? module.sections : []);
@@ -161,21 +163,30 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
 
   const claims = claimsDocument.claims || [];
   const sources = claimsDocument.sources || [];
-  assert(sources.length === 12, 'Kapittelet skal ha tolv inspectable kilder');
+  assert(sources.length === 13, 'Kapittelet skal ha tretten inspectable kilder');
   assert(claims.length === 18, 'Kapittelet skal ha atten verifiserte claims');
   const sourceIds = new Set(sources.map((row) => row.id));
   const claimIds = new Set(claims.map((row) => row.id));
   assert(sourceIds.size === sources.length, 'Kilderegisteret har dupliserte source-ID-er');
   assert(claimIds.size === claims.length, 'Claims-registeret har dupliserte claim-ID-er');
   assert(sources.every((row) => /^https:\/\//.test(row.url || '') && row.publisher && row.source_location), 'Alle kilder skal ha https-URL, publisher og inspectable source_location');
+  assert(sources.filter((row) => row.published_at).every((row) => /^\d{4}-\d{2}-\d{2}$/.test(row.published_at)), 'Oppgitt published_at har ugyldig datoformat');
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(sources.find((row) => row.id === 'bym07-sommergater-2023')?.published_at || ''), '2023-pressemeldingen mangler eksplisitt publiseringsdato');
   assert(claims.every((claim) => claim.status === 'verified'), 'Alle kapittelclaims skal være verified');
   assert(claims.every((claim) => Array.isArray(claim.source_ids) && claim.source_ids.length && claim.source_ids.every((id) => sourceIds.has(id))), 'Claim peker til ukjent eller manglende kilde');
-  const siblingByUrl = new Map((siblingClaims.sources || []).map((row) => [row.url, row]));
-  assert(siblingByUrl.size === 12, 'Søsterkapittelet har uventet kildegrunnlag');
-  assert(sources.every((row) => siblingByUrl.has(row.url) && siblingByUrl.get(row.url).source_location === row.source_location && siblingByUrl.get(row.url).publisher === row.publisher), 'Kapittel 2 introduserer en kilde eller locator som ikke allerede var verifisert i søsterkapittelet');
-  const claim14 = claims.find((claim) => claim.id === 'bys-14');
-  assert(claim14?.claim.includes('ser ut til å være mest effektive'), 'WHO-claim bys-14 må beholde korrekt evidensstyrke');
-  assert(!claim14?.claim.includes('virker best når'), 'WHO-claim bys-14 er formulert for absolutt');
+  const claimText = claims.map((claim) => claim.claim.toLowerCase()).join('\n');
+  for (const unstable of ['nå ', 'i dag', 'for tiden', 'fortsatt åpen', 'gjeldende status']) assert(!claimText.includes(unstable), `Kapittelet inneholder udaterbar nåtidsclaim: ${unstable}`);
+  for (const id of ['bym-08', 'bym-09']) {
+    const claim = claims.find((row) => row.id === id);
+    assert(claim && /20\d{2}/.test(claim.claim), `${id} mangler eksplisitt årstall`);
+  }
+  const summerSource = sources.find((row) => row.id === 'bym07-sommergater-2023');
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(summerSource?.published_at || ''), 'bym-08 mangler datert pressemeldingskilde');
+  const kirkegataSource = sources.find((row) => row.id === 'bym08-kirkegata-2022');
+  assert(kirkegataSource?.type === 'datert-prosjektside' && kirkegataSource.source_location && kirkegataSource.url?.startsWith('https://'), 'bym-09 mangler låst historisk 2022-prosjektside med locator');
+  const pilotClaim = claims.find((row) => row.id === 'bym-17');
+  assert(pilotClaim?.claim.includes('ikke i seg selv'), 'Pilotclaim må eksplisitt blokkere automatisk permanent effekt');
+  assert(!pilotClaim?.claim.includes('beviser at'), 'Pilotclaim er formulert for absolutt');
 
   const sectionIds = new Set(sections.map((section) => section.id));
   const refsBySection = new Map();
@@ -194,14 +205,15 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
     }
   }
 
-  const rawText = JSON.stringify({ rawChapter, brief, modules });
-  for (const forbidden of ['vi intervjuet', 'intervjuet viste', 'intervjuene viste', 'brukerne fortalte oss']) {
-    assert(!rawText.toLowerCase().includes(forbidden), `Kapittelet fremstiller ikke-gjennomført intervju som data: ${forbidden}`);
+  const rawText = JSON.stringify({ rawChapter, brief, modules }).toLowerCase();
+  for (const forbidden of ['midlertidig betyr uregulert', 'piloten beviser permanent', 'gatekunst beviser inkludering', 'skate beviser inkludering']) {
+    assert(!rawText.includes(forbidden), `Kapittelet inneholder for sterk eller feil slutning: ${forbidden}`);
   }
 
   const fetchFile = async (file) => json(file);
   const hydrated = await CORE.hydrateChapter(chapterMeta, fetchFile);
-  const siblingHydrated = await CORE.hydrateChapter(siblingMeta, fetchFile);
+  const previousHydrated = [];
+  for (const meta of previousMeta) previousHydrated.push(await CORE.hydrateChapter(meta, fetchFile));
   assert(hydrated.workedExamples.length === 2, 'Kapittelet skal hydrere to worked examples');
   assert(hydrated.workedExamples.every((example) => example.situation && example.analysis.length >= 4), 'Worked examples er ikke renderbare');
   assert(hydrated.commonMisconceptions.length === 5, 'Kapittelet skal hydrere fem misoppfatninger');
@@ -210,15 +222,15 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
   assert(hydrated.relatedPlaces.length === 4, 'Kapittelet skal hydrere fire felt-/stedscase');
   assert(hydrated.relatedPlaces.every((place) => place.id && place.name && place.role), 'Stedscase er ikke renderbart');
   assert(sameSet(hydrated.relatedPlaces.map((place) => place.id), EXPECTED_PLACES), 'Kapittelet har feil stedscase-sett');
-  assert(hydrated.sources.length === 12 && hydrated.claims.length === 18, 'Claims og kilder ble ikke hydrert gjennom felles runtime');
-  assert(siblingHydrated.sources.length === 12 && siblingHydrated.claims.length === 18, 'Første Byliv-kapittel hydrerer ikke lenger korrekt');
+  assert(hydrated.sources.length === 13 && hydrated.claims.length === 18, 'Claims og kilder ble ikke hydrert gjennom felles runtime');
+  assert(previousHydrated.every((chapter) => chapter.sources.length >= 12 && chapter.claims.length === 18), 'Et tidligere Byliv-kapittel hydrerer ikke lenger korrekt');
   const selfCheck = modules.flatMap((module) => Array.isArray(module.selfCheck) ? module.selfCheck : []);
   assert(selfCheck.length === 6 && selfCheck.every((item) => item.question && item.answer), 'Kapittelet skal ha seks renderbare self-check-spørsmål');
 
   const provenancePlaces = new Set((sourceRegistry.places || []).map((row) => row.place_id));
   for (const id of ['radhusplassen', 'toyen_torg', 'birkelunden']) assert(provenancePlaces.has(id), `By provenance-registeret mangler feltsted: ${id}`);
   assert(!provenancePlaces.has('youngstorget'), 'Youngstorget skal ikke få falsk provenance-entry uten separat registry-migrasjon');
-  assert(sources.some((row) => row.id === 'bys05-youngstorget' && row.publisher === 'Oslo kommune'), 'Youngstorget-caset mangler offisiell kapittelkilde');
+  assert(sources.some((row) => row.id === 'bym10-youngstorget' && row.publisher === 'Oslo kommune'), 'Youngstorget-caset mangler offisiell kapittelkilde');
 
   const fagkartPrinciples = source.fagkart.principles || {};
   assert(fagkartPrinciples.locked_categories === true && fagkartPrinciples.no_new_main_categories === true, 'By-fagkartets strukturprinsipper er ikke låst');
@@ -232,7 +244,7 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
   assert(qualityContract.source_contract?.no_empty_source_array_for_publishable_question === true, 'By mangler kildekrav for publiserbart innhold');
 
   const report = {
-    schema: 'history_go_fagverk_by_byliv_sosial_offentlighet_phase4_audit_v1',
+    schema: 'history_go_fagverk_by_byliv_hendelser_midlertidighet_phase4_audit_v1',
     version: '1.0.0',
     status: 'by_phase_4_chapters_in_progress',
     generatedFrom: P,
@@ -273,18 +285,19 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
     },
     gates: {
       canonicalStatusProgressionPreserved: true,
-      secondChapterPreservedAcrossThreeChapterRegistry: true,
-      siblingChapterStillHydrates: true,
+      exactlyThreeRegisteredByChapters: true,
+      previousChaptersStillHydrate: true,
       chapterHydratesThroughSharedRuntime: true,
-      sevenCanonicalBylivEmnersCovered: true,
-      threeCanonicalMethodsResolved: true,
+      sixCanonicalBylivEmnersCovered: true,
+      fourCanonicalMethodsResolved: true,
       threeEditedModulesPresent: true,
       paragraphLevelClaimTraceComplete: true,
       allClaimsVerifiedAndUsed: true,
       allClaimSourcesInspectable: true,
-      verifiedSiblingSourceReuseLocked: true,
+      temporalStatusClaimsGuarded: true,
+      pilotNotPromotedToPermanentEffect: true,
+      temporaryNotEquatedWithUnregulated: true,
       evidenceStrengthPreserved: true,
-      fabricatedInterviewEvidenceBlocked: true,
       workedExamplesRenderable: true,
       misconceptionsRenderable: true,
       applicationTasksRenderable: true,
@@ -301,16 +314,16 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
     fs.writeFileSync(abs(P.report), `${JSON.stringify(committed, null, 2)}\n`);
   }
   if (checkReport) assert(isDeepStrictEqual(json(P.report), committed), `${P.report} er utdatert`);
-  return { report: committed, model, hydrated, siblingHydrated };
+  return { report: committed, model, hydrated, previousHydrated };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const { report } = await auditByBylivSosialOffentlighetPhase4({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`By sosial offentlighet Fase 4 OK: ${report.summary.coveredEmneCount} emner, ${report.summary.sourceCount} kilder og ${report.summary.verifiedClaimCount} claims.`);
+    const { report } = await auditByBylivHendelserMidlertidighetPhase4({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
+    console.log(`By hendelser/midlertidighet Fase 4 OK: ${report.summary.coveredEmneCount} emner, ${report.summary.sourceCount} kilder og ${report.summary.verifiedClaimCount} claims.`);
   } catch (error) {
-    console.error(`By sosial offentlighet Fase 4 FEIL: ${error.message}`);
+    console.error(`By hendelser/midlertidighet Fase 4 FEIL: ${error.message}`);
     process.exitCode = 1;
   }
 }

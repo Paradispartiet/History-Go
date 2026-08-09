@@ -17,6 +17,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `by-pilot-audit.json` — individuell fase-2-gate for By som `by_compatibility`: tolv fagkart-eide fagområder, 82 source-emner, 14 canonicale metoder, 81 hooks og kurs-/curriculum-moduler som separate progresjonslag.
 - `by-byliv-offentlige-rom-phase4-audit.json` — første Fase 4-kapittelgate for By: sju Byliv-emner, tre metoder, tre moduler, ni seksjoner, 18 verified claims og 12 inspectable kilder med full avsnittssporing.
 - `by-byliv-sosial-offentlighet-phase4-audit.json` — andre Fase 4-kapittelgate for By: sju Byliv-emner, tre metoder, tre moduler, ni seksjoner, 18 verified claims og 12 gjenbrukte inspectable institusjonelle kilder med låst kildeproveniens.
+- `by-byliv-hendelser-midlertidighet-phase4-audit.json` — tredje Fase 4-kapittelgate for By: seks Byliv-emner, fire metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med temporal status-guard og eksplisitt pilot≠permanent-effekt.
 - `vitenskap-pilot-audit.json` — sluttport for fase 2: seks Vitenskap-fagområder med 93 integrerte emner, 84 metoder, 93 mappinger og 60 hooks, samt Teknologi som nested `technology_scientific_v2_4`-spesialisering med 12 områder, 48 emner, 35 metoder og 36 hooks.
 - `musikk-subject-audit.json` — flerkapittelgate for Musikkvitenskap med exact canonical domene-, emne-, metode-, claim- og kildeprojeksjon fra frigitt fulltekstevidens.
 - `historie-subject-audit.json` — individuell strukturaudit for Historie gjennom standard canonical-adapteren.
@@ -75,6 +76,8 @@ node scripts/audit-fagverk-by-byliv-offentlige-rom-phase4.mjs --write-report
 node scripts/audit-fagverk-by-byliv-offentlige-rom-phase4.mjs
 node scripts/audit-fagverk-by-byliv-sosial-offentlighet-phase4.mjs --write-report
 node scripts/audit-fagverk-by-byliv-sosial-offentlighet-phase4.mjs
+node scripts/audit-fagverk-by-byliv-hendelser-midlertidighet-phase4.mjs --write-report
+node scripts/audit-fagverk-by-byliv-hendelser-midlertidighet-phase4.mjs
 node scripts/audit-fagverk-vitenskap-pilot.mjs --write-report
 node scripts/audit-fagverk-vitenskap-pilot.mjs
 node scripts/audit-fagverk-musikk.mjs --write-report

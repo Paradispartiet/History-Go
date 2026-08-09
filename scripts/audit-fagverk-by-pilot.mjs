@@ -126,7 +126,7 @@ export function auditByPilot({ writeReport = false, checkReport = true } = {}) {
   assert(model.summary.methodCount === 14, 'By skal ha fjorten canonicale metoder');
   assert(model.summary.mappingCount === 82, 'By skal ha én normalisert primærmapping per emne');
   assert(model.summary.hookCount === 81, 'By skal ha 81 canonicale hooks');
-  assert(model.chapters.length === 2 && model.chapters.some((chapter) => chapter.id === 'byliv-offentlige-rom') && model.chapters.some((chapter) => chapter.id === 'byliv-sosial-offentlighet'), 'By skal registrere begge Byliv-kapitlene i Fase 4');
+  assert(model.chapters.length === 3 && model.chapters.some((chapter) => chapter.id === 'byliv-offentlige-rom') && model.chapters.some((chapter) => chapter.id === 'byliv-sosial-offentlighet') && model.chapters.some((chapter) => chapter.id === 'byliv-hendelser-midlertidighet'), 'By skal registrere alle tre Byliv-kapitlene i Fase 4');
   assert(source.pensum.modules.length === 7, 'By skal bevare sju pensummoduler som progresjonslag');
   assert(curriculum.modules.length === 8, 'By skal bevare åtte curriculum-moduler som progresjonslag');
   assert(qualityContract.status === 'canonical', 'By-kvalitetskontrakten er ikke canonical');

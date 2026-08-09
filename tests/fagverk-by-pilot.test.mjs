@@ -25,7 +25,7 @@ test('By er materialisert og auditert som chapters-in-progress compatibility-fag
     hookCount: 81,
     courseModuleCount: 7,
     curriculumModuleCount: 8,
-    registeredChapterCount: 2
+    registeredChapterCount: 3
   });
 });
 
