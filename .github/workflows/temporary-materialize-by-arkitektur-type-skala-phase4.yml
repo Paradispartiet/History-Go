@@ -1,0 +1,78 @@
+name: Temporary materialize By Arkitektur type skala phase 4
+
+on:
+  pull_request:
+    paths:
+      - "tools/materialize-by-arkitektur-type-skala-phase4-once.mjs"
+      - ".github/workflows/temporary-materialize-by-arkitektur-type-skala-phase4.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: materialize-by-arkitektur-type-skala-phase4-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Materialize and validate By Arkitektur type skala phase 4
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set +e
+          node tools/materialize-by-arkitektur-type-skala-phase4-once.mjs > /tmp/by-arkitektur-type-skala-phase4.log 2>&1
+          status=$?
+          cat /tmp/by-arkitektur-type-skala-phase4.log
+          if [ "$status" -ne 0 ]; then
+            git reset --hard HEAD
+            git clean -fd
+            mkdir -p reports/fagverk
+            cp /tmp/by-arkitektur-type-skala-phase4.log reports/fagverk/by-arkitektur-type-skala-phase4-latest-error.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add reports/fagverk/by-arkitektur-type-skala-phase4-latest-error.txt
+            git diff --cached --check
+            git commit -m 'Capture By Arkitektur type skala Phase 4 materialization failure'
+            git fetch origin "$HEAD_BRANCH"
+            remote_head=$(git rev-parse FETCH_HEAD)
+            if [ "$remote_head" != "$EXPECTED_HEAD" ]; then
+              echo "Refusing stale diagnostic push: expected $EXPECTED_HEAD, remote is $remote_head"
+              exit "$status"
+            fi
+            git push --force-with-lease="refs/heads/${HEAD_BRANCH}:${EXPECTED_HEAD}" origin "HEAD:${HEAD_BRANCH}"
+            exit "$status"
+          fi
+      - name: Remove one-shot materializer and diagnostics
+        run: |
+          rm tools/materialize-by-arkitektur-type-skala-phase4-once.mjs
+          rm .github/workflows/temporary-materialize-by-arkitektur-type-skala-phase4.yml
+          rm -f reports/fagverk/by-arkitektur-type-skala-phase4-latest-error.txt
+      - name: Commit materialized tree
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git fetch origin "$HEAD_BRANCH"
+          remote_head=$(git rev-parse FETCH_HEAD)
+          if [ "$remote_head" != "$EXPECTED_HEAD" ]; then
+            echo "Refusing stale materialization push: expected $EXPECTED_HEAD, remote is $remote_head"
+            exit 1
+          fi
+          git commit -m 'Materialiser første Arkitektur Fase 4-kapittel'
+          git push --force-with-lease="refs/heads/${HEAD_BRANCH}:${EXPECTED_HEAD}" origin "HEAD:${HEAD_BRANCH}"
