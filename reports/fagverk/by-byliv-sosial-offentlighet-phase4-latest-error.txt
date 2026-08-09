@@ -1,0 +1,28 @@
+Fagverk inventar OK: 17 toppfag, 1 spesialisering, 72 required kjernefiler, 4 schemafamilier.
+Fagverk fase 1 OK: 17 materialiserte fag bruker generell motor uten politikkfallback.
+By-pilot OK: 12 fagområder, 82 emner, 14 metoder og 81 hooks.
+By Byliv Fase 4 OK: 7 emner, 12 kilder og 18 claims.
+By sosial offentlighet Fase 4 FEIL: em_by_sittekanter_trapper_uformelle_soner ligger ikke i normalisert byliv
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/hostedtoolcache/node/24.18.0/x64/bin/node scripts/audit-fagverk-by-byliv-sosial-offentlighet-phase4.mjs --write-report --no-check-report
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at node (file:///home/runner/work/History-Go/History-Go/tools/materialize-by-byliv-sosial-offentlighet-phase4-once.mjs:93:22)
+    at file:///home/runner/work/History-Go/History-Go/tools/materialize-by-byliv-sosial-offentlighet-phase4-once.mjs:98:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 2119,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.18.0
