@@ -1,0 +1,46 @@
+name: Materialiser By Administrasjon og plan
+
+on:
+  pull_request:
+    paths:
+      - "data/fagverk/by/administrasjon-plan-kontroll-beredskap.json"
+      - "data/fagverk/by/administrasjon-plan-kontroll-beredskap/**"
+      - "scripts/materialize-by-administrasjon-plan-phase4.mjs"
+      - ".github/workflows/fagverk-by-administrasjon-plan-bootstrap.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Materialiser registry, status, rapporter og release
+        run: node scripts/materialize-by-administrasjon-plan-phase4.mjs
+      - name: Kjør nye og bevarende tester
+        run: |
+          node --test tests/fagverk-by-administrasjon-plan-kontroll-beredskap-phase4.test.mjs
+          node --test tests/fagverk-by-bolig-nabolag-tilgang-endring-phase4.test.mjs
+          node --test tests/fagverk-by-arkitektur-gatekant-makt-ombruk-phase4.test.mjs
+          node --test tests/fagverk-by-pilot.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: by-administrasjon-plan-materialized
+          path: |
+            data/fagverk/fagverk_registry.json
+            data/fagverk/subject_status.json
+            data/fagverk/fagverk_release.json
+            reports/fagverk/README.md
+            reports/fagverk/*by*audit.json
+            reports/fagverk/general-engine-audit.json
+            scripts/audit-fagverk-by-*.mjs
+            tests/fagverk-by-*.test.mjs
+            tests/fagverk-general-engine.test.mjs
+          if-no-files-found: error
