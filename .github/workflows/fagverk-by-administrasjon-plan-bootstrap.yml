@@ -9,13 +9,15 @@ on:
       - ".github/workflows/fagverk-by-administrasjon-plan-bootstrap.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   materialize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
@@ -29,6 +31,26 @@ jobs:
           node --test tests/fagverk-by-pilot.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit materialiserte filer til PR-branchen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/README.md \
+            reports/fagverk/by-*-audit.json \
+            reports/fagverk/general-engine-audit.json \
+            scripts/audit-fagverk-by-*.mjs \
+            tests/fagverk-by-*.test.mjs \
+            tests/fagverk-general-engine.test.mjs
+          if git diff --cached --quiet; then
+            echo "Ingen materialiserte endringer å committe."
+          else
+            git commit -m "Materialiser Administrasjon og plan 3 av 3"
+            git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
