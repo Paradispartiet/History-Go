@@ -9,7 +9,7 @@ test('By Byliv-kapittelet er claimsporet, renderbart og fortsatt redaksjonelt uf
   assert.equal(report.subject.adapter, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 1);
+  assert.equal(report.subject.registeredChapterCount, 2);
   assert.equal(report.chapter.id, 'byliv-offentlige-rom');
   assert.deepEqual(report.summary, {
     coveredEmneCount: 7,

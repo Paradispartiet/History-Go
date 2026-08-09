@@ -27,7 +27,7 @@ const EXPECTED_EMNES = [
   'em_by_tilfeldige_moter',
   'em_by_lavterskel_moteplasser_uten_kjopspress',
   'em_by_publikum_deltakelse_tilskuere',
-  'em_by_sittekanter_trapper_uformelle_soner',
+  'em_by_smaprat_blikk_sosial_koreografi',
   'em_by_venting_som_bypraksis',
   'em_by_tempo_sakte_rask_by'
 ];
@@ -151,7 +151,7 @@ export async function auditByBylivSosialOffentlighetPhase4({ writeReport = false
   assert(brief.sourceStrategy?.reuseVerifiedSiblingSourcesOnly === true, 'Brief tillater nye uverifiserte kilder i denne batchen');
   assert(Array.isArray(brief.requiredCriticalDistinctions) && brief.requiredCriticalDistinctions.length >= 12, 'Brief mangler kritiske distinksjoner');
   assert(brief.qa?.permanentAudit === true && brief.qa?.paragraphLevelClaims === true, 'Brief mangler permanent audit/paragraph claims');
-  assert((brief.scope?.excluded || []).some((text) => text.includes('intervju') && text.includes('ikke gjennomført')), 'Brief mangler eksplisitt grense mot oppdiktede intervjuinnsikter');
+  assert((brief.scope?.excluded || []).some((text) => text.includes('intervju') && (text.includes('ikke gjennomført') || text.includes('ikke er gjennomført'))), 'Brief mangler eksplisitt grense mot oppdiktede intervjuinnsikter');
 
   const modules = rawChapter.moduleFiles.map(json);
   const sections = modules.flatMap((module) => Array.isArray(module.sections) ? module.sections : []);
