@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: materialize-by-byliv-phase4-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   materialize:
     if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
@@ -28,6 +32,7 @@ jobs:
       - name: Materialize and validate By Byliv phase 4
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
         run: |
           set +e
           node tools/materialize-by-byliv-offentlige-rom-phase4-once.mjs > /tmp/by-byliv-phase4.log 2>&1
@@ -43,7 +48,13 @@ jobs:
             git add reports/fagverk/by-byliv-offentlige-rom-phase4-latest-error.txt
             git diff --cached --check
             git commit -m 'Capture By Byliv Phase 4 materialization failure'
-            git push origin "HEAD:${HEAD_BRANCH}"
+            git fetch origin "$HEAD_BRANCH"
+            remote_head=$(git rev-parse FETCH_HEAD)
+            if [ "$remote_head" != "$EXPECTED_HEAD" ]; then
+              echo "Refusing stale diagnostic push: expected $EXPECTED_HEAD, remote is $remote_head"
+              exit "$status"
+            fi
+            git push --force-with-lease="refs/heads/${HEAD_BRANCH}:${EXPECTED_HEAD}" origin "HEAD:${HEAD_BRANCH}"
             exit "$status"
           fi
       - name: Remove one-shot materializer and diagnostics
@@ -55,10 +66,17 @@ jobs:
       - name: Commit materialized tree
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git diff --cached --check
+          git fetch origin "$HEAD_BRANCH"
+          remote_head=$(git rev-parse FETCH_HEAD)
+          if [ "$remote_head" != "$EXPECTED_HEAD" ]; then
+            echo "Refusing stale materialization push: expected $EXPECTED_HEAD, remote is $remote_head"
+            exit 1
+          fi
           git commit -m 'Materialiser By Byliv Fase 4-kapittel'
-          git push origin "HEAD:${HEAD_BRANCH}"
+          git push --force-with-lease="refs/heads/${HEAD_BRANCH}:${EXPECTED_HEAD}" origin "HEAD:${HEAD_BRANCH}"
