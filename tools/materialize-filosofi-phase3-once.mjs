@@ -42,6 +42,7 @@ const readmePath='reports/fagverk/README.md'; let readme=read(readmePath);
 if(!readme.includes('filosofi-phase3-audit.json')){ const m=readme.split('\n').find(l=>l.includes('sport-phase3-audit.json')); assert(m,'README mangler Sport-rapport'); readme=readme.replace(`${m}\n`,`${m}\n- \`filosofi-phase3-audit.json\` — individuell Fase 3-gate for Filosofi: 13 områder, 54 emner, 27 metoder, 37 hooks, 162 begreper og 157 teoretikeroppføringer med referanseintegritet.\n`); }
 if(!readme.includes('audit-fagverk-filosofi-phase3.mjs --write-report')){ const m='node scripts/audit-fagverk-sport-phase3.mjs\n'; assert(readme.includes(m),'README mangler Sport-kommando'); readme=readme.replace(m,`${m}node scripts/audit-fagverk-filosofi-phase3.mjs --write-report\nnode scripts/audit-fagverk-filosofi-phase3.mjs\n`); } write(readmePath,readme);
 
+console.log('Filosofi source domain ids:', JSON.stringify(readJson('data/fag/filosofi/fagkart_filosofi_canonical_v1.json').categories.map(x=>x.id)));
 function node(args){ execFileSync(process.execPath,args,{cwd:ROOT,stdio:'inherit'}); }
 node(['scripts/audit-fagverk-subject-inventory.mjs','--write-report']);
 node(['scripts/audit-fagverk-general-engine.mjs','--write-report']);
