@@ -63,7 +63,7 @@ export async function auditByArkitekturGatekantMaktOmbrukPhase4({writeReport=fal
   assert(statusEntry?.editorialStatus==='chapters_in_progress','By skal fortsatt stå chapters_in_progress');
   assert(statusEntry?.nextGate==='chapter_production','By skal fortsette kapittelproduksjon etter Arkitektur 12/12');
   assert(registrySubject && Array.isArray(registrySubject.chapters),'By mangler kapittelregister');
-  assert(registrySubject.chapters.length===10,'Andre Arkitektur-batch skal gi nøyaktig ni registrerte By-kapitler totalt');
+  assert(registrySubject.chapters.length===11,'Andre Arkitektur-batch skal gi nøyaktig ni registrerte By-kapitler totalt');
   assert(chapterMeta && bylivMeta.every(Boolean) && archMeta.every(Boolean),'Kapittel 2 eller tidligere By-kapitler mangler');
   assert(chapterMeta.file===P.chapter && chapterMeta.primary_domain_id==='arkitektur','Registry har feil fil/domain for Arkitektur-kapittel 2');
   assert(sameSet(chapterMeta.emne_ids||[],EXPECTED_EMNES),'Registry har feil emnedekning for Arkitektur-kapittel 2');
@@ -71,7 +71,7 @@ export async function auditByArkitekturGatekantMaktOmbrukPhase4({writeReport=fal
   const source=loadSource(CORE,manifest.by);
   const model=CORE.normalizeSubject({subjectId:'by',categoryLabel:categories.labels.by,categoryDescription:categories.decisions?.by,schemaFamily:inventoryEntry.schemaFamily,manifestEntry:manifest.by,portalEntry,inventoryEntry,statusEntry,registry,badge:{},source});
   assert(model.subject.adapter==='by','By skal bruke by-adapteren');
-  assert(model.chapters.length===10,'Normalisert By-modell skal vise ni kapitler');
+  assert(model.chapters.length===11,'Normalisert By-modell skal vise ni kapitler');
   const modelEmnes=new Map(model.emners.map((r)=>[r.id,r])), modelMethods=new Map(model.methods.map((r)=>[r.id,r]));
   for(const id of EXPECTED_EMNES){ const emne=modelEmnes.get(id); assert(emne,`Ukjent By-emne: ${id}`); assert(emne.domainId==='arkitektur',`${id} ligger ikke i normalisert arkitektur`); }
   for(const id of EXPECTED_METHODS) assert(modelMethods.has(id),`Ukjent By-metode: ${id}`);
@@ -145,7 +145,7 @@ export async function auditByArkitekturGatekantMaktOmbrukPhase4({writeReport=fal
     chapter:{id:rawChapter.id,title:rawChapter.title,primaryDomainId:rawChapter.primary_domain_id,file:P.chapter,editorialStatus:rawChapter.editorialStatus},
     summary:{coveredEmneCount:EXPECTED_EMNES.length,methodCount:EXPECTED_METHODS.length,moduleCount:3,sectionCount:9,sourceCount:13,verifiedClaimCount:18,workedExampleCount:2,misconceptionCount:5,applicationTaskCount:4,selfCheckCount:6,relatedPlaceCount:EXPECTED_PLACES.length,canonicalBylivEmneCount:30,coveredBylivEmneCount:30,canonicalArchitectureEmneCount:12,chapterCoveredArchitectureEmneCount:12},
     coverage:{emneIds:EXPECTED_EMNES,methodIds:EXPECTED_METHODS,relatedPlaceIds:EXPECTED_PLACES,canonicalArchitectureEmneIds:canonicalArchitectureIds},
-    gates:{canonicalStatusProgressionPreserved:true,preservedAcrossTenRegisteredByChapters:true,allFiveBylivChaptersStillHydrate:true,bylivThirtyOfThirtyPreserved:true,bothArchitectureChaptersRegistered:true,architectureTwelveOfTwelveCoveredExactlyOnce:true,chapterHydratesThroughSharedRuntime:true,sixCanonicalArchitectureEmnersCovered:true,sixCanonicalMethodsResolved:true,threeEditedModulesPresent:true,paragraphLevelClaimTraceComplete:true,allClaimsVerifiedAndUsed:true,everySourceUsedByClaim:true,allClaimSourcesInspectable:true,activeGroundFloorEvidenceGuarded:true,universalMainEntranceGuarded:true,reuseDecisionTradeoffsGuarded:true,useChangeAndHeritageRolesSeparated:true,planningPowerMappedToActorsAndDocuments:true,symbolicIntentNotFabricated:true,workedExamplesRenderable:true,misconceptionsRenderable:true,applicationTasksRenderable:true,selfCheckRenderable:true,canonicalFieldPlacesResolved:true,byEditorialAndSourceContractLocked:true,architectureCompleteWithoutSubjectCompletenessOverclaim:true}
+    gates:{canonicalStatusProgressionPreserved:true,preservedAcrossElevenRegisteredByChapters:true,allFiveBylivChaptersStillHydrate:true,bylivThirtyOfThirtyPreserved:true,bothArchitectureChaptersRegistered:true,architectureTwelveOfTwelveCoveredExactlyOnce:true,chapterHydratesThroughSharedRuntime:true,sixCanonicalArchitectureEmnersCovered:true,sixCanonicalMethodsResolved:true,threeEditedModulesPresent:true,paragraphLevelClaimTraceComplete:true,allClaimsVerifiedAndUsed:true,everySourceUsedByClaim:true,allClaimSourcesInspectable:true,activeGroundFloorEvidenceGuarded:true,universalMainEntranceGuarded:true,reuseDecisionTradeoffsGuarded:true,useChangeAndHeritageRolesSeparated:true,planningPowerMappedToActorsAndDocuments:true,symbolicIntentNotFabricated:true,workedExamplesRenderable:true,misconceptionsRenderable:true,applicationTasksRenderable:true,selfCheckRenderable:true,canonicalFieldPlacesResolved:true,byEditorialAndSourceContractLocked:true,architectureCompleteWithoutSubjectCompletenessOverclaim:true}
   };
   if(writeReport) fs.writeFileSync(abs(P.report),`${JSON.stringify(report,null,2)}\n`);
   if(checkReport){ assert(fs.existsSync(abs(P.report)),`Mangler committed rapport: ${P.report}`); assert(isDeepStrictEqual(committedProjection(json(P.report)),committedProjection(report)),'Committed Arkitektur 12/12-rapport avviker'); }
