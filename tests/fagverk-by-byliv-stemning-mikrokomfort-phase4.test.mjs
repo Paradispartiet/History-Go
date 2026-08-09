@@ -9,7 +9,7 @@ test('By stemning og mikrokomfort er claimsporet og holder evidenslagene adskilt
   assert.equal(report.subject.adapter, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 5);
+  assert.equal(report.subject.registeredChapterCount, 6);
   assert.equal(report.chapter.id, 'byliv-stemning-mikrokomfort');
   assert.deepEqual(report.summary, {
     coveredEmneCount: 5,

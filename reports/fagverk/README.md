@@ -20,6 +20,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `by-byliv-hendelser-midlertidighet-phase4-audit.json` — tredje Fase 4-kapittelgate for By: seks Byliv-emner, fire metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med temporal status-guard og eksplisitt pilot≠permanent-effekt.
 - `by-byliv-stemning-mikrokomfort-phase4-audit.json` — fjerde Fase 4-kapittelgate for By: fem Byliv-emner, fem metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med målefabrikasjons- og evidenslagvakt.
 - `by-byliv-rytmer-miks-konflikt-phase4-audit.json` — femte Fase 4-kapittelgate og Byliv-domenets 30/30-port: fem emner, fem metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med tidsserie-, identitets- og konfliktevidensvakter.
+- `by-arkitektur-type-skala-phase4-audit.json` — første Arkitektur-kapittelgate: seks av tolv Arkitektur-eide emner, fem metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder; Byliv 30/30 bevares eksplisitt.
 - `vitenskap-pilot-audit.json` — sluttport for fase 2: seks Vitenskap-fagområder med 93 integrerte emner, 84 metoder, 93 mappinger og 60 hooks, samt Teknologi som nested `technology_scientific_v2_4`-spesialisering med 12 områder, 48 emner, 35 metoder og 36 hooks.
 - `musikk-subject-audit.json` — flerkapittelgate for Musikkvitenskap med exact canonical domene-, emne-, metode-, claim- og kildeprojeksjon fra frigitt fulltekstevidens.
 - `historie-subject-audit.json` — individuell strukturaudit for Historie gjennom standard canonical-adapteren.
@@ -84,6 +85,8 @@ node scripts/audit-fagverk-by-byliv-stemning-mikrokomfort-phase4.mjs --write-rep
 node scripts/audit-fagverk-by-byliv-stemning-mikrokomfort-phase4.mjs
 node scripts/audit-fagverk-by-byliv-rytmer-miks-konflikt-phase4.mjs --write-report
 node scripts/audit-fagverk-by-byliv-rytmer-miks-konflikt-phase4.mjs
+node scripts/audit-fagverk-by-arkitektur-type-skala-phase4.mjs --write-report
+node scripts/audit-fagverk-by-arkitektur-type-skala-phase4.mjs
 node scripts/audit-fagverk-vitenskap-pilot.mjs --write-report
 node scripts/audit-fagverk-vitenskap-pilot.mjs
 node scripts/audit-fagverk-musikk.mjs --write-report
