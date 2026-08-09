@@ -84,7 +84,13 @@ const legacyTests=[
 for(const p of legacyTests){
   let t=read(p);
   const before=t;
-  t=t.replace(/registeredChapterCount\s*,\s*8/g,'registeredChapterCount, 9').replace(/chapterCount\s*,\s*8/g,'chapterCount, 9').replaceAll('EightRegisteredByChapters','NineRegisteredByChapters').replaceAll('EightChapter','NineChapter');
+  t=t
+    .replace(/registeredChapterCount\s*,\s*8/g,'registeredChapterCount, 9')
+    .replace(/registeredChapterCount\s*:\s*8/g,'registeredChapterCount: 9')
+    .replace(/chapterCount\s*,\s*8/g,'chapterCount, 9')
+    .replace(/chapterCount\s*:\s*8/g,'chapterCount: 9')
+    .replaceAll('EightRegisteredByChapters','NineRegisteredByChapters')
+    .replaceAll('EightChapter','NineChapter');
   if(t!==before) write(p,t);
 }
 let generalTest=read('tests/fagverk-general-engine.test.mjs');
