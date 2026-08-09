@@ -93,8 +93,8 @@ export async function auditByBylivRytmerMiksKonfliktPhase4({ writeReport = false
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal fortsatt stå chapters_in_progress');
   assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette kapittelproduksjon etter ferdig Byliv');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
-  assert(registrySubject.chapters.length === 5, 'Femte By Fase 4-batch skal registrere nøyaktig fem kapitler totalt');
-  assert(registrySubject.chapters.map((row) => row.id).join('|') === EXPECTED_CHAPTER_ORDER.join('|'), 'Byliv-kapitlene har feil rekkefølge eller mangler');
+  assert(registrySubject.chapters.length === 6, 'By skal ha fem Byliv-kapitler og ett Arkitektur-kapittel etter Arkitektur-start');
+  assert(registrySubject.chapters.filter((row) => row.primary_domain_id === 'byliv').map((row) => row.id).join('|') === EXPECTED_CHAPTER_ORDER.join('|'), 'Byliv-kapitlene har feil rekkefølge eller mangler');
   assert(chapterMeta && previousMeta.every(Boolean), 'Kapittel 5 eller et tidligere Byliv-kapittel mangler i registry');
   assert(chapterMeta.file === P.chapter && chapterMeta.primary_domain_id === 'byliv', 'Registry har feil fil/domain for kapittel 5');
   assert(sameSet(chapterMeta.emne_ids || [], EXPECTED_EMNES), 'Registry har feil emnedekning for rytmer/miks/konflikt');
@@ -102,7 +102,7 @@ export async function auditByBylivRytmerMiksKonfliktPhase4({ writeReport = false
   const source = loadSource(CORE, manifest.by);
   const model = CORE.normalizeSubject({ subjectId: 'by', categoryLabel: categories.labels.by, categoryDescription: categories.decisions?.by, schemaFamily: inventoryEntry.schemaFamily, manifestEntry: manifest.by, portalEntry, inventoryEntry, statusEntry, registry, badge: {}, source });
   assert(model.subject.adapter === 'by', 'By skal bruke by-adapteren');
-  assert(model.chapters.length === 5, 'Normalisert By-modell skal vise fem kapitler');
+  assert(model.chapters.length === 6, 'Normalisert By-modell skal vise seks kapitler etter første Arkitektur-batch');
   const modelEmnes = new Map(model.emners.map((row) => [row.id, row]));
   const modelMethods = new Map(model.methods.map((row) => [row.id, row]));
   for (const id of EXPECTED_EMNES) {
@@ -114,7 +114,7 @@ export async function auditByBylivRytmerMiksKonfliktPhase4({ writeReport = false
 
   const canonicalBylivIds = model.emners.filter((row) => row.domainId === 'byliv').map((row) => row.id).sort();
   assert(canonicalBylivIds.length === 30, `Normalisert Byliv skal ha 30 emner, fikk ${canonicalBylivIds.length}`);
-  const allChapterRefs = registrySubject.chapters.flatMap((row) => row.emne_ids || []);
+  const allChapterRefs = registrySubject.chapters.filter((row) => row.primary_domain_id === 'byliv').flatMap((row) => row.emne_ids || []);
   const chapterBylivSet = new Set(allChapterRefs);
   assert(allChapterRefs.length === 30, `Fem Byliv-kapitler skal ha nøyaktig 30 emnereferanser, fikk ${allChapterRefs.length}`);
   assert(chapterBylivSet.size === 30, 'Byliv-kapitlene har duplisert emnedekning');
@@ -216,7 +216,7 @@ export async function auditByBylivRytmerMiksKonfliktPhase4({ writeReport = false
     coverage: { emneIds: EXPECTED_EMNES, methodIds: EXPECTED_METHODS, relatedPlaceIds: EXPECTED_PLACES, allBylivEmneIds: canonicalBylivIds },
     gates: {
       canonicalStatusProgressionPreserved: true,
-      exactlyFiveRegisteredByChapters: true,
+      fiveBylivChaptersPreservedAcrossSixChapterRegistry: true,
       previousChaptersStillHydrate: true,
       chapterHydratesThroughSharedRuntime: true,
       fiveCanonicalBylivEmnersCovered: true,

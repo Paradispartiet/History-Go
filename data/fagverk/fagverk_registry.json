@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.39.0",
+  "version": "2.40.0",
   "updatedAt": "2026-08-09",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -31,7 +31,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "by_compatibility",
         "sourceOfTruth": true,
-        "note": "Fagkartets tolv kategorier eier renderer-fagområdene. Pensummodulene og curriculum-arkitekturen eier progresjon. Fem redigerte Fase 4-kapitler dekker nå nøyaktig alle 30 canonicale Byliv-emner med femten moduler, 63 inspectable kapittelkilder og 90 claimsporede påstander. Byliv er dermed kapitteldekket 30/30, mens de øvrige elleve By-fagområdene fortsatt er under sammenhengende kapittelproduksjon."
+        "note": "Fagkartets tolv kategorier eier renderer-fagområdene. Pensummodulene og curriculum-arkitekturen eier progresjon. Byliv er kapitteldekket 30/30 gjennom fem kapitler. Første Arkitektur-kapittel dekker 6 av 12 canonicale Arkitektur-emner om type, boligstruktur, historiske lag, skala/volum, romlig orden og estetikk/funksjon. By-faget fortsetter sammenhengende Fase 4-kapittelproduksjon."
       },
       "chapters": [
         {
@@ -123,6 +123,24 @@
           ],
           "claimsFile": "data/fagverk/by/byliv-rytmer-miks-konflikt/claims.json",
           "briefFile": "data/fagverk/by/byliv-rytmer-miks-konflikt/brief.json"
+        },
+        {
+          "id": "arkitektur-type-skala-byform",
+          "title": "Type, skala og byform: fra hageby til høyhus",
+          "subtitle": "Hvordan bygningstyper, boligstruktur, historiske lag, høyde, volum og romlig orden kan analyseres uten å gjøre stil, størrelse eller skjønnhet til enkle fasitsvar",
+          "file": "data/fagverk/by/arkitektur-type-skala-byform.json",
+          "primary_domain_id": "arkitektur",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_by_bygningstyper_og_typologier",
+            "em_by_boligstruktur",
+            "em_by_historiske_lag_i_hverdagsrom",
+            "em_by_skala_hoyde_volum",
+            "em_by_romlig_orden",
+            "em_by_estetikk_vs_funksjon"
+          ],
+          "claimsFile": "data/fagverk/by/arkitektur-type-skala-byform/claims.json",
+          "briefFile": "data/fagverk/by/arkitektur-type-skala-byform/brief.json"
         }
       ]
     },
