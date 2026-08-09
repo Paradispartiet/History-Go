@@ -1,0 +1,118 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "chapter_id": "urbanisme-idealer-forbindelser-fortetting",
+  "primary_domain_id": "urbanisme",
+  "purpose": "Fullføre Urbanisme som canonical By-domene med kildebelagt undervisning i byidealer, funksjonsmiks, mobilitet, forbindelser, tetthet, fortetting og forholdet mellom teori og faktisk by.",
+  "audience": "Brukere som skal lære å skille byvisjon fra plan, plan fra gjennomføring og gjennomført fysisk form fra dokumentert bruk og effekt.",
+  "learningArc": [
+    "starte med byidealer og plantradisjoner som historiske modeller",
+    "skille funksjonsdeling fra blandet by og planlagt miks fra faktisk miks",
+    "lese mobilitetsnettverk gjennom prioriteringer, forbindelser og barrierer",
+    "skille fysisk infrastruktur fra dokumentert fremkommelighet og bruk",
+    "analysere tetthet og fortetting som målbare romlige egenskaper uten å gjøre dem til kvalitetsdommer",
+    "skille planlagt boligkapasitet fra detaljregulering, igangsetting og ferdigstillelse",
+    "bruke Fjordbyen og Lambertseter som historiske plan-til-sted-caser",
+    "avslutte med en eksplisitt ideal → plan → gjennomføring → observasjon/måling-protokoll"
+  ],
+  "requiredEmneIds": [
+    "em_by_byidealer_og_plantradisjoner",
+    "em_by_funksjonsdeling_vs_blandet_by",
+    "em_by_infrastruktur_mobilitet",
+    "em_by_barrierer_forbindelser",
+    "em_by_tetthet_og_fortetting",
+    "em_by_teori_vs_praksis_i_byutvikling"
+  ],
+  "requiredMethodIds": [
+    "met_policy_lesning",
+    "met_arkiv_minne_spor",
+    "met_gaanalyse",
+    "met_tilgjengelighetsaudit",
+    "met_gis_romlig_analyse",
+    "met_for_etter",
+    "met_komparativ_caseanalyse",
+    "met_feltobservasjon"
+  ],
+  "requiredCriticalDistinctions": [
+    "byideal vs juridisk plan",
+    "juridisk plan vs gjennomført prosjekt",
+    "gjennomført prosjekt vs dokumentert bruk eller effekt",
+    "funksjonsblanding som mål vs faktisk funksjonsmiks",
+    "infrastruktur på kart vs sammenhengende brukbar forbindelse",
+    "fysisk forbindelse vs lik tilgjengelighet for ulike brukere",
+    "barriere som fysisk spor vs dokumentert konsekvens",
+    "tetthet vs høyde",
+    "tetthet vs bykvalitet",
+    "fortetting vs enhver ny utbygging",
+    "planlagt boligpotensial vs igangsatt bolig",
+    "planlagt boligpotensial vs ferdigstilt bolig",
+    "historisk planideal vs dagens sted",
+    "mål om redusert bilbruk vs målt trafikkendring",
+    "mål om mer byliv vs dokumentert byliv",
+    "planstatus i 2026 vs gjeldende plan",
+    "teoretisk tolkning vs kildebelagt lokal årsaksforklaring"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "Oslo kommunes plansider for planhierarki, planstatus, utviklingsområder og fortetting",
+      "Oslo kommunes historiske og prosjektbaserte materiale om Fjordbyen og Lambertseter",
+      "Oslo kommunes mobilitets- og byromssider for fysisk gjennomføring og nettverk",
+      "Bolig- og områdereserven for å skille planlagt kapasitet fra bygging",
+      "canonical By-filer som emne-, metode- og progresjonsstyring, aldri som ekstern faktakilde"
+    ],
+    "minimumExternalSources": 13,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "currentStatusClaimsRequireCurrentSource": true
+  },
+  "scope": {
+    "included": [
+      "byidealer og plantradisjoner",
+      "funksjonsdeling og blandet by",
+      "mobilitetsinfrastruktur, forbindelser og barrierer",
+      "tetthet og fortetting",
+      "planlagt boligkapasitet og gjennomføringsstadier",
+      "Fjordbyen, Oslo S og Lambertseter som dokumenterte plan- og transformasjonscase",
+      "Bilfritt byliv, Olav Vs gate og sykkelveinettet som fysisk mobilitets- og byromsendring",
+      "policylesning, arkiv/minnespor, gåanalyse, tilgjengelighetsaudit, GIS, før/etter, komparasjon og feltobservasjon"
+    ],
+    "excluded": [
+      "påstand om at en byvisjon er realisert bare fordi den finnes i et plandokument",
+      "påstand om at blandet by automatisk gir godt byliv",
+      "påstand om at høy tetthet automatisk gir høy eller lav bykvalitet",
+      "planlagt boligkapasitet omtalt som ferdigbygde boliger",
+      "mål om redusert bilbruk omtalt som målt trafikkreduksjon uten data",
+      "mål om mer byliv omtalt som dokumentert brukseffekt uten måling",
+      "sykkelveilengde brukt som bevis på at alle forbindelser er sammenhengende, trygge eller like tilgjengelige",
+      "observerte barrierer brukt som årsaksbevis for brukeradferd uten videre dokumentasjon",
+      "historiske planidealer presentert som uendrede beskrivelser av dagens område",
+      "høringsforslaget til kommuneplanens arealdel 2026 presentert som allerede gjeldende plan",
+      "teoretikere brukt som erstatning for lokal kilde eller dokumentert stedshistorie"
+    ]
+  },
+  "qa": {
+    "threeEditedModules": true,
+    "workedExamples": true,
+    "misconceptions": true,
+    "applicationTasks": true,
+    "selfCheck": true,
+    "canonicalPlaces": true,
+    "inspectableSources": true,
+    "paragraphLevelClaims": true,
+    "permanentAudit": true,
+    "ownerDomainGate": true,
+    "urbanismSixOfSixGate": true,
+    "administrationPlanningThreeOfThreePreserved": true,
+    "housingNeighborhoodFiveOfFivePreserved": true,
+    "architectureTwelveOfTwelvePreserved": true,
+    "bylivThirtyOfThirtyPreserved": true,
+    "planIntentOutcomeGuard": true,
+    "plannedCapacityConstructionGuard": true,
+    "densityQualityGuard": true,
+    "mobilityGoalMeasuredEffectGuard": true,
+    "barrierEffectGuard": true,
+    "currentPlanStatusGuard": true,
+    "theoryOverreachGuard": true
+  }
+}
