@@ -127,6 +127,22 @@ const sportBlock = `${marker}  const sport = result.materializedRows.find((row) 
 generalTest = generalTest.replace(marker, sportBlock);
 write(generalTestPath, generalTest);
 
+const sportTestPath = 'tests/fagverk-sport-phase3.test.mjs';
+let sportTest = read(sportTestPath);
+sportTest = replaceOnce(
+  sportTest,
+  `    registeredChapterCount: 0,\n    explicitMappingRowCount: 116\n  });`,
+  `    registeredChapterCount: 0,\n    explicitMappingRowCount: 116,\n    legacyUmbrellaEmneCount: 2\n  });`,
+  sportTestPath
+);
+sportTest = replaceOnce(
+  sportTest,
+  `  assert.equal(report.gates.allCanonicalEmnersInMappingRegistry, true);\n  assert.equal(report.gates.allMethodReferencesResolved, true);`,
+  `  assert.equal(report.gates.allCanonicalEmnersInMappingRegistry, true);\n  assert.equal(report.gates.legacyUmbrellaEmnersExcludedFromActiveSet, true);\n  assert.equal(report.gates.allMethodReferencesResolved, true);`,
+  sportTestPath
+);
+write(sportTestPath, sportTest);
+
 const readmePath = 'reports/fagverk/README.md';
 let readme = read(readmePath);
 if (!readme.includes('sport-phase3-audit.json')) {
