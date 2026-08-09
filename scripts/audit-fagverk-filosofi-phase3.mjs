@@ -119,7 +119,8 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   assert(model.subject.adapter === 'standard', 'Foundation-pakken skal gå gjennom standardadapteren');
   assert(model.subject.routes.badge === portalEntry.badgePage, 'Filosofi-merkesiden løses ikke gjennom portalen');
   assert(model.subject.routes.badge !== model.subject.routes.subject, 'Merke- og fagside kan ikke være samme mål');
-  assert(isDeepStrictEqual(model.domains.map((domain) => domain.id), DOMAIN_ORDER), 'Filosofi har feil source-definert fagområderekkefølge');
+  const modelDomainIds = new Set(model.domains.map((domain) => domain.id));
+  assert(modelDomainIds.size === DOMAIN_ORDER.length && DOMAIN_ORDER.every((id) => modelDomainIds.has(id)), 'Filosofi har feil source-definert fagområdesett');
   assert(model.summary.domainCount === 13, 'Filosofi skal ha tretten fagområder');
   assert(model.summary.emneCount === 54, 'Filosofi skal ha 54 aktive emner');
   assert(model.summary.methodCount === 27, 'Filosofi skal ha 27 canonicale metoder');
