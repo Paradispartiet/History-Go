@@ -1,0 +1,113 @@
+{
+  "schema": "history_go_fagverk_by_bolig_nabolag_tilgang_endring_phase4_audit_v1",
+  "version": "1.0.0",
+  "status": "by_phase_4_bolig_og_nabolag_domain_covered_subject_in_progress",
+  "generatedFrom": {
+    "core": "js/fagverk-subject-core.js",
+    "categories": "data/categories/category_contract.json",
+    "manifest": "data/fag/fag_manifest.json",
+    "portal": "data/fagverk/fagverk_portal.json",
+    "inventory": "data/fagverk/subject_inventory.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "chapter": "data/fagverk/by/bolig-nabolag-tilgang-endring.json",
+    "brief": "data/fagverk/by/bolig-nabolag-tilgang-endring/brief.json",
+    "claims": "data/fagverk/by/bolig-nabolag-tilgang-endring/claims.json",
+    "report": "reports/fagverk/by-bolig-nabolag-tilgang-endring-phase4-audit.json"
+  },
+  "subject": {
+    "id": "by",
+    "schemaFamily": "by_compatibility",
+    "adapter": "by",
+    "navigationStatus": "materialized",
+    "assessmentStatus": "audited",
+    "editorialStatus": "chapters_in_progress",
+    "nextGate": "chapter_production",
+    "registeredChapterCount": 8
+  },
+  "chapter": {
+    "id": "bolig-nabolag-tilgang-endring",
+    "title": "Bolig, tilgang og nabolagsendring: hvem kan bli boende?",
+    "primaryDomainId": "bolig_og_nabolag",
+    "file": "data/fagverk/by/bolig-nabolag-tilgang-endring.json",
+    "editorialStatus": "chapter_ready"
+  },
+  "summary": {
+    "coveredEmneCount": 5,
+    "methodCount": 6,
+    "moduleCount": 3,
+    "sectionCount": 9,
+    "sourceCount": 13,
+    "verifiedClaimCount": 18,
+    "workedExampleCount": 2,
+    "misconceptionCount": 5,
+    "applicationTaskCount": 4,
+    "selfCheckCount": 6,
+    "relatedPlaceCount": 4,
+    "canonicalBylivEmneCount": 30,
+    "coveredBylivEmneCount": 30,
+    "canonicalArchitectureEmneCount": 12,
+    "coveredArchitectureEmneCount": 12,
+    "canonicalHousingNeighborhoodEmneCount": 5,
+    "coveredHousingNeighborhoodEmneCount": 5
+  },
+  "coverage": {
+    "emneIds": [
+      "em_by_modernistisk_boligplanlegging",
+      "em_by_eie_vs_leie_boligokonomi",
+      "em_by_gentrifisering_eiendom",
+      "em_by_bydelsforskjeller_segregering",
+      "em_by_sittekanter_trapper_uformelle_soner"
+    ],
+    "methodIds": [
+      "met_feltobservasjon",
+      "met_gis_romlig_analyse",
+      "met_komparativ_caseanalyse",
+      "met_aktoranalyse",
+      "met_for_etter",
+      "met_intervju_brukerperspektiv"
+    ],
+    "relatedPlaceIds": [
+      "ullevål_hageby",
+      "rodelokka",
+      "toyen_torg",
+      "barcode"
+    ],
+    "canonicalHousingNeighborhoodEmneIds": [
+      "em_by_bydelsforskjeller_segregering",
+      "em_by_eie_vs_leie_boligokonomi",
+      "em_by_gentrifisering_eiendom",
+      "em_by_modernistisk_boligplanlegging",
+      "em_by_sittekanter_trapper_uformelle_soner"
+    ]
+  },
+  "gates": {
+    "canonicalStatusProgressionPreserved": true,
+    "exactlyEightRegisteredByChapters": true,
+    "bylivThirtyOfThirtyPreserved": true,
+    "architectureTwelveOfTwelvePreserved": true,
+    "housingNeighborhoodFiveOfFiveCoveredExactlyOnce": true,
+    "chapterHydratesThroughSharedRuntime": true,
+    "fiveCanonicalHousingEmnersCovered": true,
+    "sixCanonicalMethodsResolved": true,
+    "threeEditedModulesPresent": true,
+    "paragraphLevelClaimTraceComplete": true,
+    "allClaimsVerifiedAndUsed": true,
+    "everySourceUsedByClaim": true,
+    "allClaimSourcesInspectable": true,
+    "ownershipNotInferredFromArchitecture": true,
+    "sensitiveIdentityInferenceBlocked": true,
+    "fabricatedInterviewEvidenceBlocked": true,
+    "gentrificationRequiresMultiIndicatorTimeEvidence": true,
+    "aggregateStatisticsNotPromotedToIndividuals": true,
+    "districtReformTemporalGeographyGuarded": true,
+    "commonSpaceQualityEvidenceLayered": true,
+    "workedExamplesRenderable": true,
+    "misconceptionsRenderable": true,
+    "applicationTasksRenderable": true,
+    "selfCheckRenderable": true,
+    "canonicalFieldPlacesResolved": true,
+    "byEditorialAndSourceContractLocked": true,
+    "housingDomainCompleteWithoutSubjectCompletenessOverclaim": true
+  }
+}

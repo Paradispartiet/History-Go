@@ -224,3 +224,5 @@ Alle fire fase-2-piloter er materialisert og auditert: Natur, Religion, By og Vi
 node scripts/audit-fagverk-by-arkitektur-gatekant-makt-ombruk-phase4.mjs --write-report
 node scripts/audit-fagverk-by-arkitektur-gatekant-makt-ombruk-phase4.mjs
 ```
+
+- `by-bolig-nabolag-tilgang-endring-phase4-audit.json` — Bolig og nabolag 5/5: fem emner, seks metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder; Byliv 30/30 og Arkitektur 12/12 bevares.
