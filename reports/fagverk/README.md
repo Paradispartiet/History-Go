@@ -226,3 +226,7 @@ node scripts/audit-fagverk-by-arkitektur-gatekant-makt-ombruk-phase4.mjs
 ```
 
 - `by-bolig-nabolag-tilgang-endring-phase4-audit.json` — Bolig og nabolag 5/5: fem emner, seks metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder; Byliv 30/30 og Arkitektur 12/12 bevares.
+
+## By Administrasjon og plan Fase 4
+
+Administrasjon og plan er materialisert 3/3 gjennom `administrasjon-plan-kontroll-beredskap`, med bevaring av Byliv 30/30, Arkitektur 12/12 og Bolig og nabolag 5/5. Permanent audit: `reports/fagverk/by-administrasjon-plan-kontroll-beredskap-phase4-audit.json`.

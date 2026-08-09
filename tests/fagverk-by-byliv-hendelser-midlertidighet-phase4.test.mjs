@@ -9,7 +9,7 @@ test('By hendelser og midlertidighet er claimsporet, temporalt avgrenset og hold
   assert.equal(report.subject.adapter, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 8);
+  assert.equal(report.subject.registeredChapterCount, 9);
   assert.equal(report.chapter.id, 'byliv-hendelser-midlertidighet');
   assert.deepEqual(report.summary, {
     coveredEmneCount: 6,
