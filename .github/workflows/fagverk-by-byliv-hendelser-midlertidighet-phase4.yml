@@ -43,6 +43,7 @@ on:
 permissions:
   contents: read
 
+# Permanent gate: validates all three registered Byliv chapters on ordinary PR events.
 jobs:
   validate:
     name: Validate By hendelser og midlertidighet phase 4 chapter
@@ -67,6 +68,7 @@ jobs:
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-by-pilot.test.mjs
           node --test tests/fagverk-by-byliv-offentlige-rom-phase4.test.mjs
           node --test tests/fagverk-by-byliv-sosial-offentlighet-phase4.test.mjs
           node --test tests/fagverk-by-byliv-hendelser-midlertidighet-phase4.test.mjs
