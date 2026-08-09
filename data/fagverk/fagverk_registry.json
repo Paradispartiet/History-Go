@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.34.0",
+  "version": "2.35.0",
   "updatedAt": "2026-08-09",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -31,9 +31,29 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "by_compatibility",
         "sourceOfTruth": true,
-        "note": "Fagkartets tolv kategorier eier renderer-fagområdene. Pensummodulene og curriculum-arkitekturen eier progresjon, men skal ikke kopieres som parallelle renderer-fagområder."
+        "note": "Fagkartets tolv kategorier eier renderer-fagområdene. Pensummodulene og curriculum-arkitekturen eier progresjon. Første redigerte Fase 4-kapittel dekker sju Byliv-emner med tre moduler, inspectable kilder og claimspor; øvrige By-områder er fortsatt under kapittelproduksjon."
       },
-      "chapters": []
+      "chapters": [
+        {
+          "id": "byliv-offentlige-rom",
+          "title": "Offentlige rom: opphold, bevegelse og møteplasser",
+          "subtitle": "Hvordan gater, torg og parker blir levde byrom – og hvordan bruk kan undersøkes uten å forveksle plan, form og faktisk hverdagsliv",
+          "file": "data/fagverk/by/byliv-offentlige-rom.json",
+          "primary_domain_id": "byliv",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_by_offentlige_rom_motesteder",
+            "em_by_torg_plasser_som_scene",
+            "em_by_parker_som_sosial_infrastruktur",
+            "em_by_lek_trening_uformell_aktivitet",
+            "em_by_stillhet_vs_aktivitet_i_grontrom",
+            "em_by_opphold_vs_gjennomgang",
+            "em_by_gangstrommer_snarveier"
+          ],
+          "claimsFile": "data/fagverk/by/byliv-offentlige-rom/claims.json",
+          "briefFile": "data/fagverk/by/byliv-offentlige-rom/brief.json"
+        }
+      ]
     },
     "kunst": {
       "title": "Kunst & kultur",

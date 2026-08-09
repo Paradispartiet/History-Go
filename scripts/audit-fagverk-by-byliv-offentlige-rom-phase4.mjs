@@ -206,10 +206,18 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
   assert(!provenancePlaces.has('youngstorget'), 'Youngstorget skal ikke få falsk provenance-entry uten separat registry-migrasjon');
   assert(sources.some((sourceRow) => sourceRow.id === 'byl05-youngstorget' && sourceRow.publisher === 'Oslo kommune'), 'Youngstorget-caset mangler offisiell kapittelkilde');
 
-  const principles = source.fagkart.principles || {};
-  for (const key of ['context_before_theory', 'place_first', 'source_first', 'observable_first', 'no_generic_city_questions', 'accessibility_is_core', 'social_reading_is_core', 'no_invention_without_source']) {
-    assert(principles[key] === true, `By mangler bindende prinsipp: ${key}`);
+  const fagkartPrinciples = source.fagkart.principles || {};
+  assert(fagkartPrinciples.locked_categories === true && fagkartPrinciples.no_new_main_categories === true, 'By-fagkartets strukturprinsipper er ikke låst');
+  const qualityContractPath = CORE.resolveManifestPointer(manifest.by.qualityContract);
+  const qualityContract = json(qualityContractPath);
+  assert(qualityContract.status === 'canonical', 'By-kvalitetskontrakten er ikke canonical');
+  const editorialPrinciples = new Set(qualityContract.editorial_principles || []);
+  for (const principle of ['concrete place or event before abstraction', 'documented claim before theory', 'conflict and uncertainty must remain visible']) {
+    assert(editorialPrinciples.has(principle), `By mangler bindende editorial principle: ${principle}`);
   }
+  assert(qualityContract.source_contract?.canonical_files_are_guides_not_sources === true, 'By tillater feilaktig canonicalfiler som faktakilde');
+  assert(qualityContract.source_contract?.no_empty_source_array_for_publishable_question === true, 'By mangler kildekrav for publiserbart innhold');
+  assert((qualityContract.source_contract?.required_chain || []).join('>') === 'external_or_observed_source>claim>story_unit>question', 'By har feil source→claim→story→question-kjede');
 
   const report = {
     schema: 'history_go_fagverk_by_byliv_offentlige_rom_phase4_audit_v1',
@@ -267,7 +275,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
       applicationTasksRenderable: true,
       selfCheckRenderable: true,
       fieldPlacesSeparatedFromProvenanceClaims: true,
-      bySourceFirstAndObservableFirstLocked: true,
+      byEditorialAndSourceContractLocked: true,
       subjectCompletenessNotOverstated: true
     }
   };
