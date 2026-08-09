@@ -1,0 +1,25 @@
+Fagverk inventar OK: 17 toppfag, 1 spesialisering, 72 required kjernefiler, 4 schemafamilier.
+Fagverk fase 1 FEIL: em_sport_kropp_konkurranse: kan ikke knyttes til et source-definert fagområde
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /opt/hostedtoolcache/node/24.18.0/x64/bin/node scripts/audit-fagverk-general-engine.mjs --write-report
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at node (file:///home/runner/work/History-Go/History-Go/tools/materialize-sport-phase3-once.mjs:137:23)
+    at file:///home/runner/work/History-Go/History-Go/tools/materialize-sport-phase3-once.mjs:139:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 2350,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.18.0
