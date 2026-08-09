@@ -295,6 +295,16 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(filosofi.mappingCount, 54);
   assert.equal(filosofi.hookCount, 37);
   assert.equal(filosofi.chapterCount, 0);
+  const filmTv = result.materializedRows.find((row) => row.id === 'film_tv');
+  assert.ok(filmTv);
+  assert.equal(filmTv.schemaFamily, 'standard_canonical');
+  assert.equal(filmTv.adapter, 'standard');
+  assert.equal(filmTv.domainCount, 6);
+  assert.equal(filmTv.emneCount, 120);
+  assert.equal(filmTv.methodCount, 107);
+  assert.equal(filmTv.mappingCount, 120);
+  assert.equal(filmTv.hookCount, 60);
+  assert.equal(filmTv.chapterCount, 0);
   const vitenskap = result.materializedRows.find((row) => row.id === 'vitenskap');
   assert.ok(vitenskap);
   assert.equal(vitenskap.schemaFamily, 'standard_canonical');

@@ -1,0 +1,72 @@
+{
+  "schema": "history_go_fagverk_film_tv_phase3_audit_v1",
+  "version": "1.0.0",
+  "status": "film_tv_phase_3_structure_ready",
+  "generatedFrom": {
+    "core": "js/fagverk-subject-core.js",
+    "categories": "data/categories/category_contract.json",
+    "manifest": "data/fag/fag_manifest.json",
+    "portal": "data/fagverk/fagverk_portal.json",
+    "inventory": "data/fagverk/subject_inventory.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "badge": "data/badges/film_tv.json",
+    "explicitMappings": "data/fag/TV_og_Film/emnemapping_film_tv_canonical_v4_5.json",
+    "generator": "data/fag/TV_og_Film/quiz_generator_rules_film_tv_v5_1_source_priority_patch.json",
+    "badgePage": "data/fag/TV_og_Film/merke_film_tv.html",
+    "report": "reports/fagverk/film-tv-phase3-audit.json"
+  },
+  "subject": {
+    "id": "film_tv",
+    "title": "Film & TV",
+    "schemaFamily": "standard_canonical",
+    "adapter": "standard",
+    "navigationStatus": "materialized",
+    "assessmentStatus": "audited",
+    "editorialStatus": "structure_ready",
+    "nextGate": "chapter_production",
+    "subjectPage": "fagverk.html?subject=film_tv",
+    "badgePage": "data/fag/TV_og_Film/merke_film_tv.html"
+  },
+  "summary": {
+    "domainCount": 6,
+    "emneCount": 120,
+    "methodCount": 107,
+    "mappingCount": 120,
+    "hookCount": 60,
+    "registeredChapterCount": 0,
+    "explicitMappingRowCount": 120
+  },
+  "canonicalDomainOrder": [
+    "kinoer_visningssteder_publikum",
+    "produksjon_studio_arbeid",
+    "locations_byrom_motiv",
+    "sjanger_format_fortelling",
+    "institusjoner_makt_offentlighet",
+    "minne_stjerner_kulturarv"
+  ],
+  "domainEmneCounts": {
+    "kinoer_visningssteder_publikum": 20,
+    "produksjon_studio_arbeid": 20,
+    "locations_byrom_motiv": 20,
+    "sjanger_format_fortelling": 20,
+    "institusjoner_makt_offentlighet": 20,
+    "minne_stjerner_kulturarv": 20
+  },
+  "gates": {
+    "allCanonicalEmnersInPensum": true,
+    "allCanonicalEmnersInFagkart": true,
+    "allCanonicalEmnersInMappingRegistry": true,
+    "allMethodReferencesResolved": true,
+    "generatorCountsSynchronized": true,
+    "audiovisualSourceFirstGenerationLocked": true,
+    "canonicalFilesRemainGuidanceOnly": true,
+    "screenProductionLocationBroadcastBeforeTheory": true,
+    "noGenericFilmTvQuestions": true,
+    "categoryBoundaryPreserved": true,
+    "badgeAndSubjectRoutesDistinct": true,
+    "assessmentStatusAudited": true,
+    "editorialStatusStructureReady": true,
+    "chapterClaimsNotOverstated": true
+  }
+}

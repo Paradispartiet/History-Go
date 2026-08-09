@@ -9,16 +9,16 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "2.33.0",
+    "version": "2.34.0",
     "updated_at": "2026-08-09",
-    "content_sha256": "92792119334815d5488dadaf30be8e222d5c17ca278dd1247bb1d8704c0a2294"
+    "content_sha256": "5bc992c187ef501f4ca8a06ba993394a316cee2db05b4e0bf46d85c797f73300"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
     "schema": "history_go_fagverk_subject_inventory_v1",
-    "version": "1.8.0",
-    "updated_at": "2026-08-08",
-    "content_sha256": "9288178593a3aedac333aa7dfa5fc044c49b6c777f8fbd75619b9637fb675edc",
+    "version": "1.9.0",
+    "updated_at": "2026-08-09",
+    "content_sha256": "2148f463d0e79229647667fe44ef6f781ca6918205d8633f0ec0cde504e1e157",
     "root_subject_count": 17,
     "specialization_count": 1
   },
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "cf4a347f3ff702c35dc073a45ec2cb6f1c8e0fc5c0aacfb24e7856a6d40c2634"
+    "content_sha256": "4896dcdce04512ebb8586ab061c98a2917cbb9443978a1535b3213a76e20bc45"
   },
   "summary": {
     "subject_count": 18,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 6,
     "chapter_count": 75,
     "module_file_count": 192,
-    "package_file_count": 201,
+    "package_file_count": 202,
     "chapter_referenced_file_count": 333,
-    "referenced_file_count": 493,
+    "referenced_file_count": 494,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -242,7 +242,7 @@
       "chapters": []
     },
     "film_tv": {
-      "title": "film_tv",
+      "title": "Film & TV",
       "kind": "subject",
       "parent_subject_id": null,
       "schema_family": "standard_canonical",
@@ -258,9 +258,11 @@
       "optional_manifest_fields": [
         "supersetQuizMal",
         "quizStandard",
-        "quizQuestionSchema"
+        "quizQuestionSchema",
+        "emneMappings"
       ],
       "present_manifest_fields": [
+        "emneMappings",
         "emner",
         "fagkart",
         "methods",
@@ -270,10 +272,22 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 7,
+      "package_file_count": 8,
       "required_package_file_count": 4,
-      "optional_package_file_count": 3,
+      "optional_package_file_count": 4,
       "package_files": [
+        {
+          "path": "data/fag/TV_og_Film/emnemapping_film_tv_canonical_v4_5.json",
+          "required": false,
+          "fields": [
+            "emneMappings"
+          ],
+          "key_paths": [
+            "emneMappings"
+          ],
+          "exists": true,
+          "content_sha256": "b15ed586470c846cc7074cae2bf78f79089dc143c3f5e2175bd0cad289b4652c"
+        },
         {
           "path": "data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json",
           "required": true,
@@ -359,20 +373,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "728ca3a003bd91f50ed17aaf77f6c1cd5fdcbab5981cdb5b5c576b07f53d1cb2",
+      "package_content_sha256": "dc1a72f6fa736609c257e139cffdcbe54cf78263644bed202baf032cfd1351cc",
       "chapter_count": 0,
       "module_file_count": 0,
       "brief_file_count": 0,
       "claims_file_count": 0,
       "chapter_referenced_file_count": 0,
       "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 7,
+      "referenced_file_count": 8,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "955d2d44f08c2fc2a1a10d9fcf2081f9133320835de23e2782bcb1f755a9bc32",
-      "content_sha256": "728ca3a003bd91f50ed17aaf77f6c1cd5fdcbab5981cdb5b5c576b07f53d1cb2",
+      "structure_sha256": "7437cb251cfa93032d521b5f4114162f44d866d39354641d2e176566a568a8e2",
+      "content_sha256": "dc1a72f6fa736609c257e139cffdcbe54cf78263644bed202baf032cfd1351cc",
       "chapters": []
     },
     "filosofi": {
@@ -4075,5 +4089,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "e958c06d1adfa59641a46d6ca61f1cd7e89497b7b78585d4fb30c035cd868a39"
+  "release_sha256": "57d9af6a8db2bfa5077da4dab6526886563e71e031589ae812c69af3f1a80c95"
 }
