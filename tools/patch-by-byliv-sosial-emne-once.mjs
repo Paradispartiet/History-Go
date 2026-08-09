@@ -50,4 +50,12 @@ if (!module.includes(oldSentence)) throw new Error('Grunnlagsmodulen mangler for
 module = module.replace(oldSentence, newSentence);
 fs.writeFileSync(at(modulePath), module);
 
-console.log(`By sosial offentlighet: erstattet ${OLD} med canonicalt Byliv-emne ${NEXT}, synkronisert redaksjonell dekning og presisert intervjuporten.`);
+const auditPath = 'scripts/audit-fagverk-by-byliv-sosial-offentlighet-phase4.mjs';
+let audit = fs.readFileSync(at(auditPath), 'utf8');
+const oldAuditBoundary = "assert((brief.scope?.excluded || []).some((text) => text.includes('intervju') && text.includes('ikke gjennomført')), 'Brief mangler eksplisitt grense mot oppdiktede intervjuinnsikter');";
+const newAuditBoundary = "assert((brief.scope?.excluded || []).some((text) => text.includes('intervju') && (text.includes('ikke gjennomført') || text.includes('ikke er gjennomført'))), 'Brief mangler eksplisitt grense mot oppdiktede intervjuinnsikter');";
+if (!audit.includes(oldAuditBoundary)) throw new Error('Audit mangler forventet intervju-substringport');
+audit = audit.replace(oldAuditBoundary, newAuditBoundary);
+fs.writeFileSync(at(auditPath), audit);
+
+console.log(`By sosial offentlighet: erstattet ${OLD} med canonicalt Byliv-emne ${NEXT}, synkronisert redaksjonell dekning og gjort intervjuporten språklig robust.`);
