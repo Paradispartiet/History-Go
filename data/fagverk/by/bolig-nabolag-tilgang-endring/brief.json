@@ -1,0 +1,106 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "chapter_id": "bolig-nabolag-tilgang-endring",
+  "primary_domain_id": "bolig_og_nabolag",
+  "purpose": "Fullføre Bolig og nabolag som canonical By-domene med kildebelagt undervisning i boligplanlegging, eie/leie, gentrifisering, bydelsforskjeller og fellesrom.",
+  "audience": "Brukere som trenger å skille observerbar boligstruktur fra eierform, nabolagsinntrykk fra statistiske endringer og områdeindikatorer fra påstander om enkeltpersoner.",
+  "learningArc": [
+    "starte med planlagt boligstruktur og drabantby som historisk og romlig system",
+    "skille boligtype, eierform, leieform og boligøkonomisk trygghet",
+    "lese kommunal bolig som behovsprøvd og tidsavgrenset virkemiddel uten å stigmatisere beboere",
+    "analysere gentrifisering med flere tidslige indikatorer og mulig fortrengning eller eksklusjon",
+    "bruke bydelsstatistikk som aggregert informasjon, ikke som identitets- eller individklassifisering",
+    "lese felles ute- og mellomrom gjennom egnethet, tilgjengelighet og faktisk bruk",
+    "avslutte med sammenlignende områdeanalyse der årstall, geografi og evidenstype er eksplisitte"
+  ],
+  "requiredEmneIds": [
+    "em_by_modernistisk_boligplanlegging",
+    "em_by_eie_vs_leie_boligokonomi",
+    "em_by_gentrifisering_eiendom",
+    "em_by_bydelsforskjeller_segregering",
+    "em_by_sittekanter_trapper_uformelle_soner"
+  ],
+  "requiredMethodIds": [
+    "met_feltobservasjon",
+    "met_gis_romlig_analyse",
+    "met_komparativ_caseanalyse",
+    "met_aktoranalyse",
+    "met_for_etter",
+    "met_intervju_brukerperspektiv"
+  ],
+  "requiredCriticalDistinctions": [
+    "boligtype vs eierform",
+    "eierform vs økonomisk trygghet",
+    "leie vs kommunal leie",
+    "kommunal bolig vs egenskap ved beboeren",
+    "drabantby som planmodell vs stereotypi om beboere",
+    "prisøkning vs gentrifisering",
+    "oppussing vs gentrifisering",
+    "gentrifisering vs enhver nabolagsendring",
+    "direkte fortrengning vs indirekte eksklusjon",
+    "bydelsgjennomsnitt vs individ",
+    "korrelasjon vs årsak",
+    "sosial miks vs visuell antakelse om identitet",
+    "fellesareal vs offentlig rom",
+    "arealstørrelse vs brukskvalitet",
+    "observerbar bruk vs intervjuempiri",
+    "2024/2025-bydelsdata vs framtidig bydelsgeografi etter 2028-reformen"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "Oslo kommunes kommunalbolig- og bydelsstatistikk for eie/leie, kommunale boliger og levekår",
+      "SSB for leiemarked, boligpriser og flyttemønstre",
+      "OsloMet/NIBR/BOVEL for forskningsbasert gentrifiseringsanalyse",
+      "Oslo kommunes Lambertseter- og områdesatsingsmateriale for planlagt bolig- og nabolagsutvikling",
+      "DiBK for uteoppholdsareal, egnethet og universell utforming",
+      "canonical By-filer som emne-, metode- og progresjonsstyring, aldri som ekstern faktakilde"
+    ],
+    "minimumExternalSources": 12,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "currentStatusClaimsRequireCurrentSource": true
+  },
+  "scope": {
+    "included": [
+      "modernistisk boligplanlegging og drabantby",
+      "eie, andel/aksje og leie som statistiske boligformer",
+      "kommunal bolig som offentlig virkemiddel",
+      "gentrifisering, investering, priser, inntektsendring og mulig fortrengning",
+      "bydelsforskjeller i boforhold og levekår",
+      "felles uteoppholdsareal og uformelle felles soner",
+      "feltobservasjon, GIS, komparasjon, aktøranalyse, før/etter og intervju som metode",
+      "Ullevål hageby, Rodeløkka, Tøyen torg og Barcode som canonicale feltcase uten nye uverifiserte person- eller husholdningspåstander"
+    ],
+    "excluded": [
+      "eierform utledet fra bygningstype eller fasade",
+      "inntekt, etnisitet, familieform eller annen sensitiv identitet utledet fra utseende",
+      "gentrifisering konkludert fra én kafé, butikk, fasade eller kort observasjon",
+      "bydelsstatistikk brukt som beskrivelse av en bestemt beboer",
+      "ikke-gjennomførte intervjuer presentert som data",
+      "påstand om at kommunal bolig er permanent eller at alle beboere har samme behov",
+      "kausal effekt på boligpriser eller flytting utledet fra enkel før/etter-observasjon",
+      "2024/2025-bydelsstatistikk presentert som direkte sammenlignbar med den nye 8-bydelsstrukturen fra 2028"
+    ]
+  },
+  "qa": {
+    "threeEditedModules": true,
+    "workedExamples": true,
+    "misconceptions": true,
+    "applicationTasks": true,
+    "selfCheck": true,
+    "canonicalPlaces": true,
+    "inspectableSources": true,
+    "paragraphLevelClaims": true,
+    "permanentAudit": true,
+    "ownerDomainGate": true,
+    "housingNeighborhoodFiveOfFiveGate": true,
+    "bylivThirtyOfThirtyPreserved": true,
+    "architectureTwelveOfTwelvePreserved": true,
+    "sensitiveIdentityInferenceGuard": true,
+    "fakeInterviewGuard": true,
+    "gentrificationEvidenceGuard": true,
+    "districtReformTemporalGuard": true
+  }
+}
