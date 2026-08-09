@@ -36,6 +36,10 @@ const oldArc = 'skille folkemengde fra samtilstedeværelse og sosial interaksjon
 const newArc = 'skille folkemengde fra samtilstedeværelse og sosial interaksjon, inkludert småprat, blikk og sosial koreografi';
 if (!brief.includes(oldArc)) throw new Error('Brief mangler forventet læringsbue');
 brief = brief.replace(oldArc, newArc);
+const oldInterviewBoundary = 'intervju- eller brukerperspektiv presentert som om datainnsamling faktisk er gjennomført når den bare undervises som metode';
+const newInterviewBoundary = 'intervju- eller brukerperspektiv presentert som gjennomført datainnsamling når intervju ikke er gjennomført og metoden bare undervises';
+if (!brief.includes(oldInterviewBoundary)) throw new Error('Brief mangler forventet intervjuavgrensning');
+brief = brief.replace(oldInterviewBoundary, newInterviewBoundary);
 fs.writeFileSync(at(briefPath), brief);
 
 const modulePath = 'data/fagverk/by/byliv-sosial-offentlighet/01-grunnlag.json';
@@ -46,4 +50,4 @@ if (!module.includes(oldSentence)) throw new Error('Grunnlagsmodulen mangler for
 module = module.replace(oldSentence, newSentence);
 fs.writeFileSync(at(modulePath), module);
 
-console.log(`By sosial offentlighet: erstattet ${OLD} med canonicalt Byliv-emne ${NEXT} og synkronisert redaksjonell dekning.`);
+console.log(`By sosial offentlighet: erstattet ${OLD} med canonicalt Byliv-emne ${NEXT}, synkronisert redaksjonell dekning og presisert intervjuporten.`);
