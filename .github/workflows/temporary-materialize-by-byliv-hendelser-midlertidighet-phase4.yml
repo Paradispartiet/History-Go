@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
+      - name: Align temporal source gate
+        run: node tools/patch-by-byliv-hendelser-temporal-gate-once.mjs
       - name: Materialize and validate By hendelser og midlertidighet phase 4
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
@@ -57,6 +59,7 @@ jobs:
       - name: Remove one-shot materializer and diagnostics
         run: |
           rm tools/materialize-by-byliv-hendelser-midlertidighet-phase4-once.mjs
+          rm tools/patch-by-byliv-hendelser-temporal-gate-once.mjs
           rm .github/workflows/temporary-materialize-by-byliv-hendelser-midlertidighet-phase4.yml
           rm -f reports/fagverk/by-byliv-hendelser-midlertidighet-phase4-latest-error.txt
           rm -f reports/fagverk/by-byliv-hendelser-midlertidighet-phase4-source-note.md
