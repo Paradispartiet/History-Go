@@ -100,7 +100,7 @@ export async function auditByBylivHendelserMidlertidighetPhase4({ writeReport = 
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal fortsatt stå chapters_in_progress');
   assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette sammenhengende kapittelproduksjon');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
-  assert(registrySubject.chapters.length === 3, 'Tredje By Fase 4-batch skal registrere nøyaktig tre kapitler totalt');
+  assert(registrySubject.chapters.length === 4, 'By skal nå ha fire registrerte Fase 4-kapitler totalt');
   assert(chapterMeta, 'Hendelser/midlertidighet-kapittelet mangler i registry');
   assert(previousMeta.every(Boolean), 'Et tidligere Byliv-kapittel ble borte fra registry');
   assert(chapterMeta.file === P.chapter, 'Registry peker ikke til canonical hendelser/midlertidighet-kapittel');
@@ -122,7 +122,7 @@ export async function auditByBylivHendelserMidlertidighetPhase4({ writeReport = 
     source
   });
   assert(model.subject.adapter === 'by', 'By skal bruke by-adapteren');
-  assert(model.chapters.length === 3, 'Normalisert By-modell skal vise tre kapitler');
+  assert(model.chapters.length === 4, 'Normalisert By-modell skal vise fire kapitler etter fjerde Byliv-batch');
   const modelEmnes = new Map(model.emners.map((row) => [row.id, row]));
   const modelMethods = new Map(model.methods.map((row) => [row.id, row]));
   for (const id of EXPECTED_EMNES) {
@@ -285,7 +285,7 @@ export async function auditByBylivHendelserMidlertidighetPhase4({ writeReport = 
     },
     gates: {
       canonicalStatusProgressionPreserved: true,
-      exactlyThreeRegisteredByChapters: true,
+      thirdChapterPreservedAcrossFourChapterRegistry: true,
       previousChaptersStillHydrate: true,
       chapterHydratesThroughSharedRuntime: true,
       sixCanonicalBylivEmnersCovered: true,

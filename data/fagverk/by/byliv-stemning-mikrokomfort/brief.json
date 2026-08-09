@@ -1,0 +1,113 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "by",
+  "chapter_id": "byliv-stemning-mikrokomfort",
+  "primary_domain_id": "byliv",
+  "purpose": "Gi en observerbar og kildebelagt analyse av byrommets sanselige og mikroklimatiske forhold: lyd, lys, materialitet, temperatur, vind, sol, skygge, hvilemuligheter og kroppslig komfort.",
+  "audience": "Brukere som kan observere et byrom, men trenger et presist skille mellom fysisk forhold, eksponering, sanselig erfaring, brukerperspektiv og dokumentert effekt.",
+  "learningArc": [
+    "starte med observerbare lyd-, lys-, overflate- og værforhold",
+    "skille øyeblikksobservasjon fra beregnede eller gjentatte eksponeringsdata",
+    "lese materialitet og belysning som fysisk utforming før estetisk eller sosial konklusjon",
+    "undersøke mikroklima gjennom tidspunkt, posisjon, sol, skygge, vind og temperatur",
+    "analysere hvile og kroppslig komfort gjennom konkrete bruksmuligheter og universell utforming",
+    "koble kommunale støy-, plan- og klimakilder til feltobservasjon uten å blande datanivåene",
+    "skille observerbar eksponering fra opplevd trivsel, trygghet eller helse",
+    "avslutte med en beviskjede der konklusjonen aldri er sterkere enn datagrunnlaget"
+  ],
+  "requiredEmneIds": [
+    "em_by_stemning_lyd_lys_tetthet",
+    "em_by_materialitet_og_sanseerfaring",
+    "em_by_mikroklima_og_var",
+    "em_by_kroppslig_komfort_i_byrom",
+    "em_by_sol_skygge_mikro_opphold"
+  ],
+  "requiredMethodIds": [
+    "met_feltobservasjon",
+    "met_gaanalyse",
+    "met_gis_romlig_analyse",
+    "met_klimarisikokartlegging",
+    "met_komparativ_caseanalyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "lydkilde vs lydnivå vs lydopplevelse",
+    "øyeblikksobservasjon vs stabilt støymønster",
+    "beregnet støykart vs lokal feltmåling",
+    "materialitet vs estetisk vurdering",
+    "belysning som fysisk forhold vs opplevd trygghet",
+    "lufttemperatur vs solbelastning vs opplevd varme",
+    "vær under besøket vs lokal mikroklimatisk tendens",
+    "solmulighet vs skyggetilgang",
+    "fysisk sittemulighet vs faktisk hvilebruk",
+    "tilgjengelighet vs universell komfort",
+    "observerbar eksponering vs brukerperspektiv",
+    "fysisk tiltak vs dokumentert helse- eller brukseffekt",
+    "ett sted vs komparativt mønster",
+    "kommunal norm eller strategi vs observert faktisk situasjon"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "Oslo kommunes arkitekturpolitikk for materialitet, atmosfære, belysning, byrom og universell tilgjengelighet",
+      "Oslo kommunes gatenormal og gåstrategi for fysisk utforming, hvilemuligheter og universell utforming",
+      "Oslo kommunes støykartlegging og klimatilpasningsstrategi for dokumentert eksponerings- og risikokontekst",
+      "Miljødirektoratets T-1442-veiledning for støy, solinnfall og vær-/klimaskjerming på uteoppholdsareal",
+      "WHO/Europe og WHO for varme, skygge og helse med eksplisitt evidensstyrke",
+      "canonical By-filer som emne-, metode- og progresjonsstyring, aldri som ekstern faktakilde"
+    ],
+    "minimumExternalSources": 12,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "currentStatusClaimsRequireDatedSource": true
+  },
+  "scope": {
+    "included": [
+      "lyd og støy som kilde, eksponering og observasjon",
+      "lys, belysning, farge og materialitet som fysisk og sanselig byromskontekst",
+      "mikroklima med temperatur, vind, sol og skygge",
+      "hvilemuligheter, fremkommelighet og kroppslig komfort",
+      "feltobservasjon, gåanalyse, GIS, klimarisikokartlegging og komparativ caseanalyse",
+      "Rådhusplassen, Youngstorget, Birkelunden og Tøyen torg som feltcase uten nye uverifiserte stedspåstander"
+    ],
+    "excluded": [
+      "påstand om at én lydobservasjon dokumenterer stedets vanlige støynivå",
+      "påstand om trygghet, trivsel eller velvære basert bare på observatørens inntrykk av lys, materialer eller mennesker",
+      "påstand om at en benk eller hvilemulighet gjør et sted komfortabelt eller inkluderende for alle",
+      "påstand om at skygge alltid er bedre enn sol uavhengig av årstid, temperatur og aktivitet",
+      "kausale helse- eller brukseffekter sterkere enn de verifiserte kildene støtter",
+      "stedsspesifikke målinger som ikke faktisk er gjennomført i denne kapittelproduksjonen"
+    ]
+  },
+  "rejectedOrDeferred": [
+    {
+      "detail": "Rangering av Oslos mest behagelige eller vakreste byrom.",
+      "reason": "Kapittelet lærer dokumenterbar analyse av forhold og opplevelsesdata, ikke observatørens smak."
+    },
+    {
+      "detail": "Påståtte temperatur-, vind- eller desibelmålinger fra feltstedene.",
+      "reason": "Det er ikke gjennomført ny instrumentmåling i denne kapittelproduksjonen."
+    },
+    {
+      "detail": "Påstand om at god belysning automatisk skaper trygghet.",
+      "reason": "Fysisk belysning og opplevd trygghet er forskjellige evidensnivåer."
+    },
+    {
+      "detail": "Påstand om at vegetasjon eller skygge alene løser urban varme.",
+      "reason": "Varmeeksponering og klimatilpasning er kontekstavhengig og krever flere tiltak og datanivåer."
+    }
+  ],
+  "qa": {
+    "threeEditedModules": true,
+    "workedExamples": true,
+    "renderableWorkedExampleAnalysis": true,
+    "misconceptions": true,
+    "applicationTasks": true,
+    "selfCheck": true,
+    "canonicalPlaces": true,
+    "inspectableSources": true,
+    "paragraphLevelClaims": true,
+    "permanentAudit": true,
+    "measurementFabricationGuard": true,
+    "evidenceLayerGuard": true
+  }
+}
