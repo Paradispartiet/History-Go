@@ -89,7 +89,7 @@ export async function auditByBylivStemningMikrokomfortPhase4({ writeReport = fal
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal fortsatt stå chapters_in_progress');
   assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette kapittelproduksjon');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
-  assert(registrySubject.chapters.length === 7, 'By skal nå ha sju registrerte Fase 4-kapitler totalt');
+  assert(registrySubject.chapters.length === 8, 'By skal nå ha åtte registrerte Fase 4-kapitler totalt');
   assert(chapterMeta, 'Stemning/mikrokomfort-kapittelet mangler i registry');
   assert(previousMeta.every(Boolean), 'Et tidligere Byliv-kapittel ble borte fra registry');
   assert(chapterMeta.file === P.chapter && chapterMeta.primary_domain_id === 'byliv', 'Registry har feil fil eller domain for kapittel 4');
@@ -98,7 +98,7 @@ export async function auditByBylivStemningMikrokomfortPhase4({ writeReport = fal
   const source = loadSource(CORE, manifest.by);
   const model = CORE.normalizeSubject({ subjectId: 'by', categoryLabel: categories.labels.by, categoryDescription: categories.decisions?.by, schemaFamily: inventoryEntry.schemaFamily, manifestEntry: manifest.by, portalEntry, inventoryEntry, statusEntry, registry, badge: {}, source });
   assert(model.subject.adapter === 'by', 'By skal bruke by-adapteren');
-  assert(model.chapters.length === 7, 'Normalisert By-modell skal vise sju kapitler etter første Arkitektur-batch');
+  assert(model.chapters.length === 8, 'Normalisert By-modell skal vise åtte kapitler etter første Arkitektur-batch');
   const modelEmnes = new Map(model.emners.map((row) => [row.id, row]));
   const modelMethods = new Map(model.methods.map((row) => [row.id, row]));
   for (const id of EXPECTED_EMNES) {
@@ -201,7 +201,7 @@ export async function auditByBylivStemningMikrokomfortPhase4({ writeReport = fal
     coverage: { emneIds: EXPECTED_EMNES, methodIds: EXPECTED_METHODS, relatedPlaceIds: EXPECTED_PLACES },
     gates: {
       canonicalStatusProgressionPreserved: true,
-      fourthChapterPreservedAcrossSevenChapterRegistry: true,
+      fourthChapterPreservedAcrossEightChapterRegistry: true,
       previousChaptersStillHydrate: true,
       chapterHydratesThroughSharedRuntime: true,
       fiveCanonicalBylivEmnersCovered: true,
