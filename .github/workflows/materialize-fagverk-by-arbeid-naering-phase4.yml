@@ -1,0 +1,41 @@
+name: Materialize By Arbeid og næring phase 4
+
+on:
+  pull_request:
+    paths:
+      - "data/fagverk/by/arbeid-naering-handel-logistikk.json"
+      - "data/fagverk/by/arbeid-naering-handel-logistikk/**"
+      - "scripts/materialize-fagverk-by-arbeid-naering-phase4.mjs"
+      - ".github/workflows/materialize-fagverk-by-arbeid-naering-phase4.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Materialiser registry, status, audits og release
+        run: node scripts/materialize-fagverk-by-arbeid-naering-phase4.mjs
+      - name: Fjern engangs-materialisereren og publiser resultatet
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          git rm scripts/materialize-fagverk-by-arbeid-naering-phase4.mjs .github/workflows/materialize-fagverk-by-arbeid-naering-phase4.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Ingen materialiseringsendringer å publisere."
+            exit 0
+          fi
+          git commit -m "Materialiser Arbeid og næring 8/8 i By-fagverket"
+          git push origin "HEAD:${HEAD_BRANCH}"
