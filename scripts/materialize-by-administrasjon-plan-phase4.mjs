@@ -81,7 +81,12 @@ const legacyTests=[
   'tests/fagverk-by-arkitektur-gatekant-makt-ombruk-phase4.test.mjs',
   'tests/fagverk-by-bolig-nabolag-tilgang-endring-phase4.test.mjs'
 ];
-for(const p of legacyTests){let t=read(p);const before=t;t=t.replace(/registeredChapterCount\s*,\s*8/g,'registeredChapterCount, 9').replace(/chapterCount\s*,\s*8/g,'chapterCount, 9').replaceAll('EightRegisteredByChapters','NineRegisteredByChapters').replaceAll('EightChapter','NineChapter');assert(t!==before,`Ingen testtallsendring i ${p}`);write(p,t);}
+for(const p of legacyTests){
+  let t=read(p);
+  const before=t;
+  t=t.replace(/registeredChapterCount\s*,\s*8/g,'registeredChapterCount, 9').replace(/chapterCount\s*,\s*8/g,'chapterCount, 9').replaceAll('EightRegisteredByChapters','NineRegisteredByChapters').replaceAll('EightChapter','NineChapter');
+  if(t!==before) write(p,t);
+}
 let generalTest=read('tests/fagverk-general-engine.test.mjs');
 assert(/chapterCount\s*,\s*8/.test(generalTest),'General-engine-test mangler forventet By chapterCount=8');
 generalTest=generalTest.replace(/chapterCount\s*,\s*8/g,'chapterCount, 9');
