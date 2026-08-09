@@ -62,9 +62,13 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 
 - `by-urbanisme-idealer-forbindelser-fortetting-phase4-audit.json` — Urbanisme-domenets 6/6-port: seks canonicale eieremner, åtte metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kommunale kilder med eksplisitte vakter mellom planideal, gjennomføring og målt/observert effekt.
 
+- `by-arbeid-naering-handel-logistikk-phase4-audit.json` — Arbeid og næring-domenets 8/8-port: åtte canonicale eieremner, åtte metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med eksplisitte skiller mellom synlig aktivitet, registre, omsetning, logistikk og offentlig sjøfront.
+
 ## Regenerering
 
 ```bash
+node scripts/audit-fagverk-by-arbeid-naering-handel-logistikk-phase4.mjs --write-report
+node scripts/audit-fagverk-by-arbeid-naering-handel-logistikk-phase4.mjs
 node scripts/audit-fagverk-by-urbanisme-idealer-forbindelser-fortetting-phase4.mjs --write-report
 node scripts/audit-fagverk-by-urbanisme-idealer-forbindelser-fortetting-phase4.mjs
 node scripts/audit-fagverk-subject-inventory.mjs --write-report
