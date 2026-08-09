@@ -23,12 +23,32 @@ jobs:
         with:
           node-version: "24"
       - name: Materialize and validate Sport
-        run: node tools/materialize-sport-phase3-once.mjs
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          set +e
+          node tools/materialize-sport-phase3-once.mjs > /tmp/sport-materialize.log 2>&1
+          status=$?
+          cat /tmp/sport-materialize.log
+          if [ "$status" -ne 0 ]; then
+            git reset --hard HEAD
+            git clean -fd
+            mkdir -p reports/fagverk
+            cp /tmp/sport-materialize.log reports/fagverk/sport-phase3-latest-error.txt
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add reports/fagverk/sport-phase3-latest-error.txt
+            git diff --cached --check
+            git commit -m 'Capture Sport Phase 3 materialization failure'
+            git push origin "HEAD:${HEAD_BRANCH}"
+            exit "$status"
+          fi
       - name: Remove one-shot materializer and diagnostics
         run: |
           rm tools/materialize-sport-phase3-once.mjs
           rm .github/workflows/temporary-materialize-sport-phase3.yml
           rm -f reports/fagverk/sport-phase3-debug.txt
+          rm -f reports/fagverk/sport-phase3-latest-error.txt
       - name: Commit materialized tree
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
