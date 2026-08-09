@@ -96,6 +96,13 @@ if (!badge.includes('../../../fagverk.html?subject=sport')) {
 }
 write(badgePath, badge);
 
+const corePath = 'js/fagverk-subject-core.js';
+let core = read(corePath);
+const rawEmneNeedle = `    const rawEmners = Array.isArray(source.emners) ? source.emners : list(source.emners?.emners);\n    const methods = normalizeMethods(source.methods || {});`;
+const rawEmneReplacement = `    const sourceRawEmners = Array.isArray(source.emners) ? source.emners : list(source.emners?.emners);\n    // Standard-canonical fag med eksplisitt emnemapping bruker pensumdomenene som autoritativt aktivt emnesett.\n    // Rå emnekataloger kan dermed bevare legacy-/paraplyrader uten at de materialiseres som aktive emner.\n    const domainOwnedEmneIds = new Set(rawDomainCandidates(adapter, pensum, fagkart).flatMap(candidateEmneIds));\n    const rawEmners = adapter === 'standard' && text(input?.manifestEntry?.emneMappings) && domainOwnedEmneIds.size\n      ? sourceRawEmners.filter((emne) => domainOwnedEmneIds.has(firstText(emne?.emne_id, emne?.id)))\n      : sourceRawEmners;\n    const methods = normalizeMethods(source.methods || {});`;
+core = replaceOnce(core, rawEmneNeedle, rawEmneReplacement, corePath);
+write(corePath, core);
+
 const inventoryTestPath = 'tests/fagverk-subject-inventory.test.mjs';
 let inventoryTest = read(inventoryTestPath);
 inventoryTest = replaceOnce(
