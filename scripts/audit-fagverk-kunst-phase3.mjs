@@ -89,8 +89,8 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
   assert(inventoryEntry?.schemaFamily === 'standard_canonical', 'Kunst har feil schemafamilie');
   assert(inventoryEntry?.pilot === false, 'Kunst skal være et individuelt Fase 3-fag, ikke en Fase 2-pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'Kunst har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Kunst må stå chapters_in_progress etter fem kapitler');
-  assert(statusEntry?.nextGate === 'remaining_domain_chapter_production', 'Kunst har feil neste port');
+  assert(statusEntry?.editorialStatus === 'complete', 'Kunst må stå complete etter seks kapitler og separat helhetsaudit');
+  assert(statusEntry?.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'Kunst har feil vedlikeholdsport');
   assert(registry.placePage?.fallbackSubjectByCategory?.kunst === 'kunst', 'Kunst-steder mangler Kunst som fagverksfallback');
   assert(manifestEntry?.emneMappings === 'kunst/emnemapping_kunst_canonical_v4_5.json', 'Kunst-manifestet peker ikke til canonical mappingregister');
 
@@ -120,12 +120,13 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
   assert(model.summary.methodCount === 21, 'Kunst skal ha 21 canonicale metoder');
   assert(model.summary.mappingCount === 21, 'Kunst skal ha én normalisert primærmapping per emne');
   assert(model.summary.hookCount === 60, 'Kunst skal ha 60 canonicale hooks');
-  assert(model.chapters.length === 5, 'Kunst skal ha nøyaktig fem registrerte kapitler i femte produksjonssteg');
+  assert(model.chapters.length === 6, 'Kunst skal ha nøyaktig seks registrerte kapitler ved fullføring');
   assert(model.chapters[0].primaryDomainId === 'felt_institusjon', 'Første Kunst-kapittel må eies av felt_institusjon');
   assert(model.chapters[1].primaryDomainId === 'produksjon_praksis', 'Andre Kunst-kapittel må eies av produksjon_praksis');
   assert(model.chapters[2].primaryDomainId === 'estetisk_sprak_form', 'Tredje Kunst-kapittel må eies av estetisk_sprak_form');
   assert(model.chapters[3].primaryDomainId === 'makt_legitimitet', 'Fjerde Kunst-kapittel må eies av makt_legitimitet');
   assert(model.chapters[4].primaryDomainId === 'publikum_offentlighet', 'Femte Kunst-kapittel må eies av publikum_offentlighet');
+  assert(model.chapters[5].primaryDomainId === 'tid_transformasjon', 'Sjette Kunst-kapittel må eies av tid_transformasjon');
   assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Kunst-emne mangler løst metode-ID');
   assert(model.emners.flatMap((emne) => emne.methodLabels).every((label) => !label.startsWith('met_kunst_')), 'Kunst har uløst metode-ID i emnekatalogen');
   assert(model.emnersById.get(HANDVERK_EMNE)?.domainId === 'produksjon_praksis', 'Materialitet og håndverk er ikke koblet til Produksjon og praksis');
@@ -161,7 +162,7 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
   const report = {
     schema: 'history_go_fagverk_kunst_phase3_audit_v1',
     version: '1.0.0',
-    status: 'kunst_phase_3_structure_with_chapter_production',
+    status: 'kunst_phase_3_complete_structure',
     generatedFrom: P,
     subject: {
       id: model.subject.id,
@@ -198,8 +199,8 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
       kunstPlaceFallbackCorrect: true,
       badgeAndSubjectRoutesDistinct: true,
       assessmentStatusAudited: true,
-      editorialStatusChaptersInProgress: true,
-      chapterClaimsNotOverstated: true
+      editorialStatusComplete: true,
+      chapterClaimsBackedByFullAudit: true
     }
   };
 

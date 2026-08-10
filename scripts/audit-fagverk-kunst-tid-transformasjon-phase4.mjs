@@ -7,25 +7,24 @@ import { auditKunstPhase3 } from './audit-fagverk-kunst-phase3.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = Object.freeze({
-  chapter: 'data/fagverk/kunst/publikum-og-offentlighet.json',
-  brief: 'data/fagverk/kunst/publikum-og-offentlighet/brief.json',
-  claims: 'data/fagverk/kunst/publikum-og-offentlighet/claims.json',
+  chapter: 'data/fagverk/kunst/tid-og-transformasjon.json',
+  brief: 'data/fagverk/kunst/tid-og-transformasjon/brief.json',
+  claims: 'data/fagverk/kunst/tid-og-transformasjon/claims.json',
   registry: 'data/fagverk/fagverk_registry.json', status: 'data/fagverk/subject_status.json',
   emners: 'data/fag/kunst/emner_kunst_canonical_v4_5.json', methods: 'data/fag/kunst/methods_kunst_canonical_v4_5.json',
-  places: 'data/places/places_index.json', report: 'reports/fagverk/kunst-publikum-offentlighet-phase4-audit.json'
+  places: 'data/places/places_index.json', report: 'reports/fagverk/kunst-tid-transformasjon-phase4-audit.json'
 });
 const EXPECTED_EMNES = [
-  'em_kunst_offentlig_kunst_monumenter', 'em_kunst_publikum_klasse_og_kapital',
-  'em_kunst_digital_offentlighet_og_resepsjon'
+  'em_kunst_epoker_og_kunsthistorisk_narrativ', 'em_kunst_hverdagsestetikk'
 ];
 const EXPECTED_METHODS = [
-  'met_kunst_ikonografisk_analyse', 'met_kunst_formanalyse', 'met_kunst_kunsthistorisk_kontekstualisering',
-  'met_kunst_kritikk_og_diskursanalyse', 'met_kunst_offentlig_rom_analyse', 'met_kunst_resepsjonsanalyse',
-  'met_kunst_stedsspesifikk_analyse', 'met_kunst_digital_sirkulasjonsanalyse', 'met_kunst_plattformanalyse',
-  'met_kunst_feltanalyse', 'met_kunst_materialitetsanalyse', 'met_kunst_praksis_og_prosessanalyse',
-  'met_kunst_komparativ_verkanalyse'
+  'met_kunst_formanalyse', 'met_kunst_ikonografisk_analyse', 'met_kunst_kunsthistorisk_kontekstualisering',
+  'met_kunst_kanon_og_arkivanalyse', 'met_kunst_feltanalyse', 'met_kunst_kritikk_og_diskursanalyse',
+  'met_kunst_komparativ_verkanalyse', 'met_kunst_institusjonsanalyse', 'met_kunst_resepsjonsanalyse',
+  'met_kunst_offentlig_rom_analyse', 'met_kunst_stedsspesifikk_analyse', 'met_kunst_kontekstualisering'
 ];
-const EXPECTED_PLACES = ['vigelandsparken', 'ekebergparken', 'nasjonalmuseet', 'munch_museet'];
+const EXPECTED_PLACES = ['nasjonalmuseet', 'munch_museet', 'astrup_fearnley', 'kunstnernes_hus'];
+const NEXT_GATE = 'maintenance_source_refresh_and_place_case_expansion';
 const abs = (p) => path.join(ROOT, p);
 const json = (p) => JSON.parse(fs.readFileSync(abs(p), 'utf8'));
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
@@ -38,7 +37,7 @@ function committedProjection(report) {
   };
 }
 
-export function auditKunstPublikumOffentlighetPhase4({ writeReport = false, checkReport = true } = {}) {
+export function auditKunstTidTransformasjonPhase4({ writeReport = false, checkReport = true } = {}) {
   const phase3 = auditKunstPhase3({ checkReport });
   const chapter = json(P.chapter);
   const brief = json(P.brief);
@@ -54,21 +53,22 @@ export function auditKunstPublikumOffentlighetPhase4({ writeReport = false, chec
 
   assert(chapter.schema === 'history_go_fagverk_chapter_v1', 'Kunst-kapittelet har feil schema');
   assert(chapter.subject === 'kunst' && chapter.subject_id === 'kunst', 'Kunst-kapittelet har feil fag');
-  assert(chapter.primary_domain_id === 'publikum_offentlighet', 'Kapittelet har feil eierdomene');
+  assert(chapter.primary_domain_id === 'tid_transformasjon', 'Kapittelet har feil eierdomene');
   assert(chapter.editorialStatus === 'chapter_ready' && chapter.claimTraceRequired === true, 'Kapittelet er ikke claimsporet chapter_ready');
-  assert(isDeepStrictEqual(chapter.emne_ids, EXPECTED_EMNES), 'Kapittelet dekker ikke de tre canonicale emnene i riktig rekkefølge');
-  assert(new Set(chapter.emne_ids).size === 3, 'Kunst-kapittelet har duplikate emner');
+  assert(isDeepStrictEqual(chapter.emne_ids, EXPECTED_EMNES), 'Kapittelet dekker ikke de to canonicale emnene i riktig rekkefølge');
+  assert(new Set(chapter.emne_ids).size === 2, 'Kunst-kapittelet har duplikate emner');
   assert(registrySubject.chapters.length === 6 && registryChapter, 'Kunst-registeret skal ha nøyaktig seks kapitler');
-  assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'publikum_offentlighet', 'Registry-kapittelet er usynkronisert');
+  assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'tid_transformasjon', 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
   assert(statusEntry.editorialStatus === 'complete', 'Kunst skal stå complete etter seks av seks domener');
-  assert(statusEntry.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'Kunst har feil vedlikeholdsport');
+  assert(statusEntry.nextGate === NEXT_GATE, 'Kunst har feil vedlikeholdsport');
+  assert(registrySubject.editorialPlan?.completionRequirements?.includes('full_subject_audit_green'), 'Kunst mangler eksplisitt helhetsauditport');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 21, 'Kunst-baseline er ikke bevart');
   assert(phase3.report.summary.registeredChapterCount === 6, 'Fase 3-auditen ser ikke alle seks kapitlene');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));
   assert(EXPECTED_EMNES.every((id) => canonicalEmneIds.has(id)), 'Kapittelet peker til ukjent Kunst-emne');
-  const domain = phase3.model.domainsById.get('publikum_offentlighet');
+  const domain = phase3.model.domainsById.get('tid_transformasjon');
   assert(domain && isDeepStrictEqual([...domain.emneIds], EXPECTED_EMNES), 'Canonical domeneeierskap er usynkronisert');
   const canonicalMethodIds = new Set(methodsDoc.methods.map((row) => row.method_id));
   assert(isDeepStrictEqual(chapter.method_ids, EXPECTED_METHODS), 'Kapittelet har feil canonicalt metodeutvalg');
@@ -78,6 +78,7 @@ export function auditKunstPublikumOffentlighetPhase4({ writeReport = false, chec
   assert(isDeepStrictEqual(brief.requiredEmneIds, EXPECTED_EMNES), 'Briefen har feil emnedekning');
   assert(isDeepStrictEqual(brief.requiredMethodIds, EXPECTED_METHODS), 'Briefen har feil metodedekning');
   assert(brief.sourceStrategy.minimumExternalSources >= 15 && brief.sourceStrategy.claimLevelTrace === true, 'Briefens kildestrategi er for svak');
+  assert(brief.qa.fullSubjectAuditRequiredBeforeComplete === true, 'Briefen mangler bindende sluttport');
   assert(isDeepStrictEqual(brief.relatedPlaceIds, EXPECTED_PLACES), 'Briefen har feil canonicale stedscase');
   const knownPlaceIds = new Set(places.map((row) => row.id));
   assert(EXPECTED_PLACES.every((id) => knownPlaceIds.has(id)), 'Briefen peker til ukjent sted');
@@ -115,16 +116,17 @@ export function auditKunstPublikumOffentlighetPhase4({ writeReport = false, chec
   assert([...claimIds].every((id) => referencedClaimIds.has(id)), 'En verifisert claim brukes ikke i kapittelet');
 
   const combined = JSON.stringify({ chapter, brief, modules: modules.map((row) => row.value) });
-  assert(/offentlig.{0,120}(ikke|mer enn|relasjon).{0,100}(plass|utendørs|sted)|plassering.{0,120}(ikke|alene)/is.test(combined), 'Plassering/offentlighet-vakten mangler');
-  assert(/gratis.{0,120}(ikke|≠|én).{0,100}(lik|tilgang|terskel)|fri adgang.{0,120}(ikke|lik)/is.test(combined), 'Gratis/lik tilgang-vakten mangler');
-  assert(/besøkstall.{0,140}(ikke|≠|omfang).{0,100}(profil|struktur|represent)|antall.{0,100}(ikke|suppleres).{0,80}publikum/is.test(combined), 'Besøkstall/publikumsstruktur-vakten mangler');
-  assert(/deltak.{0,140}(ikke|≠).{0,100}(makt|eierskap|kontroll)|aktivitet.{0,120}beslutningsmakt/is.test(combined), 'Deltakelse/makt-vakten mangler');
-  assert(/digitaliser.{0,140}(ikke|synlig|søk)|publiser.{0,120}(ikke|funnet)|søkbarhet.{0,120}(ikke|representasjon)/is.test(combined), 'Digitalisering/synlighet-vakten mangler');
-  assert(/sirkulasjon.{0,140}(ikke|≠|fortolkning|resepsjon)|visning.{0,120}(ikke|fortolket)|måling.{0,120}resepsjon/is.test(combined), 'Sirkulasjon/resepsjon-vakten mangler');
+  assert(/datering.{0,140}(periodisering|epoke)|periode.{0,120}(ikke|analytisk|begrunn)/is.test(combined), 'Datering/periodisering-vakten mangler');
+  assert(/kronologi.{0,140}(ikke|alene).{0,100}(årsak|forklar)|rekkefølge.{0,120}(ikke|mekanisme)/is.test(combined), 'Kronologi/årsak-vakten mangler');
+  assert(/brudd.{0,140}(kontinuitet|fortsetter|ikke)|kontinuitet.{0,120}(transformasjon|endring)/is.test(combined), 'Brudd/kontinuitet-vakten mangler');
+  assert(/gjentakelse.{0,140}(ikke|forskjell|transformasjon)|versjon.{0,120}(ikke|identisk|endrer)/is.test(combined), 'Gjentakelse/kopi-vakten mangler');
+  assert(/arkiv.{0,140}(ikke|selekt|levende|revider)|katalog.{0,120}(levende|revider)/is.test(combined), 'Arkiv/nøytral fortid-vakten mangler');
+  assert(/appropriasjon.{0,150}(ikke|automatisk).{0,100}(kritikk|hyllest)|reklame.{0,120}(ikke|alene)/is.test(combined), 'Appropriasjon/holdning-vakten mangler');
+  assert(/innkjøp.{0,140}(ikke|alene).{0,100}(kanon)|ny representasjon.{0,120}(varig)/is.test(combined), 'Innkjøp/kanonisering-vakten mangler');
 
   const report = {
-    schema: 'history_go_fagverk_kunst_publikum_offentlighet_phase4_audit_v1', version: '1.0.0',
-    status: 'kunst_publikum_offentlighet_canonical_3_of_3', generatedFrom: P,
+    schema: 'history_go_fagverk_kunst_tid_transformasjon_phase4_audit_v1', version: '1.0.0',
+    status: 'kunst_tid_transformasjon_canonical_2_of_2', generatedFrom: P,
     subject: {
       id: 'kunst', canonicalDomainCount: phase3.report.summary.domainCount,
       canonicalEmneCount: phase3.report.summary.emneCount, registeredChapterCount: registrySubject.chapters.length,
@@ -136,8 +138,8 @@ export function auditKunstPublikumOffentlighetPhase4({ writeReport = false, chec
       relatedPlaceIds: chapter.relatedPlaces.map((row) => row.id)
     },
     canonicalCoverage: {
-      ownerDomainId: 'publikum_offentlighet', requiredEmneIds: EXPECTED_EMNES, coveredEmneIds: chapter.emne_ids,
-      exactCoverage: '3/3', remainingDomainCount: 0
+      ownerDomainId: 'tid_transformasjon', requiredEmneIds: EXPECTED_EMNES, coveredEmneIds: chapter.emne_ids,
+      exactCoverage: '2/2', remainingDomainCount: 0
     },
     summary: {
       moduleCount: modules.length, sectionCount: sections.length,
@@ -148,13 +150,14 @@ export function auditKunstPublikumOffentlighetPhase4({ writeReport = false, chec
       sourceCount: claimsDoc.sources.length, claimCount: claimsDoc.claims.length, placeCaseCount: chapter.relatedPlaces.length
     },
     gates: {
-      canonicalOwnerDomain: true, exactThreeOfThreeEmneCoverage: true, allMethodReferencesResolved: true,
+      canonicalOwnerDomain: true, exactTwoOfTwoEmneCoverage: true, allMethodReferencesResolved: true,
       threeEditedModules: true, paragraphLevelClaimTrace: true, allClaimsVerifiedAndUsed: true,
       inspectablePrimarySources: true, canonicalPlacesResolved: true, chapterSourcesRenderable: true,
-      chapterPlacesRenderable: true, misconceptionsRenderable: true, publicPlacementGuard: true,
-      freeEqualAccessGuard: true, visitorCompositionGuard: true, participationPowerGuard: true,
-      digitizationVisibilityGuard: true, circulationReceptionGuard: true,
-      previousKunstStructurePreserved: true, completeSubjectStatusAudited: true, releaseReady: true
+      chapterPlacesRenderable: true, misconceptionsRenderable: true, datingPeriodizationGuard: true,
+      chronologyCausalityGuard: true, breakContinuityGuard: true, repetitionVariationGuard: true,
+      archiveHistoriographyGuard: true, appropriationPositionGuard: true, acquisitionCanonGuard: true,
+      previousKunstStructurePreserved: true, fullSubjectCompletionGateDeclared: true,
+      completeSubjectStatusBackedByAudit: true, releaseReady: true
     }
   };
   const committed = committedProjection(report);
@@ -169,10 +172,10 @@ export function auditKunstPublikumOffentlighetPhase4({ writeReport = false, chec
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const { report } = auditKunstPublikumOffentlighetPhase4({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log('Kunst Publikum og offentlighet OK: ' + report.canonicalCoverage.exactCoverage + ' emner, ' + report.summary.paragraphCount + ' avsnitt, ' + report.summary.claimCount + ' claims og ' + report.summary.sourceCount + ' kilder.');
+    const { report } = auditKunstTidTransformasjonPhase4({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
+    console.log('Kunst Tid og transformasjon OK: ' + report.canonicalCoverage.exactCoverage + ' emner, ' + report.summary.paragraphCount + ' avsnitt, ' + report.summary.claimCount + ' claims og ' + report.summary.sourceCount + ' kilder.');
   } catch (error) {
-    console.error('Kunst Publikum og offentlighet FEIL: ' + error.message);
+    console.error('Kunst Tid og transformasjon FEIL: ' + error.message);
     process.exitCode = 1;
   }
 }

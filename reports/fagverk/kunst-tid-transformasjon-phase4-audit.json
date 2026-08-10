@@ -1,0 +1,93 @@
+{
+  "schema": "history_go_fagverk_kunst_tid_transformasjon_phase4_audit_v1",
+  "version": "1.0.0",
+  "status": "kunst_tid_transformasjon_canonical_2_of_2",
+  "generatedFrom": {
+    "chapter": "data/fagverk/kunst/tid-og-transformasjon.json",
+    "brief": "data/fagverk/kunst/tid-og-transformasjon/brief.json",
+    "claims": "data/fagverk/kunst/tid-og-transformasjon/claims.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "status": "data/fagverk/subject_status.json",
+    "emners": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+    "methods": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+    "places": "data/places/places_index.json",
+    "report": "reports/fagverk/kunst-tid-transformasjon-phase4-audit.json"
+  },
+  "subject": {
+    "id": "kunst",
+    "canonicalDomainCount": 6,
+    "canonicalEmneCount": 21,
+    "registeredChapterCount": 6,
+    "editorialStatus": "complete",
+    "nextGate": "maintenance_source_refresh_and_place_case_expansion"
+  },
+  "chapter": {
+    "id": "tid-og-transformasjon",
+    "title": "Tid og transformasjon: hvordan kunsthistorien blir skrevet om",
+    "primaryDomainId": "tid_transformasjon",
+    "moduleFiles": [
+      "data/fagverk/kunst/tid-og-transformasjon/01-grunnlag.json",
+      "data/fagverk/kunst/tid-og-transformasjon/02-fordypning.json",
+      "data/fagverk/kunst/tid-og-transformasjon/03-anvendelse.json"
+    ],
+    "briefFile": "data/fagverk/kunst/tid-og-transformasjon/brief.json",
+    "claimsFile": "data/fagverk/kunst/tid-og-transformasjon/claims.json",
+    "relatedPlaceIds": [
+      "nasjonalmuseet",
+      "munch_museet",
+      "astrup_fearnley",
+      "kunstnernes_hus"
+    ]
+  },
+  "canonicalCoverage": {
+    "ownerDomainId": "tid_transformasjon",
+    "requiredEmneIds": [
+      "em_kunst_epoker_og_kunsthistorisk_narrativ",
+      "em_kunst_hverdagsestetikk"
+    ],
+    "coveredEmneIds": [
+      "em_kunst_epoker_og_kunsthistorisk_narrativ",
+      "em_kunst_hverdagsestetikk"
+    ],
+    "exactCoverage": "2/2",
+    "remainingDomainCount": 0
+  },
+  "summary": {
+    "moduleCount": 3,
+    "sectionCount": 9,
+    "paragraphCount": 27,
+    "conceptCount": 6,
+    "workedExampleCount": 3,
+    "misconceptionCount": 5,
+    "applicationTaskCount": 5,
+    "selfCheckCount": 7,
+    "methodCount": 12,
+    "sourceCount": 18,
+    "claimCount": 24,
+    "placeCaseCount": 4
+  },
+  "gates": {
+    "canonicalOwnerDomain": true,
+    "exactTwoOfTwoEmneCoverage": true,
+    "allMethodReferencesResolved": true,
+    "threeEditedModules": true,
+    "paragraphLevelClaimTrace": true,
+    "allClaimsVerifiedAndUsed": true,
+    "inspectablePrimarySources": true,
+    "canonicalPlacesResolved": true,
+    "chapterSourcesRenderable": true,
+    "chapterPlacesRenderable": true,
+    "misconceptionsRenderable": true,
+    "datingPeriodizationGuard": true,
+    "chronologyCausalityGuard": true,
+    "breakContinuityGuard": true,
+    "repetitionVariationGuard": true,
+    "archiveHistoriographyGuard": true,
+    "appropriationPositionGuard": true,
+    "acquisitionCanonGuard": true,
+    "previousKunstStructurePreserved": true,
+    "fullSubjectCompletionGateDeclared": true,
+    "completeSubjectStatusBackedByAudit": true,
+    "releaseReady": true
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "schema": "history_go_fagverk_kunst_complete_audit_v1",
+  "version": "1.0.0",
+  "status": "complete",
+  "generatedFrom": {
+    "manifest": "data/fag/fag_manifest.json",
+    "curriculum": "data/fag/kunst/kunstpensum_canonical_v4_5.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "phase3Audit": "reports/fagverk/kunst-phase3-audit.json",
+    "generalEngineAudit": "reports/fagverk/general-engine-audit.json",
+    "report": "reports/fagverk/kunst-complete-audit.json"
+  },
+  "subject": {
+    "id": "kunst",
+    "title": "Kunst & kultur",
+    "schemaFamily": "standard_canonical",
+    "navigationStatus": "materialized",
+    "assessmentStatus": "audited",
+    "editorialStatus": "complete",
+    "nextGate": "maintenance_source_refresh_and_place_case_expansion"
+  },
+  "summary": {
+    "domainCount": 6,
+    "chapterCount": 6,
+    "emneCount": 21,
+    "methodCount": 21,
+    "mappingCount": 21,
+    "hookCount": 60,
+    "uniquePlaceCount": 11,
+    "uniqueSourceUrlCount": 95,
+    "moduleCount": 18,
+    "sectionCount": 54,
+    "paragraphCount": 162,
+    "sourceCount": 100,
+    "claimCount": 140,
+    "workedExampleCount": 18,
+    "misconceptionCount": 29,
+    "applicationTaskCount": 29,
+    "selfCheckCount": 41
+  },
+  "canonicalDomainCoverage": [
+    {
+      "domainId": "felt_institusjon",
+      "chapterCount": 1,
+      "emneCount": 4,
+      "chapterIds": [
+        "felt-og-institusjon"
+      ]
+    },
+    {
+      "domainId": "produksjon_praksis",
+      "chapterCount": 1,
+      "emneCount": 5,
+      "chapterIds": [
+        "produksjon-og-praksis"
+      ]
+    },
+    {
+      "domainId": "estetisk_sprak_form",
+      "chapterCount": 1,
+      "emneCount": 4,
+      "chapterIds": [
+        "estetisk-sprak-og-form"
+      ]
+    },
+    {
+      "domainId": "makt_legitimitet",
+      "chapterCount": 1,
+      "emneCount": 3,
+      "chapterIds": [
+        "makt-og-legitimitet"
+      ]
+    },
+    {
+      "domainId": "publikum_offentlighet",
+      "chapterCount": 1,
+      "emneCount": 3,
+      "chapterIds": [
+        "publikum-og-offentlighet"
+      ]
+    },
+    {
+      "domainId": "tid_transformasjon",
+      "chapterCount": 1,
+      "emneCount": 2,
+      "chapterIds": [
+        "tid-og-transformasjon"
+      ]
+    }
+  ],
+  "coveredPlaceIds": [
+    "astrup_fearnley",
+    "edvard_munchs_atelier_ekely",
+    "ekebergparken",
+    "hausmania",
+    "kunsthall_oslo",
+    "kunstnernes_hus",
+    "munch_museet",
+    "nasjonalmuseet",
+    "oslo_radhus",
+    "unge_kunstneres_samfund",
+    "vigelandsparken"
+  ],
+  "chapterAudits": [
+    {
+      "chapterId": "felt-og-institusjon",
+      "domainId": "felt_institusjon",
+      "emneIds": [
+        "em_kunst_institusjoner_kanon",
+        "em_kunst_okonomi_og_finansiering",
+        "em_kunst_utdanning_og_rekruttering",
+        "em_kunst_distribusjon_og_plattformisering"
+      ],
+      "methodIds": [
+        "met_kunst_institusjonsanalyse",
+        "met_kunst_feltanalyse",
+        "met_kunst_kuratorisk_analyse",
+        "met_kunst_kritikk_og_diskursanalyse",
+        "met_kunst_kanon_og_arkivanalyse",
+        "met_kunst_komparativ_institusjonsanalyse",
+        "met_kunst_digital_sirkulasjonsanalyse",
+        "met_kunst_plattformanalyse",
+        "met_kunst_resepsjonsanalyse"
+      ],
+      "relatedPlaceIds": [
+        "nasjonalmuseet",
+        "kunstnernes_hus",
+        "unge_kunstneres_samfund",
+        "munch_museet"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 16,
+      "claimCount": 21,
+      "workedExampleCount": 3,
+      "misconceptionCount": 4,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "produksjon-og-praksis",
+      "domainId": "produksjon_praksis",
+      "emneIds": [
+        "em_kunst_undergrunn_selvorganisert",
+        "em_kunst_arbeidsformer_og_prosess",
+        "em_kunst_teknologi_og_materialitet",
+        "em_kunst_materialitet_teknikk_handverk",
+        "em_kunst_kunstnerokonomi_og_prekaritet"
+      ],
+      "methodIds": [
+        "met_kunst_praksis_og_prosessanalyse",
+        "met_kunst_atelier_og_arbeidsanalyse",
+        "met_kunst_materialitetsanalyse",
+        "met_kunst_formanalyse",
+        "met_kunst_feltanalyse",
+        "met_kunst_kritikk_og_diskursanalyse",
+        "met_kunst_digital_sirkulasjonsanalyse",
+        "met_kunst_resepsjonsanalyse",
+        "met_kunst_komparativ_institusjonsanalyse"
+      ],
+      "relatedPlaceIds": [
+        "edvard_munchs_atelier_ekely",
+        "kunsthall_oslo",
+        "hausmania",
+        "kunstnernes_hus"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 16,
+      "claimCount": 23,
+      "workedExampleCount": 3,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 5,
+      "selfCheckCount": 7
+    },
+    {
+      "chapterId": "estetisk-sprak-og-form",
+      "domainId": "estetisk_sprak_form",
+      "emneIds": [
+        "em_kunst_representasjon_og_abstraksjon",
+        "em_kunst_sjanger_stil_og_posisjonering",
+        "em_kunst_konseptkunst_og_formalisme",
+        "em_kunst_originalitet_og_referanse"
+      ],
+      "methodIds": [
+        "met_kunst_formanalyse",
+        "met_kunst_materialitetsanalyse",
+        "met_kunst_komparativ_verkanalyse",
+        "met_kunst_ikonografisk_analyse",
+        "met_kunst_kunsthistorisk_kontekstualisering",
+        "met_kunst_konseptanalyse",
+        "met_kunst_kontekstualisering",
+        "met_kunst_kanon_og_arkivanalyse",
+        "met_kunst_kritikk_og_diskursanalyse",
+        "met_kunst_digital_sirkulasjonsanalyse"
+      ],
+      "relatedPlaceIds": [
+        "nasjonalmuseet",
+        "munch_museet",
+        "vigelandsparken",
+        "astrup_fearnley"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 16,
+      "claimCount": 24,
+      "workedExampleCount": 3,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 5,
+      "selfCheckCount": 7
+    },
+    {
+      "chapterId": "makt-og-legitimitet",
+      "domainId": "makt_legitimitet",
+      "emneIds": [
+        "em_kunst_politisk_kunst_aktivisme",
+        "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
+        "em_kunst_institusjonskritikk_og_representasjon"
+      ],
+      "methodIds": [
+        "met_kunst_feltanalyse",
+        "met_kunst_praksis_og_prosessanalyse",
+        "met_kunst_kritikk_og_diskursanalyse",
+        "met_kunst_ikonografisk_analyse",
+        "met_kunst_formanalyse",
+        "met_kunst_kunsthistorisk_kontekstualisering",
+        "met_kunst_institusjonskritisk_analyse",
+        "met_kunst_offentlig_rom_analyse",
+        "met_kunst_resepsjonsanalyse",
+        "met_kunst_stedsspesifikk_analyse",
+        "met_kunst_komparativ_verkanalyse",
+        "met_kunst_institusjonsanalyse",
+        "met_kunst_kuratorisk_analyse",
+        "met_kunst_komparativ_institusjonsanalyse"
+      ],
+      "relatedPlaceIds": [
+        "nasjonalmuseet",
+        "kunstnernes_hus",
+        "kunsthall_oslo",
+        "oslo_radhus"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 16,
+      "claimCount": 24,
+      "workedExampleCount": 3,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 5,
+      "selfCheckCount": 7
+    },
+    {
+      "chapterId": "publikum-og-offentlighet",
+      "domainId": "publikum_offentlighet",
+      "emneIds": [
+        "em_kunst_offentlig_kunst_monumenter",
+        "em_kunst_publikum_klasse_og_kapital",
+        "em_kunst_digital_offentlighet_og_resepsjon"
+      ],
+      "methodIds": [
+        "met_kunst_ikonografisk_analyse",
+        "met_kunst_formanalyse",
+        "met_kunst_kunsthistorisk_kontekstualisering",
+        "met_kunst_kritikk_og_diskursanalyse",
+        "met_kunst_offentlig_rom_analyse",
+        "met_kunst_resepsjonsanalyse",
+        "met_kunst_stedsspesifikk_analyse",
+        "met_kunst_digital_sirkulasjonsanalyse",
+        "met_kunst_plattformanalyse",
+        "met_kunst_feltanalyse",
+        "met_kunst_materialitetsanalyse",
+        "met_kunst_praksis_og_prosessanalyse",
+        "met_kunst_komparativ_verkanalyse"
+      ],
+      "relatedPlaceIds": [
+        "vigelandsparken",
+        "ekebergparken",
+        "nasjonalmuseet",
+        "munch_museet"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 18,
+      "claimCount": 24,
+      "workedExampleCount": 3,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 5,
+      "selfCheckCount": 7
+    },
+    {
+      "chapterId": "tid-og-transformasjon",
+      "domainId": "tid_transformasjon",
+      "emneIds": [
+        "em_kunst_epoker_og_kunsthistorisk_narrativ",
+        "em_kunst_hverdagsestetikk"
+      ],
+      "methodIds": [
+        "met_kunst_formanalyse",
+        "met_kunst_ikonografisk_analyse",
+        "met_kunst_kunsthistorisk_kontekstualisering",
+        "met_kunst_kanon_og_arkivanalyse",
+        "met_kunst_feltanalyse",
+        "met_kunst_kritikk_og_diskursanalyse",
+        "met_kunst_komparativ_verkanalyse",
+        "met_kunst_institusjonsanalyse",
+        "met_kunst_resepsjonsanalyse",
+        "met_kunst_offentlig_rom_analyse",
+        "met_kunst_stedsspesifikk_analyse",
+        "met_kunst_kontekstualisering"
+      ],
+      "relatedPlaceIds": [
+        "nasjonalmuseet",
+        "munch_museet",
+        "astrup_fearnley",
+        "kunstnernes_hus"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 18,
+      "claimCount": 24,
+      "workedExampleCount": 3,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 5,
+      "selfCheckCount": 7
+    }
+  ],
+  "gates": {
+    "manifestFirstCanonicalSourcesResolved": true,
+    "sixCanonicalDomainsCovered": true,
+    "sixFullChapterPackagesReady": true,
+    "allTwentyOneCanonicalEmnersCoveredExactlyOnce": true,
+    "allTwentyOneCanonicalMethodsUsed": true,
+    "allTwentyOneMappingsResolved": true,
+    "allSixtyHooksResolved": true,
+    "paragraphClaimTraceComplete": true,
+    "allOneHundredFortyClaimsVerifiedAndUsed": true,
+    "allOneHundredSourceRecordsInspectableAndUsed": true,
+    "elevenCanonicalPlaceCasesResolved": true,
+    "learningComponentsRenderable": true,
+    "generalEngineProjectsCompleteStatus": true,
+    "statusTransitionBackedByFullSubjectAudit": true,
+    "maintenanceGateDeclared": true
+  }
+}

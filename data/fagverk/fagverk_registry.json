@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.57.0",
+  "version": "2.58.0",
   "updatedAt": "2026-08-10",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -375,7 +375,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Kunstfagets seks canonicale fagområder eier rendererstrukturen. Felt og institusjon, Produksjon og praksis, Estetisk språk og form, Makt og legitimitet og Publikum og offentlighet er materialisert som fulltekst- og claimsporede kapitler; ett område står igjen i kapittelproduksjon."
+        "note": "Kunstfagets seks canonicale fagområder eier rendererstrukturen. Alle seks er materialisert som fulltekst- og claimsporede kapitler og verifiseres av en separat helhetsaudit."
       },
       "chapters": [
         {
@@ -441,8 +441,27 @@
             "em_kunst_publikum_klasse_og_kapital",
             "em_kunst_digital_offentlighet_og_resepsjon"
           ]
+        },
+        {
+          "id": "tid-og-transformasjon",
+          "title": "Tid og transformasjon: hvordan kunsthistorien blir skrevet om",
+          "subtitle": "Epoker, brudd, kontinuitet, arkiv, gjentakelse, remiks og hverdagsestetikk i fire Oslo-institusjoner",
+          "file": "data/fagverk/kunst/tid-og-transformasjon.json",
+          "primary_domain_id": "tid_transformasjon",
+          "emne_ids": [
+            "em_kunst_epoker_og_kunsthistorisk_narrativ",
+            "em_kunst_hverdagsestetikk"
+          ]
         }
-      ]
+      ],
+      "editorialPlan": {
+        "completionRequirements": [
+          "all_canonical_domains_materialized",
+          "all_canonical_emners_covered_exactly_once",
+          "paragraph_claim_trace_complete",
+          "full_subject_audit_green"
+        ]
+      }
     },
     "media": {
       "title": "Media",

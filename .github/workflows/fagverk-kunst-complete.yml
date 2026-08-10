@@ -1,0 +1,30 @@
+name: Fagverk Kunst complete
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/kunst/**'
+      - 'data/fagverk/kunst/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'scripts/audit-fagverk-kunst-*.mjs'
+      - 'tests/fagverk-kunst-*.test.mjs'
+      - 'reports/fagverk/kunst-*-audit.json'
+      - '.github/workflows/fagverk-kunst-complete.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/audit-fagverk-kunst-complete.mjs
+      - run: node --test tests/fagverk-kunst-*.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs
+      - run: node scripts/build-fagverk-release-manifest.mjs --check
