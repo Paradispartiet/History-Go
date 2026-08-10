@@ -1,0 +1,315 @@
+{
+  "schema": "history_go_claims_v1",
+  "version": "1.0.0",
+  "subject": "by",
+  "chapter_id": "boligpolitikk-pris-leie-eie-tilgang",
+  "verified_at": "2026-08-10",
+  "sources": [
+    {
+      "id": "boligpol-src-01",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Boforhold, registerbasert",
+      "url": "https://www.ssb.no/bygg-bolig-og-eiendom/bolig-og-boforhold/statistikk/boforhold-registerbasert",
+      "source_type": "official_statistics",
+      "source_location": "eierstatus, husholdning, boligtype og geografi"
+    },
+    {
+      "id": "boligpol-src-02",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Leiemarkedsundersøkelsen",
+      "url": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/leiemarkedsundersokelsen",
+      "source_type": "official_statistics",
+      "source_location": "leienivå etter prissone, boligstørrelse og år"
+    },
+    {
+      "id": "boligpol-src-03",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Prisindeks for brukte boliger",
+      "url": "https://www.ssb.no/priser-og-prisindekser/boligpriser-og-boligprisindekser/statistikk/prisindeks-for-brukte-boliger",
+      "source_type": "official_statistics",
+      "source_location": "prisendring etter region og boligtype"
+    },
+    {
+      "id": "boligpol-src-04",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Det er blitt mye dyrere å bo",
+      "url": "https://www.ssb.no/bygg-bolig-og-eiendom/bolig-og-boforhold/artikler/det-er-blitt-mye-dyrere-a-bo",
+      "source_type": "official_analysis",
+      "source_location": "boutgifter, renteutgifter og inntektsandel 2011–2024"
+    },
+    {
+      "id": "boligpol-src-05",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Unge uten formuende foreldre eier sjeldnere bolig, særlig i Oslo",
+      "url": "https://www.ssb.no/inntekt-og-forbruk/skatt-for-personer/artikler/unge-uten-formuende-foreldre-eier-sjeldnere-bolig-saerlig-i-oslo",
+      "source_type": "official_analysis",
+      "source_location": "foreldreformue, alder, eierskap og geografi"
+    },
+    {
+      "id": "boligpol-src-06",
+      "publisher": "Oslo kommune",
+      "title": "Temaplan for Oslo kommunes behov for kommunale boliger 2024–2033",
+      "url": "https://www.oslo.kommune.no/politikk/sentrale-planer/",
+      "source_type": "official_plan_registry",
+      "source_location": "vedtatt temaplan og planperiode"
+    },
+    {
+      "id": "boligpol-src-07",
+      "publisher": "Oslo kommune",
+      "title": "Søke kommunal bolig",
+      "url": "https://www.oslo.kommune.no/bolig-og-sosiale-tjenester/bolig/kommunal-bolig/",
+      "source_type": "official_service_guidance",
+      "source_location": "vilkår, søknad og bydelenes behandling"
+    },
+    {
+      "id": "boligpol-src-08",
+      "publisher": "Husbanken",
+      "title": "Startlån og tilskudd fra kommunen",
+      "url": "https://www.husbanken.no/person/startlaan/",
+      "source_type": "official_policy_guidance",
+      "source_location": "målgruppe, finansiering og kommunal behandling"
+    },
+    {
+      "id": "boligpol-src-09",
+      "publisher": "Husbanken",
+      "title": "Bostøtte",
+      "url": "https://www.husbanken.no/person/bostotte/",
+      "source_type": "official_policy_guidance",
+      "source_location": "formål, inntekt, boutgifter og søknad"
+    },
+    {
+      "id": "boligpol-src-10",
+      "publisher": "Husbanken",
+      "title": "Leie til eie",
+      "url": "https://www.husbanken.no/boligsosialt-arbeid/leie-til-eie/",
+      "source_type": "official_policy_guidance",
+      "source_location": "kommunale modeller, startlån og opsjonsavtale"
+    },
+    {
+      "id": "boligpol-src-11",
+      "publisher": "Lovdata",
+      "title": "Husleieloven",
+      "url": "https://lovdata.no/lov/1999-03-26-17",
+      "source_type": "official_law",
+      "source_location": "lovens virkeområde og regler for leieavtaler"
+    },
+    {
+      "id": "boligpol-src-12",
+      "publisher": "Lovdata",
+      "title": "Boligsosialloven",
+      "url": "https://lovdata.no/lov/2022-12-20-121",
+      "source_type": "official_law",
+      "source_location": "kommunens ansvar for bistand til vanskeligstilte på boligmarkedet"
+    },
+    {
+      "id": "boligpol-src-13",
+      "publisher": "Husbanken",
+      "title": "Kommunale boligtilskudd sammen med startlån",
+      "url": "https://www.husbanken.no/kommune/startlaan/veileder/kommunale-boligtilskudd/",
+      "source_type": "official_policy_guidance",
+      "source_location": "kombinasjon av startlån og tilskudd"
+    }
+  ],
+  "claims": [
+    {
+      "id": "boligpol-01",
+      "claim": "SSBs boforholdsstatistikk skiller blant annet husholdningens eierstatus, boligtype og geografiske område.",
+      "source_ids": [
+        "boligpol-src-01"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-grunnlag-1"
+      ]
+    },
+    {
+      "id": "boligpol-02",
+      "claim": "At over én million personer leide boligen de bodde i i 2024 beskriver omfang, men ikke om leie var frivillig eller boligen økonomisk trygg.",
+      "source_ids": [
+        "boligpol-src-01"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-grunnlag-1"
+      ]
+    },
+    {
+      "id": "boligpol-03",
+      "claim": "Leiemarkedsundersøkelsen publiserer leienivå etter prissone og boligstørrelse; gjennomsnittet er ikke husleien i en bestemt kontrakt.",
+      "source_ids": [
+        "boligpol-src-02"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-grunnlag-2"
+      ]
+    },
+    {
+      "id": "boligpol-04",
+      "claim": "SSB rapporterte gjennomsnittlig månedlig leie for toroms bolig i Oslo og Bærum på 15 260 kroner i 2025.",
+      "source_ids": [
+        "boligpol-src-02"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-grunnlag-2"
+      ]
+    },
+    {
+      "id": "boligpol-05",
+      "claim": "Prisindeksen for brukte boliger måler prisendring etter boligtype og region, ikke total boutgift eller tilgjengelighet for en husholdning.",
+      "source_ids": [
+        "boligpol-src-03"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-grunnlag-3"
+      ]
+    },
+    {
+      "id": "boligpol-06",
+      "claim": "Boligutgifter økte for de fleste husholdninger fra 2011 til 2024, og SSB peker på renteutgifter som den sterkest økende komponenten.",
+      "source_ids": [
+        "boligpol-src-04"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-grunnlag-3"
+      ]
+    },
+    {
+      "id": "boligpol-07",
+      "claim": "SSB viser at unge uten formuende foreldre sjeldnere eier bolig, særlig i Oslo, og dokumenterer at tilgang ikke kan leses av inntekt eller pris alene.",
+      "source_ids": [
+        "boligpol-src-05"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-fordypning-1"
+      ]
+    },
+    {
+      "id": "boligpol-08",
+      "claim": "Foreldreformue er en statistisk sammenheng og kan ikke brukes til å forklare eller forutsi boligsituasjonen til en bestemt ung person.",
+      "source_ids": [
+        "boligpol-src-05"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-fordypning-1"
+      ]
+    },
+    {
+      "id": "boligpol-09",
+      "claim": "Oslo har en vedtatt temaplan for kommunens behov for kommunale boliger for perioden 2024–2033.",
+      "source_ids": [
+        "boligpol-src-06"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-fordypning-2"
+      ]
+    },
+    {
+      "id": "boligpol-10",
+      "claim": "Kommunal bolig tildeles gjennom søknad og behovsvurdering i bydelen; eksistensen av ordningen dokumenterer ikke at alle behov dekkes.",
+      "source_ids": [
+        "boligpol-src-07"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-fordypning-2"
+      ]
+    },
+    {
+      "id": "boligpol-11",
+      "claim": "Startlån kan hjelpe personer med langvarige problemer med å få ordinært banklån til å kjøpe eller tilpasse bolig.",
+      "source_ids": [
+        "boligpol-src-08"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-fordypning-3"
+      ]
+    },
+    {
+      "id": "boligpol-12",
+      "claim": "Bostøtte er behovsprøvd støtte for husstander med lave inntekter og høye boutgifter.",
+      "source_ids": [
+        "boligpol-src-09"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-fordypning-3"
+      ]
+    },
+    {
+      "id": "boligpol-13",
+      "claim": "Husbankens leie-til-eie-modeller kombinerer kommunal ordning og finansieringsvirkemidler, men deltakelse er ikke det samme som varig eierskap.",
+      "source_ids": [
+        "boligpol-src-10"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-anvendelse-1"
+      ]
+    },
+    {
+      "id": "boligpol-14",
+      "claim": "Husleieloven gjelder avtaler om bruksrett til husrom mot vederlag og regulerer rettigheter og plikter i leieforholdet.",
+      "source_ids": [
+        "boligpol-src-11"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-anvendelse-1"
+      ]
+    },
+    {
+      "id": "boligpol-15",
+      "claim": "Boligsosialloven pålegger kommunen ansvar for individuelt tilpasset bistand til vanskeligstilte på boligmarkedet.",
+      "source_ids": [
+        "boligpol-src-12"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-anvendelse-2"
+      ]
+    },
+    {
+      "id": "boligpol-16",
+      "claim": "Kommunale boligtilskudd kan kombineres med startlån for å gjøre en boligfinansiering mer tilgjengelig.",
+      "source_ids": [
+        "boligpol-src-13"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-anvendelse-2"
+      ]
+    },
+    {
+      "id": "boligpol-17",
+      "claim": "Ny boligproduksjon dokumenterer antall boliger, men ikke at boligene er økonomisk tilgjengelige for husholdningene analysen gjelder.",
+      "source_ids": [
+        "boligpol-src-03",
+        "boligpol-src-06"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-anvendelse-3"
+      ]
+    },
+    {
+      "id": "boligpol-18",
+      "claim": "Et områdes eierandel, pris eller boligtype kan ikke brukes til å tilordne enkeltbeboere inntekt, formue, gjeld eller bostabilitet.",
+      "source_ids": [
+        "boligpol-src-01",
+        "boligpol-src-05"
+      ],
+      "status": "verified",
+      "used_in": [
+        "boligpol-anvendelse-3"
+      ]
+    }
+  ]
+}
