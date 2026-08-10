@@ -251,7 +251,7 @@ const modules = {
         'Skill redaksjonens egen evaluering fra uavhengig effektmåling.'
       ], [['mpr-20', 'mpr-21'], ['mpr-22']]),
       section('mpr-anvendelse-2', 'Kringkasting samordner redaksjon og teknikk', [
-        'NRKs informasjonssider beskriver et allmennkringkastingstilbud på nett, TV og radio og viser distriktsinnganger for hele landet. AV- og TV-produksjonsanalyse må derfor følge både redaksjonell prioritering, programformat, studio, opptak, kontrollrom, sendeflate og digital publisering.',
+        'NRKs vedtekter beskriver formålet som allmennkringkasting for hele Norges befolkning i radio, fjernsyn og på øvrige medieplattformer. AV- og TV-produksjonsanalyse må derfor følge både redaksjonell prioritering, programformat, studio, opptak, kontrollrom, sendeflate og digital publisering.',
         'NRKs årsrapport for 1985 beskriver produksjoner på Marienlyst der medarbeidere fra ti til tolv stasjoner arbeidet samtidig. Marienlyst var dermed et samordningssted for geografisk spredte bidrag, ikke bevis på at alle perspektiver eller beslutninger var sentralisert i én person.',
         'Medietilsynets vurdering av NRKs mediemangfold undersøker både innholds- og bruksmangfold, samarbeid med andre aktører og virkninger i nyhetsmarkedet. Allmennkringkasting må vurderes mot dokumentert tilbud, bruk og samarbeid – ikke bare institusjonens formålserklæring.'
       ], [['mpr-23'], ['mpr-24'], ['mpr-25']], [
@@ -307,7 +307,7 @@ const sources = [
   source('mpr14-editor', 'Norsk Redaktørforening', 'Redaktørplakaten', 'https://www.redaktor.no/ressurser/etiske-og-juridiske-rammeverk/redaktorplakaten', 'Kjerneprinsippene om redaksjonell uavhengighet og redaktørens fulle innholdsansvar', 'professional-standards'),
   source('mpr15-press-house', 'Pressens Hus', 'Hjem', 'https://pressenshus.no/', 'Beskrivelsen av huset som åpent samlingssted, programflater og de elleve beboerorganisasjonene', 'institution-profile'),
   source('mpr16-media-support', 'Medietilsynet', 'De direkte mediestøtteordningene', 'https://www.medietilsynet.no/globalassets/publikasjoner/utredninger-pa-oppdrag-fra-andre/mediestotterapporten/211206_mediestotte_utredning_endelig.pdf', 'Utredningen om lokale mediemarkeder, journalistiske blindsoner og markedssvikt', 'regulator-report'),
-  source('mpr17-nrk-info', 'NRK', 'Hjelp og informasjon', 'https://info.nrk.no/', 'Oversikten over NRKs tilbud på nett, TV og radio, distriktsinnganger, oppdrag og presseetisk ramme', 'public-broadcaster-profile'),
+  source('mpr17-nrk-info', 'NRK', 'Vedtekter og NRK-plakaten', 'https://info.nrk.no/vedtekter/', 'Organisatoriske bestemmelser § 3 om allmennkringkasting for hele befolkningen i radio, fjernsyn og på øvrige medieplattformer', 'public-broadcaster-charter'),
   source('mpr18-nrk-1985', 'NRK', 'NRK 1985 del II', 'https://info.nrk.no/wp-content/uploads/2021/08/1985.pdf', 'Årsrapportens produksjonsbeskrivelser fra Marienlyst og bidrag fra flere stasjoner', 'public-broadcaster-annual-report'),
   source('mpr19-media-diversity', 'Medietilsynet', 'NRKs bidrag til mediemangfoldet', 'https://www.medietilsynet.no/fakta/rapporter/kringkasting/2026/nrks-bidrag-til-mediemangfoldet/', '2026-vurderingen av innholds- og bruksmangfold, samarbeid og konkurransevirkninger', 'regulator-report')
 ];
@@ -336,7 +336,7 @@ const claims = [
   claim('mpr-20', 'VG sier at feil skal rettes og oppgir at den åpne retteloggen inneholder rettelser fra 28. mai 2019.', ['mpr08-vg-corrections'], ['mpr-anvendelse-1', 'mpr-anvendelse-3']),
   claim('mpr-21', 'VGs redaksjonelle regnskap for 2019 omtaler både journalistiske prestasjoner, alvorlige feil og redaksjonens egne tiltak.', ['mpr09-vg-account'], ['mpr-anvendelse-1']),
   claim('mpr-22', 'Arkiverte utgaver og sideendringer gjør publiseringsversjoner sammenlignbare og hindrer at en rettet nettversjon behandles som første publisering.', ['mpr13-nb-print', 'mpr08-vg-corrections'], ['mpr-anvendelse-1', 'mpr-anvendelse-3']),
-  claim('mpr-23', 'NRK beskriver et allmennkringkastingstilbud på nett, TV og radio med egne distriktsinnganger og presseetisk ramme.', ['mpr17-nrk-info'], ['mpr-anvendelse-2']),
+  claim('mpr-23', 'NRKs vedtekter fastsetter at selskapets formål er å tilby allmennkringkasting for hele Norges befolkning i radio, fjernsyn og på øvrige medieplattformer.', ['mpr17-nrk-info'], ['mpr-anvendelse-2']),
   claim('mpr-24', 'NRKs årsrapport for 1985 dokumenterer produksjonssituasjoner på Marienlyst med medarbeidere fra ti til tolv stasjoner.', ['mpr18-nrk-1985'], ['mpr-anvendelse-2', 'mpr-anvendelse-3']),
   claim('mpr-25', 'Medietilsynets 2026-vurdering undersøker NRK gjennom innholds- og bruksmangfold, samarbeid og virkninger i nyhetsmarkedet.', ['mpr19-media-diversity'], ['mpr-anvendelse-2', 'mpr-anvendelse-3'])
 ];
