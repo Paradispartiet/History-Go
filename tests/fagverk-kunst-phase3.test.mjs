@@ -27,7 +27,7 @@ test('Kunst er individuelt materialisert og auditert som første Fase 3-fag', ()
     methodCount: 21,
     mappingCount: 21,
     hookCount: 60,
-    registeredChapterCount: 2,
+    registeredChapterCount: 3,
     explicitMappingRowCount: 21
   });
   assert.deepEqual(report.emneStatusCounts, { active: 21 });
