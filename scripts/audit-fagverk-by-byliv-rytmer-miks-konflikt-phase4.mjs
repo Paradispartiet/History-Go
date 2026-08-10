@@ -93,7 +93,7 @@ export async function auditByBylivRytmerMiksKonfliktPhase4({ writeReport = false
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal fortsatt stå chapters_in_progress');
   assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette kapittelproduksjon etter ferdig Byliv');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
-  assert(registrySubject.chapters.length === 12, 'By skal ha fem Byliv-kapitler og ett Arkitektur-kapittel etter Arkitektur-start');
+  assert(registrySubject.chapters.length === 13, 'By skal ha fem Byliv-kapitler og ett Arkitektur-kapittel etter Arkitektur-start');
   assert(registrySubject.chapters.filter((row) => row.primary_domain_id === 'byliv').map((row) => row.id).join('|') === EXPECTED_CHAPTER_ORDER.join('|'), 'Byliv-kapitlene har feil rekkefølge eller mangler');
   assert(chapterMeta && previousMeta.every(Boolean), 'Kapittel 5 eller et tidligere Byliv-kapittel mangler i registry');
   assert(chapterMeta.file === P.chapter && chapterMeta.primary_domain_id === 'byliv', 'Registry har feil fil/domain for kapittel 5');
@@ -102,7 +102,7 @@ export async function auditByBylivRytmerMiksKonfliktPhase4({ writeReport = false
   const source = loadSource(CORE, manifest.by);
   const model = CORE.normalizeSubject({ subjectId: 'by', categoryLabel: categories.labels.by, categoryDescription: categories.decisions?.by, schemaFamily: inventoryEntry.schemaFamily, manifestEntry: manifest.by, portalEntry, inventoryEntry, statusEntry, registry, badge: {}, source });
   assert(model.subject.adapter === 'by', 'By skal bruke by-adapteren');
-  assert(model.chapters.length === 12, 'Normalisert By-modell skal vise ni kapitler etter første Arkitektur-batch');
+  assert(model.chapters.length === 13, 'Normalisert By-modell skal vise ni kapitler etter første Arkitektur-batch');
   const modelEmnes = new Map(model.emners.map((row) => [row.id, row]));
   const modelMethods = new Map(model.methods.map((row) => [row.id, row]));
   for (const id of EXPECTED_EMNES) {
