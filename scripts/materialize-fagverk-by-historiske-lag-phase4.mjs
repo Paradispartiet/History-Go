@@ -46,9 +46,11 @@ function readme(){
 function run(label,file,args=[]){
  console.log(`::notice title=Historiske lag materializer::Kjører ${label}`);
  try{
-  execFileSync(process.execPath,[file,...args],{cwd:ROOT,stdio:'inherit'});
+  const output=execFileSync(process.execPath,[file,...args],{cwd:ROOT,encoding:'utf8',stdio:['ignore','pipe','pipe']});
+  if(output)process.stdout.write(output);
  }catch(error){
-  console.error(`::error title=Historiske lag materializer::Feilet i ${label}: ${error.message}`);
+  const detail=[error.stdout,error.stderr].filter(Boolean).join('\n').trim().replace(/\r?\n/g,' | ');
+  console.error(`::error title=Historiske lag materializer::Feilet i ${label}: ${detail||error.message}`);
   throw error;
  }
 }
