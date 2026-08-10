@@ -1,0 +1,126 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "media",
+  "chapter_id": "presse-redaksjoner-og-avishus",
+  "primary_domain_id": "presse_redaksjoner_avishus",
+  "relatedPlaceIds": [
+    "aftenposten_akersgata",
+    "vg_huset",
+    "dagbladet_akersgata",
+    "nrk_huset_marienlyst"
+  ],
+  "purpose": "Materialisere Medias første canonicale domene med kildebasert undervisning i avisformat, redaksjonsorganisering, kildearbeid, prioritering, pressehistorie, lokal offentlighet og audiovisuell produksjon.",
+  "audience": "Brukere som skal kunne lese en avis, redaksjon eller sending som et dokumenterbart produksjonssystem uten å gjøre medieomtale, popularitet eller teori til faktakilde.",
+  "learningArc": [
+    "starte i papir, trykk, side og historisk distribusjon",
+    "kartlegge redaksjonens roller og beslutningspunkter",
+    "skille kildeutsagn, kontroll og publisert påstand",
+    "analysere forside, dagsorden og hendelsesutvalg",
+    "undersøke avishus, nyhetssted og presseklubb som forskjellige rom",
+    "prøve lokalavisens fellesskapsrolle mot dekningsdata og blindsoner",
+    "lese rettelser og arkivversjoner som kvalitets- og historiespor",
+    "avslutte med en produksjonsmatrise for fire Oslo-redaksjoner"
+  ],
+  "requiredEmneIds": [
+    "em_media_av_og_tv_produksjon",
+    "em_media_avisens_materielle_form",
+    "em_media_avishus_offentlighetsrom",
+    "em_media_byline_ansvar",
+    "em_media_dagsorden",
+    "em_media_forside_prioritering",
+    "em_media_hendelse_og_presse",
+    "em_media_journalist_kilde",
+    "em_media_journalistisk_ansvar",
+    "em_media_kildearbeid",
+    "em_media_lokal_offentlighet",
+    "em_media_lokalavis",
+    "em_media_mediefellesskap",
+    "em_media_mediehistorisk_endring",
+    "em_media_nyhetsproduksjon",
+    "em_media_nyhetssted",
+    "em_media_pressehistorie",
+    "em_media_presseklubb",
+    "em_media_redaksjon_desk",
+    "em_media_redaksjonell_institusjon",
+    "em_media_trykkeri_materialitet"
+  ],
+  "requiredMethodIds": [
+    "met_media_trykkerianalyse",
+    "met_media_materialitetsanalyse",
+    "met_media_avishusanalyse",
+    "met_media_institusjonsanalyse",
+    "met_media_bylineanalyse",
+    "met_media_ansvarsanalyse",
+    "met_media_forsideanalyse",
+    "met_media_dagsordenanalyse",
+    "met_media_nyhetsstedsanalyse",
+    "met_media_hendelsesanalyse",
+    "met_media_journalistisk_analyse",
+    "met_media_kildeanalyse",
+    "met_media_lokalavisanalyse",
+    "met_media_lokaloffentlighetsanalyse",
+    "met_media_presseklubbanalyse",
+    "met_media_fellesskapsanalyse",
+    "met_media_pressehistorisk_analyse",
+    "met_media_mediehistorisk_analyse",
+    "met_media_produksjonsanalyse",
+    "met_media_redaksjonsanalyse",
+    "met_media_deskanalyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "hendelse vs publisert nyhet",
+    "kildeutsagn vs verifisert påstand",
+    "anonym kilde vs ubegrunnet påstand",
+    "byline vs samlet redaktøransvar",
+    "forside vs komplett hendelsesbilde",
+    "dagsorden vs bevis på objektiv viktighet",
+    "publiseringshastighet vs dokumentert nøyaktighet",
+    "avishus vs én samlet aktør",
+    "presseklubb vs redaksjonelt beslutningsrom",
+    "lokal dekning vs representativ offentlighet",
+    "papirutgave vs identisk digital sekvens",
+    "rettelse vs slettet publiseringshistorikk"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "redaksjonenes egne historiske, metodiske, rettelses- og organisasjonskilder",
+      "Norsk Redaktørforening og Norsk Presseforbunds ansvarskontrakter",
+      "Nasjonalbibliotekets pressehistoriske og pliktavleveringskilder",
+      "Pressens Hus og Medietilsynets dokumentasjon av offentlighet, lokaljournalistikk og allmennkringkasting"
+    ],
+    "minimumExternalSources": 16,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "currentStatusClaimsRequireCurrentSource": true
+  },
+  "scope": {
+    "included": [
+      "avisens materialitet, trykkeri, side, forside og arkiv",
+      "redaksjon, desk, byline, kildearbeid, ansvar og rettelser",
+      "avishus, nyhetssted, presseklubb, lokalavis og mediefellesskap",
+      "radio-, TV- og nettproduksjon som redaksjonell og teknisk arbeidsdeling",
+      "Aftenposten, VG, Dagbladet og NRK Marienlyst som canonicale stedscase"
+    ],
+    "excluded": [
+      "medieomtale brukt som bevis på at et sted er et medieproduksjonssted",
+      "kildeutsagn gjengitt som ferdig verifisert fakta uten kontrollspor",
+      "byline brukt som hele mediets ansvarskart",
+      "forside eller seertall brukt som objektivt mål på samfunnsmessig viktighet",
+      "avishus omtalt som én intensjon uten rolle- og beslutningsanalyse",
+      "rettet tekst brukt uten å dokumentere at en tidligere publisering er endret"
+    ]
+  },
+  "qa": {
+    "exactCanonicalCoverage": "21/21",
+    "minimumModules": 3,
+    "minimumSections": 9,
+    "paragraphClaimTraceRequired": true,
+    "rendererFieldsRequired": [
+      "relatedPlaces",
+      "sources.label",
+      "commonMisconceptions.claim",
+      "commonMisconceptions.correction"
+    ]
+  }
+}

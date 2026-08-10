@@ -9,9 +9,9 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "2.58.0",
+    "version": "2.59.0",
     "updated_at": "2026-08-10",
-    "content_sha256": "ec7840ce7eeb745510b7ca600ef3a3ded89b3e313d95e59400c110ee09ce07ff"
+    "content_sha256": "aff7fbfb4979cf1f5f89809b49d3bdcaaaea2bfcfcc6a5e1e2bae42d3eff4794"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -33,12 +33,12 @@
     "subject_count": 18,
     "root_subject_count": 17,
     "specialization_count": 1,
-    "chapter_subject_count": 8,
-    "chapter_count": 98,
-    "module_file_count": 261,
+    "chapter_subject_count": 9,
+    "chapter_count": 99,
+    "module_file_count": 264,
     "package_file_count": 202,
-    "chapter_referenced_file_count": 471,
-    "referenced_file_count": 632,
+    "chapter_referenced_file_count": 477,
+    "referenced_file_count": 638,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1694,7 +1694,7 @@
       "schema_family": "standard_canonical",
       "pilot": false,
       "package_status": "complete",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -1822,20 +1822,29 @@
         }
       ],
       "package_content_sha256": "bd077770a8ed3d1dfaf8cbc14e6d922dee68c03ba5bcc7cf1bac867b2cc5fce6",
-      "chapter_count": 0,
-      "module_file_count": 0,
-      "brief_file_count": 0,
-      "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 8,
+      "chapter_count": 1,
+      "module_file_count": 3,
+      "brief_file_count": 1,
+      "claims_file_count": 1,
+      "chapter_referenced_file_count": 6,
+      "chapter_content_sha256": "0845a565d4e97e2fdcb2f7033363fddb6a4a41021df4affbd4aed9d89bbb641f",
+      "referenced_file_count": 14,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "4eb9097a813ae97f1a7c6a598f591086174010e208aee590403ed76e1fd1826b",
-      "content_sha256": "bd077770a8ed3d1dfaf8cbc14e6d922dee68c03ba5bcc7cf1bac867b2cc5fce6",
-      "chapters": []
+      "structure_sha256": "51ac32b0cead4a13184e7f4622b0268894795dd074e4c864cc9301a889e36de5",
+      "content_sha256": "90fa110337be92687e0bf9d9e416773720ae9c8e19680fc0c3bf0f79c2d3d4a4",
+      "chapters": [
+        {
+          "chapter_id": "presse-redaksjoner-og-avishus",
+          "title": "Presse, redaksjoner og avishus: hvordan nyheter blir til",
+          "file": "data/fagverk/media/presse-redaksjoner-og-avishus.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "0845a565d4e97e2fdcb2f7033363fddb6a4a41021df4affbd4aed9d89bbb641f"
+        }
+      ]
     },
     "musikk": {
       "title": "Musikkvitenskap",
@@ -4275,5 +4284,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "387dca2da02c5062738d7a0e7a97ab1fe7ec0c2d95be85aacaaa9bd0f3a011ed"
+  "release_sha256": "4ef584a23b36aefc982d3f94377805bf2efae2240cd9fdf813d9af128af44cd1"
 }

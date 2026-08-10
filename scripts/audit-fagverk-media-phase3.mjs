@@ -116,8 +116,8 @@ export function auditMediaPhase3({ writeReport = false, checkReport = true } = {
   assert(inventoryEntry?.schemaFamily === 'standard_canonical', 'Media har feil schemafamilie');
   assert(inventoryEntry?.pilot === false, 'Media skal være et individuelt Fase 3-fag');
   assert(statusEntry?.assessmentStatus === 'audited', 'Media har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Media må stå structure_ready før kapittelproduksjon');
-  assert(statusEntry?.nextGate === 'chapter_production', 'Media har feil neste port');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Media må stå chapters_in_progress etter første kapittel');
+  assert(statusEntry?.nextGate === 'remaining_domain_chapter_production', 'Media har feil neste port');
   assert(registry.placePage?.fallbackSubjectByCategory?.media === 'media', 'Media-steder mangler Media som fagverksfallback');
   assert(manifestEntry?.emners !== 'media/emner_media_populaerkultur_canonical_v4_5.json', 'Hovedmanifestet peker fortsatt til Populærkultur-katalogen');
   assert(manifestEntry?.emner === 'media/emner_media_canonical_v4_5.json', 'Hovedmanifestet peker ikke til canonical Media-emner');
@@ -150,7 +150,8 @@ export function auditMediaPhase3({ writeReport = false, checkReport = true } = {
   assert(model.summary.methodCount === 163, 'Samlet Media-metodekatalog skal ha 163 metoder');
   assert(model.summary.mappingCount === 120, 'Media skal ha 120 normaliserte hovedmappinger');
   assert(model.summary.hookCount === 60, 'Media skal ha 60 hovedhooks');
-  assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Media-kapitler finnes');
+  assert(model.chapters.length === 1, 'Media skal ha nøyaktig ett registrert kapittel');
+  assert(model.chapters[0].primaryDomainId === 'presse_redaksjoner_avishus', 'Første Media-kapittel har feil canonical eierdomene');
   assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Media-emne mangler løst metode-ID');
   assert(model.emners.flatMap((emne) => emne.methodLabels).every((label) => !label.startsWith('met_media_')), 'Media har uløst metode-ID');
 
@@ -218,7 +219,7 @@ export function auditMediaPhase3({ writeReport = false, checkReport = true } = {
   const report = {
     schema: 'history_go_fagverk_media_phase3_audit_v1',
     version: '1.0.0',
-    status: 'media_phase_3_structure_ready',
+    status: 'media_phase_3_chapters_in_progress',
     generatedFrom: P,
     subject: {
       id: model.subject.id,
@@ -269,8 +270,9 @@ export function auditMediaPhase3({ writeReport = false, checkReport = true } = {
       mediaPlaceFallbackCorrect: true,
       badgeAndSubjectRoutesDistinct: true,
       assessmentStatusAudited: true,
-      editorialStatusStructureReady: true,
-      chapterClaimsNotOverstated: true
+      editorialStatusChaptersInProgress: true,
+      firstCanonicalChapterRegistered: true,
+      chapterClaimsBackedByChapterAudit: true
     }
   };
 

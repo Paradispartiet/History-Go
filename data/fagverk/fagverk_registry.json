@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.58.0",
+  "version": "2.59.0",
   "updatedAt": "2026-08-10",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -470,9 +470,40 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Medias seks canonicale hovedområder eier rendererstrukturen. Populærkultur bevares som et nested mediefelt under samme fag og oppretter ikke eget toppfag, egen fagsiderute eller konkurrerende fagverk. Ingen kapitler registreres før fulltekst, claims og inspectable kilder er produsert."
+        "note": "Medias seks canonicale hovedområder eier rendererstrukturen. Presse, redaksjoner og avishus er materialisert som fulltekst- og claimsporet kapittel; fem hovedområder står igjen. Populærkultur bevares som et komplett nested mediefelt og oppretter ikke et konkurrerende toppfag."
       },
-      "chapters": []
+      "chapters": [
+        {
+          "id": "presse-redaksjoner-og-avishus",
+          "title": "Presse, redaksjoner og avishus: hvordan nyheter blir til",
+          "subtitle": "Fra trykkpresse, forside og Akersgata-desk til kildearbeid, rettelogg, lokal offentlighet og Marienlyst-produksjon",
+          "file": "data/fagverk/media/presse-redaksjoner-og-avishus.json",
+          "primary_domain_id": "presse_redaksjoner_avishus",
+          "emne_ids": [
+            "em_media_av_og_tv_produksjon",
+            "em_media_avisens_materielle_form",
+            "em_media_avishus_offentlighetsrom",
+            "em_media_byline_ansvar",
+            "em_media_dagsorden",
+            "em_media_forside_prioritering",
+            "em_media_hendelse_og_presse",
+            "em_media_journalist_kilde",
+            "em_media_journalistisk_ansvar",
+            "em_media_kildearbeid",
+            "em_media_lokal_offentlighet",
+            "em_media_lokalavis",
+            "em_media_mediefellesskap",
+            "em_media_mediehistorisk_endring",
+            "em_media_nyhetsproduksjon",
+            "em_media_nyhetssted",
+            "em_media_pressehistorie",
+            "em_media_presseklubb",
+            "em_media_redaksjon_desk",
+            "em_media_redaksjonell_institusjon",
+            "em_media_trykkeri_materialitet"
+          ]
+        }
+      ]
     },
     "vitenskap": {
       "title": "Vitenskap & teknologi",
