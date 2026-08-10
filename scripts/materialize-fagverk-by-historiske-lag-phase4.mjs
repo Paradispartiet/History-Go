@@ -43,9 +43,19 @@ function readme(){
  if(!t.includes('by-historiske-lag-ruiner-minner-phase4-audit.json'))t=t.replace('\n## Regenerering\n',`\n${bullet}\n## Regenerering\n`);
  const cmds='node scripts/audit-fagverk-by-historiske-lag-ruiner-minner-phase4.mjs --write-report\nnode scripts/audit-fagverk-by-historiske-lag-ruiner-minner-phase4.mjs\n';if(!t.includes('audit-fagverk-by-historiske-lag-ruiner-minner-phase4.mjs --write-report'))t=t.replace('```bash\n','```bash\n'+cmds);write(p,t);
 }
+function run(label,file,args=[]){
+ console.log(`::notice title=Historiske lag materializer::Kjører ${label}`);
+ try{
+  execFileSync(process.execPath,[file,...args],{cwd:ROOT,stdio:'inherit'});
+ }catch(error){
+  console.error(`::error title=Historiske lag materializer::Feilet i ${label}: ${error.message}`);
+  throw error;
+ }
+}
 function regenerate(){
- const names=fs.readdirSync(abs('scripts')).filter((n)=>n.startsWith('audit-fagverk-by-')&&n.endsWith('.mjs')).sort();for(const n of names)execFileSync(process.execPath,[abs(`scripts/${n}`),'--write-report'],{cwd:ROOT,stdio:'inherit'});
- execFileSync(process.execPath,[abs('scripts/audit-fagverk-general-engine.mjs'),'--write-report'],{cwd:ROOT,stdio:'inherit'});
- execFileSync(process.execPath,[abs('scripts/build-fagverk-release-manifest.mjs')],{cwd:ROOT,stdio:'inherit'});
+ const names=fs.readdirSync(abs('scripts')).filter((n)=>n.startsWith('audit-fagverk-by-')&&n.endsWith('.mjs')).sort();
+ for(const n of names)run(n,abs(`scripts/${n}`),['--write-report']);
+ run('audit-fagverk-general-engine.mjs',abs('scripts/audit-fagverk-general-engine.mjs'),['--write-report']);
+ run('build-fagverk-release-manifest.mjs',abs('scripts/build-fagverk-release-manifest.mjs'));
 }
 registry();status();bumpLegacy();readme();regenerate();console.log('Historiske lag materialisert: registry 2.46.0, status 2.45.0, 12 By-kapitler og regenererte rapporter/release.');
