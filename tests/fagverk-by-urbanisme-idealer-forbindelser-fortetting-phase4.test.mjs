@@ -7,7 +7,7 @@ test('Urbanisme fullføres 6/6 uten å svekke tidligere By-domener', async () =>
   assert.equal(report.subject.id, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 14);
+  assert.equal(report.subject.registeredChapterCount, 15);
   assert.equal(report.chapter.id, 'urbanisme-idealer-forbindelser-fortetting');
   assert.equal(report.summary.coveredEmneCount, 6);
   assert.equal(report.summary.canonicalUrbanismEmneCount, 6);

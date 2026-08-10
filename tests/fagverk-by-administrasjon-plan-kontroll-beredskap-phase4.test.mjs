@@ -7,7 +7,7 @@ test('Administrasjon og plan fullføres 3/3 uten å svekke Byliv, Arkitektur ell
   assert.equal(report.subject.id, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 14);
+  assert.equal(report.subject.registeredChapterCount, 15);
   assert.equal(report.chapter.id, 'administrasjon-plan-kontroll-beredskap');
   assert.equal(report.summary.coveredEmneCount, 3);
   assert.equal(report.summary.canonicalAdministrationPlanningEmneCount, 3);

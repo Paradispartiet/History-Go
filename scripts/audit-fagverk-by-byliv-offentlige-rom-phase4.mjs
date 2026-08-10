@@ -96,7 +96,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal stå chapters_in_progress etter første redigerte kapittel');
   assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette sammenhengende kapittelproduksjon');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
-  assert(registrySubject.chapters.length === 14, 'By skal nå ha ni registrerte Fase 4-kapitler totalt');
+  assert(registrySubject.chapters.length === 15, 'By skal nå ha ni registrerte Fase 4-kapitler totalt');
   assert(chapterMeta, 'Byliv-kapittelet mangler i registry');
   assert(chapterMeta.file === P.chapter, 'Registry peker ikke til canonical Byliv-kapittel');
   assert(chapterMeta.primary_domain_id === 'byliv', 'Byliv-kapittelet har feil primary domain');
@@ -117,7 +117,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
     source
   });
   assert(model.subject.adapter === 'by', 'By skal bruke by-adapteren');
-  assert(model.chapters.length === 14, 'Normalisert By-modell skal vise ni kapitler etter første Arkitektur-batch');
+  assert(model.chapters.length === 15, 'Normalisert By-modell skal vise ni kapitler etter første Arkitektur-batch');
   const modelEmnes = new Map(model.emners.map((row) => [row.id, row]));
   const modelMethods = new Map(model.methods.map((row) => [row.id, row]));
   for (const id of EXPECTED_EMNES) {

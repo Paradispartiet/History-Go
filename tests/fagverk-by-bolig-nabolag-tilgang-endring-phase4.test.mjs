@@ -7,7 +7,7 @@ test('Bolig og nabolag fullføres 5/5 uten å svekke Byliv eller Arkitektur', as
   assert.equal(report.subject.id, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 14);
+  assert.equal(report.subject.registeredChapterCount, 15);
   assert.equal(report.chapter.id, 'bolig-nabolag-tilgang-endring');
   assert.equal(report.summary.coveredEmneCount, 5);
   assert.equal(report.summary.canonicalHousingNeighborhoodEmneCount, 5);
