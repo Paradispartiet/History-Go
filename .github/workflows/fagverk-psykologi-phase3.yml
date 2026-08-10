@@ -18,6 +18,7 @@ on:
       - "scripts/audit-fagverk-general-engine.mjs"
       - "scripts/audit-fagverk-psykologi-phase3.mjs"
       - "scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs"
+      - "scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
@@ -35,6 +36,7 @@ on:
       - "data/fagverk/**"
       - "scripts/audit-fagverk-psykologi-phase3.mjs"
       - "scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs"
+      - "scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs"
       - "tests/fagverk-psykologi-phase3.test.mjs"
       - "tests/fagverk-psykologi-psykisk-helse-phase4.test.mjs"
@@ -65,12 +67,15 @@ jobs:
       - name: Validate script syntax
         run: |
           node --check scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs
+          node --check scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-phase3.mjs
           node --check scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs
           node --check scripts/build-fagverk-release-manifest.mjs
 
       - name: Materialize Psychology first chapter
-        run: node scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs
+        run: |
+          node scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs
+          node scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs
 
       - name: Refresh deterministic Psychology audits
         run: |
@@ -96,6 +101,7 @@ jobs:
       - name: Verify deterministic rematerialization
         run: |
           node scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs
+          node scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs
           node scripts/audit-fagverk-psykologi-phase3.mjs
           node scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
