@@ -1,0 +1,775 @@
+{
+  "schema": "history_go_fagverk_by_complete_audit_v1",
+  "version": "1.0.0",
+  "status": "complete",
+  "generatedFrom": {
+    "manifest": "data/fag/fag_manifest.json",
+    "curriculum": "data/fag/by/curriculum_architecture_by_v1.json",
+    "qualityContract": "data/fag/by/quality_contract_by_v1.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "pilotAudit": "reports/fagverk/by-pilot-audit.json",
+    "generalEngineAudit": "reports/fagverk/general-engine-audit.json",
+    "report": "reports/fagverk/by-complete-audit.json"
+  },
+  "subject": {
+    "id": "by",
+    "title": "By & arkitektur",
+    "schemaFamily": "by_compatibility",
+    "navigationStatus": "materialized",
+    "assessmentStatus": "audited",
+    "editorialStatus": "complete",
+    "nextGate": "maintenance_source_refresh_and_place_case_expansion"
+  },
+  "summary": {
+    "domainCount": 12,
+    "chapterCount": 17,
+    "emneCount": 82,
+    "activeEmneCount": 74,
+    "methodCount": 14,
+    "mappingCount": 82,
+    "hookCount": 81,
+    "uniquePlaceCount": 20,
+    "uniqueSourceUrlCount": 185,
+    "moduleCount": 51,
+    "sectionCount": 153,
+    "paragraphCount": 459,
+    "sourceCount": 219,
+    "claimCount": 306,
+    "workedExampleCount": 34,
+    "misconceptionCount": 85,
+    "applicationTaskCount": 68,
+    "selfCheckCount": 102
+  },
+  "canonicalDomainCoverage": [
+    {
+      "domainId": "byliv",
+      "chapterCount": 5,
+      "emneCount": 30,
+      "chapterIds": [
+        "byliv-offentlige-rom",
+        "byliv-sosial-offentlighet",
+        "byliv-hendelser-midlertidighet",
+        "byliv-stemning-mikrokomfort",
+        "byliv-rytmer-miks-konflikt"
+      ]
+    },
+    {
+      "domainId": "arkitektur",
+      "chapterCount": 2,
+      "emneCount": 13,
+      "chapterIds": [
+        "arkitektur-type-skala-byform",
+        "arkitektur-gatekant-makt-ombruk"
+      ]
+    },
+    {
+      "domainId": "bolig_og_nabolag",
+      "chapterCount": 1,
+      "emneCount": 12,
+      "chapterIds": [
+        "bolig-nabolag-tilgang-endring"
+      ]
+    },
+    {
+      "domainId": "administrasjon_og_plan",
+      "chapterCount": 1,
+      "emneCount": 8,
+      "chapterIds": [
+        "administrasjon-plan-kontroll-beredskap"
+      ]
+    },
+    {
+      "domainId": "urbanisme",
+      "chapterCount": 1,
+      "emneCount": 13,
+      "chapterIds": [
+        "urbanisme-idealer-forbindelser-fortetting"
+      ]
+    },
+    {
+      "domainId": "arbeid_og_naering",
+      "chapterCount": 1,
+      "emneCount": 16,
+      "chapterIds": [
+        "arbeid-naering-handel-logistikk"
+      ]
+    },
+    {
+      "domainId": "historiske_lag",
+      "chapterCount": 1,
+      "emneCount": 6,
+      "chapterIds": [
+        "historiske-lag-ruiner-minner"
+      ]
+    },
+    {
+      "domainId": "makt_og_konflikt",
+      "chapterCount": 1,
+      "emneCount": 13,
+      "chapterIds": [
+        "makt-konflikt-protest-grenser-trygghet"
+      ]
+    },
+    {
+      "domainId": "klima_og_helse",
+      "chapterCount": 1,
+      "emneCount": 4,
+      "chapterIds": [
+        "klima-helse-varme-vann-tilgjengelighet"
+      ]
+    },
+    {
+      "domainId": "data_og_styring",
+      "chapterCount": 1,
+      "emneCount": 4,
+      "chapterIds": [
+        "data-styring-kart-plan-medvirkning-algoritmer"
+      ]
+    },
+    {
+      "domainId": "regional_og_global",
+      "chapterCount": 1,
+      "emneCount": 2,
+      "chapterIds": [
+        "regional-global-pendling-migrasjon-sammenligning"
+      ]
+    },
+    {
+      "domainId": "boligpolitikk_og_velferd",
+      "chapterCount": 1,
+      "emneCount": 1,
+      "chapterIds": [
+        "boligpolitikk-pris-leie-eie-tilgang"
+      ]
+    }
+  ],
+  "coveredPlaceIds": [
+    "aker_brygge",
+    "akerselva",
+    "barcode",
+    "birkelunden",
+    "bispelokket",
+    "bjorvika",
+    "christiania_torv",
+    "deichman_bjorvika",
+    "gronlandsleiret",
+    "jernbanetorget",
+    "oslo_s",
+    "radhusplassen",
+    "rodelokka",
+    "storgata",
+    "toyen_torg",
+    "ullern",
+    "ullevål_hageby",
+    "vaalerenga",
+    "vulkan_energisentral",
+    "youngstorget"
+  ],
+  "chapterAudits": [
+    {
+      "chapterId": "byliv-offentlige-rom",
+      "domainId": "byliv",
+      "emneIds": [
+        "em_by_offentlige_rom_motesteder",
+        "em_by_torg_plasser_som_scene",
+        "em_by_parker_som_sosial_infrastruktur",
+        "em_by_lek_trening_uformell_aktivitet",
+        "em_by_stillhet_vs_aktivitet_i_grontrom",
+        "em_by_opphold_vs_gjennomgang",
+        "em_by_gangstrommer_snarveier"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_gaanalyse",
+        "met_gis_romlig_analyse"
+      ],
+      "relatedPlaceIds": [
+        "birkelunden",
+        "radhusplassen",
+        "toyen_torg",
+        "youngstorget"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 12,
+      "uniqueSourceUrlCount": 12,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "byliv-sosial-offentlighet",
+      "domainId": "byliv",
+      "emneIds": [
+        "em_by_sosiale_knutepunkt",
+        "em_by_tilfeldige_moter",
+        "em_by_lavterskel_moteplasser_uten_kjopspress",
+        "em_by_publikum_deltakelse_tilskuere",
+        "em_by_smaprat_blikk_sosial_koreografi",
+        "em_by_venting_som_bypraksis",
+        "em_by_tempo_sakte_rask_by"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_gaanalyse",
+        "met_intervju_brukerperspektiv"
+      ],
+      "relatedPlaceIds": [
+        "birkelunden",
+        "radhusplassen",
+        "toyen_torg",
+        "youngstorget"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 12,
+      "uniqueSourceUrlCount": 12,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "byliv-hendelser-midlertidighet",
+      "domainId": "byliv",
+      "emneIds": [
+        "em_by_festivaler_arrangementer",
+        "em_by_hendelsesbasert_byliv_hoytider",
+        "em_by_midlertidige_installasjoner",
+        "em_by_sesongbruk_uteomrader",
+        "em_by_uformell_bruk_av_byrom",
+        "em_by_skate_gatekunst_improvisasjon"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_gaanalyse",
+        "met_for_etter",
+        "met_komparativ_caseanalyse"
+      ],
+      "relatedPlaceIds": [
+        "birkelunden",
+        "radhusplassen",
+        "toyen_torg",
+        "youngstorget"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "byliv-stemning-mikrokomfort",
+      "domainId": "byliv",
+      "emneIds": [
+        "em_by_stemning_lyd_lys_tetthet",
+        "em_by_materialitet_og_sanseerfaring",
+        "em_by_mikroklima_og_var",
+        "em_by_kroppslig_komfort_i_byrom",
+        "em_by_sol_skygge_mikro_opphold"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_gaanalyse",
+        "met_gis_romlig_analyse",
+        "met_klimarisikokartlegging",
+        "met_komparativ_caseanalyse"
+      ],
+      "relatedPlaceIds": [
+        "birkelunden",
+        "radhusplassen",
+        "toyen_torg",
+        "youngstorget"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "byliv-rytmer-miks-konflikt",
+      "domainId": "byliv",
+      "emneIds": [
+        "em_by_tidsrytmer_i_bylivet",
+        "em_by_dag_vs_natt",
+        "em_by_ukedag_vs_helg",
+        "em_by_sosial_miks_i_offentlige_rom",
+        "em_by_sma_hverdagskonflikter"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_gaanalyse",
+        "met_gis_romlig_analyse",
+        "met_komparativ_caseanalyse",
+        "met_intervju_brukerperspektiv"
+      ],
+      "relatedPlaceIds": [
+        "gronlandsleiret",
+        "jernbanetorget",
+        "storgata",
+        "toyen_torg"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "arkitektur-type-skala-byform",
+      "domainId": "arkitektur",
+      "emneIds": [
+        "em_by_bygningstyper_og_typologier",
+        "em_by_boligstruktur",
+        "em_by_historiske_lag_i_hverdagsrom",
+        "em_by_skala_hoyde_volum",
+        "em_by_romlig_orden",
+        "em_by_estetikk_vs_funksjon"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_morfologisk_analyse",
+        "met_gis_romlig_analyse",
+        "met_komparativ_caseanalyse",
+        "met_arkiv_minne_spor"
+      ],
+      "relatedPlaceIds": [
+        "barcode",
+        "deichman_bjorvika",
+        "rodelokka",
+        "ullevål_hageby"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "arkitektur-gatekant-makt-ombruk",
+      "domainId": "arkitektur",
+      "emneIds": [
+        "em_by_butikkfasader_vindusutstillinger",
+        "em_by_dodt_vs_aktivt_gateniva",
+        "em_by_gateliv_kantsoner",
+        "em_by_styring_forvaltning_planmakt",
+        "em_by_symbolsk_makt_og_representasjon",
+        "em_by_transformasjon_ombruk"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_gaanalyse",
+        "met_morfologisk_analyse",
+        "met_aktoranalyse",
+        "met_for_etter",
+        "met_komparativ_caseanalyse"
+      ],
+      "relatedPlaceIds": [
+        "barcode",
+        "deichman_bjorvika",
+        "rodelokka",
+        "ullevål_hageby"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "bolig-nabolag-tilgang-endring",
+      "domainId": "bolig_og_nabolag",
+      "emneIds": [
+        "em_by_modernistisk_boligplanlegging",
+        "em_by_eie_vs_leie_boligokonomi",
+        "em_by_gentrifisering_eiendom",
+        "em_by_bydelsforskjeller_segregering",
+        "em_by_sittekanter_trapper_uformelle_soner"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_gis_romlig_analyse",
+        "met_komparativ_caseanalyse",
+        "met_aktoranalyse",
+        "met_for_etter",
+        "met_intervju_brukerperspektiv"
+      ],
+      "relatedPlaceIds": [
+        "barcode",
+        "rodelokka",
+        "toyen_torg",
+        "ullevål_hageby"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "administrasjon-plan-kontroll-beredskap",
+      "domainId": "administrasjon_og_plan",
+      "emneIds": [
+        "em_by_overvakning_kontroll_toleranse",
+        "em_by_regler_brudd_toleranse",
+        "em_by_risiko_beredskap_robusthet"
+      ],
+      "methodIds": [
+        "met_policy_lesning",
+        "met_aktoranalyse",
+        "met_feltobservasjon",
+        "met_for_etter",
+        "met_arkiv_minne_spor",
+        "met_klimarisikokartlegging"
+      ],
+      "relatedPlaceIds": [
+        "barcode",
+        "deichman_bjorvika",
+        "jernbanetorget",
+        "radhusplassen"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "urbanisme-idealer-forbindelser-fortetting",
+      "domainId": "urbanisme",
+      "emneIds": [
+        "em_by_byidealer_og_plantradisjoner",
+        "em_by_funksjonsdeling_vs_blandet_by",
+        "em_by_infrastruktur_mobilitet",
+        "em_by_barrierer_forbindelser",
+        "em_by_tetthet_og_fortetting",
+        "em_by_teori_vs_praksis_i_byutvikling"
+      ],
+      "methodIds": [
+        "met_policy_lesning",
+        "met_arkiv_minne_spor",
+        "met_gaanalyse",
+        "met_tilgjengelighetsaudit",
+        "met_gis_romlig_analyse",
+        "met_for_etter",
+        "met_komparativ_caseanalyse",
+        "met_feltobservasjon"
+      ],
+      "relatedPlaceIds": [
+        "barcode",
+        "deichman_bjorvika",
+        "jernbanetorget",
+        "ullevål_hageby"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "arbeid-naering-handel-logistikk",
+      "domainId": "arbeid_og_naering",
+      "emneIds": [
+        "em_by_uteservering_kommersielt_byliv",
+        "em_by_midlertidig_handel_pop_up",
+        "em_by_prisniva_kjededominans_tomme_lokaler",
+        "em_by_kommersielle_gater",
+        "em_by_kontoromrader_arbeidsby",
+        "em_by_industri_havn_logistikk",
+        "em_by_vannpromenader_fjordliv",
+        "em_by_flaskehalser_kryss_friksjon"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_gaanalyse",
+        "met_gis_romlig_analyse",
+        "met_dataanalyse",
+        "met_arkiv_minne_spor",
+        "met_policy_lesning",
+        "met_tilgjengelighetsaudit",
+        "met_vedlikehold_spor"
+      ],
+      "relatedPlaceIds": [
+        "barcode",
+        "deichman_bjorvika",
+        "jernbanetorget",
+        "toyen_torg"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "historiske-lag-ruiner-minner",
+      "domainId": "historiske_lag",
+      "emneIds": [
+        "em_by_ruiner_tomrom_restar",
+        "em_by_navneskilt_plaketter_minner"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_arkiv_minne_spor",
+        "met_for_etter",
+        "met_policy_lesning",
+        "met_komparativ_caseanalyse",
+        "met_vedlikehold_spor"
+      ],
+      "relatedPlaceIds": [
+        "bispelokket",
+        "bjorvika",
+        "christiania_torv",
+        "rodelokka"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "makt-konflikt-protest-grenser-trygghet",
+      "domainId": "makt_og_konflikt",
+      "emneIds": [
+        "em_by_demonstrasjoner_markeringer",
+        "em_by_territorialitet_og_grensemarkering",
+        "em_by_synlige_usynlige_grupper",
+        "em_by_inkludering_ekskludering",
+        "em_by_trygghet_utrygghet_i_hverdagen"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_for_etter",
+        "met_policy_lesning",
+        "met_aktoranalyse",
+        "met_intervju_brukerperspektiv",
+        "met_gis_romlig_analyse"
+      ],
+      "relatedPlaceIds": [
+        "aker_brygge",
+        "jernbanetorget",
+        "radhusplassen",
+        "toyen_torg"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "klima-helse-varme-vann-tilgjengelighet",
+      "domainId": "klima_og_helse",
+      "emneIds": [
+        "em_by_klima_blagronn_klimatilpasning",
+        "em_by_urban_metabolisme_vann_energi_avfall_mat",
+        "em_by_urban_helse_miljo",
+        "em_by_tilgjengelighet_universell_utforming"
+      ],
+      "methodIds": [
+        "met_feltobservasjon",
+        "met_gaanalyse",
+        "met_klimarisikokartlegging",
+        "met_tilgjengelighetsaudit",
+        "met_vedlikehold_spor",
+        "met_dataanalyse"
+      ],
+      "relatedPlaceIds": [
+        "akerselva",
+        "deichman_bjorvika",
+        "jernbanetorget",
+        "vulkan_energisentral"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "data-styring-kart-plan-medvirkning-algoritmer",
+      "domainId": "data_og_styring",
+      "emneIds": [
+        "em_by_gis_romlig_analyse_data",
+        "em_by_planjuss_styringsverktoy",
+        "em_by_medvirkning_samskaping_community",
+        "em_by_smart_city_plattform_overvakning"
+      ],
+      "methodIds": [
+        "met_gis_romlig_analyse",
+        "met_dataanalyse",
+        "met_policy_lesning",
+        "met_aktoranalyse",
+        "met_intervju_brukerperspektiv",
+        "met_gaanalyse"
+      ],
+      "relatedPlaceIds": [
+        "barcode",
+        "bjorvika",
+        "jernbanetorget",
+        "oslo_s"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "regional-global-pendling-migrasjon-sammenligning",
+      "domainId": "regional_og_global",
+      "emneIds": [
+        "em_by_regional_skala_pendling_omland",
+        "em_by_global_urbanisering_migrasjon_komparativ"
+      ],
+      "methodIds": [
+        "met_gis_romlig_analyse",
+        "met_dataanalyse",
+        "met_policy_lesning",
+        "met_aktoranalyse",
+        "met_komparativ_caseanalyse",
+        "met_gaanalyse"
+      ],
+      "relatedPlaceIds": [
+        "bjorvika",
+        "jernbanetorget",
+        "oslo_s",
+        "toyen_torg"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    },
+    {
+      "chapterId": "boligpolitikk-pris-leie-eie-tilgang",
+      "domainId": "boligpolitikk_og_velferd",
+      "emneIds": [
+        "em_by_boligpolitikk_affordability"
+      ],
+      "methodIds": [
+        "met_for_etter",
+        "met_policy_lesning",
+        "met_dataanalyse",
+        "met_aktoranalyse",
+        "met_intervju_brukerperspektiv",
+        "met_gis_romlig_analyse"
+      ],
+      "relatedPlaceIds": [
+        "gronlandsleiret",
+        "toyen_torg",
+        "ullern",
+        "vaalerenga"
+      ],
+      "moduleCount": 3,
+      "sectionCount": 9,
+      "paragraphCount": 27,
+      "sourceCount": 13,
+      "uniqueSourceUrlCount": 13,
+      "claimCount": 18,
+      "workedExampleCount": 2,
+      "misconceptionCount": 5,
+      "applicationTaskCount": 4,
+      "selfCheckCount": 6
+    }
+  ],
+  "gates": {
+    "manifestFirstCanonicalSourcesResolved": true,
+    "twelveCanonicalDomainsCovered": true,
+    "seventeenFullChapterPackagesReady": true,
+    "allEightyTwoCanonicalEmnersCoveredExactlyOnce": true,
+    "allFourteenCanonicalMethodsUsed": true,
+    "allEightyTwoMappingsResolved": true,
+    "allEightyOneHooksResolved": true,
+    "theoryHooksBindEveryCanonicalEmne": true,
+    "progressionAndMethodBindingComplete": true,
+    "paragraphClaimTraceComplete": true,
+    "allThreeHundredSixClaimsVerifiedAndUsed": true,
+    "allTwoHundredNineteenSourceRecordsInspectableAndUsed": true,
+    "twentyCanonicalPlaceCasesResolved": true,
+    "learningComponentsRenderable": true,
+    "generalEngineProjectsCompleteStatus": true,
+    "statusTransitionBackedByFullSubjectAudit": true,
+    "maintenanceGateDeclared": true
+  }
+}

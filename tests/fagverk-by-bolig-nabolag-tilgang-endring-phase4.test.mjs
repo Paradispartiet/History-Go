@@ -5,8 +5,8 @@ import { auditByBoligNabolagTilgangEndringPhase4 } from '../scripts/audit-fagver
 test('Bolig og nabolag fullføres 5/5 uten å svekke Byliv eller Arkitektur', async () => {
   const { report, hydrated } = await auditByBoligNabolagTilgangEndringPhase4();
   assert.equal(report.subject.id, 'by');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'chapter_production');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.registeredChapterCount, 17);
   assert.equal(report.chapter.id, 'bolig-nabolag-tilgang-endring');
   assert.equal(report.summary.coveredEmneCount, 5);

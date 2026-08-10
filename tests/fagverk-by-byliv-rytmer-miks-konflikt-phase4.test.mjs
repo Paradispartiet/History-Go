@@ -2,13 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditByBylivRytmerMiksKonfliktPhase4 } from '../scripts/audit-fagverk-by-byliv-rytmer-miks-konflikt-phase4.mjs';
 
-test('Siste Byliv-kapittel gir eksakt 30/30 canonical Byliv-dekning uten å overdrive hele By-faget', async () => {
+test('Siste Byliv-kapittel gir eksakt 30/30 canonical Byliv-dekning innen komplett By-fag', async () => {
   const { report, hydrated, previousHydrated } = await auditByBylivRytmerMiksKonfliktPhase4();
   assert.equal(report.subject.id, 'by');
   assert.equal(report.subject.schemaFamily, 'by_compatibility');
   assert.equal(report.subject.adapter, 'by');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'chapter_production');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.registeredChapterCount, 17);
   assert.equal(report.chapter.id, 'byliv-rytmer-miks-konflikt');
   assert.deepEqual(report.summary, {

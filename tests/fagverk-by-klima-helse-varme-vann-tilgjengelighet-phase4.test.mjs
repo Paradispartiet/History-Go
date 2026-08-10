@@ -5,8 +5,8 @@ import { auditByKlimaHelseVarmeVannTilgjengelighetPhase4 } from '../scripts/audi
 test('Klima og helse fullføres 4/4 uten å svekke tidligere By-domener', async () => {
   const { report, hydrated } = await auditByKlimaHelseVarmeVannTilgjengelighetPhase4();
   assert.equal(report.subject.id, 'by');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'chapter_production');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.registeredChapterCount, 17);
   assert.equal(report.chapter.id, 'klima-helse-varme-vann-tilgjengelighet');
   assert.equal(report.summary.coveredEmneCount, 4);

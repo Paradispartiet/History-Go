@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.51.0",
+  "version": "2.52.0",
   "updatedAt": "2026-08-10",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -31,7 +31,20 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "by_compatibility",
         "sourceOfTruth": true,
-        "note": "Fagkartets tolv kategorier eier renderer-fagområdene. Byliv er kapitteldekket 30/30 gjennom fem kapitler. Arkitektur er kapitteldekket 12/12 gjennom to kapitler. Bolig og nabolag er kapitteldekket 5/5 gjennom ett kapittel. Administrasjon og plan er kapitteldekket 3/3 gjennom ett kapittel. Urbanisme er kapitteldekket 6/6 gjennom ett kapittel. Arbeid og næring er kapitteldekket 8/8 gjennom ett kapittel. Historiske lag er kapitteldekket 2/2 gjennom ett kapittel. Makt og konflikt er kapitteldekket 5/5 gjennom ett kapittel. Klima, helse og tilgjengelighet er nå kapitteldekket 4/4 gjennom ett kapittel. By-faget fortsetter sammenhengende Fase 4-produksjon i neste canonicale fagområde."
+        "note": "Fagkartets tolv kategorier eier renderer-fagområdene. Separat helhetsaudit bekrefter 12/12 fagområder, 82/82 emner, 14/14 metoder og 17 fullverdige kapitler med 51 moduler, 459 claimsporede fagavsnitt, 306 verifiserte claims, 219 inspiserbare kilderegistreringer og 20 unike stedscase."
+      },
+      "editorialPlan": {
+        "targetChapterCount": 17,
+        "completionRequirements": [
+          "all_canonical_domains_covered",
+          "all_canonical_emners_covered_exactly_once",
+          "all_canonical_methods_used",
+          "runtime_pedagogy_and_sources_rendered",
+          "paragraph_claim_trace_complete",
+          "canonical_place_cases_resolved",
+          "full_subject_audit_green"
+        ],
+        "nextGate": "maintenance_source_refresh_and_place_case_expansion"
       },
       "chapters": [
         {

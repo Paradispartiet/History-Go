@@ -5,8 +5,8 @@ import { auditByUrbanismeIdealerForbindelserFortettingPhase4 } from '../scripts/
 test('Urbanisme fullføres 6/6 uten å svekke tidligere By-domener', async () => {
   const { report, hydrated } = await auditByUrbanismeIdealerForbindelserFortettingPhase4();
   assert.equal(report.subject.id, 'by');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'chapter_production');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.registeredChapterCount, 17);
   assert.equal(report.chapter.id, 'urbanisme-idealer-forbindelser-fortetting');
   assert.equal(report.summary.coveredEmneCount, 6);

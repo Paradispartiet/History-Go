@@ -90,8 +90,8 @@ export async function auditByBylivRytmerMiksKonfliktPhase4({ writeReport = false
   assert(portalEntry?.subjectStatus === 'materialized', 'By er ikke materialisert');
   assert(inventoryEntry?.schemaFamily === 'by_compatibility', 'By har feil schemafamilie');
   assert(statusEntry?.assessmentStatus === 'audited', 'By har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal fortsatt stå chapters_in_progress');
-  assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette kapittelproduksjon etter ferdig Byliv');
+  assert(statusEntry?.editorialStatus === 'complete', 'By skal fortsatt stå complete');
+  assert(statusEntry?.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'By skal fortsette kapittelproduksjon etter ferdig Byliv');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
   assert(registrySubject.chapters.length === 17, 'By skal ha fem Byliv-kapitler og ett Arkitektur-kapittel etter Arkitektur-start');
   assert(registrySubject.chapters.filter((row) => row.primary_domain_id === 'byliv').map((row) => row.id).join('|') === EXPECTED_CHAPTER_ORDER.join('|'), 'Byliv-kapitlene har feil rekkefølge eller mangler');
@@ -208,7 +208,7 @@ export async function auditByBylivRytmerMiksKonfliktPhase4({ writeReport = false
   const report = {
     schema: 'history_go_fagverk_by_byliv_rytmer_miks_konflikt_phase4_audit_v1',
     version: '1.0.0',
-    status: 'by_phase_4_byliv_domain_chapter_covered_subject_in_progress',
+    status: 'by_phase_4_byliv_domain_chapter_covered_subject_complete',
     generatedFrom: P,
     subject: { id: 'by', schemaFamily: inventoryEntry.schemaFamily, adapter: model.subject.adapter, navigationStatus: statusEntry.navigationStatus, assessmentStatus: statusEntry.assessmentStatus, editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, registeredChapterCount: model.chapters.length },
     chapter: { id: chapterMeta.id, title: chapterMeta.title, primaryDomainId: chapterMeta.primary_domain_id, file: chapterMeta.file, editorialStatus: rawChapter.editorialStatus },

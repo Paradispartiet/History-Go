@@ -15,6 +15,7 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 - `media-phase3-audit.json` — individuell Fase 3-gate for Media: seks hovedområder, 120 aktive hovedemner, 163 samlede metoder, 120 mappinger og 60 hooks, samt Populærkultur som komplett nested mediefelt med 56 emner uten konkurrerende toppfag.
 - `psykologi-phase3-audit.json` — individuell Fase 3-gate for Psykologi: seks canonicale fagområder, 58 aktive emner, 58 metoder, 58 mappinger og 60 hooks, med full emnedekning og eksplisitt vern mot diagnostisering av enkeltpersoner.
 - `by-pilot-audit.json` — individuell fase-2-gate for By som `by_compatibility`: tolv fagkart-eide fagområder, 82 source-emner, 14 canonicale metoder, 81 hooks og kurs-/curriculum-moduler som separate progresjonslag.
+- `by-complete-audit.json` — bindende helhetsgate for komplett By-fagverk: 12/12 fagområder, 82/82 emner, 17 kapitler, 51 moduler, 459 claimsporede fagavsnitt, 306 verifiserte claims, 219 inspiserbare kilderegistreringer og 20 unike stedscase.
 - `by-byliv-offentlige-rom-phase4-audit.json` — første Fase 4-kapittelgate for By: sju Byliv-emner, tre metoder, tre moduler, ni seksjoner, 18 verified claims og 12 inspectable kilder med full avsnittssporing.
 - `by-byliv-sosial-offentlighet-phase4-audit.json` — andre Fase 4-kapittelgate for By: sju Byliv-emner, tre metoder, tre moduler, ni seksjoner, 18 verified claims og 12 gjenbrukte inspectable institusjonelle kilder med låst kildeproveniens.
 - `by-byliv-hendelser-midlertidighet-phase4-audit.json` — tredje Fase 4-kapittelgate for By: seks Byliv-emner, fire metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med temporal status-guard og eksplisitt pilot≠permanent-effekt.
@@ -87,6 +88,8 @@ node scripts/audit-fagverk-psykologi-phase3.mjs --write-report
 node scripts/audit-fagverk-psykologi-phase3.mjs
 node scripts/audit-fagverk-by-pilot.mjs --write-report
 node scripts/audit-fagverk-by-pilot.mjs
+node scripts/audit-fagverk-by-complete.mjs --write-report
+node scripts/audit-fagverk-by-complete.mjs
 node scripts/audit-fagverk-by-byliv-offentlige-rom-phase4.mjs --write-report
 node scripts/audit-fagverk-by-byliv-offentlige-rom-phase4.mjs
 node scripts/audit-fagverk-by-byliv-sosial-offentlighet-phase4.mjs --write-report
@@ -220,7 +223,7 @@ Subkultur står `materialized`, `audited` og `complete`. Faget har åtte canonic
 
 Religion står `materialized`, `audited` og `structure_ready` som den andre godkjente fase-2-piloten. Foundation-pakken går gjennom den samme manifest-first-motoren som standardfagene, men fagkartets fire kategorier eier renderer-fagområdene mens de tre pensummodulene bare eier progresjon. Alle åtte aktive emner har løst fagområde og to canonicale metodekoblinger. Redigerte kapitler, claims og kapittelkilder gjenstår og er derfor ikke overrapportert.
 
-By står `materialized`, `audited` og `structure_ready` som den tredje godkjente fase-2-piloten. Compatibility-adapteren bruker fagkartets tolv kategorier som eneste renderer-fagområder og bevarer alle 82 source-emner, 14 canonicale metoder og 81 hooks. Fem tidligere ukoblede aktive emner er lagt inn i eksisterende, semantisk riktige hooks, slik at motoren ikke oppretter kunstige fallback-områder. De sju pensummodulene og åtte curriculum-modulene er progresjonslag; redigerte kapitler, claims og kapittelkilder gjenstår.
+By står `materialized`, `audited` og `complete`. Den separate helhetsauditen bekrefter 12/12 fagkart-eide fagområder og 82/82 emner dekket nøyaktig én gang gjennom 17 fullverdige kapitler. Pakken har 51 moduler, 153 seksjoner, 459 claimsporede fagavsnitt, 306 verifiserte claims, 219 inspiserbare kilderegistreringer, alle 14 canonicale metoder og 20 unike stedscase. De sju pensummodulene og åtte curriculum-modulene forblir progresjonslag; neste port er vedlikehold, kildeoppdatering og utvidelse med flere stedscase.
 
 Vitenskap står `materialized`, `audited` og `structure_ready` som den fjerde og siste fase-2-piloten. Standardadapteren viser seks canonicale fagområder, 93 emner, 84 metoder, 93 mappinger og 60 hooks. Tretten etterregistrerte emner er integrert i de eksisterende områdene, mappingregisteret og generatorgrunnlaget. Teknologi bevares under Vitenskap gjennom sin egen adapter med tolv områder, 48 aktive emner, 35 metoder og 36 hooks; det opprettes verken toppfag, topprute eller separat badge. Redigerte Vitenskap-kapitler, claims og kapittelkilder gjenstår.
 
