@@ -43,6 +43,10 @@ function fixCurrent(){
  t=t.replace('det sammenstilte reguleringsplankartet ikke er juridisk bindende','det sammenstilte reguleringsplankartet er ikke juridisk bindende');
  assert(t.includes('det sammenstilte reguleringsplankartet er ikke juridisk bindende'),'Flyfoto/kartstatus-claim ble ikke normalisert');
  write(p,t);
+ const ap='scripts/audit-fagverk-by-historiske-lag-ruiner-minner-phase4.mjs';let a=read(ap);
+ a=a.replace("const rawText=JSON.stringify({rawChapter,brief,modules}).toLowerCase();","const rawText=JSON.stringify({rawChapter,brief,modules:modules.map(({commonMisconceptions,...rest})=>rest)}).toLowerCase();");
+ assert(a.includes('modules:modules.map(({commonMisconceptions,...rest})=>rest)'),'Overclaim-porten ble ikke avgrenset fra eksplisitte misoppfatninger');
+ write(ap,a);
 }
 function readme(){
  const p='reports/fagverk/README.md';let t=read(p);const bullet='- `by-historiske-lag-ruiner-minner-phase4-audit.json` — Historiske lag-domenets 2/2-port: to canonicale eieremner, seks metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med eksplisitte skiller mellom fysisk levn, tomrom, vernestatus, rekonstruksjon og minnemarkering.\n';
