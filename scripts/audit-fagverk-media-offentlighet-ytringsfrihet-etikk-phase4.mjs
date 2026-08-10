@@ -69,15 +69,15 @@ export function auditMediaOffentlighetYtringsfrihetEtikkPhase4({ writeReport = f
   assert(chapter.editorialStatus === 'chapter_ready' && chapter.claimTraceRequired === true, 'Kapittelet er ikke claimsporet chapter_ready');
   assert(isDeepStrictEqual(chapter.emne_ids, EXPECTED_EMNES), 'Kapittelet dekker ikke de 21 canonicale emnene i riktig rekkefølge');
   assert(new Set(chapter.emne_ids).size === 21, 'Kapittelet har dupliserte emner');
-  assert(registrySubject.chapters.length === 3 && registryChapter, 'Media-registeret skal ha nøyaktig tre kapitler');
-  assert(registrySubject.chapters[0].id === previousChapter.id && registrySubject.chapters[1].id === chapter.id && registrySubject.chapters[2].id === 'kilder-kritikk-og-sannhet', 'Media-kapittelrekkefølgen er feil');
+  assert(registrySubject.chapters.length === 4 && registryChapter, 'Media-registeret skal ha nøyaktig fire kapitler');
+  assert(registrySubject.chapters[0].id === previousChapter.id && registrySubject.chapters[1].id === chapter.id && registrySubject.chapters[2].id === 'kilder-kritikk-og-sannhet' && registrySubject.chapters[3].id === 'plattformer-algoritmer-og-distribusjon', 'Media-kapittelrekkefølgen er feil');
   assert(previousChapter.primary_domain_id === 'presse_redaksjoner_avishus' && previousChapter.emne_ids.length === 21, 'Første Media-kapittel er ikke bevart');
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === chapter.primary_domain_id, 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Media må fortsatt stå chapters_in_progress');
   assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Media har feil neste produksjonsport');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Media-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 3, 'Fase 3-auditen ser ikke alle tre Media-kapitlene');
+  assert(phase3.report.summary.registeredChapterCount === 4, 'Fase 3-auditen ser ikke alle fire Media-kapitlene');
   assert(phase3.report.nestedSupplement.emneCount === 56 && phase3.report.nestedSupplement.topLevelSubject === false, 'Nested Populærkultur er ikke bevart');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));
@@ -155,7 +155,7 @@ export function auditMediaOffentlighetYtringsfrihetEtikkPhase4({ writeReport = f
     status: 'media_offentlighet_ytringsfrihet_etikk_canonical_21_of_21', generatedFrom: P,
     subject: {
       id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120,
-      registeredChapterCount: 3, editorialStatus: statusEntry.editorialStatus,
+      registeredChapterCount: 4, editorialStatus: statusEntry.editorialStatus,
       nextGate: statusEntry.nextGate, nestedPopularCultureEmneCount: 56
     },
     chapter: {
