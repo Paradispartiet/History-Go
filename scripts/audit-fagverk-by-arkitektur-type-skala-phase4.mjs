@@ -126,7 +126,7 @@ export async function auditByArkitekturTypeSkalaPhase4({ writeReport = false, ch
   assert(EXPECTED_EMNES.every((id) => !canonicalBylivIds.includes(id)), 'Arkitektur-kapittelet har tatt inn et Byliv-eid emne');
 
   const canonicalArchitectureIds = model.emners.filter((row) => row.domainId === 'arkitektur').map((row) => row.id).sort();
-  assert(canonicalArchitectureIds.length === 13, `Canonical Arkitektur skal ha 12 emner, fikk ${canonicalArchitectureIds.length}`);
+  assert(canonicalArchitectureIds.length === 12, `Canonical Arkitektur skal ha 12 emner, fikk ${canonicalArchitectureIds.length}`);
   assert(EXPECTED_EMNES.every((id) => canonicalArchitectureIds.includes(id)), 'Kapittel 1 dekker emne utenfor canonical Arkitektur');
   assert(new Set(EXPECTED_EMNES).size === 6, 'Kapittel 1 har dupliserte emner');
 
