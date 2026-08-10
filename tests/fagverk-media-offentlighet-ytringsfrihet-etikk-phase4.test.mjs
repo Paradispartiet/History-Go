@@ -17,7 +17,7 @@ test('Offentlighet, ytringsfrihet og medieetikk er canonicalt materialisert 21/2
   const { report } = auditMediaOffentlighetYtringsfrihetEtikkPhase4();
   assert.equal(report.subject.id, 'media');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.registeredChapterCount, 2);
+  assert.equal(report.subject.registeredChapterCount, 3);
   assert.equal(report.subject.nestedPopularCultureEmneCount, 56);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'offentlighet_ytringsfrihet_etikk');
   assert.equal(report.canonicalCoverage.exactCoverage, '21/21');
@@ -40,7 +40,7 @@ test('Offentlighetskapittelet har full pedagogisk og evidensbasert pakke', () =>
   assert.ok(Object.values(report.gates).every(Boolean));
 });
 
-test('Media står ærlig som uferdig etter to av seks hovedområder', () => {
+test('Media står ærlig som uferdig mens de tre første hovedområdene er registrert', () => {
   const { report } = auditMediaOffentlighetYtringsfrihetEtikkPhase4();
   assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
   assert.equal(report.subject.canonicalDomainCount, 6);
