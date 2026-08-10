@@ -231,7 +231,7 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(kunst.methodCount, 21);
   assert.equal(kunst.mappingCount, 21);
   assert.equal(kunst.hookCount, 60);
-  assert.equal(kunst.chapterCount, 1);
+  assert.equal(kunst.chapterCount, 2);
   const media = result.materializedRows.find((row) => row.id === 'media');
   assert.ok(media);
   assert.equal(media.schemaFamily, 'standard_canonical');
