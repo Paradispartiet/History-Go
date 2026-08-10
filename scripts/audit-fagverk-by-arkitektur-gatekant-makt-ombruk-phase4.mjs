@@ -84,8 +84,8 @@ export async function auditByArkitekturGatekantMaktOmbrukPhase4({writeReport=fal
 
   const canonicalArchitectureIds=model.emners.filter((r)=>r.domainId==='arkitektur').map((r)=>r.id).sort();
   const coveredArchitectureRefs=archMeta.flatMap((r)=>r.emne_ids||[]);
-  assert(canonicalArchitectureIds.length===13,`Canonical Arkitektur skal ha 12 emner, fikk ${canonicalArchitectureIds.length}`);
-  assert(coveredArchitectureRefs.length===13 && new Set(coveredArchitectureRefs).size===12,'De to Arkitektur-kapitlene skal ha 12 unike emnereferanser');
+  assert(canonicalArchitectureIds.length===12,`Canonical Arkitektur skal ha 12 emner, fikk ${canonicalArchitectureIds.length}`);
+  assert(coveredArchitectureRefs.length===12 && new Set(coveredArchitectureRefs).size===12,'De to Arkitektur-kapitlene skal ha 12 unike emnereferanser');
   assert(isDeepStrictEqual([...new Set(coveredArchitectureRefs)].sort(),canonicalArchitectureIds),'Arkitektur-kapitlene dekker ikke canonical 12/12');
 
   assert(rawChapter.schema==='history_go_fagverk_chapter_v1' && rawChapter.editorialStatus==='chapter_ready','Kapittelroot har feil schema/status');
