@@ -63,7 +63,7 @@ export async function auditByArkitekturGatekantMaktOmbrukPhase4({writeReport=fal
   assert(statusEntry?.editorialStatus==='chapters_in_progress','By skal fortsatt stå chapters_in_progress');
   assert(statusEntry?.nextGate==='chapter_production','By skal fortsette kapittelproduksjon etter Arkitektur 12/12');
   assert(registrySubject && Array.isArray(registrySubject.chapters),'By mangler kapittelregister');
-  assert(registrySubject.chapters.length===13,'Andre Arkitektur-batch skal gi nøyaktig ni registrerte By-kapitler totalt');
+  assert(registrySubject.chapters.length===14,'Andre Arkitektur-batch skal gi nøyaktig ni registrerte By-kapitler totalt');
   assert(chapterMeta && bylivMeta.every(Boolean) && archMeta.every(Boolean),'Kapittel 2 eller tidligere By-kapitler mangler');
   assert(chapterMeta.file===P.chapter && chapterMeta.primary_domain_id==='arkitektur','Registry har feil fil/domain for Arkitektur-kapittel 2');
   assert(sameSet(chapterMeta.emne_ids||[],EXPECTED_EMNES),'Registry har feil emnedekning for Arkitektur-kapittel 2');
@@ -71,7 +71,7 @@ export async function auditByArkitekturGatekantMaktOmbrukPhase4({writeReport=fal
   const source=loadSource(CORE,manifest.by);
   const model=CORE.normalizeSubject({subjectId:'by',categoryLabel:categories.labels.by,categoryDescription:categories.decisions?.by,schemaFamily:inventoryEntry.schemaFamily,manifestEntry:manifest.by,portalEntry,inventoryEntry,statusEntry,registry,badge:{},source});
   assert(model.subject.adapter==='by','By skal bruke by-adapteren');
-  assert(model.chapters.length===13,'Normalisert By-modell skal vise ni kapitler');
+  assert(model.chapters.length===14,'Normalisert By-modell skal vise ni kapitler');
   const modelEmnes=new Map(model.emners.map((r)=>[r.id,r])), modelMethods=new Map(model.methods.map((r)=>[r.id,r]));
   for(const id of EXPECTED_EMNES){ const emne=modelEmnes.get(id); assert(emne,`Ukjent By-emne: ${id}`); assert(emne.domainId==='arkitektur',`${id} ligger ikke i normalisert arkitektur`); }
   for(const id of EXPECTED_METHODS) assert(modelMethods.has(id),`Ukjent By-metode: ${id}`);
