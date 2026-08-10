@@ -154,7 +154,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
 
   const claims = claimsDocument.claims || [];
   const sources = claimsDocument.sources || [];
-  assert(sources.length === 13, 'Kapittelet skal ha tolv inspectable kilder');
+  assert(sources.length === 12, 'Kapittelet skal ha tolv inspectable kilder');
   assert(claims.length === 18, 'Kapittelet skal ha atten verifiserte claims');
   const sourceIds = new Set(sources.map((sourceRow) => sourceRow.id));
   const claimIds = new Set(claims.map((claim) => claim.id));
@@ -197,7 +197,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
   assert(hydrated.relatedPlaces.length === 4, 'Kapittelet skal hydrere fire felt-/stedscase');
   assert(hydrated.relatedPlaces.every((place) => place.id && place.name && place.role), 'Stedscase er ikke renderbart');
   assert(sameSet(hydrated.relatedPlaces.map((place) => place.id), EXPECTED_PLACES), 'Kapittelet har feil stedscase-sett');
-  assert(hydrated.sources.length === 13 && hydrated.claims.length === 18, 'Claims og kilder ble ikke hydrert gjennom felles runtime');
+  assert(hydrated.sources.length === 12 && hydrated.claims.length === 18, 'Claims og kilder ble ikke hydrert gjennom felles runtime');
   const selfCheck = modules.flatMap((module) => Array.isArray(module.selfCheck) ? module.selfCheck : []);
   assert(selfCheck.length === 6 && selfCheck.every((item) => item.question && item.answer), 'Kapittelet skal ha seks renderbare self-check-spørsmål');
 
