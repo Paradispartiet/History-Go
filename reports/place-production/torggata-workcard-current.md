@@ -3,98 +3,99 @@
 - Oppdatert: 2026-08-11
 - Place ID: `torggata`
 - Canonical source: `data/places/by/oslo/places/torggata.json`
-- Aktiv `main` ved fasestart: `694310c4e9b1b009b38f530479d823621bf5a388`
+- Aktiv `main` ved fasestart: `3f8d3b3a832e8604f2c1d1406365398c13e21c49`
 - Nullmåling: `reports/place-production/torggata-nullmaaling-v1.md`
+- Kildebase: `reports/place-production/torggata-source-base-v1.md`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
 
 ## Fasestatus
 
 | Fase | Status | Merge/live-check |
 | --- | --- | --- |
-| 0. Nullmåling | **GODKJENT** | PR #4794, merge `694310c4e9b1b009b38f530479d823621bf5a388`; rapport verifisert på `main` |
-| 1. Canonical identity/source | **GODKJENT** | Denne fasen endrer ingen place-data; kontrollresultatet er dokumentert nedenfor |
-| 2. Kildebase | **NESTE – IKKE STARTET** | Kan først starte etter at fase 1 er merget og kontrollert på `main` |
-| 3. Koordinater/geometri | **IKKE STARTET – kjent blokkering** | Skal lese coordinate-kontraktene før noen geometri endres |
-| 4–15 | **IKKE STARTET** | Se nullmålingen |
+| 0. Nullmåling | **GODKJENT** | PR #4794, merge `694310c4e9b1b009b38f530479d823621bf5a388`; rapport kontrollert på `main` |
+| 1. Canonical identity/source | **GODKJENT** | PR #4795, merge `3f8d3b3a832e8604f2c1d1406365398c13e21c49`; arbeidskort kontrollert på `main` |
+| 2. Kildebase | **KLAR FOR REVIEW** | `torggata-source-base-v1.md`; ingen brukerrettede data endret |
+| 3. Koordinater/geometri | **NESTE – IKKE STARTET** | kjent identitet/geometri-avvik; coordinate-kontraktene skal leses før endring |
+| 4–15 | **IKKE STARTET** | se nullmålingen |
 
-Bare én produksjonsfase regnes som aktiv om gangen. Etter merge av dette kortet blir fase 2 neste aktive fase.
+Bare én produksjonsfase regnes som aktiv om gangen. Fase 3 starter først når fase 2 er merget og verifisert på faktisk `main`.
 
-## Fase 1 – LES FØRST gjennomført
+## Aktiv fase 2 – kildebase
 
-Før denne fasen ble følgende canonicale kontrakter lest:
+### LES FØRST gjennomført
 
-- `docs/DATA_PRODUCTION_CONTRACT.md`
 - `docs/FACTUALITY_CONTRACT.md`
+- relevant fase 2-del i `docs/PLACE_PRODUCTION_CHECKLIST.md`
 
-I tillegg er `docs/PLACE_STANDARD.md` brukt som overordnet eierkart. Ingen senere subsystemkontrakt brukes som erstatning for disse.
+### Aktivt filscope
 
-## Canonical identity gate
+- `reports/place-production/torggata-source-base-v1.md`
+- `reports/place-production/torggata-workcard-current.md`
 
-| Kontroll | Status | Evidens og beslutning |
-| --- | --- | --- |
-| Ett place-object | **PASS** | `torggata` representerer den navngitte gaten Torggata som fysisk gateløp i Oslo. |
-| Canonical ID | **PASS** | `torggata` beholdes. |
-| Manifest-loadet source | **PASS** | `data/places/manifest.json` loader `data/places/by/oslo/places/torggata.json`; ingen aggregate-fil skal redigeres som canonical source. |
-| Nåværende navn | **PASS** | `Torggata`. |
-| Historiske navnevarianter | **PASS som søke-/identitetsvarianter** | `Øvre Torvegade` og `Torvegaden` finnes som dokumenterte historiske navn i Torggata-materialet og brukes i duplikatsøket, ikke som separate places. |
-| Fysisk avgrensning | **PASS for identitet** | Canonical identitet er gaten fra **Stortorvet til Ankertorget**. Denne grensen støttes av Oslo byleksikon og samsvarer med brukerrettet place-/quizgrunnlag. |
-| Duplikat | **PASS** | Ingen separat canonical gate-place ble funnet for Torggata eller de historiske navnevariantene. |
-| Torggata Blad | **SEPARAT OBJEKT – BEHOLD** | `torggata_blad` er en egen Subkultur-identitet og må ikke merges inn i gate-place eller brukes som bevis for gateidentiteten. |
-| Enkeltbygg/virksomheter | **IKKE DEL AV PLACE-IDENTITETEN** | Eldorado, Torggata bad/Rockefeller, John Dee, butikker og serveringssteder kan være relaterte objekter/case, men er ikke synonymt med `torggata`. |
-| Kategori | **IKKE AVGJORT I DENNE FASEN** | `by` beholdes urørt frem til egen kategori/Badges/emne/Fagverk-fase. |
-| Koordinat/geometri | **UTTRYKKELIG IKKE GODKJENT HER** | Identity-gaten avgjør hva stedet er; coordinate-gaten må senere avgjøre hvordan hele gateløpet modelleres. |
+Ingen place-, Leksikon-, Quiz-, Story-, People-, Brand-, Works-, Object-, coordinate- eller runtime-fil skal endres i denne fasen.
 
-## Ekstern identitetskilde
+### Leveransen
 
-Oslo byleksikon brukes som stabil ekstern gateidentitetskilde og beskriver Torggata som gaten **fra Stortorvet til Ankertorget**. Samme oppføring skiller den tidlige opparbeidingen fra Stortorvet til Youngstorget fra senere forlengelse videre nordover. Dette er tilstrekkelig til å låse objektgrensen for fase 1, men er ikke i seg selv nok til å produsere alle historiske claims i senere tekst-, Leksikon-, Story- eller quizfaser.
+Kildebasen registrerer inspectable kjeder som:
 
-Den eksisterende OSM-evidensen brukes ikke til å overstyre denne identiteten. OSM har rolle som geometri/topologi i coordinate-fasen.
+`påstand → konkret kilde → konkret sourceLocation → kontrollstatus → begrensning`
 
-## Kjent avvik som bæres videre
+Den skiller eksplisitt mellom:
 
-Gjeldende `data/coordinate-evidence/oslo/by/torggata.json` og place-filens `routeSegments` modellerer bare **Youngstorget–Ankertorget**, mens den nå låste canonical identiteten er **Stortorvet–Ankertorget**.
+- stabil gateidentitet og navnehistorie;
+- historisk opparbeiding og bruk;
+- konkrete bygg- og institusjonscase i gaten;
+- historiske empiriske mobilitetsdata;
+- nåtidsopplysninger som krever fersk kontroll;
+- fagfellevurdert analyse av delvis gentrifisering og utviklermakt;
+- påstander som foreløpig avvises fordi kausalitet, fortrengning, prisnivå eller dagens virksomhetsmiks ikke er godt nok dokumentert.
 
-Fase 1 gjør derfor følgende eksplisitte skille:
+Bymiljøetatens `Torggata - oppfølgingsundersøkelse` er lokalisert som offentlig dokument, men selve PDF-en er ikke inspisert i denne fasen. Derfor støtter rapporten ingen claim fra dokumentets innhold ennå.
 
-- **identitet/source: GODKJENT**;
-- **coordinate geometry: IKKE GODKJENT**.
+## Beholdt identitetsbeslutning fra fase 1
 
-Avviket skal ikke løses ved å innsnevre place-identiteten uten kilde, og det skal ikke løses ved å gjette manglende OSM-segmenter. Fase 3 må lese alle coordinate-kontraktene, gjøre fersk topologikontroll og oppdatere place/evidence samlet dersom full gategeometri kan dokumenteres.
+- `torggata` representerer gaten Torggata;
+- canonical identitetsgrense er Stortorvet–Ankertorget;
+- manifest-loadet source er `data/places/by/oslo/places/torggata.json`;
+- `torggata_blad` er et separat Subkultur-objekt;
+- enkeltbygg, virksomheter og scener i gaten er relaterte case, ikke synonymer for place-objektet.
 
-## Behold / ikke gjør nå
+## Kjente blokkeringer som bæres videre
 
-### Behold
+### Koordinat/geometri
 
-- `id: torggata`;
-- den manifest-loadede source-filen;
-- gate som objektklasse;
-- Stortorvet–Ankertorget som canonical identitetsgrense;
-- `torggata_blad` som separat Subkultur-place;
-- alle øvrige Torggata-subsystemer urørt inntil deres egen fase.
+Gjeldende coordinate-evidence og `routeSegments` dekker Youngstorget–Ankertorget, mens canonical identitet er Stortorvet–Ankertorget. Dette skal løses i fase 3 etter at alle tre coordinate-kontraktene checklisten krever er lest.
 
-### Ikke gjør i fase 1
+### Leksikon
 
-- ikke endre koordinater, radius, anchors eller `routeSegments`;
-- ikke omskriv `desc` eller `popupDesc`;
-- ikke endre kategori, `emne_ids` eller Badges;
-- ikke saner rundinger ennå;
-- ikke flytt `civication_store` til Objects mekanisk;
-- ikke reklassifiser Works;
-- ikke rediger Leksikon, Story, Quiz, People, Brands eller Lesespor;
-- ikke sett Torggata til produksjonsklar.
+Torggata-oppføringen har tomme kildefelt for hovedoppføring, facts og chronology. Dette skal ikke repareres før popup/Leksikon-fasen og den relevante kontrakten er lest.
 
-## Neste fase
+### Rundinger
 
-**Fase 2: Kildebase.**
+Den gamle ni-runders Torggata-auditen er historikk, ikke dagens canonical proof. Sanering skjer først i egen rundingsfase etter `data/places/README_place_rounds.md`.
 
-Målet er å lage et inspectable stedsspesifikt source/claim-inventar før noen brukerrettet tekst eller struktur revideres. Fasen skal skille:
+## Forrige fase merget og live-kontrollert
 
-- gateidentitet og navnehistorie;
-- opparbeiding og fysisk utvikling;
-- handel, servering og underholdning;
-- konkrete bygg/institusjoner i gaten;
-- gateombygging, gange, sykkel og offentlig regulering;
-- dokumenterte endringer i bruk, omdømme og kommersiell struktur;
-- observerbare forhold fra sterkere analytiske påstander om gentrifisering, fortrengning, årsak og effekt.
+**Ja.** Fase 1 ble squash-merget i PR #4795 og `reports/place-production/torggata-workcard-current.md` ble deretter lest tilbake fra `main`.
 
-Canonical fagfiler kan senere styre emnevalg og analyse, men skal ikke være faktakilde for disse claims.
+## Neste fase etter merge
+
+**Fase 3 – koordinat, anker, radius og geometry.**
+
+Før første coordinate-endring skal disse leses i rekkefølge:
+
+1. `docs/coordinates/README.md`
+2. `docs/coordinates/coordinate-source-contract-v1.md`
+3. `docs/coordinates/coordinate-evidence-files-v1.md`
+
+Dersom disse kontraktene peker videre til andre bindende filer for gategeometri eller audit, leses også de før produksjon.
+
+## Ferdiggrense for fase 2
+
+Fase 2 kan godkjennes når:
+
+- kildebasen er den eneste nye researchleveransen utover dette arbeidskortet;
+- alle vesentlige claims har kilde, sourceLocation, status og begrensning;
+- uverifiserte claims er uttrykkelig holdt ute;
+- ingen brukerrettet sannhet er endret;
+- PR-en er merget og begge filene er kontrollert på faktisk `main`.
