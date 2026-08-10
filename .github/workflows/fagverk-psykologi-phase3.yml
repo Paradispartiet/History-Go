@@ -64,30 +64,6 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Align Psychology production with canonical progress contracts
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-
-          materializer = Path('scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs')
-          text = materializer.read_text()
-          wrong = 'em_psy_terapirom_relasjon'
-          right = 'em_psy_terapirom_relasyon'
-          if wrong in text:
-              materializer.write_text(text.replace(wrong, right))
-          if right not in materializer.read_text():
-              raise SystemExit('Canonical therapy-room emne ID is missing after alignment.')
-
-          engine_test = Path('tests/fagverk-general-engine.test.mjs')
-          engine_text = engine_test.read_text()
-          stale = 'assert.equal(psykologi.chapterCount, 0);'
-          current = "assert.equal(psykologi.chapterCount, JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8')).subjects.psykologi.chapters.length);"
-          if stale in engine_text:
-              engine_test.write_text(engine_text.replace(stale, current))
-          if current not in engine_test.read_text():
-              raise SystemExit('General-engine Psychology chapter-count assertion is not progress-aware.')
-          PY
-
       - name: Validate script syntax
         run: |
           node --check scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs
@@ -142,8 +118,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
-            scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs \
-            tests/fagverk-general-engine.test.mjs \
             data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling.json \
             data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling \
             data/fagverk/fagverk_registry.json \
