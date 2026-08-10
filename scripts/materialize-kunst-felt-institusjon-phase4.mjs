@@ -36,6 +36,13 @@ const methodIds = [
   'met_kunst_resepsjonsanalyse'
 ];
 
+const relatedPlaces = [
+  { id: 'nasjonalmuseet', name: 'Nasjonalmuseet', role: 'Undersøk samling, innkjøp, katalogisering, utstilling og digital tilgjengeliggjøring som separate institusjonelle operasjoner.' },
+  { id: 'kunstnernes_hus', name: 'Kunstnernes Hus', role: 'Undersøk kunstnerstyring, juryering og ikke-kommersiell visningspraksis gjennom institusjonens egen historie.' },
+  { id: 'unge_kunstneres_samfund', name: 'Unge Kunstneres Samfund (UKS)', role: 'Sammenlign rollen som kunstnerstyrt visningssted med rollen som politisk medlemsorganisasjon.' },
+  { id: 'munch_museet', name: 'MUNCH', role: 'Følg samling, digital verkskatalog, metadata og reproduksjonsvilkår som ulike distribusjonsledd.' }
+];
+
 const section = (id, title, paragraphs, paragraphClaimIds, keyPoints, keyPointClaimIds) => ({
   id, title, paragraphs, paragraphClaimIds, keyPoints, keyPointClaimIds
 });
@@ -71,6 +78,7 @@ const chapter = {
     { question: 'Beviser opptak ved en kunstutdanning at søkeren vil lykkes i kunstfeltet?', answer: 'Nei. Opptaket dokumenterer at en komité vurderte søkeren mot institusjonens kriterier på et bestemt tidspunkt, ikke senere karriere eller kunstnerisk verdi.' },
     { question: 'Er et verk tilgjengelig bare fordi posten finnes i en digital katalog?', answer: 'Ikke nødvendigvis. Metadata, bildekvalitet, søkbarhet, rettigheter, språk og grensesnitt avgjør hva brukeren faktisk kan finne og bruke.' }
   ],
+  relatedPlaces,
   moduleFiles: [
     `${CHAPTER_DIR}/01-grunnlag.json`,
     `${CHAPTER_DIR}/02-fordypning.json`,
@@ -86,7 +94,7 @@ const brief = {
   subject_id: 'kunst',
   chapter_id: CHAPTER_ID,
   primary_domain_id: 'felt_institusjon',
-  relatedPlaceIds: ['nasjonalmuseet', 'kunstnernes_hus', 'unge_kunstneres_samfund', 'munch_museet'],
+  relatedPlaceIds: relatedPlaces.map((place) => place.id),
   purpose: 'Materialisere det første canonicale Kunst-domenet med kildebelagt undervisning i institusjoner, kanon, finansiering, utdanning, rekruttering, distribusjon og plattformisering.',
   audience: 'Brukere som skal kunne følge hvordan kunst blir valgt, finansiert, undervist, vist, katalogisert og distribuert uten å forveksle institusjonell beslutning med objektiv kvalitet eller dokumentert virkning.',
   learningArc: [
@@ -241,10 +249,10 @@ const modules = {
       { id: 'kfi-eksempel-3', title: 'Les et opptakssystem', steps: ['Samle publiserte opptakskrav og dokumentkrav for ett studieprogram.', 'Identifiser hvem som vurderer portefølje og kompetanse.', 'Beskriv porten uten å gjøre opptak eller avslag til en generell dom over søkeren.'] }
     ],
     commonMisconceptions: [
-      { misconception: 'Offentlig finansiering betyr politisk bestilt innhold.', correction: 'Ordning, lovgrunnlag, faglig beslutningsorgan og konkrete vilkår må undersøkes. Statlig finansiering alene dokumenterer ikke innholdsstyring.' },
-      { misconception: 'En stipendmottaker er kåret til en av landets beste kunstnere.', correction: 'Tildelingen dokumenterer et vedtak etter en bestemt ordnings kriterier og konkurranse i en bestemt runde.' },
-      { misconception: 'Kunstutdanning er den eneste veien til profesjonell status.', correction: 'Kulturdirektoratets kriterier viser at profesjonell kompetanse kan bygge på utdanning eller dokumentert praksis.' },
-      { misconception: 'Opptak ved et akademi forutsier karrieren.', correction: 'Opptaket er en komitévurdering av innsendt materiale og kvalifikasjoner på et bestemt tidspunkt.' }
+      { claim: 'Offentlig finansiering betyr politisk bestilt innhold.', correction: 'Ordning, lovgrunnlag, faglig beslutningsorgan og konkrete vilkår må undersøkes. Statlig finansiering alene dokumenterer ikke innholdsstyring.' },
+      { claim: 'En stipendmottaker er kåret til en av landets beste kunstnere.', correction: 'Tildelingen dokumenterer et vedtak etter en bestemt ordnings kriterier og konkurranse i en bestemt runde.' },
+      { claim: 'Kunstutdanning er den eneste veien til profesjonell status.', correction: 'Kulturdirektoratets kriterier viser at profesjonell kompetanse kan bygge på utdanning eller dokumentert praksis.' },
+      { claim: 'Opptak ved et akademi forutsier karrieren.', correction: 'Opptaket er en komitévurdering av innsendt materiale og kvalifikasjoner på et bestemt tidspunkt.' }
     ]
   },
   '03-anvendelse.json': {
@@ -308,7 +316,7 @@ const sources = [
   { id: 'kfi14-munch-samling', publisher: 'MUNCH', title: 'Om samlingen', url: 'https://www.munch.no/om-samlingen/', source_location: 'Samlingsomfanget og opplysningene om de fire private gavene', type: 'official-collection-profile' },
   { id: 'kfi15-munch-katalog', publisher: 'MUNCH', title: 'Tilgjengeliggjøring av Edvard Munchs kunstnerskap digitalt', url: 'https://www.munch.no/om-samlingen/digital-tilgjengeliggjoring-av-edvard-munchs-kunstnerskap/', source_location: 'Omfanget av verkskatalogen, den testamentariske gaven, andre eiere og forbehold om løpende revisjon', type: 'official-digital-catalogue-method' },
   { id: 'kfi16-munch-foto', publisher: 'MUNCH', title: 'Foto av Edvard Munchs kunstverk', url: 'https://www.munch.no/om-samlingen/foto-av-edvard-munchs-kunstverk/', source_location: 'Bruksvilkår, kreditering, fotoarkiv og CC BY-NC-SA 4.0-henvisning', type: 'official-image-rights-guidance' }
-];
+].map((source) => ({ ...source, label: `${source.publisher} – ${source.title}` }));
 
 const claim = (id, text, source_ids, used_in) => ({ id, claim: text, source_ids, status: 'verified', used_in });
 const claims = [

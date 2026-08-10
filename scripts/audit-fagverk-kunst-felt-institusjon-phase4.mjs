@@ -84,6 +84,8 @@ export function auditKunstFeltInstitusjonPhase4({ writeReport = false, checkRepo
   assert(isDeepStrictEqual(brief.relatedPlaceIds, EXPECTED_PLACES), 'Briefen har feil canonicale stedscase');
   const knownPlaceIds = new Set(places.map((row) => row.id));
   assert(EXPECTED_PLACES.every((id) => knownPlaceIds.has(id)), 'Briefen peker til ukjent sted');
+  assert(isDeepStrictEqual(chapter.relatedPlaces.map((row) => row.id), EXPECTED_PLACES), 'Kapittelpayloaden mangler canonicale stedscase');
+  assert(chapter.relatedPlaces.every((row) => row.name && row.role), 'Et runtime-stedscase mangler navn eller rolle');
 
   const modules = chapter.moduleFiles.map((file) => ({ file, value: json(file) }));
   assert(modules.length === 3, 'Kapittelet skal ha tre moduler');
@@ -96,6 +98,7 @@ export function auditKunstFeltInstitusjonPhase4({ writeReport = false, checkRepo
   assert((modules[0].value.concepts || []).length >= 6, 'Grunnlagsmodulen mangler begreper');
   assert((modules[1].value.workedExamples || []).length >= 3, 'Fordypningsmodulen mangler gjennomarbeidede eksempler');
   assert((modules[1].value.commonMisconceptions || []).length >= 4, 'Fordypningsmodulen mangler misoppfatninger');
+  assert(modules[1].value.commonMisconceptions.every((row) => row.claim && row.correction), 'En misoppfatning kan ikke rendres med claim og correction');
   assert((modules[2].value.applicationTasks || []).length >= 4, 'Anvendelsesmodulen mangler oppgaver');
   assert((modules[2].value.selfCheck || []).length >= 6, 'Anvendelsesmodulen mangler selvkontroll');
 
@@ -106,7 +109,7 @@ export function auditKunstFeltInstitusjonPhase4({ writeReport = false, checkRepo
   const claimIds = new Set(claimsDoc.claims.map((row) => row.id));
   const sectionIds = new Set(sections.map((row) => row.id));
   assert(sourceIds.size === claimsDoc.sources.length && claimIds.size === claimsDoc.claims.length, 'Kilde- eller claim-ID er duplisert');
-  assert(claimsDoc.sources.every((row) => /^https:\/\//.test(row.url) && row.publisher && row.title && row.source_location && row.type), 'En kilde er ikke inspectable');
+  assert(claimsDoc.sources.every((row) => /^https:\/\//.test(row.url) && row.label && row.publisher && row.title && row.source_location && row.type), 'En kilde er ikke inspectable eller renderbar');
   assert(claimsDoc.claims.every((row) => row.status === 'verified'), 'En claim er ikke verifisert');
   assert(claimsDoc.claims.every((row) => row.source_ids.length >= 1 && row.source_ids.every((id) => sourceIds.has(id))), 'En claim har uløst kilde');
   assert(claimsDoc.claims.every((row) => row.used_in.length >= 1 && row.used_in.every((id) => sectionIds.has(id))), 'En claim har ugyldig used_in');
@@ -140,7 +143,7 @@ export function auditKunstFeltInstitusjonPhase4({ writeReport = false, checkRepo
       moduleFiles: chapter.moduleFiles,
       briefFile: chapter.briefFile,
       claimsFile: chapter.claimsFile,
-      relatedPlaceIds: brief.relatedPlaceIds
+      relatedPlaceIds: chapter.relatedPlaces.map((row) => row.id)
     },
     canonicalCoverage: {
       ownerDomainId: 'felt_institusjon',
@@ -161,7 +164,7 @@ export function auditKunstFeltInstitusjonPhase4({ writeReport = false, checkRepo
       methodCount: chapter.method_ids.length,
       sourceCount: claimsDoc.sources.length,
       claimCount: claimsDoc.claims.length,
-      placeCaseCount: brief.relatedPlaceIds.length
+      placeCaseCount: chapter.relatedPlaces.length
     },
     gates: {
       canonicalOwnerDomain: true,
@@ -172,6 +175,9 @@ export function auditKunstFeltInstitusjonPhase4({ writeReport = false, checkRepo
       allClaimsVerifiedAndUsed: true,
       inspectablePrimarySources: true,
       canonicalPlacesResolved: true,
+      chapterSourcesRenderable: true,
+      chapterPlacesRenderable: true,
+      misconceptionsRenderable: true,
       institutionalVisibilityQualityGuard: true,
       fundingDecisionEffectGuard: true,
       admissionOutcomeGuard: true,
@@ -187,7 +193,7 @@ export function auditKunstFeltInstitusjonPhase4({ writeReport = false, checkRepo
     fs.writeFileSync(abs(P.report), `${JSON.stringify(committed, null, 2)}\n`);
   }
   if (checkReport) assert(isDeepStrictEqual(json(P.report), committed), `${P.report} er utdatert`);
-  return { report, chapter, brief, claimsDoc };
+  return { report, chapter, brief, claimsDoc, modules: modules.map((row) => row.value) };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
