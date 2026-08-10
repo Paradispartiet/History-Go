@@ -66,13 +66,13 @@ export function auditMediaPresseRedaksjonerAvishusPhase4({ writeReport = false, 
   assert(chapter.editorialStatus === 'chapter_ready' && chapter.claimTraceRequired === true, 'Kapittelet er ikke claimsporet chapter_ready');
   assert(isDeepStrictEqual(chapter.emne_ids, EXPECTED_EMNES), 'Kapittelet dekker ikke de 21 canonicale emnene i riktig rekkefølge');
   assert(new Set(chapter.emne_ids).size === 21, 'Media-kapittelet har duplikate emner');
-  assert(registrySubject.chapters.length === 1 && registryChapter, 'Media-registeret skal ha nøyaktig ett kapittel');
+  assert(registrySubject.chapters.length === 2 && registryChapter, 'Media-registeret skal ha nøyaktig to kapitler');
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'presse_redaksjoner_avishus', 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Media skal stå chapters_in_progress etter første domene');
   assert(statusEntry.nextGate === NEXT_GATE, 'Media har feil neste produksjonsport');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Media-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 1, 'Fase 3-auditen ser ikke det første Media-kapittelet');
+  assert(phase3.report.summary.registeredChapterCount === 2, 'Fase 3-auditen ser ikke begge Media-kapitlene');
   assert(phase3.report.nestedSupplement.emneCount === 56 && phase3.report.nestedSupplement.topLevelSubject === false, 'Nested Populærkultur er ikke bevart');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));

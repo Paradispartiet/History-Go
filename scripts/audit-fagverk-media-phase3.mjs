@@ -116,7 +116,7 @@ export function auditMediaPhase3({ writeReport = false, checkReport = true } = {
   assert(inventoryEntry?.schemaFamily === 'standard_canonical', 'Media har feil schemafamilie');
   assert(inventoryEntry?.pilot === false, 'Media skal være et individuelt Fase 3-fag');
   assert(statusEntry?.assessmentStatus === 'audited', 'Media har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Media må stå chapters_in_progress etter første kapittel');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Media må stå chapters_in_progress under kapittelproduksjonen');
   assert(statusEntry?.nextGate === 'remaining_domain_chapter_production', 'Media har feil neste port');
   assert(registry.placePage?.fallbackSubjectByCategory?.media === 'media', 'Media-steder mangler Media som fagverksfallback');
   assert(manifestEntry?.emners !== 'media/emner_media_populaerkultur_canonical_v4_5.json', 'Hovedmanifestet peker fortsatt til Populærkultur-katalogen');
@@ -150,8 +150,9 @@ export function auditMediaPhase3({ writeReport = false, checkReport = true } = {
   assert(model.summary.methodCount === 163, 'Samlet Media-metodekatalog skal ha 163 metoder');
   assert(model.summary.mappingCount === 120, 'Media skal ha 120 normaliserte hovedmappinger');
   assert(model.summary.hookCount === 60, 'Media skal ha 60 hovedhooks');
-  assert(model.chapters.length === 1, 'Media skal ha nøyaktig ett registrert kapittel');
+  assert(model.chapters.length === 2, 'Media skal ha nøyaktig to registrerte kapitler');
   assert(model.chapters[0].primaryDomainId === 'presse_redaksjoner_avishus', 'Første Media-kapittel har feil canonical eierdomene');
+  assert(model.chapters[1].primaryDomainId === 'offentlighet_ytringsfrihet_etikk', 'Andre Media-kapittel har feil canonical eierdomene');
   assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Media-emne mangler løst metode-ID');
   assert(model.emners.flatMap((emne) => emne.methodLabels).every((label) => !label.startsWith('met_media_')), 'Media har uløst metode-ID');
 
