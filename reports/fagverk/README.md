@@ -246,3 +246,12 @@ Administrasjon og plan er materialisert 3/3 gjennom `administrasjon-plan-kontrol
 ## By Makt og konflikt Fase 4
 
 Makt og konflikt er materialisert 5/5 gjennom `makt-konflikt-protest-grenser-trygghet`, med bevaring av Historiske lag 2/2, Arbeid og næring 8/8, Urbanisme 6/6, Administrasjon og plan 3/3, Bolig og nabolag 5/5, Arkitektur 12/12 og Byliv 30/30. Permanent audit: `reports/fagverk/by-makt-konflikt-protest-grenser-trygghet-phase4-audit.json`.
+
+## By Klima og helse Fase 4
+
+Klima, helse og tilgjengelighet er materialisert 4/4 gjennom `klima-helse-varme-vann-tilgjengelighet`, med bevaring av Makt og konflikt 5/5, Historiske lag 2/2, Arbeid og næring 8/8, Urbanisme 6/6, Administrasjon og plan 3/3, Bolig og nabolag 5/5, Arkitektur 12/12 og Byliv 30/30. Kapittelet har 13 inspectable kilder, 18 verified claims, ni seksjoner og eksplisitte evidensvakter for klimascenario, miljøeksponering, ressursstrømmer og faktisk tilgjengelighet. Permanent audit: `reports/fagverk/by-klima-helse-varme-vann-tilgjengelighet-phase4-audit.json`.
+
+```bash
+node scripts/audit-fagverk-by-klima-helse-varme-vann-tilgjengelighet-phase4.mjs --write-report
+node scripts/audit-fagverk-by-klima-helse-varme-vann-tilgjengelighet-phase4.mjs
+```
