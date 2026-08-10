@@ -1849,12 +1849,12 @@
     },
     "natur": {
       "title": "Natur & miljø",
-      "description": "Et sammenhengende læreverk om økologi, artskunnskap, evolusjon, botanikk, zoologi, fysiologi, vann, klima, geologi, urban natur, miljøpåvirkning og forvaltning.",
+      "description": "Et sammenhengende og universelt læreverk om økologi, artskunnskap, evolusjon, botanikk, zoologi, sopp, mikroorganismer, fysiologi, vann, klima, geologi, urban natur, miljøpåvirkning og forvaltning.",
       "canonicalModel": {
         "manifest": "data/fag/fag_manifest.json",
         "subjectId": "natur",
         "sourceOfTruth": true,
-        "note": "Emnetitler, definisjoner, fagområder og metodekoblinger leses fra canonical Natur v5.2 gjennom kompatibilitetsfilene. Registryet eier elleve redigerte lærekapitler."
+        "note": "Canonical Natur v5.3 komponerer den frosne fase-2-basisen med sluttfaseoverlayet. Registryet viser tolv redigerte lærekapitler og faget er redaksjonelt complete."
       },
       "chapters": [
         {
@@ -1938,6 +1938,21 @@
           ]
         },
         {
+          "id": "sopp_lav_mikroorganismer",
+          "title": "Sopp, lav og mikroorganismer",
+          "subtitle": "Fra hyfer og celler til symbiose, nedbrytning og mikrobielle kretsløp",
+          "file": "data/fagverk/natur/sopp_lav_mikroorganismer.json",
+          "primary_domain_id": "sopp_lav_mikroorganismer",
+          "emne_ids": [
+            "em_natur_sopp_hyfer_mycel_fruktlegemer",
+            "em_natur_sopp_formering_livssykluser",
+            "em_natur_lav_symbiose_og_indikasjon",
+            "em_natur_bakterier_arkeer_cellestruktur",
+            "em_natur_mikrobiell_metabolisme_og_kretslop",
+            "em_natur_mikrobiell_okologi_nedbrytning_sykdom"
+          ]
+        },
+        {
           "id": "organismebiologi_fysiologi",
           "title": "Organismebiologi og fysiologi",
           "subtitle": "Fra celleånding og transport til sanser, regulering og toleranse",
@@ -1980,15 +1995,22 @@
         },
         {
           "id": "geologi_landskap_tid",
-          "title": "Geologi, landskap og lang tid",
-          "subtitle": "Les landskapet som materiale, prosess og historie",
-          "file": "data/fagverk/natur/geologi_landskap_tid.json",
+          "title": "Geologi og naturhistorie",
+          "subtitle": "Fra mineraler og jordas indre til platetektonikk, fossiler og landskap gjennom dyp tid",
+          "file": "data/fagverk/natur/geologi_naturhistorie_v5_3.json",
           "primary_domain_id": "geologi_landskap_tid",
+          "replace": true,
           "emne_ids": [
             "em_natur_dalforer_vannskiller_topografi",
             "em_natur_geologi_landskapsform",
             "em_natur_kyst_fjord_og_strand",
-            "em_natur_lang_tid_klima_historie"
+            "em_natur_lang_tid_klima_historie",
+            "em_natur_mineraler_bergarter_bergartskretslop",
+            "em_natur_jordas_indre_seismiske_bolger",
+            "em_natur_platetektonikk_plategrenser",
+            "em_natur_vulkanisme_jordskjelv_forkastninger",
+            "em_natur_stratigrafi_geologisk_tid_datering",
+            "em_natur_fossiler_livets_jordas_historie"
           ]
         },
         {

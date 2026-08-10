@@ -6,6 +6,8 @@ on:
       - 'data/fag/**'
       - 'data/fagverk/**'
       - 'scripts/build-fagverk-release-manifest.mjs'
+      - 'scripts/natur-final-phase-compose.mjs'
+      - 'scripts/materialize-natur-final-registry.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - '.github/workflows/fagverk-release.yml'
   push:
@@ -14,6 +16,8 @@ on:
       - 'data/fag/**'
       - 'data/fagverk/**'
       - 'scripts/build-fagverk-release-manifest.mjs'
+      - 'scripts/natur-final-phase-compose.mjs'
+      - 'scripts/materialize-natur-final-registry.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - '.github/workflows/fagverk-release.yml'
   workflow_dispatch:
@@ -37,6 +41,10 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '24'
+      - name: Materialize composed Natur registry
+        run: |
+          node --check scripts/materialize-natur-final-registry.mjs
+          node scripts/materialize-natur-final-registry.mjs
       - name: Verify builder
         run: |
           node --check scripts/build-fagverk-release-manifest.mjs
@@ -48,6 +56,7 @@ jobs:
           node - <<'NODE'
           const fs = require('fs');
           const release = JSON.parse(fs.readFileSync('data/fagverk/fagverk_release.json', 'utf8'));
+          const registry = JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json', 'utf8'));
           if (release.schema !== 'history_go_fagverk_release_v2') throw new Error('Unexpected release schema.');
           if (!release.release_sha256 || release.release_sha256.length !== 64) throw new Error('Missing release digest.');
           if (release.summary?.missing_file_count !== 0) throw new Error('Release contains blocking missing files or manifest fields.');
@@ -74,6 +83,18 @@ jobs:
               throw new Error(`${subjectId}: optional-gap status has no optional gaps.`);
             }
           }
+          const naturRegistry = registry.subjects?.natur;
+          const naturRelease = release.subjects?.natur;
+          if (naturRegistry?.chapters?.length !== 12) throw new Error('Natur registry must materialize 12 chapters.');
+          if (!naturRegistry.chapters.some((chapter) => chapter.id === 'sopp_lav_mikroorganismer')) {
+            throw new Error('Natur registry is missing sopp_lav_mikroorganismer.');
+          }
+          if (naturRelease?.chapter_count !== 12 || naturRelease.chapters?.length !== 12) {
+            throw new Error('Natur release must contain 12 chapters.');
+          }
+          if (!naturRelease.chapters.some((chapter) => chapter.chapter_id === 'sopp_lav_mikroorganismer')) {
+            throw new Error('Natur release is missing sopp_lav_mikroorganismer.');
+          }
           console.log(`Fagverk release ${release.release_sha256}: ${release.summary.subject_count} packages, ${release.summary.chapter_count} chapters, ${release.summary.module_file_count} modules, ${release.summary.optional_gap_count} optional gaps.`);
           NODE
       - name: Materialize release manifest on PR branch
@@ -83,12 +104,12 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/fagverk/fagverk_release.json
+          git add data/fagverk/fagverk_registry.json data/fagverk/subject_status.json data/fagverk/fagverk_release.json
           if git diff --cached --quiet; then
-            echo 'Release manifest already matches.'
+            echo 'Registry, status and release manifest already match.'
             exit 0
           fi
-          git commit -m 'Materialize whole-architecture Fagverk release v2'
+          git commit -m 'Materialize Natur registry and whole-architecture Fagverk release v2'
           git push origin "HEAD:${HEAD_BRANCH}"
       - name: Upload release artifact
         uses: actions/upload-artifact@v4
