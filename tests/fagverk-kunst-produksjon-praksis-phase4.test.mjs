@@ -17,10 +17,10 @@ test('Produksjon og praksis er canonicalt materialisert 5/5', () => {
   const { report } = auditKunstProduksjonPraksisPhase4();
   assert.equal(report.subject.id, 'kunst');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.registeredChapterCount, 3);
+  assert.equal(report.subject.registeredChapterCount, 4);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'produksjon_praksis');
   assert.equal(report.canonicalCoverage.exactCoverage, '5/5');
-  assert.equal(report.canonicalCoverage.remainingDomainCount, 3);
+  assert.equal(report.canonicalCoverage.remainingDomainCount, 2);
   assert.deepEqual(report.canonicalCoverage.requiredEmneIds, report.canonicalCoverage.coveredEmneIds);
 });
 
@@ -52,7 +52,7 @@ test('kapittelet har full pedagogisk og evidensbasert pakke', () => {
   assert.ok(Object.values(report.gates).every(Boolean));
 });
 
-test('Kunst står ærlig som uferdig etter tre av seks domener', () => {
+test('Kunst står ærlig som uferdig etter fire av seks domener', () => {
   const { report } = auditKunstProduksjonPraksisPhase4();
   assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
   assert.equal(report.subject.canonicalDomainCount, 6);
