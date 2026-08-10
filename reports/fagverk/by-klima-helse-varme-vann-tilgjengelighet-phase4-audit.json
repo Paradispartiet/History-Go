@@ -1,7 +1,7 @@
 {
-  "schema": "history_go_fagverk_by_makt_konflikt_protest_grenser_trygghet_phase4_audit_v1",
+  "schema": "history_go_fagverk_by_klima_helse_varme_vann_tilgjengelighet_phase4_audit_v1",
   "version": "1.0.0",
-  "status": "by_phase_4_makt_og_konflikt_domain_covered_subject_in_progress",
+  "status": "by_phase_4_klima_og_helse_domain_covered_subject_in_progress",
   "generatedFrom": {
     "core": "js/fagverk-subject-core.js",
     "categories": "data/categories/category_contract.json",
@@ -10,10 +10,10 @@
     "inventory": "data/fagverk/subject_inventory.json",
     "status": "data/fagverk/subject_status.json",
     "registry": "data/fagverk/fagverk_registry.json",
-    "chapter": "data/fagverk/by/makt-konflikt-protest-grenser-trygghet.json",
-    "brief": "data/fagverk/by/makt-konflikt-protest-grenser-trygghet/brief.json",
-    "claims": "data/fagverk/by/makt-konflikt-protest-grenser-trygghet/claims.json",
-    "report": "reports/fagverk/by-makt-konflikt-protest-grenser-trygghet-phase4-audit.json"
+    "chapter": "data/fagverk/by/klima-helse-varme-vann-tilgjengelighet.json",
+    "brief": "data/fagverk/by/klima-helse-varme-vann-tilgjengelighet/brief.json",
+    "claims": "data/fagverk/by/klima-helse-varme-vann-tilgjengelighet/claims.json",
+    "report": "reports/fagverk/by-klima-helse-varme-vann-tilgjengelighet-phase4-audit.json"
   },
   "subject": {
     "id": "by",
@@ -26,14 +26,14 @@
     "registeredChapterCount": 14
   },
   "chapter": {
-    "id": "makt-konflikt-protest-grenser-trygghet",
-    "title": "Protest, grenser og trygghet: hvem får bruke byen?",
-    "primaryDomainId": "makt_og_konflikt",
-    "file": "data/fagverk/by/makt-konflikt-protest-grenser-trygghet.json",
+    "id": "klima-helse-varme-vann-tilgjengelighet",
+    "title": "Varme, vann og tilgjengelighet: hvem tåler byen?",
+    "primaryDomainId": "klima_og_helse",
+    "file": "data/fagverk/by/klima-helse-varme-vann-tilgjengelighet.json",
     "editorialStatus": "chapter_ready"
   },
   "summary": {
-    "coveredEmneCount": 5,
+    "coveredEmneCount": 4,
     "methodCount": 6,
     "moduleCount": 3,
     "sectionCount": 9,
@@ -59,41 +59,41 @@
     "canonicalHistoricalLayersEmneCount": 2,
     "coveredHistoricalLayersEmneCount": 2,
     "canonicalPowerConflictEmneCount": 5,
-    "coveredPowerConflictEmneCount": 5
+    "coveredPowerConflictEmneCount": 5,
+    "canonicalClimateHealthEmneCount": 4,
+    "coveredClimateHealthEmneCount": 4
   },
   "coverage": {
     "emneIds": [
-      "em_by_demonstrasjoner_markeringer",
-      "em_by_territorialitet_og_grensemarkering",
-      "em_by_synlige_usynlige_grupper",
-      "em_by_inkludering_ekskludering",
-      "em_by_trygghet_utrygghet_i_hverdagen"
+      "em_by_klima_blagronn_klimatilpasning",
+      "em_by_urban_metabolisme_vann_energi_avfall_mat",
+      "em_by_urban_helse_miljo",
+      "em_by_tilgjengelighet_universell_utforming"
     ],
     "methodIds": [
       "met_feltobservasjon",
-      "met_for_etter",
-      "met_policy_lesning",
-      "met_aktoranalyse",
-      "met_intervju_brukerperspektiv",
-      "met_gis_romlig_analyse"
+      "met_gaanalyse",
+      "met_klimarisikokartlegging",
+      "met_tilgjengelighetsaudit",
+      "met_vedlikehold_spor",
+      "met_dataanalyse"
     ],
     "relatedPlaceIds": [
-      "radhusplassen",
+      "akerselva",
+      "vulkan_energisentral",
       "jernbanetorget",
-      "aker_brygge",
-      "toyen_torg"
+      "deichman_bjorvika"
     ],
-    "canonicalPowerConflictEmneIds": [
-      "em_by_demonstrasjoner_markeringer",
-      "em_by_inkludering_ekskludering",
-      "em_by_synlige_usynlige_grupper",
-      "em_by_territorialitet_og_grensemarkering",
-      "em_by_trygghet_utrygghet_i_hverdagen"
+    "canonicalClimateHealthEmneIds": [
+      "em_by_klima_blagronn_klimatilpasning",
+      "em_by_tilgjengelighet_universell_utforming",
+      "em_by_urban_helse_miljo",
+      "em_by_urban_metabolisme_vann_energi_avfall_mat"
     ]
   },
   "gates": {
     "canonicalStatusProgressionPreserved": true,
-    "exactlyThirteenRegisteredByChapters": true,
+    "exactlyFourteenRegisteredByChapters": true,
     "bylivThirtyOfThirtyPreserved": true,
     "architectureTwelveOfTwelvePreserved": true,
     "housingNeighborhoodFiveOfFivePreserved": true,
@@ -101,29 +101,30 @@
     "urbanismSixOfSixPreserved": true,
     "workBusinessEightOfEightPreserved": true,
     "historicalLayersTwoOfTwoPreserved": true,
-    "powerConflictFiveOfFiveCoveredExactlyOnce": true,
+    "powerConflictFiveOfFivePreserved": true,
+    "climateHealthFourOfFourCoveredExactlyOnce": true,
     "chapterHydratesThroughSharedRuntime": true,
-    "fiveCanonicalPowerConflictEmnersCovered": true,
+    "fourCanonicalClimateHealthEmnersCovered": true,
     "sixCanonicalMethodsResolved": true,
     "threeEditedModulesPresent": true,
     "paragraphLevelClaimTraceComplete": true,
     "allClaimsVerifiedAndUsed": true,
     "everySourceUsedByClaim": true,
     "allClaimSourcesInspectable": true,
-    "assemblyRightVsNotificationSeparated": true,
-    "landOwnershipVsPublicAccessSeparated": true,
-    "controlInfrastructureVsPracticeSeparated": true,
-    "visibilityVsIdentityInferenceSeparated": true,
-    "perceivedSafetyVsCrimeSeparated": true,
+    "scenarioVsForecastSeparated": true,
+    "visibleMeasureVsDocumentedEffectSeparated": true,
+    "snapshotVsExposureSeparated": true,
+    "associationVsIndividualDiagnosisSeparated": true,
+    "treatmentVsReducedConsumptionSeparated": true,
+    "minimumRuleVsCompleteTravelChainSeparated": true,
+    "oneBodyVsAllUsersSeparated": true,
     "intentVsMeasuredEffectSeparated": true,
-    "groupDifferenceVsIndividualCaseSeparated": true,
-    "theoryRequiresLocalPowerEvidence": true,
     "workedExamplesRenderable": true,
     "misconceptionsRenderable": true,
     "applicationTasksRenderable": true,
     "selfCheckRenderable": true,
     "canonicalFieldPlacesResolved": true,
     "byEditorialAndSourceContractLocked": true,
-    "powerConflictCompleteWithoutSubjectCompletenessOverclaim": true
+    "climateHealthCompleteWithoutSubjectCompletenessOverclaim": true
   }
 }

@@ -7,7 +7,7 @@ test('Arbeid og næring fullføres 8/8 uten å svekke tidligere By-domener', asy
   assert.equal(report.subject.id, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 13);
+  assert.equal(report.subject.registeredChapterCount, 14);
   assert.equal(report.chapter.id, 'arbeid-naering-handel-logistikk');
   assert.equal(report.summary.coveredEmneCount, 8);
   assert.equal(report.summary.canonicalWorkBusinessEmneCount, 8);
