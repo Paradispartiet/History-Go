@@ -1,7 +1,7 @@
 {
-  "schema": "history_go_fagverk_by_historiske_lag_ruiner_minner_phase4_audit_v1",
+  "schema": "history_go_fagverk_by_makt_konflikt_protest_grenser_trygghet_phase4_audit_v1",
   "version": "1.0.0",
-  "status": "by_phase_4_historiske_lag_domain_covered_subject_in_progress",
+  "status": "by_phase_4_makt_og_konflikt_domain_covered_subject_in_progress",
   "generatedFrom": {
     "core": "js/fagverk-subject-core.js",
     "categories": "data/categories/category_contract.json",
@@ -10,10 +10,10 @@
     "inventory": "data/fagverk/subject_inventory.json",
     "status": "data/fagverk/subject_status.json",
     "registry": "data/fagverk/fagverk_registry.json",
-    "chapter": "data/fagverk/by/historiske-lag-ruiner-minner.json",
-    "brief": "data/fagverk/by/historiske-lag-ruiner-minner/brief.json",
-    "claims": "data/fagverk/by/historiske-lag-ruiner-minner/claims.json",
-    "report": "reports/fagverk/by-historiske-lag-ruiner-minner-phase4-audit.json"
+    "chapter": "data/fagverk/by/makt-konflikt-protest-grenser-trygghet.json",
+    "brief": "data/fagverk/by/makt-konflikt-protest-grenser-trygghet/brief.json",
+    "claims": "data/fagverk/by/makt-konflikt-protest-grenser-trygghet/claims.json",
+    "report": "reports/fagverk/by-makt-konflikt-protest-grenser-trygghet-phase4-audit.json"
   },
   "subject": {
     "id": "by",
@@ -26,14 +26,14 @@
     "registeredChapterCount": 13
   },
   "chapter": {
-    "id": "historiske-lag-ruiner-minner",
-    "title": "Ruiner, tomrom og minnespor: hvordan byen husker",
-    "primaryDomainId": "historiske_lag",
-    "file": "data/fagverk/by/historiske-lag-ruiner-minner.json",
+    "id": "makt-konflikt-protest-grenser-trygghet",
+    "title": "Protest, grenser og trygghet: hvem får bruke byen?",
+    "primaryDomainId": "makt_og_konflikt",
+    "file": "data/fagverk/by/makt-konflikt-protest-grenser-trygghet.json",
     "editorialStatus": "chapter_ready"
   },
   "summary": {
-    "coveredEmneCount": 2,
+    "coveredEmneCount": 5,
     "methodCount": 6,
     "moduleCount": 3,
     "sectionCount": 9,
@@ -57,64 +57,73 @@
     "canonicalWorkBusinessEmneCount": 8,
     "coveredWorkBusinessEmneCount": 8,
     "canonicalHistoricalLayersEmneCount": 2,
-    "coveredHistoricalLayersEmneCount": 2
+    "coveredHistoricalLayersEmneCount": 2,
+    "canonicalPowerConflictEmneCount": 5,
+    "coveredPowerConflictEmneCount": 5
   },
   "coverage": {
     "emneIds": [
-      "em_by_ruiner_tomrom_restar",
-      "em_by_navneskilt_plaketter_minner"
+      "em_by_demonstrasjoner_markeringer",
+      "em_by_territorialitet_og_grensemarkering",
+      "em_by_synlige_usynlige_grupper",
+      "em_by_inkludering_ekskludering",
+      "em_by_trygghet_utrygghet_i_hverdagen"
     ],
     "methodIds": [
       "met_feltobservasjon",
-      "met_arkiv_minne_spor",
       "met_for_etter",
       "met_policy_lesning",
-      "met_komparativ_caseanalyse",
-      "met_vedlikehold_spor"
+      "met_aktoranalyse",
+      "met_intervju_brukerperspektiv",
+      "met_gis_romlig_analyse"
     ],
     "relatedPlaceIds": [
-      "bispelokket",
-      "bjorvika",
-      "christiania_torv",
-      "rodelokka"
+      "radhusplassen",
+      "jernbanetorget",
+      "aker_brygge",
+      "toyen_torg"
     ],
-    "canonicalHistoricalLayersEmneIds": [
-      "em_by_navneskilt_plaketter_minner",
-      "em_by_ruiner_tomrom_restar"
+    "canonicalPowerConflictEmneIds": [
+      "em_by_demonstrasjoner_markeringer",
+      "em_by_inkludering_ekskludering",
+      "em_by_synlige_usynlige_grupper",
+      "em_by_territorialitet_og_grensemarkering",
+      "em_by_trygghet_utrygghet_i_hverdagen"
     ]
   },
   "gates": {
     "canonicalStatusProgressionPreserved": true,
-    "exactlyTwelveRegisteredByChapters": true,
+    "exactlyThirteenRegisteredByChapters": true,
     "bylivThirtyOfThirtyPreserved": true,
     "architectureTwelveOfTwelvePreserved": true,
     "housingNeighborhoodFiveOfFivePreserved": true,
     "administrationPlanningThreeOfThreePreserved": true,
     "urbanismSixOfSixPreserved": true,
     "workBusinessEightOfEightPreserved": true,
-    "historicalLayersTwoOfTwoCoveredExactlyOnce": true,
+    "historicalLayersTwoOfTwoPreserved": true,
+    "powerConflictFiveOfFiveCoveredExactlyOnce": true,
     "chapterHydratesThroughSharedRuntime": true,
-    "twoCanonicalHistoricalLayerEmnersCovered": true,
+    "fiveCanonicalPowerConflictEmnersCovered": true,
     "sixCanonicalMethodsResolved": true,
     "threeEditedModulesPresent": true,
     "paragraphLevelClaimTraceComplete": true,
     "allClaimsVerifiedAndUsed": true,
     "everySourceUsedByClaim": true,
     "allClaimSourcesInspectable": true,
-    "visibleTraceVsAgeAndStatusSeparated": true,
-    "voidRequiresArchiveEvidence": true,
-    "protectionCategoriesSeparated": true,
-    "historicalMapVsLegalPlanSeparated": true,
-    "originalRemainsVsReconstructionSeparated": true,
-    "memoryMarkerVsOfficialNamingSeparated": true,
-    "absenceNotPromotedToDeliberateForgetting": true,
-    "theoryRequiresLocalHistoricalEvidence": true,
+    "assemblyRightVsNotificationSeparated": true,
+    "landOwnershipVsPublicAccessSeparated": true,
+    "controlInfrastructureVsPracticeSeparated": true,
+    "visibilityVsIdentityInferenceSeparated": true,
+    "perceivedSafetyVsCrimeSeparated": true,
+    "intentVsMeasuredEffectSeparated": true,
+    "groupDifferenceVsIndividualCaseSeparated": true,
+    "theoryRequiresLocalPowerEvidence": true,
     "workedExamplesRenderable": true,
     "misconceptionsRenderable": true,
     "applicationTasksRenderable": true,
     "selfCheckRenderable": true,
     "canonicalFieldPlacesResolved": true,
     "byEditorialAndSourceContractLocked": true,
-    "historicalLayersCompleteWithoutSubjectCompletenessOverclaim": true
+    "powerConflictCompleteWithoutSubjectCompletenessOverclaim": true
   }
 }

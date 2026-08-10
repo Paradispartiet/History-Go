@@ -100,7 +100,7 @@ export async function auditByArkitekturTypeSkalaPhase4({ writeReport = false, ch
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal fortsatt stå chapters_in_progress');
   assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette kapittelproduksjon');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
-  assert(registrySubject.chapters.length === 12, 'Første Arkitektur-batch skal gi nøyaktig ni registrerte By-kapitler totalt');
+  assert(registrySubject.chapters.length === 13, 'Første Arkitektur-batch skal gi nøyaktig ni registrerte By-kapitler totalt');
   assert(chapterMeta && bylivMeta.every(Boolean), 'Arkitektur-kapittelet eller et Byliv-kapittel mangler i registry');
   assert(chapterMeta.file === P.chapter && chapterMeta.primary_domain_id === 'arkitektur', 'Registry har feil fil/domain for Arkitektur-kapittelet');
   assert(sameSet(chapterMeta.emne_ids || [], EXPECTED_EMNES), 'Registry har feil Arkitektur-emnedekning');
@@ -108,7 +108,7 @@ export async function auditByArkitekturTypeSkalaPhase4({ writeReport = false, ch
   const source = loadSource(CORE, manifest.by);
   const model = CORE.normalizeSubject({ subjectId: 'by', categoryLabel: categories.labels.by, categoryDescription: categories.decisions?.by, schemaFamily: inventoryEntry.schemaFamily, manifestEntry: manifest.by, portalEntry, inventoryEntry, statusEntry, registry, badge: {}, source });
   assert(model.subject.adapter === 'by', 'By skal bruke by-adapteren');
-  assert(model.chapters.length === 12, 'Normalisert By-modell skal vise ni kapitler');
+  assert(model.chapters.length === 13, 'Normalisert By-modell skal vise ni kapitler');
   const modelEmnes = new Map(model.emners.map((row) => [row.id, row]));
   const modelMethods = new Map(model.methods.map((row) => [row.id, row]));
   for (const id of EXPECTED_EMNES) {

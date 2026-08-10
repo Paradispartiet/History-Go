@@ -9,7 +9,7 @@ test('By sosial offentlighet er claimsporet, renderbart og holder By i chapters_
   assert.equal(report.subject.adapter, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 12);
+  assert.equal(report.subject.registeredChapterCount, 13);
   assert.equal(report.chapter.id, 'byliv-sosial-offentlighet');
   assert.deepEqual(report.summary, {
     coveredEmneCount: 7,
