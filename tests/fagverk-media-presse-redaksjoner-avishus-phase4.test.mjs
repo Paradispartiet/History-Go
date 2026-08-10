@@ -17,7 +17,7 @@ test('Presse, redaksjoner og avishus er canonicalt materialisert 21/21', () => {
   const { report } = auditMediaPresseRedaksjonerAvishusPhase4();
   assert.equal(report.subject.id, 'media');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.registeredChapterCount, 4);
+  assert.equal(report.subject.registeredChapterCount, 5);
   assert.equal(report.subject.nestedPopularCultureEmneCount, 56);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'presse_redaksjoner_avishus');
   assert.equal(report.canonicalCoverage.exactCoverage, '21/21');

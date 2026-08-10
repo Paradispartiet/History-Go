@@ -28,7 +28,7 @@ test('Media er individuelt materialisert og auditert som andre Fase 3-fag', () =
     primaryMethodCount: 115,
     mappingCount: 120,
     hookCount: 60,
-    registeredChapterCount: 4,
+    registeredChapterCount: 5,
     explicitMappingRowCount: 120
   });
 });

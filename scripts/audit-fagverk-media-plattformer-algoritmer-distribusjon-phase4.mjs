@@ -35,7 +35,8 @@ const EXPECTED_METHODS = [
 const EXPECTED_PLACES = ['vg_huset', 'fornebu_teknologipark', 'deichman_bjorvika', 'telegrafbygningen'];
 const EXPECTED_CHAPTERS = [
   'presse-redaksjoner-og-avishus', 'offentlighet-ytringsfrihet-og-medieetikk',
-  'kilder-kritikk-og-sannhet', 'plattformer-algoritmer-og-distribusjon'
+  'kilder-kritikk-og-sannhet', 'plattformer-algoritmer-og-distribusjon',
+  'propaganda-pavirkning-og-informasjonskrig'
 ];
 const EXPECTED_DISTINCTIONS = [
   'transport vs rangering', 'nettnøytralitet vs plattformnøytralitet', 'algoritme vs autonom intensjon',
@@ -86,7 +87,7 @@ export function auditMediaPlattformerAlgoritmerDistribusjonPhase4({ writeReport 
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Media må fortsatt stå chapters_in_progress');
   assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Media har feil neste produksjonsport');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Media-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 4, 'Fase 3-auditen ser ikke alle fire Media-kapitlene');
+  assert(phase3.report.summary.registeredChapterCount === 5, 'Fase 3-auditen ser ikke alle fem Media-kapitlene');
   assert(phase3.report.nestedSupplement.emneCount === 56 && phase3.report.nestedSupplement.topLevelSubject === false, 'Nested Populærkultur er ikke bevart');
   assert(EXPECTED_CHAPTERS.slice(0, 3).every((id, index) => registrySubject.chapters[index].id === id), 'Tidligere Media-kapitler er ikke bevart');
 
@@ -140,7 +141,7 @@ export function auditMediaPlattformerAlgoritmerDistribusjonPhase4({ writeReport 
     schema: 'history_go_fagverk_media_plattformer_algoritmer_distribusjon_phase4_audit_v1', version: '1.0.0',
     status: 'media_plattformer_algoritmer_distribusjon_canonical_20_of_20', generatedFrom: P,
     subject: {
-      id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 4,
+      id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 5,
       editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate,
       nestedPopularCultureEmneCount: 56
     },

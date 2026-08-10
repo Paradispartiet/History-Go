@@ -17,7 +17,7 @@ test('Offentlighet, ytringsfrihet og medieetikk er canonicalt materialisert 21/2
   const { report } = auditMediaOffentlighetYtringsfrihetEtikkPhase4();
   assert.equal(report.subject.id, 'media');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.registeredChapterCount, 4);
+  assert.equal(report.subject.registeredChapterCount, 5);
   assert.equal(report.subject.nestedPopularCultureEmneCount, 56);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'offentlighet_ytringsfrihet_etikk');
   assert.equal(report.canonicalCoverage.exactCoverage, '21/21');

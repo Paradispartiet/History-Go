@@ -40,7 +40,8 @@ const EXPECTED_CHAPTERS = [
   'presse-redaksjoner-og-avishus',
   'offentlighet-ytringsfrihet-og-medieetikk',
   'kilder-kritikk-og-sannhet',
-  'plattformer-algoritmer-og-distribusjon'
+  'plattformer-algoritmer-og-distribusjon',
+  'propaganda-pavirkning-og-informasjonskrig'
 ];
 const abs = (p) => path.join(ROOT, p);
 const json = (p) => JSON.parse(fs.readFileSync(abs(p), 'utf8'));
@@ -84,7 +85,7 @@ export function auditMediaKilderKritikkSannhetPhase4({ writeReport = false, chec
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Media må fortsatt stå chapters_in_progress');
   assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Media har feil neste produksjonsport');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Media-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 4, 'Fase 3-auditen ser ikke alle fire Media-kapitlene');
+  assert(phase3.report.summary.registeredChapterCount === 5, 'Fase 3-auditen ser ikke alle fem Media-kapitlene');
   assert(phase3.report.nestedSupplement.emneCount === 56 && phase3.report.nestedSupplement.topLevelSubject === false, 'Nested Populærkultur er ikke bevart');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));
@@ -160,7 +161,7 @@ export function auditMediaKilderKritikkSannhetPhase4({ writeReport = false, chec
     schema: 'history_go_fagverk_media_kilder_kritikk_sannhet_phase4_audit_v1', version: '1.0.0',
     status: 'media_kilder_kritikk_sannhet_canonical_20_of_20', generatedFrom: P,
     subject: {
-      id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 4,
+      id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 5,
       editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate,
       nestedPopularCultureEmneCount: 56
     },

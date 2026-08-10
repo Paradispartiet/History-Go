@@ -150,11 +150,12 @@ export function auditMediaPhase3({ writeReport = false, checkReport = true } = {
   assert(model.summary.methodCount === 163, 'Samlet Media-metodekatalog skal ha 163 metoder');
   assert(model.summary.mappingCount === 120, 'Media skal ha 120 normaliserte hovedmappinger');
   assert(model.summary.hookCount === 60, 'Media skal ha 60 hovedhooks');
-  assert(model.chapters.length === 4, 'Media skal ha nøyaktig fire registrerte kapitler');
+  assert(model.chapters.length === 5, 'Media skal ha nøyaktig fem registrerte kapitler');
   assert(model.chapters[0].primaryDomainId === 'presse_redaksjoner_avishus', 'Første Media-kapittel har feil canonical eierdomene');
   assert(model.chapters[1].primaryDomainId === 'offentlighet_ytringsfrihet_etikk', 'Andre Media-kapittel har feil canonical eierdomene');
   assert(model.chapters[2].primaryDomainId === 'kilder_kritikk_sannhet', 'Tredje Media-kapittel har feil canonical eierdomene');
   assert(model.chapters[3].primaryDomainId === 'plattformer_algoritmer_distribusjon', 'Fjerde Media-kapittel har feil canonical eierdomene');
+  assert(model.chapters[4].primaryDomainId === 'propaganda_pavirkning_informasjonskrig', 'Femte Media-kapittel har feil canonical eierdomene');
   assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Media-emne mangler løst metode-ID');
   assert(model.emners.flatMap((emne) => emne.methodLabels).every((label) => !label.startsWith('met_media_')), 'Media har uløst metode-ID');
 
