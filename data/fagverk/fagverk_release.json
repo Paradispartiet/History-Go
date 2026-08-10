@@ -9,9 +9,9 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "2.52.0",
+    "version": "2.53.0",
     "updated_at": "2026-08-10",
-    "content_sha256": "eadd1f25f47fa3ecc20fbb8a570af1833459aa473b49eb19cf9789bedf8c45cb"
+    "content_sha256": "c20af1d978f71a5d6ba773ba13126e88adc5adfa91bbd604bf1a51439bbff692"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -33,12 +33,12 @@
     "subject_count": 18,
     "root_subject_count": 17,
     "specialization_count": 1,
-    "chapter_subject_count": 7,
-    "chapter_count": 92,
-    "module_file_count": 243,
+    "chapter_subject_count": 8,
+    "chapter_count": 93,
+    "module_file_count": 246,
     "package_file_count": 202,
-    "chapter_referenced_file_count": 435,
-    "referenced_file_count": 596,
+    "chapter_referenced_file_count": 441,
+    "referenced_file_count": 602,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1276,7 +1276,7 @@
       "schema_family": "standard_canonical",
       "pilot": false,
       "package_status": "complete",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -1405,20 +1405,29 @@
         }
       ],
       "package_content_sha256": "7508fbcc72de7396b7d19efaeb03802a650e580af4678f757db3bdee82683eda",
-      "chapter_count": 0,
-      "module_file_count": 0,
-      "brief_file_count": 0,
-      "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 8,
+      "chapter_count": 1,
+      "module_file_count": 3,
+      "brief_file_count": 1,
+      "claims_file_count": 1,
+      "chapter_referenced_file_count": 6,
+      "chapter_content_sha256": "5afe76063d54ccd031aba81fc5a1d149d0dfc4c1f0d3029282800b6d1f517630",
+      "referenced_file_count": 14,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "cb9626aa41c12696d209c7a2ad88dfee476bb6d033fda768617dd5bf31a35fe6",
-      "content_sha256": "7508fbcc72de7396b7d19efaeb03802a650e580af4678f757db3bdee82683eda",
-      "chapters": []
+      "structure_sha256": "1ce254e5cb276f5f2d458c8e7cb999dc5cd61600fa5ec1b04dff64552d28699d",
+      "content_sha256": "9666987e8a38c195b3ef8ceed2e765e509c8da083a05a2b23f1a4d5e0fdf1fc5",
+      "chapters": [
+        {
+          "chapter_id": "felt-og-institusjon",
+          "title": "Felt og institusjon: hvem gjør kunst synlig, varig og legitim?",
+          "file": "data/fagverk/kunst/felt-og-institusjon.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "5afe76063d54ccd031aba81fc5a1d149d0dfc4c1f0d3029282800b6d1f517630"
+        }
+      ]
     },
     "litteratur": {
       "title": "litteratur",
@@ -4226,5 +4235,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "f650e9ef555faf6f4c044db1f11b2b38d2d3bf76b3f0f81f5ec3f0165fb43491"
+  "release_sha256": "c085cad338d060d042c39d6e219264f12ba92725a305fc11c465f7ad8caf46a9"
 }

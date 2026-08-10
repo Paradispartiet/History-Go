@@ -16,8 +16,8 @@ test('Kunst er individuelt materialisert og auditert som første Fase 3-fag', ()
     adapter: 'standard',
     navigationStatus: 'materialized',
     assessmentStatus: 'audited',
-    editorialStatus: 'structure_ready',
-    nextGate: 'chapter_production',
+    editorialStatus: 'chapters_in_progress',
+    nextGate: 'remaining_domain_chapter_production',
     subjectPage: 'fagverk.html?subject=kunst',
     badgePage: 'data/fag/kunst/merke_kunst (2).html'
   });
@@ -27,7 +27,7 @@ test('Kunst er individuelt materialisert og auditert som første Fase 3-fag', ()
     methodCount: 21,
     mappingCount: 21,
     hookCount: 60,
-    registeredChapterCount: 0,
+    registeredChapterCount: 1,
     explicitMappingRowCount: 21
   });
   assert.deepEqual(report.emneStatusCounts, { active: 21 });

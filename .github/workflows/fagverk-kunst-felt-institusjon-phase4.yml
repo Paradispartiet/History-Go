@@ -1,0 +1,62 @@
+name: Fagverk Kunst Felt og institusjon Phase 4
+
+on:
+  pull_request:
+    paths:
+      - 'data/fagverk/kunst/felt-og-institusjon.json'
+      - 'data/fagverk/kunst/felt-og-institusjon/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/kunst-phase3-audit.json'
+      - 'reports/fagverk/kunst-felt-institusjon-phase4-audit.json'
+      - 'reports/fagverk/subject-baseline.json'
+      - 'scripts/audit-fagverk-kunst-phase3.mjs'
+      - 'scripts/audit-fagverk-kunst-felt-institusjon-phase4.mjs'
+      - 'scripts/materialize-kunst-felt-institusjon-phase4.mjs'
+      - 'tests/fagverk-kunst-phase3.test.mjs'
+      - 'tests/fagverk-kunst-felt-institusjon-phase4.test.mjs'
+      - '.github/workflows/fagverk-kunst-felt-institusjon-phase4.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fagverk/kunst/felt-og-institusjon.json'
+      - 'data/fagverk/kunst/felt-og-institusjon/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/kunst-phase3-audit.json'
+      - 'reports/fagverk/kunst-felt-institusjon-phase4-audit.json'
+      - 'reports/fagverk/subject-baseline.json'
+      - 'scripts/audit-fagverk-kunst-phase3.mjs'
+      - 'scripts/audit-fagverk-kunst-felt-institusjon-phase4.mjs'
+      - 'scripts/materialize-kunst-felt-institusjon-phase4.mjs'
+      - 'tests/fagverk-kunst-phase3.test.mjs'
+      - 'tests/fagverk-kunst-felt-institusjon-phase4.test.mjs'
+      - '.github/workflows/fagverk-kunst-felt-institusjon-phase4.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax
+        run: |
+          node --check scripts/materialize-kunst-felt-institusjon-phase4.mjs
+          node --check scripts/audit-fagverk-kunst-felt-institusjon-phase4.mjs
+      - name: Kunst structural audit
+        run: node scripts/audit-fagverk-kunst-phase3.mjs
+      - name: Kunst Felt og institusjon audit
+        run: node scripts/audit-fagverk-kunst-felt-institusjon-phase4.mjs
+      - name: Subject inventory
+        run: node scripts/audit-fagverk-subject-inventory.mjs
+      - name: Release feed
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Tests
+        run: node --test tests/fagverk-kunst-phase3.test.mjs tests/fagverk-kunst-felt-institusjon-phase4.test.mjs
