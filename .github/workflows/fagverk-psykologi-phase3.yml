@@ -64,6 +64,21 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Align materializer with canonical therapy-room emne ID
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs')
+          text = path.read_text()
+          wrong = 'em_psy_terapirom_relasjon'
+          right = 'em_psy_terapirom_relasyon'
+          if wrong in text:
+              text = text.replace(wrong, right)
+              path.write_text(text)
+          if right not in path.read_text():
+              raise SystemExit('Canonical therapy-room emne ID is missing after alignment.')
+          PY
+
       - name: Validate script syntax
         run: |
           node --check scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs
@@ -114,6 +129,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
+            scripts/materialize-psykologi-psykisk-helse-institusjoner-behandling-phase4.mjs \
             data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling.json \
             data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling \
             data/fagverk/fagverk_registry.json \
