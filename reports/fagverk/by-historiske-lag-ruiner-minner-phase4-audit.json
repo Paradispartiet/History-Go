@@ -1,7 +1,7 @@
 {
-  "schema": "history_go_fagverk_by_arbeid_naering_handel_logistikk_phase4_audit_v1",
+  "schema": "history_go_fagverk_by_historiske_lag_ruiner_minner_phase4_audit_v1",
   "version": "1.0.0",
-  "status": "by_phase_4_arbeid_og_naering_domain_covered_subject_in_progress",
+  "status": "by_phase_4_historiske_lag_domain_covered_subject_in_progress",
   "generatedFrom": {
     "core": "js/fagverk-subject-core.js",
     "categories": "data/categories/category_contract.json",
@@ -10,10 +10,10 @@
     "inventory": "data/fagverk/subject_inventory.json",
     "status": "data/fagverk/subject_status.json",
     "registry": "data/fagverk/fagverk_registry.json",
-    "chapter": "data/fagverk/by/arbeid-naering-handel-logistikk.json",
-    "brief": "data/fagverk/by/arbeid-naering-handel-logistikk/brief.json",
-    "claims": "data/fagverk/by/arbeid-naering-handel-logistikk/claims.json",
-    "report": "reports/fagverk/by-arbeid-naering-handel-logistikk-phase4-audit.json"
+    "chapter": "data/fagverk/by/historiske-lag-ruiner-minner.json",
+    "brief": "data/fagverk/by/historiske-lag-ruiner-minner/brief.json",
+    "claims": "data/fagverk/by/historiske-lag-ruiner-minner/claims.json",
+    "report": "reports/fagverk/by-historiske-lag-ruiner-minner-phase4-audit.json"
   },
   "subject": {
     "id": "by",
@@ -26,15 +26,15 @@
     "registeredChapterCount": 12
   },
   "chapter": {
-    "id": "arbeid-naering-handel-logistikk",
-    "title": "Arbeidsby, handel og logistikk: økonomien i byrommet",
-    "primaryDomainId": "arbeid_og_naering",
-    "file": "data/fagverk/by/arbeid-naering-handel-logistikk.json",
+    "id": "historiske-lag-ruiner-minner",
+    "title": "Ruiner, tomrom og minnespor: hvordan byen husker",
+    "primaryDomainId": "historiske_lag",
+    "file": "data/fagverk/by/historiske-lag-ruiner-minner.json",
     "editorialStatus": "chapter_ready"
   },
   "summary": {
-    "coveredEmneCount": 8,
-    "methodCount": 8,
+    "coveredEmneCount": 2,
+    "methodCount": 6,
     "moduleCount": 3,
     "sectionCount": 9,
     "sourceCount": 13,
@@ -55,79 +55,66 @@
     "canonicalUrbanismEmneCount": 6,
     "coveredUrbanismEmneCount": 6,
     "canonicalWorkBusinessEmneCount": 8,
-    "coveredWorkBusinessEmneCount": 8
+    "coveredWorkBusinessEmneCount": 8,
+    "canonicalHistoricalLayersEmneCount": 2,
+    "coveredHistoricalLayersEmneCount": 2
   },
   "coverage": {
     "emneIds": [
-      "em_by_uteservering_kommersielt_byliv",
-      "em_by_midlertidig_handel_pop_up",
-      "em_by_prisniva_kjededominans_tomme_lokaler",
-      "em_by_kommersielle_gater",
-      "em_by_kontoromrader_arbeidsby",
-      "em_by_industri_havn_logistikk",
-      "em_by_vannpromenader_fjordliv",
-      "em_by_flaskehalser_kryss_friksjon"
+      "em_by_ruiner_tomrom_restar",
+      "em_by_navneskilt_plaketter_minner"
     ],
     "methodIds": [
       "met_feltobservasjon",
-      "met_gaanalyse",
-      "met_gis_romlig_analyse",
-      "met_dataanalyse",
       "met_arkiv_minne_spor",
+      "met_for_etter",
       "met_policy_lesning",
-      "met_tilgjengelighetsaudit",
+      "met_komparativ_caseanalyse",
       "met_vedlikehold_spor"
     ],
     "relatedPlaceIds": [
-      "barcode",
-      "jernbanetorget",
-      "toyen_torg",
-      "deichman_bjorvika"
+      "bispelokket",
+      "bjorvika",
+      "christiania_torv",
+      "rodelokka"
     ],
-    "canonicalWorkBusinessEmneIds": [
-      "em_by_flaskehalser_kryss_friksjon",
-      "em_by_industri_havn_logistikk",
-      "em_by_kommersielle_gater",
-      "em_by_kontoromrader_arbeidsby",
-      "em_by_midlertidig_handel_pop_up",
-      "em_by_prisniva_kjededominans_tomme_lokaler",
-      "em_by_uteservering_kommersielt_byliv",
-      "em_by_vannpromenader_fjordliv"
+    "canonicalHistoricalLayersEmneIds": [
+      "em_by_navneskilt_plaketter_minner",
+      "em_by_ruiner_tomrom_restar"
     ]
   },
   "gates": {
     "canonicalStatusProgressionPreserved": true,
-    "preservedAcrossTwelveRegisteredByChapters": true,
+    "exactlyTwelveRegisteredByChapters": true,
     "bylivThirtyOfThirtyPreserved": true,
     "architectureTwelveOfTwelvePreserved": true,
     "housingNeighborhoodFiveOfFivePreserved": true,
     "administrationPlanningThreeOfThreePreserved": true,
     "urbanismSixOfSixPreserved": true,
-    "workBusinessEightOfEightCoveredExactlyOnce": true,
+    "workBusinessEightOfEightPreserved": true,
+    "historicalLayersTwoOfTwoCoveredExactlyOnce": true,
     "chapterHydratesThroughSharedRuntime": true,
-    "eightCanonicalWorkBusinessEmnersCovered": true,
-    "eightCanonicalMethodsResolved": true,
+    "twoCanonicalHistoricalLayerEmnersCovered": true,
+    "sixCanonicalMethodsResolved": true,
     "threeEditedModulesPresent": true,
     "paragraphLevelClaimTraceComplete": true,
     "allClaimsVerifiedAndUsed": true,
     "everySourceUsedByClaim": true,
     "allClaimSourcesInspectable": true,
-    "visibleActivityVsRevenueSeparated": true,
-    "priceAndChainClaimsRequireSystematicEvidence": true,
-    "vacancyRequiresTemporalEvidence": true,
-    "temporaryCommerceVsUnregulatedSeparated": true,
-    "openingRulesVsActualHoursSeparated": true,
-    "portVolumeVsCapacitySeparated": true,
-    "oneYearCargoChangeNotPromotedToPermanentTrend": true,
-    "logisticsPilotVsMeasuredEffectSeparated": true,
-    "publicWaterfrontVsCommercialOfferSeparated": true,
-    "theoryRequiresLocalEconomicEvidence": true,
+    "visibleTraceVsAgeAndStatusSeparated": true,
+    "voidRequiresArchiveEvidence": true,
+    "protectionCategoriesSeparated": true,
+    "historicalMapVsLegalPlanSeparated": true,
+    "originalRemainsVsReconstructionSeparated": true,
+    "memoryMarkerVsOfficialNamingSeparated": true,
+    "absenceNotPromotedToDeliberateForgetting": true,
+    "theoryRequiresLocalHistoricalEvidence": true,
     "workedExamplesRenderable": true,
     "misconceptionsRenderable": true,
     "applicationTasksRenderable": true,
     "selfCheckRenderable": true,
     "canonicalFieldPlacesResolved": true,
     "byEditorialAndSourceContractLocked": true,
-    "workBusinessCompleteWithoutSubjectCompletenessOverclaim": true
+    "historicalLayersCompleteWithoutSubjectCompletenessOverclaim": true
   }
 }

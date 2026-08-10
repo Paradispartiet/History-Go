@@ -64,9 +64,13 @@ Denne mappen eier ikke fagarkitekturen eller betydningen av ferdigstatusene. Den
 
 - `by-arbeid-naering-handel-logistikk-phase4-audit.json` — Arbeid og næring-domenets 8/8-port: åtte canonicale eieremner, åtte metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med eksplisitte skiller mellom synlig aktivitet, registre, omsetning, logistikk og offentlig sjøfront.
 
+- `by-historiske-lag-ruiner-minner-phase4-audit.json` — Historiske lag-domenets 2/2-port: to canonicale eieremner, seks metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med eksplisitte skiller mellom fysisk levn, tomrom, vernestatus, rekonstruksjon og minnemarkering.
+
 ## Regenerering
 
 ```bash
+node scripts/audit-fagverk-by-historiske-lag-ruiner-minner-phase4.mjs --write-report
+node scripts/audit-fagverk-by-historiske-lag-ruiner-minner-phase4.mjs
 node scripts/audit-fagverk-by-arbeid-naering-handel-logistikk-phase4.mjs --write-report
 node scripts/audit-fagverk-by-arbeid-naering-handel-logistikk-phase4.mjs
 node scripts/audit-fagverk-by-urbanisme-idealer-forbindelser-fortetting-phase4.mjs --write-report
