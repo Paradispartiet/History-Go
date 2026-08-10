@@ -38,6 +38,12 @@ function bumpLegacy(){
  }
  const gp='tests/fagverk-general-engine.test.mjs';let g=read(gp).replace('assert.equal(by.chapterCount, 11);','assert.equal(by.chapterCount, 12);');write(gp,g);
 }
+function fixCurrent(){
+ const p=chapter.claimsFile;let t=read(p);
+ t=t.replace('det sammenstilte reguleringsplankartet ikke er juridisk bindende','det sammenstilte reguleringsplankartet er ikke juridisk bindende');
+ assert(t.includes('det sammenstilte reguleringsplankartet er ikke juridisk bindende'),'Flyfoto/kartstatus-claim ble ikke normalisert');
+ write(p,t);
+}
 function readme(){
  const p='reports/fagverk/README.md';let t=read(p);const bullet='- `by-historiske-lag-ruiner-minner-phase4-audit.json` — Historiske lag-domenets 2/2-port: to canonicale eieremner, seks metoder, tre moduler, ni seksjoner, 18 verified claims og 13 inspectable kilder med eksplisitte skiller mellom fysisk levn, tomrom, vernestatus, rekonstruksjon og minnemarkering.\n';
  if(!t.includes('by-historiske-lag-ruiner-minner-phase4-audit.json'))t=t.replace('\n## Regenerering\n',`\n${bullet}\n## Regenerering\n`);
@@ -60,4 +66,4 @@ function regenerate(){
  run('audit-fagverk-general-engine.mjs',abs('scripts/audit-fagverk-general-engine.mjs'),['--write-report']);
  run('build-fagverk-release-manifest.mjs',abs('scripts/build-fagverk-release-manifest.mjs'));
 }
-registry();status();bumpLegacy();readme();regenerate();console.log('Historiske lag materialisert: registry 2.46.0, status 2.45.0, 12 By-kapitler og regenererte rapporter/release.');
+registry();status();bumpLegacy();fixCurrent();readme();regenerate();console.log('Historiske lag materialisert: registry 2.46.0, status 2.45.0, 12 By-kapitler og regenererte rapporter/release.');
