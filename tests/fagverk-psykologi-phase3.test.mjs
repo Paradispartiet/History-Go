@@ -7,29 +7,38 @@ import { auditPsykologiPhase3 } from '../scripts/audit-fagverk-psykologi-phase3.
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('Psykologi er individuelt materialisert og auditert som Fase 3-fag', () => {
+test('Psykologi beholder canonical Fase 3-struktur gjennom redaksjonell produksjon', () => {
   const { report } = auditPsykologiPhase3();
-  assert.deepEqual(report.subject, {
-    id: 'psykologi',
-    title: 'Psykologi',
-    schemaFamily: 'standard_canonical',
-    adapter: 'standard',
-    navigationStatus: 'materialized',
-    assessmentStatus: 'audited',
-    editorialStatus: 'structure_ready',
-    nextGate: 'chapter_production',
-    subjectPage: 'fagverk.html?subject=psykologi',
-    badgePage: 'data/fag/psykologi/merke_psykologi (1).html'
-  });
-  assert.deepEqual(report.summary, {
-    domainCount: 6,
-    emneCount: 58,
-    methodCount: 58,
-    mappingCount: 58,
-    hookCount: 60,
-    registeredChapterCount: 0,
-    explicitMappingRowCount: 58
-  });
+  assert.equal(report.subject.id, 'psykologi');
+  assert.equal(report.subject.title, 'Psykologi');
+  assert.equal(report.subject.schemaFamily, 'standard_canonical');
+  assert.equal(report.subject.adapter, 'standard');
+  assert.equal(report.subject.navigationStatus, 'materialized');
+  assert.equal(report.subject.assessmentStatus, 'audited');
+  assert.ok(['structure_ready', 'chapters_in_progress', 'complete', 'expanded_and_audited'].includes(report.subject.editorialStatus));
+  assert.equal(report.subject.subjectPage, 'fagverk.html?subject=psykologi');
+  assert.equal(report.subject.badgePage, 'data/fag/psykologi/merke_psykologi (1).html');
+  assert.deepEqual(
+    {
+      domainCount: report.summary.domainCount,
+      emneCount: report.summary.emneCount,
+      methodCount: report.summary.methodCount,
+      mappingCount: report.summary.mappingCount,
+      hookCount: report.summary.hookCount,
+      explicitMappingRowCount: report.summary.explicitMappingRowCount
+    },
+    {
+      domainCount: 6,
+      emneCount: 58,
+      methodCount: 58,
+      mappingCount: 58,
+      hookCount: 60,
+      explicitMappingRowCount: 58
+    }
+  );
+  assert.ok(report.summary.registeredChapterCount >= 0 && report.summary.registeredChapterCount <= 6);
+  assert.equal(report.gates.editorialProgressConsistent, true);
+  assert.equal(report.gates.canonicalStructurePreservedDuringChapterProduction, true);
 });
 
 test('alle 58 Psykologi-emner er dekket uten syntetiske fagområder', () => {
