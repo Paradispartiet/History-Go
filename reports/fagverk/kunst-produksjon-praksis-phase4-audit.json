@@ -1,0 +1,95 @@
+{
+  "schema": "history_go_fagverk_kunst_produksjon_praksis_phase4_audit_v1",
+  "version": "1.0.0",
+  "status": "kunst_produksjon_praksis_canonical_5_of_5",
+  "generatedFrom": {
+    "chapter": "data/fagverk/kunst/produksjon-og-praksis.json",
+    "brief": "data/fagverk/kunst/produksjon-og-praksis/brief.json",
+    "claims": "data/fagverk/kunst/produksjon-og-praksis/claims.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "status": "data/fagverk/subject_status.json",
+    "emners": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
+    "methods": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
+    "places": "data/places/places_index.json",
+    "report": "reports/fagverk/kunst-produksjon-praksis-phase4-audit.json"
+  },
+  "subject": {
+    "id": "kunst",
+    "canonicalDomainCount": 6,
+    "canonicalEmneCount": 21,
+    "registeredChapterCount": 2,
+    "editorialStatus": "chapters_in_progress",
+    "nextGate": "remaining_domain_chapter_production"
+  },
+  "chapter": {
+    "id": "produksjon-og-praksis",
+    "title": "Produksjon og praksis: hvordan kunst blir til",
+    "primaryDomainId": "produksjon_praksis",
+    "moduleFiles": [
+      "data/fagverk/kunst/produksjon-og-praksis/01-grunnlag.json",
+      "data/fagverk/kunst/produksjon-og-praksis/02-fordypning.json",
+      "data/fagverk/kunst/produksjon-og-praksis/03-anvendelse.json"
+    ],
+    "briefFile": "data/fagverk/kunst/produksjon-og-praksis/brief.json",
+    "claimsFile": "data/fagverk/kunst/produksjon-og-praksis/claims.json",
+    "relatedPlaceIds": [
+      "edvard_munchs_atelier_ekely",
+      "kunsthall_oslo",
+      "hausmania",
+      "kunstnernes_hus"
+    ]
+  },
+  "canonicalCoverage": {
+    "ownerDomainId": "produksjon_praksis",
+    "requiredEmneIds": [
+      "em_kunst_undergrunn_selvorganisert",
+      "em_kunst_arbeidsformer_og_prosess",
+      "em_kunst_teknologi_og_materialitet",
+      "em_kunst_materialitet_teknikk_handverk",
+      "em_kunst_kunstnerokonomi_og_prekaritet"
+    ],
+    "coveredEmneIds": [
+      "em_kunst_undergrunn_selvorganisert",
+      "em_kunst_arbeidsformer_og_prosess",
+      "em_kunst_teknologi_og_materialitet",
+      "em_kunst_materialitet_teknikk_handverk",
+      "em_kunst_kunstnerokonomi_og_prekaritet"
+    ],
+    "exactCoverage": "5/5",
+    "remainingDomainCount": 4
+  },
+  "summary": {
+    "moduleCount": 3,
+    "sectionCount": 9,
+    "paragraphCount": 27,
+    "conceptCount": 6,
+    "workedExampleCount": 3,
+    "misconceptionCount": 5,
+    "applicationTaskCount": 5,
+    "selfCheckCount": 7,
+    "methodCount": 9,
+    "sourceCount": 16,
+    "claimCount": 23,
+    "placeCaseCount": 4
+  },
+  "gates": {
+    "canonicalOwnerDomain": true,
+    "exactFiveOfFiveEmneCoverage": true,
+    "allMethodReferencesResolved": true,
+    "threeEditedModules": true,
+    "paragraphLevelClaimTrace": true,
+    "allClaimsVerifiedAndUsed": true,
+    "inspectablePrimarySources": true,
+    "canonicalPlacesResolved": true,
+    "chapterSourcesRenderable": true,
+    "chapterPlacesRenderable": true,
+    "misconceptionsRenderable": true,
+    "finishedWorkProcessGuard": true,
+    "materialMeaningGuard": true,
+    "selfOrganizationLaborGuard": true,
+    "fundingPaymentEffectGuard": true,
+    "previousKunstStructurePreserved": true,
+    "incompleteSubjectStatusHonest": true,
+    "releaseReady": true
+  }
+}
