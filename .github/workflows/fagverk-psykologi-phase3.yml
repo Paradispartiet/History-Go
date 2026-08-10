@@ -97,8 +97,10 @@ jobs:
           node scripts/audit-fagverk-psykologi-phase3.mjs --write-report
           node scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs --write-report
 
-      - name: Validate shared Fagverk architecture
+      - name: Refresh and validate shared Fagverk architecture
         run: |
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
 
@@ -119,6 +121,8 @@ jobs:
           node scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs
           node scripts/audit-fagverk-psykologi-phase3.mjs
           node scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
 
       - name: Materialize generated Psychology files on PR branch
@@ -135,6 +139,8 @@ jobs:
             data/fagverk/fagverk_registry.json \
             data/fagverk/subject_status.json \
             data/fagverk/fagverk_release.json \
+            reports/fagverk/subject-baseline.json \
+            reports/fagverk/general-engine-audit.json \
             reports/fagverk/psykologi-phase3-audit.json \
             reports/fagverk/psykologi-psykisk-helse-phase4-audit.json
           if git diff --cached --quiet; then
