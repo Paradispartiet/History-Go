@@ -60,8 +60,8 @@ export async function auditByArkitekturGatekantMaktOmbrukPhase4({writeReport=fal
   assert(portalEntry?.subjectStatus==='materialized','By er ikke materialisert');
   assert(inventoryEntry?.schemaFamily==='by_compatibility','By har feil schemafamilie');
   assert(statusEntry?.assessmentStatus==='audited','By har feil auditstatus');
-  assert(statusEntry?.editorialStatus==='chapters_in_progress','By skal fortsatt stå chapters_in_progress');
-  assert(statusEntry?.nextGate==='chapter_production','By skal fortsette kapittelproduksjon etter Arkitektur 12/12');
+  assert(statusEntry?.editorialStatus==='complete','By skal fortsatt stå complete');
+  assert(statusEntry?.nextGate==='maintenance_source_refresh_and_place_case_expansion','By skal fortsette kapittelproduksjon etter Arkitektur 12/12');
   assert(registrySubject && Array.isArray(registrySubject.chapters),'By mangler kapittelregister');
   assert(registrySubject.chapters.length===17,'Andre Arkitektur-batch skal gi nøyaktig ni registrerte By-kapitler totalt');
   assert(chapterMeta && bylivMeta.every(Boolean) && archMeta.every(Boolean),'Kapittel 2 eller tidligere By-kapitler mangler');
@@ -140,7 +140,7 @@ export async function auditByArkitekturGatekantMaktOmbrukPhase4({writeReport=fal
   assert(hydrated.sources.length===13 && hydrated.claims.length===18,'Claims/kilder ble ikke hydrert');
 
   const report={
-    schema:'history_go_fagverk_by_arkitektur_gatekant_makt_ombruk_phase4_audit_v1',version:'1.0.0',status:'by_phase_4_arkitektur_domain_chapter_covered_subject_in_progress',generatedFrom:P,
+    schema:'history_go_fagverk_by_arkitektur_gatekant_makt_ombruk_phase4_audit_v1',version:'1.0.0',status:'by_phase_4_arkitektur_domain_chapter_covered_subject_complete',generatedFrom:P,
     subject:{id:'by',schemaFamily:inventoryEntry.schemaFamily,adapter:model.subject.adapter,navigationStatus:portalEntry.subjectStatus,assessmentStatus:statusEntry.assessmentStatus,editorialStatus:statusEntry.editorialStatus,nextGate:statusEntry.nextGate,registeredChapterCount:registrySubject.chapters.length},
     chapter:{id:rawChapter.id,title:rawChapter.title,primaryDomainId:rawChapter.primary_domain_id,file:P.chapter,editorialStatus:rawChapter.editorialStatus},
     summary:{coveredEmneCount:EXPECTED_EMNES.length,methodCount:EXPECTED_METHODS.length,moduleCount:3,sectionCount:9,sourceCount:13,verifiedClaimCount:18,workedExampleCount:2,misconceptionCount:5,applicationTaskCount:4,selfCheckCount:6,relatedPlaceCount:EXPECTED_PLACES.length,canonicalBylivEmneCount:30,coveredBylivEmneCount:30,canonicalArchitectureEmneCount:12,chapterCoveredArchitectureEmneCount:12},

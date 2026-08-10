@@ -86,8 +86,8 @@ export async function auditByBylivStemningMikrokomfortPhase4({ writeReport = fal
   assert(portalEntry?.subjectStatus === 'materialized', 'By er ikke materialisert');
   assert(inventoryEntry?.schemaFamily === 'by_compatibility', 'By har feil schemafamilie');
   assert(statusEntry?.assessmentStatus === 'audited', 'By har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal fortsatt stå chapters_in_progress');
-  assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette kapittelproduksjon');
+  assert(statusEntry?.editorialStatus === 'complete', 'By skal fortsatt stå complete');
+  assert(statusEntry?.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'By skal fortsette kapittelproduksjon');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
   assert(registrySubject.chapters.length === 17, 'By skal nå ha ni registrerte Fase 4-kapitler totalt');
   assert(chapterMeta, 'Stemning/mikrokomfort-kapittelet mangler i registry');
@@ -193,7 +193,7 @@ export async function auditByBylivStemningMikrokomfortPhase4({ writeReport = fal
   const report = {
     schema: 'history_go_fagverk_by_byliv_stemning_mikrokomfort_phase4_audit_v1',
     version: '1.0.0',
-    status: 'by_phase_4_chapters_in_progress',
+    status: 'by_phase_4_subject_complete',
     generatedFrom: P,
     subject: { id: 'by', schemaFamily: inventoryEntry.schemaFamily, adapter: model.subject.adapter, navigationStatus: statusEntry.navigationStatus, assessmentStatus: statusEntry.assessmentStatus, editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, registeredChapterCount: model.chapters.length },
     chapter: { id: chapterMeta.id, title: chapterMeta.title, primaryDomainId: chapterMeta.primary_domain_id, file: chapterMeta.file, editorialStatus: rawChapter.editorialStatus },

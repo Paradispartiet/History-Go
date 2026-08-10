@@ -83,8 +83,8 @@ export function auditByPilot({ writeReport = false, checkReport = true } = {}) {
   assert(inventoryEntry?.schemaFamily === 'by_compatibility', 'By har feil schemafamilie');
   assert(inventoryEntry?.pilot === true, 'By er ikke registrert som fase-2-pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'By har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal stå chapters_in_progress etter første redigerte kapittel');
-  assert(statusEntry?.nextGate === 'chapter_production', 'By har feil neste port');
+  assert(statusEntry?.editorialStatus === 'complete', 'By skal stå complete etter grønn helhetsaudit');
+  assert(statusEntry?.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'By har feil vedlikeholdsport');
   assert(registry.placePage?.fallbackSubjectByCategory?.by === 'by', 'By-steder faller fortsatt tilbake til Politikk-faget');
 
   const source = {};
@@ -126,7 +126,7 @@ export function auditByPilot({ writeReport = false, checkReport = true } = {}) {
   assert(model.summary.methodCount === 14, 'By skal ha fjorten canonicale metoder');
   assert(model.summary.mappingCount === 82, 'By skal ha én normalisert primærmapping per emne');
   assert(model.summary.hookCount === 81, 'By skal ha 81 canonicale hooks');
-  assert(model.chapters.length === 17 && model.chapters.some((chapter) => chapter.id === 'byliv-offentlige-rom') && model.chapters.some((chapter) => chapter.id === 'byliv-sosial-offentlighet') && model.chapters.some((chapter) => chapter.id === 'byliv-hendelser-midlertidighet') && model.chapters.some((chapter) => chapter.id === 'byliv-stemning-mikrokomfort') && model.chapters.some((chapter) => chapter.id === 'byliv-rytmer-miks-konflikt') && model.chapters.some((chapter) => chapter.id === 'arkitektur-type-skala-byform') && model.chapters.some((chapter) => chapter.id === 'arkitektur-gatekant-makt-ombruk') && model.chapters.some((chapter) => chapter.id === 'bolig-nabolag-tilgang-endring'), 'By skal registrere fjorten claimsporede Fase 4-kapitler uten å overrapportere fagets helhet');
+  assert(model.chapters.length === 17 && model.chapters.some((chapter) => chapter.id === 'byliv-offentlige-rom') && model.chapters.some((chapter) => chapter.id === 'byliv-sosial-offentlighet') && model.chapters.some((chapter) => chapter.id === 'byliv-hendelser-midlertidighet') && model.chapters.some((chapter) => chapter.id === 'byliv-stemning-mikrokomfort') && model.chapters.some((chapter) => chapter.id === 'byliv-rytmer-miks-konflikt') && model.chapters.some((chapter) => chapter.id === 'arkitektur-type-skala-byform') && model.chapters.some((chapter) => chapter.id === 'arkitektur-gatekant-makt-ombruk') && model.chapters.some((chapter) => chapter.id === 'bolig-nabolag-tilgang-endring'), 'By skal registrere 17 claimsporede Fase 4-kapitler');
   assert(source.pensum.modules.length === 7, 'By skal bevare sju pensummoduler som progresjonslag');
   assert(curriculum.modules.length === 8, 'By skal bevare åtte curriculum-moduler som progresjonslag');
   assert(qualityContract.status === 'canonical', 'By-kvalitetskontrakten er ikke canonical');
@@ -160,7 +160,7 @@ export function auditByPilot({ writeReport = false, checkReport = true } = {}) {
   const report = {
     schema: 'history_go_fagverk_by_pilot_audit_v1',
     version: '1.0.0',
-    status: 'by_compatibility_pilot_chapters_in_progress',
+    status: 'by_compatibility_complete',
     generatedFrom: { ...P, curriculum: curriculumPath, qualityContract: qualityContractPath },
     subject: {
       id: model.subject.id,
@@ -201,8 +201,8 @@ export function auditByPilot({ writeReport = false, checkReport = true } = {}) {
       byPlaceFallbackCorrected: true,
       badgeAndSubjectRoutesDistinct: true,
       assessmentStatusAudited: true,
-      editorialStatusChaptersInProgress: true,
-      chapterProductionStartedWithoutCompletenessOverclaim: true
+      editorialStatusComplete: true,
+      fullSubjectAuditRequiredForCompletion: true
     }
   };
   const committed = committedProjection(report);

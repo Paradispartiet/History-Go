@@ -93,8 +93,8 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
   assert(portalEntry?.subjectPage === 'fagverk.html?subject=by', 'By har feil fagsiderute');
   assert(inventoryEntry?.schemaFamily === 'by_compatibility', 'By har feil schemafamilie');
   assert(statusEntry?.assessmentStatus === 'audited', 'By har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal stå chapters_in_progress etter første redigerte kapittel');
-  assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette sammenhengende kapittelproduksjon');
+  assert(statusEntry?.editorialStatus === 'complete', 'By skal stå complete etter første redigerte kapittel');
+  assert(statusEntry?.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'By skal fortsette sammenhengende kapittelproduksjon');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
   assert(registrySubject.chapters.length === 17, 'By skal nå ha ni registrerte Fase 4-kapitler totalt');
   assert(chapterMeta, 'Byliv-kapittelet mangler i registry');
@@ -222,7 +222,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
   const report = {
     schema: 'history_go_fagverk_by_byliv_offentlige_rom_phase4_audit_v1',
     version: '1.0.0',
-    status: 'by_phase_4_chapters_in_progress',
+    status: 'by_phase_4_subject_complete',
     generatedFrom: P,
     subject: {
       id: 'by',

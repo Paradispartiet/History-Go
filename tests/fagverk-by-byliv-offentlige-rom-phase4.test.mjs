@@ -2,13 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditByBylivOffentligeRomPhase4 } from '../scripts/audit-fagverk-by-byliv-offentlige-rom-phase4.mjs';
 
-test('By Byliv-kapittelet er claimsporet, renderbart og fortsatt redaksjonelt ufullført som fag', async () => {
+test('Byliv-kapittelet er claimsporet og renderbart innen det komplette By-fagverket', async () => {
   const { report, hydrated } = await auditByBylivOffentligeRomPhase4();
   assert.equal(report.subject.id, 'by');
   assert.equal(report.subject.schemaFamily, 'by_compatibility');
   assert.equal(report.subject.adapter, 'by');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'chapter_production');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.registeredChapterCount, 17);
   assert.equal(report.chapter.id, 'byliv-offentlige-rom');
   assert.deepEqual(report.summary, {
