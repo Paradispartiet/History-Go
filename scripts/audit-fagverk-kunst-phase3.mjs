@@ -89,7 +89,7 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
   assert(inventoryEntry?.schemaFamily === 'standard_canonical', 'Kunst har feil schemafamilie');
   assert(inventoryEntry?.pilot === false, 'Kunst skal være et individuelt Fase 3-fag, ikke en Fase 2-pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'Kunst har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Kunst må stå chapters_in_progress etter to kapitler');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Kunst må stå chapters_in_progress etter tre kapitler');
   assert(statusEntry?.nextGate === 'remaining_domain_chapter_production', 'Kunst har feil neste port');
   assert(registry.placePage?.fallbackSubjectByCategory?.kunst === 'kunst', 'Kunst-steder mangler Kunst som fagverksfallback');
   assert(manifestEntry?.emneMappings === 'kunst/emnemapping_kunst_canonical_v4_5.json', 'Kunst-manifestet peker ikke til canonical mappingregister');
@@ -120,9 +120,10 @@ export function auditKunstPhase3({ writeReport = false, checkReport = true } = {
   assert(model.summary.methodCount === 21, 'Kunst skal ha 21 canonicale metoder');
   assert(model.summary.mappingCount === 21, 'Kunst skal ha én normalisert primærmapping per emne');
   assert(model.summary.hookCount === 60, 'Kunst skal ha 60 canonicale hooks');
-  assert(model.chapters.length === 2, 'Kunst skal ha nøyaktig to registrerte kapitler i andre produksjonssteg');
+  assert(model.chapters.length === 3, 'Kunst skal ha nøyaktig tre registrerte kapitler i tredje produksjonssteg');
   assert(model.chapters[0].primaryDomainId === 'felt_institusjon', 'Første Kunst-kapittel må eies av felt_institusjon');
   assert(model.chapters[1].primaryDomainId === 'produksjon_praksis', 'Andre Kunst-kapittel må eies av produksjon_praksis');
+  assert(model.chapters[2].primaryDomainId === 'estetisk_sprak_form', 'Tredje Kunst-kapittel må eies av estetisk_sprak_form');
   assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Kunst-emne mangler løst metode-ID');
   assert(model.emners.flatMap((emne) => emne.methodLabels).every((label) => !label.startsWith('met_kunst_')), 'Kunst har uløst metode-ID i emnekatalogen');
   assert(model.emnersById.get(HANDVERK_EMNE)?.domainId === 'produksjon_praksis', 'Materialitet og håndverk er ikke koblet til Produksjon og praksis');

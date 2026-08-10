@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
-import { auditKunstProduksjonPraksisPhase4 } from '../scripts/audit-fagverk-kunst-produksjon-praksis-phase4.mjs';
+import { auditKunstEstetiskSprakFormPhase4 } from '../scripts/audit-fagverk-kunst-estetisk-sprak-form-phase4.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const coreSource = fs.readFileSync(path.join(root, 'js/fagverk-subject-core.js'), 'utf8');
@@ -13,19 +13,19 @@ sandbox.globalThis = sandbox;
 vm.runInNewContext(coreSource, sandbox, { filename: 'js/fagverk-subject-core.js' });
 const CORE = sandbox.HGFagverkSubjectCore;
 
-test('Produksjon og praksis er canonicalt materialisert 5/5', () => {
-  const { report } = auditKunstProduksjonPraksisPhase4();
+test('Estetisk språk og form er canonicalt materialisert 4/4', () => {
+  const { report } = auditKunstEstetiskSprakFormPhase4();
   assert.equal(report.subject.id, 'kunst');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.registeredChapterCount, 3);
-  assert.equal(report.canonicalCoverage.ownerDomainId, 'produksjon_praksis');
-  assert.equal(report.canonicalCoverage.exactCoverage, '5/5');
+  assert.equal(report.canonicalCoverage.ownerDomainId, 'estetisk_sprak_form');
+  assert.equal(report.canonicalCoverage.exactCoverage, '4/4');
   assert.equal(report.canonicalCoverage.remainingDomainCount, 3);
   assert.deepEqual(report.canonicalCoverage.requiredEmneIds, report.canonicalCoverage.coveredEmneIds);
 });
 
 test('kapittelet har full pedagogisk og evidensbasert pakke', () => {
-  const { report, chapter, claimsDoc, modules } = auditKunstProduksjonPraksisPhase4();
+  const { report, chapter, claimsDoc, modules } = auditKunstEstetiskSprakFormPhase4();
   assert.deepEqual(report.summary, {
     moduleCount: 3,
     sectionCount: 9,
@@ -35,17 +35,12 @@ test('kapittelet har full pedagogisk og evidensbasert pakke', () => {
     misconceptionCount: 5,
     applicationTaskCount: 5,
     selfCheckCount: 7,
-    methodCount: 9,
+    methodCount: 10,
     sourceCount: 16,
-    claimCount: 23,
+    claimCount: 24,
     placeCaseCount: 4
   });
-  assert.deepEqual(chapter.relatedPlaces.map((place) => place.id), [
-    'edvard_munchs_atelier_ekely',
-    'kunsthall_oslo',
-    'hausmania',
-    'kunstnernes_hus'
-  ]);
+  assert.deepEqual(chapter.relatedPlaces.map((place) => place.id), ['nasjonalmuseet', 'munch_museet', 'vigelandsparken', 'astrup_fearnley']);
   assert.ok(chapter.relatedPlaces.every((place) => place.name && place.role));
   assert.ok(claimsDoc.sources.every((source) => source.label && source.url));
   assert.ok(modules[1].commonMisconceptions.every((item) => item.claim && item.correction));
@@ -53,19 +48,18 @@ test('kapittelet har full pedagogisk og evidensbasert pakke', () => {
 });
 
 test('Kunst står ærlig som uferdig etter tre av seks domener', () => {
-  const { report } = auditKunstProduksjonPraksisPhase4();
+  const { report } = auditKunstEstetiskSprakFormPhase4();
   assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
   assert.equal(report.subject.canonicalDomainCount, 6);
   assert.equal(report.subject.canonicalEmneCount, 21);
   assert.equal(report.gates.incompleteSubjectStatusHonest, true);
 });
 
-test('Produksjon og praksis hydrerer alle synlige rendererfelt', async () => {
+test('Estetisk språk og form hydrerer alle synlige rendererfelt', async () => {
   const registry = JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8'));
-  const chapterMeta = registry.subjects.kunst.chapters.find((chapter) => chapter.id === 'produksjon-og-praksis');
+  const chapterMeta = registry.subjects.kunst.chapters.find((chapter) => chapter.id === 'estetisk-sprak-og-form');
   const fetchFile = async (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
   const chapter = await CORE.hydrateChapter(chapterMeta, fetchFile);
-
   assert.equal(chapter.relatedPlaces.length, 4);
   assert.ok(chapter.relatedPlaces.every((place) => place.id && place.name && place.role));
   assert.equal(chapter.sources.length, 16);
