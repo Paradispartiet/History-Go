@@ -7,7 +7,7 @@ test('Makt og konflikt fullføres 5/5 uten å svekke tidligere By-domener', asyn
   assert.equal(report.subject.id, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 14);
+  assert.equal(report.subject.registeredChapterCount, 15);
   assert.equal(report.chapter.id, 'makt-konflikt-protest-grenser-trygghet');
   assert.equal(report.summary.coveredEmneCount, 5);
   assert.equal(report.summary.canonicalPowerConflictEmneCount, 5);

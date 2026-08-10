@@ -1,0 +1,152 @@
+{
+  "sections": [
+    {
+      "id": "data-anvendelse-1",
+      "title": "Jernbanetorget: test kartet mot ruten",
+      "paragraphs": [
+        "Oslo publiserer åpne data som kan kobles til Jernbanetorget. Før analyse må datasettets enhet, dekning, definisjon og oppdatering dokumenteres.",
+        "Lag kart over ganglinjer eller tilgjengelighet og gå deretter de samme rutene. Digitale data kan vise nettverk og avstand, mens feltet fanger midlertidige sperringer, kø, tempo og uformell bruk.",
+        "Rapporter funn som datamønster, feltobservasjon og tolkning i separate kolonner. Et samsvar styrker beskrivelsen; et avvik krever ny undersøkelse og gir ikke automatisk kartet eller feltet forrang."
+      ],
+      "paragraphClaimIds": [
+        [
+          "data-13"
+        ],
+        [
+          "data-02"
+        ],
+        [
+          "data-13",
+          "data-02"
+        ]
+      ],
+      "keyPoints": [
+        "Kombiner GIS og gåanalyse uten å blande evidenstyper.",
+        "Åpne data er ikke automatisk komplette data."
+      ],
+      "keyPointClaimIds": [
+        [
+          "data-13"
+        ],
+        [
+          "data-02"
+        ]
+      ]
+    },
+    {
+      "id": "data-anvendelse-2",
+      "title": "Bjørvika: følg plan til bygget resultat",
+      "paragraphs": [
+        "En personvernkonsekvensvurdering kreves ved sannsynlig høy risiko. For bysystemer må analysen derfor begynne med formål, datatyper, berørte grupper, aktører og risiko – ikke med etiketten smart.",
+        "Automatiserte avgjørelser som har rettsvirkning eller tilsvarende betydelig virkning omfattes av særskilte vilkår og rettigheter. En anbefaling, prioritering og avgjørelse må derfor klassifiseres presist.",
+        "I Bjørvika kan plan- og aktøranalysen kobles til synlige adgangs-, betalings- og informasjonssystemer. Dokumenter systemet, men ikke utled persondataflyt eller rettslig grunnlag bare fra kamera, sensor eller app."
+      ],
+      "paragraphClaimIds": [
+        [
+          "data-14"
+        ],
+        [
+          "data-15"
+        ],
+        [
+          "data-14",
+          "data-15"
+        ]
+      ],
+      "keyPoints": [
+        "Personvernrisiko vurderes før høy-risiko behandling.",
+        "Automatisert anbefaling og betydelig avgjørelse må skilles."
+      ],
+      "keyPointClaimIds": [
+        [
+          "data-14"
+        ],
+        [
+          "data-15"
+        ]
+      ]
+    },
+    {
+      "id": "data-anvendelse-3",
+      "title": "Oslo S og Barcode: les grensesnitt som styring",
+      "paragraphs": [
+        "Digdirs veiledning for offentlig KI legger ansvar, risiko og etterprøvbarhet inn i styringen gjennom hele livsløpet. Teknisk ytelse alene er derfor ikke tilstrekkelig kontroll.",
+        "Et kamera, en sensor eller en app viser at digital infrastruktur er til stede. Det viser ikke alene hvilke data som lagres, hvem som har tilgang, hvor lenge de beholdes eller hvordan de inngår i beslutninger.",
+        "Planinnsyn og åpne data gjør deler av systemet kontrollerbart, men uformelle forhandlinger, leverandøravtaler og algoritmisk logikk kan ligge utenfor. Marker derfor dokumentert, inferert og ukjent makt separat."
+      ],
+      "paragraphClaimIds": [
+        [
+          "data-16"
+        ],
+        [
+          "data-17"
+        ],
+        [
+          "data-18"
+        ]
+      ],
+      "keyPoints": [
+        "Etterprøvbarhet gjelder hele systemets livsløp.",
+        "Synlig teknologi er ikke full dataflyt."
+      ],
+      "keyPointClaimIds": [
+        [
+          "data-16"
+        ],
+        [
+          "data-17"
+        ]
+      ]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "id": "data-oppgave-1",
+      "title": "Kart mot rute",
+      "prompt": "Kartlegg en rute over Jernbanetorget i GIS og gå den på to tidspunkt. Hold data, feltfunn og tolkning adskilt.",
+      "method_ids": [
+        "met_gis_romlig_analyse",
+        "met_gaanalyse"
+      ]
+    },
+    {
+      "id": "data-oppgave-2",
+      "title": "Plan til resultat",
+      "prompt": "Velg ett grep i Bjørvika og spor det fra bindende dokument via tillatelse til fysisk resultat og drift.",
+      "method_ids": [
+        "met_policy_lesning",
+        "met_aktoranalyse"
+      ]
+    },
+    {
+      "id": "data-oppgave-3",
+      "title": "Innspill til innflytelse",
+      "prompt": "Bygg en sporingsmatrise for en planprosess: invitasjon, deltakere, innspill, vurdering, endring og begrunnelse.",
+      "method_ids": [
+        "met_policy_lesning",
+        "met_intervju_brukerperspektiv",
+        "met_aktoranalyse"
+      ]
+    },
+    {
+      "id": "data-oppgave-4",
+      "title": "Digital systemaudit",
+      "prompt": "Følg et adgangs-, informasjons- eller mobilitetssystem ved Oslo S/Barcode. Kartlegg aktører, dataflyt, alternativer, risiko og ukjente ledd.",
+      "method_ids": [
+        "met_dataanalyse",
+        "met_aktoranalyse",
+        "met_gaanalyse"
+      ]
+    }
+  ],
+  "selfCheck": [
+    {
+      "question": "Hva må til før en sensorobservasjon blir en påstand om databruk?",
+      "answer": "Dokumentasjon av formål, datatyper, behandling, tilgang, lagring, rettsgrunnlag og beslutningsrolle."
+    },
+    {
+      "question": "Hvorfor må åpne data suppleres med felt og aktøranalyse?",
+      "answer": "Fordi datasettet kan mangle uformell bruk, ikke-digitale grupper, forhandlinger og faktisk implementering."
+    }
+  ]
+}
