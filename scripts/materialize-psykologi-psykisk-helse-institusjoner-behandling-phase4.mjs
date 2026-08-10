@@ -29,7 +29,7 @@ const emneIds = [
   'em_psy_pasientrolle_erfaring',
   'em_psy_psykisk_helse',
   'em_psy_terapi_praksis',
-  'em_psy_terapirom_relasjon',
+  'em_psy_terapirom_relasyon',
   'em_psy_velferd_psykisk_helse'
 ];
 
@@ -293,7 +293,7 @@ const modules = {
       section(
         'phi-praksis-2',
         'Terapirommet er en sosial og institusjonell situasjon',
-        ['em_psy_terapirom_relasjon', 'em_psy_terapi_praksis'],
+        ['em_psy_terapirom_relasyon', 'em_psy_terapi_praksis'],
         ['met_psy_rom_og_praksisanalyse', 'met_psy_relational_analyse', 'met_psy_diskursanalyse'],
         [
           'Et terapirom kan analyseres uten å tolke klientens indre liv. Rom, tidsramme, taushetsplikt, rollefordeling, journalføring, mål og samtaleform setter institusjonelle rammer rundt møtet. Det er disse dokumenterbare forholdene en stedlig analyse først skal beskrive.',
