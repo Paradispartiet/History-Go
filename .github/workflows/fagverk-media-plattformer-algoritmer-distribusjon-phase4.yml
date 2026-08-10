@@ -1,0 +1,69 @@
+name: Fagverk Media Plattformer algoritmer distribusjon Phase 4
+
+on:
+  pull_request:
+    paths:
+      - 'data/fagverk/media/plattformer-algoritmer-og-distribusjon.json'
+      - 'data/fagverk/media/plattformer-algoritmer-og-distribusjon/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/media-*-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/subject-inventory-audit.json'
+      - 'scripts/audit-fagverk-media-*.mjs'
+      - 'scripts/materialize-media-plattformer-algoritmer-distribusjon-phase4.mjs'
+      - 'tests/fagverk-media-*.test.mjs'
+      - 'tests/fagverk-general-engine.test.mjs'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - '.github/workflows/fagverk-media-plattformer-algoritmer-distribusjon-phase4.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fagverk/media/plattformer-algoritmer-og-distribusjon.json'
+      - 'data/fagverk/media/plattformer-algoritmer-og-distribusjon/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/media-*-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'reports/fagverk/subject-inventory-audit.json'
+      - 'scripts/audit-fagverk-media-*.mjs'
+      - 'scripts/materialize-media-plattformer-algoritmer-distribusjon-phase4.mjs'
+      - 'tests/fagverk-media-*.test.mjs'
+      - 'tests/fagverk-general-engine.test.mjs'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - '.github/workflows/fagverk-media-plattformer-algoritmer-distribusjon-phase4.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax
+        run: |
+          node --check scripts/materialize-media-plattformer-algoritmer-distribusjon-phase4.mjs
+          node --check scripts/audit-fagverk-media-plattformer-algoritmer-distribusjon-phase4.mjs
+      - name: Media structural audit
+        run: node scripts/audit-fagverk-media-phase3.mjs
+      - name: Previous Media chapter audits
+        run: |
+          node scripts/audit-fagverk-media-presse-redaksjoner-avishus-phase4.mjs
+          node scripts/audit-fagverk-media-offentlighet-ytringsfrihet-etikk-phase4.mjs
+          node scripts/audit-fagverk-media-kilder-kritikk-sannhet-phase4.mjs
+      - name: Media platform chapter audit
+        run: node scripts/audit-fagverk-media-plattformer-algoritmer-distribusjon-phase4.mjs
+      - name: General engine and subject inventory
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+      - name: Release feed
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Tests
+        run: node --test tests/fagverk-media-*.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs

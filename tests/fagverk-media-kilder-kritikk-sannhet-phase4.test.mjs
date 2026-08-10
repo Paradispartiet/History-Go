@@ -17,7 +17,7 @@ test('Kilder, kritikk og sannhet er canonicalt materialisert 20/20', () => {
   const { report } = auditMediaKilderKritikkSannhetPhase4();
   assert.equal(report.subject.id, 'media');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.registeredChapterCount, 3);
+  assert.equal(report.subject.registeredChapterCount, 4);
   assert.equal(report.subject.nestedPopularCultureEmneCount, 56);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'kilder_kritikk_sannhet');
   assert.equal(report.canonicalCoverage.exactCoverage, '20/20');
@@ -40,7 +40,7 @@ test('Kildekritikk-kapittelet har full pedagogisk og evidensbasert pakke', () =>
   assert.ok(Object.values(report.gates).every(Boolean));
 });
 
-test('Media står ærlig som uferdig etter tre av seks hovedområder', () => {
+test('Media står ærlig som uferdig etter fire av seks hovedområder', () => {
   const { report } = auditMediaKilderKritikkSannhetPhase4();
   assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
   assert.equal(report.subject.canonicalDomainCount, 6);
