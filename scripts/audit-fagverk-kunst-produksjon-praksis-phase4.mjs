@@ -64,13 +64,13 @@ export function auditKunstProduksjonPraksisPhase4({ writeReport = false, checkRe
   assert(chapter.editorialStatus === 'chapter_ready' && chapter.claimTraceRequired === true, 'Kapittelet er ikke claimsporet chapter_ready');
   assert(isDeepStrictEqual(chapter.emne_ids, EXPECTED_EMNES), 'Kapittelet dekker ikke de fem canonicale emnene i riktig rekkefølge');
   assert(new Set(chapter.emne_ids).size === 5, 'Kunst-kapittelet har duplikate emner');
-  assert(registrySubject.chapters.length === 4 && registryChapter, 'Kunst-registeret skal ha nøyaktig fire kapitler');
+  assert(registrySubject.chapters.length === 5 && registryChapter, 'Kunst-registeret skal ha nøyaktig fem kapitler');
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'produksjon_praksis', 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
-  assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Kunst kan ikke stå complete etter fire av seks domener');
+  assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Kunst kan ikke stå complete etter fem av seks domener');
   assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Kunst har feil neste port');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 21, 'Kunst-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 4, 'Fase 3-auditen ser ikke alle fire kapitlene');
+  assert(phase3.report.summary.registeredChapterCount === 5, 'Fase 3-auditen ser ikke alle fem kapitlene');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));
   assert(EXPECTED_EMNES.every((id) => canonicalEmneIds.has(id)), 'Kapittelet peker til ukjent Kunst-emne');
@@ -151,7 +151,7 @@ export function auditKunstProduksjonPraksisPhase4({ writeReport = false, checkRe
       requiredEmneIds: EXPECTED_EMNES,
       coveredEmneIds: chapter.emne_ids,
       exactCoverage: '5/5',
-      remainingDomainCount: 2
+      remainingDomainCount: 1
     },
     summary: {
       moduleCount: modules.length,
