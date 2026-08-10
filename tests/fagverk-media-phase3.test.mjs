@@ -16,8 +16,8 @@ test('Media er individuelt materialisert og auditert som andre Fase 3-fag', () =
     adapter: 'standard',
     navigationStatus: 'materialized',
     assessmentStatus: 'audited',
-    editorialStatus: 'chapters_in_progress',
-    nextGate: 'remaining_domain_chapter_production',
+    editorialStatus: 'complete',
+    nextGate: 'maintenance_source_refresh_and_place_case_expansion',
     subjectPage: 'fagverk.html?subject=media',
     badgePage: 'data/fag/media/merke_media.html'
   });
@@ -28,7 +28,7 @@ test('Media er individuelt materialisert og auditert som andre Fase 3-fag', () =
     primaryMethodCount: 115,
     mappingCount: 120,
     hookCount: 60,
-    registeredChapterCount: 5,
+    registeredChapterCount: 6,
     explicitMappingRowCount: 120
   });
 });

@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.63.0",
+  "version": "2.64.0",
   "updatedAt": "2026-08-10",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -470,7 +470,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Medias seks canonicale hovedområder eier rendererstrukturen. De fem første områdene er materialisert som fulltekst- og claimsporede kapitler: Presse, redaksjoner og avishus; Offentlighet, ytringsfrihet og medieetikk; Kilder, kritikk og sannhet; Plattformer, algoritmer og distribusjon; og Propaganda, påvirkning og informasjonskrig. Ett hovedområde står igjen. Populærkultur bevares som et komplett nested mediefelt."
+        "note": "Medias seks canonicale hovedområder eier rendererstrukturen og er materialisert som fulltekst- og claimsporede kapitler. Populærkultur bevares som et komplett nested mediefelt."
       },
       "chapters": [
         {
@@ -617,8 +617,45 @@
             "em_media_tillitssvikt",
             "em_media_visuell_pavirking"
           ]
+        },
+        {
+          "id": "medieokonomi-eierskap-og-arbeid",
+          "title": "Medieøkonomi, eierskap og arbeid: hvem betaler for journalistikken?",
+          "subtitle": "Eiere, annonse- og publikumsmarked, abonnement, arbeidsliv, teknologi og offentlig finansiering",
+          "file": "data/fagverk/media/medieokonomi-eierskap-og-arbeid.json",
+          "primary_domain_id": "medieokonomi_eierskap_arbeid",
+          "emne_ids": [
+            "em_media_annonseokonomi",
+            "em_media_arbeidsdeling",
+            "em_media_betalingsmur",
+            "em_media_desk_utvikling_design",
+            "em_media_digitalisering_av_redaksjon",
+            "em_media_frilans_og_press",
+            "em_media_journalistisk_arbeidsliv",
+            "em_media_klikklogikk",
+            "em_media_kommersialisering_media",
+            "em_media_konsernstruktur",
+            "em_media_lisens_og_finansiering",
+            "em_media_medieeierskap",
+            "em_media_mediekonsern",
+            "em_media_nedbemanning",
+            "em_media_public_service_okonomi",
+            "em_media_publikumsmarked",
+            "em_media_redaksjonell_kapasitet",
+            "em_media_sentralisering",
+            "em_media_teknologisk_omstilling",
+            "em_media_tilgang_og_abonnement"
+          ]
         }
-      ]
+      ],
+      "editorialPlan": {
+        "completionRequirements": [
+          "all_canonical_domains_materialized",
+          "all_canonical_emners_covered_exactly_once",
+          "paragraph_claim_trace_complete",
+          "full_subject_audit_green"
+        ]
+      }
     },
     "vitenskap": {
       "title": "Vitenskap & teknologi",

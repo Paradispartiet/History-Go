@@ -16,8 +16,8 @@ const CORE = sandbox.HGFagverkSubjectCore;
 test('Kilder, kritikk og sannhet er canonicalt materialisert 20/20', () => {
   const { report } = auditMediaKilderKritikkSannhetPhase4();
   assert.equal(report.subject.id, 'media');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.registeredChapterCount, 5);
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.registeredChapterCount, 6);
   assert.equal(report.subject.nestedPopularCultureEmneCount, 56);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'kilder_kritikk_sannhet');
   assert.equal(report.canonicalCoverage.exactCoverage, '20/20');
@@ -40,12 +40,12 @@ test('Kildekritikk-kapittelet har full pedagogisk og evidensbasert pakke', () =>
   assert.ok(Object.values(report.gates).every(Boolean));
 });
 
-test('Media står ærlig som uferdig etter fire av seks hovedområder', () => {
+test('Media beholder komplett fagstatus i eldre kategori-audit', () => {
   const { report } = auditMediaKilderKritikkSannhetPhase4();
-  assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.canonicalDomainCount, 6);
   assert.equal(report.subject.canonicalEmneCount, 120);
-  assert.equal(report.gates.incompleteSubjectStatusHonest, true);
+  assert.equal(report.gates.completeSubjectStatusPreserved, true);
   assert.equal(report.gates.previousMediaChaptersPreserved, true);
   assert.equal(report.gates.nestedPopularCulturePreserved, true);
 });
