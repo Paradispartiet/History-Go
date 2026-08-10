@@ -101,3 +101,5 @@ Rot-README er bare inngang. Den skal ikke være idébibel, historisk lager eller
 Gamle tekstblokker skal konsolideres inn i riktig dokument, ikke kopieres videre i nye README-filer. Nye status-, plan- og auditdokumenter skal registreres før de får en styrende rolle.
 
 - By-fagverket dekker nå canonical Data, styring og urbane systemer 4/4 gjennom `data-styring-kart-plan-medvirkning-algoritmer`; fagområdet er fortsatt `chapters_in_progress`.
+
+- By-fagverket dekker nå canonical Regional og global urbanisering 2/2 gjennom `regional-global-pendling-migrasjon-sammenligning`; fagområdet er fortsatt `chapters_in_progress`.

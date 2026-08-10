@@ -7,7 +7,7 @@ test('Historiske lag fullføres 2/2 uten å svekke tidligere By-domener', async 
   assert.equal(report.subject.id, 'by');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'chapter_production');
-  assert.equal(report.subject.registeredChapterCount, 15);
+  assert.equal(report.subject.registeredChapterCount, 16);
   assert.equal(report.chapter.id, 'historiske-lag-ruiner-minner');
   assert.equal(report.summary.coveredEmneCount, 2);
   assert.equal(report.summary.canonicalHistoricalLayersEmneCount, 2);

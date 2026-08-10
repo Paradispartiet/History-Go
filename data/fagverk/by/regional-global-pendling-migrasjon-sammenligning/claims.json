@@ -1,0 +1,316 @@
+{
+  "schema": "history_go_claims_v1",
+  "version": "1.0.0",
+  "subject": "by",
+  "chapter_id": "regional-global-pendling-migrasjon-sammenligning",
+  "verified_at": "2026-08-10",
+  "sources": [
+    {
+      "id": "regional-src-01",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Tabell 11616: Inn- og utpendling for sysselsatte",
+      "url": "https://www.ssb.no/statbank/table/11616",
+      "source_type": "official_statistics",
+      "source_location": "region, år, sysselsatte og inn-/utpendling"
+    },
+    {
+      "id": "regional-src-02",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Tabell 11617: Inn- og utpendling etter alder",
+      "url": "https://www.ssb.no/statbank/table/11617",
+      "source_type": "official_statistics",
+      "source_location": "alder, region og pendling"
+    },
+    {
+      "id": "regional-src-03",
+      "publisher": "Oslo kommune",
+      "title": "Visjon: Oslo S – byens hjerte",
+      "url": "https://aktuelt.oslo.kommune.no/visjon-oslo-s-byens-hjerte",
+      "source_type": "official_planning_update",
+      "source_location": "rolle som kollektivknutepunkt og tverrsektorielt samarbeid"
+    },
+    {
+      "id": "regional-src-04",
+      "publisher": "Oslo kommune",
+      "title": "Bryn kollektivknutepunkt",
+      "url": "https://www.oslo.kommune.no/slik-bygger-vi-oslo/bryn-kollektivknutepunkt/",
+      "source_type": "official_project",
+      "source_location": "mål, bytter og forbindelser mellom buss, tog og T-bane"
+    },
+    {
+      "id": "regional-src-05",
+      "publisher": "Oslo kommune",
+      "title": "Skøyen – utvikling av fjordbyen mot vest",
+      "url": "https://aktuelt.oslo.kommune.no/sk%C3%B8yen-utvikling-av-fjordbyen-mot-vest",
+      "source_type": "official_planning_update",
+      "source_location": "knutepunkt og helhetlig områdeutvikling"
+    },
+    {
+      "id": "regional-src-06",
+      "publisher": "Akershus fylkeskommune",
+      "title": "Regional plan for areal og transport i Oslo og Akershus",
+      "url": "https://afk.no/tjenester/planlegging/regional-planlegging/gjeldende-regionale-planer/regional-plan-for-areal-og-transport-i-oslo-og-akershus/",
+      "source_type": "official_regional_plan",
+      "source_location": "samordnet areal- og transportutvikling på tvers av kommunegrenser"
+    },
+    {
+      "id": "regional-src-07",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Innvandrere og norskfødte med innvandrerforeldre",
+      "url": "https://www.ssb.no/befolkning/innvandrere/statistikk/innvandrere-og-norskfodte-med-innvandrerforeldre",
+      "source_type": "official_statistics",
+      "source_location": "definisjoner, årlig status og landbakgrunn"
+    },
+    {
+      "id": "regional-src-08",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Tabell 09817: Innvandrere og norskfødte med innvandrerforeldre",
+      "url": "https://www.ssb.no/statbank/table/09817",
+      "source_type": "official_statistics",
+      "source_location": "år, landbakgrunn og region"
+    },
+    {
+      "id": "regional-src-09",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "Tabell 12610: Innvandrere etter Oslo-bydel",
+      "url": "https://www.ssb.no/statbank/table/12610",
+      "source_type": "official_statistics",
+      "source_location": "bydel, landbakgrunn og år"
+    },
+    {
+      "id": "regional-src-10",
+      "publisher": "Statistisk sentralbyrå",
+      "title": "De med innvandrerbakgrunn foretrekker Akershus, Rogaland og Østfold",
+      "url": "https://www.ssb.no/befolkning/flytting/statistikk/flyttinger/artikler/de-med-innvandrerbakgrunn-foretrekker-akershus-rogaland-og-ostfold",
+      "source_type": "official_analysis",
+      "source_location": "innenlands flytting mellom Oslo og Akershus"
+    },
+    {
+      "id": "regional-src-11",
+      "publisher": "United Nations DESA",
+      "title": "World Urbanization Prospects 2025",
+      "url": "https://www.un.org/development/desa/pd/world-urbanization-prospects-2025",
+      "source_type": "official_international_statistics",
+      "source_location": "estimat 1950–2025 og framskrivinger til 2050"
+    },
+    {
+      "id": "regional-src-12",
+      "publisher": "United Nations DESA",
+      "title": "World Urbanization Prospects methodology",
+      "url": "https://population.un.org/wup/methodology",
+      "source_type": "official_methodology",
+      "source_location": "bydefinisjoner, harmonisering og datakilder"
+    },
+    {
+      "id": "regional-src-13",
+      "publisher": "Oslo Havn",
+      "title": "Statistikk for Oslo havn",
+      "url": "https://www.oslohavn.no/no/om-oslo-havn/statistikk/",
+      "source_type": "official_port_statistics",
+      "source_location": "gods-, passasjer- og anløpsstatistikk"
+    }
+  ],
+  "claims": [
+    {
+      "id": "regional-01",
+      "claim": "SSBs pendlingsstatistikk skiller bostedsregion, arbeidsstedsregion, innpendling og utpendling for sysselsatte.",
+      "source_ids": [
+        "regional-src-01"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-grunnlag-1"
+      ]
+    },
+    {
+      "id": "regional-02",
+      "claim": "Pendlingstabellen måler arbeidsrelatert kryssing av regiongrenser og dekker derfor ikke alle omsorgs-, utdannings-, fritids- eller tjenestereiser.",
+      "source_ids": [
+        "regional-src-01"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-grunnlag-1"
+      ]
+    },
+    {
+      "id": "regional-03",
+      "claim": "SSB publiserer inn- og utpendling fordelt etter alder, slik at samlet pendling kan brytes ned uten å gjøre aldersgruppen til forklaring.",
+      "source_ids": [
+        "regional-src-02"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-grunnlag-2"
+      ]
+    },
+    {
+      "id": "regional-04",
+      "claim": "En funksjonell byregion må analyseres med strømmer og koblinger, ikke avledes direkte fra én administrativ kommunegrense.",
+      "source_ids": [
+        "regional-src-01",
+        "regional-src-06"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-grunnlag-2"
+      ]
+    },
+    {
+      "id": "regional-05",
+      "claim": "Oslo kommune beskriver Oslo S som Norges viktigste kollektivknutepunkt og har inngått samarbeid med fylke og stat om området.",
+      "source_ids": [
+        "regional-src-03"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-grunnlag-3"
+      ]
+    },
+    {
+      "id": "regional-06",
+      "claim": "Bryn utvikles for enklere bytter mellom buss, tog og T-bane og for å avlaste sentrum.",
+      "source_ids": [
+        "regional-src-04"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-grunnlag-3"
+      ]
+    },
+    {
+      "id": "regional-07",
+      "claim": "Oslo kommune beskriver Skøyen som et av landets største kollektivknutepunkter og begrunner behovet for helhetlig områdeutvikling.",
+      "source_ids": [
+        "regional-src-05"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-fordypning-1"
+      ]
+    },
+    {
+      "id": "regional-08",
+      "claim": "Den regionale areal- og transportplanen samordner utvikling på tvers av Oslo og Akershus, men planmål dokumenterer ikke alene gjennomført kapasitet eller lokal kvalitet.",
+      "source_ids": [
+        "regional-src-06"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-fordypning-1"
+      ]
+    },
+    {
+      "id": "regional-09",
+      "claim": "SSBs årlige statistikk skiller innvandrere fra norskfødte med innvandrerforeldre og bruker definerte statistiske kategorier.",
+      "source_ids": [
+        "regional-src-07"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-fordypning-2"
+      ]
+    },
+    {
+      "id": "regional-10",
+      "claim": "Statistikkbanktabell 09817 gjør det mulig å sammenligne år, region og landbakgrunn uten å identifisere enkeltpersoner.",
+      "source_ids": [
+        "regional-src-08"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-fordypning-2"
+      ]
+    },
+    {
+      "id": "regional-11",
+      "claim": "Tabell 12610 publiserer aggregerte tall for Oslo-bydeler og landbakgrunn; bydelstall beskriver ikke identiteten eller erfaringen til en bestemt beboer.",
+      "source_ids": [
+        "regional-src-09"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-fordypning-3"
+      ]
+    },
+    {
+      "id": "regional-12",
+      "claim": "SSB dokumenterte i 2025 et innenlands flytteoverskudd til Akershus som blant annet hang sammen med utflytting fra Oslo.",
+      "source_ids": [
+        "regional-src-10"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-fordypning-3"
+      ]
+    },
+    {
+      "id": "regional-13",
+      "claim": "World Urbanization Prospects 2025 omfatter estimater for 1950–2025 og framskrivinger til 2050 for 237 land eller områder.",
+      "source_ids": [
+        "regional-src-11"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-anvendelse-1"
+      ]
+    },
+    {
+      "id": "regional-14",
+      "claim": "FN dokumenterer at bydefinisjoner må harmoniseres over tid og at administrativ omklassifisering kan bidra til målt urban vekst uten flytting.",
+      "source_ids": [
+        "regional-src-12"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-anvendelse-1"
+      ]
+    },
+    {
+      "id": "regional-15",
+      "claim": "Oslo Havns statistikk synliggjør sjøbaserte gods-, passasjer- og anløpsstrømmer som kobler lokale havneområder til større nettverk.",
+      "source_ids": [
+        "regional-src-13"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-anvendelse-2"
+      ]
+    },
+    {
+      "id": "regional-16",
+      "claim": "Et globalt vare- eller transportspor dokumenterer en forbindelse, men ikke automatisk hvem som mottar gevinst eller belastning.",
+      "source_ids": [
+        "regional-src-13"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-anvendelse-2"
+      ]
+    },
+    {
+      "id": "regional-17",
+      "claim": "Synlige språk, butikker eller institusjoner kan dokumenteres som stedlige spor, men kan ikke brukes til å tilordne enkeltpersoner kultur, statsborgerskap eller migrasjonsstatus.",
+      "source_ids": [
+        "regional-src-07",
+        "regional-src-09"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-anvendelse-3"
+      ]
+    },
+    {
+      "id": "regional-18",
+      "claim": "Komparativ byanalyse krever sammenlignbare definisjoner og eksplisitt kontekst; lik indikator gjør ikke to byer like eller hierarkisk rangerte.",
+      "source_ids": [
+        "regional-src-11",
+        "regional-src-12"
+      ],
+      "status": "verified",
+      "used_in": [
+        "regional-anvendelse-3"
+      ]
+    }
+  ]
+}
