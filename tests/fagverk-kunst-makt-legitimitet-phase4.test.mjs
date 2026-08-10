@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
-import { auditKunstEstetiskSprakFormPhase4 } from '../scripts/audit-fagverk-kunst-estetisk-sprak-form-phase4.mjs';
+import { auditKunstMaktLegitimitetPhase4 } from '../scripts/audit-fagverk-kunst-makt-legitimitet-phase4.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const coreSource = fs.readFileSync(path.join(root, 'js/fagverk-subject-core.js'), 'utf8');
@@ -13,19 +13,19 @@ sandbox.globalThis = sandbox;
 vm.runInNewContext(coreSource, sandbox, { filename: 'js/fagverk-subject-core.js' });
 const CORE = sandbox.HGFagverkSubjectCore;
 
-test('Estetisk språk og form er canonicalt materialisert 4/4', () => {
-  const { report } = auditKunstEstetiskSprakFormPhase4();
+test('Makt og legitimitet er canonicalt materialisert 3/3', () => {
+  const { report } = auditKunstMaktLegitimitetPhase4();
   assert.equal(report.subject.id, 'kunst');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.registeredChapterCount, 4);
-  assert.equal(report.canonicalCoverage.ownerDomainId, 'estetisk_sprak_form');
-  assert.equal(report.canonicalCoverage.exactCoverage, '4/4');
+  assert.equal(report.canonicalCoverage.ownerDomainId, 'makt_legitimitet');
+  assert.equal(report.canonicalCoverage.exactCoverage, '3/3');
   assert.equal(report.canonicalCoverage.remainingDomainCount, 2);
   assert.deepEqual(report.canonicalCoverage.requiredEmneIds, report.canonicalCoverage.coveredEmneIds);
 });
 
 test('kapittelet har full pedagogisk og evidensbasert pakke', () => {
-  const { report, chapter, claimsDoc, modules } = auditKunstEstetiskSprakFormPhase4();
+  const { report, chapter, claimsDoc, modules } = auditKunstMaktLegitimitetPhase4();
   assert.deepEqual(report.summary, {
     moduleCount: 3,
     sectionCount: 9,
@@ -35,12 +35,12 @@ test('kapittelet har full pedagogisk og evidensbasert pakke', () => {
     misconceptionCount: 5,
     applicationTaskCount: 5,
     selfCheckCount: 7,
-    methodCount: 10,
+    methodCount: 14,
     sourceCount: 16,
     claimCount: 24,
     placeCaseCount: 4
   });
-  assert.deepEqual(chapter.relatedPlaces.map((place) => place.id), ['nasjonalmuseet', 'munch_museet', 'vigelandsparken', 'astrup_fearnley']);
+  assert.deepEqual(chapter.relatedPlaces.map((place) => place.id), ['nasjonalmuseet', 'kunstnernes_hus', 'kunsthall_oslo', 'oslo_radhus']);
   assert.ok(chapter.relatedPlaces.every((place) => place.name && place.role));
   assert.ok(claimsDoc.sources.every((source) => source.label && source.url));
   assert.ok(modules[1].commonMisconceptions.every((item) => item.claim && item.correction));
@@ -48,16 +48,16 @@ test('kapittelet har full pedagogisk og evidensbasert pakke', () => {
 });
 
 test('Kunst står ærlig som uferdig etter fire av seks domener', () => {
-  const { report } = auditKunstEstetiskSprakFormPhase4();
+  const { report } = auditKunstMaktLegitimitetPhase4();
   assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
   assert.equal(report.subject.canonicalDomainCount, 6);
   assert.equal(report.subject.canonicalEmneCount, 21);
   assert.equal(report.gates.incompleteSubjectStatusHonest, true);
 });
 
-test('Estetisk språk og form hydrerer alle synlige rendererfelt', async () => {
+test('Makt og legitimitet hydrerer alle synlige rendererfelt', async () => {
   const registry = JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8'));
-  const chapterMeta = registry.subjects.kunst.chapters.find((chapter) => chapter.id === 'estetisk-sprak-og-form');
+  const chapterMeta = registry.subjects.kunst.chapters.find((chapter) => chapter.id === 'makt-og-legitimitet');
   const fetchFile = async (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
   const chapter = await CORE.hydrateChapter(chapterMeta, fetchFile);
   assert.equal(chapter.relatedPlaces.length, 4);

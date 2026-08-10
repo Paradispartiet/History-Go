@@ -101,3 +101,4 @@ Rot-README er bare inngang. Den skal ikke være idébibel, historisk lager eller
 Gamle tekstblokker skal konsolideres inn i riktig dokument, ikke kopieres videre i nye README-filer. Nye status-, plan- og auditdokumenter skal registreres før de får en styrende rolle.
 
 - By-fagverket er redaksjonelt `complete` etter separat helhetsaudit: alle 12 canonicale domener og 82 emner er dekket gjennom 17 kapitler, 51 moduler, 459 claimsporede fagavsnitt, 306 verifiserte claims, 219 inspiserbare kilderegistreringer, alle 14 canonicale metoder og 20 unike stedscase.
+- Kunst-fagverket står redaksjonelt korrekt som `chapters_in_progress`: fire av seks canonicale domener er materialisert gjennom 4 kapitler, 12 moduler og 108 claimsporede fagavsnitt. Nyeste kapittel er `Makt og legitimitet` med eksakt 3/3 emnedekning, 14 metoder, 16 primærkilder og 24 verifiserte claims.
