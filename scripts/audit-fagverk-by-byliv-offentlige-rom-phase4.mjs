@@ -96,7 +96,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'By skal stå chapters_in_progress etter første redigerte kapittel');
   assert(statusEntry?.nextGate === 'chapter_production', 'By skal fortsette sammenhengende kapittelproduksjon');
   assert(registrySubject && Array.isArray(registrySubject.chapters), 'By mangler kapittelregister');
-  assert(registrySubject.chapters.length === 12, 'By skal nå ha ni registrerte Fase 4-kapitler totalt');
+  assert(registrySubject.chapters.length === 13, 'By skal nå ha ni registrerte Fase 4-kapitler totalt');
   assert(chapterMeta, 'Byliv-kapittelet mangler i registry');
   assert(chapterMeta.file === P.chapter, 'Registry peker ikke til canonical Byliv-kapittel');
   assert(chapterMeta.primary_domain_id === 'byliv', 'Byliv-kapittelet har feil primary domain');
@@ -117,7 +117,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
     source
   });
   assert(model.subject.adapter === 'by', 'By skal bruke by-adapteren');
-  assert(model.chapters.length === 12, 'Normalisert By-modell skal vise ni kapitler etter første Arkitektur-batch');
+  assert(model.chapters.length === 13, 'Normalisert By-modell skal vise ni kapitler etter første Arkitektur-batch');
   const modelEmnes = new Map(model.emners.map((row) => [row.id, row]));
   const modelMethods = new Map(model.methods.map((row) => [row.id, row]));
   for (const id of EXPECTED_EMNES) {
@@ -154,7 +154,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
 
   const claims = claimsDocument.claims || [];
   const sources = claimsDocument.sources || [];
-  assert(sources.length === 12, 'Kapittelet skal ha tolv inspectable kilder');
+  assert(sources.length === 13, 'Kapittelet skal ha tolv inspectable kilder');
   assert(claims.length === 18, 'Kapittelet skal ha atten verifiserte claims');
   const sourceIds = new Set(sources.map((sourceRow) => sourceRow.id));
   const claimIds = new Set(claims.map((claim) => claim.id));
@@ -197,7 +197,7 @@ export async function auditByBylivOffentligeRomPhase4({ writeReport = false, che
   assert(hydrated.relatedPlaces.length === 4, 'Kapittelet skal hydrere fire felt-/stedscase');
   assert(hydrated.relatedPlaces.every((place) => place.id && place.name && place.role), 'Stedscase er ikke renderbart');
   assert(sameSet(hydrated.relatedPlaces.map((place) => place.id), EXPECTED_PLACES), 'Kapittelet har feil stedscase-sett');
-  assert(hydrated.sources.length === 12 && hydrated.claims.length === 18, 'Claims og kilder ble ikke hydrert gjennom felles runtime');
+  assert(hydrated.sources.length === 13 && hydrated.claims.length === 18, 'Claims og kilder ble ikke hydrert gjennom felles runtime');
   const selfCheck = modules.flatMap((module) => Array.isArray(module.selfCheck) ? module.selfCheck : []);
   assert(selfCheck.length === 6 && selfCheck.every((item) => item.question && item.answer), 'Kapittelet skal ha seks renderbare self-check-spørsmål');
 
