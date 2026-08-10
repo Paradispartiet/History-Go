@@ -36,7 +36,7 @@ const EXPECTED_PLACES = ['vg_huset', 'fornebu_teknologipark', 'deichman_bjorvika
 const EXPECTED_CHAPTERS = [
   'presse-redaksjoner-og-avishus', 'offentlighet-ytringsfrihet-og-medieetikk',
   'kilder-kritikk-og-sannhet', 'plattformer-algoritmer-og-distribusjon',
-  'propaganda-pavirkning-og-informasjonskrig'
+  'propaganda-pavirkning-og-informasjonskrig', 'medieokonomi-eierskap-og-arbeid'
 ];
 const EXPECTED_DISTINCTIONS = [
   'transport vs rangering', 'nettnøytralitet vs plattformnøytralitet', 'algoritme vs autonom intensjon',
@@ -84,10 +84,10 @@ export function auditMediaPlattformerAlgoritmerDistribusjonPhase4({ writeReport 
   assert(isDeepStrictEqual(registrySubject.chapters.map((row) => row.id), EXPECTED_CHAPTERS), 'Media-registeret har feil kapittelrekkefølge');
   assert(registryChapter?.file === P.chapter && registryChapter.primary_domain_id === chapter.primary_domain_id, 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
-  assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Media må fortsatt stå chapters_in_progress');
-  assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Media har feil neste produksjonsport');
+  assert(statusEntry.editorialStatus === 'complete', 'Media skal beholde komplett fagstatus');
+  assert(statusEntry.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'Media har feil vedlikeholdsport');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Media-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 5, 'Fase 3-auditen ser ikke alle fem Media-kapitlene');
+  assert(phase3.report.summary.registeredChapterCount === 6, 'Fase 3-auditen ser ikke alle seks Media-kapitlene');
   assert(phase3.report.nestedSupplement.emneCount === 56 && phase3.report.nestedSupplement.topLevelSubject === false, 'Nested Populærkultur er ikke bevart');
   assert(EXPECTED_CHAPTERS.slice(0, 3).every((id, index) => registrySubject.chapters[index].id === id), 'Tidligere Media-kapitler er ikke bevart');
 
@@ -141,7 +141,7 @@ export function auditMediaPlattformerAlgoritmerDistribusjonPhase4({ writeReport 
     schema: 'history_go_fagverk_media_plattformer_algoritmer_distribusjon_phase4_audit_v1', version: '1.0.0',
     status: 'media_plattformer_algoritmer_distribusjon_canonical_20_of_20', generatedFrom: P,
     subject: {
-      id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 5,
+      id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 6,
       editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate,
       nestedPopularCultureEmneCount: 56
     },
@@ -167,7 +167,7 @@ export function auditMediaPlattformerAlgoritmerDistribusjonPhase4({ writeReport 
       allSourcesUsedAndPreciselyLocated: true, canonicalPlacesResolved: true, chapterSourcesRenderable: true,
       chapterPlacesRenderable: true, misconceptionsRenderable: true, allCriticalDistinctionsLocked: true,
       previousMediaChaptersPreserved: true, nestedPopularCulturePreserved: true,
-      incompleteSubjectStatusHonest: true, releaseReady: true
+      completeSubjectStatusPreserved: true, releaseReady: true
     }
   };
   const committed = committedProjection(report);

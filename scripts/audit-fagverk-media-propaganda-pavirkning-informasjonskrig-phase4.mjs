@@ -35,7 +35,7 @@ const EXPECTED_PLACES = ['stortinget', 'regjeringskvartalet', 'youngstorget', 'n
 const EXPECTED_CHAPTERS = [
   'presse-redaksjoner-og-avishus', 'offentlighet-ytringsfrihet-og-medieetikk',
   'kilder-kritikk-og-sannhet', 'plattformer-algoritmer-og-distribusjon',
-  'propaganda-pavirkning-og-informasjonskrig'
+  'propaganda-pavirkning-og-informasjonskrig', 'medieokonomi-eierskap-og-arbeid'
 ];
 const EXPECTED_DISTINCTIONS = [
   'påvirkning vs manipulasjon', 'politisk kommunikasjon vs propaganda', 'kampanje vs fordekt operasjon',
@@ -76,9 +76,9 @@ export function auditMediaPropagandaPavirkningInformasjonskrigPhase4({ writeRepo
   assert(isDeepStrictEqual(registrySubject.chapters.map((row) => row.id), EXPECTED_CHAPTERS), 'Media-registeret har feil kapittelrekkefølge');
   assert(registryChapter?.file === P.chapter && registryChapter.primary_domain_id === chapter.primary_domain_id, 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
-  assert(statusEntry.editorialStatus === 'chapters_in_progress' && statusEntry.nextGate === 'remaining_domain_chapter_production', 'Media må stå ærlig som chapters_in_progress');
+  assert(statusEntry.editorialStatus === 'complete' && statusEntry.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'Media skal beholde komplett fagstatus');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Media-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 5, 'Fase 3-auditen ser ikke alle fem Media-kapitlene');
+  assert(phase3.report.summary.registeredChapterCount === 6, 'Fase 3-auditen ser ikke alle seks Media-kapitlene');
   assert(phase3.report.nestedSupplement.emneCount === 56 && phase3.report.nestedSupplement.topLevelSubject === false, 'Nested Populærkultur er ikke bevart');
   assert(EXPECTED_CHAPTERS.slice(0, 4).every((id, index) => registrySubject.chapters[index].id === id), 'Tidligere Media-kapitler er ikke bevart');
 
@@ -129,7 +129,7 @@ export function auditMediaPropagandaPavirkningInformasjonskrigPhase4({ writeRepo
   const report = {
     schema: 'history_go_fagverk_media_propaganda_pavirkning_informasjonskrig_phase4_audit_v1', version: '1.0.0',
     status: 'media_propaganda_pavirkning_informasjonskrig_canonical_18_of_18', generatedFrom: P,
-    subject: { id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 5, editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, nestedPopularCultureEmneCount: 56 },
+    subject: { id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 6, editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, nestedPopularCultureEmneCount: 56 },
     chapter: { id: chapter.id, title: chapter.title, primaryDomainId: chapter.primary_domain_id, moduleFiles: chapter.moduleFiles, briefFile: chapter.briefFile, claimsFile: chapter.claimsFile, relatedPlaceIds: chapter.relatedPlaces.map((row) => row.id) },
     canonicalCoverage: { ownerDomainId: 'propaganda_pavirkning_informasjonskrig', requiredEmneIds: EXPECTED_EMNES, coveredEmneIds: chapter.emne_ids, exactCoverage: '18/18', coveredSubjectEmneCount: 100, totalSubjectEmneCount: 120, remainingDomainCount: 1 },
     summary: { moduleCount: 3, sectionCount: 9, paragraphCount: 27, conceptCount: 6, workedExampleCount: 3, misconceptionCount: 5, applicationTaskCount: 5, selfCheckCount: 7, methodCount: 18, sourceCount: 23, claimCount: 27, placeCaseCount: 4, criticalDistinctionCount: EXPECTED_DISTINCTIONS.length },
@@ -139,7 +139,7 @@ export function auditMediaPropagandaPavirkningInformasjonskrigPhase4({ writeRepo
       allSourcesUsedAndPreciselyLocated: true, canonicalPlacesResolved: true, chapterSourcesRenderable: true,
       chapterPlacesRenderable: true, misconceptionsRenderable: true, allCriticalDistinctionsLocked: true,
       previousMediaChaptersPreserved: true, nestedPopularCulturePreserved: true,
-      incompleteSubjectStatusHonest: true, releaseReady: true
+      completeSubjectStatusPreserved: true, releaseReady: true
     }
   };
   const committed = projection(report);

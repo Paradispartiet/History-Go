@@ -41,7 +41,8 @@ const EXPECTED_CHAPTERS = [
   'offentlighet-ytringsfrihet-og-medieetikk',
   'kilder-kritikk-og-sannhet',
   'plattformer-algoritmer-og-distribusjon',
-  'propaganda-pavirkning-og-informasjonskrig'
+  'propaganda-pavirkning-og-informasjonskrig',
+  'medieokonomi-eierskap-og-arbeid'
 ];
 const abs = (p) => path.join(ROOT, p);
 const json = (p) => JSON.parse(fs.readFileSync(abs(p), 'utf8'));
@@ -82,10 +83,10 @@ export function auditMediaKilderKritikkSannhetPhase4({ writeReport = false, chec
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
   assert(firstChapter.primary_domain_id === 'presse_redaksjoner_avishus' && firstChapter.emne_ids.length === 21, 'Første Media-kapittel er ikke bevart');
   assert(secondChapter.primary_domain_id === 'offentlighet_ytringsfrihet_etikk' && secondChapter.emne_ids.length === 21, 'Andre Media-kapittel er ikke bevart');
-  assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Media må fortsatt stå chapters_in_progress');
-  assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Media har feil neste produksjonsport');
+  assert(statusEntry.editorialStatus === 'complete', 'Media skal beholde komplett fagstatus');
+  assert(statusEntry.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'Media har feil vedlikeholdsport');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Media-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 5, 'Fase 3-auditen ser ikke alle fem Media-kapitlene');
+  assert(phase3.report.summary.registeredChapterCount === 6, 'Fase 3-auditen ser ikke alle seks Media-kapitlene');
   assert(phase3.report.nestedSupplement.emneCount === 56 && phase3.report.nestedSupplement.topLevelSubject === false, 'Nested Populærkultur er ikke bevart');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));
@@ -161,7 +162,7 @@ export function auditMediaKilderKritikkSannhetPhase4({ writeReport = false, chec
     schema: 'history_go_fagverk_media_kilder_kritikk_sannhet_phase4_audit_v1', version: '1.0.0',
     status: 'media_kilder_kritikk_sannhet_canonical_20_of_20', generatedFrom: P,
     subject: {
-      id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 5,
+      id: 'media', canonicalDomainCount: 6, canonicalEmneCount: 120, registeredChapterCount: 6,
       editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate,
       nestedPopularCultureEmneCount: 56
     },
@@ -192,7 +193,7 @@ export function auditMediaKilderKritikkSannhetPhase4({ writeReport = false, chec
       expertConsensusGuard: true, correlationCausationGuard: true, graphicDataGuard: true,
       statisticalRevisionGuard: true, misinformationDisinformationGuard: true, archiveTruthGuard: true,
       documentCompletenessGuard: true, previousMediaChaptersPreserved: true,
-      nestedPopularCulturePreserved: true, incompleteSubjectStatusHonest: true, releaseReady: true
+      nestedPopularCulturePreserved: true, completeSubjectStatusPreserved: true, releaseReady: true
     }
   };
   const committed = committedProjection(report);

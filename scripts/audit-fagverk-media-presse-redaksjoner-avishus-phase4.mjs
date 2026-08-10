@@ -33,7 +33,7 @@ const EXPECTED_METHODS = [
   'met_media_produksjonsanalyse', 'met_media_redaksjonsanalyse', 'met_media_deskanalyse'
 ];
 const EXPECTED_PLACES = ['aftenposten_akersgata', 'vg_huset', 'dagbladet_akersgata', 'nrk_huset_marienlyst'];
-const NEXT_GATE = 'remaining_domain_chapter_production';
+const NEXT_GATE = 'maintenance_source_refresh_and_place_case_expansion';
 const abs = (p) => path.join(ROOT, p);
 const json = (p) => JSON.parse(fs.readFileSync(abs(p), 'utf8'));
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
@@ -66,13 +66,13 @@ export function auditMediaPresseRedaksjonerAvishusPhase4({ writeReport = false, 
   assert(chapter.editorialStatus === 'chapter_ready' && chapter.claimTraceRequired === true, 'Kapittelet er ikke claimsporet chapter_ready');
   assert(isDeepStrictEqual(chapter.emne_ids, EXPECTED_EMNES), 'Kapittelet dekker ikke de 21 canonicale emnene i riktig rekkefølge');
   assert(new Set(chapter.emne_ids).size === 21, 'Media-kapittelet har duplikate emner');
-  assert(registrySubject.chapters.length === 5 && registryChapter, 'Media-registeret skal ha nøyaktig fem kapitler');
+  assert(registrySubject.chapters.length === 6 && registryChapter, 'Media-registeret skal ha nøyaktig seks kapitler');
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'presse_redaksjoner_avishus', 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
-  assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Media skal stå chapters_in_progress etter første domene');
-  assert(statusEntry.nextGate === NEXT_GATE, 'Media har feil neste produksjonsport');
+  assert(statusEntry.editorialStatus === 'complete', 'Media skal beholde komplett fagstatus');
+  assert(statusEntry.nextGate === NEXT_GATE, 'Media har feil vedlikeholdsport');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Media-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 5, 'Fase 3-auditen ser ikke alle fem Media-kapitlene');
+  assert(phase3.report.summary.registeredChapterCount === 6, 'Fase 3-auditen ser ikke alle seks Media-kapitlene');
   assert(phase3.report.nestedSupplement.emneCount === 56 && phase3.report.nestedSupplement.topLevelSubject === false, 'Nested Populærkultur er ikke bevart');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));
@@ -170,7 +170,7 @@ export function auditMediaPresseRedaksjonerAvishusPhase4({ writeReport = false, 
       eventPublicationGuard: true, sourceVerificationGuard: true, anonymousSourceGuard: true,
       bylineResponsibilityGuard: true, frontPagePriorityGuard: true, newsroomInstitutionGuard: true,
       pressClubDecisionGuard: true, localPublicSphereGuard: true, correctionHistoryGuard: true,
-      nestedPopularCulturePreserved: true, incompleteSubjectStatusHonest: true,
+      nestedPopularCulturePreserved: true, completeSubjectStatusPreserved: true,
       previousMediaStructurePreserved: true, releaseReady: true
     }
   };

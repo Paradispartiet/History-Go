@@ -1,0 +1,30 @@
+name: Fagverk Media complete
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/media/**'
+      - 'data/fagverk/media/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'scripts/audit-fagverk-media-*.mjs'
+      - 'tests/fagverk-media-*.test.mjs'
+      - 'reports/fagverk/media-*-audit.json'
+      - '.github/workflows/fagverk-media-complete.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/audit-fagverk-media-complete.mjs
+      - run: node --test tests/fagverk-media-*.test.mjs tests/fagverk-general-engine.test.mjs tests/fagverk-subject-inventory.test.mjs
+      - run: node scripts/build-fagverk-release-manifest.mjs --check

@@ -16,8 +16,8 @@ const CORE = sandbox.HGFagverkSubjectCore;
 test('Propaganda, påvirkning og informasjonskrig er canonicalt materialisert 18/18', () => {
   const { report } = auditMediaPropagandaPavirkningInformasjonskrigPhase4();
   assert.equal(report.subject.id, 'media');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.registeredChapterCount, 5);
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.registeredChapterCount, 6);
   assert.equal(report.subject.nestedPopularCultureEmneCount, 56);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'propaganda_pavirkning_informasjonskrig');
   assert.equal(report.canonicalCoverage.exactCoverage, '18/18');
@@ -41,12 +41,12 @@ test('Propagandakapittelet har full pedagogisk og evidensbasert pakke', () => {
   assert.ok(Object.values(report.gates).every(Boolean));
 });
 
-test('Media står ærlig som uferdig etter fem av seks hovedområder', () => {
+test('Media beholder komplett fagstatus i propaganda-auditen', () => {
   const { report } = auditMediaPropagandaPavirkningInformasjonskrigPhase4();
-  assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.canonicalDomainCount, 6);
   assert.equal(report.subject.canonicalEmneCount, 120);
-  assert.equal(report.gates.incompleteSubjectStatusHonest, true);
+  assert.equal(report.gates.completeSubjectStatusPreserved, true);
   assert.equal(report.gates.previousMediaChaptersPreserved, true);
   assert.equal(report.gates.nestedPopularCulturePreserved, true);
 });
