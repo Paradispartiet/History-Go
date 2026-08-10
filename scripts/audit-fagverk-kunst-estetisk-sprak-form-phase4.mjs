@@ -63,13 +63,13 @@ export function auditKunstEstetiskSprakFormPhase4({ writeReport = false, checkRe
   assert(chapter.editorialStatus === 'chapter_ready' && chapter.claimTraceRequired === true, 'Kapittelet er ikke claimsporet chapter_ready');
   assert(isDeepStrictEqual(chapter.emne_ids, EXPECTED_EMNES), 'Kapittelet dekker ikke de fire canonicale emnene i riktig rekkefølge');
   assert(new Set(chapter.emne_ids).size === 4, 'Kunst-kapittelet har duplikate emner');
-  assert(registrySubject.chapters.length === 5 && registryChapter, 'Kunst-registeret skal ha nøyaktig fem kapitler');
+  assert(registrySubject.chapters.length === 6 && registryChapter, 'Kunst-registeret skal ha nøyaktig seks kapitler');
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'estetisk_sprak_form', 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
-  assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Kunst kan ikke stå complete etter fem av seks domener');
-  assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Kunst har feil neste port');
+  assert(statusEntry.editorialStatus === 'complete', 'Kunst skal stå complete etter seks av seks domener');
+  assert(statusEntry.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'Kunst har feil vedlikeholdsport');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 21, 'Kunst-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 5, 'Fase 3-auditen ser ikke alle fem kapitlene');
+  assert(phase3.report.summary.registeredChapterCount === 6, 'Fase 3-auditen ser ikke alle seks kapitlene');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));
   assert(EXPECTED_EMNES.every((id) => canonicalEmneIds.has(id)), 'Kapittelet peker til ukjent Kunst-emne');
@@ -152,7 +152,7 @@ export function auditKunstEstetiskSprakFormPhase4({ writeReport = false, checkRe
       requiredEmneIds: EXPECTED_EMNES,
       coveredEmneIds: chapter.emne_ids,
       exactCoverage: '4/4',
-      remainingDomainCount: 1
+      remainingDomainCount: 0
     },
     summary: {
       moduleCount: modules.length,
@@ -187,7 +187,7 @@ export function auditKunstEstetiskSprakFormPhase4({ writeReport = false, checkRe
       originalityReferenceGuard: true,
       circulationReceptionGuard: true,
       previousKunstStructurePreserved: true,
-      incompleteSubjectStatusHonest: true,
+      completeSubjectStatusAudited: true,
       releaseReady: true
     }
   };

@@ -1,0 +1,69 @@
+name: Fagverk Kunst Tid og transformasjon Phase 4
+
+on:
+  pull_request:
+    paths:
+      - 'data/fagverk/kunst/tid-og-transformasjon.json'
+      - 'data/fagverk/kunst/tid-og-transformasjon/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/kunst-*-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'scripts/audit-fagverk-kunst-*.mjs'
+      - 'scripts/materialize-kunst-tid-transformasjon-phase4.mjs'
+      - 'tests/fagverk-kunst-*.test.mjs'
+      - 'tests/fagverk-general-engine.test.mjs'
+      - '.github/workflows/fagverk-kunst-tid-transformasjon-phase4.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fagverk/kunst/tid-og-transformasjon.json'
+      - 'data/fagverk/kunst/tid-og-transformasjon/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/subject_status.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'reports/fagverk/kunst-*-audit.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'scripts/audit-fagverk-kunst-*.mjs'
+      - 'scripts/materialize-kunst-tid-transformasjon-phase4.mjs'
+      - 'tests/fagverk-kunst-*.test.mjs'
+      - 'tests/fagverk-general-engine.test.mjs'
+      - '.github/workflows/fagverk-kunst-tid-transformasjon-phase4.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax
+        run: |
+          node --check scripts/materialize-kunst-tid-transformasjon-phase4.mjs
+          node --check scripts/audit-fagverk-kunst-tid-transformasjon-phase4.mjs
+          node --check scripts/audit-fagverk-kunst-complete.mjs
+      - name: Kunst structural audit
+        run: node scripts/audit-fagverk-kunst-phase3.mjs
+      - name: Kunst chapter audits
+        run: |
+          node scripts/audit-fagverk-kunst-felt-institusjon-phase4.mjs
+          node scripts/audit-fagverk-kunst-produksjon-praksis-phase4.mjs
+          node scripts/audit-fagverk-kunst-estetisk-sprak-form-phase4.mjs
+          node scripts/audit-fagverk-kunst-makt-legitimitet-phase4.mjs
+          node scripts/audit-fagverk-kunst-publikum-offentlighet-phase4.mjs
+          node scripts/audit-fagverk-kunst-tid-transformasjon-phase4.mjs
+      - name: Kunst full subject audit
+        run: node scripts/audit-fagverk-kunst-complete.mjs
+      - name: General engine and subject inventory
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+      - name: Release feed
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Tests
+        run: node --test tests/fagverk-kunst-*.test.mjs tests/fagverk-general-engine.test.mjs

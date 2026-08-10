@@ -16,11 +16,11 @@ const CORE = sandbox.HGFagverkSubjectCore;
 test('Makt og legitimitet er canonicalt materialisert 3/3', () => {
   const { report } = auditKunstMaktLegitimitetPhase4();
   assert.equal(report.subject.id, 'kunst');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.registeredChapterCount, 5);
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.registeredChapterCount, 6);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'makt_legitimitet');
   assert.equal(report.canonicalCoverage.exactCoverage, '3/3');
-  assert.equal(report.canonicalCoverage.remainingDomainCount, 1);
+  assert.equal(report.canonicalCoverage.remainingDomainCount, 0);
   assert.deepEqual(report.canonicalCoverage.requiredEmneIds, report.canonicalCoverage.coveredEmneIds);
 });
 
@@ -47,12 +47,12 @@ test('kapittelet har full pedagogisk og evidensbasert pakke', () => {
   assert.ok(Object.values(report.gates).every(Boolean));
 });
 
-test('Kunst står ærlig som uferdig etter fem av seks domener', () => {
+test('Kunst står complete etter seks av seks domener', () => {
   const { report } = auditKunstMaktLegitimitetPhase4();
-  assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.canonicalDomainCount, 6);
   assert.equal(report.subject.canonicalEmneCount, 21);
-  assert.equal(report.gates.incompleteSubjectStatusHonest, true);
+  assert.equal(report.gates.completeSubjectStatusAudited, true);
 });
 
 test('Makt og legitimitet hydrerer alle synlige rendererfelt', async () => {
