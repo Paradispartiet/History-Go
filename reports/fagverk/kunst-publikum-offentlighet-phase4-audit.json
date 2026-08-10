@@ -1,17 +1,17 @@
 {
-  "schema": "history_go_fagverk_kunst_makt_legitimitet_phase4_audit_v1",
+  "schema": "history_go_fagverk_kunst_publikum_offentlighet_phase4_audit_v1",
   "version": "1.0.0",
-  "status": "kunst_makt_legitimitet_canonical_3_of_3",
+  "status": "kunst_publikum_offentlighet_canonical_3_of_3",
   "generatedFrom": {
-    "chapter": "data/fagverk/kunst/makt-og-legitimitet.json",
-    "brief": "data/fagverk/kunst/makt-og-legitimitet/brief.json",
-    "claims": "data/fagverk/kunst/makt-og-legitimitet/claims.json",
+    "chapter": "data/fagverk/kunst/publikum-og-offentlighet.json",
+    "brief": "data/fagverk/kunst/publikum-og-offentlighet/brief.json",
+    "claims": "data/fagverk/kunst/publikum-og-offentlighet/claims.json",
     "registry": "data/fagverk/fagverk_registry.json",
     "status": "data/fagverk/subject_status.json",
     "emners": "data/fag/kunst/emner_kunst_canonical_v4_5.json",
     "methods": "data/fag/kunst/methods_kunst_canonical_v4_5.json",
     "places": "data/places/places_index.json",
-    "report": "reports/fagverk/kunst-makt-legitimitet-phase4-audit.json"
+    "report": "reports/fagverk/kunst-publikum-offentlighet-phase4-audit.json"
   },
   "subject": {
     "id": "kunst",
@@ -22,34 +22,34 @@
     "nextGate": "remaining_domain_chapter_production"
   },
   "chapter": {
-    "id": "makt-og-legitimitet",
-    "title": "Makt og legitimitet: hvem definerer kunstens verdi?",
-    "primaryDomainId": "makt_legitimitet",
+    "id": "publikum-og-offentlighet",
+    "title": "Publikum og offentlighet: hvor og hvordan kunst blir felles",
+    "primaryDomainId": "publikum_offentlighet",
     "moduleFiles": [
-      "data/fagverk/kunst/makt-og-legitimitet/01-grunnlag.json",
-      "data/fagverk/kunst/makt-og-legitimitet/02-fordypning.json",
-      "data/fagverk/kunst/makt-og-legitimitet/03-anvendelse.json"
+      "data/fagverk/kunst/publikum-og-offentlighet/01-grunnlag.json",
+      "data/fagverk/kunst/publikum-og-offentlighet/02-fordypning.json",
+      "data/fagverk/kunst/publikum-og-offentlighet/03-anvendelse.json"
     ],
-    "briefFile": "data/fagverk/kunst/makt-og-legitimitet/brief.json",
-    "claimsFile": "data/fagverk/kunst/makt-og-legitimitet/claims.json",
+    "briefFile": "data/fagverk/kunst/publikum-og-offentlighet/brief.json",
+    "claimsFile": "data/fagverk/kunst/publikum-og-offentlighet/claims.json",
     "relatedPlaceIds": [
+      "vigelandsparken",
+      "ekebergparken",
       "nasjonalmuseet",
-      "kunstnernes_hus",
-      "kunsthall_oslo",
-      "oslo_radhus"
+      "munch_museet"
     ]
   },
   "canonicalCoverage": {
-    "ownerDomainId": "makt_legitimitet",
+    "ownerDomainId": "publikum_offentlighet",
     "requiredEmneIds": [
-      "em_kunst_politisk_kunst_aktivisme",
-      "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
-      "em_kunst_institusjonskritikk_og_representasjon"
+      "em_kunst_offentlig_kunst_monumenter",
+      "em_kunst_publikum_klasse_og_kapital",
+      "em_kunst_digital_offentlighet_og_resepsjon"
     ],
     "coveredEmneIds": [
-      "em_kunst_politisk_kunst_aktivisme",
-      "em_kunst_kvalitet_kritikk_og_symbolsk_kapital",
-      "em_kunst_institusjonskritikk_og_representasjon"
+      "em_kunst_offentlig_kunst_monumenter",
+      "em_kunst_publikum_klasse_og_kapital",
+      "em_kunst_digital_offentlighet_og_resepsjon"
     ],
     "exactCoverage": "3/3",
     "remainingDomainCount": 1
@@ -63,8 +63,8 @@
     "misconceptionCount": 5,
     "applicationTaskCount": 5,
     "selfCheckCount": 7,
-    "methodCount": 14,
-    "sourceCount": 16,
+    "methodCount": 13,
+    "sourceCount": 18,
     "claimCount": 24,
     "placeCaseCount": 4
   },
@@ -80,12 +80,12 @@
     "chapterSourcesRenderable": true,
     "chapterPlacesRenderable": true,
     "misconceptionsRenderable": true,
-    "juryQualityGuard": true,
-    "representationPowerGuard": true,
-    "politicalThemeEffectGuard": true,
-    "intentionReceptionGuard": true,
-    "institutionalCritiqueChangeGuard": true,
-    "collectionCanonGuard": true,
+    "publicPlacementGuard": true,
+    "freeEqualAccessGuard": true,
+    "visitorCompositionGuard": true,
+    "participationPowerGuard": true,
+    "digitizationVisibilityGuard": true,
+    "circulationReceptionGuard": true,
     "previousKunstStructurePreserved": true,
     "incompleteSubjectStatusHonest": true,
     "releaseReady": true

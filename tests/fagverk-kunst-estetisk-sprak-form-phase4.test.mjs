@@ -17,10 +17,10 @@ test('Estetisk språk og form er canonicalt materialisert 4/4', () => {
   const { report } = auditKunstEstetiskSprakFormPhase4();
   assert.equal(report.subject.id, 'kunst');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.registeredChapterCount, 4);
+  assert.equal(report.subject.registeredChapterCount, 5);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'estetisk_sprak_form');
   assert.equal(report.canonicalCoverage.exactCoverage, '4/4');
-  assert.equal(report.canonicalCoverage.remainingDomainCount, 2);
+  assert.equal(report.canonicalCoverage.remainingDomainCount, 1);
   assert.deepEqual(report.canonicalCoverage.requiredEmneIds, report.canonicalCoverage.coveredEmneIds);
 });
 
@@ -47,7 +47,7 @@ test('kapittelet har full pedagogisk og evidensbasert pakke', () => {
   assert.ok(Object.values(report.gates).every(Boolean));
 });
 
-test('Kunst står ærlig som uferdig etter fire av seks domener', () => {
+test('Kunst står ærlig som uferdig etter fem av seks domener', () => {
   const { report } = auditKunstEstetiskSprakFormPhase4();
   assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
   assert.equal(report.subject.canonicalDomainCount, 6);
