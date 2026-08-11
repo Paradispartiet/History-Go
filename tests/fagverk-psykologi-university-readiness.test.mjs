@@ -29,9 +29,21 @@ test('Psykologi har en eksplisitt universitetsmatrise uten å miste 6/58-baselin
   assert.ok(Object.values(report.currentGates).every(Boolean));
 });
 
-test('Metode/statistikk er ferdig, mens øvrige universitetsporter fortsatt holder complete tilbake', () => {
+test('Biologisk psykologi og metode/statistikk er ferdige, mens øvrige universitetsporter holder complete tilbake', () => {
   const { report } = auditPsykologiUniversityReadiness();
   assert.equal(report.completeReady, false);
+  assert.equal(report.biologicalPsychology.requiredTopicCount, 15);
+  assert.equal(report.biologicalPsychology.materializedTopicCount, 15);
+  assert.equal(report.biologicalPsychology.sourceCount, 8);
+  assert.deepEqual(report.biologicalPsychology.familyCounts, {
+    cellular_systems: 4,
+    development_variation: 3,
+    regulation_behavior: 6,
+    methods_inference: 2
+  });
+  assert.equal(report.biologicalPsychology.auditComplete, true);
+  assert.equal(report.biologicalPsychology.complete, true);
+  assert.equal(report.completionGates.biologicalPsychologyBranchComplete, true);
   assert.equal(report.methodsStatistics.requiredTopicCount, 20);
   assert.equal(report.methodsStatistics.materializedTopicCount, 20);
   assert.equal(report.methodsStatistics.sourceCount, 7);
@@ -53,7 +65,7 @@ test('Metode/statistikk er ferdig, mens øvrige universitetsporter fortsatt hold
   assert.equal(report.completionGates.allRequiredUniversityCoreAreasComplete, false);
   assert.equal(report.completionGates.all58StandaloneTopicArticlesComplete, false);
   assert.equal(report.completionGates.canonicalConceptRegistryComplete, false);
-  assert.ok(report.blockersToComplete.some((item) => item.startsWith('university_core:biological_psychology:')));
+  assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:biological_psychology:')));
   assert.ok(report.blockersToComplete.some((item) => item.startsWith('university_core:personality_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:research_methods_statistics:')));
   assert.ok(report.blockersToComplete.some((item) => item.startsWith('standalone_topic_articles:')));
