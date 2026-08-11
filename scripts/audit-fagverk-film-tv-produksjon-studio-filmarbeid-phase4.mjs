@@ -7,38 +7,40 @@ import { auditFilmTvPhase3 } from './audit-fagverk-film-tv-phase3.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = Object.freeze({
-  chapter: 'data/fagverk/film_tv/kinoer-visningssteder-og-publikum.json',
-  brief: 'data/fagverk/film_tv/kinoer-visningssteder-og-publikum/brief.json',
-  claims: 'data/fagverk/film_tv/kinoer-visningssteder-og-publikum/claims.json',
+  chapter: 'data/fagverk/film_tv/produksjon-studio-og-filmarbeid.json',
+  brief: 'data/fagverk/film_tv/produksjon-studio-og-filmarbeid/brief.json',
+  claims: 'data/fagverk/film_tv/produksjon-studio-og-filmarbeid/claims.json',
   registry: 'data/fagverk/fagverk_registry.json',
   status: 'data/fagverk/subject_status.json',
   emners: 'data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json',
   methods: 'data/fag/TV_og_Film/methods_film_tv_canonical_v4_5.json',
   places: 'data/places/places_index.json',
-  report: 'reports/fagverk/film-tv-kinoer-visningssteder-publikum-phase4-audit.json'
+  report: 'reports/fagverk/film-tv-produksjon-studio-filmarbeid-phase4-audit.json'
 });
 const EXPECTED_EMNES = [
-  'em_film_tv_besokstall', 'em_film_tv_cinematek_filmarv', 'em_film_tv_distribusjon_tilgang',
-  'em_film_tv_filmfestival_premiere', 'em_film_tv_filmhistorisk_formidling', 'em_film_tv_filmklubb_nisje',
-  'em_film_tv_kino_fellesrom', 'em_film_tv_kinoarkitektur', 'em_film_tv_kollektiv_filmhukommelse',
-  'em_film_tv_kuratering_publikum', 'em_film_tv_offentlig_filmbegivenhet', 'em_film_tv_plattformpublikum',
-  'em_film_tv_publikumsdata', 'em_film_tv_publikumsminne', 'em_film_tv_publikumsopplevelse',
-  'em_film_tv_seervaner', 'em_film_tv_stromming_fragmentering', 'em_film_tv_tv_ritualer',
-  'em_film_tv_visningspolitikk', 'em_film_tv_visningsrom_estetikk'
+  'em_film_tv_audiovisuell_form', 'em_film_tv_digital_etterarbeid',
+  'em_film_tv_filmarbeidsliv', 'em_film_tv_filmokonomi', 'em_film_tv_filmproduksjon',
+  'em_film_tv_filmrytme', 'em_film_tv_fortellingsstruktur', 'em_film_tv_fotografi_film',
+  'em_film_tv_kamera_bildearbeid', 'em_film_tv_klipp_montasje',
+  'em_film_tv_kollektivt_filmwerk', 'em_film_tv_kringkastingsproduksjon',
+  'em_film_tv_lys_lyd', 'em_film_tv_manus_dramaturgi', 'em_film_tv_postproduksjon',
+  'em_film_tv_produksjonsteam', 'em_film_tv_produsent_finansiering',
+  'em_film_tv_studio_produksjonsrom', 'em_film_tv_tv_hus_redaksjon',
+  'em_film_tv_usynlig_filmproduksjon'
 ];
 const EXPECTED_METHODS = [
-  'met_film_tv_publikumsdataanalyse', 'met_film_tv_statistikkanalyse',
-  'met_film_tv_cinematekanalyse', 'met_film_tv_filmarvsanalyse',
-  'met_film_tv_distribusjonsanalyse', 'met_film_tv_tilgangsanalyse',
-  'met_film_tv_festivalanalyse', 'met_film_tv_premiereanalyse',
-  'met_film_tv_filmklubbanalyse', 'met_film_tv_kurateringsanalyse',
-  'met_film_tv_kinoanalyse', 'met_film_tv_publikumsanalyse',
-  'met_film_tv_arkitekturanalyse', 'met_film_tv_visningsromanalyse',
-  'met_film_tv_minneanalyse', 'met_film_tv_kollektiv_hukommelsesanalyse',
-  'met_film_tv_strommeanalyse', 'met_film_tv_plattformanalyse',
-  'met_film_tv_tv_resepsjonsanalyse', 'met_film_tv_seervaneanalyse'
+  'met_film_tv_lysanalyse', 'met_film_tv_lydanalyse',
+  'met_film_tv_postproduksjonsanalyse', 'met_film_tv_digital_arbeidsflytanalyse',
+  'met_film_tv_arbeidslivsanalyse', 'met_film_tv_produksjonskulturanalyse',
+  'met_film_tv_produsentanalyse', 'met_film_tv_finansieringsanalyse',
+  'met_film_tv_studioanalyse', 'met_film_tv_produksjonsanalyse',
+  'met_film_tv_klippanalyse', 'met_film_tv_montasjeanalyse',
+  'met_film_tv_manusanalyse', 'met_film_tv_dramaturgianalyse',
+  'met_film_tv_kameraanalyse', 'met_film_tv_bildeanalyse',
+  'met_film_tv_arbeidsanalyse', 'met_film_tv_team_analyse',
+  'met_film_tv_tv_husanalyse', 'met_film_tv_redaksjonsanalyse'
 ];
-const EXPECTED_PLACES = ['colosseum_kino', 'cinemateket_oslo', 'vega_scene', 'gimle_kino'];
+const EXPECTED_PLACES = ['nrk_huset_marienlyst', 'hartvig_nissens_skole_skam', 'oslo_met_pilestredet', 'lisbon_tobis_portuguesa'];
 const abs = (file) => path.join(ROOT, file);
 const json = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
@@ -51,7 +53,7 @@ function committedProjection(report) {
   };
 }
 
-export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = false, checkReport = true } = {}) {
+export function auditFilmTvProduksjonStudioFilmarbeidPhase4({ writeReport = false, checkReport = true } = {}) {
   const phase3 = auditFilmTvPhase3({ checkReport });
   const chapter = json(P.chapter);
   const brief = json(P.brief);
@@ -67,21 +69,21 @@ export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = fa
 
   assert(chapter.schema === 'history_go_fagverk_chapter_v1', 'Film & TV-kapittelet har feil schema');
   assert(chapter.subject === 'film_tv' && chapter.subject_id === 'film_tv', 'Film & TV-kapittelet har feil fag');
-  assert(chapter.primary_domain_id === 'kinoer_visningssteder_publikum', 'Kapittelet har feil eierdomene');
+  assert(chapter.primary_domain_id === 'produksjon_studio_arbeid', 'Kapittelet har feil eierdomene');
   assert(chapter.editorialStatus === 'chapter_ready' && chapter.claimTraceRequired === true, 'Kapittelet er ikke claimsporet chapter_ready');
   assert(isDeepStrictEqual(chapter.emne_ids, EXPECTED_EMNES), 'Kapittelet dekker ikke de 20 canonicale emnene i riktig rekkefølge');
   assert(new Set(chapter.emne_ids).size === 20, 'Film & TV-kapittelet har duplikate emner');
-  assert(registrySubject.chapters.length >= 1 && registrySubject.chapters.length <= 6 && registryChapter, 'Film & TV-registeret skal bevare kapittel 1 gjennom videre progresjon');
-  assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'kinoer_visningssteder_publikum', 'Registry-kapittelet er usynkronisert');
+  assert(registrySubject.chapters.length === 2 && registryChapter, 'Film & TV-registeret skal ha nøyaktig to kapitler');
+  assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'produksjon_studio_arbeid', 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');
   assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Film & TV har feil neste port');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Film & TV-baseline er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === registrySubject.chapters.length, 'Fase 3-auditen er usynkronisert med Film & TV-registeret');
+  assert(phase3.report.summary.registeredChapterCount === 2, 'Fase 3-auditen ser ikke de to Film & TV-kapitlene');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));
   assert(EXPECTED_EMNES.every((id) => canonicalEmneIds.has(id)), 'Kapittelet peker til ukjent Film & TV-emne');
-  const domain = phase3.model.domainsById.get('kinoer_visningssteder_publikum');
+  const domain = phase3.model.domainsById.get('produksjon_studio_arbeid');
   assert(domain && isDeepStrictEqual([...domain.emneIds], EXPECTED_EMNES), 'Canonical domeneeierskap er usynkronisert');
   const canonicalMethodIds = new Set(methodsDoc.methods.map((row) => row.method_id));
   assert(isDeepStrictEqual(chapter.method_ids, EXPECTED_METHODS), 'Kapittelet har feil canonicalt metodeutvalg');
@@ -130,17 +132,18 @@ export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = fa
   assert([...claimIds].every((id) => referencedClaimIds.has(id)), 'En verifisert claim brukes ikke i kapittelet');
 
   const combined = JSON.stringify({ chapter, brief, modules: modules.map((row) => row.value) });
-  assert(/verk.{0,140}(ikke|skille).{0,100}visning|visningshendelse.{0,140}(verk|kopi|strøm)/is.test(combined), 'Verk/visningshendelse-vakten mangler');
-  assert(/felles.{0,160}(ikke|uten).{0,100}(identisk|samme).{0,80}(opplevelse|reaksjon)|identisk publikumsopplevelse/is.test(combined), 'Fellesrom/identisk opplevelse-vakten mangler');
-  assert(/besøkstall.{0,160}(ikke|uten).{0,100}(tilfredshet|opplevelse|likte)|volum.{0,100}(ikke|krever)/is.test(combined), 'Besøkstall/opplevelse-vakten mangler');
-  assert(/tilgang.{0,140}(ikke|skille).{0,100}(bruk|tidsbruk)|abonnement.{0,120}(ikke|forskjellig).{0,80}bruk/is.test(combined), 'Tilgang/bruk-vakten mangler');
-  assert(/program.{0,160}(ikke|utvalg).{0,100}(nøytral|hele|kanon)|kurater.{0,120}(ikke|utvalg)/is.test(combined), 'Program/kanon-vakten mangler');
-  assert(/premiere.{0,160}(ikke|uten).{0,100}(varig|historisk|betydning)|festivalstatus.{0,120}(ikke|lansering)/is.test(combined), 'Premiere/betydning-vakten mangler');
-  assert(/minne.{0,180}(arkiv|program|spor|sammenhold)|arkiv.{0,160}(ikke|alene).{0,100}(husker|minne)/is.test(combined), 'Publikumsminne/arkiv-vakten mangler');
+  assert(/studio.{0,180}(ikke|skille).{0,120}(produksjon|prosjekt)|studiofasilitet.{0,120}produksjon/is.test(combined), 'Studio/produksjon-vakten mangler');
+  assert(/kamera.{0,180}(ikke|uten).{0,120}(godt|kvalitet|resultat)|utstyr.{0,160}(ikke|uten).{0,100}kvalitet/is.test(combined), 'Kamera/kvalitet-vakten mangler');
+  assert(/opptakslyd.{0,180}(sluttmiks|lyddesign|lydredigering)|skille.{0,80}opptakslyd/is.test(combined), 'Opptakslyd/miks-vakten mangler');
+  assert(/rå(opptak|materiale).{0,180}(redigert|klipp|master)|opptaksmateriale.{0,140}klippeversjon/is.test(combined), 'Råopptak/redigert sekvens-vakten mangler');
+  assert(/regissør.{0,140}(ikke|alene|kollektiv)|kollektivt filmverk/is.test(combined), 'Regissør/kollektiv-vakten mangler');
+  assert(/(budsjett|tilskudd).{0,180}(ikke|uten).{0,120}(kvalitet|kunstnerisk)|finansiering.{0,140}kvalitet/is.test(combined), 'Budsjett/kvalitet-vakten mangler');
+  assert(/rulletekst.{0,180}(ikke|utover|kontrakt)|manglende kreditering/is.test(combined), 'Rulletekst/arbeidsstokk-vakten mangler');
+  assert(/7,5 timer|37,5 timer|risikovurdering.{0,160}(konkret|tilpass)/is.test(combined), 'Arbeidstid/HMS-vakten mangler');
 
   const report = {
-    schema: 'history_go_fagverk_film_tv_kinoer_visningssteder_publikum_phase4_audit_v1', version: '1.0.0',
-    status: 'film_tv_kinoer_visningssteder_publikum_canonical_20_of_20', generatedFrom: P,
+    schema: 'history_go_fagverk_film_tv_produksjon_studio_arbeid_phase4_audit_v1', version: '1.0.0',
+    status: 'film_tv_produksjon_studio_arbeid_canonical_20_of_20', generatedFrom: P,
     subject: {
       id: 'film_tv', canonicalDomainCount: phase3.report.summary.domainCount,
       canonicalEmneCount: phase3.report.summary.emneCount, registeredChapterCount: registrySubject.chapters.length,
@@ -152,8 +155,8 @@ export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = fa
       relatedPlaceIds: chapter.relatedPlaces.map((row) => row.id)
     },
     canonicalCoverage: {
-      ownerDomainId: 'kinoer_visningssteder_publikum', requiredEmneIds: EXPECTED_EMNES,
-      coveredEmneIds: chapter.emne_ids, exactCoverage: '20/20', remainingDomainCount: 6 - registrySubject.chapters.length
+      ownerDomainId: 'produksjon_studio_arbeid', requiredEmneIds: EXPECTED_EMNES,
+      coveredEmneIds: chapter.emne_ids, exactCoverage: '20/20', remainingDomainCount: 4
     },
     summary: {
       moduleCount: modules.length, sectionCount: sections.length,
@@ -171,9 +174,10 @@ export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = fa
       allMethodReferencesResolved: true, threeEditedModules: true, paragraphLevelClaimTrace: true,
       allClaimsVerifiedAndUsed: true, allSourcesUsedAndInspectable: true, canonicalPlacesResolved: true,
       chapterSourcesRenderable: true, chapterPlacesRenderable: true, misconceptionsRenderable: true,
-      workScreeningEventGuard: true, sharedRoomExperienceGuard: true, attendanceExperienceGuard: true,
-      accessUseGuard: true, curationCanonGuard: true, premiereSignificanceGuard: true,
-      audienceMemoryArchiveGuard: true, previousFilmTvStructurePreserved: true, releaseReady: true
+      studioProductionGuard: true, cameraQualityGuard: true, acquisitionMixGuard: true,
+      rawEditedGuard: true, directorCollectiveGuard: true, budgetQualityGuard: true,
+      creditsWorkforceGuard: true, workingTimeSafetyGuard: true,
+      previousFilmTvStructurePreserved: true, releaseReady: true
     }
   };
   const committed = committedProjection(report);
@@ -188,10 +192,10 @@ export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = fa
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const { report } = auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Film & TV Kinoer, visningssteder og publikum OK: ${report.canonicalCoverage.exactCoverage} emner, ${report.summary.paragraphCount} avsnitt, ${report.summary.claimCount} claims og ${report.summary.sourceCount} kilder.`);
+    const { report } = auditFilmTvProduksjonStudioFilmarbeidPhase4({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
+    console.log(`Film & TV Produksjon, studio og filmarbeid OK: ${report.canonicalCoverage.exactCoverage} emner, ${report.summary.paragraphCount} avsnitt, ${report.summary.claimCount} claims og ${report.summary.sourceCount} kilder.`);
   } catch (error) {
-    console.error(`Film & TV Kinoer, visningssteder og publikum FEIL: ${error.message}`);
+    console.error(`Film & TV Produksjon, studio og filmarbeid FEIL: ${error.message}`);
     process.exitCode = 1;
   }
 }
