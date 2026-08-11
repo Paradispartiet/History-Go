@@ -1,0 +1,279 @@
+{
+  "schema": "history_go_psykologi_methods_statistics_university_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "subject_id": "psykologi",
+  "branch_id": "research_methods_statistics",
+  "status": "complete",
+  "purpose": "Universitetsnær metode- og statistikkgren for Psykologi. Grenen materialiserer de 20 bindende kompetansene i university-readiness-matrisen med eksplisitte definisjoner, læringsmål, fagskiller, misbruksvern og kildeproveniens.",
+  "completion_contract": {
+    "required_topic_count": 20,
+    "exact_topic_ids_required": true,
+    "unique_topic_ids_required": true,
+    "minimum_source_count": 6,
+    "every_topic_requires_sources": true,
+    "every_topic_requires_learning_outcomes": true,
+    "every_topic_requires_key_distinctions": true,
+    "every_topic_requires_misuse_guard": true,
+    "required_families": ["design", "sampling_measurement", "statistics", "inference_integrity"]
+  },
+  "sources": [
+    {
+      "source_id": "apa_undergraduate_guidelines_3_0",
+      "publisher": "American Psychological Association",
+      "title": "APA Guidelines for the Undergraduate Psychology Major: Version 3.0",
+      "url": "https://www.apa.org/about/policy/undergraduate-psychology-major.pdf",
+      "supports": ["scientific_inquiry", "research_design", "statistics", "ethics"]
+    },
+    {
+      "source_id": "apa_jars",
+      "publisher": "American Psychological Association",
+      "title": "Journal Article Reporting Standards (JARS) for quantitative, qualitative and mixed methods",
+      "url": "https://www.apa.org/pubs/journals/bne/",
+      "supports": ["experimental_design", "observational_design", "longitudinal_design", "qualitative_method", "reporting", "replication", "open_science"]
+    },
+    {
+      "source_id": "aera_apa_ncme_testing_standards_2014",
+      "publisher": "AERA / APA / NCME",
+      "title": "Standards for Educational and Psychological Testing (2014)",
+      "url": "https://www.testingstandards.net/",
+      "supports": ["operationalization", "reliability", "validity", "measurement", "fairness"]
+    },
+    {
+      "source_id": "nist_statistics_handbook",
+      "publisher": "National Institute of Standards and Technology",
+      "title": "NIST/SEMATECH e-Handbook of Statistical Methods",
+      "url": "https://www.itl.nist.gov/div898/handbook/",
+      "supports": ["descriptive_statistics", "statistical_inference", "hypothesis_testing", "confidence_intervals", "regression"]
+    },
+    {
+      "source_id": "nih_rigor_reproducibility",
+      "publisher": "National Institutes of Health",
+      "title": "Enhancing Reproducibility through Rigor and Transparency",
+      "url": "https://grants.nih.gov/policy-and-compliance/policy-topics/reproducibility",
+      "supports": ["experimental_design", "bias_control", "reproducibility", "replication", "transparent_reporting"]
+    },
+    {
+      "source_id": "nih_replication_reproducibility_2026",
+      "publisher": "National Institutes of Health",
+      "title": "Strengthening Replication and Reproducibility of NIH-funded Research",
+      "url": "https://www.nih.gov/replicationandreproducibility",
+      "supports": ["replication", "reproducibility", "data_sharing", "open_science"]
+    },
+    {
+      "source_id": "hhs_belmont_report",
+      "publisher": "U.S. Department of Health and Human Services, OHRP",
+      "title": "The Belmont Report",
+      "url": "https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html",
+      "supports": ["research_ethics", "informed_consent", "risk_benefit", "participant_selection"]
+    }
+  ],
+  "topics": [
+    {
+      "topic_id": "eksperimentelt_design",
+      "title": "Eksperimentelt design",
+      "family": "design",
+      "definition": "Planlegging av studier der forskeren manipulerer minst én variabel og bruker kontroll, randomisering eller andre designgrep for å undersøke mulige årsakssammenhenger.",
+      "learning_outcomes": ["Forklare hvorfor manipulasjon og kontroll styrker kausale slutninger.", "Skille randomisering av deltakere fra tilfeldig utvalg av deltakere."],
+      "key_distinctions": ["manipulasjon_vs_observasjon", "randomisering_vs_tilfeldig_utvalg"],
+      "misuse_guard": "Et eksperiment beviser ikke automatisk årsak; intern validitet avhenger av design, gjennomføring, måling og alternative forklaringer.",
+      "source_ids": ["apa_jars", "nih_rigor_reproducibility"]
+    },
+    {
+      "topic_id": "observasjon",
+      "title": "Observasjon",
+      "family": "design",
+      "definition": "Systematisk registrering av atferd, hendelser eller situasjoner uten nødvendigvis å manipulere betingelser.",
+      "learning_outcomes": ["Skille strukturert observasjon fra uformelle inntrykk.", "Vurdere observatørpåvirkning, kodingsregler og interbedømmerpålitelighet."],
+      "key_distinctions": ["systematisk_observasjon_vs_hverdagsinntrykk", "observatorbias_vs_observert_atferd"],
+      "misuse_guard": "Observasjon alene gir ikke sikker tilgang til motiv, diagnose eller indre tilstand.",
+      "source_ids": ["apa_jars"]
+    },
+    {
+      "topic_id": "korrelasjon",
+      "title": "Korrelasjon",
+      "family": "design",
+      "definition": "Statistisk beskrivelse av samvariasjon mellom variabler, vanligvis uttrykt ved styrke og retning, uten at samvariasjonen i seg selv fastslår årsak.",
+      "learning_outcomes": ["Tolke retning og styrke uten å gjøre korrelasjon til kausalitet.", "Identifisere mulige tredjevariabler og omvendt kausalitet."],
+      "key_distinctions": ["korrelasjon_vs_kausalitet", "samvariasjon_vs_forklaring"],
+      "misuse_guard": "En korrelasjon, også en sterk korrelasjon, etablerer ikke alene hvilken variabel som påvirker hvilken.",
+      "source_ids": ["nist_statistics_handbook", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "longitudinelt_design",
+      "title": "Longitudinelt design",
+      "family": "design",
+      "definition": "Studiedesign der de samme individene, kohortene eller fenomenene undersøkes på flere tidspunkter for å beskrive endring og tidsrekkefølge.",
+      "learning_outcomes": ["Forklare hva gjentatte målinger kan vise om utvikling og tidsrekkefølge.", "Vurdere frafall, målereaktivitet og kohortspesifikke begrensninger."],
+      "key_distinctions": ["endring_over_tid_vs_tverrsnittsforskjell", "frafall_vs_representativitet"],
+      "misuse_guard": "Tidsrekkefølge styrker enkelte slutninger, men et longitudinelt design er ikke automatisk et kausalt eksperiment.",
+      "source_ids": ["apa_jars"]
+    },
+    {
+      "topic_id": "tverrsnittdesign",
+      "title": "Tverrsnittdesign",
+      "family": "design",
+      "definition": "Studiedesign som sammenligner personer, grupper eller variabler på ett tidspunkt eller innenfor et kort avgrenset tidsrom.",
+      "learning_outcomes": ["Skille alders- eller gruppeforskjeller fra faktisk individuell utvikling.", "Vurdere kohort- og seleksjonseffekter."],
+      "key_distinctions": ["gruppeforskjell_vs_individuell_endring", "alder_vs_kohort"],
+      "misuse_guard": "Forskjeller mellom aldersgrupper i et tverrsnitt kan ikke uten videre tolkes som endringer som skjer med hvert individ over tid.",
+      "source_ids": ["apa_jars"]
+    },
+    {
+      "topic_id": "kvalitativ_metode",
+      "title": "Kvalitativ metode",
+      "family": "design",
+      "definition": "Systematiske metoder for å undersøke mening, erfaring, språk, praksis eller prosesser gjennom for eksempel intervju, feltarbeid, tekstanalyse eller andre fortolkende datakilder.",
+      "learning_outcomes": ["Forklare hvordan problemstilling, utvalg, datagenerering og analyse henger sammen i kvalitativ forskning.", "Vurdere transparens, refleksivitet og alternative fortolkninger."],
+      "key_distinctions": ["dybde_vs_statistisk_representativitet", "fortolkning_vs_vilkarlighet"],
+      "misuse_guard": "Kvalitativ forskning er ikke synonymt med anekdoter; kvalitet krever eksplisitt design, dokumentert analyse og begrunnede fortolkninger.",
+      "source_ids": ["apa_jars", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "utvalg_og_representativitet",
+      "title": "Utvalg og representativitet",
+      "family": "sampling_measurement",
+      "definition": "Prinsipper for hvordan deltakere eller observasjoner rekrutteres og hvor langt funn kan generaliseres utover det faktiske utvalget.",
+      "learning_outcomes": ["Skille sannsynlighetsutvalg fra bekvemmelighetsutvalg.", "Vurdere seleksjonsbias og begrensninger i generaliserbarhet."],
+      "key_distinctions": ["utvalg_vs_populasjon", "tilfeldig_utvalg_vs_randomisering_i_eksperiment"],
+      "misuse_guard": "Et stort utvalg er ikke nødvendigvis representativt dersom rekrutteringen systematisk favoriserer bestemte grupper.",
+      "source_ids": ["apa_jars", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "operasjonalisering",
+      "title": "Operasjonalisering",
+      "family": "sampling_measurement",
+      "definition": "Å oversette et teoretisk begrep til eksplisitte observerbare indikatorer, prosedyrer eller måleregler som kan brukes i en studie.",
+      "learning_outcomes": ["Koble konstrukt, indikator og måleprosedyre.", "Oppdage når en operasjonalisering bare dekker en snever del av begrepet."],
+      "key_distinctions": ["konstrukt_vs_indikator", "definisjon_vs_maleprosedyre"],
+      "misuse_guard": "En operasjonalisering er en praktisk måleregel, ikke selve fenomenet den er ment å representere.",
+      "source_ids": ["aera_apa_ncme_testing_standards_2014", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "reliabilitet",
+      "title": "Reliabilitet",
+      "family": "sampling_measurement",
+      "definition": "Grad av konsistens eller presisjon i målinger på tvers av relevante gjentakelser, ledd, vurderere eller måletidspunkter.",
+      "learning_outcomes": ["Skille reliabilitet fra validitet.", "Kjenne igjen at målefeil begrenser hvor presist resultater kan tolkes."],
+      "key_distinctions": ["reliabilitet_vs_validitet", "konsistens_vs_riktighet"],
+      "misuse_guard": "En måling kan være svært reliabel og likevel måle feil konstrukt.",
+      "source_ids": ["aera_apa_ncme_testing_standards_2014"]
+    },
+    {
+      "topic_id": "validitet",
+      "title": "Validitet",
+      "family": "sampling_measurement",
+      "definition": "Kvaliteten på evidensen og argumentasjonen som støtter en bestemt tolkning og bruk av måleresultater eller forskningsslutninger.",
+      "learning_outcomes": ["Vurdere om tolkningen faktisk støttes av måten dataene er samlet inn på.", "Skille målingsvaliditet, intern validitet og ekstern validitet som ulike spørsmål."],
+      "key_distinctions": ["validitet_vs_reliabilitet", "score_vs_tolkning"],
+      "misuse_guard": "Validitet er ikke et permanent stempel på et instrument; den gjelder bestemte tolkninger og bruksformål.",
+      "source_ids": ["aera_apa_ncme_testing_standards_2014"]
+    },
+    {
+      "topic_id": "deskriptiv_statistikk",
+      "title": "Deskriptiv statistikk",
+      "family": "statistics",
+      "definition": "Metoder for å oppsummere observerte data gjennom fordelinger, sentraltendens, spredning, frekvenser og grafiske framstillinger.",
+      "learning_outcomes": ["Velge relevante mål for sentrum og spredning.", "Oppdage hvordan skjevhet og uteliggere kan gjøre enkelte sammendrag misvisende."],
+      "key_distinctions": ["gjennomsnitt_vs_median", "beskrivelse_vs_inferens"],
+      "misuse_guard": "Deskriptive mål beskriver dataene som er observert; de etablerer ikke alene hva som gjelder i en større populasjon.",
+      "source_ids": ["nist_statistics_handbook"]
+    },
+    {
+      "topic_id": "statistisk_inferens",
+      "title": "Statistisk inferens",
+      "family": "statistics",
+      "definition": "Metoder for å bruke data fra et utvalg til å anslå eller teste påstander om en større populasjon under eksplisitte antakelser om utvalg og modell.",
+      "learning_outcomes": ["Forklare hvorfor inferens alltid innebærer usikkerhet.", "Vurdere antakelser, utvalgsdesign og modellvalg før generalisering."],
+      "key_distinctions": ["utvalg_vs_populasjon", "estimat_vs_sann_verdi"],
+      "misuse_guard": "Inferens er betinget av antakelser og design; en beregning kan være korrekt selv om generaliseringen er dårlig begrunnet.",
+      "source_ids": ["nist_statistics_handbook", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "hypotesetesting",
+      "title": "Hypotesetesting",
+      "family": "statistics",
+      "definition": "Statistisk beslutningsramme der data vurderes opp mot en eksplisitt nullhypotese og en alternativ hypotese med en forhåndsdefinert feilrisiko.",
+      "learning_outcomes": ["Tolke et p-nivå som dataenes forenlighet med en testmodell, ikke som sannsynligheten for at hypotesen er sann.", "Skille manglende forkastning fra dokumentasjon på likhet eller ingen effekt."],
+      "key_distinctions": ["forkaste_vs_bevise", "p_verdi_vs_effektstorrelse"],
+      "misuse_guard": "Å ikke forkaste nullhypotesen betyr ikke at nullhypotesen er bevist.",
+      "source_ids": ["nist_statistics_handbook"]
+    },
+    {
+      "topic_id": "effektstorrelse",
+      "title": "Effektstørrelse",
+      "family": "statistics",
+      "definition": "Et mål på størrelsen til en forskjell, sammenheng eller effekt, uttrykt på en skala som gjør praktisk eller faglig betydning vurderbar ved siden av statistisk usikkerhet.",
+      "learning_outcomes": ["Skille statistisk signifikans fra størrelsen på en effekt.", "Tolke effektstørrelse sammen med usikkerhet, design og kontekst."],
+      "key_distinctions": ["signifikans_vs_storrelse", "effektstorrelse_vs_praktisk_betydning"],
+      "misuse_guard": "En liten effekt kan være statistisk tydelig i et stort utvalg, mens en stor estimert effekt kan være svært usikker i et lite utvalg.",
+      "source_ids": ["apa_jars", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "konfidensintervall_og_usikkerhet",
+      "title": "Konfidensintervall og usikkerhet",
+      "family": "statistics",
+      "definition": "Intervallestimering som uttrykker statistisk usikkerhet rundt et parameterestimat ved hjelp av en metode med definert langtidsdekningsgrad.",
+      "learning_outcomes": ["Forklare at et 95-prosentintervall beskriver egenskaper ved en gjentatt prosedyre, ikke en 95-prosent sannsynlighet for en allerede fast parameter.", "Koble intervallbredde til utvalgsstørrelse, variasjon og modellantakelser."],
+      "key_distinctions": ["estimat_vs_usikkerhet", "konfidensnivaa_vs_sannsynlighet_for_fast_parameter"],
+      "misuse_guard": "Et konfidensintervall er ikke en garanti for at den sanne verdien ligger i akkurat dette beregnede intervallet.",
+      "source_ids": ["nist_statistics_handbook"]
+    },
+    {
+      "topic_id": "regresjon",
+      "title": "Regresjon",
+      "family": "statistics",
+      "definition": "Modellering av hvordan en responsvariabel samvarierer med én eller flere forklaringsvariabler, med eksplisitte antakelser om funksjonsform og feilledd.",
+      "learning_outcomes": ["Tolke regresjonskoeffisienter betinget på modellen og øvrige variabler.", "Vurdere residualer, modellantakelser, overtilpasning og ekstrapolasjon."],
+      "key_distinctions": ["prediksjon_vs_kausalitet", "assosiasjon_vs_kontroll_for_kovariater"],
+      "misuse_guard": "Å inkludere en variabel i en regresjonsmodell gjør ikke koeffisienten kausal; design og antakelser avgjør hvilke slutninger som er forsvarlige.",
+      "source_ids": ["nist_statistics_handbook", "apa_jars"]
+    },
+    {
+      "topic_id": "kausalitet_og_konfundering",
+      "title": "Kausalitet og konfundering",
+      "family": "inference_integrity",
+      "definition": "Analyse av om en observert sammenheng kan skyldes en årsakseffekt eller påvirkes av tredjevariabler, seleksjon, omvendt kausalitet eller andre systematiske skjevheter.",
+      "learning_outcomes": ["Identifisere plausible konfoundere før en kausal tolkning.", "Skille statistisk kontroll fra designbasert identifikasjon av årsak."],
+      "key_distinctions": ["arsak_vs_samvariasjon", "konfounder_vs_mediator"],
+      "misuse_guard": "Statistisk justering kan redusere enkelte alternative forklaringer, men kan ikke alene reparere et design som mangler nødvendig identifikasjon.",
+      "source_ids": ["nih_rigor_reproducibility", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "replikasjon",
+      "title": "Replikasjon",
+      "family": "inference_integrity",
+      "definition": "Ny undersøkelse av et tidligere funn eller en tidligere hypotese med mål om å vurdere hvor robust resultatet er under samme eller meningsfullt varierte betingelser.",
+      "learning_outcomes": ["Skille direkte og konseptuell replikasjon.", "Vurdere samlet evidens framfor å kreve identiske enkeltresultater."],
+      "key_distinctions": ["replikasjon_vs_reproduksjon", "enkeltstudie_vs_evidensbase"],
+      "misuse_guard": "En replikasjon må ikke gi identisk tallverdi for å være informativ; poenget er å teste robusthet under eksplisitte betingelser.",
+      "source_ids": ["nih_replication_reproducibility_2026", "apa_jars"]
+    },
+    {
+      "topic_id": "apen_vitenskap",
+      "title": "Åpen vitenskap",
+      "family": "inference_integrity",
+      "definition": "Praksiser som gjør forskningsprosessen mer transparent og etterprøvbar, blant annet preregistrering, deling av materialer, data og kode når det er etisk og juridisk forsvarlig, samt tydelig skille mellom planlagte og utforskende analyser.",
+      "learning_outcomes": ["Forklare hva preregistrering kan og ikke kan løse.", "Vurdere når åpen deling må begrenses av personvern, samtykke eller andre etiske hensyn."],
+      "key_distinctions": ["transparens_vs_full_offentliggjoring", "preregistrert_vs_eksplorativ_analyse"],
+      "misuse_guard": "Åpen vitenskap betyr ikke at alle data alltid skal publiseres; deling må være forenlig med etikk, samtykke, personvern og lovverk.",
+      "source_ids": ["apa_jars", "nih_replication_reproducibility_2026"]
+    },
+    {
+      "topic_id": "forskningsetikk",
+      "title": "Forskningsetikk",
+      "family": "inference_integrity",
+      "definition": "Prinsipper og institusjonelle krav som beskytter deltakernes rettigheter og velferd og regulerer samtykke, risiko–nytte, rettferdig rekruttering, personvern og ansvarlig forskningspraksis.",
+      "learning_outcomes": ["Forklare respekt for personer, velgjørenhet og rettferdighet som grunnprinsipper i forskning på mennesker.", "Koble etiske vurderinger til samtykke, risiko–nytte og utvalg av deltakere."],
+      "key_distinctions": ["forskning_vs_praksis", "samtykke_vs_tvang", "vitenskapelig_verdi_vs_deltakerbeskyttelse"],
+      "misuse_guard": "Vitenskapelig interesse eller samfunnsnytte opphever ikke kravet om deltakerbeskyttelse og forsvarlig etisk vurdering.",
+      "source_ids": ["hhs_belmont_report", "apa_undergraduate_guidelines_3_0"]
+    }
+  ],
+  "summary": {
+    "topic_count": 20,
+    "family_counts": {"design": 6, "sampling_measurement": 4, "statistics": 6, "inference_integrity": 4},
+    "source_count": 7,
+    "classification": "university_methods_statistics_branch_complete"
+  }
+}
