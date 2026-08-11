@@ -51,10 +51,27 @@ function fieldIsMaterialized(value) {
   return Array.isArray(value) ? value.length > 0 : typeof value === 'string' ? value.trim().length > 0 : value != null;
 }
 
-function sourceIsInspectable(source, requiredFields) {
+export function sourceIsInspectable(source, requiredFields) {
   if (!requiredFields.every((field) => fieldIsMaterialized(source[field]))) return false;
-  if (/^https:\/\//.test(source.url)) return true;
-  return typeof source.url === 'string' && source.url.startsWith('data/') && fs.existsSync(abs(source.url));
+  if (source.type === 'internal_place_record') {
+    return typeof source.url === 'string' && source.url.startsWith('data/') && fs.existsSync(abs(source.url));
+  }
+  return typeof source.url === 'string' && /^https:\/\//.test(source.url);
+}
+
+export function validatedSourceIndex(registrations, requiredFields) {
+  assert(registrations.every((source) => fieldIsMaterialized(source?.id)), 'Kilderegisteret har en registrering uten id');
+  const byId = new Map();
+  const conflictingIds = new Set();
+  for (const source of registrations) {
+    const previous = byId.get(source.id);
+    if (previous && ['publisher','title','url','type'].some((field) => previous[field] !== source[field])) conflictingIds.add(source.id);
+    if (!previous) byId.set(source.id, source);
+  }
+  const validIds = new Set([...byId].filter(([, source]) => sourceIsInspectable(source, requiredFields)).map(([id]) => id));
+  assert(conflictingIds.size === 0, `Kilderegisteret har motstridende metadata for: ${[...conflictingIds].sort().join(', ')}`);
+  assert(validIds.size === byId.size, `Kilderegisteret har ${byId.size - validIds.size} ufullstendige eller ikke-inspiserbare kilder`);
+  return { registeredCount: byId.size, validIds };
 }
 
 function sourceRegistry(contract) {
@@ -73,18 +90,7 @@ function sourceRegistry(contract) {
     registrations.push(...document.sources);
   }
 
-  const byId = new Map();
-  const conflictingIds = new Set();
-  for (const source of registrations) {
-    if (!source?.id) continue;
-    const previous = byId.get(source.id);
-    if (previous && ['publisher','title','url','type'].some((field) => previous[field] !== source[field])) conflictingIds.add(source.id);
-    if (!previous) byId.set(source.id, source);
-  }
-  const validIds = new Set([...byId].filter(([, source]) => sourceIsInspectable(source, contract.required_source_fields)).map(([id]) => id));
-  assert(conflictingIds.size === 0, `Kilderegisteret har motstridende metadata for: ${[...conflictingIds].sort().join(', ')}`);
-  assert(validIds.size === byId.size, `Kilderegisteret har ${byId.size - validIds.size} ufullstendige eller ikke-inspiserbare kilder`);
-  return { registeredCount: byId.size, validIds };
+  return validatedSourceIndex(registrations, contract.required_source_fields);
 }
 
 export function sourceIdsResolve(sourceIds, validSourceIds) {

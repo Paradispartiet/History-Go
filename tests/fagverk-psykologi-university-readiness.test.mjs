@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import {
   auditPsykologiUniversityReadiness,
   expectedSubjectState,
+  sourceIsInspectable,
+  validatedSourceIndex,
   sourcedDocumentCoverage
 } from '../scripts/audit-fagverk-psykologi-university-readiness.mjs';
 
@@ -78,6 +80,18 @@ test('vilkårlige source_ids kan ikke gjøre en artikkel eller et begrep komplet
   });
   assert.equal(resolved.completeCount, 1);
   assert.equal(resolved.invalidSourceReferenceCount, 0);
+});
+
+test('kilderegisteret avviser manglende ID og håndhever URL-regler per kildetype', () => {
+  const requiredFields = ['id', 'publisher', 'title', 'url', 'source_location', 'type'];
+  const source = { id: 'src-test', publisher: 'Test', title: 'Test', source_location: 'Test', type: 'peer_reviewed_article' };
+  assert.throws(() => validatedSourceIndex([{ ...source, id: undefined, url: 'https://example.org' }], requiredFields), /uten id/);
+  assert.equal(sourceIsInspectable({ ...source, url: 'data/fagverk/subject_status.json' }, requiredFields), false);
+  assert.equal(sourceIsInspectable({ ...source, url: 'https://example.org' }, requiredFields), true);
+
+  const internal = { ...source, type: 'internal_place_record' };
+  assert.equal(sourceIsInspectable({ ...internal, url: 'https://example.org' }, requiredFields), false);
+  assert.equal(sourceIsInspectable({ ...internal, url: 'data/fagverk/subject_status.json' }, requiredFields), true);
 });
 
 test('universitetsporten har en gyldig overgang til endelig complete-status', () => {

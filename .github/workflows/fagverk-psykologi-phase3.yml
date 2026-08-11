@@ -32,6 +32,7 @@ on:
       - "scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-complete.mjs"
       - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "scripts/psykologi-subject-state.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
@@ -69,6 +70,7 @@ on:
       - "scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-complete.mjs"
       - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "scripts/psykologi-subject-state.mjs"
       - "tests/fagverk-psykologi-phase3.test.mjs"
       - "tests/fagverk-psykologi-psykisk-helse-phase4.test.mjs"
       - "tests/fagverk-psykologi-fagtradisjoner-teori-phase4.test.mjs"
@@ -120,6 +122,7 @@ jobs:
           node --check scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-complete.mjs
           node --check scripts/audit-fagverk-psykologi-university-readiness.mjs
+          node --check scripts/psykologi-subject-state.mjs
           node --check scripts/build-fagverk-release-manifest.mjs
 
       - name: Materialize Psychology editorial chapters
