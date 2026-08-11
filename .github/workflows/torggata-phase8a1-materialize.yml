@@ -1,0 +1,57 @@
+name: Torggata phase 8A1 materialize
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'agent/torggata-phase8a1-people-founders'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize 8A1
+        run: python3 tools/_tmp_materialize_torggata_phase8a1.py
+
+      - name: Regenerate derived People data
+        run: |
+          npm run civication:history-people:build
+          npm run build:tools
+          node dist/tools/audit-people-popup-readiness.mjs
+          npm run audit:people-of-places
+
+      - name: Validate focused People batch
+        run: |
+          npm run audit:people-profile-canonical
+          npm run civication:history-people:check
+          node --test tests/torggata-phase8a1-people.test.mjs
+
+      - name: Run repository data gates
+        run: npm run tools:check
+
+      - name: Commit validated batch
+        run: |
+          rm -f .github/workflows/torggata-phase8a1-materialize.yml
+          rm -f tools/_tmp_materialize_torggata_phase8a1.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Godkjenn Torggata fase 8A1 People"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
