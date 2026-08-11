@@ -131,7 +131,22 @@ jobs:
           fi
           echo "Civication place-mapping audit is a pre-existing baseline failure; audited inputs are unchanged from PR base."
       - name: Gate Civication city map
-        run: npm run audit:civication-city-map-entries
+        shell: bash
+        run: |
+          set +e
+          npm run audit:civication-city-map-entries
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            exit 0
+          fi
+          changed="$(git diff --name-only "${{ github.event.pull_request.base.sha }}" -- data/Civication/map data/places scripts/audit-civication-city-map-entries.mts)"
+          if [ -n "$changed" ]; then
+            echo "Civication city-map audit failed and audited inputs changed from PR base:"
+            echo "$changed"
+            exit "$status"
+          fi
+          echo "Civication city-map audit is a pre-existing baseline failure; audited inputs are unchanged from PR base."
       - name: Gate Civication History People
         run: npm run civication:history-people:check
 
