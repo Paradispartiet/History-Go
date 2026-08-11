@@ -1,0 +1,46 @@
+name: Fagverk Psykologi university cognitive psychology
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/psykologi/kognitiv_psykologi_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-cognitive-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-cognitive-university.test.mjs"
+      - "reports/fagverk/psykologi-cognitive-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-cognitive-university.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/psykologi/kognitiv_psykologi_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-cognitive-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-cognitive-university.test.mjs"
+      - "reports/fagverk/psykologi-cognitive-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-cognitive-university.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Psychology 17/17 cognitive psychology
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Validate audit syntax
+        run: |
+          node --check scripts/audit-fagverk-psykologi-cognitive-university.mjs
+          node --check scripts/audit-fagverk-psykologi-university-readiness.mjs
+      - name: Verify deterministic cognitive psychology audit
+        run: node scripts/audit-fagverk-psykologi-cognitive-university.mjs
+      - name: Test cognitive psychology contract
+        run: node --test tests/fagverk-psykologi-cognitive-university.test.mjs
+      - name: Verify university readiness consumes the completed branch
+        run: node scripts/audit-fagverk-psykologi-university-readiness.mjs --no-check-report
