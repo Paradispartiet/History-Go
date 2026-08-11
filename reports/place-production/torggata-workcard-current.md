@@ -22,6 +22,7 @@
 - Fase 8A1-audit: `reports/place-production/torggata-phase8a1-people-audit-v1.md`
 - Fase 8A2-audit: `reports/place-production/torggata-phase8a2-jensen-audit-v1.md`
 - Fase 8A3-audit: `reports/place-production/torggata-phase8a3-residents-memory-audit-v1.md`
+- Fase 8A-closeout: `reports/place-production/torggata-phase8a-closeout-v1.md`
 
 ## Korrigert fasestatus
 
@@ -35,7 +36,7 @@
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
-| 8. Rundinger | **PÅGÅR – 8A People** | audit PR #4829; 8A1 godkjent i PR #4831; 8A2 godkjent i PR #4840; 8A3 beboere/arbeid/minnespor materialisert |
+| 8. Rundinger | **PÅGÅR – 8B Objects** | audit PR #4829; **8A People GODKJENT** etter PR #4831, #4840 og #4842 + closeout; 8B er neste del |
 | 9–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
@@ -187,7 +188,7 @@ PR #4820 ble squash-merget etter grønn Fagverk By Data og styring Phase 4 og Ty
 
 ```text
 TIDLIGERE-ARBEID-SØK: UTFØRT
-TIDLIGERE GODKJENT CHRONOLOGYJOBB: ingen funnet etter dagens popup-/place-kontrakt
+TIDLIGERE GODKJENTE CHRONOLOGYJOBB: ingen funnet etter dagens popup-/place-kontrakt
 LEGACY-FUNN: leksikon_oslo_by_batch1.json hadde én navnløs Torggata-post med ukildet chronology «Senmodernitet»
 BEHOLD: fase-6 history_layers og fase-5 kilde-/claim-base
 BESLUTNING: bygg kort kildebåret chronology og undertrykk bare navnløs legacy-extra i popupen
@@ -291,7 +292,6 @@ Alle åtte popupfaner er nå eksplisitt avsluttet som **GODKJENT** eller **BEGRU
 
 Torggata kan derfor gå videre til **fase 8: PlaceCard-rundinger**. Før fase 8 settes `PÅGÅR` skal tidligere-arbeid-gaten kjøres for rundinger og `data/places/README_place_rounds.md` leses fullt ut. Legacy `place.rounds` skal ikke behandles som canonical fasit bare fordi det finnes eldre Torggata-rundingsarbeid.
 
-
 ## Fase 8A1 – byggere, arkitekter og teaterledere
 
 8A1 bygger den første canonical People-klyngen for Torggata uten antallskvote. Eksisterende Thorvald Meyer, Henrik Bull, Christian Morgenstierne og Arne Eide gjenbrukes med sekundær Torggata-kobling. Nye People v1-profiler opprettes for Thøger Binneballe, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
@@ -314,4 +314,12 @@ Adelsten-metadataene er korrigert mot den dedikerte Oslo byleksikon-artikkelen: 
 
 Klyngen dekker presise Torggata-adresser og dokumenterte roller innen boligarbeid, gatehandel/industri, krigshistorie og fysisk minne. Ingen holdback-kandidater legges inn bare for å øke antallet.
 
-Neste steg etter 8A3-merge: **8A closeout + People-runding UI-kontroll**.
+8A3 ble squash-merget i PR #4842 og fullførte den planlagte People-innholdsproduksjonen.
+
+## Fase 8A – closeout
+
+People-rundingen er kontrollert mot faktisk runtime: `getPeopleForPlace('torggata')` leverer de kildebårne 8A-personene fra canonical manifest/place-referanser, PlaceCard bruker samme samling til liste og preview, og category-four-gridet beholder People som første innholdsrunding. Testen låser identitetene som 8A faktisk produserte, men innfører ingen antallskvote.
+
+**8A People = GODKJENT.**
+
+Neste fase-8-del: **8B Objects**.
