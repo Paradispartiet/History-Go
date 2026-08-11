@@ -4,7 +4,7 @@
 - Place ID: `torggata`
 - Canonical source: `data/places/by/oslo/places/torggata.json`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
-- Obligatorisk preflight-tillegg: `docs/PLACE_PRODUCTION_PRIOR_WORK_GATE.md`
+- Obligatorisk preflight: `docs/PLACE_PRODUCTION_PRIOR_WORK_GATE.md`
 - Nullmåling: `reports/place-production/torggata-nullmaaling-v1.md`
 - Kildebase: `reports/place-production/torggata-source-base-v1.md`
 - Fase 4-audit: `reports/place-production/torggata-phase4-fagverk-audit-v1.md`
@@ -12,34 +12,25 @@
 - Fase 6-audit: `reports/place-production/torggata-phase6-structured-profiles-audit-v1.md`
 - Fase 7-audit: `reports/place-production/torggata-phase7-popup-tabs-audit-v1.md`
 - Fase 7A-audit: `reports/place-production/torggata-phase7a-about-audit-v1.md`
+- Fase 7B-audit: `reports/place-production/torggata-phase7b-history-audit-v1.md`
 
-## Korrigert fasestatus
+## Fasestatus
 
 | Fase | Status | Dokumentasjon |
 | --- | --- | --- |
 | 0. Nullmåling | **GODKJENT** | PR #4794, merge `694310c4e9b1b009b38f530479d823621bf5a388` |
 | 1. Canonical identity/source | **GODKJENT** | PR #4795, merge `3f8d3b3a832e8604f2c1d1406365398c13e21c49` |
 | 2. Kildebase | **GODKJENT** | PR #4796, merge `15ed74e57cb18940bb9fcba6b4907ac7dc862ae0` |
-| 3. Koordinater/geometri | **ALLEREDE FERDIG – BEHOLD** | tidligere coordinate-produksjon, særlig PR #3773 og #3775 |
+| 3. Koordinater/geometri | **ALLEREDE FERDIG – BEHOLD** | PR #3773/#3775; korrigert tilbake i PR #4810 |
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **PÅGÅR – 7A OM KLAR FOR REVIEW** | fase-7-audit merget i PR #4817; 7A har egen kildebåret Leksikon-hovedartikkel og regresjonslås |
+| 7. Popupfaner | **PÅGÅR – 7B HISTORIE KLAR FOR REVIEW** | audit PR #4817; 7A Om PR #4820; 7B aktiv branch |
 | 8–15 | **IKKE STARTET** | styres av hovedchecklisten |
-
-## Tidligere-arbeid-gate – koordinater
-
-```text
-TIDLIGERE-ARBEID-SØK: UTFØRT
-SISTE GODKJENTE PR/COMMIT: PR #3775 / 794e0cad02f54ba561e2af06e0ae839a95f11e52
-SISTE GODKJENTE TILSTAND: verified_geometry, street_geometry_midpoint, ordnede routeSegments
-KONKRET REGRESJONSEVIDENS: PR #4799 flyttet displaypunktet til Youngstorget og fjernet den tidligere routeSegments-modellen uten at tidligere ferdig coordinate-jobb først ble behandlet som baseline
-BESLUTNING: REGRESJON – gjenopprett tidligere godkjent tilstand; ingen ny coordinate-produksjon
-```
 
 ## Bindende coordinate-baseline
 
-Torggata skal bruke den tidligere godkjente coordinate-tilstanden fra PR #3775:
+Koordinatjobben skal ikke åpnes på nytt uten konkret regresjonsevidens.
 
 - `lat`: `59.91700148933685`
 - `lon`: `10.75330911912394`
@@ -49,126 +40,96 @@ Torggata skal bruke den tidligere godkjente coordinate-tilstanden fra PR #3775:
 - operativt geometry-anker: `osm-way:467290774`
 - ordnede `routeSegments` beholdes
 
-Denne tilstanden ble etablert gjennom eksakt gategeometri-research i PR #3773 og anvendt/validert i PR #3775. Punktet ligger på selve Torggata-geometrien og skal ikke erstattes med et punkt midt på Youngstorget bare fordi torget inngår i den bredere gateidentiteten.
+Tidligere-arbeid-gaten klassifiserte PR #4797/#4799/#4800/#4802 som feilaktig gjenåpning av allerede ferdig coordinatearbeid. PR #3775 er bindende baseline; PR #4810 gjenopprettet den.
 
-Følgende senere coordinatearbeid brukes ikke som gjeldende fasit: PR #4797, #4799, #4800 og #4802. Feilen var å gjøre om en allerede ferdig koordinatjobb uten først å kontrollere og respektere den tidligere godkjente coordinate-historikken.
+## Fase 4 – godkjent resultat
 
-## Fase 4 – tidligere-arbeid-gate
+- `category: by` beholdes;
+- `em_by_gentrifisering_eiendom` og `em_by_styring_forvaltning_planmakt` beholdes innen dokumenterte inferensgrenser;
+- ingen underbadge ble lagt til som filler;
+- generisk `fagverk-sted.html` ble gjort fagnøytral;
+- Politikk-overlaget kjører bare ved eksplisitt Politikk-identitet;
+- Torggatas By-rendering er regresjonslåst.
 
-```text
-TIDLIGERE-ARBEID-SØK: UTFØRT
-SISTE GODKJENTE PR/COMMIT: Ingen tidligere PR funnet som godkjenner fase 4 etter dagens place-checklist
-SISTE GODKJENTE TILSTAND: Arvet category=by, to em_by_* og Badges-runding
-KONKRET REGRESJONSEVIDENS: Generisk fagverk-sted.html og Politikk-overlaget lekket Politikk-presentasjon inn i ikke-Politikk-steder
-BESLUTNING: REELT NYTT AUDITARBEID – behold beståtte fagdata, rett runtimefeilen
-```
+## Fase 5 – godkjent resultat
 
-### Fase 4 – godkjent resultat
+Tidligere merget Torggata-tekst ble behandlet som baseline, ikke omskrevet på nytt.
 
-- `category: by` er canonical og beholdes;
-- `em_by_gentrifisering_eiendom` beholdes med kildebasens dokumenterte inferensgrense;
-- `em_by_styring_forvaltning_planmakt` beholdes med avgrensning mot udokumentert enkel kausalitet;
-- ingen `underbadge_ids` ble lagt til bare for å fylle felt;
-- `badges` finnes allerede;
-- By-merket og By-faget er materialisert i portalregisteret;
-- generisk `fagverk-sted.html` er gjort fagnøytral;
-- Politikk-integrasjonen kjører bare ved eksplisitt Politikk-identitet;
-- Torggatas By-rendering kan ikke overskrives av tom Politikk-modell;
-- regresjonstesten låser `by`-identitet, begge By-emnene, Badges-rundingen og materialisert By-portal.
+- `desc`: beholdt;
+- `popupDesc`: beholdt, bortsett fra `byens første 25-metersbasseng` → `et 25-metersbasseng`;
+- Eldorados `Norges første lydfilmkino` beholdes med dobbeltkilde;
+- `data/places/production/torggata.json` følger v4.2.1;
+- 18 verifiserte claims;
+- setningsdekning 3/3 `desc`, 31/31 `popupDesc`;
+- fire strong-claims med eksplisitt evidens;
+- 10 quiz-readiness-spørsmål / 5 typer.
 
-PR #4813 ble squash-merget etter grønn Fagverk and place learning, Fagverk By Data og styring Phase 4 og TypeScript guard. `main` ble kontrollert på merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` før fase 5 startet.
-
-## Fase 5 – tidligere-arbeid-gate
-
-```text
-TIDLIGERE-ARBEID-SØK: UTFØRT
-SISTE GODKJENTE PR/COMMIT: ecd3af8ec85615e39bc84579f4511bba06e04b72 – «Utvid Torggata til innholdsrik popupDesc»
-SISTE GODKJENTE TILSTAND: dagens desc/popupDesc er etterkommer av tidligere merget tekst
-KONKRET REGRESJONSEVIDENS: ingen generell tekstregresjon; manglende v4.2-produksjonspakke og én superlativpåstand tilfredsstilte ikke dagens strong-claim-kontrakt
-BESLUTNING: RETROFIT – bevar teksten; rett bare det konkrete kontraktavviket
-```
-
-### Fase 5 – godkjent resultat
-
-- `desc` beholdes uendret: 49 ord;
-- `popupDesc` beholdes redaksjonelt og strukturelt;
-- eneste innholdsendring er `byens første 25-metersbasseng` → `et 25-metersbasseng`;
-- Eldorados `Norges første lydfilmkino` beholdes fordi påstanden har to uavhengige kilder;
-- `data/places/production/torggata.json` følger v4.2.1 med 18 verifiserte claims;
-- setningsdekning er 3/3 for `desc` og 31/31 for `popupDesc`;
-- fire strong-claims har eksplisitt evidens og minst to kilde-URL-er;
-- ferske temporal-claims dekker nåværende stedselementer;
-- quiz-readiness inneholder 10 direkte spørsmål fordelt på 5 typer;
-- `desc`-hash: `10711892bbf6acd84a9f8cfd4638c73ce39db71814b4f3619b4b5f6621a82fbb`;
-- `popupDesc`-hash: `e4e0fa2ab0a249ee3619406972e454045e40cda98b500c50f2f00fa813709fef`.
-
-PR #4815 passerte Place description governance, Data checks, Fagverk and place learning, Nature data validation and candidates og Fagverk By Data og styring Phase 4 på samme head. PR-en ble squash-merget, og faktisk `main` ble kontrollert på merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` før fase 6 startet.
-
-## Fase 6 – tidligere-arbeid-gate
-
-```text
-TIDLIGERE-ARBEID-SØK: UTFØRT
-SISTE GODKJENTE PR/COMMIT: Ingen tidligere Torggata-PR funnet som eier fase 6 etter dagens checklist
-SISTE GODKJENTE TILSTAND: stedet hadde rike enkeltfelt, men ingen canonical strukturerte place-profiler
-KONKRET REGRESJONSEVIDENS: ingen
-BESLUTNING: REELT NYTT ARBEID – bygg bare kildebårne strukturer som tilfører ny organisering
-```
-
-### Fase 6 – godkjent resultat
+## Fase 6 – godkjent resultat
 
 - `spatial_profile` skiller canonical gateidentitet fra den kortere operative routeSegments-kjeden;
-- 574,5 meter gjøres ikke til påstått full Torggata-lengde;
-- `temporal_profile` bruker seks hovedmilepæler og blir ikke en parallell chronology;
-- `subplaces` består bare av de to dokumenterte gatesegmentene Stortorvet–Youngstorget og Youngstorget–Ankertorget;
-- `history_layers` gir fem korte, kildebårne historiske lag uten å duplisere full chronology;
-- `source_summary.safe_sources` inneholder bare eksterne brukerrettede kilder;
-- `nature_profile` er **N/A** med konkret begrunnelse: urbant gateløp uten dokumentert naturfaglig rolle i stedspakken;
-- fase 5-tekster og production package er urørt.
+- 574,5 meter brukes ikke som påstått full Torggata-lengde;
+- `temporal_profile` har seks hovedmilepæler;
+- `subplaces` har to reelle gatesegmenter;
+- `history_layers` har fem korte historiske lag;
+- `source_summary.safe_sources` inneholder eksterne brukerrettede kilder;
+- `nature_profile` er begrunnet N/A.
 
-PR #4816 passerte Fagverk By Data og styring Phase 4, Nature data validation and candidates, Place description governance, Fagverk and place learning og Data checks på samme head. PR-en ble squash-merget, og faktisk `main` ble kontrollert på merge `e155aea8b0717c623a1de9904dcc253e8820f356` før fase 7 startet.
+## Fase 7 – popupaudit
 
-## Fase 7 – tidligere-arbeid-gate
+Alle åtte faner er vurdert separat:
 
-```text
-TIDLIGERE-ARBEID-SØK: UTFØRT
-SISTE GODKJENTE TILSTAND: tab-runtime, Torggata-leksikon, én canonical Story, for_na, Lesespor og externalLinks finnes allerede
-NY PRODUKSJON FØR AUDIT: FORBUDT
-BESLUTNING: REELT AUDITARBEID – vurder hver av åtte canonical popupfaner separat og behold eksisterende data som faktisk består kontrakten
-```
+- **Om:** 7A behandlet;
+- **Historie:** 7B aktiv;
+- **Fortellinger:** 7C gjenstår;
+- **Før/etter:** 7D gjenstår;
+- **Nyheter:** **BEGRUNNET N/A** – ingen relevant canonical Torggata-notis dokumentert;
+- **Lesespor:** **BEGRUNNET N/A** – eksisterende Torggata-koblinger er subscription/paywall og filtreres fra åpen stedflate;
+- **Kilder:** 7E gjenstår;
+- **Mer:** **BEGRUNNET N/A** – ingen Språkleksikon-/observasjonspakke som bør fylles inn kunstig.
 
-### Fase 7 – auditresultat
+### Runtimeforståelse
 
-- **Om – 7A KLAR FOR REVIEW:** fase-5-artikkelen og fase-6 spatial/subplaces beholdes. En egen manifest-lastet `title: Torggata`-hovedartikkel erstatter den ukildede legacy fallbacken som Om-supplement. `temporal_profile` flyttes ikke inn som dupliserende Om-tidslinje; den vurderes med Historie i 7B.
-- **Historie – TRENGER ARBEID / 7B:** `history_layers` vises, mens legacy Leksikon-chronology fortsatt er én generisk ukildet post.
-- **Fortellinger – TRENGER ARBEID / 7C:** én aktiv Torggata-story finnes; narrativet beholdes, men legacy-type `urban_change` og tematisk `next_scenes` må re-auditeres mot dagens Story-governance.
-- **Før/etter – TRENGER ARBEID / 7D:** `for_na` finnes, men interne History GO/Wonderkammer-kilder kan ikke være selvstendig faktagrunnlag, og kontrollert bildepar mangler.
-- **Nyheter – BEGRUNNET N/A:** ingen canonical Torggata-notiser er dokumentert som relevante nok til produksjon nå.
-- **Lesespor – BEGRUNNET N/A:** eksisterende Torggata-koblinger er subscription/paywall og filtreres korrekt fra den åpne stedflaten; ingen åpent direkte lesbart Torggata-spor er dokumentert.
-- **Kilder – TRENGER ARBEID / 7E:** sikre kildenavn finnes, men flere av dem er bare labels og ikke inspectable brukerrettede HTTPS-lenker.
-- **Mer – BEGRUNNET N/A:** ingen Torggata-post i Språkleksikon-manifestet og ingen særskilt canonical Mer-pakke som må vises; fanen skal ikke fylles med legacy-/handlingselementer.
+`place-popup-v2.js` renderer allerede `spatial_profile`, `subplaces`, `history_layers` og `source_summary`, og tabs-wrapperen fordeler dem til Om, Historie og Kilder. `temporal_profile` har ingen egen renderer; Historie/Leksikon chronology er den brukerrettede tidslinjeeieren.
 
-### Korrigert runtimeforståelse
-
-Fase-6-feltene er ikke generelt frakoblet popupen. `place-popup-v2.js` renderer `spatial_profile`, `subplaces`, `history_layers` og `source_summary`, og tabs-wrapperen fordeler dem til Om, Historie og Kilder. `temporalProfile(place)` finnes som helper uten egen renderer; 7A beslutter at dette ikke skal løses med en dupliserende Om-tidslinje, men vurderes i 7B Historie.
-
-## Fase 7A – Om
+## Fase 7A – Om, GODKJENT
 
 ```text
 TIDLIGERE-ARBEID-SØK: UTFØRT
-LEGACY-FUNN: leksikon_oslo_by_batch1.json har Torggata-fallback med generisk gentrifiseringsprosa og tomme sources
-BEHOLD: fase-5 popupDesc, spatial_profile, subplaces og all tidligere godkjent place-data
-BESLUTNING: legg til egen kildebåret manifest-hovedartikkel som runtime allerede kan prioritere ved eksakt navnematch
+LEGACY-FUNN: leksikon_oslo_by_batch1.json hadde Torggata-fallback med generisk gentrifiseringsprosa og tomme sources
+BESLUTNING: behold fase-5 popupDesc og fase-6 profiler; legg til egen kildebåret manifest-hovedartikkel
 ```
 
-Aktiv 7A-leveranse:
+PR #4820 ble squash-merget til `main` som `49b79250403bdbfd6db0a4d07aa57887fa7eefe4` etter grønn Fagverk By-port og TypeScript guard.
 
-- `data/leksikon/places/oslo/by/leksikon_oslo_by_torggata.json` er ny hovedartikkel med `title: Torggata` og `type: main`;
-- artikkelen bruker to inspectable eksterne kilder og to kildebelagte facts;
-- `data/leksikon/manifest.json` laster den nye filen;
-- både tabs-runtime og Leksikon-loader prioriterer eksakt stedsnavn før legacy fallback;
-- `chronology` holdes tom i 7A for å ikke forskuttere 7B;
-- `tests/torggata-phase7a-about.test.mjs` låser manifest, kilder, HTTPS og navneprioritet;
-- ingen place-data eller brukerrettet fase-5-tekst er endret.
+7A leverte:
+
+- `data/leksikon/places/oslo/by/leksikon_oslo_by_torggata.json` med `title: Torggata`, `type: main`;
+- to inspectable eksterne kilder og kildebelagte facts;
+- manifestregistrering;
+- eksisterende runtimeprioritet for eksakt stedsnavn;
+- ingen endring i canonical place-record eller fase-5-tekst.
+
+## Fase 7B – Historie, aktiv
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+TIDLIGERE GODKJENT CHRONOLOGYJOBB: ingen funnet etter dagens kontrakt
+LEGACY-FUNN: navnløs Torggata-batchpost har ukildet chronology «Senmodernitet»
+BEHOLD: fase-6 history_layers og fase-5 kilde-/claim-base
+BESLUTNING: bygg seks korte kildebårne chronology-poster og filtrer bare navnløs legacy-extra via eksplisitt opt-in
+```
+
+Aktiv 7B-leveranse:
+
+- chronology-år: `1846 · 1852 · 1876 · 1929 · 1986 · 2014`;
+- alle chronology-poster har konkrete HTTPS-kilder;
+- chronology svarer bare på **hva som skjedde når** og kopierer ikke Storyen;
+- hovedartikkelen bruker `suppress_untitled_legacy_articles: true`;
+- `place-popup-tabs.js` har generell `visibleArticlesForPopup()` som bare aktiveres ved dette flagget;
+- navngitte ekstraartikler beholdes; navnløse legacy-extras filtreres fra popupen;
+- ingen place-ID hardkodes i runtime;
+- `tests/torggata-phase7b-history.test.mjs` låser chronology og supersession-regelen;
+- den fysiske legacy-posten slettes ikke og beholdes for sporbarhet.
 
 ### Bindende delstegrekkefølge
 
@@ -176,4 +137,4 @@ Aktiv 7A-leveranse:
 7 audit → 7A Om → 7B Historie → 7C Fortellinger → 7D Før/etter → 7E Kilder
 ```
 
-7A settes først **GODKJENT** etter relevant CI, squash-merge og kontroll på faktisk `main`. 7B starter først da.
+7B settes først **GODKJENT** etter relevant CI, squash-merge og kontroll på faktisk `main`. 7C starter først da.
