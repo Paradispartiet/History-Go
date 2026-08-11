@@ -1,0 +1,144 @@
+name: Temporary nested description governance fix
+
+on:
+  push:
+    branches:
+      - agent/fix-place-description-nested-desc-gate
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Patch validator and regression test
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          validator = Path('scripts/validate-place-description-production-v4_2.mjs')
+          text = validator.read_text()
+
+          extract_block = '''function extractPlace(raw, placeId) {
+            if (Array.isArray(raw)) return raw.find((place) => String(place?.id ?? '') === placeId) ?? null;
+            if (Array.isArray(raw?.places)) return raw.places.find((place) => String(place?.id ?? '') === placeId) ?? null;
+            if (String(raw?.id ?? '') === placeId) return raw;
+            return null;
+          }
+          '''
+          helper_block = extract_block + '''
+          function collectPlaceRecords(raw) {
+            if (Array.isArray(raw)) return raw;
+            if (Array.isArray(raw?.places)) return raw.places;
+            if (raw && typeof raw === 'object') return [raw];
+            return [];
+          }
+
+          export function descriptionFieldsChanged(baseRaw, headRaw) {
+            const toMap = (raw) => new Map(collectPlaceRecords(raw).map((place, index) => [String(place?.id ?? `__index_${index}`), place]));
+            const basePlaces = toMap(baseRaw);
+            const headPlaces = toMap(headRaw);
+            const ids = new Set([...basePlaces.keys(), ...headPlaces.keys()]);
+            for (const id of ids) {
+              const before = basePlaces.get(id);
+              const after = headPlaces.get(id);
+              if (!sameValue(before?.desc, after?.desc) || !sameValue(before?.popupDesc, after?.popupDesc)) return true;
+            }
+            return false;
+          }
+          '''
+          if extract_block not in text:
+            raise SystemExit('extractPlace insertion point not found')
+          text = text.replace(extract_block, helper_block, 1)
+
+          old_changed = '''function changedDescriptionPlaceFiles(root, base, head, changedFiles) {
+            const files = [];
+            for (const file of changedFiles.filter((value) => value.startsWith('data/places/') && value.endsWith('.json') && !value.startsWith(`${PACKET_DIR}/`) && !value.includes('/regler/') && !isGeneratedPlaceIndex(value))) {
+              let diff = '';
+              try { diff = git(['diff', '--unified=0', `${base}...${head}`, '--', file], root); }
+              catch { diff = ''; }
+              if (/^[+-]\\s*\"(?:desc|popupDesc)\"\\s*:/gmu.test(diff)) files.push(file);
+            }
+            return files;
+          }
+          '''
+          new_changed = '''function readJsonAtRef(root, ref, file) {
+            try { return JSON.parse(git(['show', `${ref}:${file}`], root)); }
+            catch { return null; }
+          }
+
+          function changedDescriptionPlaceFiles(root, base, head, changedFiles) {
+            const files = [];
+            for (const file of changedFiles.filter((value) => value.startsWith('data/places/') && value.endsWith('.json') && !value.startsWith(`${PACKET_DIR}/`) && !value.includes('/regler/') && !isGeneratedPlaceIndex(value))) {
+              const baseRaw = readJsonAtRef(root, base, file);
+              const headRaw = readJsonAtRef(root, head, file);
+              if (descriptionFieldsChanged(baseRaw, headRaw)) files.push(file);
+            }
+            return files;
+          }
+          '''
+          if old_changed not in text:
+            raise SystemExit('changedDescriptionPlaceFiles block not found')
+          validator.write_text(text.replace(old_changed, new_changed, 1))
+
+          test_file = Path('tests/place-description-production-v4_2.test.mjs')
+          tests = test_file.read_text()
+          import_needle = '''  containsTemporalClaim,
+            isGeneratedPlaceIndex,
+          '''
+          import_replacement = '''  containsTemporalClaim,
+            descriptionFieldsChanged,
+            isGeneratedPlaceIndex,
+          '''
+          if import_needle not in tests:
+            raise SystemExit('test import insertion point not found')
+          tests = tests.replace(import_needle, import_replacement, 1)
+
+          test_needle = '''test('generated place indexes are build output, not canonical description files', () => {
+            assert.equal(isGeneratedPlaceIndex('data/places/places_index.json'), true);
+            assert.equal(isGeneratedPlaceIndex('data/places/politikk/oslo/places_politikk/tinghuset.json'), false);
+          });
+          '''
+          test_replacement = test_needle + '''
+          test('nested object descriptions do not count as place description changes', () => {
+            const before = {
+              id: 'teststed',
+              desc: 'Uendret stedsbeskrivelse.',
+              popupDesc: 'Uendret popupbeskrivelse.',
+              objects: []
+            };
+            const after = {
+              ...before,
+              objects: [{ id: 'objekt_1', desc: 'Ny beskrivelse av et fysisk objekt.' }]
+            };
+            assert.equal(descriptionFieldsChanged(before, after), false);
+            assert.equal(descriptionFieldsChanged(before, { ...after, desc: 'Endret stedsbeskrivelse.' }), true);
+            assert.equal(descriptionFieldsChanged(before, { ...after, popupDesc: 'Endret popupbeskrivelse.' }), true);
+          });
+          '''
+          if test_needle not in tests:
+            raise SystemExit('test insertion point not found')
+          test_file.write_text(tests.replace(test_needle, test_replacement, 1))
+          PY
+      - name: Validate focused governance fix
+        run: |
+          node --check scripts/validate-place-description-production-v4_2.mjs
+          node --test tests/place-description-production-v4_2.test.mjs
+          node scripts/validate-place-description-production-v4_2_policy.mjs --all
+      - name: Persist clean fix
+        shell: bash
+        run: |
+          rm -f .github/workflows/tmp-fix-place-description-nested-desc.yml
+          git add scripts/validate-place-description-production-v4_2.mjs tests/place-description-production-v4_2.test.mjs .github/workflows/tmp-fix-place-description-nested-desc.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Fix nested description governance detection"
+          git push origin HEAD:agent/fix-place-description-nested-desc-gate
