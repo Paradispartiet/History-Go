@@ -81,13 +81,13 @@ export function auditFilmTvProduksjonStudioFilmarbeidPhase4({ writeReport = fals
   assert(chapter.editorialStatus === 'chapter_ready' && chapter.claimTraceRequired === true, 'Kapittelet er ikke claimsporet chapter_ready');
   assert(isDeepStrictEqual(chapter.emne_ids, resolvedEmneIds), 'Kapittelet dekker ikke de 20 canonicale aliasmålene i riktig rekkefølge');
   assert(new Set(chapter.emne_ids).size === 20, 'Film & TV-kapittelet har duplikate emner');
-  assert(registrySubject.chapters.length === 2 && registryChapter, 'Film & TV-registeret skal ha nøyaktig to kapitler');
+  assert(registrySubject.chapters.length >= 2 && registryChapter, 'Film & TV-registeret skal bevare produksjonskapittelet');
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'produksjon_arbeid_teknologi_praksis', 'Registry-kapittelet er ikke projisert til migrert eierdomene');
   assert(isDeepStrictEqual(registryChapter.emne_ids, resolvedEmneIds), 'Registry-emnene er ikke projisert gjennom legacyaliasene');
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');
-  assert(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production'].includes(statusEntry.nextGate), 'Film & TV har feil neste port');
+  assert(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief'].includes(statusEntry.nextGate), 'Film & TV har feil neste port');
   assert(phase3.report.summary.domainCount === 10 && phase3.report.summary.emneCount === 192, 'Det migrerte Film & TV-inventaret er ikke bevart');
-  assert(phase3.report.summary.registeredChapterCount === 2, 'Fase 3-auditen ser ikke de to Film & TV-kapitlene');
+  assert(phase3.report.summary.registeredChapterCount >= 2, 'Fase 3-auditen ser ikke de bevarte Film & TV-kapitlene');
 
   const canonicalEmneIds = new Set(emners.map((row) => row.emne_id));
   assert(EXPECTED_EMNES.every((id) => aliasTargets.has(id)), 'Kapittelets legacy-ID mangler aliasmål');

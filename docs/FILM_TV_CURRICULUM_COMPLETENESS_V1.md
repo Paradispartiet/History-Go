@@ -94,9 +94,17 @@ Reauditeringsporten er også gjennomført. Kapitlet om kinoer, visningssteder og
 
 Læringsrekkefølgeporten er nå gjennomført i [`film_tv_learning_order_plan_v1.json`](../data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json). De to reauditerte kapitlene eier 38 canonicale emner. Alle 154 udekkede emner har nøyaktig én redaksjonell eier i seks progresjonsfaser og 15 variabelt store planenheter med eksplisitte forkunnskaper, overlappsgrenser og kildekrav. De 15 enhetene er resultatet av dagens faglige problemgrenser, ikke en kvote eller et tak; ny evidens kan fortsatt legge til, slå sammen, flytte eller dele.
 
-Kilde- og claimbriefen for første produksjonskandidat er nå gjennomført i [`film_tv_audiovisual_form_source_claim_brief_v1.json`](../data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json). Den dekker alle enhetens 10 emner med 8 inspectable universitets- og institusjonskilder, 7 dokumenterte verkcase og 20 eksplisitte claimplaner. Claimplanene er merket som uverifiserte fram til fullteksten faktisk er skrevet og kontrollert.
+Kilde- og claimbriefen for første produksjonskandidat er gjennomført i [`film_tv_audiovisual_form_source_claim_brief_v1.json`](../data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json). Den dekket alle enhetens 10 emner med 8 inspectable universitets- og institusjonskilder, 7 dokumenterte verkcase og 20 eksplisitte claimplaner. Etter fulltekstporten er briefen markert konsumert, og alle 20 planene peker til en verifisert sluttclaim; to ble eksplisitt innsnevret under kildekontrollen.
 
-Aktiv port er `audiovisual_form_source_brief_complete_full_chapter_production`. «Audiovisuell form og sansing» er fortsatt ikke registrert som kapittel. Registrering krever fulltekst, avsnittsnivå claimtrace, faktisk kildebruk, pedagogiske rendererfelt og ny audit.
+«Audiovisuell form og sansing» er nå fulltekstprodusert og runtime-registrert. Kapittelet eier 10/10 canonicale emner gjennom tre ulikt store moduler med 4–4–2 emneeide seksjoner. De 23 fagavsnittene har avsnittsnivå claimtrace til 20 verifiserte claims; alle åtte kilder brukes, og de sju verkcasene holdes atskilt fra de to canonicale anvendelsesstedene. Modul-, seksjons- og avsnittstallene beskriver denne redaksjonelle løsningen og er ikke kvoter for senere kapitler.
+
+Kilde- og claimbriefen for «Fortelling, synsvinkel og sjanger» er gjennomført og konsumert av det verifiserte fulltekstkapitlet. Den dekker enhetens 5/5 canonicale emner med 12 inspectable universitets- og filminstitusjonskilder, fem filmcase og ett TV-case. De 13 claimplanene varierer 3–2–3–2–3 etter de selvstendige problemene; dette er et eksplisitt vern mot å videreføre to claims per emne som produksjonskvote. Alle planene er nå løst til brukte sluttclaims; claimen om `I May Destroy You` ble eksplisitt innsnevret slik at serialitets- og formathistorien forblir neste enhets ansvar.
+
+«Fortelling, synsvinkel og sjanger» er nå fulltekstprodusert og runtime-registrert. Kapittelet har tre faglig avgrensede moduler, fem emneeide seksjoner og 13 avsnitt med entydig claimtrace til 13 verifiserte claims. Alle 12 kildene brukes, film og TV er representert, og anvendelsesstedene er skilt fra verkcasene.
+
+Kilde- og claimbriefen for «Serialitet, format og adaptasjon» er gjennomført og konsumert av det verifiserte fulltekstkapitlet. Den dekker enhetens 10/10 canonicale emner med 16 inspectable universitets-, arkiv- og institusjonskilder, 12 film-, TV- og versjonscase og 28 claimplaner fordelt 4–2–3–3–3–3–3–2–2–3 etter problemomfang. Alle planene er løst til brukte sluttclaims. Tre ble eksplisitt innsnevret under fulltekstrevisjonen: `The Prisoner` beskrives med dokumentert episodeomfang og prematur avslutning, `The Price Is Right` uten udokumentert direktesendingspåstand, og sesong-/produksjonsclaimen uten et udokumentert bestemt tosesongsoppsett.
+
+«Serialitet, format og adaptasjon» er nå fulltekstprodusert og runtime-registrert. Kapittelet følger briefens fire ulikt store problemfelt med modulfordelingen 4–2–2–2, ti emneeide seksjoner og 28 avsnitt med entydig claimtrace til 28 verifiserte claims. Alle 16 kildene brukes. Episode, sesong og serie, format og enkeltinnhold, adaptasjon, remake og transmedia samt sjangerrevisjon holdes analytisk atskilt; rettigheter, lisensiering, distribusjon og produksjonsteknikk forblir senere enheters ansvar. Aktiv port er `seriality_format_adaptation_full_chapter_complete_next_unit_source_brief`, med kilde- og claimbrief for «Filmhistorie, bevegelser og historiografi» som neste leveranse.
 
 ## Maskinell kontroll
 
@@ -110,6 +118,14 @@ node scripts/materialize-film-tv-canonical-migration-v1.mjs
 node scripts/reaudit-film-tv-existing-chapters-v1.mjs
 node scripts/plan-film-tv-learning-order-v1.mjs
 node scripts/brief-film-tv-audiovisual-form-sources-v1.mjs
+node scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs
+node scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs
+node scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs
+node scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
+node scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
+node scripts/brief-film-tv-seriality-format-adaptation-sources-v1.mjs
+node scripts/materialize-film-tv-seriality-format-adaptation-fulltext-v1.mjs
+node scripts/audit-film-tv-seriality-format-adaptation-fulltext-v1.mjs
 node --test tests/film-tv-curriculum-completeness-v1.test.mjs
 node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
 node --test tests/film-tv-variable-inventory-v1.test.mjs
@@ -117,6 +133,11 @@ node --test tests/film-tv-canonical-migration-v1.test.mjs
 node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
 node --test tests/film-tv-learning-order-plan-v1.test.mjs
 node --test tests/film-tv-audiovisual-form-source-brief-v1.test.mjs
+node --test tests/film-tv-audiovisual-form-fulltext-v1.test.mjs
+node --test tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs
+node --test tests/film-tv-narrative-viewpoint-genre-fulltext-v1.test.mjs
+node --test tests/film-tv-seriality-format-adaptation-source-brief-v1.test.mjs
+node --test tests/film-tv-seriality-format-adaptation-fulltext-v1.test.mjs
 ```
 
 Canonicale rapporter:
@@ -128,3 +149,8 @@ Canonicale rapporter:
 - `reports/fagverk/film-tv-existing-chapter-reaudit-v1-audit.json`
 - `reports/fagverk/film-tv-learning-order-plan-v1-audit.json`
 - `reports/fagverk/film-tv-audiovisual-form-source-brief-v1-audit.json`
+- `reports/fagverk/film-tv-audiovisual-form-fulltext-v1-audit.json`
+- `reports/fagverk/film-tv-narrative-viewpoint-genre-source-brief-v1-audit.json`
+- `reports/fagverk/film-tv-narrative-viewpoint-genre-fulltext-v1-audit.json`
+- `reports/fagverk/film-tv-seriality-format-adaptation-source-brief-v1-audit.json`
+- `reports/fagverk/film-tv-seriality-format-adaptation-fulltext-v1-audit.json`

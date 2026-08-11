@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.75.0",
+  "version": "2.81.0",
   "updatedAt": "2026-08-11",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -937,7 +937,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. Fem redaksjonelle kapitler er materialisert, inkludert Sosialpsykologi, normalitet og stigma. Samlet fulltekstdekning er 51/58 emner, med eksplisitt diagnose-, gruppe- og stigmatypestemplingsvern."
+        "note": "Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er fulltekstmaterialisert gjennom seks redaksjonelle kapitler. Sluttkapittelet Traume, krise, resiliens og omsorg fullfører 7/7 resterende emner og låser skillet mellom hendelse og diagnose, risiko og prognose, sorg og lidelse samt resiliens og usårbarhet."
       },
       "chapters": [
         {
@@ -1050,6 +1050,25 @@
           ],
           "claimsFile": "data/fagverk/psykologi/sosialpsykologi-normalitet-og-stigma/claims.json",
           "briefFile": "data/fagverk/psykologi/sosialpsykologi-normalitet-og-stigma/brief.json"
+        },
+        {
+          "id": "traume-krise-resiliens-og-omsorg",
+          "title": "Traume, krise, resiliens og omsorg",
+          "subtitle": "Belastning, vold, sorg, kollektive kriser, trygghet, mestring og omsorg uten å gjøre risiko til skjebne",
+          "file": "data/fagverk/psykologi/traume-krise-resiliens-og-omsorg.json",
+          "primary_domain_id": "traume_krise_resiliens_omsorg",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_psy_kollektiv_krise",
+            "em_psy_resiliens_mestring",
+            "em_psy_risiko_beskyttelse",
+            "em_psy_sorg_tap",
+            "em_psy_traume_regulering",
+            "em_psy_trygghet_tillit",
+            "em_psy_vold_belastning"
+          ],
+          "claimsFile": "data/fagverk/psykologi/traume-krise-resiliens-og-omsorg/claims.json",
+          "briefFile": "data/fagverk/psykologi/traume-krise-resiliens-og-omsorg/brief.json"
         }
       ],
       "editorialPlan": {
@@ -1063,7 +1082,7 @@
           "do_not_diagnose_people_guard",
           "full_subject_audit_green"
         ],
-        "nextGate": "remaining_domain_chapter_production"
+        "nextGate": "maintenance_source_refresh_and_place_case_expansion"
       }
     },
     "historie": {
@@ -2672,9 +2691,11 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Film & TVs læringsrekkefølge dekker alle 192 canonicale emner. Første planenhet, Audiovisuell form og sansing, har nå en kilde- og claimbrief med 10 emner, 8 inspectable institusjonskilder, 7 dokumenterte case og 20 planlagte claimspor. Ingen planlagt claim er merket verifisert, og kapitlet er ikke registrert. Neste port er fulltekstproduksjon med avsnittsnivå claimtrace og ny audit før runtime-registrering.",
+        "note": "Film & TVs variable canon har 192 emner. Serialitet, format og adaptasjon er registrert etter fulltekst- og evidensport med 10 canonicale emner, 10 emneeide seksjoner, 28 claimsporede avsnitt, 28 verifiserte claims, 16 brukte inspectable kilder, 12 film-, TV- og versjonscase og 2 canonicale anvendelsessteder. Neste port er kilde- og claimbrief for Filmhistorie, bevegelser og historiografi; omfanget følger problemgrensene, ikke en kvote.",
         "learningOrderPlan": "data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json",
-        "firstSourceClaimBrief": "data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json"
+        "firstSourceClaimBrief": "data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json",
+        "secondSourceClaimBrief": "data/fag/TV_og_Film/film_tv_narrative_viewpoint_genre_source_claim_brief_v1.json",
+        "thirdSourceClaimBrief": "data/fag/TV_og_Film/film_tv_seriality_format_adaptation_source_claim_brief_v1.json"
       },
       "chapters": [
         {
@@ -2736,6 +2757,64 @@
           ],
           "claimsFile": "data/fagverk/film_tv/produksjon-studio-og-filmarbeid/claims.json",
           "briefFile": "data/fagverk/film_tv/produksjon-studio-og-filmarbeid/brief.json"
+        },
+        {
+          "id": "audiovisuell-form-og-sansing",
+          "title": "Audiovisuell form og sansing: hvordan bilde og lyd skaper mening",
+          "subtitle": "Fra mise-en-scène, utsnitt og animert bevegelse til rytme, lydrom, suspense, framføring og syntetisk realisme",
+          "file": "data/fagverk/film_tv/audiovisuell-form-og-sansing.json",
+          "primary_domain_id": "audiovisuell_form_stil_analyse",
+          "emne_ids": [
+            "em_film_tv_animasjon_bevegelse_design_og_tidsdannelse",
+            "em_film_tv_audiovisuell_atmosfare",
+            "em_film_tv_audiovisuell_rytme",
+            "em_film_tv_bildeformat_skjermflate_og_audiovisuell_materialitet",
+            "em_film_tv_digitale_bilder_vfx_og_syntetisk_realisme",
+            "em_film_tv_lydform_dialog_musikk_effekt_og_stillhet",
+            "em_film_tv_mise_en_scene_og_bildekomposisjon",
+            "em_film_tv_skuespillerprestasjon_kropp_stemme_og_blikk",
+            "em_film_tv_suspense_som_audiovisuell_teknikk",
+            "em_film_tv_utsnitt_linse_kamerabevegelse_og_blokkering"
+          ],
+          "claimsFile": "data/fagverk/film_tv/audiovisuell-form-og-sansing/claims.json",
+          "briefFile": "data/fagverk/film_tv/audiovisuell-form-og-sansing/brief.json"
+        },
+        {
+          "id": "fortelling-synsvinkel-og-sjanger",
+          "title": "Fortelling, synsvinkel og sjanger: hvordan verk organiserer verden, kunnskap og forventning",
+          "subtitle": "Fra fiksjonsverden og fokalisering til fortellingstid, rollefigur og historisk sjangerkontrakt",
+          "file": "data/fagverk/film_tv/fortelling-synsvinkel-og-sjanger.json",
+          "primary_domain_id": "fortelling_sjanger_serialitet_format",
+          "emne_ids": [
+            "em_film_tv_fiksjon_realisme_og_verdensbygging",
+            "em_film_tv_fokalisering_synsvinkel_og_kunnskapsfordeling",
+            "em_film_tv_fortellingstid_rekkefolge_varighet_og_frekvens",
+            "em_film_tv_karakter_rollefigur_og_fortellingsfunksjon",
+            "em_film_tv_sjanger_konvensjon_og_kontrakt"
+          ],
+          "claimsFile": "data/fagverk/film_tv/fortelling-synsvinkel-og-sjanger/claims.json",
+          "briefFile": "data/fagverk/film_tv/fortelling-synsvinkel-og-sjanger/brief.json"
+        },
+        {
+          "id": "serialitet-format-og-adaptasjon",
+          "title": "Serialitet, format og adaptasjon: hvordan fortellinger gjentas, deles og omformes",
+          "subtitle": "Fra episode, sesong og TV-format til remake, transmedia og historisk sjangerrevisjon",
+          "file": "data/fagverk/film_tv/serialitet-format-og-adaptasjon.json",
+          "primary_domain_id": "fortelling_sjanger_serialitet_format",
+          "emne_ids": [
+            "em_film_tv_adaptasjon_remake_og_intermedialitet",
+            "em_film_tv_cliffhanger_og_informasjonsstans",
+            "em_film_tv_direkte_underholdning_konkurranse_og_formatlogikk",
+            "em_film_tv_episodisk_dramaturgi_og_fremdrift",
+            "em_film_tv_franchise_univers_og_transmedial_fortelling",
+            "em_film_tv_krim_sjanger_og_spenningsstruktur",
+            "em_film_tv_serieformat_og_serialitet",
+            "em_film_tv_sesongstruktur_og_fortellingsbue",
+            "em_film_tv_sitcom_humor_og_format",
+            "em_film_tv_sjangerhistorie_hybridisering_og_revisjon"
+          ],
+          "claimsFile": "data/fagverk/film_tv/serialitet-format-og-adaptasjon/claims.json",
+          "briefFile": "data/fagverk/film_tv/serialitet-format-og-adaptasjon/brief.json"
         }
       ]
     }

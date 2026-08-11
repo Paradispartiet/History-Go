@@ -120,13 +120,14 @@ export function auditFilmTvCurriculumCompletenessV1({ writeReport = false, check
   const pensum = json(P.pensum);
   const registry = json(P.registry).subjects?.film_tv;
   const status = json(P.status).subjects.find((row) => row.id === 'film_tv');
-  if (['canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production'].includes(status?.nextGate)) {
+  if (['canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief'].includes(status?.nextGate)) {
     const inventory = json(P.inventory);
     const historical = json(P.report);
     assert(emner.length === 192 && fagkart.categories.length === 10 && pensum.domains.length === 10, 'Den migrerte canonen samsvarer ikke med completeness-planen');
     assert(new Set(inventory.emner.flatMap((row) => row.legacy_aliases)).size === 120, 'Legacygrunnlaget er ikke bevart som 120 aliases');
     assert(historical.legacy_inventory?.emne_count === 120 && historical.legacy_inventory?.domain_count === 6, 'Den historiske kvoteauditen er skadet');
-    assert(registry?.chapters?.length === 2, 'De to materialiserte kapitlene skal bevares gjennom migrasjonen');
+    const registeredChapterIds = new Set(registry?.chapters?.map((row) => row.id));
+    assert(registry?.chapters?.length >= 2 && registeredChapterIds.has('kinoer-visningssteder-og-publikum') && registeredChapterIds.has('produksjon-studio-og-filmarbeid'), 'De to opprinnelige materialiserte kapitlene skal bevares gjennom migrasjon og videre produksjon');
     return historical;
   }
   assert(Array.isArray(fagkart.categories) && fagkart.categories.length === 6, 'Film & TV-fagkartet mangler den auditerte legacystrukturen');
@@ -147,7 +148,7 @@ export function auditFilmTvCurriculumCompletenessV1({ writeReport = false, check
   assert(normalisedDefinitionCount === 1, 'Forventet én generisk emnedefinisjonsmal etter at emnenavnet er fjernet');
   assert(whyItMattersCount === 6, 'Forventet seks generiske relevansmaler');
   assert(overlapNoteCount === 1, 'Forventet én generisk overlappsregel');
-  assert(registry?.chapters?.length === 2, 'De to materialiserte kapitlene skal bevares under refaktoren');
+  assert(registry?.chapters?.length >= 2, 'De to materialiserte kapitlene skal bevares under refaktoren');
   assert(status?.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå som pågående under refaktoren');
   assert(['curriculum_completeness_refactor', 'canonical_inventory_migration'].includes(status?.nextGate), 'Film & TV skal være blokkert på completeness-refaktor eller canonical migrasjon');
 

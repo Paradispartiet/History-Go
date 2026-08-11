@@ -43,12 +43,16 @@ test('kun materialiserte Psychology-steder brukes som runtime places', () => {
   assert.equal(report.gates.noInventedRuntimePlaces, true);
 });
 
-test('første Psykologi-kapittel forblir gyldig gjennom videre kapittelproduksjon', () => {
+test('første Psykologi-kapittel forblir gyldig gjennom videre kapittelproduksjon og complete', () => {
   const { report } = auditPsykologiPsykiskHelsePhase4();
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
+  assert.ok(['chapters_in_progress', 'complete'].includes(report.subject.editorialStatus));
+  if (report.subject.editorialStatus === 'complete') {
+    assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
+  } else {
+    assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
+  }
   assert.ok(report.subject.registeredChapterCount >= 1 && report.subject.registeredChapterCount <= 6);
   assert.equal(report.subject.targetChapterCount, 6);
   assert.equal(report.gates.registrySynchronized, true);
-  assert.equal(report.gates.statusChaptersInProgress, true);
+  assert.equal(report.gates.statusProgressionCompatible, true);
 });

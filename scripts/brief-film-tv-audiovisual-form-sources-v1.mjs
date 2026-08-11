@@ -145,6 +145,21 @@ export function buildFilmTvAudiovisualFormSourceBriefV1() {
       planned_claims: topic.planned_claims.map((claim) => ({ ...claim, source_ids: topic.source_ids, status: 'planned_requires_fulltext_verification' }))
     };
   });
+  const currentStatus = read(P.status);
+  const laterFulltextGate = ['audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief'].includes(currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate);
+  if (laterFulltextGate) {
+    const brief = read(P.brief);
+    const consumedTopicBriefs = brief.topic_briefs;
+    return {
+      brief,
+      report: read(P.report),
+      registry: read(P.registry),
+      status: currentStatus,
+      unit,
+      topicBriefs: consumedTopicBriefs,
+      plannedClaims: consumedTopicBriefs.flatMap((topic) => topic.planned_claims)
+    };
+  }
   const brief = {
     schema: 'history_go_film_tv_audiovisual_form_source_claim_brief_v1',
     version: '1.0.0', updated_at: '2026-08-11', status: 'source_claim_brief_complete_full_chapter_next', subject_id: 'film_tv',
@@ -177,7 +192,8 @@ export function buildFilmTvAudiovisualFormSourceBriefV1() {
       { id: 'kropp-syntese-og-troverdighet', sequence: 3, emne_ids: [unit.emne_ids[7], unit.emne_ids[4]], purpose: 'Fra framført kropp og stemme til syntetiske bilder og konstruksjon av troverdighet.' }
     ],
     production_requirements: {
-      minimum_fulltext_sections: 9,
+      section_scope_is_derived_from_emne_ownership: true,
+      expected_current_section_owner_count: unit.emne_count,
       paragraph_claim_trace_required: true,
       every_planned_claim_must_be_verified_rewritten_or_rejected: true,
       every_used_source_must_support_at_least_one_final_claim: true,
@@ -188,17 +204,16 @@ export function buildFilmTvAudiovisualFormSourceBriefV1() {
   };
 
   const registry = structuredClone(read(P.registry));
+  const status = structuredClone(currentStatus);
+  const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   registry.version = '2.75.0';
   registry.updatedAt = '2026-08-11';
   registry.subjects.film_tv.canonicalModel.note = 'Film & TVs læringsrekkefølge dekker alle 192 canonicale emner. Første planenhet, Audiovisuell form og sansing, har nå en kilde- og claimbrief med 10 emner, 8 inspectable institusjonskilder, 7 dokumenterte case og 20 planlagte claimspor. Ingen planlagt claim er merket verifisert, og kapitlet er ikke registrert. Neste port er fulltekstproduksjon med avsnittsnivå claimtrace og ny audit før runtime-registrering.';
-  registry.subjects.film_tv.canonicalModel.firstSourceClaimBrief = P.brief;
-
-  const status = structuredClone(read(P.status));
   status.version = '1.63.0';
   status.updatedAt = '2026-08-11';
-  const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   filmStatus.nextGate = 'audiovisual_form_source_brief_complete_full_chapter_production';
   filmStatus.note = 'Kilde- og claimbriefen for Audiovisuell form og sansing er komplett: 10 canonicale emner, 8 inspectable institusjonskilder, 7 verkcase og 20 eksplisitte planlagte claimspor. Planlagte claims er ikke verifiserte claims, og kapitlet er fortsatt uregistrert. Neste port er fulltekst, claims, kildebruk og avsnittsnivå trace før kapittel- og runtime-registrering.';
+  registry.subjects.film_tv.canonicalModel.firstSourceClaimBrief = P.brief;
 
   const plannedClaims = topicBriefs.flatMap((topic) => topic.planned_claims);
   const usedSourceIds = new Set([...topicBriefs.flatMap((topic) => topic.source_ids), ...CASES.flatMap((row) => row.source_ids)]);
@@ -231,6 +246,23 @@ export function buildFilmTvAudiovisualFormSourceBriefV1() {
 }
 
 export function auditFilmTvAudiovisualFormSourceBriefV1({ writeFiles = false, checkFiles = true } = {}) {
+  const currentStatus = read(P.status);
+  const currentGate = currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate;
+  if (['audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief'].includes(currentGate)) {
+    const brief = read(P.brief);
+    const report = read(P.report);
+    const registry = read(P.registry);
+    const plan = read(P.plan);
+    const unit = plan.planned_units.find((row) => row.id === UNIT_ID);
+    const topicBriefs = brief.topic_briefs;
+    const plannedClaims = topicBriefs.flatMap((topic) => topic.planned_claims);
+    assert(brief.status === 'source_claim_brief_consumed_by_verified_chapter', 'Kildebriefen skal være konsumert etter fulltekstporten');
+    assert(brief.runtime_registration.registered === true && brief.runtime_registration.chapter_id === FUTURE_CHAPTER_ID, 'Kildebriefen mangler etterfølgende kapittelregistrering');
+    assert(plannedClaims.length === 20 && plannedClaims.every((row) => row.status === 'resolved_to_verified_claim' && row.final_claim_id === row.id), 'Kildebriefens claimplaner er ikke løst');
+    assert(registry.subjects.film_tv.chapters.some((row) => row.id === FUTURE_CHAPTER_ID), 'Det verifiserte kapitlet mangler i registeret');
+    assert(report.status === 'source_claim_brief_consumed_by_verified_chapter' && Object.values(report.gates).every(Boolean), 'Kildebriefens etteraudit er ikke grønn');
+    return { brief, report, registry, status: currentStatus, unit, topicBriefs, plannedClaims };
+  }
   const built = buildFilmTvAudiovisualFormSourceBriefV1();
   const outputs = { [P.brief]: built.brief, [P.report]: built.report, [P.registry]: built.registry, [P.status]: built.status };
   if (writeFiles) for (const [file, value] of Object.entries(outputs)) write(file, value);
@@ -243,7 +275,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const args = new Set(process.argv.slice(2));
   try {
     const result = auditFilmTvAudiovisualFormSourceBriefV1({ writeFiles: args.has('--write'), checkFiles: !args.has('--write') && !args.has('--no-check') });
-    console.log(`Film & TV kildebrief OK: ${result.topicBriefs.length} emner, ${result.brief.sources.length} kilder, ${result.brief.case_candidates.length} case og ${result.plannedClaims.length} planlagte claimspor; kapittel uregistrert.`);
+    console.log(`Film & TV kildebrief OK: ${result.topicBriefs.length} emner, ${result.brief.sources.length} kilder, ${result.brief.case_candidates.length} case og ${result.plannedClaims.length} claimspor; status ${result.brief.status}.`);
   } catch (error) {
     console.error(`Film & TV kildebrief FEIL: ${error.message}`);
     process.exitCode = 1;

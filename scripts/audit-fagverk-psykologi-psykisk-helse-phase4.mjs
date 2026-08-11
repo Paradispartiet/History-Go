@@ -155,8 +155,15 @@ export function auditPsykologiPsykiskHelsePhase4({ writeReport = false, checkRep
   const statusEntry = status.subjects.find((item) => item.id === 'psykologi');
   assert(statusEntry?.navigationStatus === 'materialized', 'Psykologi mistet materialized-status');
   assert(statusEntry?.assessmentStatus === 'audited', 'Psykologi mistet audited strukturstatus');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Psykologi må stå chapters_in_progress etter første kapittel');
-  assert(statusEntry?.nextGate === 'remaining_domain_chapter_production', 'Psykologi har feil neste port');
+  const statusInProgress = statusEntry?.editorialStatus === 'chapters_in_progress';
+  const statusComplete = statusEntry?.editorialStatus === 'complete';
+  assert(statusInProgress || statusComplete, 'Psykologi må stå chapters_in_progress eller complete');
+  assert(
+    statusComplete
+      ? statusEntry?.nextGate === 'maintenance_source_refresh_and_place_case_expansion'
+      : statusEntry?.nextGate === 'remaining_domain_chapter_production',
+    'Psykologi har feil neste port for editorial status'
+  );
 
   const forbiddenPatterns = [
     /du har (?:en|et) [a-zæøå-]+lidelse/i,
@@ -213,7 +220,7 @@ export function auditPsykologiPsykiskHelsePhase4({ writeReport = false, checkRep
       noIndividualTreatmentAdviceGuardPresent: true,
       noInventedRuntimePlaces: true,
       registrySynchronized: true,
-      statusChaptersInProgress: true
+      statusProgressionCompatible: true
     }
   };
 
