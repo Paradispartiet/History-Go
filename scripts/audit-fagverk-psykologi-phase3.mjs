@@ -63,6 +63,31 @@ function assertExactCoverage(label, expectedRows, ...idSets) {
   }
 }
 
+function assertEditorialProgress(statusEntry, registeredChapters) {
+  const chapterCount = registeredChapters.length;
+  assert(chapterCount >= 0 && chapterCount <= DOMAIN_ORDER.length, 'Psykologi har umulig kapitteltall');
+  const primaryDomainIds = registeredChapters.map((chapter) => chapter.primary_domain_id).filter(Boolean);
+  assert(new Set(primaryDomainIds).size === primaryDomainIds.length, 'Psykologi har flere kapitler med samme primærdomene');
+  assert(primaryDomainIds.every((id) => DOMAIN_ORDER.includes(id)), 'Psykologi-kapittel peker til ukjent canonicalt domene');
+
+  if (chapterCount === 0) {
+    assert(statusEntry.editorialStatus === 'structure_ready', 'Psykologi uten kapitler skal stå structure_ready');
+    assert(statusEntry.nextGate === 'chapter_production', 'Psykologi uten kapitler skal ha chapter_production som neste port');
+    return;
+  }
+
+  if (chapterCount < DOMAIN_ORDER.length) {
+    assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Psykologi med delvis kapitteldekning skal stå chapters_in_progress');
+    assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Psykologi med delvis kapitteldekning skal peke til resterende kapittelproduksjon');
+    return;
+  }
+
+  assert(['chapters_in_progress', 'complete', 'expanded_and_audited'].includes(statusEntry.editorialStatus), 'Psykologi med seks kapitler har ugyldig redaksjonell status');
+  if (statusEntry.editorialStatus === 'chapters_in_progress') {
+    assert(statusEntry.nextGate === 'full_subject_audit', 'Seks kapitler før complete skal peke til full_subject_audit');
+  }
+}
+
 function committedProjection(report) {
   return {
     schema: report.schema,
@@ -92,6 +117,8 @@ export function auditPsykologiPhase3({ writeReport = false, checkReport = true }
   const inventoryEntry = inventory.subjects.find((row) => row.id === 'psykologi');
   const statusEntry = status.subjects.find((row) => row.id === 'psykologi');
   const manifestEntry = manifest.psykologi;
+  const registrySubject = registry.subjects?.psykologi;
+  const registeredChapters = registrySubject?.chapters || [];
 
   assert(categories.fagSubjects.includes('psykologi'), 'Psykologi mangler i canonical fagliste');
   assert(portalEntry?.subjectStatus === 'materialized', 'Psykologi er ikke materialisert i portalen');
@@ -101,11 +128,10 @@ export function auditPsykologiPhase3({ writeReport = false, checkReport = true }
   assert(inventoryEntry?.optionalManifestFields?.includes('emneMappings'), 'Psykologi-inventaret mangler emneMappings');
   assert(statusEntry?.navigationStatus === 'materialized', 'Psykologi har feil navigasjonsstatus');
   assert(statusEntry?.assessmentStatus === 'audited', 'Psykologi har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Psykologi må stå structure_ready før kapittelproduksjon');
-  assert(statusEntry?.nextGate === 'chapter_production', 'Psykologi har feil neste port');
   assert(registry.placePage?.fallbackSubjectByCategory?.psykologi === 'psykologi', 'Psykologi-steder mangler Psykologi som fagverksfallback');
-  assert(registry.subjects?.psykologi, 'Psykologi mangler i fagverkregisteret');
+  assert(registrySubject, 'Psykologi mangler i fagverkregisteret');
   assert(manifestEntry?.emneMappings === 'psykologi/emnemapping_psykologi_canonical_v4_5.json', 'Psykologi-manifestet mangler canonical mappingregister');
+  assertEditorialProgress(statusEntry, registeredChapters);
 
   const source = loadSource(CORE, manifestEntry);
   const model = CORE.normalizeSubject({
@@ -133,7 +159,7 @@ export function auditPsykologiPhase3({ writeReport = false, checkReport = true }
   assert(model.summary.methodCount === 58, 'Psykologi skal ha 58 metoder');
   assert(model.summary.mappingCount === 58, 'Psykologi skal ha 58 normaliserte mappinger');
   assert(model.summary.hookCount === 60, 'Psykologi skal ha 60 hooks');
-  assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Psykologi-kapitler finnes');
+  assert(model.chapters.length === registeredChapters.length, 'Renderer og registry er uenige om Psykologi-kapitler');
   assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Psykologi-emne mangler løst metode-ID');
 
   const pensumIds = new Set(source.pensum.domains.flatMap((domain) => domain.emne_ids || []));
@@ -166,8 +192,8 @@ export function auditPsykologiPhase3({ writeReport = false, checkReport = true }
   const domainEmneCounts = Object.fromEntries(source.pensum.domains.map((domain) => [domain.domain_id, domain.emne_ids.length]));
   const report = {
     schema: 'history_go_fagverk_psykologi_phase3_audit_v1',
-    version: '1.0.0',
-    status: 'psykologi_phase_3_structure_ready',
+    version: '1.1.0',
+    status: registeredChapters.length === 0 ? 'psykologi_phase_3_structure_ready' : 'psykologi_phase_3_structure_preserved_during_editorial_production',
     generatedFrom: P,
     subject: {
       id: model.subject.id,
@@ -201,8 +227,8 @@ export function auditPsykologiPhase3({ writeReport = false, checkReport = true }
       badgeAndSubjectRoutesDistinct: true,
       doNotDiagnosePeopleGuardPresent: true,
       assessmentStatusAudited: true,
-      editorialStatusStructureReady: true,
-      chapterClaimsNotOverstated: true
+      editorialProgressConsistent: true,
+      canonicalStructurePreservedDuringChapterProduction: true
     }
   };
 
@@ -220,8 +246,8 @@ export function auditPsykologiPhase3({ writeReport = false, checkReport = true }
 function main() {
   const args = new Set(process.argv.slice(2));
   try {
-    const result = auditPsykologiPhase3({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Psykologi Fase 3 OK: ${result.report.summary.domainCount} fagområder, ${result.report.summary.emneCount} emner, ${result.report.summary.methodCount} metoder og ${result.report.summary.hookCount} hooks.`);
+    const result = auditPsykologiPhase3({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') && !args.has('--write-report') });
+    console.log(`Psykologi Fase 3 OK: ${result.report.summary.domainCount} fagområder, ${result.report.summary.emneCount} emner, ${result.report.summary.methodCount} metoder, ${result.report.summary.hookCount} hooks og ${result.report.summary.registeredChapterCount} registrerte kapitler.`);
   } catch (error) {
     console.error(`Psykologi Fase 3 FEIL: ${error.message}`);
     process.exitCode = 1;

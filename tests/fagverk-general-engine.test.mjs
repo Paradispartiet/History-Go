@@ -251,7 +251,7 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(psykologi.methodCount, 58);
   assert.equal(psykologi.mappingCount, 58);
   assert.equal(psykologi.hookCount, 60);
-  assert.equal(psykologi.chapterCount, 0);
+  assert.equal(psykologi.chapterCount, JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8')).subjects.psykologi.chapters.length);
   const musikk = result.materializedRows.find((row) => row.id === 'musikk');
   assert.ok(musikk);
   assert.equal(musikk.domainCount, 8);

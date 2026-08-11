@@ -1,0 +1,112 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "psykologi",
+  "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+  "primary_domain_id": "psykisk_helse_institusjoner_behandling",
+  "relatedPlaceIds": [
+    "psykologisk_institutt_uio"
+  ],
+  "institutionCaseIds": [
+    "gaustad_sykehus_case",
+    "dikemark_sykehus_case",
+    "vinderen_psykiatriske_case"
+  ],
+  "purpose": "Materialisere første canonicale Psykologi-domene med kildebelagt undervisning om psykisk helse, institusjoner, behandling, pasientrolle, omsorgssystem, krise, velferd og makt.",
+  "audience": "Brukere som skal forstå psykologi og psykisk helsevern som faglige, institusjonelle og rettighetsbaserte felt uten at appen fungerer som diagnoseverktøy eller individuell behandlingsrådgiver.",
+  "learningArc": [
+    "begynne med psykisk helse som bredt fenomen og avgrense psykisk helsevern",
+    "kartlegge tjenestesystemet fra kommune og fastlege til DPS og sykehus",
+    "følge pasientrolle, medvirkning, informasjon og behandlingsplan",
+    "sammenligne behandlingsformer som praksiser med ulike rammer",
+    "undersøke terapirom og relasjon som situert samhandling",
+    "analysere omsorgssystem og overganger mellom tjenester",
+    "skille kriseintervensjon fra langsiktig oppfølging",
+    "analysere makt, tvang, kontroll og rettssikkerhet eksplisitt",
+    "avslutte med institusjons- og byanalyse av Gaustad, Dikemark, Vinderen og UiO"
+  ],
+  "requiredEmneIds": [
+    "em_psy_behandling_omsorg",
+    "em_psy_behandlingsformer",
+    "em_psy_byrom_psykisk_helse",
+    "em_psy_institusjoner_psykiatri",
+    "em_psy_krise_intervensjon",
+    "em_psy_makt_omsorg",
+    "em_psy_omsorg_system",
+    "em_psy_pasientrolle_erfaring",
+    "em_psy_psykisk_helse",
+    "em_psy_terapi_praksis",
+    "em_psy_terapirom_relasyon",
+    "em_psy_velferd_psykisk_helse"
+  ],
+  "requiredMethodIds": [
+    "met_psy_klinisk_analyse",
+    "met_psy_institusjonshistorisk_analyse",
+    "met_psy_behandlingshistorisk_analyse",
+    "met_psy_praksisanalyse",
+    "met_psy_rom_og_praksisanalyse",
+    "met_psy_relational_analyse",
+    "met_psy_steds_og_institusjonsanalyse",
+    "met_psy_makt_og_omsorgsanalyse",
+    "met_psy_krisepsykologisk_analyse",
+    "met_psy_traumeanalyse",
+    "met_psy_stressanalyse",
+    "met_psy_normkritisk_analyse",
+    "met_psy_systemanalyse",
+    "met_psy_velferdspsykologisk_analyse",
+    "met_psy_erfaringsanalyse",
+    "met_psy_diskursanalyse",
+    "met_psy_offentlighetsanalyse",
+    "met_psy_risiko_og_resiliensanalyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "psykisk helse vs psykisk lidelse",
+    "psykisk helsehjelp vs psykisk helsevern",
+    "undervisning vs diagnose",
+    "beskrivelse av tjeneste vs behandlingsanbefaling",
+    "pasienterfaring vs journalført eller lovfestet forhold",
+    "behandlingsform vs dokumentert effekt for et bestemt individ",
+    "frivillighet vs tvang",
+    "omsorg vs kontroll",
+    "rettighet vs lokal praksis",
+    "krisehjelp vs langvarig behandling",
+    "historisk institusjonspraksis vs dagens regelverk",
+    "stedlig observasjon vs slutning om menneskers psykiske tilstand"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "gjeldende norsk lov og forskrift via Lovdata for rettslige påstander",
+      "Helsenorge og Helsedirektoratet for dagens tjenestesystem, pasientforløp, medvirkning og kontrollordninger",
+      "WHO for eksplisitt internasjonal rettighetsbasert tjenestemodell",
+      "Oslo universitetssykehus og dokumenterte byhistoriske oppslag for institusjonshistoriske case",
+      "canonicale Psykologi-filer som scope- og metodeeier, aldri som ekstern faktakilde"
+    ],
+    "minimumExternalSources": 15,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "currentStatusClaimsRequireCurrentSource": true,
+    "highStakesCurrentLawCutoff": "2026-06-01"
+  },
+  "safety": {
+    "doNotDiagnosePeople": true,
+    "noIndividualTreatmentAdvice": true,
+    "noScreeningInterpretation": true,
+    "crisisInformationIsDescriptiveNotPersonalized": true,
+    "historicalCaseRule": "Analyser institusjon, praksis, språk, kilder og dokumenterte erfaringer; ikke retrodiagnostiser personer."
+  },
+  "qa": {
+    "exactCanonicalCoverage": "12/12",
+    "minimumModules": 3,
+    "minimumSections": 9,
+    "paragraphClaimTraceRequired": true,
+    "minimumExternalSources": 15,
+    "minimumClaims": 24,
+    "rendererFieldsRequired": [
+      "relatedPlaces",
+      "institutionCases",
+      "sources.label",
+      "commonMisconceptions.claim",
+      "commonMisconceptions.correction"
+    ]
+  }
+}
