@@ -1,0 +1,106 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "therese_hurwitz",
+  "profile_file": "data/people/by/oslo/torggata/therese_hurwitz.json",
+  "identity": {
+    "canonical_identity": "Therese Hurwitz, beboer i Torggata 36 med barna Jenny og Fredrik i 1942.",
+    "name_variants": [],
+    "not": [
+      "navnelike personer"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "residence_family",
+      "claim": "Therese Hurwitz bodde i Torggata 36 med barna Jenny og Fredrik.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Gr%C3%B8nlandsleiret",
+      "source_location": "avsnittet om Hurwitz-familien etter separasjonen",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "arrest_deportation",
+      "claim": "Therese, Jenny og Fredrik Hurwitz ble arrestert i leiligheten i Torggata og deportert med Donau 26. november 1942.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Gr%C3%B8nlandsleiret",
+      "source_location": "avsnittet om arrestasjonen og deportasjonen",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "death",
+      "claim": "Therese Hurwitz ble drept i Auschwitz kort etter ankomsten.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Gr%C3%B8nlandsleiret",
+      "source_location": "avsnittet om deportasjonen og Auschwitz",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "residence_family"
+    ],
+    "kindLabel": [
+      "residence_family"
+    ],
+    "year": [
+      "arrest_deportation"
+    ],
+    "placeId": [
+      "residence_family"
+    ],
+    "places[torggata]": [
+      "residence_family"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "residence_family",
+          "arrest_deportation"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "residence_family"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "arrest_deportation"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "death"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

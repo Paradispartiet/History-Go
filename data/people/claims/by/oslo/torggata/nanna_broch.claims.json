@@ -1,0 +1,106 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "nanna_broch",
+  "profile_file": "data/people/by/oslo/torggata/nanna_broch.json",
+  "identity": {
+    "canonical_identity": "Boliginspektør Nanna Broch, initiativtaker til Østkantutstillingen og beboer i Torggata 51.",
+    "name_variants": [],
+    "not": [
+      "navnelike personer"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "role_initiative",
+      "claim": "Nanna Broch var kommunal boliginspektør og tok initiativ til Østkantutstillingen i 1923.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/%C3%98stkantutstillingen",
+      "source_location": "avsnittene om initiativet og Nanna Broch",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "torggata_residence_1928",
+      "claim": "Østkantutstillingen flyttet til Torggata 51 i 1928, og bygningen hadde bolig for Nanna Broch i etasjen over utstillingsrommene.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/%C3%98stkantutstillingen",
+      "source_location": "avsnittet om Torggata 51",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "blue_plaque",
+      "claim": "Nanna Broch er minnet med blått skilt ved Torggata 51.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/%C3%98stkantutstillingen",
+      "source_location": "avsnittet om bygningen og blått skilt",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "role_initiative"
+    ],
+    "kindLabel": [
+      "role_initiative"
+    ],
+    "year": [
+      "torggata_residence_1928"
+    ],
+    "placeId": [
+      "torggata_residence_1928"
+    ],
+    "places[torggata]": [
+      "torggata_residence_1928"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "role_initiative",
+          "torggata_residence_1928"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "role_initiative"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "torggata_residence_1928"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "blue_plaque"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

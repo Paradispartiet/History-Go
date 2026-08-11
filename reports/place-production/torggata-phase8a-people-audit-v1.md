@@ -45,7 +45,7 @@ Repo-søk viser eksisterende canonical profiler som skal **gjenbrukes**, ikke du
 | `henrik_bull` | finnes i `data/people/by/oslo/people_by_oslo.json` | tegnet ombyggingen til Fahlstrøms Theater i Torggata 9 | **8A1 – legg til Torggata** |
 | `christian_morgenstierne` | split record i `data/people/by/oslo/folketeateret/christian_morgenstierne.json` | arkitektfirmaet Morgenstierne & Eide tegnet dagens Torggata bad | **8A1 – legg til Torggata** |
 | `arne_eide` | split record i `data/people/by/oslo/folketeateret/arne_eide.json` | samme Torggata bad-oppdrag | **8A1 – legg til Torggata** |
-| `wulff_becker` | finnes i `data/people/historie/oslo/jodisk_historie/wulff_becker.json` | bodde og hadde legekontor i Torggata 17b; snublestein ved stedet | **8A3 – legg til Torggata** |
+| `wulff_becker` | **stale audit-antakelse: oppgitt canonical fil finnes ikke på fersk main** | bodde og hadde legekontor i Torggata 17b; snublestein ved stedet | **8A3 – opprett ny canonical profil etter fersk duplikatkontroll** |
 
 Disse profilene skal ikke vesentlig omskrives bare for å legge til ett nytt sted. Torggata-koblingen dokumenteres i den aktuelle recorden når schemaet tillater det og i 8A-auditen.
 
@@ -99,7 +99,13 @@ Dette er ikke en generell «alle som har bodd i gaten»-liste. Kandidatene behol
 | Fredrik Hurwitz | bodde med moren i Torggata 36; snublestein | dokumentert bosted og fysisk minnespor |
 | Moritz Glott | grunnla tobakksfabrikken som lå i Torggata 33 fra 1913 | stor dokumentert arbeids-/industrivirksomhet i gaten |
 
-Wulff Becker gjenbrukes fra eksisterende canonical profil. De øvrige produseres bare dersom nytt repo-søk ved batchstart fortsatt bekrefter at de ikke allerede finnes.
+Fersk 8A3-preflight fant ingen manifest-lastet canonical Wulff Becker-profil; den tidligere oppgitte filstien finnes ikke på `main`. Repo-søk fant heller ingen canonical profiler for de sju øvrige kandidatene. Alle åtte opprettes derfor i 8A3, med eksplisitt dokumentasjon av denne auditkorreksjonen.
+
+
+
+### 8A3 preflight-korreksjon – Wulff Becker
+
+8A-auditen oppgav `data/people/historie/oslo/jodisk_historie/wulff_becker.json` som eksisterende canonical record. Fersk kontroll mot `main` før 8A3 viste at både filen og den oppgitte katalogen mangler, og repo-søk fant bare audit-/researchtreff. 8A3 behandler derfor Wulff Becker som ny canonical profil. Dette er en korreksjon av tidligere-arbeid-statusen, ikke en duplisering av eksisterende data.
 
 ## Bevisste holdbacks
 

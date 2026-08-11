@@ -21,6 +21,7 @@
 - Fase 8A-audit: `reports/place-production/torggata-phase8a-people-audit-v1.md`
 - Fase 8A1-audit: `reports/place-production/torggata-phase8a1-people-audit-v1.md`
 - Fase 8A2-audit: `reports/place-production/torggata-phase8a2-jensen-audit-v1.md`
+- Fase 8A3-audit: `reports/place-production/torggata-phase8a3-residents-memory-audit-v1.md`
 
 ## Korrigert fasestatus
 
@@ -34,7 +35,7 @@
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
-| 8. Rundinger | **PÅGÅR – 8A People** | audit PR #4829; 8A-audit PR #4830; 8A1 godkjent i PR #4831; 8A2 Jensen-handel materialisert |
+| 8. Rundinger | **PÅGÅR – 8A People** | audit PR #4829; 8A1 godkjent i PR #4831; 8A2 godkjent i PR #4840; 8A3 beboere/arbeid/minnespor materialisert |
 | 9–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
@@ -305,4 +306,12 @@ Primærankrene til eksisterende personer beholdes. Nye profiler bruker `torggata
 
 Adelsten-metadataene er korrigert mot den dedikerte Oslo byleksikon-artikkelen: 1866–1918, oppstart i Torggata 2 i 1890 og flytting til Torggata 1 i 1901. Alle fem profiler har egen claims-trace; Thorvalds `year` utelates fordi kilden ikke daterer når han ble kompanjong.
 
-Neste underfase etter 8A2-merge: **8A3 – dokumenterte beboere, arbeidende og minnespor**.
+8A2 ble squash-merget i PR #4840 og er godkjent baseline.
+
+## Fase 8A3 – beboere, arbeidende og minnespor
+
+8A3 materialiserer Nanna Broch, Wulff Becker, Martin Heinz Zilsel, Alexander Claes, Therese Hurwitz, Jenny Hurwitz, Fredrik Hurwitz og Moritz Glott som canonical People v1-profiler. Fersk preflight korrigerte en stale audit-antakelse om Wulff Becker: den tidligere oppgitte canonical filen finnes ikke på dagens `main`, så han opprettes uten duplikat.
+
+Klyngen dekker presise Torggata-adresser og dokumenterte roller innen boligarbeid, gatehandel/industri, krigshistorie og fysisk minne. Ingen holdback-kandidater legges inn bare for å øke antallet.
+
+Neste steg etter 8A3-merge: **8A closeout + People-runding UI-kontroll**.
