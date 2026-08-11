@@ -1,0 +1,274 @@
+{
+  "schema": "history_go_psykologi_methods_statistics_university_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "subject_id": "psykologi",
+  "status": "complete",
+  "purpose": "Universitetsnær metode- og statistikkgren for Psykologi. Registeret materialiserer de 20 bindende kompetansene i university-readiness-matrisen som egne, kildeførte undervisningsobjekter uten å endre den eksisterende 58-emners canonicale kapittelbasisen.",
+  "principles": {
+    "design_before_inference": true,
+    "measurement_before_score_interpretation": true,
+    "association_is_not_causation": true,
+    "uncertainty_must_be_reported": true,
+    "effect_size_not_p_value_alone": true,
+    "replication_and_transparency_required": true,
+    "human_subject_ethics_required": true
+  },
+  "sources": [
+    {
+      "source_id": "apa_jars_quant_qual",
+      "publisher": "American Psychological Association",
+      "title": "APA Style Journal Article Reporting Standards (JARS)",
+      "url": "https://www.apa.org/pubs/journals/bne/",
+      "verified_at": "2026-08-11",
+      "source_location": "Journal Article Reporting Standards",
+      "supports": ["eksperimentelt_design", "observasjon", "longitudinelt_design", "tverrsnittdesign", "kvalitativ_metode", "utvalg_og_representativitet", "operasjonalisering", "reliabilitet", "validitet", "replikasjon"]
+    },
+    {
+      "source_id": "apa_testing_standards",
+      "publisher": "American Psychological Association / AERA / NCME",
+      "title": "The Standards for Educational and Psychological Testing",
+      "url": "https://www.apa.org/science/programs/testing/standards",
+      "verified_at": "2026-08-11",
+      "source_location": "Standards overview and open-access testing standards",
+      "supports": ["operasjonalisering", "reliabilitet", "validitet", "utvalg_og_representativitet"]
+    },
+    {
+      "source_id": "nist_statistical_handbook",
+      "publisher": "National Institute of Standards and Technology",
+      "title": "NIST/SEMATECH e-Handbook of Statistical Methods",
+      "url": "https://www.nist.gov/publications/handbook-151-nistsematech-e-handbook-statistical-methods",
+      "verified_at": "2026-08-11",
+      "source_location": "Statistical methods handbook; exploratory analysis, experimental design, inference and uncertainty",
+      "supports": ["eksperimentelt_design", "korrelasjon", "deskriptiv_statistikk", "statistisk_inferens", "hypotesetesting", "effektstorrelse", "konfidensintervall_og_usikkerhet", "regresjon", "kausalitet_og_konfundering"]
+    },
+    {
+      "source_id": "strobe_observational",
+      "publisher": "STROBE Initiative",
+      "title": "STROBE checklists for observational studies",
+      "url": "https://www.strobe-statement.org/checklists/",
+      "verified_at": "2026-08-11",
+      "source_location": "Cohort and cross-sectional study checklists",
+      "supports": ["observasjon", "longitudinelt_design", "tverrsnittdesign", "utvalg_og_representativitet", "kausalitet_og_konfundering"]
+    },
+    {
+      "source_id": "consort_2025",
+      "publisher": "CONSORT-SPIRIT Group",
+      "title": "CONSORT 2025 statement",
+      "url": "https://www.consort-spirit.org/published-statements",
+      "verified_at": "2026-08-11",
+      "source_location": "Published CONSORT 2025 statements for randomized trials",
+      "supports": ["eksperimentelt_design", "utvalg_og_representativitet", "kausalitet_og_konfundering", "replikasjon"]
+    },
+    {
+      "source_id": "unesco_open_science_2021",
+      "publisher": "UNESCO",
+      "title": "Recommendation on Open Science",
+      "url": "https://www.unesco.org/en/legal-affairs/recommendation-open-science",
+      "verified_at": "2026-08-11",
+      "source_location": "Recommendation adopted 23 November 2021",
+      "supports": ["apen_vitenskap", "replikasjon"]
+    },
+    {
+      "source_id": "belmont_report",
+      "publisher": "U.S. Department of Health and Human Services, Office for Human Research Protections",
+      "title": "The Belmont Report",
+      "url": "https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html",
+      "verified_at": "2026-08-11",
+      "source_location": "Basic Ethical Principles and Applications",
+      "supports": ["forskningsetikk", "utvalg_og_representativitet"]
+    }
+  ],
+  "topics": [
+    {
+      "topic_id": "eksperimentelt_design",
+      "label": "Eksperimentelt design",
+      "definition": "Forskningsdesign der forskeren manipulerer minst én betingelse og sammenligner utfall under kontrollerte eller randomiserte betingelser for å undersøke mulige kausale effekter.",
+      "core_question": "Hva ble manipulert, hva var sammenligningsgrunnlaget, og hvordan ble alternative forklaringer redusert?",
+      "method_move": "Skill manipulasjon, randomisering, kontrollbetingelse, utfallsmål og analyseplan.",
+      "common_misinterpretation": "Et eksperiment er ikke automatisk kausalt overbevisende dersom randomisering, etterlevelse, frafall eller måling svikter.",
+      "source_ids": ["consort_2025", "nist_statistical_handbook"]
+    },
+    {
+      "topic_id": "observasjon",
+      "label": "Observasjon",
+      "definition": "Systematisk registrering av atferd, hendelser eller andre mål uten at selve eksponeringen nødvendigvis manipuleres av forskeren.",
+      "core_question": "Hva ble observert, etter hvilken protokoll, og hvilke forhold kan påvirke registreringen?",
+      "method_move": "Angi observasjonsenhet, registreringsregel, blinding der relevant og mulige observereffekter.",
+      "common_misinterpretation": "Det som observeres samtidig eller naturlig er ikke dermed en årsakssammenheng.",
+      "source_ids": ["strobe_observational", "apa_jars_quant_qual"]
+    },
+    {
+      "topic_id": "korrelasjon",
+      "label": "Korrelasjon",
+      "definition": "Et mål på statistisk samvariasjon mellom variabler, der størrelse og retning beskriver mønsteret i data uten i seg selv å etablere årsak.",
+      "core_question": "Hvor sterk og stabil er samvariasjonen, og hvilke tredjevariabler eller ikke-lineære mønstre kan finnes?",
+      "method_move": "Rapporter retning, størrelse, usikkerhet og datamønster før kausal tolkning vurderes.",
+      "common_misinterpretation": "Korrelasjon dokumenterer ikke hvilken variabel som påvirker den andre, eller om en tredje variabel driver begge.",
+      "source_ids": ["nist_statistical_handbook", "strobe_observational"]
+    },
+    {
+      "topic_id": "longitudinelt_design",
+      "label": "Longitudinelt design",
+      "definition": "Design der de samme individene, kohortene eller relevante målene følges over flere tidspunkter for å studere endring og tidsrekkefølge.",
+      "core_question": "Hvem følges, hvor lenge, ved hvilke måletidspunkter, og hvem faller fra?",
+      "method_move": "Skill innenpersons endring, kohortforskjeller, frafall og tidsvarierende eksponeringer.",
+      "common_misinterpretation": "At én variabel måles før en annen er nyttig for tidsrekkefølge, men eliminerer ikke automatisk konfundering.",
+      "source_ids": ["apa_jars_quant_qual", "strobe_observational"]
+    },
+    {
+      "topic_id": "tverrsnittdesign",
+      "label": "Tverrsnittdesign",
+      "definition": "Design som måler variabler i en definert populasjon på ett tidspunkt eller innen et kort avgrenset tidsvindu.",
+      "core_question": "Hvilken populasjon beskrives, når ble den målt, og hva kan ikke avgjøres om tidsrekkefølge?",
+      "method_move": "Bruk designet til prevalens og samtidige sammenhenger, men marker begrensninger for utvikling og kausalitet.",
+      "common_misinterpretation": "Et tverrsnittsfunn kan ikke alene vise hva som kom først.",
+      "source_ids": ["strobe_observational", "apa_jars_quant_qual"]
+    },
+    {
+      "topic_id": "kvalitativ_metode",
+      "label": "Kvalitativ metode",
+      "definition": "Systematiske tilnærminger til å undersøke mening, erfaring, språk, praksis eller prosess gjennom materiale som intervjuer, observasjoner, dokumenter eller andre ikke-reduktivt kvantifiserte data.",
+      "core_question": "Hvordan ble materialet produsert, fortolket og dokumentert, og hvilken forskerposisjon påvirker analysen?",
+      "method_move": "Angi utvalg, datagenerering, analysetilnærming, refleksivitet og dokumentasjon av fortolkningsprosessen.",
+      "common_misinterpretation": "Kvalitativ forskning er ikke bare ustrukturert anekdote; kvalitet vurderes gjennom eksplisitt metode og fortolkningsintegritet.",
+      "source_ids": ["apa_jars_quant_qual"]
+    },
+    {
+      "topic_id": "utvalg_og_representativitet",
+      "label": "Utvalg og representativitet",
+      "definition": "Prinsipper for hvordan deltakere eller observasjoner velges, hvem funnene beskriver, og hvilke grupper som er under- eller overrepresentert.",
+      "core_question": "Fra hvilken målpopulasjon kommer utvalget, hvordan ble det rekruttert, og hvem mangler?",
+      "method_move": "Skill målpopulasjon, utvalgsramme, inklusjon, frafall og generaliserbarhet.",
+      "common_misinterpretation": "Et stort bekvemmelighetsutvalg blir ikke automatisk representativt bare fordi antallet er høyt.",
+      "source_ids": ["apa_jars_quant_qual", "belmont_report", "strobe_observational"]
+    },
+    {
+      "topic_id": "operasjonalisering",
+      "label": "Operasjonalisering",
+      "definition": "Prosessen der et teoretisk begrep knyttes til konkrete observasjoner, oppgaver, indikatorer eller måleinstrumenter.",
+      "core_question": "Hvilken del av begrepet fanger det konkrete målet, og hva faller utenfor?",
+      "method_move": "Koble konstruktdefinisjon, indikator, skåring og tolkningsgrense eksplisitt.",
+      "common_misinterpretation": "En indikator er ikke identisk med konstruktet den er ment å representere.",
+      "source_ids": ["apa_testing_standards", "apa_jars_quant_qual"]
+    },
+    {
+      "topic_id": "reliabilitet",
+      "label": "Reliabilitet",
+      "definition": "Graden av konsistens eller presisjon i målinger under spesifiserte betingelser, vurdert i forhold til relevante feilkilder.",
+      "core_question": "Hvor mye av variasjonen i skårer kan tilskrives målefeil under den aktuelle bruken?",
+      "method_move": "Angi hvilken reliabilitetsform som er relevant og hvilke betingelser estimatet gjelder for.",
+      "common_misinterpretation": "Høy reliabilitet viser ikke alene at testen måler riktig konstrukt.",
+      "source_ids": ["apa_testing_standards", "apa_jars_quant_qual"]
+    },
+    {
+      "topic_id": "validitet",
+      "label": "Validitet",
+      "definition": "Samlet evidens og teori som støtter bestemte tolkninger og bruksområder for målinger eller slutninger.",
+      "core_question": "Hvilken tolkning hevdes, hvilken evidens støtter den, og for hvilken populasjon og bruk?",
+      "method_move": "Vurder konstrukt, innhold, relasjoner til andre variabler, konsekvenser og alternative forklaringer i lys av bruken.",
+      "common_misinterpretation": "Validitet er ikke en permanent egenskap ved et instrument uavhengig av tolkning, populasjon og formål.",
+      "source_ids": ["apa_testing_standards", "apa_jars_quant_qual"]
+    },
+    {
+      "topic_id": "deskriptiv_statistikk",
+      "label": "Deskriptiv statistikk",
+      "definition": "Numeriske og grafiske sammendrag som beskriver fordeling, nivå, spredning og mønstre i observerte data.",
+      "core_question": "Hvordan ser datafordelingen faktisk ut før en modell eller test legges på?",
+      "method_move": "Undersøk sentraltendens, spredning, fordeling, ekstreme verdier og grafiske mønstre.",
+      "common_misinterpretation": "Et gjennomsnitt alene beskriver ikke en skjev, multimodal eller svært variabel fordeling.",
+      "source_ids": ["nist_statistical_handbook"]
+    },
+    {
+      "topic_id": "statistisk_inferens",
+      "label": "Statistisk inferens",
+      "definition": "Metoder for å trekke eksplisitt usikre slutninger fra et utvalg eller en datagenererende prosess til parametere, effekter eller modeller utover de observerte dataene.",
+      "core_question": "Hvilken populasjon eller prosess infereres det til, og hvilke antakelser bærer slutningen?",
+      "method_move": "Angi estimand, modell, antakelser, standardfeil eller annen usikkerhet og følsomhet for brudd.",
+      "common_misinterpretation": "Inferens gjør ikke et ikke-representativt eller dårlig designet datasett generelt bare fordi en p-verdi kan beregnes.",
+      "source_ids": ["nist_statistical_handbook"]
+    },
+    {
+      "topic_id": "hypotesetesting",
+      "label": "Hypotesetesting",
+      "definition": "En beslutnings- og evidensprosedyre der observerte data vurderes opp mot en spesifisert nullhypotese og en forhåndsdefinert testregel eller modell.",
+      "core_question": "Hva er nullhypotesen, hvilken teststatistikk brukes, og hvilke antakelser og feilrater følger med?",
+      "method_move": "Rapporter hypotese, test, antakelser og resultat sammen med effekt og usikkerhet.",
+      "common_misinterpretation": "En p-verdi er ikke sannsynligheten for at nullhypotesen er sann og sier ikke alene hvor viktig effekten er.",
+      "source_ids": ["nist_statistical_handbook", "apa_jars_quant_qual"]
+    },
+    {
+      "topic_id": "effektstorrelse",
+      "label": "Effektstørrelse",
+      "definition": "Et kvantitativt mål på størrelsen på en forskjell, sammenheng eller annen effekt i en skala som gjør retning og faglig magnitude vurderbar.",
+      "core_question": "Hvor stor er den estimerte effekten, i hvilken enhet, og hvor presist er den estimert?",
+      "method_move": "Rapporter relevant effektmål med usikkerhet og faglig kontekst, ikke bare signifikans.",
+      "common_misinterpretation": "Statistisk signifikans betyr ikke nødvendigvis at effekten er stor eller viktig.",
+      "source_ids": ["nist_statistical_handbook", "apa_jars_quant_qual"]
+    },
+    {
+      "topic_id": "konfidensintervall_og_usikkerhet",
+      "label": "Konfidensintervall og usikkerhet",
+      "definition": "Intervallestimering som uttrykker statistisk presisjon rundt et estimat under en spesifisert inferensprosedyre og dens antakelser.",
+      "core_question": "Hvor presist er estimatet, og hvilke effektstørrelser er forenlige med data og modell?",
+      "method_move": "Les intervallet sammen med punktestimat, design, utvalgsstørrelse og modellantakelser.",
+      "common_misinterpretation": "Et 95-prosents konfidensintervall betyr ikke at den faste sanne parameteren har 95 prosent sannsynlighet for å ligge i akkurat dette observerte intervallet.",
+      "source_ids": ["nist_statistical_handbook"]
+    },
+    {
+      "topic_id": "regresjon",
+      "label": "Regresjon",
+      "definition": "Modellfamilie for å beskrive og estimere hvordan et utfall varierer med én eller flere prediktorer under eksplisitte funksjons- og feillantakelser.",
+      "core_question": "Hva er utfallet, hvilke prediktorer inngår, hvordan er de kodet, og hvilke antakelser gjelder?",
+      "method_move": "Undersøk koeffisienter, usikkerhet, modelltilpasning, residualer, multikollinearitet og relevante interaksjoner.",
+      "common_misinterpretation": "En regresjonskoeffisient blir ikke kausal bare fordi andre målte variabler er kontrollert statistisk.",
+      "source_ids": ["nist_statistical_handbook", "strobe_observational"]
+    },
+    {
+      "topic_id": "kausalitet_og_konfundering",
+      "label": "Kausalitet og konfundering",
+      "definition": "Analyse av om en endring i en eksponering kan forklare en endring i et utfall, og av tredjevariabler som kan skape eller forvrenge observerte sammenhenger.",
+      "core_question": "Hvilket kausalt estimand hevdes, og hvilke alternative forklaringer, seleksjonsmekanismer og målefeil kan true det?",
+      "method_move": "Start i design og tidsrekkefølge, identifiser konfundering og skill justering fra faktisk identifikasjon av en kausal effekt.",
+      "common_misinterpretation": "Statistisk kontroll for mange variabler garanterer ikke at all konfundering er fjernet.",
+      "source_ids": ["consort_2025", "strobe_observational", "nist_statistical_handbook"]
+    },
+    {
+      "topic_id": "replikasjon",
+      "label": "Replikasjon",
+      "definition": "Ny undersøkelse av et tidligere empirisk funn eller en analyse med mål om å vurdere hvor robust resultatet er på tvers av nye data, prosedyrer eller kontekster.",
+      "core_question": "Hva replikeres, hva er holdt likt, hva er endret, og hvilket utfall ville telle som støtte eller avvik?",
+      "method_move": "Skill direkte og konseptuell replikasjon, forhåndsspesifiser sentrale tester og sammenlign effekt og usikkerhet med tidligere funn.",
+      "common_misinterpretation": "En enkelt replikasjon avgjør sjelden alene om en teori er sann eller falsk.",
+      "source_ids": ["apa_jars_quant_qual", "consort_2025", "unesco_open_science_2021"]
+    },
+    {
+      "topic_id": "apen_vitenskap",
+      "label": "Åpen vitenskap",
+      "definition": "Praksiser og infrastrukturer som gjør vitenskapelig kunnskap, metoder, data, materialer og prosesser mer tilgjengelige, transparente, etterprøvbare og gjenbrukbare når etikk og rettigheter tillater det.",
+      "core_question": "Hvilke deler av forskningsprosessen kan gjøres etterprøvbare uten å bryte personvern, samtykke eller andre legitime begrensninger?",
+      "method_move": "Vurder preregistrering, åpne materialer, kode, dataadgang, dokumentasjon og tydelig skille mellom planlagte og eksplorative analyser.",
+      "common_misinterpretation": "Åpen vitenskap betyr ikke at sensitive persondata skal publiseres fritt.",
+      "source_ids": ["unesco_open_science_2021", "apa_jars_quant_qual"]
+    },
+    {
+      "topic_id": "forskningsetikk",
+      "label": "Forskningsetikk",
+      "definition": "Prinsipper og prosedyrer for å beskytte deltakere og sikre ansvarlig forskning, blant annet respekt for personer, informert samtykke, nytte–risiko-vurdering, rettferdig utvalg og uavhengig vurdering der det kreves.",
+      "core_question": "Hvem bærer risiko og byrder, hvem kan få nytte, og hvordan ivaretas autonomi, samtykke og rettferdighet?",
+      "method_move": "Skill forskning fra praksis, vurder samtykke, sårbarhet, risiko, konfidensialitet og rettferdig rekruttering før datainnsamling.",
+      "common_misinterpretation": "Et vitenskapelig interessant spørsmål gjør ikke enhver datainnsamling etisk akseptabel.",
+      "source_ids": ["belmont_report", "apa_jars_quant_qual"]
+    }
+  ],
+  "completion": {
+    "required_topic_count": 20,
+    "required_source_count_min": 6,
+    "every_topic_requires_definition": true,
+    "every_topic_requires_core_question": true,
+    "every_topic_requires_method_move": true,
+    "every_topic_requires_common_misinterpretation": true,
+    "every_topic_requires_source_ids": true,
+    "all_source_ids_must_resolve": true
+  }
+}
