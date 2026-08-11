@@ -1,0 +1,89 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "alexander_claes",
+  "profile_file": "data/people/by/oslo/torggata/alexander_claes.json",
+  "identity": {
+    "canonical_identity": "Frisør Alexander Claes, innehaver av dame- og herrefrisersalong i Torggata 18 under krigen.",
+    "name_variants": [],
+    "not": [
+      "navnelike personer"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "role_address",
+      "claim": "Alexander Claes drev dame- og herrefrisersalong i Torggata 18 under krigen.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "husoppføringen for Torggata 18",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "deportation_death",
+      "claim": "Alexander Claes ble deportert med Donau 26. november 1942 og drept i Auschwitz.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "husoppføringen for Torggata 18",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "role_address"
+    ],
+    "kindLabel": [
+      "role_address"
+    ],
+    "year": [
+      "deportation_death"
+    ],
+    "placeId": [
+      "role_address"
+    ],
+    "places[torggata]": [
+      "role_address"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "role_address",
+          "deportation_death"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "role_address"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "deportation_death"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "2/2",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
