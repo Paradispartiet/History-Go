@@ -22,6 +22,7 @@
 - Fase 8A1-audit: `reports/place-production/torggata-phase8a1-people-audit-v1.md`
 - Fase 8A2-audit: `reports/place-production/torggata-phase8a2-jensen-audit-v1.md`
 - Fase 8A3-audit: `reports/place-production/torggata-phase8a3-residents-memory-audit-v1.md`
+- Fase 8A-closeout: `reports/place-production/torggata-phase8a-closeout-v1.md`
 
 ## Korrigert fasestatus
 
@@ -35,7 +36,7 @@
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
-| 8. Rundinger | **PÅGÅR – 8A People** | audit PR #4829; 8A1 godkjent i PR #4831; 8A2 godkjent i PR #4840; 8A3 beboere/arbeid/minnespor materialisert |
+| 8. Rundinger | **PÅGÅR – 8B Objects** | audit PR #4829; **8A People GODKJENT** i #4831, #4840, #4842 og closeout #4843; 8B er neste del |
 | 9–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
@@ -127,7 +128,7 @@ BESLUTNING: REELT NYTT ARBEID – bygg bare kildebårne strukturer som tilfører
 
 ### Fase 6 – godkjent resultat
 
-- `spatial_profile` skiller canonical gateidentitet fra den kortere operative routeSegments-kjeden;
+- `spatial_profile` skiller canonical gateidentitet fra den kortere routeSegments-kjeden;
 - 574,5 meter gjøres ikke til påstått full Torggata-lengde;
 - `temporal_profile` bruker seks hovedmilepæler og blir ikke en parallell chronology;
 - `subplaces` består bare av de to dokumenterte gatesegmentene Stortorvet–Youngstorget og Youngstorget–Ankertorget;
@@ -314,4 +315,14 @@ Adelsten-metadataene er korrigert mot den dedikerte Oslo byleksikon-artikkelen: 
 
 Klyngen dekker presise Torggata-adresser og dokumenterte roller innen boligarbeid, gatehandel/industri, krigshistorie og fysisk minne. Ingen holdback-kandidater legges inn bare for å øke antallet.
 
-Neste steg etter 8A3-merge: **8A closeout + People-runding UI-kontroll**.
+8A3 ble squash-merget i PR #4842 og fullførte den planlagte People-innholdsproduksjonen.
+
+## Fase 8A – closeout
+
+People-rundingen er kontrollert mot faktisk runtime: `getPeopleForPlace('torggata')` leverer de kildebårne 8A-personene fra canonical manifest/place-referanser, PlaceCard bruker samme samling til liste og preview, og category-four-gridet beholder People som første innholdsrunding. Testen låser identitetene som 8A faktisk produserte, men innfører ingen antallskvote.
+
+Closeout ble squash-merget i PR #4843, merge `d50d5fd21e7201bb76cfe363e27c7a00ae3b351c`.
+
+**8A People = GODKJENT.**
+
+Neste fase-8-del: **8B Objects**.
