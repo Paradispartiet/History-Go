@@ -2,7 +2,7 @@ name: Torggata phase 8A1 materialize
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 
 permissions:
   contents: write
@@ -28,6 +28,28 @@ jobs:
 
       - name: Materialize 8A1
         run: python3 tools/_tmp_materialize_torggata_phase8a1.py
+
+      - name: Normalize historical role wording
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          replacements = {
+              "data/people/by/oslo/torggata/alma_fahlstrom.json": (
+                  "Alma Fahlstrøm var norsk skuespiller og teaterleder.",
+                  "Alma Fahlstrøm var norsk skuespiller.",
+              ),
+              "data/people/by/oslo/torggata/johan_fahlstrom.json": (
+                  "Johan Fahlstrøm var norsk skuespiller og teaterleder.",
+                  "Johan Fahlstrøm var norsk skuespiller.",
+              ),
+          }
+          for rel, (old, new) in replacements.items():
+              path = Path(rel)
+              text = path.read_text(encoding="utf-8")
+              if old not in text:
+                  raise SystemExit(f"Expected historical role wording not found in {rel}")
+              path.write_text(text.replace(old, new), encoding="utf-8")
+          PY
 
       - name: Regenerate derived People data
         run: |
