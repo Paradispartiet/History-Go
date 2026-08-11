@@ -23,6 +23,7 @@
 - Fase 8A2-audit: `reports/place-production/torggata-phase8a2-jensen-audit-v1.md`
 - Fase 8A3-audit: `reports/place-production/torggata-phase8a3-residents-memory-audit-v1.md`
 - Fase 8A-closeout: `reports/place-production/torggata-phase8a-closeout-v1.md`
+- Fase 8B-audit: `reports/place-production/torggata-phase8b-objects-audit-v1.md`
 
 ## Korrigert fasestatus
 
@@ -36,7 +37,7 @@
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
-| 8. Rundinger | **PÅGÅR – 8B Objects** | audit PR #4829; **8A People GODKJENT** i #4831, #4840, #4842 og closeout #4843; 8B er neste del |
+| 8. Rundinger | **PÅGÅR – 8C Brands** | audit PR #4829; **8A People GODKJENT** i #4831, #4840, #4842 og closeout #4843; **8B Objects GODKJENT** i #4847; 8C er neste del |
 | 9–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
@@ -325,4 +326,14 @@ Closeout ble squash-merget i PR #4843, merge `d50d5fd21e7201bb76cfe363e27c7a00ae
 
 **8A People = GODKJENT.**
 
-Neste fase-8-del: **8B Objects**.
+## Fase 8B – Objects
+
+8B materialiserer én canonical fysisk gjenstand i `place.objects`: **Byrute 8-skilt for sykkel**. Posten er stedsspesifikk, har direkte Commons-bilde med fotograf, lisens og verifiseringsdato, og dokumenterer hvordan sykkelprioriteringen i Torggata også er fysisk lesbar i gatebildet. Tre svake legacy Civication-kandidater ble eksplisitt holdt utenfor canonical Objects fordi de var ikke-fysiske, for abstrakte eller manglet tilstrekkelig egen identitet/bildeevidens. Det ble ikke brukt noen antallskvote.
+
+Under clean-head-kontrollen avdekket `objects[].desc` en falsk positiv i `Place description governance`: validatoren tolket en nestet Object-beskrivelse som om toppnivå-`desc` var endret. Kontraktfeilen ble rettet separat i PR #4850, merge `a7ad5efbd9685324f814e9819add767f0dad062e`, med regresjonstest for nestede beskrivelser. Selve 8B-innholdet ble ikke endret som følge av dette.
+
+PR #4847 ble deretter renset til én commit på fersk `main`, bestod Data checks, Place description governance, TypeScript guard, Nature data validation and candidates og Fagverk/place learning, og ble squash-merget på `0da6add13605a66f08769fb4b302fe1ddae76780`.
+
+**8B Objects = GODKJENT.**
+
+Neste fase-8-del: **8C Brands**.
