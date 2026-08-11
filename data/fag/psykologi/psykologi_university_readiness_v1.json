@@ -1,6 +1,6 @@
 {
   "schema": "history_go_psykologi_university_readiness_v1",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "updated_at": "2026-08-11",
   "subject_id": "psykologi",
   "status": "expansion_required_before_complete",
@@ -53,8 +53,9 @@
       "area_id": "cognitive_psychology",
       "label": "Kognitiv psykologi",
       "required": true,
-      "current_status": "canonical_chapter_baseline_ready_depth_expansion_required",
+      "current_status": "complete",
       "current_anchors": ["kognisjon_folelser_atferd", "em_psy_laring_hukommelse"],
+      "current_artifact": "data/fag/psykologi/kognitiv_psykologi_university_v1.json",
       "completion_requirement": "Selvstendig dybde i persepsjon, oppmerksomhet, hukommelse, språk, problemløsning, resonnering, beslutning og kognitive modeller med empiriske metoder og avgrensninger."
     },
     {
@@ -116,6 +117,25 @@
     "psykofarmakologi_og_nevrotransmittersystemer",
     "biologiske_forskningsmetoder",
     "forklaringsnivaer_kausalitet_og_nevroetikk"
+  ],
+  "required_cognitive_psychology_topics": [
+    "psykofysikk_signaloppdagelse_og_maling",
+    "perseptuell_organisering_konstans_og_forventning",
+    "selektiv_oppmerksomhet_orientering_og_beredskap",
+    "delt_oppmerksomhet_automatikk_og_uoppmerksomhetsblindhet",
+    "arbeidsminne_kapasitet_og_oppgavekrav",
+    "innkoding_konsolidering_og_gjenhenting",
+    "rekonstruktiv_hukommelse_kildekontroll_og_feilminner",
+    "laring_spredt_oving_gjenhenting_og_overforing",
+    "begreper_kategorier_og_semantisk_kunnskap",
+    "sprakforstaelse_produksjon_og_kontekst",
+    "sprak_tenkning_og_flerspraklig_erfaring",
+    "mentale_bilder_romlig_kognisjon_og_representasjonsformat",
+    "eksekutive_funksjoner_kontroll_og_oppgaveurenhet",
+    "problemlosning_resonnering_og_ekspertise",
+    "heuristikker_bias_og_dualprosessmodeller",
+    "beslutning_under_risiko_usikkerhet_og_framing",
+    "metakognisjon_kognitive_modeller_og_forskningsmetoder"
   ],
   "required_personality_psychology_topics": [
     "personlighet_trekk_og_individforskjeller",
@@ -192,6 +212,7 @@
     "final_next_gate": "maintenance_source_refresh_and_place_case_expansion",
     "requirements": [
       "all_required_university_core_areas_complete",
+      "cognitive_psychology_branch_complete",
       "personality_psychology_branch_complete",
       "research_methods_statistics_branch_complete",
       "all_58_standalone_topic_articles_materialized_and_sourced",

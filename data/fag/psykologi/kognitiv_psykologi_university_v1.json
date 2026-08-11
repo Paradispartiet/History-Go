@@ -1,0 +1,343 @@
+{
+  "schema": "history_go_psykologi_cognitive_university_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "subject_id": "psykologi",
+  "branch_id": "cognitive_psychology",
+  "status": "complete",
+  "purpose": "Universitetsnær kognitiv psykologi som dekker persepsjon, oppmerksomhet, hukommelse, læring, språk, representasjon, problemløsning, resonnering, beslutning og kontroll med eksplisitte grenser for individtolkning.",
+  "completion_contract": {
+    "required_topic_count": 17,
+    "exact_topic_ids_required": true,
+    "unique_topic_ids_required": true,
+    "minimum_source_count": 12,
+    "every_topic_requires_sources": true,
+    "every_topic_requires_learning_outcomes": true,
+    "every_topic_requires_key_distinctions": true,
+    "every_topic_requires_misuse_guard": true,
+    "required_families": ["perception_attention", "memory_learning", "language_representation", "reasoning_decision_control"],
+    "no_cognitive_diagnosis_from_single_task_guard_required": true,
+    "no_memory_confidence_equals_accuracy_guard_required": true,
+    "no_brain_or_behavioral_thought_reading_guard_required": true
+  },
+  "sources": [
+    {
+      "source_id": "apa_undergraduate_guidelines_3_0",
+      "publisher": "American Psychological Association",
+      "title": "APA Guidelines for the Undergraduate Psychology Major: Version 3.0",
+      "url": "https://www.apa.org/about/policy/undergraduate-psychology-major.pdf",
+      "source_location": "Goal 1 and Goal 2: cognitive content knowledge, scientific inquiry, interpretation and ethics",
+      "type": "professional_guideline",
+      "verified_at": "2026-08-11",
+      "supports": ["cognitive_psychology", "scientific_inquiry", "interpretation", "ethics"]
+    },
+    {
+      "source_id": "nasem_how_people_learn_ii_2018",
+      "publisher": "National Academies of Sciences, Engineering, and Medicine",
+      "title": "How People Learn II: Learners, Contexts, and Cultures",
+      "url": "https://nap.nationalacademies.org/catalog/24783/how-people-learn-ii-learners-contexts-and-cultures",
+      "source_location": "Chapters 4–7 on knowledge and reasoning, learning, motivation and implications for learning environments",
+      "type": "consensus_study_report",
+      "verified_at": "2026-08-11",
+      "supports": ["learning", "memory", "transfer", "metacognition", "context", "culture"]
+    },
+    {
+      "source_id": "petersen_posner_attention_2012",
+      "publisher": "Annual Review of Neuroscience",
+      "title": "The attention system of the human brain: 20 years after",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22524787/",
+      "source_location": "Review of alerting, orienting and executive-control networks and their behavioral paradigms",
+      "type": "peer_reviewed_integrative_review",
+      "verified_at": "2026-08-11",
+      "supports": ["attention", "orienting", "alerting", "executive_control", "networks"]
+    },
+    {
+      "source_id": "simons_chabris_inattentional_blindness_1999",
+      "publisher": "Perception",
+      "title": "Gorillas in our midst: Sustained inattentional blindness for dynamic events",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10694957/",
+      "source_location": "Dynamic selective-looking experiments and discussion of inattentional blindness",
+      "type": "peer_reviewed_experiment",
+      "verified_at": "2026-08-11",
+      "supports": ["selective_attention", "inattentional_blindness", "task_demands", "awareness"]
+    },
+    {
+      "source_id": "baddeley_working_memory_2003",
+      "publisher": "Nature Reviews Neuroscience",
+      "title": "Working memory: Looking back and looking forward",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14523382/",
+      "source_location": "Multicomponent working-memory model, evidence, revisions and open questions",
+      "type": "peer_reviewed_integrative_review",
+      "verified_at": "2026-08-11",
+      "supports": ["working_memory", "temporary_storage", "manipulation", "executive_control"]
+    },
+    {
+      "source_id": "johnson_source_monitoring_1993",
+      "publisher": "Psychological Bulletin",
+      "title": "Source monitoring",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8346328/",
+      "source_location": "Source-monitoring framework and empirical evidence on attribution of remembered information",
+      "type": "peer_reviewed_theory_review",
+      "verified_at": "2026-08-11",
+      "supports": ["source_memory", "reconstructive_memory", "monitoring", "false_memory"]
+    },
+    {
+      "source_id": "loftus_misinformation_2005",
+      "publisher": "Learning & Memory",
+      "title": "Planting misinformation in the human mind: A 30-year investigation of the malleability of memory",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16027179/",
+      "source_location": "Review of misinformation-effect experiments, mechanisms and boundary conditions",
+      "type": "peer_reviewed_research_review",
+      "verified_at": "2026-08-11",
+      "supports": ["misinformation_effect", "memory_malleability", "eyewitness_memory", "suggestion"]
+    },
+    {
+      "source_id": "roediger_karpicke_testing_effect_2006",
+      "publisher": "Psychological Science",
+      "title": "Test-enhanced learning: Taking memory tests improves long-term retention",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16507066/",
+      "source_location": "Two experiments comparing repeated study with retrieval practice across retention intervals",
+      "type": "peer_reviewed_experiment",
+      "verified_at": "2026-08-11",
+      "supports": ["retrieval_practice", "retention", "testing_effect", "learning_performance_distinction"]
+    },
+    {
+      "source_id": "cepeda_spacing_meta_2006",
+      "publisher": "Psychological Bulletin",
+      "title": "Distributed practice in verbal recall tasks: A review and quantitative synthesis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16719566/",
+      "source_location": "Quantitative synthesis of 317 experiments on spacing and retention interval",
+      "type": "peer_reviewed_meta_analysis",
+      "verified_at": "2026-08-11",
+      "supports": ["spacing", "distributed_practice", "retention_interval", "learning"]
+    },
+    {
+      "source_id": "fedorenko_language_thought_2016",
+      "publisher": "Language Learning",
+      "title": "Language and thought are not the same thing: Evidence from neuroimaging and neurological patients",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27096882/",
+      "source_location": "Evidence separating core language mechanisms from several nonlinguistic cognitive capacities",
+      "type": "peer_reviewed_integrative_review",
+      "verified_at": "2026-08-11",
+      "supports": ["language", "thought", "functional_dissociation", "neuroimaging", "aphasia"]
+    },
+    {
+      "source_id": "miyake_friedman_executive_functions_2012",
+      "publisher": "Current Directions in Psychological Science",
+      "title": "The nature and organization of individual differences in executive functions: Four general conclusions",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22773897/",
+      "source_location": "Unity/diversity model, latent-variable evidence and limits of single executive-function tasks",
+      "type": "peer_reviewed_integrative_review",
+      "verified_at": "2026-08-11",
+      "supports": ["executive_functions", "inhibition", "updating", "shifting", "task_impurity"]
+    },
+    {
+      "source_id": "evans_stanovich_dual_process_2013",
+      "publisher": "Perspectives on Psychological Science",
+      "title": "Dual-process theories of higher cognition: Advancing the debate",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26172965/",
+      "source_location": "Defining features, criticisms and empirical implications of Type 1 and Type 2 processing",
+      "type": "peer_reviewed_theory_review",
+      "verified_at": "2026-08-11",
+      "supports": ["reasoning", "dual_process", "automaticity", "working_memory", "model_criticism"]
+    },
+    {
+      "source_id": "fleming_lau_metacognition_2014",
+      "publisher": "Frontiers in Human Neuroscience",
+      "title": "How to measure metacognition",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25076880/",
+      "source_location": "Measures of metacognitive bias, sensitivity and efficiency and their signal-detection foundations",
+      "type": "peer_reviewed_methods_review",
+      "verified_at": "2026-08-11",
+      "supports": ["metacognition", "confidence", "calibration", "signal_detection", "measurement"]
+    },
+    {
+      "source_id": "ruggeri_prospect_replication_2020",
+      "publisher": "Nature Human Behaviour",
+      "title": "Replicating patterns of prospect theory for decision under risk",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32424259/",
+      "source_location": "Multi-country replication of classic risky-choice patterns and variation across tasks and samples",
+      "type": "peer_reviewed_multisite_replication",
+      "verified_at": "2026-08-11",
+      "supports": ["decision_under_risk", "prospect_theory", "replication", "cross_sample_variation"]
+    }
+  ],
+  "topics": [
+    {
+      "topic_id": "psykofysikk_signaloppdagelse_og_maling",
+      "title": "Psykofysikk, signaloppdagelse og måling",
+      "family": "perception_attention",
+      "definition": "Psykofysikk undersøker forholdet mellom fysiske stimuli og observerbare responser. Signaloppdagelsesteori skiller sensorisk sensitivitet fra beslutningskriterium, slik at treff, bom, falske alarmer og korrekte avvisninger kan analyseres samlet.",
+      "learning_outcomes": ["Skille sensitivitet fra responskriterium i en signaloppdagelsesoppgave.", "Forklare hvordan terskler og responser avhenger av stimulus, støy, instruksjon, kostnader og forventninger."],
+      "key_distinctions": ["sensitivitet_vs_responskriterium", "fysisk_stimulus_vs_subjektiv_opplevelse", "terskel_vs_absolutt_grense"],
+      "misuse_guard": "En terskel eller feilrate fra én laboratorieoppgave er ikke et generelt mål på sanseevne, intelligens eller ærlighet; tolkningen krever modell, usikkerhet, oppgavebetingelser og gjentatte målinger.",
+      "source_ids": ["apa_undergraduate_guidelines_3_0", "fleming_lau_metacognition_2014"]
+    },
+    {
+      "topic_id": "perseptuell_organisering_konstans_og_forventning",
+      "title": "Perseptuell organisering, konstans og forventning",
+      "family": "perception_attention",
+      "definition": "Persepsjon organiserer varierende og tvetydig sanseinformasjon til relativt stabile objekter, hendelser og romlige relasjoner. Signalstyrke, kontekst, tidligere erfaring og oppgave påvirker fortolkningen uten at opplevelsen blir vilkårlig.",
+      "learning_outcomes": ["Forklare hvordan organisering, konstans og kontekst bidrar til stabil persepsjon.", "Sammenligne datadrevne og forventningsstyrte bidrag uten å gjøre dem til to isolerte systemer."],
+      "key_distinctions": ["sensasjon_vs_persepsjon", "datadrevet_vs_forventningsstyrt_bearbeiding", "perseptuell_tvetydighet_vs_tilfeldig_gjetning"],
+      "misuse_guard": "Persepsjon er ikke en direkte kopi av omverdenen, men det betyr heller ikke at hjernen bare gjetter eller at alle fortolkninger er like sannsynlige; stimulus og oppgave setter sterke begrensninger.",
+      "source_ids": ["apa_undergraduate_guidelines_3_0", "petersen_posner_attention_2012"]
+    },
+    {
+      "topic_id": "selektiv_oppmerksomhet_orientering_og_beredskap",
+      "title": "Selektiv oppmerksomhet, orientering og beredskap",
+      "family": "perception_attention",
+      "definition": "Oppmerksomhet omfatter flere funksjoner, blant annet beredskap, orientering mot relevant informasjon og kontroll av konkurrerende responser. Seleksjon kan påvirke både tidlig informasjonsbehandling og senere valg av handling.",
+      "learning_outcomes": ["Skille beredskap, orientering og eksekutiv kontroll i oppgaver og nettverksmodeller.", "Vurdere hvordan signaler, forventninger og mål endrer reaksjonstid og nøyaktighet."],
+      "key_distinctions": ["beredskap_vs_orientering", "overt_vs_skjult_oppmerksomhet", "seleksjon_vs_bevisst_oppdagelse"],
+      "misuse_guard": "Oppmerksomhet er ikke én fast mental ressurs eller et enkelt sted i hjernen; prestasjon avhenger av oppgavetype, stimulus, mål, søvn, erfaring og flere delvis adskilte prosesser.",
+      "source_ids": ["petersen_posner_attention_2012", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "delt_oppmerksomhet_automatikk_og_uoppmerksomhetsblindhet",
+      "title": "Delt oppmerksomhet, automatikk og uoppmerksomhetsblindhet",
+      "family": "perception_attention",
+      "definition": "Når flere oppgaver konkurrerer, avhenger interferens av felles prosesser, timing, øvelse og prioritering. Uoppmerksomhetsblindhet viser at et synlig, uventet objekt kan forbli urapportert når oppmerksomheten er bundet til en annen krevende oppgave.",
+      "learning_outcomes": ["Forklare hvorfor dobbeltoppgaver kan gi flaskehalser selv når hver oppgave virker enkel alene.", "Tolke uoppmerksomhetsblindhet som et oppgave- og forventningsavhengig fenomen, ikke en personlig egenskap."],
+      "key_distinctions": ["parallell_bearbeiding_vs_flaskenhals", "automatisk_vs_obligatorisk", "ikke_rapportert_vs_ikke_sensorisk_registrert"],
+      "misuse_guard": "At en deltaker overser et uventet objekt beviser ikke generell uoppmerksomhet, likegyldighet eller en diagnose; funnet gjelder bestemte oppgavekrav og kan ikke brukes som fjernvurdering av en person.",
+      "source_ids": ["simons_chabris_inattentional_blindness_1999", "petersen_posner_attention_2012"]
+    },
+    {
+      "topic_id": "arbeidsminne_kapasitet_og_oppgavekrav",
+      "title": "Arbeidsminne, kapasitet og oppgavekrav",
+      "family": "memory_learning",
+      "definition": "Arbeidsminne betegner midlertidig tilgjengelig informasjon og prosessene som vedlikeholder, oppdaterer og kombinerer den under pågående aktivitet. Kapasitet er begrenset og varierer med materiale, strategi, interferens og forkunnskap.",
+      "learning_outcomes": ["Beskrive sentrale komponenter i flerkomponentmodeller av arbeidsminne.", "Analysere hvordan oppgaveformat, strategi og langtidshukommelse påvirker tilsynelatende kapasitet."],
+      "key_distinctions": ["korttidslagring_vs_arbeidsminne", "kapasitet_vs_oppgaveprestasjon", "vedlikehold_vs_manipulasjon"],
+      "misuse_guard": "En enkelt arbeidsminneoppgave er oppgaveuren og måler ikke generell intelligens, viljestyrke eller diagnose direkte; solide individkonklusjoner krever flere validerte mål og relevant normgrunnlag.",
+      "source_ids": ["baddeley_working_memory_2003", "miyake_friedman_executive_functions_2012"]
+    },
+    {
+      "topic_id": "innkoding_konsolidering_og_gjenhenting",
+      "title": "Innkoding, konsolidering og gjenhenting",
+      "family": "memory_learning",
+      "definition": "Langtidshukommelse avhenger av hvordan informasjon bearbeides ved innkoding, stabiliseres og omorganiseres over tid, og hentes fram med bestemte signaler. Gjenhenting er en aktiv prosess som både uttrykker og kan endre senere tilgjengelighet.",
+      "learning_outcomes": ["Skille innkodings-, lagrings- og gjenhentingsforklaringer på hukommelsesprestasjon.", "Forklare hvorfor samsvar mellom lærings- og gjenhentingsbetingelser kan påvirke hva som huskes."],
+      "key_distinctions": ["tilgjengelighet_vs_gjenhentbarhet", "gjenkjenning_vs_fri_gjenkalling", "episodisk_vs_semantisk_hukommelse"],
+      "misuse_guard": "Manglende gjenhenting viser ikke nødvendigvis at informasjon aldri ble lagret, og et levende minne viser ikke at alle detaljer er bevart uendret; begge slutninger krever kontroll av alternative forklaringer.",
+      "source_ids": ["baddeley_working_memory_2003", "johnson_source_monitoring_1993"]
+    },
+    {
+      "topic_id": "rekonstruktiv_hukommelse_kildekontroll_og_feilminner",
+      "title": "Rekonstruktiv hukommelse, kildekontroll og feilminner",
+      "family": "memory_learning",
+      "definition": "Hukommelse rekonstrueres fra lagrede trekk, kunnskap, forventninger og gjenhentingssignaler. Kildekontroll gjelder vurderingen av hvor informasjon kom fra, og feil kan oppstå uten løgn når detaljer, forestillinger og senere informasjon blandes.",
+      "learning_outcomes": ["Forklare hvordan kildekontroll og misinformasjon kan påvirke minnerapporter.", "Skille minnesikkerhet, detaljrikdom og subjektiv visshet fra dokumentert nøyaktighet."],
+      "key_distinctions": ["minneinnhold_vs_kildetilskrivning", "feilminne_vs_bevisst_logn", "sikkerhet_vs_noyaktighet"],
+      "misuse_guard": "Sterk trygghet, følelsesintensitet eller detaljrikdom beviser ikke at et minne er nøyaktig, og forskning på feilminner gir heller ikke grunnlag for å avvise en bestemt persons fortelling uten selvstendig evidens.",
+      "source_ids": ["johnson_source_monitoring_1993", "loftus_misinformation_2005"]
+    },
+    {
+      "topic_id": "laring_spredt_oving_gjenhenting_og_overforing",
+      "title": "Læring, spredt øving, gjenhenting og overføring",
+      "family": "memory_learning",
+      "definition": "Læring må vurderes som varig endring i kunnskap eller ferdighet, ikke bare prestasjon under øving. Spredt øving og aktiv gjenhenting kan styrke senere retensjon, mens overføring til nye oppgaver avhenger av kunnskapsstruktur og kontekst.",
+      "learning_outcomes": ["Skille prestasjon under øving fra senere retensjon og overføring.", "Planlegge læring med gjenhenting, spacing, forklaring og tilbakemelding tilpasset mål og materiale."],
+      "key_distinctions": ["ovingprestasjon_vs_laring", "masset_vs_spredt_oving", "nær_vs_fjern_overforing"],
+      "misuse_guard": "Spredt øving og gjenhentingsøving er ikke universelle oppskrifter med lik effekt for alt materiale og alle elever; tidsintervall, forkunnskap, feedback, mål og læringsmiljø må vurderes.",
+      "source_ids": ["roediger_karpicke_testing_effect_2006", "cepeda_spacing_meta_2006", "nasem_how_people_learn_ii_2018"]
+    },
+    {
+      "topic_id": "begreper_kategorier_og_semantisk_kunnskap",
+      "title": "Begreper, kategorier og semantisk kunnskap",
+      "family": "language_representation",
+      "definition": "Begreper og kategorier organiserer kunnskap slik at nye tilfeller kan gjenkjennes, sammenlignes og brukes i slutninger. Representasjoner kan beskrives gjennom trekk, prototyper, eksemplarer, relasjoner og distribuerte mønstre med ulike styrker.",
+      "learning_outcomes": ["Sammenligne trekk-, prototype-, eksemplar- og kunnskapsbaserte kategorimodeller.", "Forklare hvordan typiskhet, mål og erfaring påvirker kategorisering uten å gjøre kategorier vilkårlige."],
+      "key_distinctions": ["begrep_vs_ord", "kategori_vs_naturlig_essens", "prototype_vs_eksemplar"],
+      "misuse_guard": "At mennesker kategoriserer betyr ikke at sosiale eller psykologiske kategorier har faste naturgitte grenser; modell, språk, formål og konsekvenser må vurderes før kategorien brukes om personer.",
+      "source_ids": ["nasem_how_people_learn_ii_2018", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "sprakforstaelse_produksjon_og_kontekst",
+      "title": "Språkforståelse, produksjon og kontekst",
+      "family": "language_representation",
+      "definition": "Språkforståelse og produksjon koordinerer lyd eller skrift, ordkunnskap, grammatisk struktur, diskurs, pragmatikk og situasjonskontekst. Behandlingen skjer trinnvis og interaktivt, og tvetydighet løses med flere informasjonskilder.",
+      "learning_outcomes": ["Skille fonologiske, leksikalske, syntaktiske, semantiske og pragmatiske analysenivåer.", "Forklare hvordan kontekst og forventning påvirker forståelse uten å erstatte språklig informasjon."],
+      "key_distinctions": ["sprakkompetanse_vs_sprakbruk", "semantikk_vs_pragmatikk", "ordgjenkjenning_vs_setningsforstaelse"],
+      "misuse_guard": "En språkfeil, aksent eller langsom respons er ikke et direkte mål på generell tenkeevne; språkbruk påvirkes av erfaring, flerspråklighet, situasjon, oppgave og tilgang til relevante ord.",
+      "source_ids": ["fedorenko_language_thought_2016", "baddeley_working_memory_2003"]
+    },
+    {
+      "topic_id": "sprak_tenkning_og_flerspraklig_erfaring",
+      "title": "Språk, tenkning og flerspråklig erfaring",
+      "family": "language_representation",
+      "definition": "Språk kan støtte kommunikasjon, kategorisering, hukommelse og problemløsning, men er ikke identisk med all tenkning. Flerspråklig erfaring endrer hvilke språk som er tilgjengelige og hvordan de brukes, med store variasjoner mellom personer og oppgaver.",
+      "learning_outcomes": ["Drøfte evidens for både samspill og funksjonelle skiller mellom språk og ikke-språklig tenkning.", "Vurdere flerspråklige funn uten å gjøre fordeler eller ulemper universelle."],
+      "key_distinctions": ["sprak_vs_tenkning", "spraklig_koding_vs_ikke_spraklig_representasjon", "gruppegjennomsnitt_vs_individuell_sprakprofil"],
+      "misuse_guard": "Språk og tanke er ikke det samme, og svak prestasjon på ett språk viser ikke svak generell kognisjon. Flerspråklighet skal heller ikke framstilles som en sikker kognitiv fordel eller belastning for alle.",
+      "source_ids": ["fedorenko_language_thought_2016", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "mentale_bilder_romlig_kognisjon_og_representasjonsformat",
+      "title": "Mentale bilder, romlig kognisjon og representasjonsformat",
+      "family": "language_representation",
+      "definition": "Mentale bilder og romlig kognisjon gjør det mulig å representere former, retninger, avstander og transformasjoner uten at stimulus er til stede. Forskningen undersøker både overlapp med persepsjon og alternative proposisjonelle strategier.",
+      "learning_outcomes": ["Forklare hvordan mental rotasjon, bildeoppgaver og romlig navigasjon operasjonaliserer ulike prosesser.", "Vurdere om atferds- og nevrodata skiller representasjonsformat fra oppgavestrategi."],
+      "key_distinctions": ["mentalt_bilde_vs_faktisk_synsinntrykk", "representasjonsformat_vs_oppgavestrategi", "romlig_evne_vs_enkeltoppgave"],
+      "misuse_guard": "Forskjeller i subjektiv billedklarhet eller én romlig oppgave kan ikke brukes til å rangere generell intelligens, kreativitet eller læringsstil; flere strategier kan gi samme observerte svar.",
+      "source_ids": ["apa_undergraduate_guidelines_3_0", "nasem_how_people_learn_ii_2018"]
+    },
+    {
+      "topic_id": "eksekutive_funksjoner_kontroll_og_oppgaveurenhet",
+      "title": "Eksekutive funksjoner, kontroll og oppgaveurenhet",
+      "family": "reasoning_decision_control",
+      "definition": "Eksekutive funksjoner omfatter beslektede kontrollprosesser som oppdatering, skifte og hemming, med både felles og spesifikke komponenter. Nesten alle mål er oppgaveurene fordi de også krever persepsjon, språk, motorikk og motivasjon.",
+      "learning_outcomes": ["Forklare unity/diversity-modellen og problemet med oppgaveurenhet.", "Skille latent kontrollkonstrukt fra resultatet på én Stroop-, skifte- eller arbeidsminneoppgave."],
+      "key_distinctions": ["felles_kontroll_vs_spesifikk_funksjon", "konstrukt_vs_oppgave", "hemming_vs_generell_selvkontroll"],
+      "misuse_guard": "En svak respons på én kontrolloppgave dokumenterer ikke lav intelligens, dårlig moral, ADHD eller annen diagnose; oppgaver har begrenset reliabilitet og krever flere mål og klinisk relevant kontekst.",
+      "source_ids": ["miyake_friedman_executive_functions_2012", "petersen_posner_attention_2012"]
+    },
+    {
+      "topic_id": "problemlosning_resonnering_og_ekspertise",
+      "title": "Problemløsning, resonnering og ekspertise",
+      "family": "reasoning_decision_control",
+      "definition": "Problemløsning krever representasjon av mål, nåtilstand, mulige operatorer og begrensninger. Strategier som analogi, delmål, søk og omstrukturering virker sammen med forkunnskap, mens ekspertise ofte er domenespesifikk.",
+      "learning_outcomes": ["Analysere et problem etter representasjon, søk, strategi, kunnskap og evaluering.", "Skille generell problemløsningspåstand fra domenespesifikk ekspertise og trenet mønstergjenkjenning."],
+      "key_distinctions": ["problemrepresentasjon_vs_losningssok", "algoritme_vs_heuristikk", "ekspertise_vs_generell_evne"],
+      "misuse_guard": "Rask løsning betyr ikke alltid dyp forståelse, og langsom løsning betyr ikke lav evne; forkunnskap, representasjon, strategi, insentiver og oppgavekjennskap påvirker resultatet sterkt.",
+      "source_ids": ["nasem_how_people_learn_ii_2018", "evans_stanovich_dual_process_2013"]
+    },
+    {
+      "topic_id": "heuristikker_bias_og_dualprosessmodeller",
+      "title": "Heuristikker, bias og dualprosessmodeller",
+      "family": "reasoning_decision_control",
+      "definition": "Heuristikker er forenklede strategier som ofte gir effektive svar, men kan skape systematiske avvik i bestemte oppgaver. Dualprosessmodeller skiller gjerne autonome prosesser fra mer arbeidsminnekrevende refleksjon, ikke to bokstavelige hjerner.",
+      "learning_outcomes": ["Forklare når en heuristikk kan være adaptiv og når oppgavestrukturen gir systematiske feil.", "Vurdere dualprosessforklaringer etter presise prosesskriterier og alternative modeller."],
+      "key_distinctions": ["heuristikk_vs_feil", "type_1_vs_type_2_prosess", "deskriptiv_modell_vs_moralvurdering"],
+      "misuse_guard": "Å identifisere en mulig bias er ikke å diagnostisere irrasjonalitet, manipulasjon eller manglende intelligens hos en person; samme svar kan oppstå fra ulike strategier og kontekster.",
+      "source_ids": ["evans_stanovich_dual_process_2013", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "beslutning_under_risiko_usikkerhet_og_framing",
+      "title": "Beslutning under risiko, usikkerhet og framing",
+      "family": "reasoning_decision_control",
+      "definition": "Beslutningsforskning undersøker hvordan utfall, sannsynlighet, referansepunkt, tap, erfaring og presentasjonsform påvirker valg. Deskriptive modeller forklarer mønstre som kan avvike fra normative forventningsmodeller uten å forutsi hvert individ.",
+      "learning_outcomes": ["Skille beslutning under kjent risiko fra beslutning under usikkerhet og erfaring.", "Forklare referanseavhengighet, tapsaversjon og framing som estimerte mønstre med grensebetingelser."],
+      "key_distinctions": ["deskriptiv_vs_normativ_modell", "risiko_vs_usikkerhet", "gruppeeffekt_vs_individvalg"],
+      "misuse_guard": "En framingeffekt eller risikomodell viser ikke at ordlyd styrer alle eller at et bestemt individ er forutsigbart; effektstørrelse, insentiver, utvalg, oppgave og replikasjon avgrenser slutningen.",
+      "source_ids": ["ruggeri_prospect_replication_2020", "evans_stanovich_dual_process_2013"]
+    },
+    {
+      "topic_id": "metakognisjon_kognitive_modeller_og_forskningsmetoder",
+      "title": "Metakognisjon, kognitive modeller og forskningsmetoder",
+      "family": "reasoning_decision_control",
+      "definition": "Metakognisjon omfatter vurdering og regulering av egen kognitiv prestasjon. Kognitiv forskning kombinerer responstid, nøyaktighet, konfidens, øyebevegelser, modelltilpasning, nevromål og manipulasjoner for å skille konkurrerende prosessforklaringer.",
+      "learning_outcomes": ["Skille metakognitiv bias, sensitivitet, kalibrering og kontroll.", "Vurdere om en kognitiv modell gir identifiserbare prediksjoner og om atferds- og nevromål støtter samme slutning."],
+      "key_distinctions": ["konfidens_vs_noyaktighet", "modelltilpasning_vs_modellbekreftelse", "atferdsmål_vs_latent_prosess", "korrelert_hjerneaktivitet_vs_tankeinnhold"],
+      "misuse_guard": "Verken responstid, øyebevegelse, konfidens eller hjerneaktivitet leser tanker direkte. Gruppebaserte oppgavefunn kan ikke alene diagnostisere eller forklare én persons indre prosess.",
+      "source_ids": ["fleming_lau_metacognition_2014", "apa_undergraduate_guidelines_3_0", "petersen_posner_attention_2012"]
+    }
+  ],
+  "summary": {
+    "topic_count": 17,
+    "family_counts": {"perception_attention": 4, "memory_learning": 4, "language_representation": 4, "reasoning_decision_control": 5},
+    "source_count": 14,
+    "classification": "university_cognitive_psychology_branch_complete"
+  }
+}

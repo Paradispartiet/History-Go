@@ -1,10 +1,11 @@
 {
   "schema": "history_go_fagverk_psykologi_university_readiness_audit_v1",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "status": "psykologi_university_readiness_in_progress",
   "generatedFrom": {
     "matrix": "data/fag/psykologi/psykologi_university_readiness_v1.json",
     "biologicalPsychology": "data/fag/psykologi/biologisk_psykologi_university_v1.json",
+    "cognitivePsychology": "data/fag/psykologi/kognitiv_psykologi_university_v1.json",
     "personalityPsychology": "data/fag/psykologi/personlighetspsykologi_university_v1.json",
     "methodsStatistics": "data/fag/psykologi/metode_statistikk_psykologi_university_v1.json",
     "pensum": "data/fag/psykologi/psykologipensum_canonical_v4_5.json",
@@ -38,7 +39,7 @@
     {
       "areaId": "cognitive_psychology",
       "label": "Kognitiv psykologi",
-      "status": "canonical_chapter_baseline_ready_depth_expansion_required"
+      "status": "complete"
     },
     {
       "areaId": "developmental_psychology",
@@ -92,6 +93,38 @@
       "development_variation": 3,
       "regulation_behavior": 6,
       "methods_inference": 2
+    },
+    "auditComplete": true,
+    "complete": true
+  },
+  "cognitivePsychology": {
+    "requiredTopicCount": 17,
+    "materializedTopicCount": 17,
+    "requiredTopics": [
+      "psykofysikk_signaloppdagelse_og_maling",
+      "perseptuell_organisering_konstans_og_forventning",
+      "selektiv_oppmerksomhet_orientering_og_beredskap",
+      "delt_oppmerksomhet_automatikk_og_uoppmerksomhetsblindhet",
+      "arbeidsminne_kapasitet_og_oppgavekrav",
+      "innkoding_konsolidering_og_gjenhenting",
+      "rekonstruktiv_hukommelse_kildekontroll_og_feilminner",
+      "laring_spredt_oving_gjenhenting_og_overforing",
+      "begreper_kategorier_og_semantisk_kunnskap",
+      "sprakforstaelse_produksjon_og_kontekst",
+      "sprak_tenkning_og_flerspraklig_erfaring",
+      "mentale_bilder_romlig_kognisjon_og_representasjonsformat",
+      "eksekutive_funksjoner_kontroll_og_oppgaveurenhet",
+      "problemlosning_resonnering_og_ekspertise",
+      "heuristikker_bias_og_dualprosessmodeller",
+      "beslutning_under_risiko_usikkerhet_og_framing",
+      "metakognisjon_kognitive_modeller_og_forskningsmetoder"
+    ],
+    "sourceCount": 14,
+    "familyCounts": {
+      "perception_attention": 4,
+      "memory_learning": 4,
+      "language_representation": 4,
+      "reasoning_decision_control": 5
     },
     "auditComplete": true,
     "complete": true
@@ -215,7 +248,6 @@
     }
   ],
   "blockersToComplete": [
-    "university_core:cognitive_psychology:canonical_chapter_baseline_ready_depth_expansion_required",
     "university_core:developmental_psychology:canonical_chapter_baseline_ready_depth_expansion_required",
     "university_core:social_psychology:canonical_chapter_baseline_ready_depth_expansion_required",
     "university_core:history_science_theory:canonical_chapter_baseline_ready_depth_expansion_required",
@@ -236,6 +268,8 @@
     "fiveCoreAreasHistoryAndMethodsExplicitlyRepresented": true,
     "fifteenBiologicalPsychologyCompetenciesPinned": true,
     "biologicalPsychologyMaterializedAndAudited": true,
+    "seventeenCognitivePsychologyCompetenciesPinned": true,
+    "cognitivePsychologyMaterializedAndAudited": true,
     "sixteenPersonalityPsychologyCompetenciesPinned": true,
     "personalityPsychologyMaterializedAndAudited": true,
     "twentyMethodsStatisticsCompetenciesPinned": true,
@@ -246,6 +280,7 @@
   "completionGates": {
     "allRequiredUniversityCoreAreasComplete": false,
     "biologicalPsychologyBranchComplete": true,
+    "cognitivePsychologyBranchComplete": true,
     "personalityPsychologyBranchComplete": true,
     "researchMethodsStatisticsBranchComplete": true,
     "all58StandaloneTopicArticlesComplete": false,
