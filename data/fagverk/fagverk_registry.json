@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.80.0",
+  "version": "2.81.0",
   "updatedAt": "2026-08-11",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -2691,7 +2691,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Film & TVs variable canon har 192 emner. Fortelling, synsvinkel og sjanger er registrert etter fulltekstporten. Serialitet, format og adaptasjon har nå en egen kilde- og claimbrief for 10 canonicale emner med 16 inspectable universitets-, arkiv- og institusjonskilder, 12 film-, TV- og versjonscase og 28 variabelt fordelte claimplaner. Claimplanene er uverifiserte, og kapitlet er ikke runtime-registrert. Neste port er fulltekst med avsnittsnivå claimtrace og ny audit; omfanget følger problemgrensene, ikke en kvote.",
+        "note": "Film & TVs variable canon har 192 emner. Serialitet, format og adaptasjon er registrert etter fulltekst- og evidensport med 10 canonicale emner, 10 emneeide seksjoner, 28 claimsporede avsnitt, 28 verifiserte claims, 16 brukte inspectable kilder, 12 film-, TV- og versjonscase og 2 canonicale anvendelsessteder. Neste port er kilde- og claimbrief for Filmhistorie, bevegelser og historiografi; omfanget følger problemgrensene, ikke en kvote.",
         "learningOrderPlan": "data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json",
         "firstSourceClaimBrief": "data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json",
         "secondSourceClaimBrief": "data/fag/TV_og_Film/film_tv_narrative_viewpoint_genre_source_claim_brief_v1.json",
@@ -2794,6 +2794,27 @@
           ],
           "claimsFile": "data/fagverk/film_tv/fortelling-synsvinkel-og-sjanger/claims.json",
           "briefFile": "data/fagverk/film_tv/fortelling-synsvinkel-og-sjanger/brief.json"
+        },
+        {
+          "id": "serialitet-format-og-adaptasjon",
+          "title": "Serialitet, format og adaptasjon: hvordan fortellinger gjentas, deles og omformes",
+          "subtitle": "Fra episode, sesong og TV-format til remake, transmedia og historisk sjangerrevisjon",
+          "file": "data/fagverk/film_tv/serialitet-format-og-adaptasjon.json",
+          "primary_domain_id": "fortelling_sjanger_serialitet_format",
+          "emne_ids": [
+            "em_film_tv_adaptasjon_remake_og_intermedialitet",
+            "em_film_tv_cliffhanger_og_informasjonsstans",
+            "em_film_tv_direkte_underholdning_konkurranse_og_formatlogikk",
+            "em_film_tv_episodisk_dramaturgi_og_fremdrift",
+            "em_film_tv_franchise_univers_og_transmedial_fortelling",
+            "em_film_tv_krim_sjanger_og_spenningsstruktur",
+            "em_film_tv_serieformat_og_serialitet",
+            "em_film_tv_sesongstruktur_og_fortellingsbue",
+            "em_film_tv_sitcom_humor_og_format",
+            "em_film_tv_sjangerhistorie_hybridisering_og_revisjon"
+          ],
+          "claimsFile": "data/fagverk/film_tv/serialitet-format-og-adaptasjon/claims.json",
+          "briefFile": "data/fagverk/film_tv/serialitet-format-og-adaptasjon/brief.json"
         }
       ]
     }
