@@ -3,7 +3,7 @@
 - Oppdatert: 2026-08-11
 - Place ID: `torggata`
 - Canonical source: `data/places/by/oslo/places/torggata.json`
-- Aktiv `main` ved fasestart: `1d63e77d63a3f876ff85545866320d4f52e207cc`
+- Aktiv `main` ved 3c-protokollstart: `9241478a2a0f9b1fa1f7165ad9508a73d997dbfd`
 - Nullmåling: `reports/place-production/torggata-nullmaaling-v1.md`
 - Kildebase: `reports/place-production/torggata-source-base-v1.md`
 - Coordinate research: `reports/place-production/torggata-coordinate-research-v2.md`
@@ -17,8 +17,8 @@
 | 1. Canonical identity/source | **GODKJENT** | PR #4795, merge `3f8d3b3a832e8604f2c1d1406365398c13e21c49`; arbeidskort kontrollert på `main` |
 | 2. Kildebase | **GODKJENT** | PR #4796, merge `15ed74e57cb18940bb9fcba6b4907ac7dc862ae0`; kildebase og arbeidskort lest tilbake fra `main` |
 | 3a. Coordinate research | **GODKJENT** | PR #4797, merge `1d63e77d63a3f876ff85545866320d4f52e207cc`; researchrapport lest tilbake fra `main` |
-| 3b. Canonical coordinate apply | **KLAR FOR REVIEW** | place + coordinate-evidence er oppdatert på branch; CI/coordinate-portene må passere før merge |
-| 3c. Kart-QA + control protocol | **IKKE STARTET** | utføres først etter grønn 3b og før fase 4 |
+| 3b. Canonical coordinate apply | **GODKJENT** | PR #4799, merge `a54354607fda66d443130c76da9cbc09b9081eda`; canonical place/evidence kontrollert på `main` |
+| 3c. Kart-QA + control protocol | **PÅGÅR – DATA/MAP-QA PASS, BROWSER-QA GJENSTÅR** | runtime-index synkronisert i PR #4800; control protocol og QA-rapport oppdateres nå |
 | 4–15 | **IKKE STARTET** | se nullmålingen |
 
 Bare én produksjonsfase regnes som aktiv om gangen. Fase 4 starter ikke før hele fase 3 er validert, merget, kontrollert på faktisk `main`, visuelt kartkontrollert og ført i coordinate-control-protokollen.
@@ -120,5 +120,15 @@ Kategori `by` og dagens `em_by_*` revideres først i fase 4 etter category- og F
 ## Forrige delsteg merget og live-kontrollert
 
 **Ja.** Coordinate research ble squash-merget i PR #4797 med merge `1d63e77d63a3f876ff85545866320d4f52e207cc`, og researchrapporten ble lest tilbake fra faktisk `main`.
+
+## Fase 3c – QA-status
+
+- **Canonical/source vs generated runtime-index:** PASS etter PR #4800.
+- **Coordinate-contract, quality, intake, evidence og manifest/index-gates:** PASS i coordinate runner run `31464230957`.
+- **Nærliggende canonical objekter:** PASS som identitetsaudit. `youngstorget` er et separat square-objekt tett på Torggata-ankeret; `storgata` er et separat gateløp. Ingen av dem skal slås sammen med `torggata`.
+- **Control protocol:** oppdatert i denne del-PR-en med korrigert sourceObjectId og korrigeringshistorikk.
+- **Interaktiv History-Go-kartkontroll i faktisk browser:** **GJENSTÅR**. Denne kjøringen har ikke en HTML-browser som kan åpne GitHub Pages-kartet; derfor settes denne gaten ikke til PASS på grunnlag av data- eller kildekart alene.
+
+Fase 4 starter først når browser-QA er reelt utført eller en automatisert browsergate i repoet gir tilsvarende direkte kontroll av den faktiske History-Go-kartflaten.
 
 **Fase 3 som helhet er fortsatt PÅGÅR.**
