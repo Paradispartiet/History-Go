@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditPsykologiKognisjonFolelserAtferdPhase4 } from '../scripts/audit-fagverk-psykologi-kognisjon-folelser-atferd-phase4.mjs';
 
+// User-authored CI retrigger for the materialized 4/6 tree.
 test('Psykologi kognisjon følelser og atferd er komplett fjerde phase-4-kapittel', () => {
   const { report } = auditPsykologiKognisjonFolelserAtferdPhase4();
   assert.equal(report.chapter.id, 'kognisjon-folelser-og-atferd');
