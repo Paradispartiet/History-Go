@@ -1,0 +1,177 @@
+
+> history-go@0.0.0 test:factuality-contract
+> node --test tests/factuality-contract.test.mjs tests/people-popup-system-contract.test.mjs tests/people-profile-canonical.test.mjs tests/nationaltheatret-ensemble-leadership-factuality.test.js
+
+TAP version 13
+# Subtest: canonical factuality contract forbids invention and guessing
+ok 1 - canonical factuality contract forbids invention and guessing
+  ---
+  duration_ms: 1.734985
+  type: 'test'
+  ...
+# Subtest: all active people and data contracts defer to factuality contract
+ok 2 - all active people and data contracts defer to factuality contract
+  ---
+  duration_ms: 3.491402
+  type: 'test'
+  ...
+# Subtest: documentation map preserves exact ordered lists
+ok 3 - documentation map preserves exact ordered lists
+  ---
+  duration_ms: 0.776725
+  type: 'test'
+  ...
+# Subtest: documentation registry gives factuality one canonical owner and high priority
+ok 4 - documentation registry gives factuality one canonical owner and high priority
+  ---
+  duration_ms: 2.458679
+  type: 'test'
+  ...
+# (node:2553) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/runner/work/History-Go/History-Go/tests/nationaltheatret-ensemble-leadership-factuality.test.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /home/runner/work/History-Go/History-Go/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Anne Marit Jacobsen venue links follow the audited production records
+ok 5 - Anne Marit Jacobsen venue links follow the audited production records
+  ---
+  duration_ms: 2.287041
+  type: 'test'
+  ...
+# Subtest: Anneke von der Lippe conflict resolution keeps the direct-production role
+ok 6 - Anneke von der Lippe conflict resolution keeps the direct-production role
+  ---
+  duration_ms: 0.284551
+  type: 'test'
+  ...
+# Subtest: Anton Rønnebergs checked life data and institution periods remain stable
+ok 7 - Anton Rønnebergs checked life data and institution periods remain stable
+  ---
+  duration_ms: 0.312242
+  type: 'test'
+  ...
+# Subtest: Arild Brinchmann production wording does not add unsupported contributions
+ok 8 - Arild Brinchmann production wording does not add unsupported contributions
+  ---
+  duration_ms: 0.438654
+  type: 'test'
+  ...
+# Subtest: retrospective report states scope, corrections, conflicts and limits honestly
+ok 9 - retrospective report states scope, corrections, conflicts and limits honestly
+  ---
+  duration_ms: 0.996037
+  type: 'test'
+  ...
+# Subtest: canonical people popup documentation owns the active presentation contract
+ok 10 - canonical people popup documentation owns the active presentation contract
+  ---
+  duration_ms: 2.056381
+  type: 'test'
+  ...
+# Subtest: runtime and CSS still implement the documented people popup surface
+ok 11 - runtime and CSS still implement the documented people popup surface
+  ---
+  duration_ms: 2.466772
+  type: 'test'
+  ...
+# Subtest: documentation registry and package scripts expose the people popup contract
+ok 12 - documentation registry and package scripts expose the people popup contract
+  ---
+  duration_ms: 1.121217
+  type: 'test'
+  ...
+# Subtest: readiness reports are deterministic and internally consistent
+ok 13 - readiness reports are deterministic and internally consistent
+  ---
+  duration_ms: 21.708663
+  type: 'test'
+  ...
+# Subtest: canonical People production files are registered and machine-readable
+ok 14 - canonical People production files are registered and machine-readable
+  ---
+  duration_ms: 2.8821
+  type: 'test'
+  ...
+# Subtest: a complete claim-mapped profile may have empty education and one work
+ok 15 - a complete claim-mapped profile may have empty education and one work
+  ---
+  duration_ms: 12.27458
+  type: 'test'
+  ...
+# Subtest: strong claims require an explicit evidence claim
+ok 16 - strong claims require an explicit evidence claim
+  ---
+  duration_ms: 0.579487
+  type: 'test'
+  ...
+# Subtest: current claims expire according to their freshness window
+ok 17 - current claims expire according to their freshness window
+  ---
+  duration_ms: 0.530914
+  type: 'test'
+  ...
+# Subtest: ready profiles require complete sentence and field mappings
+ok 18 - ready profiles require complete sentence and field mappings
+  ---
+  duration_ms: 0.352394
+  type: 'test'
+  ...
+# Subtest: readiness no longer rewards field counts or treats missing education as an error
+ok 19 - readiness no longer rewards field counts or treats missing education as an error
+  ---
+  duration_ms: 1.013183
+  type: 'test'
+  ...
+# Subtest: repository audit validates the canonical framework without requiring pilot claims yet
+not ok 20 - repository audit validates the canonical framework without requiring pilot claims yet
+  ---
+  duration_ms: 21.885541
+  type: 'test'
+  location: '/home/runner/work/History-Go/History-Go/tests/people-profile-canonical.test.mjs:223:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   'karl_a_jensen: popupDesc har 3 setninger, men 2 mappings',
+    +   'karl_a_jensen: popupDesc setning 3 mangler mapping',
+    +   'peter_marinius_jensen: desc har 3 setninger, men 1 mappings',
+    +   'peter_marinius_jensen: desc setning 2 mangler mapping',
+    +   'peter_marinius_jensen: desc setning 3 mangler mapping',
+    +   'peter_marinius_jensen: popupDesc har 4 setninger, men 2 mappings',
+    +   'peter_marinius_jensen: popupDesc setning 3 mangler mapping',
+    +   'peter_marinius_jensen: popupDesc setning 4 mangler mapping'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'karl_a_jensen: popupDesc har 3 setninger, men 2 mappings'
+    1: 'karl_a_jensen: popupDesc setning 3 mangler mapping'
+    2: 'peter_marinius_jensen: desc har 3 setninger, men 1 mappings'
+    3: 'peter_marinius_jensen: desc setning 2 mangler mapping'
+    4: 'peter_marinius_jensen: desc setning 3 mangler mapping'
+    5: 'peter_marinius_jensen: popupDesc har 4 setninger, men 2 mappings'
+    6: 'peter_marinius_jensen: popupDesc setning 3 mangler mapping'
+    7: 'peter_marinius_jensen: popupDesc setning 4 mangler mapping'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/people-profile-canonical.test.mjs:225:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 19
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 183.292286
