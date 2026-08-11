@@ -202,7 +202,7 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 
 1. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — bindende regel om én universell fagmodell per fag og separate geografiske produksjonslag
 2. [`FAGVERK.md`](./FAGVERK.md) — canonical arkitektur, produksjonsrekkefølge og heldekningsbaserte ferdigkrav uten redaksjonelle tallkvoter for alle fagsider
-3. [`FILM_TV_CURRICULUM_COMPLETENESS_V1.md`](./FILM_TV_CURRICULUM_COMPLETENESS_V1.md) — aktiv Film & TV-refaktorport etter dokumentert `6 × 10 × 2`-kvotemønster
+3. [`FILM_TV_CURRICULUM_COMPLETENESS_V1.md`](./FILM_TV_CURRICULUM_COMPLETENESS_V1.md) — aktiv Film & TV-refaktorport med 120/120 legacyklassifikasjon og evidensbasert, variabel migrasjonsspesifikasjon uten tallkvoter
 4. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — bindende skille mellom Fagverkforsiden, merkesider, fagsider og stedssider
 5. [`FAGVERK_PLACE_DESIGN.md`](./FAGVERK_PLACE_DESIGN.md) — kategori-, bilde- og presentasjonskontrakt for stedets egne fagverksider
 6. [`POLITIKK_CURRICULUM_ARCHITECTURE_V1.md`](./POLITIKK_CURRICULUM_ARCHITECTURE_V1.md) — operativ Politikk-arkitektur, begrepskvalitet og ferdigport

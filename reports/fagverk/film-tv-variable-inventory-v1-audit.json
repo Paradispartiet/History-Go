@@ -1,0 +1,35 @@
+{
+  "schema": "history_go_film_tv_variable_inventory_audit_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "status": "variable_inventory_designed_canonical_migration_next",
+  "subject_id": "film_tv",
+  "integrity_counts_not_quotas": {
+    "legacy_emne_count": 120,
+    "successor_emne_count": 110,
+    "gap_addition_count": 82,
+    "proposed_emne_count": 192,
+    "domain_emne_counts": {
+      "audiovisuell_form_stil_analyse": 15,
+      "fortelling_sjanger_serialitet_format": 17,
+      "film_tv_historie_historiografi": 19,
+      "dokumentar_virkelighetsformer_etikk": 15,
+      "samfunn_representasjon_identitet_makt": 19,
+      "produksjon_arbeid_teknologi_praksis": 22,
+      "industri_institusjoner_politikk_distribusjon": 17,
+      "visning_publikum_resepsjon_deltakelse": 24,
+      "sted_location_skjermgeografi": 19,
+      "arkiv_kulturarv_minne_stjerner": 25
+    }
+  },
+  "gates": {
+    "every_legacy_emne_has_alias_coverage_and_only_splits_fan_out": true,
+    "second_order_overlaps_merged": true,
+    "documented_gaps_added_without_compensating_quota": true,
+    "all_gap_emner_have_evidence_and_boundary": true,
+    "domain_sizes_are_variable": true,
+    "fixed_target_counts_absent": true,
+    "chapter_production_still_blocked": true
+  },
+  "next_gate": "migrate_canonical_files_methods_hooks_mappings_quiz_and_runtime"
+}
