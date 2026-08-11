@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_psykologi_university_readiness_audit_v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "psykologi_university_readiness_in_progress",
   "generatedFrom": {
     "matrix": "data/fag/psykologi/psykologi_university_readiness_v1.json",
@@ -9,6 +9,7 @@
     "emner": "data/fag/psykologi/emner_psykologi_canonical_v4_5.json",
     "registry": "data/fagverk/fagverk_registry.json",
     "status": "data/fagverk/subject_status.json",
+    "sourceRegistry": "data/fag/psykologi/kilder_psykologi_canonical_v1.json",
     "articleDir": "data/fagverk/psykologi/emneartikler",
     "concepts": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
     "report": "reports/fagverk/psykologi-university-readiness-audit.json"
@@ -101,6 +102,7 @@
   "topicArticles": {
     "requiredCount": 58,
     "completeCount": 0,
+    "invalidSourceReferenceCount": 0,
     "complete": false,
     "directory": "data/fagverk/psykologi/emneartikler"
   },
@@ -109,7 +111,13 @@
     "exists": false,
     "conceptCount": 0,
     "materializedCount": 0,
+    "invalidSourceReferenceCount": 0,
     "complete": false
+  },
+  "sourceRegistry": {
+    "path": "data/fag/psykologi/kilder_psykologi_canonical_v1.json",
+    "registeredCount": 122,
+    "validCount": 122
   },
   "appliedFields": [
     {
@@ -167,6 +175,7 @@
     "fiveCoreAreasHistoryAndMethodsExplicitlyRepresented": true,
     "twentyMethodsStatisticsCompetenciesPinned": true,
     "methodsStatisticsMaterializedAndAudited": true,
+    "allRegisteredSourcesInspectable": true,
     "subjectNotPrematurelyComplete": true
   },
   "completionGates": {

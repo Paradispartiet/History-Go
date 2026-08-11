@@ -14,6 +14,7 @@ const P = Object.freeze({
   emner: 'data/fag/psykologi/emner_psykologi_canonical_v4_5.json',
   registry: 'data/fagverk/fagverk_registry.json',
   status: 'data/fagverk/subject_status.json',
+  sourceRegistry: 'data/fag/psykologi/kilder_psykologi_canonical_v1.json',
   articleDir: 'data/fagverk/psykologi/emneartikler',
   concepts: 'data/fag/psykologi/begreper_psykologi_canonical_v1.json',
   report: 'reports/fagverk/psykologi-university-readiness-audit.json'
@@ -28,6 +29,14 @@ const REQUIRED_METHOD_TOPICS = [
   'hypotesetesting','effektstorrelse','konfidensintervall_og_usikkerhet','regresjon','kausalitet_og_konfundering',
   'replikasjon','apen_vitenskap','forskningsetikk'
 ];
+const REQUIRED_SOURCE_DOCUMENTS = [
+  'data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet/claims.json',
+  'data/fagverk/psykologi/kognisjon-folelser-og-atferd/claims.json',
+  'data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling/claims.json',
+  'data/fagverk/psykologi/sosialpsykologi-normalitet-og-stigma/claims.json',
+  'data/fagverk/psykologi/traume-krise-resiliens-og-omsorg/claims.json',
+  'data/fagverk/psykologi/utvikling-oppvekst-og-laring/claims.json'
+];
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
@@ -38,30 +47,97 @@ function listJson(relativeDir) {
   return fs.readdirSync(dir).filter((file) => file.endsWith('.json')).sort().map((file) => `${relativeDir}/${file}`);
 }
 
-function topicArticleCoverage(canonicalIds, contract) {
-  const files = listJson(contract.directory);
-  const valid = new Set();
-  for (const file of files) {
-    const article = read(file);
-    if (!canonicalIds.has(article.emne_id)) continue;
-    const complete = contract.required_fields.every((field) => {
-      const value = article[field];
-      return Array.isArray(value) ? value.length > 0 : typeof value === 'string' ? value.trim().length > 0 : value != null;
-    });
-    if (complete) valid.add(article.emne_id);
-  }
-  return { files, validIds: [...valid].sort(), completeCount: valid.size };
+function fieldIsMaterialized(value) {
+  return Array.isArray(value) ? value.length > 0 : typeof value === 'string' ? value.trim().length > 0 : value != null;
 }
 
-function conceptCoverage(contract) {
-  if (!fs.existsSync(abs(contract.path))) return { exists: false, conceptCount: 0, materializedCount: 0 };
+export function sourceIsInspectable(source, requiredFields) {
+  if (!requiredFields.every((field) => fieldIsMaterialized(source[field]))) return false;
+  if (source.type === 'internal_place_record') {
+    return typeof source.url === 'string' && source.url.startsWith('data/') && fs.existsSync(abs(source.url));
+  }
+  return typeof source.url === 'string' && /^https:\/\//.test(source.url);
+}
+
+export function validatedSourceIndex(registrations, requiredFields) {
+  assert(registrations.every((source) => fieldIsMaterialized(source?.id)), 'Kilderegisteret har en registrering uten id');
+  const byId = new Map();
+  const conflictingIds = new Set();
+  for (const source of registrations) {
+    const previous = byId.get(source.id);
+    if (previous && ['publisher','title','url','type'].some((field) => previous[field] !== source[field])) conflictingIds.add(source.id);
+    if (!previous) byId.set(source.id, source);
+  }
+  const validIds = new Set([...byId].filter(([, source]) => sourceIsInspectable(source, requiredFields)).map(([id]) => id));
+  assert(conflictingIds.size === 0, `Kilderegisteret har motstridende metadata for: ${[...conflictingIds].sort().join(', ')}`);
+  assert(validIds.size === byId.size, `Kilderegisteret har ${byId.size - validIds.size} ufullstendige eller ikke-inspiserbare kilder`);
+  return { registeredCount: byId.size, validIds };
+}
+
+function sourceRegistry(contract) {
+  assert(contract.path === P.sourceRegistry, 'University-readiness peker til feil kilderegister');
+  assert(fs.existsSync(abs(contract.path)), `Mangler ${contract.path}`);
+  const registry = read(contract.path);
+  assert(registry.schema === 'history_go_psykologi_source_registry_v1', 'Feil Psykologi-kilderegisterschema');
+  assert(isDeepStrictEqual([...(registry.source_documents || [])].sort(), [...REQUIRED_SOURCE_DOCUMENTS].sort()), 'Psykologi-kilderegisteret må binde eksakt de seks kapittelregistrene');
+  assert(Array.isArray(registry.sources), 'Psykologi-kilderegisteret mangler sources');
+
+  const registrations = [...registry.sources];
+  for (const file of registry.source_documents) {
+    assert(fs.existsSync(abs(file)), `Kilderegisteret peker til manglende dokument: ${file}`);
+    const document = read(file);
+    assert(Array.isArray(document.sources), `${file} mangler sources`);
+    registrations.push(...document.sources);
+  }
+
+  return validatedSourceIndex(registrations, contract.required_source_fields);
+}
+
+export function sourceIdsResolve(sourceIds, validSourceIds) {
+  return Array.isArray(sourceIds) && sourceIds.length > 0 && sourceIds.every((id) => typeof id === 'string' && validSourceIds.has(id));
+}
+
+export function sourcedDocumentCoverage(documents, { requiredIds, idField, requiredFields, validSourceIds }) {
+  const valid = new Set();
+  let invalidSourceReferenceCount = 0;
+  for (const document of documents) {
+    const id = document[idField];
+    if (!requiredIds.has(id)) continue;
+    const fieldsComplete = requiredFields.every((field) => fieldIsMaterialized(document[field]));
+    const sourcesResolve = sourceIdsResolve(document.source_ids, validSourceIds);
+    if (fieldsComplete && !sourcesResolve) invalidSourceReferenceCount += 1;
+    if (fieldsComplete && sourcesResolve) valid.add(id);
+  }
+  return { validIds: [...valid].sort(), completeCount: valid.size, invalidSourceReferenceCount };
+}
+
+function topicArticleCoverage(canonicalIds, contract, validSourceIds) {
+  const files = listJson(contract.directory);
+  return { files, ...sourcedDocumentCoverage(files.map(read), {
+    requiredIds: canonicalIds,
+    idField: 'emne_id',
+    requiredFields: contract.required_fields,
+    validSourceIds
+  }) };
+}
+
+function conceptCoverage(contract, validSourceIds) {
+  if (!fs.existsSync(abs(contract.path))) return { exists: false, conceptCount: 0, materializedCount: 0, invalidSourceReferenceCount: 0 };
   const doc = read(contract.path);
   const concepts = Array.isArray(doc) ? doc : (doc.concepts || []);
-  const materialized = concepts.filter((concept) => contract.required_fields.every((field) => {
-    const value = concept[field];
-    return Array.isArray(value) ? value.length > 0 : typeof value === 'string' ? value.trim().length > 0 : value != null;
-  }));
-  return { exists: true, conceptCount: concepts.length, materializedCount: materialized.length };
+  const coverage = sourcedDocumentCoverage(concepts, {
+    requiredIds: new Set(concepts.map((concept) => concept.concept_id).filter(Boolean)),
+    idField: 'concept_id',
+    requiredFields: contract.required_fields,
+    validSourceIds
+  });
+  return { exists: true, conceptCount: concepts.length, materializedCount: coverage.completeCount, invalidSourceReferenceCount: coverage.invalidSourceReferenceCount };
+}
+
+export function expectedSubjectState(completeReady, contract) {
+  return completeReady
+    ? { editorialStatus: contract.final_editorial_status, nextGate: contract.final_next_gate, matrixStatus: contract.final_matrix_status }
+    : { editorialStatus: contract.required_editorial_status_before_final_gate, nextGate: contract.next_gate, matrixStatus: 'expansion_required_before_complete' };
 }
 
 const projection = (report) => ({
@@ -75,6 +151,7 @@ const projection = (report) => ({
   methodsStatistics: report.methodsStatistics,
   topicArticles: report.topicArticles,
   concepts: report.concepts,
+  sourceRegistry: report.sourceRegistry,
   appliedFields: report.appliedFields,
   blockersToComplete: report.blockersToComplete,
   currentGates: report.currentGates,
@@ -94,7 +171,6 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
 
   assert(matrix.schema === 'history_go_psykologi_university_readiness_v1', 'Feil university-readiness schema');
   assert(matrix.subject_id === 'psykologi', 'University-readiness peker til feil fag');
-  assert(matrix.status === 'expansion_required_before_complete', 'University-readiness må markere at utvidelse gjenstår');
   assert(matrix.authoritative_sources?.length >= 3, 'University-readiness mangler autoritative program-/retningslinjekilder');
   assert(matrix.authoritative_sources.every((source) => source.publisher && source.title && /^https:\/\//.test(source.url) && source.verified_at), 'University-readiness har ufullstendig kildemetadata');
 
@@ -103,22 +179,24 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(canonicalEmneIds.size === 58 && emner.length === 58 && new Set(emner.map((row) => row.emne_id)).size === 58, 'Canonical emnebaseline må ha 58 unike emner');
   assert(registrySubject?.chapters?.length === 6, 'University-readiness krever bevart sekskapitlers baseline');
   assert(statusEntry?.navigationStatus === 'materialized' && statusEntry?.assessmentStatus === 'audited', 'Psykologi mistet materialized/audited status');
-  assert(statusEntry?.editorialStatus === 'expanded_and_audited', 'Psykologi skal stå expanded_and_audited til universitetsporten er grønn');
-  assert(statusEntry?.nextGate === NEXT_GATE, 'Psykologi har feil universitetsport');
-  assert(registrySubject?.editorialPlan?.nextGate === NEXT_GATE, 'Registry har feil universitetsport');
+  assert(matrix.completion_contract?.next_gate === NEXT_GATE, 'University-readiness har feil aktiv universitetsport');
 
   const coreRows = matrix.university_core_matrix || [];
   const coreById = new Map(coreRows.map((row) => [row.area_id, row]));
   assert(coreRows.length === REQUIRED_CORE.length && REQUIRED_CORE.every((id) => coreById.has(id)), 'Universitetsmatrisen dekker ikke alle obligatoriske basalområder/metodespor');
   assert(coreRows.every((row) => row.required === true && row.current_status && row.completion_requirement), 'Et obligatorisk universitetsområde mangler status eller sluttkrav');
   assert(isDeepStrictEqual(matrix.required_methods_statistics_topics, REQUIRED_METHOD_TOPICS), 'Metode-/statistikkmatrisen avviker fra bindende minimum');
+  assert(matrix.source_registry_contract?.all_source_ids_must_resolve === true, 'Kildekontrakten må kreve at alle source_ids løses');
+  assert(matrix.topic_article_contract?.directory === P.articleDir, 'Emneartikkelkontrakten peker til feil katalog');
+  assert(matrix.concept_registry_contract?.path === P.concepts, 'Begrepskontrakten peker til feil register');
 
   const methodsBranch = auditPsykologiMethodsStatisticsUniversity({ writeReport: false, checkReport: false }).report;
   assert(methodsBranch.complete, 'University-readiness krever grønn metode/statistikk-audit');
   assert(coreById.get('research_methods_statistics')?.current_artifact === P.methodsStatistics, 'University-matrisen peker ikke til materialisert metode/statistikkgren');
 
-  const articleCoverage = topicArticleCoverage(canonicalEmneIds, matrix.topic_article_contract);
-  const conceptCoverageResult = conceptCoverage(matrix.concept_registry_contract);
+  const sourceRegistryResult = sourceRegistry(matrix.source_registry_contract);
+  const articleCoverage = topicArticleCoverage(canonicalEmneIds, matrix.topic_article_contract, sourceRegistryResult.validIds);
+  const conceptCoverageResult = conceptCoverage(matrix.concept_registry_contract, sourceRegistryResult.validIds);
   const coreComplete = coreRows.every((row) => row.current_status === 'complete');
   const methodsComplete = coreById.get('research_methods_statistics')?.current_status === 'complete' && methodsBranch.complete;
   const topicArticlesComplete = articleCoverage.completeCount === 58;
@@ -126,6 +204,12 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   const appliedRows = matrix.applied_field_matrix || [];
   const appliedComplete = appliedRows.length >= 6 && appliedRows.every((row) => row.current_status === 'complete');
   const completeReady = coreComplete && methodsComplete && topicArticlesComplete && conceptsComplete && appliedComplete;
+  const expectedState = expectedSubjectState(completeReady, matrix.completion_contract);
+
+  assert(matrix.status === expectedState.matrixStatus, `University-readiness status må være ${expectedState.matrixStatus}`);
+  assert(statusEntry?.editorialStatus === expectedState.editorialStatus, `Psykologi editorialStatus må være ${expectedState.editorialStatus}`);
+  assert(statusEntry?.nextGate === expectedState.nextGate, `Psykologi nextGate må være ${expectedState.nextGate}`);
+  assert(registrySubject?.editorialPlan?.nextGate === expectedState.nextGate, `Registry nextGate må være ${expectedState.nextGate}`);
 
   const blockersToComplete = [];
   for (const row of coreRows.filter((row) => row.current_status !== 'complete')) blockersToComplete.push(`university_core:${row.area_id}:${row.current_status}`);
@@ -133,10 +217,9 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   if (!conceptsComplete) blockersToComplete.push(`canonical_concept_registry:${conceptCoverageResult.materializedCount}/${conceptCoverageResult.conceptCount || 0}`);
   for (const row of appliedRows.filter((row) => row.current_status !== 'complete')) blockersToComplete.push(`applied_field:${row.area_id}:${row.current_status}`);
 
-  assert(completeReady || statusEntry.editorialStatus !== 'complete', 'Psykologi kan ikke stå complete før alle universitetsporter er grønne');
   const report = {
     schema: 'history_go_fagverk_psykologi_university_readiness_audit_v1',
-    version: '1.1.0',
+    version: '1.2.0',
     status: completeReady ? 'psykologi_university_ready_for_complete' : 'psykologi_university_readiness_in_progress',
     generatedFrom: P,
     subject: { id: 'psykologi', editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, registeredChapterCount: registrySubject.chapters.length },
@@ -151,8 +234,22 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       auditComplete: methodsBranch.complete,
       complete: methodsComplete
     },
-    topicArticles: { requiredCount: 58, completeCount: articleCoverage.completeCount, complete: topicArticlesComplete, directory: matrix.topic_article_contract.directory },
-    concepts: { registryPath: matrix.concept_registry_contract.path, exists: conceptCoverageResult.exists, conceptCount: conceptCoverageResult.conceptCount, materializedCount: conceptCoverageResult.materializedCount, complete: conceptsComplete },
+    topicArticles: {
+      requiredCount: 58,
+      completeCount: articleCoverage.completeCount,
+      invalidSourceReferenceCount: articleCoverage.invalidSourceReferenceCount,
+      complete: topicArticlesComplete,
+      directory: matrix.topic_article_contract.directory
+    },
+    concepts: {
+      registryPath: matrix.concept_registry_contract.path,
+      exists: conceptCoverageResult.exists,
+      conceptCount: conceptCoverageResult.conceptCount,
+      materializedCount: conceptCoverageResult.materializedCount,
+      invalidSourceReferenceCount: conceptCoverageResult.invalidSourceReferenceCount,
+      complete: conceptsComplete
+    },
+    sourceRegistry: { path: matrix.source_registry_contract.path, registeredCount: sourceRegistryResult.registeredCount, validCount: sourceRegistryResult.validIds.size },
     appliedFields: appliedRows.map((row) => ({ areaId: row.area_id, label: row.label, status: row.current_status })),
     blockersToComplete,
     currentGates: {
@@ -163,7 +260,8 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       fiveCoreAreasHistoryAndMethodsExplicitlyRepresented: true,
       twentyMethodsStatisticsCompetenciesPinned: true,
       methodsStatisticsMaterializedAndAudited: methodsComplete,
-      subjectNotPrematurelyComplete: !completeReady && statusEntry.editorialStatus === 'expanded_and_audited'
+      allRegisteredSourcesInspectable: sourceRegistryResult.registeredCount === sourceRegistryResult.validIds.size,
+      subjectNotPrematurelyComplete: statusEntry.editorialStatus === expectedState.editorialStatus && statusEntry.nextGate === expectedState.nextGate
     },
     completionGates: {
       allRequiredUniversityCoreAreasComplete: coreComplete,

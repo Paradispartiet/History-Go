@@ -1,6 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditPsykologiUniversityReadiness } from '../scripts/audit-fagverk-psykologi-university-readiness.mjs';
+import {
+  auditPsykologiUniversityReadiness,
+  expectedSubjectState,
+  sourceIsInspectable,
+  validatedSourceIndex,
+  sourcedDocumentCoverage
+} from '../scripts/audit-fagverk-psykologi-university-readiness.mjs';
 
 test('Psykologi har en eksplisitt universitetsmatrise uten å miste 6/58-baselinen', () => {
   const { report } = auditPsykologiUniversityReadiness();
@@ -42,6 +48,8 @@ test('Metode/statistikk er ferdig, mens øvrige universitetsporter fortsatt hold
   assert.ok(report.topicArticles.completeCount < 58);
   assert.equal(report.topicArticles.complete, false);
   assert.equal(report.concepts.complete, false);
+  assert.ok(report.sourceRegistry.registeredCount >= 122);
+  assert.equal(report.sourceRegistry.validCount, report.sourceRegistry.registeredCount);
   assert.equal(report.completionGates.allRequiredUniversityCoreAreasComplete, false);
   assert.equal(report.completionGates.all58StandaloneTopicArticlesComplete, false);
   assert.equal(report.completionGates.canonicalConceptRegistryComplete, false);
@@ -50,4 +58,58 @@ test('Metode/statistikk er ferdig, mens øvrige universitetsporter fortsatt hold
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:research_methods_statistics:')));
   assert.ok(report.blockersToComplete.some((item) => item.startsWith('standalone_topic_articles:')));
   assert.ok(report.blockersToComplete.some((item) => item.startsWith('canonical_concept_registry:')));
+});
+
+test('vilkårlige source_ids kan ikke gjøre en artikkel eller et begrep komplett', () => {
+  const requiredFields = ['emne_id', 'title', 'source_ids'];
+  const base = { emne_id: 'em_psy_test', title: 'Test', source_ids: ['src-finnes-ikke'] };
+  const unresolved = sourcedDocumentCoverage([base], {
+    requiredIds: new Set(['em_psy_test']),
+    idField: 'emne_id',
+    requiredFields,
+    validSourceIds: new Set(['src-verifisert'])
+  });
+  assert.equal(unresolved.completeCount, 0);
+  assert.equal(unresolved.invalidSourceReferenceCount, 1);
+
+  const resolved = sourcedDocumentCoverage([{ ...base, source_ids: ['src-verifisert'] }], {
+    requiredIds: new Set(['em_psy_test']),
+    idField: 'emne_id',
+    requiredFields,
+    validSourceIds: new Set(['src-verifisert'])
+  });
+  assert.equal(resolved.completeCount, 1);
+  assert.equal(resolved.invalidSourceReferenceCount, 0);
+});
+
+test('kilderegisteret avviser manglende ID og håndhever URL-regler per kildetype', () => {
+  const requiredFields = ['id', 'publisher', 'title', 'url', 'source_location', 'type'];
+  const source = { id: 'src-test', publisher: 'Test', title: 'Test', source_location: 'Test', type: 'peer_reviewed_article' };
+  assert.throws(() => validatedSourceIndex([{ ...source, id: undefined, url: 'https://example.org' }], requiredFields), /uten id/);
+  assert.equal(sourceIsInspectable({ ...source, url: 'data/fagverk/subject_status.json' }, requiredFields), false);
+  assert.equal(sourceIsInspectable({ ...source, url: 'https://example.org' }, requiredFields), true);
+
+  const internal = { ...source, type: 'internal_place_record' };
+  assert.equal(sourceIsInspectable({ ...internal, url: 'https://example.org' }, requiredFields), false);
+  assert.equal(sourceIsInspectable({ ...internal, url: 'data/fagverk/subject_status.json' }, requiredFields), true);
+});
+
+test('universitetsporten har en gyldig overgang til endelig complete-status', () => {
+  const contract = {
+    required_editorial_status_before_final_gate: 'expanded_and_audited',
+    final_editorial_status: 'complete',
+    next_gate: 'university_matrix_topic_articles_concept_registry_and_methods',
+    final_next_gate: 'maintenance_source_refresh_and_place_case_expansion',
+    final_matrix_status: 'complete'
+  };
+  assert.deepEqual(expectedSubjectState(false, contract), {
+    editorialStatus: 'expanded_and_audited',
+    nextGate: 'university_matrix_topic_articles_concept_registry_and_methods',
+    matrixStatus: 'expansion_required_before_complete'
+  });
+  assert.deepEqual(expectedSubjectState(true, contract), {
+    editorialStatus: 'complete',
+    nextGate: 'maintenance_source_refresh_and_place_case_expansion',
+    matrixStatus: 'complete'
+  });
 });

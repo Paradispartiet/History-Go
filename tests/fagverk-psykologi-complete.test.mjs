@@ -1,10 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditPsykologiComplete } from '../scripts/audit-fagverk-psykologi-complete.mjs';
+import {
+  PSYKOLOGI_MAINTENANCE_GATE,
+  PSYKOLOGI_UNIVERSITY_GATE,
+  psykologiPostBaselineStateIsConsistent
+} from '../scripts/psykologi-subject-state.mjs';
 
 test('Psykologi bevarer en sterk canonical 6/58-baseline uten å hevde endelig complete', () => {
   const { report } = auditPsykologiComplete();
-  assert.equal(report.status, 'psykologi_canonical_baseline_expanded_and_audited');
+  assert.equal(report.status, 'psykologi_canonical_baseline_audited');
   assert.equal(report.subject.editorialStatus, 'expanded_and_audited');
   assert.equal(report.subject.nextGate, 'university_matrix_topic_articles_concept_registry_and_methods');
   assert.equal(report.subject.registeredChapterCount, 6);
@@ -26,4 +31,19 @@ test('Psykologi bevarer en sterk canonical 6/58-baseline uten å hevde endelig c
   assert.ok(report.summary.paragraphCount >= 150);
   assert.ok(Object.values(report.gates).every(Boolean));
   assert.match(report.interpretation, /ikke.*58 selvstendige emneartikler/i);
+});
+
+test('alle baseline-auditer kan godta både universitetsarbeid og endelig maintenance-status', () => {
+  assert.equal(psykologiPostBaselineStateIsConsistent(
+    { editorialStatus: 'expanded_and_audited', nextGate: PSYKOLOGI_UNIVERSITY_GATE },
+    { editorialPlan: { nextGate: PSYKOLOGI_UNIVERSITY_GATE } }
+  ), true);
+  assert.equal(psykologiPostBaselineStateIsConsistent(
+    { editorialStatus: 'complete', nextGate: PSYKOLOGI_MAINTENANCE_GATE },
+    { editorialPlan: { nextGate: PSYKOLOGI_MAINTENANCE_GATE } }
+  ), true);
+  assert.equal(psykologiPostBaselineStateIsConsistent(
+    { editorialStatus: 'complete', nextGate: PSYKOLOGI_UNIVERSITY_GATE },
+    { editorialPlan: { nextGate: PSYKOLOGI_UNIVERSITY_GATE } }
+  ), false);
 });

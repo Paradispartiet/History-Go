@@ -3,9 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { psykologiPostBaselineStateIsConsistent } from './psykologi-subject-state.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const NEXT_GATE='university_matrix_topic_articles_concept_registry_and_methods';
 const P=Object.freeze({pensum:'data/fag/psykologi/psykologipensum_canonical_v4_5.json',methods:'data/fag/psykologi/methods_psykologi_canonical_v4_5.json',registry:'data/fagverk/fagverk_registry.json',status:'data/fagverk/subject_status.json',report:'reports/fagverk/psykologi-complete-audit.json'});
 const ORDER=['psykisk_helse_institusjoner_behandling','fagtradisjoner_teori_sinnet','utvikling_oppvekst_laring','kognisjon_folelser_atferd','sosialpsykologi_normalitet_stigma','traume_krise_resiliens_omsorg'];
 const abs=(f)=>path.join(ROOT,f),read=(f)=>JSON.parse(fs.readFileSync(abs(f),'utf8'));
@@ -19,9 +19,7 @@ export function auditPsykologiComplete({writeReport=false,checkReport=true}={}){
   const statusEntry=status.subjects.find((s)=>s.id==='psykologi');assert(statusEntry,'Psykologi mangler subject_status');
   assert(subject.chapters.length===6,'Psykologi må ha 6/6 kapitler i canonical baseline');
   assert(isDeepStrictEqual(subject.chapters.map((c)=>c.primary_domain_id),ORDER),'Kapittelrekkefølgen avviker fra canonical domeneorden');
-  assert(statusEntry.editorialStatus==='expanded_and_audited','Psykologi må stå expanded_and_audited før universitetsporten er ferdig');
-  assert(statusEntry.nextGate===NEXT_GATE,'Psykologi har feil universitetsport');
-  assert(subject.editorialPlan?.nextGate===NEXT_GATE,'Registry har feil universitetsport');
+  assert(psykologiPostBaselineStateIsConsistent(statusEntry,subject),'Psykologi har inkonsistent status eller port etter 6/58-baselinen');
   const methodIds=new Set(methodsDoc.methods.map((m)=>m.method_id));assert(methodIds.size===58,'Canonical metodefil skal ha 58 unike metoder');
   const canonicalEmnes=pensum.domains.flatMap((d)=>d.emne_ids||[]),canonicalEmneSet=new Set(canonicalEmnes);
   assert(canonicalEmnes.length===58&&canonicalEmneSet.size===58,'Canonical pensum skal ha 58 emner uten duplikater');
@@ -56,7 +54,7 @@ export function auditPsykologiComplete({writeReport=false,checkReport=true}={}){
   assert(seenEmnes.length===58&&new Set(seenEmnes).size===58,'De seks kapitlene dekker ikke 58 emner nøyaktig én gang');
   assert(canonicalEmnes.every((id)=>seenEmnes.includes(id))&&seenEmnes.every((id)=>canonicalEmneSet.has(id)),'Kapittelunionen avviker fra canonical emner');
   assert(Object.keys(domainCoverage).length===6,'Ikke alle seks domener er representert');
-  const report={schema:'history_go_fagverk_psykologi_canonical_baseline_audit_v1',version:'2.0.0',status:'psykologi_canonical_baseline_expanded_and_audited',generatedFrom:P,subject:{id:'psykologi',editorialStatus:statusEntry.editorialStatus,nextGate:statusEntry.nextGate,registeredChapterCount:subject.chapters.length,canonicalDomainCount:pensum.summary.domain_count,canonicalEmneCount:pensum.summary.emne_count,canonicalMethodCount:pensum.summary.method_count},summary:{chapterCount:6,domainCount:6,emneCount:58,uniqueEmneCount:58,canonicalMethodCount:58,moduleCount,sectionCount,paragraphCount,claimCount,sourceCount,externalSourceCount},domainCoverage,chapterIds,gates:{sixCanonicalDomainsCovered:true,all58CanonicalEmnersCoveredExactlyOnce:true,allCanonicalChapterMethodSetsResolved:true,allChapterClaimsTraceToSources:true,minimumExternalSourceFloorMetForEveryChapter:true,allChapterBriefsCarryDiagnosisGuard:true,registryAndStatusExpandedAndAudited:true,universityExpansionGateSet:true},interpretation:'Denne auditen dokumenterer en sterk 6/58 canonical kapittelbaseline. Den dokumenterer ikke at 58 selvstendige emneartikler, et komplett begrepsregister, full metode/statistikk eller universitetsmatrisen er ferdige; disse kravene eies av university-readiness-auditen.'};
+  const report={schema:'history_go_fagverk_psykologi_canonical_baseline_audit_v1',version:'2.1.0',status:'psykologi_canonical_baseline_audited',generatedFrom:P,subject:{id:'psykologi',editorialStatus:statusEntry.editorialStatus,nextGate:statusEntry.nextGate,registeredChapterCount:subject.chapters.length,canonicalDomainCount:pensum.summary.domain_count,canonicalEmneCount:pensum.summary.emne_count,canonicalMethodCount:pensum.summary.method_count},summary:{chapterCount:6,domainCount:6,emneCount:58,uniqueEmneCount:58,canonicalMethodCount:58,moduleCount,sectionCount,paragraphCount,claimCount,sourceCount,externalSourceCount},domainCoverage,chapterIds,gates:{sixCanonicalDomainsCovered:true,all58CanonicalEmnersCoveredExactlyOnce:true,allCanonicalChapterMethodSetsResolved:true,allChapterClaimsTraceToSources:true,minimumExternalSourceFloorMetForEveryChapter:true,allChapterBriefsCarryDiagnosisGuard:true,postBaselineSubjectStateConsistent:true},interpretation:'Denne auditen dokumenterer en sterk 6/58 canonical kapittelbaseline. Den avgjør ikke alene om 58 selvstendige emneartikler, et komplett begrepsregister, metode/statistikk eller universitetsmatrisen er ferdige; disse kravene eies av university-readiness-auditen.'};
   if(writeReport){fs.mkdirSync(path.dirname(abs(P.report)),{recursive:true});fs.writeFileSync(abs(P.report),`${JSON.stringify(projection(report),null,2)}\n`);}
   if(checkReport){assert(fs.existsSync(abs(P.report)),`${P.report} mangler. Kjør --write-report`);assert(isDeepStrictEqual(read(P.report),projection(report)),`${P.report} er utdatert`);}
   return {report:projection(report)};
