@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { auditPsykologiBiologicalUniversity } from './audit-fagverk-psykologi-biological-university.mjs';
 import { auditPsykologiCognitiveUniversity } from './audit-fagverk-psykologi-cognitive-university.mjs';
+import { auditPsykologiDevelopmentalUniversity } from './audit-fagverk-psykologi-developmental-university.mjs';
 import { auditPsykologiPersonalityUniversity } from './audit-fagverk-psykologi-personality-university.mjs';
 import { auditPsykologiMethodsStatisticsUniversity } from './audit-fagverk-psykologi-methods-statistics-university.mjs';
 
@@ -14,6 +15,7 @@ const P = Object.freeze({
   matrix: 'data/fag/psykologi/psykologi_university_readiness_v1.json',
   biologicalPsychology: 'data/fag/psykologi/biologisk_psykologi_university_v1.json',
   cognitivePsychology: 'data/fag/psykologi/kognitiv_psykologi_university_v1.json',
+  developmentalPsychology: 'data/fag/psykologi/utviklingspsykologi_university_v1.json',
   personalityPsychology: 'data/fag/psykologi/personlighetspsykologi_university_v1.json',
   methodsStatistics: 'data/fag/psykologi/metode_statistikk_psykologi_university_v1.json',
   pensum: 'data/fag/psykologi/psykologipensum_canonical_v4_5.json',
@@ -52,6 +54,18 @@ const REQUIRED_COGNITIVE_TOPICS = [
   'eksekutive_funksjoner_kontroll_og_oppgaveurenhet','problemlosning_resonnering_og_ekspertise',
   'heuristikker_bias_og_dualprosessmodeller','beslutning_under_risiko_usikkerhet_og_framing',
   'metakognisjon_kognitive_modeller_og_forskningsmetoder'
+];
+const REQUIRED_DEVELOPMENTAL_TOPICS = [
+  'livslop_endring_kontinuitet_og_plastisitet','utviklingsteorier_stadier_systemer_og_sosiokulturelle_perspektiver',
+  'longitudinelle_tverrsnitt_og_kohortsekvensielle_design','utviklingsmaling_observasjon_eksperiment_og_etikk',
+  'genetikk_biologi_miljo_og_transaksjon','prenatal_utvikling_fodsel_og_eksponeringsrisiko',
+  'hjerne_motorikk_persepsjon_og_erfaringsavhengig_plastisitet','temperament_folesesregulering_og_individforskjeller',
+  'tilknytning_omsorg_og_relasjonell_utvikling','sprak_symbolbruk_og_tidlig_kognitiv_utvikling',
+  'eksekutive_funksjoner_laring_og_skolekontekst','sosial_kognisjon_sinnsteori_moral_og_prososialitet',
+  'familie_jevnaldrende_lek_og_tilhorighet','pubertet_ungdom_og_sosial_reorientering',
+  'identitet_autonomi_og_overgang_til_voksenliv','belastning_beskyttelse_resiliens_og_utviklingsbaner',
+  'voksenutvikling_intimitet_arbeid_omsorg_og_overganger','kognitiv_aldring_ekspertise_og_kognitiv_reserve',
+  'sosioemosjonell_aldring_tap_tilpasning_og_mening','kultur_kohort_historisk_tid_og_utviklingsmangfold'
 ];
 const REQUIRED_PERSONALITY_TOPICS = [
   'personlighet_trekk_og_individforskjeller','big_five_og_hierarkiske_trekkmodeller',
@@ -184,6 +198,7 @@ const projection = (report) => ({
   universityCore: report.universityCore,
   biologicalPsychology: report.biologicalPsychology,
   cognitivePsychology: report.cognitivePsychology,
+  developmentalPsychology: report.developmentalPsychology,
   personalityPsychology: report.personalityPsychology,
   methodsStatistics: report.methodsStatistics,
   topicArticles: report.topicArticles,
@@ -197,7 +212,7 @@ const projection = (report) => ({
 });
 
 export function auditPsykologiUniversityReadiness({ writeReport = false, checkReport = true } = {}) {
-  for (const file of [P.matrix, P.biologicalPsychology, P.cognitivePsychology, P.personalityPsychology, P.methodsStatistics, P.pensum, P.emner, P.registry, P.status]) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
+  for (const file of [P.matrix, P.biologicalPsychology, P.cognitivePsychology, P.developmentalPsychology, P.personalityPsychology, P.methodsStatistics, P.pensum, P.emner, P.registry, P.status]) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   const matrix = read(P.matrix);
   const pensum = read(P.pensum);
   const emner = read(P.emner);
@@ -224,6 +239,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(coreRows.every((row) => row.required === true && row.current_status && row.completion_requirement), 'Et obligatorisk universitetsområde mangler status eller sluttkrav');
   assert(isDeepStrictEqual(matrix.required_biological_psychology_topics, REQUIRED_BIOLOGICAL_TOPICS), 'Biologisk-psykologi-matrisen avviker fra bindende minimum');
   assert(isDeepStrictEqual(matrix.required_cognitive_psychology_topics, REQUIRED_COGNITIVE_TOPICS), 'Kognitiv-psykologi-matrisen avviker fra bindende minimum');
+  assert(isDeepStrictEqual(matrix.required_developmental_psychology_topics, REQUIRED_DEVELOPMENTAL_TOPICS), 'Utviklingspsykologi-matrisen avviker fra bindende minimum');
   assert(isDeepStrictEqual(matrix.required_personality_psychology_topics, REQUIRED_PERSONALITY_TOPICS), 'Personlighetspsykologi-matrisen avviker fra bindende minimum');
   assert(isDeepStrictEqual(matrix.required_methods_statistics_topics, REQUIRED_METHOD_TOPICS), 'Metode-/statistikkmatrisen avviker fra bindende minimum');
   assert(matrix.source_registry_contract?.all_source_ids_must_resolve === true, 'Kildekontrakten må kreve at alle source_ids løses');
@@ -236,6 +252,9 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   const cognitiveBranch = auditPsykologiCognitiveUniversity({ writeReport: false, checkReport: false }).report;
   assert(cognitiveBranch.complete, 'University-readiness krever grønn kognitiv-psykologi-audit');
   assert(coreById.get('cognitive_psychology')?.current_artifact === P.cognitivePsychology, 'University-matrisen peker ikke til materialisert kognitiv-psykologi-gren');
+  const developmentalBranch = auditPsykologiDevelopmentalUniversity({ writeReport: false, checkReport: false }).report;
+  assert(developmentalBranch.complete, 'University-readiness krever grønn utviklingspsykologi-audit');
+  assert(coreById.get('developmental_psychology')?.current_artifact === P.developmentalPsychology, 'University-matrisen peker ikke til materialisert utviklingspsykologi-gren');
   const personalityBranch = auditPsykologiPersonalityUniversity({ writeReport: false, checkReport: false }).report;
   assert(personalityBranch.complete, 'University-readiness krever grønn personlighetspsykologi-audit');
   assert(coreById.get('personality_psychology')?.current_artifact === P.personalityPsychology, 'University-matrisen peker ikke til materialisert personlighetspsykologi-gren');
@@ -249,13 +268,14 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   const coreComplete = coreRows.every((row) => row.current_status === 'complete');
   const biologicalComplete = coreById.get('biological_psychology')?.current_status === 'complete' && biologicalBranch.complete;
   const cognitiveComplete = coreById.get('cognitive_psychology')?.current_status === 'complete' && cognitiveBranch.complete;
+  const developmentalComplete = coreById.get('developmental_psychology')?.current_status === 'complete' && developmentalBranch.complete;
   const personalityComplete = coreById.get('personality_psychology')?.current_status === 'complete' && personalityBranch.complete;
   const methodsComplete = coreById.get('research_methods_statistics')?.current_status === 'complete' && methodsBranch.complete;
   const topicArticlesComplete = articleCoverage.completeCount === 58;
   const conceptsComplete = conceptCoverageResult.exists && conceptCoverageResult.conceptCount > 0 && conceptCoverageResult.materializedCount === conceptCoverageResult.conceptCount;
   const appliedRows = matrix.applied_field_matrix || [];
   const appliedComplete = appliedRows.length >= 6 && appliedRows.every((row) => row.current_status === 'complete');
-  const completeReady = coreComplete && biologicalComplete && cognitiveComplete && personalityComplete && methodsComplete && topicArticlesComplete && conceptsComplete && appliedComplete;
+  const completeReady = coreComplete && biologicalComplete && cognitiveComplete && developmentalComplete && personalityComplete && methodsComplete && topicArticlesComplete && conceptsComplete && appliedComplete;
   const expectedState = expectedSubjectState(completeReady, matrix.completion_contract);
 
   assert(matrix.status === expectedState.matrixStatus, `University-readiness status må være ${expectedState.matrixStatus}`);
@@ -271,7 +291,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
 
   const report = {
     schema: 'history_go_fagverk_psykologi_university_readiness_audit_v1',
-    version: '1.5.0',
+    version: '1.6.0',
     status: completeReady ? 'psykologi_university_ready_for_complete' : 'psykologi_university_readiness_in_progress',
     generatedFrom: P,
     subject: { id: 'psykologi', editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, registeredChapterCount: registrySubject.chapters.length },
@@ -294,6 +314,15 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       familyCounts: cognitiveBranch.coverage.familyCounts,
       auditComplete: cognitiveBranch.complete,
       complete: cognitiveComplete
+    },
+    developmentalPsychology: {
+      requiredTopicCount: REQUIRED_DEVELOPMENTAL_TOPICS.length,
+      materializedTopicCount: developmentalBranch.coverage.materializedTopicCount,
+      requiredTopics: REQUIRED_DEVELOPMENTAL_TOPICS,
+      sourceCount: developmentalBranch.sources.sourceCount,
+      familyCounts: developmentalBranch.coverage.familyCounts,
+      auditComplete: developmentalBranch.complete,
+      complete: developmentalComplete
     },
     personalityPsychology: {
       requiredTopicCount: REQUIRED_PERSONALITY_TOPICS.length,
@@ -341,6 +370,8 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       biologicalPsychologyMaterializedAndAudited: biologicalComplete,
       seventeenCognitivePsychologyCompetenciesPinned: true,
       cognitivePsychologyMaterializedAndAudited: cognitiveComplete,
+      twentyDevelopmentalPsychologyCompetenciesPinned: true,
+      developmentalPsychologyMaterializedAndAudited: developmentalComplete,
       sixteenPersonalityPsychologyCompetenciesPinned: true,
       personalityPsychologyMaterializedAndAudited: personalityComplete,
       twentyMethodsStatisticsCompetenciesPinned: true,
@@ -352,6 +383,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       allRequiredUniversityCoreAreasComplete: coreComplete,
       biologicalPsychologyBranchComplete: biologicalComplete,
       cognitivePsychologyBranchComplete: cognitiveComplete,
+      developmentalPsychologyBranchComplete: developmentalComplete,
       personalityPsychologyBranchComplete: personalityComplete,
       researchMethodsStatisticsBranchComplete: methodsComplete,
       all58StandaloneTopicArticlesComplete: topicArticlesComplete,
@@ -376,7 +408,7 @@ function main() {
   const args = new Set(process.argv.slice(2));
   try {
     const { report } = auditPsykologiUniversityReadiness({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') && !args.has('--write-report') });
-    console.log(`Psykologi university-readiness OK: biologisk ${report.biologicalPsychology.materializedTopicCount}/15; kognitiv ${report.cognitivePsychology.materializedTopicCount}/17; personlighet ${report.personalityPsychology.materializedTopicCount}/16; metode/statistikk ${report.methodsStatistics.materializedTopicCount}/20; emneartikler ${report.topicArticles.completeCount}/58; completeReady=${report.completeReady}.`);
+    console.log(`Psykologi university-readiness OK: biologisk ${report.biologicalPsychology.materializedTopicCount}/15; kognitiv ${report.cognitivePsychology.materializedTopicCount}/17; utvikling ${report.developmentalPsychology.materializedTopicCount}/20; personlighet ${report.personalityPsychology.materializedTopicCount}/16; metode/statistikk ${report.methodsStatistics.materializedTopicCount}/20; emneartikler ${report.topicArticles.completeCount}/58; completeReady=${report.completeReady}.`);
   } catch (error) {
     console.error(`Psykologi university-readiness FEIL: ${error.message}`);
     process.exitCode = 1;

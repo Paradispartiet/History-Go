@@ -29,7 +29,7 @@ test('Psykologi har en eksplisitt universitetsmatrise uten å miste 6/58-baselin
   assert.ok(Object.values(report.currentGates).every(Boolean));
 });
 
-test('Biologisk, kognitiv og personlighetspsykologi samt metode/statistikk er ferdige, mens øvrige universitetsporter holder complete tilbake', () => {
+test('Biologisk, kognitiv, utviklings- og personlighetspsykologi samt metode/statistikk er ferdige, mens øvrige universitetsporter holder complete tilbake', () => {
   const { report } = auditPsykologiUniversityReadiness();
   assert.equal(report.completeReady, false);
   assert.equal(report.biologicalPsychology.requiredTopicCount, 15);
@@ -56,6 +56,18 @@ test('Biologisk, kognitiv og personlighetspsykologi samt metode/statistikk er fe
   assert.equal(report.cognitivePsychology.auditComplete, true);
   assert.equal(report.cognitivePsychology.complete, true);
   assert.equal(report.completionGates.cognitivePsychologyBranchComplete, true);
+  assert.equal(report.developmentalPsychology.requiredTopicCount, 20);
+  assert.equal(report.developmentalPsychology.materializedTopicCount, 20);
+  assert.equal(report.developmentalPsychology.sourceCount, 19);
+  assert.deepEqual(report.developmentalPsychology.familyCounts, {
+    foundations_methods: 5,
+    early_development: 5,
+    childhood_adolescence: 5,
+    adulthood_aging_context: 5
+  });
+  assert.equal(report.developmentalPsychology.auditComplete, true);
+  assert.equal(report.developmentalPsychology.complete, true);
+  assert.equal(report.completionGates.developmentalPsychologyBranchComplete, true);
   assert.equal(report.personalityPsychology.requiredTopicCount, 16);
   assert.equal(report.personalityPsychology.materializedTopicCount, 16);
   assert.equal(report.personalityPsychology.sourceCount, 11);
@@ -91,6 +103,7 @@ test('Biologisk, kognitiv og personlighetspsykologi samt metode/statistikk er fe
   assert.equal(report.completionGates.canonicalConceptRegistryComplete, false);
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:biological_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:cognitive_psychology:')));
+  assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:developmental_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:personality_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:research_methods_statistics:')));
   assert.ok(report.blockersToComplete.some((item) => item.startsWith('standalone_topic_articles:')));
