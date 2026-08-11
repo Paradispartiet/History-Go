@@ -1,11 +1,12 @@
 {
   "schema": "history_go_fagverk_psykologi_university_readiness_audit_v1",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "status": "psykologi_university_readiness_in_progress",
   "generatedFrom": {
     "matrix": "data/fag/psykologi/psykologi_university_readiness_v1.json",
     "biologicalPsychology": "data/fag/psykologi/biologisk_psykologi_university_v1.json",
     "cognitivePsychology": "data/fag/psykologi/kognitiv_psykologi_university_v1.json",
+    "developmentalPsychology": "data/fag/psykologi/utviklingspsykologi_university_v1.json",
     "personalityPsychology": "data/fag/psykologi/personlighetspsykologi_university_v1.json",
     "methodsStatistics": "data/fag/psykologi/metode_statistikk_psykologi_university_v1.json",
     "pensum": "data/fag/psykologi/psykologipensum_canonical_v4_5.json",
@@ -44,7 +45,7 @@
     {
       "areaId": "developmental_psychology",
       "label": "Utviklingspsykologi",
-      "status": "canonical_chapter_baseline_ready_depth_expansion_required"
+      "status": "complete"
     },
     {
       "areaId": "social_psychology",
@@ -125,6 +126,41 @@
       "memory_learning": 4,
       "language_representation": 4,
       "reasoning_decision_control": 5
+    },
+    "auditComplete": true,
+    "complete": true
+  },
+  "developmentalPsychology": {
+    "requiredTopicCount": 20,
+    "materializedTopicCount": 20,
+    "requiredTopics": [
+      "livslop_endring_kontinuitet_og_plastisitet",
+      "utviklingsteorier_stadier_systemer_og_sosiokulturelle_perspektiver",
+      "longitudinelle_tverrsnitt_og_kohortsekvensielle_design",
+      "utviklingsmaling_observasjon_eksperiment_og_etikk",
+      "genetikk_biologi_miljo_og_transaksjon",
+      "prenatal_utvikling_fodsel_og_eksponeringsrisiko",
+      "hjerne_motorikk_persepsjon_og_erfaringsavhengig_plastisitet",
+      "temperament_folesesregulering_og_individforskjeller",
+      "tilknytning_omsorg_og_relasjonell_utvikling",
+      "sprak_symbolbruk_og_tidlig_kognitiv_utvikling",
+      "eksekutive_funksjoner_laring_og_skolekontekst",
+      "sosial_kognisjon_sinnsteori_moral_og_prososialitet",
+      "familie_jevnaldrende_lek_og_tilhorighet",
+      "pubertet_ungdom_og_sosial_reorientering",
+      "identitet_autonomi_og_overgang_til_voksenliv",
+      "belastning_beskyttelse_resiliens_og_utviklingsbaner",
+      "voksenutvikling_intimitet_arbeid_omsorg_og_overganger",
+      "kognitiv_aldring_ekspertise_og_kognitiv_reserve",
+      "sosioemosjonell_aldring_tap_tilpasning_og_mening",
+      "kultur_kohort_historisk_tid_og_utviklingsmangfold"
+    ],
+    "sourceCount": 19,
+    "familyCounts": {
+      "foundations_methods": 5,
+      "early_development": 5,
+      "childhood_adolescence": 5,
+      "adulthood_aging_context": 5
     },
     "auditComplete": true,
     "complete": true
@@ -248,7 +284,6 @@
     }
   ],
   "blockersToComplete": [
-    "university_core:developmental_psychology:canonical_chapter_baseline_ready_depth_expansion_required",
     "university_core:social_psychology:canonical_chapter_baseline_ready_depth_expansion_required",
     "university_core:history_science_theory:canonical_chapter_baseline_ready_depth_expansion_required",
     "standalone_topic_articles:0/58",
@@ -270,6 +305,8 @@
     "biologicalPsychologyMaterializedAndAudited": true,
     "seventeenCognitivePsychologyCompetenciesPinned": true,
     "cognitivePsychologyMaterializedAndAudited": true,
+    "twentyDevelopmentalPsychologyCompetenciesPinned": true,
+    "developmentalPsychologyMaterializedAndAudited": true,
     "sixteenPersonalityPsychologyCompetenciesPinned": true,
     "personalityPsychologyMaterializedAndAudited": true,
     "twentyMethodsStatisticsCompetenciesPinned": true,
@@ -281,6 +318,7 @@
     "allRequiredUniversityCoreAreasComplete": false,
     "biologicalPsychologyBranchComplete": true,
     "cognitivePsychologyBranchComplete": true,
+    "developmentalPsychologyBranchComplete": true,
     "personalityPsychologyBranchComplete": true,
     "researchMethodsStatisticsBranchComplete": true,
     "all58StandaloneTopicArticlesComplete": false,

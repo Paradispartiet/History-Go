@@ -1,7 +1,7 @@
 {
   "schema": "history_go_psykologi_university_readiness_v1",
-  "version": "1.5.0",
-  "updated_at": "2026-08-11",
+  "version": "1.6.0",
+  "updated_at": "2026-08-12",
   "subject_id": "psykologi",
   "status": "expansion_required_before_complete",
   "purpose": "Bindende universitetsnær kvalitetsmatrise for Psykologi. Matrisen skiller den eksisterende sekskapitlers canonicale fulltekstbasisen fra endelig faglig complete-status og hindrer at 6/6 kapitler eller 58/58 representerte emner alene tolkes som heldekkende universitetsnivå.",
@@ -62,8 +62,9 @@
       "area_id": "developmental_psychology",
       "label": "Utviklingspsykologi",
       "required": true,
-      "current_status": "canonical_chapter_baseline_ready_depth_expansion_required",
+      "current_status": "complete",
       "current_anchors": ["utvikling_oppvekst_laring"],
+      "current_artifact": "data/fag/psykologi/utviklingspsykologi_university_v1.json",
       "completion_requirement": "Livsløpsdekning av biologisk, kognitiv, sosial og emosjonell utvikling, sentrale teorier, utviklingsdesign, kontekst og faglig uenighet."
     },
     {
@@ -136,6 +137,28 @@
     "heuristikker_bias_og_dualprosessmodeller",
     "beslutning_under_risiko_usikkerhet_og_framing",
     "metakognisjon_kognitive_modeller_og_forskningsmetoder"
+  ],
+  "required_developmental_psychology_topics": [
+    "livslop_endring_kontinuitet_og_plastisitet",
+    "utviklingsteorier_stadier_systemer_og_sosiokulturelle_perspektiver",
+    "longitudinelle_tverrsnitt_og_kohortsekvensielle_design",
+    "utviklingsmaling_observasjon_eksperiment_og_etikk",
+    "genetikk_biologi_miljo_og_transaksjon",
+    "prenatal_utvikling_fodsel_og_eksponeringsrisiko",
+    "hjerne_motorikk_persepsjon_og_erfaringsavhengig_plastisitet",
+    "temperament_folesesregulering_og_individforskjeller",
+    "tilknytning_omsorg_og_relasjonell_utvikling",
+    "sprak_symbolbruk_og_tidlig_kognitiv_utvikling",
+    "eksekutive_funksjoner_laring_og_skolekontekst",
+    "sosial_kognisjon_sinnsteori_moral_og_prososialitet",
+    "familie_jevnaldrende_lek_og_tilhorighet",
+    "pubertet_ungdom_og_sosial_reorientering",
+    "identitet_autonomi_og_overgang_til_voksenliv",
+    "belastning_beskyttelse_resiliens_og_utviklingsbaner",
+    "voksenutvikling_intimitet_arbeid_omsorg_og_overganger",
+    "kognitiv_aldring_ekspertise_og_kognitiv_reserve",
+    "sosioemosjonell_aldring_tap_tilpasning_og_mening",
+    "kultur_kohort_historisk_tid_og_utviklingsmangfold"
   ],
   "required_personality_psychology_topics": [
     "personlighet_trekk_og_individforskjeller",
@@ -213,6 +236,7 @@
     "requirements": [
       "all_required_university_core_areas_complete",
       "cognitive_psychology_branch_complete",
+      "developmental_psychology_branch_complete",
       "personality_psychology_branch_complete",
       "research_methods_statistics_branch_complete",
       "all_58_standalone_topic_articles_materialized_and_sourced",
