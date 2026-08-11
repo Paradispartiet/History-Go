@@ -17,7 +17,7 @@ test('Audiovisuell form og sansing dekker læringsenhetens variable canon eksakt
   const { report } = auditFilmTvAudiovisualFormFulltextV1();
   assert.equal(report.canonicalCoverage.exactCoverage, '10/10 canonical emner');
   assert.equal(report.canonicalCoverage.sectionOwnership, '10 emner eid av 10 naturlig avgrensede seksjoner');
-  assert.ok(['audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief'].includes(report.subject.nextGate));
+  assert.ok(['audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production'].includes(report.subject.nextGate));
   assert.equal(report.nextGate, 'produce_source_and_claim_brief_for_fortelling_synsvinkel_og_sjanger');
 });
 

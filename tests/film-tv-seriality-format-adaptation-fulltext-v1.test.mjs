@@ -17,7 +17,7 @@ test('Serialitet, format og adaptasjon dekker læringsenheten eksakt', () => {
   const { report } = auditFilmTvSerialityFormatAdaptationFulltextV1();
   assert.equal(report.canonicalCoverage.exactCoverage, '10/10 canonical emner');
   assert.equal(report.canonicalCoverage.sectionOwnership, '10 emner eid av 10 naturlig avgrensede seksjoner');
-  assert.equal(report.subject.nextGate, 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief');
+  assert.ok(['seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production'].includes(report.subject.nextGate));
   assert.equal(report.nextGate, 'produce_source_and_claim_brief_for_filmhistorie_bevegelser_og_historiografi');
 });
 
