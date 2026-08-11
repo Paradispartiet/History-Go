@@ -108,8 +108,13 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
   assert(inventoryEntry?.optionalManifestFields?.includes('emneMappings'), 'Film & TV-inventaret mangler emneMappings');
   assert(statusEntry?.navigationStatus === 'materialized', 'Film & TV har feil navigasjonsstatus');
   assert(statusEntry?.assessmentStatus === 'audited', 'Film & TV har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Film & TV må stå structure_ready før kapittelproduksjon');
-  assert(statusEntry?.nextGate === 'chapter_production', 'Film & TV har feil neste port');
+  assert(['structure_ready', 'chapters_in_progress', 'complete'].includes(statusEntry?.editorialStatus), 'Film & TV har ugyldig redaksjonell progresjonsstatus');
+  const expectedNextGate = statusEntry.editorialStatus === 'structure_ready'
+    ? 'chapter_production'
+    : statusEntry.editorialStatus === 'chapters_in_progress'
+      ? 'remaining_domain_chapter_production'
+      : 'maintenance_source_refresh_and_place_case_expansion';
+  assert(statusEntry?.nextGate === expectedNextGate, 'Film & TV har feil neste port for redaksjonell status');
   assert(registry.placePage?.fallbackSubjectByCategory?.film_tv === 'film_tv', 'Film & TV-steder mangler Film & TV som fagverksfallback');
   assert(registry.subjects?.film_tv, 'Film & TV mangler i fagverkregisteret');
   assert(manifestEntry?.emneMappings === 'TV_og_Film/emnemapping_film_tv_canonical_v4_5.json', 'Film & TV-manifestet mangler canonical mappingregister');
@@ -143,7 +148,10 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
   assert(model.summary.methodCount === 107, 'Film & TV skal ha 107 metoder');
   assert(model.summary.mappingCount === 120, 'Film & TV skal ha 120 normaliserte mappinger');
   assert(model.summary.hookCount === 60, 'Film & TV skal ha 60 hooks');
-  assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Film & TV-kapitler finnes');
+  assert(model.chapters.length >= 0 && model.chapters.length <= 6, 'Film & TV har ugyldig kapittelprogresjon');
+  assert(statusEntry.editorialStatus !== 'structure_ready' || model.chapters.length === 0, 'Structure-ready kan ikke ha registrerte Film & TV-kapitler');
+  assert(statusEntry.editorialStatus !== 'chapters_in_progress' || (model.chapters.length >= 1 && model.chapters.length <= 5), 'Chapters-in-progress krever 1–5 Film & TV-kapitler');
+  assert(statusEntry.editorialStatus !== 'complete' || model.chapters.length === 6, 'Complete krever seks Film & TV-kapitler');
   assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Film & TV-emne mangler løst metode-ID');
 
   const pensumIds = new Set(source.pensum.domains.flatMap((d) => d.emne_ids || []));
@@ -183,7 +191,7 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
   const report = {
     schema: 'history_go_fagverk_film_tv_phase3_audit_v1',
     version: '1.0.0',
-    status: 'film_tv_phase_3_structure_ready',
+    status: `film_tv_phase_3_${statusEntry.editorialStatus}`,
     generatedFrom: P,
     subject: {
       id: model.subject.id,
@@ -221,7 +229,7 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
       categoryBoundaryPreserved: true,
       badgeAndSubjectRoutesDistinct: true,
       assessmentStatusAudited: true,
-      editorialStatusStructureReady: true,
+      editorialProgressConsistent: true,
       chapterClaimsNotOverstated: true
     }
   };
