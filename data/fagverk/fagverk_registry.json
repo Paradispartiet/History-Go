@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.76.0",
+  "version": "2.77.0",
   "updatedAt": "2026-08-11",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -937,7 +937,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. Fem redaksjonelle kapitler er materialisert, inkludert Sosialpsykologi, normalitet og stigma. Samlet fulltekstdekning er 51/58 emner, med eksplisitt diagnose-, gruppe- og stigmatypestemplingsvern."
+        "note": "Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er fulltekstmaterialisert gjennom seks redaksjonelle kapitler. Sluttkapittelet Traume, krise, resiliens og omsorg fullfører 7/7 resterende emner og låser skillet mellom hendelse og diagnose, risiko og prognose, sorg og lidelse samt resiliens og usårbarhet."
       },
       "chapters": [
         {
@@ -1050,6 +1050,25 @@
           ],
           "claimsFile": "data/fagverk/psykologi/sosialpsykologi-normalitet-og-stigma/claims.json",
           "briefFile": "data/fagverk/psykologi/sosialpsykologi-normalitet-og-stigma/brief.json"
+        },
+        {
+          "id": "traume-krise-resiliens-og-omsorg",
+          "title": "Traume, krise, resiliens og omsorg",
+          "subtitle": "Belastning, vold, sorg, kollektive kriser, trygghet, mestring og omsorg uten å gjøre risiko til skjebne",
+          "file": "data/fagverk/psykologi/traume-krise-resiliens-og-omsorg.json",
+          "primary_domain_id": "traume_krise_resiliens_omsorg",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_psy_kollektiv_krise",
+            "em_psy_resiliens_mestring",
+            "em_psy_risiko_beskyttelse",
+            "em_psy_sorg_tap",
+            "em_psy_traume_regulering",
+            "em_psy_trygghet_tillit",
+            "em_psy_vold_belastning"
+          ],
+          "claimsFile": "data/fagverk/psykologi/traume-krise-resiliens-og-omsorg/claims.json",
+          "briefFile": "data/fagverk/psykologi/traume-krise-resiliens-og-omsorg/brief.json"
         }
       ],
       "editorialPlan": {
@@ -1063,7 +1082,7 @@
           "do_not_diagnose_people_guard",
           "full_subject_audit_green"
         ],
-        "nextGate": "remaining_domain_chapter_production"
+        "nextGate": "maintenance_source_refresh_and_place_case_expansion"
       }
     },
     "historie": {

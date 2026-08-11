@@ -1,0 +1,70 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "psykologi",
+  "chapter_id": "traume-krise-resiliens-og-omsorg",
+  "primary_domain_id": "traume_krise_resiliens_omsorg",
+  "relatedPlaceIds": ["22_juli_senteret", "psykologisk_institutt_uio"],
+  "traumaCaseIds": ["potentially_traumatic_event_case", "utoya_followup_case", "bereavement_grief_case", "resilience_support_case"],
+  "purpose": "Materialisere Psykologis sjette canonicale domene med kildebelagt undervisning i belastende hendelser, vold, regulering, sorg, kollektive kriser, risiko og beskyttelse, resiliens, trygghet og omsorgssystemer.",
+  "audience": "Brukere som skal kunne analysere belastning og krise uten å trekke kliniske slutninger om enkeltmennesker fra hendelser, synlig atferd, sorg, risiko eller tilsynelatende mestring.",
+  "learningArc": [
+    "skille belastende hendelse fra senere klinisk tilstand",
+    "undersøke vold, vedvarende trussel og belastning som kontekst fremfor personlighet",
+    "analysere regulering og trygghet uten slutninger fra løs observasjon",
+    "skille sorg som vanlig respons fra langvarige og funksjonsnedsettende vansker",
+    "løfte blikket fra individuell reaksjon til kollektive kriser, minne og samfunnsressurser",
+    "skille umiddelbar psykososial støtte fra spesialisert helsehjelp",
+    "behandle risiko- og beskyttelsesfaktorer som sannsynligheter på gruppenivå",
+    "forstå resiliens som dynamisk, multisystemisk og kontekstavhengig",
+    "avslutte med en modell som skiller hendelse, reaksjon, kontekst, støtte, tjenester og tid"
+  ],
+  "requiredEmneIds": ["em_psy_kollektiv_krise", "em_psy_resiliens_mestring", "em_psy_risiko_beskyttelse", "em_psy_sorg_tap", "em_psy_traume_regulering", "em_psy_trygghet_tillit", "em_psy_vold_belastning"],
+  "requiredMethodIds": ["met_psy_kollektiv_traumeanalyse", "met_psy_offentlighetsanalyse", "met_psy_risiko_og_resiliensanalyse", "met_psy_miljo_og_kontekstanalyse", "met_psy_stressanalyse", "met_psy_velferdspsykologisk_analyse", "met_psy_makt_og_omsorgsanalyse", "met_psy_systemanalyse", "met_psy_sorg_og_tapsanalyse", "met_psy_erfaringsanalyse", "met_psy_krisepsykologisk_analyse", "met_psy_traumeanalyse", "met_psy_reguleringsanalyse", "met_psy_trygghetsanalyse", "met_psy_tilknytningsanalyse"],
+  "requiredCriticalDistinctions": [
+    "belastende hendelse vs klinisk tilstand",
+    "eksponering vs individuell prognose",
+    "akutt stressreaksjon vs langvarige vansker",
+    "reguleringsreaksjon vs fast personlighet",
+    "voldserfaring vs synlig atferd som bevis",
+    "sorg vs langvarig sorglidelse",
+    "sorg vs posttraumatiske reaksjoner",
+    "kollektiv krise vs identiske individuelle reaksjoner",
+    "minnested og samfunnsminne vs klinisk dokumentasjon om besøkende",
+    "psykologisk førstehjelp vs spesialisert behandling",
+    "risikofaktor vs individuell skjebne",
+    "beskyttelsesfaktor vs garanti",
+    "resiliens vs usårbarhet",
+    "mestring vs krav om å klare seg alene",
+    "sosial støtte som gruppesammenheng vs individuell årsaksforklaring",
+    "forskningscase vs runtime-place-ID"
+  ],
+  "sourceStrategy": {
+    "priority": ["WHO om kriser og psykososial støtte", "NKVTS om vold, traumatisk stress og 22. juli-oppfølging", "fagfellevurderte meta-analyser om sosial støtte, sorg, risiko og resiliens", "22. juli-senterets offisielle mandat", "canonical Psykologi-filer som scope-eier, ikke ekstern faktakilde"],
+    "minimumExternalSources": 20,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "currentStatusClaimsRequireCurrentSource": true
+  },
+  "safety": {
+    "doNotDiagnosePeople": true,
+    "noIndividualTreatmentAdvice": true,
+    "noScreeningInterpretation": true,
+    "noTraumaInferenceFromCasualObservation": true,
+    "noExposureEqualsDisorder": true,
+    "noRiskFactorAsIndividualPrognosis": true,
+    "noResilienceTypingFromOutcome": true,
+    "noGriefPathologizingByDefault": true
+  },
+  "qa": {
+    "exactCanonicalCoverage": "7/7",
+    "exactCanonicalMethodCoverage": "15/15",
+    "minimumModules": 3,
+    "minimumSections": 9,
+    "paragraphClaimTraceRequired": true,
+    "minimumExternalSources": 20,
+    "minimumClaims": 27,
+    "rendererFieldsRequired": ["relatedPlaces", "traumaCases", "sources.label", "commonMisconceptions.claim", "commonMisconceptions.correction"],
+    "fullSubjectAuditRequiredBeforeComplete": true
+  }
+}
