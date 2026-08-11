@@ -121,7 +121,6 @@ jobs:
 
       - name: Commit validated closeout
         run: |
-          rm -f .github/workflows/torggata-phase8a-closeout.yml
           rm -f tools/_tmp_materialize_torggata_phase8a_closeout.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
