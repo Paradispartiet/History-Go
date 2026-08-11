@@ -304,7 +304,8 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(filmTv.methodCount, 107);
   assert.equal(filmTv.mappingCount, 120);
   assert.equal(filmTv.hookCount, 60);
-  assert.equal(filmTv.chapterCount, 0);
+  assert.equal(filmTv.chapterCount, JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8')).subjects.film_tv.chapters.length);
+  assert.ok(filmTv.chapterCount >= 1 && filmTv.chapterCount <= 6);
   const vitenskap = result.materializedRows.find((row) => row.id === 'vitenskap');
   assert.ok(vitenskap);
   assert.equal(vitenskap.schemaFamily, 'standard_canonical');

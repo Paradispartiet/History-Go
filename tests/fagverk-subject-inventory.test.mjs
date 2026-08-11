@@ -76,10 +76,21 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   assert.equal(psykologi.editorialStatus, 'chapters_in_progress');
   assert.equal(psykologi.nextGate, 'remaining_domain_chapter_production');
 
-  for (const id of ['religion', 'scenekunst', 'sport', 'vitenskap', 'filosofi', 'film_tv']) {
+  for (const id of ['religion', 'scenekunst', 'sport', 'vitenskap', 'filosofi']) {
     const subject = s.subjects.find((x) => x.id === id);
     assert.equal(subject.editorialStatus, 'structure_ready');
     assert.equal(subject.nextGate, 'chapter_production');
+  }
+
+  const filmTv = s.subjects.find((x) => x.id === 'film_tv');
+  const filmTvChapterCount = readJson('data/fagverk/fagverk_registry.json').subjects.film_tv.chapters.length;
+  assert.ok(filmTvChapterCount >= 1 && filmTvChapterCount <= 6);
+  if (filmTvChapterCount < 6) {
+    assert.equal(filmTv.editorialStatus, 'chapters_in_progress');
+    assert.equal(filmTv.nextGate, 'remaining_domain_chapter_production');
+  } else {
+    assert.equal(filmTv.editorialStatus, 'complete');
+    assert.equal(filmTv.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   }
 });
 
