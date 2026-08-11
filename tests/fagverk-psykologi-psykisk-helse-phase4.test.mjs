@@ -43,7 +43,7 @@ test('kun materialiserte Psychology-steder brukes som runtime places', () => {
   assert.equal(report.gates.noInventedRuntimePlaces, true);
 });
 
-test('første Psykologi-kapittel forblir gyldig gjennom videre kapittelproduksjon', () => {
+test('første Psykologi-kapittel forblir gyldig gjennom videre kapittelproduksjon – CI-trigger', () => {
   const { report } = auditPsykologiPsykiskHelsePhase4();
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
