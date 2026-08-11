@@ -5,8 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const CHAPTER_ID = 'fagtradisjoner-teori-og-sinnet';
-const DOMAIN_ID = 'fagtradisjoner_teori_sinnet';
+const CHAPTER_ID = 'utvikling-oppvekst-og-laring';
+const DOMAIN_ID = 'utvikling_oppvekst_laring';
 const CHAPTER_DIR = `data/fagverk/psykologi/${CHAPTER_ID}`;
 const CHAPTER_FILE = `data/fagverk/psykologi/${CHAPTER_ID}.json`;
 const REGISTRY_FILE = 'data/fagverk/fagverk_registry.json';
@@ -14,9 +14,9 @@ const STATUS_FILE = 'data/fagverk/subject_status.json';
 const PENSUM_FILE = 'data/fag/psykologi/psykologipensum_canonical_v4_5.json';
 const METHODS_FILE = 'data/fag/psykologi/methods_psykologi_canonical_v4_5.json';
 const MODULE_FILES = [
-  `${CHAPTER_DIR}/01-fag-som-vitenskap.json`,
-  `${CHAPTER_DIR}/02-fagtradisjoner.json`,
-  `${CHAPTER_DIR}/03-sinn-hjerne-og-person.json`
+  `${CHAPTER_DIR}/01-tidlig-utvikling-og-relasjoner.json`,
+  `${CHAPTER_DIR}/02-laring-skole-og-motivasjon.json`,
+  `${CHAPTER_DIR}/03-ungdom-identitet-og-livslop.json`
 ];
 const DOMAIN_ORDER = [
   'psykisk_helse_institusjoner_behandling',
@@ -45,15 +45,15 @@ function validatePack() {
   assert(domain, `Mangler canonicalt domene ${DOMAIN_ID}`);
   assert(chapter.id === CHAPTER_ID && chapter.chapter_id === CHAPTER_ID, 'Feil kapittel-ID');
   assert(chapter.primary_domain_id === DOMAIN_ID, 'Feil primærdomene');
-  assert(isDeepStrictEqual(chapter.emne_ids, domain.emne_ids), 'Kapittelet dekker ikke 14 canonicale emner i eksakt rekkefølge');
+  assert(isDeepStrictEqual(chapter.emne_ids, domain.emne_ids), 'Kapittelet dekker ikke 9 canonicale emner i eksakt rekkefølge');
   assert(isDeepStrictEqual(chapter.method_ids, domain.method_ids), 'Kapittelet bruker ikke 18 canonicale metoder i eksakt rekkefølge');
   const canonicalMethods = new Set(methods.methods.map((item) => item.method_id));
   assert(chapter.method_ids.every((id) => canonicalMethods.has(id)), 'Kapittelet peker til ukjent metode');
   assert(chapter.doNotDiagnosePeople === true, 'Kapittelet mangler diagnosevern');
   assert(brief.safety?.doNotDiagnosePeople === true, 'Brief mangler diagnosevern');
-  assert(brief.safety?.noPersonalityTypingFromCasualObservation === true, 'Brief mangler personlighetstypingsvern');
+  assert(brief.safety?.noDevelopmentalLabelingFromCasualObservation === true, 'Brief mangler utviklingsmerkingsvern');
   assert(claimsDoc.source_policy?.noDiagnosisOfIndividuals === true, 'Claims-policy mangler diagnosevern');
-  assert(claimsDoc.source_policy?.noPersonalityTypingFromCasualObservation === true, 'Claims-policy mangler personlighetstypingsvern');
+  assert(claimsDoc.source_policy?.noDevelopmentalLabelingFromCasualObservation === true, 'Claims-policy mangler utviklingsmerkingsvern');
   assert(isDeepStrictEqual(chapter.moduleFiles, MODULE_FILES), 'Kapittelwrapperen peker til feil modulsett');
 
   const sections = modules.flatMap((module) => module.sections || []);
@@ -63,21 +63,22 @@ function validatePack() {
   assert(paragraphClaimIds.length === 27 && paragraphClaimIds.every((ids) => ids?.length), 'Alle avsnitt må ha claimspor');
   const coveredEmnes = new Set(sections.flatMap((section) => section.emne_ids || []));
   const usedMethods = new Set(sections.flatMap((section) => section.method_ids || []));
-  assert(coveredEmnes.size === 14 && chapter.emne_ids.every((id) => coveredEmnes.has(id)), 'Seksjonene dekker ikke 14/14 emner');
+  assert(coveredEmnes.size === 9 && chapter.emne_ids.every((id) => coveredEmnes.has(id)), 'Seksjonene dekker ikke 9/9 emner');
   assert(usedMethods.size === 18 && chapter.method_ids.every((id) => usedMethods.has(id)), 'Seksjonene bruker ikke 18/18 metoder');
 
   const sources = claimsDoc.sources || [];
   const claims = claimsDoc.claims || [];
   const sourceIds = new Set(sources.map((item) => item.id));
   const claimIds = new Set(claims.map((item) => item.id));
-  assert(sources.length === 21, 'Kapittelet skal ha 21 kilderegistreringer');
-  assert(sources.filter((item) => item.type !== 'internal_place_record').length === 20, 'Kapittelet skal ha 20 eksterne kilder');
+  assert(sources.length === 19, 'Kapittelet skal ha 19 kilderegistreringer');
+  assert(sources.filter((item) => item.type !== 'internal_place_record').length === 18, 'Kapittelet skal ha 18 eksterne kilder');
   assert(claims.length === 27, 'Kapittelet skal ha 27 claims');
+  assert(sources.every((source) => source.source_location && source.label), 'Kilde mangler source_location eller label');
   assert(claims.every((claim) => claim.source_ids?.length && claim.source_ids.every((id) => sourceIds.has(id))), 'Claim peker til ukjent kilde');
   assert(paragraphClaimIds.flat().every((id) => claimIds.has(id)), 'Avsnitt peker til ukjent claim');
   assert(claims.every((claim) => paragraphClaimIds.flat().includes(claim.id)), 'Et claim er ikke brukt i fagtekst');
   assert(isDeepStrictEqual((chapter.relatedPlaces || []).map((item) => item.id), ['psykologisk_institutt_uio']), 'Kapittelet har feil runtime-place-sett');
-  assert((chapter.theoryCases || []).length === 4 && chapter.theoryCases.every((item) => item.caseStatus === 'documented_case_not_runtime_place'), 'Teoricasene må være eksplisitt non-runtime');
+  assert((chapter.developmentCases || []).length === 4 && chapter.developmentCases.every((item) => item.caseStatus === 'documented_case_not_runtime_place'), 'Utviklingscasene må være eksplisitt non-runtime');
   return { chapter, domain, sources, claims };
 }
 
@@ -100,14 +101,11 @@ function updateRegistry(chapter) {
   if (existingIndex >= 0) subject.chapters[existingIndex] = registryChapter;
   else subject.chapters.push(registryChapter);
   subject.chapters.sort((a, b) => DOMAIN_ORDER.indexOf(a.primary_domain_id) - DOMAIN_ORDER.indexOf(b.primary_domain_id));
-  const registeredChapterCount = subject.chapters.length;
-  assert(registeredChapterCount >= 2 && registeredChapterCount <= 6, 'Psykologi skal ha mellom 2 og 6 kapitler under videre materialisering');
-  if (registeredChapterCount === 2) {
-    subject.canonicalModel = {
-      ...(subject.canonicalModel || {}),
-      note: 'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. To redaksjonelle kapitler er nå materialisert: Psykisk helse, institusjoner og behandling (12 emner) og Fagtradisjoner, teori og forståelsen av sinnet (14 emner). Samlet fulltekstdekning er 26/58 emner, med eksplisitt diagnosevern.'
-    };
-  }
+  assert(subject.chapters.length === 3, 'Psykologi skal ha 3/6 kapitler etter materialisering');
+  subject.canonicalModel = {
+    ...(subject.canonicalModel || {}),
+    note: 'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. Tre redaksjonelle kapitler er nå materialisert: Psykisk helse, Fagtradisjoner og Utvikling/oppvekst/læring. Samlet fulltekstdekning er 35/58 emner, med eksplisitt diagnose- og utviklingsmerkingsvern.'
+  };
   subject.editorialPlan = {
     targetChapterCount: 6,
     completionRequirements: [
@@ -119,34 +117,26 @@ function updateRegistry(chapter) {
       'do_not_diagnose_people_guard',
       'full_subject_audit_green'
     ],
-    nextGate: registeredChapterCount === 6 ? 'full_subject_audit' : 'remaining_domain_chapter_production'
+    nextGate: subject.chapters.length === 6 ? 'full_subject_audit' : 'remaining_domain_chapter_production'
   };
-  if (registeredChapterCount === 2) {
-    registry.version = '2.66.0';
-    registry.updatedAt = '2026-08-11';
-  }
+  registry.version = '2.67.0';
+  registry.updatedAt = '2026-08-11';
   writeJson(REGISTRY_FILE, registry);
-  return registeredChapterCount;
 }
 
-function updateStatus(registeredChapterCount) {
+function updateStatus() {
   const status = readJson(STATUS_FILE);
   const subject = status.subjects.find((item) => item.id === 'psykologi');
   assert(subject, 'Psykologi mangler i subject_status');
-  if (registeredChapterCount === 2) {
-    subject.editorialStatus = 'chapters_in_progress';
-    subject.nextGate = 'remaining_domain_chapter_production';
-    subject.note = 'Psykologi har seks canonicale fagområder og 58 aktive emner. To områder er nå fulltekstmaterialisert. Fagtradisjoner, teori og forståelsen av sinnet dekker 14/14 emner med 18 canonicale metoder, 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims og 21 kilderegistreringer (20 eksterne). Samlet dekker de to kapitlene 26/58 emner. Fire canonicale kapitler gjenstår, og diagnose- og typestemplingsvernet er bindende.';
-    status.version = '1.54.0';
-    status.updatedAt = '2026-08-11';
-  } else {
-    assert(['chapters_in_progress', 'complete', 'expanded_and_audited'].includes(subject.editorialStatus), 'Psykologi har ugyldig senere editorialStatus');
-    assert(registeredChapterCount === 6 || subject.nextGate === 'remaining_domain_chapter_production', 'Psykologi har ugyldig senere nextGate');
-  }
+  subject.editorialStatus = 'chapters_in_progress';
+  subject.nextGate = 'remaining_domain_chapter_production';
+  subject.note = 'Psykologi har seks canonicale fagområder og 58 aktive emner. Tre områder er nå fulltekstmaterialisert. Utvikling, oppvekst og læring dekker 9/9 emner med 18 canonicale metoder, 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims og 19 kilderegistreringer (18 eksterne). Samlet dekker de tre kapitlene 35/58 emner. Tre canonicale kapitler gjenstår, og diagnose- og utviklingsmerkingsvernet er bindende.';
+  status.version = '1.55.0';
+  status.updatedAt = '2026-08-11';
   writeJson(STATUS_FILE, status);
 }
 
 const { chapter, sources, claims } = validatePack();
-const registeredChapterCount = updateRegistry(chapter);
-updateStatus(registeredChapterCount);
-console.log(`Materialiserte Psykologi ${DOMAIN_ID}: 14/14 emner, 18 metoder, 3 moduler, 9 seksjoner, 27 avsnitt, ${claims.length} claims og ${sources.length} kilder. Psykologi står ${registeredChapterCount}/6 kapitler.`);
+updateRegistry(chapter);
+updateStatus();
+console.log(`Materialiserte Psykologi ${DOMAIN_ID}: 9/9 emner, 18 metoder, 3 moduler, 9 seksjoner, 27 avsnitt, ${claims.length} claims og ${sources.length} kilder. Psykologi står 3/6 kapitler.`);
