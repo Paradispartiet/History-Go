@@ -12,6 +12,7 @@
 - Fase 6-audit: `reports/place-production/torggata-phase6-structured-profiles-audit-v1.md`
 - Fase 7-audit: `reports/place-production/torggata-phase7-popup-tabs-audit-v1.md`
 - Fase 7A-audit: `reports/place-production/torggata-phase7a-about-audit-v1.md`
+- Fase 7B-audit: `reports/place-production/torggata-phase7b-history-audit-v1.md`
 
 ## Korrigert fasestatus
 
@@ -24,7 +25,7 @@
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **PÅGÅR – 7A OM KLAR FOR REVIEW** | fase-7-audit merget i PR #4817; 7A har egen kildebåret Leksikon-hovedartikkel og regresjonslås |
+| 7. Popupfaner | **PÅGÅR – 7B HISTORIE KLAR FOR REVIEW** | fase-7-audit PR #4817; 7A Om GODKJENT i PR #4820; 7B aktiv branch |
 | 8–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
@@ -138,8 +139,8 @@ BESLUTNING: REELT AUDITARBEID – vurder hver av åtte canonical popupfaner sepa
 
 ### Fase 7 – auditresultat
 
-- **Om – 7A KLAR FOR REVIEW:** fase-5-artikkelen og fase-6 spatial/subplaces beholdes. En egen manifest-lastet `title: Torggata`-hovedartikkel erstatter den ukildede legacy fallbacken som Om-supplement. `temporal_profile` flyttes ikke inn som dupliserende Om-tidslinje; den vurderes med Historie i 7B.
-- **Historie – TRENGER ARBEID / 7B:** `history_layers` vises, mens legacy Leksikon-chronology fortsatt er én generisk ukildet post.
+- **Om – 7A GODKJENT:** egen manifest-lastet `title: Torggata`-hovedartikkel supplerer fase-5-artikkelen og fase-6 spatial/subplaces med kildebårne facts. PR #4820, merge `49b79250403bdbfd6db0a4d07aa57887fa7eefe4`.
+- **Historie – 7B KLAR FOR REVIEW:** `history_layers` beholdes; seks kildebårne chronology-poster erstatter den generiske legacy-tidslinjen i popupen, og navnløs legacy-extra undertrykkes via eksplisitt opt-in.
 - **Fortellinger – TRENGER ARBEID / 7C:** én aktiv Torggata-story finnes; narrativet beholdes, men legacy-type `urban_change` og tematisk `next_scenes` må re-auditeres mot dagens Story-governance.
 - **Før/etter – TRENGER ARBEID / 7D:** `for_na` finnes, men interne History GO/Wonderkammer-kilder kan ikke være selvstendig faktagrunnlag, og kontrollert bildepar mangler.
 - **Nyheter – BEGRUNNET N/A:** ingen canonical Torggata-notiser er dokumentert som relevante nok til produksjon nå.
@@ -149,7 +150,7 @@ BESLUTNING: REELT AUDITARBEID – vurder hver av åtte canonical popupfaner sepa
 
 ### Korrigert runtimeforståelse
 
-Fase-6-feltene er ikke generelt frakoblet popupen. `place-popup-v2.js` renderer `spatial_profile`, `subplaces`, `history_layers` og `source_summary`, og tabs-wrapperen fordeler dem til Om, Historie og Kilder. `temporalProfile(place)` finnes som helper uten egen renderer; 7A beslutter at dette ikke skal løses med en dupliserende Om-tidslinje, men vurderes i 7B Historie.
+Fase-6-feltene er ikke generelt frakoblet popupen. `place-popup-v2.js` renderer `spatial_profile`, `subplaces`, `history_layers` og `source_summary`, og tabs-wrapperen fordeler dem til Om, Historie og Kilder. `temporal_profile` har ingen egen renderer. 7B bruker derfor Leksikon `chronology` som den brukerrettede tidslinjeeieren i Historie i stedet for å lage en parallell generell temporal renderer.
 
 ## Fase 7A – Om
 
@@ -160,15 +161,40 @@ BEHOLD: fase-5 popupDesc, spatial_profile, subplaces og all tidligere godkjent p
 BESLUTNING: legg til egen kildebåret manifest-hovedartikkel som runtime allerede kan prioritere ved eksakt navnematch
 ```
 
-Aktiv 7A-leveranse:
+Godkjent 7A-leveranse:
 
-- `data/leksikon/places/oslo/by/leksikon_oslo_by_torggata.json` er ny hovedartikkel med `title: Torggata` og `type: main`;
-- artikkelen bruker to inspectable eksterne kilder og to kildebelagte facts;
-- `data/leksikon/manifest.json` laster den nye filen;
+- `data/leksikon/places/oslo/by/leksikon_oslo_by_torggata.json` ble etablert som hovedartikkel med `title: Torggata` og `type: main`;
+- artikkelen bruker inspectable eksterne kilder og kildebelagte facts;
+- `data/leksikon/manifest.json` laster filen;
 - både tabs-runtime og Leksikon-loader prioriterer eksakt stedsnavn før legacy fallback;
-- `chronology` holdes tom i 7A for å ikke forskuttere 7B;
+- chronology ble bevisst holdt tom i 7A for å ikke forskuttere 7B;
 - `tests/torggata-phase7a-about.test.mjs` låser manifest, kilder, HTTPS og navneprioritet;
-- ingen place-data eller brukerrettet fase-5-tekst er endret.
+- ingen place-data eller brukerrettet fase-5-tekst ble endret.
+
+PR #4820 ble squash-merget etter grønn Fagverk By Data og styring Phase 4 og TypeScript guard. Faktisk `main` ble kontrollert på merge `49b79250403bdbfd6db0a4d07aa57887fa7eefe4` før 7B startet.
+
+## Fase 7B – Historie
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+TIDLIGERE GODKJENT CHRONOLOGYJOBB: ingen funnet etter dagens popup-/place-kontrakt
+LEGACY-FUNN: leksikon_oslo_by_batch1.json har én navnløs Torggata-post med ukildet chronology «Senmodernitet»
+BEHOLD: fase-6 history_layers og fase-5 kilde-/claim-base
+BESLUTNING: bygg kort kildebåret chronology og undertrykk bare navnløs legacy-extra i popupen
+```
+
+Aktiv 7B-leveranse:
+
+- chronology-år: `1846 · 1852 · 1876 · 1929 · 1986 · 2014`;
+- alle chronology-poster har konkrete HTTPS-kilder;
+- chronology svarer bare på **hva som skjedde når** og kopierer ikke Storyen;
+- `temporal_profile` beholdes som canonical struktur, mens Leksikon chronology eier den brukerrettede tidslinjen;
+- hovedartikkelen bruker `suppress_untitled_legacy_articles: true`;
+- `place-popup-tabs.js` har generell `visibleArticlesForPopup()` som bare aktiveres ved dette flagget;
+- navngitte ekstraartikler beholdes; navnløse legacy-extras filtreres fra popupen;
+- ingen place-ID hardkodes i runtime;
+- den fysiske legacy-posten slettes ikke og beholdes for sporbarhet;
+- `tests/torggata-phase7b-history.test.mjs` låser chronology og supersession-regelen.
 
 ### Bindende delstegrekkefølge
 
@@ -176,4 +202,4 @@ Aktiv 7A-leveranse:
 7 audit → 7A Om → 7B Historie → 7C Fortellinger → 7D Før/etter → 7E Kilder
 ```
 
-7A settes først **GODKJENT** etter relevant CI, squash-merge og kontroll på faktisk `main`. 7B starter først da.
+7B settes først **GODKJENT** etter relevant CI, squash-merge og kontroll på faktisk `main`. 7C starter først da.

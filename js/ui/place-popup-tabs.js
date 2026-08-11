@@ -120,6 +120,14 @@
       || null;
   }
 
+  function visibleArticlesForPopup(articles, main) {
+    const rows = list(articles).filter(Boolean);
+    if (main?.suppress_untitled_legacy_articles !== true) return rows;
+    return rows.filter(article => (
+      article === main || Boolean(text(article?.title || article?.name || article?.label))
+    ));
+  }
+
   function classifyArticle(article) {
     const signals = [
       article?.id, article?.title, article?.name, article?.type, article?.kind,
@@ -401,7 +409,8 @@
     if (!popup.isConnected) return;
 
     const main = mainArticle(articles, place);
-    const extras = list(articles).filter(article => article !== main);
+    const visibleArticles = visibleArticlesForPopup(articles, main);
+    const extras = visibleArticles.filter(article => article !== main);
     const buckets = { history: [], events: [], historical_news: [], news_notes: [], objects: [] };
     extras.forEach(article => {
       const key = classifyArticle(article);
@@ -424,10 +433,10 @@
     append(tabs.panels.news, renderNews(buckets.historical_news, buckets.news_notes), "news");
     append(tabs.panels.reading, renderLesespor(lesespor, placeId), "reading");
     const hasExistingSourceProfile = Boolean(tabs.panels.sources.querySelector(".hg-place-sources-section"));
-    append(tabs.panels.sources, renderSources(place, articles, !hasExistingSourceProfile), "sources");
+    append(tabs.panels.sources, renderSources(place, visibleArticles, !hasExistingSourceProfile), "sources");
     append(tabs.panels.more, renderMore(main, buckets.objects, language), "more");
 
-    if (articles.length && typeof global.HGLeksikon?.leksikonReadRecordsForPlace === "function") {
+    if (visibleArticles.length && typeof global.HGLeksikon?.leksikonReadRecordsForPlace === "function") {
       try {
         global.HGLeksikon.leksikonReadRecordsForPlace(place, placeId)
           .forEach(record => global.HGReads?.recordLeksikon?.(record));
