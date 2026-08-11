@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.65.0",
+  "version": "2.66.0",
   "updatedAt": "2026-08-11",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -937,7 +937,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er dekket i pensum, fagkart og mappingregister. Første redaksjonelle kapittel materialiserer Psykisk helse, institusjoner og behandling med 12/12 emner, 18 metoder, 27 claimsporede fagavsnitt og eksplisitt diagnosevern."
+        "note": "Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. To redaksjonelle kapitler er nå materialisert: Psykisk helse, institusjoner og behandling (12 emner) og Fagtradisjoner, teori og forståelsen av sinnet (14 emner). Samlet fulltekstdekning er 26/58 emner, med eksplisitt diagnosevern."
       },
       "chapters": [
         {
@@ -963,6 +963,32 @@
           ],
           "claimsFile": "data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling/claims.json",
           "briefFile": "data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling/brief.json"
+        },
+        {
+          "id": "fagtradisjoner-teori-og-sinnet",
+          "title": "Fagtradisjoner, teori og forståelsen av sinnet",
+          "subtitle": "Fra eksperiment og psykometri til psykoanalyse, behaviorisme, kognitiv psykologi, humanisme, nevropsykologi og personlighet",
+          "file": "data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet.json",
+          "primary_domain_id": "fagtradisjoner_teori_sinnet",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_psy_atferd_laring",
+            "em_psy_betinging_vaner",
+            "em_psy_bevissthet_opplevelse",
+            "em_psy_diagnose_klassifikasjon",
+            "em_psy_folelser_affekt",
+            "em_psy_forskning_metode",
+            "em_psy_hjerne_kognisjon",
+            "em_psy_motivasjon_behov",
+            "em_psy_nevroaffekt_regulering",
+            "em_psy_personlighet_individ",
+            "em_psy_psykoanalyse",
+            "em_psy_psykometri_maling",
+            "em_psy_selv_utvikling_mening",
+            "em_psy_ubevisste_prosesser"
+          ],
+          "claimsFile": "data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet/claims.json",
+          "briefFile": "data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet/brief.json"
         }
       ],
       "editorialPlan": {
