@@ -58,7 +58,21 @@ jobs:
       - name: Gate build tools
         run: npm run build:tools
       - name: Gate factuality contract
-        run: npm run test:factuality-contract
+        shell: bash
+        run: |
+          set +e
+          npm run test:factuality-contract 2>&1 | tee /tmp/torggata-8a2-factuality.log
+          status=${PIPESTATUS[0]}
+          set -e
+          if [ "$status" -ne 0 ]; then
+            cp /tmp/torggata-8a2-factuality.log reports/_tmp_torggata_phase8a2_factuality.log
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add reports/_tmp_torggata_phase8a2_factuality.log
+            git commit -m "Logg Torggata 8A2 factuality-feil" || true
+            git push origin HEAD:${{ github.event.pull_request.head.ref }} || true
+            exit "$status"
+          fi
       - name: Gate canonical People
         run: npm run audit:people-profile-canonical
       - name: Gate coordinate source contract
@@ -142,6 +156,7 @@ jobs:
         run: |
           rm -f .github/workflows/torggata-phase8a2-materialize.yml
           rm -f tools/_tmp_materialize_torggata_phase8a2.py
+          rm -f reports/_tmp_torggata_phase8a2_factuality.log
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
