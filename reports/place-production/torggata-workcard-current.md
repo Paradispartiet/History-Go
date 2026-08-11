@@ -13,6 +13,7 @@
 - Fase 7-audit: `reports/place-production/torggata-phase7-popup-tabs-audit-v1.md`
 - Fase 7A-audit: `reports/place-production/torggata-phase7a-about-audit-v1.md`
 - Fase 7B-audit: `reports/place-production/torggata-phase7b-history-audit-v1.md`
+- Fase 7C-audit: `reports/place-production/torggata-phase7c-story-audit-v1.md`
 
 ## Korrigert fasestatus
 
@@ -25,7 +26,7 @@
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **PÅGÅR – 7B HISTORIE KLAR FOR REVIEW** | fase-7-audit PR #4817; 7A Om GODKJENT i PR #4820; 7B aktiv branch |
+| 7. Popupfaner | **PÅGÅR – 7C FORTELLINGER KLAR FOR REVIEW** | audit PR #4817; 7A Om PR #4820; 7B Historie PR #4822; 7C aktiv branch |
 | 8–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
@@ -140,8 +141,8 @@ BESLUTNING: REELT AUDITARBEID – vurder hver av åtte canonical popupfaner sepa
 ### Fase 7 – auditresultat
 
 - **Om – 7A GODKJENT:** egen manifest-lastet `title: Torggata`-hovedartikkel supplerer fase-5-artikkelen og fase-6 spatial/subplaces med kildebårne facts. PR #4820, merge `49b79250403bdbfd6db0a4d07aa57887fa7eefe4`.
-- **Historie – 7B KLAR FOR REVIEW:** `history_layers` beholdes; seks kildebårne chronology-poster erstatter den generiske legacy-tidslinjen i popupen, og navnløs legacy-extra undertrykkes via eksplisitt opt-in.
-- **Fortellinger – TRENGER ARBEID / 7C:** én aktiv Torggata-story finnes; narrativet beholdes, men legacy-type `urban_change` og tematisk `next_scenes` må re-auditeres mot dagens Story-governance.
+- **Historie – 7B GODKJENT:** `history_layers` beholdes; seks kildebårne chronology-poster erstatter den generiske legacy-tidslinjen i popupen, og navnløs legacy-extra undertrykkes via eksplisitt opt-in. PR #4822, merge `20f775df7a7c09f3d0c1debaa2d2d45a16431d68`.
+- **Fortellinger – 7C KLAR FOR REVIEW:** den ene eksisterende Torggata-storyen beholdes som narrativ idé, men migreres til `episode_v1`, canonical type `conflict` og uten tematisk Markveien-`next_scenes`.
 - **Før/etter – TRENGER ARBEID / 7D:** `for_na` finnes, men interne History GO/Wonderkammer-kilder kan ikke være selvstendig faktagrunnlag, og kontrollert bildepar mangler.
 - **Nyheter – BEGRUNNET N/A:** ingen canonical Torggata-notiser er dokumentert som relevante nok til produksjon nå.
 - **Lesespor – BEGRUNNET N/A:** eksisterende Torggata-koblinger er subscription/paywall og filtreres korrekt fra den åpne stedflaten; ingen åpent direkte lesbart Torggata-spor er dokumentert.
@@ -183,7 +184,7 @@ BEHOLD: fase-6 history_layers og fase-5 kilde-/claim-base
 BESLUTNING: bygg kort kildebåret chronology og undertrykk bare navnløs legacy-extra i popupen
 ```
 
-Aktiv 7B-leveranse:
+Godkjent 7B-leveranse:
 
 - chronology-år: `1846 · 1852 · 1876 · 1929 · 1986 · 2014`;
 - alle chronology-poster har konkrete HTTPS-kilder;
@@ -196,10 +197,38 @@ Aktiv 7B-leveranse:
 - den fysiske legacy-posten slettes ikke og beholdes for sporbarhet;
 - `tests/torggata-phase7b-history.test.mjs` låser chronology og supersession-regelen.
 
+PR #4822 ble squash-merget etter grønn TypeScript guard, Place rounds governance og Fagverk By Data og styring Phase 4. Faktisk `main` ble kontrollert på merge `20f775df7a7c09f3d0c1debaa2d2d45a16431d68` før 7C startet.
+
+## Fase 7C – Fortellinger
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+AKTIV STORY: st_torggata_ga_og_sykkelgate_2010
+TIDLIGERE EPISODE-V1-MIGRASJON: ingen funnet
+BEHOLD: én samlet fortelling om ombygging og konflikt mellom ulike brukere av gateflaten
+BESLUTNING: MIGRER TIL DAGENS STORY-KONTRAKT – ikke produser flere milepæl-Stories
+```
+
+Aktiv 7C-leveranse:
+
+- eksisterende story-ID og tittel beholdes;
+- `quality_profile: episode_v1`;
+- canonical story-type endres fra legacy `urban_change` til `conflict`;
+- primært episodeanker er bystyrevedtaket i 2010;
+- storyteksten presiseres mot Oslo byleksikon, Arkitektur skaper verdi og TØI;
+- tidligere «prøveprosjekt»-formulering fra 2009 fjernes til fordel for dokumenterte sperrer/bilbegrensning;
+- 2014 beholdes som åpningen av den ferdige gateutformingen;
+- TØIs dokumenterte konflikt mellom gående og syklende er den narrative konsekvensen;
+- tematisk `next_scenes` til Markveien fjernes;
+- `related_places` tømmes fordi nabogatene ikke er nødvendige ledd i den konkrete fortellingen;
+- story-filen registreres i `stories_episode_v1_manifest.json`;
+- maskinberegnet score er `20`;
+- `tests/torggata-phase7c-story.test.mjs` låser én Story, episode-v1, type, episodefelt, kilder, score og tomme tematiske koblinger.
+
 ### Bindende delstegrekkefølge
 
 ```text
 7 audit → 7A Om → 7B Historie → 7C Fortellinger → 7D Før/etter → 7E Kilder
 ```
 
-7B settes først **GODKJENT** etter relevant CI, squash-merge og kontroll på faktisk `main`. 7C starter først da.
+7C settes først **GODKJENT** etter story-integritet/relevant CI, squash-merge og kontroll på faktisk `main`. 7D starter først da.
