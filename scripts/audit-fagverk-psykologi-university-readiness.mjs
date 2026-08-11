@@ -3,11 +3,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { auditPsykologiMethodsStatisticsUniversity } from './audit-fagverk-psykologi-methods-statistics-university.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const NEXT_GATE = 'university_matrix_topic_articles_concept_registry_and_methods';
 const P = Object.freeze({
   matrix: 'data/fag/psykologi/psykologi_university_readiness_v1.json',
+  methodsStatistics: 'data/fag/psykologi/metode_statistikk_psykologi_university_v1.json',
   pensum: 'data/fag/psykologi/psykologipensum_canonical_v4_5.json',
   emner: 'data/fag/psykologi/emner_psykologi_canonical_v4_5.json',
   registry: 'data/fagverk/fagverk_registry.json',
@@ -17,13 +19,8 @@ const P = Object.freeze({
   report: 'reports/fagverk/psykologi-university-readiness-audit.json'
 });
 const REQUIRED_CORE = [
-  'biological_psychology',
-  'cognitive_psychology',
-  'developmental_psychology',
-  'social_psychology',
-  'personality_psychology',
-  'history_science_theory',
-  'research_methods_statistics'
+  'biological_psychology','cognitive_psychology','developmental_psychology','social_psychology',
+  'personality_psychology','history_science_theory','research_methods_statistics'
 ];
 const REQUIRED_METHOD_TOPICS = [
   'eksperimentelt_design','observasjon','korrelasjon','longitudinelt_design','tverrsnittdesign','kvalitativ_metode',
@@ -86,7 +83,7 @@ const projection = (report) => ({
 });
 
 export function auditPsykologiUniversityReadiness({ writeReport = false, checkReport = true } = {}) {
-  for (const file of [P.matrix, P.pensum, P.emner, P.registry, P.status]) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
+  for (const file of [P.matrix, P.methodsStatistics, P.pensum, P.emner, P.registry, P.status]) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   const matrix = read(P.matrix);
   const pensum = read(P.pensum);
   const emner = read(P.emner);
@@ -116,10 +113,14 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(coreRows.every((row) => row.required === true && row.current_status && row.completion_requirement), 'Et obligatorisk universitetsområde mangler status eller sluttkrav');
   assert(isDeepStrictEqual(matrix.required_methods_statistics_topics, REQUIRED_METHOD_TOPICS), 'Metode-/statistikkmatrisen avviker fra bindende minimum');
 
+  const methodsBranch = auditPsykologiMethodsStatisticsUniversity({ writeReport: false, checkReport: false }).report;
+  assert(methodsBranch.complete, 'University-readiness krever grønn metode/statistikk-audit');
+  assert(coreById.get('research_methods_statistics')?.current_artifact === P.methodsStatistics, 'University-matrisen peker ikke til materialisert metode/statistikkgren');
+
   const articleCoverage = topicArticleCoverage(canonicalEmneIds, matrix.topic_article_contract);
   const conceptCoverageResult = conceptCoverage(matrix.concept_registry_contract);
   const coreComplete = coreRows.every((row) => row.current_status === 'complete');
-  const methodsComplete = coreById.get('research_methods_statistics')?.current_status === 'complete';
+  const methodsComplete = coreById.get('research_methods_statistics')?.current_status === 'complete' && methodsBranch.complete;
   const topicArticlesComplete = articleCoverage.completeCount === 58;
   const conceptsComplete = conceptCoverageResult.exists && conceptCoverageResult.conceptCount > 0 && conceptCoverageResult.materializedCount === conceptCoverageResult.conceptCount;
   const appliedRows = matrix.applied_field_matrix || [];
@@ -135,13 +136,21 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(completeReady || statusEntry.editorialStatus !== 'complete', 'Psykologi kan ikke stå complete før alle universitetsporter er grønne');
   const report = {
     schema: 'history_go_fagverk_psykologi_university_readiness_audit_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     status: completeReady ? 'psykologi_university_ready_for_complete' : 'psykologi_university_readiness_in_progress',
     generatedFrom: P,
     subject: { id: 'psykologi', editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, registeredChapterCount: registrySubject.chapters.length },
     baseline: { domainCount: 6, emneCount: 58, methodCount: 58, chapterCount: 6, interpretation: matrix.canonical_baseline.interpretation },
     universityCore: coreRows.map((row) => ({ areaId: row.area_id, label: row.label, status: row.current_status })),
-    methodsStatistics: { requiredTopicCount: REQUIRED_METHOD_TOPICS.length, requiredTopics: REQUIRED_METHOD_TOPICS, complete: methodsComplete },
+    methodsStatistics: {
+      requiredTopicCount: REQUIRED_METHOD_TOPICS.length,
+      materializedTopicCount: methodsBranch.coverage.materializedTopicCount,
+      requiredTopics: REQUIRED_METHOD_TOPICS,
+      sourceCount: methodsBranch.sources.sourceCount,
+      familyCounts: methodsBranch.coverage.familyCounts,
+      auditComplete: methodsBranch.complete,
+      complete: methodsComplete
+    },
     topicArticles: { requiredCount: 58, completeCount: articleCoverage.completeCount, complete: topicArticlesComplete, directory: matrix.topic_article_contract.directory },
     concepts: { registryPath: matrix.concept_registry_contract.path, exists: conceptCoverageResult.exists, conceptCount: conceptCoverageResult.conceptCount, materializedCount: conceptCoverageResult.materializedCount, complete: conceptsComplete },
     appliedFields: appliedRows.map((row) => ({ areaId: row.area_id, label: row.label, status: row.current_status })),
@@ -153,6 +162,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       authoritativeUniversityMatrixPresent: true,
       fiveCoreAreasHistoryAndMethodsExplicitlyRepresented: true,
       twentyMethodsStatisticsCompetenciesPinned: true,
+      methodsStatisticsMaterializedAndAudited: methodsComplete,
       subjectNotPrematurelyComplete: !completeReady && statusEntry.editorialStatus === 'expanded_and_audited'
     },
     completionGates: {
@@ -180,7 +190,7 @@ function main() {
   const args = new Set(process.argv.slice(2));
   try {
     const { report } = auditPsykologiUniversityReadiness({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') && !args.has('--write-report') });
-    console.log(`Psykologi university-readiness OK: baseline ${report.baseline.chapterCount}/6 kapitler og ${report.baseline.emneCount}/58 emner; selvstendige emneartikler ${report.topicArticles.completeCount}/58; completeReady=${report.completeReady}.`);
+    console.log(`Psykologi university-readiness OK: metode/statistikk ${report.methodsStatistics.materializedTopicCount}/20; emneartikler ${report.topicArticles.completeCount}/58; completeReady=${report.completeReady}.`);
   } catch (error) {
     console.error(`Psykologi university-readiness FEIL: ${error.message}`);
     process.exitCode = 1;
