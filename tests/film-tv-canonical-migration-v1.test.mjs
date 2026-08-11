@@ -30,6 +30,6 @@ test('legacy-ID-er er aliases og runtime-projeksjonen bruker bare canonicale ID-
   const canonical = new Set(result.emners.map((row) => row.emne_id));
   assert.equal(result.aliases.byAlias.size, 120);
   assert.ok([...result.aliases.byAlias.keys()].every((id) => !canonical.has(id)));
-  assert.ok(['canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan'].includes(result.status.subjects.find((row) => row.id === 'film_tv').nextGate));
+  assert.ok(['canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief'].includes(result.status.subjects.find((row) => row.id === 'film_tv').nextGate));
   assert.ok(result.registry.subjects.film_tv.chapters.flatMap((row) => row.emne_ids).every((id) => canonical.has(id)));
 });

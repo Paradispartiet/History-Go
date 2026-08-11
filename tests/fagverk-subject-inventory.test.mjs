@@ -86,7 +86,7 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   const filmTvChapterCount = readJson('data/fagverk/fagverk_registry.json').subjects.film_tv.chapters.length;
   assert.ok(filmTvChapterCount >= 1);
   assert.equal(filmTv.editorialStatus, 'chapters_in_progress');
-  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan'].includes(filmTv.nextGate));
+  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief'].includes(filmTv.nextGate));
 });
 
 test('baseline report er en deterministisk projeksjon av eide kilder', () => {

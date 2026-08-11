@@ -378,7 +378,7 @@ export function auditFilmTvVariableInventoryV1({ write = false, check = true } =
   assert(inventory.emner.every((row) => row.domain_id && row.definition && row.boundary), 'Et emne mangler eier, definisjon eller grense');
   assert(inventory.policy.no_target_domain_count && inventory.policy.no_target_emne_count, 'Inventaret har gjeninnført en målkvote');
   assert(status?.editorialStatus === 'chapters_in_progress', 'Film & TV skal fortsatt stå som pågående');
-  assert(['canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan'].includes(status?.nextGate), 'Film & TV skal stå på canonical migrasjon, kapittelreaudit eller læringsrekkefølge etter gapdesign');
+  assert(['canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief'].includes(status?.nextGate), 'Film & TV skal stå på canonical migrasjon, kapittelreaudit, læringsrekkefølge eller første kildebrief etter gapdesign');
 
   const requiredGapIds = [
     'em_film_tv_historiografi_periodisering_og_kildekritikk',

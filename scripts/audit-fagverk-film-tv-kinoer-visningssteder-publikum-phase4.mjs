@@ -83,7 +83,7 @@ export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = fa
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'visning_publikum_resepsjon_deltakelse', 'Registry-kapittelet er ikke projisert til migrert eierdomene');
   assert(isDeepStrictEqual(registryChapter.emne_ids, resolvedEmneIds), 'Registry-emnene er ikke projisert gjennom legacyaliasene');
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');
-  assert(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan'].includes(statusEntry.nextGate), 'Film & TV har feil neste port');
+  assert(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief'].includes(statusEntry.nextGate), 'Film & TV har feil neste port');
   assert(phase3.report.summary.domainCount === 10 && phase3.report.summary.emneCount === 192, 'Det migrerte Film & TV-inventaret er ikke bevart');
   assert(phase3.report.summary.registeredChapterCount === registrySubject.chapters.length, 'Fase 3-auditen er usynkronisert med Film & TV-registeret');
 
