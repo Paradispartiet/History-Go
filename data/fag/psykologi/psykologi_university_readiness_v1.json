@@ -1,6 +1,6 @@
 {
   "schema": "history_go_psykologi_university_readiness_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "updated_at": "2026-08-11",
   "subject_id": "psykologi",
   "status": "expansion_required_before_complete",
@@ -92,8 +92,9 @@
       "area_id": "research_methods_statistics",
       "label": "Forskningsmetode og statistikk",
       "required": true,
-      "current_status": "major_expansion_required",
+      "current_status": "complete",
       "current_anchors": ["em_psy_forskning_metode", "em_psy_psykometri_maling"],
+      "current_artifact": "data/fag/psykologi/metode_statistikk_psykologi_university_v1.json",
       "completion_requirement": "Egen full metode- og statistikkgren med design, måling, analyse, usikkerhet, kausalitet, replikasjon, åpen vitenskap og forskningsetikk."
     }
   ],
@@ -131,34 +132,13 @@
     "canonical_topic_count": 58,
     "directory": "data/fagverk/psykologi/emneartikler",
     "one_article_per_canonical_emne_id": true,
-    "required_fields": [
-      "emne_id",
-      "title",
-      "definition",
-      "background",
-      "theories_and_findings",
-      "methods",
-      "boundaries_and_disagreements",
-      "examples",
-      "source_ids"
-    ],
+    "required_fields": ["emne_id", "title", "definition", "background", "theories_and_findings", "methods", "boundaries_and_disagreements", "examples", "source_ids"],
     "representation_inside_a_chapter_does_not_count_as_standalone_article": true
   },
   "concept_registry_contract": {
     "path": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
     "coverage_requirement": "100_percent_of_canonical_concepts_materialized",
-    "required_fields": [
-      "concept_id",
-      "label",
-      "definition",
-      "explanation",
-      "not_meaning",
-      "related_concept_ids",
-      "models_or_researchers",
-      "empirical_status",
-      "example",
-      "source_ids"
-    ]
+    "required_fields": ["concept_id", "label", "definition", "explanation", "not_meaning", "related_concept_ids", "models_or_researchers", "empirical_status", "example", "source_ids"]
   },
   "completion_contract": {
     "required_editorial_status_before_final_gate": "expanded_and_audited",
