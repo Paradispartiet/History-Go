@@ -1,0 +1,46 @@
+name: Fagverk Psykologi university methods and statistics
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/psykologi/metode_statistikk_psykologi_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-methods-statistics-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-methods-statistics-university.test.mjs"
+      - "reports/fagverk/psykologi-methods-statistics-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-methods-statistics.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/psykologi/metode_statistikk_psykologi_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-methods-statistics-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-methods-statistics-university.test.mjs"
+      - "reports/fagverk/psykologi-methods-statistics-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-methods-statistics.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Psychology 20/20 methods and statistics
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Validate audit syntax
+        run: |
+          node --check scripts/audit-fagverk-psykologi-methods-statistics-university.mjs
+          node --check scripts/audit-fagverk-psykologi-university-readiness.mjs
+      - name: Verify deterministic methods and statistics audit
+        run: node scripts/audit-fagverk-psykologi-methods-statistics-university.mjs
+      - name: Test methods and statistics contract
+        run: node --test tests/fagverk-psykologi-methods-statistics-university.test.mjs
+      - name: Verify university readiness consumes the completed branch
+        run: node scripts/audit-fagverk-psykologi-university-readiness.mjs --no-check-report
