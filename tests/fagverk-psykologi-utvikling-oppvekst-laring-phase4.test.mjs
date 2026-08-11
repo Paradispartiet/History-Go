@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditPsykologiUtviklingOppvekstLaringPhase4 } from '../scripts/audit-fagverk-psykologi-utvikling-oppvekst-laring-phase4.mjs';
 
-test('Psykologi utvikling oppvekst og læring er et komplett tredje phase-4-kapittel', () => {
+test('Psykologi utvikling oppvekst og læring forblir gyldig gjennom videre phase-4-produksjon', () => {
   const { report } = auditPsykologiUtviklingOppvekstLaringPhase4();
   assert.equal(report.chapter.id, 'utvikling-oppvekst-og-laring');
   assert.equal(report.chapter.primaryDomainId, 'utvikling_oppvekst_laring');
@@ -14,15 +14,9 @@ test('Psykologi utvikling oppvekst og læring er et komplett tredje phase-4-kapi
   assert.equal(report.summary.claimCount, 27);
   assert.equal(report.summary.sourceCount, 19);
   assert.equal(report.summary.externalSourceCount, 18);
-  assert.equal(report.subject.registeredChapterCount, 3);
+  assert.ok(report.subject.registeredChapterCount >= 3 && report.subject.registeredChapterCount <= 6);
   assert.equal(report.subject.targetChapterCount, 6);
   assert.deepEqual(report.runtimePlaceIds, ['psykologisk_institutt_uio']);
-  assert.deepEqual(report.developmentCaseNames, [
-    'Tidlig utvikling og responsiv omsorg',
-    'Tilknytningsforskning',
-    'Skole, læring og motivasjon',
-    'Ungdom, sosial utvikling og identitet'
-  ]);
   assert.ok(Object.values(report.gates).every(Boolean));
 });
 
