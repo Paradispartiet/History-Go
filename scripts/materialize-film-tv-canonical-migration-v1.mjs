@@ -347,7 +347,7 @@ function buildControlFiles({ inventory, aliases, emners, methods, mappings, fagk
 
   const quizTemplate = structuredClone(currentQuizTemplate);
   quizTemplate.version = 'v1-film-tv-variable-inventory';
-  quizTemplate.status = 'canonical_variable_inventory';
+  quizTemplate.status = 'canonical_category_profile';
   quizTemplate.governance = { ...(quizTemplate.governance || {}), inventory: 'film_tv_variable_inventory_v1.json', counts_are_not_quotas: true, domain_count: counts.domain_count, emne_count: counts.emne_count, method_count: counts.method_count };
   quizTemplate.content_priorities = unique([...quizTemplate.content_priorities, ...inventory.domains.map((row) => row.title)]);
   quizTemplate.essential_concepts = unique([...quizTemplate.essential_concepts, ...inventory.emner.filter((row) => row.inventory_role === 'integrative_foundation').map((row) => row.title)]);
