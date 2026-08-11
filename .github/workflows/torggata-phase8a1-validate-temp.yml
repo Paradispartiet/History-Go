@@ -1,0 +1,62 @@
+name: Torggata phase 8A1 validate temp
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase8a1-people
+    paths:
+      - .github/workflows/torggata-phase8a1-validate-temp.yml
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/torggata-phase8a1-people
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Update workcard status
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'reports/place-production/torggata-workcard-current.md';
+          let text = fs.readFileSync(path, 'utf8');
+          const oldRef = '- Fase 7-closeout: `reports/place-production/torggata-phase7-closeout-v1.md`';
+          const newRef = oldRef + '\n- Fase 8-audit: `reports/place-production/torggata-phase8-rounds-audit-v1.md`\n- Fase 8A-audit: `reports/place-production/torggata-phase8a-people-audit-v1.md`\n- Fase 8A1-audit: `reports/place-production/torggata-phase8a1-people-audit-v1.md`';
+          if (!text.includes('Fase 8A1-audit:')) {
+            if (!text.includes(oldRef)) throw new Error('Expected phase 7 closeout reference not found');
+            text = text.replace(oldRef, newRef);
+          }
+          const oldRow = '| 8–15 | **IKKE STARTET** | styres av hovedchecklisten |';
+          const newRows = '| 8. Rundinger | **PÅGÅR** | fase-8 audit #4829; 8A People-audit #4830; 8A1 byggere/arkitekter/teaterledere implementert og under merge-gate |\n| 9–15 | **IKKE STARTET** | styres av hovedchecklisten |';
+          if (text.includes(oldRow)) text = text.replace(oldRow, newRows);
+          if (!text.includes('| 8. Rundinger | **PÅGÅR** |')) throw new Error('Phase 8 status row was not updated');
+          fs.writeFileSync(path, text);
+          NODE
+          git diff --check
+
+      - name: Run Torggata 8A1 regression
+        run: node tests/torggata-phase8a1-people.test.mjs
+
+      - name: Run People-of-Places audit
+        run: npm run audit:people-of-places
+
+      - name: Run Civication history People check
+        run: npm run civication:history-people:check
+
+      - name: Commit workcard only
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/place-production/torggata-workcard-current.md
+          git diff --cached --quiet && { echo 'workcard produced no change'; exit 1; }
+          git commit -m "Oppdater Torggata arbeidskort for fase 8A1"
+          git push origin HEAD:agent/torggata-phase8a1-people
