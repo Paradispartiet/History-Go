@@ -1,0 +1,2237 @@
+{
+  "schema": "history_go_film_tv_legacy_emne_classification_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "status": "all_legacy_emner_classified_gap_design_next",
+  "subject_id": "film_tv",
+  "policy": {
+    "classification_is_migration_input_not_final_canonical_inventory": true,
+    "no_fixed_target_domain_or_emne_count": true,
+    "every_legacy_id_keeps_an_alias": true,
+    "chapter_production_remains_blocked": true
+  },
+  "summary": {
+    "legacy_emne_count": 120,
+    "classified_emne_count": 120,
+    "action_counts": {
+      "keep": 57,
+      "merge": 19,
+      "move": 26,
+      "split": 17,
+      "retire": 1
+    },
+    "target_domain_reference_counts": {
+      "audiovisuell_form_stil_analyse": 9,
+      "fortelling_sjanger_serialitet_format": 14,
+      "film_tv_historie_historiografi": 5,
+      "dokumentar_virkelighetsformer_etikk": 9,
+      "samfunn_representasjon_identitet_makt": 9,
+      "produksjon_arbeid_teknologi_praksis": 13,
+      "industri_institusjoner_politikk_distribusjon": 18,
+      "visning_publikum_resepsjon_deltakelse": 21,
+      "sted_location_skjermgeografi": 16,
+      "arkiv_kulturarv_minne_stjerner": 25
+    },
+    "next_gate": "identify_missing_relevant_emner_and_design_variable_inventory"
+  },
+  "classifications": [
+    {
+      "emne_id": "em_film_tv_kino_fellesrom",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "kino_som_fellesrom",
+      "legacy_hook_title": "Kino som fellesrom",
+      "legacy_title": "Kino Fellesrom",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "kino_som_kollektiv_visningssituasjon"
+      ],
+      "rationale": "Kinoens samtidige, kollektive visningssituasjon er et selvstendig resepsjonsproblem.",
+      "boundary_note": "Kino Fellesrom eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kinoens samtidige, kollektive visningssituasjon er et selvstendig resepsjonsproblem.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_publikumsopplevelse",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "kino_som_fellesrom",
+      "legacy_hook_title": "Kino som fellesrom",
+      "legacy_title": "Publikumsopplevelse",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "audiovisuell_publikumsopplevelse"
+      ],
+      "rationale": "Publikums sanselige og sosiale erfaring kan undersøkes uten å reduseres til besøkstall.",
+      "boundary_note": "Publikumsopplevelse eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Publikums sanselige og sosiale erfaring kan undersøkes uten å reduseres til besøkstall.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_cinematek_filmarv",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "cinematek_og_filmarv",
+      "legacy_hook_title": "Cinematek og filmarv",
+      "legacy_title": "Cinematek Filmarv",
+      "action": "move",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "cinematek_programmering_og_filmarv"
+      ],
+      "rationale": "Cinemateket forvalter og aktualiserer filmarv; institusjonen er mer enn et ordinært visningsrom.",
+      "boundary_note": "Cinematek Filmarv eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Cinemateket forvalter og aktualiserer filmarv; institusjonen er mer enn et ordinært visningsrom.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmhistorisk_formidling",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "cinematek_og_filmarv",
+      "legacy_hook_title": "Cinematek og filmarv",
+      "legacy_title": "Filmhistorisk Formidling",
+      "action": "split",
+      "target_domain_ids": [
+        "film_tv_historie_historiografi",
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "filmhistorisk_kunnskapsformidling",
+        "kulturarv_programmering"
+      ],
+      "rationale": "Historisk forklaring og kulturarvprogrammering har ulike kilder, metoder og sannhetskrav.",
+      "boundary_note": "Filmhistorisk Formidling eies av film_tv_historie_historiografi + arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Historisk forklaring og kulturarvprogrammering har ulike kilder, metoder og sannhetskrav.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmfestival_premiere",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "festival_og_premiere",
+      "legacy_hook_title": "Festival og premiere",
+      "legacy_title": "Filmfestival Premiere",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "festival_premiere_og_hendelsesvisning"
+      ],
+      "rationale": "Festival og premiere former verkets første offentligheter, sirkulasjon og resepsjon.",
+      "boundary_note": "Filmfestival Premiere eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Festival og premiere former verkets første offentligheter, sirkulasjon og resepsjon.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_offentlig_filmbegivenhet",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "festival_og_premiere",
+      "legacy_hook_title": "Festival og premiere",
+      "legacy_title": "Offentlig Filmbegivenhet",
+      "action": "merge",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "festival_premiere_og_hendelsesvisning"
+      ],
+      "rationale": "Begrepet er en videre, mindre presis variant av festival-, premiere- og hendelsesvisning.",
+      "boundary_note": "Offentlig Filmbegivenhet eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Begrepet er en videre, mindre presis variant av festival-, premiere- og hendelsesvisning.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmklubb_nisje",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "filmklubb_og_nisjepublikum",
+      "legacy_hook_title": "Filmklubb og nisjepublikum",
+      "legacy_title": "Filmklubb Nisje",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "filmklubb_og_nisjeoffentlighet"
+      ],
+      "rationale": "Filmklubber organiserer varige nisjeoffentligheter gjennom utvalg, samtale og medlemskap.",
+      "boundary_note": "Filmklubb Nisje eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmklubber organiserer varige nisjeoffentligheter gjennom utvalg, samtale og medlemskap.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kuratering_publikum",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "filmklubb_og_nisjepublikum",
+      "legacy_hook_title": "Filmklubb og nisjepublikum",
+      "legacy_title": "Kuratering Publikum",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "kuratering_og_publikumsdannelse"
+      ],
+      "rationale": "Kuratering former publikums tilgang og fortolkning og er ikke identisk med distribusjon.",
+      "boundary_note": "Kuratering Publikum eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kuratering former publikums tilgang og fortolkning og er ikke identisk med distribusjon.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_tv_ritualer",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "tv_ritualer",
+      "legacy_hook_title": "TV-ritualer",
+      "legacy_title": "TV Ritualer",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "tv_ritualer_og_samtidighet"
+      ],
+      "rationale": "TV-ritualer forklarer tidsbundet fellesskap rundt sendeskjema, direktesending og gjentakelse.",
+      "boundary_note": "TV Ritualer eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: TV-ritualer forklarer tidsbundet fellesskap rundt sendeskjema, direktesending og gjentakelse.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_seervaner",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "tv_ritualer",
+      "legacy_hook_title": "TV-ritualer",
+      "legacy_title": "Seervaner",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "seervaner_og_mediebruk"
+      ],
+      "rationale": "Seervaner krever egne bruks- og publikumsmetoder på tvers av lineær-TV og strømmetjenester.",
+      "boundary_note": "Seervaner eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Seervaner krever egne bruks- og publikumsmetoder på tvers av lineær-TV og strømmetjenester.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_stromming_fragmentering",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "stromming_og_fragmentering",
+      "legacy_hook_title": "Strømming og fragmentering",
+      "legacy_title": "Strømming Fragmentering",
+      "action": "split",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon",
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "strommedistribusjon_og_marked",
+        "fragmenterte_publikum"
+      ],
+      "rationale": "Plattformenes markedslogikk og publikums fragmenterte bruk er to kausalt koblede, men ulike spørsmål.",
+      "boundary_note": "Strømming Fragmentering eies av industri_institusjoner_politikk_distribusjon + visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Plattformenes markedslogikk og publikums fragmenterte bruk er to kausalt koblede, men ulike spørsmål.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_plattformpublikum",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "stromming_og_fragmentering",
+      "legacy_hook_title": "Strømming og fragmentering",
+      "legacy_title": "Plattformpublikum",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "plattformpublikum_og_bruksspor"
+      ],
+      "rationale": "Plattformpublikum kan studeres gjennom bruk, anbefalinger og deltakelse uten å gjøre markedet til eneste forklaring.",
+      "boundary_note": "Plattformpublikum eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Plattformpublikum kan studeres gjennom bruk, anbefalinger og deltakelse uten å gjøre markedet til eneste forklaring.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_publikumsminne",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "publikumsminne",
+      "legacy_hook_title": "Publikumsminne",
+      "legacy_title": "Publikumsminne",
+      "action": "move",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "publikumsminne_og_audiovisuell_erindring"
+      ],
+      "rationale": "Publikums erindring handler om hvordan audiovisuelle erfaringer lagres, fortelles og omformes over tid.",
+      "boundary_note": "Publikumsminne eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Publikums erindring handler om hvordan audiovisuelle erfaringer lagres, fortelles og omformes over tid.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kollektiv_filmhukommelse",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "publikumsminne",
+      "legacy_hook_title": "Publikumsminne",
+      "legacy_title": "Kollektiv Filmhukommelse",
+      "action": "merge",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "publikumsminne_og_audiovisuell_erindring"
+      ],
+      "rationale": "Kollektiv filmhukommelse er en skala av publikumsminne, ikke et klart separat emne.",
+      "boundary_note": "Kollektiv Filmhukommelse eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kollektiv filmhukommelse er en skala av publikumsminne, ikke et klart separat emne.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_distribusjon_tilgang",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "distribusjon_og_tilgang",
+      "legacy_hook_title": "Distribusjon og tilgang",
+      "legacy_title": "Distribusjon Tilgang",
+      "action": "move",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "distribusjon_tilgang_og_tilgjengelighet"
+      ],
+      "rationale": "Distribusjonsledd, vinduer og tilgjengelighet styrer hvem som faktisk kan møte et verk.",
+      "boundary_note": "Distribusjon Tilgang eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Distribusjonsledd, vinduer og tilgjengelighet styrer hvem som faktisk kan møte et verk.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_visningspolitikk",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "distribusjon_og_tilgang",
+      "legacy_hook_title": "Distribusjon og tilgang",
+      "legacy_title": "Visningspolitikk",
+      "action": "move",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "visningspolitikk_og_tilgangsstyring"
+      ],
+      "rationale": "Politiske og institusjonelle regler for visning må skilles fra publikums faktiske resepsjon.",
+      "boundary_note": "Visningspolitikk eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Politiske og institusjonelle regler for visning må skilles fra publikums faktiske resepsjon.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kinoarkitektur",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "kinoarkitektur",
+      "legacy_hook_title": "Kinoarkitektur",
+      "legacy_title": "Kinoarkitektur",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "kinoarkitektur_og_visningsbetingelser"
+      ],
+      "rationale": "Salens arkitektur organiserer syn, lyd, kropp og sosialitet i visningssituasjonen.",
+      "boundary_note": "Kinoarkitektur eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Salens arkitektur organiserer syn, lyd, kropp og sosialitet i visningssituasjonen.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_visningsrom_estetikk",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "kinoarkitektur",
+      "legacy_hook_title": "Kinoarkitektur",
+      "legacy_title": "Visningsrom Estetikk",
+      "action": "split",
+      "target_domain_ids": [
+        "audiovisuell_form_stil_analyse",
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "romlig_audiovisuell_estetikk",
+        "visningsrom_og_publikumsbetingelser"
+      ],
+      "rationale": "Romlig estetikk i verket og estetiske betingelser i salen må kunne analyseres hver for seg.",
+      "boundary_note": "Visningsrom Estetikk eies av audiovisuell_form_stil_analyse + visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Romlig estetikk i verket og estetiske betingelser i salen må kunne analyseres hver for seg.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_publikumsdata",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "publikumsdata",
+      "legacy_hook_title": "Publikumsdata",
+      "legacy_title": "Publikumsdata",
+      "action": "keep",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "publikumsdata_metoder_og_makt"
+      ],
+      "rationale": "Publikumsdata krever metodekritikk om måling, representativitet, personvern og institusjonell bruk.",
+      "boundary_note": "Publikumsdata eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Publikumsdata krever metodekritikk om måling, representativitet, personvern og institusjonell bruk.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_besokstall",
+      "legacy_domain_id": "kinoer_visningssteder_publikum",
+      "legacy_domain_title": "Kinoer, visningssteder og publikum",
+      "legacy_hook_id": "publikumsdata",
+      "legacy_hook_title": "Publikumsdata",
+      "legacy_title": "Besøkstall",
+      "action": "merge",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "publikumsdata_metoder_og_makt"
+      ],
+      "rationale": "Besøkstall er én datakilde i publikumsanalyse og kan ikke bære et eget fagområde alene.",
+      "boundary_note": "Besøkstall eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Besøkstall er én datakilde i publikumsanalyse og kan ikke bære et eget fagområde alene.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_studio_produksjonsrom",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "studio_som_produksjonsrom",
+      "legacy_hook_title": "Studio som produksjonsrom",
+      "legacy_title": "Studio Produksjonsrom",
+      "action": "keep",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "studio_som_produksjonsmiljo"
+      ],
+      "rationale": "Studioet organiserer materiell kontroll, arbeidsdeling og teknologiske muligheter i produksjonen.",
+      "boundary_note": "Studio Produksjonsrom eies av produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Studioet organiserer materiell kontroll, arbeidsdeling og teknologiske muligheter i produksjonen.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmproduksjon",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "studio_som_produksjonsrom",
+      "legacy_hook_title": "Studio som produksjonsrom",
+      "legacy_title": "Filmproduksjon",
+      "action": "split",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis",
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "audiovisuell_produksjonsprosess",
+        "produksjonssystem_og_finansiering"
+      ],
+      "rationale": "Filmproduksjon er for bredt og må deles mellom kreativ arbeidsprosess og industrielt produksjonssystem.",
+      "boundary_note": "Filmproduksjon eies av produksjon_arbeid_teknologi_praksis + industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmproduksjon er for bredt og må deles mellom kreativ arbeidsprosess og industrielt produksjonssystem.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kamera_bildearbeid",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "kamera_og_bildearbeid",
+      "legacy_hook_title": "Kamera og bildearbeid",
+      "legacy_title": "Kamera Bildearbeid",
+      "action": "keep",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "kameraarbeid_og_bildepraksis"
+      ],
+      "rationale": "Kameraarbeid er en konkret skapende og teknisk praksis med valg om optikk, bevegelse og eksponering.",
+      "boundary_note": "Kamera Bildearbeid eies av produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kameraarbeid er en konkret skapende og teknisk praksis med valg om optikk, bevegelse og eksponering.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_fotografi_film",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "kamera_og_bildearbeid",
+      "legacy_hook_title": "Kamera og bildearbeid",
+      "legacy_title": "Fotografi Film",
+      "action": "move",
+      "target_domain_ids": [
+        "audiovisuell_form_stil_analyse"
+      ],
+      "successor_concept_ids": [
+        "filmfotografi_og_bildeestetikk"
+      ],
+      "rationale": "Filmfotografi må også analyseres som stil og meningsproduksjon, ikke bare som yrkespraksis.",
+      "boundary_note": "Fotografi Film eies av audiovisuell_form_stil_analyse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmfotografi må også analyseres som stil og meningsproduksjon, ikke bare som yrkespraksis.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_lys_lyd",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "lys_og_lyd",
+      "legacy_hook_title": "Lys og lyd",
+      "legacy_title": "Lys Lyd",
+      "action": "split",
+      "target_domain_ids": [
+        "audiovisuell_form_stil_analyse",
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "lys_og_fargeanalyse",
+        "lyd_og_lyddesign",
+        "lys_lyd_produksjonspraksis"
+      ],
+      "rationale": "Lys og lyd er ulike uttrykksdimensjoner, samtidig som produksjonspraksisen krever en egen kobling.",
+      "boundary_note": "Lys Lyd eies av audiovisuell_form_stil_analyse + produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Lys og lyd er ulike uttrykksdimensjoner, samtidig som produksjonspraksisen krever en egen kobling.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_form",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "lys_og_lyd",
+      "legacy_hook_title": "Lys og lyd",
+      "legacy_title": "Audiovisuell Form",
+      "action": "move",
+      "target_domain_ids": [
+        "audiovisuell_form_stil_analyse"
+      ],
+      "successor_concept_ids": [
+        "audiovisuell_form_og_stil"
+      ],
+      "rationale": "Audiovisuell form er analysefagets overordnede objekt og må ikke eies av utstyrs- eller produksjonslogikk.",
+      "boundary_note": "Audiovisuell Form eies av audiovisuell_form_stil_analyse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Audiovisuell form er analysefagets overordnede objekt og må ikke eies av utstyrs- eller produksjonslogikk.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_klipp_montasje",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "klipp_og_montasje",
+      "legacy_hook_title": "Klipp og montasje",
+      "legacy_title": "Klipp Montasje",
+      "action": "move",
+      "target_domain_ids": [
+        "audiovisuell_form_stil_analyse"
+      ],
+      "successor_concept_ids": [
+        "klipp_montasje_og_relasjonell_mening"
+      ],
+      "rationale": "Klipp og montasje organiserer tid, rom og relasjoner og er en kjerne i nærlesning av verk.",
+      "boundary_note": "Klipp Montasje eies av audiovisuell_form_stil_analyse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Klipp og montasje organiserer tid, rom og relasjoner og er en kjerne i nærlesning av verk.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmrytme",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "klipp_og_montasje",
+      "legacy_hook_title": "Klipp og montasje",
+      "legacy_title": "Filmrytme",
+      "action": "merge",
+      "target_domain_ids": [
+        "audiovisuell_form_stil_analyse"
+      ],
+      "successor_concept_ids": [
+        "klipp_montasje_og_relasjonell_mening"
+      ],
+      "rationale": "Filmrytme er en analytisk dimensjon ved blant annet klipp, lyd og bevegelse, ikke et isolert produksjonsledd.",
+      "boundary_note": "Filmrytme eies av audiovisuell_form_stil_analyse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmrytme er en analytisk dimensjon ved blant annet klipp, lyd og bevegelse, ikke et isolert produksjonsledd.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_manus_dramaturgi",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "manus_og_dramaturgi",
+      "legacy_hook_title": "Manus og dramaturgi",
+      "legacy_title": "Manus Dramaturgi",
+      "action": "move",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "manus_dramaturgi_og_scenisk_organisering"
+      ],
+      "rationale": "Manus og dramaturgi organiserer hendelser og sceneforløp og hører til fortellingsanalysen.",
+      "boundary_note": "Manus Dramaturgi eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Manus og dramaturgi organiserer hendelser og sceneforløp og hører til fortellingsanalysen.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_fortellingsstruktur",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "manus_og_dramaturgi",
+      "legacy_hook_title": "Manus og dramaturgi",
+      "legacy_title": "Fortellingsstruktur",
+      "action": "keep",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "fortellingsstruktur_og_narrasjon"
+      ],
+      "rationale": "Fortellingsstruktur har et selvstendig begrepsapparat for tid, perspektiv, kausalitet og informasjon.",
+      "boundary_note": "Fortellingsstruktur eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Fortellingsstruktur har et selvstendig begrepsapparat for tid, perspektiv, kausalitet og informasjon.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_produksjonsteam",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "produksjonsteam",
+      "legacy_hook_title": "Produksjonsteam",
+      "legacy_title": "Produksjonsteam",
+      "action": "keep",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "produksjonsteam_roller_og_samarbeid"
+      ],
+      "rationale": "Produksjonsteamet gjør arbeidsdeling, koordinering og skapende autoritet empirisk undersøkbart.",
+      "boundary_note": "Produksjonsteam eies av produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Produksjonsteamet gjør arbeidsdeling, koordinering og skapende autoritet empirisk undersøkbart.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kollektivt_filmwerk",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "produksjonsteam",
+      "legacy_hook_title": "Produksjonsteam",
+      "legacy_title": "Kollektivt Filmwerk",
+      "action": "merge",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "produksjonsteam_roller_og_samarbeid"
+      ],
+      "rationale": "Kollektivt filmverk beskriver resultatet av samarbeid, men dupliserer team- og autoritetsproblemet.",
+      "boundary_note": "Kollektivt Filmwerk eies av produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kollektivt filmverk beskriver resultatet av samarbeid, men dupliserer team- og autoritetsproblemet.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_produsent_finansiering",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "produsent_og_finansiering",
+      "legacy_hook_title": "Produsent og finansiering",
+      "legacy_title": "Produsent Finansiering",
+      "action": "split",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis",
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "produsentrolle_og_beslutninger",
+        "finansiering_og_produksjonssystem"
+      ],
+      "rationale": "Produsentens skapende styring og finansieringens institusjonelle vilkår trenger ulike analyser.",
+      "boundary_note": "Produsent Finansiering eies av produksjon_arbeid_teknologi_praksis + industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Produsentens skapende styring og finansieringens institusjonelle vilkår trenger ulike analyser.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmokonomi",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "produsent_og_finansiering",
+      "legacy_hook_title": "Produsent og finansiering",
+      "legacy_title": "Filmøkonomi",
+      "action": "move",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "film_tv_okonomi_og_forretningsmodeller"
+      ],
+      "rationale": "Økonomi forklarer kapital, risiko, inntektsstrømmer og markedsstruktur på industrinivå.",
+      "boundary_note": "Filmøkonomi eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Økonomi forklarer kapital, risiko, inntektsstrømmer og markedsstruktur på industrinivå.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_postproduksjon",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "postproduksjon",
+      "legacy_hook_title": "Postproduksjon",
+      "legacy_title": "Postproduksjon",
+      "action": "keep",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "postproduksjon_arbeidsflyt_og_beslutninger"
+      ],
+      "rationale": "Postproduksjon samler særskilte arbeidsflyter og skapende beslutninger etter opptak.",
+      "boundary_note": "Postproduksjon eies av produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Postproduksjon samler særskilte arbeidsflyter og skapende beslutninger etter opptak.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_digital_etterarbeid",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "postproduksjon",
+      "legacy_hook_title": "Postproduksjon",
+      "legacy_title": "Digital Etterarbeid",
+      "action": "merge",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "postproduksjon_arbeidsflyt_og_beslutninger"
+      ],
+      "rationale": "Digitalt etterarbeid er dagens dominerende del av postproduksjon og trenger ikke en parallell emnetittel.",
+      "boundary_note": "Digital Etterarbeid eies av produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Digitalt etterarbeid er dagens dominerende del av postproduksjon og trenger ikke en parallell emnetittel.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_tv_hus_redaksjon",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "tv_hus_og_redaksjon",
+      "legacy_hook_title": "TV-hus og redaksjon",
+      "legacy_title": "TV Hus Redaksjon",
+      "action": "split",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis",
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "tv_redaksjon_og_produksjonspraksis",
+        "kringkastingsorganisasjon"
+      ],
+      "rationale": "Redaksjonell produksjonspraksis og TV-huset som institusjon har forskjellige aktører og styringsnivåer.",
+      "boundary_note": "TV Hus Redaksjon eies av produksjon_arbeid_teknologi_praksis + industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Redaksjonell produksjonspraksis og TV-huset som institusjon har forskjellige aktører og styringsnivåer.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kringkastingsproduksjon",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "tv_hus_og_redaksjon",
+      "legacy_hook_title": "TV-hus og redaksjon",
+      "legacy_title": "Kringkastingsproduksjon",
+      "action": "keep",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "kringkastingsproduksjon_og_direkteformat"
+      ],
+      "rationale": "Kringkastingsproduksjon har egne tidskrav, produksjonskjeder og direkteformater.",
+      "boundary_note": "Kringkastingsproduksjon eies av produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kringkastingsproduksjon har egne tidskrav, produksjonskjeder og direkteformater.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmarbeidsliv",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "film_og_arbeidsliv",
+      "legacy_hook_title": "Film og arbeidsliv",
+      "legacy_title": "Filmarbeidsliv",
+      "action": "keep",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "audiovisuelt_arbeidsliv_og_vilkar"
+      ],
+      "rationale": "Arbeidsvilkår, fagorganisering, prosjektarbeid og ulikhet er et selvstendig produksjonsfelt.",
+      "boundary_note": "Filmarbeidsliv eies av produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Arbeidsvilkår, fagorganisering, prosjektarbeid og ulikhet er et selvstendig produksjonsfelt.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_usynlig_filmproduksjon",
+      "legacy_domain_id": "produksjon_studio_arbeid",
+      "legacy_domain_title": "Produksjon, studio og filmarbeid",
+      "legacy_hook_id": "film_og_arbeidsliv",
+      "legacy_hook_title": "Film og arbeidsliv",
+      "legacy_title": "Usynlig Filmproduksjon",
+      "action": "merge",
+      "target_domain_ids": [
+        "produksjon_arbeid_teknologi_praksis"
+      ],
+      "successor_concept_ids": [
+        "audiovisuelt_arbeidsliv_og_vilkar"
+      ],
+      "rationale": "Usynlig arbeid er et viktig perspektiv innen arbeidsliv og kreditering, men ikke en stabil separat kategori.",
+      "boundary_note": "Usynlig Filmproduksjon eies av produksjon_arbeid_teknologi_praksis. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Usynlig arbeid er et viktig perspektiv innen arbeidsliv og kreditering, men ikke en stabil separat kategori.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_location_filmsted",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "location_som_filmsted",
+      "legacy_hook_title": "Location som filmsted",
+      "legacy_title": "Location Filmsted",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "location_valg_og_filmsted"
+      ],
+      "rationale": "Locationvalg kobler fortelling, produksjon og faktisk sted gjennom dokumenterbare beslutninger.",
+      "boundary_note": "Location Filmsted eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Locationvalg kobler fortelling, produksjon og faktisk sted gjennom dokumenterbare beslutninger.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_innspillingsspor",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "location_som_filmsted",
+      "legacy_hook_title": "Location som filmsted",
+      "legacy_title": "Innspillingsspor",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "innspillingsspor_og_stedlig_endring"
+      ],
+      "rationale": "Fysiske og sosiale spor etter innspilling gjør produksjonens stedlige virkninger undersøkelige.",
+      "boundary_note": "Innspillingsspor eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Fysiske og sosiale spor etter innspilling gjør produksjonens stedlige virkninger undersøkelige.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_byen_som_bilde",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "byen_som_bilde",
+      "legacy_hook_title": "Byen som bilde",
+      "legacy_title": "Byen som Bilde",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "byen_som_audiovisuelt_bilde"
+      ],
+      "rationale": "Byen som bilde undersøker hvordan urban form velges, rammes inn og gjøres lesbar.",
+      "boundary_note": "Byen som Bilde eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Byen som bilde undersøker hvordan urban form velges, rammes inn og gjøres lesbar.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_urban_filmrepresentasjon",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "byen_som_bilde",
+      "legacy_hook_title": "Byen som bilde",
+      "legacy_title": "Urban Filmrepresentasjon",
+      "action": "split",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi",
+        "samfunn_representasjon_identitet_makt"
+      ],
+      "successor_concept_ids": [
+        "urban_skjermgeografi",
+        "byrepresentasjon_og_makt"
+      ],
+      "rationale": "Urban geografi og representasjonens makt over identitet og synlighet må ha hver sin kontroll.",
+      "boundary_note": "Urban Filmrepresentasjon eies av sted_location_skjermgeografi + samfunn_representasjon_identitet_makt. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Urban geografi og representasjonens makt over identitet og synlighet må ha hver sin kontroll.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_gate_kamera",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "gate_og_kamera",
+      "legacy_hook_title": "Gate og kamera",
+      "legacy_title": "Gate Kamera",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "gate_kamera_og_offentlig_rom"
+      ],
+      "rationale": "Kameraarbeid i gater berører bevegelse, kontroll, tilfeldighet og bruk av offentlig rom.",
+      "boundary_note": "Gate Kamera eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kameraarbeid i gater berører bevegelse, kontroll, tilfeldighet og bruk av offentlig rom.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_hverdagsfilm",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "gate_og_kamera",
+      "legacy_hook_title": "Gate og kamera",
+      "legacy_title": "Hverdagsfilm",
+      "action": "retire",
+      "target_domain_ids": [
+        "dokumentar_virkelighetsformer_etikk",
+        "film_tv_historie_historiografi"
+      ],
+      "successor_concept_ids": [
+        "hverdagsdokumentasjon_og_amatorkultur"
+      ],
+      "rationale": "Tittelen er for vag; relevant stoff bevares som dokumentarisk hverdagsregistrering og historisk amatørkultur.",
+      "boundary_note": "Hverdagsfilm eies av dokumentar_virkelighetsformer_etikk + film_tv_historie_historiografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Tittelen er for vag; relevant stoff bevares som dokumentarisk hverdagsregistrering og historisk amatørkultur.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_leilighet_interior",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "leilighet_og_interior",
+      "legacy_hook_title": "Leilighet og interiør",
+      "legacy_title": "Leilighet Interiør",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "interior_bolig_og_skjermrom"
+      ],
+      "rationale": "Boliginteriør organiserer kropp, klasse, intimitet og produksjonsbegrensninger i skjermrommet.",
+      "boundary_note": "Leilighet Interiør eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Boliginteriør organiserer kropp, klasse, intimitet og produksjonsbegrensninger i skjermrommet.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_intimrom_film",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "leilighet_og_interior",
+      "legacy_hook_title": "Leilighet og interiør",
+      "legacy_title": "Intimrom Film",
+      "action": "merge",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "interior_bolig_og_skjermrom"
+      ],
+      "rationale": "Intimrom er en fortolkende dimensjon ved interiør og bolig, ikke en stabil parallell stedstype.",
+      "boundary_note": "Intimrom Film eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Intimrom er en fortolkende dimensjon ved interiør og bolig, ikke en stabil parallell stedstype.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_landskap_stemning",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "landskap_og_stemning",
+      "legacy_hook_title": "Landskap og stemning",
+      "legacy_title": "Landskap Stemning",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "landskap_stemning_og_stedsetikk"
+      ],
+      "rationale": "Landskap skaper stemning, men reiser også spørsmål om stedskunnskap, inngrep og miljøetikk.",
+      "boundary_note": "Landskap Stemning eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Landskap skaper stemning, men reiser også spørsmål om stedskunnskap, inngrep og miljøetikk.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmisk_atmosfare",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "landskap_og_stemning",
+      "legacy_hook_title": "Landskap og stemning",
+      "legacy_title": "Filmisk Atmosfære",
+      "action": "move",
+      "target_domain_ids": [
+        "audiovisuell_form_stil_analyse"
+      ],
+      "successor_concept_ids": [
+        "audiovisuell_atmosfare"
+      ],
+      "rationale": "Atmosfære produseres på tvers av bilde, lyd, rytme og rom og krever formanalytisk eierskap.",
+      "boundary_note": "Filmisk Atmosfære eies av audiovisuell_form_stil_analyse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Atmosfære produseres på tvers av bilde, lyd, rytme og rom og krever formanalytisk eierskap.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_sted_identitet",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "sted_og_identitet",
+      "legacy_hook_title": "Sted og identitet",
+      "legacy_title": "Sted Identitet",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "sted_identitet_og_tilhorighet"
+      ],
+      "rationale": "Stedsidentitet viser hvordan audiovisuelle verk former og forhandles av lokale tilhørigheter.",
+      "boundary_note": "Sted Identitet eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Stedsidentitet viser hvordan audiovisuelle verk former og forhandles av lokale tilhørigheter.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmisk_tilhorighet",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "sted_og_identitet",
+      "legacy_hook_title": "Sted og identitet",
+      "legacy_title": "Filmisk Tilhørighet",
+      "action": "merge",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "sted_identitet_og_tilhorighet"
+      ],
+      "rationale": "Filmisk tilhørighet er virkningen som allerede undersøkes gjennom sted, identitet og publikum.",
+      "boundary_note": "Filmisk Tilhørighet eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmisk tilhørighet er virkningen som allerede undersøkes gjennom sted, identitet og publikum.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_ikonisk_filmsted",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "ikoniske_filmsteder",
+      "legacy_hook_title": "Ikoniske filmsteder",
+      "legacy_title": "Ikonisk Filmsted",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "ikonisk_filmsted_og_sirkulasjon"
+      ],
+      "rationale": "Et filmsted blir ikonisk gjennom gjentatt framstilling, distribusjon, resepsjon og fysisk gjenkjennelse.",
+      "boundary_note": "Ikonisk Filmsted eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Et filmsted blir ikonisk gjennom gjentatt framstilling, distribusjon, resepsjon og fysisk gjenkjennelse.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_publikumsminne_sted",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "ikoniske_filmsteder",
+      "legacy_hook_title": "Ikoniske filmsteder",
+      "legacy_title": "Publikumsminne Sted",
+      "action": "split",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi",
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "stedlig_skjermminne",
+        "publikumsminne_og_audiovisuell_erindring"
+      ],
+      "rationale": "Stedets medierte minne og publikums erindringspraksis overlapper, men har ulike analyseenheter.",
+      "boundary_note": "Publikumsminne Sted eies av sted_location_skjermgeografi + arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Stedets medierte minne og publikums erindringspraksis overlapper, men har ulike analyseenheter.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_dokumentarisk_sted",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "dokumentarisk_sted",
+      "legacy_hook_title": "Dokumentarisk sted",
+      "legacy_title": "Dokumentarisk Sted",
+      "action": "move",
+      "target_domain_ids": [
+        "dokumentar_virkelighetsformer_etikk"
+      ],
+      "successor_concept_ids": [
+        "dokumentarisk_sted_og_evidens"
+      ],
+      "rationale": "Dokumentariske steder brukes som evidens og må vurderes mot utsnitt, iscenesettelse og situert kunnskap.",
+      "boundary_note": "Dokumentarisk Sted eies av dokumentar_virkelighetsformer_etikk. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Dokumentariske steder brukes som evidens og må vurderes mot utsnitt, iscenesettelse og situert kunnskap.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_virkelighetsbilde",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "dokumentarisk_sted",
+      "legacy_hook_title": "Dokumentarisk sted",
+      "legacy_title": "Virkelighetsbilde",
+      "action": "move",
+      "target_domain_ids": [
+        "dokumentar_virkelighetsformer_etikk"
+      ],
+      "successor_concept_ids": [
+        "virkelighetsbilde_og_evidenspastand"
+      ],
+      "rationale": "Et virkelighetsbilde fremsetter sannhets- og evidenspåstander som krever dokumentarteoretisk prøving.",
+      "boundary_note": "Virkelighetsbilde eies av dokumentar_virkelighetsformer_etikk. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Et virkelighetsbilde fremsetter sannhets- og evidenspåstander som krever dokumentarteoretisk prøving.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmturisme",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "turisme_og_filmkart",
+      "legacy_hook_title": "Turisme og filmkart",
+      "legacy_title": "Filmturisme",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "filmturisme_og_lokale_virkninger"
+      ],
+      "rationale": "Filmturisme kobler skjermbilder til mobilitet, økonomi, belastning og lokal fortolkning.",
+      "boundary_note": "Filmturisme eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmturisme kobler skjermbilder til mobilitet, økonomi, belastning og lokal fortolkning.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmgeografi",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "turisme_og_filmkart",
+      "legacy_hook_title": "Turisme og filmkart",
+      "legacy_title": "Filmgeografi",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "film_tv_geografi_og_romlig_sirkulasjon"
+      ],
+      "rationale": "Filmgeografi analyserer romlige mønstre i produksjon, representasjon, sirkulasjon og resepsjon.",
+      "boundary_note": "Filmgeografi eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmgeografi analyserer romlige mønstre i produksjon, representasjon, sirkulasjon og resepsjon.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_sted_som_myte",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "sted_som_myte",
+      "legacy_hook_title": "Sted som myte",
+      "legacy_title": "Sted som Myte",
+      "action": "keep",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "sted_som_audiovisuell_myte"
+      ],
+      "rationale": "Steder mytologiseres gjennom gjentatte motiver og fortellinger som kan sammenholdes med faktisk sted.",
+      "boundary_note": "Sted som Myte eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Steder mytologiseres gjennom gjentatte motiver og fortellinger som kan sammenholdes med faktisk sted.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_mytologi",
+      "legacy_domain_id": "locations_byrom_motiv",
+      "legacy_domain_title": "Locations, byrom og motiv",
+      "legacy_hook_id": "sted_som_myte",
+      "legacy_hook_title": "Sted som myte",
+      "legacy_title": "Audiovisuell Mytologi",
+      "action": "merge",
+      "target_domain_ids": [
+        "sted_location_skjermgeografi"
+      ],
+      "successor_concept_ids": [
+        "sted_som_audiovisuell_myte"
+      ],
+      "rationale": "I denne legacy-konteksten er audiovisuell mytologi den generelle mekanismen bak sted som myte.",
+      "boundary_note": "Audiovisuell Mytologi eies av sted_location_skjermgeografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: I denne legacy-konteksten er audiovisuell mytologi den generelle mekanismen bak sted som myte.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_sjanger_kontrakt",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "sjanger_som_kontrakt",
+      "legacy_hook_title": "Sjanger som kontrakt",
+      "legacy_title": "Sjanger Kontrakt",
+      "action": "keep",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "sjanger_konvensjon_og_kontrakt"
+      ],
+      "rationale": "Sjanger organiserer formvalg og forventninger som historisk foranderlige konvensjoner.",
+      "boundary_note": "Sjanger Kontrakt eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Sjanger organiserer formvalg og forventninger som historisk foranderlige konvensjoner.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_publikumsforventning",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "sjanger_som_kontrakt",
+      "legacy_hook_title": "Sjanger som kontrakt",
+      "legacy_title": "Publikumsforventning",
+      "action": "move",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "forventningshorisont_og_resepsjon"
+      ],
+      "rationale": "Publikums forventningshorisont må undersøkes empirisk og historisk, ikke avledes direkte fra sjanger.",
+      "boundary_note": "Publikumsforventning eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Publikums forventningshorisont må undersøkes empirisk og historisk, ikke avledes direkte fra sjanger.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_serieformat",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "serieformat",
+      "legacy_hook_title": "Serieformat",
+      "legacy_title": "Serieformat",
+      "action": "keep",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "serieformat_og_serialitet"
+      ],
+      "rationale": "Serieformatet organiserer gjentakelse, utvikling, episodegrenser og langvarig fortelling.",
+      "boundary_note": "Serieformat eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Serieformatet organiserer gjentakelse, utvikling, episodegrenser og langvarig fortelling.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_sesongstruktur",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "serieformat",
+      "legacy_hook_title": "Serieformat",
+      "legacy_title": "Sesongstruktur",
+      "action": "keep",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "sesongstruktur_og_fortellingsbue"
+      ],
+      "rationale": "Sesongstruktur har egne mellomnivåer mellom episode og hel serie og bør analyseres eksplisitt.",
+      "boundary_note": "Sesongstruktur eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Sesongstruktur har egne mellomnivåer mellom episode og hel serie og bør analyseres eksplisitt.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_dokumentar_sannhet",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "dokumentar_og_sannhet",
+      "legacy_hook_title": "Dokumentar og sannhet",
+      "legacy_title": "Dokumentar Sannhet",
+      "action": "move",
+      "target_domain_ids": [
+        "dokumentar_virkelighetsformer_etikk"
+      ],
+      "successor_concept_ids": [
+        "dokumentar_sannhet_og_evidens"
+      ],
+      "rationale": "Dokumentarens sannhetskrav krever kontroll av indeksikalitet, argument, kilder og framstilling.",
+      "boundary_note": "Dokumentar Sannhet eies av dokumentar_virkelighetsformer_etikk. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Dokumentarens sannhetskrav krever kontroll av indeksikalitet, argument, kilder og framstilling.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_dokumentarisk_etikk",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "dokumentar_og_sannhet",
+      "legacy_hook_title": "Dokumentar og sannhet",
+      "legacy_title": "Dokumentarisk Etikk",
+      "action": "move",
+      "target_domain_ids": [
+        "dokumentar_virkelighetsformer_etikk"
+      ],
+      "successor_concept_ids": [
+        "dokumentar_etikk_og_deltakeransvar"
+      ],
+      "rationale": "Dokumentaretikk gjelder samtykke, makt, konsekvens, sårbarhet og ansvar overfor deltakere.",
+      "boundary_note": "Dokumentarisk Etikk eies av dokumentar_virkelighetsformer_etikk. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Dokumentaretikk gjelder samtykke, makt, konsekvens, sårbarhet og ansvar overfor deltakere.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_fiksjon_realisme",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "fiksjon_og_realisme",
+      "legacy_hook_title": "Fiksjon og realisme",
+      "legacy_title": "Fiksjon Realisme",
+      "action": "keep",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "fiksjon_realisme_og_verdensbygging"
+      ],
+      "rationale": "Realisme er en historisk og sjangermessig strategi for å gjøre fiksjonsverdener troverdige.",
+      "boundary_note": "Fiksjon Realisme eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Realisme er en historisk og sjangermessig strategi for å gjøre fiksjonsverdener troverdige.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmisk_troverdighet",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "fiksjon_og_realisme",
+      "legacy_hook_title": "Fiksjon og realisme",
+      "legacy_title": "Filmisk Troverdighet",
+      "action": "merge",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "fiksjon_realisme_og_verdensbygging"
+      ],
+      "rationale": "Troverdighet er et vurderingsproblem innen realisme og verdensbygging, ikke en parallell hovedkategori.",
+      "boundary_note": "Filmisk Troverdighet eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Troverdighet er et vurderingsproblem innen realisme og verdensbygging, ikke en parallell hovedkategori.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_reality_observasjon",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "reality_og_observasjon",
+      "legacy_hook_title": "Reality og observasjon",
+      "legacy_title": "Reality Observasjon",
+      "action": "move",
+      "target_domain_ids": [
+        "dokumentar_virkelighetsformer_etikk"
+      ],
+      "successor_concept_ids": [
+        "reality_observasjon_og_formatmakt"
+      ],
+      "rationale": "Reality kombinerer observasjon med formatregler, casting, produksjonsmakt og redigering.",
+      "boundary_note": "Reality Observasjon eies av dokumentar_virkelighetsformer_etikk. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Reality kombinerer observasjon med formatregler, casting, produksjonsmakt og redigering.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_iscenesatt_virkelighet",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "reality_og_observasjon",
+      "legacy_hook_title": "Reality og observasjon",
+      "legacy_title": "Iscenesatt Virkelighet",
+      "action": "keep",
+      "target_domain_ids": [
+        "dokumentar_virkelighetsformer_etikk"
+      ],
+      "successor_concept_ids": [
+        "iscenesettelse_og_virkelighetskrav"
+      ],
+      "rationale": "Iscenesettelse må vurderes selvstendig fordi den kan finnes i dokumentar, reality og nyhetsbilder.",
+      "boundary_note": "Iscenesatt Virkelighet eies av dokumentar_virkelighetsformer_etikk. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Iscenesettelse må vurderes selvstendig fordi den kan finnes i dokumentar, reality og nyhetsbilder.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_nyhetsbilde_tv",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "nyhetsbilde_og_tv",
+      "legacy_hook_title": "Nyhetsbilde og TV",
+      "legacy_title": "Nyhetsbilde TV",
+      "action": "move",
+      "target_domain_ids": [
+        "dokumentar_virkelighetsformer_etikk"
+      ],
+      "successor_concept_ids": [
+        "tv_nyhetsbilde_og_evidens"
+      ],
+      "rationale": "TV-nyhetsbildet fremsetter samtidige evidenspåstander gjennom utvalg, direktehet og redigering.",
+      "boundary_note": "Nyhetsbilde TV eies av dokumentar_virkelighetsformer_etikk. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: TV-nyhetsbildet fremsetter samtidige evidenspåstander gjennom utvalg, direktehet og redigering.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kringkastet_samtid",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "nyhetsbilde_og_tv",
+      "legacy_hook_title": "Nyhetsbilde og TV",
+      "legacy_title": "Kringkastet Samtid",
+      "action": "split",
+      "target_domain_ids": [
+        "dokumentar_virkelighetsformer_etikk",
+        "film_tv_historie_historiografi",
+        "samfunn_representasjon_identitet_makt"
+      ],
+      "successor_concept_ids": [
+        "direktebilde_og_evidens",
+        "tv_samtidighet_historie",
+        "kringkastet_offentlighet"
+      ],
+      "rationale": "Kringkastet samtid rommer bildeevidens, mediehistorisk samtidighet og offentlighetens tidsorganisering.",
+      "boundary_note": "Kringkastet Samtid eies av dokumentar_virkelighetsformer_etikk + film_tv_historie_historiografi + samfunn_representasjon_identitet_makt. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kringkastet samtid rommer bildeevidens, mediehistorisk samtidighet og offentlighetens tidsorganisering.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_karakter_rollefigur",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "karakter_og_rollefigur",
+      "legacy_hook_title": "Karakter og rollefigur",
+      "legacy_title": "Karakter Rollefigur",
+      "action": "keep",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "karakter_rollefigur_og_fortellingsfunksjon"
+      ],
+      "rationale": "Rollefigurer organiserer handling, perspektiv, identifikasjon og konflikt i fortellingen.",
+      "boundary_note": "Karakter Rollefigur eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Rollefigurer organiserer handling, perspektiv, identifikasjon og konflikt i fortellingen.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_stjerne_og_rolle",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "karakter_og_rollefigur",
+      "legacy_hook_title": "Karakter og rollefigur",
+      "legacy_title": "Stjerne og Rolle",
+      "action": "split",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format",
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "rollefigur_og_fremstilling",
+        "stjernepersona_og_rolleforhandling"
+      ],
+      "rationale": "Rollefigurens funksjon og stjernens offentlige persona er analytisk ulike selv når samme skuespiller binder dem sammen.",
+      "boundary_note": "Stjerne og Rolle eies av fortelling_sjanger_serialitet_format + arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Rollefigurens funksjon og stjernens offentlige persona er analytisk ulike selv når samme skuespiller binder dem sammen.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_cliffhanger_rytme",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "cliffhanger_og_rytme",
+      "legacy_hook_title": "Cliffhanger og rytme",
+      "legacy_title": "Cliffhanger Rytme",
+      "action": "split",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format",
+        "audiovisuell_form_stil_analyse"
+      ],
+      "successor_concept_ids": [
+        "cliffhanger_og_informasjonsstans",
+        "audiovisuell_rytme"
+      ],
+      "rationale": "Cliffhanger er en narrativ informasjonsstrategi, mens rytme oppstår i flere audiovisuelle lag.",
+      "boundary_note": "Cliffhanger Rytme eies av fortelling_sjanger_serialitet_format + audiovisuell_form_stil_analyse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Cliffhanger er en narrativ informasjonsstrategi, mens rytme oppstår i flere audiovisuelle lag.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_episodisk_dramaturgi",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "cliffhanger_og_rytme",
+      "legacy_hook_title": "Cliffhanger og rytme",
+      "legacy_title": "Episodisk Dramaturgi",
+      "action": "keep",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "episodisk_dramaturgi_og_fremdrift"
+      ],
+      "rationale": "Episodisk dramaturgi organiserer lokal avslutning og langsiktig framdrift i serialiserte verk.",
+      "boundary_note": "Episodisk Dramaturgi eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Episodisk dramaturgi organiserer lokal avslutning og langsiktig framdrift i serialiserte verk.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_humor_sitcom",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "humor_og_sitcom",
+      "legacy_hook_title": "Humor og sitcom",
+      "legacy_title": "Humor Sitcom",
+      "action": "keep",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "sitcom_humor_og_format"
+      ],
+      "rationale": "Sitcom kobler komiske mekanismer til faste rom, rolleensembler, episodeform og produksjonsformat.",
+      "boundary_note": "Humor Sitcom eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Sitcom kobler komiske mekanismer til faste rom, rolleensembler, episodeform og produksjonsformat.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_komisk_format",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "humor_og_sitcom",
+      "legacy_hook_title": "Humor og sitcom",
+      "legacy_title": "Komisk Format",
+      "action": "merge",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "sitcom_humor_og_format"
+      ],
+      "rationale": "Komisk format er for generelt og dekkes bedre av konkrete komiske sjangre og mekanismer.",
+      "boundary_note": "Komisk Format eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Komisk format er for generelt og dekkes bedre av konkrete komiske sjangre og mekanismer.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_krim_spenning",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "krim_og_spenning",
+      "legacy_hook_title": "Krim og spenning",
+      "legacy_title": "Krim Spenning",
+      "action": "keep",
+      "target_domain_ids": [
+        "fortelling_sjanger_serialitet_format"
+      ],
+      "successor_concept_ids": [
+        "krim_sjanger_og_spenningsstruktur"
+      ],
+      "rationale": "Krim organiserer kunnskapsfordeling, etterforskning og moralsk orden gjennom sjangerkonvensjoner.",
+      "boundary_note": "Krim Spenning eies av fortelling_sjanger_serialitet_format. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Krim organiserer kunnskapsfordeling, etterforskning og moralsk orden gjennom sjangerkonvensjoner.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_suspense",
+      "legacy_domain_id": "sjanger_format_fortelling",
+      "legacy_domain_title": "Sjanger, format og fortelling",
+      "legacy_hook_id": "krim_og_spenning",
+      "legacy_hook_title": "Krim og spenning",
+      "legacy_title": "Suspense",
+      "action": "move",
+      "target_domain_ids": [
+        "audiovisuell_form_stil_analyse"
+      ],
+      "successor_concept_ids": [
+        "suspense_som_audiovisuell_teknikk"
+      ],
+      "rationale": "Suspense er en formell teknikk for tidsstyring og kunnskapsforskjell på tvers av sjangre.",
+      "boundary_note": "Suspense eies av audiovisuell_form_stil_analyse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Suspense er en formell teknikk for tidsstyring og kunnskapsforskjell på tvers av sjangre.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kringkasting_institusjon",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "kringkasting_som_institusjon",
+      "legacy_hook_title": "Kringkasting som institusjon",
+      "legacy_title": "Kringkasting Institusjon",
+      "action": "keep",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "kringkasting_institusjon_og_allmennoppdrag"
+      ],
+      "rationale": "Kringkasting organiseres gjennom institusjoner, infrastruktur, mandat og regulering.",
+      "boundary_note": "Kringkasting Institusjon eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kringkasting organiseres gjennom institusjoner, infrastruktur, mandat og regulering.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_tv_offentlighet",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "kringkasting_som_institusjon",
+      "legacy_hook_title": "Kringkasting som institusjon",
+      "legacy_title": "TV Offentlighet",
+      "action": "move",
+      "target_domain_ids": [
+        "samfunn_representasjon_identitet_makt"
+      ],
+      "successor_concept_ids": [
+        "tv_offentlighet_og_demokratisk_deltakelse"
+      ],
+      "rationale": "TV-offentlighet gjelder synlighet, felles dagsorden og demokratisk deltakelse, ikke bare organisasjon.",
+      "boundary_note": "TV Offentlighet eies av samfunn_representasjon_identitet_makt. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: TV-offentlighet gjelder synlighet, felles dagsorden og demokratisk deltakelse, ikke bare organisasjon.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmstotte_kulturpolitikk",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "filmstotte_og_kulturpolitikk",
+      "legacy_hook_title": "Filmstøtte og kulturpolitikk",
+      "legacy_title": "Filmstøtte Kulturpolitikk",
+      "action": "keep",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "filmstotte_og_kulturpolitikk"
+      ],
+      "rationale": "Filmstøtte gjør prioriteringer, armlengdesprinsipp og kulturpolitiske mål empirisk etterprøvbare.",
+      "boundary_note": "Filmstøtte Kulturpolitikk eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmstøtte gjør prioriteringer, armlengdesprinsipp og kulturpolitiske mål empirisk etterprøvbare.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_nasjonal_filmproduksjon",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "filmstotte_og_kulturpolitikk",
+      "legacy_hook_title": "Filmstøtte og kulturpolitikk",
+      "legacy_title": "Nasjonal Filmproduksjon",
+      "action": "split",
+      "target_domain_ids": [
+        "film_tv_historie_historiografi",
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "nasjonal_film_tv_historie",
+        "nasjonalt_produksjonssystem"
+      ],
+      "rationale": "Nasjonale verkforløp og dagens produksjonssystem trenger henholdsvis historisk og institusjonell analyse.",
+      "boundary_note": "Nasjonal Filmproduksjon eies av film_tv_historie_historiografi + industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Nasjonale verkforløp og dagens produksjonssystem trenger henholdsvis historisk og institusjonell analyse.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_sensur_regulering",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "sensur_og_regulering",
+      "legacy_hook_title": "Sensur og regulering",
+      "legacy_title": "Sensur Regulering",
+      "action": "keep",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "sensur_regulering_og_ytringsrom"
+      ],
+      "rationale": "Sensur og regulering former produksjon, distribusjon og tilgang gjennom formelle og uformelle inngrep.",
+      "boundary_note": "Sensur Regulering eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Sensur og regulering former produksjon, distribusjon og tilgang gjennom formelle og uformelle inngrep.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_aldersgrense_makt",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "sensur_og_regulering",
+      "legacy_hook_title": "Sensur og regulering",
+      "legacy_title": "Aldersgrense Makt",
+      "action": "keep",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "aldersgrenser_klassifisering_og_makt"
+      ],
+      "rationale": "Aldersgrenser viser hvordan skade, vern, tilgang og statlig eller bransjebasert makt klassifiseres.",
+      "boundary_note": "Aldersgrense Makt eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Aldersgrenser viser hvordan skade, vern, tilgang og statlig eller bransjebasert makt klassifiseres.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_film_tv_arkiv",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "arkiv_og_bevaring",
+      "legacy_hook_title": "Arkiv og bevaring",
+      "legacy_title": "Film TV Arkiv",
+      "action": "move",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "film_tv_arkiv_institusjoner_og_praksis"
+      ],
+      "rationale": "Audiovisuelle arkiv har egne institusjoner, ordningsprinsipper, materialiteter og tilgangsvalg.",
+      "boundary_note": "Film TV Arkiv eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Audiovisuelle arkiv har egne institusjoner, ordningsprinsipper, materialiteter og tilgangsvalg.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_bevaring",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "arkiv_og_bevaring",
+      "legacy_hook_title": "Arkiv og bevaring",
+      "legacy_title": "Audiovisuell Bevaring",
+      "action": "move",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "audiovisuell_bevaring_og_restaurering"
+      ],
+      "rationale": "Bevaring og restaurering krever tekniske, etiske og historiografiske beslutninger over tid.",
+      "boundary_note": "Audiovisuell Bevaring eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Bevaring og restaurering krever tekniske, etiske og historiografiske beslutninger over tid.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_plattformmakt",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "plattformmakt",
+      "legacy_hook_title": "Plattformmakt",
+      "legacy_title": "Plattformmakt",
+      "action": "keep",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "plattformmakt_og_algoritmisk_portvakt"
+      ],
+      "rationale": "Plattformer styrer synlighet, data, vilkår og adgang gjennom tekniske og kontraktsmessige portvakter.",
+      "boundary_note": "Plattformmakt eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Plattformer styrer synlighet, data, vilkår og adgang gjennom tekniske og kontraktsmessige portvakter.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_strommemarked",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "plattformmakt",
+      "legacy_hook_title": "Plattformmakt",
+      "legacy_title": "Strømmemarked",
+      "action": "keep",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "strommemarked_og_forretningsmodeller"
+      ],
+      "rationale": "Strømmemarkedet har egne abonnements-, rettighets-, katalog- og konkurranselogikker.",
+      "boundary_note": "Strømmemarked eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Strømmemarkedet har egne abonnements-, rettighets-, katalog- og konkurranselogikker.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_rettigheter_distribusjon",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "rettigheter_og_distribusjon",
+      "legacy_hook_title": "Rettigheter og distribusjon",
+      "legacy_title": "Rettigheter Distribusjon",
+      "action": "keep",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "rettigheter_vinduer_og_distribusjon"
+      ],
+      "rationale": "Rettigheter og vinduer bestemmer territorium, tid, plattform og økonomisk sirkulasjon.",
+      "boundary_note": "Rettigheter Distribusjon eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Rettigheter og vinduer bestemmer territorium, tid, plattform og økonomisk sirkulasjon.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_lisens_og_tilgang",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "rettigheter_og_distribusjon",
+      "legacy_hook_title": "Rettigheter og distribusjon",
+      "legacy_title": "Lisens og Tilgang",
+      "action": "merge",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "rettigheter_vinduer_og_distribusjon"
+      ],
+      "rationale": "Lisens og tilgang er konkrete mekanismer i rettighets- og distribusjonsregimet.",
+      "boundary_note": "Lisens og Tilgang eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Lisens og tilgang er konkrete mekanismer i rettighets- og distribusjonsregimet.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_film_tv_offentlighet",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "offentlighet_og_debatt",
+      "legacy_hook_title": "Offentlighet og debatt",
+      "legacy_title": "Film TV Offentlighet",
+      "action": "move",
+      "target_domain_ids": [
+        "samfunn_representasjon_identitet_makt"
+      ],
+      "successor_concept_ids": [
+        "film_tv_offentlighet_og_debatt"
+      ],
+      "rationale": "Film og TV skaper offentlighet gjennom verk, hendelser, kritikk, kontrovers og samtale.",
+      "boundary_note": "Film TV Offentlighet eies av samfunn_representasjon_identitet_makt. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Film og TV skaper offentlighet gjennom verk, hendelser, kritikk, kontrovers og samtale.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_debatt",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "offentlighet_og_debatt",
+      "legacy_hook_title": "Offentlighet og debatt",
+      "legacy_title": "Audiovisuell Debatt",
+      "action": "merge",
+      "target_domain_ids": [
+        "samfunn_representasjon_identitet_makt"
+      ],
+      "successor_concept_ids": [
+        "film_tv_offentlighet_og_debatt"
+      ],
+      "rationale": "Audiovisuell debatt er en praksis innen den bredere film- og TV-offentligheten.",
+      "boundary_note": "Audiovisuell Debatt eies av samfunn_representasjon_identitet_makt. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Audiovisuell debatt er en praksis innen den bredere film- og TV-offentligheten.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_representasjon_makt",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "representasjon_og_makt",
+      "legacy_hook_title": "Representasjon og makt",
+      "legacy_title": "Representasjon Makt",
+      "action": "keep",
+      "target_domain_ids": [
+        "samfunn_representasjon_identitet_makt"
+      ],
+      "successor_concept_ids": [
+        "representasjon_identitet_og_makt"
+      ],
+      "rationale": "Representasjon fordeler taleposisjoner, gjenkjennelse og stereotypisering og krever maktanalyse.",
+      "boundary_note": "Representasjon Makt eies av samfunn_representasjon_identitet_makt. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Representasjon fordeler taleposisjoner, gjenkjennelse og stereotypisering og krever maktanalyse.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_synlighet_og_frasortering",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "representasjon_og_makt",
+      "legacy_hook_title": "Representasjon og makt",
+      "legacy_title": "Synlighet og Frasortering",
+      "action": "keep",
+      "target_domain_ids": [
+        "samfunn_representasjon_identitet_makt"
+      ],
+      "successor_concept_ids": [
+        "synlighet_fravaer_og_frasortering"
+      ],
+      "rationale": "Fravær og frasortering kan måles i casting, narrativ betydning, arkiv og distribusjon.",
+      "boundary_note": "Synlighet og Frasortering eies av samfunn_representasjon_identitet_makt. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Fravær og frasortering kan måles i casting, narrativ betydning, arkiv og distribusjon.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_film_tv_kommersialisering",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "kommersialisering",
+      "legacy_hook_title": "Kommersialisering",
+      "legacy_title": "Film TV Kommersialisering",
+      "action": "keep",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon"
+      ],
+      "successor_concept_ids": [
+        "kommersialisering_og_verdikjeder"
+      ],
+      "rationale": "Kommersialisering kobler finansiering, produktintegrasjon, eierskap og publikumsverdi.",
+      "boundary_note": "Film TV Kommersialisering eies av industri_institusjoner_politikk_distribusjon. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kommersialisering kobler finansiering, produktintegrasjon, eierskap og publikumsverdi.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_publikumsmarked",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "kommersialisering",
+      "legacy_hook_title": "Kommersialisering",
+      "legacy_title": "Publikumsmarked",
+      "action": "split",
+      "target_domain_ids": [
+        "industri_institusjoner_politikk_distribusjon",
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "publikum_som_marked",
+        "publikum_som_sosiale_brukere"
+      ],
+      "rationale": "Bransjens markedssegment og faktiske publikums praksiser er forskjellige konstruksjoner.",
+      "boundary_note": "Publikumsmarked eies av industri_institusjoner_politikk_distribusjon + visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Bransjens markedssegment og faktiske publikums praksiser er forskjellige konstruksjoner.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_nasjonal_fortelling",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "nasjonal_fortelling",
+      "legacy_hook_title": "Nasjonal fortelling",
+      "legacy_title": "Nasjonal Fortelling",
+      "action": "move",
+      "target_domain_ids": [
+        "samfunn_representasjon_identitet_makt"
+      ],
+      "successor_concept_ids": [
+        "nasjon_fortelling_og_forestilt_fellesskap"
+      ],
+      "rationale": "Nasjonale fortellinger former tilhørighet og eksklusjon gjennom verk og institusjonell prioritering.",
+      "boundary_note": "Nasjonal Fortelling eies av samfunn_representasjon_identitet_makt. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Nasjonale fortellinger former tilhørighet og eksklusjon gjennom verk og institusjonell prioritering.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_film_tv_identitet",
+      "legacy_domain_id": "institusjoner_makt_offentlighet",
+      "legacy_domain_title": "Institusjoner, makt og offentlighet",
+      "legacy_hook_id": "nasjonal_fortelling",
+      "legacy_hook_title": "Nasjonal fortelling",
+      "legacy_title": "Film TV Identitet",
+      "action": "split",
+      "target_domain_ids": [
+        "samfunn_representasjon_identitet_makt",
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "identitetsrepresentasjon_og_makt",
+        "publikums_identitetsarbeid"
+      ],
+      "rationale": "Identitet må deles mellom representasjon i verk og publikums bruk av verk i eget identitetsarbeid.",
+      "boundary_note": "Film TV Identitet eies av samfunn_representasjon_identitet_makt + visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Identitet må deles mellom representasjon i verk og publikums bruk av verk i eget identitetsarbeid.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmstjerne_myte",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "filmstjerne_og_myte",
+      "legacy_hook_title": "Filmstjerne og myte",
+      "legacy_title": "Filmstjerne Myte",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "filmstjerne_persona_og_myte"
+      ],
+      "rationale": "Filmstjernens persona skapes på tvers av roller, presse, bilder, industri og publikumsbruk.",
+      "boundary_note": "Filmstjerne Myte eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmstjernens persona skapes på tvers av roller, presse, bilder, industri og publikumsbruk.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_stjerneproduksjon",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "filmstjerne_og_myte",
+      "legacy_hook_title": "Filmstjerne og myte",
+      "legacy_title": "Stjerneproduksjon",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "stjerneproduksjon_og_industrielt_apparat"
+      ],
+      "rationale": "Stjerneproduksjon undersøker institusjonene og praksisene som konstruerer og vedlikeholder persona.",
+      "boundary_note": "Stjerneproduksjon eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Stjerneproduksjon undersøker institusjonene og praksisene som konstruerer og vedlikeholder persona.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_rollefigur_sitat",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "rollefigur_og_sitat",
+      "legacy_hook_title": "Rollefigur og sitat",
+      "legacy_title": "Rollefigur Sitat",
+      "action": "move",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "rollefigur_sitat_og_sirkulasjon"
+      ],
+      "rationale": "Sitat og rollefigur løsriver seg fra verket gjennom gjentakelse, imitasjon og mediesirkulasjon.",
+      "boundary_note": "Rollefigur Sitat eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Sitat og rollefigur løsriver seg fra verket gjennom gjentakelse, imitasjon og mediesirkulasjon.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kollektiv_referanse",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "rollefigur_og_sitat",
+      "legacy_hook_title": "Rollefigur og sitat",
+      "legacy_title": "Kollektiv Referanse",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "kollektiv_audiovisuell_referanse"
+      ],
+      "rationale": "Kollektive referanser viser hvordan bestemte bilder, replikker og figurer blir sosialt tilgjengelige.",
+      "boundary_note": "Kollektiv Referanse eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kollektive referanser viser hvordan bestemte bilder, replikker og figurer blir sosialt tilgjengelige.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_tv_minne",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "tv_minne",
+      "legacy_hook_title": "TV-minne",
+      "legacy_title": "TV Minne",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "tv_minne_og_mediert_erindring"
+      ],
+      "rationale": "TV-minne kobler programhistorie, sendetid, husholdning, arkiv og senere gjenbruk.",
+      "boundary_note": "TV Minne eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: TV-minne kobler programhistorie, sendetid, husholdning, arkiv og senere gjenbruk.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_felles_tv_erfaring",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "tv_minne",
+      "legacy_hook_title": "TV-minne",
+      "legacy_title": "Felles TV Erfaring",
+      "action": "merge",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "tv_minne_og_mediert_erindring"
+      ],
+      "rationale": "Felles TV-erfaring er en sosial kilde til TV-minne, men ikke et stabilt separat emne.",
+      "boundary_note": "Felles TV Erfaring eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Felles TV-erfaring er en sosial kilde til TV-minne, men ikke et stabilt separat emne.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmarv_kanon",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "filmarv_og_kanon",
+      "legacy_hook_title": "Filmarv og kanon",
+      "legacy_title": "Filmarv Kanon",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "filmarv_kanon_og_verdivalg"
+      ],
+      "rationale": "Filmarv og kanon synliggjør hvilke verk som bevares, undervises, vises og tillegges verdi.",
+      "boundary_note": "Filmarv Kanon eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmarv og kanon synliggjør hvilke verk som bevares, undervises, vises og tillegges verdi.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kanonisering",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "filmarv_og_kanon",
+      "legacy_hook_title": "Filmarv og kanon",
+      "legacy_title": "Kanonisering",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "kanonisering_prosesser_og_makt"
+      ],
+      "rationale": "Kanonisering er prosessen som gjør institusjoner, kritikere, festivaler og arkiv til portvakter.",
+      "boundary_note": "Kanonisering eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kanonisering er prosessen som gjør institusjoner, kritikere, festivaler og arkiv til portvakter.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_nostalgi_gjentakelse",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "nostalgi_og_gjentakelse",
+      "legacy_hook_title": "Nostalgi og gjentakelse",
+      "legacy_title": "Nostalgi Gjentakelse",
+      "action": "split",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner",
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "nostalgi_og_historiebruk",
+        "gjentakelse_og_resepsjon"
+      ],
+      "rationale": "Nostalgi er en historiebruk, mens gjentakelse også er en distribusjons- og resepsjonspraksis.",
+      "boundary_note": "Nostalgi Gjentakelse eies av arkiv_kulturarv_minne_stjerner + visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Nostalgi er en historiebruk, mens gjentakelse også er en distribusjons- og resepsjonspraksis.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_reprise_kultur",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "nostalgi_og_gjentakelse",
+      "legacy_hook_title": "Nostalgi og gjentakelse",
+      "legacy_title": "Reprise Kultur",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "reprise_ombruk_og_kulturell_varighet"
+      ],
+      "rationale": "Repriser og ombruk gjør kanon, generasjonsminne og katalogpolitikk empirisk synlig.",
+      "boundary_note": "Reprise Kultur eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Repriser og ombruk gjør kanon, generasjonsminne og katalogpolitikk empirisk synlig.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_arkivbilder",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "arkivbilder",
+      "legacy_hook_title": "Arkivbilder",
+      "legacy_title": "Arkivbilder",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "arkivbilder_kontekst_og_ombruk"
+      ],
+      "rationale": "Arkivbilder krever proveniens, kontekst og analyse av ny betydning når de gjenbrukes.",
+      "boundary_note": "Arkivbilder eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Arkivbilder krever proveniens, kontekst og analyse av ny betydning når de gjenbrukes.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuelt_minne",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "arkivbilder",
+      "legacy_hook_title": "Arkivbilder",
+      "legacy_title": "Audiovisuelt Minne",
+      "action": "merge",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "tv_minne_og_mediert_erindring"
+      ],
+      "rationale": "Audiovisuelt minne er et overbegrep som dekkes mer presist av publikums-, TV- og arkivminne.",
+      "boundary_note": "Audiovisuelt Minne eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Audiovisuelt minne er et overbegrep som dekkes mer presist av publikums-, TV- og arkivminne.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_fans_deltakelse",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "fans_og_deltakelse",
+      "legacy_hook_title": "Fans og deltakelse",
+      "legacy_title": "Fans Deltakelse",
+      "action": "move",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "fans_deltakelse_og_fellesskap"
+      ],
+      "rationale": "Fans produserer fortolkning, fellesskap, arbeid og sirkulasjon og må studeres som deltakende publikum.",
+      "boundary_note": "Fans Deltakelse eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Fans produserer fortolkning, fellesskap, arbeid og sirkulasjon og må studeres som deltakende publikum.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_deltakende_seerkultur",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "fans_og_deltakelse",
+      "legacy_hook_title": "Fans og deltakelse",
+      "legacy_title": "Deltakende Seerkultur",
+      "action": "merge",
+      "target_domain_ids": [
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "fans_deltakelse_og_fellesskap"
+      ],
+      "rationale": "Deltakende seerkultur er den bredere praksisen som fanstudier allerede konkretiserer.",
+      "boundary_note": "Deltakende Seerkultur eies av visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Deltakende seerkultur er den bredere praksisen som fanstudier allerede konkretiserer.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_kultfilm_resepsjon",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "kultfilm_og_resepsjon",
+      "legacy_hook_title": "Kultfilm og resepsjon",
+      "legacy_title": "Kultfilm Resepsjon",
+      "action": "split",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner",
+        "visning_publikum_resepsjon_deltakelse"
+      ],
+      "successor_concept_ids": [
+        "kultstatus_og_kulturarv",
+        "kultfilm_resepsjon_og_fellesskap"
+      ],
+      "rationale": "Kultstatusens historiske varighet og samtidige resepsjonsfellesskap krever ulike belegg.",
+      "boundary_note": "Kultfilm Resepsjon eies av arkiv_kulturarv_minne_stjerner + visning_publikum_resepsjon_deltakelse. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Kultstatusens historiske varighet og samtidige resepsjonsfellesskap krever ulike belegg.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_nisjeminne",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "kultfilm_og_resepsjon",
+      "legacy_hook_title": "Kultfilm og resepsjon",
+      "legacy_title": "Nisjeminne",
+      "action": "merge",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "kultstatus_og_kulturarv"
+      ],
+      "rationale": "Nisjeminne er en mulig virkning av kultstatus og marginal kulturarv, ikke et presist eget objekt.",
+      "boundary_note": "Nisjeminne eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Nisjeminne er en mulig virkning av kultstatus og marginal kulturarv, ikke et presist eget objekt.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_festivalminne",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "festivalminne",
+      "legacy_hook_title": "Festivalminne",
+      "legacy_title": "Festivalminne",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "festivalminne_programhistorie_og_erindring"
+      ],
+      "rationale": "Festivalminne forbinder programarkiv, sted, hendelse og deltakeres senere erindring.",
+      "boundary_note": "Festivalminne eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Festivalminne forbinder programarkiv, sted, hendelse og deltakeres senere erindring.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_filmoffentlighet_minne",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "festivalminne",
+      "legacy_hook_title": "Festivalminne",
+      "legacy_title": "Filmoffentlighet Minne",
+      "action": "merge",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "festivalminne_programhistorie_og_erindring"
+      ],
+      "rationale": "Filmoffentlighetens minne inngår i dokumenterbare program- og hendelseshistorier.",
+      "boundary_note": "Filmoffentlighet Minne eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Filmoffentlighetens minne inngår i dokumenterbare program- og hendelseshistorier.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_tapte_bilder",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "tapte_bilder",
+      "legacy_hook_title": "Tapte bilder",
+      "legacy_title": "Tapte Bilder",
+      "action": "keep",
+      "target_domain_ids": [
+        "arkiv_kulturarv_minne_stjerner"
+      ],
+      "successor_concept_ids": [
+        "tapte_bilder_fravaer_og_rekonstruksjon"
+      ],
+      "rationale": "Tapte bilder gjør fravær, materialtap, rekonstruksjon og arkivets grenser til faglige problemer.",
+      "boundary_note": "Tapte Bilder eies av arkiv_kulturarv_minne_stjerner. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Tapte bilder gjør fravær, materialtap, rekonstruksjon og arkivets grenser til faglige problemer.",
+      "alias_required": true
+    },
+    {
+      "emne_id": "em_film_tv_glemt_film_tv_historie",
+      "legacy_domain_id": "minne_stjerner_kulturarv",
+      "legacy_domain_title": "Minne, stjerner og kulturarv",
+      "legacy_hook_id": "tapte_bilder",
+      "legacy_hook_title": "Tapte bilder",
+      "legacy_title": "Glemt Film TV Historie",
+      "action": "move",
+      "target_domain_ids": [
+        "film_tv_historie_historiografi"
+      ],
+      "successor_concept_ids": [
+        "glemte_forlop_og_historiografisk_revisjon"
+      ],
+      "rationale": "Glemte forløp krever historiografisk kildekritikk og revisjon av etablerte perioder og kanoner.",
+      "boundary_note": "Glemt Film TV Historie eies av film_tv_historie_historiografi. Naboområder kan levere case og metoder, men overtar ikke denne begrunnelsen: Glemte forløp krever historiografisk kildekritikk og revisjon av etablerte perioder og kanoner.",
+      "alias_required": true
+    }
+  ]
+}
