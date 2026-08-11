@@ -71,12 +71,18 @@ Oslo byleksikon beskriver det som **spesielt for Torggata** at én familie hadde
 Nye profiler:
 
 1. Ludvig Christian Jensen (1834–1910) – delikatesseforretning i nr. 5a fra 1873; bodde også i nr. 5 i 1873–88.
-2. Adelsten Jensen (1866–1916) – herre- og barneekvipering i nr. 1 fra 1893.
+2. Adelsten Jensen (1866–1918) – grunnla herre- og barneekviperingsforretningen i Torggata 2 i 1890; flyttet til Torggata 1 i 1901.
 3. Peter Marinius Jensen (1860–1939) – P. M. Jensen, kjøttvare- og delikatessebutikk i nr. 5b fra 1896.
 4. Karl A. Jensen (1861–1917) – vilt- og lakseforretning i nr. 7 fra 1914.
 5. Thorvald Jensen (1870–1916) – kompanjong i farens firma.
 
 Disse produseres samlet i **8A2**, slik at familieforhold, virksomhetsroller og adresser kan kontrolleres konsekvent.
+
+
+
+### 8A2 kildepresisering – Adelsten Jensen
+
+Den generelle Torggata-artikkelen oppgir Adelsten Jensen som 1866–1916 og forenkler Torggata 1-koblingen til 1893. Oslo byleksikons egen Adelsten Jensen-artikkel oppgir 1866–1918, grunnleggelse i Torggata 2 i 1890 og flytting til Hasselgården i Torggata 1 i 1901. 8A2 bruker den dedikerte person-/firmaartikkelen for disse metadataene, mens Torggata-artikkelen fortsatt brukes for familieklyngen. Konflikten er dermed eksplisitt dokumentert og den eldre arbeidslisten skal ikke gjenbrukes ukritisk.
 
 ### 8A3 – dokumenterte beboere, arbeidende og minnespor
 

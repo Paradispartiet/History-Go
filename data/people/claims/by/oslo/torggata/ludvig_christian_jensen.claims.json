@@ -1,0 +1,107 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "ludvig_christian_jensen",
+  "profile_file": "data/people/by/oslo/torggata/ludvig_christian_jensen.json",
+  "identity": {
+    "canonical_identity": "Ludvig Christian Jensen (1834–1910), delikatessehandleren bak Ludvig Jensen & Co. i Torggata 5a.",
+    "name_variants": [
+      "Ludvig Christian Jensen",
+      "Ludvig Jensen"
+    ],
+    "not": [
+      "navnelike personer",
+      "firmaet som selvstendig person"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_lifespan",
+      "claim": "Ludvig Christian Jensen levde 1834–1910.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "avsnittet om Jensen-familiens fire forretninger",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "business_torggata_1873",
+      "claim": "Ludvig Christian Jensen hadde delikatesseforretningen Ludvig Jensen & Co. i Torggata 5a fra 1873.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "avsnittet om Jensen-familiens fire forretninger",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "residence_torggata_1873_1888",
+      "claim": "Ludvig Christian Jensen bodde i Torggata 5 fra 1873 til 1888.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "husoppføringen for Torggata 5",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_lifespan"
+    ],
+    "kindLabel": [
+      "business_torggata_1873"
+    ],
+    "year": [
+      "business_torggata_1873"
+    ],
+    "placeId": [
+      "business_torggata_1873",
+      "residence_torggata_1873_1888"
+    ],
+    "places[torggata]": [
+      "business_torggata_1873",
+      "residence_torggata_1873_1888"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "business_torggata_1873",
+          "residence_torggata_1873_1888"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_lifespan",
+          "business_torggata_1873"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "residence_torggata_1873_1888"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

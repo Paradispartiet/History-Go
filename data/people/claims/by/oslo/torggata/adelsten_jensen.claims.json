@@ -1,0 +1,109 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "adelsten_jensen",
+  "profile_file": "data/people/by/oslo/torggata/adelsten_jensen.json",
+  "identity": {
+    "canonical_identity": "Adelsten Jensen (1866–1918), grunnleggeren av herre- og barneekviperingsforretningen Adelsten Jensen.",
+    "name_variants": [
+      "Adelsten Jensen"
+    ],
+    "not": [
+      "navnelike personer",
+      "firmaet som selvstendig person"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_business_lifespan",
+      "claim": "Adelsten Jensen (1866–1918) grunnla herre- og barneekviperingsforretningen Adelsten Jensen i 1890.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Adelsten_Jensen",
+      "source_location": "innledningen",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "torggata_address_chronology",
+      "claim": "Forretningen startet i Torggata 2 og flyttet i 1901 til Hasselgården i Torggata 1.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Adelsten_Jensen",
+      "source_location": "innledningen og avsnittet om lokalene",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "jensen_family_relation",
+      "claim": "Adelsten Jensen var en av Ludvig Christian Jensens fire sønner.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "avsnittet om Jensen-familiens fire forretninger",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_business_lifespan"
+    ],
+    "kindLabel": [
+      "identity_business_lifespan"
+    ],
+    "year": [
+      "identity_business_lifespan"
+    ],
+    "placeId": [
+      "torggata_address_chronology"
+    ],
+    "places[torggata]": [
+      "torggata_address_chronology"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_business_lifespan",
+          "torggata_address_chronology"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_business_lifespan"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "torggata_address_chronology"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "jensen_family_relation"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

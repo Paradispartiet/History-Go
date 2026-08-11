@@ -1,0 +1,130 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "peter_marinius_jensen",
+  "profile_file": "data/people/by/oslo/torggata/peter_marinius_jensen.json",
+  "identity": {
+    "canonical_identity": "Kjøpmann Peter Marinius Jensen (1860–1939), sønn av Ludvig Christian Jensen og innehaver av P. M. Jensen i Torggata 5b.",
+    "name_variants": [
+      "Peter Marinius Jensen",
+      "P. M. Jensen"
+    ],
+    "not": [
+      "navnelike personer",
+      "firmaet som selvstendig person"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_profession_lifespan",
+      "claim": "Peter Marinius Jensen var kjøpmann og levde 1860–1939.",
+      "status": "verified",
+      "source_url": "https://snl.no/Ludvig_Irgens-Jensen",
+      "source_location": "faktaboksens familieopplysninger om Ludvig Irgens-Jensens far",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "jensen_family_relation",
+      "claim": "Peter Marinius Jensen var en av Ludvig Christian Jensens fire sønner.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "avsnittet om Jensen-familiens fire forretninger",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "business_torggata_1896",
+      "claim": "Peter Marinius Jensen drev kjøttvare- og delikatessebutikken P. M. Jensen i Torggata 5b fra 1896, ved siden av farens forretning.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "avsnittet om Jensen-familiens fire forretninger",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_profession_lifespan"
+    ],
+    "kindLabel": [
+      "identity_profession_lifespan"
+    ],
+    "year": [
+      "business_torggata_1896"
+    ],
+    "placeId": [
+      "business_torggata_1896"
+    ],
+    "places[torggata]": [
+      "business_torggata_1896"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_profession_lifespan",
+          "jensen_family_relation",
+          "business_torggata_1896"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "business_torggata_1896"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "business_torggata_1896"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_profession_lifespan",
+          "jensen_family_relation"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "business_torggata_1896"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "business_torggata_1896"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claim_ids": [
+          "business_torggata_1896"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "3/3",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
