@@ -53,16 +53,20 @@ function updateRegistry(chapter) {
   const row={id:CHAPTER_ID,title:chapter.title,subtitle:chapter.subtitle,file:CHAPTER_FILE,primary_domain_id:DOMAIN_ID,chapter_role:'core',emne_ids:chapter.emne_ids,claimsFile:`${DIR}/claims.json`,briefFile:`${DIR}/brief.json`};
   const i=subject.chapters.findIndex((c)=>c.id===CHAPTER_ID); if(i>=0) subject.chapters[i]=row; else subject.chapters.push(row);
   subject.chapters.sort((a,b)=>ORDER.indexOf(a.primary_domain_id)-ORDER.indexOf(b.primary_domain_id));
-  assert(subject.chapters.length===5,'Psykologi skal ha 5/6 kapitler');
-  subject.canonicalModel={...(subject.canonicalModel||{}),note:'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. Fem redaksjonelle kapitler er materialisert, inkludert Sosialpsykologi, normalitet og stigma. Samlet fulltekstdekning er 51/58 emner, med eksplisitt diagnose-, gruppe- og stigmatypestemplingsvern.'};
-  subject.editorialPlan={targetChapterCount:6,completionRequirements:['all_canonical_domains_covered','all_canonical_emners_covered_exactly_once','all_canonical_methods_resolved','paragraph_claim_trace_complete','minimum_15_external_sources_per_chapter','do_not_diagnose_people_guard','full_subject_audit_green'],nextGate:'remaining_domain_chapter_production'};
-  registry.version='2.71.0'; registry.updatedAt='2026-08-11'; write(REGISTRY_FILE,registry);
+  assert([5,6].includes(subject.chapters.length),'Psykologi skal stå på 5/6 eller 6/6 kapitler');
+  if(subject.chapters.length===5){
+    subject.canonicalModel={...(subject.canonicalModel||{}),note:'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. Fem redaksjonelle kapitler er materialisert, inkludert Sosialpsykologi, normalitet og stigma. Samlet fulltekstdekning er 51/58 emner, med eksplisitt diagnose-, gruppe- og stigmatypestemplingsvern.'};
+    subject.editorialPlan={targetChapterCount:6,completionRequirements:['all_canonical_domains_covered','all_canonical_emners_covered_exactly_once','all_canonical_methods_resolved','paragraph_claim_trace_complete','minimum_15_external_sources_per_chapter','do_not_diagnose_people_guard','full_subject_audit_green'],nextGate:'remaining_domain_chapter_production'};
+    registry.version='2.71.0'; registry.updatedAt='2026-08-11';
+  }
+  write(REGISTRY_FILE,registry);
 }
 function updateStatus(){
   const status=read(STATUS_FILE), subject=status.subjects.find((s)=>s.id==='psykologi'); assert(subject,'Psykologi mangler subject_status');
+  if(subject.editorialStatus==='complete' || subject.editorialStatus==='expanded_and_audited') return;
   subject.editorialStatus='chapters_in_progress'; subject.nextGate='remaining_domain_chapter_production';
   subject.note='Psykologi har seks canonicale fagområder og 58 aktive emner. Fem områder er nå fulltekstmaterialisert. Sosialpsykologi, normalitet og stigma dekker 8/8 emner med 15 canonicale metoder, 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims og 21 kilderegistreringer (20 eksterne). Samlet dekker de fem kapitlene 51/58 emner. Ett canonicalt kapittel gjenstår.';
   status.version='1.59.0'; status.updatedAt='2026-08-11'; write(STATUS_FILE,status);
 }
 const {chapter,sources,claims}=validate(); updateRegistry(chapter); updateStatus();
-console.log(`Materialiserte Psykologi ${DOMAIN_ID}: 8/8 emner, 15 metoder, 3 moduler, 9 seksjoner, 27 avsnitt, ${claims.length} claims og ${sources.length} kilder. Psykologi står 5/6 kapitler.`);
+console.log(`Materialiserte Psykologi ${DOMAIN_ID}: 8/8 emner, 15 metoder, 3 moduler, 9 seksjoner, 27 avsnitt, ${claims.length} claims og ${sources.length} kilder. Fremdrift beholdes ved 6/6.`);
