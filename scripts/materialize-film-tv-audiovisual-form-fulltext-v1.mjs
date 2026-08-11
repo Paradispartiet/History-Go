@@ -124,9 +124,9 @@ export function buildFilmTvAudiovisualFormFulltextV1() {
         ])
       ],
       workedExamples: [
-        { id: 'ftv-af-ex-1', title: 'Lydbroen i Yi Yi', situation: 'Musikk starter over ett bilde og får synlig kilde først etter klippet.', method: 'Registrer når lyden begynner, når bildet skifter, og når kilden avsløres.', conclusion: 'Lyd kan både binde scener sammen og midlertidig styre en feil forventning.' },
-        { id: 'ftv-af-ex-2', title: 'Dybdelag i Citizen Kane', situation: 'Flere figurer holdes lesbare i forskjellige avstandsplan.', method: 'Tegn bildeplanene, registrer fokus, lys, blikk og blokkering, og skill dette fra tolkningen av makt og lojalitet.', conclusion: 'Mening kan organiseres i relasjoner innenfor ett shot, ikke bare mellom klipp.' },
-        { id: 'ftv-af-ex-3', title: 'Syntetisk bevegelse i Gravity', situation: 'Live action, animasjon og skjulte klipp oppleves som lange sammenhengende bevegelser.', method: 'Skille dokumentert produksjonskunnskap fra det ferdige bildets bevegelses-, lys- og perspektivspor.', conclusion: 'Sømløshet er et produsert formresultat som kan analyseres uten at verktøyhistorien overtar kapitlet.' }
+        { id: 'ftv-af-ex-1', title: 'Lydbroen i Yi Yi', situation: 'Musikk starter over ett bilde og får synlig kilde først etter klippet.', analysis: ['Registrer når lyden begynner, når bildet skifter, og når kilden avsløres.', 'Konkluder først da: Lyd kan både binde scener sammen og midlertidig styre en feil forventning.'] },
+        { id: 'ftv-af-ex-2', title: 'Dybdelag i Citizen Kane', situation: 'Flere figurer holdes lesbare i forskjellige avstandsplan.', analysis: ['Tegn bildeplanene, registrer fokus, lys, blikk og blokkering, og skill dette fra tolkningen av makt og lojalitet.', 'Konkluder først da: Mening kan organiseres i relasjoner innenfor ett shot, ikke bare mellom klipp.'] },
+        { id: 'ftv-af-ex-3', title: 'Syntetisk bevegelse i Gravity', situation: 'Live action, animasjon og skjulte klipp oppleves som lange sammenhengende bevegelser.', analysis: ['Skill dokumentert produksjonskunnskap fra det ferdige bildets bevegelses-, lys- og perspektivspor.', 'Konkluder først da: Sømløshet er et produsert formresultat som kan analyseres uten at verktøyhistorien overtar kapitlet.'] }
       ],
       commonMisconceptions: [
         { claim: 'Rytme er det samme som rask klipping.', correction: 'Rytme kan ligge i shotvarighet, bevegelse, tale, musikk, stillhet og overgang samtidig.' },

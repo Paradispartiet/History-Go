@@ -54,6 +54,7 @@ test('Audiovisuell form og sansing hydrerer rendererfeltene', async () => {
   assert.equal(chapter.claims.length, 20);
   assert.equal(chapter.concepts.length, 6);
   assert.equal(chapter.workedExamples.length, 3);
+  assert.ok(chapter.workedExamples.every((row) => row.title && row.situation && Array.isArray(row.analysis) && row.analysis.length >= 2 && row.analysis.every(Boolean)));
   assert.equal(chapter.commonMisconceptions.length, 5);
   assert.equal(chapter.applicationTasks.length, 5);
   assert.equal(chapter.selfCheck.length, 7);
