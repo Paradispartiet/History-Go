@@ -1,0 +1,261 @@
+{
+  "schema": "history_go_psykologi_biological_university_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "subject_id": "psykologi",
+  "branch_id": "biological_psychology",
+  "status": "complete",
+  "purpose": "Universitetsnær biologisk-psykologi-gren som dekker nevrale systemer, utvikling og variasjon, kroppslig regulering og biologiske forskningsmetoder uten å redusere psykologiske fenomener til ett biologisk nivå.",
+  "completion_contract": {
+    "required_topic_count": 15,
+    "exact_topic_ids_required": true,
+    "unique_topic_ids_required": true,
+    "minimum_source_count": 8,
+    "every_topic_requires_sources": true,
+    "every_topic_requires_learning_outcomes": true,
+    "every_topic_requires_key_distinctions": true,
+    "every_topic_requires_misuse_guard": true,
+    "required_families": ["cellular_systems", "development_variation", "regulation_behavior", "methods_inference"],
+    "biological_determinism_guard_required": true
+  },
+  "sources": [
+    {
+      "source_id": "apa_undergraduate_guidelines_3_0",
+      "publisher": "American Psychological Association",
+      "title": "APA Guidelines for the Undergraduate Psychology Major: Version 3.0",
+      "url": "https://www.apa.org/about/policy/undergraduate-psychology-major.pdf",
+      "source_location": "Goal 1: Content Knowledge and Applications of Psychological Science; biological bases and scientific inquiry",
+      "type": "professional_guideline",
+      "verified_at": "2026-08-11",
+      "supports": ["biological_bases", "scientific_inquiry", "ethics", "levels_of_explanation"]
+    },
+    {
+      "source_id": "openstax_psychology_2e_biopsychology",
+      "publisher": "OpenStax, Rice University",
+      "title": "Psychology 2e, Chapter 3: Biopsychology",
+      "url": "https://openstax.org/books/psychology-2e/pages/3-introduction",
+      "source_location": "Chapter 3, sections 3.1–3.4",
+      "type": "peer_reviewed_open_textbook",
+      "verified_at": "2026-08-11",
+      "supports": ["genetics", "neurons_glia", "neural_communication", "nervous_system", "brain", "endocrine_system"]
+    },
+    {
+      "source_id": "ninds_brain_basics",
+      "publisher": "National Institute of Neurological Disorders and Stroke",
+      "title": "Brain Basics",
+      "url": "https://www.ninds.nih.gov/health-information/public-education/brain-basics",
+      "source_location": "Brain Basics collection: neurons, brain structure, development and neurological research",
+      "type": "official_neuroscience_resource",
+      "verified_at": "2026-08-11",
+      "supports": ["neurons", "brain_systems", "plasticity", "brain_behavior"]
+    },
+    {
+      "source_id": "nhgri_genetics_glossary",
+      "publisher": "National Human Genome Research Institute",
+      "title": "Talking Glossary of Genomic and Genetic Terms",
+      "url": "https://www.genome.gov/genetics-glossary",
+      "source_location": "Entries for gene, polygenic trait, gene expression and gene–environment interaction",
+      "type": "official_genomics_reference",
+      "verified_at": "2026-08-11",
+      "supports": ["genetics", "polygenicity", "gene_environment", "gene_expression"]
+    },
+    {
+      "source_id": "nigms_circadian_rhythms",
+      "publisher": "National Institute of General Medical Sciences",
+      "title": "Circadian Rhythms",
+      "url": "https://www.nigms.nih.gov/education/fact-sheets/Pages/circadian-rhythms",
+      "source_location": "Sections on biological clocks, the SCN and physiological rhythms",
+      "type": "official_biomedical_fact_sheet",
+      "verified_at": "2026-08-11",
+      "supports": ["circadian_rhythms", "sleep", "hormones", "gene_regulation"]
+    },
+    {
+      "source_id": "nimh_neuroendocrinology_program",
+      "publisher": "National Institute of Mental Health",
+      "title": "Neuroendocrinology and Neuroimmunology Program",
+      "url": "https://www.nimh.nih.gov/about/organization/dnbbs/molecular-and-cellular-neuroscience-research-branch/neuroendocrinology-and-neuroimmunology-program",
+      "source_location": "Program scope: hormonal modulation of brain circuits relevant to affect, cognition and social behavior",
+      "type": "official_research_program",
+      "verified_at": "2026-08-11",
+      "supports": ["neuroendocrinology", "hormone_receptors", "stress", "affect"]
+    },
+    {
+      "source_id": "nida_drugs_brains_behavior",
+      "publisher": "National Institute on Drug Abuse",
+      "title": "Drugs, Brains, and Behavior: The Science of Addiction",
+      "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/drugs-brain",
+      "source_location": "How drugs affect neurotransmission, reward, stress and self-control circuits",
+      "type": "official_neuroscience_review",
+      "verified_at": "2026-08-11",
+      "supports": ["psychopharmacology", "neurotransmission", "reward", "plasticity"]
+    },
+    {
+      "source_id": "nih_brain_initiative",
+      "publisher": "National Institutes of Health",
+      "title": "The BRAIN Initiative",
+      "url": "https://www.nih.gov/brain",
+      "source_location": "Program overview: recording, mapping, modulation, tool development and neuroethics",
+      "type": "official_research_initiative",
+      "verified_at": "2026-08-11",
+      "supports": ["neuroscience_methods", "recording", "imaging", "stimulation", "neuroethics"]
+    }
+  ],
+  "topics": [
+    {
+      "topic_id": "nerveceller_og_glia",
+      "title": "Nerveceller og glia",
+      "family": "cellular_systems",
+      "definition": "Nervesystemet består av nevroner som mottar, integrerer og overfører signaler, og flere typer gliaceller som blant annet regulerer miljøet rundt nevroner, myelinisering, immunrespons og metabolsk støtte.",
+      "learning_outcomes": ["Beskrive hoveddelene i et nevron og forklare hvordan struktur støtter signaloverføring.", "Forklare hvorfor glia er aktive bidragsytere til nervesystemets funksjon og ikke bare passivt støttevev."],
+      "key_distinctions": ["nevron_vs_gliacelle", "struktur_vs_funksjon"],
+      "misuse_guard": "Celletyper har mange og kontekstavhengige funksjoner; én celletype eller ett molekyl kan ikke alene forklare en kompleks psykologisk egenskap.",
+      "source_ids": ["openstax_psychology_2e_biopsychology", "ninds_brain_basics"]
+    },
+    {
+      "topic_id": "aksjonspotensial_og_synaptisk_kommunikasjon",
+      "title": "Aksjonspotensial og synaptisk kommunikasjon",
+      "family": "cellular_systems",
+      "definition": "Nevral kommunikasjon kombinerer elektriske endringer over cellemembranen med kjemisk eller elektrisk signaloverføring i synapser, der signalets virkning avhenger av reseptorer, nettverk og mottakercellens tilstand.",
+      "learning_outcomes": ["Forklare terskel, aksjonspotensial og overføring fra aksonterminal til postsynaptisk celle.", "Skille signalstoffets tilstedeværelse fra den funksjonelle virkningen i en bestemt reseptor- og nettverkskontekst."],
+      "key_distinctions": ["elektrisk_ledning_vs_synaptisk_overforing", "signalstoff_vs_psykologisk_funksjon"],
+      "misuse_guard": "Utsagn som at én nevrotransmitter er et enkelt lykke-, frykt- eller motivasjonsstoff overser reseptorer, kretsløp, tid og samspill mellom systemer.",
+      "source_ids": ["openstax_psychology_2e_biopsychology", "ninds_brain_basics"]
+    },
+    {
+      "topic_id": "sentralt_og_perifert_nervesystem",
+      "title": "Sentralt og perifert nervesystem",
+      "family": "cellular_systems",
+      "definition": "Sentralnervesystemet omfatter hjernen og ryggmargen, mens det perifere nervesystemet forbinder disse med sanseorganer, muskler og indre organer gjennom somatiske, autonome og enteriske delsystemer.",
+      "learning_outcomes": ["Skille sentrale og perifere deler av nervesystemet og deres informasjonsretninger.", "Forklare hvordan sympatisk og parasympatisk regulering inngår i fleksibel kroppslig tilpasning."],
+      "key_distinctions": ["cns_vs_pns", "somatisk_vs_autonom_regulering"],
+      "misuse_guard": "Sympatisk og parasympatisk aktivitet er ikke en enkel av/på-bryter eller synonymt med henholdsvis dårlig og god tilstand; systemene samregulerer organer situasjonsavhengig.",
+      "source_ids": ["openstax_psychology_2e_biopsychology", "ninds_brain_basics"]
+    },
+    {
+      "topic_id": "hjernens_systemer_og_nettverk",
+      "title": "Hjernens systemer og nettverk",
+      "family": "cellular_systems",
+      "definition": "Atferd og mentale prosesser oppstår gjennom dynamisk aktivitet i distribuerte hjerneområder og forbindelser, der samme område kan delta i flere funksjoner og samme funksjon kan kreve flere nettverk.",
+      "learning_outcomes": ["Koble sentrale hjernestrukturer til dokumenterte bidrag uten å gjøre dem til isolerte kontrollsentre.", "Forklare hvorfor nettverks- og systemnivå ofte gir bedre modeller enn én-region–én-funksjon-kart."],
+      "key_distinctions": ["lokalisering_vs_distribuert_nettverk", "bidrag_vs_fullstendig_forklaring"],
+      "misuse_guard": "Et aktivert område i et hjernebilde viser ikke alene en bestemt tanke, følelse eller årsak; tolkningen krever design, kontrast, målemodell og alternativ evidens.",
+      "source_ids": ["ninds_brain_basics", "nih_brain_initiative"]
+    },
+    {
+      "topic_id": "nevral_utvikling_og_plastisitet",
+      "title": "Nevral utvikling og plastisitet",
+      "family": "development_variation",
+      "definition": "Nervesystemet formes gjennom utvikling, erfaring og læring ved prosesser som celledannelse, migrasjon, synapsedannelse, beskjæring, myelinisering og aktivitetsavhengige endringer i forbindelser.",
+      "learning_outcomes": ["Forklare plastisitet som flere biologiske endringsprosesser gjennom livsløpet.", "Vurdere hvordan utviklingsfase, erfaring og begrensninger påvirker mulighet for endring."],
+      "key_distinctions": ["plastisitet_vs_ubegrenset_formbarhet", "utviklingsendring_vs_skade_eller_lidelse"],
+      "misuse_guard": "Plastisitet betyr ikke at hjernen kan formes vilkårlig eller at all skade kan reverseres; kapasitet og konsekvenser avhenger av system, tidspunkt og kontekst.",
+      "source_ids": ["ninds_brain_basics", "openstax_psychology_2e_biopsychology"]
+    },
+    {
+      "topic_id": "genetikk_arvelighet_og_polygenisitet",
+      "title": "Genetikk, arvelighet og polygenisitet",
+      "family": "development_variation",
+      "definition": "Psykologiske trekk er vanligvis komplekse og polygeniske: variasjon knyttes til mange genetiske varianter med små, kontekstavhengige bidrag, og arvelighetsestimater beskriver variasjon i en bestemt populasjon og situasjon.",
+      "learning_outcomes": ["Skille genetisk variant, polygenisk bidrag og populasjonsbasert arvelighetsestimat.", "Forklare hvorfor høy arvelighet ikke innebærer uforanderlighet eller fast individuell skjebne."],
+      "key_distinctions": ["arvelighet_i_populasjon_vs_individuell_arsak", "polygenisk_bidrag_vs_enkeltgenforklaring"],
+      "misuse_guard": "Arvelighet er ikke prosentandelen av et individs egenskap som skyldes gener, og kan ikke brukes som et mål på hvor vanskelig et trekk er å endre.",
+      "source_ids": ["nhgri_genetics_glossary", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "gen_miljo_og_epigenetikk",
+      "title": "Gen–miljø-samspill og epigenetikk",
+      "family": "development_variation",
+      "definition": "Genuttrykk og fenotyper utvikles i samspill mellom biologiske forutsetninger og fysiske, sosiale og kulturelle miljøer; epigenetiske mekanismer regulerer genaktivitet uten å endre selve DNA-sekvensen.",
+      "learning_outcomes": ["Forklare gen–miljø-korrelasjon og gen–miljø-interaksjon som ulike mekanismer.", "Skille regulering av genuttrykk fra påstander om at erfaring omskriver DNA eller arves automatisk."],
+      "key_distinctions": ["gen_miljo_interaksjon_vs_additive_effekter", "epigenetisk_regulering_vs_dna_sekvensendring"],
+      "misuse_guard": "Epigenetikk er ikke en generell mekanisme som gjør enhver erfaring biologisk permanent eller arvelig; slike påstander krever spesifikk mekanistisk og generasjonsoverførbar evidens.",
+      "source_ids": ["nhgri_genetics_glossary", "ninds_brain_basics"]
+    },
+    {
+      "topic_id": "hormoner_og_nevroendokrin_regulering",
+      "title": "Hormoner og nevroendokrin regulering",
+      "family": "regulation_behavior",
+      "definition": "Nervesystem og hormonsystem samvirker gjennom signalveier og tilbakekoblingssløyfer der hormoner påvirker reseptorer og hjernekretser, mens hjernen regulerer hormonfrigjøring etter kroppens tilstand og kontekst.",
+      "learning_outcomes": ["Beskrive hvordan hypotalamus, hypofyse og målorganer kan inngå i regulerende akser.", "Forklare hvorfor hormonvirkning avhenger av reseptorer, dose, tid, vev og sosial kontekst."],
+      "key_distinctions": ["hormon_niva_vs_hormonvirkning", "korrelert_biomarkor_vs_atferdsarsak"],
+      "misuse_guard": "Et enkelt hormonnivå kan ikke brukes til å lese personlighet, moral eller motivasjon; målingen varierer over tid og får mening først i et dokumentert reguleringssystem.",
+      "source_ids": ["nimh_neuroendocrinology_program", "openstax_psychology_2e_biopsychology"]
+    },
+    {
+      "topic_id": "sanser_og_transduksjon",
+      "title": "Sanser og transduksjon",
+      "family": "regulation_behavior",
+      "definition": "Sanser begynner med reseptorer som omformer fysisk eller kjemisk energi til nevrale signaler, før informasjonen filtreres, integreres og fortolkes i samspill med forventning, oppmerksomhet og handling.",
+      "learning_outcomes": ["Forklare transduksjon og videre signalbehandling i minst to sansesystemer.", "Skille registrering av stimulus fra perseptuell fortolkning og bevisst opplevelse."],
+      "key_distinctions": ["sensasjon_vs_persepsjon", "stimulus_vs_nevral_representasjon"],
+      "misuse_guard": "Sanseopplevelse er ikke en direkte kopi av omverdenen, men dette betyr heller ikke at opplevelsen er vilkårlig; den begrenses av stimulus, reseptorer, system og kontekst.",
+      "source_ids": ["openstax_psychology_2e_biopsychology", "ninds_brain_basics"]
+    },
+    {
+      "topic_id": "sovn_og_dognrytmer",
+      "title": "Søvn og døgnrytmer",
+      "family": "regulation_behavior",
+      "definition": "Søvn reguleres av samspill mellom homeostatisk søvntrykk, døgnrytmer og miljøsignaler, mens biologiske klokker koordinerer søvn, hormoner, temperatur, appetitt og andre fysiologiske prosesser.",
+      "learning_outcomes": ["Skille døgnrytme fra homeostatisk søvnregulering.", "Forklare hvordan lys og andre tidsgivere påvirker den suprachiasmatiske kjernen og rytmer i kroppen."],
+      "key_distinctions": ["dognrytme_vs_sovntrykk", "melatonin_signal_vs_sovemedisinmodell"],
+      "misuse_guard": "En persons søvnmønster kan ikke forklares av ett hormon eller én vane alene; rytmer, søvntrykk, helse, miljø og sosial tidsstruktur virker sammen.",
+      "source_ids": ["nigms_circadian_rhythms", "openstax_psychology_2e_biopsychology"]
+    },
+    {
+      "topic_id": "homeostase_motivasjon_og_belonning",
+      "title": "Homeostase, motivasjon og belønning",
+      "family": "regulation_behavior",
+      "definition": "Motivert atferd formes av kroppslige behov, lærte forventninger, mål, sosial kontekst og nevrale systemer for verdi, innsats, læring og forsterkning, ikke av ett universelt belønningssenter.",
+      "learning_outcomes": ["Koble homeostatisk regulering til sult, tørste og temperatur uten å redusere motivasjon til drifter.", "Skille belønning, forsterkning, forventning og subjektiv lyst som relaterte, men ulike prosesser."],
+      "key_distinctions": ["belonning_vs_forsterkning", "liking_vs_wanting_og_laring"],
+      "misuse_guard": "Dopamin er ikke et enkelt lyst- eller belønningsmål; signaler varierer mellom kretsløp og kan bidra til læring, saliens, bevegelse og motivasjon på ulike måter.",
+      "source_ids": ["nida_drugs_brains_behavior", "ninds_brain_basics"]
+    },
+    {
+      "topic_id": "stress_foleser_og_kroppslig_regulering",
+      "title": "Stress, følelser og kroppslig regulering",
+      "family": "regulation_behavior",
+      "definition": "Stress- og følelsesprosesser involverer fortolkning, læring, autonome responser, hormonsignaler og distribuerte hjernekretser som forbereder og regulerer handling under skiftende krav.",
+      "learning_outcomes": ["Forklare akutt stressrespons og tilbakekobling uten å gjøre alle stressreaksjoner patologiske.", "Vurdere hvordan biologisk respons, subjektiv opplevelse og sosial situasjon kan måles separat."],
+      "key_distinctions": ["akutt_tilpasning_vs_langvarig_belastning", "fysiologisk_aktivering_vs_bestemt_folelse"],
+      "misuse_guard": "Puls, kortisol eller hjerneaktivitet kan ikke alene identifisere hvilken følelse en person har eller om vedkommende har en psykisk lidelse.",
+      "source_ids": ["nimh_neuroendocrinology_program", "ninds_brain_basics"]
+    },
+    {
+      "topic_id": "psykofarmakologi_og_nevrotransmittersystemer",
+      "title": "Psykofarmakologi og nevrotransmittersystemer",
+      "family": "regulation_behavior",
+      "definition": "Psykoaktive stoffer påvirker reseptorer, transportører, enzymer og signalveier med virkninger som avhenger av dose, administrasjon, tidsforløp, toleranse, individ og samspill mellom flere nevrale systemer.",
+      "learning_outcomes": ["Skille agonistisk, antagonistisk og indirekte påvirkning av synaptisk signalering.", "Forklare hvorfor ønskede virkninger, bivirkninger, toleranse og abstinens må analyseres over tid og på flere nivåer."],
+      "key_distinctions": ["reseptorvirkning_vs_klinisk_utfall", "akutt_effekt_vs_langvarig_tilpasning"],
+      "misuse_guard": "At et legemiddel påvirker et signalsystem viser ikke at en lidelse skyldes en enkel kjemisk ubalanse, og faginnholdet skal ikke brukes til individuelle behandlingsråd.",
+      "source_ids": ["nida_drugs_brains_behavior", "openstax_psychology_2e_biopsychology"]
+    },
+    {
+      "topic_id": "biologiske_forskningsmetoder",
+      "title": "Biologiske forskningsmetoder",
+      "family": "methods_inference",
+      "definition": "Biologisk psykologi kombinerer blant annet elektrofysiologi, hjerneavbildning, psykofysiologi, genetiske design, lesjonsstudier, farmakologiske manipulasjoner, stimulering og dyremodeller for å undersøke ulike nivåer av mekanisme.",
+      "learning_outcomes": ["Sammenligne tidslig, romlig og kausal oppløsning i EEG, fMRI, PET, lesjons- og stimuleringsdesign.", "Velge metode ut fra problemstilling og vurdere målemodell, artefakter, utvalg og generaliserbarhet."],
+      "key_distinctions": ["struktur_vs_funksjonell_aktivitet", "malekorrelat_vs_kausal_manipulasjon"],
+      "misuse_guard": "Ingen biologisk metode leser tanker direkte; hver metode måler et avgrenset signal gjennom antakelser, bearbeiding og usikkerhet som begrenser slutningen.",
+      "source_ids": ["nih_brain_initiative", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "forklaringsnivaer_kausalitet_og_nevroetikk",
+      "title": "Forklaringsnivåer, kausalitet og nevroetikk",
+      "family": "methods_inference",
+      "definition": "Biologiske, psykologiske og sosiale forklaringer beskriver forskjellige, sammenkoblede nivåer; ansvarlig slutning krever at man skiller måling fra mekanisme, korrelasjon fra årsak og gruppefunn fra individtolkning.",
+      "learning_outcomes": ["Integrere forklaringsnivåer uten å gjøre biologi irrelevant eller enerådende.", "Identifisere etiske spørsmål ved nevrodata, prediksjon, stimulering, privatliv, stigmatisering og dyreforskning."],
+      "key_distinctions": ["mekanisme_vs_niva_reduksjon", "gruppeestimat_vs_individprediksjon", "mulig_intervensjon_vs_etisk_forsvarlighet"],
+      "misuse_guard": "Biologiske forskjeller legitimerer ikke deterministiske påstander om identitet, evne, skyld eller framtid; prediksjon og intervensjon krever særskilt evidens og etisk vurdering.",
+      "source_ids": ["nih_brain_initiative", "apa_undergraduate_guidelines_3_0", "nhgri_genetics_glossary"]
+    }
+  ],
+  "summary": {
+    "topic_count": 15,
+    "family_counts": {"cellular_systems": 4, "development_variation": 3, "regulation_behavior": 6, "methods_inference": 2},
+    "source_count": 8,
+    "classification": "university_biological_psychology_branch_complete"
+  }
+}
