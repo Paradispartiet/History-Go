@@ -3,7 +3,7 @@
 - Oppdatert: 2026-08-11
 - Place ID: `torggata`
 - Canonical source: `data/places/by/oslo/places/torggata.json`
-- Aktiv `main` ved fasestart: `2f96e793229d1ee818db1cb0d98f59bd1b9c4f4f`
+- Aktiv `main` ved fasestart: `1d63e77d63a3f876ff85545866320d4f52e207cc`
 - Nullmåling: `reports/place-production/torggata-nullmaaling-v1.md`
 - Kildebase: `reports/place-production/torggata-source-base-v1.md`
 - Coordinate research: `reports/place-production/torggata-coordinate-research-v2.md`
@@ -16,12 +16,14 @@
 | 0. Nullmåling | **GODKJENT** | PR #4794, merge `694310c4e9b1b009b38f530479d823621bf5a388`; rapport kontrollert på `main` |
 | 1. Canonical identity/source | **GODKJENT** | PR #4795, merge `3f8d3b3a832e8604f2c1d1406365398c13e21c49`; arbeidskort kontrollert på `main` |
 | 2. Kildebase | **GODKJENT** | PR #4796, merge `15ed74e57cb18940bb9fcba6b4907ac7dc862ae0`; kildebase og arbeidskort lest tilbake fra `main` |
-| 3. Koordinater/geometri | **PÅGÅR – RESEARCH LÅST** | feilårsak og implementeringsstrategi dokumentert i `torggata-coordinate-research-v2.md`; canonical coordinate-data er ikke endret ennå |
+| 3a. Coordinate research | **GODKJENT** | PR #4797, merge `1d63e77d63a3f876ff85545866320d4f52e207cc`; researchrapport lest tilbake fra `main` |
+| 3b. Canonical coordinate apply | **KLAR FOR REVIEW** | place + coordinate-evidence er oppdatert på branch; CI/coordinate-portene må passere før merge |
+| 3c. Kart-QA + control protocol | **IKKE STARTET** | utføres først etter grønn 3b og før fase 4 |
 | 4–15 | **IKKE STARTET** | se nullmålingen |
 
-Bare én produksjonsfase regnes som aktiv om gangen. Fase 4 starter ikke før hele fase 3 er implementert, validert, merget, kartkontrollert og ført i coordinate-control-protokollen.
+Bare én produksjonsfase regnes som aktiv om gangen. Fase 4 starter ikke før hele fase 3 er validert, merget, kontrollert på faktisk `main`, visuelt kartkontrollert og ført i coordinate-control-protokollen.
 
-## Aktiv fase 3 – koordinat, anker, radius og geometry
+## Aktiv fase 3b – canonical coordinate apply
 
 ### LES FØRST gjennomført
 
@@ -32,48 +34,74 @@ Bare én produksjonsfase regnes som aktiv om gangen. Fase 4 starter ikke før he
 - `docs/coordinates/coordinate-control-protocol.md`
 - `docs/coordinates/address-first-coordinate-policy.md`
 - relevant fase 3-del i `docs/PLACE_PRODUCTION_CHECKLIST.md`
-
-### Aktivt filscope i denne del-PR-en
-
 - `reports/place-production/torggata-coordinate-research-v2.md`
+
+### Aktivt filscope
+
+- `data/places/by/oslo/places/torggata.json`
+- `data/coordinate-evidence/oslo/by/torggata.json`
 - `reports/place-production/torggata-workcard-current.md`
 
-Ingen canonical place-, evidence-, index- eller runtimefil endres i research-delsteget.
+Ingen desc/popupDesc-, Leksikon-, quiz-, Story-, People-, Brand-, Works-, Object-, fag- eller rundingssanering inngår i denne del-PR-en.
 
-## Låst identitetsbeslutning
+## Implementert coordinate-beslutning
 
-`torggata` representerer gaten Torggata fra **Stortorvet til Ankertorget**.
+Canonical identitet er fortsatt **Torggata fra Stortorvet til Ankertorget**.
 
-Oslo byleksikon dokumenterer både full gateutstrekning og at Youngstorget krysses av Torggata. Place-identiteten skal derfor ikke snevres inn for å passe dagens OSM-komponent.
+Canonical place er nå endret fra en ufullstendig lengdemidtpunktmodell for Youngstorget–Ankertorget til en eksplisitt semantisk gateankermodell:
 
-## Coordinate-funn
+- `locatorType: street` beholdes;
+- `coordStatus: verified_geometry` beholdes foreløpig som review-kandidat under coordinate-kontrakten;
+- `geocodeAccuracy: semantic_anchor` og `coordRole: line_anchor` beholdes;
+- displaypunktet er Youngstorget-arealets OSM-representasjonspunkt `59.91478, 10.74923` (`osm-way:112054930`);
+- søranker er den navngitte Torggata-way-en `267226140` ved Stortorvet;
+- midtanker er Youngstorget `112054930`;
+- nordanker er `4844706` mot Ankertorget;
+- de gamle to ankrene med reverserte navn er erstattet;
+- den gamle 12-way `routeSegments`-kjeden er fjernet fordi den bare beskrev den nordlige komponenten og feilaktig ble presentert som hele Torggata;
+- `r: 180` beholdes som gameplay-radius og beskrives eksplisitt ikke som gatens fulle geografiske utstrekning.
 
-Den gamle Overpass-batchen fant 13 ways med `name=Torggata`, men valgte bare største connected component på 12 ways.
+Det syntetiseres ikke en falsk eksakt centerline gjennom Youngstorget. OSM-modelleringsgapet mellom navngitte gatekomponenter og torgarealet beholdes synlig i evidensen.
 
-Den utelatte sørlige komponenten er `osm-way:267226140`, som går fra Stortorvet mot Youngstorget. OSM modellerer Youngstorget som eget pedestrian-/torgareal (`osm-way:112054930`), og dette skaper et kartteknisk navnegap før den nordlige Torggata-komponenten starter.
+## Coordinate-evidence
 
-Det er derfor feil å behandle Youngstorget–Ankertorget-komponenten som hele Torggata.
+Evidence-filen er samtidig omskrevet slik at den nå dokumenterer:
 
-Dagens to anchors er i tillegg reversert i navn:
+1. Oslo byleksikons identitets- og krysningsbevis;
+2. sørlig Torggata-way `267226140`;
+3. Youngstorget-areal `112054930` som semantisk line-anchor;
+4. den tidligere researchens dokumenterte feilårsak og inferensgrense;
+5. nye coordinate candidates og full identitetsbeslutning.
 
-- `59.9186126, 10.7573038` ligger nord mot Ankertorget, ikke sør ved Youngstorget;
-- `59.9151042, 10.7498145` ligger sør ved Youngstorget, ikke nord ved Ankertorget.
+Evidence-filen påstår ikke lenger at en 12-way-kjede fra Youngstorget til Ankertorget er komplett gategeometri for Torggata.
 
-## Implementeringsbeslutning for neste delsteg i fase 3
+## Porter som gjenstår før merge av 3b
 
-Neste delsteg skal:
+Fordi lokal `gh`/repo-runner ikke er tilgjengelig i denne kjøringen, skal GitHub Actions/PR-CI være kjørende validator for branchen. Relevant CI må minst dekke eller utløse de samme kontraktene som disse canonical kommandoene:
 
-1. beholde `locatorType: street`;
-2. bruke et dokumentert semantisk line-anchor ved Youngstorget-krysset, ikke et adressepunkt;
-3. registrere sør-, midt- og nordanker for Stortorvet, Youngstorget og Ankertorget;
-4. korrigere de reverserte anchor-navnene;
-5. fjerne/erstatte dagens ufullstendige `routeSegments` slik at en delkjede ikke presenteres som hele gaten;
-6. oppdatere `data/coordinate-evidence/oslo/by/torggata.json` med sørlig way, Youngstorget-gap og nordlig komponent;
-7. beholde `r: 180` med mindre kart-/runtime-QA viser et eget gameplayproblem;
-8. kjøre alle coordinate-portene og visuell kartkontroll;
-9. oppdatere `docs/coordinates/coordinate-control-protocol.md` før fase 3 kan godkjennes.
+```text
+npm run test:coordinate-source-contract
+npm run places:coords:evidence:audit
+npm run places:coords:quality
+npm run places:coords:intake
+npm run audit:places-split-manifest-sync
+npm run places:index:check
+```
 
-Ingen syntetisk «eksakt» OSM-centerline skal diktes gjennom Youngstorget når OSM selv modellerer torget som areal.
+Hvis CI avdekker schema-/contractfeil, korrigeres 3b-branchen før merge. Teknisk grønt resultat er ikke nok til å avslutte hele fase 3; kart-QA og control protocol står igjen i 3c.
+
+## Neste delsteg etter grønn merge
+
+**Fase 3c – kart-QA + coordinate-control-protokoll.**
+
+Der skal:
+
+- canonical place og generert/runtime-index sammenlignes;
+- markøren kontrolleres visuelt på kartet som Torggata/Youngstorget-anker;
+- sør/midt/nord-representasjonen kontrolleres mot stedets faktiske identitet;
+- nærliggende Youngstorget-, Storgata- og andre canonical markører kontrolleres for misvisende overlap;
+- `docs/coordinates/coordinate-control-protocol.md` oppdateres med korrigert Torggata-beslutning;
+- fase 3 først da settes **GODKJENT**.
 
 ## Kjente andre blokkeringer som ikke røres i fase 3
 
@@ -89,19 +117,8 @@ Den gamle ni-runders Torggata-auditen er historikk, ikke dagens canonical proof.
 
 Kategori `by` og dagens `em_by_*` revideres først i fase 4 etter category- og Fagverk-kontraktene. Coordinate-fasen skal ikke drive faglig omklassifisering.
 
-## Forrige fase merget og live-kontrollert
+## Forrige delsteg merget og live-kontrollert
 
-**Ja.** Fase 2 ble squash-merget i PR #4796 med merge `15ed74e57cb18940bb9fcba6b4907ac7dc862ae0`, og både kildebasen og arbeidskortet ble lest tilbake fra faktisk `main`.
+**Ja.** Coordinate research ble squash-merget i PR #4797 med merge `1d63e77d63a3f876ff85545866320d4f52e207cc`, og researchrapporten ble lest tilbake fra faktisk `main`.
 
-## Ferdiggrense for research-delsteget
-
-Research-delsteget kan godkjennes når:
-
-- coordinate-kontraktene er lest;
-- den gamle feilårsaken er dokumentert med konkrete OSM-objekter;
-- full canonical gateidentitet er bevart;
-- implementeringsstrategien unngår både adresseproxy og syntetisk falsk geometri;
-- ingen canonical coordinate-data er endret i samme research-PR;
-- PR-en er merget og begge rapportfilene er kontrollert på faktisk `main`.
-
-**Fase 3 som helhet er fortsatt PÅGÅR etter denne del-PR-en.**
+**Fase 3 som helhet er fortsatt PÅGÅR.**
