@@ -209,18 +209,24 @@ export function buildFilmTvLearningOrderPlanV1() {
     }
   };
 
+  const currentStatus = read(P.status);
+  const laterSourceBriefGate = currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate === 'audiovisual_form_source_brief_complete_full_chapter_production';
   const registry = structuredClone(read(P.registry));
-  registry.version = '2.74.0';
-  registry.updatedAt = '2026-08-11';
-  registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. De to reauditerte fulltekstkapitlene eier 38 canonicale emner, og de 154 udekkede emnene har nå nøyaktig én redaksjonell eier i en faglig læringsrekkefølge med forkunnskaper, overlappsgrenser og kildekrav. De 15 planlagte enhetene er resultatet av dagens faglige avgrensninger, ikke en kvote eller et tak. Neste port er kilde- og claimbrief for første enhet, Audiovisuell form og sansing.';
+  if (!laterSourceBriefGate) {
+    registry.version = '2.74.0';
+    registry.updatedAt = '2026-08-11';
+    registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. De to reauditerte fulltekstkapitlene eier 38 canonicale emner, og de 154 udekkede emnene har nå nøyaktig én redaksjonell eier i en faglig læringsrekkefølge med forkunnskaper, overlappsgrenser og kildekrav. De 15 planlagte enhetene er resultatet av dagens faglige avgrensninger, ikke en kvote eller et tak. Neste port er kilde- og claimbrief for første enhet, Audiovisuell form og sansing.';
+  }
   registry.subjects.film_tv.canonicalModel.learningOrderPlan = P.plan;
 
-  const status = structuredClone(read(P.status));
-  status.version = '1.62.0';
-  status.updatedAt = '2026-08-11';
+  const status = structuredClone(currentStatus);
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
-  filmStatus.nextGate = 'learning_order_plan_complete_first_chapter_source_brief';
-  filmStatus.note = 'Film & TVs læringsrekkefølge er planlagt fra full canonical gapdekning: 38 emner beholdes i to reauditerte kapitler, og alle 154 udekkede emner har nøyaktig én eier i 15 faglig avgrensede, variabelt store planenheter fordelt på seks progresjonsfaser. Antallet er et resultat av dagens problemgrenser, ikke en kvote. Neste port er kilde- og claimbrief for Audiovisuell form og sansing; kapitlet registreres først etter full tekst-, claim- og kildeport.';
+  if (!laterSourceBriefGate) {
+    status.version = '1.62.0';
+    status.updatedAt = '2026-08-11';
+    filmStatus.nextGate = 'learning_order_plan_complete_first_chapter_source_brief';
+    filmStatus.note = 'Film & TVs læringsrekkefølge er planlagt fra full canonical gapdekning: 38 emner beholdes i to reauditerte kapitler, og alle 154 udekkede emner har nøyaktig én eier i 15 faglig avgrensede, variabelt store planenheter fordelt på seks progresjonsfaser. Antallet er et resultat av dagens problemgrenser, ikke en kvote. Neste port er kilde- og claimbrief for Audiovisuell form og sansing; kapitlet registreres først etter full tekst-, claim- og kildeport.';
+  }
 
   const unitCounts = units.map((unit) => unit.emne_count);
   const report = {
