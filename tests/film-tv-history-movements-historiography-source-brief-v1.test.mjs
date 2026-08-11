@@ -11,7 +11,8 @@ test('fjerde planenhet har komplett og deterministisk kilde- og claimbrief', () 
     planned_claim_count: 35,
     planned_claim_counts_by_emne: [4, 4, 4, 3, 4, 3, 3, 3, 3, 4],
     proposed_module_count: 4,
-    registered_chapter_count_delta: 0
+    registered_chapter_count_delta: 1,
+    resolved_claim_count: 35
   });
   assert.ok(Object.values(result.report.gates).every(Boolean));
 });
@@ -42,12 +43,13 @@ test('alle casekilder er tilgjengelige i emnet som bruker caset', () => {
   }
 });
 
-test('briefen er preproduksjonell og kapitlet er ikke registrert', () => {
+test('briefen dokumenterer registrering først etter fulltekst- og evidensaudit', () => {
   const result = auditFilmTvHistoryMovementsHistoriographySourceBriefV1();
-  assert.ok(result.plannedClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'));
-  assert.equal(result.brief.runtime_registration.registered, false);
-  assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'filmhistorie-bevegelser-og-historiografi'), false);
-  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'film_history_movements_historiography_source_brief_complete_full_chapter_production');
+  assert.ok(result.plannedClaims.every((claim) => claim.status === 'resolved_to_verified_claim' && claim.final_claim_id === claim.id));
+  assert.equal(result.brief.runtime_registration.registered, true);
+  assert.equal(result.brief.runtime_registration.registration_after_full_chapter_gate, true);
+  assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'filmhistorie-bevegelser-og-historiografi'), true);
+  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief');
 });
 
 test('arkivforvaltning og kulturarvseffekt forblir eksplisitt utenfor enheten', () => {
