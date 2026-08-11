@@ -94,9 +94,11 @@ Reauditeringsporten er også gjennomført. Kapitlet om kinoer, visningssteder og
 
 Læringsrekkefølgeporten er nå gjennomført i [`film_tv_learning_order_plan_v1.json`](../data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json). De to reauditerte kapitlene eier 38 canonicale emner. Alle 154 udekkede emner har nøyaktig én redaksjonell eier i seks progresjonsfaser og 15 variabelt store planenheter med eksplisitte forkunnskaper, overlappsgrenser og kildekrav. De 15 enhetene er resultatet av dagens faglige problemgrenser, ikke en kvote eller et tak; ny evidens kan fortsatt legge til, slå sammen, flytte eller dele.
 
-Kilde- og claimbriefen for første produksjonskandidat er nå gjennomført i [`film_tv_audiovisual_form_source_claim_brief_v1.json`](../data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json). Den dekker alle enhetens 10 emner med 8 inspectable universitets- og institusjonskilder, 7 dokumenterte verkcase og 20 eksplisitte claimplaner. Claimplanene er merket som uverifiserte fram til fullteksten faktisk er skrevet og kontrollert.
+Kilde- og claimbriefen for første produksjonskandidat er gjennomført i [`film_tv_audiovisual_form_source_claim_brief_v1.json`](../data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json). Den dekket alle enhetens 10 emner med 8 inspectable universitets- og institusjonskilder, 7 dokumenterte verkcase og 20 eksplisitte claimplaner. Etter fulltekstporten er briefen markert konsumert, og alle 20 planene peker til en verifisert sluttclaim; to ble eksplisitt innsnevret under kildekontrollen.
 
-Aktiv port er `audiovisual_form_source_brief_complete_full_chapter_production`. «Audiovisuell form og sansing» er fortsatt ikke registrert som kapittel. Registrering krever fulltekst, avsnittsnivå claimtrace, faktisk kildebruk, pedagogiske rendererfelt og ny audit.
+«Audiovisuell form og sansing» er nå fulltekstprodusert og runtime-registrert. Kapittelet eier 10/10 canonicale emner gjennom tre ulikt store moduler med 4–4–2 emneeide seksjoner. De 23 fagavsnittene har avsnittsnivå claimtrace til 20 verifiserte claims; alle åtte kilder brukes, og de sju verkcasene holdes atskilt fra de to canonicale anvendelsesstedene. Modul-, seksjons- og avsnittstallene beskriver denne redaksjonelle løsningen og er ikke kvoter for senere kapitler.
+
+Aktiv port er `audiovisual_form_full_chapter_complete_next_unit_source_brief`. Neste planlagte enhet, «Fortelling, synsvinkel og sjanger», kan ikke registreres før den har egen kilde- og claimbrief, fulltekst og audit.
 
 ## Maskinell kontroll
 
@@ -110,6 +112,8 @@ node scripts/materialize-film-tv-canonical-migration-v1.mjs
 node scripts/reaudit-film-tv-existing-chapters-v1.mjs
 node scripts/plan-film-tv-learning-order-v1.mjs
 node scripts/brief-film-tv-audiovisual-form-sources-v1.mjs
+node scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs
+node scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs
 node --test tests/film-tv-curriculum-completeness-v1.test.mjs
 node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
 node --test tests/film-tv-variable-inventory-v1.test.mjs
@@ -117,6 +121,7 @@ node --test tests/film-tv-canonical-migration-v1.test.mjs
 node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
 node --test tests/film-tv-learning-order-plan-v1.test.mjs
 node --test tests/film-tv-audiovisual-form-source-brief-v1.test.mjs
+node --test tests/film-tv-audiovisual-form-fulltext-v1.test.mjs
 ```
 
 Canonicale rapporter:
@@ -128,3 +133,4 @@ Canonicale rapporter:
 - `reports/fagverk/film-tv-existing-chapter-reaudit-v1-audit.json`
 - `reports/fagverk/film-tv-learning-order-plan-v1-audit.json`
 - `reports/fagverk/film-tv-audiovisual-form-source-brief-v1-audit.json`
+- `reports/fagverk/film-tv-audiovisual-form-fulltext-v1-audit.json`
