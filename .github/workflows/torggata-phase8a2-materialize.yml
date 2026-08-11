@@ -29,6 +29,20 @@ jobs:
       - name: Materialize 8A2
         run: python3 tools/_tmp_materialize_torggata_phase8a2.py
 
+      - name: Mark Thorvald strong claim explicit
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('data/people/claims/by/oslo/torggata/thorvald_jensen.claims.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          matches = [c for c in data['claims'] if c.get('id') == 'identity_lifespan_family']
+          if len(matches) != 1:
+              raise SystemExit(f'Expected exactly one Thorvald identity claim, found {len(matches)}')
+          matches[0]['evidence_level'] = 'explicit'
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
       - name: Regenerate derived People data
         run: |
           npm run civication:history-people:build
