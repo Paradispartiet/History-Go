@@ -201,6 +201,26 @@ function extractPlace(raw, placeId) {
   return null;
 }
 
+function collectPlaceRecords(raw) {
+  if (Array.isArray(raw)) return raw;
+  if (Array.isArray(raw?.places)) return raw.places;
+  if (raw && typeof raw === 'object') return [raw];
+  return [];
+}
+
+export function descriptionFieldsChanged(baseRaw, headRaw) {
+  const toMap = (raw) => new Map(collectPlaceRecords(raw).map((place, index) => [String(place?.id ?? `__index_${index}`), place]));
+  const basePlaces = toMap(baseRaw);
+  const headPlaces = toMap(headRaw);
+  const ids = new Set([...basePlaces.keys(), ...headPlaces.keys()]);
+  for (const id of ids) {
+    const before = basePlaces.get(id);
+    const after = headPlaces.get(id);
+    if (!sameValue(before?.desc, after?.desc) || !sameValue(before?.popupDesc, after?.popupDesc)) return true;
+  }
+  return false;
+}
+
 function coordinatesSnapshot(place) {
   if (place?.coordinates && typeof place.coordinates === 'object') return place.coordinates;
   const lat = place?.lat ?? place?.latitude ?? null;
@@ -457,13 +477,17 @@ function getChangedFiles(root, base, head) {
   return git(['diff', '--name-only', `${base}...${head}`], root).split(/\r?\n/gu).filter(Boolean);
 }
 
+function readJsonAtRef(root, ref, file) {
+  try { return JSON.parse(git(['show', `${ref}:${file}`], root)); }
+  catch { return null; }
+}
+
 function changedDescriptionPlaceFiles(root, base, head, changedFiles) {
   const files = [];
   for (const file of changedFiles.filter((value) => value.startsWith('data/places/') && value.endsWith('.json') && !value.startsWith(`${PACKET_DIR}/`) && !value.includes('/regler/') && !isGeneratedPlaceIndex(value))) {
-    let diff = '';
-    try { diff = git(['diff', '--unified=0', `${base}...${head}`, '--', file], root); }
-    catch { diff = ''; }
-    if (/^[+-]\s*"(?:desc|popupDesc)"\s*:/gmu.test(diff)) files.push(file);
+    const baseRaw = readJsonAtRef(root, base, file);
+    const headRaw = readJsonAtRef(root, head, file);
+    if (descriptionFieldsChanged(baseRaw, headRaw)) files.push(file);
   }
   return files;
 }
