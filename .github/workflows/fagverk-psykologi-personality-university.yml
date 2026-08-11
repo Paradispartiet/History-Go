@@ -1,0 +1,46 @@
+name: Fagverk Psykologi university personality psychology
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/psykologi/personlighetspsykologi_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-personality-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-personality-university.test.mjs"
+      - "reports/fagverk/psykologi-personality-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-personality-university.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/psykologi/personlighetspsykologi_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-personality-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-personality-university.test.mjs"
+      - "reports/fagverk/psykologi-personality-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-personality-university.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Psychology 16/16 personality psychology
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Validate audit syntax
+        run: |
+          node --check scripts/audit-fagverk-psykologi-personality-university.mjs
+          node --check scripts/audit-fagverk-psykologi-university-readiness.mjs
+      - name: Verify deterministic personality psychology audit
+        run: node scripts/audit-fagverk-psykologi-personality-university.mjs
+      - name: Test personality psychology contract
+        run: node --test tests/fagverk-psykologi-personality-university.test.mjs
+      - name: Verify university readiness consumes the completed branch
+        run: node scripts/audit-fagverk-psykologi-university-readiness.mjs --no-check-report

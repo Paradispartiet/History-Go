@@ -32,6 +32,7 @@ on:
       - "scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-complete.mjs"
       - "scripts/audit-fagverk-psykologi-biological-university.mjs"
+      - "scripts/audit-fagverk-psykologi-personality-university.mjs"
       - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
       - "scripts/psykologi-subject-state.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
@@ -46,6 +47,7 @@ on:
       - "tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs"
       - "tests/fagverk-psykologi-complete.test.mjs"
       - "tests/fagverk-psykologi-biological-university.test.mjs"
+      - "tests/fagverk-psykologi-personality-university.test.mjs"
       - "tests/fagverk-psykologi-university-readiness.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
@@ -72,6 +74,7 @@ on:
       - "scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-complete.mjs"
       - "scripts/audit-fagverk-psykologi-biological-university.mjs"
+      - "scripts/audit-fagverk-psykologi-personality-university.mjs"
       - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
       - "scripts/psykologi-subject-state.mjs"
       - "tests/fagverk-psykologi-phase3.test.mjs"
@@ -83,6 +86,7 @@ on:
       - "tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs"
       - "tests/fagverk-psykologi-complete.test.mjs"
       - "tests/fagverk-psykologi-biological-university.test.mjs"
+      - "tests/fagverk-psykologi-personality-university.test.mjs"
       - "tests/fagverk-psykologi-university-readiness.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-psykologi-phase3.yml"
@@ -126,6 +130,7 @@ jobs:
           node --check scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-complete.mjs
           node --check scripts/audit-fagverk-psykologi-biological-university.mjs
+          node --check scripts/audit-fagverk-psykologi-personality-university.mjs
           node --check scripts/audit-fagverk-psykologi-university-readiness.mjs
           node --check scripts/psykologi-subject-state.mjs
           node --check scripts/build-fagverk-release-manifest.mjs
@@ -151,6 +156,7 @@ jobs:
           node scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs --write-report
           node scripts/audit-fagverk-psykologi-complete.mjs --write-report
           node scripts/audit-fagverk-psykologi-biological-university.mjs --write-report
+          node scripts/audit-fagverk-psykologi-personality-university.mjs --write-report
           node scripts/audit-fagverk-psykologi-university-readiness.mjs --write-report
 
       - name: Refresh and validate shared Fagverk architecture
@@ -176,6 +182,7 @@ jobs:
           node --test tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs
           node --test tests/fagverk-psykologi-complete.test.mjs
           node --test tests/fagverk-psykologi-biological-university.test.mjs
+          node --test tests/fagverk-psykologi-personality-university.test.mjs
           node --test tests/fagverk-psykologi-university-readiness.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
 
@@ -211,6 +218,7 @@ jobs:
           node scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
           node scripts/audit-fagverk-psykologi-complete.mjs
           node scripts/audit-fagverk-psykologi-biological-university.mjs
+          node scripts/audit-fagverk-psykologi-personality-university.mjs
           node scripts/audit-fagverk-psykologi-university-readiness.mjs
 
       - name: Verify deterministic shared Fagverk reports
@@ -255,6 +263,7 @@ jobs:
             reports/fagverk/psykologi-traume-krise-resiliens-omsorg-phase4-audit.json \
             reports/fagverk/psykologi-complete-audit.json \
             reports/fagverk/psykologi-biological-university-audit.json \
+            reports/fagverk/psykologi-personality-university-audit.json \
             reports/fagverk/psykologi-university-readiness-audit.json
           if git diff --cached --quiet; then
             echo 'Psychology materialization already matches.'

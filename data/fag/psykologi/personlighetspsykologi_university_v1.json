@@ -1,0 +1,302 @@
+{
+  "schema": "history_go_psykologi_personality_university_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "subject_id": "psykologi",
+  "branch_id": "personality_psychology",
+  "status": "complete",
+  "purpose": "Universitetsnær personlighetspsykologi som dekker struktur, dynamikk, utvikling, kultur, måling og prediksjon uten å gjøre trekk til typer, diagnoser eller sikre utsagn om enkeltpersoner.",
+  "completion_contract": {
+    "required_topic_count": 16,
+    "exact_topic_ids_required": true,
+    "unique_topic_ids_required": true,
+    "minimum_source_count": 10,
+    "every_topic_requires_sources": true,
+    "every_topic_requires_learning_outcomes": true,
+    "every_topic_requires_key_distinctions": true,
+    "every_topic_requires_misuse_guard": true,
+    "required_families": ["structure_models", "person_context_development", "origins_culture", "measurement_inference"],
+    "no_personality_typing_guard_required": true,
+    "no_individual_prediction_from_brief_observation_guard_required": true
+  },
+  "sources": [
+    {
+      "source_id": "apa_undergraduate_guidelines_3_0",
+      "publisher": "American Psychological Association",
+      "title": "APA Guidelines for the Undergraduate Psychology Major: Version 3.0",
+      "url": "https://www.apa.org/about/policy/undergraduate-psychology-major.pdf",
+      "source_location": "Goal 1: Content Knowledge and Applications of Psychological Science; individual differences, diversity and scientific inquiry",
+      "type": "professional_guideline",
+      "verified_at": "2026-08-11",
+      "supports": ["personality_science", "individual_differences", "diversity", "ethics"]
+    },
+    {
+      "source_id": "testing_standards_2014",
+      "publisher": "American Educational Research Association, American Psychological Association and National Council on Measurement in Education",
+      "title": "Standards for Educational and Psychological Testing",
+      "url": "https://www.testingstandards.net/uploads/7/6/6/4/76643089/standards_2014edition.pdf",
+      "source_location": "Foundations chapters 1–3 and standards for validity, reliability/precision and fairness",
+      "type": "professional_testing_standard",
+      "verified_at": "2026-08-11",
+      "supports": ["validity", "reliability", "fairness", "test_use", "score_interpretation"]
+    },
+    {
+      "source_id": "soto_john_bfi2_2017",
+      "publisher": "Journal of Personality and Social Psychology",
+      "title": "The next Big Five Inventory (BFI-2): Developing and assessing a hierarchical model with 15 facets to enhance bandwidth, fidelity, and predictive power",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27055049/",
+      "source_location": "Abstract and instrument-development studies 1–3",
+      "type": "peer_reviewed_measurement_study",
+      "verified_at": "2026-08-11",
+      "supports": ["big_five", "facets", "hierarchical_structure", "measurement", "prediction"]
+    },
+    {
+      "source_id": "ashton_lee_hexaco_2007",
+      "publisher": "Personality and Social Psychology Review",
+      "title": "Empirical, theoretical, and practical advantages of the HEXACO model of personality structure",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18453460/",
+      "source_location": "Review of the six-dimensional HEXACO framework and comparison with Big Five structures",
+      "type": "peer_reviewed_integrative_review",
+      "verified_at": "2026-08-11",
+      "supports": ["hexaco", "alternative_trait_models", "honesty_humility", "model_comparison"]
+    },
+    {
+      "source_id": "mischel_shoda_caps_1995",
+      "publisher": "Psychological Review",
+      "title": "A cognitive-affective system theory of personality: Reconceptualizing situations, dispositions, dynamics, and invariance in personality structure",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7740090/",
+      "source_location": "Theory and evidence on stable person–situation patterns and behavioral signatures",
+      "type": "peer_reviewed_theory_article",
+      "verified_at": "2026-08-11",
+      "supports": ["person_situation", "caps", "behavioral_variability", "social_cognitive_processes"]
+    },
+    {
+      "source_id": "mcadams_pals_integrative_2006",
+      "publisher": "American Psychologist",
+      "title": "A new Big Five: Fundamental principles for an integrative science of personality",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16594837/",
+      "source_location": "Integrative framework linking dispositional traits, characteristic adaptations and life narratives",
+      "type": "peer_reviewed_integrative_theory",
+      "verified_at": "2026-08-11",
+      "supports": ["integrative_models", "traits", "adaptations", "narrative_identity", "culture"]
+    },
+    {
+      "source_id": "bleidorn_stability_change_2022",
+      "publisher": "Psychological Bulletin",
+      "title": "Personality stability and change: A meta-analysis of longitudinal studies",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35834197/",
+      "source_location": "Meta-analysis of rank-order stability and mean-level change across the life span",
+      "type": "peer_reviewed_meta_analysis",
+      "verified_at": "2026-08-11",
+      "supports": ["stability", "change", "lifespan_development", "longitudinal_evidence"]
+    },
+    {
+      "source_id": "vukasovic_bratko_heritability_2015",
+      "publisher": "Psychological Bulletin",
+      "title": "Heritability of personality: A meta-analysis of behavior genetic studies",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25961374/",
+      "source_location": "Meta-analysis of twin, family and adoption designs and moderators of population-level heritability estimates",
+      "type": "peer_reviewed_meta_analysis",
+      "verified_at": "2026-08-11",
+      "supports": ["behavior_genetics", "heritability", "study_design", "gene_environment_limits"]
+    },
+    {
+      "source_id": "mccrae_observer_50_cultures_2005",
+      "publisher": "Journal of Personality and Social Psychology",
+      "title": "Universal features of personality traits from the observer's perspective: Data from 50 cultures",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15740445/",
+      "source_location": "Cross-cultural observer ratings, factor structure and age/gender patterns across 50 cultures",
+      "type": "peer_reviewed_cross_cultural_study",
+      "verified_at": "2026-08-11",
+      "supports": ["cross_cultural_structure", "observer_report", "generalizability", "sampling_limits"]
+    },
+    {
+      "source_id": "kim_self_informant_2019",
+      "publisher": "Psychological Bulletin",
+      "title": "A meta-analytic comparison of self- and informant-report means on the Big Five personality traits",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30481113/",
+      "source_location": "Meta-analysis of 152 samples comparing self- and informant-reported Big Five scores",
+      "type": "peer_reviewed_meta_analysis",
+      "verified_at": "2026-08-11",
+      "supports": ["self_report", "informant_report", "method_variance", "measurement_perspective"]
+    },
+    {
+      "source_id": "roberts_comparative_validity_2007",
+      "publisher": "Perspectives on Psychological Science",
+      "title": "The power of personality: The comparative validity of personality traits, socioeconomic status, and cognitive ability for predicting important life outcomes",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26151971/",
+      "source_location": "Comparative review of longitudinal associations between personality traits and major life outcomes",
+      "type": "peer_reviewed_integrative_review",
+      "verified_at": "2026-08-11",
+      "supports": ["prediction", "life_outcomes", "effect_sizes", "group_level_associations"]
+    }
+  ],
+  "topics": [
+    {
+      "topic_id": "personlighet_trekk_og_individforskjeller",
+      "title": "Personlighet, trekk og individforskjeller",
+      "family": "structure_models",
+      "definition": "Personlighet viser til relativt varige, men ikke uforanderlige mønstre i tanker, følelser, mål og atferd. Trekk er dimensjonale sammendrag av hvordan mennesker typisk varierer, ikke skjulte essenser som bestemmer hver handling.",
+      "learning_outcomes": ["Forklare forskjellen mellom et personlighetsbegrep, et trekkmål og observert atferd.", "Bruke dimensjonale beskrivelser uten å gjøre variasjon til faste kategorier eller moralske vurderinger."],
+      "key_distinctions": ["trekk_vs_enkeltatferd", "relativ_stabilitet_vs_uforanderlighet", "beskrivelse_vs_arsaksforklaring"],
+      "misuse_guard": "En trekkverdi er et usikkert sammendrag av svar eller observasjoner og kan ikke alene brukes til å fastslå hvem en person egentlig er, hvorfor én handling skjedde eller hva personen sikkert vil gjøre.",
+      "source_ids": ["apa_undergraduate_guidelines_3_0", "soto_john_bfi2_2017"]
+    },
+    {
+      "topic_id": "big_five_og_hierarkiske_trekkmodeller",
+      "title": "Big Five og hierarkiske trekkmodeller",
+      "family": "structure_models",
+      "definition": "Big Five organiserer bred trekkvariasjon i fem domener med mer spesifikke fasetter. Modellen er hierarkisk og empirisk nyttig for beskrivelse og sammenligning, men domenene uttømmer ikke alle mål, verdier, fortellinger eller situasjonsprosesser.",
+      "learning_outcomes": ["Beskrive de fem brede domenene og forklare forholdet mellom domener og fasetter.", "Vurdere hvordan instrument, utvalg og analysenivå påvirker hvilke trekkstrukturer som framtrer."],
+      "key_distinctions": ["domene_vs_fasett", "leksikalsk_struktur_vs_full_personlighetsteori", "modelltilpasning_vs_sann_essens"],
+      "misuse_guard": "Big Five er ikke en femdelt personlighetstest som plasserer mennesker i typer; skårer ligger på kontinuerlige dimensjoner og må tolkes med måleusikkerhet, normgrunnlag og formål.",
+      "source_ids": ["soto_john_bfi2_2017", "testing_standards_2014"]
+    },
+    {
+      "topic_id": "alternative_trekkmodeller_og_hexaco",
+      "title": "Alternative trekkmodeller og HEXACO",
+      "family": "structure_models",
+      "definition": "Alternative trekkmodeller undersøker om andre faktorstrukturer organiserer personbeskrivelser bedre for bestemte språk, datasett og formål. HEXACO beskriver seks brede dimensjoner og fremhever blant annet ærlighet–ydmykhet som eget domene.",
+      "learning_outcomes": ["Sammenligne Big Five og HEXACO med hensyn til struktur, innhold og empirisk grunnlag.", "Forklare hvorfor flere plausible modeller kan eksistere uten at én av dem er en universell fasit for individet."],
+      "key_distinctions": ["femfaktor_vs_seksfaktor", "modellvalg_vs_personklassifikasjon", "replikasjon_vs_universell_gyldighet"],
+      "misuse_guard": "Valg av trekkmodell skal styres av problemstilling, evidens og målekvalitet; en alternativ modell gir ikke grunnlag for å stemple personer som ærlige, manipulerende eller moralsk gode.",
+      "source_ids": ["ashton_lee_hexaco_2007", "soto_john_bfi2_2017"]
+    },
+    {
+      "topic_id": "dynamiske_humanistiske_og_narrative_perspektiver",
+      "title": "Dynamiske, humanistiske og narrative perspektiver",
+      "family": "structure_models",
+      "definition": "Personlighetspsykologien omfatter også teorier om motiver, konflikter, selvforståelse, mål, tilpasninger og livsfortellinger. Slike perspektiver stiller andre spørsmål enn trekkmodeller og varierer i hvor presist begrepene kan testes empirisk.",
+      "learning_outcomes": ["Skille disposisjonelle trekk fra mål, karakteristiske tilpasninger og narrativ identitet.", "Vurdere historiske og samtidige teorier etter begrepsklarhet, testbarhet, evidens og anvendelsesområde."],
+      "key_distinctions": ["trekk_vs_karakteristisk_tilpasning", "livsfortelling_vs_biografisk_fakta", "fortolkningsverdi_vs_empirisk_stotte"],
+      "misuse_guard": "En fortolkende teori eller livsfortelling er ikke en skjult diagnose og kan ikke brukes til å avsløre ubevisste motiver som sikre fakta; alternative forklaringer og personens egen kontekst må bevares.",
+      "source_ids": ["mcadams_pals_integrative_2006", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "person_situasjon_og_atferdsvariasjon",
+      "title": "Person–situasjon og atferdsvariasjon",
+      "family": "person_context_development",
+      "definition": "Atferd varierer med situasjonens psykologiske kjennetegn, personens fortolkning og relativt stabile disposisjoner. Kognitive-affektive systemmodeller beskriver mønstre der samme person reagerer forskjellig, men forutsigbart, i ulike situasjoner.",
+      "learning_outcomes": ["Forklare hvordan gjennomsnittlige trekktendenser og situasjonsspesifikke hvis–så-mønstre kan sameksistere.", "Utforme en analyse som skiller person-, situasjons- og samspillseffekter."],
+      "key_distinctions": ["gjennomsnittsniva_vs_hvis_sa_monster", "situasjon_vs_personens_situasjonsfortolkning", "variabilitet_vs_tilfeldig_malefeil"],
+      "misuse_guard": "Én sterk reaksjon i én situasjon dokumenterer ikke et stabilt personlighetstrekk; slutninger krever gjentatte observasjoner på tvers av relevante situasjoner og en eksplisitt modell for kontekst.",
+      "source_ids": ["mischel_shoda_caps_1995", "testing_standards_2014"]
+    },
+    {
+      "topic_id": "rangordensstabilitet_og_gjennomsnittsendring",
+      "title": "Rangordensstabilitet og gjennomsnittsendring",
+      "family": "person_context_development",
+      "definition": "Personlighet kan være stabil og endres samtidig. Rangordensstabilitet gjelder om relative forskjeller mellom personer bevares, mens gjennomsnittsendring gjelder om nivået i en gruppe endres over tid; individuelle forløp kan avvike fra begge.",
+      "learning_outcomes": ["Skille rangordensstabilitet, gjennomsnittsendring og individuell endring i longitudinelle data.", "Tolke meta-analytiske utviklingsmønstre uten å gjøre dem til skjebnebestemte livsbaner."],
+      "key_distinctions": ["rangorden_vs_gjennomsnitt", "gruppeutvikling_vs_individforlop", "reell_endring_vs_malefeil"],
+      "misuse_guard": "Et gjennomsnittlig aldersmønster sier ikke hvordan en bestemt person vil utvikle seg, og stabilitet betyr ikke at endring er umulig; estimater avhenger av intervall, mål, kohort og kontekst.",
+      "source_ids": ["bleidorn_stability_change_2022", "testing_standards_2014"]
+    },
+    {
+      "topic_id": "personlighetsutvikling_i_livslopet",
+      "title": "Personlighetsutvikling i livsløpet",
+      "family": "person_context_development",
+      "definition": "Personlighetsutvikling formes gjennom modning, erfaringer, sosiale roller, relasjoner, mål og historiske betingelser gjennom hele livsløpet. Endring kan være gradvis, hendelsesnær, selvstyrt eller knyttet til institusjoner og mulighetsstrukturer.",
+      "learning_outcomes": ["Forklare flere mekanismer som kan bidra til stabilitet og endring gjennom livsløpet.", "Vurdere longitudinelle funn med hensyn til seleksjon, kohort, måleinvarians og alternative forklaringer."],
+      "key_distinctions": ["alderseffekt_vs_kohorteffekt", "seleksjon_vs_sosialisering", "normativ_endring_vs_individuell_variasjon"],
+      "misuse_guard": "Livshendelser eller roller endrer ikke alle på samme måte, og utviklingsfunn gir ikke grunnlag for å rangere aldersgrupper eller hevde at et enkelt trekk bør trenes fram uten dokumentert nytte og risiko.",
+      "source_ids": ["bleidorn_stability_change_2022", "mcadams_pals_integrative_2006"]
+    },
+    {
+      "topic_id": "identitet_selv_og_personlighet",
+      "title": "Identitet, selv og personlighet",
+      "family": "person_context_development",
+      "definition": "Selvbegrep, identitet og personlighet overlapper, men er ikke synonymer. Trekk beskriver disposisjonelle mønstre, selvbegrep organiserer oppfatninger om egen person, og identitet omfatter tilhørighet, verdier, roller og livsfortellinger i sosial kontekst.",
+      "learning_outcomes": ["Skille trekk, selvbegrep, sosial identitet og narrativ identitet i konkrete eksempler.", "Analysere hvordan personens egen fortolkning og andres kategorisering kan påvirke identitetsutvikling."],
+      "key_distinctions": ["personlighet_vs_identitet", "selvbeskrivelse_vs_psykometrisk_skare", "personlig_fortelling_vs_objektiv_journal"],
+      "misuse_guard": "En personlighetsskår kan ikke definere identitet, kjønn, kultur, moral eller tilhørighet, og fagstoffet skal ikke brukes til å fortelle andre hvem de egentlig er eller hvilke roller som passer dem.",
+      "source_ids": ["mcadams_pals_integrative_2006", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "biologiske_og_genetiske_perspektiver",
+      "title": "Biologiske og genetiske perspektiver",
+      "family": "origins_culture",
+      "definition": "Atferdsgenetiske og biologiske studier undersøker hvordan genetisk variasjon, utvikling og biologiske systemer samvarierer med trekk. Arvelighet er et populasjonsestimat under bestemte miljøbetingelser, ikke en andel av individets personlighet.",
+      "learning_outcomes": ["Forklare hva tvilling- og familiedesign kan og ikke kan si om personlighetens utvikling.", "Skille populasjonsbasert arvelighet fra genetisk determinisme og individuell årsaksforklaring."],
+      "key_distinctions": ["arvelighet_vs_uforanderlighet", "populasjonsvarians_vs_individandel", "genetisk_bidrag_vs_direkte_genarsak"],
+      "misuse_guard": "Et arvelighetsestimat kan ikke brukes til å forklare en bestemt persons skår, rangere grupper som biologisk overlegne eller hevde at miljø og tiltak er irrelevante; estimatet er design- og kontekstavhengig.",
+      "source_ids": ["vukasovic_bratko_heritability_2015", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "sosial_laring_mal_og_karakteristiske_tilpasninger",
+      "title": "Sosial læring, mål og karakteristiske tilpasninger",
+      "family": "origins_culture",
+      "definition": "Sosial-kognitive perspektiver undersøker hvordan forventninger, mål, mestringstro, læringshistorie og selvregulering former handling. Karakteristiske tilpasninger kobler brede disposisjoner til konkrete roller, prosjekter og miljøkrav.",
+      "learning_outcomes": ["Forklare hvordan læring, forventninger og mål kan mediere person–situasjon-samspill.", "Skille brede trekk fra kontekstbundne strategier, vaner og personlige prosjekter."],
+      "key_distinctions": ["disposisjon_vs_strategi", "mal_vs_atferdsutfall", "mestringstro_vs_generell_selvfolelse"],
+      "misuse_guard": "Sosial læring betyr ikke at personen fritt har valgt alle mønstre eller kan endre dem ved vilje alene; muligheter, makt, tidligere erfaringer og aktuelle omgivelser begrenser handlingsrommet.",
+      "source_ids": ["mischel_shoda_caps_1995", "mcadams_pals_integrative_2006"]
+    },
+    {
+      "topic_id": "kultur_kontekst_og_personlighetsuttrykk",
+      "title": "Kultur, kontekst og personlighetsuttrykk",
+      "family": "origins_culture",
+      "definition": "Kultur påvirker språk for personbeskrivelse, normer, roller, situasjoner og hvilke uttrykk som belønnes eller tolkes som typiske. Likheter i trekkstruktur på tvers av samfunn utelukker ikke kulturelle forskjeller i mening og funksjon.",
+      "learning_outcomes": ["Drøfte hvordan kultur kan påvirke både måling, utvikling og uttrykk av personlighet.", "Skille replikert faktorstruktur fra like gjennomsnitt, lik betydning og universelle årsaker."],
+      "key_distinctions": ["struktur_vs_gjennomsnittsniva", "oversettelse_vs_begrepsmessig_ekvivalens", "kulturell_likhet_vs_universell_mekanisme"],
+      "misuse_guard": "Gjennomsnittsforskjeller mellom utvalg kan ikke tilskrives kultur som én årsak eller brukes til å beskrive alle medlemmer av en gruppe; utvalg, språk, måling og sosial kontekst må undersøkes.",
+      "source_ids": ["mccrae_observer_50_cultures_2005", "apa_undergraduate_guidelines_3_0"]
+    },
+    {
+      "topic_id": "krysskulturell_ekvivalens_og_mangfold",
+      "title": "Krysskulturell ekvivalens og mangfold",
+      "family": "origins_culture",
+      "definition": "Gyldige sammenligninger mellom språk og grupper krever evidens for at konstrukt, oppgaver og skårer fungerer tilstrekkelig likt. Måleinvarians, lokal begrepskunnskap og representative utvalg undersøker forskjellige deler av denne ekvivalensen.",
+      "learning_outcomes": ["Forklare hvorfor konfigural, metrisk og skalar invarians svarer på ulike sammenligningsspørsmål.", "Vurdere om et instrument har tilstrekkelig evidens for bruk i en ny språk-, alders- eller kulturgruppe."],
+      "key_distinctions": ["oversatt_ordlyd_vs_maleekvivalens", "metrisk_vs_skalar_invarians", "mangfold_i_utvalg_vs_generaliserbarhet"],
+      "misuse_guard": "En oversatt test er ikke automatisk sammenlignbar, og fravær av full invarians betyr heller ikke at en gruppe mangler personlighetstrekk; det avgrenser hvilke skårsammenligninger som er faglig forsvarlige.",
+      "source_ids": ["mccrae_observer_50_cultures_2005", "testing_standards_2014"]
+    },
+    {
+      "topic_id": "selvrapport_informantrapport_og_atferdsdata",
+      "title": "Selvrapport, informantrapport og atferdsdata",
+      "family": "measurement_inference",
+      "definition": "Personlighet kan måles med selvrapport, informantrapport, intervjuer, erfaringstrekking, digitale spor og strukturert atferdsobservasjon. Metodene fanger delvis ulike perspektiver og har forskjellige feilkilder, kostnader og etiske konsekvenser.",
+      "learning_outcomes": ["Sammenligne styrker og feilkilder ved selvrapport, informantrapport og observert atferd.", "Planlegge multimodal måling der datakilder velges etter konstrukt, tidsrom og bruksformål."],
+      "key_distinctions": ["selvperspektiv_vs_informantperspektiv", "typisk_atferd_vs_maksimal_prestasjon", "metodeuenighet_vs_en_kilde_er_feil"],
+      "misuse_guard": "Uenighet mellom personen og en informant avslører ikke automatisk løgn eller manglende selvinnsikt; perspektiv, relasjon, observasjonsmulighet, iteminnhold og målefeil kan alle bidra.",
+      "source_ids": ["kim_self_informant_2019", "testing_standards_2014"]
+    },
+    {
+      "topic_id": "reliabilitet_validitet_og_maleinvarians",
+      "title": "Reliabilitet, validitet og måleinvarians",
+      "family": "measurement_inference",
+      "definition": "Reliabilitet beskriver presisjon og konsistens i skårer, mens validitet gjelder evidensen for foreslåtte tolkninger og bruksformer. Faktorstruktur, kriterier, responsprosesser, konsekvenser og invarians inngår i en samlet vurdering.",
+      "learning_outcomes": ["Skille reliabilitet fra validitet og forklare hvorfor høy intern konsistens ikke er nok.", "Vurdere en personlighetsskår ut fra formål, normer, usikkerhet, invarians og dokumenterte konsekvenser."],
+      "key_distinctions": ["reliabilitet_vs_validitet", "test_vs_skartolkning", "faktorstruktur_vs_rettferdig_bruk"],
+      "misuse_guard": "En populær nett-test er ikke faglig gyldig fordi den virker gjenkjennelig eller har mange spørsmål; bruk krever dokumentert skårpresisjon, tolkningsgrunnlag, normer og rettferdighet for målgruppen.",
+      "source_ids": ["testing_standards_2014", "soto_john_bfi2_2017"]
+    },
+    {
+      "topic_id": "prediksjon_av_utfall_og_usikkerhet",
+      "title": "Prediksjon av utfall og usikkerhet",
+      "family": "measurement_inference",
+      "definition": "Personlighetstrekk kan ha statistiske sammenhenger med helse, utdanning, arbeid og relasjoner, men prediksjoner er probabilistiske og påvirkes av kriteriemål, situasjon, base-rate, andre variabler og modellens generalisering.",
+      "learning_outcomes": ["Tolke effektstørrelser og prediktiv validitet uten å forveksle gruppesammenheng med individuell sikkerhet.", "Vurdere inkrementell validitet, kalibrering, kryssvalidering og konsekvenser før en prediksjonsmodell brukes."],
+      "key_distinctions": ["assosiasjon_vs_individprediksjon", "forklaring_vs_prognose", "statistisk_signifikans_vs_praktisk_nytte"],
+      "misuse_guard": "En trekkprofil eller kort observasjon kan ikke forutsi en enkeltpersons jobbprestasjon, helse, kriminalitet eller relasjon sikkert; beslutninger krever validert modell, relevant base-rate, usikkerhet og rettferdighetskontroll.",
+      "source_ids": ["roberts_comparative_validity_2007", "testing_standards_2014", "soto_john_bfi2_2017"]
+    },
+    {
+      "topic_id": "modellkritikk_etikk_og_typestempling",
+      "title": "Modellkritikk, etikk og typestempling",
+      "family": "measurement_inference",
+      "definition": "Kritisk personlighetspsykologi undersøker modellavhengighet, språk og makt, utvalgsbegrensninger, reifikasjon, personvern og konsekvenser av testing. Ansvarlig bruk skiller forskning på dimensjoner fra typestempling og klinisk diagnostikk.",
+      "learning_outcomes": ["Identifisere reifikasjon, typestempling og diagnoseglidning i populær og profesjonell testbruk.", "Vurdere samtykke, dataminimering, transparens, klageadgang og skadepotensial ved personlighetstesting."],
+      "key_distinctions": ["dimensjon_vs_type", "personlighetstrekk_vs_personlighetsforstyrrelse", "forskningsmodell_vs_beslutningsregel", "beskrivelse_vs_moralvurdering"],
+      "misuse_guard": "Fagstoffet skal ikke brukes til å typebestemme, fjernvurdere eller diagnostisere enkeltpersoner. Kliniske diagnoser krever særskilt kompetanse og utredning, og testdata skal ikke bli skjulte eller irreversible etiketter.",
+      "source_ids": ["testing_standards_2014", "apa_undergraduate_guidelines_3_0", "mcadams_pals_integrative_2006"]
+    }
+  ],
+  "summary": {
+    "topic_count": 16,
+    "family_counts": {"structure_models": 4, "person_context_development": 4, "origins_culture": 4, "measurement_inference": 4},
+    "source_count": 11,
+    "classification": "university_personality_psychology_branch_complete"
+  }
+}
