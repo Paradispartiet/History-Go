@@ -19,6 +19,7 @@ const FUTURE_CHAPTER_ID = 'fortelling-synsvinkel-og-sjanger';
 const INPUT_GATE = 'audiovisual_form_full_chapter_complete_next_unit_source_brief';
 const SOURCE_BRIEF_GATE = 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief';
+const LATER_SOURCE_BRIEF_GATE = 'seriality_format_adaptation_source_brief_complete_full_chapter_production';
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`);
@@ -279,8 +280,8 @@ export function buildFilmTvNarrativeViewpointGenreSourceBriefV1() {
 
 export function auditFilmTvNarrativeViewpointGenreSourceBriefV1({ writeFiles = false, checkFiles = true } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  assert([INPUT_GATE, SOURCE_BRIEF_GATE, FULLTEXT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
-  if (currentGate === FULLTEXT_GATE) {
+  assert([INPUT_GATE, SOURCE_BRIEF_GATE, FULLTEXT_GATE, LATER_SOURCE_BRIEF_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if ([FULLTEXT_GATE, LATER_SOURCE_BRIEF_GATE].includes(currentGate)) {
     const brief = read(P.brief);
     const report = read(P.report);
     const registry = read(P.registry);
