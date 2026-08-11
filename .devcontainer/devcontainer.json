@@ -2,5 +2,7 @@
   "name": "History-Go",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}
-  }
+  },
+  "postCreateCommand": "bash .devcontainer/ensure-gh.sh",
+  "postStartCommand": "bash .devcontainer/ensure-gh.sh"
 }
