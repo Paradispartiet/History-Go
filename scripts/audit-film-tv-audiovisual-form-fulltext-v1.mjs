@@ -82,6 +82,7 @@ export function auditFilmTvAudiovisualFormFulltextV1({ writeReport = false, chec
   assert(sections.every((row) => row.keyPoints.length === 2 && row.keyPointClaimIds.length === 2), 'Nøkkelpunktene er ikke claimsporet');
   assert(modules[0].value.concepts.length === 6, 'Grunnlagsmodulen mangler begreper');
   assert(modules[1].value.workedExamples.length === 3 && modules[1].value.commonMisconceptions.length === 5, 'Fordypningsmodulen mangler eksempler eller misoppfatninger');
+  assert(modules[1].value.workedExamples.every((row) => row.title && row.situation && Array.isArray(row.analysis) && row.analysis.length >= 2 && row.analysis.every(Boolean)), 'Et arbeidseksempel mangler renderbare analysesteg');
   assert(modules[2].value.applicationTasks.length === 5 && modules[2].value.selfCheck.length === 7, 'Anvendelsesmodulen mangler oppgaver eller selvkontroll');
 
   assert(claimsDoc.schema === 'history_go_fagverk_chapter_claims_v1' && claimsDoc.chapter_id === CHAPTER_ID, 'Claims-filen er usynkronisert');
