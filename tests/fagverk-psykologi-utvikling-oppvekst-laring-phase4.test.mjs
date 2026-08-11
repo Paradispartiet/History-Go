@@ -2,7 +2,6 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditPsykologiUtviklingOppvekstLaringPhase4 } from '../scripts/audit-fagverk-psykologi-utvikling-oppvekst-laring-phase4.mjs';
 
-// Final user-authored CI retrigger for the rebased materialized tree.
 test('Psykologi utvikling oppvekst og læring er et komplett tredje phase-4-kapittel', () => {
   const { report } = auditPsykologiUtviklingOppvekstLaringPhase4();
   assert.equal(report.chapter.id, 'utvikling-oppvekst-og-laring');
