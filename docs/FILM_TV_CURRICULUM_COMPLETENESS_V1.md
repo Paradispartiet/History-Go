@@ -104,7 +104,9 @@ Kilde- og claimbriefen for «Fortelling, synsvinkel og sjanger» er gjennomført
 
 Kilde- og claimbriefen for «Serialitet, format og adaptasjon» er gjennomført og konsumert av det verifiserte fulltekstkapitlet. Den dekker enhetens 10/10 canonicale emner med 16 inspectable universitets-, arkiv- og institusjonskilder, 12 film-, TV- og versjonscase og 28 claimplaner fordelt 4–2–3–3–3–3–3–2–2–3 etter problemomfang. Alle planene er løst til brukte sluttclaims. Tre ble eksplisitt innsnevret under fulltekstrevisjonen: `The Prisoner` beskrives med dokumentert episodeomfang og prematur avslutning, `The Price Is Right` uten udokumentert direktesendingspåstand, og sesong-/produksjonsclaimen uten et udokumentert bestemt tosesongsoppsett.
 
-«Serialitet, format og adaptasjon» er nå fulltekstprodusert og runtime-registrert. Kapittelet følger briefens fire ulikt store problemfelt med modulfordelingen 4–2–2–2, ti emneeide seksjoner og 28 avsnitt med entydig claimtrace til 28 verifiserte claims. Alle 16 kildene brukes. Episode, sesong og serie, format og enkeltinnhold, adaptasjon, remake og transmedia samt sjangerrevisjon holdes analytisk atskilt; rettigheter, lisensiering, distribusjon og produksjonsteknikk forblir senere enheters ansvar. Aktiv port er `seriality_format_adaptation_full_chapter_complete_next_unit_source_brief`, med kilde- og claimbrief for «Filmhistorie, bevegelser og historiografi» som neste leveranse.
+«Serialitet, format og adaptasjon» er nå fulltekstprodusert og runtime-registrert. Kapittelet følger briefens fire ulikt store problemfelt med modulfordelingen 4–2–2–2, ti emneeide seksjoner og 28 avsnitt med entydig claimtrace til 28 verifiserte claims. Alle 16 kildene brukes. Episode, sesong og serie, format og enkeltinnhold, adaptasjon, remake og transmedia samt sjangerrevisjon holdes analytisk atskilt; rettigheter, lisensiering, distribusjon og produksjonsteknikk forblir senere enheters ansvar.
+
+Kilde- og claimbriefen for «Filmhistorie, bevegelser og historiografi» er gjennomført. Den dekker enhetens 10/10 canonicale emner med 20 inspectable museums-, universitets-, arkiv- og filminstituttkilder, 18 verk-, produksjons-, bevegelses-, institusjons- og recoverycase og 35 claimplaner fordelt 4–4–4–3–4–3–3–3–3–4 etter problemomfang. Briefen kombinerer historiske objekt- og produksjonsspor med faglig historiografi, gjør dekoloniale forløp strukturelle framfor additive og verner eksplisitt mot en universell Hollywood-periodisering. Claimplanene er fortsatt uverifiserte og kapitlet er ikke runtime-registrert. Aktiv port er `film_history_movements_historiography_source_brief_complete_full_chapter_production`; neste leveranse er fulltekst med avsnittsnivå claimtrace og ny audit.
 
 ## Maskinell kontroll
 
@@ -126,6 +128,7 @@ node scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
 node scripts/brief-film-tv-seriality-format-adaptation-sources-v1.mjs
 node scripts/materialize-film-tv-seriality-format-adaptation-fulltext-v1.mjs
 node scripts/audit-film-tv-seriality-format-adaptation-fulltext-v1.mjs
+node scripts/brief-film-tv-history-movements-historiography-sources-v1.mjs
 node --test tests/film-tv-curriculum-completeness-v1.test.mjs
 node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
 node --test tests/film-tv-variable-inventory-v1.test.mjs
@@ -138,6 +141,7 @@ node --test tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs
 node --test tests/film-tv-narrative-viewpoint-genre-fulltext-v1.test.mjs
 node --test tests/film-tv-seriality-format-adaptation-source-brief-v1.test.mjs
 node --test tests/film-tv-seriality-format-adaptation-fulltext-v1.test.mjs
+node --test tests/film-tv-history-movements-historiography-source-brief-v1.test.mjs
 ```
 
 Canonicale rapporter:
@@ -154,3 +158,4 @@ Canonicale rapporter:
 - `reports/fagverk/film-tv-narrative-viewpoint-genre-fulltext-v1-audit.json`
 - `reports/fagverk/film-tv-seriality-format-adaptation-source-brief-v1-audit.json`
 - `reports/fagverk/film-tv-seriality-format-adaptation-fulltext-v1-audit.json`
+- `reports/fagverk/film-tv-history-movements-historiography-source-brief-v1-audit.json`

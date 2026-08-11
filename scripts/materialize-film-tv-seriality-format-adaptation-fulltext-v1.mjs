@@ -8,6 +8,7 @@ const CHAPTER_ID = 'serialitet-format-og-adaptasjon';
 const CHAPTER_DIR = `data/fagverk/film_tv/${CHAPTER_ID}`;
 const INPUT_GATE = 'seriality_format_adaptation_source_brief_complete_full_chapter_production';
 const OUTPUT_GATE = 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief';
+const LATER_SOURCE_BRIEF_GATE = 'film_history_movements_historiography_source_brief_complete_full_chapter_production';
 const P = Object.freeze({
   sourceBrief: 'data/fag/TV_og_Film/film_tv_seriality_format_adaptation_source_claim_brief_v1.json',
   learningPlan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
@@ -308,8 +309,8 @@ export function buildFilmTvSerialityFormatAdaptationFulltextV1() {
 
 export function materializeFilmTvSerialityFormatAdaptationFulltextV1({ force = false } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  assert([INPUT_GATE, OUTPUT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
-  if (currentGate === OUTPUT_GATE && !force) {
+  assert([INPUT_GATE, OUTPUT_GATE, LATER_SOURCE_BRIEF_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if ([OUTPUT_GATE, LATER_SOURCE_BRIEF_GATE].includes(currentGate) && !force) {
     console.log('Serialitet, format og adaptasjon er allerede materialisert; bevarer neste kildebriefport.');
     return null;
   }
