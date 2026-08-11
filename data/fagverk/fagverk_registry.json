@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.67.0",
+  "version": "2.68.0",
   "updatedAt": "2026-08-11",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -937,7 +937,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. To redaksjonelle kapitler er nå materialisert: Psykisk helse, institusjoner og behandling (12 emner) og Fagtradisjoner, teori og forståelsen av sinnet (14 emner). Samlet fulltekstdekning er 26/58 emner, med eksplisitt diagnosevern."
+        "note": "Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. Tre redaksjonelle kapitler er nå materialisert: Psykisk helse, Fagtradisjoner og Utvikling/oppvekst/læring. Samlet fulltekstdekning er 35/58 emner, med eksplisitt diagnose- og utviklingsmerkingsvern."
       },
       "chapters": [
         {
@@ -989,6 +989,27 @@
           ],
           "claimsFile": "data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet/claims.json",
           "briefFile": "data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet/brief.json"
+        },
+        {
+          "id": "utvikling-oppvekst-og-laring",
+          "title": "Utvikling, oppvekst og læring",
+          "subtitle": "Fra tidlige relasjoner og læringsmiljø til skole, ungdom, identitet og livsløp",
+          "file": "data/fagverk/psykologi/utvikling-oppvekst-og-laring.json",
+          "primary_domain_id": "utvikling_oppvekst_laring",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_psy_barn_ungdom",
+            "em_psy_familie_samspill",
+            "em_psy_identitet_selv",
+            "em_psy_laring_hukommelse",
+            "em_psy_livslop_overganger",
+            "em_psy_oppvekst_miljo",
+            "em_psy_skole_motivasjon",
+            "em_psy_sosial_utvikling",
+            "em_psy_tilknytning_relasjon"
+          ],
+          "claimsFile": "data/fagverk/psykologi/utvikling-oppvekst-og-laring/claims.json",
+          "briefFile": "data/fagverk/psykologi/utvikling-oppvekst-og-laring/brief.json"
         }
       ],
       "editorialPlan": {
