@@ -1,7 +1,7 @@
 # Koordinater — dokumentasjonskart
 
 Status: **canonical dokumentasjonsinngang**  
-Sist kontrollert: **2026-07-26**
+Sist kontrollert: **2026-08-11**
 
 Dette dokumentet samler coordinate-systemet uten å opprette en ny sannhetskilde. Produksjonen leser place-data, genererte indekser, manifester og kode — ikke Markdown-filene i denne mappen.
 
@@ -29,17 +29,34 @@ canonical place JSON under data/places/**
 
 Et koordinatdokument blir ikke automatisk plukket opp av runtime. En coordinate-endring må ligge i riktig canonical place-fil, være aktivert gjennom manifestkjeden og passere relevante gates.
 
+## Obligatorisk historikk-preflight
+
+**Coordinate-arbeid skal aldri startes med antakelsen om at stedet er ukontrollert. Før ny research eller coordinate-endring skal eksisterende arbeid alltid kontrolleres først.**
+
+Minstekrav før fase/research åpnes:
+
+1. les dagens canonical place og coordinate-evidence;
+2. søk `coordinate-control-protocol.md` etter `placeId` og navnevarianter;
+3. søk Git-/PR-historikken etter tidligere coordinate-, geometry-, map-point- og QA-arbeid for stedet;
+4. kontroller om tidligere beslutning allerede er materialisert i canonical source, aggregate/runtime-index og relevante rapporter;
+5. sammenlign eventuell ny mistanke med den tidligere beslutningen før noe endres.
+
+Hvis stedet allerede har en dokumentert og materialisert `verified*` coordinate-beslutning, er standardhandlingen **å beholde den**. Coordinate-fasen skal ikke åpnes på nytt bare fordi stedet nå går gjennom en annen innholds- eller checklistproduksjon. Ny coordinate-research krever et konkret regressjonssignal, identitetsproblem, dokumentert fysisk feil eller en eksplisitt ny oppgave om koordinaten.
+
+Torggata 2026-08-11 er styrende regressjonseksempel: den godkjente gategeometrien fra PR #3773/#3775 ble feilaktig behandlet som en åpen coordinate-oppgave under senere stedproduksjon og markøren ble flyttet til Youngstorget. Denne typen dobbeltarbeid skal stoppes av historikk-preflighten.
+
 ## Arbeidsrekkefølge
 
-1. Auditér eksisterende canonical `placeId`, navnevarianter og fysisk overlap.
-2. Avklar hvilket konkret fysisk objekt markøren skal representere.
-3. Bruk offisiell norsk adresse først bare når adressen faktisk representerer objektet.
-4. Bruk objekt-, geometri- eller historisk kilde når adressepunkt ikke passer.
-5. Opprett eller fullfør evidens når kilde, identitet eller fysisk anker ikke er entydig.
-6. Endre canonical source-data først når source contract kan oppfylles.
-7. Bygg og kontroller generert index; kjør quality, strict intake og eventuell evidens-audit.
-8. Kontroller markøren visuelt i kartet og auditér nærliggende canonical steder.
-9. Før den fullførte kontrollen i `coordinate-control-protocol.md`.
+1. **Kjør obligatorisk historikk-preflight og avgjør om coordinate-jobben allerede er ferdig.**
+2. Auditér eksisterende canonical `placeId`, navnevarianter og fysisk overlap.
+3. Avklar hvilket konkret fysisk objekt markøren skal representere.
+4. Bruk offisiell norsk adresse først bare når adressen faktisk representerer objektet.
+5. Bruk objekt-, geometri- eller historisk kilde når adressepunkt ikke passer.
+6. Opprett eller fullfør evidens når kilde, identitet eller fysisk anker ikke er entydig.
+7. Endre canonical source-data først når source contract kan oppfylles.
+8. Bygg og kontroller generert index; kjør quality, strict intake og eventuell evidens-audit.
+9. Kontroller markøren visuelt i kartet og auditér nærliggende canonical steder.
+10. Før den fullførte kontrollen i `coordinate-control-protocol.md`.
 
 ## Aktive kommandoer
 
@@ -57,6 +74,7 @@ Full repository-kontroll ligger i `npm run tools:check`.
 
 ## Permanente regler
 
+- **Sjekk alltid om coordinate-jobben allerede er utført før ny research eller endring.**
 - Ikke gjett koordinater.
 - `manual_map_check` er ekstra QA, aldri eneste verifiseringskilde.
 - Ett tydelig geokodingsresultat er en kandidat; fysisk identitet og komplett kontrakt må fortsatt kontrolleres.
