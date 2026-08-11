@@ -8,7 +8,7 @@
 - People-bilder: `docs/PEOPLE_IMAGES.md`
 - Fase-8-audit: `reports/place-production/torggata-phase8-rounds-audit-v1.md`
 - Baseline: PR #4829 / merge `3ee217c8427ede7bdf3273b55adc53f71ad08763`
-- Status: **AUDIT FERDIG – 8A er ikke samlet godkjent**
+- Status: **GODKJENT – 8A People er ferdig produsert og UI-verifisert**
 
 ## Tidligere-arbeid-gate
 
@@ -78,8 +78,6 @@ Nye profiler:
 
 Disse produseres samlet i **8A2**, slik at familieforhold, virksomhetsroller og adresser kan kontrolleres konsekvent.
 
-
-
 ### 8A2 kildepresisering – Adelsten Jensen
 
 Den generelle Torggata-artikkelen oppgir Adelsten Jensen som 1866–1916 og forenkler Torggata 1-koblingen til 1893. Oslo byleksikons egen Adelsten Jensen-artikkel oppgir 1866–1918, grunnleggelse i Torggata 2 i 1890 og flytting til Hasselgården i Torggata 1 i 1901. 8A2 bruker den dedikerte person-/firmaartikkelen for disse metadataene, mens Torggata-artikkelen fortsatt brukes for familieklyngen. Konflikten er dermed eksplisitt dokumentert og den eldre arbeidslisten skal ikke gjenbrukes ukritisk.
@@ -100,8 +98,6 @@ Dette er ikke en generell «alle som har bodd i gaten»-liste. Kandidatene behol
 | Moritz Glott | grunnla tobakksfabrikken som lå i Torggata 33 fra 1913 | stor dokumentert arbeids-/industrivirksomhet i gaten |
 
 Fersk 8A3-preflight fant ingen manifest-lastet canonical Wulff Becker-profil; den tidligere oppgitte filstien finnes ikke på `main`. Repo-søk fant heller ingen canonical profiler for de sju øvrige kandidatene. Alle åtte opprettes derfor i 8A3, med eksplisitt dokumentasjon av denne auditkorreksjonen.
-
-
 
 ### 8A3 preflight-korreksjon – Wulff Becker
 
@@ -187,3 +183,26 @@ Hver batch skal starte fra fersk `main`, søke ID/navnevarianter på nytt, og me
 - `getPeopleForPlace('torggata')` / relevant People-audit faktisk finner den nye canonical samlingen;
 - People-rundingen fungerer som reell samling i PlaceCard;
 - relevante tests/CI passerer.
+
+## 8A closeout – godkjent resultat
+
+Fase 8A er lukket etter tre separate, mergede innholdsbatcher og en egen UI-/runtimekontroll:
+
+- **8A1 / PR #4831:** eksisterende Thorvald Meyer, Henrik Bull, Christian Morgenstierne og Arne Eide fikk dokumentert Torggata-kobling; Thøger Binneballe, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm ble materialisert som nye People v1-profiler.
+- **8A2 / PR #4840:** Jensen-familiens dokumenterte gatehandel ble materialisert uten antallskvote, og Adelsten Jensens metadata ble korrigert mot den dedikerte Oslo byleksikon-artikkelen.
+- **8A3 / PR #4842:** Nanna Broch, Wulff Becker, Martin Heinz Zilsel, Alexander Claes, Therese Hurwitz, Jenny Hurwitz, Fredrik Hurwitz og Moritz Glott ble materialisert. Den stale antakelsen om en eksisterende Wulff Becker-profil ble korrigert etter fersk tree-/manifestkontroll.
+
+Closeout-testen bruker den faktiske `data/people/manifest.json`-samlingen og kjører `getPeopleForPlace('torggata')` fra runtime. Den krever de dokumenterte 8A-personene som et forventet sett, men setter **ingen øvre eller kunstig numerisk kvote** for Torggata. Eventuelle senere, selvstendig dokumenterte personer kan derfor legges til uten å bryte kontrakten.
+
+### UI-eierskap verifisert
+
+- `popup-utils.js` bygger People-samlingen fra relasjoner og personenes egne place-referanser, med deduplisering og eksplisitte `roundHoldbacks` som eneste stedsspesifikke skjulere.
+- `place-card.js` bruker `getPeopleForPlace(place.id)` som kilde både for People-listen og People-previewet; rundingslisten viser korte `desc`-tekster og åpner canonical personpopup via `data-person`.
+- `place-rounds-visual-collections.js` beholder `people` i `GENERAL_BASE` og category-four-gridet, slik at vanlig By får `people · objects · brands · fjerderunding` med Badges separat.
+- Manglende personbilde gjør ikke samlingen tom: previewet faller tilbake til People-ikon + faktisk samlingsstørrelse. Bilder er derfor fortsatt et kvalitetslag, ikke en sannhetsgate for personkoblingen.
+
+### Stoppgate
+
+Alle 8A-stoppkriterier er nå eksplisitt dekket: canonical koblinger/profiler, claims/source-trace, historisk temporal status, trygg bildepolicy, runtime People-oppslag, reell PlaceCard-runding og regressjonstester. **8A People = GODKJENT.**
+
+Neste fase-8-del er **8B Objects**. Holdback-listen ovenfor står fortsatt som redaksjonell grense og skal ikke omgås i senere rundingsarbeid.
