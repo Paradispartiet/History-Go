@@ -10,6 +10,7 @@
 - Fase 4-audit: `reports/place-production/torggata-phase4-fagverk-audit-v1.md`
 - Fase 5-audit: `reports/place-production/torggata-phase5-description-audit-v1.md`
 - Fase 6-audit: `reports/place-production/torggata-phase6-structured-profiles-audit-v1.md`
+- Fase 7-audit: `reports/place-production/torggata-phase7-popup-tabs-audit-v1.md`
 
 ## Korrigert fasestatus
 
@@ -21,8 +22,9 @@
 | 3. Koordinater/geometri | **ALLEREDE FERDIG – BEHOLD** | tidligere coordinate-produksjon, særlig PR #3773 og #3775 |
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
-| 6. Strukturerte place-profiler | **PÅGÅR – KLAR FOR REVIEW** | `spatial_profile`, `temporal_profile`, to reelle `subplaces`, fem `history_layers` og `source_summary`; `nature_profile` begrunnet N/A |
-| 7–15 | **IKKE STARTET** | styres av hovedchecklisten |
+| 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
+| 7. Popupfaner | **PÅGÅR – AUDIT FERDIG; 7A OM NESTE** | åtte faner eksplisitt vurdert; Nyheter, Lesespor og Mer begrunnet N/A; 7A–7E er reelle restleveranser |
+| 8–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -111,7 +113,7 @@ KONKRET REGRESJONSEVIDENS: ingen
 BESLUTNING: REELT NYTT ARBEID – bygg bare kildebårne strukturer som tilfører ny organisering
 ```
 
-### Fase 6 – aktivt resultat
+### Fase 6 – godkjent resultat
 
 - `spatial_profile` skiller canonical gateidentitet fra den kortere operative routeSegments-kjeden;
 - 574,5 meter gjøres ikke til påstått full Torggata-lengde;
@@ -122,4 +124,36 @@ BESLUTNING: REELT NYTT ARBEID – bygg bare kildebårne strukturer som tilfører
 - `nature_profile` er **N/A** med konkret begrunnelse: urbant gateløp uten dokumentert naturfaglig rolle i stedspakken;
 - fase 5-tekster og production package er urørt.
 
-Fase 6 settes først **GODKJENT** etter relevant CI, squash-merge og kontroll på faktisk `main`. Fase 7 starter ikke før dette er gjort.
+PR #4816 passerte Fagverk By Data og styring Phase 4, Nature data validation and candidates, Place description governance, Fagverk and place learning og Data checks på samme head. PR-en ble squash-merget, og faktisk `main` ble kontrollert på merge `e155aea8b0717c623a1de9904dcc253e8820f356` før fase 7 startet.
+
+## Fase 7 – tidligere-arbeid-gate
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+SISTE GODKJENTE TILSTAND: tab-runtime, Torggata-leksikon, én canonical Story, for_na, Lesespor og externalLinks finnes allerede
+NY PRODUKSJON FØR AUDIT: FORBUDT
+BESLUTNING: REELT AUDITARBEID – vurder hver av åtte canonical popupfaner separat og behold eksisterende data som faktisk består kontrakten
+```
+
+### Fase 7 – auditresultat
+
+- **Om – TRENGER ARBEID / 7A:** fase-5-artikkelen og fase-6 spatial/subplaces er på plass, men ukildet legacy-Leksikonstoff legges fortsatt inn i Om. `temporal_profile` har helper i runtime, men ingen presentasjonsrenderer.
+- **Historie – TRENGER ARBEID / 7B:** `history_layers` vises, mens Leksikon-chronology fortsatt er én generisk ukildet post.
+- **Fortellinger – TRENGER ARBEID / 7C:** én aktiv Torggata-story finnes; narrativet beholdes, men legacy-type `urban_change` og tematisk `next_scenes` må re-auditeres mot dagens Story-governance.
+- **Før/etter – TRENGER ARBEID / 7D:** `for_na` finnes, men interne History GO/Wonderkammer-kilder kan ikke være selvstendig faktagrunnlag, og kontrollert bildepar mangler.
+- **Nyheter – BEGRUNNET N/A:** ingen canonical Torggata-notiser er dokumentert som relevante nok til produksjon nå.
+- **Lesespor – BEGRUNNET N/A:** eksisterende Torggata-koblinger er subscription/paywall og filtreres korrekt fra den åpne stedflaten; ingen åpent direkte lesbart Torggata-spor er dokumentert.
+- **Kilder – TRENGER ARBEID / 7E:** sikre kildenavn finnes, men flere av dem er bare labels og ikke inspectable brukerrettede HTTPS-lenker.
+- **Mer – BEGRUNNET N/A:** ingen Torggata-post i Språkleksikon-manifestet og ingen særskilt canonical Mer-pakke som må vises; fanen skal ikke fylles med legacy-/handlingselementer.
+
+### Korrigert runtimeforståelse
+
+Fase-6-feltene er ikke generelt frakoblet popupen. `place-popup-v2.js` renderer `spatial_profile`, `subplaces`, `history_layers` og `source_summary`, og tabs-wrapperen fordeler dem til Om, Historie og Kilder. Det konkrete profilgapet som auditen fant er at `temporalProfile(place)` finnes som helper, men ikke brukes av en renderer.
+
+### Bindende delstegrekkefølge
+
+```text
+7 audit → 7A Om → 7B Historie → 7C Fortellinger → 7D Før/etter → 7E Kilder
+```
+
+Bare ett delsteg kan være aktivt om gangen. Fase 7 settes først **GODKJENT** når 7A–7E er ferdige og kontrollert på faktisk `main`.
