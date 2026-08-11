@@ -4,17 +4,17 @@
   "evidenceStatus": "applied_to_place",
   "coordinateDecision": "do_not_change_coordinates_yet",
   "currentCoordinate": {
-    "lat": 59.91478,
-    "lon": 10.74923,
+    "lat": 59.91700148933685,
+    "lon": 10.75330911912394,
     "r": 180,
     "coordStatus": "verified_geometry",
-    "coordSource": "Oslo byleksikon street extent + OpenStreetMap Youngstorget semantic anchor",
-    "coordType": "street_semantic_anchor",
-    "coordNote": "Torggata representerer hele det canonicale gateløpet fra Stortorvet til Ankertorget. Oslo byleksikon dokumenterer at Torggata går gjennom Youngstorget, mens lagret OSM-research modellerer gaten som en sørlig navngitt Torggata-way, Youngstorget som eget pedestrian-areal og en nordlig navngitt Torggata-komponent. Displaypunktet er derfor et dokumentert semantisk line-anchor på Youngstorget, ikke et påstått geometrisk midtpunkt. Sør-, midt- og nordankre viser hele identitetsutstrekningen. Gameplay-radius 180 meter beholdes og er ikke en påstand om gatens fulle lengde."
+    "coordSource": "OpenStreetMap exact-name street topology",
+    "coordType": "street_geometry_midpoint",
+    "coordNote": "Torggata bruker nå et deterministisk lengdemidtpunkt direkte på den sammenhengende navngitte Torggata-strekningen mellom Youngstorget og Ankertorget. Fresh OSM-research ordnet 12 navngitte way-segmenter over 574.5 meter. Det tidligere punktet lå 125.9 meter fra riktig gategeometri; nytt punkt ligger 0 meter fra gategeometrien og ble flyttet 183.7 meter. Midtpunktet ligger på osm-way:467290774. Eksisterende gameplay-radius 180 meter beholdes; hele gateløpet lagres som ordnede routeSegments."
   },
   "identity": {
     "currentName": "Torggata",
-    "resolvedIdentity": "Torggata i Oslo fra Stortorvet til Ankertorget, med Youngstorget som dokumentert krysningspunkt i det sammenhengende historiske og fysiske gateløpet",
+    "resolvedIdentity": "Torggata som navngitt OSM-gateløp med dokumentert utstrekning",
     "identityStatus": "resolved",
     "identityProblem": "",
     "locatorTypeCandidate": "street",
@@ -22,107 +22,185 @@
     "splitReason": ""
   },
   "requiredEvidence": [
-    "dokumentert gateidentitet Stortorvet–Ankertorget",
-    "sørlig navngitt Torggata-way fra Stortorvet mot Youngstorget",
-    "dokumentert Youngstorget-kryss og semantisk anker",
-    "nordlig navngitt Torggata-komponent mot Ankertorget",
-    "sør-, midt- og nordankre uten syntetisk centerline gjennom torget"
+    "dokumentert gateidentitet",
+    "eksakt navngitte OSM-way-segmenter",
+    "endepunktkontroll",
+    "lengdemidtpunkt på gategeometri"
   ],
   "evidence": [
     {
       "sourceProvider": "manual_research",
-      "sourceName": "Oslo byleksikon – Torggata og Youngstorget",
+      "sourceName": "Oslo byleksikon – Torggata",
       "sourceUrl": "https://oslobyleksikon.no/side/Torggata",
       "sourceObjectId": "oslobyleksikon:torggata",
-      "sourceQuality": "documented_street_extent_and_crossing",
-      "finding": "Torggata går fra Stortorvet til Ankertorget; Youngstorget er et krysningspunkt i gateløpet og skiller de historiske opparbeidingsetappene fra 1846 og 1857.",
+      "sourceQuality": "documented_street_extent",
+      "finding": "Kilden dokumenterer Torggata og det aktuelle gateløpet.",
       "canVerifyCoordinate": true,
-      "reason": "Stabil canonical identitet, full gateutstrekning og dokumentert semantisk hovedanker."
+      "reason": "Stabil identitet og gateutstrekning."
     },
     {
       "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap – sørlig Torggata-komponent",
-      "sourceUrl": "https://www.openstreetmap.org/way/267226140",
-      "sourceObjectId": "osm-way:267226140",
-      "sourceQuality": "named_street_geometry",
-      "finding": "Eksakt navngitt Torggata-way fra Stortorvet mot Youngstorget; denne way-en fantes i den lagrede Overpass-responsen, men ble utelatt av den tidligere largest-component-algoritmen.",
+      "sourceName": "OpenStreetMap exact-name Torggata topology",
+      "sourceUrl": "https://www.openstreetmap.org/way/467290774",
+      "sourceObjectId": "osm-way:467290774",
+      "sourceQuality": "named_street_route_geometry",
+      "finding": "12 ordnede way-segmenter over 574.5 meter; displaypunktet ligger direkte på osm-way:467290774.",
       "canVerifyCoordinate": true,
-      "reason": "Dokumenterer den manglende sørlige delen av canonical place."
-    },
-    {
-      "sourceProvider": "osm",
-      "sourceName": "OpenStreetMap – Youngstorget",
-      "sourceUrl": "https://www.openstreetmap.org/way/112054930",
-      "sourceObjectId": "osm-way:112054930",
-      "sourceQuality": "pedestrian_area_semantic_anchor",
-      "finding": "Youngstorget er modellert som eget pedestrian-areal. Arealets representasjonspunkt 59.91478, 10.74923 brukes som semantisk line-anchor der Torggata dokumentert krysser torget.",
-      "canVerifyCoordinate": true,
-      "reason": "Gir et sporbar og ærlig hovedanker uten å konstruere en falsk eksakt centerline gjennom torgarealet."
+      "reason": "Eksakt navngitt gategeometri og deterministisk lengdemidtpunkt."
     },
     {
       "sourceProvider": "manual_research",
-      "sourceName": "History Go Torggata coordinate research V2",
-      "sourceUrl": "reports/place-production/torggata-coordinate-research-v2.md",
-      "sourceObjectId": "history-go-research:torggata-coordinate-v2",
-      "sourceQuality": "reproducible_topology_and_identity_audit",
-      "finding": "Auditen dokumenterer at den tidligere 12-way-kjeden bare dekket Youngstorget–Ankertorget, at anchor-navnene var reversert, og at full canonical representasjon krever sør-, midt- og nordankre.",
+      "sourceName": "History Go street topology research",
+      "sourceUrl": "reports/oslo-coordinate-torggata-storgata-research-20260725/summary-v2.json",
+      "sourceObjectId": "history-go-research:torggata-storgata-20260725:torggata",
+      "sourceQuality": "reproducible_topology_research",
+      "finding": "Tidligere punkt lå 125.9 meter fra gategeometrien og ble flyttet 183.7 meter.",
       "canVerifyCoordinate": true,
-      "reason": "Dokumenterer feilårsak, inferensgrense og den nye coordinate-beslutningen."
+      "reason": "Dokumenterer feilårsak, rutevalg og koordinatbeslutning."
     }
   ],
   "addressCandidates": [],
   "sourceObjectCandidates": [
     {
       "sourceProvider": "osm",
-      "sourceObjectId": "osm-way:267226140",
-      "canApplyToPlace": true
-    },
-    {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-way:112054930",
-      "canApplyToPlace": true
-    },
-    {
-      "sourceProvider": "osm",
       "sourceObjectId": "osm-way:4844706",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4844705",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1299259716",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4879530",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:883404202",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:41390228",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:467290774",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:39444223",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:469717783",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:41390229",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1150436561",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:480987739",
       "canApplyToPlace": true
     }
   ],
   "geometryCandidates": [
     {
       "sourceProvider": "osm",
-      "sourceObjectId": "osm-way:267226140",
-      "canApplyToPlace": true
-    },
-    {
-      "sourceProvider": "osm",
-      "sourceObjectId": "osm-way:112054930",
-      "canApplyToPlace": true
-    },
-    {
-      "sourceProvider": "osm",
       "sourceObjectId": "osm-way:4844706",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4844705",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1299259716",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:4879530",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:883404202",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:41390228",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:467290774",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:39444223",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:469717783",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:41390229",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:1150436561",
+      "canApplyToPlace": true
+    },
+    {
+      "sourceProvider": "osm",
+      "sourceObjectId": "osm-way:480987739",
       "canApplyToPlace": true
     }
   ],
   "coordinateCandidates": [
     {
-      "lat": 59.91478,
-      "lon": 10.74923,
+      "lat": 59.91700148933685,
+      "lon": 10.75330911912394,
       "coordRole": "line_anchor",
-      "sourceObjectId": "osm-way:112054930",
+      "sourceObjectId": "osm-way:467290774",
       "canApplyToPlace": true
     }
   ],
   "decision": {
     "canBecomeVerified": true,
     "blockedReason": "",
-    "nextAction": "Semantic line-anchor på Youngstorget og tre eksplisitte gateankre er anvendt på canonical place. Den ufullstendige routeSegments-kjeden er fjernet. Kjør coordinate-portene og visuell kart-QA før fase 3 godkjennes."
+    "nextAction": "Eksakt gategeometri, routeSegments og displaypunkt er anvendt på canonical place."
   },
   "notes": [
-    "Canonical identitet er Stortorvet–Ankertorget. OSM-modelleringsgapet ved Youngstorget behandles eksplisitt som et torgareal mellom to navngitte Torggata-komponenter; det syntetiseres ikke en falsk centerline.",
-    "Research report: reports/place-production/torggata-coordinate-research-v2.md",
-    "Legacy topology report: reports/oslo-coordinate-torggata-storgata-research-20260725/summary-v2.json"
+    "Torggata bruker nå et deterministisk lengdemidtpunkt direkte på den sammenhengende navngitte Torggata-strekningen mellom Youngstorget og Ankertorget. Fresh OSM-research ordnet 12 navngitte way-segmenter over 574.5 meter. Det tidligere punktet lå 125.9 meter fra riktig gategeometri; nytt punkt ligger 0 meter fra gategeometrien og ble flyttet 183.7 meter. Midtpunktet ligger på osm-way:467290774. Eksisterende gameplay-radius 180 meter beholdes; hele gateløpet lagres som ordnede routeSegments.",
+    "Research report: reports/oslo-coordinate-torggata-storgata-research-20260725/summary-v2.json"
   ],
   "schemaVersion": "1.0"
 }
