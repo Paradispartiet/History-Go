@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   containsStrongClaim,
   containsTemporalClaim,
+  descriptionFieldsChanged,
   isGeneratedPlaceIndex,
   sha256Text,
   splitSentences,
@@ -119,6 +120,22 @@ test('strong and temporal gates detect governed wording', () => {
 test('generated place indexes are build output, not canonical description files', () => {
   assert.equal(isGeneratedPlaceIndex('data/places/places_index.json'), true);
   assert.equal(isGeneratedPlaceIndex('data/places/politikk/oslo/places_politikk/tinghuset.json'), false);
+});
+
+test('nested object descriptions do not count as place description changes', () => {
+  const before = {
+    id: 'teststed',
+    desc: 'Uendret stedsbeskrivelse.',
+    popupDesc: 'Uendret popupbeskrivelse.',
+    objects: []
+  };
+  const after = {
+    ...before,
+    objects: [{ id: 'objekt_1', desc: 'Ny beskrivelse av et fysisk objekt.' }]
+  };
+  assert.equal(descriptionFieldsChanged(before, after), false);
+  assert.equal(descriptionFieldsChanged(before, { ...after, desc: 'Endret stedsbeskrivelse.' }), true);
+  assert.equal(descriptionFieldsChanged(before, { ...after, popupDesc: 'Endret popupbeskrivelse.' }), true);
 });
 
 test('a complete ready_v4_2 packet passes packet validation', () => {
