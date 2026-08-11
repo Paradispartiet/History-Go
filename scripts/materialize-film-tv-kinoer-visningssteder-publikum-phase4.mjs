@@ -365,7 +365,7 @@ function updateRegistry() {
   } else {
     subject.chapters[existingIndex] = registryChapter;
   }
-  const refactorActive = ['curriculum_completeness_refactor', 'canonical_inventory_migration'].includes(readJson(STATUS_FILE).subjects.find((row) => row.id === 'film_tv')?.nextGate);
+  const refactorActive = ['curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit'].includes(readJson(STATUS_FILE).subjects.find((row) => row.id === 'film_tv')?.nextGate);
   if (!refactorActive) subject.canonicalModel.note = 'Film & TVs seks pensum-eide områder styrer rendererstrukturen. Kinoer, visningssteder og publikum er materialisert som fulltekst- og claimsporet kapittel med 20/20 emner; fem områder står igjen. Source-first, ekstern claim-basis og konkrete verk-, visnings-, kringkastings- og arkivankere er bindende.';
   writeJson(REGISTRY_FILE, registry);
 }
@@ -374,7 +374,7 @@ function updateStatus() {
   const status = readJson(STATUS_FILE);
   const subject = status.subjects.find((row) => row.id === 'film_tv');
   assert(['structure_ready', 'chapters_in_progress'].includes(subject?.editorialStatus), 'Film & TV må starte fra structure_ready eller dokumentert kapittelproduksjon');
-  const refactorGate = ['curriculum_completeness_refactor', 'canonical_inventory_migration'].includes(subject.nextGate);
+  const refactorGate = ['curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit'].includes(subject.nextGate);
   subject.editorialStatus = 'chapters_in_progress';
   if (!refactorGate) {
     subject.nextGate = 'remaining_domain_chapter_production';
@@ -386,6 +386,11 @@ function updateStatus() {
 function main() {
   assert(fs.existsSync(abs(REGISTRY_FILE)), 'Mangler fagverkregister');
   assert(fs.existsSync(abs(STATUS_FILE)), 'Mangler fagverkstatus');
+  const activeGate = readJson(STATUS_FILE).subjects.find((row) => row.id === 'film_tv')?.nextGate;
+  if (['curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit'].includes(activeGate)) {
+    console.log(`Bevarte Film & TV/${CHAPTER_ID} uendret under ${activeGate}.`);
+    return;
+  }
   writeJson(CHAPTER_FILE, chapter);
   writeJson(`${CHAPTER_DIR}/brief.json`, brief);
   for (const [file, value] of Object.entries(modules)) writeJson(`${CHAPTER_DIR}/${file}`, value);

@@ -9,6 +9,7 @@ const P = Object.freeze({
   fagkart: 'data/fag/TV_og_Film/fagkart_film_tv_canonical_v4_5.json',
   emner: 'data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json',
   pensum: 'data/fag/TV_og_Film/film_tvpensum_canonical_v4_5.json',
+  inventory: 'data/fag/TV_og_Film/film_tv_variable_inventory_v1.json',
   registry: 'data/fagverk/fagverk_registry.json',
   status: 'data/fagverk/subject_status.json',
   report: 'reports/fagverk/film-tv-curriculum-completeness-v1.json'
@@ -119,6 +120,15 @@ export function auditFilmTvCurriculumCompletenessV1({ writeReport = false, check
   const pensum = json(P.pensum);
   const registry = json(P.registry).subjects?.film_tv;
   const status = json(P.status).subjects.find((row) => row.id === 'film_tv');
+  if (status?.nextGate === 'canonical_inventory_migrated_existing_chapter_reaudit') {
+    const inventory = json(P.inventory);
+    const historical = json(P.report);
+    assert(emner.length === 192 && fagkart.categories.length === 10 && pensum.domains.length === 10, 'Den migrerte canonen samsvarer ikke med completeness-planen');
+    assert(new Set(inventory.emner.flatMap((row) => row.legacy_aliases)).size === 120, 'Legacygrunnlaget er ikke bevart som 120 aliases');
+    assert(historical.legacy_inventory?.emne_count === 120 && historical.legacy_inventory?.domain_count === 6, 'Den historiske kvoteauditen er skadet');
+    assert(registry?.chapters?.length === 2, 'De to materialiserte kapitlene skal bevares gjennom migrasjonen');
+    return historical;
+  }
   assert(Array.isArray(fagkart.categories) && fagkart.categories.length === 6, 'Film & TV-fagkartet mangler den auditerte legacystrukturen');
   assert(Array.isArray(emner) && emner.length === 120, 'Legacy-denominatoren skal være eksplisitt før refaktor');
   assert(Array.isArray(pensum.domains) && pensum.domains.length === 6, 'Legacy-pensumet mangler seks områder');

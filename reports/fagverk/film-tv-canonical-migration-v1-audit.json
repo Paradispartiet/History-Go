@@ -1,0 +1,51 @@
+{
+  "schema": "history_go_film_tv_canonical_migration_audit_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "status": "canonical_inventory_migrated_existing_chapter_reaudit_next",
+  "subject_id": "film_tv",
+  "integrity_counts_not_quotas": {
+    "domain_count": 10,
+    "emne_count": 192,
+    "method_count": 119,
+    "mapping_count": 192,
+    "topic_hook_count": 192,
+    "legacy_alias_count": 120,
+    "runtime_place_file_count": 6,
+    "domain_emne_counts": {
+      "audiovisuell_form_stil_analyse": 15,
+      "fortelling_sjanger_serialitet_format": 17,
+      "film_tv_historie_historiografi": 19,
+      "dokumentar_virkelighetsformer_etikk": 15,
+      "samfunn_representasjon_identitet_makt": 19,
+      "produksjon_arbeid_teknologi_praksis": 22,
+      "industri_institusjoner_politikk_distribusjon": 17,
+      "visning_publikum_resepsjon_deltakelse": 24,
+      "sted_location_skjermgeografi": 19,
+      "arkiv_kulturarv_minne_stjerner": 25
+    },
+    "domain_method_counts": {
+      "audiovisuell_form_stil_analyse": 63,
+      "fortelling_sjanger_serialitet_format": 41,
+      "film_tv_historie_historiografi": 60,
+      "dokumentar_virkelighetsformer_etikk": 40,
+      "samfunn_representasjon_identitet_makt": 57,
+      "produksjon_arbeid_teknologi_praksis": 22,
+      "industri_institusjoner_politikk_distribusjon": 58,
+      "visning_publikum_resepsjon_deltakelse": 44,
+      "sted_location_skjermgeografi": 21,
+      "arkiv_kulturarv_minne_stjerner": 57
+    }
+  },
+  "gates": {
+    "all_192_inventory_emners_are_canonical_once": true,
+    "all_120_legacy_ids_are_aliases_only": true,
+    "all_emners_have_valid_domain_method_hook_and_mapping": true,
+    "domain_and_method_counts_are_variable": true,
+    "source_first_quiz_rules_preserved": true,
+    "runtime_place_ids_resolve_to_canonical_emners": true,
+    "existing_chapters_preserved_for_alias_reaudit": true,
+    "chapter_production_still_blocked": true
+  },
+  "next_gate": "reaudit_existing_chapters_against_migrated_canonical_inventory"
+}

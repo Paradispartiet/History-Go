@@ -8,6 +8,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PATHS = Object.freeze({
   fagkart: 'data/fag/TV_og_Film/fagkart_film_tv_canonical_v4_5.json',
   emner: 'data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json',
+  inventory: 'data/fag/TV_og_Film/film_tv_variable_inventory_v1.json',
   completeness: 'reports/fagverk/film-tv-curriculum-completeness-v1.json',
   report: 'reports/fagverk/film-tv-legacy-emne-classification-v1.json'
 });
@@ -171,6 +172,15 @@ export function auditFilmTvLegacyEmneClassificationV1({ writeReport = false, che
   const fagkart = json(PATHS.fagkart);
   const emner = json(PATHS.emner);
   const completeness = json(PATHS.completeness);
+  if (emner.length === 192 && fagkart.categories?.length === 10) {
+    const inventory = json(PATHS.inventory);
+    const historical = json(PATHS.report);
+    const aliases = new Set(inventory.emner.flatMap((row) => row.legacy_aliases));
+    assert(aliases.size === 120, 'Den migrerte canonen bevarer ikke 120/120 legacyaliases');
+    assert(historical.classifications?.length === 120, 'Den historiske klassifikasjonen er skadet');
+    assert(Object.keys(DECISIONS).every((id) => aliases.has(id)), 'En klassifisert legacy-ID mangler i aliasinventaret');
+    return historical;
+  }
   const emneById = new Map(emner.map((row) => [row.emne_id, row]));
   const hookRows = fagkart.categories.flatMap((legacyDomain) =>
     legacyDomain.topic_hooks.flatMap((hook) => hook.emne_ids.map((emneId) => ({
