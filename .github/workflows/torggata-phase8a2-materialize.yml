@@ -29,18 +29,43 @@ jobs:
       - name: Materialize 8A2
         run: python3 tools/_tmp_materialize_torggata_phase8a2.py
 
-      - name: Mark Thorvald strong claim explicit
+      - name: Normalize factuality mappings for initial-based names
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          p = Path('data/people/claims/by/oslo/torggata/thorvald_jensen.claims.json')
-          data = json.loads(p.read_text(encoding='utf-8'))
-          matches = [c for c in data['claims'] if c.get('id') == 'identity_lifespan_family']
+
+          thorvald_path = Path('data/people/claims/by/oslo/torggata/thorvald_jensen.claims.json')
+          thorvald = json.loads(thorvald_path.read_text(encoding='utf-8'))
+          matches = [c for c in thorvald['claims'] if c.get('id') == 'identity_lifespan_family']
           if len(matches) != 1:
               raise SystemExit(f'Expected exactly one Thorvald identity claim, found {len(matches)}')
           matches[0]['evidence_level'] = 'explicit'
-          p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          thorvald_path.write_text(json.dumps(thorvald, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          karl_path = Path('data/people/claims/by/oslo/torggata/karl_a_jensen.claims.json')
+          karl = json.loads(karl_path.read_text(encoding='utf-8'))
+          karl['sentence_claim_map']['popupDesc'] = [
+              {'sentence': 1, 'claim_ids': ['identity_lifespan_family']},
+              {'sentence': 2, 'claim_ids': ['identity_lifespan_family']},
+              {'sentence': 3, 'claim_ids': ['business_torggata_1914']},
+          ]
+          karl_path.write_text(json.dumps(karl, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          peter_path = Path('data/people/claims/by/oslo/torggata/peter_marinius_jensen.claims.json')
+          peter = json.loads(peter_path.read_text(encoding='utf-8'))
+          peter['sentence_claim_map']['desc'] = [
+              {'sentence': 1, 'claim_ids': ['identity_profession_lifespan', 'jensen_family_relation', 'business_torggata_1896']},
+              {'sentence': 2, 'claim_ids': ['business_torggata_1896']},
+              {'sentence': 3, 'claim_ids': ['business_torggata_1896']},
+          ]
+          peter['sentence_claim_map']['popupDesc'] = [
+              {'sentence': 1, 'claim_ids': ['identity_profession_lifespan', 'jensen_family_relation']},
+              {'sentence': 2, 'claim_ids': ['business_torggata_1896']},
+              {'sentence': 3, 'claim_ids': ['business_torggata_1896']},
+              {'sentence': 4, 'claim_ids': ['business_torggata_1896']},
+          ]
+          peter_path.write_text(json.dumps(peter, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
 
       - name: Regenerate derived People data
