@@ -1,0 +1,91 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "harald_olsen",
+  "profile_file": "data/people/by/oslo/torggata/harald_olsen.json",
+  "identity": {
+    "canonical_identity": "Den norske arkitekten, ingeniøren og murermesteren Harald Olsen, som tegnet varietéteateret Eldorado i Torggata 9.",
+    "name_variants": [
+      "Harald Olsen"
+    ],
+    "not": [
+      "navnelike personer"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_profession",
+      "claim": "Harald Olsen var norsk arkitekt, ingeniør og murmester.",
+      "status": "verified",
+      "source_url": "https://snl.no/Harald_Olsen",
+      "source_location": "faktaboks og innledning",
+      "source_type": "reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "eldorado_1891",
+      "claim": "Varietéteateret Eldorado i Torggata 9 ble innviet i 1891 og oppført etter tegninger av arkitekt Harald Olsen.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Eldorado_kino",
+      "source_location": "innledningen og avsnittet om varietéteateret",
+      "source_type": "reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_profession"
+    ],
+    "kindLabel": [
+      "identity_profession"
+    ],
+    "year": [
+      "eldorado_1891"
+    ],
+    "placeId": [
+      "eldorado_1891"
+    ],
+    "places[torggata]": [
+      "eldorado_1891"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_profession",
+          "eldorado_1891"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_profession"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "eldorado_1891"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "2/2",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

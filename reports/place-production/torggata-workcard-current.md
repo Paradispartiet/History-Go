@@ -17,6 +17,9 @@
 - Fase 7D-audit: `reports/place-production/torggata-phase7d-before-after-audit-v1.md`
 - Fase 7E-audit: `reports/place-production/torggata-phase7e-sources-audit-v1.md`
 - Fase 7-closeout: `reports/place-production/torggata-phase7-closeout-v1.md`
+- Fase 8-audit: `reports/place-production/torggata-phase8-rounds-audit-v1.md`
+- Fase 8A-audit: `reports/place-production/torggata-phase8a-people-audit-v1.md`
+- Fase 8A1-audit: `reports/place-production/torggata-phase8a1-people-audit-v1.md`
 
 ## Korrigert fasestatus
 
@@ -30,7 +33,8 @@
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
-| 8–15 | **IKKE STARTET** | styres av hovedchecklisten |
+| 8. Rundinger | **PÅGÅR – 8A People** | audit PR #4829; 8A-audit PR #4830; 8A1 byggere/arkitekter/teaterledere i aktiv batch |
+| 9–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -284,3 +288,12 @@ PR #4827 ble squash-merget etter grønn Fagverk By Data og styring Phase 4 og Ty
 Alle åtte popupfaner er nå eksplisitt avsluttet som **GODKJENT** eller **BEGRUNNET N/A**. Ingen status er arvet mellom faner.
 
 Torggata kan derfor gå videre til **fase 8: PlaceCard-rundinger**. Før fase 8 settes `PÅGÅR` skal tidligere-arbeid-gaten kjøres for rundinger og `data/places/README_place_rounds.md` leses fullt ut. Legacy `place.rounds` skal ikke behandles som canonical fasit bare fordi det finnes eldre Torggata-rundingsarbeid.
+
+
+## Fase 8A1 – byggere, arkitekter og teaterledere
+
+8A1 bygger den første canonical People-klyngen for Torggata uten antallskvote. Eksisterende Thorvald Meyer, Henrik Bull, Christian Morgenstierne og Arne Eide gjenbrukes med sekundær Torggata-kobling. Nye People v1-profiler opprettes for Thøger Binneballe, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
+
+Primærankrene til eksisterende personer beholdes. Nye profiler bruker `torggata` som primæranker, har full claims-trace og kan stå uten bilde når sikker lisenskjede mangler.
+
+Neste underfase etter merge: **8A2 – Jensen-familiens gatehandel**.
