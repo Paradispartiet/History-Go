@@ -1,0 +1,75 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "psykologi",
+  "chapter_id": "kognisjon-folelser-og-atferd",
+  "primary_domain_id": "kognisjon_folelser_atferd",
+  "relatedPlaceIds": ["psykologisk_institutt_uio"],
+  "cognitionCaseIds": ["attention_perception_case","heuristics_bias_case","emotion_regulation_case","stress_appraisal_case"],
+  "purpose": "Materialisere Psykologis fjerde canonicale domene med kildebelagt undervisning i persepsjon, oppmerksomhet, kognisjon, beslutning, bias, hverdagsatferd, følelser, regulering og stress.",
+  "audience": "Brukere som skal kunne undersøke hvordan mennesker sanser, prioriterer, vurderer og handler uten å gjøre en oppgaveeffekt, kognitiv skjevhet, følelse eller stressrespons til et fast personlighetstrekk eller en klinisk diagnose.",
+  "learningArc": [
+    "starte i skillet mellom sanseinformasjon og perseptuell fortolkning",
+    "vise hvordan oppmerksomhet prioriterer informasjon og påvirker persepsjon",
+    "koble oppmerksomhet til hukommelse, kognitiv kontroll og mål",
+    "undersøke beslutninger under usikkerhet gjennom heuristikker og framing",
+    "skille dokumenterte kognitive bias fra generell påstand om at mennesker er irrasjonelle",
+    "analysere hverdagsatferd som samspill mellom situasjon, vane, mål og tidligere læring",
+    "vise at følelse og kognisjon virker gjensidig på hverandre",
+    "skille emosjonsregulering fra følelsesfravær og enkel undertrykking",
+    "avslutte med stress som dynamisk respons mellom belastning, vurdering, fysiologi, mestring og varighet"
+  ],
+  "requiredEmneIds": [
+    "em_psy_affektregulering","em_psy_beslutning_valg","em_psy_hverdagspsykologi","em_psy_kognisjon_tenkning","em_psy_kognitive_bias","em_psy_oppmerksomhet_fokus","em_psy_persepsjon_sansing","em_psy_stress_belastning"
+  ],
+  "requiredMethodIds": [
+    "met_psy_affektanalyse","met_psy_reguleringsanalyse","met_psy_biopsykologisk_analyse","met_psy_traumeanalyse","met_psy_beslutningsanalyse","met_psy_kognitiv_analyse","met_psy_biasanalyse","met_psy_praksisanalyse","met_psy_hverdagsanalyse","met_psy_eksperimentell_analyse","met_psy_laringsanalyse","met_psy_persepsjonsanalyse","met_psy_hukommelsesanalyse","met_psy_oppmerksomhetsanalyse","met_psy_stressanalyse","met_psy_risiko_og_resiliensanalyse","met_psy_krisepsykologisk_analyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "sansing vs persepsjon",
+    "oppmerksomhet vs fullstendig registrering",
+    "oppgaveprestasjon vs generell kognitiv evne",
+    "heuristikk vs feil",
+    "bias i definert oppgave vs fast personlighet",
+    "korrelasjon vs individuell årsaksforklaring",
+    "framingeffekt vs tvang",
+    "hverdagsvane vs uforanderlig trekk",
+    "følelse vs motsats til kognisjon",
+    "emosjonsregulering vs følelsesundertrykking",
+    "reappraisal som strategi vs universelt beste valg",
+    "akutt stressrespons vs kronisk belastning",
+    "stress vs psykisk lidelse",
+    "risikofaktor vs individuell prognose",
+    "forskningscase vs runtime-place-ID"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "fagfellevurderte review- og meta-analyser om oppmerksomhet, persepsjon og kognitiv kontroll",
+      "klassiske og nyere fagfellevurderte kilder om heuristikker, framing og beslutningsbias",
+      "review- og meta-analyser om emotion-cognition-interaksjon og emosjonsregulering",
+      "WHO og fagfellevurderte stress-/allostasekilder for stress, mestring og belastning",
+      "canonical Psykologi-filer som scope- og metodeeier, aldri som ekstern faktakilde"
+    ],
+    "minimumExternalSources": 18,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "currentStatusClaimsRequireCurrentSource": true
+  },
+  "safety": {
+    "doNotDiagnosePeople": true,
+    "noIndividualTreatmentAdvice": true,
+    "noScreeningInterpretation": true,
+    "noCognitiveOrEmotionTypingFromCasualObservation": true,
+    "cognitionRule": "Beskriv oppgaver, prosesser, sannsynligheter og dokumenterte kontekster; ikke gjør en enkelt feil, følelse, vane eller stressreaksjon til bevis på intelligens, personlighet eller diagnose."
+  },
+  "qa": {
+    "exactCanonicalCoverage": "8/8",
+    "exactCanonicalMethodCoverage": "17/17",
+    "minimumModules": 3,
+    "minimumSections": 9,
+    "paragraphClaimTraceRequired": true,
+    "minimumExternalSources": 18,
+    "minimumClaims": 27,
+    "rendererFieldsRequired": ["relatedPlaces","cognitionCases","sources.label","commonMisconceptions.claim","commonMisconceptions.correction"]
+  }
+}

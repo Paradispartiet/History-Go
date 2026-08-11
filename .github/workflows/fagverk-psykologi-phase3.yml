@@ -24,6 +24,8 @@ on:
       - "scripts/audit-fagverk-psykologi-fagtradisjoner-teori-phase4.mjs"
       - "scripts/materialize-psykologi-utvikling-oppvekst-laring-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-utvikling-oppvekst-laring-phase4.mjs"
+      - "scripts/materialize-psykologi-kognisjon-folelser-atferd-phase4.mjs"
+      - "scripts/audit-fagverk-psykologi-kognisjon-folelser-atferd-phase4.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
@@ -31,6 +33,7 @@ on:
       - "tests/fagverk-psykologi-psykisk-helse-phase4.test.mjs"
       - "tests/fagverk-psykologi-fagtradisjoner-teori-phase4.test.mjs"
       - "tests/fagverk-psykologi-utvikling-oppvekst-laring-phase4.test.mjs"
+      - "tests/fagverk-psykologi-kognisjon-folelser-atferd-phase4.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-psykologi-phase3.yml"
@@ -48,10 +51,13 @@ on:
       - "scripts/audit-fagverk-psykologi-fagtradisjoner-teori-phase4.mjs"
       - "scripts/materialize-psykologi-utvikling-oppvekst-laring-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-utvikling-oppvekst-laring-phase4.mjs"
+      - "scripts/materialize-psykologi-kognisjon-folelser-atferd-phase4.mjs"
+      - "scripts/audit-fagverk-psykologi-kognisjon-folelser-atferd-phase4.mjs"
       - "tests/fagverk-psykologi-phase3.test.mjs"
       - "tests/fagverk-psykologi-psykisk-helse-phase4.test.mjs"
       - "tests/fagverk-psykologi-fagtradisjoner-teori-phase4.test.mjs"
       - "tests/fagverk-psykologi-utvikling-oppvekst-laring-phase4.test.mjs"
+      - "tests/fagverk-psykologi-kognisjon-folelser-atferd-phase4.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-psykologi-phase3.yml"
   workflow_dispatch:
@@ -82,10 +88,12 @@ jobs:
           node --check scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs
           node --check scripts/materialize-psykologi-fagtradisjoner-teori-phase4.mjs
           node --check scripts/materialize-psykologi-utvikling-oppvekst-laring-phase4.mjs
+          node --check scripts/materialize-psykologi-kognisjon-folelser-atferd-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-phase3.mjs
           node --check scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-fagtradisjoner-teori-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-utvikling-oppvekst-laring-phase4.mjs
+          node --check scripts/audit-fagverk-psykologi-kognisjon-folelser-atferd-phase4.mjs
           node --check scripts/build-fagverk-release-manifest.mjs
 
       - name: Materialize Psychology editorial chapters
@@ -94,6 +102,7 @@ jobs:
           node scripts/enrich-psykologi-psykisk-helse-source-evidence-phase4.mjs
           node scripts/materialize-psykologi-fagtradisjoner-teori-phase4.mjs
           node scripts/materialize-psykologi-utvikling-oppvekst-laring-phase4.mjs
+          node scripts/materialize-psykologi-kognisjon-folelser-atferd-phase4.mjs
 
       - name: Refresh deterministic Psychology audits
         run: |
@@ -101,6 +110,7 @@ jobs:
           node scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs --write-report
           node scripts/audit-fagverk-psykologi-fagtradisjoner-teori-phase4.mjs --write-report
           node scripts/audit-fagverk-psykologi-utvikling-oppvekst-laring-phase4.mjs --write-report
+          node scripts/audit-fagverk-psykologi-kognisjon-folelser-atferd-phase4.mjs --write-report
 
       - name: Refresh and validate shared Fagverk architecture
         run: |
@@ -120,6 +130,7 @@ jobs:
           node --test tests/fagverk-psykologi-psykisk-helse-phase4.test.mjs
           node --test tests/fagverk-psykologi-fagtradisjoner-teori-phase4.test.mjs
           node --test tests/fagverk-psykologi-utvikling-oppvekst-laring-phase4.test.mjs
+          node --test tests/fagverk-psykologi-kognisjon-folelser-atferd-phase4.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
 
       - name: Verify chapter 1 rematerializer
@@ -134,12 +145,16 @@ jobs:
       - name: Verify chapter 3 rematerializer
         run: node scripts/materialize-psykologi-utvikling-oppvekst-laring-phase4.mjs
 
+      - name: Verify chapter 4 rematerializer
+        run: node scripts/materialize-psykologi-kognisjon-folelser-atferd-phase4.mjs
+
       - name: Verify deterministic Psychology reports
         run: |
           node scripts/audit-fagverk-psykologi-phase3.mjs
           node scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs
           node scripts/audit-fagverk-psykologi-fagtradisjoner-teori-phase4.mjs
           node scripts/audit-fagverk-psykologi-utvikling-oppvekst-laring-phase4.mjs
+          node scripts/audit-fagverk-psykologi-kognisjon-folelser-atferd-phase4.mjs
 
       - name: Verify deterministic shared Fagverk reports
         run: |
@@ -163,6 +178,8 @@ jobs:
             data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet \
             data/fagverk/psykologi/utvikling-oppvekst-og-laring.json \
             data/fagverk/psykologi/utvikling-oppvekst-og-laring \
+            data/fagverk/psykologi/kognisjon-folelser-og-atferd.json \
+            data/fagverk/psykologi/kognisjon-folelser-og-atferd \
             data/fagverk/fagverk_registry.json \
             data/fagverk/subject_status.json \
             data/fagverk/fagverk_release.json \
@@ -171,10 +188,11 @@ jobs:
             reports/fagverk/psykologi-phase3-audit.json \
             reports/fagverk/psykologi-psykisk-helse-phase4-audit.json \
             reports/fagverk/psykologi-fagtradisjoner-teori-phase4-audit.json \
-            reports/fagverk/psykologi-utvikling-oppvekst-laring-phase4-audit.json
+            reports/fagverk/psykologi-utvikling-oppvekst-laring-phase4-audit.json \
+            reports/fagverk/psykologi-kognisjon-folelser-atferd-phase4-audit.json
           if git diff --cached --quiet; then
             echo 'Psychology materialization already matches.'
             exit 0
           fi
-          git commit -m 'Materialize Psychology development chapter'
+          git commit -m 'Materialize Psychology cognition chapter'
           git push origin "HEAD:${HEAD_BRANCH}"
