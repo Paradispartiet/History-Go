@@ -19,10 +19,10 @@ const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => { fs.mkdirSync(path.dirname(abs(file)), { recursive: true }); fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`); };
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
-const section = (id, title, emneId, paragraphs, claimIds, keyPoints) => ({
+const section = (id, title, emneId, paragraphs, claimIds, keyPoints, keyPointClaimIds) => ({
   id, title, emne_ids: [emneId], paragraphs,
   paragraphClaimIds: claimIds.map((claimId) => [claimId]), keyPoints,
-  keyPointClaimIds: keyPoints.map((_, index) => [claimIds[index % claimIds.length]])
+  keyPointClaimIds: keyPointClaimIds.map((claimId) => [claimId])
 });
 const claim = (id, text, sourceIds, sectionId, resolution = 'verified_as_planned') => ({
   id, claim_plan_id: id, claim: text, source_ids: sourceIds, status: 'verified',
@@ -52,7 +52,7 @@ export function buildFilmTvNarrativeViewpointGenreFulltextV1() {
         ], ['ftv-nvg-pc-01', 'ftv-nvg-pc-02', 'ftv-nvg-pc-03'], [
           'Skill verdensregler og utelatelser fra en generell påstand om virkelighet.',
           'Behandle realisme som historisk strategi, ikke som fravær av formvalg.'
-        ]),
+        ], ['ftv-nvg-pc-01', 'ftv-nvg-pc-03']),
         section('ftv-nvg-sjanger-1', 'Sjanger er kontrakt, klassifikasjon og historisk forhandling', emneIds[4], [
           'BFI viser at sjangergrenser varierer mellom produksjon, markedsføring, kritikk og arkiv, og at genre ofte overlapper med stil, stemning, bevegelse og format. Sjangeranalyse bør derfor spørre hvem som bruker betegnelsen, i hvilken historisk situasjon og til hvilket formål, før en liste med konvensjoner behandles som definisjon.',
           'The Long Goodbye flytter Raymond Chandlers detektiv Marlowe inn i en senere sosial og filmhistorisk situasjon. BFI omtaler filmen som en neo-noir som både arver og undergraver noir. Det gjør sjangerforventningen synlig: seeren kan registrere hvilke koder som beholdes, hvilke som forskyves, og hvordan forskyvningen organiserer Marlowes rolle.',
@@ -60,7 +60,7 @@ export function buildFilmTvNarrativeViewpointGenreFulltextV1() {
         ], ['ftv-nvg-pc-11', 'ftv-nvg-pc-12', 'ftv-nvg-pc-13'], [
           'Navngi aktør, tid og bruksformål når en sjangerbetegnelse brukes.',
           'Undersøk hvordan verk aktiverer og forskyver forventninger, ikke bare om de passer i en boks.'
-        ])
+        ], ['ftv-nvg-pc-11', 'ftv-nvg-pc-12'])
       ],
       concepts: [
         { id: 'fiksjonsverden', term: 'Fiksjonsverden', definition: 'Den ufullstendige verdenen et verk etablerer gjennom regler, opplysninger, muligheter og utelatelser.' },
@@ -80,7 +80,7 @@ export function buildFilmTvNarrativeViewpointGenreFulltextV1() {
         ], ['ftv-nvg-pc-04', 'ftv-nvg-pc-05'], [
           'Kartlegg syns-, lyd- og kunnskapstilgang hver for seg.',
           'Skill figurutsagn, framstilling og tilskuerens kontrollmulighet.'
-        ]),
+        ], ['ftv-nvg-pc-04', 'ftv-nvg-pc-05']),
         section('ftv-nvg-tid-1', 'Rekkefølge, varighet og frekvens svarer på ulike spørsmål', emneIds[2], [
           'Living Handbook skiller hendelsestid fra framstillingstid og beskriver rekkefølge, varighet og frekvens som forskjellige relasjoner. Tilbakeblikk og frampek endrer rekkefølgen; scene, sammendrag og ellipse endrer varigheten; gjentatt framstilling endrer frekvensen. Begrepene må holdes adskilt før de kombineres i en analyse.',
           'Memento organiserer to tidsrekker og begrenser samtidig tilgangen gjennom Leonards korttidsminne. Den omvendte ordenen er derfor ikke hele forklaringen: rekonstruer først hendelsesrekkene, og undersøk deretter hvordan klipp, minnespor og informasjonsbegrensning bestemmer hva tilskueren kan slutte på hvert tidspunkt.',
@@ -88,7 +88,7 @@ export function buildFilmTvNarrativeViewpointGenreFulltextV1() {
         ], ['ftv-nvg-pc-06', 'ftv-nvg-pc-07', 'ftv-nvg-pc-08'], [
           'Analyser rekkefølge, varighet og frekvens som separate relasjoner.',
           'Hold tidsorganisering adskilt fra klipperytme og fra serieformatets industrihistorie.'
-        ])
+        ], ['ftv-nvg-pc-06', 'ftv-nvg-pc-08'])
       ],
       workedExamples: [
         { id: 'ftv-nvg-ex-1', title: 'Kunnskapskart for Rashomon', situation: 'Flere framstillinger konkurrerer om samme hendelse.', analysis: ['Lag en kolonne for det hver forteller hevder, en for det verket viser, og en for det tilskueren kan kontrollere.', 'Konkluder først da: perspektivforskjell er en organisering av evidens, ikke i seg selv bevis på total relativisme.'] },
@@ -112,7 +112,7 @@ export function buildFilmTvNarrativeViewpointGenreFulltextV1() {
         ], ['ftv-nvg-pc-09', 'ftv-nvg-pc-10'], [
           'Oppgi hvilken karaktermodell analysen bruker og hvilket spørsmål den svarer på.',
           'Skill rollefigur, skuespillerpersona og påstander om publikums identifikasjon.'
-        ])
+        ], ['ftv-nvg-pc-09', 'ftv-nvg-pc-10'])
       ],
       applicationTasks: [
         { id: 'ftv-nvg-task-1', title: 'Verdenskartet', task: 'Kartlegg én fiksjonsverdens eksplisitte regler og åpne hull.', prompts: ['Hva etableres sikkert?', 'Hva forblir mulig eller ubestemt?', 'Hvilken tolkning følger av organiseringen, og hvilken gjør ikke det?'] },
@@ -221,10 +221,10 @@ export function buildFilmTvNarrativeViewpointGenreFulltextV1() {
   return { chapter, chapterBrief, claimsDoc, modules, sourceBrief, registry, status, sourceBriefReport, unit, workCases };
 }
 
-export function materializeFilmTvNarrativeViewpointGenreFulltextV1() {
+export function materializeFilmTvNarrativeViewpointGenreFulltextV1({ force = false } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
   assert([INPUT_GATE, OUTPUT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
-  if (currentGate === OUTPUT_GATE) { console.log('Fortelling, synsvinkel og sjanger er allerede materialisert; bevarer neste kildebriefport.'); return null; }
+  if (currentGate === OUTPUT_GATE && !force) { console.log('Fortelling, synsvinkel og sjanger er allerede materialisert; bevarer neste kildebriefport.'); return null; }
   const built = buildFilmTvNarrativeViewpointGenreFulltextV1();
   write(P.chapter, built.chapter); write(P.brief, built.chapterBrief);
   for (const [file, value] of Object.entries(built.modules)) write(`${CHAPTER_DIR}/${file}`, value);
@@ -234,6 +234,7 @@ export function materializeFilmTvNarrativeViewpointGenreFulltextV1() {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  try { materializeFilmTvNarrativeViewpointGenreFulltextV1(); }
+  const args = new Set(process.argv.slice(2));
+  try { materializeFilmTvNarrativeViewpointGenreFulltextV1({ force: args.has('--write') }); }
   catch (error) { console.error(`Film & TV fortellingsfulltekst FEIL: ${error.message}`); process.exitCode = 1; }
 }

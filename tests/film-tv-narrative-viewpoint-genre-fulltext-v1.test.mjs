@@ -40,6 +40,8 @@ test('fullteksten har variabelt omfang, pedagogiske lag og film- og TV-case', ()
     claimCount: 13, workCaseCount: 6, filmCaseCount: 5, televisionCaseCount: 1, placeCaseCount: 2
   });
   assert.equal(new Set(modules.flatMap((row) => row.sections).map((row) => row.paragraphs.length)).size, 2);
+  assert.deepEqual(modules.flatMap((row) => row.sections).find((row) => row.id === 'ftv-nvg-verdener-1').keyPointClaimIds, [['ftv-nvg-pc-01'], ['ftv-nvg-pc-03']]);
+  assert.deepEqual(modules.flatMap((row) => row.sections).find((row) => row.id === 'ftv-nvg-tid-1').keyPointClaimIds, [['ftv-nvg-pc-06'], ['ftv-nvg-pc-08']]);
   assert.equal(chapter.relatedPlaces.length, 2);
   assert.ok(Object.values(report.gates).every(Boolean));
 });

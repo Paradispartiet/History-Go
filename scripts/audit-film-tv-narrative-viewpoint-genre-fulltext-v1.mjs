@@ -62,6 +62,12 @@ export function auditFilmTvNarrativeViewpointGenreFulltextV1({ writeReport = fal
   assert(sections.every((row) => row.paragraphs.length >= 2 && row.paragraphClaimIds.length === row.paragraphs.length), 'Et avsnitt mangler claimspor');
   assert(sections.every((row) => row.paragraphClaimIds.every((ids) => Array.isArray(ids) && ids.length === 1)), 'Et avsnitt mangler entydig claimspor');
   assert(sections.every((row) => row.keyPoints.length === 2 && row.keyPointClaimIds.length === 2), 'Nøkkelpunktene er ikke claimsporet');
+  const expectedKeyPointClaims = {
+    'ftv-nvg-verdener-1': ['ftv-nvg-pc-01', 'ftv-nvg-pc-03'], 'ftv-nvg-sjanger-1': ['ftv-nvg-pc-11', 'ftv-nvg-pc-12'],
+    'ftv-nvg-kunnskap-1': ['ftv-nvg-pc-04', 'ftv-nvg-pc-05'], 'ftv-nvg-tid-1': ['ftv-nvg-pc-06', 'ftv-nvg-pc-08'],
+    'ftv-nvg-rollefigur-1': ['ftv-nvg-pc-09', 'ftv-nvg-pc-10']
+  };
+  assert(sections.every((row) => isDeepStrictEqual(row.keyPointClaimIds.flat(), expectedKeyPointClaims[row.id])), 'Et nøkkelpunkt har feil eksplisitt claimspor');
   assert(modules[0].value.concepts.length === 6, 'Grunnlagsmodulen mangler begreper');
   assert(modules[1].value.workedExamples.length === 3 && modules[1].value.commonMisconceptions.length === 5, 'Fordypningsmodulen mangler eksempler eller misoppfatninger');
   assert(modules[1].value.workedExamples.every((row) => row.title && row.situation && row.analysis.length >= 2 && row.analysis.every(Boolean)), 'Et arbeidseksempel er ikke renderbart');
