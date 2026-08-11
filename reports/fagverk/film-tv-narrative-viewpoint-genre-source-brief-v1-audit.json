@@ -1,8 +1,8 @@
 {
   "schema": "history_go_film_tv_narrative_viewpoint_genre_source_brief_v1_audit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "updated_at": "2026-08-11",
-  "status": "source_claim_brief_complete_full_chapter_next",
+  "status": "source_claim_brief_consumed_by_verified_chapter",
   "subject_id": "film_tv",
   "summary": {
     "emne_count": 5,
@@ -19,7 +19,8 @@
       3
     ],
     "proposed_module_count": 3,
-    "registered_chapter_count_delta": 0
+    "registered_chapter_count_delta": 1,
+    "resolved_claim_count": 13
   },
   "coverage": [
     {
@@ -77,8 +78,10 @@
     "all_topics_have_boundaries_sources_cases_and_methods": true,
     "module_order_covers_every_emne_once": true,
     "module_sizes_are_not_forced_equal": true,
-    "chapter_remains_unregistered": true,
-    "registration_waits_for_fulltext_claim_source_audit": true
+    "chapter_was_unregistered_at_source_brief_gate": true,
+    "registration_waited_for_fulltext_claim_source_audit": true,
+    "chapter_registered_only_after_fulltext_gate": true,
+    "every_planned_claim_resolved_to_verified_claim": true
   },
-  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_fortelling_synsvinkel_og_sjanger"
+  "next_gate": "produce_source_and_claim_brief_for_serialitet_format_og_adaptasjon"
 }

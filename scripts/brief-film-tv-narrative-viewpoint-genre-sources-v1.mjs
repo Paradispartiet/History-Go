@@ -18,6 +18,7 @@ const UNIT_ID = 'fortelling-synsvinkel-og-sjanger';
 const FUTURE_CHAPTER_ID = 'fortelling-synsvinkel-og-sjanger';
 const INPUT_GATE = 'audiovisual_form_full_chapter_complete_next_unit_source_brief';
 const SOURCE_BRIEF_GATE = 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production';
+const FULLTEXT_GATE = 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief';
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`);
@@ -278,7 +279,23 @@ export function buildFilmTvNarrativeViewpointGenreSourceBriefV1() {
 
 export function auditFilmTvNarrativeViewpointGenreSourceBriefV1({ writeFiles = false, checkFiles = true } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  assert([INPUT_GATE, SOURCE_BRIEF_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  assert([INPUT_GATE, SOURCE_BRIEF_GATE, FULLTEXT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if (currentGate === FULLTEXT_GATE) {
+    const brief = read(P.brief);
+    const report = read(P.report);
+    const registry = read(P.registry);
+    const status = read(P.status);
+    const plan = read(P.plan);
+    const unit = plan.planned_units.find((row) => row.id === UNIT_ID);
+    const topicBriefs = brief.topic_briefs;
+    const plannedClaims = topicBriefs.flatMap((topic) => topic.planned_claims);
+    assert(brief.status === 'source_claim_brief_consumed_by_verified_chapter', 'Fortellingsbriefen skal være konsumert etter fulltekstporten');
+    assert(brief.runtime_registration.registered === true && brief.runtime_registration.chapter_id === FUTURE_CHAPTER_ID, 'Fortellingsbriefen mangler etterfølgende kapittelregistrering');
+    assert(plannedClaims.length === 13 && plannedClaims.every((row) => row.status === 'resolved_to_verified_claim' && row.final_claim_id === row.id), 'Fortellingsbriefens claimplaner er ikke løst');
+    assert(registry.subjects.film_tv.chapters.some((row) => row.id === FUTURE_CHAPTER_ID), 'Det verifiserte fortellingskapitlet mangler i registeret');
+    assert(report.status === 'source_claim_brief_consumed_by_verified_chapter' && Object.values(report.gates).every(Boolean), 'Fortellingsbriefens etteraudit er ikke grønn');
+    return { brief, report, registry, status, unit, topicBriefs, plannedClaims };
+  }
   const built = buildFilmTvNarrativeViewpointGenreSourceBriefV1();
   const outputs = { [P.brief]: built.brief, [P.report]: built.report, [P.registry]: built.registry, [P.status]: built.status };
   if (writeFiles) for (const [file, value] of Object.entries(outputs)) write(file, value);

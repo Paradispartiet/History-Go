@@ -1,0 +1,80 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "film_tv",
+  "chapter_id": "fortelling-synsvinkel-og-sjanger",
+  "primary_domain_id": "fortelling_sjanger_serialitet_format",
+  "relatedPlaceIds": [
+    "cinemateket_oslo",
+    "lisbon_cinemateca_portuguesa"
+  ],
+  "purpose": "Lære kildeforankret analyse av fiksjonsverden, fokalisering, fortellingstid, rollefigur og sjanger gjennom film- og TV-case med avsnittsnivå claimtrace.",
+  "audience": "Brukere som skal kunne beskrive narrativ organisering presist og skille verkobservasjon, kildefaktum og begrunnet tolkning.",
+  "requiredEmneIds": [
+    "em_film_tv_fiksjon_realisme_og_verdensbygging",
+    "em_film_tv_fokalisering_synsvinkel_og_kunnskapsfordeling",
+    "em_film_tv_fortellingstid_rekkefolge_varighet_og_frekvens",
+    "em_film_tv_karakter_rollefigur_og_fortellingsfunksjon",
+    "em_film_tv_sjanger_konvensjon_og_kontrakt"
+  ],
+  "requiredMethodIds": [
+    "met_film_tv_adaptasjonsanalyse",
+    "met_film_tv_arbeidsanalyse",
+    "met_film_tv_dokumentaranalyse",
+    "met_film_tv_fiksjonsanalyse",
+    "met_film_tv_karakteranalyse",
+    "met_film_tv_realismeanalyse",
+    "met_film_tv_rollefiguranalyse",
+    "met_film_tv_sjangeranalyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "fiksjonsverden vs faktisk virkelighet",
+    "realisme vs fravær av konstruksjon",
+    "fokalisering vs kameravinkel",
+    "figurutsagn vs fortellingens framstilling",
+    "hendelsestid vs framstillingstid",
+    "rekkefølge vs varighet vs frekvens",
+    "rollefigur vs skuespillerpersona",
+    "sjangerkontrakt vs tidløs sjekkliste",
+    "narrativ grunnmekanikk vs serialitets- og formatlogikk"
+  ],
+  "sourceStrategy": {
+    "sourceBriefFile": "data/fag/TV_og_Film/film_tv_narrative_viewpoint_genre_source_claim_brief_v1.json",
+    "externalSourceCount": 12,
+    "paragraphLevelClaimTrace": true,
+    "sourceLocationsRequired": true,
+    "observationSourceFactInterpretationSeparated": true,
+    "everyPlannedClaimResolved": true
+  },
+  "workCaseIds": [
+    "case-wizard-of-oz",
+    "case-people-on-sunday",
+    "case-rashomon",
+    "case-memento",
+    "case-long-goodbye",
+    "case-i-may-destroy-you"
+  ],
+  "scope": {
+    "included": [
+      "em_film_tv_fiksjon_realisme_og_verdensbygging",
+      "em_film_tv_fokalisering_synsvinkel_og_kunnskapsfordeling",
+      "em_film_tv_fortellingstid_rekkefolge_varighet_og_frekvens",
+      "em_film_tv_karakter_rollefigur_og_fortellingsfunksjon",
+      "em_film_tv_sjanger_konvensjon_og_kontrakt"
+    ],
+    "excluded": [
+      "episode- og sesongdramaturgi som eget hovedtema",
+      "formatlisensiering og distribusjon",
+      "sjangeretikett brukt som bevis uten historisk avgrensning",
+      "påstander om publikums faktiske virkning uten resepsjonsevidens"
+    ]
+  },
+  "qa": {
+    "sectionCountDerivedFromEmneOwnership": true,
+    "actualFulltextSections": 5,
+    "paragraphCountsAreNotQuota": true,
+    "paragraphClaimTraceRequired": true,
+    "exactCanonicalCoverage": "5/5",
+    "plannedClaimResolution": "13/13"
+  }
+}
