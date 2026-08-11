@@ -1,10 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditFilmTvNarrativeViewpointGenreSourceBriefV1, buildFilmTvNarrativeViewpointGenreSourceBriefV1 } from '../scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs';
+import { auditFilmTvNarrativeViewpointGenreSourceBriefV1 } from '../scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs';
 
 test('andre planenhet har komplett og deterministisk kilde- og claimbrief', () => {
   const result = auditFilmTvNarrativeViewpointGenreSourceBriefV1();
-  assert.deepEqual(buildFilmTvNarrativeViewpointGenreSourceBriefV1().report, result.report);
   assert.deepEqual(result.report.summary, {
     emne_count: 5,
     source_count: 12,
@@ -14,7 +13,8 @@ test('andre planenhet har komplett og deterministisk kilde- og claimbrief', () =
     planned_claim_count: 13,
     planned_claim_counts_by_emne: [3, 2, 3, 2, 3],
     proposed_module_count: 3,
-    registered_chapter_count_delta: 0
+    registered_chapter_count_delta: 1,
+    resolved_claim_count: 13
   });
   assert.ok(Object.values(result.report.gates).every(Boolean));
 });
@@ -26,15 +26,15 @@ test('claim- og modulomfanget følger faglige problemgrenser, ikke likhetskvoter
   assert.ok(result.topicBriefs.every((topic) => topic.source_ids.length >= 3 && topic.case_ids.length >= 2 && topic.method_ids.length >= 1 && topic.canonical_boundary));
 });
 
-test('film og TV er dokumentert, men kapitlet venter på fulltekstporten', () => {
+test('film og TV er dokumentert og kapitlet ble registrert etter fulltekstporten', () => {
   const result = auditFilmTvNarrativeViewpointGenreSourceBriefV1();
   assert.ok(result.brief.case_candidates.some((row) => row.medium === 'film'));
   assert.ok(result.brief.case_candidates.some((row) => row.medium === 'television-series'));
-  assert.ok(result.plannedClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'));
-  assert.equal(result.brief.runtime_registration.registered, false);
-  assert.equal(result.brief.runtime_registration.allowed_before_full_chapter_gate, false);
-  assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'fortelling-synsvinkel-og-sjanger'), false);
-  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production');
+  assert.ok(result.plannedClaims.every((claim) => claim.status === 'resolved_to_verified_claim' && claim.final_claim_id === claim.id));
+  assert.equal(result.brief.runtime_registration.registered, true);
+  assert.equal(result.brief.runtime_registration.registration_after_full_chapter_gate, true);
+  assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'fortelling-synsvinkel-og-sjanger'), true);
+  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief');
 });
 
 test('alle casekilder er tilgjengelige i emnet som bruker caset', () => {

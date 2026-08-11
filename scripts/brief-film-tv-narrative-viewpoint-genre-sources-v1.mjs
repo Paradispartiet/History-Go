@@ -18,6 +18,7 @@ const UNIT_ID = 'fortelling-synsvinkel-og-sjanger';
 const FUTURE_CHAPTER_ID = 'fortelling-synsvinkel-og-sjanger';
 const INPUT_GATE = 'audiovisual_form_full_chapter_complete_next_unit_source_brief';
 const SOURCE_BRIEF_GATE = 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production';
+const FULLTEXT_GATE = 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief';
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`);
@@ -278,7 +279,33 @@ export function buildFilmTvNarrativeViewpointGenreSourceBriefV1() {
 
 export function auditFilmTvNarrativeViewpointGenreSourceBriefV1({ writeFiles = false, checkFiles = true } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  assert([INPUT_GATE, SOURCE_BRIEF_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  assert([INPUT_GATE, SOURCE_BRIEF_GATE, FULLTEXT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if (currentGate === FULLTEXT_GATE) {
+    const brief = read(P.brief);
+    const report = read(P.report);
+    const registry = read(P.registry);
+    const status = read(P.status);
+    const plan = read(P.plan);
+    const unit = plan.planned_units.find((row) => row.id === UNIT_ID);
+    const topicBriefs = brief.topic_briefs;
+    const plannedClaims = topicBriefs.flatMap((topic) => topic.planned_claims);
+    const sourceIds = new Set(brief.sources.map((row) => row.id));
+    const caseById = new Map(brief.case_candidates.map((row) => [row.id, row]));
+    const methodsDoc = read(P.methods);
+    const methodIds = new Set((Array.isArray(methodsDoc) ? methodsDoc : methodsDoc.methods).map((row) => row.method_id || row.id));
+    assert(brief.status === 'source_claim_brief_consumed_by_verified_chapter', 'Fortellingsbriefen skal være konsumert etter fulltekstporten');
+    assert(brief.runtime_registration.registered === true && brief.runtime_registration.chapter_id === FUTURE_CHAPTER_ID, 'Fortellingsbriefen mangler etterfølgende kapittelregistrering');
+    assert(plannedClaims.length === 13 && plannedClaims.every((row) => row.status === 'resolved_to_verified_claim' && row.final_claim_id === row.id), 'Fortellingsbriefens claimplaner er ikke løst');
+    assert(sourceIds.size === 12 && brief.sources.every((row) => row.url.startsWith('https://') && row.retrieval_status === 'verified_2026-08-11' && row.source_location), 'Fortellingsbriefens inspectable kilder er ikke intakte');
+    assert(caseById.size === 6 && brief.case_candidates.every((row) => row.source_ids.length && row.source_ids.every((id) => sourceIds.has(id))), 'Fortellingsbriefens casekilder er ikke intakte');
+    assert(topicBriefs.length === unit.emne_count && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count && unit.emne_ids.every((id) => topicBriefs.some((row) => row.emne_id === id)), 'Fortellingsbriefens canonicale emnedekning er brutt');
+    assert(topicBriefs.every((topic) => topic.canonical_boundary && topic.source_ids.length >= 3 && topic.source_ids.every((id) => sourceIds.has(id)) && topic.method_ids.length && topic.method_ids.every((id) => methodIds.has(id))), 'Fortellingsbriefens emnekilder, grenser eller metoder er brutt');
+    assert(topicBriefs.every((topic) => topic.case_ids.every((caseId) => caseById.has(caseId) && caseById.get(caseId).source_ids.every((sourceId) => topic.source_ids.includes(sourceId)))), 'Fortellingsbriefens case-til-emne-spor er brutt');
+    assert(brief.proposed_module_order.flatMap((row) => row.emne_ids).length === unit.emne_count && new Set(brief.proposed_module_order.flatMap((row) => row.emne_ids)).size === unit.emne_count, 'Fortellingsbriefens moduldekning er brutt');
+    assert(registry.subjects.film_tv.chapters.some((row) => row.id === FUTURE_CHAPTER_ID), 'Det verifiserte fortellingskapitlet mangler i registeret');
+    assert(report.status === 'source_claim_brief_consumed_by_verified_chapter' && Object.values(report.gates).every(Boolean), 'Fortellingsbriefens etteraudit er ikke grønn');
+    return { brief, report, registry, status, unit, topicBriefs, plannedClaims };
+  }
   const built = buildFilmTvNarrativeViewpointGenreSourceBriefV1();
   const outputs = { [P.brief]: built.brief, [P.report]: built.report, [P.registry]: built.registry, [P.status]: built.status };
   if (writeFiles) for (const [file, value] of Object.entries(outputs)) write(file, value);

@@ -354,7 +354,7 @@ function buildControlFiles({ inventory, aliases, emners, methods, mappings, fagk
 
   const registry = structuredClone(currentRegistry);
   const currentFilmStatus = currentStatus.subjects.find((row) => row.id === 'film_tv');
-  const laterChapterGate = ['canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production'].includes(currentFilmStatus?.nextGate);
+  const laterChapterGate = ['canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief'].includes(currentFilmStatus?.nextGate);
   if (!laterChapterGate) {
     registry.version = '2.72.0';
     registry.updatedAt = '2026-08-11';

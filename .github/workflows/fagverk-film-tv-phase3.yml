@@ -28,6 +28,8 @@ on:
       - "scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs"
       - "scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs"
       - "scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs"
+      - "scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
@@ -41,6 +43,7 @@ on:
       - "tests/film-tv-audiovisual-form-source-brief-v1.test.mjs"
       - "tests/film-tv-audiovisual-form-fulltext-v1.test.mjs"
       - "tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs"
+      - "tests/film-tv-narrative-viewpoint-genre-fulltext-v1.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
@@ -62,6 +65,8 @@ on:
       - "scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs"
       - "scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs"
       - "scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs"
+      - "scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs"
       - "tests/fagverk-film-tv-phase3.test.mjs"
       - "tests/film-tv-curriculum-completeness-v1.test.mjs"
       - "tests/film-tv-legacy-emne-classification-v1.test.mjs"
@@ -72,6 +77,7 @@ on:
       - "tests/film-tv-audiovisual-form-source-brief-v1.test.mjs"
       - "tests/film-tv-audiovisual-form-fulltext-v1.test.mjs"
       - "tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs"
+      - "tests/film-tv-narrative-viewpoint-genre-fulltext-v1.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
   workflow_dispatch:
@@ -101,6 +107,8 @@ jobs:
           node --check scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs
           node --check scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs
           node --check scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs
+          node --check scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-film-tv-phase3.mjs
@@ -114,6 +122,8 @@ jobs:
           node scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs
           node scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs
           node scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs
+          node scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
+          node scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk and Film og TV contracts
         run: |
@@ -129,4 +139,5 @@ jobs:
           node --test tests/film-tv-audiovisual-form-source-brief-v1.test.mjs
           node --test tests/film-tv-audiovisual-form-fulltext-v1.test.mjs
           node --test tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs
+          node --test tests/film-tv-narrative-viewpoint-genre-fulltext-v1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
