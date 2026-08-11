@@ -32,7 +32,9 @@ De tidligere batchene er hovedsakelig `multi_case_geographic_pilot` i Oslo/Akers
 
 ## Fullføringsregel
 
-Den universelle Historie-auditen måler andelen av de 230 teoriobjektene som har kvalifiserende entries i evidensregisteret. Produksjonen står på 130 av 230 etter at Velferd, rett og hverdagsliv V2 fullfører domenet med sosialforsikring og pensjon, bolig og materiell velferd, omsorgsarbeid og sosial reproduksjon, velferdsrett og tilgang samt bruker–tjeneste–forvaltning. V2 bruker to nye Stortinget-claims og streng gjenbruk av eksisterende validerte Oslo-caser. Universell produksjonsstatus forblir `INCOMPLETE` frem til 230 av 230 objekter har et validert evidensgrunnlag.
+Den universelle Historie-auditen måler andelen av teoriobjektene i det til enhver tid godkjente canonicale inventaret som har kvalifiserende entries i evidensregisteret. I denne statusbaselinen består inventaret av 230 objekter, og produksjonen står på 130 av 230 etter at Velferd, rett og hverdagsliv V2 fullfører domenet med sosialforsikring og pensjon, bolig og materiell velferd, omsorgsarbeid og sosial reproduksjon, velferdsrett og tilgang samt bruker–tjeneste–forvaltning. V2 bruker to nye Stortinget-claims og streng gjenbruk av eksisterende validerte Oslo-caser.
+
+Alle objekter i dagens inventar må ha validert evidensgrunnlag før status kan bli `COMPLETE`, men 230 er ikke en redaksjonell sluttkvote. Hvis heldekningsauditen etter `docs/HISTORY_UNIVERSAL_COVERAGE.md` og `docs/FAGVERK.md` finner et nytt relevant emne eller teoriobjekt, skal inventaret og denominator utvides. Full score mot et ufullstendig inventar kan ikke gi universell ferdigstatus.
 
 ## Produksjonsstatus
 

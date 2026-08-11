@@ -8,6 +8,8 @@ Den bindende regelen for fagfilenes geografiske ansvar ligger i `docs/SUBJECT_FI
 
 Den bindende arkitektur-, produksjons- og ferdigstillingskontrakten for de synlige fagsidene ligger i `docs/FAGVERK.md`.
 
+Den samme kontrakten eier heldekningsregelen: alle faglig relevante emner skal dekkes, og ingen fast emne-, område- eller kapittelkvote kan brukes som ferdigbevis.
+
 ---
 
 ## Grunnprinsipp
@@ -99,6 +101,10 @@ Derfor må dekning måles separat som:
 - **geografisk produksjonsdekning** — om et område har nok cases, kilder, claims, steder, personer og quizer til å realisere faget.
 
 Mange lokale cases beviser ikke at fagmodellen er heldekkende. Manglende lokalt innhold skal heller ikke løses ved å kopiere hele fagpakken.
+
+Universell fagdekning er kvalitativt avgrenset og maskinelt etterprøvbar, men ikke tallstyrt. Fagområder og emner skal identifiseres gjennom fagets spørsmål, teorier, metoder, praksiser, historiske utvikling og dokumenterte uenigheter. Faktiske antall skal rapporteres, men ulike fag og fagområder kan ha svært ulikt omfang.
+
+Et faglig objekt skal ikke opprettes, splittes, beholdes eller slås sammen for å få symmetriske moduler eller nå en kvote. Det skal finnes fordi det dekker en selvstendig relevant kunnskapsenhet. Fullstendighet krever en eksplisitt gap-, overlapps- og utelatelsesaudit etter `docs/FAGVERK.md`.
 
 Se den bindende kontrakten i `docs/SUBJECT_FILE_CONTRACT.md`.
 
@@ -289,6 +295,9 @@ Merke → Fagkart/fagplan → Emner → Quiz/vurdering → Knowledge + Learning 
 ## 11. Designmål
 
 - Én sannhet per nivå.
+- Alle relevante faglige emner innenfor dokumentert avgrensning skal dekkes.
+- Faglig struktur og kapittelinndeling skal følge stoffet, ikke et forhåndsbestemt antall.
+- Tall skal beskrive inventar, integritet og fremdrift, ikke fungere som redaksjonelle målkvoter.
 - Ingen duplisering av faginnhold.
 - Én canonical Knowledge-entry-modell.
 - Én canonical Knowledge read-model.

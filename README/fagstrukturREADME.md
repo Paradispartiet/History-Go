@@ -8,10 +8,11 @@ Dette dokumentet forklarer hvordan aktive fagpakker henger sammen. Det er ikke e
 ## Autoritetsrekkefølge
 
 1. [`../docs/SUBJECT_FILE_CONTRACT.md`](../docs/SUBJECT_FILE_CONTRACT.md) eier den bindende arkitekturen: én universell fagmodell per fag og separate geografiske produksjonslag.
-2. [`README.pensum.md`](./README.pensum.md) eier den canonical kunnskaps- og pensumarkitekturen.
-3. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) eier hvilke filer som er aktive for hvert `subjectId`.
-4. De manifest-resolverte JSON-filene eier det faktiske faginnholdet.
-5. Quizproduksjon styres av [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) og de maskinlesbare quizkontraktene.
+2. [`../docs/FAGVERK.md`](../docs/FAGVERK.md) eier heldekningsregelen, produksjonsrekkefølgen og ferdigkravene uten redaksjonelle tallkvoter.
+3. [`README.pensum.md`](./README.pensum.md) eier den canonical kunnskaps- og pensumarkitekturen.
+4. [`../data/fag/fag_manifest.json`](../data/fag/fag_manifest.json) eier hvilke filer som er aktive for hvert `subjectId`.
+5. De manifest-resolverte JSON-filene eier det faktiske faginnholdet.
+6. Quizproduksjon styres av [`../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`](../data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md) og de maskinlesbare quizkontraktene.
 
 Ved konflikt skal denne guiden korrigeres. Den kan ikke overstyre kontrakt, manifest, schema, runtime eller validator.
 
@@ -93,6 +94,8 @@ De skal referere til canonical fag-ID-er, ikke opprette komplette parallelle fag
 
 Måler om faget dekker nødvendige områder, emner, begreper, teorier og metoder.
 
+Dekningen skal bygges fra et dokumentert faglig kandidatgrunnlag og avsluttes med gap-, overlapps-, fyllstoff- og utelatelsesaudit. Det finnes ikke et felles riktig antall områder, emner, kapitler, moduler eller andre innholdsenheter. Tallene er inventar; den faglige begrunnelsen og den faktiske dekningen avgjør status.
+
 ### Geografisk produksjonsdekning
 
 Måler om en geografi har tilstrekkelige cases, kilder, claims, steder, personer og quizer til å realisere fagmodellen.
@@ -118,9 +121,11 @@ Den eldre kombinerte teksten i `README/byFagplan.md` er erstattet av en compatib
 Når fagdata endres:
 
 1. finn aktive paths i `data/fag/fag_manifest.json`;
-2. endre riktig fagfil, ikke denne guiden som erstatning for data;
-3. oppdater mappings, quizproduksjon og rapporter som faktisk avhenger av endringen;
-4. kjør relevante schemas, audits og tester;
-5. oppdater dokumentasjonen bare når ansvar, struktur eller arbeidsmåte er endret.
+2. fastslå hvilket relevant faglig spørsmål endringen dekker, og kontroller duplikater og nabofag;
+3. endre riktig fagfil, ikke denne guiden som erstatning for data;
+4. oppdater mappings, quizproduksjon og rapporter som faktisk avhenger av endringen;
+5. rapporter faktiske antall uten å behandle dem som målkvoter;
+6. kjør relevante schemas, heldekningsaudits og tester;
+7. oppdater dokumentasjonen bare når ansvar, struktur eller arbeidsmåte er endret.
 
 > Ett ansvar per lag. Fagdata i fagpakken, geografisk realisering i produksjonslagene og brukerstatus i runtime-eide stores.

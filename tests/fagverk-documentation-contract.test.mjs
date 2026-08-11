@@ -54,7 +54,7 @@ function markdownMentionsPath(markdown, relativePath) {
 test('FAGVERK.md is the explicit canonical all-subject production contract', () => {
   const master = read(MASTER);
 
-  assert.match(master, /canonical og bindende fagverkskontrakt v6/i);
+  assert.match(master, /canonical og bindende fagverkskontrakt v7/i);
   assert.match(master, /eneste samlede kontrakten/i);
   assert.match(master, /én felles fagsidemotor/i);
   assert.match(master, /fagverk\.html\?subject=<subject_id>/);
@@ -65,6 +65,20 @@ test('FAGVERK.md is the explicit canonical all-subject production contract', () 
   assert.match(master, /Fase 1 — generell fagsidemotor/);
   assert.match(master, /Fase 2 — fire representativt ulike piloter/);
   assert.doesNotMatch(master, /Status: canonical politikk-integrasjon/i);
+});
+
+test('editorial completeness follows relevant subject matter rather than fixed quotas', () => {
+  const master = read(MASTER);
+  const subjectContract = read('docs/SUBJECT_FILE_CONTRACT.md');
+  const pensum = read('README/README.pensum.md');
+
+  assert.match(master, /alle faglig relevante emner/i);
+  assert.match(master, /ingen felles redaksjonell kvote/i);
+  assert.match(master, /gap-, overlapps- og fyllstoffaudit/i);
+  assert.match(master, /tall som inventar, ikke som målkvoter/i);
+  assert.match(subjectContract, /faglig relevans, ikke mot et forhåndsbestemt antall/i);
+  assert.match(pensum, /ingen fast emne-, område- eller kapittelkvote/i);
+  assert.doesNotMatch(master, /hvert canonicalt fagområde har minst ett fullverdig/i);
 });
 
 test('the master contract points to every relevant owning document and source', () => {

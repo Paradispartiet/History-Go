@@ -1,9 +1,9 @@
 # History GO — canonical kontrakt for Fagverket og alle fagsider
 
-Status: **canonical og bindende fagverkskontrakt v6**
+Status: **canonical og bindende fagverkskontrakt v7**
 Eier: `fagverk_subject_page_architecture` og `fagverk_subject_page_production`
 Gjelder: alle canonicale fag i `data/categories/category_contract.json`
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-08-11**
 
 Dette er den **eneste samlede kontrakten** for hvordan History GO bygger, materialiserer, kvalitetssikrer og ferdigstiller fagsidene i Fagverket.
 
@@ -14,7 +14,8 @@ Dokumentet eier:
 - den normaliserte runtime-modellen som alle fag skal vises gjennom;
 - produksjonsrekkefølgen fra planlagt fag til fullverdig læreverk;
 - statusbetydningene for teknisk materialisering og redaksjonell ferdigstillelse;
-- minimumskravene til fagområder, emner, metoder, kapitler, progresjon, steder, kilder og QA;
+- kvalitetskravene til fagområder, emner, metoder, kapitler, progresjon, steder, kilder og QA;
+- heldekningsregelen som krever alle faglig relevante emner uten forhåndsbestemte tallkvoter;
 - PR- og batchreglene for å ferdigstille alle fagsidene uten parallelle systemer.
 
 Dokumentet eier **ikke** selve fagdefinisjonene, pensuminnholdet, quizreglene, Knowledge-lagringen, kategori-ID-ene eller faktapåstandene. Disse eies av kildene som er listet nedenfor.
@@ -203,6 +204,49 @@ Teknologi er ikke et eget toppfag. Den komplette fagpakken registreres som `vite
 
 Denne listen er en kontrollert baseline, ikke en ny kategori-sannhetskilde. Ved endring gjelder `category_contract.json`, kategori-auditen og fagmanifestet.
 
+### 5.1 Faglig heldekning uten tallkvoter
+
+Alle fag skal dekke **alle faglig relevante emner** innenfor sin dokumenterte avgrensning. Relevans og vesentlige faglige hull avgjør om et fag er komplett; et forhåndsbestemt antall gjør det ikke.
+
+Det finnes derfor ingen felles redaksjonell kvote for:
+
+- antall fagområder eller emner i et fag;
+- antall emner i et fagområde;
+- antall kapitler, moduler eller seksjoner;
+- antall avsnitt, claims, kilder, eksempler, oppgaver eller kontrollspørsmål;
+- lik størrelse mellom fag, fagområder eller kapitler.
+
+Noen fagområder kan kreve få brede emner, andre mange smalere emner. Ett fagområde kan trenge flere kapitler, mens flere nært sammenhengende fagområder kan behandles i samme kapittel. Strukturen skal følge fagets faktiske kunnskapslandskap og en god læringsrekkefølge.
+
+Tall kan brukes til:
+
+- inventar og fremdriftsrapportering;
+- kontroll av at oppgitte summer stemmer med faktiske arrays og registre;
+- kontroll av unike ID-er, referanseintegritet og manglende filer;
+- formatspesifikke produktkrav som er uavhengige av fagets redaksjonelle bredde.
+
+Tall kan ikke brukes som:
+
+- målkvote for å erklære et fag eller kapittel komplett;
+- grunn til å splitte ett naturlig emne i flere kunstige emner;
+- grunn til å slå sammen vesensforskjellige emner;
+- grunn til å produsere fyllstoff, gjentakelser eller svake stedscase;
+- erstatning for en dokumentert faglig completeness-audit.
+
+Et emne skal normalt få egen canonical identitet når det har en selvstendig faglig problemstilling eller kunnskapsenhet, kan avgrenses fra nabotemaer og tilfører noe som ikke allerede er dekket. Overlappende betegnelser skal relateres, slås sammen eller modelleres som underpunkter i stedet for å beholdes for å fylle et tall.
+
+Før `complete` må fagets dekningsgrunnlag dokumentere:
+
+1. fagets formål, avgrensning og forhold til nabofag;
+2. hvilke relevante områder, emner, begreper, teorier, metoder og fagtradisjoner som er vurdert;
+3. hvorfor kandidater er inkludert, slått sammen, splittet, plassert i et nabofag eller utelatt;
+4. hvor hvert inkluderte emne faktisk undervises i fagverket;
+5. at sentrale perspektiver, uenigheter, historiske utviklingslinjer og praksisformer er med der de er relevante;
+6. at gap-, overlapps- og fyllstoffaudit ikke finner vesentlige mangler eller kunstig produksjon;
+7. at påstander, eksempler og metodebruk har tilstrekkelig inspectable evidens for innholdet de bærer.
+
+Det finnes ikke ett universelt emnetall som kan bevise disse punktene. Den maskinlesbare dekningsrapporten skal derfor rapportere faktiske tall og konkrete hull, mens pass/fail avgjøres av dokumentert dekning og integritet.
+
 `popkultur`/`populaerkultur` er ikke en egen toppkategori når kategorikontrakten behandler feltet som underfelt eller legacy-alias. Fagsidemotoren skal ikke gjeninnføre avviklede toppdomener gjennom lokal hardkoding.
 
 ---
@@ -342,9 +386,9 @@ Manglende felt skal:
 
 ---
 
-## 8. Fast innholdsstruktur på alle fagsider
+## 8. Felles semantisk innholdsstruktur på alle fagsider
 
-Alle teknisk materialiserte fagsider skal ha samme semantiske hovedstruktur.
+Alle teknisk materialiserte fagsider skal ha samme semantiske hovedstruktur. Dette standardiserer navigasjon og innholdstyper, ikke mengden innhold. Antall fagområder, emner, kapitler og underdeler skal variere med faglig behov.
 
 ### 8.1 Fagets identitet
 
@@ -422,6 +466,8 @@ Stedet skal åpnes på egen side. Fagsiden skal ikke kopiere hele stedets histor
 
 Et materialisert lærekapittel skal ligge i den eide fagverkstrukturen og registreres i `data/fagverk/fagverk_registry.json`.
 
+Kapittelinndelingen skal følge sammenhengende læringsproblemer og stoffets faktiske omfang. Kravene nedenfor beskriver hvilke innholdstyper et fullverdig kapittel må ivareta; de fastsetter ikke et likt antall seksjoner, eksempler, claims, kilder, oppgaver eller selvtester i hvert kapittel. Omfanget skal være så stort som nødvendig og så lite som faglig forsvarlig.
+
 Et fullverdig kapittel skal minst ha:
 
 - stabil `chapter_id`;
@@ -475,9 +521,9 @@ Gyldige betydninger:
 Skal måle innholdets faktiske dybde:
 
 - `not_started` — ingen godkjent strukturell fagsidegjennomgang;
-- `structure_ready` — alle canonicale fagområder, emner og metoder kan vises korrekt;
-- `chapters_in_progress` — strukturen er komplett, men ikke alle fagområder har fullverdige kapitler;
-- `complete` — alle ferdigkrav i denne kontrakten er oppfylt.
+- `structure_ready` — det nåværende canonicale inventaret av fagområder, emner og metoder kan vises korrekt; statusen beviser ikke at inventaret er faglig heldekkende;
+- `chapters_in_progress` — kapittelproduksjon og completeness-audit pågår, og ett eller flere relevante emner mangler fortsatt fullverdig behandling;
+- `complete` — alle ferdigkrav og heldekningskrav i denne kontrakten er oppfylt uten vesentlige faglige hull.
 
 Redaksjonell status skal materialiseres i et eget maskinlesbart statusregister når implementasjonsprogrammet starter. Den skal ikke presses inn i portalens navigasjonsfelt eller badgefilene.
 
@@ -489,7 +535,8 @@ Det er ikke lov å kalle et fag:
 - kildeverifisert fordi schema og CI er grønne;
 - heldekkende fordi det finnes mange lokale steder;
 - ferdig fordi alle emner vises som kort;
-- et læreverk fordi rendereren kan gjengi definisjoner.
+- et læreverk fordi rendereren kan gjengi definisjoner;
+- komplett fordi et forhåndsbestemt antall fagområder, emner, kapitler, moduler, seksjoner, claims, kilder eller oppgaver er nådd.
 
 ---
 
@@ -511,22 +558,26 @@ Et fag kan først settes til `structure_ready` når:
 12. siden har tydelig lenke tilbake til fagverkforsiden og riktig merkeside;
 13. alle permanente tester og audits er grønne.
 
+`structure_ready` er en teknisk og referensiell integritetsstatus. Den sier at det registrerte inventaret virker, ikke at fagets relevante kunnskapsområde er ferdig kartlagt.
+
 ---
 
 ## 12. Krav til `complete`
 
 Et fag kan først settes til `complete` når alle krav til `structure_ready` er oppfylt og:
 
-1. hvert canonicalt fagområde har minst ett fullverdig, redaksjonelt godkjent lærekapittel;
-2. kapitlene dekker fagområdets sentrale aktive emner på en dokumentert måte;
-3. alle faktapåstander har inspectable kildegrunnlag;
-4. hvert kapittel har læringsmål, eksempler, misoppfatninger, oppgaver og kontrollspørsmål;
-5. metodepresentasjonen er faglig konkret, ikke bare en navneliste;
-6. relevante stedskoblinger er canonicale og kildebelagte;
-7. quiz- og Knowledge-koblinger bruker eksisterende kontrakter og ID-er;
-8. full fag-, link-, schema-, TypeScript-, browser- og dokumentasjonsaudit passerer;
-9. det finnes ingen uavklarte duplikater, døde ruter, ukjente IDs eller lokale fagkopier;
-10. statusregisteret er synkronisert med faktisk materialisert innhold.
+1. en eksplisitt completeness-audit viser at alle faglig relevante områder, emner, begreper, teorier, metoder og fagtradisjoner innenfor fagets avgrensning er vurdert;
+2. alle inkluderte relevante emner har fullverdig, redaksjonelt godkjent behandling i ett eller flere kapitler, uavhengig av kapittelantall;
+3. inkluderinger, sammenslåinger, oppsplittinger, nabofagplasseringer og utelatelser er begrunnet, slik at det finnes et etterprøvbart svar på hvorfor inventaret ser ut som det gjør;
+4. gap-auditen finner ingen vesentlige faglige mangler, og overlapps-/fyllstoffauditen finner ingen emner eller innholdsdeler som bare finnes for å nå et tall;
+5. alle faktapåstander har inspectable kildegrunnlag, med så mange og så egnede kilder som påstanden og emnet krever;
+6. kapitlene har de læringselementene som er nødvendige for stoffet, blant annet konkrete læringsmål, forklaring, eksempler, misoppfatninger, anvendelse og kontroll av forståelse;
+7. metodepresentasjonen er faglig konkret, ikke bare en navneliste;
+8. relevante stedskoblinger er canonicale og kildebelagte, uten stedscase brukt som fyllstoff;
+9. quiz- og Knowledge-koblinger bruker eksisterende kontrakter og ID-er;
+10. full fag-, link-, schema-, TypeScript-, browser- og dokumentasjonsaudit passerer;
+11. det finnes ingen uavklarte duplikater, døde ruter, ukjente ID-er eller lokale fagkopier;
+12. statusregisteret og dekningsrapporten er synkronisert med faktisk materialisert innhold og rapporterer tall som inventar, ikke som målkvoter.
 
 `complete` er en streng publiseringsstatus, ikke en fremdriftsmarkør.
 
@@ -542,6 +593,8 @@ Før runtime endres:
 
 - les kategori- og fagmanifestet;
 - inventer alle aktive fagpakker og schemafamilier;
+- bygg en faglig kandidatliste for områder, emner, begreper, teorier, metoder og fagtradisjoner uten å fastsette et ønsket sluttantall;
+- dokumenter fagets avgrensning, nabofag og kriterier for inkludering, sammenslåing, splitting og utelatelse;
 - registrer required og optional sourcefelt per fag;
 - identifiser politikkspesifikk hardkoding;
 - mål hvilke fag som allerede kan normaliseres;
@@ -593,10 +646,10 @@ Det skal ikke åpnes en stor masse-PR som setter alle fag til materialized uten 
 
 ### Fase 4 — redaksjonell kapittelproduksjon
 
-Arbeidet gjøres fag for fag og fagområde for fagområde:
+Arbeidet gjøres fag for fag og i faglig sammenhengende produksjonsenheter. En produksjonsenhet kan følge ett fagområde, en del av et stort fagområde eller flere tett sammenhengende områder:
 
 ```text
-fagområde
+faglig produksjonsenhet
   → kapittelbrief
   → claims og kilder
   → redigert lærestoff
@@ -614,9 +667,10 @@ Ett fag skal få sammenhengende fremdrift før produksjonen spres tilfeldig over
 Når et fag når `complete`:
 
 - materialiser full dekningsrapport;
-- frys et eksplisitt inventar av fagområder, emner, metoder og kapitler;
+- frys et eksplisitt og faglig begrunnet inventar av fagområder, emner, metoder og kapitler;
 - koble status til permanent CI;
 - behold mulighet for kildekorrigering og faglig revisjon;
+- gjenåpne heldekningsvurderingen når ny kunnskap, nye faglige felt eller dokumenterte hull gjør inventaret utilstrekkelig;
 - unngå at en kvalitetsfrys blir tolket som garanti mot fremtidige feil.
 
 ---
@@ -638,6 +692,9 @@ Fag: <subject_id>
 [ ] Eventuelle mappings/hooks kan lastes
 [ ] Schemafamilie er identifisert
 [ ] Adapter leverer normalisert modell
+[ ] Fagets avgrensning og nabofag er dokumentert
+[ ] Relevante faglige kandidater er vurdert uten forhåndsbestemt sluttantall
+[ ] Inkluderinger, sammenslåinger, splittinger og utelatelser er begrunnet
 [ ] Alle fagområder er med
 [ ] Alle aktive emner har gyldig fagområde
 [ ] Alle viste metode-ID-er finnes
@@ -652,6 +709,7 @@ Fag: <subject_id>
 [ ] Permanente tester og audits er grønne
 [ ] Portalstatus settes til materialized i samme godkjente PR
 [ ] Redaksjonell status er ærlig
+[ ] Tall rapporteres som inventar og integritet, ikke som completeness-kvote
 ```
 
 Kopier dette inn i hver kapittel-PR:
@@ -662,6 +720,7 @@ Fagområde: <domain_id>
 Kapittel: <chapter_id>
 
 [ ] Canonical emne-ID-er er valgt
+[ ] Emneutvalget følger faglig relevans, ikke et ønsket antall
 [ ] Kapittelbrief er godkjent
 [ ] Faktapåstander er registrert og kildebelagt
 [ ] Avviste/usikre detaljer er dokumentert
@@ -675,6 +734,7 @@ Kapittel: <chapter_id>
 [ ] Kapittelet er registrert i fagverkregisteret
 [ ] Ingen emneobjekter er kopiert inn
 [ ] Kilde- og fagverkaudit er grønn
+[ ] Kapittelet har nødvendig omfang uten fyllstoff eller kunstig oppsplitting
 ```
 
 ---
@@ -699,7 +759,7 @@ En PR skal ikke kombinere:
 
 ### 15.3 Kapittel-PR-er
 
-Standard er ett fagområde eller en liten sammenhengende kapittelgruppe per PR.
+Standard er én liten, faglig sammenhengende produksjonsenhet per PR. PR-grensen er en arbeids- og mergegrense, ikke en regel om hvor mange emner eller kapitler et fagområde skal ha.
 
 Hver PR skal ha:
 
@@ -720,7 +780,8 @@ Det er ikke fremdrift å:
 - sette status til materialized før siden kan lastes;
 - duplisere politikkrendereren;
 - skrive generiske introduksjoner uten kilder;
-- øke coverage-tall ved å senke kravene.
+- øke coverage-tall ved å senke kravene;
+- nå et forventet tall ved å splitte, slå sammen eller gjenta innhold uten faglig grunn.
 
 ---
 
@@ -759,7 +820,9 @@ Fagverk-workflowen skal etter hvert håndheve minst:
 - alle chapter-, subject-, domain- og emne-ID-er er gyldige;
 - required læringsfelt finnes;
 - inspectable kilder finnes;
-- `complete` krever full fagområdedekning;
+- `complete` krever dokumentert dekning av alle faglig relevante emner og perspektiver innenfor fagets avgrensning;
+- dekningsrapporten viser konkrete inkluderinger, utelatelser, sammenslåinger, gap og overlapp;
+- ingen fast emne-, kapittel-, modul-, seksjons-, claim-, kilde- eller oppgavekvote brukes som redaksjonelt ferdigbevis;
 - emnedefinisjoner og begrepslister er ikke håndkopiert som parallelle sannheter.
 
 ### 16.5 Dokumentasjon
@@ -794,7 +857,7 @@ Fagverksprogrammet kan først omtales som ferdig når:
 1. alle canonicale fag bruker samme fagsidemotor;
 2. alle fag er teknisk materialisert og individuelt auditert;
 3. alle fag har korrekt merke-, fagområde-, emne-, metode-, progresjons- og stedspresentasjon;
-4. alle fagområder i alle fag har fullverdige redigerte lærekapitler;
+4. alle faglig relevante emner i alle fag har fullverdig redigert behandling, med kapittelinndeling bestemt av stoffet og ikke av en tallmal;
 5. alle brukerrettede faktapåstander er kildebelagte;
 6. quiz og Knowledge bruker canonicale ID-er og eide systemer;
 7. ingen kategori har en parallell HTML-, data- eller progresjonsarkitektur;
