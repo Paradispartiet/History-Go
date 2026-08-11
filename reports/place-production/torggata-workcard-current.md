@@ -24,6 +24,7 @@
 - Fase 8A3-audit: `reports/place-production/torggata-phase8a3-residents-memory-audit-v1.md`
 - Fase 8A-closeout: `reports/place-production/torggata-phase8a-closeout-v1.md`
 - Fase 8B-audit: `reports/place-production/torggata-phase8b-objects-audit-v1.md`
+- Fase 8C-audit: `reports/place-production/torggata-phase8c-brands-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -37,7 +38,7 @@
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
-| 8. Rundinger | **PÅGÅR – 8C Brands** | audit PR #4829; **8A People GODKJENT** i #4831, #4840, #4842 og closeout #4843; **8B Objects GODKJENT** i #4847; 8C er neste del |
+| 8. Rundinger | **PÅGÅR – 8D Bygg og anlegg** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT** etter full re-audit; 8D er neste del |
 | 9–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
@@ -336,4 +337,14 @@ PR #4847 ble deretter renset til én commit på fersk `main`, bestod Data checks
 
 **8B Objects = GODKJENT.**
 
-Neste fase-8-del: **8C Brands**.
+## Fase 8C – Brands
+
+8C re-auditerer den gamle åttelisten mot `brand_rules_v1_1` og direkte Torggata-evidens. Fem eldre mappings fjernes fordi de gjelder side-/nabogater eller for svak fysisk kobling: Arakataka, Big Dipper, Justisen, The Villa og Tilt. De blir ikke slettet som brands globalt.
+
+Den canonical Torggata-mappingen består etter re-audit av kildebårne, selvstendig gjenkjennelige identiteter med direkte eller presist avgrenset fysisk Torggata-relasjon. Nåværende brands omfatter Angst, John Dee, Jernia Torggata, Oslo Sportslager, Norli Eldorado, Oslo Bar & Bowling og Oslo Street Food. Eldorado Bokhandel beholdes bare som historisk brand. I tillegg materialiseres de dokumenterte legacy-handelsnavnene Adelsten, Ludvig Jensen & Co., P. M. Jensen, Karl A. Jensen Vilt- og lakseforretning og Ingwald Nielsen.
+
+Alle historiske records er merket `dead` + `verified_legacy`; dagens virksomheter er `active` + `verified`. Ingen logo er kopiert eller rekonstruert uten dokumentert rettighetskjede, så PlaceCard bruker navnefallback. Vanlige kjedebutikker og svake kandidater holdes ute kandidatspesifikt i auditen. Rockefeller holdes ute fordi brand-kontrakten uttrykkelig behandler navnet som place-first, og hører til 8D Structures.
+
+**8C Brands = GODKJENT.**
+
+Neste fase-8-del: **8D Bygg og anlegg**.
