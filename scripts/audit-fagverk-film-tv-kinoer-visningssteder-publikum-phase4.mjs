@@ -75,7 +75,7 @@ export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = fa
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'kinoer_visningssteder_publikum', 'Registry-kapittelet er usynkronisert');
   assert(isDeepStrictEqual(registryChapter.emne_ids, EXPECTED_EMNES), 'Registry-emnene er usynkronisert');
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');
-  assert(statusEntry.nextGate === 'remaining_domain_chapter_production', 'Film & TV har feil neste port');
+  assert(['remaining_domain_chapter_production', 'curriculum_completeness_refactor'].includes(statusEntry.nextGate), 'Film & TV har feil neste port');
   assert(phase3.report.summary.domainCount === 6 && phase3.report.summary.emneCount === 120, 'Film & TV-baseline er ikke bevart');
   assert(phase3.report.summary.registeredChapterCount === registrySubject.chapters.length, 'Fase 3-auditen er usynkronisert med Film & TV-registeret');
 

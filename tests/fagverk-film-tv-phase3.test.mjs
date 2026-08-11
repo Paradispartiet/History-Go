@@ -10,7 +10,7 @@ test('Film & TV er materialisert med canonical dekning og audiovisuelle source-f
   assert.equal(report.subject.navigationStatus, 'materialized');
   assert.equal(report.subject.assessmentStatus, 'audited');
   assert.ok(['structure_ready', 'chapters_in_progress', 'complete'].includes(report.subject.editorialStatus));
-  assert.ok(['chapter_production', 'remaining_domain_chapter_production', 'maintenance_source_refresh_and_place_case_expansion'].includes(report.subject.nextGate));
+  assert.ok(['chapter_production', 'remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'maintenance_source_refresh_and_place_case_expansion'].includes(report.subject.nextGate));
   assert.deepEqual(report.summary, {
     domainCount: 6,
     emneCount: 120,

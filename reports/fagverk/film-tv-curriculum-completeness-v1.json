@@ -1,0 +1,148 @@
+{
+  "schema": "history_go_film_tv_curriculum_completeness_audit_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "status": "quota_shaped_inventory_confirmed_refactor_required",
+  "subject_id": "film_tv",
+  "evidence": [
+    {
+      "id": "qaa-2024-communication-media-film-cultural-studies",
+      "authority": "Quality Assurance Agency for Higher Education",
+      "location": "https://www.qaa.ac.uk/docs/qaa/sbs/sbs-communication-media-film-and-cultural-studies-24.pdf",
+      "use": "Cross-cutting coverage of historical, aesthetic, technological, industrial, social, geographical, environmental, ethical and representational dimensions; methods, production and non-Western perspectives."
+    },
+    {
+      "id": "ntnu-filmvitenskap-2026-program",
+      "authority": "NTNU",
+      "location": "https://www.ntnu.no/studier/bfv/studiets-oppbygning",
+      "use": "Norwegian university baseline: film and narrative, film history, film in society, Nordic film and TV, documentary, film/TV/game industries and film experience."
+    },
+    {
+      "id": "ntnu-filmvitenskap-2026-learning",
+      "authority": "NTNU",
+      "location": "https://www.ntnu.no/studier/bfv",
+      "use": "Field purpose: film elements, narratology, Norwegian and international history, production conditions, artistic trajectories and social significance."
+    },
+    {
+      "id": "uio-audiovisual-aesthetics",
+      "authority": "Universitetet i Oslo",
+      "location": "https://www.uio.no/studier/emner/hf/imk/MEVIT1110/",
+      "use": "Audiovisual aesthetics baseline for narrative, style and genre across film and television series."
+    }
+  ],
+  "legacy_inventory": {
+    "domain_count": 6,
+    "emne_count": 120,
+    "hook_count": 60,
+    "materialized_chapter_count": 2,
+    "domain_emne_counts": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "domain_hook_counts": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "hook_emne_counts_unique": [
+      2
+    ],
+    "normalized_definition_template_count": 1,
+    "why_it_matters_template_count": 6,
+    "overlap_resolution_template_count": 1
+  },
+  "findings": [
+    "All six legacy domains contain exactly 20 emner.",
+    "All six legacy domains contain exactly 10 hooks.",
+    "Every hook contains exactly two emner.",
+    "After replacing the inserted title, all 120 definitions reduce to one shared template.",
+    "The current architecture lacks a distinct film and television history/historiography core.",
+    "Television, global and non-Western trajectories, representation, accessibility, emerging technology and sustainability are not auditable as cross-cutting coverage.",
+    "The two published chapters remain valid content, but 20/20 and 3/9/27 are inventory descriptions rather than completion evidence."
+  ],
+  "proposed_domain_candidates": [
+    {
+      "id": "audiovisuell_form_stil_analyse",
+      "title": "Audiovisuell form, stil og analyse",
+      "rationale": "Owns image, sound, mise-en-scene, editing, cinematography, performance and analytical vocabulary rather than hiding aesthetics inside production roles."
+    },
+    {
+      "id": "fortelling_sjanger_serialitet_format",
+      "title": "Fortelling, sjanger, serialitet og format",
+      "rationale": "Separates narrative organisation, genre conventions, episodic and seasonal structures, live formats and format adaptation."
+    },
+    {
+      "id": "film_tv_historie_historiografi",
+      "title": "Film- og TV-historie og historiografi",
+      "rationale": "Adds the missing historical core: early and classical cinema, television history, movements, Norwegian/Nordic and global trajectories, periodisation and historiographical source criticism."
+    },
+    {
+      "id": "dokumentar_virkelighetsformer_etikk",
+      "title": "Dokumentar, virkelighetsformer og etikk",
+      "rationale": "Gives documentary, essay film, news images, reality formats, evidence claims, staging and participant ethics a coherent home."
+    },
+    {
+      "id": "samfunn_representasjon_identitet_makt",
+      "title": "Samfunn, representasjon, identitet og makt",
+      "rationale": "Makes class, gender, race, sexuality, disability, Indigenous perspectives, nation, public debate and unequal visibility auditable rather than optional."
+    },
+    {
+      "id": "produksjon_arbeid_teknologi_praksis",
+      "title": "Produksjon, arbeid, teknologi og praksis",
+      "rationale": "Keeps creative and technical work, collaboration, labour conditions, digital workflows, virtual production, AI and sustainable practice together without reducing form to equipment."
+    },
+    {
+      "id": "industri_institusjoner_politikk_distribusjon",
+      "title": "Industri, institusjoner, politikk og distribusjon",
+      "rationale": "Owns financing, production systems, broadcasting, public service, rights, regulation, platforms, markets, circulation and access."
+    },
+    {
+      "id": "visning_publikum_resepsjon_deltakelse",
+      "title": "Visning, publikum, resepsjon og deltakelse",
+      "rationale": "Connects cinemas, festivals, programming, audience research, television routines, streaming, interpretation, fandom and participatory cultures."
+    },
+    {
+      "id": "sted_location_skjermgeografi",
+      "title": "Sted, location og skjermgeografi",
+      "rationale": "Treats location choice, built and synthetic space, city, street, interior, landscape, mobility, place identity, tourism, community effects and environmental location ethics as distinct questions."
+    },
+    {
+      "id": "arkiv_kulturarv_minne_stjerner",
+      "title": "Arkiv, kulturarv, minne og stjerner",
+      "rationale": "Owns preservation, loss, canon formation, reuse, audiovisual memory, celebrity and star construction while distinguishing archival evidence from nostalgia."
+    }
+  ],
+  "cross_cutting_completeness_gates": [
+    "film_and_television_both_explicit_across_the_curriculum",
+    "norwegian_nordic_and_global_coverage_without_western_canon_default",
+    "historical_aesthetic_social_technological_industrial_and_geographical_contexts",
+    "representation_power_accessibility_and_intersectional_analysis",
+    "environmental_sustainability_and_production_ethics",
+    "close_analysis_archive_research_audience_research_industry_analysis_and_practice_methods",
+    "documented_works_scenes_productions_institutions_places_audiences_and_archives_before_theory"
+  ],
+  "required_migration_sequence": [
+    "classify_every_legacy_emne_as_keep_merge_move_split_or_retire",
+    "identify_missing_relevant_emner_from_evidence_baseline",
+    "publish_new_variable_domain_and_emne_inventory_with_alias_migration",
+    "update_methods_hooks_mappings_quiz_rules_and_runtime_projection",
+    "reaudit_existing_chapters_without_fixed_counts",
+    "resume_chapter_production_in_faglig_learning_order",
+    "run_full_gap_overlap_filler_and_exclusion_audit_before_complete"
+  ],
+  "gates": {
+    "quotaPatternMeasured": true,
+    "universityAndSectorBaselineRecorded": true,
+    "missingCoverageNamed": true,
+    "proposedArchitectureIsNotCountLocked": true,
+    "existingChapterContentPreserved": true,
+    "newChapterProductionBlockedUntilRefactor": true
+  }
+}

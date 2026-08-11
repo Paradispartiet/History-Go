@@ -13,7 +13,7 @@ sandbox.globalThis = sandbox;
 vm.runInNewContext(coreSource, sandbox, { filename: 'js/fagverk-subject-core.js' });
 const CORE = sandbox.HGFagverkSubjectCore;
 
-test('Kinoer, visningssteder og publikum er canonicalt materialisert 20/20', () => {
+test('Kinoer, visningssteder og publikum bevarer sitt registrerte legacyinventar', () => {
   const { report } = auditFilmTvKinoerVisningsstederPublikumPhase4();
   assert.equal(report.subject.id, 'film_tv');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
@@ -40,7 +40,7 @@ test('Film & TV-kapittelet har full pedagogisk og evidensbasert pakke', () => {
 
 test('Film & TV-fagets tekniske baseline er bevart etter kapittel 1', () => {
   const { report } = auditFilmTvKinoerVisningsstederPublikumPhase4();
-  assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
+  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor'].includes(report.subject.nextGate));
   assert.equal(report.subject.canonicalDomainCount, 6);
   assert.equal(report.subject.canonicalEmneCount, 120);
   assert.equal(report.gates.previousFilmTvStructurePreserved, true);
