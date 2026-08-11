@@ -119,7 +119,7 @@ function updateRegistry(chapter) {
     ],
     nextGate: subject.chapters.length === 6 ? 'full_subject_audit' : 'remaining_domain_chapter_production'
   };
-  registry.version = '2.67.0';
+  registry.version = '2.68.0';
   registry.updatedAt = '2026-08-11';
   writeJson(REGISTRY_FILE, registry);
 }
@@ -131,7 +131,7 @@ function updateStatus() {
   subject.editorialStatus = 'chapters_in_progress';
   subject.nextGate = 'remaining_domain_chapter_production';
   subject.note = 'Psykologi har seks canonicale fagområder og 58 aktive emner. Tre områder er nå fulltekstmaterialisert. Utvikling, oppvekst og læring dekker 9/9 emner med 18 canonicale metoder, 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims og 19 kilderegistreringer (18 eksterne). Samlet dekker de tre kapitlene 35/58 emner. Tre canonicale kapitler gjenstår, og diagnose- og utviklingsmerkingsvernet er bindende.';
-  status.version = '1.55.0';
+  status.version = '1.56.0';
   status.updatedAt = '2026-08-11';
   writeJson(STATUS_FILE, status);
 }
