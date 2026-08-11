@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.75.0",
+  "version": "2.76.0",
   "updatedAt": "2026-08-11",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -2672,7 +2672,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Film & TVs læringsrekkefølge dekker alle 192 canonicale emner. Første planenhet, Audiovisuell form og sansing, har nå en kilde- og claimbrief med 10 emner, 8 inspectable institusjonskilder, 7 dokumenterte case og 20 planlagte claimspor. Ingen planlagt claim er merket verifisert, og kapitlet er ikke registrert. Neste port er fulltekstproduksjon med avsnittsnivå claimtrace og ny audit før runtime-registrering.",
+        "note": "Film & TVs variable canon har 192 emner. Audiovisuell form og sansing er nå registrert etter fulltekst- og evidensport med 10 canonicale emner, 10 faglig avgrensede seksjoner, 23 claimsporede avsnitt, 20 verifiserte claims, 8 inspectable institusjonskilder, 7 verkcase og 2 canonicale anvendelsessteder. Neste port er kilde- og claimbrief for Fortelling, synsvinkel og sjanger; antall kapitler, seksjoner og avsnitt følger stoffets problemgrenser, ikke en kvote.",
         "learningOrderPlan": "data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json",
         "firstSourceClaimBrief": "data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json"
       },
@@ -2736,6 +2736,27 @@
           ],
           "claimsFile": "data/fagverk/film_tv/produksjon-studio-og-filmarbeid/claims.json",
           "briefFile": "data/fagverk/film_tv/produksjon-studio-og-filmarbeid/brief.json"
+        },
+        {
+          "id": "audiovisuell-form-og-sansing",
+          "title": "Audiovisuell form og sansing: hvordan bilde og lyd skaper mening",
+          "subtitle": "Fra mise-en-scène, utsnitt og animert bevegelse til rytme, lydrom, suspense, framføring og syntetisk realisme",
+          "file": "data/fagverk/film_tv/audiovisuell-form-og-sansing.json",
+          "primary_domain_id": "audiovisuell_form_stil_analyse",
+          "emne_ids": [
+            "em_film_tv_animasjon_bevegelse_design_og_tidsdannelse",
+            "em_film_tv_audiovisuell_atmosfare",
+            "em_film_tv_audiovisuell_rytme",
+            "em_film_tv_bildeformat_skjermflate_og_audiovisuell_materialitet",
+            "em_film_tv_digitale_bilder_vfx_og_syntetisk_realisme",
+            "em_film_tv_lydform_dialog_musikk_effekt_og_stillhet",
+            "em_film_tv_mise_en_scene_og_bildekomposisjon",
+            "em_film_tv_skuespillerprestasjon_kropp_stemme_og_blikk",
+            "em_film_tv_suspense_som_audiovisuell_teknikk",
+            "em_film_tv_utsnitt_linse_kamerabevegelse_og_blokkering"
+          ],
+          "claimsFile": "data/fagverk/film_tv/audiovisuell-form-og-sansing/claims.json",
+          "briefFile": "data/fagverk/film_tv/audiovisuell-form-og-sansing/brief.json"
         }
       ]
     }
