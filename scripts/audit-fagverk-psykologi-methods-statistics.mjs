@@ -31,7 +31,8 @@ export function auditPsykologiMethodsStatistics() {
   assert(topics.length === 20 && new Set(ids).size === 20, 'Metode/statistikk må ha 20 unike emner');
   assert(isDeepStrictEqual(ids, REQUIRED), 'Metode/statistikk avviker fra bindende 20-emners rekkefølge');
   for (const topic of topics) {
-    for (const field of ['label','definition','core_question','method_move','common_misinterpretation']) {
+    assert(typeof topic.label === 'string' && topic.label.trim().length >= 3, `${topic.topic_id} mangler label`);
+    for (const field of ['definition','core_question','method_move','common_misinterpretation']) {
       assert(typeof topic[field] === 'string' && topic[field].trim().length >= 20, `${topic.topic_id} mangler utfyllende ${field}`);
     }
     assert(Array.isArray(topic.source_ids) && topic.source_ids.length >= 1, `${topic.topic_id} mangler kilder`);
