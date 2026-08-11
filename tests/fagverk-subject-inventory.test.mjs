@@ -73,8 +73,15 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   assert.equal(media.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
 
   const psykologi = s.subjects.find((x) => x.id === 'psykologi');
-  assert.equal(psykologi.editorialStatus, 'chapters_in_progress');
-  assert.equal(psykologi.nextGate, 'remaining_domain_chapter_production');
+  const psykologiChapterCount = readJson('data/fagverk/fagverk_registry.json').subjects.psykologi.chapters.length;
+  assert.ok(psykologiChapterCount >= 1 && psykologiChapterCount <= 6);
+  if (psykologiChapterCount < 6) {
+    assert.equal(psykologi.editorialStatus, 'chapters_in_progress');
+    assert.equal(psykologi.nextGate, 'remaining_domain_chapter_production');
+  } else {
+    assert.equal(psykologi.editorialStatus, 'complete');
+    assert.equal(psykologi.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
+  }
 
   for (const id of ['religion', 'scenekunst', 'sport', 'vitenskap', 'filosofi']) {
     const subject = s.subjects.find((x) => x.id === id);
