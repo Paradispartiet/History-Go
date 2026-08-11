@@ -9,6 +9,7 @@
 - Kildebase: `reports/place-production/torggata-source-base-v1.md`
 - Fase 4-audit: `reports/place-production/torggata-phase4-fagverk-audit-v1.md`
 - Fase 5-audit: `reports/place-production/torggata-phase5-description-audit-v1.md`
+- Fase 6-audit: `reports/place-production/torggata-phase6-structured-profiles-audit-v1.md`
 
 ## Korrigert fasestatus
 
@@ -19,8 +20,9 @@
 | 2. Kildebase | **GODKJENT** | PR #4796, merge `15ed74e57cb18940bb9fcba6b4907ac7dc862ae0` |
 | 3. Koordinater/geometri | **ALLEREDE FERDIG – BEHOLD** | tidligere coordinate-produksjon, særlig PR #3773 og #3775 |
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
-| 5. `desc` + `popupDesc` | **PÅGÅR – KLAR FOR REVIEW** | tidligere tekst bevart; v4.2-retrofit, produksjonspakke og én minimal strong-claim-retting ferdig på aktiv branch |
-| 6–15 | **IKKE STARTET** | styres av hovedchecklisten |
+| 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
+| 6. Strukturerte place-profiler | **PÅGÅR – KLAR FOR REVIEW** | `spatial_profile`, `temporal_profile`, to reelle `subplaces`, fem `history_layers` og `source_summary`; `nature_profile` begrunnet N/A |
+| 7–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -83,13 +85,13 @@ KONKRET REGRESJONSEVIDENS: ingen generell tekstregresjon; manglende v4.2-produks
 BESLUTNING: RETROFIT – bevar teksten; rett bare det konkrete kontraktavviket
 ```
 
-### Fase 5 – aktivt resultat
+### Fase 5 – godkjent resultat
 
 - `desc` beholdes uendret: 49 ord;
 - `popupDesc` beholdes redaksjonelt og strukturelt;
 - eneste innholdsendring er `byens første 25-metersbasseng` → `et 25-metersbasseng`;
 - Eldorados `Norges første lydfilmkino` beholdes fordi påstanden har to uavhengige kilder;
-- ny `data/places/production/torggata.json` følger v4.2.1 med 18 verifiserte claims;
+- `data/places/production/torggata.json` følger v4.2.1 med 18 verifiserte claims;
 - setningsdekning er 3/3 for `desc` og 31/31 for `popupDesc`;
 - fire strong-claims har eksplisitt evidens og minst to kilde-URL-er;
 - ferske temporal-claims dekker nåværende stedselementer;
@@ -97,4 +99,27 @@ BESLUTNING: RETROFIT – bevar teksten; rett bare det konkrete kontraktavviket
 - `desc`-hash: `10711892bbf6acd84a9f8cfd4638c73ce39db71814b4f3619b4b5f6621a82fbb`;
 - `popupDesc`-hash: `e4e0fa2ab0a249ee3619406972e454045e40cda98b500c50f2f00fa813709fef`.
 
-Fase 5 settes først **GODKJENT** etter grønn Place description governance, merge og kontroll på faktisk `main`. Fase 6 starter ikke før dette er gjort.
+PR #4815 passerte Place description governance, Data checks, Fagverk and place learning, Nature data validation and candidates og Fagverk By Data og styring Phase 4 på samme head. PR-en ble squash-merget, og faktisk `main` ble kontrollert på merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` før fase 6 startet.
+
+## Fase 6 – tidligere-arbeid-gate
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+SISTE GODKJENTE PR/COMMIT: Ingen tidligere Torggata-PR funnet som eier fase 6 etter dagens checklist
+SISTE GODKJENTE TILSTAND: stedet hadde rike enkeltfelt, men ingen canonical strukturerte place-profiler
+KONKRET REGRESJONSEVIDENS: ingen
+BESLUTNING: REELT NYTT ARBEID – bygg bare kildebårne strukturer som tilfører ny organisering
+```
+
+### Fase 6 – aktivt resultat
+
+- `spatial_profile` skiller canonical gateidentitet fra den kortere operative routeSegments-kjeden;
+- 574,5 meter gjøres ikke til påstått full Torggata-lengde;
+- `temporal_profile` bruker seks hovedmilepæler og blir ikke en parallell chronology;
+- `subplaces` består bare av de to dokumenterte gatesegmentene Stortorvet–Youngstorget og Youngstorget–Ankertorget;
+- `history_layers` gir fem korte, kildebårne historiske lag uten å duplisere full chronology;
+- `source_summary.safe_sources` inneholder bare eksterne brukerrettede kilder;
+- `nature_profile` er **N/A** med konkret begrunnelse: urbant gateløp uten dokumentert naturfaglig rolle i stedspakken;
+- fase 5-tekster og production package er urørt.
+
+Fase 6 settes først **GODKJENT** etter relevant CI, squash-merge og kontroll på faktisk `main`. Fase 7 starter ikke før dette er gjort.
