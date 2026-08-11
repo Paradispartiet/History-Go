@@ -21,12 +21,16 @@ const P = Object.freeze({
   report: 'reports/fagverk/film-tv-phase3-audit.json'
 });
 const DOMAIN_ORDER = [
-  'kinoer_visningssteder_publikum',
-  'produksjon_studio_arbeid',
-  'locations_byrom_motiv',
-  'sjanger_format_fortelling',
-  'institusjoner_makt_offentlighet',
-  'minne_stjerner_kulturarv'
+  'audiovisuell_form_stil_analyse',
+  'fortelling_sjanger_serialitet_format',
+  'film_tv_historie_historiografi',
+  'dokumentar_virkelighetsformer_etikk',
+  'samfunn_representasjon_identitet_makt',
+  'produksjon_arbeid_teknologi_praksis',
+  'industri_institusjoner_politikk_distribusjon',
+  'visning_publikum_resepsjon_deltakelse',
+  'sted_location_skjermgeografi',
+  'arkiv_kulturarv_minne_stjerner'
 ];
 const abs = (p) => path.join(ROOT, p);
 const read = (p) => fs.readFileSync(abs(p), 'utf8');
@@ -112,7 +116,7 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
   const expectedNextGate = statusEntry.editorialStatus === 'structure_ready'
     ? 'chapter_production'
     : statusEntry.editorialStatus === 'chapters_in_progress'
-      ? ['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration']
+      ? ['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit']
       : 'maintenance_source_refresh_and_place_case_expansion';
   assert(Array.isArray(expectedNextGate) ? expectedNextGate.includes(statusEntry?.nextGate) : statusEntry?.nextGate === expectedNextGate, 'Film & TV har feil neste port for redaksjonell status');
   assert(registry.placePage?.fallbackSubjectByCategory?.film_tv === 'film_tv', 'Film & TV-steder mangler Film & TV som fagverksfallback');
@@ -121,7 +125,7 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
 
   const source = loadSource(CORE, manifestEntry);
   const canonicalEmners = rawEmneRows(source);
-  assert(canonicalEmners.length === 120, 'Film & TV-emnefilen skal ha 120 canonicale emner');
+  assert(canonicalEmners.length === 192, 'Film & TV-emnefilen skal ha 192 canonicale emner fra det variable inventaret');
 
   const model = CORE.normalizeSubject({
     subjectId: 'film_tv',
@@ -143,15 +147,14 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
   assert(model.subject.routes.badge !== model.subject.routes.subject, 'Merke- og fagside kan ikke være samme mål');
   assert(isDeepStrictEqual([...model.domains].map((d) => d.id), DOMAIN_ORDER), 'Film & TV har feil canonical fagområderekkefølge');
   assert(model.domains.every((d) => d.sourceKind === 'pensum_domain'), 'Film & TV opprettet syntetiske fagområder');
-  assert(model.summary.domainCount === 6, 'Film & TV skal ha seks fagområder');
-  assert(model.summary.emneCount === 120, 'Film & TV skal ha 120 emner');
-  assert(model.summary.methodCount === 107, 'Film & TV skal ha 107 metoder');
-  assert(model.summary.mappingCount === 120, 'Film & TV skal ha 120 normaliserte mappinger');
-  assert(model.summary.hookCount === 60, 'Film & TV skal ha 60 hooks');
-  assert(model.chapters.length >= 0 && model.chapters.length <= 6, 'Film & TV har ugyldig kapittelprogresjon');
+  assert(model.summary.domainCount === 10, 'Film & TV skal ha ti faglig begrunnede, variabelt store områder');
+  assert(model.summary.emneCount === 192, 'Film & TV skal ha 192 emner fra migrasjonsinventaret');
+  assert(model.summary.methodCount === 119, 'Film & TV skal ha 119 migrerte og kompletterte metoder');
+  assert(model.summary.mappingCount === 192, 'Film & TV skal ha 192 normaliserte mappinger');
+  assert(model.summary.hookCount === 192, 'Film & TV skal ha ett eksplisitt hook per selvstendig emneproblem');
+  assert(model.chapters.length >= 0, 'Film & TV har ugyldig kapittelprogresjon');
   assert(statusEntry.editorialStatus !== 'structure_ready' || model.chapters.length === 0, 'Structure-ready kan ikke ha registrerte Film & TV-kapitler');
-  assert(statusEntry.editorialStatus !== 'chapters_in_progress' || (model.chapters.length >= 1 && model.chapters.length <= 5), 'Chapters-in-progress krever 1–5 Film & TV-kapitler');
-  assert(statusEntry.editorialStatus !== 'complete' || model.chapters.length === 6, 'Complete krever seks Film & TV-kapitler');
+  assert(statusEntry.editorialStatus !== 'chapters_in_progress' || model.chapters.length >= 1, 'Chapters-in-progress krever minst ett Film & TV-kapittel');
   assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Film & TV-emne mangler løst metode-ID');
 
   const pensumIds = new Set(source.pensum.domains.flatMap((d) => d.emne_ids || []));
@@ -161,12 +164,12 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
   assertExactCoverage('Film & TV', canonicalEmners, ['pensum', pensumIds], ['fagkart', fagkartIds], ['mappingregister', mappingIds]);
 
   const methodIds = new Set(source.methods.methods.map((method) => method.method_id));
-  assert(methodIds.size === 107, 'Film & TV har feil antall unike metode-ID-er');
+  assert(methodIds.size === 119, 'Film & TV har feil antall unike metode-ID-er');
   assert(source.methods.methods.every((method) => typeof method.method_id === 'string' && method.method_id.startsWith('met_film_tv_')), 'Film & TV har metode uten canonical Film & TV-ID');
   assert(hooks.flatMap((hook) => hook.recommended_method_ids || []).every((id) => methodIds.has(id)), 'Film & TV-hook peker til ukjent metode');
   assert(explicitMappings.flatMap((row) => row.mappings || []).flatMap((mapping) => mapping.recommended_method_ids || []).every((id) => methodIds.has(id)), 'Film & TV-mapping peker til ukjent metode');
 
-  const expected = { domain_count: 6, emne_count: 120, method_count: 107, mapping_count: 120, topic_hook_count: 60 };
+  const expected = { domain_count: 10, emne_count: 192, method_count: 119, mapping_count: 192, topic_hook_count: 192 };
   for (const [key, value] of Object.entries(expected)) {
     assert(source.pensum.summary?.[key] === value, `Pensumsammendraget har feil ${key}`);
     assert(generator.canonical_inputs?.[key] === value, `Generatoren har feil ${key}`);

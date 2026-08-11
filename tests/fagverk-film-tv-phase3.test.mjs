@@ -10,27 +10,31 @@ test('Film & TV er materialisert med canonical dekning og audiovisuelle source-f
   assert.equal(report.subject.navigationStatus, 'materialized');
   assert.equal(report.subject.assessmentStatus, 'audited');
   assert.ok(['structure_ready', 'chapters_in_progress', 'complete'].includes(report.subject.editorialStatus));
-  assert.ok(['chapter_production', 'remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'maintenance_source_refresh_and_place_case_expansion'].includes(report.subject.nextGate));
+  assert.ok(['chapter_production', 'remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'maintenance_source_refresh_and_place_case_expansion'].includes(report.subject.nextGate));
   assert.deepEqual(report.summary, {
-    domainCount: 6,
-    emneCount: 120,
-    methodCount: 107,
-    mappingCount: 120,
-    hookCount: 60,
+    domainCount: 10,
+    emneCount: 192,
+    methodCount: 119,
+    mappingCount: 192,
+    hookCount: 192,
     registeredChapterCount: report.summary.registeredChapterCount,
-    explicitMappingRowCount: 120
+    explicitMappingRowCount: 192
   });
   assert.deepEqual(report.canonicalDomainOrder, [
-    'kinoer_visningssteder_publikum',
-    'produksjon_studio_arbeid',
-    'locations_byrom_motiv',
-    'sjanger_format_fortelling',
-    'institusjoner_makt_offentlighet',
-    'minne_stjerner_kulturarv'
+    'audiovisuell_form_stil_analyse',
+    'fortelling_sjanger_serialitet_format',
+    'film_tv_historie_historiografi',
+    'dokumentar_virkelighetsformer_etikk',
+    'samfunn_representasjon_identitet_makt',
+    'produksjon_arbeid_teknologi_praksis',
+    'industri_institusjoner_politikk_distribusjon',
+    'visning_publikum_resepsjon_deltakelse',
+    'sted_location_skjermgeografi',
+    'arkiv_kulturarv_minne_stjerner'
   ]);
-  assert.equal(model.domains.length, 6);
-  assert.equal(model.emners.length, 120);
-  assert.equal(model.methods.length, 107);
-  assert.ok(report.summary.registeredChapterCount >= 0 && report.summary.registeredChapterCount <= 6);
+  assert.equal(model.domains.length, 10);
+  assert.equal(model.emners.length, 192);
+  assert.equal(model.methods.length, 119);
+  assert.ok(report.summary.registeredChapterCount >= 0);
   for (const gate of Object.values(report.gates)) assert.equal(gate, true);
 });

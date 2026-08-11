@@ -1,5 +1,5 @@
 {
-  "version": "v5.1-source-priority-patch-film-tv",
+  "version": "v5.1-source-priority-patch-film-tv-variable-inventory-v1",
   "subject_id": "film_tv",
   "subject_title": "Film & TV",
   "scope": "oslo_og_omegn",
@@ -11,11 +11,12 @@
     "emner": "emner_film_tv_canonical_v4_5.json",
     "emnemapping": "emnemapping_film_tv_canonical_v4_5.json",
     "pensum": "film_tvpensum_canonical_v4_5.json",
-    "domain_count": 6,
-    "emne_count": 120,
-    "method_count": 107,
-    "mapping_count": 120,
-    "topic_hook_count": 60
+    "domain_count": 10,
+    "emne_count": 192,
+    "method_count": 119,
+    "mapping_count": 192,
+    "topic_hook_count": 192,
+    "inventory": "film_tv_variable_inventory_v1.json"
   },
   "hard_rules": {
     "source_dominance_rule": "Eksterne filmhistoriske, TV-historiske, produksjonsmessige, arkivmessige, programhistoriske, databasebaserte, institusjonelle, resepsjonsmessige, festival-, kino-, kringkastings-, produksjonsselskaps-, avis- og lokalhistoriske kilder skal dominere det synlige faktainnholdet i Film & TV-quizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
@@ -83,7 +84,9 @@
       "em_sport_"
     ],
     "people_film_tv_rule": "people_film_tv skal inneholde personer der hovedrollen er regissør, skuespiller, produsent, filmfotograf, klipper, lydarbeider, manusforfatter, TV-skaper, programleder, filmkritiker, TV-produsent, animatør, dokumentarist, film-/TV-institusjonsbygger eller sentral aktør i dokumentert film- og TV-historie. Personer der hovedrollen er journalistikk, teater, musikk, litteratur, politikk, næringsliv eller populærkultur skal primært ligge i disse kategoriene, med Film & TV som sekundært tag bare der det er relevant.",
-    "places_film_tv_rule": "places_film_tv skal inneholde steder der hovedrollen er kino, cinematek, filmklubb, festivalsted, TV-hus, studio, produksjonskontor, filmhus, filmarkiv, location, innspillingssted, visningsrom, kringkastingsinstitusjon, plattform-/distribusjonssted eller dokumentert audiovisuelt kulturminne."
+    "places_film_tv_rule": "places_film_tv skal inneholde steder der hovedrollen er kino, cinematek, filmklubb, festivalsted, TV-hus, studio, produksjonskontor, filmhus, filmarkiv, location, innspillingssted, visningsrom, kringkastingsinstitusjon, plattform-/distribusjonssted eller dokumentert audiovisuelt kulturminne.",
+    "legacy_alias_resolution_source": "film_tv_variable_inventory_v1.json",
+    "fixed_target_counts_forbidden": true
   },
   "soft_preferences": {
     "preferred_external_source_mix_per_place": [
@@ -307,5 +310,5 @@
     "source_note_definition": "Kort kildebeskrivelse som sier hvilken type filmhistorisk, TV-historisk, produksjonsmessig, arkivmessig, programhistorisk, databasebasert, institusjonell, resepsjonsmessig eller lokalhistorisk kilde som er brukt."
   },
   "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For Film & TV skal konkrete verk, scener, kinoer, studioer, TV-hus, locations, produksjoner, sjangre, formater, publikum, arkiver, kringkasting, filmarv og dokumenterte audiovisuelle kilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
-  "migration_note": "Eksisterende places_film_tv og people_film_tv bør migreres til em_film_tv_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er Film & TV og ikke media, teater, populærkultur, kunst, litteratur, musikk, by, politikk, næringsliv, historie, subkultur eller teknologi."
+  "migration_note": "Generatoren bruker 192 aktive canonical-emner i ti variable områder. De 120 gamle ID-ene er bare aliases; antall emner, hooks og metoder er integritetstall, ikke produksjonskvoter."
 }

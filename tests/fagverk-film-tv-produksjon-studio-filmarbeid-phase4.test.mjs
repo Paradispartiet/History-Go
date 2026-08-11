@@ -19,8 +19,9 @@ test('Produksjon, studio og filmarbeid bevarer sitt registrerte legacyinventar',
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.registeredChapterCount, 2);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'produksjon_studio_arbeid');
-  assert.equal(report.canonicalCoverage.exactCoverage, '20/20');
-  assert.equal(report.canonicalCoverage.remainingDomainCount, 4);
+  assert.equal(report.canonicalCoverage.exactCoverage, '20/20 legacy IDs -> 20 canonical emner');
+  assert.equal(report.canonicalCoverage.aliasResolvedEmneIds.length, 20);
+  assert.equal(report.canonicalCoverage.remainingDomainCount, 10);
   assert.deepEqual(report.canonicalCoverage.requiredEmneIds, report.canonicalCoverage.coveredEmneIds);
 });
 
@@ -40,9 +41,9 @@ test('Film & TV-kapittelet har full pedagogisk og evidensbasert pakke', () => {
 
 test('Film & TV-fagets tekniske baseline er bevart etter kapittel 2', () => {
   const { report } = auditFilmTvProduksjonStudioFilmarbeidPhase4();
-  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration'].includes(report.subject.nextGate));
-  assert.equal(report.subject.canonicalDomainCount, 6);
-  assert.equal(report.subject.canonicalEmneCount, 120);
+  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit'].includes(report.subject.nextGate));
+  assert.equal(report.subject.canonicalDomainCount, 10);
+  assert.equal(report.subject.canonicalEmneCount, 192);
   assert.equal(report.gates.previousFilmTvStructurePreserved, true);
 });
 
