@@ -210,7 +210,7 @@ export function buildFilmTvLearningOrderPlanV1() {
   };
 
   const currentStatus = read(P.status);
-  const laterSourceBriefGate = ['audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production'].includes(currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate);
+  const laterSourceBriefGate = ['audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief'].includes(currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate);
   const registry = structuredClone(read(P.registry));
   if (!laterSourceBriefGate) {
     registry.version = '2.74.0';

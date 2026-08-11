@@ -102,7 +102,9 @@ Kilde- og claimbriefen for «Fortelling, synsvinkel og sjanger» er gjennomført
 
 «Fortelling, synsvinkel og sjanger» er nå fulltekstprodusert og runtime-registrert. Kapittelet har tre faglig avgrensede moduler, fem emneeide seksjoner og 13 avsnitt med entydig claimtrace til 13 verifiserte claims. Alle 12 kildene brukes, film og TV er representert, og anvendelsesstedene er skilt fra verkcasene.
 
-Kilde- og claimbriefen for «Serialitet, format og adaptasjon» er gjennomført i [`film_tv_seriality_format_adaptation_source_claim_brief_v1.json`](../data/fag/TV_og_Film/film_tv_seriality_format_adaptation_source_claim_brief_v1.json). Den dekker enhetens 10/10 canonicale emner med 16 inspectable universitets-, arkiv- og institusjonskilder, 12 film-, TV- og versjonscase og 28 uverifiserte claimplaner. Claimfordelingen 4–2–3–3–3–3–3–2–2–3 og modulstørrelsene 4–2–2–2 følger de faktiske problemgrensene; de er ikke kvoter for fullteksten. Sammenlignbare versjoner må dokumentere hva som endres mellom uttrykk, mens rettigheter, lisensiering, distribusjon og produksjonsteknikk fortsatt eies av senere enheter. Aktiv port er `seriality_format_adaptation_source_brief_complete_full_chapter_production`: kapitlet er ikke runtime-registrert før fulltekst, faktisk kildebruk og avsnittsnivå claimtrace er revidert og auditert.
+Kilde- og claimbriefen for «Serialitet, format og adaptasjon» er gjennomført og konsumert av det verifiserte fulltekstkapitlet. Den dekker enhetens 10/10 canonicale emner med 16 inspectable universitets-, arkiv- og institusjonskilder, 12 film-, TV- og versjonscase og 28 claimplaner fordelt 4–2–3–3–3–3–3–2–2–3 etter problemomfang. Alle planene er løst til brukte sluttclaims. Tre ble eksplisitt innsnevret under fulltekstrevisjonen: `The Prisoner` beskrives med dokumentert episodeomfang og prematur avslutning, `The Price Is Right` uten udokumentert direktesendingspåstand, og sesong-/produksjonsclaimen uten et udokumentert bestemt tosesongsoppsett.
+
+«Serialitet, format og adaptasjon» er nå fulltekstprodusert og runtime-registrert. Kapittelet følger briefens fire ulikt store problemfelt med modulfordelingen 4–2–2–2, ti emneeide seksjoner og 28 avsnitt med entydig claimtrace til 28 verifiserte claims. Alle 16 kildene brukes. Episode, sesong og serie, format og enkeltinnhold, adaptasjon, remake og transmedia samt sjangerrevisjon holdes analytisk atskilt; rettigheter, lisensiering, distribusjon og produksjonsteknikk forblir senere enheters ansvar. Aktiv port er `seriality_format_adaptation_full_chapter_complete_next_unit_source_brief`, med kilde- og claimbrief for «Filmhistorie, bevegelser og historiografi» som neste leveranse.
 
 ## Maskinell kontroll
 
@@ -122,6 +124,8 @@ node scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs
 node scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
 node scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
 node scripts/brief-film-tv-seriality-format-adaptation-sources-v1.mjs
+node scripts/materialize-film-tv-seriality-format-adaptation-fulltext-v1.mjs
+node scripts/audit-film-tv-seriality-format-adaptation-fulltext-v1.mjs
 node --test tests/film-tv-curriculum-completeness-v1.test.mjs
 node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
 node --test tests/film-tv-variable-inventory-v1.test.mjs
@@ -133,6 +137,7 @@ node --test tests/film-tv-audiovisual-form-fulltext-v1.test.mjs
 node --test tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs
 node --test tests/film-tv-narrative-viewpoint-genre-fulltext-v1.test.mjs
 node --test tests/film-tv-seriality-format-adaptation-source-brief-v1.test.mjs
+node --test tests/film-tv-seriality-format-adaptation-fulltext-v1.test.mjs
 ```
 
 Canonicale rapporter:
@@ -148,3 +153,4 @@ Canonicale rapporter:
 - `reports/fagverk/film-tv-narrative-viewpoint-genre-source-brief-v1-audit.json`
 - `reports/fagverk/film-tv-narrative-viewpoint-genre-fulltext-v1-audit.json`
 - `reports/fagverk/film-tv-seriality-format-adaptation-source-brief-v1-audit.json`
+- `reports/fagverk/film-tv-seriality-format-adaptation-fulltext-v1-audit.json`
