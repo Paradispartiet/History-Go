@@ -363,12 +363,10 @@ function updateRegistry() {
     assert(subject.chapters.length === 0, 'Film & TV må starte kapittel 1 uten andre registrerte kapitler');
     subject.chapters.push(registryChapter);
   } else {
-    assert(subject.chapters.length === 1, 'Reproduksjon forventer nøyaktig ett Film & TV-kapittel');
     subject.chapters[existingIndex] = registryChapter;
   }
-  subject.canonicalModel.note = 'Film & TVs seks pensum-eide områder styrer rendererstrukturen. Kinoer, visningssteder og publikum er materialisert som fulltekst- og claimsporet kapittel med 20/20 emner; fem områder står igjen. Source-first, ekstern claim-basis og konkrete verk-, visnings-, kringkastings- og arkivankere er bindende.';
-  registry.version = '2.67.0';
-  registry.updatedAt = '2026-08-11';
+  const refactorActive = ['curriculum_completeness_refactor', 'canonical_inventory_migration'].includes(readJson(STATUS_FILE).subjects.find((row) => row.id === 'film_tv')?.nextGate);
+  if (!refactorActive) subject.canonicalModel.note = 'Film & TVs seks pensum-eide områder styrer rendererstrukturen. Kinoer, visningssteder og publikum er materialisert som fulltekst- og claimsporet kapittel med 20/20 emner; fem områder står igjen. Source-first, ekstern claim-basis og konkrete verk-, visnings-, kringkastings- og arkivankere er bindende.';
   writeJson(REGISTRY_FILE, registry);
 }
 
@@ -376,11 +374,12 @@ function updateStatus() {
   const status = readJson(STATUS_FILE);
   const subject = status.subjects.find((row) => row.id === 'film_tv');
   assert(['structure_ready', 'chapters_in_progress'].includes(subject?.editorialStatus), 'Film & TV må starte fra structure_ready eller dokumentert kapittelproduksjon');
+  const refactorGate = ['curriculum_completeness_refactor', 'canonical_inventory_migration'].includes(subject.nextGate);
   subject.editorialStatus = 'chapters_in_progress';
-  subject.nextGate = 'remaining_domain_chapter_production';
-  subject.note = 'Film & TV har seks canonicale fagområder og 120 emner. Kinoer, visningssteder og publikum dekker nå sine 20 emner gjennom 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims, 22 inspiserbare kilderegistreringer, 4 stedscase og alle områdets 20 canonicale metoder. Ett av seks kapitler er materialisert; fem gjenstår.';
-  status.version = '1.55.0';
-  status.updatedAt = '2026-08-11';
+  if (!refactorGate) {
+    subject.nextGate = 'remaining_domain_chapter_production';
+    subject.note = 'Film & TV har seks canonicale fagområder og 120 emner. Kinoer, visningssteder og publikum dekker nå sine 20 emner gjennom 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims, 22 inspiserbare kilderegistreringer, 4 stedscase og alle områdets 20 canonicale metoder. Ett av seks kapitler er materialisert; fem gjenstår.';
+  }
   writeJson(STATUS_FILE, status);
 }
 

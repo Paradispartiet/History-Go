@@ -139,7 +139,7 @@ export function auditFilmTvCurriculumCompletenessV1({ writeReport = false, check
   assert(overlapNoteCount === 1, 'Forventet én generisk overlappsregel');
   assert(registry?.chapters?.length === 2, 'De to materialiserte kapitlene skal bevares under refaktoren');
   assert(status?.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå som pågående under refaktoren');
-  assert(status?.nextGate === 'curriculum_completeness_refactor', 'Film & TV skal være blokkert på completeness-refaktor');
+  assert(['curriculum_completeness_refactor', 'canonical_inventory_migration'].includes(status?.nextGate), 'Film & TV skal være blokkert på completeness-refaktor eller canonical migrasjon');
 
   const report = {
     schema: 'history_go_film_tv_curriculum_completeness_audit_v1',
@@ -186,7 +186,7 @@ export function auditFilmTvCurriculumCompletenessV1({ writeReport = false, check
       missingCoverageNamed: true,
       proposedArchitectureIsNotCountLocked: true,
       existingChapterContentPreserved: true,
-      newChapterProductionBlockedUntilRefactor: status.nextGate === 'curriculum_completeness_refactor'
+      newChapterProductionBlockedUntilRefactor: ['curriculum_completeness_refactor', 'canonical_inventory_migration'].includes(status.nextGate)
     }
   };
 

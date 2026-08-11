@@ -40,7 +40,7 @@ test('Film & TV-kapittelet har full pedagogisk og evidensbasert pakke', () => {
 
 test('Film & TV-fagets tekniske baseline er bevart etter kapittel 2', () => {
   const { report } = auditFilmTvProduksjonStudioFilmarbeidPhase4();
-  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor'].includes(report.subject.nextGate));
+  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration'].includes(report.subject.nextGate));
   assert.equal(report.subject.canonicalDomainCount, 6);
   assert.equal(report.subject.canonicalEmneCount, 120);
   assert.equal(report.gates.previousFilmTvStructurePreserved, true);

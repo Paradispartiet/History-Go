@@ -77,7 +77,18 @@ De to materialiserte kapitlene slettes ikke. Tekst, claims, kilder og cases beva
 
 Første migreringskrav er nå gjennomført i `reports/fagverk/film-tv-legacy-emne-classification-v1.json`: alle 120 legacy-emner har nøyaktig én eksplisitt beslutning, ett eller flere kandidatområder, etterfølgerbegrep, begrunnelse, faglig grense og alias-krav. Fordelingen mellom `keep`, `merge`, `move`, `split` og `retire` er en konsekvens av vurderingene, ikke et måltall.
 
-Klassifikasjonen er migreringsinput, ikke et nytt canonicalt inventar. Neste port er å identifisere manglende relevant stoff og utforme et variabelt inventar. Derfor er videre kapittelproduksjon fortsatt blokkert.
+Klassifikasjonen er migreringsinput, ikke det nye canonicale inventaret. Gapdesignen er nå gjennomført i [`film_tv_variable_inventory_v1.json`](../data/fag/TV_og_Film/film_tv_variable_inventory_v1.json):
+
+- alle 120 legacy-ID-er har minst ett aliasmål, og bare eksplisitte `split`-beslutninger kan vifte ut til flere;
+- andreordensoverlapp som først ble synlige etter klassifikasjonen er slått sammen;
+- brede paraplyemner er merket som integrerende grunnlag, ikke parallelle spesialemner;
+- 82 manglende emner er lagt til med selvstendig problemstilling, faglig grense og evidensreferanse;
+- de ti faglig begrunnede områdene har nå variable inventarstørrelser fra 15 til 25;
+- dagens 192 foreslåtte emner er en integritetstelling, ikke et sluttmål eller tak.
+
+De største reelle tilleggene ligger i film- og TV-historie/historiografi, global og dekolonial skjermhistorie, eksplisitte TV-forløp og -formater, animasjon og adaptasjon, dokumentartradisjoner, representasjons- og maktakser, produksjonspraksis, KI, tilgjengelighet, bærekraft, skjermgeografi og digital bevaring. Et senere funn kan fortsatt legge til, slå sammen, flytte eller avgrense emner når det begrunnes faglig.
+
+Neste port er `canonical_inventory_migration`: fagkart, emner, metoder, hooks, mappings, quizregler, pensum og runtime-projeksjon skal regenereres samlet fra migrasjonsspesifikasjonen. Videre kapittelproduksjon er blokkert til denne migrasjonen og reauditen av de to eksisterende kapitlene er grønn.
 
 ## Maskinell kontroll
 
@@ -86,11 +97,14 @@ Auditen kjøres med:
 ```bash
 node scripts/audit-film-tv-curriculum-completeness-v1.mjs
 node scripts/audit-film-tv-legacy-emne-classification-v1.mjs
+node scripts/audit-film-tv-variable-inventory-v1.mjs
 node --test tests/film-tv-curriculum-completeness-v1.test.mjs
 node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
+node --test tests/film-tv-variable-inventory-v1.test.mjs
 ```
 
 Canonicale rapporter:
 
 - `reports/fagverk/film-tv-curriculum-completeness-v1.json`
 - `reports/fagverk/film-tv-legacy-emne-classification-v1.json`
+- `reports/fagverk/film-tv-variable-inventory-v1-audit.json`

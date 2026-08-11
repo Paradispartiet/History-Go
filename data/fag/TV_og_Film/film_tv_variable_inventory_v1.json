@@ -1,0 +1,4412 @@
+{
+  "schema": "history_go_film_tv_variable_inventory_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "status": "designed_gap_audited_migration_pending",
+  "subject_id": "film_tv",
+  "policy": {
+    "all_relevant_emner_independent_of_number": true,
+    "domain_and_emne_counts_are_inventory_not_quotas": true,
+    "no_target_domain_count": true,
+    "no_target_emne_count": true,
+    "one_independent_problem_per_emne": true,
+    "every_legacy_id_keeps_an_alias": true,
+    "gap_additions_do_not_require_compensating_deletions": true,
+    "chapter_shape_follows_learning_need": true
+  },
+  "evidence": [
+    {
+      "id": "film-tv-legacy-classification-v1",
+      "authority": "History-Go canonical migration audit",
+      "location": "reports/fagverk/film-tv-legacy-emne-classification-v1.json",
+      "supports": [
+        "legacy_aliases",
+        "keep_merge_move_split_retire_decisions",
+        "successor_concepts",
+        "domain_ownership",
+        "boundary_rationales"
+      ]
+    },
+    {
+      "id": "qaa-2024-subject-benchmark",
+      "authority": "Quality Assurance Agency for Higher Education",
+      "location": "https://www.qaa.ac.uk/docs/qaa/sbs/sbs-communication-media-film-and-cultural-studies-24.pdf",
+      "supports": [
+        "historical_context",
+        "global_context",
+        "representation_and_power",
+        "accessibility",
+        "production",
+        "emerging_technology",
+        "sustainability",
+        "research_methods"
+      ]
+    },
+    {
+      "id": "ntnu-filmvitenskap-2026-program",
+      "authority": "NTNU",
+      "location": "https://www.ntnu.no/studier/bfv",
+      "supports": [
+        "film_elements",
+        "narratology",
+        "norwegian_and_global_history",
+        "film_in_society",
+        "documentary",
+        "film_experience",
+        "film_tv_industries"
+      ]
+    },
+    {
+      "id": "ntnu-filmvitenskap-2026-structure",
+      "authority": "NTNU",
+      "location": "https://www.ntnu.no/studier/bfv/studiets-oppbygning",
+      "supports": [
+        "film_narrative",
+        "film_history",
+        "nordic_film_tv",
+        "documentary",
+        "film_tv_industries",
+        "film_experience"
+      ]
+    },
+    {
+      "id": "uio-audiovisual-aesthetics",
+      "authority": "Universitetet i Oslo",
+      "location": "https://www.uio.no/studier/emner/hf/imk/MEVIT1110/",
+      "supports": [
+        "audiovisual_form",
+        "style",
+        "narrative",
+        "genre",
+        "film_and_tv_series"
+      ]
+    },
+    {
+      "id": "unesco-documentary-heritage-2015",
+      "authority": "UNESCO",
+      "location": "https://www.unesco.org/en/legal-affairs/recommendation-concerning-preservation-and-access-documentary-heritage-including-digital-form",
+      "supports": [
+        "analogue_and_digital_preservation",
+        "metadata",
+        "access",
+        "authenticity",
+        "rights",
+        "at_risk_heritage",
+        "community_and_global_memory"
+      ]
+    },
+    {
+      "id": "nfi-sustainable-film-production",
+      "authority": "Norsk filminstitutt",
+      "location": "https://www.nfi.no/arrangementer/kurs-i-baerekraftig-filmproduksjon",
+      "supports": [
+        "sustainable_production",
+        "production_strategy",
+        "professional_practice"
+      ]
+    },
+    {
+      "id": "ebu-public-service-media",
+      "authority": "European Broadcasting Union",
+      "location": "https://www.ebu.ch/about/public-service-media",
+      "supports": [
+        "broadcast_history",
+        "public_service",
+        "television_institutions",
+        "democracy",
+        "technology"
+      ]
+    },
+    {
+      "id": "ebu-ai-forum-2026",
+      "authority": "European Broadcasting Union",
+      "location": "https://www.ebu.ch/events/ai-forum",
+      "supports": [
+        "responsible_ai",
+        "governance",
+        "public_media",
+        "production_workflows"
+      ]
+    }
+  ],
+  "migration_sources": {
+    "legacy_classification": "reports/fagverk/film-tv-legacy-emne-classification-v1.json",
+    "completeness_baseline": "reports/fagverk/film-tv-curriculum-completeness-v1.json",
+    "second_order_merge_count": 10,
+    "second_order_merges": {
+      "identitetsrepresentasjon_og_makt": "representasjon_identitet_og_makt",
+      "rollefigur_og_fremstilling": "karakter_rollefigur_og_fortellingsfunksjon",
+      "finansiering_og_produksjonssystem": "finansiering_samproduksjon_og_produksjonssystemer",
+      "produksjonssystem_og_finansiering": "finansiering_samproduksjon_og_produksjonssystemer",
+      "nasjonalt_produksjonssystem": "finansiering_samproduksjon_og_produksjonssystemer",
+      "kringkastingsorganisasjon": "kringkasting_institusjon_og_allmennoppdrag",
+      "distribusjon_tilgang_og_tilgjengelighet": "distribusjon_tilgang_og_visningspolitikk",
+      "visningspolitikk_og_tilgangsstyring": "distribusjon_tilgang_og_visningspolitikk",
+      "strommedistribusjon_og_marked": "stromming_distribusjon_marked_og_forretningsmodeller",
+      "strommemarked_og_forretningsmodeller": "stromming_distribusjon_marked_og_forretningsmodeller",
+      "kulturarv_programmering": "cinematek_programmering_og_filmarv",
+      "filmstjerne_persona_og_myte": "filmstjerne_persona_rolle_og_myte",
+      "stjernepersona_og_rolleforhandling": "filmstjerne_persona_rolle_og_myte",
+      "nasjonal_film_tv_historie": "nasjonale_film_tv_historier_og_sammenligning",
+      "tv_samtidighet_historie": "direktesendt_samtidighet_som_tv_historie"
+    }
+  },
+  "domains": [
+    {
+      "id": "audiovisuell_form_stil_analyse",
+      "title": "Audiovisuell form, stil og analyse",
+      "rationale": "Owns image, sound, mise-en-scene, editing, cinematography, performance and analytical vocabulary rather than hiding aesthetics inside production roles.",
+      "emne_ids": [
+        "em_film_tv_animasjon_bevegelse_design_og_tidsdannelse",
+        "em_film_tv_audiovisuell_atmosfare",
+        "em_film_tv_audiovisuell_form_og_stil",
+        "em_film_tv_audiovisuell_rytme",
+        "em_film_tv_bildeformat_skjermflate_og_audiovisuell_materialitet",
+        "em_film_tv_digitale_bilder_vfx_og_syntetisk_realisme",
+        "em_film_tv_filmfotografi_og_bildeestetikk",
+        "em_film_tv_klipp_montasje_og_relasjonell_mening",
+        "em_film_tv_lydform_dialog_musikk_effekt_og_stillhet",
+        "em_film_tv_lys_og_fargeanalyse",
+        "em_film_tv_mise_en_scene_og_bildekomposisjon",
+        "em_film_tv_romlig_audiovisuell_estetikk",
+        "em_film_tv_skuespillerprestasjon_kropp_stemme_og_blikk",
+        "em_film_tv_suspense_som_audiovisuell_teknikk",
+        "em_film_tv_utsnitt_linse_kamerabevegelse_og_blokkering"
+      ]
+    },
+    {
+      "id": "fortelling_sjanger_serialitet_format",
+      "title": "Fortelling, sjanger, serialitet og format",
+      "rationale": "Separates narrative organisation, genre conventions, episodic and seasonal structures, live formats and format adaptation.",
+      "emne_ids": [
+        "em_film_tv_adaptasjon_remake_og_intermedialitet",
+        "em_film_tv_cliffhanger_og_informasjonsstans",
+        "em_film_tv_direkte_underholdning_konkurranse_og_formatlogikk",
+        "em_film_tv_episodisk_dramaturgi_og_fremdrift",
+        "em_film_tv_fiksjon_realisme_og_verdensbygging",
+        "em_film_tv_fokalisering_synsvinkel_og_kunnskapsfordeling",
+        "em_film_tv_fortellingsstruktur_og_narrasjon",
+        "em_film_tv_fortellingstid_rekkefolge_varighet_og_frekvens",
+        "em_film_tv_franchise_univers_og_transmedial_fortelling",
+        "em_film_tv_karakter_rollefigur_og_fortellingsfunksjon",
+        "em_film_tv_krim_sjanger_og_spenningsstruktur",
+        "em_film_tv_manus_dramaturgi_og_scenisk_organisering",
+        "em_film_tv_serieformat_og_serialitet",
+        "em_film_tv_sesongstruktur_og_fortellingsbue",
+        "em_film_tv_sitcom_humor_og_format",
+        "em_film_tv_sjanger_konvensjon_og_kontrakt",
+        "em_film_tv_sjangerhistorie_hybridisering_og_revisjon"
+      ]
+    },
+    {
+      "id": "film_tv_historie_historiografi",
+      "title": "Film- og TV-historie og historiografi",
+      "rationale": "Adds the missing historical core: early and classical cinema, television history, movements, Norwegian/Nordic and global trajectories, periodisation and historiographical source criticism.",
+      "emne_ids": [
+        "em_film_tv_amatorfilm_hjemmevideo_og_deltakerhistorie",
+        "em_film_tv_animasjonshistorier_teknikker_og_industrier",
+        "em_film_tv_direktesendt_samtidighet_som_tv_historie",
+        "em_film_tv_dokumentarhistorier_og_sannhetsregimer",
+        "em_film_tv_filmhistorisk_kunnskapsformidling",
+        "em_film_tv_glemte_forlop_og_historiografisk_revisjon",
+        "em_film_tv_globale_transnasjonale_og_dekoloniale_skjermhistorier",
+        "em_film_tv_historiografi_periodisering_og_kildekritikk",
+        "em_film_tv_klassisk_film_studiosystem_og_sjangerindustri",
+        "em_film_tv_kommersiell_tv_kabel_og_satellitt",
+        "em_film_tv_kringkastingsfjernsynets_historie",
+        "em_film_tv_modernisme_nye_bolger_og_alternative_filmbevegelser",
+        "em_film_tv_nasjonale_film_tv_historier_og_sammenligning",
+        "em_film_tv_nordisk_film_og_tv_historie",
+        "em_film_tv_norsk_filmhistorie_produksjon_verk_og_offentlighet",
+        "em_film_tv_stromming_og_fjernsynets_plattformovergang",
+        "em_film_tv_stumfilm_lydovergang_og_modernitet",
+        "em_film_tv_tidlig_film_attraksjoner_og_visningskultur",
+        "em_film_tv_video_hjemmemedier_og_digital_omveltning"
+      ]
+    },
+    {
+      "id": "dokumentar_virkelighetsformer_etikk",
+      "title": "Dokumentar, virkelighetsformer og etikk",
+      "rationale": "Gives documentary, essay film, news images, reality formats, evidence claims, staging and participant ethics a coherent home.",
+      "emne_ids": [
+        "em_film_tv_arkivdokumentar_found_footage_og_ombruk",
+        "em_film_tv_direktebilde_og_evidens",
+        "em_film_tv_dokumentar_etikk_og_deltakeransvar",
+        "em_film_tv_dokumentar_sannhet_og_evidens",
+        "em_film_tv_dokumentarformer_tradisjoner_og_moduser",
+        "em_film_tv_dokumentarisk_sted_og_evidens",
+        "em_film_tv_essayfilm_subjektivitet_og_audiovisuelt_argument",
+        "em_film_tv_hverdagsdokumentasjon_og_amatorkultur",
+        "em_film_tv_iscenesettelse_og_virkelighetskrav",
+        "em_film_tv_observasjon_deltakelse_refleksivitet_og_performance",
+        "em_film_tv_reality_observasjon_og_formatmakt",
+        "em_film_tv_rekonstruksjon_animasjon_og_syntetiske_dokumentarbilder",
+        "em_film_tv_tv_nyhetsbilde_og_evidens",
+        "em_film_tv_virkelighetsbilde_og_evidenspastand",
+        "em_film_tv_vitnesbyrd_traume_og_dokumentarisk_ansvar"
+      ]
+    },
+    {
+      "id": "samfunn_representasjon_identitet_makt",
+      "title": "Samfunn, representasjon, identitet og makt",
+      "rationale": "Makes class, gender, race, sexuality, disability, Indigenous perspectives, nation, public debate and unequal visibility auditable rather than optional.",
+      "emne_ids": [
+        "em_film_tv_alder_barn_ungdom_og_livslop",
+        "em_film_tv_byrepresentasjon_og_makt",
+        "em_film_tv_film_tv_offentlighet_og_debatt",
+        "em_film_tv_funksjonsvariasjon_ableisme_og_tilgjengelighet",
+        "em_film_tv_interseksjonalitet_posisjonalitet_og_metode",
+        "em_film_tv_kjonn_feministisk_filmanalyse_og_skjermmakt",
+        "em_film_tv_klasse_arbeid_ulikhet_og_sosial_mobilitet",
+        "em_film_tv_klima_miljo_og_okokritisk_skjermanalyse",
+        "em_film_tv_koloniale_blikk_dekolonisering_og_motbilder",
+        "em_film_tv_kringkastet_offentlighet",
+        "em_film_tv_migrasjon_diaspora_og_transnasjonal_identitet",
+        "em_film_tv_nasjon_fortelling_og_forestilt_fellesskap",
+        "em_film_tv_rasialisering_etnisitet_hvithet_og_stereotypi",
+        "em_film_tv_religion_livssyn_og_audiovisuell_representasjon",
+        "em_film_tv_representasjon_identitet_og_makt",
+        "em_film_tv_seksualitet_queer_representasjon_og_normkritikk",
+        "em_film_tv_synlighet_fravaer_og_frasortering",
+        "em_film_tv_tv_offentlighet_og_demokratisk_deltakelse",
+        "em_film_tv_urfolk_samisk_skjermkultur_og_suverenitet"
+      ]
+    },
+    {
+      "id": "produksjon_arbeid_teknologi_praksis",
+      "title": "Produksjon, arbeid, teknologi og praksis",
+      "rationale": "Keeps creative and technical work, collaboration, labour conditions, digital workflows, virtual production, AI and sustainable practice together without reducing form to equipment.",
+      "emne_ids": [
+        "em_film_tv_animasjonsproduksjon_og_pipeline",
+        "em_film_tv_audiovisuell_produksjonsprosess",
+        "em_film_tv_audiovisuelt_arbeidsliv_og_vilkar",
+        "em_film_tv_baerekraftig_produksjon_og_klimaregnskap",
+        "em_film_tv_casting_skuespillerarbeid_og_intimitetskoordinering",
+        "em_film_tv_hms_arbeidstid_kreditering_og_fagorganisering",
+        "em_film_tv_kameraarbeid_og_bildepraksis",
+        "em_film_tv_kringkastingsproduksjon_og_direkteformat",
+        "em_film_tv_kunstig_intelligens_automatisering_og_skapende_ansvar",
+        "em_film_tv_lyd_og_lyddesign",
+        "em_film_tv_lys_lyd_produksjonspraksis",
+        "em_film_tv_opptaksledelse_planlegging_budsjett_og_logistikk",
+        "em_film_tv_postproduksjon_arbeidsflyt_og_beslutninger",
+        "em_film_tv_produksjonsdesign_scenografi_kostyme_og_rekvisitt",
+        "em_film_tv_produksjonsteam_roller_og_samarbeid",
+        "em_film_tv_produsentrolle_og_beslutninger",
+        "em_film_tv_regi_sceneledelse_og_kreative_beslutninger",
+        "em_film_tv_studio_som_produksjonsmiljo",
+        "em_film_tv_teksting_synstolking_og_tilgjengelig_design",
+        "em_film_tv_tv_redaksjon_og_produksjonspraksis",
+        "em_film_tv_utvikling_pitch_research_og_preproduksjon",
+        "em_film_tv_vfx_virtuell_produksjon_og_sanntidsarbeidsflyt"
+      ]
+    },
+    {
+      "id": "industri_institusjoner_politikk_distribusjon",
+      "title": "Industri, institusjoner, politikk og distribusjon",
+      "rationale": "Owns financing, production systems, broadcasting, public service, rights, regulation, platforms, markets, circulation and access.",
+      "emne_ids": [
+        "em_film_tv_aldersgrenser_klassifisering_og_makt",
+        "em_film_tv_distribusjon_tilgang_og_visningspolitikk",
+        "em_film_tv_eierskap_konsentrasjon_og_vertikal_integrasjon",
+        "em_film_tv_festivaler_priser_markeder_og_portvakt",
+        "em_film_tv_film_tv_okonomi_og_forretningsmodeller",
+        "em_film_tv_filmstotte_og_kulturpolitikk",
+        "em_film_tv_finansiering_samproduksjon_og_produksjonssystemer",
+        "em_film_tv_internasjonal_samproduksjon_insentiver_og_produksjonsflyt",
+        "em_film_tv_kommersialisering_og_verdikjeder",
+        "em_film_tv_kringkasting_institusjon_og_allmennoppdrag",
+        "em_film_tv_plattformmakt_og_algoritmisk_portvakt",
+        "em_film_tv_publikum_som_marked",
+        "em_film_tv_rettigheter_vinduer_og_distribusjon",
+        "em_film_tv_sensur_regulering_og_ytringsrom",
+        "em_film_tv_stromming_distribusjon_marked_og_forretningsmodeller",
+        "em_film_tv_tv_formathandel_lisensiering_og_lokal_tilpasning",
+        "em_film_tv_uformell_distribusjon_piratkopiering_og_tilgang"
+      ]
+    },
+    {
+      "id": "visning_publikum_resepsjon_deltakelse",
+      "title": "Visning, publikum, resepsjon og deltakelse",
+      "rationale": "Connects cinemas, festivals, programming, audience research, television routines, streaming, interpretation, fandom and participatory cultures.",
+      "emne_ids": [
+        "em_film_tv_audiovisuell_publikumsopplevelse",
+        "em_film_tv_barn_ungdom_og_audiovisuelle_publikum",
+        "em_film_tv_fans_deltakelse_og_fellesskap",
+        "em_film_tv_festival_premiere_og_hendelsesvisning",
+        "em_film_tv_filmklubb_og_nisjeoffentlighet",
+        "em_film_tv_forventningshorisont_og_resepsjon",
+        "em_film_tv_fragmenterte_publikum",
+        "em_film_tv_gjentakelse_og_resepsjon",
+        "em_film_tv_husholdning_mobil_skjerm_og_flerskjermsbruk",
+        "em_film_tv_kino_som_kollektiv_visningssituasjon",
+        "em_film_tv_kinoarkitektur_og_visningsbetingelser",
+        "em_film_tv_kultfilm_resepsjon_og_fellesskap",
+        "em_film_tv_kuratering_og_publikumsdannelse",
+        "em_film_tv_plattformpublikum_og_bruksspor",
+        "em_film_tv_publikum_som_sosiale_brukere",
+        "em_film_tv_publikums_identitetsarbeid",
+        "em_film_tv_publikumsdata_metoder_og_makt",
+        "em_film_tv_publikumsforskning_intervju_etnografi_og_sporreundersokelse",
+        "em_film_tv_resepsjonshistorie_kritikk_og_anmeldelser",
+        "em_film_tv_seervaner_og_mediebruk",
+        "em_film_tv_tilgjengelige_visninger_og_publikumshindringer",
+        "em_film_tv_tilskuerteori_identifikasjon_affekt_og_kropp",
+        "em_film_tv_tv_ritualer_og_samtidighet",
+        "em_film_tv_visningsrom_og_publikumsbetingelser"
+      ]
+    },
+    {
+      "id": "sted_location_skjermgeografi",
+      "title": "Sted, location og skjermgeografi",
+      "rationale": "Treats location choice, built and synthetic space, city, street, interior, landscape, mobility, place identity, tourism, community effects and environmental location ethics as distinct questions.",
+      "emne_ids": [
+        "em_film_tv_byen_som_audiovisuelt_bilde",
+        "em_film_tv_film_tv_geografi_og_romlig_sirkulasjon",
+        "em_film_tv_filmturisme_og_lokale_virkninger",
+        "em_film_tv_gate_kamera_og_offentlig_rom",
+        "em_film_tv_ikonisk_filmsted_og_sirkulasjon",
+        "em_film_tv_innspillingsspor_og_stedlig_endring",
+        "em_film_tv_interior_bolig_og_skjermrom",
+        "em_film_tv_landskap_stemning_og_stedsetikk",
+        "em_film_tv_location_valg_og_filmsted",
+        "em_film_tv_locationokologi_inngrep_og_miljokonsekvens",
+        "em_film_tv_lokalsamfunn_samtykke_og_stedlig_produksjonsmakt",
+        "em_film_tv_mobilitet_grenser_eksil_og_skjermrom",
+        "em_film_tv_rurale_perifere_og_arktiske_skjermgeografier",
+        "em_film_tv_sted_identitet_og_tilhorighet",
+        "em_film_tv_sted_som_audiovisuell_myte",
+        "em_film_tv_stedlig_skjermminne",
+        "em_film_tv_studio_backlot_virtuelt_rom_og_stedserstatning",
+        "em_film_tv_urban_skjermgeografi",
+        "em_film_tv_urfolkslandskap_stedskunnskap_og_bilderett"
+      ]
+    },
+    {
+      "id": "arkiv_kulturarv_minne_stjerner",
+      "title": "Arkiv, kulturarv, minne og stjerner",
+      "rationale": "Owns preservation, loss, canon formation, reuse, audiovisual memory, celebrity and star construction while distinguishing archival evidence from nostalgia.",
+      "emne_ids": [
+        "em_film_tv_arkivbilder_kontekst_og_ombruk",
+        "em_film_tv_arkivtilgang_personvern_saarbarhet_og_rettigheter",
+        "em_film_tv_audiovisuell_bevaring_og_restaurering",
+        "em_film_tv_cinematek_programmering_og_filmarv",
+        "em_film_tv_dekolonisering_repatriering_og_fellesskapskontroll",
+        "em_film_tv_digitalfodte_verk_formatforvitring_og_migrering",
+        "em_film_tv_familiefilm_lokale_samlinger_og_motarkiv",
+        "em_film_tv_festivalminne_programhistorie_og_erindring",
+        "em_film_tv_film_tv_arkiv_institusjoner_og_praksis",
+        "em_film_tv_filmarv_kanon_og_verdivalg",
+        "em_film_tv_filmstjerne_persona_rolle_og_myte",
+        "em_film_tv_kanonisering_prosesser_og_makt",
+        "em_film_tv_kollektiv_audiovisuell_referanse",
+        "em_film_tv_kultstatus_og_kulturarv",
+        "em_film_tv_metadata_katalogisering_proveniens_og_finnbarhet",
+        "em_film_tv_nostalgi_og_historiebruk",
+        "em_film_tv_plattformkataloger_forsvinnende_verk_og_digital_tilgang",
+        "em_film_tv_produksjonsarkiv_manus_kostyme_og_ephemera",
+        "em_film_tv_publikumsminne_og_audiovisuell_erindring",
+        "em_film_tv_reprise_ombruk_og_kulturell_varighet",
+        "em_film_tv_restaureringsetikk_autentisitet_og_verkversjoner",
+        "em_film_tv_rollefigur_sitat_og_sirkulasjon",
+        "em_film_tv_stjerneproduksjon_og_industrielt_apparat",
+        "em_film_tv_tapte_bilder_fravaer_og_rekonstruksjon",
+        "em_film_tv_tv_minne_og_mediert_erindring"
+      ]
+    }
+  ],
+  "emner": [
+    {
+      "emne_id": "em_film_tv_arkivbilder_kontekst_og_ombruk",
+      "concept_id": "arkivbilder_kontekst_og_ombruk",
+      "title": "Arkivbilder kontekst og ombruk",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Arkivbilder krever proveniens, kontekst og analyse av ny betydning når de gjenbrukes.",
+      "boundary": "Legacyaliasene em_film_tv_arkivbilder migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_arkivbilder"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_arkivtilgang_personvern_saarbarhet_og_rettigheter",
+      "concept_id": "arkivtilgang_personvern_saarbarhet_og_rettigheter",
+      "title": "Arkivtilgang, personvern, sårbarhet og rettigheter",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Avveier offentlig tilgang mot opphavsrett, personvern, sikkerhet, kulturell sensitivitet og skade for avbildede personer og samfunn.",
+      "boundary": "Restriksjoner må dokumenteres og kan ikke brukes som ubegrunnet varig lukking.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_bevaring_og_restaurering",
+      "concept_id": "audiovisuell_bevaring_og_restaurering",
+      "title": "Audiovisuell bevaring og restaurering",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Bevaring og restaurering krever tekniske, etiske og historiografiske beslutninger over tid.",
+      "boundary": "Legacyaliasene em_film_tv_audiovisuell_bevaring migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_audiovisuell_bevaring"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_cinematek_programmering_og_filmarv",
+      "concept_id": "cinematek_programmering_og_filmarv",
+      "title": "Cinematek programmering og filmarv",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Cinemateket forvalter og aktualiserer filmarv; institusjonen er mer enn et ordinært visningsrom. Historisk forklaring og kulturarvprogrammering har ulike kilder, metoder og sannhetskrav.",
+      "boundary": "Legacyaliasene em_film_tv_cinematek_filmarv, em_film_tv_filmhistorisk_formidling migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_cinematek_filmarv",
+        "em_film_tv_filmhistorisk_formidling"
+      ],
+      "migration_actions": [
+        "move",
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_dekolonisering_repatriering_og_fellesskapskontroll",
+      "concept_id": "dekolonisering_repatriering_og_fellesskapskontroll",
+      "title": "Dekolonisering, repatriering og fellesskapskontroll",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker eierskap, beskrivelse, tilbakeføring, kopi, tilgang og beslutningsmakt for audiovisuelle samlinger med kolonial eller urettmessig proveniens.",
+      "boundary": "Digital tilgjengeliggjøring alene løser ikke spørsmål om kontroll og skade.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_digitalfodte_verk_formatforvitring_og_migrering",
+      "concept_id": "digitalfodte_verk_formatforvitring_og_migrering",
+      "title": "Digitalfødte verk, formatforvitring og migrering",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan filer, kodeker, programvare, plattformer og lagringssystemer gjør digital bevaring til en løpende prosess.",
+      "boundary": "Digitalisering av analoge verk og bevaring av digitalfødte objekter skal ikke behandles som samme operasjon.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_familiefilm_lokale_samlinger_og_motarkiv",
+      "concept_id": "familiefilm_lokale_samlinger_og_motarkiv",
+      "title": "Familiefilm, lokale samlinger og motarkiv",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler private og lokale opptak som kilder til hverdagsliv og marginaliserte erfaringer, med kontekst, samtykke og bevaringsrisiko.",
+      "boundary": "Privat opptak er ikke automatisk representativt for en gruppe eller periode.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_festivalminne_programhistorie_og_erindring",
+      "concept_id": "festivalminne_programhistorie_og_erindring",
+      "title": "Festivalminne programhistorie og erindring",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Festivalminne forbinder programarkiv, sted, hendelse og deltakeres senere erindring. Filmoffentlighetens minne inngår i dokumenterbare program- og hendelseshistorier.",
+      "boundary": "Legacyaliasene em_film_tv_festivalminne, em_film_tv_filmoffentlighet_minne migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_festivalminne",
+        "em_film_tv_filmoffentlighet_minne"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_film_tv_arkiv_institusjoner_og_praksis",
+      "concept_id": "film_tv_arkiv_institusjoner_og_praksis",
+      "title": "Film og TV arkiv institusjoner og praksis",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "integrative_foundation",
+      "status": "proposed_canonical",
+      "definition": "Audiovisuelle arkiv har egne institusjoner, ordningsprinsipper, materialiteter og tilgangsvalg.",
+      "boundary": "Legacyaliasene em_film_tv_film_tv_arkiv migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_film_tv_arkiv"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_filmarv_kanon_og_verdivalg",
+      "concept_id": "filmarv_kanon_og_verdivalg",
+      "title": "Filmarv kanon og verdivalg",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Filmarv og kanon synliggjør hvilke verk som bevares, undervises, vises og tillegges verdi.",
+      "boundary": "Legacyaliasene em_film_tv_filmarv_kanon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmarv_kanon"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_filmstjerne_persona_rolle_og_myte",
+      "concept_id": "filmstjerne_persona_rolle_og_myte",
+      "title": "Filmstjerne persona rolle og myte",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Rollefigurens funksjon og stjernens offentlige persona er analytisk ulike selv når samme skuespiller binder dem sammen. Filmstjernens persona skapes på tvers av roller, presse, bilder, industri og publikumsbruk.",
+      "boundary": "Legacyaliasene em_film_tv_stjerne_og_rolle, em_film_tv_filmstjerne_myte migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmstjerne_myte",
+        "em_film_tv_stjerne_og_rolle"
+      ],
+      "migration_actions": [
+        "keep",
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kanonisering_prosesser_og_makt",
+      "concept_id": "kanonisering_prosesser_og_makt",
+      "title": "Kanonisering prosesser og makt",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kanonisering er prosessen som gjør institusjoner, kritikere, festivaler og arkiv til portvakter.",
+      "boundary": "Legacyaliasene em_film_tv_kanonisering migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kanonisering"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kollektiv_audiovisuell_referanse",
+      "concept_id": "kollektiv_audiovisuell_referanse",
+      "title": "Kollektiv audiovisuell referanse",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kollektive referanser viser hvordan bestemte bilder, replikker og figurer blir sosialt tilgjengelige.",
+      "boundary": "Legacyaliasene em_film_tv_kollektiv_referanse migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kollektiv_referanse"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kultstatus_og_kulturarv",
+      "concept_id": "kultstatus_og_kulturarv",
+      "title": "Kultstatus og kulturarv",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kultstatusens historiske varighet og samtidige resepsjonsfellesskap krever ulike belegg. Nisjeminne er en mulig virkning av kultstatus og marginal kulturarv, ikke et presist eget objekt.",
+      "boundary": "Legacyaliasene em_film_tv_kultfilm_resepsjon, em_film_tv_nisjeminne migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kultfilm_resepsjon",
+        "em_film_tv_nisjeminne"
+      ],
+      "migration_actions": [
+        "merge",
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_metadata_katalogisering_proveniens_og_finnbarhet",
+      "concept_id": "metadata_katalogisering_proveniens_og_finnbarhet",
+      "title": "Metadata, katalogisering, proveniens og finnbarhet",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler identifikasjon, kontekst, versjon, opphav og søkbarhet som forutsetninger for kunnskap, bevaring og tilgang.",
+      "boundary": "Metadata er ikke nøytral; kategorier og fravær må kunne auditeres.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_nostalgi_og_historiebruk",
+      "concept_id": "nostalgi_og_historiebruk",
+      "title": "Nostalgi og historiebruk",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Nostalgi er en historiebruk, mens gjentakelse også er en distribusjons- og resepsjonspraksis.",
+      "boundary": "Legacyaliasene em_film_tv_nostalgi_gjentakelse migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_nostalgi_gjentakelse"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_plattformkataloger_forsvinnende_verk_og_digital_tilgang",
+      "concept_id": "plattformkataloger_forsvinnende_verk_og_digital_tilgang",
+      "title": "Plattformkataloger, forsvinnende verk og digital tilgang",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan lisensutløp, tjenestestenging, geoblokkering og proprietære formater gjør verk usynlige eller utilgjengelige.",
+      "boundary": "Markeds- og rettighetsmekanismene eies av industriområdet; tap, dokumentasjon og varig tilgang eies her.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "unesco-documentary-heritage-2015",
+        "ebu-public-service-media"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_produksjonsarkiv_manus_kostyme_og_ephemera",
+      "concept_id": "produksjonsarkiv_manus_kostyme_og_ephemera",
+      "title": "Produksjonsarkiv: manus, kostyme og ephemera",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Utvider verkhistorien med manusversjoner, produksjonsnotater, fotografier, kostymer, rekvisitter, kontrakter og markedsmateriale.",
+      "boundary": "Objektene brukes som kilder til dokumenterte prosesser, ikke som erstatning for verkanalyse.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_publikumsminne_og_audiovisuell_erindring",
+      "concept_id": "publikumsminne_og_audiovisuell_erindring",
+      "title": "Publikumsminne og audiovisuell erindring",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Publikums erindring handler om hvordan audiovisuelle erfaringer lagres, fortelles og omformes over tid. Kollektiv filmhukommelse er en skala av publikumsminne, ikke et klart separat emne. Stedets medierte minne og publikums erindringspraksis overlapper, men har ulike analyseenheter.",
+      "boundary": "Legacyaliasene em_film_tv_publikumsminne, em_film_tv_kollektiv_filmhukommelse, em_film_tv_publikumsminne_sted migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kollektiv_filmhukommelse",
+        "em_film_tv_publikumsminne",
+        "em_film_tv_publikumsminne_sted"
+      ],
+      "migration_actions": [
+        "merge",
+        "move",
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_reprise_ombruk_og_kulturell_varighet",
+      "concept_id": "reprise_ombruk_og_kulturell_varighet",
+      "title": "Reprise ombruk og kulturell varighet",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Repriser og ombruk gjør kanon, generasjonsminne og katalogpolitikk empirisk synlig.",
+      "boundary": "Legacyaliasene em_film_tv_reprise_kultur migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_reprise_kultur"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_restaureringsetikk_autentisitet_og_verkversjoner",
+      "concept_id": "restaureringsetikk_autentisitet_og_verkversjoner",
+      "title": "Restaureringsetikk, autentisitet og verkversjoner",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Vurderer farge, lyd, hastighet, utsnitt, manglende materiale og konkurrerende versjoner mot dokumentasjon og åpenhet.",
+      "boundary": "Teknisk forbedring er ikke automatisk historisk korrekthet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_rollefigur_sitat_og_sirkulasjon",
+      "concept_id": "rollefigur_sitat_og_sirkulasjon",
+      "title": "Rollefigur sitat og sirkulasjon",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Sitat og rollefigur løsriver seg fra verket gjennom gjentakelse, imitasjon og mediesirkulasjon.",
+      "boundary": "Legacyaliasene em_film_tv_rollefigur_sitat migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_rollefigur_sitat"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_stjerneproduksjon_og_industrielt_apparat",
+      "concept_id": "stjerneproduksjon_og_industrielt_apparat",
+      "title": "Stjerneproduksjon og industrielt apparat",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Stjerneproduksjon undersøker institusjonene og praksisene som konstruerer og vedlikeholder persona.",
+      "boundary": "Legacyaliasene em_film_tv_stjerneproduksjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_stjerneproduksjon"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tapte_bilder_fravaer_og_rekonstruksjon",
+      "concept_id": "tapte_bilder_fravaer_og_rekonstruksjon",
+      "title": "Tapte bilder fravær og rekonstruksjon",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Tapte bilder gjør fravær, materialtap, rekonstruksjon og arkivets grenser til faglige problemer.",
+      "boundary": "Legacyaliasene em_film_tv_tapte_bilder migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_tapte_bilder"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tv_minne_og_mediert_erindring",
+      "concept_id": "tv_minne_og_mediert_erindring",
+      "title": "TV minne og mediert erindring",
+      "domain_id": "arkiv_kulturarv_minne_stjerner",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "TV-minne kobler programhistorie, sendetid, husholdning, arkiv og senere gjenbruk. Felles TV-erfaring er en sosial kilde til TV-minne, men ikke et stabilt separat emne. Audiovisuelt minne er et overbegrep som dekkes mer presist av publikums-, TV- og arkivminne.",
+      "boundary": "Legacyaliasene em_film_tv_tv_minne, em_film_tv_felles_tv_erfaring, em_film_tv_audiovisuelt_minne migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_audiovisuelt_minne",
+        "em_film_tv_felles_tv_erfaring",
+        "em_film_tv_tv_minne"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_animasjon_bevegelse_design_og_tidsdannelse",
+      "concept_id": "animasjon_bevegelse_design_og_tidsdannelse",
+      "title": "Animasjon, bevegelse, design og tidsdannelse",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan tegnede, modellerte og digitale bilder skaper bevegelse, rom, materialitet og tid uten fotografisk opptak som nødvendig grunnlag.",
+      "boundary": "Animasjonens produksjonsløp og historie har egne eiere; her ligger den formelle analysen.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_atmosfare",
+      "concept_id": "audiovisuell_atmosfare",
+      "title": "Audiovisuell atmosfare",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Atmosfære produseres på tvers av bilde, lyd, rytme og rom og krever formanalytisk eierskap.",
+      "boundary": "Legacyaliasene em_film_tv_filmisk_atmosfare migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmisk_atmosfare"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_form_og_stil",
+      "concept_id": "audiovisuell_form_og_stil",
+      "title": "Audiovisuell form og stil",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "legacy_migration",
+      "inventory_role": "integrative_foundation",
+      "status": "proposed_canonical",
+      "definition": "Audiovisuell form er analysefagets overordnede objekt og må ikke eies av utstyrs- eller produksjonslogikk.",
+      "boundary": "Legacyaliasene em_film_tv_audiovisuell_form migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_audiovisuell_form"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_rytme",
+      "concept_id": "audiovisuell_rytme",
+      "title": "Audiovisuell rytme",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Cliffhanger er en narrativ informasjonsstrategi, mens rytme oppstår i flere audiovisuelle lag.",
+      "boundary": "Legacyaliasene em_film_tv_cliffhanger_rytme migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_cliffhanger_rytme"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_bildeformat_skjermflate_og_audiovisuell_materialitet",
+      "concept_id": "bildeformat_skjermflate_og_audiovisuell_materialitet",
+      "title": "Bildeformat, skjermflate og audiovisuell materialitet",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Sammenholder sideforhold, oppløsning, bærer, skjermstørrelse og visningsflate som betingelser for form og erfaring.",
+      "boundary": "Visningsrommets sosiale organisering eies av publikumsområdet; bevaring av bæreren eies av arkivområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "uio-audiovisual-aesthetics"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_digitale_bilder_vfx_og_syntetisk_realisme",
+      "concept_id": "digitale_bilder_vfx_og_syntetisk_realisme",
+      "title": "Digitale bilder, VFX og syntetisk realisme",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan compositing, visuelle effekter og syntetiske bilder etablerer troverdighet og synliggjør eller skjuler sin konstruksjon.",
+      "boundary": "Verktøy, arbeidsvilkår og KI-styring eies av produksjonsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ebu-ai-forum-2026"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_filmfotografi_og_bildeestetikk",
+      "concept_id": "filmfotografi_og_bildeestetikk",
+      "title": "Filmfotografi og bildeestetikk",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Filmfotografi må også analyseres som stil og meningsproduksjon, ikke bare som yrkespraksis.",
+      "boundary": "Legacyaliasene em_film_tv_fotografi_film migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_fotografi_film"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_klipp_montasje_og_relasjonell_mening",
+      "concept_id": "klipp_montasje_og_relasjonell_mening",
+      "title": "Klipp montasje og relasjonell mening",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Klipp og montasje organiserer tid, rom og relasjoner og er en kjerne i nærlesning av verk. Filmrytme er en analytisk dimensjon ved blant annet klipp, lyd og bevegelse, ikke et isolert produksjonsledd.",
+      "boundary": "Legacyaliasene em_film_tv_klipp_montasje, em_film_tv_filmrytme migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmrytme",
+        "em_film_tv_klipp_montasje"
+      ],
+      "migration_actions": [
+        "merge",
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_lydform_dialog_musikk_effekt_og_stillhet",
+      "concept_id": "lydform_dialog_musikk_effekt_og_stillhet",
+      "title": "Lydform: dialog, musikk, effekt og stillhet",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan stemme, romlyd, effekt, musikk og stillhet bygger perspektiv, rytme, rom og fortolkning.",
+      "boundary": "Opptak, miks og lyddesign som arbeidsflyt eies av produksjonsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "uio-audiovisual-aesthetics"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_lys_og_fargeanalyse",
+      "concept_id": "lys_og_fargeanalyse",
+      "title": "Lys og fargeanalyse",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Lys og lyd er ulike uttrykksdimensjoner, samtidig som produksjonspraksisen krever en egen kobling.",
+      "boundary": "Legacyaliasene em_film_tv_lys_lyd migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_lys_lyd"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_mise_en_scene_og_bildekomposisjon",
+      "concept_id": "mise_en_scene_og_bildekomposisjon",
+      "title": "Mise-en-scène og bildekomposisjon",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan scenografi, plassering, dybde, bevegelse og komposisjon organiserer det synlige rommet i film og TV.",
+      "boundary": "Produksjonsdesign som arbeidsprosess eies av produksjonsområdet; her analyseres det ferdige bildets form.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "uio-audiovisual-aesthetics"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_romlig_audiovisuell_estetikk",
+      "concept_id": "romlig_audiovisuell_estetikk",
+      "title": "Romlig audiovisuell estetikk",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Romlig estetikk i verket og estetiske betingelser i salen må kunne analyseres hver for seg.",
+      "boundary": "Legacyaliasene em_film_tv_visningsrom_estetikk migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_visningsrom_estetikk"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_skuespillerprestasjon_kropp_stemme_og_blikk",
+      "concept_id": "skuespillerprestasjon_kropp_stemme_og_blikk",
+      "title": "Skuespillerprestasjon, kropp, stemme og blikk",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler framføring som audiovisuell form gjennom kropp, stemme, ansikt, timing, samspill og kameraavstand.",
+      "boundary": "Stjernepersona eies av kulturarv/stjerneområdet, mens casting og arbeidsledelse eies av produksjon.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "uio-audiovisual-aesthetics"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_suspense_som_audiovisuell_teknikk",
+      "concept_id": "suspense_som_audiovisuell_teknikk",
+      "title": "Suspense som audiovisuell teknikk",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Suspense er en formell teknikk for tidsstyring og kunnskapsforskjell på tvers av sjangre.",
+      "boundary": "Legacyaliasene em_film_tv_suspense migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_suspense"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_utsnitt_linse_kamerabevegelse_og_blokkering",
+      "concept_id": "utsnitt_linse_kamerabevegelse_og_blokkering",
+      "title": "Utsnitt, linse, kamerabevegelse og blokkering",
+      "domain_id": "audiovisuell_form_stil_analyse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Skiller analytisk mellom bildeutsnitt, optisk perspektiv, kamerabevegelse og aktørers bevegelse foran kamera.",
+      "boundary": "Kamerautstyr og opptaksrutiner er produksjonspraksis; dette emnet forklarer den synlige og sanselige virkningen.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "uio-audiovisual-aesthetics"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_arkivdokumentar_found_footage_og_ombruk",
+      "concept_id": "arkivdokumentar_found_footage_og_ombruk",
+      "title": "Arkivdokumentar, found footage og ombruk",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan eksisterende bilder får nye evidens-, historie- og argumentfunksjoner gjennom utvalg, montasje og kontekst.",
+      "boundary": "Proveniens og bevaring eies av arkivområdet; det nye verkets sannhetskrav eies her.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_direktebilde_og_evidens",
+      "concept_id": "direktebilde_og_evidens",
+      "title": "Direktebilde og evidens",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kringkastet samtid rommer bildeevidens, mediehistorisk samtidighet og offentlighetens tidsorganisering.",
+      "boundary": "Legacyaliasene em_film_tv_kringkastet_samtid migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kringkastet_samtid"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_dokumentar_etikk_og_deltakeransvar",
+      "concept_id": "dokumentar_etikk_og_deltakeransvar",
+      "title": "Dokumentar etikk og deltakeransvar",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Dokumentaretikk gjelder samtykke, makt, konsekvens, sårbarhet og ansvar overfor deltakere.",
+      "boundary": "Legacyaliasene em_film_tv_dokumentarisk_etikk migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_dokumentarisk_etikk"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_dokumentar_sannhet_og_evidens",
+      "concept_id": "dokumentar_sannhet_og_evidens",
+      "title": "Dokumentar sannhet og evidens",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "legacy_migration",
+      "inventory_role": "integrative_foundation",
+      "status": "proposed_canonical",
+      "definition": "Dokumentarens sannhetskrav krever kontroll av indeksikalitet, argument, kilder og framstilling.",
+      "boundary": "Legacyaliasene em_film_tv_dokumentar_sannhet migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_dokumentar_sannhet"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_dokumentarformer_tradisjoner_og_moduser",
+      "concept_id": "dokumentarformer_tradisjoner_og_moduser",
+      "title": "Dokumentarformer, tradisjoner og moduser",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Skiller dokumentariske organisasjonsformer gjennom stemme, observasjon, argument, poetisk form, deltakelse og refleksivitet.",
+      "boundary": "Formene er analytiske tradisjoner, ikke en kvote som krever ett emne per navngitt modus.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-program",
+        "ntnu-filmvitenskap-2026-structure"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_dokumentarisk_sted_og_evidens",
+      "concept_id": "dokumentarisk_sted_og_evidens",
+      "title": "Dokumentarisk sted og evidens",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Dokumentariske steder brukes som evidens og må vurderes mot utsnitt, iscenesettelse og situert kunnskap.",
+      "boundary": "Legacyaliasene em_film_tv_dokumentarisk_sted migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_dokumentarisk_sted"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_essayfilm_subjektivitet_og_audiovisuelt_argument",
+      "concept_id": "essayfilm_subjektivitet_og_audiovisuelt_argument",
+      "title": "Essayfilm, subjektivitet og audiovisuelt argument",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler personlig stemme, montasje, tvil og refleksjon som måter å bygge et audiovisuelt argument på.",
+      "boundary": "Fiksjonalisering alene gjør ikke et verk til essayfilm.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_hverdagsdokumentasjon_og_amatorkultur",
+      "concept_id": "hverdagsdokumentasjon_og_amatorkultur",
+      "title": "Hverdagsdokumentasjon og amatorkultur",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Tittelen er for vag; relevant stoff bevares som dokumentarisk hverdagsregistrering og historisk amatørkultur.",
+      "boundary": "Legacyaliasene em_film_tv_hverdagsfilm migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_hverdagsfilm"
+      ],
+      "migration_actions": [
+        "retire"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_iscenesettelse_og_virkelighetskrav",
+      "concept_id": "iscenesettelse_og_virkelighetskrav",
+      "title": "Iscenesettelse og virkelighetskrav",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Iscenesettelse må vurderes selvstendig fordi den kan finnes i dokumentar, reality og nyhetsbilder.",
+      "boundary": "Legacyaliasene em_film_tv_iscenesatt_virkelighet migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_iscenesatt_virkelighet"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_observasjon_deltakelse_refleksivitet_og_performance",
+      "concept_id": "observasjon_deltakelse_refleksivitet_og_performance",
+      "title": "Observasjon, deltakelse, refleksivitet og performance",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker filmskaperens synlige og usynlige rolle, relasjonen til deltakere og hvordan opptakssituasjonen former materialet.",
+      "boundary": "Samtykke og skade vurderes gjennom det overordnede dokumentaretiske emnet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_reality_observasjon_og_formatmakt",
+      "concept_id": "reality_observasjon_og_formatmakt",
+      "title": "Reality observasjon og formatmakt",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Reality kombinerer observasjon med formatregler, casting, produksjonsmakt og redigering.",
+      "boundary": "Legacyaliasene em_film_tv_reality_observasjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_reality_observasjon"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_rekonstruksjon_animasjon_og_syntetiske_dokumentarbilder",
+      "concept_id": "rekonstruksjon_animasjon_og_syntetiske_dokumentarbilder",
+      "title": "Rekonstruksjon, animasjon og syntetiske dokumentarbilder",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Vurderer reenactment, animasjon, genererte bilder og andre rekonstruksjoner mot åpenhet, evidens, nødvendighet og risiko for villedning.",
+      "boundary": "Teknologien eies av produksjon; sannhets- og etikkanalysen eies her.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ebu-ai-forum-2026"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tv_nyhetsbilde_og_evidens",
+      "concept_id": "tv_nyhetsbilde_og_evidens",
+      "title": "TV nyhetsbilde og evidens",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "TV-nyhetsbildet fremsetter samtidige evidenspåstander gjennom utvalg, direktehet og redigering.",
+      "boundary": "Legacyaliasene em_film_tv_nyhetsbilde_tv migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_nyhetsbilde_tv"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_virkelighetsbilde_og_evidenspastand",
+      "concept_id": "virkelighetsbilde_og_evidenspastand",
+      "title": "Virkelighetsbilde og evidenspastand",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Et virkelighetsbilde fremsetter sannhets- og evidenspåstander som krever dokumentarteoretisk prøving.",
+      "boundary": "Legacyaliasene em_film_tv_virkelighetsbilde migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_virkelighetsbilde"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_vitnesbyrd_traume_og_dokumentarisk_ansvar",
+      "concept_id": "vitnesbyrd_traume_og_dokumentarisk_ansvar",
+      "title": "Vitnesbyrd, traume og dokumentarisk ansvar",
+      "domain_id": "dokumentar_virkelighetsformer_etikk",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan vitnesbyrd tas opp, redigeres, kontekstualiseres og formidles når makt, sårbarhet og ettervirkninger står på spill.",
+      "boundary": "Emnet gir ikke kliniske vurderinger; det eier framstillings- og deltakeransvaret.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_amatorfilm_hjemmevideo_og_deltakerhistorie",
+      "concept_id": "amatorfilm_hjemmevideo_og_deltakerhistorie",
+      "title": "Amatørfilm, hjemmevideo og deltakerhistorie",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler ikke-profesjonelle opptak, familiebruk, klubber og nettvideo som historiske praksiser og kilder til hverdagsliv.",
+      "boundary": "Samtidig bruk og fanproduksjon eies av publikumsområdet; bevaring eies av arkiv.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_animasjonshistorier_teknikker_og_industrier",
+      "concept_id": "animasjonshistorier_teknikker_og_industrier",
+      "title": "Animasjonshistorier, teknikker og industrier",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Følger tegnfilm, stop-motion, TV-animasjon og digital animasjon som forskjellige historiske teknikker, arbeidsformer og kulturer.",
+      "boundary": "Animasjonens form og produksjonsløp har egne eiere i form- og produksjonsområdene.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_direktesendt_samtidighet_som_tv_historie",
+      "concept_id": "direktesendt_samtidighet_som_tv_historie",
+      "title": "Direktesendt samtidighet som TV historie",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kringkastet samtid rommer bildeevidens, mediehistorisk samtidighet og offentlighetens tidsorganisering.",
+      "boundary": "Legacyaliasene em_film_tv_kringkastet_samtid migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kringkastet_samtid"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_dokumentarhistorier_og_sannhetsregimer",
+      "concept_id": "dokumentarhistorier_og_sannhetsregimer",
+      "title": "Dokumentarhistorier og sannhetsregimer",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Følger dokumentariske tradisjoner, teknologier og institusjoner som historisk skiftende måter å gjøre sannhetskrav på.",
+      "boundary": "Analyse av en konkret dokumentars evidens og etikk eies av dokumentarområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-program",
+        "ntnu-filmvitenskap-2026-structure"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_filmhistorisk_kunnskapsformidling",
+      "concept_id": "filmhistorisk_kunnskapsformidling",
+      "title": "Filmhistorisk kunnskapsformidling",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Historisk forklaring og kulturarvprogrammering har ulike kilder, metoder og sannhetskrav.",
+      "boundary": "Legacyaliasene em_film_tv_filmhistorisk_formidling migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmhistorisk_formidling"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_glemte_forlop_og_historiografisk_revisjon",
+      "concept_id": "glemte_forlop_og_historiografisk_revisjon",
+      "title": "Glemte forløp og historiografisk revisjon",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Glemte forløp krever historiografisk kildekritikk og revisjon av etablerte perioder og kanoner.",
+      "boundary": "Legacyaliasene em_film_tv_glemt_film_tv_historie migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_glemt_film_tv_historie"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_globale_transnasjonale_og_dekoloniale_skjermhistorier",
+      "concept_id": "globale_transnasjonale_og_dekoloniale_skjermhistorier",
+      "title": "Globale, transnasjonale og dekoloniale skjermhistorier",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Gjør film- og TV-forløp utenfor en vestlig standardkanon eksplisitte og undersøker sirkulasjon, kolonimakt, oversettelse og transnasjonale forbindelser.",
+      "boundary": "Representasjon i enkeltverk eies av samfunnsområdet; historiske institusjoner og forløp eies her.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": [
+        "Africa",
+        "Asia",
+        "Latin America",
+        "Middle East",
+        "Oceania",
+        "diasporic_and_transnational_routes"
+      ]
+    },
+    {
+      "emne_id": "em_film_tv_historiografi_periodisering_og_kildekritikk",
+      "concept_id": "historiografi_periodisering_og_kildekritikk",
+      "title": "Historiografi, periodisering og kildekritikk",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan film- og TV-historie konstrueres gjennom perioder, kilder, fravær, kanonvalg og konkurrerende forklaringer.",
+      "boundary": "Arkivforvaltning eies av arkivområdet; historisk bruk og kritikk av arkivkilder eies her.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program",
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_klassisk_film_studiosystem_og_sjangerindustri",
+      "concept_id": "klassisk_film_studiosystem_og_sjangerindustri",
+      "title": "Klassisk film, studiosystem og sjangerindustri",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kobler klassisk fortelling og stil til studioorganisering, stjernesystem, sjangre og distribusjon uten å gjøre Hollywood til universell norm.",
+      "boundary": "Dagens eierskap og forretningsmodell eies av industriområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kommersiell_tv_kabel_og_satellitt",
+      "concept_id": "kommersiell_tv_kabel_og_satellitt",
+      "title": "Kommersiell TV, kabel og satellitt",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan reklamefinansiering, kanalvekst, kabel og satellitt endret programformer, regulering og publikum.",
+      "boundary": "Dagens plattformøkonomi eies av industriområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ebu-public-service-media"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kringkastingsfjernsynets_historie",
+      "concept_id": "kringkastingsfjernsynets_historie",
+      "title": "Kringkastingsfjernsynets historie",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler fjernsynets framvekst, sendeskjema, direktesending, husholdning, allmennkringkasting og nasjonale TV-offentligheter.",
+      "boundary": "Institusjonenes nåværende mandat eies av industriområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-structure",
+        "ebu-public-service-media"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_modernisme_nye_bolger_og_alternative_filmbevegelser",
+      "concept_id": "modernisme_nye_bolger_og_alternative_filmbevegelser",
+      "title": "Modernisme, nye bølger og alternative filmbevegelser",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Sammenholder kunstneriske brudd, produksjonsformer og politiske filmbevegelser i flere land og perioder.",
+      "boundary": "En navngitt bevegelse er et case innen emnet, ikke automatisk et eget canonicalt emne.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_nasjonale_film_tv_historier_og_sammenligning",
+      "concept_id": "nasjonale_film_tv_historier_og_sammenligning",
+      "title": "Nasjonale film- og TV- historier og sammenligning",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Nasjonale verkforløp og dagens produksjonssystem trenger henholdsvis historisk og institusjonell analyse.",
+      "boundary": "Legacyaliasene em_film_tv_nasjonal_filmproduksjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_nasjonal_filmproduksjon"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_nordisk_film_og_tv_historie",
+      "concept_id": "nordisk_film_og_tv_historie",
+      "title": "Nordisk film- og TV-historie",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Sammenholder nordiske filmkulturer, kringkastingsmodeller, samarbeid, språk og estetiske utviklingslinjer uten å behandle Norden som homogent.",
+      "boundary": "Nasjonale dybdestudier kan være case; dette emnet eier sammenligningen og forbindelsene.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-structure",
+        "ebu-public-service-media"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_norsk_filmhistorie_produksjon_verk_og_offentlighet",
+      "concept_id": "norsk_filmhistorie_produksjon_verk_og_offentlighet",
+      "title": "Norsk filmhistorie: produksjon, verk og offentlighet",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Følger norske produksjonsmiljøer, verk, regulering, visning og offentlighet som skiftende historiske sammenhenger.",
+      "boundary": "Norsk film er ikke målestokk for global filmhistorie og må alltid relateres til nordiske og internasjonale forløp.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-program",
+        "ntnu-filmvitenskap-2026-structure"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_stromming_og_fjernsynets_plattformovergang",
+      "concept_id": "stromming_og_fjernsynets_plattformovergang",
+      "title": "Strømming og fjernsynets plattformovergang",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Historiserer overgangen fra sendeskjema og kanalpakker til bestilling, katalog, anbefaling og global plattformdistribusjon.",
+      "boundary": "Dagens markedsmakt og publikumsdata eies av industri- og publikumsområdene.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ebu-public-service-media"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_stumfilm_lydovergang_og_modernitet",
+      "concept_id": "stumfilm_lydovergang_og_modernitet",
+      "title": "Stumfilm, lydovergang og modernitet",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker stumfilmens uttrykk, akkompagnement, produksjon og overgang til synkronisert lyd i ulike nasjonale forløp.",
+      "boundary": "Lydens generelle formspråk eies av formanalyse.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tidlig_film_attraksjoner_og_visningskultur",
+      "concept_id": "tidlig_film_attraksjoner_og_visningskultur",
+      "title": "Tidlig film, attraksjoner og visningskultur",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler levende bilders tidlige teknologier, korte former, omreisende visning og publikumspraksiser før den klassiske spillefilmen.",
+      "boundary": "Kinoarkitektur som varig visningsform eies av publikumsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-program",
+        "ntnu-filmvitenskap-2026-structure"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_video_hjemmemedier_og_digital_omveltning",
+      "concept_id": "video_hjemmemedier_og_digital_omveltning",
+      "title": "Video, hjemmemedier og digital omveltning",
+      "domain_id": "film_tv_historie_historiografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Følger VHS, DVD, opptak, utleie, digitalisering og filbaserte arbeidsflyter som historiske endringer i tilgang, produksjon og bruk.",
+      "boundary": "Digital bevaring eies av arkivområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_adaptasjon_remake_og_intermedialitet",
+      "concept_id": "adaptasjon_remake_og_intermedialitet",
+      "title": "Adaptasjon, remake og intermedialitet",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler forflytning mellom litteratur, scene, film, TV og andre medier som nye form- og fortolkningsvalg, ikke som enkel troskap til et opphav.",
+      "boundary": "Rettigheter eies av industri; sammenligning av fortellings- og formvalg eies her.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_cliffhanger_og_informasjonsstans",
+      "concept_id": "cliffhanger_og_informasjonsstans",
+      "title": "Cliffhanger og informasjonsstans",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Cliffhanger er en narrativ informasjonsstrategi, mens rytme oppstår i flere audiovisuelle lag.",
+      "boundary": "Legacyaliasene em_film_tv_cliffhanger_rytme migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_cliffhanger_rytme"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_direkte_underholdning_konkurranse_og_formatlogikk",
+      "concept_id": "direkte_underholdning_konkurranse_og_formatlogikk",
+      "title": "Direkteunderholdning, konkurranse og formatlogikk",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Skiller gameshow, talentformat, talkshow og direktesendt underholdning gjennom regler, gjentakelse, programlederrolle og publikumsdeltakelse.",
+      "boundary": "Realitys sannhetskrav eies av dokumentarområdet; flerkameraproduksjon eies av produksjon.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-structure",
+        "ebu-public-service-media"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_episodisk_dramaturgi_og_fremdrift",
+      "concept_id": "episodisk_dramaturgi_og_fremdrift",
+      "title": "Episodisk dramaturgi og fremdrift",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Episodisk dramaturgi organiserer lokal avslutning og langsiktig framdrift i serialiserte verk.",
+      "boundary": "Legacyaliasene em_film_tv_episodisk_dramaturgi migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_episodisk_dramaturgi"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_fiksjon_realisme_og_verdensbygging",
+      "concept_id": "fiksjon_realisme_og_verdensbygging",
+      "title": "Fiksjon realisme og verdensbygging",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Realisme er en historisk og sjangermessig strategi for å gjøre fiksjonsverdener troverdige. Troverdighet er et vurderingsproblem innen realisme og verdensbygging, ikke en parallell hovedkategori.",
+      "boundary": "Legacyaliasene em_film_tv_fiksjon_realisme, em_film_tv_filmisk_troverdighet migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_fiksjon_realisme",
+        "em_film_tv_filmisk_troverdighet"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_fokalisering_synsvinkel_og_kunnskapsfordeling",
+      "concept_id": "fokalisering_synsvinkel_og_kunnskapsfordeling",
+      "title": "Fokalisering, synsvinkel og kunnskapsfordeling",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvem som ser, vet og hører hva, og hvordan informasjon fordeles mellom verk, rollefigurer og publikum.",
+      "boundary": "Kameraperspektiv alene forklarer ikke narrativ kunnskap og eies derfor ikke av formområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-program",
+        "uio-audiovisual-aesthetics"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_fortellingsstruktur_og_narrasjon",
+      "concept_id": "fortellingsstruktur_og_narrasjon",
+      "title": "Fortellingsstruktur og narrasjon",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "integrative_foundation",
+      "status": "proposed_canonical",
+      "definition": "Fortellingsstruktur har et selvstendig begrepsapparat for tid, perspektiv, kausalitet og informasjon.",
+      "boundary": "Legacyaliasene em_film_tv_fortellingsstruktur migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_fortellingsstruktur"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_fortellingstid_rekkefolge_varighet_og_frekvens",
+      "concept_id": "fortellingstid_rekkefolge_varighet_og_frekvens",
+      "title": "Fortellingstid: rekkefølge, varighet og frekvens",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Skiller hendelsenes tid fra framstillingens rekkefølge, varighet, gjentakelse og sprang i film, episode og serie.",
+      "boundary": "Klipperytme er form; sendeskjema og seervane er publikumshistorie.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-program",
+        "uio-audiovisual-aesthetics"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_franchise_univers_og_transmedial_fortelling",
+      "concept_id": "franchise_univers_og_transmedial_fortelling",
+      "title": "Franchise, univers og transmedial fortelling",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan fortellinger, figurer og verdener fordeles mellom filmer, serier, korte formater og andre plattformer.",
+      "boundary": "Eierskap og marked eies av industriområdet; her ligger fortellingsorganiseringen.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_karakter_rollefigur_og_fortellingsfunksjon",
+      "concept_id": "karakter_rollefigur_og_fortellingsfunksjon",
+      "title": "Karakter rollefigur og fortellingsfunksjon",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Rollefigurer organiserer handling, perspektiv, identifikasjon og konflikt i fortellingen. Rollefigurens funksjon og stjernens offentlige persona er analytisk ulike selv når samme skuespiller binder dem sammen.",
+      "boundary": "Legacyaliasene em_film_tv_karakter_rollefigur, em_film_tv_stjerne_og_rolle migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_karakter_rollefigur",
+        "em_film_tv_stjerne_og_rolle"
+      ],
+      "migration_actions": [
+        "keep",
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_krim_sjanger_og_spenningsstruktur",
+      "concept_id": "krim_sjanger_og_spenningsstruktur",
+      "title": "Krim sjanger og spenningsstruktur",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Krim organiserer kunnskapsfordeling, etterforskning og moralsk orden gjennom sjangerkonvensjoner.",
+      "boundary": "Legacyaliasene em_film_tv_krim_spenning migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_krim_spenning"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_manus_dramaturgi_og_scenisk_organisering",
+      "concept_id": "manus_dramaturgi_og_scenisk_organisering",
+      "title": "Manus dramaturgi og scenisk organisering",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Manus og dramaturgi organiserer hendelser og sceneforløp og hører til fortellingsanalysen.",
+      "boundary": "Legacyaliasene em_film_tv_manus_dramaturgi migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_manus_dramaturgi"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_serieformat_og_serialitet",
+      "concept_id": "serieformat_og_serialitet",
+      "title": "Serieformat og serialitet",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Serieformatet organiserer gjentakelse, utvikling, episodegrenser og langvarig fortelling.",
+      "boundary": "Legacyaliasene em_film_tv_serieformat migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_serieformat"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_sesongstruktur_og_fortellingsbue",
+      "concept_id": "sesongstruktur_og_fortellingsbue",
+      "title": "Sesongstruktur og fortellingsbue",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Sesongstruktur har egne mellomnivåer mellom episode og hel serie og bør analyseres eksplisitt.",
+      "boundary": "Legacyaliasene em_film_tv_sesongstruktur migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_sesongstruktur"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_sitcom_humor_og_format",
+      "concept_id": "sitcom_humor_og_format",
+      "title": "Sitcom humor og format",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Sitcom kobler komiske mekanismer til faste rom, rolleensembler, episodeform og produksjonsformat. Komisk format er for generelt og dekkes bedre av konkrete komiske sjangre og mekanismer.",
+      "boundary": "Legacyaliasene em_film_tv_humor_sitcom, em_film_tv_komisk_format migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_humor_sitcom",
+        "em_film_tv_komisk_format"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_sjanger_konvensjon_og_kontrakt",
+      "concept_id": "sjanger_konvensjon_og_kontrakt",
+      "title": "Sjanger konvensjon og kontrakt",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Sjanger organiserer formvalg og forventninger som historisk foranderlige konvensjoner.",
+      "boundary": "Legacyaliasene em_film_tv_sjanger_kontrakt migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_sjanger_kontrakt"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_sjangerhistorie_hybridisering_og_revisjon",
+      "concept_id": "sjangerhistorie_hybridisering_og_revisjon",
+      "title": "Sjangerhistorie, hybridisering og revisjon",
+      "domain_id": "fortelling_sjanger_serialitet_format",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan sjangerkonvensjoner endres, blandes, siteres og revideres historisk på tvers av film og TV.",
+      "boundary": "Enkeltgenrer kan være case, men inventaret skal ikke vokse gjennom én obligatorisk boks per sjanger.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "ntnu-filmvitenskap-2026-program",
+        "uio-audiovisual-aesthetics"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_aldersgrenser_klassifisering_og_makt",
+      "concept_id": "aldersgrenser_klassifisering_og_makt",
+      "title": "Aldersgrenser klassifisering og makt",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Aldersgrenser viser hvordan skade, vern, tilgang og statlig eller bransjebasert makt klassifiseres.",
+      "boundary": "Legacyaliasene em_film_tv_aldersgrense_makt migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_aldersgrense_makt"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_distribusjon_tilgang_og_visningspolitikk",
+      "concept_id": "distribusjon_tilgang_og_visningspolitikk",
+      "title": "Distribusjon tilgang og visningspolitikk",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Distribusjonsledd, vinduer og tilgjengelighet styrer hvem som faktisk kan møte et verk. Politiske og institusjonelle regler for visning må skilles fra publikums faktiske resepsjon.",
+      "boundary": "Legacyaliasene em_film_tv_distribusjon_tilgang, em_film_tv_visningspolitikk migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_distribusjon_tilgang",
+        "em_film_tv_visningspolitikk"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_eierskap_konsentrasjon_og_vertikal_integrasjon",
+      "concept_id": "eierskap_konsentrasjon_og_vertikal_integrasjon",
+      "title": "Eierskap, konsentrasjon og vertikal integrasjon",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan eierskap på tvers av produksjon, distribusjon, plattform og visning påvirker tilgang, risiko og redaksjonell eller kreativ autonomi.",
+      "boundary": "Enkeltbedrifter brukes som dokumenterte case, ikke som tidløse modeller.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_festivaler_priser_markeder_og_portvakt",
+      "concept_id": "festivaler_priser_markeder_og_portvakt",
+      "title": "Festivaler, priser, markeder og portvakt",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Skiller visning for publikum fra festivalers og markedsplassers rolle i finansiering, salg, prestisje, kanon og internasjonal sirkulasjon.",
+      "boundary": "Festivalopplevelse og kuratering for publikum eies av publikumsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_film_tv_okonomi_og_forretningsmodeller",
+      "concept_id": "film_tv_okonomi_og_forretningsmodeller",
+      "title": "Film og TV økonomi og forretningsmodeller",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "integrative_foundation",
+      "status": "proposed_canonical",
+      "definition": "Økonomi forklarer kapital, risiko, inntektsstrømmer og markedsstruktur på industrinivå.",
+      "boundary": "Legacyaliasene em_film_tv_filmokonomi migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmokonomi"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_filmstotte_og_kulturpolitikk",
+      "concept_id": "filmstotte_og_kulturpolitikk",
+      "title": "Filmstotte og kulturpolitikk",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Filmstøtte gjør prioriteringer, armlengdesprinsipp og kulturpolitiske mål empirisk etterprøvbare.",
+      "boundary": "Legacyaliasene em_film_tv_filmstotte_kulturpolitikk migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmstotte_kulturpolitikk"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_finansiering_samproduksjon_og_produksjonssystemer",
+      "concept_id": "finansiering_samproduksjon_og_produksjonssystemer",
+      "title": "Finansiering samproduksjon og produksjonssystemer",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Filmproduksjon er for bredt og må deles mellom kreativ arbeidsprosess og industrielt produksjonssystem. Produsentens skapende styring og finansieringens institusjonelle vilkår trenger ulike analyser. Nasjonale verkforløp og dagens produksjonssystem trenger henholdsvis historisk og institusjonell analyse.",
+      "boundary": "Legacyaliasene em_film_tv_filmproduksjon, em_film_tv_produsent_finansiering, em_film_tv_nasjonal_filmproduksjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmproduksjon",
+        "em_film_tv_nasjonal_filmproduksjon",
+        "em_film_tv_produsent_finansiering"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_internasjonal_samproduksjon_insentiver_og_produksjonsflyt",
+      "concept_id": "internasjonal_samproduksjon_insentiver_og_produksjonsflyt",
+      "title": "Internasjonal samproduksjon, insentiver og produksjonsflyt",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan avtaler, støtte, skatteinsentiver, rettigheter, språk og locationvalg organiserer produksjon over grenser.",
+      "boundary": "Transnasjonal estetikk og identitet eies av historie- og samfunnsområdene.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kommersialisering_og_verdikjeder",
+      "concept_id": "kommersialisering_og_verdikjeder",
+      "title": "Kommersialisering og verdikjeder",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kommersialisering kobler finansiering, produktintegrasjon, eierskap og publikumsverdi.",
+      "boundary": "Legacyaliasene em_film_tv_film_tv_kommersialisering migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_film_tv_kommersialisering"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kringkasting_institusjon_og_allmennoppdrag",
+      "concept_id": "kringkasting_institusjon_og_allmennoppdrag",
+      "title": "Kringkasting institusjon og allmennoppdrag",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Redaksjonell produksjonspraksis og TV-huset som institusjon har forskjellige aktører og styringsnivåer. Kringkasting organiseres gjennom institusjoner, infrastruktur, mandat og regulering.",
+      "boundary": "Legacyaliasene em_film_tv_tv_hus_redaksjon, em_film_tv_kringkasting_institusjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kringkasting_institusjon",
+        "em_film_tv_tv_hus_redaksjon"
+      ],
+      "migration_actions": [
+        "keep",
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_plattformmakt_og_algoritmisk_portvakt",
+      "concept_id": "plattformmakt_og_algoritmisk_portvakt",
+      "title": "Plattformmakt og algoritmisk portvakt",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Plattformer styrer synlighet, data, vilkår og adgang gjennom tekniske og kontraktsmessige portvakter.",
+      "boundary": "Legacyaliasene em_film_tv_plattformmakt migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_plattformmakt"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_publikum_som_marked",
+      "concept_id": "publikum_som_marked",
+      "title": "Publikum som marked",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Bransjens markedssegment og faktiske publikums praksiser er forskjellige konstruksjoner.",
+      "boundary": "Legacyaliasene em_film_tv_publikumsmarked migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_publikumsmarked"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_rettigheter_vinduer_og_distribusjon",
+      "concept_id": "rettigheter_vinduer_og_distribusjon",
+      "title": "Rettigheter vinduer og distribusjon",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Rettigheter og vinduer bestemmer territorium, tid, plattform og økonomisk sirkulasjon. Lisens og tilgang er konkrete mekanismer i rettighets- og distribusjonsregimet.",
+      "boundary": "Legacyaliasene em_film_tv_rettigheter_distribusjon, em_film_tv_lisens_og_tilgang migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_lisens_og_tilgang",
+        "em_film_tv_rettigheter_distribusjon"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_sensur_regulering_og_ytringsrom",
+      "concept_id": "sensur_regulering_og_ytringsrom",
+      "title": "Sensur regulering og ytringsrom",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Sensur og regulering former produksjon, distribusjon og tilgang gjennom formelle og uformelle inngrep.",
+      "boundary": "Legacyaliasene em_film_tv_sensur_regulering migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_sensur_regulering"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_stromming_distribusjon_marked_og_forretningsmodeller",
+      "concept_id": "stromming_distribusjon_marked_og_forretningsmodeller",
+      "title": "Strømming distribusjon marked og forretningsmodeller",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Plattformenes markedslogikk og publikums fragmenterte bruk er to kausalt koblede, men ulike spørsmål. Strømmemarkedet har egne abonnements-, rettighets-, katalog- og konkurranselogikker.",
+      "boundary": "Legacyaliasene em_film_tv_stromming_fragmentering, em_film_tv_strommemarked migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_strommemarked",
+        "em_film_tv_stromming_fragmentering"
+      ],
+      "migration_actions": [
+        "keep",
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tv_formathandel_lisensiering_og_lokal_tilpasning",
+      "concept_id": "tv_formathandel_lisensiering_og_lokal_tilpasning",
+      "title": "TV-formathandel, lisensiering og lokal tilpasning",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler handel med programformater, bibler, merkevarer og produksjonskunnskap, og hvordan formatet endres i lokale TV-systemer.",
+      "boundary": "Programmets narrativ og sjanger eies av fortellingsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ebu-public-service-media"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_uformell_distribusjon_piratkopiering_og_tilgang",
+      "concept_id": "uformell_distribusjon_piratkopiering_og_tilgang",
+      "title": "Uformell distribusjon, piratkopiering og tilgang",
+      "domain_id": "industri_institusjoner_politikk_distribusjon",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan uautorisert kopiering og uformelle nettverk utfordrer rettigheter, sensur, bevaring, pris og geografisk tilgang.",
+      "boundary": "Emnet beskriver og analyserer praksiser; det instruerer ikke i lovbrudd.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_animasjonsproduksjon_og_pipeline",
+      "concept_id": "animasjonsproduksjon_og_pipeline",
+      "title": "Animasjonsproduksjon og pipeline",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Følger design, storyboard, layout, animasjon, lys, rendering og compositing i tegnede, modellerte og digitale produksjoner.",
+      "boundary": "Animasjonens form og historie eies av egne emner i form- og historieområdene.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_produksjonsprosess",
+      "concept_id": "audiovisuell_produksjonsprosess",
+      "title": "Audiovisuell produksjonsprosess",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "integrative_foundation",
+      "status": "proposed_canonical",
+      "definition": "Filmproduksjon er for bredt og må deles mellom kreativ arbeidsprosess og industrielt produksjonssystem.",
+      "boundary": "Legacyaliasene em_film_tv_filmproduksjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmproduksjon"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuelt_arbeidsliv_og_vilkar",
+      "concept_id": "audiovisuelt_arbeidsliv_og_vilkar",
+      "title": "Audiovisuelt arbeidsliv og vilkar",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Arbeidsvilkår, fagorganisering, prosjektarbeid og ulikhet er et selvstendig produksjonsfelt. Usynlig arbeid er et viktig perspektiv innen arbeidsliv og kreditering, men ikke en stabil separat kategori.",
+      "boundary": "Legacyaliasene em_film_tv_filmarbeidsliv, em_film_tv_usynlig_filmproduksjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmarbeidsliv",
+        "em_film_tv_usynlig_filmproduksjon"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_baerekraftig_produksjon_og_klimaregnskap",
+      "concept_id": "baerekraftig_produksjon_og_klimaregnskap",
+      "title": "Bærekraftig produksjon og klimaregnskap",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker strategi, energi, transport, materialer, innkjøp, avfall og måling gjennom hele produksjonsløpet.",
+      "boundary": "Økokritisk analyse av verk og stedlig inngrep eies av samfunns- og stedsområdene.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "nfi-sustainable-film-production"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_casting_skuespillerarbeid_og_intimitetskoordinering",
+      "concept_id": "casting_skuespillerarbeid_og_intimitetskoordinering",
+      "title": "Casting, skuespillerarbeid og intimitetskoordinering",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kobler rollebesetning og arbeid med utøvere til prøver, ledelse, samtykke, sikkerhet og makt i produksjonen.",
+      "boundary": "Representasjonens resultat eies av samfunnsområdet; stjernepersona eies av kulturarvområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_hms_arbeidstid_kreditering_og_fagorganisering",
+      "concept_id": "hms_arbeidstid_kreditering_og_fagorganisering",
+      "title": "HMS, arbeidstid, kreditering og fagorganisering",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Gjør risiko, arbeidstid, kontrakt, kreditering, varsling og kollektiv organisering til konkrete, dokumenterbare produksjonsforhold.",
+      "boundary": "Emnet gir ikke juridisk rådgivning og krever oppdaterte avtale- og myndighetskilder.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kameraarbeid_og_bildepraksis",
+      "concept_id": "kameraarbeid_og_bildepraksis",
+      "title": "Kameraarbeid og bildepraksis",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kameraarbeid er en konkret skapende og teknisk praksis med valg om optikk, bevegelse og eksponering.",
+      "boundary": "Legacyaliasene em_film_tv_kamera_bildearbeid migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kamera_bildearbeid"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kringkastingsproduksjon_og_direkteformat",
+      "concept_id": "kringkastingsproduksjon_og_direkteformat",
+      "title": "Kringkastingsproduksjon og direkteformat",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kringkastingsproduksjon har egne tidskrav, produksjonskjeder og direkteformater.",
+      "boundary": "Legacyaliasene em_film_tv_kringkastingsproduksjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kringkastingsproduksjon"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kunstig_intelligens_automatisering_og_skapende_ansvar",
+      "concept_id": "kunstig_intelligens_automatisering_og_skapende_ansvar",
+      "title": "Kunstig intelligens, automatisering og skapende ansvar",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker KI i utvikling, bilde, lyd, lokalisering og arbeidsflyt mot opphav, samtykke, transparens, kvalitet, arbeidsmakt og miljøkostnad.",
+      "boundary": "Emnet er teknologinøytralt: hver påstand må knyttes til dokumentert bruk og styring, ikke framtidsspekulasjon.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ebu-ai-forum-2026"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_lyd_og_lyddesign",
+      "concept_id": "lyd_og_lyddesign",
+      "title": "Lyd og lyddesign",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Lys og lyd er ulike uttrykksdimensjoner, samtidig som produksjonspraksisen krever en egen kobling.",
+      "boundary": "Legacyaliasene em_film_tv_lys_lyd migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_lys_lyd"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_lys_lyd_produksjonspraksis",
+      "concept_id": "lys_lyd_produksjonspraksis",
+      "title": "Lys lyd produksjonspraksis",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Lys og lyd er ulike uttrykksdimensjoner, samtidig som produksjonspraksisen krever en egen kobling.",
+      "boundary": "Legacyaliasene em_film_tv_lys_lyd migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_lys_lyd"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_opptaksledelse_planlegging_budsjett_og_logistikk",
+      "concept_id": "opptaksledelse_planlegging_budsjett_og_logistikk",
+      "title": "Opptaksledelse, planlegging, budsjett og logistikk",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker nedbrytning, opptaksplan, bemanning, transport, tillatelser, beredskap og løpende prioriteringer i en produksjon.",
+      "boundary": "Finansieringsordninger og markedsrisiko eies av industriområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_postproduksjon_arbeidsflyt_og_beslutninger",
+      "concept_id": "postproduksjon_arbeidsflyt_og_beslutninger",
+      "title": "Postproduksjon arbeidsflyt og beslutninger",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Postproduksjon samler særskilte arbeidsflyter og skapende beslutninger etter opptak. Digitalt etterarbeid er dagens dominerende del av postproduksjon og trenger ikke en parallell emnetittel.",
+      "boundary": "Legacyaliasene em_film_tv_postproduksjon, em_film_tv_digital_etterarbeid migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_digital_etterarbeid",
+        "em_film_tv_postproduksjon"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_produksjonsdesign_scenografi_kostyme_og_rekvisitt",
+      "concept_id": "produksjonsdesign_scenografi_kostyme_og_rekvisitt",
+      "title": "Produksjonsdesign, scenografi, kostyme og rekvisitt",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler hvordan fysiske og digitale miljøer, kostymer og objekter utvikles, bygges, skaffes og kontinuitetsføres i produksjonen.",
+      "boundary": "Det ferdige bildets komposisjon analyseres i formområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_produksjonsteam_roller_og_samarbeid",
+      "concept_id": "produksjonsteam_roller_og_samarbeid",
+      "title": "Produksjonsteam roller og samarbeid",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Produksjonsteamet gjør arbeidsdeling, koordinering og skapende autoritet empirisk undersøkbart. Kollektivt filmverk beskriver resultatet av samarbeid, men dupliserer team- og autoritetsproblemet.",
+      "boundary": "Legacyaliasene em_film_tv_produksjonsteam, em_film_tv_kollektivt_filmwerk migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kollektivt_filmwerk",
+        "em_film_tv_produksjonsteam"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_produsentrolle_og_beslutninger",
+      "concept_id": "produsentrolle_og_beslutninger",
+      "title": "Produsentrolle og beslutninger",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Produsentens skapende styring og finansieringens institusjonelle vilkår trenger ulike analyser.",
+      "boundary": "Legacyaliasene em_film_tv_produsent_finansiering migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_produsent_finansiering"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_regi_sceneledelse_og_kreative_beslutninger",
+      "concept_id": "regi_sceneledelse_og_kreative_beslutninger",
+      "title": "Regi, sceneledelse og kreative beslutninger",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker regissørens arbeid med manus, skuespillere, bilde, lyd, tempo og samarbeid før og under opptak.",
+      "boundary": "Auteurhistorie og stjernepersona eies ikke av produksjonspraksis.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_studio_som_produksjonsmiljo",
+      "concept_id": "studio_som_produksjonsmiljo",
+      "title": "Studio som produksjonsmiljo",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Studioet organiserer materiell kontroll, arbeidsdeling og teknologiske muligheter i produksjonen.",
+      "boundary": "Legacyaliasene em_film_tv_studio_produksjonsrom migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_studio_produksjonsrom"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_teksting_synstolking_og_tilgjengelig_design",
+      "concept_id": "teksting_synstolking_og_tilgjengelig_design",
+      "title": "Teksting, synstolking og tilgjengelig design",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler teksting, synstolking, tegnspråk, lesbarhet og tilgjengelige grensesnitt som planlagte deler av produksjon og distribusjon.",
+      "boundary": "Publikums faktiske hindringer og bruk eies av publikumsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tv_redaksjon_og_produksjonspraksis",
+      "concept_id": "tv_redaksjon_og_produksjonspraksis",
+      "title": "TV redaksjon og produksjonspraksis",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Redaksjonell produksjonspraksis og TV-huset som institusjon har forskjellige aktører og styringsnivåer.",
+      "boundary": "Legacyaliasene em_film_tv_tv_hus_redaksjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_tv_hus_redaksjon"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_utvikling_pitch_research_og_preproduksjon",
+      "concept_id": "utvikling_pitch_research_og_preproduksjon",
+      "title": "Utvikling, pitch, research og preproduksjon",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Følger prosjektet fra idé og research gjennom pitch, manusutvikling, rettighetsavklaring, plan og beslutning om produksjon.",
+      "boundary": "Fortellingens dramaturgi eies av fortellingsområdet; finansieringssystemet eies av industri.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_vfx_virtuell_produksjon_og_sanntidsarbeidsflyt",
+      "concept_id": "vfx_virtuell_produksjon_og_sanntidsarbeidsflyt",
+      "title": "VFX, virtuell produksjon og sanntidsarbeidsflyt",
+      "domain_id": "produksjon_arbeid_teknologi_praksis",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler previs, motion capture, LED-volum, compositing og sanntidsmotorer som samordnede kreative og tekniske arbeidsprosesser.",
+      "boundary": "Det syntetiske bildets estetikk eies av formområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_alder_barn_ungdom_og_livslop",
+      "concept_id": "alder_barn_ungdom_og_livslop",
+      "title": "Alder, barn, ungdom og livsløp",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan alder, generasjon og livsfase organiserer rolletyper, fortellinger, vern, adressering og synlighet.",
+      "boundary": "Aldersgrenser som regulering eies av industriområdet; barns faktiske bruk eies av publikumsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_byrepresentasjon_og_makt",
+      "concept_id": "byrepresentasjon_og_makt",
+      "title": "Byrepresentasjon og makt",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Urban geografi og representasjonens makt over identitet og synlighet må ha hver sin kontroll.",
+      "boundary": "Legacyaliasene em_film_tv_urban_filmrepresentasjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_urban_filmrepresentasjon"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_film_tv_offentlighet_og_debatt",
+      "concept_id": "film_tv_offentlighet_og_debatt",
+      "title": "Film og TV offentlighet og debatt",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Film og TV skaper offentlighet gjennom verk, hendelser, kritikk, kontrovers og samtale. Audiovisuell debatt er en praksis innen den bredere film- og TV-offentligheten.",
+      "boundary": "Legacyaliasene em_film_tv_film_tv_offentlighet, em_film_tv_audiovisuell_debatt migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_audiovisuell_debatt",
+        "em_film_tv_film_tv_offentlighet"
+      ],
+      "migration_actions": [
+        "merge",
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_funksjonsvariasjon_ableisme_og_tilgjengelighet",
+      "concept_id": "funksjonsvariasjon_ableisme_og_tilgjengelighet",
+      "title": "Funksjonsvariasjon, ableisme og tilgjengelighet",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Skiller representasjon av funksjonsvariasjon fra reell tilgang til produksjon, verk og visning, og undersøker ableistiske normer.",
+      "boundary": "Teksting, synstolking og tilgjengelig produksjonsdesign eies operativt av produksjon og publikum.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_interseksjonalitet_posisjonalitet_og_metode",
+      "concept_id": "interseksjonalitet_posisjonalitet_og_metode",
+      "title": "Interseksjonalitet, posisjonalitet og metode",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kontrollerer hvordan flere maktakser virker samtidig, og hvordan forskerens eller produsentens posisjon former spørsmål, materiale og tolkning.",
+      "boundary": "Emnet erstatter ikke de konkrete representasjonsfeltene; det binder dem sammen metodisk.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kjonn_feministisk_filmanalyse_og_skjermmakt",
+      "concept_id": "kjonn_feministisk_filmanalyse_og_skjermmakt",
+      "title": "Kjønn, feministisk filmanalyse og skjermmakt",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker blikk, rollefordeling, arbeid, fortelling og institusjonell synlighet som kjønnete maktforhold.",
+      "boundary": "Kjønn skal ikke reduseres til opptelling; form, narrativ betydning og produksjonsmakt må kunne skilles.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_klasse_arbeid_ulikhet_og_sosial_mobilitet",
+      "concept_id": "klasse_arbeid_ulikhet_og_sosial_mobilitet",
+      "title": "Klasse, arbeid, ulikhet og sosial mobilitet",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan økonomiske posisjoner, arbeid, bolig, smak og mobilitet gjøres synlige, naturlige eller fraværende i film og TV.",
+      "boundary": "Produksjonsarbeidernes faktiske vilkår eies av produksjonsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_klima_miljo_og_okokritisk_skjermanalyse",
+      "concept_id": "klima_miljo_og_okokritisk_skjermanalyse",
+      "title": "Klima, miljø og økokritisk skjermanalyse",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan natur, ressursbruk, katastrofe og klimaframtid gis form, handlingsrom og politisk betydning i film og TV.",
+      "boundary": "Produksjonens faktiske utslipp og locationinngrep eies av produksjons- og stedsområdene.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_koloniale_blikk_dekolonisering_og_motbilder",
+      "concept_id": "koloniale_blikk_dekolonisering_og_motbilder",
+      "title": "Koloniale blikk, dekolonisering og motbilder",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan koloniale bildeordener videreføres, bestrides og omarbeides gjennom perspektiv, arkiv, produksjon og distribusjon.",
+      "boundary": "Historiske forløp eies av historieområdet; her ligger representasjons- og maktanalysen.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kringkastet_offentlighet",
+      "concept_id": "kringkastet_offentlighet",
+      "title": "Kringkastet offentlighet",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kringkastet samtid rommer bildeevidens, mediehistorisk samtidighet og offentlighetens tidsorganisering.",
+      "boundary": "Legacyaliasene em_film_tv_kringkastet_samtid migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kringkastet_samtid"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_migrasjon_diaspora_og_transnasjonal_identitet",
+      "concept_id": "migrasjon_diaspora_og_transnasjonal_identitet",
+      "title": "Migrasjon, diaspora og transnasjonal identitet",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer tilhørighet, språk, grense, minne og flerstedlighet i verk og produksjonskulturer.",
+      "boundary": "Romlig sirkulasjon eies av skjermgeografi når stedet, ikke identitetsmakten, er analyseenheten.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_nasjon_fortelling_og_forestilt_fellesskap",
+      "concept_id": "nasjon_fortelling_og_forestilt_fellesskap",
+      "title": "Nasjon fortelling og forestilt fellesskap",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Nasjonale fortellinger former tilhørighet og eksklusjon gjennom verk og institusjonell prioritering.",
+      "boundary": "Legacyaliasene em_film_tv_nasjonal_fortelling migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_nasjonal_fortelling"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_rasialisering_etnisitet_hvithet_og_stereotypi",
+      "concept_id": "rasialisering_etnisitet_hvithet_og_stereotypi",
+      "title": "Rasialisering, etnisitet, hvithet og stereotypi",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker casting, karakterfunksjon, bildehistorie, fortellerposisjon og fravær som rasialiserte maktprosesser.",
+      "boundary": "Nasjonal opprinnelse alene brukes aldri som slutning om representasjon.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_religion_livssyn_og_audiovisuell_representasjon",
+      "concept_id": "religion_livssyn_og_audiovisuell_representasjon",
+      "title": "Religion, livssyn og audiovisuell representasjon",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan tro, sekularitet, ritual, minoritet og konflikt framstilles og forhandles i film og TV.",
+      "boundary": "Emnet overtar ikke religionsfagets lære- og praksisinnhold; det analyserer audiovisuell representasjon.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_representasjon_identitet_og_makt",
+      "concept_id": "representasjon_identitet_og_makt",
+      "title": "Representasjon identitet og makt",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "legacy_migration",
+      "inventory_role": "integrative_foundation",
+      "status": "proposed_canonical",
+      "definition": "Representasjon fordeler taleposisjoner, gjenkjennelse og stereotypisering og krever maktanalyse. Identitet må deles mellom representasjon i verk og publikums bruk av verk i eget identitetsarbeid.",
+      "boundary": "Legacyaliasene em_film_tv_representasjon_makt, em_film_tv_film_tv_identitet migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_film_tv_identitet",
+        "em_film_tv_representasjon_makt"
+      ],
+      "migration_actions": [
+        "keep",
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_seksualitet_queer_representasjon_og_normkritikk",
+      "concept_id": "seksualitet_queer_representasjon_og_normkritikk",
+      "title": "Seksualitet, queer representasjon og normkritikk",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan film og TV former begjær, identitet, normer, sensur, synlighet og motfortellinger.",
+      "boundary": "Publikums identitetsarbeid eies av publikumsområdet når resepsjonen er analyseenheten.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_synlighet_fravaer_og_frasortering",
+      "concept_id": "synlighet_fravaer_og_frasortering",
+      "title": "Synlighet fravær og frasortering",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Fravær og frasortering kan måles i casting, narrativ betydning, arkiv og distribusjon.",
+      "boundary": "Legacyaliasene em_film_tv_synlighet_og_frasortering migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_synlighet_og_frasortering"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tv_offentlighet_og_demokratisk_deltakelse",
+      "concept_id": "tv_offentlighet_og_demokratisk_deltakelse",
+      "title": "TV offentlighet og demokratisk deltakelse",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "TV-offentlighet gjelder synlighet, felles dagsorden og demokratisk deltakelse, ikke bare organisasjon.",
+      "boundary": "Legacyaliasene em_film_tv_tv_offentlighet migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_tv_offentlighet"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_urfolk_samisk_skjermkultur_og_suverenitet",
+      "concept_id": "urfolk_samisk_skjermkultur_og_suverenitet",
+      "title": "Urfolk, samisk skjermkultur og suverenitet",
+      "domain_id": "samfunn_representasjon_identitet_makt",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler selvrepresentasjon, språk, fortellerkontroll, land, arkiv og institusjonell makt med særlig norsk relevans for samiske perspektiver.",
+      "boundary": "Urfolksperspektiver er ikke et undercase av nasjonal identitet; kontroll over bilder, kilder og fortelling må auditeres.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_byen_som_audiovisuelt_bilde",
+      "concept_id": "byen_som_audiovisuelt_bilde",
+      "title": "Byen som audiovisuelt bilde",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Byen som bilde undersøker hvordan urban form velges, rammes inn og gjøres lesbar.",
+      "boundary": "Legacyaliasene em_film_tv_byen_som_bilde migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_byen_som_bilde"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_film_tv_geografi_og_romlig_sirkulasjon",
+      "concept_id": "film_tv_geografi_og_romlig_sirkulasjon",
+      "title": "Film og TV geografi og romlig sirkulasjon",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "integrative_foundation",
+      "status": "proposed_canonical",
+      "definition": "Filmgeografi analyserer romlige mønstre i produksjon, representasjon, sirkulasjon og resepsjon.",
+      "boundary": "Legacyaliasene em_film_tv_filmgeografi migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmgeografi"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_filmturisme_og_lokale_virkninger",
+      "concept_id": "filmturisme_og_lokale_virkninger",
+      "title": "Filmturisme og lokale virkninger",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Filmturisme kobler skjermbilder til mobilitet, økonomi, belastning og lokal fortolkning.",
+      "boundary": "Legacyaliasene em_film_tv_filmturisme migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmturisme"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_gate_kamera_og_offentlig_rom",
+      "concept_id": "gate_kamera_og_offentlig_rom",
+      "title": "Gate kamera og offentlig rom",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kameraarbeid i gater berører bevegelse, kontroll, tilfeldighet og bruk av offentlig rom.",
+      "boundary": "Legacyaliasene em_film_tv_gate_kamera migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_gate_kamera"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_ikonisk_filmsted_og_sirkulasjon",
+      "concept_id": "ikonisk_filmsted_og_sirkulasjon",
+      "title": "Ikonisk filmsted og sirkulasjon",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Et filmsted blir ikonisk gjennom gjentatt framstilling, distribusjon, resepsjon og fysisk gjenkjennelse.",
+      "boundary": "Legacyaliasene em_film_tv_ikonisk_filmsted migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_ikonisk_filmsted"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_innspillingsspor_og_stedlig_endring",
+      "concept_id": "innspillingsspor_og_stedlig_endring",
+      "title": "Innspillingsspor og stedlig endring",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Fysiske og sosiale spor etter innspilling gjør produksjonens stedlige virkninger undersøkelige.",
+      "boundary": "Legacyaliasene em_film_tv_innspillingsspor migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_innspillingsspor"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_interior_bolig_og_skjermrom",
+      "concept_id": "interior_bolig_og_skjermrom",
+      "title": "Interior bolig og skjermrom",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Boliginteriør organiserer kropp, klasse, intimitet og produksjonsbegrensninger i skjermrommet. Intimrom er en fortolkende dimensjon ved interiør og bolig, ikke en stabil parallell stedstype.",
+      "boundary": "Legacyaliasene em_film_tv_leilighet_interior, em_film_tv_intimrom_film migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_intimrom_film",
+        "em_film_tv_leilighet_interior"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_landskap_stemning_og_stedsetikk",
+      "concept_id": "landskap_stemning_og_stedsetikk",
+      "title": "Landskap stemning og stedsetikk",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Landskap skaper stemning, men reiser også spørsmål om stedskunnskap, inngrep og miljøetikk.",
+      "boundary": "Legacyaliasene em_film_tv_landskap_stemning migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_landskap_stemning"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_location_valg_og_filmsted",
+      "concept_id": "location_valg_og_filmsted",
+      "title": "Location valg og filmsted",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Locationvalg kobler fortelling, produksjon og faktisk sted gjennom dokumenterbare beslutninger.",
+      "boundary": "Legacyaliasene em_film_tv_location_filmsted migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_location_filmsted"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_locationokologi_inngrep_og_miljokonsekvens",
+      "concept_id": "locationokologi_inngrep_og_miljokonsekvens",
+      "title": "Locationøkologi, inngrep og miljøkonsekvens",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker transport, terrenginngrep, slitasje, vern og restaurering knyttet til opptak på faktiske steder.",
+      "boundary": "Hele produksjonens klimaregnskap eies av produksjonsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "nfi-sustainable-film-production"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_lokalsamfunn_samtykke_og_stedlig_produksjonsmakt",
+      "concept_id": "lokalsamfunn_samtykke_og_stedlig_produksjonsmakt",
+      "title": "Lokalsamfunn, samtykke og stedlig produksjonsmakt",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Vurderer informasjon, tillatelser, lokal medvirkning, forstyrrelse, gevinst og ettervirkning når produksjoner bruker faktiske steder og samfunn.",
+      "boundary": "Individuelt deltakersamtykke i dokumentar eies av dokumentarområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_mobilitet_grenser_eksil_og_skjermrom",
+      "concept_id": "mobilitet_grenser_eksil_og_skjermrom",
+      "title": "Mobilitet, grenser, eksil og skjermrom",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker reise, transport, grensepassering, fordrivelse og flerstedlighet som romlige mønstre i film og TV.",
+      "boundary": "Identitets- og representasjonsmakten eies av samfunnsområdet når personer og grupper er analyseenheten.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_rurale_perifere_og_arktiske_skjermgeografier",
+      "concept_id": "rurale_perifere_og_arktiske_skjermgeografier",
+      "title": "Rurale, perifere og arktiske skjermgeografier",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Analyserer hvordan avstand, ressurslandskap, klima, sentrum–periferi og lokal kunnskap organiserer produksjon og framstilling utenfor storbyen.",
+      "boundary": "Området er en motvekt til legacystrukturens urbane overvekt, ikke en ny geografisk kvote.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_sted_identitet_og_tilhorighet",
+      "concept_id": "sted_identitet_og_tilhorighet",
+      "title": "Sted identitet og tilhørighet",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Stedsidentitet viser hvordan audiovisuelle verk former og forhandles av lokale tilhørigheter. Filmisk tilhørighet er virkningen som allerede undersøkes gjennom sted, identitet og publikum.",
+      "boundary": "Legacyaliasene em_film_tv_sted_identitet, em_film_tv_filmisk_tilhorighet migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmisk_tilhorighet",
+        "em_film_tv_sted_identitet"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_sted_som_audiovisuell_myte",
+      "concept_id": "sted_som_audiovisuell_myte",
+      "title": "Sted som audiovisuell myte",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Steder mytologiseres gjennom gjentatte motiver og fortellinger som kan sammenholdes med faktisk sted. I denne legacy-konteksten er audiovisuell mytologi den generelle mekanismen bak sted som myte.",
+      "boundary": "Legacyaliasene em_film_tv_sted_som_myte, em_film_tv_audiovisuell_mytologi migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_audiovisuell_mytologi",
+        "em_film_tv_sted_som_myte"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_stedlig_skjermminne",
+      "concept_id": "stedlig_skjermminne",
+      "title": "Stedlig skjermminne",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Stedets medierte minne og publikums erindringspraksis overlapper, men har ulike analyseenheter.",
+      "boundary": "Legacyaliasene em_film_tv_publikumsminne_sted migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_publikumsminne_sted"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_studio_backlot_virtuelt_rom_og_stedserstatning",
+      "concept_id": "studio_backlot_virtuelt_rom_og_stedserstatning",
+      "title": "Studio, backlot, virtuelt rom og stedserstatning",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan bygde og syntetiske rom står inn for faktiske steder og hvilke estetiske, økonomiske og politiske valg dette innebærer.",
+      "boundary": "Studioets arbeidsmiljø eies av produksjonsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_urban_skjermgeografi",
+      "concept_id": "urban_skjermgeografi",
+      "title": "Urban skjermgeografi",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Urban geografi og representasjonens makt over identitet og synlighet må ha hver sin kontroll.",
+      "boundary": "Legacyaliasene em_film_tv_urban_filmrepresentasjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_urban_filmrepresentasjon"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_urfolkslandskap_stedskunnskap_og_bilderett",
+      "concept_id": "urfolkslandskap_stedskunnskap_og_bilderett",
+      "title": "Urfolkslandskap, stedskunnskap og bilderett",
+      "domain_id": "sted_location_skjermgeografi",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler land, navn, ferdsel, hellige eller sårbare steder og lokal kontroll over audiovisuelle framstillinger.",
+      "boundary": "Samisk og urfolks representasjon eies av samfunnsområdet; her er stedet og tilgangen analyseenheten.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "unesco-documentary-heritage-2015"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_audiovisuell_publikumsopplevelse",
+      "concept_id": "audiovisuell_publikumsopplevelse",
+      "title": "Audiovisuell publikumsopplevelse",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "integrative_foundation",
+      "status": "proposed_canonical",
+      "definition": "Publikums sanselige og sosiale erfaring kan undersøkes uten å reduseres til besøkstall.",
+      "boundary": "Legacyaliasene em_film_tv_publikumsopplevelse migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_publikumsopplevelse"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_barn_ungdom_og_audiovisuelle_publikum",
+      "concept_id": "barn_ungdom_og_audiovisuelle_publikum",
+      "title": "Barn, ungdom og audiovisuelle publikum",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Behandler barns og unges faktiske bruk, fortolkning, fellesskap og tilgang med alderssensitiv metode framfor å slutte virkning fra innhold alene.",
+      "boundary": "Representasjon av alder eies av samfunnsområdet; klassifisering eies av industri.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_fans_deltakelse_og_fellesskap",
+      "concept_id": "fans_deltakelse_og_fellesskap",
+      "title": "Fans deltakelse og fellesskap",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Fans produserer fortolkning, fellesskap, arbeid og sirkulasjon og må studeres som deltakende publikum. Deltakende seerkultur er den bredere praksisen som fanstudier allerede konkretiserer.",
+      "boundary": "Legacyaliasene em_film_tv_fans_deltakelse, em_film_tv_deltakende_seerkultur migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_deltakende_seerkultur",
+        "em_film_tv_fans_deltakelse"
+      ],
+      "migration_actions": [
+        "merge",
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_festival_premiere_og_hendelsesvisning",
+      "concept_id": "festival_premiere_og_hendelsesvisning",
+      "title": "Festival premiere og hendelsesvisning",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Festival og premiere former verkets første offentligheter, sirkulasjon og resepsjon. Begrepet er en videre, mindre presis variant av festival-, premiere- og hendelsesvisning.",
+      "boundary": "Legacyaliasene em_film_tv_filmfestival_premiere, em_film_tv_offentlig_filmbegivenhet migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmfestival_premiere",
+        "em_film_tv_offentlig_filmbegivenhet"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_filmklubb_og_nisjeoffentlighet",
+      "concept_id": "filmklubb_og_nisjeoffentlighet",
+      "title": "Filmklubb og nisjeoffentlighet",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Filmklubber organiserer varige nisjeoffentligheter gjennom utvalg, samtale og medlemskap.",
+      "boundary": "Legacyaliasene em_film_tv_filmklubb_nisje migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_filmklubb_nisje"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_forventningshorisont_og_resepsjon",
+      "concept_id": "forventningshorisont_og_resepsjon",
+      "title": "Forventningshorisont og resepsjon",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Publikums forventningshorisont må undersøkes empirisk og historisk, ikke avledes direkte fra sjanger.",
+      "boundary": "Legacyaliasene em_film_tv_publikumsforventning migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_publikumsforventning"
+      ],
+      "migration_actions": [
+        "move"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_fragmenterte_publikum",
+      "concept_id": "fragmenterte_publikum",
+      "title": "Fragmenterte publikum",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Plattformenes markedslogikk og publikums fragmenterte bruk er to kausalt koblede, men ulike spørsmål.",
+      "boundary": "Legacyaliasene em_film_tv_stromming_fragmentering migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_stromming_fragmentering"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_gjentakelse_og_resepsjon",
+      "concept_id": "gjentakelse_og_resepsjon",
+      "title": "Gjentakelse og resepsjon",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Nostalgi er en historiebruk, mens gjentakelse også er en distribusjons- og resepsjonspraksis.",
+      "boundary": "Legacyaliasene em_film_tv_nostalgi_gjentakelse migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_nostalgi_gjentakelse"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_husholdning_mobil_skjerm_og_flerskjermsbruk",
+      "concept_id": "husholdning_mobil_skjerm_og_flerskjermsbruk",
+      "title": "Husholdning, mobil skjerm og flerskjermsbruk",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker hvordan rom, enheter, samtidige aktiviteter og sosiale relasjoner former seing utenfor kinoen.",
+      "boundary": "Plattformens forretningsmodell eies av industriområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ebu-public-service-media"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kino_som_kollektiv_visningssituasjon",
+      "concept_id": "kino_som_kollektiv_visningssituasjon",
+      "title": "Kino som kollektiv visningssituasjon",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kinoens samtidige, kollektive visningssituasjon er et selvstendig resepsjonsproblem.",
+      "boundary": "Legacyaliasene em_film_tv_kino_fellesrom migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kino_fellesrom"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kinoarkitektur_og_visningsbetingelser",
+      "concept_id": "kinoarkitektur_og_visningsbetingelser",
+      "title": "Kinoarkitektur og visningsbetingelser",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Salens arkitektur organiserer syn, lyd, kropp og sosialitet i visningssituasjonen.",
+      "boundary": "Legacyaliasene em_film_tv_kinoarkitektur migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kinoarkitektur"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kultfilm_resepsjon_og_fellesskap",
+      "concept_id": "kultfilm_resepsjon_og_fellesskap",
+      "title": "Kultfilm resepsjon og fellesskap",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kultstatusens historiske varighet og samtidige resepsjonsfellesskap krever ulike belegg.",
+      "boundary": "Legacyaliasene em_film_tv_kultfilm_resepsjon migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kultfilm_resepsjon"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_kuratering_og_publikumsdannelse",
+      "concept_id": "kuratering_og_publikumsdannelse",
+      "title": "Kuratering og publikumsdannelse",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kuratering former publikums tilgang og fortolkning og er ikke identisk med distribusjon.",
+      "boundary": "Legacyaliasene em_film_tv_kuratering_publikum migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_kuratering_publikum"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_plattformpublikum_og_bruksspor",
+      "concept_id": "plattformpublikum_og_bruksspor",
+      "title": "Plattformpublikum og bruksspor",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Plattformpublikum kan studeres gjennom bruk, anbefalinger og deltakelse uten å gjøre markedet til eneste forklaring.",
+      "boundary": "Legacyaliasene em_film_tv_plattformpublikum migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_plattformpublikum"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_publikum_som_sosiale_brukere",
+      "concept_id": "publikum_som_sosiale_brukere",
+      "title": "Publikum som sosiale brukere",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Bransjens markedssegment og faktiske publikums praksiser er forskjellige konstruksjoner.",
+      "boundary": "Legacyaliasene em_film_tv_publikumsmarked migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_publikumsmarked"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_publikums_identitetsarbeid",
+      "concept_id": "publikums_identitetsarbeid",
+      "title": "Publikums identitetsarbeid",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Identitet må deles mellom representasjon i verk og publikums bruk av verk i eget identitetsarbeid.",
+      "boundary": "Legacyaliasene em_film_tv_film_tv_identitet migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_film_tv_identitet"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_publikumsdata_metoder_og_makt",
+      "concept_id": "publikumsdata_metoder_og_makt",
+      "title": "Publikumsdata metoder og makt",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Publikumsdata krever metodekritikk om måling, representativitet, personvern og institusjonell bruk. Besøkstall er én datakilde i publikumsanalyse og kan ikke bære et eget fagområde alene.",
+      "boundary": "Legacyaliasene em_film_tv_publikumsdata, em_film_tv_besokstall migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_besokstall",
+        "em_film_tv_publikumsdata"
+      ],
+      "migration_actions": [
+        "keep",
+        "merge"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_publikumsforskning_intervju_etnografi_og_sporreundersokelse",
+      "concept_id": "publikumsforskning_intervju_etnografi_og_sporreundersokelse",
+      "title": "Publikumsforskning: intervju, etnografi og spørreundersøkelse",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Skiller selvrapportering, observasjon, intervju, spørreundersøkelse og digitale bruksspor, med eksplisitt metodekritikk og personvern.",
+      "boundary": "Metoden må velges etter forskningsspørsmål; emnet er ikke en generell oppskrift på datainnsamling.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_resepsjonshistorie_kritikk_og_anmeldelser",
+      "concept_id": "resepsjonshistorie_kritikk_og_anmeldelser",
+      "title": "Resepsjonshistorie, kritikk og anmeldelser",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Bruker samtidige og senere anmeldelser, debatter og publikumsreaksjoner til å undersøke hvordan et verk har blitt fortolket og vurdert over tid.",
+      "boundary": "Verkets form analyseres separat; resepsjonskilder er ikke bevis på produsentens intensjon.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_seervaner_og_mediebruk",
+      "concept_id": "seervaner_og_mediebruk",
+      "title": "Seervaner og mediebruk",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Seervaner krever egne bruks- og publikumsmetoder på tvers av lineær-TV og strømmetjenester.",
+      "boundary": "Legacyaliasene em_film_tv_seervaner migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_seervaner"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tilgjengelige_visninger_og_publikumshindringer",
+      "concept_id": "tilgjengelige_visninger_og_publikumshindringer",
+      "title": "Tilgjengelige visninger og publikumshindringer",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Kartlegger fysiske, sensoriske, språklige, økonomiske og tekniske hindringer i kino, TV og strømmetjenester, samt dokumenterte tilgjengelighetstiltak.",
+      "boundary": "Produksjon av teksting og synstolking eies av produksjonsområdet.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tilskuerteori_identifikasjon_affekt_og_kropp",
+      "concept_id": "tilskuerteori_identifikasjon_affekt_og_kropp",
+      "title": "Tilskuerteori, identifikasjon, affekt og kropp",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "gap_addition",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Undersøker oppmerksomhet, identifikasjon, avstand, følelse og kroppslig respons uten å anta én universell tilskuer.",
+      "boundary": "Påstander om faktiske publikum krever empiriske data og kan ikke avledes fra verket alene.",
+      "legacy_aliases": [],
+      "migration_actions": [
+        "add"
+      ],
+      "evidence_refs": [
+        "qaa-2024-subject-benchmark",
+        "ntnu-filmvitenskap-2026-program"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_tv_ritualer_og_samtidighet",
+      "concept_id": "tv_ritualer_og_samtidighet",
+      "title": "TV ritualer og samtidighet",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "TV-ritualer forklarer tidsbundet fellesskap rundt sendeskjema, direktesending og gjentakelse.",
+      "boundary": "Legacyaliasene em_film_tv_tv_ritualer migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_tv_ritualer"
+      ],
+      "migration_actions": [
+        "keep"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    },
+    {
+      "emne_id": "em_film_tv_visningsrom_og_publikumsbetingelser",
+      "concept_id": "visningsrom_og_publikumsbetingelser",
+      "title": "Visningsrom og publikumsbetingelser",
+      "domain_id": "visning_publikum_resepsjon_deltakelse",
+      "origin": "legacy_migration",
+      "inventory_role": "independent_problem",
+      "status": "proposed_canonical",
+      "definition": "Romlig estetikk i verket og estetiske betingelser i salen må kunne analyseres hver for seg.",
+      "boundary": "Legacyaliasene em_film_tv_visningsrom_estetikk migreres hit. Naboområder kan levere case og metoder, men ikke opprette parallelle emner med samme problemstilling.",
+      "legacy_aliases": [
+        "em_film_tv_visningsrom_estetikk"
+      ],
+      "migration_actions": [
+        "split"
+      ],
+      "evidence_refs": [
+        "film-tv-legacy-classification-v1"
+      ],
+      "required_subcoverage": []
+    }
+  ],
+  "cross_cutting_gates": [
+    "film_and_television_both_explicit_across_the_curriculum",
+    "norwegian_nordic_and_global_coverage_without_western_canon_default",
+    "historical_aesthetic_social_technological_industrial_and_geographical_contexts",
+    "representation_power_accessibility_and_intersectional_analysis",
+    "environmental_sustainability_and_production_ethics",
+    "close_analysis_archive_research_audience_research_industry_analysis_and_practice_methods",
+    "documented_works_scenes_productions_institutions_places_audiences_and_archives_before_theory"
+  ],
+  "next_gate": "migrate_canonical_files_methods_hooks_mappings_quiz_and_runtime"
+}
