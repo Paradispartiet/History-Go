@@ -1,21 +1,21 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-08-03T20:58:11.471Z
+Generert: 2026-08-11T16:32:06.567Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-08-03T20:58:11.471Z |
-| peopleFilesRead | 733 |
-| totalPeople | 1386 |
-| uniquePeopleIds | 1386 |
+| generatedAt | 2026-08-11T16:32:06.567Z |
+| peopleFilesRead | 737 |
+| totalPeople | 1390 |
+| uniquePeopleIds | 1390 |
 | duplicatePeopleIds | 0 |
 | invalidPlaceRefs | 0 |
 | peopleWithoutValidPrimaryAnchor | 0 |
 | peopleWithEmptyPlacesArray | 0 |
 | flatPeopleFiles | 0 |
-| geographicPeopleFiles | 733 |
+| geographicPeopleFiles | 737 |
 | categoriesRepresented | 17 |
 
 ## People-filer
@@ -48,6 +48,10 @@ Generert: 2026-08-03T20:58:11.471Z
 | data/people/by/oslo/people_by_oslo.json | by | ja | 25 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/torggata/alma_fahlstrom.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/torggata/harald_olsen.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/torggata/johan_fahlstrom.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
+| data/people/by/oslo/torggata/thoger_binneballe.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/tullin/claus_tullin.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/oslo/wessels_plass/johan_herman_wessel.json | by | ja | 1 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
 | data/people/by/vestland/etne/people_by_etne_rounds_batch1.json | by | ja | 5 | 0 | 0 | 0 | 0 | 0 | 0 | standard_placeId_schema |
@@ -760,14 +764,14 @@ Generert: 2026-08-03T20:58:11.471Z
 
 | Kategori | People | Flate filer | Geofiler | Foreslått neste steg | Begrunnelse |
 |---|---:|---:|---:|---|---|
-| by | 59 | 0 | 29 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| by | 63 | 0 | 33 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | filantroper | 17 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | film_tv | 24 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| historie | 216 | 0 | 68 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| kunst | 76 | 0 | 27 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| historie | 228 | 0 | 71 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| kunst | 79 | 0 | 28 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | litteratur | 171 | 0 | 128 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| media | 29 | 0 | 5 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| musikk | 121 | 0 | 87 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| media | 31 | 0 | 6 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| musikk | 124 | 0 | 88 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | naeringsliv | 81 | 0 | 26 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | natur | 22 | 0 | 4 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | politikk | 110 | 0 | 52 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
@@ -775,12 +779,12 @@ Generert: 2026-08-03T20:58:11.471Z
 | religion | 3 | 0 | 1 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | scenekunst | 47 | 0 | 47 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | sport | 323 | 0 | 245 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
-| subkultur | 57 | 0 | 8 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
+| subkultur | 37 | 0 | 7 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 | vitenskap | 29 | 0 | 3 | leave_as_is | Kategorien er allerede geografisk strukturert eller trenger ingen egen oppfølgingsbatch basert på denne auditten. |
 
 ## Geografisk strukturstatus
 
-- Allerede geografisk strukturert: 733
+- Allerede geografisk strukturert: 737
 - Fortsatt flate filer: 0
 - Blandede kategorier: ingen
 - Trygge flate filer for neste geografiske split: ingen
@@ -831,6 +835,10 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/by/oslo/people_by_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=25/25; source_place_id=0/25; placesArray=25/25; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/kjell_lund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/st_hallvard_kirke_kloster/nils_slaatto.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/torggata/alma_fahlstrom.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/torggata/harald_olsen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/torggata/johan_fahlstrom.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
+- data/people/by/oslo/torggata/thoger_binneballe.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/tullin/claus_tullin.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/oslo/wessels_plass/johan_herman_wessel.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=by
 - data/people/by/vestland/etne/people_by_etne_rounds_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=5/5; source_place_id=0/5; placesArray=5/5; categories=by
@@ -1528,13 +1536,13 @@ Entries med svak/manglende places[] etter auditreglene: 0
 - data/people/sport/vestland/etne/people_sport_etne_batch2.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/sport/vestland/etne/roar_knudsen_skanevik.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=sport
 - data/people/subkultur/europe/portugal/lisbon/people_subkultur_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=3/3; source_place_id=0/3; placesArray=3/3; categories=subkultur
-- data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=subkultur
+- data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=historie; category_mismatch=1
 - data/people/subkultur/oslo/house_of_nerds/andreas_sollund.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_concrete_anchors_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=subkultur
-- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=15/15; source_place_id=0/15; placesArray=15/15; categories=subkultur
+- data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=15/15; source_place_id=0/15; placesArray=15/15; categories=historie,subkultur; category_mismatch=4
 - data/people/subkultur/oslo/people_subkultur_oslo_skate_anchors_batch2.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=1/1; source_place_id=0/1; placesArray=1/1; categories=subkultur
 - data/people/subkultur/oslo/people_subkultur_oslo_venues_batch3.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=subkultur
-- data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=32/32; source_place_id=0/32; placesArray=32/32; categories=subkultur
+- data/people/subkultur/oslo/people_subkultur_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=32/32; source_place_id=0/32; placesArray=32/32; categories=historie,kunst,media,musikk,subkultur; category_mismatch=15
 - data/people/vitenskap/europe/portugal/lisbon/people_vitenskap_lisbon.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=6/6; source_place_id=0/6; placesArray=6/6; categories=vitenskap
 - data/people/vitenskap/oslo/people_vitenskap_oslo.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=21/21; source_place_id=0/21; placesArray=21/21; categories=vitenskap
 - data/people/vitenskap/vestland/etne/etneelva_forskningsplattform_people_batch1.json: standard_placeId_schema; schemaKind=standard_placeId_schema; placeId=2/2; source_place_id=0/2; placesArray=2/2; categories=vitenskap
@@ -1562,6 +1570,26 @@ Entries med svak/manglende places[] etter auditreglene: 0
 | data/people/natur/oslo/people_natur_oslo.json | gabriel_johnsen_udnaes_voienvolden / Gabriel Johnsen Udnæs | historie | natur | category_does_not_match_file_category |
 | data/people/natur/oslo/people_natur_oslo.json | sverre_udnaes_voienvolden / Sverre Udnæs | historie | natur | category_does_not_match_file_category |
 | data/people/natur/oslo/people_natur_oslo.json | ingrid_udnaes_voienvolden / Ingrid Udnæs | historie | natur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/abelonegarden/abelone_kristensen.json | abelone_kristensen / Abelone Kristensen | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json | renald_antoinette / Renald Antoinette | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json | lars_poverud / Lars Poverud | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json | karl_rognstad / Karl «Sving Deg» Rognstad | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo_named_batch4.json | astrid_christensen / Astrid Christensen | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | kolapalsen / Køla-Pålsen | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | snippmoller / Snipp-Møller | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | lusefrants / Luse-Frants | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | lisa_kristoffersen / Lisa Kristoffersen | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | advokat_hermansen / Advokat Hermansen | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | ole_bjorn / Ole-Bjørn | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | viggo_tigeren / Viggo (byen som tiger) | historie | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | tinashe_williamson / Tinashe Williamson | media | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | stephen_butkus / Stephen Butkus | kunst | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | christopher_nielsen / Christopher Nielsen | kunst | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | hariton_pushwagner / Hariton Pushwagner | kunst | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | don_martin / Don Martin | musikk | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | tommy_tee / Tommy Tee | musikk | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | warlocks_oslo / Warlocks | musikk | subkultur | category_does_not_match_file_category |
+| data/people/subkultur/oslo/people_subkultur_oslo.json | kjetil_rolness / Kjetil Rolness | media | subkultur | category_does_not_match_file_category |
 
 ## Duplicate IDs
 

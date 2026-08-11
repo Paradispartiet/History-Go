@@ -1,0 +1,92 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "johan_fahlstrom",
+  "profile_file": "data/people/by/oslo/torggata/johan_fahlstrom.json",
+  "identity": {
+    "canonical_identity": "Den norske skuespilleren og teaterlederen Johan Peter Broust Fahlstrøm.",
+    "name_variants": [
+      "Johan Fahlstrøm",
+      "Johan Peter Broust Fahlstrøm"
+    ],
+    "not": [
+      "navnelike personer"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_profession",
+      "claim": "Johan Fahlstrøm var norsk skuespiller og teaterleder.",
+      "status": "verified",
+      "source_url": "https://snl.no/Johan_Fahlstr%C3%B8m",
+      "source_location": "faktaboks og innledning",
+      "source_type": "reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "fahlstroms_theater",
+      "claim": "Alma og Johan Fahlstrøm drev Fahlstrøms Theater i Torggata 9 i 1903–1911; Johan Fahlstrøm spilte en rekke hovedroller og tegnet dekorasjoner og kostymer.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/side/Fahlstr%C3%B8ms_Theater",
+      "source_location": "avsnittene om drift og oppsetninger",
+      "source_type": "reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_profession"
+    ],
+    "kindLabel": [
+      "identity_profession"
+    ],
+    "year": [
+      "fahlstroms_theater"
+    ],
+    "placeId": [
+      "fahlstroms_theater"
+    ],
+    "places[torggata]": [
+      "fahlstroms_theater"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_profession",
+          "fahlstroms_theater"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_profession"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "fahlstroms_theater"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "2/2",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

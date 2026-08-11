@@ -6,55 +6,55 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `5d223bd429032f02797c1c1a0541f39a4da13fd2b6ae2dd0673e59e6310aa1a5`
+Source fingerprint: `3dde6a36f2682d81d70dd6622292f7514a132a6f4e7499e21f6a5c1f386b441c`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1386 |
+| Personer | 1390 |
 | Presentasjon complete | 54 |
-| Presentasjon strong | 359 |
+| Presentasjon strong | 363 |
 | Presentasjon partial | 953 |
 | Presentasjon sparse | 20 |
-| People Profile v1 ready | 39 |
+| People Profile v1 ready | 43 |
 | Legacy uten v1-claims | 1347 |
 | Ødelagte bildereferanser | 302 |
-| Eksplisitt initialfallback | 984 |
+| Eksplisitt initialfallback | 988 |
 | Implisitt initialfallback | 23 |
-| Gjennomsnittspoeng | 64.6 |
+| Gjennomsnittspoeng | 64.7 |
 
 ## Feltdekning
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 93 | 6.7 % |
-| popupDesc | 1360 | 98.1 % |
+| identity | 97 | 7 % |
+| popupDesc | 1364 | 98.1 % |
 | lifeData | 51 | 3.7 % |
 | contributionsDeclared | 54 | 3.9 % |
 | educationDeclared | 54 | 3.9 % |
-| practiceDeclared | 1367 | 98.6 % |
-| placeGrounding | 1386 | 100 % |
-| sources | 402 | 29 % |
-| imageContract | 1084 | 78.2 % |
-| profileStandard | 39 | 2.8 % |
+| practiceDeclared | 1371 | 98.6 % |
+| placeGrounding | 1390 | 100 % |
+| sources | 406 | 29.2 % |
+| imageContract | 1088 | 78.3 % |
+| profileStandard | 43 | 3.1 % |
 
 ## Kategorier
 
 | Kategori | Totalt | Complete | Strong | Partial | Sparse | v1 ready | Legacy | Snitt |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | sport | 323 | 0 | 23 | 300 | 0 | 0 | 323 | 62.3 |
-| historie | 216 | 1 | 95 | 120 | 0 | 0 | 216 | 64.2 |
+| historie | 228 | 1 | 95 | 132 | 0 | 0 | 228 | 63.9 |
 | litteratur | 172 | 36 | 19 | 117 | 0 | 16 | 156 | 70.4 |
-| musikk | 121 | 0 | 14 | 107 | 0 | 0 | 121 | 62.2 |
+| musikk | 124 | 0 | 14 | 110 | 0 | 0 | 124 | 62.1 |
 | politikk | 114 | 3 | 50 | 61 | 0 | 14 | 100 | 67.5 |
-| kunst | 81 | 7 | 64 | 10 | 0 | 9 | 72 | 73.7 |
+| kunst | 84 | 7 | 64 | 13 | 0 | 9 | 75 | 73.1 |
 | naeringsliv | 81 | 0 | 28 | 34 | 19 | 0 | 81 | 58.4 |
-| by | 61 | 7 | 38 | 16 | 0 | 0 | 61 | 71.7 |
-| subkultur | 57 | 0 | 1 | 56 | 0 | 0 | 57 | 60.3 |
+| by | 65 | 7 | 42 | 16 | 0 | 4 | 61 | 72.2 |
 | scenekunst | 47 | 0 | 16 | 31 | 0 | 0 | 47 | 64 |
+| subkultur | 37 | 0 | 1 | 36 | 0 | 0 | 37 | 61.3 |
 | vitenskap | 34 | 0 | 3 | 30 | 1 | 0 | 34 | 57.7 |
-| media | 29 | 0 | 1 | 28 | 0 | 0 | 29 | 59.4 |
+| media | 31 | 0 | 1 | 30 | 0 | 0 | 31 | 59.3 |
 | film_tv | 24 | 0 | 0 | 24 | 0 | 0 | 24 | 58.3 |
 | natur | 22 | 0 | 3 | 19 | 0 | 0 | 22 | 59.7 |
 | religion | 3 | 0 | 3 | 0 | 0 | 0 | 3 | 80 |
@@ -87,6 +87,7 @@ Source fingerprint: `5d223bd429032f02797c1c1a0541f39a4da13fd2b6ae2dd0673e59e6310
 | cinemateket_oslo | 9 | 0 | 9 | 0 | 57 | Anja Breien (57; legacy_unreviewed), Arne Skouen (57; legacy_unreviewed), Bredo Greve (57; legacy_unreviewed), Edith Carlmar (57; legacy_unreviewed), Jan Erik Holst (57; legacy_unreviewed) |
 | karl_johan | 9 | 1 | 7 | 1 | 57 | Petter Stordalen (32; legacy_unreviewed), Christian Krohg (57; legacy_unreviewed), Edvard Munch (57; legacy_unreviewed), Oda Krohg (57; legacy_unreviewed), Aasta Hansteen (57; legacy_unreviewed) |
 | nasjonalbiblioteket | 9 | 0 | 3 | 6 | 67 | Per Petterson (57; legacy_unreviewed), Rolf Jacobsen (57; legacy_unreviewed), Bjørnstjerne Bjørnson (67; legacy_unreviewed), Linn Ullmann (62; legacy_unreviewed), Axel Revold (72; legacy_unreviewed) |
+| torggata | 9 | 0 | 5 | 4 | 67.2 | Christopher Nielsen (57; legacy_unreviewed), Don Martin (57; legacy_unreviewed), Gateavisa-miljøet (57; legacy_unreviewed), Kjetil Rolness (57; legacy_unreviewed), Warlocks (57; legacy_unreviewed) |
 | stensparken | 9 | 0 | 1 | 0 | 95.8 | Halvor C. Reiersen (62; legacy_unreviewed), Hagbarth Schytte-Berg (100; legacy_unreviewed), Harald Aars (100; legacy_unreviewed), Jo Visdal (100; legacy_unreviewed), Kjersti Wexelsen Goksøyr (100; legacy_unreviewed) |
 | gamle_deichman | 8 | 0 | 8 | 0 | 57.6 | Arne Garborg (57; legacy_unreviewed), Haakon Nyhuus (57; legacy_unreviewed), Knut Hamsun (57; legacy_unreviewed), Nils Collett Vogt (57; legacy_unreviewed), Sigbjørn Obstfelder (57; legacy_unreviewed) |
 | jordal_amfi | 8 | 0 | 8 | 0 | 62 | Arne Billkvam (62; legacy_unreviewed), Einar Bruno Larsen (62; legacy_unreviewed), Espen Knutsen (62; legacy_unreviewed), Geir Myhre (62; legacy_unreviewed), Jim Marthinsen (62; legacy_unreviewed) |
@@ -102,7 +103,6 @@ Source fingerprint: `5d223bd429032f02797c1c1a0541f39a4da13fd2b6ae2dd0673e59e6310
 | nasjonalmuseet | 6 | 0 | 0 | 6 | 70.8 | Harriet Backer (65; legacy_unreviewed), Anna-Eva Bergman (70; legacy_unreviewed), Nikolai Astrup (70; legacy_unreviewed), Per Kleiva (70; legacy_unreviewed), Rolf Nesch (70; legacy_unreviewed) |
 | grunnlovsbygget_bankplassen | 5 | 5 | 0 | 0 | 32 | Anton Martin Schweigaard (32; legacy_unreviewed), Gunnar Jahn (32; legacy_unreviewed), Nicolai Rygg (32; legacy_unreviewed), Nicolay August Andresen (32; legacy_unreviewed), Thomas Heftye (32; legacy_unreviewed) |
 | frogner_stadion | 5 | 0 | 5 | 0 | 57 | Hjalmar Andersen (57; legacy_unreviewed), Johann Olav Koss (57; legacy_unreviewed), Oscar Mathisen (57; legacy_unreviewed), Oslo Skøiteklub (57; legacy_unreviewed), Sonja Henie (57; legacy_unreviewed) |
-| torggata | 5 | 0 | 5 | 0 | 57 | Christopher Nielsen (57; legacy_unreviewed), Don Martin (57; legacy_unreviewed), Gateavisa-miljøet (57; legacy_unreviewed), Kjetil Rolness (57; legacy_unreviewed), Warlocks (57; legacy_unreviewed) |
 | vg_huset | 5 | 0 | 5 | 0 | 58 | Bernt Olufsen (57; legacy_unreviewed), Gard Steiro (57; legacy_unreviewed), Hanne Skartveit (57; legacy_unreviewed), Torry Pedersen (57; legacy_unreviewed), Kåre Valebrokk (62; legacy_unreviewed) |
 | tjuvholmen | 5 | 0 | 3 | 2 | 61.6 | Geir Grung (57; legacy_unreviewed), Hariton Pushwagner (57; legacy_unreviewed), Stephen Butkus (57; legacy_unreviewed), Bjarne Melgaard (65; legacy_unreviewed), Rolf Stenersen (72; legacy_unreviewed) |
 | chat_noir | 5 | 0 | 5 | 0 | 62 | Bokken Lasson (62; legacy_unreviewed), Dag Frøland (62; legacy_unreviewed), Jens Book-Jenssen (62; legacy_unreviewed), Victor Bernau (62; legacy_unreviewed), Vilhelm Dybwad (62; legacy_unreviewed) |
@@ -146,7 +146,7 @@ Source fingerprint: `5d223bd429032f02797c1c1a0541f39a4da13fd2b6ae2dd0673e59e6310
 | 105 | Morten Ramm | scenekunst | nrk_huset_marienlyst | 42 | partial | legacy_unreviewed | missing_role_label, missing_popup_desc, missing_contributions_field, missing_sources, implicit_image_fallback, legacy_unreviewed | `data/people/scenekunst/oslo/nrk_huset_marienlyst/morten_ramm.json` |
 | 105 | Peter Waage | vitenskap | universitetets_gamle_kjemi | 42 | partial | legacy_unreviewed | missing_role_label, missing_popup_desc, missing_birth_data, missing_contributions_field, missing_sources, legacy_unreviewed | `data/people/vitenskap/oslo/people_vitenskap_oslo.json` |
 | 92 | Ada Hegerberg | sport | ullevaal_stadion | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/sport/oslo/people_sport_oslo.json` |
-| 92 | Advokat Hermansen | subkultur | stortinget | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/subkultur/oslo/people_subkultur_oslo.json` |
+| 92 | Advokat Hermansen | historie | stortinget | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/subkultur/oslo/people_subkultur_oslo.json` |
 | 92 | Alexander Rybak | musikk | operahuset | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/musikk/oslo/people_musikk_oslo.json` |
 | 92 | Alexis de Chateauneuf | historie | trefoldighetskirken | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
 | 92 | Alfredo Marceneiro | musikk | lisbon_museu_do_fado | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/musikk/europe/portugal/lisbon/people_musikk_lisbon.json` |
@@ -195,9 +195,9 @@ Source fingerprint: `5d223bd429032f02797c1c1a0541f39a4da13fd2b6ae2dd0673e59e6310
 | 92 | Christian Michelsen | politikk | stortinget | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/politikk/oslo/people_politikk_oslo.json` |
 | 92 | Christian Norberg-Schulz | by | universitetsplassen | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/by/oslo/people_by_oslo.json` |
 | 92 | Christopher Hansteen | historie | observatoriet | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
-| 92 | Christopher Nielsen | subkultur | torggata | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/subkultur/oslo/people_subkultur_oslo.json` |
+| 92 | Christopher Nielsen | kunst | torggata | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/subkultur/oslo/people_subkultur_oslo.json` |
 | 92 | Dag O. Hessen | natur | naturhistorisk_museum | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/natur/oslo/people_natur_oslo.json` |
-| 92 | Don Martin | subkultur | torggata | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/subkultur/oslo/people_subkultur_oslo.json` |
+| 92 | Don Martin | musikk | torggata | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/subkultur/oslo/people_subkultur_oslo.json` |
 | 92 | Edith Carlmar | film_tv | cinemateket_oslo | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/film_tv/oslo/people_film_tv_oslo.json` |
 | 92 | Edvard Grieg | musikk | operahuset | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/musikk/oslo/people_musikk_oslo.json` |
 | 92 | Edvard Munch | historie | karl_johan | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
@@ -239,7 +239,7 @@ Source fingerprint: `5d223bd429032f02797c1c1a0541f39a4da13fd2b6ae2dd0673e59e6310
 | 92 | Harald Hardråde | historie | middelalder_oslo | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
 | 92 | Harald Hårfagre | historie | hafrsfjord | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/historie/oslo/people_historie_oslo.json` |
 | 92 | Harald Stanghelle | media | aftenposten_akersgata | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/media/oslo/people_media_oslo.json` |
-| 92 | Hariton Pushwagner | subkultur | tjuvholmen | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/subkultur/oslo/people_subkultur_oslo.json` |
+| 92 | Hariton Pushwagner | kunst | tjuvholmen | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/subkultur/oslo/people_subkultur_oslo.json` |
 | 92 | Harriet Holter | vitenskap | universitetets_gamle_hovedbygning | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/vitenskap/oslo/people_vitenskap_oslo.json` |
 | 92 | Hausmania-miljøet | subkultur | hausmania | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/subkultur/oslo/people_subkultur_oslo.json` |
 | 92 | Helene Uri | litteratur | eldorado_bokhandel | 57 | partial | legacy_unreviewed | missing_role_label, missing_birth_data, missing_contributions_field, missing_sources, broken_image_reference, legacy_unreviewed | `data/people/litteratur/oslo/people_litteratur_oslo.json` |
