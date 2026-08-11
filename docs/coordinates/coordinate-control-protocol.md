@@ -81,7 +81,7 @@ Oslo-protokollen dekker nå 428 aktive current `verified*` canonical Oslo-steder
 | 10 | `nordre_skoyen_hovedgard` | Nordre Skøyen hovedgård | verified | `geonorge-adresser-v1:0301:15665:17` |
 | 11 | `lokomotivverkstedet` | Lokomotivverkstedet | verified | `geonorge-adresser-v1:0301:10641:16` |
 | 11 | `tveten_gard` | Tveten gård | verified | `geonorge-adresser-v1:0301:17852:101` |
-| 11 | `torggata` | Torggata | verified_geometry | `osm-way:112054930` |
+| 11 | `torggata` | Torggata | verified_geometry | `oslobyleksikon:torggata` |
 | 11 | `bispelokket` | Bispelokket / Trafikkmaskinen | verified_historical_source | `regjeringen:stmeld-28-2001-2002:bispelokket` |
 | 11 | `karl_johan` | Karl Johans gate | verified_geometry | `oslobyleksikon:karl-johans-gate` |
 | 11 | `radhusplassen` | Rådhusplassen | verified_geometry | `oslo-kommune:fjordbyen:radhusplassen` |
@@ -971,16 +971,3 @@ Batch 195 (2026-07-24) løser `frognerstranda` som et lineært kystområde fra i
 | `bygdoy_roykenvika` | Aktiv place-markør avviklet; identiteten kunne ikke dokumenteres | `reports/oslo-coordinate-bygdoy-roykenvika-identity-research-post-195/summary.json` | Ingen; innhold og koblinger er fjernet fremfor å flyttes til et annet fysisk sted |
 | `bygdoy_kongsgard_salamanderdam` | Separat kartmarkør avviklet; naturkunnskapen er flyttet til `bygdoy_kongsgard` | `reports/oslo-coordinate-bygdoy-kongsgard-salamander-model-audit-post-195/summary.json` | Verifisert offentlig Kongsgård-anker brukes til formidling; presis habitatposisjon publiseres ikke |
 | `ostensjovannet_sivbelte` | Separat kartmarkør avviklet; sivbelteinnholdet ligger i `ostensjovannet` | `reports/oslo-coordinate-ostensjovannet-sivbelte-model-audit-post-195/summary.json` | Verifisert reservatanker og konkrete kildebelagte delankre beholdes; vilkårlig sivbelte-midpunkt publiseres ikke |
-
-
-## Korrigeringer etter opprinnelig Oslo-kontroll
-
-### Torggata – 2026-08-11
-
-Den opprinnelige batch 11-raden for `torggata` bygde på en senere dokumentert ufullstendig geometri: en 12-way OSM-komponent fra Youngstorget mot Ankertorget ble behandlet som om den representerte hele canonical Torggata. Sted-for-sted-produksjonen i PR #4797 dokumenterte at canonical identitet er **Stortorvet–Ankertorget**, at den lagrede Overpass-responsen også inneholder den sørlige navngitte `osm-way:267226140`, og at OSM modellerer Youngstorget som eget pedestrian-areal mellom de to navngitte Torggata-komponentene.
-
-PR #4799 (merge `a54354607fda66d443130c76da9cbc09b9081eda`) erstattet derfor den ufullstendige lengdemidtpunktmodellen med et eksplisitt semantisk line-anchor på Youngstorget: `59.91478, 10.74923`, `sourceObjectId: osm-way:112054930`, med separate sør-/midt-/nordankre for Stortorvet, Youngstorget og Ankertorget. Den ufullstendige `routeSegments`-kjeden ble fjernet fremfor å presenteres som hele gaten.
-
-Etter merge av PR #4799 ble det oppdaget at `data/places/places_index.json` fortsatt bar den gamle coordinate-modellen. PR #4800 (merge `9241478a2a0f9b1fa1f7165ad9508a73d997dbfd`) regenererte runtime-indeksen med one-shot coordinate runner. Runner run `31464230957` passerte split-manifest sync, place-index sync, Coordinate Source Contract, coordinate quality, strict intake, coordinate evidence, place health og diff-kontroll. Canonical place og generated/runtime index er dermed synkronisert på den nye Torggata-representasjonen.
-
-Den nære `youngstorget`-markøren er et separat canonicalt torgobjekt og beholdes. Torggata-ankeret representerer gateløpet gjennom torget; Youngstorget-markøren representerer selve plassflaten. Nærhet er derfor dokumentert fysisk overlapp mellom to forskjellige objekttyper, ikke et place-duplikat. Interaktiv History-Go-browser-QA føres separat i Torggata-arbeidskortet og må være reelt utført før hele stedets coordinate-fase kan lukkes.
