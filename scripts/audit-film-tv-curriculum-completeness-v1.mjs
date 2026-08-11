@@ -120,7 +120,7 @@ export function auditFilmTvCurriculumCompletenessV1({ writeReport = false, check
   const pensum = json(P.pensum);
   const registry = json(P.registry).subjects?.film_tv;
   const status = json(P.status).subjects.find((row) => row.id === 'film_tv');
-  if (status?.nextGate === 'canonical_inventory_migrated_existing_chapter_reaudit') {
+  if (['canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan'].includes(status?.nextGate)) {
     const inventory = json(P.inventory);
     const historical = json(P.report);
     assert(emner.length === 192 && fagkart.categories.length === 10 && pensum.domains.length === 10, 'Den migrerte canonen samsvarer ikke med completeness-planen');

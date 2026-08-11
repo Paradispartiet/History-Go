@@ -353,10 +353,14 @@ function buildControlFiles({ inventory, aliases, emners, methods, mappings, fagk
   quizTemplate.essential_concepts = unique([...quizTemplate.essential_concepts, ...inventory.emner.filter((row) => row.inventory_role === 'integrative_foundation').map((row) => row.title)]);
 
   const registry = structuredClone(currentRegistry);
-  registry.version = '2.72.0';
-  registry.updatedAt = '2026-08-11';
+  const currentFilmStatus = currentStatus.subjects.find((row) => row.id === 'film_tv');
+  const laterChapterGate = currentFilmStatus?.nextGate === 'canonical_chapter_reaudit_complete_learning_order_plan';
+  if (!laterChapterGate) {
+    registry.version = '2.72.0';
+    registry.updatedAt = '2026-08-11';
+  }
   registry.subjects.film_tv.description = 'Et globalt og stedsforankret audiovisuelt fagverk om form og stil, fortelling og serialitet, film- og TV-historie, dokumentar og etikk, representasjon og makt, produksjon og arbeid, industri og distribusjon, visning og publikum, skjermgeografi, arkiv, kulturarv og minne. Faget starter i dokumenterte verk, scener, produksjoner, sendinger, visningssteder, locations, publikumspraksiser, institusjoner og arkivkilder før metode og teori løftes inn.';
-  registry.subjects.film_tv.canonicalModel.note = 'Film & TVs canonicale kilder er migrert til 192 evidensbaserte emner i ti variabelt store områder, 119 metoder og eksplisitte én-til-én hooks og mappings. Tallene er integritetskontroller, ikke kvoter. De 120 gamle emne-ID-ene bevares bare som sporbare aliases. De to eksisterende fulltekstkapitlene bevares med claims og kilder, men må reauditeres mot aliasmålene før ny kapittelproduksjon.';
+  if (!laterChapterGate) registry.subjects.film_tv.canonicalModel.note = 'Film & TVs canonicale kilder er migrert til 192 evidensbaserte emner i ti variabelt store områder, 119 metoder og eksplisitte én-til-én hooks og mappings. Tallene er integritetskontroller, ikke kvoter. De 120 gamle emne-ID-ene bevares bare som sporbare aliases. De to eksisterende fulltekstkapitlene bevares med claims og kilder, men må reauditeres mot aliasmålene før ny kapittelproduksjon.';
   const chapterDomainMigration = {
     'kinoer-visningssteder-og-publikum': 'visning_publikum_resepsjon_deltakelse',
     'produksjon-studio-og-filmarbeid': 'produksjon_arbeid_teknologi_praksis'
@@ -367,11 +371,13 @@ function buildControlFiles({ inventory, aliases, emners, methods, mappings, fagk
   }
 
   const status = structuredClone(currentStatus);
-  status.version = '1.60.0';
-  status.updatedAt = '2026-08-11';
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
-  filmStatus.nextGate = 'canonical_inventory_migrated_existing_chapter_reaudit';
-  filmStatus.note = 'Film & TVs canonicale fagkart, emner, metoder, hooks, mappings, quizregler, pensum og runtime-projeksjon er migrert samlet til det variable inventaret: ti områder, 192 emner, 119 metoder og 192 eksplisitte hooks/mappinger. De 120 legacy-ID-ene er aliases, ikke parallelle emner. De to bevarte kapitlene må nå reauditeres og få canonical emnedekning projisert gjennom aliasene før kapittelproduksjon kan fortsette.';
+  if (!laterChapterGate) {
+    status.version = '1.60.0';
+    status.updatedAt = '2026-08-11';
+    filmStatus.nextGate = 'canonical_inventory_migrated_existing_chapter_reaudit';
+    filmStatus.note = 'Film & TVs canonicale fagkart, emner, metoder, hooks, mappings, quizregler, pensum og runtime-projeksjon er migrert samlet til det variable inventaret: ti områder, 192 emner, 119 metoder og 192 eksplisitte hooks/mappinger. De 120 legacy-ID-ene er aliases, ikke parallelle emner. De to bevarte kapitlene må nå reauditeres og få canonical emnedekning projisert gjennom aliasene før kapittelproduksjon kan fortsette.';
+  }
   return { quizRules, quizTemplate, registry, status, counts };
 }
 

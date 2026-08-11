@@ -387,7 +387,7 @@ function main() {
   assert(fs.existsSync(abs(REGISTRY_FILE)), 'Mangler fagverkregister');
   assert(fs.existsSync(abs(STATUS_FILE)), 'Mangler fagverkstatus');
   const activeGate = readJson(STATUS_FILE).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  if (['curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit'].includes(activeGate)) {
+  if (!['chapter_production', 'remaining_domain_chapter_production'].includes(activeGate)) {
     console.log(`Bevarte Film & TV/${CHAPTER_ID} uendret under ${activeGate}.`);
     return;
   }
