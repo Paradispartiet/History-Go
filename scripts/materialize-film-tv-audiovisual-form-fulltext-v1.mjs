@@ -329,8 +329,8 @@ export function buildFilmTvAudiovisualFormFulltextV1() {
 
 export function materializeFilmTvAudiovisualFormFulltextV1() {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  assert(['audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_chapter_complete_next_unit_source_brief', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief'].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
-  if (['narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief'].includes(currentGate)) {
+  assert(['audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_chapter_complete_next_unit_source_brief', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production'].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if (['narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production'].includes(currentGate)) {
     console.log('Audiovisuell form er allerede materialisert; bevarer den senere narrative kildebriefporten.');
     return null;
   }

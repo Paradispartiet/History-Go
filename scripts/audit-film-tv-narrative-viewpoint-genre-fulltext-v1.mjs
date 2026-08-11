@@ -7,6 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'fortelling-synsvinkel-og-sjanger';
 const OUTPUT_GATE = 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief';
+const LATER_SOURCE_BRIEF_GATE = 'seriality_format_adaptation_source_brief_complete_full_chapter_production';
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`, brief: `data/fagverk/film_tv/${CHAPTER_ID}/brief.json`, claims: `data/fagverk/film_tv/${CHAPTER_ID}/claims.json`,
   sourceBrief: 'data/fag/TV_og_Film/film_tv_narrative_viewpoint_genre_source_claim_brief_v1.json',
@@ -88,7 +89,7 @@ export function auditFilmTvNarrativeViewpointGenreFulltextV1({ writeReport = fal
   assert(sourceBrief.runtime_registration.registered === true && sourceBrief.runtime_registration.chapter_id === CHAPTER_ID, 'Kildebriefen dokumenterer ikke registreringen');
   assert(plannedClaims.every((row) => row.status === 'resolved_to_verified_claim' && row.final_claim_id === row.id && claimIds.has(row.id)), 'En claimplan er ikke løst');
   assert(registryChapter?.file === P.chapter && isDeepStrictEqual(registryChapter.emne_ids, chapter.emne_ids), 'Fagverkregisteret mangler eller feilregistrerer kapitlet');
-  assert(statusEntry.editorialStatus === 'chapters_in_progress' && statusEntry.nextGate === OUTPUT_GATE, 'Film & TV står ikke på neste enhets kildebriefport');
+  assert(statusEntry.editorialStatus === 'chapters_in_progress' && [OUTPUT_GATE, LATER_SOURCE_BRIEF_GATE].includes(statusEntry.nextGate), 'Film & TV står ikke på neste enhets kildebrief- eller fulltekstport');
 
   const combined = JSON.stringify({ chapter, brief, modules: modules.map((row) => row.value) });
   assert(/fiksjonsverden.{0,240}(regler|opplysninger|utelatelser)/is.test(combined), 'Fiksjonsverden-vakten mangler');
