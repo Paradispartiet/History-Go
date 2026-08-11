@@ -73,13 +73,24 @@ Før nytt kapittelarbeid skal:
 
 De to materialiserte kapitlene slettes ikke. Tekst, claims, kilder og cases bevares, men kapittelinndeling og emnekoblinger kan senere justeres når ny canonical arkitektur er vedtatt.
 
+## Fremdrift i refaktoren
+
+Første migreringskrav er nå gjennomført i `reports/fagverk/film-tv-legacy-emne-classification-v1.json`: alle 120 legacy-emner har nøyaktig én eksplisitt beslutning, ett eller flere kandidatområder, etterfølgerbegrep, begrunnelse, faglig grense og alias-krav. Fordelingen mellom `keep`, `merge`, `move`, `split` og `retire` er en konsekvens av vurderingene, ikke et måltall.
+
+Klassifikasjonen er migreringsinput, ikke et nytt canonicalt inventar. Neste port er å identifisere manglende relevant stoff og utforme et variabelt inventar. Derfor er videre kapittelproduksjon fortsatt blokkert.
+
 ## Maskinell kontroll
 
 Auditen kjøres med:
 
 ```bash
 node scripts/audit-film-tv-curriculum-completeness-v1.mjs
+node scripts/audit-film-tv-legacy-emne-classification-v1.mjs
 node --test tests/film-tv-curriculum-completeness-v1.test.mjs
+node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
 ```
 
-Canonical rapport: `reports/fagverk/film-tv-curriculum-completeness-v1.json`.
+Canonicale rapporter:
+
+- `reports/fagverk/film-tv-curriculum-completeness-v1.json`
+- `reports/fagverk/film-tv-legacy-emne-classification-v1.json`
