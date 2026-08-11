@@ -14,6 +14,7 @@
 - Fase 7A-audit: `reports/place-production/torggata-phase7a-about-audit-v1.md`
 - Fase 7B-audit: `reports/place-production/torggata-phase7b-history-audit-v1.md`
 - Fase 7C-audit: `reports/place-production/torggata-phase7c-story-audit-v1.md`
+- Fase 7D-audit: `reports/place-production/torggata-phase7d-before-after-audit-v1.md`
 
 ## Korrigert fasestatus
 
@@ -26,7 +27,7 @@
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **PÅGÅR – 7C FORTELLINGER KLAR FOR REVIEW** | audit PR #4817; 7A Om PR #4820; 7B Historie PR #4822; 7C aktiv branch |
+| 7. Popupfaner | **PÅGÅR – 7D FØR/ETTER KLAR FOR REVIEW** | audit PR #4817; 7A Om PR #4820; 7B Historie PR #4822; 7C Fortellinger PR #4824; 7D aktiv branch |
 | 8–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
@@ -142,8 +143,8 @@ BESLUTNING: REELT AUDITARBEID – vurder hver av åtte canonical popupfaner sepa
 
 - **Om – 7A GODKJENT:** egen manifest-lastet `title: Torggata`-hovedartikkel supplerer fase-5-artikkelen og fase-6 spatial/subplaces med kildebårne facts. PR #4820, merge `49b79250403bdbfd6db0a4d07aa57887fa7eefe4`.
 - **Historie – 7B GODKJENT:** `history_layers` beholdes; seks kildebårne chronology-poster erstatter den generiske legacy-tidslinjen i popupen, og navnløs legacy-extra undertrykkes via eksplisitt opt-in. PR #4822, merge `20f775df7a7c09f3d0c1debaa2d2d45a16431d68`.
-- **Fortellinger – 7C KLAR FOR REVIEW:** den ene eksisterende Torggata-storyen beholdes som narrativ idé, men migreres til `episode_v1`, canonical type `conflict` og uten tematisk Markveien-`next_scenes`.
-- **Før/etter – TRENGER ARBEID / 7D:** `for_na` finnes, men interne History GO/Wonderkammer-kilder kan ikke være selvstendig faktagrunnlag, og kontrollert bildepar mangler.
+- **Fortellinger – 7C GODKJENT:** én samlet Torggata-story er migrert til `episode_v1`, canonical type `conflict`, score 20 og uten tematisk Markveien-`next_scenes`. PR #4824, merge `d07c55f1ec9b790bfa64b26cf7d3c87d3d4c7771`.
+- **Før/etter – 7D KLAR FOR REVIEW:** legacy `for_na` er erstattet av eksternt kildebåret før/etter om gateombyggingen, med lisensiert 2009/2017-bildepar og eksplisitt kamerastandpunktbegrensning.
 - **Nyheter – BEGRUNNET N/A:** ingen canonical Torggata-notiser er dokumentert som relevante nok til produksjon nå.
 - **Lesespor – BEGRUNNET N/A:** eksisterende Torggata-koblinger er subscription/paywall og filtreres korrekt fra den åpne stedflaten; ingen åpent direkte lesbart Torggata-spor er dokumentert.
 - **Kilder – TRENGER ARBEID / 7E:** sikre kildenavn finnes, men flere av dem er bare labels og ikke inspectable brukerrettede HTTPS-lenker.
@@ -209,21 +210,47 @@ BEHOLD: én samlet fortelling om ombygging og konflikt mellom ulike brukere av g
 BESLUTNING: MIGRER TIL DAGENS STORY-KONTRAKT – ikke produser flere milepæl-Stories
 ```
 
-Aktiv 7C-leveranse:
+Godkjent 7C-leveranse:
 
-- eksisterende story-ID og tittel beholdes;
+- eksisterende story-ID og tittel er beholdt;
 - `quality_profile: episode_v1`;
-- canonical story-type endres fra legacy `urban_change` til `conflict`;
+- canonical story-type er `conflict`;
 - primært episodeanker er bystyrevedtaket i 2010;
-- storyteksten presiseres mot Oslo byleksikon, Arkitektur skaper verdi og TØI;
-- tidligere «prøveprosjekt»-formulering fra 2009 fjernes til fordel for dokumenterte sperrer/bilbegrensning;
-- 2014 beholdes som åpningen av den ferdige gateutformingen;
+- storyteksten er presisert mot Oslo byleksikon, Arkitektur skaper verdi og TØI;
+- tidligere «prøveprosjekt»-formulering fra 2009 er fjernet til fordel for dokumenterte sperrer/bilbegrensning;
+- 2014 er beholdt som åpningen av den ferdige gateutformingen;
 - TØIs dokumenterte konflikt mellom gående og syklende er den narrative konsekvensen;
-- tematisk `next_scenes` til Markveien fjernes;
-- `related_places` tømmes fordi nabogatene ikke er nødvendige ledd i den konkrete fortellingen;
-- story-filen registreres i `stories_episode_v1_manifest.json`;
+- tematisk `next_scenes` til Markveien er fjernet;
+- `related_places` er tømt fordi nabogatene ikke er nødvendige ledd i den konkrete fortellingen;
+- story-filen er registrert i `stories_episode_v1_manifest.json`;
 - maskinberegnet score er `20`;
 - `tests/torggata-phase7c-story.test.mjs` låser én Story, episode-v1, type, episodefelt, kilder, score og tomme tematiske koblinger.
+
+PR #4824 passerte Stories governance, TypeScript guard, Place rounds governance og Fagverk By Data og styring Phase 4 på samme head. Faktisk `main` ble kontrollert på merge `d07c55f1ec9b790bfa64b26cf7d3c87d3d4c7771` før 7D startet.
+
+## Fase 7D – Før/etter
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+TIDLIGERE GODKJENT 7D-PR/COMMIT: ingen funnet
+LEGACY-FUNN: for_na brukte History Go/Wonderkammer som faktakilder og manglet bildepar/attribusjon
+BEHOLD: ideen om Torggatas dokumenterte gateombygging som før/etter-case
+BESLUTNING: RETROFIT – ekstern faktabasis, lisensiert bildepar, eksplisitte inferens- og kameragrenser
+```
+
+Aktiv 7D-leveranse:
+
+- tittel er `Torggata før og etter ombyggingen`;
+- `before`, `now` og `change` er avgrenset til dokumentert trafikk- og byromsendring;
+- udokumenterte lokale påstander om leienivå, automatisk fortrengning og symbolsk verdi er fjernet fra Før/etter-faktalaget;
+- fakta bygger på Oslo byleksikon, Arkitektur skaper verdi og TØI;
+- alle `for_na.sources` er inspectable HTTPS-URL-er; ingen intern History Go-/Wonderkammer-kilde står igjen;
+- førbilde: `Torggata 2009-06-08.jpg`, Kjetil Ree, CC BY-SA 3.0, Youngstorget-kameraposisjon dokumentert;
+- etterbilde: `Torggata (2017-01-08).jpg`, Kjetil Ree, CC BY-SA 3.0;
+- begge bilder har Commons-kildeside, dato og attribusjon;
+- teksten sier eksplisitt at bildene ikke er tatt fra identisk kamerastandpunkt og derfor brukes som gateprofil-sammenligning, ikke eksakt fotoreplikk;
+- `tests/place-card-for-na-torggata.test.js` låser kilder, bilder, lisens, attribusjon, kamerabegrensning og inferensgrense;
+- ingen øvrig canonical Torggata-data er endret.
 
 ### Bindende delstegrekkefølge
 
@@ -231,4 +258,4 @@ Aktiv 7C-leveranse:
 7 audit → 7A Om → 7B Historie → 7C Fortellinger → 7D Før/etter → 7E Kilder
 ```
 
-7C settes først **GODKJENT** etter story-integritet/relevant CI, squash-merge og kontroll på faktisk `main`. 7D starter først da.
+7D settes først **GODKJENT** etter relevant CI, squash-merge og kontroll på faktisk `main`. 7E starter først da.
