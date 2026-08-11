@@ -33,7 +33,7 @@ Følgende er ikke nok alene:
 
 ## Canonical arkitektur
 
-Faget består av åtte fagområder med ti individuelt redigerte emner og teoriobjekter i hvert:
+Det nåværende canonicale inventaret er organisert i åtte fagområder:
 
 1. Subkulturteori og feltgrenser
 2. Fellesskap, scener og egenorganisering
@@ -44,7 +44,7 @@ Faget består av åtte fagområder med ti individuelt redigerte emner og teoriob
 7. Sosiale randsoner, omsorg og skadereduksjon
 8. Kommersialisering, institusjonalisering og minne
 
-Canonical mål er derfor `8 domener × 10 emner = 80 teoriobjekter`.
+Inventaret inneholder ved denne versjonen 80 individuelt redigerte emner og teoriobjekter. Åtte områder og 80 objekter er en kontrollert baseline og denominator, ikke et canonicalt sluttmål. Områdene kan ha ulikt antall emner, og nye relevante områder eller emner skal legges til når completeness-auditen dokumenterer et hull. Overlapp skal konsolideres, og eksisterende objekter skal ikke splittes eller beholdes bare for å opprettholde `8 × 10`.
 
 ## Kilde- og evidenskrav
 
@@ -69,18 +69,18 @@ Fagverket skal ikke identifisere sårbare personer fordi opplysninger er teknisk
 
 ## Kapittelkontrakt
 
-Hvert av de åtte fagområdene får ett fullverdig kapittel med:
+Kapittelinndelingen skal følge faglig sammenheng og faktisk stoffmengde. Ett område kan kreve flere kapitler, og tett sammenhengende områder kan behandles i samme kapittel når emnedekningen forblir eksplisitt og etterprøvbar.
 
-- tre redigerte moduler;
-- ni seksjoner og 27 sammenhengende fagavsnitt;
-- minst 36 avsnittssporbare claims;
-- minst 20 inspectable kildetilknytninger;
-- minst to arbeidseksempler;
-- minst fem eksplisitte misoppfatninger;
-- minst tre anvendelsesoppgaver;
-- minst åtte kontrollspørsmål;
-- minst seks canonicale stedskoblinger;
-- komplett avsnitt → claim → kilde-sporing.
+Et fullverdig kapittel skal ha:
+
+- en faglig begrunnet modul- og seksjonsstruktur;
+- nok sammenhengende fagavsnitt til å behandle de valgte emnene uten registerprosa eller fyllstoff;
+- komplett avsnitt → claim → kilde-sporing for etterprøvbare påstander;
+- så mange og så egnede inspectable kildetilknytninger som innholdet krever;
+- dokumenterte arbeidseksempler, faglig reelle misoppfatninger, anvendelsesoppgaver og kontroll av forståelse;
+- canonicale stedskoblinger bare når stedene faktisk realiserer emnet.
+
+Den tidligere materialiseringsformen med tre moduler, ni seksjoner og 27 avsnitt kan bevares i allerede produserte kapitler, men er ikke mal eller ferdigkrav for nye eller reviderte kapitler.
 
 ## Metodekontrakt
 
@@ -96,7 +96,9 @@ Casekilder lagres separat fra teorikildene. En profilkandidat kan bare få `vali
 
 ## Quiz og Knowledge
 
-Faget skal ha åtte subject pathways med fem vurderingstrinn hver: observere, forklare, vurdere evidens, diagnostisere feilslutning og begrunne valg. Alle 40 spørsmål skal ha canonical emne-, metode-, claim-, kilde- og Knowledge-kobling.
+Vurderingslaget skal dekke alle relevante emner og bruke operasjonene observere, forklare, vurdere evidens, diagnostisere feilslutning og begrunne valg der de passer. Pathway- og spørsmålstall skal følge den faktiske fagstrukturen. Alle spørsmål skal ha canonical emne-, metode-, claim-, kilde- og Knowledge-kobling.
+
+De eksisterende åtte pathwayene og 40 spørsmålene er et materialisert inventar, ikke en kvote som kan erstatte vurderingsdekning.
 
 Legacyquiz uten kildegrunnlag eller med fremmede `em_by_*` kan ikke regnes som fagverkdekning.
 
@@ -109,6 +111,8 @@ Subkultur kan bare få følgende sluttstatus når alle porter er grønne:
 - `editorialStatus: complete`
 - `nextGate: maintenance_and_source_refresh`
 
-Sluttporten krever 8/8 kapitler, 80/80 evidence-ready teoriobjekter, 0 ugyldige referanser, komplett caseprofil, full Places/People-audit, 8/8 pathways, Knowledge-synkronisering og grønn generell fagverkaudit.
+Sluttporten krever at alle aktive kapitler, teoriobjekter og pathways i det godkjente inventaret er ferdige og evidence-ready, at det finnes 0 ugyldige referanser, og at caseprofil, Places/People-audit, Knowledge-synkronisering og generell fagverkaudit er komplette og grønne.
+
+Full score mot det eksisterende inventaret er nødvendig, men ikke tilstrekkelig. Før `editorialStatus: complete` må en kandidat-, gap-, overlapps-, fyllstoff- og utelatelsesaudit etter `docs/FAGVERK.md` vise at alle relevante subkulturelle emner er dekket. Dersom auditen finner et nytt relevant emne, skal inventaret og denominator utvides.
 
 Før dette skal status forbli `planned`, `pending` og `not_started` eller – etter reell strukturell materialisering – den lavere dokumenterte delstatusen kontrakten tillater.

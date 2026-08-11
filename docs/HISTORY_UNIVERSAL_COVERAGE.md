@@ -2,7 +2,7 @@
 
 Status: **canonical dekningspolicy og operativ auditinngang**  
 Eier: `history_universal_coverage`
-Sist kontrollert: **2026-07-26**
+Sist kontrollert: **2026-08-11**
 
 ## Beslutning
 
@@ -11,6 +11,8 @@ Historie skal ikke omtales som et komplett historiefag bare fordi en versjon har
 Disse signalene viser at et versjonert inventar er fylt ut, kvalitetskontrollert og beskyttet. De beviser ikke at modellen inneholder alle nødvendige tidsperioder, temafelt, geografiske nivåer, aktørperspektiver eller produksjonsgrunnlag.
 
 Frysing beskytter en versjon. Frysing er ikke en dekningsmåling.
+
+Det samme gjelder emne- og teoriobjekttall. De 230 objektene i aktiv V5.8 er dagens canonicale inventar og en denominator for integritets- og evidensrapportering, ikke en evig faglig kvote. Hvis heldekningsauditen finner et nytt relevant historiefelt eller emne, skal fagmodellen og denominator utvides før Historie kan beholde `COMPLETE`; det nye emnet skal ikke avvises fordi et tidligere tall allerede er nådd.
 
 ## Autoritetsgrense
 
@@ -45,6 +47,8 @@ data/fag/historie/historie_universal_coverage_contract_v1.json
 ```
 
 Kontrakten er uavhengig av versjonsspesifikke domenetall. Nye dekningsceller skal begrunnes ut fra historiefagets innhold, ikke ut fra hva aktive filer tilfeldigvis allerede inneholder.
+
+Full score mot dagens kontrakt er nødvendig, men ikke tilstrekkelig hvis kandidat-, gap- eller utelatelsesauditen viser at kontrakten selv mangler et relevant felt. `docs/FAGVERK.md` eier den felles heldekningsregelen uten tallkvoter.
 
 ## Permanent audit
 
@@ -160,6 +164,6 @@ Domenet bruker sammenlignbare nordiske, europeiske og globale cases og lukker fi
 - Den universelle fagmatrisen har **58 av 58 dekningsceller** dekket.
 - Oslo/Akershus er flyttet fra universell fagcelle til separat geografisk produksjonsprofil.
 - `recommended_oslo_cases` er migrert ut av universelle emner.
-- Alle 230 emner refererer til fire universelle casekrav.
+- Alle 230 emner i det daværende canonicale inventaret refererer til fire universelle casekrav.
 - Canonical claim-, source- og place-evidence-registre er etablert med Oslo rådhus som validert pilot.
 - Totalstatus er fortsatt `INCOMPLETE` så lenge teoriobjektene ikke har fullt dokumentert evidensgrunnlag.

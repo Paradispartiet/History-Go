@@ -16,6 +16,8 @@ Fagverket er et eget leselag mellom steder, emner, begreper og progresjon.
 
 Fagverket skal ikke opprette parallelle fag-ID-er. Det bruker canonical kategori- og emne-ID-er og registrerer bare presentasjonskapitler, begrepsinnganger og stedskoblinger.
 
+Redaksjonell heldekning og ferdigstatus eies av `docs/FAGVERK.md`: alle relevante emner skal behandles, mens antall emner, kapitler, seksjoner, claims, kilder og oppgaver kan variere med faget og aldri alene bevise at innholdet er komplett.
+
 ## Informasjonsmodell
 
 `fagverk_registry.json` eier:
@@ -35,6 +37,8 @@ Et kapittel skal minst ha:
 - kontrollspørsmål med svar;
 - relevante steder;
 - inspectable kilder.
+
+Listen angir nødvendige innholdstyper, ikke faste mengder. Kapitlene skal ha det omfanget stoffet krever, uten kunstig oppsplitting eller fyllstoff.
 
 ## Stedspopup
 

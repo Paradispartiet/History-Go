@@ -4,7 +4,9 @@ Denne kontrakten skiller strukturell fullfeltdekning fra redaksjonelt ferdige fa
 
 ## Ferdigenheten som kontrakten måler
 
-Et område kan få status `editorial_ready_v1` bare når alle de seks canonicale emnene har hver sin sammenhengende hovedartikkel. Artiklene skal kunne leses som selvstendige innføringer, ikke som utfylte kontrollskjemaer.
+Et område kan få status `editorial_ready_v1` bare når alle relevante canonicale emner i området har fullverdig, sammenhengende artikkelbehandling. Ett stort emne kan kreve flere artikler, mens nært sammenhengende emner kan behandles i én tydelig strukturert artikkel når hvert emne fortsatt er eksplisitt og substansielt dekket. Artiklene skal kunne leses som selvstendige innføringer, ikke som utfylte kontrollskjemaer.
+
+Det tidligere mønsteret med seks emner per område er dagens compatibility-inventar, ikke en redaksjonell kvote. Litteraturvitenskapelige områder kan ha ulik bredde. Nye relevante emner skal legges til, overlapp skal konsolideres, og artikkelomfang skal følge stoffet uten å bevare symmetri for symmetriens skyld.
 
 Hver artikkel skal:
 
@@ -37,4 +39,6 @@ Artikkelavsnitt kan inneholde fortolkning som går lenger enn den registrerte cl
 
 ## Status og revisjon
 
-`editorial_quality_v1.json` er eneste register for denne kvalitetsporten. Bare områder som består den kjørbare redaksjonelle auditen, kan stå som `editorial_ready_v1`. Resten beholder sin strukturelle dekning, men står eksplisitt som `rewrite_pending`. Hele litteraturfeltet kan ikke omtales som redaksjonelt komplett før registeret viser 28 av 28 områder og 168 av 168 artikler.
+`editorial_quality_v1.json` er eneste register for denne kvalitetsporten. Bare områder som består den kjørbare redaksjonelle auditen, kan stå som `editorial_ready_v1`. Resten beholder sin strukturelle dekning, men står eksplisitt som `rewrite_pending`.
+
+De nåværende 28 områdene og 168 artiklene er den eksisterende auditens denominator og må alle være behandlet så lenge de er aktive. `28/28` og `168/168` er likevel ikke alene bevis på at litteraturfeltet er komplett. Sluttstatus krever også kandidat-, gap-, overlapps- og utelatelsesaudit etter `docs/FAGVERK.md`; finner den nye relevante områder eller emner, skal registeret og denominator utvides før `complete` kan brukes.

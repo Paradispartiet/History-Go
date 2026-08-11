@@ -34,6 +34,8 @@ Det eksisterende registeret er et sekundært kompatibilitetslag:
 
 Alle canonicale fagområder, emner og metoder er plassert i den nye arkitekturen uten å endre id-ene. Den flate registervisningen er fortsatt tilgjengelig for oppslag, testing og eksisterende dyplenker, men er ikke lenger fagets hovedfortelling.
 
+Tallene ovenfor beskriver dagens canonicale inventar. De er ikke målkvoter for Politikk eller for de enkelte fagområdene. Hvis den faglige completeness-auditen finner et relevant statsvitenskapelig emne, perspektiv eller metode som mangler, skal inventaret utvides og validatorens denominator oppdateres; innholdet skal ikke avvises eller presses inn i et eksisterende emne bare for å bevare tallene.
+
 ## Begrepsverket
 
 `data/fag/politikk/concepts_politikk_canonical_v1.json` materialiserer de 962 unike begrepene som finnes i canonicale emnefelt. Hvert oppslag har definisjon, avgrensning, betydning, eieremne, fagområde, forbindelser, vanlige feilbruk, indikatorer, kildekrav, relevante metoder og nøkkelspørsmål.
@@ -57,7 +59,7 @@ Reviewregisteret er en eksplisitt og diffbar internredaksjonell kontroll, ikke e
 - et av de 962 begrepene mangler forklaring, avgrensning eller eierkobling
 - en definisjon inneholder den gamle emnemalen, dupliserer en annen definisjon eller bruker generell domenefallback
 - definisjon og kontekstuell emnebruk ikke er skilt i egne felt
-- begrepsverket ikke dekker alle 123 emner og alle 13 fagområder
+- begrepsverket ikke dekker alle objekter i det til enhver tid godkjente canonicale emne- og fagområdeinventaret
 - et emne mangler lærekapittel
 - et av de 546 reviewene avviker fra den materialiserte definisjonen, mangler kapittelpåstand, HTTPS-kilde eller konkret kildeplassering
 - en semantisk runtime-regel igjen står som sluttkilde for en definisjon

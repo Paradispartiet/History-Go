@@ -395,7 +395,7 @@ Denne delen gjelder når stedet foreslås med **Historie som primær fagidentite
 - [ ] hvert valgt emne har stedsspesifikk evidens og minst én konkret case-realisering;
 - [ ] By-emner eller eldre `his_*` topic hooks brukes ikke som erstatning for canonicale `em_his_*`;
 - [ ] fagfiler velger emner, metoder, begreper og teorihooks, men brukes ikke som faktakilde for stedspåstander;
-- [ ] Historie-modellens **23 domener og 230 teoriobjekter er et komplett målregister, ikke en kvote per sted**;
+- [ ] Historie-modellens **23 domener og 230 teoriobjekter er dagens canonicale inventar, ikke en kvote per sted eller en uforanderlig sluttkvote for faget**;
 - [ ] irrelevante emner utelates selv om de finnes i fagmodellen;
 - [ ] universell fagmodell og geografisk/stedlig evidens holdes adskilt: en teori er ikke realisert ved stedet før lokal claim-, source- og place-evidens finnes.
 
@@ -517,7 +517,7 @@ Denne delen gjelder når stedet foreslås med **Næringsliv som primær fagident
 - [ ] hvert valgt emne har stedsspesifikk evidens og minst én konkret økonomisk case-realisering;
 - [ ] `em_by_*`, `em_his_*`, `em_pol_*` eller andre fag-ID-er brukes ikke som erstatning for et manglende Næringsliv-emne;
 - [ ] fagfiler velger emner, metoder og teorihooks, men brukes ikke som faktakilde for stedspåstander;
-- [ ] modellens 38 emner, 27 metoder og 12 kapitler er et komplett målregister, **ikke en kvote per sted**;
+- [ ] modellens 38 emner, 27 metoder og 12 kapitler er dagens canonicale inventar, **ikke en kvote per sted eller en uforanderlig sluttkvote for faget**;
 - [ ] irrelevante emner utelates selv om de finnes i fagmodellen.
 
 ### C. Bygg en inspectable økonomisk case og verdiskapingskjede

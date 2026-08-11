@@ -2,7 +2,7 @@
 
 Status: **canonical og bindende fagfilkontrakt**  
 Eier: History GO fagdata og kunnskapsarkitektur  
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-08-11**
 
 Denne kontrakten definerer skillet mellom universell fagstruktur og geografisk innholdsproduksjon. Den gjelder alle fag, ikke bare Historie.
 
@@ -87,6 +87,10 @@ Profilen må ikke bli en ny sannhetskilde for universelle fagdefinisjoner, teori
 
 Måler om fagmodellen dekker fagets nødvendige områder, emner, begreper, teorier og metoder. Dette vurderes uavhengig av hvor mye innhold som finnes i én by eller ett land.
 
+Universell fagdekning måles mot faglig relevans, ikke mot et forhåndsbestemt antall objekter. Fag kan og skal ha ulike mengder områder, emner, teorier og metoder. Antall rapporteres som inventar og brukes til referanseintegritet, men er ikke en redaksjonell kvote eller et selvstendig ferdigbevis.
+
+En heldekningsvurdering skal dokumentere fagets avgrensning, kandidatgrunnlaget, inkluderte og utelatte emner, sammenslåinger, oppsplittinger, nabofagplasseringer, udekkede gap og mulig fyllstoff. Et emne skal inkluderes fordi det bærer en selvstendig og relevant faglig problemstilling, ikke fordi en modul eller et fagområde mangler ett objekt for å nå et tall.
+
 ### Geografisk produksjonsdekning
 
 Måler om et område har nok dokumenterte steder, personer, claims, kilder, cases og quizer til å realisere den universelle fagmodellen.
@@ -135,6 +139,16 @@ Før en ny fagfil eller geografisk variant opprettes:
 6. Registrer aktive filer i riktig manifest.
 7. Kjør relevante fag-, Knowledge-, quiz- og dokumentasjonsporter.
 8. Følg `docs/FAGVERK.md` når endringen materialiserer eller ferdigstiller en fagside.
+
+Ved universelle fagendringer skal arbeidet i tillegg spørre:
+
+- Hvilket relevant faglig spørsmål blir nå dekket eller tydeligere avgrenset?
+- Finnes innholdet allerede under en annen ID eller i et nabofag?
+- Er objektet selvstendig, eller bør det være et underpunkt eller en relasjon?
+- Skaper endringen reell dekning, eller bare høyere telling?
+- Hvilke dokumenterte hull står fortsatt igjen etter endringen?
+
+Ingen universell fagpakke kan erklæres komplett bare fordi den har nådd et tidligere forventet antall områder, emner, kapitler eller andre innholdsenheter.
 
 ## 11. Beslutningstest
 

@@ -201,7 +201,7 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 ### Fag, emner og quiz
 
 1. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — bindende regel om én universell fagmodell per fag og separate geografiske produksjonslag
-2. [`FAGVERK.md`](./FAGVERK.md) — canonical arkitektur, produksjonsrekkefølge, status og ferdigkrav for alle fagsider
+2. [`FAGVERK.md`](./FAGVERK.md) — canonical arkitektur, produksjonsrekkefølge og heldekningsbaserte ferdigkrav uten redaksjonelle tallkvoter for alle fagsider
 3. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — bindende skille mellom Fagverkforsiden, merkesider, fagsider og stedssider
 4. [`FAGVERK_PLACE_DESIGN.md`](./FAGVERK_PLACE_DESIGN.md) — kategori-, bilde- og presentasjonskontrakt for stedets egne fagverksider
 5. [`POLITIKK_CURRICULUM_ARCHITECTURE_V1.md`](./POLITIKK_CURRICULUM_ARCHITECTURE_V1.md) — operativ Politikk-arkitektur, begrepskvalitet og ferdigport
@@ -214,7 +214,7 @@ De tidligere parallelle minnekammer-, quiz-memory-, ontology-, knagge- og People
 12. [`../README/quizREADME.md`](../README/quizREADME.md) — compatibility-pointer til canonical produksjon, schemas, audits og runtime-eierskap
 
 
-Fagfilene er universelle. Land, regioner og byer skal legge til profiler, mappings, cases, claims, kilder, steder, personer og quizinnhold som refererer til de samme canonical fag-ID-ene; de skal ikke opprette komplette fagkopier. Universell fagdekning og geografisk produksjonsdekning er separate mål. `README/byFagplan.md` er nå bare en compatibility-pointer til disse aktive kildene; den tidligere kombinerte teksten er bevart som historisk snapshot under `README/archive/`.
+Fagfilene er universelle. Land, regioner og byer skal legge til profiler, mappings, cases, claims, kilder, steder, personer og quizinnhold som refererer til de samme canonical fag-ID-ene; de skal ikke opprette komplette fagkopier. Universell fagdekning og geografisk produksjonsdekning er separate mål. Universell ferdigstatus krever alle relevante emner innenfor fagets avgrensning, ikke et fast antall områder, emner eller kapitler. `README/byFagplan.md` er nå bare en compatibility-pointer til disse aktive kildene; den tidligere kombinerte teksten er bevart som historisk snapshot under `README/archive/`.
 
 Det gamle extensionløse `README/emnepackREADME` var et biologispesifikt utkast og er fjernet. Den tidligere kombinerte quiz-/lærings-/observations-/popup-README-en ligger i `README/archive/QUIZ_README_PRE_CONSOLIDATION_2026-07-25.md`; den er historisk og eier ingen aktiv regel.
 
