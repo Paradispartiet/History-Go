@@ -22,6 +22,7 @@ on:
       - "scripts/audit-film-tv-legacy-emne-classification-v1.mjs"
       - "scripts/audit-film-tv-variable-inventory-v1.mjs"
       - "scripts/materialize-film-tv-canonical-migration-v1.mjs"
+      - "scripts/reaudit-film-tv-existing-chapters-v1.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
@@ -30,6 +31,7 @@ on:
       - "tests/film-tv-legacy-emne-classification-v1.test.mjs"
       - "tests/film-tv-variable-inventory-v1.test.mjs"
       - "tests/film-tv-canonical-migration-v1.test.mjs"
+      - "tests/film-tv-existing-chapter-reaudit-v1.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
@@ -45,11 +47,13 @@ on:
       - "scripts/audit-film-tv-legacy-emne-classification-v1.mjs"
       - "scripts/audit-film-tv-variable-inventory-v1.mjs"
       - "scripts/materialize-film-tv-canonical-migration-v1.mjs"
+      - "scripts/reaudit-film-tv-existing-chapters-v1.mjs"
       - "tests/fagverk-film-tv-phase3.test.mjs"
       - "tests/film-tv-curriculum-completeness-v1.test.mjs"
       - "tests/film-tv-legacy-emne-classification-v1.test.mjs"
       - "tests/film-tv-variable-inventory-v1.test.mjs"
       - "tests/film-tv-canonical-migration-v1.test.mjs"
+      - "tests/film-tv-existing-chapter-reaudit-v1.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
   workflow_dispatch:
@@ -73,6 +77,7 @@ jobs:
           node --check scripts/audit-film-tv-legacy-emne-classification-v1.mjs
           node --check scripts/audit-film-tv-variable-inventory-v1.mjs
           node --check scripts/materialize-film-tv-canonical-migration-v1.mjs
+          node --check scripts/reaudit-film-tv-existing-chapters-v1.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-film-tv-phase3.mjs
@@ -80,6 +85,7 @@ jobs:
           node scripts/audit-film-tv-legacy-emne-classification-v1.mjs
           node scripts/audit-film-tv-variable-inventory-v1.mjs
           node scripts/materialize-film-tv-canonical-migration-v1.mjs
+          node scripts/reaudit-film-tv-existing-chapters-v1.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk and Film og TV contracts
         run: |
@@ -90,4 +96,5 @@ jobs:
           node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
           node --test tests/film-tv-variable-inventory-v1.test.mjs
           node --test tests/film-tv-canonical-migration-v1.test.mjs
+          node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs

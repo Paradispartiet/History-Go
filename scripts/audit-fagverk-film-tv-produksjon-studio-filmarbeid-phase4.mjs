@@ -77,15 +77,15 @@ export function auditFilmTvProduksjonStudioFilmarbeidPhase4({ writeReport = fals
 
   assert(chapter.schema === 'history_go_fagverk_chapter_v1', 'Film & TV-kapittelet har feil schema');
   assert(chapter.subject === 'film_tv' && chapter.subject_id === 'film_tv', 'Film & TV-kapittelet har feil fag');
-  assert(chapter.primary_domain_id === 'produksjon_studio_arbeid', 'Kapittelet har feil eierdomene');
+  assert(chapter.primary_domain_id === 'produksjon_arbeid_teknologi_praksis', 'Kapittelet har feil migrert eierdomene');
   assert(chapter.editorialStatus === 'chapter_ready' && chapter.claimTraceRequired === true, 'Kapittelet er ikke claimsporet chapter_ready');
-  assert(isDeepStrictEqual(chapter.emne_ids, EXPECTED_EMNES), 'Kapittelet dekker ikke de 20 canonicale emnene i riktig rekkefølge');
+  assert(isDeepStrictEqual(chapter.emne_ids, resolvedEmneIds), 'Kapittelet dekker ikke de 20 canonicale aliasmålene i riktig rekkefølge');
   assert(new Set(chapter.emne_ids).size === 20, 'Film & TV-kapittelet har duplikate emner');
   assert(registrySubject.chapters.length === 2 && registryChapter, 'Film & TV-registeret skal ha nøyaktig to kapitler');
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'produksjon_arbeid_teknologi_praksis', 'Registry-kapittelet er ikke projisert til migrert eierdomene');
   assert(isDeepStrictEqual(registryChapter.emne_ids, resolvedEmneIds), 'Registry-emnene er ikke projisert gjennom legacyaliasene');
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');
-  assert(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit'].includes(statusEntry.nextGate), 'Film & TV har feil neste port');
+  assert(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan'].includes(statusEntry.nextGate), 'Film & TV har feil neste port');
   assert(phase3.report.summary.domainCount === 10 && phase3.report.summary.emneCount === 192, 'Det migrerte Film & TV-inventaret er ikke bevart');
   assert(phase3.report.summary.registeredChapterCount === 2, 'Fase 3-auditen ser ikke de to Film & TV-kapitlene');
 
@@ -98,7 +98,7 @@ export function auditFilmTvProduksjonStudioFilmarbeidPhase4({ writeReport = fals
   assert(chapter.method_ids.every((id) => canonicalMethodIds.has(id)), 'Kapittelet har uløst metode-ID');
 
   assert(brief.schema === 'history_go_fagverk_chapter_brief_v1' && brief.chapter_id === chapter.id, 'Briefen er usynkronisert');
-  assert(isDeepStrictEqual(brief.requiredEmneIds, EXPECTED_EMNES), 'Briefen har feil emnedekning');
+  assert(isDeepStrictEqual(brief.requiredEmneIds, resolvedEmneIds), 'Briefen har feil canonical emnedekning');
   assert(isDeepStrictEqual(brief.requiredMethodIds, EXPECTED_METHODS), 'Briefen har feil metodedekning');
   assert(brief.sourceStrategy.minimumExternalSources >= 18 && brief.sourceStrategy.claimLevelTrace === true, 'Briefens kildestrategi er for svak');
   assert(isDeepStrictEqual(brief.relatedPlaceIds, EXPECTED_PLACES), 'Briefen har feil canonicale stedscase');
@@ -151,7 +151,7 @@ export function auditFilmTvProduksjonStudioFilmarbeidPhase4({ writeReport = fals
 
   const report = {
     schema: 'history_go_fagverk_film_tv_produksjon_studio_arbeid_phase4_audit_v1', version: '1.0.0',
-    status: 'film_tv_produksjon_studio_arbeid_legacy_20_alias_mapped_to_20_canonical', generatedFrom: P,
+    status: 'film_tv_produksjon_studio_arbeid_reaudited_20_canonical', generatedFrom: P,
     subject: {
       id: 'film_tv', canonicalDomainCount: phase3.report.summary.domainCount,
       canonicalEmneCount: phase3.report.summary.emneCount, registeredChapterCount: registrySubject.chapters.length,
@@ -163,9 +163,9 @@ export function auditFilmTvProduksjonStudioFilmarbeidPhase4({ writeReport = fals
       relatedPlaceIds: chapter.relatedPlaces.map((row) => row.id)
     },
     canonicalCoverage: {
-      ownerDomainId: 'produksjon_studio_arbeid', requiredEmneIds: EXPECTED_EMNES,
-      coveredEmneIds: chapter.emne_ids, aliasResolvedEmneIds: resolvedEmneIds,
-      exactCoverage: '20/20 legacy IDs -> 20 canonical emner', remainingDomainCount: 10
+      ownerDomainId: 'produksjon_arbeid_teknologi_praksis', legacySourceEmneIds: EXPECTED_EMNES,
+      requiredEmneIds: resolvedEmneIds, coveredEmneIds: chapter.emne_ids, aliasResolvedEmneIds: resolvedEmneIds,
+      exactCoverage: '20/20 canonical emner fra 20/20 legacyaliases', remainingDomainCount: 10
     },
     summary: {
       moduleCount: modules.length, sectionCount: sections.length,

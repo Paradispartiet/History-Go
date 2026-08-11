@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_film_tv_kinoer_visningssteder_publikum_phase4_audit_v1",
   "version": "1.0.0",
-  "status": "film_tv_kinoer_visningssteder_publikum_legacy_20_alias_mapped_to_18_canonical",
+  "status": "film_tv_kinoer_visningssteder_publikum_reaudited_18_canonical",
   "generatedFrom": {
     "chapter": "data/fagverk/film_tv/kinoer-visningssteder-og-publikum.json",
     "brief": "data/fagverk/film_tv/kinoer-visningssteder-og-publikum/brief.json",
@@ -20,12 +20,12 @@
     "canonicalEmneCount": 192,
     "registeredChapterCount": 2,
     "editorialStatus": "chapters_in_progress",
-    "nextGate": "canonical_inventory_migrated_existing_chapter_reaudit"
+    "nextGate": "canonical_chapter_reaudit_complete_learning_order_plan"
   },
   "chapter": {
     "id": "kinoer-visningssteder-og-publikum",
     "title": "Kinoer, visningssteder og publikum: hvordan skjermopplevelsen blir sosial",
-    "primaryDomainId": "kinoer_visningssteder_publikum",
+    "primaryDomainId": "visning_publikum_resepsjon_deltakelse",
     "moduleFiles": [
       "data/fagverk/film_tv/kinoer-visningssteder-og-publikum/01-grunnlag.json",
       "data/fagverk/film_tv/kinoer-visningssteder-og-publikum/02-fordypning.json",
@@ -41,8 +41,8 @@
     ]
   },
   "canonicalCoverage": {
-    "ownerDomainId": "kinoer_visningssteder_publikum",
-    "requiredEmneIds": [
+    "ownerDomainId": "visning_publikum_resepsjon_deltakelse",
+    "legacySourceEmneIds": [
       "em_film_tv_besokstall",
       "em_film_tv_cinematek_filmarv",
       "em_film_tv_distribusjon_tilgang",
@@ -64,27 +64,45 @@
       "em_film_tv_visningspolitikk",
       "em_film_tv_visningsrom_estetikk"
     ],
+    "requiredEmneIds": [
+      "em_film_tv_publikumsdata_metoder_og_makt",
+      "em_film_tv_cinematek_programmering_og_filmarv",
+      "em_film_tv_distribusjon_tilgang_og_visningspolitikk",
+      "em_film_tv_festival_premiere_og_hendelsesvisning",
+      "em_film_tv_filmhistorisk_kunnskapsformidling",
+      "em_film_tv_filmklubb_og_nisjeoffentlighet",
+      "em_film_tv_kino_som_kollektiv_visningssituasjon",
+      "em_film_tv_kinoarkitektur_og_visningsbetingelser",
+      "em_film_tv_publikumsminne_og_audiovisuell_erindring",
+      "em_film_tv_kuratering_og_publikumsdannelse",
+      "em_film_tv_plattformpublikum_og_bruksspor",
+      "em_film_tv_audiovisuell_publikumsopplevelse",
+      "em_film_tv_seervaner_og_mediebruk",
+      "em_film_tv_stromming_distribusjon_marked_og_forretningsmodeller",
+      "em_film_tv_fragmenterte_publikum",
+      "em_film_tv_tv_ritualer_og_samtidighet",
+      "em_film_tv_romlig_audiovisuell_estetikk",
+      "em_film_tv_visningsrom_og_publikumsbetingelser"
+    ],
     "coveredEmneIds": [
-      "em_film_tv_besokstall",
-      "em_film_tv_cinematek_filmarv",
-      "em_film_tv_distribusjon_tilgang",
-      "em_film_tv_filmfestival_premiere",
-      "em_film_tv_filmhistorisk_formidling",
-      "em_film_tv_filmklubb_nisje",
-      "em_film_tv_kino_fellesrom",
-      "em_film_tv_kinoarkitektur",
-      "em_film_tv_kollektiv_filmhukommelse",
-      "em_film_tv_kuratering_publikum",
-      "em_film_tv_offentlig_filmbegivenhet",
-      "em_film_tv_plattformpublikum",
-      "em_film_tv_publikumsdata",
-      "em_film_tv_publikumsminne",
-      "em_film_tv_publikumsopplevelse",
-      "em_film_tv_seervaner",
-      "em_film_tv_stromming_fragmentering",
-      "em_film_tv_tv_ritualer",
-      "em_film_tv_visningspolitikk",
-      "em_film_tv_visningsrom_estetikk"
+      "em_film_tv_publikumsdata_metoder_og_makt",
+      "em_film_tv_cinematek_programmering_og_filmarv",
+      "em_film_tv_distribusjon_tilgang_og_visningspolitikk",
+      "em_film_tv_festival_premiere_og_hendelsesvisning",
+      "em_film_tv_filmhistorisk_kunnskapsformidling",
+      "em_film_tv_filmklubb_og_nisjeoffentlighet",
+      "em_film_tv_kino_som_kollektiv_visningssituasjon",
+      "em_film_tv_kinoarkitektur_og_visningsbetingelser",
+      "em_film_tv_publikumsminne_og_audiovisuell_erindring",
+      "em_film_tv_kuratering_og_publikumsdannelse",
+      "em_film_tv_plattformpublikum_og_bruksspor",
+      "em_film_tv_audiovisuell_publikumsopplevelse",
+      "em_film_tv_seervaner_og_mediebruk",
+      "em_film_tv_stromming_distribusjon_marked_og_forretningsmodeller",
+      "em_film_tv_fragmenterte_publikum",
+      "em_film_tv_tv_ritualer_og_samtidighet",
+      "em_film_tv_romlig_audiovisuell_estetikk",
+      "em_film_tv_visningsrom_og_publikumsbetingelser"
     ],
     "aliasResolvedEmneIds": [
       "em_film_tv_publikumsdata_metoder_og_makt",
@@ -106,7 +124,7 @@
       "em_film_tv_romlig_audiovisuell_estetikk",
       "em_film_tv_visningsrom_og_publikumsbetingelser"
     ],
-    "exactCoverage": "20/20 legacy IDs -> 18 canonical emner",
+    "exactCoverage": "18/18 canonical emner fra 20/20 legacyaliases",
     "remainingDomainCount": 10
   },
   "summary": {

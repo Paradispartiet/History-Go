@@ -13,16 +13,17 @@ sandbox.globalThis = sandbox;
 vm.runInNewContext(coreSource, sandbox, { filename: 'js/fagverk-subject-core.js' });
 const CORE = sandbox.HGFagverkSubjectCore;
 
-test('Kinoer, visningssteder og publikum bevarer sitt registrerte legacyinventar', () => {
+test('Kinoer, visningssteder og publikum er reauditert fra 20 legacyaliases til 18 canonicale emner', () => {
   const { report } = auditFilmTvKinoerVisningsstederPublikumPhase4();
   assert.equal(report.subject.id, 'film_tv');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.ok(report.subject.registeredChapterCount >= 1 && report.subject.registeredChapterCount <= 6);
-  assert.equal(report.canonicalCoverage.ownerDomainId, 'kinoer_visningssteder_publikum');
-  assert.equal(report.canonicalCoverage.exactCoverage, '20/20 legacy IDs -> 18 canonical emner');
+  assert.equal(report.canonicalCoverage.ownerDomainId, 'visning_publikum_resepsjon_deltakelse');
+  assert.equal(report.canonicalCoverage.exactCoverage, '18/18 canonical emner fra 20/20 legacyaliases');
   assert.equal(report.canonicalCoverage.aliasResolvedEmneIds.length, 18);
   assert.equal(report.canonicalCoverage.remainingDomainCount, 10);
   assert.deepEqual(report.canonicalCoverage.requiredEmneIds, report.canonicalCoverage.coveredEmneIds);
+  assert.equal(report.canonicalCoverage.legacySourceEmneIds.length, 20);
 });
 
 test('Film & TV-kapittelet har full pedagogisk og evidensbasert pakke', () => {
@@ -41,7 +42,7 @@ test('Film & TV-kapittelet har full pedagogisk og evidensbasert pakke', () => {
 
 test('Film & TV-fagets tekniske baseline er bevart etter kapittel 1', () => {
   const { report } = auditFilmTvKinoerVisningsstederPublikumPhase4();
-  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit'].includes(report.subject.nextGate));
+  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan'].includes(report.subject.nextGate));
   assert.equal(report.subject.canonicalDomainCount, 10);
   assert.equal(report.subject.canonicalEmneCount, 192);
   assert.equal(report.gates.previousFilmTvStructurePreserved, true);
