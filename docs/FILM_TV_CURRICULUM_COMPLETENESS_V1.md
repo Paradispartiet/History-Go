@@ -98,7 +98,9 @@ Kilde- og claimbriefen for første produksjonskandidat er gjennomført i [`film_
 
 «Audiovisuell form og sansing» er nå fulltekstprodusert og runtime-registrert. Kapittelet eier 10/10 canonicale emner gjennom tre ulikt store moduler med 4–4–2 emneeide seksjoner. De 23 fagavsnittene har avsnittsnivå claimtrace til 20 verifiserte claims; alle åtte kilder brukes, og de sju verkcasene holdes atskilt fra de to canonicale anvendelsesstedene. Modul-, seksjons- og avsnittstallene beskriver denne redaksjonelle løsningen og er ikke kvoter for senere kapitler.
 
-Aktiv port er `audiovisual_form_full_chapter_complete_next_unit_source_brief`. Neste planlagte enhet, «Fortelling, synsvinkel og sjanger», kan ikke registreres før den har egen kilde- og claimbrief, fulltekst og audit.
+Kilde- og claimbriefen for «Fortelling, synsvinkel og sjanger» er nå gjennomført. Den dekker enhetens 5/5 canonicale emner med 12 inspectable universitets- og filminstitusjonskilder, fem filmcase og ett TV-case. De 13 claimplanene varierer 3–2–3–2–3 etter de selvstendige problemene; dette er et eksplisitt vern mot å videreføre to claims per emne som produksjonskvote. Realisme skilles fra ukonstruert sannhet, fokalisering fra kameravinkel, rollefigurfunksjon fra skuespiller/stjernepersona og sjangerkontrakt fra statisk ingrediensliste. Serialitet, episode, sesong og format tilhører fortsatt neste planenhet.
+
+Aktiv port er `narrative_viewpoint_genre_source_brief_complete_full_chapter_production`. «Fortelling, synsvinkel og sjanger» er ikke runtime-registrert og kan ikke registreres før fulltekst, kildekontroll, avsnittsnivå claimtrace og ny audit er grønne.
 
 ## Maskinell kontroll
 
@@ -114,6 +116,7 @@ node scripts/plan-film-tv-learning-order-v1.mjs
 node scripts/brief-film-tv-audiovisual-form-sources-v1.mjs
 node scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs
 node scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs
+node scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs
 node --test tests/film-tv-curriculum-completeness-v1.test.mjs
 node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
 node --test tests/film-tv-variable-inventory-v1.test.mjs
@@ -122,6 +125,7 @@ node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
 node --test tests/film-tv-learning-order-plan-v1.test.mjs
 node --test tests/film-tv-audiovisual-form-source-brief-v1.test.mjs
 node --test tests/film-tv-audiovisual-form-fulltext-v1.test.mjs
+node --test tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs
 ```
 
 Canonicale rapporter:
@@ -134,3 +138,4 @@ Canonicale rapporter:
 - `reports/fagverk/film-tv-learning-order-plan-v1-audit.json`
 - `reports/fagverk/film-tv-audiovisual-form-source-brief-v1-audit.json`
 - `reports/fagverk/film-tv-audiovisual-form-fulltext-v1-audit.json`
+- `reports/fagverk/film-tv-narrative-viewpoint-genre-source-brief-v1-audit.json`

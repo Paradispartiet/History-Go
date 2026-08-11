@@ -146,7 +146,7 @@ export function buildFilmTvAudiovisualFormSourceBriefV1() {
     };
   });
   const currentStatus = read(P.status);
-  const laterFulltextGate = currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate === 'audiovisual_form_full_chapter_complete_next_unit_source_brief';
+  const laterFulltextGate = ['audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production'].includes(currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate);
   if (laterFulltextGate) {
     const brief = read(P.brief);
     const consumedTopicBriefs = brief.topic_briefs;
@@ -248,7 +248,7 @@ export function buildFilmTvAudiovisualFormSourceBriefV1() {
 export function auditFilmTvAudiovisualFormSourceBriefV1({ writeFiles = false, checkFiles = true } = {}) {
   const currentStatus = read(P.status);
   const currentGate = currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  if (currentGate === 'audiovisual_form_full_chapter_complete_next_unit_source_brief') {
+  if (['audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production'].includes(currentGate)) {
     const brief = read(P.brief);
     const report = read(P.report);
     const registry = read(P.registry);
