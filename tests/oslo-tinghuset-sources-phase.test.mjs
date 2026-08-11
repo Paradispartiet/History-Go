@@ -50,7 +50,7 @@ test('The renderer deduplicates links and does not print raw before/after URLs a
 
 test('The existing source profile is not rendered twice inside the Sources tab', () => {
   assert.match(runtime, /hasExistingSourceProfile = Boolean\(tabs\.panels\.sources\.querySelector\("\.hg-place-sources-section"\)\)/);
-  assert.match(runtime, /renderSources\(place, articles, !hasExistingSourceProfile\)/);
+  assert.match(runtime, /renderSources\(place,\s*visibleArticles,\s*!hasExistingSourceProfile\)/);
 });
 
 test('Phase report keeps Sources complete when More is completed', () => {
