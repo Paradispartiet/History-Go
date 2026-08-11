@@ -1,0 +1,97 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "psykologi",
+  "chapter_id": "sosialpsykologi-normalitet-og-stigma",
+  "primary_domain_id": "sosialpsykologi_normalitet_stigma",
+  "relatedPlaceIds": ["psykologisk_institutt_uio"],
+  "socialCaseIds": ["conformity_norms_case","intergroup_prejudice_case","stigma_label_case","loneliness_belonging_case"],
+  "purpose": "Materialisere Psykologis femte canonicale domene med kildebelagt undervisning i grupper, roller, normer, sosial påvirkning, kategorisering, fordommer, normalitet, diagnose i hverdagen, stigma, offentlighet, ensomhet og tilhørighet.",
+  "audience": "Brukere som skal kunne analysere sosiale mønstre, gruppeprosesser og stigma uten å gjøre gruppemedlemskap, normavvik, diagnose eller ensomhet til et fast personlighetstrekk eller en moralsk dom over enkeltmennesker.",
+  "learningArc": [
+    "starte i grupper, roller og sosial identifikasjon som situerte prosesser",
+    "skille deskriptive normer fra injunktive normer og observere hvordan begge virker",
+    "undersøke sosial påvirkning uten å anta blind konformitet eller lydighet",
+    "skille sosial kategorisering fra stereotype, fordom og diskriminering",
+    "undersøke kontakt, status og makt som betingelser i intergruppeforhold",
+    "skille statistisk normalitet, sosial norm og klinisk betydning",
+    "analysere diagnose som faglig klassifikasjon uten å gjøre merkelappen til hele personens identitet",
+    "skille offentlig, erfart, forventet, internalisert og strukturell stigma",
+    "avslutte med ensomhet, sosial isolasjon og tilhørighet som beslektede, men ulike fenomener"
+  ],
+  "requiredEmneIds": [
+    "em_psy_diagnose_hverdagsliv",
+    "em_psy_ensomhet_tilhorighet",
+    "em_psy_fordommer_kategorisering",
+    "em_psy_grupper_roller",
+    "em_psy_normalitet_avvik",
+    "em_psy_sosial_kontroll",
+    "em_psy_sosial_pavirkning",
+    "em_psy_stigma_offentlighet"
+  ],
+  "requiredMethodIds": [
+    "met_psy_erfaringsanalyse",
+    "met_psy_klinisk_analyse",
+    "met_psy_stigmaanalyse",
+    "met_psy_offentlighetsanalyse",
+    "met_psy_hverdagsanalyse",
+    "met_psy_diagnosehistorisk_analyse",
+    "met_psy_tilhorighetsanalyse",
+    "met_psy_sosialpsykologisk_analyse",
+    "met_psy_fordomsanalyse",
+    "met_psy_gruppeanalyse",
+    "met_psy_identitetsanalyse",
+    "met_psy_rolle_og_interaksjonsanalyse",
+    "met_psy_makt_og_omsorgsanalyse",
+    "met_psy_normkritisk_analyse",
+    "met_psy_diskursanalyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "gruppemedlemskap vs fast personlighet",
+    "rolleforventning vs individets hele identitet",
+    "deskriptiv norm vs injunktiv norm",
+    "sosial påvirkning vs blind konformitet",
+    "kategori vs stereotype",
+    "stereotype vs fordom vs diskriminering",
+    "inngruppefavorisering vs uforanderlig fiendtlighet",
+    "statistisk normalitet vs sosial norm vs klinisk betydning",
+    "normavvik vs psykisk lidelse",
+    "diagnose som klassifikasjon vs personidentitet",
+    "stigma vs diskriminering",
+    "offentlig stigma vs erfart, forventet, internalisert og strukturell stigma",
+    "ensomhet vs sosial isolasjon",
+    "tilhørighet vs popularitet",
+    "risikofaktor eller gruppesammenheng vs individuell prognose",
+    "forskningscase vs runtime-place-ID"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "fagfellevurderte meta-analyser og reviews om normer, sosial identitet og sosial påvirkning",
+      "meta-analyser om intergruppekontakt, kategorisering og fordommer",
+      "fagfellevurderte stigma- og diagnoseetiketteringsreviews med skille mellom individuelle og strukturelle mekanismer",
+      "WHO 2025–2026 for sosial tilknytning, ensomhet og sosial isolasjon",
+      "canonical Psykologi-filer som scope- og metodeeier, aldri som ekstern faktakilde"
+    ],
+    "minimumExternalSources": 20,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "currentStatusClaimsRequireCurrentSource": true
+  },
+  "safety": {
+    "doNotDiagnosePeople": true,
+    "noIndividualTreatmentAdvice": true,
+    "noScreeningInterpretation": true,
+    "noGroupOrStigmaTypingFromCasualObservation": true,
+    "socialRule": "Beskriv grupper, normer, kategorier, erfaringer og dokumenterte mekanismer; ikke gjør gruppemedlemskap, normavvik, diagnose, stigma eller ensomhet til bevis på personlighet, moral eller individuell prognose."
+  },
+  "qa": {
+    "exactCanonicalCoverage": "8/8",
+    "exactCanonicalMethodCoverage": "15/15",
+    "minimumModules": 3,
+    "minimumSections": 9,
+    "paragraphClaimTraceRequired": true,
+    "minimumExternalSources": 20,
+    "minimumClaims": 27,
+    "rendererFieldsRequired": ["relatedPlaces","socialCases","sources.label","commonMisconceptions.claim","commonMisconceptions.correction"]
+  }
+}

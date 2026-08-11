@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditPsykologiKognisjonFolelserAtferdPhase4 } from '../scripts/audit-fagverk-psykologi-kognisjon-folelser-atferd-phase4.mjs';
 
-test('Psykologi kognisjon følelser og atferd er komplett fjerde phase-4-kapittel', () => {
+test('Psykologi kognisjon følelser og atferd forblir gyldig gjennom videre phase-4-produksjon', () => {
   const { report } = auditPsykologiKognisjonFolelserAtferdPhase4();
   assert.equal(report.chapter.id, 'kognisjon-folelser-og-atferd');
   assert.equal(report.chapter.primaryDomainId, 'kognisjon_folelser_atferd');
@@ -14,7 +14,7 @@ test('Psykologi kognisjon følelser og atferd er komplett fjerde phase-4-kapitte
   assert.equal(report.summary.claimCount, 27);
   assert.equal(report.summary.sourceCount, 21);
   assert.equal(report.summary.externalSourceCount, 20);
-  assert.equal(report.subject.registeredChapterCount, 4);
+  assert.ok(report.subject.registeredChapterCount >= 4 && report.subject.registeredChapterCount <= 6);
   assert.equal(report.subject.targetChapterCount, 6);
   assert.deepEqual(report.runtimePlaceIds, ['psykologisk_institutt_uio']);
   assert.deepEqual(report.cognitionCaseNames, ['Oppmerksomhet og persepsjon','Heuristikker, framing og kognitive bias','Følelse og emosjonsregulering','Stress, vurdering og mestring']);
