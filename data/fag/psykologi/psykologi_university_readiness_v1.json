@@ -1,0 +1,177 @@
+{
+  "schema": "history_go_psykologi_university_readiness_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-11",
+  "subject_id": "psykologi",
+  "status": "expansion_required_before_complete",
+  "purpose": "Bindende universitetsnær kvalitetsmatrise for Psykologi. Matrisen skiller den eksisterende sekskapitlers canonicale fulltekstbasisen fra endelig faglig complete-status og hindrer at 6/6 kapitler eller 58/58 representerte emner alene tolkes som heldekkende universitetsnivå.",
+  "authoritative_sources": [
+    {
+      "id": "ntnu_bpsy_learning_outcomes_2026",
+      "publisher": "NTNU",
+      "title": "Hva lærer du? - Psykologi - bachelor",
+      "url": "https://www.ntnu.no/studier/bpsy/laeringsmal",
+      "verified_at": "2026-08-11",
+      "basis": "Fem kjerneområder: personlighetspsykologi, sosialpsykologi, utviklingspsykologi, kognitiv psykologi og biologisk psykologi, i tillegg til psykologiens historie og vitenskapelige forskningsmetoder."
+    },
+    {
+      "id": "uib_baps_psyk_plan_2026",
+      "publisher": "Universitetet i Bergen",
+      "title": "Studieplan for BAPS-PSYK Bachelorprogram i generell psykologi, høst 2026",
+      "url": "https://www4.uib.no/studier/program/generell-psykologi-bachelor/plan",
+      "verified_at": "2026-08-11",
+      "basis": "Biologisk, kognitiv, utviklings-, personlighets- og sosialpsykologi er eksplisitte basalområder; metode, vitenskapsteori og historie er obligatoriske, og metode har egen fordypning."
+    },
+    {
+      "id": "apa_undergraduate_guidelines_3_0",
+      "publisher": "American Psychological Association",
+      "title": "APA Guidelines for the Undergraduate Psychology Major: Version 3.0",
+      "url": "https://pass.apa.org/assessment-resources",
+      "verified_at": "2026-08-11",
+      "basis": "Undergraduate psychology skal utvikle fagkunnskap, vitenskapelig tenkning og forskningskompetanse, etiske og verdimessige ferdigheter samt anvendelses- og kommunikasjonskompetanse."
+    }
+  ],
+  "canonical_baseline": {
+    "domain_count": 6,
+    "emne_count": 58,
+    "method_count": 58,
+    "registered_chapter_target": 6,
+    "classification": "expanded_and_audited",
+    "interpretation": "Alle dagens canonicale fagområder og emner er representert i seks kilde- og claimsporede kapitler. Dette er en sterk redaksjonell baseline, men ikke dokumentasjon på at hvert emne har en selvstendig universitetsnær artikkel eller at alle sentrale psykologiske begreper og metodekompetanser er materialisert."
+  },
+  "university_core_matrix": [
+    {
+      "area_id": "biological_psychology",
+      "label": "Biologisk psykologi",
+      "required": true,
+      "current_status": "compressed_expansion_required",
+      "current_anchors": ["em_psy_hjerne_kognisjon", "em_psy_nevroaffekt_regulering"],
+      "completion_requirement": "Egen eksplisitt universitetsbredde i nevral kommunikasjon, nervesystem, hjerne-atferd, genetikk og miljø, hormoner, sanser, søvn, motivasjon og biologiske forskningsmetoder uten biologisk determinisme."
+    },
+    {
+      "area_id": "cognitive_psychology",
+      "label": "Kognitiv psykologi",
+      "required": true,
+      "current_status": "canonical_chapter_baseline_ready_depth_expansion_required",
+      "current_anchors": ["kognisjon_folelser_atferd", "em_psy_laring_hukommelse"],
+      "completion_requirement": "Selvstendig dybde i persepsjon, oppmerksomhet, hukommelse, språk, problemløsning, resonnering, beslutning og kognitive modeller med empiriske metoder og avgrensninger."
+    },
+    {
+      "area_id": "developmental_psychology",
+      "label": "Utviklingspsykologi",
+      "required": true,
+      "current_status": "canonical_chapter_baseline_ready_depth_expansion_required",
+      "current_anchors": ["utvikling_oppvekst_laring"],
+      "completion_requirement": "Livsløpsdekning av biologisk, kognitiv, sosial og emosjonell utvikling, sentrale teorier, utviklingsdesign, kontekst og faglig uenighet."
+    },
+    {
+      "area_id": "social_psychology",
+      "label": "Sosialpsykologi",
+      "required": true,
+      "current_status": "canonical_chapter_baseline_ready_depth_expansion_required",
+      "current_anchors": ["sosialpsykologi_normalitet_stigma"],
+      "completion_requirement": "Selvstendig dybde i sosial kognisjon, holdninger, påvirkning, gruppeprosesser, relasjoner, identitet, fordommer, samarbeid og konflikt med metode- og replikasjonskritikk."
+    },
+    {
+      "area_id": "personality_psychology",
+      "label": "Personlighetspsykologi",
+      "required": true,
+      "current_status": "compressed_expansion_required",
+      "current_anchors": ["em_psy_personlighet_individ", "em_psy_psykometri_maling"],
+      "completion_requirement": "Egen universitetsbredde i trekkmodeller, person-situasjon, utvikling og stabilitet, biologiske og sosiale perspektiver, måling, prediksjon, kultur og modellkritikk."
+    },
+    {
+      "area_id": "history_science_theory",
+      "label": "Psykologiens historie og vitenskapsteori",
+      "required": true,
+      "current_status": "canonical_chapter_baseline_ready_depth_expansion_required",
+      "current_anchors": ["fagtradisjoner_teori_sinnet"],
+      "completion_requirement": "Historisk utvikling, sentrale skoler, forklaringsnivåer, vitenskapsteoretiske problemstillinger, fagets institusjonalisering og kritisk vurdering av kunnskapsproduksjon."
+    },
+    {
+      "area_id": "research_methods_statistics",
+      "label": "Forskningsmetode og statistikk",
+      "required": true,
+      "current_status": "major_expansion_required",
+      "current_anchors": ["em_psy_forskning_metode", "em_psy_psykometri_maling"],
+      "completion_requirement": "Egen full metode- og statistikkgren med design, måling, analyse, usikkerhet, kausalitet, replikasjon, åpen vitenskap og forskningsetikk."
+    }
+  ],
+  "required_methods_statistics_topics": [
+    "eksperimentelt_design",
+    "observasjon",
+    "korrelasjon",
+    "longitudinelt_design",
+    "tverrsnittdesign",
+    "kvalitativ_metode",
+    "utvalg_og_representativitet",
+    "operasjonalisering",
+    "reliabilitet",
+    "validitet",
+    "deskriptiv_statistikk",
+    "statistisk_inferens",
+    "hypotesetesting",
+    "effektstorrelse",
+    "konfidensintervall_og_usikkerhet",
+    "regresjon",
+    "kausalitet_og_konfundering",
+    "replikasjon",
+    "apen_vitenskap",
+    "forskningsetikk"
+  ],
+  "applied_field_matrix": [
+    {"area_id": "clinical_health", "label": "Klinisk psykologi og helsepsykologi", "current_status": "strong_baseline_breadth_mapping_required"},
+    {"area_id": "work_organizational", "label": "Arbeids- og organisasjonspsykologi", "current_status": "expansion_required"},
+    {"area_id": "educational_school", "label": "Pedagogisk og skolepsykologi", "current_status": "partial_expansion_required"},
+    {"area_id": "culture", "label": "Kulturpsykologi", "current_status": "partial_expansion_required"},
+    {"area_id": "environment_community", "label": "Miljø- og communitypsykologi", "current_status": "expansion_required"},
+    {"area_id": "quantitative_psychometrics", "label": "Kvantitativ psykologi og psykometri", "current_status": "major_expansion_required"}
+  ],
+  "topic_article_contract": {
+    "canonical_topic_count": 58,
+    "directory": "data/fagverk/psykologi/emneartikler",
+    "one_article_per_canonical_emne_id": true,
+    "required_fields": [
+      "emne_id",
+      "title",
+      "definition",
+      "background",
+      "theories_and_findings",
+      "methods",
+      "boundaries_and_disagreements",
+      "examples",
+      "source_ids"
+    ],
+    "representation_inside_a_chapter_does_not_count_as_standalone_article": true
+  },
+  "concept_registry_contract": {
+    "path": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
+    "coverage_requirement": "100_percent_of_canonical_concepts_materialized",
+    "required_fields": [
+      "concept_id",
+      "label",
+      "definition",
+      "explanation",
+      "not_meaning",
+      "related_concept_ids",
+      "models_or_researchers",
+      "empirical_status",
+      "example",
+      "source_ids"
+    ]
+  },
+  "completion_contract": {
+    "required_editorial_status_before_final_gate": "expanded_and_audited",
+    "final_editorial_status": "complete",
+    "next_gate": "university_matrix_topic_articles_concept_registry_and_methods",
+    "requirements": [
+      "all_required_university_core_areas_complete",
+      "research_methods_statistics_branch_complete",
+      "all_58_standalone_topic_articles_materialized_and_sourced",
+      "canonical_concept_registry_100_percent_materialized_and_sourced",
+      "applied_field_matrix_reviewed_and_covered",
+      "university_readiness_audit_green"
+    ],
+    "complete_must_remain_false_until_all_requirements_pass": true
+  }
+}

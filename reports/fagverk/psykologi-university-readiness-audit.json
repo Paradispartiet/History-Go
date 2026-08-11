@@ -1,0 +1,170 @@
+{
+  "schema": "history_go_fagverk_psykologi_university_readiness_audit_v1",
+  "version": "1.0.0",
+  "status": "psykologi_university_readiness_in_progress",
+  "generatedFrom": {
+    "matrix": "data/fag/psykologi/psykologi_university_readiness_v1.json",
+    "pensum": "data/fag/psykologi/psykologipensum_canonical_v4_5.json",
+    "emner": "data/fag/psykologi/emner_psykologi_canonical_v4_5.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "status": "data/fagverk/subject_status.json",
+    "articleDir": "data/fagverk/psykologi/emneartikler",
+    "concepts": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
+    "report": "reports/fagverk/psykologi-university-readiness-audit.json"
+  },
+  "subject": {
+    "id": "psykologi",
+    "editorialStatus": "expanded_and_audited",
+    "nextGate": "university_matrix_topic_articles_concept_registry_and_methods",
+    "registeredChapterCount": 6
+  },
+  "baseline": {
+    "domainCount": 6,
+    "emneCount": 58,
+    "methodCount": 58,
+    "chapterCount": 6,
+    "interpretation": "Alle dagens canonicale fagområder og emner er representert i seks kilde- og claimsporede kapitler. Dette er en sterk redaksjonell baseline, men ikke dokumentasjon på at hvert emne har en selvstendig universitetsnær artikkel eller at alle sentrale psykologiske begreper og metodekompetanser er materialisert."
+  },
+  "universityCore": [
+    {
+      "areaId": "biological_psychology",
+      "label": "Biologisk psykologi",
+      "status": "compressed_expansion_required"
+    },
+    {
+      "areaId": "cognitive_psychology",
+      "label": "Kognitiv psykologi",
+      "status": "canonical_chapter_baseline_ready_depth_expansion_required"
+    },
+    {
+      "areaId": "developmental_psychology",
+      "label": "Utviklingspsykologi",
+      "status": "canonical_chapter_baseline_ready_depth_expansion_required"
+    },
+    {
+      "areaId": "social_psychology",
+      "label": "Sosialpsykologi",
+      "status": "canonical_chapter_baseline_ready_depth_expansion_required"
+    },
+    {
+      "areaId": "personality_psychology",
+      "label": "Personlighetspsykologi",
+      "status": "compressed_expansion_required"
+    },
+    {
+      "areaId": "history_science_theory",
+      "label": "Psykologiens historie og vitenskapsteori",
+      "status": "canonical_chapter_baseline_ready_depth_expansion_required"
+    },
+    {
+      "areaId": "research_methods_statistics",
+      "label": "Forskningsmetode og statistikk",
+      "status": "major_expansion_required"
+    }
+  ],
+  "methodsStatistics": {
+    "requiredTopicCount": 20,
+    "requiredTopics": [
+      "eksperimentelt_design",
+      "observasjon",
+      "korrelasjon",
+      "longitudinelt_design",
+      "tverrsnittdesign",
+      "kvalitativ_metode",
+      "utvalg_og_representativitet",
+      "operasjonalisering",
+      "reliabilitet",
+      "validitet",
+      "deskriptiv_statistikk",
+      "statistisk_inferens",
+      "hypotesetesting",
+      "effektstorrelse",
+      "konfidensintervall_og_usikkerhet",
+      "regresjon",
+      "kausalitet_og_konfundering",
+      "replikasjon",
+      "apen_vitenskap",
+      "forskningsetikk"
+    ],
+    "complete": false
+  },
+  "topicArticles": {
+    "requiredCount": 58,
+    "completeCount": 0,
+    "complete": false,
+    "directory": "data/fagverk/psykologi/emneartikler"
+  },
+  "concepts": {
+    "registryPath": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
+    "exists": false,
+    "conceptCount": 0,
+    "materializedCount": 0,
+    "complete": false
+  },
+  "appliedFields": [
+    {
+      "areaId": "clinical_health",
+      "label": "Klinisk psykologi og helsepsykologi",
+      "status": "strong_baseline_breadth_mapping_required"
+    },
+    {
+      "areaId": "work_organizational",
+      "label": "Arbeids- og organisasjonspsykologi",
+      "status": "expansion_required"
+    },
+    {
+      "areaId": "educational_school",
+      "label": "Pedagogisk og skolepsykologi",
+      "status": "partial_expansion_required"
+    },
+    {
+      "areaId": "culture",
+      "label": "Kulturpsykologi",
+      "status": "partial_expansion_required"
+    },
+    {
+      "areaId": "environment_community",
+      "label": "Miljø- og communitypsykologi",
+      "status": "expansion_required"
+    },
+    {
+      "areaId": "quantitative_psychometrics",
+      "label": "Kvantitativ psykologi og psykometri",
+      "status": "major_expansion_required"
+    }
+  ],
+  "blockersToComplete": [
+    "university_core:biological_psychology:compressed_expansion_required",
+    "university_core:cognitive_psychology:canonical_chapter_baseline_ready_depth_expansion_required",
+    "university_core:developmental_psychology:canonical_chapter_baseline_ready_depth_expansion_required",
+    "university_core:social_psychology:canonical_chapter_baseline_ready_depth_expansion_required",
+    "university_core:personality_psychology:compressed_expansion_required",
+    "university_core:history_science_theory:canonical_chapter_baseline_ready_depth_expansion_required",
+    "university_core:research_methods_statistics:major_expansion_required",
+    "standalone_topic_articles:0/58",
+    "canonical_concept_registry:0/0",
+    "applied_field:clinical_health:strong_baseline_breadth_mapping_required",
+    "applied_field:work_organizational:expansion_required",
+    "applied_field:educational_school:partial_expansion_required",
+    "applied_field:culture:partial_expansion_required",
+    "applied_field:environment_community:expansion_required",
+    "applied_field:quantitative_psychometrics:major_expansion_required"
+  ],
+  "currentGates": {
+    "canonicalSixDomainBaselineIntact": true,
+    "all58CanonicalEmnersStillUnique": true,
+    "sixEditorialChaptersStillRegistered": true,
+    "authoritativeUniversityMatrixPresent": true,
+    "fiveCoreAreasHistoryAndMethodsExplicitlyRepresented": true,
+    "twentyMethodsStatisticsCompetenciesPinned": true,
+    "subjectNotPrematurelyComplete": true
+  },
+  "completionGates": {
+    "allRequiredUniversityCoreAreasComplete": false,
+    "researchMethodsStatisticsBranchComplete": false,
+    "all58StandaloneTopicArticlesComplete": false,
+    "canonicalConceptRegistryComplete": false,
+    "appliedFieldMatrixComplete": false
+  },
+  "completeReady": false
+}

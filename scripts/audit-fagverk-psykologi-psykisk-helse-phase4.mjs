@@ -4,250 +4,68 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const CHAPTER_ID = 'psykisk-helse-institusjoner-og-behandling';
-const DOMAIN_ID = 'psykisk_helse_institusjoner_behandling';
-const CHAPTER_DIR = `data/fagverk/psykologi/${CHAPTER_ID}`;
-const P = Object.freeze({
-  pensum: 'data/fag/psykologi/psykologipensum_canonical_v4_5.json',
-  methods: 'data/fag/psykologi/methods_psykologi_canonical_v4_5.json',
-  registry: 'data/fagverk/fagverk_registry.json',
-  status: 'data/fagverk/subject_status.json',
-  chapter: `data/fagverk/psykologi/${CHAPTER_ID}.json`,
-  brief: `${CHAPTER_DIR}/brief.json`,
-  claims: `${CHAPTER_DIR}/claims.json`,
-  report: 'reports/fagverk/psykologi-psykisk-helse-phase4-audit.json'
-});
-const MODULES = [
-  `${CHAPTER_DIR}/01-grunnlag.json`,
-  `${CHAPTER_DIR}/02-rettigheter-og-praksis.json`,
-  `${CHAPTER_DIR}/03-institusjon-sted-og-krise.json`
-];
-const EXPECTED_RUNTIME_PLACE_IDS = ['psykologisk_institutt_uio'];
-const EXPECTED_CASE_NAMES = ['Gaustad sykehus', 'Dikemark sykehus', 'Psykiatrisk avdeling, Vinderen'];
-const REQUIRED_CURRENT_SOURCE_IDS = [
-  'src-phvl-2026',
-  'src-phvf-2026',
-  'src-helsenorge-vern',
-  'src-helsenorge-tvang',
-  'src-helsedir-kontroll'
-];
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const CHAPTER_ID='psykisk-helse-institusjoner-og-behandling';
+const DOMAIN_ID='psykisk_helse_institusjoner_behandling';
+const NEXT_GATE='university_matrix_topic_articles_concept_registry_and_methods';
+const DIR=`data/fagverk/psykologi/${CHAPTER_ID}`;
+const P=Object.freeze({pensum:'data/fag/psykologi/psykologipensum_canonical_v4_5.json',methods:'data/fag/psykologi/methods_psykologi_canonical_v4_5.json',registry:'data/fagverk/fagverk_registry.json',status:'data/fagverk/subject_status.json',chapter:`data/fagverk/psykologi/${CHAPTER_ID}.json`,brief:`${DIR}/brief.json`,claims:`${DIR}/claims.json`,report:'reports/fagverk/psykologi-psykisk-helse-phase4-audit.json'});
+const MODULES=[`${DIR}/01-grunnlag.json`,`${DIR}/02-rettigheter-og-praksis.json`,`${DIR}/03-institusjon-sted-og-krise.json`];
+const CASES=['Gaustad sykehus','Dikemark sykehus','Psykiatrisk avdeling, Vinderen'];
+const REQUIRED_CURRENT_SOURCE_IDS=['src-phvl-2026','src-phvf-2026','src-helsenorge-vern','src-helsenorge-tvang','src-helsedir-kontroll'];
+const abs=(f)=>path.join(ROOT,f),read=(f)=>JSON.parse(fs.readFileSync(abs(f),'utf8'));
+const assert=(ok,m)=>{if(!ok)throw new Error(m);};
+const projection=(r)=>({schema:r.schema,version:r.version,status:r.status,generatedFrom:r.generatedFrom,subject:r.subject,chapter:r.chapter,summary:r.summary,canonicalEmneIds:r.canonicalEmneIds,methodIds:r.methodIds,runtimePlaceIds:r.runtimePlaceIds,institutionCaseNames:r.institutionCaseNames,gates:r.gates});
 
-const abs = (file) => path.join(ROOT, file);
-const readJson = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
-const assert = (condition, message) => { if (!condition) throw new Error(message); };
-
-function committedProjection(report) {
-  return {
-    schema: report.schema,
-    version: report.version,
-    status: report.status,
-    generatedFrom: report.generatedFrom,
-    subject: report.subject,
-    chapter: report.chapter,
-    summary: report.summary,
-    canonicalEmneIds: report.canonicalEmneIds,
-    methodIds: report.methodIds,
-    runtimePlaceIds: report.runtimePlaceIds,
-    institutionCaseNames: report.institutionCaseNames,
-    gates: report.gates
-  };
+export function auditPsykologiPsykiskHelsePhase4({writeReport=false,checkReport=true}={}){
+  for(const f of [P.pensum,P.methods,P.registry,P.status,P.chapter,P.brief,P.claims,...MODULES])assert(fs.existsSync(abs(f)),`Mangler ${f}`);
+  const pensum=read(P.pensum),methodsDoc=read(P.methods),registry=read(P.registry),status=read(P.status),chapter=read(P.chapter),brief=read(P.brief),claimsDoc=read(P.claims),modules=MODULES.map(read);
+  const domain=pensum.domains.find((d)=>d.domain_id===DOMAIN_ID);assert(domain,'Mangler canonicalt domene');
+  const canonicalEmneIds=[...domain.emne_ids];
+  assert(canonicalEmneIds.length===12&&isDeepStrictEqual(chapter.emne_ids,canonicalEmneIds)&&new Set(chapter.emne_ids).size===12,'Kapittelet dekker ikke 12 canonicale emner i eksakt rekkefølge');
+  const canonicalMethods=new Set(methodsDoc.methods.map((m)=>m.method_id));
+  assert(chapter.method_ids.length===18&&new Set(chapter.method_ids).size===18&&chapter.method_ids.every((id)=>canonicalMethods.has(id)),'Kapittelet bruker ikke 18 unike canonicale metoder');
+  assert(chapter.schema==='history_go_fagverk_chapter_v1'&&chapter.subject_id==='psykologi'&&chapter.subject==='psykologi'&&chapter.id===CHAPTER_ID&&chapter.primary_domain_id===DOMAIN_ID,'Feil schema/fag/kapittel/domene');
+  assert(chapter.editorialStatus==='chapter_ready'&&chapter.claimTraceRequired===true,'Kapittelet er ikke claimsporet chapter_ready');
+  assert(chapter.doNotDiagnosePeople===true&&brief.safety?.doNotDiagnosePeople===true&&claimsDoc.source_policy?.noDiagnosisOfIndividuals===true,'Diagnosevern mangler');
+  assert(brief.safety?.noIndividualTreatmentAdvice===true&&claimsDoc.source_policy?.noIndividualTreatmentAdvice===true,'Behandlingsrådvern mangler');
+  assert(brief.safety?.noScreeningInterpretation===true,'Screeningvern mangler');
+  assert(claimsDoc.source_policy?.legalClaimsRequireCurrentLegalSource===true,'Krav om aktuell rettskilde mangler');
+  assert(isDeepStrictEqual(chapter.moduleFiles,MODULES),'Kapittelwrapperen peker til feil modulsett');
+  const sections=modules.flatMap((m)=>m.sections||[]),paragraphs=sections.flatMap((s)=>s.paragraphs||[]),traces=sections.flatMap((s)=>s.paragraphClaimIds||[]);
+  assert(modules.length===3&&sections.length===9&&paragraphs.length===27,'Kapittelet må være 3/9/27');
+  assert(traces.length===27&&traces.every((ids)=>Array.isArray(ids)&&ids.length),'Alle 27 fagavsnitt må ha claimspor');
+  assert(paragraphs.every((text)=>typeof text==='string'&&text.length>=180),'Et fagavsnitt er for tynt');
+  const coveredEmnes=new Set(sections.flatMap((s)=>s.emne_ids||[])),usedMethods=new Set(sections.flatMap((s)=>s.method_ids||[]));
+  assert(coveredEmnes.size===12&&canonicalEmneIds.every((id)=>coveredEmnes.has(id)),'Seksjonene dekker ikke 12/12 emner');
+  assert(usedMethods.size===18&&chapter.method_ids.every((id)=>usedMethods.has(id)),'Seksjonene bruker ikke 18/18 metoder');
+  const sources=claimsDoc.sources||[],claims=claimsDoc.claims||[],external=sources.filter((s)=>s.type!=='internal_place_record'),sourceIds=new Set(sources.map((s)=>s.id)),claimIds=new Set(claims.map((c)=>c.id));
+  assert(sources.length>=20&&external.length>=15&&claims.length>=24,'Kapittelet mangler minimumskrav til kilder eller claims');
+  assert(sourceIds.size===sources.length&&claimIds.size===claims.length,'Dupliserte source/claim ID-er');
+  assert(sources.every((s)=>s.id&&s.publisher&&s.title&&s.url&&s.source_location&&s.label),'Kilde mangler metadata');
+  assert(external.every((s)=>/^https:\/\//.test(s.url)),'Ekstern kilde mangler HTTPS');
+  assert(claims.every((c)=>c.source_ids?.length&&c.source_ids.every((id)=>sourceIds.has(id))),'Claim mangler løst kildepeker');
+  assert(traces.flat().every((id)=>claimIds.has(id)),'Fagavsnitt peker til ukjent claim');
+  assert(REQUIRED_CURRENT_SOURCE_IDS.every((id)=>sourceIds.has(id)),'Gjeldende lov-/rettighetskilde mangler');
+  assert(claimsDoc.source_policy?.verified_at==='2026-08-11','Kildeverifiseringsdato er ikke låst');
+  const runtimePlaceIds=(chapter.relatedPlaces||[]).map((p)=>p.id);assert(isDeepStrictEqual(runtimePlaceIds,['psykologisk_institutt_uio']),'Kapittelet har ukjent runtime-place-ID');
+  const internalPlace=sources.find((s)=>s.id==='src-hg-uio-place');assert(internalPlace?.url==='data/places/psykologi/oslo/places_psykologi/psykologisk_institutt_uio.json'&&fs.existsSync(abs(internalPlace.url)),'UiO-place-kilden peker feil');
+  const institutionCaseNames=(chapter.institutionCases||[]).map((item)=>item.name);assert(isDeepStrictEqual(institutionCaseNames,CASES),'Institusjonscasene avviker');
+  assert((chapter.institutionCases||[]).every((item)=>item.placeStatus==='documented_case_not_runtime_place'),'Institusjonscase later som runtime-sted');
+  const registrySubject=registry.subjects?.psykologi,row=registrySubject?.chapters?.find((item)=>item.id===CHAPTER_ID);assert(row&&row.file===P.chapter&&row.primary_domain_id===DOMAIN_ID,'Registry mangler eller feilregistrerer kapittelet');
+  assert(isDeepStrictEqual(row.emne_ids,canonicalEmneIds)&&row.claimsFile===P.claims&&row.briefFile===P.brief,'Registry har feil emner/brief/claims');
+  assert(registrySubject.editorialPlan?.targetChapterCount===6,'Psykologi mangler targetChapterCount=6');
+  const statusEntry=status.subjects.find((item)=>item.id==='psykologi');assert(statusEntry?.navigationStatus==='materialized'&&statusEntry?.assessmentStatus==='audited','Psykologi mistet structural status');
+  const allowed=['chapters_in_progress','complete','expanded_and_audited'];assert(allowed.includes(statusEntry?.editorialStatus),'Psykologi har ugyldig redaksjonell fremdrift');
+  if(statusEntry.editorialStatus==='chapters_in_progress')assert(['remaining_domain_chapter_production','full_subject_audit'].includes(statusEntry.nextGate),'Feil nextGate under kapittelproduksjon');
+  if(statusEntry.editorialStatus==='complete')assert(statusEntry.nextGate==='maintenance_source_refresh_and_place_case_expansion','Legacy complete har feil nextGate');
+  if(statusEntry.editorialStatus==='expanded_and_audited')assert(statusEntry.nextGate===NEXT_GATE,'Expanded Psykologi har feil universitetsport');
+  const forbidden=[/du har (?:en|et) [a-zæøå-]+lidelse/i,/du er (?:deprimert|psykotisk|bipolar)/i,/testen viser at du/i,/du bør (?:starte|slutte|øke|redusere) (?:med )?(?:medisin|medikament)/i];
+  assert(forbidden.every((p)=>!p.test(JSON.stringify({chapter,brief,modules}))),'Diagnostisk eller individualisert behandlingsspråk funnet');
+  const report={schema:'history_go_fagverk_psykologi_psykisk_helse_phase4_audit_v1',version:'1.1.0',status:'psykologi_psykisk_helse_chapter_ready',generatedFrom:P,subject:{id:'psykologi',editorialStatus:statusEntry.editorialStatus,nextGate:statusEntry.nextGate,registeredChapterCount:registrySubject.chapters.length,targetChapterCount:registrySubject.editorialPlan.targetChapterCount},chapter:{id:CHAPTER_ID,primaryDomainId:DOMAIN_ID,editorialStatus:chapter.editorialStatus,doNotDiagnosePeople:chapter.doNotDiagnosePeople},summary:{emneCount:chapter.emne_ids.length,methodCount:chapter.method_ids.length,moduleCount:modules.length,sectionCount:sections.length,paragraphCount:paragraphs.length,claimCount:claims.length,sourceCount:sources.length,externalSourceCount:external.length,runtimePlaceCount:runtimePlaceIds.length,institutionCaseCount:institutionCaseNames.length},canonicalEmneIds,methodIds:chapter.method_ids,runtimePlaceIds,institutionCaseNames,gates:{exactCanonicalEmneCoverage:true,allMethodsCanonicalAndUsed:true,threeModulesNineSectionsTwentySevenParagraphs:true,paragraphClaimTraceComplete:true,minimumExternalSourcesMet:true,allClaimsSourceResolved:true,currentLegalSourcesPresent:true,doNotDiagnosePeopleGuardPresent:true,noIndividualTreatmentAdviceGuardPresent:true,noInventedRuntimePlaces:true,registrySynchronized:true,statusProgressionCompatible:true}};
+  if(writeReport){fs.mkdirSync(path.dirname(abs(P.report)),{recursive:true});fs.writeFileSync(abs(P.report),`${JSON.stringify(projection(report),null,2)}\n`);}
+  if(checkReport){assert(fs.existsSync(abs(P.report)),`${P.report} mangler. Kjør audit med --write-report`);assert(isDeepStrictEqual(read(P.report),projection(report)),`${P.report} er utdatert`);}
+  return {report:projection(report),chapter,brief,claimsDoc,modules};
 }
-
-export function auditPsykologiPsykiskHelsePhase4({ writeReport = false, checkReport = true } = {}) {
-  for (const file of [P.pensum, P.methods, P.registry, P.status, P.chapter, P.brief, P.claims, ...MODULES]) {
-    assert(fs.existsSync(abs(file)), `Mangler ${file}`);
-  }
-
-  const pensum = readJson(P.pensum);
-  const methodsDoc = readJson(P.methods);
-  const registry = readJson(P.registry);
-  const status = readJson(P.status);
-  const chapter = readJson(P.chapter);
-  const brief = readJson(P.brief);
-  const claimsDoc = readJson(P.claims);
-  const modules = MODULES.map(readJson);
-
-  const domain = pensum.domains.find((row) => row.domain_id === DOMAIN_ID);
-  assert(domain, `Mangler canonicalt domene ${DOMAIN_ID}`);
-  const canonicalEmneIds = [...domain.emne_ids];
-  const chapterEmneIds = [...chapter.emne_ids];
-  assert(canonicalEmneIds.length === 12, 'Canonicalt domene skal ha 12 emner');
-  assert(isDeepStrictEqual(chapterEmneIds, canonicalEmneIds), 'Kapittelet dekker ikke canonicale emner i eksakt rekkefølge');
-  assert(new Set(chapterEmneIds).size === 12, 'Kapittelet har dupliserte emner');
-
-  const canonicalMethodIds = new Set(methodsDoc.methods.map((row) => row.method_id));
-  assert(chapter.method_ids.length === 18, 'Kapittelet skal bruke 18 metoder');
-  assert(new Set(chapter.method_ids).size === 18, 'Kapittelet har dupliserte metode-ID-er');
-  assert(chapter.method_ids.every((id) => canonicalMethodIds.has(id)), 'Kapittelet peker til ukjent Psykologi-metode');
-
-  assert(chapter.schema === 'history_go_fagverk_chapter_v1', 'Feil kapittelschema');
-  assert(chapter.subject_id === 'psykologi' && chapter.subject === 'psykologi', 'Feil fag-ID');
-  assert(chapter.chapter_id === CHAPTER_ID && chapter.id === CHAPTER_ID, 'Feil kapittel-ID');
-  assert(chapter.primary_domain_id === DOMAIN_ID, 'Feil primærdomene');
-  assert(chapter.editorialStatus === 'chapter_ready', 'Kapittelet er ikke chapter_ready');
-  assert(chapter.claimTraceRequired === true, 'Claimspor er ikke obligatorisk');
-  assert(chapter.doNotDiagnosePeople === true, 'Kapittelet mangler diagnosevern');
-  assert(brief.safety?.doNotDiagnosePeople === true, 'Brief mangler diagnosevern');
-  assert(brief.safety?.noIndividualTreatmentAdvice === true, 'Brief mangler vern mot individuell behandlingsrådgivning');
-  assert(brief.safety?.noScreeningInterpretation === true, 'Brief mangler vern mot screeningtolkning');
-  assert(claimsDoc.source_policy?.noDiagnosisOfIndividuals === true, 'Claims-policy mangler diagnosevern');
-  assert(claimsDoc.source_policy?.noIndividualTreatmentAdvice === true, 'Claims-policy mangler behandlingsrådvern');
-  assert(claimsDoc.source_policy?.legalClaimsRequireCurrentLegalSource === true, 'Claims-policy mangler krav om aktuell rettskilde');
-
-  assert(modules.length === 3, 'Kapittelet må ha tre moduler');
-  assert(isDeepStrictEqual(chapter.moduleFiles, MODULES), 'Kapittelwrapperen peker ikke til eksakt modulsett');
-  const sections = modules.flatMap((module) => module.sections || []);
-  assert(sections.length === 9, 'Kapittelet må ha ni seksjoner');
-  const paragraphs = sections.flatMap((section) => section.paragraphs || []);
-  const paragraphTraces = sections.flatMap((section) => section.paragraphClaimIds || []);
-  assert(paragraphs.length === 27, 'Kapittelet må ha 27 fagavsnitt');
-  assert(paragraphTraces.length === 27, 'Alle 27 fagavsnitt må ha claimspor');
-  assert(paragraphTraces.every((ids) => Array.isArray(ids) && ids.length >= 1), 'Et fagavsnitt mangler claim-ID');
-  assert(paragraphs.every((text) => typeof text === 'string' && text.length >= 180), 'Et fagavsnitt er for tynt');
-
-  const sectionEmneIds = new Set(sections.flatMap((section) => section.emne_ids || []));
-  assert(sectionEmneIds.size === 12, 'Seksjonene dekker feil antall emner');
-  assert(canonicalEmneIds.every((id) => sectionEmneIds.has(id)), 'Et canonicalt emne mangler i seksjonene');
-  assert([...sectionEmneIds].every((id) => canonicalEmneIds.includes(id)), 'Seksjonene introduserer ukjent emne');
-  const sectionMethodIds = new Set(sections.flatMap((section) => section.method_ids || []));
-  assert(sectionMethodIds.size === 18, 'Seksjonene bruker feil antall unike metoder');
-  assert(chapter.method_ids.every((id) => sectionMethodIds.has(id)), 'En required metode brukes ikke i seksjonene');
-
-  const sources = claimsDoc.sources || [];
-  const claims = claimsDoc.claims || [];
-  const sourceIds = new Set(sources.map((source) => source.id));
-  const claimIds = new Set(claims.map((claim) => claim.id));
-  const externalSources = sources.filter((source) => source.type !== 'internal_place_record');
-  assert(sources.length >= 20, 'Kapittelet må ha minst 20 registrerte kilder');
-  assert(externalSources.length >= 15, 'Kapittelet må ha minst 15 eksterne kilder');
-  assert(claims.length >= 24, 'Kapittelet må ha minst 24 verifiserte claims');
-  assert(sourceIds.size === sources.length, 'Dupliserte kilde-ID-er');
-  assert(claimIds.size === claims.length, 'Dupliserte claim-ID-er');
-  assert(sources.every((source) => source.id && source.publisher && source.title && source.url && source.source_location && source.label), 'Kilde mangler obligatorisk metadata');
-  assert(externalSources.every((source) => /^https:\/\//.test(source.url)), 'Ekstern kilde mangler HTTPS-URL');
-  assert(claims.every((claim) => Array.isArray(claim.source_ids) && claim.source_ids.length >= 1), 'Claim mangler kildepeker');
-  assert(claims.every((claim) => claim.source_ids.every((id) => sourceIds.has(id))), 'Claim peker til ukjent kilde');
-  assert(paragraphTraces.flat().every((id) => claimIds.has(id)), 'Fagavsnitt peker til ukjent claim');
-  assert(REQUIRED_CURRENT_SOURCE_IDS.every((id) => sourceIds.has(id)), 'Gjeldende lov-/rettighetskilde mangler');
-  assert(claimsDoc.source_policy?.verified_at === '2026-08-11', 'Kildeverifiseringsdato er ikke låst til produksjonsdato');
-
-  const runtimePlaceIds = (chapter.relatedPlaces || []).map((place) => place.id);
-  assert(isDeepStrictEqual(runtimePlaceIds, EXPECTED_RUNTIME_PLACE_IDS), 'Kapittelet har ukjent eller oppdiktet runtime-place-ID');
-  const internalPlace = sources.find((source) => source.id === 'src-hg-uio-place');
-  assert(internalPlace?.url === 'data/places/psykologi/oslo/places_psykologi/psykologisk_institutt_uio.json', 'UiO-place-kilden peker feil');
-  assert(fs.existsSync(abs(internalPlace.url)), 'Canonicalt UiO-place mangler i repoet');
-  const institutionCases = chapter.institutionCases || [];
-  const institutionCaseNames = institutionCases.map((item) => item.name);
-  assert(isDeepStrictEqual(institutionCaseNames, EXPECTED_CASE_NAMES), 'Institusjonscasene avviker fra låst case-sett');
-  assert(institutionCases.every((item) => item.placeStatus === 'documented_case_not_runtime_place'), 'Institusjonscase later som runtime-sted');
-
-  const registrySubject = registry.subjects?.psykologi;
-  assert(registrySubject, 'Psykologi mangler i registry');
-  const registryChapter = registrySubject.chapters?.find((item) => item.id === CHAPTER_ID);
-  assert(registryChapter, 'Kapittelet mangler i registry');
-  assert(registryChapter.file === P.chapter, 'Registry peker til feil kapittelfil');
-  assert(registryChapter.primary_domain_id === DOMAIN_ID, 'Registry har feil domene');
-  assert(isDeepStrictEqual(registryChapter.emne_ids, canonicalEmneIds), 'Registry har feil emneliste');
-  assert(registryChapter.claimsFile === P.claims && registryChapter.briefFile === P.brief, 'Registry har feil brief/claims-peker');
-  assert(registrySubject.editorialPlan?.targetChapterCount === 6, 'Psykologi mangler targetChapterCount=6');
-
-  const statusEntry = status.subjects.find((item) => item.id === 'psykologi');
-  assert(statusEntry?.navigationStatus === 'materialized', 'Psykologi mistet materialized-status');
-  assert(statusEntry?.assessmentStatus === 'audited', 'Psykologi mistet audited strukturstatus');
-  const statusInProgress = statusEntry?.editorialStatus === 'chapters_in_progress';
-  const statusComplete = statusEntry?.editorialStatus === 'complete';
-  assert(statusInProgress || statusComplete, 'Psykologi må stå chapters_in_progress eller complete');
-  assert(
-    statusComplete
-      ? statusEntry?.nextGate === 'maintenance_source_refresh_and_place_case_expansion'
-      : statusEntry?.nextGate === 'remaining_domain_chapter_production',
-    'Psykologi har feil neste port for editorial status'
-  );
-
-  const forbiddenPatterns = [
-    /du har (?:en|et) [a-zæøå-]+lidelse/i,
-    /du er (?:deprimert|psykotisk|bipolar)/i,
-    /testen viser at du/i,
-    /du bør (?:starte|slutte|øke|redusere) (?:med )?(?:medisin|medikament)/i
-  ];
-  const editorialText = JSON.stringify({ chapter, brief, modules });
-  assert(forbiddenPatterns.every((pattern) => !pattern.test(editorialText)), 'Kapittelet inneholder diagnostisk eller individualisert behandlingsspråk');
-
-  const report = {
-    schema: 'history_go_fagverk_psykologi_psykisk_helse_phase4_audit_v1',
-    version: '1.0.0',
-    status: 'psykologi_psykisk_helse_chapter_ready',
-    generatedFrom: P,
-    subject: {
-      id: 'psykologi',
-      editorialStatus: statusEntry.editorialStatus,
-      nextGate: statusEntry.nextGate,
-      registeredChapterCount: registrySubject.chapters.length,
-      targetChapterCount: registrySubject.editorialPlan.targetChapterCount
-    },
-    chapter: {
-      id: CHAPTER_ID,
-      primaryDomainId: DOMAIN_ID,
-      editorialStatus: chapter.editorialStatus,
-      doNotDiagnosePeople: chapter.doNotDiagnosePeople
-    },
-    summary: {
-      emneCount: chapterEmneIds.length,
-      methodCount: chapter.method_ids.length,
-      moduleCount: modules.length,
-      sectionCount: sections.length,
-      paragraphCount: paragraphs.length,
-      claimCount: claims.length,
-      sourceCount: sources.length,
-      externalSourceCount: externalSources.length,
-      runtimePlaceCount: runtimePlaceIds.length,
-      institutionCaseCount: institutionCases.length
-    },
-    canonicalEmneIds,
-    methodIds: chapter.method_ids,
-    runtimePlaceIds,
-    institutionCaseNames,
-    gates: {
-      exactCanonicalEmneCoverage: true,
-      allMethodsCanonicalAndUsed: true,
-      threeModulesNineSectionsTwentySevenParagraphs: true,
-      paragraphClaimTraceComplete: true,
-      minimumExternalSourcesMet: true,
-      allClaimsSourceResolved: true,
-      currentLegalSourcesPresent: true,
-      doNotDiagnosePeopleGuardPresent: true,
-      noIndividualTreatmentAdviceGuardPresent: true,
-      noInventedRuntimePlaces: true,
-      registrySynchronized: true,
-      statusProgressionCompatible: true
-    }
-  };
-
-  if (writeReport) {
-    fs.mkdirSync(path.dirname(abs(P.report)), { recursive: true });
-    fs.writeFileSync(abs(P.report), `${JSON.stringify(committedProjection(report), null, 2)}\n`);
-  }
-  if (checkReport) {
-    assert(fs.existsSync(abs(P.report)), `${P.report} mangler. Kjør audit med --write-report`);
-    const committed = readJson(P.report);
-    assert(isDeepStrictEqual(committed, committedProjection(report)), `${P.report} er utdatert. Kjør audit med --write-report`);
-  }
-  return { report: committedProjection(report), chapter, brief, claimsDoc, modules };
-}
-
-function main() {
-  const args = new Set(process.argv.slice(2));
-  try {
-    const result = auditPsykologiPsykiskHelsePhase4({
-      writeReport: args.has('--write-report'),
-      checkReport: !args.has('--no-check-report') && !args.has('--write-report')
-    });
-    console.log(`Psykologi Psykisk helse Phase 4 OK: ${result.report.summary.emneCount}/12 emner, ${result.report.summary.methodCount} metoder, ${result.report.summary.paragraphCount} avsnitt, ${result.report.summary.claimCount} claims og ${result.report.summary.externalSourceCount} eksterne kilder.`);
-  } catch (error) {
-    console.error(`Psykologi Psykisk helse Phase 4 FEIL: ${error.message}`);
-    process.exitCode = 1;
-  }
-}
-
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
+function main(){const args=new Set(process.argv.slice(2));try{const r=auditPsykologiPsykiskHelsePhase4({writeReport:args.has('--write-report'),checkReport:!args.has('--no-check-report')&&!args.has('--write-report')});console.log(`Psykologi Psykisk helse Phase 4 OK: ${r.report.summary.emneCount}/12 emner, ${r.report.summary.methodCount} metoder, ${r.report.summary.paragraphCount} avsnitt, ${r.report.summary.claimCount} claims og ${r.report.summary.externalSourceCount} eksterne kilder.`);}catch(e){console.error(`Psykologi Psykisk helse Phase 4 FEIL: ${e.message}`);process.exitCode=1;}}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main();

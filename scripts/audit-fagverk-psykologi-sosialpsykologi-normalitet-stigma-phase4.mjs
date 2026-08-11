@@ -7,6 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CHAPTER_ID='sosialpsykologi-normalitet-og-stigma';
 const DOMAIN_ID='sosialpsykologi_normalitet_stigma';
+const NEXT_GATE='university_matrix_topic_articles_concept_registry_and_methods';
 const DIR=`data/fagverk/psykologi/${CHAPTER_ID}`;
 const P=Object.freeze({pensum:'data/fag/psykologi/psykologipensum_canonical_v4_5.json',methods:'data/fag/psykologi/methods_psykologi_canonical_v4_5.json',registry:'data/fagverk/fagverk_registry.json',status:'data/fagverk/subject_status.json',chapter:`data/fagverk/psykologi/${CHAPTER_ID}.json`,brief:`${DIR}/brief.json`,claims:`${DIR}/claims.json`,internalPlace:'data/places/psykologi/oslo/places_psykologi/psykologisk_institutt_uio.json',report:'reports/fagverk/psykologi-sosialpsykologi-normalitet-stigma-phase4-audit.json'});
 const MODULES=[`${DIR}/01-grupper-roller-og-pavirkning.json`,`${DIR}/02-kategorier-normalitet-og-diagnose.json`,`${DIR}/03-stigma-offentlighet-og-tilhorighet.json`];
@@ -18,13 +19,12 @@ const projection=(r)=>({schema:r.schema,version:r.version,status:r.status,genera
 export function auditPsykologiSosialpsykologiNormalitetStigmaPhase4({writeReport=false,checkReport=true}={}){
   for(const f of [P.pensum,P.methods,P.registry,P.status,P.chapter,P.brief,P.claims,P.internalPlace,...MODULES]) assert(fs.existsSync(abs(f)),`Mangler ${f}`);
   const pensum=read(P.pensum),methodsDoc=read(P.methods),registry=read(P.registry),status=read(P.status),chapter=read(P.chapter),brief=read(P.brief),claimsDoc=read(P.claims),modules=MODULES.map(read);
-  const domain=pensum.domains.find((d)=>d.domain_id===DOMAIN_ID); assert(domain,'Mangler canonicalt sosialpsykologidomene');
+  const domain=pensum.domains.find((d)=>d.domain_id===DOMAIN_ID);assert(domain,'Mangler canonicalt sosialpsykologidomene');
   const canonicalEmneIds=[...domain.emne_ids];
   assert(domain.emne_count===8&&canonicalEmneIds.length===8&&isDeepStrictEqual(chapter.emne_ids,canonicalEmneIds),'Kapittelet dekker ikke 8/8 canonicale emner');
   assert(domain.method_count===15&&domain.method_ids.length===15&&isDeepStrictEqual(chapter.method_ids,domain.method_ids),'Kapittelet dekker ikke 15/15 canonicale metoder');
-  const canonicalMethods=new Set(methodsDoc.methods.map((m)=>m.method_id)); assert(chapter.method_ids.every((id)=>canonicalMethods.has(id)),'Ukjent metode');
-  assert(chapter.schema==='history_go_fagverk_chapter_v1'&&chapter.subject==='psykologi'&&chapter.subject_id==='psykologi','Feil schema/fag');
-  assert(chapter.id===CHAPTER_ID&&chapter.chapter_id===CHAPTER_ID&&chapter.primary_domain_id===DOMAIN_ID,'Feil kapittel/domene');
+  const canonicalMethods=new Set(methodsDoc.methods.map((m)=>m.method_id));assert(chapter.method_ids.every((id)=>canonicalMethods.has(id)),'Ukjent metode');
+  assert(chapter.schema==='history_go_fagverk_chapter_v1'&&chapter.subject==='psykologi'&&chapter.subject_id==='psykologi'&&chapter.id===CHAPTER_ID&&chapter.primary_domain_id===DOMAIN_ID,'Feil schema/fag/kapittel/domene');
   assert(chapter.editorialStatus==='chapter_ready'&&chapter.claimTraceRequired===true,'Kapittelet er ikke chapter_ready/claimsporet');
   assert(chapter.doNotDiagnosePeople===true&&brief.safety?.doNotDiagnosePeople===true&&claimsDoc.source_policy?.noDiagnosisOfIndividuals===true,'Diagnosevern mangler');
   assert(brief.safety?.noIndividualTreatmentAdvice===true&&claimsDoc.source_policy?.noIndividualTreatmentAdvice===true,'Behandlingsrådvern mangler');
@@ -46,21 +46,20 @@ export function auditPsykologiSosialpsykologiNormalitetStigmaPhase4({writeReport
   assert(external.every((s)=>/^https:\/\//.test(s.url)),'Ekstern kilde mangler HTTPS');
   assert(claims.every((c)=>c.source_ids?.length&&c.source_ids.every((id)=>sourceIds.has(id))),'Claim peker til ukjent kilde');
   assert(traces.flat().every((id)=>claimIds.has(id))&&claims.every((c)=>traces.flat().includes(c.id)),'Claimspor er ufullstendig');
-  const runtimePlaceIds=(chapter.relatedPlaces||[]).map((p)=>p.id); assert(isDeepStrictEqual(runtimePlaceIds,['psykologisk_institutt_uio']),'Feil runtime place');
+  const runtimePlaceIds=(chapter.relatedPlaces||[]).map((p)=>p.id);assert(isDeepStrictEqual(runtimePlaceIds,['psykologisk_institutt_uio']),'Feil runtime place');
   assert(sources.find((s)=>s.id==='src-hg-uio-place')?.url===P.internalPlace,'UiO-kilden peker feil');
-  const socialCaseNames=(chapter.socialCases||[]).map((c)=>c.name); assert(isDeepStrictEqual(socialCaseNames,CASES),'Case-settet avviker');
+  const socialCaseNames=(chapter.socialCases||[]).map((c)=>c.name);assert(isDeepStrictEqual(socialCaseNames,CASES),'Case-settet avviker');
   assert((chapter.socialCases||[]).every((c)=>c.caseStatus==='documented_case_not_runtime_place'),'Case later som runtime place');
-  const registrySubject=registry.subjects?.psykologi;const chapterCount=registrySubject?.chapters?.length;
-  assert([5,6].includes(chapterCount),'Psykologi skal stå på 5/6 eller 6/6 registrerte kapitler');
-  const row=registrySubject.chapters.find((c)=>c.id===CHAPTER_ID); assert(row&&row.file===P.chapter&&row.primary_domain_id===DOMAIN_ID,'Registry mangler kapittelet');
+  const registrySubject=registry.subjects?.psykologi,chapterCount=registrySubject?.chapters?.length;assert([5,6].includes(chapterCount),'Psykologi skal stå på 5/6 eller 6/6 registrerte kapitler');
+  const row=registrySubject.chapters.find((c)=>c.id===CHAPTER_ID);assert(row&&row.file===P.chapter&&row.primary_domain_id===DOMAIN_ID,'Registry mangler kapittelet');
   assert(isDeepStrictEqual(row.emne_ids,canonicalEmneIds)&&row.claimsFile===P.claims&&row.briefFile===P.brief,'Registry har feil emner/brief/claims');
   assert(registrySubject.editorialPlan?.targetChapterCount===6,'Feil targetChapterCount');
-  const statusEntry=status.subjects.find((s)=>s.id==='psykologi'); assert(statusEntry?.navigationStatus==='materialized'&&statusEntry?.assessmentStatus==='audited','Psykologi mistet structural status');
+  const statusEntry=status.subjects.find((s)=>s.id==='psykologi');assert(statusEntry?.navigationStatus==='materialized'&&statusEntry?.assessmentStatus==='audited','Psykologi mistet structural status');
   if(chapterCount===5){assert(registrySubject.editorialPlan?.nextGate==='remaining_domain_chapter_production','Feil 5/6-plan');assert(statusEntry?.editorialStatus==='chapters_in_progress'&&statusEntry?.nextGate==='remaining_domain_chapter_production','Feil 5/6 editorial status');}
-  if(chapterCount===6){assert(registrySubject.editorialPlan?.nextGate==='maintenance_source_refresh_and_place_case_expansion','Feil 6/6-plan');assert(['complete','expanded_and_audited'].includes(statusEntry?.editorialStatus)&&statusEntry?.nextGate==='maintenance_source_refresh_and_place_case_expansion','Feil 6/6 editorial status');}
+  if(chapterCount===6){assert(registrySubject.editorialPlan?.nextGate===NEXT_GATE,'Feil 6/6-plan');assert(statusEntry?.editorialStatus==='expanded_and_audited'&&statusEntry?.nextGate===NEXT_GATE,'Feil 6/6 editorial status');}
   const forbidden=[/du har (?:en|et) [a-zæøå-]+lidelse/i,/du er (?:fordomsfull|ensom|stigmatisert) fordi/i,/gruppen er slik/i,/diagnosen viser hele personligheten/i,/sitter alene[^.!?]{0,120}(?:derfor|følgelig|betyr at|viser at)[^.!?]{0,80}\bensom\b/i];
   assert(forbidden.every((p)=>!p.test(JSON.stringify({chapter,brief,modules}))),'Diagnostisk eller typestemplende språk funnet');
-  const report={schema:'history_go_fagverk_psykologi_sosialpsykologi_normalitet_stigma_phase4_audit_v1',version:'1.1.0',status:'psykologi_sosialpsykologi_normalitet_stigma_chapter_ready',generatedFrom:P,subject:{id:'psykologi',editorialStatus:statusEntry.editorialStatus,nextGate:statusEntry.nextGate,registeredChapterCount:chapterCount,targetChapterCount:registrySubject.editorialPlan.targetChapterCount},chapter:{id:CHAPTER_ID,primaryDomainId:DOMAIN_ID,editorialStatus:chapter.editorialStatus,doNotDiagnosePeople:chapter.doNotDiagnosePeople},summary:{emneCount:8,methodCount:15,moduleCount:3,sectionCount:9,paragraphCount:27,claimCount:27,sourceCount:21,externalSourceCount:20,runtimePlaceCount:runtimePlaceIds.length,socialCaseCount:socialCaseNames.length},canonicalEmneIds,methodIds:chapter.method_ids,runtimePlaceIds,socialCaseNames,gates:{exactCanonicalEmneCoverage:true,exactCanonicalMethodCoverage:true,threeModulesNineSectionsTwentySevenParagraphs:true,paragraphClaimTraceComplete:true,allClaimsUsedAndSourceResolved:true,twentyExternalSourcesPresent:true,sourceLocationsComplete:true,doNotDiagnosePeopleGuardPresent:true,noIndividualTreatmentAdviceGuardPresent:true,noScreeningInterpretationGuardPresent:true,noGroupOrStigmaTypingGuardPresent:true,noInventedRuntimePlaces:true,socialCasesExplicitlyNonRuntime:true,registryProgressConsistentAtFiveOrSix:true,statusProgressConsistentAtFiveOrSix:true}};
+  const report={schema:'history_go_fagverk_psykologi_sosialpsykologi_normalitet_stigma_phase4_audit_v1',version:'1.2.0',status:'psykologi_sosialpsykologi_normalitet_stigma_chapter_ready',generatedFrom:P,subject:{id:'psykologi',editorialStatus:statusEntry.editorialStatus,nextGate:statusEntry.nextGate,registeredChapterCount:chapterCount,targetChapterCount:registrySubject.editorialPlan.targetChapterCount},chapter:{id:CHAPTER_ID,primaryDomainId:DOMAIN_ID,editorialStatus:chapter.editorialStatus,doNotDiagnosePeople:chapter.doNotDiagnosePeople},summary:{emneCount:8,methodCount:15,moduleCount:3,sectionCount:9,paragraphCount:27,claimCount:27,sourceCount:21,externalSourceCount:20,runtimePlaceCount:runtimePlaceIds.length,socialCaseCount:socialCaseNames.length},canonicalEmneIds,methodIds:chapter.method_ids,runtimePlaceIds,socialCaseNames,gates:{exactCanonicalEmneCoverage:true,exactCanonicalMethodCoverage:true,threeModulesNineSectionsTwentySevenParagraphs:true,paragraphClaimTraceComplete:true,allClaimsUsedAndSourceResolved:true,twentyExternalSourcesPresent:true,sourceLocationsComplete:true,doNotDiagnosePeopleGuardPresent:true,noIndividualTreatmentAdviceGuardPresent:true,noScreeningInterpretationGuardPresent:true,noGroupOrStigmaTypingGuardPresent:true,noInventedRuntimePlaces:true,socialCasesExplicitlyNonRuntime:true,registryProgressConsistentAtFiveOrSix:true,statusProgressConsistentAtFiveOrSix:true}};
   if(writeReport){fs.mkdirSync(path.dirname(abs(P.report)),{recursive:true});fs.writeFileSync(abs(P.report),`${JSON.stringify(projection(report),null,2)}\n`);}
   if(checkReport){assert(fs.existsSync(abs(P.report)),`${P.report} mangler. Kjør --write-report`);assert(isDeepStrictEqual(read(P.report),projection(report)),`${P.report} er utdatert`);}
   return {report:projection(report),chapter,brief,claimsDoc,modules};

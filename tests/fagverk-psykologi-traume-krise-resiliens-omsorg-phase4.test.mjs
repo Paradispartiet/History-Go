@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditPsykologiTraumeKriseResiliensOmsorgPhase4 } from '../scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs';
 
-test('Psykologi traume krise resiliens og omsorg er komplett sjette phase-4-kapittel', () => {
+test('Psykologi traume krise resiliens og omsorg er ferdig sjette phase-4-kapittel i canonical baseline', () => {
   const { report } = auditPsykologiTraumeKriseResiliensOmsorgPhase4();
   assert.equal(report.chapter.id, 'traume-krise-resiliens-og-omsorg');
   assert.equal(report.chapter.primaryDomainId, 'traume_krise_resiliens_omsorg');
@@ -16,7 +16,8 @@ test('Psykologi traume krise resiliens og omsorg er komplett sjette phase-4-kapi
   assert.equal(report.summary.externalSourceCount, 20);
   assert.equal(report.subject.registeredChapterCount, 6);
   assert.equal(report.subject.targetChapterCount, 6);
-  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.editorialStatus, 'expanded_and_audited');
+  assert.equal(report.subject.nextGate, 'university_matrix_topic_articles_concept_registry_and_methods');
   assert.deepEqual(report.runtimePlaceIds, ['22_juli_senteret','psykologisk_institutt_uio']);
   assert.deepEqual(report.traumaCaseNames, ['Potensielt traumatisk hendelse og varierende reaksjoner','Langtidsoppfølging etter 22. juli','Sorg, tap og prolonged grief disorder','Resiliens, sosial støtte og beskyttelsesfaktorer']);
   assert.ok(Object.values(report.gates).every(Boolean));
