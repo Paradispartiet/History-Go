@@ -49,7 +49,7 @@ test('briefen dokumenterer registrering først etter fulltekst- og evidensaudit'
   assert.equal(result.brief.runtime_registration.registered, true);
   assert.equal(result.brief.runtime_registration.registration_after_full_chapter_gate, true);
   assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'serialitet-format-og-adaptasjon'), true);
-  assert.ok(['seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production', 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief'].includes(result.status.subjects.find((row) => row.id === 'film_tv').nextGate));
+  assert.ok(['seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production', 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief', 'television_platforms_participation_source_brief_complete_full_chapter_production'].includes(result.status.subjects.find((row) => row.id === 'film_tv').nextGate));
 });
 
 test('industrirettigheter og produksjonsteknikk forblir eksplisitt utenfor enheten', () => {
