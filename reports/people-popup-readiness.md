@@ -6,21 +6,21 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `3dde6a36f2682d81d70dd6622292f7514a132a6f4e7499e21f6a5c1f386b441c`
+Source fingerprint: `c33566e9aa6473f34309b61856c959411d009380852919200e725f3bd909f8c6`
 
 ## Sammendrag
 
 | Måling | Antall |
 |---|---:|
-| Personer | 1390 |
+| Personer | 1395 |
 | Presentasjon complete | 54 |
-| Presentasjon strong | 363 |
+| Presentasjon strong | 368 |
 | Presentasjon partial | 953 |
 | Presentasjon sparse | 20 |
-| People Profile v1 ready | 43 |
+| People Profile v1 ready | 48 |
 | Legacy uten v1-claims | 1347 |
 | Ødelagte bildereferanser | 302 |
-| Eksplisitt initialfallback | 988 |
+| Eksplisitt initialfallback | 993 |
 | Implisitt initialfallback | 23 |
 | Gjennomsnittspoeng | 64.7 |
 
@@ -28,16 +28,16 @@ Source fingerprint: `3dde6a36f2682d81d70dd6622292f7514a132a6f4e7499e21f6a5c1f386
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 97 | 7 % |
-| popupDesc | 1364 | 98.1 % |
+| identity | 102 | 7.3 % |
+| popupDesc | 1369 | 98.1 % |
 | lifeData | 51 | 3.7 % |
 | contributionsDeclared | 54 | 3.9 % |
 | educationDeclared | 54 | 3.9 % |
-| practiceDeclared | 1371 | 98.6 % |
-| placeGrounding | 1390 | 100 % |
-| sources | 406 | 29.2 % |
-| imageContract | 1088 | 78.3 % |
-| profileStandard | 43 | 3.1 % |
+| practiceDeclared | 1376 | 98.6 % |
+| placeGrounding | 1395 | 100 % |
+| sources | 411 | 29.5 % |
+| imageContract | 1093 | 78.4 % |
+| profileStandard | 48 | 3.4 % |
 
 ## Kategorier
 
@@ -50,7 +50,7 @@ Source fingerprint: `3dde6a36f2682d81d70dd6622292f7514a132a6f4e7499e21f6a5c1f386
 | politikk | 114 | 3 | 50 | 61 | 0 | 14 | 100 | 67.5 |
 | kunst | 84 | 7 | 64 | 13 | 0 | 9 | 75 | 73.1 |
 | naeringsliv | 81 | 0 | 28 | 34 | 19 | 0 | 81 | 58.4 |
-| by | 65 | 7 | 42 | 16 | 0 | 4 | 61 | 72.2 |
+| by | 70 | 7 | 47 | 16 | 0 | 9 | 61 | 72.8 |
 | scenekunst | 47 | 0 | 16 | 31 | 0 | 0 | 47 | 64 |
 | subkultur | 37 | 0 | 1 | 36 | 0 | 0 | 37 | 61.3 |
 | vitenskap | 34 | 0 | 3 | 30 | 1 | 0 | 34 | 57.7 |
@@ -76,6 +76,7 @@ Source fingerprint: `3dde6a36f2682d81d70dd6622292f7514a132a6f4e7499e21f6a5c1f386
 | universitetets_gamle_hovedbygning | 17 | 0 | 16 | 1 | 59.1 | Fredrik Barth (57; legacy_unreviewed), Harriet Holter (57; legacy_unreviewed), Helga Eng (57; legacy_unreviewed), Jon Elster (57; legacy_unreviewed), Kristian Emil Schreiner (57; legacy_unreviewed) |
 | edderkoppen_scene | 17 | 0 | 17 | 0 | 62 | Anders Moland (62; legacy_unreviewed), Arvid Nilssen (62; legacy_unreviewed), Dan Fosse (62; legacy_unreviewed), Einar Schanke (62; legacy_unreviewed), Ernst Diesen (62; legacy_unreviewed) |
 | intility_arena | 15 | 0 | 15 | 0 | 62 | Ajara Nchout (62; legacy_unreviewed), Aron Dønnum (62; legacy_unreviewed), Christian Grindheim (62; legacy_unreviewed), Dag-Eilev Fagermo (62; legacy_unreviewed), Elise Thorsnes (62; legacy_unreviewed) |
+| torggata | 14 | 0 | 5 | 9 | 71.8 | Christopher Nielsen (57; legacy_unreviewed), Don Martin (57; legacy_unreviewed), Gateavisa-miljøet (57; legacy_unreviewed), Kjetil Rolness (57; legacy_unreviewed), Warlocks (57; legacy_unreviewed) |
 | middelalder_oslo | 13 | 0 | 13 | 0 | 57.4 | Astrid Olavsdatter (57; legacy_unreviewed), Harald Hardråde (57; legacy_unreviewed), Inge Krokrygg (57; legacy_unreviewed), Magnus den gode (57; legacy_unreviewed), Magnus Eriksson (57; legacy_unreviewed) |
 | regjeringskvartalet | 13 | 0 | 0 | 13 | 78.2 | Erling Viksjø (72; legacy_unreviewed), Odvar Nordli (72; legacy_unreviewed), Per Borten (72; legacy_unreviewed), Carl Nesjar (80; legacy_unreviewed), Pablo Picasso (80; legacy_unreviewed) |
 | tinghuset | 13 | 0 | 0 | 13 | 80 | Arne Lyng (80; ready_people_v1), Geir Lippestad (80; ready_people_v1), Inga Bejer Engh (80; ready_people_v1), Ingunn Skogholt (80; ready_people_v1), Nina Sundbye (80; ready_people_v1) |
@@ -87,7 +88,6 @@ Source fingerprint: `3dde6a36f2682d81d70dd6622292f7514a132a6f4e7499e21f6a5c1f386
 | cinemateket_oslo | 9 | 0 | 9 | 0 | 57 | Anja Breien (57; legacy_unreviewed), Arne Skouen (57; legacy_unreviewed), Bredo Greve (57; legacy_unreviewed), Edith Carlmar (57; legacy_unreviewed), Jan Erik Holst (57; legacy_unreviewed) |
 | karl_johan | 9 | 1 | 7 | 1 | 57 | Petter Stordalen (32; legacy_unreviewed), Christian Krohg (57; legacy_unreviewed), Edvard Munch (57; legacy_unreviewed), Oda Krohg (57; legacy_unreviewed), Aasta Hansteen (57; legacy_unreviewed) |
 | nasjonalbiblioteket | 9 | 0 | 3 | 6 | 67 | Per Petterson (57; legacy_unreviewed), Rolf Jacobsen (57; legacy_unreviewed), Bjørnstjerne Bjørnson (67; legacy_unreviewed), Linn Ullmann (62; legacy_unreviewed), Axel Revold (72; legacy_unreviewed) |
-| torggata | 9 | 0 | 5 | 4 | 67.2 | Christopher Nielsen (57; legacy_unreviewed), Don Martin (57; legacy_unreviewed), Gateavisa-miljøet (57; legacy_unreviewed), Kjetil Rolness (57; legacy_unreviewed), Warlocks (57; legacy_unreviewed) |
 | stensparken | 9 | 0 | 1 | 0 | 95.8 | Halvor C. Reiersen (62; legacy_unreviewed), Hagbarth Schytte-Berg (100; legacy_unreviewed), Harald Aars (100; legacy_unreviewed), Jo Visdal (100; legacy_unreviewed), Kjersti Wexelsen Goksøyr (100; legacy_unreviewed) |
 | gamle_deichman | 8 | 0 | 8 | 0 | 57.6 | Arne Garborg (57; legacy_unreviewed), Haakon Nyhuus (57; legacy_unreviewed), Knut Hamsun (57; legacy_unreviewed), Nils Collett Vogt (57; legacy_unreviewed), Sigbjørn Obstfelder (57; legacy_unreviewed) |
 | jordal_amfi | 8 | 0 | 8 | 0 | 62 | Arne Billkvam (62; legacy_unreviewed), Einar Bruno Larsen (62; legacy_unreviewed), Espen Knutsen (62; legacy_unreviewed), Geir Myhre (62; legacy_unreviewed), Jim Marthinsen (62; legacy_unreviewed) |

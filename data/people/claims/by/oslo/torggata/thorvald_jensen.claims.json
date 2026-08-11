@@ -1,0 +1,89 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "thorvald_jensen",
+  "profile_file": "data/people/by/oslo/torggata/thorvald_jensen.json",
+  "identity": {
+    "canonical_identity": "Thorvald Jensen (1870–1916), yngstesønn av Ludvig Christian Jensen og kompanjong i farens Ludvig Jensen & Co.",
+    "name_variants": [
+      "Thorvald Jensen"
+    ],
+    "not": [
+      "navnelike personer",
+      "firmaet som selvstendig person"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "identity_lifespan_family",
+      "claim": "Thorvald Jensen levde 1870–1916 og var yngstesønn av Ludvig Christian Jensen.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "avsnittet om Jensen-familiens fire forretninger",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "explicit"
+    },
+    {
+      "id": "partner_fathers_firm",
+      "claim": "Thorvald Jensen ble kompanjong i farens firma, Ludvig Jensen & Co., som holdt til i Torggata 5a.",
+      "status": "verified",
+      "source_url": "https://oslobyleksikon.no/index.php/Torggata",
+      "source_location": "avsnittet om Jensen-familiens fire forretninger",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-08-11",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "identity_lifespan_family"
+    ],
+    "kindLabel": [
+      "partner_fathers_firm"
+    ],
+    "placeId": [
+      "partner_fathers_firm"
+    ],
+    "places[torggata]": [
+      "partner_fathers_firm"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_lifespan_family",
+          "partner_fathers_firm"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "identity_lifespan_family"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "partner_fathers_firm"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "2/2",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-08-11",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}
