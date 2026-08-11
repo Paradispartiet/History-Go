@@ -85,9 +85,13 @@ export function buildFilmTvExistingChapterReauditV1() {
   }
 
   const registry = structuredClone(read(P.registry));
-  registry.version = '2.73.0';
-  registry.updatedAt = '2026-08-11';
-  registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon er materialisert med 192 emner, 119 metoder og 192 hooks/mappinger. Begge eksisterende fulltekstkapitler er reauditerte mot legacyaliasene: Kinoer, visningssteder og publikum dekker 18 canonicale etterfølgere, og Produksjon, studio og filmarbeid dekker 20. Tekst, claims og kilder er bevart. Neste port er å planlegge resterende læringsrekkefølge fra faktiske faglige hull uten fast kapittelantall.';
+  const currentFilmStatus = read(P.status).subjects.find((row) => row.id === 'film_tv');
+  const laterLearningOrderGate = currentFilmStatus?.nextGate === 'learning_order_plan_complete_first_chapter_source_brief';
+  if (!laterLearningOrderGate) {
+    registry.version = '2.73.0';
+    registry.updatedAt = '2026-08-11';
+    registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon er materialisert med 192 emner, 119 metoder og 192 hooks/mappinger. Begge eksisterende fulltekstkapitler er reauditerte mot legacyaliasene: Kinoer, visningssteder og publikum dekker 18 canonicale etterfølgere, og Produksjon, studio og filmarbeid dekker 20. Tekst, claims og kilder er bevart. Neste port er å planlegge resterende læringsrekkefølge fra faktiske faglige hull uten fast kapittelantall.';
+  }
   for (const row of chapterRows) {
     const chapter = registry.subjects.film_tv.chapters.find((item) => item.id === row.chapter_id);
     chapter.primary_domain_id = row.primary_domain_id;
@@ -95,11 +99,13 @@ export function buildFilmTvExistingChapterReauditV1() {
   }
 
   const status = structuredClone(read(P.status));
-  status.version = '1.61.0';
-  status.updatedAt = '2026-08-11';
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
-  filmStatus.nextGate = 'canonical_chapter_reaudit_complete_learning_order_plan';
-  filmStatus.note = 'Film & TVs to bevarte fulltekstkapitler er nå reauditerte mot den migrerte canonen. Kapittel 1 projiserer 20 legacy-ID-er til 18 canonicale emner; kapittel 2 projiserer 20 legacy-ID-er til 20 canonicale emner. Tekst, 54 verifiserte claims, 44 kilder og 8 stedscase er bevart. Neste port er å planlegge resterende kapitler i faglig læringsrekkefølge fra dokumenterte hull, uten fast kapittel- eller emnetall.';
+  if (!laterLearningOrderGate) {
+    status.version = '1.61.0';
+    status.updatedAt = '2026-08-11';
+    filmStatus.nextGate = 'canonical_chapter_reaudit_complete_learning_order_plan';
+    filmStatus.note = 'Film & TVs to bevarte fulltekstkapitler er nå reauditerte mot den migrerte canonen. Kapittel 1 projiserer 20 legacy-ID-er til 18 canonicale emner; kapittel 2 projiserer 20 legacy-ID-er til 20 canonicale emner. Tekst, 54 verifiserte claims, 44 kilder og 8 stedscase er bevart. Neste port er å planlegge resterende kapitler i faglig læringsrekkefølge fra dokumenterte hull, uten fast kapittel- eller emnetall.';
+  }
 
   const report = {
     schema: 'history_go_film_tv_existing_chapter_reaudit_v1',

@@ -20,5 +20,5 @@ test('kapittel, brief og registry bruker samme canonicale emne-ID-er', () => {
     assert.deepEqual(brief.requiredEmneIds, row.canonical_emne_ids);
     assert.deepEqual(registry.emne_ids, row.canonical_emne_ids);
   }
-  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'canonical_chapter_reaudit_complete_learning_order_plan');
+  assert.ok(['canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief'].includes(result.status.subjects.find((row) => row.id === 'film_tv').nextGate));
 });

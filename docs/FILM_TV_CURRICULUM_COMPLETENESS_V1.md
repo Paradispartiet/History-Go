@@ -92,7 +92,9 @@ Porten `canonical_inventory_migration` er nå gjennomført samlet og determinist
 
 Reauditeringsporten er også gjennomført. Kapitlet om kinoer, visningssteder og publikum projiserer 20 legacy-ID-er til 18 canonicale emner; kapitlet om produksjon, studio og filmarbeid projiserer 20 til 20. Kapittelfiler, briefer og registry/runtime bruker nå de samme canonicale ID-ene. All fulltekst, 54 verifiserte claims, 44 kilder og 8 stedscase er bevart.
 
-Aktiv port er `canonical_chapter_reaudit_complete_learning_order_plan`: resterende kapitler skal planlegges i faglig læringsrekkefølge fra dokumenterte udekkede problemstillinger. Det finnes ikke et forhåndsbestemt kapittel- eller emnetall, og produksjon starter ikke før planen viser eierskap, progresjon, overlapper og kildekrav.
+Læringsrekkefølgeporten er nå gjennomført i [`film_tv_learning_order_plan_v1.json`](../data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json). De to reauditerte kapitlene eier 38 canonicale emner. Alle 154 udekkede emner har nøyaktig én redaksjonell eier i seks progresjonsfaser og 15 variabelt store planenheter med eksplisitte forkunnskaper, overlappsgrenser og kildekrav. De 15 enhetene er resultatet av dagens faglige problemgrenser, ikke en kvote eller et tak; ny evidens kan fortsatt legge til, slå sammen, flytte eller dele.
+
+Aktiv port er `learning_order_plan_complete_first_chapter_source_brief`. Første produksjonskandidat er «Audiovisuell form og sansing». Den skal få en inspectable kilde- og claimbrief før fulltekst produseres, og kapitlet registreres ikke i runtime før tekst-, claim- og kildeporten er bestått.
 
 ## Maskinell kontroll
 
@@ -104,11 +106,13 @@ node scripts/audit-film-tv-legacy-emne-classification-v1.mjs
 node scripts/audit-film-tv-variable-inventory-v1.mjs
 node scripts/materialize-film-tv-canonical-migration-v1.mjs
 node scripts/reaudit-film-tv-existing-chapters-v1.mjs
+node scripts/plan-film-tv-learning-order-v1.mjs
 node --test tests/film-tv-curriculum-completeness-v1.test.mjs
 node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
 node --test tests/film-tv-variable-inventory-v1.test.mjs
 node --test tests/film-tv-canonical-migration-v1.test.mjs
 node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
+node --test tests/film-tv-learning-order-plan-v1.test.mjs
 ```
 
 Canonicale rapporter:
@@ -118,3 +122,4 @@ Canonicale rapporter:
 - `reports/fagverk/film-tv-variable-inventory-v1-audit.json`
 - `reports/fagverk/film-tv-canonical-migration-v1-audit.json`
 - `reports/fagverk/film-tv-existing-chapter-reaudit-v1-audit.json`
+- `reports/fagverk/film-tv-learning-order-plan-v1-audit.json`
