@@ -13,6 +13,7 @@ const REGISTRY_FILE='data/fagverk/fagverk_registry.json';
 const STATUS_FILE='data/fagverk/subject_status.json';
 const PENSUM_FILE='data/fag/psykologi/psykologipensum_canonical_v4_5.json';
 const METHODS_FILE='data/fag/psykologi/methods_psykologi_canonical_v4_5.json';
+const NEXT_GATE='university_matrix_topic_articles_concept_registry_and_methods';
 const MODULES=[`${DIR}/01-traume-vold-og-trygghet.json`,`${DIR}/02-sorg-krise-og-omsorg.json`,`${DIR}/03-risiko-resiliens-og-anvendelse.json`];
 const ORDER=['psykisk_helse_institusjoner_behandling','fagtradisjoner_teori_sinnet','utvikling_oppvekst_laring','kognisjon_folelser_atferd','sosialpsykologi_normalitet_stigma','traume_krise_resiliens_omsorg'];
 const PLACE_FILES=['data/places/politikk/oslo/places_politikk/22_juli_senteret.json','data/places/psykologi/oslo/places_psykologi/psykologisk_institutt_uio.json'];
@@ -56,15 +57,33 @@ function updateRegistry(chapter){
   subject.chapters.sort((a,b)=>ORDER.indexOf(a.primary_domain_id)-ORDER.indexOf(b.primary_domain_id));
   assert(subject.chapters.length===6,'Psykologi skal ha 6/6 kapitler');
   assert(isDeepStrictEqual(subject.chapters.map((c)=>c.primary_domain_id),ORDER),'Psykologi-kapitlene følger ikke canonical domenerekkefølge');
-  subject.canonicalModel={...(subject.canonicalModel||{}),note:'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er fulltekstmaterialisert gjennom seks redaksjonelle kapitler. Sluttkapittelet Traume, krise, resiliens og omsorg fullfører 7/7 resterende emner og låser skillet mellom hendelse og diagnose, risiko og prognose, sorg og lidelse samt resiliens og usårbarhet.'};
-  subject.editorialPlan={targetChapterCount:6,completionRequirements:['all_canonical_domains_covered','all_canonical_emners_covered_exactly_once','all_canonical_methods_resolved','paragraph_claim_trace_complete','minimum_15_external_sources_per_chapter','do_not_diagnose_people_guard','full_subject_audit_green'],nextGate:'maintenance_source_refresh_and_place_case_expansion'};
-  registry.version='2.77.0';registry.updatedAt='2026-08-11';write(REGISTRY_FILE,registry);
+  subject.canonicalModel={...(subject.canonicalModel||{}),note:'Psykologifagets seks eksisterende canonicale fagområder eier rendererstrukturen, og alle 58 aktive emner er representert i seks kilde- og claimsporede redaksjonelle kapitler. Dette er en sterk canonical kapittelbaseline, men representasjon i et kapittel teller ikke som en selvstendig universitetsnær emneartikkel. Endelig complete krever eksplisitt universitetsbredde, 58 selvstendige emneartikler, full metode/statistikk og et materialisert canonicalt begrepsregister.'};
+  subject.editorialPlan={
+    targetChapterCount:6,
+    completionRequirements:[
+      'all_canonical_domains_covered',
+      'all_canonical_emners_represented_in_chapter_baseline',
+      'all_canonical_methods_resolved',
+      'paragraph_claim_trace_complete',
+      'minimum_15_external_sources_per_chapter',
+      'do_not_diagnose_people_guard',
+      'five_university_core_areas_explicitly_covered',
+      'history_and_science_theory_covered',
+      'research_methods_statistics_full_branch',
+      'all_58_topics_have_standalone_articles',
+      'all_canonical_concepts_materialized_and_sourced',
+      'applied_field_matrix_reviewed_and_covered',
+      'university_readiness_audit_green'
+    ],
+    nextGate:NEXT_GATE
+  };
+  registry.version='2.80.0';registry.updatedAt='2026-08-11';write(REGISTRY_FILE,registry);
 }
 function updateStatus(){
   const status=read(STATUS_FILE),subject=status.subjects.find((s)=>s.id==='psykologi');assert(subject,'Psykologi mangler subject_status');
-  subject.editorialStatus='complete';subject.nextGate='maintenance_source_refresh_and_place_case_expansion';
-  subject.note='Psykologi er redaksjonelt complete: alle 6 canonicale fagområder og 58/58 aktive emner er fulltekstmaterialisert. Sluttkapittelet Traume, krise, resiliens og omsorg dekker 7/7 emner med 15 canonicale metoder, 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims og 22 kilderegistreringer (20 eksterne), med eksplisitte vern mot diagnose-, risiko- og resiliensoverreach.';
-  status.version='1.65.0';status.updatedAt='2026-08-11';write(STATUS_FILE,status);
+  subject.editorialStatus='expanded_and_audited';subject.nextGate=NEXT_GATE;
+  subject.note='Psykologi har en kildebelagt og auditert 6/6 canonical kapittelbaseline med 58/58 aktive emner representert, men er ikke endelig complete etter universitetsnært kriterium. Biologisk psykologi, personlighetspsykologi og metode/statistikk må bygges betydelig ut; alle 58 emner må få selvstendige fagartikler; og canonicale begreper må materialiseres og kildeauditeres før complete kan gjeninnføres.';
+  status.version='1.68.0';status.updatedAt='2026-08-11';write(STATUS_FILE,status);
 }
 const {chapter,sources,claims}=validate();updateRegistry(chapter);updateStatus();
-console.log(`Materialiserte Psykologi ${DOMAIN_ID}: 7/7 emner, 15 metoder, 3 moduler, 9 seksjoner, 27 avsnitt, ${claims.length} claims og ${sources.length} kilder. Psykologi står 6/6 complete.`);
+console.log(`Materialiserte Psykologi ${DOMAIN_ID}: 7/7 emner, 15 metoder, 3 moduler, 9 seksjoner, 27 avsnitt, ${claims.length} claims og ${sources.length} kilder. Psykologi har 6/6 canonical kapittelbaseline og står expanded_and_audited; university-readiness gjenstår.`);

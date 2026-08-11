@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditPsykologiSosialpsykologiNormalitetStigmaPhase4 } from '../scripts/audit-fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs';
 
-test('Psykologi sosialpsykologi normalitet og stigma er komplett femte phase-4-kapittel og bevarer 6/6-fremdrift', () => {
+test('Psykologi sosialpsykologi normalitet og stigma bevares i 6/6 canonical baseline', () => {
   const { report } = auditPsykologiSosialpsykologiNormalitetStigmaPhase4();
   assert.equal(report.chapter.id, 'sosialpsykologi-normalitet-og-stigma');
   assert.equal(report.chapter.primaryDomainId, 'sosialpsykologi_normalitet_stigma');
@@ -16,7 +16,8 @@ test('Psykologi sosialpsykologi normalitet og stigma er komplett femte phase-4-k
   assert.equal(report.summary.externalSourceCount, 20);
   assert.equal(report.subject.registeredChapterCount, 6);
   assert.equal(report.subject.targetChapterCount, 6);
-  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.editorialStatus, 'expanded_and_audited');
+  assert.equal(report.subject.nextGate, 'university_matrix_topic_articles_concept_registry_and_methods');
   assert.deepEqual(report.runtimePlaceIds, ['psykologisk_institutt_uio']);
   assert.deepEqual(report.socialCaseNames, ['Konformitet, normer og sosial påvirkning','Kategorisering, kontakt og fordommer','Diagnosemerking, stigma og diskriminering','Ensomhet, sosial isolasjon og tilhørighet']);
   assert.ok(Object.values(report.gates).every(Boolean));

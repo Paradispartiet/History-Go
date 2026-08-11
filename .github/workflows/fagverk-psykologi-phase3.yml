@@ -1,5 +1,5 @@
 name: Fagverk Psykologi phase 3-4
-# Permanent structural + editorial gate for canonical Psychology production.
+# Permanent structural + editorial + university-readiness gate for canonical Psychology production.
 
 on:
   pull_request:
@@ -31,6 +31,7 @@ on:
       - "scripts/materialize-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-complete.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
@@ -42,6 +43,7 @@ on:
       - "tests/fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.test.mjs"
       - "tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs"
       - "tests/fagverk-psykologi-complete.test.mjs"
+      - "tests/fagverk-psykologi-university-readiness.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-psykologi-phase3.yml"
@@ -66,6 +68,7 @@ on:
       - "scripts/materialize-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs"
       - "scripts/audit-fagverk-psykologi-complete.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
       - "tests/fagverk-psykologi-phase3.test.mjs"
       - "tests/fagverk-psykologi-psykisk-helse-phase4.test.mjs"
       - "tests/fagverk-psykologi-fagtradisjoner-teori-phase4.test.mjs"
@@ -74,6 +77,7 @@ on:
       - "tests/fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.test.mjs"
       - "tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs"
       - "tests/fagverk-psykologi-complete.test.mjs"
+      - "tests/fagverk-psykologi-university-readiness.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-psykologi-phase3.yml"
   workflow_dispatch:
@@ -87,7 +91,7 @@ concurrency:
 
 jobs:
   validate:
-    name: Validate Psychology structure and editorial chapters
+    name: Validate Psychology structure, editorial chapters and university readiness
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -115,6 +119,7 @@ jobs:
           node --check scripts/audit-fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-complete.mjs
+          node --check scripts/audit-fagverk-psykologi-university-readiness.mjs
           node --check scripts/build-fagverk-release-manifest.mjs
 
       - name: Materialize Psychology editorial chapters
@@ -137,6 +142,7 @@ jobs:
           node scripts/audit-fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs --write-report
           node scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs --write-report
           node scripts/audit-fagverk-psykologi-complete.mjs --write-report
+          node scripts/audit-fagverk-psykologi-university-readiness.mjs --write-report
 
       - name: Refresh and validate shared Fagverk architecture
         run: |
@@ -160,6 +166,7 @@ jobs:
           node --test tests/fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.test.mjs
           node --test tests/fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.test.mjs
           node --test tests/fagverk-psykologi-complete.test.mjs
+          node --test tests/fagverk-psykologi-university-readiness.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
 
       - name: Verify chapter 1 rematerializer
@@ -193,6 +200,7 @@ jobs:
           node scripts/audit-fagverk-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs
           node scripts/audit-fagverk-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
           node scripts/audit-fagverk-psykologi-complete.mjs
+          node scripts/audit-fagverk-psykologi-university-readiness.mjs
 
       - name: Verify deterministic shared Fagverk reports
         run: |
@@ -234,10 +242,11 @@ jobs:
             reports/fagverk/psykologi-kognisjon-folelser-atferd-phase4-audit.json \
             reports/fagverk/psykologi-sosialpsykologi-normalitet-stigma-phase4-audit.json \
             reports/fagverk/psykologi-traume-krise-resiliens-omsorg-phase4-audit.json \
-            reports/fagverk/psykologi-complete-audit.json
+            reports/fagverk/psykologi-complete-audit.json \
+            reports/fagverk/psykologi-university-readiness-audit.json
           if git diff --cached --quiet; then
             echo 'Psychology materialization already matches.'
             exit 0
           fi
-          git commit -m 'Materialize complete Psychology subject'
+          git commit -m 'Materialize Psychology university-readiness baseline'
           git push origin "HEAD:${HEAD_BRANCH}"

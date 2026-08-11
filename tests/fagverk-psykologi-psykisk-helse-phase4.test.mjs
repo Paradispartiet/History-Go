@@ -43,13 +43,15 @@ test('kun materialiserte Psychology-steder brukes som runtime places', () => {
   assert.equal(report.gates.noInventedRuntimePlaces, true);
 });
 
-test('første Psykologi-kapittel forblir gyldig gjennom videre kapittelproduksjon og complete', () => {
+test('første Psykologi-kapittel forblir gyldig gjennom universitetsutvidelsen', () => {
   const { report } = auditPsykologiPsykiskHelsePhase4();
-  assert.ok(['chapters_in_progress', 'complete'].includes(report.subject.editorialStatus));
-  if (report.subject.editorialStatus === 'complete') {
+  assert.ok(['chapters_in_progress', 'complete', 'expanded_and_audited'].includes(report.subject.editorialStatus));
+  if (report.subject.editorialStatus === 'expanded_and_audited') {
+    assert.equal(report.subject.nextGate, 'university_matrix_topic_articles_concept_registry_and_methods');
+  } else if (report.subject.editorialStatus === 'complete') {
     assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   } else {
-    assert.equal(report.subject.nextGate, 'remaining_domain_chapter_production');
+    assert.ok(['remaining_domain_chapter_production', 'full_subject_audit'].includes(report.subject.nextGate));
   }
   assert.ok(report.subject.registeredChapterCount >= 1 && report.subject.registeredChapterCount <= 6);
   assert.equal(report.subject.targetChapterCount, 6);
