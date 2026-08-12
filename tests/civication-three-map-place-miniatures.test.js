@@ -36,6 +36,8 @@ function readJSON(rel) {
 function placesFromFileData(data) {
   if (Array.isArray(data)) return data;
   if (Array.isArray(data && data.places)) return data.places;
+  // Canonical place-manifest bruker nå i hovedsak én place per JSON-fil.
+  if (data && typeof data === 'object' && typeof data.id === 'string') return [data];
   return [];
 }
 
