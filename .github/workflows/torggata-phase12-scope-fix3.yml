@@ -1,0 +1,43 @@
+name: Torggata phase 12 scope fix 3
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase12-people-closeout
+    paths:
+      - .github/workflows/torggata-phase12-scope-fix3.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Move temporary workflow deletion after scope gate
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = '.github/workflows/torggata-phase12-closeout.yml';
+          let s = fs.readFileSync(file, 'utf8');
+          const deletion = '          rm -f .github/workflows/torggata-phase12-closeout.yml\n';
+          if (!s.includes(deletion)) throw new Error('closeout temp deletion line missing');
+          s = s.replace(deletion, '');
+          const marker = '      - name: Persist phase 12\n        shell: bash\n        run: |\n          git add -A\n';
+          if (!s.includes(marker)) throw new Error('persist marker missing');
+          const replacement = '      - name: Persist phase 12\n        shell: bash\n        run: |\n          rm -f .github/workflows/torggata-phase12-closeout.yml .github/workflows/torggata-phase12-scope-fix.yml .github/workflows/torggata-phase12-scope-fix2.yml .github/workflows/torggata-phase12-scope-fix3.yml\n          git add -A\n';
+          s = s.replace(marker, replacement);
+          fs.writeFileSync(file, s);
+          NODE
+          rm -f .github/workflows/torggata-phase12-scope-fix.yml .github/workflows/torggata-phase12-scope-fix2.yml .github/workflows/torggata-phase12-scope-fix3.yml
+          git status --short
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Flytt Torggata fase 12 temp-sletting etter scope"
+          git push origin HEAD:agent/torggata-phase12-people-closeout
