@@ -38,6 +38,7 @@ test('fullteksten har variabelt omfang og eksplisitte makt- og identitetsporter'
   assert.ok(report.summary.editorialWordCount >= 1800);
   assert.equal(report.summary.workedExampleCount, 7);
   assert.equal(report.summary.protocolCount, 2);
+  assert.equal(report.summary.applicationTaskCount, 7);
   assert.ok(report.gates.noVisualIdentityInference);
   assert.ok(report.gates.quantitativeVisibilityBounded);
   assert.ok(report.gates.samiIndigenousScreenSovereigntyAudited);
@@ -55,8 +56,12 @@ test('Representasjon, posisjon og motbilder hydrerer rendererfeltene', async () 
   assert.equal(chapter.concepts.length, 8);
   assert.equal(chapter.workedExamples.length, 7);
   assert.equal(chapter.commonMisconceptions.length, 5);
-  assert.equal(chapter.applicationTasks.length, 5);
+  assert.equal(chapter.applicationTasks.length, 7);
   assert.equal(chapter.selfCheck.length, 6);
+  assert.ok(chapter.lead.length > 100);
+  assert.equal(chapter.diagnosticQuestions.length, 5);
+  assert.equal(chapter.learningObjectives.length, 10);
+  assert.deepEqual(Array.from(chapter.applicationTasks.filter((row) => row.protocol_id), (row) => row.protocol_id), ['ftv-rp-protocol-1', 'ftv-rp-protocol-2']);
 });
 
 test('materialisereren er idempotent på neste kildebriefport', () => {

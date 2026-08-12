@@ -56,6 +56,7 @@ export function auditFilmTvRepresentationPositionCounterimagesFulltextV1({ write
   assert(brief.qa.sectionCountDerivedFromEmneOwnership === true && brief.qa.actualFulltextSections === 10 && brief.qa.paragraphCountsAreNotQuota === true, 'Briefen dokumenterer ikke naturlig omfang');
   assert(brief.qa.paragraphClaimTraceRequired === true && brief.qa.plannedClaimResolution === '38/38', 'Briefens claimport er ikke fullført');
   assert(brief.sourceStrategy.noVisualIdentityInference === true, 'Briefen sperrer ikke visuell identitetsinferens');
+  assert(chapter.lead && chapter.diagnosticQuestions.length === 5 && chapter.learningObjectives.length === 10, 'Kapittelets standardintroduksjon er ikke renderbar');
 
   assert(modules.length === 4 && sections.length === 10, 'Kapittelet skal ha fire progresjonsmoduler og ti emneeide seksjoner');
   assert(sections.every((row) => row.emne_ids.length === 1), 'Hver seksjon skal eie nøyaktig ett emne');
@@ -67,9 +68,10 @@ export function auditFilmTvRepresentationPositionCounterimagesFulltextV1({ write
   assert(modules[0].value.concepts.length === 8, 'Grunnlagsmodulen mangler begreper');
   assert(modules[1].value.workedExamples.length === 4 && modules[1].value.commonMisconceptions.length === 5, 'Aksemodulen mangler eksempler eller misoppfatninger');
   assert(modules[2].value.applicationTasks.length === 5 && modules[2].value.selfCheck.length === 6, 'Anvendelsesmodulen mangler oppgaver eller selvkontroll');
-  assert(modules[3].value.workedExamples.length === 3 && modules[3].value.protocols.length === 2, 'Skjermsuverenitetsmodulen mangler eksempler eller protokoller');
+  assert(modules[3].value.workedExamples.length === 3 && modules[3].value.protocols.length === 2 && modules[3].value.applicationTasks.length === 2, 'Skjermsuverenitetsmodulen mangler eksempler eller synlige protokoller');
   assert(modules.flatMap((row) => row.value.workedExamples || []).every((row) => row.title && row.situation && row.analysis.length >= 2 && row.analysis.every(Boolean)), 'Et arbeidseksempel er ikke renderer-støttet');
   assert(modules[3].value.protocols.every((row) => row.steps.length >= 3 && row.steps.every(Boolean)), 'En protokoll er ufullstendig');
+  assert(modules[3].value.applicationTasks.every((row) => row.protocol_id && row.prompts.length === 3 && modules[3].value.protocols.some((protocol) => protocol.id === row.protocol_id && isDeepStrictEqual(protocol.steps, row.prompts))), 'En protokoll er ikke mappet til renderer-støttet oppgavekort');
 
   assert(claimsDoc.schema === 'history_go_fagverk_chapter_claims_v1' && claimsDoc.chapter_id === CHAPTER_ID, 'Claims-filen er usynkronisert');
   assert(claimsDoc.sources.length === 25 && sourceIds.size === 25, 'Kapittelet skal bruke 25 unike inspectable kilder');
@@ -112,7 +114,7 @@ export function auditFilmTvRepresentationPositionCounterimagesFulltextV1({ write
     chapter: { id: chapter.id, title: chapter.title, primaryDomainId: chapter.primary_domain_id, moduleFiles: chapter.moduleFiles, briefFile: chapter.briefFile, claimsFile: chapter.claimsFile },
     canonicalCoverage: { requiredEmneIds: unit.emne_ids, coveredEmneIds: chapter.emne_ids, exactCoverage: '10/10 canonical emner', sectionOwnership: '10 emner eid av 10 naturlig avgrensede seksjoner' },
     claimPlanResolution: { plannedClaimIds: [...plannedClaimIds], finalClaimIds: [...claimIds], exactResolution: '38/38', rewrittenClaimIds: [] },
-    summary: { moduleCount: modules.length, sectionCount: sections.length, paragraphCount: paragraphs.length, editorialWordCount, conceptCount: modules[0].value.concepts.length, workedExampleCount: modules.flatMap((row) => row.value.workedExamples || []).length, misconceptionCount: modules[1].value.commonMisconceptions.length, applicationTaskCount: modules[2].value.applicationTasks.length, selfCheckCount: modules[2].value.selfCheck.length, protocolCount: modules[3].value.protocols.length, methodCount: chapter.method_ids.length, sourceCount: claimsDoc.sources.length, claimCount: claimsDoc.claims.length, workCaseCount: chapter.workCases.length, placeCaseCount: chapter.relatedPlaces.length },
+    summary: { moduleCount: modules.length, sectionCount: sections.length, paragraphCount: paragraphs.length, editorialWordCount, conceptCount: modules[0].value.concepts.length, workedExampleCount: modules.flatMap((row) => row.value.workedExamples || []).length, misconceptionCount: modules[1].value.commonMisconceptions.length, applicationTaskCount: modules.flatMap((row) => row.value.applicationTasks || []).length, selfCheckCount: modules[2].value.selfCheck.length, protocolCount: modules[3].value.protocols.length, methodCount: chapter.method_ids.length, sourceCount: claimsDoc.sources.length, claimCount: claimsDoc.claims.length, workCaseCount: chapter.workCases.length, placeCaseCount: chapter.relatedPlaces.length },
     gates: {
       exactCanonicalCoverage: true, oneSectionOwnerPerEmne: true, variableParagraphStructure: true, fulltextParagraphClaimTrace: true,
       everyClaimPlanResolved: true, allClaimsVerifiedAndUsed: true, allSourcesUsedAndInspectable: true, identityStatusExplicit: true,
@@ -120,7 +122,7 @@ export function auditFilmTvRepresentationPositionCounterimagesFulltextV1({ write
       intersectionalityAxesAndStructuresNamed: true, authenticCastingWorkAccessNarrativeDistributionSeparated: true,
       samiIndigenousScreenSovereigntyAudited: true, consultationCollaborationSelfDeterminationSeparated: true,
       sourceFactObservationInterpretationSeparated: true, canonicalPlaceApplicationsResolved: true, methodsResolve: true,
-      rendererFieldsPresent: true, genericTemplateReuseRejected: true, sourceBriefConsumedAfterGate: true,
+      rendererFieldsPresent: true, standardIntroductionVisible: true, safetyProtocolsMappedToVisibleTasks: true, genericTemplateReuseRejected: true, sourceBriefConsumedAfterGate: true,
       registryAndRuntimeSynchronized: true, nextUnitBoundaryPreserved: true, receptionBoundaryPreserved: true, releaseReady: true
     },
     nextGate: 'produce_source_and_claim_brief_for_skjermoffentlighet_fellesskap_og_samfunn'
