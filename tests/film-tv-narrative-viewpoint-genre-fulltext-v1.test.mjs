@@ -17,7 +17,7 @@ test('Fortelling, synsvinkel og sjanger dekker læringsenheten eksakt', () => {
   const { report } = auditFilmTvNarrativeViewpointGenreFulltextV1();
   assert.equal(report.canonicalCoverage.exactCoverage, '5/5 canonical emner');
   assert.equal(report.canonicalCoverage.sectionOwnership, '5 emner eid av 5 naturlig avgrensede seksjoner');
-  assert.ok(['narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production', 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief', 'television_platforms_participation_source_brief_complete_full_chapter_production', 'television_platforms_participation_full_chapter_complete_next_unit_source_brief'].includes(report.subject.nextGate));
+  assert.ok(['narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production', 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief', 'television_platforms_participation_source_brief_complete_full_chapter_production', 'television_platforms_participation_full_chapter_complete_next_unit_source_brief', 'documentary_evidence_ethics_source_brief_complete_full_chapter_production'].includes(report.subject.nextGate));
   assert.equal(report.nextGate, 'produce_source_and_claim_brief_for_serialitet_format_og_adaptasjon');
 });
 
