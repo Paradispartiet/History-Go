@@ -1,0 +1,88 @@
+name: Torggata phase 10 quiz materialize
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase10-quiz
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Materialize Torggata phase 10
+        run: node scripts/materialize-torggata-phase10-quiz.mjs
+
+      - name: Regenerate canonical Knowledge
+        run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+
+      - name: Validate focused phase 10
+        run: |
+          node --check scripts/materialize-torggata-phase10-quiz.mjs
+          node --test tests/torggata-phase10-quiz.test.mjs
+          node scripts/audit-quiz-production-context.mjs
+          node scripts/audit-quiz-progression.mjs
+          node scripts/audit-quiz-theory-binding.mjs
+          node scripts/audit-quiz-content-quality.mjs
+          node scripts/audit-quiz-manifest-v2.mjs
+          node --test tests/quiz-production-pipeline.test.mjs
+
+      - name: Validate Knowledge contract
+        run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --audit-only
+
+      - name: Preserve phase 9 regression
+        run: node --test tests/torggata-phase9-onsite.test.mjs
+
+      - name: TypeScript hard gates
+        run: |
+          npm run typecheck:web
+          npm run typecheck:scripts
+          npm run typecheck:tools
+
+      - name: Build guard
+        run: npm run build --if-present
+
+      - name: Inspect permanent scope
+        shell: bash
+        run: |
+          echo "Changed files before persist:"
+          git status --short
+          unexpected="$(git diff --name-only | grep -Ev '^(data/fag/fag_manifest\.json|data/quiz/by/torggata_sets\.json|data/quiz/production_briefs/by/torggata\.json|data/quiz/production_context/by/torggata\.json|data/knowledge/[^/]+\.generated\.json|reports/knowledge-[^/]+\.json|reports/place-production/torggata-phase10-quiz-audit-v1\.json|reports/place-production/torggata-workcard-current\.md|tests/torggata-phase10-quiz\.test\.mjs)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected permanent diff:"
+            echo "$unexpected"
+            exit 1
+          fi
+
+      - name: Persist validated phase 10 batch
+        shell: bash
+        run: |
+          rm -f .github/workflows/torggata-phase10-quiz-materialize.yml scripts/materialize-torggata-phase10-quiz.mjs
+          git add -A
+          git diff --cached --check
+          echo "Validated permanent diff:"
+          git diff --cached --name-status
+          if git diff --cached --quiet; then
+            echo "No validated changes to commit."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Godkjenn Torggata fase 10 Quiz"
+          git push origin HEAD:agent/torggata-phase10-quiz
