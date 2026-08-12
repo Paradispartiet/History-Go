@@ -27,6 +27,7 @@
 - Fase 8C-audit: `reports/place-production/torggata-phase8c-brands-audit-v1.json`
 - Fase 8D-audit: `reports/place-production/torggata-phase8d-structures-audit-v1.json`
 - Fase 8E-audit: `reports/place-production/torggata-phase8e-rounds-closeout-v1.json`
+- Fase 9-audit: `reports/place-production/torggata-phase9-onsite-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -41,8 +42,9 @@
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
 | 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
-| 9. På stedet | **PÅGÅR** | neste aktive fase etter lukket fase 8 |
-| 10–15 | **IKKE STARTET** | styres av hovedchecklisten |
+| 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
+| 10. Quiz | **PÅGÅR** | neste aktive fase etter lukket fase 9 |
+| 11–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -387,3 +389,29 @@ BESLUTNING: fjern Torggatas stale rounds; flytt områdeheuristikken til canonica
 **Fase 8 Rundinger = GODKJENT.**
 
 Neste aktive fase: **9. På stedet**.
+
+## Fase 9 – På stedet
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+SISTE GODKJENTE TILSTAND: canonical global På stedet-runtime fantes allerede, men Torggata hadde fortsatt legacy tasks_profile
+KONKRET REGRESJONSEVIDENS: canonical kontrakt sier at Oppgaver er fjernet, mens Torggata fortsatt hadde tre task-records og to task-baserte unlock-tekster
+BESLUTNING: MIGRERING + CLOSEOUT – fjern gammel Oppgaver-modell uten å dikte nye På stedet-handlinger
+```
+
+### Godkjent resultat
+
+- **Legacy `tasks_profile` = FJERNET:** de tre gamle task-recordene `torggata_task_gateprofil`, `torggata_task_for_na` og `torggata_task_aktorer` er tatt ut av canonical place-data fordi Oppgaver er fjernet fra produktkontrakten.
+- **Fysiske spor = BEHOLDT HOS RIKTIG EIER:** gateprofil, før/nå og bylivsobservasjoner lever videre gjennom eksisterende `for_na`, `civication_store`, `works` og quizgrunnlag; de er ikke kopiert inn som en ny pseudo-oppgavemodell.
+- **Stale task-kryssreferanser = RYDDET:** to `unlock`-tekster og miljøgateverkets `source_note` peker ikke lenger på Oppgaver/`tasks_profile`.
+- **Events = GODKJENT TOMTILSTAND:** ingen Torggata-event er registrert i canonical event-register; runtime viser korrekt tomtilstand uten å dikte arrangementer.
+- **Avtal å møtes = GODKJENT EKSISTERENDE RUNTIME:** global place-filtered Social Meet brukes uten Torggata-spesifikk personpayload.
+- **Kunnskapsmøte = GODKJENT EKSISTERENDE RUNTIME:** åpnes manuelt med `contextType=place` og `contextId=torggata`.
+- **`training_profile` = BEGRUNNET N/A:** Torggata er en By-gate, ikke et sportssted.
+- **`play_profile` = BEGRUNNET N/A:** Torggata er ikke lekeplass/lekepark/playground; `categoryPolicy.by.play` er `never`.
+- **Ingen filler:** det er ikke opprettet kunstige events, aktiviteter eller handlinger for å fylle fase 9.
+- `tests/torggata-phase9-onsite.test.mjs` låser migrasjonen, hovedraden, event-tomtilstanden, møteflowene og fravær av stedbaserte personsignaler.
+
+**Fase 9 På stedet = GODKJENT.**
+
+Neste aktive fase: **10. Quiz**.
