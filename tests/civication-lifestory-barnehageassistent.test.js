@@ -16,8 +16,9 @@ const manifest = readJson("data/Civication/lifestory/manifest.json");
 const roleEntry = manifest.roles.barnehageassistent;
 assert.ok(roleEntry, "manifestet må ha rollen barnehageassistent");
 assert.strictEqual(roleEntry.role_scope, "barnehageassistent");
-assert.strictEqual(roleEntry.badge_id, "sosial_laering");
-assert.deepStrictEqual(roleEntry.badge_titles, ["Barnehageassistent / pedagogisk medarbeider"]);
+assert.strictEqual(roleEntry.content_only, true, "rollen skal bevares som content-only uten Badge-binding");
+assert.strictEqual(roleEntry.legacy_namespace, "sosial_laering");
+assert.ok(!roleEntry.badge_id && !roleEntry.badge_titles, "content-only-rollen skal ikke late som den har Badge-binding");
 
 const raw = {
   role: readJson(roleEntry.role),

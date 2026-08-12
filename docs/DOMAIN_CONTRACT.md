@@ -2,7 +2,7 @@
 
 Status: **canonical og bindende kategoribeslutning**  
 Eier: History GO data/runtime  
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-08-13**
 
 Maskinlesbar sannhetskilde: `data/categories/category_contract.json`.
 
@@ -52,7 +52,7 @@ Grenseflater:
 
 ## Andre låste beslutninger
 
-`filosofi` er selvstendig runtime- og fagkategori. `kultur` er ikke toppkategori. `populaerkultur` og `popkultur` brukes som tagg, linse og mediefaglig analysefelt. `sosial_laering` er et non-place progression badge.
+`filosofi` er selvstendig runtime- og fagkategori. `kultur` er ikke toppkategori. `populaerkultur` og `popkultur` brukes som tagg, linse og mediefaglig analysefelt. `sosial_laering` er **ikke** et canonical badge, toppdomene eller fag. Eventuelle forekomster av ID-en i eldre HG Social- eller Civication-innhold er kun legacy interne namespaces og gir ikke tillatelse til å registrere et nytt merke eller en ny kategori.
 
 ## Primær og sekundær badgebruk
 
