@@ -1,0 +1,46 @@
+name: Fagverk Psykologi university history and science theory
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/psykologi/psykologiens_historie_vitenskapsteori_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-history-science-theory-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-history-science-theory-university.test.mjs"
+      - "reports/fagverk/psykologi-history-science-theory-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-history-science-theory-university.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/psykologi/psykologiens_historie_vitenskapsteori_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-history-science-theory-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-history-science-theory-university.test.mjs"
+      - "reports/fagverk/psykologi-history-science-theory-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-history-science-theory-university.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Psychology 20/20 history and science theory
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Validate audit syntax
+        run: |
+          node --check scripts/audit-fagverk-psykologi-history-science-theory-university.mjs
+          node --check scripts/audit-fagverk-psykologi-university-readiness.mjs
+      - name: Verify deterministic history and science theory audit
+        run: node scripts/audit-fagverk-psykologi-history-science-theory-university.mjs
+      - name: Test history and science theory contract
+        run: node --test tests/fagverk-psykologi-history-science-theory-university.test.mjs
+      - name: Verify university readiness consumes the completed branch
+        run: node scripts/audit-fagverk-psykologi-university-readiness.mjs --no-check-report
