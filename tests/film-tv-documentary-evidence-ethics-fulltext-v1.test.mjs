@@ -17,7 +17,7 @@ test('Dokumentar, evidens og etikk dekker læringsenheten eksakt', () => {
   const { report } = auditFilmTvDocumentaryEvidenceEthicsFulltextV1();
   assert.equal(report.canonicalCoverage.exactCoverage, '15/15 canonical emner');
   assert.equal(report.canonicalCoverage.sectionOwnership, '15 emner eid av 15 naturlig avgrensede seksjoner');
-  assert.equal(report.subject.nextGate, 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief');
+  assert.equal(report.subject.nextGate, 'representation_position_counterimages_source_brief_complete_full_chapter_production');
   assert.equal(report.nextGate, 'produce_source_and_claim_brief_for_representasjon_posisjon_og_motbilder');
 });
 
