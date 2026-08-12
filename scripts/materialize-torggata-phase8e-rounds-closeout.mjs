@@ -31,11 +31,67 @@ write(areaPath, area);
 const areaTestPath = "tests/area-overview-v2-runtime.test.js";
 let areaTest = read(areaTestPath);
 const areaRegression = `\nconst structuredMetadataEntries = [\n  {\n    place: {\n      id: 'legacy',\n      name: 'Z Legacy',\n      category: 'by',\n      image: 'same.jpg',\n      desc: 'Lik tekst',\n      rounds: ['people', 'objects', 'brands', 'structures'],\n      rundinger: ['people', 'objects', 'brands', 'structures']\n    },\n    distanceKm: 3\n  },\n  {\n    place: { id: 'plain', name: 'A Plain', category: 'by', image: 'same.jpg', desc: 'Lik tekst' },\n    distanceKm: 3\n  },\n  {\n    place: {\n      id: 'canonical',\n      name: 'M Canonical',\n      category: 'by',\n      image: 'same.jpg',\n      desc: 'Lik tekst',\n      objects: [{ id: 'obj' }],\n      structures: [{ id: 'structure' }]\n    },\n    distanceKm: 3\n  }\n];\n\nassert.deepEqual(\n  Array.from(api.rankHighlights(structuredMetadataEntries, 3), (entry) => entry.place.id),\n  ['canonical', 'plain', 'legacy'],\n  'legacy rounds/rundinger skal ikke gi områdeoversikten innholdspoeng; reelle canonical objects/structures skal gjøre det'\n);\n`;
-areaTest = replaceOnce(areaTest, "\nconsole.log('area-overview-v2-runtime.test.js: OK');\n", `${areaRegression}\nconsole.log('area-overview-v2-runtime.test.js: OK');\n`, "area overview regression insertion");
+areaTest = replaceOnce(
+  areaTest,
+  "\nconsole.log('area-overview-v2-runtime.test.js: OK');\n",
+  `${areaRegression}\nconsole.log('area-overview-v2-runtime.test.js: OK');\n`,
+  "area overview regression insertion"
+);
 write(areaTestPath, areaTest);
 
 const phase8eTestPath = "tests/torggata-phase8e-rounds-closeout.test.mjs";
-write(phase8eTestPath, `import test from "node:test";\nimport assert from "node:assert/strict";\nimport fs from "node:fs";\nimport path from "node:path";\nimport { fileURLToPath } from "node:url";\nimport { JSDOM } from "jsdom";\n\nconst __dirname = path.dirname(fileURLToPath(import.meta.url));\nconst place = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/places/by/oslo/places/torggata.json"), "utf8"));\nconst roundsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds-visual-collections.js"), "utf8");\n\ntest("Torggata 8E removes stale place.rounds without rewriting a hardcoded canonical list", () => {\n  assert.equal(Object.prototype.hasOwnProperty.call(place, "rounds"), false);\n  assert.equal(Object.prototype.hasOwnProperty.call(place, "rundinger"), false);\n  assert.equal(Object.prototype.hasOwnProperty.call(place, "rounds_exclude"), false);\n  assert.equal(place.category, "by");\n  assert.ok(Array.isArray(place.objects) && place.objects.length > 0, "8B Objects skal bestå");\n  assert.ok(Array.isArray(place.structures) && place.structures.length === 2, "8D Structures skal bestå med to fysiske anlegg");\n});\n\ntest("Torggata final PlaceCard is people · objects · brands · structures with Badges separate", async () => {\n  const legacyIds = [\n    "pcWorksIcon", "pcDetailsIcon", "pcSpotsIcon", "pcCivicationStoreIcon", "pcNatureIcon",\n    "pcForNaIcon", "pcFortellingerIcon", "pcLeksikonIcon", "pcPlayIcon", "pcTrainingIcon",\n    "pcTasksIcon", "pcWonderkammerIcon", "pcStoriesIcon", "pcRoutesIcon"\n  ];\n  const dom = new JSDOM(\`<!doctype html><body>\n    <div id="placeCard" data-current-place-id="torggata">\n      <div class="pc-body">\n        <div class="pc-title-row"><h2 id="pcTitle">Torggata</h2><div id="pcBadgesIcon" class="pc-round"></div></div>\n        <div class="pc-icons-quad">\n          <div id="pcPeopleIcon" class="pc-round"></div>\n          <div id="pcBrandsIcon" class="pc-round"></div>\n          \\${legacyIds.map(id => \`<div id="\\${id}" class="pc-round"></div>\`).join("")}\n        </div>\n        <div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div>\n      </div>\n    </div>\n  </body>\`, { url: "https://history-go.test/", runScripts: "outside-only" });\n\n  const w = dom.window;\n  w.PLACES = [place];\n  w.eval(roundsSource);\n  w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles: true }));\n  await w.HGVisualPlaceRounds.apply(place);\n\n  assert.deepEqual(Array.from(w.HGVisualPlaceRounds.get(place)), ["people", "objects", "brands", "structures"]);\n  assert.equal(w.HGVisualPlaceRounds.getFourth(place), "structures");\n  assert.equal(w.HGVisualPlaceRounds.getItems(place, "structures").length, 2);\n\n  const grid = w.document.querySelector(".pc-icons-quad");\n  const visible = [...grid.querySelectorAll(".pc-round")].filter(el => !el.hidden);\n  const ordered = visible.slice().sort((a, b) => Number(a.style.order) - Number(b.style.order)).map(el => el.id);\n  assert.equal(grid.dataset.roundCount, "4");\n  assert.equal(grid.dataset.roundCategory, "by");\n  assert.equal(grid.dataset.roundFourth, "structures");\n  assert.deepEqual(ordered, ["pcPeopleIcon", "pcObjectsIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);\n  assert.equal(w.document.getElementById("pcBadgesIcon").parentElement.className, "pc-title-row");\n  assert.equal(w.document.getElementById("pcBadgesIcon").hidden, false);\n  for (const id of legacyIds) assert.equal(w.document.getElementById(id).hidden, true, id);\n  dom.window.close();\n});\n`);
+const phase8eTest = `import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { JSDOM } from "jsdom";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const place = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/places/by/oslo/places/torggata.json"), "utf8"));
+const roundsSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds-visual-collections.js"), "utf8");
+
+test("Torggata 8E removes stale place.rounds without rewriting a hardcoded canonical list", () => {
+  assert.equal(Object.prototype.hasOwnProperty.call(place, "rounds"), false);
+  assert.equal(Object.prototype.hasOwnProperty.call(place, "rundinger"), false);
+  assert.equal(Object.prototype.hasOwnProperty.call(place, "rounds_exclude"), false);
+  assert.equal(place.category, "by");
+  assert.ok(Array.isArray(place.objects) && place.objects.length > 0, "8B Objects skal bestå");
+  assert.ok(Array.isArray(place.structures) && place.structures.length === 2, "8D Structures skal bestå med to fysiske anlegg");
+});
+
+test("Torggata final PlaceCard is people · objects · brands · structures with Badges separate", async () => {
+  const legacyIds = [
+    "pcWorksIcon", "pcDetailsIcon", "pcSpotsIcon", "pcCivicationStoreIcon", "pcNatureIcon",
+    "pcForNaIcon", "pcFortellingerIcon", "pcLeksikonIcon", "pcPlayIcon", "pcTrainingIcon",
+    "pcTasksIcon", "pcWonderkammerIcon", "pcStoriesIcon", "pcRoutesIcon"
+  ];
+  const dom = new JSDOM('<!doctype html><body><div id="placeCard" data-current-place-id="torggata"><div class="pc-body"><div class="pc-title-row"><h2 id="pcTitle">Torggata</h2><div id="pcBadgesIcon" class="pc-round"></div></div><div class="pc-icons-quad"><div id="pcPeopleIcon" class="pc-round"></div><div id="pcBrandsIcon" class="pc-round"></div><div id="pcWorksIcon" class="pc-round"></div><div id="pcDetailsIcon" class="pc-round"></div><div id="pcSpotsIcon" class="pc-round"></div><div id="pcCivicationStoreIcon" class="pc-round"></div><div id="pcNatureIcon" class="pc-round"></div><div id="pcForNaIcon" class="pc-round"></div><div id="pcFortellingerIcon" class="pc-round"></div><div id="pcLeksikonIcon" class="pc-round"></div><div id="pcPlayIcon" class="pc-round"></div><div id="pcTrainingIcon" class="pc-round"></div><div id="pcTasksIcon" class="pc-round"></div><div id="pcWonderkammerIcon" class="pc-round"></div><div id="pcStoriesIcon" class="pc-round"></div><div id="pcRoutesIcon" class="pc-round"></div></div><div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div></div></div></body>', { url: "https://history-go.test/", runScripts: "outside-only" });
+
+  const w = dom.window;
+  w.PLACES = [place];
+  w.eval(roundsSource);
+  w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles: true }));
+  await w.HGVisualPlaceRounds.apply(place);
+
+  assert.deepEqual(Array.from(w.HGVisualPlaceRounds.get(place)), ["people", "objects", "brands", "structures"]);
+  assert.equal(w.HGVisualPlaceRounds.getFourth(place), "structures");
+  assert.equal(w.HGVisualPlaceRounds.getItems(place, "structures").length, 2);
+
+  const grid = w.document.querySelector(".pc-icons-quad");
+  const visible = [...grid.querySelectorAll(".pc-round")].filter(el => !el.hidden);
+  const ordered = visible.slice().sort((a, b) => Number(a.style.order) - Number(b.style.order)).map(el => el.id);
+  assert.equal(grid.dataset.roundCount, "4");
+  assert.equal(grid.dataset.roundCategory, "by");
+  assert.equal(grid.dataset.roundFourth, "structures");
+  assert.deepEqual(ordered, ["pcPeopleIcon", "pcObjectsIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);
+  assert.equal(w.document.getElementById("pcBadgesIcon").parentElement.className, "pc-title-row");
+  assert.equal(w.document.getElementById("pcBadgesIcon").hidden, false);
+  for (const id of legacyIds) assert.equal(w.document.getElementById(id).hidden, true, id);
+  dom.window.close();
+});
+`;
+write(phase8eTestPath, phase8eTest);
 
 const auditPath = "reports/place-production/torggata-phase8e-rounds-closeout-v1.json";
 const audit = {
@@ -84,6 +140,7 @@ write(auditPath, JSON.stringify(audit, null, 2));
 
 const workcardPath = "reports/place-production/torggata-workcard-current.md";
 let workcard = read(workcardPath);
+workcard = replaceOnce(workcard, "- Oppdatert: 2026-08-11\n", "- Oppdatert: 2026-08-12\n", "workcard date");
 workcard = replaceOnce(
   workcard,
   "- Fase 8D-audit: `reports/place-production/torggata-phase8d-structures-audit-v1.json`\n",
