@@ -1,0 +1,120 @@
+name: Fagverk Film og TV unit 8 persist recovery
+
+on:
+  push:
+    branches:
+      - agent/film-tv-screen-public-sphere-fulltext
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fagverk-film-tv-unit8-persist-recovery-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  persist:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Apply monotone Film and TV progression contracts
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          function update(file, transform) {
+            const before = fs.readFileSync(file, 'utf8');
+            const after = transform(before);
+            if (after !== before) fs.writeFileSync(file, after);
+          }
+
+          update('scripts/plan-film-tv-learning-order-v1.mjs', (text) => {
+            if (text.includes('const filmNextGate = currentStatus.subjects.find')) return text;
+            const pattern = /  const currentStatus = read\(P\.status\);\n  const laterSourceBriefGate = \[[^\n]+\]\.includes\(currentStatus\.subjects\.find\(\(row\) => row\.id === 'film_tv'\)\?\.nextGate\);/;
+            if (!pattern.test(text)) throw new Error('Fant ikke gammel Film & TV-gateliste i plan-auditen');
+            return text.replace(pattern, `  const currentStatus = read(P.status);\n  const filmNextGate = currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate || '';\n  const laterSourceBriefGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(filmNextGate);`);
+          });
+
+          update('tests/fagverk-subject-inventory.test.mjs', (text) => {
+            if (text.includes('const legacyFilmTvGates = new Set')) return text;
+            const pattern = /  assert\.ok\(\['remaining_domain_chapter_production'[^\n]+\.includes\(filmTv\.nextGate\)\);/;
+            if (!pattern.test(text)) throw new Error('Fant ikke gammel Film & TV-gateliste i subject-inventory-testen');
+            return text.replace(pattern, `  const legacyFilmTvGates = new Set(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief']);\n  const isFilmTvProductionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(filmTv.nextGate);\n  assert.ok(legacyFilmTvGates.has(filmTv.nextGate) || isFilmTvProductionGate);`);
+          });
+
+          update('tests/film-tv-learning-order-plan-v1.test.mjs', (text) => {
+            if (text.includes('const currentFilmTvGate = result.status.subjects.find')) return text;
+            const pattern = /  assert\.ok\(\['learning_order_plan_complete_first_chapter_source_brief'[^\n]+\.includes\(result\.status\.subjects\.find\(\(row\) => row\.id === 'film_tv'\)\.nextGate\)\);/;
+            if (!pattern.test(text)) throw new Error('Fant ikke gammel progresjonsliste i learning-order-testen');
+            return text.replace(pattern, `  const currentFilmTvGate = result.status.subjects.find((row) => row.id === 'film_tv').nextGate;\n  assert.ok(currentFilmTvGate === 'learning_order_plan_complete_first_chapter_source_brief' || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(currentFilmTvGate));`);
+          });
+
+          update('.github/workflows/fagverk-film-tv-screen-public-sphere-source-brief.yml', (text) => {
+            return text.replace(
+              '          node --test tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs\n          node --test tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs',
+              '          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs'
+            );
+          });
+
+          update('.github/workflows/fagverk-film-tv-phase3.yml', (text) => {
+            let out = text.replace(
+              '          node scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs\n          node scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs\n          node scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs',
+              '          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs'
+            );
+            out = out.replace(
+              '          node --test tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs\n          node --test tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs',
+              '          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs'
+            );
+            if (!out.includes('tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs')) throw new Error('Monoton unit-7-regresjon ble ikke koblet inn i phase-3-workflowen');
+            return out;
+          });
+          NODE
+
+      - name: Regenerate deterministic reports
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs --write-report
+
+      - name: Validate persisted contracts
+        run: |
+          node --check scripts/plan-film-tv-learning-order-v1.mjs
+          node --check tests/fagverk-subject-inventory.test.mjs
+          node --check tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs
+          node --test tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Persist atomically and remove recovery workflow
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/fagverk-film-tv-unit8-persist-recovery.yml
+          git add \
+            .github/workflows/fagverk-film-tv-phase3.yml \
+            .github/workflows/fagverk-film-tv-screen-public-sphere-source-brief.yml \
+            scripts/plan-film-tv-learning-order-v1.mjs \
+            tests/fagverk-subject-inventory.test.mjs \
+            tests/film-tv-learning-order-plan-v1.test.mjs \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/general-engine-audit.json \
+            reports/fagverk/film-tv-screen-public-sphere-community-society-fulltext-v1-audit.json
+          git commit -m 'Make Film TV progression gates monotone'
+          git fetch origin "$BRANCH"
+          git rebase "origin/$BRANCH"
+          git push origin "HEAD:$BRANCH"
