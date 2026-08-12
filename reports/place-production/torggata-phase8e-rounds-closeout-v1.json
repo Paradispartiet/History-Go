@@ -1,0 +1,59 @@
+{
+  "schema": "history_go_place_rounds_closeout_v1",
+  "version": "1.0.0",
+  "generated_at": "2026-08-12",
+  "place_id": "torggata",
+  "phase": "8E",
+  "result": "PASS",
+  "baseline": {
+    "main_commit": "37de6d0d2d9633331f6acef2cbd7168f85552c80",
+    "legacy_rounds": [
+      "people",
+      "tasks",
+      "badges",
+      "works",
+      "civication",
+      "brands",
+      "før_nå",
+      "fortellinger",
+      "leksikon"
+    ],
+    "phase_8d_status": "merged_and_verified"
+  },
+  "contract_findings": {
+    "rounds_field": "legacy presentation metadata; not a canonical round selector",
+    "canonical_runtime": "js/ui/place-rounds-visual-collections.js",
+    "runtime_selection": [
+      "people",
+      "objects",
+      "brands",
+      "structures"
+    ],
+    "badges": "separate from the 2x2 content grid",
+    "fourth_round": "structures",
+    "images_fallback": "not used because the verified structures collection is non-empty"
+  },
+  "consumer_audit": {
+    "place_rounds_runtime": "does not consume place.rounds for selection",
+    "place_card": "legacy DOM hooks remain defensive only; canonical category-four runtime owns visible selection",
+    "schema_and_place_standard": "explicitly classify rounds/rundinger/rounds_exclude as legacy presentation fields",
+    "area_overview": "the only active content-scoring dependency found; migrated from rounds/rundinger metadata to canonical objects/structures"
+  },
+  "cleanup": {
+    "removed_from_torggata": [
+      "rounds"
+    ],
+    "not_replaced_with_hardcoded_four_list": true,
+    "reason": "canonical runtime derives the set from category plus real collections"
+  },
+  "regression_expectations": {
+    "phase_8a_people": "preserved",
+    "phase_8b_objects": "preserved",
+    "phase_8c_brands": "preserved",
+    "phase_8d_structures": "preserved",
+    "legacy_grid_icons": "hidden",
+    "content_round_count": 4,
+    "quota_policy": "no numeric content quota"
+  },
+  "next_phase": "9. På stedet"
+}

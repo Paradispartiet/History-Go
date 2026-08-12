@@ -100,4 +100,41 @@ assert.deepEqual(
   'områdeprogresjon skal lese eksisterende profilprogresjon uten å skrive ny state'
 );
 
+const structuredMetadataEntries = [
+  {
+    place: {
+      id: 'legacy',
+      name: 'Z Legacy',
+      category: 'by',
+      image: 'same.jpg',
+      desc: 'Lik tekst',
+      rounds: ['people', 'objects', 'brands', 'structures'],
+      rundinger: ['people', 'objects', 'brands', 'structures']
+    },
+    distanceKm: 3
+  },
+  {
+    place: { id: 'plain', name: 'A Plain', category: 'by', image: 'same.jpg', desc: 'Lik tekst' },
+    distanceKm: 3
+  },
+  {
+    place: {
+      id: 'canonical',
+      name: 'M Canonical',
+      category: 'by',
+      image: 'same.jpg',
+      desc: 'Lik tekst',
+      objects: [{ id: 'obj' }],
+      structures: [{ id: 'structure' }]
+    },
+    distanceKm: 3
+  }
+];
+
+assert.deepEqual(
+  Array.from(api.rankHighlights(structuredMetadataEntries, 3), (entry) => entry.place.id),
+  ['canonical', 'plain', 'legacy'],
+  'legacy rounds/rundinger skal ikke gi områdeoversikten innholdspoeng; reelle canonical objects/structures skal gjøre det'
+);
+
 console.log('area-overview-v2-runtime.test.js: OK');

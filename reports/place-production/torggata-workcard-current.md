@@ -1,6 +1,6 @@
 # Torggata – aktivt stedproduksjonskort
 
-- Oppdatert: 2026-08-11
+- Oppdatert: 2026-08-12
 - Place ID: `torggata`
 - Canonical source: `data/places/by/oslo/places/torggata.json`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
@@ -26,6 +26,7 @@
 - Fase 8B-audit: `reports/place-production/torggata-phase8b-objects-audit-v1.md`
 - Fase 8C-audit: `reports/place-production/torggata-phase8c-brands-audit-v1.json`
 - Fase 8D-audit: `reports/place-production/torggata-phase8d-structures-audit-v1.json`
+- Fase 8E-audit: `reports/place-production/torggata-phase8e-rounds-closeout-v1.json`
 
 ## Korrigert fasestatus
 
@@ -39,8 +40,9 @@
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
-| 8. Rundinger | **PÅGÅR – 8E legacy rounds + slutt-UI** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; 8E er neste del |
-| 9–15 | **IKKE STARTET** | styres av hovedchecklisten |
+| 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
+| 9. På stedet | **PÅGÅR** | neste aktive fase etter lukket fase 8 |
+| 10–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -359,3 +361,29 @@ Ingen strukturillustrasjon er kopiert eller rekonstruert uten egen verifisert re
 **8D Bygg og anlegg = GODKJENT.**
 
 Neste fase-8-del: **8E legacy rounds + slutt-UI**.
+
+## Fase 8E – legacy rounds + slutt-UI
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+SISTE GODKJENTE TILSTAND: fase 8D merget på main 37de6d0d2d9633331f6acef2cbd7168f85552c80
+LEGACYFELT: place.rounds med ni historiske presentasjons-ID-er
+CANONICAL RUNTIME: js/ui/place-rounds-visual-collections.js velger fra kategori og reelle samlinger, ikke place.rounds
+AKTIV SEKUNDÆRLESER: area-overview-v2 brukte rounds/rundinger kun som ett strukturert-innholdspoeng
+BESLUTNING: fjern Torggatas stale rounds; flytt områdeheuristikken til canonical objects/structures; ikke skriv en ny hardkodet fireliste
+```
+
+### Godkjent sluttstatus for fase 8
+
+- Torggatas gamle ni-elementers `rounds`-felt er fjernet; `rundinger` og `rounds_exclude` finnes heller ikke på stedet.
+- Rundingsvalget er fortsatt runtime-avledet, ikke place-kurert: **people · objects · brands · structures**.
+- **Badges står separat** ved stedsoverskriften og teller ikke i 2×2-feltet.
+- **Bygg og anlegg** er faktisk fjerderunding fordi fase 8D har to verifiserte Structures; Bilder-fallback brukes derfor ikke.
+- Legacy-ikonene for Works, Details, Spots, Civication, Før/nå, Fortellinger, Leksikon, Lek, Trening, Oppgaver, Wonderkammer og Ruter holdes ute av canonical 2×2-grid.
+- Områdeoversikten teller ikke lenger legacy presentasjonsmetadata som innhold; `objects` og `structures` brukes i den aktuelle strukturrikdomsheuristikken i stedet.
+- 8A People, 8B Objects, 8C Brands og 8D Structures er regresjonslåst i 8E-kjøringen.
+- Ingen antallskvote er innført; fire er UI-geometri, ikke et krav om et bestemt antall records inne i hver samling.
+
+**Fase 8 Rundinger = GODKJENT.**
+
+Neste aktive fase: **9. På stedet**.
