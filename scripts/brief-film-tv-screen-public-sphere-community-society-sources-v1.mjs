@@ -19,6 +19,7 @@ const P = Object.freeze({
 });
 const UNIT_ID = 'skjermoffentlighet-fellesskap-og-samfunn';
 const INPUT_GATE = 'representation_position_counterimages_full_chapter_complete_next_unit_source_brief';
+const OUTPUT_GATE = 'screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief';
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`);
@@ -126,6 +127,27 @@ export function buildFilmTvScreenPublicSphereCommunitySocietySourceBriefReportV1
 }
 
 export function auditFilmTvScreenPublicSphereCommunitySocietySourceBriefV1({ writeFiles = false, checkFiles = true } = {}) {
+  const status = read(P.status);
+  const currentGate = status.subjects.find((row) => row.id === 'film_tv')?.nextGate;
+  const brief = read(P.brief);
+
+  if (currentGate === OUTPUT_GATE) {
+    const registry = read(P.registry);
+    const report = read(P.report);
+    const sources = read(P.sources).sources;
+    const cases = read(P.cases).cases;
+    const topicBriefs = read(P.topicClaims).topic_briefs;
+    const plannedClaims = topicBriefs.flatMap((row) => row.planned_claims);
+    const unit = read(P.plan).planned_units.find((row) => row.id === UNIT_ID);
+    assert(brief.status === 'source_claim_brief_consumed_by_verified_chapter', 'Skjermoffentlighetsbriefen skal være konsumert etter fulltekstporten');
+    assert(brief.runtime_registration.registered === true && brief.runtime_registration.chapter_id === UNIT_ID, 'Skjermoffentlighetsbriefen mangler kapittelregistrering');
+    assert(registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID), 'Skjermoffentlighetskapitlet mangler i registry');
+    assert(plannedClaims.every((row) => row.status === 'resolved_to_verified_claim' && row.final_claim_id === row.id), 'Alle skjermoffentlighetsclaimplaner skal være løst');
+    assert(report.status === 'source_claim_brief_consumed_by_verified_chapter' && Object.values(report.gates).every(Boolean), 'Skjermoffentlighetsbriefens etteraudit er ikke grønn');
+    return { brief, sources, cases, report, registry, status, unit, topicBriefs, plannedClaims };
+  }
+
+  assert(currentGate === INPUT_GATE, `Uventet Film & TV-port: ${currentGate}`);
   const built = buildFilmTvScreenPublicSphereCommunitySocietySourceBriefReportV1();
   if (writeFiles) write(P.report, built.report);
   if (checkFiles) assert(isDeepStrictEqual(read(P.report), built.report), `${P.report} er utdatert`);
