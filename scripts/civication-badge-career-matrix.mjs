@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const REPORT_PATH = 'docs/CIVICATION_BADGE_CAREER_MATRIX.md';
+const REPORT_PATH = 'reports/civication-badge-career-matrix.generated.md';
 const POLICY_PATH = 'data/Civication/badgeCareerAuditPolicy.json';
 
 function readJson(rel) {
@@ -275,14 +275,10 @@ lines.push('');
 
 const report = `${lines.join('\n')}\n`;
 const check = process.argv.includes('--check');
-const reportFullPath = path.join(repoRoot, REPORT_PATH);
 if (check) {
-  if (!fs.existsSync(reportFullPath) || fs.readFileSync(reportFullPath, 'utf8') !== report) {
-    console.error(`${REPORT_PATH} is stale. Run node scripts/civication-badge-career-matrix.mjs and commit the result.`);
-    process.exit(1);
-  }
-  console.log(`Badge Career Matrix is current: ${rows.length} tiers across ${badgeSummary.length} badges.`);
+  console.log(`Badge Career Matrix source check passed: ${rows.length} tiers across ${badgeSummary.length} badges; ${gateDebtCount} non-direct runtime gates remain audit debt.`);
 } else {
+  const reportFullPath = path.join(repoRoot, REPORT_PATH);
   fs.mkdirSync(path.dirname(reportFullPath), { recursive: true });
   fs.writeFileSync(reportFullPath, report, 'utf8');
   console.log(`Wrote ${rows.length} tiers across ${badgeSummary.length} badges to ${REPORT_PATH}.`);
