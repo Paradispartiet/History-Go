@@ -50,6 +50,8 @@ jobs:
           if old_audit not in source:
               raise SystemExit("Expected legacy audit count not found")
           source = source.replace(old_audit, new_audit, 1)
+          source = source.replace("11. Knowledge", "11. Observer, Notat og Rute")
+          source = source.replace("12–15", "12–24")
 
           start_marker = 'if (!workcard.includes("## Fase 10 – Quiz")) {'
           end_marker = 'write(workcardPath, workcard);'
@@ -79,11 +81,11 @@ jobs:
               "- Alle 35 spørsmål har unik `claim_id` og peker bare til reviewede eksterne source-ID-er; interne By-filer er kun guidance/metadata.",
               "- Sluttsettet bruker `met_for_etter` og den canonicale hooken `byliv_opphold_vs_gjennomgang` med Michel de Certeau og Gordon Cullen som eksplisitte, stedlig forankrede teoribindinger.",
               "- Påstander om automatisk fortrengning, generiske rent-gap-prompter og den tidligere superlativen om 25-metersbasseng er eksplisitt holdt tilbake.",
-              "- Canonical Knowledge regenereres fra den nye manifest-loadede quizen før batchen kan persisteres.",
+              "- Canonical Knowledge regenereres fra den nye manifest-loadede quizen før batchen kan persisteres; dette lukker Knowledge-synk som del av fase 10 etter gjeldende checklist.",
               "",
               "**Fase 10 Quiz = GODKJENT når materialiseringsworkflow, canonical quiz-audits, Knowledge-sync, TypeScript og build er grønne.**",
               "",
-              "Neste aktive fase: **11. Knowledge**.",
+              "Neste aktive fase: **11. Observer, Notat og Rute**.",
               ""
             ].join("\\n");
             workcard = workcard.trimEnd() + phase10Closeout;
