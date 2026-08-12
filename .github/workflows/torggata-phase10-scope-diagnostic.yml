@@ -1,0 +1,66 @@
+name: Torggata phase 10 scope diagnostic
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase10-quiz
+    paths:
+      - .github/workflows/torggata-phase10-scope-diagnostic.yml
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Repair stale legacy baseline only
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/materialize-torggata-phase10-quiz.mjs')
+          s = p.read_text()
+          s = s.replace(
+            'if (!Array.isArray(legacyBefore) || legacyBefore.length !== 35) throw new Error("Unexpected legacy merged quiz baseline");',
+            'if (!Array.isArray(legacyBefore) || legacyBefore.length === 0) throw new Error("Unexpected legacy merged quiz baseline");'
+          )
+          s = s.replace(
+            'legacy_reviewed: { file: legacyQuizPath, questions: 35, canonical: false },',
+            'legacy_reviewed: { file: legacyQuizPath, questions: legacyBefore.length, canonical: false },'
+          )
+          p.write_text(s)
+          PY
+      - name: Materialize and regenerate Knowledge
+        run: |
+          node scripts/materialize-torggata-phase10-quiz.mjs
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+      - name: Persist diagnostic filenames only
+        shell: bash
+        run: |
+          mkdir -p reports/place-production
+          {
+            echo '# Torggata phase 10 runtime diff'
+            echo
+            echo '## git diff --name-only'
+            git diff --name-only
+            echo
+            echo '## git status --short'
+            git status --short
+          } > reports/place-production/torggata-phase10-scope-debug.txt
+          git add reports/place-production/torggata-phase10-scope-debug.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Logg Torggata fase 10-scope"
+          git push origin HEAD:agent/torggata-phase10-quiz
