@@ -1,8 +1,8 @@
 {
   "schema": "history_go_film_tv_documentary_evidence_ethics_source_brief_v1_audit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "updated_at": "2026-08-12",
-  "status": "source_claim_brief_complete_full_chapter_next",
+  "status": "source_claim_brief_consumed_by_verified_chapter",
   "subject_id": "film_tv",
   "summary": {
     "emne_count": 15,
@@ -27,7 +27,8 @@
       4
     ],
     "proposed_module_count": 4,
-    "registered_chapter_count_delta": 0
+    "registered_chapter_count_delta": 1,
+    "resolved_claim_count": 54
   },
   "coverage": [
     {
@@ -151,14 +152,15 @@
     "every_case_reference_resolves": true,
     "every_case_source_available_to_owning_topic": true,
     "claim_counts_follow_variable_problem_scope": true,
-    "no_planned_claim_overstated_as_verified": true,
     "all_planned_claim_ids_unique": true,
     "all_topics_have_boundaries_sources_cases_and_methods": true,
     "module_order_covers_every_emne_once": true,
     "module_sizes_are_not_forced_equal": true,
     "scope_boundaries_preserved": true,
-    "chapter_remains_unregistered": true,
-    "registration_waits_for_fulltext_claim_source_audit": true
+    "chapter_was_unregistered_at_source_brief_gate": true,
+    "registration_waited_for_fulltext_claim_source_audit": true,
+    "chapter_registered_only_after_fulltext_gate": true,
+    "every_planned_claim_resolved_to_verified_claim": true
   },
-  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_dokumentar_evidens_og_etikk"
+  "next_gate": "produce_source_and_claim_brief_for_representasjon_posisjon_og_motbilder"
 }

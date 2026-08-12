@@ -20,6 +20,7 @@ const INPUT_GATE = 'film_history_movements_historiography_full_chapter_complete_
 const SOURCE_BRIEF_GATE = 'television_platforms_participation_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'television_platforms_participation_full_chapter_complete_next_unit_source_brief';
 const DOCUMENTARY_SOURCE_BRIEF_GATE = 'documentary_evidence_ethics_source_brief_complete_full_chapter_production';
+const DOCUMENTARY_FULLTEXT_GATE = 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief';
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`);
@@ -413,8 +414,8 @@ export function buildFilmTvTelevisionPlatformsParticipationSourceBriefV1() {
 
 export function auditFilmTvTelevisionPlatformsParticipationSourceBriefV1({ writeFiles = false, checkFiles = true } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  assert([INPUT_GATE, SOURCE_BRIEF_GATE, FULLTEXT_GATE, DOCUMENTARY_SOURCE_BRIEF_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
-  if ([FULLTEXT_GATE, DOCUMENTARY_SOURCE_BRIEF_GATE].includes(currentGate)) {
+  assert([INPUT_GATE, SOURCE_BRIEF_GATE, FULLTEXT_GATE, DOCUMENTARY_SOURCE_BRIEF_GATE, DOCUMENTARY_FULLTEXT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if ([FULLTEXT_GATE, DOCUMENTARY_SOURCE_BRIEF_GATE, DOCUMENTARY_FULLTEXT_GATE].includes(currentGate)) {
     const brief = read(P.brief);
     const report = read(P.report);
     assert(brief.status === 'source_claim_brief_consumed_by_verified_chapter', 'Fjernsynsbriefen skal være konsumert etter fulltekstporten');
