@@ -1,0 +1,55 @@
+name: Torggata phase 10 Fagverk release sync
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase10-quiz
+    paths:
+      - .github/workflows/torggata-phase10-fagverk-release-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Regenerate release manifest
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-by-pilot.mjs
+      - name: Preserve phase 10 contracts
+        run: |
+          node --test tests/torggata-phase10-quiz.test.mjs
+          node --test tests/quiz-production-pipeline.test.mjs
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --audit-only
+      - name: Persist only release sync
+        shell: bash
+        run: |
+          echo "Runtime diff:"
+          git status --short
+          changed="$({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u | awk 'NF')"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(data/fagverk/fagverk_release\.json|\.github/workflows/torggata-phase10-fagverk-release-sync\.yml)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected release-sync diff:"
+            echo "$unexpected"
+            exit 1
+          fi
+          rm -f .github/workflows/torggata-phase10-fagverk-release-sync.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Synk Fagverk release etter Torggata fase 10"
+          git push origin HEAD:agent/torggata-phase10-quiz
