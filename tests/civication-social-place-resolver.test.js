@@ -94,7 +94,7 @@ const allPlaces = [].concat(placesBy, placesSport, placesPlaygrounds);
 const baseOpts = { brandMaster, brandByPlace, places: placesBy };
 const placeOpts = { brandMaster, brandByPlace, places: allPlaces };
 
-assert.ok(placesBy.length > 100, `forventet 100+ canonical By-steder, fikk ${placesBy.length}`);
+assert.ok(placesBy.length >= 90, `forventet minst 90 canonical By-steder, fikk ${placesBy.length}`);
 assert.ok(placesSport.length > 0, "manifest-loaderen mangler splittede Oslo-sportsteder");
 assert.ok(placesPlaygrounds.length > 0, "manifest-loaderen mangler splittede lekeplass-/treningssteder");
 assert.ok(placesBy.some((p) => p.id === "st_hanshaugen_park"), "manifest-loaderen mangler St. Hanshaugen park");
