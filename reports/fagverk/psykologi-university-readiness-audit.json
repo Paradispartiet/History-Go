@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_psykologi_university_readiness_audit_v1",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "status": "psykologi_university_readiness_in_progress",
   "generatedFrom": {
     "matrix": "data/fag/psykologi/psykologi_university_readiness_v1.json",
@@ -305,8 +305,18 @@
   },
   "topicArticles": {
     "requiredCount": 58,
-    "completeCount": 0,
+    "completeCount": 12,
+    "remainingCount": 46,
     "invalidSourceReferenceCount": 0,
+    "auditedBatchCount": 1,
+    "auditedDomainCount": 1,
+    "mentalHealthBatch": {
+      "domainId": "psykisk_helse_institusjoner_behandling",
+      "requiredCount": 12,
+      "completeCount": 12,
+      "totalEditorialWordCount": 7505,
+      "auditComplete": true
+    },
     "complete": false,
     "directory": "data/fagverk/psykologi/emneartikler"
   },
@@ -356,7 +366,7 @@
     }
   ],
   "blockersToComplete": [
-    "standalone_topic_articles:0/58",
+    "standalone_topic_articles:12/58",
     "canonical_concept_registry:0/0",
     "applied_field:clinical_health:strong_baseline_breadth_mapping_required",
     "applied_field:work_organizational:expansion_required",
@@ -385,6 +395,8 @@
     "historyScienceTheoryMaterializedAndAudited": true,
     "twentyMethodsStatisticsCompetenciesPinned": true,
     "methodsStatisticsMaterializedAndAudited": true,
+    "firstTwelveStandaloneTopicArticlesMaterializedAndAudited": true,
+    "topicArticlesRemainOutsideAhaRuntime": true,
     "allRegisteredSourcesInspectable": true,
     "subjectNotPrematurelyComplete": true
   },

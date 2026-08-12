@@ -10,6 +10,7 @@ import { auditPsykologiSocialUniversity } from './audit-fagverk-psykologi-social
 import { auditPsykologiPersonalityUniversity } from './audit-fagverk-psykologi-personality-university.mjs';
 import { auditPsykologiHistoryScienceTheoryUniversity } from './audit-fagverk-psykologi-history-science-theory-university.mjs';
 import { auditPsykologiMethodsStatisticsUniversity } from './audit-fagverk-psykologi-methods-statistics-university.mjs';
+import { auditPsykologiMentalHealthTopicArticles } from './audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const NEXT_GATE = 'university_matrix_topic_articles_concept_registry_and_methods';
@@ -276,6 +277,14 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(isDeepStrictEqual(matrix.required_methods_statistics_topics, REQUIRED_METHOD_TOPICS), 'Metode-/statistikkmatrisen avviker fra bindende minimum');
   assert(matrix.source_registry_contract?.all_source_ids_must_resolve === true, 'Kildekontrakten må kreve at alle source_ids løses');
   assert(matrix.topic_article_contract?.directory === P.articleDir, 'Emneartikkelkontrakten peker til feil katalog');
+  assert(matrix.topic_article_contract?.article_schema === 'history_go_psykologi_topic_article_v1', 'Emneartikkelkontrakten må låse canonicalt artikkelskjema');
+  assert(matrix.topic_article_contract?.article_status_required === 'complete', 'Emneartikkelkontrakten må kreve complete per artikkel');
+  assert(matrix.topic_article_contract?.minimum_editorial_words_per_article === 550, 'Emneartikkelkontrakten må kreve minst 550 redaksjonelle ord');
+  assert(matrix.topic_article_contract?.all_claim_ids_must_resolve === true, 'Emneartikkelkontrakten må kreve løste claim-ID-er');
+  assert(matrix.topic_article_contract?.all_section_source_ids_must_resolve === true, 'Emneartikkelkontrakten må kreve løste seksjonskilder');
+  assert(matrix.topic_article_contract?.generic_template_text_forbidden === true, 'Emneartikkelkontrakten må forby generisk maltekst');
+  assert(matrix.topic_article_contract?.no_clinical_diagnostic_treatment_or_coercion_overreach_required === true, 'Emneartikkelkontrakten må kreve vern mot klinisk overreach');
+  assert(matrix.topic_article_contract?.aha_runtime_activation_requires_separate_review === true, 'AHA-aktivering må kreve separat fagreview');
   assert(matrix.concept_registry_contract?.path === P.concepts, 'Begrepskontrakten peker til feil register');
 
   const biologicalBranch = auditPsykologiBiologicalUniversity({ writeReport: false, checkReport: false }).report;
@@ -302,6 +311,8 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
 
   const sourceRegistryResult = sourceRegistry(matrix.source_registry_contract);
   const articleCoverage = topicArticleCoverage(canonicalEmneIds, matrix.topic_article_contract, sourceRegistryResult.validIds);
+  const mentalHealthTopicArticles = auditPsykologiMentalHealthTopicArticles({ writeReport: false, checkReport: false }).report;
+  assert(mentalHealthTopicArticles.complete, 'University-readiness krever grønn audit av de 12 mental-health-emneartiklene');
   const conceptCoverageResult = conceptCoverage(matrix.concept_registry_contract, sourceRegistryResult.validIds);
   const coreComplete = coreRows.every((row) => row.current_status === 'complete');
   const biologicalComplete = coreById.get('biological_psychology')?.current_status === 'complete' && biologicalBranch.complete;
@@ -331,7 +342,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
 
   const report = {
     schema: 'history_go_fagverk_psykologi_university_readiness_audit_v1',
-    version: '1.8.0',
+    version: '1.9.0',
     status: completeReady ? 'psykologi_university_ready_for_complete' : 'psykologi_university_readiness_in_progress',
     generatedFrom: P,
     subject: { id: 'psykologi', editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, registeredChapterCount: registrySubject.chapters.length },
@@ -403,7 +414,17 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
     topicArticles: {
       requiredCount: 58,
       completeCount: articleCoverage.completeCount,
+      remainingCount: 58 - articleCoverage.completeCount,
       invalidSourceReferenceCount: articleCoverage.invalidSourceReferenceCount,
+      auditedBatchCount: 1,
+      auditedDomainCount: 1,
+      mentalHealthBatch: {
+        domainId: mentalHealthTopicArticles.subject.domainId,
+        requiredCount: mentalHealthTopicArticles.coverage.requiredArticleCount,
+        completeCount: mentalHealthTopicArticles.coverage.materializedArticleCount,
+        totalEditorialWordCount: mentalHealthTopicArticles.depth.totalEditorialWordCount,
+        auditComplete: mentalHealthTopicArticles.complete
+      },
       complete: topicArticlesComplete,
       directory: matrix.topic_article_contract.directory
     },
@@ -438,6 +459,8 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       historyScienceTheoryMaterializedAndAudited: historyScienceTheoryComplete,
       twentyMethodsStatisticsCompetenciesPinned: true,
       methodsStatisticsMaterializedAndAudited: methodsComplete,
+      firstTwelveStandaloneTopicArticlesMaterializedAndAudited: mentalHealthTopicArticles.complete,
+      topicArticlesRemainOutsideAhaRuntime: mentalHealthTopicArticles.gates.noAhaRuntimeActivation,
       allRegisteredSourcesInspectable: sourceRegistryResult.registeredCount === sourceRegistryResult.validIds.size,
       subjectNotPrematurelyComplete: statusEntry.editorialStatus === expectedState.editorialStatus && statusEntry.nextGate === expectedState.nextGate
     },

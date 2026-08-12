@@ -117,7 +117,17 @@ test('Alle basalområder samt metode/statistikk er ferdige, mens øvrige univers
   assert.equal(report.methodsStatistics.complete, true);
   assert.equal(report.completionGates.researchMethodsStatisticsBranchComplete, true);
   assert.equal(report.topicArticles.requiredCount, 58);
-  assert.ok(report.topicArticles.completeCount < 58);
+  assert.equal(report.topicArticles.completeCount, 12);
+  assert.equal(report.topicArticles.remainingCount, 46);
+  assert.equal(report.topicArticles.auditedBatchCount, 1);
+  assert.equal(report.topicArticles.auditedDomainCount, 1);
+  assert.deepEqual(report.topicArticles.mentalHealthBatch, {
+    domainId: 'psykisk_helse_institusjoner_behandling',
+    requiredCount: 12,
+    completeCount: 12,
+    totalEditorialWordCount: 7505,
+    auditComplete: true
+  });
   assert.equal(report.topicArticles.complete, false);
   assert.equal(report.concepts.complete, false);
   assert.ok(report.sourceRegistry.registeredCount >= 122);
@@ -132,7 +142,7 @@ test('Alle basalområder samt metode/statistikk er ferdige, mens øvrige univers
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:personality_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:history_science_theory:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:research_methods_statistics:')));
-  assert.ok(report.blockersToComplete.some((item) => item.startsWith('standalone_topic_articles:')));
+  assert.ok(report.blockersToComplete.includes('standalone_topic_articles:12/58'));
   assert.ok(report.blockersToComplete.some((item) => item.startsWith('canonical_concept_registry:')));
 });
 
