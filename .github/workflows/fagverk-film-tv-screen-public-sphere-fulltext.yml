@@ -17,6 +17,7 @@ on:
       - "scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs"
+      - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
       - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
       - ".github/workflows/fagverk-film-tv-screen-public-sphere-fulltext.yml"
   push:
@@ -36,6 +37,7 @@ on:
       - "scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs"
+      - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
       - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
       - ".github/workflows/fagverk-film-tv-screen-public-sphere-fulltext.yml"
   workflow_dispatch:
@@ -65,6 +67,7 @@ jobs:
           node --check scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs
           node --check scripts/materialize-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
           node --check scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
+          node --check tests/film-tv-learning-order-monotone-regression-v1.test.mjs
           node --check tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
 
       - name: Materialize monotone fulltext state
@@ -88,8 +91,8 @@ jobs:
       - name: Test unit 8 fulltext
         run: node --test tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs
 
-      - name: Test learning order progression
-        run: node --test tests/film-tv-learning-order-plan-v1.test.mjs
+      - name: Test learning order monotone regression
+        run: node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
 
       - name: Test unit 7 monotone regression
         run: node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
