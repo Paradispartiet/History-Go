@@ -25,7 +25,7 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
-      - name: Repair stale legacy baseline only
+      - name: Repair stale baseline and suppress irrelevant workcard mutation
         shell: bash
         run: |
           python - <<'PY'
@@ -40,6 +40,10 @@ jobs:
             'legacy_reviewed: { file: legacyQuizPath, questions: 35, canonical: false },',
             'legacy_reviewed: { file: legacyQuizPath, questions: legacyBefore.length, canonical: false },'
           )
+          start = s.index('let workcard = read(workcardPath);')
+          marker = 'write(workcardPath, workcard);'
+          end = s.index(marker, start) + len(marker)
+          s = s[:start] + 'const workcard = read(workcardPath);' + s[end:]
           p.write_text(s)
           PY
       - name: Materialize and regenerate Knowledge
