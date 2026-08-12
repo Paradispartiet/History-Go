@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "beskrivelse": "Manifest for Civication Life Story System. Aktive fortellingspakker byttes her, aldri ved å døpe om innholdsfiler.",
+  "beskrivelse": "Manifest for Civication Life Story System. Aktive fortellingspakker byttes her, aldri ved å døpe om innholdsfiler. Opptjente jobbroller må være bundet til canonical Badge-tier; systemroller merkes eksplisitt.",
   "shared": {
     "phaseDefinitions": "data/Civication/lifestory/shared/phaseDefinitions.json"
   },
@@ -13,24 +13,39 @@
       "role": "data/Civication/lifestory/roles/arealplanlegger/role.json",
       "threads": "data/Civication/lifestory/roles/arealplanlegger/threads.json",
       "scenes": "data/Civication/lifestory/roles/arealplanlegger/scenes.json",
-      "role_scope": "by_radgiver_plan"
+      "role_scope": "by_radgiver_plan",
+      "badge_id": "by",
+      "badge_titles": ["Rådgiver (byutvikling)", "Seniorrådgiver (byutvikling)", "Arealplanlegger", "Byplanlegger"]
     },
     "renholder": {
       "role": "data/Civication/lifestory/roles/renholder/role.json",
       "threads": "data/Civication/lifestory/roles/renholder/threads.json",
       "scenes": "data/Civication/lifestory/roles/renholder/scenes.json",
-      "role_scope": "renholder"
+      "role_scope": "renholder",
+      "badge_id": "naeringsliv",
+      "badge_titles": ["Renholder"]
     },
     "ekspeditor": {
       "role": "data/Civication/lifestory/roles/ekspeditor/role.json",
       "threads": "data/Civication/lifestory/roles/ekspeditor/threads.json",
       "scenes": "data/Civication/lifestory/roles/ekspeditor/scenes.json",
-      "role_scope": "ekspeditor"
+      "role_scope": "ekspeditor",
+      "badge_id": "naeringsliv",
+      "badge_titles": ["Ekspeditør / butikkmedarbeider"]
+    },
+    "barnehageassistent": {
+      "role": "data/Civication/lifestory/roles/barnehageassistent/role.json",
+      "threads": "data/Civication/lifestory/roles/barnehageassistent/threads.json",
+      "scenes": "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
+      "role_scope": "barnehageassistent",
+      "badge_id": "sosial_laering",
+      "badge_titles": ["Barnehageassistent / pedagogisk medarbeider"]
     },
     "arbeidsledig": {
       "role": "data/Civication/lifestory/roles/arbeidsledig/role.json",
       "threads": "data/Civication/lifestory/roles/arbeidsledig/threads.json",
-      "scenes": "data/Civication/lifestory/roles/arbeidsledig/scenes.json"
+      "scenes": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+      "system_role": true
     }
   }
 }
