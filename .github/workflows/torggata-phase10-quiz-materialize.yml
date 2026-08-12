@@ -113,16 +113,29 @@ jobs:
       - name: Regenerate canonical Knowledge
         run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
 
-      - name: Validate focused phase 10
-        run: |
-          node --check scripts/materialize-torggata-phase10-quiz.mjs
-          node --test tests/torggata-phase10-quiz.test.mjs
-          node scripts/audit-quiz-production-context.mjs
-          node scripts/audit-quiz-progression.mjs
-          node scripts/audit-quiz-theory-binding.mjs
-          node scripts/audit-quiz-content-quality.mjs
-          node scripts/audit-quiz-manifest-v2.mjs
-          node --test tests/quiz-production-pipeline.test.mjs
+      - name: Check phase 10 materializer syntax
+        run: node --check scripts/materialize-torggata-phase10-quiz.mjs
+
+      - name: Validate Torggata phase 10 contract
+        run: node --test tests/torggata-phase10-quiz.test.mjs
+
+      - name: Audit quiz production context
+        run: node scripts/audit-quiz-production-context.mjs
+
+      - name: Audit quiz progression
+        run: node scripts/audit-quiz-progression.mjs
+
+      - name: Audit quiz theory binding
+        run: node scripts/audit-quiz-theory-binding.mjs
+
+      - name: Audit quiz content quality
+        run: node scripts/audit-quiz-content-quality.mjs
+
+      - name: Audit quiz manifest v2
+        run: node scripts/audit-quiz-manifest-v2.mjs
+
+      - name: Validate quiz production pipeline
+        run: node --test tests/quiz-production-pipeline.test.mjs
 
       - name: Validate Knowledge contract
         run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --audit-only
