@@ -5,7 +5,8 @@ import {
   expectedSubjectState,
   sourceIsInspectable,
   validatedSourceIndex,
-  sourcedDocumentCoverage
+  sourcedDocumentCoverage,
+  topicArticlePassesQualityContract
 } from '../scripts/audit-fagverk-psykologi-university-readiness.mjs';
 
 test('Psykologi har en eksplisitt universitetsmatrise uten å miste 6/58-baselinen', () => {
@@ -117,7 +118,17 @@ test('Alle basalområder samt metode/statistikk er ferdige, mens øvrige univers
   assert.equal(report.methodsStatistics.complete, true);
   assert.equal(report.completionGates.researchMethodsStatisticsBranchComplete, true);
   assert.equal(report.topicArticles.requiredCount, 58);
-  assert.ok(report.topicArticles.completeCount < 58);
+  assert.equal(report.topicArticles.completeCount, 12);
+  assert.equal(report.topicArticles.remainingCount, 46);
+  assert.equal(report.topicArticles.auditedBatchCount, 1);
+  assert.equal(report.topicArticles.auditedDomainCount, 1);
+  assert.deepEqual(report.topicArticles.mentalHealthBatch, {
+    domainId: 'psykisk_helse_institusjoner_behandling',
+    requiredCount: 12,
+    completeCount: 12,
+    totalEditorialWordCount: 7505,
+    auditComplete: true
+  });
   assert.equal(report.topicArticles.complete, false);
   assert.equal(report.concepts.complete, false);
   assert.ok(report.sourceRegistry.registeredCount >= 122);
@@ -132,7 +143,7 @@ test('Alle basalområder samt metode/statistikk er ferdige, mens øvrige univers
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:personality_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:history_science_theory:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:research_methods_statistics:')));
-  assert.ok(report.blockersToComplete.some((item) => item.startsWith('standalone_topic_articles:')));
+  assert.ok(report.blockersToComplete.includes('standalone_topic_articles:12/58'));
   assert.ok(report.blockersToComplete.some((item) => item.startsWith('canonical_concept_registry:')));
 });
 
@@ -156,6 +167,36 @@ test('vilkårlige source_ids kan ikke gjøre en artikkel eller et begrep komplet
   });
   assert.equal(resolved.completeCount, 1);
   assert.equal(resolved.invalidSourceReferenceCount, 0);
+});
+
+test('aggregert 58/58-dekning krever hele artikkelkontrakten, ikke bare fil og toppnivåkilde', () => {
+  const contract = {
+    article_schema: 'history_go_psykologi_topic_article_v1',
+    article_status_required: 'complete',
+    required_fields: ['emne_id','title','definition','background','theories_and_findings','methods','boundaries_and_disagreements','examples','source_ids'],
+    required_quality_fields: ['learning_outcomes','key_questions','models_or_researchers','claim_ids','misuse_guard','editorial_review'],
+    minimum_editorial_words_per_article: 550
+  };
+  const shallow = {
+    schema: 'feil_schema',
+    article_status: 'complete',
+    emne_id: 'em_psy_test',
+    title: 'Test',
+    definition: 'Kort tekst',
+    background: ['Kort tekst'],
+    theories_and_findings: [{ source_ids: ['src-ok'] }],
+    methods: [{}],
+    boundaries_and_disagreements: [{}],
+    examples: [{ source_ids: ['src-ok'] }],
+    models_or_researchers: [{ source_ids: ['src-ok'] }],
+    learning_outcomes: ['Test'],
+    key_questions: ['Test?'],
+    claim_ids: ['claim-ok'],
+    source_ids: ['src-ok'],
+    misuse_guard: 'Kort vern',
+    editorial_review: { status: 'approved_non_clinical_educational_use' }
+  };
+  assert.equal(topicArticlePassesQualityContract(shallow, contract, new Set(['src-ok']), new Set(['claim-ok'])), false);
 });
 
 test('kilderegisteret avviser manglende ID og håndhever URL-regler per kildetype', () => {

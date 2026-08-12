@@ -1,0 +1,84 @@
+{
+  "schema": "history_go_fagverk_psykologi_topic_articles_batch_audit_v1",
+  "version": "1.1.0",
+  "status": "psykologi_topic_articles_mental_health_complete",
+  "generatedFrom": {
+    "pensum": "data/fag/psykologi/psykologipensum_canonical_v4_5.json",
+    "emner": "data/fag/psykologi/emner_psykologi_canonical_v4_5.json",
+    "sourceRegistry": "data/fag/psykologi/kilder_psykologi_canonical_v1.json",
+    "articleDir": "data/fagverk/psykologi/emneartikler",
+    "materializer": "scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs",
+    "report": "reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json"
+  },
+  "subject": {
+    "id": "psykologi",
+    "domainId": "psykisk_helse_institusjoner_behandling"
+  },
+  "coverage": {
+    "requiredArticleCount": 12,
+    "materializedArticleCount": 12,
+    "exactCanonicalCoverage": true,
+    "articleIds": [
+      "em_psy_behandling_omsorg",
+      "em_psy_behandlingsformer",
+      "em_psy_byrom_psykisk_helse",
+      "em_psy_institusjoner_psykiatri",
+      "em_psy_krise_intervensjon",
+      "em_psy_makt_omsorg",
+      "em_psy_omsorg_system",
+      "em_psy_pasientrolle_erfaring",
+      "em_psy_psykisk_helse",
+      "em_psy_terapi_praksis",
+      "em_psy_terapirom_relasyon",
+      "em_psy_velferd_psykisk_helse"
+    ]
+  },
+  "depth": {
+    "minimumWordsPerArticle": 550,
+    "totalEditorialWordCount": 7505,
+    "articleWordCounts": {
+      "em_psy_behandling_omsorg": 634,
+      "em_psy_behandlingsformer": 622,
+      "em_psy_byrom_psykisk_helse": 623,
+      "em_psy_institusjoner_psykiatri": 649,
+      "em_psy_krise_intervensjon": 611,
+      "em_psy_makt_omsorg": 620,
+      "em_psy_omsorg_system": 583,
+      "em_psy_pasientrolle_erfaring": 595,
+      "em_psy_psykisk_helse": 720,
+      "em_psy_terapi_praksis": 630,
+      "em_psy_terapirom_relasyon": 602,
+      "em_psy_velferd_psykisk_helse": 616
+    }
+  },
+  "evidence": {
+    "registeredSourceCount": 122,
+    "registeredClaimCount": 162,
+    "allArticleSourcesResolve": true,
+    "allArticleClaimsResolve": true,
+    "runtimeActivation": {
+      "scannedRoots": [
+        "js",
+        "data/integrations",
+        "data/historygo",
+        "data/psychology"
+      ],
+      "referencingFiles": []
+    }
+  },
+  "gates": {
+    "exact12CanonicalArticles": true,
+    "oneFilePerCanonicalEmne": true,
+    "allRequiredUniversityFieldsMaterialized": true,
+    "allArticlesMeetStructuralDepth": true,
+    "allArticlesMeetMinimumWordDepth": true,
+    "allSectionSourcesResolve": true,
+    "allClaimIdsResolve": true,
+    "allRelatedEmneIdsResolve": true,
+    "genericCanonicalTemplateWordingAbsent": true,
+    "allClinicalSafetyReviewsApproved": true,
+    "noClinicalDiagnosticTreatmentOrCoercionOverreach": true,
+    "noAhaRuntimeActivation": true
+  },
+  "complete": true
+}

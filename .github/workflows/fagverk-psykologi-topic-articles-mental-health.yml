@@ -1,0 +1,50 @@
+name: Fagverk Psykologi topic articles mental health
+
+on:
+  pull_request:
+    paths:
+      - "data/fagverk/psykologi/emneartikler/**"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs"
+      - "scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs"
+      - "reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json"
+      - ".github/workflows/fagverk-psykologi-topic-articles-mental-health.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fagverk/psykologi/emneartikler/**"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs"
+      - "scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs"
+      - "reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json"
+      - ".github/workflows/fagverk-psykologi-topic-articles-mental-health.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Psychology 12/58 standalone topic articles
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Validate scripts
+        run: |
+          node --check scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs
+          node --check scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs
+      - name: Verify deterministic materialization
+        run: node scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs
+      - name: Verify deterministic article audit
+        run: node scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs
+      - name: Test article quality contract
+        run: node --test tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs
+      - name: Verify university readiness consumes 12/58
+        run: node scripts/audit-fagverk-psykologi-university-readiness.mjs --no-check-report
