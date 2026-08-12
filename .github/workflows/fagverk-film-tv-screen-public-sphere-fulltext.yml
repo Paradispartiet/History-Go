@@ -17,6 +17,7 @@ on:
       - "scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs"
+      - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
       - ".github/workflows/fagverk-film-tv-screen-public-sphere-fulltext.yml"
   push:
     branches: [main]
@@ -35,6 +36,7 @@ on:
       - "scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs"
+      - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
       - ".github/workflows/fagverk-film-tv-screen-public-sphere-fulltext.yml"
   workflow_dispatch:
 
@@ -80,8 +82,7 @@ jobs:
           node --test tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs
           node --test tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs
           node --test tests/film-tv-learning-order-plan-v1.test.mjs
-          node --test tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs
-          node --test tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
 
       - name: Persist deterministic fulltext outputs on PR branch
