@@ -1,0 +1,43 @@
+name: Torggata phase 12 scope fix 2
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase12-people-closeout
+    paths:
+      - .github/workflows/torggata-phase12-scope-fix2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch closeout scope robustly
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/torggata-phase12-closeout.yml')
+          lines=p.read_text().splitlines()
+          found=False
+          for i,line in enumerate(lines):
+              if "allowed='^(" in line and 'data/people/' in line:
+                  lines[i]=line.replace("allowed='^(", "allowed='^(.github/workflows/torggata-phase12-closeout\\.yml$|")
+                  found=True
+                  break
+          if not found:
+              raise SystemExit('allowed regex line not found')
+          p.write_text('\n'.join(lines)+'\n')
+          PY
+          rm -f .github/workflows/torggata-phase12-scope-fix.yml .github/workflows/torggata-phase12-scope-fix2.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rett Torggata fase 12 temp-scope"
+          git push origin HEAD:agent/torggata-phase12-people-closeout
