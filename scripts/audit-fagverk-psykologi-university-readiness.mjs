@@ -8,6 +8,7 @@ import { auditPsykologiCognitiveUniversity } from './audit-fagverk-psykologi-cog
 import { auditPsykologiDevelopmentalUniversity } from './audit-fagverk-psykologi-developmental-university.mjs';
 import { auditPsykologiSocialUniversity } from './audit-fagverk-psykologi-social-university.mjs';
 import { auditPsykologiPersonalityUniversity } from './audit-fagverk-psykologi-personality-university.mjs';
+import { auditPsykologiHistoryScienceTheoryUniversity } from './audit-fagverk-psykologi-history-science-theory-university.mjs';
 import { auditPsykologiMethodsStatisticsUniversity } from './audit-fagverk-psykologi-methods-statistics-university.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -19,6 +20,7 @@ const P = Object.freeze({
   developmentalPsychology: 'data/fag/psykologi/utviklingspsykologi_university_v1.json',
   socialPsychology: 'data/fag/psykologi/sosialpsykologi_university_v1.json',
   personalityPsychology: 'data/fag/psykologi/personlighetspsykologi_university_v1.json',
+  historyScienceTheory: 'data/fag/psykologi/psykologiens_historie_vitenskapsteori_university_v1.json',
   methodsStatistics: 'data/fag/psykologi/metode_statistikk_psykologi_university_v1.json',
   pensum: 'data/fag/psykologi/psykologipensum_canonical_v4_5.json',
   emner: 'data/fag/psykologi/emner_psykologi_canonical_v4_5.json',
@@ -90,6 +92,18 @@ const REQUIRED_PERSONALITY_TOPICS = [
   'kultur_kontekst_og_personlighetsuttrykk','krysskulturell_ekvivalens_og_mangfold',
   'selvrapport_informantrapport_og_atferdsdata','reliabilitet_validitet_og_maleinvarians',
   'prediksjon_av_utfall_og_usikkerhet','modellkritikk_etikk_og_typestempling'
+];
+const REQUIRED_HISTORY_SCIENCE_THEORY_TOPICS = [
+  'filosofiske_medisinske_og_fysiologiske_forlopere','psykofysikk_eksperiment_og_laboratoriets_institusjonalisering',
+  'evolusjon_funksjonalisme_og_individforskjeller','profesjonalisering_klinisk_og_anvendt_psykologi',
+  'psykologi_i_norge_utdanning_institusjoner_og_profesjon','strukturalisme_introspeksjon_og_gestaltpsykologi',
+  'psykoanalyse_psykodynamikk_og_fortolkning','behaviorisme_laring_og_observerbar_atferd',
+  'den_kognitive_vendingen_informasjon_og_representasjon','humanistisk_sosial_kulturell_og_kritisk_psykologi',
+  'teorier_modeller_paradigmer_og_forskningsprogrammer','forklaringsnivaer_mekanismer_reduksjonisme_og_pluralisme',
+  'psykologiske_konstrukter_operasjonalisering_og_validitet','kausalitet_sannsynlighet_prediksjon_og_forklaring',
+  'objektivitet_verdier_refleksivitet_og_situert_kunnskap','kvantitative_kvalitative_og_blandede_metoder',
+  'observasjon_teoriladet_evidens_falsifikasjon_og_bekreftelse','replikasjon_apen_vitenskap_og_kumulativ_evidens',
+  'forskningsetikk_profesjonsetikk_klassifikasjon_og_makt','historiografi_presentisme_kontekst_mangfold_og_kildekritikk'
 ];
 const REQUIRED_SOURCE_DOCUMENTS = [
   'data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet/claims.json',
@@ -215,6 +229,7 @@ const projection = (report) => ({
   developmentalPsychology: report.developmentalPsychology,
   socialPsychology: report.socialPsychology,
   personalityPsychology: report.personalityPsychology,
+  historyScienceTheory: report.historyScienceTheory,
   methodsStatistics: report.methodsStatistics,
   topicArticles: report.topicArticles,
   concepts: report.concepts,
@@ -227,7 +242,7 @@ const projection = (report) => ({
 });
 
 export function auditPsykologiUniversityReadiness({ writeReport = false, checkReport = true } = {}) {
-  for (const file of [P.matrix, P.biologicalPsychology, P.cognitivePsychology, P.developmentalPsychology, P.socialPsychology, P.personalityPsychology, P.methodsStatistics, P.pensum, P.emner, P.registry, P.status]) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
+  for (const file of [P.matrix, P.biologicalPsychology, P.cognitivePsychology, P.developmentalPsychology, P.socialPsychology, P.personalityPsychology, P.historyScienceTheory, P.methodsStatistics, P.pensum, P.emner, P.registry, P.status]) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   const matrix = read(P.matrix);
   const pensum = read(P.pensum);
   const emner = read(P.emner);
@@ -257,6 +272,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(isDeepStrictEqual(matrix.required_developmental_psychology_topics, REQUIRED_DEVELOPMENTAL_TOPICS), 'Utviklingspsykologi-matrisen avviker fra bindende minimum');
   assert(isDeepStrictEqual(matrix.required_social_psychology_topics, REQUIRED_SOCIAL_TOPICS), 'Sosialpsykologi-matrisen avviker fra bindende minimum');
   assert(isDeepStrictEqual(matrix.required_personality_psychology_topics, REQUIRED_PERSONALITY_TOPICS), 'Personlighetspsykologi-matrisen avviker fra bindende minimum');
+  assert(isDeepStrictEqual(matrix.required_history_science_theory_topics, REQUIRED_HISTORY_SCIENCE_THEORY_TOPICS), 'Historie-/vitenskapsteori-matrisen avviker fra bindende minimum');
   assert(isDeepStrictEqual(matrix.required_methods_statistics_topics, REQUIRED_METHOD_TOPICS), 'Metode-/statistikkmatrisen avviker fra bindende minimum');
   assert(matrix.source_registry_contract?.all_source_ids_must_resolve === true, 'Kildekontrakten må kreve at alle source_ids løses');
   assert(matrix.topic_article_contract?.directory === P.articleDir, 'Emneartikkelkontrakten peker til feil katalog');
@@ -277,6 +293,9 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   const personalityBranch = auditPsykologiPersonalityUniversity({ writeReport: false, checkReport: false }).report;
   assert(personalityBranch.complete, 'University-readiness krever grønn personlighetspsykologi-audit');
   assert(coreById.get('personality_psychology')?.current_artifact === P.personalityPsychology, 'University-matrisen peker ikke til materialisert personlighetspsykologi-gren');
+  const historyScienceTheoryBranch = auditPsykologiHistoryScienceTheoryUniversity({ writeReport: false, checkReport: false }).report;
+  assert(historyScienceTheoryBranch.complete, 'University-readiness krever grønn historie-/vitenskapsteori-audit');
+  assert(coreById.get('history_science_theory')?.current_artifact === P.historyScienceTheory, 'University-matrisen peker ikke til materialisert historie-/vitenskapsteori-gren');
   const methodsBranch = auditPsykologiMethodsStatisticsUniversity({ writeReport: false, checkReport: false }).report;
   assert(methodsBranch.complete, 'University-readiness krever grønn metode/statistikk-audit');
   assert(coreById.get('research_methods_statistics')?.current_artifact === P.methodsStatistics, 'University-matrisen peker ikke til materialisert metode/statistikkgren');
@@ -290,12 +309,13 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   const developmentalComplete = coreById.get('developmental_psychology')?.current_status === 'complete' && developmentalBranch.complete;
   const socialComplete = coreById.get('social_psychology')?.current_status === 'complete' && socialBranch.complete;
   const personalityComplete = coreById.get('personality_psychology')?.current_status === 'complete' && personalityBranch.complete;
+  const historyScienceTheoryComplete = coreById.get('history_science_theory')?.current_status === 'complete' && historyScienceTheoryBranch.complete;
   const methodsComplete = coreById.get('research_methods_statistics')?.current_status === 'complete' && methodsBranch.complete;
   const topicArticlesComplete = articleCoverage.completeCount === 58;
   const conceptsComplete = conceptCoverageResult.exists && conceptCoverageResult.conceptCount > 0 && conceptCoverageResult.materializedCount === conceptCoverageResult.conceptCount;
   const appliedRows = matrix.applied_field_matrix || [];
   const appliedComplete = appliedRows.length >= 6 && appliedRows.every((row) => row.current_status === 'complete');
-  const completeReady = coreComplete && biologicalComplete && cognitiveComplete && developmentalComplete && socialComplete && personalityComplete && methodsComplete && topicArticlesComplete && conceptsComplete && appliedComplete;
+  const completeReady = coreComplete && biologicalComplete && cognitiveComplete && developmentalComplete && socialComplete && personalityComplete && historyScienceTheoryComplete && methodsComplete && topicArticlesComplete && conceptsComplete && appliedComplete;
   const expectedState = expectedSubjectState(completeReady, matrix.completion_contract);
 
   assert(matrix.status === expectedState.matrixStatus, `University-readiness status må være ${expectedState.matrixStatus}`);
@@ -311,7 +331,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
 
   const report = {
     schema: 'history_go_fagverk_psykologi_university_readiness_audit_v1',
-    version: '1.7.0',
+    version: '1.8.0',
     status: completeReady ? 'psykologi_university_ready_for_complete' : 'psykologi_university_readiness_in_progress',
     generatedFrom: P,
     subject: { id: 'psykologi', editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, registeredChapterCount: registrySubject.chapters.length },
@@ -362,6 +382,15 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       auditComplete: personalityBranch.complete,
       complete: personalityComplete
     },
+    historyScienceTheory: {
+      requiredTopicCount: REQUIRED_HISTORY_SCIENCE_THEORY_TOPICS.length,
+      materializedTopicCount: historyScienceTheoryBranch.coverage.materializedTopicCount,
+      requiredTopics: REQUIRED_HISTORY_SCIENCE_THEORY_TOPICS,
+      sourceCount: historyScienceTheoryBranch.sources.sourceCount,
+      familyCounts: historyScienceTheoryBranch.coverage.familyCounts,
+      auditComplete: historyScienceTheoryBranch.complete,
+      complete: historyScienceTheoryComplete
+    },
     methodsStatistics: {
       requiredTopicCount: REQUIRED_METHOD_TOPICS.length,
       materializedTopicCount: methodsBranch.coverage.materializedTopicCount,
@@ -405,6 +434,8 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       socialPsychologyMaterializedAndAudited: socialComplete,
       sixteenPersonalityPsychologyCompetenciesPinned: true,
       personalityPsychologyMaterializedAndAudited: personalityComplete,
+      twentyHistoryScienceTheoryCompetenciesPinned: true,
+      historyScienceTheoryMaterializedAndAudited: historyScienceTheoryComplete,
       twentyMethodsStatisticsCompetenciesPinned: true,
       methodsStatisticsMaterializedAndAudited: methodsComplete,
       allRegisteredSourcesInspectable: sourceRegistryResult.registeredCount === sourceRegistryResult.validIds.size,
@@ -417,6 +448,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       developmentalPsychologyBranchComplete: developmentalComplete,
       socialPsychologyBranchComplete: socialComplete,
       personalityPsychologyBranchComplete: personalityComplete,
+      historyScienceTheoryBranchComplete: historyScienceTheoryComplete,
       researchMethodsStatisticsBranchComplete: methodsComplete,
       all58StandaloneTopicArticlesComplete: topicArticlesComplete,
       canonicalConceptRegistryComplete: conceptsComplete,
@@ -440,7 +472,7 @@ function main() {
   const args = new Set(process.argv.slice(2));
   try {
     const { report } = auditPsykologiUniversityReadiness({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') && !args.has('--write-report') });
-    console.log(`Psykologi university-readiness OK: biologisk ${report.biologicalPsychology.materializedTopicCount}/15; kognitiv ${report.cognitivePsychology.materializedTopicCount}/17; utvikling ${report.developmentalPsychology.materializedTopicCount}/20; sosial ${report.socialPsychology.materializedTopicCount}/20; personlighet ${report.personalityPsychology.materializedTopicCount}/16; metode/statistikk ${report.methodsStatistics.materializedTopicCount}/20; emneartikler ${report.topicArticles.completeCount}/58; completeReady=${report.completeReady}.`);
+    console.log(`Psykologi university-readiness OK: biologisk ${report.biologicalPsychology.materializedTopicCount}/15; kognitiv ${report.cognitivePsychology.materializedTopicCount}/17; utvikling ${report.developmentalPsychology.materializedTopicCount}/20; sosial ${report.socialPsychology.materializedTopicCount}/20; personlighet ${report.personalityPsychology.materializedTopicCount}/16; historie/vitenskapsteori ${report.historyScienceTheory.materializedTopicCount}/20; metode/statistikk ${report.methodsStatistics.materializedTopicCount}/20; emneartikler ${report.topicArticles.completeCount}/58; completeReady=${report.completeReady}.`);
   } catch (error) {
     console.error(`Psykologi university-readiness FEIL: ${error.message}`);
     process.exitCode = 1;

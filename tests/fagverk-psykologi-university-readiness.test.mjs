@@ -29,7 +29,7 @@ test('Psykologi har en eksplisitt universitetsmatrise uten å miste 6/58-baselin
   assert.ok(Object.values(report.currentGates).every(Boolean));
 });
 
-test('Fem basalområder samt metode/statistikk er ferdige, mens øvrige universitetsporter holder complete tilbake', () => {
+test('Alle basalområder samt metode/statistikk er ferdige, mens øvrige universitetsporter holder complete tilbake', () => {
   const { report } = auditPsykologiUniversityReadiness();
   assert.equal(report.completeReady, false);
   assert.equal(report.biologicalPsychology.requiredTopicCount, 15);
@@ -92,6 +92,18 @@ test('Fem basalområder samt metode/statistikk er ferdige, mens øvrige universi
   assert.equal(report.personalityPsychology.auditComplete, true);
   assert.equal(report.personalityPsychology.complete, true);
   assert.equal(report.completionGates.personalityPsychologyBranchComplete, true);
+  assert.equal(report.historyScienceTheory.requiredTopicCount, 20);
+  assert.equal(report.historyScienceTheory.materializedTopicCount, 20);
+  assert.equal(report.historyScienceTheory.sourceCount, 25);
+  assert.deepEqual(report.historyScienceTheory.familyCounts, {
+    origins_institutions: 5,
+    schools_turns: 5,
+    science_theory_explanation_measurement: 5,
+    evidence_ethics_historiography: 5
+  });
+  assert.equal(report.historyScienceTheory.auditComplete, true);
+  assert.equal(report.historyScienceTheory.complete, true);
+  assert.equal(report.completionGates.historyScienceTheoryBranchComplete, true);
   assert.equal(report.methodsStatistics.requiredTopicCount, 20);
   assert.equal(report.methodsStatistics.materializedTopicCount, 20);
   assert.equal(report.methodsStatistics.sourceCount, 7);
@@ -110,7 +122,7 @@ test('Fem basalområder samt metode/statistikk er ferdige, mens øvrige universi
   assert.equal(report.concepts.complete, false);
   assert.ok(report.sourceRegistry.registeredCount >= 122);
   assert.equal(report.sourceRegistry.validCount, report.sourceRegistry.registeredCount);
-  assert.equal(report.completionGates.allRequiredUniversityCoreAreasComplete, false);
+  assert.equal(report.completionGates.allRequiredUniversityCoreAreasComplete, true);
   assert.equal(report.completionGates.all58StandaloneTopicArticlesComplete, false);
   assert.equal(report.completionGates.canonicalConceptRegistryComplete, false);
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:biological_psychology:')));
@@ -118,6 +130,7 @@ test('Fem basalområder samt metode/statistikk er ferdige, mens øvrige universi
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:developmental_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:social_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:personality_psychology:')));
+  assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:history_science_theory:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:research_methods_statistics:')));
   assert.ok(report.blockersToComplete.some((item) => item.startsWith('standalone_topic_articles:')));
   assert.ok(report.blockersToComplete.some((item) => item.startsWith('canonical_concept_registry:')));
