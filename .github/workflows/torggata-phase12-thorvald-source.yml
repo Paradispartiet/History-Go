@@ -1,0 +1,67 @@
+name: Torggata phase 12 Thorvald Meyer source
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase12-thorvald-source
+    paths:
+      - .github/workflows/torggata-phase12-thorvald-source.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Add direct Torggata source to Thorvald Meyer
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/people/historie/oslo/people_historie_oslo.json';
+          const data = JSON.parse(fs.readFileSync(file,'utf8'));
+          const p = data.find(x => x?.id === 'thorvald_meyer');
+          if (!p) throw new Error('thorvald_meyer not found');
+          if (!Array.isArray(p.places) || !p.places.includes('torggata')) throw new Error('Torggata linkage missing');
+          if (p.placeId === 'torggata') throw new Error('Primary anchor must not move to Torggata');
+          const url = 'https://oslobyleksikon.no/index.php/Torggata_bad';
+          p.source_urls = [...new Set([...(Array.isArray(p.source_urls) ? p.source_urls : []), url])];
+          const links = Array.isArray(p.externalLinks) ? p.externalLinks : [];
+          if (!links.some(link => link?.type === 'source' && link?.url === url)) {
+            links.push({
+              type: 'source',
+              label: 'Oslo byleksikon – Torggata bad',
+              url,
+              verifiedAt: '2026-08-13'
+            });
+          }
+          p.externalLinks = links;
+          fs.writeFileSync(file, JSON.stringify(data,null,2)+'\n');
+          NODE
+      - name: Validate People linkage
+        run: |
+          npm run audit:people-of-places
+          npm run civication:history-people:check
+          node --test tests/torggata-phase8a-closeout.test.mjs
+      - name: Persist repair and remove workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/torggata-phase12-thorvald-source.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Kildebind Thorvald Meyer til Torggata"
+          git push origin HEAD:agent/torggata-phase12-thorvald-source
