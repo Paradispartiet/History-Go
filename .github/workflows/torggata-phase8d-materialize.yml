@@ -46,8 +46,16 @@ jobs:
       - name: Canonical place-round contract guard
         run: node --test tests/place-rounds-grid-exclusivity.test.mjs
 
+      # Root tsconfig checks the legacy JavaScript surface with allowJs/checkJs and
+      # intentionally carries baseline diagnostics. The canonical TypeScript workflow
+      # treats those diagnostics as a PR regression gate, not a zero-debt gate.
+      # Keep this materialization workflow aligned with the hard modern TS gates;
+      # the canonical PR workflow performs the base-vs-target legacy comparison.
       - name: TypeScript guard
-        run: npm run typecheck --if-present
+        run: |
+          npm run typecheck:web
+          npm run typecheck:scripts
+          npm run typecheck:tools
 
       - name: Build guard
         run: npm run build --if-present
