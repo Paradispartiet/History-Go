@@ -1,0 +1,94 @@
+name: Torggata phase 10 post-sync validation
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase10-quiz
+    paths:
+      - .github/workflows/torggata-phase10-post-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-persist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Regenerate canonical Knowledge on synced main
+        run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+
+      - name: Validate Torggata phase 10 contract
+        run: node --test tests/torggata-phase10-quiz.test.mjs
+
+      - name: Audit quiz production context
+        run: node scripts/audit-quiz-production-context.mjs
+
+      - name: Audit quiz progression
+        run: node scripts/audit-quiz-progression.mjs
+
+      - name: Audit quiz theory binding
+        run: node scripts/audit-quiz-theory-binding.mjs
+
+      - name: Audit quiz content quality
+        run: node scripts/audit-quiz-content-quality.mjs
+
+      - name: Audit quiz manifest v2
+        run: node scripts/audit-quiz-manifest-v2.mjs
+
+      - name: Validate quiz production pipeline
+        run: node --test tests/quiz-production-pipeline.test.mjs
+
+      - name: Validate Knowledge contract
+        run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --audit-only
+
+      - name: Preserve phase 9 regression
+        run: node --test tests/torggata-phase9-onsite.test.mjs
+
+      - name: TypeScript hard gates
+        run: |
+          npm run typecheck:web
+          npm run typecheck:scripts
+          npm run typecheck:tools
+
+      - name: Build guard
+        run: npm run build --if-present
+
+      - name: Inspect post-sync runtime scope
+        shell: bash
+        run: |
+          echo "Post-sync runtime diff:"
+          git status --short
+          changed="$({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u | awk 'NF')"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(data/knowledge/[^/]+\.generated\.json|reports/knowledge-[^/]+\.json|reports/quiz_manifest_v2_audit_report\.json)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected post-sync runtime diff:"
+            echo "$unexpected"
+            exit 1
+          fi
+
+      - name: Persist post-sync canonical state and remove workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/torggata-phase10-post-sync.yml
+          git add -A
+          git diff --cached --check
+          echo "Post-sync permanent diff:"
+          git diff --cached --name-status
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Synk Torggata fase 10 mot fersk main"
+          git push origin HEAD:agent/torggata-phase10-quiz
