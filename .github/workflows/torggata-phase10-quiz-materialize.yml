@@ -181,6 +181,7 @@ jobs:
       - name: Inspect permanent scope
         shell: bash
         run: |
+          rm -f phase10-materialize.log
           echo "Changed files before persist:"
           git status --short
           changed="$({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u | awk 'NF')"
