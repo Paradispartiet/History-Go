@@ -181,7 +181,8 @@ jobs:
         run: |
           echo "Changed files before persist:"
           git status --short
-          unexpected="$(git diff --name-only | grep -Ev '^(data/fag/fag_manifest\.json|data/quiz/by/torggata_sets\.json|data/quiz/production_briefs/by/torggata\.json|data/quiz/production_context/by/torggata\.json|data/knowledge/[^/]+\.generated\.json|reports/knowledge-[^/]+\.json|reports/place-production/torggata-phase10-quiz-audit-v1\.json|reports/place-production/torggata-workcard-current\.md|tests/torggata-phase10-quiz\.test\.mjs|tests/quiz-production-pipeline\.test\.mjs|scripts/materialize-torggata-phase10-quiz\.mjs)$' || true)"
+          changed="$({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u | awk 'NF')"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(data/fag/fag_manifest\.json|data/quiz/by/torggata_sets\.json|data/quiz/production_briefs/by/torggata\.json|data/quiz/production_context/by/torggata\.json|data/knowledge/[^/]+\.generated\.json|reports/knowledge-[^/]+\.json|reports/quiz_manifest_v2_audit_report\.json|reports/place-production/torggata-phase10-quiz-audit-v1\.json|reports/place-production/torggata-workcard-current\.md|tests/torggata-phase10-quiz\.test\.mjs|tests/quiz-production-pipeline\.test\.mjs|scripts/materialize-torggata-phase10-quiz\.mjs)$' || true)"
           if [ -n "$unexpected" ]; then
             echo "Unexpected permanent diff:"
             echo "$unexpected"
