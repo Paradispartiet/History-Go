@@ -107,9 +107,11 @@ function evaluateCareerOfferPolicy(offer) {
   return { ok: true, reason: "qualification_passed", policy, qualification_ids: qualificationIds };
 }
 
+const careerOfferGatedJobs = new WeakSet();
+
 function installCareerOfferGate() {
   const jobs = window.CivicationJobs;
-  if (!jobs || typeof jobs.pushOffer !== "function" || jobs.__badgeCareerOfferGateInstalled === true) return;
+  if (!jobs || typeof jobs.pushOffer !== "function" || careerOfferGatedJobs.has(jobs)) return;
 
   const originalPushOffer = jobs.pushOffer.bind(jobs);
   jobs.pushOffer = function (offer) {
@@ -119,7 +121,7 @@ function installCareerOfferGate() {
     }
     return originalPushOffer(offer);
   };
-  jobs.__badgeCareerOfferGateInstalled = true;
+  careerOfferGatedJobs.add(jobs);
 }
 
 installCareerOfferGate();
@@ -337,7 +339,7 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
       window.updateSocialMatchIndex({ reason: "quiz_completed", categoryId: badgeId, quizId });
     }
     if (typeof window.checkSharedQuizOpportunities === "function") {
-      window.checkSharedQuizOpportunities(quizId, { categoryId: badgeId });
+      window.checkSharedQuizOpportunities(quizId, { categoryId: badgeId, quizId });
     }
   } catch (err) {
     console.warn("[HG Social] quiz integration failed", err);
