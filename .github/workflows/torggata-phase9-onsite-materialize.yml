@@ -38,8 +38,17 @@ jobs:
       - name: Preserve phase 8 closeout regression
         run: node --test tests/torggata-phase8e-rounds-closeout.test.mjs
 
-      - name: Assert canonical Torggata payload is unchanged
-        run: git diff --exit-code -- data/places/by/oslo/places/torggata.json
+      - name: Assert canonical task migration
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const place = JSON.parse(fs.readFileSync('data/places/by/oslo/places/torggata.json', 'utf8'));
+          if (Object.prototype.hasOwnProperty.call(place, 'tasks_profile')) throw new Error('tasks_profile survived phase 9 migration');
+          const text = JSON.stringify(place);
+          for (const marker of ['torggata_task_', 'gateprofil-oppgaven', 'oppgaven Les aktørene', '`tasks_profile`']) {
+            if (text.includes(marker)) throw new Error('stale task marker survived: ' + marker);
+          }
+          NODE
 
       - name: TypeScript hard gates
         run: |
