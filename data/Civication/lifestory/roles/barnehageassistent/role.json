@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "id": "barnehageassistent",
+  "navn": "Barnehageassistent / pedagogisk medarbeider",
+  "kjernefantasi": "Du holder en barnegruppes dag trygg gjennom små voksenhandlinger som får store følger når de mangler.",
+  "arbeidsoppgaver": [
+    "støtte levering og overganger",
+    "se hvem som kommer inn i leken og hvem som blir stående utenfor",
+    "sette varme, tydelige grenser under støy og tidspress",
+    "observere konkret uten å diagnostisere",
+    "gi presise observasjoner til leder og foreldre"
+  ],
+  "personer": [
+    { "id": "pedagogisk_leder", "navn": "Anne, pedagogisk leder", "beskrivelse": "Din nærmeste faglige leder. Trenger observasjoner hun kan stole på mens hun holder en presset avdeling i gang." },
+    { "id": "erfaren_assistent", "navn": "Kari, erfaren assistent", "beskrivelse": "Kjenner rytmen og snarveiene. Hjelper deg ofte, men kan prioritere flyt foran langsom trygghet." },
+    { "id": "ny_vikar", "navn": "Milo, ny vikar", "beskrivelse": "Vil gjøre en god jobb, men kjenner ikke barnas signaler ennå." },
+    { "id": "noah", "navn": "Noah", "beskrivelse": "Et barn som strever med levering og overganger." },
+    { "id": "ema", "navn": "Ema", "beskrivelse": "Et stille barn som lett forsvinner i frileken." },
+    { "id": "forelder_linn", "navn": "Linn, forelder", "beskrivelse": "Har lav tillit etter flere uklare hentebeskjeder og spør om Ema faktisk blir sett." },
+    { "id": "forelder_samir", "navn": "Samir, forelder", "beskrivelse": "Vil samarbeide, men trenger tydelige svar når morgenene blir vanskelige." },
+    { "id": "styrer", "navn": "Ragnhild, styrer", "beskrivelse": "Har ansvar for bemanning og drift, men ser ikke alltid trykket i de korte overgangene." },
+    { "id": "venn", "navn": "Jonas", "beskrivelse": "Vennen din. Hører forskjell på vanlig sliten og en dag som har satt seg i kroppen." },
+    { "id": "familie", "navn": "Søsteren din", "beskrivelse": "Minner deg på at jobben ikke er hele livet." }
+  ],
+  "hovedkonflikter": [
+    "trygg overgang vs tidspress",
+    "frilek vs usynlig utenforskap",
+    "varm grensesetting vs egen aktivering",
+    "konkret observasjon vs magefølelse",
+    "barnets beste vs stram bemanning"
+  ],
+  "endings": [
+    {
+      "id": "trygg_voksen",
+      "navn": "Den trygge voksne",
+      "tekst": "Du gjorde de små tingene konsekvent: senket tempoet i overgangene, så barnet som ikke ropte og skrev ned det du faktisk observerte.",
+      "kriterier": { "meters": { "integritet": { "min": 70 } }, "flagg": { "skapte_rolig_overgang": true, "aapnet_leken_for_ema": true, "skrev_konkret_observasjon": true } },
+      "standard": true
+    },
+    {
+      "id": "drift_foran_barn",
+      "navn": "Drift foran barn",
+      "tekst": "Du fikk dagen til å flyte, men flere ganger ved å gjøre barnas signaler mindre enn de var.",
+      "kriterier": { "meters": { "integritet": { "max": 50 } }, "flagg": { "lot_ema_staa_utenfor": true } }
+    },
+    {
+      "id": "utslitt",
+      "navn": "Utslitt omsorgsarbeider",
+      "tekst": "Du tok mer enn bemanningen egentlig tålte, og enda litt til.",
+      "kriterier": { "meters": { "energi": { "max": 50 }, "psyke": { "max": 55 } }, "flagg": { "tok_alt_selv": true } }
+    },
+    {
+      "id": "faglig_stemme",
+      "navn": "Faglig stemme",
+      "tekst": "Du gjorde usynlig omsorgsarbeid lesbart gjennom presise observasjoner og tydelige prioriteringer.",
+      "kriterier": { "meters": { "integritet": { "min": 65 }, "synlighet": { "min": 50 } }, "flagg": { "loeftet_bemanning": true, "delte_observasjon_faglig": true } }
+    }
+  ],
+  "startState": {
+    "meters": { "penger": 360, "psyke": 63, "energi": 70, "integritet": 54, "synlighet": 32, "handlingsrom": 45 },
+    "relasjoner": { "pedagogisk_leder": 55, "erfaren_assistent": 58, "ny_vikar": 45, "noah": 48, "ema": 45, "forelder_linn": 38, "forelder_samir": 55, "styrer": 42, "venn": 60, "familie": 55 }
+  },
+  "dagsplan": {
+    "1": [
+      { "klokke": "07:30", "tekst": "Morgenlevering" },
+      { "klokke": "10:00", "tekst": "Frilek" },
+      { "klokke": "14:00", "tekst": "Garderobe" },
+      { "klokke": "16:00", "tekst": "Observasjon og henting" }
+    ],
+    "2": [
+      { "klokke": "07:30", "tekst": "Ny overgang" },
+      { "klokke": "10:00", "tekst": "Lek og oppfølging" },
+      { "klokke": "14:30", "tekst": "Foreldresamtale" },
+      { "klokke": "15:30", "tekst": "Bemanning" }
+    ]
+  }
+}

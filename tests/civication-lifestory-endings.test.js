@@ -54,7 +54,8 @@ const FORVENTET = {
   arbeidsledig: { foerste: "bygget_kompetanse", siste: "kom_i_jobb" },
   renholder: { foerste: "fagstolt", siste: "usynlig_forbigaatt" },
   ekspeditor: { foerste: "trygg_paa_gulvet", siste: "mistet_tilliten" },
-  arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" }
+  arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" },
+  barnehageassistent: { foerste: "trygg_voksen", siste: "drift_foran_barn" }
 };
 
 for (const roleId of Object.keys(manifest.roles)) {
@@ -119,4 +120,4 @@ assert.ok(uiSource.includes("CivicationLifestoryEndings") && uiSource.includes("
   "UI-et kårer en slutt på siste dag");
 assert.ok(uiSource.includes("civi-lifestory-ending"), "UI-et rendrer ending-seksjonen");
 
-console.log("civication lifestory endings ok (4 roller, forsiktig vs hensynsløst kårer ulike slutter)");
+console.log("civication lifestory endings ok (5 roller, forsiktig vs hensynsløst kårer ulike slutter)");

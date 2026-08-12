@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = path.join(__dirname, '..');
+const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
+const Resolver = require('../js/Civication/systems/civicationCareerRoleResolver.js');
+
+const badgeIndex = readJson('data/badges/index.json');
+const badges = new Map();
+for (const rel of badgeIndex.files || []) {
+  const payload = readJson(rel);
+  const list = Array.isArray(payload?.badges) ? payload.badges : [payload];
+  for (const badge of list) {
+    if (badge?.id) badges.set(badge.id, badge);
+  }
+}
+
+function assertStrictTierOrder(badgeId) {
+  const badge = badges.get(badgeId);
+  assert.ok(badge, `mangler badge ${badgeId}`);
+  let previous = -Infinity;
+  const labels = new Set();
+  for (const tier of badge.tiers || []) {
+    assert.ok(typeof tier.label === 'string' && tier.label.trim(), `${badgeId}: tier uten label`);
+    assert.ok(Number.isFinite(Number(tier.threshold)), `${badgeId}/${tier.label}: ugyldig threshold`);
+    assert.ok(Number(tier.threshold) > previous, `${badgeId}: thresholds må være strengt stigende`);
+    assert.ok(!labels.has(tier.label), `${badgeId}: duplikat stillingstittel ${tier.label}`);
+    labels.add(tier.label);
+    previous = Number(tier.threshold);
+  }
+}
+
+assertStrictTierOrder('naeringsliv');
+assertStrictTierOrder('sosial_laering');
+
+const naering = badges.get('naeringsliv');
+assert.ok(naering.tiers.some((tier) => tier.label === 'Renholder' && tier.threshold === 8),
+  'Renholder skal være en ekte Næringsliv-tier, ikke en skjult Civication-rolle');
+
+const sosial = badges.get('sosial_laering');
+assert.strictEqual(sosial.tiers[0].label, 'Barnehageassistent / pedagogisk medarbeider');
+assert.strictEqual(sosial.tiers[0].threshold, 5);
+assert.ok(sosial.tiers.length >= 12, 'Sosial læring skal være en reell stillingsstige, ikke bare gamle milepæl-navn');
+for (const legacy of ['Første møte', 'Første felles quiz', 'Første felles rute', 'Observatør', 'Guide', 'Sirkelbygger', 'Historisk følgesvenn']) {
+  assert.ok(!sosial.tiers.some((tier) => tier.label === legacy), `legacy-rang står fortsatt som stilling: ${legacy}`);
+}
+
+// En ny Badge-karriere må også fungere i Civications økonomi. Uten en regel
+// hopper ukesticken over lønn for aktiv stilling.
+const careerRulesDoc = readJson('data/Civication/hg_careers.json');
+const sosialCareer = (careerRulesDoc.careers || []).find((career) => career.career_id === 'sosial_laering');
+assert.ok(sosialCareer, 'Sosial læring mangler karriereregel og ville fått null lønn i ukesticken');
+assert.ok(sosialCareer.economy?.salary_by_tier, 'Sosial læring mangler salary_by_tier');
+for (let index = 0; index < sosial.tiers.length; index += 1) {
+  const salary = Number(sosialCareer.economy.salary_by_tier[String(index + 1)]);
+  assert.ok(Number.isFinite(salary) && salary > 0,
+    `Sosial læring tier ${index + 1} mangler positiv ukelønn`);
+}
+assert.ok(Number(sosialCareer.world_logic?.maintenance?.min_quiz_per_weeks) >= 1,
+  'Sosial læring mangler aktiv vedlikeholdskontrakt');
+
+const manifest = readJson('data/Civication/lifestory/manifest.json');
+for (const [roleId, entry] of Object.entries(manifest.roles || {})) {
+  if (entry.system_role === true) {
+    assert.strictEqual(roleId, 'arbeidsledig', 'kun eksplisitte systemroller kan stå uten Badge-binding');
+    continue;
+  }
+
+  assert.ok(entry.badge_id, `${roleId}: aktiv Life Story-rolle mangler badge_id`);
+  assert.ok(Array.isArray(entry.badge_titles) && entry.badge_titles.length,
+    `${roleId}: aktiv Life Story-rolle mangler badge_titles`);
+  assert.ok(entry.role_scope, `${roleId}: aktiv Life Story-rolle mangler role_scope`);
+
+  const badge = badges.get(entry.badge_id);
+  assert.ok(badge, `${roleId}: badge_id ${entry.badge_id} finnes ikke i data/badges/index.json`);
+  const tierTitles = new Set((badge.tiers || []).map((tier) => tier.label));
+
+  for (const title of entry.badge_titles) {
+    assert.ok(tierTitles.has(title), `${roleId}: Badge-tittelen «${title}» finnes ikke i ${entry.badge_id}`);
+    const resolved = Resolver.resolveCareerRoleScope({ career_id: entry.badge_id, title });
+    assert.strictEqual(resolved, entry.role_scope,
+      `${roleId}: resolver mapper «${title}» til ${resolved}, forventet ${entry.role_scope}`);
+  }
+}
+
+assert.strictEqual(
+  Resolver.resolveCareerRoleId({ career_id: 'sosial_laering', title: 'Barnehageassistent / pedagogisk medarbeider' }),
+  'sosial_laering_barnehageassistent',
+  'første Sosial læring-tier skal løse til canonical barnehageassistent-roleModel'
+);
+
+console.log('civication badge career contract ok');
