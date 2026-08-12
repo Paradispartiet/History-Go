@@ -26,6 +26,28 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Repair materializer Markdown template syntax
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path("scripts/materialize-torggata-phase10-quiz.mjs")
+          source = path.read_text()
+          marker = 'if (!workcard.includes("## Fase 10 – Quiz")) {'
+          assignment = 'workcard = workcard.trimEnd() + `'
+          block_start = source.index(marker)
+          content_start = source.index(assignment, block_start) + len(assignment)
+          content_end = source.index('\n`;\n}', content_start)
+          block = source[content_start:content_end]
+          repaired = re.sub(r'(?<!\\)`', r'\\`', block)
+          if repaired == block:
+              raise SystemExit("Expected raw Markdown inline backticks in phase 10 workcard block")
+          path.write_text(source[:content_start] + repaired + source[content_end:])
+          PY
+          node --check scripts/materialize-torggata-phase10-quiz.mjs
+
       - name: Materialize Torggata phase 10
         shell: bash
         run: |
