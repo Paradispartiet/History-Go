@@ -47,6 +47,20 @@ for (const legacy of ['Første møte', 'Første felles quiz', 'Første felles ru
   assert.ok(!sosial.tiers.some((tier) => tier.label === legacy), `legacy-rang står fortsatt som stilling: ${legacy}`);
 }
 
+// En ny Badge-karriere må også fungere i Civications økonomi. Uten en regel
+// hopper ukesticken over lønn for aktiv stilling.
+const careerRulesDoc = readJson('data/Civication/hg_careers.json');
+const sosialCareer = (careerRulesDoc.careers || []).find((career) => career.career_id === 'sosial_laering');
+assert.ok(sosialCareer, 'Sosial læring mangler karriereregel og ville fått null lønn i ukesticken');
+assert.ok(sosialCareer.economy?.salary_by_tier, 'Sosial læring mangler salary_by_tier');
+for (let index = 0; index < sosial.tiers.length; index += 1) {
+  const salary = Number(sosialCareer.economy.salary_by_tier[String(index + 1)]);
+  assert.ok(Number.isFinite(salary) && salary > 0,
+    `Sosial læring tier ${index + 1} mangler positiv ukelønn`);
+}
+assert.ok(Number(sosialCareer.world_logic?.maintenance?.min_quiz_per_weeks) >= 1,
+  'Sosial læring mangler aktiv vedlikeholdskontrakt');
+
 const manifest = readJson('data/Civication/lifestory/manifest.json');
 for (const [roleId, entry] of Object.entries(manifest.roles || {})) {
   if (entry.system_role === true) {
