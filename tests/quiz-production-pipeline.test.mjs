@@ -251,8 +251,16 @@ test("passes production-context, progression and theory-binding audits", async (
     auditQuizTheoryBinding()
   ]);
 
+  const manifest = JSON.parse(await readFile("data/fag/fag_manifest.json", "utf8"));
+const expectedQuizFilesChecked = Object.values(manifest).reduce((count, entry) => {
+  const targets = entry?.quizProduction?.targets;
+  return count + (targets && typeof targets === "object" && !Array.isArray(targets)
+    ? Object.keys(targets).length
+    : 0);
+}, 0);
+
   for (const report of reports) {
     assert.equal(report.status, "passed", JSON.stringify(report.failures, null, 2));
-    assert.equal(report.quizFilesChecked, 10);
+    assert.equal(report.quizFilesChecked, expectedQuizFilesChecked);
   }
 });
