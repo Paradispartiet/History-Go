@@ -93,25 +93,26 @@ jobs:
 
           pipeline_path = Path("tests/quiz-production-pipeline.test.mjs")
           pipeline_source = pipeline_path.read_text()
-          old_pipeline_assertion = '''  for (const report of reports) {
-            assert.equal(report.status, "passed", JSON.stringify(report.failures, null, 2));
-            assert.equal(report.quizFilesChecked, 10);
-          }'''
-          new_pipeline_assertion = '''  const manifest = JSON.parse(await readFile("data/fag/fag_manifest.json", "utf8"));
+          old_count = 'assert.equal(report.quizFilesChecked, 10);'
+          loop_marker = '  for (const report of reports) {'
+          if pipeline_source.count(old_count) != 1:
+              raise SystemExit(f"Expected exactly one hard-coded quiz pipeline count, found {pipeline_source.count(old_count)}")
+          if pipeline_source.count(loop_marker) != 1:
+              raise SystemExit(f"Expected exactly one audit report loop, found {pipeline_source.count(loop_marker)}")
+          manifest_count = '''  const manifest = JSON.parse(await readFile("data/fag/fag_manifest.json", "utf8"));
           const expectedQuizFilesChecked = Object.values(manifest).reduce((count, entry) => {
             const targets = entry?.quizProduction?.targets;
             return count + (targets && typeof targets === "object" && !Array.isArray(targets)
               ? Object.keys(targets).length
               : 0);
-          }, 0);
-
-          for (const report of reports) {
-            assert.equal(report.status, "passed", JSON.stringify(report.failures, null, 2));
-            assert.equal(report.quizFilesChecked, expectedQuizFilesChecked);
-          }'''
-          if old_pipeline_assertion not in pipeline_source:
-              raise SystemExit("Expected hard-coded quiz pipeline count not found")
-          pipeline_path.write_text(pipeline_source.replace(old_pipeline_assertion, new_pipeline_assertion, 1))
+          }, 0);'''
+          pipeline_source = pipeline_source.replace(loop_marker, manifest_count + "\n\n" + loop_marker, 1)
+          pipeline_source = pipeline_source.replace(
+              old_count,
+              'assert.equal(report.quizFilesChecked, expectedQuizFilesChecked);',
+              1
+          )
+          pipeline_path.write_text(pipeline_source)
           PY
           node --check scripts/materialize-torggata-phase10-quiz.mjs
           node --check tests/quiz-production-pipeline.test.mjs
