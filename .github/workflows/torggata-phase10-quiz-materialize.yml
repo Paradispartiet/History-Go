@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Repair materializer workcard append deterministically
+      - name: Repair materializer baseline and workcard deterministically
         shell: bash
         run: |
           python - <<'PY'
@@ -34,6 +34,23 @@ jobs:
 
           path = Path("scripts/materialize-torggata-phase10-quiz.mjs")
           source = path.read_text()
+
+          old_baseline = 'if (!Array.isArray(legacyBefore) || legacyBefore.length !== 35) throw new Error("Unexpected legacy merged quiz baseline");'
+          new_baseline = '''if (!Array.isArray(legacyBefore) || legacyBefore.length === 0) throw new Error("Unexpected empty/non-array legacy merged quiz baseline");
+          const legacyIds = legacyBefore.map(item => item?.quiz_id || item?.id).filter(Boolean);
+          if (legacyIds.length !== legacyBefore.length || new Set(legacyIds).size !== legacyIds.length) {
+            throw new Error(`Legacy merged quiz baseline has missing/duplicate ids: ${legacyIds.length}/${legacyBefore.length} usable unique candidates`);
+          }'''
+          if old_baseline not in source:
+              raise SystemExit("Expected legacy baseline assertion not found")
+          source = source.replace(old_baseline, new_baseline, 1)
+
+          old_audit = 'legacy_reviewed: { file: legacyQuizPath, questions: 35, canonical: false },'
+          new_audit = 'legacy_reviewed: { file: legacyQuizPath, questions: legacyBefore.length, canonical: false },'
+          if old_audit not in source:
+              raise SystemExit("Expected legacy audit count not found")
+          source = source.replace(old_audit, new_audit, 1)
+
           start_marker = 'if (!workcard.includes("## Fase 10 – Quiz")) {'
           end_marker = 'write(workcardPath, workcard);'
           start = source.index(start_marker)
@@ -47,7 +64,7 @@ jobs:
               "```text",
               "TIDLIGERE-ARBEID-SØK: UTFØRT",
               "AKTIV BASELINE: 6 sett / 42 spørsmål i data/quiz/by/torggata_sets.json",
-              "LEGACY AUDITERT: 35 spørsmål i data/quiz/by/torggata_sets_merged.json; ikke manifest-loadet canonical output",
+              "LEGACY AUDITERT: " + legacyBefore.length + " spørsmål i data/quiz/by/torggata_sets_merged.json; ikke manifest-loadet canonical output",
               "KONKRET REGRESJONSEVIDENS: repos quiztriage flagget Torggata for faglig-lesning-/teorimaler; aktive sett 3–6 brukte også interne emnefiler som synlig kilde",
               "BESLUTNING: FULL CANONICAL REVISION – claim-bank først, deretter spørsmål",
               "```",
