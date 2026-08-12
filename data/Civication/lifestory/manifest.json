@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "beskrivelse": "Manifest for Civication Life Story System. Aktive fortellingspakker byttes her, aldri ved å døpe om innholdsfiler. Opptjente jobbroller må være bundet til canonical Badge-tier; systemroller merkes eksplisitt.",
+  "version": 2,
+  "beskrivelse": "Manifest for Civication Life Story System. Aktive fortellingspakker byttes her, aldri ved å døpe om innholdsfiler. Opptjente jobbroller må være bundet til canonical Badge-tier; systemroller merkes eksplisitt. Content-only-pakker kan bevares uten Badge-binding, men er ikke kilde for jobbtilbud før de får en bevisst canonical plassering.",
   "shared": {
     "phaseDefinitions": "data/Civication/lifestory/shared/phaseDefinitions.json"
   },
@@ -38,8 +38,9 @@
       "threads": "data/Civication/lifestory/roles/barnehageassistent/threads.json",
       "scenes": "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
       "role_scope": "barnehageassistent",
-      "badge_id": "sosial_laering",
-      "badge_titles": ["Barnehageassistent / pedagogisk medarbeider"]
+      "content_only": true,
+      "legacy_namespace": "sosial_laering",
+      "note": "Beholdt som ferdig Life Story-innhold, men er ikke en opptjent jobbrolle før den bindes til en bevisst canonical Badge-tier."
     },
     "arbeidsledig": {
       "role": "data/Civication/lifestory/roles/arbeidsledig/role.json",
