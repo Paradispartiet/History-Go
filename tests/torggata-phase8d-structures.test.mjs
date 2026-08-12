@@ -62,9 +62,9 @@ test('street-segment subplaces do not leak into the Structures collection', () =
   assert.equal(ids.has('torggata_nord_youngstorget_ankertorget'), false);
 });
 
-test('8D audit passes and workcard advances to 8E', () => {
+test('8D audit remains approved after the 8E closeout', () => {
   assert.equal(audit.result, 'PASS');
   assert.match(workcard, /\*\*8D Bygg og anlegg = GODKJENT\.\*\*/);
-  assert.match(workcard, /PÅGÅR – 8E legacy rounds \+ slutt-UI/);
-  assert.match(workcard, /Neste fase-8-del: \*\*8E legacy rounds \+ slutt-UI\*\*/);
+  assert.match(workcard, /\| 8\. Rundinger \| \*\*GODKJENT\*\*/);
+  assert.match(workcard, /Neste aktive fase: \*\*9\. På stedet\*\*\./);
 });

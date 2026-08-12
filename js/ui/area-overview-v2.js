@@ -94,8 +94,8 @@
       place?.nature,
       place?.works,
       place?.emne_ids,
-      place?.rounds,
-      place?.rundinger
+      place?.objects,
+      place?.structures
     ];
     return arrayFields.reduce((count, value) => count + (Array.isArray(value) && value.length ? 1 : 0), 0);
   }
