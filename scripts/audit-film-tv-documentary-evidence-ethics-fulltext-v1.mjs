@@ -7,6 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'dokumentar-evidens-og-etikk';
 const OUTPUT_GATE = 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief';
+const REPRESENTATION_SOURCE_BRIEF_GATE = 'representation_position_counterimages_source_brief_complete_full_chapter_production';
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`,
   brief: `data/fagverk/film_tv/${CHAPTER_ID}/brief.json`,
@@ -112,7 +113,7 @@ export function auditFilmTvDocumentaryEvidenceEthicsFulltextV1({ writeReport = f
   assert(sourceBrief.runtime_registration.registered === true && sourceBrief.runtime_registration.chapter_id === CHAPTER_ID, 'Kildebriefen dokumenterer ikke registreringen');
   assert(plannedClaims.every((row) => row.status === 'resolved_to_verified_claim' && row.final_claim_id === row.id && claimIds.has(row.id)), 'En claimplan er ikke løst');
   assert(registryChapter?.file === P.chapter && isDeepStrictEqual(registryChapter.emne_ids, chapter.emne_ids), 'Fagverkregisteret mangler eller feilregistrerer kapitlet');
-  assert(statusEntry.editorialStatus === 'chapters_in_progress' && statusEntry.nextGate === OUTPUT_GATE, 'Film & TV står ikke på neste enhets kildebriefport');
+  assert(statusEntry.editorialStatus === 'chapters_in_progress' && [OUTPUT_GATE, REPRESENTATION_SOURCE_BRIEF_GATE].includes(statusEntry.nextGate), 'Film & TV står ikke på neste enhets kildebriefport');
 
   const combined = JSON.stringify({ chapter, brief, modules: modules.map((row) => row.value) });
   assert(/autentisk.{0,180}(evidenspåstand|feilbeskrevet)/is.test(combined), 'Autentisitet-/evidenspåstandsvakten mangler');

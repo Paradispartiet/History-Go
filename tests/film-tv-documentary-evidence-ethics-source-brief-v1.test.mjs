@@ -56,7 +56,7 @@ test('kapitlet ble registrert først etter fulltekst- og evidensaudit', () => {
   assert.equal(result.brief.runtime_registration.registered, true);
   assert.equal(result.brief.runtime_registration.registration_after_full_chapter_gate, true);
   assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'dokumentar-evidens-og-etikk'), true);
-  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief');
+  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'representation_position_counterimages_source_brief_complete_full_chapter_production');
 });
 
 test('naboområdene forblir eksplisitt utenfor enheten', () => {

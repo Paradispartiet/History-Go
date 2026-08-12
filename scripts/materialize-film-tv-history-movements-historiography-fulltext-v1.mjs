@@ -12,6 +12,7 @@ const LATER_SOURCE_BRIEF_GATE = 'television_platforms_participation_source_brief
 const TELEVISION_FULLTEXT_GATE = 'television_platforms_participation_full_chapter_complete_next_unit_source_brief';
 const DOCUMENTARY_SOURCE_BRIEF_GATE = 'documentary_evidence_ethics_source_brief_complete_full_chapter_production';
 const DOCUMENTARY_FULLTEXT_GATE = 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief';
+const REPRESENTATION_SOURCE_BRIEF_GATE = 'representation_position_counterimages_source_brief_complete_full_chapter_production';
 const P = Object.freeze({
   sourceBrief: 'data/fag/TV_og_Film/film_tv_history_movements_historiography_source_claim_brief_v1.json',
   learningPlan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
@@ -328,8 +329,8 @@ export function buildFilmTvHistoryMovementsHistoriographyFulltextV1() {
 
 export function materializeFilmTvHistoryMovementsHistoriographyFulltextV1({ force = false } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  assert([INPUT_GATE, OUTPUT_GATE, LATER_SOURCE_BRIEF_GATE, TELEVISION_FULLTEXT_GATE, DOCUMENTARY_SOURCE_BRIEF_GATE, DOCUMENTARY_FULLTEXT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
-  if ([OUTPUT_GATE, LATER_SOURCE_BRIEF_GATE, TELEVISION_FULLTEXT_GATE, DOCUMENTARY_SOURCE_BRIEF_GATE, DOCUMENTARY_FULLTEXT_GATE].includes(currentGate) && !force) {
+  assert([INPUT_GATE, OUTPUT_GATE, LATER_SOURCE_BRIEF_GATE, TELEVISION_FULLTEXT_GATE, DOCUMENTARY_SOURCE_BRIEF_GATE, DOCUMENTARY_FULLTEXT_GATE, REPRESENTATION_SOURCE_BRIEF_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if ([OUTPUT_GATE, LATER_SOURCE_BRIEF_GATE, TELEVISION_FULLTEXT_GATE, DOCUMENTARY_SOURCE_BRIEF_GATE, DOCUMENTARY_FULLTEXT_GATE, REPRESENTATION_SOURCE_BRIEF_GATE].includes(currentGate) && !force) {
     console.log('Filmhistorie, bevegelser og historiografi er allerede materialisert; bevarer neste kildebriefport.');
     return null;
   }

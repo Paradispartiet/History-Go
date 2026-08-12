@@ -17,7 +17,7 @@ test('Fjernsyn, plattformer og deltakerhistorier dekker læringsenheten eksakt',
   const { report } = auditFilmTvTelevisionPlatformsParticipationFulltextV1();
   assert.equal(report.canonicalCoverage.exactCoverage, '8/8 canonical emner');
   assert.equal(report.canonicalCoverage.sectionOwnership, '8 emner eid av 8 naturlig avgrensede seksjoner');
-  assert.ok(['television_platforms_participation_full_chapter_complete_next_unit_source_brief', 'documentary_evidence_ethics_source_brief_complete_full_chapter_production', 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief'].includes(report.subject.nextGate));
+  assert.ok(['television_platforms_participation_full_chapter_complete_next_unit_source_brief', 'documentary_evidence_ethics_source_brief_complete_full_chapter_production', 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief', 'representation_position_counterimages_source_brief_complete_full_chapter_production'].includes(report.subject.nextGate));
   assert.equal(report.nextGate, 'produce_source_and_claim_brief_for_dokumentar_evidens_og_etikk');
 });
 
