@@ -14,6 +14,17 @@ const P = Object.freeze({
   materializer: 'scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs',
   report: 'reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json'
 });
+const AHA_RUNTIME_ROOTS = Object.freeze(['js', 'data/integrations', 'data/historygo', 'data/psychology']);
+const CLINICAL_DIRECTIVE_PATTERNS = Object.freeze([
+  /du har diagnosen/i,
+  /denne personen har/i,
+  /bør behandles med/i,
+  /oppfyller vilkårene for tvang/i,
+  /nabolaget er psykisk sykt/i,
+  /\b(?:du|han|hun|hen|de|personen|pasienten|brukeren|vedkommende)\s+(?:er|har|lider av)\s+(?:schizofren(?:i)?|psykotisk|bipolar(?: lidelse)?|deprimert|depresjon|angstlidelse|personlighetsforstyrrelse|ptsd|traumatisert|psykisk syk)\b/i,
+  /\b(?:du|han|hun|hen|de|personen|pasienten|brukeren|vedkommende)\s+(?:må|skal|bør|trenger å)\s+(?:tvangsinnlegges|tvangsbehandles|innlegges|medisineres|behandles med|ta medisiner)\b/i,
+  /\b(?:må|skal|bør)\s+(?:tvangsinnlegge|tvangsbehandle|medisinere|diagnostisere)\b/i
+]);
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
@@ -24,6 +35,35 @@ const wordCount = (value) => {
   if (value && typeof value === 'object') return Object.values(value).reduce((sum, item) => sum + wordCount(item), 0);
   return 0;
 };
+const walkFiles = (relativeDir) => {
+  if (!fs.existsSync(abs(relativeDir))) return [];
+  const files = [];
+  for (const entry of fs.readdirSync(abs(relativeDir), { withFileTypes: true })) {
+    if (entry.name === 'vendor' || entry.name === 'node_modules') continue;
+    const relative = `${relativeDir}/${entry.name}`;
+    if (entry.isDirectory()) files.push(...walkFiles(relative));
+    else if (/\.(?:js|mjs|cjs|ts|json|html)$/i.test(entry.name)) files.push(relative);
+  }
+  return files;
+};
+export function clinicalSafetyReviewApproved(article) {
+  const review = article?.editorial_review;
+  return review?.status === 'approved_non_clinical_educational_use' &&
+    /^\d{4}-\d{2}-\d{2}$/.test(review.reviewed_at || '') &&
+    review.reviewer_role === 'psychology_editorial_audit' &&
+    review.review_standard === 'history_go_psykologi_clinical_safety_v1' &&
+    ['no_individual_diagnosis','no_individual_treatment_directive','no_coercion_recommendation','no_place_or_group_diagnosis','educational_scope_explicit'].every((key) => review.checks?.[key] === true);
+}
+export function clinicalTextHasNoDirectives(article) {
+  const text = JSON.stringify(article);
+  return CLINICAL_DIRECTIVE_PATTERNS.every((pattern) => !pattern.test(text));
+}
+function ahaRuntimeActivationEvidence() {
+  const scannedFiles = AHA_RUNTIME_ROOTS.flatMap(walkFiles).sort();
+  const activationPattern = /data\/fagverk\/psykologi\/emneartikler|history_go_psykologi_topic_article_v1|psykologi[\/_-]emneartikler/i;
+  const referencingFiles = scannedFiles.filter((file) => activationPattern.test(fs.readFileSync(abs(file), 'utf8')));
+  return { scannedRoots: AHA_RUNTIME_ROOTS, referencingFiles };
+}
 const projection = (report) => ({
   schema: report.schema,
   version: report.version,
@@ -111,23 +151,26 @@ export function auditPsykologiMentalHealthTopicArticles({ writeReport = false, c
   assert(relatedIdsResolve, 'En artikkel peker til et ikke-canonicalt relatert emne');
 
   const genericCanonicalWordingAbsent = articles.every((article) => !/emnet studerer .* som psykologisk inngang til konkrete institusjoner/i.test(JSON.stringify(article)));
-  const noClinicalOverreach = articles.every((article) => !/(du har diagnosen|denne personen har|bør behandles med|oppfyller vilkårene for tvang|nabolaget er psykisk sykt)/i.test(JSON.stringify(article)));
-  const noAhaRuntimeActivation = !files.some((file) => /aha|runtime|candidate/i.test(file));
+  const allClinicalSafetyReviewsApproved = articles.every(clinicalSafetyReviewApproved);
+  const noClinicalOverreach = allClinicalSafetyReviewsApproved && articles.every(clinicalTextHasNoDirectives);
+  const runtimeActivation = ahaRuntimeActivationEvidence();
+  const noAhaRuntimeActivation = runtimeActivation.referencingFiles.length === 0;
   assert(genericCanonicalWordingAbsent, 'Batchen gjenbruker generisk canonical maltekst som artikkelinnhold');
+  assert(allClinicalSafetyReviewsApproved, 'En artikkel mangler godkjent klinisk sikkerhetsreview');
   assert(noClinicalOverreach, 'Batchen inneholder diagnose-, tvangs- eller behandlingsoverreach');
-  assert(noAhaRuntimeActivation, 'Emneartikkelkatalogen inneholder ulovlig AHA/runtime-aktivering');
+  assert(noAhaRuntimeActivation, `AHA/runtime peker til emneartiklene fra: ${runtimeActivation.referencingFiles.join(', ')}`);
 
   const totalWordCount = Object.values(articleWordCounts).reduce((sum, count) => sum + count, 0);
   const complete = exactCoverage && allRequiredFields && structuralDepth && minimumDepthMet && allSourcesResolve && allClaimsResolve && relatedIdsResolve && genericCanonicalWordingAbsent && noClinicalOverreach && noAhaRuntimeActivation;
   const report = {
     schema: 'history_go_fagverk_psykologi_topic_articles_batch_audit_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     status: complete ? 'psykologi_topic_articles_mental_health_complete' : 'psykologi_topic_articles_mental_health_in_progress',
     generatedFrom: P,
     subject: { id: 'psykologi', domainId: DOMAIN_ID },
     coverage: { requiredArticleCount: 12, materializedArticleCount: articles.length, exactCanonicalCoverage: exactCoverage, articleIds: requiredIds },
     depth: { minimumWordsPerArticle: 550, totalEditorialWordCount: totalWordCount, articleWordCounts },
-    evidence: { registeredSourceCount: sourceIds.size, registeredClaimCount: claimIds.size, allArticleSourcesResolve: allSourcesResolve, allArticleClaimsResolve: allClaimsResolve },
+    evidence: { registeredSourceCount: sourceIds.size, registeredClaimCount: claimIds.size, allArticleSourcesResolve: allSourcesResolve, allArticleClaimsResolve: allClaimsResolve, runtimeActivation },
     gates: {
       exact12CanonicalArticles: exactCoverage,
       oneFilePerCanonicalEmne: batchFiles.length === 12,
@@ -138,6 +181,7 @@ export function auditPsykologiMentalHealthTopicArticles({ writeReport = false, c
       allClaimIdsResolve: allClaimsResolve,
       allRelatedEmneIdsResolve: relatedIdsResolve,
       genericCanonicalTemplateWordingAbsent: genericCanonicalWordingAbsent,
+      allClinicalSafetyReviewsApproved,
       noClinicalDiagnosticTreatmentOrCoercionOverreach: noClinicalOverreach,
       noAhaRuntimeActivation: noAhaRuntimeActivation
     },

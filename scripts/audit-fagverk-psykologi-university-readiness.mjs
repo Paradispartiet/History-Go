@@ -10,7 +10,7 @@ import { auditPsykologiSocialUniversity } from './audit-fagverk-psykologi-social
 import { auditPsykologiPersonalityUniversity } from './audit-fagverk-psykologi-personality-university.mjs';
 import { auditPsykologiHistoryScienceTheoryUniversity } from './audit-fagverk-psykologi-history-science-theory-university.mjs';
 import { auditPsykologiMethodsStatisticsUniversity } from './audit-fagverk-psykologi-methods-statistics-university.mjs';
-import { auditPsykologiMentalHealthTopicArticles } from './audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs';
+import { auditPsykologiMentalHealthTopicArticles, clinicalSafetyReviewApproved, clinicalTextHasNoDirectives } from './audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const NEXT_GATE = 'university_matrix_topic_articles_concept_registry_and_methods';
@@ -160,14 +160,17 @@ function sourceRegistry(contract) {
   assert(Array.isArray(registry.sources), 'Psykologi-kilderegisteret mangler sources');
 
   const registrations = [...registry.sources];
+  const validClaimIds = new Set();
   for (const file of registry.source_documents) {
     assert(fs.existsSync(abs(file)), `Kilderegisteret peker til manglende dokument: ${file}`);
     const document = read(file);
     assert(Array.isArray(document.sources), `${file} mangler sources`);
+    assert(Array.isArray(document.claims), `${file} mangler claims`);
     registrations.push(...document.sources);
+    for (const claim of document.claims) if (fieldIsMaterialized(claim.id)) validClaimIds.add(claim.id);
   }
 
-  return validatedSourceIndex(registrations, contract.required_source_fields);
+  return { ...validatedSourceIndex(registrations, contract.required_source_fields), validClaimIds };
 }
 
 export function sourceIdsResolve(sourceIds, validSourceIds) {
@@ -188,14 +191,49 @@ export function sourcedDocumentCoverage(documents, { requiredIds, idField, requi
   return { validIds: [...valid].sort(), completeCount: valid.size, invalidSourceReferenceCount };
 }
 
-function topicArticleCoverage(canonicalIds, contract, validSourceIds) {
+const editorialWordCount = (value) => {
+  if (typeof value === 'string') return value.trim() ? value.trim().split(/\s+/).length : 0;
+  if (Array.isArray(value)) return value.reduce((sum, item) => sum + editorialWordCount(item), 0);
+  if (value && typeof value === 'object') return Object.values(value).reduce((sum, item) => sum + editorialWordCount(item), 0);
+  return 0;
+};
+
+export function topicArticlePassesQualityContract(document, contract, validSourceIds, validClaimIds) {
+  const fieldsComplete = [...contract.required_fields, ...contract.required_quality_fields].every((field) => fieldIsMaterialized(document[field]));
+  const identityComplete = document.schema === contract.article_schema && document.article_status === contract.article_status_required;
+  const sourcesResolve = sourceIdsResolve(document.source_ids, validSourceIds);
+  const claimsResolve = Array.isArray(document.claim_ids) && document.claim_ids.length >= 3 && document.claim_ids.every((id) => validClaimIds.has(id));
+  const sectionSourcesResolve = ['theories_and_findings','examples','models_or_researchers'].every((field) =>
+    Array.isArray(document[field]) && document[field].every((item) => sourceIdsResolve(item.source_ids, validSourceIds) && item.source_ids.every((id) => document.source_ids.includes(id)))
+  );
+  const wordDepthMet = editorialWordCount({
+    definition: document.definition,
+    background: document.background,
+    theories_and_findings: document.theories_and_findings,
+    methods: document.methods,
+    boundaries_and_disagreements: document.boundaries_and_disagreements,
+    examples: document.examples,
+    learning_outcomes: document.learning_outcomes,
+    key_questions: document.key_questions,
+    models_or_researchers: document.models_or_researchers,
+    misuse_guard: document.misuse_guard
+  }) >= contract.minimum_editorial_words_per_article;
+  const templateTextAbsent = !/emnet studerer .* som psykologisk inngang til konkrete institusjoner/i.test(JSON.stringify(document));
+  const clinicalSafetyMet = clinicalSafetyReviewApproved(document) && clinicalTextHasNoDirectives(document);
+  return fieldsComplete && identityComplete && sourcesResolve && claimsResolve && sectionSourcesResolve && wordDepthMet && templateTextAbsent && clinicalSafetyMet;
+}
+
+function topicArticleCoverage(canonicalIds, contract, validSourceIds, validClaimIds) {
   const files = listJson(contract.directory);
-  return { files, ...sourcedDocumentCoverage(files.map(read), {
-    requiredIds: canonicalIds,
-    idField: 'emne_id',
-    requiredFields: contract.required_fields,
-    validSourceIds
-  }) };
+  const valid = new Set();
+  let invalidSourceReferenceCount = 0;
+  for (const document of files.map(read)) {
+    if (!canonicalIds.has(document.emne_id)) continue;
+    const topLevelSourcesResolve = sourceIdsResolve(document.source_ids, validSourceIds);
+    if (!topLevelSourcesResolve) invalidSourceReferenceCount += 1;
+    if (topicArticlePassesQualityContract(document, contract, validSourceIds, validClaimIds)) valid.add(document.emne_id);
+  }
+  return { files, validIds: [...valid].sort(), completeCount: valid.size, invalidSourceReferenceCount };
 }
 
 function conceptCoverage(contract, validSourceIds) {
@@ -280,6 +318,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(matrix.topic_article_contract?.article_schema === 'history_go_psykologi_topic_article_v1', 'Emneartikkelkontrakten må låse canonicalt artikkelskjema');
   assert(matrix.topic_article_contract?.article_status_required === 'complete', 'Emneartikkelkontrakten må kreve complete per artikkel');
   assert(matrix.topic_article_contract?.minimum_editorial_words_per_article === 550, 'Emneartikkelkontrakten må kreve minst 550 redaksjonelle ord');
+  assert(matrix.topic_article_contract?.editorial_review_status_required === 'approved_non_clinical_educational_use', 'Emneartikkelkontrakten må kreve godkjent klinisk sikkerhetsreview');
   assert(matrix.topic_article_contract?.all_claim_ids_must_resolve === true, 'Emneartikkelkontrakten må kreve løste claim-ID-er');
   assert(matrix.topic_article_contract?.all_section_source_ids_must_resolve === true, 'Emneartikkelkontrakten må kreve løste seksjonskilder');
   assert(matrix.topic_article_contract?.generic_template_text_forbidden === true, 'Emneartikkelkontrakten må forby generisk maltekst');
@@ -310,7 +349,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(coreById.get('research_methods_statistics')?.current_artifact === P.methodsStatistics, 'University-matrisen peker ikke til materialisert metode/statistikkgren');
 
   const sourceRegistryResult = sourceRegistry(matrix.source_registry_contract);
-  const articleCoverage = topicArticleCoverage(canonicalEmneIds, matrix.topic_article_contract, sourceRegistryResult.validIds);
+  const articleCoverage = topicArticleCoverage(canonicalEmneIds, matrix.topic_article_contract, sourceRegistryResult.validIds, sourceRegistryResult.validClaimIds);
   const mentalHealthTopicArticles = auditPsykologiMentalHealthTopicArticles({ writeReport: false, checkReport: false }).report;
   assert(mentalHealthTopicArticles.complete, 'University-readiness krever grønn audit av de 12 mental-health-emneartiklene');
   const conceptCoverageResult = conceptCoverage(matrix.concept_registry_contract, sourceRegistryResult.validIds);
@@ -342,7 +381,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
 
   const report = {
     schema: 'history_go_fagverk_psykologi_university_readiness_audit_v1',
-    version: '1.9.0',
+    version: '1.9.1',
     status: completeReady ? 'psykologi_university_ready_for_complete' : 'psykologi_university_readiness_in_progress',
     generatedFrom: P,
     subject: { id: 'psykologi', editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, registeredChapterCount: registrySubject.chapters.length },

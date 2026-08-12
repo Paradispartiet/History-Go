@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_psykologi_topic_articles_batch_audit_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "psykologi_topic_articles_mental_health_complete",
   "generatedFrom": {
     "pensum": "data/fag/psykologi/psykologipensum_canonical_v4_5.json",
@@ -55,7 +55,16 @@
     "registeredSourceCount": 122,
     "registeredClaimCount": 162,
     "allArticleSourcesResolve": true,
-    "allArticleClaimsResolve": true
+    "allArticleClaimsResolve": true,
+    "runtimeActivation": {
+      "scannedRoots": [
+        "js",
+        "data/integrations",
+        "data/historygo",
+        "data/psychology"
+      ],
+      "referencingFiles": []
+    }
   },
   "gates": {
     "exact12CanonicalArticles": true,
@@ -67,6 +76,7 @@
     "allClaimIdsResolve": true,
     "allRelatedEmneIdsResolve": true,
     "genericCanonicalTemplateWordingAbsent": true,
+    "allClinicalSafetyReviewsApproved": true,
     "noClinicalDiagnosticTreatmentOrCoercionOverreach": true,
     "noAhaRuntimeActivation": true
   },

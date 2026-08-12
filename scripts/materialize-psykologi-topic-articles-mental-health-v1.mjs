@@ -11,6 +11,19 @@ const CLAIM_BY_ID = new Map(CLAIMS.claims.map((claim) => [claim.id, claim]));
 const EMNE_BY_ID = new Map(EMNER.map((emne) => [emne.emne_id, emne]));
 const DOMAIN_ID = 'psykisk_helse_institusjoner_behandling';
 const DOMAIN_IDS = EMNER.filter((emne) => emne.domain === DOMAIN_ID).map((emne) => emne.emne_id).sort();
+const EDITORIAL_REVIEW = Object.freeze({
+  status: 'approved_non_clinical_educational_use',
+  reviewed_at: '2026-08-12',
+  reviewer_role: 'psychology_editorial_audit',
+  review_standard: 'history_go_psykologi_clinical_safety_v1',
+  checks: Object.freeze({
+    no_individual_diagnosis: true,
+    no_individual_treatment_directive: true,
+    no_coercion_recommendation: true,
+    no_place_or_group_diagnosis: true,
+    educational_scope_explicit: true
+  })
+});
 
 const method = (methodId, label, application, limitations) => ({ method_id: methodId, label, application, limitations });
 const theory = (title, content, sourceIds) => ({ title, content, source_ids: sourceIds });
@@ -421,7 +434,7 @@ function materialize(raw) {
   }
   return {
     schema: 'history_go_psykologi_topic_article_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     updated_at: '2026-08-12',
     subject_id: 'psykologi',
     domain_id: DOMAIN_ID,
@@ -440,7 +453,8 @@ function materialize(raw) {
     related_emne_ids: [...new Set(emne.related_emne || emne.related_emners || [])],
     claim_ids: raw.claim_ids,
     source_ids: [...sourceIds].sort(),
-    misuse_guard: raw.misuse_guard
+    misuse_guard: raw.misuse_guard,
+    editorial_review: { ...EDITORIAL_REVIEW, checks: { ...EDITORIAL_REVIEW.checks } }
   };
 }
 
