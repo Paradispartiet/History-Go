@@ -200,6 +200,10 @@ export function buildFilmTvRepresentationPositionCounterimagesFulltextV1() {
       protocols: [
         { id: 'ftv-rp-protocol-1', title: 'Ingen visuell identitetsinferens', steps: ['Bruk eksplisitt selvidentifikasjon eller kildefestet historisk kategori.', 'Skill menneske, utøver, rollefigur og analytisk kategori.', 'Behold ukjent status når kilden ikke avgjør spørsmålet.'] },
         { id: 'ftv-rp-protocol-2', title: 'Urfolks skjermsuverenitetsaudit', steps: ['Kartlegg fortellereierskap, bilde, kilder, språk og kulturkunnskap.', 'Kartlegg konsultasjon, beslutningspunkt, kreditering, produksjon og finansiering.', 'Kartlegg visningsarkitektur, distribusjon og hvem som kan trekke eller endre materialet.'] }
+      ],
+      applicationTasks: [
+        { id: 'ftv-rp-protocol-task-1', protocol_id: 'ftv-rp-protocol-1', title: 'Bruk protokollen: Ingen visuell identitetsinferens', task: 'Gjennomfør identitetsstatuskontrollen før en rolle eller person inngår i analysen.', prompts: ['Bruk eksplisitt selvidentifikasjon eller kildefestet historisk kategori.', 'Skill menneske, utøver, rollefigur og analytisk kategori.', 'Behold ukjent status når kilden ikke avgjør spørsmålet.'] },
+        { id: 'ftv-rp-protocol-task-2', protocol_id: 'ftv-rp-protocol-2', title: 'Bruk protokollen: Urfolks skjermsuverenitetsaudit', task: 'Auditér hele fortellerkjeden før et verk omtales som urfolksstyrt.', prompts: ['Kartlegg fortellereierskap, bilde, kilder, språk og kulturkunnskap.', 'Kartlegg konsultasjon, beslutningspunkt, kreditering, produksjon og finansiering.', 'Kartlegg visningsarkitektur, distribusjon og hvem som kan trekke eller endre materialet.'] }
       ]
     }
   };
@@ -280,6 +284,26 @@ export function buildFilmTvRepresentationPositionCounterimagesFulltextV1() {
     title: 'Representasjon, posisjon og motbilder: hvem får synlighet, autoritet og kontroll',
     subtitle: 'Fra blikk, interseksjonalitet, klasse og queer normkritikk til ableisme, motarkiv og samisk skjermsuverenitet',
     primary_domain_id: 'samfunn_representasjon_identitet_makt', editorialStatus: 'chapter_ready', sourceFirst: true, claimTraceRequired: true,
+    lead: 'Kapittelet undersøker representasjon som fordeling av synlighet, perspektiv, kunnskap, handlekraft, form, opphav og sirkulasjonsmakt. Det kombinerer nærlesning, eksplisitt identitetsstatus, avgrenset synlighetsdata og institusjonsanalyse uten å inferere identitet fra utseende, navn eller nasjonal opprinnelse, og avslutter med en særskilt audit av samisk og urfolks skjermsuverenitet.',
+    diagnosticQuestions: [
+      { question: 'Betyr flere synlige roller automatisk mer representasjonsmakt?', answer: 'Nei. Synlighet må skilles fra perspektiv, agens, formkontroll, opphav og distribusjon.' },
+      { question: 'Kan identitet fastslås fra utseende, navn eller nasjonal opprinnelse?', answer: 'Nei. Selvidentifikasjon og historiske kategorier krever eksplisitt kilde, mens analytisk rasialisering må merkes som analyse.' },
+      { question: 'Er et motbilde alltid et positivt bilde?', answer: 'Nei. Motbildet kjennetegnes av en dokumenterbar forskyvning i autoritet, arkiv, perspektiv eller form.' },
+      { question: 'Kan en opptelling avgjøre om representasjonen er kompleks?', answer: 'Nei. Opptelling beskriver et definert korpus; rollebetydning og form krever egne analyser.' },
+      { question: 'Er samisk motiv eller språk alene bevis på skjermsuverenitet?', answer: 'Nei. Fortellereierskap, bilde, kilder, medbestemmelse, kreditering, finansiering og sirkulasjon må auditeres.' }
+    ],
+    learningObjectives: [
+      'skille synlighet, perspektiv, kunnskap, narrativ agens, form, opphav og distribusjonsmakt',
+      'merke selvidentifikasjon, historisk kategori, rollefunksjon og analytisk rasialisering med riktig kildestatus',
+      'bruke interseksjonalitet som analyse av dokumenterte samvirkende strukturer fremfor en liste over identiteter',
+      'avgrense korpus, tidsrom, enhet, kategori, nevner og ukjentdata før synlighet eller fravær tallfestes',
+      'analysere kjønn, rasialisering, klasse, seksualitet og funksjonsvariasjon gjennom konkret form og makt',
+      'skille casting, arbeidsadgang, narrativ kompleksitet og tilgjengelig distribusjon',
+      'prøve motbilder gjennom endret arkiv-, forteller- og produksjonsautoritet',
+      'skille konsultasjon, samarbeid og narrativ selvbestemmelse',
+      'auditere samisk og urfolks skjermsuverenitet gjennom fortelling, bilde, språk, kilder, produksjon, finansiering og sirkulasjon',
+      'holde verkutsagn, institusjonell hensikt, markedsføring og dokumentert resepsjon som separate evidensfelt'
+    ],
     emne_ids: emneIds, method_ids: methodIds,
     relatedPlaces: [
       { id: 'nasjonalbiblioteket', name: 'Nasjonalbiblioteket', role: 'Undersøk hvordan katalogisering, bevaring, programtekst og tilgang former hvilke norske og samiske skjermhistorier som kan finnes og sammenlignes.' },
