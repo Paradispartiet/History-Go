@@ -29,6 +29,7 @@
 - Fase 8E-audit: `reports/place-production/torggata-phase8e-rounds-closeout-v1.json`
 - Fase 9-audit: `reports/place-production/torggata-phase9-onsite-audit-v1.json`
 - Fase 10-audit: `reports/place-production/torggata-phase10-quiz-audit-v1.json`
+- Fase 11-audit: `reports/place-production/torggata-phase11-observer-note-route-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -45,8 +46,9 @@
 | 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
-| 11. Observer, Notat og Rute | **PÅGÅR** | neste aktive fase etter lukket fase 10 |
-| 12–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 11. Observer, Notat og Rute | **GODKJENT** | eksisterende Observer-, Notat- og navigasjonsruntime auditert; historisk rute begrunnet N/A |
+| 12. People–sted-koblinger | **PÅGÅR** | neste aktive fase; tidligere People-arbeid skal auditeres mot fase-12-kontrakten før nye profiler vurderes |
+| 13–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -443,3 +445,28 @@ BESLUTNING: FULL CANONICAL REVISION – claim-bank først, deretter spørsmål
 **Fase 10 Quiz = GODKJENT når materialiseringsworkflow, canonical quiz-audits, Knowledge-sync, TypeScript og build er grønne.**
 
 Neste aktive fase: **11. Observer, Notat og Rute**.
+
+## Fase 11 – Observer, Notat og Rute
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+TIDLIGERE FASE-11-BRANCH/PR: ingen funnet
+EKSISTERENDE EIERE: js/observations.js, js/ui/interactions.js og js/ui/place-card.js
+HISTORISK RUTE: ingen aktiv chapter med placeId=torggata i data/routes/historical/routes_historical_oslo.json
+BESLUTNING: CLOSEOUT EXISTING OWNERS – ingen parallell place-state og ingen rute bare for completeness
+```
+
+### Godkjent resultat
+
+- **Observer = GODKJENT:** Torggata bruker den delte By-linsen `by_byliv`, som spør etter faktisk observerbare fenomener som opphold, gjennomgang, møteplass, kulturminne og kontrast.
+- PlaceCard sender `targetType=place`, `subject_id=by` og `lensId=by_byliv`; `js/observations.js` beholder `hg_learning_log_v1` som eier og lagrer `observation_done` med target, lens, valgte observasjoner, emner, concepts og tags.
+- Ingen ny Torggata-spesifikk observasjonsstate eller tekstlig kopi av Details er opprettet.
+- **Notat = GODKJENT:** PlaceCard bruker eksisterende `handlePlaceNote(place)`. Notatet lagres som `type=place`, med `placeId=torggata` og `visibility=private` gjennom den eksisterende `userNotes/saveUserNotes`-flyten.
+- **Vanlig Rute = GODKJENT:** `Gå Hit` bruker `showNavRouteToPlace(place)`, mens `Ruter` åpner den eksisterende rutelisten. Torggatas `routeSegments` forblir navigasjonsgeometri og er ikke historisk route-medlemskap.
+- **Historisk rute = N/A:** aktiv Oslo-rutedata har ingen chapter med `placeId=torggata`. Det opprettes ikke en historisk rute bare for å fylle fase 11, og online/fysisk ruteprogresjon endres ikke.
+- `tests/torggata-phase11-observer-note-route.test.mjs` låser Observer-, Notat- og Rute-eierskapet og N/A-grensen.
+- Ingen canonical Torggata-place-data er endret i fase 11.
+
+**Fase 11 Observer, Notat og Rute = GODKJENT.**
+
+Neste aktive fase: **12. People–sted-koblinger**.
