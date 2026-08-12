@@ -79,8 +79,8 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
     assert.equal(psykologi.editorialStatus, 'chapters_in_progress');
     assert.equal(psykologi.nextGate, 'remaining_domain_chapter_production');
   } else {
-    assert.equal(psykologi.editorialStatus, 'expanded_and_audited');
-    assert.equal(psykologi.nextGate, 'university_matrix_topic_articles_concept_registry_and_methods');
+    assert.equal(psykologi.editorialStatus, 'complete');
+    assert.equal(psykologi.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   }
 
   for (const id of ['religion', 'scenekunst', 'sport', 'vitenskap', 'filosofi']) {

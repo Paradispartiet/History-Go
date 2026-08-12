@@ -11,6 +11,7 @@ import { auditPsykologiPersonalityUniversity } from './audit-fagverk-psykologi-p
 import { auditPsykologiHistoryScienceTheoryUniversity } from './audit-fagverk-psykologi-history-science-theory-university.mjs';
 import { auditPsykologiMethodsStatisticsUniversity } from './audit-fagverk-psykologi-methods-statistics-university.mjs';
 import { auditPsykologiMentalHealthTopicArticles, clinicalSafetyReviewApproved, clinicalTextHasNoDirectives } from './audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs';
+import { auditPsykologiUniversityCompletion } from './audit-fagverk-psykologi-university-completion-v1.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const NEXT_GATE = 'university_matrix_topic_articles_concept_registry_and_methods';
@@ -23,6 +24,7 @@ const P = Object.freeze({
   personalityPsychology: 'data/fag/psykologi/personlighetspsykologi_university_v1.json',
   historyScienceTheory: 'data/fag/psykologi/psykologiens_historie_vitenskapsteori_university_v1.json',
   methodsStatistics: 'data/fag/psykologi/metode_statistikk_psykologi_university_v1.json',
+  canonicalMethods: 'data/fag/psykologi/methods_psykologi_canonical_v4_5.json',
   pensum: 'data/fag/psykologi/psykologipensum_canonical_v4_5.json',
   emner: 'data/fag/psykologi/emner_psykologi_canonical_v4_5.json',
   registry: 'data/fagverk/fagverk_registry.json',
@@ -30,6 +32,7 @@ const P = Object.freeze({
   sourceRegistry: 'data/fag/psykologi/kilder_psykologi_canonical_v1.json',
   articleDir: 'data/fagverk/psykologi/emneartikler',
   concepts: 'data/fag/psykologi/begreper_psykologi_canonical_v1.json',
+  appliedFields: 'data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json',
   report: 'reports/fagverk/psykologi-university-readiness-audit.json'
 });
 const REQUIRED_CORE = [
@@ -236,17 +239,42 @@ function topicArticleCoverage(canonicalIds, contract, validSourceIds, validClaim
   return { files, validIds: [...valid].sort(), completeCount: valid.size, invalidSourceReferenceCount };
 }
 
-function conceptCoverage(contract, validSourceIds) {
+function conceptCoverage(contract, validSourceIds, canonicalEmners) {
   if (!fs.existsSync(abs(contract.path))) return { exists: false, conceptCount: 0, materializedCount: 0, invalidSourceReferenceCount: 0 };
   const doc = read(contract.path);
   const concepts = Array.isArray(doc) ? doc : (doc.concepts || []);
+  const expectedTerms = [...new Set(canonicalEmners.flatMap((emne) => emne[contract.canonical_source_field] || []))].sort((a, b) => a.localeCompare(b, 'nb'));
+  const actualTerms = concepts.map((concept) => concept.canonical_term).sort((a, b) => a.localeCompare(b, 'nb'));
+  const exactCanonicalTermCoverage = isDeepStrictEqual(actualTerms, expectedTerms) && new Set(concepts.map((concept) => concept.concept_id)).size === concepts.length;
   const coverage = sourcedDocumentCoverage(concepts, {
     requiredIds: new Set(concepts.map((concept) => concept.concept_id).filter(Boolean)),
     idField: 'concept_id',
     requiredFields: contract.required_fields,
     validSourceIds
   });
-  return { exists: true, conceptCount: concepts.length, materializedCount: coverage.completeCount, invalidSourceReferenceCount: coverage.invalidSourceReferenceCount };
+  const relatedIdsResolve = concepts.every((concept) => (concept.related_concept_ids || []).every((id) => concepts.some((candidate) => candidate.concept_id === id) && id !== concept.concept_id));
+  const sourceEmnersResolve = concepts.every((concept) => concept.source_emne_ids?.length && concept.source_emne_ids.every((id) => canonicalEmners.some((emne) => emne.emne_id === id)));
+  return { exists: true, expectedCount: expectedTerms.length, conceptCount: concepts.length, materializedCount: coverage.completeCount, invalidSourceReferenceCount: coverage.invalidSourceReferenceCount, exactCanonicalTermCoverage, relatedIdsResolve, sourceEmnersResolve };
+}
+
+function appliedFieldCoverage(contract, matrixRows, canonicalEmneIds, methodIds, coreAreaIds, validSourceIds, validClaimIds) {
+  if (!fs.existsSync(abs(contract.path))) return { exists:false, fieldCount:0, completeCount:0, areaIds:[] };
+  const doc = read(contract.path);
+  const fields = doc.fields || [];
+  const expectedAreaIds = matrixRows.map((row) => row.area_id);
+  const completeFields = fields.filter((field) =>
+    field.status === 'complete' &&
+    field.editorial_review?.status === contract.editorial_review_status_required &&
+    field.emne_ids?.length >= 6 && field.emne_ids.every((id) => canonicalEmneIds.has(id)) &&
+    field.method_ids?.length >= 4 && field.method_ids.every((id) => methodIds.has(id)) &&
+    field.university_area_ids?.length >= 3 && field.university_area_ids.every((id) => coreAreaIds.has(id)) &&
+    field.source_ids?.length >= 3 && field.source_ids.every((id) => validSourceIds.has(id)) &&
+    field.claim_ids?.length >= 3 && field.claim_ids.every((id) => validClaimIds.has(id)) &&
+    field.coverage_statement?.trim().length >= 180 && field.limitations_and_ethics?.trim().length >= 220 && field.practice_questions?.length >= 3
+  );
+  const areaIds = fields.map((field) => field.area_id);
+  const exactAreaCoverage = isDeepStrictEqual(areaIds, expectedAreaIds);
+  return { exists:true, fieldCount:fields.length, completeCount:completeFields.length, areaIds, exactAreaCoverage };
 }
 
 export function expectedSubjectState(completeReady, contract) {
@@ -281,10 +309,11 @@ const projection = (report) => ({
 });
 
 export function auditPsykologiUniversityReadiness({ writeReport = false, checkReport = true } = {}) {
-  for (const file of [P.matrix, P.biologicalPsychology, P.cognitivePsychology, P.developmentalPsychology, P.socialPsychology, P.personalityPsychology, P.historyScienceTheory, P.methodsStatistics, P.pensum, P.emner, P.registry, P.status]) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
+  for (const file of [P.matrix, P.biologicalPsychology, P.cognitivePsychology, P.developmentalPsychology, P.socialPsychology, P.personalityPsychology, P.historyScienceTheory, P.methodsStatistics, P.canonicalMethods, P.pensum, P.emner, P.registry, P.status, P.concepts, P.appliedFields]) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   const matrix = read(P.matrix);
   const pensum = read(P.pensum);
   const emner = read(P.emner);
+  const canonicalMethods = read(P.canonicalMethods);
   const registry = read(P.registry);
   const status = read(P.status);
   const statusEntry = status.subjects.find((row) => row.id === 'psykologi');
@@ -325,6 +354,11 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(matrix.topic_article_contract?.no_clinical_diagnostic_treatment_or_coercion_overreach_required === true, 'Emneartikkelkontrakten må kreve vern mot klinisk overreach');
   assert(matrix.topic_article_contract?.aha_runtime_activation_requires_separate_review === true, 'AHA-aktivering må kreve separat fagreview');
   assert(matrix.concept_registry_contract?.path === P.concepts, 'Begrepskontrakten peker til feil register');
+  assert(matrix.concept_registry_contract?.canonical_source_field === 'core_concepts', 'Begrepskontrakten må eie canonicale core_concepts');
+  assert(matrix.concept_registry_contract?.expected_unique_concept_count === 136, 'Begrepskontrakten må låse 136 eksakte canonicaltermer');
+  assert(matrix.concept_registry_contract?.exact_canonical_term_coverage_required === true, 'Begrepskontrakten må kreve eksakt termdekning');
+  assert(matrix.applied_field_contract?.path === P.appliedFields && matrix.applied_field_contract?.required_field_count === 6, 'Anvendt-fagfeltkontrakten peker til feil artefakt eller antall');
+  assert(matrix.applied_field_contract?.all_emne_method_source_and_claim_ids_must_resolve === true, 'Anvendt-fagfeltkontrakten må kreve løste ID-er');
 
   const biologicalBranch = auditPsykologiBiologicalUniversity({ writeReport: false, checkReport: false }).report;
   assert(biologicalBranch.complete, 'University-readiness krever grønn biologisk-psykologi-audit');
@@ -352,7 +386,9 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   const articleCoverage = topicArticleCoverage(canonicalEmneIds, matrix.topic_article_contract, sourceRegistryResult.validIds, sourceRegistryResult.validClaimIds);
   const mentalHealthTopicArticles = auditPsykologiMentalHealthTopicArticles({ writeReport: false, checkReport: false }).report;
   assert(mentalHealthTopicArticles.complete, 'University-readiness krever grønn audit av de 12 mental-health-emneartiklene');
-  const conceptCoverageResult = conceptCoverage(matrix.concept_registry_contract, sourceRegistryResult.validIds);
+  const completionAudit = auditPsykologiUniversityCompletion({ writeReport: false, checkReport: false }).report;
+  assert(completionAudit.complete, 'University-readiness krever grønn fullaudit av 58 artikler, begreper og anvendte fagfelt');
+  const conceptCoverageResult = conceptCoverage(matrix.concept_registry_contract, sourceRegistryResult.validIds, emner);
   const coreComplete = coreRows.every((row) => row.current_status === 'complete');
   const biologicalComplete = coreById.get('biological_psychology')?.current_status === 'complete' && biologicalBranch.complete;
   const cognitiveComplete = coreById.get('cognitive_psychology')?.current_status === 'complete' && cognitiveBranch.complete;
@@ -362,9 +398,10 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   const historyScienceTheoryComplete = coreById.get('history_science_theory')?.current_status === 'complete' && historyScienceTheoryBranch.complete;
   const methodsComplete = coreById.get('research_methods_statistics')?.current_status === 'complete' && methodsBranch.complete;
   const topicArticlesComplete = articleCoverage.completeCount === 58;
-  const conceptsComplete = conceptCoverageResult.exists && conceptCoverageResult.conceptCount > 0 && conceptCoverageResult.materializedCount === conceptCoverageResult.conceptCount;
+  const conceptsComplete = conceptCoverageResult.exists && conceptCoverageResult.expectedCount === matrix.concept_registry_contract.expected_unique_concept_count && conceptCoverageResult.conceptCount === conceptCoverageResult.expectedCount && conceptCoverageResult.materializedCount === conceptCoverageResult.conceptCount && conceptCoverageResult.exactCanonicalTermCoverage && conceptCoverageResult.relatedIdsResolve && conceptCoverageResult.sourceEmnersResolve;
   const appliedRows = matrix.applied_field_matrix || [];
-  const appliedComplete = appliedRows.length >= 6 && appliedRows.every((row) => row.current_status === 'complete');
+  const appliedCoverageResult = appliedFieldCoverage(matrix.applied_field_contract, appliedRows, canonicalEmneIds, new Set(canonicalMethods.methods.map((method) => method.method_id)), new Set(coreRows.map((row) => row.area_id)), sourceRegistryResult.validIds, sourceRegistryResult.validClaimIds);
+  const appliedComplete = appliedRows.length === 6 && appliedRows.every((row) => row.current_status === 'complete' && row.current_artifact === P.appliedFields) && appliedCoverageResult.exists && appliedCoverageResult.exactAreaCoverage && appliedCoverageResult.completeCount === 6;
   const completeReady = coreComplete && biologicalComplete && cognitiveComplete && developmentalComplete && socialComplete && personalityComplete && historyScienceTheoryComplete && methodsComplete && topicArticlesComplete && conceptsComplete && appliedComplete;
   const expectedState = expectedSubjectState(completeReady, matrix.completion_contract);
 
@@ -381,7 +418,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
 
   const report = {
     schema: 'history_go_fagverk_psykologi_university_readiness_audit_v1',
-    version: '1.9.1',
+    version: '2.0.0',
     status: completeReady ? 'psykologi_university_ready_for_complete' : 'psykologi_university_readiness_in_progress',
     generatedFrom: P,
     subject: { id: 'psykologi', editorialStatus: statusEntry.editorialStatus, nextGate: statusEntry.nextGate, registeredChapterCount: registrySubject.chapters.length },
@@ -455,14 +492,20 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       completeCount: articleCoverage.completeCount,
       remainingCount: 58 - articleCoverage.completeCount,
       invalidSourceReferenceCount: articleCoverage.invalidSourceReferenceCount,
-      auditedBatchCount: 1,
-      auditedDomainCount: 1,
+      auditedBatchCount: 6,
+      auditedDomainCount: 6,
       mentalHealthBatch: {
         domainId: mentalHealthTopicArticles.subject.domainId,
         requiredCount: mentalHealthTopicArticles.coverage.requiredArticleCount,
         completeCount: mentalHealthTopicArticles.coverage.materializedArticleCount,
         totalEditorialWordCount: mentalHealthTopicArticles.depth.totalEditorialWordCount,
         auditComplete: mentalHealthTopicArticles.complete
+      },
+      fullCorpus: {
+        requiredCount: completionAudit.articles.requiredCount,
+        completeCount: completionAudit.articles.materializedCount,
+        totalEditorialWordCount: completionAudit.articles.totalEditorialWordCount,
+        auditComplete: completionAudit.complete
       },
       complete: topicArticlesComplete,
       directory: matrix.topic_article_contract.directory
@@ -471,12 +514,14 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       registryPath: matrix.concept_registry_contract.path,
       exists: conceptCoverageResult.exists,
       conceptCount: conceptCoverageResult.conceptCount,
+      expectedCount: conceptCoverageResult.expectedCount,
       materializedCount: conceptCoverageResult.materializedCount,
       invalidSourceReferenceCount: conceptCoverageResult.invalidSourceReferenceCount,
+      exactCanonicalTermCoverage: conceptCoverageResult.exactCanonicalTermCoverage,
       complete: conceptsComplete
     },
     sourceRegistry: { path: matrix.source_registry_contract.path, registeredCount: sourceRegistryResult.registeredCount, validCount: sourceRegistryResult.validIds.size },
-    appliedFields: appliedRows.map((row) => ({ areaId: row.area_id, label: row.label, status: row.current_status })),
+    appliedFields: appliedRows.map((row) => ({ areaId: row.area_id, label: row.label, status: row.current_status, artifact: row.current_artifact })),
     blockersToComplete,
     currentGates: {
       canonicalSixDomainBaselineIntact: true,
@@ -499,7 +544,10 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       twentyMethodsStatisticsCompetenciesPinned: true,
       methodsStatisticsMaterializedAndAudited: methodsComplete,
       firstTwelveStandaloneTopicArticlesMaterializedAndAudited: mentalHealthTopicArticles.complete,
-      topicArticlesRemainOutsideAhaRuntime: mentalHealthTopicArticles.gates.noAhaRuntimeActivation,
+      all58StandaloneTopicArticlesMaterializedAndAudited: completionAudit.complete,
+      canonicalConceptRegistryMaterializedAndAudited: conceptsComplete,
+      sixAppliedFieldsMaterializedAndAudited: appliedComplete,
+      topicArticlesRemainOutsideAhaRuntime: completionAudit.gates.noAhaRuntimeActivation,
       allRegisteredSourcesInspectable: sourceRegistryResult.registeredCount === sourceRegistryResult.validIds.size,
       subjectNotPrematurelyComplete: statusEntry.editorialStatus === expectedState.editorialStatus && statusEntry.nextGate === expectedState.nextGate
     },

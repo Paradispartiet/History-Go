@@ -1,9 +1,9 @@
 {
   "schema": "history_go_psykologi_university_readiness_v1",
-  "version": "1.9.1",
+  "version": "2.0.0",
   "updated_at": "2026-08-12",
   "subject_id": "psykologi",
-  "status": "expansion_required_before_complete",
+  "status": "complete",
   "purpose": "Bindende universitetsnær kvalitetsmatrise for Psykologi. Matrisen skiller den eksisterende sekskapitlers canonicale fulltekstbasisen fra endelig faglig complete-status og hindrer at 6/6 kapitler eller 58/58 representerte emner alene tolkes som heldekkende universitetsnivå.",
   "authoritative_sources": [
     {
@@ -45,7 +45,10 @@
       "label": "Biologisk psykologi",
       "required": true,
       "current_status": "complete",
-      "current_anchors": ["em_psy_hjerne_kognisjon", "em_psy_nevroaffekt_regulering"],
+      "current_anchors": [
+        "em_psy_hjerne_kognisjon",
+        "em_psy_nevroaffekt_regulering"
+      ],
       "current_artifact": "data/fag/psykologi/biologisk_psykologi_university_v1.json",
       "completion_requirement": "Egen eksplisitt universitetsbredde i nevral kommunikasjon, nervesystem, hjerne-atferd, genetikk og miljø, hormoner, sanser, søvn, motivasjon og biologiske forskningsmetoder uten biologisk determinisme."
     },
@@ -54,7 +57,10 @@
       "label": "Kognitiv psykologi",
       "required": true,
       "current_status": "complete",
-      "current_anchors": ["kognisjon_folelser_atferd", "em_psy_laring_hukommelse"],
+      "current_anchors": [
+        "kognisjon_folelser_atferd",
+        "em_psy_laring_hukommelse"
+      ],
       "current_artifact": "data/fag/psykologi/kognitiv_psykologi_university_v1.json",
       "completion_requirement": "Selvstendig dybde i persepsjon, oppmerksomhet, hukommelse, språk, problemløsning, resonnering, beslutning og kognitive modeller med empiriske metoder og avgrensninger."
     },
@@ -63,7 +69,9 @@
       "label": "Utviklingspsykologi",
       "required": true,
       "current_status": "complete",
-      "current_anchors": ["utvikling_oppvekst_laring"],
+      "current_anchors": [
+        "utvikling_oppvekst_laring"
+      ],
       "current_artifact": "data/fag/psykologi/utviklingspsykologi_university_v1.json",
       "completion_requirement": "Livsløpsdekning av biologisk, kognitiv, sosial og emosjonell utvikling, sentrale teorier, utviklingsdesign, kontekst og faglig uenighet."
     },
@@ -72,7 +80,9 @@
       "label": "Sosialpsykologi",
       "required": true,
       "current_status": "complete",
-      "current_anchors": ["sosialpsykologi_normalitet_stigma"],
+      "current_anchors": [
+        "sosialpsykologi_normalitet_stigma"
+      ],
       "current_artifact": "data/fag/psykologi/sosialpsykologi_university_v1.json",
       "completion_requirement": "Selvstendig dybde i sosial kognisjon, holdninger, påvirkning, gruppeprosesser, relasjoner, identitet, fordommer, samarbeid og konflikt med metode- og replikasjonskritikk."
     },
@@ -81,7 +91,10 @@
       "label": "Personlighetspsykologi",
       "required": true,
       "current_status": "complete",
-      "current_anchors": ["em_psy_personlighet_individ", "em_psy_psykometri_maling"],
+      "current_anchors": [
+        "em_psy_personlighet_individ",
+        "em_psy_psykometri_maling"
+      ],
       "current_artifact": "data/fag/psykologi/personlighetspsykologi_university_v1.json",
       "completion_requirement": "Egen universitetsbredde i trekkmodeller, person-situasjon, utvikling og stabilitet, biologiske og sosiale perspektiver, måling, prediksjon, kultur og modellkritikk."
     },
@@ -90,7 +103,9 @@
       "label": "Psykologiens historie og vitenskapsteori",
       "required": true,
       "current_status": "complete",
-      "current_anchors": ["fagtradisjoner_teori_sinnet"],
+      "current_anchors": [
+        "fagtradisjoner_teori_sinnet"
+      ],
       "current_artifact": "data/fag/psykologi/psykologiens_historie_vitenskapsteori_university_v1.json",
       "completion_requirement": "Historisk utvikling, sentrale skoler, forklaringsnivåer, vitenskapsteoretiske problemstillinger, fagets institusjonalisering og kritisk vurdering av kunnskapsproduksjon."
     },
@@ -99,7 +114,10 @@
       "label": "Forskningsmetode og statistikk",
       "required": true,
       "current_status": "complete",
-      "current_anchors": ["em_psy_forskning_metode", "em_psy_psykometri_maling"],
+      "current_anchors": [
+        "em_psy_forskning_metode",
+        "em_psy_psykometri_maling"
+      ],
       "current_artifact": "data/fag/psykologi/metode_statistikk_psykologi_university_v1.json",
       "completion_requirement": "Egen full metode- og statistikkgren med design, måling, analyse, usikkerhet, kausalitet, replikasjon, åpen vitenskap og forskningsetikk."
     }
@@ -247,16 +265,53 @@
     "forskningsetikk"
   ],
   "applied_field_matrix": [
-    {"area_id": "clinical_health", "label": "Klinisk psykologi og helsepsykologi", "current_status": "strong_baseline_breadth_mapping_required"},
-    {"area_id": "work_organizational", "label": "Arbeids- og organisasjonspsykologi", "current_status": "expansion_required"},
-    {"area_id": "educational_school", "label": "Pedagogisk og skolepsykologi", "current_status": "partial_expansion_required"},
-    {"area_id": "culture", "label": "Kulturpsykologi", "current_status": "partial_expansion_required"},
-    {"area_id": "environment_community", "label": "Miljø- og communitypsykologi", "current_status": "expansion_required"},
-    {"area_id": "quantitative_psychometrics", "label": "Kvantitativ psykologi og psykometri", "current_status": "major_expansion_required"}
+    {
+      "area_id": "clinical_health",
+      "label": "Klinisk psykologi og helsepsykologi",
+      "current_status": "complete",
+      "current_artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
+    },
+    {
+      "area_id": "work_organizational",
+      "label": "Arbeids- og organisasjonspsykologi",
+      "current_status": "complete",
+      "current_artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
+    },
+    {
+      "area_id": "educational_school",
+      "label": "Pedagogisk og skolepsykologi",
+      "current_status": "complete",
+      "current_artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
+    },
+    {
+      "area_id": "culture",
+      "label": "Kulturpsykologi",
+      "current_status": "complete",
+      "current_artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
+    },
+    {
+      "area_id": "environment_community",
+      "label": "Miljø- og communitypsykologi",
+      "current_status": "complete",
+      "current_artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
+    },
+    {
+      "area_id": "quantitative_psychometrics",
+      "label": "Kvantitativ psykologi og psykometri",
+      "current_status": "complete",
+      "current_artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
+    }
   ],
   "source_registry_contract": {
     "path": "data/fag/psykologi/kilder_psykologi_canonical_v1.json",
-    "required_source_fields": ["id", "publisher", "title", "url", "source_location", "type"],
+    "required_source_fields": [
+      "id",
+      "publisher",
+      "title",
+      "url",
+      "source_location",
+      "type"
+    ],
     "all_source_ids_must_resolve": true,
     "external_sources_must_use_https": true,
     "internal_sources_must_resolve_to_repository_files": true
@@ -267,8 +322,25 @@
     "one_article_per_canonical_emne_id": true,
     "article_schema": "history_go_psykologi_topic_article_v1",
     "article_status_required": "complete",
-    "required_fields": ["emne_id", "title", "definition", "background", "theories_and_findings", "methods", "boundaries_and_disagreements", "examples", "source_ids"],
-    "required_quality_fields": ["learning_outcomes", "key_questions", "models_or_researchers", "claim_ids", "misuse_guard", "editorial_review"],
+    "required_fields": [
+      "emne_id",
+      "title",
+      "definition",
+      "background",
+      "theories_and_findings",
+      "methods",
+      "boundaries_and_disagreements",
+      "examples",
+      "source_ids"
+    ],
+    "required_quality_fields": [
+      "learning_outcomes",
+      "key_questions",
+      "models_or_researchers",
+      "claim_ids",
+      "misuse_guard",
+      "editorial_review"
+    ],
     "minimum_editorial_words_per_article": 550,
     "editorial_review_status_required": "approved_non_clinical_educational_use",
     "all_claim_ids_must_resolve": true,
@@ -281,7 +353,21 @@
   "concept_registry_contract": {
     "path": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
     "coverage_requirement": "100_percent_of_canonical_concepts_materialized",
-    "required_fields": ["concept_id", "label", "definition", "explanation", "not_meaning", "related_concept_ids", "models_or_researchers", "empirical_status", "example", "source_ids"]
+    "required_fields": [
+      "concept_id",
+      "label",
+      "definition",
+      "explanation",
+      "not_meaning",
+      "related_concept_ids",
+      "models_or_researchers",
+      "empirical_status",
+      "example",
+      "source_ids"
+    ],
+    "canonical_source_field": "core_concepts",
+    "expected_unique_concept_count": 136,
+    "exact_canonical_term_coverage_required": true
   },
   "completion_contract": {
     "required_editorial_status_before_final_gate": "expanded_and_audited",
@@ -303,5 +389,13 @@
       "university_readiness_audit_green"
     ],
     "complete_must_remain_false_until_all_requirements_pass": true
+  },
+  "applied_field_contract": {
+    "path": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json",
+    "schema": "history_go_psykologi_applied_fields_university_v1",
+    "required_field_count": 6,
+    "exact_area_coverage_required": true,
+    "all_emne_method_source_and_claim_ids_must_resolve": true,
+    "editorial_review_status_required": "approved_university_applied_field_coverage"
   }
 }

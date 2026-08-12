@@ -16,8 +16,8 @@ test('Psykologi traume krise resiliens og omsorg er ferdig sjette phase-4-kapitt
   assert.equal(report.summary.externalSourceCount, 20);
   assert.equal(report.subject.registeredChapterCount, 6);
   assert.equal(report.subject.targetChapterCount, 6);
-  assert.equal(report.subject.editorialStatus, 'expanded_and_audited');
-  assert.equal(report.subject.nextGate, 'university_matrix_topic_articles_concept_registry_and_methods');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.deepEqual(report.runtimePlaceIds, ['22_juli_senteret','psykologisk_institutt_uio']);
   assert.deepEqual(report.traumaCaseNames, ['Potensielt traumatisk hendelse og varierende reaksjoner','Langtidsoppfølging etter 22. juli','Sorg, tap og prolonged grief disorder','Resiliens, sosial støtte og beskyttelsesfaktorer']);
   assert.ok(Object.values(report.gates).every(Boolean));
