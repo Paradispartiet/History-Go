@@ -1,0 +1,66 @@
+name: Torggata phase 12 image candidates
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase12-people-closeout
+    paths:
+      - .github/workflows/torggata-phase12-image-candidates.yml
+
+permissions:
+  contents: write
+
+jobs:
+  candidates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          IDS='christian_morgenstierne,arne_eide,thoger_binneballe,harald_olsen,alma_fahlstrom,johan_fahlstrom,ludvig_christian_jensen,adelsten_jensen,peter_marinius_jensen,karl_a_jensen,thorvald_jensen,nanna_broch,wulff_becker,martin_heinz_zilsel,alexander_claes,therese_hurwitz,jenny_hurwitz,fredrik_hurwitz,moritz_glott'
+          npm run people:images:candidates -- --ids="$IDS" --limit=19 --max-candidates-per-person=5
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const ids = new Set('christian_morgenstierne,arne_eide,thoger_binneballe,harald_olsen,alma_fahlstrom,johan_fahlstrom,ludvig_christian_jensen,adelsten_jensen,peter_marinius_jensen,karl_a_jensen,thorvald_jensen,nanna_broch,wulff_becker,martin_heinz_zilsel,alexander_claes,therese_hurwitz,jenny_hurwitz,fredrik_hurwitz,moritz_glott'.split(','));
+          const all = JSON.parse(fs.readFileSync('data/people/people_image_candidates.json','utf8'));
+          const rows = all.filter(c => ids.has(c.personId));
+          const by = {};
+          for (const id of ids) by[id] = rows.filter(c => c.personId === id).sort((a,b)=>(a.rank||99)-(b.rank||99));
+          const report = {
+            schema: 'history_go_torggata_phase12_image_candidates_v1',
+            generated_at: '2026-08-13',
+            requested_ids: [...ids],
+            totals: {
+              requested: ids.size,
+              with_candidates: [...ids].filter(id => by[id].length).length,
+              with_strong_identity_candidate: [...ids].filter(id => by[id].some(c => c.identity?.status === 'strong')).length,
+              candidate_count: rows.length
+            },
+            candidates_by_person: by
+          };
+          fs.mkdirSync('reports/place-production',{recursive:true});
+          fs.writeFileSync('reports/place-production/torggata-phase12-image-candidates-v1.json', JSON.stringify(report,null,2)+'\n');
+          NODE
+          git restore data/people/people_image_candidates.json
+      - name: Persist report and remove workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/torggata-phase12-image-candidates.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Kartlegg Torggata fase 12 People-bildekandidater"
+          git push origin HEAD:agent/torggata-phase12-people-closeout
