@@ -3,6 +3,7 @@ const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { execFileSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
@@ -44,6 +45,14 @@ for (const [badgeId, badge] of badges) {
   }
 }
 assert.strictEqual(tierCount, 266, 'Auditen skal være låst til dagens 266 canonical tiers');
+
+const generatorOutput = execFileSync(
+  process.execPath,
+  [path.join(ROOT, 'scripts/civication-badge-career-matrix.mjs'), '--check'],
+  { cwd: ROOT, encoding: 'utf8' }
+);
+assert.match(generatorOutput, /266 tiers across 17 badges/,
+  'Badge Career Matrix-generatoren må kunne lese og validere dagens canonical kilder');
 
 const psychology = badges.get('psykologi');
 assert.ok(psychology, 'Psykologi-badge mangler');
