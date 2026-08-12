@@ -1,0 +1,131 @@
+name: Torggata phase 11 Observer Note Route closeout
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase11-observer-note-route
+    paths:
+      - .github/workflows/torggata-phase11-closeout.yml
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-persist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Close phase 11 workcard deterministically
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('reports/place-production/torggata-workcard-current.md')
+          text = path.read_text()
+
+          audit_line = '- Fase 11-audit: `reports/place-production/torggata-phase11-observer-note-route-audit-v1.json`'
+          anchor = '- Fase 10-audit: `reports/place-production/torggata-phase10-quiz-audit-v1.json`'
+          if audit_line not in text:
+              if anchor not in text:
+                  raise SystemExit('Phase 10 audit anchor missing')
+              text = text.replace(anchor, anchor + '\n' + audit_line, 1)
+
+          old_rows = '''| 11. Observer, Notat og Rute | **PÅGÅR** | neste aktive fase etter lukket fase 10 |
+          | 12–24 | **IKKE STARTET** | styres av hovedchecklisten |'''
+          new_rows = '''| 11. Observer, Notat og Rute | **GODKJENT** | eksisterende Observer-, Notat- og navigasjonsruntime auditert; historisk rute begrunnet N/A |
+          | 12. People–sted-koblinger | **PÅGÅR** | neste aktive fase; tidligere People-arbeid skal auditeres mot fase-12-kontrakten før nye profiler vurderes |
+          | 13–24 | **IKKE STARTET** | styres av hovedchecklisten |'''
+          if old_rows not in text:
+              raise SystemExit('Expected phase 11/12–24 status rows missing')
+          text = text.replace(old_rows, new_rows, 1)
+
+          if '## Fase 11 – Observer, Notat og Rute' not in text:
+              closeout = '''
+
+          ## Fase 11 – Observer, Notat og Rute
+
+          ```text
+          TIDLIGERE-ARBEID-SØK: UTFØRT
+          TIDLIGERE FASE-11-BRANCH/PR: ingen funnet
+          EKSISTERENDE EIERE: js/observations.js, js/ui/interactions.js og js/ui/place-card.js
+          HISTORISK RUTE: ingen aktiv chapter med placeId=torggata i data/routes/historical/routes_historical_oslo.json
+          BESLUTNING: CLOSEOUT EXISTING OWNERS – ingen parallell place-state og ingen rute bare for completeness
+          ```
+
+          ### Godkjent resultat
+
+          - **Observer = GODKJENT:** Torggata bruker den delte By-linsen `by_byliv`, som spør etter faktisk observerbare fenomener som opphold, gjennomgang, møteplass, kulturminne og kontrast.
+          - PlaceCard sender `targetType=place`, `subject_id=by` og `lensId=by_byliv`; `js/observations.js` beholder `hg_learning_log_v1` som eier og lagrer `observation_done` med target, lens, valgte observasjoner, emner, concepts og tags.
+          - Ingen ny Torggata-spesifikk observasjonsstate eller tekstlig kopi av Details er opprettet.
+          - **Notat = GODKJENT:** PlaceCard bruker eksisterende `handlePlaceNote(place)`. Notatet lagres som `type=place`, med `placeId=torggata` og `visibility=private` gjennom den eksisterende `userNotes/saveUserNotes`-flyten.
+          - **Vanlig Rute = GODKJENT:** `Gå Hit` bruker `showNavRouteToPlace(place)`, mens `Ruter` åpner den eksisterende rutelisten. Torggatas `routeSegments` forblir navigasjonsgeometri og er ikke historisk route-medlemskap.
+          - **Historisk rute = N/A:** aktiv Oslo-rutedata har ingen chapter med `placeId=torggata`. Det opprettes ikke en historisk rute bare for å fylle fase 11, og online/fysisk ruteprogresjon endres ikke.
+          - `tests/torggata-phase11-observer-note-route.test.mjs` låser Observer-, Notat- og Rute-eierskapet og N/A-grensen.
+          - Ingen canonical Torggata-place-data er endret i fase 11.
+
+          **Fase 11 Observer, Notat og Rute = GODKJENT.**
+
+          Neste aktive fase: **12. People–sted-koblinger**.
+          '''
+              text = text.rstrip() + closeout
+
+          path.write_text(text.rstrip() + '\n')
+          PY
+
+      - name: Validate phase 11 contract
+        run: node --test tests/torggata-phase11-observer-note-route.test.mjs
+
+      - name: Preserve phase 10 regression
+        run: node --test tests/torggata-phase10-quiz.test.mjs
+
+      - name: Preserve canonical Knowledge contract
+        run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --audit-only
+
+      - name: TypeScript hard gates
+        run: |
+          npm run typecheck:web
+          npm run typecheck:scripts
+          npm run typecheck:tools
+
+      - name: Build guard
+        run: npm run build --if-present
+
+      - name: Inspect permanent scope
+        shell: bash
+        run: |
+          echo "Runtime diff:"
+          git status --short
+          changed="$({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u | awk 'NF')"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(reports/place-production/torggata-workcard-current\.md|\.github/workflows/torggata-phase11-closeout\.yml)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected phase 11 runtime diff:"
+            echo "$unexpected"
+            exit 1
+          fi
+
+      - name: Persist validated phase 11 closeout
+        shell: bash
+        run: |
+          rm -f .github/workflows/torggata-phase11-closeout.yml
+          git add -A
+          git diff --cached --check
+          echo "Permanent phase 11 closeout diff:"
+          git diff --cached --name-status
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Godkjenn Torggata fase 11 Observer Notat Rute"
+          git push origin HEAD:agent/torggata-phase11-observer-note-route
