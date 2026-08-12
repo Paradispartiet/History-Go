@@ -46,16 +46,22 @@ jobs:
           s = s[:start] + 'const workcard = read(workcardPath);' + s[end:]
           p.write_text(s)
           PY
-      - name: Materialize and regenerate Knowledge
+      - name: Materialize, regenerate Knowledge and run writing audits
         run: |
           node scripts/materialize-torggata-phase10-quiz.mjs
           node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          node scripts/audit-quiz-production-context.mjs
+          node scripts/audit-quiz-progression.mjs
+          node scripts/audit-quiz-theory-binding.mjs
+          node scripts/audit-quiz-content-quality.mjs
+          node scripts/audit-quiz-manifest-v2.mjs
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --audit-only
       - name: Persist diagnostic filenames only
         shell: bash
         run: |
           mkdir -p reports/place-production
           {
-            echo '# Torggata phase 10 runtime diff'
+            echo '# Torggata phase 10 runtime diff after all writing audits'
             echo
             echo '## git diff --name-only'
             git diff --name-only
@@ -66,5 +72,5 @@ jobs:
           git add reports/place-production/torggata-phase10-scope-debug.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Logg Torggata fase 10-scope"
+          git commit -m "Logg full Torggata fase 10-scope"
           git push origin HEAD:agent/torggata-phase10-quiz
