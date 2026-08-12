@@ -4,7 +4,7 @@ Status: **operational runtime-guide**
 Runtimefil: `js/DomainRegistry.js`  
 Maskinkontrakt: `data/categories/category_contract.json`  
 Beslutningskontrakt: `docs/DOMAIN_CONTRACT.md`  
-Sist kontrollert: **2026-07-25**
+Sist kontrollert: **2026-08-13**
 
 Denne guiden forklarer hvordan eksisterende kode bruker DomainRegistry. Den oppretter ikke egne kategoribeslutninger.
 
@@ -114,7 +114,7 @@ Disse returverdiene er kompatibilitetsgrenser, ikke tillatelse til å lage nye p
 - `religion` er selvstendig kategori.
 - `vitenskap` omfatter også teknologi, ingeniørfag og IT.
 - `filosofi` er selvstendig fag- og runtimekategori og skal ikke normaliseres til `vitenskap`.
-- `sosial_laering` er et non-place badge og returneres ikke av kategorilistene.
+- `sosial_laering` er ikke en canonical kategori eller badge. Eventuelle legacy-forekomster er interne HG Social/Civication-namespaces og skal ikke registreres i badgeindeksen.
 - `populaerkultur`/`popkultur` er ikke toppkategori.
 
 ## Før en kategori legges til eller endres
