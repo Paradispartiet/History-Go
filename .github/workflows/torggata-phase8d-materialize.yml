@@ -1,0 +1,70 @@
+name: Torggata phase 8D materialize
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase8d-structures
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize Torggata 8D
+        run: node scripts/materialize-torggata-phase8d-structures.mjs
+
+      - name: Validate syntax and focused 8D
+        run: |
+          node --check scripts/materialize-torggata-phase8d-structures.mjs
+          node --test tests/torggata-phase8d-structures.test.mjs
+
+      - name: Preserve 8C Brands regression
+        run: node --test tests/torggata-phase8c-brands.test.mjs
+
+      - name: Preserve 8B Objects regression
+        run: node --test tests/torggata-phase8b-objects.test.mjs
+
+      - name: Preserve 8A People regression
+        run: node --test tests/torggata-phase8a-closeout.test.mjs
+
+      - name: Canonical place-round contract guard
+        run: node --test tests/place-rounds-grid-exclusivity.test.mjs
+
+      - name: TypeScript guard
+        run: npm run typecheck --if-present
+
+      - name: Build guard
+        run: npm run build --if-present
+
+      - name: Persist validated 8D batch
+        shell: bash
+        run: |
+          rm -f .github/workflows/torggata-phase8d-materialize.yml scripts/materialize-torggata-phase8d-structures.mjs
+          git add -A
+          git diff --cached --check
+          echo "Validated permanent diff:"
+          git diff --cached --name-status
+          if git diff --cached --quiet; then
+            echo "No validated changes to commit."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Godkjenn Torggata fase 8D Bygg og anlegg"
+          git push origin HEAD:agent/torggata-phase8d-structures
