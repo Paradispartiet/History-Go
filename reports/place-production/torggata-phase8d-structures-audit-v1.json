@@ -1,0 +1,72 @@
+{
+  "schema": "history_go_place_structures_audit_v1",
+  "version": "1.0.0",
+  "generated_at": "2026-08-11",
+  "place_id": "torggata",
+  "phase": "8D",
+  "result": "PASS",
+  "contract": "data/places/README_place_rounds.md#9-structures",
+  "prior_work_gate": {
+    "search_status": "completed_on_fresh_main",
+    "previous_canonical_collection": "none",
+    "inherited_candidates": [
+      "Eldorado / Torggata 9",
+      "Torggata bad / Torggata 16"
+    ],
+    "decision": "materialize_only_source-grounded_named_physical_structures"
+  },
+  "included": [
+    {
+      "id": "torggata_eldorado_torggata_9",
+      "title": "Eldorado / Torggata 9",
+      "address": "Torggata 9",
+      "reason": "Named physical culture building with independent documented history at Torggata 9.",
+      "source_urls": [
+        "https://oslobyleksikon.no/index.php?title=Eldorado",
+        "https://oslobyleksikon.no/index.php/Torggata"
+      ]
+    },
+    {
+      "id": "torggata_bad_torggata_16",
+      "title": "Torggata bad / Torggata 16",
+      "address": "Torggata 16",
+      "reason": "Named physical municipal bath complex with independent documented building history at Torggata 16.",
+      "source_urls": [
+        "https://oslobyleksikon.no/side/Torggata_bad",
+        "https://www.rockefeller.no/booking-utleie",
+        "https://www.rockefeller.no/kontakt"
+      ]
+    }
+  ],
+  "held_back": [
+    {
+      "candidate": "Rockefeller",
+      "reason": "Venue/use identity inside the Torggata bad building; a separate structure record would duplicate the same physical complex."
+    },
+    {
+      "candidate": "John Dee",
+      "reason": "Venue identity in the same Torggata 16 complex, not an independently documented building/anlegg for this round."
+    },
+    {
+      "candidate": "Strøget",
+      "reason": "Documented pedestrian passage between Torggata and Storgata, but not established in the approved source package as a named building/anlegg that should be a Torggata structure record."
+    },
+    {
+      "candidate": "Torggata south/north subplaces",
+      "reason": "Canonical subplaces are street segments; the Structures contract explicitly rejects arbitrary subpoints that are not buildings or facilities."
+    },
+    {
+      "candidate": "ordinary address buildings and shop premises",
+      "reason": "No independent named structure identity was established by the approved Torggata source base; business identities stay in Brands rather than being duplicated as structures."
+    }
+  ],
+  "duplicate_rule": "One physical building/anlegg equals one structure record even when multiple venues or businesses have occupied it.",
+  "image_policy": "No per-structure image is copied or reconstructed without a separately verified rights chain. The canonical round may use its structure icon/count fallback while retaining the real structure collection.",
+  "quota_policy": "No numeric target. The collection contains exactly the source-grounded structures that passed the contract in this audit.",
+  "runtime_expectation": {
+    "category": "by",
+    "preferred_fourth": "structures",
+    "fallback_before_8d": "images",
+    "expected_after_8d": "structures"
+  }
+}
