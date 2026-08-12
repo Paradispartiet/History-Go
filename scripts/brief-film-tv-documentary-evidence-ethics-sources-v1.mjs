@@ -19,6 +19,7 @@ const INPUT_GATE = 'television_platforms_participation_full_chapter_complete_nex
 const SOURCE_BRIEF_GATE = 'documentary_evidence_ethics_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief';
 const REPRESENTATION_SOURCE_BRIEF_GATE = 'representation_position_counterimages_source_brief_complete_full_chapter_production';
+const REPRESENTATION_FULLTEXT_GATE = 'representation_position_counterimages_full_chapter_complete_next_unit_source_brief';
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`);
@@ -223,8 +224,8 @@ export function buildFilmTvDocumentaryEvidenceEthicsSourceBriefV1() {
 
 export function auditFilmTvDocumentaryEvidenceEthicsSourceBriefV1({ writeFiles=false, checkFiles=true }={}) {
   const currentGate=read(P.status).subjects.find((row)=>row.id==='film_tv')?.nextGate;
-  assert([INPUT_GATE,SOURCE_BRIEF_GATE,FULLTEXT_GATE,REPRESENTATION_SOURCE_BRIEF_GATE].includes(currentGate),`Uventet Film & TV-port: ${currentGate}`);
-  if([FULLTEXT_GATE,REPRESENTATION_SOURCE_BRIEF_GATE].includes(currentGate)){const brief=read(P.brief);const report=read(P.report);assert(brief.status==='source_claim_brief_consumed_by_verified_chapter','Dokumentarbriefen skal være konsumert etter fulltekstporten');assert(brief.runtime_registration.registered===true&&brief.runtime_registration.chapter_id===UNIT_ID,'Dokumentarbriefen mangler kapittelregistrering');assert(report.status==='source_claim_brief_consumed_by_verified_chapter'&&Object.values(report.gates).every(Boolean),'Dokumentarbriefens etteraudit er ikke grønn');return{brief,report,registry:read(P.registry),status:read(P.status),unit:read(P.plan).planned_units.find((row)=>row.id===UNIT_ID),topicBriefs:brief.topic_briefs,plannedClaims:brief.topic_briefs.flatMap((row)=>row.planned_claims)};}
+  assert([INPUT_GATE,SOURCE_BRIEF_GATE,FULLTEXT_GATE,REPRESENTATION_SOURCE_BRIEF_GATE, REPRESENTATION_FULLTEXT_GATE].includes(currentGate),`Uventet Film & TV-port: ${currentGate}`);
+  if([FULLTEXT_GATE,REPRESENTATION_SOURCE_BRIEF_GATE, REPRESENTATION_FULLTEXT_GATE].includes(currentGate)){const brief=read(P.brief);const report=read(P.report);assert(brief.status==='source_claim_brief_consumed_by_verified_chapter','Dokumentarbriefen skal være konsumert etter fulltekstporten');assert(brief.runtime_registration.registered===true&&brief.runtime_registration.chapter_id===UNIT_ID,'Dokumentarbriefen mangler kapittelregistrering');assert(report.status==='source_claim_brief_consumed_by_verified_chapter'&&Object.values(report.gates).every(Boolean),'Dokumentarbriefens etteraudit er ikke grønn');return{brief,report,registry:read(P.registry),status:read(P.status),unit:read(P.plan).planned_units.find((row)=>row.id===UNIT_ID),topicBriefs:brief.topic_briefs,plannedClaims:brief.topic_briefs.flatMap((row)=>row.planned_claims)};}
   const built=buildFilmTvDocumentaryEvidenceEthicsSourceBriefV1();const outputs={[P.brief]:built.brief,[P.report]:built.report,[P.registry]:built.registry,[P.status]:built.status};
   if(writeFiles)for(const[file,value]of Object.entries(outputs))write(file,value);if(checkFiles)for(const[file,value]of Object.entries(outputs))assert(isDeepStrictEqual(read(file),value),`${file} er utdatert`);assert(Object.values(built.report.gates).every(Boolean),'Minst én dokumentarbriefport feiler');return built;
 }

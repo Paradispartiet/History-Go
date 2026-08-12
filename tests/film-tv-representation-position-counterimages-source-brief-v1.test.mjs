@@ -11,7 +11,8 @@ test('sjuende planenhet har komplett og deterministisk kilde- og claimbrief', ()
     planned_claim_count: 38,
     planned_claim_counts_by_emne: [4, 4, 4, 3, 4, 4, 4, 4, 3, 4],
     proposed_module_count: 4,
-    registered_chapter_count_delta: 0
+    registered_chapter_count_delta: 1,
+    resolved_claim_count: 38
   });
   assert.ok(Object.values(result.report.gates).every(Boolean));
 });
@@ -53,13 +54,14 @@ test('samisk skjermsuverenitet har protokoll, institusjon, form og verksevidens'
   assert.equal(result.brief.production_requirements.sami_and_indigenous_cases_must_audit_narrative_self_determination_consultation_credit_language_and_control, true);
 });
 
-test('kapitlet forblir uregistrert til fulltekst- og evidensaudit', () => {
+test('kapitlet ble registrert først etter fulltekst- og evidensaudit', () => {
   const result = auditFilmTvRepresentationPositionCounterimagesSourceBriefV1();
-  assert.ok(result.plannedClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'));
-  assert.equal(result.brief.runtime_registration.registered, false);
-  assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'representasjon-posisjon-og-motbilder'), false);
+  assert.ok(result.plannedClaims.every((claim) => claim.status === 'resolved_to_verified_claim' && claim.final_claim_id === claim.id));
+  assert.equal(result.brief.runtime_registration.registered, true);
+  assert.equal(result.brief.runtime_registration.registration_after_full_chapter_gate, true);
+  assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'representasjon-posisjon-og-motbilder'), true);
   assert.equal(result.registry.subjects.film_tv.canonicalModel.seventhSourceClaimBrief, 'data/fag/TV_og_Film/film_tv_representation_position_counterimages_source_claim_brief_v1.json');
-  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'representation_position_counterimages_source_brief_complete_full_chapter_production');
+  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'representation_position_counterimages_full_chapter_complete_next_unit_source_brief');
 });
 
 test('naboområdene forblir eksplisitt utenfor enheten', () => {
