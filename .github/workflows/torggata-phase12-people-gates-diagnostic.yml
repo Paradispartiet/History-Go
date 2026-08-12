@@ -1,0 +1,33 @@
+name: Torggata phase 12 People gates diagnostic
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase12-people-links
+    paths:
+      - .github/workflows/torggata-phase12-people-gates-diagnostic.yml
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Audit people of places
+        run: npm run audit:people-of-places
+      - name: Audit people images
+        if: always()
+        run: npm run people:images:audit
+      - name: Check Civication history people
+        if: always()
+        run: npm run civication:history-people:check
+      - name: Validate Torggata phase 8A closeout
+        if: always()
+        run: node --test tests/torggata-phase8a-closeout.test.mjs
