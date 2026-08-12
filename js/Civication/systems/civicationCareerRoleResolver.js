@@ -26,6 +26,7 @@
     controller: 'naer_controller',
     avdelingsleder: 'naer_avdelingsleder',
     mellomleder: 'naer_mellomleder',
+    barnehageassistent: 'sosial_laering_barnehageassistent',
     by_assistent: 'by_assistent',
     by_saksbehandler: 'by_saksbehandler',
     by_radgiver_plan: 'by_radgiver_plan',
@@ -50,6 +51,8 @@
     naer_controller: 'controller',
     naer_avdelingsleder: 'avdelingsleder',
     naer_mellomleder: 'mellomleder',
+    barnehageassistent: 'barnehageassistent',
+    sosial_laering_barnehageassistent: 'barnehageassistent',
     by_assistent: 'by_assistent',
     by_saksbehandler: 'by_saksbehandler',
     by_radgiver_plan: 'by_radgiver_plan',
@@ -70,29 +73,24 @@
     ekspeditor: 'ekspeditor',
     butikkmedarbeider: 'ekspeditor',
     ekspeditor_butikkmedarbeider: 'ekspeditor',
-
     lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider',
     renholder: 'renholder',
     okonomi_og_administrasjonsmedarbeider: 'administrasjonsmedarbeider',
     administrasjonsmedarbeider: 'administrasjonsmedarbeider',
     fagarbeider: 'fagarbeider',
-
     skiftleder: 'formann',
     formann: 'formann',
     arbeidsleder: 'formann',
     formann_arbeidsleder: 'formann',
-
     controller: 'controller',
     finansanalytiker: 'controller',
     okonomi_og_finanssjef: 'controller',
     finansdirektor: 'controller',
-
     avdelingsleder: 'avdelingsleder',
     driftsleder: 'avdelingsleder',
     produksjonsleder: 'avdelingsleder',
     butikksjef_enhetsleder: 'avdelingsleder',
     daglig_leder: 'avdelingsleder',
-
     grunder: 'mellomleder',
     bedriftseier: 'mellomleder',
     konserndirektor: 'mellomleder',
@@ -101,6 +99,10 @@
     kapitalforvalter: 'mellomleder',
     industribygger: 'mellomleder',
     industrieier: 'mellomleder'
+  };
+
+  const SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE = {
+    barnehageassistent_pedagogisk_medarbeider: 'barnehageassistent'
   };
 
   const BY_ROLE_SCOPE_BY_TITLE = {
@@ -176,6 +178,12 @@
       if (titleKey.includes('arkitekt')) return 'by_arkitekt';
     }
 
+    if (careerId === 'sosial_laering') {
+      if (roleKey === 'barnehageassistent' || roleKey.includes('barnehageassistent')) return 'barnehageassistent';
+      if (SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE[titleKey]) return SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE[titleKey];
+      if (titleKey.includes('barnehageassistent') || titleKey.includes('pedagogisk_medarbeider')) return 'barnehageassistent';
+    }
+
     if (careerId === 'naeringsliv') {
       if (roleKey === 'ekspeditor' || roleKey.includes('ekspedit') || roleKey.includes('butikk')) return 'ekspeditor';
       if (roleKey === 'lager_og_driftsmedarbeider' || roleKey.includes('lager_og_driftsmedarbeider')) return 'lager_og_driftsmedarbeider';
@@ -187,9 +195,7 @@
       if (roleKey === 'controller' || roleKey.includes('controller')) return 'controller';
       if (roleKey === 'avdelingsleder' || roleKey.includes('avdelingsleder')) return 'avdelingsleder';
       if (roleKey === 'mellomleder' || roleKey.includes('mellomleder')) return 'mellomleder';
-
       if (NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey]) return NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey];
-
       if (titleKey.includes('ekspedit') || titleKey.includes('butikkmedarbeider')) return 'ekspeditor';
       if (titleKey.includes('renholder') || titleKey.includes('renhold')) return 'renholder';
       if (titleKey.includes('lager')) return 'arbeider';
@@ -232,6 +238,7 @@
     if (roleKey.includes('by_radgiver_plan')) return 'by_radgiver_plan';
     if (roleKey.includes('by_prosjektleder')) return 'by_prosjektleder';
     if (roleKey.includes('by_arkitekt')) return 'by_arkitekt';
+    if (roleKey.includes('barnehageassistent')) return 'barnehageassistent';
     if (roleKey.includes('ekspeditor') || roleKey.includes('butikk')) return 'ekspeditor';
     if (roleKey.includes('lager_og_driftsmedarbeider')) return 'lager_og_driftsmedarbeider';
     if (roleKey.includes('renholder')) return 'renholder';
@@ -248,10 +255,8 @@
   function resolveCareerRoleId(activePosition) {
     const roleScope = resolveCareerRoleScope(activePosition);
     if (ROLE_ID_BY_SCOPE[roleScope]) return ROLE_ID_BY_SCOPE[roleScope];
-
     const roleId = slugify(activePosition?.role_id);
     if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return roleId;
-
     return null;
   }
 
@@ -261,12 +266,7 @@
     const role_key = role_scope && role_scope !== 'unknown'
       ? role_scope
       : slugify(activePosition?.role_key || activePosition?.title || '') || null;
-
-    return {
-      role_scope,
-      role_id,
-      role_key
-    };
+    return { role_scope, role_id, role_key };
   }
 
   const api = { resolveCareerRoleScope, resolveCareerRoleId, resolveCareerRole };
