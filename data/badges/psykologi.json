@@ -8,55 +8,117 @@
   "tiers": [
     {
       "label": "Titter",
-      "threshold": 5
+      "threshold": 5,
+      "career_offer": {
+        "policy": "not_job",
+        "audit_action": "replace"
+      }
     },
     {
       "label": "Analytiker",
-      "threshold": 10
+      "threshold": 10,
+      "career_offer": {
+        "policy": "review_required",
+        "audit_action": "replace"
+      }
     },
     {
       "label": "Atferdsobservatør",
-      "threshold": 15
+      "threshold": 15,
+      "career_offer": {
+        "policy": "not_job",
+        "audit_action": "replace"
+      }
     },
     {
       "label": "Samtalepartner",
-      "threshold": 25
+      "threshold": 25,
+      "career_offer": {
+        "policy": "not_job",
+        "audit_action": "replace"
+      }
     },
     {
       "label": "Veileder",
-      "threshold": 40
+      "threshold": 40,
+      "career_offer": {
+        "policy": "direct"
+      }
     },
     {
       "label": "Rådgiver",
-      "threshold": 60
+      "threshold": 60,
+      "career_offer": {
+        "policy": "direct"
+      }
     },
     {
       "label": "Seniorrådgiver",
-      "threshold": 85
+      "threshold": 85,
+      "career_offer": {
+        "policy": "direct"
+      }
     },
     {
       "label": "Psykolog",
-      "threshold": 115
+      "threshold": 115,
+      "career_offer": {
+        "policy": "authorization_required",
+        "qualification_ids": [
+          "no_psychologist_authorization_or_license"
+        ]
+      }
     },
     {
       "label": "Spesialistpsykolog",
-      "threshold": 150
+      "threshold": 150,
+      "career_offer": {
+        "policy": "authorization_required",
+        "qualification_ids": [
+          "no_psychologist_authorization_or_license",
+          "no_psychologist_specialist_approval"
+        ]
+      }
     },
     {
       "label": "Fagansvarlig",
-      "threshold": 190
+      "threshold": 190,
+      "career_offer": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      }
     },
     {
       "label": "Klinikkleder",
-      "threshold": 240
+      "threshold": 240,
+      "career_offer": {
+        "policy": "appointment_required",
+        "qualification_ids": [
+          "employer_appointment"
+        ]
+      }
     },
     {
       "label": "Forsker (psykologi)",
-      "threshold": 300
+      "threshold": 300,
+      "career_offer": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ]
+      }
     },
     {
       "label": "Professor (psykologi)",
-      "threshold": 380
+      "threshold": 380,
+      "career_offer": {
+        "policy": "qualification_required",
+        "qualification_ids": [
+          "academic_qualification_and_employment"
+        ]
+      }
     }
   ],
   "sub": [

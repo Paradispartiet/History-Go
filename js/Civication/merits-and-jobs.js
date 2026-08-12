@@ -30,6 +30,103 @@ async function ensureCivicationBadgesLoaded() {
   window.BADGES = Array.isArray(window.BADGES) ? window.BADGES : [];
 }
 
+function findBadgeTierForCareerOffer(offer) {
+  const careerId = String(offer?.career_id || "").trim();
+  const title = String(offer?.title || "").trim();
+  if (!careerId || !title || !Array.isArray(window.BADGES)) return null;
+
+  const badge = window.BADGES.find(function (candidate) {
+    return String(candidate?.id || "").trim() === careerId;
+  });
+  if (!badge || !Array.isArray(badge.tiers)) return null;
+
+  const tier = badge.tiers.find(function (candidate) {
+    return String(candidate?.label || "").trim() === title;
+  });
+  return tier ? { badge, tier } : null;
+}
+
+function hasCareerQualifications(qualificationIds) {
+  const ids = Array.isArray(qualificationIds)
+    ? qualificationIds.map(id => String(id || "").trim()).filter(Boolean)
+    : [];
+  if (!ids.length) return false;
+
+  const qualifications = window.CivicationQualifications;
+  if (typeof qualifications?.hasAll === "function") {
+    try { return qualifications.hasAll(ids) === true; } catch {}
+  }
+  if (typeof qualifications?.has === "function") {
+    try { return ids.every(id => qualifications.has(id) === true); } catch {}
+  }
+  return false;
+}
+
+function evaluateCareerOfferPolicy(offer) {
+  const resolved = findBadgeTierForCareerOffer(offer);
+  if (!resolved) {
+    // Legacy/andre tilbud uten canonical Badge-tier endres ikke av denne porten.
+    return { ok: true, reason: "no_badge_tier_policy" };
+  }
+
+  const careerOffer = resolved.tier?.career_offer;
+  const policy = String(careerOffer?.policy || "direct").trim();
+  const qualificationIds = Array.isArray(careerOffer?.qualification_ids)
+    ? careerOffer.qualification_ids.map(id => String(id || "").trim()).filter(Boolean)
+    : [];
+
+  if (!policy || policy === "direct") {
+    return { ok: true, reason: "direct", policy, qualification_ids: [] };
+  }
+  if (policy === "not_job") {
+    return { ok: false, reason: "career_not_job", policy, qualification_ids: [] };
+  }
+  if (policy === "review_required") {
+    return { ok: false, reason: "career_review_required", policy, qualification_ids: [] };
+  }
+
+  const gatedPolicies = new Set([
+    "qualification_required",
+    "authorization_required",
+    "appointment_required"
+  ]);
+  if (!gatedPolicies.has(policy)) {
+    // Ukjent policy skal aldri kunne bli en skjult bypass.
+    return { ok: false, reason: "career_policy_unknown", policy, qualification_ids: qualificationIds };
+  }
+
+  if (!hasCareerQualifications(qualificationIds)) {
+    return {
+      ok: false,
+      reason: "career_qualification_required",
+      policy,
+      qualification_ids: qualificationIds
+    };
+  }
+
+  return { ok: true, reason: "qualification_passed", policy, qualification_ids: qualificationIds };
+}
+
+const careerOfferGatedJobs = new WeakSet();
+
+function installCareerOfferGate() {
+  const jobs = window.CivicationJobs;
+  if (!jobs || typeof jobs.pushOffer !== "function" || careerOfferGatedJobs.has(jobs)) return;
+
+  const originalPushOffer = jobs.pushOffer.bind(jobs);
+  jobs.pushOffer = function (offer) {
+    const gate = evaluateCareerOfferPolicy(offer);
+    if (!gate.ok) {
+      return { ok: false, reason: gate.reason, career_offer_gate: gate };
+    }
+    return originalPushOffer(offer);
+  };
+  careerOfferGatedJobs.add(jobs);
+}
+
+installCareerOfferGate();
+window.evaluateCareerOfferPolicy = evaluateCareerOfferPolicy;
+
 function qualifiesForTierWithCross(careerId, tierIndex) {
   const career = Array.isArray(window.HG_CAREERS)
     ? /** @type {Array<{ career_id?: string | number, cross_requirements?: Record<string, Array<{ badge: string, min_tier: number }>> }>} */ (window.HG_CAREERS)
@@ -74,6 +171,7 @@ function hgPushJobOffer(badge, tier, newPoints) {
     return { ok: false, reason: "invalid_offer" };
   }
 
+  installCareerOfferGate();
   return window.CivicationJobs?.pushOffer?.({
     career_id: badgeId,
     career_name: badgeName,
@@ -85,6 +183,7 @@ function hgPushJobOffer(badge, tier, newPoints) {
 
 async function rebuildJobOffersFromCurrentMerits() {
   await ensureCivicationBadgesLoaded();
+  installCareerOfferGate();
 
   if (window.CivicationJobs?.canReceiveNewOffers &&
       !window.CivicationJobs.canReceiveNewOffers()) {
@@ -143,6 +242,7 @@ async function rebuildJobOffersFromCurrentMerits() {
 // Oppdater "stilling" ved ny poengsum (tiers = karrierestige)
 async function updateMeritLevel(cat, oldPoints, newPoints) {
   await ensureCivicationBadgesLoaded();
+  installCareerOfferGate();
 
   const catId = String(cat || "").trim();
   const badge = BADGES.find(function (b) {
@@ -186,8 +286,15 @@ async function updateMeritLevel(cat, oldPoints, newPoints) {
   const pushed = hgPushJobOffer(badge, next, newPoints);
 
   if (!/** @type {{ ok?: boolean, reason?: string }} */ (pushed)?.ok) {
-    if (/** @type {{ ok?: boolean, reason?: string }} */ (pushed)?.reason === "active_job") {
+    const reason = /** @type {{ ok?: boolean, reason?: string }} */ (pushed)?.reason;
+    if (reason === "active_job") {
       showToast("📌 Du har allerede en aktiv jobb.");
+    } else if (reason === "career_not_job") {
+      showToast("🏅 Badge-nivået er nådd, men dette nivået er ikke en Civication-jobb.");
+    } else if (reason === "career_review_required") {
+      showToast("🏅 Badge-nivået er nådd. Jobbtittelen må faglig avklares før den kan tilbys.");
+    } else if (reason === "career_qualification_required") {
+      showToast("🔒 Badge-nivået er nådd, men stillingen krever egen kvalifikasjon, autorisasjon eller utnevnelse.");
     }
     return;
   }
