@@ -339,7 +339,7 @@ async function addCompletedQuizAndMaybePoint(categoryDisplay, quizId) {
       window.updateSocialMatchIndex({ reason: "quiz_completed", categoryId: badgeId, quizId });
     }
     if (typeof window.checkSharedQuizOpportunities === "function") {
-      window.checkSharedQuizOpportunities(quizId, { categoryId: badgeId, quizId });
+      window.checkSharedQuizOpportunities(quizId, { categoryId: badgeId });
     }
   } catch (err) {
     console.warn("[HG Social] quiz integration failed", err);
