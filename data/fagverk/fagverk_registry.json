@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.84.0",
-  "updatedAt": "2026-08-11",
+  "version": "2.89.0",
+  "updatedAt": "2026-08-12",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
     "genericForAllCanonicalPlaces": true,
@@ -2697,13 +2697,15 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Film & TVs variable canon har 192 emner. Filmhistorie, bevegelser og historiografi er registrert etter fulltekstporten. Fjernsyn, plattformer og deltakerhistorier har nå en egen kilde- og claimbrief for 8 canonicale emner med 20 inspectable bibliotek-, arkiv-, museums-, kringkastings-, regulator-, statistikk- og primærkilder, 19 sending-, format-, institusjons-, hjemmefilm- og plattformcase og 31 variabelt fordelte claimplaner. Claimplanene er uverifiserte, og kapitlet er ikke runtime-registrert. Neste port er fulltekst med avsnittsnivå claimtrace og ny audit; omfanget følger problemgrensene, ikke en kvote.",
+        "note": "Film & TVs variable canon har 192 emner. Representasjon, posisjon og motbilder er registrert etter fulltekst-, claim- og evidensport med 10 canonicale emner, 4 moduler, 10 emneeide seksjoner, 38 claimsporede avsnitt, 38/38 verifiserte claims, 25 brukte inspectable kilder, 21 case og 2 canonicale anvendelsessteder. Kapitlet sperrer visuell identitetsinferens og auditerer samisk og urfolks skjermsuverenitet gjennom fortelling, bilde, språk, kilder, kreditering, produksjon, finansiering og sirkulasjon. Neste port er kilde- og claimbrief for Skjermoffentlighet, fellesskap og samfunn; omfanget følger problemgrensene, ikke en kvote.",
         "learningOrderPlan": "data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json",
         "firstSourceClaimBrief": "data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json",
         "secondSourceClaimBrief": "data/fag/TV_og_Film/film_tv_narrative_viewpoint_genre_source_claim_brief_v1.json",
         "thirdSourceClaimBrief": "data/fag/TV_og_Film/film_tv_seriality_format_adaptation_source_claim_brief_v1.json",
         "fourthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_history_movements_historiography_source_claim_brief_v1.json",
-        "fifthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_television_platforms_participation_source_claim_brief_v1.json"
+        "fifthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_television_platforms_participation_source_claim_brief_v1.json",
+        "sixthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_documentary_evidence_ethics_source_claim_brief_v1.json",
+        "seventhSourceClaimBrief": "data/fag/TV_og_Film/film_tv_representation_position_counterimages_source_claim_brief_v1.json"
       },
       "chapters": [
         {
@@ -2844,6 +2846,72 @@
           ],
           "claimsFile": "data/fagverk/film_tv/filmhistorie-bevegelser-og-historiografi/claims.json",
           "briefFile": "data/fagverk/film_tv/filmhistorie-bevegelser-og-historiografi/brief.json"
+        },
+        {
+          "id": "fjernsyn-plattformer-og-deltakerhistorier",
+          "title": "Fjernsyn, plattformer og deltakerhistorier: hvordan signaler, tjenester og bilder blir historie",
+          "subtitle": "Fra norsk sendestart og global direktesamtidighet til hjemmevideo, motarkiver og hybride plattformoverganger",
+          "file": "data/fagverk/film_tv/fjernsyn-plattformer-og-deltakerhistorier.json",
+          "primary_domain_id": "film_tv_historie_historiografi",
+          "emne_ids": [
+            "em_film_tv_amatorfilm_hjemmevideo_og_deltakerhistorie",
+            "em_film_tv_direktesendt_samtidighet_som_tv_historie",
+            "em_film_tv_dokumentarhistorier_og_sannhetsregimer",
+            "em_film_tv_glemte_forlop_og_historiografisk_revisjon",
+            "em_film_tv_kommersiell_tv_kabel_og_satellitt",
+            "em_film_tv_kringkastingsfjernsynets_historie",
+            "em_film_tv_stromming_og_fjernsynets_plattformovergang",
+            "em_film_tv_video_hjemmemedier_og_digital_omveltning"
+          ],
+          "claimsFile": "data/fagverk/film_tv/fjernsyn-plattformer-og-deltakerhistorier/claims.json",
+          "briefFile": "data/fagverk/film_tv/fjernsyn-plattformer-og-deltakerhistorier/brief.json"
+        },
+        {
+          "id": "dokumentar-evidens-og-etikk",
+          "title": "Dokumentar, evidens og etikk: hvordan virkelighetsbilder blir påstander og ansvar",
+          "subtitle": "Fra direkte- og nyhetsbilder til essayfilm, staging, found footage, reality, syntetiske bilder og traumebevisst vitnesbyrd",
+          "file": "data/fagverk/film_tv/dokumentar-evidens-og-etikk.json",
+          "primary_domain_id": "dokumentar_virkelighetsformer_etikk",
+          "emne_ids": [
+            "em_film_tv_arkivdokumentar_found_footage_og_ombruk",
+            "em_film_tv_direktebilde_og_evidens",
+            "em_film_tv_dokumentar_etikk_og_deltakeransvar",
+            "em_film_tv_dokumentar_sannhet_og_evidens",
+            "em_film_tv_dokumentarformer_tradisjoner_og_moduser",
+            "em_film_tv_dokumentarisk_sted_og_evidens",
+            "em_film_tv_essayfilm_subjektivitet_og_audiovisuelt_argument",
+            "em_film_tv_hverdagsdokumentasjon_og_amatorkultur",
+            "em_film_tv_iscenesettelse_og_virkelighetskrav",
+            "em_film_tv_observasjon_deltakelse_refleksivitet_og_performance",
+            "em_film_tv_reality_observasjon_og_formatmakt",
+            "em_film_tv_rekonstruksjon_animasjon_og_syntetiske_dokumentarbilder",
+            "em_film_tv_tv_nyhetsbilde_og_evidens",
+            "em_film_tv_virkelighetsbilde_og_evidenspastand",
+            "em_film_tv_vitnesbyrd_traume_og_dokumentarisk_ansvar"
+          ],
+          "claimsFile": "data/fagverk/film_tv/dokumentar-evidens-og-etikk/claims.json",
+          "briefFile": "data/fagverk/film_tv/dokumentar-evidens-og-etikk/brief.json"
+        },
+        {
+          "id": "representasjon-posisjon-og-motbilder",
+          "title": "Representasjon, posisjon og motbilder: hvem får synlighet, autoritet og kontroll",
+          "subtitle": "Fra blikk, interseksjonalitet, klasse og queer normkritikk til ableisme, motarkiv og samisk skjermsuverenitet",
+          "file": "data/fagverk/film_tv/representasjon-posisjon-og-motbilder.json",
+          "primary_domain_id": "samfunn_representasjon_identitet_makt",
+          "emne_ids": [
+            "em_film_tv_funksjonsvariasjon_ableisme_og_tilgjengelighet",
+            "em_film_tv_interseksjonalitet_posisjonalitet_og_metode",
+            "em_film_tv_kjonn_feministisk_filmanalyse_og_skjermmakt",
+            "em_film_tv_klasse_arbeid_ulikhet_og_sosial_mobilitet",
+            "em_film_tv_koloniale_blikk_dekolonisering_og_motbilder",
+            "em_film_tv_rasialisering_etnisitet_hvithet_og_stereotypi",
+            "em_film_tv_representasjon_identitet_og_makt",
+            "em_film_tv_seksualitet_queer_representasjon_og_normkritikk",
+            "em_film_tv_synlighet_fravaer_og_frasortering",
+            "em_film_tv_urfolk_samisk_skjermkultur_og_suverenitet"
+          ],
+          "claimsFile": "data/fagverk/film_tv/representasjon-posisjon-og-motbilder/claims.json",
+          "briefFile": "data/fagverk/film_tv/representasjon-posisjon-og-motbilder/brief.json"
         }
       ]
     }

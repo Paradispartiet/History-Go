@@ -11,7 +11,8 @@ test('femte planenhet har komplett og deterministisk kilde- og claimbrief', () =
     planned_claim_count: 31,
     planned_claim_counts_by_emne: [4, 4, 4, 4, 3, 4, 4, 4],
     proposed_module_count: 3,
-    registered_chapter_count_delta: 0
+    registered_chapter_count_delta: 1,
+    resolved_claim_count: 31
   });
   assert.ok(Object.values(result.report.gates).every(Boolean));
 });
@@ -44,12 +45,13 @@ test('alle casekilder er tilgjengelige i emnet som bruker caset', () => {
   }
 });
 
-test('briefen venter med kapittelregistrering til fulltekst- og evidensaudit', () => {
+test('briefen dokumenterer registrering først etter fulltekst- og evidensaudit', () => {
   const result = auditFilmTvTelevisionPlatformsParticipationSourceBriefV1();
-  assert.ok(result.plannedClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'));
-  assert.equal(result.brief.runtime_registration.registered, false);
-  assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'fjernsyn-plattformer-og-deltakerhistorier'), false);
-  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'television_platforms_participation_source_brief_complete_full_chapter_production');
+  assert.ok(result.plannedClaims.every((claim) => claim.status === 'resolved_to_verified_claim' && claim.final_claim_id === claim.id));
+  assert.equal(result.brief.runtime_registration.registered, true);
+  assert.equal(result.brief.runtime_registration.registration_after_full_chapter_gate, true);
+  assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'fjernsyn-plattformer-og-deltakerhistorier'), true);
+  assert.ok(['television_platforms_participation_full_chapter_complete_next_unit_source_brief', 'documentary_evidence_ethics_source_brief_complete_full_chapter_production', 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief', 'representation_position_counterimages_source_brief_complete_full_chapter_production', 'representation_position_counterimages_full_chapter_complete_next_unit_source_brief'].includes(result.status.subjects.find((row) => row.id === 'film_tv').nextGate));
 });
 
 test('naboområdene forblir eksplisitt utenfor enheten', () => {

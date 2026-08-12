@@ -37,6 +37,14 @@ on:
       - "scripts/materialize-film-tv-history-movements-historiography-fulltext-v1.mjs"
       - "scripts/audit-film-tv-history-movements-historiography-fulltext-v1.mjs"
       - "scripts/brief-film-tv-television-platforms-participation-sources-v1.mjs"
+      - "scripts/materialize-film-tv-television-platforms-participation-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-television-platforms-participation-fulltext-v1.mjs"
+      - "scripts/brief-film-tv-documentary-evidence-ethics-sources-v1.mjs"
+      - "scripts/materialize-film-tv-documentary-evidence-ethics-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-documentary-evidence-ethics-fulltext-v1.mjs"
+      - "scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs"
+      - "scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
@@ -56,6 +64,11 @@ on:
       - "tests/film-tv-history-movements-historiography-source-brief-v1.test.mjs"
       - "tests/film-tv-history-movements-historiography-fulltext-v1.test.mjs"
       - "tests/film-tv-television-platforms-participation-source-brief-v1.test.mjs"
+      - "tests/film-tv-television-platforms-participation-fulltext-v1.test.mjs"
+      - "tests/film-tv-documentary-evidence-ethics-source-brief-v1.test.mjs"
+      - "tests/film-tv-documentary-evidence-ethics-fulltext-v1.test.mjs"
+      - "tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs"
+      - "tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
@@ -86,6 +99,14 @@ on:
       - "scripts/materialize-film-tv-history-movements-historiography-fulltext-v1.mjs"
       - "scripts/audit-film-tv-history-movements-historiography-fulltext-v1.mjs"
       - "scripts/brief-film-tv-television-platforms-participation-sources-v1.mjs"
+      - "scripts/materialize-film-tv-television-platforms-participation-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-television-platforms-participation-fulltext-v1.mjs"
+      - "scripts/brief-film-tv-documentary-evidence-ethics-sources-v1.mjs"
+      - "scripts/materialize-film-tv-documentary-evidence-ethics-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-documentary-evidence-ethics-fulltext-v1.mjs"
+      - "scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs"
+      - "scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs"
       - "tests/fagverk-film-tv-phase3.test.mjs"
       - "tests/film-tv-curriculum-completeness-v1.test.mjs"
       - "tests/film-tv-legacy-emne-classification-v1.test.mjs"
@@ -102,6 +123,11 @@ on:
       - "tests/film-tv-history-movements-historiography-source-brief-v1.test.mjs"
       - "tests/film-tv-history-movements-historiography-fulltext-v1.test.mjs"
       - "tests/film-tv-television-platforms-participation-source-brief-v1.test.mjs"
+      - "tests/film-tv-television-platforms-participation-fulltext-v1.test.mjs"
+      - "tests/film-tv-documentary-evidence-ethics-source-brief-v1.test.mjs"
+      - "tests/film-tv-documentary-evidence-ethics-fulltext-v1.test.mjs"
+      - "tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs"
+      - "tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
   workflow_dispatch:
@@ -140,6 +166,14 @@ jobs:
           node --check scripts/materialize-film-tv-history-movements-historiography-fulltext-v1.mjs
           node --check scripts/audit-film-tv-history-movements-historiography-fulltext-v1.mjs
           node --check scripts/brief-film-tv-television-platforms-participation-sources-v1.mjs
+          node --check scripts/materialize-film-tv-television-platforms-participation-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-television-platforms-participation-fulltext-v1.mjs
+          node --check scripts/brief-film-tv-documentary-evidence-ethics-sources-v1.mjs
+          node --check scripts/materialize-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
+          node --check scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs
+          node --check scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-film-tv-phase3.mjs
@@ -162,6 +196,14 @@ jobs:
           node scripts/materialize-film-tv-history-movements-historiography-fulltext-v1.mjs
           node scripts/audit-film-tv-history-movements-historiography-fulltext-v1.mjs
           node scripts/brief-film-tv-television-platforms-participation-sources-v1.mjs
+          node scripts/materialize-film-tv-television-platforms-participation-fulltext-v1.mjs
+          node scripts/audit-film-tv-television-platforms-participation-fulltext-v1.mjs
+          node scripts/brief-film-tv-documentary-evidence-ethics-sources-v1.mjs
+          node scripts/materialize-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
+          node scripts/audit-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
+          node scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs
+          node scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs
+          node scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk and Film og TV contracts
         run: |
@@ -183,4 +225,9 @@ jobs:
           node --test tests/film-tv-history-movements-historiography-source-brief-v1.test.mjs
           node --test tests/film-tv-history-movements-historiography-fulltext-v1.test.mjs
           node --test tests/film-tv-television-platforms-participation-source-brief-v1.test.mjs
+          node --test tests/film-tv-television-platforms-participation-fulltext-v1.test.mjs
+          node --test tests/film-tv-documentary-evidence-ethics-source-brief-v1.test.mjs
+          node --test tests/film-tv-documentary-evidence-ethics-fulltext-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
