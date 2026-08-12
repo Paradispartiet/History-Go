@@ -1,0 +1,79 @@
+{
+  "schema": "history_go_place_phase11_observer_note_route_audit_v1",
+  "version": "1.0.0",
+  "generated_at": "2026-08-12",
+  "place_id": "torggata",
+  "phase": "11",
+  "result": "PASS",
+  "prior_work_gate": {
+    "search_status": "UTFØRT",
+    "existing_phase11_branch_or_pr": false,
+    "decision": "CLOSEOUT_EXISTING_OWNERS",
+    "reason": "Observer, Notat og vanlig Rute har allerede canonical globale eiere som dekker Torggata uten stedsspesifikk parallellstate. Historisk rute har ingen Torggata-kobling og skal ikke opprettes bare for completeness."
+  },
+  "observer": {
+    "status": "PASS_EXISTING_RUNTIME",
+    "subject_id": "by",
+    "lens_id": "by_byliv",
+    "lens_file": "data/observations/observations_by.json",
+    "runtime_owner": "js/observations.js",
+    "placecard_owner": "js/ui/place-card.js",
+    "learning_log_key": "hg_learning_log_v1",
+    "event_type": "observation_done",
+    "target_type": "place",
+    "observable_examples": [
+      "opphold",
+      "gjennomgang",
+      "kulturminne",
+      "moteplass",
+      "skjult_historie",
+      "kontrast"
+    ],
+    "learning_links": {
+      "related_emner_in_lens": true,
+      "concepts_in_lens": true,
+      "tags_in_lens": true
+    },
+    "detail_duplication": false,
+    "note": "Linsen spør eksplisitt etter det brukeren faktisk ser eller merker nå og lagrer målsted, lens, valgte observasjoner og læringskoblinger i den eksisterende learning-loggen."
+  },
+  "note_flow": {
+    "status": "PASS_EXISTING_RUNTIME",
+    "runtime_owner": "js/ui/interactions.js",
+    "placecard_owner": "js/ui/place-card.js",
+    "handler": "handlePlaceNote(place)",
+    "record_type": "place",
+    "place_id_field": "placeId",
+    "visibility": "private",
+    "storage_owner": "userNotes/saveUserNotes",
+    "parallel_place_state_created": false
+  },
+  "route": {
+    "navigation": {
+      "status": "PASS_EXISTING_RUNTIME",
+      "placecard_owner": "js/ui/place-card.js",
+      "go_here_handler": "showNavRouteToPlace(place)",
+      "routes_panel_handler": "renderLeftRoutesList",
+      "place_route_segments_role": "navigation geometry, not a historical-route membership declaration"
+    },
+    "historical_route": {
+      "status": "N/A",
+      "manifest": "data/routes/historical/manifest.json",
+      "active_oslo_file": "data/routes/historical/routes_historical_oslo.json",
+      "torggata_chapter_found": false,
+      "reason": "Ingen aktiv historisk route-kapittel bruker placeId=torggata. Canonical rutekontrakt forbyr å opprette rute bare for completeness.",
+      "new_route_created": false,
+      "online_physical_progression_changed": false
+    }
+  },
+  "canonical_data_changes": [],
+  "regression_expectations": [
+    "Torggata fortsetter å bruke subject_id=by og lensId=by_byliv",
+    "Observer beholder hg_learning_log_v1 som eier og observation_done som eventtype",
+    "Notat fortsetter gjennom handlePlaceNote(place) som privat place-note",
+    "Gå Hit fortsetter gjennom showNavRouteToPlace(place)",
+    "routeSegments må ikke tolkes som historisk route-medlemskap",
+    "ingen historisk Torggata-rute konstrueres uten egen redaksjonell grunn"
+  ],
+  "next_phase": "12. People–sted-koblinger"
+}
