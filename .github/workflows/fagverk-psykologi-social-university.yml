@@ -1,0 +1,46 @@
+name: Fagverk Psykologi university social psychology
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/psykologi/sosialpsykologi_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-social-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-social-university.test.mjs"
+      - "reports/fagverk/psykologi-social-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-social-university.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/psykologi/sosialpsykologi_university_v1.json"
+      - "data/fag/psykologi/psykologi_university_readiness_v1.json"
+      - "scripts/audit-fagverk-psykologi-social-university.mjs"
+      - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
+      - "tests/fagverk-psykologi-social-university.test.mjs"
+      - "reports/fagverk/psykologi-social-university-audit.json"
+      - ".github/workflows/fagverk-psykologi-social-university.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Psychology 20/20 social psychology
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - name: Validate audit syntax
+        run: |
+          node --check scripts/audit-fagverk-psykologi-social-university.mjs
+          node --check scripts/audit-fagverk-psykologi-university-readiness.mjs
+      - name: Verify deterministic social psychology audit
+        run: node scripts/audit-fagverk-psykologi-social-university.mjs
+      - name: Test social psychology contract
+        run: node --test tests/fagverk-psykologi-social-university.test.mjs
+      - name: Verify university readiness consumes the completed branch
+        run: node scripts/audit-fagverk-psykologi-university-readiness.mjs --no-check-report
