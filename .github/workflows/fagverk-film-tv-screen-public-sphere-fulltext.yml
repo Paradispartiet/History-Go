@@ -65,6 +65,7 @@ jobs:
           node --check scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs
           node --check scripts/materialize-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
           node --check scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
+          node --check tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
 
       - name: Materialize monotone fulltext state
         run: node scripts/materialize-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs --write
@@ -75,15 +76,26 @@ jobs:
       - name: Refresh fulltext audit
         run: node scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs --write-report
 
-      - name: Validate Film and TV contracts
-        run: |
-          node scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs
-          node scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
-          node --test tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs
-          node --test tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs
-          node --test tests/film-tv-learning-order-plan-v1.test.mjs
-          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
-          node --test tests/fagverk-release-manifest.test.mjs
+      - name: Validate unit 8 source brief
+        run: node scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs
+
+      - name: Validate unit 8 fulltext
+        run: node scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
+
+      - name: Test unit 8 source brief
+        run: node --test tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs
+
+      - name: Test unit 8 fulltext
+        run: node --test tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs
+
+      - name: Test learning order progression
+        run: node --test tests/film-tv-learning-order-plan-v1.test.mjs
+
+      - name: Test unit 7 monotone regression
+        run: node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+
+      - name: Test deterministic release
+        run: node --test tests/fagverk-release-manifest.test.mjs
 
       - name: Persist deterministic fulltext outputs on PR branch
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
