@@ -1,0 +1,98 @@
+{
+  "schema": "history_go_place_quiz_phase10_audit_v1",
+  "version": "1.0.0",
+  "generated_at": "2026-08-12",
+  "place_id": "torggata",
+  "phase": "10",
+  "result": "PASS",
+  "baseline_main": "c23733f16628a45dd6c01cb27beeb3210d59fe13",
+  "prior_work_gate": {
+    "search_status": "UTFØRT",
+    "active_before": {
+      "file": "data/quiz/by/torggata_sets.json",
+      "sets": 6,
+      "questions": 42
+    },
+    "legacy_reviewed": {
+      "file": "data/quiz/by/torggata_sets_merged.json",
+      "questions": 30,
+      "canonical": false
+    },
+    "repo_triage": "reports/quiz-content-quality-initial-triage-2026-07-21.md flagget Torggata blant høyest prioriterte faglig-lesning-reparasjoner",
+    "decision": "FULL CANONICAL REVISION"
+  },
+  "source_basis": {
+    "reused_reviewed_registry": "reports/place-production/torggata-source-base-v1.md",
+    "source_count": 12,
+    "all_reviewed": true,
+    "internal_subject_files_as_fact_sources": 0
+  },
+  "profile": {
+    "id": "rich",
+    "set_count": 5,
+    "questions_per_set": 7,
+    "total_questions": 35,
+    "rationale": "Kildebasen bærer fem uavhengige progresjonsløp: gateutvikling/handel, Eldorado, Torggata bad og sceneombruk, mobilitetsombygging/samhandling og avgrenset gentrifiserings-/plananalyse. Seks eller flere sett ville kreve kunstig splitting av de samme claimene.",
+    "no_quota_rule": true
+  },
+  "balance": {
+    "fact": 19,
+    "context": 9,
+    "concept_theory": 7
+  },
+  "opening": {
+    "normal_questions": 14,
+    "theory_bindings": 0,
+    "method_bindings": 0
+  },
+  "final_layer": {
+    "method_id": "met_for_etter",
+    "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+    "thinkers": [
+      "michel_de_certeau",
+      "gordon_cullen"
+    ],
+    "works": [
+      "The Practice of Everyday Life",
+      "The Concise Townscape"
+    ]
+  },
+  "held_back_candidates": [
+    "Direkte påstand om at 2014-ombyggingen alene presset ut bestemte virksomheter eller brukergrupper — avvist fordi source-base eksplisitt mangler direkte fortrengningsevidens.",
+    "Generiske rent-gap-, spekulasjons-, byggesak- og medvirkningsspørsmål som bare peker til interne emnefiler — fjernet fordi fagfiler er styring, ikke faktakilder.",
+    "Påstanden om at Torggata bad var 'byens første 25-metersbasseng' — holdes ute etter fase-5-korreksjonen til det kildebårne 'et 25-metersbasseng'.",
+    "Nåtidsdetaljer om virksomheter som ikke er ferskkontrollert i source-base — ikke brukt som quizfakta."
+  ],
+  "expected_pipeline": [
+    "quiz production context audit",
+    "quiz progression audit",
+    "quiz theory-binding audit",
+    "quiz content-quality audit",
+    "Knowledge canonical regeneration + contract audit",
+    "phase 9 regression",
+    "TypeScript hard gates",
+    "build guard"
+  ],
+  "pipeline_validation": {
+    "status": "PASS",
+    "validated_after_main_sync": true,
+    "fagverk_release_synced_after_manifest_change": true,
+    "checks": [
+      "Torggata phase 10 contract",
+      "quiz production context audit",
+      "quiz progression audit",
+      "quiz theory-binding audit",
+      "quiz content-quality audit",
+      "quiz manifest v2 audit",
+      "global quiz production pipeline",
+      "Knowledge canonical regeneration + contract audit",
+      "phase 9 regression",
+      "Fagverk By compatibility pilot",
+      "Fagverk release manifest check",
+      "TypeScript web/scripts/tools",
+      "build guard",
+      "permanent scope guard"
+    ]
+  },
+  "next_phase": "11. Observer, Notat og Rute"
+}

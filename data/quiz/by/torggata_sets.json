@@ -1,11 +1,122 @@
 {
   "targetId": "torggata",
   "categoryId": "by",
+  "sources": {
+    "torggata_byleksikon": "https://oslobyleksikon.no/index.php/Torggata",
+    "eldorado_byleksikon": "https://oslobyleksikon.no/index.php?title=Eldorado",
+    "torggata_bad_byleksikon": "https://oslobyleksikon.no/side/Torggata_bad",
+    "rockefeller_booking": "https://www.rockefeller.no/booking-utleie",
+    "torggata_gateforening": "https://www.torggata.oslo.no/om-torggata/",
+    "toi_sykkel": "https://www.toi.no/publikasjoner/sykling-i-gagater-trafikkomfang-samhandling-og-konflikter-mellom-syklister-og-fotgjengere-i-torggata-og-brugata-i-oslo",
+    "toi_shared_space": "https://www.toi.no/forskningsomrader/atferd-og-transport/konflikter-mellom-gaende-og-syklende-article34249-1025.html",
+    "uib_torggata": "https://www4.uib.no/forskning/forskergrupper/samfunnsgeografi-og-baerekraftig-utvikling/endringer-i-det-offentlige-rom-torggata-i-oslo",
+    "urban_transformation_article": "https://journals.sagepub.com/doi/10.1177/0269094220988714",
+    "stroget_byleksikon": "https://oslobyleksikon.no/side/Str%C3%B8get",
+    "commons_before": "https://commons.wikimedia.org/wiki/File:Torggata_2009-06-08.jpg",
+    "commons_after": "https://commons.wikimedia.org/wiki/File:Torggata_%282017-01-08%29.jpg"
+  },
+  "production_context": {
+    "manifest_category": "by",
+    "profile": "rich_5x7",
+    "standard_version": "3.3",
+    "source_brief": "data/quiz/production_briefs/by/torggata.json",
+    "context_artifact": "data/quiz/production_context/by/torggata.json",
+    "resolved_files": {
+      "pensum": "data/fag/by/pensum_by.json",
+      "emner": "data/fag/by/emner_by.json",
+      "fagkart": "data/fag/by/fagkart_by.json",
+      "methods": "data/fag/by/methods_by.json",
+      "supersetQuizMal": "data/fag/by/supersetQUIZMAL_by.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "kur_by_01_byrom_akser_knutepunkt",
+      "kur_by_02_nabolag_ulikhet_segregering",
+      "kur_by_03_infrastruktur_og_bevegelse",
+      "kur_by_04_historiske_lag_og_transformasjon",
+      "kur_by_06_makt_symboler_og_representasjon"
+    ],
+    "emne_ids": [
+      "em_by_historiske_lag_i_hverdagsrom",
+      "em_by_transformasjon_ombruk",
+      "em_by_infrastruktur_mobilitet",
+      "em_by_gentrifisering_eiendom",
+      "em_by_styring_forvaltning_planmakt",
+      "em_by_opphold_vs_gjennomgang"
+    ],
+    "topic_hook_ids": [
+      "byliv_opphold_vs_gjennomgang"
+    ],
+    "method_ids": [
+      "met_for_etter"
+    ],
+    "thinker_ids": [
+      "michel_de_certeau",
+      "gordon_cullen"
+    ],
+    "works": [
+      "The Practice of Everyday Life",
+      "The Concise Townscape"
+    ],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/by/torggata_sets.json",
+        "data/quiz/by/torggata_sets_merged.json",
+        "reports/quiz-content-quality-initial-triage-2026-07-21.md",
+        "reports/place-production/torggata-source-base-v1.md"
+      ],
+      "active_before": {
+        "file": "data/quiz/by/torggata_sets.json",
+        "set_count": 6,
+        "question_count": 42,
+        "finding": "Settene 3–6 inneholdt flere generiske begreps-/faglig-lesning-spørsmål og internal-only kildereferanser som repos egen quiztriage har flagget."
+      },
+      "legacy_before": {
+        "file": "data/quiz/by/torggata_sets_merged.json",
+        "question_count": 30,
+        "role": "ikke manifest-loadet legacy/revisjonsspor; vurdert, men ikke brukt som canonical output"
+      },
+      "decisions": [
+        "Behold dokumenterte historiske fakta som fortsatt støttes av den gjennomgåtte Torggata-kildebasen, men skriv dem inn i dagens package/claim-kontrakt.",
+        "Fjern active-sett som drives av interne emnefiler, generiske rent-gap/planmakt-prompter eller formuleringer som repos triage klassifiserer som omvendt produksjonsrekkefølge.",
+        "Ikke løft legacy _merged-filen til canonical status; den er auditert som tidligere revisjonsspor.",
+        "Velg fem sett fordi fem selvstendige kildebårne læringsjobber faktisk finnes; ikke fordi et fast antall skal fylles."
+      ],
+      "knowledge_migration": "Canonical Knowledge regenereres fra den reviderte manifest-loadede quizen etter materialisering; gamle Torggata quiz-referanser fases ut gjennom deterministisk registry-rebuild."
+    },
+    "profile_decision": {
+      "profile": "rich",
+      "set_count": 5,
+      "questions_per_set": 7,
+      "justification": "Kildebasen bærer fem uavhengige progresjonsløp: gateutvikling/handel, Eldorado, Torggata bad og sceneombruk, mobilitetsombygging/samhandling og avgrenset gentrifiserings-/plananalyse. Seks eller flere sett ville kreve kunstig splitting av de samme claimene."
+    },
+    "held_back_candidates": [
+      "Direkte påstand om at 2014-ombyggingen alene presset ut bestemte virksomheter eller brukergrupper — avvist fordi source-base eksplisitt mangler direkte fortrengningsevidens.",
+      "Generiske rent-gap-, spekulasjons-, byggesak- og medvirkningsspørsmål som bare peker til interne emnefiler — fjernet fordi fagfiler er styring, ikke faktakilder.",
+      "Påstanden om at Torggata bad var 'byens første 25-metersbasseng' — holdes ute etter fase-5-korreksjonen til det kildebårne 'et 25-metersbasseng'.",
+      "Nåtidsdetaljer om virksomheter som ikke er ferskkontrollert i source-base — ikke brukt som quizfakta."
+    ],
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
   "sets": [
     {
       "set_id": "by_torggata_set_1",
       "level": 1,
       "order": 1,
+      "phase": "opening",
       "xp": 50,
       "questions": [
         {
@@ -13,55 +124,29 @@
           "quiz_id": "by_torggata_set_1_q1",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hvilke to punkter binder Torggata sammen i dag?",
+          "question": "Hvilke to hovedpunkter binder Torggata sammen i den canonicale gateidentiteten?",
           "options": [
             "Stortorvet og Ankertorget",
             "Jernbanetorget og Bislett",
-            "Youngstorget og Frogner plass"
+            "Slottet og Majorstuen"
           ],
           "answer": "Stortorvet og Ankertorget",
           "answerIndex": 0,
-          "dimension": "plassering",
-          "topic": "Gateløpet",
-          "knowledge": "Torggata går fra Stortorvet i sør til Ankertorget i nordvest og skjærer gjennom sentrum og randsonen mot Grünerløkka.",
-          "trivia": [],
+          "knowledge": "Torggata går gjennom flere historiske bylag fra Stortorvet via Youngstorget mot Ankertorget/Ankerbrua-området.",
           "difficulty": 1,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "torggata",
-            "sentrum"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "torggata_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_torg_plasser_som_scene"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.8200000000000001,
-            "score": 7,
-            "matched": [
-              "torg",
-              "plass"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_by_torggata_gar_fra_stortor_36e1c84d92",
+          "source_origin": "external",
+          "claim_basis": "Torggata er den navngitte gaten fra Stortorvet til Ankertorget, med videre historisk tilknytning mot Ankerbrua.",
+          "claim_id": "claim_torggata_quiz_1",
+          "primary_knowledge_unit_id": "ku_by_torggata_gar_gjennom_fle_51ebb565a3",
           "knowledge_unit_ids": [
-            "ku_by_torggata_gar_fra_stortor_36e1c84d92"
+            "ku_by_torggata_gar_gjennom_fle_51ebb565a3"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -73,50 +158,29 @@
           "quiz_id": "by_torggata_set_1_q2",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva het gaten offisielt da navnet ble fastsatt i 1852?",
+          "question": "I hvilket år ble den første delen fra Stortorvet til Youngstorget opparbeidet?",
           "options": [
-            "Torvegaden",
-            "Nytorvsgaden",
-            "Ankergaden"
+            "1846",
+            "1857",
+            "1876"
           ],
-          "answer": "Torvegaden",
+          "answer": "1846",
           "answerIndex": 0,
-          "dimension": "navn",
-          "topic": "Tidlig gatenavn",
-          "knowledge": "Torggata fikk navneformen Torvegaden i 1852, etter at gaten var opparbeidet i etapper fra 1840-årene.",
-          "trivia": [],
-          "difficulty": 2,
+          "knowledge": "1846 er startpunktet for den dokumenterte etappevise opparbeidingen, ikke et år der hele dagens gateløp plutselig var ferdig.",
+          "difficulty": 1,
           "question_type": "fact",
-          "year": 1852,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "navn",
-            "1800-tall"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "torggata_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_torg_plasser_som_scene"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_torggata_fikk_navneforme_2f4ef0579b",
+          "source_origin": "external",
+          "claim_basis": "Strekningen fra Stortorvet til Youngstorget ble opparbeidet som Øvre Torvegade i 1846.",
+          "claim_id": "claim_torggata_quiz_2",
+          "primary_knowledge_unit_id": "ku_by_1846_er_startpunktet_for_61df993bec",
           "knowledge_unit_ids": [
-            "ku_by_torggata_fikk_navneforme_2f4ef0579b"
+            "ku_by_1846_er_startpunktet_for_61df993bec"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -128,50 +192,29 @@
           "quiz_id": "by_torggata_set_1_q3",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva kjennetegner særlig den østre delen av Torggata i dag?",
+          "question": "Hvilken navneform ble vedtatt for gaten i 1852?",
           "options": [
-            "Mange serveringssteder og butikker som ikke hører til kjeder",
-            "Store villaeiendommer og hager",
-            "Mest statlige kontorbygg"
+            "Torvegaden",
+            "Ankergaden",
+            "Youngsgaden"
           ],
-          "answer": "Mange serveringssteder og butikker som ikke hører til kjeder",
+          "answer": "Torvegaden",
           "answerIndex": 0,
-          "dimension": "bruk",
-          "topic": "Dagens gatepreg",
-          "knowledge": "Oslo byleksikon beskriver den østre delen av Torggata som preget av mange serveringssteder og butikker som ikke tilhører kjeder.",
-          "trivia": [],
+          "knowledge": "Navnevedtaket kom mellom den første opparbeidingen i 1846 og senere forlengelser nordover.",
           "difficulty": 1,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "handel",
-            "servering"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "torggata_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_torg_plasser_som_scene"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_oslo_byleksikon_beskrive_7df5f6993a",
+          "source_origin": "external",
+          "claim_basis": "Navneformen Torvegaden ble vedtatt i 1852.",
+          "claim_id": "claim_torggata_quiz_3",
+          "primary_knowledge_unit_id": "ku_by_navnevedtaket_kom_mellom_6489db7c83",
           "knowledge_unit_ids": [
-            "ku_by_oslo_byleksikon_beskrive_7df5f6993a"
+            "ku_by_navnevedtaket_kom_mellom_6489db7c83"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -183,50 +226,29 @@
           "quiz_id": "by_torggata_set_1_q4",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva heter den bilfrie passasjen mellom Torggata og Storgata?",
+          "question": "Når var Torggata ført helt fram til Ankerbrua?",
           "options": [
-            "Strøget",
-            "Promenaden",
-            "Passasjen"
+            "1876",
+            "1852",
+            "1894"
           ],
-          "answer": "Strøget",
+          "answer": "1876",
           "answerIndex": 0,
-          "dimension": "orientering",
-          "topic": "Passasje",
-          "knowledge": "Mellom Torggata og Storgata går den bilfrie passasjen Strøget, et viktig bindeledd i området.",
-          "trivia": [],
+          "knowledge": "Gateløpet vokste i etapper; 1876 markerer at videreføringen hadde nådd Ankerbrua.",
           "difficulty": 1,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "strøget",
-            "passasje"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "torggata_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_torg_plasser_som_scene"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_mellom_torggata_og_storg_8229131d80",
+          "source_origin": "external",
+          "claim_basis": "Torggata ble ført videre nordover og nådde Ankerbrua i 1876.",
+          "claim_id": "claim_torggata_quiz_4",
+          "primary_knowledge_unit_id": "ku_by_gatel_pet_vokste_i_etapp_0e1c7cd105",
           "knowledge_unit_ids": [
-            "ku_by_mellom_torggata_og_storg_8229131d80"
+            "ku_by_gatel_pet_vokste_i_etapp_0e1c7cd105"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -238,50 +260,29 @@
           "quiz_id": "by_torggata_set_1_q5",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva slags gate var Torggata tidlig kjent som?",
+          "question": "Hva var spesielt med Jensen-familiens tilstedeværelse i Torggata?",
           "options": [
-            "Et utpreget forretningsstrøk med serveringssteder og underholdning",
-            "En ren boliggate for embetsmenn",
-            "Et havneområde uten butikker"
+            "Familien drev fire ulike forretninger langs gaten",
+            "Familien eide alle bygningene i gaten",
+            "Familien drev bare ett hotell"
           ],
-          "answer": "Et utpreget forretningsstrøk med serveringssteder og underholdning",
+          "answer": "Familien drev fire ulike forretninger langs gaten",
           "answerIndex": 0,
-          "dimension": "bruk",
-          "topic": "Forretningsstrøk",
-          "knowledge": "Fra slutten av 1800-tallet ble Torggata et tydelig forretningsstrøk, samtidig kjent for serveringssteder og underholdning.",
-          "trivia": [],
-          "difficulty": 2,
+          "knowledge": "Familiehistorien viser hvordan handel kunne konsentreres gjennom slekts- og virksomhetsnettverk i samme gate.",
+          "difficulty": 1,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "forretning",
-            "underholdning"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "torggata_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_torg_plasser_som_scene"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_fra_slutten_av_1800_tall_af077ab086",
+          "source_origin": "external",
+          "claim_basis": "Ludvig Christian Jensen og sønnene Adelsten, Peter Marinius og Karl A. Jensen var knyttet til fire ulike forretninger i Torggata.",
+          "claim_id": "claim_torggata_quiz_5",
+          "primary_knowledge_unit_id": "ku_by_familiehistorien_viser_h_0336fba8c2",
           "knowledge_unit_ids": [
-            "ku_by_fra_slutten_av_1800_tall_af077ab086"
+            "ku_by_familiehistorien_viser_h_0336fba8c2"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -293,51 +294,29 @@
           "quiz_id": "by_torggata_set_1_q6",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva ligger i Torggata 16 i dag i den tidligere badebygningen?",
+          "question": "Hva åpnet i Torggata 9 i 1891?",
           "options": [
-            "Rockefeller, John Dee og Oslo Street Food",
-            "Nasjonalbiblioteket",
-            "Stortinget"
+            "Eldorado varietéteater",
+            "Rockefeller Music Hall",
+            "Torggata bad"
           ],
-          "answer": "Rockefeller, John Dee og Oslo Street Food",
+          "answer": "Eldorado varietéteater",
           "answerIndex": 0,
-          "dimension": "bygning",
-          "topic": "Torggata bad",
-          "knowledge": "Den tidligere badebygningen i Torggata 16 rommer i dag blant annet Rockefeller, John Dee og Oslo Street Food.",
-          "trivia": [],
-          "difficulty": 2,
+          "knowledge": "Eldorado startet som varietéteater før lokalet senere ble teater, kino og bokhandel.",
+          "difficulty": 1,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "torggata bad",
-            "rockefeller"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Torggata bad",
-            "Oslo byleksikon – Rockefeller"
+            "eldorado_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_torg_plasser_som_scene"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_den_tidligere_badebygnin_e37a36a354",
+          "source_origin": "external",
+          "claim_basis": "Eldorado i Torggata 9 ble innviet som varietéteater i november 1891.",
+          "claim_id": "claim_torggata_quiz_6",
+          "primary_knowledge_unit_id": "ku_by_eldorado_startet_som_var_1e7060a642",
           "knowledge_unit_ids": [
-            "ku_by_den_tidligere_badebygnin_e37a36a354"
+            "ku_by_eldorado_startet_som_var_1e7060a642"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -349,50 +328,29 @@
           "quiz_id": "by_torggata_set_1_q7",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva ble Torggata bygget om for å prioritere, da den nye løsningen åpnet i 2014?",
+          "question": "Hva viser kombinasjonen av butikker, servering og underholdning om Torggata mot slutten av 1800-tallet?",
           "options": [
-            "Syklister og gående",
-            "Busser og privatbiler",
-            "Godstrafikk og lastebiler"
+            "Gaten utviklet seg til et sammensatt forretnings- og fornøyelsesstrøk",
+            "Gaten var hovedsakelig en lukket boliggate",
+            "Gaten mistet all publikumsrettet virksomhet"
           ],
-          "answer": "Syklister og gående",
+          "answer": "Gaten utviklet seg til et sammensatt forretnings- og fornøyelsesstrøk",
           "answerIndex": 0,
-          "dimension": "byrom",
-          "topic": "Ombygging 2014",
-          "knowledge": "Torggata ble bygget om og åpnet i 2014 med prioritet for syklister og gående.",
-          "trivia": [],
+          "knowledge": "Den historiske profilen var sammensatt: handel, servering og underholdning lå tett i samme gateløp.",
           "difficulty": 1,
-          "question_type": "fact",
-          "year": 2014,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "gågate",
-            "sykkel"
-          ],
-          "required_tags": [],
+          "question_type": "context",
+          "emne_id": "em_by_historiske_lag_i_hverdagsrom",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "torggata_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_torg_plasser_som_scene"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_torggata_ble_bygget_om_o_1e1070cbfb",
+          "source_origin": "external",
+          "claim_basis": "Torggata utviklet seg til et forretningsstrøk med butikker, serveringssteder og underholdning.",
+          "claim_id": "claim_torggata_quiz_7",
+          "primary_knowledge_unit_id": "ku_by_den_historiske_profilen__739c88112f",
           "knowledge_unit_ids": [
-            "ku_by_torggata_ble_bygget_om_o_1e1070cbfb"
+            "ku_by_den_historiske_profilen__739c88112f"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -405,6 +363,7 @@
       "set_id": "by_torggata_set_2",
       "level": 2,
       "order": 2,
+      "phase": "middle",
       "xp": 60,
       "questions": [
         {
@@ -412,50 +371,29 @@
           "quiz_id": "by_torggata_set_2_q1",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "I hvilket år ble den første delen av Torggata opparbeidet fra Stortorvet til Youngstorget?",
+          "question": "Hva ble oppført i Torggata 16 i 1861?",
           "options": [
-            "1846",
-            "1857",
-            "1876"
+            "Bade- og Vadskeanstalten",
+            "Fahlstrøms Theater",
+            "Strøget"
           ],
-          "answer": "1846",
+          "answer": "Bade- og Vadskeanstalten",
           "answerIndex": 0,
-          "dimension": "historie",
-          "topic": "Første utbygging",
-          "knowledge": "Torggata ble først opparbeidet som Øvre Torvegade fra Stortorvet til Youngstorget i 1846.",
-          "trivia": [],
+          "knowledge": "Det første badet kom flere tiår før den nåværende nyklassisistiske bygningen.",
           "difficulty": 2,
           "question_type": "fact",
-          "year": 1846,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "utbygging",
-            "1840-tall"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "torggata_bad_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_torggata_ble_f_rst_oppar_7ab6c324b9",
+          "source_origin": "external",
+          "claim_basis": "Thorvald Meyer lot Thøger Binneballe oppføre Bade- og Vadskeanstalten i Torggata 16 i 1861.",
+          "claim_id": "claim_torggata_quiz_8",
+          "primary_knowledge_unit_id": "ku_by_det_f_rste_badet_kom_fle_d569db2761",
           "knowledge_unit_ids": [
-            "ku_by_torggata_ble_f_rst_oppar_7ab6c324b9"
+            "ku_by_det_f_rste_badet_kom_fle_d569db2761"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -467,50 +405,29 @@
           "quiz_id": "by_torggata_set_2_q2",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Når nådde Torggata helt frem til Ankerbrua?",
+          "question": "Hva skjedde med badeanlegget året etter at det ble oppført?",
           "options": [
-            "1876",
-            "1852",
-            "1894"
+            "Det ble gitt til Christiania kommune",
+            "Det ble flyttet til Bygdøy",
+            "Det ble gjort om til kino"
           ],
-          "answer": "1876",
+          "answer": "Det ble gitt til Christiania kommune",
           "answerIndex": 0,
-          "dimension": "historie",
-          "topic": "Hele gateløpet",
-          "knowledge": "Torggata ble forlenget i flere etapper og nådde helt frem til Ankerbrua i 1876.",
-          "trivia": [],
+          "knowledge": "Gaven gjorde badeanlegget til en kommunal institusjon i byen.",
           "difficulty": 2,
           "question_type": "fact",
-          "year": 1876,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "ankerbrua",
-            "utbygging"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "torggata_bad_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_torggata_ble_forlenget_i_8fbe3adff2",
+          "source_origin": "external",
+          "claim_basis": "Thorvald Meyer ga Bade- og Vadskeanstalten til Christiania kommune i 1862.",
+          "claim_id": "claim_torggata_quiz_9",
+          "primary_knowledge_unit_id": "ku_by_gaven_gjorde_badeanlegge_03e0582cb8",
           "knowledge_unit_ids": [
-            "ku_by_torggata_ble_forlenget_i_8fbe3adff2"
+            "ku_by_gaven_gjorde_badeanlegge_03e0582cb8"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -522,50 +439,29 @@
           "quiz_id": "by_torggata_set_2_q3",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva var Torggata Bad opprinnelig før dagens bygning ble reist i etapper på 1920- og 30-tallet?",
+          "question": "Hva åpnet i Eldorado-lokalene i 1903 etter en ombygging?",
           "options": [
-            "En bade- og vaskeanstalt fra 1861",
-            "Et teater fra 1890-årene",
-            "En jernvareforretning"
+            "Fahlstrøms Theater",
+            "John Dee",
+            "Oslo Street Food"
           ],
-          "answer": "En bade- og vaskeanstalt fra 1861",
+          "answer": "Fahlstrøms Theater",
           "answerIndex": 0,
-          "dimension": "lokalhistorie",
-          "topic": "Badeanstalten",
-          "knowledge": "Det første badet i Torggata 16 ble oppført i 1861 som Bade- og Vadskeanstalten, før dagens bygning kom i flere etapper fra 1925 til 1932.",
-          "trivia": [],
+          "knowledge": "Alma og Johan Fahlstrøm drev teatret fram til 1911.",
           "difficulty": 2,
           "question_type": "fact",
-          "year": 1861,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "torggata bad",
-            "lokalhistorie"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Torggata bad"
+            "eldorado_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_det_f_rste_badet_i_torgg_b42ad8700d",
+          "source_origin": "external",
+          "claim_basis": "Eldorado-lokalene ble bygd om og åpnet som Fahlstrøms Theater i 1903.",
+          "claim_id": "claim_torggata_quiz_10",
+          "primary_knowledge_unit_id": "ku_by_alma_og_johan_fahlstr_m__3d93bf3470",
           "knowledge_unit_ids": [
-            "ku_by_det_f_rste_badet_i_torgg_b42ad8700d"
+            "ku_by_alma_og_johan_fahlstr_m__3d93bf3470"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -577,54 +473,29 @@
           "quiz_id": "by_torggata_set_2_q4",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hvilken arkitektduo tegnet den nyklassisistiske bygningen til Torggata Bad?",
+          "question": "Hva skjedde med Eldorado i 1929?",
           "options": [
-            "Morgenstierne og Eide",
-            "Snøhetta og Dark",
-            "Harald Aars og Harald Petersen"
+            "Det gjenåpnet som Norges første lydfilmkino",
+            "Det ble kommunalt bad",
+            "Det ble revet for å gi plass til vei"
           ],
-          "answer": "Morgenstierne og Eide",
+          "answer": "Det gjenåpnet som Norges første lydfilmkino",
           "answerIndex": 0,
-          "dimension": "arkitektur",
-          "topic": "Nyklassisistisk bad",
-          "knowledge": "Den nåværende bygningen for Torggata Bad ble reist 1925–1932 i nyklassisistisk stil etter tegninger av Morgenstierne og Eide.",
-          "trivia": [],
-          "difficulty": 3,
+          "knowledge": "Lydfilm er et av de tydeligste teknologiske og kulturelle skiftene i Eldorados lange brukshistorie.",
+          "difficulty": 2,
           "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "arkitektur",
-            "nyklassisisme"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Torggata bad"
+            "eldorado_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.81,
-            "score": 6,
-            "matched": [
-              "v r"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_by_den_nav_rende_bygningen__e461060313",
+          "source_origin": "external",
+          "claim_basis": "Eldorado gjenåpnet i 1929 som Norges første lydfilmkino.",
+          "claim_id": "claim_torggata_quiz_11",
+          "primary_knowledge_unit_id": "ku_by_lydfilm_er_et_av_de_tyde_7df66b8956",
           "knowledge_unit_ids": [
-            "ku_by_den_nav_rende_bygningen__e461060313"
+            "ku_by_lydfilm_er_et_av_de_tyde_7df66b8956"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -636,50 +507,29 @@
           "quiz_id": "by_torggata_set_2_q5",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva åpnet i det gamle bassenget i Torggata Bad i 1986?",
+          "question": "Når ble den nåværende Torggata bad-bygningen reist?",
           "options": [
-            "Rockefeller Music Hall",
-            "Eldorado bokhandel",
-            "Folketeateret"
+            "I etapper fra 1925 til 1932",
+            "Som ett byggetrinn i 1861",
+            "Mellom 1983 og 1988"
           ],
-          "answer": "Rockefeller Music Hall",
+          "answer": "I etapper fra 1925 til 1932",
           "answerIndex": 0,
-          "dimension": "kulturhistorie",
-          "topic": "Rockefeller",
-          "knowledge": "Rockefeller åpnet i 1986 i det gamle bassenget i Torggata Bad etter at badet ble nedlagt i 1980.",
-          "trivia": [],
+          "knowledge": "Det gamle 1861-anlegget og dagens hovedbygning er to forskjellige historiske bygningslag.",
           "difficulty": 2,
           "question_type": "fact",
-          "year": 1986,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "rockefeller",
-            "konsertsted"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Rockefeller"
+            "torggata_bad_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_rockefeller_apnet_i_1986_a12053efe6",
+          "source_origin": "external",
+          "claim_basis": "Den nåværende nyklassisistiske Torggata bad-bygningen ble reist i etapper fra 1925 til 1932.",
+          "claim_id": "claim_torggata_quiz_12",
+          "primary_knowledge_unit_id": "ku_by_det_gamle_1861_anlegget__738171f742",
           "knowledge_unit_ids": [
-            "ku_by_rockefeller_apnet_i_1986_a12053efe6"
+            "ku_by_det_gamle_1861_anlegget__738171f742"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -691,50 +541,30 @@
           "quiz_id": "by_torggata_set_2_q6",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva var Eldorado i Torggata 9 før det ble kino og senere bokhandel?",
+          "question": "Hva åpnet i det tidligere badet i 1986?",
           "options": [
-            "Et varietéteater",
-            "Et rådhus",
-            "Et badeanlegg"
+            "Rockefeller Music Hall",
+            "Fahlstrøms Theater",
+            "Strøget"
           ],
-          "answer": "Et varietéteater",
+          "answer": "Rockefeller Music Hall",
           "answerIndex": 0,
-          "dimension": "lokalhistorie",
-          "topic": "Eldorado",
-          "knowledge": "Eldorado ble innviet som varietéteater i 1891, var kino fra 1911 til 2012 og ble bokhandel i 2013.",
-          "trivia": [],
+          "knowledge": "Rockefeller er et konkret eksempel på ombruk: et tidligere offentlig bad fikk ny rolle som konsert- og arrangementssted.",
           "difficulty": 2,
           "question_type": "fact",
-          "year": 1891,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "eldorado",
-            "kinohistorie"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Eldorado"
+            "rockefeller_booking",
+            "torggata_bad_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_eldorado_ble_innviet_som_67687d76ff",
+          "source_origin": "external",
+          "claim_basis": "Rockefeller åpnet i det tidligere Torggata bad i 1986.",
+          "claim_id": "claim_torggata_quiz_13",
+          "primary_knowledge_unit_id": "ku_by_rockefeller_er_et_konkre_da4fac8f30",
           "knowledge_unit_ids": [
-            "ku_by_eldorado_ble_innviet_som_67687d76ff"
+            "ku_by_rockefeller_er_et_konkre_da4fac8f30"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -746,50 +576,30 @@
           "quiz_id": "by_torggata_set_2_q7",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva var spesielt med Eldorado kino i 1929?",
+          "question": "Hvorfor er Torggata bad et tydelig eksempel på funksjonsendring i byen?",
           "options": [
-            "Den ble Norges første lydfilmkino",
-            "Den ble Oslos første 3D-kino",
-            "Den ble byens første friluftskino"
+            "Samme sted gikk fra bad til blant annet konsert- og serveringsbruk",
+            "Bygningen har alltid hatt nøyaktig samme funksjon",
+            "Bygningen ble flyttet til en annen bydel"
           ],
-          "answer": "Den ble Norges første lydfilmkino",
+          "answer": "Samme sted gikk fra bad til blant annet konsert- og serveringsbruk",
           "answerIndex": 0,
-          "dimension": "kinohistorie",
-          "topic": "Lydfilm",
-          "knowledge": "Eldorado ble i 1929 Norges første lydfilmkino, et tegn på hvor viktig Torggata var som underholdningsgate.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "fact",
-          "year": 1929,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "eldorado",
-            "lydfilm"
-          ],
-          "required_tags": [],
+          "knowledge": "Ombruk betyr her ikke bare ny fasade, men at en eksisterende bygning fikk helt andre offentlige og kommersielle funksjoner.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Eldorado"
+            "torggata_bad_byleksikon",
+            "rockefeller_booking"
           ],
-          "emne_ids": [
-            "em_by_mikroklima_og_var"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_by_eldorado_ble_i_1929_norg_3b8124b000",
+          "source_origin": "external",
+          "claim_basis": "Torggata bad gikk fra badefunksjon til blant annet konsert- og serveringsbruk etter at badevirksomheten opphørte i 1980.",
+          "claim_id": "claim_torggata_quiz_14",
+          "primary_knowledge_unit_id": "ku_by_ombruk_betyr_her_ikke_ba_50f664d66d",
           "knowledge_unit_ids": [
-            "ku_by_eldorado_ble_i_1929_norg_3b8124b000"
+            "ku_by_ombruk_betyr_her_ikke_ba_50f664d66d"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -802,73 +612,39 @@
       "set_id": "by_torggata_set_3",
       "level": 3,
       "order": 3,
-      "xp": 75,
+      "phase": "middle",
+      "xp": 70,
       "questions": [
         {
           "id": "torggata_quiz_15",
           "quiz_id": "by_torggata_set_3_q1",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva betyr 'gentrifisering' best når man bruker Torggata som eksempel?",
+          "question": "Når ble John Dee etablert i Rockefeller-komplekset?",
           "options": [
-            "At et område oppgraderes økonomisk og kulturelt slik at prisnivå og brukergrupper endres",
-            "At en gate blir eldre og mer historisk uten at bruk endres",
-            "At kommunen bare skifter gatenavn og skilting"
+            "1997",
+            "1986",
+            "2014"
           ],
-          "answer": "At et område oppgraderes økonomisk og kulturelt slik at prisnivå og brukergrupper endres",
+          "answer": "1997",
           "answerIndex": 0,
-          "dimension": "økonomi",
-          "topic": "Gentrifisering",
-          "knowledge": "Torggata er et relevant case fordi gateprofil, leienivå, butikkmiks og brukergrupper kan endres samtidig når et område blir mer attraktivt for kapital og nye publikum.",
-          "trivia": [],
+          "knowledge": "John Dee kom elleve år etter Rockefeller og viser hvordan scenevirksomheten i komplekset ble utvidet.",
           "difficulty": 3,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [],
-          "core_concepts": [
-            "gentrifisering",
-            "rent gap",
-            "spekulasjon",
-            "eierskap",
-            "boligpris",
-            "fortrengning",
-            "leie",
-            "kulturell kapital"
-          ],
-          "concept_focus": [
-            "gentrifisering",
-            "fortrengning"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "gentrifisering",
-            "byutvikling"
-          ],
-          "required_tags": [],
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "emner_by – em_by_gentrifisering_eiendom"
+            "rockefeller_booking"
           ],
-          "primary_knowledge_unit_id": "ku_by_torggata_er_et_relevant__a10c098937",
+          "source_origin": "external",
+          "claim_basis": "John Dee ble etablert i 1997 som en mindre klubbscene i Rockefeller-systemet.",
+          "claim_id": "claim_torggata_quiz_15",
+          "primary_knowledge_unit_id": "ku_by_john_dee_kom_elleve_ar_e_380c06cb62",
           "knowledge_unit_ids": [
-            "ku_by_torggata_er_et_relevant__a10c098937"
+            "ku_by_john_dee_kom_elleve_ar_e_380c06cb62"
           ],
-          "concept_ids": [
-            "co_by_gentrifisering_b16aedcd37",
-            "co_by_rent_gap_02bef17d90",
-            "co_by_spekulasjon_ee7c2e39ba",
-            "co_by_eierskap_c79c26a410",
-            "co_by_boligpris_4b031cc93e",
-            "co_by_fortrengning_246549d0b0",
-            "co_by_leie_37de42157c",
-            "co_by_kulturell_kapital_f59e0fa282"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -878,67 +654,31 @@
           "quiz_id": "by_torggata_set_3_q2",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva er et 'rent gap' i en gate som Torggata?",
+          "question": "Hva heter den bilfrie passasjen mellom Torggata og Storgata?",
           "options": [
-            "Forskjellen mellom dagens verdi og den høyere verdien investorer mener kan hentes ut etter oppgradering",
-            "Et hull mellom to bygårder som kan brukes som passasje",
-            "Forskjellen mellom boligleie og strømregning"
+            "Strøget",
+            "Akersgangen",
+            "Torvpassasjen"
           ],
-          "answer": "Forskjellen mellom dagens verdi og den høyere verdien investorer mener kan hentes ut etter oppgradering",
+          "answer": "Strøget",
           "answerIndex": 0,
-          "dimension": "økonomi",
-          "topic": "Rent gap",
-          "knowledge": "Begrepet rent gap brukes om avstanden mellom nåværende og potensiell verdi. Slike gap kan gjøre gater som Torggata attraktive for oppgradering og eiendomsstrategier.",
-          "trivia": [],
-          "difficulty": 4,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [],
-          "core_concepts": [
-            "gentrifisering",
-            "rent gap",
-            "spekulasjon",
-            "eierskap",
-            "boligpris",
-            "fortrengning",
-            "leie",
-            "kulturell kapital"
-          ],
-          "concept_focus": [
-            "rent gap",
-            "spekulasjon"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "rent gap",
-            "eiendom"
-          ],
-          "required_tags": [],
+          "knowledge": "Strøget åpnet rundt årsskiftet 1969–1970 og er et eget byrom knyttet til Torggata, ikke selve Torggata.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
           "source": [
-            "emner_by – em_by_gentrifisering_eiendom"
+            "stroget_byleksikon"
           ],
-          "primary_knowledge_unit_id": "ku_by_begrepet_rent_gap_brukes_f9a960a7f0",
+          "source_origin": "external",
+          "claim_basis": "Strøget er den bilfrie passasjen mellom Torggata og Storgata.",
+          "claim_id": "claim_torggata_quiz_16",
+          "primary_knowledge_unit_id": "ku_by_str_get_apnet_rundt_arss_60bf1aed81",
           "knowledge_unit_ids": [
-            "ku_by_begrepet_rent_gap_brukes_f9a960a7f0",
-            "ku_by_slike_gap_kan_gj_re_gate_d60df03fb6"
+            "ku_by_str_get_apnet_rundt_arss_60bf1aed81"
           ],
-          "concept_ids": [
-            "co_by_gentrifisering_b16aedcd37",
-            "co_by_rent_gap_02bef17d90",
-            "co_by_spekulasjon_ee7c2e39ba",
-            "co_by_eierskap_c79c26a410",
-            "co_by_boligpris_4b031cc93e",
-            "co_by_fortrengning_246549d0b0",
-            "co_by_leie_37de42157c",
-            "co_by_kulturell_kapital_f59e0fa282"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -948,68 +688,32 @@
           "quiz_id": "by_torggata_set_3_q3",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva er det mest presise tegnet på 'fortrengning' i Torggata?",
+          "question": "Hva var hovedprioriteringen i gateutformingen som åpnet i 2014?",
           "options": [
-            "At eldre virksomheter og brukere presses ut når leie og kostnader stiger",
-            "At flere går og sykler i gaten enn før",
-            "At bygårder får ny fasadefarge"
+            "Gående og syklende",
+            "Privatbiler og tungtransport",
+            "Ny jernbanetrafikk"
           ],
-          "answer": "At eldre virksomheter og brukere presses ut når leie og kostnader stiger",
+          "answer": "Gående og syklende",
           "answerIndex": 0,
-          "dimension": "sosial ulikhet",
-          "topic": "Fortrengning",
-          "knowledge": "Fortrengning handler om at økte priser og endret markedspress gjør det vanskelig for tidligere leietakere, butikker eller brukergrupper å bli værende.",
-          "trivia": [],
-          "difficulty": 4,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [
-            "em_by_styring_forvaltning_planmakt"
-          ],
-          "core_concepts": [
-            "gentrifisering",
-            "rent gap",
-            "spekulasjon",
-            "eierskap",
-            "boligpris",
-            "fortrengning",
-            "leie",
-            "kulturell kapital"
-          ],
-          "concept_focus": [
-            "fortrengning",
-            "leie"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "fortrengning",
-            "leie"
-          ],
-          "required_tags": [],
+          "knowledge": "Ombyggingen endret trafikk- og byromsprofilen, men er ikke i seg selv bevis for alle senere sosiale eller økonomiske endringer.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
           "source": [
-            "emner_by – em_by_gentrifisering_eiendom"
+            "torggata_byleksikon",
+            "uib_torggata"
           ],
-          "primary_knowledge_unit_id": "ku_by_fortrengning_handler_om__523d5e8838",
+          "source_origin": "external",
+          "claim_basis": "Den nye utformingen av Torggata som åpnet i 2014 prioriterte gående og syklende.",
+          "claim_id": "claim_torggata_quiz_17",
+          "primary_knowledge_unit_id": "ku_by_ombyggingen_endret_trafi_7d90b389a5",
           "knowledge_unit_ids": [
-            "ku_by_fortrengning_handler_om__523d5e8838"
+            "ku_by_ombyggingen_endret_trafi_7d90b389a5"
           ],
-          "concept_ids": [
-            "co_by_gentrifisering_b16aedcd37",
-            "co_by_rent_gap_02bef17d90",
-            "co_by_spekulasjon_ee7c2e39ba",
-            "co_by_eierskap_c79c26a410",
-            "co_by_boligpris_4b031cc93e",
-            "co_by_fortrengning_246549d0b0",
-            "co_by_leie_37de42157c",
-            "co_by_kulturell_kapital_f59e0fa282"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -1019,70 +723,31 @@
           "quiz_id": "by_torggata_set_3_q4",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva betyr 'planmakt' best i en gate som Torggata?",
+          "question": "Hvordan beskriver Torggata Gateforening dagens forskjell mellom vestre og østre del?",
           "options": [
-            "At regulering, byggesaker og offentlige beslutninger påvirker hva gaten kan bli",
-            "At markedet alene bestemmer alt uten offentlige rammer",
-            "At bare arkitekter bestemmer hvordan en gate brukes"
+            "Vestre del som gågate og østre del som gang-/sykkelprioritert",
+            "Begge deler som motorvei",
+            "Vestre del som havn og østre del som skog"
           ],
-          "answer": "At regulering, byggesaker og offentlige beslutninger påvirker hva gaten kan bli",
+          "answer": "Vestre del som gågate og østre del som gang-/sykkelprioritert",
           "answerIndex": 0,
-          "dimension": "styring",
-          "topic": "Planmakt",
-          "knowledge": "Planmakt handler om at kommunen og andre offentlige nivåer former utviklingen gjennom regulering, byggesaker, prioriteringer og tillatelser.",
-          "trivia": [],
+          "knowledge": "Dette er en fersk interessentbeskrivelse av området og brukes ikke som eneste juridiske kilde til trafikkregulering.",
           "difficulty": 3,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [],
-          "core_concepts": [
-            "regulering",
-            "arealplan",
-            "planmakt",
-            "medvirkning",
-            "forvaltningsnivå",
-            "utbyggingsavtale",
-            "byggesak",
-            "dispensasjon",
-            "interessekonflikt",
-            "lobbyisme"
-          ],
-          "concept_focus": [
-            "planmakt",
-            "regulering"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "planmakt",
-            "regulering"
-          ],
-          "required_tags": [],
+          "question_type": "fact",
+          "emne_id": "em_by_infrastruktur_mobilitet",
           "source": [
-            "emner_by – em_by_styring_forvaltning_planmakt"
+            "torggata_gateforening"
           ],
-          "primary_knowledge_unit_id": "ku_by_planmakt_handler_om_at_k_e97b0c1280",
+          "source_origin": "external",
+          "claim_basis": "Torggata Gateforening beskriver vestre del som gågate og østre del som gang-/sykkelprioritert.",
+          "claim_id": "claim_torggata_quiz_18",
+          "primary_knowledge_unit_id": "ku_by_dette_er_en_fersk_intere_d9df9b3ff7",
           "knowledge_unit_ids": [
-            "ku_by_planmakt_handler_om_at_k_e97b0c1280"
+            "ku_by_dette_er_en_fersk_intere_d9df9b3ff7"
           ],
-          "concept_ids": [
-            "co_by_regulering_df33dcb3f7",
-            "co_by_arealplan_aa72a063f0",
-            "co_by_planmakt_ec981515e7",
-            "co_by_medvirkning_b6009183ea",
-            "co_by_forvaltningsniva_234041882d",
-            "co_by_utbyggingsavtale_18015e1639",
-            "co_by_byggesak_000ceb76b3",
-            "co_by_dispensasjon_26d6cdab89",
-            "co_by_interessekonflikt_5fe79e25f0",
-            "co_by_lobbyisme_dcc6cf4e1d"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -1092,70 +757,32 @@
           "quiz_id": "by_torggata_set_3_q5",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva er 'medvirkning' i byutvikling, brukt på Torggata?",
+          "question": "Hva fant TØI om konfliktbildet mellom gående og syklende i de undersøkte delene av Torggata?",
           "options": [
-            "At beboere, brukere og andre aktører kan gi innspill i planprosesser",
-            "At bare grunneiere får stemme over alt som bygges",
-            "At syklister alene avgjør gateutforming"
+            "Gågatedelen hadde få konflikter, mens sykkelgatedelen hadde et annet konfliktbilde",
+            "Alle deler var helt uten konflikter",
+            "Studien undersøkte bare biltrafikk"
           ],
-          "answer": "At beboere, brukere og andre aktører kan gi innspill i planprosesser",
+          "answer": "Gågatedelen hadde få konflikter, mens sykkelgatedelen hadde et annet konfliktbilde",
           "answerIndex": 0,
-          "dimension": "demokrati",
-          "topic": "Medvirkning",
-          "knowledge": "Medvirkning betyr at flere enn utbyggere og forvaltning kan påvirke hvordan en gate utvikles, for eksempel gjennom høringer og offentlig debatt.",
-          "trivia": [],
+          "knowledge": "Resultatene gjelder den undersøkte perioden og kan ikke brukes som dagens trafikkmåling.",
           "difficulty": 3,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [],
-          "core_concepts": [
-            "regulering",
-            "arealplan",
-            "planmakt",
-            "medvirkning",
-            "forvaltningsnivå",
-            "utbyggingsavtale",
-            "byggesak",
-            "dispensasjon",
-            "interessekonflikt",
-            "lobbyisme"
-          ],
-          "concept_focus": [
-            "medvirkning",
-            "interessekonflikt"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "medvirkning",
-            "planprosess"
-          ],
-          "required_tags": [],
+          "question_type": "context",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
           "source": [
-            "emner_by – em_by_styring_forvaltning_planmakt"
+            "toi_sykkel",
+            "toi_shared_space"
           ],
-          "primary_knowledge_unit_id": "ku_by_medvirkning_betyr_at_fle_bf8e1cda8d",
+          "source_origin": "external",
+          "claim_basis": "TØIs historiske undersøkelser fant få konflikter i gågatedelen, men et annet konfliktbilde i sykkelgatedelen lenger nord.",
+          "claim_id": "claim_torggata_quiz_19",
+          "primary_knowledge_unit_id": "ku_by_resultatene_gjelder_den__293135f758",
           "knowledge_unit_ids": [
-            "ku_by_medvirkning_betyr_at_fle_bf8e1cda8d"
+            "ku_by_resultatene_gjelder_den__293135f758"
           ],
-          "concept_ids": [
-            "co_by_regulering_df33dcb3f7",
-            "co_by_arealplan_aa72a063f0",
-            "co_by_planmakt_ec981515e7",
-            "co_by_medvirkning_b6009183ea",
-            "co_by_forvaltningsniva_234041882d",
-            "co_by_utbyggingsavtale_18015e1639",
-            "co_by_byggesak_000ceb76b3",
-            "co_by_dispensasjon_26d6cdab89",
-            "co_by_interessekonflikt_5fe79e25f0",
-            "co_by_lobbyisme_dcc6cf4e1d"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -1165,69 +792,31 @@
           "quiz_id": "by_torggata_set_3_q6",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Når Torggata får mer servering, mer byliv og høyere kommersielt trykk samtidig, hvilken faglig spenning passer best?",
+          "question": "Hva pekte TØI på som én forklaring på konflikter i deler av Torggata?",
           "options": [
-            "Kultur vs kapital",
-            "Natur vs teknologi",
-            "Fart vs stillhet"
+            "Ulike forventninger til om arealet fungerer som gågate eller sykkelgate",
+            "At gaten manglet fotgjengere",
+            "At all sykling var forbudt"
           ],
-          "answer": "Kultur vs kapital",
+          "answer": "Ulike forventninger til om arealet fungerer som gågate eller sykkelgate",
           "answerIndex": 0,
-          "dimension": "konflikt",
-          "topic": "Kultur vs kapital",
-          "knowledge": "Emnet om gentrifisering peker på konflikten mellom kulturell oppgradering og kapitaldrevet verdiøkning. Torggata er et godt case for denne spenningen.",
-          "trivia": [],
-          "difficulty": 4,
-          "question_type": "analysis",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [
-            "em_by_styring_forvaltning_planmakt"
-          ],
-          "core_concepts": [
-            "gentrifisering",
-            "rent gap",
-            "spekulasjon",
-            "eierskap",
-            "boligpris",
-            "fortrengning",
-            "leie",
-            "kulturell kapital"
-          ],
-          "concept_focus": [
-            "kulturell kapital",
-            "spekulasjon"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "kultur vs kapital",
-            "konflikt"
-          ],
-          "required_tags": [],
+          "knowledge": "Dette er TØIs attribuerte analyse, ikke en universell årsaksforklaring for alle hendelser i gaten.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
           "source": [
-            "emner_by – em_by_gentrifisering_eiendom"
+            "toi_shared_space"
           ],
-          "primary_knowledge_unit_id": "ku_by_emnet_om_gentrifisering__1bc889ab6a",
+          "source_origin": "external",
+          "claim_basis": "TØI identifiserte ulike forventninger til om deler av Torggata fungerer som gågate eller sykkelgate som en forklaring på konflikter.",
+          "claim_id": "claim_torggata_quiz_20",
+          "primary_knowledge_unit_id": "ku_by_dette_er_t_is_attribuert_01eb4264a7",
           "knowledge_unit_ids": [
-            "ku_by_emnet_om_gentrifisering__1bc889ab6a",
-            "ku_by_torggata_er_et_godt_case_aa6a8bb776"
+            "ku_by_dette_er_t_is_attribuert_01eb4264a7"
           ],
-          "concept_ids": [
-            "co_by_gentrifisering_b16aedcd37",
-            "co_by_rent_gap_02bef17d90",
-            "co_by_spekulasjon_ee7c2e39ba",
-            "co_by_eierskap_c79c26a410",
-            "co_by_boligpris_4b031cc93e",
-            "co_by_fortrengning_246549d0b0",
-            "co_by_leie_37de42157c",
-            "co_by_kulturell_kapital_f59e0fa282"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -1237,74 +826,31 @@
           "quiz_id": "by_torggata_set_3_q7",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva er den beste faglige lesningen av Torggatas ombygging for gående og syklister?",
+          "question": "Hvordan beskriver en fagfellevurdert Oslo-studie Torggatas nyere transformasjon?",
           "options": [
-            "Et sted der planmakt og gateprioritering endrer både bruk, verdi og sosial rytme",
-            "Et rent estetisk prosjekt uten betydning for hvem som bruker gaten",
-            "Bare en teknisk asfaltering uten sosiale konsekvenser"
+            "Som delvis gentrifisering i samspill mellom offentlige og private aktører",
+            "Som en fullstendig sosial utskifting bevist av én ombygging",
+            "Som et område uten private eiendomsaktører"
           ],
-          "answer": "Et sted der planmakt og gateprioritering endrer både bruk, verdi og sosial rytme",
+          "answer": "Som delvis gentrifisering i samspill mellom offentlige og private aktører",
           "answerIndex": 0,
-          "dimension": "romlig analyse",
-          "topic": "Styring gjennom gateform",
-          "knowledge": "Når gateutformingen endres, endres også bevegelse, opphold, attraktivitet og kommersiell verdi. Derfor er Torggata et tydelig case for samspillet mellom planmakt og gentrifisering.",
-          "trivia": [],
-          "difficulty": 4,
-          "question_type": "analysis",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [
-            "em_by_gentrifisering_eiendom"
-          ],
-          "core_concepts": [
-            "regulering",
-            "arealplan",
-            "planmakt",
-            "medvirkning",
-            "forvaltningsnivå",
-            "utbyggingsavtale",
-            "byggesak",
-            "dispensasjon",
-            "interessekonflikt",
-            "lobbyisme"
-          ],
-          "concept_focus": [
-            "planmakt",
-            "interessekonflikt"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "gateutforming",
-            "styring"
-          ],
-          "required_tags": [],
+          "knowledge": "Studien gir grunnlag for en avgrenset gentrifiseringsanalyse, ikke for å beskrive hele gaten som fullstendig gentrifisert.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_by_gentrifisering_eiendom",
           "source": [
-            "emner_by – em_by_styring_forvaltning_planmakt",
-            "emner_by – em_by_gentrifisering_eiendom"
+            "urban_transformation_article"
           ],
-          "primary_knowledge_unit_id": "ku_by_nar_gateutformingen_endr_fa1f6e9c23",
+          "source_origin": "external",
+          "claim_basis": "En fagfellevurdert Oslo-studie omtaler Torggata som delvis gentrifisert og beskriver samspill mellom kommune og en stor eiendomsaktør i fysisk og kommersiell transformasjon.",
+          "claim_id": "claim_torggata_quiz_21",
+          "primary_knowledge_unit_id": "ku_by_studien_gir_grunnlag_for_d1cbd81072",
           "knowledge_unit_ids": [
-            "ku_by_nar_gateutformingen_endr_fa1f6e9c23",
-            "ku_by_derfor_er_torggata_et_ty_7fc3a1194b"
+            "ku_by_studien_gir_grunnlag_for_d1cbd81072"
           ],
-          "concept_ids": [
-            "co_by_regulering_df33dcb3f7",
-            "co_by_arealplan_aa72a063f0",
-            "co_by_planmakt_ec981515e7",
-            "co_by_medvirkning_b6009183ea",
-            "co_by_forvaltningsniva_234041882d",
-            "co_by_utbyggingsavtale_18015e1639",
-            "co_by_byggesak_000ceb76b3",
-            "co_by_dispensasjon_26d6cdab89",
-            "co_by_interessekonflikt_5fe79e25f0",
-            "co_by_lobbyisme_dcc6cf4e1d"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -1315,6 +861,7 @@
       "set_id": "by_torggata_set_4",
       "level": 4,
       "order": 4,
+      "phase": "bridge",
       "xp": 80,
       "questions": [
         {
@@ -1322,121 +869,64 @@
           "quiz_id": "by_torggata_set_4_q1",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hvilket år ble også østre del av Torggata gågate?",
+          "question": "Hva beskriver Oslo-studien at en stor eiendomsaktør ønsket å påvirke i Torggata?",
           "options": [
-            "2009",
-            "2001",
-            "2014"
+            "Tenant-miks og leie-/eiendomsverdier",
+            "Elveløpet gjennom gaten",
+            "Byens kommunegrenser"
           ],
-          "answer": "2009",
+          "answer": "Tenant-miks og leie-/eiendomsverdier",
           "answerIndex": 0,
-          "dimension": "byutvikling",
-          "topic": "Gågate",
-          "knowledge": "Oslo byleksikon opplyser at også østre del av Torggata ble gågate i 2009, før den større ombyggingen åpnet i 2014.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "year": 2009,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "gågate",
-            "2009"
-          ],
-          "required_tags": [],
+          "knowledge": "Aktørstrategi er dokumentert, men dette er ikke det samme som direkte dokumentasjon av at bestemte personer eller virksomheter faktisk ble fortrengt.",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_by_gentrifisering_eiendom",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "urban_transformation_article"
           ],
-          "primary_knowledge_unit_id": "ku_by_oslo_byleksikon_opplyser_c7cedf2da3",
+          "source_origin": "external",
+          "claim_basis": "Den fagfellevurderte studien beskriver strategisk tenant-miks og høyere leie-/eiendomsverdier som mål eller virkemidler hos en anonymisert stor eiendomsaktør i Torggata.",
+          "claim_id": "claim_torggata_quiz_22",
+          "primary_knowledge_unit_id": "ku_by_akt_rstrategi_er_dokumen_c960707519",
           "knowledge_unit_ids": [
-            "ku_by_oslo_byleksikon_opplyser_c7cedf2da3"
+            "ku_by_akt_rstrategi_er_dokumen_c960707519"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_transformasjon_ombruk",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_teori_vs_praksis_i_byutvikling",
-                "score": 4
-              },
-              {
-                "emne_id": "em_by_gentrifisering_eiendom",
-                "score": 3
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "torggata_quiz_23",
           "quiz_id": "by_torggata_set_4_q2",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva finansierte ombyggingen av Torggata som åpnet i 2014?",
+          "question": "Hva kan kildene ikke alene bevise om Torggatas ombygging?",
           "options": [
-            "Midler fra Oslopakkene",
-            "Private restaurantaktører",
-            "EU-program for kulturminner"
+            "At ombyggingen alene presset ut bestemte tidligere brukere og virksomheter",
+            "At gaten fikk ny utforming i 2014",
+            "At Torggata har en lang handelshistorie"
           ],
-          "answer": "Midler fra Oslopakkene",
+          "answer": "At ombyggingen alene presset ut bestemte tidligere brukere og virksomheter",
           "answerIndex": 0,
-          "dimension": "politikk",
-          "topic": "Finansiering",
-          "knowledge": "Ombyggingen av Torggata ble dekket med midler fra Oslopakkene, ifølge Oslo byleksikon.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "fact",
-          "year": 2014,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "oslopakkene",
-            "finansiering"
-          ],
-          "required_tags": [],
+          "knowledge": "Torggata-kildebasen krever at gentrifisering og kommersialisering beskrives med inferensgrense, ikke som enkel årsakskjede.",
+          "difficulty": 4,
+          "question_type": "context",
+          "emne_id": "em_by_gentrifisering_eiendom",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "urban_transformation_article",
+            "uib_torggata"
           ],
-          "emne_ids": [
-            "em_by_torg_plasser_som_scene"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.81,
-            "score": 6,
-            "matched": [
-              "politikk",
-              "torg"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_by_ombyggingen_av_torggata__38a986b274",
+          "source_origin": "external",
+          "claim_basis": "Kildene gir ikke grunnlag for å hevde at én gateombygging alene forårsaket direkte fortrengning av bestemte tidligere virksomheter eller brukergrupper.",
+          "claim_id": "claim_torggata_quiz_23",
+          "primary_knowledge_unit_id": "ku_by_torggata_kildebasen_krev_48024c7db1",
           "knowledge_unit_ids": [
-            "ku_by_ombyggingen_av_torggata__38a986b274"
+            "ku_by_torggata_kildebasen_krev_48024c7db1"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -1448,187 +938,98 @@
           "quiz_id": "by_torggata_set_4_q3",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva skjedde med Torggata Bad etter at badet ble nedlagt i 1980?",
+          "question": "Hvilken av disse virksomhetene er fortsatt knyttet til Torggata bad-komplekset i den ferske kildekontrollen?",
           "options": [
-            "Bygningen ble bygget om 1983–88 og fikk nye kultur- og handelsfunksjoner",
-            "Hele bygningen ble revet og erstattet av parkeringshus",
-            "Den ble stående tom frem til 2010"
+            "Rockefeller",
+            "Fahlstrøms Theater",
+            "Bade- og Vadskeanstalten som kommunalt bad"
           ],
-          "answer": "Bygningen ble bygget om 1983–88 og fikk nye kultur- og handelsfunksjoner",
+          "answer": "Rockefeller",
           "answerIndex": 0,
-          "dimension": "bygning",
-          "topic": "Ombygging av badet",
-          "knowledge": "Etter nedleggelsen i 1980 ble Torggata Bad bygget om 1983–88 og brukes siden til butikker, konsertsted og senere også mathall.",
-          "trivia": [],
-          "difficulty": 3,
+          "knowledge": "Nåtidsopplysninger er ferskkontrollert separat fra den historiske bygge- og institusjonshistorien.",
+          "difficulty": 4,
           "question_type": "fact",
-          "year": 1983,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "ombygging",
-            "torggata bad"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Torggata bad",
-            "Oslo byleksikon – Rockefeller"
+            "rockefeller_booking"
           ],
-          "primary_knowledge_unit_id": "ku_by_etter_nedleggelsen_i_198_5881df8d97",
+          "source_origin": "external",
+          "claim_basis": "Rockefeller drives fortsatt som konsert- og arrangementssted i Torggata bad-komplekset.",
+          "claim_id": "claim_torggata_quiz_24",
+          "primary_knowledge_unit_id": "ku_by_natidsopplysninger_er_fe_03ebb11265",
           "knowledge_unit_ids": [
-            "ku_by_etter_nedleggelsen_i_198_5881df8d97"
+            "ku_by_natidsopplysninger_er_fe_03ebb11265"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_offentlige_rom_motesteder",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_torg_plasser_som_scene",
-                "score": 6
-              },
-              {
-                "emne_id": "em_by_bygningstyper_og_typologier",
-                "score": 3
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "torggata_quiz_25",
           "quiz_id": "by_torggata_set_4_q4",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva åpnet i Torggata Bad-bygningen i 2019?",
+          "question": "Hva er det sikreste dokumenterte resultatet av 2013–2014-ombyggingen?",
           "options": [
-            "Oslo Street Food",
-            "Nasjonalmuseet",
-            "Deichman filial Torggata"
+            "En ny fysisk trafikk- og byromsprofil med tydeligere prioritet for gående og syklende",
+            "En dokumentert bestemt prosentvis husleieøkning i hele gaten",
+            "At alle eldre virksomheter forsvant"
           ],
-          "answer": "Oslo Street Food",
+          "answer": "En ny fysisk trafikk- og byromsprofil med tydeligere prioritet for gående og syklende",
           "answerIndex": 0,
-          "dimension": "servering",
-          "topic": "Street food",
-          "knowledge": "I 2019 åpnet Oslo Street Food i den tidligere badebygningen, med flere barer og mange spisesteder under samme tak.",
-          "trivia": [],
-          "difficulty": 2,
+          "knowledge": "Fysiske plan- og trafikkgrep kan dokumenteres direkte uten å gjøre uverifiserte påstander om alle økonomiske eller sosiale konsekvenser.",
+          "difficulty": 4,
           "question_type": "fact",
-          "year": 2019,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "oslo street food",
-            "mat"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_styring_forvaltning_planmakt",
           "source": [
-            "Oslo byleksikon – Torggata bad"
+            "torggata_byleksikon",
+            "uib_torggata"
           ],
-          "primary_knowledge_unit_id": "ku_by_i_2019_apnet_oslo_street_dceb1a00fd",
+          "source_origin": "external",
+          "claim_basis": "Det sikreste dokumenterte resultatet av ombyggingen er en ny fysisk trafikk- og byromsprofil med tydeligere prioritet for gående og syklende.",
+          "claim_id": "claim_torggata_quiz_25",
+          "primary_knowledge_unit_id": "ku_by_fysiske_plan_og_trafikkg_62dbbc15e0",
           "knowledge_unit_ids": [
-            "ku_by_i_2019_apnet_oslo_street_dceb1a00fd"
+            "ku_by_fysiske_plan_og_trafikkg_62dbbc15e0"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_bydelsforskjeller_segregering",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_byidealer_og_plantradisjoner",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_flaskehalser_kryss_friksjon",
-                "score": 3
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
           "id": "torggata_quiz_26",
           "quiz_id": "by_torggata_set_4_q5",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva var spesielt med familien Jensen i Torggata på slutten av 1800- og begynnelsen av 1900-tallet?",
+          "question": "Hva betyr «gentrifisering» mest presist i denne Torggata-quizen?",
           "options": [
-            "Én familie drev fire ulike forretninger i gaten",
-            "De eide hele gaten som privat område",
-            "De grunnla Torggata Bad"
+            "En prosess der fysisk og kommersiell oppgradering kan henge sammen med endret kapital, leie, virksomhetsmiks og sosial tilgang",
+            "Et synonym for enhver gate med nye brostein",
+            "At alle beboere nødvendigvis er flyttet ut"
           ],
-          "answer": "Én familie drev fire ulike forretninger i gaten",
+          "answer": "En prosess der fysisk og kommersiell oppgradering kan henge sammen med endret kapital, leie, virksomhetsmiks og sosial tilgang",
           "answerIndex": 0,
-          "dimension": "handelshistorie",
-          "topic": "Jensen-familien",
-          "knowledge": "Oslo byleksikon trekker frem familien Jensen som et særtrekk ved Torggata: én familie hadde fire forretninger i gaten i ulike bransjer.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "jensen-familien",
-            "butikkhistorie"
-          ],
-          "required_tags": [],
+          "knowledge": "Begrepet brukes som et analytisk verktøy med begrensninger, ikke som en merkelapp som automatisk forklarer alle endringer.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_gentrifisering_eiendom",
           "source": [
-            "Oslo byleksikon – Torggata"
+            "urban_transformation_article"
           ],
-          "emne_ids": [
-            "em_by_midlertidig_handel_pop_up"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "handel"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_by_oslo_byleksikon_trekker__9992845c2f",
+          "source_origin": "external",
+          "claim_basis": "Torggata kan brukes som case på delvis gentrifisering når begrepet knyttes til dokumentert fysisk og kommersiell transformasjon, tenant-miks og eiendomsstrategi uten å anta total utskifting.",
+          "claim_id": "claim_torggata_quiz_26",
+          "primary_knowledge_unit_id": "ku_by_begrepet_brukes_som_et_a_628312d9f4",
           "knowledge_unit_ids": [
-            "ku_by_oslo_byleksikon_trekker__9992845c2f"
+            "ku_by_begrepet_brukes_som_et_a_628312d9f4"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -1640,56 +1041,30 @@
           "quiz_id": "by_torggata_set_4_q6",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hvilken byfunksjon gjorde Torggata til et underholdningsstrøk lenge før dagens bar- og restaurantliv?",
+          "question": "Hva betyr «planmakt» når vi ser på Torggatas ombygging?",
           "options": [
-            "Privat kinodrift og teater- og varietémiljø",
-            "Tungindustri og havnelager",
-            "Embetskontorer og departementer"
+            "At offentlige vedtak og prioriteringer kan endre hvordan gateareal fordeles og brukes",
+            "At bare arkitekter bestemmer all gatebruk",
+            "At markedet virker helt uten offentlige rammer"
           ],
-          "answer": "Privat kinodrift og teater- og varietémiljø",
+          "answer": "At offentlige vedtak og prioriteringer kan endre hvordan gateareal fordeles og brukes",
           "answerIndex": 0,
-          "dimension": "kulturhistorie",
-          "topic": "Underholdningsgate",
-          "knowledge": "Torggata var kjent for serveringssteder og underholdningstilbud, ikke minst i den private kinodrifts tid, og Eldorado er et tydelig spor av dette.",
-          "trivia": [],
-          "difficulty": 2,
-          "question_type": "fact",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "kino",
-            "underholdning"
-          ],
-          "required_tags": [],
+          "knowledge": "Planmakt handler her om konkrete valg i byrommet, ikke om en abstrakt påstand om at kommunen kontrollerer alt.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_styring_forvaltning_planmakt",
           "source": [
-            "Oslo byleksikon – Torggata",
-            "Oslo byleksikon – Eldorado"
+            "uib_torggata",
+            "torggata_byleksikon"
           ],
-          "emne_ids": [
-            "em_by_estetikk_vs_funksjon"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.8200000000000001,
-            "score": 7,
-            "matched": [
-              "funksjon",
-              "drift"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_by_torggata_var_kjent_for_s_af8807dbf4",
+          "source_origin": "external",
+          "claim_basis": "Torggatas ombygging viser planmakt som offentlig evne til å endre prioriteringen av gateareal gjennom planlegging og fysiske grep.",
+          "claim_id": "claim_torggata_quiz_27",
+          "primary_knowledge_unit_id": "ku_by_planmakt_handler_her_om__ab1981f648",
           "knowledge_unit_ids": [
-            "ku_by_torggata_var_kjent_for_s_af8807dbf4"
+            "ku_by_planmakt_handler_her_om__ab1981f648"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -1701,63 +1076,35 @@
           "quiz_id": "by_torggata_set_4_q7",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva ble Badstugata oppkalt etter?",
+          "question": "Hva betyr «ombruk» i historien om Torggata bad og Eldorado?",
           "options": [
-            "Bade- og Vadskeanstalten i Torggata 16",
-            "Et gammelt bryggeri i området",
-            "En kjent bademester på Youngstorget"
+            "At eksisterende bygg får nye funksjoner over tid",
+            "At alle gamle bygg må rives",
+            "At et gatenavn endres uten fysisk endring"
           ],
-          "answer": "Bade- og Vadskeanstalten i Torggata 16",
+          "answer": "At eksisterende bygg får nye funksjoner over tid",
           "answerIndex": 0,
-          "dimension": "navn",
-          "topic": "Badstugata",
-          "knowledge": "Badstugata fikk navn i 1877 etter badeanstalten i Torggata 16, altså det som senere ble kjent som Torggata Bad.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "fact",
-          "year": 1877,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "",
-          "related_emner": [],
-          "core_concepts": [],
-          "concept_focus": [],
-          "learning_paths": [],
-          "tags": [
-            "badstugata",
-            "navn"
-          ],
-          "required_tags": [],
+          "knowledge": "Ombruk gjør historiske lag synlige fordi samme fysiske sted kan bære forskjellige institusjoner og publikumsfunksjoner.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "Oslo byleksikon – Badstugata",
-            "Oslo byleksikon – Torggata bad"
+            "torggata_bad_byleksikon",
+            "eldorado_byleksikon"
           ],
-          "primary_knowledge_unit_id": "ku_by_badstugata_fikk_navn_i_1_0550ad7738",
+          "source_origin": "external",
+          "claim_basis": "Torggata bad og Eldorado viser ombruk ved at eksisterende bygg og lokaler har fått nye funksjoner gjennom flere historiske perioder.",
+          "claim_id": "claim_torggata_quiz_28",
+          "primary_knowledge_unit_id": "ku_by_ombruk_gj_r_historiske_l_05cbf3ca88",
           "knowledge_unit_ids": [
-            "ku_by_badstugata_fikk_navn_i_1_0550ad7738"
+            "ku_by_ombruk_gj_r_historiske_l_05cbf3ca88"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_by_offentlige_rom_motesteder",
-                "score": 3
-              },
-              {
-                "emne_id": "em_by_torg_plasser_som_scene",
-                "score": 3
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         }
       ]
     },
@@ -1765,6 +1112,7 @@
       "set_id": "by_torggata_set_5",
       "level": 5,
       "order": 5,
+      "phase": "final",
       "xp": 90,
       "questions": [
         {
@@ -1772,69 +1120,31 @@
           "quiz_id": "by_torggata_set_5_q1",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva skiller en gentrifiseringslesning av Torggata fra en ren turistbeskrivelse av gaten?",
+          "question": "Hva skjedde med Eldorado etter at kinodriften sluttet i 2012?",
           "options": [
-            "Den ser på eierskap, leie, fortrengning og verdiøkning – ikke bare stemning og tilbud",
-            "Den handler bare om hvor mange som går der",
-            "Den fokuserer kun på gatekunst og kaféinnredning"
+            "Lokalene ble omgjort til bokhandel i 2013",
+            "Bygningen ble revet samme år",
+            "Det kommunale badet flyttet inn"
           ],
-          "answer": "Den ser på eierskap, leie, fortrengning og verdiøkning – ikke bare stemning og tilbud",
+          "answer": "Lokalene ble omgjort til bokhandel i 2013",
           "answerIndex": 0,
-          "dimension": "kritikk",
-          "topic": "Lesemåter",
-          "knowledge": "En faglig lesning av Torggata spør hvem som tjener på endringene, hvem som presses ut, og hvordan kultur blir koblet til eiendomsverdi.",
-          "trivia": [],
+          "knowledge": "Eldorado er derfor et sted der varieté, teater, kino og bokhandel har avløst hverandre.",
           "difficulty": 4,
-          "question_type": "analysis",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [
-            "em_by_styring_forvaltning_planmakt"
-          ],
-          "core_concepts": [
-            "gentrifisering",
-            "rent gap",
-            "spekulasjon",
-            "eierskap",
-            "boligpris",
-            "fortrengning",
-            "leie",
-            "kulturell kapital"
-          ],
-          "concept_focus": [
-            "eierskap",
-            "fortrengning",
-            "kulturell kapital"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "kritisk lesning",
-            "gentrifisering"
-          ],
-          "required_tags": [],
+          "question_type": "fact",
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "emner_by – em_by_gentrifisering_eiendom"
+            "eldorado_byleksikon"
           ],
-          "primary_knowledge_unit_id": "ku_by_en_faglig_lesning_av_tor_b3e7ba430e",
+          "source_origin": "external",
+          "claim_basis": "Kinodriften i Eldorado varte til 2012, og lokalene ble omgjort til bokhandel i 2013.",
+          "claim_id": "claim_torggata_quiz_29",
+          "primary_knowledge_unit_id": "ku_by_eldorado_er_derfor_et_st_60996d6607",
           "knowledge_unit_ids": [
-            "ku_by_en_faglig_lesning_av_tor_b3e7ba430e"
+            "ku_by_eldorado_er_derfor_et_st_60996d6607"
           ],
-          "concept_ids": [
-            "co_by_gentrifisering_b16aedcd37",
-            "co_by_rent_gap_02bef17d90",
-            "co_by_spekulasjon_ee7c2e39ba",
-            "co_by_eierskap_c79c26a410",
-            "co_by_boligpris_4b031cc93e",
-            "co_by_fortrengning_246549d0b0",
-            "co_by_leie_37de42157c",
-            "co_by_kulturell_kapital_f59e0fa282"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -1844,70 +1154,32 @@
           "quiz_id": "by_torggata_set_5_q2",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva er den mest presise rollen til 'byggesak' i emnet planmakt?",
+          "question": "Hva lærer sammenstillingen av Torggata bad i 1861, 1980 og 1986 oss?",
           "options": [
-            "Det er et konkret forvaltningsledd der utvikling får eller ikke får tillatelse",
-            "Det er bare et journalistisk navn på arkitektdebatt",
-            "Det betyr at alt allerede er vedtatt politisk og ikke kan endres"
+            "At samme sted kan skifte fra offentlig velferdsfunksjon til kultur- og arrangementsbruk",
+            "At bygningen alltid var en konsertscene",
+            "At badet først åpnet etter Rockefeller"
           ],
-          "answer": "Det er et konkret forvaltningsledd der utvikling får eller ikke får tillatelse",
+          "answer": "At samme sted kan skifte fra offentlig velferdsfunksjon til kultur- og arrangementsbruk",
           "answerIndex": 0,
-          "dimension": "institusjon",
-          "topic": "Byggesak",
-          "knowledge": "Planmakt virker ikke bare gjennom store visjoner, men også gjennom byggesaker, dispensasjoner og konkrete forvaltningsgrep som avgjør hva som kan bygges og brukes.",
-          "trivia": [],
+          "knowledge": "Sammenligningen gjør transformasjonen konkret uten å late som alle mellomliggende bruksendringer skjedde samtidig.",
           "difficulty": 4,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [],
-          "core_concepts": [
-            "regulering",
-            "arealplan",
-            "planmakt",
-            "medvirkning",
-            "forvaltningsnivå",
-            "utbyggingsavtale",
-            "byggesak",
-            "dispensasjon",
-            "interessekonflikt",
-            "lobbyisme"
-          ],
-          "concept_focus": [
-            "byggesak",
-            "dispensasjon"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "byggesak",
-            "forvaltning"
-          ],
-          "required_tags": [],
+          "question_type": "context",
+          "emne_id": "em_by_transformasjon_ombruk",
           "source": [
-            "emner_by – em_by_styring_forvaltning_planmakt"
+            "torggata_bad_byleksikon",
+            "rockefeller_booking"
           ],
-          "primary_knowledge_unit_id": "ku_by_planmakt_virker_ikke_bar_77147dfaa4",
+          "source_origin": "external",
+          "claim_basis": "Tidslinjen fra badeanstalt via badeavslutning i 1980 til Rockefeller i 1986 viser en tydelig funksjonsendring fra offentlig bad til kultur- og arrangementsbruk.",
+          "claim_id": "claim_torggata_quiz_30",
+          "primary_knowledge_unit_id": "ku_by_sammenligningen_gj_r_tra_69e3ea842b",
           "knowledge_unit_ids": [
-            "ku_by_planmakt_virker_ikke_bar_77147dfaa4"
+            "ku_by_sammenligningen_gj_r_tra_69e3ea842b"
           ],
-          "concept_ids": [
-            "co_by_regulering_df33dcb3f7",
-            "co_by_arealplan_aa72a063f0",
-            "co_by_planmakt_ec981515e7",
-            "co_by_medvirkning_b6009183ea",
-            "co_by_forvaltningsniva_234041882d",
-            "co_by_utbyggingsavtale_18015e1639",
-            "co_by_byggesak_000ceb76b3",
-            "co_by_dispensasjon_26d6cdab89",
-            "co_by_interessekonflikt_5fe79e25f0",
-            "co_by_lobbyisme_dcc6cf4e1d"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -1917,66 +1189,32 @@
           "quiz_id": "by_torggata_set_5_q3",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva betyr 'kulturell kapital' i en gate som Torggata?",
+          "question": "Hvorfor bør vi skille mellom fysisk ombygging og sosial årsaksforklaring i Torggata?",
           "options": [
-            "At et sted får sosial verdi gjennom image, smak, tilbud og symbolsk attraktivitet",
-            "At kulturbygg automatisk er kommunale eiendommer",
-            "At alle kulturelle tilbud er gratis"
+            "Fordi den fysiske ombyggingen er dokumentert direkte, mens full sosial fortrengning krever egen evidens",
+            "Fordi fysisk design aldri påvirker bruk",
+            "Fordi ingen kilder omtaler Torggata etter 1900"
           ],
-          "answer": "At et sted får sosial verdi gjennom image, smak, tilbud og symbolsk attraktivitet",
+          "answer": "Fordi den fysiske ombyggingen er dokumentert direkte, mens full sosial fortrengning krever egen evidens",
           "answerIndex": 0,
-          "dimension": "kultur",
-          "topic": "Kulturell kapital",
-          "knowledge": "Kulturell kapital handler om at steder får verdi gjennom rykte, stil, symbolsk status og hvilke miljøer som forbindes med dem – noe som igjen kan påvirke pris og investering.",
-          "trivia": [],
+          "knowledge": "Å skille observasjon fra årsaksforklaring er en sentral del av kildekritisk byanalyse.",
           "difficulty": 4,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
+          "question_type": "context",
           "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [],
-          "core_concepts": [
-            "gentrifisering",
-            "rent gap",
-            "spekulasjon",
-            "eierskap",
-            "boligpris",
-            "fortrengning",
-            "leie",
-            "kulturell kapital"
-          ],
-          "concept_focus": [
-            "kulturell kapital",
-            "gentrifisering"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "kulturell kapital",
-            "image"
-          ],
-          "required_tags": [],
           "source": [
-            "emner_by – em_by_gentrifisering_eiendom"
+            "urban_transformation_article",
+            "uib_torggata"
           ],
-          "primary_knowledge_unit_id": "ku_by_kulturell_kapital_handle_ee63f23e50",
+          "source_origin": "external",
+          "claim_basis": "Torggatas fysiske ombygging er direkte dokumentert, mens påstander om full sosial fortrengning eller én enkel årsak krever sterkere og mer spesifikk evidens.",
+          "claim_id": "claim_torggata_quiz_31",
+          "primary_knowledge_unit_id": "ku_by_a_skille_observasjon_fra_987497eaa0",
           "knowledge_unit_ids": [
-            "ku_by_kulturell_kapital_handle_ee63f23e50"
+            "ku_by_a_skille_observasjon_fra_987497eaa0"
           ],
-          "concept_ids": [
-            "co_by_gentrifisering_b16aedcd37",
-            "co_by_rent_gap_02bef17d90",
-            "co_by_spekulasjon_ee7c2e39ba",
-            "co_by_eierskap_c79c26a410",
-            "co_by_boligpris_4b031cc93e",
-            "co_by_fortrengning_246549d0b0",
-            "co_by_leie_37de42157c",
-            "co_by_kulturell_kapital_f59e0fa282"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -1986,72 +1224,32 @@
           "quiz_id": "by_torggata_set_5_q4",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Når emnet planmakt spør 'hvem bestemmer hva som kan bygges?', hva er det egentlig et spørsmål om?",
+          "question": "Hva beskriver best spenningen «opphold vs. gjennomgang» i Torggata etter ombyggingen?",
           "options": [
-            "Hvordan institusjoner, regler og interesser fordeler makt over byens utvikling",
-            "Hvem som fysisk kan mure opp en bygård raskest",
-            "Hvilken arkitekt som er mest kjent i mediene"
+            "Gatearealet skal både føre folk gjennom og gi plass til opphold, servering og ulike trafikantgrupper",
+            "Gaten har bare én mulig bruk",
+            "Opphold og bevegelse kan aldri finnes i samme gate"
           ],
-          "answer": "Hvordan institusjoner, regler og interesser fordeler makt over byens utvikling",
+          "answer": "Gatearealet skal både føre folk gjennom og gi plass til opphold, servering og ulike trafikantgrupper",
           "answerIndex": 0,
-          "dimension": "makt",
-          "topic": "Hvem bestemmer?",
-          "knowledge": "Spørsmålet om hvem som bestemmer i byen handler om maktfordeling mellom offentlige nivåer, private aktører, grunneiere, naboer og andre interesser i planprosessen.",
-          "trivia": [],
+          "knowledge": "Begrepet hjelper til å beskrive en faktisk romlig konflikt uten å måtte utpeke én brukergruppe som problemet.",
           "difficulty": 4,
-          "question_type": "analysis",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [
-            "em_by_gentrifisering_eiendom"
-          ],
-          "core_concepts": [
-            "regulering",
-            "arealplan",
-            "planmakt",
-            "medvirkning",
-            "forvaltningsnivå",
-            "utbyggingsavtale",
-            "byggesak",
-            "dispensasjon",
-            "interessekonflikt",
-            "lobbyisme"
-          ],
-          "concept_focus": [
-            "forvaltningsnivå",
-            "interessekonflikt"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "maktfordeling",
-            "byutvikling"
-          ],
-          "required_tags": [],
+          "question_type": "concept",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
           "source": [
-            "emner_by – em_by_styring_forvaltning_planmakt"
+            "torggata_byleksikon",
+            "toi_shared_space"
           ],
-          "primary_knowledge_unit_id": "ku_by_sp_rsmalet_om_hvem_som_b_c5d16c8009",
+          "source_origin": "external",
+          "claim_basis": "Torggatas nyere gateprofil gjør spenningen mellom opphold og gjennomgang synlig fordi samme gateareal skal romme bevegelse, opphold og ulike trafikantgrupper.",
+          "claim_id": "claim_torggata_quiz_32",
+          "primary_knowledge_unit_id": "ku_by_begrepet_hjelper_til_a_b_3815e48a23",
           "knowledge_unit_ids": [
-            "ku_by_sp_rsmalet_om_hvem_som_b_c5d16c8009"
+            "ku_by_begrepet_hjelper_til_a_b_3815e48a23"
           ],
-          "concept_ids": [
-            "co_by_regulering_df33dcb3f7",
-            "co_by_arealplan_aa72a063f0",
-            "co_by_planmakt_ec981515e7",
-            "co_by_medvirkning_b6009183ea",
-            "co_by_forvaltningsniva_234041882d",
-            "co_by_utbyggingsavtale_18015e1639",
-            "co_by_byggesak_000ceb76b3",
-            "co_by_dispensasjon_26d6cdab89",
-            "co_by_interessekonflikt_5fe79e25f0",
-            "co_by_lobbyisme_dcc6cf4e1d"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -2061,69 +1259,38 @@
           "quiz_id": "by_torggata_set_5_q5",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hvorfor er Torggata et godt case for konflikten 'lokalt liv vs investeringslogikk'?",
+          "question": "Hva kan en før/etter-analyse av bildene fra 2009 og 2017 brukes til?",
           "options": [
-            "Fordi gaten kan bli mer attraktiv samtidig som hverdagsbutikker, brukere og lave terskler presses av markedet",
-            "Fordi det ikke finnes handel eller servering der",
-            "Fordi gata ligger utenfor alle byutviklingsprosesser"
+            "Å sammenligne gateprofil og arealorganisering uten å påstå identisk kamerastandpunkt",
+            "Å bevise nøyaktig husleieutvikling",
+            "Å måle alle fotgjengerstrømmer i sanntid"
           ],
-          "answer": "Fordi gaten kan bli mer attraktiv samtidig som hverdagsbutikker, brukere og lave terskler presses av markedet",
+          "answer": "Å sammenligne gateprofil og arealorganisering uten å påstå identisk kamerastandpunkt",
           "answerIndex": 0,
-          "dimension": "konflikt",
-          "topic": "Lokalt liv vs investering",
-          "knowledge": "Emnet om gentrifisering fremhever nettopp konflikten mellom verdiøkning og sosial utholdenhet. Torggata gjør denne spenningen lesbar i butikkmiks, leie og gatebruk.",
-          "trivia": [],
+          "knowledge": "Før/etter-metoden er sterk når sammenligningsgrunnlaget og begrensningene oppgis eksplisitt.",
           "difficulty": 4,
-          "question_type": "analysis",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [
-            "em_by_styring_forvaltning_planmakt"
-          ],
-          "core_concepts": [
-            "gentrifisering",
-            "rent gap",
-            "spekulasjon",
-            "eierskap",
-            "boligpris",
-            "fortrengning",
-            "leie",
-            "kulturell kapital"
-          ],
-          "concept_focus": [
-            "fortrengning",
-            "spekulasjon"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "lokalt liv",
-            "investeringslogikk"
-          ],
-          "required_tags": [],
+          "question_type": "concept",
+          "emne_id": "em_by_opphold_vs_gjennomgang",
           "source": [
-            "emner_by – em_by_gentrifisering_eiendom"
+            "commons_before",
+            "commons_after",
+            "torggata_byleksikon"
           ],
-          "primary_knowledge_unit_id": "ku_by_emnet_om_gentrifisering__9237db3db8",
+          "source_origin": "external",
+          "claim_basis": "2009- og 2017-bildene kan brukes til å sammenligne gateprofil og arealorganisering, men ikke som en eksakt fotografisk replikk fra identisk kamerastandpunkt.",
+          "claim_id": "claim_torggata_quiz_33",
+          "method_id": "met_for_etter",
+          "guidance_basis": [
+            "data/fag/by/methods_by.json",
+            "data/fag/by/emner_by.json"
+          ],
+          "primary_knowledge_unit_id": "ku_by_f_r_etter_metoden_er_ste_16fca9c139",
           "knowledge_unit_ids": [
-            "ku_by_emnet_om_gentrifisering__9237db3db8",
-            "ku_by_torggata_gj_r_denne_spen_5a47d92260"
+            "ku_by_f_r_etter_metoden_er_ste_16fca9c139"
           ],
-          "concept_ids": [
-            "co_by_gentrifisering_b16aedcd37",
-            "co_by_rent_gap_02bef17d90",
-            "co_by_spekulasjon_ee7c2e39ba",
-            "co_by_eierskap_c79c26a410",
-            "co_by_boligpris_4b031cc93e",
-            "co_by_fortrengning_246549d0b0",
-            "co_by_leie_37de42157c",
-            "co_by_kulturell_kapital_f59e0fa282"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -2133,70 +1300,45 @@
           "quiz_id": "by_torggata_set_5_q6",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva vil det si at en planprosess er mer teknokratisk enn demokratisk?",
+          "question": "Michel de Certeau var opptatt av hvordan mennesker bruker byen i hverdagen. Hva er mest relevant å undersøke i Torggata med dette perspektivet?",
           "options": [
-            "At faglige og administrative nivåer styrer mer enn bred offentlig medvirkning",
-            "At det er flere folkemøter enn vanlig",
-            "At alle beslutninger tas ved folkeavstemning"
+            "Hvordan faktiske ruter, omveier, stopp og opphold bruker den ombygde gaten",
+            "Hvilken teoretiker som har høyest status",
+            "Om alle følger den samme ideelle ruten"
           ],
-          "answer": "At faglige og administrative nivåer styrer mer enn bred offentlig medvirkning",
+          "answer": "Hvordan faktiske ruter, omveier, stopp og opphold bruker den ombygde gaten",
           "answerIndex": 0,
-          "dimension": "styring",
-          "topic": "Teknokrati",
-          "knowledge": "Et av analyseaksene i planmakt-emnet er demokratisk versus teknokratisk styring: hvor åpne prosesser er, og hvem som faktisk får innflytelse.",
-          "trivia": [],
-          "difficulty": 5,
+          "knowledge": "De Certeaus hverdagspraksisperspektiv hjelper oss å spørre hvordan mennesker faktisk bruker et planlagt rom, i stedet for å anta at design og bruk er identiske.",
+          "difficulty": 4,
           "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [],
-          "core_concepts": [
-            "regulering",
-            "arealplan",
-            "planmakt",
-            "medvirkning",
-            "forvaltningsnivå",
-            "utbyggingsavtale",
-            "byggesak",
-            "dispensasjon",
-            "interessekonflikt",
-            "lobbyisme"
-          ],
-          "concept_focus": [
-            "medvirkning",
-            "forvaltningsnivå"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "teknokrati",
-            "demokrati"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_opphold_vs_gjennomgang",
           "source": [
-            "emner_by – em_by_styring_forvaltning_planmakt"
+            "torggata_byleksikon",
+            "toi_sykkel"
           ],
-          "primary_knowledge_unit_id": "ku_by_et_av_analyseaksene_i_pl_2584c4bc82",
+          "source_origin": "external",
+          "claim_basis": "Torggatas dokumenterte gateprofil og observerte samhandling mellom trafikanter gir et konkret grunnlag for å undersøke hvordan faktiske hverdagsruter og opphold forholder seg til planlagt gatebruk.",
+          "claim_id": "claim_torggata_quiz_34",
+          "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+          "thinker_id": "michel_de_certeau",
+          "work": "The Practice of Everyday Life",
+          "theory_ref": {
+            "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+            "thinker_id": "michel_de_certeau",
+            "work": "The Practice of Everyday Life",
+            "why_it_helps": "Perspektivet skiller planlagt gatebruk fra de konkrete rutene og praksisene folk faktisk skaper."
+          },
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/emner_by.json"
+          ],
+          "primary_knowledge_unit_id": "ku_by_de_certeaus_hverdagsprak_84ad38d7bb",
           "knowledge_unit_ids": [
-            "ku_by_et_av_analyseaksene_i_pl_2584c4bc82"
+            "ku_by_de_certeaus_hverdagsprak_84ad38d7bb"
           ],
-          "concept_ids": [
-            "co_by_regulering_df33dcb3f7",
-            "co_by_arealplan_aa72a063f0",
-            "co_by_planmakt_ec981515e7",
-            "co_by_medvirkning_b6009183ea",
-            "co_by_forvaltningsniva_234041882d",
-            "co_by_utbyggingsavtale_18015e1639",
-            "co_by_byggesak_000ceb76b3",
-            "co_by_dispensasjon_26d6cdab89",
-            "co_by_interessekonflikt_5fe79e25f0",
-            "co_by_lobbyisme_dcc6cf4e1d"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"
@@ -2206,481 +1348,45 @@
           "quiz_id": "by_torggata_set_5_q7",
           "categoryId": "by",
           "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
           "targetId": "torggata",
           "question_scope": "place",
-          "question": "Hva er den skarpeste faglige formuleringen av Torggata som byfenomen i dag?",
+          "question": "Gordon Cullen beskrev byrom som sekvenser av skiftende synsinntrykk. Hva i Torggata egner seg for en slik analyse?",
           "options": [
-            "En gate der planstyrte prioriteringer og markedskrefter møtes i en synlig omforming av bruk, verdi og publikum",
-            "En gate som står helt utenfor både politikk og økonomi",
-            "En gate som først og fremst kan forstås som naturrom"
+            "Overgangen mellom ulike gatesegmenter, fasader, passasjer og gateprofiler langs en vandring",
+            "Bare ett isolert årstall",
+            "En usynlig kommunegrense uten stedlig spor"
           ],
-          "answer": "En gate der planstyrte prioriteringer og markedskrefter møtes i en synlig omforming av bruk, verdi og publikum",
+          "answer": "Overgangen mellom ulike gatesegmenter, fasader, passasjer og gateprofiler langs en vandring",
           "answerIndex": 0,
-          "dimension": "sammenfatning",
-          "topic": "Torggata som case",
-          "knowledge": "Torggata kan leses som et sted der styring, regulering, investering, kultur og sosial endring virker samtidig og derfor gjør både planmakt og gentrifisering konkrete.",
-          "trivia": [],
-          "difficulty": 5,
-          "question_type": "analysis",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [
-            "em_by_gentrifisering_eiendom"
-          ],
-          "core_concepts": [
-            "regulering",
-            "arealplan",
-            "planmakt",
-            "medvirkning",
-            "forvaltningsnivå",
-            "utbyggingsavtale",
-            "byggesak",
-            "dispensasjon",
-            "interessekonflikt",
-            "lobbyisme"
-          ],
-          "concept_focus": [
-            "planmakt",
-            "gentrifisering"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "torggata",
-            "case"
-          ],
-          "required_tags": [],
-          "source": [
-            "emner_by – em_by_styring_forvaltning_planmakt",
-            "emner_by – em_by_gentrifisering_eiendom"
-          ],
-          "primary_knowledge_unit_id": "ku_by_torggata_kan_leses_som_e_c3cd8415f8",
-          "knowledge_unit_ids": [
-            "ku_by_torggata_kan_leses_som_e_c3cd8415f8"
-          ],
-          "concept_ids": [
-            "co_by_regulering_df33dcb3f7",
-            "co_by_arealplan_aa72a063f0",
-            "co_by_planmakt_ec981515e7",
-            "co_by_medvirkning_b6009183ea",
-            "co_by_forvaltningsniva_234041882d",
-            "co_by_utbyggingsavtale_18015e1639",
-            "co_by_byggesak_000ceb76b3",
-            "co_by_dispensasjon_26d6cdab89",
-            "co_by_interessekonflikt_5fe79e25f0",
-            "co_by_lobbyisme_dcc6cf4e1d",
-            "co_by_gentrifisering_b16aedcd37"
-          ],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "by_torggata_set_6",
-      "level": 6,
-      "order": 6,
-      "xp": 100,
-      "questions": [
-        {
-          "id": "torggata_quiz_36",
-          "quiz_id": "by_torggata_set_6_q1",
-          "categoryId": "by",
-          "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
-          "targetId": "torggata",
-          "question_scope": "place",
-          "question": "Hvilket begrep beskriver best når et område oppgraderes og får høyere verdi slik at gamle brukere kan presses ut?",
-          "options": [
-            "Gentrifisering",
-            "Promenade",
-            "Dispensasjon"
-          ],
-          "answer": "Gentrifisering",
-          "answerIndex": 0,
-          "dimension": "begrep",
-          "topic": "Gentrifisering",
-          "knowledge": "Begrepet gentrifisering er sentralt i emnene som brukes for å lese Torggata faglig.",
-          "trivia": [],
-          "difficulty": 3,
+          "knowledge": "Cullens townscape-perspektiv kan brukes på det som faktisk skifter mens man beveger seg gjennom gaten, uten å gjøre teorien til selve fasiten.",
+          "difficulty": 4,
           "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [
-            "em_by_styring_forvaltning_planmakt",
-            "em_by_gentrifisering_eiendom"
-          ],
-          "core_concepts": [
-            "gentrifisering"
-          ],
-          "concept_focus": [
-            "gentrifisering"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "begrep",
-            "torggata"
-          ],
-          "required_tags": [],
+          "emne_id": "em_by_opphold_vs_gjennomgang",
           "source": [
-            "emner_by – emner for Torggata"
+            "torggata_byleksikon",
+            "stroget_byleksikon"
           ],
-          "primary_knowledge_unit_id": "ku_by_begrepet_gentrifisering__a127e1fee0",
+          "source_origin": "external",
+          "claim_basis": "Torggatas lange gateløp med ulike segmenter, fasader, passasjer og gateprofiler gir et konkret grunnlag for å analysere hvordan byrom oppleves som en sekvens langs en vandring.",
+          "claim_id": "claim_torggata_quiz_35",
+          "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+          "thinker_id": "gordon_cullen",
+          "work": "The Concise Townscape",
+          "theory_ref": {
+            "topic_hook_id": "byliv_opphold_vs_gjennomgang",
+            "thinker_id": "gordon_cullen",
+            "work": "The Concise Townscape",
+            "why_it_helps": "Sekvensperspektivet hjelper til å analysere hvordan gaterommet endrer karakter gjennom en faktisk vandring."
+          },
+          "guidance_basis": [
+            "data/fag/by/fagkart_by.json",
+            "data/fag/by/emner_by.json"
+          ],
+          "primary_knowledge_unit_id": "ku_by_cullens_townscape_perspe_ff9aeeca53",
           "knowledge_unit_ids": [
-            "ku_by_begrepet_gentrifisering__a127e1fee0"
+            "ku_by_cullens_townscape_perspe_ff9aeeca53"
           ],
-          "concept_ids": [
-            "co_by_gentrifisering_b16aedcd37"
-          ],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "torggata_quiz_37",
-          "quiz_id": "by_torggata_set_6_q2",
-          "categoryId": "by",
-          "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
-          "targetId": "torggata",
-          "question_scope": "place",
-          "question": "Hvilket begrep handler om forskjellen mellom dagens verdi og det investorer tror de kan hente ut etter oppgradering?",
-          "options": [
-            "Rent gap",
-            "Arealplan",
-            "Medvirkning"
-          ],
-          "answer": "Rent gap",
-          "answerIndex": 0,
-          "dimension": "begrep",
-          "topic": "Rent gap",
-          "knowledge": "Begrepet rent gap er sentralt i emnene som brukes for å lese Torggata faglig.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [
-            "em_by_styring_forvaltning_planmakt",
-            "em_by_gentrifisering_eiendom"
-          ],
-          "core_concepts": [
-            "rent gap"
-          ],
-          "concept_focus": [
-            "rent gap"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "begrep",
-            "torggata"
-          ],
-          "required_tags": [],
-          "source": [
-            "emner_by – emner for Torggata"
-          ],
-          "primary_knowledge_unit_id": "ku_by_begrepet_rent_gap_er_sen_5db31d11fa",
-          "knowledge_unit_ids": [
-            "ku_by_begrepet_rent_gap_er_sen_5db31d11fa"
-          ],
-          "concept_ids": [
-            "co_by_rent_gap_02bef17d90"
-          ],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "torggata_quiz_38",
-          "quiz_id": "by_torggata_set_6_q3",
-          "categoryId": "by",
-          "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
-          "targetId": "torggata",
-          "question_scope": "place",
-          "question": "Hva kalles offentlig styring gjennom reguleringsplaner, byggesaker og beslutninger om hva som kan bygges?",
-          "options": [
-            "Planmakt",
-            "Promenade",
-            "Fortrengning"
-          ],
-          "answer": "Planmakt",
-          "answerIndex": 0,
-          "dimension": "begrep",
-          "topic": "Planmakt",
-          "knowledge": "Begrepet planmakt er sentralt i emnene som brukes for å lese Torggata faglig.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [
-            "em_by_gentrifisering_eiendom",
-            "em_by_styring_forvaltning_planmakt"
-          ],
-          "core_concepts": [
-            "planmakt"
-          ],
-          "concept_focus": [
-            "planmakt"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "begrep",
-            "torggata"
-          ],
-          "required_tags": [],
-          "source": [
-            "emner_by – emner for Torggata"
-          ],
-          "primary_knowledge_unit_id": "ku_by_begrepet_planmakt_er_sen_d54509be2b",
-          "knowledge_unit_ids": [
-            "ku_by_begrepet_planmakt_er_sen_d54509be2b"
-          ],
-          "concept_ids": [
-            "co_by_planmakt_ec981515e7"
-          ],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "torggata_quiz_39",
-          "quiz_id": "by_torggata_set_6_q4",
-          "categoryId": "by",
-          "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
-          "targetId": "torggata",
-          "question_scope": "place",
-          "question": "Hva heter prosessen der innbyggere og andre aktører får gi innspill til planer og utvikling?",
-          "options": [
-            "Medvirkning",
-            "Spekulasjon",
-            "Kjededominans"
-          ],
-          "answer": "Medvirkning",
-          "answerIndex": 0,
-          "dimension": "begrep",
-          "topic": "Medvirkning",
-          "knowledge": "Begrepet medvirkning er sentralt i emnene som brukes for å lese Torggata faglig.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [
-            "em_by_gentrifisering_eiendom",
-            "em_by_styring_forvaltning_planmakt"
-          ],
-          "core_concepts": [
-            "medvirkning"
-          ],
-          "concept_focus": [
-            "medvirkning"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "begrep",
-            "torggata"
-          ],
-          "required_tags": [],
-          "source": [
-            "emner_by – emner for Torggata"
-          ],
-          "primary_knowledge_unit_id": "ku_by_begrepet_medvirkning_er__b4ea3422e8",
-          "knowledge_unit_ids": [
-            "ku_by_begrepet_medvirkning_er__b4ea3422e8"
-          ],
-          "concept_ids": [
-            "co_by_medvirkning_b6009183ea"
-          ],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "torggata_quiz_40",
-          "quiz_id": "by_torggata_set_6_q5",
-          "categoryId": "by",
-          "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
-          "targetId": "torggata",
-          "question_scope": "place",
-          "question": "Hvilket begrep passer best når økte priser og endret marked gjør at tidligere brukere ikke lenger har plass?",
-          "options": [
-            "Fortrengning",
-            "Byliv",
-            "Synlighet"
-          ],
-          "answer": "Fortrengning",
-          "answerIndex": 0,
-          "dimension": "begrep",
-          "topic": "Fortrengning",
-          "knowledge": "Begrepet fortrengning er sentralt i emnene som brukes for å lese Torggata faglig.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [
-            "em_by_styring_forvaltning_planmakt",
-            "em_by_gentrifisering_eiendom"
-          ],
-          "core_concepts": [
-            "fortrengning"
-          ],
-          "concept_focus": [
-            "fortrengning"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "begrep",
-            "torggata"
-          ],
-          "required_tags": [],
-          "source": [
-            "emner_by – emner for Torggata"
-          ],
-          "primary_knowledge_unit_id": "ku_by_begrepet_fortrengning_er_f4232d7443",
-          "knowledge_unit_ids": [
-            "ku_by_begrepet_fortrengning_er_f4232d7443"
-          ],
-          "concept_ids": [
-            "co_by_fortrengning_246549d0b0"
-          ],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "torggata_quiz_41",
-          "quiz_id": "by_torggata_set_6_q6",
-          "categoryId": "by",
-          "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
-          "targetId": "torggata",
-          "question_scope": "place",
-          "question": "Hva kalles en formell avtale mellom offentlig myndighet og utbygger om rammer, bidrag eller ansvar i utvikling av et område?",
-          "options": [
-            "Utbyggingsavtale",
-            "Kulturell kapital",
-            "Rent gap"
-          ],
-          "answer": "Utbyggingsavtale",
-          "answerIndex": 0,
-          "dimension": "begrep",
-          "topic": "Utbyggingsavtale",
-          "knowledge": "Begrepet utbyggingsavtale er sentralt i emnene som brukes for å lese Torggata faglig.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_styring_forvaltning_planmakt",
-          "related_emner": [
-            "em_by_gentrifisering_eiendom",
-            "em_by_styring_forvaltning_planmakt"
-          ],
-          "core_concepts": [
-            "utbyggingsavtale"
-          ],
-          "concept_focus": [
-            "utbyggingsavtale"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "begrep",
-            "torggata"
-          ],
-          "required_tags": [],
-          "source": [
-            "emner_by – emner for Torggata"
-          ],
-          "primary_knowledge_unit_id": "ku_by_begrepet_utbyggingsavtal_bde4df85c9",
-          "knowledge_unit_ids": [
-            "ku_by_begrepet_utbyggingsavtal_bde4df85c9"
-          ],
-          "concept_ids": [
-            "co_by_utbyggingsavtale_18015e1639"
-          ],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "torggata_quiz_42",
-          "quiz_id": "by_torggata_set_6_q7",
-          "categoryId": "by",
-          "placeId": "torggata",
-          "personId": "",
-          "natureId": "",
-          "targetId": "torggata",
-          "question_scope": "place",
-          "question": "Hvilket begrep beskriver den symbolske og sosiale verdien et sted får gjennom rykte, stil og hvilke miljøer som forbindes med det?",
-          "options": [
-            "Kulturell kapital",
-            "Byggesak",
-            "Arealplan"
-          ],
-          "answer": "Kulturell kapital",
-          "answerIndex": 0,
-          "dimension": "begrep",
-          "topic": "Kulturell kapital",
-          "knowledge": "Begrepet kulturell kapital er sentralt i emnene som brukes for å lese Torggata faglig.",
-          "trivia": [],
-          "difficulty": 3,
-          "question_type": "concept",
-          "year": null,
-          "epoke_id": null,
-          "epoke_domain": "by",
-          "emne_id": "em_by_gentrifisering_eiendom",
-          "related_emner": [
-            "em_by_styring_forvaltning_planmakt",
-            "em_by_gentrifisering_eiendom"
-          ],
-          "core_concepts": [
-            "kulturell kapital"
-          ],
-          "concept_focus": [
-            "kulturell kapital"
-          ],
-          "learning_paths": [],
-          "tags": [
-            "begrep",
-            "torggata"
-          ],
-          "required_tags": [],
-          "source": [
-            "emner_by – emner for Torggata"
-          ],
-          "primary_knowledge_unit_id": "ku_by_begrepet_kulturell_kapit_da399fd872",
-          "knowledge_unit_ids": [
-            "ku_by_begrepet_kulturell_kapit_da399fd872"
-          ],
-          "concept_ids": [
-            "co_by_kulturell_kapital_f59e0fa282"
-          ],
+          "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked"

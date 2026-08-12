@@ -28,6 +28,7 @@
 - Fase 8D-audit: `reports/place-production/torggata-phase8d-structures-audit-v1.json`
 - Fase 8E-audit: `reports/place-production/torggata-phase8e-rounds-closeout-v1.json`
 - Fase 9-audit: `reports/place-production/torggata-phase9-onsite-audit-v1.json`
+- Fase 10-audit: `reports/place-production/torggata-phase10-quiz-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -43,8 +44,9 @@
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
 | 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
-| 10. Quiz | **PÅGÅR** | neste aktive fase etter lukket fase 9 |
-| 11–15 | **IKKE STARTET** | styres av hovedchecklisten |
+| 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
+| 11. Observer, Notat og Rute | **PÅGÅR** | neste aktive fase etter lukket fase 10 |
+| 12–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -415,3 +417,29 @@ BESLUTNING: MIGRERING + CLOSEOUT – fjern gammel Oppgaver-modell uten å dikte 
 **Fase 9 På stedet = GODKJENT.**
 
 Neste aktive fase: **10. Quiz**.
+
+## Fase 10 – Quiz
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+AKTIV BASELINE: 6 sett / 42 spørsmål i data/quiz/by/torggata_sets.json
+LEGACY AUDITERT: 30 spørsmål i data/quiz/by/torggata_sets_merged.json; ikke manifest-loadet canonical output
+KONKRET REGRESJONSEVIDENS: repos quiztriage flagget Torggata for faglig-lesning-/teorimaler; aktive sett 3–6 brukte også interne emnefiler som synlig kilde
+BESLUTNING: FULL CANONICAL REVISION – claim-bank først, deretter spørsmål
+```
+
+### Godkjent resultat
+
+- `fag_manifest.json` registrerer Torggata som aktiv `by.quizProduction`-target med source brief, production context og canonical quizfil.
+- Eksisterende 6 × 7 er auditerte før profilvalg; legacy `_merged` er også gjennomgått og beholdes kun som ikke-canonical revisjonsspor.
+- Ny profil er **rich 5 × 7**, valgt fordi fem selvstendige kildebårne læringsjobber finnes; det er ikke en tallkvote.
+- Spørsmålsbalanse: **19 fakta / 9 sammenheng / 7 begrep-teori**.
+- Første **14/14** spørsmål er normale, direkte og kildebelagte uten metode-, teori- eller læreplansprompt.
+- Alle 35 spørsmål har unik `claim_id` og peker bare til reviewede eksterne source-ID-er; interne By-filer er kun guidance/metadata.
+- Sluttsettet bruker `met_for_etter` og den canonicale hooken `byliv_opphold_vs_gjennomgang` med Michel de Certeau og Gordon Cullen som eksplisitte, stedlig forankrede teoribindinger.
+- Påstander om automatisk fortrengning, generiske rent-gap-prompter og den tidligere superlativen om 25-metersbasseng er eksplisitt holdt tilbake.
+- Canonical Knowledge regenereres fra den nye manifest-loadede quizen før batchen kan persisteres; dette lukker Knowledge-synk som del av fase 10 etter gjeldende checklist.
+
+**Fase 10 Quiz = GODKJENT når materialiseringsworkflow, canonical quiz-audits, Knowledge-sync, TypeScript og build er grønne.**
+
+Neste aktive fase: **11. Observer, Notat og Rute**.
