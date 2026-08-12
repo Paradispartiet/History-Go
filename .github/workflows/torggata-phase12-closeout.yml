@@ -1,0 +1,299 @@
+name: Torggata phase 12 People closeout
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase12-people-closeout
+    paths:
+      - .github/workflows/torggata-phase12-closeout.yml
+
+permissions:
+  contents: write
+
+jobs:
+  closeout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build five reviewed Commons candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          IDS='christian_morgenstierne,arne_eide,harald_olsen,alma_fahlstrom,johan_fahlstrom'
+          npm run people:images:candidates -- --ids="$IDS" --limit=5 --max-candidates-per-person=5
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const wanted = new Map([
+            ['christian_morgenstierne','christian_morgenstierne__christian_morgenstierne_jpg'],
+            ['arne_eide','arne_eide__arneeide_jpg'],
+            ['harald_olsen','harald_olsen__harald_olsen_1897_omu_ob_sz05861b_cropped_jpg'],
+            ['alma_fahlstrom','alma_fahlstrom__fahlstrom_family_jpg'],
+            ['johan_fahlstrom','johan_fahlstrom__johan_fahlstr_m_png'],
+          ]);
+          const rows = JSON.parse(fs.readFileSync('data/people/people_image_candidates.json','utf8'));
+          const selections=[];
+          for (const [personId,candidateId] of wanted) {
+            const c=rows.find(x=>x.personId===personId && x.candidateId===candidateId);
+            if (!c) throw new Error(`Missing reviewed candidate ${personId} ${candidateId}`);
+            if (c.identity?.status !== 'strong' || c.identity?.source !== 'wikidata_p18') throw new Error(`Candidate lost strong P18 identity: ${personId}`);
+            if (Array.isArray(c.quality?.hardErrors) && c.quality.hardErrors.length) throw new Error(`Candidate has hard quality errors: ${personId}`);
+            selections.push({personId,candidateId,approvalMode:'normal'});
+          }
+          fs.writeFileSync('/tmp/torggata-review-batch1.json', JSON.stringify({version:2,selections}));
+          NODE
+          PAYLOAD="$(cat /tmp/torggata-review-batch1.json)"
+          npm run people:images:apply:write -- --review-payload="$PAYLOAD"
+          git restore data/people/people_image_candidates.json
+
+      - name: Apply Torggata image holdbacks
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const holdbacks = new Set([
+            'thoger_binneballe','ludvig_christian_jensen','adelsten_jensen','peter_marinius_jensen','karl_a_jensen','thorvald_jensen',
+            'nanna_broch','wulff_becker','martin_heinz_zilsel','alexander_claes','therese_hurwitz','jenny_hurwitz','fredrik_hurwitz','moritz_glott'
+          ]);
+          const special = {
+            alexander_claes: 'Canonical Torggata-kobling beholdes, men personen vises ikke i Torggata-rundingen. Automatisk Wikidata/Commons-navnesøk traff en annen person og kandidaten ble redaksjonelt avvist; korrekt identitetskontrollert bilde mangler.',
+            nanna_broch: 'Canonical Torggata-kobling beholdes, men personen vises ikke i Torggata-rundingen før et nettleserklart, identitetskontrollert og rettighetsavklart bilde er materialisert. Dagens sterke Commons-kandidat er TIFF og publiseres ikke gjennom en pipeline som feilaktig ville gi den .jpg-filnavn uten konvertering.'
+          };
+          const fallback = 'Canonical Torggata-kobling beholdes, men personen vises ikke i Torggata-rundingen før et identitetskontrollert og rettighetsavklart bilde finnes.';
+          const manifest=JSON.parse(fs.readFileSync('data/people/manifest.json','utf8'));
+          const found=new Set();
+          for (const rel of manifest.files) {
+            const file=path.join('data',rel);
+            const json=JSON.parse(fs.readFileSync(file,'utf8'));
+            const rows=Array.isArray(json)?json:(Array.isArray(json?.people)?json.people:(json?.id?[json]:[]));
+            let changed=false;
+            for (const p of rows) {
+              if (!holdbacks.has(p?.id)) continue;
+              found.add(p.id);
+              const hb=Array.isArray(p.roundHoldbacks)?p.roundHoldbacks.map(String):[];
+              if (!hb.includes('torggata')) hb.push('torggata');
+              p.roundHoldbacks=hb;
+              p.roundHoldbackReason=special[p.id] || fallback;
+              changed=true;
+            }
+            if (changed) fs.writeFileSync(file,JSON.stringify(json,null,2)+'\n');
+          }
+          const missing=[...holdbacks].filter(id=>!found.has(id));
+          if (missing.length) throw new Error(`Holdback people missing from manifest: ${missing.join(', ')}`);
+          NODE
+
+      - name: Regenerate People derived data
+        run: |
+          npm run people:images:attributions:write
+          npm run civication:history-people:build
+          npm run audit:people-of-places
+
+      - name: Update phase 8A regression for later holdbacks
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='tests/torggata-phase8a-closeout.test.mjs';
+          let s=fs.readFileSync(file,'utf8');
+          const old1=`test("Torggata 8A closeout resolves every produced canonical person without a quota ceiling", () => {\n  const resolved = runtimePeopleForTorggata();\n  const ids = resolved.map(person => String(person?.id || "").trim()).filter(Boolean);\n  const idSet = new Set(ids);\n  assert.equal(idSet.size, ids.length, "runtime People collection must be deduplicated");\n  for (const id of expected) assert.ok(idSet.has(id), \`${'${id}'} must resolve through getPeopleForPlace('torggata')\`);\n  assert.ok(ids.length >= expected.length, "later source-backed People may extend the collection; closeout must not impose a maximum quota");\n});\n\ntest("no completed 8A person is hidden from the Torggata People round", () => {\n  const byId = new Map(people.map(person => [String(person?.id || "").trim(), person]));\n  for (const id of expected) {\n    const person = byId.get(id);\n    assert.ok(person, \`${'${id}'} must exist in manifest data\`);\n    const holdbacks = Array.isArray(person.roundHoldbacks) ? person.roundHoldbacks.map(String) : [];\n    assert.equal(holdbacks.includes("torggata"), false, \`${'${id}'} must not be held back from Torggata after approval\`);\n  }\n});`;
+          const new1=`test("Torggata 8A closeout preserves every produced canonical person and Torggata linkage without a quota ceiling", () => {\n  const occurrences = new Map();\n  for (const person of people) {\n    const id = String(person?.id || "").trim();\n    if (!id) continue;\n    const list = occurrences.get(id) || [];\n    list.push(person);\n    occurrences.set(id, list);\n  }\n  for (const id of expected) {\n    const rows = occurrences.get(id) || [];\n    assert.equal(rows.length, 1, \`${'${id}'} must exist exactly once in canonical manifest data\`);\n    const person = rows[0];\n    const refs = [person.placeId, ...(Array.isArray(person.places) ? person.places : [])].map(String);\n    assert.ok(refs.includes("torggata"), \`${'${id}'} must retain its canonical Torggata linkage\`);\n  }\n  assert.ok(people.length >= expected.length, "later source-backed People may extend the collection; closeout must not impose a maximum quota");\n});\n\ntest("later image-readiness holdbacks do not delete approved 8A canonical links", () => {\n  const byId = new Map(people.map(person => [String(person?.id || "").trim(), person]));\n  for (const id of expected) {\n    const person = byId.get(id);\n    assert.ok(person, \`${'${id}'} must remain in manifest data\`);\n    const refs = [person.placeId, ...(Array.isArray(person.places) ? person.places : [])].map(String);\n    assert.ok(refs.includes("torggata"), \`${'${id}'} must remain linked even when a later phase temporarily hides it from the round\`);\n  }\n});`;
+          if (!s.includes(old1)) throw new Error('Expected phase8A closeout block not found');
+          s=s.replace(old1,new1);
+          fs.writeFileSync(file,s);
+          NODE
+
+      - name: Write phase 12 regression and audit
+        shell: bash
+        run: |
+          cat > tests/torggata-phase12-people-links.test.mjs <<'TEST'
+          import assert from "node:assert/strict";
+          import fs from "node:fs";
+          import path from "node:path";
+          import test from "node:test";
+          import vm from "node:vm";
+
+          const ROOT=process.cwd();
+          const readJson=rel=>JSON.parse(fs.readFileSync(path.join(ROOT,rel),"utf8"));
+          const rows=data=>Array.isArray(data)?data:(Array.isArray(data?.people)?data.people:(data?.id?[data]:[]));
+          const manifest=readJson("data/people/manifest.json");
+          const people=manifest.files.flatMap(rel=>rows(readJson(path.join("data",rel))));
+          const expected=[
+            "thorvald_meyer","henrik_bull","christian_morgenstierne","arne_eide","thoger_binneballe","harald_olsen","alma_fahlstrom","johan_fahlstrom",
+            "ludvig_christian_jensen","adelsten_jensen","peter_marinius_jensen","karl_a_jensen","thorvald_jensen","nanna_broch","wulff_becker","martin_heinz_zilsel",
+            "alexander_claes","therese_hurwitz","jenny_hurwitz","fredrik_hurwitz","moritz_glott"
+          ];
+          const requiredVisible=["thorvald_meyer","henrik_bull","christian_morgenstierne","arne_eide","harald_olsen","alma_fahlstrom","johan_fahlstrom"];
+          const requiredHoldbacks=["thoger_binneballe","ludvig_christian_jensen","adelsten_jensen","peter_marinius_jensen","karl_a_jensen","thorvald_jensen","nanna_broch","wulff_becker","martin_heinz_zilsel","alexander_claes","therese_hurwitz","jenny_hurwitz","fredrik_hurwitz","moritz_glott"];
+
+          function runtimePeopleForTorggata(){
+            const source=fs.readFileSync(path.join(ROOT,"js/ui/popup-utils.js"),"utf8");
+            const context={console,window:{PEOPLE:people,PLACES:[{id:"torggata",category:"by"}],RELATIONS:[]},document:{addEventListener(){},createElement(){return{}},body:{appendChild(){}},getElementById(){return null}},requestAnimationFrame(){},setTimeout,clearTimeout};
+            context.globalThis=context;
+            vm.createContext(context);
+            vm.runInContext(source,context,{filename:"popup-utils.js"});
+            return Array.from(context.getPeopleForPlace("torggata"));
+          }
+
+          test("phase 12 keeps all 21 canonical Torggata people unique, linked and sourced",()=>{
+            const occurrences=new Map();
+            for(const p of people){const id=String(p?.id||"").trim();if(!id)continue;const list=occurrences.get(id)||[];list.push(p);occurrences.set(id,list)}
+            for(const id of expected){
+              const list=occurrences.get(id)||[];
+              assert.equal(list.length,1,`${id} must exist exactly once`);
+              const p=list[0];
+              const refs=[p.placeId,...(Array.isArray(p.places)?p.places:[])].map(String);
+              assert.ok(refs.includes("torggata"),`${id} must remain Torggata-linked`);
+              const urls=[...(Array.isArray(p.source_urls)?p.source_urls:[]),...(Array.isArray(p.externalLinks)?p.externalLinks.filter(x=>x?.type==="source"&&x?.url).map(x=>x.url):[])];
+              assert.ok(urls.some(url=>/^https:\/\//.test(String(url))),`${id} must have an inspectable source`);
+            }
+          });
+
+          test("every person visible in the finished Torggata People round is image-ready",()=>{
+            const visible=runtimePeopleForTorggata();
+            const ids=new Set(visible.map(p=>String(p?.id||"").trim()));
+            for(const id of requiredVisible) assert.ok(ids.has(id),`${id} must remain visible`);
+            for(const id of requiredHoldbacks) assert.equal(ids.has(id),false,`${id} must stay held back until image-ready`);
+            for(const p of visible){
+              assert.ok(String(p.image||"").trim(),`${p.id} visible without image`);
+              assert.ok(String(p.cardImage||"").trim(),`${p.id} visible without cardImage`);
+            }
+          });
+
+          test("all 14 image holdbacks preserve canonical linkage and explain the gate",()=>{
+            const byId=new Map(people.map(p=>[String(p?.id||"").trim(),p]));
+            for(const id of requiredHoldbacks){
+              const p=byId.get(id); assert.ok(p,`${id} missing`);
+              assert.ok(Array.isArray(p.roundHoldbacks)&&p.roundHoldbacks.map(String).includes("torggata"),`${id} must hold back Torggata round visibility`);
+              assert.ok(String(p.roundHoldbackReason||"").length>=40,`${id} must explain the holdback`);
+            }
+          });
+
+          test("Alexander Claes mismatch and Nanna Broch TIFF limitation are explicitly documented",()=>{
+            const report=readJson("reports/place-production/torggata-phase12-people-links-audit-v1.json");
+            assert.equal(report.image_review.rejected_identity.person_id,"alexander_claes");
+            assert.equal(report.image_review.rejected_identity.reason,"WRONG_PERSON_MATCH");
+            assert.equal(report.image_review.deferred_format.person_id,"nanna_broch");
+            assert.equal(report.image_review.deferred_format.reason,"TIFF_NOT_BROWSER_READY_IN_CURRENT_APPLY_PIPELINE");
+          });
+
+          test("Torggata People teasers and popup texts have no exact duplicate boilerplate",()=>{
+            const byId=new Map(people.map(p=>[String(p?.id||"").trim(),p]));
+            for(const field of ["desc","popupDesc"]){
+              const seen=new Map();
+              for(const id of expected){const value=String(byId.get(id)?.[field]||"").trim().replace(/\s+/g," ");assert.ok(value,`${id} missing ${field}`);const prev=seen.get(value);assert.equal(prev,undefined,`${field} duplicated by ${prev} and ${id}`);seen.set(value,id)}
+            }
+          });
+          TEST
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const expected=["thorvald_meyer","henrik_bull","christian_morgenstierne","arne_eide","thoger_binneballe","harald_olsen","alma_fahlstrom","johan_fahlstrom","ludvig_christian_jensen","adelsten_jensen","peter_marinius_jensen","karl_a_jensen","thorvald_jensen","nanna_broch","wulff_becker","martin_heinz_zilsel","alexander_claes","therese_hurwitz","jenny_hurwitz","fredrik_hurwitz","moritz_glott"];
+          const visible=["thorvald_meyer","henrik_bull","christian_morgenstierne","arne_eide","harald_olsen","alma_fahlstrom","johan_fahlstrom"];
+          const held=expected.filter(id=>!visible.includes(id));
+          const report={
+            schema:'history_go_torggata_phase12_people_links_audit_v1',
+            generated_at:'2026-08-13',
+            place_id:'torggata',
+            phase:12,
+            prior_work_gate:{
+              status:'UTFØRT',
+              prior_prs:[4831,4840,4842,4843],
+              decision:'RE_AUDIT_AND_IMAGE_READINESS_REPAIR',
+              note:'8A etablerte 21 kildebårne canonical People-koblinger. Fase 12 beholder koblingene og anvender den nyere, strengere synlig-bildeporten.'
+            },
+            canonical_people:{expected:21,found:21,torggata_linked:21,inspectable_sources:21,duplicate_ids:0,exact_duplicate_desc:0,exact_duplicate_popupDesc:0},
+            image_baseline:{image_ready_before_phase12:2,missing_before_phase12:19},
+            image_review:{
+              canonical_candidate_run:{requested:19,with_any_candidates:7,candidate_rows:24},
+              applied_documentary_portraits:["christian_morgenstierne","arne_eide","harald_olsen","alma_fahlstrom","johan_fahlstrom"],
+              rejected_identity:{person_id:'alexander_claes',reason:'WRONG_PERSON_MATCH',detail:'Navnesøket traff Wikidata Q610747 og et moderne fotballbilde; dette er ikke frisøren i Torggata 18 og kandidaten ble avvist.'},
+              deferred_format:{person_id:'nanna_broch',reason:'TIFF_NOT_BROWSER_READY_IN_CURRENT_APPLY_PIPELINE',detail:'Sterk Commons P18-kandidat finnes, men originalen er TIFF. Dagens apply-flyt ville gi ikke-JPEG bytes et .jpg-filnavn uten konvertering, så bildet publiseres ikke.'},
+              no_commons_candidate:["thoger_binneballe","ludvig_christian_jensen","adelsten_jensen","peter_marinius_jensen","karl_a_jensen","thorvald_jensen","wulff_becker","martin_heinz_zilsel","therese_hurwitz","jenny_hurwitz","fredrik_hurwitz","moritz_glott"],
+              visible_image_ready:visible.length,
+              held_back_pending_image:held.length
+            },
+            runtime_round:{required_visible:visible,held_back:held,rule:'Every person returned by getPeopleForPlace(torggata) must have non-empty local image and cardImage.'},
+            global_image_audit_baseline:{scope:'repo-wide legacy debt, not used as a Torggata completion denominator',total_people:1403,people_without_image:1024,missing_local_image_files:303,duplicate_or_colliding_image_files:1},
+            status:'PASS_PENDING_PIPELINE',
+            next_phase:'13. Brands'
+          };
+          fs.mkdirSync('reports/place-production',{recursive:true});
+          fs.writeFileSync('reports/place-production/torggata-phase12-people-links-audit-v1.json',JSON.stringify(report,null,2)+'\n');
+          NODE
+
+      - name: Update Torggata workcard
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='reports/place-production/torggata-workcard-current.md';
+          let s=fs.readFileSync(file,'utf8');
+          if (!s.includes('- Fase 11-audit: `reports/place-production/torggata-phase11-observer-note-route-audit-v1.json`')) throw new Error('phase11 audit marker missing');
+          s=s.replace('- Fase 11-audit: `reports/place-production/torggata-phase11-observer-note-route-audit-v1.json`','- Fase 11-audit: `reports/place-production/torggata-phase11-observer-note-route-audit-v1.json`\n- Fase 12-audit: `reports/place-production/torggata-phase12-people-links-audit-v1.json`');
+          s=s.replace('| 12. People–sted-koblinger | **PÅGÅR** | neste aktive fase; tidligere People-arbeid skal auditeres mot fase-12-kontrakten før nye profiler vurderes |\n| 13–24 | **IKKE STARTET** | styres av hovedchecklisten |','| 12. People–sted-koblinger | **GODKJENT** | 21/21 canonical koblinger og inspectable kilder beholdt; 7 synlige profiler er bildeklare; 14 bildeholdbacks er eksplisitte og bevarer koblingen |\n| 13. Brands | **PÅGÅR** | re-audit eksisterende 8C Brands mot den selvstendige fase-13-kontrakten før ny Brand-produksjon |\n| 14–24 | **IKKE STARTET** | styres av hovedchecklisten |');
+          s += `\n## Fase 12 – People–sted-koblinger\n\nTIDLIGERE-ARBEID-SØK: UTFØRT. 8A1 (#4831), 8A2 (#4840), 8A3 (#4842) og 8A-closeout (#4843) etablerte den canonical 21-personers Torggata-samlingen. Fase 12 har derfor ikke laget fillerpersoner eller flyttet primærankre, men re-auditert samme samling mot dagens strengere synlig-bildeport.\n\n### Godkjent resultat\n\n- 21/21 personer finnes nøyaktig én gang og beholder dokumentert Torggata-kobling;\n- 21/21 har inspectable ekstern kilde etter separat Thorvald Meyer-kildereparasjon i PR #4882;\n- fem nye dokumentarportretter er hentet gjennom canonical Wikidata/Wikimedia Commons-pipeline og får lokale filer + imageMeta + attribusjon;\n- Thorvald Meyer og Henrik Bull var allerede bildeklare, slik at den ferdige rundingen har **7 synlige og 7/7 bildeklare profiler**;\n- 14 øvrige profiler beholdes canonical, men har eksplisitt \`roundHoldbacks: [\"torggata\"]\` til bildeporten kan oppfylles;\n- Alexander Claes-kandidaten ble avvist fordi navnesøket traff feil person;\n- Nanna Brochs sterke P18-kandidat ble ikke publisert fordi originalen er TIFF og dagens apply-flyt ikke konverterer den trygt til nettleserformat;\n- ingen eksakte duplikater i \`desc\` eller \`popupDesc\`;\n- repoets globale People-image-audit har separat legacygjeld (303 manglende lokale filer + én kollisjon) og brukes ikke som Torggata-nevner.\n\n**Fase 12 People–sted-koblinger = GODKJENT når fase-12-regresjon, 8A-regresjon, People-image-kontrakttest, People-of-Places, Civication, TypeScript og build er grønne.**\n\nNeste aktive fase: **13. Brands**.\n`;
+          fs.writeFileSync(file,s);
+          NODE
+
+      - name: Validate phase 12 contract
+        run: node --test tests/torggata-phase12-people-links.test.mjs
+      - name: Validate phase 8A regression
+        run: node --test tests/torggata-phase8a-closeout.test.mjs
+      - name: Validate People image contract tests
+        run: npm run test:people-images
+      - name: Validate People of Places
+        run: npm run audit:people-of-places
+      - name: Validate Civication People parity
+        run: npm run civication:history-people:check
+      - name: Validate phase 11 regression
+        run: node --test tests/torggata-phase11-observer-note-route.test.mjs
+      - name: TypeScript web
+        run: npm run typecheck:web
+      - name: TypeScript scripts
+        run: npm run typecheck:scripts
+      - name: TypeScript tools
+        run: npm run typecheck:tools
+      - name: Build
+        run: npm run build:web
+
+      - name: Mark audit PASS and validate permanent scope
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='reports/place-production/torggata-phase12-people-links-audit-v1.json';
+          const r=JSON.parse(fs.readFileSync(file,'utf8'));
+          r.status='PASS';
+          r.validation=['torggata_phase12_people_links','torggata_phase8a_closeout','people_images_contract_tests','people_of_places','civication_history_people','torggata_phase11_regression','typecheck_web','typecheck_scripts','typecheck_tools','build_web'];
+          fs.writeFileSync(file,JSON.stringify(r,null,2)+'\n');
+          NODE
+          rm -f .github/workflows/torggata-phase12-closeout.yml
+          allowed='^(data/people/|data/Civication/historyPeople_index\.json$|bilder/kort/people/|reports/people-of-places-status\.(json|md)$|reports/place-production/torggata-phase12-(image-candidates-v1|image-review-summary-v1|people-links-audit-v1)\.json$|reports/place-production/torggata-workcard-current\.md$|tests/torggata-phase(8a-closeout|12-people-links)\.test\.mjs$)'
+          mapfile -t files < <({ git diff --name-only; git ls-files --others --exclude-standard; } | sort -u)
+          printf 'Permanent phase 12 files:\n%s\n' "${files[*]}"
+          for f in "${files[@]}"; do
+            if [[ ! "$f" =~ $allowed ]]; then echo "Out-of-scope file: $f" >&2; exit 1; fi
+          done
+
+      - name: Persist phase 12
+        shell: bash
+        run: |
+          git add -A
+          git diff --cached --check
+          git status --short
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Godkjenn Torggata fase 12 People"
+          git push origin HEAD:agent/torggata-phase12-people-closeout
