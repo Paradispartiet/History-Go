@@ -27,7 +27,21 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Materialize Torggata phase 10
-        run: node scripts/materialize-torggata-phase10-quiz.mjs
+        shell: bash
+        run: |
+          set +e
+          node scripts/materialize-torggata-phase10-quiz.mjs > phase10-materialize.log 2>&1
+          status=$?
+          cat phase10-materialize.log
+          exit $status
+
+      - name: Upload materializer failure log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: torggata-phase10-materializer-failure
+          path: phase10-materialize.log
+          if-no-files-found: error
 
       - name: Regenerate canonical Knowledge
         run: node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
@@ -74,6 +88,7 @@ jobs:
         shell: bash
         run: |
           rm -f .github/workflows/torggata-phase10-quiz-materialize.yml scripts/materialize-torggata-phase10-quiz.mjs
+          rm -f phase10-materialize.log
           git add -A
           git diff --cached --check
           echo "Validated permanent diff:"
