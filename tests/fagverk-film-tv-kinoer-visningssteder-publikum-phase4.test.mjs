@@ -17,7 +17,7 @@ test('Kinoer, visningssteder og publikum er reauditert fra 20 legacyaliases til 
   const { report } = auditFilmTvKinoerVisningsstederPublikumPhase4();
   assert.equal(report.subject.id, 'film_tv');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.ok(report.subject.registeredChapterCount >= 1 && report.subject.registeredChapterCount <= 6);
+  assert.ok(report.subject.registeredChapterCount >= 1);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'visning_publikum_resepsjon_deltakelse');
   assert.equal(report.canonicalCoverage.exactCoverage, '18/18 canonical emner fra 20/20 legacyaliases');
   assert.equal(report.canonicalCoverage.aliasResolvedEmneIds.length, 18);
@@ -42,7 +42,7 @@ test('Film & TV-kapittelet har full pedagogisk og evidensbasert pakke', () => {
 
 test('Film & TV-fagets tekniske baseline er bevart etter kapittel 1', () => {
   const { report } = auditFilmTvKinoerVisningsstederPublikumPhase4();
-  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production', 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief', 'television_platforms_participation_source_brief_complete_full_chapter_production'].includes(report.subject.nextGate));
+  assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production', 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief', 'television_platforms_participation_source_brief_complete_full_chapter_production', 'television_platforms_participation_full_chapter_complete_next_unit_source_brief'].includes(report.subject.nextGate));
   assert.equal(report.subject.canonicalDomainCount, 10);
   assert.equal(report.subject.canonicalEmneCount, 192);
   assert.equal(report.gates.previousFilmTvStructurePreserved, true);

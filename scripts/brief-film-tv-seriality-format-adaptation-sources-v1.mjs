@@ -22,6 +22,7 @@ const FULLTEXT_GATE = 'seriality_format_adaptation_full_chapter_complete_next_un
 const LATER_SOURCE_BRIEF_GATE = 'film_history_movements_historiography_source_brief_complete_full_chapter_production';
 const LATER_FULLTEXT_GATE = 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief';
 const TELEVISION_SOURCE_BRIEF_GATE = 'television_platforms_participation_source_brief_complete_full_chapter_production';
+const TELEVISION_FULLTEXT_GATE = 'television_platforms_participation_full_chapter_complete_next_unit_source_brief';
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`);
@@ -364,8 +365,8 @@ export function buildFilmTvSerialityFormatAdaptationSourceBriefV1() {
 
 export function auditFilmTvSerialityFormatAdaptationSourceBriefV1({ writeFiles = false, checkFiles = true } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  assert([INPUT_GATE, SOURCE_BRIEF_GATE, FULLTEXT_GATE, LATER_SOURCE_BRIEF_GATE, LATER_FULLTEXT_GATE, TELEVISION_SOURCE_BRIEF_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
-  if ([FULLTEXT_GATE, LATER_SOURCE_BRIEF_GATE, LATER_FULLTEXT_GATE, TELEVISION_SOURCE_BRIEF_GATE].includes(currentGate)) {
+  assert([INPUT_GATE, SOURCE_BRIEF_GATE, FULLTEXT_GATE, LATER_SOURCE_BRIEF_GATE, LATER_FULLTEXT_GATE, TELEVISION_SOURCE_BRIEF_GATE, TELEVISION_FULLTEXT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if ([FULLTEXT_GATE, LATER_SOURCE_BRIEF_GATE, LATER_FULLTEXT_GATE, TELEVISION_SOURCE_BRIEF_GATE, TELEVISION_FULLTEXT_GATE].includes(currentGate)) {
     const brief = read(P.brief);
     const report = read(P.report);
     assert(brief.status === 'source_claim_brief_consumed_by_verified_chapter', 'Serialitetsbriefen skal være konsumert etter fulltekstporten');
