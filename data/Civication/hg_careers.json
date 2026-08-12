@@ -486,6 +486,49 @@
     "fired": ["Miljøet snur ryggen til."],
     "nav": ["Du står alene igjen."]
   }
+},
+
+{
+  "career_id": "sosial_laering",
+  "economy": {
+    "salary_by_tier": {
+      "1": 5,
+      "2": 6,
+      "3": 7,
+      "4": 8,
+      "5": 10,
+      "6": 12,
+      "7": 14,
+      "8": 16,
+      "9": 18,
+      "10": 21,
+      "11": 24,
+      "12": 27,
+      "13": 31,
+      "14": 36,
+      "15": 42
+    },
+    "weekly_expenses": { "base": 1, "risk_modifier": 1.0 },
+    "risk": { "volatility": 0.25, "layoff_chance_per_week": 0.03 }
+  },
+  "capital_base": {
+    "economic": 1.0,
+    "cultural": 1.5,
+    "social": 2.2,
+    "symbolic": 1.4,
+    "political": 0.7
+  },
+  "world_logic": {
+    "maintenance": { "min_quiz_per_weeks": 1 },
+    "strikes": { "on_missed_maintenance": 1, "max_strikes": 3, "consequence": "fired" },
+    "fired_to": "nav"
+  },
+  "diegetic_text": {
+    "offer": ["Et oppvekstmiljø trenger en trygg voksen."],
+    "maintenance_warning": ["Du mister kontakten med det som skjer i gruppa."],
+    "fired": ["Stillingen avsluttes."],
+    "nav": ["Du leter etter et nytt sted å gjøre en forskjell."]
+  }
 }
   ]
 }
