@@ -1,0 +1,139 @@
+{
+  "schema": "history_go_fagverk_psykologi_university_completion_audit_v1",
+  "version": "1.0.0",
+  "status": "psykologi_university_completion_complete",
+  "generatedFrom": {
+    "pensum": "data/fag/psykologi/psykologipensum_canonical_v4_5.json",
+    "emner": "data/fag/psykologi/emner_psykologi_canonical_v4_5.json",
+    "methods": "data/fag/psykologi/methods_psykologi_canonical_v4_5.json",
+    "sourceRegistry": "data/fag/psykologi/kilder_psykologi_canonical_v1.json",
+    "matrix": "data/fag/psykologi/psykologi_university_readiness_v1.json",
+    "articles": "data/fagverk/psykologi/emneartikler",
+    "concepts": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
+    "appliedFields": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json",
+    "materializer": "scripts/materialize-psykologi-university-completion-v1.mjs",
+    "report": "reports/fagverk/psykologi-university-completion-v1-audit.json"
+  },
+  "coverage": {
+    "canonicalDomainCount": 6,
+    "canonicalEmneCount": 58,
+    "canonicalMethodCount": 58,
+    "domainArticleCounts": {
+      "kognisjon_folelser_atferd": 8,
+      "fagtradisjoner_teori_sinnet": 14,
+      "utvikling_oppvekst_laring": 9,
+      "psykisk_helse_institusjoner_behandling": 12,
+      "sosialpsykologi_normalitet_stigma": 8,
+      "traume_krise_resiliens_omsorg": 7
+    }
+  },
+  "articles": {
+    "requiredCount": 58,
+    "materializedCount": 58,
+    "minimumWordsPerArticle": 550,
+    "totalEditorialWordCount": 61646,
+    "articleWordCounts": {
+      "em_psy_affektregulering": 1162,
+      "em_psy_atferd_laring": 1170,
+      "em_psy_barn_ungdom": 1154,
+      "em_psy_behandling_omsorg": 634,
+      "em_psy_behandlingsformer": 622,
+      "em_psy_beslutning_valg": 1167,
+      "em_psy_betinging_vaner": 1162,
+      "em_psy_bevissthet_opplevelse": 1168,
+      "em_psy_byrom_psykisk_helse": 623,
+      "em_psy_diagnose_hverdagsliv": 1168,
+      "em_psy_diagnose_klassifikasjon": 1164,
+      "em_psy_ensomhet_tilhorighet": 1187,
+      "em_psy_familie_samspill": 1164,
+      "em_psy_folelser_affekt": 1229,
+      "em_psy_fordommer_kategorisering": 1143,
+      "em_psy_forskning_metode": 1199,
+      "em_psy_grupper_roller": 1166,
+      "em_psy_hjerne_kognisjon": 1207,
+      "em_psy_hverdagspsykologi": 1130,
+      "em_psy_identitet_selv": 1166,
+      "em_psy_institusjoner_psykiatri": 649,
+      "em_psy_kognisjon_tenkning": 1162,
+      "em_psy_kognitive_bias": 1151,
+      "em_psy_kollektiv_krise": 1198,
+      "em_psy_krise_intervensjon": 611,
+      "em_psy_laring_hukommelse": 1147,
+      "em_psy_livslop_overganger": 1128,
+      "em_psy_makt_omsorg": 620,
+      "em_psy_motivasjon_behov": 1201,
+      "em_psy_nevroaffekt_regulering": 1227,
+      "em_psy_normalitet_avvik": 1221,
+      "em_psy_omsorg_system": 583,
+      "em_psy_oppmerksomhet_fokus": 1095,
+      "em_psy_oppvekst_miljo": 1137,
+      "em_psy_pasientrolle_erfaring": 595,
+      "em_psy_persepsjon_sansing": 1115,
+      "em_psy_personlighet_individ": 1185,
+      "em_psy_psykisk_helse": 720,
+      "em_psy_psykoanalyse": 1152,
+      "em_psy_psykometri_maling": 1182,
+      "em_psy_resiliens_mestring": 1246,
+      "em_psy_risiko_beskyttelse": 1226,
+      "em_psy_selv_utvikling_mening": 1192,
+      "em_psy_skole_motivasjon": 1127,
+      "em_psy_sorg_tap": 1240,
+      "em_psy_sosial_kontroll": 1183,
+      "em_psy_sosial_pavirkning": 1203,
+      "em_psy_sosial_utvikling": 1136,
+      "em_psy_stigma_offentlighet": 1183,
+      "em_psy_stress_belastning": 1181,
+      "em_psy_terapi_praksis": 630,
+      "em_psy_terapirom_relasyon": 602,
+      "em_psy_tilknytning_relasjon": 1169,
+      "em_psy_traume_regulering": 1217,
+      "em_psy_trygghet_tillit": 1210,
+      "em_psy_ubevisste_prosesser": 1194,
+      "em_psy_velferd_psykisk_helse": 616,
+      "em_psy_vold_belastning": 1227
+    }
+  },
+  "concepts": {
+    "requiredCanonicalTermCount": 136,
+    "materializedCount": 136,
+    "exactCanonicalTermCoverage": true
+  },
+  "appliedFields": {
+    "requiredCount": 6,
+    "materializedCount": 6,
+    "areaIds": [
+      "clinical_health",
+      "work_organizational",
+      "educational_school",
+      "culture",
+      "environment_community",
+      "quantitative_psychometrics"
+    ]
+  },
+  "evidence": {
+    "registeredSourceCount": 122,
+    "registeredClaimCount": 162,
+    "runtime": {
+      "scannedRoots": [
+        "js",
+        "data/integrations",
+        "data/historygo",
+        "data/psychology"
+      ],
+      "referencingFiles": []
+    }
+  },
+  "gates": {
+    "exact58StandaloneArticles": true,
+    "allSixCanonicalDomainsCovered": true,
+    "allArticlesMeetUniversityDepth": true,
+    "allArticleSourcesAndClaimsResolve": true,
+    "allArticlesClinicallyReviewed": true,
+    "exactCanonicalConceptTermCoverage": true,
+    "allConceptsMaterializedAndSourced": true,
+    "exactSixAppliedFieldsCovered": true,
+    "allAppliedFieldsMapEmnersMethodsCoreAndEvidence": true,
+    "noAhaRuntimeActivation": true
+  },
+  "complete": true
+}

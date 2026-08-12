@@ -39,6 +39,8 @@ on:
       - "scripts/audit-fagverk-psykologi-history-science-theory-university.mjs"
       - "scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs"
       - "scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs"
+      - "scripts/materialize-psykologi-university-completion-v1.mjs"
+      - "scripts/audit-fagverk-psykologi-university-completion-v1.mjs"
       - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
       - "scripts/psykologi-subject-state.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
@@ -59,6 +61,7 @@ on:
       - "tests/fagverk-psykologi-personality-university.test.mjs"
       - "tests/fagverk-psykologi-history-science-theory-university.test.mjs"
       - "tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs"
+      - "tests/fagverk-psykologi-university-completion-v1.test.mjs"
       - "tests/fagverk-psykologi-university-readiness.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
@@ -92,6 +95,8 @@ on:
       - "scripts/audit-fagverk-psykologi-history-science-theory-university.mjs"
       - "scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs"
       - "scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs"
+      - "scripts/materialize-psykologi-university-completion-v1.mjs"
+      - "scripts/audit-fagverk-psykologi-university-completion-v1.mjs"
       - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
       - "scripts/psykologi-subject-state.mjs"
       - "tests/fagverk-psykologi-phase3.test.mjs"
@@ -109,6 +114,7 @@ on:
       - "tests/fagverk-psykologi-personality-university.test.mjs"
       - "tests/fagverk-psykologi-history-science-theory-university.test.mjs"
       - "tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs"
+      - "tests/fagverk-psykologi-university-completion-v1.test.mjs"
       - "tests/fagverk-psykologi-university-readiness.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-psykologi-phase3.yml"
@@ -144,6 +150,7 @@ jobs:
           node --check scripts/materialize-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs
           node --check scripts/materialize-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
           node --check scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs
+          node --check scripts/materialize-psykologi-university-completion-v1.mjs
           node --check scripts/audit-fagverk-psykologi-phase3.mjs
           node --check scripts/audit-fagverk-psykologi-psykisk-helse-phase4.mjs
           node --check scripts/audit-fagverk-psykologi-fagtradisjoner-teori-phase4.mjs
@@ -159,6 +166,7 @@ jobs:
           node --check scripts/audit-fagverk-psykologi-personality-university.mjs
           node --check scripts/audit-fagverk-psykologi-history-science-theory-university.mjs
           node --check scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs
+          node --check scripts/audit-fagverk-psykologi-university-completion-v1.mjs
           node --check scripts/audit-fagverk-psykologi-university-readiness.mjs
           node --check scripts/psykologi-subject-state.mjs
           node --check scripts/build-fagverk-release-manifest.mjs
@@ -173,6 +181,7 @@ jobs:
           node scripts/materialize-psykologi-sosialpsykologi-normalitet-stigma-phase4.mjs
           node scripts/materialize-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
           node scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs
+          node scripts/materialize-psykologi-university-completion-v1.mjs
 
       - name: Refresh deterministic Psychology audits
         run: |
@@ -191,6 +200,7 @@ jobs:
           node scripts/audit-fagverk-psykologi-personality-university.mjs --write-report
           node scripts/audit-fagverk-psykologi-history-science-theory-university.mjs --write-report
           node scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs --write-report
+          node scripts/audit-fagverk-psykologi-university-completion-v1.mjs --write-report
           node scripts/audit-fagverk-psykologi-university-readiness.mjs --write-report
 
       - name: Refresh and validate shared Fagverk architecture
@@ -222,6 +232,7 @@ jobs:
           node --test tests/fagverk-psykologi-personality-university.test.mjs
           node --test tests/fagverk-psykologi-history-science-theory-university.test.mjs
           node --test tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs
+          node --test tests/fagverk-psykologi-university-completion-v1.test.mjs
           node --test tests/fagverk-psykologi-university-readiness.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
 
@@ -246,8 +257,10 @@ jobs:
       - name: Verify chapter 6 rematerializer
         run: node scripts/materialize-psykologi-traume-krise-resiliens-omsorg-phase4.mjs
 
-      - name: Verify first topic-article batch rematerializer
-        run: node scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs
+      - name: Verify complete topic, concept and applied-field rematerialization
+        run: |
+          node scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs
+          node scripts/materialize-psykologi-university-completion-v1.mjs
 
       - name: Verify deterministic Psychology reports
         run: |
@@ -266,6 +279,7 @@ jobs:
           node scripts/audit-fagverk-psykologi-personality-university.mjs
           node scripts/audit-fagverk-psykologi-history-science-theory-university.mjs
           node scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs
+          node scripts/audit-fagverk-psykologi-university-completion-v1.mjs
           node scripts/audit-fagverk-psykologi-university-readiness.mjs
 
       - name: Verify deterministic shared Fagverk reports
@@ -284,6 +298,9 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
+            data/fag/psykologi/psykologi_university_readiness_v1.json \
+            data/fag/psykologi/begreper_psykologi_canonical_v1.json \
+            data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json \
             data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling.json \
             data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling \
             data/fagverk/psykologi/fagtradisjoner-teori-og-sinnet.json \
@@ -317,6 +334,7 @@ jobs:
             reports/fagverk/psykologi-personality-university-audit.json \
             reports/fagverk/psykologi-history-science-theory-university-audit.json \
             reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json \
+            reports/fagverk/psykologi-university-completion-v1-audit.json \
             reports/fagverk/psykologi-university-readiness-audit.json
           if git diff --cached --quiet; then
             echo 'Psychology materialization already matches.'

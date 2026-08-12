@@ -16,8 +16,8 @@ test('Psykologi sosialpsykologi normalitet og stigma bevares i 6/6 canonical bas
   assert.equal(report.summary.externalSourceCount, 20);
   assert.equal(report.subject.registeredChapterCount, 6);
   assert.equal(report.subject.targetChapterCount, 6);
-  assert.equal(report.subject.editorialStatus, 'expanded_and_audited');
-  assert.equal(report.subject.nextGate, 'university_matrix_topic_articles_concept_registry_and_methods');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.deepEqual(report.runtimePlaceIds, ['psykologisk_institutt_uio']);
   assert.deepEqual(report.socialCaseNames, ['Konformitet, normer og sosial påvirkning','Kategorisering, kontakt og fordommer','Diagnosemerking, stigma og diskriminering','Ensomhet, sosial isolasjon og tilhørighet']);
   assert.ok(Object.values(report.gates).every(Boolean));

@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_psykologi_university_readiness_audit_v1",
-  "version": "1.9.1",
-  "status": "psykologi_university_readiness_in_progress",
+  "version": "2.0.0",
+  "status": "psykologi_university_ready_for_complete",
   "generatedFrom": {
     "matrix": "data/fag/psykologi/psykologi_university_readiness_v1.json",
     "biologicalPsychology": "data/fag/psykologi/biologisk_psykologi_university_v1.json",
@@ -11,6 +11,7 @@
     "personalityPsychology": "data/fag/psykologi/personlighetspsykologi_university_v1.json",
     "historyScienceTheory": "data/fag/psykologi/psykologiens_historie_vitenskapsteori_university_v1.json",
     "methodsStatistics": "data/fag/psykologi/metode_statistikk_psykologi_university_v1.json",
+    "canonicalMethods": "data/fag/psykologi/methods_psykologi_canonical_v4_5.json",
     "pensum": "data/fag/psykologi/psykologipensum_canonical_v4_5.json",
     "emner": "data/fag/psykologi/emner_psykologi_canonical_v4_5.json",
     "registry": "data/fagverk/fagverk_registry.json",
@@ -18,12 +19,13 @@
     "sourceRegistry": "data/fag/psykologi/kilder_psykologi_canonical_v1.json",
     "articleDir": "data/fagverk/psykologi/emneartikler",
     "concepts": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
+    "appliedFields": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json",
     "report": "reports/fagverk/psykologi-university-readiness-audit.json"
   },
   "subject": {
     "id": "psykologi",
-    "editorialStatus": "expanded_and_audited",
-    "nextGate": "university_matrix_topic_articles_concept_registry_and_methods",
+    "editorialStatus": "complete",
+    "nextGate": "maintenance_source_refresh_and_place_case_expansion",
     "registeredChapterCount": 6
   },
   "baseline": {
@@ -305,11 +307,11 @@
   },
   "topicArticles": {
     "requiredCount": 58,
-    "completeCount": 12,
-    "remainingCount": 46,
+    "completeCount": 58,
+    "remainingCount": 0,
     "invalidSourceReferenceCount": 0,
-    "auditedBatchCount": 1,
-    "auditedDomainCount": 1,
+    "auditedBatchCount": 6,
+    "auditedDomainCount": 6,
     "mentalHealthBatch": {
       "domainId": "psykisk_helse_institusjoner_behandling",
       "requiredCount": 12,
@@ -317,16 +319,24 @@
       "totalEditorialWordCount": 7505,
       "auditComplete": true
     },
-    "complete": false,
+    "fullCorpus": {
+      "requiredCount": 58,
+      "completeCount": 58,
+      "totalEditorialWordCount": 61646,
+      "auditComplete": true
+    },
+    "complete": true,
     "directory": "data/fagverk/psykologi/emneartikler"
   },
   "concepts": {
     "registryPath": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
-    "exists": false,
-    "conceptCount": 0,
-    "materializedCount": 0,
+    "exists": true,
+    "conceptCount": 136,
+    "expectedCount": 136,
+    "materializedCount": 136,
     "invalidSourceReferenceCount": 0,
-    "complete": false
+    "exactCanonicalTermCoverage": true,
+    "complete": true
   },
   "sourceRegistry": {
     "path": "data/fag/psykologi/kilder_psykologi_canonical_v1.json",
@@ -337,44 +347,41 @@
     {
       "areaId": "clinical_health",
       "label": "Klinisk psykologi og helsepsykologi",
-      "status": "strong_baseline_breadth_mapping_required"
+      "status": "complete",
+      "artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
     },
     {
       "areaId": "work_organizational",
       "label": "Arbeids- og organisasjonspsykologi",
-      "status": "expansion_required"
+      "status": "complete",
+      "artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
     },
     {
       "areaId": "educational_school",
       "label": "Pedagogisk og skolepsykologi",
-      "status": "partial_expansion_required"
+      "status": "complete",
+      "artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
     },
     {
       "areaId": "culture",
       "label": "Kulturpsykologi",
-      "status": "partial_expansion_required"
+      "status": "complete",
+      "artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
     },
     {
       "areaId": "environment_community",
       "label": "Miljø- og communitypsykologi",
-      "status": "expansion_required"
+      "status": "complete",
+      "artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
     },
     {
       "areaId": "quantitative_psychometrics",
       "label": "Kvantitativ psykologi og psykometri",
-      "status": "major_expansion_required"
+      "status": "complete",
+      "artifact": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json"
     }
   ],
-  "blockersToComplete": [
-    "standalone_topic_articles:12/58",
-    "canonical_concept_registry:0/0",
-    "applied_field:clinical_health:strong_baseline_breadth_mapping_required",
-    "applied_field:work_organizational:expansion_required",
-    "applied_field:educational_school:partial_expansion_required",
-    "applied_field:culture:partial_expansion_required",
-    "applied_field:environment_community:expansion_required",
-    "applied_field:quantitative_psychometrics:major_expansion_required"
-  ],
+  "blockersToComplete": [],
   "currentGates": {
     "canonicalSixDomainBaselineIntact": true,
     "all58CanonicalEmnersStillUnique": true,
@@ -396,6 +403,9 @@
     "twentyMethodsStatisticsCompetenciesPinned": true,
     "methodsStatisticsMaterializedAndAudited": true,
     "firstTwelveStandaloneTopicArticlesMaterializedAndAudited": true,
+    "all58StandaloneTopicArticlesMaterializedAndAudited": true,
+    "canonicalConceptRegistryMaterializedAndAudited": true,
+    "sixAppliedFieldsMaterializedAndAudited": true,
     "topicArticlesRemainOutsideAhaRuntime": true,
     "allRegisteredSourcesInspectable": true,
     "subjectNotPrematurelyComplete": true
@@ -409,9 +419,9 @@
     "personalityPsychologyBranchComplete": true,
     "historyScienceTheoryBranchComplete": true,
     "researchMethodsStatisticsBranchComplete": true,
-    "all58StandaloneTopicArticlesComplete": false,
-    "canonicalConceptRegistryComplete": false,
-    "appliedFieldMatrixComplete": false
+    "all58StandaloneTopicArticlesComplete": true,
+    "canonicalConceptRegistryComplete": true,
+    "appliedFieldMatrixComplete": true
   },
-  "completeReady": false
+  "completeReady": true
 }

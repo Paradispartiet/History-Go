@@ -7,11 +7,11 @@ import {
   psykologiPostBaselineStateIsConsistent
 } from '../scripts/psykologi-subject-state.mjs';
 
-test('Psykologi bevarer en sterk canonical 6/58-baseline uten å hevde endelig complete', () => {
+test('Psykologi bevarer canonical 6/58-baseline i endelig complete-status', () => {
   const { report } = auditPsykologiComplete();
   assert.equal(report.status, 'psykologi_canonical_baseline_audited');
-  assert.equal(report.subject.editorialStatus, 'expanded_and_audited');
-  assert.equal(report.subject.nextGate, 'university_matrix_topic_articles_concept_registry_and_methods');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.registeredChapterCount, 6);
   assert.equal(report.summary.chapterCount, 6);
   assert.equal(report.summary.domainCount, 6);

@@ -11,9 +11,9 @@ import {
 
 test('Psykologi har en eksplisitt universitetsmatrise uten å miste 6/58-baselinen', () => {
   const { report } = auditPsykologiUniversityReadiness();
-  assert.equal(report.status, 'psykologi_university_readiness_in_progress');
-  assert.equal(report.subject.editorialStatus, 'expanded_and_audited');
-  assert.equal(report.subject.nextGate, 'university_matrix_topic_articles_concept_registry_and_methods');
+  assert.equal(report.status, 'psykologi_university_ready_for_complete');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.baseline.domainCount, 6);
   assert.equal(report.baseline.emneCount, 58);
   assert.equal(report.baseline.methodCount, 58);
@@ -30,9 +30,9 @@ test('Psykologi har en eksplisitt universitetsmatrise uten å miste 6/58-baselin
   assert.ok(Object.values(report.currentGates).every(Boolean));
 });
 
-test('Alle basalområder samt metode/statistikk er ferdige, mens øvrige universitetsporter holder complete tilbake', () => {
+test('Alle universitetsporter er ferdige og complete er dokumentert', () => {
   const { report } = auditPsykologiUniversityReadiness();
-  assert.equal(report.completeReady, false);
+  assert.equal(report.completeReady, true);
   assert.equal(report.biologicalPsychology.requiredTopicCount, 15);
   assert.equal(report.biologicalPsychology.materializedTopicCount, 15);
   assert.equal(report.biologicalPsychology.sourceCount, 8);
@@ -118,10 +118,10 @@ test('Alle basalområder samt metode/statistikk er ferdige, mens øvrige univers
   assert.equal(report.methodsStatistics.complete, true);
   assert.equal(report.completionGates.researchMethodsStatisticsBranchComplete, true);
   assert.equal(report.topicArticles.requiredCount, 58);
-  assert.equal(report.topicArticles.completeCount, 12);
-  assert.equal(report.topicArticles.remainingCount, 46);
-  assert.equal(report.topicArticles.auditedBatchCount, 1);
-  assert.equal(report.topicArticles.auditedDomainCount, 1);
+  assert.equal(report.topicArticles.completeCount, 58);
+  assert.equal(report.topicArticles.remainingCount, 0);
+  assert.equal(report.topicArticles.auditedBatchCount, 6);
+  assert.equal(report.topicArticles.auditedDomainCount, 6);
   assert.deepEqual(report.topicArticles.mentalHealthBatch, {
     domainId: 'psykisk_helse_institusjoner_behandling',
     requiredCount: 12,
@@ -129,13 +129,22 @@ test('Alle basalområder samt metode/statistikk er ferdige, mens øvrige univers
     totalEditorialWordCount: 7505,
     auditComplete: true
   });
-  assert.equal(report.topicArticles.complete, false);
-  assert.equal(report.concepts.complete, false);
+  assert.equal(report.topicArticles.fullCorpus.requiredCount, 58);
+  assert.equal(report.topicArticles.fullCorpus.completeCount, 58);
+  assert.ok(report.topicArticles.fullCorpus.totalEditorialWordCount >= 60000);
+  assert.equal(report.topicArticles.fullCorpus.auditComplete, true);
+  assert.equal(report.topicArticles.complete, true);
+  assert.equal(report.concepts.expectedCount, 136);
+  assert.equal(report.concepts.conceptCount, 136);
+  assert.equal(report.concepts.materializedCount, 136);
+  assert.equal(report.concepts.exactCanonicalTermCoverage, true);
+  assert.equal(report.concepts.complete, true);
   assert.ok(report.sourceRegistry.registeredCount >= 122);
   assert.equal(report.sourceRegistry.validCount, report.sourceRegistry.registeredCount);
   assert.equal(report.completionGates.allRequiredUniversityCoreAreasComplete, true);
-  assert.equal(report.completionGates.all58StandaloneTopicArticlesComplete, false);
-  assert.equal(report.completionGates.canonicalConceptRegistryComplete, false);
+  assert.equal(report.completionGates.all58StandaloneTopicArticlesComplete, true);
+  assert.equal(report.completionGates.canonicalConceptRegistryComplete, true);
+  assert.equal(report.completionGates.appliedFieldMatrixComplete, true);
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:biological_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:cognitive_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:developmental_psychology:')));
@@ -143,8 +152,9 @@ test('Alle basalområder samt metode/statistikk er ferdige, mens øvrige univers
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:personality_psychology:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:history_science_theory:')));
   assert.ok(!report.blockersToComplete.some((item) => item.startsWith('university_core:research_methods_statistics:')));
-  assert.ok(report.blockersToComplete.includes('standalone_topic_articles:12/58'));
-  assert.ok(report.blockersToComplete.some((item) => item.startsWith('canonical_concept_registry:')));
+  assert.deepEqual(report.blockersToComplete, []);
+  assert.equal(report.appliedFields.length, 6);
+  assert.ok(report.appliedFields.every((field) => field.status === 'complete' && field.artifact === 'data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json'));
 });
 
 test('vilkårlige source_ids kan ikke gjøre en artikkel eller et begrep komplett', () => {
