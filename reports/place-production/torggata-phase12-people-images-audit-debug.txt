@@ -1,0 +1,20 @@
+exit_status=1
+
+> history-go@0.0.0 people:images:audit
+> npm run build:tools && node dist/tools/people-image-pipeline.mjs audit
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "totalPeople": 1403,
+  "peopleWithoutImage": 1024,
+  "externalImageUrls": 0,
+  "localImagesWithoutImageMeta": 343,
+  "unknownOrDisallowedLicenses": 0,
+  "invalidEditorialIllustrationMetadata": 0,
+  "invalidEditorialIllustrationFiles": 0,
+  "missingLocalImageFiles": 303,
+  "duplicateOrCollidingImageFiles": 1
+}
