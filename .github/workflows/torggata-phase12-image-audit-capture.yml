@@ -1,0 +1,49 @@
+name: Torggata phase 12 image audit capture
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase12-people-links
+    paths:
+      - .github/workflows/torggata-phase12-image-audit-capture.yml
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Capture People image audit
+        shell: bash
+        run: |
+          set +e
+          npm run people:images:audit > /tmp/people-images-audit.txt 2>&1
+          status=$?
+          mkdir -p reports/place-production
+          {
+            echo "exit_status=$status"
+            cat /tmp/people-images-audit.txt
+          } > reports/place-production/torggata-phase12-people-images-audit-debug.txt
+          exit 0
+      - name: Persist debug output and remove workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/torggata-phase12-image-audit-capture.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Logg Torggata fase 12 People-image-audit"
+          git push origin HEAD:agent/torggata-phase12-people-links
