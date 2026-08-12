@@ -1,0 +1,68 @@
+name: Torggata phase 12 image summary
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase12-people-closeout
+    paths:
+      - .github/workflows/torggata-phase12-image-summary.yml
+
+permissions:
+  contents: write
+
+jobs:
+  summary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build compact review summary
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file='reports/place-production/torggata-phase12-image-candidates-v1.json';
+          const report=JSON.parse(fs.readFileSync(file,'utf8'));
+          const selected=[];
+          const missing=[];
+          for (const id of report.requested_ids) {
+            const rows=report.candidates_by_person[id] || [];
+            const strong=rows.filter(c=>c.identity?.status==='strong').sort((a,b)=>(a.rank||99)-(b.rank||99));
+            if (!strong.length) { missing.push(id); continue; }
+            const c=strong[0];
+            selected.push({
+              personId:id,
+              personName:c.personName,
+              candidateId:c.candidateId,
+              wikidataId:c.wikidataId,
+              commonsFileName:c.commonsFileName,
+              commonsPage:c.commonsPage,
+              originalImageUrl:c.originalImageUrl,
+              creator:c.creator,
+              credit:c.credit,
+              license:c.license,
+              licenseUrl:c.licenseUrl,
+              quality:c.quality,
+              identity:c.identity
+            });
+          }
+          const out={
+            schema:'history_go_torggata_phase12_image_review_summary_v1',
+            generated_at:'2026-08-13',
+            strong_candidates:selected.length,
+            no_commons_candidate:missing.length,
+            selected,
+            missing
+          };
+          fs.writeFileSync('reports/place-production/torggata-phase12-image-review-summary-v1.json',JSON.stringify(out,null,2)+'\n');
+          NODE
+      - name: Persist summary and remove workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/torggata-phase12-image-summary.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Oppsummer Torggata fase 12 bilde-review"
+          git push origin HEAD:agent/torggata-phase12-people-closeout
