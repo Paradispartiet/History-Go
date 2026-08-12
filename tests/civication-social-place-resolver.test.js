@@ -12,11 +12,12 @@ function placesFrom(data) {
   if (data && typeof data.id === 'string') return [data];
   return [];
 }
-function loadPrefix(prefix) {
+function loadManifestPlaces(predicate) {
   const out = [], seen = new Set();
   for (const rel of readJson('data/places/manifest.json').files || []) {
-    if (!String(rel).startsWith(prefix) || !String(rel).endsWith('.json')) continue;
-    const abs = path.join(ROOT, 'data', rel);
+    const sourcePath = String(rel || '');
+    if (!sourcePath.endsWith('.json') || !predicate(sourcePath)) continue;
+    const abs = path.join(ROOT, 'data', sourcePath);
     if (!fs.existsSync(abs)) continue;
     let payload;
     try { payload = JSON.parse(fs.readFileSync(abs, 'utf8')); } catch { continue; }
@@ -28,6 +29,8 @@ function loadPrefix(prefix) {
   }
   return out;
 }
+const loadPrefix = (prefix) => loadManifestPlaces((rel) => rel.startsWith(prefix));
+const loadAllCanonicalPlaces = () => loadManifestPlaces(() => true);
 
 const sentMails = [];
 const sandboxWindow = {
@@ -69,12 +72,15 @@ const subkultur = loadPrefix('places/subkultur/oslo/');
 const sport = loadPrefix('places/sport/europa/norway/oslo_sport/');
 const playgrounds = loadPrefix('places/sport/europa/norway/places_oslo_lekeplasser_trening/');
 const places = [].concat(by, litteratur, subkultur, sport, playgrounds);
+const canonicalPlaces = loadAllCanonicalPlaces();
+const canonicalSourceIds = new Set(canonicalPlaces.map((p) => String(p.id)));
 const opts = { brandMaster, brandByPlace, places };
 
 assert.ok(by.length >= 90, `forventet minst 90 By-steder, fikk ${by.length}`);
 assert.ok(litteratur.some((p) => p.id === 'alexander_kiellands_plass'));
 assert.ok(subkultur.some((p) => p.id === 'bla'));
 assert.ok(sport.length && playgrounds.length);
+assert.ok(canonicalSourceIds.has('ekebergparken'), 'hele canonical manifestet skal inneholde Ekebergparken');
 
 const pairs = (list) => list.map((m) => `${m.sourcePlaceId}->${m.brandId || '(place)'}`).sort();
 const type = (id) => resolver.getSocialPlaceTypeForBrand(resolver.getBrandById(id, opts));
@@ -111,14 +117,13 @@ for (const [kind, wanted] of Object.entries({
   for (const item of wanted) assert.ok(found.includes(item), `${kind} mangler ${item}`);
 }
 
-const sourceIds = new Set(places.map((p) => String(p.id)));
 for (const item of resolver.resolveCivicationSocialPlacesFromBrands(opts)) {
-  assert.ok(sourceIds.has(item.sourcePlaceId), `ukjent brand-place ${item.sourcePlaceId}`);
+  assert.ok(canonicalSourceIds.has(item.sourcePlaceId), `ukjent brand-place ${item.sourcePlaceId}`);
   assert.ok((brandByPlace[item.sourcePlaceId] || []).map(String).includes(item.brandId),
     `brand ${item.brandId} er ikke koblet til ${item.sourcePlaceId}`);
 }
 for (const item of resolver.resolveCivicationSocialPlacesFromPlaces(opts)) {
-  assert.ok(sourceIds.has(item.sourcePlaceId), `ukjent place-only ${item.sourcePlaceId}`);
+  assert.ok(canonicalSourceIds.has(item.sourcePlaceId), `ukjent place-only ${item.sourcePlaceId}`);
   assert.strictEqual(item.brandId, null);
 }
 
@@ -143,4 +148,4 @@ conversation.clearConversationsForTesting();
 
 const html = resolver.buildSocialPlaceHeaderHtml(java, 'leisure');
 for (const text of ['Java Kaffebar', 'Kaffe', 'St. Hanshaugen park', 'Fritidsfase']) assert.ok(html.includes(text));
-console.log(`civication social-place resolver ok (${places.length} canonical source-places)`);
+console.log(`civication social-place resolver ok (${places.length} resolver-kilder, ${canonicalPlaces.length} canonical steder validert)`);
