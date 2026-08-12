@@ -88,13 +88,15 @@ for (const [name, api] of Object.entries({ channels, eng, bridge, convo, resolve
 const brandMaster = readJSON("data/brands/brands_master.json");
 const brandByPlace = readJSON("data/brands/brands_by_place.json");
 const placesBy = loadManifestPlaces("places/by/oslo/");
+const placesLiterature = loadManifestPlaces("places/litteratur/oslo/");
 const placesSport = loadManifestPlaces("places/sport/europa/norway/oslo_sport/");
 const placesPlaygrounds = loadManifestPlaces("places/sport/europa/norway/places_oslo_lekeplasser_trening/");
-const allPlaces = [].concat(placesBy, placesSport, placesPlaygrounds);
-const baseOpts = { brandMaster, brandByPlace, places: placesBy };
+const allPlaces = [].concat(placesBy, placesLiterature, placesSport, placesPlaygrounds);
+const baseOpts = { brandMaster, brandByPlace, places: allPlaces };
 const placeOpts = { brandMaster, brandByPlace, places: allPlaces };
 
 assert.ok(placesBy.length >= 90, `forventet minst 90 canonical By-steder, fikk ${placesBy.length}`);
+assert.ok(placesLiterature.some((p) => p.id === "alexander_kiellands_plass"), "manifest-loaderen mangler Alexander Kiellands plass");
 assert.ok(placesSport.length > 0, "manifest-loaderen mangler splittede Oslo-sportsteder");
 assert.ok(placesPlaygrounds.length > 0, "manifest-loaderen mangler splittede lekeplass-/treningssteder");
 assert.ok(placesBy.some((p) => p.id === "st_hanshaugen_park"), "manifest-loaderen mangler St. Hanshaugen park");
