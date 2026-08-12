@@ -7,7 +7,7 @@ const placeCardJs = fs.readFileSync(path.join(repo, 'js/ui/place-card.js'), 'utf
 const popupTabsJs = fs.readFileSync(path.join(repo, 'js/ui/place-popup-tabs.js'), 'utf8');
 const torggata = JSON.parse(fs.readFileSync(path.join(repo, 'data/places/by/oslo/places/torggata.json'), 'utf8'));
 
-assert(torggata.rounds.includes('før_nå'), 'Torggata skal beholde før_nå-rundingen inntil rundingsfasen behandler legacy-rundinger');
+assert.strictEqual(Object.prototype.hasOwnProperty.call(torggata, 'rounds'), false, 'Torggata skal ikke gjeninnføre legacy-rundinger etter fase 8E');
 assert(torggata.for_na, 'Torggata skal ha for_na-innhold');
 assert.strictEqual(torggata.for_na.title, 'Torggata før og etter ombyggingen');
 for (const field of ['before', 'now', 'change']) {
