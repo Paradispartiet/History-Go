@@ -17,7 +17,7 @@ test('Filmhistorie, bevegelser og historiografi dekker læringsenheten eksakt', 
   const { report } = auditFilmTvHistoryMovementsHistoriographyFulltextV1();
   assert.equal(report.canonicalCoverage.exactCoverage, '10/10 canonical emner');
   assert.equal(report.canonicalCoverage.sectionOwnership, '10 emner eid av 10 naturlig avgrensede seksjoner');
-  assert.ok(['film_history_movements_historiography_full_chapter_complete_next_unit_source_brief', 'television_platforms_participation_source_brief_complete_full_chapter_production', 'television_platforms_participation_full_chapter_complete_next_unit_source_brief'].includes(report.subject.nextGate));
+  assert.ok(['film_history_movements_historiography_full_chapter_complete_next_unit_source_brief', 'television_platforms_participation_source_brief_complete_full_chapter_production', 'television_platforms_participation_full_chapter_complete_next_unit_source_brief', 'documentary_evidence_ethics_source_brief_complete_full_chapter_production'].includes(report.subject.nextGate));
   assert.equal(report.nextGate, 'produce_source_and_claim_brief_for_fjernsyn_plattformer_og_deltakerhistorier');
 });
 
