@@ -25,6 +25,7 @@
 - Fase 8A-closeout: `reports/place-production/torggata-phase8a-closeout-v1.md`
 - Fase 8B-audit: `reports/place-production/torggata-phase8b-objects-audit-v1.md`
 - Fase 8C-audit: `reports/place-production/torggata-phase8c-brands-audit-v1.json`
+- Fase 8D-audit: `reports/place-production/torggata-phase8d-structures-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -38,7 +39,7 @@
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
-| 8. Rundinger | **PÅGÅR – 8D Bygg og anlegg** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT** etter full re-audit; 8D er neste del |
+| 8. Rundinger | **PÅGÅR – 8E legacy rounds + slutt-UI** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; 8E er neste del |
 | 9–15 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
@@ -347,4 +348,14 @@ Alle historiske records er merket `dead` + `verified_legacy`; dagens virksomhete
 
 **8C Brands = GODKJENT.**
 
-Neste fase-8-del: **8D Bygg og anlegg**.
+## Fase 8D – Bygg og anlegg
+
+8D materialiserer en canonical `structures`-samling med de navngitte fysiske anleggene som består den kildeledede rundingskontrakten: **Eldorado / Torggata 9** og **Torggata bad / Torggata 16**. Dette er et auditresultat, ikke en antallskvote. Begge har selvstendig fysisk identitet, dokumentert adresse, historikk og kildegrunnlag i den allerede godkjente Torggata-kildebasen.
+
+Rockefeller og John Dee blir ikke egne Structures fordi de er venue-/bruksidentiteter i Torggata bad-anlegget; det samme fysiske bygget skal ikke dobles. Strøget er en dokumentert passasje, men er ikke etablert i kildepakken som et eget Torggata-bygg/anlegg. De to fase-6-subplace-postene er gatesegmenter og kvalifiserer eksplisitt ikke. Vanlige butikk-/adressebygg dupliseres heller ikke fra Brands uten uavhengig strukturidentitet.
+
+Ingen strukturillustrasjon er kopiert eller rekonstruert uten egen verifisert rettighetskjede. Runtime bruker derfor navn/ikon/telling der et per-structure-bilde mangler. Etter materialisering velger category-four-runtime `structures` for Torggata i stedet for den tidligere `images`-fallbacken, og focused test låser at samlingen består av de auditerte strukturene uten at gatesegmenter lekker inn.
+
+**8D Bygg og anlegg = GODKJENT.**
+
+Neste fase-8-del: **8E legacy rounds + slutt-UI**.
