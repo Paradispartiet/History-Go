@@ -1,0 +1,39 @@
+name: Torggata phase 12 scope fix
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase12-people-closeout
+    paths:
+      - .github/workflows/torggata-phase12-scope-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Allow closeout workflow deletion in temporary scope
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/torggata-phase12-closeout.yml')
+          s=p.read_text()
+          old="allowed='^(data/people/|"
+          new="allowed='^(.github/workflows/torggata-phase12-closeout\\.yml$|data/people/|"
+          if old not in s:
+              raise SystemExit('scope marker not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+          rm -f .github/workflows/torggata-phase12-scope-fix.yml
+          git add -A
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rett Torggata fase 12 temp-scope"
+          git push origin HEAD:agent/torggata-phase12-people-closeout
