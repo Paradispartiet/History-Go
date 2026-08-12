@@ -75,9 +75,9 @@ check("perPlaceMappingFilesFromOverview henter distinkte stier i rekkefølge", (
   const files = api.perPlaceMappingFilesFromOverview({
     sourceFileMappings: {
       a: { perPlaceMappingFile: "one.json" },
-      b: { needsPerPlaceMapping: true }, // uten sti -> hoppes over
+      b: { needsPerPlaceMapping: true },
       c: { perPlaceMappingFile: "two.json" },
-      d: { perPlaceMappingFile: "one.json" } // duplikat -> hoppes over
+      d: { perPlaceMappingFile: "one.json" }
     }
   });
   assert.strictEqual(files.length, 2);
@@ -119,7 +119,7 @@ check("mergeCityMap fletter, kobler byggtype og teller diagnostikk", () => {
         buildingTypeId: "building_finnes_ikke", mapRole: "r", visibleAs: "v",
         socialFunctions: ["a"], phaseTypes: ["b"], groundhopperRelevant: false, needsVerification: false
       },
-      map_ugyldig: { id: "map_ugyldig" } // mangler historyGoPlaceId/civicationPlaceId -> skippes
+      map_ugyldig: { id: "map_ugyldig" }
     }
   };
 
@@ -147,7 +147,6 @@ check("mergeCityMap hopper over duplikate id-er på tvers av filer", () => {
       }
     }
   });
-  // Samme historyGoPlaceId i to filer -> nummer to hoppes over.
   const model = api.mergeCityMap({ mappingFiles: [makeFile("civ_1"), makeFile("civ_2")], buildingTypesData: {} });
   assert.strictEqual(model.entries.length, 1);
   assert.strictEqual(model.diagnostics.skippedDuplicateHistoryGoPlaceId.length, 1);
@@ -169,10 +168,17 @@ check("read-modellen fletter HELE det committede kartgrunnlaget uten duplikater"
 
   const model = api.mergeCityMap({ mappingFiles, buildingTypesData });
 
-  // Ingen poster skal gå tapt til duplikat eller ugyldighet i det ekte grunnlaget.
   assert.strictEqual(model.diagnostics.skippedInvalid, 0, "ingen ugyldige poster i ekte data");
-  assert.strictEqual(model.diagnostics.skippedDuplicateHistoryGoPlaceId.length, 0, "ingen duplikate historyGoPlaceId");
-  assert.strictEqual(model.diagnostics.skippedDuplicateCivicationPlaceId.length, 0, "ingen duplikate civicationPlaceId");
+  assert.strictEqual(
+    model.diagnostics.skippedDuplicateHistoryGoPlaceId.length,
+    0,
+    "ingen duplikate historyGoPlaceId: " + JSON.stringify(model.diagnostics.skippedDuplicateHistoryGoPlaceId)
+  );
+  assert.strictEqual(
+    model.diagnostics.skippedDuplicateCivicationPlaceId.length,
+    0,
+    "ingen duplikate civicationPlaceId: " + JSON.stringify(model.diagnostics.skippedDuplicateCivicationPlaceId)
+  );
   assert.strictEqual(model.diagnostics.unknownBuildingTypeCount, 0, "alle buildingTypeId skal finnes i buildingTypes.json");
   assert.ok(model.entries.length >= 300, `forventet 300+ entries, fikk ${model.entries.length}`);
   assert.strictEqual(model.entries.length, model.byHistoryGoPlaceId.size, "entries og index skal ha samme størrelse");
