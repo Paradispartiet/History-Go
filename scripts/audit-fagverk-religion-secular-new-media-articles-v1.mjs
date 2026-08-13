@@ -94,15 +94,15 @@ export function auditReligionSecularNewMediaArticles({ writeReport = false, chec
   const statuses = read(P.status);
   const status = statuses.subjects.find((row) => row.id === 'religion');
   assert(status?.editorialStatus === 'chapters_in_progress', 'Religion skal fortsatt stå chapters_in_progress');
-  assert(status?.nextGate === 'remaining_religion_area_article_production', 'Religion har feil neste produksjonsport');
+  assert(status?.nextGate === 'religion_concept_registry_and_final_completion_audit', 'Religion har feil neste produksjonsport');
   assert(readiness.status === 'matrix_locked_production_in_progress', 'Religion-readiness skal vise pågående produksjon');
-  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 66/72');
+  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady før begrepsporten');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
   assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Ikke-religion, nye religioner og medier skal eie seks unike emner');
-  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', 'texts_myths_authority', 'society_politics_law', 'lived_identity_migration', AREA_ID]), 'Eksakt elleve Religion-områder skal være komplette');
-  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(60), requiredIds), 'Readiness har feil ikke-religion-, nye religioner- og medieemner');
-  assert(readiness.production_progress.standalone_topic_articles_materialized === 66 && readiness.production_progress.standalone_topic_articles_remaining === 6, 'Religion skal stå på 66/72 artikler');
+  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, Object.keys(readiness.required_topics_by_area)), 'Eksakt tolv Religion-områder skal være artikkelkomplette');
+  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(60, 66), requiredIds), 'Readiness har feil ikke-religion-, nye religioner- og medieemner');
+  assert(readiness.production_progress.standalone_topic_articles_materialized === 72 && readiness.production_progress.standalone_topic_articles_remaining === 0, 'Religion skal stå på 72/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
   assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Ikke-religion, nye religioner og medier-området er ikke korrekt merket komplett');
 
@@ -212,7 +212,7 @@ export function auditReligionSecularNewMediaArticles({ writeReport = false, chec
     status: complete ? 'religion_secular_new_media_articles_complete' : 'religion_secular_new_media_articles_in_progress',
     generatedFrom: P,
     subject: { id: 'religion', areaId: AREA_ID, editorialStatus: status.editorialStatus, nextGate: status.nextGate, completeReady: false },
-    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 11, totalUniversityAreaCount: 12, completedTopicCount: 66, totalTopicCount: 72, articleIds: requiredIds },
+    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 12, totalUniversityAreaCount: 12, completedTopicCount: 72, totalTopicCount: 72, articleIds: requiredIds },
     depth: { minimumWordsPerArticle: readiness.topic_article_contract.minimum_editorial_words_per_article, totalEditorialWordCount, articleWordCounts, scenarioCounts },
     evidence: { registeredSourceCount: sourceById.size, registeredClaimCount: claimById.size, usedSourceCount: usedSourceIds.size, usedClaimCount: usedClaimIds.size, allClaimsResolve: true, allSourcesResolve: true },
     methods: { requiredMethodCount: readiness.required_method_ids.length, materializedRequiredMethodCount: readiness.production_progress.required_methods_materialized, requiredAreaMethodIds: REQUIRED_AREA_METHOD_IDS, usedMethodIds: [...usedMethodIds].sort() },
@@ -225,7 +225,7 @@ export function auditReligionSecularNewMediaArticles({ writeReport = false, chec
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
       discourseDigitalMediaAndInstitutionalMethodsMaterializedAndLinked: true,
-      allSixtySixReligionArticlesReviewedForEditorialDiversity: true,
+      allSeventyTwoReligionArticlesReviewedForEditorialDiversity: true,
       nonreligionNewMovementWellnessExtremismMediaAndDigitalBoundariesLocked: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,

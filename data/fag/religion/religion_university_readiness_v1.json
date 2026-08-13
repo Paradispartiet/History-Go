@@ -1,6 +1,6 @@
 {
   "schema": "history_go_religion_university_readiness_v1",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "updated_at": "2026-08-13",
   "subject_id": "religion",
   "status": "matrix_locked_production_in_progress",
@@ -227,8 +227,15 @@
       "area_id": "nature_science_ethics",
       "label": "Religion, natur, vitenskap og etikk",
       "required": true,
-      "current_status": "missing",
-      "current_anchors": [],
+      "current_status": "complete",
+      "current_anchors": [
+        "religion_nature_and_environmental_ethics",
+        "religion_climate_change_and_activism",
+        "science_religion_conflict_independence_and_dialogue",
+        "cognitive_and_evolutionary_approaches_to_religion",
+        "bioethics_health_illness_and_care",
+        "animals_food_consumption_and_religious_ethics"
+      ],
       "completion_requirement": "Natur- og klimaetikk, vitenskap og religion, kognitive forklaringer, helse, bioetikk, dyr og matpraksiser."
     }
   ],
@@ -351,8 +358,8 @@
     "met_religion_research_ethics_privacy_and_representation"
   ],
   "production_progress": {
-    "status": "eleventh_university_area_complete",
-    "completed_area_ids": ["theory_method", "history_comparison", "west_asian_abrahamic", "south_asian_religions", "east_asian_religions", "indigenous_sami", "ritual_materiality_space", "texts_myths_authority", "society_politics_law", "lived_identity_migration", "secular_new_media"],
+    "status": "all_twelve_university_area_articles_complete",
+    "completed_area_ids": ["theory_method", "history_comparison", "west_asian_abrahamic", "south_asian_religions", "east_asian_religions", "indigenous_sami", "ritual_materiality_space", "texts_myths_authority", "society_politics_law", "lived_identity_migration", "secular_new_media", "nature_science_ethics"],
     "materialized_topic_ids": [
       "religion_as_analytical_category",
       "insider_outsider_emic_etic",
@@ -419,7 +426,13 @@
       "esotericism_occulture_and_wellness",
       "conspiracy_culture_extremism_and_religious_language",
       "religion_media_popular_culture_and_celebrities",
-      "digital_religion_platforms_and_online_communities"
+      "digital_religion_platforms_and_online_communities",
+      "religion_nature_and_environmental_ethics",
+      "religion_climate_change_and_activism",
+      "science_religion_conflict_independence_and_dialogue",
+      "cognitive_and_evolutionary_approaches_to_religion",
+      "bioethics_health_illness_and_care",
+      "animals_food_consumption_and_religious_ethics"
     ],
     "materialized_required_method_ids": [
       "met_religion_comparative_analysis",
@@ -441,8 +454,8 @@
       "met_religion_survey_and_demography",
       "met_religion_cognitive_and_experimental_analysis"
     ],
-    "standalone_topic_articles_materialized": 66,
-    "standalone_topic_articles_remaining": 6,
+    "standalone_topic_articles_materialized": 72,
+    "standalone_topic_articles_remaining": 0,
     "required_methods_materialized": 18,
     "required_methods_remaining": 0,
     "quality_score": 29,
@@ -481,7 +494,7 @@
   "completion_contract": {
     "current_complete_ready": false,
     "final_editorial_status": "complete",
-    "next_gate": "university_matrix_domain_articles_concepts_sources_and_methods",
+    "next_gate": "canonical_concept_registry_and_final_source_resolution",
     "final_next_gate": "maintenance_source_refresh_and_place_case_expansion",
     "requirements": [
       "all_12_university_core_areas_complete",

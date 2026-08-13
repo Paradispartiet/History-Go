@@ -1,19 +1,19 @@
 {
   "schema": "history_go_fagverk_religion_topic_articles_batch_audit_v1",
   "version": "1.0.0",
-  "status": "religion_indigenous_sami_articles_complete",
+  "status": "religion_nature_science_ethics_articles_complete",
   "generatedFrom": {
     "readiness": "data/fag/religion/religion_university_readiness_v1.json",
     "methods": "data/fag/religion/methods_religion_canonical_v1.json",
     "sourceRegistry": "data/fag/religion/kilder_religion_canonical_v1.json",
-    "claims": "data/fagverk/religion/samiske-og-andre-urfolksreligioner/claims.json",
+    "claims": "data/fagverk/religion/natur-vitenskap-etikk/claims.json",
     "articleDir": "data/fagverk/religion/emneartikler",
     "status": "data/fagverk/subject_status.json",
-    "report": "reports/fagverk/religion-indigenous-sami-articles-v1-audit.json"
+    "report": "reports/fagverk/religion-nature-science-ethics-articles-v1-audit.json"
   },
   "subject": {
     "id": "religion",
-    "areaId": "indigenous_sami",
+    "areaId": "nature_science_ethics",
     "editorialStatus": "chapters_in_progress",
     "nextGate": "religion_concept_registry_and_final_completion_audit",
     "completeReady": false
@@ -21,37 +21,37 @@
   "coverage": {
     "requiredArticleCount": 6,
     "materializedArticleCount": 6,
-    "completedUniversityAreaCount": 6,
+    "completedUniversityAreaCount": 12,
     "totalUniversityAreaCount": 12,
-    "completedTopicCount": 36,
+    "completedTopicCount": 72,
     "totalTopicCount": 72,
     "articleIds": [
-      "sami_religion_cosmology_practice_and_history",
-      "christianization_mission_and_indigenous_responses",
-      "indigenous_religions_land_kinship_and_knowledge",
-      "colonialism_sources_and_representation",
-      "revitalization_repatriation_and_cultural_rights",
-      "indigenous_methodology_and_research_ethics"
+      "religion_nature_and_environmental_ethics",
+      "religion_climate_change_and_activism",
+      "science_religion_conflict_independence_and_dialogue",
+      "cognitive_and_evolutionary_approaches_to_religion",
+      "bioethics_health_illness_and_care",
+      "animals_food_consumption_and_religious_ethics"
     ]
   },
   "depth": {
     "minimumWordsPerArticle": 650,
-    "totalEditorialWordCount": 5763,
+    "totalEditorialWordCount": 6252,
     "articleWordCounts": {
-      "christianization_mission_and_indigenous_responses": 950,
-      "colonialism_sources_and_representation": 955,
-      "indigenous_methodology_and_research_ethics": 952,
-      "indigenous_religions_land_kinship_and_knowledge": 985,
-      "revitalization_repatriation_and_cultural_rights": 939,
-      "sami_religion_cosmology_practice_and_history": 982
+      "animals_food_consumption_and_religious_ethics": 1118,
+      "bioethics_health_illness_and_care": 1028,
+      "cognitive_and_evolutionary_approaches_to_religion": 1014,
+      "religion_climate_change_and_activism": 1034,
+      "religion_nature_and_environmental_ethics": 1031,
+      "science_religion_conflict_independence_and_dialogue": 1027
     },
     "scenarioCounts": {
-      "christianization_mission_and_indigenous_responses": 2,
-      "colonialism_sources_and_representation": 2,
-      "indigenous_methodology_and_research_ethics": 2,
-      "indigenous_religions_land_kinship_and_knowledge": 2,
-      "revitalization_repatriation_and_cultural_rights": 2,
-      "sami_religion_cosmology_practice_and_history": 2
+      "animals_food_consumption_and_religious_ethics": 3,
+      "bioethics_health_illness_and_care": 2,
+      "cognitive_and_evolutionary_approaches_to_religion": 2,
+      "religion_climate_change_and_activism": 2,
+      "religion_nature_and_environmental_ethics": 2,
+      "science_religion_conflict_independence_and_dialogue": 2
     }
   },
   "evidence": {
@@ -65,23 +65,22 @@
   "methods": {
     "requiredMethodCount": 18,
     "materializedRequiredMethodCount": 18,
-    "newlyMaterializedMethodIds": [
-      "met_religion_survey_and_demography",
-      "met_religion_cognitive_and_experimental_analysis"
+    "requiredAreaMethodIds": [
+      "met_religion_comparative_analysis",
+      "met_religion_cognitive_and_experimental_analysis",
+      "met_religion_research_ethics_privacy_and_representation"
     ],
     "usedMethodIds": [
       "met_religion_anthropological_contextual_analysis",
       "met_religion_case_comparison_and_process_tracing",
       "met_religion_cognitive_and_experimental_analysis",
+      "met_religion_comparative_analysis",
+      "met_religion_concept_history_and_genealogy",
       "met_religion_discourse_and_content_analysis",
-      "met_religion_historical_source_criticism",
-      "met_religion_material_visual_and_architectural_analysis",
-      "met_religion_qualitative_interview",
-      "met_religion_reflexivity_and_positionality",
       "met_religion_research_ethics_privacy_and_representation",
       "met_religion_sociological_institutional_analysis",
-      "met_religion_spatial_route_and_landscape_analysis",
-      "met_religion_survey_and_demography"
+      "met_religion_survey_and_demography",
+      "met_religion_textual_and_philological_analysis"
     ]
   },
   "editorial": {
@@ -18000,19 +17999,19 @@
     "conclusion": "high_quality"
   },
   "gates": {
-    "exactSixIndigenousSamiArticles": true,
+    "exactSixNatureScienceEthicsArticles": true,
     "allArticlesMeetMinimumWordDepth": true,
     "allThirtySixClaimsResolveAndAreUsed": true,
     "allTwentySourcesResolveAndAreUsed": true,
     "allCasesAndScenariosExplicitlyLabeled": true,
-    "twoFinalSurveyExperimentalMethodsMaterializedAndLinked": true,
+    "comparativeCognitiveAndResearchEthicsMethodsMaterializedAndLinked": true,
     "allSeventyTwoReligionArticlesReviewedForEditorialDiversity": true,
-    "samiSpecificEvidenceAndKnowledgeRestrictionsLocked": true,
+    "environmentClimateScienceCognitionHealthAnimalAndFoodBoundariesLocked": true,
     "internalDiversityAndNonessentialismReviewed": true,
     "genericTemplateReuseAbsent": true,
     "noPrematureAhaRuntimeActivation": true,
     "sixDimensionQualityGate29Of30": true,
-    "religionCompleteReadyRemainsFalse": true
+    "religionCompleteReadyRemainsFalseUntilConceptRegistryPasses": true
   },
   "complete": true
 }
