@@ -1,0 +1,249 @@
+{
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_arbeids_og_karriereveiledning",
+  "role_id": "psykologi_karriereveileder",
+  "title": "Arbeids- og karriereveiledning",
+  "badge_binding": {
+    "badge_category": "psykologi",
+    "badge_id": "psykologi",
+    "badge_name": "Psykologi",
+    "tier_label": "Seniorrådgiver",
+    "tier_threshold": 85,
+    "badge_titles": ["Veileder", "Rådgiver", "Seniorrådgiver"],
+    "progression_from": ["Miljøarbeider"],
+    "progression_to": []
+  },
+  "evidence": {
+    "registry": "data/Civication/psychologyGuidanceEvidence.json",
+    "source_refs": ["utdanning_jobbveileder", "utdanning_karriereveileder"]
+  },
+  "fag_bindings": {
+    "primary_subjects": ["psykologi"],
+    "category_files": [
+      "data/Civication/roleModels/psykologi/veileder.json",
+      "data/Civication/roleModels/psykologi/radgiver.json",
+      "data/Civication/roleModels/psykologi/seniorradgiver.json"
+    ],
+    "required_concepts": [
+      "motivasjon",
+      "autonomi",
+      "mestring",
+      "interesser",
+      "verdier",
+      "kompetanse",
+      "maalsetting",
+      "beslutninger",
+      "arbeidsinkludering",
+      "gruppeprosesser",
+      "personvern"
+    ],
+    "methods": [
+      "apne_sporsmaal",
+      "malavklaring",
+      "ressurskartlegging",
+      "mulighetsutforsking",
+      "handlingsplan",
+      "arbeidsmarkedsorientering",
+      "intervjuforberedelse",
+      "samtykkeavklaring",
+      "tverrfaglig_samarbeid"
+    ]
+  },
+  "work_identity": {
+    "one_sentence": "Arbeids- og karriereveilederen hjelper en annen person å gjøre mer opplyste valg uten å gjøre veiledning til behandling eller overta selve valget.",
+    "hidden_responsibility": "Å gjøre muligheter tydeligere samtidig som usikkerhet, personvern og den andres eierskap til målet bevares.",
+    "status_tension": "Du kan kjenne systemet, arbeidsmarkedet og prosessen bedre enn veisøkeren, men du kjenner ikke livet deres bedre enn de gjør.",
+    "core_pressure": "hjelp_vs_styring",
+    "work_rhythm": [
+      "avklare hva personen faktisk ønsker hjelp til",
+      "kartlegge interesser, erfaring, kompetanse og barrierer uten å gjøre kartleggingen til en dom",
+      "utforske realistiske utdannings- og jobbmuligheter",
+      "oversette muligheter til konkrete neste steg",
+      "støtte søknad, CV og intervju når det er relevant",
+      "samarbeide med arbeidsgiver, NAV eller andre innenfor samtykke og rolle",
+      "følge opp om planen virker for personen, ikke bare om systemfristen er møtt"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "kartlegge interesser, ressurser, kompetanse og mål sammen med veisøker",
+      "utforske utdannings- og jobbmuligheter",
+      "støtte jobbsøking og intervjuforberedelse",
+      "lage handlingsplan sammen med veisøker",
+      "motivere og utfordre på en åpen måte",
+      "samarbeide med arbeidsgiver, NAV og relevante fagpersoner innenfor samtykke og mandat"
+    ],
+    "may_not": [
+      "stille diagnose",
+      "drive psykoterapi",
+      "gjøre medisinsk eller klinisk arbeidsevnevurdering",
+      "framstille kartleggingsverktøy eller interessetester som klinisk fasit",
+      "dele sensitive opplysninger uten grunnlag eller avklart samtykke",
+      "bestemme utdanning eller jobb på vegne av veisøker"
+    ],
+    "escalate_when": [
+      "veisøkeren beskriver helse- eller sikkerhetsforhold som krever annen fagkompetanse",
+      "arbeidsgiver eller samarbeidspartner ber om opplysninger du ikke har mandat til å dele",
+      "tiltak eller plan ikke lenger svarer på personens faktiske situasjon",
+      "rollen glir fra veiledning til behandling eller myndighetsutøvelse"
+    ]
+  },
+  "story_world": {
+    "simulation_promise": "Du opplever hvordan små veiledningsvalg kan gi en person mer eierskap og realistisk handlingsrom, eller gjøre et støttesystem til en ny form for styring.",
+    "everyday_world": "Arbeidsdagen består av samtaler, kartlegging, møter med samarbeidspartnere, søknader, planer og konkrete overganger mellom utdanning og arbeid. Det vanskelige ligger sjelden i å finne ett mulig svar; det ligger i å hjelpe et annet menneske å velge mellom muligheter under tidspress, usikkerhet og ulike forventninger.",
+    "hidden_complexity": "God veiledning krever både arbeidsmarkeds- og systemkunnskap og psykologisk forståelse av motivasjon, mestring, beslutninger og autonomi. Den blir svak når veilederen gjør sin egen løsning til den andres mål.",
+    "recurring_situations": [
+      "en veisøker sier ja til et mål som egentlig kom fra systemet",
+      "et kartleggingsskjema ser mer sikkert ut enn samtalen gir grunnlag for",
+      "en arbeidsgiver vil vite hvorfor kandidaten har et hull i CV-en",
+      "en rask jobbmulighet passer dårlig med det personen vil bygge videre på",
+      "en frist presser fram en handlingsplan før viktige spørsmål er avklart",
+      "en kollega tolker lav motivasjon som motstand i stedet for usikkerhet"
+    ],
+    "small_story_seeds": [
+      "ett åpent spørsmål endrer målet fra 'få hvilken som helst jobb' til en konkret retning",
+      "du må si nei til en arbeidsgiver som spør etter mer privat informasjon enn nødvendig",
+      "en plan ser god ut i systemet men ikke i hverdagen til personen",
+      "en interessetest peker én vei mens erfaringen og verdiene peker en annen",
+      "en liten justering i jobbsøkerstrategien gjør at veisøkeren selv tar neste kontakt"
+    ],
+    "relationship_web": [
+      {
+        "who": "veisoker",
+        "relation": "personen du veileder",
+        "wants": "et valg som gir mening og faktisk lar seg gjennomføre",
+        "creates": "kravet om at veiledningen må styrke eierskap, ikke bare produsere aktivitet",
+        "tension": "autonomi_vs_styring"
+      },
+      {
+        "who": "teamleder",
+        "relation": "din leder",
+        "wants": "framdrift, dokumenterbare steg og gode resultater",
+        "creates": "press for raske planer og målbare utfall",
+        "tension": "resultatkrav_vs_baerekraftig_valg"
+      },
+      {
+        "who": "arbeidsgiver",
+        "relation": "mulig arbeidsgiver",
+        "wants": "relevant informasjon og lav ansettelsesrisiko",
+        "creates": "press mellom god jobbmatch og personvern",
+        "tension": "jobbmatch_vs_personvern"
+      },
+      {
+        "who": "nav_kontakt",
+        "relation": "samarbeidspartner",
+        "wants": "en plan som kan følges opp og begrunnes",
+        "creates": "systemfrister og rammer som ikke alltid passer personens tempo",
+        "tension": "systemkrav_vs_individuell_prosess"
+      }
+    ],
+    "knowledge_in_practice": [
+      {
+        "concept": "autonomi",
+        "practical_scene": "veisøkeren nikker til et mål du foreslår, men bruker aldri planen etter møtet",
+        "what_player_must_notice": "samtykke i rommet er ikke det samme som eierskap til målet",
+        "bad_misread": "manglende oppfølging betyr at personen mangler motivasjon",
+        "good_use": "gå tilbake til hva personen selv ønsker, og gjør neste steg mindre og tydeligere"
+      },
+      {
+        "concept": "motivasjon",
+        "practical_scene": "personen vil jobbe, men utsetter søknader de sier er viktige",
+        "what_player_must_notice": "ambivalens kan inneholde både ønske, frykt og tidligere nederlag",
+        "bad_misread": "motivasjon er noe veilederen kan presse fram",
+        "good_use": "utforske ambivalensen og bygge et gjennomførbart neste steg"
+      },
+      {
+        "concept": "beslutninger",
+        "practical_scene": "to utdanningsvalg ser like gode ut på papiret",
+        "what_player_must_notice": "verdier, hverdagsrammer og usikkerhet er del av beslutningen",
+        "bad_misread": "mest informasjon gir automatisk riktig valg",
+        "good_use": "sammenligne konsekvenser og la veisøkeren eie avveiningen"
+      },
+      {
+        "concept": "personvern",
+        "practical_scene": "arbeidsgiver spør hvorfor kandidaten har vært ute av arbeid",
+        "what_player_must_notice": "relevant jobbmatch gir ikke automatisk rett til sensitive helseopplysninger",
+        "bad_misread": "mer informasjon skaper alltid mer trygghet",
+        "good_use": "avklare hva som kan deles og holde dialogen til det som er relevant for jobben"
+      }
+    ],
+    "emotional_costs": [
+      "å tåle at et valg du ikke ville tatt selv kan være riktig for den andre",
+      "å stå i resultatpress uten å gjøre mennesket til et tiltak",
+      "å si nei til samarbeidspartnere når informasjonsbehovet går lenger enn mandatet",
+      "å møte tilbakefall eller omvalg uten å behandle det som moralsk svikt",
+      "å gi fra seg æren når veiledningen virker og den andre faktisk eier neste steg"
+    ],
+    "status_illusions": [
+      "Utenfra: en som gir råd. Innenfra: en rolle der kvalitet ofte betyr å holde igjen sitt eget råd lenge nok til at den andre kan tenke selv.",
+      "Utenfra: nesten terapeut. Innenfra: et annet mandat, med veiledning og arbeids-/utdanningsvalg i sentrum og klinisk behandling utenfor rollen.",
+      "Utenfra: hjelp til CV og søknad. Innenfra: arbeid med motivasjon, beslutninger, mestring, systemkrav og relasjoner under reelle konsekvenser."
+    ],
+    "player_learning_arc": [
+      "Først tror spilleren at en god veileder er den som har de beste svarene.",
+      "Så oppdager spilleren at raske svar kan svekke eierskap og skjule hva personen faktisk prøver å løse.",
+      "Så lærer spilleren å bruke kartlegging, arbeidsmarkedskunnskap, motivasjon og beslutningsstøtte som verktøy, ikke fasit.",
+      "Til slutt forstår spilleren at god arbeids- og karriereveiledning gjør den andre mer i stand til å velge og handle selv."
+    ]
+  },
+  "practice_stories": [
+    {
+      "id": "maalet_som_ikke_er_ditt",
+      "title": "Målet som ikke er ditt",
+      "story_type": "identity",
+      "premise": "Systemet trenger et tydelig mål, men veisøkeren er ikke sikker på at målet du foreslår faktisk er deres.",
+      "people": ["veisoker", "teamleder"],
+      "work_knowledge": ["autonomi", "motivasjon", "maalsetting"],
+      "conflict_axes": ["autonomi_vs_styring"],
+      "mail_types": ["job", "people", "followup"],
+      "thread_potential": true,
+      "possible_choices": ["utforske målet", "selge inn løsningen", "utsette alt"],
+      "possible_followups": ["veisøkeren formulerer et eget mål", "planen blir liggende ubrukt", "teamleder spør etter framdrift"],
+      "learning_point": "Et mål er først veiledningsmessig nyttig når personen selv kan forklare hvorfor det er deres."
+    },
+    {
+      "id": "kartleggingen_som_blir_dom",
+      "title": "Kartleggingen som blir dom",
+      "story_type": "knowledge",
+      "premise": "Et kartleggingsverktøy gir et tydelig mønster, men samtalen peker på flere muligheter enn skjemaet.",
+      "people": ["veisoker", "kollega"],
+      "work_knowledge": ["interesser", "kompetanse", "beslutninger"],
+      "conflict_axes": ["utforsking_vs_fasit"],
+      "mail_types": ["knowledge", "job", "followup"],
+      "thread_potential": true,
+      "possible_choices": ["bruke resultatet som spørsmål", "gjøre resultatet til retning", "ignorere kartleggingen"],
+      "possible_followups": ["nye erfaringer nyanserer bildet", "veisøkeren føler seg plassert i en kategori", "kollega ber om begrunnelse"],
+      "learning_point": "Kartlegging skal åpne samtalen, ikke etterligne diagnose eller gjøre usikkerhet til fasit."
+    },
+    {
+      "id": "arbeidsgiveren_vil_vite_mer",
+      "title": "Arbeidsgiveren vil vite mer",
+      "story_type": "conflict",
+      "premise": "En arbeidsgiver vurderer veisøkeren, men spør etter private opplysninger som går lenger enn jobben krever.",
+      "people": ["veisoker", "arbeidsgiver"],
+      "work_knowledge": ["personvern", "arbeidsinkludering"],
+      "conflict_axes": ["jobbmatch_vs_personvern"],
+      "mail_types": ["job", "conflict", "consequence"],
+      "thread_potential": true,
+      "possible_choices": ["avklare samtykke og relevans", "dele mer for å sikre jobben", "avslutte kontakten"],
+      "possible_followups": ["arbeidsgiver får relevant informasjon", "tilliten til veilederen svekkes", "jobbmuligheten må bygges på nytt"],
+      "learning_point": "God jobbmatch krever presis informasjon, ikke grenseløs informasjonsdeling."
+    },
+    {
+      "id": "rask_jobb_eller_baerekraftig_valg",
+      "title": "Rask jobb eller bærekraftig valg",
+      "story_type": "conflict",
+      "premise": "En jobb kan tas nå, men passer dårlig med retningen veisøkeren har jobbet fram.",
+      "people": ["veisoker", "teamleder"],
+      "work_knowledge": ["motivasjon", "mestring", "arbeidsinkludering"],
+      "conflict_axes": ["resultatkrav_vs_baerekraftig_valg"],
+      "mail_types": ["job", "story", "consequence"],
+      "thread_potential": true,
+      "possible_choices": ["vurdere jobbens reelle konsekvenser sammen", "presse fram rask plassering", "avvise jobben på vegne av personen"],
+      "possible_followups": ["veisøkeren tar et begrunnet valg", "rask plassering kollapser", "teamleder utfordrer begrunnelsen"],
+      "learning_point": "Veiledning skal synliggjøre avveiningen; veilederen skal ikke ta valget."
+    }
+  ]
+}

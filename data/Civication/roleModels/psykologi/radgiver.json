@@ -2,119 +2,97 @@
   "schema": "civication_role_model_v1",
   "version": 1,
   "source": {
-    "badge_file": "data/badges.json",
+    "badge_file": "data/badges/psykologi.json",
     "badge_id": "psykologi",
     "badge_name": "Psykologi",
     "tier_label": "Rådgiver",
-    "tier_threshold": 60
+    "tier_threshold": 60,
+    "evidence_file": "data/Civication/psychologyGuidanceEvidence.json"
   },
   "category": "psykologi",
-  "role_scope": "radgiver",
+  "role_scope": "psykologi_arbeids_og_karriereveiledning",
   "role_id": "psykologi_radgiver",
   "title": "Rådgiver",
   "core_narrative": [
-    "I Civication er Rådgiver en praktisk rolle i Psykologi der valg former tillit, handlingsrom og status."
+    "Rådgiver-tieret representerer arbeids- og karriereveiledning med større ansvar for komplekse valg, arbeidsgiverdialog, utdanningsmuligheter og tverrfaglig oppfølging.",
+    "Rollen bruker psykologi til beslutningsstøtte, motivasjon og mestring, men har fortsatt ingen klinisk behandlings- eller diagnostikkmyndighet."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til kognitiv psykologi, sosialpsykologi."
+      "veilede om arbeid, utdanning og overgangssituasjoner",
+      "sammenholde interesser, kompetanse, verdier og realistiske muligheter",
+      "støtte CV, søknad og intervjuforberedelse",
+      "koordinere arbeidsgiver- og samarbeidspartnerdialog",
+      "følge opp handlingsplaner og justere dem når situasjonen endrer seg"
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "gjøre komplekse valgmuligheter forståelige uten å gjøre dem til fasit",
+      "skille relevant jobbmatchinformasjon fra sensitive opplysninger",
+      "holde veisøkerens eierskap synlig under resultat- og fristpress",
+      "vite når helse- eller behandlingsspørsmål skal løftes til annen fagkompetanse"
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
+      "Karrieresentre, NAV, utdanningsinstitusjoner, arbeidsinkludering, rekruttering og andre rådgivningsmiljøer."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Du forventes å ha bedre oversikt og bredere metoderepertoar enn på inngangsnivå, men senioritet gjør ikke veiledning til klinikk."
     ]
   },
   "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
+    "entry_from": ["Veileder-tieret eller annen relevant veilednings- og rådgivningserfaring."],
+    "progression_to": ["Seniorrådgiver-tieret i samme Civication-jobbfamilie."],
+    "possible_promotions": ["større ansvar for komplekse forløp, metodekvalitet og samarbeidspartnerdialog"],
+    "possible_exits": ["andre rådgiverroller innen arbeidsliv, HR, utdanning, offentlig sektor eller arbeidsinkludering"],
+    "career_risks": ["å bli så løsningsorientert at personen mister eierskap", "å la arbeidsgiver- eller systembehov styre informasjonsdeling"]
   },
   "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
-    ],
-    "history_go_badges": [
-      "psykologi"
-    ],
+    "education_basis": ["Relevant høyere utdanning er vanlig i karriereveiledning, men Civication-poeng er ikke en bestemt formell kvalifikasjon."],
+    "skills": ["karriere- og beslutningssamtaler", "arbeidsmarkedsorientering", "utdanningsorientering", "intervjuforberedelse", "handlingsplan", "tverrfaglig samarbeid", "personvern"],
+    "category_knowledge": ["autonomi", "motivasjon", "mestring", "beslutninger", "interesser", "verdier", "gruppeprosesser"],
+    "history_go_badges": ["psykologi"],
     "place_connections": [],
     "people_connections": []
   },
+  "scope_boundary": {
+    "can": ["utforske mål og muligheter", "støtte jobbsøking", "gi arbeidsmarkeds- og utdanningsinformasjon", "lage plan sammen", "koordinere relevant samarbeid"],
+    "cannot": ["diagnostisere", "drive psykoterapi", "gjøre medisinsk eller klinisk arbeidsevnevurdering", "bruke interessetester som diagnose", "dele sensitive opplysninger uten grunnlag", "bestemme valget for personen"]
+  },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
+      "id": "jobbmatch_og_personvern",
+      "title": "Jobbmatch og personvern",
+      "description": "Arbeidsgiver ønsker mer bakgrunnsinformasjon enn du har grunnlag for å dele.",
+      "pressure": "jobbmatch_vs_personvern",
+      "affects": ["trust", "risk", "status"]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
+      "id": "rask_jobbovergang",
+      "title": "Rask jobb eller bærekraftig retning",
+      "setup": "En jobb kan tas nå, men passer dårlig med retningen veisøkeren ønsker å bygge videre på.",
+      "choice_axis": "rask_plassering_vs_baerekraftig_valg",
+      "consequence_axis": "resultat_vs_eierskap",
+      "mail_hooks": ["job", "conflict", "consequence"]
     }
   ],
   "related_people": [],
   "related_places": [],
   "mail_integration": {
-    "role_scope": "radgiver",
-    "mail_profile": "psykologi_radgiver",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
+    "role_scope": "psykologi_arbeids_og_karriereveiledning",
+    "mail_profile": "psykologi_karriereveileder",
+    "can_feed_mail_types": ["job", "story", "conflict", "people", "followup", "consequence"],
     "mail_variables": {
       "role_title": "Rådgiver",
       "category": "psykologi",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+      "main_pressure": "valg_under_usikkerhet",
+      "ethical_axis": "autonomi_vs_styring",
+      "status_axis": "resultat_vs_eierskap"
     },
-    "recommended_mail_families": [],
+    "recommended_mail_families": ["maal_og_handlingsplan", "arbeidsgiverdialog_og_personvern", "arbeidsinkludering_og_overganger"],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: psykologi / Rådgiver."
-  ]
+  "competence_axes": ["beslutningsstotte", "arbeidsmarkedsforstaelse", "personvern_og_samtykke", "tverrfaglig_samarbeid"],
+  "ideal_type_problems": ["Når bør du gi et tydelig råd, og når bør du holde igjen?"],
+  "notes": ["Canonical runtime-scope: psykologi_arbeids_og_karriereveiledning."]
 }

@@ -37,7 +37,8 @@
     sport_trener: 'sport_trener',
     sport_sportsledelse: 'sport_sportsledelse',
     sport_legende: 'sport_legende',
-    psykologi_miljoarbeid: 'psykologi_miljoarbeider'
+    psykologi_miljoarbeid: 'psykologi_miljoarbeider',
+    psykologi_arbeids_og_karriereveiledning: 'psykologi_karriereveileder'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
@@ -64,7 +65,8 @@
     sport_trener: 'sport_trener',
     sport_sportsledelse: 'sport_sportsledelse',
     sport_legende: 'sport_legende',
-    psykologi_miljoarbeider: 'psykologi_miljoarbeid'
+    psykologi_miljoarbeider: 'psykologi_miljoarbeid',
+    psykologi_karriereveileder: 'psykologi_arbeids_og_karriereveiledning'
   };
 
   // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
@@ -147,7 +149,13 @@
     miljoassistent: 'psykologi_miljoarbeid',
     sosialassistent: 'psykologi_miljoarbeid',
     aktivitetsleder_omsorgsarbeid: 'psykologi_miljoarbeid',
-    miljoarbeider: 'psykologi_miljoarbeid'
+    miljoarbeider: 'psykologi_miljoarbeid',
+    veileder: 'psykologi_arbeids_og_karriereveiledning',
+    radgiver: 'psykologi_arbeids_og_karriereveiledning',
+    seniorradgiver: 'psykologi_arbeids_og_karriereveiledning',
+    jobbveileder: 'psykologi_arbeids_og_karriereveiledning',
+    karriereveileder: 'psykologi_arbeids_og_karriereveiledning',
+    karriereradgiver: 'psykologi_arbeids_og_karriereveiledning'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -161,6 +169,7 @@
 
     if (careerId === 'psykologi') {
       if (roleKey === 'psykologi_miljoarbeid') return 'psykologi_miljoarbeid';
+      if (roleKey === 'psykologi_arbeids_og_karriereveiledning') return 'psykologi_arbeids_og_karriereveiledning';
       if (PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey]) return PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey];
     }
 
@@ -242,6 +251,7 @@
       ) return 'mellomleder';
     }
 
+    if (roleKey.includes('psykologi_arbeids_og_karriereveiledning')) return 'psykologi_arbeids_og_karriereveiledning';
     if (roleKey.includes('psykologi_miljoarbeid')) return 'psykologi_miljoarbeid';
     if (roleKey.includes('sport_utover')) return 'sport_utover';
     if (roleKey.includes('sport_kaptein')) return 'sport_kaptein';

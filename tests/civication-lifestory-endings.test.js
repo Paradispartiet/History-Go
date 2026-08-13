@@ -56,7 +56,8 @@ const FORVENTET = {
   ekspeditor: { foerste: "trygg_paa_gulvet", siste: "mistet_tilliten" },
   arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" },
   barnehageassistent: { foerste: "trygg_voksen", siste: "drift_foran_barn" },
-  psykologi_miljoarbeid: { foerste: "presis_og_trygg", siste: "for_lukket" }
+  psykologi_miljoarbeid: { foerste: "presis_og_trygg", siste: "for_lukket" },
+  psykologi_arbeids_og_karriereveiledning: { foerste: "selvstendig_og_opplyst", siste: "systemet_styrte" }
 };
 
 for (const roleId of Object.keys(manifest.roles)) {

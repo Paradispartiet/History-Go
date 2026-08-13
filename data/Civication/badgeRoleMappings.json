@@ -7,104 +7,23 @@
       "badge_source": "data/badges/naeringsliv.json",
       "mapping_principle": "Badge-tier gir stillingstittel. Resolveren oversetter stillingstittelen til en spillbar role_scope. Bare lag ny rolle når tittelen krever annen spillmekanikk, annen mailhverdag eller annen læring.",
       "roles": {
-        "ekspeditor": {
-          "role_id": "naer_ekspeditor",
-          "role_type": "frontlinje_handel",
-          "description": "Kundemøte, kasse, service, varer og butikkfront.",
-          "badge_titles": ["Ekspeditør / butikkmedarbeider"]
-        },
-        "arbeider": {
-          "role_id": "naer_arbeider",
-          "role_type": "gulv_og_drift",
-          "description": "Praktisk arbeid, rutiner og grunnleggende arbeidsflyt for arbeiderrollen.",
-          "badge_titles": []
-        },
-        "administrasjonsmedarbeider": {
-          "role_id": "naer_administrasjonsmedarbeider",
-          "role_type": "administrasjon_og_kontor",
-          "description": "Bilag, frister, dokumentasjon, enkle økonomispor og administrativ orden.",
-          "badge_titles": ["Økonomi- og administrasjonsmedarbeider"]
-        },
-        "fagarbeider": {
-          "role_id": "naer_fagarbeider",
-          "role_type": "fag_og_kvalitet",
-          "description": "Faglig presisjon, standarder, kvalitet, opplæring og praktisk kompetanse.",
-          "badge_titles": ["Fagarbeider"]
-        },
-        "formann": {
-          "role_id": "naer_formann",
-          "role_type": "gulvnaer_ledelse",
-          "description": "Skift, arbeidslag, praktisk ledelse, sikkerhet, tempo og ansvar nær gulvet.",
-          "badge_titles": ["Skiftleder", "Formann / arbeidsleder"]
-        },
-        "controller": {
-          "role_id": "naer_controller",
-          "role_type": "okonomistyring_og_kontroll",
-          "description": "Tall, avvik, budsjett, rapportering, kontroll, prognoser og økonomisk risiko.",
-          "badge_titles": ["Controller", "Finansanalytiker", "Økonomi- og finanssjef", "Finansdirektør"]
-        },
-        "avdelingsleder": {
-          "role_id": "naer_avdelingsleder",
-          "role_type": "avdeling_og_operativ_ledelse",
-          "description": "Avdeling, folk, mål, budsjett, kapasitet, personalansvar og operativ ledelse.",
-          "badge_titles": ["Avdelingsleder", "Driftsleder", "Produksjonsleder", "Butikksjef / enhetsleder", "Daglig leder"]
-        },
-        "mellomleder": {
-          "role_id": "naer_mellomleder",
-          "role_type": "strategisk_ledelse_og_eierskap_fallback",
-          "description": "Foreløpig samlet spillbar fallback for høyere strategiske/eierpregede næringslivstitler inntil disse eventuelt får egen kapital-/eierrolle.",
-          "badge_titles": ["Gründer", "Bedriftseier", "Konserndirektør", "Konsernsjef", "Investor", "Kapitalforvalter", "Industribygger", "Industrieier"]
-        },
-        "lager_og_driftsmedarbeider": {
-          "role_id": "naer_lager_og_driftsmedarbeider",
-          "role_type": "lager_logistikk_og_drift",
-          "description": "Mottak, vareflyt, plukk/pakk, telling, avvik, systemregistrering, HMS og fysisk driftsarbeid.",
-          "badge_titles": ["Lager- og driftsmedarbeider"]
-        },
-        "renholder": {
-          "role_id": "naer_renholder",
-          "role_type": "renhold_hygiene_og_drift",
-          "description": "Renhold, hygiene, soner, berøringspunkter, utstyr, kjemikalier, HMS og usynlig driftsarbeid under tidspress.",
-          "badge_titles": ["Renholder"]
-        }
+        "ekspeditor": {"role_id":"naer_ekspeditor","role_type":"frontlinje_handel","description":"Kundemøte, kasse, service, varer og butikkfront.","badge_titles":["Ekspeditør / butikkmedarbeider"]},
+        "arbeider": {"role_id":"naer_arbeider","role_type":"gulv_og_drift","description":"Praktisk arbeid, rutiner og grunnleggende arbeidsflyt for arbeiderrollen.","badge_titles":[]},
+        "administrasjonsmedarbeider": {"role_id":"naer_administrasjonsmedarbeider","role_type":"administrasjon_og_kontor","description":"Bilag, frister, dokumentasjon, enkle økonomispor og administrativ orden.","badge_titles":["Økonomi- og administrasjonsmedarbeider"]},
+        "fagarbeider": {"role_id":"naer_fagarbeider","role_type":"fag_og_kvalitet","description":"Faglig presisjon, standarder, kvalitet, opplæring og praktisk kompetanse.","badge_titles":["Fagarbeider"]},
+        "formann": {"role_id":"naer_formann","role_type":"gulvnaer_ledelse","description":"Skift, arbeidslag, praktisk ledelse, sikkerhet, tempo og ansvar nær gulvet.","badge_titles":["Skiftleder","Formann / arbeidsleder"]},
+        "controller": {"role_id":"naer_controller","role_type":"okonomistyring_og_kontroll","description":"Tall, avvik, budsjett, rapportering, kontroll, prognoser og økonomisk risiko.","badge_titles":["Controller","Finansanalytiker","Økonomi- og finanssjef","Finansdirektør"]},
+        "avdelingsleder": {"role_id":"naer_avdelingsleder","role_type":"avdeling_og_operativ_ledelse","description":"Avdeling, folk, mål, budsjett, kapasitet, personalansvar og operativ ledelse.","badge_titles":["Avdelingsleder","Driftsleder","Produksjonsleder","Butikksjef / enhetsleder","Daglig leder"]},
+        "mellomleder": {"role_id":"naer_mellomleder","role_type":"strategisk_ledelse_og_eierskap_fallback","description":"Foreløpig samlet spillbar fallback for høyere strategiske/eierpregede næringslivstitler inntil disse eventuelt får egen kapital-/eierrolle.","badge_titles":["Gründer","Bedriftseier","Konserndirektør","Konsernsjef","Investor","Kapitalforvalter","Industribygger","Industrieier"]},
+        "lager_og_driftsmedarbeider": {"role_id":"naer_lager_og_driftsmedarbeider","role_type":"lager_logistikk_og_drift","description":"Mottak, vareflyt, plukk/pakk, telling, avvik, systemregistrering, HMS og fysisk driftsarbeid.","badge_titles":["Lager- og driftsmedarbeider"]},
+        "renholder": {"role_id":"naer_renholder","role_type":"renhold_hygiene_og_drift","description":"Renhold, hygiene, soner, berøringspunkter, utstyr, kjemikalier, HMS og usynlig driftsarbeid under tidspress.","badge_titles":["Renholder"]}
       },
       "title_to_role_scope": {
-        "Ekspeditør / butikkmedarbeider": "ekspeditor",
-        "Lager- og driftsmedarbeider": "lager_og_driftsmedarbeider",
-        "Økonomi- og administrasjonsmedarbeider": "administrasjonsmedarbeider",
-        "Fagarbeider": "fagarbeider",
-        "Skiftleder": "formann",
-        "Formann / arbeidsleder": "formann",
-        "Controller": "controller",
-        "Avdelingsleder": "avdelingsleder",
-        "Driftsleder": "avdelingsleder",
-        "Finansanalytiker": "controller",
-        "Produksjonsleder": "avdelingsleder",
-        "Butikksjef / enhetsleder": "avdelingsleder",
-        "Økonomi- og finanssjef": "controller",
-        "Daglig leder": "avdelingsleder",
-        "Finansdirektør": "controller",
-        "Gründer": "mellomleder",
-        "Bedriftseier": "mellomleder",
-        "Konserndirektør": "mellomleder",
-        "Konsernsjef": "mellomleder",
-        "Investor": "mellomleder",
-        "Kapitalforvalter": "mellomleder",
-        "Industribygger": "mellomleder",
-        "Industrieier": "mellomleder",
-        "Renholder": "renholder"
+        "Ekspeditør / butikkmedarbeider":"ekspeditor","Lager- og driftsmedarbeider":"lager_og_driftsmedarbeider","Økonomi- og administrasjonsmedarbeider":"administrasjonsmedarbeider","Fagarbeider":"fagarbeider","Skiftleder":"formann","Formann / arbeidsleder":"formann","Controller":"controller","Avdelingsleder":"avdelingsleder","Driftsleder":"avdelingsleder","Finansanalytiker":"controller","Produksjonsleder":"avdelingsleder","Butikksjef / enhetsleder":"avdelingsleder","Økonomi- og finanssjef":"controller","Daglig leder":"avdelingsleder","Finansdirektør":"controller","Gründer":"mellomleder","Bedriftseier":"mellomleder","Konserndirektør":"mellomleder","Konsernsjef":"mellomleder","Investor":"mellomleder","Kapitalforvalter":"mellomleder","Industribygger":"mellomleder","Industrieier":"mellomleder","Renholder":"renholder"
       },
       "future_split_candidates": [
-        {
-          "role_scope": "kapital_og_eierskap",
-          "candidate_badge_titles": ["Gründer", "Bedriftseier", "Investor", "Kapitalforvalter", "Industribygger", "Industrieier"],
-          "reason": "Kan få egen spillmekanikk senere for kapital, eierskap, risiko, investering og selskapsbygging. Foreløpig brukes mellomleder som enkel fallback."
-        },
-        {
-          "role_scope": "konsernledelse",
-          "candidate_badge_titles": ["Konserndirektør", "Konsernsjef"],
-          "reason": "Kan få egen strategisk ledelsesrolle senere. Foreløpig brukes mellomleder som enkel fallback."
-        }
+        {"role_scope":"kapital_og_eierskap","candidate_badge_titles":["Gründer","Bedriftseier","Investor","Kapitalforvalter","Industribygger","Industrieier"],"reason":"Kan få egen spillmekanikk senere for kapital, eierskap, risiko, investering og selskapsbygging. Foreløpig brukes mellomleder som enkel fallback."},
+        {"role_scope":"konsernledelse","candidate_badge_titles":["Konserndirektør","Konsernsjef"],"reason":"Kan senere få egen strategisk ledelsesrolle. Foreløpig brukes mellomleder som enkel fallback."}
       ]
     },
     "by": {
@@ -112,186 +31,56 @@
       "implementation_status": "implemented",
       "mapping_principle": "By-badges er progresjon/titler innen by og arkitektur. Role scope er få spillbare jobbtyper som bestemmer hvilket jobbinnhold systemet laster: assistanse/prosjektgrunnlag, plan- og byggesaksbehandling, byplanfaglig rådgivning, byutviklingsprosjektledelse og arkitektur/byform. Hele dagens by-badge-stige er dekket av disse fem jobbtypene.",
       "roles": {
-        "by_assistent": {
-          "role_id": "by_assistent",
-          "role_type": "assistanse_og_prosjektgrunnlag",
-          "implementation_status": "implemented",
-          "description": "Tidlige roller med støttearbeid, enkel dokumentasjon, kartgrunnlag, befaring, notater og praktisk prosjektforståelse.",
-          "badge_titles": ["Studentassistent", "Praktikant (arkitektur/plan)", "Prosjektmedarbeider"]
-        },
-        "by_saksbehandler": {
-          "role_id": "by_saksbehandler",
-          "role_type": "plan_og_byggesak",
-          "implementation_status": "implemented",
-          "description": "Saksbehandling, regelverk, nabohensyn, byggesak, dokumentasjon og forvaltningens møte med konkrete steder.",
-          "badge_titles": ["Saksbehandler (plan/bygg)", "Førstekonsulent"]
-        },
-        "by_radgiver_plan": {
-          "role_id": "by_radgiver_plan",
-          "role_type": "radgivning_og_byplanfag",
-          "implementation_status": "implemented",
-          "description": "Rådgivning, analyser, byutviklingsnotater, medvirkning, planfaglige vurderinger og tverrfaglig oversettelse.",
-          "badge_titles": ["Rådgiver (byutvikling)", "Seniorrådgiver (byutvikling)", "Arealplanlegger", "Byplanlegger"]
-        },
-        "by_prosjektleder": {
-          "role_id": "by_prosjektleder",
-          "role_type": "byutviklingsprosjekt_og_koordinering",
-          "implementation_status": "implemented",
-          "description": "Prosjektledelse, koordinering, framdrift, politiske bestillinger, økonomi, aktører og konflikter mellom ideal og gjennomføring.",
-          "badge_titles": ["Prosjektleder (byutvikling)", "Seksjonsleder", "Fagsjef (plan/bygg)", "Direktør (byutvikling)"]
-        },
-        "by_arkitekt": {
-          "role_id": "by_arkitekt",
-          "role_type": "arkitektur_og_byform",
-          "implementation_status": "implemented",
-          "description": "Arkitektur, form, rom, materialitet, estetikk, program, stedstilpasning og spenningen mellom byggverk og byliv.",
-          "badge_titles": ["Arkitekt", "Seniorarkitekt", "Byarkitekt"]
-        }
+        "by_assistent":{"role_id":"by_assistent","role_type":"assistanse_og_prosjektgrunnlag","implementation_status":"implemented","description":"Tidlige roller med støttearbeid, enkel dokumentasjon, kartgrunnlag, befaring, notater og praktisk prosjektforståelse.","badge_titles":["Studentassistent","Praktikant (arkitektur/plan)","Prosjektmedarbeider"]},
+        "by_saksbehandler":{"role_id":"by_saksbehandler","role_type":"plan_og_byggesak","implementation_status":"implemented","description":"Saksbehandling, regelverk, nabohensyn, byggesak, dokumentasjon og forvaltningens møte med konkrete steder.","badge_titles":["Saksbehandler (plan/bygg)","Førstekonsulent"]},
+        "by_radgiver_plan":{"role_id":"by_radgiver_plan","role_type":"radgivning_og_byplanfag","implementation_status":"implemented","description":"Rådgivning, analyser, byutviklingsnotater, medvirkning, planfaglige vurderinger og tverrfaglig oversettelse.","badge_titles":["Rådgiver (byutvikling)","Seniorrådgiver (byutvikling)","Arealplanlegger","Byplanlegger"]},
+        "by_prosjektleder":{"role_id":"by_prosjektleder","role_type":"byutviklingsprosjekt_og_koordinering","implementation_status":"implemented","description":"Prosjektledelse, koordinering, framdrift, politiske bestillinger, økonomi, aktører og konflikter mellom ideal og gjennomføring.","badge_titles":["Prosjektleder (byutvikling)","Seksjonsleder","Fagsjef (plan/bygg)","Direktør (byutvikling)"]},
+        "by_arkitekt":{"role_id":"by_arkitekt","role_type":"arkitektur_og_byform","implementation_status":"implemented","description":"Arkitektur, form, rom, materialitet, estetikk, program, stedstilpasning og spenningen mellom byggverk og byliv.","badge_titles":["Arkitekt","Seniorarkitekt","Byarkitekt"]}
       },
       "title_to_role_scope": {
-        "Studentassistent": "by_assistent",
-        "Praktikant (arkitektur/plan)": "by_assistent",
-        "Prosjektmedarbeider": "by_assistent",
-        "Saksbehandler (plan/bygg)": "by_saksbehandler",
-        "Førstekonsulent": "by_saksbehandler",
-        "Rådgiver (byutvikling)": "by_radgiver_plan",
-        "Seniorrådgiver (byutvikling)": "by_radgiver_plan",
-        "Arealplanlegger": "by_radgiver_plan",
-        "Byplanlegger": "by_radgiver_plan",
-        "Prosjektleder (byutvikling)": "by_prosjektleder",
-        "Seksjonsleder": "by_prosjektleder",
-        "Arkitekt": "by_arkitekt",
-        "Seniorarkitekt": "by_arkitekt",
-        "Fagsjef (plan/bygg)": "by_prosjektleder",
-        "Byarkitekt": "by_arkitekt",
-        "Direktør (byutvikling)": "by_prosjektleder"
+        "Studentassistent":"by_assistent","Praktikant (arkitektur/plan)":"by_assistent","Prosjektmedarbeider":"by_assistent","Saksbehandler (plan/bygg)":"by_saksbehandler","Førstekonsulent":"by_saksbehandler","Rådgiver (byutvikling)":"by_radgiver_plan","Seniorrådgiver (byutvikling)":"by_radgiver_plan","Arealplanlegger":"by_radgiver_plan","Byplanlegger":"by_radgiver_plan","Prosjektleder (byutvikling)":"by_prosjektleder","Seksjonsleder":"by_prosjektleder","Arkitekt":"by_arkitekt","Seniorarkitekt":"by_arkitekt","Fagsjef (plan/bygg)":"by_prosjektleder","Byarkitekt":"by_arkitekt","Direktør (byutvikling)":"by_prosjektleder"
       },
       "future_split_candidates": [
-        {
-          "role_scope": "by_myndighet_og_politikk",
-          "candidate_badge_titles": ["Seksjonsleder", "Fagsjef (plan/bygg)", "Direktør (byutvikling)"],
-          "reason": "Kan senere få egen spillmekanikk for politisk bestilling, forvaltningsmakt, budsjett og offentlig ansvar. Foreløpig samles de i by_prosjektleder."
-        },
-        {
-          "role_scope": "byarkitekt_fagmyndighet",
-          "candidate_badge_titles": ["Byarkitekt"],
-          "reason": "Kan senere få egen rolle som fagmyndighet for helhetlig byform, arkitekturpolitikk og offentlig bykvalitet. Foreløpig samles den i by_arkitekt."
-        }
+        {"role_scope":"by_myndighet_og_politikk","candidate_badge_titles":["Seksjonsleder","Fagsjef (plan/bygg)","Direktør (byutvikling)"],"reason":"Kan senere få egen spillmekanikk for politisk bestilling, forvaltningsmakt, budsjett og offentlig ansvar. Foreløpig samles de i by_prosjektleder."},
+        {"role_scope":"byarkitekt_fagmyndighet","candidate_badge_titles":["Byarkitekt"],"reason":"Kan senere få egen rolle som fagmyndighet for helhetlig byform, arkitekturpolitikk og offentlig bykvalitet. Foreløpig samles den i by_arkitekt."}
       ]
     },
     "sport": {
-      "badge_source": "data/badges/sport.json",
-      "implementation_status": "implemented",
-      "mapping_principle": "Sport-badges er progresjon/titler innen idrett, konkurranse, trenerarbeid, sportslig ledelse og offentlig toppstatus. Role scope er få spillbare jobbtyper: utøverutvikling, lagkaptein/ansvar i gruppe, trenerarbeid, sportslig ledelse og stjerne-/legendestatus. Hele dagens sport-badge-stige er dekket av disse fem jobbtypene.",
+      "badge_source":"data/badges/sport.json",
+      "implementation_status":"implemented",
+      "mapping_principle":"Sport-badges er progresjon/titler innen idrett, konkurranse, trenerarbeid, sportslig ledelse og offentlig toppstatus. Role scope er få spillbare jobbtyper: utøverutvikling, lagkaptein/ansvar i gruppe, trenerarbeid, sportslig ledelse og stjerne-/legendestatus. Hele dagens sport-badge-stige er dekket av disse fem jobbtypene.",
       "roles": {
-        "sport_utover": {
-          "role_id": "sport_utover",
-          "role_type": "utoverutvikling_og_konkurranse",
-          "implementation_status": "implemented",
-          "description": "Spillbar jobbtype for utøverløpet: trening, konkurranse, disiplin, prestasjon, kropp, lagmiljø og utvikling fra mosjonist til landslagsnivå.",
-          "badge_titles": ["Mosjonist", "Aktiv utøver", "Konkurranseutøver", "Klubbspiller", "Eliteseriespiller", "Profesjonell utøver", "Landslagsutøver"]
-        },
-        "sport_kaptein": {
-          "role_id": "sport_kaptein",
-          "role_type": "kaptein_og_lagansvar",
-          "implementation_status": "implemented",
-          "description": "Spillbar jobbtype for ansvar i laget: garderobe, normer, lagmoral, konflikt, prestasjonspress og bro mellom trener og spillere.",
-          "badge_titles": ["Kaptein"]
-        },
-        "sport_trener": {
-          "role_id": "sport_trener",
-          "role_type": "trenerarbeid_og_spillerutvikling",
-          "implementation_status": "implemented",
-          "description": "Spillbar jobbtype for trenerrollen: øktplanlegging, kampforberedelse, utvikling, uttak, kommunikasjon, disiplin og omsorg for spillere.",
-          "badge_titles": ["Trener", "Hovedtrener"]
-        },
-        "sport_sportsledelse": {
-          "role_id": "sport_sportsledelse",
-          "role_type": "sportslig_ledelse_og_klubbstrategi",
-          "implementation_status": "implemented",
-          "description": "Spillbar jobbtype for sportslig ledelse: klubbstrategi, rekruttering, trenervalg, spillerlogistikk, økonomiske rammer og langsiktig prestasjonskultur.",
-          "badge_titles": ["Sportssjef"]
-        },
-        "sport_legende": {
-          "role_id": "sport_legende",
-          "role_type": "stjerne_legende_og_offentlig_symbol",
-          "implementation_status": "implemented",
-          "description": "Spillbar jobbtype for toppstatus: forventninger, forbildeansvar, media, arv, symbolverdi, merkevare og avstanden mellom menneske og ikon.",
-          "badge_titles": ["Olympisk Mester", "Idrettsstjerne", "Idrettslegende"]
-        }
+        "sport_utover":{"role_id":"sport_utover","role_type":"utoverutvikling_og_konkurranse","implementation_status":"implemented","description":"Spillbar jobbtype for utøverløpet: trening, konkurranse, disiplin, prestasjon, kropp, lagmiljø og utvikling fra mosjonist til landslagsnivå.","badge_titles":["Mosjonist","Aktiv utøver","Konkurranseutøver","Klubbspiller","Eliteseriespiller","Profesjonell utøver","Landslagsutøver"]},
+        "sport_kaptein":{"role_id":"sport_kaptein","role_type":"kaptein_og_lagansvar","implementation_status":"implemented","description":"Spillbar jobbtype for ansvar i laget: garderobe, normer, lagmoral, konflikt, prestasjonspress og bro mellom trener og spillere.","badge_titles":["Kaptein"]},
+        "sport_trener":{"role_id":"sport_trener","role_type":"trenerarbeid_og_spillerutvikling","implementation_status":"implemented","description":"Spillbar jobbtype for trenerrollen: øktplanlegging, kampforberedelse, utvikling, uttak, kommunikasjon, disiplin og omsorg for spillere.","badge_titles":["Trener","Hovedtrener"]},
+        "sport_sportsledelse":{"role_id":"sport_sportsledelse","role_type":"sportslig_ledelse_og_klubbstrategi","implementation_status":"implemented","description":"Spillbar jobbtype for sportslig ledelse: klubbstrategi, rekruttering, trenervalg, spillerlogistikk, økonomiske rammer og langsiktig prestasjonskultur.","badge_titles":["Sportssjef"]},
+        "sport_legende":{"role_id":"sport_legende","role_type":"stjerne_legende_og_offentlig_symbol","implementation_status":"implemented","description":"Spillbar jobbtype for toppstatus: forventninger, forbildeansvar, media, arv, symbolverdi, merkevare og avstanden mellom menneske og ikon.","badge_titles":["Olympisk Mester","Idrettsstjerne","Idrettslegende"]}
       },
-      "title_to_role_scope": {
-        "Mosjonist": "sport_utover",
-        "Aktiv utøver": "sport_utover",
-        "Konkurranseutøver": "sport_utover",
-        "Klubbspiller": "sport_utover",
-        "Eliteseriespiller": "sport_utover",
-        "Profesjonell utøver": "sport_utover",
-        "Landslagsutøver": "sport_utover",
-        "Kaptein": "sport_kaptein",
-        "Trener": "sport_trener",
-        "Hovedtrener": "sport_trener",
-        "Sportssjef": "sport_sportsledelse",
-        "Olympisk Mester": "sport_legende",
-        "Idrettsstjerne": "sport_legende",
-        "Idrettslegende": "sport_legende"
-      },
+      "title_to_role_scope": {"Mosjonist":"sport_utover","Aktiv utøver":"sport_utover","Konkurranseutøver":"sport_utover","Klubbspiller":"sport_utover","Eliteseriespiller":"sport_utover","Profesjonell utøver":"sport_utover","Landslagsutøver":"sport_utover","Kaptein":"sport_kaptein","Trener":"sport_trener","Hovedtrener":"sport_trener","Sportssjef":"sport_sportsledelse","Olympisk Mester":"sport_legende","Idrettsstjerne":"sport_legende","Idrettslegende":"sport_legende"},
       "future_split_candidates": [
-        {
-          "role_scope": "sport_eliteutover",
-          "candidate_badge_titles": ["Eliteseriespiller", "Profesjonell utøver", "Landslagsutøver"],
-          "reason": "Kan senere skilles ut dersom toppidrett trenger egne mekanikker for kontrakt, uttak, mediepress, skadehåndtering og prestasjon under offentlig blikk. Foreløpig samles de i sport_utover."
-        },
-        {
-          "role_scope": "sport_topptrener",
-          "candidate_badge_titles": ["Hovedtrener"],
-          "reason": "Kan senere få egen rolle dersom hovedtreneransvar trenger egen spillmekanikk for stab, kampplan, ledelse, uttak og klubbpress. Foreløpig samles den i sport_trener."
-        },
-        {
-          "role_scope": "sport_offentlig_ikon",
-          "candidate_badge_titles": ["Olympisk Mester", "Idrettsstjerne", "Idrettslegende"],
-          "reason": "Kan senere få egen spillmekanikk for etterliv, sponsorpress, forbildeansvar, medier og kulturell symbolstatus. Foreløpig samles de i sport_legende."
-        }
+        {"role_scope":"sport_eliteutover","candidate_badge_titles":["Eliteseriespiller","Profesjonell utøver","Landslagsutøver"],"reason":"Kan senere skilles ut dersom toppidrett trenger egne mekanikker for kontrakt, uttak, mediepress, skadehåndtering og prestasjon under offentlig blikk. Foreløpig samles de i sport_utover."},
+        {"role_scope":"sport_topptrener","candidate_badge_titles":["Hovedtrener"],"reason":"Kan senere få egen rolle dersom hovedtreneransvar trenger egen spillmekanikk for stab, kampplan, ledelse, uttak og klubbpress. Foreløpig samles den i sport_trener."},
+        {"role_scope":"sport_offentlig_ikon","candidate_badge_titles":["Olympisk Mester","Idrettsstjerne","Idrettslegende"],"reason":"Kan senere få egen spillmekanikk for etterliv, sponsorpress, forbildeansvar, medier og kulturell symbolstatus. Foreløpig samles de i sport_legende."}
       ]
     },
     "psykologi": {
-      "badge_source": "data/badges/psykologi.json",
-      "implementation_status": "entry_ladder_implemented",
-      "mapping_principle": "De fire første Psykologi-tierene er reelle, ikke-regulerte førstelinjejobber og deler én spillbar miljøarbeid/oppfølging-scope. Videre tiers beholdes som egne stillingstitler, og regulerte/utnevnelseskrevende roller styres av career_offer-portene i canonical Badge-data.",
+      "badge_source":"data/badges/psykologi.json",
+      "implementation_status":"entry_and_guidance_ladders_implemented",
+      "mapping_principle":"De fire første Psykologi-tierene deler én ikke-klinisk førstelinje-scope for miljøarbeid og oppfølging. Veileder, Rådgiver og Seniorrådgiver er nå avgrenset til den dokumenterte norske jobb-familien arbeids-, jobb- og karriereveiledning og deler én egen ikke-klinisk scope. Regulerte, utnevnelseskrevende og akademiske roller over dette styres fortsatt av career_offer-portene i canonical Badge-data og skal ikke arve noen av de to førstelinje-scope-ene.",
       "roles": {
         "psykologi_miljoarbeid": {
-          "role_id": "psykologi_miljoarbeider",
-          "role_type": "forstelinje_miljoarbeid_og_oppfolging",
-          "implementation_status": "implemented",
-          "description": "Praktisk og sosial oppfølging, aktivitet, motivasjon, konkret observasjon, deeskalering, nøytral dokumentasjon og sikker eskalering – eksplisitt uten diagnostikk eller behandlingsmyndighet.",
-          "role_model": "data/Civication/roleModels/psykologi/psykologi_miljoarbeid.json",
-          "work_grammar": "data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json",
-          "lifestory_role": "psykologi_miljoarbeid",
-          "badge_titles": [
-            "Miljøassistent",
-            "Sosialassistent",
-            "Aktivitetsleder (omsorgsarbeid)",
-            "Miljøarbeider"
-          ]
+          "role_id":"psykologi_miljoarbeider","role_type":"forstelinje_miljoarbeid_og_oppfolging","implementation_status":"implemented","description":"Praktisk og sosial oppfølging, aktivitet, motivasjon, konkret observasjon, deeskalering, nøytral dokumentasjon og sikker eskalering – eksplisitt uten diagnostikk eller behandlingsmyndighet.","role_model":"data/Civication/roleModels/psykologi/psykologi_miljoarbeid.json","work_grammar":"data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json","lifestory_role":"psykologi_miljoarbeid","badge_titles":["Miljøassistent","Sosialassistent","Aktivitetsleder (omsorgsarbeid)","Miljøarbeider"]
+        },
+        "psykologi_arbeids_og_karriereveiledning": {
+          "role_id":"psykologi_karriereveileder","role_type":"arbeidsinkludering_og_karriereveiledning","implementation_status":"implemented","description":"Arbeids-, jobb- og karriereveiledning med mål- og beslutningsavklaring, kartlegging, arbeidsmarkeds- og utdanningsorientering, jobbsøkerstøtte, handlingsplaner, arbeidsgiverdialog og personvern – eksplisitt uten diagnostikk, terapi eller klinisk arbeidsevnevurdering.","role_model":"data/Civication/roleModels/psykologi/psykologi_arbeids_og_karriereveiledning.json","work_grammar":"data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json","lifestory_role":"psykologi_arbeids_og_karriereveiledning","evidence":"data/Civication/psychologyGuidanceEvidence.json","badge_titles":["Veileder","Rådgiver","Seniorrådgiver"]
         }
       },
       "title_to_role_scope": {
-        "Miljøassistent": "psykologi_miljoarbeid",
-        "Sosialassistent": "psykologi_miljoarbeid",
-        "Aktivitetsleder (omsorgsarbeid)": "psykologi_miljoarbeid",
-        "Miljøarbeider": "psykologi_miljoarbeid"
+        "Miljøassistent":"psykologi_miljoarbeid","Sosialassistent":"psykologi_miljoarbeid","Aktivitetsleder (omsorgsarbeid)":"psykologi_miljoarbeid","Miljøarbeider":"psykologi_miljoarbeid","Veileder":"psykologi_arbeids_og_karriereveiledning","Rådgiver":"psykologi_arbeids_og_karriereveiledning","Seniorrådgiver":"psykologi_arbeids_og_karriereveiledning"
       },
       "future_split_candidates": [
-        {
-          "role_scope": "psykologi_veiledning_og_radgivning",
-          "candidate_badge_titles": ["Veileder", "Rådgiver", "Seniorrådgiver"],
-          "reason": "Neste Psychology-pass bør avgjøre om disse generiske titlene kan dokumenteres som én eller flere reelle faglige jobbtyper, i stedet for å anta at dagens navn er gode nok."
-        },
-        {
-          "role_scope": "psykologi_klinisk_og_fagledelse",
-          "candidate_badge_titles": ["Psykolog", "Spesialistpsykolog", "Fagansvarlig", "Klinikkleder"],
-          "reason": "Regulerte og utnevnelseskrevende roller trenger egne kvalifikasjons- og arbeidslivspakker; de skal ikke arve miljøarbeid-scope."
-        }
+        {"role_scope":"psykologi_klinisk_og_fagledelse","candidate_badge_titles":["Psykolog","Spesialistpsykolog","Fagansvarlig","Klinikkleder"],"reason":"Regulerte og utnevnelseskrevende roller trenger egne kvalifikasjons- og arbeidslivspakker; de skal ikke arve miljøarbeid- eller veilednings-scope."},
+        {"role_scope":"psykologi_akademia","candidate_badge_titles":["Forsker (psykologi)","Professor (psykologi)"],"reason":"Akademiske roller er allerede kvalifikasjonsportet, men mangler en egen spillbar forsknings- og undervisningspakke."}
       ]
     }
   }

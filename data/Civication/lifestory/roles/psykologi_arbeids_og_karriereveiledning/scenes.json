@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "id": "maalet_01",
+      "threadId": "maalet_som_ikke_er_ditt",
+      "fase": "morgen",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "nora",
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "«Jeg kan vel bare søke på hva som helst»",
+      "tekst": "Nora har vært utenfor arbeid en stund. Teamlederen vil ha et tydelig jobbmål i planen i dag. Nora sier at hun kan søke «på hva som helst», men når du spør hva hun faktisk ønsker, blir svaret mindre sikkert.",
+      "valg": [
+        {
+          "id": "utforsk_eget_maal",
+          "tekst": "Utforsk hva hun vil ha mer av i en arbeidshverdag, og la henne formulere et første mål selv",
+          "tone": "utforskende",
+          "effekter": {
+            "relasjoner": { "nora": 5 },
+            "meters": { "integritet": 5, "handlingsrom": 4, "energi": -2 },
+            "flagg": { "lot_veisoker_eie_malet": true },
+            "threads": { "maalet_som_ikke_er_ditt": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Det tar mer av møtet, men målet blir hennes språk: arbeid med mennesker, forutsigbar turnus og en vei videre som ikke starter helt på nytt."
+        },
+        {
+          "id": "foresla_to_alternativer",
+          "tekst": "Legg fram to realistiske retninger og be henne velge hva dere undersøker først",
+          "tone": "strukturert",
+          "effekter": {
+            "relasjoner": { "nora": 2, "teamleder": 2 },
+            "meters": { "handlingsrom": 3, "synlighet": 2 },
+            "flagg": { "avgrenset_muligheter": true },
+            "threads": { "maalet_som_ikke_er_ditt": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Rammen gjør valget lettere, men du må følge med på om Nora velger mellom dine alternativer eller faktisk finner sin egen retning."
+        },
+        {
+          "id": "sett_maalet_for_henne",
+          "tekst": "Velg den retningen som har flest ledige stillinger og sett den som mål nå",
+          "tone": "resultatorientert",
+          "effekter": {
+            "relasjoner": { "nora": -6, "teamleder": 4 },
+            "meters": { "integritet": -7, "synlighet": 3 },
+            "flagg": { "styrte_veisoker": true, "prioriterte_systemet": true },
+            "threads": { "maalet_som_ikke_er_ditt": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Planen blir ferdig. Nora nikker, men du merker at hun omtaler den som «det dere har bestemt» i stedet for «det jeg vil prøve»."
+        }
+      ]
+    },
+    {
+      "id": "kartlegging_01",
+      "threadId": "kartleggingen_som_blir_dom",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "møte",
+      "avsender": "kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Resultatet ser veldig tydelig ut",
+      "tekst": "Et interesseverktøy peker sterkt mot administrative oppgaver. Nora har samtidig fortalt at hun mistrivdes i sin forrige kontorjobb. Samir sier at resultatet i det minste gir dere en ryddig retning å jobbe videre med.",
+      "valg": [
+        {
+          "id": "bruk_som_sporsmaal",
+          "tekst": "Bruk resultatet som et spørsmål: Hva i de administrative oppgavene passer, og hva var det hun faktisk mistrivdes med?",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "nora": 4, "kollega": 2 },
+            "meters": { "integritet": 5, "handlingsrom": 3 },
+            "flagg": { "brukte_kartlegging_som_sporsmaal": true },
+            "threads": { "kartleggingen_som_blir_dom": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Det viser seg at hun liker struktur og koordinering, men ikke stillesittingen og isolasjonen. Resultatet blir mer nyttig når det får motstand fra erfaringen hennes."
+        },
+        {
+          "id": "legg_resultatet_til_side",
+          "tekst": "Legg verktøyet til side og fortsett bare med samtalen",
+          "tone": "forsiktig",
+          "effekter": {
+            "relasjoner": { "nora": 2, "kollega": -1 },
+            "meters": { "integritet": 2, "handlingsrom": -1 },
+            "flagg": { "droppet_kartlegging": true },
+            "threads": { "kartleggingen_som_blir_dom": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Du unngår å overtolke verktøyet, men mister også en mulighet til å undersøke hvorfor resultatet og erfaringen spriker."
+        },
+        {
+          "id": "bruk_resultatet_som_retning",
+          "tekst": "Ta resultatet som hovedretning og bygg planen rundt administrative jobber",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": { "nora": -5, "teamleder": 2 },
+            "meters": { "integritet": -6, "synlighet": 2 },
+            "flagg": { "gjorde_kartlegging_til_fasit": true, "styrte_veisoker": true, "prioriterte_systemet": true },
+            "threads": { "kartleggingen_som_blir_dom": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Planen får en klar retning. Det uklare er om retningen beskriver Nora eller bare det mest ryddige tallet i kartleggingen."
+        }
+      ]
+    },
+    {
+      "id": "arbeidsgiver_01",
+      "threadId": "arbeidsgiveren_vil_vite_mer",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "telefon",
+      "avsender": "arbeidsgiver",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Hva er egentlig grunnen til hullet i CV-en?»",
+      "tekst": "Elin vurderer Nora til et intervju, men spør om fraværet fra arbeid skyldes helse og om det er noe hun bør vite før de går videre. Nora har ikke gitt deg samtykke til å dele helseopplysninger.",
+      "valg": [
+        {
+          "id": "hold_relevans_og_samtykke",
+          "tekst": "Hold samtalen til jobbrelevant informasjon og avklar med Nora hva hun selv vil formidle",
+          "tone": "profesjonell",
+          "effekter": {
+            "relasjoner": { "nora": 5, "arbeidsgiver": 1 },
+            "meters": { "integritet": 7, "handlingsrom": 3 },
+            "flagg": { "beskyttet_personvern": true },
+            "threads": { "arbeidsgiveren_vil_vite_mer": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Elin får ikke bakhistorien, men får vite hva Nora kan, hva hun søker og hva hun selv ønsker å ta opp i et intervju."
+        },
+        {
+          "id": "be_om_nytt_samtykke",
+          "tekst": "Si at du må avklare spørsmålet med Nora før du kan svare mer",
+          "tone": "avklarende",
+          "effekter": {
+            "relasjoner": { "nora": 3, "arbeidsgiver": 0 },
+            "meters": { "integritet": 5, "energi": -1 },
+            "flagg": { "avklarte_samtykke": true },
+            "threads": { "arbeidsgiveren_vil_vite_mer": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Prosessen går litt saktere. Til gjengjeld blir det Nora som avgjør hvordan hullet i CV-en skal forklares."
+        },
+        {
+          "id": "forklar_bakgrunnen",
+          "tekst": "Gi en kort helseforklaring så arbeidsgiveren føler seg trygg nok til å invitere henne inn",
+          "tone": "løsningsorientert",
+          "effekter": {
+            "relasjoner": { "arbeidsgiver": 5, "nora": -9 },
+            "meters": { "integritet": -10, "synlighet": 2 },
+            "flagg": { "delte_sensitive_opplysninger": true, "styrte_veisoker": true, "prioriterte_systemet": true },
+            "threads": { "arbeidsgiveren_vil_vite_mer": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Elin blir beroliget. Nora blir senere langt mindre beroliget når hun oppdager at arbeidsgiveren visste noe hun aldri ba deg dele."
+        }
+      ]
+    },
+    {
+      "id": "rask_jobb_01",
+      "threadId": "rask_jobb_eller_baerekraftig_valg",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "teamleder",
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "En jobb kan starte mandag",
+      "tekst": "En arbeidsgiver tilbyr et kort vikariat som Nora sannsynligvis kan få raskt. Jobben gir inntekt og erfaring, men ligger langt fra retningen hun formulerte i går. Teamlederen minner om at en rask overgang til arbeid teller som et godt resultat.",
+      "valg": [
+        {
+          "id": "vurder_sammen",
+          "tekst": "Gå gjennom gevinst, kostnad og hva vikariatet betyr for planen — og la Nora ta valget",
+          "tone": "beslutningsstøttende",
+          "effekter": {
+            "relasjoner": { "nora": 5, "teamleder": 1 },
+            "meters": { "integritet": 5, "handlingsrom": 5, "energi": -2 },
+            "flagg": { "stottet_eget_valg": true },
+            "threads": { "rask_jobb_eller_baerekraftig_valg": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Nora ser både lønna, erfaringen og avstanden til målet sitt. Hun velger å takke ja, men med en konkret sluttdato og en plan for hva hun søker parallelt."
+        },
+        {
+          "id": "anbefal_vikariatet",
+          "tekst": "Anbefal vikariatet tydelig, men gjør det klart at avgjørelsen er hennes",
+          "tone": "rådgivende",
+          "effekter": {
+            "relasjoner": { "nora": 1, "teamleder": 3 },
+            "meters": { "synlighet": 2, "integritet": 1 },
+            "flagg": { "ga_tydelig_rad": true },
+            "threads": { "rask_jobb_eller_baerekraftig_valg": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Rådet ditt veier tungt. Det kan være nyttig, men du må leve med at asymmetrien i rommet gjør et råd sterkere enn bare én mening."
+        },
+        {
+          "id": "press_for_resultat",
+          "tekst": "Si at dette er muligheten hun bør ta og få ja-et inn før arbeidsgiveren går videre",
+          "tone": "pressende",
+          "effekter": {
+            "relasjoner": { "nora": -7, "teamleder": 5 },
+            "meters": { "integritet": -7, "synlighet": 4 },
+            "flagg": { "presset_rask_plassering": true, "styrte_veisoker": true, "prioriterte_systemet": true },
+            "threads": { "rask_jobb_eller_baerekraftig_valg": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Resultatet kommer raskt. Nora sier ja før hun rekker å formulere hvorfor — og du vet ikke om du skapte handlingsrom eller bare reduserte motstanden."
+        }
+      ]
+    },
+    {
+      "id": "nav_plan_01",
+      "threadId": "nav_planen_og_mennesket",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "møte",
+      "avsender": "nav_kontakt",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Planen må være konkret før dagen er over",
+      "tekst": "Marius trenger et konkret neste steg i oppfølgingsplanen. Nora er usikker på om hun skal prioritere jobbsøking eller et kort kvalifiseringsløp. Fristen er reell, men beslutningen er ikke ferdig tenkt.",
+      "valg": [
+        {
+          "id": "lag_midlertidig_eget_steg",
+          "tekst": "Lag et avgrenset neste steg Nora eier: undersøk begge alternativer og sett en kort dato for beslutning",
+          "tone": "praktisk",
+          "effekter": {
+            "relasjoner": { "nora": 4, "nav_kontakt": 3 },
+            "meters": { "integritet": 5, "handlingsrom": 4 },
+            "flagg": { "oversatte_systemkrav": true },
+            "threads": { "nav_planen_og_mennesket": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Planen får et faktisk neste steg uten å late som hovedvalget allerede er tatt. Fristen blir en ramme for utforsking, ikke en erstatning for den."
+        },
+        {
+          "id": "be_om_mer_tid",
+          "tekst": "Be om mer tid før noe føres inn som retning",
+          "tone": "forsiktig",
+          "effekter": {
+            "relasjoner": { "nora": 2, "nav_kontakt": -2 },
+            "meters": { "integritet": 2, "handlingsrom": -2 },
+            "flagg": { "utsatte_alle_valg": true },
+            "threads": { "nav_planen_og_mennesket": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Du beskytter beslutningen mot kunstig sikkerhet, men gir heller ikke Nora en konkret handling som kan redusere usikkerheten."
+        },
+        {
+          "id": "velg_sporet_for_fristen",
+          "tekst": "Sett jobbsøking som hovedspor nå, så planen er komplett og framdriften målbar",
+          "tone": "systemorientert",
+          "effekter": {
+            "relasjoner": { "nora": -6, "nav_kontakt": 4, "teamleder": 3 },
+            "meters": { "integritet": -6, "synlighet": 3 },
+            "flagg": { "styrte_veisoker": true, "prioriterte_systemet": true },
+            "threads": { "nav_planen_og_mennesket": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Planen passer systemet perfekt. Spørsmålet er om Nora kommer til å bruke den når hun går ut døra."
+        }
+      ]
+    }
+  ]
+}
