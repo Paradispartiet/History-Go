@@ -212,7 +212,8 @@ export function auditPsykologiEditorialQualityV2({ writeReport = false, checkRep
     const editorialCorpus = editorialTextSections(article).join(' ');
     const requiredInputs = unique([article.title, article.editorial_focus, profile.boundary, ...profile.models.map((item) => item.name), ...article.methods.map((item) => item.label)]);
     assert(declaredInputs.length >= 10 && requiredInputs.every((value) => declaredInputs.includes(value)), `${article.emne_id} deklarerer ikke alle generatorfeltene for normalisering`);
-    assert(declaredInputs.every((value) => typeof value === 'string' && value.length > 0 && value.length <= 300 && editorialCorpus.includes(value)), `${article.emne_id} har ugyldig eller ubrukt normaliseringsfelt`);
+    assert(declaredInputs.every((value) => typeof value === 'string' && value.length > 0 && value.length <= 300), `${article.emne_id} har ugyldig normaliseringsfelt`);
+    assert(requiredInputs.every((value) => editorialCorpus.includes(value)), `${article.emne_id} mangler et obligatorisk generatorfelt i artikkelprosaen`);
   }
   for (const article of articles) assert([...article.theories_and_findings, ...article.examples, ...article.models_or_researchers].every((section) => sourceBound(section, article.claim_ids, claims)), `${article.emne_id} har seksjon uten eksplisitt direkte claim–kilde-binding`);
   const frameSimilarity = editorialFrameSimilarity(articles, claims);
