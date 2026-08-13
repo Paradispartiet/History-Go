@@ -8,6 +8,7 @@ on:
       - "AHA/docs/**"
       - "AHA/README.md"
       - "tests/aha-import-payload-v1-contract.test.js"
+      - "tests/aha-ownership-boundary.test.js"
       - ".github/workflows/aha-import-payload-contract.yml"
   push:
     branches: [main]
@@ -15,6 +16,7 @@ on:
       - "js/aha.js"
       - "AHA/contracts/**"
       - "tests/aha-import-payload-v1-contract.test.js"
+      - "tests/aha-ownership-boundary.test.js"
       - ".github/workflows/aha-import-payload-contract.yml"
 
 permissions:
@@ -32,3 +34,5 @@ jobs:
         run: node --check js/aha.js
       - name: Validate produced payload
         run: node tests/aha-import-payload-v1-contract.test.js
+      - name: Enforce AHA ownership boundary
+        run: node tests/aha-ownership-boundary.test.js
