@@ -1,0 +1,24 @@
+{
+  "version":1,
+  "id":"forsker_psykologi",
+  "navn":"Forsker (psykologi)",
+  "kjernefantasi":"Du får betalt for å finne ut noe ingen vet sikkert ennå. Uka avgjøres av om du klarer å bevare sporbarheten fra spørsmål til data til konklusjon når prosjektet helst vil ha et tydelig resultat.",
+  "arbeidsoppgaver":["forskningsdesign","datakvalitet og analyse","forskningsetikk","vitenskapelig skriving","prosjektsamarbeid","formidling"],
+  "personer":[
+    {"id":"prosjektleder","navn":"Ingrid","beskrivelse":"Prosjektleder som trenger leveranse og ny finansiering, men som også vet at prosjektets troverdighet er langsiktig kapital."},
+    {"id":"kollega","navn":"Amir","beskrivelse":"Medforsker som er metodisk sterk og ofte den første som spør hva som faktisk var planlagt før dataene ble sett."},
+    {"id":"partner","navn":"Nora","beskrivelse":"Ekstern samarbeidspartner som trenger en konklusjon hun kan bruke i praksis."},
+    {"id":"deltakeransvarlig","navn":"Sara","beskrivelse":"Har ansvar for rekruttering, samtykke og at datainnsamlingen faktisk følger protokollen."},
+    {"id":"venn","navn":"Jonas","beskrivelse":"Vennen din som merker når prosjektets tidsfrister følger deg hjem."},
+    {"id":"familie","navn":"Søsteren din","beskrivelse":"Søsteren din spør om jobben fortsatt handler om å finne ut noe eller om å få prosjektet til å se vellykket ut."}
+  ],
+  "hovedkonflikter":["integritet vs forventning","planlagt analyse vs utforskning","datakvalitet vs tidsfrist","nytte vs usikkerhet","publisering vs etterprøvbarhet"],
+  "endings":[
+    {"id":"etterprovbar_forsker","navn":"Et resultat som tåler dagslys","tekst":"Du leverte ikke den enkleste prosjektfortellingen. Du leverte en analysehistorikk andre kunne følge, et nullfunn som fikk stå som nullfunn og en konklusjon partneren kunne bruke uten å tro at den var sikrere enn dataene. Prosjektet ble litt mindre blankpolert og langt mer troverdig.","kriterier":{"meters":{"integritet":{"min":62},"handlingsrom":{"min":52}},"flagg":{"rapporterte_apent":true,"merket_eksplorativt":true}},"standard":true},
+    {"id":"resultatet_foran_metoden","navn":"Resultatet foran metoden","tekst":"Rapporten fikk en sterkere historie og prosjektet så mer vellykket ut. Samtidig ble analysevalgene vanskeligere å rekonstruere, nullfunnet mindre synlig og usikkerheten flyttet fra teksten til leseren. Du vant framdrift og brukte litt av prosjektets troverdighet som betaling.","kriterier":{"flagg":{"skjulte_nullfunn":true,"etterrasjonaliserte_analyse":true}}},
+    {"id":"analyse_uten_leveranse","navn":"Alt måtte kvalitetssikres mer","tekst":"Du beskyttet datakvaliteten så godt at prosjektet mistet evnen til å levere på noe som faktisk var godt nok dokumentert. Forskningsintegritet er ikke perfeksjonisme; den må også kunne avslutte et analysevalg og vise hva som er sikkert nok.","kriterier":{"flagg":{"utsatte_all_leveranse":true}}}
+  ],
+  "startState":{"meters":{"penger":500,"psyke":65,"energi":67,"integritet":55,"synlighet":48,"handlingsrom":51},"relasjoner":{"prosjektleder":52,"kollega":55,"partner":48,"deltakeransvarlig":54,"venn":60,"familie":58}},
+  "dagsplan":{"1":[{"klokke":"09:00","tekst":"Hovedanalyse"},{"klokke":"11:30","tekst":"Prosjektmøte"},{"klokke":"14:00","tekst":"Datakvalitet og metode"}],"2":[{"klokke":"09:30","tekst":"Partnerpresentasjon"},{"klokke":"13:30","tekst":"Manus og videre analyse"}]},
+  "scopeBoundary":{"kan":["planlegge og gjennomføre forskning innen prosjektets og egen kompetanses rammer","analysere og formidle data","foreslå nye studier og søknader","samarbeide og veilede når stillingen innebærer det"],"kanIkke":["framstille forskeransettelse som psykologautorisasjon","diagnostisere eller behandle bare i kraft av forskerrollen","skjule analyseendringer eller nullfunn for å styrke fortellingen","behandle persondata uten nødvendig grunnlag og sikkerhet"]}
+}
