@@ -36,7 +36,8 @@
     sport_kaptein: 'sport_kaptein',
     sport_trener: 'sport_trener',
     sport_sportsledelse: 'sport_sportsledelse',
-    sport_legende: 'sport_legende'
+    sport_legende: 'sport_legende',
+    psykologi_miljoarbeid: 'psykologi_miljoarbeider'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = {
@@ -62,7 +63,8 @@
     sport_kaptein: 'sport_kaptein',
     sport_trener: 'sport_trener',
     sport_sportsledelse: 'sport_sportsledelse',
-    sport_legende: 'sport_legende'
+    sport_legende: 'sport_legende',
+    psykologi_miljoarbeider: 'psykologi_miljoarbeid'
   };
 
   // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
@@ -141,6 +143,13 @@
     idrettslegende: 'sport_legende'
   };
 
+  const PSYKOLOGI_ROLE_SCOPE_BY_TITLE = {
+    miljoassistent: 'psykologi_miljoarbeid',
+    sosialassistent: 'psykologi_miljoarbeid',
+    aktivitetsleder_omsorgsarbeid: 'psykologi_miljoarbeid',
+    miljoarbeider: 'psykologi_miljoarbeid'
+  };
+
   function resolveCareerRoleScope(activePosition) {
     const careerId = normalize(activePosition?.career_id);
     const roleKey = slugify(activePosition?.role_key);
@@ -149,6 +158,11 @@
 
     if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return ROLE_SCOPE_BY_ROLE_ID[roleId];
     if (ROLE_SCOPE_BY_ROLE_ID[roleKey]) return ROLE_SCOPE_BY_ROLE_ID[roleKey];
+
+    if (careerId === 'psykologi') {
+      if (roleKey === 'psykologi_miljoarbeid') return 'psykologi_miljoarbeid';
+      if (PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey]) return PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey];
+    }
 
     if (careerId === 'sport') {
       if (roleKey === 'sport_utover') return 'sport_utover';
@@ -228,6 +242,7 @@
       ) return 'mellomleder';
     }
 
+    if (roleKey.includes('psykologi_miljoarbeid')) return 'psykologi_miljoarbeid';
     if (roleKey.includes('sport_utover')) return 'sport_utover';
     if (roleKey.includes('sport_kaptein')) return 'sport_kaptein';
     if (roleKey.includes('sport_trener')) return 'sport_trener';
