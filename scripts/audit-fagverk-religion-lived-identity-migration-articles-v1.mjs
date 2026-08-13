@@ -5,15 +5,15 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const AREA_ID = 'society_politics_law';
+const AREA_ID = 'lived_identity_migration';
 const P = Object.freeze({
   readiness: 'data/fag/religion/religion_university_readiness_v1.json',
   methods: 'data/fag/religion/methods_religion_canonical_v1.json',
   sourceRegistry: 'data/fag/religion/kilder_religion_canonical_v1.json',
-  claims: 'data/fagverk/religion/religion-samfunn-politikk-rett/claims.json',
+  claims: 'data/fagverk/religion/levd-religion-identitet-migrasjon/claims.json',
   articleDir: 'data/fagverk/religion/emneartikler',
   status: 'data/fagverk/subject_status.json',
-  report: 'reports/fagverk/religion-society-politics-law-articles-v1-audit.json'
+  report: 'reports/fagverk/religion-lived-identity-migration-articles-v1-audit.json'
 });
 const REQUIRED_FIELDS = Object.freeze([
   'topic_id', 'title', 'definition', 'historical_or_systemic_background',
@@ -27,9 +27,9 @@ const QUALITY_DIMENSIONS = Object.freeze([
   'technical_integrity', 'safety_responsibility', 'maintainability_auditability'
 ]);
 const REQUIRED_AREA_METHOD_IDS = Object.freeze([
-  'met_religion_sociological_institutional_analysis',
-  'met_religion_case_comparison_and_process_tracing',
-  'met_religion_survey_and_demography'
+  'met_religion_ethnographic_observation',
+  'met_religion_qualitative_interview',
+  'met_religion_research_ethics_privacy_and_representation'
 ]);
 const RUNTIME_ROOTS = Object.freeze(['js', 'data/integrations', 'data/historygo', 'data/religion']);
 const abs = (relative) => path.join(ROOT, relative);
@@ -85,7 +85,7 @@ const projection = (report) => ({
   complete: report.complete
 });
 
-export function auditReligionSocietyPoliticsLawArticles({ writeReport = false, checkReport = true } = {}) {
+export function auditReligionLivedIdentityMigrationArticles({ writeReport = false, checkReport = true } = {}) {
   for (const file of Object.values(P).filter((file) => file !== P.report)) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   const readiness = read(P.readiness);
   const methods = read(P.methods);
@@ -99,26 +99,26 @@ export function auditReligionSocietyPoliticsLawArticles({ writeReport = false, c
   assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 60/72');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
-  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Religion, samfunn, politikk og rett skal eie seks unike emner');
-  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', 'texts_myths_authority', AREA_ID, 'lived_identity_migration']), 'Eksakt ti Religion-områder skal være komplette');
-  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(48, 54), requiredIds), 'Readiness har feil religion, samfunn, politikk og rett-emner');
+  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Levd religion, identitet og migrasjon skal eie seks unike emner');
+  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', 'texts_myths_authority', 'society_politics_law', AREA_ID]), 'Eksakt ti Religion-områder skal være komplette');
+  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(54), requiredIds), 'Readiness har feil levd religion-, identitets- og migrasjonsemner');
   assert(readiness.production_progress.standalone_topic_articles_materialized === 60 && readiness.production_progress.standalone_topic_articles_remaining === 12, 'Religion skal stå på 60/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
-  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Religion, samfunn, politikk og rett-området er ikke korrekt merket komplett');
+  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Levd religion, identitet og migrasjon-området er ikke korrekt merket komplett');
 
   const expectedFiles = requiredIds.map((id) => `${id}.json`).sort();
   const actualFiles = fs.readdirSync(abs(P.articleDir)).filter((file) => requiredIds.includes(file.replace(/\.json$/, ''))).sort();
-  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per Religion, samfunn, politikk og rett-emne');
+  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per Levd religion, identitet og migrasjon-emne');
   const articles = actualFiles.map((file) => read(`${P.articleDir}/${file}`));
   assert(isDeepStrictEqual(articles.map((article) => article.topic_id).sort(), [...requiredIds].sort()), 'Artiklene dekker ikke eksakt 6/6 emner');
 
-  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til Religion, samfunn, politikk og rett-claims');
+  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til Levd religion, identitet og migrasjon-claims');
   assert(claimsDocument.schema === 'history_go_religion_topic_claims_v1' && claimsDocument.area_id === AREA_ID, 'Claimdokumentet har feil schema eller område');
-  assert(Object.values(claimsDocument.source_policy || {}).every(Boolean), 'Batchens tekst-, stat-, rettighets-, volds- eller representasjonsvern er ikke låst');
+  assert(Object.values(claimsDocument.source_policy || {}).every(Boolean), 'Batchens identitets-, migrasjons-, diskriminerings-, konversjons- eller representasjonsvern er ikke låst');
   const sourceById = new Map(claimsDocument.sources.map((source) => [source.id, source]));
   const claimById = new Map(claimsDocument.claims.map((claim) => [claim.id, claim]));
-  assert(sourceById.size === 20, 'Religion, samfunn, politikk og rett skal ha 20 unike kilderegistreringer');
-  assert(claimById.size === 36, 'Religion, samfunn, politikk og rett skal ha 36 unike claims');
+  assert(sourceById.size === 20, 'Levd religion, identitet og migrasjon skal ha 20 unike kilderegistreringer');
+  assert(claimById.size === 36, 'Levd religion, identitet og migrasjon skal ha 36 unike claims');
   assert(claimsDocument.sources.every((source) => /^https:\/\//.test(source.url) && source.publisher && source.author && source.title && source.source_location?.length >= 50), 'En kilde mangler HTTPS eller presis metadata');
   assert(claimsDocument.claims.every((claim) => requiredIds.includes(claim.topic_id) && claim.claim.length >= 100 && claim.source_ids?.every((id) => sourceById.has(id))), 'En claim er for kort, feilplassert eller har uløst kilde');
 
@@ -174,7 +174,7 @@ export function auditReligionSocietyPoliticsLawArticles({ writeReport = false, c
   assert(usedSourceIds.size === 20, 'Alle 20 registrerte kilder skal være brukt');
   const canonicalMethods = new Map(methods.methods.map((method) => [method.method_id, method]));
   assert([...usedMethodIds].every((id) => canonicalMethods.get(id)?.university_matrix_status === 'materialized'), 'En brukt metode er uløst eller ikke materialisert');
-  assert(REQUIRED_AREA_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'Områdets samfunns-, sammenlignings- og surveymetoder er ikke materialisert og brukt');
+  assert(REQUIRED_AREA_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'Områdets etnografi-, intervju- og forskningsetikkmetoder er ikke materialisert og brukt');
   assert(readiness.production_progress.required_methods_materialized === 18 && readiness.production_progress.required_methods_remaining === 0, 'Religion skal stå på 18/18 metoder');
 
   const allMaterializedIds = readiness.production_progress.materialized_topic_ids;
@@ -209,24 +209,24 @@ export function auditReligionSocietyPoliticsLawArticles({ writeReport = false, c
   const report = {
     schema: 'history_go_fagverk_religion_topic_articles_batch_audit_v1',
     version: '1.0.0',
-    status: complete ? 'religion_society_politics_law_articles_complete' : 'religion_society_politics_law_articles_in_progress',
+    status: complete ? 'religion_lived_identity_migration_articles_complete' : 'religion_lived_identity_migration_articles_in_progress',
     generatedFrom: P,
     subject: { id: 'religion', areaId: AREA_ID, editorialStatus: status.editorialStatus, nextGate: status.nextGate, completeReady: false },
-    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 9, totalUniversityAreaCount: 12, completedTopicCount: 54, totalTopicCount: 72, articleIds: requiredIds },
+    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 10, totalUniversityAreaCount: 12, completedTopicCount: 60, totalTopicCount: 72, articleIds: requiredIds },
     depth: { minimumWordsPerArticle: readiness.topic_article_contract.minimum_editorial_words_per_article, totalEditorialWordCount, articleWordCounts, scenarioCounts },
     evidence: { registeredSourceCount: sourceById.size, registeredClaimCount: claimById.size, usedSourceCount: usedSourceIds.size, usedClaimCount: usedClaimIds.size, allClaimsResolve: true, allSourcesResolve: true },
     methods: { requiredMethodCount: readiness.required_method_ids.length, materializedRequiredMethodCount: readiness.production_progress.required_methods_materialized, requiredAreaMethodIds: REQUIRED_AREA_METHOD_IDS, usedMethodIds: [...usedMethodIds].sort() },
     editorial: { allReligionArticleCountReviewed: allArticles.length, exactParagraphDuplicates: 0, maximumFiveGramJaccard: Math.max(...similarities.map((item) => item.score)), pairwiseSimilarities: similarities, runtimeReferences },
     quality: { dimensions: qualityScores, total: qualityTotal, threshold: 27, minimumDimension: 4, criticalFlags: [], conclusion: 'high_quality' },
     gates: {
-      exactSixSocietyPoliticsLawArticles: true,
+      exactSixLivedIdentityMigrationArticles: true,
       allArticlesMeetMinimumWordDepth: true,
       allThirtySixClaimsResolveAndAreUsed: true,
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
-      textualHistoricalAndDiscourseMethodsMaterializedAndLinked: true,
+      ethnographicInterviewAndEthicsMethodsMaterializedAndLinked: true,
       allSixtyReligionArticlesReviewedForEditorialDiversity: true,
-      stateRightsSecularityViolenceWelfareAndEducationBoundariesLocked: true,
+      livedIdentityGenderMigrationDiscriminationAndConversionBoundariesLocked: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,
       noPrematureAhaRuntimeActivation: true,
@@ -246,10 +246,10 @@ export function auditReligionSocietyPoliticsLawArticles({ writeReport = false, c
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const { report } = auditReligionSocietyPoliticsLawArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
-    console.log(`Religion religion, samfunn, politikk og rett OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
+    const { report } = auditReligionLivedIdentityMigrationArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
+    console.log(`Religion levd religion, identitet og migrasjon OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
   } catch (error) {
-    console.error(`Religion religion, samfunn, politikk og rett FEIL: ${error.message}`);
+    console.error(`Religion levd religion, identitet og migrasjon FEIL: ${error.message}`);
     process.exitCode = 1;
   }
 }

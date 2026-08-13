@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditReligionSocietyPoliticsLawArticles } from '../scripts/audit-fagverk-religion-society-politics-law-articles-v1.mjs';
 
-test('Religion materialiserer religion, samfunn, politikk og rett som område 9 med 54/72 artikler', () => {
+test('Religion bevarer religion, samfunn, politikk og rett som område 9 når totalen er 60/72 artikler', () => {
   const { report } = auditReligionSocietyPoliticsLawArticles({ checkReport: false });
   assert.equal(report.status, 'religion_society_politics_law_articles_complete');
   assert.equal(report.coverage.materializedArticleCount, 6);
@@ -29,11 +29,11 @@ test('Religion, samfunn, politikk og rett har full claim-, kilde-, metode- og sc
   assert.ok(Object.values(report.depth.scenarioCounts).every((count) => count >= 2));
 });
 
-test('Alle 54 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
+test('Alle 60 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
   const { report } = auditReligionSocietyPoliticsLawArticles({ checkReport: false });
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.completeReady, false);
-  assert.equal(report.editorial.allReligionArticleCountReviewed, 54);
+  assert.equal(report.editorial.allReligionArticleCountReviewed, 60);
   assert.equal(report.editorial.exactParagraphDuplicates, 0);
   assert.ok(report.editorial.maximumFiveGramJaccard < 0.12);
   assert.equal(report.quality.total, 29);

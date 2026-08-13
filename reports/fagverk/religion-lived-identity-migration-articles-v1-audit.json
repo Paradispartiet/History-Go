@@ -1,19 +1,19 @@
 {
   "schema": "history_go_fagverk_religion_topic_articles_batch_audit_v1",
   "version": "1.0.0",
-  "status": "religion_history_comparison_articles_complete",
+  "status": "religion_lived_identity_migration_articles_complete",
   "generatedFrom": {
     "readiness": "data/fag/religion/religion_university_readiness_v1.json",
     "methods": "data/fag/religion/methods_religion_canonical_v1.json",
     "sourceRegistry": "data/fag/religion/kilder_religion_canonical_v1.json",
-    "claims": "data/fagverk/religion/religionshistorie-sammenligning/claims.json",
+    "claims": "data/fagverk/religion/levd-religion-identitet-migrasjon/claims.json",
     "articleDir": "data/fagverk/religion/emneartikler",
     "status": "data/fagverk/subject_status.json",
-    "report": "reports/fagverk/religion-history-comparison-articles-v1-audit.json"
+    "report": "reports/fagverk/religion-lived-identity-migration-articles-v1-audit.json"
   },
   "subject": {
     "id": "religion",
-    "areaId": "history_comparison",
+    "areaId": "lived_identity_migration",
     "editorialStatus": "chapters_in_progress",
     "nextGate": "remaining_religion_area_article_production",
     "completeReady": false
@@ -21,37 +21,37 @@
   "coverage": {
     "requiredArticleCount": 6,
     "materializedArticleCount": 6,
-    "completedUniversityAreaCount": 2,
+    "completedUniversityAreaCount": 10,
     "totalUniversityAreaCount": 12,
-    "completedTopicCount": 12,
+    "completedTopicCount": 60,
     "totalTopicCount": 72,
     "articleIds": [
-      "prehistoric_ritual_and_archaeological_inference",
-      "ancient_mesopotamian_and_egyptian_religions",
-      "greek_roman_religions_and_cult",
-      "norse_religion_and_christianization",
-      "religious_change_syncretism_and_conversion",
-      "historiography_sources_and_colonial_categories"
+      "lived_religion_and_everyday_practice",
+      "identity_belonging_and_boundary_work",
+      "gender_sexuality_body_and_authority",
+      "migration_diaspora_and_transnational_religion",
+      "majority_minority_power_and_discrimination",
+      "religious_mobility_conversion_and_deconversion"
     ]
   },
   "depth": {
     "minimumWordsPerArticle": 650,
-    "totalEditorialWordCount": 5339,
+    "totalEditorialWordCount": 6262,
     "articleWordCounts": {
-      "ancient_mesopotamian_and_egyptian_religions": 895,
-      "greek_roman_religions_and_cult": 889,
-      "historiography_sources_and_colonial_categories": 915,
-      "norse_religion_and_christianization": 853,
-      "prehistoric_ritual_and_archaeological_inference": 892,
-      "religious_change_syncretism_and_conversion": 895
+      "gender_sexuality_body_and_authority": 1060,
+      "identity_belonging_and_boundary_work": 1029,
+      "lived_religion_and_everyday_practice": 1119,
+      "majority_minority_power_and_discrimination": 996,
+      "migration_diaspora_and_transnational_religion": 1045,
+      "religious_mobility_conversion_and_deconversion": 1013
     },
     "scenarioCounts": {
-      "ancient_mesopotamian_and_egyptian_religions": 2,
-      "greek_roman_religions_and_cult": 2,
-      "historiography_sources_and_colonial_categories": 2,
-      "norse_religion_and_christianization": 2,
-      "prehistoric_ritual_and_archaeological_inference": 2,
-      "religious_change_syncretism_and_conversion": 2
+      "gender_sexuality_body_and_authority": 2,
+      "identity_belonging_and_boundary_work": 2,
+      "lived_religion_and_everyday_practice": 2,
+      "majority_minority_power_and_discrimination": 2,
+      "migration_diaspora_and_transnational_religion": 2,
+      "religious_mobility_conversion_and_deconversion": 2
     }
   },
   "evidence": {
@@ -65,18 +65,25 @@
   "methods": {
     "requiredMethodCount": 18,
     "materializedRequiredMethodCount": 18,
-    "newlyMaterializedMethodIds": [
-      "met_religion_historical_source_criticism",
-      "met_religion_material_visual_and_architectural_analysis"
+    "requiredAreaMethodIds": [
+      "met_religion_ethnographic_observation",
+      "met_religion_qualitative_interview",
+      "met_religion_research_ethics_privacy_and_representation"
     ],
     "usedMethodIds": [
+      "met_religion_anthropological_contextual_analysis",
       "met_religion_case_comparison_and_process_tracing",
       "met_religion_comparative_analysis",
-      "met_religion_concept_history_and_genealogy",
+      "met_religion_digital_ethnography_and_media_analysis",
       "met_religion_discourse_and_content_analysis",
+      "met_religion_ethnographic_observation",
       "met_religion_historical_source_criticism",
-      "met_religion_material_visual_and_architectural_analysis",
-      "met_religion_textual_and_philological_analysis"
+      "met_religion_qualitative_interview",
+      "met_religion_reflexivity_and_positionality",
+      "met_religion_research_ethics_privacy_and_representation",
+      "met_religion_sociological_institutional_analysis",
+      "met_religion_spatial_route_and_landscape_analysis",
+      "met_religion_survey_and_demography"
     ]
   },
   "editorial": {
@@ -12493,13 +12500,14 @@
     "conclusion": "high_quality"
   },
   "gates": {
-    "exactSixHistoryComparisonArticles": true,
+    "exactSixLivedIdentityMigrationArticles": true,
     "allArticlesMeetMinimumWordDepth": true,
     "allThirtySixClaimsResolveAndAreUsed": true,
     "allTwentySourcesResolveAndAreUsed": true,
     "allCasesAndScenariosExplicitlyLabeled": true,
-    "twoNewHistoricalMethodsMaterializedAndLinked": true,
+    "ethnographicInterviewAndEthicsMethodsMaterializedAndLinked": true,
     "allSixtyReligionArticlesReviewedForEditorialDiversity": true,
+    "livedIdentityGenderMigrationDiscriminationAndConversionBoundariesLocked": true,
     "internalDiversityAndNonessentialismReviewed": true,
     "genericTemplateReuseAbsent": true,
     "noPrematureAhaRuntimeActivation": true,
