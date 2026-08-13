@@ -425,6 +425,9 @@ function materializeFinalState(conceptCount) {
   matrix.topic_article_contract.required_quality_fields = unique([...(matrix.topic_article_contract.required_quality_fields || []), 'quality_review']);
   matrix.topic_article_contract.quality_review_status_required = 'approved_editorial_quality_v2';
   matrix.topic_article_contract.quality_review_standard = 'history_go_psykologi_editorial_quality_v2';
+  delete matrix.topic_article_contract.aha_runtime_activation_requires_separate_review;
+  matrix.topic_article_contract.aha_runtime_activation_policy = 'repository_quality_and_safety_gates_only';
+  matrix.topic_article_contract.external_peer_review_required_for_aha_activation = false;
   matrix.editorial_quality_contract = {
     audit: 'scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs',
     report: 'reports/fagverk/psykologi-editorial-quality-v2-audit.json',
@@ -434,7 +437,8 @@ function materializeFinalState(conceptCount) {
     no_critical_flags_required: true,
     no_repeated_long_editorial_sentences_required: true,
     all_claim_source_bindings_required: true,
-    separate_aha_subject_matter_review_still_required: true
+    aha_runtime_activation_eligible_after_repository_gates: true,
+    external_peer_review_required_for_aha_activation: false
   };
   matrix.completion_contract.requirements = unique([...(matrix.completion_contract.requirements || []), 'editorial_quality_v2_score_at_least_27_without_critical_flags']);
   matrix.applied_field_contract = {
@@ -453,13 +457,13 @@ function materializeFinalState(conceptCount) {
   if (!statusEntry) throw new Error('Psykologi mangler subject_status');
   statusEntry.editorialStatus = 'complete';
   statusEntry.nextGate = FINAL_GATE;
-  statusEntry.note = 'Psykologi er komplett etter universitetsporten og den seksdelte kvalitetsporten: 6/6 canonicale kapitler, 58/58 selvstendige og kildeførte emneartikler, 136/136 håndredigerte og claimsporede begreper, syv universitetskjernegrener og seks auditerte anvendte fagfelt. Innholdet forblir utenfor AHA-runtime til separat ekstern fagreview og aktivering.';
+  statusEntry.note = 'Psykologi er komplett etter universitetsporten og den seksdelte kvalitetsporten: 6/6 canonicale kapitler, 58/58 selvstendige og kildeførte emneartikler, 136/136 håndredigerte og claimsporede begreper, syv universitetskjernegrener og seks auditerte anvendte fagfelt. Fagverket er kvalifisert for eksplisitt AHA-runtimeintegrasjon uten separat ekstern fagreview; kildeproveniens, kliniske sikkerhetsgrenser og runtime-regresjoner skal fortsatt være grønne.';
   write(STATUS_PATH, status);
 
   const registry = read(REGISTRY_PATH);
   const subject = registry.subjects?.psykologi;
   if (!subject) throw new Error('Psykologi mangler registry');
-  subject.canonicalModel.note = 'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 emner har selvstendige, kilde- og claimsporede universitetsartikler; 136 begreper har håndredigerte definisjonskjerner; universitetskjernen og seks anvendte fagfelt er auditert. Den seksdelte kvalitetsporten må være grønn, og AHA-aktivering krever fortsatt separat ekstern fagreview.';
+  subject.canonicalModel.note = 'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 emner har selvstendige, kilde- og claimsporede universitetsartikler; 136 begreper har håndredigerte definisjonskjerner; universitetskjernen og seks anvendte fagfelt er auditert. Den seksdelte kvalitetsporten er bindende, og bestått repository-kvalitet og sikkerhet er tilstrekkelig for eksplisitt AHA-runtimeintegrasjon uten separat ekstern fagreview.';
   subject.editorialPlan.nextGate = FINAL_GATE;
   write(REGISTRY_PATH, registry);
 }

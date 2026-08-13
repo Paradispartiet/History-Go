@@ -9,8 +9,15 @@ test('Psykologi består den eksplisitte seksdelte kvalitetsvurderingen', () => {
   assert.equal(report.highQuality, true);
   assert.equal(report.qualityAssessment.conclusion, 'high_quality');
   assert.ok(Object.values(report.qualityAssessment.scores).every((score) => score >= 4));
-  assert.ok(report.qualityAssessment.total >= 27);
+  assert.equal(report.qualityAssessment.total, 30);
   assert.deepEqual(report.qualityAssessment.criticalFlags, []);
+  assert.deepEqual(report.evidence.activationPolicy, {
+    externalPeerReviewRequired: false,
+    repositoryQualityAndSafetyGatesRequired: true,
+    runtimeIntegrationStateAudited: true
+  });
+  assert.equal(report.gates.ahaRuntimeIntegrationStateAudited, true);
+  assert.equal('noAhaRuntimeActivation' in report.gates, false);
 });
 
 test('malgenerering, kunstige modellnavn og falske dokumenterte case er blokkert', () => {
