@@ -13,7 +13,8 @@ const P = Object.freeze({
   status: 'data/fagverk/subject_status.json',
   report: 'reports/fagverk/religion-university-readiness-audit.json'
 });
-const NEXT_GATE = 'university_matrix_domain_articles_concepts_sources_and_methods';
+const STATUS_NEXT_GATE = 'chapter_production';
+const COMPLETION_NEXT_GATE = 'university_matrix_domain_articles_concepts_sources_and_methods';
 const REQUIRED_AREA_IDS = Object.freeze([
   'theory_method',
   'history_comparison',
@@ -60,7 +61,7 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
   assert(readiness.subject_id === 'religion', 'Readiness-matrisen har feil subject_id');
   assert(readiness.status === 'matrix_locked_production_pending', 'Religion readiness skal være låst, men ikke complete');
   assert(statusEntry?.editorialStatus === 'structure_ready', 'Religion skal forbli structure_ready før produksjonskravene er oppfylt');
-  assert(statusEntry?.nextGate === NEXT_GATE, 'Religion har feil nextGate etter universitetsauditen');
+  assert(statusEntry?.nextGate === STATUS_NEXT_GATE, 'Religion skal fortsette gjennom den registrerte kapittelproduksjonsporten');
 
   const baseline = readiness.canonical_baseline;
   assert(baseline.domain_count === fagkart.categories.length, 'Baseline domain_count avviker fra fagkartet');
@@ -106,7 +107,7 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
   const completion = readiness.completion_contract;
   assert(completion.current_complete_ready === false, 'Religion kan ikke være completeReady før produksjon');
   assert(completion.complete_must_remain_false_until_all_requirements_pass === true, 'Complete-status er ikke låst til alle krav');
-  assert(completion.next_gate === NEXT_GATE, 'Completion-kontrakten har feil nextGate');
+  assert(completion.next_gate === COMPLETION_NEXT_GATE, 'Completion-kontrakten har feil nextGate');
   assert(completion.requirements.includes('all_72_standalone_topic_articles_materialized_and_sourced'), 'Completion mangler 72-artikkelporten');
   assert(completion.requirements.includes('six_dimension_quality_score_at_least_27_without_critical_flags'), 'Completion mangler seksdelt kvalitetsport');
 
@@ -122,6 +123,7 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
       id: 'religion',
       editorialStatus: statusEntry.editorialStatus,
       nextGate: statusEntry.nextGate,
+      completionGate: completion.next_gate,
       completeReady: false
     },
     baseline: {
