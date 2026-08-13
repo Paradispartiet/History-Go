@@ -37,6 +37,11 @@
     sport_trener: 'sport_trener',
     sport_sportsledelse: 'sport_sportsledelse',
     sport_legende: 'sport_legende',
+    subkultur_arrangementsdrift: 'subkultur_kulturhusvert',
+    subkultur_program_og_koordinering: 'subkultur_arrangementsplanlegger',
+    subkultur_produksjon_og_prosjekt: 'subkultur_produsent',
+    subkultur_produksjonsledelse: 'subkultur_produksjonsledelse',
+    subkultur_kulturarena_ledelse: 'subkultur_kulturarena_ledelse',
     psykologi_miljoarbeid: 'psykologi_miljoarbeider',
     psykologi_arbeids_og_karriereveiledning: 'psykologi_karriereveileder',
     psykolog: 'psykologi_psykolog',
@@ -126,6 +131,31 @@
     idrettslegende: 'sport_legende'
   };
 
+  const SUBKULTUR_ROLE_SCOPE_BY_TITLE = {
+    kulturhusvert: 'subkultur_arrangementsdrift',
+    arrangementscrew: 'subkultur_arrangementsdrift',
+    produksjonsassistent: 'subkultur_arrangementsdrift',
+    kulturmedarbeider: 'subkultur_arrangementsdrift',
+    arrangementsplanlegger: 'subkultur_program_og_koordinering',
+    kulturkonsulent: 'subkultur_program_og_koordinering',
+    booking_og_innholdskoordinator: 'subkultur_program_og_koordinering',
+    produsent: 'subkultur_produksjon_og_prosjekt',
+    prosjektleder_kulturarrangement: 'subkultur_produksjon_og_prosjekt',
+    produksjonsleder: 'subkultur_produksjonsledelse',
+    daglig_leder_kulturarena: 'subkultur_kulturarena_ledelse',
+    observor: 'subkultur_arrangementsdrift',
+    deltaker: 'subkultur_arrangementsdrift',
+    hakkekylling: 'subkultur_arrangementsdrift',
+    gatesmart: 'subkultur_arrangementsdrift',
+    crew: 'subkultur_program_og_koordinering',
+    gangster: 'subkultur_program_og_koordinering',
+    dandy: 'subkultur_program_og_koordinering',
+    kultfigur: 'subkultur_produksjon_og_prosjekt',
+    trendsetter: 'subkultur_produksjon_og_prosjekt',
+    undergrunnsikon: 'subkultur_produksjonsledelse',
+    legend: 'subkultur_kulturarena_ledelse'
+  };
+
   const PSYKOLOGI_ROLE_SCOPE_BY_TITLE = {
     miljoassistent: 'psykologi_miljoarbeid',
     sosialassistent: 'psykologi_miljoarbeid',
@@ -158,6 +188,12 @@
       if (ROLE_ID_BY_SCOPE[roleKey] && (roleKey.startsWith('psykologi_') || roleKey.endsWith('_psykologi'))) return roleKey;
       if (['psykolog', 'spesialistpsykolog', 'fagansvarlig', 'klinikkleder'].includes(roleKey)) return roleKey;
       if (PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey]) return PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey];
+    }
+
+    if (careerId === 'subkultur') {
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('subkultur_')) return roleKey;
+      if (SUBKULTUR_ROLE_SCOPE_BY_TITLE[roleKey]) return SUBKULTUR_ROLE_SCOPE_BY_TITLE[roleKey];
+      if (SUBKULTUR_ROLE_SCOPE_BY_TITLE[titleKey]) return SUBKULTUR_ROLE_SCOPE_BY_TITLE[titleKey];
     }
 
     if (careerId === 'sport') {
@@ -210,6 +246,11 @@
       if (titleKey.includes('grunder') || titleKey.includes('bedriftseier') || titleKey.includes('konsern') || titleKey.includes('investor') || titleKey.includes('kapital') || titleKey.includes('industrieier') || titleKey.includes('industribygger')) return 'mellomleder';
     }
 
+    if (roleKey.includes('subkultur_arrangementsdrift')) return 'subkultur_arrangementsdrift';
+    if (roleKey.includes('subkultur_program_og_koordinering')) return 'subkultur_program_og_koordinering';
+    if (roleKey.includes('subkultur_produksjon_og_prosjekt')) return 'subkultur_produksjon_og_prosjekt';
+    if (roleKey.includes('subkultur_produksjonsledelse')) return 'subkultur_produksjonsledelse';
+    if (roleKey.includes('subkultur_kulturarena_ledelse')) return 'subkultur_kulturarena_ledelse';
     if (roleKey.includes('psykologi_arbeids_og_karriereveiledning')) return 'psykologi_arbeids_og_karriereveiledning';
     if (roleKey.includes('psykologi_miljoarbeid')) return 'psykologi_miljoarbeid';
     if (roleKey.includes('forsker_psykologi')) return 'forsker_psykologi';

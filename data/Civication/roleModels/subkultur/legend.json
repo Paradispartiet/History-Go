@@ -1,120 +1,15 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "subkultur",
-    "badge_name": "Subkultur",
-    "tier_label": "Legend",
-    "tier_threshold": 300
-  },
-  "category": "subkultur",
-  "role_scope": "legend",
-  "role_id": "subkultur_legend",
-  "title": "Legend",
-  "core_narrative": [
-    "I Civication er Legend en praktisk rolle i Subkultur der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til punk, hiphop."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "history_go_badges": [
-      "subkultur"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "legend",
-    "mail_profile": "subkultur_legend",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Legend",
-      "category": "subkultur",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: subkultur / Legend."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/subkultur.json","badge_id":"subkultur","badge_name":"Subkultur","tier_label":"Daglig leder (kulturarena)","tier_threshold":240,"evidence_file":"data/Civication/subcultureCareerEvidence.json"},
+  "category":"subkultur","role_scope":"subkultur_kulturarena_ledelse","role_id":"subkultur_kulturarena_ledelse","title":"Daglig leder (kulturarena)",
+  "professional_description":["Helhetlig ledelse av kulturarena eller kulturorganisasjon med program, økonomi/resultat, ansatte, frivillige, samarbeid og langsiktig retning."],
+  "core_narrative":["Du skal holde et sted levende uten å gjøre enten økonomien eller miljøets selvbilde til eneste sannhet."],
+  "work_life":{"daily_work":["lede ansatte og drift","følge budsjett og resultat","forankre programstrategi","bygge finansiering og samarbeid","ivareta styre/eier og lokalmiljø"],"responsibilities":["personalansvar","økonomisk bærekraft","åpen strategi","arbeidsmiljø","legitimitet hos både miljø og offentlighet"],"work_environment":["kulturhus","uavhengig kulturarena","ideell kulturorganisasjon"],"status_position":["Arbeidsgiver-/styreutnevnt toppleder; ingen Badge-status kan erstatte faktisk ansettelse."]},
+  "required_knowledge":{"education_basis":["Daglig leder-stillinger kan kreve eller foretrekke relevant høyere utdanning og ledererfaring; arbeidsgiver fastsetter kravene. Civication krever arbeidsgiverutnevnelse."],"skills":["ledelse","økonomi","strategi","personal","finansiering","programforståelse"],"category_knowledge":["uavhengige kulturarenaer","subkulturelle økosystemer","frivillighet","kulturpolitikk"],"history_go_badges":["subkultur"],"place_connections":[],"people_connections":[]},
+  "scope_boundaries":{"may_do":["lede virksomheten innen styre/eiermandat","prioritere budsjett","organisere ansatte","forhandle samarbeid"],"must_not_simulate_as_authority":["hevde stillingen uten ansettelse/utnevnelse","bruke intern miljøstatus som personalregel","omgå arbeidsrett, sikkerhet eller styrevedtak"]},
+  "challenges":[{"id":"institusjon_vs_undergrunn","title":"Når undergrunnen får budsjett","description":"Formalisering kan gi varighet og samtidig true tilliten som gjorde stedet viktig.","pressure":"baerekraft_vs_uavhengighet","affects":["trust","money","status"]}],
+  "dilemmas":[{"id":"sponsoravtalen","title":"Sponsoravtalen","setup":"En stor avtale løser økonomien, men partneren ønsker programinnflytelse som miljøet vil oppfatte som styring.","choice_axis":"finansiering_vs_programuavhengighet","consequence_axis":"okonomi_vs_legitimitet","mail_hooks":["job","conflict","people","consequence"]}],
+  "mail_integration":{"role_scope":"subkultur_kulturarena_ledelse","mail_profile":"subkultur_kulturarena_ledelse","can_feed_mail_types":["job","story","conflict","event","people","followup","consequence"],"mail_variables":{"role_title":"Daglig leder (kulturarena)","category":"subkultur","main_pressure":"baerekraft_vs_uavhengighet","ethical_axis":"finansiering_vs_programuavhengighet","status_axis":"okonomi_vs_legitimitet"},"recommended_mail_families":["subkultur_kulturarena_ledelse"],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"strategi","label":"Strategi"},{"id":"personal","label":"Personal"},{"id":"okonomi","label":"Økonomi"},{"id":"legitimitet","label":"Legitimitet"}],"ideal_type_problems":[{"id":"baerekraft_vs_uavhengighet","label":"Bærekraft vs uavhengighet"}],
+  "notes":["Legacy filename retained for manifest stability; canonical title is Daglig leder (kulturarena)."]
 }

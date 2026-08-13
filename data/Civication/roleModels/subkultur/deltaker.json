@@ -1,120 +1,15 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "subkultur",
-    "badge_name": "Subkultur",
-    "tier_label": "Deltaker",
-    "tier_threshold": 10
-  },
-  "category": "subkultur",
-  "role_scope": "deltaker",
-  "role_id": "subkultur_deltaker",
-  "title": "Deltaker",
-  "core_narrative": [
-    "I Civication er Deltaker en praktisk rolle i Subkultur der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til punk, hiphop."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "history_go_badges": [
-      "subkultur"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "deltaker",
-    "mail_profile": "subkultur_deltaker",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Deltaker",
-      "category": "subkultur",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: subkultur / Deltaker."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/subkultur.json","badge_id":"subkultur","badge_name":"Subkultur","tier_label":"Arrangementscrew","tier_threshold":10,"evidence_file":"data/Civication/subcultureCareerEvidence.json"},
+  "category":"subkultur","role_scope":"subkultur_arrangementsdrift","role_id":"subkultur_arrangementscrew","title":"Arrangementscrew",
+  "professional_description":["Praktisk arrangementsarbeid med rigg, nedrigg, publikumslogistikk, adgang og produksjonsstøtte."],
+  "core_narrative":["Du får rommet til å virke: riktig utstyr på riktig sted, publikum gjennom døra og små feil løst før de vokser."],
+  "work_life":{"daily_work":["rigg og nedrigg","møblering","adgang og kø","publikumslogistikk","bistå produksjon"],"responsibilities":["følge produksjonsplan","bruke utstyr innen opplæring","rapportere feil","ivareta publikum"],"work_environment":["konserter","klubbkvelder","festival","kulturarena"],"status_position":["Operativt crew uten automatisk teknisk sertifisering eller ledermandat."]},
+  "required_knowledge":{"education_basis":["Arbeidsgiver kan kreve arrangementserfaring og lokal opplæring; rollen er ikke en regulert profesjon."],"skills":["rigg","logistikk","teamarbeid","tidsforståelse","service"],"category_knowledge":["scene- og klubbkultur","DIY-arrangering","publikumspraksis"],"history_go_badges":["subkultur"],"place_connections":[],"people_connections":[]},
+  "scope_boundaries":{"may_do":["praktisk rigg","publikumslogistikk","produksjonsassistanse"],"must_not_simulate_as_authority":["koble eller bruke risikofylt teknisk utstyr uten opplæring","endre sikkerhetsopplegg på egen hånd"]},
+  "challenges":[{"id":"tempo_vs_sikkerhet","title":"Fem minutter forsinket","description":"Tidsplanen presser, men rigg og publikumsflyt må fortsatt være trygg.","pressure":"tempo_vs_sikkerhet","affects":["trust","risk"]}],
+  "dilemmas":[{"id":"snarvei_i_riggen","title":"Snarveien","setup":"En erfaren kollega foreslår en rask løsning som avviker fra avtalt oppsett.","choice_axis":"tempo_vs_prosedyre","consequence_axis":"framdrift_vs_sikkerhet","mail_hooks":["job","conflict","consequence"]}],
+  "mail_integration":{"role_scope":"subkultur_arrangementsdrift","mail_profile":"subkultur_arrangementsdrift","can_feed_mail_types":["job","story","conflict","event","followup"],"mail_variables":{"role_title":"Arrangementscrew","category":"subkultur","main_pressure":"tempo_vs_sikkerhet","ethical_axis":"snarvei_vs_prosedyre","status_axis":"crew_tillit_vs_risiko"},"recommended_mail_families":["subkultur_arrangementsdrift"],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"rigg","label":"Rigg"},{"id":"logistikk","label":"Logistikk"},{"id":"sikkerhet","label":"Sikkerhet"}],"ideal_type_problems":[{"id":"tempo_vs_sikkerhet","label":"Tempo vs sikkerhet"}],
+  "notes":["Legacy filename retained for manifest stability; canonical title is Arrangementscrew."]
 }
