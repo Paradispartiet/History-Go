@@ -55,6 +55,22 @@ function isRuntimeGateActivated(tier, offerPolicy, qualificationIds) {
   const actual = new Set(Array.isArray(contract.qualification_ids) ? contract.qualification_ids : []);
   return expected.size === actual.size && [...expected].every((id) => actual.has(id));
 }
+function salaryAuditForTier(tier, tierIndex, salaryByTier) {
+  const contract = getTierCareerContract(tier);
+  if (!contract) {
+    return { applicable: false, key: null, defined: true, value: null, source: 'not_applicable' };
+  }
+  const explicitBand = Number(contract.salary_tier);
+  const key = String(Number.isInteger(explicitBand) && explicitBand >= 1 ? explicitBand : tierIndex + 1);
+  const defined = Object.prototype.hasOwnProperty.call(salaryByTier, key);
+  return {
+    applicable: true,
+    key,
+    defined,
+    value: defined ? Number(salaryByTier[key]) : null,
+    source: Number.isInteger(explicitBand) && explicitBand >= 1 ? 'career_salary_band' : 'badge_tier'
+  };
+}
 
 const badgeIndex = readJson('data/badges/index.json');
 const policy = readJson(POLICY_PATH);
@@ -105,7 +121,6 @@ for (const [lifeId, entry] of Object.entries(lifeStory.roles || {})) {
 const packRows = Array.isArray(rolePackIndex?.roles) ? rolePackIndex.roles : [];
 const careerRules = new Map((careerRulesRaw.careers || []).map((entry) => [String(entry.career_id || ''), entry]));
 const salaryPeriod = String(careerRulesRaw.global_rules?.salary?.period || 'weekly');
-const salarySource = String(careerRulesRaw.global_rules?.salary?.source || 'badge_tier');
 
 const rows = [];
 const coverageErrors = [];
@@ -140,25 +155,30 @@ for (const badgePath of badgeIndex.files || []) {
 
     const careerContract = getTierCareerContract(tier);
     const lifePosition = Boolean(tier?.life_position);
+    const pureLifePosition = Boolean(lifePosition && !careerContract);
     const careerTitle = String(careerContract?.title || title);
-    const splitResolved = Boolean(lifePosition && tier?.career_unlock?.title);
+    const splitResolved = Boolean(lifePosition && (tier?.career_unlock?.title || pureLifePosition));
     const effectiveOfferPolicy = String(careerContract?.policy || policyRow.offer_policy || 'direct');
     const effectiveQualificationIds = Array.isArray(careerContract?.qualification_ids)
       ? careerContract.qualification_ids
       : (policyRow.qualification_ids || []);
 
-    const exactModel = roleModels.find((model) => model.category === badgeId && model.title === careerTitle) || null;
-    const mappedScope = String(
+    const exactModel = careerContract
+      ? roleModels.find((model) => model.category === badgeId && model.title === careerTitle) || null
+      : null;
+    const mappedScope = careerContract ? String(
       titleToScope?.[title] ||
       careerTitleToScope?.[careerTitle] ||
       titleToScope?.[careerTitle] ||
       exactModel?.role_scope ||
       ''
-    );
+    ) : '';
     const runtimePack = mappedScope
       ? packRows.find((pack) => String(pack.category || '') === badgeId && String(pack.role_scope || '') === mappedScope)
       : null;
-    const exactPack = packRows.find((pack) => String(pack.category || '') === badgeId && String(pack.title || '') === careerTitle) || null;
+    const exactPack = careerContract
+      ? packRows.find((pack) => String(pack.category || '') === badgeId && String(pack.title || '') === careerTitle) || null
+      : null;
     const pack = runtimePack || exactPack || null;
     const workGrammar = workGrammars.find((grammar) => grammar.category === badgeId && (
       (mappedScope && grammar.role_scope === mappedScope) ||
@@ -167,9 +187,7 @@ for (const badgePath of badgeIndex.files || []) {
     const life = lifeBindings.find((binding) => binding.badge_id === badgeId && (
       binding.title === title || binding.title === careerTitle
     )) || null;
-    const salaryKey = String(tierIndex + 1);
-    const salaryDefined = Object.prototype.hasOwnProperty.call(salaryByTier, salaryKey);
-    const salary = salaryDefined ? Number(salaryByTier[salaryKey]) : null;
+    const salaryAudit = salaryAuditForTier(tier, tierIndex, salaryByTier);
     const gateActivated = isRuntimeGateActivated(tier, effectiveOfferPolicy, effectiveQualificationIds);
 
     rows.push({
@@ -181,6 +199,7 @@ for (const badgePath of badgeIndex.files || []) {
       title,
       ...policyRow,
       lifePosition,
+      pureLifePosition,
       lifePositionKind: String(tier?.life_position?.kind || ''),
       splitResolved,
       careerTitle,
@@ -194,10 +213,12 @@ for (const badgePath of badgeIndex.files || []) {
       workGrammarPath: workGrammar?.path || null,
       rolePackStatus: String(pack?.status || 'missing'),
       lifeStory: life?.lifeId || null,
-      salaryDefined,
-      salary,
+      salaryApplicable: salaryAudit.applicable,
+      salaryKey: salaryAudit.key,
+      salaryDefined: salaryAudit.defined,
+      salary: salaryAudit.value,
       salaryPeriod,
-      salarySource,
+      salarySource: salaryAudit.source,
       gateActivated
     });
   });
@@ -216,7 +237,7 @@ const resolvedSplitCount = count((row) => row.splitResolved);
 const reviewCount = count((row) => row.action === 'review');
 const keepCount = count((row) => row.action === 'keep');
 const gatedCount = count((row) => row.action === 'keep_with_gate');
-const salaryGapCount = count((row) => !row.salaryDefined);
+const salaryGapCount = count((row) => row.salaryApplicable && !row.salaryDefined);
 const lifeStoryCount = count((row) => Boolean(row.lifeStory));
 const fwgCount = count((row) => row.workGrammar);
 const gateDebtCount = count((row) => row.effectiveOfferPolicy !== 'direct' && !row.gateActivated && !['not_job','review_required'].includes(row.effectiveOfferPolicy));
@@ -231,7 +252,7 @@ const badgeSummary = [...new Set(rows.map((row) => row.badgeId))].map((badgeId) 
     resolvedSplit: own.filter((row) => row.splitResolved).length,
     review: own.filter((row) => row.action === 'review').length,
     gated: own.filter((row) => row.action === 'keep_with_gate').length,
-    salaryGaps: own.filter((row) => !row.salaryDefined).length,
+    salaryGaps: own.filter((row) => row.salaryApplicable && !row.salaryDefined).length,
     life: own.filter((row) => row.lifeStory).length,
     fwg: own.filter((row) => row.workGrammar).length
   };
@@ -240,31 +261,30 @@ const badgeSummary = [...new Set(rows.map((row) => row.badgeId))].map((badgeId) 
 const lines = [];
 lines.push('# Civication Badge Career Matrix');
 lines.push('');
-lines.push('Generated by `node scripts/civication-badge-career-matrix.mjs`. Badge tiers may be jobs, knowledge milestones or employment-independent life positions. `career_unlock` is the explicit bridge when a non-job tier unlocks a separate real Civication job.');
+lines.push('Generated by `node scripts/civication-badge-career-matrix.mjs`. Badge tiers may be jobs, knowledge milestones or employment-independent life positions. `career_unlock` is the explicit bridge when a life position also unlocks a separate real job.');
 lines.push('');
 lines.push('## Contract');
 lines.push('');
 lines.push('- Badge progression is knowledge/life progression, not automatically an employment hierarchy.');
-lines.push('- A tier with `life_position` may remain a deliberately playful status such as Gangster, Popstjerne or Ikon.');
+lines.push('- A pure `life_position` without `career_offer`/`career_unlock` is complete as a non-job state and must never be counted as unresolved career-label debt.');
 lines.push('- `career_unlock.title` is the separate real job opportunity unlocked at the same threshold; accepting/rejecting that job does not erase the life position.');
 lines.push('- Formal employment continues to live in Civication active-position/job state. No active job still means formally unemployed even when a life position is active.');
 lines.push('- `direct` means the mapped career opportunity may be offered directly. Qualification/authorization/appointment policies still fail closed.');
-lines.push('- Policy `not_job/replace` on a life-position label means it must not be used as the job title; it is resolved when an explicit `career_unlock` supplies the real job.');
-lines.push('- Salary is audited against the exact badge tier index used by `calculateWeeklySalary`; missing entries stay visible.');
+lines.push('- Salary applies only to tiers with a career contract. Explicit `salary_tier` selects the accepted job salary band; pure life positions are N/A, not salary gaps.');
 lines.push('');
 lines.push('## Summary');
 lines.push('');
 lines.push(`- Canonical badges: **${badgeSummary.length}**`);
 lines.push(`- Canonical tiers: **${rows.length}**`);
 lines.push(`- Policy rows marked replace: **${replaceCount}**`);
-lines.push(`- Replace rows resolved by explicit life-position → career split: **${resolvedSplitCount}**`);
+lines.push(`- Replace rows resolved by life-position/career separation: **${resolvedSplitCount}**`);
 lines.push(`- Unresolved career-label replacements: **${unresolvedReplaceCount}**`);
 lines.push(`- Keep/direct policy rows: **${keepCount}**`);
 lines.push(`- Keep with qualification/authorization/appointment gate: **${gatedCount}**`);
 lines.push(`- Needs editorial review: **${reviewCount}**`);
 lines.push(`- Active Life Story bindings: **${lifeStoryCount} tier/job bindings**`);
 lines.push(`- FWG-backed tier/runtime bindings: **${fwgCount}**`);
-lines.push(`- Missing exact salary entries: **${salaryGapCount}**`);
+lines.push(`- Missing applicable salary entries: **${salaryGapCount}**`);
 lines.push(`- Gated career unlocks without activated runtime gate: **${gateDebtCount}**`);
 lines.push('');
 lines.push('## Badge-level worklist');
@@ -277,7 +297,7 @@ for (const item of badgeSummary) {
 lines.push('');
 lines.push('## Architecture priority');
 lines.push('');
-lines.push('Do not erase fun status tiers merely because they are not jobs. First decide whether a tier is a useful life position. If yes, keep it and add an evidence-backed `career_unlock` for the employment layer. Replace the visible Badge label only when the label is neither a useful life position nor a defensible job/milestone.');
+lines.push('Do not erase fun status tiers merely because they are not jobs. Keep useful life positions as life positions. Add `career_unlock` only when that milestone genuinely unlocks a separate real job; otherwise no job contract is required.');
 lines.push('');
 lines.push('## Complete tier matrix');
 lines.push('');
@@ -287,9 +307,12 @@ for (const badgeId of badgeSummary.map((item) => item.badgeId)) {
   lines.push('| tier | points | badge/life title | label class | audit action | life position | career title | career policy | role_scope | roleModel | FWG | role pack | Life Story | salary | runtime gate | qualifications |');
   lines.push('| ---: | ---: | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |');
   for (const row of rows.filter((entry) => entry.badgeId === badgeId)) {
-    const salaryText = row.salaryDefined ? `${row.salary} / ${row.salaryPeriod}` : 'MISSING';
+    const salaryText = !row.salaryApplicable
+      ? 'N/A (life position)'
+      : (row.salaryDefined ? `${row.salary} / ${row.salaryPeriod} [${row.salarySource}:${row.salaryKey}]` : 'MISSING');
     const qualifications = row.effectiveQualificationIds?.length ? row.effectiveQualificationIds.join(', ') : '—';
-    lines.push(`| ${row.tierIndex} | ${row.threshold} | ${cell(row.title)} | ${cell(row.kind)} | ${cell(row.action)} | ${row.lifePosition ? `ja (${cell(row.lifePositionKind || 'life_position')})` : 'nei'} | ${cell(row.careerTitle)} | ${cell(row.effectiveOfferPolicy)} | ${cell(row.role_scope || '—')} | ${yesNo(row.roleModel)} | ${yesNo(row.workGrammar)} | ${cell(row.rolePackStatus)} | ${cell(row.lifeStory || '—')} | ${cell(salaryText)} | ${row.gateActivated ? 'aktiv' : (['direct','not_job','review_required'].includes(row.effectiveOfferPolicy) ? 'ikke nødvendig' : 'MANGLER')} | ${cell(qualifications)} |`);
+    const careerTitle = row.pureLifePosition ? '—' : row.careerTitle;
+    lines.push(`| ${row.tierIndex} | ${row.threshold} | ${cell(row.title)} | ${cell(row.kind)} | ${cell(row.action)} | ${row.lifePosition ? `ja (${cell(row.lifePositionKind || 'life_position')})` : 'nei'} | ${cell(careerTitle)} | ${cell(row.effectiveOfferPolicy)} | ${cell(row.role_scope || '—')} | ${yesNo(row.roleModel)} | ${yesNo(row.workGrammar)} | ${cell(row.rolePackStatus)} | ${cell(row.lifeStory || '—')} | ${cell(salaryText)} | ${row.gateActivated ? 'aktiv' : (['direct','not_job','review_required'].includes(row.effectiveOfferPolicy) ? 'ikke nødvendig' : 'MANGLER')} | ${cell(qualifications)} |`);
   }
   lines.push('');
 }
