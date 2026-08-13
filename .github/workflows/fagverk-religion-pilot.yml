@@ -46,6 +46,7 @@ on:
       - 'tests/fagverk-religion-lived-identity-migration-articles-v1.test.mjs'
       - 'tests/fagverk-religion-secular-new-media-articles-v1.test.mjs'
       - 'tests/fagverk-religion-nature-science-ethics-articles-v1.test.mjs'
+      - 'tests/fagverk-religion-completion-state.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-religion-pilot.yml'
@@ -83,6 +84,7 @@ on:
       - 'tests/fagverk-religion-lived-identity-migration-articles-v1.test.mjs'
       - 'tests/fagverk-religion-secular-new-media-articles-v1.test.mjs'
       - 'tests/fagverk-religion-nature-science-ethics-articles-v1.test.mjs'
+      - 'tests/fagverk-religion-completion-state.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-religion-pilot.yml'
   workflow_dispatch:
@@ -150,4 +152,5 @@ jobs:
           node --test tests/fagverk-religion-lived-identity-migration-articles-v1.test.mjs
           node --test tests/fagverk-religion-secular-new-media-articles-v1.test.mjs
           node --test tests/fagverk-religion-nature-science-ethics-articles-v1.test.mjs
+          node --test tests/fagverk-religion-completion-state.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
