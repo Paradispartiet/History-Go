@@ -1,0 +1,35 @@
+{
+  "schema": "civication_lifestory_livelihood_overlays_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-13",
+  "principles": [
+    "Life Story-valg kan føre til et konkret tilbud, men skal aldri betale direkte til wallet.",
+    "Overlay brukes når den eksisterende sceneteksten allerede etablerer en plausibel økonomisk mulighet uten at selve scenefilen må eie økonomimotorens schema.",
+    "Tilbud materialiseres først etter at valget er anvendt og lagret i Life Story Player State.",
+    "Spilleren må fortsatt akseptere livelihood-opportunityen før den blir en inntektsstrøm.",
+    "Life Story-måleren penger forblir en separat narrativ skala og broes aldri til PC-saldo."
+  ],
+  "overlays": [
+    {
+      "id": "arbeidsledig_pub_bekjent_ekstravakt",
+      "role_id": "arbeidsledig",
+      "scene_id": "rytme_01_dagen_flyter",
+      "choice_id": "ta_en_oel_paa_puben",
+      "opportunity": {
+        "kind_id": "casual_shift",
+        "label": "Bekjenten sender deg tips om en ekstravakt",
+        "description": "Senere samme kveld sender bekjenten detaljene til en kort, praktisk ekstravakt på et lokalt arrangement. Det er et tilbud, ikke en jobb — du kan fortsatt takke ja eller nei.",
+        "source": {
+          "type": "lifestory_network",
+          "id": "arbeidsledig_bekjent_pub",
+          "label": "Bekjenten via puben"
+        },
+        "income": { "model": "variable", "min": 2, "max": 5 },
+        "direct_costs": { "fixed": 1 },
+        "metadata": {
+          "narrative_basis": "Bekjenten sier i scenen at han kjenner noen som kanskje trenger folk."
+        }
+      }
+    }
+  ]
+}
