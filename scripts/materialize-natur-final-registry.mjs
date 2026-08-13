@@ -38,18 +38,15 @@ function main() {
 
   const natur = composed.registry?.subjects?.natur;
   if (!natur) throw new Error('Natur mangler i komponert fagverkregister.');
-  if (natur.chapters?.length !== 12) {
-    throw new Error(`Forventet 12 materialiserte Natur-kapitler, fikk ${natur.chapters?.length ?? 0}.`);
-  }
-  if (!natur.chapters.some((chapter) => chapter.id === 'sopp_lav_mikroorganismer')) {
-    throw new Error('Sopp, lav og mikroorganismer mangler i komponert Natur-register.');
-  }
+  if (natur.chapters?.length !== 12) throw new Error(`Forventet 12 materialiserte Natur-kapitler, fikk ${natur.chapters?.length ?? 0}.`);
+  if (!natur.chapters.some((chapter) => chapter.id === 'sopp_lav_mikroorganismer')) throw new Error('Sopp, lav og mikroorganismer mangler i komponert Natur-register.');
 
   status.subjects[statusIndex] = composed.statusEntry;
   writeJson(PATHS.registry, composed.registry);
   writeJson(PATHS.status, status);
-
   console.log(`Materialiserte Natur-sluttfasen statisk: ${natur.chapters.length}/12 kapitler, inkludert sopp/lav/mikroorganismer.`);
 }
 
 main();
+await import('./materialize-sport-arenaer-groundhopper-registry.mjs');
+await import('./materialize-sport-arenaer-groundhopper-status.mjs');
