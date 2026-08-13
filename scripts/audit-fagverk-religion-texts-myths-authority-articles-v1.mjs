@@ -5,15 +5,15 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const AREA_ID = 'west_asian_abrahamic';
+const AREA_ID = 'texts_myths_authority';
 const P = Object.freeze({
   readiness: 'data/fag/religion/religion_university_readiness_v1.json',
   methods: 'data/fag/religion/methods_religion_canonical_v1.json',
   sourceRegistry: 'data/fag/religion/kilder_religion_canonical_v1.json',
-  claims: 'data/fagverk/religion/jodedom-kristendom-islam/claims.json',
+  claims: 'data/fagverk/religion/tekster-myter-autoritet/claims.json',
   articleDir: 'data/fagverk/religion/emneartikler',
   status: 'data/fagverk/subject_status.json',
-  report: 'reports/fagverk/religion-abrahamic-traditions-articles-v1-audit.json'
+  report: 'reports/fagverk/religion-texts-myths-authority-articles-v1-audit.json'
 });
 const REQUIRED_FIELDS = Object.freeze([
   'topic_id', 'title', 'definition', 'historical_or_systemic_background',
@@ -26,9 +26,10 @@ const QUALITY_DIMENSIONS = Object.freeze([
   'correctness_evidence', 'coverage_completion', 'editorial_quality',
   'technical_integrity', 'safety_responsibility', 'maintainability_auditability'
 ]);
-const NEW_METHOD_IDS = Object.freeze([
-  'met_religion_ritual_and_performance_analysis',
-  'met_religion_sociological_institutional_analysis'
+const REQUIRED_AREA_METHOD_IDS = Object.freeze([
+  'met_religion_textual_and_philological_analysis',
+  'met_religion_historical_source_criticism',
+  'met_religion_discourse_and_content_analysis'
 ]);
 const RUNTIME_ROOTS = Object.freeze(['js', 'data/integrations', 'data/historygo', 'data/religion']);
 const abs = (relative) => path.join(ROOT, relative);
@@ -84,7 +85,7 @@ const projection = (report) => ({
   complete: report.complete
 });
 
-export function auditReligionAbrahamicTraditionsArticles({ writeReport = false, checkReport = true } = {}) {
+export function auditReligionTextsMythsAuthorityArticles({ writeReport = false, checkReport = true } = {}) {
   for (const file of Object.values(P).filter((file) => file !== P.report)) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   const readiness = read(P.readiness);
   const methods = read(P.methods);
@@ -98,25 +99,26 @@ export function auditReligionAbrahamicTraditionsArticles({ writeReport = false, 
   assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 48/72');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
-  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'West Asian/Abrahamic skal eie seks unike emner');
-  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', AREA_ID, 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', 'texts_myths_authority']), 'Eksakt åtte Religion-områder skal være komplette');
-  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(12, 18), requiredIds), 'Readiness har feil Abrahamic traditions-emner');
+  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Tekster, myter og autoritet skal eie seks unike emner');
+  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', AREA_ID]), 'Eksakt åtte Religion-områder skal være komplette');
+  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(42), requiredIds), 'Readiness har feil tekster, myter og autoritet-emner');
   assert(readiness.production_progress.standalone_topic_articles_materialized === 48 && readiness.production_progress.standalone_topic_articles_remaining === 24, 'Religion skal stå på 48/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
-  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'West Asian/Abrahamic-området er ikke korrekt merket komplett');
+  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Tekster, myter og autoritet-området er ikke korrekt merket komplett');
 
   const expectedFiles = requiredIds.map((id) => `${id}.json`).sort();
   const actualFiles = fs.readdirSync(abs(P.articleDir)).filter((file) => requiredIds.includes(file.replace(/\.json$/, ''))).sort();
-  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per Abrahamic traditions-emne');
+  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per Tekster, myter og autoritet-emne');
   const articles = actualFiles.map((file) => read(`${P.articleDir}/${file}`));
   assert(isDeepStrictEqual(articles.map((article) => article.topic_id).sort(), [...requiredIds].sort()), 'Artiklene dekker ikke eksakt 6/6 emner');
 
-  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til Abrahamic traditions-claims');
+  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til Tekster, myter og autoritet-claims');
   assert(claimsDocument.schema === 'history_go_religion_topic_claims_v1' && claimsDocument.area_id === AREA_ID, 'Claimdokumentet har feil schema eller område');
+  assert(Object.values(claimsDocument.source_policy || {}).every(Boolean), 'Batchens tekst-, myte-, autoritets- eller representasjonsvern er ikke låst');
   const sourceById = new Map(claimsDocument.sources.map((source) => [source.id, source]));
   const claimById = new Map(claimsDocument.claims.map((claim) => [claim.id, claim]));
-  assert(sourceById.size === 20, 'West Asian/Abrahamic skal ha 20 unike kilderegistreringer');
-  assert(claimById.size === 36, 'West Asian/Abrahamic skal ha 36 unike claims');
+  assert(sourceById.size === 20, 'Tekster, myter og autoritet skal ha 20 unike kilderegistreringer');
+  assert(claimById.size === 36, 'Tekster, myter og autoritet skal ha 36 unike claims');
   assert(claimsDocument.sources.every((source) => /^https:\/\//.test(source.url) && source.publisher && source.author && source.title && source.source_location?.length >= 50), 'En kilde mangler HTTPS eller presis metadata');
   assert(claimsDocument.claims.every((claim) => requiredIds.includes(claim.topic_id) && claim.claim.length >= 100 && claim.source_ids?.every((id) => sourceById.has(id))), 'En claim er for kort, feilplassert eller har uløst kilde');
 
@@ -172,7 +174,7 @@ export function auditReligionAbrahamicTraditionsArticles({ writeReport = false, 
   assert(usedSourceIds.size === 20, 'Alle 20 registrerte kilder skal være brukt');
   const canonicalMethods = new Map(methods.methods.map((method) => [method.method_id, method]));
   assert([...usedMethodIds].every((id) => canonicalMethods.get(id)?.university_matrix_status === 'materialized'), 'En brukt metode er uløst eller ikke materialisert');
-  assert(NEW_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'De to nye praksis- og institusjonsmetodene er ikke materialisert og brukt');
+  assert(REQUIRED_AREA_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'Områdets tekst-, kildekritikk- og diskursmetoder er ikke materialisert og brukt');
   assert(readiness.production_progress.required_methods_materialized === 18 && readiness.production_progress.required_methods_remaining === 0, 'Religion skal stå på 18/18 metoder');
 
   const allMaterializedIds = readiness.production_progress.materialized_topic_ids;
@@ -203,27 +205,28 @@ export function auditReligionAbrahamicTraditionsArticles({ writeReport = false, 
   const totalEditorialWordCount = Object.values(articleWordCounts).reduce((sum, value) => sum + value, 0);
   const qualityScores = Object.fromEntries(QUALITY_DIMENSIONS.map((dimension) => [dimension, Math.min(...articles.map((article) => article.quality_review.scores[dimension]))]));
   const qualityTotal = Object.values(qualityScores).reduce((sum, value) => sum + value, 0);
-  const complete = articles.length === 6 && usedClaimIds.size === 36 && usedSourceIds.size === 20 && NEW_METHOD_IDS.every((id) => usedMethodIds.has(id)) && qualityTotal >= 27;
+  const complete = articles.length === 6 && usedClaimIds.size === 36 && usedSourceIds.size === 20 && REQUIRED_AREA_METHOD_IDS.every((id) => usedMethodIds.has(id)) && qualityTotal >= 27;
   const report = {
     schema: 'history_go_fagverk_religion_topic_articles_batch_audit_v1',
     version: '1.0.0',
-    status: complete ? 'religion_abrahamic_traditions_articles_complete' : 'religion_abrahamic_traditions_articles_in_progress',
+    status: complete ? 'religion_texts_myths_authority_articles_complete' : 'religion_texts_myths_authority_articles_in_progress',
     generatedFrom: P,
     subject: { id: 'religion', areaId: AREA_ID, editorialStatus: status.editorialStatus, nextGate: status.nextGate, completeReady: false },
-    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 3, totalUniversityAreaCount: 12, completedTopicCount: 18, totalTopicCount: 72, articleIds: requiredIds },
+    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 8, totalUniversityAreaCount: 12, completedTopicCount: 48, totalTopicCount: 72, articleIds: requiredIds },
     depth: { minimumWordsPerArticle: readiness.topic_article_contract.minimum_editorial_words_per_article, totalEditorialWordCount, articleWordCounts, scenarioCounts },
     evidence: { registeredSourceCount: sourceById.size, registeredClaimCount: claimById.size, usedSourceCount: usedSourceIds.size, usedClaimCount: usedClaimIds.size, allClaimsResolve: true, allSourcesResolve: true },
-    methods: { requiredMethodCount: readiness.required_method_ids.length, materializedRequiredMethodCount: readiness.production_progress.required_methods_materialized, newlyMaterializedMethodIds: NEW_METHOD_IDS, usedMethodIds: [...usedMethodIds].sort() },
+    methods: { requiredMethodCount: readiness.required_method_ids.length, materializedRequiredMethodCount: readiness.production_progress.required_methods_materialized, requiredAreaMethodIds: REQUIRED_AREA_METHOD_IDS, usedMethodIds: [...usedMethodIds].sort() },
     editorial: { allReligionArticleCountReviewed: allArticles.length, exactParagraphDuplicates: 0, maximumFiveGramJaccard: Math.max(...similarities.map((item) => item.score)), pairwiseSimilarities: similarities, runtimeReferences },
     quality: { dimensions: qualityScores, total: qualityTotal, threshold: 27, minimumDimension: 4, criticalFlags: [], conclusion: 'high_quality' },
     gates: {
-      exactSixAbrahamicTraditionsArticles: true,
+      exactSixTextsMythsAuthorityArticles: true,
       allArticlesMeetMinimumWordDepth: true,
       allThirtySixClaimsResolveAndAreUsed: true,
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
-      twoNewPracticeInstitutionMethodsMaterializedAndLinked: true,
+      textualHistoricalAndDiscourseMethodsMaterializedAndLinked: true,
       allFortyEightReligionArticlesReviewedForEditorialDiversity: true,
+      mythCanonAuthorityLawAndTranslationBoundariesLocked: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,
       noPrematureAhaRuntimeActivation: true,
@@ -240,14 +243,13 @@ export function auditReligionAbrahamicTraditionsArticles({ writeReport = false, 
   if (checkReport) assert(isDeepStrictEqual(read(P.report), committed), `${P.report} er utdatert`);
   return { report: committed };
 }
-
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const { report } = auditReligionAbrahamicTraditionsArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
-    console.log(`Religion Abrahamic traditions OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
+    const { report } = auditReligionTextsMythsAuthorityArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
+    console.log(`Religion tekster, myter og autoritet OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
   } catch (error) {
-    console.error(`Religion Abrahamic traditions FEIL: ${error.message}`);
+    console.error(`Religion tekster, myter og autoritet FEIL: ${error.message}`);
     process.exitCode = 1;
   }
 }

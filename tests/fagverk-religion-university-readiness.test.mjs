@@ -17,7 +17,7 @@ test('Religion har en låst universitetsmatrise uten for tidlig complete-status'
   });
 });
 
-test('Religion har fullført sju områder, men forblir låst på 42/72 selv med 18/18 metoder', () => {
+test('Religion har fullført åtte områder, men forblir låst på 48/72 selv med 18/18 metoder', () => {
   const { report } = auditReligionUniversityReadiness();
   assert.equal(report.areaStatuses.theory_method, 'complete');
   assert.equal(report.areaStatuses.history_comparison, 'complete');
@@ -26,11 +26,12 @@ test('Religion har fullført sju områder, men forblir låst på 42/72 selv med 
   assert.equal(report.areaStatuses.east_asian_religions, 'complete');
   assert.equal(report.areaStatuses.indigenous_sami, 'complete');
   assert.equal(report.areaStatuses.ritual_materiality_space, 'complete');
-  assert.equal(report.gaps.standaloneTopicArticlesMaterialized, 42);
-  assert.equal(report.gaps.standaloneTopicArticlesRemaining, 30);
+  assert.equal(report.areaStatuses.texts_myths_authority, 'complete');
+  assert.equal(report.gaps.standaloneTopicArticlesMaterialized, 48);
+  assert.equal(report.gaps.standaloneTopicArticlesRemaining, 24);
   assert.equal(report.gaps.universityMethodsMaterialized, 18);
   assert.equal(report.gaps.universityMethodsRemaining, 0);
-  assert.equal(report.gates.firstSevenUniversityAreasCompleteAtHighQuality, true);
+  assert.equal(report.gates.firstEightUniversityAreasCompleteAtHighQuality, true);
   assert.equal(report.subject.completeReady, false);
 });
 
