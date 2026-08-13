@@ -67,7 +67,7 @@ for (const expected of ROLES) {
 }
 
 const psychMapping = mappings.careers.psykologi;
-assert.strictEqual(psychMapping.implementation_status, 'entry_guidance_clinical_and_leadership_ladders_implemented');
+assert.strictEqual(psychMapping.implementation_status, 'complete_canonical_ladder_implemented');
 for (const expected of ROLES) {
   assert.strictEqual(psychMapping.title_to_role_scope[expected.title], expected.scope,
     `${expected.title}: Badge mapping skal peke på canonical scope`);
@@ -95,7 +95,6 @@ const leaderBoundary = JSON.stringify(readJson('data/Civication/workGrammars/psy
 assert.ok(leaderBoundary.includes('diagnostisere'));
 assert.ok(leaderBoundary.includes('lederstillingen'));
 
-// Runtime offer gate: points alone never create a regulated or appointed role.
 const originalPushes = [];
 const sandbox = {
   console,
@@ -153,4 +152,4 @@ sandbox.window.CivicationQualifications = { hasAll: (ids) => ids.includes('no_ps
 assert.strictEqual(jobs.pushOffer({ career_id: 'psykologi', title: 'Spesialistpsykolog', threshold: 150 }).ok, true,
   'Spesialistpsykolog krever begge eksplisitte kvalifikasjoner');
 
-console.log('civication psychology clinical career ladder ok: 4 gated roles -> 4 distinct scopes/FWG/Life Stories');
+console.log('civication psychology clinical career ladder ok: 4 gated roles remain distinct inside complete 13-tier ladder');

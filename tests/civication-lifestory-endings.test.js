@@ -48,8 +48,6 @@ function playFullWeek(content, pick) {
 const foerste = (s) => s.valg[0].id;
 const siste = (s) => s.valg[s.valg.length - 1].id;
 
-// Forventede slutter for de to deterministiske mønstrene (kalibrert mot målt
-// sluttilstand): forsiktig/ærlig => en «god» slutt, hensynsløst => en «hard».
 const FORVENTET = {
   arbeidsledig: { foerste: "bygget_kompetanse", siste: "kom_i_jobb" },
   renholder: { foerste: "fagstolt", siste: "usynlig_forbigaatt" },
@@ -61,7 +59,9 @@ const FORVENTET = {
   psykolog: { foerste: "trygg_og_samarbeidende", siste: "kontroll_foran_allianse" },
   spesialistpsykolog: { foerste: "kompleksitet_med_ydmykhet", siste: "ekspertrollen_lukket_rommet" },
   fagansvarlig: { foerste: "kvalitet_som_laering", siste: "prosedyren_som_skjold" },
-  klinikkleder: { foerste: "retning_med_baerekraft", siste: "tallene_vant" }
+  klinikkleder: { foerste: "retning_med_baerekraft", siste: "tallene_vant" },
+  forsker_psykologi: { foerste: "etterprovbar_forsker", siste: "resultatet_foran_metoden" },
+  professor_psykologi: { foerste: "miljo_som_taler_imot_deg", siste: "professoren_som_tyngdepunkt" }
 };
 
 for (const roleId of Object.keys(manifest.roles)) {
