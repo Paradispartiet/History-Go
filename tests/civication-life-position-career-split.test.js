@@ -176,7 +176,9 @@ assert.strictEqual(resolver.resolveCareerRoleScope({ career_id: 'subkultur', tit
 const matrixOutput = execFileSync(process.execPath,
   [path.join(ROOT, 'scripts/civication-badge-career-matrix.mjs'), '--check'],
   { cwd: ROOT, encoding: 'utf8' });
-assert.match(matrixOutput, /11 life-position splits resolved/,
-  'Badge Career Matrix skal rapportere Subkultur som løst split, ikke som 11 slettbare livsposisjoner');
+const splitMatch = matrixOutput.match(/(\d+) life-position splits resolved/);
+assert.ok(splitMatch, 'Badge Career Matrix skal rapportere antall løste life-position-splitter');
+assert.ok(Number(splitMatch[1]) >= 11,
+  'Badge Career Matrix skal fortsatt rapportere minst de 11 Subkultur-splittene som løst når andre badges også ryddes');
 
 console.log('civication life-position/career split ok: Subkultur keeps 11 life positions and unlocks 11 separate jobs');
