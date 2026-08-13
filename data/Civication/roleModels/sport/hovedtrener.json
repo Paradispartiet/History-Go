@@ -1,120 +1,16 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "sport",
-    "badge_name": "Sport & lek",
-    "tier_label": "Hovedtrener",
-    "tier_threshold": 190
-  },
-  "category": "sport",
-  "role_scope": "hovedtrener",
-  "role_id": "sport_hovedtrener",
-  "title": "Hovedtrener",
-  "core_narrative": [
-    "I Civication er Hovedtrener en praktisk rolle i Sport & lek der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til fotball, hockey."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For kroppen som tenker i bevegelse. Lek er kulturens første språk – og dens siste frihet."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For kroppen som tenker i bevegelse. Lek er kulturens første språk – og dens siste frihet."
-    ],
-    "history_go_badges": [
-      "sport"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "hovedtrener",
-    "mail_profile": "sport_hovedtrener",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Hovedtrener",
-      "category": "sport",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: sport / Hovedtrener."
-  ]
+  "schema":"civication_role_model_v1","version":2,
+  "source":{"badge_file":"data/badges/sport.json","badge_id":"sport","badge_name":"Sport & lek","tier_label":"Hovedtrener","tier_threshold":190,"evidence_ref":"data/Civication/sportCareerLifeEvidence.json"},
+  "category":"sport","role_scope":"sport_trener","role_id":"sport_hovedtrener","title":"Hovedtrener",
+  "core_narrative":["Du har hovedansvar for et treneropplegg og må gjøre sportslig retning, prioriteringer og ansvar forståelige for utøvere og trenerstab. Rollen kombinerer faglig trenerarbeid med koordinering og resultatansvar, men gir bare den myndigheten som følger det faktiske oppdraget."],
+  "work_life":{"daily_work":["Sette sportslig plan for treningsuke, konkurranse og utviklingsmål.","Fordele oppgaver i trener- og støtteapparat og følge opp gjennomføring.","Ta eller forberede sportslige uttaksbeslutninger når mandatet gir ansvar for dette.","Evaluere prestasjon, belastning, samarbeidsklima og behov for endring."],"responsibilities":["Skape tydelig sportslig retning og konsistente beslutningskriterier.","Sikre at trenerstaben arbeider innen tydelige roller og faggrenser.","Håndtere prestasjonspress uten å ofre forsvarlig oppfølging eller likebehandling.","Kommunisere vanskelige uttak og prioriteringer på en begrunnet måte."],"work_environment":["Klubb, lag eller annen organisert idrett der en konkret arbeidsgiver eller oppdragsgiver har gitt hovedtreneransvar."],"status_position":["Hovedtreneren leder det sportslige trenerarbeidet innen avtalt mandat, men er ikke automatisk sportssjef, arbeidsgiver, medisinsk ansvarlig eller landslagsmyndighet."]},
+  "career_path":{"entry_from":["Trenererfaring, relevante kvalifikasjoner og konkret hovedtreneransettelse eller oppdrag."],"progression_to":["Større hovedtreneroppdrag, sportslig ledelse eller spesialisert treneransvar gjennom nye faktiske avtaler."],"possible_promotions":["Større stab, høyere konkurransenivå eller bredere sportslig mandat."],"possible_exits":["Sportssjef, trenerutvikling, analyse, støtteapparat eller annen jobb."],"career_risks":["Uklare uttakskriterier, kortsiktig resultatjag, dårlig delegering, rolleblanding og ansvar uten tilstrekkelig faglig grunnlag."]},
+  "required_knowledge":{"education_basis":["Faktiske trenerkrav følger idrett, nivå, forbund og arbeidsgiver; canonical kvalifikasjonsport må være oppfylt."],"skills":["sportslig planlegging","stab- og rollekoordinering","uttaksbeslutninger","prestasjonsevaluering","kommunikasjon under press"],"category_knowledge":["Idrettens regler, treningsmetodikk, konkurranselogikk, spiller- eller utøverutvikling og organisasjonsstruktur."],"history_go_badges":["sport"],"place_connections":[],"people_connections":[]},
+  "challenges":[{"id":"resultat_vs_utvikling","title":"Resultatkrav mot utviklingsplan","description":"Ledelsen krever raskt resultat samtidig som gruppen trenger et lengre utviklingsløp.","pressure":"kortsiktig_resultat_vs_langsiktig_utvikling","affects":["performance","trust","development"]},{"id":"uttak_og_garderobe","title":"Uttak påvirker gruppa","description":"Et sportslig begrunnet uttak kan skape uro og svekke tilliten i gruppa.","pressure":"sportslig_prioritering_vs_gruppedynamikk","affects":["trust","performance","relationships"]}],
+  "dilemmas":[{"id":"stjerne_vs_plan","title":"Stjerne eller plan","setup":"En profil forventes å starte, men trenings- og prestasjonsgrunnlaget peker mot en annen løsning.","choice_axis":"statuspress_vs_sportslig_kriterium","consequence_axis":"kort_ro_vs_beslutningstillit","mail_hooks":["job","people","conflict"]},{"id":"stab_uenig","title":"Uenighet i trenerstaben","setup":"En trener i staben er tydelig uenig i en sentral beslutning før konkurranse.","choice_axis":"hurtig_enighet_vs_faglig_motstand","consequence_axis":"fremdrift_vs_kvalitet","mail_hooks":["job","conflict","followup"]}],
+  "authority_boundaries":{"can":["lede og fordele trenerarbeid innen eget mandat","ta sportslige lag- eller uttaksbeslutninger når oppdraget eksplisitt gir dette ansvaret","sette trenings- og konkurranseprioriteringer innen organisasjonens rammer"],"cannot":["overstyre medisinsk fagmyndighet","inngå arbeids- eller spillerkontrakter uten fullmakt","utnevne seg selv til sportssjef eller annen lederstilling","garantere landslagsuttak, medalje eller resultat"]},
+  "mail_integration":{"role_scope":"sport_trener","mail_profile":"sport_trener","can_feed_mail_types":["job","story","conflict","event","people","followup","knowledge"],"mail_variables":{"role_title":"Hovedtrener","category":"sport","main_pressure":"kortsiktig_resultat_vs_langsiktig_utvikling","ethical_axis":"statuspress_vs_sportslig_kriterium","status_axis":"sportslig_prioritering_vs_gruppedynamikk"},"recommended_mail_families":[],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"sportslig_ledelse","label":"Sportslig ledelse","description":"Gjøre retning, kriterier og prioriteringer konsistente over tid."},{"id":"stabssamhandling","label":"Stabssamhandling","description":"Fordele ansvar og bruke faglig uenighet konstruktivt."},{"id":"uttaksintegritet","label":"Uttaksintegritet","description":"Gjøre uttak med tydelige kriterier og korrekt mandat."}],
+  "ideal_type_problems":[{"id":"stjernepress","label":"Stjernepress","description":"Status og forventninger utfordrer begrunnede sportslige kriterier."},{"id":"ansvarsglidning","label":"Ansvarsglidning","description":"Hovedtrenerrollen forventes å overta kontrakts-, helse- eller virksomhetsansvar."}],
+  "notes":["Hovedtrener deler canonical role_scope `sport_trener` med Trener for arbeidsverden og mailpakke, men beholder egen rollemodell og høyere ansvarsnivå."]
 }
