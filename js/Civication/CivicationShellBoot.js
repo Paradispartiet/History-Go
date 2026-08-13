@@ -112,9 +112,13 @@
 
   /** @returns {Promise<boolean>} */
   async function ensureCivicationLifePositionRuntimeLoaded() {
-    if (window.CivicationLifePositions?.getLifeContext) return true;
+    if (window.CivicationLifePositions?.getLifeContext) {
+      window.CivicationLifePositions.installEconomyStatusGuard?.();
+      return true;
+    }
     try {
       await loadCivicationScriptOnce("js/Civication/systems/civicationLifePositionRuntime.js");
+      window.CivicationLifePositions?.installEconomyStatusGuard?.();
       return !!window.CivicationLifePositions?.getLifeContext;
     } catch (error) {
       console.warn("[CivicationShellBoot] life position runtime kunne ikke lastes", error);
@@ -231,6 +235,7 @@
       await ensureCivicationLifePositionUiLoaded();
       await ensureCivicationLivelihoodUiLoaded();
 
+      window.CivicationLifePositions?.installEconomyStatusGuard?.();
       if (window.CivicationEconomyEngine?.tickWeekly) window.CivicationEconomyEngine.tickWeekly();
 
       /** @type {{ init?: () => unknown }|undefined} */
