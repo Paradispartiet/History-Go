@@ -12,7 +12,13 @@
     return badges.find((badge) => String(badge?.id || "").trim() === id) || null;
   }
 
-  function findTier(badge, { threshold, title } = {}) {
+  /**
+   * @param {any} badge
+   * @param {{ threshold?: unknown, title?: unknown }} [query]
+   */
+  function findTier(badge, query = {}) {
+    const threshold = query.threshold;
+    const title = query.title;
     const tiers = Array.isArray(badge?.tiers) ? badge.tiers : [];
     const numericThreshold = Number(threshold);
     if (Number.isFinite(numericThreshold)) {
