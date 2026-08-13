@@ -5,15 +5,15 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const AREA_ID = 'indigenous_sami';
+const AREA_ID = 'secular_new_media';
 const P = Object.freeze({
   readiness: 'data/fag/religion/religion_university_readiness_v1.json',
   methods: 'data/fag/religion/methods_religion_canonical_v1.json',
   sourceRegistry: 'data/fag/religion/kilder_religion_canonical_v1.json',
-  claims: 'data/fagverk/religion/samiske-og-andre-urfolksreligioner/claims.json',
+  claims: 'data/fagverk/religion/ikke-religion-nye-religioner-medier/claims.json',
   articleDir: 'data/fagverk/religion/emneartikler',
   status: 'data/fagverk/subject_status.json',
-  report: 'reports/fagverk/religion-indigenous-sami-articles-v1-audit.json'
+  report: 'reports/fagverk/religion-secular-new-media-articles-v1-audit.json'
 });
 const REQUIRED_FIELDS = Object.freeze([
   'topic_id', 'title', 'definition', 'historical_or_systemic_background',
@@ -26,9 +26,10 @@ const QUALITY_DIMENSIONS = Object.freeze([
   'correctness_evidence', 'coverage_completion', 'editorial_quality',
   'technical_integrity', 'safety_responsibility', 'maintainability_auditability'
 ]);
-const NEW_METHOD_IDS = Object.freeze([
-  'met_religion_survey_and_demography',
-  'met_religion_cognitive_and_experimental_analysis'
+const REQUIRED_AREA_METHOD_IDS = Object.freeze([
+  'met_religion_discourse_and_content_analysis',
+  'met_religion_digital_ethnography_and_media_analysis',
+  'met_religion_sociological_institutional_analysis'
 ]);
 const RUNTIME_ROOTS = Object.freeze(['js', 'data/integrations', 'data/historygo', 'data/religion']);
 const abs = (relative) => path.join(ROOT, relative);
@@ -84,7 +85,7 @@ const projection = (report) => ({
   complete: report.complete
 });
 
-export function auditReligionIndigenousSamiArticles({ writeReport = false, checkReport = true } = {}) {
+export function auditReligionSecularNewMediaArticles({ writeReport = false, checkReport = true } = {}) {
   for (const file of Object.values(P).filter((file) => file !== P.report)) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   const readiness = read(P.readiness);
   const methods = read(P.methods);
@@ -98,26 +99,26 @@ export function auditReligionIndigenousSamiArticles({ writeReport = false, check
   assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 66/72');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
-  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Samiske og andre urfolksreligioner skal eie seks unike emner');
-  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', AREA_ID, 'ritual_materiality_space', 'texts_myths_authority', 'society_politics_law', 'lived_identity_migration', 'secular_new_media']), 'Eksakt elleve Religion-områder skal være komplette');
-  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(30, 36), requiredIds), 'Readiness har feil samiske og andre urfolksreligioner-emner');
+  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Ikke-religion, nye religioner og medier skal eie seks unike emner');
+  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', 'texts_myths_authority', 'society_politics_law', 'lived_identity_migration', AREA_ID]), 'Eksakt elleve Religion-områder skal være komplette');
+  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(60), requiredIds), 'Readiness har feil ikke-religion-, nye religioner- og medieemner');
   assert(readiness.production_progress.standalone_topic_articles_materialized === 66 && readiness.production_progress.standalone_topic_articles_remaining === 6, 'Religion skal stå på 66/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
-  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Samiske og andre urfolksreligioner-området er ikke korrekt merket komplett');
+  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Ikke-religion, nye religioner og medier-området er ikke korrekt merket komplett');
 
   const expectedFiles = requiredIds.map((id) => `${id}.json`).sort();
   const actualFiles = fs.readdirSync(abs(P.articleDir)).filter((file) => requiredIds.includes(file.replace(/\.json$/, ''))).sort();
-  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per Samiske og andre urfolksreligioner-emne');
+  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per Ikke-religion, nye religioner og medier-emne');
   const articles = actualFiles.map((file) => read(`${P.articleDir}/${file}`));
   assert(isDeepStrictEqual(articles.map((article) => article.topic_id).sort(), [...requiredIds].sort()), 'Artiklene dekker ikke eksakt 6/6 emner');
 
-  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til Samiske og andre urfolksreligioner-claims');
+  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til Ikke-religion, nye religioner og medier-claims');
   assert(claimsDocument.schema === 'history_go_religion_topic_claims_v1' && claimsDocument.area_id === AREA_ID, 'Claimdokumentet har feil schema eller område');
-  assert(Object.values(claimsDocument.source_policy || {}).every(Boolean), 'Urfolksbatchens kilde-, rettighets- eller representasjonsvern er ikke låst');
+  assert(Object.values(claimsDocument.source_policy || {}).every(Boolean), 'Batchens ikke-religion-, minoritets-, helse-, ekstremisme-, plattform- eller representasjonsvern er ikke låst');
   const sourceById = new Map(claimsDocument.sources.map((source) => [source.id, source]));
   const claimById = new Map(claimsDocument.claims.map((claim) => [claim.id, claim]));
-  assert(sourceById.size === 20, 'Samiske og andre urfolksreligioner skal ha 20 unike kilderegistreringer');
-  assert(claimById.size === 36, 'Samiske og andre urfolksreligioner skal ha 36 unike claims');
+  assert(sourceById.size === 20, 'Ikke-religion, nye religioner og medier skal ha 20 unike kilderegistreringer');
+  assert(claimById.size === 36, 'Ikke-religion, nye religioner og medier skal ha 36 unike claims');
   assert(claimsDocument.sources.every((source) => /^https:\/\//.test(source.url) && source.publisher && source.author && source.title && source.source_location?.length >= 50), 'En kilde mangler HTTPS eller presis metadata');
   assert(claimsDocument.claims.every((claim) => requiredIds.includes(claim.topic_id) && claim.claim.length >= 100 && claim.source_ids?.every((id) => sourceById.has(id))), 'En claim er for kort, feilplassert eller har uløst kilde');
 
@@ -173,7 +174,7 @@ export function auditReligionIndigenousSamiArticles({ writeReport = false, check
   assert(usedSourceIds.size === 20, 'Alle 20 registrerte kilder skal være brukt');
   const canonicalMethods = new Map(methods.methods.map((method) => [method.method_id, method]));
   assert([...usedMethodIds].every((id) => canonicalMethods.get(id)?.university_matrix_status === 'materialized'), 'En brukt metode er uløst eller ikke materialisert');
-  assert(NEW_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'De nye survey-/demografi- og kognitiv-/eksperimentmetodene er ikke materialisert og brukt');
+  assert(REQUIRED_AREA_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'Områdets diskurs-, digitalmedie- og institusjonsmetoder er ikke materialisert og brukt');
   assert(readiness.production_progress.required_methods_materialized === 18 && readiness.production_progress.required_methods_remaining === 0, 'Religion skal stå på 18/18 metoder');
 
   const allMaterializedIds = readiness.production_progress.materialized_topic_ids;
@@ -204,28 +205,28 @@ export function auditReligionIndigenousSamiArticles({ writeReport = false, check
   const totalEditorialWordCount = Object.values(articleWordCounts).reduce((sum, value) => sum + value, 0);
   const qualityScores = Object.fromEntries(QUALITY_DIMENSIONS.map((dimension) => [dimension, Math.min(...articles.map((article) => article.quality_review.scores[dimension]))]));
   const qualityTotal = Object.values(qualityScores).reduce((sum, value) => sum + value, 0);
-  const complete = articles.length === 6 && usedClaimIds.size === 36 && usedSourceIds.size === 20 && NEW_METHOD_IDS.every((id) => usedMethodIds.has(id)) && qualityTotal >= 27;
+  const complete = articles.length === 6 && usedClaimIds.size === 36 && usedSourceIds.size === 20 && REQUIRED_AREA_METHOD_IDS.every((id) => usedMethodIds.has(id)) && qualityTotal >= 27;
   const report = {
     schema: 'history_go_fagverk_religion_topic_articles_batch_audit_v1',
     version: '1.0.0',
-    status: complete ? 'religion_indigenous_sami_articles_complete' : 'religion_indigenous_sami_articles_in_progress',
+    status: complete ? 'religion_secular_new_media_articles_complete' : 'religion_secular_new_media_articles_in_progress',
     generatedFrom: P,
     subject: { id: 'religion', areaId: AREA_ID, editorialStatus: status.editorialStatus, nextGate: status.nextGate, completeReady: false },
-    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 6, totalUniversityAreaCount: 12, completedTopicCount: 36, totalTopicCount: 72, articleIds: requiredIds },
+    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 11, totalUniversityAreaCount: 12, completedTopicCount: 66, totalTopicCount: 72, articleIds: requiredIds },
     depth: { minimumWordsPerArticle: readiness.topic_article_contract.minimum_editorial_words_per_article, totalEditorialWordCount, articleWordCounts, scenarioCounts },
     evidence: { registeredSourceCount: sourceById.size, registeredClaimCount: claimById.size, usedSourceCount: usedSourceIds.size, usedClaimCount: usedClaimIds.size, allClaimsResolve: true, allSourcesResolve: true },
-    methods: { requiredMethodCount: readiness.required_method_ids.length, materializedRequiredMethodCount: readiness.production_progress.required_methods_materialized, newlyMaterializedMethodIds: NEW_METHOD_IDS, usedMethodIds: [...usedMethodIds].sort() },
+    methods: { requiredMethodCount: readiness.required_method_ids.length, materializedRequiredMethodCount: readiness.production_progress.required_methods_materialized, requiredAreaMethodIds: REQUIRED_AREA_METHOD_IDS, usedMethodIds: [...usedMethodIds].sort() },
     editorial: { allReligionArticleCountReviewed: allArticles.length, exactParagraphDuplicates: 0, maximumFiveGramJaccard: Math.max(...similarities.map((item) => item.score)), pairwiseSimilarities: similarities, runtimeReferences },
     quality: { dimensions: qualityScores, total: qualityTotal, threshold: 27, minimumDimension: 4, criticalFlags: [], conclusion: 'high_quality' },
     gates: {
-      exactSixIndigenousSamiArticles: true,
+      exactSixSecularNewMediaArticles: true,
       allArticlesMeetMinimumWordDepth: true,
       allThirtySixClaimsResolveAndAreUsed: true,
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
-      twoFinalSurveyExperimentalMethodsMaterializedAndLinked: true,
+      discourseDigitalMediaAndInstitutionalMethodsMaterializedAndLinked: true,
       allSixtySixReligionArticlesReviewedForEditorialDiversity: true,
-      samiSpecificEvidenceAndKnowledgeRestrictionsLocked: true,
+      nonreligionNewMovementWellnessExtremismMediaAndDigitalBoundariesLocked: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,
       noPrematureAhaRuntimeActivation: true,
@@ -245,10 +246,10 @@ export function auditReligionIndigenousSamiArticles({ writeReport = false, check
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const { report } = auditReligionIndigenousSamiArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
-    console.log(`Religion samiske og andre urfolksreligioner OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
+    const { report } = auditReligionSecularNewMediaArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
+    console.log(`Religion ikke-religion, nye religioner og medier OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
   } catch (error) {
-    console.error(`Religion samiske og andre urfolksreligioner FEIL: ${error.message}`);
+    console.error(`Religion ikke-religion, nye religioner og medier FEIL: ${error.message}`);
     process.exitCode = 1;
   }
 }

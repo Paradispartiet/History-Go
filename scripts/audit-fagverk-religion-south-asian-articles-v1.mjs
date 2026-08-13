@@ -95,13 +95,13 @@ export function auditReligionSouthAsianArticles({ writeReport = false, checkRepo
   assert(status?.editorialStatus === 'chapters_in_progress', 'Religion skal fortsatt stå chapters_in_progress');
   assert(status?.nextGate === 'remaining_religion_area_article_production', 'Religion har feil neste produksjonsport');
   assert(readiness.status === 'matrix_locked_production_in_progress', 'Religion-readiness skal vise pågående produksjon');
-  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 60/72');
+  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 66/72');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
   assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Sør-Asia skal eie seks unike emner');
-  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', AREA_ID, 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', 'texts_myths_authority', 'society_politics_law', 'lived_identity_migration']), 'Eksakt ti Religion-områder skal være komplette');
+  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', AREA_ID, 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', 'texts_myths_authority', 'society_politics_law', 'lived_identity_migration', 'secular_new_media']), 'Eksakt elleve Religion-områder skal være komplette');
   assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(18, 24), requiredIds), 'Readiness har feil Sør-Asia-emner');
-  assert(readiness.production_progress.standalone_topic_articles_materialized === 60 && readiness.production_progress.standalone_topic_articles_remaining === 12, 'Religion skal stå på 60/72 artikler');
+  assert(readiness.production_progress.standalone_topic_articles_materialized === 66 && readiness.production_progress.standalone_topic_articles_remaining === 6, 'Religion skal stå på 66/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
   assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Sør-Asia-området er ikke korrekt merket komplett');
 
@@ -223,7 +223,7 @@ export function auditReligionSouthAsianArticles({ writeReport = false, checkRepo
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
       twoNewFieldInterviewMethodsMaterializedAndLinked: true,
-      allSixtyReligionArticlesReviewedForEditorialDiversity: true,
+      allSixtySixReligionArticlesReviewedForEditorialDiversity: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,
       noPrematureAhaRuntimeActivation: true,

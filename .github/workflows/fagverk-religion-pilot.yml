@@ -27,6 +27,7 @@ on:
       - 'scripts/audit-fagverk-religion-texts-myths-authority-articles-v1.mjs'
       - 'scripts/audit-fagverk-religion-society-politics-law-articles-v1.mjs'
       - 'scripts/audit-fagverk-religion-lived-identity-migration-articles-v1.mjs'
+      - 'scripts/audit-fagverk-religion-secular-new-media-articles-v1.mjs'
       - 'scripts/build-fagverk-release-manifest.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
@@ -42,6 +43,7 @@ on:
       - 'tests/fagverk-religion-texts-myths-authority-articles-v1.test.mjs'
       - 'tests/fagverk-religion-society-politics-law-articles-v1.test.mjs'
       - 'tests/fagverk-religion-lived-identity-migration-articles-v1.test.mjs'
+      - 'tests/fagverk-religion-secular-new-media-articles-v1.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-religion-pilot.yml'
@@ -63,6 +65,7 @@ on:
       - 'scripts/audit-fagverk-religion-texts-myths-authority-articles-v1.mjs'
       - 'scripts/audit-fagverk-religion-society-politics-law-articles-v1.mjs'
       - 'scripts/audit-fagverk-religion-lived-identity-migration-articles-v1.mjs'
+      - 'scripts/audit-fagverk-religion-secular-new-media-articles-v1.mjs'
       - 'tests/fagverk-religion-pilot.test.mjs'
       - 'tests/fagverk-religion-university-readiness.test.mjs'
       - 'tests/fagverk-religion-theory-method-articles-v1.test.mjs'
@@ -75,6 +78,7 @@ on:
       - 'tests/fagverk-religion-texts-myths-authority-articles-v1.test.mjs'
       - 'tests/fagverk-religion-society-politics-law-articles-v1.test.mjs'
       - 'tests/fagverk-religion-lived-identity-migration-articles-v1.test.mjs'
+      - 'tests/fagverk-religion-secular-new-media-articles-v1.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-religion-pilot.yml'
   workflow_dispatch:
@@ -105,6 +109,7 @@ jobs:
           node --check scripts/audit-fagverk-religion-texts-myths-authority-articles-v1.mjs
           node --check scripts/audit-fagverk-religion-society-politics-law-articles-v1.mjs
           node --check scripts/audit-fagverk-religion-lived-identity-migration-articles-v1.mjs
+          node --check scripts/audit-fagverk-religion-secular-new-media-articles-v1.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-religion-pilot.mjs
@@ -119,6 +124,7 @@ jobs:
           node scripts/audit-fagverk-religion-texts-myths-authority-articles-v1.mjs
           node scripts/audit-fagverk-religion-society-politics-law-articles-v1.mjs
           node scripts/audit-fagverk-religion-lived-identity-migration-articles-v1.mjs
+          node scripts/audit-fagverk-religion-secular-new-media-articles-v1.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk and Religion contracts
         run: |
@@ -136,4 +142,5 @@ jobs:
           node --test tests/fagverk-religion-texts-myths-authority-articles-v1.test.mjs
           node --test tests/fagverk-religion-society-politics-law-articles-v1.test.mjs
           node --test tests/fagverk-religion-lived-identity-migration-articles-v1.test.mjs
+          node --test tests/fagverk-religion-secular-new-media-articles-v1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
