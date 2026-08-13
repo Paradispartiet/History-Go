@@ -1,0 +1,227 @@
+{
+  "schema": "civication_life_position_catalog_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-13",
+  "principles": [
+    "Livsposisjoner er selvvalgte og uavhengige av formell jobb.",
+    "Badge-poeng åpner valgmuligheter, men tildeler aldri identitet automatisk.",
+    "Livsposisjon gir ikke autorisasjon, arbeidsgiverutnevnelse, politisk verv eller lønn.",
+    "Sensitive identiteter som tro og politisk tilhørighet skal alltid være eksplisitt selvvalgte.",
+    "Økonomi-, risiko- og historiehooks er narrative signaler og utbetaler ikke inntekt i dagens runtime."
+  ],
+  "badges": [
+    {
+      "badge_id": "historie",
+      "shape": "career_heavy",
+      "career_assessment": "Sterk formell arkiv-, museum-, forsknings- og forvaltningsstige, men lite hverdagsliv rundt historie.",
+      "job_next_moves": ["Behold de dokumenterbare jobbsporene; skill studentstatus tydelig fra jobb og rett den canonicale skrivefeilen Masterstuden i egen patch."],
+      "positions": [
+        {"id":"historievandrer","label":"Historievandrer","threshold":5,"kind":"practice_identity","description":"Du oppsøker steder, spor og lag i byen for å forstå hva som har skjedd der.","hooks":["stedsspor","byvandring","lokale_fortellinger"]},
+        {"id":"lokalhistoriker","label":"Lokalhistoriker","threshold":15,"kind":"knowledge_identity","description":"Du følger lokale historier over tid og blir den folk spør når et sted har en fortid.","hooks":["lokalarkiv","nabolag","uenige_minner"]},
+        {"id":"arkivrotte","label":"Arkivrotte","threshold":60,"kind":"alternative_life_status","description":"Du trives usedvanlig godt mellom mapper, kataloger, mikrofilmer og gamle dokumenter.","hooks":["samlinger","kildejakt","sjeldne_funn"]},
+        {"id":"kulturminnejeger","label":"Kulturminnejeger","threshold":150,"kind":"reputation_status","description":"Du leter etter truede, glemte eller oversette kulturminner og følger hva som skjer med dem.","hooks":["bevaring","felt","vern_og_rivning"]}
+      ]
+    },
+    {
+      "badge_id": "religion",
+      "shape": "mixed",
+      "career_assessment": "Tidlige tiers er gode livs-/kunnskapsposisjoner; senere tiers blander fagstatus og jobb.",
+      "job_next_moves": ["Behold forskning, formidling, museum og rådgivning som egne jobbspor; trosidentitet skal aldri være jobbkrav eller automatisk slutning."],
+      "positions": [
+        {"id":"trosstedsvandrer","label":"Trosstedsvandrer","threshold":5,"kind":"practice_identity","description":"Du besøker tros- og livssynssteder med nysgjerrighet og respekt.","hooks":["hellige_rom","sted","etikette"]},
+        {"id":"livssynsutforsker","label":"Livssynsutforsker","threshold":15,"kind":"knowledge_identity","description":"Du sammenligner hvordan mennesker gir mening til liv, død, fellesskap og ritualer.","hooks":["samtaler","lesning","ny_forstaelse"]},
+        {"id":"pilegrim","label":"Pilegrim","threshold":60,"kind":"self_selected_identity","description":"Du velger en reise der sted, praksis og mening er viktigere enn effektiv transport.","hooks":["reise","ritual","moter"]},
+        {"id":"dialogbygger","label":"Dialogbygger","threshold":150,"kind":"community_identity","description":"Du får ulike tros- og livssynsmiljøer til å møtes uten å late som forskjeller forsvinner.","hooks":["dialog","fellesskap","tillit"]}
+      ]
+    },
+    {
+      "badge_id": "vitenskap",
+      "shape": "career_heavy",
+      "career_assessment": "Nesten ren akademisk karriere; Badge trenger et parallelt vitenskapsliv for folk uten akademisk ansettelse.",
+      "job_next_moves": ["Behold akademiske kvalifikasjonsporter; vurder tekniske, laboratorie-, IT- og ingeniørspor separat der fagverket faktisk dekker dem."],
+      "positions": [
+        {"id":"folkeforsker","label":"Folkeforsker","threshold":5,"kind":"practice_identity","description":"Du bidrar til observasjoner, registreringer eller datainnsamling uten at forskning er jobben din.","hooks":["observasjon","data","funn"]},
+        {"id":"maker","label":"Maker","threshold":15,"kind":"practice_identity","description":"Du bygger, reparerer og tester ting fordi du må vite hvordan de virker.","hooks":["verksted","prototyper","havari"]},
+        {"id":"stjernekikker","label":"Stjernekikker","threshold":25,"kind":"hobby_identity","description":"Du følger nattehimmelen, været og neste mulighet til å se noe langt borte.","hooks":["astronomi","natt","sjeldent_fenomen"]},
+        {"id":"labnerd","label":"Labnerd","threshold":60,"kind":"alternative_life_status","description":"Du elsker målinger, oppsett, kontrollvariabler og repeterbare resultater.","hooks":["eksperiment","utstyr","feilkilder"]},
+        {"id":"teknologibygger","label":"Teknologibygger","threshold":115,"kind":"practice_identity","description":"Du kombinerer kode, elektronikk eller mekanikk til små systemer som løser virkelige problemer.","hooks":["kode","bygging","teknisk_gjeld"]}
+      ]
+    },
+    {
+      "badge_id": "filosofi",
+      "shape": "life_heavy",
+      "career_assessment": "Tidlige tiers fungerer bedre som livsposisjoner enn jobber; akademiske roller må fortsatt være kvalifikasjonsstyrte.",
+      "job_next_moves": ["Skill livsfilosofi, debatt og lesing fra akademisk filosofi; undersøk senere dokumenterte jobbspor innen etikk, utredning, undervisning og forskning."],
+      "positions": [
+        {"id":"livsgrubler","label":"Livsgrubler","threshold":5,"kind":"hobby_identity","description":"Du bruker mye tid på spørsmål som ikke blir mindre bare fordi hverdagen fortsetter.","hooks":["hverdag","sporsmal","tvilen"]},
+        {"id":"sofafilosof","label":"Sofafilosof","threshold":10,"kind":"alternative_life_status","description":"Du kan gjøre en vanlig kveld til en lang diskusjon om fri vilje, rettferdighet eller mening.","hooks":["samtale","venner","nattlig_diskusjon"]},
+        {"id":"lesesirkelmenneske","label":"Lesesirkelmenneske","threshold":25,"kind":"community_identity","description":"Du møter opp, leser og lar andre utfordre tolkningen du trodde var ferdig.","hooks":["lesesirkel","tekst","tolkningskrangel"]},
+        {"id":"salongfilosof","label":"Salongfilosof","threshold":115,"kind":"reputation_status","description":"Du samler mennesker rundt ideer og uenighet og blir kjent for å holde samtalen i gang.","hooks":["vertskap","ideer","nettverk"]}
+      ]
+    },
+    {
+      "badge_id": "kunst",
+      "shape": "career_strong",
+      "career_assessment": "God museum-/galleri-/kuratorstige, men kunstlivet uten ansettelse mangler.",
+      "job_next_moves": ["Behold jobbsporet; kunstnerliv, samlerliv og scene-/ateliermiljø bør kunne eksistere uavhengig av ansettelse."],
+      "positions": [
+        {"id":"gallerivanker","label":"Gallerivanker","threshold":5,"kind":"hobby_identity","description":"Du stikker innom gallerier også når du ikke har planlagt det.","hooks":["galleri","utstilling","oppdagelse"]},
+        {"id":"vernissagegjenger","label":"Vernissagegjenger","threshold":15,"kind":"social_identity","description":"Du vet hvilke åpninger som skjer og hvor samtalen fortsetter etterpå.","hooks":["vernissage","nettverk","sosial_kode"]},
+        {"id":"gatekunstjeger","label":"Gatekunstjeger","threshold":25,"kind":"practice_identity","description":"Du følger vegger, underganger og midlertidige spor før de males over.","hooks":["gatekunst","foto","forsvunnet_verk"]},
+        {"id":"ateliermenneske","label":"Ateliermenneske","threshold":60,"kind":"community_identity","description":"Du henger i og rundt atelierer, materialer og halvferdige verk uten at kunst nødvendigvis er jobben din.","hooks":["atelier","materialer","samarbeid"]},
+        {"id":"kunstsamler","label":"Kunstsamler","threshold":115,"kind":"livelihood_sensitive_status","description":"Du bygger en samling over tid; økonomien skal senere avgjøre hvor ambisiøs den faktisk kan bli.","hooks":["samling","marked","likviditet"]}
+      ]
+    },
+    {
+      "badge_id": "scenekunst",
+      "shape": "mixed",
+      "career_assessment": "Publikum er allerede en livsposisjon; resten går raskt over i jobb.",
+      "job_next_moves": ["Behold teknikk, produksjon, utøver- og lederjobber; profesjonell utøverstatus må aldri følge automatisk av publikumspoeng."],
+      "positions": [
+        {"id":"premieregjenger","label":"Premieregjenger","threshold":5,"kind":"hobby_identity","description":"Du liker første kveld, nervene i rommet og samtalen etterpå.","hooks":["premiere","publikum","slakt_eller_suksess"]},
+        {"id":"teatergjenganger","label":"Teatergjenganger","threshold":15,"kind":"hobby_identity","description":"Du ser nok forestillinger til å kjenne scenene, ensembletypene og de tilbakevendende diskusjonene.","hooks":["teater","repertoar","favorittscene"]},
+        {"id":"improentusiast","label":"Improentusiast","threshold":25,"kind":"practice_identity","description":"Du sier ja til rare premisser og tåler at ting går helt feil foran andre.","hooks":["impro","fellesskap","sceneangst"]},
+        {"id":"scenehenger","label":"Scenehenger","threshold":60,"kind":"social_identity","description":"Du kjenner folk foran, bak og rundt scenen uten nødvendigvis å ha det som jobb.","hooks":["backstage","nettverk","nytt_prosjekt"]},
+        {"id":"festivalveteran","label":"Festivalveteran","threshold":115,"kind":"reputation_status","description":"Du vet hvordan man overlever en tett festivaluke og hvilke forestillinger som blir stående.","hooks":["festival","reise","utsolgt"]}
+      ]
+    },
+    {
+      "badge_id": "by",
+      "shape": "career_heavy",
+      "career_assessment": "Svært sterk plan-/arkitektur-/forvaltningsstige, men nesten ingen identitet for folk som bare lever byen intenst.",
+      "job_next_moves": ["Behold jobbsporet; bygg livsspor rundt nabolag, byvandring, hverdagsurbanisme og lokalt engasjement."],
+      "positions": [
+        {"id":"byvandrer","label":"Byvandrer","threshold":5,"kind":"practice_identity","description":"Du lærer byen med beina og legger merke til forbindelser andre passerer.","hooks":["ruter","steder","omvei"]},
+        {"id":"nabolagskjenner","label":"Nabolagskjenner","threshold":10,"kind":"community_identity","description":"Du kjenner rytmen, stedene og de små endringene i et bestemt område.","hooks":["nabolag","folk","lokal_endring"]},
+        {"id":"byromsnerd","label":"Byromsnerd","threshold":25,"kind":"hobby_identity","description":"Benker, snarveier, fortau og rare restarealer er mer interessante enn de burde være.","hooks":["byrom","detaljer","godt_og_darlig_byrom"]},
+        {"id":"byflanor","label":"Byflanør","threshold":60,"kind":"alternative_life_status","description":"Du går uten effektivt mål og lar byen bestemme hva dagen blir.","hooks":["vandring","observasjon","tilfeldig_mote"]},
+        {"id":"urbanist","label":"Urbanist","threshold":115,"kind":"knowledge_identity","description":"Du ser bolig, transport, handel, arkitektur og politikk som deler av samme levende system.","hooks":["bydebatt","system","konflikt"]}
+      ]
+    },
+    {
+      "badge_id": "musikk",
+      "shape": "mixed",
+      "career_assessment": "Teknikk og produksjon er jobb, mens artiststatus og berømmelse også fungerer som livsposisjon.",
+      "job_next_moves": ["Behold produksjons- og utøverspor; headliner, stjerneartist og popstjerne bør få status-/levevei-konsekvenser i tillegg til eventuelle kontrakter."],
+      "positions": [
+        {"id":"konsertgjenger","label":"Konsertgjenger","threshold":5,"kind":"hobby_identity","description":"Du går på konserter fordi live-øyeblikket er en egen del av livet.","hooks":["konsert","scene","ny_favoritt"]},
+        {"id":"musikknerd","label":"Musikknerd","threshold":15,"kind":"knowledge_identity","description":"Du graver deg ned i sjangre, krediteringer, utgivelser og produksjonsdetaljer.","hooks":["katalog","lytting","kaninhull"]},
+        {"id":"plategraver","label":"Plategraver","threshold":25,"kind":"practice_identity","description":"Du leter gjennom brukthyller og backkataloger etter noe du ikke visste du trengte.","hooks":["plater","samling","sjeldent_funn"]},
+        {"id":"scenehenger","label":"Scenehenger","threshold":60,"kind":"social_identity","description":"Du kjenner konsertstedene og folkene rundt dem og blir ofte lenger enn planlagt.","hooks":["scene","nettverk","nytt_band"]},
+        {"id":"festivalveteran","label":"Festivalveteran","threshold":115,"kind":"reputation_status","description":"Du har sterke meninger om program, lydforhold og hvilke konserter som blir stående.","hooks":["festival","reise","programkrasj"]}
+      ]
+    },
+    {
+      "badge_id": "litteratur",
+      "shape": "mixed",
+      "career_assessment": "Leser-/forfatterstatus blandes med jobb og gir stort potensial for ikke-lineært leser-, skrive- og litteraturmiljøliv.",
+      "job_next_moves": ["Behold redaksjon, forlag og profesjonell skriving der det er reelt; undersøk bibliotek, bokhandel og litteraturhus som egne jobbspor."],
+      "positions": [
+        {"id":"bokorm","label":"Bokorm","threshold":5,"kind":"hobby_identity","description":"Du leser litt for mye og har alltid minst én bok som burde vært ferdig.","hooks":["lesing","hjem","bokstabel"]},
+        {"id":"biblioteksvanker","label":"Biblioteksvanker","threshold":10,"kind":"place_identity","description":"Biblioteket er ikke bare et sted du låner bøker, men et sted du faktisk oppholder deg.","hooks":["bibliotek","sted","tilfeldig_funn"]},
+        {"id":"bokklubbmenneske","label":"Bokklubbmenneske","threshold":25,"kind":"community_identity","description":"Lesing blir sosialt, og plutselig må du forsvare hvorfor du likte den boka.","hooks":["bokklubb","venner","uenighet"]},
+        {"id":"skrivebordspoet","label":"Skrivebordspoet","threshold":40,"kind":"practice_identity","description":"Du skriver uten å måtte kalle deg profesjonell forfatter.","hooks":["skriving","notater","skrivesperre"]},
+        {"id":"smaforlagsnerd","label":"Småforlagsnerd","threshold":85,"kind":"knowledge_identity","description":"Du følger små forlag, tidsskrifter, opplesninger og utgivelser som sjelden ligger fremst i butikken.","hooks":["småforlag","arrangement","ny_stemme"]}
+      ]
+    },
+    {
+      "badge_id": "natur",
+      "shape": "mixed",
+      "career_assessment": "De første nivåene er livsnære, mens profesjonelle natur-/miljøroller krever egne karriereporter.",
+      "job_next_moves": ["Behold naturforvaltning og forskning som kvalifikasjonsstyrt jobb; utvid frivillighet, feltregistrering og friluftsliv som livsposisjoner."],
+      "positions": [
+        {"id":"turgaer","label":"Turgåer","threshold":5,"kind":"hobby_identity","description":"Du går ut fordi kroppen og hodet fungerer annerledes når du beveger deg i landskapet.","hooks":["tur","sti","vær"]},
+        {"id":"fuglekikker","label":"Fuglekikker","threshold":10,"kind":"practice_identity","description":"Du lærer lyder, trekk, steder og kunsten å se noe før det forsvinner.","hooks":["fugl","observasjon","sjeldent_funn"]},
+        {"id":"artsjeger","label":"Artsjeger","threshold":25,"kind":"practice_identity","description":"Du samler observasjoner og prøver å finne én art til uten at listen blir hele poenget.","hooks":["arter","registrering","feilbestemmelse"]},
+        {"id":"sanker","label":"Sanker","threshold":40,"kind":"self_selected_identity","description":"Du følger sesong, sted og kunnskap for å finne mat eller materialer på lovlig og forsvarlig vis.","hooks":["sesong","sanking","forvekslingsfare"]},
+        {"id":"markaveteran","label":"Markaveteran","threshold":115,"kind":"reputation_status","description":"Du kjenner stier, vann, årstider og hvor mye værmeldingen egentlig betyr.","hooks":["marka","ruter","hjelpe_andre"]}
+      ]
+    },
+    {
+      "badge_id": "sport",
+      "shape": "life_heavy",
+      "career_assessment": "Utøver-/mesterskapsstatus blandes med trener- og lederjobber; sport trenger en tydelig parallell mellom idrettsliv, supporterliv og arbeid.",
+      "job_next_moves": ["Behold trener og sportssjef som jobb med riktige porter; olympisk mester, idrettsstjerne og legende skal behandles som prestasjon/status, ikke ansettelse."],
+      "positions": [
+        {"id":"sondagsutover","label":"Søndagsutøver","threshold":5,"kind":"hobby_identity","description":"Du trener og konkurrerer mest fordi det gjør uka bedre, ikke fordi noen betaler deg.","hooks":["trening","venner","personlig_rekord"]},
+        {"id":"klubbmenneske","label":"Klubbmenneske","threshold":10,"kind":"community_identity","description":"Klubben er like mye mennesker, dugnad og faste ritualer som selve sporten.","hooks":["klubb","dugnad","lagmiljo"]},
+        {"id":"supporter","label":"Supporter","threshold":15,"kind":"community_identity","description":"Du følger laget eller utøveren gjennom gode og dårlige perioder og lar kampdag påvirke kalenderen.","hooks":["kamp","tribune","seier_og_tap"]},
+        {"id":"tribunesliter","label":"Tribunesliter","threshold":40,"kind":"alternative_life_status","description":"Du har vært på nok kamper til å vite hvor man står, hvem som synger og når håpet vanligvis ryker.","hooks":["tribune","bortekamp","derby"]},
+        {"id":"mesterskapsreisende","label":"Mesterskapsreisende","threshold":85,"kind":"reputation_status","description":"Du organiserer ferier, penger og venner rundt store idrettsøyeblikk.","hooks":["reise","mesterskap","billetter"]}
+      ]
+    },
+    {
+      "badge_id": "politikk",
+      "shape": "mixed",
+      "career_assessment": "Aktivisme og borgerliv er gode livsposisjoner, mens valgte verv og utnevnte stillinger må holdes strengt adskilt fra Badge-poeng.",
+      "job_next_moves": ["Behold alle folkevalgte og utnevnte roller fail-closed; skill organisasjonsarbeid og rådgiverjobb fra politisk identitet og engasjement."],
+      "positions": [
+        {"id":"motesliter","label":"Møtesliter","threshold":5,"kind":"community_identity","description":"Du har sittet gjennom nok sakslister til å vite at demokratiet ofte skjer etter at kaffen er kald.","hooks":["moter","lokalpolitikk","lang_saksliste"]},
+        {"id":"grasrotbygger","label":"Grasrotbygger","threshold":15,"kind":"practice_identity","description":"Du får mennesker til å møte opp, snakke sammen og gjøre små ting over tid.","hooks":["organisering","nabolag","mobilisering"]},
+        {"id":"kampanjemenneske","label":"Kampanjemenneske","threshold":40,"kind":"practice_identity","description":"Du liker perioder med mål, budskap, lister, dører og altfor lite søvn.","hooks":["kampanje","frivillige","utmattelse"]},
+        {"id":"organisasjonsmenneske","label":"Organisasjonsmenneske","threshold":60,"kind":"community_identity","description":"Du trives overraskende godt med vedtekter, møter, grupper og folk som mener mye.","hooks":["organisasjon","nettverk","internkonflikt"]},
+        {"id":"politisk_insider","label":"Politisk insider","threshold":115,"kind":"reputation_status","description":"Du kjenner prosessene, personene og timingen uten at det betyr at du har et folkevalgt verv.","hooks":["nettverk","prosedyre","rykter"]}
+      ]
+    },
+    {
+      "badge_id": "naeringsliv",
+      "shape": "career_heavy",
+      "career_assessment": "Nesten ren jobb-/maktstige; det økonomiske hverdagslivet med sideprosjekter, frilans og sparing mangler.",
+      "job_next_moves": ["Behold formelle jobber; skill gründerskap, eierskap og investering tydelig mellom jobb, levevei, formue og livsposisjon."],
+      "positions": [
+        {"id":"pendler","label":"Pendler","threshold":5,"kind":"everyday_identity","description":"Arbeidsdagen inkluderer også reisen, forsinkelsene, kaffen og rutinene mellom hjem og jobb.","hooks":["transport","hverdag","forsinkelse"]},
+        {"id":"sideprosjektbygger","label":"Sideprosjektbygger","threshold":10,"kind":"livelihood_identity","description":"Du bygger noe ved siden av jobb, studier eller arbeidsledighet uten å vite om det noen gang blir mer.","hooks":["sideprosjekt","kveld","forste_kunde"]},
+        {"id":"smasparer","label":"Småsparer","threshold":15,"kind":"financial_identity","description":"Du prøver å bygge litt økonomisk rom gjennom små, gjentatte valg fremfor store gevinster.","hooks":["budsjett","sparing","uforutsett_utgift"]},
+        {"id":"frilanser","label":"Frilanser","threshold":40,"kind":"livelihood_identity","description":"Du lever med oppdrag, fakturaer, tomme perioder og friheten som følger med at ingen helt eier kalenderen din.","hooks":["oppdrag","inntekt","torrperiode"]},
+        {"id":"grunderdrømmer","label":"Gründerdrømmer","threshold":85,"kind":"alternative_life_status","description":"Du ser forretningsideer overalt og risikerer å gjøre dem til alles problem.","hooks":["ide","nettverk","kontantmangel"]}
+      ]
+    },
+    {
+      "badge_id": "subkultur",
+      "shape": "reference_split",
+      "career_assessment": "Referansemodellen: 11 canonicale Badge-titler er livsposisjoner med separate, evidensbaserte career_unlocks.",
+      "job_next_moves": ["Behold modellen og bygg senere levevei og inntektsvariasjon rundt alternative liv uten å gjøre livsstatus til jobb."],
+      "positions_from_badge_tiers": true,
+      "positions": []
+    },
+    {
+      "badge_id": "film_tv",
+      "shape": "life_heavy",
+      "career_assessment": "De fem første og flere av de siste nivåene er naturlige livs-/statusposisjoner; midten har reelle produksjonsjobber.",
+      "job_next_moves": ["Behold produksjonsassistent, manus, regi og serieskaping som jobb; pris, gjennomslag, stjerne og ikon skal modelleres som status og levevei, ikke lønnet stilling."],
+      "positions": [
+        {"id":"kinogjenger","label":"Kinogjenger","threshold":5,"kind":"hobby_identity","description":"Du går på kino fordi rommet, mørket og fellesskapet er en del av opplevelsen.","hooks":["kino","visning","ny_favoritt"]},
+        {"id":"filmnerd","label":"Filmnerd","threshold":10,"kind":"knowledge_identity","description":"Du husker regissører, klippere, årstall og altfor mye om filmer andre bare så én gang.","hooks":["filmprat","katalog","uenighet"]},
+        {"id":"seriesluker","label":"Seriesluker","threshold":15,"kind":"hobby_identity","description":"Du har alltid én serie til på lista og en sterk mening om når den egentlig burde sluttet.","hooks":["serie","hjem","finale"]},
+        {"id":"filmklubbmenneske","label":"Filmklubbmenneske","threshold":25,"kind":"community_identity","description":"Du liker kuraterte visninger, rare valg og diskusjonen etterpå.","hooks":["filmklubb","fellesskap","programvalg"]},
+        {"id":"festivalgjenger","label":"Festivalgjenger","threshold":40,"kind":"social_identity","description":"Du planlegger dager rundt visninger, køer, samtaler og filmer som kanskje aldri får ordinær premiere.","hooks":["festival","reise","programkrasj"]}
+      ]
+    },
+    {
+      "badge_id": "media",
+      "shape": "mixed",
+      "career_assessment": "Forbruker-/offentlighetsstatus og journalistiske jobber er blandet og bør leve parallelt.",
+      "job_next_moves": ["Behold journalistikk og redaksjon som jobb; profil, stjerne, dagsordensetter og offentlighetsmakt bør bli omdømme-/maktstatus med konsekvenser."],
+      "positions": [
+        {"id":"nyhetsjunkie","label":"Nyhetsjunkie","threshold":5,"kind":"hobby_identity","description":"Du sjekker nyhetene oftere enn det som sannsynligvis er bra for deg.","hooks":["nyheter","hverdag","overmetning"]},
+        {"id":"podkastsluker","label":"Podkastsluker","threshold":10,"kind":"hobby_identity","description":"Du fyller transport, oppvask og turer med stemmer og altfor mange abonnementer.","hooks":["podkast","rutine","ny_serie"]},
+        {"id":"kommentarfeltveteran","label":"Kommentarfeltveteran","threshold":15,"kind":"alternative_life_status","description":"Du kjenner rytmen, språkbruken og fellene i offentlige kommentarfelt.","hooks":["kommentarer","debatt","konflikt"]},
+        {"id":"medievaktbikkje","label":"Medievaktbikkje","threshold":40,"kind":"practice_identity","description":"Du følger hvem som setter saker, hvem som mangler og hvordan framing endrer en historie.","hooks":["mediekritikk","kilder","korrigering"]},
+        {"id":"debattant","label":"Debattant","threshold":85,"kind":"reputation_status","description":"Du deltar jevnlig i offentlig debatt og begynner å bli gjenkjent for standpunkter og stil.","hooks":["offentlighet","nettverk","motbor"]}
+      ]
+    },
+    {
+      "badge_id": "psykologi",
+      "shape": "career_complete",
+      "career_assessment": "Den formelle karrierestigen er sterk og gated; det mangler ikke-kliniske hverdagsidentiteter for folk som er opptatt av mennesker uten fagmyndighet.",
+      "job_next_moves": ["Behold dagens 13-jobbarkitektur; ingen livsposisjon må antyde diagnose-, behandlings- eller psykologmyndighet."],
+      "positions": [
+        {"id":"psykologientusiast","label":"Psykologientusiast","threshold":5,"kind":"knowledge_identity","description":"Du leser om menneskelig atferd og prøver å forstå begreper uten å gjøre deg til behandler.","hooks":["lesing","begreper","overforenkling"]},
+        {"id":"selvgransker","label":"Selvgransker","threshold":10,"kind":"practice_identity","description":"Du legger merke til egne mønstre, valg og reaksjoner og prøver å forstå dem litt bedre.","hooks":["refleksjon","hverdag","blindflekk"]},
+        {"id":"monsterjeger","label":"Mønsterjeger","threshold":25,"kind":"practice_identity","description":"Du ser etter gjentakelser i vaner og situasjoner uten å gjøre dem om til diagnoser.","hooks":["vaner","observasjon","falskt_monster"]},
+        {"id":"vaneeksperimentor","label":"Vaneeksperimentør","threshold":40,"kind":"practice_identity","description":"Du tester små endringer i egen hverdag og følger med på hva som faktisk hjelper.","hooks":["vaner","selveksperiment","ny_rutine"]},
+        {"id":"relasjonsbygger","label":"Relasjonsbygger","threshold":85,"kind":"community_identity","description":"Du investerer tid i å lytte, reparere misforståelser og holde relasjoner ved like.","hooks":["relasjoner","samtale","tillit"]}
+      ]
+    }
+  ]
+}
