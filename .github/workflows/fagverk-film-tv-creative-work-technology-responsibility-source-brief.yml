@@ -11,6 +11,7 @@ on:
       - "scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs"
       - "tests/film-tv-creative-work-technology-responsibility-source-brief-v1.test.mjs"
       - "tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs"
+      - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
       - ".github/workflows/fagverk-film-tv-creative-work-technology-responsibility-source-brief.yml"
   push:
     branches: [main]
@@ -23,6 +24,7 @@ on:
       - "scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs"
       - "tests/film-tv-creative-work-technology-responsibility-source-brief-v1.test.mjs"
       - "tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs"
+      - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
       - ".github/workflows/fagverk-film-tv-creative-work-technology-responsibility-source-brief.yml"
   workflow_dispatch:
 
@@ -52,6 +54,7 @@ jobs:
           node --check scripts/materialize-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
           node --check scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
           node --check tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
+          node --check tests/film-tv-learning-order-monotone-regression-v1.test.mjs
 
       - name: Validate immutable source brief before registration
         run: |
@@ -66,6 +69,9 @@ jobs:
 
       - name: Refresh shared general engine audit
         run: node scripts/audit-fagverk-general-engine.mjs --write-report
+
+      - name: Refresh shared Film and TV phase 3 audit
+        run: node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
 
       - name: Refresh unit 9 fulltext audit
         run: node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs --write-report
@@ -98,6 +104,7 @@ jobs:
             data/fagverk/subject_status.json \
             data/fagverk/fagverk_release.json \
             reports/fagverk/general-engine-audit.json \
+            reports/fagverk/film-tv-phase3-audit.json \
             reports/fagverk/film-tv-creative-work-technology-responsibility-fulltext-v1-audit.json
           if git diff --cached --quiet; then
             echo 'Unit 9 deterministic outputs already match.'
