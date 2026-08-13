@@ -8,6 +8,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
 const CHAPTER_ID = 'representasjon-posisjon-og-motbilder';
 const UNIT8_OUTPUT_GATE = 'screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief';
+const LATER_PRODUCTION_GATE_PATTERN = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/;
 
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`,
@@ -19,7 +20,7 @@ const P = Object.freeze({
   report: 'reports/fagverk/film-tv-representation-position-counterimages-fulltext-v1-audit.json'
 });
 
-test('enhet 7 forblir komplett etter at Film & TV har avansert til enhet 8', () => {
+test('enhet 7 forblir komplett etter at Film & TV har avansert til enhet 8 eller senere', () => {
   const chapter = read(P.chapter);
   const brief = read(P.brief);
   const claimsDoc = read(P.claims);
@@ -65,5 +66,10 @@ test('enhet 7 forblir komplett etter at Film & TV har avansert til enhet 8', () 
   assert.ok(Object.values(report.gates).every(Boolean));
 
   assert.equal(filmStatus.editorialStatus, 'chapters_in_progress');
-  assert.equal(filmStatus.nextGate, UNIT8_OUTPUT_GATE);
+  assert.match(filmStatus.nextGate, LATER_PRODUCTION_GATE_PATTERN);
+  assert.ok(
+    filmStatus.nextGate === UNIT8_OUTPUT_GATE
+      || filmStatus.nextGate !== 'representation_position_counterimages_full_chapter_complete_next_unit_source_brief',
+    'Film & TV-statusen må ha avansert forbi enhet 7'
+  );
 });

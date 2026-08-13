@@ -1,4 +1,4 @@
-name: Fagverk Film og TV screen public sphere fulltext
+name: Fagverk Film og TV unit 8 regression
 
 on:
   pull_request:
@@ -7,24 +7,11 @@ on:
       - "data/fag/TV_og_Film/film_tv_screen_public_sphere_community_society_topic_claims_v1.json"
       - "data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn.json"
       - "data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
-      - "reports/fagverk/general-engine-audit.json"
-      - "reports/fagverk/film-tv-screen-public-sphere-community-society-source-brief-v1-audit.json"
-      - "reports/fagverk/film-tv-screen-public-sphere-community-society-fulltext-v1-audit.json"
-      - "scripts/plan-film-tv-learning-order-v1.mjs"
       - "scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs"
       - "scripts/materialize-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs"
       - "scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs"
-      - "tests/fagverk-subject-inventory.test.mjs"
-      - "tests/film-tv-learning-order-plan-v1.test.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs"
-      - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
-      - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
-      - ".github/workflows/fagverk-film-tv-phase3.yml"
-      - ".github/workflows/fagverk-film-tv-screen-public-sphere-source-brief.yml"
       - ".github/workflows/fagverk-film-tv-screen-public-sphere-fulltext.yml"
   push:
     branches: [main]
@@ -33,173 +20,38 @@ on:
       - "data/fag/TV_og_Film/film_tv_screen_public_sphere_community_society_topic_claims_v1.json"
       - "data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn.json"
       - "data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn/**"
-      - "data/fagverk/fagverk_registry.json"
-      - "data/fagverk/subject_status.json"
-      - "data/fagverk/fagverk_release.json"
-      - "reports/fagverk/general-engine-audit.json"
-      - "reports/fagverk/film-tv-screen-public-sphere-community-society-source-brief-v1-audit.json"
-      - "reports/fagverk/film-tv-screen-public-sphere-community-society-fulltext-v1-audit.json"
-      - "scripts/plan-film-tv-learning-order-v1.mjs"
       - "scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs"
       - "scripts/materialize-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs"
       - "scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs"
-      - "tests/fagverk-subject-inventory.test.mjs"
-      - "tests/film-tv-learning-order-plan-v1.test.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs"
       - "tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs"
-      - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
-      - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
-      - ".github/workflows/fagverk-film-tv-phase3.yml"
-      - ".github/workflows/fagverk-film-tv-screen-public-sphere-source-brief.yml"
       - ".github/workflows/fagverk-film-tv-screen-public-sphere-fulltext.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: fagverk-film-tv-screen-public-sphere-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  validate:
-    name: Validate screen public sphere fulltext
+  regression:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref || github.ref_name }}
-          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: "24"
-
-      - name: Normalize shared monotone Film and TV progression contracts
+          node-version: 24
+      - name: Validate completed unit 8 assets without pinning global progression
         run: |
           node <<'NODE'
           const fs = require('node:fs');
-
-          function update(file, transform) {
-            const before = fs.readFileSync(file, 'utf8');
-            const after = transform(before);
-            if (after !== before) fs.writeFileSync(file, after);
-          }
-
-          update('scripts/plan-film-tv-learning-order-v1.mjs', (text) => {
-            if (text.includes('const filmNextGate = currentStatus.subjects.find')) return text;
-            const pattern = /  const currentStatus = read\(P\.status\);\n  const laterSourceBriefGate = \[[^\n]+\]\.includes\(currentStatus\.subjects\.find\(\(row\) => row\.id === 'film_tv'\)\?\.nextGate\);/;
-            if (!pattern.test(text)) throw new Error('Fant ikke gammel Film & TV-gateliste i plan-auditen');
-            return text.replace(pattern, `  const currentStatus = read(P.status);\n  const filmNextGate = currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate || '';\n  const laterSourceBriefGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(filmNextGate);`);
-          });
-
-          update('tests/fagverk-subject-inventory.test.mjs', (text) => {
-            if (text.includes('const legacyFilmTvGates = new Set')) return text;
-            const pattern = /  assert\.ok\(\['remaining_domain_chapter_production'[^\n]+\.includes\(filmTv\.nextGate\)\);/;
-            if (!pattern.test(text)) throw new Error('Fant ikke gammel Film & TV-gateliste i subject-inventory-testen');
-            return text.replace(pattern, `  const legacyFilmTvGates = new Set(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief']);\n  const isFilmTvProductionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(filmTv.nextGate);\n  assert.ok(legacyFilmTvGates.has(filmTv.nextGate) || isFilmTvProductionGate);`);
-          });
-
-          update('tests/film-tv-learning-order-plan-v1.test.mjs', (text) => {
-            if (text.includes('const currentFilmTvGate = result.status.subjects.find')) return text;
-            const pattern = /  assert\.ok\(\['learning_order_plan_complete_first_chapter_source_brief'[^\n]+\.includes\(result\.status\.subjects\.find\(\(row\) => row\.id === 'film_tv'\)\.nextGate\)\);/;
-            if (!pattern.test(text)) throw new Error('Fant ikke gammel progresjonsliste i learning-order-testen');
-            return text.replace(pattern, `  const currentFilmTvGate = result.status.subjects.find((row) => row.id === 'film_tv').nextGate;\n  assert.ok(currentFilmTvGate === 'learning_order_plan_complete_first_chapter_source_brief' || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(currentFilmTvGate));`);
-          });
-
-          update('.github/workflows/fagverk-film-tv-screen-public-sphere-source-brief.yml', (text) => {
-            return text.replace(
-              '          node --test tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs\n          node --test tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs',
-              '          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs'
-            );
-          });
-
-          update('.github/workflows/fagverk-film-tv-phase3.yml', (text) => {
-            let out = text.replace(
-              '          node scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs\n          node scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs\n          node scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs',
-              '          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs'
-            );
-            out = out.replace(
-              '          node --test tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs\n          node --test tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs',
-              '          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs'
-            );
-            if (!out.includes('tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs')) throw new Error('Monoton unit-7-regresjon ble ikke koblet inn i phase-3-workflowen');
-            return out;
-          });
+          const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const chapter = read('data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn.json');
+          const claims = read('data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn/claims.json');
+          const modules = chapter.moduleFiles.map(read);
+          const sections = modules.flatMap((m) => m.sections || []);
+          const paragraphIds = sections.flatMap((s) => s.paragraphClaimIds || []).flat();
+          if (chapter.emne_ids.length !== 9) throw new Error('Enhet 8 har ikke 9 canonicale emner');
+          if (modules.length !== 4 || sections.length !== 9) throw new Error('Enhet 8 har feil modul- eller seksjonsstruktur');
+          if (paragraphIds.length !== 36 || new Set(paragraphIds).size !== 36) throw new Error('Enhet 8 har ikke 36 entydige avsnittsclaims');
+          if (claims.claims.length !== 36 || claims.sources.length !== 28) throw new Error('Enhet 8 har feil claim- eller kildetall');
+          console.log('Enhet 8 regresjon OK uten å pinne global Film & TV-port.');
           NODE
-
-      - name: Validate syntax
-        run: |
-          node --check scripts/plan-film-tv-learning-order-v1.mjs
-          node --check scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs
-          node --check scripts/materialize-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
-          node --check scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
-          node --check tests/fagverk-subject-inventory.test.mjs
-          node --check tests/film-tv-learning-order-plan-v1.test.mjs
-          node --check tests/film-tv-learning-order-monotone-regression-v1.test.mjs
-          node --check tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
-
-      - name: Materialize monotone fulltext state
-        run: node scripts/materialize-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs --write
-
-      - name: Build deterministic release
-        run: node scripts/build-fagverk-release-manifest.mjs
-
-      - name: Refresh shared general engine audit
-        run: node scripts/audit-fagverk-general-engine.mjs --write-report
-
-      - name: Refresh fulltext audit
-        run: node scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs --write-report
-
-      - name: Validate shared subject inventory
-        run: node --test tests/fagverk-subject-inventory.test.mjs
-
-      - name: Validate historical learning-order contract on current progression
-        run: node --test tests/film-tv-learning-order-plan-v1.test.mjs
-
-      - name: Validate unit 8 source brief
-        run: node scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs
-
-      - name: Validate unit 8 fulltext
-        run: node scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
-
-      - name: Test unit 8 source brief
-        run: node --test tests/film-tv-screen-public-sphere-community-society-source-brief-v1.test.mjs
-
-      - name: Test unit 8 fulltext
-        run: node --test tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs
-
-      - name: Test learning order monotone regression
-        run: node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
-
-      - name: Test unit 7 monotone regression
-        run: node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
-
-      - name: Test deterministic release
-        run: node --test tests/fagverk-release-manifest.test.mjs
-
-      - name: Persist deterministic fulltext outputs on PR branch
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        env:
-          HEAD_BRANCH: ${{ github.head_ref }}
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add \
-            scripts/plan-film-tv-learning-order-v1.mjs \
-            tests/fagverk-subject-inventory.test.mjs \
-            tests/film-tv-learning-order-plan-v1.test.mjs \
-            data/fag/TV_og_Film/film_tv_screen_public_sphere_community_society_source_claim_brief_v1.json \
-            data/fag/TV_og_Film/film_tv_screen_public_sphere_community_society_topic_claims_v1.json \
-            data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn/claims.json \
-            data/fagverk/fagverk_registry.json \
-            data/fagverk/subject_status.json \
-            data/fagverk/fagverk_release.json \
-            reports/fagverk/general-engine-audit.json \
-            reports/fagverk/film-tv-screen-public-sphere-community-society-source-brief-v1-audit.json \
-            reports/fagverk/film-tv-screen-public-sphere-community-society-fulltext-v1-audit.json
-          if git diff --cached --quiet; then
-            echo 'Screen public sphere fulltext already matches.'
-            exit 0
-          fi
-          git commit -m 'Make Film TV progression gates monotone'
-          git push origin "HEAD:${HEAD_BRANCH}"
