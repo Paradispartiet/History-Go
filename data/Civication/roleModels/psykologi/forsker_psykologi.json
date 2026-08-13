@@ -1,120 +1,51 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "psykologi",
-    "badge_name": "Psykologi",
-    "tier_label": "Forsker (psykologi)",
-    "tier_threshold": 330
-  },
-  "category": "psykologi",
-  "role_scope": "forsker_psykologi",
-  "role_id": "psykologi_forsker_psykologi",
-  "title": "Forsker (psykologi)",
-  "core_narrative": [
-    "I Civication er Forsker (psykologi) en praktisk rolle i Psykologi der valg former tillit, handlingsrom og status."
+  "schema":"civication_role_model_v1",
+  "version":1,
+  "source":{"badge_file":"data/badges/psykologi.json","badge_id":"psykologi","badge_name":"Psykologi","tier_label":"Forsker (psykologi)","tier_threshold":300,"evidence_file":"data/Civication/psychologyAcademicCareerEvidence.json"},
+  "category":"psykologi",
+  "role_scope":"forsker_psykologi",
+  "role_id":"psykologi_forsker_psykologi",
+  "title":"Forsker (psykologi)",
+  "core_narrative":[
+    "Du arbeider med spørsmål som ikke har et ferdig svar, og må gjøre usikkerhet, metodevalg og datagrunnlag tydelige nok til at andre kan etterprøve konklusjonen.",
+    "Forskerrollen kommer fra relevant kvalifikasjon og faktisk ansettelse i et forskningsmiljø; Badge-poeng er aldri en ansettelses- eller gradserstatning.",
+    "God forskning betyr at prosjektets tidsplan, finansiering og ønskede funn aldri får bestemme hva dataene skal bety."
   ],
   "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til kognitiv psykologi, sosialpsykologi."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
+    "daily_work":["utvikle forskningsspørsmål og studiedesign","samle inn, kvalitetssikre og analysere data","dokumentere metode og beslutninger","skrive vitenskapelige arbeider og rapporter","samarbeide i forskningsgruppe og prosjekt","formidle funn og bidra til søknader eller videre prosjektutvikling"],
+    "responsibilities":["skille eksplorative funn fra forhåndsdefinerte hypoteser","beskytte deltakere, data og samtykke","rapportere resultater også når de ikke støtter forventningen","gjøre analysevalg og usikkerhet etterprøvbare","unngå at publiserings- eller finansieringspress styrer konklusjonen"],
+    "work_environment":["Forskningsarbeid veksler mellom konsentrert analyse, prosjektmøter, datainnsamling, skriving, formidling og administrasjon.","Kvalifikasjonskrav varierer mellom konkrete forskerstillinger; forsker er derfor ikke modellert som én universell gradstittel."],
+    "status_position":["Faglig troverdighet bygges av transparens, kvalitet og bidrag til kunnskapsmiljøet, ikke av at alle studier gir tydelige eller publiserbare resultater."]
   },
   "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
+    "entry_from":["Krever eksplisitt relevant akademisk kvalifikasjon og faktisk forskeransettelse gjennom eksisterende Civication-port."],
+    "progression_to":["Professor (psykologi) krever en separat og strengere kompetansevurdering; forskeransettelse eller ansiennitet alene er ikke professorkompetanse."],
+    "possible_promotions":["større prosjektansvar","forskningsledelse","veiledning og metodeansvar","mer selvstendig søknads- og publiseringsansvar"],
+    "possible_exits":["andre forskerstillinger","analyse- og utredningsarbeid","forskningsadministrasjon eller kunnskapsformidling"],
+    "career_risks":["HARKing eller etterrasjonalisering av hypoteser","selektiv rapportering","metodeendringer uten sporbarhet","for svak databeskyttelse","at prosjektleveranse blir viktigere enn forskningsintegritet"]
   },
   "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
-    ],
-    "history_go_badges": [
-      "psykologi"
-    ],
-    "place_connections": [],
-    "people_connections": []
+    "education_basis":["Den konkrete forskerstillingen definerer relevant utdanning og erfaring. Civication bruker den eksisterende `academic_qualification_and_employment`-porten som eksplisitt bevis på kvalifikasjon og ansettelse."],
+    "skills":["forskningsdesign","kvantitativ eller kvalitativ analyse","forskningsetikk og personvern","vitenskapelig skriving","åpen og etterprøvbar dokumentasjon","prosjekt- og forskningssamarbeid"],
+    "category_knowledge":["psykologisk teori","måling og operasjonalisering","statistisk eller kvalitativ inferens","replikasjon og generaliserbarhet","forskningsetikk","vitenskapelig kommunikasjon"],
+    "history_go_badges":["psykologi"],"place_connections":[],"people_connections":[]
   },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "forsker_psykologi",
-    "mail_profile": "psykologi_forsker_psykologi",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Forsker (psykologi)",
-      "category": "psykologi",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
+  "scope_boundary": {
+    "can":["planlegge og gjennomføre forskning innen prosjektets og egen kompetanses rammer","analysere og formidle data","foreslå nye studier og søknader","veilede eller samarbeide når stillingen faktisk innebærer det"],
+    "cannot":["framstille forskeransettelse som psykologautorisasjon","diagnostisere eller behandle bare i kraft av forskerrollen","endre analysehistorikken for å få et ønsket funn","skjule relevante nullfunn eller avvik for å beskytte prosjektets fortelling","behandle persondata uten nødvendig grunnlag og sikkerhet"]
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: psykologi / Forsker (psykologi)."
-  ]
+  "challenges":[
+    {"id":"nullfunnet","title":"Nullfunnet","description":"Hovedanalysen støtter ikke hypotesen prosjektet ble solgt inn på.","pressure":"integritet_vs_forventning","affects":["trust","status","risk"]},
+    {"id":"analysevalget","title":"Analysevalget","description":"Et alternativt analysevalg gir et sterkere resultat, men var ikke planlagt på forhånd.","pressure":"utforsking_vs_etterrasjonalisering","affects":["trust","risk"]},
+    {"id":"data_og_tidsfrist","title":"Data og tidsfrist","description":"Leveransen nærmer seg mens datakvaliteten fortsatt krever arbeid.","pressure":"leveranse_vs_datakvalitet","affects":["status","risk"]}
+  ],
+  "dilemmas":[
+    {"id":"rapportere_nullfunn","title":"Rapportere nullfunnet","setup":"Prosjektpartnerne forventet et tydelig positivt resultat, men hovedanalysen er svak og usikker.","choice_axis":"integritet_vs_fortelling","consequence_axis":"troverdighet_vs_kortsiktig_status","mail_hooks":["job","conflict","story"]},
+    {"id":"planlagt_eller_utforskende","title":"Planlagt eller utforskende","setup":"Et nytt analysegrep ser lovende ut etter at du har sett dataene.","choice_axis":"transparens_vs_signifikans","consequence_axis":"etterprovbarhet_vs_publiserbarhet","mail_hooks":["job","followup","consequence"]}
+  ],
+  "related_people":[],"related_places":[],
+  "mail_integration":{"role_scope":"forsker_psykologi","mail_profile":"psykologi_forsker_psykologi","can_feed_mail_types":["job","story","conflict","event","people","followup"],"mail_variables":{"role_title":"Forsker (psykologi)","category":"psykologi","main_pressure":"integritet_vs_leveranse","ethical_axis":"transparens_vs_onsket_funn","status_axis":"publisering_vs_etterprovbarhet"},"recommended_mail_families":["forskningsdesign_og_hypoteser","data_og_analyse","forskningsetikk","publisering_og_formidling"],"role_model_refs_supported":true},
+  "competence_axes":["forskningsdesign","analyse_og_inferens","forskningsetikk","apen_forskning","vitenskapelig_skriving","prosjektsamarbeid"],
+  "ideal_type_problems":["Hva gjør du når dataene ikke støtter prosjektets forventning?","Hvordan skiller du planlagt analyse fra utforskning etter at du har sett data?","Når er tidsfristen et prosjektproblem og når blir den et datakvalitetsproblem?","Hvordan gjør du metodevalg etterprøvbare for andre?"],
+  "notes":["Arbeids- og kvalifikasjonsgrunnlaget er dokumentert i data/Civication/psychologyAcademicCareerEvidence.json.","Canonical Badge-threshold er 300; tidligere roleModel-stub hadde foreldet 330 og er rettet her."]
 }
