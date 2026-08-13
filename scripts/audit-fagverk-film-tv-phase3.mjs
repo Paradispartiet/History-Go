@@ -113,12 +113,21 @@ export function auditFilmTvPhase3({ writeReport = false, checkReport = true } = 
   assert(statusEntry?.navigationStatus === 'materialized', 'Film & TV har feil navigasjonsstatus');
   assert(statusEntry?.assessmentStatus === 'audited', 'Film & TV har feil auditstatus');
   assert(['structure_ready', 'chapters_in_progress', 'complete'].includes(statusEntry?.editorialStatus), 'Film & TV har ugyldig redaksjonell progresjonsstatus');
-  const expectedNextGate = statusEntry.editorialStatus === 'structure_ready'
-    ? 'chapter_production'
+  const legacyFilmTvGates = new Set([
+    'remaining_domain_chapter_production',
+    'curriculum_completeness_refactor',
+    'canonical_inventory_migration',
+    'canonical_inventory_migrated_existing_chapter_reaudit',
+    'canonical_chapter_reaudit_complete_learning_order_plan',
+    'learning_order_plan_complete_first_chapter_source_brief'
+  ]);
+  const isFilmTvProductionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(statusEntry?.nextGate || '');
+  const nextGateMatchesEditorialStatus = statusEntry.editorialStatus === 'structure_ready'
+    ? statusEntry?.nextGate === 'chapter_production'
     : statusEntry.editorialStatus === 'chapters_in_progress'
-      ? ['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production', 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief', 'television_platforms_participation_source_brief_complete_full_chapter_production', 'television_platforms_participation_full_chapter_complete_next_unit_source_brief', 'documentary_evidence_ethics_source_brief_complete_full_chapter_production', 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief', 'representation_position_counterimages_source_brief_complete_full_chapter_production', 'representation_position_counterimages_full_chapter_complete_next_unit_source_brief']
-      : 'maintenance_source_refresh_and_place_case_expansion';
-  assert(Array.isArray(expectedNextGate) ? expectedNextGate.includes(statusEntry?.nextGate) : statusEntry?.nextGate === expectedNextGate, 'Film & TV har feil neste port for redaksjonell status');
+      ? legacyFilmTvGates.has(statusEntry?.nextGate) || isFilmTvProductionGate
+      : statusEntry?.nextGate === 'maintenance_source_refresh_and_place_case_expansion';
+  assert(nextGateMatchesEditorialStatus, 'Film & TV har feil neste port for redaksjonell status');
   assert(registry.placePage?.fallbackSubjectByCategory?.film_tv === 'film_tv', 'Film & TV-steder mangler Film & TV som fagverksfallback');
   assert(registry.subjects?.film_tv, 'Film & TV mangler i fagverkregisteret');
   assert(manifestEntry?.emneMappings === 'TV_og_Film/emnemapping_film_tv_canonical_v4_5.json', 'Film & TV-manifestet mangler canonical mappingregister');
