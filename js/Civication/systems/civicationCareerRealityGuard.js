@@ -96,9 +96,34 @@
     return true;
   }
 
+  function installSalaryGuard() {
+    const calculate = window.calculateWeeklySalary;
+    if (typeof calculate !== "function") return false;
+    if (calculate.__careerRealityGuardAttached) return true;
+
+    const guarded = function calculateWeeklySalaryForAcceptedJob(career, currentBadgeTierIndex) {
+      const active = window.CivicationState?.getActivePosition?.() || null;
+      const careerId = String(career?.career_id || career?.id || "").trim();
+      const activeCareerId = String(active?.career_id || active?.id || "").trim();
+      let salaryTierIndex = currentBadgeTierIndex;
+
+      if (active && careerId && careerId === activeCareerId) {
+        const badge = getBadge(careerId);
+        salaryTierIndex = resolveActiveSalaryTierIndex(active, badge, currentBadgeTierIndex);
+      }
+
+      return calculate(career, salaryTierIndex);
+    };
+    guarded.__careerRealityGuardAttached = true;
+    guarded.__baseCalculateWeeklySalary = calculate;
+    window.calculateWeeklySalary = guarded;
+    return true;
+  }
+
   function install() {
     return {
-      jobOfferGuard: installJobOfferGuard()
+      jobOfferGuard: installJobOfferGuard(),
+      salaryGuard: installSalaryGuard()
     };
   }
 
@@ -109,6 +134,7 @@
     resolveActiveJobTierIndex,
     resolveActiveSalaryTierIndex,
     installJobOfferGuard,
+    installSalaryGuard,
     install
   };
 
