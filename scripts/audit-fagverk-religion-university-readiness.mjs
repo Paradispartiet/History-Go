@@ -60,7 +60,7 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
   assert(readiness.schema === 'history_go_religion_university_readiness_v1', 'Religion har feil readiness-schema');
   assert(readiness.subject_id === 'religion', 'Readiness-matrisen har feil subject_id');
   assert(readiness.status === 'matrix_locked_production_in_progress', 'Religion readiness skal vise låst og pågående produksjon');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Religion skal stå chapters_in_progress etter første område');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Religion skal stå chapters_in_progress etter to områder');
   assert(statusEntry?.nextGate === STATUS_NEXT_GATE, 'Religion skal fortsette gjennom den registrerte kapittelproduksjonsporten');
 
   const baseline = readiness.canonical_baseline;
@@ -96,10 +96,10 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
   assert(readiness.required_method_ids.every((id) => id.startsWith('met_religion_')), 'Religion har metode-ID uten canonicalt prefiks');
 
   const progress = readiness.production_progress;
-  assert(isDeepStrictEqual(progress.completed_area_ids, ['theory_method']), 'Første produksjonsområde er ikke låst som komplett');
-  assert(isDeepStrictEqual(progress.materialized_topic_ids, topicMap.theory_method), 'Produksjonsprogresjonen har feil emne-ID-er');
-  assert(progress.standalone_topic_articles_materialized === 6 && progress.standalone_topic_articles_remaining === 66, 'Religion skal stå på 6/72 artikler');
-  assert(progress.required_methods_materialized === 8 && progress.required_methods_remaining === 10, 'Religion skal stå på 8/18 universitetsmetoder');
+  assert(isDeepStrictEqual(progress.completed_area_ids, ['theory_method', 'history_comparison']), 'De to første produksjonsområdene er ikke låst som komplette');
+  assert(isDeepStrictEqual(progress.materialized_topic_ids, [...topicMap.theory_method, ...topicMap.history_comparison]), 'Produksjonsprogresjonen har feil emne-ID-er');
+  assert(progress.standalone_topic_articles_materialized === 12 && progress.standalone_topic_articles_remaining === 60, 'Religion skal stå på 12/72 artikler');
+  assert(progress.required_methods_materialized === 10 && progress.required_methods_remaining === 8, 'Religion skal stå på 10/18 universitetsmetoder');
   assert(progress.materialized_required_method_ids.every((id) => readiness.required_method_ids.includes(id) && methods.methods.some((method) => method.method_id === id && method.university_matrix_status === 'materialized')), 'En materialisert universitetsmetode er uløst');
   assert(progress.quality_score >= 27 && progress.complete_ready === false, 'Produksjonsprogresjonen har feil kvalitets- eller complete-status');
 
@@ -168,7 +168,7 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
       respectfulRepresentationAndNonessentialismLocked: true,
       sixDimensionQualityGateLocked: true,
       prematureCompleteStatusBlocked: true,
-      firstUniversityAreaCompleteAtHighQuality: progress.quality_score >= 27
+      firstTwoUniversityAreasCompleteAtHighQuality: progress.quality_score >= 27
     }
   };
   const committed = committedProjection(report);
