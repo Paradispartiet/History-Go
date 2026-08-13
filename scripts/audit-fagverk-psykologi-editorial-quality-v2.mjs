@@ -52,7 +52,8 @@ function sourceBound(section, articleClaimIds, claims) {
   });
 }
 
-// The frame gate measures all substantive article prose; standardized misuse guards remain deliberately identical.\nfunction editorialTextSections(article) {
+// The frame gate measures all substantive article prose; standardized misuse guards remain deliberately identical.
+function editorialTextSections(article) {
   return [
     article.definition,
     ...(article.background || []),
