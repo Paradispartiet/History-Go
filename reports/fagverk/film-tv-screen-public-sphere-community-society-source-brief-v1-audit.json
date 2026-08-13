@@ -1,28 +1,84 @@
 {
   "schema": "history_go_film_tv_screen_public_sphere_community_society_source_brief_v1_audit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "updated_at": "2026-08-12",
-  "status": "source_claim_brief_complete_full_chapter_next",
+  "status": "source_claim_brief_consumed_by_verified_chapter",
   "subject_id": "film_tv",
   "summary": {
     "emne_count": 9,
     "source_count": 28,
     "case_count": 30,
     "planned_claim_count": 36,
-    "planned_claim_counts_by_emne": [4, 4, 5, 5, 4, 4, 3, 3, 4],
+    "planned_claim_counts_by_emne": [
+      4,
+      4,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3,
+      4
+    ],
     "proposed_module_count": 4,
-    "registered_chapter_count_delta": 0
+    "registered_chapter_count_delta": 1,
+    "resolved_claim_count": 36
   },
   "coverage": [
-    {"emne_id": "em_film_tv_alder_barn_ungdom_og_livslop", "source_count": 7, "case_count": 4, "planned_claim_count": 4},
-    {"emne_id": "em_film_tv_byrepresentasjon_og_makt", "source_count": 3, "case_count": 3, "planned_claim_count": 4},
-    {"emne_id": "em_film_tv_film_tv_offentlighet_og_debatt", "source_count": 6, "case_count": 3, "planned_claim_count": 5},
-    {"emne_id": "em_film_tv_klima_miljo_og_okokritisk_skjermanalyse", "source_count": 5, "case_count": 4, "planned_claim_count": 5},
-    {"emne_id": "em_film_tv_kringkastet_offentlighet", "source_count": 5, "case_count": 3, "planned_claim_count": 4},
-    {"emne_id": "em_film_tv_migrasjon_diaspora_og_transnasjonal_identitet", "source_count": 3, "case_count": 3, "planned_claim_count": 4},
-    {"emne_id": "em_film_tv_nasjon_fortelling_og_forestilt_fellesskap", "source_count": 5, "case_count": 4, "planned_claim_count": 3},
-    {"emne_id": "em_film_tv_religion_livssyn_og_audiovisuell_representasjon", "source_count": 5, "case_count": 4, "planned_claim_count": 3},
-    {"emne_id": "em_film_tv_tv_offentlighet_og_demokratisk_deltakelse", "source_count": 6, "case_count": 3, "planned_claim_count": 4}
+    {
+      "emne_id": "em_film_tv_alder_barn_ungdom_og_livslop",
+      "source_count": 7,
+      "case_count": 4,
+      "planned_claim_count": 4
+    },
+    {
+      "emne_id": "em_film_tv_byrepresentasjon_og_makt",
+      "source_count": 3,
+      "case_count": 3,
+      "planned_claim_count": 4
+    },
+    {
+      "emne_id": "em_film_tv_film_tv_offentlighet_og_debatt",
+      "source_count": 6,
+      "case_count": 3,
+      "planned_claim_count": 5
+    },
+    {
+      "emne_id": "em_film_tv_klima_miljo_og_okokritisk_skjermanalyse",
+      "source_count": 5,
+      "case_count": 4,
+      "planned_claim_count": 5
+    },
+    {
+      "emne_id": "em_film_tv_kringkastet_offentlighet",
+      "source_count": 5,
+      "case_count": 3,
+      "planned_claim_count": 4
+    },
+    {
+      "emne_id": "em_film_tv_migrasjon_diaspora_og_transnasjonal_identitet",
+      "source_count": 3,
+      "case_count": 3,
+      "planned_claim_count": 4
+    },
+    {
+      "emne_id": "em_film_tv_nasjon_fortelling_og_forestilt_fellesskap",
+      "source_count": 5,
+      "case_count": 4,
+      "planned_claim_count": 3
+    },
+    {
+      "emne_id": "em_film_tv_religion_livssyn_og_audiovisuell_representasjon",
+      "source_count": 5,
+      "case_count": 4,
+      "planned_claim_count": 3
+    },
+    {
+      "emne_id": "em_film_tv_tv_offentlighet_og_demokratisk_deltakelse",
+      "source_count": 6,
+      "case_count": 3,
+      "planned_claim_count": 4
+    }
   ],
   "gates": {
     "eighth_learning_order_unit_selected": true,
@@ -50,8 +106,12 @@
     "reception_and_audience_identity_work_remain_later": true,
     "place_and_location_effects_remain_later": true,
     "identity_inference_safeguard_is_explicit": true,
-    "chapter_remains_unregistered": true,
-    "registration_waits_for_fulltext_claim_source_audit": true
+    "chapter_was_unregistered_at_source_brief_gate": true,
+    "registration_waited_for_fulltext_claim_source_audit": true,
+    "chapter_registered_only_after_fulltext_gate": true,
+    "every_planned_claim_resolved_to_verified_claim": true,
+    "every_final_claim_has_inspectable_source": true,
+    "empirical_effect_claim_uses_empirical_source_only": true
   },
-  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_skjermoffentlighet_fellesskap_og_samfunn"
+  "next_gate": "produce_source_and_claim_brief_for_skapende_arbeid_teknologi_og_ansvar"
 }

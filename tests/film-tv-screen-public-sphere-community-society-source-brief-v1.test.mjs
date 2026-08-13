@@ -2,17 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditFilmTvScreenPublicSphereCommunitySocietySourceBriefV1 } from '../scripts/brief-film-tv-screen-public-sphere-community-society-sources-v1.mjs';
 
+const isConsumed = (result) => result.brief.status === 'source_claim_brief_consumed_by_verified_chapter';
+
 test('åttende planenhet har komplett og deterministisk kilde- og claimbrief', () => {
   const result = auditFilmTvScreenPublicSphereCommunitySocietySourceBriefV1();
-  assert.deepEqual(result.report.summary, {
+  const expected = {
     emne_count: 9,
     source_count: 28,
     case_count: 30,
     planned_claim_count: 36,
     planned_claim_counts_by_emne: [4, 4, 5, 5, 4, 4, 3, 3, 4],
     proposed_module_count: 4,
-    registered_chapter_count_delta: 0
-  });
+    registered_chapter_count_delta: isConsumed(result) ? 1 : 0
+  };
+  if (isConsumed(result)) expected.resolved_claim_count = 36;
+  assert.deepEqual(result.report.summary, expected);
   assert.ok(Object.values(result.report.gates).every(Boolean));
 });
 
@@ -57,11 +61,20 @@ test('senere publikums- og stedsområder blir ikke overtatt', () => {
   assert.equal(result.brief.production_requirements.location_production_and_local_effect_remain_outside_scope, true);
 });
 
-test('kapitlet forblir uregistrert fram til fulltekst-, claim- og evidensaudit', () => {
+test('registrering skjer monotont først etter fulltekst-, claim- og evidensaudit', () => {
   const result = auditFilmTvScreenPublicSphereCommunitySocietySourceBriefV1();
-  assert.ok(result.plannedClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'));
-  assert.equal(result.brief.runtime_registration.registered, false);
-  assert.equal(result.brief.runtime_registration.allowed_before_full_chapter_gate, false);
-  assert.equal(result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'skjermoffentlighet-fellesskap-og-samfunn'), false);
-  assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'representation_position_counterimages_full_chapter_complete_next_unit_source_brief');
+  const hasChapter = result.registry.subjects.film_tv.chapters.some((chapter) => chapter.id === 'skjermoffentlighet-fellesskap-og-samfunn');
+  if (isConsumed(result)) {
+    assert.ok(result.plannedClaims.every((claim) => claim.status === 'resolved_to_verified_claim' && claim.final_claim_id === claim.id));
+    assert.equal(result.brief.runtime_registration.registered, true);
+    assert.equal(result.brief.runtime_registration.registration_after_full_chapter_gate, true);
+    assert.equal(hasChapter, true);
+    assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief');
+  } else {
+    assert.ok(result.plannedClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'));
+    assert.equal(result.brief.runtime_registration.registered, false);
+    assert.equal(result.brief.runtime_registration.allowed_before_full_chapter_gate, false);
+    assert.equal(hasChapter, false);
+    assert.equal(result.status.subjects.find((row) => row.id === 'film_tv').nextGate, 'representation_position_counterimages_full_chapter_complete_next_unit_source_brief');
+  }
 });

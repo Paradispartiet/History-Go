@@ -1,19 +1,25 @@
 {
   "schema": "history_go_film_tv_screen_public_sphere_community_society_source_claim_brief_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "updated_at": "2026-08-12",
-  "status": "source_claim_brief_complete_full_chapter_next",
+  "status": "source_claim_brief_consumed_by_verified_chapter",
   "subject_id": "film_tv",
   "planned_unit_id": "skjermoffentlighet-fellesskap-og-samfunn",
   "future_chapter_id": "skjermoffentlighet-fellesskap-og-samfunn",
   "runtime_registration": {
-    "registered": false,
-    "allowed_before_full_chapter_gate": false
+    "registered": true,
+    "chapter_id": "skjermoffentlighet-fellesskap-og-samfunn",
+    "registration_after_full_chapter_gate": true
   },
   "scope": {
     "title": "Skjermoffentlighet, fellesskap og samfunn",
-    "primary_domain_ids": ["samfunn_representasjon_identitet_makt"],
-    "prerequisite_planned_unit_ids": ["representasjon-posisjon-og-motbilder", "fjernsyn-plattformer-og-deltakerhistorier"],
+    "primary_domain_ids": [
+      "samfunn_representasjon_identitet_makt"
+    ],
+    "prerequisite_planned_unit_ids": [
+      "representasjon-posisjon-og-motbilder",
+      "fjernsyn-plattformer-og-deltakerhistorier"
+    ],
     "prerequisite_existing_chapter_ids": [],
     "emne_count": 9,
     "emne_ids": [
@@ -58,32 +64,55 @@
     {
       "id": "livslop-by-og-samfunnsrom",
       "sequence": 1,
-      "emne_ids": ["em_film_tv_alder_barn_ungdom_og_livslop", "em_film_tv_byrepresentasjon_og_makt"],
+      "emne_ids": [
+        "em_film_tv_alder_barn_ungdom_og_livslop",
+        "em_film_tv_byrepresentasjon_og_makt"
+      ],
       "purpose": "Etablerer alder/livsløp og urbane rom som samfunnsmessige posisjoner uten å overta publikums- eller stedseffektområdene."
     },
     {
       "id": "offentlighet-kringkasting-og-demokrati",
       "sequence": 2,
-      "emne_ids": ["em_film_tv_film_tv_offentlighet_og_debatt", "em_film_tv_kringkastet_offentlighet", "em_film_tv_tv_offentlighet_og_demokratisk_deltakelse"],
+      "emne_ids": [
+        "em_film_tv_film_tv_offentlighet_og_debatt",
+        "em_film_tv_kringkastet_offentlighet",
+        "em_film_tv_tv_offentlighet_og_demokratisk_deltakelse"
+      ],
       "purpose": "Skiller offentlig debatt, kringkastingsinstitusjon og demokratisk deltakelse med egne evidenskrav for hensikt, tilsyn, resepsjon og effekt."
     },
     {
       "id": "klima-migrasjon-og-transnasjonale-fellesskap",
       "sequence": 3,
-      "emne_ids": ["em_film_tv_klima_miljo_og_okokritisk_skjermanalyse", "em_film_tv_migrasjon_diaspora_og_transnasjonal_identitet"],
+      "emne_ids": [
+        "em_film_tv_klima_miljo_og_okokritisk_skjermanalyse",
+        "em_film_tv_migrasjon_diaspora_og_transnasjonal_identitet"
+      ],
       "purpose": "Prøver økologiske og transnasjonale relasjoner uten å gjøre representasjon til virkningsbevis."
     },
     {
       "id": "nasjon-religion-og-forestilte-fellesskap",
       "sequence": 4,
-      "emne_ids": ["em_film_tv_nasjon_fortelling_og_forestilt_fellesskap", "em_film_tv_religion_livssyn_og_audiovisuell_representasjon"],
+      "emne_ids": [
+        "em_film_tv_nasjon_fortelling_og_forestilt_fellesskap",
+        "em_film_tv_religion_livssyn_og_audiovisuell_representasjon"
+      ],
       "purpose": "Avslutter med institusjonelle og narrative fellesskapskategorier som behandles som omstridte konstruksjoner, ikke homogene identiteter."
     }
   ],
   "production_requirements": {
     "section_scope_is_derived_from_emne_ownership": true,
     "paragraph_and_claim_counts_follow_problem_complexity": true,
-    "current_claim_plan_counts_by_emne": [4, 4, 5, 5, 4, 4, 3, 3, 4],
+    "current_claim_plan_counts_by_emne": [
+      4,
+      4,
+      5,
+      5,
+      4,
+      4,
+      3,
+      3,
+      4
+    ],
     "paragraph_claim_trace_required": true,
     "every_planned_claim_must_be_verified_rewritten_or_rejected": true,
     "every_used_source_must_support_at_least_one_final_claim": true,
@@ -96,7 +125,9 @@
     "religion_analysis_must_not_treat_visual_signs_as_proof_of_personal_belief": true,
     "audience_reception_identity_work_and_fandom_remain_outside_scope": true,
     "location_production_and_local_effect_remain_outside_scope": true,
-    "chapter_registration_only_after_fulltext_claim_and_evidence_audit": true
+    "chapter_registration_only_after_fulltext_claim_and_evidence_audit": true,
+    "expected_current_section_owner_count": 9,
+    "completed": true
   },
-  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_skjermoffentlighet_fellesskap_og_samfunn"
+  "next_gate": "produce_source_and_claim_brief_for_skapende_arbeid_teknologi_og_ansvar"
 }
