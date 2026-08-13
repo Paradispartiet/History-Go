@@ -6,6 +6,7 @@
 //   - økonomi-tick (kapital/dashboard)
 //   - career-role-resolver (rolle-/dashboardvisning)
 //   - life-position-runtime (identitet/livsløp uavhengig av jobb)
+//   - livelihood-runtime (inntektsstrømmer uavhengig av jobb og identitet)
 //   - CivicationUI.init(): kart/SVG-kart, dashboard, nabolag/kapital,
 //     psyke, identitet, hjem, offentlig feed, aktiv rolle, folk, butikk,
 //     track-HUD, footer, panelnavigasjon og robuste empty states.
@@ -167,6 +168,22 @@
   }
 
   /** @returns {Promise<boolean>} */
+  async function ensureCivicationLivelihoodRuntimeLoaded() {
+    if (window.CivicationLivelihoods?.getSnapshot) {
+      window.CivicationLivelihoods.attachEconomyBridge?.();
+      return true;
+    }
+    try {
+      await loadCivicationScriptOnce("js/Civication/systems/civicationLivelihoodRuntime.js");
+      window.CivicationLivelihoods?.attachEconomyBridge?.();
+      return !!window.CivicationLivelihoods?.getSnapshot;
+    } catch (error) {
+      console.warn("[CivicationShellBoot] livelihood runtime kunne ikke lastes", error);
+      return false;
+    }
+  }
+
+  /** @returns {Promise<boolean>} */
   async function ensureCivicationLifePositionUiLoaded() {
     if (window.CivicationLifePositionUI?.init) return true;
     try {
@@ -174,6 +191,18 @@
       return !!window.CivicationLifePositionUI?.init;
     } catch (error) {
       console.warn("[CivicationShellBoot] life position UI kunne ikke lastes", error);
+      return false;
+    }
+  }
+
+  /** @returns {Promise<boolean>} */
+  async function ensureCivicationLivelihoodUiLoaded() {
+    if (window.CivicationLivelihoodUI?.init) return true;
+    try {
+      await loadCivicationScriptOnce("js/Civication/ui/CivicationLivelihoodUI.js");
+      return !!window.CivicationLivelihoodUI?.init;
+    } catch (error) {
+      console.warn("[CivicationShellBoot] livelihood UI kunne ikke lastes", error);
       return false;
     }
   }
@@ -247,7 +276,9 @@
       await ensureCiviCareerRulesLoaded();
       await ensureCivicationCareerRoleResolverLoaded();
       await ensureCivicationLifePositionRuntimeLoaded();
+      await ensureCivicationLivelihoodRuntimeLoaded();
       await ensureCivicationLifePositionUiLoaded();
+      await ensureCivicationLivelihoodUiLoaded();
 
       if (window.CivicationEconomyEngine?.tickWeekly) {
         window.CivicationEconomyEngine.tickWeekly();
@@ -259,6 +290,7 @@
       const ui = window.CivicationUI;
       ui?.init?.();
       window.CivicationLifePositionUI?.init?.();
+      window.CivicationLivelihoodUI?.init?.();
 
       // Skallet er oppe: vekk kart og paneler. Day/life-story fyller mail/
       // arbeidsdag etterpå via updateProfile.
