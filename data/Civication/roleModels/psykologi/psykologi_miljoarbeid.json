@@ -1,0 +1,166 @@
+{
+  "schema": "civication_role_model_v1",
+  "version": 1,
+  "source": {
+    "badge_file": "data/badges/psykologi.json",
+    "badge_id": "psykologi",
+    "badge_name": "Psykologi",
+    "tier_label": "Miljøarbeider",
+    "tier_threshold": 25,
+    "badge_titles": [
+      "Miljøassistent",
+      "Sosialassistent",
+      "Aktivitetsleder (omsorgsarbeid)",
+      "Miljøarbeider"
+    ],
+    "evidence_ref": "utdanning_miljoarbeider"
+  },
+  "category": "psykologi",
+  "role_scope": "psykologi_miljoarbeid",
+  "role_id": "psykologi_miljoarbeider",
+  "title": "Miljøarbeider",
+  "professional_description": [
+    "Førstelinjearbeid med praktisk og sosial oppfølging, aktivitet, motivasjon, konkret observasjon og samarbeid med andre fagpersoner.",
+    "Rollen bruker psykologisk kunnskap i hverdagen, men har ikke psykologens kliniske myndighet."
+  ],
+  "education_basis": [
+    "Stillingsfamilien er ikke en autorisert helseprofesjon. Utdanning.no oppgir at det ikke finnes én offisiell utdanning som gir tittelen miljøarbeider, selv om relevant fagbrev eller annen kompetanse er vanlig og arbeidsgivere kan stille egne krav."
+  ],
+  "core_narrative": [
+    "Du bygger trygghet og mestring gjennom hverdagsstøtte, samtidig som du skiller observasjon fra diagnose og relasjon fra behandling."
+  ],
+  "work_life": {
+    "daily_work": [
+      "støtte daglige rutiner og avtaler",
+      "motivere og tilrettelegge aktivitet",
+      "observere konkrete endringer",
+      "deeskalere konflikter",
+      "dokumentere nøkternt",
+      "eskalere bekymring til riktig fagperson"
+    ],
+    "responsibilities": [
+      "ivareta autonomi og verdighet",
+      "holde profesjonelle grenser",
+      "unngå diagnostiske eller kliniske konklusjoner uten mandat",
+      "gjøre hverdagsobservasjoner nyttige for teamet"
+    ],
+    "work_environment": [
+      "bofellesskap",
+      "aktivitetstilbud",
+      "oppvekst- og fritidsmiljø",
+      "kommunale helse- og sosialtjenester"
+    ],
+    "status_position": [
+      "Nær personen og hverdagen, med mye situasjonskunnskap men uten klinisk behandlingsansvar."
+    ]
+  },
+  "career_path": {
+    "entry_from": ["Miljøassistent", "Sosialassistent", "Aktivitetsleder (omsorgsarbeid)"],
+    "progression_to": ["Veileder", "Rådgiver"],
+    "possible_promotions": ["mer selvstendig oppfølging", "koordinering", "videre kvalifisering"],
+    "possible_exits": ["oppvekst", "arbeidsinkludering", "helse- og sosialfag", "videre utdanning"],
+    "career_risks": ["rolleglidning", "overinvolvering", "stigmatiserende dokumentasjon", "for sen eskalering"]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "Ingen egen norsk autorisasjon for denne stillingsfamilien; arbeidsgiverkrav varierer."
+    ],
+    "skills": [
+      "aktiv lytting",
+      "grensesetting",
+      "motivasjon",
+      "aktivitetstilrettelegging",
+      "konkret observasjon",
+      "deeskalering",
+      "nøytral dokumentasjon",
+      "sikker eskalering"
+    ],
+    "category_knowledge": [
+      "motivasjon",
+      "utvikling",
+      "sosialpsykologi",
+      "gruppeprosesser",
+      "følelser",
+      "mestring",
+      "grunnleggende psykisk helse"
+    ],
+    "history_go_badges": ["psykologi"],
+    "place_connections": [],
+    "people_connections": []
+  },
+  "scope_boundaries": {
+    "may_do": [
+      "støtte",
+      "motivere",
+      "tilrettelegge aktivitet",
+      "observere",
+      "dokumentere konkret",
+      "deeskalere",
+      "eskalere bekymring"
+    ],
+    "must_not_simulate_as_authority": [
+      "diagnostisere",
+      "drive psykoterapi på eget ansvar",
+      "endre behandling",
+      "framstille antakelser som kliniske vurderinger"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "observasjon_vs_tolkning",
+      "title": "Det du så – og det du tror det betyr",
+      "description": "En tydelig endring må tas på alvor uten at usikkerhet gjøres til diagnose.",
+      "pressure": "presisjon_vs_handlepress",
+      "affects": ["trust", "integrity", "risk"]
+    },
+    {
+      "id": "narmhet_vs_grense",
+      "title": "Nær nok til å hjelpe, tydelig nok til å være profesjonell",
+      "description": "En sterk relasjon gjør støtte mulig og rolleglidning fristende.",
+      "pressure": "tillit_vs_profesjonell_grense",
+      "affects": ["trust", "status", "risk"]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "sikker_eskalering",
+      "title": "Når tillit krever at du deler ansvar",
+      "setup": "En fortrolig samtale inneholder bekymring som trenger en mer kvalifisert vurdering.",
+      "choice_axis": "privat_lojalitet_vs_profesjonelt_ansvar",
+      "consequence_axis": "tillit_vs_sikkerhet",
+      "mail_hooks": ["job", "conflict", "consequence"]
+    }
+  ],
+  "related_people": [],
+  "related_places": [],
+  "mail_integration": {
+    "role_scope": "psykologi_miljoarbeid",
+    "mail_profile": "psykologi_miljoarbeid",
+    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "knowledge", "followup", "consequence"],
+    "mail_variables": {
+      "role_title": "Miljøarbeider",
+      "category": "psykologi",
+      "main_pressure": "narmhet_vs_profesjonell_grense",
+      "ethical_axis": "hjelp_vs_autonomi",
+      "status_axis": "tillit_vs_ansvar"
+    },
+    "recommended_mail_families": ["psykologi_miljoarbeid"],
+    "role_model_refs_supported": true
+  },
+  "competence_axes": [
+    { "id": "observasjon", "label": "Observasjon" },
+    { "id": "relasjon", "label": "Relasjon" },
+    { "id": "grensesetting", "label": "Grensesetting" },
+    { "id": "autonomi", "label": "Autonomi" },
+    { "id": "eskalering", "label": "Eskalering" }
+  ],
+  "ideal_type_problems": [
+    { "id": "observasjon_vs_tolkning", "label": "Observasjon vs tolkning" },
+    { "id": "hjelp_vs_autonomi", "label": "Hjelp vs autonomi" },
+    { "id": "narmhet_vs_grense", "label": "Nærhet vs grense" },
+    { "id": "tillit_vs_sikkerhet", "label": "Tillit vs sikkerhet" }
+  ],
+  "notes": [
+    "Canonical shared roleModel for the four Psychology entry jobs. Tier-specific legacy-named roleModels remain as per-title content until the roleModels manifest is migrated."
+  ]
+}

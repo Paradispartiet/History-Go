@@ -55,7 +55,8 @@ const FORVENTET = {
   renholder: { foerste: "fagstolt", siste: "usynlig_forbigaatt" },
   ekspeditor: { foerste: "trygg_paa_gulvet", siste: "mistet_tilliten" },
   arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" },
-  barnehageassistent: { foerste: "trygg_voksen", siste: "drift_foran_barn" }
+  barnehageassistent: { foerste: "trygg_voksen", siste: "drift_foran_barn" },
+  psykologi_miljoarbeid: { foerste: "presis_og_trygg", siste: "for_lukket" }
 };
 
 for (const roleId of Object.keys(manifest.roles)) {
@@ -63,6 +64,7 @@ for (const roleId of Object.keys(manifest.roles)) {
   const endings = content.role.endings;
   assert.ok(Array.isArray(endings) && endings.length >= 2, roleId + ": har endings");
   assert.strictEqual(endings.filter((e) => e.standard).length, 1, roleId + ": nøyaktig én standard");
+  assert.ok(FORVENTET[roleId], roleId + ": mangler eksplisitt endings-kalibrering");
 
   // isFinalDay: usant på dag 1 (det finnes senere dager), sant til slutt.
   const day1 = State.createInitialState(content);
@@ -120,4 +122,4 @@ assert.ok(uiSource.includes("CivicationLifestoryEndings") && uiSource.includes("
   "UI-et kårer en slutt på siste dag");
 assert.ok(uiSource.includes("civi-lifestory-ending"), "UI-et rendrer ending-seksjonen");
 
-console.log("civication lifestory endings ok (5 roller, forsiktig vs hensynsløst kårer ulike slutter)");
+console.log(`civication lifestory endings ok (${Object.keys(manifest.roles).length} roller, forsiktig vs hensynsløst kårer ulike slutter)`);

@@ -2,119 +2,95 @@
   "schema": "civication_role_model_v1",
   "version": 1,
   "source": {
-    "badge_file": "data/badges.json",
+    "badge_file": "data/badges/psykologi.json",
     "badge_id": "psykologi",
     "badge_name": "Psykologi",
-    "tier_label": "Analytiker",
-    "tier_threshold": 10
+    "tier_label": "Sosialassistent",
+    "tier_threshold": 10,
+    "evidence_ref": "utdanning_miljoarbeider"
   },
   "category": "psykologi",
-  "role_scope": "analytiker",
-  "role_id": "psykologi_analytiker",
-  "title": "Analytiker",
+  "role_scope": "psykologi_miljoarbeid",
+  "role_id": "psykologi_sosialassistent",
+  "title": "Sosialassistent",
   "core_narrative": [
-    "I Civication er Analytiker en praktisk rolle i Psykologi der valg former tillit, handlingsrom og status."
+    "Du følger mennesker tettere i sosial hverdag, hjelper med struktur og deltakelse og lærer å støtte uten å ta over."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til kognitiv psykologi, sosialpsykologi."
+      "Følge opp avtaler, aktiviteter og daglige rutiner.",
+      "Støtte kommunikasjon og deltakelse i gruppe.",
+      "Registrere konkrete observasjoner og samarbeide med kolleger om videre oppfølging."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Ivaretakelse av verdighet og selvbestemmelse.",
+      "Tydelig kommunikasjon om hva rollen kan og ikke kan gjøre.",
+      "Varsle ansvarlig person ved bekymring eller sikkerhetsrisiko."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
+      "Helse- og sosialtjenester, aktivitetstilbud, oppvekstmiljø og andre tjenester med tett menneskelig oppfølging."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Støtter både bruker og fagteam og må kunne oversette hverdagsobservasjoner til presis, ikke-diagnostisk informasjon."
     ]
   },
   "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
+    "entry_from": ["Miljøassistent"],
+    "progression_to": ["Aktivitetsleder (omsorgsarbeid)", "Miljøarbeider"],
+    "possible_promotions": ["Mer selvstendig oppfølging, koordinering og aktivitetstilrettelegging."],
+    "possible_exits": ["Arbeidsinkludering, oppvekst, miljøarbeid eller relevant utdanning."],
+    "career_risks": ["Å bli utydelig i rollegrensen eller skrive tolkninger som om de var fakta."]
   },
   "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
-    ],
-    "history_go_badges": [
-      "psykologi"
-    ],
+    "education_basis": ["Ingen egen offentlig autorisasjon knyttet til stillingstittelen; konkrete arbeidsgivere kan stille kompetansekrav."],
+    "skills": ["Relasjonsbygging", "struktur", "aktiv lytting", "konkret dokumentasjon", "samarbeid"],
+    "category_knowledge": ["Utvikling, motivasjon, sosialpsykologi, gruppeprosesser og psykisk helse på grunnnivå."],
+    "history_go_badges": ["psykologi"],
     "place_connections": [],
     "people_connections": []
   },
+  "scope_boundaries": {
+    "may_do": ["støtte", "strukturere", "motivere", "observere", "dokumentere konkret", "samarbeide", "eskalere"],
+    "must_not_simulate_as_authority": ["diagnostisere", "behandle", "tolke symptomer som klinisk konklusjon", "ta beslutninger som tilhører autorisert helsepersonell"]
+  },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
+      "id": "hjelp_vs_autonomi",
+      "title": "Hjelpe uten å overta",
+      "description": "Det går raskere om du gjør oppgaven selv, men målet er at personen mestrer mer selv.",
+      "pressure": "effektivitet_vs_autonomi",
+      "affects": ["trust", "integrity", "status"]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
+      "id": "notatet",
+      "title": "Notatet som må tåle å bli lest",
+      "setup": "Du skal dokumentere en vanskelig episode uten å stemple personen.",
+      "choice_axis": "konkret_beskrivelse_vs_merkelapp",
+      "consequence_axis": "presisjon_vs_stigma",
+      "mail_hooks": ["job", "knowledge", "followup"]
     }
   ],
   "related_people": [],
   "related_places": [],
   "mail_integration": {
-    "role_scope": "analytiker",
-    "mail_profile": "psykologi_analytiker",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
+    "role_scope": "psykologi_miljoarbeid",
+    "mail_profile": "psykologi_miljoarbeid",
+    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "knowledge", "followup", "consequence"],
     "mail_variables": {
-      "role_title": "Analytiker",
+      "role_title": "Sosialassistent",
       "category": "psykologi",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+      "main_pressure": "effektivitet_vs_autonomi",
+      "ethical_axis": "hjelp_vs_selvbestemmelse",
+      "status_axis": "presisjon_vs_stigma"
     },
-    "recommended_mail_families": [],
+    "recommended_mail_families": ["psykologi_miljoarbeid"],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
+  "competence_axes": ["relasjon", "autonomi", "dokumentasjon", "gruppeforstaelse", "eskalering"],
+  "ideal_type_problems": ["hjelp_vs_autonomi", "fakta_vs_tolkning", "lojalitet_vs_sikkerhet"],
   "notes": [
-    "Basert på badges.json: psykologi / Analytiker."
+    "Legacy-filnavnet analytiker.json beholdes foreløpig for manifeststabilitet; canonical tittel er Sosialassistent."
   ]
 }
