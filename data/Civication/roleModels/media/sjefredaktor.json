@@ -1,120 +1,16 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "media",
-    "badge_name": "Media",
-    "tier_label": "Sjefredaktør",
-    "tier_threshold": 180
-  },
-  "category": "media",
-  "role_scope": "sjefredaktor",
-  "role_id": "media_sjefredaktor",
-  "title": "Sjefredaktør",
-  "core_narrative": [
-    "I Civication er Sjefredaktør en praktisk rolle i Media der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til aviser, nettaviser."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser hvordan historier blir til overskrifter, klikk og fellesskap. Media er offentlighetens motor."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som ser hvordan historier blir til overskrifter, klikk og fellesskap. Media er offentlighetens motor."
-    ],
-    "history_go_badges": [
-      "media"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "sjefredaktor",
-    "mail_profile": "media_sjefredaktor",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Sjefredaktør",
-      "category": "media",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: media / Sjefredaktør."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/media.json","badge_id":"media","badge_name":"Medier","tier_label":"Sjefredaktør","tier_threshold":190,"evidence":"data/Civication/mediaCareerLifeEvidence.json"},
+  "category":"media","role_scope":"media_redaksjonell_ledelse","role_id":"media_sjefredaktor","title":"Sjefredaktør",
+  "core_narrative":["Sjefredaktøren har overordnet ansvar for redaksjonell retning, kvalitet og arbeidsmåte i den konkrete jobben. Rollen blir aktiv bare gjennom den eksisterende arbeidsgiverporten."],
+  "work_life":{"daily_work":["sette redaksjonell retning og prioritere kapasitet","følge opp alvorlige publiseringssaker, rettelser og redaksjonell kvalitet"],"responsibilities":["holde beslutningslinjer tydelige","bygge en kultur for dokumentasjon, kritikk og rettelser","balansere kortsiktig produksjon mot langsiktig troverdighet"],"work_environment":["strategisk og operativ ledelse med ansvar for redaksjonell kvalitet og medarbeidere"],"status_position":["Mediestjerne eller Offentlighetsmakt er ikke en jobb og gir ikke denne rollen"]},
+  "career_path":{"entry_from":["konkret ansettelse eller utnevnelse til overordnet redaksjonell lederrolle"],"progression_to":["andre lederroller gjennom nye faktiske stillinger"],"possible_promotions":["større redaksjonelt ansvar etter separat beslutning"],"possible_exits":["andre redaksjonelle eller faglige roller"],"career_risks":["tillitstap når kvalitet, rettelser eller prioriteringer håndteres svakt"]},
+  "required_knowledge":{"education_basis":["redaksjonell ledelse, presseetikk og journalistisk metode"],"skills":["strategisk prioritering","lederkommunikasjon","kvalitetssikring","rettelseshåndtering"],"category_knowledge":["redaksjonell uavhengighet, kvalitet og ansvarslinjer"],"history_go_badges":["media"],"place_connections":[],"people_connections":[]},
+  "challenges":[{"id":"systempress","title":"Kvalitet under produksjonspress","description":"Redaksjonen må prioritere hardt uten å miste dokumentasjon og kvalitet.","pressure":"tempo_vs_tillit","affects":["trust","quality","risk"]}],
+  "dilemmas":[{"id":"synlig_rettelse","title":"En viktig feil må rettes","setup":"En publisering inneholder en feil som krever tydelig korrigering.","choice_axis":"prestisje_vs_rettelse","consequence_axis":"kortsiktig_ubehag_vs_langsiktig_tillit","mail_hooks":["job","conflict","story"]}],
+  "related_people":[],"related_places":[],
+  "mail_integration":{"role_scope":"media_redaksjonell_ledelse","mail_profile":"media_redaksjonell_ledelse","can_feed_mail_types":["job","story","conflict","event","people","faction_choice"],"mail_variables":{"role_title":"Sjefredaktør","category":"media","main_pressure":"tempo_vs_tillit","ethical_axis":"kvalitet_vs_kortsiktig_press","status_axis":"tillit_vs_prestisje"},"recommended_mail_families":[],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"redaksjonell_strategi","label":"Redaksjonell strategi"},{"id":"lederansvar","label":"Lederansvar"},{"id":"rettelseskultur","label":"Rettelseskultur"}],
+  "ideal_type_problems":[{"id":"produksjonspress","label":"Produksjonspress utfordrer kvalitet"},{"id":"systemfeil","label":"En alvorlig feil viser svakhet i arbeidsmåten"}],
+  "notes":["Deler arbeidsverden media_redaksjonell_ledelse med Redaktør og Nyhetsleder.","career_offer krever employer_appointment."]
 }

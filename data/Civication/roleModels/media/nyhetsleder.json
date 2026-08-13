@@ -1,120 +1,16 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "media",
-    "badge_name": "Media",
-    "tier_label": "Nyhetsleder",
-    "tier_threshold": 220
-  },
-  "category": "media",
-  "role_scope": "nyhetsleder",
-  "role_id": "media_nyhetsleder",
-  "title": "Nyhetsleder",
-  "core_narrative": [
-    "I Civication er Nyhetsleder en praktisk rolle i Media der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til aviser, nettaviser."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser hvordan historier blir til overskrifter, klikk og fellesskap. Media er offentlighetens motor."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som ser hvordan historier blir til overskrifter, klikk og fellesskap. Media er offentlighetens motor."
-    ],
-    "history_go_badges": [
-      "media"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "nyhetsleder",
-    "mail_profile": "media_nyhetsleder",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Nyhetsleder",
-      "category": "media",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: media / Nyhetsleder."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/media.json","badge_id":"media","badge_name":"Medier","tier_label":"Nyhetsleder","tier_threshold":240,"evidence":"data/Civication/mediaCareerLifeEvidence.json"},
+  "category":"media","role_scope":"media_redaksjonell_ledelse","role_id":"media_nyhetsleder","title":"Nyhetsleder",
+  "core_narrative":["Nyhetslederen styrer den daglige nyhetsflyten gjennom prioritering, oppgavefordeling, kvalitetssjekk og koordinering. Rollen krever konkret arbeidsgiverutnevnelse."],
+  "work_life":{"daily_work":["prioritere dagens saker og fordele redaksjonell kapasitet","følge framdrift, dokumentasjonsbehov, frister og rettelser gjennom nyhetsdagen"],"responsibilities":["gjøre prioriteringskriterier og beslutningseier tydelige","sørge for at tidspress ikke fjerner nødvendig kontroll","løfte større publiseringsvalg til riktig redaktørnivå når mandatet krever det"],"work_environment":["rask deskflyt med parallelle saker, avhengigheter og hyppige omprioriteringer"],"status_position":["daglig lederansvar følger den faktiske jobben og oppdraget, ikke Badge-status"]},
+  "career_path":{"entry_from":["konkret ansettelse eller utnevnelse til nyhetsledelse"],"progression_to":["andre redaksjonelle lederroller gjennom nye faktiske stillinger"],"possible_promotions":["større desk- eller redaksjonsansvar"],"possible_exits":["journalistikk, redaktørarbeid eller andre redaksjonelle roller"],"career_risks":["feilprioritering når tempo, konkurranse eller volum overstyrer dokumentasjon og kapasitet"]},
+  "required_knowledge":{"education_basis":["journalistisk metode, presseetikk, deskflyt og redaksjonell koordinering"],"skills":["prioritering","oppgavefordeling","kvalitetssjekk","fristsstyring","eskalering"],"category_knowledge":["nyhetsverdi, dokumentasjonsgrad, kapasitet og ansvarslinjer"],"history_go_badges":["media"],"place_connections":[],"people_connections":[]},
+  "challenges":[{"id":"desk_overbelastet","title":"Desken er overbelastet","description":"Flere saker konkurrerer om samme kapasitet og publiseringstid.","pressure":"volum_vs_kvalitet","affects":["quality","trust","risk"]}],
+  "dilemmas":[{"id":"stor_men_ufullstendig","title":"Stor sak er ikke klar","setup":"En svært synlig sak mangler fortsatt sentral verifikasjon når fristen nærmer seg.","choice_axis":"fart_vs_verifikasjon","consequence_axis":"oppmerksomhet_vs_troverdighet","mail_hooks":["job","event","conflict"]}],
+  "related_people":[],"related_places":[],
+  "mail_integration":{"role_scope":"media_redaksjonell_ledelse","mail_profile":"media_redaksjonell_ledelse","can_feed_mail_types":["job","story","conflict","event","people","faction_choice"],"mail_variables":{"role_title":"Nyhetsleder","category":"media","main_pressure":"volum_vs_kvalitet","ethical_axis":"fart_vs_verifikasjon","status_axis":"desk_tillit_vs_feilrisiko"},"recommended_mail_families":[],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"nyhetsprioritering","label":"Nyhetsprioritering"},{"id":"desk_koordinering","label":"Desk-koordinering"},{"id":"kapasitetsstyring","label":"Kapasitetsstyring"},{"id":"eskalering","label":"Riktig eskalering"}],
+  "ideal_type_problems":[{"id":"for_mange_saker","label":"Flere saker enn redaksjonen kan kvalitetssikre"},{"id":"stor_sak_ufullstendig","label":"Stor sak mangler sentral bekreftelse nær frist"}],
+  "notes":["Deler arbeidsverden media_redaksjonell_ledelse med Redaktør og Sjefredaktør.","career_offer krever employer_appointment."]
 }

@@ -37,6 +37,8 @@
     sport_trener: 'sport_trener',
     sport_sportsledelse: 'sport_sportsledelse',
     sport_legende: 'sport_legende',
+    media_redaksjon: 'media_redaksjon',
+    media_redaksjonell_ledelse: 'media_redaksjonell_ledelse',
     subkultur_arrangementsdrift: 'subkultur_kulturhusvert',
     subkultur_program_og_koordinering: 'subkultur_arrangementsplanlegger',
     subkultur_produksjon_og_prosjekt: 'subkultur_produsent',
@@ -59,120 +61,39 @@
   ROLE_SCOPE_BY_ROLE_ID.barnehageassistent = 'barnehageassistent';
 
   const NAERINGSLIV_ROLE_SCOPE_BY_TITLE = {
-    arbeider: 'arbeider',
-    ekspeditor: 'ekspeditor',
-    butikkmedarbeider: 'ekspeditor',
-    ekspeditor_butikkmedarbeider: 'ekspeditor',
-    lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider',
-    renholder: 'renholder',
-    okonomi_og_administrasjonsmedarbeider: 'administrasjonsmedarbeider',
-    administrasjonsmedarbeider: 'administrasjonsmedarbeider',
-    fagarbeider: 'fagarbeider',
-    skiftleder: 'formann',
-    formann: 'formann',
-    arbeidsleder: 'formann',
-    formann_arbeidsleder: 'formann',
-    controller: 'controller',
-    finansanalytiker: 'controller',
-    okonomi_og_finanssjef: 'controller',
-    finansdirektor: 'controller',
-    avdelingsleder: 'avdelingsleder',
-    driftsleder: 'avdelingsleder',
-    produksjonsleder: 'avdelingsleder',
-    butikksjef_enhetsleder: 'avdelingsleder',
-    daglig_leder: 'avdelingsleder',
-    grunder: 'mellomleder',
-    bedriftseier: 'mellomleder',
-    konserndirektor: 'mellomleder',
-    konsernsjef: 'mellomleder',
-    investor: 'mellomleder',
-    kapitalforvalter: 'mellomleder',
-    industribygger: 'mellomleder',
-    industrieier: 'mellomleder'
+    arbeider: 'arbeider', ekspeditor: 'ekspeditor', butikkmedarbeider: 'ekspeditor', ekspeditor_butikkmedarbeider: 'ekspeditor',
+    lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider', renholder: 'renholder', okonomi_og_administrasjonsmedarbeider: 'administrasjonsmedarbeider', administrasjonsmedarbeider: 'administrasjonsmedarbeider',
+    fagarbeider: 'fagarbeider', skiftleder: 'formann', formann: 'formann', arbeidsleder: 'formann', formann_arbeidsleder: 'formann', controller: 'controller', finansanalytiker: 'controller',
+    okonomi_og_finanssjef: 'controller', finansdirektor: 'controller', avdelingsleder: 'avdelingsleder', driftsleder: 'avdelingsleder', produksjonsleder: 'avdelingsleder', butikksjef_enhetsleder: 'avdelingsleder',
+    daglig_leder: 'avdelingsleder', grunder: 'mellomleder', bedriftseier: 'mellomleder', konserndirektor: 'mellomleder', konsernsjef: 'mellomleder', investor: 'mellomleder', kapitalforvalter: 'mellomleder',
+    industribygger: 'mellomleder', industrieier: 'mellomleder'
   };
 
-  const SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE = {
-    barnehageassistent_pedagogisk_medarbeider: 'barnehageassistent'
-  };
-
+  const SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE = { barnehageassistent_pedagogisk_medarbeider: 'barnehageassistent' };
   const BY_ROLE_SCOPE_BY_TITLE = {
-    studentassistent: 'by_assistent',
-    praktikant_arkitektur_plan: 'by_assistent',
-    prosjektmedarbeider: 'by_assistent',
-    saksbehandler_plan_bygg: 'by_saksbehandler',
-    forstekonsulent: 'by_saksbehandler',
-    radgiver_byutvikling: 'by_radgiver_plan',
-    seniorradgiver_byutvikling: 'by_radgiver_plan',
-    arealplanlegger: 'by_radgiver_plan',
-    byplanlegger: 'by_radgiver_plan',
-    prosjektleder_byutvikling: 'by_prosjektleder',
-    seksjonsleder: 'by_prosjektleder',
-    fagsjef_plan_bygg: 'by_prosjektleder',
-    direktor_byutvikling: 'by_prosjektleder',
-    arkitekt: 'by_arkitekt',
-    seniorarkitekt: 'by_arkitekt',
-    byarkitekt: 'by_arkitekt'
+    studentassistent: 'by_assistent', praktikant_arkitektur_plan: 'by_assistent', prosjektmedarbeider: 'by_assistent', saksbehandler_plan_bygg: 'by_saksbehandler', forstekonsulent: 'by_saksbehandler',
+    radgiver_byutvikling: 'by_radgiver_plan', seniorradgiver_byutvikling: 'by_radgiver_plan', arealplanlegger: 'by_radgiver_plan', byplanlegger: 'by_radgiver_plan', prosjektleder_byutvikling: 'by_prosjektleder',
+    seksjonsleder: 'by_prosjektleder', fagsjef_plan_bygg: 'by_prosjektleder', direktor_byutvikling: 'by_prosjektleder', arkitekt: 'by_arkitekt', seniorarkitekt: 'by_arkitekt', byarkitekt: 'by_arkitekt'
   };
-
   const SPORT_ROLE_SCOPE_BY_TITLE = {
-    mosjonist: 'sport_utover',
-    aktiv_utover: 'sport_utover',
-    konkurranseutover: 'sport_utover',
-    klubbspiller: 'sport_utover',
-    eliteseriespiller: 'sport_utover',
-    profesjonell_utover: 'sport_utover',
-    landslagsutover: 'sport_utover',
-    kaptein: 'sport_kaptein',
-    trener: 'sport_trener',
-    hovedtrener: 'sport_trener',
-    sportssjef: 'sport_sportsledelse',
-    olympisk_mester: 'sport_legende',
-    idrettsstjerne: 'sport_legende',
-    idrettslegende: 'sport_legende'
+    mosjonist: 'sport_utover', aktiv_utover: 'sport_utover', konkurranseutover: 'sport_utover', klubbspiller: 'sport_utover', eliteseriespiller: 'sport_utover', profesjonell_utover: 'sport_utover', landslagsutover: 'sport_utover',
+    kaptein: 'sport_kaptein', trener: 'sport_trener', hovedtrener: 'sport_trener', sportssjef: 'sport_sportsledelse', olympisk_mester: 'sport_legende', idrettsstjerne: 'sport_legende', idrettslegende: 'sport_legende'
   };
-
+  const MEDIA_ROLE_SCOPE_BY_TITLE = {
+    journalist: 'media_redaksjon', reporter: 'media_redaksjon', redaksjonsmedarbeider: 'media_redaksjon', redaktor: 'media_redaksjonell_ledelse', sjefredaktor: 'media_redaksjonell_ledelse', nyhetsleder: 'media_redaksjonell_ledelse'
+  };
   const SUBKULTUR_ROLE_SCOPE_BY_TITLE = {
-    kulturhusvert: 'subkultur_arrangementsdrift',
-    arrangementscrew: 'subkultur_arrangementsdrift',
-    produksjonsassistent: 'subkultur_arrangementsdrift',
-    kulturmedarbeider: 'subkultur_arrangementsdrift',
-    arrangementsplanlegger: 'subkultur_program_og_koordinering',
-    kulturkonsulent: 'subkultur_program_og_koordinering',
-    booking_og_innholdskoordinator: 'subkultur_program_og_koordinering',
-    produsent: 'subkultur_produksjon_og_prosjekt',
-    prosjektleder_kulturarrangement: 'subkultur_produksjon_og_prosjekt',
-    produksjonsleder: 'subkultur_produksjonsledelse',
-    daglig_leder_kulturarena: 'subkultur_kulturarena_ledelse',
-    observor: 'subkultur_arrangementsdrift',
-    deltaker: 'subkultur_arrangementsdrift',
-    hakkekylling: 'subkultur_arrangementsdrift',
-    gatesmart: 'subkultur_arrangementsdrift',
-    crew: 'subkultur_program_og_koordinering',
-    gangster: 'subkultur_program_og_koordinering',
-    dandy: 'subkultur_program_og_koordinering',
-    kultfigur: 'subkultur_produksjon_og_prosjekt',
-    trendsetter: 'subkultur_produksjon_og_prosjekt',
-    undergrunnsikon: 'subkultur_produksjonsledelse',
-    legend: 'subkultur_kulturarena_ledelse'
+    kulturhusvert: 'subkultur_arrangementsdrift', arrangementscrew: 'subkultur_arrangementsdrift', produksjonsassistent: 'subkultur_arrangementsdrift', kulturmedarbeider: 'subkultur_arrangementsdrift',
+    arrangementsplanlegger: 'subkultur_program_og_koordinering', kulturkonsulent: 'subkultur_program_og_koordinering', booking_og_innholdskoordinator: 'subkultur_program_og_koordinering',
+    produsent: 'subkultur_produksjon_og_prosjekt', prosjektleder_kulturarrangement: 'subkultur_produksjon_og_prosjekt', produksjonsleder: 'subkultur_produksjonsledelse', daglig_leder_kulturarena: 'subkultur_kulturarena_ledelse',
+    observor: 'subkultur_arrangementsdrift', deltaker: 'subkultur_arrangementsdrift', hakkekylling: 'subkultur_arrangementsdrift', gatesmart: 'subkultur_arrangementsdrift', crew: 'subkultur_program_og_koordinering', gangster: 'subkultur_program_og_koordinering',
+    dandy: 'subkultur_program_og_koordinering', kultfigur: 'subkultur_produksjon_og_prosjekt', trendsetter: 'subkultur_produksjon_og_prosjekt', undergrunnsikon: 'subkultur_produksjonsledelse', legend: 'subkultur_kulturarena_ledelse'
   };
-
   const PSYKOLOGI_ROLE_SCOPE_BY_TITLE = {
-    miljoassistent: 'psykologi_miljoarbeid',
-    sosialassistent: 'psykologi_miljoarbeid',
-    aktivitetsleder_omsorgsarbeid: 'psykologi_miljoarbeid',
-    miljoarbeider: 'psykologi_miljoarbeid',
-    veileder: 'psykologi_arbeids_og_karriereveiledning',
-    radgiver: 'psykologi_arbeids_og_karriereveiledning',
-    seniorradgiver: 'psykologi_arbeids_og_karriereveiledning',
-    jobbveileder: 'psykologi_arbeids_og_karriereveiledning',
-    karriereveileder: 'psykologi_arbeids_og_karriereveiledning',
-    karriereradgiver: 'psykologi_arbeids_og_karriereveiledning',
-    psykolog: 'psykolog',
-    spesialistpsykolog: 'spesialistpsykolog',
-    fagansvarlig: 'fagansvarlig',
-    klinikkleder: 'klinikkleder',
-    forsker_psykologi: 'forsker_psykologi',
-    professor_psykologi: 'professor_psykologi'
+    miljoassistent: 'psykologi_miljoarbeid', sosialassistent: 'psykologi_miljoarbeid', aktivitetsleder_omsorgsarbeid: 'psykologi_miljoarbeid', miljoarbeider: 'psykologi_miljoarbeid',
+    veileder: 'psykologi_arbeids_og_karriereveiledning', radgiver: 'psykologi_arbeids_og_karriereveiledning', seniorradgiver: 'psykologi_arbeids_og_karriereveiledning', jobbveileder: 'psykologi_arbeids_og_karriereveiledning',
+    karriereveileder: 'psykologi_arbeids_og_karriereveiledning', karriereradgiver: 'psykologi_arbeids_og_karriereveiledning', psykolog: 'psykolog', spesialistpsykolog: 'spesialistpsykolog', fagansvarlig: 'fagansvarlig', klinikkleder: 'klinikkleder',
+    forsker_psykologi: 'forsker_psykologi', professor_psykologi: 'professor_psykologi'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -180,7 +101,6 @@
     const roleKey = slugify(activePosition?.role_key);
     const roleId = slugify(activePosition?.role_id);
     const titleKey = slugify(activePosition?.title);
-
     if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return ROLE_SCOPE_BY_ROLE_ID[roleId];
     if (ROLE_SCOPE_BY_ROLE_ID[roleKey]) return ROLE_SCOPE_BY_ROLE_ID[roleKey];
 
@@ -189,13 +109,11 @@
       if (['psykolog', 'spesialistpsykolog', 'fagansvarlig', 'klinikkleder'].includes(roleKey)) return roleKey;
       if (PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey]) return PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey];
     }
-
     if (careerId === 'subkultur') {
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('subkultur_')) return roleKey;
       if (SUBKULTUR_ROLE_SCOPE_BY_TITLE[roleKey]) return SUBKULTUR_ROLE_SCOPE_BY_TITLE[roleKey];
       if (SUBKULTUR_ROLE_SCOPE_BY_TITLE[titleKey]) return SUBKULTUR_ROLE_SCOPE_BY_TITLE[titleKey];
     }
-
     if (careerId === 'sport') {
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('sport_')) return roleKey;
       if (SPORT_ROLE_SCOPE_BY_TITLE[titleKey]) return SPORT_ROLE_SCOPE_BY_TITLE[titleKey];
@@ -205,7 +123,11 @@
       if (titleKey.includes('sportssjef')) return 'sport_sportsledelse';
       if (titleKey.includes('olympisk_mester') || titleKey.includes('idrettsstjerne') || titleKey.includes('idrettslegende')) return 'sport_legende';
     }
-
+    if (careerId === 'media') {
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('media_')) return roleKey;
+      if (MEDIA_ROLE_SCOPE_BY_TITLE[roleKey]) return MEDIA_ROLE_SCOPE_BY_TITLE[roleKey];
+      if (MEDIA_ROLE_SCOPE_BY_TITLE[titleKey]) return MEDIA_ROLE_SCOPE_BY_TITLE[titleKey];
+    }
     if (careerId === 'by') {
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('by_')) return roleKey;
       if (BY_ROLE_SCOPE_BY_TITLE[titleKey]) return BY_ROLE_SCOPE_BY_TITLE[titleKey];
@@ -215,13 +137,11 @@
       if (titleKey.includes('prosjektleder') || titleKey.includes('seksjonsleder') || titleKey.includes('fagsjef') || titleKey.includes('direktor')) return 'by_prosjektleder';
       if (titleKey.includes('arkitekt')) return 'by_arkitekt';
     }
-
     if (careerId === 'sosial_laering') {
       if (roleKey === 'barnehageassistent' || roleKey.includes('barnehageassistent')) return 'barnehageassistent';
       if (SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE[titleKey]) return SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE[titleKey];
       if (titleKey.includes('barnehageassistent') || titleKey.includes('pedagogisk_medarbeider')) return 'barnehageassistent';
     }
-
     if (careerId === 'naeringsliv') {
       if (NAERINGSLIV_ROLE_SCOPE_BY_TITLE[roleKey]) return NAERINGSLIV_ROLE_SCOPE_BY_TITLE[roleKey];
       if (NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey]) return NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey];
@@ -264,6 +184,8 @@
     if (roleKey.includes('sport_trener')) return 'sport_trener';
     if (roleKey.includes('sport_sportsledelse')) return 'sport_sportsledelse';
     if (roleKey.includes('sport_legende')) return 'sport_legende';
+    if (roleKey.includes('media_redaksjonell_ledelse')) return 'media_redaksjonell_ledelse';
+    if (roleKey.includes('media_redaksjon')) return 'media_redaksjon';
     if (roleKey.includes('by_assistent')) return 'by_assistent';
     if (roleKey.includes('by_saksbehandler')) return 'by_saksbehandler';
     if (roleKey.includes('by_radgiver_plan')) return 'by_radgiver_plan';
@@ -294,9 +216,7 @@
   function resolveCareerRole(activePosition) {
     const role_scope = resolveCareerRoleScope(activePosition);
     const role_id = resolveCareerRoleId(activePosition);
-    const role_key = role_scope && role_scope !== 'unknown'
-      ? role_scope
-      : slugify(activePosition?.role_key || activePosition?.title || '') || null;
+    const role_key = role_scope && role_scope !== 'unknown' ? role_scope : slugify(activePosition?.role_key || activePosition?.title || '') || null;
     return { role_scope, role_id, role_key };
   }
 
