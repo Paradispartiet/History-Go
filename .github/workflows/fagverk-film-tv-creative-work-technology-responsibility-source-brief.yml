@@ -1,0 +1,57 @@
+name: Fagverk Film og TV creative work technology responsibility source brief
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json"
+      - "data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json"
+      - "data/fag/TV_og_Film/methods_film_tv_canonical_v4_5.json"
+      - "data/fagverk/fagverk_registry.json"
+      - "data/fagverk/subject_status.json"
+      - "data/fag/TV_og_Film/film_tv_creative_work_technology_responsibility_source_claim_brief_v1.json"
+      - "data/fag/TV_og_Film/film_tv_creative_work_technology_responsibility_sources_v1.json"
+      - "data/fag/TV_og_Film/film_tv_creative_work_technology_responsibility_cases_v1.json"
+      - "data/fag/TV_og_Film/film_tv_creative_work_technology_responsibility_topic_claims_v1.json"
+      - "scripts/brief-film-tv-creative-work-technology-responsibility-sources-v1.mjs"
+      - "tests/film-tv-creative-work-technology-responsibility-source-brief-v1.test.mjs"
+      - "reports/fagverk/film-tv-creative-work-technology-responsibility-source-brief-v1-audit.json"
+      - ".github/workflows/fagverk-film-tv-creative-work-technology-responsibility-source-brief.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json"
+      - "data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json"
+      - "data/fag/TV_og_Film/methods_film_tv_canonical_v4_5.json"
+      - "data/fagverk/fagverk_registry.json"
+      - "data/fagverk/subject_status.json"
+      - "data/fag/TV_og_Film/film_tv_creative_work_technology_responsibility_source_claim_brief_v1.json"
+      - "data/fag/TV_og_Film/film_tv_creative_work_technology_responsibility_sources_v1.json"
+      - "data/fag/TV_og_Film/film_tv_creative_work_technology_responsibility_cases_v1.json"
+      - "data/fag/TV_og_Film/film_tv_creative_work_technology_responsibility_topic_claims_v1.json"
+      - "scripts/brief-film-tv-creative-work-technology-responsibility-sources-v1.mjs"
+      - "tests/film-tv-creative-work-technology-responsibility-source-brief-v1.test.mjs"
+      - "reports/fagverk/film-tv-creative-work-technology-responsibility-source-brief-v1-audit.json"
+      - ".github/workflows/fagverk-film-tv-creative-work-technology-responsibility-source-brief.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate creative work technology responsibility source brief
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Validate source brief syntax and deterministic audit
+        run: |
+          node --check scripts/brief-film-tv-creative-work-technology-responsibility-sources-v1.mjs
+          node scripts/brief-film-tv-creative-work-technology-responsibility-sources-v1.mjs
+      - name: Validate source brief and prerequisite contracts
+        run: |
+          node --test tests/film-tv-creative-work-technology-responsibility-source-brief-v1.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs
