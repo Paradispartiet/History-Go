@@ -22,7 +22,6 @@ const EXPECTED = [
 const SCOPE = "psykologi_arbeids_og_karriereveiledning";
 const ROLE_ID = "psykologi_karriereveileder";
 
-// 1. Canonical badge thresholds stay stable, but their job meaning is no longer generic.
 for (const [label, threshold] of EXPECTED) {
   const tier = badge.tiers.find((t) => t.label === label);
   assert.ok(tier, `Psykologi mangler tier ${label}`);
@@ -34,7 +33,6 @@ for (const [label, threshold] of EXPECTED) {
   assert.strictEqual(Resolver.resolveCareerRoleId(active), ROLE_ID, `${label} routes til representative role id`);
 }
 
-// 2. Evidence is machine-readable and explicitly excludes clinical authority.
 assert.deepStrictEqual(evidence.canonical_badge_titles, EXPECTED.map(([label]) => label));
 assert.strictEqual(evidence.canonical_role_scope, SCOPE);
 for (const ref of ["utdanning_jobbveileder", "utdanning_karriereveileder"]) {
@@ -45,7 +43,6 @@ for (const forbidden of ["diagnost", "psykoterapi", "klinisk", "sensitive opplys
   assert.ok(evidenceBoundary.includes(forbidden), `evidence-grensen dekker ${forbidden}`);
 }
 
-// 3. Shared role model + FWG encode one work family, not three duplicated fantasies.
 assert.strictEqual(canonicalModel.role_scope, SCOPE);
 assert.strictEqual(canonicalModel.role_id, ROLE_ID);
 assert.strictEqual(grammar.role_scope, SCOPE);
@@ -67,7 +64,6 @@ for (const [legacyFile, tierLabel] of [["veileder.json", "Veileder"], ["radgiver
   assert.ok(/diagnos/.test(boundary), `${tierLabel} har klinisk grense`);
 }
 
-// 4. One active Life Story package serves all three tiers and passes the real content validator.
 const lifeEntry = manifest.roles[SCOPE];
 assert.ok(lifeEntry, "Life Story manifest har guidance-scope");
 assert.strictEqual(lifeEntry.badge_id, "psykologi");
@@ -91,11 +87,15 @@ for (const [personId, navn] of [["venn", "Jonas"], ["familie", "Søsteren din"]]
   assert.strictEqual(typeof raw.role.startState.relasjoner[personId], "number", `startrelasjon ${personId} finnes`);
 }
 
-// 5. Psychology remains fail-closed above this non-clinical family.
+// Psykolog har nå sitt eget regulerte scope. Det kritiske skillet er at rollen
+// aldri må arve den ikke-kliniske veiledningsscopen, og tilbudet er fortsatt
+// fail-closed bak autorisasjonsporten i canonical Badge-data.
 const psychologist = badge.tiers.find((t) => t.label === "Psykolog");
 assert.strictEqual(psychologist?.career_offer?.policy, "authorization_required");
 assert.ok(psychologist.career_offer.qualification_ids.includes("no_psychologist_authorization_or_license"));
-assert.strictEqual(Resolver.resolveCareerRoleScope({ career_id: "psykologi", title: "Psykolog" }), "unknown",
-  "Psykolog arver ikke veilednings-scope og må fortsatt håndteres av kvalifikasjonsporten");
+const psychologistScope = Resolver.resolveCareerRoleScope({ career_id: "psykologi", title: "Psykolog" });
+assert.strictEqual(psychologistScope, "psykolog", "Psykolog routes til eget regulert clinical scope");
+assert.notStrictEqual(psychologistScope, SCOPE, "Psykolog arver aldri guidance-scope");
+assert.strictEqual(Resolver.resolveCareerRoleId({ career_id: "psykologi", title: "Psykolog" }), "psykologi_psykolog");
 
-console.log("civication psychology guidance career ladder ok (3 tiers -> 1 documented non-clinical work family)");
+console.log("civication psychology guidance career ladder ok (3 tiers -> 1 documented non-clinical work family; Psykolog isolated)");

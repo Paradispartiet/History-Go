@@ -57,7 +57,11 @@ const FORVENTET = {
   arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" },
   barnehageassistent: { foerste: "trygg_voksen", siste: "drift_foran_barn" },
   psykologi_miljoarbeid: { foerste: "presis_og_trygg", siste: "for_lukket" },
-  psykologi_arbeids_og_karriereveiledning: { foerste: "selvstendig_og_opplyst", siste: "systemet_styrte" }
+  psykologi_arbeids_og_karriereveiledning: { foerste: "selvstendig_og_opplyst", siste: "systemet_styrte" },
+  psykolog: { foerste: "trygg_og_samarbeidende", siste: "kontroll_foran_allianse" },
+  spesialistpsykolog: { foerste: "kompleksitet_med_ydmykhet", siste: "ekspertrollen_lukket_rommet" },
+  fagansvarlig: { foerste: "kvalitet_som_laering", siste: "prosedyren_som_skjold" },
+  klinikkleder: { foerste: "retning_med_baerekraft", siste: "tallene_vant" }
 };
 
 for (const roleId of Object.keys(manifest.roles)) {
@@ -67,7 +71,6 @@ for (const roleId of Object.keys(manifest.roles)) {
   assert.strictEqual(endings.filter((e) => e.standard).length, 1, roleId + ": nøyaktig én standard");
   assert.ok(FORVENTET[roleId], roleId + ": mangler eksplisitt endings-kalibrering");
 
-  // isFinalDay: usant på dag 1 (det finnes senere dager), sant til slutt.
   const day1 = State.createInitialState(content);
   assert.ok(!Endings.isFinalDay(day1, content), roleId + ": dag 1 er ikke siste dag");
 
@@ -85,17 +88,15 @@ for (const roleId of Object.keys(manifest.roles)) {
   assert.notStrictEqual(endF.id, endH.id, roleId + ": to mønstre gir to ulike slutter");
 }
 
-// --- Fallback: tom sluttilstand scorer ingenting => standard-endingen ---
 {
   const content = build("renholder");
-  const tomState = State.createInitialState(content); // ingen valg tatt
+  const tomState = State.createInitialState(content);
   const end = Endings.resolveEnding(tomState, content);
   const std = content.role.endings.find((e) => e.standard);
   assert.strictEqual(end.id, std.id, "uten signaler faller vi tilbake på standard-endingen");
   assert.strictEqual(end.standard, true, "fallback er merket standard");
 }
 
-// --- Validatoren feiler hardt på kriterier mot ukjente signaler ---
 const arb = manifest.roles.arbeidsledig;
 const raw = {
   role: readJson(arb.role),
@@ -105,7 +106,7 @@ const raw = {
   lifeThreads: readJson(manifest.life.threads),
   lifeScenes: readJson(manifest.life.scenes)
 };
-Content.buildContent(raw); // gyldig utgangspunkt
+Content.buildContent(raw);
 assert.throws(() => {
   const broken = JSON.parse(JSON.stringify(raw));
   broken.role.endings[0].kriterier = { meters: { lykke: { min: 5 } } };
@@ -117,7 +118,6 @@ assert.throws(() => {
   Content.buildContent(broken);
 }, /forventet nøyaktig én standard-ending/, "null standard-endinger skal kaste");
 
-// --- UI-kontrakten: siste dag viser slutten, ikke «Start neste dag» ---
 const uiSource = fs.readFileSync(path.join(ROOT, "js/Civication/ui/CivicationLifestoryUI.js"), "utf8");
 assert.ok(uiSource.includes("CivicationLifestoryEndings") && uiSource.includes("isFinalDay"),
   "UI-et kårer en slutt på siste dag");
