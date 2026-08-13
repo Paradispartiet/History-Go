@@ -6,7 +6,8 @@ test('Religion har en låst universitetsmatrise uten for tidlig complete-status'
   const { report } = auditReligionUniversityReadiness();
   assert.equal(report.subject.id, 'religion');
   assert.equal(report.subject.editorialStatus, 'structure_ready');
-  assert.equal(report.subject.nextGate, 'university_matrix_domain_articles_concepts_sources_and_methods');
+  assert.equal(report.subject.nextGate, 'chapter_production');
+  assert.equal(report.subject.completionGate, 'university_matrix_domain_articles_concepts_sources_and_methods');
   assert.equal(report.subject.completeReady, false);
   assert.deepEqual(report.target, {
     universityAreaCount: 12,
