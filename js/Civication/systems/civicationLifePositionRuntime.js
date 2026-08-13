@@ -33,6 +33,7 @@
       return window.CIVI_LIFE_POSITION_CATALOG;
     }
     if (catalogPromise) return catalogPromise;
+    if (typeof fetch !== "function") return null;
 
     catalogPromise = fetch(CATALOG_PATH, { cache: "no-store" })
       .then(async (res) => {
