@@ -97,6 +97,17 @@
       }
     },
     {
+      "id": "for_lukket",
+      "navn": "Trygg avstand, for lite kontakt",
+      "tekst": "Du var så redd for å gå utenfor rollen at du flere ganger trakk deg før relasjonen var brukt godt nok. Grensene holdt, men noen mennesker opplevde dem som en lukket dør. Profesjonalitet handler også om å bli i samtalen lenge nok til å forstå hva som faktisk trenger å tas videre.",
+      "kriterier": {
+        "flagg": {
+          "trakk_seg_for_tidlig": true,
+          "avviste_paaroerende": true
+        }
+      }
+    },
+    {
       "id": "baret_jobben_hjem",
       "navn": "Bar jobben hjem",
       "tekst": "Du sto i alle situasjonene og tok alle samtalene, men klarte aldri helt å avslutte vakten. Det som var profesjonell omsorg på jobb ble privat ansvar i hodet ditt.",
@@ -104,6 +115,9 @@
         "meters": {
           "psyke": { "max": 50 },
           "energi": { "max": 50 }
+        },
+        "flagg": {
+          "lovet_for_mye": true
         }
       }
     }
