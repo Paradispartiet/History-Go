@@ -111,10 +111,42 @@
     return new Set(files);
   }
 
+  function resolveCanonicalRoleScope(active) {
+    const resolver = window.CivicationCareerRoleResolver;
+    if (!resolver || typeof resolver.resolveCareerRoleScope !== "function") return "";
+    try {
+      const roleScope = norm(resolver.resolveCareerRoleScope(active));
+      return roleScope && roleScope !== "unknown" ? roleScope : "";
+    } catch {
+      return "";
+    }
+  }
+
   async function resolveRoleModelPath(active) {
     const category = norm(active?.career_id);
     if (!category) {
       return { category: "", role_scope: "", path: null, strategy: "none", manifest_has_path: false };
+    }
+
+    // Først: canonical Civication Career Role Resolver. Dette gjør role_scope
+    // til felles kontrakt mellom jobb, Life Story, FWG og roleModel. Dersom
+    // en delt roleModel finnes på <category>/<role_scope>.json, vinner den.
+    const canonicalRoleScope = resolveCanonicalRoleScope(active);
+    const canonicalPath = canonicalRoleScope
+      ? `data/Civication/roleModels/${category}/${canonicalRoleScope}.json`
+      : null;
+    if (canonicalPath) {
+      const canonicalModel = await loadJson(canonicalPath);
+      if (canonicalModel) {
+        const manifestSet = await loadManifestSet();
+        return {
+          category,
+          role_scope: norm(canonicalModel.role_scope || canonicalRoleScope),
+          path: canonicalPath,
+          strategy: "canonical_role_scope",
+          manifest_has_path: manifestSet.has(canonicalPath)
+        };
+      }
     }
 
     const legacyRoleScope = resolveLegacyRoleScope(active);
@@ -127,7 +159,7 @@
       if (legacyModel) {
         return {
           category,
-          role_scope: legacyRoleScope,
+          role_scope: norm(legacyModel.role_scope || legacyRoleScope),
           path: legacyPath,
           strategy: "explicit_mapping",
           manifest_has_path: true
@@ -312,7 +344,8 @@
     decoratePack,
     resolveRoleModelPath,
     resolveLegacyRoleScope,
-    resolveSluggedRoleScope
+    resolveSluggedRoleScope,
+    resolveCanonicalRoleScope
   };
 
   if (document.readyState === "loading") {
