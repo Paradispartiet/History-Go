@@ -65,21 +65,32 @@
     },
     "psykologi": {
       "badge_source":"data/badges/psykologi.json",
-      "implementation_status":"entry_and_guidance_ladders_implemented",
-      "mapping_principle":"De fire første Psykologi-tierene deler én ikke-klinisk førstelinje-scope for miljøarbeid og oppfølging. Veileder, Rådgiver og Seniorrådgiver er nå avgrenset til den dokumenterte norske jobb-familien arbeids-, jobb- og karriereveiledning og deler én egen ikke-klinisk scope. Regulerte, utnevnelseskrevende og akademiske roller over dette styres fortsatt av career_offer-portene i canonical Badge-data og skal ikke arve noen av de to førstelinje-scope-ene.",
+      "implementation_status":"entry_guidance_clinical_and_leadership_ladders_implemented",
+      "mapping_principle":"Psykologi bruker separate role scopes for førstelinje miljøarbeid, ikke-klinisk arbeids- og karriereveiledning, autorisert psykologarbeid, spesialistpsykologarbeid, fag-/kvalitetsansvar og klinikkledelse. Badge-poeng åpner progresjon, mens canonical career_offer-porter avgjør om regulerte eller utnevnelseskrevende stillinger faktisk kan tilbys. Leder- og fagtitler arver aldri klinisk myndighet automatisk.",
       "roles": {
         "psykologi_miljoarbeid": {
           "role_id":"psykologi_miljoarbeider","role_type":"forstelinje_miljoarbeid_og_oppfolging","implementation_status":"implemented","description":"Praktisk og sosial oppfølging, aktivitet, motivasjon, konkret observasjon, deeskalering, nøytral dokumentasjon og sikker eskalering – eksplisitt uten diagnostikk eller behandlingsmyndighet.","role_model":"data/Civication/roleModels/psykologi/psykologi_miljoarbeid.json","work_grammar":"data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json","lifestory_role":"psykologi_miljoarbeid","badge_titles":["Miljøassistent","Sosialassistent","Aktivitetsleder (omsorgsarbeid)","Miljøarbeider"]
         },
         "psykologi_arbeids_og_karriereveiledning": {
           "role_id":"psykologi_karriereveileder","role_type":"arbeidsinkludering_og_karriereveiledning","implementation_status":"implemented","description":"Arbeids-, jobb- og karriereveiledning med mål- og beslutningsavklaring, kartlegging, arbeidsmarkeds- og utdanningsorientering, jobbsøkerstøtte, handlingsplaner, arbeidsgiverdialog og personvern – eksplisitt uten diagnostikk, terapi eller klinisk arbeidsevnevurdering.","role_model":"data/Civication/roleModels/psykologi/psykologi_arbeids_og_karriereveiledning.json","work_grammar":"data/Civication/workGrammars/psykologi/psykologi_arbeids_og_karriereveiledning.json","lifestory_role":"psykologi_arbeids_og_karriereveiledning","evidence":"data/Civication/psychologyGuidanceEvidence.json","badge_titles":["Veileder","Rådgiver","Seniorrådgiver"]
+        },
+        "psykolog": {
+          "role_id":"psykologi_psykolog","role_type":"autorisert_klinisk_psykologarbeid","implementation_status":"implemented","description":"Klinisk utredning, behandling, behandlingsplanlegging, dokumentasjon, pasientmedvirkning, risikovurdering og tverrfaglig samarbeid innen egen kompetanse og stilling.","role_model":"data/Civication/roleModels/psykologi/psykolog.json","work_grammar":"data/Civication/workGrammars/psykologi/psykolog.json","evidence":"data/Civication/psychologyClinicalCareerEvidence.json","badge_titles":["Psykolog"]
+        },
+        "spesialistpsykolog": {
+          "role_id":"psykologi_spesialistpsykolog","role_type":"spesialisert_klinisk_psykologarbeid","implementation_status":"implemented","description":"Komplekse kliniske forløp, fordypet spesialistarbeid, veiledning, konsultasjon, metodekvalitet og fagutvikling innen faktisk spesialitet.","role_model":"data/Civication/roleModels/psykologi/spesialistpsykolog.json","work_grammar":"data/Civication/workGrammars/psykologi/spesialistpsykolog.json","evidence":"data/Civication/psychologyClinicalCareerEvidence.json","badge_titles":["Spesialistpsykolog"]
+        },
+        "fagansvarlig": {
+          "role_id":"psykologi_fagansvarlig","role_type":"fag_kvalitet_og_systemlaering","implementation_status":"implemented","description":"Arbeidsgiverutnevnt fag- og kvalitetsansvar med prosedyrer, kompetanse, veiledningsstruktur, avvikslæring og implementering. Ikke synonymt med lovens faglig ansvarlig etter psykisk helsevernloven.","role_model":"data/Civication/roleModels/psykologi/fagansvarlig.json","work_grammar":"data/Civication/workGrammars/psykologi/fagansvarlig.json","evidence":"data/Civication/psychologyClinicalCareerEvidence.json","badge_titles":["Fagansvarlig"]
+        },
+        "klinikkleder": {
+          "role_id":"psykologi_klinikkleder","role_type":"klinikk_og_virksomhetsledelse","implementation_status":"implemented","description":"Strategisk og operativ klinikkledelse med ansvar for kvalitetssystem, pasientforløp, bemanning, kompetanse, økonomi, resultatstyring og endring; lederrollen gir ikke klinisk myndighet i seg selv.","role_model":"data/Civication/roleModels/psykologi/klinikkleder.json","work_grammar":"data/Civication/workGrammars/psykologi/klinikkleder.json","evidence":"data/Civication/psychologyClinicalCareerEvidence.json","badge_titles":["Klinikkleder"]
         }
       },
       "title_to_role_scope": {
-        "Miljøassistent":"psykologi_miljoarbeid","Sosialassistent":"psykologi_miljoarbeid","Aktivitetsleder (omsorgsarbeid)":"psykologi_miljoarbeid","Miljøarbeider":"psykologi_miljoarbeid","Veileder":"psykologi_arbeids_og_karriereveiledning","Rådgiver":"psykologi_arbeids_og_karriereveiledning","Seniorrådgiver":"psykologi_arbeids_og_karriereveiledning"
+        "Miljøassistent":"psykologi_miljoarbeid","Sosialassistent":"psykologi_miljoarbeid","Aktivitetsleder (omsorgsarbeid)":"psykologi_miljoarbeid","Miljøarbeider":"psykologi_miljoarbeid","Veileder":"psykologi_arbeids_og_karriereveiledning","Rådgiver":"psykologi_arbeids_og_karriereveiledning","Seniorrådgiver":"psykologi_arbeids_og_karriereveiledning","Psykolog":"psykolog","Spesialistpsykolog":"spesialistpsykolog","Fagansvarlig":"fagansvarlig","Klinikkleder":"klinikkleder"
       },
       "future_split_candidates": [
-        {"role_scope":"psykologi_klinisk_og_fagledelse","candidate_badge_titles":["Psykolog","Spesialistpsykolog","Fagansvarlig","Klinikkleder"],"reason":"Regulerte og utnevnelseskrevende roller trenger egne kvalifikasjons- og arbeidslivspakker; de skal ikke arve miljøarbeid- eller veilednings-scope."},
         {"role_scope":"psykologi_akademia","candidate_badge_titles":["Forsker (psykologi)","Professor (psykologi)"],"reason":"Akademiske roller er allerede kvalifikasjonsportet, men mangler en egen spillbar forsknings- og undervisningspakke."}
       ]
     }
