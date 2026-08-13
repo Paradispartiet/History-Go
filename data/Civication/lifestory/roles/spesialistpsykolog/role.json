@@ -1,0 +1,23 @@
+{
+  "version":1,
+  "id":"spesialistpsykolog",
+  "navn":"Spesialistpsykolog",
+  "kjernefantasi":"Du er den andre ber om når saken blir vanskelig. Utfordringen er å bruke ekspertisen til å gjøre rommet klokere uten å gjøre din egen sikkerhet større enn grunnlaget.",
+  "arbeidsoppgaver":["komplekse kliniske vurderinger","behandling innen spesialitet","veiledning","konsultasjon","metodekvalitet","fagutvikling"],
+  "personer":[
+    {"id":"pasient","navn":"Sander","beskrivelse":"Har et komplekst forløp der flere forklaringer og tiltak er plausible."},
+    {"id":"psykolog","navn":"Ida","beskrivelse":"Psykologen du veileder. Vil ha retning, men trenger å beholde eget klinisk ansvar."},
+    {"id":"teamleder","navn":"Teamlederen","beskrivelse":"Trenger tydelige beslutninger og likere praksis i teamet."},
+    {"id":"kollega","navn":"Ravi","beskrivelse":"Spesialist fra et annet fagfelt som ser saken gjennom en annen linse."},
+    {"id":"venn","navn":"Maja","beskrivelse":"Vennen din som merker når ekspertrollen gjør deg mindre villig til å si at du er usikker."}
+  ],
+  "hovedkonflikter":["ekspertise vs usikkerhet","metodefidelitet vs tilpasning","veiledning vs overtakelse","egen spesialitet vs annen kompetanse","fagutvikling vs produksjon"],
+  "endings":[
+    {"id":"kompleksitet_med_ydmykhet","navn":"Ekspert uten fasitbehov","tekst":"Du ga retning der grunnlaget bar den, og lot usikkerheten stå synlig der det var nødvendig. Ida ble tryggere på sin egen vurdering, Sander fikk en mer tilpasset plan, og teamet brukte ekspertisen din som arbeidsverktøy i stedet for autoritetsstempel.","kriterier":{"meters":{"integritet":{"min":62},"handlingsrom":{"min":52}},"flagg":{"synliggjorde_usikkerhet":true,"veiledet_uten_a_overta":true}},"standard":true},
+    {"id":"ekspertrollen_lukket_rommet","navn":"Ekspertrollen lukket rommet","tekst":"Du leverte klare svar og lik praksis, men flere vurderinger sluttet å bli undersøkt etter at du hadde uttalt deg. Kollegene begynte å spørre hva du mente før de forklarte hva de selv så. Ekspertisen skapte orden og mindre faglig rom.","kriterier":{"flagg":{"brukte_status_som_fasit":true,"overtok_ansvar":true}}},
+    {"id":"ingen_vil_velge","navn":"Alt måtte undersøkes mer","tekst":"Du beskyttet usikkerheten så godt at teamet mistet retning. Kompleksitet ble et argument for å utsette valg som faktisk kunne tas. Ydmykhet uten beslutning kan også svikte pasienten.","kriterier":{"flagg":{"utsatte_alle_valg":true}}}
+  ],
+  "startState":{"meters":{"penger":520,"psyke":65,"energi":66,"integritet":55,"synlighet":55,"handlingsrom":51},"relasjoner":{"pasient":50,"psykolog":55,"teamleder":47,"kollega":53,"venn":60}},
+  "dagsplan":{"1":[{"klokke":"09:00","tekst":"Kompleks kasusdrøfting"},{"klokke":"11:00","tekst":"Veiledning"},{"klokke":"14:00","tekst":"Metode- og behandlingsvalg"}],"2":[{"klokke":"09:30","tekst":"Tverrspesialistisk drøfting"},{"klokke":"13:30","tekst":"Fagutvikling og videre plan"}]},
+  "scopeBoundary":{"kan":["utrede og behandle innen egen spesialitet og stilling","veilede kolleger","bidra til fagutvikling","be om annen spesialistkompetanse"],"kanIkke":["bruke spesialisttittel uten separat godkjenning","framstille egen spesialitet som kompetanse på alle områder","fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking","overta kollegers ansvar bare på grunn av status"]}
+}
