@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Verifiserer ansvarsdelingen etter at CivicationBoot ble delt i to lag:
 //   - CivicationShellBoot: selve skallet/produktet (data, økonomi, career
-//     resolver, life position, livelihood, CivicationUI.init, civi:booted).
-//     Skal ALLTID kunne starte.
+//     resolver, life position, career reality, livelihood, CivicationUI.init,
+//     civi:booted). Skal ALLTID kunne starte.
 //   - CivicationDayBoot: dag-/life-story-laget (event engine, livelihood
 //     opportunity bridge, role model, blocked-job, obligations, onAppOpen).
 //     Inert uten dag-DOM, og en feil her skal ALDRI velte skallet.
@@ -18,7 +18,6 @@ const DAY = fs.readFileSync(path.join(ROOT, "js/Civication/CivicationDayBoot.js"
 const COORD = fs.readFileSync(path.join(ROOT, "js/Civication/CivicationBoot.js"), "utf8");
 
 /**
- * Bygger et JSDOM-miljø med minimale stubs og evaluerer de tre boot-filene.
  * @param {{ withInbox?: boolean, engine?: "ok"|"throwing"|"missing", evalCoord?: boolean }} opts
  */
 function makeEnv(opts) {
@@ -41,6 +40,7 @@ function makeEnv(opts) {
   const calls = {
     uiInit: 0,
     economyTick: 0,
+    careerRealityGuard: 0,
     livelihoodBridge: 0,
     livelihoodOpportunityBridge: 0,
     livelihoodUi: 0,
@@ -50,6 +50,9 @@ function makeEnv(opts) {
   };
   window.CivicationCareerRoleResolver = { resolveCareerRoleScope() { return null; } };
   window.CivicationLifePositions = { getLifeContext() { return {}; } };
+  window.CivicationCareerRealityGuard = {
+    install() { calls.careerRealityGuard += 1; return { jobOfferGuard: true, salaryGuard: true }; }
+  };
   window.CivicationLifePositionUI = { init() { calls.lifePositionUi += 1; } };
   window.CivicationLivelihoods = {
     getSnapshot() { return {}; },
@@ -102,6 +105,7 @@ async function main() {
     await window.CivicationShellBoot.start();
     assert.strictEqual(calls.uiInit, 1, "skallet kaller CivicationUI.init");
     assert.strictEqual(calls.lifePositionUi, 1, "skallet initierer life-position UI");
+    assert.strictEqual(calls.careerRealityGuard, 1, "career reality guard installeres før økonomitick");
     assert.strictEqual(calls.livelihoodUi, 1, "skallet initierer livelihood UI");
     assert.strictEqual(calls.livelihoodBridge, 1, "livelihood kobles til canonical economy før tick");
     assert.strictEqual(calls.economyTick, 1, "skallet kjører ukes-økonomitick én gang");
@@ -157,10 +161,14 @@ async function main() {
     "CivicationDayBoot eier livelihood opportunity-broen");
   assert.ok(SHELL.includes("CivicationUI") && SHELL.includes("civi:booted"),
     "CivicationShellBoot eier skall-UI-init og civi:booted");
+  assert.ok(SHELL.includes("civicationCareerRealityGuard.js") && SHELL.includes("CivicationCareerRealityGuard"),
+    "CivicationShellBoot laster career reality guard som del av skallet");
+  assert.ok(SHELL.indexOf("ensureCivicationCareerRealityGuardLoaded()") < SHELL.indexOf("CivicationEconomyEngine.tickWeekly()"),
+    "career reality guard må installeres før ukentlig økonomitick");
   assert.ok(SHELL.includes("civicationLivelihoodRuntime.js") && SHELL.includes("CivicationLivelihoodUI"),
     "CivicationShellBoot laster livelihood runtime/UI som del av skallet");
 
-  console.log("civication boot split ok (skall/dag adskilt, livelihood opportunities i daglaget, koordinator isolerer dag-feil)");
+  console.log("civication boot split ok (skall/dag adskilt, career reality før økonomi, livelihood opportunities i daglaget)");
 }
 
 main().catch((error) => { console.error(error); process.exit(1); });
