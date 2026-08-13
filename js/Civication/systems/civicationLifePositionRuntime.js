@@ -5,6 +5,7 @@
   const LS_KEY = "hg_civi_life_positions_v1";
   const CATALOG_PATH = "data/Civication/lifePositionCatalog.json";
   let catalogPromise = null;
+  let guardedEconomyEngine = null;
 
   // These are not a second progression model. They are always-open choices in the
   // existing life-position profile, for life paths that should not require Badge points.
@@ -401,6 +402,65 @@
       .map(([key, values]) => [key, values.map((entry) => ({ ...entry }))]));
   }
 
+  function shouldUseLegacyUnemploymentSupport() {
+    const circumstances = getState().circumstances;
+    return circumstances.activity_status === "jobseeker" && circumstances.benefit_status === "none";
+  }
+
+  function clearLegacyUnemploymentClock() {
+    try {
+      window.CivicationState?.setState?.({ unemployed_since_week: null });
+    } catch {}
+  }
+
+  // The old economy engine historically treated every player without active_position as
+  // unemployed and started a generic NAV timer. The life profile is now the semantic owner:
+  // only an explicit jobseeker with no other registered benefit uses that legacy support.
+  // AAP, disability benefit, study, retirement and voluntary no-job states are handled by
+  // the existing life/livelihood contracts and must not be overwritten by the old fallback.
+  function installEconomyStatusGuard() {
+    const engine = window.CivicationEconomyEngine;
+    if (!engine || typeof engine.tickWeekly !== "function") return false;
+    if (guardedEconomyEngine === engine || engine.__civiLifeStatusGuardInstalled === true) return true;
+
+    const baseTickWeekly = engine.tickWeekly.bind(engine);
+    engine.tickWeekly = function tickWeeklyWithLifeStatusGuard() {
+      const beforeEmployment = getFormalEmploymentStatus();
+      const beforeCircumstances = getState().circumstances;
+      const legacySupportEligible = !beforeEmployment.is_employed && shouldUseLegacyUnemploymentSupport();
+
+      if (!beforeEmployment.is_employed && !legacySupportEligible) {
+        clearLegacyUnemploymentClock();
+      }
+
+      if (beforeEmployment.is_employed && beforeCircumstances.activity_status === "jobseeker") {
+        setCircumstances({ activity_status: "none" }, { source: "employment_runtime" });
+      }
+
+      const result = baseTickWeekly();
+      const afterEmployment = getFormalEmploymentStatus();
+
+      if (!afterEmployment.is_employed && !shouldUseLegacyUnemploymentSupport()) {
+        clearLegacyUnemploymentClock();
+      }
+
+      // A genuine gameplay job loss can make the player a jobseeker, but we do not
+      // overwrite an explicit student/benefit/retirement/voluntary life circumstance.
+      if (beforeEmployment.is_employed && !afterEmployment.is_employed) {
+        const current = getState().circumstances;
+        if (current.activity_status === "none" && current.benefit_status === "none") {
+          setCircumstances({ activity_status: "jobseeker" }, { source: "job_loss" });
+        }
+      }
+
+      return result;
+    };
+
+    try { engine.__civiLifeStatusGuardInstalled = true; } catch {}
+    guardedEconomyEngine = engine;
+    return true;
+  }
+
   function getLifeContext() {
     const state = getState();
     return {
@@ -425,11 +485,14 @@
     setPrimary,
     setCircumstances,
     getCircumstanceOptions,
+    shouldUseLegacyUnemploymentSupport,
+    installEconomyStatusGuard,
     getFormalEmploymentStatus,
     getLifeContext
   };
 
   ensureCatalogLoaded();
+  installEconomyStatusGuard();
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = window.CivicationLifePositions;
