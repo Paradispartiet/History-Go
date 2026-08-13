@@ -17,16 +17,17 @@ test('Religion har en låst universitetsmatrise uten for tidlig complete-status'
   });
 });
 
-test('Religion har fullført tre områder, men forblir låst på 18/72 og 12/18', () => {
+test('Religion har fullført fire områder, men forblir låst på 24/72 og 14/18', () => {
   const { report } = auditReligionUniversityReadiness();
   assert.equal(report.areaStatuses.theory_method, 'complete');
   assert.equal(report.areaStatuses.history_comparison, 'complete');
   assert.equal(report.areaStatuses.west_asian_abrahamic, 'complete');
-  assert.equal(report.gaps.standaloneTopicArticlesMaterialized, 18);
-  assert.equal(report.gaps.standaloneTopicArticlesRemaining, 54);
-  assert.equal(report.gaps.universityMethodsMaterialized, 12);
-  assert.equal(report.gaps.universityMethodsRemaining, 6);
-  assert.equal(report.gates.firstThreeUniversityAreasCompleteAtHighQuality, true);
+  assert.equal(report.areaStatuses.south_asian_religions, 'complete');
+  assert.equal(report.gaps.standaloneTopicArticlesMaterialized, 24);
+  assert.equal(report.gaps.standaloneTopicArticlesRemaining, 48);
+  assert.equal(report.gaps.universityMethodsMaterialized, 14);
+  assert.equal(report.gaps.universityMethodsRemaining, 4);
+  assert.equal(report.gates.firstFourUniversityAreasCompleteAtHighQuality, true);
   assert.equal(report.subject.completeReady, false);
 });
 

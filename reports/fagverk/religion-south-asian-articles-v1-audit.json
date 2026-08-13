@@ -1,19 +1,19 @@
 {
   "schema": "history_go_fagverk_religion_topic_articles_batch_audit_v1",
   "version": "1.0.0",
-  "status": "religion_abrahamic_traditions_articles_complete",
+  "status": "religion_south_asian_articles_complete",
   "generatedFrom": {
     "readiness": "data/fag/religion/religion_university_readiness_v1.json",
     "methods": "data/fag/religion/methods_religion_canonical_v1.json",
     "sourceRegistry": "data/fag/religion/kilder_religion_canonical_v1.json",
-    "claims": "data/fagverk/religion/jodedom-kristendom-islam/claims.json",
+    "claims": "data/fagverk/religion/sor-asias-religioner/claims.json",
     "articleDir": "data/fagverk/religion/emneartikler",
     "status": "data/fagverk/subject_status.json",
-    "report": "reports/fagverk/religion-abrahamic-traditions-articles-v1-audit.json"
+    "report": "reports/fagverk/religion-south-asian-articles-v1-audit.json"
   },
   "subject": {
     "id": "religion",
-    "areaId": "west_asian_abrahamic",
+    "areaId": "south_asian_religions",
     "editorialStatus": "chapters_in_progress",
     "nextGate": "remaining_religion_area_article_production",
     "completeReady": false
@@ -21,37 +21,37 @@
   "coverage": {
     "requiredArticleCount": 6,
     "materializedArticleCount": 6,
-    "completedUniversityAreaCount": 3,
+    "completedUniversityAreaCount": 4,
     "totalUniversityAreaCount": 12,
-    "completedTopicCount": 18,
+    "completedTopicCount": 24,
     "totalTopicCount": 72,
     "articleIds": [
-      "judaism_text_practice_and_history",
-      "judaism_diaspora_memory_and_diversity",
-      "christianity_origins_texts_and_creeds",
-      "christianity_churches_reformation_and_global_diversity",
-      "islam_origins_quran_hadith_and_law",
-      "islam_practice_institutions_and_internal_diversity"
+      "hindu_traditions_texts_deities_and_practice",
+      "caste_varna_jati_and_social_change",
+      "buddhist_traditions_doctrine_and_practice",
+      "jainism_ahimsa_and_asceticism",
+      "sikhism_guru_granth_and_panth",
+      "south_asian_religions_diaspora_and_globalization"
     ]
   },
   "depth": {
     "minimumWordsPerArticle": 650,
-    "totalEditorialWordCount": 6160,
+    "totalEditorialWordCount": 5483,
     "articleWordCounts": {
-      "christianity_churches_reformation_and_global_diversity": 1011,
-      "christianity_origins_texts_and_creeds": 995,
-      "islam_origins_quran_hadith_and_law": 1065,
-      "islam_practice_institutions_and_internal_diversity": 1067,
-      "judaism_diaspora_memory_and_diversity": 997,
-      "judaism_text_practice_and_history": 1025
+      "buddhist_traditions_doctrine_and_practice": 886,
+      "caste_varna_jati_and_social_change": 924,
+      "hindu_traditions_texts_deities_and_practice": 943,
+      "jainism_ahimsa_and_asceticism": 884,
+      "sikhism_guru_granth_and_panth": 941,
+      "south_asian_religions_diaspora_and_globalization": 905
     },
     "scenarioCounts": {
-      "christianity_churches_reformation_and_global_diversity": 2,
-      "christianity_origins_texts_and_creeds": 2,
-      "islam_origins_quran_hadith_and_law": 2,
-      "islam_practice_institutions_and_internal_diversity": 2,
-      "judaism_diaspora_memory_and_diversity": 2,
-      "judaism_text_practice_and_history": 2
+      "buddhist_traditions_doctrine_and_practice": 2,
+      "caste_varna_jati_and_social_change": 2,
+      "hindu_traditions_texts_deities_and_practice": 2,
+      "jainism_ahimsa_and_asceticism": 2,
+      "sikhism_guru_granth_and_panth": 2,
+      "south_asian_religions_diaspora_and_globalization": 2
     }
   },
   "evidence": {
@@ -66,14 +66,14 @@
     "requiredMethodCount": 18,
     "materializedRequiredMethodCount": 14,
     "newlyMaterializedMethodIds": [
-      "met_religion_ritual_and_performance_analysis",
-      "met_religion_sociological_institutional_analysis"
+      "met_religion_ethnographic_observation",
+      "met_religion_qualitative_interview"
     ],
     "usedMethodIds": [
       "met_religion_case_comparison_and_process_tracing",
-      "met_religion_comparative_analysis",
-      "met_religion_historical_source_criticism",
+      "met_religion_ethnographic_observation",
       "met_religion_material_visual_and_architectural_analysis",
+      "met_religion_qualitative_interview",
       "met_religion_ritual_and_performance_analysis",
       "met_religion_sociological_institutional_analysis",
       "met_religion_textual_and_philological_analysis"
@@ -2035,12 +2035,12 @@
     "conclusion": "high_quality"
   },
   "gates": {
-    "exactSixAbrahamicTraditionsArticles": true,
+    "exactSixSouthAsianArticles": true,
     "allArticlesMeetMinimumWordDepth": true,
     "allThirtySixClaimsResolveAndAreUsed": true,
     "allTwentySourcesResolveAndAreUsed": true,
     "allCasesAndScenariosExplicitlyLabeled": true,
-    "twoNewPracticeInstitutionMethodsMaterializedAndLinked": true,
+    "twoNewFieldInterviewMethodsMaterializedAndLinked": true,
     "allTwentyFourReligionArticlesReviewedForEditorialDiversity": true,
     "internalDiversityAndNonessentialismReviewed": true,
     "genericTemplateReuseAbsent": true,
