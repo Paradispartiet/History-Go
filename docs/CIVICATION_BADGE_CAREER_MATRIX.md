@@ -5,13 +5,13 @@ Audit snapshot 2026-08-13. The canonical, machine-readable 266-tier matrix is `d
 ## Total
 
 - 17 canonical badges / 266 tiers
-- 89 keep/direct
+- 93 keep/direct
 - 95 keep with qualification/authorization/appointment gate
-- 67 replace
+- 63 replace
 - 15 review
-- 224 exact salary gaps in the current canonical badge tiers (14 matching careers × 3 salary entries = 42 defined tier salaries; three canonical badge IDs have no matching career salary rule).
-- FWG exists only under canonical `by` and `naeringsliv` today; the shared `by_radgiver_plan` FWG covers four By titles, and `renholder` covers one Næringsliv title.
-- Active Life Story bindings cover 6 badge-title bindings: four By titles through Arealplanlegger, plus Renholder and Ekspeditør / butikkmedarbeider.
+- 214 exact salary gaps in the current canonical badge tiers. Psychology is now the first canonical badge with all 13 current tiers explicitly covered by its salary rule; missing salary elsewhere remains audit debt and is not interpolated.
+- FWG-backed tier/runtime bindings now include the four Psychology entry jobs through shared `psykologi_miljoarbeid`, in addition to the existing By and Næringsliv bindings.
+- Active Life Story bindings now cover 10 badge-title bindings: four By titles, Renholder, Ekspeditør / butikkmedarbeider, and the four Psychology entry jobs.
 
 ## Badge-level worklist
 
@@ -33,27 +33,33 @@ Audit snapshot 2026-08-13. The canonical, machine-readable 266-tier matrix is `d
 | subkultur | 11 | 11 | 0 | 0 | 0 |
 | film_tv | 15 | 9 | 0 | 0 | 6 |
 | media | 15 | 6 | 2 | 2 | 5 |
-| psykologi | 13 | 4 | 0 | 6 | 3 |
+| psykologi | 13 | 0 | 0 | 6 | 7 |
 
-## First remediation: Psykologi
+## First remediation complete: Psykologi entry ladder
 
-No replacement titles are invented in this pass. The old non-job tiers are blocked from Civication job offers, while real regulated/appointed/academic roles are gated. Badge milestones still unlock.
+The four obsolete Psychology opening tiers have been replaced with real non-regulated entry jobs in one coherent first-line support family. Utdanning.no lists these titles in the NAV/Aa-register title family for miljøarbeid and states that there is no single official education that grants the `miljøarbeider` title, while employers may still require relevant competence. This makes them suitable for direct History Go progression without pretending that quiz points grant a regulated health profession.
 
-| points | title | classification | action | offer policy | runtime | qualifications |
-| ---: | --- | --- | --- | --- | --- | --- |
-| 5 | Titter | game_rank_or_descriptive_role | replace | not_job | activated in `data/badges/psykologi.json` | — |
-| 10 | Analytiker | ambiguous_job_title | replace | review_required | activated in `data/badges/psykologi.json` | — |
-| 15 | Atferdsobservatør | game_rank_or_descriptive_role | replace | not_job | activated in `data/badges/psykologi.json` | — |
-| 25 | Samtalepartner | game_rank_or_descriptive_role | replace | not_job | activated in `data/badges/psykologi.json` | — |
-| 40 | Veileder | actual_job | keep | direct | activated in `data/badges/psykologi.json` | — |
-| 60 | Rådgiver | actual_job | keep | direct | activated in `data/badges/psykologi.json` | — |
-| 85 | Seniorrådgiver | actual_job | keep | direct | activated in `data/badges/psykologi.json` | — |
-| 115 | Psykolog | regulated_health_profession | keep_with_gate | authorization_required | activated in `data/badges/psykologi.json` | no_psychologist_authorization_or_license |
-| 150 | Spesialistpsykolog | regulated_specialist_profession | keep_with_gate | authorization_required | activated in `data/badges/psykologi.json` | no_psychologist_authorization_or_license, no_psychologist_specialist_approval |
-| 190 | Fagansvarlig | leadership_or_specialist_position | keep_with_gate | appointment_required | activated in `data/badges/psykologi.json` | employer_appointment |
-| 240 | Klinikkleder | clinical_leadership_position | keep_with_gate | appointment_required | activated in `data/badges/psykologi.json` | employer_appointment |
-| 300 | Forsker (psykologi) | academic_position | keep_with_gate | qualification_required | activated in `data/badges/psykologi.json` | academic_qualification_and_employment |
-| 380 | Professor (psykologi) | academic_position | keep_with_gate | qualification_required | activated in `data/badges/psykologi.json` | academic_qualification_and_employment |
+All four use shared `role_scope: psykologi_miljoarbeid`, shared FWG and one Life Story package. The shared work model is explicitly non-clinical: support, activity, motivation, concrete observation, neutral documentation, de-escalation and safe escalation are in scope; diagnosis and independent treatment are out of scope.
+
+| points | title | classification | action | offer policy | role_scope | Life Story | salary |
+| ---: | --- | --- | --- | --- | --- | --- | ---: |
+| 5 | Miljøassistent | actual_job | keep | direct | `psykologi_miljoarbeid` | shared | 5 / week |
+| 10 | Sosialassistent | actual_job | keep | direct | `psykologi_miljoarbeid` | shared | 9 / week |
+| 15 | Aktivitetsleder (omsorgsarbeid) | actual_job | keep | direct | `psykologi_miljoarbeid` | shared | 16 / week |
+| 25 | Miljøarbeider | actual_job | keep | direct | `psykologi_miljoarbeid` | shared | 18 / week |
+| 40 | Veileder | actual_job | keep | direct | not yet split | — | 20 / week |
+| 60 | Rådgiver | actual_job | keep | direct | not yet split | — | 23 / week |
+| 85 | Seniorrådgiver | actual_job | keep | direct | not yet split | — | 26 / week |
+| 115 | Psykolog | regulated_health_profession | keep_with_gate | authorization_required | clinical package pending | — | 30 / week |
+| 150 | Spesialistpsykolog | regulated_specialist_profession | keep_with_gate | authorization_required | clinical package pending | — | 34 / week |
+| 190 | Fagansvarlig | leadership_or_specialist_position | keep_with_gate | appointment_required | leadership package pending | — | 38 / week |
+| 240 | Klinikkleder | clinical_leadership_position | keep_with_gate | appointment_required | leadership package pending | — | 42 / week |
+| 300 | Forsker (psykologi) | academic_position | keep_with_gate | qualification_required | academic package pending | — | 46 / week |
+| 380 | Professor (psykologi) | academic_position | keep_with_gate | qualification_required | academic package pending | — | 50 / week |
+
+### What remains in Psychology
+
+The entry ladder is no longer career-debt. The next Psychology-specific audit target is the generic middle trio `Veileder → Rådgiver → Seniorrådgiver`: each title must be tied to a documented real job family or deliberately replaced before a new shared scope is built. The regulated clinical, leadership and academic tiers remain blocked by their existing qualification/authorization/appointment gates until their own role packages are developed.
 
 ## Permanent sources
 
@@ -65,8 +71,9 @@ No replacement titles are invented in this pass. The old non-job tiers are block
 - `data/Civication/hg_careers.json`: exact current salary-by-tier rules.
 - `scripts/civication-badge-career-matrix.mjs`: generator for the expanded per-tier live matrix.
 
-## External qualification sources
+## External role and qualification sources
 
+- Utdanning.no: Miljøarbeider — role description, education note and NAV/Aa-register title family used for the four Psychology entry jobs.
 - Helsedirektoratet: psykolog is a protected health title requiring Norwegian authorization or licence.
 - Norsk psykologforening: specialist approval has a separate specialist-education approval path.
 - HK-dir: architect is not itself a regulated occupation/title in Norway; the audit therefore uses an education/employment gate, not a fabricated Norwegian architect authorization.
