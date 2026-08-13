@@ -1,120 +1,16 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "media",
-    "badge_name": "Media",
-    "tier_label": "Journalist",
-    "tier_threshold": 60
-  },
-  "category": "media",
-  "role_scope": "journalist",
-  "role_id": "media_journalist",
-  "title": "Journalist",
-  "core_narrative": [
-    "I Civication er Journalist en praktisk rolle i Media der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til aviser, nettaviser."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser hvordan historier blir til overskrifter, klikk og fellesskap. Media er offentlighetens motor."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som ser hvordan historier blir til overskrifter, klikk og fellesskap. Media er offentlighetens motor."
-    ],
-    "history_go_badges": [
-      "media"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "journalist",
-    "mail_profile": "media_journalist",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Journalist",
-      "category": "media",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: media / Journalist."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/media.json","badge_id":"media","badge_name":"Medier","tier_label":"Journalist","tier_threshold":60,"evidence":"data/Civication/mediaCareerLifeEvidence.json"},
+  "category":"media","role_scope":"media_redaksjon","role_id":"media_journalist","title":"Journalist",
+  "core_narrative":["Journalisten gjør informasjon etterprøvbar og forståelig gjennom kildearbeid, verifikasjon, intervju, kontekst og presis formidling innen et faktisk redaksjonelt mandat."],
+  "work_life":{"daily_work":["utvikle saker, finne kilder, intervjue, kontrollere dokumentasjon og skrive eller redigere journalistisk materiale","følge opp feil, nye opplysninger og kildebehov gjennom redaksjonell arbeidsflyt"],"responsibilities":["skille dokumenterte fakta fra påstander og tolkning","attribuere opplysninger presist og løfte vesentlig usikkerhet","ivareta relevans, kontekst og nødvendig samtidig imøtegåelse"],"work_environment":["deadlinepress, kildeavhengighet og løpende redaksjonelle prioriteringer"],"status_position":["faglig troverdighet følger arbeidskvalitet og tillit, ikke Badge-status alene"]},
+  "career_path":{"entry_from":["redaksjonell ansettelse eller konkret journaliststilling"],"progression_to":["større fagansvar eller separat utnevnt redaksjonell lederrolle"],"possible_promotions":["mer komplekse saker, fagansvar eller ledelsesoppgaver etter faktisk beslutning"],"possible_exits":["andre redaksjonelle roller, kommunikasjon eller selvstendig journalistisk virksomhet"],"career_risks":["troverdighetsfall ved svak verifikasjon, skjult interessekonflikt eller dårlig rettelseskultur"]},
+  "required_knowledge":{"education_basis":["journalistisk metode, kildekritikk, presseetikk og redaksjonell arbeidsflyt"],"skills":["intervju","kildekritikk","verifikasjon","skriving","attribusjon","retting"],"category_knowledge":["redaksjonell uavhengighet, offentlig interesse og forskjellen mellom publisitet og dokumentasjon"],"history_go_badges":["media"],"place_connections":[],"people_connections":[]},
+  "challenges":[{"id":"hast_vs_verifikasjon","title":"Hastighet mot verifikasjon","description":"Publiseringspresset øker før sentrale opplysninger er godt nok kontrollert.","pressure":"hastighet_vs_verifikasjon","affects":["trust","quality","risk"]}],
+  "dilemmas":[{"id":"kildeinteresse","title":"Kilde med egeninteresse","setup":"En kilde gir viktige opplysninger som samtidig kan tjene kildens egen konflikt.","choice_axis":"eksklusivitet_vs_uavhengig_kontroll","consequence_axis":"fart_vs_troverdighet","mail_hooks":["job","conflict","story"]}],
+  "related_people":[],"related_places":[],
+  "mail_integration":{"role_scope":"media_redaksjon","mail_profile":"media_redaksjon","can_feed_mail_types":["job","story","conflict","event","people","faction_choice"],"mail_variables":{"role_title":"Journalist","category":"media","main_pressure":"hastighet_vs_verifikasjon","ethical_axis":"offentlig_interesse_vs_unodig_skade","status_axis":"troverdighet_vs_oppmerksomhet"},"recommended_mail_families":[],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"kildekritikk","label":"Kildekritikk"},{"id":"verifikasjon","label":"Verifikasjon"},{"id":"attribusjon","label":"Attribusjon"},{"id":"rettelseskultur","label":"Rettelseskultur"}],
+  "ideal_type_problems":[{"id":"en_kilde_stor_pastand","label":"Stor påstand med for tynt kildegrunnlag"},{"id":"privat_detalj","label":"Sann detalj uten tilstrekkelig offentlig relevans"}],
+  "notes":["Deler arbeidsverden media_redaksjon med Reporter og Redaksjonsmedarbeider.","Rollen har ikke overordnet publiseringsmyndighet bare fordi Media-badget stiger."]
 }
