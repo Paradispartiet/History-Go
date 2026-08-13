@@ -163,6 +163,29 @@ function relevantClaims(emne, count = 5) {
   return selected;
 }
 
+function backgroundFor({ emne, seed, curation, claimText, evidenceClaim }) {
+  const variant = stableHash(emne.emne_id) % 3;
+  if (variant === 0) {
+    return [
+      `Kunnskapshistorisk utgangspunkt: ${claimText(0)} Dette gjør ${seed[0]} til et spørsmål om hvilke observasjoner som kunne registreres, hvem som fikk definere målet, og hvilke sammenligninger samtidens institusjoner gjorde mulige. En faglig lesning skiller derfor dokumentert funn fra senere fortolkning og undersøker om språk, utvalg eller målepraksis begrenser overføring til andre historiske perioder og dagens situasjoner.`,
+      `Forklaringskonflikt: ${claimText(1)} I analysen behandles ${seed[1]} som en sammenlignbar påstand, ikke som en løs skolemerkelapp. Modellene vurderes mot samme analyseenhet, tidsrom og utfall, mens støtte til én mekanisme ikke får utelukke at andre prosesser bidrar. Uenigheten blir dermed et empirisk spørsmål om prediksjoner, mellomliggende mekanismer og dokumenterte grensebetingelser.`,
+      `Evidensvurdering: ${evidenceClaim.claim} For ${emne.title} gjelder samtidig denne avgrensningen: ${curation.boundary} Før en konklusjon trekkes, må studenten angi design, operasjonalisering, populasjon, mulige feilkilder og minst én reell alternativ forklaring. Et mønster kan være robust uten å være universelt, og en sammenheng kan være undervisningsrelevant uten å bære en individuell, moralsk eller klinisk dom.`
+    ];
+  }
+  if (variant === 1) {
+    return [
+      `Historisk problemstilling: ${claimText(0)} Når ${emne.title} undersøkes, må ${seed[0]} plasseres i den perioden, institusjonen og kunnskapspraksisen som gjorde spørsmålet målbart. Analysen spør hvilke stemmer og observasjoner arkivet bevarer, hva materialet ikke kan vise, og om senere begreper endrer meningen i de opprinnelige dataene. Slik skilles samtidens dokumentasjon fra ettertidens forklaringsramme.`,
+      `Teoretisk prøving: ${claimText(1)} Kontrasten ${seed[1]} brukes til å utlede forskjellige forventninger til samme fenomen. En rimelig sammenligning krever felles utfallsmål, tilsvarende tidsrom og åpne kriterier for hva som ville tale mot hver forklaring. Dersom modellene arbeider på ulike nivåer, vurderes de som mulige supplementer før de framstilles som direkte konkurrenter.`,
+      `Slutningsgrense: ${evidenceClaim.claim} Det kildegrunnlaget kan belyse om ${emne.title}, må holdes sammen med følgende faglige vern: ${curation.boundary} Studenten skal beskrive utvalg, målefeil, frafall, kontekst og rivaliserende årsaksforløp. Først deretter kan funnet generaliseres, og da bare til populasjoner og situasjoner som faktisk ligner dem evidensen omfatter.`
+    ];
+  }
+  return [
+    `Faghistorisk ramme: ${claimText(0)} Spørsmålet om ${seed[0]} oppstod ikke uavhengig av tilgjengelige instrumenter, profesjoner og samfunnsoppgaver. For ${emne.title} kartlegges derfor både hva kilden hevder og hvilke kategorier, deltakere og institusjonelle interesser som avgrenser hevningen. Det hindrer at et lokalt historisk resultat presenteres som en tidløs beskrivelse av menneskelig psykologi.`,
+    `Modeller i motlys: ${claimText(1)} Påstanden ${seed[1]} analyseres ved å formulere hva alternative modeller faktisk forutsier om forløp, variasjon og observerbare utfall. Felles begreper må operasjonaliseres likt før resultatene sammenlignes, og forskjeller i metode kan forklare tilsynelatende faglig uenighet. Analysen skal også vise hvor modellene forklarer ulike ledd i samme prosess framfor å konkurrere om hele fenomenet.`,
+    `Empirisk rekkevidde: ${evidenceClaim.claim} I anvendelsen på ${emne.title} setter ${curation.boundary} en bindende grense for hva dataene kan bære. Vurderingen oppgir analyseenhet, tidsrekkefølge, usikkerhet, mulige konfoundere og hvilke observasjoner som ville svekke tolkningen. Gruppefunn overføres ikke automatisk til enkeltpersoner, og én indikator gjøres ikke til bevis for en skjult egenskap eller entydig årsak.`
+  ];
+}
+
 function articleFor(emne) {
   const seed = TOPIC_SEEDS[emne.emne_id];
   if (!seed) throw new Error(`Mangler emnespesifikk redaksjonell seed for ${emne.emne_id}`);
@@ -219,11 +242,7 @@ function articleFor(emne) {
       ...cases.slice(0, 2).map((caseName) => String(caseName))
     ]),
     definition: `${emne.title} undersøker ${seed[0]}. ${claimText(0)} Faglig grense: ${curation.boundary}`,
-    background: [
-      `Historisk premiss: ${claimText(0)} Emnespørsmål: ${seed[0]}.`,
-      `Teoretisk spenning: ${claimText(1)} Redaksjonell kontrast: ${seed[1]}.`,
-      `Evidensgrense: ${evidenceClaim.claim} Avgrensning: ${curation.boundary}`
-    ],
+    background: backgroundFor({ emne, seed, curation, claimText, evidenceClaim }),
     theories_and_findings: [
       { title: curation.models[0].name, content: `Kildestøtte: ${modelClaims[0].claim} ${curation.models[0].name} belyser ${seed[0]}. Rekkevidde: ${curation.boundary}`, claim_ids: [modelClaims[0].id], source_ids: modelClaims[0].source_ids },
       { title: curation.models[1].name, content: `Kildestøtte: ${modelClaims[1].claim} ${curation.models[1].name} prøver ${seed[1]}. Sammenligningskrav: samme utfall og tidsrom.`, claim_ids: [modelClaims[1].id], source_ids: modelClaims[1].source_ids },
