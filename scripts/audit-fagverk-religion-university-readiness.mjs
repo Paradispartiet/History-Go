@@ -13,7 +13,7 @@ const P = Object.freeze({
   status: 'data/fagverk/subject_status.json',
   report: 'reports/fagverk/religion-university-readiness-audit.json'
 });
-const STATUS_NEXT_GATE = 'chapter_production';
+const STATUS_NEXT_GATE = 'remaining_religion_area_article_production';
 const COMPLETION_NEXT_GATE = 'university_matrix_domain_articles_concepts_sources_and_methods';
 const REQUIRED_AREA_IDS = Object.freeze([
   'theory_method',
@@ -59,14 +59,15 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
 
   assert(readiness.schema === 'history_go_religion_university_readiness_v1', 'Religion har feil readiness-schema');
   assert(readiness.subject_id === 'religion', 'Readiness-matrisen har feil subject_id');
-  assert(readiness.status === 'matrix_locked_production_pending', 'Religion readiness skal være låst, men ikke complete');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Religion skal forbli structure_ready før produksjonskravene er oppfylt');
+  assert(readiness.status === 'matrix_locked_production_in_progress', 'Religion readiness skal vise låst og pågående produksjon');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Religion skal stå chapters_in_progress etter første område');
   assert(statusEntry?.nextGate === STATUS_NEXT_GATE, 'Religion skal fortsette gjennom den registrerte kapittelproduksjonsporten');
 
   const baseline = readiness.canonical_baseline;
   assert(baseline.domain_count === fagkart.categories.length, 'Baseline domain_count avviker fra fagkartet');
   assert(baseline.emne_count === emners.filter((row) => row.status === 'active').length, 'Baseline emne_count avviker fra aktive emner');
-  assert(baseline.method_count === methods.methods.filter((row) => row.canonical_status === 'canonical').length, 'Baseline method_count avviker fra canonicale metoder');
+  assert(baseline.method_count === baseline.method_ids.length, 'Baseline method_count avviker fra låste foundation-metoder');
+  assert(baseline.method_ids.every((id) => methods.methods.some((row) => row.method_id === id && row.canonical_status === 'canonical')), 'En låst foundation-metode mangler');
   assert(baseline.registered_chapter_count === 0, 'Religion-baselinen kan ikke late som kapitler finnes');
   assert(baseline.classification === 'structure_ready', 'Religion-baselinen har feil klassifisering');
 
@@ -94,6 +95,14 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
   assert(new Set(readiness.required_method_ids).size === 18, 'Religion har dupliserte metode-ID-er');
   assert(readiness.required_method_ids.every((id) => id.startsWith('met_religion_')), 'Religion har metode-ID uten canonicalt prefiks');
 
+  const progress = readiness.production_progress;
+  assert(isDeepStrictEqual(progress.completed_area_ids, ['theory_method']), 'Første produksjonsområde er ikke låst som komplett');
+  assert(isDeepStrictEqual(progress.materialized_topic_ids, topicMap.theory_method), 'Produksjonsprogresjonen har feil emne-ID-er');
+  assert(progress.standalone_topic_articles_materialized === 6 && progress.standalone_topic_articles_remaining === 66, 'Religion skal stå på 6/72 artikler');
+  assert(progress.required_methods_materialized === 8 && progress.required_methods_remaining === 10, 'Religion skal stå på 8/18 universitetsmetoder');
+  assert(progress.materialized_required_method_ids.every((id) => readiness.required_method_ids.includes(id) && methods.methods.some((method) => method.method_id === id && method.university_matrix_status === 'materialized')), 'En materialisert universitetsmetode er uløst');
+  assert(progress.quality_score >= 27 && progress.complete_ready === false, 'Produksjonsprogresjonen har feil kvalitets- eller complete-status');
+
   const articleContract = readiness.topic_article_contract;
   assert(articleContract.canonical_topic_count === 72, 'Artikkelkontrakten har feil emnetall');
   assert(articleContract.minimum_editorial_words_per_article >= 650, 'Artikkelkontrakten er for kort for universitetsnær dybde');
@@ -117,7 +126,7 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
   const report = {
     schema: 'history_go_fagverk_religion_university_readiness_audit_v1',
     version: '1.0.0',
-    status: 'religion_university_matrix_locked_production_pending',
+    status: 'religion_university_matrix_locked_production_in_progress',
     generatedFrom: P,
     subject: {
       id: 'religion',
@@ -142,8 +151,10 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
       completeAreaCount,
       partialAreaCount,
       missingAreaCount,
-      standaloneTopicArticlesRemaining: topicIds.length,
-      universityMethodsRemaining: readiness.required_method_ids.length
+      standaloneTopicArticlesMaterialized: progress.standalone_topic_articles_materialized,
+      standaloneTopicArticlesRemaining: progress.standalone_topic_articles_remaining,
+      universityMethodsMaterialized: progress.required_methods_materialized,
+      universityMethodsRemaining: progress.required_methods_remaining
     },
     authoritativeSourceIds: readiness.authoritative_sources.map((source) => source.id),
     areaStatuses: Object.fromEntries(matrix.map((row) => [row.area_id, row.current_status])),
@@ -156,7 +167,8 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
       topicArticleQualityContractLocked: true,
       respectfulRepresentationAndNonessentialismLocked: true,
       sixDimensionQualityGateLocked: true,
-      prematureCompleteStatusBlocked: true
+      prematureCompleteStatusBlocked: true,
+      firstUniversityAreaCompleteAtHighQuality: progress.quality_score >= 27
     }
   };
   const committed = committedProjection(report);

@@ -7,19 +7,21 @@ import { auditReligionPilot } from '../scripts/audit-fagverk-religion-pilot.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('Religion er materialisert og auditert som structure-ready foundation-pilot', () => {
+test('Religion bevarer foundation-piloten under pågående universitetsproduksjon', () => {
   const { report } = auditReligionPilot();
   assert.equal(report.subject.id, 'religion');
   assert.equal(report.subject.schemaFamily, 'foundation_v1');
   assert.equal(report.subject.adapter, 'standard');
   assert.equal(report.subject.navigationStatus, 'materialized');
   assert.equal(report.subject.assessmentStatus, 'audited');
-  assert.equal(report.subject.editorialStatus, 'structure_ready');
-  assert.equal(report.subject.nextGate, 'chapter_production');
+  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
+  assert.equal(report.subject.nextGate, 'remaining_religion_area_article_production');
   assert.deepEqual(report.summary, {
     domainCount: 4,
     emneCount: 8,
-    methodCount: 8,
+    methodCount: 16,
+    foundationMethodCount: 8,
+    universityMethodCount: 8,
     mappingCount: 8,
     hookCount: 0,
     courseModuleCount: 3,
