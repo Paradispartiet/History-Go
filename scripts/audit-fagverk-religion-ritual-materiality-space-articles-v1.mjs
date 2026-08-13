@@ -96,13 +96,13 @@ export function auditReligionRitualMaterialitySpaceArticles({ writeReport = fals
   assert(status?.editorialStatus === 'chapters_in_progress', 'Religion skal fortsatt stå chapters_in_progress');
   assert(status?.nextGate === 'remaining_religion_area_article_production', 'Religion har feil neste produksjonsport');
   assert(readiness.status === 'matrix_locked_production_in_progress', 'Religion-readiness skal vise pågående produksjon');
-  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 54/72');
+  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 60/72');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
   assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Ritual, materialitet og hellige rom skal eie seks unike emner');
-  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', AREA_ID, 'texts_myths_authority', 'society_politics_law']), 'Eksakt ni Religion-områder skal være komplette');
+  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', AREA_ID, 'texts_myths_authority', 'society_politics_law', 'lived_identity_migration']), 'Eksakt ti Religion-områder skal være komplette');
   assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(36, 42), requiredIds), 'Readiness har feil ritual, materialitet og hellige rom-emner');
-  assert(readiness.production_progress.standalone_topic_articles_materialized === 54 && readiness.production_progress.standalone_topic_articles_remaining === 18, 'Religion skal stå på 54/72 artikler');
+  assert(readiness.production_progress.standalone_topic_articles_materialized === 60 && readiness.production_progress.standalone_topic_articles_remaining === 12, 'Religion skal stå på 60/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
   assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Ritual, materialitet og hellige rom-området er ikke korrekt merket komplett');
 
@@ -225,7 +225,7 @@ export function auditReligionRitualMaterialitySpaceArticles({ writeReport = fals
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
       ritualMaterialityAndSpatialMethodsMaterializedAndLinked: true,
-      allFiftyFourReligionArticlesReviewedForEditorialDiversity: true,
+      allSixtyReligionArticlesReviewedForEditorialDiversity: true,
       efficacyAccessAndMaterialRepresentationBoundariesLocked: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,
