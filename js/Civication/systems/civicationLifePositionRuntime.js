@@ -6,26 +6,154 @@
   const CATALOG_PATH = "data/Civication/lifePositionCatalog.json";
   let catalogPromise = null;
 
+  // These are not a second progression model. They are always-open choices in the
+  // existing life-position profile, for life paths that should not require Badge points.
+  const OPEN_LIFE_POSITIONS = [
+    {
+      badge_id: "liv_bosituasjon",
+      badge_name: "Fritt livsvalg",
+      id: "uteligger",
+      label: "Uteligger",
+      threshold: 0,
+      kind: "self_selected_life_path",
+      description: "Du velger å leve uten fast bolig. Spillet skiller dette fra ufrivillig bostedsløshet.",
+      hooks: ["gate_og_byrom", "nettverk", "vaer", "saarbarhet", "frihet"],
+      employment_independent: true,
+      source: "open_choice",
+      effects: { housing_status: "unhoused", housing_choice: "chosen" }
+    },
+    {
+      badge_id: "liv_bosituasjon",
+      badge_name: "Fritt livsvalg",
+      id: "boms",
+      label: "Boms",
+      threshold: 0,
+      kind: "self_selected_life_path",
+      description: "En bevisst, omflakkende og lite institusjonsbundet livsstil. Dette er en spilleretikett, aldri en etikett spillet setter på andre mennesker.",
+      hooks: ["omflakkende_liv", "tilfeldige_moter", "lavt_forbruk", "frihet", "ustabilitet"],
+      employment_independent: true,
+      source: "open_choice",
+      effects: { housing_status: "unhoused", housing_choice: "chosen" }
+    },
+    {
+      badge_id: "liv_lovsbane",
+      badge_name: "Fritt livsvalg",
+      id: "kriminell",
+      label: "Kriminell",
+      threshold: 0,
+      kind: "self_selected_life_path",
+      description: "Du velger en kriminell livsbane i fortellingen. Det kan gi risiko, relasjons- og konsekvenshistorier, men gir aldri gratis penger, ferdigheter eller strafferettslig status.",
+      hooks: ["risiko", "omdomme", "lojalitet", "konsekvenser", "myndighetskontakt"],
+      employment_independent: true,
+      source: "open_choice"
+    },
+    {
+      badge_id: "liv_alternativ",
+      badge_name: "Fritt livsvalg",
+      id: "bohem",
+      label: "Bohem",
+      threshold: 0,
+      kind: "self_selected_life_path",
+      description: "Du prioriterer miljø, kunst, mennesker og frihet høyere enn en ryddig karrierestige.",
+      hooks: ["kunstmiljo", "venner", "kvelder", "prosjekter", "ustabil_okonomi"],
+      employment_independent: true,
+      source: "open_choice"
+    },
+    {
+      badge_id: "liv_alternativ",
+      badge_name: "Fritt livsvalg",
+      id: "nomade",
+      label: "Nomade",
+      threshold: 0,
+      kind: "self_selected_life_path",
+      description: "Du velger et mobilt liv der bosted, miljø og nettverk kan skifte oftere enn jobb eller identitet.",
+      hooks: ["reise", "midlertidige_steder", "nye_miljoer", "frihet", "forankring"],
+      employment_independent: true,
+      source: "open_choice"
+    }
+  ];
+
+  const CIRCUMSTANCE_OPTIONS = Object.freeze({
+    activity_status: [
+      { id: "none", label: "Ingen særstatus" },
+      { id: "jobseeker", label: "Arbeidssøker / arbeidsledig" },
+      { id: "student", label: "Student" },
+      { id: "retired", label: "Pensjonist" },
+      { id: "home_caregiver", label: "Hjemmeværende / omsorg" },
+      { id: "voluntary_no_job", label: "Frivillig uten formell jobb" }
+    ],
+    benefit_status: [
+      { id: "none", label: "Ingen registrert ytelse" },
+      { id: "aap", label: "AAP (arbeidsavklaringspenger; tidl. attføring)" },
+      { id: "disability_benefit", label: "Uføretrygdet" },
+      { id: "sick_leave", label: "Sykmeldt" },
+      { id: "other_support", label: "Annen innvilget støtte / ytelse" }
+    ],
+    housing_status: [
+      { id: "housed", label: "Har fast bolig" },
+      { id: "temporary_housing", label: "Midlertidig bolig" },
+      { id: "unhoused", label: "Uten fast bolig" }
+    ],
+    housing_choice: [
+      { id: "unspecified", label: "Ikke angitt" },
+      { id: "chosen", label: "Selvvalgt" },
+      { id: "involuntary", label: "Ufrivillig" },
+      { id: "mixed", label: "Blandet / sammensatt" }
+    ]
+  });
+
   function safeParse(raw, fallback) {
     try { return JSON.parse(raw); } catch { return fallback; }
   }
 
-  function getState() {
-    const raw = safeParse(localStorage.getItem(LS_KEY), {});
+  function optionIds(key) {
+    return new Set((CIRCUMSTANCE_OPTIONS[key] || []).map((entry) => entry.id));
+  }
+
+  const VALID_CIRCUMSTANCES = {
+    activity_status: optionIds("activity_status"),
+    benefit_status: optionIds("benefit_status"),
+    housing_status: optionIds("housing_status"),
+    housing_choice: optionIds("housing_choice")
+  };
+
+  function normalizeCircumstances(input) {
+    const raw = input && typeof input === "object" ? input : {};
+    const defaults = {
+      activity_status: "none",
+      benefit_status: "none",
+      housing_status: "housed",
+      housing_choice: "unspecified"
+    };
+    return Object.fromEntries(Object.entries(defaults).map(([key, fallback]) => {
+      const candidate = String(raw?.[key] || fallback);
+      return [key, VALID_CIRCUMSTANCES[key].has(candidate) ? candidate : fallback];
+    }));
+  }
+
+  function normalizeState(raw) {
+    const value = raw && typeof raw === "object" ? raw : {};
     return {
-      primary: raw?.primary && typeof raw.primary === "object" ? raw.primary : null,
-      active_by_badge: raw?.active_by_badge && typeof raw.active_by_badge === "object"
-        ? raw.active_by_badge
+      version: 2,
+      primary: value?.primary && typeof value.primary === "object" ? value.primary : null,
+      active_by_badge: value?.active_by_badge && typeof value.active_by_badge === "object"
+        ? value.active_by_badge
         : {},
-      history: Array.isArray(raw?.history) ? raw.history : []
+      circumstances: normalizeCircumstances(value?.circumstances),
+      history: Array.isArray(value?.history) ? value.history : []
     };
   }
 
+  function getState() {
+    return normalizeState(safeParse(localStorage.getItem(LS_KEY), {}));
+  }
+
   function setState(next) {
-    localStorage.setItem(LS_KEY, JSON.stringify(next));
+    const normalized = normalizeState(next);
+    localStorage.setItem(LS_KEY, JSON.stringify(normalized));
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
     try { window.dispatchEvent(new Event("civi:lifePositionChanged")); } catch {}
-    return next;
+    return normalized;
   }
 
   async function ensureCatalogLoaded() {
@@ -128,6 +256,13 @@
       }));
   }
 
+  function getOpenPositions(scopeId) {
+    const wanted = String(scopeId || "").trim();
+    return OPEN_LIFE_POSITIONS
+      .filter((position) => !wanted || position.badge_id === wanted)
+      .map((position) => ({ ...position }));
+  }
+
   function dedupePositions(positions) {
     const seen = new Set();
     return positions.filter((position) => {
@@ -139,23 +274,65 @@
   }
 
   function getUnlockedPositions(badgeId) {
-    const badge = getBadge(badgeId);
+    const id = String(badgeId || "").trim();
+    const open = getOpenPositions(id);
+    if (open.length) return open;
+
+    const badge = getBadge(id);
     if (!badge || !Array.isArray(badge.tiers)) return [];
-    const points = getBadgePoints(badgeId);
+    const points = getBadgePoints(id);
     return dedupePositions([
-      ...getTierPositions(badgeId, points),
-      ...getCatalogPositions(badgeId, points)
+      ...getTierPositions(id, points),
+      ...getCatalogPositions(id, points)
     ]).sort((a, b) => a.threshold - b.threshold || a.label.localeCompare(b.label, "nb"));
   }
 
   function getAllUnlockedPositions() {
-    if (!Array.isArray(window.BADGES)) return [];
-    return window.BADGES.flatMap((badge) => getUnlockedPositions(badge?.id));
+    const badgePositions = Array.isArray(window.BADGES)
+      ? window.BADGES.flatMap((badge) => getUnlockedPositions(badge?.id))
+      : [];
+    return dedupePositions([
+      ...getOpenPositions(),
+      ...badgePositions
+    ]);
   }
 
   function findUnlockedPosition(badgeId, label) {
     const wanted = String(label || "").trim();
     return getUnlockedPositions(badgeId).find((position) => position.label === wanted) || null;
+  }
+
+  function setCircumstances(patch, options) {
+    const input = patch && typeof patch === "object" ? patch : {};
+    const opts = options && typeof options === "object" ? options : {};
+    const current = getState();
+    const nextCircumstances = { ...current.circumstances };
+
+    for (const key of Object.keys(nextCircumstances)) {
+      if (!Object.prototype.hasOwnProperty.call(input, key)) continue;
+      const value = String(input[key] || "");
+      if (!VALID_CIRCUMSTANCES[key].has(value)) {
+        return { ok: false, reason: "invalid_life_circumstance", field: key, value };
+      }
+      nextCircumstances[key] = value;
+    }
+
+    if (nextCircumstances.housing_status !== "unhoused" && !Object.prototype.hasOwnProperty.call(input, "housing_choice")) {
+      nextCircumstances.housing_choice = "unspecified";
+    }
+
+    const at = new Date().toISOString();
+    const history = [{
+      type: "circumstances_changed",
+      patch: Object.fromEntries(Object.keys(nextCircumstances)
+        .filter((key) => nextCircumstances[key] !== current.circumstances[key])
+        .map((key) => [key, nextCircumstances[key]])),
+      source: String(opts.source || "player"),
+      at
+    }].concat(current.history).slice(0, 100);
+
+    const state = setState({ ...current, circumstances: nextCircumstances, history });
+    return { ok: true, circumstances: state.circumstances };
   }
 
   function activate(badgeId, label, options) {
@@ -173,6 +350,10 @@
       [position.badge_id]: activated
     };
     const primary = opts.primary === false ? current.primary : activated;
+    let circumstances = current.circumstances;
+    if (position.effects && typeof position.effects === "object") {
+      circumstances = normalizeCircumstances({ ...circumstances, ...position.effects });
+    }
     const history = [{
       type: "activated",
       badge_id: position.badge_id,
@@ -180,7 +361,7 @@
       at: activated.activated_at
     }].concat(current.history).slice(0, 100);
 
-    setState({ primary, active_by_badge: activeByBadge, history });
+    setState({ primary, active_by_badge: activeByBadge, circumstances, history });
     return { ok: true, position: activated };
   }
 
@@ -205,16 +386,27 @@
 
   function getFormalEmploymentStatus() {
     const job = window.CivicationState?.getActivePosition?.() || null;
+    const employed = !!job?.career_id;
     return {
-      status: job?.career_id ? "employed" : "unemployed",
+      // status is kept for compatibility with existing callers/tests.
+      status: employed ? "employed" : "unemployed",
+      formal_status: employed ? "employed" : "no_formal_job",
+      is_employed: employed,
       active_job: job
     };
+  }
+
+  function getCircumstanceOptions() {
+    return Object.fromEntries(Object.entries(CIRCUMSTANCE_OPTIONS)
+      .map(([key, values]) => [key, values.map((entry) => ({ ...entry }))]));
   }
 
   function getLifeContext() {
     const state = getState();
     return {
       employment: getFormalEmploymentStatus(),
+      circumstances: { ...state.circumstances },
+      circumstance_options: getCircumstanceOptions(),
       primary_life_position: state.primary,
       active_life_positions: Object.values(state.active_by_badge),
       unlocked_life_positions: getAllUnlockedPositions()
@@ -227,9 +419,12 @@
     getBadgeProfile,
     getUnlockedPositions,
     getAllUnlockedPositions,
+    getOpenPositions,
     activate,
     clearBadge,
     setPrimary,
+    setCircumstances,
+    getCircumstanceOptions,
     getFormalEmploymentStatus,
     getLifeContext
   };
