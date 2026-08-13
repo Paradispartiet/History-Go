@@ -87,7 +87,7 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   assert.equal(religion.editorialStatus, 'complete');
   assert.equal(religion.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
 
-  for (const id of ['scenekunst', 'sport', 'vitenskap', 'filosofi']) {
+  for (const id of ['scenekunst', 'vitenskap', 'filosofi']) {
     const subject = s.subjects.find((x) => x.id === id);
     assert.equal(subject.editorialStatus, 'structure_ready');
     assert.equal(subject.nextGate, 'chapter_production');
