@@ -1,11 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import completion from '../data/fag/religion/religion_university_completion_v1.json' with { type: 'json' };
 import concepts from '../data/fag/religion/begreper_religion_canonical_v1.json' with { type: 'json' };
+import readiness from '../data/fag/religion/religion_university_readiness_v1.json' with { type: 'json' };
 import statuses from '../data/fagverk/subject_status.json' with { type: 'json' };
 
 test('Religion completion-state er låst', () => {
   const status = statuses.subjects.find((row) => row.id === 'religion');
+  const areas = Object.keys(readiness.required_topics_by_area);
+  const topics = areas.flatMap((id) => readiness.required_topics_by_area[id]);
+  assert.equal(areas.length, 12);
+  assert.equal(topics.length, 72);
+  assert.equal(new Set(topics).size, 72);
   assert.equal(completion.complete_ready, true);
   assert.equal(completion.canonical_topic_count, 72);
   assert.equal(completion.standalone_article_count, 72);
@@ -15,6 +22,10 @@ test('Religion completion-state er låst', () => {
   assert.equal(completion.observed_quality_score, 29);
   assert.equal(concepts.status, 'complete');
   assert.equal(concepts.concept_count, 72);
+  assert.equal(concepts.concept_key_mode, 'sha256_topic_id_prefix_16');
+  const links = fs.readdirSync(new URL(`../${concepts.item_directory}/`, import.meta.url)).filter((file) => file.endsWith('.json'));
+  assert.equal(links.length, 72);
+  assert.ok(links.every((file) => /^[0-9a-f]{16}\.json$/.test(file)));
   assert.equal(status.editorialStatus, 'complete');
   assert.equal(status.nextGate, completion.next_gate);
 });
