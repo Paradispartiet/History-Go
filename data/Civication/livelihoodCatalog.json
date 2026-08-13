@@ -1,0 +1,88 @@
+{
+  "schema": "civication_livelihood_catalog_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-13",
+  "currency": "PC",
+  "principles": [
+    "Levevei er en inntekts- og kostnadsstruktur, ikke en identitet eller en formell jobb.",
+    "En livsposisjon kan gjøre en mulighet relevant, men oppretter aldri inntekt automatisk.",
+    "Alle betalende strømmer må ha eksplisitt kildeproveniens og må aksepteres før de kan avregnes.",
+    "Formell jobb, NAV-logikk og levevei kan eksistere samtidig uten å omskrive hverandres status.",
+    "Uregelmessig inntekt skal avregnes deterministisk per uke slik at reload eller dobbelt boot aldri kan rerolle penger.",
+    "Levevei gir aldri autorisasjon, arbeidsgiverutnevnelse, politisk verv eller profesjonsmyndighet."
+  ],
+  "kinds": [
+    {
+      "id": "freelance_assignment",
+      "label": "Frilansoppdrag",
+      "description": "Avgrenset oppdrag for en kunde eller oppdragsgiver uten fast ansettelse.",
+      "default_model": "variable",
+      "can_coexist_with_job": true,
+      "typical_sources": ["contract", "client", "event"]
+    },
+    {
+      "id": "gig_honorarium",
+      "label": "Gig / honorar",
+      "description": "Betaling for en enkelt opptreden, vakt, workshop, foredrag eller annen konkret leveranse.",
+      "default_model": "occasional",
+      "can_coexist_with_job": true,
+      "typical_sources": ["booking", "venue", "event"]
+    },
+    {
+      "id": "royalty_income",
+      "label": "Royalty",
+      "description": "Uregelmessige inntekter fra et verk eller en rettighet spilleren faktisk har en avtale om.",
+      "default_model": "occasional",
+      "can_coexist_with_job": true,
+      "typical_sources": ["royalty_contract", "publisher", "distributor"]
+    },
+    {
+      "id": "direct_sale",
+      "label": "Salg",
+      "description": "Inntekt fra konkrete salg av varer, verk eller andre lovlige produkter, med direkte kostnader synlige separat.",
+      "default_model": "occasional",
+      "can_coexist_with_job": true,
+      "typical_sources": ["sale", "market", "shop"]
+    },
+    {
+      "id": "project_grant",
+      "label": "Prosjektmidler",
+      "description": "Tidsavgrenset finansiering knyttet til et konkret prosjekt eller formål.",
+      "default_model": "fixed",
+      "can_coexist_with_job": true,
+      "typical_sources": ["grant", "project", "institution"]
+    },
+    {
+      "id": "casual_shift",
+      "label": "Ekstravakt / småjobb",
+      "description": "Kortvarig arbeid eller enkeltvakter som gir inntekt uten å bli Civications formelle hovedjobb.",
+      "default_model": "variable",
+      "can_coexist_with_job": true,
+      "typical_sources": ["shift", "employer", "event"]
+    },
+    {
+      "id": "support_payment",
+      "label": "Støtte / ytelse",
+      "description": "En eksplisitt innvilget støtte- eller ytelsesstrøm. Den opprettes aldri bare fordi spilleren er arbeidsledig; eksisterende NAV-regler forblir separate.",
+      "default_model": "fixed",
+      "can_coexist_with_job": false,
+      "typical_sources": ["system_decision", "benefit_decision", "grant"]
+    },
+    {
+      "id": "other_income",
+      "label": "Annen dokumentert inntekt",
+      "description": "En eksplisitt kildeført inntektsstrøm som ikke passer bedre i de andre kategoriene.",
+      "default_model": "variable",
+      "can_coexist_with_job": true,
+      "typical_sources": ["contract", "event", "system"]
+    },
+    {
+      "id": "zero_income_period",
+      "label": "Periode uten inntekt",
+      "description": "En bevisst registrering av at leveveien for øyeblikket ikke gir inntekt. Brukes narrativt og økonomisk uten å endre arbeidsstatus.",
+      "default_model": "zero",
+      "can_coexist_with_job": true,
+      "typical_sources": ["player_state", "event", "system"]
+    }
+  ]
+}
