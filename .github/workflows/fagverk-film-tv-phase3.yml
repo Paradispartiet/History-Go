@@ -1,5 +1,6 @@
 name: Fagverk Film og TV phase 3
-# Permanent exact-head gate for the completed Film & TV materialization.
+# Permanent regression gate for the canonical Film & TV baseline.
+# Historical production units are verified through monotone regressions instead of being materialized again.
 
 on:
   pull_request:
@@ -21,30 +22,8 @@ on:
       - "scripts/audit-film-tv-curriculum-completeness-v1.mjs"
       - "scripts/audit-film-tv-legacy-emne-classification-v1.mjs"
       - "scripts/audit-film-tv-variable-inventory-v1.mjs"
-      - "scripts/materialize-film-tv-canonical-migration-v1.mjs"
       - "scripts/reaudit-film-tv-existing-chapters-v1.mjs"
       - "scripts/plan-film-tv-learning-order-v1.mjs"
-      - "scripts/brief-film-tv-audiovisual-form-sources-v1.mjs"
-      - "scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs"
-      - "scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-seriality-format-adaptation-sources-v1.mjs"
-      - "scripts/materialize-film-tv-seriality-format-adaptation-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-seriality-format-adaptation-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-history-movements-historiography-sources-v1.mjs"
-      - "scripts/materialize-film-tv-history-movements-historiography-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-history-movements-historiography-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-television-platforms-participation-sources-v1.mjs"
-      - "scripts/materialize-film-tv-television-platforms-participation-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-television-platforms-participation-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-documentary-evidence-ethics-sources-v1.mjs"
-      - "scripts/materialize-film-tv-documentary-evidence-ethics-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-documentary-evidence-ethics-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs"
-      - "scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
@@ -52,82 +31,47 @@ on:
       - "tests/film-tv-curriculum-completeness-v1.test.mjs"
       - "tests/film-tv-legacy-emne-classification-v1.test.mjs"
       - "tests/film-tv-variable-inventory-v1.test.mjs"
-      - "tests/film-tv-canonical-migration-v1.test.mjs"
+      - "tests/film-tv-canonical-migration-monotone-regression-v1.test.mjs"
       - "tests/film-tv-existing-chapter-reaudit-v1.test.mjs"
       - "tests/film-tv-learning-order-plan-v1.test.mjs"
-      - "tests/film-tv-audiovisual-form-source-brief-v1.test.mjs"
-      - "tests/film-tv-audiovisual-form-fulltext-v1.test.mjs"
-      - "tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs"
-      - "tests/film-tv-narrative-viewpoint-genre-fulltext-v1.test.mjs"
-      - "tests/film-tv-seriality-format-adaptation-source-brief-v1.test.mjs"
-      - "tests/film-tv-seriality-format-adaptation-fulltext-v1.test.mjs"
-      - "tests/film-tv-history-movements-historiography-source-brief-v1.test.mjs"
-      - "tests/film-tv-history-movements-historiography-fulltext-v1.test.mjs"
-      - "tests/film-tv-television-platforms-participation-source-brief-v1.test.mjs"
-      - "tests/film-tv-television-platforms-participation-fulltext-v1.test.mjs"
-      - "tests/film-tv-documentary-evidence-ethics-source-brief-v1.test.mjs"
-      - "tests/film-tv-documentary-evidence-ethics-fulltext-v1.test.mjs"
-      - "tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs"
-      - "tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs"
+      - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
+      - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
   push:
     branches: [main]
     paths:
+      - "data/categories/category_contract.json"
+      - "data/fag/fag_manifest.json"
       - "data/fag/TV_og_Film/**"
       - "docs/FILM_TV_CURRICULUM_COMPLETENESS_V1.md"
       - "data/badges/film_tv.json"
       - "data/fagverk/**"
+      - "js/fagverk-subject-core.js"
+      - "js/fagverk-subject-model.js"
+      - "js/fagverk.js"
+      - "scripts/audit-fagverk-subject-inventory.mjs"
+      - "scripts/audit-fagverk-general-engine.mjs"
       - "scripts/audit-fagverk-film-tv-phase3.mjs"
       - "scripts/audit-film-tv-curriculum-completeness-v1.mjs"
       - "scripts/audit-film-tv-legacy-emne-classification-v1.mjs"
       - "scripts/audit-film-tv-variable-inventory-v1.mjs"
-      - "scripts/materialize-film-tv-canonical-migration-v1.mjs"
       - "scripts/reaudit-film-tv-existing-chapters-v1.mjs"
       - "scripts/plan-film-tv-learning-order-v1.mjs"
-      - "scripts/brief-film-tv-audiovisual-form-sources-v1.mjs"
-      - "scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs"
-      - "scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-seriality-format-adaptation-sources-v1.mjs"
-      - "scripts/materialize-film-tv-seriality-format-adaptation-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-seriality-format-adaptation-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-history-movements-historiography-sources-v1.mjs"
-      - "scripts/materialize-film-tv-history-movements-historiography-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-history-movements-historiography-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-television-platforms-participation-sources-v1.mjs"
-      - "scripts/materialize-film-tv-television-platforms-participation-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-television-platforms-participation-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-documentary-evidence-ethics-sources-v1.mjs"
-      - "scripts/materialize-film-tv-documentary-evidence-ethics-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-documentary-evidence-ethics-fulltext-v1.mjs"
-      - "scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs"
-      - "scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs"
-      - "scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs"
+      - "scripts/build-fagverk-release-manifest.mjs"
+      - "tests/fagverk-subject-inventory.test.mjs"
+      - "tests/fagverk-general-engine.test.mjs"
       - "tests/fagverk-film-tv-phase3.test.mjs"
       - "tests/film-tv-curriculum-completeness-v1.test.mjs"
       - "tests/film-tv-legacy-emne-classification-v1.test.mjs"
       - "tests/film-tv-variable-inventory-v1.test.mjs"
-      - "tests/film-tv-canonical-migration-v1.test.mjs"
+      - "tests/film-tv-canonical-migration-monotone-regression-v1.test.mjs"
       - "tests/film-tv-existing-chapter-reaudit-v1.test.mjs"
       - "tests/film-tv-learning-order-plan-v1.test.mjs"
-      - "tests/film-tv-audiovisual-form-source-brief-v1.test.mjs"
-      - "tests/film-tv-audiovisual-form-fulltext-v1.test.mjs"
-      - "tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs"
-      - "tests/film-tv-narrative-viewpoint-genre-fulltext-v1.test.mjs"
-      - "tests/film-tv-seriality-format-adaptation-source-brief-v1.test.mjs"
-      - "tests/film-tv-seriality-format-adaptation-fulltext-v1.test.mjs"
-      - "tests/film-tv-history-movements-historiography-source-brief-v1.test.mjs"
-      - "tests/film-tv-history-movements-historiography-fulltext-v1.test.mjs"
-      - "tests/film-tv-television-platforms-participation-source-brief-v1.test.mjs"
-      - "tests/film-tv-television-platforms-participation-fulltext-v1.test.mjs"
-      - "tests/film-tv-documentary-evidence-ethics-source-brief-v1.test.mjs"
-      - "tests/film-tv-documentary-evidence-ethics-fulltext-v1.test.mjs"
-      - "tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs"
-      - "tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs"
+      - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
+      - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
+      - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
   workflow_dispatch:
@@ -144,68 +88,31 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Validate syntax and deterministic reports
+
+      - name: Validate stable Film and TV baseline
         run: |
           node --check scripts/audit-fagverk-film-tv-phase3.mjs
           node --check scripts/audit-film-tv-curriculum-completeness-v1.mjs
           node --check scripts/audit-film-tv-legacy-emne-classification-v1.mjs
           node --check scripts/audit-film-tv-variable-inventory-v1.mjs
-          node --check scripts/materialize-film-tv-canonical-migration-v1.mjs
           node --check scripts/reaudit-film-tv-existing-chapters-v1.mjs
           node --check scripts/plan-film-tv-learning-order-v1.mjs
-          node --check scripts/brief-film-tv-audiovisual-form-sources-v1.mjs
-          node --check scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs
-          node --check scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs
-          node --check scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs
-          node --check scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
-          node --check scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
-          node --check scripts/brief-film-tv-seriality-format-adaptation-sources-v1.mjs
-          node --check scripts/materialize-film-tv-seriality-format-adaptation-fulltext-v1.mjs
-          node --check scripts/audit-film-tv-seriality-format-adaptation-fulltext-v1.mjs
-          node --check scripts/brief-film-tv-history-movements-historiography-sources-v1.mjs
-          node --check scripts/materialize-film-tv-history-movements-historiography-fulltext-v1.mjs
-          node --check scripts/audit-film-tv-history-movements-historiography-fulltext-v1.mjs
-          node --check scripts/brief-film-tv-television-platforms-participation-sources-v1.mjs
-          node --check scripts/materialize-film-tv-television-platforms-participation-fulltext-v1.mjs
-          node --check scripts/audit-film-tv-television-platforms-participation-fulltext-v1.mjs
-          node --check scripts/brief-film-tv-documentary-evidence-ethics-sources-v1.mjs
-          node --check scripts/materialize-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
-          node --check scripts/audit-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
-          node --check scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs
-          node --check scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs
-          node --check scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs
+          node --check tests/film-tv-canonical-migration-monotone-regression-v1.test.mjs
+          node --check tests/film-tv-existing-chapter-reaudit-v1.test.mjs
+          node --check tests/film-tv-learning-order-plan-v1.test.mjs
+          node --check tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --check tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-film-tv-phase3.mjs
           node scripts/audit-film-tv-curriculum-completeness-v1.mjs
           node scripts/audit-film-tv-legacy-emne-classification-v1.mjs
           node scripts/audit-film-tv-variable-inventory-v1.mjs
-          node scripts/materialize-film-tv-canonical-migration-v1.mjs
           node scripts/reaudit-film-tv-existing-chapters-v1.mjs
           node scripts/plan-film-tv-learning-order-v1.mjs
-          node scripts/brief-film-tv-audiovisual-form-sources-v1.mjs
-          node scripts/materialize-film-tv-audiovisual-form-fulltext-v1.mjs
-          node scripts/audit-film-tv-audiovisual-form-fulltext-v1.mjs
-          node scripts/brief-film-tv-narrative-viewpoint-genre-sources-v1.mjs
-          node scripts/materialize-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
-          node scripts/audit-film-tv-narrative-viewpoint-genre-fulltext-v1.mjs
-          node scripts/brief-film-tv-seriality-format-adaptation-sources-v1.mjs
-          node scripts/materialize-film-tv-seriality-format-adaptation-fulltext-v1.mjs
-          node scripts/audit-film-tv-seriality-format-adaptation-fulltext-v1.mjs
-          node scripts/brief-film-tv-history-movements-historiography-sources-v1.mjs
-          node scripts/materialize-film-tv-history-movements-historiography-fulltext-v1.mjs
-          node scripts/audit-film-tv-history-movements-historiography-fulltext-v1.mjs
-          node scripts/brief-film-tv-television-platforms-participation-sources-v1.mjs
-          node scripts/materialize-film-tv-television-platforms-participation-fulltext-v1.mjs
-          node scripts/audit-film-tv-television-platforms-participation-fulltext-v1.mjs
-          node scripts/brief-film-tv-documentary-evidence-ethics-sources-v1.mjs
-          node scripts/materialize-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
-          node scripts/audit-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
-          node scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs
-          node scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs
-          node scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
-      - name: Validate Fagverk and Film og TV contracts
+
+      - name: Validate stable Film and TV contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
@@ -213,21 +120,9 @@ jobs:
           node --test tests/film-tv-curriculum-completeness-v1.test.mjs
           node --test tests/film-tv-legacy-emne-classification-v1.test.mjs
           node --test tests/film-tv-variable-inventory-v1.test.mjs
-          node --test tests/film-tv-canonical-migration-v1.test.mjs
+          node --test tests/film-tv-canonical-migration-monotone-regression-v1.test.mjs
           node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
           node --test tests/film-tv-learning-order-plan-v1.test.mjs
-          node --test tests/film-tv-audiovisual-form-source-brief-v1.test.mjs
-          node --test tests/film-tv-audiovisual-form-fulltext-v1.test.mjs
-          node --test tests/film-tv-narrative-viewpoint-genre-source-brief-v1.test.mjs
-          node --test tests/film-tv-narrative-viewpoint-genre-fulltext-v1.test.mjs
-          node --test tests/film-tv-seriality-format-adaptation-source-brief-v1.test.mjs
-          node --test tests/film-tv-seriality-format-adaptation-fulltext-v1.test.mjs
-          node --test tests/film-tv-history-movements-historiography-source-brief-v1.test.mjs
-          node --test tests/film-tv-history-movements-historiography-fulltext-v1.test.mjs
-          node --test tests/film-tv-television-platforms-participation-source-brief-v1.test.mjs
-          node --test tests/film-tv-television-platforms-participation-fulltext-v1.test.mjs
-          node --test tests/film-tv-documentary-evidence-ethics-source-brief-v1.test.mjs
-          node --test tests/film-tv-documentary-evidence-ethics-fulltext-v1.test.mjs
-          node --test tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs
-          node --test tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
