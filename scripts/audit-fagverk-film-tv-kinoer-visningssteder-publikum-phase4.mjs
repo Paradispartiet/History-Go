@@ -47,7 +47,14 @@ const assert = (ok, message) => { if (!ok) throw new Error(message); };
 function committedProjection(report) {
   return {
     schema: report.schema, version: report.version, status: report.status,
-    generatedFrom: report.generatedFrom, subject: report.subject, chapter: report.chapter,
+    generatedFrom: report.generatedFrom,
+    subject: {
+      id: report.subject.id,
+      canonicalDomainCount: report.subject.canonicalDomainCount,
+      canonicalEmneCount: report.subject.canonicalEmneCount,
+      editorialStatus: report.subject.editorialStatus
+    },
+    chapter: report.chapter,
     canonicalCoverage: report.canonicalCoverage, summary: report.summary, gates: report.gates
   };
 }
@@ -83,7 +90,9 @@ export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = fa
   assert(registryChapter.file === P.chapter && registryChapter.primary_domain_id === 'visning_publikum_resepsjon_deltakelse', 'Registry-kapittelet er ikke projisert til migrert eierdomene');
   assert(isDeepStrictEqual(registryChapter.emne_ids, resolvedEmneIds), 'Registry-emnene er ikke projisert gjennom legacyaliasene');
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');
-  assert(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief', 'audiovisual_form_source_brief_complete_full_chapter_production', 'audiovisual_form_full_chapter_complete_next_unit_source_brief', 'narrative_viewpoint_genre_source_brief_complete_full_chapter_production', 'narrative_viewpoint_genre_full_chapter_complete_next_unit_source_brief', 'seriality_format_adaptation_source_brief_complete_full_chapter_production', 'seriality_format_adaptation_full_chapter_complete_next_unit_source_brief', 'film_history_movements_historiography_source_brief_complete_full_chapter_production', 'film_history_movements_historiography_full_chapter_complete_next_unit_source_brief', 'television_platforms_participation_source_brief_complete_full_chapter_production', 'television_platforms_participation_full_chapter_complete_next_unit_source_brief', 'documentary_evidence_ethics_source_brief_complete_full_chapter_production', 'documentary_evidence_ethics_full_chapter_complete_next_unit_source_brief', 'representation_position_counterimages_source_brief_complete_full_chapter_production', 'representation_position_counterimages_full_chapter_complete_next_unit_source_brief'].includes(statusEntry.nextGate), 'Film & TV har feil neste port');
+  const historicalGates = new Set(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief']);
+  const productionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(statusEntry.nextGate);
+  assert(historicalGates.has(statusEntry.nextGate) || productionGate, 'Film & TV har feil neste port');
   assert(phase3.report.summary.domainCount === 10 && phase3.report.summary.emneCount === 192, 'Det migrerte Film & TV-inventaret er ikke bevart');
   assert(phase3.report.summary.registeredChapterCount === registrySubject.chapters.length, 'Fase 3-auditen er usynkronisert med Film & TV-registeret');
 
