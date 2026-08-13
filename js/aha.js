@@ -10,6 +10,8 @@ const HG_AHA_PROFILE_ID_KEY = "aha_profile_id";
 const HG_AHA_PROFILE_CACHE_KEY = "aha_profile_cache_v1";
 const HG_AHA_SYNC_STATUS_KEY = "historygo_aha_sync_status_v1";
 const HG_AHA_READBACK_STATUS_KEY = "historygo_aha_last_readback_v1";
+const HG_AHA_IMPORT_SCHEMA_VERSION = "aha_import_payload_v1";
+const HG_AHA_IMPORT_CONTRACT_VERSION = 1;
 
 let hgAhaSupabaseClient = null;
 let hgAhaSdkPromise = null;
@@ -560,6 +562,8 @@ function exportHistoryGoData() {
   const nextUpLearningSignal = buildNextUpLearningSignal();
 
   const payload = {
+    schema_version: HG_AHA_IMPORT_SCHEMA_VERSION,
+    contract_version: HG_AHA_IMPORT_CONTRACT_VERSION,
     user_id: ahaProfileId || localStorage.getItem("user_id") || "local_user",
     profile_id: ahaProfileId,
     source: "historygo",
@@ -597,7 +601,12 @@ function exportHistoryGoData() {
     hg_active_path_v1: activePath && typeof activePath === "object" ? activePath : {},
     nextup_profile: { active_path_summary: activePath?.summary && typeof activePath.summary === "object" ? activePath.summary : {} },
     notes,
-    dialogs
+    dialogs,
+    privacy: {
+      scope: "private_user",
+      public_sharing: false,
+      model_training_allowed: false
+    }
   };
 
   const json = JSON.stringify(payload, null, 2);

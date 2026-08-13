@@ -1,6 +1,10 @@
 # History Go import i AHA-EchoNet
 
 - History Go har egen lokal lærings-/innsiktsmotor og eksporterer `aha_import_payload_v1`.
+- Payloaden identifiserer seg som `schema_version: aha_import_payload_v1` og
+  `contract_version: 1`. Ukjente hovedversjoner skal avvises av AHA-EchoNet.
+- V1 er privat brukerimport: `public_sharing` og `model_training_allowed` er
+  alltid `false` i produsert payload.
 - AHA-EchoNet importerer dette som ferdig tolket materiale via `ahaHistoryGoImport.js`.
 - Importen bruker eksisterende AHA-motor (`InsightsEngine`) og lagrer i `aha_insight_chamber_v1`.
 - Importflyten bruker **ikke** `ahaEmneMatcher.js`.
