@@ -97,7 +97,7 @@ export function auditReligionPilot({ writeReport = false, checkReport = true } =
   assert(isDeepStrictEqual([...model.domains].map((domain) => domain.id), DOMAIN_ORDER), 'Religion har feil source-definert fagområderekkefølge');
   assert(model.summary.domainCount === 4, 'Religion skal ha fire fagområder');
   assert(model.summary.emneCount === 8, 'Religion skal ha åtte aktive emner');
-  assert(model.summary.methodCount === 22, 'Religion skal ha åtte foundation-metoder og fjorten materialiserte universitetsmetoder');
+  assert(model.summary.methodCount === 24, 'Religion skal ha åtte foundation-metoder og seksten materialiserte universitetsmetoder');
   assert(model.summary.mappingCount === 8, 'Religion skal ha én mapping per emne');
   assert(model.summary.hookCount === 0, 'Religion foundation v1 har ikke canonicale hooks');
   assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Religion-kapitler finnes');
