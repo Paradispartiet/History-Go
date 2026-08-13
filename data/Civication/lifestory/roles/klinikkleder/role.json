@@ -1,0 +1,23 @@
+{
+  "version":1,
+  "id":"klinikkleder",
+  "navn":"Klinikkleder",
+  "kjernefantasi":"Du leder ikke behandlingene enkeltvis; du leder rammene som avgjør om gode behandlinger faktisk kan skje. Hver beslutning om folk, kapasitet, penger og endring flytter risiko et sted.",
+  "arbeidsoppgaver":["strategi og mål","bemanning og kompetanse","økonomi og kapasitet","kvalitet og pasientsikkerhet","endringsledelse","rolle- og myndighetsavklaring"],
+  "personer":[
+    {"id":"avdelingsleder","navn":"Nora","beskrivelse":"Avdelingsleder med økende venteliste og to ubesatte stillinger."},
+    {"id":"fagansvarlig","navn":"Jonas","beskrivelse":"Fagansvarlig som ser kvalitets- og sikkerhetssignaler før de blir tydelige i resultatrapporten."},
+    {"id":"tillitsvalgt","navn":"Elise","beskrivelse":"Tillitsvalgt som følger belastning, medvirkning og hva endringene faktisk gjør med arbeidsmiljøet."},
+    {"id":"divisjonsleder","navn":"Divisjonsdirektøren","beskrivelse":"Forventer budsjettkontroll, framdrift og tydelige resultater."},
+    {"id":"venn","navn":"Maja","beskrivelse":"Vennen din som spør om du fortsatt klarer å skille det du kan beslutte fra det du bare kan gjøre mulig."}
+  ],
+  "hovedkonflikter":["kapasitet vs forsvarlighet","budsjett vs langsiktig risiko","resultattall vs faglige signaler","tempo vs forankring","ledermyndighet vs klinisk myndighet"],
+  "endings":[
+    {"id":"retning_med_baerekraft","navn":"Retning med bærekraft","tekst":"Du leverte ikke den enkleste budsjettfortellingen. Du gjorde bemanningsrisiko synlig, lot kvalitetsdata få motstand fra fagmiljøet og faset endringen slik at organisasjonen faktisk kunne ta den imot. Lederrollen ble brukt til å skape rammer, ikke til å late som hierarkiet kunne erstatte klinisk kompetanse.","kriterier":{"meters":{"integritet":{"min":62},"handlingsrom":{"min":52}},"flagg":{"beskyttet_forsvarlighet":true,"holdt_myndighetsgrense":true}},"standard":true},
+    {"id":"tallene_vant","navn":"Tallene vant","tekst":"Du leverte budsjett, tempo og ryddige resultater. Samtidig ble sårbar bemanning normaltilstand, faglige varsler kom senere og flere beslutninger ble presset gjennom hierarkiet. Klinikken så bedre ut ovenfra enn den kjentes innenfra.","kriterier":{"flagg":{"prioriterte_tall":true,"brukte_hierarki_som_klinikk":true}}},
+    {"id":"ingen_beslutning","navn":"Alt måtte forankres mer","tekst":"Du så risikoen og lyttet bredt, men lot nesten alle krevende valg vente på mer informasjon og mer forankring. Organisasjoner trenger også tydelig retning når grunnlaget er godt nok.","kriterier":{"flagg":{"utsatte_alle_beslutninger":true}}}
+  ],
+  "startState":{"meters":{"penger":620,"psyke":65,"energi":64,"integritet":54,"synlighet":60,"handlingsrom":54},"relasjoner":{"avdelingsleder":52,"fagansvarlig":55,"tillitsvalgt":49,"divisjonsleder":48,"venn":60}},
+  "dagsplan":{"1":[{"klokke":"08:30","tekst":"Bemanning og venteliste"},{"klokke":"11:00","tekst":"Kvalitets- og resultatgjennomgang"},{"klokke":"14:00","tekst":"Budsjettmøte"}],"2":[{"klokke":"09:00","tekst":"Omstillingsplan"},{"klokke":"13:00","tekst":"Rolle- og myndighetsavklaring"}]},
+  "scopeBoundary":{"kan":["lede strategi, organisasjon, bemanning, økonomi og kvalitetsarbeid innen arbeidsgiverens mandat","sette mål og fordele ressurser","følge opp risiko og resultater","sørge for at kliniske og juridiske beslutninger ligger hos riktig kvalifisert person"],"kanIkke":["diagnostisere eller behandle bare i kraft av lederstillingen","bruke lederrollen som erstatning for profesjonskompetanse","fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking","delegere klinisk myndighet til ukvalifiserte personer","bruke produksjonstall alene som bevis på faglig kvalitet"]}
+}
