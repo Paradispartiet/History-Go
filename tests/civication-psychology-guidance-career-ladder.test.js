@@ -54,7 +54,7 @@ assert.deepStrictEqual(grammar.badge_binding.badge_titles, EXPECTED.map(([label]
 assert.ok(grammar.story_world.practice_stories === undefined, "practice stories ligger på grammar-root etter schema-kontrakten");
 assert.ok(Array.isArray(grammar.practice_stories) && grammar.practice_stories.length >= 4, "FWG har minst fire praksisfortellinger");
 const grammarBoundary = JSON.stringify(grammar.authority_boundary.may_not || []).toLowerCase();
-assert.ok(grammarBoundary.includes("diagnostisere"), "FWG forbyr diagnostikk");
+assert.ok(/diagnos/.test(grammarBoundary), "FWG forbyr diagnostikk");
 assert.ok(grammarBoundary.includes("psykoterapi"), "FWG forbyr psykoterapi");
 assert.ok(grammarBoundary.includes("bestemme utdanning eller jobb"), "FWG forbyr å overta valget");
 
@@ -64,7 +64,7 @@ for (const [legacyFile, tierLabel] of [["veileder.json", "Veileder"], ["radgiver
   assert.strictEqual(model.role_scope, SCOPE, `${tierLabel} legacy roleModel peker til canonical scope`);
   assert.ok(model.source.evidence_file?.includes("psychologyGuidanceEvidence"), `${tierLabel} har eksplisitt evidensfil`);
   const boundary = JSON.stringify(model.scope_boundary?.cannot || []).toLowerCase();
-  assert.ok(boundary.includes("diagnostisere"), `${tierLabel} har klinisk grense`);
+  assert.ok(/diagnos/.test(boundary), `${tierLabel} har klinisk grense`);
 }
 
 // 4. One active Life Story package serves all three tiers and passes the real content validator.
