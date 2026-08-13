@@ -16,10 +16,12 @@ on:
       - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-religion-pilot.mjs'
+      - 'scripts/audit-fagverk-religion-university-readiness.mjs'
       - 'scripts/build-fagverk-release-manifest.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-religion-pilot.test.mjs'
+      - 'tests/fagverk-religion-university-readiness.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-religion-pilot.yml'
@@ -53,10 +55,12 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-religion-pilot.mjs
+          node scripts/audit-fagverk-religion-university-readiness.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk and Religion contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-religion-pilot.test.mjs
+          node --test tests/fagverk-religion-university-readiness.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
