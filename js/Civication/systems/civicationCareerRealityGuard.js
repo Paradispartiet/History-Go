@@ -2,6 +2,9 @@
   "use strict";
 
   const window = /** @type {any} */ (globalScope);
+  const guardedJobApis = new WeakSet();
+  /** @type {Function|null} */
+  let guardedSalaryFunction = null;
 
   function getBadge(careerId) {
     const id = String(careerId || "").trim();
@@ -73,7 +76,7 @@
   function installJobOfferGuard() {
     const jobs = window.CivicationJobs;
     if (!jobs || typeof jobs.pushOffer !== "function") return false;
-    if (jobs.__pureLifePositionGuardAttached) return true;
+    if (guardedJobApis.has(jobs)) return true;
 
     const basePushOffer = jobs.pushOffer.bind(jobs);
     jobs.pushOffer = function pushOfferWithLifeGuard(input) {
@@ -92,14 +95,14 @@
       return basePushOffer(payload);
     };
 
-    jobs.__pureLifePositionGuardAttached = true;
+    guardedJobApis.add(jobs);
     return true;
   }
 
   function installSalaryGuard() {
     const calculate = window.calculateWeeklySalary;
     if (typeof calculate !== "function") return false;
-    if (calculate.__careerRealityGuardAttached) return true;
+    if (guardedSalaryFunction && calculate === guardedSalaryFunction) return true;
 
     const guarded = function calculateWeeklySalaryForAcceptedJob(career, currentBadgeTierIndex) {
       const active = window.CivicationState?.getActivePosition?.() || null;
@@ -114,8 +117,8 @@
 
       return calculate(career, salaryTierIndex);
     };
-    guarded.__careerRealityGuardAttached = true;
-    guarded.__baseCalculateWeeklySalary = calculate;
+
+    guardedSalaryFunction = guarded;
     window.calculateWeeklySalary = guarded;
     return true;
   }
