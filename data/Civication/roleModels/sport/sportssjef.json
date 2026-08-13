@@ -1,120 +1,16 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "sport",
-    "badge_name": "Sport & lek",
-    "tier_label": "Sportssjef",
-    "tier_threshold": 240
-  },
-  "category": "sport",
-  "role_scope": "sportssjef",
-  "role_id": "sport_sportssjef",
-  "title": "Sportssjef",
-  "core_narrative": [
-    "I Civication er Sportssjef en praktisk rolle i Sport & lek der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til fotball, hockey."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For kroppen som tenker i bevegelse. Lek er kulturens første språk – og dens siste frihet."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For kroppen som tenker i bevegelse. Lek er kulturens første språk – og dens siste frihet."
-    ],
-    "history_go_badges": [
-      "sport"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "sportssjef",
-    "mail_profile": "sport_sportssjef",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Sportssjef",
-      "category": "sport",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: sport / Sportssjef."
-  ]
+  "schema":"civication_role_model_v1","version":2,
+  "source":{"badge_file":"data/badges/sport.json","badge_id":"sport","badge_name":"Sport & lek","tier_label":"Sportssjef","tier_threshold":240,"evidence_ref":"data/Civication/sportCareerLifeEvidence.json"},
+  "category":"sport","role_scope":"sport_sportsledelse","role_id":"sport_sportssjef","title":"Sportssjef",
+  "core_narrative":["Du leder sportslig utvikling innen et konkret mandat fra klubb eller organisasjon. Arbeidet kobler langsiktig sportslig retning, trenerapparat, rekruttering, utøverlogistikk og økonomiske rammer uten å gjøre Badge-status til ledelsesmyndighet."],
+  "work_life":{"daily_work":["Følge sportslig strategi, bemanning og utviklingsbehov over tid.","Koordinere trenerapparat og støttefunksjoner mot klubbens sportslige mål.","Vurdere rekruttering, kontraktsbehov og ressursprioriteringer innen delegert fullmakt.","Rapportere sportslige risikoer, behov og resultater til riktig ledelsesnivå."],"responsibilities":["Holde sportslige beslutninger innen budsjett, mandat og organisasjonens styringslinjer.","Skille rekrutteringsvurdering fra faktisk kontraktssignering når fullmakt mangler.","Sikre tydelige roller mellom sportssjef, hovedtrener, støtteapparat og administrativ ledelse.","Bygge langsiktig kapasitet uten å gjøre enkeltresultater til eneste beslutningsgrunnlag."],"work_environment":["Klubb, forbund eller annen idrettsorganisasjon med en konkret utnevnt sportslig lederfunksjon."],"status_position":["Sportssjef har sportslig ledelsesansvar innen faktisk delegert mandat, men Badge-poeng gir aldri stillingen, signaturrett eller ubegrenset arbeidsgivermyndighet."]},
+  "career_path":{"entry_from":["Relevant sportslig erfaring og konkret arbeidsgiverutnevnelse eller ansettelse."],"progression_to":["Større sportslig ledermandat eller annen organisasjonsledelse gjennom ny faktisk utnevnelse."],"possible_promotions":["Bredere budsjett-, personal- eller strategiansvar når arbeidsgiver eksplisitt delegerer dette."],"possible_exits":["Klubbledelse, forbundsarbeid, trenerrolle, rådgivning eller annen jobb."],"career_risks":["Rolleblanding, uklare fullmakter, kortsiktig rekruttering, ubegrunnede trenerinngrep og beslutninger uten økonomisk eller styringsmessig forankring."]},
+  "required_knowledge":{"education_basis":["Ingen enkelt beskyttet utdanningsvei modelleres; faktisk klubb eller arbeidsgiver bestemmer kvalifikasjonskrav og utnevner rollen."],"skills":["sportslig strategi","rekruttering og ressursplanlegging","trener- og stabsledelse","budsjettforståelse","mandat- og styringsforståelse"],"category_knowledge":["Idrettens konkurranselogikk, klubbstruktur, kontraktsprosesser, talent- og trenerutvikling og sportslig organisering."],"history_go_badges":["sport"],"place_connections":[],"people_connections":[]},
+  "challenges":[{"id":"resultat_vs_strategi","title":"Resultatkrise og langsiktig plan","description":"Dårlige kortsiktige resultater utløser press for å bryte en vedtatt sportslig plan.","pressure":"kortsiktig_resultat_vs_langsiktig_strategi","affects":["trust","budget","performance"]},{"id":"rekruttering_under_budsjett","title":"Rekruttering innen ramme","description":"Et attraktivt sportslig alternativ vil presse økonomi eller stallbalanse utover planlagt ramme.","pressure":"sportslig_gevinst_vs_okonomisk_baerekraft","affects":["budget","performance","risk"]}],
+  "dilemmas":[{"id":"trenerpress","title":"Skifte trener?","setup":"Resultatpresset øker, men beslutningsgrunnlaget for et trenerbytte er fortsatt svakt.","choice_axis":"symbolsk_handling_vs_begrunnet_ledelse","consequence_axis":"kortsiktig_ro_vs_langsiktig_tillit","mail_hooks":["job","conflict","people"]},{"id":"profilrekruttering","title":"Profil eller helhet","setup":"En profilutøver kan styrke interessen rundt laget, men passer dårligere inn i den langsiktige sportslige planen.","choice_axis":"profilverdi_vs_sportslig_helhet","consequence_axis":"synlighet_vs_baerekraft","mail_hooks":["job","event","conflict"]}],
+  "authority_boundaries":{"can":["lede sportslig strategi og koordinering innen delegert mandat","forberede og gjennomføre rekrutterings- og bemanningsbeslutninger når fullmakten dekker det","følge opp trenerapparat og sportslige mål på organisasjonsnivå"],"cannot":["inngå eller avslutte kontrakter uten nødvendig arbeidsgiverfullmakt","overstyre medisinsk fagansvar","tildele landslagsplass, medalje eller offentlig stjernestatus","utvide eget budsjett eller mandat uten riktig beslutning"]},
+  "mail_integration":{"role_scope":"sport_sportsledelse","mail_profile":"sport_sportsledelse","can_feed_mail_types":["job","story","conflict","event","people","followup","knowledge"],"mail_variables":{"role_title":"Sportssjef","category":"sport","main_pressure":"kortsiktig_resultat_vs_langsiktig_strategi","ethical_axis":"symbolsk_handling_vs_begrunnet_ledelse","status_axis":"sportslig_gevinst_vs_okonomisk_baerekraft"},"recommended_mail_families":[],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"sportslig_strategi","label":"Sportslig strategi","description":"Koble konkurransemål, utvikling og ressurser i en langsiktig retning."},{"id":"rekrutteringsdommekraft","label":"Rekrutteringsdømmekraft","description":"Vurdere kompetansebehov, risiko og helhet før sportslige investeringer."},{"id":"styringsmandat","label":"Styringsmandat","description":"Handle innen tydelige fullmakter og organisasjonsgrenser."}],
+  "ideal_type_problems":[{"id":"panikkledelse","label":"Panikkledelse","description":"Kortsiktig resultatpress utløser store grep uten godt beslutningsgrunnlag."},{"id":"fullmaktsglidning","label":"Fullmaktsglidning","description":"Sportslig ansvar forveksles med ubegrenset kontrakts-, budsjett- eller arbeidsgivermyndighet."}],
+  "notes":["Sportssjef er en arbeidsgiverutnevnt jobb-tier og materialiseres bare når `employer_appointment` er oppfylt."]
 }
