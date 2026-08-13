@@ -348,10 +348,11 @@
     "all_section_source_ids_must_resolve": true,
     "generic_template_text_forbidden": true,
     "no_clinical_diagnostic_treatment_or_coercion_overreach_required": true,
-    "aha_runtime_activation_requires_separate_review": true,
     "representation_inside_a_chapter_does_not_count_as_standalone_article": true,
     "quality_review_status_required": "approved_editorial_quality_v2",
-    "quality_review_standard": "history_go_psykologi_editorial_quality_v2"
+    "quality_review_standard": "history_go_psykologi_editorial_quality_v2",
+    "aha_runtime_activation_policy": "repository_quality_and_safety_gates_only",
+    "external_peer_review_required_for_aha_activation": false
   },
   "concept_registry_contract": {
     "path": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
@@ -414,6 +415,7 @@
     "no_critical_flags_required": true,
     "no_repeated_long_editorial_sentences_required": true,
     "all_claim_source_bindings_required": true,
-    "separate_aha_subject_matter_review_still_required": true
+    "aha_runtime_activation_eligible_after_repository_gates": true,
+    "external_peer_review_required_for_aha_activation": false
   }
 }
