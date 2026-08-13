@@ -339,7 +339,8 @@
       "models_or_researchers",
       "claim_ids",
       "misuse_guard",
-      "editorial_review"
+      "editorial_review",
+      "quality_review"
     ],
     "minimum_editorial_words_per_article": 550,
     "editorial_review_status_required": "approved_non_clinical_educational_use",
@@ -348,7 +349,9 @@
     "generic_template_text_forbidden": true,
     "no_clinical_diagnostic_treatment_or_coercion_overreach_required": true,
     "aha_runtime_activation_requires_separate_review": true,
-    "representation_inside_a_chapter_does_not_count_as_standalone_article": true
+    "representation_inside_a_chapter_does_not_count_as_standalone_article": true,
+    "quality_review_status_required": "approved_editorial_quality_v2",
+    "quality_review_standard": "history_go_psykologi_editorial_quality_v2"
   },
   "concept_registry_contract": {
     "path": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
@@ -360,14 +363,17 @@
       "explanation",
       "not_meaning",
       "related_concept_ids",
-      "models_or_researchers",
+      "model_assignment_status",
       "empirical_status",
       "example",
-      "source_ids"
+      "source_ids",
+      "claim_ids",
+      "editorial_status"
     ],
     "canonical_source_field": "core_concepts",
     "expected_unique_concept_count": 136,
-    "exact_canonical_term_coverage_required": true
+    "exact_canonical_term_coverage_required": true,
+    "editorial_status_required": "editorial_ready_v2"
   },
   "completion_contract": {
     "required_editorial_status_before_final_gate": "expanded_and_audited",
@@ -386,7 +392,8 @@
       "all_58_standalone_topic_articles_materialized_and_sourced",
       "canonical_concept_registry_100_percent_materialized_and_sourced",
       "applied_field_matrix_reviewed_and_covered",
-      "university_readiness_audit_green"
+      "university_readiness_audit_green",
+      "editorial_quality_v2_score_at_least_27_without_critical_flags"
     ],
     "complete_must_remain_false_until_all_requirements_pass": true
   },
@@ -396,6 +403,17 @@
     "required_field_count": 6,
     "exact_area_coverage_required": true,
     "all_emne_method_source_and_claim_ids_must_resolve": true,
-    "editorial_review_status_required": "approved_university_applied_field_coverage"
+    "editorial_review_status_required": "approved_editorial_quality_v2"
+  },
+  "editorial_quality_contract": {
+    "audit": "scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs",
+    "report": "reports/fagverk/psykologi-editorial-quality-v2-audit.json",
+    "minimum_score_per_dimension": 4,
+    "minimum_total_score": 27,
+    "required_status": "psykologi_editorial_quality_v2_high",
+    "no_critical_flags_required": true,
+    "no_repeated_long_editorial_sentences_required": true,
+    "all_claim_source_bindings_required": true,
+    "separate_aha_subject_matter_review_still_required": true
   }
 }

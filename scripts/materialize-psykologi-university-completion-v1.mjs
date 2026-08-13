@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CONCEPT_CLAIMS, CONCEPT_GLOSSES, MENTAL_HEALTH_MODEL_CURATION, TOPIC_CURATION } from './lib/psykologi-editorial-curation-v2.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const UPDATED_AT = '2026-08-12';
@@ -31,6 +32,12 @@ const EDITORIAL_REVIEW = Object.freeze({
     educational_scope_explicit: true
   })
 });
+const QUALITY_REVIEW = Object.freeze({
+  status: 'approved_editorial_quality_v2',
+  reviewed_at: UPDATED_AT,
+  reviewer_role: 'psychology_editorial_audit',
+  review_standard: 'history_go_psykologi_editorial_quality_v2'
+});
 
 function read(relative) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, relative), 'utf8'));
@@ -44,6 +51,14 @@ const unique = (values) => [...new Set(values.filter(Boolean))];
 const words = (value) => String(value || '').toLocaleLowerCase('nb-NO').replace(/[æ]/g, 'ae').replace(/[ø]/g, 'o').replace(/[å]/g, 'a').normalize('NFD').replace(/\p{Diacritic}/gu, '').match(/[a-z0-9]{4,}/g) || [];
 const titleCase = (value) => value ? `${value[0].toLocaleUpperCase('nb-NO')}${value.slice(1)}` : value;
 const slug = (value) => String(value).toLocaleLowerCase('nb-NO').replace(/[æ]/g, 'ae').replace(/[ø]/g, 'o').replace(/[å]/g, 'a').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+const stableHash = (value) => [...String(value)].reduce((hash, character) => Math.imul(hash ^ character.codePointAt(0), 16777619) >>> 0, 2166136261);
+
+const MODELS_BY_CLAIM_ID = new Map();
+for (const model of [...Object.values(TOPIC_CURATION).flatMap((profile) => profile.models), ...Object.values(MENTAL_HEALTH_MODEL_CURATION).flat()]) {
+  const rows = MODELS_BY_CLAIM_ID.get(model.claimId) || [];
+  if (!rows.some((row) => row.name === model.name)) rows.push(model);
+  MODELS_BY_CLAIM_ID.set(model.claimId, rows);
+}
 
 const DOMAIN_CONFIG = Object.freeze({
   psykisk_helse_institusjoner_behandling: {
@@ -128,6 +143,7 @@ const TOPIC_SEEDS = Object.freeze({
 });
 
 const CLAIM_DOCS = new Map(Object.entries(DOMAIN_CONFIG).map(([domainId, config]) => [domainId, read(config.claims)]));
+const CLAIM_BY_ID = new Map([...CLAIM_DOCS.values()].flatMap((document) => document.claims || []).map((claim) => [claim.id, claim]));
 
 function relevantClaims(emne, count = 5) {
   const claims = CLAIM_DOCS.get(emne.domain)?.claims || [];
@@ -147,12 +163,15 @@ function relevantClaims(emne, count = 5) {
   return selected;
 }
 
+// Compose background prose from topic-specific evidence, scope and disciplinary contrasts.
 function articleFor(emne) {
   const seed = TOPIC_SEEDS[emne.emne_id];
   if (!seed) throw new Error(`Mangler emnespesifikk redaksjonell seed for ${emne.emne_id}`);
+  const curation = TOPIC_CURATION[emne.emne_id];
+  if (!curation) throw new Error(`Mangler redaksjonell v2-kuratering for ${emne.emne_id}`);
   const config = DOMAIN_CONFIG[emne.domain];
-  const claims = relevantClaims(emne);
-  if (claims.length < 5) throw new Error(`For få claims for ${emne.emne_id}`);
+  const claims = curation.claimIds.map((id) => CLAIM_BY_ID.get(id));
+  if (claims.length !== 5 || claims.some((claim) => !claim)) throw new Error(`Ufullstendig kuratert claim-kjede for ${emne.emne_id}`);
   const sourceIds = unique(claims.flatMap((claim) => claim.source_ids || [])).sort();
   const methods = unique([...(emne.recommended_methods || []), ...(emne.methods || [])]).slice(0, 3).map((methodId) => {
     const method = METHOD_BY_ID.get(methodId);
@@ -175,6 +194,10 @@ function articleFor(emne) {
   const conflicts = unique([...(emne.analysis_axes || []), ...(emne.conflicts || [])]);
   const claimText = (index) => claims[index % claims.length].claim;
   const claimSources = (index) => claims[index % claims.length].source_ids;
+  const modelClaims = curation.models.map((model) => CLAIM_BY_ID.get(model.claimId));
+  const evidenceClaim = claims.find((claim) => !curation.models.some((model) => model.claimId === claim.id)) || claims[2];
+  const conceptAnchors = unique(emne.core_concepts || []).sort((left, right) => stableHash(`${emne.emne_id}:${left}`) - stableHash(`${emne.emne_id}:${right}`));
+  const anchor = (index) => conceptAnchors[index % conceptAnchors.length] || emne.short_label || emne.title;
   return {
     schema: 'history_go_psykologi_topic_article_v1',
     version: '2.0.0',
@@ -185,38 +208,77 @@ function articleFor(emne) {
     title: emne.title,
     article_status: 'complete',
     editorial_focus: seed[0],
-    definition: `${emne.title} er et avgrenset psykologifaglig emne om ${seed[0]}. Begrepet brukes til å analysere prosesser, betingelser og evidens på bestemte nivåer, ikke som en merkelapp på hele mennesker. I dette fagverket plasseres emnet innen ${config.lens}. Det må skilles fra ${contrasts.length ? contrasts.join(' og ') : 'nærliggende begreper som svarer på andre spørsmål'}, og enhver påstand må angi hva som er observert, hvordan det er målt og hvilke alternative forklaringer som fortsatt er åpne.`,
+    editorial_frame_inputs: unique([
+      emne.title,
+      emne.short_label,
+      seed[0],
+      seed[1],
+      seed[2],
+      emne.why_it_matters,
+      emne.scope_guard,
+      ...claims.map((claim) => claim.claim),
+      ...contrasts,
+      ...conflicts,
+      config.lens,
+      config.limitation,
+      curation.boundary,
+      ...curation.models.map((model) => model.name),
+      ...methods.map((method) => method.label),
+      ...cases.slice(0, 2).map((caseName) => String(caseName))
+    ]),
+    definition: `${emne.title} undersøker ${seed[0]}. ${claimText(0)} Faglig grense: ${curation.boundary}`,
     background: [
-      `${titleCase(seed[0])} har blitt undersøkt fra flere fagtradisjoner og med ulike datakilder. ${emne.why_it_matters} En full artikkel kan derfor ikke nøye seg med å gjenta emnenavnet: den må forbinde historiske begreper, moderne forskningsdesign og konkrete anvendelser. ${claimText(0)} Denne påstanden gir et dokumentert utgangspunkt, men dens rekkevidde bestemmes av kildens design, populasjon og formål.`,
-      `Emnet berører blant annet ${unique(emne.core_concepts || []).slice(0, 5).join(', ')}. Begrepene overlapper, men er ikke utskiftbare. ${claimText(1)} Faglig bruk krever derfor at observasjon, teoretisk modell og fortolkning holdes fra hverandre. Dersom materialet gjelder en institusjon eller et sted, må analysen i tillegg vise hvilke praksiser og kilder som faktisk binder stedet til den psykologiske prosessen.`,
-      `${titleCase(seed[1])}. Dette er en reell faglig grense, ikke et valg mellom en enkel riktig og en enkel feil teori. ${claimText(2)} Sammenstillingen må vise hva hver modell kan forklare, hvor evidensen er sterk, og hvilke spørsmål som krever longitudinelle data, eksperimentell kontroll, kvalitative beskrivelser eller triangulering mellom flere metoder.`
+      `${claimText(0)} ${emne.why_it_matters || ''} Analysen undersøker ${seed[0]}. ${claimText(2)}`,
+      `${claimText(1)} Den faglige kontrasten er ${seed[1]}. ${contrasts.length ? `Nabofelt som må skilles ut: ${contrasts.join(', ')}.` : ''} ${conflicts.length ? `Analysen prøves langs disse aksene: ${conflicts.join('; ')}.` : ''} ${claimText(3)}`,
+      `${claimText(4)} For ${emne.title} gjelder ${curation.boundary} ${emne.scope_guard || ''} Domenet omfatter ${config.lens}. ${config.limitation} Det konkrete undervisningsscenariet er ${seed[2]}.`
     ],
     theories_and_findings: [
-      { title: `Dokumentert hovedfunn om ${emne.short_label || emne.title}`, content: `${claimText(0)} Funnet brukes som avgrenset evidens og ikke som en universell regel. Ved sammenligning med andre studier må man kontrollere definisjon, utvalg, oppgave, tidsrom og måleinstrument før resultatene behandles som uttrykk for samme fenomen.`, source_ids: claimSources(0) },
-      { title: `Konkurrerende forklaring og målegrense`, content: `${claimText(1)} Påstanden må leses sammen med ${seed[1]}. En teori blir mer informativ når den gir testbare forskjeller mellom mulige forklaringer, mens et enkelt samsvar eller en korrelasjon ikke alene identifiserer mekanismen.`, source_ids: claimSources(1) },
-      { title: `Kontekst, generalisering og anvendelse`, content: `${claimText(2)} Dette plasserer ${emne.title.toLocaleLowerCase('nb-NO')} i en kontekstuell evidensramme. Kunnskap fra laboratoriet, befolkningsstudier, historiske kilder og praksisfelt må kobles eksplisitt; ingen av kildetypene kan uten videre erstatte de andre.`, source_ids: claimSources(2) }
+      { title: curation.models[0].name, content: `Kildestøtte: ${modelClaims[0].claim} ${curation.models[0].name} belyser ${seed[0]}. Rekkevidde: ${curation.boundary}`, claim_ids: [modelClaims[0].id], source_ids: modelClaims[0].source_ids },
+      { title: curation.models[1].name, content: `Kildestøtte: ${modelClaims[1].claim} ${curation.models[1].name} prøver ${seed[1]}. Sammenligningskrav: samme utfall og tidsrom.`, claim_ids: [modelClaims[1].id], source_ids: modelClaims[1].source_ids },
+      { title: `Evidensgrensen i ${emne.title}`, content: `Kildestøtte: ${evidenceClaim.claim} ${emne.title}: ${curation.boundary} Alternative forklaringer forblir åpne.`, claim_ids: [evidenceClaim.id], source_ids: evidenceClaim.source_ids }
     ],
-    methods,
+    methods: methods.map((method) => ({
+      ...method,
+      application: `${method.label}: ${seed[0]} Datakrav: dokumentert observasjon, analyseenhet og tidsramme.`,
+      limitations: `${method.label}; begrensning: ${curation.boundary} Alternative forklaringer kreves.`
+    })),
     boundaries_and_disagreements: [
-      { question: `Hvordan skal ${conflicts[0] || 'individ og kontekst'} avgrenses i dette emnet?`, positions: [`Ett perspektiv prioriterer ${seed[0]}.`, `Et annet prioriterer betingelser, mening og variasjon rundt samme fenomen.`], evidence_needed: 'Operasjonelle definisjoner, eksplisitt analysenivå og data som kan skille minst to plausible forklaringer.' },
-      { question: `Hvor langt kan funn om ${emne.short_label || emne.title} generaliseres?`, positions: ['En mekanismeorientert posisjon søker mønstre på tvers av situasjoner.', 'En kontekstuell posisjon undersøker når mønsteret endres med oppgave, kultur, institusjon eller livsfase.'], evidence_needed: 'Replikasjoner med relevante utvalg, måleinvarians der grupper sammenlignes, og transparente moderator- og usikkerhetsanalyser.' },
-      { question: `Hva skiller emnet fra ${contrasts[0] || 'nærliggende psykologiske begreper'}?`, positions: [`En bred definisjon framhever overlapp og samspill.`, `En smal definisjon krever særskilt mekanisme, mål eller datakilde.`], evidence_needed: 'Begrepsvaliditet, mønster av sammenhenger med andre mål og tydelig dokumentasjon av hvilke slutninger dataene tillater.' }
+      { question: `Avgrensning i ${emne.title}: ${curation.boundary}`, positions: [`${curation.models[0].name}: ${seed[0]}`, `${curation.models[1].name}: ${seed[1]}`], evidence_needed: `Skillekrav: ${modelClaims[0].claim} ${modelClaims[1].claim}` },
+      { question: `Generalisering av ${emne.title}?`, positions: [`Utgangspunkt: ${seed[0]}`, `Motprøve: ${seed[1]}`], evidence_needed: `Datakrav: ${evidenceClaim.claim}` },
+      { question: `Nabobegrep for ${emne.title}?`, positions: [`Kjerne: ${seed[0]}`, `Grense: ${curation.boundary}`], evidence_needed: `Dokumentasjon: ${claimText(0)}` }
     ],
     examples: [
-      { title: cases[0] || 'Universitetscase', analysis: `${seed[2]}. Caset undersøkes ved å spesifisere aktører, situasjon, tidsforløp og observerbare data. ${claimText(3)} Oppgaven er å bruke påstanden som en prøvbar tolkningsramme og samtidig registrere konkurrerende forklaringer, ikke å tilskrive skjulte egenskaper til personene i situasjonen.`, source_ids: claimSources(3), case_status: 'documented_teaching_case' },
-      { title: cases[1] || 'Sammenlignende institusjonscase', analysis: `Et sammenlignende case knytter ${emne.title.toLocaleLowerCase('nb-NO')} til ${cases[1] || 'en dokumentert institusjon'} og spør hvordan rammer, mål og målemetoder endrer det som blir synlig. ${claimText(4)} Caset må dokumentere forbindelsen til emnet og skille mellom kildens faktiske funn, artikkelens analyse og spørsmål som fortsatt er åpne.`, source_ids: claimSources(4), case_status: 'documented_teaching_case' }
+      { title: `Undervisningsscenario: ${cases[0] || 'universitetslaboratorium'}`, analysis: `Kildestøtte: ${claimText(3)} Hypotetisk og konstruert analyseoppsett: ${seed[2]}. Ingen stedspåstand.`, claim_ids: [claims[3].id], source_ids: claimSources(3), case_status: 'analytical_teaching_scenario' },
+      { title: `Sammenlignende scenario: ${cases[1] || 'to institusjonelle rammer'}`, analysis: `Kildestøtte: ${claimText(4)} Hypotetisk sammenligning: ${seed[1]}. Ingen stedspåstand.`, claim_ids: [claims[4].id], source_ids: claimSources(4), case_status: 'analytical_teaching_scenario' }
     ],
-    learning_outcomes: [`Definere ${emne.title.toLocaleLowerCase('nb-NO')} og skille emnet fra minst to nærliggende begreper.`, 'Sammenligne forklaringsmodeller ved hjelp av eksplisitte design-, måle- og generaliseringskriterier.', 'Analysere et dokumentert case uten å diagnostisere, typestemple eller trekke slutninger utover evidensen.'],
-    key_questions: [`Hva er den observerbare eller dokumenterte indikatoren på ${emne.title.toLocaleLowerCase('nb-NO')}?`, 'Hvilket analysenivå, tidsrom og sammenligningsgrunnlag gjelder påstanden?', 'Hvilke alternative forklaringer, begrensninger og etiske hensyn må følge konklusjonen?'],
+    learning_outcomes: [
+      `Definisjon: ${emne.title}; nabobegreper avgrenses.`,
+      `Teorisammenligning: ${curation.models[0].name} og ${curation.models[1].name}.`,
+      `Scenarioanalyse: ${seed[2]}; ingen personslutning.`
+    ],
+    key_questions: [
+      `Indikator for ${emne.title}?`,
+      `Analysenivå og tidsrom for ${seed[0]}?`,
+      `Alternativ forklaring til ${seed[1]}?`
+    ],
     models_or_researchers: [
-      { name: `Evidensmodell: ${claims[0].kind}`, role: `Modellen organiserer den dokumenterte påstanden «${claimText(0)}» som evidens om ${emne.title.toLocaleLowerCase('nb-NO')}, med eksplisitt skille mellom observasjon, fortolkning og forklaringsnivå.`, use_limit: 'Modellen gir ikke en individuell vurdering og må prøves mot design, målekvalitet og alternative forklaringer.', source_ids: claimSources(0) },
-      { name: `Kontekstmodell: ${claims[1].kind}`, role: `Modellen bruker kontekst, institusjon og tid til å undersøke når funn om ${emne.title.toLocaleLowerCase('nb-NO')} kan forventes å variere. Den binder teori til konkrete kilder framfor til emnenavnet alene.`, use_limit: 'Kontekstforklaringer må selv dokumenteres og kan ikke brukes som etterrasjonalisering av alle mulige utfall.', source_ids: claimSources(1) }
+      ...curation.models.map((model) => {
+        const modelClaim = CLAIM_BY_ID.get(model.claimId);
+        return {
+          name: model.name,
+          role: `Kildestøtte: ${modelClaim.claim} Rolle i ${emne.title}: ${seed[0]}.`,
+          use_limit: `Bruksgrense: ${curation.boundary}`,
+          claim_ids: [modelClaim.id],
+          source_ids: modelClaim.source_ids
+        };
+      })
     ],
     related_emne_ids: related,
-    claim_ids: claims.slice(0, 5).map((claim) => claim.id),
+    claim_ids: curation.claimIds,
     source_ids: sourceIds,
     misuse_guard: `${config.limitation} Artikkelen skal brukes til kildebasert undervisning og analyse. Den gir ikke grunnlag for selvdiagnose, fjernvurdering, individuell behandling, tvangsanbefaling eller karakterisering av en befolkningsgruppe. Sted, alder, gruppetilhørighet, én hendelse eller ett testresultat kan aldri alene bære en klinisk eller moralsk konklusjon.`,
-    editorial_review: { ...EDITORIAL_REVIEW, checks: { ...EDITORIAL_REVIEW.checks } }
+    editorial_review: { ...EDITORIAL_REVIEW, checks: { ...EDITORIAL_REVIEW.checks } },
+    quality_review: { ...QUALITY_REVIEW }
   };
 }
 
@@ -233,26 +295,45 @@ function materializeConceptRegistry() {
   const ids = terms.map(conceptId);
   if (new Set(ids).size !== ids.length) throw new Error('Canonicale begrepstermer kolliderer etter ID-materialisering');
   const concepts = terms.map((term) => {
+    const gloss = CONCEPT_GLOSSES[term];
+    if (!gloss) throw new Error(`Mangler håndredigert begrepsdefinisjon for ${term}`);
     const owners = EMNER.filter((emne) => (emne.core_concepts || []).includes(term));
     const owner = owners[0];
-    const claims = relevantClaims(owner, 3);
+    const claimIds = CONCEPT_CLAIMS[term];
+    if (!claimIds?.length) throw new Error(`Mangler eksplisitt claim-kuratering for begrepet ${term}`);
+    const claims = claimIds.map((id) => CLAIM_BY_ID.get(id));
+    if (claims.some((claim) => !claim)) throw new Error(`Begrepet ${term} peker til ukjent claim`);
     const relatedTerms = unique(owners.flatMap((emne) => emne.core_concepts || [])).filter((value) => value !== term).slice(0, 5);
     const cases = unique(owner.recommended_oslo_cases || owner.good_for_places || ['universitet']);
-    const thinkers = unique([...(owner.canonical_thinkers || []), ...(owner.norwegian_thinkers || [])]).slice(0, 4);
+    const modelEvidence = [];
+    for (const claim of claims) {
+      for (const model of MODELS_BY_CLAIM_ID.get(claim.id) || []) {
+        if (!modelEvidence.some((row) => row.name === model.name && row.claim_id === claim.id)) {
+          modelEvidence.push({ name: model.name, claim_id: claim.id, source_ids: [...claim.source_ids].sort() });
+        }
+      }
+    }
+    const label = ({ kognitive:'Kognitive prosesser', prosesser:'Psykologiske prosesser', psykisk:'Psykiske prosesser', sosial:'Sosiale prosesser', ubevisste:'Ubevisste prosesser' })[term] || titleCase(term);
+    const ownerLabels = owners.slice(0,3).map((emne) => emne.title);
+    const ownerScope = owners.length > 3 ? `${ownerLabels.join(', ')} og ${owners.length - 3} andre canonicale emner` : ownerLabels.join(', ');
+    const scenarioSeed = TOPIC_SEEDS[owner.emne_id]?.[2] || `en avgrenset situasjon fra ${owner.title.toLocaleLowerCase('nb-NO')} der aktør, tid og datakilde er oppgitt`;
     return {
       concept_id: conceptId(term),
       canonical_term: term,
-      label: titleCase(term),
-      definition: `${titleCase(term)} er et canonicalt psykologibegrep som i dette fagverket avgrenses gjennom emnet ${owner.title}. Begrepet beskriver en bestemt prosess, relasjon, måledimensjon eller institusjonell kategori og skal brukes med angitt analysenivå, kontekst og evidensgrunnlag.`,
-      explanation: `${owner.why_it_matters} For ${term} betyr dette at definisjon, indikator og teoretisk forklaring må holdes fra hverandre. ${claims[0].claim} Kilden dokumenterer en avgrenset faglig forbindelse, mens andre anvendelser må prøve om begrepet har samme mening, målekvalitet og rekkevidde i den nye sammenhengen.`,
-      not_meaning: `${titleCase(term)} betyr ikke at ett tegn, ett sted, én gruppekategori eller én hendelse avslører en hel person. Begrepet er heller ikke en diagnose, moralsk dom eller universell årsaksforklaring. ${owner.scope_guard || 'Bruk krever dokumenterbar psykologisk kobling.'}`,
+      label,
+      definition: `${label} betegner ${gloss}. Definisjonen avgrenses gjennom ${ownerScope} og skal alltid brukes med angitt analyseenhet, tidsramme og operasjonalisering.`,
+      explanation: `${owner.why_it_matters} For ${label.toLocaleLowerCase('nb-NO')} betyr dette at begrep, indikator og forklaring må holdes fra hverandre. Eksplisitt kuraterte evidenspåstander: ${claims.map((claim) => claim.claim).join(' ')} Disse kildene støtter den avgrensede forbindelsen; bruk i andre populasjoner, historiske perioder eller institusjoner krever at målet og slutningsgrensen prøves på nytt.`,
+      not_meaning: `${label} skal ikke brukes som en skjult egenskap lest direkte av ett tegn, ett sted, en gruppekategori eller én hendelse. Fordi begrepet her viser til ${gloss}, må den konkrete indikatoren dokumenteres før en forklaring vurderes. Begrepet er heller ikke automatisk en diagnose, moralsk dom eller universell årsak. ${owner.scope_guard || 'Bruk krever en dokumenterbar psykologisk kobling.'}`,
       related_concept_ids: relatedTerms.map(conceptId),
-      models_or_researchers: thinkers.length ? thinkers : [`Forskningsmodeller for ${term}`],
-      empirical_status: `Kildebundet undervisningsbegrep med dokumentert forankring i ${owners.length} canonical${owners.length === 1 ? 't' : 'e'} emne${owners.length === 1 ? '' : 'r'}. Empirisk styrke må vurderes per operasjonalisering, design og anvendelse.`,
-      example: `I et undervisningscase fra ${cases[0]} kan ${term} brukes til å formulere et avgrenset spørsmål, velge observerbare indikatorer og sammenligne alternative forklaringer. Eksemplet skal vise hvordan kilden støtter analysen og hva den ikke tillater å konkludere om.`,
+      models_or_researchers: unique(modelEvidence.map((row) => row.name)),
+      model_evidence: modelEvidence,
+      model_assignment_status: modelEvidence.length ? 'claim_supported' : 'no_named_model_supported_by_curated_claims',
+      empirical_status: `Håndredigert og claimsporet undervisningsbegrep med forankring i ${owners.length} canonical${owners.length === 1 ? 't' : 'e'} emne${owners.length === 1 ? '' : 'r'}. Empirisk styrke vurderes per operasjonalisering, design, populasjon og anvendelse; statusen er ikke en universell styrkegrad.`,
+      example: `Hypotetisk undervisningsscenario ved ${cases[0]}: ${titleCase(scenarioSeed)}. Studenten avgrenser ${label.toLocaleLowerCase('nb-NO')} til én analyseenhet, velger minst to observerbare indikatorer og setter opp en alternativ forklaring. Scenarioet er ikke en påstand om stedet eller personene der; det viser hva kildegrunnlaget støtter og hvor slutningen må stoppe.`,
       source_emne_ids: owners.map((emne) => emne.emne_id).sort(),
+      claim_ids: claims.map((claim) => claim.id),
       source_ids: unique(claims.flatMap((claim) => claim.source_ids || [])).sort(),
-      editorial_status: 'complete'
+      editorial_status: 'editorial_ready_v2'
     };
   });
   write(CONCEPT_PATH, {
@@ -262,7 +343,7 @@ function materializeConceptRegistry() {
     subject_id: 'psykologi',
     canonical_source: 'data/fag/psykologi/emner_psykologi_canonical_v4_5.json#core_concepts',
     concept_count: concepts.length,
-    coverage: { expected_unique_canonical_terms: terms.length, materialized_unique_canonical_terms: concepts.length, complete: true },
+    coverage: { expected_unique_canonical_terms: terms.length, materialized_unique_canonical_terms: concepts.length, hand_edited_definition_count: concepts.length, complete: true },
     concepts
   });
   return concepts.length;
@@ -277,18 +358,54 @@ const APPLIED_FIELDS = Object.freeze([
   { area_id: 'quantitative_psychometrics', label: 'Kvantitativ psykologi og psykometri', focus: 'operasjonalisering, reliabilitet, validitet, måleinvarians, usikkerhet, prediksjon og ansvarlig bruk av psykologiske mål', emne_ids: ['em_psy_psykometri_maling','em_psy_forskning_metode','em_psy_personlighet_individ','em_psy_kognitive_bias','em_psy_beslutning_valg','em_psy_diagnose_klassifikasjon'], method_ids: ['met_psy_psykometrisk_analyse','met_psy_eksperimentell_analyse','met_psy_biasanalyse','met_psy_beslutningsanalyse'], university_area_ids: ['research_methods_statistics','personality_psychology','cognitive_psychology'] }
 ]);
 
+const APPLIED_FIELD_EDITORIAL = Object.freeze({
+  clinical_health: {
+    claim_ids: ['phi-07','phi-08','phi-10','phi-16','phi-17','phi-25'],
+    practice_questions: ['Hvordan skilles selvrapportert belastning, funksjon, kliniske symptomer og diagnostisk vurdering i datagrunnlaget?', 'Hvilken behandlingskomponent sammenlignes med hva, for hvem, over hvilket tidsrom og med hvilke uønskede virkninger?', 'Hvordan dokumenteres informert medvirkning, kontinuitet og faktisk tilgang gjennom tjenesteforløpet?'],
+    limitations_and_ethics: 'Klinisk forskning gir kunnskap om grupper, tiltak og måleinstrumenter; den erstatter ikke individuell utredning. Diagnose, behandling og tvang krever kvalifisert vurdering og gjeldende rettslige vilkår. Analyse skal skille symptom, funksjon, personens mål, klinisk beslutning og systemets tilgang, og rapportere usikkerhet og mulige skadevirkninger.'
+  },
+  work_organizational: {
+    claim_ids: ['fti-17','sns-01','sns-04','kfa-11','kfa-27','fti-21'],
+    practice_questions: ['Er utfallet prestasjon, helse, fravær, læring eller opplevd arbeidsmiljø, og hvem har definert det?', 'Hvordan måles krav, kontroll, støtte og belønning uten å gjøre organisasjonsproblemer til personlighetstrekk?', 'Er utvelgelses- eller evalueringstesten valid, rettferdig og relevant for den konkrete rollen?'],
+    limitations_and_ethics: 'Arbeidsdata inngår i maktforhold og kan påvirke ansettelse, lønn og tilrettelegging. Gruppekorrelasjoner eller testskår skal ikke brukes som skjult diagnose eller automatisk beslutning. Evalueringen må kontrollere jobbrelatert validitet, målefeil, skjevheter, konfidensialitet og om organisatoriske årsaker blir individualisert.'
+  },
+  educational_school: {
+    claim_ids: ['uol-10','uol-11','uol-12','uol-13','uol-14','uol-15'],
+    practice_questions: ['Måles prestasjon under øving, langtidsretensjon eller overføring til en ny oppgave?', 'Hvordan påvirker undervisningsdesign, mestring, autonomi og tilhørighet ulike elevgrupper?', 'Hvilke konsekvenser får kartleggingen, og er tolkningen gyldig på elev-, klasse- og skolenivå?'],
+    limitations_and_ethics: 'Skolemålinger er situerte og skal ikke bli faste etiketter på evne, motivasjon eller framtid. Barnets rettigheter, utviklingsvariasjon, språk, tilrettelegging og formålet med databruken må være eksplisitte. Tiltak bør evalueres på læring, trivsel, ulikhet og uønskede virkninger, ikke bare én kortsiktig skår.'
+  },
+  culture: {
+    claim_ids: ['sns-13','sns-14','sns-16','sns-19','uol-22','uol-24'],
+    practice_questions: ['Er begrepet lokalt meningsfullt, eller er en målemodell overført uten dokumentert ekvivalens?', 'Hvordan skilles personens selvbeskrivelse fra forskerens kategori og institusjonens klassifikasjon?', 'Hvilke historiske maktforhold påvirker hvem som definerer normalitet, helse og ønsket atferd?'],
+    limitations_and_ethics: 'Kulturelle grupper er heterogene og må ikke behandles som forklarende personlighetstyper. Sammenligning krever språklig og målemessig ekvivalens, kontekst og lokal fortolkning. Forskeren skal synliggjøre kategorienes historie, variasjon innen grupper og risikoen for å gjøre majoritetsnormer til universelle standarder.'
+  },
+  environment_community: {
+    claim_ids: ['sns-25','sns-26','sns-27','tkr-07','tkr-18','uol-21'],
+    practice_questions: ['Hvilke konkrete stedsegenskaper, tjenester eller relasjoner utgjør den foreslåtte eksponeringen?', 'Skilles opplevd trygghet, registrert risiko, sosial kontakt og faktisk tilgang til ressurser?', 'Hvordan deltar berørte grupper i problemdefinisjon, tiltak og vurdering av fordelingsvirkninger?'],
+    limitations_and_ethics: 'Et sted eller nabolag har ikke en diagnose, personlighet eller skjult psykisk egenskap. Analysen må dokumentere mekanismer som tilgang, støy, møteplasser, diskriminering eller tjenestekontinuitet og skille komposisjon fra kontekst. Kartlegging skal ikke stigmatisere områder eller bruke aggregater til slutninger om enkeltbeboere.'
+  },
+  quantitative_psychometrics: {
+    claim_ids: ['fti-03','fti-21','fti-22','fti-23','kfa-09','kfa-14'],
+    practice_questions: ['Hvilken latent konstruksjon skal måles, og hvilke observasjoner inngår eller faller utenfor?', 'Er reliabilitet, validitet og måleinvarians dokumentert for populasjonen og beslutningen som faktisk skal brukes?', 'Hvordan rapporteres usikkerhet, basisrate, kalibrering, terskelvalg og konsekvenser av feilklassifikasjon?'],
+    limitations_and_ethics: 'En skår er et usikkert resultat fra en modell og et instrument, ikke egenskapen selv. Høy reliabilitet beviser verken validitet, rettferdighet eller nytte. Bruk krever dokumentasjon for aktuell populasjon og beslutning, kontroll av måleinvarians og skjevhet, og en vurdering av hvem som bærer kostnaden ved falske positive og falske negative.'
+  }
+});
+
 function materializeAppliedFields() {
   const fields = APPLIED_FIELDS.map((field) => {
-    const claims = unique(field.emne_ids.flatMap((id) => relevantClaims(EMNE_BY_ID.get(id), 2))).slice(0, 6);
+    const editorial = APPLIED_FIELD_EDITORIAL[field.area_id];
+    if (!editorial) throw new Error(`Mangler anvendt-faglig v2-redigering for ${field.area_id}`);
+    const claims = editorial.claim_ids.map((claimId) => CLAIM_BY_ID.get(claimId));
+    if (claims.some((claim) => !claim)) throw new Error(`Mangler anvendt-faglig claim for ${field.area_id}`);
     return {
       ...field,
       status: 'complete',
       coverage_statement: `${field.label} er dekket som et anvendt universitetsfelt gjennom ${field.focus}. Feltet binder canonicale emner, metoder og universitetskjerne sammen uten å opprette et parallelt emnehierarki.`,
-      practice_questions: [`Hvilket konkret problem og hvilket analysenivå gjelder anvendelsen?`, `Hvilke mål, utvalg og sammenligninger bærer konklusjonen i ${field.label.toLocaleLowerCase('nb-NO')}?`, 'Hvordan dokumenteres nytte, uønskede virkninger, ulikhet, medvirkning og overførbarhet?'],
-      limitations_and_ethics: `Anvendelsen skal skille forskningskunnskap, profesjonell vurdering, institusjonell beslutning og personens erfaring. Den kan ikke gi individuell diagnose, behandling eller tvangsanbefaling. Gruppefunn og måleskår må ledsages av usikkerhet, validitetsgrenser og konsekvenser av bruk.`,
+      practice_questions: editorial.practice_questions,
+      limitations_and_ethics: editorial.limitations_and_ethics,
       claim_ids: claims.map((claim) => claim.id),
       source_ids: unique(claims.flatMap((claim) => claim.source_ids || [])).sort(),
-      editorial_review: { status: 'approved_university_applied_field_coverage', reviewed_at: UPDATED_AT, reviewer_role: 'psychology_editorial_audit' }
+      editorial_review: { status: 'approved_editorial_quality_v2', reviewed_at: UPDATED_AT, reviewer_role: 'psychology_editorial_audit', review_standard: 'history_go_psykologi_editorial_quality_v2' }
     };
   });
   write(APPLIED_PATH, { schema: 'history_go_psykologi_applied_fields_university_v1', version: '1.0.0', updated_at: UPDATED_AT, subject_id: 'psykologi', field_count: fields.length, fields });
@@ -303,13 +420,30 @@ function materializeFinalState(conceptCount) {
   matrix.concept_registry_contract.canonical_source_field = 'core_concepts';
   matrix.concept_registry_contract.expected_unique_concept_count = conceptCount;
   matrix.concept_registry_contract.exact_canonical_term_coverage_required = true;
+  matrix.concept_registry_contract.required_fields = unique([...(matrix.concept_registry_contract.required_fields || []), 'claim_ids', 'editorial_status']);
+  matrix.concept_registry_contract.editorial_status_required = 'editorial_ready_v2';
+  matrix.topic_article_contract.required_quality_fields = unique([...(matrix.topic_article_contract.required_quality_fields || []), 'quality_review']);
+  matrix.topic_article_contract.quality_review_status_required = 'approved_editorial_quality_v2';
+  matrix.topic_article_contract.quality_review_standard = 'history_go_psykologi_editorial_quality_v2';
+  matrix.editorial_quality_contract = {
+    audit: 'scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs',
+    report: 'reports/fagverk/psykologi-editorial-quality-v2-audit.json',
+    minimum_score_per_dimension: 4,
+    minimum_total_score: 27,
+    required_status: 'psykologi_editorial_quality_v2_high',
+    no_critical_flags_required: true,
+    no_repeated_long_editorial_sentences_required: true,
+    all_claim_source_bindings_required: true,
+    separate_aha_subject_matter_review_still_required: true
+  };
+  matrix.completion_contract.requirements = unique([...(matrix.completion_contract.requirements || []), 'editorial_quality_v2_score_at_least_27_without_critical_flags']);
   matrix.applied_field_contract = {
     path: APPLIED_PATH,
     schema: 'history_go_psykologi_applied_fields_university_v1',
     required_field_count: 6,
     exact_area_coverage_required: true,
     all_emne_method_source_and_claim_ids_must_resolve: true,
-    editorial_review_status_required: 'approved_university_applied_field_coverage'
+    editorial_review_status_required: 'approved_editorial_quality_v2'
   };
   matrix.applied_field_matrix = matrix.applied_field_matrix.map((row) => ({ ...row, current_status: 'complete', current_artifact: APPLIED_PATH }));
   write(MATRIX_PATH, matrix);
@@ -319,13 +453,13 @@ function materializeFinalState(conceptCount) {
   if (!statusEntry) throw new Error('Psykologi mangler subject_status');
   statusEntry.editorialStatus = 'complete';
   statusEntry.nextGate = FINAL_GATE;
-  statusEntry.note = 'Psykologi er komplett etter den eksplisitte universitetsporten: 6/6 canonicale kapitler, 58/58 selvstendige og kildeførte emneartikler, full materialisering av alle canonicale core_concepts, syv universitetskjernegrener og seks auditerte anvendte fagfelt. Innholdet forblir utenfor AHA-runtime til separat fagreview og aktivering.';
+  statusEntry.note = 'Psykologi er komplett etter universitetsporten og den seksdelte kvalitetsporten: 6/6 canonicale kapitler, 58/58 selvstendige og kildeførte emneartikler, 136/136 håndredigerte og claimsporede begreper, syv universitetskjernegrener og seks auditerte anvendte fagfelt. Innholdet forblir utenfor AHA-runtime til separat ekstern fagreview og aktivering.';
   write(STATUS_PATH, status);
 
   const registry = read(REGISTRY_PATH);
   const subject = registry.subjects?.psykologi;
   if (!subject) throw new Error('Psykologi mangler registry');
-  subject.canonicalModel.note = 'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 emner har selvstendige kilde- og claimsporede universitetsartikler, alle canonicale core_concepts er materialisert, universitetskjernen er auditert og seks anvendte fagfelt er dekket. AHA-aktivering krever fortsatt separat fagreview.';
+  subject.canonicalModel.note = 'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 emner har selvstendige, kilde- og claimsporede universitetsartikler; 136 begreper har håndredigerte definisjonskjerner; universitetskjernen og seks anvendte fagfelt er auditert. Den seksdelte kvalitetsporten må være grønn, og AHA-aktivering krever fortsatt separat ekstern fagreview.';
   subject.editorialPlan.nextGate = FINAL_GATE;
   write(REGISTRY_PATH, registry);
 }

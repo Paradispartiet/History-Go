@@ -10,12 +10,16 @@ on:
       - "scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs"
       - "scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs"
       - "scripts/materialize-psykologi-university-completion-v1.mjs"
+      - "scripts/lib/psykologi-editorial-curation-v2.mjs"
       - "scripts/audit-fagverk-psykologi-university-completion-v1.mjs"
+      - "scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs"
       - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
       - "tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs"
       - "tests/fagverk-psykologi-university-completion-v1.test.mjs"
+      - "tests/fagverk-psykologi-editorial-quality-v2.test.mjs"
       - "reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json"
       - "reports/fagverk/psykologi-university-completion-v1-audit.json"
+      - "reports/fagverk/psykologi-editorial-quality-v2-audit.json"
       - ".github/workflows/fagverk-psykologi-topic-articles-mental-health.yml"
   push:
     branches: [main]
@@ -27,12 +31,16 @@ on:
       - "scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs"
       - "scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs"
       - "scripts/materialize-psykologi-university-completion-v1.mjs"
+      - "scripts/lib/psykologi-editorial-curation-v2.mjs"
       - "scripts/audit-fagverk-psykologi-university-completion-v1.mjs"
+      - "scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs"
       - "scripts/audit-fagverk-psykologi-university-readiness.mjs"
       - "tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs"
       - "tests/fagverk-psykologi-university-completion-v1.test.mjs"
+      - "tests/fagverk-psykologi-editorial-quality-v2.test.mjs"
       - "reports/fagverk/psykologi-topic-articles-mental-health-v1-audit.json"
       - "reports/fagverk/psykologi-university-completion-v1-audit.json"
+      - "reports/fagverk/psykologi-editorial-quality-v2-audit.json"
       - ".github/workflows/fagverk-psykologi-topic-articles-mental-health.yml"
   workflow_dispatch:
 
@@ -53,7 +61,9 @@ jobs:
           node --check scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs
           node --check scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs
           node --check scripts/materialize-psykologi-university-completion-v1.mjs
+          node --check scripts/lib/psykologi-editorial-curation-v2.mjs
           node --check scripts/audit-fagverk-psykologi-university-completion-v1.mjs
+          node --check scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs
       - name: Verify deterministic materialization
         run: |
           node scripts/materialize-psykologi-topic-articles-mental-health-v1.mjs
@@ -62,7 +72,8 @@ jobs:
         run: |
           node scripts/audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs
           node scripts/audit-fagverk-psykologi-university-completion-v1.mjs
+          node scripts/audit-fagverk-psykologi-editorial-quality-v2.mjs
       - name: Test article quality contract
-        run: node --test tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs tests/fagverk-psykologi-university-completion-v1.test.mjs
+        run: node --test tests/fagverk-psykologi-topic-articles-mental-health-v1.test.mjs tests/fagverk-psykologi-university-completion-v1.test.mjs tests/fagverk-psykologi-editorial-quality-v2.test.mjs
       - name: Verify university readiness consumes 58/58
         run: node scripts/audit-fagverk-psykologi-university-readiness.mjs --no-check-report

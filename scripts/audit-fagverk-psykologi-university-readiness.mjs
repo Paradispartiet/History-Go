@@ -12,6 +12,7 @@ import { auditPsykologiHistoryScienceTheoryUniversity } from './audit-fagverk-ps
 import { auditPsykologiMethodsStatisticsUniversity } from './audit-fagverk-psykologi-methods-statistics-university.mjs';
 import { auditPsykologiMentalHealthTopicArticles, clinicalSafetyReviewApproved, clinicalTextHasNoDirectives } from './audit-fagverk-psykologi-topic-articles-mental-health-v1.mjs';
 import { auditPsykologiUniversityCompletion } from './audit-fagverk-psykologi-university-completion-v1.mjs';
+import { auditPsykologiEditorialQualityV2 } from './audit-fagverk-psykologi-editorial-quality-v2.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const NEXT_GATE = 'university_matrix_topic_articles_concept_registry_and_methods';
@@ -254,7 +255,12 @@ function conceptCoverage(contract, validSourceIds, canonicalEmners) {
   });
   const relatedIdsResolve = concepts.every((concept) => (concept.related_concept_ids || []).every((id) => concepts.some((candidate) => candidate.concept_id === id) && id !== concept.concept_id));
   const sourceEmnersResolve = concepts.every((concept) => concept.source_emne_ids?.length && concept.source_emne_ids.every((id) => canonicalEmners.some((emne) => emne.emne_id === id)));
-  return { exists: true, expectedCount: expectedTerms.length, conceptCount: concepts.length, materializedCount: coverage.completeCount, invalidSourceReferenceCount: coverage.invalidSourceReferenceCount, exactCanonicalTermCoverage, relatedIdsResolve, sourceEmnersResolve };
+  const modelAssignmentsExplicit = concepts.every((concept) =>
+    Array.isArray(concept.models_or_researchers) &&
+    Array.isArray(concept.model_evidence) &&
+    ['claim_supported','no_named_model_supported_by_curated_claims'].includes(concept.model_assignment_status)
+  );
+  return { exists: true, expectedCount: expectedTerms.length, conceptCount: concepts.length, materializedCount: coverage.completeCount, invalidSourceReferenceCount: coverage.invalidSourceReferenceCount, exactCanonicalTermCoverage, relatedIdsResolve, sourceEmnersResolve, modelAssignmentsExplicit };
 }
 
 function appliedFieldCoverage(contract, matrixRows, canonicalEmneIds, methodIds, coreAreaIds, validSourceIds, validClaimIds) {
@@ -302,6 +308,7 @@ const projection = (report) => ({
   concepts: report.concepts,
   sourceRegistry: report.sourceRegistry,
   appliedFields: report.appliedFields,
+  editorialQuality: report.editorialQuality,
   blockersToComplete: report.blockersToComplete,
   currentGates: report.currentGates,
   completionGates: report.completionGates,
@@ -348,11 +355,13 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(matrix.topic_article_contract?.article_status_required === 'complete', 'Emneartikkelkontrakten må kreve complete per artikkel');
   assert(matrix.topic_article_contract?.minimum_editorial_words_per_article === 550, 'Emneartikkelkontrakten må kreve minst 550 redaksjonelle ord');
   assert(matrix.topic_article_contract?.editorial_review_status_required === 'approved_non_clinical_educational_use', 'Emneartikkelkontrakten må kreve godkjent klinisk sikkerhetsreview');
+  assert(matrix.topic_article_contract?.quality_review_status_required === 'approved_editorial_quality_v2' && matrix.topic_article_contract?.quality_review_standard === 'history_go_psykologi_editorial_quality_v2', 'Emneartikkelkontrakten må kreve redaksjonell v2-kvalitetsreview');
   assert(matrix.topic_article_contract?.all_claim_ids_must_resolve === true, 'Emneartikkelkontrakten må kreve løste claim-ID-er');
   assert(matrix.topic_article_contract?.all_section_source_ids_must_resolve === true, 'Emneartikkelkontrakten må kreve løste seksjonskilder');
   assert(matrix.topic_article_contract?.generic_template_text_forbidden === true, 'Emneartikkelkontrakten må forby generisk maltekst');
   assert(matrix.topic_article_contract?.no_clinical_diagnostic_treatment_or_coercion_overreach_required === true, 'Emneartikkelkontrakten må kreve vern mot klinisk overreach');
   assert(matrix.topic_article_contract?.aha_runtime_activation_requires_separate_review === true, 'AHA-aktivering må kreve separat fagreview');
+  assert(matrix.editorial_quality_contract?.required_status === 'psykologi_editorial_quality_v2_high' && matrix.editorial_quality_contract?.minimum_score_per_dimension === 4 && matrix.editorial_quality_contract?.minimum_total_score === 27 && matrix.editorial_quality_contract?.no_critical_flags_required === true, 'University-matrisen mangler bindende seksdelt kvalitetsport');
   assert(matrix.concept_registry_contract?.path === P.concepts, 'Begrepskontrakten peker til feil register');
   assert(matrix.concept_registry_contract?.canonical_source_field === 'core_concepts', 'Begrepskontrakten må eie canonicale core_concepts');
   assert(matrix.concept_registry_contract?.expected_unique_concept_count === 136, 'Begrepskontrakten må låse 136 eksakte canonicaltermer');
@@ -388,6 +397,8 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(mentalHealthTopicArticles.complete, 'University-readiness krever grønn audit av de 12 mental-health-emneartiklene');
   const completionAudit = auditPsykologiUniversityCompletion({ writeReport: false, checkReport: false }).report;
   assert(completionAudit.complete, 'University-readiness krever grønn fullaudit av 58 artikler, begreper og anvendte fagfelt');
+  const editorialQualityAudit = auditPsykologiEditorialQualityV2({ writeReport: false, checkReport: false }).report;
+  assert(editorialQualityAudit.highQuality && editorialQualityAudit.status === matrix.editorial_quality_contract.required_status, 'University-readiness krever grønn seksdelt kvalitetsvurdering');
   const conceptCoverageResult = conceptCoverage(matrix.concept_registry_contract, sourceRegistryResult.validIds, emner);
   const coreComplete = coreRows.every((row) => row.current_status === 'complete');
   const biologicalComplete = coreById.get('biological_psychology')?.current_status === 'complete' && biologicalBranch.complete;
@@ -398,11 +409,12 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   const historyScienceTheoryComplete = coreById.get('history_science_theory')?.current_status === 'complete' && historyScienceTheoryBranch.complete;
   const methodsComplete = coreById.get('research_methods_statistics')?.current_status === 'complete' && methodsBranch.complete;
   const topicArticlesComplete = articleCoverage.completeCount === 58;
-  const conceptsComplete = conceptCoverageResult.exists && conceptCoverageResult.expectedCount === matrix.concept_registry_contract.expected_unique_concept_count && conceptCoverageResult.conceptCount === conceptCoverageResult.expectedCount && conceptCoverageResult.materializedCount === conceptCoverageResult.conceptCount && conceptCoverageResult.exactCanonicalTermCoverage && conceptCoverageResult.relatedIdsResolve && conceptCoverageResult.sourceEmnersResolve;
+  const conceptsComplete = conceptCoverageResult.exists && conceptCoverageResult.expectedCount === matrix.concept_registry_contract.expected_unique_concept_count && conceptCoverageResult.conceptCount === conceptCoverageResult.expectedCount && conceptCoverageResult.materializedCount === conceptCoverageResult.conceptCount && conceptCoverageResult.exactCanonicalTermCoverage && conceptCoverageResult.relatedIdsResolve && conceptCoverageResult.sourceEmnersResolve && conceptCoverageResult.modelAssignmentsExplicit;
   const appliedRows = matrix.applied_field_matrix || [];
   const appliedCoverageResult = appliedFieldCoverage(matrix.applied_field_contract, appliedRows, canonicalEmneIds, new Set(canonicalMethods.methods.map((method) => method.method_id)), new Set(coreRows.map((row) => row.area_id)), sourceRegistryResult.validIds, sourceRegistryResult.validClaimIds);
   const appliedComplete = appliedRows.length === 6 && appliedRows.every((row) => row.current_status === 'complete' && row.current_artifact === P.appliedFields) && appliedCoverageResult.exists && appliedCoverageResult.exactAreaCoverage && appliedCoverageResult.completeCount === 6;
-  const completeReady = coreComplete && biologicalComplete && cognitiveComplete && developmentalComplete && socialComplete && personalityComplete && historyScienceTheoryComplete && methodsComplete && topicArticlesComplete && conceptsComplete && appliedComplete;
+  const editorialQualityComplete = editorialQualityAudit.highQuality === true;
+  const completeReady = coreComplete && biologicalComplete && cognitiveComplete && developmentalComplete && socialComplete && personalityComplete && historyScienceTheoryComplete && methodsComplete && topicArticlesComplete && conceptsComplete && appliedComplete && editorialQualityComplete;
   const expectedState = expectedSubjectState(completeReady, matrix.completion_contract);
 
   assert(matrix.status === expectedState.matrixStatus, `University-readiness status må være ${expectedState.matrixStatus}`);
@@ -414,6 +426,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   for (const row of coreRows.filter((row) => row.current_status !== 'complete')) blockersToComplete.push(`university_core:${row.area_id}:${row.current_status}`);
   if (!topicArticlesComplete) blockersToComplete.push(`standalone_topic_articles:${articleCoverage.completeCount}/58`);
   if (!conceptsComplete) blockersToComplete.push(`canonical_concept_registry:${conceptCoverageResult.materializedCount}/${conceptCoverageResult.conceptCount || 0}`);
+  if (!editorialQualityComplete) blockersToComplete.push(`editorial_quality:${editorialQualityAudit.qualityAssessment.total}/30`);
   for (const row of appliedRows.filter((row) => row.current_status !== 'complete')) blockersToComplete.push(`applied_field:${row.area_id}:${row.current_status}`);
 
   const report = {
@@ -522,6 +535,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
     },
     sourceRegistry: { path: matrix.source_registry_contract.path, registeredCount: sourceRegistryResult.registeredCount, validCount: sourceRegistryResult.validIds.size },
     appliedFields: appliedRows.map((row) => ({ areaId: row.area_id, label: row.label, status: row.current_status, artifact: row.current_artifact })),
+    editorialQuality: { status: editorialQualityAudit.status, score: editorialQualityAudit.qualityAssessment.total, maximum: editorialQualityAudit.qualityAssessment.maximum, minimumPerDimension: editorialQualityAudit.qualityAssessment.minimumPerDimension, criticalFlags: editorialQualityAudit.qualityAssessment.criticalFlags, highQuality: editorialQualityAudit.highQuality },
     blockersToComplete,
     currentGates: {
       canonicalSixDomainBaselineIntact: true,
@@ -547,6 +561,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       all58StandaloneTopicArticlesMaterializedAndAudited: completionAudit.complete,
       canonicalConceptRegistryMaterializedAndAudited: conceptsComplete,
       sixAppliedFieldsMaterializedAndAudited: appliedComplete,
+      sixDimensionEditorialQualityGateGreen: editorialQualityComplete,
       topicArticlesRemainOutsideAhaRuntime: completionAudit.gates.noAhaRuntimeActivation,
       allRegisteredSourcesInspectable: sourceRegistryResult.registeredCount === sourceRegistryResult.validIds.size,
       subjectNotPrematurelyComplete: statusEntry.editorialStatus === expectedState.editorialStatus && statusEntry.nextGate === expectedState.nextGate
@@ -562,7 +577,8 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       researchMethodsStatisticsBranchComplete: methodsComplete,
       all58StandaloneTopicArticlesComplete: topicArticlesComplete,
       canonicalConceptRegistryComplete: conceptsComplete,
-      appliedFieldMatrixComplete: appliedComplete
+      appliedFieldMatrixComplete: appliedComplete,
+      editorialQualityV2Complete: editorialQualityComplete
     },
     completeReady
   };

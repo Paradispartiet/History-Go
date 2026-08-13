@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { preserveNewerFagverkMetadata } from './lib/preserve-fagverk-metadata.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CHAPTER_ID='traume-krise-resiliens-og-omsorg';
@@ -77,13 +78,13 @@ function updateRegistry(chapter){
     ],
     nextGate:NEXT_GATE
   };
-  registry.version='2.84.0';registry.updatedAt='2026-08-11';write(REGISTRY_FILE,registry);
+  preserveNewerFagverkMetadata(registry, '2.84.0', '2026-08-11');write(REGISTRY_FILE,registry);
 }
 function updateStatus(){
   const status=read(STATUS_FILE),subject=status.subjects.find((s)=>s.id==='psykologi');assert(subject,'Psykologi mangler subject_status');
   subject.editorialStatus='expanded_and_audited';subject.nextGate=NEXT_GATE;
   subject.note='Psykologi har en kildebelagt og auditert 6/6 canonical kapittelbaseline med 58/58 aktive emner representert, men er ikke endelig complete etter universitetsnært kriterium. Biologisk psykologi, personlighetspsykologi og metode/statistikk må bygges betydelig ut; alle 58 emner må få selvstendige fagartikler; og canonicale begreper må materialiseres og kildeauditeres før complete kan gjeninnføres.';
-  status.version='1.72.0';status.updatedAt='2026-08-11';write(STATUS_FILE,status);
+  preserveNewerFagverkMetadata(status, '1.72.0', '2026-08-11');write(STATUS_FILE,status);
 }
 const {chapter,sources,claims}=validate();updateRegistry(chapter);updateStatus();
 console.log(`Materialiserte Psykologi ${DOMAIN_ID}: 7/7 emner, 15 metoder, 3 moduler, 9 seksjoner, 27 avsnitt, ${claims.length} claims og ${sources.length} kilder. Psykologi har 6/6 canonical kapittelbaseline og står expanded_and_audited; university-readiness gjenstår.`);
