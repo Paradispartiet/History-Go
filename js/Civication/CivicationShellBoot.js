@@ -166,6 +166,18 @@
     }
   }
 
+  /** @returns {Promise<boolean>} */
+  async function ensureCivicationLifePositionUiLoaded() {
+    if (window.CivicationLifePositionUI?.init) return true;
+    try {
+      await loadCivicationScriptOnce("js/Civication/ui/CivicationLifePositionUI.js");
+      return !!window.CivicationLifePositionUI?.init;
+    } catch (error) {
+      console.warn("[CivicationShellBoot] life position UI kunne ikke lastes", error);
+      return false;
+    }
+  }
+
   /** @returns {Promise<void>} */
   async function loadCivicationData() {
     const [badges, careersJson] = await Promise.all([
@@ -235,6 +247,7 @@
       await ensureCiviCareerRulesLoaded();
       await ensureCivicationCareerRoleResolverLoaded();
       await ensureCivicationLifePositionRuntimeLoaded();
+      await ensureCivicationLifePositionUiLoaded();
 
       if (window.CivicationEconomyEngine?.tickWeekly) {
         window.CivicationEconomyEngine.tickWeekly();
@@ -245,6 +258,7 @@
       /** @type {{ init?: () => unknown }|undefined} */
       const ui = window.CivicationUI;
       ui?.init?.();
+      window.CivicationLifePositionUI?.init?.();
 
       // Skallet er oppe: vekk kart og paneler. Day/life-story fyller mail/
       // arbeidsdag etterpå via updateProfile.
