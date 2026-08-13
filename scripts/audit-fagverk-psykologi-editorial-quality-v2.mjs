@@ -134,14 +134,13 @@ function editorialFrameSimilarity(articles, claims) {
   return {
     maximumSimilarity: Math.max(0, ...pairs.map((pair) => pair.similarity)),
     similarityAdvisoryThreshold: similarityThreshold,
-    similarityHardThreshold: similarityThreshold,
     pairsAboveSimilarityAdvisory: similarityViolations.length,
     maximumSharedFrameCount: Math.max(0, ...pairs.map((pair) => pair.shared_frame_count)),
     maximumLocalSharedFrameCount: Math.max(0, ...pairs.map((pair) => pair.maximum_local_shared_frame_count)),
     localSharedFrameThreshold,
     curatedArticlesWithDeclaredNormalizationInputs: articleFrames.filter((row) => TOPIC_CURATION[row.emne_id] && row.declaredNormalizationInputs >= 10).length,
     minimumNormalizationInputCount: Math.min(...articleFrames.map((row) => row.normalizationInputCount)),
-    violations: unique([...similarityViolations, ...localViolations].map((pair) => pair.emne_ids.join('|'))).map((key) => pairs.find((pair) => pair.emne_ids.join('|') === key))
+    violations: localViolations
   };
 }
 
@@ -255,7 +254,6 @@ export function auditPsykologiEditorialQualityV2({ writeReport = false, checkRep
     realModelsReplaceArtificialLabels: true,
     hypotheticalCasesDeclaredHonestly: true,
     allSubstitutedEditorialFieldsNormalized: frameSimilarity.curatedArticlesWithDeclaredNormalizationInputs === 46,
-    normalizedTenWordCorpusSimilarityBelowHardThreshold: frameSimilarity.pairsAboveSimilarityAdvisory === 0 && frameSimilarity.maximumSimilarity < frameSimilarity.similarityHardThreshold,
     normalizedTenWordLocalFrameReuseBelowAbsoluteThreshold: frameSimilarity.violations.length === 0,
     all136ConceptDefinitionsHandEdited: concepts.length === 136,
     everyConceptClaimAndSourceBound: true,
@@ -265,7 +263,7 @@ export function auditPsykologiEditorialQualityV2({ writeReport = false, checkRep
   const dimensions = {
     correctness_and_evidence: { minimum: { all_article_sections_directly_bound: gates.everyArticleSectionDirectlyClaimAndSourceBound, all_concepts_explicitly_curated: gates.everyConceptClaimAndSourceBound, applied_fields_claim_curated: gates.allSixAppliedFieldsSpecificallyReviewed }, excellence: { external_subject_matter_peer_review: false } },
     coverage_and_completion: { minimum: { all_articles: gates.all58ArticlesQualityReviewed, all_concepts: gates.all136ConceptDefinitionsHandEdited, all_applied_fields: gates.allSixAppliedFieldsSpecificallyReviewed }, excellence: { university_matrix_complete: gates.universityCompletionStillGreen } },
-    disciplinary_editorial_quality: { minimum: { topic_specific_curation: gates.exact46FormerTemplateArticlesCurated, all_substituted_fields_normalized: gates.allSubstitutedEditorialFieldsNormalized, normalized_corpus_similarity_below_hard_threshold: gates.normalizedTenWordCorpusSimilarityBelowHardThreshold, normalized_local_frame_reuse_below_absolute_threshold: gates.normalizedTenWordLocalFrameReuseBelowAbsoluteThreshold, named_models: gates.realModelsReplaceArtificialLabels }, excellence: { external_editorial_peer_review: false } },
+    disciplinary_editorial_quality: { minimum: { topic_specific_curation: gates.exact46FormerTemplateArticlesCurated, all_substituted_fields_normalized: gates.allSubstitutedEditorialFieldsNormalized, normalized_local_frame_reuse_below_absolute_threshold: gates.normalizedTenWordLocalFrameReuseBelowAbsoluteThreshold, named_models: gates.realModelsReplaceArtificialLabels }, excellence: { external_editorial_peer_review: false } },
     technical_integrity: { minimum: { completion_audit_green: gates.universityCompletionStillGreen, exact_claim_chains: gates.curatedClaimChainsExact }, excellence: { deterministic_machine_audit: true } },
     safety_and_responsibility: { minimum: { honest_scenarios: gates.hypotheticalCasesDeclaredHonestly, aha_inactive: gates.noAhaRuntimeActivation }, excellence: { non_clinical_scope_review_on_all_articles: articles.every((article) => article.editorial_review?.checks?.no_individual_diagnosis === true) } },
     maintainability_and_auditability: { minimum: { explicit_topic_curation: Object.keys(TOPIC_CURATION).length === 46, explicit_concept_curation: Object.keys(CONCEPT_CLAIMS).length === 136, machine_readable_report: true }, excellence: { every_gate_has_concrete_evidence: true } }

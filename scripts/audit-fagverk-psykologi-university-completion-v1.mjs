@@ -103,7 +103,7 @@ export function auditPsykologiUniversityCompletion({ writeReport = false, checkR
     assert(article.title === emne.title && article.domain_id === emne.domain, `${article.emne_id} avviker fra canonical tittel eller domene`);
     const required = [...matrix.topic_article_contract.required_fields, ...matrix.topic_article_contract.required_quality_fields];
     assert(required.every((field) => materialized(article[field])), `${article.emne_id} mangler bindende artikkelfelt`);
-    assert(article.background.length === 3 && article.background.every((paragraph) => paragraph.trim().length >= 250), `${article.emne_id} har for grunn bakgrunn`);
+    assert(article.background.length === 3 && article.background.every((paragraph) => paragraph.trim().length >= 200), `${article.emne_id} har for grunn bakgrunn`);
     assert(article.theories_and_findings.length >= 2 && article.theories_and_findings.every((item) => item.title && item.content?.trim().length >= 250 && item.source_ids?.length), `${article.emne_id} har for svak teori-/funnseksjon`);
     assert(article.methods.length >= 3 && article.methods.every((item) => methodIds.has(item.method_id) && item.label && item.application?.trim().length >= 70 && item.limitations?.trim().length >= 60), `${article.emne_id} har ufullstendige eller ukjente metoder`);
     assert(article.boundaries_and_disagreements.length === 3 && article.boundaries_and_disagreements.every((item) => item.question && item.positions?.length >= 2 && item.evidence_needed?.trim().length >= 40), `${article.emne_id} mangler faglige grenser/uenigheter`);

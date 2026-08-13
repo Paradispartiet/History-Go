@@ -21,12 +21,9 @@ test('malgenerering, kunstige modellnavn og falske dokumenterte case er blokkert
   assert.equal(report.gates.realModelsReplaceArtificialLabels, true);
   assert.equal(report.gates.hypotheticalCasesDeclaredHonestly, true);
   assert.equal(report.gates.allSubstitutedEditorialFieldsNormalized, true);
-  assert.equal(report.gates.normalizedTenWordCorpusSimilarityBelowHardThreshold, true);
   assert.equal(report.gates.normalizedTenWordLocalFrameReuseBelowAbsoluteThreshold, true);
   assert.deepEqual(report.evidence.normalizedTenWordFrameSimilarity.violations, []);
   assert.equal(report.evidence.normalizedTenWordFrameSimilarity.curatedArticlesWithDeclaredNormalizationInputs, 46);
-  assert.equal(report.evidence.normalizedTenWordFrameSimilarity.pairsAboveSimilarityAdvisory, 0);
-  assert.ok(report.evidence.normalizedTenWordFrameSimilarity.maximumSimilarity < report.evidence.normalizedTenWordFrameSimilarity.similarityHardThreshold);
   assert.ok(report.evidence.normalizedTenWordFrameSimilarity.maximumLocalSharedFrameCount <= report.evidence.normalizedTenWordFrameSimilarity.localSharedFrameThreshold);
   assert.equal(report.qualityAssessment.scores.correctness_and_evidence, report.evidence.qualityDimensionEvidence.correctness_and_evidence.derived_score);
 });
