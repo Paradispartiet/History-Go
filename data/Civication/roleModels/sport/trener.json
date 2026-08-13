@@ -1,120 +1,16 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "sport",
-    "badge_name": "Sport & lek",
-    "tier_label": "Trener",
-    "tier_threshold": 150
-  },
-  "category": "sport",
-  "role_scope": "trener",
-  "role_id": "sport_trener",
-  "title": "Trener",
-  "core_narrative": [
-    "I Civication er Trener en praktisk rolle i Sport & lek der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til fotball, hockey."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For kroppen som tenker i bevegelse. Lek er kulturens første språk – og dens siste frihet."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For kroppen som tenker i bevegelse. Lek er kulturens første språk – og dens siste frihet."
-    ],
-    "history_go_badges": [
-      "sport"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "trener",
-    "mail_profile": "sport_trener",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Trener",
-      "category": "sport",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: sport / Trener."
-  ]
+  "schema":"civication_role_model_v1","version":2,
+  "source":{"badge_file":"data/badges/sport.json","badge_id":"sport","badge_name":"Sport & lek","tier_label":"Trener","tier_threshold":150,"evidence_ref":"data/Civication/sportCareerLifeEvidence.json"},
+  "category":"sport","role_scope":"sport_trener","role_id":"sport_trener","title":"Trener",
+  "core_narrative":["Du planlegger, gjennomfører og evaluerer trening og konkurransearbeid for utøvere innen et konkret treneroppdrag. Rollen krever tydelige mål, observasjon, tilbakemelding og forsvarlig progresjon uten at Badge-poeng alene gir trenerjobb eller sportslig myndighet."],
+  "work_life":{"daily_work":["Planlegge økter ut fra mål, nivå, kalender og belastning.","Gjennomføre trening med tydelige oppgaver, observasjon og tilbakemelding.","Forberede konkurranse og evaluere prestasjon med utøvere og støtteapparat.","Følge opp utvikling, oppmøte og forhold som påvirker trygg og relevant trening."],"responsibilities":["Tilpasse trening til faktisk utøvergruppe og eget mandat.","Kommunisere mål, roller og tilbakemeldinger presist.","Skille trenerfaglige vurderinger fra medisinsk behandling og andre fagområder.","Håndtere uttak eller spilletid bare når det faktisk ligger i treneroppdraget."],"work_environment":["Idrettslag, klubb, forbund, skole, treningsanlegg eller annen organisert idrett med et konkret treneroppdrag."],"status_position":["Trenerrollen gir faglig ansvar innen det faktiske oppdraget, men ingen automatisk rett til hovedtrener-, landslags- eller ledermyndighet."]},
+  "career_path":{"entry_from":["Relevant trenerkompetanse og konkret oppdrag eller ansettelse."],"progression_to":["Mer ansvar, høyere trenernivå eller hovedtreneroppdrag etter faktisk kvalifikasjon og ansettelse."],"possible_promotions":["Større utøvergruppe, høyere konkurransenivå eller utvidet sportslig ansvar."],"possible_exits":["Hovedtrener, sportslig ledelse, støtteapparat, undervisning eller annen jobb."],"career_risks":["For høy belastning, uklar rollefordeling, urettferdig behandling, svakt beslutningsgrunnlag og å gå utenfor eget faglige mandat."]},
+  "required_knowledge":{"education_basis":["Krav varierer med idrett og nivå; der særforbund eller arbeidsgiver krever trenerutdanning må den faktiske kvalifikasjonen være oppfylt."],"skills":["øktplanlegging","observasjon og tilbakemelding","belastningsstyring","konkurranseforberedelse","kommunikasjon og relasjonsarbeid"],"category_knowledge":["Idrettens regler, utviklingsprinsipper, treningsplanlegging, sikkerhet og organisering."],"history_go_badges":["sport"],"place_connections":[],"people_connections":[]},
+  "challenges":[{"id":"utvikling_vs_resultat","title":"Utvikling eller kortsiktig resultat","description":"Et kortsiktig resultatmål trekker treningen bort fra utøvernes langsiktige utvikling.","pressure":"utvikling_vs_resultat","affects":["performance","trust","development"]},{"id":"ulik_belastning","title":"Ulik belastning i gruppa","description":"Utøverne tåler og trenger ulike belastninger, mens planen opprinnelig var lik for alle.","pressure":"standardplan_vs_individuell_tilpasning","affects":["health","quality","trust"]}],
+  "dilemmas":[{"id":"uttak_under_press","title":"Uttak under press","setup":"Omgivelsene presser på for en bestemt utøver, mens dine sportslige observasjoner peker en annen vei.","choice_axis":"eksternt_press_vs_begrunnet_vurdering","consequence_axis":"kortsiktig_ro_vs_tillit","mail_hooks":["job","conflict","people"]},{"id":"trene_gjennom_plage","title":"Belastning og helsegrense","setup":"En utøver ønsker å trene videre med en plage du ikke har medisinsk mandat til å vurdere fullt ut.","choice_axis":"treningskontinuitet_vs_riktig_faglig_eskalering","consequence_axis":"fremdrift_vs_sikkerhet","mail_hooks":["job","people","followup"]}],
+  "authority_boundaries":{"can":["planlegge og lede trening innen eget oppdrag","gi trenerfaglig tilbakemelding og sportslige anbefalinger","gjøre uttaks- og rollevalg når dette eksplisitt ligger i mandatet"],"cannot":["diagnostisere eller behandle skade uten relevant helseautorisasjon","utnevne seg selv til hovedtrener eller sportssjef","opprette spillerkontrakter eller lønn uten arbeidsgivermandat","tildele landslagsplass, medalje eller prestisjestatus uten faktisk prosess"]},
+  "mail_integration":{"role_scope":"sport_trener","mail_profile":"sport_trener","can_feed_mail_types":["job","story","conflict","event","people","followup","knowledge"],"mail_variables":{"role_title":"Trener","category":"sport","main_pressure":"utvikling_vs_resultat","ethical_axis":"treningskontinuitet_vs_riktig_faglig_eskalering","status_axis":"begrunnet_vurdering_vs_eksternt_press"},"recommended_mail_families":[],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"treningsdesign","label":"Treningsdesign","description":"Koble mål, belastning og øvelser til et tydelig utviklingsløp."},{"id":"observasjon_feedback","label":"Observasjon og feedback","description":"Se prestasjon presist og gi anvendelig tilbakemelding."},{"id":"trenermandat","label":"Trenermandat","description":"Skille treneransvar fra helse-, kontrakts- og ledelsesmyndighet."}],
+  "ideal_type_problems":[{"id":"resultatpress","label":"Resultatpress","description":"Kortsiktig resultat truer langsiktig utvikling eller forsvarlig belastning."},{"id":"uklar_myndighet","label":"Uklar myndighet","description":"Trenerrollen forventes å ta beslutninger som tilhører andre fag- eller ledelsesroller."}],
+  "notes":["Trener er en formell jobb-tier og krever den canonicale trenerkvalifikasjons-/ansettelsesporten før jobbtilbud kan materialiseres."]
 }
