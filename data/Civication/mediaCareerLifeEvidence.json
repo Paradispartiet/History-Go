@@ -1,0 +1,110 @@
+{
+  "schema": "civication_media_career_life_evidence_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-13",
+  "badge_id": "media",
+  "principles": [
+    "Badge progression may express audience practice, participation, professional practice, reputation and influence without creating employment.",
+    "Formal employment is represented only by explicit career_offer metadata and remains separate from life position state.",
+    "Frilansjournalist is professional journalistic practice, but freelance income belongs to livelihood/assignment flows rather than a fixed Badge salary.",
+    "Editorial leadership titles require a concrete employer appointment before they can become active positions.",
+    "Reputation and public influence never grant editorial authority, employment or salary by themselves."
+  ],
+  "sources": [
+    {
+      "id": "utdanning_journalist",
+      "publisher": "Utdanning.no",
+      "title": "Journalist",
+      "url": "https://utdanning.no/yrker/beskrivelse/journalist",
+      "checked_at": "2026-08-13",
+      "supports": [
+        "Journalist is a real occupation centered on gathering, evaluating and communicating information through editorial media.",
+        "The occupational registry connected to the page includes Journalist, freelancejournalist and redaksjonell medarbeider as real work titles."
+      ]
+    },
+    {
+      "id": "utdanning_redaktor",
+      "publisher": "Utdanning.no",
+      "title": "Redaktør",
+      "url": "https://utdanning.no/yrker/beskrivelse/redaktor",
+      "checked_at": "2026-08-13",
+      "supports": [
+        "A redaktør leads editorial work and decides what is published.",
+        "The role carries overarching professional and ethical responsibility and normally legal responsibility for published content."
+      ]
+    },
+    {
+      "id": "nj_program_2025",
+      "publisher": "Norsk Journalistlag",
+      "title": "Norsk Journalistlags program",
+      "url": "https://www.nj.no/om-nj/styrende-dokumenter/norsk-journalistlags-program/",
+      "checked_at": "2026-08-13",
+      "supports": [
+        "NJ explicitly distinguishes employees from freelancers and self-employed journalists.",
+        "Freelance work is compensated through assignments/honoraria and has separate working-condition concerns."
+      ]
+    },
+    {
+      "id": "nj_freelance_bauer",
+      "publisher": "Norsk Journalistlag",
+      "title": "Journalistavtalen for Bauer — frilansavtale",
+      "url": "https://www.nj.no/lonn-og-rettigheter/tariffavtaler/journalistavtalen-for-bauer/",
+      "checked_at": "2026-08-13",
+      "supports": [
+        "The agreement defines a freelance journalist as someone who is not employed as an editorial worker and instead performs journalistic assignments for one or more media outlets.",
+        "This supports modelling freelance journalism as professional practice/livelihood rather than a fixed Badge salary job."
+      ]
+    }
+  ],
+  "canonical_decision": {
+    "pure_life_or_practice_tiers": [
+      "Leser",
+      "Følger",
+      "Kommentator (felt)",
+      "Bidragsyter",
+      "Frilansjournalist",
+      "Medieprofil",
+      "Mediestjerne",
+      "Offentlig dagsordensetter",
+      "Offentlighetsmakt"
+    ],
+    "formal_job_tiers": [
+      "Journalist",
+      "Reporter",
+      "Redaksjonsmedarbeider",
+      "Redaktør",
+      "Sjefredaktør",
+      "Nyhetsleder"
+    ],
+    "editorial_review_left_open": [],
+    "notes": [
+      "Kommentator (felt) and Bidragsyter remain useful Media identities, but the generic labels are too broad to create employment automatically.",
+      "Frilansjournalist remains a professional identity and can receive explicit livelihood assignments without becoming a fixed-salary active position.",
+      "Redaktør, Sjefredaktør and Nyhetsleder require employer appointment because Badge points cannot grant editorial authority.",
+      "Medieprofil, Mediestjerne, Offentlig dagsordensetter and Offentlighetsmakt are reputation/influence states only."
+    ]
+  },
+  "salary_mapping": {
+    "principle": "salary_tier selects existing Civication game-economy bands only and is not a claim about Norwegian market salary.",
+    "existing_media_bands_pc_per_week": {"1": 6, "2": 9, "3": 13},
+    "contracts": {
+      "Journalist": 1,
+      "Reporter": 1,
+      "Redaksjonsmedarbeider": 1,
+      "Redaktør": 2,
+      "Sjefredaktør": 3,
+      "Nyhetsleder": 2
+    },
+    "not_salary_jobs": [
+      "Leser",
+      "Følger",
+      "Kommentator (felt)",
+      "Bidragsyter",
+      "Frilansjournalist",
+      "Medieprofil",
+      "Mediestjerne",
+      "Offentlig dagsordensetter",
+      "Offentlighetsmakt"
+    ]
+  }
+}
