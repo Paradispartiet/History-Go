@@ -96,10 +96,10 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
   assert(readiness.required_method_ids.every((id) => id.startsWith('met_religion_')), 'Religion har metode-ID uten canonicalt prefiks');
 
   const progress = readiness.production_progress;
-  assert(isDeepStrictEqual(progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions']), 'De fire første produksjonsområdene er ikke låst som komplette');
-  assert(isDeepStrictEqual(progress.materialized_topic_ids, [...topicMap.theory_method, ...topicMap.history_comparison, ...topicMap.west_asian_abrahamic, ...topicMap.south_asian_religions]), 'Produksjonsprogresjonen har feil emne-ID-er');
-  assert(progress.standalone_topic_articles_materialized === 24 && progress.standalone_topic_articles_remaining === 48, 'Religion skal stå på 24/72 artikler');
-  assert(progress.required_methods_materialized === 14 && progress.required_methods_remaining === 4, 'Religion skal stå på 14/18 universitetsmetoder');
+  assert(isDeepStrictEqual(progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions']), 'De fem første produksjonsområdene er ikke låst som komplette');
+  assert(isDeepStrictEqual(progress.materialized_topic_ids, [...topicMap.theory_method, ...topicMap.history_comparison, ...topicMap.west_asian_abrahamic, ...topicMap.south_asian_religions, ...topicMap.east_asian_religions]), 'Produksjonsprogresjonen har feil emne-ID-er');
+  assert(progress.standalone_topic_articles_materialized === 30 && progress.standalone_topic_articles_remaining === 42, 'Religion skal stå på 30/72 artikler');
+  assert(progress.required_methods_materialized === 16 && progress.required_methods_remaining === 2, 'Religion skal stå på 16/18 universitetsmetoder');
   assert(progress.materialized_required_method_ids.every((id) => readiness.required_method_ids.includes(id) && methods.methods.some((method) => method.method_id === id && method.university_matrix_status === 'materialized')), 'En materialisert universitetsmetode er uløst');
   assert(progress.quality_score >= 27 && progress.complete_ready === false, 'Produksjonsprogresjonen har feil kvalitets- eller complete-status');
 
@@ -168,7 +168,7 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
       respectfulRepresentationAndNonessentialismLocked: true,
       sixDimensionQualityGateLocked: true,
       prematureCompleteStatusBlocked: true,
-      firstFourUniversityAreasCompleteAtHighQuality: progress.quality_score >= 27
+      firstFiveUniversityAreasCompleteAtHighQuality: progress.quality_score >= 27
     }
   };
   const committed = committedProjection(report);

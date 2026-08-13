@@ -5,15 +5,15 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const AREA_ID = 'south_asian_religions';
+const AREA_ID = 'east_asian_religions';
 const P = Object.freeze({
   readiness: 'data/fag/religion/religion_university_readiness_v1.json',
   methods: 'data/fag/religion/methods_religion_canonical_v1.json',
   sourceRegistry: 'data/fag/religion/kilder_religion_canonical_v1.json',
-  claims: 'data/fagverk/religion/sor-asias-religioner/claims.json',
+  claims: 'data/fagverk/religion/ost-asias-religioner/claims.json',
   articleDir: 'data/fagverk/religion/emneartikler',
   status: 'data/fagverk/subject_status.json',
-  report: 'reports/fagverk/religion-south-asian-articles-v1-audit.json'
+  report: 'reports/fagverk/religion-east-asian-articles-v1-audit.json'
 });
 const REQUIRED_FIELDS = Object.freeze([
   'topic_id', 'title', 'definition', 'historical_or_systemic_background',
@@ -27,8 +27,8 @@ const QUALITY_DIMENSIONS = Object.freeze([
   'technical_integrity', 'safety_responsibility', 'maintainability_auditability'
 ]);
 const NEW_METHOD_IDS = Object.freeze([
-  'met_religion_ethnographic_observation',
-  'met_religion_qualitative_interview'
+  'met_religion_spatial_route_and_landscape_analysis',
+  'met_religion_digital_ethnography_and_media_analysis'
 ]);
 const RUNTIME_ROOTS = Object.freeze(['js', 'data/integrations', 'data/historygo', 'data/religion']);
 const abs = (relative) => path.join(ROOT, relative);
@@ -84,7 +84,7 @@ const projection = (report) => ({
   complete: report.complete
 });
 
-export function auditReligionSouthAsianArticles({ writeReport = false, checkReport = true } = {}) {
+export function auditReligionEastAsianArticles({ writeReport = false, checkReport = true } = {}) {
   for (const file of Object.values(P).filter((file) => file !== P.report)) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   const readiness = read(P.readiness);
   const methods = read(P.methods);
@@ -98,25 +98,25 @@ export function auditReligionSouthAsianArticles({ writeReport = false, checkRepo
   assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 30/72');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
-  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Sør-Asia skal eie seks unike emner');
-  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', AREA_ID, 'east_asian_religions']), 'Eksakt fem Religion-områder skal være komplette');
-  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(18, 24), requiredIds), 'Readiness har feil Sør-Asia-emner');
+  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Øst-Asia skal eie seks unike emner');
+  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic', 'south_asian_religions', AREA_ID]), 'Eksakt fem Religion-områder skal være komplette');
+  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(24), requiredIds), 'Readiness har feil Øst-Asia-emner');
   assert(readiness.production_progress.standalone_topic_articles_materialized === 30 && readiness.production_progress.standalone_topic_articles_remaining === 42, 'Religion skal stå på 30/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
-  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Sør-Asia-området er ikke korrekt merket komplett');
+  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Øst-Asia-området er ikke korrekt merket komplett');
 
   const expectedFiles = requiredIds.map((id) => `${id}.json`).sort();
   const actualFiles = fs.readdirSync(abs(P.articleDir)).filter((file) => requiredIds.includes(file.replace(/\.json$/, ''))).sort();
-  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per Sør-Asia-emne');
+  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per Øst-Asia-emne');
   const articles = actualFiles.map((file) => read(`${P.articleDir}/${file}`));
   assert(isDeepStrictEqual(articles.map((article) => article.topic_id).sort(), [...requiredIds].sort()), 'Artiklene dekker ikke eksakt 6/6 emner');
 
-  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til Sør-Asia-claims');
+  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til Øst-Asia-claims');
   assert(claimsDocument.schema === 'history_go_religion_topic_claims_v1' && claimsDocument.area_id === AREA_ID, 'Claimdokumentet har feil schema eller område');
   const sourceById = new Map(claimsDocument.sources.map((source) => [source.id, source]));
   const claimById = new Map(claimsDocument.claims.map((claim) => [claim.id, claim]));
-  assert(sourceById.size === 20, 'Sør-Asia skal ha 20 unike kilderegistreringer');
-  assert(claimById.size === 36, 'Sør-Asia skal ha 36 unike claims');
+  assert(sourceById.size === 20, 'Øst-Asia skal ha 20 unike kilderegistreringer');
+  assert(claimById.size === 36, 'Øst-Asia skal ha 36 unike claims');
   assert(claimsDocument.sources.every((source) => /^https:\/\//.test(source.url) && source.publisher && source.author && source.title && source.source_location?.length >= 50), 'En kilde mangler HTTPS eller presis metadata');
   assert(claimsDocument.claims.every((claim) => requiredIds.includes(claim.topic_id) && claim.claim.length >= 100 && claim.source_ids?.every((id) => sourceById.has(id))), 'En claim er for kort, feilplassert eller har uløst kilde');
 
@@ -172,7 +172,7 @@ export function auditReligionSouthAsianArticles({ writeReport = false, checkRepo
   assert(usedSourceIds.size === 20, 'Alle 20 registrerte kilder skal være brukt');
   const canonicalMethods = new Map(methods.methods.map((method) => [method.method_id, method]));
   assert([...usedMethodIds].every((id) => canonicalMethods.get(id)?.university_matrix_status === 'materialized'), 'En brukt metode er uløst eller ikke materialisert');
-  assert(NEW_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'De to nye felt- og intervjumetodene er ikke materialisert og brukt');
+  assert(NEW_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'De to nye rute- og digitalmetodene er ikke materialisert og brukt');
   assert(readiness.production_progress.required_methods_materialized === 16 && readiness.production_progress.required_methods_remaining === 2, 'Religion skal stå på 16/18 metoder');
 
   const allMaterializedIds = readiness.production_progress.materialized_topic_ids;
@@ -207,22 +207,22 @@ export function auditReligionSouthAsianArticles({ writeReport = false, checkRepo
   const report = {
     schema: 'history_go_fagverk_religion_topic_articles_batch_audit_v1',
     version: '1.0.0',
-    status: complete ? 'religion_south_asian_articles_complete' : 'religion_south_asian_articles_in_progress',
+    status: complete ? 'religion_east_asian_articles_complete' : 'religion_east_asian_articles_in_progress',
     generatedFrom: P,
     subject: { id: 'religion', areaId: AREA_ID, editorialStatus: status.editorialStatus, nextGate: status.nextGate, completeReady: false },
-    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 4, totalUniversityAreaCount: 12, completedTopicCount: 24, totalTopicCount: 72, articleIds: requiredIds },
+    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 5, totalUniversityAreaCount: 12, completedTopicCount: 30, totalTopicCount: 72, articleIds: requiredIds },
     depth: { minimumWordsPerArticle: readiness.topic_article_contract.minimum_editorial_words_per_article, totalEditorialWordCount, articleWordCounts, scenarioCounts },
     evidence: { registeredSourceCount: sourceById.size, registeredClaimCount: claimById.size, usedSourceCount: usedSourceIds.size, usedClaimCount: usedClaimIds.size, allClaimsResolve: true, allSourcesResolve: true },
     methods: { requiredMethodCount: readiness.required_method_ids.length, materializedRequiredMethodCount: readiness.production_progress.required_methods_materialized, newlyMaterializedMethodIds: NEW_METHOD_IDS, usedMethodIds: [...usedMethodIds].sort() },
     editorial: { allReligionArticleCountReviewed: allArticles.length, exactParagraphDuplicates: 0, maximumFiveGramJaccard: Math.max(...similarities.map((item) => item.score)), pairwiseSimilarities: similarities, runtimeReferences },
     quality: { dimensions: qualityScores, total: qualityTotal, threshold: 27, minimumDimension: 4, criticalFlags: [], conclusion: 'high_quality' },
     gates: {
-      exactSixSouthAsianArticles: true,
+      exactSixEastAsianArticles: true,
       allArticlesMeetMinimumWordDepth: true,
       allThirtySixClaimsResolveAndAreUsed: true,
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
-      twoNewFieldInterviewMethodsMaterializedAndLinked: true,
+      twoNewRouteDigitalMethodsMaterializedAndLinked: true,
       allThirtyReligionArticlesReviewedForEditorialDiversity: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,
@@ -243,10 +243,10 @@ export function auditReligionSouthAsianArticles({ writeReport = false, checkRepo
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const { report } = auditReligionSouthAsianArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
-    console.log(`Religion Sør-Asia OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
+    const { report } = auditReligionEastAsianArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
+    console.log(`Religion Øst-Asia OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
   } catch (error) {
-    console.error(`Religion Sør-Asia FEIL: ${error.message}`);
+    console.error(`Religion Øst-Asia FEIL: ${error.message}`);
     process.exitCode = 1;
   }
 }

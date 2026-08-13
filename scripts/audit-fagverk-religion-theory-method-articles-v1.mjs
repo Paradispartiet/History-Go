@@ -96,7 +96,7 @@ export function auditReligionTheoryMethodArticles({ writeReport = false, checkRe
   assert(status?.editorialStatus === 'chapters_in_progress', 'Religion skal stå chapters_in_progress etter første universitetsområde');
   assert(status?.nextGate === 'remaining_religion_area_article_production', 'Religion har feil neste produksjonsport');
   assert(readiness.status === 'matrix_locked_production_in_progress', 'Religion-readiness skal vise pågående produksjon');
-  assert(readiness.completion_contract.current_complete_ready === false, 'Religion kan ikke være completeReady ved 24/72');
+  assert(readiness.completion_contract.current_complete_ready === false, 'Religion kan ikke være completeReady ved 30/72');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
   assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Theory/method skal eie seks unike emner');
