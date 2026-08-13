@@ -38,40 +38,19 @@
     sport_sportsledelse: 'sport_sportsledelse',
     sport_legende: 'sport_legende',
     psykologi_miljoarbeid: 'psykologi_miljoarbeider',
-    psykologi_arbeids_og_karriereveiledning: 'psykologi_karriereveileder'
+    psykologi_arbeids_og_karriereveiledning: 'psykologi_karriereveileder',
+    psykolog: 'psykologi_psykolog',
+    spesialistpsykolog: 'psykologi_spesialistpsykolog',
+    fagansvarlig: 'psykologi_fagansvarlig',
+    klinikkleder: 'psykologi_klinikkleder'
   };
 
-  const ROLE_SCOPE_BY_ROLE_ID = {
-    naer_ekspeditor: 'ekspeditor',
-    naer_arbeider: 'arbeider',
-    naer_lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider',
-    renholder: 'renholder',
-    naer_renholder: 'renholder',
-    naer_administrasjonsmedarbeider: 'administrasjonsmedarbeider',
-    naer_fagarbeider: 'fagarbeider',
-    naer_formann: 'formann',
-    naer_controller: 'controller',
-    naer_avdelingsleder: 'avdelingsleder',
-    naer_mellomleder: 'mellomleder',
-    barnehageassistent: 'barnehageassistent',
-    sosial_laering_barnehageassistent: 'barnehageassistent',
-    by_assistent: 'by_assistent',
-    by_saksbehandler: 'by_saksbehandler',
-    by_radgiver_plan: 'by_radgiver_plan',
-    by_prosjektleder: 'by_prosjektleder',
-    by_arkitekt: 'by_arkitekt',
-    sport_utover: 'sport_utover',
-    sport_kaptein: 'sport_kaptein',
-    sport_trener: 'sport_trener',
-    sport_sportsledelse: 'sport_sportsledelse',
-    sport_legende: 'sport_legende',
-    psykologi_miljoarbeider: 'psykologi_miljoarbeid',
-    psykologi_karriereveileder: 'psykologi_arbeids_og_karriereveiledning'
-  };
+  const ROLE_SCOPE_BY_ROLE_ID = Object.fromEntries(
+    Object.entries(ROLE_ID_BY_SCOPE).map(([scope, roleId]) => [roleId, scope])
+  );
+  ROLE_SCOPE_BY_ROLE_ID.renholder = 'renholder';
+  ROLE_SCOPE_BY_ROLE_ID.barnehageassistent = 'barnehageassistent';
 
-  // Badges er progresjon/tittel. Role scope er spillbar jobbtype.
-  // Flere badge-titler kan derfor dele samme role_scope når de bruker samme
-  // type mailPlan, mailFamilies og jobLearningProfile.
   const NAERINGSLIV_ROLE_SCOPE_BY_TITLE = {
     arbeider: 'arbeider',
     ekspeditor: 'ekspeditor',
@@ -155,7 +134,11 @@
     seniorradgiver: 'psykologi_arbeids_og_karriereveiledning',
     jobbveileder: 'psykologi_arbeids_og_karriereveiledning',
     karriereveileder: 'psykologi_arbeids_og_karriereveiledning',
-    karriereradgiver: 'psykologi_arbeids_og_karriereveiledning'
+    karriereradgiver: 'psykologi_arbeids_og_karriereveiledning',
+    psykolog: 'psykolog',
+    spesialistpsykolog: 'spesialistpsykolog',
+    fagansvarlig: 'fagansvarlig',
+    klinikkleder: 'klinikkleder'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -168,17 +151,13 @@
     if (ROLE_SCOPE_BY_ROLE_ID[roleKey]) return ROLE_SCOPE_BY_ROLE_ID[roleKey];
 
     if (careerId === 'psykologi') {
-      if (roleKey === 'psykologi_miljoarbeid') return 'psykologi_miljoarbeid';
-      if (roleKey === 'psykologi_arbeids_og_karriereveiledning') return 'psykologi_arbeids_og_karriereveiledning';
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('psykologi_')) return roleKey;
+      if (['psykolog', 'spesialistpsykolog', 'fagansvarlig', 'klinikkleder'].includes(roleKey)) return roleKey;
       if (PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey]) return PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey];
     }
 
     if (careerId === 'sport') {
-      if (roleKey === 'sport_utover') return 'sport_utover';
-      if (roleKey === 'sport_kaptein') return 'sport_kaptein';
-      if (roleKey === 'sport_trener') return 'sport_trener';
-      if (roleKey === 'sport_sportsledelse') return 'sport_sportsledelse';
-      if (roleKey === 'sport_legende') return 'sport_legende';
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('sport_')) return roleKey;
       if (SPORT_ROLE_SCOPE_BY_TITLE[titleKey]) return SPORT_ROLE_SCOPE_BY_TITLE[titleKey];
       if (titleKey.includes('mosjonist') || titleKey.includes('utover') || titleKey.includes('konkurranseutover') || titleKey.includes('klubbspiller') || titleKey.includes('eliteseriespiller') || titleKey.includes('landslagsutover')) return 'sport_utover';
       if (titleKey.includes('kaptein')) return 'sport_kaptein';
@@ -188,11 +167,7 @@
     }
 
     if (careerId === 'by') {
-      if (roleKey === 'by_assistent') return 'by_assistent';
-      if (roleKey === 'by_saksbehandler') return 'by_saksbehandler';
-      if (roleKey === 'by_radgiver_plan') return 'by_radgiver_plan';
-      if (roleKey === 'by_prosjektleder') return 'by_prosjektleder';
-      if (roleKey === 'by_arkitekt') return 'by_arkitekt';
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('by_')) return roleKey;
       if (BY_ROLE_SCOPE_BY_TITLE[titleKey]) return BY_ROLE_SCOPE_BY_TITLE[titleKey];
       if (titleKey.includes('studentassistent') || titleKey.includes('praktikant') || titleKey.includes('prosjektmedarbeider')) return 'by_assistent';
       if (titleKey.includes('saksbehandler') || titleKey.includes('forstekonsulent')) return 'by_saksbehandler';
@@ -208,51 +183,35 @@
     }
 
     if (careerId === 'naeringsliv') {
-      if (roleKey === 'ekspeditor' || roleKey.includes('ekspedit') || roleKey.includes('butikk')) return 'ekspeditor';
-      if (roleKey === 'lager_og_driftsmedarbeider' || roleKey.includes('lager_og_driftsmedarbeider')) return 'lager_og_driftsmedarbeider';
-      if (roleKey === 'renholder' || roleKey.includes('renholder')) return 'renholder';
-      if (roleKey === 'arbeider') return 'arbeider';
-      if (roleKey === 'administrasjonsmedarbeider' || roleKey.includes('administrasjon')) return 'administrasjonsmedarbeider';
-      if (roleKey === 'fagarbeider' || roleKey.includes('fagarbeider')) return 'fagarbeider';
-      if (roleKey === 'formann' || roleKey.includes('formann') || roleKey.includes('arbeidsleder') || roleKey.includes('skiftleder')) return 'formann';
-      if (roleKey === 'controller' || roleKey.includes('controller')) return 'controller';
-      if (roleKey === 'avdelingsleder' || roleKey.includes('avdelingsleder')) return 'avdelingsleder';
-      if (roleKey === 'mellomleder' || roleKey.includes('mellomleder')) return 'mellomleder';
+      if (NAERINGSLIV_ROLE_SCOPE_BY_TITLE[roleKey]) return NAERINGSLIV_ROLE_SCOPE_BY_TITLE[roleKey];
       if (NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey]) return NAERINGSLIV_ROLE_SCOPE_BY_TITLE[titleKey];
+      if (roleKey.includes('ekspedit') || roleKey.includes('butikk')) return 'ekspeditor';
+      if (roleKey.includes('lager_og_driftsmedarbeider')) return 'lager_og_driftsmedarbeider';
+      if (roleKey.includes('renholder')) return 'renholder';
+      if (roleKey === 'arbeider') return 'arbeider';
+      if (roleKey.includes('administrasjon')) return 'administrasjonsmedarbeider';
+      if (roleKey.includes('fagarbeider')) return 'fagarbeider';
+      if (roleKey.includes('formann') || roleKey.includes('arbeidsleder') || roleKey.includes('skiftleder')) return 'formann';
+      if (roleKey.includes('controller')) return 'controller';
+      if (roleKey.includes('avdelingsleder')) return 'avdelingsleder';
+      if (roleKey.includes('mellomleder')) return 'mellomleder';
       if (titleKey.includes('ekspedit') || titleKey.includes('butikkmedarbeider')) return 'ekspeditor';
       if (titleKey.includes('renholder') || titleKey.includes('renhold')) return 'renholder';
       if (titleKey.includes('lager')) return 'arbeider';
-      if (titleKey.includes('administrasjon') || titleKey.includes('administrasjonsmedarbeider')) return 'administrasjonsmedarbeider';
+      if (titleKey.includes('administrasjon')) return 'administrasjonsmedarbeider';
       if (titleKey.includes('fagarbeider')) return 'fagarbeider';
       if (titleKey.includes('formann') || titleKey.includes('arbeidsleder') || titleKey.includes('skiftleder')) return 'formann';
-      if (
-        titleKey.includes('controller') ||
-        titleKey.includes('finansanalytiker') ||
-        titleKey.includes('finanssjef') ||
-        titleKey.includes('finansdirektor') ||
-        titleKey.includes('okonomi_og_finanssjef')
-      ) return 'controller';
-      if (
-        titleKey.includes('avdelingsleder') ||
-        titleKey.includes('driftsleder') ||
-        titleKey.includes('produksjonsleder') ||
-        titleKey.includes('butikksjef') ||
-        titleKey.includes('enhetsleder') ||
-        titleKey.includes('daglig_leder')
-      ) return 'avdelingsleder';
-      if (
-        titleKey.includes('grunder') ||
-        titleKey.includes('bedriftseier') ||
-        titleKey.includes('konsern') ||
-        titleKey.includes('investor') ||
-        titleKey.includes('kapital') ||
-        titleKey.includes('industrieier') ||
-        titleKey.includes('industribygger')
-      ) return 'mellomleder';
+      if (titleKey.includes('controller') || titleKey.includes('finansanalytiker') || titleKey.includes('finanssjef') || titleKey.includes('finansdirektor') || titleKey.includes('okonomi_og_finanssjef')) return 'controller';
+      if (titleKey.includes('avdelingsleder') || titleKey.includes('driftsleder') || titleKey.includes('produksjonsleder') || titleKey.includes('butikksjef') || titleKey.includes('enhetsleder') || titleKey.includes('daglig_leder')) return 'avdelingsleder';
+      if (titleKey.includes('grunder') || titleKey.includes('bedriftseier') || titleKey.includes('konsern') || titleKey.includes('investor') || titleKey.includes('kapital') || titleKey.includes('industrieier') || titleKey.includes('industribygger')) return 'mellomleder';
     }
 
     if (roleKey.includes('psykologi_arbeids_og_karriereveiledning')) return 'psykologi_arbeids_og_karriereveiledning';
     if (roleKey.includes('psykologi_miljoarbeid')) return 'psykologi_miljoarbeid';
+    if (roleKey.includes('psykolog') && !roleKey.includes('spesialist')) return 'psykolog';
+    if (roleKey.includes('spesialistpsykolog')) return 'spesialistpsykolog';
+    if (roleKey.includes('fagansvarlig')) return 'fagansvarlig';
+    if (roleKey.includes('klinikkleder')) return 'klinikkleder';
     if (roleKey.includes('sport_utover')) return 'sport_utover';
     if (roleKey.includes('sport_kaptein')) return 'sport_kaptein';
     if (roleKey.includes('sport_trener')) return 'sport_trener';
