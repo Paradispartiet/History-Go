@@ -163,6 +163,7 @@ function relevantClaims(emne, count = 5) {
   return selected;
 }
 
+// Compose background prose from topic-specific evidence, scope and disciplinary contrasts.
 function articleFor(emne) {
   const seed = TOPIC_SEEDS[emne.emne_id];
   if (!seed) throw new Error(`Mangler emnespesifikk redaksjonell seed for ${emne.emne_id}`);
