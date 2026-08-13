@@ -3,6 +3,8 @@
 
   const window = /** @type {any} */ (globalScope);
   const LS_KEY = "hg_civi_life_positions_v1";
+  const CATALOG_PATH = "data/Civication/lifePositionCatalog.json";
+  let catalogPromise = null;
 
   function safeParse(raw, fallback) {
     try { return JSON.parse(raw); } catch { return fallback; }
@@ -26,10 +28,44 @@
     return next;
   }
 
+  async function ensureCatalogLoaded() {
+    if (Array.isArray(window.CIVI_LIFE_POSITION_CATALOG?.badges)) {
+      return window.CIVI_LIFE_POSITION_CATALOG;
+    }
+    if (catalogPromise) return catalogPromise;
+
+    catalogPromise = fetch(CATALOG_PATH, { cache: "no-store" })
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        if (!json || !Array.isArray(json.badges)) {
+          throw new Error("catalog badges must be an array");
+        }
+        window.CIVI_LIFE_POSITION_CATALOG = json;
+        try { window.dispatchEvent(new Event("civi:lifePositionCatalogLoaded")); } catch {}
+        try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+        return json;
+      })
+      .catch((error) => {
+        console.warn("[CivicationLifePositions] life position catalog kunne ikke lastes", error);
+        return null;
+      });
+
+    return catalogPromise;
+  }
+
   function getBadge(badgeId) {
     const id = String(badgeId || "").trim();
     if (!id || !Array.isArray(window.BADGES)) return null;
     return window.BADGES.find((badge) => String(badge?.id || "").trim() === id) || null;
+  }
+
+  function getBadgeProfile(badgeId) {
+    const id = String(badgeId || "").trim();
+    const profiles = Array.isArray(window.CIVI_LIFE_POSITION_CATALOG?.badges)
+      ? window.CIVI_LIFE_POSITION_CATALOG.badges
+      : [];
+    return profiles.find((profile) => String(profile?.badge_id || "").trim() === id) || null;
   }
 
   function getBadgePoints(badgeId) {
@@ -37,20 +73,78 @@
     return Number(merits?.[String(badgeId || "").trim()]?.points || 0);
   }
 
+  function toTierPosition(badge, tier, descriptor) {
+    const data = descriptor && typeof descriptor === "object" ? descriptor : {};
+    return {
+      badge_id: String(badge.id),
+      badge_name: String(badge.name || badge.id),
+      id: String(data.id || "").trim() || null,
+      label: String(data.label || tier.label || ""),
+      threshold: Number(tier.threshold),
+      kind: String(data.kind || "life_position"),
+      description: String(data.description || "").trim() || null,
+      hooks: Array.isArray(data.hooks) ? data.hooks.map(String).filter(Boolean) : [],
+      employment_independent: data.employment_independent !== false,
+      source: "badge_tier"
+    };
+  }
+
+  function getTierPositions(badgeId, points) {
+    const badge = getBadge(badgeId);
+    if (!badge || !Array.isArray(badge.tiers)) return [];
+
+    return badge.tiers.flatMap((tier) => {
+      if (Number(tier?.threshold) > points) return [];
+      const descriptors = [];
+      if (tier?.life_position && typeof tier.life_position === "object") {
+        descriptors.push({ ...tier.life_position, label: tier.label });
+      }
+      if (Array.isArray(tier?.life_positions)) {
+        descriptors.push(...tier.life_positions.filter((entry) => entry && typeof entry === "object"));
+      }
+      return descriptors.map((descriptor) => toTierPosition(badge, tier, descriptor));
+    });
+  }
+
+  function getCatalogPositions(badgeId, points) {
+    const badge = getBadge(badgeId);
+    const profile = getBadgeProfile(badgeId);
+    if (!badge || !profile || !Array.isArray(profile.positions)) return [];
+
+    return profile.positions
+      .filter((position) => Number(position?.threshold) <= points)
+      .map((position) => ({
+        badge_id: String(badge.id),
+        badge_name: String(badge.name || badge.id),
+        id: String(position?.id || "").trim() || null,
+        label: String(position?.label || ""),
+        threshold: Number(position?.threshold),
+        kind: String(position?.kind || "life_position"),
+        description: String(position?.description || "").trim() || null,
+        hooks: Array.isArray(position?.hooks) ? position.hooks.map(String).filter(Boolean) : [],
+        employment_independent: position?.employment_independent !== false,
+        source: "catalog"
+      }));
+  }
+
+  function dedupePositions(positions) {
+    const seen = new Set();
+    return positions.filter((position) => {
+      const key = `${position.badge_id}::${position.label}`;
+      if (!position.label || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
   function getUnlockedPositions(badgeId) {
     const badge = getBadge(badgeId);
     if (!badge || !Array.isArray(badge.tiers)) return [];
     const points = getBadgePoints(badgeId);
-    return badge.tiers
-      .filter((tier) => tier?.life_position && Number(tier?.threshold) <= points)
-      .map((tier) => ({
-        badge_id: String(badge.id),
-        badge_name: String(badge.name || badge.id),
-        label: String(tier.label || ""),
-        threshold: Number(tier.threshold),
-        kind: String(tier.life_position?.kind || "life_position"),
-        employment_independent: tier.life_position?.employment_independent !== false
-      }));
+    return dedupePositions([
+      ...getTierPositions(badgeId, points),
+      ...getCatalogPositions(badgeId, points)
+    ]).sort((a, b) => a.threshold - b.threshold || a.label.localeCompare(b.label, "nb"));
   }
 
   function getAllUnlockedPositions() {
@@ -128,6 +222,8 @@
 
   window.CivicationLifePositions = {
     getState,
+    ensureCatalogLoaded,
+    getBadgeProfile,
     getUnlockedPositions,
     getAllUnlockedPositions,
     activate,
@@ -136,6 +232,8 @@
     getFormalEmploymentStatus,
     getLifeContext
   };
+
+  ensureCatalogLoaded();
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = window.CivicationLifePositions;
