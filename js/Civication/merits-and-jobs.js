@@ -161,9 +161,10 @@ function installCareerOfferGate() {
   const originalPushOffer = jobs.pushOffer.bind(jobs);
   jobs.pushOffer = function (offer) {
     const resolved = findBadgeTierForCareerOffer(offer);
-    const canonicalOffer = resolved
-      ? (resolveCareerOfferFromBadgeTier(resolved.badge, resolved.tier, offer?.points_at_offer) || offer)
-      : offer;
+    const materialized = resolved
+      ? resolveCareerOfferFromBadgeTier(resolved.badge, resolved.tier, offer?.points_at_offer)
+      : null;
+    const canonicalOffer = materialized ? { ...offer, ...materialized } : offer;
     const gate = evaluateCareerOfferPolicy(canonicalOffer);
     if (!gate.ok) {
       return { ok: false, reason: gate.reason, career_offer_gate: gate };
