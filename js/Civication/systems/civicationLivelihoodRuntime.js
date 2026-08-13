@@ -5,6 +5,7 @@
   const LS_KEY = "hg_civi_livelihood_v1";
   const CATALOG_PATH = "data/Civication/livelihoodCatalog.json";
   const STRICT_ID = /^[a-z0-9][a-z0-9_-]*$/;
+  const VALID_CADENCES = new Set(["one_time", "recurring"]);
   let catalogPromise = null;
 
   function safeParse(raw, fallback) {
@@ -93,14 +94,14 @@
 
     if (model === "fixed") {
       const amount = Number(raw.amount);
-      if (!Number.isFinite(amount)) return null;
+      if (!Number.isFinite(amount) || amount < 0) return null;
       return { model: "fixed", amount: Math.round(amount) };
     }
 
     if (model === "variable" || model === "occasional") {
       const min = Number(raw.min);
       const max = Number(raw.max);
-      if (!Number.isFinite(min) || !Number.isFinite(max) || max < min) return null;
+      if (!Number.isFinite(min) || !Number.isFinite(max) || min < 0 || max < min) return null;
       return {
         model,
         min: Math.round(min),
@@ -110,6 +111,11 @@
     }
 
     return null;
+  }
+
+  function normalizeCadence(input, fallback) {
+    const cadence = String(input || fallback || "recurring").trim();
+    return VALID_CADENCES.has(cadence) ? cadence : null;
   }
 
   function normalizeCosts(input) {
@@ -183,6 +189,12 @@
 
     const income = normalizeIncome(raw.income, kind.default_model);
     if (!income) return { ok: false, reason: "invalid_income_model" };
+    const cadence = normalizeCadence(raw.cadence, kind.default_cadence);
+    if (!cadence) return { ok: false, reason: "invalid_livelihood_cadence" };
+
+    const requiresUnemployed = kind.can_coexist_with_job === false
+      ? true
+      : !!raw.requires_unemployed;
 
     const opportunity = {
       id,
@@ -196,8 +208,10 @@
         label: String(raw.source.label || raw.source.name || "").trim() || null
       },
       income,
+      cadence,
       direct_costs: normalizeCosts(raw.direct_costs),
-      requires_unemployed: !!raw.requires_unemployed,
+      requires_unemployed: requiresUnemployed,
+      can_coexist_with_job: kind.can_coexist_with_job !== false,
       requires_life_positions: normalizeLifeRequirements(raw.requires_life_positions),
       related_life_positions: normalizeLifeRequirements(raw.related_life_positions),
       starts_week: raw.starts_week ? String(raw.starts_week) : null,
@@ -250,11 +264,12 @@
   function closeStream(streamId, reason) {
     const id = String(streamId || "").trim();
     const state = getState();
-    if (!state.streams.some((entry) => entry.id === id && entry.status === "active")) {
+    const matches = (entry) => entry.id === id || entry.stream_id === id;
+    if (!state.streams.some((entry) => matches(entry) && entry.status === "active")) {
       return { ok: false, reason: "stream_not_active" };
     }
     const closedAt = nowIso();
-    const streams = state.streams.map((entry) => entry.id === id
+    const streams = state.streams.map((entry) => matches(entry)
       ? { ...entry, status: "closed", closed_at: closedAt, close_reason: String(reason || "ended") }
       : entry);
     setState({ ...state, streams });
@@ -302,11 +317,17 @@
 
   function computeStreamWeek(stream, weekKeyValue, employment) {
     if (!stream || stream.status !== "active") return null;
+    const base = {
+      stream_id: stream.id,
+      kind_id: stream.kind_id,
+      label: stream.label,
+      cadence: stream.cadence || "recurring"
+    };
     if (!isStreamScheduled(stream, weekKeyValue)) {
-      return { stream_id: stream.id, kind_id: stream.kind_id, label: stream.label, gross: 0, costs: 0, net: 0, occurred: false, reason: "outside_schedule" };
+      return { ...base, gross: 0, costs: 0, net: 0, occurred: false, reason: "outside_schedule" };
     }
     if (stream.requires_unemployed && employment?.employed) {
-      return { stream_id: stream.id, kind_id: stream.kind_id, label: stream.label, gross: 0, costs: 0, net: 0, occurred: false, reason: "paused_while_employed" };
+      return { ...base, gross: 0, costs: 0, net: 0, occurred: false, reason: "paused_while_employed" };
     }
 
     const incomeResult = computeGross(stream, weekKeyValue);
@@ -316,9 +337,7 @@
       ? Math.max(0, Math.round(fixedCosts + Math.max(0, incomeResult.gross) * rate))
       : 0;
     return {
-      stream_id: stream.id,
-      kind_id: stream.kind_id,
-      label: stream.label,
+      ...base,
       gross: incomeResult.gross,
       costs,
       net: incomeResult.gross - costs,
@@ -350,6 +369,12 @@
       : [];
   }
 
+  function walletBalance(wallet) {
+    if (Number.isFinite(Number(wallet?.balance))) return Number(wallet.balance);
+    if (Number.isFinite(Number(wallet?.pc))) return Number(wallet.pc);
+    return 0;
+  }
+
   function settleWeekToWallet(weekKeyValue) {
     if (!window.CivicationState?.getWallet || !window.CivicationState?.updateWallet) {
       return { ok: false, reason: "wallet_api_missing" };
@@ -364,12 +389,21 @@
     const prepared = prepareWeekSettlement(week);
     const nextWallet = {
       ...wallet,
-      balance: Number(wallet.balance || wallet.pc || 0) + prepared.net,
+      balance: walletBalance(wallet) + prepared.net,
       livelihood_settled_weeks: [week].concat(settledWeeks).slice(0, 104)
     };
     window.CivicationState.updateWallet(nextWallet);
 
     const state = getState();
+    const oneTimeSettledIds = new Set(
+      prepared.items
+        .filter((item) => item.cadence === "one_time" && item.reason === "settled")
+        .map((item) => item.stream_id)
+    );
+    const settledAt = nowIso();
+    const streams = state.streams.map((stream) => oneTimeSettledIds.has(stream.id)
+      ? { ...stream, status: "closed", closed_at: settledAt, close_reason: "one_time_settled" }
+      : stream);
     const ledgerEntry = {
       type: "weekly_settlement",
       week,
@@ -378,9 +412,9 @@
       net: prepared.net,
       items: prepared.items,
       employment_status: prepared.employment.employed ? "employed" : "unemployed",
-      settled_at: nowIso()
+      settled_at: settledAt
     };
-    setState({ ...state, ledger: [ledgerEntry].concat(state.ledger).slice(0, 260) });
+    setState({ ...state, streams, ledger: [ledgerEntry].concat(state.ledger).slice(0, 260) });
     return { ok: true, applied: true, ...ledgerEntry };
   }
 
@@ -424,7 +458,9 @@
       engine.getEconomySnapshot = function getEconomySnapshotWithLivelihood() {
         const base = baseSnapshot();
         const livelihood = getSnapshot();
-        const projectedNet = Number(livelihood?.current_week_projection?.net || 0);
+        const projectedNet = livelihood.already_settled_this_week
+          ? Number(livelihood?.last_settlement?.net || 0)
+          : Number(livelihood?.current_week_projection?.net || 0);
         return {
           ...base,
           livelihood,
