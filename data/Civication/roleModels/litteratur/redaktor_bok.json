@@ -1,120 +1,125 @@
 {
   "schema": "civication_role_model_v1",
-  "version": 1,
+  "version": 2,
   "source": {
-    "badge_file": "data/badges.json",
+    "badge_file": "data/badges/litteratur.json",
     "badge_id": "litteratur",
     "badge_name": "Litteratur & poesi",
     "tier_label": "Redaktør (bok)",
-    "tier_threshold": 120
+    "tier_threshold": 150,
+    "evidence_ref": "data/Civication/literatureCareerLifeEvidence.json"
   },
   "category": "litteratur",
   "role_scope": "redaktor_bok",
   "role_id": "litteratur_redaktor_bok",
   "title": "Redaktør (bok)",
   "core_narrative": [
-    "I Civication er Redaktør (bok) en praktisk rolle i Litteratur & poesi der valg former tillit, handlingsrom og status."
+    "Du følger bokprosjekter fra manusvurdering og utvikling til et publiserbart verk, og må balansere forfatterens prosjekt, redaksjonell kvalitet, målgruppe og forlagets faktiske rammer."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til skjonnlitteratur, sakprosa."
+      "Lese og vurdere manus, gi redaksjonelle tilbakemeldinger og planlegge videre bearbeiding.",
+      "Arbeide med forfatteren om struktur, språk, helhet og prosjektets tydelighet uten å overta forfatterstemmen.",
+      "Koordinere bokprosjektet mot produksjon, rettigheter, kommunikasjon og publiseringsplan innen eget mandat."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Gjøre redaksjonelle vurderinger som er begrunnede og etterprøvbare.",
+      "Sikre at forfatteren vet hva som er råd, krav, beslutning og uavklart spørsmål.",
+      "Håndtere upubliserte manus og redaksjonell informasjon konfidensielt.",
+      "Løfte kontrakts-, rettighets- eller fullmaktsspørsmål til riktig ansvarlig funksjon."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som lever i språket. Ord er ikke bare tegn, men dører til erkjennelse."
+      "Forlag eller annen profesjonell bokredaksjon med forfattere, manus, produksjonsfrister og publiseringsbeslutninger."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Redaktøren har redaksjonell innflytelse innen sitt reelle mandat, men Badge-poeng gir ikke automatisk ansettelse, signaturrett eller ubegrenset beslutningsmyndighet."
     ]
   },
   "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
+    "entry_from": ["Redaksjonell erfaring, litterær kompetanse og konkret arbeidsgiveransettelse eller oppdrag."],
+    "progression_to": ["Større redaksjonelt ansvar, redaksjonsledelse eller spesialisering innen sjanger og utgivelsesområde."],
+    "possible_promotions": ["Ansvar for flere titler, større porteføljer eller faglig koordinering."],
+    "possible_exits": ["Andre forlagsroller, litterær formidling, agentarbeid, kritikk eller selvstendig redaksjonell virksomhet."],
+    "career_risks": ["For sterke inngrep i forfatterstemmen, svakt beslutningsgrunnlag, uklare mandatgrenser og kvalitetsfall under kommersielt eller tidsmessig press."]
   },
   "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som lever i språket. Ord er ikke bare tegn, men dører til erkjennelse."
-    ],
-    "history_go_badges": [
-      "litteratur"
-    ],
+    "education_basis": ["Ingen beskyttet tittel modelleres; faktisk arbeidsgiver vurderer relevant utdanning og erfaring."],
+    "skills": ["Nærlesing", "utviklingsredigering", "forfatterdialog", "prosjektprioritering", "redaksjonell dømmekraft"],
+    "category_knowledge": ["Litterære sjangre, manusutvikling, forlagsprosesser, målgrupper, publiseringsløp og grunnleggende rettighetsbevissthet."],
+    "history_go_badges": ["litteratur"],
     "place_connections": [],
     "people_connections": []
   },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
+      "id": "sterkt_manus_svak_markedsforventning",
+      "title": "Sterkt manus, usikkert marked",
+      "description": "Et litterært sterkt prosjekt vurderes som vanskelig å plassere kommersielt.",
+      "pressure": "litteraer_kvalitet_vs_markedsrisiko",
+      "affects": ["quality", "portfolio", "trust"]
+    },
+    {
+      "id": "forfattermotstand",
+      "title": "Uenighet om omskriving",
+      "description": "Du mener en stor strukturell endring er nødvendig, mens forfatteren mener den vil ødelegge prosjektet.",
+      "pressure": "redaksjonell_vurdering_vs_forfatterautonomi",
+      "affects": ["quality", "trust", "schedule"]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
+      "id": "markedsargument_vs_litteraert_prosjekt",
+      "title": "Hva skal boken bli?",
+      "setup": "Interne markedsargumenter peker mot en tydeligere kommersiell form enn det opprinnelige litterære prosjektet.",
+      "choice_axis": "markedsforventning_vs_litteraer_integritet",
+      "consequence_axis": "rekkevidde_vs_tillit",
+      "mail_hooks": ["job", "conflict", "story"]
+    },
+    {
+      "id": "redigering_vs_forfatterstemme",
+      "title": "For langt inn i teksten",
+      "setup": "En effektiv redaksjonell løsning vil gjøre teksten strammere, men også flytte den tydelig bort fra forfatterens egen stemme.",
+      "choice_axis": "redaksjonell_effektivitet_vs_forfatterstemme",
+      "consequence_axis": "kvalitet_vs_eierskap",
+      "mail_hooks": ["job", "people", "conflict"]
     }
   ],
-  "related_people": [],
-  "related_places": [],
+  "authority_boundaries": {
+    "can": [
+      "vurdere og utvikle manus innen redaksjonelt mandat",
+      "gi tydelige redaksjonelle råd og prioriteringer",
+      "koordinere et bokprosjekt gjennom avtalte redaksjonelle steg"
+    ],
+    "cannot": [
+      "love utgivelse, forskudd, rettigheter eller andre vilkår uten fullmakt",
+      "presentere egen smak som objektiv fasit",
+      "skjule vesentlige endringer eller beslutningspremisser for forfatteren"
+    ]
+  },
   "mail_integration": {
     "role_scope": "redaktor_bok",
     "mail_profile": "litteratur_redaktor_bok",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
+    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "followup", "knowledge"],
     "mail_variables": {
       "role_title": "Redaktør (bok)",
       "category": "litteratur",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+      "main_pressure": "litteraer_kvalitet_vs_markedsrisiko",
+      "ethical_axis": "redaksjonell_effektivitet_vs_forfatterstemme",
+      "status_axis": "rekkevidde_vs_tillit"
     },
     "recommended_mail_families": [],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
+  "competence_axes": [
+    {"id":"manusvurdering","label":"Manusvurdering","description":"Se verkets form, potensial og problemer som helhet fremfor å redusere redigering til språkvask."},
+    {"id":"forfatterdialog","label":"Forfatterdialog","description":"Gjøre redaksjonell motstand tydelig uten å viske ut forfatterens eierskap til teksten."},
+    {"id":"portefoljedømmekraft","label":"Porteføljedømmekraft","description":"Vurdere kvalitet, lesere, risiko og forlagets rammer uten å late som ett hensyn alene avgjør alt."}
+  ],
+  "ideal_type_problems": [
+    {"id":"manus_med_potensial","label":"Manus med potensial","description":"Prosjektet er ikke ferdig, men har en tydelig litterær kjerne som kan utvikles."},
+    {"id":"markedspress","label":"Markedspress","description":"Kommersielle hensyn trekker prosjektet i en annen retning enn tekstens opprinnelige idé."}
+  ],
   "notes": [
-    "Basert på badges.json: litteratur / Redaktør (bok)."
+    "Dette er en formell arbeidsrolle i Litteratur-merket. Forfatter, Poet og Dramatiker er separate profesjonelle livsposisjoner og blir ikke automatisk arbeidsgiverjobber."
   ]
 }
