@@ -5,15 +5,15 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const AREA_ID = 'history_comparison';
+const AREA_ID = 'nature_science_ethics';
 const P = Object.freeze({
   readiness: 'data/fag/religion/religion_university_readiness_v1.json',
   methods: 'data/fag/religion/methods_religion_canonical_v1.json',
   sourceRegistry: 'data/fag/religion/kilder_religion_canonical_v1.json',
-  claims: 'data/fagverk/religion/religionshistorie-sammenligning/claims.json',
+  claims: 'data/fagverk/religion/natur-vitenskap-etikk/claims.json',
   articleDir: 'data/fagverk/religion/emneartikler',
   status: 'data/fagverk/subject_status.json',
-  report: 'reports/fagverk/religion-history-comparison-articles-v1-audit.json'
+  report: 'reports/fagverk/religion-nature-science-ethics-articles-v1-audit.json'
 });
 const REQUIRED_FIELDS = Object.freeze([
   'topic_id', 'title', 'definition', 'historical_or_systemic_background',
@@ -26,9 +26,10 @@ const QUALITY_DIMENSIONS = Object.freeze([
   'correctness_evidence', 'coverage_completion', 'editorial_quality',
   'technical_integrity', 'safety_responsibility', 'maintainability_auditability'
 ]);
-const NEW_METHOD_IDS = Object.freeze([
-  'met_religion_historical_source_criticism',
-  'met_religion_material_visual_and_architectural_analysis'
+const REQUIRED_AREA_METHOD_IDS = Object.freeze([
+  'met_religion_comparative_analysis',
+  'met_religion_cognitive_and_experimental_analysis',
+  'met_religion_research_ethics_privacy_and_representation'
 ]);
 const RUNTIME_ROOTS = Object.freeze(['js', 'data/integrations', 'data/historygo', 'data/religion']);
 const abs = (relative) => path.join(ROOT, relative);
@@ -84,7 +85,7 @@ const projection = (report) => ({
   complete: report.complete
 });
 
-export function auditReligionHistoryComparisonArticles({ writeReport = false, checkReport = true } = {}) {
+export function auditReligionNatureScienceEthicsArticles({ writeReport = false, checkReport = true } = {}) {
   for (const file of Object.values(P).filter((file) => file !== P.report)) assert(fs.existsSync(abs(file)), `Mangler ${file}`);
   const readiness = read(P.readiness);
   const methods = read(P.methods);
@@ -98,25 +99,26 @@ export function auditReligionHistoryComparisonArticles({ writeReport = false, ch
   assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady før begrepsporten');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
-  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'History/comparison skal eie seks unike emner');
+  assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'Natur, vitenskap og etikk skal eie seks unike emner');
   assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, Object.keys(readiness.required_topics_by_area)), 'Eksakt tolv Religion-områder skal være artikkelkomplette');
-  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(6, 12), requiredIds), 'Readiness har feil history/comparison-emner');
+  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(66), requiredIds), 'Readiness har feil natur-, vitenskaps- og etikkemner');
   assert(readiness.production_progress.standalone_topic_articles_materialized === 72 && readiness.production_progress.standalone_topic_articles_remaining === 0, 'Religion skal stå på 72/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
-  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'History/comparison-området er ikke korrekt merket komplett');
+  assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'Natur, vitenskap og etikk-området er ikke korrekt merket komplett');
 
   const expectedFiles = requiredIds.map((id) => `${id}.json`).sort();
   const actualFiles = fs.readdirSync(abs(P.articleDir)).filter((file) => requiredIds.includes(file.replace(/\.json$/, ''))).sort();
-  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per history/comparison-emne');
+  assert(isDeepStrictEqual(actualFiles, expectedFiles), 'Mangler eksakt én artikkelfil per natur-, vitenskaps- og etikkemne');
   const articles = actualFiles.map((file) => read(`${P.articleDir}/${file}`));
   assert(isDeepStrictEqual(articles.map((article) => article.topic_id).sort(), [...requiredIds].sort()), 'Artiklene dekker ikke eksakt 6/6 emner');
 
-  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til history/comparison-claims');
+  assert(registry.source_documents.includes(P.claims), 'Religion-kilderegisteret peker ikke til natur-, vitenskaps- og etikkclaims');
   assert(claimsDocument.schema === 'history_go_religion_topic_claims_v1' && claimsDocument.area_id === AREA_ID, 'Claimdokumentet har feil schema eller område');
+  assert(Object.values(claimsDocument.source_policy || {}).every(Boolean), 'Batchens natur-, klima-, vitenskaps-, kognisjons-, helse-, dyre- eller representasjonsvern er ikke låst');
   const sourceById = new Map(claimsDocument.sources.map((source) => [source.id, source]));
   const claimById = new Map(claimsDocument.claims.map((claim) => [claim.id, claim]));
-  assert(sourceById.size === 20, 'History/comparison skal ha 20 unike kilderegistreringer');
-  assert(claimById.size === 36, 'History/comparison skal ha 36 unike claims');
+  assert(sourceById.size === 20, 'Natur, vitenskap og etikk skal ha 20 unike kilderegistreringer');
+  assert(claimById.size === 36, 'Natur, vitenskap og etikk skal ha 36 unike claims');
   assert(claimsDocument.sources.every((source) => /^https:\/\//.test(source.url) && source.publisher && source.author && source.title && source.source_location?.length >= 50), 'En kilde mangler HTTPS eller presis metadata');
   assert(claimsDocument.claims.every((claim) => requiredIds.includes(claim.topic_id) && claim.claim.length >= 100 && claim.source_ids?.every((id) => sourceById.has(id))), 'En claim er for kort, feilplassert eller har uløst kilde');
 
@@ -168,11 +170,11 @@ export function auditReligionHistoryComparisonArticles({ writeReport = false, ch
     assert(genericPatterns.every((pattern) => !pattern.test(text)), `${article.topic_id}: generisk eller essensialiserende formulering funnet`);
   }
 
-  assert(usedClaimIds.size === 36 && [...claimById].every(([id]) => usedClaimIds.has(id)), 'Ikke alle 36 claims er brukt av riktig artikkel');
+  assert(usedClaimIds.size === 36 && [...claimById].every(([id]) => usedClaimIds.has(id)), 'Ikke alle 36 natur-, vitenskaps- og etikkclaims er brukt av riktig artikkel');
   assert(usedSourceIds.size === 20, 'Alle 20 registrerte kilder skal være brukt');
   const canonicalMethods = new Map(methods.methods.map((method) => [method.method_id, method]));
   assert([...usedMethodIds].every((id) => canonicalMethods.get(id)?.university_matrix_status === 'materialized'), 'En brukt metode er uløst eller ikke materialisert');
-  assert(NEW_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'De to nye historiske metodene er ikke materialisert og brukt');
+  assert(REQUIRED_AREA_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'Områdets komparative, kognitive og forskningsetiske metoder er ikke materialisert og brukt');
   assert(readiness.production_progress.required_methods_materialized === 18 && readiness.production_progress.required_methods_remaining === 0, 'Religion skal stå på 18/18 metoder');
 
   const allMaterializedIds = readiness.production_progress.materialized_topic_ids;
@@ -198,37 +200,38 @@ export function auditReligionHistoryComparisonArticles({ writeReport = false, ch
   const runtimeFiles = RUNTIME_ROOTS.flatMap(walk).sort();
   const activationPattern = /data\/fagverk\/religion\/emneartikler|history_go_religion_topic_article_v1/i;
   const runtimeReferences = runtimeFiles.filter((file) => activationPattern.test(fs.readFileSync(abs(file), 'utf8')));
-  assert(runtimeReferences.length === 0, `Religion-artiklene er aktivert i runtime før 72/72: ${runtimeReferences.join(', ')}`);
+  assert(runtimeReferences.length === 0, `Religion-artiklene er aktivert i runtime før begreps- og sluttporten: ${runtimeReferences.join(', ')}`);
 
   const totalEditorialWordCount = Object.values(articleWordCounts).reduce((sum, value) => sum + value, 0);
   const qualityScores = Object.fromEntries(QUALITY_DIMENSIONS.map((dimension) => [dimension, Math.min(...articles.map((article) => article.quality_review.scores[dimension]))]));
   const qualityTotal = Object.values(qualityScores).reduce((sum, value) => sum + value, 0);
-  const complete = articles.length === 6 && usedClaimIds.size === 36 && usedSourceIds.size === 20 && NEW_METHOD_IDS.every((id) => usedMethodIds.has(id)) && qualityTotal >= 27;
+  const complete = articles.length === 6 && usedClaimIds.size === 36 && usedSourceIds.size === 20 && REQUIRED_AREA_METHOD_IDS.every((id) => usedMethodIds.has(id)) && qualityTotal >= 27;
   const report = {
     schema: 'history_go_fagverk_religion_topic_articles_batch_audit_v1',
     version: '1.0.0',
-    status: complete ? 'religion_history_comparison_articles_complete' : 'religion_history_comparison_articles_in_progress',
+    status: complete ? 'religion_nature_science_ethics_articles_complete' : 'religion_nature_science_ethics_articles_in_progress',
     generatedFrom: P,
     subject: { id: 'religion', areaId: AREA_ID, editorialStatus: status.editorialStatus, nextGate: status.nextGate, completeReady: false },
-    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 2, totalUniversityAreaCount: 12, completedTopicCount: 12, totalTopicCount: 72, articleIds: requiredIds },
+    coverage: { requiredArticleCount: 6, materializedArticleCount: articles.length, completedUniversityAreaCount: 12, totalUniversityAreaCount: 12, completedTopicCount: 72, totalTopicCount: 72, articleIds: requiredIds },
     depth: { minimumWordsPerArticle: readiness.topic_article_contract.minimum_editorial_words_per_article, totalEditorialWordCount, articleWordCounts, scenarioCounts },
     evidence: { registeredSourceCount: sourceById.size, registeredClaimCount: claimById.size, usedSourceCount: usedSourceIds.size, usedClaimCount: usedClaimIds.size, allClaimsResolve: true, allSourcesResolve: true },
-    methods: { requiredMethodCount: readiness.required_method_ids.length, materializedRequiredMethodCount: readiness.production_progress.required_methods_materialized, newlyMaterializedMethodIds: NEW_METHOD_IDS, usedMethodIds: [...usedMethodIds].sort() },
+    methods: { requiredMethodCount: readiness.required_method_ids.length, materializedRequiredMethodCount: readiness.production_progress.required_methods_materialized, requiredAreaMethodIds: REQUIRED_AREA_METHOD_IDS, usedMethodIds: [...usedMethodIds].sort() },
     editorial: { allReligionArticleCountReviewed: allArticles.length, exactParagraphDuplicates: 0, maximumFiveGramJaccard: Math.max(...similarities.map((item) => item.score)), pairwiseSimilarities: similarities, runtimeReferences },
     quality: { dimensions: qualityScores, total: qualityTotal, threshold: 27, minimumDimension: 4, criticalFlags: [], conclusion: 'high_quality' },
     gates: {
-      exactSixHistoryComparisonArticles: true,
+      exactSixNatureScienceEthicsArticles: true,
       allArticlesMeetMinimumWordDepth: true,
       allThirtySixClaimsResolveAndAreUsed: true,
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
-      twoNewHistoricalMethodsMaterializedAndLinked: true,
+      comparativeCognitiveAndResearchEthicsMethodsMaterializedAndLinked: true,
       allSeventyTwoReligionArticlesReviewedForEditorialDiversity: true,
+      environmentClimateScienceCognitionHealthAnimalAndFoodBoundariesLocked: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,
       noPrematureAhaRuntimeActivation: true,
       sixDimensionQualityGate29Of30: qualityTotal === 29,
-      religionCompleteReadyRemainsFalse: true
+      religionCompleteReadyRemainsFalseUntilConceptRegistryPasses: true
     },
     complete
   };
@@ -240,14 +243,13 @@ export function auditReligionHistoryComparisonArticles({ writeReport = false, ch
   if (checkReport) assert(isDeepStrictEqual(read(P.report), committed), `${P.report} er utdatert`);
   return { report: committed };
 }
-
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const { report } = auditReligionHistoryComparisonArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
-    console.log(`Religion history/comparison OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
+    const { report } = auditReligionNatureScienceEthicsArticles({ writeReport: args.has('--write-report'), checkReport: !args.has('--write-report') && !args.has('--no-check-report') });
+    console.log(`Religion natur, vitenskap og etikk OK: ${report.coverage.materializedArticleCount}/6 artikler, ${report.depth.totalEditorialWordCount} ord, ${report.evidence.registeredClaimCount} claims, kvalitet ${report.quality.total}/30.`);
   } catch (error) {
-    console.error(`Religion history/comparison FEIL: ${error.message}`);
+    console.error(`Religion natur, vitenskap og etikk FEIL: ${error.message}`);
     process.exitCode = 1;
   }
 }

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditReligionLivedIdentityMigrationArticles } from '../scripts/audit-fagverk-religion-lived-identity-migration-articles-v1.mjs';
 
-test('Religion bevarer levd religion, identitet og migrasjon som område 10 når totalen er 66/72 artikler', () => {
+test('Religion bevarer levd religion, identitet og migrasjon som område 10 når totalen er 72/72 artikler', () => {
   const { report } = auditReligionLivedIdentityMigrationArticles({ checkReport: false });
   assert.equal(report.status, 'religion_lived_identity_migration_articles_complete');
   assert.equal(report.coverage.materializedArticleCount, 6);
@@ -29,11 +29,11 @@ test('Levd religion, identitet og migrasjon har full claim-, kilde-, metode- og 
   assert.ok(Object.values(report.depth.scenarioCounts).every((count) => count >= 2));
 });
 
-test('Alle 66 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
+test('Alle 72 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
   const { report } = auditReligionLivedIdentityMigrationArticles({ checkReport: false });
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.completeReady, false);
-  assert.equal(report.editorial.allReligionArticleCountReviewed, 66);
+  assert.equal(report.editorial.allReligionArticleCountReviewed, 72);
   assert.equal(report.editorial.exactParagraphDuplicates, 0);
   assert.ok(report.editorial.maximumFiveGramJaccard < 0.12);
   assert.equal(report.quality.total, 29);

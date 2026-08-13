@@ -2,12 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditReligionUniversityReadiness } from '../scripts/audit-fagverk-religion-university-readiness.mjs';
 
-test('Religion har en låst universitetsmatrise uten for tidlig complete-status', () => {
+test('Religion har en låst 12/12-matrise uten å hoppe over begrepsporten', () => {
   const { report } = auditReligionUniversityReadiness();
   assert.equal(report.subject.id, 'religion');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'remaining_religion_area_article_production');
-  assert.equal(report.subject.completionGate, 'university_matrix_domain_articles_concepts_sources_and_methods');
+  assert.equal(report.subject.nextGate, 'religion_concept_registry_and_final_completion_audit');
+  assert.equal(report.subject.completionGate, 'canonical_concept_registry_and_final_source_resolution');
   assert.equal(report.subject.completeReady, false);
   assert.deepEqual(report.target, {
     universityAreaCount: 12,
@@ -17,7 +17,7 @@ test('Religion har en låst universitetsmatrise uten for tidlig complete-status'
   });
 });
 
-test('Religion har fullført elleve områder, men forblir låst på 66/72 selv med 18/18 metoder', () => {
+test('Religion har fullført tolv områder og 72/72 artikler, men venter på begrepsregisteret', () => {
   const { report } = auditReligionUniversityReadiness();
   assert.equal(report.areaStatuses.theory_method, 'complete');
   assert.equal(report.areaStatuses.history_comparison, 'complete');
@@ -30,11 +30,13 @@ test('Religion har fullført elleve områder, men forblir låst på 66/72 selv m
   assert.equal(report.areaStatuses.society_politics_law, 'complete');
   assert.equal(report.areaStatuses.lived_identity_migration, 'complete');
   assert.equal(report.areaStatuses.secular_new_media, 'complete');
-  assert.equal(report.gaps.standaloneTopicArticlesMaterialized, 66);
-  assert.equal(report.gaps.standaloneTopicArticlesRemaining, 6);
+  assert.equal(report.areaStatuses.nature_science_ethics, 'complete');
+  assert.equal(report.gaps.standaloneTopicArticlesMaterialized, 72);
+  assert.equal(report.gaps.standaloneTopicArticlesRemaining, 0);
   assert.equal(report.gaps.universityMethodsMaterialized, 18);
   assert.equal(report.gaps.universityMethodsRemaining, 0);
-  assert.equal(report.gates.firstElevenUniversityAreasCompleteAtHighQuality, true);
+  assert.equal(report.gates.allTwelveUniversityAreaArticlesCompleteAtHighQuality, true);
+  assert.equal(report.gates.canonicalConceptRegistryStillRequiredBeforeComplete, true);
   assert.equal(report.subject.completeReady, false);
 });
 

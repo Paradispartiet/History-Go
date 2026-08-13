@@ -65,8 +65,8 @@ export function auditReligionPilot({ writeReport = false, checkReport = true } =
   assert(inventoryEntry?.schemaFamily === 'foundation_v1', 'Religion har feil schemafamilie');
   assert(inventoryEntry?.pilot === true, 'Religion er ikke registrert som fase-2-pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'Religion har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Religion skal stå chapters_in_progress etter første universitetsområde');
-  assert(statusEntry?.nextGate === 'remaining_religion_area_article_production', 'Religion har feil neste port');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Religion skal stå chapters_in_progress til begreps- og sluttporten består');
+  assert(statusEntry?.nextGate === 'religion_concept_registry_and_final_completion_audit', 'Religion har feil neste port');
 
   const source = {};
   for (const field of ['pensum', 'emner', 'fagkart', 'methods']) {

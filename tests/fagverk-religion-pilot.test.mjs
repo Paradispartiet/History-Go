@@ -15,7 +15,7 @@ test('Religion bevarer foundation-piloten under pågående universitetsproduksjo
   assert.equal(report.subject.navigationStatus, 'materialized');
   assert.equal(report.subject.assessmentStatus, 'audited');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'remaining_religion_area_article_production');
+  assert.equal(report.subject.nextGate, 'religion_concept_registry_and_final_completion_audit');
   assert.deepEqual(report.summary, {
     domainCount: 4,
     emneCount: 8,
