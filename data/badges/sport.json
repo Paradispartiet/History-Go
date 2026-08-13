@@ -6,63 +6,22 @@
   "secondaryColor": "#A51E15",
   "image": "bilder/merker/sport.PNG",
   "description": "For kroppen som tenker i bevegelse. Lek er kulturens første språk – og dens siste frihet.",
+  "career_life_evidence": "data/Civication/sportCareerLifeEvidence.json",
   "tiers": [
-    {
-      "label": "Mosjonist",
-      "threshold": 5
-    },
-    {
-      "label": "Aktiv utøver",
-      "threshold": 10
-    },
-    {
-      "label": "Konkurranseutøver",
-      "threshold": 15
-    },
-    {
-      "label": "Klubbspiller",
-      "threshold": 25
-    },
-    {
-      "label": "Eliteseriespiller",
-      "threshold": 40
-    },
-    {
-      "label": "Profesjonell utøver",
-      "threshold": 60
-    },
-    {
-      "label": "Landslagsutøver",
-      "threshold": 85
-    },
-    {
-      "label": "Kaptein",
-      "threshold": 115
-    },
-    {
-      "label": "Trener",
-      "threshold": 150
-    },
-    {
-      "label": "Hovedtrener",
-      "threshold": 190
-    },
-    {
-      "label": "Sportssjef",
-      "threshold": 240
-    },
-    {
-      "label": "Olympisk Mester",
-      "threshold": 300
-    },
-    {
-      "label": "Idrettsstjerne",
-      "threshold": 380
-    },
-    {
-      "label": "Idrettslegende",
-      "threshold": 500
-    }
+    {"label":"Mosjonist","threshold":5,"life_position":{"id":"mosjonist","label":"Mosjonist","kind":"participation_practice","employment_independent":true}},
+    {"label":"Aktiv utøver","threshold":10,"life_position":{"id":"aktiv_utover","label":"Aktiv utøver","kind":"participation_practice","employment_independent":true}},
+    {"label":"Konkurranseutøver","threshold":15,"life_position":{"id":"konkurranseutover","label":"Konkurranseutøver","kind":"competition_practice","employment_independent":true}},
+    {"label":"Klubbspiller","threshold":25,"life_position":{"id":"klubbspiller","label":"Klubbspiller","kind":"club_participation","employment_independent":true}},
+    {"label":"Eliteseriespiller","threshold":40,"life_position":{"id":"eliteseriespiller","label":"Eliteseriespiller","kind":"competition_status","employment_independent":true}},
+    {"label":"Profesjonell utøver","threshold":60,"life_position":{"id":"profesjonell_utover","label":"Profesjonell utøver","kind":"professional_practice","employment_independent":true},"career_unlock":{"title":"Profesjonell utøver","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2}},
+    {"label":"Landslagsutøver","threshold":85,"life_position":{"id":"landslagsutover","label":"Landslagsutøver","kind":"selection_status","employment_independent":true}},
+    {"label":"Kaptein","threshold":115,"life_position":{"id":"kaptein","label":"Kaptein","kind":"team_appointment_status","employment_independent":true}},
+    {"label":"Trener","threshold":150,"career_offer":{"title":"Trener","policy":"qualification_required","qualification_ids":["sport_specific_coaching_qualification_or_employment"],"salary_tier":1}},
+    {"label":"Hovedtrener","threshold":190,"career_offer":{"title":"Hovedtrener","policy":"qualification_required","qualification_ids":["sport_specific_coaching_qualification_or_employment"],"salary_tier":2}},
+    {"label":"Sportssjef","threshold":240,"career_offer":{"title":"Sportssjef","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3}},
+    {"label":"Olympisk Mester","threshold":300,"life_position":{"id":"olympisk_mester","label":"Olympisk Mester","kind":"achievement_status","employment_independent":true}},
+    {"label":"Idrettsstjerne","threshold":380,"life_position":{"id":"idrettsstjerne","label":"Idrettsstjerne","kind":"reputation_status","employment_independent":true}},
+    {"label":"Idrettslegende","threshold":500,"life_position":{"id":"idrettslegende","label":"Idrettslegende","kind":"legacy_status","employment_independent":true}}
   ],
   "sub": [
     "fotball",
@@ -183,116 +142,16 @@
       "type": "concept_badge_group",
       "description": "Organiserte ballsporter og lag-/racketspill.",
       "children": [
-        {
-          "id": "fotball",
-          "name": "Fotball",
-          "type": "sport_badge",
-          "quizFocus": [
-            "lagspill",
-            "baner",
-            "klubber",
-            "fotballhistorie"
-          ]
-        },
-        {
-          "id": "handball",
-          "name": "Håndball",
-          "type": "sport_badge",
-          "quizFocus": [
-            "hallidrett",
-            "hurtige angrep",
-            "lagspill",
-            "kasteteknikk"
-          ]
-        },
-        {
-          "id": "basketball",
-          "name": "Basketball",
-          "type": "sport_badge",
-          "quizFocus": [
-            "kurv",
-            "dribling",
-            "tempo",
-            "lagtaktikk"
-          ]
-        },
-        {
-          "id": "volleyball",
-          "name": "Volleyball",
-          "type": "sport_badge",
-          "quizFocus": [
-            "serve",
-            "mottak",
-            "lagrotasjon",
-            "nettspill"
-          ]
-        },
-        {
-          "id": "tennis",
-          "name": "Tennis",
-          "type": "sport_badge",
-          "quizFocus": [
-            "racket",
-            "serve",
-            "banedekke",
-            "duellspill"
-          ]
-        },
-        {
-          "id": "badminton",
-          "name": "Badminton",
-          "type": "sport_badge",
-          "quizFocus": [
-            "fjærball",
-            "reaksjon",
-            "nettspill",
-            "innendørsarena"
-          ]
-        },
-        {
-          "id": "bordtennis",
-          "name": "Bordtennis",
-          "type": "sport_badge",
-          "quizFocus": [
-            "reaksjon",
-            "presisjon",
-            "spinn",
-            "duellspill"
-          ]
-        },
-        {
-          "id": "innebandy",
-          "name": "Innebandy",
-          "type": "sport_badge",
-          "quizFocus": [
-            "hallspill",
-            "køllekontroll",
-            "høyt tempo",
-            "lagspill"
-          ]
-        },
-        {
-          "id": "rugby",
-          "name": "Rugby",
-          "type": "sport_badge",
-          "quizFocus": [
-            "kontaktspill",
-            "territorium",
-            "lagstruktur",
-            "taktikk"
-          ]
-        },
-        {
-          "id": "baseball_softball",
-          "name": "Baseball/softball",
-          "type": "sport_badge",
-          "quizFocus": [
-            "batting",
-            "pitching",
-            "basebaner",
-            "lagstrategi"
-          ]
-        }
+        {"id":"fotball","name":"Fotball","type":"sport_badge","quizFocus":["lagspill","baner","klubber","fotballhistorie"]},
+        {"id":"handball","name":"Håndball","type":"sport_badge","quizFocus":["hallidrett","hurtige angrep","lagspill","kasteteknikk"]},
+        {"id":"basketball","name":"Basketball","type":"sport_badge","quizFocus":["kurv","dribling","tempo","lagtaktikk"]},
+        {"id":"volleyball","name":"Volleyball","type":"sport_badge","quizFocus":["serve","mottak","lagrotasjon","nettspill"]},
+        {"id":"tennis","name":"Tennis","type":"sport_badge","quizFocus":["racket","serve","banedekke","duellspill"]},
+        {"id":"badminton","name":"Badminton","type":"sport_badge","quizFocus":["fjærball","reaksjon","nettspill","innendørsarena"]},
+        {"id":"bordtennis","name":"Bordtennis","type":"sport_badge","quizFocus":["reaksjon","presisjon","spinn","duellspill"]},
+        {"id":"innebandy","name":"Innebandy","type":"sport_badge","quizFocus":["hallspill","køllekontroll","høyt tempo","lagspill"]},
+        {"id":"rugby","name":"Rugby","type":"sport_badge","quizFocus":["kontaktspill","territorium","lagstruktur","taktikk"]},
+        {"id":"baseball_softball","name":"Baseball/softball","type":"sport_badge","quizFocus":["batting","pitching","basebaner","lagstrategi"]}
       ]
     },
     {
@@ -301,1162 +160,162 @@
       "type": "concept_badge_group",
       "description": "Klassiske idretter, individuelle konkurranseformer og idrettsgrener.",
       "children": [
-        {
-          "id": "friidrett",
-          "name": "Friidrett",
-          "type": "sport_badge",
-          "quizFocus": [
-            "løp",
-            "hopp",
-            "kast",
-            "stadionkultur"
-          ]
-        },
-        {
-          "id": "turn",
-          "name": "Turn",
-          "type": "sport_badge",
-          "quizFocus": [
-            "apparater",
-            "kroppskontroll",
-            "estetikk",
-            "teknikk"
-          ]
-        },
-        {
-          "id": "svomming",
-          "name": "Svømming",
-          "type": "sport_badge",
-          "quizFocus": [
-            "basseng",
-            "teknikk",
-            "utholdenhet",
-            "banesvømming"
-          ]
-        },
-        {
-          "id": "stupe",
-          "name": "Stupe",
-          "type": "sport_badge",
-          "quizFocus": [
-            "hoppanlegg",
-            "presisjon",
-            "rotasjon",
-            "vanninngang"
-          ]
-        },
-        {
-          "id": "roing",
-          "name": "Roing",
-          "type": "sport_badge",
-          "quizFocus": [
-            "åretak",
-            "vannidrett",
-            "lagtak",
-            "utholdenhet"
-          ]
-        },
-        {
-          "id": "padling",
-          "name": "Padling",
-          "type": "sport_badge",
-          "quizFocus": [
-            "kajakk",
-            "balanse",
-            "vannforhold",
-            "teknisk flyt"
-          ]
-        },
-        {
-          "id": "seiling",
-          "name": "Seiling",
-          "type": "sport_badge",
-          "quizFocus": [
-            "vind",
-            "taktikk",
-            "regatta",
-            "nautisk kunnskap"
-          ]
-        },
-        {
-          "id": "golf",
-          "name": "Golf",
-          "type": "sport_badge",
-          "quizFocus": [
-            "slagteknikk",
-            "banedesign",
-            "presisjon",
-            "turnering"
-          ]
-        },
-        {
-          "id": "ridning",
-          "name": "Ridning",
-          "type": "sport_badge",
-          "quizFocus": [
-            "hest",
-            "dressur",
-            "hinder",
-            "stallkultur"
-          ]
-        },
-        {
-          "id": "klatring",
-          "name": "Klatring",
-          "type": "sport_badge",
-          "quizFocus": [
-            "grep",
-            "rutevalg",
-            "sikring",
-            "styrke"
-          ]
-        },
-        {
-          "id": "orientering",
-          "name": "Orientering",
-          "type": "sport_badge",
-          "quizFocus": [
-            "kart",
-            "kompass",
-            "terreng",
-            "rutevalg"
-          ]
-        },
-        {
-          "id": "skyting",
-          "name": "Skyting",
-          "type": "sport_badge",
-          "quizFocus": [
-            "presisjon",
-            "sikkerhet",
-            "pust",
-            "konsentrasjon"
-          ]
-        },
-        {
-          "id": "bueskyting",
-          "name": "Bueskyting",
-          "type": "sport_badge",
-          "quizFocus": [
-            "treffpunkt",
-            "teknikk",
-            "fokus",
-            "kontroll"
-          ]
-        },
-        {
-          "id": "vektlofting",
-          "name": "Vektløfting",
-          "type": "sport_badge",
-          "quizFocus": [
-            "styrke",
-            "teknikk",
-            "rykk",
-            "støt"
-          ]
-        },
-        {
-          "id": "skate",
-          "name": "Skate",
-          "type": "sport_badge",
-          "quizFocus": [
-            "brettkontroll",
-            "triks",
-            "balanse",
-            "urban kultur"
-          ]
-        },
-        {
-          "id": "sykling",
-          "name": "Sykling",
-          "type": "sport_badge",
-          "quizFocus": [
-            "balanse",
-            "rute",
-            "fart",
-            "infrastruktur"
-          ]
-        }
+        {"id":"friidrett","name":"Friidrett","type":"sport_badge","quizFocus":["løp","hopp","kast","stadionkultur"]},
+        {"id":"turn","name":"Turn","type":"sport_badge","quizFocus":["apparater","kroppskontroll","estetikk","teknikk"]},
+        {"id":"svomming","name":"Svømming","type":"sport_badge","quizFocus":["basseng","teknikk","utholdenhet","banesvømming"]},
+        {"id":"stupe","name":"Stupe","type":"sport_badge","quizFocus":["hoppanlegg","presisjon","rotasjon","vanninngang"]},
+        {"id":"roing","name":"Roing","type":"sport_badge","quizFocus":["åretak","vannidrett","lagtak","utholdenhet"]},
+        {"id":"padling","name":"Padling","type":"sport_badge","quizFocus":["kajakk","balanse","vannforhold","teknisk flyt"]},
+        {"id":"seiling","name":"Seiling","type":"sport_badge","quizFocus":["vind","taktikk","regatta","nautisk kunnskap"]},
+        {"id":"golf","name":"Golf","type":"sport_badge","quizFocus":["slagteknikk","banedesign","presisjon","turnering"]},
+        {"id":"ridning","name":"Ridning","type":"sport_badge","quizFocus":["hest","dressur","hinder","stallkultur"]},
+        {"id":"klatring","name":"Klatring","type":"sport_badge","quizFocus":["grep","rutevalg","sikring","styrke"]},
+        {"id":"orientering","name":"Orientering","type":"sport_badge","quizFocus":["kart","kompass","terreng","rutevalg"]},
+        {"id":"skyting","name":"Skyting","type":"sport_badge","quizFocus":["presisjon","sikkerhet","pust","konsentrasjon"]},
+        {"id":"bueskyting","name":"Bueskyting","type":"sport_badge","quizFocus":["treffpunkt","teknikk","fokus","kontroll"]},
+        {"id":"vektlofting","name":"Vektløfting","type":"sport_badge","quizFocus":["styrke","teknikk","rykk","støt"]},
+        {"id":"skate","name":"Skate","type":"sport_badge","quizFocus":["brettkontroll","triks","balanse","urban kultur"]},
+        {"id":"sykling","name":"Sykling","type":"sport_badge","quizFocus":["balanse","rute","fart","infrastruktur"]}
       ]
     },
     {
-      "id": "vinter_og_isidrett",
-      "name": "Vinter- og isidrett",
-      "type": "concept_badge_group",
-      "description": "Snø, is og vinterarenaer.",
-      "children": [
-        {
-          "id": "vintersport",
-          "name": "Vintersport",
-          "type": "sport_badge",
-          "quizFocus": [
-            "snø",
-            "is",
-            "ski",
-            "sesongbruk"
-          ]
-        },
-        {
-          "id": "ski",
-          "name": "Ski",
-          "type": "sport_badge",
-          "quizFocus": [
-            "spor",
-            "teknikk",
-            "utstyr",
-            "vinterkultur"
-          ]
-        },
-        {
-          "id": "alpint",
-          "name": "Alpint",
-          "type": "sport_badge",
-          "quizFocus": [
-            "bakke",
-            "svingteknikk",
-            "fart",
-            "heisanlegg"
-          ]
-        },
-        {
-          "id": "hopp",
-          "name": "Hopp",
-          "type": "sport_badge",
-          "quizFocus": [
-            "hoppbakke",
-            "svev",
-            "tilløp",
-            "landingskurve"
-          ]
-        },
-        {
-          "id": "langrenn",
-          "name": "Langrenn",
-          "type": "sport_badge",
-          "quizFocus": [
-            "spor",
-            "utholdenhet",
-            "teknikk",
-            "smøring"
-          ]
-        },
-        {
-          "id": "skoyter",
-          "name": "Skøyter",
-          "type": "sport_badge",
-          "quizFocus": [
-            "isflate",
-            "runder",
-            "teknikk",
-            "historiske løp"
-          ]
-        },
-        {
-          "id": "kunstlop",
-          "name": "Kunstløp",
-          "type": "sport_badge",
-          "quizFocus": [
-            "koreografi",
-            "is",
-            "teknikk",
-            "dommerpoeng"
-          ]
-        },
-        {
-          "id": "hockey",
-          "name": "Hockey",
-          "type": "sport_badge",
-          "quizFocus": [
-            "isflate",
-            "lagspill",
-            "utstyr",
-            "arenaer"
-          ]
-        },
-        {
-          "id": "bandy",
-          "name": "Bandy",
-          "type": "sport_badge",
-          "quizFocus": [
-            "stor isbane",
-            "lagspill",
-            "tradisjon",
-            "tempo"
-          ]
-        },
-        {
-          "id": "curling",
-          "name": "Curling",
-          "type": "sport_badge",
-          "quizFocus": [
-            "steiner",
-            "kosting",
-            "presisjon",
-            "strategi"
-          ]
-        },
-        {
-          "id": "ake_skeleton_bob",
-          "name": "Ake/skeleton/bob",
-          "type": "sport_badge",
-          "quizFocus": [
-            "isrenne",
-            "fart",
-            "risiko",
-            "vinter-OL"
-          ]
-        }
+      "id":"vinter_og_isidrett",
+      "name":"Vinter- og isidrett",
+      "type":"concept_badge_group",
+      "description":"Snø, is og vinterarenaer.",
+      "children":[
+        {"id":"vintersport","name":"Vintersport","type":"sport_badge","quizFocus":["snø","is","ski","sesongbruk"]},
+        {"id":"ski","name":"Ski","type":"sport_badge","quizFocus":["spor","teknikk","utstyr","vinterkultur"]},
+        {"id":"alpint","name":"Alpint","type":"sport_badge","quizFocus":["bakke","svingteknikk","fart","heisanlegg"]},
+        {"id":"hopp","name":"Hopp","type":"sport_badge","quizFocus":["hoppbakke","svev","tilløp","landingskurve"]},
+        {"id":"langrenn","name":"Langrenn","type":"sport_badge","quizFocus":["spor","utholdenhet","teknikk","smøring"]},
+        {"id":"skoyter","name":"Skøyter","type":"sport_badge","quizFocus":["isflate","runder","teknikk","historiske løp"]},
+        {"id":"kunstlop","name":"Kunstløp","type":"sport_badge","quizFocus":["koreografi","is","teknikk","dommerpoeng"]},
+        {"id":"hockey","name":"Hockey","type":"sport_badge","quizFocus":["isflate","lagspill","utstyr","arenaer"]},
+        {"id":"bandy","name":"Bandy","type":"sport_badge","quizFocus":["stor isbane","lagspill","tradisjon","tempo"]},
+        {"id":"curling","name":"Curling","type":"sport_badge","quizFocus":["steiner","kosting","presisjon","strategi"]},
+        {"id":"ake_skeleton_bob","name":"Ake/skeleton/bob","type":"sport_badge","quizFocus":["isrenne","fart","risiko","vinter-OL"]}
       ]
     },
     {
-      "id": "kampsport_og_kroppskamp",
-      "name": "Kampsport og kroppskamp",
-      "type": "concept_badge_group",
-      "description": "Kampidretter og kroppskamp med egne konkurranseformer.",
-      "children": [
-        {
-          "id": "kampsport",
-          "name": "Kampsport",
-          "type": "sport_badge",
-          "quizFocus": [
-            "teknikk",
-            "regler",
-            "kroppskontroll",
-            "disiplin"
-          ]
-        },
-        {
-          "id": "boksing",
-          "name": "Boksing",
-          "type": "sport_badge",
-          "quizFocus": [
-            "ring",
-            "slagteknikk",
-            "fotarbeid",
-            "vektklasser"
-          ]
-        },
-        {
-          "id": "bryting",
-          "name": "Bryting",
-          "type": "sport_badge",
-          "quizFocus": [
-            "grep",
-            "kast",
-            "matte",
-            "kontroll"
-          ]
-        },
-        {
-          "id": "judo",
-          "name": "Judo",
-          "type": "sport_badge",
-          "quizFocus": [
-            "kast",
-            "balansebrudd",
-            "respekt",
-            "drakt"
-          ]
-        },
-        {
-          "id": "karate",
-          "name": "Karate",
-          "type": "sport_badge",
-          "quizFocus": [
-            "kata",
-            "kumite",
-            "teknikk",
-            "disiplin"
-          ]
-        },
-        {
-          "id": "taekwondo",
-          "name": "Taekwondo",
-          "type": "sport_badge",
-          "quizFocus": [
-            "spark",
-            "poengsystem",
-            "drakt",
-            "hurtighet"
-          ]
-        },
-        {
-          "id": "mma",
-          "name": "MMA",
-          "type": "sport_badge",
-          "quizFocus": [
-            "bur",
-            "kombinasjoner",
-            "grappling",
-            "kondisjon"
-          ]
-        },
-        {
-          "id": "fekting",
-          "name": "Fekting",
-          "type": "sport_badge",
-          "quizFocus": [
-            "klinge",
-            "tempo",
-            "treff",
-            "taktisk duell"
-          ]
-        }
+      "id":"kampsport_og_kroppskamp",
+      "name":"Kampsport og kroppskamp",
+      "type":"concept_badge_group",
+      "description":"Kampidretter og kroppskamp med egne konkurranseformer.",
+      "children":[
+        {"id":"kampsport","name":"Kampsport","type":"sport_badge","quizFocus":["teknikk","regler","kroppskontroll","disiplin"]},
+        {"id":"boksing","name":"Boksing","type":"sport_badge","quizFocus":["ring","slagteknikk","fotarbeid","vektklasser"]},
+        {"id":"bryting","name":"Bryting","type":"sport_badge","quizFocus":["grep","kast","matte","kontroll"]},
+        {"id":"judo","name":"Judo","type":"sport_badge","quizFocus":["kast","balansebrudd","respekt","drakt"]},
+        {"id":"karate","name":"Karate","type":"sport_badge","quizFocus":["kata","kumite","teknikk","disiplin"]},
+        {"id":"taekwondo","name":"Taekwondo","type":"sport_badge","quizFocus":["spark","poengsystem","drakt","hurtighet"]},
+        {"id":"mma","name":"MMA","type":"sport_badge","quizFocus":["bur","kombinasjoner","grappling","kondisjon"]},
+        {"id":"fekting","name":"Fekting","type":"sport_badge","quizFocus":["klinge","tempo","treff","taktisk duell"]}
       ]
     },
     {
-      "id": "motorsport",
-      "name": "Motorsport",
-      "type": "concept_badge_group",
-      "description": "Motoriserte konkurransegrener, baner og klubbmiljø.",
-      "children": [
-        {
-          "id": "motorsport",
-          "name": "Motorsport",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "motor",
-            "bane",
-            "sikkerhet",
-            "konkurranse"
-          ]
-        },
-        {
-          "id": "bilcross",
-          "name": "Bilcross",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "rimelig motorsport",
-            "grusbane",
-            "heat",
-            "lokal klubbkultur"
-          ]
-        },
-        {
-          "id": "rallycross",
-          "name": "Rallycross",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "blandet dekke",
-            "startfelt",
-            "jokerlap",
-            "intensitet"
-          ]
-        },
-        {
-          "id": "rally",
-          "name": "Rally",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "etapper",
-            "kartleser",
-            "veiunderlag",
-            "tidskjøring"
-          ]
-        },
-        {
-          "id": "karting",
-          "name": "Karting",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "lav vekt",
-            "teknikk",
-            "banevalg",
-            "talentutvikling"
-          ]
-        },
-        {
-          "id": "drifting",
-          "name": "Drifting",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "sladd",
-            "vinkel",
-            "dekkgrep",
-            "dommerlinje"
-          ]
-        },
-        {
-          "id": "drag_racing",
-          "name": "Drag racing",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "rettstrekke",
-            "reaksjon",
-            "akselerasjon",
-            "startlys"
-          ]
-        },
-        {
-          "id": "crosskart",
-          "name": "Crosskart",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "lett chassis",
-            "grusbane",
-            "ungdomsrekruttering",
-            "heat"
-          ]
-        },
-        {
-          "id": "racingbane",
-          "name": "Racingbane",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "asfalt",
-            "svingkombinasjoner",
-            "rundetid",
-            "sikkerhetssoner"
-          ]
-        },
-        {
-          "id": "motocross",
-          "name": "Motocross",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "jordbane",
-            "motorsykkel",
-            "hopp",
-            "teknisk kjøring"
-          ]
-        },
-        {
-          "id": "enduro",
-          "name": "Enduro",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "skogsterreng",
-            "langløp",
-            "utholdenhet",
-            "navigasjon"
-          ]
-        },
-        {
-          "id": "trial",
-          "name": "Trial",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "balanse",
-            "hinder",
-            "lav fart",
-            "presisjon"
-          ]
-        },
-        {
-          "id": "speedway",
-          "name": "Speedway",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "ovalbane",
-            "sladd",
-            "start",
-            "heat"
-          ]
-        },
-        {
-          "id": "isracing",
-          "name": "Isracing",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "piggdekk",
-            "isflate",
-            "kontroll",
-            "vintermotor"
-          ]
-        },
-        {
-          "id": "motorsportklubb",
-          "name": "Motorsportklubb",
-          "type": "motorsport_badge",
-          "quizFocus": [
-            "frivillighet",
-            "mekkemiljø",
-            "arrangement",
-            "rekruttering"
-          ]
-        }
+      "id":"motorsport",
+      "name":"Motorsport",
+      "type":"concept_badge_group",
+      "description":"Motoriserte konkurransegrener, baner og klubbmiljø.",
+      "children":[
+        {"id":"motorsport","name":"Motorsport","type":"motorsport_badge","quizFocus":["motor","bane","sikkerhet","konkurranse"]},
+        {"id":"bilcross","name":"Bilcross","type":"motorsport_badge","quizFocus":["rimelig motorsport","grusbane","heat","lokal klubbkultur"]},
+        {"id":"rallycross","name":"Rallycross","type":"motorsport_badge","quizFocus":["blandet dekke","startfelt","jokerlap","intensitet"]},
+        {"id":"rally","name":"Rally","type":"motorsport_badge","quizFocus":["etapper","kartleser","veiunderlag","tidskjøring"]},
+        {"id":"karting","name":"Karting","type":"motorsport_badge","quizFocus":["lav vekt","teknikk","banevalg","talentutvikling"]},
+        {"id":"drifting","name":"Drifting","type":"motorsport_badge","quizFocus":["sladd","vinkel","dekkgrep","dommerlinje"]},
+        {"id":"drag_racing","name":"Drag racing","type":"motorsport_badge","quizFocus":["rettstrekke","reaksjon","akselerasjon","startlys"]},
+        {"id":"crosskart","name":"Crosskart","type":"motorsport_badge","quizFocus":["lett chassis","grusbane","ungdomsrekruttering","heat"]},
+        {"id":"racingbane","name":"Racingbane","type":"motorsport_badge","quizFocus":["asfalt","svingkombinasjoner","rundetid","sikkerhetssoner"]},
+        {"id":"motocross","name":"Motocross","type":"motorsport_badge","quizFocus":["jordbane","motorsykkel","hopp","teknisk kjøring"]},
+        {"id":"enduro","name":"Enduro","type":"motorsport_badge","quizFocus":["skogsterreng","langløp","utholdenhet","navigasjon"]},
+        {"id":"trial","name":"Trial","type":"motorsport_badge","quizFocus":["balanse","hinder","lav fart","presisjon"]},
+        {"id":"speedway","name":"Speedway","type":"motorsport_badge","quizFocus":["ovalbane","sladd","start","heat"]},
+        {"id":"isracing","name":"Isracing","type":"motorsport_badge","quizFocus":["piggdekk","isflate","kontroll","vintermotor"]},
+        {"id":"motorsportklubb","name":"Motorsportklubb","type":"motorsport_badge","quizFocus":["frivillighet","mekkemiljø","arrangement","rekruttering"]}
       ]
     },
     {
-      "id": "arenaer_og_anlegg",
-      "name": "Arenaer og anlegg",
-      "type": "concept_badge_group",
-      "description": "Idrettsanlegg, banetyper og stedsspesifikke arenaformer.",
-      "children": [
-        {
-          "id": "idrettsarenaer",
-          "name": "Idrettsarenaer",
-          "type": "place_badge",
-          "quizFocus": [
-            "stadion",
-            "bane",
-            "publikum",
-            "idrettsgeografi"
-          ]
-        },
-        {
-          "id": "stadion",
-          "name": "Stadion",
-          "type": "place_badge",
-          "quizFocus": [
-            "tribuner",
-            "kapasitet",
-            "kampdag",
-            "landemerke"
-          ]
-        },
-        {
-          "id": "idrettshall",
-          "name": "Idrettshall",
-          "type": "place_badge",
-          "quizFocus": [
-            "innendørsidrett",
-            "flerbruk",
-            "lokalidrett",
-            "publikum"
-          ]
-        },
-        {
-          "id": "svommehall",
-          "name": "Svømmehall",
-          "type": "place_badge",
-          "quizFocus": [
-            "basseng",
-            "svømmetrening",
-            "anlegg",
-            "publikum"
-          ]
-        },
-        {
-          "id": "isbane",
-          "name": "Isbane",
-          "type": "place_badge",
-          "quizFocus": [
-            "isflate",
-            "sesongdrift",
-            "istid",
-            "lokal bruk"
-          ]
-        },
-        {
-          "id": "kunstgressbane",
-          "name": "Kunstgressbane",
-          "type": "place_badge",
-          "quizFocus": [
-            "underlag",
-            "helårsbruk",
-            "fotball",
-            "drift"
-          ]
-        },
-        {
-          "id": "grusbane",
-          "name": "Grusbane",
-          "type": "place_badge",
-          "quizFocus": [
-            "grusunderlag",
-            "lokalidrett",
-            "historisk baneform",
-            "slitasje"
-          ]
-        },
-        {
-          "id": "tennisbane",
-          "name": "Tennisbane",
-          "type": "place_badge",
-          "quizFocus": [
-            "racketidrett",
-            "banedekke",
-            "nett",
-            "single/double"
-          ]
-        },
-        {
-          "id": "skatepark",
-          "name": "Skatepark",
-          "type": "place_badge",
-          "quizFocus": [
-            "ramper",
-            "urban idrett",
-            "miljø",
-            "triks"
-          ]
-        },
-        {
-          "id": "treningssenter",
-          "name": "Treningssenter",
-          "type": "place_badge",
-          "quizFocus": [
-            "apparater",
-            "styrke",
-            "kondisjon",
-            "hverdagsaktivitet"
-          ]
-        },
-        {
-          "id": "naermiljoanlegg",
-          "name": "Nærmiljøanlegg",
-          "type": "place_badge",
-          "quizFocus": [
-            "lavterskel",
-            "nabolag",
-            "flerbruk",
-            "aktivitet"
-          ]
-        },
-        {
-          "id": "klubbhus",
-          "name": "Klubbhus",
-          "type": "place_badge",
-          "quizFocus": [
-            "møteplass",
-            "frivillighet",
-            "klubbdrift",
-            "lokalmiljø"
-          ]
-        },
-        {
-          "id": "tribune_og_publikum",
-          "name": "Tribune og publikum",
-          "type": "culture_badge",
-          "quizFocus": [
-            "supportere",
-            "kampdag",
-            "stemning",
-            "felleskap"
-          ]
-        },
-        {
-          "id": "olympiske_spor",
-          "name": "Olympiske spor",
-          "type": "history_badge",
-          "quizFocus": [
-            "olympisk historie",
-            "arrangement",
-            "minnespor",
-            "internasjonal idrett"
-          ]
-        }
+      "id":"arenaer_og_anlegg",
+      "name":"Arenaer og anlegg",
+      "type":"concept_badge_group",
+      "description":"Idrettsanlegg, banetyper og stedsspesifikke arenaformer.",
+      "children":[
+        {"id":"idrettsarenaer","name":"Idrettsarenaer","type":"place_badge","quizFocus":["stadion","bane","publikum","idrettsgeografi"]},
+        {"id":"stadion","name":"Stadion","type":"place_badge","quizFocus":["tribuner","kapasitet","kampdag","landemerke"]},
+        {"id":"idrettshall","name":"Idrettshall","type":"place_badge","quizFocus":["innendørsidrett","flerbruk","lokalidrett","publikum"]},
+        {"id":"svommehall","name":"Svømmehall","type":"place_badge","quizFocus":["basseng","svømmetrening","anlegg","publikum"]},
+        {"id":"isbane","name":"Isbane","type":"place_badge","quizFocus":["isflate","sesongdrift","istid","lokal bruk"]},
+        {"id":"kunstgressbane","name":"Kunstgressbane","type":"place_badge","quizFocus":["underlag","helårsbruk","fotball","drift"]},
+        {"id":"grusbane","name":"Grusbane","type":"place_badge","quizFocus":["grusunderlag","lokalidrett","historisk baneform","slitasje"]},
+        {"id":"tennisbane","name":"Tennisbane","type":"place_badge","quizFocus":["racketidrett","banedekke","nett","single/double"]},
+        {"id":"skatepark","name":"Skatepark","type":"place_badge","quizFocus":["ramper","urban idrett","miljø","triks"]},
+        {"id":"treningssenter","name":"Treningssenter","type":"place_badge","quizFocus":["apparater","styrke","kondisjon","hverdagsaktivitet"]},
+        {"id":"naermiljoanlegg","name":"Nærmiljøanlegg","type":"place_badge","quizFocus":["lavterskel","nabolag","flerbruk","aktivitet"]},
+        {"id":"klubbhus","name":"Klubbhus","type":"place_badge","quizFocus":["møteplass","frivillighet","klubbdrift","lokalmiljø"]},
+        {"id":"tribune_og_publikum","name":"Tribune og publikum","type":"culture_badge","quizFocus":["supportere","kampdag","stemning","felleskap"]},
+        {"id":"olympiske_spor","name":"Olympiske spor","type":"history_badge","quizFocus":["olympisk historie","arrangement","minnespor","internasjonal idrett"]}
       ]
     },
     {
-      "id": "lek",
-      "name": "Lek",
-      "type": "concept_badge_group",
-      "description": "Lekeplasser, lekeobjekter, rollelek og barns utforskning i byrom.",
-      "children": [
-        {
-          "id": "lekeplass",
-          "name": "Lekeplass",
-          "type": "place_badge",
-          "quizFocus": [
-            "offentlig rom",
-            "trygghet",
-            "apparatlek",
-            "fri lek"
-          ]
-        },
-        {
-          "id": "huske",
-          "name": "Huske",
-          "type": "play_badge",
-          "quizFocus": [
-            "pendelbevegelse",
-            "rytme",
-            "fart",
-            "balanse"
-          ]
-        },
-        {
-          "id": "sklie",
-          "name": "Sklie",
-          "type": "play_badge",
-          "quizFocus": [
-            "høyde",
-            "friksjon",
-            "fart",
-            "trygghet"
-          ]
-        },
-        {
-          "id": "klatrestativ",
-          "name": "Klatrestativ",
-          "type": "play_badge",
-          "quizFocus": [
-            "grep",
-            "koordinasjon",
-            "romforståelse",
-            "risikovurdering"
-          ]
-        },
-        {
-          "id": "sandkasse",
-          "name": "Sandkasse",
-          "type": "play_badge",
-          "quizFocus": [
-            "materiallek",
-            "bygging",
-            "form",
-            "fantasi"
-          ]
-        },
-        {
-          "id": "lekeborg",
-          "name": "Lekeborg",
-          "type": "play_badge",
-          "quizFocus": [
-            "temalekeplass",
-            "rom",
-            "rollelek",
-            "fortelling"
-          ]
-        },
-        {
-          "id": "fabeldyr",
-          "name": "Fabeldyr",
-          "type": "play_badge",
-          "quizFocus": [
-            "symbolsk form",
-            "fantasi",
-            "fortelling",
-            "stedskarakter"
-          ]
-        },
-        {
-          "id": "lekehus",
-          "name": "Lekehus",
-          "type": "play_badge",
-          "quizFocus": [
-            "rollelek",
-            "rom",
-            "symbolsk lek",
-            "sosiale regler"
-          ]
-        },
-        {
-          "id": "balanse",
-          "name": "Balanse",
-          "type": "play_badge",
-          "quizFocus": [
-            "tyngdepunkt",
-            "underlag",
-            "kroppskontroll",
-            "konsentrasjon"
-          ]
-        },
-        {
-          "id": "rollelek",
-          "name": "Rollelek",
-          "type": "play_badge",
-          "quizFocus": [
-            "symbolsk lek",
-            "roller",
-            "fortelling",
-            "sosial forståelse"
-          ]
-        },
-        {
-          "id": "sanselek",
-          "name": "Sanselek",
-          "type": "play_badge",
-          "quizFocus": [
-            "sansing",
-            "materialitet",
-            "oppmerksomhet",
-            "overflater"
-          ]
-        },
-        {
-          "id": "apent_lekerom",
-          "name": "Åpent lekerom",
-          "type": "place_badge",
-          "quizFocus": [
-            "fri lek",
-            "fleksibilitet",
-            "åpent rom",
-            "byrom"
-          ]
-        }
+      "id":"lek",
+      "name":"Lek",
+      "type":"concept_badge_group",
+      "description":"Lekeplasser, lekeobjekter, rollelek og barns utforskning i byrom.",
+      "children":[
+        {"id":"lekeplass","name":"Lekeplass","type":"place_badge","quizFocus":["offentlig rom","trygghet","apparatlek","fri lek"]},
+        {"id":"huske","name":"Huske","type":"play_badge","quizFocus":["pendelbevegelse","rytme","fart","balanse"]},
+        {"id":"sklie","name":"Sklie","type":"play_badge","quizFocus":["høyde","friksjon","fart","trygghet"]},
+        {"id":"klatrestativ","name":"Klatrestativ","type":"play_badge","quizFocus":["grep","koordinasjon","romforståelse","risikovurdering"]},
+        {"id":"sandkasse","name":"Sandkasse","type":"play_badge","quizFocus":["materiallek","bygging","form","fantasi"]},
+        {"id":"lekeborg","name":"Lekeborg","type":"play_badge","quizFocus":["temalekeplass","rom","rollelek","fortelling"]},
+        {"id":"fabeldyr","name":"Fabeldyr","type":"play_badge","quizFocus":["symbolsk form","fantasi","fortelling","stedskarakter"]},
+        {"id":"lekehus","name":"Lekehus","type":"play_badge","quizFocus":["rollelek","rom","symbolsk lek","sosiale regler"]},
+        {"id":"balanse","name":"Balanse","type":"play_badge","quizFocus":["tyngdepunkt","underlag","kroppskontroll","konsentrasjon"]},
+        {"id":"rollelek","name":"Rollelek","type":"play_badge","quizFocus":["symbolsk lek","roller","fortelling","sosial forståelse"]},
+        {"id":"sanselek","name":"Sanselek","type":"play_badge","quizFocus":["sansing","materialitet","oppmerksomhet","overflater"]},
+        {"id":"apent_lekerom","name":"Åpent lekerom","type":"place_badge","quizFocus":["fri lek","fleksibilitet","åpent rom","byrom"]}
       ]
     },
     {
-      "id": "trening",
-      "name": "Trening",
-      "type": "concept_badge_group",
-      "description": "Treningsformer, intensitet og byrom som treningsinfrastruktur.",
-      "children": [
-        {
-          "id": "trappelop",
-          "name": "Trappeløp",
-          "type": "training_badge",
-          "quizFocus": [
-            "trapper",
-            "stigning",
-            "intensitet",
-            "kondisjon"
-          ]
-        },
-        {
-          "id": "bakkeintervall",
-          "name": "Bakkeintervall",
-          "type": "training_badge",
-          "quizFocus": [
-            "stigning",
-            "puls",
-            "belastning",
-            "intervall"
-          ]
-        },
-        {
-          "id": "mobilitet",
-          "name": "Mobilitet",
-          "type": "training_badge",
-          "quizFocus": [
-            "leddutslag",
-            "bevegelighet",
-            "kontroll",
-            "kroppsbevissthet"
-          ]
-        },
-        {
-          "id": "kroppsvekt",
-          "name": "Kroppsvekt",
-          "type": "training_badge",
-          "quizFocus": [
-            "motstand",
-            "styrke",
-            "egen kropp",
-            "uten utstyr"
-          ]
-        },
-        {
-          "id": "intervall",
-          "name": "Intervall",
-          "type": "training_badge",
-          "quizFocus": [
-            "belastningsperiode",
-            "pause",
-            "intensitet",
-            "utholdenhet"
-          ]
-        },
-        {
-          "id": "jogging",
-          "name": "Jogging",
-          "type": "training_badge",
-          "quizFocus": [
-            "utholdenhet",
-            "tempo",
-            "pust",
-            "varighet"
-          ]
-        },
-        {
-          "id": "parktrening",
-          "name": "Parktrening",
-          "type": "training_badge",
-          "quizFocus": [
-            "byrom",
-            "parkterreng",
-            "lavterskel",
-            "treningsinfrastruktur"
-          ]
-        },
-        {
-          "id": "terrengtrening",
-          "name": "Terrengtrening",
-          "type": "training_badge",
-          "quizFocus": [
-            "terreng",
-            "rutevalg",
-            "intensitet",
-            "underlag"
-          ]
-        },
-        {
-          "id": "vinterlek",
-          "name": "Vinterlek",
-          "type": "training_badge",
-          "quizFocus": [
-            "vinterbruk",
-            "snø",
-            "is",
-            "underlag"
-          ]
-        },
-        {
-          "id": "skatebalanse",
-          "name": "Skatebalanse",
-          "type": "training_badge",
-          "quizFocus": [
-            "balanse",
-            "tyngdepunkt",
-            "rullelinje",
-            "urban aktivitet"
-          ]
-        },
-        {
-          "id": "romlesing",
-          "name": "Romlesing",
-          "type": "training_badge",
-          "quizFocus": [
-            "flyt",
-            "avstand",
-            "turveksling",
-            "sosial rytme"
-          ]
-        },
-        {
-          "id": "koordinasjon",
-          "name": "Koordinasjon",
-          "type": "training_badge",
-          "quizFocus": [
-            "blikk",
-            "kropp",
-            "retning",
-            "balanse"
-          ]
-        },
-        {
-          "id": "styrketrening",
-          "name": "Styrketrening",
-          "type": "training_badge",
-          "quizFocus": [
-            "motstand",
-            "teknikk",
-            "belastning",
-            "progresjon"
-          ]
-        },
-        {
-          "id": "kondisjon",
-          "name": "Kondisjon",
-          "type": "training_badge",
-          "quizFocus": [
-            "utholdenhet",
-            "puls",
-            "varighet",
-            "arbeidskapasitet"
-          ]
-        },
-        {
-          "id": "funksjonell_trening",
-          "name": "Funksjonell trening",
-          "type": "training_badge",
-          "quizFocus": [
-            "helkropp",
-            "bevegelseskjeder",
-            "stabilitet",
-            "hverdagsstyrke"
-          ]
-        },
-        {
-          "id": "utendors_trening",
-          "name": "Utendørs trening",
-          "type": "training_badge",
-          "quizFocus": [
-            "friluft",
-            "lavterskel",
-            "parkanlegg",
-            "allværsbruk"
-          ]
-        }
+      "id":"trening",
+      "name":"Trening",
+      "type":"concept_badge_group",
+      "description":"Treningsformer, intensitet og byrom som treningsinfrastruktur.",
+      "children":[
+        {"id":"trappelop","name":"Trappeløp","type":"training_badge","quizFocus":["trapper","stigning","intensitet","kondisjon"]},
+        {"id":"bakkeintervall","name":"Bakkeintervall","type":"training_badge","quizFocus":["stigning","puls","belastning","intervall"]},
+        {"id":"mobilitet","name":"Mobilitet","type":"training_badge","quizFocus":["leddutslag","bevegelighet","kontroll","kroppsbevissthet"]},
+        {"id":"kroppsvekt","name":"Kroppsvekt","type":"training_badge","quizFocus":["motstand","styrke","egen kropp","uten utstyr"]},
+        {"id":"intervall","name":"Intervall","type":"training_badge","quizFocus":["belastningsperiode","pause","intensitet","utholdenhet"]},
+        {"id":"jogging","name":"Jogging","type":"training_badge","quizFocus":["utholdenhet","tempo","pust","varighet"]},
+        {"id":"parktrening","name":"Parktrening","type":"training_badge","quizFocus":["byrom","parkterreng","lavterskel","treningsinfrastruktur"]},
+        {"id":"terrengtrening","name":"Terrengtrening","type":"training_badge","quizFocus":["terreng","rutevalg","intensitet","underlag"]},
+        {"id":"vinterlek","name":"Vinterlek","type":"training_badge","quizFocus":["vinterbruk","snø","is","underlag"]},
+        {"id":"skatebalanse","name":"Skatebalanse","type":"training_badge","quizFocus":["balanse","tyngdepunkt","rullelinje","urban aktivitet"]},
+        {"id":"romlesing","name":"Romlesing","type":"training_badge","quizFocus":["flyt","avstand","turveksling","sosial rytme"]},
+        {"id":"koordinasjon","name":"Koordinasjon","type":"training_badge","quizFocus":["blikk","kropp","retning","balanse"]},
+        {"id":"styrketrening","name":"Styrketrening","type":"training_badge","quizFocus":["motstand","teknikk","belastning","progresjon"]},
+        {"id":"kondisjon","name":"Kondisjon","type":"training_badge","quizFocus":["utholdenhet","puls","varighet","arbeidskapasitet"]},
+        {"id":"funksjonell_trening","name":"Funksjonell trening","type":"training_badge","quizFocus":["helkropp","bevegelseskjeder","stabilitet","hverdagsstyrke"]},
+        {"id":"utendors_trening","name":"Utendørs trening","type":"training_badge","quizFocus":["friluft","lavterskel","parkanlegg","allværsbruk"]}
       ]
     },
     {
-      "id": "idrettskultur",
-      "name": "Idrettskultur",
-      "type": "concept_badge_group",
-      "description": "Klubber, supportere, organisering og historiske idrettsarrangementer.",
-      "children": [
-        {
-          "id": "idrettslag",
-          "name": "Idrettslag",
-          "type": "culture_badge",
-          "quizFocus": [
-            "lokal klubb",
-            "organisering",
-            "rekruttering",
-            "dugnad"
-          ]
-        },
-        {
-          "id": "supporterkultur",
-          "name": "Supporterkultur",
-          "type": "culture_badge",
-          "quizFocus": [
-            "tribuneliv",
-            "sanger",
-            "identitet",
-            "rivalisering"
-          ]
-        },
-        {
-          "id": "lokalidrett",
-          "name": "Lokalidrett",
-          "type": "culture_badge",
-          "quizFocus": [
-            "nabolag",
-            "breddeidrett",
-            "anlegg",
-            "frivillig innsats"
-          ]
-        },
-        {
-          "id": "mesterskap",
-          "name": "Mesterskap",
-          "type": "history_badge",
-          "quizFocus": [
-            "finaler",
-            "historiske øyeblikk",
-            "arrangør",
-            "trofeer"
-          ]
-        },
-        {
-          "id": "turneringer",
-          "name": "Turneringer",
-          "type": "history_badge",
-          "quizFocus": [
-            "kampoppsett",
-            "deltakelse",
-            "progresjon",
-            "finalespill"
-          ]
-        },
-        {
-          "id": "idrettshistorie",
-          "name": "Idrettshistorie",
-          "type": "history_badge",
-          "quizFocus": [
-            "historiske spor",
-            "epoker",
-            "idrettsminner",
-            "utvikling"
-          ]
-        },
-        {
-          "id": "idrettspolitikk",
-          "name": "Idrettspolitikk",
-          "type": "culture_badge",
-          "quizFocus": [
-            "anleggsprioritering",
-            "forbund",
-            "kommunal styring",
-            "fordeling"
-          ]
-        },
-        {
-          "id": "frivillighet",
-          "name": "Frivillighet",
-          "type": "culture_badge",
-          "quizFocus": [
-            "dugnad",
-            "arrangementsdrift",
-            "lokalmiljø",
-            "felles innsats"
-          ]
-        }
+      "id":"idrettskultur",
+      "name":"Idrettskultur",
+      "type":"concept_badge_group",
+      "description":"Klubber, supportere, organisering og historiske idrettsarrangementer.",
+      "children":[
+        {"id":"idrettslag","name":"Idrettslag","type":"culture_badge","quizFocus":["lokal klubb","organisering","rekruttering","dugnad"]},
+        {"id":"supporterkultur","name":"Supporterkultur","type":"culture_badge","quizFocus":["tribuneliv","sanger","identitet","rivalisering"]},
+        {"id":"lokalidrett","name":"Lokalidrett","type":"culture_badge","quizFocus":["nabolag","breddeidrett","anlegg","frivillig innsats"]},
+        {"id":"mesterskap","name":"Mesterskap","type":"history_badge","quizFocus":["finaler","historiske øyeblikk","arrangør","trofeer"]},
+        {"id":"turneringer","name":"Turneringer","type":"history_badge","quizFocus":["kampoppsett","deltakelse","progresjon","finalespill"]},
+        {"id":"idrettshistorie","name":"Idrettshistorie","type":"history_badge","quizFocus":["historiske spor","epoker","idrettsminner","utvikling"]},
+        {"id":"idrettspolitikk","name":"Idrettspolitikk","type":"culture_badge","quizFocus":["anleggsprioritering","forbund","kommunal styring","fordeling"]},
+        {"id":"frivillighet","name":"Frivillighet","type":"culture_badge","quizFocus":["dugnad","arrangementsdrift","lokalmiljø","felles innsats"]}
       ]
     }
   ]
