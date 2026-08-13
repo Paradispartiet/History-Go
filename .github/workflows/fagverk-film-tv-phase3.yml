@@ -201,9 +201,7 @@ jobs:
           node scripts/brief-film-tv-documentary-evidence-ethics-sources-v1.mjs
           node scripts/materialize-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
           node scripts/audit-film-tv-documentary-evidence-ethics-fulltext-v1.mjs
-          node scripts/brief-film-tv-representation-position-counterimages-sources-v1.mjs
-          node scripts/materialize-film-tv-representation-position-counterimages-fulltext-v1.mjs
-          node scripts/audit-film-tv-representation-position-counterimages-fulltext-v1.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk and Film og TV contracts
         run: |
@@ -228,6 +226,5 @@ jobs:
           node --test tests/film-tv-television-platforms-participation-fulltext-v1.test.mjs
           node --test tests/film-tv-documentary-evidence-ethics-source-brief-v1.test.mjs
           node --test tests/film-tv-documentary-evidence-ethics-fulltext-v1.test.mjs
-          node --test tests/film-tv-representation-position-counterimages-source-brief-v1.test.mjs
-          node --test tests/film-tv-representation-position-counterimages-fulltext-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
