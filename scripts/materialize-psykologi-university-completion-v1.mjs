@@ -220,9 +220,9 @@ function articleFor(emne) {
     ]),
     definition: `${emne.title} undersøker ${seed[0]}. ${claimText(0)} Faglig grense: ${curation.boundary}`,
     background: [
-      `Historisk premiss: ${claimText(0)} Emnespørsmål: ${seed[0]}.`,
-      `Teoretisk spenning: ${claimText(1)} Redaksjonell kontrast: ${seed[1]}.`,
-      `Evidensgrense: ${evidenceClaim.claim} Avgrensning: ${curation.boundary}`
+      `Historisk premiss: ${claimText(0)} Emnespørsmålet er ${seed[0]}. For ${emne.title.toLocaleLowerCase('nb-NO')} må teoriens historiske form, måleinstrument og faglige institusjon dateres før eldre funn overføres til dagens begrepsbruk. Sammenligningen skal oppgi populasjon, analyseenhet og hvilke observasjoner som kunne motsagt forklaringen.`,
+      `Teoretisk spenning: ${claimText(1)} Redaksjonell kontrast: ${seed[1]}. Posisjonene må formuleres som konkurrerende forventninger til samme utfall, ikke som to navn på samme mønster. Operasjonalisering, tidsrom, modererende betingelser og måleusikkerhet skal framgå før én posisjon vurderes som bedre støttet.`,
+      `Evidensgrense: ${evidenceClaim.claim} Avgrensning: ${curation.boundary} Artikkelen skiller korrelasjon, tidsorden og kausal mekanisme og beskriver hva datagrunnlaget ikke kan avgjøre. Generalisering til andre grupper, institusjoner eller historiske perioder krever ny dokumentasjon av mål, kontekst og mulige skadevirkninger.`
     ],
     theories_and_findings: [
       { title: curation.models[0].name, content: `Kildestøtte: ${modelClaims[0].claim} ${curation.models[0].name} belyser ${seed[0]}. Rekkevidde: ${curation.boundary}`, claim_ids: [modelClaims[0].id], source_ids: modelClaims[0].source_ids },
