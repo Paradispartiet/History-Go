@@ -1,120 +1,15 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "subkultur",
-    "badge_name": "Subkultur",
-    "tier_label": "Undergrunnsikon",
-    "tier_threshold": 210
-  },
-  "category": "subkultur",
-  "role_scope": "undergrunnsikon",
-  "role_id": "subkultur_undergrunnsikon",
-  "title": "Undergrunnsikon",
-  "core_narrative": [
-    "I Civication er Undergrunnsikon en praktisk rolle i Subkultur der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til punk, hiphop."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "history_go_badges": [
-      "subkultur"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "undergrunnsikon",
-    "mail_profile": "subkultur_undergrunnsikon",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Undergrunnsikon",
-      "category": "subkultur",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: subkultur / Undergrunnsikon."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/subkultur.json","badge_id":"subkultur","badge_name":"Subkultur","tier_label":"Produksjonsleder","tier_threshold":190,"evidence_file":"data/Civication/subcultureCareerEvidence.json"},
+  "category":"subkultur","role_scope":"subkultur_produksjonsledelse","role_id":"subkultur_produksjonsledelse","title":"Produksjonsleder",
+  "professional_description":["Operativ leder for teknisk og praktisk gjennomføring, bemanning, leverandører, arenaer, sikkerhet, logistikk og produksjonsflyt."],
+  "core_narrative":["Du leder ikke fordi miljøet ser opp til deg; du leder fordi arbeidsgiver har gitt deg et konkret ansvar som må tåle press."],
+  "work_life":{"daily_work":["lede produksjonsmøter","planlegge bemanning og arena","følge leverandører og budsjett","koordinere sikkerhet og publikumsflyt","ta operative beslutninger"],"responsibilities":["trygg gjennomføring","klart mandat","ressursprioritering","avvik og beredskap","arbeidsmiljø"],"work_environment":["festival","større kulturproduksjon","flerarena-arrangement"],"status_position":["Arbeidsgiverutnevnt produksjonsleder; Badge-poeng alene gir ikke denne myndigheten."]},
+  "required_knowledge":{"education_basis":["Konkrete produksjonslederstillinger etterspør relevant utdanning og/eller erfaring; Civication krever eksplisitt arbeidsgiverutnevnelse."],"skills":["produksjonsledelse","bemanning","sikkerhet","anskaffelser","logistikk","budsjett"],"category_knowledge":["festivaldrift","sceneproduksjon","frivillig- og crewkultur"],"history_go_badges":["subkultur"],"place_connections":[],"people_connections":[]},
+  "scope_boundaries":{"may_do":["lede produksjonsgjennomføring innen mandat","fordele ressurser","eskalere og stanse ved sikkerhetsavvik"],"must_not_simulate_as_authority":["hevde ledermandat uten ansettelse/utnevnelse","tilsidesette faglig sikkerhetsansvar","straffe uenighet som manglende scene-lojalitet"]},
+  "challenges":[{"id":"show_must_go_on","title":"Show must go on?","description":"Prestisje og publikumspress kan gjøre det vanskelig å stoppe en utrygg produksjon.","pressure":"leveranse_vs_sikkerhet","affects":["trust","status","risk"]}],
+  "dilemmas":[{"id":"stans_eller_apne","title":"Stans eller åpne","setup":"En kritisk leveranse er forsinket og sikkerhetsbufferen krymper før dørene åpner.","choice_axis":"prestisje_vs_sikkerhetsmargin","consequence_axis":"publikum_vs_risiko","mail_hooks":["job","event","conflict","consequence"]}],
+  "mail_integration":{"role_scope":"subkultur_produksjonsledelse","mail_profile":"subkultur_produksjonsledelse","can_feed_mail_types":["job","story","conflict","event","people","followup","consequence"],"mail_variables":{"role_title":"Produksjonsleder","category":"subkultur","main_pressure":"leveranse_vs_sikkerhet","ethical_axis":"prestisje_vs_sikkerhetsmargin","status_axis":"tillit_vs_risiko"},"recommended_mail_families":["subkultur_produksjonsledelse"],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"ledelse","label":"Ledelse"},{"id":"sikkerhet","label":"Sikkerhet"},{"id":"ressurs","label":"Ressursstyring"}],"ideal_type_problems":[{"id":"leveranse_vs_sikkerhet","label":"Leveranse vs sikkerhet"}],
+  "notes":["Legacy filename retained for manifest stability; canonical title is Produksjonsleder."]
 }

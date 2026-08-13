@@ -1,120 +1,15 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "subkultur",
-    "badge_name": "Subkultur",
-    "tier_label": "Dandy",
-    "tier_threshold": 85
-  },
-  "category": "subkultur",
-  "role_scope": "dandy",
-  "role_id": "subkultur_dandy",
-  "title": "Dandy",
-  "core_narrative": [
-    "I Civication er Dandy en praktisk rolle i Subkultur der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til punk, hiphop."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "history_go_badges": [
-      "subkultur"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "dandy",
-    "mail_profile": "subkultur_dandy",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Dandy",
-      "category": "subkultur",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: subkultur / Dandy."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/subkultur.json","badge_id":"subkultur","badge_name":"Subkultur","tier_label":"Booking- og innholdskoordinator","tier_threshold":85,"evidence_file":"data/Civication/subcultureCareerEvidence.json"},
+  "category":"subkultur","role_scope":"subkultur_program_og_koordinering","role_id":"subkultur_booking_innholdskoordinator","title":"Booking- og innholdskoordinator",
+  "professional_description":["Koordinerer booking, programinnhold, arrangementsavvikling, kommunikasjon og publikumsutvikling."],
+  "core_narrative":["Du bestemmer ikke hva som er ekte subkultur; du bygger en tydelig og forsvarlig vei fra programidé til publikum."],
+  "work_life":{"daily_work":["kontakte artister og produksjoner","holde bookingkalender","koordinere program","lage innhold til kanaler","følge arrangement til gjennomføring"],"responsibilities":["rydde avtalespor","unngå dobbeltbooking","balansere bredde og profil","respektere honorar og arbeidsvilkår"],"work_environment":["kulturhus","konsertarena","festival"],"status_position":["Porteføljekoordinator med programinnflytelse, ikke en kulturell dommer."]},
+  "required_knowledge":{"education_basis":["Kompetansekrav følger konkret arbeidsgiver; rollen er ikke en regulert profesjon."],"skills":["booking","kalenderstyring","innholdsproduksjon","forhandling","publikumsforståelse"],"category_knowledge":["musikk- og klubbmiljø","DIY-kultur","alternative scener"],"history_go_badges":["subkultur"],"place_connections":[],"people_connections":[]},
+  "scope_boundaries":{"may_do":["koordinere booking","forberede avtaler","kommunisere program"],"must_not_simulate_as_authority":["love kontrakt uten fullmakt","bruke privat vennskap som skjult bookingkriterium","framstille hype som dokumentert publikumsetterspørsel"]},
+  "challenges":[{"id":"hype_vs_portefolje","title":"Hvem får datoen?","description":"Kortvarig hype konkurrerer med langsiktig programprofil og rettferdig tilgang.","pressure":"hype_vs_portefolje","affects":["trust","status","money"]}],
+  "dilemmas":[{"id":"full_fredag","title":"Én fredag igjen","setup":"Tre sterke aktører vil ha samme dato; én er nær venn av huset.","choice_axis":"relasjon_vs_programkriterier","consequence_axis":"scene_tillit_vs_favorisering","mail_hooks":["job","people","conflict"]}],
+  "mail_integration":{"role_scope":"subkultur_program_og_koordinering","mail_profile":"subkultur_program_og_koordinering","can_feed_mail_types":["job","story","conflict","event","people","followup"],"mail_variables":{"role_title":"Booking- og innholdskoordinator","category":"subkultur","main_pressure":"hype_vs_portefolje","ethical_axis":"relasjon_vs_programkriterier","status_axis":"scene_tillit_vs_favorisering"},"recommended_mail_families":["subkultur_program_og_koordinering"],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"booking","label":"Booking"},{"id":"programprofil","label":"Programprofil"},{"id":"avtalespor","label":"Avtalespor"}],"ideal_type_problems":[{"id":"hype_vs_portefolje","label":"Hype vs portefølje"}],
+  "notes":["Legacy filename retained for manifest stability; canonical title is Booking- og innholdskoordinator."]
 }

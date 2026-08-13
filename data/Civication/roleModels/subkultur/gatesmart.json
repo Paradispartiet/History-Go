@@ -1,120 +1,15 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "subkultur",
-    "badge_name": "Subkultur",
-    "tier_label": "Gatesmart",
-    "tier_threshold": 25
-  },
-  "category": "subkultur",
-  "role_scope": "gatesmart",
-  "role_id": "subkultur_gatesmart",
-  "title": "Gatesmart",
-  "core_narrative": [
-    "I Civication er Gatesmart en praktisk rolle i Subkultur der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til punk, hiphop."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "history_go_badges": [
-      "subkultur"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "gatesmart",
-    "mail_profile": "subkultur_gatesmart",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Gatesmart",
-      "category": "subkultur",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: subkultur / Gatesmart."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/subkultur.json","badge_id":"subkultur","badge_name":"Subkultur","tier_label":"Kulturmedarbeider","tier_threshold":25,"evidence_file":"data/Civication/subcultureCareerEvidence.json"},
+  "category":"subkultur","role_scope":"subkultur_arrangementsdrift","role_id":"subkultur_kulturmedarbeider","title":"Kulturmedarbeider",
+  "professional_description":["Bred praktisk kulturrolle med arrangement, artist-/frivilligkontakt, enkel kommunikasjon og daglig drift."],
+  "core_narrative":["Du oversetter mellom miljøets energi og den hverdagslige driften som gjør at aktiviteten kan gjentas neste uke."],
+  "work_life":{"daily_work":["planlegge mindre aktiviteter","rigg og vertskap","koordinere frivillige","oppdatere informasjon","følge opp lokale samarbeid"],"responsibilities":["forutsigbar drift","inkluderende kommunikasjon","realistiske løfter","sikker eskalering"],"work_environment":["lokal kulturarena","ungdoms- og aktivitetshus","festival"],"status_position":["Bred operativ rolle med kontaktflate på tvers av miljø og organisasjon."]},
+  "required_knowledge":{"education_basis":["Arbeidsgiverkrav varierer og kan bygge på relevant erfaring eller utdanning."],"skills":["arrangementsdrift","frivilligkoordinering","kommunikasjon","praktisk problemløsning"],"category_knowledge":["subkulturelle møteplasser","selvorganisering","frivillighet"],"history_go_badges":["subkultur"],"place_connections":[],"people_connections":[]},
+  "scope_boundaries":{"may_do":["koordinere mindre aktiviteter","kommunisere program","følge opp frivillige"],"must_not_simulate_as_authority":["love finansiering eller booking uten mandat","bruke sceneidentitet som utvelgelseskriterium uten åpen begrunnelse"]},
+  "challenges":[{"id":"apenhet_vs_miljokjerne","title":"Hvem er huset for?","description":"Kjernen vil ha et tydelig miljø; nye deltakere trenger reell inngang.","pressure":"identitet_vs_tilgang","affects":["trust","status"]}],
+  "dilemmas":[{"id":"frivilligvakten","title":"Frivilligvakten","setup":"De samme få menneskene bærer alltid de tunge vaktene fordi de er mest lojale.","choice_axis":"lojalitet_vs_baerekraft","consequence_axis":"kort_sikt_vs_miljotillit","mail_hooks":["job","people","conflict"]}],
+  "mail_integration":{"role_scope":"subkultur_arrangementsdrift","mail_profile":"subkultur_arrangementsdrift","can_feed_mail_types":["job","story","conflict","event","people","followup"],"mail_variables":{"role_title":"Kulturmedarbeider","category":"subkultur","main_pressure":"identitet_vs_tilgang","ethical_axis":"lojalitet_vs_baerekraft","status_axis":"miljotillit_vs_drift"},"recommended_mail_families":["subkultur_arrangementsdrift"],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"drift","label":"Drift"},{"id":"frivillighet","label":"Frivillighet"},{"id":"inkludering","label":"Inkludering"}],"ideal_type_problems":[{"id":"identitet_vs_tilgang","label":"Identitet vs tilgang"}],
+  "notes":["Legacy filename retained for manifest stability; canonical title is Kulturmedarbeider."]
 }
