@@ -93,7 +93,8 @@
     host.appendChild(block);
 
     block.querySelector("#civiLifePositionSelect")?.addEventListener("change", (event) => {
-      const parsed = decodeChoice(event?.target?.value);
+      const select = /** @type {HTMLSelectElement|null} */ (event.currentTarget);
+      const parsed = decodeChoice(select?.value);
       if (!parsed?.badge_id || !parsed?.label) return;
       const result = api.activate(parsed.badge_id, parsed.label);
       if (!result?.ok) return;
