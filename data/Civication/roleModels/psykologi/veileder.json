@@ -2,119 +2,97 @@
   "schema": "civication_role_model_v1",
   "version": 1,
   "source": {
-    "badge_file": "data/badges.json",
+    "badge_file": "data/badges/psykologi.json",
     "badge_id": "psykologi",
     "badge_name": "Psykologi",
     "tier_label": "Veileder",
-    "tier_threshold": 40
+    "tier_threshold": 40,
+    "evidence_file": "data/Civication/psychologyGuidanceEvidence.json"
   },
   "category": "psykologi",
-  "role_scope": "veileder",
+  "role_scope": "psykologi_arbeids_og_karriereveiledning",
   "role_id": "psykologi_veileder",
   "title": "Veileder",
   "core_narrative": [
-    "I Civication er Veileder en praktisk rolle i Psykologi der valg former tillit, handlingsrom og status."
+    "Veileder-tieret representerer dokumentert jobb- og arbeidsrettet veiledning: kartlegging, motivasjon, mål, handlingsplaner og konkret oppfølging mot arbeid eller utdanning.",
+    "Psykologikunnskap brukes til å forstå motivasjon, mestring, beslutninger og autonomi, aldri som erstatning for klinisk kompetanse."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til kognitiv psykologi, sosialpsykologi."
+      "avklare hva personen ønsker hjelp til",
+      "kartlegge interesser, erfaring, kompetanse og ressurser sammen",
+      "lage konkrete neste steg og følge dem opp",
+      "støtte jobbsøking og kontakt med arbeidsgivere",
+      "samarbeide med NAV og andre relevante fagpersoner innenfor mandat"
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "styrke veisøkerens eierskap til mål og valg",
+      "holde kartlegging utforskende og etterprøvbar",
+      "skille veiledning fra diagnose, behandling og klinisk vurdering",
+      "ivareta samtykke og personvern i samarbeid med andre"
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
+      "Arbeidsinkludering, NAV-nære tjenester, karrieresentre og andre veiledningsmiljøer."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Du har mer prosess- og systemkunnskap enn veisøkeren, men ingen rett til å eie målet deres."
     ]
   },
   "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
+    "entry_from": ["Relevant førstelinje- eller oppfølgingserfaring kan være nyttig."],
+    "progression_to": ["Rådgiver-tieret i samme Civication-jobbfamilie."],
+    "possible_promotions": ["større ansvar for oppfølging, arbeidsgiverdialog og komplekse overganger"],
+    "possible_exits": ["andre roller innen arbeidsinkludering, HR, rådgivning eller utdanningssektor"],
+    "career_risks": ["å gjøre et godt råd til styring", "å tolke lav framdrift som lav motivasjon uten å undersøke hvorfor"]
   },
   "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
-    ],
-    "history_go_badges": [
-      "psykologi"
-    ],
+    "education_basis": ["Utdanningsbakgrunn varierer; Badge-poeng er ikke en formell grad eller klinisk kvalifikasjon."],
+    "skills": ["aktiv lytting", "åpne spørsmål", "målavklaring", "handlingsplan", "arbeidsmarkedsorientering", "samtykkeavklaring"],
+    "category_knowledge": ["motivasjon", "mestring", "autonomi", "beslutninger", "relasjoner"],
+    "history_go_badges": ["psykologi"],
     "place_connections": [],
     "people_connections": []
   },
+  "scope_boundary": {
+    "can": ["kartlegge sammen", "motivere", "støtte jobbsøking", "lage handlingsplan sammen", "samarbeide innenfor mandat"],
+    "cannot": ["diagnostisere", "drive psykoterapi", "gjøre klinisk arbeidsevnevurdering", "bestemme valg for veisøkeren", "dele sensitive opplysninger uten grunnlag eller avklart samtykke"]
+  },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
+      "id": "maalet_som_ikke_er_ditt",
+      "title": "Målet som ikke er ditt",
+      "description": "Systemet trenger et mål før personen selv er sikker på retningen.",
+      "pressure": "autonomi_vs_styring",
+      "affects": ["trust", "status", "risk"]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
+      "id": "hjelp_eller_styring",
+      "title": "Hjelp eller styring",
+      "setup": "Du ser et realistisk neste steg før veisøkeren selv er overbevist.",
+      "choice_axis": "utforske_vs_bestemme",
+      "consequence_axis": "eierskap_vs_framdrift",
+      "mail_hooks": ["job", "people", "followup"]
     }
   ],
   "related_people": [],
   "related_places": [],
   "mail_integration": {
-    "role_scope": "veileder",
-    "mail_profile": "psykologi_veileder",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
+    "role_scope": "psykologi_arbeids_og_karriereveiledning",
+    "mail_profile": "psykologi_karriereveileder",
+    "can_feed_mail_types": ["job", "story", "conflict", "people", "followup"],
     "mail_variables": {
       "role_title": "Veileder",
       "category": "psykologi",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+      "main_pressure": "hjelp_vs_styring",
+      "ethical_axis": "autonomi_vs_styring",
+      "status_axis": "eierskap_vs_framdrift"
     },
-    "recommended_mail_families": [],
+    "recommended_mail_families": ["maal_og_handlingsplan", "kartlegging_og_muligheter"],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: psykologi / Veileder."
-  ]
+  "competence_axes": ["autonomi_og_motivasjon", "beslutningsstotte", "personvern_og_samtykke"],
+  "ideal_type_problems": ["Hvordan hjelper du uten å overta valget?"],
+  "notes": ["Canonical runtime-scope: psykologi_arbeids_og_karriereveiledning."]
 }

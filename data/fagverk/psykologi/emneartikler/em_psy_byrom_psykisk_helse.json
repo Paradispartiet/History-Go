@@ -16,19 +16,25 @@
   "theories_and_findings": [
     {
       "title": "Miljøbelastning, restitusjon og handlingsrom",
-      "content": "Miljøpsykologiske modeller undersøker hvordan krav som støy, trengsel eller uforutsigbarhet kan belaste oppmerksomhet og regulering, og hvordan grøntområder, orienterbarhet og trygge møteplasser kan støtte restitusjon. Sammenhenger varierer med person, tid, bruk og sosial kontekst; fysisk design er derfor ikke en enkel behandling.",
+      "content": "Miljøpsykologiske modeller undersøker hvordan krav som støy, trengsel eller uforutsigbarhet kan belaste oppmerksomhet og regulering, og hvordan grøntområder, orienterbarhet og trygge møteplasser kan støtte restitusjon. Sammenhenger varierer med person, tid, bruk og sosial kontekst; fysisk design er derfor ikke en enkel behandling. Kildebundet påstand: WHO anbefaler community-baserte psykiske helsetjenester som er nær menneskers hverdagsliv og støtter sosial inkludering.",
       "source_ids": [
-        "src-who-guidance",
-        "src-who-centres"
+        "src-who-centres",
+        "src-who-guidance"
+      ],
+      "claim_ids": [
+        "phi-25"
       ]
     },
     {
       "title": "Tjenestegeografi og community-støtte",
-      "content": "WHO beskriver community-baserte og oppsøkende tjenester som støtte nær hjem og offentlige miljøer. I Norge finnes innganger via kommune og fastlege samt mer spesialiserte tilbud. Analysen følger terskler, ansvar og overganger og skiller dokumentert tilgang fra antatt eller ønsket tilgjengelighet.",
+      "content": "WHO beskriver community-baserte og oppsøkende tjenester som støtte nær hjem og offentlige miljøer. I Norge finnes innganger via kommune og fastlege samt mer spesialiserte tilbud. Analysen følger terskler, ansvar og overganger og skiller dokumentert tilgang fra antatt eller ønsket tilgjengelighet. Kildebundet påstand: WHO beskriver oppsøkende psykiske helsetjenester som støtte som kan gis i hjem og offentlige miljøer.",
       "source_ids": [
-        "src-helsenorge-voksne",
         "src-helsenorge-forlop",
+        "src-helsenorge-voksne",
         "src-who-outreach"
+      ],
+      "claim_ids": [
+        "phi-26"
       ]
     }
   ],
@@ -81,20 +87,26 @@
   "examples": [
     {
       "title": "Oppsøkende team i nærmiljøet",
-      "analysis": "Helsenorge beskriver hjelp i hjem eller nærmiljø for personer som ikke kan møte opp selv. Et stedsstudium kan kartlegge dekningsområde og samarbeidslinjer, men ikke anta hvem som bruker tilbudet eller hvorfor.",
+      "analysis": "Hypotetisk og konstruert analyseoppsett: Helsenorge beskriver hjelp i hjem eller nærmiljø for personer som ikke kan møte opp selv. Et stedsstudium kan kartlegge dekningsområde og samarbeidslinjer, men ikke anta hvem som bruker tilbudet eller hvorfor. Kildebundet påstand: WHO beskriver oppsøkende psykiske helsetjenester som støtte som kan gis i hjem og offentlige miljøer.",
       "source_ids": [
         "src-helsenorge-voksne",
         "src-who-outreach"
       ],
-      "case_status": "documented_teaching_case"
+      "case_status": "analytical_teaching_scenario",
+      "claim_ids": [
+        "phi-26"
+      ]
     },
     {
       "title": "Psykologisk institutt som fagmiljøcase",
-      "analysis": "UiO-stedet kan brukes til å undersøke utdanning og forskning i byen. Det skal ikke omtales som generelt behandlingssted eller brukes som proxy for psykisk helse i området rundt.",
+      "analysis": "Hypotetisk og konstruert analyseoppsett: UiO-stedet kan brukes til å undersøke utdanning og forskning i byen. Det skal ikke omtales som generelt behandlingssted eller brukes som proxy for psykisk helse i området rundt. Kildebundet påstand: Psykologisk institutt, UiO er et materialisert History Go-sted, mens Gaustad, Dikemark og Vinderen i dette kapittelet er faglige case uten oppdiktede runtime-place-ID-er.",
       "source_ids": [
         "src-hg-uio-place"
       ],
-      "case_status": "materialized_history_go_place"
+      "case_status": "analytical_teaching_scenario",
+      "claim_ids": [
+        "phi-27"
+      ]
     }
   ],
   "learning_outcomes": [
@@ -109,20 +121,27 @@
   ],
   "models_or_researchers": [
     {
-      "name": "Miljøbelastningsmodellen",
-      "role": "Knytter vedvarende miljøkrav til belastning og reguleringsbehov.",
+      "name": "WHO community mental health guidance",
+      "role": "Knytter vedvarende miljøkrav til belastning og reguleringsbehov. Kildebundet påstand: WHO anbefaler community-baserte psykiske helsetjenester som er nær menneskers hverdagsliv og støtter sosial inkludering.",
       "use_limit": "Gir ikke en diagnose av sted eller beboere.",
       "source_ids": [
+        "src-who-centres",
         "src-who-guidance"
+      ],
+      "claim_ids": [
+        "phi-25"
       ]
     },
     {
-      "name": "WHO community mental health framework",
-      "role": "Knytter tjenester til hverdagsliv, rettigheter og sosial deltakelse.",
+      "name": "WHOs veiledning om oppsøkende tjenester",
+      "role": "Knytter tjenester til hverdagsliv, rettigheter og sosial deltakelse. Kildebundet påstand: WHO beskriver oppsøkende psykiske helsetjenester som støtte som kan gis i hjem og offentlige miljøer.",
       "use_limit": "Må undersøkes mot lokal kapasitet og praksis.",
       "source_ids": [
         "src-who-guidance",
         "src-who-outreach"
+      ],
+      "claim_ids": [
+        "phi-26"
       ]
     }
   ],
@@ -160,5 +179,11 @@
       "no_place_or_group_diagnosis": true,
       "educational_scope_explicit": true
     }
+  },
+  "quality_review": {
+    "status": "approved_editorial_quality_v2",
+    "reviewed_at": "2026-08-12",
+    "reviewer_role": "psychology_editorial_audit",
+    "review_standard": "history_go_psykologi_editorial_quality_v2"
   }
 }

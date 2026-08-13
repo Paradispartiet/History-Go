@@ -1,0 +1,265 @@
+{
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_miljoarbeid",
+  "role_id": "psykologi_miljoarbeider",
+  "title": "Miljøarbeider",
+  "badge_binding": {
+    "badge_category": "psykologi",
+    "badge_id": "psykologi",
+    "badge_name": "Psykologi",
+    "tier_label": "Miljøarbeider",
+    "tier_threshold": 25,
+    "badge_titles": [
+      "Miljøassistent",
+      "Sosialassistent",
+      "Aktivitetsleder (omsorgsarbeid)",
+      "Miljøarbeider"
+    ],
+    "progression_from": [
+      "Miljøassistent",
+      "Sosialassistent",
+      "Aktivitetsleder (omsorgsarbeid)"
+    ],
+    "progression_to": [
+      "Veileder",
+      "Rådgiver"
+    ]
+  },
+  "fag_bindings": {
+    "primary_subjects": [
+      "psykologi"
+    ],
+    "category_files": [
+      "data/Civication/roleModels/psykologi/titter.json",
+      "data/Civication/roleModels/psykologi/analytiker.json",
+      "data/Civication/roleModels/psykologi/atferdsobservator.json",
+      "data/Civication/roleModels/psykologi/samtalepartner.json"
+    ],
+    "required_concepts": [
+      "observasjon",
+      "atferd",
+      "motivasjon",
+      "mestring",
+      "autonomi",
+      "gruppeprosesser",
+      "emosjonsregulering",
+      "profesjonelle_grenser",
+      "stigma",
+      "psykisk_helse"
+    ],
+    "methods": [
+      "konkret_observasjon",
+      "aktiv_lytting",
+      "motiverende_stotte",
+      "aktivitetstilrettelegging",
+      "deeskalering",
+      "noytral_dokumentasjon",
+      "grensesetting",
+      "sikker_eskalering"
+    ]
+  },
+  "work_identity": {
+    "one_sentence": "Miljøarbeideren gjør psykologisk kunnskap praktisk i hverdagen uten å late som førstelinjestøtte er klinisk behandling.",
+    "hidden_responsibility": "Å se nok til å støtte og varsle, men ikke mer enn rollen faktisk gir grunnlag for å konkludere med.",
+    "status_tension": "Du står nær personen og vet mye om hverdagen, men har mindre formell myndighet enn fagpersonene du samarbeider med.",
+    "core_pressure": "narmhet_vs_profesjonell_grense",
+    "work_rhythm": [
+      "møte mennesker og lese dagsform uten å diagnostisere",
+      "avklare dagens aktiviteter og avtaler",
+      "støtte gjennom konkrete oppgaver og sosiale situasjoner",
+      "roe konflikter og justere rammer",
+      "notere observerbare hendelser",
+      "ta bekymring videre til riktig ansvarlig person",
+      "avslutte vakten uten å bære hele livet til andre hjem"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "støtte og motivere",
+      "organisere og tilpasse aktivitet",
+      "observere konkret atferd og situasjon",
+      "dokumentere observerbare hendelser",
+      "sette profesjonelle grenser",
+      "deeskalere situasjoner",
+      "eskalere bekymring til riktig fagperson"
+    ],
+    "may_not": [
+      "stille diagnose",
+      "drive psykoterapi på eget ansvar",
+      "endre medisinsk eller psykologisk behandling",
+      "framstille antakelser som kliniske vurderinger",
+      "love hemmelighold når sikkerhetsplikt eller arbeidsrutiner krever eskalering"
+    ],
+    "escalate_when": [
+      "det kommer fram alvorlig bekymring for sikkerhet",
+      "atferdsendring er betydelig og uforklart",
+      "situasjonen krever klinisk vurdering",
+      "grensen mellom støtte og behandling blir uklar"
+    ]
+  },
+  "story_world": {
+    "simulation_promise": "Du får oppleve hvordan små valg i hverdagsstøtte kan øke autonomi, tillit og mestring – eller skape stigma, avhengighet og rolleglidning – lenge før situasjonen når et behandlingsrom.",
+    "everyday_world": "Du arbeider tett på mennesker i bofellesskap, aktivitetstilbud eller andre oppfølgingstjenester. Det meste ser lite dramatisk ut: frokost, buss, en avtale, en aktivitet, en konflikt i fellesrommet. Likevel krever hvert skift at du skiller hva du faktisk så fra hva du tror det betyr, og at du vet når du skal bli i relasjonen og når du skal hente inn mer kvalifisert hjelp.",
+    "hidden_complexity": "God miljøoppfølging er ikke å være snill eller å ha et godt menneskesyn alene. Det er systematisk relasjonsarbeid under uklare signaler, tidsknapphet og asymmetrisk makt.",
+    "recurring_situations": [
+      "en person avlyser noe som vanligvis betyr mye",
+      "en kollega skriver en merkelapp der du ville skrevet en observasjon",
+      "en aktivitet fungerer for gruppa men ikke for den stille personen",
+      "en fortrolig samtale glir over i noe du ikke skal bære alene",
+      "en pårørende vil vite mer enn du kan dele",
+      "teamet vil ha et raskt svar på noe som egentlig er usikkert"
+    ],
+    "small_story_seeds": [
+      "ett presist notat endrer hvordan neste vakt møter personen",
+      "en liten grense redder en relasjon fra å bli privat",
+      "en aktivitet blir god først når du slutter å presse",
+      "du oppdager at kollegaens tolkning og din observasjon ikke er det samme",
+      "en tidlig eskalering gjør at riktig fagperson kommer inn før situasjonen blir akutt"
+    ],
+    "relationship_web": [
+      {
+        "who": "teamleder",
+        "relation": "din leder",
+        "wants": "trygg drift og tydelige observasjoner",
+        "creates": "press om raske konklusjoner når vakten er travel",
+        "tension": "tempo_vs_presisjon"
+      },
+      {
+        "who": "erfaren_kollega",
+        "relation": "erfaren kollega",
+        "wants": "praktiske løsninger som virker i hverdagen",
+        "creates": "friksjon når erfaring blir behandlet som sikker forklaring",
+        "tension": "erfaring_vs_etterprovbarhet"
+      },
+      {
+        "who": "bruker",
+        "relation": "personen du følger opp",
+        "wants": "autonomi, respekt og å bli forstått som mer enn et problem",
+        "creates": "krav om nærhet uten at du tar over livet",
+        "tension": "hjelp_vs_autonomi"
+      },
+      {
+        "who": "psykolog_fagkontakt",
+        "relation": "autorisert fagperson",
+        "wants": "konkrete observasjoner og tydelig eskalering",
+        "creates": "grensen mellom førstelinjens situasjonskunnskap og klinisk vurdering",
+        "tension": "hverdagskunnskap_vs_klinisk_ansvar"
+      },
+      {
+        "who": "paaroerende",
+        "relation": "nærstående",
+        "wants": "innsikt, trygghet og påvirkning",
+        "creates": "press mellom samarbeid, personvern og brukerens egen vilje",
+        "tension": "samarbeid_vs_selvbestemmelse"
+      }
+    ],
+    "knowledge_in_practice": [
+      {
+        "concept": "observasjon",
+        "practical_scene": "en person trekker seg fra frokost tre dager på rad",
+        "what_player_must_notice": "forskjellen mellom det observerbare mønsteret og en diagnoseforklaring",
+        "bad_misread": "skrive at personen er deprimert",
+        "good_use": "beskrive endringen konkret, spørre åpent og eskalere hvis bekymringen øker"
+      },
+      {
+        "concept": "autonomi",
+        "practical_scene": "det går raskere om du gjør oppgaven for personen",
+        "what_player_must_notice": "at effektiv hjelp kan redusere mestring",
+        "bad_misread": "god omsorg betyr å gjøre mest mulig",
+        "good_use": "tilpasse støtte slik at personen beholder kontroll og lærer mer selv"
+      },
+      {
+        "concept": "gruppeprosesser",
+        "practical_scene": "den mest høylytte deltakeren setter hele aktiviteten",
+        "what_player_must_notice": "hvem som får definere tempo og norm",
+        "bad_misread": "stillhet betyr samtykke",
+        "good_use": "endre rammen slik at flere kan delta uten å bli presset"
+      },
+      {
+        "concept": "profesjonelle_grenser",
+        "practical_scene": "en person vil kontakte deg privat etter vakten",
+        "what_player_must_notice": "at avvisning og grenseløs nærhet begge kan skade tillit",
+        "bad_misread": "en god relasjon skal være vennskap",
+        "good_use": "anerkjenne behovet og holde kontakten innenfor trygg rolle"
+      }
+    ],
+    "emotional_costs": [
+      "å vite at du kan støtte mye uten å kunne løse alt",
+      "uro etter å ha eskalert noe en person ba deg holde hemmelig",
+      "frustrasjon når nøktern dokumentasjon oppfattes som mindre handlekraftig enn en rask merkelapp",
+      "slitasje ved å være varm og tilstede uten å gjøre relasjonen privat",
+      "stolthet når en liten tilpasning gjør at noen mestrer mer selv"
+    ],
+    "status_illusions": [
+      "Utenfra: en som bare hjelper til. Innenfra: en rolle der små observasjons- og grensevalg påvirker menneskers autonomi hver dag.",
+      "Utenfra: nesten psykolog. Innenfra: en helt annen profesjonell plass, der kvalitet blant annet betyr å ikke opptre som psykolog.",
+      "Utenfra: praktisk arbeid. Innenfra: kontinuerlig bruk av psykologi under strenge grenser for hva du kan konkludere med."
+    ],
+    "player_learning_arc": [
+      "Først tror spilleren at god oppfølging handler om å være hjelpsom og forståelsesfull.",
+      "Så oppdager spilleren at hjelp kan ta fra mennesker autonomi, og forståelse kan bli til ubegrunnet tolkning.",
+      "Så lærer spilleren å bruke observasjon, motivasjon, gruppeforståelse og grensesetting mer presist.",
+      "Til slutt forstår spilleren at profesjonell førstelinjestøtte er sterkest når den både ser mennesket og respekterer grensen mot klinisk myndighet."
+    ]
+  },
+  "practice_stories": [
+    {
+      "id": "det_du_saa",
+      "title": "Det du så",
+      "story_type": "knowledge",
+      "premise": "En tydelig endring i hverdagen må dokumenteres uten at du gjør observasjonen til diagnose.",
+      "people": ["bruker", "teamleder"],
+      "work_knowledge": ["observasjon", "atferd", "psykisk_helse"],
+      "conflict_axes": ["observasjon_vs_tolkning"],
+      "mail_types": ["job", "knowledge", "followup"],
+      "thread_potential": true,
+      "possible_choices": ["beskrive konkret", "sette en merkelapp", "spørre åpent og følge med"],
+      "possible_followups": ["fagkontakt ber om konkrete eksempler", "merkelappen påvirker neste vakt", "et mønster blir tydeligere"],
+      "learning_point": "En presis observasjon er mer nyttig enn en diagnose du ikke har grunnlag eller myndighet til å stille."
+    },
+    {
+      "id": "samtalen_blir_for_tung",
+      "title": "Samtalen blir for tung",
+      "story_type": "conflict",
+      "premise": "En fortrolig samtale inneholder en alvorlig bekymring som ikke kan bli mellom dere to.",
+      "people": ["bruker", "psykolog_fagkontakt"],
+      "work_knowledge": ["profesjonelle_grenser", "psykisk_helse"],
+      "conflict_axes": ["tillit_vs_sikker_eskalering"],
+      "mail_types": ["people", "conflict", "consequence"],
+      "thread_potential": true,
+      "possible_choices": ["forklare grensen og eskalere", "love hemmelighold", "trekke seg unna"],
+      "possible_followups": ["relasjonen tåler en tydelig grense", "fagkontakt overtar vurderingen", "tilliten skades av en skjult eskalering"],
+      "learning_point": "Tillit betyr ikke at en førstelinjerolle skal bære klinisk eller sikkerhetsmessig ansvar alene."
+    },
+    {
+      "id": "aktiviteten_ingen_vil_pa",
+      "title": "Aktiviteten ingen vil på",
+      "story_type": "relationship",
+      "premise": "Planen sier aktivitet, men motivasjon kan ikke presses fram uten kostnad.",
+      "people": ["bruker", "erfaren_kollega"],
+      "work_knowledge": ["motivasjon", "autonomi", "gruppeprosesser"],
+      "conflict_axes": ["motivasjon_vs_press"],
+      "mail_types": ["job", "people", "story"],
+      "thread_potential": true,
+      "possible_choices": ["utforske motstand", "presse gjennom", "tilpasse aktiviteten"],
+      "possible_followups": ["personen deltar på egne premisser", "motstanden øker", "teamet diskuterer hva målet egentlig var"],
+      "learning_point": "Motivasjon er ikke det samme som etterlevelse."
+    },
+    {
+      "id": "notatet_som_stempler",
+      "title": "Notatet som stempler",
+      "story_type": "identity",
+      "premise": "Et kort notat kan enten beskrive en situasjon eller feste en merkelapp til en person.",
+      "people": ["teamleder", "erfaren_kollega"],
+      "work_knowledge": ["observasjon", "stigma"],
+      "conflict_axes": ["presisjon_vs_stigma"],
+      "mail_types": ["knowledge", "job", "followup"],
+      "thread_potential": true,
+      "possible_choices": ["skrive hendelsen konkret", "kopiere kollegaens merkelapp", "be om faglig avklaring"],
+      "possible_followups": ["neste vakt møter personen annerledes", "teamleder ber om presisering", "journalteksten blir stående som sannhet"],
+      "learning_point": "Dokumentasjon former hvordan andre ser personen; observerbart språk er en faglig handling."
+    }
+  ]
+}

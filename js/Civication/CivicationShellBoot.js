@@ -5,6 +5,7 @@
 //   - datalasting (badges, careers, career rules)
 //   - økonomi-tick (kapital/dashboard)
 //   - career-role-resolver (rolle-/dashboardvisning)
+//   - life-position-runtime (identitet/livsløp uavhengig av jobb)
 //   - CivicationUI.init(): kart/SVG-kart, dashboard, nabolag/kapital,
 //     psyke, identitet, hjem, offentlig feed, aktiv rolle, folk, butikk,
 //     track-HUD, footer, panelnavigasjon og robuste empty states.
@@ -153,6 +154,30 @@
     }
   }
 
+  /** @returns {Promise<boolean>} */
+  async function ensureCivicationLifePositionRuntimeLoaded() {
+    if (window.CivicationLifePositions?.getLifeContext) return true;
+    try {
+      await loadCivicationScriptOnce("js/Civication/systems/civicationLifePositionRuntime.js");
+      return !!window.CivicationLifePositions?.getLifeContext;
+    } catch (error) {
+      console.warn("[CivicationShellBoot] life position runtime kunne ikke lastes", error);
+      return false;
+    }
+  }
+
+  /** @returns {Promise<boolean>} */
+  async function ensureCivicationLifePositionUiLoaded() {
+    if (window.CivicationLifePositionUI?.init) return true;
+    try {
+      await loadCivicationScriptOnce("js/Civication/ui/CivicationLifePositionUI.js");
+      return !!window.CivicationLifePositionUI?.init;
+    } catch (error) {
+      console.warn("[CivicationShellBoot] life position UI kunne ikke lastes", error);
+      return false;
+    }
+  }
+
   /** @returns {Promise<void>} */
   async function loadCivicationData() {
     const [badges, careersJson] = await Promise.all([
@@ -221,6 +246,8 @@
       await loadCivicationData();
       await ensureCiviCareerRulesLoaded();
       await ensureCivicationCareerRoleResolverLoaded();
+      await ensureCivicationLifePositionRuntimeLoaded();
+      await ensureCivicationLifePositionUiLoaded();
 
       if (window.CivicationEconomyEngine?.tickWeekly) {
         window.CivicationEconomyEngine.tickWeekly();
@@ -231,6 +258,7 @@
       /** @type {{ init?: () => unknown }|undefined} */
       const ui = window.CivicationUI;
       ui?.init?.();
+      window.CivicationLifePositionUI?.init?.();
 
       // Skallet er oppe: vekk kart og paneler. Day/life-story fyller mail/
       // arbeidsdag etterpå via updateProfile.

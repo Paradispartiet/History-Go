@@ -8,6 +8,7 @@ const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8
 const Resolver = require('../js/Civication/systems/civicationCareerRoleResolver.js');
 
 const badgeIndex = readJson('data/badges/index.json');
+const categoryContract = readJson('data/categories/category_contract.json');
 const badges = new Map();
 for (const rel of badgeIndex.files || []) {
   const payload = readJson(rel);
@@ -32,34 +33,26 @@ function assertStrictTierOrder(badgeId) {
   }
 }
 
+// Sosial læring var en historisk HG Social-progresjonsbadge, ikke et canonical
+// fag eller en bevisst Civication-karriere. Den skal derfor ikke kunne snike seg
+// tilbake som badge bare fordi legacy-innhold fortsatt bruker namespace-navnet.
+assert.ok(!(badgeIndex.files || []).includes('data/badges/sosial_laering.json'),
+  'Sosial læring skal ikke være registrert i badgeindeksen');
+assert.ok(!fs.existsSync(path.join(ROOT, 'data/badges/sosial_laering.json')),
+  'data/badges/sosial_laering.json skal være slettet');
+assert.ok(!badges.has('sosial_laering'), 'Sosial læring skal ikke finnes som lastet badge');
+assert.ok(!(categoryContract.nonPlaceBadges || []).includes('sosial_laering'),
+  'Sosial læring skal ikke være registrert som non-place badge');
+assert.ok(!(categoryContract.runtimeCategories || []).includes('sosial_laering'),
+  'Sosial læring skal ikke være runtimekategori');
+assert.ok(!(categoryContract.fagSubjects || []).includes('sosial_laering'),
+  'Sosial læring skal ikke være fag');
+
 assertStrictTierOrder('naeringsliv');
-assertStrictTierOrder('sosial_laering');
 
 const naering = badges.get('naeringsliv');
 assert.ok(naering.tiers.some((tier) => tier.label === 'Renholder' && tier.threshold === 8),
   'Renholder skal være en ekte Næringsliv-tier, ikke en skjult Civication-rolle');
-
-const sosial = badges.get('sosial_laering');
-assert.strictEqual(sosial.tiers[0].label, 'Barnehageassistent / pedagogisk medarbeider');
-assert.strictEqual(sosial.tiers[0].threshold, 5);
-assert.ok(sosial.tiers.length >= 12, 'Sosial læring skal være en reell stillingsstige, ikke bare gamle milepæl-navn');
-for (const legacy of ['Første møte', 'Første felles quiz', 'Første felles rute', 'Observatør', 'Guide', 'Sirkelbygger', 'Historisk følgesvenn']) {
-  assert.ok(!sosial.tiers.some((tier) => tier.label === legacy), `legacy-rang står fortsatt som stilling: ${legacy}`);
-}
-
-// En ny Badge-karriere må også fungere i Civications økonomi. Uten en regel
-// hopper ukesticken over lønn for aktiv stilling.
-const careerRulesDoc = readJson('data/Civication/hg_careers.json');
-const sosialCareer = (careerRulesDoc.careers || []).find((career) => career.career_id === 'sosial_laering');
-assert.ok(sosialCareer, 'Sosial læring mangler karriereregel og ville fått null lønn i ukesticken');
-assert.ok(sosialCareer.economy?.salary_by_tier, 'Sosial læring mangler salary_by_tier');
-for (let index = 0; index < sosial.tiers.length; index += 1) {
-  const salary = Number(sosialCareer.economy.salary_by_tier[String(index + 1)]);
-  assert.ok(Number.isFinite(salary) && salary > 0,
-    `Sosial læring tier ${index + 1} mangler positiv ukelønn`);
-}
-assert.ok(Number(sosialCareer.world_logic?.maintenance?.min_quiz_per_weeks) >= 1,
-  'Sosial læring mangler aktiv vedlikeholdskontrakt');
 
 const manifest = readJson('data/Civication/lifestory/manifest.json');
 for (const [roleId, entry] of Object.entries(manifest.roles || {})) {
@@ -68,9 +61,16 @@ for (const [roleId, entry] of Object.entries(manifest.roles || {})) {
     continue;
   }
 
-  assert.ok(entry.badge_id, `${roleId}: aktiv Life Story-rolle mangler badge_id`);
+  if (entry.content_only === true) {
+    assert.ok(!entry.badge_id, `${roleId}: content-only-pakke skal ikke late som den har Badge-binding`);
+    assert.ok(!entry.badge_titles, `${roleId}: content-only-pakke skal ikke ha badge_titles`);
+    assert.ok(entry.role_scope, `${roleId}: content-only-pakke skal beholde role_scope for innhold/runtime`);
+    continue;
+  }
+
+  assert.ok(entry.badge_id, `${roleId}: aktiv opptjent Life Story-rolle mangler badge_id`);
   assert.ok(Array.isArray(entry.badge_titles) && entry.badge_titles.length,
-    `${roleId}: aktiv Life Story-rolle mangler badge_titles`);
+    `${roleId}: aktiv opptjent Life Story-rolle mangler badge_titles`);
   assert.ok(entry.role_scope, `${roleId}: aktiv Life Story-rolle mangler role_scope`);
 
   const badge = badges.get(entry.badge_id);
@@ -85,10 +85,13 @@ for (const [roleId, entry] of Object.entries(manifest.roles || {})) {
   }
 }
 
-assert.strictEqual(
-  Resolver.resolveCareerRoleId({ career_id: 'sosial_laering', title: 'Barnehageassistent / pedagogisk medarbeider' }),
-  'sosial_laering_barnehageassistent',
-  'første Sosial læring-tier skal løse til canonical barnehageassistent-roleModel'
-);
+const barnehageassistent = manifest.roles?.barnehageassistent;
+assert.ok(barnehageassistent, 'Barnehageassistent-innholdet skal bevares');
+assert.strictEqual(barnehageassistent.content_only, true,
+  'Barnehageassistent skal være content-only inntil en bevisst canonical Badge-plassering er valgt');
+assert.strictEqual(barnehageassistent.legacy_namespace, 'sosial_laering',
+  'legacy namespace skal være eksplisitt og ikke forveksles med Badge-identitet');
+assert.ok(!barnehageassistent.badge_id && !barnehageassistent.badge_titles,
+  'Barnehageassistent skal ikke fortsatt være bundet til den slettede badgen');
 
 console.log('civication badge career contract ok');

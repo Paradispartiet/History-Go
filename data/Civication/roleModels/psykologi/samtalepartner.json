@@ -2,119 +2,97 @@
   "schema": "civication_role_model_v1",
   "version": 1,
   "source": {
-    "badge_file": "data/badges.json",
+    "badge_file": "data/badges/psykologi.json",
     "badge_id": "psykologi",
     "badge_name": "Psykologi",
-    "tier_label": "Samtalepartner",
-    "tier_threshold": 25
+    "tier_label": "Miljøarbeider",
+    "tier_threshold": 25,
+    "evidence_ref": "utdanning_miljoarbeider"
   },
   "category": "psykologi",
-  "role_scope": "samtalepartner",
-  "role_id": "psykologi_samtalepartner",
-  "title": "Samtalepartner",
+  "role_scope": "psykologi_miljoarbeid",
+  "role_id": "psykologi_miljoarbeider",
+  "title": "Miljøarbeider",
   "core_narrative": [
-    "I Civication er Samtalepartner en praktisk rolle i Psykologi der valg former tillit, handlingsrom og status."
+    "Du står nær menneskers hverdag og bygger trygghet gjennom struktur, aktivitet, relasjon og presis observasjon – samtidig som du vet hvor din rolle slutter og fagansvaret til andre begynner."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til kognitiv psykologi, sosialpsykologi."
+      "Støtte mennesker i daglige gjøremål og sosiale situasjoner.",
+      "Motivere og legge til rette for aktivitet og deltakelse.",
+      "Forebygge konflikt og roe situasjoner uten unødvendig maktbruk.",
+      "Dokumentere konkrete observasjoner og følge opp avtaler i teamet."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Bygge relasjon uten å gjøre seg selv til behandlingstilbud.",
+      "Skille observerbar atferd fra antakelser om diagnose eller motiv.",
+      "Ivaretakelse av autonomi, verdighet, grenser og sikker eskalering."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
+      "Bofellesskap, skole, fritid, aktivitetstilbud, kommunale tjenester og andre miljøer med praktisk og sosial oppfølging."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "En førstelinjerolle med mye faktisk kontakt og situasjonskunnskap, men uten psykologens kliniske myndighet."
     ]
   },
   "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
+    "entry_from": ["Miljøassistent", "Sosialassistent", "Aktivitetsleder (omsorgsarbeid)"],
+    "progression_to": ["Veileder", "Rådgiver"],
+    "possible_promotions": ["Mer selvstendig oppfølging, koordinering eller videre kvalifisering."],
+    "possible_exits": ["Arbeidsinkludering, oppvekst, helse- og sosialfag, HR eller videre utdanning."],
+    "career_risks": ["Rolleglidning, emosjonell overinvolvering, utydelig dokumentasjon og å overse behov for faglig eskalering."]
   },
   "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv."
-    ],
-    "history_go_badges": [
-      "psykologi"
-    ],
+    "education_basis": ["Utdanning.no oppgir at det ikke finnes én offisiell utdanning som gir tittelen miljøarbeider, selv om fagbrev eller annen relevant kompetanse er vanlig og enkelte arbeidsgivere stiller egne krav."],
+    "skills": ["Relasjonsbygging", "motivasjon", "grensesetting", "konkret observasjon", "aktivitetstilrettelegging", "konfliktdemping", "dokumentasjon"],
+    "category_knowledge": ["Motivasjon, utvikling, sosialpsykologi, følelser, gruppeprosesser, mestring og grunnleggende psykisk helse."],
+    "history_go_badges": ["psykologi"],
     "place_connections": [],
     "people_connections": []
   },
+  "scope_boundaries": {
+    "may_do": ["støtte", "motivere", "strukturere", "organisere aktivitet", "observere", "dokumentere", "samarbeide", "eskalere bekymring"],
+    "must_not_simulate_as_authority": ["diagnostisere", "drive psykoterapi", "endre medisinsk eller psykologisk behandling", "framstille en tolkning som klinisk vurdering"]
+  },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
+      "id": "samtalen_som_blir_for_tung",
+      "title": "Samtalen som blir for tung",
+      "description": "En person betror deg noe alvorlig og forventer at du skal løse det alene.",
+      "pressure": "tillit_vs_sikker_eskalering",
+      "affects": ["trust", "integrity", "risk"]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
+      "id": "taushet_eller_hjelp",
+      "title": "Tillit er ikke det samme som å bære alt alene",
+      "setup": "Du må bevare relasjonen samtidig som alvorlig bekymring må videre til riktig fagperson.",
+      "choice_axis": "privat_lojalitet_vs_profesjonelt_ansvar",
+      "consequence_axis": "tillit_vs_sikkerhet",
+      "mail_hooks": ["job", "conflict", "consequence"]
     }
   ],
   "related_people": [],
   "related_places": [],
   "mail_integration": {
-    "role_scope": "samtalepartner",
-    "mail_profile": "psykologi_samtalepartner",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
+    "role_scope": "psykologi_miljoarbeid",
+    "mail_profile": "psykologi_miljoarbeid",
+    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "knowledge", "followup", "consequence"],
     "mail_variables": {
-      "role_title": "Samtalepartner",
+      "role_title": "Miljøarbeider",
       "category": "psykologi",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+      "main_pressure": "tillit_vs_sikker_eskalering",
+      "ethical_axis": "narmhet_vs_profesjonell_grense",
+      "status_axis": "tillit_vs_ansvar"
     },
-    "recommended_mail_families": [],
+    "recommended_mail_families": ["psykologi_miljoarbeid"],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
+  "competence_axes": ["relasjon", "observasjon", "grensesetting", "autonomi", "deeskalering", "dokumentasjon", "eskalering"],
+  "ideal_type_problems": ["observasjon_vs_tolkning", "narmhet_vs_grense", "autonomi_vs_hjelp", "tillit_vs_sikkerhet"],
   "notes": [
-    "Basert på badges.json: psykologi / Samtalepartner."
+    "Legacy-filnavnet samtalepartner.json beholdes foreløpig for manifeststabilitet; canonical tittel er Miljøarbeider.",
+    "Dette er den representative roleModelen for felles role_scope psykologi_miljoarbeid."
   ]
 }

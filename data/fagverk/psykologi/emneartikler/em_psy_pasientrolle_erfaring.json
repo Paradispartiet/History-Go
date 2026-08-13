@@ -16,19 +16,25 @@
   "theories_and_findings": [
     {
       "title": "Fra paternalistisk til delt beslutning",
-      "content": "En paternalistisk modell lar profesjonen definere mål og valg ut fra faglig vurdering. Delt beslutning kombinerer kunnskap om alternativer med personens mål, preferanser og situasjon. Modellen opphever ikke faglig ansvar og forutsetter reell informasjon, tid og valgmulighet; ellers kan medvirkning bli et ritual.",
+      "content": "En paternalistisk modell lar profesjonen definere mål og valg ut fra faglig vurdering. Delt beslutning kombinerer kunnskap om alternativer med personens mål, preferanser og situasjon. Modellen opphever ikke faglig ansvar og forutsetter reell informasjon, tid og valgmulighet; ellers kan medvirkning bli et ritual. Kildebundet påstand: Helsenorge beskriver brukermedvirkning som en rett til informasjon og til å delta i utformingen av eget tjenestetilbud.",
       "source_ids": [
-        "src-helsenorge-hjelp",
+        "src-helsedir-medvirkning",
         "src-helsedir-utredning",
-        "src-helsedir-medvirkning"
+        "src-helsenorge-hjelp"
+      ],
+      "claim_ids": [
+        "phi-10"
       ]
     },
     {
       "title": "Erfaringskunnskap som egen evidenstype",
-      "content": "Erfaringsdata kan vise hvordan tilgang, kommunikasjon, bivirkninger og hverdagsliv oppleves, forhold som ikke alltid fanges av symptomskalaer. Samtidig må metode, utvalg og kontekst være tydelig. Målet er triangulering, ikke å rangere erfaring som enten mindreverdig anekdote eller ufeilbarlig sannhet.",
+      "content": "Erfaringsdata kan vise hvordan tilgang, kommunikasjon, bivirkninger og hverdagsliv oppleves, forhold som ikke alltid fanges av symptomskalaer. Samtidig må metode, utvalg og kontekst være tydelig. Målet er triangulering, ikke å rangere erfaring som enten mindreverdig anekdote eller ufeilbarlig sannhet. Kildebundet påstand: Helsedirektoratets indikator for medvirkning bygger på at behandlingsplan utarbeides i samarbeid mellom pasient og behandler, eventuelt med pårørende.",
       "source_ids": [
         "src-helsedir-medvirkning",
         "src-helsenorge-hjelp"
+      ],
+      "claim_ids": [
+        "phi-12"
       ]
     }
   ],
@@ -81,19 +87,25 @@
   "examples": [
     {
       "title": "Første samtale",
-      "analysis": "Et case undersøker om behov, mål og ønsker faktisk blir etterspurt og dokumentert i første samtale. Det vurderer prosessen, ikke om pasientens mål er klinisk riktige eller hvilken behandling personen bør få.",
+      "analysis": "Hypotetisk og konstruert analyseoppsett: Et case undersøker om behov, mål og ønsker faktisk blir etterspurt og dokumentert i første samtale. Det vurderer prosessen, ikke om pasientens mål er klinisk riktige eller hvilken behandling personen bør få. Kildebundet påstand: Første samtale i nasjonalt pasientforløp skal blant annet avklare pasientens behov, mål og ønsker for utredning, behandling og oppfølging.",
       "source_ids": [
         "src-helsedir-utredning"
       ],
-      "case_status": "documented_teaching_case"
+      "case_status": "analytical_teaching_scenario",
+      "claim_ids": [
+        "phi-11"
+      ]
     },
     {
       "title": "Behandlingsplan i samarbeid",
-      "analysis": "Helsedirektoratets indikator brukes til å skille mellom at en plan finnes og at den er utarbeidet sammen med pasienten. Caset viser behovet for både dokumentasjon og erfaringsdata.",
+      "analysis": "Hypotetisk og konstruert analyseoppsett: Helsedirektoratets indikator brukes til å skille mellom at en plan finnes og at den er utarbeidet sammen med pasienten. Caset viser behovet for både dokumentasjon og erfaringsdata. Kildebundet påstand: Helsedirektoratets indikator for medvirkning bygger på at behandlingsplan utarbeides i samarbeid mellom pasient og behandler, eventuelt med pårørende.",
       "source_ids": [
         "src-helsedir-medvirkning"
       ],
-      "case_status": "documented_teaching_case"
+      "case_status": "analytical_teaching_scenario",
+      "claim_ids": [
+        "phi-12"
+      ]
     }
   ],
   "learning_outcomes": [
@@ -108,20 +120,26 @@
   ],
   "models_or_researchers": [
     {
-      "name": "Delt beslutning",
-      "role": "Kombinerer faglig evidens med personens mål og preferanser.",
+      "name": "Helsenorges ramme for brukermedvirkning",
+      "role": "Kombinerer faglig evidens med personens mål og preferanser. Kildebundet påstand: Helsenorge beskriver brukermedvirkning som en rett til informasjon og til å delta i utformingen av eget tjenestetilbud.",
       "use_limit": "Forutsetter forståelig informasjon og reelle alternativer.",
       "source_ids": [
-        "src-helsenorge-hjelp",
-        "src-helsedir-medvirkning"
+        "src-helsedir-medvirkning",
+        "src-helsenorge-hjelp"
+      ],
+      "claim_ids": [
+        "phi-10"
       ]
     },
     {
-      "name": "Erfaringskunnskap",
-      "role": "Behandler levd erfaring som selvstendig kunnskapskilde om praksis og hverdagsvirkning.",
+      "name": "Helsedirektoratets samarbeidskrav til behandlingsplan",
+      "role": "Behandler levd erfaring som selvstendig kunnskapskilde om praksis og hverdagsvirkning. Kildebundet påstand: Helsedirektoratets indikator for medvirkning bygger på at behandlingsplan utarbeides i samarbeid mellom pasient og behandler, eventuelt med pårørende.",
       "use_limit": "Én fortelling representerer ikke automatisk en gruppe.",
       "source_ids": [
         "src-helsedir-medvirkning"
+      ],
+      "claim_ids": [
+        "phi-12"
       ]
     }
   ],
@@ -151,5 +169,11 @@
       "no_place_or_group_diagnosis": true,
       "educational_scope_explicit": true
     }
+  },
+  "quality_review": {
+    "status": "approved_editorial_quality_v2",
+    "reviewed_at": "2026-08-12",
+    "reviewer_role": "psychology_editorial_audit",
+    "review_standard": "history_go_psykologi_editorial_quality_v2"
   }
 }

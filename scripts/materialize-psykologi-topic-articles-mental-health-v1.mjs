@@ -2,12 +2,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { MENTAL_HEALTH_MODEL_CURATION } from './lib/psykologi-editorial-curation-v2.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUTPUT = path.join(ROOT, 'data/fagverk/psykologi/emneartikler');
 const EMNER = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/fag/psykologi/emner_psykologi_canonical_v4_5.json'), 'utf8'));
 const CLAIMS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling/claims.json'), 'utf8'));
-const CLAIM_BY_ID = new Map(CLAIMS.claims.map((claim) => [claim.id, claim]));
+const CLAIM_DOCUMENTS = fs.readdirSync(path.join(ROOT, 'data/fagverk/psykologi'), { withFileTypes: true })
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => path.join(ROOT, 'data/fagverk/psykologi', entry.name, 'claims.json'))
+  .filter((file) => fs.existsSync(file))
+  .map((file) => JSON.parse(fs.readFileSync(file, 'utf8')));
+const CLAIM_BY_ID = new Map(CLAIM_DOCUMENTS.flatMap((document) => document.claims || []).map((claim) => [claim.id, claim]));
 const EMNE_BY_ID = new Map(EMNER.map((emne) => [emne.emne_id, emne]));
 const DOMAIN_ID = 'psykisk_helse_institusjoner_behandling';
 const DOMAIN_IDS = EMNER.filter((emne) => emne.domain === DOMAIN_ID).map((emne) => emne.emne_id).sort();
@@ -24,12 +30,44 @@ const EDITORIAL_REVIEW = Object.freeze({
     educational_scope_explicit: true
   })
 });
+const QUALITY_REVIEW = Object.freeze({
+  status: 'approved_editorial_quality_v2',
+  reviewed_at: '2026-08-12',
+  reviewer_role: 'psychology_editorial_audit',
+  review_standard: 'history_go_psykologi_editorial_quality_v2'
+});
 
 const method = (methodId, label, application, limitations) => ({ method_id: methodId, label, application, limitations });
 const theory = (title, content, sourceIds) => ({ title, content, source_ids: sourceIds });
 const boundary = (question, positions, evidenceNeeded) => ({ question, positions, evidence_needed: evidenceNeeded });
-const example = (title, analysis, sourceIds, caseStatus = 'documented_teaching_case') => ({ title, analysis, source_ids: sourceIds, case_status: caseStatus });
+const example = (title, analysis, sourceIds, caseStatus = 'analytical_teaching_scenario') => ({ title, analysis, source_ids: sourceIds, case_status: caseStatus });
 const model = (name, role, useLimit, sourceIds) => ({ name, role, use_limit: useLimit, source_ids: sourceIds });
+
+const SECTION_CLAIMS = Object.freeze({
+  em_psy_psykisk_helse: { theories:['phi-01','phi-03'], examples:['phi-02','phi-03'], models:['phi-01','phi-03'] },
+  em_psy_behandling_omsorg: { theories:['phi-06','phi-16'], examples:['phi-06','phi-16'], models:['phi-06','phi-16'] },
+  em_psy_behandlingsformer: { theories:['phi-07','phi-08'], examples:['phi-07','phi-09'], models:['phi-07','phi-08'] },
+  em_psy_byrom_psykisk_helse: { theories:['phi-25','phi-26'], examples:['phi-26','phi-27'], models:['phi-25','phi-26'] },
+  em_psy_institusjoner_psykiatri: { theories:['phi-20','phi-19'], examples:['phi-19','phi-20','phi-21'], models:['phi-19','phi-25'] },
+  em_psy_krise_intervensjon: { theories:['phi-23','phi-24'], examples:['phi-22','phi-24'], models:['phi-23','phi-24'] },
+  em_psy_makt_omsorg: { theories:['phi-16','phi-17'], examples:['phi-18','phi-18'], models:['phi-18','phi-16'] },
+  em_psy_omsorg_system: { theories:['phi-06','phi-04'], examples:['phi-04','phi-24'], models:['phi-06','phi-25'] },
+  em_psy_pasientrolle_erfaring: { theories:['phi-10','phi-12'], examples:['phi-11','phi-12'], models:['phi-10','phi-12'] },
+  em_psy_terapi_praksis: { theories:['phi-07','phi-08'], examples:['phi-15','phi-08'], models:['fti-08','phi-07','fti-15'] },
+  em_psy_terapirom_relasyon: { theories:['phi-14','phi-15'], examples:['phi-14','phi-15'], models:['phi-14','phi-15'] },
+  em_psy_velferd_psykisk_helse: { theories:['phi-03','phi-25'], examples:['phi-03','phi-26'], models:['phi-03','phi-25'] }
+});
+
+function bindSection(section, claimId, textField) {
+  const claim = CLAIM_BY_ID.get(claimId);
+  if (!claim) throw new Error(`Ukjent eksplisitt seksjonsclaim ${claimId}`);
+  return {
+    ...section,
+    [textField]: `${section[textField]} Kildebundet påstand: ${claim.claim}`,
+    claim_ids: [claimId],
+    source_ids: [...new Set([...(section.source_ids || []), ...(claim.source_ids || [])])].sort()
+  };
+}
 
 const articles = [
   {
@@ -423,13 +461,31 @@ const articles = [
 function materialize(raw) {
   const emne = EMNE_BY_ID.get(raw.emne_id);
   if (!emne) throw new Error(`Ukjent canonicalt emne: ${raw.emne_id}`);
+  const bindings = SECTION_CLAIMS[raw.emne_id];
+  if (!bindings || bindings.theories.length !== raw.theories_and_findings.length || bindings.examples.length !== raw.examples.length || bindings.models.length !== raw.models_or_researchers.length) {
+    throw new Error(`Ufullstendig eksplisitt seksjonskuratering for ${raw.emne_id}`);
+  }
+  const theories = raw.theories_and_findings.map((section, index) => bindSection(section, bindings.theories[index], 'content'));
+  const examples = raw.examples.map((section, index) => bindSection({
+    ...section,
+    case_status: 'analytical_teaching_scenario',
+    analysis: `Hypotetisk og konstruert analyseoppsett: ${section.analysis}`
+  }, bindings.examples[index], 'analysis'));
+  const curatedModels = MENTAL_HEALTH_MODEL_CURATION[raw.emne_id];
+  if (!curatedModels || curatedModels.length !== bindings.models.length) throw new Error(`Mangler eksplisitt modellkuratering for ${raw.emne_id}`);
+  const models = raw.models_or_researchers.map((section, index) => {
+    const curated = curatedModels[index];
+    if (curated.claimId !== bindings.models[index]) throw new Error(`Modellclaim avviker fra kuratering i ${raw.emne_id}`);
+    return bindSection({ ...section, name: curated.name }, curated.claimId, 'role');
+  });
+  const articleClaimIds = [...new Set([...raw.claim_ids, ...bindings.theories, ...bindings.examples, ...bindings.models])];
   const sourceIds = new Set(raw.extra_source_ids || []);
-  for (const claimId of raw.claim_ids) {
+  for (const claimId of articleClaimIds) {
     const claim = CLAIM_BY_ID.get(claimId);
     if (!claim) throw new Error(`Ukjent mental-health claim ${claimId} i ${raw.emne_id}`);
     for (const sourceId of claim.source_ids) sourceIds.add(sourceId);
   }
-  for (const section of [...raw.theories_and_findings, ...raw.examples, ...raw.models_or_researchers]) {
+  for (const section of [...theories, ...examples, ...models]) {
     for (const sourceId of section.source_ids || []) sourceIds.add(sourceId);
   }
   return {
@@ -443,18 +499,19 @@ function materialize(raw) {
     article_status: 'complete',
     definition: raw.definition,
     background: raw.background,
-    theories_and_findings: raw.theories_and_findings,
+    theories_and_findings: theories,
     methods: raw.methods,
     boundaries_and_disagreements: raw.boundaries_and_disagreements,
-    examples: raw.examples,
+    examples,
     learning_outcomes: raw.learning_outcomes,
     key_questions: raw.key_questions,
-    models_or_researchers: raw.models_or_researchers,
+    models_or_researchers: models,
     related_emne_ids: [...new Set(emne.related_emne || emne.related_emners || [])],
-    claim_ids: raw.claim_ids,
+    claim_ids: articleClaimIds,
     source_ids: [...sourceIds].sort(),
     misuse_guard: raw.misuse_guard,
-    editorial_review: { ...EDITORIAL_REVIEW, checks: { ...EDITORIAL_REVIEW.checks } }
+    editorial_review: { ...EDITORIAL_REVIEW, checks: { ...EDITORIAL_REVIEW.checks } },
+    quality_review: { ...QUALITY_REVIEW }
   };
 }
 

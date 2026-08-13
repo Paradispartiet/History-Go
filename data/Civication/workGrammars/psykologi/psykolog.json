@@ -1,0 +1,115 @@
+{
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykolog",
+  "role_id": "psykologi_psykolog",
+  "title": "Psykolog",
+  "badge_binding": {
+    "badge_category": "psykologi",
+    "badge_id": "psykologi",
+    "badge_name": "Psykologi",
+    "tier_label": "Psykolog",
+    "tier_threshold": 115,
+    "badge_titles": ["Psykolog"],
+    "progression_from": ["Seniorrådgiver"],
+    "progression_to": ["Spesialistpsykolog"]
+  },
+  "evidence": {
+    "registry": "data/Civication/psychologyClinicalCareerEvidence.json",
+    "source_refs": ["helsedirektoratet_title_protection", "ous_psykolog_2026"]
+  },
+  "fag_bindings": {
+    "primary_subjects": ["psykologi"],
+    "category_files": ["data/Civication/roleModels/psykologi/psykolog.json"],
+    "required_concepts": [
+      "klinisk_utredning",
+      "behandlingsallianse",
+      "medvirkning",
+      "klinisk_usikkerhet",
+      "risiko",
+      "taushetsplikt",
+      "pasientsikkerhet",
+      "tverrfaglig_samarbeid"
+    ],
+    "methods": [
+      "klinisk_intervju",
+      "hypotesedrevet_utredning",
+      "behandlingsplan",
+      "lopende_evaluering",
+      "journalforing",
+      "risikovurdering",
+      "veiledningsbruk"
+    ]
+  },
+  "work_identity": {
+    "one_sentence": "Psykologen utreder og behandler innen egen kompetanse og bruker klinisk autoritet til å gjøre beslutninger mer begrunnede, ikke mindre etterprøvbare.",
+    "hidden_responsibility": "Å holde både pasientens perspektiv, klinisk risiko og egen usikkerhet synlig når systemet ønsker raske konklusjoner.",
+    "status_tension": "Profesjonstittelen gir tillit og ansvar, men kan også gjøre en forelopig hypotese farlig sterk hvis du slutter å teste den.",
+    "core_pressure": "klinisk_presisjon_vs_tidskrav",
+    "work_rhythm": [
+      "avklare problemstilling og pasientens eget mål",
+      "samle relevant informasjon og teste hypoteser",
+      "lage behandlingsplan sammen med pasienten",
+      "gjennomfore og evaluere behandling",
+      "dokumentere begrunnelse og neste steg",
+      "drøfte risiko og kompleksitet med riktig team eller veileder"
+    ]
+  },
+  "authority_boundary": {
+    "may": [
+      "utrede og behandle innen stilling, lovverk og egen kompetanse",
+      "ha behandlingsansvar når stillingen og virksomheten legger det til rollen",
+      "dokumentere kliniske vurderinger og planer",
+      "dele nodvendig informasjon når det finnes gyldig grunnlag",
+      "eskalere til annen kompetanse eller myndighet når saken krever det"
+    ],
+    "may_not": [
+      "bruke psykologtittelen uten gyldig norsk autorisasjon eller lisens",
+      "framstille autorisasjon som spesialistgodkjenning",
+      "fatte lovregulerte vedtak som faglig ansvarlig uten særskilt kvalifikasjon og utpeking",
+      "behandle utenfor egen kompetanse",
+      "dele taushetsbelagte opplysninger bare fordi andre ber om dem"
+    ],
+    "escalate_when": [
+      "risikoen oker eller er uavklart på en måte som krever bredere vurdering",
+      "saken ligger utenfor egen kompetanse",
+      "pasientforlopet krever annen profesjon eller spesialistkompetanse",
+      "en beslutning krever juridisk myndighet rollen ikke har"
+    ]
+  },
+  "story_world": {
+    "simulation_promise": "Du opplever hvordan kliniske valg formes av usikkerhet, relasjon, risiko, dokumentasjon og samarbeid — ikke bare av hva du vet om psykologi.",
+    "everyday_world": "Arbeidsdagen veksler mellom samtaler, utredning, behandling, journal, teammoter og prioriteringer under tidspress.",
+    "hidden_complexity": "Den samme informasjonen kan peke mot flere forklaringer, og et godt klinisk svar kan være å holde flere hypoteser apne litt lenger.",
+    "recurring_situations": [
+      "en tidlig hypotese passer godt, men ikke helt",
+      "pasienten vil prioritere noe annet enn behandlingsplanen",
+      "teamet trenger informasjon, men ikke hele historien",
+      "risikobildet endrer seg mellom to samtaler",
+      "ventelistepress gjor en rask konklusjon fristende"
+    ],
+    "small_story_seeds": [
+      "ett nytt opplysningselement tvinger deg til a revurdere den ryddigste forklaringen",
+      "pasienten sier ja til planen, men forklarer den som om den tilhorer deg",
+      "en kollega ber om detaljer som ikke er nodvendige for deres oppgave",
+      "en journaltekst er faglig riktig, men for sikker i tonen"
+    ],
+    "relationship_web": [
+      {"who":"pasient","relation":"personen du behandler","wants":"hjelp som gir mening og ikke reduserer dem til et problem","creates":"krav om medvirkning og allianse","tension":"faglig_plan_vs_pasientens_prioritet"},
+      {"who":"teamkollega","relation":"tverrfaglig samarbeidspartner","wants":"nok informasjon til a handle trygt","creates":"press pa informasjonsdeling","tension":"samhandling_vs_taushet"},
+      {"who":"leder","relation":"driftsansvarlig","wants":"framdrift og kapasitet","creates":"tidspress","tension":"tempo_vs_klinisk_grunnlag"}
+    ],
+    "knowledge_in_practice": [
+      {"concept":"klinisk_usikkerhet","practical_scene":"to forklaringer passer deler av bildet","what_player_must_notice":"usikkerhet er informasjon, ikke bare mangel","bad_misread":"velg den mest sannsynlige og lukk resten","good_use":"test hypoteser mot nye data og dokumenter hva som fortsatt er uklart"},
+      {"concept":"medvirkning","practical_scene":"pasienten nikker til planen men bruker ikke tiltakene","what_player_must_notice":"formelt samtykke er ikke nodvendigvis eierskap","bad_misread":"manglende oppfolging er bare motivasjonsproblem","good_use":"undersok mal, barrierer og om planen faktisk er felles"},
+      {"concept":"taushetsplikt","practical_scene":"teamet ber om hele bakgrunnen","what_player_must_notice":"samarbeid krever relevans og grunnlag","bad_misread":"mer informasjon er alltid sikrere","good_use":"del det som er nodvendig og forklar grensen"}
+    ]
+  },
+  "practice_stories": [
+    {"id":"hypotesen_som_ble_for_sikker","title":"Hypotesen som ble for sikker","setup":"En tidlig formulering forklarer mye, men nye opplysninger passer darlig.","decision":"Revider formuleringen eksplisitt eller press nye data inn i den gamle forklaringen.","learning":"Klinisk presisjon krever at hypoteser kan endres."},
+    {"id":"planen_pasienten_ikke_eier","title":"Planen pasienten ikke eier","setup":"Behandlingsplanen er faglig ryddig, men pasienten beskriver et annet hovedproblem.","decision":"Reforhandle prioriteringen eller holde fast ved den opprinnelige planen.","learning":"Medvirkning er en del av behandlingskvaliteten."},
+    {"id":"teamet_vil_vite_alt","title":"Teamet vil vite alt","setup":"En samarbeidspartner ber om flere private detaljer enn oppgaven krever.","decision":"Avgrens delingen eller gi hele bakgrunnen for a spare tid.","learning":"Tverrfaglighet opphever ikke taushets- og relevansgrensen."},
+    {"id":"risikoen_endrer_seg","title":"Risikoen endrer seg","setup":"Ny informasjon gjor at tidligere sikkerhetsplan ikke lenger er tilstrekkelig.","decision":"Eskalere og revurdere eller lene deg pa den gamle planen.","learning":"Pasientsikkerhet krever lopende vurdering og riktig eskalering."}
+  ]
+}

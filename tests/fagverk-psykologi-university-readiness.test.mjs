@@ -28,11 +28,17 @@ test('Psykologi har en eksplisitt universitetsmatrise uten å miste 6/58-baselin
     'research_methods_statistics'
   ]);
   assert.ok(Object.values(report.currentGates).every(Boolean));
+  assert.equal(report.currentGates.ahaRuntimeIntegrationStateAudited, true);
+  assert.equal('topicArticlesRemainOutsideAhaRuntime' in report.currentGates, false);
 });
 
 test('Alle universitetsporter er ferdige og complete er dokumentert', () => {
   const { report } = auditPsykologiUniversityReadiness();
   assert.equal(report.completeReady, true);
+  assert.equal(report.editorialQuality.status, 'psykologi_editorial_quality_v2_high');
+  assert.equal(report.editorialQuality.highQuality, true);
+  assert.ok(report.editorialQuality.score >= 27);
+  assert.deepEqual(report.editorialQuality.criticalFlags, []);
   assert.equal(report.biologicalPsychology.requiredTopicCount, 15);
   assert.equal(report.biologicalPsychology.materializedTopicCount, 15);
   assert.equal(report.biologicalPsychology.sourceCount, 8);
@@ -126,7 +132,7 @@ test('Alle universitetsporter er ferdige og complete er dokumentert', () => {
     domainId: 'psykisk_helse_institusjoner_behandling',
     requiredCount: 12,
     completeCount: 12,
-    totalEditorialWordCount: 7505,
+    totalEditorialWordCount: 9144,
     auditComplete: true
   });
   assert.equal(report.topicArticles.fullCorpus.requiredCount, 58);

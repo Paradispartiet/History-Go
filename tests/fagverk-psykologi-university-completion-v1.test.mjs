@@ -38,11 +38,13 @@ test('canonicalt begrepsregister dekker eksakt alle core_concepts og alle anvend
   ]);
 });
 
-test('sluttporten bevarer klinisk sikkerhet og AHA-isolasjon', () => {
+test('sluttporten bevarer klinisk sikkerhet og auditerer AHA-integrasjon uten å blokkere aktivering', () => {
   const { report } = auditPsykologiUniversityCompletion({ checkReport: false });
   assert.ok(Object.values(report.gates).every(Boolean));
-  assert.equal(report.gates.noAhaRuntimeActivation, true);
+  assert.equal(report.gates.ahaRuntimeIntegrationStateAudited, true);
+  assert.equal('noAhaRuntimeActivation' in report.gates, false);
   assert.deepEqual(report.evidence.runtime.scannedRoots, ['js', 'data/integrations', 'data/historygo', 'data/psychology']);
-  assert.deepEqual(report.evidence.runtime.referencingFiles, []);
+  assert.ok(Array.isArray(report.evidence.runtime.referencingFiles));
   assert.equal(report.complete, true);
+  assert.equal(report.gates.allArticlesMeetUniversityDepth, true);
 });

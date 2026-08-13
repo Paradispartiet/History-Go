@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "id": "psykologi_arbeids_og_karriereveiledning",
+  "navn": "Arbeids- og karriereveiledning",
+  "kjernefantasi": "Du kjenner systemet og mulighetene, men den andre personen skal fortsatt eie målet. Jobben er å gjøre valget klarere uten å gjøre ditt råd til deres liv.",
+  "arbeidsoppgaver": [
+    "avklare hva veisøkeren ønsker hjelp til",
+    "kartlegge interesser, erfaring, kompetanse og ressurser sammen",
+    "utforske utdannings- og arbeidsmuligheter",
+    "støtte CV, søknad og intervjuforberedelse",
+    "lage og følge opp handlingsplaner sammen med veisøker",
+    "samarbeide med arbeidsgiver, NAV og relevante fagpersoner innenfor samtykke og rolle"
+  ],
+  "personer": [
+    {
+      "id": "nora",
+      "navn": "Nora",
+      "beskrivelse": "Veisøkeren du følger tettest denne uka. Hun vil videre, men vil ikke reduseres til et hull i CV-en eller et tiltaksmål."
+    },
+    {
+      "id": "teamleder",
+      "navn": "Teamlederen",
+      "beskrivelse": "Må levere framdrift og resultater, og presser på for tydelige planer når usikkerheten tar tid."
+    },
+    {
+      "id": "kollega",
+      "navn": "Samir",
+      "beskrivelse": "Erfaren veileder som liker struktur og kartleggingsverktøy, men vet at de bare er gode når de brukes som spørsmål."
+    },
+    {
+      "id": "arbeidsgiver",
+      "navn": "Elin, arbeidsgiverkontakten",
+      "beskrivelse": "Har en reell jobbmulighet og vil redusere risiko før hun bestemmer seg."
+    },
+    {
+      "id": "nav_kontakt",
+      "navn": "Marius i NAV",
+      "beskrivelse": "Samarbeidspartner med frister, tiltak og rammer som må fungere sammen med Noras faktiske plan."
+    },
+    {
+      "id": "venn",
+      "navn": "Jonas",
+      "beskrivelse": "Vennen din. Merker når du begynner å behandle andres valg som et problem du personlig må løse."
+    },
+    {
+      "id": "familie",
+      "navn": "Søsteren din",
+      "beskrivelse": "Ringer om sitt eget liv og minner deg på at jobbens uløste spørsmål ikke trenger å flytte inn hjemme hos deg."
+    }
+  ],
+  "hovedkonflikter": [
+    "autonomi vs styring",
+    "utforsking vs fasit",
+    "jobbmatch vs personvern",
+    "rask plassering vs bærekraftig valg",
+    "systemkrav vs individuell prosess"
+  ],
+  "endings": [
+    {
+      "id": "selvstendig_og_opplyst",
+      "navn": "Et valg som faktisk er hennes",
+      "tekst": "Du leverte ikke den peneste planen eller det raskeste svaret. Du gjorde valgene tydeligere, holdt kartleggingen åpen og lot Nora eie begrunnelsen. Da uka var over, trengte hun mindre av rådene dine enn da den begynte — som er et godt tegn i denne jobben.",
+      "kriterier": {
+        "meters": {
+          "integritet": { "min": 62 },
+          "handlingsrom": { "min": 52 }
+        },
+        "flagg": {
+          "lot_veisoker_eie_malet": true,
+          "beskyttet_personvern": true
+        }
+      },
+      "standard": true
+    },
+    {
+      "id": "kartlegging_som_fasit",
+      "navn": "Skjemaet fikk siste ord",
+      "tekst": "Du brukte kartlegging for å skape orden, men lot resultatet bli mer sikkert enn mennesket foran deg. Planen ble ryddig og lett å forklare oppover. Nora satt igjen med en retning hun kunne gjenta, men ikke helt kjenne igjen som sin egen.",
+      "kriterier": {
+        "flagg": {
+          "gjorde_kartlegging_til_fasit": true
+        }
+      }
+    },
+    {
+      "id": "for_mye_delt",
+      "navn": "Jobbmatch på bekostning av tillit",
+      "tekst": "Du ville gjøre arbeidsgiveren trygg og jobbmuligheten konkret, men delte mer enn rollen og samtykket bar. Matchen kom nærmere på papiret mens relasjonen til Nora ble svakere. Noe relevant informasjon er nødvendig; all informasjon er ikke relevant.",
+      "kriterier": {
+        "flagg": {
+          "delte_sensitive_opplysninger": true
+        }
+      }
+    },
+    {
+      "id": "systemet_styrte",
+      "navn": "Planen vant over personen",
+      "tekst": "Du leverte på frister, tok tydelige valg og gjorde systemet enkelt å drive. Problemet var at flere av valgene egentlig var dine. Nora fikk aktivitet og framdrift, men mindre eierskap. Veiledning ble gradvis noe som skjedde med henne, ikke sammen med henne.",
+      "kriterier": {
+        "meters": {
+          "integritet": { "max": 56 }
+        },
+        "flagg": {
+          "styrte_veisoker": true,
+          "prioriterte_systemet": true
+        }
+      }
+    },
+    {
+      "id": "for_lite_handling",
+      "navn": "God samtale, lite bevegelse",
+      "tekst": "Du var varsom med å styre og flink til å holde mulighetene åpne. Etter hvert ble åpenheten en måte å unngå beslutninger på. Nora forsto seg selv bedre, men sto nesten på samme sted. Autonomi trenger også et konkret neste steg.",
+      "kriterier": {
+        "flagg": {
+          "utsatte_alle_valg": true
+        }
+      }
+    }
+  ],
+  "startState": {
+    "meters": {
+      "penger": 390,
+      "psyke": 66,
+      "energi": 70,
+      "integritet": 54,
+      "synlighet": 45,
+      "handlingsrom": 50
+    },
+    "relasjoner": {
+      "nora": 50,
+      "teamleder": 48,
+      "kollega": 55,
+      "arbeidsgiver": 42,
+      "nav_kontakt": 50,
+      "venn": 60,
+      "familie": 55
+    }
+  },
+  "dagsplan": {
+    "1": [
+      { "klokke": "09:00", "tekst": "Veiledningssamtale med Nora" },
+      { "klokke": "11:30", "tekst": "Kartlegging og muligheter" },
+      { "klokke": "14:00", "tekst": "Oppfølging med arbeidsgiver" }
+    ],
+    "2": [
+      { "klokke": "09:30", "tekst": "Plan og neste steg" },
+      { "klokke": "13:00", "tekst": "Samarbeidsmøte" }
+    ]
+  },
+  "scopeBoundary": {
+    "kan": [
+      "kartlegge interesser, kompetanse, ressurser og mål sammen med veisøker",
+      "utforske utdannings- og arbeidsmuligheter",
+      "støtte jobbsøking og intervjuforberedelse",
+      "lage handlingsplan sammen med veisøker",
+      "motivere uten å overta valget",
+      "samarbeide med arbeidsgiver, NAV og relevante fagpersoner innenfor mandat"
+    ],
+    "kanIkke": [
+      "diagnostisere",
+      "drive psykoterapi",
+      "gjøre medisinsk eller klinisk arbeidsevnevurdering",
+      "bruke kartleggingsverktøy som klinisk fasit",
+      "dele sensitive opplysninger uten grunnlag eller avklart samtykke",
+      "bestemme utdanning eller jobb på vegne av veisøker"
+    ]
+  }
+}

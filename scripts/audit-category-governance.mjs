@@ -68,7 +68,9 @@ if (!contract.fagSubjects.includes("filosofi")) failures.push({ name: "filosofi"
 if (contract.runtimeToFag?.filosofi) failures.push({ name: "filosofi", reason: "must not map to another fag subject" });
 if (!contract.runtimeCategories.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing runtime category" });
 if (!contract.fagSubjects.includes("scenekunst")) failures.push({ name: "scenekunst", reason: "missing fag subject" });
-if (contract.runtimeCategories.includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must remain non-place badge" });
+if (contract.runtimeCategories.includes("sosial_laering") || contract.fagSubjects.includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must not be a canonical category or subject" });
+if ((contract.nonPlaceBadges || []).includes("sosial_laering")) failures.push({ name: "sosial_laering", reason: "must not be registered as a badge" });
+if ((badgeIndex.files || []).includes("data/badges/sosial_laering.json")) failures.push({ name: "sosial_laering", reason: "must not be present in the badge index" });
 if (contract.runtimeCategories.includes("teknologi") || contract.fagSubjects.includes("teknologi")) failures.push({ name: "teknologi", reason: "must be a specialization under vitenskap, not a top category" });
 for (const alias of ["technology", "teknologi", "tech", "it", "informasjonsteknologi"]) { if (contract.aliases?.[alias] !== "vitenskap") failures.push({ name: "teknologi alias", alias, expected: "vitenskap", actual: contract.aliases?.[alias] }); }
 if (contract.labels?.vitenskap !== "Vitenskap & teknologi") failures.push({ name: "vitenskap label", reason: "must include technology" });

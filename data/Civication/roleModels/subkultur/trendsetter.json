@@ -1,120 +1,15 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "subkultur",
-    "badge_name": "Subkultur",
-    "tier_label": "Trendsetter",
-    "tier_threshold": 160
-  },
-  "category": "subkultur",
-  "role_scope": "trendsetter",
-  "role_id": "subkultur_trendsetter",
-  "title": "Trendsetter",
-  "core_narrative": [
-    "I Civication er Trendsetter en praktisk rolle i Subkultur der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til punk, hiphop."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som lever i mellomrommet – der nye uttrykk fødes. Subkultur er fremtidens første språk."
-    ],
-    "history_go_badges": [
-      "subkultur"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "trendsetter",
-    "mail_profile": "subkultur_trendsetter",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Trendsetter",
-      "category": "subkultur",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: subkultur / Trendsetter."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/subkultur.json","badge_id":"subkultur","badge_name":"Subkultur","tier_label":"Prosjektleder (kulturarrangement)","tier_threshold":150,"evidence_file":"data/Civication/subcultureCareerEvidence.json"},
+  "category":"subkultur","role_scope":"subkultur_produksjon_og_prosjekt","role_id":"subkultur_prosjektleder_kulturarrangement","title":"Prosjektleder (kulturarrangement)",
+  "professional_description":["Prosjektleder for kulturarrangement med mål, framdrift, økonomi, aktører, risiko og leveranser på tvers av fag."],
+  "core_narrative":["Du gjør et midlertidig fellesskap leveringsdyktig uten å gjøre prosjektstyring til kontroll over uttrykket."],
+  "work_life":{"daily_work":["etablere mål og milepæler","fordele ansvar","følge budsjett og risiko","styre endringer","rapportere og evaluere"],"responsibilities":["tydelig beslutningsspor","forankre endringer","holde interessenter informert","beskytte kritiske sikkerhets- og kontraktskrav"],"work_environment":["festivalprosjekt","kulturarrangement","tverrfaglig produksjon"],"status_position":["Prosjektmyndighet innen gitt mandat, ikke kulturell enerett eller permanent linjeledelse."]},
+  "required_knowledge":{"education_basis":["Prosjektleder er en bred stillingstittel; relevant erfaring/utdanning og arbeidsgiverkrav avhenger av prosjektet."],"skills":["prosjektstyring","budsjett","risiko","møteledelse","endringskontroll"],"category_knowledge":["kulturproduksjon","frivillighet","subkulturelle aktørnettverk"],"history_go_badges":["subkultur"],"place_connections":[],"people_connections":[]},
+  "scope_boundaries":{"may_do":["prioritere innen prosjektmandat","fordele prosjektoppgaver","styre framdrift"],"must_not_simulate_as_authority":["overstyre fagansvar uten mandat","bruke uformell sceneautoritet som beslutningsgrunnlag","skjule endringer for berørte parter"]},
+  "challenges":[{"id":"frivillig_kraft_vs_grenser","title":"Prosjektet lever på ekstra innsats","description":"Entusiasme kan bli til usynlig overarbeid hvis ansvar og grenser ikke er tydelige.","pressure":"leveranse_vs_baerekraft","affects":["trust","energy","status"]}],
+  "dilemmas":[{"id":"en_natt_til","title":"Én natt til","setup":"En forsinkelse kan hentes inn hvis kjernegruppen jobber gjennom natten.","choice_axis":"deadline_vs_baerekraft","consequence_axis":"leveranse_vs_tillit","mail_hooks":["job","people","conflict"]}],
+  "mail_integration":{"role_scope":"subkultur_produksjon_og_prosjekt","mail_profile":"subkultur_produksjon_og_prosjekt","can_feed_mail_types":["job","story","conflict","event","people","followup","consequence"],"mail_variables":{"role_title":"Prosjektleder (kulturarrangement)","category":"subkultur","main_pressure":"leveranse_vs_baerekraft","ethical_axis":"deadline_vs_grenser","status_axis":"framdrift_vs_tillit"},"recommended_mail_families":["subkultur_produksjon_og_prosjekt"],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"prosjekt","label":"Prosjekt"},{"id":"risiko","label":"Risiko"},{"id":"endring","label":"Endring"}],"ideal_type_problems":[{"id":"leveranse_vs_baerekraft","label":"Leveranse vs bærekraft"}],
+  "notes":["Legacy filename retained for manifest stability; canonical title is Prosjektleder (kulturarrangement)."]
 }

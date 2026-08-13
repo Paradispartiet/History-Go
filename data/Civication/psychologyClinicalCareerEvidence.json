@@ -1,0 +1,124 @@
+{
+  "schema": "civication_psychology_clinical_career_evidence_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-13",
+  "badge_id": "psykologi",
+  "badge_source": "data/badges/psykologi.json",
+  "principle": "Badge-poeng dokumenterer faglig progresjon i History Go. Klinisk tittelbruk, spesialiststatus og lederutnevnelser kommer alltid fra eksplisitte career_offer-porter og aldri fra poeng alene.",
+  "canonical_roles": {
+    "Psykolog": {
+      "threshold": 115,
+      "role_scope": "psykolog",
+      "role_id": "psykologi_psykolog",
+      "career_offer_policy": "authorization_required",
+      "qualification_ids": ["no_psychologist_authorization_or_license"],
+      "evidence_refs": ["helsedirektoratet_title_protection", "ous_psykolog_2026"],
+      "work_identity": "Autorisert psykolog i klinisk psykisk helsearbeid med utredning, behandling, behandlingsansvar, teamarbeid, veiledning og dokumentasjon innen egen kompetanse og virksomhetens rammer.",
+      "must_not_imply": [
+        "at Badge-poeng gir autorisasjon eller lisens",
+        "at psykologtittelen kan brukes uten gyldig norsk rett til tittelbruk",
+        "at rollen automatisk gir spesialiststatus",
+        "at rollen automatisk gir vedtakskompetanse som faglig ansvarlig etter psykisk helsevernloven"
+      ]
+    },
+    "Spesialistpsykolog": {
+      "threshold": 150,
+      "role_scope": "spesialistpsykolog",
+      "role_id": "psykologi_spesialistpsykolog",
+      "career_offer_policy": "authorization_required",
+      "qualification_ids": [
+        "no_psychologist_authorization_or_license",
+        "no_psychologist_specialist_approval"
+      ],
+      "evidence_refs": ["psykologforeningen_specialist_rules", "ous_psykologspesialist"],
+      "work_identity": "Psykolog med dokumentert spesialistkompetanse, større klinisk kompleksitet, veiledning og fagutvikling, men fortsatt bundet av konkret spesialitet, virksomhet og egen kompetanse.",
+      "must_not_imply": [
+        "at autorisasjon alene gir spesialiststatus",
+        "at hvilken som helst spesialistgodkjenning automatisk gir alle typer klinisk myndighet",
+        "at spesialiststatus alene gjør personen til lovens faglig ansvarlige"
+      ]
+    },
+    "Fagansvarlig": {
+      "threshold": 190,
+      "role_scope": "fagansvarlig",
+      "role_id": "psykologi_fagansvarlig",
+      "career_offer_policy": "appointment_required",
+      "qualification_ids": ["employer_appointment"],
+      "evidence_refs": ["helsedirektoratet_faglig_ansvarlig_boundary"],
+      "work_identity": "Arbeidsgiverutnevnt fag- og kvalitetsansvar i en psykologisk eller psykisk-helsefaglig tjeneste: fagprosedyrer, kompetanseutvikling, veiledningsstruktur, avvikslæring og kvalitetsforbedring.",
+      "statutory_boundary": "Civication-tittelen Fagansvarlig er bevisst ikke identisk med den lovregulerte rollen faglig ansvarlig for vedtak etter psykisk helsevernloven. Lovrollen krever særskilte spesialist- og praksiskrav og skriftlig utpeking.",
+      "must_not_imply": [
+        "vedtakskompetanse etter psykisk helsevernloven",
+        "rett til diagnostikk eller behandling uten separat profesjonskompetanse",
+        "at arbeidsgiverutnevnelsen erstatter autorisasjon eller spesialistkrav for kliniske oppgaver"
+      ]
+    },
+    "Klinikkleder": {
+      "threshold": 240,
+      "role_scope": "klinikkleder",
+      "role_id": "psykologi_klinikkleder",
+      "career_offer_policy": "appointment_required",
+      "qualification_ids": ["employer_appointment"],
+      "evidence_refs": ["helse_bergen_klinikkleiar_2026"],
+      "work_identity": "Strategisk og operativ lederrolle med helhetlig ansvar for retning, kvalitetssystem, pasientforløp, bemanning, kompetanse, økonomi, resultatstyring og endringsarbeid.",
+      "clinical_boundary": "Klinikkleder er en lederstilling, ikke en beskyttet psykologtittel. Lederrollen gir ikke i seg selv rett til å diagnostisere, behandle eller fatte lovregulerte kliniske vedtak.",
+      "must_not_imply": [
+        "at klinikkledelse krever eller gir psykologautorisasjon i seg selv",
+        "at personal- og budsjettansvar gir behandlingsmyndighet",
+        "at klinikklederen automatisk er faglig ansvarlig etter psykisk helsevernloven"
+      ]
+    }
+  },
+  "statutory_faglig_ansvarlig": {
+    "simulated_by_badge_title": false,
+    "reason": "Helsedirektoratets kommentar til psykisk helsevernforskriften § 4 viser at psykolog som skal være faglig ansvarlig for vedtak må være spesialist i relevant psykologi, ha minst to års dokumentert relevant praksis fra godkjent institusjon/avdeling, og være utpekt. Psykologen har dessuten avgrensninger i hvilke vedtak vedkommende kan ha faglig ansvar for. Dette er derfor en egen juridisk rolle og ikke en automatisk forfremmelse fra Civication-tittelen Fagansvarlig.",
+    "source_ref": "helsedirektoratet_faglig_ansvarlig_boundary"
+  },
+  "sources": {
+    "helsedirektoratet_title_protection": {
+      "publisher": "Helsedirektoratet / Lovdata",
+      "title": "Helsepersonelloven § 74 – bruk av beskyttet tittel",
+      "url": "https://lovdata.no/nav/lov/1999-07-02-64/kap13/%C2%A774",
+      "checked_at": "2026-08-13",
+      "supports": ["beskyttet tittel", "autorisasjon/lisens som port"]
+    },
+    "ous_psykolog_2026": {
+      "publisher": "Oslo universitetssykehus HF via Arbeidsplassen.no",
+      "title": "Psykologvikariat – Gruppe- og personlighetspoliklinikken Nydalen DPS",
+      "reference": "5155695172",
+      "url": "https://arbeidsplassen.nav.no/stillinger/stilling/00446246-849f-4d0c-9d21-f9539f7ae31c",
+      "checked_at": "2026-08-13",
+      "supports": ["norsk autorisasjon", "utredning", "behandling", "behandlingsansvar", "teamarbeid", "veiledning"]
+    },
+    "psykologforeningen_specialist_rules": {
+      "publisher": "Norsk psykologforening",
+      "title": "Reglement for spesialitetene i psykologi",
+      "url": "https://www.psykologforeningen.no/kurs-og-utdanning/reglement-for-spesialitetene-i-psykologi",
+      "checked_at": "2026-08-13",
+      "supports": ["autorisasjon som opptaksgrunnlag", "praksis", "veiledning", "kurs", "skriftlig arbeid", "spesialistgodkjenning", "vedlikehold"]
+    },
+    "ous_psykologspesialist": {
+      "publisher": "Oslo universitetssykehus HF via Arbeidsplassen.no",
+      "title": "Psykologspesialist – Nydalen DPS Dagenhet",
+      "reference": "4973145566",
+      "url": "https://arbeidsplassen.nav.no/stillinger/stilling/5d3a0f2b-8c9e-4154-9f37-d3e84cc7d2ec",
+      "checked_at": "2026-08-13",
+      "supports": ["norsk autorisasjon", "spesialistgodkjenning", "utredning", "behandling", "veiledning", "fagutvikling"]
+    },
+    "helsedirektoratet_faglig_ansvarlig_boundary": {
+      "publisher": "Helsedirektoratet",
+      "title": "Psykisk helsevernforskriften § 4 – Faglig ansvarlig",
+      "url": "https://www.helsedirektoratet.no/rundskriv/psykisk-helsevernlovens-forskrift-med-kommentarer/krav-til-institusjonene",
+      "checked_at": "2026-08-13",
+      "supports": ["utpeking", "relevant spesialitet", "to års relevant praksis", "lovbestemt vedtakskompetanse", "myndighetsavgrensning"]
+    },
+    "helse_bergen_klinikkleiar_2026": {
+      "publisher": "Helse Bergen HF via Arbeidsplassen.no",
+      "title": "Klinikkleiar – Klinikk sikkerheitspsykiatri",
+      "reference": "5109847238",
+      "url": "https://arbeidsplassen.nav.no/stillinger/stilling/0c07e88e-62b2-4d69-91eb-2fe6bb0d4de2",
+      "checked_at": "2026-08-13",
+      "supports": ["strategisk ledelse", "faglig kvalitet", "pasientforløp", "personalansvar", "kompetansebygging", "økonomi", "resultatstyring", "relevant høyere utdanning", "ledererfaring"]
+    }
+  }
+}

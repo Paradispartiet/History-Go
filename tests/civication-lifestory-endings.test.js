@@ -48,14 +48,20 @@ function playFullWeek(content, pick) {
 const foerste = (s) => s.valg[0].id;
 const siste = (s) => s.valg[s.valg.length - 1].id;
 
-// Forventede slutter for de to deterministiske mønstrene (kalibrert mot målt
-// sluttilstand): forsiktig/ærlig => en «god» slutt, hensynsløst => en «hard».
 const FORVENTET = {
   arbeidsledig: { foerste: "bygget_kompetanse", siste: "kom_i_jobb" },
   renholder: { foerste: "fagstolt", siste: "usynlig_forbigaatt" },
   ekspeditor: { foerste: "trygg_paa_gulvet", siste: "mistet_tilliten" },
   arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" },
-  barnehageassistent: { foerste: "trygg_voksen", siste: "drift_foran_barn" }
+  barnehageassistent: { foerste: "trygg_voksen", siste: "drift_foran_barn" },
+  psykologi_miljoarbeid: { foerste: "presis_og_trygg", siste: "for_lukket" },
+  psykologi_arbeids_og_karriereveiledning: { foerste: "selvstendig_og_opplyst", siste: "systemet_styrte" },
+  psykolog: { foerste: "trygg_og_samarbeidende", siste: "kontroll_foran_allianse" },
+  spesialistpsykolog: { foerste: "kompleksitet_med_ydmykhet", siste: "ekspertrollen_lukket_rommet" },
+  fagansvarlig: { foerste: "kvalitet_som_laering", siste: "prosedyren_som_skjold" },
+  klinikkleder: { foerste: "retning_med_baerekraft", siste: "tallene_vant" },
+  forsker_psykologi: { foerste: "etterprovbar_forsker", siste: "resultatet_foran_metoden" },
+  professor_psykologi: { foerste: "miljo_som_taler_imot_deg", siste: "professoren_som_tyngdepunkt" }
 };
 
 for (const roleId of Object.keys(manifest.roles)) {
@@ -63,8 +69,8 @@ for (const roleId of Object.keys(manifest.roles)) {
   const endings = content.role.endings;
   assert.ok(Array.isArray(endings) && endings.length >= 2, roleId + ": har endings");
   assert.strictEqual(endings.filter((e) => e.standard).length, 1, roleId + ": nøyaktig én standard");
+  assert.ok(FORVENTET[roleId], roleId + ": mangler eksplisitt endings-kalibrering");
 
-  // isFinalDay: usant på dag 1 (det finnes senere dager), sant til slutt.
   const day1 = State.createInitialState(content);
   assert.ok(!Endings.isFinalDay(day1, content), roleId + ": dag 1 er ikke siste dag");
 
@@ -82,17 +88,15 @@ for (const roleId of Object.keys(manifest.roles)) {
   assert.notStrictEqual(endF.id, endH.id, roleId + ": to mønstre gir to ulike slutter");
 }
 
-// --- Fallback: tom sluttilstand scorer ingenting => standard-endingen ---
 {
   const content = build("renholder");
-  const tomState = State.createInitialState(content); // ingen valg tatt
+  const tomState = State.createInitialState(content);
   const end = Endings.resolveEnding(tomState, content);
   const std = content.role.endings.find((e) => e.standard);
   assert.strictEqual(end.id, std.id, "uten signaler faller vi tilbake på standard-endingen");
   assert.strictEqual(end.standard, true, "fallback er merket standard");
 }
 
-// --- Validatoren feiler hardt på kriterier mot ukjente signaler ---
 const arb = manifest.roles.arbeidsledig;
 const raw = {
   role: readJson(arb.role),
@@ -102,7 +106,7 @@ const raw = {
   lifeThreads: readJson(manifest.life.threads),
   lifeScenes: readJson(manifest.life.scenes)
 };
-Content.buildContent(raw); // gyldig utgangspunkt
+Content.buildContent(raw);
 assert.throws(() => {
   const broken = JSON.parse(JSON.stringify(raw));
   broken.role.endings[0].kriterier = { meters: { lykke: { min: 5 } } };
@@ -114,10 +118,9 @@ assert.throws(() => {
   Content.buildContent(broken);
 }, /forventet nøyaktig én standard-ending/, "null standard-endinger skal kaste");
 
-// --- UI-kontrakten: siste dag viser slutten, ikke «Start neste dag» ---
 const uiSource = fs.readFileSync(path.join(ROOT, "js/Civication/ui/CivicationLifestoryUI.js"), "utf8");
 assert.ok(uiSource.includes("CivicationLifestoryEndings") && uiSource.includes("isFinalDay"),
   "UI-et kårer en slutt på siste dag");
 assert.ok(uiSource.includes("civi-lifestory-ending"), "UI-et rendrer ending-seksjonen");
 
-console.log("civication lifestory endings ok (5 roller, forsiktig vs hensynsløst kårer ulike slutter)");
+console.log(`civication lifestory endings ok (${Object.keys(manifest.roles).length} roller, forsiktig vs hensynsløst kårer ulike slutter)`);
