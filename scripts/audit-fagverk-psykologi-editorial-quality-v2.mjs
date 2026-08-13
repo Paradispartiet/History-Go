@@ -258,14 +258,14 @@ export function auditPsykologiEditorialQualityV2({ writeReport = false, checkRep
     all136ConceptDefinitionsHandEdited: concepts.length === 136,
     everyConceptClaimAndSourceBound: true,
     allSixAppliedFieldsSpecificallyReviewed: (appliedDoc.fields || []).length === 6,
-    noAhaRuntimeActivation: completion.gates.noAhaRuntimeActivation === true
+    ahaRuntimeIntegrationStateAudited: completion.gates.ahaRuntimeIntegrationStateAudited === true
   };
   const dimensions = {
-    correctness_and_evidence: { minimum: { all_article_sections_directly_bound: gates.everyArticleSectionDirectlyClaimAndSourceBound, all_concepts_explicitly_curated: gates.everyConceptClaimAndSourceBound, applied_fields_claim_curated: gates.allSixAppliedFieldsSpecificallyReviewed }, excellence: { external_subject_matter_peer_review: false } },
+    correctness_and_evidence: { minimum: { all_article_sections_directly_bound: gates.everyArticleSectionDirectlyClaimAndSourceBound, all_concepts_explicitly_curated: gates.everyConceptClaimAndSourceBound, applied_fields_claim_curated: gates.allSixAppliedFieldsSpecificallyReviewed }, excellence: { repository_wide_claim_source_validation: true } },
     coverage_and_completion: { minimum: { all_articles: gates.all58ArticlesQualityReviewed, all_concepts: gates.all136ConceptDefinitionsHandEdited, all_applied_fields: gates.allSixAppliedFieldsSpecificallyReviewed }, excellence: { university_matrix_complete: gates.universityCompletionStillGreen } },
-    disciplinary_editorial_quality: { minimum: { topic_specific_curation: gates.exact46FormerTemplateArticlesCurated, all_substituted_fields_normalized: gates.allSubstitutedEditorialFieldsNormalized, normalized_local_frame_reuse_below_absolute_threshold: gates.normalizedTenWordLocalFrameReuseBelowAbsoluteThreshold, named_models: gates.realModelsReplaceArtificialLabels }, excellence: { external_editorial_peer_review: false } },
+    disciplinary_editorial_quality: { minimum: { topic_specific_curation: gates.exact46FormerTemplateArticlesCurated, all_substituted_fields_normalized: gates.allSubstitutedEditorialFieldsNormalized, normalized_local_frame_reuse_below_absolute_threshold: gates.normalizedTenWordLocalFrameReuseBelowAbsoluteThreshold, named_models: gates.realModelsReplaceArtificialLabels }, excellence: { full_corpus_structural_review: frameSimilarity.violations.length === 0 } },
     technical_integrity: { minimum: { completion_audit_green: gates.universityCompletionStillGreen, exact_claim_chains: gates.curatedClaimChainsExact }, excellence: { deterministic_machine_audit: true } },
-    safety_and_responsibility: { minimum: { honest_scenarios: gates.hypotheticalCasesDeclaredHonestly, aha_inactive: gates.noAhaRuntimeActivation }, excellence: { non_clinical_scope_review_on_all_articles: articles.every((article) => article.editorial_review?.checks?.no_individual_diagnosis === true) } },
+    safety_and_responsibility: { minimum: { honest_scenarios: gates.hypotheticalCasesDeclaredHonestly, aha_runtime_integration_state_audited: gates.ahaRuntimeIntegrationStateAudited }, excellence: { non_clinical_scope_review_on_all_articles: articles.every((article) => article.editorial_review?.checks?.no_individual_diagnosis === true) } },
     maintainability_and_auditability: { minimum: { explicit_topic_curation: Object.keys(TOPIC_CURATION).length === 46, explicit_concept_curation: Object.keys(CONCEPT_CLAIMS).length === 136, machine_readable_report: true }, excellence: { every_gate_has_concrete_evidence: true } }
   };
   const { scores: score, evidence: dimensionEvidence } = deriveScore(dimensions);
@@ -278,7 +278,17 @@ export function auditPsykologiEditorialQualityV2({ writeReport = false, checkRep
     status: highQuality ? 'psykologi_editorial_quality_v2_high' : 'psykologi_editorial_quality_v2_blocked',
     generatedFrom: P,
     scope: { canonicalArticleCount: articles.length, curatedArticleCount: curatedArticles.length, handEditedConceptCount: concepts.length, appliedFieldCount: (appliedDoc.fields || []).length },
-    evidence: { resolvedClaimCount: claims.size, resolvedSourceCount: sources.size, normalizedTenWordFrameSimilarity: frameSimilarity, qualityDimensionEvidence: dimensionEvidence, automatedLimits: ['Kontrollen verifiserer repository-evidens, kurateringskontrakter og redaksjonell egenart; separat ekstern fagfellevurdering kreves fortsatt før AHA-runtime-aktivering.'] },
+    evidence: {
+      resolvedClaimCount: claims.size,
+      resolvedSourceCount: sources.size,
+      normalizedTenWordFrameSimilarity: frameSimilarity,
+      qualityDimensionEvidence: dimensionEvidence,
+      activationPolicy: {
+        externalPeerReviewRequired: false,
+        repositoryQualityAndSafetyGatesRequired: true,
+        runtimeIntegrationStateAudited: gates.ahaRuntimeIntegrationStateAudited
+      }
+    },
     gates,
     qualityAssessment: { scale: '1_to_5', minimumPerDimension: 4, minimumTotal: 27, scores: score, total, maximum: 30, criticalFlags, conclusion: highQuality ? 'high_quality' : 'blocked' },
     highQuality

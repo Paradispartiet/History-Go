@@ -360,7 +360,9 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
   assert(matrix.topic_article_contract?.all_section_source_ids_must_resolve === true, 'Emneartikkelkontrakten må kreve løste seksjonskilder');
   assert(matrix.topic_article_contract?.generic_template_text_forbidden === true, 'Emneartikkelkontrakten må forby generisk maltekst');
   assert(matrix.topic_article_contract?.no_clinical_diagnostic_treatment_or_coercion_overreach_required === true, 'Emneartikkelkontrakten må kreve vern mot klinisk overreach');
-  assert(matrix.topic_article_contract?.aha_runtime_activation_requires_separate_review === true, 'AHA-aktivering må kreve separat fagreview');
+  assert(matrix.topic_article_contract?.aha_runtime_activation_policy === 'repository_quality_and_safety_gates_only', 'AHA-aktivering skal bruke repository-kvalitets- og sikkerhetsportene');
+  assert(matrix.topic_article_contract?.external_peer_review_required_for_aha_activation === false, 'AHA-aktivering skal ikke kreve separat ekstern fagreview');
+  assert(matrix.editorial_quality_contract?.aha_runtime_activation_eligible_after_repository_gates === true && matrix.editorial_quality_contract?.external_peer_review_required_for_aha_activation === false, 'Kvalitetskontrakten skal gjøre Psykologi kvalifisert for AHA uten ekstern reviewport');
   assert(matrix.editorial_quality_contract?.required_status === 'psykologi_editorial_quality_v2_high' && matrix.editorial_quality_contract?.minimum_score_per_dimension === 4 && matrix.editorial_quality_contract?.minimum_total_score === 27 && matrix.editorial_quality_contract?.no_critical_flags_required === true, 'University-matrisen mangler bindende seksdelt kvalitetsport');
   assert(matrix.concept_registry_contract?.path === P.concepts, 'Begrepskontrakten peker til feil register');
   assert(matrix.concept_registry_contract?.canonical_source_field === 'core_concepts', 'Begrepskontrakten må eie canonicale core_concepts');
@@ -562,7 +564,7 @@ export function auditPsykologiUniversityReadiness({ writeReport = false, checkRe
       canonicalConceptRegistryMaterializedAndAudited: conceptsComplete,
       sixAppliedFieldsMaterializedAndAudited: appliedComplete,
       sixDimensionEditorialQualityGateGreen: editorialQualityComplete,
-      topicArticlesRemainOutsideAhaRuntime: completionAudit.gates.noAhaRuntimeActivation,
+      ahaRuntimeIntegrationStateAudited: completionAudit.gates.ahaRuntimeIntegrationStateAudited,
       allRegisteredSourcesInspectable: sourceRegistryResult.registeredCount === sourceRegistryResult.validIds.size,
       subjectNotPrematurelyComplete: statusEntry.editorialStatus === expectedState.editorialStatus && statusEntry.nextGate === expectedState.nextGate
     },

@@ -28,6 +28,8 @@ test('Psykologi har en eksplisitt universitetsmatrise uten å miste 6/58-baselin
     'research_methods_statistics'
   ]);
   assert.ok(Object.values(report.currentGates).every(Boolean));
+  assert.equal(report.currentGates.ahaRuntimeIntegrationStateAudited, true);
+  assert.equal('topicArticlesRemainOutsideAhaRuntime' in report.currentGates, false);
 });
 
 test('Alle universitetsporter er ferdige og complete er dokumentert', () => {
