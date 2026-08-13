@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "2.90.0",
     "updated_at": "2026-08-13",
-    "content_sha256": "ae01c385cf03bf4ab2f9cfd906e2ac820aa3e3b96bda364b6c58278f42cff154"
+    "content_sha256": "b987325653f75b1d23a5c59691357b06edd436276afe978cb0b468d948565752"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -33,12 +33,12 @@
     "subject_count": 18,
     "root_subject_count": 17,
     "specialization_count": 1,
-    "chapter_subject_count": 11,
-    "chapter_count": 121,
-    "module_file_count": 332,
+    "chapter_subject_count": 12,
+    "chapter_count": 122,
+    "module_file_count": 335,
     "package_file_count": 205,
-    "chapter_referenced_file_count": 609,
-    "referenced_file_count": 773,
+    "chapter_referenced_file_count": 615,
+    "referenced_file_count": 779,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -3723,7 +3723,7 @@
       "schema_family": "standard_canonical",
       "pilot": false,
       "package_status": "complete_with_optional_gaps",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -3891,13 +3891,13 @@
         }
       ],
       "package_content_sha256": "c3192eff524cbcb12bf002528628cdac8e71193727d76cd8f88a896939e96a87",
-      "chapter_count": 0,
-      "module_file_count": 0,
-      "brief_file_count": 0,
-      "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 11,
+      "chapter_count": 1,
+      "module_file_count": 3,
+      "brief_file_count": 1,
+      "claims_file_count": 1,
+      "chapter_referenced_file_count": 6,
+      "chapter_content_sha256": "016ce353f0fd964d1c89a05caf7cf7d501230ef347e9f5b202bf4cf1ef498f72",
+      "referenced_file_count": 17,
       "missing_required_files": [],
       "missing_optional_files": [
         "README/KNOWLEDGE_MEMORY_CHAMBER.md"
@@ -3906,9 +3906,18 @@
       "missing_files": [
         "README/KNOWLEDGE_MEMORY_CHAMBER.md"
       ],
-      "structure_sha256": "b1f3f7d43885fc54691541e5be8523561f524a4e31fb5b9c5251b2202da4cfcc",
-      "content_sha256": "c3192eff524cbcb12bf002528628cdac8e71193727d76cd8f88a896939e96a87",
-      "chapters": []
+      "structure_sha256": "c533072423d8482d16ec2529222e9070c581b6b9c8d2cb44f18b11b1a0e207c2",
+      "content_sha256": "e28befc6fd54caa2d506f94f778a348acdcdf84ae2fd9c41bb093fd5eb2f6178",
+      "chapters": [
+        {
+          "chapter_id": "arenaer-steder-groundhopper",
+          "title": "Arenaer, steder og Groundhopper: hvordan idrett blir sted",
+          "file": "data/fagverk/sport/arenaer-steder-groundhopper.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "016ce353f0fd964d1c89a05caf7cf7d501230ef347e9f5b202bf4cf1ef498f72"
+        }
+      ]
     },
     "subkultur": {
       "title": "Subkultur",
@@ -4498,5 +4507,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "8f3617ed3f25f4d4b88836918f0faad66d84083044f0cebb7020b07a594a7f20"
+  "release_sha256": "aefae28709d820c8ba2f10b9018166d48b6e61de6ac89c4727682b433bcfaeec"
 }
