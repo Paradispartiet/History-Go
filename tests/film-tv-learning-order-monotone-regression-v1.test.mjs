@@ -8,8 +8,9 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
 const UNIT8_ID = 'skjermoffentlighet-fellesskap-og-samfunn';
 const UNIT8_OUTPUT_GATE = 'screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief';
+const PRODUCTION_GATE_PATTERN = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/;
 
-test('Film & TV-læringsrekkefølgen bevares når produksjonen har avansert til enhet 8', () => {
+test('Film & TV-læringsrekkefølgen bevares når produksjonen har avansert til minst enhet 8', () => {
   const plan = read('data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json');
   const emners = read('data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json');
   const registry = read('data/fagverk/fagverk_registry.json');
@@ -19,6 +20,10 @@ test('Film & TV-læringsrekkefølgen bevares når produksjonen har avansert til 
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   const unit8 = units.find((unit) => unit.id === UNIT8_ID);
   const registeredUnit8 = registry.subjects.film_tv.chapters.find((row) => row.id === UNIT8_ID);
+  const registeredSequences = units
+    .filter((unit) => registry.subjects.film_tv.chapters.some((chapter) => chapter.id === unit.id))
+    .map((unit) => unit.sequence);
+  const latestRegisteredSequence = Math.max(...registeredSequences);
 
   assert.equal(plan.schema, 'history_go_film_tv_learning_order_plan_v1');
   assert.equal(plan.subject_id, 'film_tv');
@@ -45,6 +50,12 @@ test('Film & TV-læringsrekkefølgen bevares når produksjonen har avansert til 
 
   assert.ok(registeredUnit8);
   assert.deepEqual(registeredUnit8.emne_ids, unit8.emne_ids);
+  assert.ok(latestRegisteredSequence >= 8);
   assert.equal(filmStatus.editorialStatus, 'chapters_in_progress');
-  assert.equal(filmStatus.nextGate, UNIT8_OUTPUT_GATE);
+  if (latestRegisteredSequence === 8) {
+    assert.equal(filmStatus.nextGate, UNIT8_OUTPUT_GATE);
+  } else {
+    assert.notEqual(filmStatus.nextGate, UNIT8_OUTPUT_GATE);
+    assert.match(filmStatus.nextGate, PRODUCTION_GATE_PATTERN);
+  }
 });
