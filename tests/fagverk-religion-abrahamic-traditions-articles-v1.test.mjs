@@ -22,7 +22,7 @@ test('Religion Abrahamic traditions har full claim-, kilde-, metode- og scenario
   assert.equal(report.evidence.usedClaimCount, 36);
   assert.equal(report.evidence.allClaimsResolve, true);
   assert.equal(report.evidence.allSourcesResolve, true);
-  assert.equal(report.methods.materializedRequiredMethodCount, 16);
+  assert.equal(report.methods.materializedRequiredMethodCount, 18);
   assert.deepEqual(report.methods.newlyMaterializedMethodIds, [
     'met_religion_ritual_and_performance_analysis',
     'met_religion_sociological_institutional_analysis'
@@ -30,11 +30,11 @@ test('Religion Abrahamic traditions har full claim-, kilde-, metode- og scenario
   assert.ok(Object.values(report.depth.scenarioCounts).every((count) => count >= 2));
 });
 
-test('Alle 30 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
+test('Alle 36 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
   const { report } = auditReligionAbrahamicTraditionsArticles({ checkReport: false });
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.completeReady, false);
-  assert.equal(report.editorial.allReligionArticleCountReviewed, 30);
+  assert.equal(report.editorial.allReligionArticleCountReviewed, 36);
   assert.equal(report.editorial.exactParagraphDuplicates, 0);
   assert.ok(report.editorial.maximumFiveGramJaccard < 0.12);
   assert.equal(report.quality.total, 29);

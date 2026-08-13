@@ -20,7 +20,7 @@ test('Øst-Asia-batchen har full claim-, kilde-, metode- og scenariointegritet',
   assert.equal(report.evidence.registeredClaimCount, 36);
   assert.equal(report.evidence.usedSourceCount, 20);
   assert.equal(report.evidence.usedClaimCount, 36);
-  assert.equal(report.methods.materializedRequiredMethodCount, 16);
+  assert.equal(report.methods.materializedRequiredMethodCount, 18);
   assert.deepEqual(report.methods.newlyMaterializedMethodIds, [
     'met_religion_spatial_route_and_landscape_analysis',
     'met_religion_digital_ethnography_and_media_analysis'
@@ -28,11 +28,11 @@ test('Øst-Asia-batchen har full claim-, kilde-, metode- og scenariointegritet',
   assert.ok(Object.values(report.depth.scenarioCounts).every((count) => count >= 2));
 });
 
-test('Alle 30 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
+test('Alle 36 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
   const { report } = auditReligionEastAsianArticles({ checkReport: false });
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.completeReady, false);
-  assert.equal(report.editorial.allReligionArticleCountReviewed, 30);
+  assert.equal(report.editorial.allReligionArticleCountReviewed, 36);
   assert.equal(report.editorial.exactParagraphDuplicates, 0);
   assert.ok(report.editorial.maximumFiveGramJaccard < 0.12);
   assert.equal(report.quality.total, 29);

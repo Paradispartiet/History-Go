@@ -19,9 +19,9 @@ test('Religion bevarer foundation-piloten under pågående universitetsproduksjo
   assert.deepEqual(report.summary, {
     domainCount: 4,
     emneCount: 8,
-    methodCount: 24,
+    methodCount: 26,
     foundationMethodCount: 8,
-    universityMethodCount: 16,
+    universityMethodCount: 18,
     mappingCount: 8,
     hookCount: 0,
     courseModuleCount: 3,
