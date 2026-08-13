@@ -70,6 +70,8 @@
     const primaryText = primary
       ? `${primary.label} · ${primary.badge_name || primary.badge_id}`
       : "Ingen valgt";
+    const primaryDescription = primary?.description ? String(primary.description) : "";
+    const primaryHooks = Array.isArray(primary?.hooks) ? primary.hooks.map(String).filter(Boolean) : [];
 
     const options = unlocked.map((position) => {
       const selected = primary && primary.badge_id === position.badge_id && primary.label === position.label;
@@ -80,6 +82,8 @@
       <div><strong>🧭 Livsposisjon</strong></div>
       <div style="margin-top:4px;opacity:.78">Arbeidsstatus: ${escapeHtml(employmentText)}</div>
       <div style="margin-top:2px">Liv: <strong>${escapeHtml(primaryText)}</strong></div>
+      ${primaryDescription ? `<div style="margin-top:5px;font-size:.9em">${escapeHtml(primaryDescription)}</div>` : ""}
+      ${primaryHooks.length ? `<div style="margin-top:4px;font-size:.82em;opacity:.68">Kan prege livet ditt: ${escapeHtml(primaryHooks.join(" · "))}</div>` : ""}
       ${unlocked.length ? `
         <label style="display:block;margin-top:8px;font-size:.9em" for="civiLifePositionSelect">Velg blant opplåste livsposisjoner</label>
         <select id="civiLifePositionSelect" style="width:100%;margin-top:4px">
@@ -87,7 +91,7 @@
           ${options}
         </select>
       ` : ""}
-      <div style="margin-top:6px;font-size:.84em;opacity:.7">Livsposisjon er uavhengig av jobb. Du kan være arbeidsledig, i jobb eller senere leve av andre inntektsformer uten å miste den.</div>
+      <div style="margin-top:6px;font-size:.84em;opacity:.7">Livsposisjon er selvvalgt og uavhengig av jobb. Den gir ikke lønn, autorisasjon, verv eller ansettelse i seg selv.</div>
     `;
 
     host.appendChild(block);
@@ -110,6 +114,7 @@
     initialized = true;
     window.addEventListener("updateProfile", queueRender);
     window.addEventListener("civi:lifePositionChanged", queueRender);
+    window.addEventListener("civi:lifePositionCatalogLoaded", queueRender);
     window.addEventListener("civi:dataReady", queueRender);
     queueRender();
   }
