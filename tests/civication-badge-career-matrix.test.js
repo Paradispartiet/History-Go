@@ -66,13 +66,68 @@ for (const tier of psychology.tiers || []) {
     `psykologi/${tier.label}: qualification_ids må samsvare med audit policy`);
 }
 
-assert.strictEqual(psychology.tiers.find((t) => t.label === 'Titter').career_offer.policy, 'not_job');
-assert.strictEqual(psychology.tiers.find((t) => t.label === 'Analytiker').career_offer.policy, 'review_required');
+const expectedEntryLadder = [
+  ['Miljøassistent', 5],
+  ['Sosialassistent', 10],
+  ['Aktivitetsleder (omsorgsarbeid)', 15],
+  ['Miljøarbeider', 25]
+];
+for (let i = 0; i < expectedEntryLadder.length; i += 1) {
+  const [title, threshold] = expectedEntryLadder[i];
+  const tier = psychology.tiers[i];
+  assert.strictEqual(tier.label, title, `psykologi tier ${i + 1} skal være ${title}`);
+  assert.strictEqual(tier.threshold, threshold, `${title}: poenggrense skal bevares`);
+  assert.strictEqual(tier.career_offer.policy, 'direct', `${title}: reell inngangsjobb skal kunne tilbys direkte`);
+  const row = psychPolicy.get(title);
+  assert.deepStrictEqual(row.slice(1), ['actual_job', 'direct', 'keep', []],
+    `${title}: audit-policy skal være actual_job/direct/keep`);
+}
+
+for (const obsolete of ['Titter', 'Analytiker', 'Atferdsobservatør', 'Samtalepartner']) {
+  assert.ok(!psychology.tiers.some((tier) => tier.label === obsolete),
+    `foreldet Psykologi-tier skal være fjernet: ${obsolete}`);
+  assert.ok(!psychPolicy.has(obsolete), `audit-policy skal ikke beholde foreldet tittel: ${obsolete}`);
+}
+
 assert.strictEqual(psychology.tiers.find((t) => t.label === 'Psykolog').career_offer.policy, 'authorization_required');
 assert.deepStrictEqual(
   psychology.tiers.find((t) => t.label === 'Spesialistpsykolog').career_offer.qualification_ids,
   ['no_psychologist_authorization_or_license', 'no_psychologist_specialist_approval']
 );
+
+const careersRaw = readJson('data/Civication/hg_careers.json');
+const careerList = Array.isArray(careersRaw) ? careersRaw : careersRaw.careers;
+const psychologyCareer = careerList.find((career) => career.career_id === 'psykologi');
+assert.ok(psychologyCareer, 'Psykologi-karriereregel mangler');
+assert.strictEqual(psychologyCareer.cross_requirements, undefined,
+  'vanlige Psykologi-inngangsjobber skal ikke blokkeres av gammelt Vitenskap-krysskrav');
+const psychSalary = psychologyCareer.economy?.salary_by_tier || {};
+assert.deepStrictEqual(Object.keys(psychSalary), Array.from({ length: 13 }, (_, i) => String(i + 1)),
+  'Psykologi må ha eksakt lønnsregel for alle 13 tiers');
+const salaryValues = Object.values(psychSalary).map(Number);
+assert.ok(salaryValues.every(Number.isFinite), 'alle Psykologi-tierlønninger må være numeriske');
+assert.ok(salaryValues.every((value, index) => index === 0 || value >= salaryValues[index - 1]),
+  'Psykologi-lønn skal ikke falle ved opprykk');
+
+const workGrammar = readJson('data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json');
+assert.strictEqual(workGrammar.role_scope, 'psykologi_miljoarbeid');
+assert.deepStrictEqual(workGrammar.badge_binding.badge_titles, expectedEntryLadder.map(([title]) => title));
+assert.ok(workGrammar.authority_boundary.may_not.includes('stille diagnose'),
+  'FWG må eksplisitt beskytte grensen mot diagnostikk');
+
+const lifeManifest = readJson('data/Civication/lifestory/manifest.json');
+const psychLife = lifeManifest.roles.psykologi_miljoarbeid;
+assert.ok(psychLife, 'Psykologi-miljøarbeid må ha aktiv Life Story-binding');
+assert.strictEqual(psychLife.role_scope, 'psykologi_miljoarbeid');
+assert.strictEqual(psychLife.badge_id, 'psykologi');
+assert.deepStrictEqual(psychLife.badge_titles, expectedEntryLadder.map(([title]) => title));
+for (const rel of [psychLife.role, psychLife.threads, psychLife.scenes]) {
+  assert.ok(fs.existsSync(path.join(ROOT, rel)), `Life Story-fil mangler: ${rel}`);
+}
+const lifeThreads = readJson(psychLife.threads);
+const lifeScenes = readJson(psychLife.scenes);
+assert.ok(lifeThreads.threads.length >= 5, 'Psykologi Life Story må ha minst fem distinkte fagtråder');
+assert.ok(lifeScenes.scenes.length >= 5, 'Psykologi Life Story må ha minst fem spillbare scener');
 
 const originalPushes = [];
 const sandbox = {
@@ -112,22 +167,22 @@ vm.runInContext(fs.readFileSync(path.join(ROOT, 'js/Civication/merits-and-jobs.j
   { filename: 'merits-and-jobs.js' });
 
 const jobs = sandbox.window.CivicationJobs;
-let result = jobs.pushOffer({ career_id: 'psykologi', title: 'Titter', threshold: 5 });
-assert.strictEqual(result.ok, false);
-assert.strictEqual(result.reason, 'career_not_job');
-assert.strictEqual(originalPushes.length, 0, 'ikke-jobb må stoppes før den når original pushOffer');
+let result = jobs.pushOffer({ career_id: 'psykologi', title: 'Miljøassistent', threshold: 5 });
+assert.strictEqual(result.ok, true, 'Miljøassistent skal være et direkte jobbtilbud');
+assert.strictEqual(originalPushes.length, 1);
 
-result = jobs.pushOffer({ career_id: 'psykologi', title: 'Analytiker', threshold: 10 });
-assert.strictEqual(result.ok, false);
-assert.strictEqual(result.reason, 'career_review_required');
+result = jobs.pushOffer({ career_id: 'psykologi', title: 'Miljøarbeider', threshold: 25 });
+assert.strictEqual(result.ok, true, 'Miljøarbeider skal være et direkte jobbtilbud');
+assert.strictEqual(originalPushes.length, 2);
 
 result = jobs.pushOffer({ career_id: 'psykologi', title: 'Psykolog', threshold: 115 });
 assert.strictEqual(result.ok, false);
 assert.strictEqual(result.reason, 'career_qualification_required');
+assert.strictEqual(originalPushes.length, 2, 'Psykolog uten autorisasjon må stoppes før original pushOffer');
 
 result = jobs.pushOffer({ career_id: 'psykologi', title: 'Veileder', threshold: 40 });
 assert.strictEqual(result.ok, true, 'direkte, reell jobb skal fortsatt kunne tilbys');
-assert.strictEqual(originalPushes.length, 1);
+assert.strictEqual(originalPushes.length, 3);
 
 sandbox.window.CivicationQualifications = {
   hasAll(ids) {
@@ -149,4 +204,4 @@ sandbox.window.CivicationQualifications = {
 result = jobs.pushOffer({ career_id: 'psykologi', title: 'Spesialistpsykolog', threshold: 150 });
 assert.strictEqual(result.ok, true);
 
-console.log(`civication badge career matrix ok: ${tierCount} tiers / ${badges.size} badges`);
+console.log(`civication badge career matrix ok: ${tierCount} tiers / ${badges.size} badges / Psychology entry ladder complete`);
