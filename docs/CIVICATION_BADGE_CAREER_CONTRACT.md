@@ -1,122 +1,189 @@
-# Civication Badge Career Contract
+# Civication Badge, Life Position & Career Contract
 
-## Canonical sannhet
+## Tre forskjellige ting
 
-`data/badges/*.json` er canonical kilde for spillerens Badge-progresjon og for de stillingstitlene Civication kan tilby fra denne progresjonen.
+Civication skal aldri tvinge **Badge-progresjon**, **livsposisjon** og **formell jobb** inn i én og samme stige.
 
-`tier.threshold` er poenggrensen for Badge-milepælen. `tier.label` er den synlige tier-tittelen. For en ferdig ryddet karrierestige skal tittelen være en faktisk Civication-stilling, men eldre stiger kan midlertidig inneholde spillrang/status. Slik gjeld skal være eksplisitt klassifisert og blokkert fra jobbtilbud; den skal aldri skjules bak et `role_scope`.
+De tre lagene er:
 
-Badges er derfor ikke en statisk historisk liste. Stigene skal videreutvikles når Civication får bedre, mer realistiske eller tydeligere karriereløp.
+1. **Badge / kunnskapsprogresjon** — hva spilleren har lært og oppnådd i History Go.
+2. **Life position / livsposisjon** — hvem spilleren er i verden: sosial status, miljørolle, offentlig identitet, berømmelse, livsstil eller alternativt livsløp.
+3. **Career / jobb** — faktisk stilling, arbeidsgiverforhold, kvalifikasjonskrav og lønn.
 
-## Badge-milepæl og jobbtilbud er forskjellige ting
+En spiller kan derfor være:
 
-Spilleren kan oppnå en **Badge-milepæl** uten dermed å være kvalifisert for en **Civication-stilling**.
+- arbeidsledig + `Gangster`
+- Produksjonsleder + `Undergrunnsikon`
+- frilanser + `Dandy`
+- student + `Kultfigur`
 
-Dette skillet er nødvendig for tre hovedgrupper:
+Livsposisjonen forsvinner ikke når spilleren får eller mister en jobb.
 
-- gamle spill-/interessetiers som ikke er jobber
-- reelle jobber som krever utdanning, autorisasjon eller annen kvalifikasjon
-- verv/lederroller som krever valg, uttak, ansettelse eller utnevnelse
+## Canonical Badge-data
 
-Quiz- og meritpoeng skal derfor aldri alene gjøre spilleren til for eksempel psykolog, professor, statsråd eller landslagsutøver.
+`data/badges/*.json` er canonical kilde for Badge-progresjonen.
 
-## `career_offer` på canonical Badge-tier
+`tier.threshold` er poenggrensen. `tier.label` er den synlige Badge-/livstittelen. **Denne tittelen trenger ikke være en jobb.**
 
-Når en tier trenger en aktiv runtime-port, ligger den på den canonical tier-en som `career_offer`.
+Når en tier er en spillbar identitet/status kan den ha:
 
-Tillatte policyer i dagens kontrakt er:
+```json
+"life_position": {
+  "kind": "alternative_life_status",
+  "employment_independent": true
+}
+```
 
-- `direct` — Badge-progresjon kan opprette jobbtilbud direkte
-- `not_job` — tier-en er eksplisitt ikke en jobb og kan ikke opprette jobbtilbud
-- `review_required` — tittelen er ikke avklart godt nok og er blokkert inntil redaksjonell/faglig avklaring
-- `qualification_required` — krever eksplisitt dokumentert kvalifikasjon
+Dette er riktig sted for titler som `Gangster`, `Dandy`, `Kultfigur`, `Undergrunnsikon`, `Legend`, `Popstjerne`, `Olympisk mester`, `Ikon` og andre morsomme eller symbolske posisjoner — dersom de faktisk gir godt spillinnhold.
+
+## `career_unlock`: jobbsporet er separat
+
+En livsposisjon kan samtidig låse opp en saklig jobbmulighet:
+
+```json
+"career_unlock": {
+  "title": "Kulturkonsulent",
+  "policy": "direct"
+}
+```
+
+`career_unlock.title` er den faktiske stillingen som sendes til `CivicationJobs`. Badge-tittelen beholdes urørt.
+
+Dermed betyr Subkultur-eksemplet:
+
+- Badge/liv: `Gangster`
+- jobbmulighet: `Kulturkonsulent`
+- aktiv jobb etter aksept: `Kulturkonsulent`
+- aktiv livsposisjon kan fortsatt være: `Gangster`
+
+Dette er ikke en kosmetisk alias. Det er to forskjellige systemkontrakter.
+
+## `career_offer`: når Badge-tittelen selv er jobben
+
+Eksisterende ryddede stiger, for eksempel Psykologi, kan fortsatt bruke `career_offer` når selve `tier.label` er den faktiske jobbtittelen.
+
+Tillatte jobbpolicyer er:
+
+- `direct` — jobbmuligheten kan tilbys direkte
+- `not_job` — ingen jobb skal materialiseres fra tier-en
+- `review_required` — jobbsporet er ikke avklart
+- `qualification_required` — krever eksplisitt kvalifikasjon
 - `authorization_required` — krever eksplisitt autorisasjon/godkjenning
-- `appointment_required` — krever eksplisitt ansettelse, valg, uttak eller utnevnelse
+- `appointment_required` — krever konkret ansettelse, valg, uttak eller utnevnelse
 
-Gated policyer kan ha `qualification_ids`. Hvis kvalifikasjonssystemet ikke kan dokumentere disse kravene, skal porten være **fail closed**. Manglende kvalifikasjonsdata er aldri grunn til å slippe gjennom en regulert eller utnevnelseskrevende rolle.
+Gated policyer kan ha `qualification_ids` og skal alltid være **fail closed**.
 
-Badge-feiringen skal fortsatt kunne skje når terskelen nås. Det som blokkeres er jobbtilbudet, ikke den oppnådde kunnskapsmilepælen.
+Quiz- og meritpoeng skal aldri alene gjøre spilleren til psykolog, professor, statsråd, landslagsutøver, produksjonsleder eller daglig leder.
 
-## Badge-tier og role_scope er forskjellige ting
+## Formell arbeidsstatus
 
-En **Badge-tier** er spillerens synlige progresjonsnivå og, når den er jobbgyldig, stillingstittelen som kan tilbys.
+`CivicationState.getActivePosition()` / `hg_active_position_v1` eier den **formelle jobben**.
 
-Et **`role_scope`** er en intern Civication-kontrakt for hvilken jobb-/Life Story-pakke som kan spille stillingen. `role_scope` skal aldri fungere som en skjult alternativ stillingsstige eller som bevis på at en gammel tier er en virkelig jobb.
+Hvis det ikke finnes en aktiv jobb, er spilleren formelt arbeidsledig i dagens økonomimotor. En aktiv livsposisjon endrer ikke dette.
 
-Flere Badge-titler kan dele samme `role_scope` når arbeidsformen, valgene, læringen og fortellingsmekanikken faktisk er den samme. En høyere stilling skal derimot ikke tvinges inn i en lavere rollepakke bare for å oppnå teknisk dekning.
+Det er med vilje mulig å være:
 
-Et eksisterende roleModel er bare innholdsstatus. Det validerer ikke stillingens realisme, kvalifikasjonskrav eller rett til direkte unlock.
+- `employment.status = unemployed`
+- `primary_life_position = Gangster`
 
-## Badge Career Audit Matrix
+Dette åpner for alternative livsløp uten å late som de er arbeidskontrakter.
 
-`data/Civication/badgeCareerAuditPolicy.json` klassifiserer **hver canonical tier** med:
+## Livsposisjon-runtime
 
-- faktisk jobb/profesjon, status/spillrang, verv eller annen rolleklasse
-- `offer_policy`
-- tiltak: `keep`, `keep_with_gate`, `replace` eller `review`
-- eventuelle `qualification_ids`
+`js/Civication/systems/civicationLifePositionRuntime.js` eier valgt livsposisjon separat fra jobb.
 
-`scripts/civication-badge-career-matrix.mjs` materialiserer denne klassifiseringen sammen med levende repo-data for:
+Runtime støtter:
 
-- poenggrense
-- `role_scope`
-- roleModel
-- FWG/workGrammar
-- role-pack-status
-- Life Story-binding
-- eksakt lønnsregel for tier-en
-- om nødvendig runtime-port faktisk er aktivert
+- flere aktive livsposisjoner på tvers av badges (`active_by_badge`)
+- én primær livsposisjon for profil/fortelling
+- bare posisjoner spilleren faktisk har låst opp gjennom Badge-poeng
+- livsposisjon selv om spilleren er arbeidsledig
+- livsposisjon som består når spilleren får eller mister jobb
 
-Matrisen er auditfasit; den skal ikke kopiere eller erstatte canonical Badge-, roleModel-, Life Story- eller økonomidata.
+Dette er grunnlaget for senere alternative livsløp, private historier, nettverk, rykte, synlighet, risiko, livsstil og uregelmessige inntektsstrømmer.
 
-## Life Story-binding
+Fast lønn skal fortsatt bare komme fra faktisk jobb/økonomiregel. Alternative liv kan senere få hendelsesbaserte inntekter, honorarer, oppdrag, royalties eller andre `livelihood`-strømmer uten å forfalske et arbeidsforhold.
 
-Alle aktive opptjente jobbroller i `data/Civication/lifestory/manifest.json` skal ha:
+## Audit-policy: `not_job/replace` betyr ikke lenger «slett Badge-tittelen»
 
-- `badge_id`
-- minst én eksakt `badge_titles`-verdi som finnes i den canonical Badge-filen
-- `role_scope`
+`data/Civication/badgeCareerAuditPolicy.json` vurderer om **Badge-labelen selv** er gyldig som jobbtittel.
 
-Systemroller som ikke opptjenes gjennom Badges, for eksempel `arbeidsledig`, skal merkes eksplisitt med `system_role: true`.
+For en god livsposisjon er det helt korrekt at audit sier:
 
-Når en ny Life Story-jobb utvikles, skal den tilhørende Badge-stillingen finnes fra før eller legges til i samme endring. Innholdspakken skal ikke introdusere en spillerstilling i skjul.
+- `kind = subculture_status_or_game_rank`
+- `offer_policy = not_job`
+- `action = replace`
 
-## Videreutvikling av stillingsstiger
+`replace` skal da tolkes som **erstatt i jobbsporet**, ikke automatisk «fjern fra Badge-progresjonen».
 
-Når en eksisterende Badge-stige er gammel eller for grov, skal den forbedres på Badge-nivå. En god endring kan:
+Gjeld er løst når tier-en har en eksplisitt `career_unlock` med dokumentert jobb. `scripts/civication-badge-career-matrix.mjs` skiller derfor mellom:
 
-- erstatte spillrang, interesse- og berømmelsesnivåer med faktiske stillinger
-- legge til manglende inngangsstillinger
-- skille fagarbeid, førstelinje, rådgivning og ledelse tydeligere
-- utvide en kort stige til et reelt karriereløp
-- justere progresjonen slik at ansvar og kompleksitet øker forståelig
-- legge inn kvalifikasjons-/utnevnelsesporter der poeng alene ikke er nok
-- introdusere nye `role_scope` når høyere eller annerledes arbeid faktisk krever en annen simulering
+- policy-rader markert `replace`
+- `replace` som er løst med life-position → career-split
+- reell, uavklart jobb-label-gjeld
 
-Det er bedre å utvikle Badge-stigen enn å opprette roller som bare finnes i Civication-data. Erstatningstitler skal ikke improviseres bare for å gjøre en audit grønn.
+Dette prinsippet skal brukes på andre badges også. En morsom status som `Popstjerne`, `Idrettslegende` eller `Ikon` kan være svært godt Civication-innhold selv om den aldri skal stå som arbeidsgiverens stillingstittel.
 
-## Runtime-kontrakt
+## `role_scope`
 
-`js/Civication/merits-and-jobs.js` leser `data/badges/index.json` og de canonical Badge-filene for jobbtilbud og installerer den sentrale `career_offer`-porten rundt `CivicationJobs.pushOffer`. Dermed omfattes både den ordinære merit-flyten og andre eksisterende kodeveier som bruker samme jobb-API.
+`role_scope` tilhører jobbsimuleringen, ikke livsposisjonen.
 
-`data/Civication/hg_careers.json` eier supplerende karriereregler som økonomi, vedlikehold og krysskrav. Den eier ikke stillingsnavnene eller profesjonsautorisasjonen.
+Flere reelle jobbstitler kan dele samme `role_scope` når arbeidshverdagen og spillmekanikken faktisk er den samme. Livsposisjonen kan ha et helt annet fortellingslag ved siden av.
 
-`data/Civication/hg_careers2.json` er legacy/avledet materiale og skal ikke behandles som canonical stillingsstige.
+Eksempel Subkultur:
 
-Lønn skal auditeres mot samme eksakte tierindeks som runtime bruker. Manglende lønn for en tier skal rapporteres som et hull, ikke skjules med en ubegrunnet fallback.
+- `Kulturhusvert`, `Arrangementscrew`, `Produksjonsassistent`, `Kulturmedarbeider` → `subkultur_arrangementsdrift`
+- `Arrangementsplanlegger`, `Kulturkonsulent`, `Booking- og innholdskoordinator` → `subkultur_program_og_koordinering`
+- `Produsent`, `Prosjektleder (kulturarrangement)` → `subkultur_produksjon_og_prosjekt`
+- `Produksjonsleder` → `subkultur_produksjonsledelse`
+- `Daglig leder (kulturarena)` → `subkultur_kulturarena_ledelse`
+
+## Life Story og alternative livsløp
+
+Jobb-Life Story og livs-Life Story skal ikke blandes semantisk.
+
+- jobbpakker: arbeidshverdag, kolleger, mandat, lønn, profesjonelle dilemmaer
+- livsposisjon/livsløp: venner, miljø, rykte, kjærlighet, konflikt, natteliv, status, identitet, bolig, risiko, alternative prosjekter og andre private/sosiale valg
+
+En spiller kan dermed ha både **jobbfortelling** og **livsfortelling** samme dag.
+
+`arbeidsledig` er en systemtilstand, ikke en personlighet. Alternative livsløp kan spilles fullt ut mens arbeidsstatusen er arbeidsledig.
+
+## Runtime-kontrakt for jobbtilbud
+
+`js/Civication/merits-and-jobs.js` materialiserer jobbtilbud slik:
+
+1. Finn canonical Badge-tier.
+2. Hvis tier har `career_unlock`, bruk **den separate jobbens tittel og gate**.
+3. Ellers bruk eksisterende `career_offer`/tier-tittel.
+4. Send bare den faktiske jobbtittelen videre til `CivicationJobs.pushOffer`.
+5. Behold `badge_tier_label` og `life_position_label` som proveniens — aldri som aktiv stillingstittel.
+
+Dette gjelder både ordinær merit-flyt og andre eksisterende kodeveier som treffer den sentrale `pushOffer`-porten.
+
+## Økonomi og levevei
+
+`data/Civication/hg_careers.json` eier fortsatt formell jobblønn og jobbøkonomi.
+
+Neste økonomiske lag bør være `livelihood` ved siden av jobb:
+
+- fast jobb → fast lønn
+- arbeidsledig → ingen jobblønn / eventuell ytelse etter eksisterende regler
+- frilans/prosjekt → uregelmessige oppdrag/honorar
+- artist/kreatør → honorar/royalty/salg som hendelser
+- alternativt liv → kan ha inntekts- og kostnadshendelser uten å bli registrert som «stilling»
+
+Det laget skal aldri bruke en kul identitet som bevis på fast lønn.
 
 ## Permanent gate
 
-`tests/civication-badge-career-contract.test.js` håndhever eksisterende Badge/Life Story-kontrakter.
+Testene skal håndheve at:
 
-`tests/civication-badge-career-matrix.test.js` håndhever i tillegg at:
+- Badge-label og jobb-title kan være forskjellige uten at noen av dem omskrives
+- `Gangster` kan være aktiv livsposisjon mens formell arbeidsstatus er arbeidsledig
+- samme spiller kan få/ha en reell jobb uten å miste livsposisjonen
+- `career_unlock` materialiserer riktig jobbtitle
+- kvalifikasjons-/autorisasjons-/utnevnelsesporter fortsatt er fail-closed
+- audit-matrisen skiller løste life-position-splits fra uavklart jobb-gjeld
 
-- alle canonical badges og tiers finnes nøyaktig én gang i auditpolicyen
-- dagens komplette audit er låst til 17 badges / 266 tiers
-- Psykologi-runtimepolicyen samsvarer med auditklassifiseringen
-- ikke-jobber og review-tiers stoppes før `pushOffer`
-- Psykolog ikke kan tilbys uten eksplisitt autorisasjonsbevis
-- Spesialistpsykolog krever både psykologautorisasjon/lisens og spesialistgodkjenning
-- direkte jobbtiers fortsatt kan tilbys
-
-Når Badge-stigene videreutvikles, skal policy, generator og tester oppdateres i samme endring slik at Civication og Badges ikke glir fra hverandre igjen.
+Målet er ikke å gjøre Civication til en CV-simulator. Målet er å ha et troverdig arbeidsliv **og** et mye friere, rarere og morsommere liv rundt det.
