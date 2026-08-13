@@ -47,6 +47,29 @@
     return null;
   }
 
+  function resolveActiveSalaryTierIndex(activePosition, badge, fallbackTierIndex) {
+    if (!activePosition || !badge) return fallbackTierIndex;
+
+    const explicitSalaryTier = Number(activePosition.salary_tier);
+    if (Number.isInteger(explicitSalaryTier) && explicitSalaryTier >= 1) {
+      return explicitSalaryTier - 1;
+    }
+
+    const jobTierIndex = resolveActiveJobTierIndex(activePosition, badge);
+    if (!Number.isInteger(jobTierIndex)) return fallbackTierIndex;
+
+    const tier = badge.tiers?.[jobTierIndex] || null;
+    const salaryTier = Number(tier?.career_offer?.salary_tier ?? tier?.career_unlock?.salary_tier);
+    if (Number.isInteger(salaryTier) && salaryTier >= 1) {
+      return salaryTier - 1;
+    }
+
+    // Bakoverkompatibilitet: Badges som fortsatt bruker Badge-tier som
+    // lønnsnivå beholder eksisterende oppførsel til de eksplisitt får
+    // career_offer.salary_tier. Vi gjetter aldri et nytt lønnsbånd.
+    return fallbackTierIndex;
+  }
+
   function installJobOfferGuard() {
     const jobs = window.CivicationJobs;
     if (!jobs || typeof jobs.pushOffer !== "function") return false;
@@ -73,34 +96,9 @@
     return true;
   }
 
-  function installSalaryGuard() {
-    if (typeof window.calculateWeeklySalary !== "function") return false;
-    if (window.calculateWeeklySalary.__careerRealityGuardAttached) return true;
-
-    const baseCalculate = window.calculateWeeklySalary;
-    const guardedCalculate = function calculateWeeklySalaryForActiveJob(career, currentTierIndex) {
-      const active = window.CivicationState?.getActivePosition?.() || null;
-      const careerId = String(career?.career_id || career?.id || "").trim();
-      const activeCareerId = String(active?.career_id || active?.id || "").trim();
-      if (active && careerId && careerId === activeCareerId) {
-        const badge = getBadge(careerId);
-        const jobTierIndex = resolveActiveJobTierIndex(active, badge);
-        if (Number.isInteger(jobTierIndex)) {
-          return baseCalculate(career, jobTierIndex);
-        }
-      }
-      return baseCalculate(career, currentTierIndex);
-    };
-    guardedCalculate.__careerRealityGuardAttached = true;
-    guardedCalculate.__baseCalculateWeeklySalary = baseCalculate;
-    window.calculateWeeklySalary = guardedCalculate;
-    return true;
-  }
-
   function install() {
     return {
-      jobOfferGuard: installJobOfferGuard(),
-      salaryGuard: installSalaryGuard()
+      jobOfferGuard: installJobOfferGuard()
     };
   }
 
@@ -109,8 +107,8 @@
     findTier,
     isPureLifeTier,
     resolveActiveJobTierIndex,
+    resolveActiveSalaryTierIndex,
     installJobOfferGuard,
-    installSalaryGuard,
     install
   };
 
