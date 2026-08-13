@@ -1,9 +1,9 @@
 {
   "schema": "history_go_religion_university_readiness_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "updated_at": "2026-08-13",
   "subject_id": "religion",
-  "status": "matrix_locked_production_pending",
+  "status": "matrix_locked_production_in_progress",
   "purpose": "Bindende universitetsnær completion-matrise for Religion. Den bevarer dagens fire områder og åtte emner som teknisk foundation, men hindrer at foundation eller framtidige kapitteltall alene tolkes som komplett religionsvitenskap.",
   "authoritative_sources": [
     {
@@ -43,6 +43,16 @@
     "domain_count": 4,
     "emne_count": 8,
     "method_count": 8,
+    "method_ids": [
+      "met_religion_stedsobservasjon",
+      "met_religion_ritualanalyse",
+      "met_religion_symbolanalyse",
+      "met_religion_historisk_kildeanalyse",
+      "met_religion_tradisjonsanalyse",
+      "met_religion_samfunnsanalyse",
+      "met_religion_komparativ_analyse",
+      "met_religion_ruteanalyse"
+    ],
     "registered_chapter_count": 0,
     "classification": "structure_ready",
     "interpretation": "Foundation-piloten er konsistent og respektfull, men har ikke universitetsbredde. Den mangler selvstendige teori- og metodeemner, store tradisjonsområder, urfolksperspektiver og flere sentrale tverrgående forskningsfelt."
@@ -52,8 +62,15 @@
       "area_id": "theory_method",
       "label": "Religionsteori, fagforståelse og metode",
       "required": true,
-      "current_status": "missing",
-      "current_anchors": [],
+      "current_status": "complete",
+      "current_anchors": [
+        "religion_as_analytical_category",
+        "insider_outsider_emic_etic",
+        "definitions_substantive_functional_family_resemblance",
+        "comparison_typology_and_translation",
+        "theory_explanation_and_interpretation",
+        "research_ethics_reflexivity_and_positionality"
+      ],
       "completion_requirement": "Seks selvstendige artikler om religionsbegrepet, teori, sammenligning, forklaring, fortolkning, forskningsetikk og refleksivitet."
     },
     {
@@ -263,6 +280,34 @@
     "met_religion_reflexivity_and_positionality",
     "met_religion_research_ethics_privacy_and_representation"
   ],
+  "production_progress": {
+    "status": "first_university_area_complete",
+    "completed_area_ids": ["theory_method"],
+    "materialized_topic_ids": [
+      "religion_as_analytical_category",
+      "insider_outsider_emic_etic",
+      "definitions_substantive_functional_family_resemblance",
+      "comparison_typology_and_translation",
+      "theory_explanation_and_interpretation",
+      "research_ethics_reflexivity_and_positionality"
+    ],
+    "materialized_required_method_ids": [
+      "met_religion_comparative_analysis",
+      "met_religion_textual_and_philological_analysis",
+      "met_religion_discourse_and_content_analysis",
+      "met_religion_anthropological_contextual_analysis",
+      "met_religion_concept_history_and_genealogy",
+      "met_religion_case_comparison_and_process_tracing",
+      "met_religion_reflexivity_and_positionality",
+      "met_religion_research_ethics_privacy_and_representation"
+    ],
+    "standalone_topic_articles_materialized": 6,
+    "standalone_topic_articles_remaining": 66,
+    "required_methods_materialized": 8,
+    "required_methods_remaining": 10,
+    "quality_score": 29,
+    "complete_ready": false
+  },
   "topic_article_contract": {
     "canonical_topic_count": 72,
     "directory": "data/fagverk/religion/emneartikler",

@@ -65,8 +65,8 @@ export function auditReligionPilot({ writeReport = false, checkReport = true } =
   assert(inventoryEntry?.schemaFamily === 'foundation_v1', 'Religion har feil schemafamilie');
   assert(inventoryEntry?.pilot === true, 'Religion er ikke registrert som fase-2-pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'Religion har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Religion må stå structure_ready før kapittelproduksjon');
-  assert(statusEntry?.nextGate === 'chapter_production', 'Religion har feil neste port');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Religion skal stå chapters_in_progress etter første universitetsområde');
+  assert(statusEntry?.nextGate === 'remaining_religion_area_article_production', 'Religion har feil neste port');
 
   const source = {};
   for (const field of ['pensum', 'emner', 'fagkart', 'methods']) {
@@ -97,7 +97,7 @@ export function auditReligionPilot({ writeReport = false, checkReport = true } =
   assert(isDeepStrictEqual([...model.domains].map((domain) => domain.id), DOMAIN_ORDER), 'Religion har feil source-definert fagområderekkefølge');
   assert(model.summary.domainCount === 4, 'Religion skal ha fire fagområder');
   assert(model.summary.emneCount === 8, 'Religion skal ha åtte aktive emner');
-  assert(model.summary.methodCount === 8, 'Religion skal ha åtte canonicale metoder');
+  assert(model.summary.methodCount === 16, 'Religion skal ha åtte foundation-metoder og åtte materialiserte universitetsmetoder');
   assert(model.summary.mappingCount === 8, 'Religion skal ha én mapping per emne');
   assert(model.summary.hookCount === 0, 'Religion foundation v1 har ikke canonicale hooks');
   assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Religion-kapitler finnes');
@@ -117,7 +117,7 @@ export function auditReligionPilot({ writeReport = false, checkReport = true } =
   const report = {
     schema: 'history_go_fagverk_religion_pilot_audit_v1',
     version: '1.0.0',
-    status: 'religion_foundation_pilot_structure_ready',
+    status: 'religion_foundation_pilot_with_university_production',
     generatedFrom: P,
     subject: {
       id: model.subject.id,
@@ -135,6 +135,8 @@ export function auditReligionPilot({ writeReport = false, checkReport = true } =
       domainCount: model.summary.domainCount,
       emneCount: model.summary.emneCount,
       methodCount: model.summary.methodCount,
+      foundationMethodCount: source.methods.methods.filter((method) => !method.university_matrix_status).length,
+      universityMethodCount: source.methods.methods.filter((method) => method.university_matrix_status === 'materialized').length,
       mappingCount: model.summary.mappingCount,
       hookCount: model.summary.hookCount,
       courseModuleCount: source.pensum.modules.length,
@@ -152,7 +154,7 @@ export function auditReligionPilot({ writeReport = false, checkReport = true } =
       respectfulRepresentationPrinciplesLocked: true,
       badgeAndSubjectRoutesDistinct: true,
       assessmentStatusAudited: true,
-      editorialStatusStructureReady: true,
+      editorialStatusChaptersInProgress: true,
       chapterClaimsNotOverstated: true
     }
   };
