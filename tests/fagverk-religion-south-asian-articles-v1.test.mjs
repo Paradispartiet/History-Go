@@ -30,11 +30,11 @@ test('Sør-Asia-batchen har full claim-, kilde-, metode- og scenariointegritet',
   assert.ok(Object.values(report.depth.scenarioCounts).every((count) => count >= 2));
 });
 
-test('Alle 60 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
+test('Alle 66 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
   const { report } = auditReligionSouthAsianArticles({ checkReport: false });
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.completeReady, false);
-  assert.equal(report.editorial.allReligionArticleCountReviewed, 60);
+  assert.equal(report.editorial.allReligionArticleCountReviewed, 66);
   assert.equal(report.editorial.exactParagraphDuplicates, 0);
   assert.ok(report.editorial.maximumFiveGramJaccard < 0.12);
   assert.equal(report.quality.total, 29);
