@@ -11,9 +11,9 @@ Modellen er derfor delt i fire lag:
 1. **Badge-progresjon** — hva spilleren har lært og oppnådd i et fag-/interessefelt.
 2. **Livsposisjon** — en selvvalgt måte å leve feltet på. Kan være hverdagslig, rar, sosial, prestisjefylt eller alternativ.
 3. **Formell jobb** — faktisk stilling med kvalifikasjons-, autorisasjons- og utnevnelsesporter der det kreves.
-4. **Levevei** — senere økonomilag for frilans, oppdrag, royalties, salg, prosjektmidler, ytelser, variable inntekter og perioder uten inntekt.
+4. **Levevei** — separat økonomilag for frilans, oppdrag, royalties, salg, prosjektmidler, ytelser, variable inntekter og perioder uten inntekt.
 
-Badge-poeng kan åpne livsvalg, men skal aldri automatisk tildele identitet, jobb, politisk verv, trosidentitet, autorisasjon eller lønn.
+Badge-poeng kan åpne livsvalg, men skal aldri automatisk tildele identitet, jobb, politisk verv, trosidentitet, autorisasjon, levevei eller lønn.
 
 ## Audit av alle 17 Badges
 
@@ -31,48 +31,55 @@ Badge-poeng kan åpne livsvalg, men skal aldri automatisk tildele identitet, job
 | **Natur & miljø** | God blanding tidlig, profesjonsstige sent | Turgåer, Fuglekikker, Artsjeger, Sanker, Markaveteran | Naturforvaltning/forskning må beholde kvalifikasjonsporter. Frivillighet, registrering og friluftsliv er egne livsspor. |
 | **Sport & lek** | Sterkt blandet prestasjon, status og jobb | Søndagsutøver, Klubbmenneske, Supporter, Tribunesliter, Mesterskapsreisende | Trener/Hovedtrener/Sportssjef er jobb. Landslag, kaptein, olympisk mester, stjerne og legende krever prestasjons-/uttakslogikk og er ikke vanlige jobb-unlocks. |
 | **Politikk & samfunn** | Borgerliv blandet med jobb og folkevalgte verv | Møtesliter, Grasrotbygger, Kampanjemenneske, Organisasjonsmenneske, Politisk insider | Organisasjonssekretær/rådgiver kan være jobb. Kommunestyre, ordfører, Storting, statsråd, partileder og statsminister må alltid være valg/utnevnelse og fail-closed. |
-| **Økonomi og næringsliv** | Nesten ren jobb-/maktstige | Pendler, Sideprosjektbygger, Småsparer, Frilanser, Gründerdrømmer | Behold formelle jobber. Gründer, eier og investor må skilles mellom jobb, formue, eierskap og levevei. Dette Badget trenger særlig et reelt inntektslag. |
-| **Subkultur** | Referansemodellen | 11 eksisterende: Observør → Legend | Behold life-position → career-unlock-splittet. Neste verdi ligger i variabel levevei, nettverk, risiko og sosial status — ikke nye jobbtitler. |
+| **Økonomi og næringsliv** | Nesten ren jobb-/maktstige | Pendler, Sideprosjektbygger, Småsparer, Frilanser, Gründerdrømmer | Behold formelle jobber. Gründer, eier og investor må skilles mellom jobb, formue, eierskap og levevei. |
+| **Subkultur** | Referansemodellen | 11 eksisterende: Observør → Legend | Behold life-position → career-unlock-splittet. Neste verdi ligger i konkrete livelihood opportunities, nettverk, risiko og sosial status — ikke nye jobbtitler. |
 | **Film & TV** | Liv/status i begge ender, jobber i midten | Kinogjenger, Filmnerd, Seriesluker, Filmklubbmenneske, Festivalgjenger | Produksjonsassistent/manus/regi/serieskaper kan være jobb. Prisvinner, gjennomslag, stjerne og ikon er status/omdømme/levevei og skal ikke behandles som stillinger. |
 | **Medier** | Medieforbruk og offentlig status blandet med journalistjobb | Nyhetsjunkie, Podkastsluker, Kommentarfeltveteran, Medievaktbikkje, Debattant | Journalistikk/redaksjon er jobb. Medieprofil, stjerne, dagsordensetter og offentlighetsmakt trenger omdømme-/maktmekanikk, ikke bare karrierelønn. |
 | **Psykologi** | Formell karrierestige ferdig og godt gated | Psykologientusiast, Selvgransker, Mønsterjeger, Vaneeksperimentør, Relasjonsbygger | Behold dagens jobbarkitektur. Livsposisjonene må aldri antyde diagnose, behandling eller psykologmyndighet. |
 
 ## Hva som gjør livsposisjonene levende
 
-En livsposisjon skal etter hvert være mer enn en etikett. `lifePositionCatalog.json` gir derfor hver posisjon narrative hooks som kan brukes av historie-/eventmotoren. Neste systemlag bør koble disse til:
+En livsposisjon skal være mer enn en etikett. `lifePositionCatalog.json` gir hver posisjon narrative hooks som kan brukes av historie-/eventmotoren. Levevei-runtime er nå materialisert, så hooks kan etter hvert kobles til konkrete opportunities uten å skrive direkte til wallet.
+
+Videre levende konsekvenser bør komme fra:
 
 - **steder** — hvor spilleren faktisk oppholder seg og hvilke arenaer som blir viktige;
 - **mennesker og nettverk** — venner, rivaler, miljøer, kolleger, klubb-/foreningsfolk og tilfeldige bekjentskaper;
 - **kalender og rytme** — kampdag, premiere, festival, sesong, natteliv, dugnad, bokklubb, feltarbeid;
-- **økonomi og levevei** — fast lønn, frilans, småoppdrag, salg, støtte, royalties, prosjektmidler, investering, ingen inntekt;
+- **økonomi og levevei** — fast lønn, frilans, småoppdrag, salg, støtte, royalties, prosjektmidler og perioder uten inntekt;
 - **omdømme** — lokal kred, faglig tillit, berømmelse, kontrovers, sosial synlighet;
 - **risiko og kostnad** — utmattelse, ustabil økonomi, konflikter, tabber, tapte muligheter, dyr livsstil;
 - **relasjoner** — partner/familie/venner reagerer forskjellig på en nattaktiv scenehenger, pendler, politisk insider eller festivalveteran;
-- **muligheter** — livsposisjonen kan åpne invitasjoner, steder, mennesker og historier uten å gi automatisk jobb.
+- **muligheter** — livsposisjonen kan åpne invitasjoner, steder, mennesker, historier og kildeførte livelihood opportunities uten å gi automatisk jobb eller penger.
 
-## Prioritert videre produksjon
+## Produksjonsstatus og neste prioritet
 
-### 1. Life Position Engine — nå
+### 1. Life Position Engine — materialisert
 
-Katalogen gir alle Badges alternative livsvalg og runtime kan kombinere dem med formell jobb. Dette er grunnlaget resten må bygge på.
+Katalogen gir alle Badges alternative livsvalg og runtime kan kombinere dem med formell jobb.
 
-### 2. Levevei / livelihood
+### 2. Levevei / livelihood — materialisert som runtime-kontrakt
 
-Dette er det viktigste manglende realisme-laget. En spiller må kunne være:
+`CivicationLivelihoods` eier opportunities, aktive inntektsstrømmer og ledger, men bruker den eksisterende wallet-en. Det støtter blant annet frilans, gigs/honorar, royalties, salg, prosjektmidler, ekstravakter, eksplisitt støtte og perioder uten inntekt.
 
-- arbeidsledig + Gangster;
-- fast ansatt + Bokorm;
-- frilanser + Scenehenger;
-- student + Filmnerd;
-- deltidsansatt + Musikerliv;
-- selvstendig + Kunstsamler;
-- uten fast jobb men med oppdrag, støtte eller uregelmessig inntekt.
+En livsposisjon gir aldri penger direkte. Betaling krever kildeproveniens og en akseptert opportunity. Variabel inntekt er deterministisk per uke, og samme uke kan ikke utbetales to ganger.
 
-Levevei skal eie inntektsform og økonomisk usikkerhet. Livsposisjon skal ikke gjøre det.
+### 3. Opportunity-produsenter — neste livsrealisme
 
-### 3. Jobb-remediering i de blandede Badges
+Neste systemverdi er å la faktiske hendelser produsere opportunities:
 
-Høyest prioritet etter livelihood:
+- Life Story og private hendelser;
+- venner/nettverk;
+- steder, klubber, scener, festivaler og arrangementer;
+- kunder/oppdragsgivere;
+- salg, publisering og produksjon;
+- prosjekt-/støttehendelser.
+
+Disse skal skrive til `CivicationLivelihoods.createOpportunity()`, aldri direkte til wallet.
+
+### 4. Jobb-remediering i de blandede Badges
+
+Høyest prioritet parallelt med opportunity-produksjon:
 
 1. Film/TV — skill berømmelse fra produksjonsjobber.
 2. Sport — skill prestasjon/uttak/status fra trener-/lederjobber.
@@ -81,15 +88,17 @@ Høyest prioritet etter livelihood:
 5. Religion og Filosofi — kildeverifiser reelle jobbspor før flere direkte tilbud.
 6. Musikk — skill artistkarriere, kontrakt, royalty og berømmelse fra teknisk/produksjonsjobb.
 
-### 4. Karriere-tunge Badges
+### 5. Karriere-tunge Badges
 
 Historie, Vitenskap, By, Kunst, Psykologi og store deler av Næringsliv trenger ikke nødvendigvis flere stillingstitler først. De trenger hendelser og alternative liv som gjør at spilleren ikke bare «går på jobb» gjennom hele Civication.
 
 ## Permanent kontrakt
 
 - `data/Civication/lifePositionCatalog.json` er canonical katalog for alternative livsposisjoner som ikke allerede ligger direkte på Badge-tier.
+- `data/Civication/livelihoodCatalog.json` er canonical typekatalog for levevei; den definerer semantikk, ikke gratis standardinntekt.
 - `data/badges/*.json` forblir canonical kunnskaps-/Badge-progresjon.
 - Tier-bundne `life_position`/`life_positions` og katalogposisjoner kan eksistere samtidig.
 - `hg_active_position_v1` er fortsatt bare formell jobb.
 - `hg_civi_life_positions_v1` er fortsatt selvvalgt livsidentitet.
-- Jobb, autorisasjon, utnevnelse og politisk verv skal aldri kunne oppstå fra livsposisjon alene.
+- `hg_civi_livelihood_v1` er opportunities, streams og ledger — aldri en ny wallet.
+- Jobb, autorisasjon, utnevnelse og politisk verv skal aldri kunne oppstå fra livsposisjon eller levevei alene.
