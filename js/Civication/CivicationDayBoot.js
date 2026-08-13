@@ -3,6 +3,7 @@
 // ------------------------------------------------------------
 // Ansvarlig for dag-/fortellingslaget INNE i Civication-skallet:
 //   - hendelsesmotoren (HG_CiviEngine / CivicationEventEngine)
+//   - livelihood opportunity bridge (løste valg + livsposisjonsnettverk)
 //   - rolle-modell-runtime
 //   - blokkerte jobbmeldinger
 //   - forpliktelser (obligation engine)
@@ -75,6 +76,18 @@
     }
   }
 
+  /** @returns {Promise<boolean>} */
+  async function ensureLivelihoodOpportunityBridgeLoaded() {
+    if (window.CivicationLivelihoodOpportunityBridge?.attachToEngine) return true;
+    try {
+      await loadScriptOnce("js/Civication/systems/civicationLivelihoodOpportunityBridge.js");
+      return !!window.CivicationLivelihoodOpportunityBridge?.attachToEngine;
+    } catch (error) {
+      console.warn("[CivicationDayBoot] livelihood opportunity bridge kunne ikke lastes", error);
+      return false;
+    }
+  }
+
   /**
    * @returns {boolean}
    * Dag-/innbokslaget er bare relevant når panelene finnes. Skall-only-sider
@@ -119,6 +132,8 @@
 
       await ensureCivicationRoleModelRuntimeLoaded();
       await ensureCivicationBlockedJobMessagesLoaded();
+      await ensureLivelihoodOpportunityBridgeLoaded();
+      window.CivicationLivelihoodOpportunityBridge?.init?.(window.HG_CiviEngine);
 
       // Økonomi-ticken eies av skallet (kapital/dashboard) og kjøres i
       // CivicationShellBoot — ikke her, for å unngå dobbel ukes-tick.
