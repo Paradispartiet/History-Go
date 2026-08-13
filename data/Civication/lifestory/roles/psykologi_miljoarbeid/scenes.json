@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "scenes": [
+    {
+      "id": "det_du_saa_01",
+      "threadId": "det_du_saa",
+      "fase": "morgen",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "teamleder",
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "«Mina har blitt sånn igjen»",
+      "tekst": "Rune sier at Mina «har blitt deprimert igjen». Det du faktisk vet, er at hun har droppet frokost tre morgener, avlyst to avtaler og snakker mindre enn vanlig. Teamlederen ber deg skrive et kort vaktnotat før møtet.",
+      "valg": [
+        {
+          "id": "skriv_konkret",
+          "tekst": "Skriv bare det observerbare mønsteret og at endringen bør følges opp",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "teamleder": 4, "psykolog_fagkontakt": 3 },
+            "meters": { "integritet": 6, "synlighet": 2 },
+            "flagg": { "skrev_konkret": true },
+            "threads": { "det_du_saa": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Notatet blir litt lengre, men alle kan se nøyaktig hva som har endret seg uten at du later som du vet hvorfor."
+        },
+        {
+          "id": "skriv_deprimert",
+          "tekst": "Skriv at Mina virker deprimert — det er jo det Rune mener",
+          "tone": "rask",
+          "effekter": {
+            "relasjoner": { "erfaren_kollega": 3 },
+            "meters": { "integritet": -7, "handlingsrom": -2 },
+            "flagg": { "skrev_tolkning_som_fakta": true },
+            "threads": { "det_du_saa": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Notatet er effektivt. Problemet er at ordet ditt nå ser ut som en faglig konklusjon for den som leser neste vakt."
+        },
+        {
+          "id": "sporr_og_folg",
+          "tekst": "Spør Mina åpent om hun vil si noe om endringen, og dokumenter svaret uten å presse",
+          "tone": "undersøkende",
+          "effekter": {
+            "relasjoner": { "mina": 5 },
+            "meters": { "integritet": 4, "energi": -2, "handlingsrom": 3 },
+            "flagg": { "spurte_apent": true },
+            "threads": { "det_du_saa": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Mina sier lite, men korrigerer én ting: hun unngår frokosten fordi det har vært bråk ved bordet. Det er informasjon, ikke diagnose."
+        }
+      ]
+    },
+    {
+      "id": "aktiviteten_01",
+      "threadId": "aktiviteten_ingen_vil_paa",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "hendelse",
+      "avsender": "erfaren_kollega",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Hun vil ikke på gruppa",
+      "tekst": "Dagens plan sier matlagingsgruppe. Mina nekter å bli med. Rune sier: «Hun sier alltid nei først. Bare få henne ut døra, så går det over.»",
+      "valg": [
+        {
+          "id": "utforsk_motstand",
+          "tekst": "Spør hva som gjør gruppa vanskelig i dag, uten å gjøre deltakelse til et krav",
+          "tone": "rolig",
+          "effekter": {
+            "relasjoner": { "mina": 5 },
+            "meters": { "integritet": 4, "energi": -2 },
+            "flagg": { "utforsket_motstand": true },
+            "threads": { "aktiviteten_ingen_vil_paa": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Det er ikke matlagingen som er problemet. Mina vil ikke sitte ved samme bord som en deltaker hun kranglet med i går."
+        },
+        {
+          "id": "press_gjennom",
+          "tekst": "Hold på planen og få henne med før motstanden får vokse",
+          "tone": "bestemt",
+          "effekter": {
+            "relasjoner": { "mina": -7, "erfaren_kollega": 3 },
+            "meters": { "integritet": -5, "synlighet": 2 },
+            "flagg": { "presset_deltakelse": true },
+            "threads": { "aktiviteten_ingen_vil_paa": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Mina blir med, men hun deltar ikke. Planen er oppfylt; motivasjonen er dårligere enn før."
+        },
+        {
+          "id": "tilpass_aktivitet",
+          "tekst": "Tilby en mindre oppgave nå og la gruppa være et frivillig neste steg",
+          "tone": "tilpassende",
+          "effekter": {
+            "relasjoner": { "mina": 4 },
+            "meters": { "handlingsrom": 5, "integritet": 3 },
+            "flagg": { "tilpasset_aktivitet": true },
+            "threads": { "aktiviteten_ingen_vil_paa": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Hun skjærer grønnsaker på kjøkkenet ved siden av. Etter tjue minutter spør hun selv om de andre fortsatt lager mat."
+        }
+      ]
+    },
+    {
+      "id": "notatet_01",
+      "threadId": "notatet_som_stempler",
+      "fase": "ettermiddag",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "teamleder",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "«Kan du bare kopiere formuleringen?»",
+      "tekst": "Teamlederen vil ha vaktnotatet ferdig. Forrige notat beskriver Mina som «manipulerende og lite samarbeidsvillig». Du har sett at hun skifter forklaring når hun blir presset, men du har ikke grunnlag for merkelappen.",
+      "valg": [
+        {
+          "id": "beskriv_hendelsen",
+          "tekst": "Beskriv hva som ble sagt og gjort, og la tolkningen ligge",
+          "tone": "presis",
+          "effekter": {
+            "relasjoner": { "teamleder": 3 },
+            "meters": { "integritet": 6, "synlighet": 2 },
+            "flagg": { "skrev_observerbart_notat": true, "skrev_konkret": true },
+            "threads": { "notatet_som_stempler": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Teksten blir mindre dramatisk, men mer etterprøvbar. Neste vakt får hendelsen, ikke din dom over personen."
+        },
+        {
+          "id": "kopier_merkelapp",
+          "tekst": "Kopier formuleringen — det er allerede slik teamet beskriver henne",
+          "tone": "effektiv",
+          "effekter": {
+            "relasjoner": { "erfaren_kollega": 3 },
+            "meters": { "integritet": -8 },
+            "flagg": { "skrev_tolkning_som_fakta": true },
+            "threads": { "notatet_som_stempler": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Det går fort. Og fordi samme ord nå står to steder, ser det enda mer sant ut."
+        },
+        {
+          "id": "be_om_avklaring",
+          "tekst": "Be teamlederen avklare hvilken konkret hendelse merkelappen bygger på",
+          "tone": "faglig",
+          "effekter": {
+            "relasjoner": { "teamleder": 1 },
+            "meters": { "handlingsrom": 4, "energi": -2, "integritet": 4 },
+            "flagg": { "ba_om_faglig_avklaring": true },
+            "threads": { "notatet_som_stempler": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Det blir stille et øyeblikk. Ingen kan egentlig peke på én konkret hendelse som bærer ordet."
+        }
+      ]
+    },
+    {
+      "id": "samtalen_01",
+      "threadId": "samtalen_blir_for_tung",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "mina",
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "«Du må love at du ikke sier dette til noen»",
+      "tekst": "Mina ber deg love at samtalen blir mellom dere før hun forteller noe som høres alvorlig ut. Du merker at hun tester om du er trygg — og at du ikke kan vite på forhånd om det hun sier må videre.",
+      "valg": [
+        {
+          "id": "forklar_grensen",
+          "tekst": "Si at du vil lytte, men ikke kan love å holde alvorlig sikkerhetsinformasjon for deg selv",
+          "tone": "tydelig",
+          "effekter": {
+            "relasjoner": { "mina": 3, "psykolog_fagkontakt": 4 },
+            "meters": { "integritet": 7, "psyke": -2 },
+            "flagg": { "satte_profesjonell_grense": true, "eskalerte_trygt": true },
+            "threads": { "samtalen_blir_for_tung": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Mina blir skuffet, men fortsetter. Du varsler fagkontakten etterpå og forteller Mina hva du gjør og hvorfor."
+        },
+        {
+          "id": "lov_hemmelig",
+          "tekst": "Lov at det blir mellom dere så hun tør å snakke",
+          "tone": "nær",
+          "effekter": {
+            "relasjoner": { "mina": 6 },
+            "meters": { "integritet": -9, "psyke": -5 },
+            "flagg": { "lovet_for_mye": true },
+            "threads": { "samtalen_blir_for_tung": { "stepDelta": 1 } }
+          },
+          "konsekvensTekst": "Hun forteller. Nå sitter du både med bekymringen og et løfte du ikke burde ha gitt."
+        },
+        {
+          "id": "stopp_samtalen",
+          "tekst": "Stopp før hun forteller mer og be henne ta det direkte med psykologen",
+          "tone": "avgrensende",
+          "effekter": {
+            "relasjoner": { "mina": -5, "psykolog_fagkontakt": 2 },
+            "meters": { "integritet": 1, "handlingsrom": -3 },
+            "flagg": { "trakk_seg_for_tidlig": true },
+            "threads": { "samtalen_blir_for_tung": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Du holder rollegrensen, men Mina sitter igjen med følelsen av at grensen var viktigere enn å bli hørt."
+        }
+      ]
+    },
+    {
+      "id": "paaroerende_01",
+      "threadId": "paaroerende_ringer",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "telefon",
+      "avsender": "paaroerende",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "«Bare si om hun har blitt verre»",
+      "tekst": "Moren til Mina ringer. Hun er tydelig bekymret og spør hva Mina har sagt, om hun spiser og om «psykologen mener dette er et tilbakefall». Du kjenner bekymringen, men har verken samtykke til å dele alt eller grunnlag for den kliniske delen av spørsmålet.",
+      "valg": [
+        {
+          "id": "avklar_samtykke",
+          "tekst": "Anerkjenn bekymringen, hold deg til det du kan si og avklar med Mina/teamet hva som kan deles",
+          "tone": "profesjonell",
+          "effekter": {
+            "relasjoner": { "paaroerende": 2, "mina": 3, "teamleder": 3 },
+            "meters": { "integritet": 6, "handlingsrom": 3 },
+            "flagg": { "avklarte_samtykke": true },
+            "threads": { "paaroerende_ringer": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Moren får ikke alle svarene hun ønsket, men du lager en vei til et samarbeid som Mina faktisk kan være med på."
+        },
+        {
+          "id": "fortell_for_mye",
+          "tekst": "Gi en kort oppdatering om det du har observert — hun er tross alt moren",
+          "tone": "hjelpsom",
+          "effekter": {
+            "relasjoner": { "paaroerende": 5, "mina": -7 },
+            "meters": { "integritet": -7 },
+            "flagg": { "delte_uten_avklaring": true },
+            "threads": { "paaroerende_ringer": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Samtalen blir enklere der og da. Senere spør Mina hvorfor moren visste noe hun bare hadde sagt på avdelingen."
+        },
+        {
+          "id": "avvis_alt",
+          "tekst": "Si at du ikke kan si noe som helst og avslutt samtalen",
+          "tone": "lukket",
+          "effekter": {
+            "relasjoner": { "paaroerende": -6 },
+            "meters": { "integritet": 1, "handlingsrom": -2 },
+            "flagg": { "avviste_paaroerende": true },
+            "threads": { "paaroerende_ringer": { "status": "completed" } }
+          },
+          "konsekvensTekst": "Du deler ingenting. Du mister også muligheten til å gjøre bekymringen om til et ryddig samarbeid."
+        }
+      ]
+    }
+  ]
+}
