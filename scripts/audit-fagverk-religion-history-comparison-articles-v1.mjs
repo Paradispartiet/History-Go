@@ -95,13 +95,13 @@ export function auditReligionHistoryComparisonArticles({ writeReport = false, ch
   assert(status?.editorialStatus === 'chapters_in_progress', 'Religion skal fortsatt stå chapters_in_progress');
   assert(status?.nextGate === 'remaining_religion_area_article_production', 'Religion har feil neste produksjonsport');
   assert(readiness.status === 'matrix_locked_production_in_progress', 'Religion-readiness skal vise pågående produksjon');
-  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 12/72');
+  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 18/72');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
   assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'History/comparison skal eie seks unike emner');
-  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', AREA_ID]), 'Eksakt to Religion-områder skal være komplette');
-  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(6), requiredIds), 'Readiness har feil history/comparison-emner');
-  assert(readiness.production_progress.standalone_topic_articles_materialized === 12 && readiness.production_progress.standalone_topic_articles_remaining === 60, 'Religion skal stå på 12/72 artikler');
+  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', AREA_ID, 'west_asian_abrahamic']), 'De tre første Religion-områdene skal være komplette');
+  assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(6, 12), requiredIds), 'Readiness har feil history/comparison-emner');
+  assert(readiness.production_progress.standalone_topic_articles_materialized === 18 && readiness.production_progress.standalone_topic_articles_remaining === 54, 'Religion skal stå på 18/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
   assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'History/comparison-området er ikke korrekt merket komplett');
 
@@ -173,7 +173,7 @@ export function auditReligionHistoryComparisonArticles({ writeReport = false, ch
   const canonicalMethods = new Map(methods.methods.map((method) => [method.method_id, method]));
   assert([...usedMethodIds].every((id) => canonicalMethods.get(id)?.university_matrix_status === 'materialized'), 'En brukt metode er uløst eller ikke materialisert');
   assert(NEW_METHOD_IDS.every((id) => usedMethodIds.has(id) && readiness.production_progress.materialized_required_method_ids.includes(id)), 'De to nye historiske metodene er ikke materialisert og brukt');
-  assert(readiness.production_progress.required_methods_materialized === 10 && readiness.production_progress.required_methods_remaining === 8, 'Religion skal stå på 10/18 metoder');
+  assert(readiness.production_progress.required_methods_materialized === 12 && readiness.production_progress.required_methods_remaining === 6, 'Religion skal stå på 12/18 metoder');
 
   const allMaterializedIds = readiness.production_progress.materialized_topic_ids;
   const allArticles = allMaterializedIds.map((id) => read(`${P.articleDir}/${id}.json`));
@@ -223,7 +223,7 @@ export function auditReligionHistoryComparisonArticles({ writeReport = false, ch
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
       twoNewHistoricalMethodsMaterializedAndLinked: true,
-      allTwelveReligionArticlesReviewedForEditorialDiversity: true,
+      allEighteenReligionArticlesReviewedForEditorialDiversity: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,
       noPrematureAhaRuntimeActivation: true,
