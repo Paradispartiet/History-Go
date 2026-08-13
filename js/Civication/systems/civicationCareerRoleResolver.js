@@ -42,7 +42,9 @@
     psykolog: 'psykologi_psykolog',
     spesialistpsykolog: 'psykologi_spesialistpsykolog',
     fagansvarlig: 'psykologi_fagansvarlig',
-    klinikkleder: 'psykologi_klinikkleder'
+    klinikkleder: 'psykologi_klinikkleder',
+    forsker_psykologi: 'psykologi_forsker_psykologi',
+    professor_psykologi: 'psykologi_professor_psykologi'
   };
 
   const ROLE_SCOPE_BY_ROLE_ID = Object.fromEntries(
@@ -138,7 +140,9 @@
     psykolog: 'psykolog',
     spesialistpsykolog: 'spesialistpsykolog',
     fagansvarlig: 'fagansvarlig',
-    klinikkleder: 'klinikkleder'
+    klinikkleder: 'klinikkleder',
+    forsker_psykologi: 'forsker_psykologi',
+    professor_psykologi: 'professor_psykologi'
   };
 
   function resolveCareerRoleScope(activePosition) {
@@ -151,7 +155,7 @@
     if (ROLE_SCOPE_BY_ROLE_ID[roleKey]) return ROLE_SCOPE_BY_ROLE_ID[roleKey];
 
     if (careerId === 'psykologi') {
-      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('psykologi_')) return roleKey;
+      if (ROLE_ID_BY_SCOPE[roleKey] && (roleKey.startsWith('psykologi_') || roleKey.endsWith('_psykologi'))) return roleKey;
       if (['psykolog', 'spesialistpsykolog', 'fagansvarlig', 'klinikkleder'].includes(roleKey)) return roleKey;
       if (PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey]) return PSYKOLOGI_ROLE_SCOPE_BY_TITLE[titleKey];
     }
@@ -208,6 +212,8 @@
 
     if (roleKey.includes('psykologi_arbeids_og_karriereveiledning')) return 'psykologi_arbeids_og_karriereveiledning';
     if (roleKey.includes('psykologi_miljoarbeid')) return 'psykologi_miljoarbeid';
+    if (roleKey.includes('forsker_psykologi')) return 'forsker_psykologi';
+    if (roleKey.includes('professor_psykologi')) return 'professor_psykologi';
     if (roleKey.includes('psykolog') && !roleKey.includes('spesialist')) return 'psykolog';
     if (roleKey.includes('spesialistpsykolog')) return 'spesialistpsykolog';
     if (roleKey.includes('fagansvarlig')) return 'fagansvarlig';
