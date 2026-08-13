@@ -1,0 +1,24 @@
+{
+  "version":1,
+  "id":"professor_psykologi",
+  "navn":"Professor (psykologi)",
+  "kjernefantasi":"Du har faglig tyngde nok til å åpne dører eller lukke rom. Uka handler om forskning, undervisning og veiledning — og om hvorvidt andre blir mer selvstendige av å arbeide med deg.",
+  "arbeidsoppgaver":["forskningsledelse","universitetsundervisning","veiledning","faglig vurdering","søknader og prosjektutvikling","bygging av forsknings- og læringsmiljø"],
+  "personer":[
+    {"id":"phd","navn":"Amina","beskrivelse":"Ph.d.-kandidat du veileder. Har en god idé som avviker fra din opprinnelige prosjektplan."},
+    {"id":"student","navn":"Leo","beskrivelse":"Masterstudent som trenger tydelig veiledning uten å få løsningen levert."},
+    {"id":"kollega","navn":"Ravi","beskrivelse":"Yngre forsker som har data som utfordrer et etablert argument du selv har vært med på å bygge."},
+    {"id":"studieleder","navn":"Nora","beskrivelse":"Studieleder som trenger at emnet ditt forbedres samtidig som søknadsfristen nærmer seg."},
+    {"id":"venn","navn":"Jonas","beskrivelse":"Vennen din som spør om det fortsatt finnes folk på jobben som kan si at du tar feil uten å betale for det."},
+    {"id":"familie","navn":"Søsteren din","beskrivelse":"Søsteren din følger med på om universitetet får alle kveldene også denne uka."}
+  ],
+  "hovedkonflikter":["status vs åpen kritikk","mentorskap vs eierskap","forskningsfrist vs undervisningskvalitet","framdrift vs kandidatens selvstendighet","finansiering vs faglig bredde"],
+  "endings":[
+    {"id":"miljo_som_taler_imot_deg","navn":"Et miljø som kan si imot deg","tekst":"Du fikk ikke maksimal kontroll over ideene eller kalenderen. Amina beholdt eierskap til sitt prosjekt, Ravi fikk utfordre din teori på dataene, og undervisningen ble behandlet som en kjerneoppgave. Faglig status gjorde flere rundt deg friere til å tenke selv.","kriterier":{"meters":{"integritet":{"min":62},"handlingsrom":{"min":52}},"flagg":{"krediterte_rettferdig":true,"apnet_for_kritikk":true}},"standard":true},
+    {"id":"professoren_som_tyngdepunkt","navn":"Alt begynte å dreie mot deg","tekst":"Søknaden ble sterk, teorien din stod stødig og kandidatene kom raskt videre. Samtidig begynte ideer å skifte eier oppover, kritikk ble formulert forsiktigere og undervisningen fikk resttid. Du bygget mye produksjon og et miljø som lærte å orientere seg etter deg.","kriterier":{"flagg":{"tok_eierskap":true,"brukte_status_mot_kritikk":true}}},
+    {"id":"ingen_prioritering","navn":"Alle oppgaver var like viktige","tekst":"Du ville gi forskning, undervisning, søknader og veiledning full kvalitet samtidig. Resultatet ble at flere viktige beslutninger kom for sent. Akademisk ansvar krever også prioritering, ikke bare høye standarder.","kriterier":{"flagg":{"utsatte_alle_prioriteringer":true}}}
+  ],
+  "startState":{"meters":{"penger":580,"psyke":64,"energi":64,"integritet":55,"synlighet":62,"handlingsrom":55},"relasjoner":{"phd":54,"student":52,"kollega":50,"studieleder":48,"venn":60,"familie":58}},
+  "dagsplan":{"1":[{"klokke":"09:00","tekst":"Veiledning og forskningsmøte"},{"klokke":"11:30","tekst":"Søknadsarbeid"},{"klokke":"14:00","tekst":"Undervisningsutvikling"}],"2":[{"klokke":"09:30","tekst":"Faglig seminar"},{"klokke":"13:30","tekst":"Veiledning og kreditering"}]},
+  "scopeBoundary":{"kan":["drive og lede forskning innen faglig mandat","undervise og veilede i høyere utdanning","vurdere faglig arbeid når rollen krever det","bygge fagmiljø og utdanningskvalitet"],"kanIkke":["framstille professortittel som psykologautorisasjon","diagnostisere eller behandle bare i kraft av akademisk stilling","bruke senioritet som erstatning for argument eller data","ta eierskap til studenters eller yngre forskeres ideer uten korrekt kreditering","framstille publikasjonsvolum alene som professorkompetanse"]}
+}
