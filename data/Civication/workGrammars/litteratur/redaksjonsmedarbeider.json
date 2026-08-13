@@ -1,0 +1,39 @@
+{
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "role_id": "litteratur_redaksjonsmedarbeider",
+  "badge_binding": {
+    "badge_id": "litteratur",
+    "badge_titles": ["Redaksjonsmedarbeider"],
+    "tier_thresholds": [115]
+  },
+  "work_world": "Praktisk redaksjonell produksjon rundt manus, versjoner, forfatterkontakt, frister og koordinering mellom redaksjon og produksjonsledd.",
+  "authority_boundary": {
+    "can": [
+      "koordinere manusflyt og redaksjonelle frister",
+      "etterspørre avklaringer og dokumentere versjoner",
+      "samordne kontakt mellom relevante produksjonsledd"
+    ],
+    "cannot": [
+      "love utgivelse eller avtale uten mandat",
+      "endre forfattertekst i det skjulte",
+      "overstyre kontrakter, rettigheter eller endelig redaksjonell myndighet"
+    ]
+  },
+  "work_loops": [
+    "motta og registrer riktig manusversjon",
+    "avklar ansvar, frist og neste redaksjonelle steg",
+    "koordiner forfatter, redaktør og produksjonsledd",
+    "kontroller at beslutninger og endringer er sporbare før levering"
+  ],
+  "practice_stories": [
+    {"id":"feil_versjon","title":"Feil versjon","problem":"En eldre manusversjon er sendt videre.","good_practice":"Stans videreflyt, identifiser korrekt versjon og dokumenter hva som må erstattes."},
+    {"id":"sen_endring","title":"Sen endring","problem":"Forfatteren sender en viktig endring etter at produksjonen har startet.","good_practice":"Synliggjør konsekvensene, avklar beslutningsmyndighet og oppdater alle berørte med samme versjonsgrunnlag."},
+    {"id":"manglende_svar","title":"Mangler avklaring","problem":"Fristen nærmer seg og en vesentlig redaksjonell avklaring mangler.","good_practice":"Eskaler tydelig i stedet for å gjette eller la en uavklart tekst passere."},
+    {"id":"sensitivt_manus","title":"Sensitivt manus","problem":"Et upublisert manus inneholder opplysninger som ikke bør spres internt uten behov.","good_practice":"Del bare med relevante roller og behold et tydelig ansvarsspor."},
+    {"id":"presset_frist","title":"Presset frist","problem":"Tempoet gjør at kontrollsteg foreslås hoppet over.","good_practice":"Skilj mellom reell forenkling og skjult kvalitetsrisiko, og dokumenter avviket."}
+  ],
+  "quality_axes": ["versjonssporbarhet", "redaksjonell_presisjon", "konfidensialitet", "friststyring", "mandatklarhet"]
+}

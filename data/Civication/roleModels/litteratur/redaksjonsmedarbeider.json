@@ -1,120 +1,124 @@
 {
   "schema": "civication_role_model_v1",
-  "version": 1,
+  "version": 2,
   "source": {
-    "badge_file": "data/badges.json",
+    "badge_file": "data/badges/litteratur.json",
     "badge_id": "litteratur",
     "badge_name": "Litteratur & poesi",
     "tier_label": "Redaksjonsmedarbeider",
-    "tier_threshold": 95
+    "tier_threshold": 115,
+    "evidence_ref": "data/Civication/literatureCareerLifeEvidence.json"
   },
   "category": "litteratur",
   "role_scope": "redaksjonsmedarbeider",
   "role_id": "litteratur_redaksjonsmedarbeider",
   "title": "Redaksjonsmedarbeider",
   "core_narrative": [
-    "I Civication er Redaksjonsmedarbeider en praktisk rolle i Litteratur & poesi der valg former tillit, handlingsrom og status."
+    "Du arbeider inne i en redaksjonell produksjon der manus, forfatterkontakt, frister, metadata og publiseringsløp må holdes samlet uten at tekst eller rettigheter behandles slurvete."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til skjonnlitteratur, sakprosa."
+      "Følge manus og versjoner gjennom redaksjonelle arbeidssteg.",
+      "Koordinere praktisk kontakt mellom redaktør, forfatter, korrektur, produksjon og andre bidragsytere.",
+      "Holde oversikt over frister, dokumentasjon, tekstgrunnlag og publiseringsdetaljer."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Sørge for at riktig versjon og riktig informasjon følger saken.",
+      "Varsle når frister, avklaringer eller manglende grunnlag truer kvaliteten.",
+      "Behandle upublisert materiale og personopplysninger med nødvendig konfidensialitet."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som lever i språket. Ord er ikke bare tegn, men dører til erkjennelse."
+      "Forlag, tidsskrift, litterær redaksjon eller annen organisasjon med manus- og publiseringsarbeid."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Rollen har praktisk redaksjonelt ansvar innen eget mandat, men er ikke automatisk den som tar endelig beslutning om antakelse, kontrakt eller publisering."
     ]
   },
   "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
+    "entry_from": ["Relevant redaksjonell erfaring, skrive-/publiseringspraksis eller konkret ansettelse."],
+    "progression_to": ["Redaktør (bok) eller andre redaksjonelle spesialiseringer."],
+    "possible_promotions": ["Større selvstendig ansvar for manusløp, koordinering og redaksjonelle vurderinger."],
+    "possible_exits": ["Forlagsproduksjon, kommunikasjon, kritikk, frilansarbeid eller annen kulturproduksjon."],
+    "career_risks": ["Versjonsfeil, brudd på konfidensialitet, uklare ansvarslinjer og tidspress som svekker tekstkvaliteten."]
   },
   "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som lever i språket. Ord er ikke bare tegn, men dører til erkjennelse."
-    ],
-    "history_go_badges": [
-      "litteratur"
-    ],
+    "education_basis": ["Ingen enkelt beskyttet utdanningsvei er modellert; arbeidsgiverens faktiske krav gjelder."],
+    "skills": ["Tekstforståelse", "versjonskontroll", "redaksjonell koordinering", "presis kommunikasjon", "friststyring"],
+    "category_knowledge": ["Litterære sjangre, manusarbeid, redaksjonell arbeidsflyt og publiseringsprosesser."],
+    "history_go_badges": ["litteratur"],
     "place_connections": [],
     "people_connections": []
   },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
+      "id": "versjon_og_frist",
+      "title": "Riktig versjon under tidspress",
+      "description": "Flere aktører arbeider parallelt og en eldre manusversjon er på vei videre i produksjonen.",
+      "pressure": "tempo_vs_sporbarhet",
+      "affects": ["quality", "trust", "schedule"]
+    },
+    {
+      "id": "manglende_avklaring",
+      "title": "Uavklart tekstgrunnlag",
+      "description": "En publiseringsfrist nærmer seg mens en vesentlig redaksjonell avklaring fortsatt mangler.",
+      "pressure": "frist_vs_redaksjonell_kvalitet",
+      "affects": ["quality", "trust", "risk"]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
+      "id": "forfatteronske_vs_produksjonsgrunnlag",
+      "title": "Sen endring",
+      "setup": "Forfatteren ønsker en større endring etter at flere produksjonsledd allerede har begynt å arbeide.",
+      "choice_axis": "forfatteronske_vs_sporbar_produksjon",
+      "consequence_axis": "tillit_vs_feilrisiko",
+      "mail_hooks": ["job", "conflict", "story"]
+    },
+    {
+      "id": "konfidensialitet_vs_hurtig_koordinering",
+      "title": "Hvem trenger å vite?",
+      "setup": "Et sensitivt upublisert manusproblem må løses raskt, men informasjonen bør ikke spres bredere enn nødvendig.",
+      "choice_axis": "konfidensialitet_vs_hurtig_koordinering",
+      "consequence_axis": "tillit_vs_fremdrift",
+      "mail_hooks": ["job", "people", "conflict"]
     }
   ],
-  "related_people": [],
-  "related_places": [],
+  "authority_boundaries": {
+    "can": [
+      "koordinere redaksjonell arbeidsflyt innen eget mandat",
+      "etterspørre manglende grunnlag og avklaringer",
+      "dokumentere versjoner, frister og beslutningsspor"
+    ],
+    "cannot": [
+      "love en utgivelse eller avtale uten mandat",
+      "endre forfatterens tekst i det skjulte",
+      "overstyre rettigheter, kontrakter eller endelig redaksjonell myndighet"
+    ]
+  },
   "mail_integration": {
     "role_scope": "redaksjonsmedarbeider",
     "mail_profile": "litteratur_redaksjonsmedarbeider",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
+    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "followup"],
     "mail_variables": {
       "role_title": "Redaksjonsmedarbeider",
       "category": "litteratur",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+      "main_pressure": "tempo_vs_sporbarhet",
+      "ethical_axis": "konfidensialitet_vs_hurtig_koordinering",
+      "status_axis": "tillit_vs_feilrisiko"
     },
     "recommended_mail_families": [],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
+  "competence_axes": [
+    {"id":"tekstflyt","label":"Tekstflyt","description":"Holde manus, kommentarer og versjoner konsistente gjennom redaksjonell produksjon."},
+    {"id":"koordinering","label":"Koordinering","description":"Koble riktige mennesker og avklaringer til riktig tidspunkt."},
+    {"id":"redaksjonell_integritet","label":"Redaksjonell integritet","description":"Bevare sporbarhet, konfidensialitet og tydelige mandatgrenser."}
+  ],
+  "ideal_type_problems": [
+    {"id":"feil_manusversjon","label":"Feil manusversjon","description":"En foreldet tekst er på vei til neste produksjonsledd."},
+    {"id":"sen_forfatterendring","label":"Sen forfatterendring","description":"En legitim endring kolliderer med en allerede startet produksjon."}
+  ],
   "notes": [
-    "Basert på badges.json: litteratur / Redaksjonsmedarbeider."
+    "Dette er en formell arbeidsrolle i Litteratur-merket. Profesjonelle skriveidentiteter som Forfatter og Poet modelleres separat som livsposisjoner."
   ]
 }
