@@ -1,0 +1,23 @@
+{
+  "version":1,
+  "id":"fagansvarlig",
+  "navn":"Fagansvarlig",
+  "kjernefantasi":"Du skal gjøre klinikken mer lærende og etterprøvbar uten å bli personen som alle sender beslutninger til bare fordi tittelen høres autoritativ ut.",
+  "arbeidsoppgaver":["kvalitetsforbedring","avviksoppfølging","fagprosedyrer","kompetanseplanlegging","veiledningsstruktur","rolle- og myndighetsavklaring"],
+  "personer":[
+    {"id":"kliniker","navn":"Sara","beskrivelse":"Erfaren kliniker som vil ha tydelige rammer uten at prosedyrene erstatter faglig skjønn."},
+    {"id":"leder","navn":"Avdelingslederen","beskrivelse":"Vil lukke avvik raskt og vise dokumenterbar forbedring."},
+    {"id":"kvalitet","navn":"Henrik","beskrivelse":"Kvalitetsrådgiver som følger systemet og spør om tiltakene faktisk endrer arbeidsflyten."},
+    {"id":"nyansatt","navn":"Amina","beskrivelse":"Ny i teamet og avhengig av at prosedyrer, veiledning og rollegrenser faktisk er forståelige."},
+    {"id":"venn","navn":"Maja","beskrivelse":"Vennen din som minner deg på at ansvaret ditt er å bygge system, ikke å eie alle avgjørelser."}
+  ],
+  "hovedkonflikter":["formell etterlevelse vs reell læring","standardisering vs faglig skjønn","veiledning vs kontroll","individfeil vs systemårsak","handlekraft vs riktig myndighet"],
+  "endings":[
+    {"id":"kvalitet_som_laering","navn":"Kvalitet som læring","tekst":"Du lot avvikene bli spørsmål om systemet, beskyttet veiledningen som læringsrom og gjorde myndighetsgrensene tydeligere. Færre saker endte hos deg bare fordi tittelen hørtes riktig ut, og flere problemer ble løst der kompetansen faktisk lå.","kriterier":{"meters":{"integritet":{"min":62},"handlingsrom":{"min":52}},"flagg":{"loste_systemarsak":true,"beskyttet_rollegrense":true}},"standard":true},
+    {"id":"prosedyren_som_skjold","navn":"Prosedyren som skjold","tekst":"Du fikk orden på dokumentasjonen og lukket avvikene fort, men samme type problem fortsatte å dukke opp. Veiledning ble mer kontroll, og kollegene lærte å sende vanskelige beslutninger oppover i stedet for å gjøre ansvarslinjene klarere.","kriterier":{"flagg":{"lukket_uten_laering":true,"tok_feil_myndighet":true}}},
+    {"id":"for_mye_prosess","navn":"For mye prosess","tekst":"Du ville forstå alle systemårsakene før noe ble endret. Analysen ble god, men ansatte ventet på konkrete rammer. Kvalitetsarbeid må lære og handle.","kriterier":{"flagg":{"utsatte_tiltak":true}}}
+  ],
+  "startState":{"meters":{"penger":540,"psyke":66,"energi":67,"integritet":55,"synlighet":56,"handlingsrom":52},"relasjoner":{"kliniker":52,"leder":48,"kvalitet":55,"nyansatt":50,"venn":60}},
+  "dagsplan":{"1":[{"klokke":"09:00","tekst":"Avviksgjennomgang"},{"klokke":"11:30","tekst":"Fagprosedyre og praksis"},{"klokke":"14:00","tekst":"Veiledningsstruktur"}],"2":[{"klokke":"09:30","tekst":"Rolle- og myndighetsavklaring"},{"klokke":"13:30","tekst":"Implementering og oppfølging"}]},
+  "scopeBoundary":{"kan":["koordinere fag- og kvalitetsarbeid innen arbeidsgiverens mandat","utvikle prosedyrer og kompetansetiltak","analysere avvik og foreslå forbedringer","eskalere til riktig klinisk, juridisk eller organisatorisk myndighet"],"kanIkke":["framstille tittelen som lovens faglig ansvarlig etter psykisk helsevernloven","fatte lovregulerte vedtak uten særskilt kvalifikasjon og utpeking","diagnostisere eller behandle uten separat profesjonskompetanse","erstatte klinikerens individuelle ansvar med lokal prosedyre"]}
+}
