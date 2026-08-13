@@ -1,0 +1,70 @@
+{
+  "schema": "history_go_fagverk_religion_university_readiness_audit_v1",
+  "version": "1.0.0",
+  "status": "religion_university_matrix_locked_production_pending",
+  "generatedFrom": {
+    "readiness": "data/fag/religion/religion_university_readiness_v1.json",
+    "emners": "data/fag/religion/emner_religion_canonical_v1.json",
+    "methods": "data/fag/religion/methods_religion_canonical_v1.json",
+    "fagkart": "data/fag/religion/fagkart_religion_canonical_v1.json",
+    "status": "data/fagverk/subject_status.json",
+    "report": "reports/fagverk/religion-university-readiness-audit.json"
+  },
+  "subject": {
+    "id": "religion",
+    "editorialStatus": "structure_ready",
+    "nextGate": "chapter_production",
+    "completionGate": "university_matrix_domain_articles_concepts_sources_and_methods",
+    "completeReady": false
+  },
+  "baseline": {
+    "domainCount": 4,
+    "emneCount": 8,
+    "methodCount": 8,
+    "registeredChapterCount": 0
+  },
+  "target": {
+    "universityAreaCount": 12,
+    "canonicalTopicCount": 72,
+    "requiredMethodCount": 18,
+    "minimumArticleWords": 650
+  },
+  "gaps": {
+    "completeAreaCount": 0,
+    "partialAreaCount": 6,
+    "missingAreaCount": 6,
+    "standaloneTopicArticlesRemaining": 72,
+    "universityMethodsRemaining": 18
+  },
+  "authoritativeSourceIds": [
+    "ntnu_brvi_structure_2026_2027",
+    "uit_religionsvitenskap_year_2025",
+    "uib_relv100_2026",
+    "uio_rel1003_global_intro"
+  ],
+  "areaStatuses": {
+    "theory_method": "missing",
+    "history_comparison": "partial",
+    "west_asian_abrahamic": "partial",
+    "south_asian_religions": "missing",
+    "east_asian_religions": "missing",
+    "indigenous_sami": "missing",
+    "ritual_materiality_space": "partial",
+    "texts_myths_authority": "missing",
+    "society_politics_law": "partial",
+    "lived_identity_migration": "partial",
+    "secular_new_media": "partial",
+    "nature_science_ethics": "missing"
+  },
+  "gates": {
+    "baselineMatchesCanonicalSources": true,
+    "fourUniversityBenchmarksResolved": true,
+    "twelveCoreAreasLocked": true,
+    "seventyTwoUniqueTopicsLocked": true,
+    "eighteenUniversityMethodsLocked": true,
+    "topicArticleQualityContractLocked": true,
+    "respectfulRepresentationAndNonessentialismLocked": true,
+    "sixDimensionQualityGateLocked": true,
+    "prematureCompleteStatusBlocked": true
+  }
+}
