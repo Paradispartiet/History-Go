@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "id": "psykologi_miljoarbeid",
+  "navn": "Miljøarbeid og oppfølging",
+  "kjernefantasi": "Du står nær et annet menneskes hverdag og må bruke psykologi presist nok til å hjelpe, men aldri som om nærhet gir deg klinisk myndighet.",
+  "arbeidsoppgaver": [
+    "støtte daglige rutiner og avtaler",
+    "motivere og tilrettelegge aktivitet",
+    "observere konkrete endringer uten å diagnostisere",
+    "dempe konflikter og sette trygge grenser",
+    "dokumentere nøkternt og etterprøvbart",
+    "eskalere bekymring til riktig fagperson"
+  ],
+  "personer": [
+    {
+      "id": "mina",
+      "navn": "Mina",
+      "beskrivelse": "Personen du følger tettest denne uka. Hun vil bli møtt som et menneske, ikke som en samling symptomer."
+    },
+    {
+      "id": "teamleder",
+      "navn": "Teamlederen",
+      "beskrivelse": "Vil ha trygg drift, korte notater og tydelige varsler når noe faktisk endrer seg."
+    },
+    {
+      "id": "erfaren_kollega",
+      "navn": "Rune",
+      "beskrivelse": "Erfaren miljøarbeider. Ser mye raskt, men erfaringen hans kan noen ganger bli til sikre forklaringer for tidlig."
+    },
+    {
+      "id": "psykolog_fagkontakt",
+      "navn": "Psykologen",
+      "beskrivelse": "Autorisert fagkontakt. Trenger presise observasjoner fra hverdagen, ikke diagnoser fra deg."
+    },
+    {
+      "id": "paaroerende",
+      "navn": "Moren til Mina",
+      "beskrivelse": "Bekymret og handlekraftig. Vil vite mer enn du alltid kan eller bør fortelle."
+    },
+    {
+      "id": "venn",
+      "navn": "Lea",
+      "beskrivelse": "Vennen din. Merker når jobben fortsetter i hodet etter at vakten er slutt."
+    }
+  ],
+  "hovedkonflikter": [
+    "observasjon vs tolkning",
+    "hjelp vs autonomi",
+    "nærhet vs profesjonell grense",
+    "motivasjon vs press",
+    "tillit vs sikker eskalering",
+    "dokumentasjon vs stigma"
+  ],
+  "endings": [
+    {
+      "id": "presis_og_trygg",
+      "navn": "Presis og trygg miljøarbeider",
+      "tekst": "Du ble ikke den som visste mest om Mina. Du ble den som beskrev det du faktisk så, holdt grensene når relasjonen ble krevende og hentet inn riktig kompetanse før du begynte å gjette. Tilliten overlevde fordi du ikke brukte den som tillatelse til å bli noe du ikke var.",
+      "kriterier": {
+        "meters": {
+          "integritet": { "min": 65 },
+          "handlingsrom": { "min": 50 }
+        },
+        "flagg": {
+          "skrev_konkret": true,
+          "eskalerte_trygt": true
+        }
+      },
+      "standard": true
+    },
+    {
+      "id": "for_nar",
+      "navn": "For nær rollen",
+      "tekst": "Du var varm, tilgjengelig og velment, men grensene ble gradvis uklare. Mina begynte å komme til deg med ting som skulle vært i teamet, og du begynte å bære ansvar du verken hadde mandat eller støtte til.",
+      "kriterier": {
+        "meters": {
+          "integritet": { "max": 50 }
+        },
+        "flagg": {
+          "lovet_for_mye": true
+        }
+      }
+    },
+    {
+      "id": "merkelappen",
+      "navn": "Den raske forklaringen",
+      "tekst": "Du fikk orden i notatene ved å gjøre usikkerhet til forklaring. Det sparte tid, men merkelappene dine begynte å leve videre i teamet. Etter hvert møtte kollegene Mina slik notatene beskrev henne, ikke slik hun faktisk var den dagen.",
+      "kriterier": {
+        "flagg": {
+          "skrev_tolkning_som_fakta": true
+        }
+      }
+    },
+    {
+      "id": "baret_jobben_hjem",
+      "navn": "Bar jobben hjem",
+      "tekst": "Du sto i alle situasjonene og tok alle samtalene, men klarte aldri helt å avslutte vakten. Det som var profesjonell omsorg på jobb ble privat ansvar i hodet ditt.",
+      "kriterier": {
+        "meters": {
+          "psyke": { "max": 50 },
+          "energi": { "max": 50 }
+        }
+      }
+    }
+  ],
+  "startState": {
+    "meters": {
+      "penger": 360,
+      "psyke": 66,
+      "energi": 72,
+      "integritet": 52,
+      "synlighet": 42,
+      "handlingsrom": 48
+    },
+    "relasjoner": {
+      "mina": 50,
+      "teamleder": 48,
+      "erfaren_kollega": 55,
+      "psykolog_fagkontakt": 45,
+      "paaroerende": 42,
+      "venn": 60
+    }
+  },
+  "dagsplan": {
+    "1": [
+      { "klokke": "08:30", "tekst": "Morgenrunde og avtaler" },
+      { "klokke": "11:00", "tekst": "Aktivitet" },
+      { "klokke": "14:30", "tekst": "Dokumentasjon og vaktskifte" }
+    ],
+    "2": [
+      { "klokke": "09:00", "tekst": "Oppfølging etter gårsdagen" },
+      { "klokke": "13:00", "tekst": "Teammøte" }
+    ],
+    "3": [
+      { "klokke": "10:00", "tekst": "Samtale og aktivitet" },
+      { "klokke": "15:00", "tekst": "Faglig avklaring" }
+    ]
+  },
+  "scopeBoundary": {
+    "kan": [
+      "støtte",
+      "motivere",
+      "tilrettelegge aktivitet",
+      "observere",
+      "dokumentere konkret",
+      "deeskalere",
+      "eskalere bekymring"
+    ],
+    "kanIkke": [
+      "diagnostisere",
+      "drive psykoterapi på eget ansvar",
+      "endre behandling",
+      "framstille antakelser som kliniske vurderinger"
+    ]
+  }
+}
