@@ -96,10 +96,10 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
   assert(readiness.required_method_ids.every((id) => id.startsWith('met_religion_')), 'Religion har metode-ID uten canonicalt prefiks');
 
   const progress = readiness.production_progress;
-  assert(isDeepStrictEqual(progress.completed_area_ids, ['theory_method', 'history_comparison']), 'De to første produksjonsområdene er ikke låst som komplette');
-  assert(isDeepStrictEqual(progress.materialized_topic_ids, [...topicMap.theory_method, ...topicMap.history_comparison]), 'Produksjonsprogresjonen har feil emne-ID-er');
-  assert(progress.standalone_topic_articles_materialized === 12 && progress.standalone_topic_articles_remaining === 60, 'Religion skal stå på 12/72 artikler');
-  assert(progress.required_methods_materialized === 10 && progress.required_methods_remaining === 8, 'Religion skal stå på 10/18 universitetsmetoder');
+  assert(isDeepStrictEqual(progress.completed_area_ids, ['theory_method', 'history_comparison', 'west_asian_abrahamic']), 'De tre første produksjonsområdene er ikke låst som komplette');
+  assert(isDeepStrictEqual(progress.materialized_topic_ids, [...topicMap.theory_method, ...topicMap.history_comparison, ...topicMap.west_asian_abrahamic]), 'Produksjonsprogresjonen har feil emne-ID-er');
+  assert(progress.standalone_topic_articles_materialized === 18 && progress.standalone_topic_articles_remaining === 54, 'Religion skal stå på 18/72 artikler');
+  assert(progress.required_methods_materialized === 12 && progress.required_methods_remaining === 6, 'Religion skal stå på 12/18 universitetsmetoder');
   assert(progress.materialized_required_method_ids.every((id) => readiness.required_method_ids.includes(id) && methods.methods.some((method) => method.method_id === id && method.university_matrix_status === 'materialized')), 'En materialisert universitetsmetode er uløst');
   assert(progress.quality_score >= 27 && progress.complete_ready === false, 'Produksjonsprogresjonen har feil kvalitets- eller complete-status');
 
@@ -168,7 +168,7 @@ export function auditReligionUniversityReadiness({ writeReport = false, checkRep
       respectfulRepresentationAndNonessentialismLocked: true,
       sixDimensionQualityGateLocked: true,
       prematureCompleteStatusBlocked: true,
-      firstTwoUniversityAreasCompleteAtHighQuality: progress.quality_score >= 27
+      firstThreeUniversityAreasCompleteAtHighQuality: progress.quality_score >= 27
     }
   };
   const committed = committedProjection(report);

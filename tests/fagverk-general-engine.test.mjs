@@ -263,7 +263,7 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(religion.adapter, 'standard');
   assert.equal(religion.domainCount, 4);
   assert.equal(religion.emneCount, 8);
-  assert.equal(religion.methodCount, 18);
+  assert.equal(religion.methodCount, 20);
   assert.equal(religion.chapterCount, 0);
   const scenekunst = result.materializedRows.find((row) => row.id === 'scenekunst');
   assert.ok(scenekunst);
