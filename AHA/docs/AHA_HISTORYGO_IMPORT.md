@@ -6,6 +6,9 @@
   `contract_version: 1`. Ukjente hovedversjoner skal avvises av AHA-EchoNet.
 - V1 er privat brukerimport: `public_sharing` og `model_training_allowed` er
   alltid `false` i produsert payload.
+- `visited_places` kan eksporteres som både objektkart og historisk liste.
+  Produsentskjemaet låser begge faktiske formene, og AHA-EchoNet sin
+  runtime-validator skal speile dem.
 - History Go stopper ved den validerbare eksportgrensen. Payloaden inneholder
   domenehendelser og canonical Knowledge V2, ikke AHA-genererte signaler eller
   innsikter.

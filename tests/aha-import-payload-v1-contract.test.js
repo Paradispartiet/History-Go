@@ -30,6 +30,11 @@ function validateContract(payload) {
   for (const key of ['hg_knowledge_entries_v2', 'hg_learning_log_v1', 'hg_insights_events_v1', 'notes', 'dialogs']) {
     if (!Array.isArray(payload[key]) || payload[key].some((item) => !item || typeof item !== 'object' || Array.isArray(item))) errors.push(key);
   }
+  const visitedPlacesTypes = Array.isArray(properties.visited_places.type)
+    ? properties.visited_places.type
+    : [properties.visited_places.type];
+  const visitedPlacesType = Array.isArray(payload.visited_places) ? 'array' : typeof payload.visited_places;
+  if (!visitedPlacesTypes.includes(visitedPlacesType)) errors.push('visited_places');
   const privacy = payload.privacy || {};
   if (privacy.scope !== 'private_user') errors.push('privacy.scope');
   if (privacy.public_sharing !== false) errors.push('privacy.public_sharing');
@@ -41,6 +46,7 @@ const localStorage = makeStorage({
   hg_knowledge_entries_v2: [{ id: 'knowledge-1', subject_id: 'historie', topic: 'Kildekritikk', text: 'Kontekst er viktig.' }],
   hg_learning_log_v1: [{ type: 'quiz', name: 'Kildequiz' }],
   hg_insights_events_v1: [{ concepts: ['kildekritikk'] }],
+  visited_places: ['akershus_festning', 'stortinget'],
   hg_user_notes_v1: [{ title: 'Notat', text: 'Tekst' }],
   hg_person_dialogs_v1: [{ title: 'Dialog', text: 'Tekst' }]
 });
@@ -80,6 +86,8 @@ assert.equal(payload.contract_version, 1);
 assert.equal(payload.hg_knowledge_entries_v2.length, 1);
 assert.equal(payload.notes.length, 1);
 assert.equal(payload.dialogs.length, 1);
+assert.deepEqual(Array.from(payload.visited_places), ['akershus_festning', 'stortinget']);
+assert.deepEqual(schema.properties.visited_places.type, ['object', 'array']);
 assert.equal(payload.privacy.public_sharing, false);
 assert.equal(payload.privacy.model_training_allowed, false);
 assert.deepEqual(JSON.parse(localStorage.getItem('aha_import_payload_v1')), payload);
