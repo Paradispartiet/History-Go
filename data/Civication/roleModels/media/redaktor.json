@@ -1,120 +1,16 @@
 {
-  "schema": "civication_role_model_v1",
-  "version": 1,
-  "source": {
-    "badge_file": "data/badges.json",
-    "badge_id": "media",
-    "badge_name": "Media",
-    "tier_label": "Redaktør",
-    "tier_threshold": 140
-  },
-  "category": "media",
-  "role_scope": "redaktor",
-  "role_id": "media_redaktor",
-  "title": "Redaktør",
-  "core_narrative": [
-    "I Civication er Redaktør en praktisk rolle i Media der valg former tillit, handlingsrom og status."
-  ],
-  "work_life": {
-    "daily_work": [
-      "Løser oppgaver knyttet til aviser, nettaviser."
-    ],
-    "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
-    ],
-    "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser hvordan historier blir til overskrifter, klikk og fellesskap. Media er offentlighetens motor."
-    ],
-    "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
-    ]
-  },
-  "career_path": {
-    "entry_from": [
-      "Tidligere tier i samme badge-kategori."
-    ],
-    "progression_to": [
-      "Neste tier i samme badge-kategori."
-    ],
-    "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
-    ],
-    "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
-    ],
-    "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
-    ]
-  },
-  "required_knowledge": {
-    "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
-    ],
-    "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
-    ],
-    "category_knowledge": [
-      "For dem som ser hvordan historier blir til overskrifter, klikk og fellesskap. Media er offentlighetens motor."
-    ],
-    "history_go_badges": [
-      "media"
-    ],
-    "place_connections": [],
-    "people_connections": []
-  },
-  "challenges": [
-    {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
-    }
-  ],
-  "dilemmas": [
-    {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
-    }
-  ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "redaktor",
-    "mail_profile": "media_redaktor",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Redaktør",
-      "category": "media",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
-    },
-    "recommended_mail_families": [],
-    "role_model_refs_supported": true
-  },
-  "competence_axes": [],
-  "ideal_type_problems": [],
-  "notes": [
-    "Basert på badges.json: media / Redaktør."
-  ]
+  "schema":"civication_role_model_v1","version":1,
+  "source":{"badge_file":"data/badges/media.json","badge_id":"media","badge_name":"Medier","tier_label":"Redaktør","tier_threshold":150,"evidence":"data/Civication/mediaCareerLifeEvidence.json"},
+  "category":"media","role_scope":"media_redaksjonell_ledelse","role_id":"media_redaktor","title":"Redaktør",
+  "core_narrative":["Redaktøren utøver konkret redaksjonelt ansvar for prioritering, kvalitet og publisering. I Civication finnes denne myndigheten bare gjennom faktisk arbeidsgiverutnevnelse, aldri gjennom Badge-poeng alene."],
+  "work_life":{"daily_work":["vurdere saker, kildegrunnlag, publiseringsrisiko og redaksjonelle prioriteringer","fordele ansvar, be om mer dokumentasjon og beslutte eller delegere publisering innen faktisk mandat"],"responsibilities":["beskytte redaksjonell uavhengighet og presseetisk kvalitet","sørge for tydelig beslutningsansvar, korrigering og oppfølging","balansere offentlig interesse mot skade, personvern og dokumentasjonsstyrke"],"work_environment":["beslutninger under tidspress med ansvar for både innhold, medarbeidere og tillit"],"status_position":["redaktørmyndighet kommer fra stillingen og oppdraget, ikke fra offentlig profil eller innflytelse"]},
+  "career_path":{"entry_from":["konkret redaktøransettelse eller arbeidsgiverutnevnelse"],"progression_to":["større redaksjonelt lederansvar gjennom ny faktisk utnevnelse"],"possible_promotions":["utvidet redaksjonelt eller personalmessig ansvar"],"possible_exits":["andre redaksjonelle lederroller eller faglige roller"],"career_risks":["tillitstap ved svake publiseringsvalg, interessekonflikter eller dårlig rettelseskultur"]},
+  "required_knowledge":{"education_basis":["journalistisk metode, presseetikk, redaksjonell ledelse og publiseringsansvar"],"skills":["prioritering","risikovurdering","redaksjonell ledelse","kildekritisk kvalitetssikring","rettelseshåndtering"],"category_knowledge":["redaksjonell uavhengighet, samtidig imøtegåelse, relevans, kildevern og publiseringsansvar"],"history_go_badges":["media"],"place_connections":[],"people_connections":[]},
+  "challenges":[{"id":"publiseringsansvar","title":"Publiseringsansvar","description":"En viktig sak har høy offentlig verdi, men også betydelig skade- og feilrisiko.","pressure":"offentlig_interesse_vs_risiko","affects":["trust","quality","risk"]}],
+  "dilemmas":[{"id":"press_utenfra","title":"Press utenfra redaksjonen","setup":"En aktør med økonomisk eller institusjonell makt ønsker en annen publiseringsbeslutning.","choice_axis":"redaksjonell_uavhengighet_vs_eksternt_press","consequence_axis":"integritet_vs_kortsiktig_ro","mail_hooks":["job","conflict","story"]}],
+  "related_people":[],"related_places":[],
+  "mail_integration":{"role_scope":"media_redaksjonell_ledelse","mail_profile":"media_redaksjonell_ledelse","can_feed_mail_types":["job","story","conflict","event","people","faction_choice"],"mail_variables":{"role_title":"Redaktør","category":"media","main_pressure":"offentlig_interesse_vs_risiko","ethical_axis":"uavhengighet_vs_press","status_axis":"redaksjonell_tillit_vs_prestisje"},"recommended_mail_families":[],"role_model_refs_supported":true},
+  "competence_axes":[{"id":"publiseringsansvar","label":"Publiseringsansvar"},{"id":"redaksjonell_uavhengighet","label":"Redaksjonell uavhengighet"},{"id":"etisk_risikostyring","label":"Etisk risikostyring"},{"id":"rettelseskultur","label":"Rettelseskultur"}],
+  "ideal_type_problems":[{"id":"stor_sak_tyngste_pastand_svak","label":"Stor sak der den mest belastende påstanden er svakest dokumentert"},{"id":"eierpress","label":"Eksternt press på redaksjonell prioritering"}],
+  "notes":["Deler arbeidsverden media_redaksjonell_ledelse med Sjefredaktør og Nyhetsleder.","career_offer krever employer_appointment før rollen kan bli aktiv stilling."]
 }
