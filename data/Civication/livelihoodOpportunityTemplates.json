@@ -1,0 +1,182 @@
+{
+  "schema": "civication_livelihood_opportunity_templates_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-13",
+  "principles": [
+    "Templates skaper bare tilbud, aldri penger direkte.",
+    "Et tilbud kan komme fra et miljø spilleren har valgt å delta i, men må aksepteres før det blir en inntektsstrøm.",
+    "Beløp er små sideinntekter relativt til ordinære Civication-lønninger og har synlige kostnader der det er relevant.",
+    "Ingen template gir regulert profesjonsmyndighet, politisk verv eller ulovlig inntektsaktivitet.",
+    "Ukentlig sjanse er deterministisk per template og uke slik at reload ikke kan brukes til å fiske fram tilbud."
+  ],
+  "templates": [
+    {
+      "id": "historievandrer_lokalvandring",
+      "badge_id": "historie",
+      "life_position_label": "Historievandrer",
+      "kind_id": "gig_honorarium",
+      "label": "Hjelp til på en lokalhistorisk vandring",
+      "description": "En lokal arrangør trenger noen som kan forberede stopp, holde orden på deltakerne og bidra med stedshistorie.",
+      "source_label": "Lokalt historiearrangement",
+      "weekly_chance": 0.28,
+      "income": { "model": "variable", "min": 2, "max": 5 },
+      "direct_costs": { "fixed": 1 }
+    },
+    {
+      "id": "maker_liten_prototype",
+      "badge_id": "vitenskap",
+      "life_position_label": "Maker",
+      "kind_id": "freelance_assignment",
+      "label": "Bygg en liten prototype",
+      "description": "Noen i nettverket ditt trenger en enkel fysisk prototype og vil betale for materialbruk og arbeid.",
+      "source_label": "Maker-nettverket",
+      "weekly_chance": 0.24,
+      "income": { "model": "variable", "min": 4, "max": 8 },
+      "direct_costs": { "fixed": 2, "rate": 0.1 }
+    },
+    {
+      "id": "sofafilosof_samtalekveld",
+      "badge_id": "filosofi",
+      "life_position_label": "Sofafilosof",
+      "kind_id": "gig_honorarium",
+      "label": "Led en åpen samtalekveld",
+      "description": "Et lite kultursted ønsker en uformell samtaleleder til en kveld om et filosofisk spørsmål.",
+      "source_label": "Lokal samtalescene",
+      "weekly_chance": 0.18,
+      "income": { "model": "variable", "min": 2, "max": 5 },
+      "direct_costs": { "fixed": 1 }
+    },
+    {
+      "id": "gallerivanker_apningshjelp",
+      "badge_id": "kunst",
+      "life_position_label": "Gallerivanker",
+      "kind_id": "casual_shift",
+      "label": "Ekstravakt på en utstillingsåpning",
+      "description": "Et lite galleri trenger noen til enkel publikumslogistikk, rydding og praktisk hjelp under en åpning.",
+      "source_label": "Lokalt galleri",
+      "weekly_chance": 0.25,
+      "income": { "model": "variable", "min": 3, "max": 6 },
+      "direct_costs": { "fixed": 1 }
+    },
+    {
+      "id": "scenehenger_riggehjelp",
+      "badge_id": "scenekunst",
+      "life_position_label": "Scenehenger",
+      "kind_id": "casual_shift",
+      "label": "Praktisk riggehjelp før forestilling",
+      "description": "En liten scene mangler et ekstra par hender til ikke-teknisk bæring, merking og opprydding før innslipp.",
+      "source_label": "Lokal scene",
+      "weekly_chance": 0.3,
+      "income": { "model": "variable", "min": 3, "max": 6 },
+      "direct_costs": { "fixed": 1 }
+    },
+    {
+      "id": "nabolagskjenner_feltregistrering",
+      "badge_id": "by",
+      "life_position_label": "Nabolagskjenner",
+      "kind_id": "freelance_assignment",
+      "label": "Registrer bruk av et lokalt byrom",
+      "description": "Et lokalt prosjekt trenger en enkel, ikke-myndighetsutøvende registrering av hvordan et byrom brukes gjennom noen timer.",
+      "source_label": "Lokalt byromsprosjekt",
+      "weekly_chance": 0.2,
+      "income": { "model": "variable", "min": 3, "max": 7 },
+      "direct_costs": { "fixed": 1 }
+    },
+    {
+      "id": "scenehenger_konsertcrew",
+      "badge_id": "musikk",
+      "life_position_label": "Scenehenger",
+      "kind_id": "gig_honorarium",
+      "label": "Hjelp crewet på en liten konsertkveld",
+      "description": "Et konsertsted trenger praktisk arrangementsassistanse rundt innslipp, artistområde og nedrigg, uten sikkerhets- eller teknikeransvar.",
+      "source_label": "Lokalt konsertsted",
+      "weekly_chance": 0.3,
+      "income": { "model": "variable", "min": 3, "max": 7 },
+      "direct_costs": { "fixed": 1 }
+    },
+    {
+      "id": "skrivebordspoet_introtekst",
+      "badge_id": "litteratur",
+      "life_position_label": "Skrivebordspoet",
+      "kind_id": "freelance_assignment",
+      "label": "Skriv en kort introduksjonstekst",
+      "description": "En litteraturarrangør trenger en kort, redaksjonell introduksjon til en opplesningskveld.",
+      "source_label": "Litteraturarrangør",
+      "weekly_chance": 0.28,
+      "income": { "model": "variable", "min": 3, "max": 7 },
+      "direct_costs": { "fixed": 0 }
+    },
+    {
+      "id": "artsjeger_feltregistrering",
+      "badge_id": "natur",
+      "life_position_label": "Artsjeger",
+      "kind_id": "freelance_assignment",
+      "label": "Avgrenset feltregistrering",
+      "description": "Et lokalt prosjekt trenger observasjoner i et avgrenset område. Oppdraget gjelder registrering, ikke profesjonell artsforvaltning eller myndighetsutøvelse.",
+      "source_label": "Lokalt naturprosjekt",
+      "weekly_chance": 0.2,
+      "income": { "model": "variable", "min": 3, "max": 7 },
+      "direct_costs": { "fixed": 1 }
+    },
+    {
+      "id": "klubbmenneske_arrangementsvakt",
+      "badge_id": "sport",
+      "life_position_label": "Klubbmenneske",
+      "kind_id": "casual_shift",
+      "label": "Ekstravakt rundt et klubbarrangement",
+      "description": "Klubben trenger hjelp med kiosk, materiell og opprydding rundt et arrangement. Oppgaven gir ingen trener- eller sikkerhetsmyndighet.",
+      "source_label": "Idrettsklubben",
+      "weekly_chance": 0.24,
+      "income": { "model": "variable", "min": 2, "max": 5 },
+      "direct_costs": { "fixed": 0 }
+    },
+    {
+      "id": "frilanser_kortoppdrag",
+      "badge_id": "naeringsliv",
+      "life_position_label": "Frilanser",
+      "kind_id": "freelance_assignment",
+      "label": "Et lite kundeoppdrag dukker opp",
+      "description": "En kunde i nettverket ditt spør om et avgrenset oppdrag med tydelig leveranse og betaling.",
+      "source_label": "Frilansnettverket",
+      "weekly_chance": 0.42,
+      "income": { "model": "variable", "min": 4, "max": 9 },
+      "direct_costs": { "fixed": 1, "rate": 0.1 }
+    },
+    {
+      "id": "gangster_flyer_rigg",
+      "badge_id": "subkultur",
+      "life_position_label": "Gangster",
+      "kind_id": "gig_honorarium",
+      "label": "Flyer- og riggjobb for en undergrunnskveld",
+      "description": "Noen i miljøet trenger lovlig praktisk hjelp med plakater, enkel rigg og opprydding før en liten kveld.",
+      "source_label": "Undergrunnsnettverket",
+      "weekly_chance": 0.32,
+      "income": { "model": "variable", "min": 2, "max": 6 },
+      "direct_costs": { "fixed": 1 }
+    },
+    {
+      "id": "filmklubbmenneske_visningshjelp",
+      "badge_id": "film_tv",
+      "life_position_label": "Filmklubbmenneske",
+      "kind_id": "gig_honorarium",
+      "label": "Hjelp til på en filmklubbvisning",
+      "description": "En filmklubb trenger hjelp med publikumsflyt, programark og praktiske oppgaver rundt en visning.",
+      "source_label": "Filmklubben",
+      "weekly_chance": 0.27,
+      "income": { "model": "variable", "min": 2, "max": 5 },
+      "direct_costs": { "fixed": 1 }
+    },
+    {
+      "id": "medievaktbikkje_researchnotat",
+      "badge_id": "media",
+      "life_position_label": "Medievaktbikkje",
+      "kind_id": "freelance_assignment",
+      "label": "Lag et kort researchnotat",
+      "description": "Et lite redaksjonelt prosjekt trenger et avgrenset bakgrunnsnotat basert på åpne kilder. Oppdraget gir ingen journalistisk stilling eller redaksjonell myndighet.",
+      "source_label": "Lite redaksjonelt prosjekt",
+      "weekly_chance": 0.2,
+      "income": { "model": "variable", "min": 3, "max": 7 },
+      "direct_costs": { "fixed": 0 }
+    }
+  ]
+}
