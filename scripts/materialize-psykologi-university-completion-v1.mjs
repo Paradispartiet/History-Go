@@ -425,6 +425,7 @@ function materializeFinalState(conceptCount) {
   matrix.topic_article_contract.required_quality_fields = unique([...(matrix.topic_article_contract.required_quality_fields || []), 'quality_review']);
   matrix.topic_article_contract.quality_review_status_required = 'approved_editorial_quality_v2';
   matrix.topic_article_contract.quality_review_standard = 'history_go_psykologi_editorial_quality_v2';
+  // External review may improve the corpus, but it is not an AHA activation gate.
   delete matrix.topic_article_contract.aha_runtime_activation_requires_separate_review;
   matrix.topic_article_contract.aha_runtime_activation_policy = 'repository_quality_and_safety_gates_only';
   matrix.topic_article_contract.external_peer_review_required_for_aha_activation = false;
