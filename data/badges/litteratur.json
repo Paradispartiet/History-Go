@@ -7,110 +7,24 @@
   "image": "bilder/merker/litteratur.PNG",
   "description": "For dem som lever i språket. Ord er ikke bare tegn, men dører til erkjennelse.",
   "tiers": [
-    {
-      "label": "Leser",
-      "threshold": 5,
-      "life_position": {
-        "id": "leser",
-        "label": "Leser",
-        "kind": "reading_identity",
-        "description": "Lesing er blitt en faktisk del av hverdagen din, på tvers av sjangre og formater.",
-        "hooks": ["lesing", "bibliotek", "anbefalinger"],
-        "employment_independent": true
-      }
-    },
-    {
-      "label": "Aktiv leser",
-      "threshold": 10,
-      "life_position": {
-        "id": "aktiv_leser",
-        "label": "Aktiv leser",
-        "kind": "reading_practice",
-        "description": "Du oppsøker bøker og tekster aktivt, følger forfatterskap og gjør lesingen til en vedvarende praksis.",
-        "hooks": ["leseliste", "bokprat", "nye_forfatterskap"],
-        "employment_independent": true
-      }
-    },
-    {
-      "label": "Litteraturinteressert",
-      "threshold": 15,
-      "life_position": {
-        "id": "litteraturinteressert",
-        "label": "Litteraturinteressert",
-        "kind": "cultural_interest_status",
-        "description": "Litteratur er blitt en tydelig del av den kulturelle identiteten din, med interesse for verk, sjangre, språk og litterære miljøer.",
-        "hooks": ["litteraturhus", "festival", "analyse", "forfatterskap"],
-        "employment_independent": true
-      }
-    },
-    {"label": "Skribent", "threshold": 25},
-    {"label": "Essayist", "threshold": 40},
-    {"label": "Anmelder", "threshold": 60},
-    {"label": "Litteraturkritiker", "threshold": 85},
-    {"label": "Redaksjonsmedarbeider", "threshold": 115},
-    {"label": "Redaktør (bok)", "threshold": 150},
-    {"label": "Forfatter", "threshold": 190},
-    {
-      "label": "Etablert forfatter",
-      "threshold": 240,
-      "life_position": {
-        "id": "etablert_forfatter",
-        "label": "Etablert forfatter",
-        "kind": "professional_reputation_status",
-        "description": "Du har et etablert forfatterskap og en tydeligere posisjon i det litterære feltet. Det påvirker omdømme og muligheter, men er ikke en ny stillingskontrakt.",
-        "hooks": ["forfatterskap", "forlag", "lesere", "invitasjoner"],
-        "employment_independent": true
-      }
-    },
-    {"label": "Poet", "threshold": 300},
-    {"label": "Dramatiker", "threshold": 380},
-    {
-      "label": "Prisvinnende forfatter",
-      "threshold": 500,
-      "life_position": {
-        "id": "prisvinnende_forfatter",
-        "label": "Prisvinnende forfatter",
-        "kind": "achievement_status",
-        "description": "Et litterært verk eller forfatterskapet ditt har mottatt en pris. Det kan endre oppmerksomhet, invitasjoner og forhandlingsrom, men er ikke en egen jobb.",
-        "hooks": ["pris", "presse", "festival", "forhandlingsrom"],
-        "employment_independent": true
-      }
-    },
-    {
-      "label": "Bestselgerforfatter",
-      "threshold": 650,
-      "life_position": {
-        "id": "bestselgerforfatter",
-        "label": "Bestselgerforfatter",
-        "kind": "market_reputation_status",
-        "description": "Et verk har nådd et stort marked og gitt deg en tydelig kommersiell posisjon. Salg og royalty må fortsatt komme fra faktiske avtaler, ikke fra Badge-status alene.",
-        "hooks": ["salg", "royalty", "forlag", "oversettelser"],
-        "employment_independent": true
-      }
-    },
-    {
-      "label": "Kanonisert forfatter",
-      "threshold": 800,
-      "life_position": {
-        "id": "kanonisert_forfatter",
-        "label": "Kanonisert forfatter",
-        "kind": "legacy_status",
-        "description": "Forfatterskapet ditt behandles som del av en litterær kanon eller varig kulturarv. Det gir symbolsk tyngde, ikke automatisk ansettelse eller inntekt.",
-        "hooks": ["kanon", "pensum", "nyutgivelser", "etterliv"],
-        "employment_independent": true
-      }
-    },
-    {"label": "Skald", "threshold": 1000}
+    {"label":"Leser","threshold":5,"life_position":{"id":"leser","label":"Leser","kind":"reading_identity","employment_independent":true}},
+    {"label":"Aktiv leser","threshold":10,"life_position":{"id":"aktiv_leser","label":"Aktiv leser","kind":"reading_practice","employment_independent":true}},
+    {"label":"Litteraturinteressert","threshold":15,"life_position":{"id":"litteraturinteressert","label":"Litteraturinteressert","kind":"cultural_interest_status","employment_independent":true}},
+    {"label":"Skribent","threshold":25,"life_position":{"id":"skribent","label":"Skribent","kind":"professional_practice","employment_independent":true}},
+    {"label":"Essayist","threshold":40,"life_position":{"id":"essayist","label":"Essayist","kind":"professional_practice","employment_independent":true}},
+    {"label":"Anmelder","threshold":60,"life_position":{"id":"anmelder","label":"Anmelder","kind":"professional_practice","employment_independent":true}},
+    {"label":"Litteraturkritiker","threshold":85,"life_position":{"id":"litteraturkritiker","label":"Litteraturkritiker","kind":"professional_practice","employment_independent":true}},
+    {"label":"Redaksjonsmedarbeider","threshold":115},
+    {"label":"Redaktør (bok)","threshold":150},
+    {"label":"Forfatter","threshold":190,"life_position":{"id":"forfatter","label":"Forfatter","kind":"professional_practice","employment_independent":true}},
+    {"label":"Etablert forfatter","threshold":240,"life_position":{"id":"etablert_forfatter","label":"Etablert forfatter","kind":"professional_reputation_status","employment_independent":true}},
+    {"label":"Poet","threshold":300,"life_position":{"id":"poet","label":"Poet","kind":"professional_practice","employment_independent":true}},
+    {"label":"Dramatiker","threshold":380,"life_position":{"id":"dramatiker","label":"Dramatiker","kind":"professional_practice","employment_independent":true}},
+    {"label":"Prisvinnende forfatter","threshold":500,"life_position":{"id":"prisvinnende_forfatter","label":"Prisvinnende forfatter","kind":"achievement_status","employment_independent":true}},
+    {"label":"Bestselgerforfatter","threshold":650,"life_position":{"id":"bestselgerforfatter","label":"Bestselgerforfatter","kind":"market_reputation_status","employment_independent":true}},
+    {"label":"Kanonisert forfatter","threshold":800,"life_position":{"id":"kanonisert_forfatter","label":"Kanonisert forfatter","kind":"legacy_status","employment_independent":true}},
+    {"label":"Skald","threshold":1000,"life_position":{"id":"skald","label":"Skald","kind":"historical_stylistic_identity","employment_independent":true}}
   ],
-  "sub": [
-    "skjonnlitteratur",
-    "sakprosa",
-    "poesi",
-    "drama",
-    "krim",
-    "barn_og_ungdom",
-    "klassikere",
-    "forfattere_og_litteratursteder"
-  ],
-  "career_life_evidence": "data/Civication/literatureCareerLifeEvidence.json"
+  "sub":["skjonnlitteratur","sakprosa","poesi","drama","krim","barn_og_ungdom","klassikere","forfattere_og_litteratursteder"],
+  "career_life_evidence":"data/Civication/literatureCareerLifeEvidence.json"
 }
