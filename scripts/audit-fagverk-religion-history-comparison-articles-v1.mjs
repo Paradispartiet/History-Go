@@ -95,13 +95,13 @@ export function auditReligionHistoryComparisonArticles({ writeReport = false, ch
   assert(status?.editorialStatus === 'chapters_in_progress', 'Religion skal fortsatt stå chapters_in_progress');
   assert(status?.nextGate === 'remaining_religion_area_article_production', 'Religion har feil neste produksjonsport');
   assert(readiness.status === 'matrix_locked_production_in_progress', 'Religion-readiness skal vise pågående produksjon');
-  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 48/72');
+  assert(readiness.completion_contract.current_complete_ready === false && readiness.production_progress.complete_ready === false, 'Religion kan ikke være completeReady ved 54/72');
 
   const requiredIds = readiness.required_topics_by_area[AREA_ID];
   assert(requiredIds.length === 6 && new Set(requiredIds).size === 6, 'History/comparison skal eie seks unike emner');
-  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', AREA_ID, 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', 'texts_myths_authority']), 'Eksakt åtte Religion-områder skal være komplette');
+  assert(isDeepStrictEqual(readiness.production_progress.completed_area_ids, ['theory_method', AREA_ID, 'west_asian_abrahamic', 'south_asian_religions', 'east_asian_religions', 'indigenous_sami', 'ritual_materiality_space', 'texts_myths_authority', 'society_politics_law']), 'Eksakt ni Religion-områder skal være komplette');
   assert(isDeepStrictEqual(readiness.production_progress.materialized_topic_ids.slice(6, 12), requiredIds), 'Readiness har feil history/comparison-emner');
-  assert(readiness.production_progress.standalone_topic_articles_materialized === 48 && readiness.production_progress.standalone_topic_articles_remaining === 24, 'Religion skal stå på 48/72 artikler');
+  assert(readiness.production_progress.standalone_topic_articles_materialized === 54 && readiness.production_progress.standalone_topic_articles_remaining === 18, 'Religion skal stå på 54/72 artikler');
   const area = readiness.university_core_matrix.find((row) => row.area_id === AREA_ID);
   assert(area?.current_status === 'complete' && isDeepStrictEqual(area.current_anchors, requiredIds), 'History/comparison-området er ikke korrekt merket komplett');
 
@@ -223,7 +223,7 @@ export function auditReligionHistoryComparisonArticles({ writeReport = false, ch
       allTwentySourcesResolveAndAreUsed: true,
       allCasesAndScenariosExplicitlyLabeled: true,
       twoNewHistoricalMethodsMaterializedAndLinked: true,
-      allFortyEightReligionArticlesReviewedForEditorialDiversity: true,
+      allFiftyFourReligionArticlesReviewedForEditorialDiversity: true,
       internalDiversityAndNonessentialismReviewed: true,
       genericTemplateReuseAbsent: true,
       noPrematureAhaRuntimeActivation: true,

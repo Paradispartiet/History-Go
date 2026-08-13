@@ -1,19 +1,19 @@
 {
   "schema": "history_go_fagverk_religion_topic_articles_batch_audit_v1",
   "version": "1.0.0",
-  "status": "religion_texts_myths_authority_articles_complete",
+  "status": "religion_society_politics_law_articles_complete",
   "generatedFrom": {
     "readiness": "data/fag/religion/religion_university_readiness_v1.json",
     "methods": "data/fag/religion/methods_religion_canonical_v1.json",
     "sourceRegistry": "data/fag/religion/kilder_religion_canonical_v1.json",
-    "claims": "data/fagverk/religion/tekster-myter-autoritet/claims.json",
+    "claims": "data/fagverk/religion/religion-samfunn-politikk-rett/claims.json",
     "articleDir": "data/fagverk/religion/emneartikler",
     "status": "data/fagverk/subject_status.json",
-    "report": "reports/fagverk/religion-texts-myths-authority-articles-v1-audit.json"
+    "report": "reports/fagverk/religion-society-politics-law-articles-v1-audit.json"
   },
   "subject": {
     "id": "religion",
-    "areaId": "texts_myths_authority",
+    "areaId": "society_politics_law",
     "editorialStatus": "chapters_in_progress",
     "nextGate": "remaining_religion_area_article_production",
     "completeReady": false
@@ -21,37 +21,37 @@
   "coverage": {
     "requiredArticleCount": 6,
     "materializedArticleCount": 6,
-    "completedUniversityAreaCount": 8,
+    "completedUniversityAreaCount": 9,
     "totalUniversityAreaCount": 12,
-    "completedTopicCount": 48,
+    "completedTopicCount": 54,
     "totalTopicCount": 72,
     "articleIds": [
-      "myth_narrative_and_worldmaking",
-      "scripture_canon_and_interpretation",
-      "oral_tradition_memory_and_transmission",
-      "authority_specialists_and_institutions",
-      "law_ethics_and_normative_traditions",
-      "translation_media_and_textual_circulation"
+      "religion_state_and_governance",
+      "religious_freedom_law_and_human_rights",
+      "secularization_secularity_and_postsecularity",
+      "religion_politics_nationalism_and_violence",
+      "religion_economy_welfare_and_organizations",
+      "religion_education_school_and_public_sphere"
     ]
   },
   "depth": {
     "minimumWordsPerArticle": 650,
-    "totalEditorialWordCount": 5465,
+    "totalEditorialWordCount": 5882,
     "articleWordCounts": {
-      "authority_specialists_and_institutions": 878,
-      "law_ethics_and_normative_traditions": 907,
-      "myth_narrative_and_worldmaking": 1005,
-      "oral_tradition_memory_and_transmission": 901,
-      "scripture_canon_and_interpretation": 895,
-      "translation_media_and_textual_circulation": 879
+      "religion_economy_welfare_and_organizations": 955,
+      "religion_education_school_and_public_sphere": 977,
+      "religion_politics_nationalism_and_violence": 971,
+      "religion_state_and_governance": 1005,
+      "religious_freedom_law_and_human_rights": 1004,
+      "secularization_secularity_and_postsecularity": 970
     },
     "scenarioCounts": {
-      "authority_specialists_and_institutions": 2,
-      "law_ethics_and_normative_traditions": 2,
-      "myth_narrative_and_worldmaking": 2,
-      "oral_tradition_memory_and_transmission": 2,
-      "scripture_canon_and_interpretation": 2,
-      "translation_media_and_textual_circulation": 2
+      "religion_economy_welfare_and_organizations": 2,
+      "religion_education_school_and_public_sphere": 2,
+      "religion_politics_nationalism_and_violence": 2,
+      "religion_state_and_governance": 2,
+      "religious_freedom_law_and_human_rights": 2,
+      "secularization_secularity_and_postsecularity": 2
     }
   },
   "evidence": {
@@ -66,12 +66,11 @@
     "requiredMethodCount": 18,
     "materializedRequiredMethodCount": 18,
     "requiredAreaMethodIds": [
-      "met_religion_textual_and_philological_analysis",
-      "met_religion_historical_source_criticism",
-      "met_religion_discourse_and_content_analysis"
+      "met_religion_sociological_institutional_analysis",
+      "met_religion_case_comparison_and_process_tracing",
+      "met_religion_survey_and_demography"
     ],
     "usedMethodIds": [
-      "met_religion_anthropological_contextual_analysis",
       "met_religion_case_comparison_and_process_tracing",
       "met_religion_comparative_analysis",
       "met_religion_concept_history_and_genealogy",
@@ -82,7 +81,7 @@
       "met_religion_qualitative_interview",
       "met_religion_research_ethics_privacy_and_representation",
       "met_religion_sociological_institutional_analysis",
-      "met_religion_textual_and_philological_analysis"
+      "met_religion_survey_and_demography"
     ]
   },
   "editorial": {
@@ -10126,14 +10125,14 @@
     "conclusion": "high_quality"
   },
   "gates": {
-    "exactSixTextsMythsAuthorityArticles": true,
+    "exactSixSocietyPoliticsLawArticles": true,
     "allArticlesMeetMinimumWordDepth": true,
     "allThirtySixClaimsResolveAndAreUsed": true,
     "allTwentySourcesResolveAndAreUsed": true,
     "allCasesAndScenariosExplicitlyLabeled": true,
     "textualHistoricalAndDiscourseMethodsMaterializedAndLinked": true,
     "allFiftyFourReligionArticlesReviewedForEditorialDiversity": true,
-    "mythCanonAuthorityLawAndTranslationBoundariesLocked": true,
+    "stateRightsSecularityViolenceWelfareAndEducationBoundariesLocked": true,
     "internalDiversityAndNonessentialismReviewed": true,
     "genericTemplateReuseAbsent": true,
     "noPrematureAhaRuntimeActivation": true,

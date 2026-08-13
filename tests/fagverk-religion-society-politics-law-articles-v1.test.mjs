@@ -1,35 +1,36 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditReligionIndigenousSamiArticles } from '../scripts/audit-fagverk-religion-indigenous-sami-articles-v1.mjs';
+import { auditReligionSocietyPoliticsLawArticles } from '../scripts/audit-fagverk-religion-society-politics-law-articles-v1.mjs';
 
-test('Religion materialiserer samiske og andre urfolksreligioner som område 6 med 36/72 artikler', () => {
-  const { report } = auditReligionIndigenousSamiArticles({ checkReport: false });
-  assert.equal(report.status, 'religion_indigenous_sami_articles_complete');
+test('Religion materialiserer religion, samfunn, politikk og rett som område 9 med 54/72 artikler', () => {
+  const { report } = auditReligionSocietyPoliticsLawArticles({ checkReport: false });
+  assert.equal(report.status, 'religion_society_politics_law_articles_complete');
   assert.equal(report.coverage.materializedArticleCount, 6);
-  assert.equal(report.coverage.completedUniversityAreaCount, 6);
+  assert.equal(report.coverage.completedUniversityAreaCount, 9);
   assert.equal(report.coverage.totalUniversityAreaCount, 12);
-  assert.equal(report.coverage.completedTopicCount, 36);
+  assert.equal(report.coverage.completedTopicCount, 54);
   assert.equal(report.coverage.totalTopicCount, 72);
   assert.ok(Object.values(report.depth.articleWordCounts).every((count) => count >= 650));
-  assert.ok(report.depth.totalEditorialWordCount >= 4800);
+  assert.ok(report.depth.totalEditorialWordCount >= 5400);
 });
 
-test('Samiske og andre urfolksreligioner-batchen har full claim-, kilde-, metode- og scenariointegritet', () => {
-  const { report } = auditReligionIndigenousSamiArticles({ checkReport: false });
+test('Religion, samfunn, politikk og rett har full claim-, kilde-, metode- og scenariointegritet', () => {
+  const { report } = auditReligionSocietyPoliticsLawArticles({ checkReport: false });
   assert.equal(report.evidence.registeredSourceCount, 20);
   assert.equal(report.evidence.registeredClaimCount, 36);
   assert.equal(report.evidence.usedSourceCount, 20);
   assert.equal(report.evidence.usedClaimCount, 36);
   assert.equal(report.methods.materializedRequiredMethodCount, 18);
-  assert.deepEqual(report.methods.newlyMaterializedMethodIds, [
-    'met_religion_survey_and_demography',
-    'met_religion_cognitive_and_experimental_analysis'
+  assert.deepEqual(report.methods.requiredAreaMethodIds, [
+    'met_religion_sociological_institutional_analysis',
+    'met_religion_case_comparison_and_process_tracing',
+    'met_religion_survey_and_demography'
   ]);
   assert.ok(Object.values(report.depth.scenarioCounts).every((count) => count >= 2));
 });
 
 test('Alle 54 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
-  const { report } = auditReligionIndigenousSamiArticles({ checkReport: false });
+  const { report } = auditReligionSocietyPoliticsLawArticles({ checkReport: false });
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.completeReady, false);
   assert.equal(report.editorial.allReligionArticleCountReviewed, 54);
