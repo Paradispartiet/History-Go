@@ -1,0 +1,133 @@
+{
+  "schema": "history_go_fagverk_psykologi_editorial_quality_audit_v2",
+  "version": "2.0.0",
+  "status": "psykologi_editorial_quality_v2_high",
+  "generatedFrom": {
+    "articles": "data/fagverk/psykologi/emneartikler",
+    "concepts": "data/fag/psykologi/begreper_psykologi_canonical_v1.json",
+    "appliedFields": "data/fag/psykologi/anvendte_fagfelt_psykologi_university_v1.json",
+    "sourceRegistry": "data/fag/psykologi/kilder_psykologi_canonical_v1.json",
+    "curation": "scripts/lib/psykologi-editorial-curation-v2.mjs",
+    "report": "reports/fagverk/psykologi-editorial-quality-v2-audit.json"
+  },
+  "scope": {
+    "canonicalArticleCount": 58,
+    "curatedArticleCount": 46,
+    "handEditedConceptCount": 136,
+    "appliedFieldCount": 6
+  },
+  "evidence": {
+    "resolvedClaimCount": 162,
+    "resolvedSourceCount": 122,
+    "normalizedTenWordFrameSimilarity": {
+      "maximumSimilarity": 0.104258,
+      "similarityAdvisoryThreshold": 0.14,
+      "pairsAboveSimilarityAdvisory": 0,
+      "maximumSharedFrameCount": 71,
+      "maximumLocalSharedFrameCount": 16,
+      "localSharedFrameThreshold": 20,
+      "violations": []
+    },
+    "qualityDimensionEvidence": {
+      "correctness_and_evidence": {
+        "minimum": {
+          "all_article_sections_directly_bound": true,
+          "all_concepts_explicitly_curated": true,
+          "applied_fields_claim_curated": true
+        },
+        "excellence": {
+          "external_subject_matter_peer_review": false
+        },
+        "derived_score": 4
+      },
+      "coverage_and_completion": {
+        "minimum": {
+          "all_articles": true,
+          "all_concepts": true,
+          "all_applied_fields": true
+        },
+        "excellence": {
+          "university_matrix_complete": true
+        },
+        "derived_score": 5
+      },
+      "disciplinary_editorial_quality": {
+        "minimum": {
+          "topic_specific_curation": true,
+          "normalized_local_frame_reuse_below_absolute_threshold": true,
+          "named_models": true
+        },
+        "excellence": {
+          "external_editorial_peer_review": false
+        },
+        "derived_score": 4
+      },
+      "technical_integrity": {
+        "minimum": {
+          "completion_audit_green": true,
+          "exact_claim_chains": true
+        },
+        "excellence": {
+          "deterministic_machine_audit": true
+        },
+        "derived_score": 5
+      },
+      "safety_and_responsibility": {
+        "minimum": {
+          "honest_scenarios": true,
+          "aha_inactive": true
+        },
+        "excellence": {
+          "non_clinical_scope_review_on_all_articles": true
+        },
+        "derived_score": 5
+      },
+      "maintainability_and_auditability": {
+        "minimum": {
+          "explicit_topic_curation": true,
+          "explicit_concept_curation": true,
+          "machine_readable_report": true
+        },
+        "excellence": {
+          "every_gate_has_concrete_evidence": true
+        },
+        "derived_score": 5
+      }
+    },
+    "automatedLimits": [
+      "Kontrollen verifiserer repository-evidens, kurateringskontrakter og redaksjonell egenart; separat ekstern fagfellevurdering kreves fortsatt før AHA-runtime-aktivering."
+    ]
+  },
+  "gates": {
+    "universityCompletionStillGreen": true,
+    "all58ArticlesQualityReviewed": true,
+    "exact46FormerTemplateArticlesCurated": true,
+    "curatedClaimChainsExact": true,
+    "everyArticleSectionDirectlyClaimAndSourceBound": true,
+    "realModelsReplaceArtificialLabels": true,
+    "hypotheticalCasesDeclaredHonestly": true,
+    "normalizedTenWordLocalFrameReuseBelowAbsoluteThreshold": true,
+    "all136ConceptDefinitionsHandEdited": true,
+    "everyConceptClaimAndSourceBound": true,
+    "allSixAppliedFieldsSpecificallyReviewed": true,
+    "noAhaRuntimeActivation": true
+  },
+  "qualityAssessment": {
+    "scale": "1_to_5",
+    "minimumPerDimension": 4,
+    "minimumTotal": 27,
+    "scores": {
+      "correctness_and_evidence": 4,
+      "coverage_and_completion": 5,
+      "disciplinary_editorial_quality": 4,
+      "technical_integrity": 5,
+      "safety_and_responsibility": 5,
+      "maintainability_and_auditability": 5
+    },
+    "total": 28,
+    "maximum": 30,
+    "criticalFlags": [],
+    "conclusion": "high_quality"
+  },
+  "highQuality": true
+}

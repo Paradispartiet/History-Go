@@ -16,19 +16,25 @@
   "theories_and_findings": [
     {
       "title": "Forløp og kontinuitet",
-      "content": "Forløpsmodellen ser hjelpen som en sekvens av kontakt, utredning, behandling, evaluering og overgang. Kontinuitet kan være relasjonell, informasjonsmessig og organisatorisk. En person kan oppleve brudd selv om alle formelle henvisninger er sendt, og systemet kan ha god koordinering uten at én behandler følger hele forløpet.",
+      "content": "Forløpsmodellen ser hjelpen som en sekvens av kontakt, utredning, behandling, evaluering og overgang. Kontinuitet kan være relasjonell, informasjonsmessig og organisatorisk. En person kan oppleve brudd selv om alle formelle henvisninger er sendt, og systemet kan ha god koordinering uten at én behandler følger hele forløpet. Kildebundet påstand: Nasjonale pasientforløp skal støtte helhetlige og forutsigbare forløp og samarbeid på tvers av tjenester.",
       "source_ids": [
-        "src-helsenorge-forlop",
-        "src-helsedir-forlop"
+        "src-helsedir-forlop",
+        "src-helsenorge-forlop"
+      ],
+      "claim_ids": [
+        "phi-06"
       ]
     },
     {
       "title": "Trappetrinn og nettverk",
-      "content": "Et trappetrinnsperspektiv fordeler tilbud etter antatt behov og intensitet, mens nettverksperspektivet ser samtidige forbindelser mellom helse, bolig, arbeid og sosial støtte. Helsenorge beskriver flere nivåer, og WHO knytter community-tjenester til bredere sosiale systemer. Modellene må vurderes mot lokal kapasitet og individuelle behov.",
+      "content": "Et trappetrinnsperspektiv fordeler tilbud etter antatt behov og intensitet, mens nettverksperspektivet ser samtidige forbindelser mellom helse, bolig, arbeid og sosial støtte. Helsenorge beskriver flere nivåer, og WHO knytter community-tjenester til bredere sosiale systemer. Modellene må vurderes mot lokal kapasitet og individuelle behov. Kildebundet påstand: Kommunen og fastlegen er sentrale innganger til psykisk helsehjelp, mens mer spesialisert behandling kan skje ved DPS eller sykehus.",
       "source_ids": [
         "src-helsenorge-voksne",
-        "src-who-guidance",
-        "src-who-centres"
+        "src-who-centres",
+        "src-who-guidance"
+      ],
+      "claim_ids": [
+        "phi-04"
       ]
     }
   ],
@@ -81,20 +87,26 @@
   "examples": [
     {
       "title": "Kommune–fastlege–DPS",
-      "analysis": "Et forløpskart viser inngang gjennom kommune eller fastlege og eventuell henvisning til DPS eller sykehus. Analysen undersøker ansvar og overgang og antar ikke at alle personer følger samme vei.",
+      "analysis": "Hypotetisk og konstruert analyseoppsett: Et forløpskart viser inngang gjennom kommune eller fastlege og eventuell henvisning til DPS eller sykehus. Analysen undersøker ansvar og overgang og antar ikke at alle personer følger samme vei. Kildebundet påstand: Kommunen og fastlegen er sentrale innganger til psykisk helsehjelp, mens mer spesialisert behandling kan skje ved DPS eller sykehus.",
       "source_ids": [
         "src-helsenorge-voksne"
       ],
-      "case_status": "documented_teaching_case"
+      "case_status": "analytical_teaching_scenario",
+      "claim_ids": [
+        "phi-04"
+      ]
     },
     {
       "title": "Videre oppfølging etter krise",
-      "analysis": "Et akutt møte vurderes sammen med plan for videre oppfølging og samhandling før utskrivning. Eksemplet viser hvorfor avsluttet akuttsak ikke nødvendigvis betyr avsluttet støttebehov.",
+      "analysis": "Hypotetisk og konstruert analyseoppsett: Et akutt møte vurderes sammen med plan for videre oppfølging og samhandling før utskrivning. Eksemplet viser hvorfor avsluttet akuttsak ikke nødvendigvis betyr avsluttet støttebehov. Kildebundet påstand: Norske pasientforløp legger vekt på samhandling ved overganger mellom spesialisthelsetjenesten og andre tjenester.",
       "source_ids": [
         "src-helsedir-forlop",
         "src-who-crisis"
       ],
-      "case_status": "documented_teaching_case"
+      "case_status": "analytical_teaching_scenario",
+      "claim_ids": [
+        "phi-24"
+      ]
     }
   ],
   "learning_outcomes": [
@@ -109,20 +121,27 @@
   ],
   "models_or_researchers": [
     {
-      "name": "Nasjonalt pasientforløp",
-      "role": "Strukturerer faser og overganger i spesialisthelsetjenesten.",
+      "name": "Helsedirektoratets nasjonale pasientforløp",
+      "role": "Strukturerer faser og overganger i spesialisthelsetjenesten. Kildebundet påstand: Nasjonale pasientforløp skal støtte helhetlige og forutsigbare forløp og samarbeid på tvers av tjenester.",
       "use_limit": "Er en organisatorisk norm, ikke dokumentasjon på hvert faktisk forløp.",
       "source_ids": [
-        "src-helsedir-forlop"
+        "src-helsedir-forlop",
+        "src-helsenorge-forlop"
+      ],
+      "claim_ids": [
+        "phi-06"
       ]
     },
     {
-      "name": "Community-tjenestenettverk",
-      "role": "Kobler helsehjelp til nærmiljø og sosiale støttesystemer.",
+      "name": "WHO community mental health guidance",
+      "role": "Kobler helsehjelp til nærmiljø og sosiale støttesystemer. Kildebundet påstand: WHO anbefaler community-baserte psykiske helsetjenester som er nær menneskers hverdagsliv og støtter sosial inkludering.",
       "use_limit": "Kan bli fragmentert uten tydelig ansvar og kapasitet.",
       "source_ids": [
-        "src-who-guidance",
-        "src-who-centres"
+        "src-who-centres",
+        "src-who-guidance"
+      ],
+      "claim_ids": [
+        "phi-25"
       ]
     }
   ],
@@ -136,7 +155,8 @@
     "phi-06",
     "phi-22",
     "phi-23",
-    "phi-24"
+    "phi-24",
+    "phi-25"
   ],
   "source_ids": [
     "src-helsedir-forlop",
@@ -160,5 +180,11 @@
       "no_place_or_group_diagnosis": true,
       "educational_scope_explicit": true
     }
+  },
+  "quality_review": {
+    "status": "approved_editorial_quality_v2",
+    "reviewed_at": "2026-08-12",
+    "reviewer_role": "psychology_editorial_audit",
+    "review_standard": "history_go_psykologi_editorial_quality_v2"
   }
 }

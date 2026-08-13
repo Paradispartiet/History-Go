@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { preserveNewerFagverkMetadata } from './lib/preserve-fagverk-metadata.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'kognisjon-folelser-og-atferd';
@@ -61,7 +62,7 @@ function updateRegistry(chapter) {
     subject.canonicalModel = {...(subject.canonicalModel || {}), note:'Psykologifagets seks canonicale fagområder eier rendererstrukturen. Alle 58 aktive emner er bevart. Fire redaksjonelle kapitler er materialisert, inkludert Kognisjon, følelser og atferd. Samlet fulltekstdekning er 43/58 emner, med eksplisitt diagnose-, bias- og typestemplingsvern.'};
   }
   subject.editorialPlan = {targetChapterCount:6,completionRequirements:['all_canonical_domains_covered','all_canonical_emners_covered_exactly_once','all_canonical_methods_resolved','paragraph_claim_trace_complete','minimum_15_external_sources_per_chapter','do_not_diagnose_people_guard','full_subject_audit_green'],nextGate:registeredChapterCount === 6 ? 'full_subject_audit' : 'remaining_domain_chapter_production'};
-  if (registeredChapterCount === 4) { registry.version = '2.70.0'; registry.updatedAt = '2026-08-11'; }
+  if (registeredChapterCount === 4) preserveNewerFagverkMetadata(registry, '2.70.0', '2026-08-11');
   write(REGISTRY_FILE, registry);
   return registeredChapterCount;
 }
@@ -70,7 +71,7 @@ function updateStatus(registeredChapterCount) {
   if (registeredChapterCount === 4) {
     subject.editorialStatus = 'chapters_in_progress'; subject.nextGate = 'remaining_domain_chapter_production';
     subject.note = 'Psykologi har seks canonicale fagområder og 58 aktive emner. Fire områder er nå fulltekstmaterialisert. Kognisjon, følelser og atferd dekker 8/8 emner med 17 canonicale metoder, 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims og 21 kilderegistreringer (20 eksterne). Samlet dekker de fire kapitlene 43/58 emner. To canonicale kapitler gjenstår.';
-    status.version = '1.58.0'; status.updatedAt = '2026-08-11';
+    preserveNewerFagverkMetadata(status, '1.58.0', '2026-08-11');
   } else {
     assert(['chapters_in_progress','complete','expanded_and_audited'].includes(subject.editorialStatus), 'Psykologi har ugyldig senere editorialStatus');
     assert(registeredChapterCount === 6 || subject.nextGate === 'remaining_domain_chapter_production', 'Psykologi har ugyldig senere nextGate');

@@ -45,4 +45,5 @@ test('sluttporten bevarer klinisk sikkerhet og AHA-isolasjon', () => {
   assert.deepEqual(report.evidence.runtime.scannedRoots, ['js', 'data/integrations', 'data/historygo', 'data/psychology']);
   assert.deepEqual(report.evidence.runtime.referencingFiles, []);
   assert.equal(report.complete, true);
+  assert.equal(report.gates.allArticlesMeetUniversityDepth, true);
 });

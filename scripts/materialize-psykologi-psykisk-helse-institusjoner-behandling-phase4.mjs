@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { preserveNewerFagverkMetadata } from './lib/preserve-fagverk-metadata.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'psykisk-helse-institusjoner-og-behandling';
@@ -707,8 +708,7 @@ function updateRegistry() {
     ],
     nextGate: subject.chapters.length === 6 ? 'full_subject_audit' : 'remaining_domain_chapter_production'
   };
-  registry.version = '2.65.0';
-  registry.updatedAt = '2026-08-11';
+  preserveNewerFagverkMetadata(registry, '2.65.0', '2026-08-11');
   writeJson(REGISTRY_FILE, registry);
 }
 
@@ -719,8 +719,7 @@ function updateStatus() {
   subject.editorialStatus = 'chapters_in_progress';
   subject.nextGate = 'remaining_domain_chapter_production';
   subject.note = 'Psykologi har seks canonicale fagområder og 58 aktive emner. Første område, Psykisk helse, institusjoner og behandling, er nå materialisert som fulltekstkapittel med 12/12 emner, 18 canonicale metoder, 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims og 21 inspiserbare kilderegistreringer. Diagnosevernet er bindende. Fem canonicale kapitler gjenstår.';
-  status.version = '1.53.0';
-  status.updatedAt = '2026-08-11';
+  preserveNewerFagverkMetadata(status, '1.53.0', '2026-08-11');
   writeJson(STATUS_FILE, status);
 }
 

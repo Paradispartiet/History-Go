@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
+import { preserveNewerFagverkMetadata } from './lib/preserve-fagverk-metadata.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'fagtradisjoner-teori-og-sinnet';
@@ -122,8 +123,7 @@ function updateRegistry(chapter) {
     nextGate: registeredChapterCount === 6 ? 'full_subject_audit' : 'remaining_domain_chapter_production'
   };
   if (registeredChapterCount === 2) {
-    registry.version = '2.66.0';
-    registry.updatedAt = '2026-08-11';
+    preserveNewerFagverkMetadata(registry, '2.66.0', '2026-08-11');
   }
   writeJson(REGISTRY_FILE, registry);
   return registeredChapterCount;
@@ -137,8 +137,7 @@ function updateStatus(registeredChapterCount) {
     subject.editorialStatus = 'chapters_in_progress';
     subject.nextGate = 'remaining_domain_chapter_production';
     subject.note = 'Psykologi har seks canonicale fagområder og 58 aktive emner. To områder er nå fulltekstmaterialisert. Fagtradisjoner, teori og forståelsen av sinnet dekker 14/14 emner med 18 canonicale metoder, 3 moduler, 9 seksjoner, 27 claimsporede fagavsnitt, 27 verifiserte claims og 21 kilderegistreringer (20 eksterne). Samlet dekker de to kapitlene 26/58 emner. Fire canonicale kapitler gjenstår, og diagnose- og typestemplingsvernet er bindende.';
-    status.version = '1.54.0';
-    status.updatedAt = '2026-08-11';
+    preserveNewerFagverkMetadata(status, '1.54.0', '2026-08-11');
   } else {
     assert(['chapters_in_progress', 'complete', 'expanded_and_audited'].includes(subject.editorialStatus), 'Psykologi har ugyldig senere editorialStatus');
     assert(registeredChapterCount === 6 || subject.nextGate === 'remaining_domain_chapter_production', 'Psykologi har ugyldig senere nextGate');
