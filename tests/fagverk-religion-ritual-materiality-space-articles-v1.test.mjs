@@ -29,11 +29,11 @@ test('Ritual, materialitet og hellige rom-batchen har full claim-, kilde-, metod
   assert.ok(Object.values(report.depth.scenarioCounts).every((count) => count >= 2));
 });
 
-test('Alle 48 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
+test('Alle 54 Religion-artikler består egenart og seksdelt 29/30-port uten for tidlig complete', () => {
   const { report } = auditReligionRitualMaterialitySpaceArticles({ checkReport: false });
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.completeReady, false);
-  assert.equal(report.editorial.allReligionArticleCountReviewed, 48);
+  assert.equal(report.editorial.allReligionArticleCountReviewed, 54);
   assert.equal(report.editorial.exactParagraphDuplicates, 0);
   assert.ok(report.editorial.maximumFiveGramJaccard < 0.12);
   assert.equal(report.quality.total, 29);
