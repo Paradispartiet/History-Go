@@ -796,7 +796,10 @@
           prioritizeOpenPlace
         )
         : { rows: [], failed: [] };
-      const loadedRows = [...firstPass.rows, ...retry.rows];
+      // loadedRowsByFile er autoritativ etter både førstegangslast, retry og
+      // eventuell place-utløst revalidering. Ikke la stale firstPass-rader
+      // overskrive ferske aggregatrader i sluttpubliseringen.
+      const loadedRows = peopleFiles.flatMap(file => loadedRowsByFile.get(file) || []);
       const failedFiles = retry.failed;
       if (!loadedRows.length && failedFiles.length === peopleFiles.length) {
         throw new Error("Ingen People-filer kunne lastes");

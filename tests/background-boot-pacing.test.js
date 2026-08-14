@@ -359,7 +359,10 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.ok(lifecycle.indexOf("relations-ready") < lifecycle.indexOf("wonderkammer-ready"));
 
   // Stedsskifte-revalideringen publiserer og planlegger én asynkron PlaceCard-refresh.
-  // La den fullføres før de eksisterende engangssperre-assertene måler nye kall.
+  // Gå tilbake til stedet som de eksisterende fallback-/stale-testene bruker,
+  // og la refreshen fullføres før de måler nye kall.
+  placeCard.dataset.currentPlaceId = "place-1";
+  mutationCallback?.([]);
   await delay(20);
 
   assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres på nytt når People og relasjoner er klare");
