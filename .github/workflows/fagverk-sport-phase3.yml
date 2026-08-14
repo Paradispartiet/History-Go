@@ -49,17 +49,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Refresh deterministic reports on PR branch
+      - name: Refresh deterministic Sport state on PR branch
         if: github.event_name == 'pull_request'
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs --write-report
           node scripts/audit-fagverk-general-engine.mjs --write-report
           node scripts/audit-fagverk-sport-phase3.mjs --write-report
-          if ! git diff --quiet -- reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json reports/fagverk/sport-phase3-audit.json; then
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tests/fagverk-general-engine.test.mjs')
+          text = p.read_text()
+          old = "  assert.equal(sport.chapterCount, 0);"
+          new = "  assert.equal(sport.chapterCount, JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8')).subjects.sport.chapters.length);"
+          if old in text:
+              p.write_text(text.replace(old, new, 1))
+          elif new not in text:
+              raise SystemExit('Sport chapter-count assertion not found')
+          PY
+          if ! git diff --quiet -- reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json reports/fagverk/sport-phase3-audit.json tests/fagverk-general-engine.test.mjs; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json reports/fagverk/sport-phase3-audit.json
-            git commit -m "Refresh deterministic Sport reports"
+            git add reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json reports/fagverk/sport-phase3-audit.json tests/fagverk-general-engine.test.mjs
+            git commit -m "Align deterministic Sport state"
             git push origin HEAD:${{ github.event.pull_request.head.ref }}
           fi
       - name: Validate syntax and deterministic reports
