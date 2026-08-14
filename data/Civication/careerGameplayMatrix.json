@@ -8,8 +8,8 @@
     "statuses": {
       "reference_complete": 1,
       "playable": 4,
-      "partial": 20,
-      "architecture_only": 64
+      "partial": 21,
+      "architecture_only": 63
     },
     "runtime_gate_pass": 10,
     "life_story_complete": 11,
@@ -46,13 +46,13 @@
       },
       "mail": {
         "complete": 11,
-        "partial": 14,
-        "missing": 64
+        "partial": 15,
+        "missing": 63
       },
       "knowledge": {
-        "complete": 21,
+        "complete": 22,
         "partial": 27,
-        "missing": 41
+        "missing": 40
       },
       "quality_axes": {
         "complete": 87,
@@ -15321,7 +15321,7 @@
       "role_ids": [
         "religion_forskning"
       ],
-      "status": "architecture_only",
+      "status": "partial",
       "artifacts": {
         "role_models": [],
         "work_grammar": "data/Civication/workGrammars/religion/religion_forskning.json",
@@ -15357,8 +15357,8 @@
             "count": 0
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/religion/knowledge/religion_forskning_knowledge.json",
+            "count": 3
           },
           "consequence": {
             "path": null,
@@ -15366,6 +15366,7 @@
           }
         },
         "role_tests": [
+          "tests/civication-career-knowledge-bridge.test.js",
           "tests/civication-religion-life-career-split.test.js"
         ],
         "life_story": null
@@ -15412,14 +15413,19 @@
             "note": "No concrete workplace or work surface declaration."
           },
           "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
+            "level": "partial",
+            "evidence": [
+              "data/Civication/mailFamilies/religion/knowledge/religion_forskning_knowledge.json"
+            ],
+            "note": "1/9 standard mail types."
           },
           "knowledge": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No functional knowledge layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/religion/knowledge/religion_forskning_knowledge.json",
+              "data/Civication/workGrammars/religion/religion_forskning.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
@@ -15470,8 +15476,6 @@
           "day_one",
           "people",
           "places",
-          "mail",
-          "knowledge",
           "consequences",
           "performance",
           "progression",
@@ -15479,6 +15483,7 @@
         ],
         "complete_components": [
           "entry",
+          "knowledge",
           "quality_axes",
           "authority",
           "economy"

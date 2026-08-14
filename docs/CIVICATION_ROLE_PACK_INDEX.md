@@ -18,11 +18,11 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 - complete_reference_v2: 3
 - complete_reference: 0
 - playable_v1: 0
-- partial_pack: 23
+- partial_pack: 24
 - role_model_only: 220
 - generated_stub: 0
 - broken_mapping: 0
-- missing: 49
+- missing: 48
 
 ## Rolleindeks
 
@@ -257,7 +257,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | psykologi | psykologi_arbeids_og_karriereveiledning | psykologi_veileder | Veileder | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | religion | religion_fagledelse | religion_fagledelse | religion_fagledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | religion | religion_formidling_og_kulturarv | religion_formidling_og_kulturarv | religion_formidling_og_kulturarv | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
-| religion | religion_forskning | religion_forskning | religion_forskning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
+| religion | religion_forskning | religion_forskning | religion_forskning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | ja | nei | ja | partial_pack |
 | religion | religion_utredning_og_radgivning | religion_utredning_og_radgivning | religion_utredning_og_radgivning | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | scenekunst | scenekunst_dramaturgi_og_utvikling |  | scenekunst_dramaturgi_og_utvikling | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |
 | scenekunst | scenekunst_institusjonsledelse |  | scenekunst_institusjonsledelse | nei | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | missing |

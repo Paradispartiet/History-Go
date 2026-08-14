@@ -404,7 +404,10 @@
       const json = await loadJson(path);
       if (json) catalogs.push(json);
     }
-    return catalogs.flatMap(flattenCatalog);
+    const mails = catalogs.flatMap(flattenCatalog);
+    const bridge = window.CivicationCareerKnowledgeBridge;
+    if (!bridge?.decorateMail) return mails;
+    return await Promise.all(mails.map((mail) => bridge.decorateMail(mail)));
   }
 
   function hashString(input) {

@@ -98,18 +98,39 @@ function buildKnowledgeProfileForTask(mailEvent, active, task) {
   if (strongKnowledgeCount >= 1) knowledgeState = "qualified";
   else if (weakKnowledgeCount >= 1 || hasContactSupport) knowledgeState = "assisted";
 
+  const knowledgeRefs = Array.isArray(mailEvent?.knowledge_refs_resolved)
+    ? mailEvent.knowledge_refs_resolved
+    : (Array.isArray(task?.knowledge_refs_resolved) ? task.knowledge_refs_resolved : []);
+  const bridgeEvaluation = knowledgeRefs.length
+    ? window.CivicationCareerKnowledgeBridge?.evaluateKnowledgeRefsSync?.(
+        { ...mailEvent, knowledge_refs_resolved: knowledgeRefs },
+        { subject_id: String(active?.career_id || mailEvent?.category || "") }
+      )
+    : null;
+
+  if (bridgeEvaluation?.source === "career_knowledge_bridge") {
+    knowledgeState = String(bridgeEvaluation.knowledge_state || "missing");
+  }
+
   return {
     requiredKnowledgeTags,
     requiredContactTypes,
     contextId,
     knowledgeScores,
     hasContactSupport,
-    knowledgeState
+    knowledgeState,
+    source: bridgeEvaluation?.source || "category_merits",
+    matchedRefIds: Array.isArray(bridgeEvaluation?.matched_ref_ids) ? bridgeEvaluation.matched_ref_ids : [],
+    unresolvedRefIds: Array.isArray(bridgeEvaluation?.unresolved_ref_ids) ? bridgeEvaluation.unresolved_ref_ids : [],
+    choicePolicy: String(bridgeEvaluation?.choice_policy || "legacy_locking"),
+    authorityEffect: String(bridgeEvaluation?.authority_effect || "none"),
+    eligibilityEffect: String(bridgeEvaluation?.eligibility_effect || "none")
   };
 }
 
 function applyKnowledgeGateToTask(task, mailEvent, active) {
   const profile = buildKnowledgeProfileForTask(mailEvent, active, task);
+  const isCareerBridge = profile.source === "career_knowledge_bridge";
 
   let knowledgeNote = "Du mangler foreløpig nok relevant innsikt og må støtte deg på enklere vurderinger.";
   let solutionMode = "fallback";
@@ -130,6 +151,21 @@ function applyKnowledgeGateToTask(task, mailEvent, active) {
     unlockedChoices = ["basic", "help", "assisted", "best"];
   }
 
+  if (isCareerBridge) {
+    lockedChoices = [];
+    unlockedChoices = ["basic", "help", "assisted", "best"];
+    if (profile.knowledgeState === "missing") {
+      knowledgeNote = "Du mangler dokumentert innsikt i akkurat dette fagproblemet. Alle valg er fortsatt mulige, men du får svakere beslutningsstøtte og bør vurdere hjelp.";
+      solutionMode = "supported_risk";
+    } else if (profile.knowledgeState === "assisted") {
+      knowledgeNote = "Du har relevant faggrunnlag, men ikke et sikkert treff på situasjonen. Bruk hjelpespor eller gjør usikkerheten eksplisitt.";
+      solutionMode = "assisted";
+    } else {
+      knowledgeNote = "Din lagrede History Go-kunnskap treffer det faglige problemet og gir et bedre beslutningsgrunnlag.";
+      solutionMode = "qualified";
+    }
+  }
+
   return {
     ...task,
     required_knowledge_tags: profile.requiredKnowledgeTags,
@@ -138,6 +174,14 @@ function applyKnowledgeGateToTask(task, mailEvent, active) {
     knowledge_state: profile.knowledgeState,
     knowledge_scores: profile.knowledgeScores,
     has_contact_support: profile.hasContactSupport,
+    knowledge_source: profile.source,
+    matched_knowledge_ref_ids: profile.matchedRefIds,
+    unresolved_knowledge_ref_ids: profile.unresolvedRefIds,
+    knowledge_choice_policy: profile.choicePolicy,
+    knowledge_authority_effect: profile.authorityEffect,
+    knowledge_eligibility_effect: profile.eligibilityEffect,
+    knowledge_contract: mailEvent?.knowledge_contract || task?.knowledge_contract || null,
+    knowledge_refs_resolved: mailEvent?.knowledge_refs_resolved || task?.knowledge_refs_resolved || [],
     solution_mode: solutionMode,
     locked_choices: lockedChoices,
     unlocked_choices: unlockedChoices,
@@ -155,7 +199,10 @@ function applyKnowledgeGateToMailEvent(mailEvent, task) {
 
   let visibleChoices = choices;
 
-  if (solutionMode === "fallback") {
+  const advisory = String(task?.knowledge_choice_policy || "") === "advisory";
+  if (advisory) {
+    visibleChoices = choices;
+  } else if (solutionMode === "fallback") {
     visibleChoices = choices.filter((c) => {
       const id = String(c?.id || "");
       return id !== "A";
@@ -181,6 +228,11 @@ function applyKnowledgeGateToMailEvent(mailEvent, task) {
     choices: visibleChoices,
     knowledge_state: String(task?.knowledge_state || "missing"),
     solution_mode: solutionMode,
+    knowledge_source: String(task?.knowledge_source || ""),
+    knowledge_choice_policy: String(task?.knowledge_choice_policy || ""),
+    matched_knowledge_ref_ids: Array.isArray(task?.matched_knowledge_ref_ids) ? task.matched_knowledge_ref_ids : [],
+    knowledge_contract: task?.knowledge_contract || mailEvent?.knowledge_contract || null,
+    knowledge_refs_resolved: Array.isArray(task?.knowledge_refs_resolved) ? task.knowledge_refs_resolved : (mailEvent?.knowledge_refs_resolved || []),
     knowledge_note: String(task?.knowledge_note || knowledgeLine),
     situation: (Array.isArray(mailEvent?.situation) ? mailEvent.situation : []).concat([
       knowledgeLine

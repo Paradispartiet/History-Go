@@ -1,0 +1,169 @@
+{
+  "schema": "civication_career_knowledge_bridge_v1",
+  "version": 1,
+  "updated_at": "2026-08-14",
+  "status": "pilot_active",
+  "principles": {
+    "canonical_key": "category/role_scope",
+    "content_strategy": "pinned_gameplay_contract_with_live_fagverk_enrichment",
+    "copied_fagverk_prose_allowed": false,
+    "knowledge_is_authority": false,
+    "knowledge_is_appointment": false,
+    "missing_knowledge_default": "advisory_risk_or_help",
+    "hard_gate_requires_explicit_separate_contract": true
+  },
+  "compatibility": {
+    "stable_identifiers": ["subject_id", "topic_id", "method_id"],
+    "content_updates": "Titles, definitions, findings, methods, sources and quality metadata may be resolved as current enrichment. They never rewrite a mail's choices, feedback, effects or pinned knowledge_contract automatically.",
+    "breaking_changes": "Removing or renaming a referenced identifier requires an explicit migration in this bridge; the permanent audit rejects dead references.",
+    "runtime_failure": "A temporarily unavailable article degrades to a labelled unresolved reference and never grants knowledge, authority, eligibility or promotion.",
+    "gameplay_review": "Every mail knowledge_contract is immutable within its version and records the Fagverk revision it was reviewed against. Semantic changes require a manual contract version bump.",
+    "refresh_policy": "pinned_gameplay_runtime_live_enrichment_and_ci_drift_audit"
+  },
+  "source_registry": {
+    "religion": {
+      "subject_id": "religion",
+      "completion_file": "data/fag/religion/religion_university_completion_v1.json",
+      "readiness_file": "data/fag/religion/religion_university_readiness_v1.json",
+      "methods_file": "data/fag/religion/methods_religion_canonical_v1.json",
+      "emners_file": "data/fag/religion/emner_religion_canonical_v1.json",
+      "article_root": "data/fagverk/religion/emneartikler",
+      "subject_href": "fagverk.html?subject=religion",
+      "knowledge_href": "knowledge.html?subject=religion"
+    }
+  },
+  "roles": {
+    "religion/religion_forskning": {
+      "category": "religion",
+      "role_scope": "religion_forskning",
+      "subject_id": "religion",
+      "status": "reference_pilot",
+      "role_model": "data/Civication/roleModels/religion/religion_forskning.json",
+      "work_grammar": "data/Civication/workGrammars/religion/religion_forskning.json",
+      "knowledge_mode": "soft_support",
+      "minimum_matches_for_qualified": 1,
+      "gameplay_contract_policy": {
+        "required": true,
+        "versioned": true,
+        "immutable_fields": ["learning_goal", "decision_rule", "common_error", "help_path", "choice_effect_contract"],
+        "live_fields": ["current_title", "current_definition", "source_ids", "claim_ids", "quality_score", "learning_links"],
+        "semantic_change_requires_review": true
+      },
+      "job_description_recipe": {
+        "sections": ["what_you_do", "what_you_must_understand", "methods_in_use", "work_environment", "authority", "dilemmas", "career_paths"],
+        "provenance_required": true,
+        "use_current_fagverk_text": true
+      },
+      "knowledge_refs": [
+        {
+          "ref_id": "religion_forskning.analytical_category",
+          "kind": "topic",
+          "topic_id": "religion_as_analytical_category",
+          "area_id": "theory_method",
+          "article_file": "data/fagverk/religion/emneartikler/religion_as_analytical_category.json",
+          "level": "required",
+          "applications": ["problem_definition", "category_control", "claim_scoping"],
+          "quality_impacts": ["quality", "risk", "trust"],
+          "knowledge_signal_emne_ids": ["em_religion_religion_og_samfunn"],
+          "knowledge_signal_terms": ["religion", "analytisk kategori", "religionsbegrep"]
+        },
+        {
+          "ref_id": "religion_forskning.research_ethics",
+          "kind": "topic",
+          "topic_id": "research_ethics_reflexivity_and_positionality",
+          "area_id": "theory_method",
+          "article_file": "data/fagverk/religion/emneartikler/research_ethics_reflexivity_and_positionality.json",
+          "level": "required",
+          "applications": ["consent", "privacy", "positionality", "representation"],
+          "quality_impacts": ["quality", "risk", "trust"],
+          "knowledge_signal_emne_ids": ["em_religion_religion_og_samfunn", "em_religion_religionshistorie_lokalt"],
+          "knowledge_signal_terms": ["forskningsetikk", "refleksivitet", "posisjonalitet", "samtykke"]
+        },
+        {
+          "ref_id": "religion_forskning.lived_religion",
+          "kind": "topic",
+          "topic_id": "lived_religion_and_everyday_practice",
+          "area_id": "lived_identity_migration",
+          "article_file": "data/fagverk/religion/emneartikler/lived_religion_and_everyday_practice.json",
+          "level": "recommended",
+          "applications": ["fieldwork", "interview_interpretation", "practice_belief_distinction"],
+          "quality_impacts": ["quality", "trust"],
+          "knowledge_signal_emne_ids": ["em_religion_ritualer_praksis", "em_religion_religion_og_samfunn"],
+          "knowledge_signal_terms": ["levd religion", "hverdagspraksis", "aktørperspektiv"]
+        },
+        {
+          "ref_id": "religion_forskning.historiography_sources",
+          "kind": "topic",
+          "topic_id": "historiography_sources_and_colonial_categories",
+          "area_id": "history_comparison",
+          "article_file": "data/fagverk/religion/emneartikler/historiography_sources_and_colonial_categories.json",
+          "level": "recommended",
+          "applications": ["archive_analysis", "source_silence", "category_history"],
+          "quality_impacts": ["quality", "risk"],
+          "knowledge_signal_emne_ids": ["em_religion_religionshistorie_lokalt"],
+          "knowledge_signal_terms": ["historiografi", "kildekritikk", "arkiv", "koloniale kategorier"]
+        },
+        {
+          "ref_id": "religion_forskning.insider_outsider",
+          "kind": "topic",
+          "topic_id": "insider_outsider_emic_etic",
+          "area_id": "theory_method",
+          "article_file": "data/fagverk/religion/emneartikler/insider_outsider_emic_etic.json",
+          "level": "recommended",
+          "applications": ["actor_researcher_distinction", "interpretive_reflexivity"],
+          "quality_impacts": ["quality", "trust"],
+          "knowledge_signal_emne_ids": ["em_religion_religion_og_samfunn"],
+          "knowledge_signal_terms": ["insider", "outsider", "emisk", "etisk perspektiv"]
+        },
+        {
+          "ref_id": "religion_forskning.comparison_translation",
+          "kind": "topic",
+          "topic_id": "comparison_typology_and_translation",
+          "area_id": "theory_method",
+          "article_file": "data/fagverk/religion/emneartikler/comparison_typology_and_translation.json",
+          "level": "deepening",
+          "applications": ["comparison_design", "translation_limits", "typology_revision"],
+          "quality_impacts": ["quality", "risk"],
+          "knowledge_signal_emne_ids": ["em_religion_religion_og_samfunn", "em_religion_religionshistorie_lokalt"],
+          "knowledge_signal_terms": ["sammenligning", "typologi", "oversettelse"]
+        },
+        {
+          "ref_id": "religion_forskning.method_historical_source_criticism",
+          "kind": "method",
+          "method_id": "met_religion_historical_source_criticism",
+          "level": "required",
+          "applications": ["source_provenance", "archive_silence", "uncertainty"],
+          "quality_impacts": ["quality", "risk"],
+          "knowledge_signal_emne_ids": ["em_religion_religionshistorie_lokalt"]
+        },
+        {
+          "ref_id": "religion_forskning.method_qualitative_interview",
+          "kind": "method",
+          "method_id": "met_religion_qualitative_interview",
+          "level": "required",
+          "applications": ["consent", "situated_voice", "sampling", "confidentiality"],
+          "quality_impacts": ["quality", "risk", "trust"],
+          "knowledge_signal_emne_ids": ["em_religion_ritualer_praksis", "em_religion_religion_og_samfunn"]
+        },
+        {
+          "ref_id": "religion_forskning.method_reflexivity",
+          "kind": "method",
+          "method_id": "met_religion_reflexivity_and_positionality",
+          "level": "required",
+          "applications": ["field_role", "access_analysis", "interpretive_limits"],
+          "quality_impacts": ["quality", "trust"],
+          "knowledge_signal_emne_ids": ["em_religion_religion_og_samfunn"]
+        },
+        {
+          "ref_id": "religion_forskning.method_research_ethics",
+          "kind": "method",
+          "method_id": "met_religion_research_ethics_privacy_and_representation",
+          "level": "required",
+          "applications": ["data_minimization", "privacy", "representation", "risk_review"],
+          "quality_impacts": ["quality", "risk", "trust"],
+          "knowledge_signal_emne_ids": ["em_religion_religion_og_samfunn"]
+        }
+      ]
+    }
+  }
+}
