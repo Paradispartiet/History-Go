@@ -158,6 +158,8 @@ Kan vise:
 
 Før/etter handler om samme sted gjennom tid og er popupkunnskap, ikke runding.
 
+Før motivvalg skal canonical place-register/manifester kontrolleres. Et bygg, en virksomhet, en park, en plass eller et annet delsted som allerede har egen place-oppføring kan ikke brukes som primært Før/etter-stedfortreder for et overordnet place. Slike steder kan bare vises som tydelig merket supplement eller lenket relasjon. Eksempel: Torggata Bad kan ikke bære hovedparet for Torggata når badet selv er et eget History GO-place; hovedparet for Torggata må vise selve gaten.
+
 ## 9. Nyheter
 
 Nyheter holder presse-/notisspor adskilt fra Om, Historie og Stories.
