@@ -28,6 +28,10 @@ jobs:
           node --check scripts/repair-filosofi-university-depth-v2.mjs
           node scripts/repair-filosofi-university-depth-v2.mjs
           node scripts/audit-fagverk-filosofi-phase3.mjs --write-report --no-check-report
+      - name: Refresh deterministic shared Fagverk audits
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
       - name: Validate Philosophy substantive university gate
         run: |
           node --check scripts/audit-fagverk-filosofi-phase3.mjs
