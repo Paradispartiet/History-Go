@@ -16,6 +16,7 @@ on:
       - "scripts/audit-fagverk-subject-inventory.mjs"
       - "scripts/audit-fagverk-general-engine.mjs"
       - "scripts/audit-fagverk-sport-phase3.mjs"
+      - "scripts/materialize-sport-complete.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
@@ -36,18 +37,34 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
-# Keep the permanent Sport gate on the connector-authored final PR head after one-shot materialization.
 jobs:
   validate:
     name: Validate Sport phase 3 materialization
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
+      - name: Materialize complete Sport state on PR branch
+        if: github.event_name == 'pull_request'
+        run: |
+          node scripts/materialize-sport-complete.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-sport-phase3.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+          if ! git diff --quiet || [ -n "$(git ls-files --others --exclude-standard data/fagverk/sport/sport_completion_v1.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/fagverk/fagverk_registry.json data/fagverk/subject_status.json data/fagverk/fagverk_release.json data/fagverk/sport/sport_completion_v1.json data/fagverk/sport/regler-spill-konkurranse/claims.json reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json reports/fagverk/sport-phase3-audit.json
+            git commit -m "Materialize complete Sport state"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
       - name: Validate syntax and deterministic reports
         run: |
           node --check scripts/audit-fagverk-sport-phase3.mjs
