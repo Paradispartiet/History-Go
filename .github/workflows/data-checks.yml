@@ -29,6 +29,8 @@ on:
       - 'tests/torggata-phase21-webgl-fallback.test.mjs'
       - 'tests/torggata-phase22-content-qa.test.mjs'
       - 'reports/place-production/torggata-phase22-content-qa-audit-v1.json'
+      - 'tests/torggata-phase23-ci-gates.test.mjs'
+      - 'reports/place-production/torggata-phase23-ci-gates-audit-v1.json'
       - 'js/map.ts'
       - 'js/map.js'
       - 'js/app.js'
@@ -171,6 +173,9 @@ jobs:
 
       - name: Test Torggata phase 22 content QA
         run: node --test tests/torggata-phase22-content-qa.test.mjs
+
+      - name: Test Torggata phase 23 repository gates
+        run: node --test tests/torggata-phase23-ci-gates.test.mjs
 
       - name: Enforce Politikk place production reports
         shell: bash
