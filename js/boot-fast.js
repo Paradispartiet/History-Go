@@ -57,6 +57,7 @@
   let priorityPeopleDataPromise = null;
   let peopleSurfaceUpdateScheduled = false;
   let currentPlacePeopleRefreshScheduled = false;
+  let revalidateOpenPlacePeopleFiles = null;
 
   window.HG_PEOPLE_READY = Array.isArray(window.PEOPLE) && window.PEOPLE.length > 0;
   window.HG_PEOPLE_LOADING = false;
@@ -154,9 +155,8 @@
         if (!next) return;
 
         const { url, index } = next;
-        const data = await fetchJSON(url, {
-          cache: prioritize?.(url) ? "reload" : "default"
-        });
+        const cache = prioritize?.(url) ? "reload" : "default";
+        const data = await fetchJSON(url, { cache });
         if (data == null) failed.push(url);
         rowsByFile[index] = normalizeRows(data, key);
 
@@ -166,6 +166,7 @@
           total: list.length,
           failed: failed.length,
           url,
+          cache,
           rows: rowsByFile[index]
         });
       }
@@ -369,6 +370,7 @@
   function handlePeopleDataChange() {
     schedulePeopleSurfaceUpdate();
     scheduleCurrentPlacePeopleRefresh();
+    void revalidateOpenPlacePeopleFiles?.();
   }
 
   function installPeopleRoundLoadingBridge() {
@@ -381,8 +383,16 @@
 
       card.dataset.hgPeopleLoadingObserved = "1";
       if (typeof MutationObserver === "function") {
-        const observer = new MutationObserver(() => schedulePeopleSurfaceUpdate());
-        observer.observe(card, { childList: true, subtree: true });
+        const observer = new MutationObserver(() => {
+          schedulePeopleSurfaceUpdate();
+          void revalidateOpenPlacePeopleFiles?.();
+        });
+        observer.observe(card, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ["data-current-place-id"]
+        });
       }
       schedulePeopleSurfaceUpdate();
     };
@@ -686,6 +696,8 @@
         || priorityFilesByPlace.get(String(placeId || "").trim())?.has(file)
       );
       const prioritizeOpenPlace = file => isPriorityFileForPlace(file, getCurrentPlaceId());
+      const revalidatedFiles = new Set();
+      let openPlaceRevalidationPromise = null;
 
       const publishOpenPlaceRows = () => {
         const placeId = getCurrentPlaceId();
@@ -710,9 +722,46 @@
         handlePeopleDataChange();
       };
 
-      const rememberRows = ({ url, rows }) => {
+      const rememberRows = ({ url, rows, cache }) => {
         loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
+        if (cache === "reload") revalidatedFiles.add(url);
         publishOpenPlaceRows();
+      };
+
+      revalidateOpenPlacePeopleFiles = () => {
+        const placeId = getCurrentPlaceId();
+        if (!placeId) return Promise.resolve();
+        if (openPlaceRevalidationPromise) return openPlaceRevalidationPromise;
+
+        const targets = peopleFiles.filter(file =>
+          isPriorityFileForPlace(file, placeId)
+          && loadedRowsByFile.has(file)
+          && !revalidatedFiles.has(file)
+        );
+        if (!targets.length) {
+          publishOpenPlaceRows();
+          return Promise.resolve();
+        }
+
+        openPlaceRevalidationPromise = loadRowsWithConcurrency(
+          targets,
+          "people",
+          Math.min(3, PEOPLE_FETCH_CONCURRENCY),
+          ({ url, rows, cache }) => {
+            loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
+            if (cache === "reload") revalidatedFiles.add(url);
+          },
+          () => true
+        ).then(() => {
+          publishedPrioritySignature = "";
+          publishOpenPlaceRows();
+        }).finally(() => {
+          openPlaceRevalidationPromise = null;
+          if (getCurrentPlaceId() !== placeId) {
+            setTimeout(() => void revalidateOpenPlacePeopleFiles?.(), 0);
+          }
+        });
+        return openPlaceRevalidationPromise;
       };
 
       const firstPass = await loadRowsWithConcurrency(

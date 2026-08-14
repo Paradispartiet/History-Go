@@ -136,7 +136,8 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
       async loadPlacesBase() {
         return [
           { id: "place-1", name: "Teststed", desc: "Test" },
-          { id: "place-2", name: "Relasjonssted", desc: "Test" }
+          { id: "place-2", name: "Relasjonssted", desc: "Test" },
+          { id: "place-3", name: "Sent åpnet sted", desc: "Test" }
         ];
       },
       async loadNature() {},
@@ -170,7 +171,8 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
 
   const peopleFiles = [
     ...Array.from({ length: 7 }, (_, index) => `people/test/person-${index + 2}.json`),
-    "people/by/oslo/people.json"
+    "people/by/oslo/people.json",
+    "people/by/oslo/late.json"
   ];
 
   async function fetchMock(input, init = {}) {
@@ -182,12 +184,13 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
       return response({
         files: peopleFiles,
         priorityFilesByPlace: {
-          "place-1": ["people/by/oslo/people.json"]
+          "place-1": ["people/by/oslo/people.json"],
+          "place-3": ["people/by/oslo/late.json"]
         }
       });
     }
 
-    if (/^data\/people\/(?:by\/oslo\/people\.json|test\/person-)/.test(url)) {
+    if (/^data\/people\/(?:by\/oslo\/(?:people|late)\.json|test\/person-)/.test(url)) {
       const attempts = (peopleAttempts.get(url) || 0) + 1;
       peopleAttempts.set(url, attempts);
       activePeopleFetches += 1;
@@ -199,9 +202,19 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
       }
       const id = url === "data/people/by/oslo/people.json"
         ? "1"
-        : (url.match(/person-(\d+)/)?.[1] || "x");
+        : (url === "data/people/by/oslo/late.json"
+          ? "9"
+          : (url.match(/person-(\d+)/)?.[1] || "x"));
       if (id === "1") {
         return response({ id: "person-1", name: "Person 1", place_ids: ["place-1"] });
+      }
+      if (id === "9") {
+        return response({
+          id: "person-9",
+          name: "Person 9",
+          place_ids: ["place-3"],
+          roundHoldbacks: init.cache === "reload" ? ["place-3"] : []
+        });
       }
       return response({ people: [{ id: `person-${id}`, name: `Person ${id}`, place_ids: ["place-1"] }] });
     }
@@ -309,6 +322,28 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.equal(peopleAttempts.get("data/people/test/person-8.json"), 2, "feilede People-filer prøves én gang til");
   assert.ok(maxPeopleFetches > 1, `forventet parallell People-lasting, fikk ${maxPeopleFetches}`);
   assert.ok(maxPeopleFetches <= 6, `People-lasting overskred grensen: ${maxPeopleFetches}`);
+
+  assert.equal(
+    fetchCache.get("data/people/by/oslo/late.json"),
+    "default",
+    "aggregatfilen lastes først før stedet er åpnet"
+  );
+  placeCard.dataset.currentPlaceId = "place-3";
+  mutationCallback?.([]);
+  await waitUntil(
+    () => (peopleAttempts.get("data/people/by/oslo/late.json") || 0) >= 2,
+    "sted åpnet etter full People-last revaliderte ikke aggregatfilen"
+  );
+  assert.equal(
+    fetchCache.get("data/people/by/oslo/late.json"),
+    "reload",
+    "allerede lastet manifestindeksert fil revalideres ved stedsskifte"
+  );
+  assert.deepEqual(
+    Array.from(window.PEOPLE.find(person => person.id === "person-9")?.roundHoldbacks || []),
+    ["place-3"],
+    "ferske holdbacks erstatter stale aggregatdata etter stedsskifte"
+  );
 
   const peopleManifestIndex = fetchLog.indexOf("data/people/manifest.json");
   const relationIndex = fetchLog.indexOf("data/relations.json");
