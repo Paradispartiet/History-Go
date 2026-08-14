@@ -48,7 +48,7 @@ test("final merge, deployment and 4+1 production evidence are locked", () => {
   assert.equal(gate.completion_evidence.badge_separate, true);
 });
 
-test("manual quality review reopens completion until the five editorial blockers are fixed", () => {
+test("manual quality review records the original five findings and the current resolution queue", () => {
   const assessment = gate.quality_assessment;
   assert.equal(assessment.dimensions.length, 6);
   assert.equal(assessment.total, 21);
@@ -69,18 +69,28 @@ test("manual quality review reopens completion until the five editorial blockers
   assert.equal(backlog.completion_gate.manual_ui_review_required, true);
   assert.equal(backlog.completion_gate.rescore_required, true);
   assert.deepEqual(backlog.active_phase, {
-    id: "phase_7d_before_after",
-    status: "IN_PROGRESS_REOPENED",
-    exact_file_scope: [
-      "data/places/by/oslo/places/torggata.json",
-      "reports/place-production/torggata-phase7d-before-after-audit-v1.md",
-      "tests/place-card-for-na-torggata.test.js"
-    ]
+    id: "news_missing",
+    status: "QUEUED_NEXT"
   });
   assert.equal(backlog.sequence.length, 7);
-  assert.equal(backlog.sequence.filter((item) => item.status === "IN_PROGRESS").length, 1);
-  assert.equal(backlog.sequence[0].id, "before_after_comparability_and_depth");
-  assert.ok(backlog.sequence.slice(1).every((item) => item.status === "QUEUED"));
+  assert.deepEqual(
+    backlog.sequence.map(({ id, status }) => ({ id, status })),
+    [
+      { id: "before_after_comparability_and_depth", status: "RESOLVED" },
+      { id: "news_missing", status: "QUEUED_NEXT" },
+      { id: "reading_trail_missing", status: "QUEUED" },
+      { id: "more_missing", status: "QUEUED" },
+      { id: "objects_structures_round_overlap", status: "QUEUED" },
+      { id: "manual_ui_and_content_reqa", status: "QUEUED" },
+      { id: "final_closeout", status: "QUEUED" }
+    ]
+  );
+  const beforeAfter = backlog.findings.find(
+    (finding) => finding.id === "before_after_comparability_and_depth"
+  );
+  assert.equal(beforeAfter.workflow_status, "RESOLVED_PHASE_7D");
+  assert.equal(beforeAfter.resolution.rejected_own_place_proxy, "Torggata Bad");
+  assert.match(beforeAfter.resolution.pair, /ca|circa/i);
 });
 
 test("global checklist mirrors the canonical four-plus-separate-Badge contract", () => {
@@ -92,6 +102,8 @@ test("global checklist mirrors the canonical four-plus-separate-Badge contract",
   assert.match(checklist, /MÅL FOR INNHOLDSRUNDINGER: 4 \+ separat fast Badge/);
   assert.match(checklist, /nøyaktig fire innholdsrundinger vises i et 2 × 2-felt/);
   assert.match(checklist, /bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder/);
+  assert.match(checklist, /canonical place-register\/manifester er søkt før motivet velges/i);
+  assert.match(checklist, /delsted som har egen canonical place-oppføring brukes ikke som primært Før\/etter-stedfortreder/i);
   assert.match(checklist, /2009 → 2017 erstatter ikke automatisk et eldre historisk førbilde/);
   assert.match(checklist, /Nyheter kan ikke godkjennes som tom\/N\/A/);
   assert.match(checklist, /Lesespor kan ikke godkjennes som tom\/N\/A/);
