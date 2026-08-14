@@ -1,0 +1,101 @@
+{
+  "schema": "civication_career_gameplay_policy_v1",
+  "version": 1,
+  "canonical_world_sources": [
+    "data/Civication/workGrammars/",
+    "data/Civication/badgeRoleMappings.json",
+    "data/Civication/mailPlans/",
+    "data/Civication/praksisfortellinger_registry.json",
+    "data/Civication/lifestory/manifest.json"
+  ],
+  "contract_components": [
+    "entry",
+    "day_one",
+    "workday_loop",
+    "practice_stories",
+    "people",
+    "places",
+    "mail",
+    "knowledge",
+    "quality_axes",
+    "authority",
+    "consequences",
+    "performance",
+    "economy",
+    "progression",
+    "exit"
+  ],
+  "status_order": [
+    "reference_complete",
+    "playable",
+    "partial",
+    "architecture_only"
+  ],
+  "reference_roles": [
+    {
+      "category": "naeringsliv",
+      "role_scope": "renholder",
+      "why": "Sterk FWG, komplett mailfamilie, to praksisuker og Life Story."
+    },
+    {
+      "category": "naeringsliv",
+      "role_scope": "ekspeditor",
+      "why": "Lang arbeidsflyt, to praksisuker, brand-variant og Life Story."
+    },
+    {
+      "category": "by",
+      "role_scope": "by_radgiver_plan",
+      "why": "Sterk rollefortelling, faglige valg, personer, steder og full mailfamilie."
+    },
+    {
+      "category": "naeringsliv",
+      "role_scope": "controller",
+      "why": "Lang praksisflyt med presisjon, avvik, rapportering og konsekvenssignaler."
+    }
+  ],
+  "pilot_worlds": [
+    {
+      "category": "film_tv",
+      "role_scope": "produksjonsassistent",
+      "work_type": "prosjektarbeid"
+    },
+    {
+      "category": "religion",
+      "role_scope": "religion_forskning",
+      "work_type": "kunnskapsarbeid"
+    },
+    {
+      "category": "subkultur",
+      "role_scope": "subkultur_arrangementsdrift",
+      "work_type": "publikumsarbeid"
+    },
+    {
+      "category": "psykologi",
+      "role_scope": "psykologi_miljoarbeid",
+      "work_type": "menneskearbeid"
+    },
+    {
+      "category": "naeringsliv",
+      "role_scope": "avdelingsleder",
+      "work_type": "ledelse"
+    }
+  ],
+  "reference_requirements": {
+    "minimum_practice_story_count": 12,
+    "minimum_practice_weeks": 2,
+    "require_life_story": true,
+    "require_all_components_complete": true
+  },
+  "playable_requirements": {
+    "runtime_gate_components": [
+      "entry",
+      "day_one",
+      "workday_loop",
+      "mail",
+      "consequences",
+      "economy"
+    ],
+    "allow_partial_non_runtime_components": true,
+    "forbid_missing_components": true
+  }
+}

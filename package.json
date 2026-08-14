@@ -89,6 +89,8 @@
     "test:social-demo-visible": "node tests/hg-social-demo-visible.test.js",
     "test:social-meet-spotmeeting-smoke": "node tests/social-meet-spotmeeting-browser-smoke.test.js && node tests/social-meet-fastapi-adapter.test.js",
     "audit:civication:role-packs": "node scripts/audit-civication-role-packs.mjs",
+    "build:civication:career-gameplay-matrix": "node scripts/audit-civication-career-gameplay.mjs --write",
+    "audit:civication:career-gameplay": "node scripts/audit-civication-career-gameplay.mjs --check",
     "audit:civication:fwg-governance": "node scripts/audit-civication-fwg-governance.mjs",
     "audit:writing-academy-literature-index": "node scripts/audit-writing-academy-literature-index.mjs",
     "build:litteratur-assessment": "node scripts/build-litteratur-subject-pathways-v1.mjs && node --experimental-strip-types scripts/knowledge-canonical-data.mts --write",
