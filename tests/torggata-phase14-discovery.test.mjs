@@ -30,7 +30,7 @@ test("Torggata phase 14 discovery contract", () => {
   assert.equal(lexicon.title, "Torggata");
   assert.ok(lexicon.facts.length >= 2);
   assert.deepEqual(lexicon.chronology.map(item => item.year), [1846, 1852, 1876, 1929, 1986, 2014]);
-  assert.ok(lexicon.chronology.every(item => item.sources?.some(source => /^https:\\/\\//.test(source.url))));
+  assert.ok(lexicon.chronology.every(item => item.sources?.some(source => String(source.url).startsWith("https://"))));
   assert.ok(words(lexicon.popupDesc) < words(place.popupDesc) / 3);
 
   const payload = { name: normalize(place.name), desc: normalize(place.desc), popupDesc: normalize(place.popupDesc || place.popupdesc) };
