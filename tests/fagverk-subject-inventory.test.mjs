@@ -93,9 +93,24 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
     assert.equal(subject.nextGate, 'chapter_production');
   }
 
+  // Filosofi has complete structural Fase 3 coverage, but editorial completion is
+  // deliberately gated by article-by-article substantive university review. Do not
+  // collapse "materialized + audited" back into "editorially complete" here.
   const filosofi = s.subjects.find((x) => x.id === 'filosofi');
-  assert.equal(filosofi.editorialStatus, 'complete');
-  assert.equal(filosofi.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
+  const filosofiCompletion = readJson('data/fagverk/filosofi/filosofi_completion_v1.json');
+  assert.equal(filosofiCompletion.standalone_article_count, 54);
+  assert.equal(filosofiCompletion.chapter_count, 13);
+  assert.equal(filosofiCompletion.canonical_concept_count, 162);
+  assert.equal(filosofi.navigationStatus, 'materialized');
+  assert.equal(filosofi.assessmentStatus, 'audited');
+  assert.equal(filosofi.editorialStatus, filosofiCompletion.complete_ready ? 'complete' : 'expanded_and_audited');
+  assert.equal(
+    filosofi.nextGate,
+    filosofiCompletion.complete_ready
+      ? 'maintenance_source_refresh_and_place_case_expansion'
+      : 'university_depth_article_by_article_review'
+  );
+  assert.equal(filosofiCompletion.complete_ready, filosofiCompletion.reviewed_article_count === 54);
 
   const filmTv = s.subjects.find((x) => x.id === 'film_tv');
   const filmTvChapterCount = readJson('data/fagverk/fagverk_registry.json').subjects.film_tv.chapters.length;
