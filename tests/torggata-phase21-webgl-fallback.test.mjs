@@ -73,8 +73,8 @@ test("index sanity accepts the explicit no-WebGL state but still rejects an unex
   assert.equal(context.assertCriticalIndexRuntime(), null);
   delete mapElement.dataset.mapUnavailable;
   const error = context.assertCriticalIndexRuntime();
-  assert.ok(error instanceof Error);
-  assert.match(error.message, /MAP – kartet ble ikke initialisert/);
+  assert.equal(error?.name, "Error");
+  assert.match(String(error?.message), /MAP – kartet ble ikke initialisert/);
 });
 
 test("Torggata phase 19 and 21 evidence preserves four content rounds plus a separate Badge", () => {
