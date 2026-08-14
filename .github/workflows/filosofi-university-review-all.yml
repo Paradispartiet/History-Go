@@ -1,0 +1,71 @@
+name: Complete Philosophy university-depth review
+
+on:
+  push:
+    branches:
+      - agent/review-all-philosophy-university-depth
+    paths:
+      - 'scripts/materialize-filosofi-university-review.mjs'
+      - 'scripts/philosophy-review-specs-*.mjs'
+      - '.github/workflows/filosofi-university-review-all.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  review:
+    name: Materialize and validate 54 of 54 Philosophy articles
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/review-all-philosophy-university-depth
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Materialize substantive article-by-article university review
+        run: node scripts/materialize-filosofi-university-review.mjs
+      - name: Refresh deterministic Philosophy and shared Fagverk reports
+        run: |
+          node scripts/audit-fagverk-filosofi-phase3.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate permanent Philosophy university-depth gates
+        run: |
+          node --test tests/fagverk-filosofi-university-depth.test.mjs
+          node --test tests/fagverk-filosofi-complete.test.mjs
+          node --test tests/fagverk-filosofi-editorial-style.test.mjs
+          node --test tests/fagverk-filosofi-phase3.test.mjs
+      - name: Validate shared Fagverk regressions
+        run: |
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+      - name: Assert the materialized review is complete and non-generic
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const registry=JSON.parse(fs.readFileSync('data/fagverk/filosofi/filosofi_article_registry_v1.json','utf8'));
+          const completion=JSON.parse(fs.readFileSync('data/fagverk/filosofi/filosofi_completion_v1.json','utf8'));
+          const articles=registry.articles.map(row=>JSON.parse(fs.readFileSync(row.file,'utf8')));
+          const reviewed=articles.filter(a=>a.editorial_quality==='university_depth_reviewed');
+          if(reviewed.length!==54) throw new Error(`Expected 54 reviewed articles, got ${reviewed.length}`);
+          if(!completion.complete_ready || completion.status!=='complete') throw new Error('Completion lifecycle did not close honestly');
+          if(new Set(articles.map(a=>a.university_quality?.debate)).size!==54) throw new Error('Duplicate university debate descriptions detected');
+          if(new Set(articles.map(a=>a.sections.find(s=>s.id==='argument')?.paragraphs.join('\n'))).size!==54) throw new Error('Duplicate argument reconstructions detected');
+          console.log('Philosophy 54/54 substantive university review verified.');
+          NODE
+      - name: Commit materialized university review
+        run: |
+          if git diff --quiet; then
+            echo 'No materialized changes found.'
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fagverk/filosofi data/fagverk/subject_status.json data/fagverk/fagverk_registry.json reports/fagverk/filosofi-complete-audit.json reports/fagverk/filosofi-phase3-audit.json reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json data/fagverk/fagverk_release.json
+          git commit -m 'Complete Philosophy 54 of 54 university-depth review'
+          git push origin HEAD:agent/review-all-philosophy-university-depth
