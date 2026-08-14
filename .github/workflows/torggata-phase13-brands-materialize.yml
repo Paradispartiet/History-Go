@@ -57,23 +57,15 @@ jobs:
           path = Path('scripts/materialize-torggata-phase13-brands.mjs')
           text = path.read_text(encoding='utf-8')
 
-          old_capture = """    await page.screenshot({
-              path: tempShot,
-              clip: {
-                x: Math.max(0, box.x),
-                y: Math.max(0, box.y),
-                width: box.width,
-                height: box.height,
-              },
-              omitBackground: false,
-            });"""
-          new_capture = """    await img.screenshot({
+          function_start = text.index('async function captureSportslagerLogo()')
+          screenshot_start = text.index('    await page.screenshot({', function_start)
+          screenshot_end = text.index('    return tempShot;', screenshot_start)
+          replacement = """    await img.screenshot({
               path: tempShot,
               omitBackground: false,
-            });"""
-          if old_capture not in text:
-              raise SystemExit('Oslo Sportslager screenshot block not found')
-          text = text.replace(old_capture, new_capture, 1)
+            });
+          """
+          text = text[:screenshot_start] + replacement + text[screenshot_end:]
 
           replacements = {
               'normalized to fixed logo-card canvas; no identity reconstruction':
