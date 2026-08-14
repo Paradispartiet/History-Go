@@ -1,0 +1,49 @@
+{
+  "schema": "civication_naeringsliv_career_life_evidence_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-14",
+  "badge_id": "naeringsliv",
+  "principles": [
+    "Næringsliv-Badge-poeng dokumenterer økonomi- og arbeidslivskunnskap, ikke et arbeidsforhold, lederutnevnelse, selskapseierskap eller investeringskapital.",
+    "Eierskap, investering og gründervirksomhet kan være reell økonomisk aktivitet uten å være et fast lønnet arbeidstakerforhold.",
+    "Fast Civication-lønn materialiseres bare fra eksplisitte formelle stillinger; lederroller krever arbeidsgiverutnevnelse og kvalifiserte fagroller feiler lukket uten relevant kvalifikasjon.",
+    "Konsesjonsplikt i kapitalforvaltning ligger på virksomheten der regelverket krever det; Badge-tittelen Kapitalforvalter behandles derfor som en kvalifisert jobb, ikke som en personlig offentlig autorisasjon."
+  ],
+  "canonical_decision": {
+    "pure_life_or_practice_tiers": ["Gründer","Bedriftseier","Investor","Industribygger","Industrieier"],
+    "formal_job_tiers": ["Ekspeditør / butikkmedarbeider","Renholder","Lager- og driftsmedarbeider","Økonomi- og administrasjonsmedarbeider","Fagarbeider","Skiftleder","Formann / arbeidsleder","Controller","Avdelingsleder","Driftsleder","Finansanalytiker","Produksjonsleder","Butikksjef / enhetsleder","Økonomi- og finanssjef","Daglig leder","Finansdirektør","Konserndirektør","Konsernsjef","Kapitalforvalter"],
+    "review_left_open": [],
+    "work_worlds": {
+      "naeringsliv_handel_og_kundeservice": ["Ekspeditør / butikkmedarbeider"],
+      "naeringsliv_renhold_og_hygiene": ["Renholder"],
+      "naeringsliv_logistikk_og_drift": ["Lager- og driftsmedarbeider"],
+      "naeringsliv_fag_og_produksjon": ["Fagarbeider"],
+      "naeringsliv_administrasjon_og_okonomistyring": ["Økonomi- og administrasjonsmedarbeider","Controller"],
+      "naeringsliv_operativ_ledelse": ["Skiftleder","Formann / arbeidsleder","Avdelingsleder","Driftsleder","Produksjonsleder","Butikksjef / enhetsleder"],
+      "naeringsliv_finans_og_kapitalforvaltning": ["Finansanalytiker","Kapitalforvalter"],
+      "naeringsliv_finansiell_ledelse": ["Økonomi- og finanssjef","Finansdirektør"],
+      "naeringsliv_virksomhetsledelse": ["Daglig leder","Konserndirektør","Konsernsjef"]
+    }
+  },
+  "salary_mapping": {
+    "existing_naeringsliv_bands_pc_per_week": {"1":7,"2":11,"3":16},
+    "band_1_titles": ["Ekspeditør / butikkmedarbeider","Renholder","Lager- og driftsmedarbeider","Økonomi- og administrasjonsmedarbeider","Fagarbeider","Skiftleder"],
+    "band_2_titles": ["Formann / arbeidsleder","Controller","Avdelingsleder","Driftsleder","Finansanalytiker","Produksjonsleder","Butikksjef / enhetsleder"],
+    "band_3_titles": ["Økonomi- og finanssjef","Daglig leder","Finansdirektør","Konserndirektør","Konsernsjef","Kapitalforvalter"],
+    "note": "Dette er Civication-spilløkonomi, ikke norsk markeds-, leder- eller kapitalavkastning. Eierskaps- og investeringsposisjonene gir ikke fast lønn."
+  },
+  "sources": [
+    {"id":"utdanning_butikkmedarbeider","publisher":"Utdanning.no","title":"Butikkmedarbeider","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/butikkmedarbeider","supports":"Dokumentert arbeidstakerrolle innen salg, service, varepåfylling og kundebehandling."},
+    {"id":"utdanning_renholdsoperator","publisher":"Utdanning.no","title":"Renholdsoperatør","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/renholdsoperator","supports":"Dokumentert yrke med ansvar for renhold, hygiene, utstyr og trygt innemiljø."},
+    {"id":"utdanning_logistikkoperator","publisher":"Utdanning.no","title":"Logistikkoperatør","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/logistikkoperator","supports":"Dokumentert logistikk-/lagerarbeid med mottak, lagring, vareflyt, dokumentasjon og utlevering."},
+    {"id":"utdanning_okonom","publisher":"Utdanning.no","title":"Økonom","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/okonom","supports":"NAV/Aa-register-titler inkluderer controller og flere økonomi-/regnskapsroller; støtter administrasjon og økonomistyring som reelt jobbspor."},
+    {"id":"utdanning_leder","publisher":"Utdanning.no","title":"Leder","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/leder","supports":"Dokumenterer reelt lederarbeid på flere nivåer, inkludert drifts-, avdelings- og produksjonsledelse, med personal-, budsjett- og resultatansvar."},
+    {"id":"utdanning_finansanalytiker","publisher":"Utdanning.no","title":"Finansanalytiker","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/finansanalytiker","supports":"Dokumentert finansyrke; NAV/Aa-registeret omfatter også Kapitalforvalter (bedrifter). Relevant høyere utdanning er vanlig."},
+    {"id":"utdanning_grunder","publisher":"Utdanning.no","title":"Gründer","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/grunder","supports":"Gründer beskrives som en person som har startet og driver egen virksomhet; det er reell næringspraksis, men ikke i seg selv bevis på et arbeidstakerforhold."},
+    {"id":"altinn_enk","publisher":"Altinn","title":"Enkeltpersonforetak","checked_at":"2026-08-14","url":"https://info.altinn.no/starte-og-drive/starte/valg-av-organisasjonsform/enkeltpersonforetak/","supports":"Eier av enkeltpersonforetak driver for egen regning og risiko, kan ikke være ansatt i eget foretak og mottar ikke lønn som arbeidstaker; dette er nøkkelbelegg for å skille Gründer/eierskap fra fast jobb."},
+    {"id":"altinn_as","publisher":"Altinn","title":"Aksjeselskap (AS)","checked_at":"2026-08-14","url":"https://info.altinn.no/starte-og-drive/starte/valg-av-organisasjonsform/aksjeselskap/","supports":"Aksjeselskap kan ha én eller flere eiere og er egen juridisk person; eierstatus og arbeidstakerstatus er derfor separate forhold."},
+    {"id":"brreg_as_roles","publisher":"Brønnøysundregistrene","title":"Roller i aksjeselskap","checked_at":"2026-08-14","url":"https://www.brreg.no/aksjeselskap/roller-i-aksjeselskap/","supports":"Daglig leder er en registrerbar selskapsrolle som ansettes av styret; dette støtter eksplisitt arbeidsgiverutnevnelsesport."},
+    {"id":"altinn_as_organization","publisher":"Altinn","title":"Organisering og roller i aksjeselskap","checked_at":"2026-08-14","url":"https://info.altinn.no/starte-og-drive/drive-bedrift/drift-og-administrasjon/drift-av-aksjeselskap/organisering-og-roller-i-aksjeselskap/","supports":"Aksjonærer er eiere og trenger ikke ha noen rolle i den normale driften; eierskap alene er derfor ikke en lønnsjobb."},
+    {"id":"finanstilsynet_forvaltningsselskap","publisher":"Finanstilsynet","title":"Forvaltningsselskap","checked_at":"2026-08-14","url":"https://www.finanstilsynet.no/tillatelser/forvaltningsselskap/","supports":"Verdipapirfondsforvaltning kan bare drives av foretak med nødvendig tillatelse; konsesjonskravet gjelder virksomheten og må ikke feilaktig omskrives til personlig Badge-autorisasjon."}
+  ]
+}
