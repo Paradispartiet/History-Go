@@ -1,0 +1,252 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_forskning",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "religion_forskning_fagverk_i_bruk",
+      "purpose": "Gjøre Religionsfagverkets teori, metode og forskningsetikk funksjonell i konkrete forskningsvalg.",
+      "learning_focus": ["analytisk kategori", "situert informantstemme", "forskningsetikk", "arkivstillhet"],
+      "mails": [
+        {
+          "id": "religion_forskning_knowledge_analytisk_kategori",
+          "mail_type": "knowledge",
+          "mail_family": "religion_forskning_fagverk_i_bruk",
+          "role_scope": "religion_forskning",
+          "phase": "forenoon",
+          "priority": 126,
+          "from": "Mina, prosjektleder",
+          "people_ref": "mina_prosjektleder",
+          "place_id": "religionsforskningskontoret",
+          "subject": "Kodeboken gjør religion til én avkryssing",
+          "summary": "Prosjektets første kodebok samler medlemskap, praksis, identitet og institusjon under én variabel: religion.",
+          "situation": [
+            "Datasettet skal sammenligne organisasjoner, hverdagspraksis og selvbeskrivelse, men kodeboken bruker religion som om kategorien var entydig.",
+            "Fristen er i dag, og en kollega mener nyanser kan legges til etter at kodingen er ferdig.",
+            "Du må avgrense hva kategorien måler uten å gjøre hele prosjektet ubrukelig."
+          ],
+          "task_domain": "begrepsoperasjonalisering",
+          "competency": "analytisk_presisjon",
+          "pressure": "frist_vs_kategorikontroll",
+          "choice_axis": "eksplisitt_operasjonalisering_vs_bekvem_sammenslaing",
+          "consequence_axis": "etterprovbarhet_vs_kategorifeil",
+          "narrative_arc": "religion_som_variabel",
+          "knowledge_contract": {
+            "contract_id": "religion_forskning.kc.analytisk_kategori",
+            "version": 1,
+            "locked_at": "2026-08-14",
+            "reviewed_against": {"subject_id": "religion", "fagverk_updated_at": "2026-08-13", "quality_score": 29},
+            "learning_goal": "Skille medlemskap, praksis, identitet og institusjon når religion operasjonaliseres som forskningskategori.",
+            "decision_rule": "Kodeboken må angi hvilken dimensjon hvert felt måler og hvor langt den støtter en sammenlignende påstand.",
+            "common_error": "Én samlevariabel behandles som om den målte alle former for religion likt.",
+            "help_path": "Marker usikkerheten og be en metodekollega motlese operasjonaliseringen før kodingen låses.",
+            "choice_effect_contract": "Presis operasjonalisering styrker kvalitet og tillit; utsatt avklaring øker kategorifeil og senere omarbeiding.",
+            "update_policy": "manual_review_and_version_bump"
+          },
+          "knowledge_refs": [
+            {
+              "ref_id": "religion_forskning.analytical_category",
+              "application": "Skille medlemskap, praksis, identitet og institusjon i kodeboken.",
+              "impact": ["quality", "risk", "trust"]
+            },
+            {
+              "ref_id": "religion_forskning.comparison_translation",
+              "application": "Sikre at sammenligningsenheten er symmetrisk og oversettbar.",
+              "impact": ["quality", "risk"]
+            }
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Del kategorien i målbare dimensjoner",
+              "reply": "Jeg skiller selvbeskrivelse, praksis, medlemskap og institusjon, og dokumenterer hva hvert felt kan si.",
+              "effect": 1,
+              "tags": ["knowledge", "operasjonalisering", "sporbarhet"],
+              "feedback": "Kodeboken blir mer arbeidskrevende, men påstandene får en etterprøvbar rekkevidde.",
+              "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Be metodekollegaen om en rask motlesning",
+              "reply": "Jeg markerer usikkerheten og ber om en kort metodegjennomgang før kodingen låses.",
+              "effect": 0,
+              "tags": ["help", "method", "delay"],
+              "feedback": "Du bruker hjelp som kvalitetssikring, men leveransen blir forsinket.",
+              "effects": {"stats": {"quality": 1, "trust": 1, "status": -1, "energy": -1}}
+            },
+            {
+              "id": "C",
+              "label": "Behold én variabel og forklar senere",
+              "reply": "Vi koder alt som religion nå og nyanserer i rapporten.",
+              "effect": -1,
+              "tags": ["tempo", "category_risk"],
+              "feedback": "Rapporten kan ikke reparere informasjon som kodeboken aldri skilte fra hverandre.",
+              "effects": {"stats": {"status": 1, "quality": -2, "risk": 3, "trust": -1}}
+            }
+          ]
+        },
+        {
+          "id": "religion_forskning_knowledge_sitat_og_samtykke",
+          "mail_type": "knowledge",
+          "mail_family": "religion_forskning_fagverk_i_bruk",
+          "role_scope": "religion_forskning",
+          "phase": "workday",
+          "priority": 125,
+          "from": "Oskar, forskningsetisk kontakt",
+          "people_ref": "oskar_forskningsetikk",
+          "place_id": "religionsfeltet_lite_miljo",
+          "subject": "Sitatet er anonymisert, men alle vet hvem det er",
+          "summary": "Et sterkt sitat fra én deltaker bærer analysen, men kombinasjonen av rolle, sted og hendelse gjør personen gjenkjennelig.",
+          "situation": [
+            "Deltakeren samtykket til intervju, men fikk ikke se at tre kontekstdetaljer skulle stå sammen i publikasjonen.",
+            "Sitatet viser én situert erfaring; redaksjonen omtaler det allerede som miljøets syn.",
+            "Du må beskytte personen og samtidig bevare analysens dokumentasjon."
+          ],
+          "task_domain": "intervju_og_representasjon",
+          "competency": "forskningsetikk",
+          "pressure": "forklaringskraft_vs_identifiseringsrisiko",
+          "choice_axis": "situert_dokumentasjon_og_beskyttelse_vs_dramatisk_sitat",
+          "consequence_axis": "tillit_og_etikk_vs_eksponering",
+          "narrative_arc": "informant_som_helhet",
+          "knowledge_contract": {
+            "contract_id": "religion_forskning.kc.sitat_og_samtykke",
+            "version": 1,
+            "locked_at": "2026-08-14",
+            "reviewed_against": {"subject_id": "religion", "fagverk_updated_at": "2026-08-13", "quality_score": 29},
+            "learning_goal": "Skille anonymisering fra faktisk identifiseringsrisiko og én informantstemme fra en kollektiv påstand.",
+            "decision_rule": "Minimer identifiserende kontekst, kontroller samtykkets rekkevidde og skriv eksplisitt hvor situert evidensen er.",
+            "common_error": "Navnefjerning behandles som full anonymitet, og et godt sitat gjøres representativt for et helt miljø.",
+            "help_path": "Pause sitatet og be forskningsetisk kontakt vurdere nytt samtykke, omskriving eller utelatelse.",
+            "choice_effect_contract": "Beskyttelse og avgrensning styrker tillit og kvalitet; indirekte identifisering øker risiko og kan skade deltakeren.",
+            "update_policy": "manual_review_and_version_bump"
+          },
+          "knowledge_refs": [
+            {
+              "ref_id": "religion_forskning.research_ethics",
+              "application": "Vurdere nytt samtykke, dataminimering og representasjonsrisiko.",
+              "impact": ["quality", "risk", "trust"]
+            },
+            {
+              "ref_id": "religion_forskning.lived_religion",
+              "application": "Behandle sitatet som situert hverdagspraksis, ikke kollektiv fasit.",
+              "impact": ["quality", "trust"]
+            },
+            {
+              "ref_id": "religion_forskning.method_qualitative_interview",
+              "application": "Kontrollere samtykke, utvalg, konfidensialitet og påstandsrekkevidde.",
+              "impact": ["quality", "risk", "trust"]
+            }
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Reduser detaljene og avgrens påstanden",
+              "reply": "Jeg minimerer identifiserende kontekst og skriver at sitatet dokumenterer én situert erfaring.",
+              "effect": 1,
+              "tags": ["knowledge", "privacy", "representation"],
+              "feedback": "Analysen beholder evidens, men gjør verken personen eller sitatet større enn datagrunnlaget.",
+              "effects": {"stats": {"quality": 2, "trust": 2, "risk": -3, "energy": -1}}
+            },
+            {
+              "id": "B",
+              "label": "Stopp publisering og be Oskar om hjelp",
+              "reply": "Jeg pauser sitatet og ber om en konkret vurdering av nytt samtykke eller utelatelse.",
+              "effect": 0,
+              "tags": ["help", "ethics", "delay"],
+              "feedback": "Du mangler ikke handlekraft fordi du eskalerer en reell etisk usikkerhet.",
+              "effects": {"stats": {"trust": 2, "risk": -2, "status": -1, "energy": -1}}
+            },
+            {
+              "id": "C",
+              "label": "Publiser fordi navnet er fjernet",
+              "reply": "Navnet står ikke der, så sitatet kan gå som planlagt.",
+              "effect": -1,
+              "tags": ["privacy_risk", "overgeneralization"],
+              "feedback": "Formell navnefjerning løser ikke indirekte identifisering eller overgeneralisering.",
+              "effects": {"stats": {"status": 1, "quality": -2, "trust": -3, "risk": 4}}
+            }
+          ]
+        },
+        {
+          "id": "religion_forskning_knowledge_arkivstillhet",
+          "mail_type": "knowledge",
+          "mail_family": "religion_forskning_fagverk_i_bruk",
+          "role_scope": "religion_forskning",
+          "phase": "workday",
+          "priority": 124,
+          "from": "Lea, arkivar",
+          "people_ref": "lea_arkivar",
+          "place_id": "religionshistorisk_arkiv",
+          "subject": "Ingen protokoll nevner praksisen",
+          "summary": "Prosjektet finner ingen omtale av en minoritetspraksis i institusjonens protokoller og fristes til å skrive at praksisen ikke fantes.",
+          "situation": [
+            "Arkivet ble produsert av institusjonens ledelse og bevarer vedtak bedre enn uformell hverdagspraksis.",
+            "En negativ konklusjon passer prosjektets opprinnelige hypotese.",
+            "Du må skille dokumentasjonsfravær fra historisk fravær og velge neste kildegrep."
+          ],
+          "task_domain": "historisk_kildekritikk",
+          "competency": "kildekritikk",
+          "pressure": "klar_konklusjon_vs_kildens_rekkevidde",
+          "choice_axis": "proveniens_og_alternative_kilder_vs_bekreftelsesbias",
+          "consequence_axis": "sporbar_usikkerhet_vs_falsk_sikkerhet",
+          "narrative_arc": "arkivstillhet",
+          "knowledge_contract": {
+            "contract_id": "religion_forskning.kc.arkivstillhet",
+            "version": 1,
+            "locked_at": "2026-08-14",
+            "reviewed_against": {"subject_id": "religion", "fagverk_updated_at": "2026-08-13", "quality_score": 29},
+            "learning_goal": "Skille dokumentasjonsfravær i en bestemt samling fra historisk fravær av en praksis.",
+            "decision_rule": "Vurder proveniens, sjanger, bevaringslogikk og representativitet før arkivstillhet brukes som negativ evidens.",
+            "common_error": "En institusjonsprotokolls taushet omskrives direkte til at praksisen ikke fantes.",
+            "help_path": "Be arkivaren kartlegge samlingens produksjon og blindsoner, og identifiser uavhengige motkilder.",
+            "choice_effect_contract": "Kildekritikk gir sporbar usikkerhet; bekreftelsesbias gir falsk sikkerhet og høyere faglig risiko.",
+            "update_policy": "manual_review_and_version_bump"
+          },
+          "knowledge_refs": [
+            {
+              "ref_id": "religion_forskning.historiography_sources",
+              "application": "Analysere hvem som produserte arkivet og hvilke praksiser samlingen gjør synlige.",
+              "impact": ["quality", "risk"]
+            },
+            {
+              "ref_id": "religion_forskning.method_historical_source_criticism",
+              "application": "Kontrollere proveniens, sjanger, overlevering og representativitet.",
+              "impact": ["quality", "risk"]
+            }
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kartlegg arkivets produksjon og søk motkilder",
+              "reply": "Jeg beskriver hva protokollene kan dokumentere og undersøker samtidige aviser, private arkiv og materielle spor.",
+              "effect": 1,
+              "tags": ["knowledge", "source_criticism", "negative_evidence"],
+              "feedback": "Fraværet blir et funn om arkivet før det eventuelt blir et funn om praksisen.",
+              "effects": {"stats": {"quality": 2, "risk": -2, "trust": 1, "energy": -2}}
+            },
+            {
+              "id": "B",
+              "label": "Be Lea forklare samlingens blindsoner",
+              "reply": "Jeg ber om hjelp til å kartlegge hva arkivet systematisk bevarer og utelater.",
+              "effect": 0,
+              "tags": ["help", "archive", "provenance"],
+              "feedback": "Arkivaren gir ikke svaret, men hjelper deg å stille et bedre spørsmål til samlingen.",
+              "effects": {"stats": {"quality": 1, "trust": 1, "energy": -1}}
+            },
+            {
+              "id": "C",
+              "label": "Konkluder med at praksisen ikke fantes",
+              "reply": "Ingen protokoll nevner den, så jeg skriver at praksisen var fraværende.",
+              "effect": -1,
+              "tags": ["confirmation_bias", "source_silence"],
+              "feedback": "Du gjør arkivets taushet til sikker historisk kunnskap uten å dokumentere samlingens rekkevidde.",
+              "effects": {"stats": {"status": 1, "quality": -3, "risk": 3, "trust": -1}}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

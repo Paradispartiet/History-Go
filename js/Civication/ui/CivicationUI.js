@@ -318,6 +318,70 @@ function buildOfferPackDepthHtml(offer) {
     + "</div>";
 }
 
+/**
+ * Renderer den genererte stillingsbeskrivelsen. Rolleansvar er spikret i roleModel/FWG,
+ * mens faglig fordypning hydreres fra gjeldende Fagverk gjennom Career Knowledge Bridge.
+ * @param {any} description
+ * @returns {string}
+ */
+function buildCareerKnowledgeDescriptionHtml(description) {
+  if (!description || description.schema !== "civication_generated_job_description_v1") return "";
+  const sections = description.sections && typeof description.sections === "object" ? description.sections : {};
+  const tasks = Array.isArray(sections.what_you_do) ? sections.what_you_do.slice(0, 5) : [];
+  const topics = Array.isArray(sections.what_you_must_understand) ? sections.what_you_must_understand.slice(0, 5) : [];
+  const methods = Array.isArray(sections.methods_in_use) ? sections.methods_in_use.slice(0, 4) : [];
+  const environments = Array.isArray(sections.work_environment) ? sections.work_environment.slice(0, 3) : [];
+  const cannot = Array.isArray(sections.authority?.cannot) ? sections.authority.cannot.slice(0, 3) : [];
+  const links = Array.isArray(description.learning_links) ? description.learning_links : [];
+
+  const listHtml = (values) => values.length
+    ? "<ul>" + values.map((value) => "<li>" + escapeOfferHtml(value) + "</li>").join("") + "</ul>"
+    : "";
+  const topicHtml = topics.length
+    ? "<ul>" + topics.map((topic) => (
+        "<li><strong>" + escapeOfferHtml(topic.title) + "</strong><span>" + escapeOfferHtml(topic.definition) + "</span></li>"
+      )).join("") + "</ul>"
+    : "";
+  const methodHtml = methods.length
+    ? "<ul>" + methods.map((method) => (
+        "<li><strong>" + escapeOfferHtml(method.title) + "</strong><span>" + escapeOfferHtml(method.description) + "</span></li>"
+      )).join("") + "</ul>"
+    : "";
+  const linksHtml = links.length
+    ? "<div class=\"civi-career-knowledge-links\">" + links.map((link) => (
+        "<a href=\"" + escapeOfferHtml(link.url) + "\">" + escapeOfferHtml(link.label) + "</a>"
+      )).join("") + "</div>"
+    : "";
+
+  return (
+    "<details class=\"civi-career-knowledge-description\">" +
+      "<summary>Om stillingen og fagkunnskapen</summary>" +
+      "<p class=\"civi-career-knowledge-summary\">" + escapeOfferHtml(description.summary || "") + "</p>" +
+      (tasks.length ? "<section><h4>Dette gjør du</h4>" + listHtml(tasks) + "</section>" : "") +
+      (topics.length ? "<section><h4>Dette må du forstå</h4>" + topicHtml + "</section>" : "") +
+      (methods.length ? "<section><h4>Metoder i bruk</h4>" + methodHtml + "</section>" : "") +
+      (environments.length ? "<section><h4>Arbeidsmiljø</h4>" + listHtml(environments) + "</section>" : "") +
+      (cannot.length ? "<section><h4>Myndighetsgrenser</h4>" + listHtml(cannot) + "</section>" : "") +
+      linksHtml +
+      "<small>Arbeidsoppgavene er spikret. Faglig fordypning vises fra gjeldende Fagverk.</small>" +
+    "</details>"
+  );
+}
+
+async function hydrateCareerKnowledgeDescription(host, target) {
+  const slot = host?.querySelector?.("[data-civi-career-knowledge-description]");
+  const bridge = window.CivicationCareerKnowledgeBridge;
+  if (!slot || !target || !bridge?.buildJobDescription) return false;
+  try {
+    const description = await bridge.buildJobDescription(target);
+    if (!description || !slot.isConnected) return false;
+    slot.innerHTML = buildCareerKnowledgeDescriptionHtml(description);
+    return Boolean(slot.innerHTML);
+  } catch {
+    return false;
+  }
+}
+
 // ============================================================
 // PROFILE CIVICATION SHOP
 // ============================================================
@@ -698,8 +762,11 @@ async function renderCivication() {
           `
           : `<div>Ingen aktive jobbtilbud.</div>`
       }
+      <div data-civi-career-knowledge-description></div>
     </div>
   `;
+
+  void hydrateCareerKnowledgeDescription(host, offer || active);
 
   if (offer?.offer_key) {
     host.querySelector("#civiOfferAccept")?.addEventListener("click", () => {
@@ -2527,7 +2594,9 @@ window.CivicationUI = {
   getOfferEligibilityViewModel,
   buildOfferEligibilityHtml,
   getOfferPackDepthViewModel,
-  buildOfferPackDepthHtml
+  buildOfferPackDepthHtml,
+  buildCareerKnowledgeDescriptionHtml,
+  hydrateCareerKnowledgeDescription
 };
 
 // PR G: CivicationUI eier nå window.renderWorkdayPanel (innstegspunktet de øvrige day*UI-modulene
