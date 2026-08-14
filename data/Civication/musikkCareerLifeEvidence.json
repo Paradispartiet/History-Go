@@ -1,0 +1,113 @@
+{
+  "schema": "civication_musikk_career_life_evidence_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-14",
+  "badge_id": "musikk",
+  "principles": [
+    "Musikk-Badge-poeng dokumenterer læring, praksis og kulturell progresjon; de dokumenterer ikke arbeidsforhold eller fast lønn.",
+    "Frilansmusiker, Solist, Artist, Plateartist og berømmelsesnivåer kan være reelle profesjonelle leveveier eller markedsposisjoner, men skal ikke automatisk bli fast jobb i Civication.",
+    "Utøvende musiker er både en reell yrkesidentitet og en praksis som ofte utføres selvstendig. Derfor beholdes Badge-posisjonen som liv/praksis, mens fast jobb krever eksplisitt arbeidsgiveransettelse.",
+    "Fast musiker i band eller ensemble krever konkret ansettelse/engasjement før jobblønn materialiseres.",
+    "Scene-, produksjons- og teknikerrollene er reelle arbeidsroller og kan ha ordinært jobbspor.",
+    "Lønnsbåndene er Civication-spilløkonomi, ikke norsk lønnsstatistikk."
+  ],
+  "canonical_decision": {
+    "pure_life_or_practice_tiers": [
+      "Publikum / deltaker",
+      "Frilansmusiker",
+      "Solist",
+      "Artist",
+      "Etablert artist",
+      "Plateartist",
+      "Headliner",
+      "Stjerneartist",
+      "Popstjerne"
+    ],
+    "life_with_separate_career_unlock": ["Utøvende musiker"],
+    "formal_job_tiers": [
+      "Sceneassistent",
+      "Produksjonsassistent",
+      "Tekniker (lys/lyd)",
+      "Produksjonskoordinator",
+      "Fast musiker (band/ensemble)"
+    ],
+    "formal_job_opportunities": [
+      "Sceneassistent",
+      "Produksjonsassistent",
+      "Tekniker (lys/lyd)",
+      "Produksjonskoordinator",
+      "Utøvende musiker",
+      "Fast musiker (band/ensemble)"
+    ],
+    "review_left_open": [],
+    "work_worlds": {
+      "musikk_scene_og_produksjon": ["Sceneassistent", "Produksjonsassistent", "Tekniker (lys/lyd)", "Produksjonskoordinator"],
+      "musikk_utoving_og_ensemble": ["Utøvende musiker", "Fast musiker (band/ensemble)"]
+    }
+  },
+  "tier_decisions": [
+    {"title":"Publikum / deltaker","decision":"life_position","kind":"audience_participation","reason":"Publikums- og deltakelsesstatus, ikke jobb."},
+    {"title":"Sceneassistent","decision":"formal_job","policy":"direct","salary_tier":1,"role_scope":"musikk_scene_og_produksjon"},
+    {"title":"Produksjonsassistent","decision":"formal_job","policy":"direct","salary_tier":1,"role_scope":"musikk_scene_og_produksjon"},
+    {"title":"Tekniker (lys/lyd)","decision":"formal_job","policy":"direct","salary_tier":2,"role_scope":"musikk_scene_og_produksjon","reason":"Lyd- og lystekniker er dokumenterte scenetekniske yrker."},
+    {"title":"Produksjonskoordinator","decision":"formal_job","policy":"direct","salary_tier":2,"role_scope":"musikk_scene_og_produksjon"},
+    {"title":"Utøvende musiker","decision":"life_position_with_career_unlock","kind":"performing_musician_practice","career_title":"Utøvende musiker","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"musikk_utoving_og_ensemble","reason":"Musikere er ofte selvstendig næringsdrivende, men kan også være fast ansatt; fast jobb må derfor bevises separat."},
+    {"title":"Frilansmusiker","decision":"life_position","kind":"freelance_music_livelihood","reason":"Frilans er en oppdragsbasert levevei og skal ikke gi fast jobblønn."},
+    {"title":"Fast musiker (band/ensemble)","decision":"formal_job","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"musikk_utoving_og_ensemble","reason":"Fast musiker krever konkret arbeids-/engasjementsforhold."},
+    {"title":"Solist","decision":"life_position","kind":"solo_performance_practice","reason":"Solistarbeid er ofte prosjekt- og oppdragsbasert."},
+    {"title":"Artist","decision":"life_position","kind":"artistic_identity_and_livelihood","reason":"Artist er en profesjonell identitet/levevei, men Badge-status alene dokumenterer ikke fast ansettelse."},
+    {"title":"Etablert artist","decision":"life_position","kind":"career_reputation_status"},
+    {"title":"Plateartist","decision":"life_position","kind":"recording_artist_status","reason":"Innspillings-/utgivelsesstatus er ikke i seg selv et arbeidsforhold."},
+    {"title":"Headliner","decision":"life_position","kind":"booking_status"},
+    {"title":"Stjerneartist","decision":"life_position","kind":"fame_status"},
+    {"title":"Popstjerne","decision":"life_position","kind":"fame_status"}
+  ],
+  "salary_mapping": {
+    "source": "Existing Civication Music game economy",
+    "existing_musikk_bands_pc_per_week": {"1":4,"2":8,"3":20},
+    "formal_jobs": {
+      "Sceneassistent": 1,
+      "Produksjonsassistent": 1,
+      "Tekniker (lys/lyd)": 2,
+      "Produksjonskoordinator": 2,
+      "Utøvende musiker": 2,
+      "Fast musiker (band/ensemble)": 2
+    },
+    "tier_3_reserved_for_future_formal_high_responsibility_role": true,
+    "not_fixed_salary_positions": ["Publikum / deltaker","Frilansmusiker","Solist","Artist","Etablert artist","Plateartist","Headliner","Stjerneartist","Popstjerne"]
+  },
+  "sources": [
+    {
+      "id": "utdanning_musiker",
+      "publisher": "Utdanning.no",
+      "title": "Musiker",
+      "url": "https://utdanning.no/yrker/beskrivelse/musiker",
+      "checked_at": "2026-08-14",
+      "supports": ["musiker som yrke", "de fleste musikere er selvstendig næringsdrivende", "musikere kan være fast ansatt i orkestre", "studio-, scene- og konsertarbeid"]
+    },
+    {
+      "id": "utdanning_lydtekniker",
+      "publisher": "Utdanning.no",
+      "title": "Lydtekniker",
+      "url": "https://utdanning.no/yrker/beskrivelse/lydtekniker",
+      "checked_at": "2026-08-14",
+      "supports": ["lydtekniker som dokumentert yrke", "konsert- og studioarbeid", "ansettelse og frilans forekommer"]
+    },
+    {
+      "id": "utdanning_lystekniker",
+      "publisher": "Utdanning.no",
+      "title": "Lystekniker",
+      "url": "https://utdanning.no/yrker/beskrivelse/lystekniker",
+      "checked_at": "2026-08-14",
+      "supports": ["lystekniker som dokumentert yrke", "konsert- og sceneteknisk arbeid", "ansettelse og selvstendig virksomhet forekommer"]
+    },
+    {
+      "id": "utdanning_sanger",
+      "publisher": "Utdanning.no",
+      "title": "Sanger",
+      "url": "https://utdanning.no/yrker/beskrivelse/sanger",
+      "checked_at": "2026-08-14",
+      "supports": ["utøvende musikk som yrke", "de fleste sangere er selvstendig næringsdrivende og arbeider prosjektbasert", "noen er ansatt i profesjonelle kor og ensembler"]
+    }
+  ]
+}
