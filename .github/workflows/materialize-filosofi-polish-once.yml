@@ -24,22 +24,37 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Strengthen fallback concept prose and diagnostics
+      - name: Strengthen concept prose and canonical identifier rendering
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p=Path('scripts/polish-filosofi-complete.mjs')
           s=p.read_text()
+
           old="  const definition = CONCEPT_OVERRIDE[c.id] || cleanNorwegian(c.definition);"
           new="""  const canonicalDefinition = cleanNorwegian(c.definition);\n  const genericDefinition = /betegner i .* en avgrenset måte å beskrive eller vurdere/i.test(canonicalDefinition);\n  const contextualDefinition = `${c.label.toLowerCase()} brukes i denne artikkelen som et arbeidsbegrep for å analysere ${lowerFirst(String(article.canonical_definition || article.title).replace(/\\.$/, ''))}; den presise rekkevidden må fastsettes gjennom begrepets relasjoner, eksempler, innvendinger og den teorien som brukes`;\n  const definition = CONCEPT_OVERRIDE[c.id] || (genericDefinition ? contextualDefinition : canonicalDefinition);"""
           if old not in s:
               raise SystemExit('Expected concept definition line not found')
           s=s.replace(old,new)
+
+          old="""  const conceptById=new Map(conceptDoc.concepts.map((c)=>[c.id,c]));\n  const thinkerById=new Map(thinkerDoc.thinkers.map((t)=>[t.id,t]));"""
+          new="""  const conceptById=new Map(conceptDoc.concepts.map((c)=>[c.id,c]));\n  const thinkerById=new Map(thinkerDoc.thinkers.map((t)=>[t.id,t]));\n  const methodDoc=await readJson('data/fag/filosofi/methods_filosofi_canonical_v1.json');\n  const emneDoc=await readJson('data/fag/filosofi/emner_filosofi_canonical_v1.json');\n  const fagkartDoc=await readJson('data/fag/filosofi/fagkart_filosofi_canonical_v1.json');\n  const humanLabels=new Map([\n    ...conceptDoc.concepts.map((c)=>[c.id,c.label]),\n    ...thinkerDoc.thinkers.map((t)=>[t.id,t.name]),\n    ...methodDoc.methods.map((m)=>[m.method_id,m.title]),\n    ...emneDoc.map((e)=>[e.emne_id,e.title]),\n    ...(fagkartDoc.categories||[]).map((c)=>[c.id,c.title])\n  ]);\n  for(const e of emneDoc) for(const place of (e.place_relevance||[])) if(place.includes('_')) humanLabels.set(place,place.replaceAll('_',' '));\n  for(const c of (fagkartDoc.categories||[])) for(const h of (c.topic_hooks||[])) if(h.id) humanLabels.set(h.id,h.title||h.label||h.id.replaceAll('_',' '));\n  const renderKnownIdentifiers=(text)=>String(text||'').replace(/\\b[a-zæøå]+(?:_[a-zæøå]+)+\\b/g,(token)=>humanLabels.get(token)||token);"""
+          if old not in s:
+              raise SystemExit('Expected Philosophy label maps not found')
+          s=s.replace(old,new)
+
+          old="    for(const section of article.sections) section.paragraphs=section.paragraphs.map(cleanNorwegian);"
+          new="    for(const section of article.sections) section.paragraphs=section.paragraphs.map((p)=>renderKnownIdentifiers(cleanNorwegian(p)));"
+          if old not in s:
+              raise SystemExit('Expected Philosophy paragraph clean pass not found')
+          s=s.replace(old,new)
+
           old="    if(prose.some((p)=>/\\b[a-zæøå]+_[a-zæøå_]+\\b/.test(p))) throw new Error(`Raw identifier leaked into prose in ${article.id}`);"
-          new="""    const rawIdHit = prose.map((p,idx)=>({idx,p,match:p.match(/\\b[a-zæøå]+_[a-zæøå_]+\\b/)})).find((x)=>x.match);\n    if(rawIdHit) throw new Error(`Raw identifier leaked into prose in ${article.id} paragraph ${rawIdHit.idx}: ${rawIdHit.match[0]} :: ${rawIdHit.p}`);"""
+          new="""    const rawIdHit = prose.map((p,idx)=>({idx,p,match:p.match(/\\b[a-zæøå]+_[a-zæøå_]+\\b/)})).find((x)=>x.match);\n    if(rawIdHit) throw new Error(`Unresolved raw identifier in ${article.id} paragraph ${rawIdHit.idx}: ${rawIdHit.match[0]} :: ${rawIdHit.p}`);"""
           if old not in s:
               raise SystemExit('Expected raw identifier guard not found')
-          p.write_text(s.replace(old,new))
+          s=s.replace(old,new)
+          p.write_text(s)
           PY
       - name: Rebuild and polish complete Philosophy corpus
         run: |
