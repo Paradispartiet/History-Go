@@ -967,4 +967,14 @@ Tredje reparasjon skal:
 - kreve ny Pages-deploy og manuell produksjonskontroll med Personer = 4.
 
 **STATUS: TREDJE REPARASJON PÅGÅR — PERSONER ER FORTSATT PRODUKSJONSBLOCKER.**
-\n\n## Produksjons-reQA 4 — stale relasjonsregister etter PR #4982 (2026-08-14)\n\nPR #4982 ble squash-merget som `eb7caa2ef0a7e6678fa947d13e9b8634e3e529c4`, og Pages-run `31825055823` fullførte med `success`. Ny cache-bustet produksjonsfane viste likevel `Personer = 0` etter mer enn 60 sekunder. DOM-en viste at PlaceCard var ferdig, uten loading-/feilmarkør, men uten personrader.\n\nRoot cause er avgrenset: People-manifestet og prioriterte profilfiler blir nå revalidert, mens de fire nye canonical Torggata-koblingene ligger i `data/relations.json`. Relasjonslasteren brukte fortsatt `cache: "default"`, slik at en eldre nettleserrespons uten Torggata-koblingene kunne brukes sammen med de ferske profilene. Da returnerer `getPeopleForPlace("torggata")` tomt selv om de fire profilene er lastet.\n\nFjerde reparasjon gjør begge mutable relasjonsregistrene cache-uavhengige med `no-store`, låser kontrakten i bakgrunnslastertesten og utvider den globale produksjonssjekklisten: ny eller endret place→person-relasjon skal ikke kunne skjules av stale cache. Etter ny merge og Pages-deploy skal en fersk produksjonskontroll bekrefte nøyaktig Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.\n\n**STATUS: FJERDE REPARASJON PÅGÅR — TORGATTA ER IKKE FERDIG FØR PRODUKSJON VISER PERSONER = 4.**\n
+
+
+## Produksjons-reQA 4 — stale relasjonsregister etter PR #4982 (2026-08-14)
+
+PR #4982 ble squash-merget som `eb7caa2ef0a7e6678fa947d13e9b8634e3e529c4`, og Pages-run `31825055823` fullførte med `success`. Ny cache-bustet produksjonsfane viste likevel `Personer = 0` etter mer enn 60 sekunder. DOM-en viste at PlaceCard var ferdig, uten loading-/feilmarkør, men uten personrader.
+
+Root cause er avgrenset: People-manifestet og prioriterte profilfiler blir nå revalidert, mens de fire nye canonical Torggata-koblingene ligger i `data/relations.json`. Relasjonslasteren brukte fortsatt `cache: "default"`, slik at en eldre nettleserrespons uten Torggata-koblingene kunne brukes sammen med de ferske profilene. Da returnerer `getPeopleForPlace("torggata")` tomt selv om de fire profilene er lastet.
+
+Fjerde reparasjon gjør begge mutable relasjonsregistrene cache-uavhengige med `no-store`, låser kontrakten i bakgrunnslastertesten og utvider den globale produksjonssjekklisten: ny eller endret place→person-relasjon skal ikke kunne skjules av stale cache. Etter ny merge og Pages-deploy skal en fersk produksjonskontroll bekrefte nøyaktig Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
+
+**STATUS: FJERDE REPARASJON PÅGÅR — TORGATTA ER IKKE FERDIG FØR PRODUKSJON VISER PERSONER = 4.**
