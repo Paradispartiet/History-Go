@@ -140,7 +140,8 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
           { id: "place-1", name: "Teststed", desc: "Test" },
           { id: "place-2", name: "Relasjonssted", desc: "Test" },
           { id: "place-3", name: "Sent åpnet sted", desc: "Test" },
-          { id: "place-4", name: "Sted med vedvarende feil", desc: "Test" }
+          { id: "place-4", name: "Sted med vedvarende feil", desc: "Test" },
+          { id: "place-5", name: "Sted som gjenopprettes", desc: "Test" }
         ];
       },
       async loadNature() {},
@@ -176,7 +177,8 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     ...Array.from({ length: 7 }, (_, index) => `people/test/person-${index + 2}.json`),
     "people/by/oslo/people.json",
     "people/by/oslo/late.json",
-    "people/by/oslo/outage.json"
+    "people/by/oslo/outage.json",
+    "people/by/oslo/recover.json"
   ];
 
   async function fetchMock(input, init = {}) {
@@ -190,12 +192,13 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
         priorityFilesByPlace: {
           "place-1": ["people/by/oslo/people.json"],
           "place-3": ["people/by/oslo/late.json"],
-          "place-4": ["people/by/oslo/outage.json"]
+          "place-4": ["people/by/oslo/outage.json"],
+          "place-5": ["people/by/oslo/recover.json"]
         }
       });
     }
 
-    if (/^data\/people\/(?:by\/oslo\/(?:people|late|outage)\.json|test\/person-)/.test(url)) {
+    if (/^data\/people\/(?:by\/oslo\/(?:people|late|outage|recover)\.json|test\/person-)/.test(url)) {
       const attempts = (peopleAttempts.get(url) || 0) + 1;
       peopleAttempts.set(url, attempts);
       activePeopleFetches += 1;
@@ -206,6 +209,7 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
         (url.endsWith("person-8.json") && attempts === 1)
         || (url.endsWith("/late.json") && init.cache === "reload" && attempts === 2)
         || (url.endsWith("/outage.json") && init.cache === "reload")
+        || (url.endsWith("/recover.json") && attempts <= 2)
       ) {
         return { ok: false, async json() { return null; } };
       }
@@ -215,7 +219,9 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
           ? "9"
           : (url === "data/people/by/oslo/outage.json"
             ? "10"
-            : (url.match(/person-(\d+)/)?.[1] || "x")));
+            : (url === "data/people/by/oslo/recover.json"
+              ? "11"
+              : (url.match(/person-(\d+)/)?.[1] || "x"))));
       if (id === "1") {
         return response({ id: "person-1", name: "Person 1", place_ids: ["place-1"] });
       }
@@ -237,6 +243,9 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
       }
       if (id === "10") {
         return response({ id: "person-10", name: "Person 10", place_ids: ["place-4"] });
+      }
+      if (id === "11") {
+        return response({ id: "person-11", name: "Person 11", place_ids: ["place-5"] });
       }
       return response({ people: [{ id: `person-${id}`, name: `Person ${id}`, place_ids: ["place-1"] }] });
     }
@@ -343,7 +352,7 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
 
   assert.equal(window.HG_PEOPLE_READY, true);
   assert.equal(window.HG_RELATIONS_READY, true);
-  assert.equal(window.PEOPLE.length, peopleFiles.length + 1, "stale aggregat har én ekstra profil før revalidering");
+  assert.equal(window.PEOPLE.length, peopleFiles.length, "stale ekstrarad veier opp for filen som ennå ikke har levert rader");
   assert.equal(peopleAttempts.get("data/people/test/person-8.json"), 2, "feilede People-filer prøves én gang til");
   assert.ok(maxPeopleFetches > 1, `forventet parallell People-lasting, fikk ${maxPeopleFetches}`);
   assert.ok(maxPeopleFetches <= 6, `People-lasting overskred grensen: ${maxPeopleFetches}`);
@@ -429,6 +438,35 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     peopleAttempts.get("data/people/by/oslo/outage.json"),
     3,
     "progress-events må ikke omgå feilgaten før et reelt stedsskifte"
+  );
+
+  assert.equal(
+    peopleAttempts.get("data/people/by/oslo/recover.json"),
+    2,
+    "helt mislykket profilfil har brukt first pass og ordinært retry"
+  );
+  assert.equal(
+    window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE("place-5"),
+    true,
+    "sted med tidligere helt mislykket priority-fil holdes bak lastesperren"
+  );
+  placeCard.dataset.currentPlaceId = "place-5";
+  window.dispatchEvent(new FakeCustomEvent("hg:people-place-revalidation-needed", {
+    detail: { placeId: "place-5" }
+  }));
+  mutationCallback?.([]);
+  await waitUntil(
+    () => window.PEOPLE.some(person => person.id === "person-11"),
+    "tidligere helt mislykket priority-fil ble ikke gjenopprettet ved stedsskifte"
+  );
+  assert.ok(
+    (peopleAttempts.get("data/people/by/oslo/recover.json") || 0) >= 3,
+    "gjenoppretting startet ikke en kontrollert revalidering"
+  );
+  assert.equal(
+    window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE("place-5"),
+    false,
+    "stedet frigjøres etter at den tidligere tomme filen leverer rader"
   );
 
   const peopleManifestIndex = fetchLog.indexOf("data/people/manifest.json");

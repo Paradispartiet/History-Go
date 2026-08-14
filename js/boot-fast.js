@@ -688,6 +688,7 @@
 
       const progressStep = Math.max(1, Math.ceil(peopleFiles.length / 20));
       const loadedRowsByFile = new Map();
+      const attemptedPeopleFiles = new Set();
       const knownManifestIds = new Set();
       const failedRevalidationKeys = new Set();
       let lastRevalidationPlaceId = "";
@@ -747,6 +748,7 @@
       };
 
       const rememberRows = ({ url, rows, cache, ok }) => {
+        attemptedPeopleFiles.add(url);
         if (ok) {
           for (const row of loadedRowsByFile.get(url) || []) {
             const id = String(row?.id || "").trim();
@@ -773,7 +775,7 @@
 
         const targets = peopleFiles.filter(file =>
           isPriorityFileForPlace(file, placeId)
-          && loadedRowsByFile.has(file)
+          && attemptedPeopleFiles.has(file)
           && !revalidatedFiles.has(file)
           && !failedRevalidationKeys.has(`${placeId}:${file}`)
         );
@@ -787,6 +789,7 @@
 
         let refreshedAny = false;
         const rememberRevalidatedRows = ({ url, rows, cache, ok }) => {
+          attemptedPeopleFiles.add(url);
           if (!ok) return;
           refreshedAny = true;
           for (const row of loadedRowsByFile.get(url) || []) {
