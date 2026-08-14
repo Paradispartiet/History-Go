@@ -15,7 +15,7 @@ export default {
   em_filosofi_teknologi_makt_infrastruktur: {
     thinkers: ['Martin Heidegger', 'Langdon Winner', 'Andrew Feenberg'],
     anchors: ['teknologisk mediering', 'infrastruktur', 'politikk', 'Gestell', 'demokratisk kontroll'],
-    debate: 'Teknologifilosofien spør om artefakter bare er nøytrale midler eller om design, infrastruktur og tekniske systemer former handlingsrom og politiske relasjoner. Heidegger, Winner og Feenberg gir ulike forklaringer på denne ikke-nøytraliteten.',
+    debate: 'Teknologifilosofien spør om artefakter bare er nøytrale midler eller om design, infrastruktur og tekniske systemer former handlingsrom og politiske relasjoner. Teknologisk mediering betegner hvordan tekniske ordninger former hva som blir mulig, synlig og praktisk handlingsrelevant, mens demokratisk kontroll spør hvem som kan utfordre og endre slike ordninger. Heidegger, Winner og Feenberg gir ulike forklaringer på denne ikke-nøytraliteten.',
     argument: [
       'P1: Heideggers analyse av Gestell utfordrer instrumentalisme ved å hevde at moderne teknologi ikke bare er redskaper, men en måte verden fremtrer som disponibel ressurs på; dette er en ontologisk diagnose, ikke en påstand om at hver enkelt maskin har samme virkning.',
       'P2: Winners tese om at artefakter kan ha politikk gjør spørsmålet konkret: designvalg kan fordele tilgang, avhengighet og kontroll slik at bestemte maktrelasjoner stabiliseres selv uten kontinuerlige politiske beslutninger.',
@@ -28,7 +28,7 @@ export default {
   em_filosofi_algoritmisk_rettferdighet_ansvar: {
     thinkers: ['John Rawls', 'Helen Nissenbaum', 'Iris Marion Young'],
     anchors: ['algoritmisk rettferdighet', 'fairness-metrikk', 'ansvar', 'sosioteknisk system', 'strukturell urettferdighet'],
-    debate: 'Algoritmisk rettferdighet kan ikke avgjøres ved én matematisk fairness-metrikk når ulike mål er inkompatible og systemet inngår i institusjonelle beslutninger. Rawls, Nissenbaum og Young gir ressurser til å skille fordelingskriterier, kontekstuelle normer og strukturelt ansvar.',
+    debate: 'Algoritmisk rettferdighet kan ikke avgjøres ved én matematisk fairness-metrikk når ulike mål er inkompatible og modellen inngår i et sosioteknisk system av data, mennesker, regler og institusjonelle beslutninger. Youngs perspektiv gjør strukturell urettferdighet relevant når skade produseres av samvirkende praksiser uten én enkelt tilstrekkelig årsaksaktør. Rawls, Nissenbaum og Young gir ressurser til å skille fordelingskriterier, kontekstuelle normer og strukturelt ansvar.',
     argument: [
       'P1: En fairness-metrikk uttrykker et normativt valg om hvilke grupper, feil og fordelingsmønstre som skal behandles likt; teknisk optimalisering kan derfor ikke velge rettferdighetskriteriet uten en forutgående normativ begrunnelse.',
       'P2: Rawlsiansk analyse retter blikket mot hvordan institusjoner fordeler grunnleggende muligheter, mens Nissenbaums kontekstuelle integritet viser at legitim databruk også avhenger av hvilke informasjonsnormer som gjelder i den konkrete sosiale konteksten.',
@@ -41,7 +41,7 @@ export default {
   em_filosofi_data_personvern_overvaking: {
     thinkers: ['Samuel Warren', 'Helen Nissenbaum', 'Michel Foucault'],
     anchors: ['personvern', 'kontekstuell integritet', 'overvåking', 'panoptikon', 'informasjonsflyt'],
-    debate: 'Personvern kan forstås som vern mot inntrengning, kontroll over informasjon eller passende informasjonsflyt i sosiale kontekster. Overvåkingsfilosofi legger til spørsmålet om makt: mennesker kan endre atferd og avhengighetsforhold selv når ingen enkelt databit er hemmelig.',
+    debate: 'Personvern kan forstås som vern mot inntrengning, kontroll over informasjon eller passende informasjonsflyt i sosiale kontekster. Foucaults panoptikon er relevant som modell for hvordan muligheten for observasjon kan internaliseres og forme atferd. Overvåkingsfilosofi legger dermed til spørsmålet om makt: mennesker kan endre atferd og avhengighetsforhold selv når ingen enkelt databit er hemmelig.',
     argument: [
       'P1: Warren og Brandeis’ klassiske vern av privatliv viser at skade kan bestå i uønsket eksponering og ikke bare i økonomisk tap eller fysisk inntrengning.',
       'P2: Nissenbaums kontekstuelle integritet forklarer hvorfor informasjon kan være offentlig i én relasjon og likevel misbrukes når den flyttes til en ny aktør, et nytt formål eller en ny beslutningskontekst uten passende normer.',
@@ -54,7 +54,7 @@ export default {
   em_filosofi_fenomenologi_livsverden_kropp: {
     thinkers: ['Edmund Husserl', 'Martin Heidegger', 'Maurice Merleau-Ponty'],
     anchors: ['livsverden', 'intentionalitet', 'væren-i-verden', 'levd kropp', 'fenomenologisk reduksjon'],
-    debate: 'Fenomenologien undersøker hvordan verden fremtrer i erfaring før den reduseres til en rent objektiverende beskrivelse. Husserl, Heidegger og Merleau-Ponty flytter fokus fra bevissthetens intentionalitet til praktisk væren-i-verden og den levde kroppen.',
+    debate: 'Fenomenologien undersøker hvordan verden fremtrer i erfaring før den reduseres til en rent objektiverende beskrivelse. Fenomenologisk reduksjon betegner Husserls metodiske forsøk på å sette bestemte eksistensantakelser i parentes, mens levd kropp hos Merleau-Ponty viser kroppen som situert erfarings- og handlingsperspektiv. Husserl, Heidegger og Merleau-Ponty flytter dermed fokus fra bevissthetens intentionalitet til praktisk væren-i-verden og kroppslig situering.',
     argument: [
       'P1: Husserls fenomenologiske reduksjon forsøker å sette naive eksistensantakelser i parentes for å beskrive hvordan objekter gis som meningsfulle for bevisstheten, og gjør intentionalitet til en struktur ved erfaringen snarere enn en tilfeldig egenskap.',
       'P2: Heidegger utfordrer et rent subjekt–objekt-skjema ved å vise at mennesker først møter verden praktisk som væren-i-verden, der redskaper, prosjekter og andre allerede danner en meningshorisont.',
@@ -67,7 +67,7 @@ export default {
   em_filosofi_hermeneutikk_fortolkning: {
     thinkers: ['Friedrich Schleiermacher', 'Hans-Georg Gadamer', 'Paul Ricoeur'],
     anchors: ['hermeneutisk sirkel', 'forforståelse', 'horisontsammensmeltning', 'mistankens hermeneutikk', 'fortolkning'],
-    debate: 'Hermeneutikk spør hvordan deler og helhet, historisk avstand og fortolkerens forforståelse påvirker mening. Gadamer og Ricoeur avviser idealet om helt forutsetningsløs lesning, men forsøker samtidig å bevare forskjellen mellom bedre og dårligere fortolkninger.',
+    debate: 'Hermeneutisk sirkel betegner forholdet der forståelsen av deler avhenger av en foreløpig forståelse av helheten, samtidig som helheten revideres gjennom delene. Hermeneutikk spør videre hvordan historisk avstand og fortolkerens forforståelse påvirker mening. Gadamer og Ricoeur avviser idealet om helt forutsetningsløs lesning, men forsøker samtidig å bevare forskjellen mellom bedre og dårligere fortolkninger.',
     argument: [
       'P1: Den hermeneutiske sirkelen innebærer at forståelsen av en tekstpassasje avhenger av en foreløpig forståelse av helheten, mens helhetsforståelsen samtidig revideres gjennom delene; dette er en revisjonsstruktur, ikke nødvendigvis en logisk sirkel.',
       'P2: Gadamer viser at forforståelse og tradisjon er betingelser for forståelse, men horisontsammensmeltning krever at fortolkeren lar teksten utfordre egne forventninger i stedet for bare å projisere dem.',
