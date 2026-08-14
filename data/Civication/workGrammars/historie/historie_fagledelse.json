@@ -1,0 +1,18 @@
+{
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"historie","role_scope":"historie_fagledelse","role_id":"historie_fagledelse",
+  "badge_binding":{"badge_id":"historie","badge_titles":["Seksjonsleder","Avdelingsleder"]},
+  "work_world":"Fagledelse der kapasitet, kvalitet, personell og delegasjon må balanseres uten at lederpress erstatter faglig metode.",
+  "task_families":["prioritering","bemanning","kvalitetssikring","ressursstyring","oppfolging","eskalering"],
+  "work_loops":["behov -> kapasitet -> prioritering -> fordeling -> oppfolging -> kvalitet -> justering","avvik -> risiko -> ansvar -> tiltak -> dokumentasjon -> læring"],
+  "pressure_axes":["kapasitet_vs_krav","frist_vs_kvalitet","lederonske_vs_faglig_uavhengighet"],
+  "practice_stories":[
+    {"id":"kapasitetsklemme","setup":"Teamet har flere kritiske leveranser enn det kan håndtere.","decision":"Prioriter eksplisitt, dokumenter hva som utsettes og eskaler rest-risiko.","learning":"ledelse er også å synliggjøre hva som ikke kan gjøres"},
+    {"id":"faglig_uenighet","setup":"To erfarne medarbeidere er uenige om metode.","decision":"Krev begrunnelser, avklar beslutningskriterier og dokumenter valget.","learning":"autoritet erstatter ikke faglig begrunnelse"},
+    {"id":"sen_feil","setup":"En alvorlig feil oppdages rett før publisering.","decision":"Stans eller avgrens leveransen og korriger årsaken før omdømmehensyn.","learning":"kvalitet må tåle ubehagelige stopp"},
+    {"id":"konklusjonspress","setup":"Overordnet ønsker en bestemt faglig konklusjon.","decision":"Beskytt faglig sporbarhet og eskaler dersom presset truer integriteten.","learning":"lederlinjen kan styre oppdrag, ikke evidens"},
+    {"id":"kompetansehull","setup":"En oppgave krever kompetanse teamet ikke har.","decision":"Hent inn kompetanse eller reduser mandatet fremfor å late som kapasiteten finnes.","learning":"myndighet er ikke det samme som kompetanse"}
+  ],
+  "quality_axes":["prioritering","faglig_integritet","kapasitet","arbeidsmiljo","delegasjon","risikostyring"],
+  "authority_boundary":{"may":["lede og prioritere innen delegert ramme"],"may_not":["overstyre lov eller delegasjon","diktere faglige funn","skjule kapasitetsrisiko","late som lederrolle gir manglende fagkompetanse"]}
+}
