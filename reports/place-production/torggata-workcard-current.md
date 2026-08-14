@@ -30,6 +30,7 @@
 - Fase 8C-audit: `reports/place-production/torggata-phase8c-brands-audit-v1.json`
 - Fase 8D-audit: `reports/place-production/torggata-phase8d-structures-audit-v1.json`
 - Fase 8E-audit: `reports/place-production/torggata-phase8e-rounds-closeout-v1.json`
+- Gjenåpnet fase 8F-audit: `reports/place-production/torggata-phase8f-round-coherence-audit-v1.md`
 - Fase 9-audit: `reports/place-production/torggata-phase9-onsite-audit-v1.json`
 - Fase 10-audit: `reports/place-production/torggata-phase10-quiz-audit-v1.json`
 - Fase 11-audit: `reports/place-production/torggata-phase11-observer-note-route-audit-v1.json`
@@ -60,7 +61,7 @@
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
 | 7. Popupfaner | **GJENÅPNET – 7D FØR/ETTER, 7F NYHETER, 7G LESESPOR OG 7H MER LØST** | gammelt–nå-paret, to daterte 2026-notiser, tre åpne Lesespor og et kildebelagt språk-/observasjonslag er publisert |
-| 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
+| 8. Rundinger | **GJENÅPNET OG REPARERT I 8F; MANUELL RE-QA NESTE** | 4+1 beholdt som People · Bilder · Brands · Relaterte steder; den enslige Objects-posten og own-place-baserte Structures-rundingen er fjernet |
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
 | 11. Observer, Notat og Rute | **GODKJENT** | eksisterende Observer-, Notat- og navigasjonsruntime auditert; historisk rute begrunnet N/A |
@@ -73,8 +74,8 @@
 | 18. Legacy Wonderkammer | **GODKJENT N/A** | ingen Torggata-Wonderkammerdata; tidligere materiale er allerede klassifisert til canonical eiere |
 | 19. Hovedbilder og rundingsbilder | **GODKJENT** | to lokale hovedbilder; People 7/7, Objects 1/1 og Brands 13/13 bildeklare med proveniens |
 | 20. Data-QA | **GODKJENT** | canonical data, indekser, referanser og subsystemporter bestått på siste innholds-head |
-| 21. UI-QA | **GODKJENT ETTER SIKRINGSENDRING** | WebGL-feil stopper ikke lenger app-/PlaceCard-boot; produksjonsflaten kontrollert |
-| 22. Innholds-QA | **GODKJENT** | 18/18 claims, Story, 5 × 7 Quiz, People 21/21, Brands 13/13, bilder og 4+1-rundinger kontrollert uten filler |
+| 21. UI-QA | **HISTORISK GODKJENT; GJENÅPNET FOR RE-QA** | ny 8F-rundingsprofil må åpnes og kontrolleres manuelt i produksjonsflaten |
+| 22. Innholds-QA | **HISTORISK GODKJENT; GJENÅPNET FOR RE-QA** | alle fem redaksjonelle funn er datareparert; samlet innholds- og UI-kontroll gjenstår |
 | 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
 | 24. Ett-sted-PR | **TEKNISK MERGET; REDAKSJONELL KVALITET GJENÅPNET** | PR #4962 og deploy er historisk verifisert, men manuell sluttvurdering avdekket fem blokkerende kvalitetsavvik |
 
@@ -834,6 +835,25 @@ Bindende rekkefølge videre:
 2. Fase 21/22 ny manuell UI- og innholds-QA — kø;
 3. Fase 24 ny sluttport — kø.
 
+## Gjenåpnet fase 8F – rundingskoherens
+
+- 4+1-kontrakten beholdes: fire innholdsrundinger i 2 × 2 og separat Badge.
+- Torggatas logical rounds er nå `people · images · brands · related`.
+- Den enslige Objects-posten er fjernet fra canonical place-data.
+- Structures-poster for Eldorado og Torggata Bad er fjernet fordi de har egne place-identiteter og ikke skal bære parent-place Torggata.
+- Relaterte steder er eksplisitte canonical lenker til `storgata`, `youngstorget` og `eldorado_bokhandel`; de presenteres ikke som Torggata-objekter eller -bygg.
+- Rundingskontrakten og runtime har en avgrenset, validert koherensprofil. Legacy `rounds` er fortsatt forbudt.
+- Automatiske tester kontrollerer fire logical IDs, samlingsinnhold, fallback, DOM-rekkefølge og separat Badge. Manuell browser-QA gjenstår.
+
+**Gjenåpnet fase 8F rundingskoherens = LØST AV DETTE ENDRINGSSETTET.**
+
+Neste forbedring: **Fase 21/22 ny manuell UI- og innholds-QA – KØET SOM NESTE**.
+
+Bindende rekkefølge videre:
+
+1. Fase 21/22 ny manuell UI- og innholds-QA — neste;
+2. Fase 24 ny sluttport og seksdelt re-score — kø.
+
 ## Fase 24 – Ett-sted-PR
 
 ### Godkjent sluttresultat
@@ -853,13 +873,13 @@ Bindende rekkefølge videre:
 
 ## Manuell sluttvurdering – kvalitetsstatus gjenåpnet
 
-Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket opprinnelig fem blokkerende avvik. Punkt 1–4 er nå løst i de gjenåpnede fasene 7D, 7F, 7G og 7H; bare rundingsfunnet er fortsatt åpent:
+Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket opprinnelig fem blokkerende avvik. Alle fem opprinnelige redaksjonelle innholdsfunn er nå løst i de gjenåpnede fasene 7D, 7F, 7G, 7H og 8F; manuell samlet re-QA gjenstår:
 
 1. **LØST I GJENÅPNET FASE 7D – Før/etter.** Det svake 2009/2017-paret er erstattet av Torggata 30–36 mot Hausmanns gate, ca. 1965 mot 2025, med samme korte gatesegment og stabile ankere. Torggata Bad er avvist fordi badet har egen place-oppføring.
 2. **LØST I GJENÅPNET FASE 7F – Nyheter.** To daterte 2026-notiser fra Oslo kommune og Torggata Gateforening fyller fanen med aktuelle, gate-spesifikke opplysninger; smale eller stedsskjeve treff er holdt tilbake.
 3. **LØST I GJENÅPNET FASE 7G – Lesespor.** Tre åpne, direkte lesbare og annoterte spor fra Oslo byleksikon, TØI og NLA gir historisk, empirisk og fysisk/faglig fordypning om selve gaten.
 4. **LØST I GJENÅPNET FASE 7H – Mer.** Tre kildebelagte språkspor og fem observerbare/tolkende gatepunkter fyller fanen uten tilfeldig objektfyll eller lån fra egne places.
-5. **Objects og Structures er kunstig splittet.** Objects bæres bare av én gjenstand, samtidig som Structures/Bygg dekker fysiske stedselementer. Rundingene er derfor ikke tydelige nok som to separate brukeropplevelser.
+5. **LØST I GJENÅPNET FASE 8F – rundingskoherens.** People · Bilder · Brands · Relaterte steder erstatter den enslige Objects-posten og own-place-baserte Structures-rundingen; Badge er fortsatt separat.
 
 ### Påkrevde forbedringer
 
@@ -869,12 +889,12 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 - **fullført:** produser relevante, daterte Nyheter etter fersksøk;
 - **fullført:** produser et reelt Lesespor med åpent, direkte lesbart Torggata-materiale etter repo- og kildesøk;
 - **fullført:** produser et reelt Mer-lag fra språk og observerbar gateutforming uten tilfeldig objektfyll;
-- revider rundingsvalget/kontrakten slik at fire innholdsrundinger fortsatt vises, men uten én kunstig Objects-runding eller uklar Objects/Structures-overlapp;
+- **fullført:** revider rundingsvalget/kontrakten slik at fire innholdsrundinger fortsatt vises, men uten én kunstig Objects-runding eller uklar Objects/Structures-overlapp;
 - gjennomfør ny manuell slutt-QA før ferdigstatus kan gjeninnføres.
 
 ## Revidert seksdelt kvalitetsvurdering
 
-> Denne tabellen dokumenterer gjenåpningsøyeblikket før fase 7D, 7F, 7G og 7H ble reparert. Den er ikke en ny sluttvurdering. Én redaksjonell blokker gjenstår, og full seksdelt re-score skal først gjøres etter rundingskoherens og ny manuell UI-QA.
+> Denne tabellen dokumenterer gjenåpningsøyeblikket før fase 7D, 7F, 7G, 7H og 8F ble reparert. Den er ikke en ny sluttvurdering. Ingen redaksjonell innholdsblokker gjenstår, men full seksdelt re-score kan først gjøres etter ny manuell UI- og innholds-QA.
 
 | Dimensjon | Score | Konkret evidens |
 | --- | ---: | --- |
@@ -885,8 +905,8 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 | Sikkerhet og ansvarlighet | **4/5** | People-holdbacks, kildegrenser og assetkontroll består; ingen nye sikkerhetsavvik er funnet. |
 | Vedlikeholdbarhet og etterprøvbarhet | **4/5** | Sporbarheten er god, men den tidligere kvalitetsporten fanget ikke brukeropplevelsens svakheter og må nå skjerpes. |
 
-**Historisk snapshot ved gjenåpning: 21/30.** Dekning og redaksjonell kvalitet var under minimum 4/5, med fem kritiske funn og fem uløste blokkere. Etter reparerte faser 7D, 7F, 7G og 7H er Før/etter-, Nyheter-, Lesespor- og Mer-funnene løst, og én redaksjonell blokker gjenstår. Full ny score settes først etter rundingsfasen og manuell UI-QA.
+**Historisk snapshot ved gjenåpning: 21/30.** Dekning og redaksjonell kvalitet var under minimum 4/5, med fem kritiske funn og fem uløste blokkere. Etter reparerte faser 7D, 7F, 7G, 7H og 8F er alle fem redaksjonelle innholdsfunn løst. Full ny score settes først etter manuell UI- og innholds-QA.
 
-**Gjeldende kvalitetsport: IKKE BESTÅTT – ÉN REDAKSJONELL BLOKKER GJENSTÅR.**
+**Gjeldende kvalitetsport: IKKE BESTÅTT – INGEN ÅPNE INNHOLDSFUNN, MEN MANUELL RE-QA GJENSTÅR.**
 
 **Torggata = IKKE SLUTTFØRT.**
