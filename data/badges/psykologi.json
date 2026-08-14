@@ -5,117 +5,21 @@
   "color": "#06d6a0",
   "image": "bilder/merker/psykologi.PNG",
   "description": "For dem som vil forstå mennesker – vaner, følelser, grupper og indre liv.",
+  "career_life_evidence": "data/Civication/psykologiCareerLifeEvidence.json",
   "tiers": [
-    {
-      "label": "Miljøassistent",
-      "threshold": 5,
-      "career_offer": {
-        "policy": "direct"
-      }
-    },
-    {
-      "label": "Sosialassistent",
-      "threshold": 10,
-      "career_offer": {
-        "policy": "direct"
-      }
-    },
-    {
-      "label": "Aktivitetsleder (omsorgsarbeid)",
-      "threshold": 15,
-      "career_offer": {
-        "policy": "direct"
-      }
-    },
-    {
-      "label": "Miljøarbeider",
-      "threshold": 25,
-      "career_offer": {
-        "policy": "direct"
-      }
-    },
-    {
-      "label": "Veileder",
-      "threshold": 40,
-      "career_offer": {
-        "policy": "direct"
-      }
-    },
-    {
-      "label": "Rådgiver",
-      "threshold": 60,
-      "career_offer": {
-        "policy": "direct"
-      }
-    },
-    {
-      "label": "Seniorrådgiver",
-      "threshold": 85,
-      "career_offer": {
-        "policy": "direct"
-      }
-    },
-    {
-      "label": "Psykolog",
-      "threshold": 115,
-      "career_offer": {
-        "policy": "authorization_required",
-        "qualification_ids": [
-          "no_psychologist_authorization_or_license"
-        ]
-      }
-    },
-    {
-      "label": "Spesialistpsykolog",
-      "threshold": 150,
-      "career_offer": {
-        "policy": "authorization_required",
-        "qualification_ids": [
-          "no_psychologist_authorization_or_license",
-          "no_psychologist_specialist_approval"
-        ]
-      }
-    },
-    {
-      "label": "Fagansvarlig",
-      "threshold": 190,
-      "career_offer": {
-        "policy": "appointment_required",
-        "qualification_ids": [
-          "employer_appointment"
-        ]
-      }
-    },
-    {
-      "label": "Klinikkleder",
-      "threshold": 240,
-      "career_offer": {
-        "policy": "appointment_required",
-        "qualification_ids": [
-          "employer_appointment"
-        ]
-      }
-    },
-    {
-      "label": "Forsker (psykologi)",
-      "threshold": 300,
-      "career_offer": {
-        "policy": "qualification_required",
-        "qualification_ids": [
-          "academic_qualification_and_employment"
-        ]
-      }
-    },
-    {
-      "label": "Professor (psykologi)",
-      "threshold": 380,
-      "career_offer": {
-        "policy": "qualification_required",
-        "qualification_ids": [
-          "academic_qualification_and_employment"
-        ]
-      }
-    }
+    {"label":"Miljøassistent","threshold":5,"career_offer":{"title":"Miljøassistent","policy":"direct","salary_tier":1,"role_scope":"psykologi_miljoarbeid"}},
+    {"label":"Sosialassistent","threshold":10,"career_offer":{"title":"Sosialassistent","policy":"direct","salary_tier":2,"role_scope":"psykologi_miljoarbeid"}},
+    {"label":"Aktivitetsleder (omsorgsarbeid)","threshold":15,"career_offer":{"title":"Aktivitetsleder (omsorgsarbeid)","policy":"direct","salary_tier":3,"role_scope":"psykologi_miljoarbeid"}},
+    {"label":"Miljøarbeider","threshold":25,"career_offer":{"title":"Miljøarbeider","policy":"direct","salary_tier":4,"role_scope":"psykologi_miljoarbeid"}},
+    {"label":"Veileder","threshold":40,"career_offer":{"title":"Veileder","policy":"direct","salary_tier":5,"role_scope":"psykologi_arbeids_og_karriereveiledning"}},
+    {"label":"Rådgiver","threshold":60,"career_offer":{"title":"Rådgiver","policy":"direct","salary_tier":6,"role_scope":"psykologi_arbeids_og_karriereveiledning"}},
+    {"label":"Seniorrådgiver","threshold":85,"career_offer":{"title":"Seniorrådgiver","policy":"direct","salary_tier":7,"role_scope":"psykologi_arbeids_og_karriereveiledning"}},
+    {"label":"Psykolog","threshold":115,"career_offer":{"title":"Psykolog","policy":"authorization_required","qualification_ids":["no_psychologist_authorization_or_license"],"salary_tier":8,"role_scope":"psykolog"}},
+    {"label":"Spesialistpsykolog","threshold":150,"career_offer":{"title":"Spesialistpsykolog","policy":"authorization_required","qualification_ids":["no_psychologist_authorization_or_license","no_psychologist_specialist_approval"],"salary_tier":9,"role_scope":"spesialistpsykolog"}},
+    {"label":"Fagansvarlig","threshold":190,"career_offer":{"title":"Fagansvarlig","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":10,"role_scope":"fagansvarlig"}},
+    {"label":"Klinikkleder","threshold":240,"career_offer":{"title":"Klinikkleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":11,"role_scope":"klinikkleder"}},
+    {"label":"Forsker (psykologi)","threshold":300,"career_offer":{"title":"Forsker (psykologi)","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":12,"role_scope":"forsker_psykologi"}},
+    {"label":"Professor (psykologi)","threshold":380,"career_offer":{"title":"Professor (psykologi)","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":13,"role_scope":"professor_psykologi"}}
   ],
   "sub": [
     "kognitiv_psykologi",
