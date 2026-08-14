@@ -45,6 +45,8 @@
     religion_fagledelse: 'religion_fagledelse',
     filosofi_forskning_og_formidling: 'filosofi_forskning_og_formidling',
     filosofi_undervisning_og_akademia: 'filosofi_undervisning_og_akademia',
+    musikk_scene_og_produksjon: 'musikk_scene_og_produksjon',
+    musikk_utoving_og_ensemble: 'musikk_utoving_og_ensemble',
     subkultur_arrangementsdrift: 'subkultur_kulturhusvert',
     subkultur_program_og_koordinering: 'subkultur_arrangementsplanlegger',
     subkultur_produksjon_og_prosjekt: 'subkultur_produsent',
@@ -97,6 +99,10 @@
   const FILOSOFI_ROLE_SCOPE_BY_TITLE = {
     idehistoriker: 'filosofi_forskning_og_formidling', filosof: 'filosofi_forskning_og_formidling',
     foreleser: 'filosofi_undervisning_og_akademia', professor: 'filosofi_undervisning_og_akademia'
+  };
+  const MUSIKK_ROLE_SCOPE_BY_TITLE = {
+    sceneassistent: 'musikk_scene_og_produksjon', produksjonsassistent: 'musikk_scene_og_produksjon', tekniker_lys_lyd: 'musikk_scene_og_produksjon', produksjonskoordinator: 'musikk_scene_og_produksjon',
+    utovende_musiker: 'musikk_utoving_og_ensemble', fast_musiker_band_ensemble: 'musikk_utoving_og_ensemble'
   };
   const SUBKULTUR_ROLE_SCOPE_BY_TITLE = {
     kulturhusvert: 'subkultur_arrangementsdrift', arrangementscrew: 'subkultur_arrangementsdrift', produksjonsassistent: 'subkultur_arrangementsdrift', kulturmedarbeider: 'subkultur_arrangementsdrift',
@@ -156,6 +162,11 @@
       if (FILOSOFI_ROLE_SCOPE_BY_TITLE[roleKey]) return FILOSOFI_ROLE_SCOPE_BY_TITLE[roleKey];
       if (FILOSOFI_ROLE_SCOPE_BY_TITLE[titleKey]) return FILOSOFI_ROLE_SCOPE_BY_TITLE[titleKey];
     }
+    if (careerId === 'musikk') {
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('musikk_')) return roleKey;
+      if (MUSIKK_ROLE_SCOPE_BY_TITLE[roleKey]) return MUSIKK_ROLE_SCOPE_BY_TITLE[roleKey];
+      if (MUSIKK_ROLE_SCOPE_BY_TITLE[titleKey]) return MUSIKK_ROLE_SCOPE_BY_TITLE[titleKey];
+    }
     if (careerId === 'by') {
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('by_')) return roleKey;
       if (BY_ROLE_SCOPE_BY_TITLE[titleKey]) return BY_ROLE_SCOPE_BY_TITLE[titleKey];
@@ -200,6 +211,8 @@
     if (roleKey.includes('religion_fagledelse')) return 'religion_fagledelse';
     if (roleKey.includes('filosofi_forskning_og_formidling')) return 'filosofi_forskning_og_formidling';
     if (roleKey.includes('filosofi_undervisning_og_akademia')) return 'filosofi_undervisning_og_akademia';
+    if (roleKey.includes('musikk_scene_og_produksjon')) return 'musikk_scene_og_produksjon';
+    if (roleKey.includes('musikk_utoving_og_ensemble')) return 'musikk_utoving_og_ensemble';
     if (roleKey.includes('subkultur_arrangementsdrift')) return 'subkultur_arrangementsdrift';
     if (roleKey.includes('subkultur_program_og_koordinering')) return 'subkultur_program_og_koordinering';
     if (roleKey.includes('subkultur_produksjon_og_prosjekt')) return 'subkultur_produksjon_og_prosjekt';
