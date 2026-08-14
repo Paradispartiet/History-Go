@@ -37,6 +37,8 @@ map · flora · fauna · [kategoriens fjerde]
 
 Dette er standardprofiler, ikke en kvote som kan overstyre redaksjonell kvalitet. Når standarden gir en tynn, kunstig eller overlappende samling, skal stedet bruke en auditert `round_profile.content_round_ids` med nøyaktig fire IDs.
 
+Uten en gyldig stedsoverstyring er `Bilder` som eneste generelle reserve når kategoriens fjerde samling mangler; reserven gjør aldri en tom eller kunstig samling gyldig.
+
 For vanlige steder støtter runtime en avgrenset koherensoverstyring:
 
 ```json
