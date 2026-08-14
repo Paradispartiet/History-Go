@@ -146,22 +146,6 @@
         bearing: 0,
         antialias: true
       });
-
-      MAP.addControl(
-        new maplibregl.NavigationControl({ showCompass: false }),
-        "bottom-right"
-      );
-
-      MAP.on("load", () => {
-        mapReady = true;
-        ensureMapStyleToggle(containerId);
-        MAP.resize();
-        applyStandardMapPalette();
-        drawPlaceMarkers();
-        moveMarkersOnTop();
-      });
-
-      return MAP;
     } catch (error) {
       MAP = null;
       mapReady = false;
@@ -170,6 +154,22 @@
       console.warn("[HGMap] WebGL-kart utilgjengelig; fortsetter uten kart.", error);
       return null;
     }
+
+    MAP.addControl(
+      new maplibregl.NavigationControl({ showCompass: false }),
+      "bottom-right"
+    );
+
+    MAP.on("load", () => {
+      mapReady = true;
+      ensureMapStyleToggle(containerId);
+      MAP.resize();
+      applyStandardMapPalette();
+      drawPlaceMarkers();
+      moveMarkersOnTop();
+    });
+
+    return MAP;
   }
 
   function resize() {

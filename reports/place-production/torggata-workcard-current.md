@@ -639,7 +639,7 @@ Neste aktive fase: **19. Hovedbilder og rundingsbilder**.
 TIDLIGERE-ARBEID-SØK: UTFØRT
 BILDEBASELINE: fase 8B Objects, fase 12 People-image review og fase 13 Brands-logoport
 KONKRET REGRESJONSEVIDENS: ingen
-BESLUTNING: BEHOLD – alle faktisk valgte rundinger er bildeklare; holdbacks forblir skjult
+BESLUTNING: BEHOLD – fire valgte innholdsrundinger; People, Objects og Brands er bildeklare, mens Structures bruker godkjent ikon-/antallsvisning uten kunstig bilde
 ```
 
 ### Godkjent resultat
@@ -649,7 +649,7 @@ BESLUTNING: BEHOLD – alle faktisk valgte rundinger er bildeklare; holdbacks fo
 - Objects-rundingen har 1/1 konkret objektfoto av Byrute 8-skiltet med fotograf, Commons-kildeside og CC BY-SA 4.0.
 - Brands-rundingen har 13/13 lokale verifiserte logo-/ordmerkeassets med attribusjon; ingen generert eller rekonstruert logo.
 - Historiske personbilder og historiske ordmerker er identifisert som dokumentasjon, ikke fremstilt som samtidige foto.
-- Structures/Works er ikke valgt som canonical runding og får derfor ikke kunstige previews bare for fasefullføring.
+- Structures er den fjerde canonical rundingen med 2/2 kildebelagte bygg. Ingen struktur har en separat verifisert bilderettighetskjede, så rundingen bruker den godkjente ikon-/antallsvisningen; Works er ikke valgt og får ikke kunstig preview.
 
 **Fase 19 Hovedbilder og rundingsbilder = GODKJENT.**
 
@@ -679,16 +679,16 @@ Neste aktive fase: **21. UI-QA**.
 
 Produksjonskontrollen på GitHub Pages fant at en nettleser uten WebGL stoppet hele `bootCritical` i `maplibregl.Map`. Dette gjorde ikke bare kartet utilgjengelig; det hindret også søk, Nearby og PlaceCard og viste «Appen kunne ikke lastes».
 
-`HGMap.initMap` fanger nå bare kartkonstruksjonsfeilen, markerer kartcontaineren med `data-map-unavailable=1`, gir en tilgjengelig etikett og lar resten av appen laste. Nettlesere med WebGL følger uendret kartflyt.
+`HGMap.initMap` fanger nå bare kartkonstruksjonsfeilen, markerer kartcontaineren med `data-map-unavailable=1` og gir en tilgjengelig etikett. Den senere index-sanity-porten godtar dette eksplisitte degraderte kartstadiet, slik at resten av appen laster. Nettlesere med WebGL følger uendret kartflyt.
 
 ### Godkjent resultat
 
 - Appen kan boote og laste Torggata selv når WebGL ikke finnes.
 - Kartmarkør/koordinat er fortsatt dekket av canonical coordinate gate på ordinære WebGL-klienter.
 - Nearby/søk, PlaceCard, navn, By-kategori, hovedbilde, desc og popup kan åpnes uten at kartmotoren blir en hard avhengighet.
-- Popup- og rundingskontraktene, fast Badges, tre innholdsrundinger, People-korttekst, Brands, På stedet, visit, favoritt og quiz/visit-separasjon beholdes fra tidligere grønne faseporter.
+- Popup- og rundingskontraktene beholdes med fire innholdsrundinger: People, Objects, Brands og Structures, samt separat fast Badge. People-korttekst, På stedet, visit, favoritt og quiz/visit-separasjon beholdes fra tidligere grønne faseporter.
 - Tomme/irrelevante flater og legacy 3×3/Wonderkammer er fortsatt undertrykt.
-- Regresjonstesten låser at WebGL-konstruksjonsfeil degraderer kartet, men ikke kaster videre til app-boot.
+- Regresjonstesten låser både at WebGL-konstruksjonsfeil degraderer kartet og at index-sanity godtar den eksplisitte `map-unavailable`-tilstanden uten å stoppe app-boot.
 
 **Fase 21 UI-QA = GODKJENT ETTER SIKRINGSENDRING.**
 
