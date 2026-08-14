@@ -47,6 +47,18 @@ test("final merge, deployment and 4+1 production evidence are locked", () => {
   assert.equal(gate.completion_evidence.badge_separate, true);
 });
 
+test("the mandatory six-part quality assessment passes the completion threshold", () => {
+  const assessment = gate.quality_assessment;
+  assert.equal(assessment.dimensions.length, 6);
+  assert.equal(assessment.total, 29);
+  assert.equal(assessment.required_total, 27);
+  assert.ok(assessment.dimensions.every((dimension) => dimension.score >= 4));
+  assert.deepEqual(assessment.critical_findings, []);
+  assert.deepEqual(assessment.unresolved_blockers, []);
+  assert.equal(assessment.gate, "PASSED_HIGH_QUALITY");
+  assert.match(assessment.automatic_checks_limit, /does not by itself prove editorial or visual quality/);
+});
+
 test("global checklist mirrors the canonical four-plus-separate-Badge contract", () => {
   const checklist = fs.readFileSync("docs/PLACE_PRODUCTION_CHECKLIST.md", "utf8");
   const contract = fs.readFileSync("data/places/README_place_rounds.md", "utf8");
