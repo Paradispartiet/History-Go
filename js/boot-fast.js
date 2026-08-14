@@ -182,12 +182,30 @@
     return window.HG_PEOPLE_READY === true && window.HG_RELATIONS_READY === true;
   }
 
-  function peopleAndRelationsUsable() {
-    const peopleUsable = window.HG_PEOPLE_READY === true
+  function peopleDataUsable() {
+    return window.HG_PEOPLE_READY === true
       || (Array.isArray(window.PEOPLE) && window.PEOPLE.length > 0);
-    const relationsUsable = window.HG_RELATIONS_READY === true
-      || (Array.isArray(window.RELATIONS) && window.RELATIONS.length > 0);
-    return peopleUsable && relationsUsable;
+  }
+
+  function hasVisibleDirectPeopleForPlace(placeId) {
+    const pid = String(placeId || "").trim();
+    if (!pid || !Array.isArray(window.PEOPLE)) return false;
+    return window.PEOPLE.some(person => {
+      const placeIds = [
+        person?.placeId,
+        person?.place_id,
+        person?.place,
+        person?.places,
+        person?.placeIds,
+        person?.place_ids,
+        person?.source_place_id
+      ].flatMap(value => Array.isArray(value) ? value : [value])
+        .map(value => String(value || "").trim())
+        .filter(Boolean);
+      const holdbacks = (Array.isArray(person?.roundHoldbacks) ? person.roundHoldbacks : [])
+        .map(value => String(value || "").trim());
+      return placeIds.includes(pid) && !holdbacks.includes(pid);
+    });
   }
 
   function getCurrentPlaceId() {
@@ -225,7 +243,7 @@
   }
 
   function scheduleCurrentPlacePeopleRefresh() {
-    if (!peopleAndRelationsUsable() || currentPlacePeopleRefreshScheduled) return;
+    if (!peopleDataUsable() || currentPlacePeopleRefreshScheduled) return;
     currentPlacePeopleRefreshScheduled = true;
 
     setTimeout(() => {
@@ -249,6 +267,24 @@
       list?.removeAttribute("aria-busy");
       if (icon?.dataset) delete icon.dataset.hgPeopleDataState;
       if (list?.dataset) delete list.dataset.hgPeopleDataState;
+
+      // Initial PlaceCard-render og People-last kan fullføres i motsatt
+      // rekkefølge. Hvis en sen, tom render har skrevet 0 etter at dataene er
+      // klare, gjør én ny render for dette stedet i stedet for å godta stale UI.
+      const placeId = getCurrentPlaceId();
+      const previewReady = Boolean(icon?.querySelector?.("img"))
+        || icon?.dataset?.roundReady === "true";
+      if (
+        icon
+        && !previewReady
+        && hasVisibleDirectPeopleForPlace(placeId)
+        && icon.dataset.hgPeopleStaleRefreshFor !== placeId
+      ) {
+        icon.dataset.hgPeopleStaleRefreshFor = placeId;
+        scheduleCurrentPlacePeopleRefresh();
+      } else if (icon?.querySelector?.("img") && icon?.dataset) {
+        delete icon.dataset.hgPeopleStaleRefreshFor;
+      }
       return;
     }
 
