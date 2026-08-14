@@ -277,7 +277,10 @@
   }
 
   function scheduleCurrentPlacePeopleRefresh() {
-    if (!peopleDataUsable() || currentPlacePeopleRefreshScheduled) return;
+    const placeId = getCurrentPlaceId();
+    const placeNeedsRevalidation = typeof window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE === "function"
+      && window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE(placeId);
+    if (!peopleDataUsable() || placeNeedsRevalidation || currentPlacePeopleRefreshScheduled) return;
     currentPlacePeopleRefreshScheduled = true;
 
     setTimeout(() => {
@@ -293,7 +296,10 @@
   function updatePeopleSurfaceState() {
     const icon = document.getElementById("pcPeopleIcon");
     const list = document.getElementById("pcPeopleList");
-    const ready = peopleAndRelationsReady();
+    const placeId = getCurrentPlaceId();
+    const placeNeedsRevalidation = typeof window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE === "function"
+      && window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE(placeId);
+    const ready = peopleAndRelationsReady() && !placeNeedsRevalidation;
     const failed = window.HG_PEOPLE_STATUS === "error" || window.HG_RELATIONS_STATUS === "error";
 
     if (ready) {
@@ -408,6 +414,7 @@
       "hg:people-loading",
       "hg:people-progress",
       "hg:people-priority-ready",
+      "hg:people-place-revalidation-needed",
       "hg:people-ready",
       "hg:people-error",
       "hg:relations-loading",
@@ -702,6 +709,14 @@
       const prioritizeOpenPlace = file => isPriorityFileForPlace(file, getCurrentPlaceId());
       const revalidatedFiles = new Set();
       let openPlaceRevalidationPromise = null;
+
+      window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE = (placeId) => {
+        const pid = String(placeId || "").trim();
+        if (!pid) return false;
+        const priorityFiles = peopleFiles.filter(file => isPriorityFileForPlace(file, pid));
+        return priorityFiles.length > 0
+          && priorityFiles.some(file => !revalidatedFiles.has(file));
+      };
 
       const publishOpenPlaceRows = () => {
         const placeId = getCurrentPlaceId();

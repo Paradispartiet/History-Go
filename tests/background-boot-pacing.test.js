@@ -16,6 +16,8 @@ assert.match(boot, /await startPriorityPeopleDataLoad\(\);/);
 assert.match(boot, /function loadRowsWithConcurrency\(/);
 assert.match(boot, /PEOPLE_FETCH_CONCURRENCY/);
 assert.match(boot, /hg:people-priority-ready/);
+assert.match(boot, /HG_SHOULD_DEFER_PEOPLE_FOR_PLACE/);
+assert.match(boot, /hg:people-place-revalidation-needed/);
 assert.match(boot, /typeof data === "object".*return \[data\]/);
 assert.match(boot, /for \(const \[label, task\] of tasks\)/);
 assert.match(boot, /await waitForBackgroundIdle\(\);\s*await runSafeAsync\(label, task\);/);
@@ -351,7 +353,15 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     "default",
     "aggregatfilen lastes først før stedet er åpnet"
   );
+  assert.equal(
+    window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE("place-3"),
+    true,
+    "sent åpnet sted må sperre cached profiler før første render"
+  );
   placeCard.dataset.currentPlaceId = "place-3";
+  window.dispatchEvent(new FakeCustomEvent("hg:people-place-revalidation-needed", {
+    detail: { placeId: "place-3" }
+  }));
   mutationCallback?.([]);
   await waitUntil(
     () => (window.PEOPLE.find(person => person.id === "person-9")?.roundHoldbacks || []).includes("place-3"),
@@ -370,6 +380,11 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     Array.from(window.PEOPLE.find(person => person.id === "person-9")?.roundHoldbacks || []),
     ["place-3"],
     "ferske holdbacks erstatter stale aggregatdata etter stedsskifte"
+  );
+  assert.equal(
+    window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE("place-3"),
+    false,
+    "stedet frigjøres først etter vellykket revalidering"
   );
   assert.equal(
     window.PEOPLE.some(person => person.id === "person-removed"),
@@ -395,6 +410,11 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     peopleAttempts.get("data/people/by/oslo/outage.json"),
     3,
     "vedvarende feil må stoppe etter første reload og ett retry"
+  );
+  assert.equal(
+    window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE("place-4"),
+    true,
+    "vedvarende feil må beholde cached profiler bak lastesperren"
   );
   assert.equal(
     refreshCalls,
