@@ -1,6 +1,6 @@
 # Torggata – aktivt stedproduksjonskort
 
-- Oppdatert: 2026-08-12
+- Oppdatert: 2026-08-14
 - Place ID: `torggata`
 - Canonical source: `data/places/by/oslo/places/torggata.json`
 - Styrende kontrakt: `docs/PLACE_PRODUCTION_CHECKLIST.md`
@@ -31,6 +31,8 @@
 - Fase 10-audit: `reports/place-production/torggata-phase10-quiz-audit-v1.json`
 - Fase 11-audit: `reports/place-production/torggata-phase11-observer-note-route-audit-v1.json`
 - Fase 12-audit: `reports/place-production/torggata-phase12-people-links-audit-v1.json`
+- Fase 13-audit: `reports/place-production/torggata-phase13-brands-audit-v1.json`
+- Fase 14-audit: `reports/place-production/torggata-phase14-discovery-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -50,7 +52,8 @@
 | 11. Observer, Notat og Rute | **GODKJENT** | eksisterende Observer-, Notat- og navigasjonsruntime auditert; historisk rute begrunnet N/A |
 | 12. People–sted-koblinger | **GODKJENT** | 21/21 canonical koblinger og inspectable kilder beholdt; 7 synlige profiler er bildeklare; 14 bildeholdbacks er eksplisitte og bevarer koblingen |
 | 13. Brands | **GODKJENT** | 13/13 canonical brands har lokal verifisert logo eller autentisk historisk ordmerke/brandmark med proveniens; ingen genererte eller rekonstruerte logoer |
-| 14–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 14. Leksikon, relations, NextUp, Nearby, søk og i18n | **GODKJENT** | kildebåret Leksikon beholdt; `storgata`-relasjon, historiske aliaser og tre trofaste oversettelser regresjonslåst |
+| 15–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -492,3 +495,27 @@ TIDLIGERE-ARBEID-SØK: UTFØRT. 8A1 (#4831), 8A2 (#4840), 8A3 (#4842) og 8A-clos
 **Fase 12 People–sted-koblinger = GODKJENT når fase-12-regresjon, 8A-regresjon, People-image-kontrakttest, People-of-Places, Civication, TypeScript og build er grønne.**
 
 Neste aktive fase: **13. Brands**.
+
+## Fase 14 – Leksikon, relations, NextUp, Nearby, søk og i18n
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+SISTE GODKJENTE TILSTAND: fase 7A/7B eier Leksikon; fase 10 eier 5 × 7 quiz; delte runtimer eier NextUp, Nearby og place-search
+KONKRETE AVVIK: historiske gatenavn manglet som aliaser; eksplisitt stedrelasjon manglet; en/es/pt var stale generell gentrifiseringsprosa
+BESLUTNING: RETROFIT ONLY – behold ferdige eiere, rett bare de tre dokumenterte avvikene
+```
+
+### Godkjent resultat
+
+- **Leksikon = GODKJENT BEHOLD:** manifest-lastet hovedartikkel, to facts og seks kildebelagte chronology-poster er beholdt; den korte Leksikon-ledeteksten dupliserer ikke full `popupDesc`.
+- **Relations = GODKJENT:** `related_place_ids: ["storgata"]` materialiserer den dokumenterte Strøget-forbindelsen til et eksisterende canonical History GO-place.
+- **NextUp = GODKJENT BEHOLD:** Torggatas canonical 5 × 7-quiz gir et reelt progresjonssteg gjennom delt `QuizEngine`/NextUp-runtime.
+- **Nearby = GODKJENT BEHOLD:** canonical navn, kategori og bilde brukes, og klikk rutes med `place.id` til riktig PlaceCard.
+- **Søk = GODKJENT:** `Øvre Torvegade` og `Torvegaden` er søkbare aliaser; identiteten forblir `torggata` / `Torggata`.
+- **i18n = GODKJENT:** en/es/pt følger nå dagens historiske `desc`/`popupDesc`, har riktig source-hash og beholder canonical navn.
+- **Offentlig hjemsted = BEGRUNNET N/A:** Torggata er et offentlig gateløp, ikke en personprofil eller kandidat for offentlig hjemsted; ingen privat adresse eller mapping opprettes.
+- CI-testen `tests/torggata-phase14-discovery.test.mjs` låser alle delkontraktene.
+
+**Fase 14 = GODKJENT når fase-14-test, Places data og TypeScript/build-porter er grønne.**
+
+Neste aktive fase: **15. Fysisk besøk / innsjekk**.

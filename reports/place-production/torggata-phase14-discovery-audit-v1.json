@@ -1,0 +1,96 @@
+{
+  "schema": "history_go_place_phase14_discovery_audit_v1",
+  "place_id": "torggata",
+  "phase": 14,
+  "status": "approved",
+  "audited_at": "2026-08-14",
+  "baseline_commit": "5003c9f1be4c4de911b130be0bfeb349243ee385",
+  "prior_work_gate": {
+    "status": "completed",
+    "searched": [
+      "canonical Torggata place and generated places index",
+      "phase 7A/7B Torggata lexicon and chronology",
+      "phase 10 canonical quiz package",
+      "existing NextUp progression runtime",
+      "existing Nearby selector/list runtime",
+      "existing place-search alias runtime",
+      "English, Spanish and Portuguese place translations"
+    ],
+    "decision": "retrofit_only",
+    "preserved": [
+      "manifest-loaded source-backed lexicon",
+      "canonical 5 x 7 quiz package and NextUp ownership",
+      "Nearby canonical object and routing ownership",
+      "place id, name, coordinates, category and imagery"
+    ],
+    "concrete_gaps": [
+      "historic names were not exposed as aliases",
+      "no explicit meaningful place relation was stored",
+      "three translations were stale generic gentrification copy"
+    ]
+  },
+  "checks": {
+    "lexicon": {
+      "status": "approved_existing",
+      "title": "Torggata",
+      "version": 4,
+      "facts": 2,
+      "chronology_years": [
+        1846,
+        1852,
+        1876,
+        1929,
+        1986,
+        2014
+      ],
+      "source_backed": true,
+      "duplication": "The concise lexicon lead and chronology complement rather than repeat the full canonical popupDesc."
+    },
+    "relations": {
+      "status": "approved_retrofit",
+      "related_place_ids": [
+        "storgata"
+      ],
+      "evidence": "The canonical Torggata popupDesc identifies Strøget as the car-free passage between Torggata and Storgata; storgata is an existing canonical History GO place."
+    },
+    "next_up": {
+      "status": "approved_existing",
+      "quiz_questions": 35,
+      "behavior": "The shared NextUp progression runtime obtains the current canonical place label and QuizEngine target summary, so Torggata's incomplete canonical quiz is a real next step."
+    },
+    "nearby": {
+      "status": "approved_existing",
+      "behavior": "The selector returns canonical place objects; the list renders name, category and canonical image and routes clicks to #/place/{place.id}.",
+      "torggata_contract": {
+        "name": "Torggata",
+        "category": "by",
+        "image": "bilder/places/by/torggata_IMG.JPG",
+        "cardImage": "bilder/places/by/torggata_Front.WEBP",
+        "route_id": "torggata"
+      }
+    },
+    "search": {
+      "status": "approved_retrofit",
+      "canonical_name": "Torggata",
+      "aliases": [
+        "Øvre Torvegade",
+        "Torvegaden"
+      ],
+      "identity_rule": "Aliases are searchable metadata only; canonical id and name remain torggata / Torggata."
+    },
+    "i18n": {
+      "status": "approved_retrofit",
+      "languages": [
+        "en",
+        "es",
+        "pt"
+      ],
+      "source_hash": "e93eeff890eae158",
+      "identity_rule": "Every translation keeps name Torggata and changes no place id."
+    },
+    "public_home": {
+      "status": "not_applicable",
+      "reason": "Torggata is a public street place, not a person profile or a candidate public home. No private address or public-home mapping is created."
+    }
+  }
+}

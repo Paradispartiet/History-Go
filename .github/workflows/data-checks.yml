@@ -22,6 +22,7 @@ on:
       - 'tests/people-images.test.mjs'
       - 'tests/etne-people-of-places-*.test.js'
       - 'tests/quiz-content-quality-audit.test.mjs'
+      - 'tests/torggata-phase14-discovery.test.mjs'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
       - 'scripts/build-civication-history-people-index.mts'
@@ -142,6 +143,9 @@ jobs:
               npm run places:coords:check
             } 2>&1 | tee -a /tmp/places-check.log
           fi
+
+      - name: Test Torggata phase 14 discovery contract
+        run: node --test tests/torggata-phase14-discovery.test.mjs
 
       - name: Enforce Politikk place production reports
         shell: bash
