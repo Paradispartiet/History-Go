@@ -7,15 +7,15 @@ import { auditFilosofiPhase3 } from '../scripts/audit-fagverk-filosofi-phase3.mj
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('Filosofi er individuelt materialisert og auditert som Fase 3-fag uten falsk complete-status', () => {
+test('Filosofi er individuelt materialisert og auditert som komplett Fase 3-fag etter 54 av 54 universitetsreviews', () => {
   const { report } = auditFilosofiPhase3();
   assert.equal(report.subject.id, 'filosofi');
   assert.equal(report.subject.schemaFamily, 'foundation_v1');
   assert.equal(report.subject.adapter, 'standard');
   assert.equal(report.subject.navigationStatus, 'materialized');
   assert.equal(report.subject.assessmentStatus, 'audited');
-  assert.equal(report.subject.editorialStatus, 'expanded_and_audited');
-  assert.equal(report.subject.nextGate, 'university_depth_article_by_article_review');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.subjectPage, 'fagverk.html?subject=filosofi');
   assert.equal(report.subject.badgePage, 'data/fag/filosofi/merke_filosofi.html');
   assert.deepEqual(report.summary, {
@@ -65,7 +65,7 @@ test('Filosofi løser emner, metoder, hooks, begreper og teoretikere', () => {
   assert.equal(report.gates.allThinkerReferencesResolved, true);
 });
 
-test('Filosofi låser argument-first, kildekrav og global kanon samtidig som universitetsporten står åpen', () => {
+test('Filosofi låser argument-first, kildekrav, global kanon og konsistent sluttstatus', () => {
   const { report } = auditFilosofiPhase3();
   assert.equal(report.gates.philosophyPrinciplesLocked, true);
   assert.equal(report.gates.chapterClaimsNotOverstated, true);
