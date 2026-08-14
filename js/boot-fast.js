@@ -681,6 +681,9 @@
 
       const progressStep = Math.max(1, Math.ceil(peopleFiles.length / 20));
       const loadedRowsByFile = new Map();
+      const knownManifestIds = new Set();
+      const failedRevalidationKeys = new Set();
+      let lastRevalidationPlaceId = "";
       let publishedPrioritySignature = "";
       const hasPlaceSegment = (file, placeId) => placeId
         && String(file).split("/").some(segment => segment === placeId);
@@ -704,17 +707,22 @@
         const placeId = getCurrentPlaceId();
         if (!placeId) return;
         const rows = [];
+        let hasLoadedPriorityFile = false;
         for (const [file, fileRows] of loadedRowsByFile) {
-          if (isPriorityFileForPlace(file, placeId)) rows.push(...fileRows);
+          if (!isPriorityFileForPlace(file, placeId)) continue;
+          hasLoadedPriorityFile = true;
+          rows.push(...fileRows);
         }
-        if (!rows.length) return;
+        if (!hasLoadedPriorityFile) return;
 
         const signature = `${placeId}:${rows.map(row => String(row?.id || "")).sort().join("|")}`;
         if (signature === publishedPrioritySignature) return;
         publishedPrioritySignature = signature;
 
-        const existingPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
-        window.PEOPLE = mergeRowsById(rows, existingPeople);
+        const manifestRows = peopleFiles.flatMap(file => loadedRowsByFile.get(file) || []);
+        const existingExternalPeople = (Array.isArray(window.PEOPLE) ? window.PEOPLE : [])
+          .filter(person => !knownManifestIds.has(String(person?.id || "").trim()));
+        window.PEOPLE = mergeRowsById(manifestRows, existingExternalPeople);
         emit("hg:people-priority-ready", {
           placeId,
           count: window.PEOPLE.length,
@@ -725,6 +733,14 @@
 
       const rememberRows = ({ url, rows, cache, ok }) => {
         if (ok) {
+          for (const row of loadedRowsByFile.get(url) || []) {
+            const id = String(row?.id || "").trim();
+            if (id) knownManifestIds.add(id);
+          }
+          for (const row of Array.isArray(rows) ? rows : []) {
+            const id = String(row?.id || "").trim();
+            if (id) knownManifestIds.add(id);
+          }
           loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
           if (cache === "reload") revalidatedFiles.add(url);
         }
@@ -734,12 +750,17 @@
       revalidateOpenPlacePeopleFiles = () => {
         const placeId = getCurrentPlaceId();
         if (!placeId) return Promise.resolve();
+        if (placeId !== lastRevalidationPlaceId) {
+          failedRevalidationKeys.clear();
+          lastRevalidationPlaceId = placeId;
+        }
         if (openPlaceRevalidationPromise) return openPlaceRevalidationPromise;
 
         const targets = peopleFiles.filter(file =>
           isPriorityFileForPlace(file, placeId)
           && loadedRowsByFile.has(file)
           && !revalidatedFiles.has(file)
+          && !failedRevalidationKeys.has(`${placeId}:${file}`)
         );
         if (!targets.length) {
           publishOpenPlaceRows();
@@ -750,6 +771,14 @@
         const rememberRevalidatedRows = ({ url, rows, cache, ok }) => {
           if (!ok) return;
           refreshedAny = true;
+          for (const row of loadedRowsByFile.get(url) || []) {
+            const id = String(row?.id || "").trim();
+            if (id) knownManifestIds.add(id);
+          }
+          for (const row of Array.isArray(rows) ? rows : []) {
+            const id = String(row?.id || "").trim();
+            if (id) knownManifestIds.add(id);
+          }
           loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
           if (cache === "reload") revalidatedFiles.add(url);
         };
@@ -764,14 +793,19 @@
           // En transient reload-feil får ett kontrollert nytt forsøk. Filer som
           // fortsatt feiler, beholder siste brukbare rader og forblir kvalifisert
           // for en senere place-/datahendelse.
-          if (firstAttempt.failed.length) {
-            await loadRowsWithConcurrency(
-              firstAttempt.failed,
+          let remainingFailed = firstAttempt.failed;
+          if (remainingFailed.length) {
+            const retryAttempt = await loadRowsWithConcurrency(
+              remainingFailed,
               "people",
               2,
               rememberRevalidatedRows,
               () => true
             );
+            remainingFailed = retryAttempt.failed;
+          }
+          for (const file of remainingFailed) {
+            failedRevalidationKeys.add(`${placeId}:${file}`);
           }
           if (refreshedAny) {
             publishedPrioritySignature = "";
@@ -828,8 +862,9 @@
       }
 
       publishOpenPlaceRows();
-      const existingPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
-      const peopleAll = mergeRowsById(loadedRows, existingPeople);
+      const existingExternalPeople = (Array.isArray(window.PEOPLE) ? window.PEOPLE : [])
+        .filter(person => !knownManifestIds.has(String(person?.id || "").trim()));
+      const peopleAll = mergeRowsById(loadedRows, existingExternalPeople);
       window.PEOPLE = peopleAll;
       const currentPlaceId = getCurrentPlaceId();
       setPeopleDataState("ready", {

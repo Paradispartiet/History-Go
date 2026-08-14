@@ -218,12 +218,20 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
         return response({ id: "person-1", name: "Person 1", place_ids: ["place-1"] });
       }
       if (id === "9") {
-        return response({
+        const current = {
           id: "person-9",
           name: "Person 9",
           place_ids: ["place-3"],
           roundHoldbacks: init.cache === "reload" ? ["place-3"] : []
-        });
+        };
+        return init.cache === "reload"
+          ? response({ people: [current] })
+          : response({
+            people: [
+              current,
+              { id: "person-removed", name: "Fjernet person", place_ids: ["place-3"] }
+            ]
+          });
       }
       if (id === "10") {
         return response({ id: "person-10", name: "Person 10", place_ids: ["place-4"] });
@@ -330,7 +338,7 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
 
   assert.equal(window.HG_PEOPLE_READY, true);
   assert.equal(window.HG_RELATIONS_READY, true);
-  assert.equal(window.PEOPLE.length, peopleFiles.length);
+  assert.equal(window.PEOPLE.length, peopleFiles.length + 1, "stale aggregat har én ekstra profil før revalidering");
   assert.equal(peopleAttempts.get("data/people/test/person-8.json"), 2, "feilede People-filer prøves én gang til");
   assert.ok(maxPeopleFetches > 1, `forventet parallell People-lasting, fikk ${maxPeopleFetches}`);
   assert.ok(maxPeopleFetches <= 6, `People-lasting overskred grensen: ${maxPeopleFetches}`);
@@ -360,6 +368,11 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     ["place-3"],
     "ferske holdbacks erstatter stale aggregatdata etter stedsskifte"
   );
+  assert.equal(
+    window.PEOPLE.some(person => person.id === "person-removed"),
+    false,
+    "profil fjernet fra fersk aggregatfil må også fjernes fra runtime"
+  );
 
   // Den vellykkede place-3-revalideringen planlegger en gyldig refresh.
   // La den fullføre før outage-scenariet måler at ingen nye refreshes oppstår.
@@ -384,6 +397,15 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     refreshCalls,
     refreshesBeforePersistentOutage,
     "ingen vellykket revalidering må ikke publisere eller trigge PlaceCard-refresh"
+  );
+  window.dispatchEvent(new FakeCustomEvent("hg:people-progress"));
+  window.dispatchEvent(new FakeCustomEvent("hg:people-progress"));
+  window.dispatchEvent(new FakeCustomEvent("hg:people-progress"));
+  await delay(30);
+  assert.equal(
+    peopleAttempts.get("data/people/by/oslo/outage.json"),
+    3,
+    "progress-events må ikke omgå feilgaten før et reelt stedsskifte"
   );
 
   const peopleManifestIndex = fetchLog.indexOf("data/people/manifest.json");
