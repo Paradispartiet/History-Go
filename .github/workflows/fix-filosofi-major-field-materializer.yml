@@ -1,4 +1,4 @@
-name: Diagnose Philosophy major-field materializer source
+name: Repair Philosophy major-field materializer source
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  diagnose-source:
+  repair-source:
     runs-on: ubuntu-latest
     steps:
       - name: Check out exact branch
@@ -21,16 +21,33 @@ jobs:
           ref: agent/expand-philosophy-core-fields
           fetch-depth: 0
 
-      - name: Capture exact Node parser error
+      - name: Repair malformed reply property and false guard
         run: |
-          mkdir -p reports/tmp
-          node --check scripts/materialize-filosofi-major-field-coverage.mjs > reports/tmp/filosofi-materializer-syntax.txt 2>&1 || true
-          cat reports/tmp/filosofi-materializer-syntax.txt
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('scripts/materialize-filosofi-major-field-coverage.mjs')
+          s=p.read_text()
+          bad=",'reply:'Svar:"
+          print('malformed_reply_count=',s.count(bad))
+          if s.count(bad) != 1:
+              raise SystemExit('Expected exactly one malformed reply property')
+          s=s.replace(bad,",reply:'Svar:",1)
+          s,n=re.subn(r"// Add missing seventh field:[\s\S]*?(?=const NEW_DOMAIN_ORDER=)",'',s,count=1)
+          print('false_guard_blocks_removed=',n)
+          if n != 1:
+              raise SystemExit('Expected exactly one false guard block')
+          p.write_text(s)
+          PY
+          node --check scripts/materialize-filosofi-major-field-coverage.mjs
 
-      - name: Commit parser diagnostic
+      - name: Commit parser repair
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/tmp/filosofi-materializer-syntax.txt
-          git commit -m "Capture Philosophy materializer syntax error"
+          git rm .github/workflows/fix-filosofi-major-field-materializer.yml
+          git rm -f reports/tmp/filosofi-materializer-syntax.txt
+          git add scripts/materialize-filosofi-major-field-coverage.mjs
+          git diff --cached --check
+          git commit -m "Repair Philosophy major-field materializer syntax"
           git push origin HEAD:agent/expand-philosophy-core-fields
