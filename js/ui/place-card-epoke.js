@@ -157,21 +157,23 @@
 (function installPeopleStaleWhileRevalidate(global) {
   "use strict";
 
-  const original = global.getPeopleForPlace;
-  if (
-    typeof original !== "function"
-    || original.__hgPeopleStaleWhileRevalidatePatched === true
-  ) {
+  const runtime = /** @type {any} */ (global);
+  const original = runtime.getPeopleForPlace;
+  if (runtime.__HG_PEOPLE_SWR_INSTALLED__ === true || typeof original !== "function") {
     return;
   }
 
+  /**
+   * @param {string} placeId
+   * @returns {any[]}
+   */
   function getPeopleForPlaceStaleWhileRevalidate(placeId) {
-    const current = original.call(this, placeId);
+    const current = original(placeId);
     if (Array.isArray(current) && current.length > 0) return current;
 
     let revalidationPending = false;
     try {
-      revalidationPending = global.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE?.(placeId) === true;
+      revalidationPending = runtime.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE?.(placeId) === true;
     } catch {
       revalidationPending = false;
     }
@@ -183,20 +185,19 @@
     // Første kall over har allerede sendt revalideringssignalet. Slå bare av
     // visningsvetoretten under det synkrone cache-oppslaget; loaderens egne
     // revalideringssett, retry-regler og ready-events endres ikke.
-    const revalidationGate = global.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE;
-    global.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE = () => false;
+    const revalidationGate = runtime.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE;
+    runtime.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE = () => false;
     try {
-      const cached = original.call(this, placeId);
+      const cached = original(placeId);
       return Array.isArray(cached) ? cached : [];
     } finally {
-      global.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE = revalidationGate;
+      runtime.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE = revalidationGate;
     }
   }
 
-  getPeopleForPlaceStaleWhileRevalidate.__hgPeopleStaleWhileRevalidatePatched = true;
-  getPeopleForPlaceStaleWhileRevalidate.__hgPeopleOriginal = original;
-  global.getPeopleForPlace = getPeopleForPlaceStaleWhileRevalidate;
-  global.HGPeopleVisibilityPolicy = Object.freeze({
+  runtime.__HG_PEOPLE_SWR_INSTALLED__ = true;
+  runtime.getPeopleForPlace = getPeopleForPlaceStaleWhileRevalidate;
+  runtime.HGPeopleVisibilityPolicy = Object.freeze({
     mode: "stale-while-revalidate",
     hidesUsableCache: false
   });
