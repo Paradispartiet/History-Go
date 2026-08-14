@@ -326,7 +326,7 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   await window.bootCritical();
   assert.ok(fetchLog.includes("data/people/manifest.json"), "People starter straks critical boot er ferdig");
   assert.equal(fetchCache.get("data/people/manifest.json"), "no-store", "People-manifestet omgår stale nettlesercache");
-  assert.ok(fetchLog.includes("data/relations.json"), "Relasjoner starter straks critical boot er ferdig");
+  assert.ok(fetchLog.includes("data/relations.json"), "Relasjoner starter straks critical boot er ferdig");\n  assert.equal(fetchCache.get("data/relations.json"), "no-store", "canonical place→person-relasjoner omgår stale nettlesercache");\n  assert.equal(fetchCache.get("data/relations_philanthropy.json"), "no-store", "supplerende relasjoner omgår stale nettlesercache");
 
   await delay(2);
   placeCard.dataset.currentPlaceId = "place-1";
