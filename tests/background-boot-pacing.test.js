@@ -197,7 +197,10 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
       maxPeopleFetches = Math.max(maxPeopleFetches, activePeopleFetches);
       await delay(8);
       activePeopleFetches -= 1;
-      if (url.endsWith("person-8.json") && attempts === 1) {
+      if (
+        (url.endsWith("person-8.json") && attempts === 1)
+        || (url.endsWith("/late.json") && init.cache === "reload" && attempts === 2)
+      ) {
         return { ok: false, async json() { return null; } };
       }
       const id = url === "data/people/by/oslo/people.json"
@@ -335,8 +338,8 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     "sted åpnet etter full People-last publiserte ikke ferske aggregatdata"
   );
   assert.ok(
-    (peopleAttempts.get("data/people/by/oslo/late.json") || 0) >= 2,
-    "sted åpnet etter full People-last revaliderte ikke aggregatfilen"
+    (peopleAttempts.get("data/people/by/oslo/late.json") || 0) >= 3,
+    "transient reload-feil ble ikke forsøkt på nytt før aggregatfilen ble godkjent"
   );
   assert.equal(
     fetchCache.get("data/people/by/oslo/late.json"),

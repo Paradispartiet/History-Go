@@ -167,6 +167,7 @@
           failed: failed.length,
           url,
           cache,
+          ok: data != null,
           rows: rowsByFile[index]
         });
       }
@@ -722,9 +723,11 @@
         handlePeopleDataChange();
       };
 
-      const rememberRows = ({ url, rows, cache }) => {
-        loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
-        if (cache === "reload") revalidatedFiles.add(url);
+      const rememberRows = ({ url, rows, cache, ok }) => {
+        if (ok) {
+          loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
+          if (cache === "reload") revalidatedFiles.add(url);
+        }
         publishOpenPlaceRows();
       };
 
@@ -743,16 +746,31 @@
           return Promise.resolve();
         }
 
+        const rememberRevalidatedRows = ({ url, rows, cache, ok }) => {
+          if (!ok) return;
+          loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
+          if (cache === "reload") revalidatedFiles.add(url);
+        };
+
         openPlaceRevalidationPromise = loadRowsWithConcurrency(
           targets,
           "people",
           Math.min(3, PEOPLE_FETCH_CONCURRENCY),
-          ({ url, rows, cache }) => {
-            loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
-            if (cache === "reload") revalidatedFiles.add(url);
-          },
+          rememberRevalidatedRows,
           () => true
-        ).then(() => {
+        ).then(async firstAttempt => {
+          // En transient reload-feil får ett kontrollert nytt forsøk. Filer som
+          // fortsatt feiler, beholder siste brukbare rader og forblir kvalifisert
+          // for en senere place-/datahendelse.
+          if (firstAttempt.failed.length) {
+            await loadRowsWithConcurrency(
+              firstAttempt.failed,
+              "people",
+              2,
+              rememberRevalidatedRows,
+              () => true
+            );
+          }
           publishedPrioritySignature = "";
           publishOpenPlaceRows();
         }).finally(() => {
