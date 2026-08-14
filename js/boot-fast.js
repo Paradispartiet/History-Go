@@ -128,28 +128,44 @@
     return out;
   }
 
-  async function loadRowsWithConcurrency(urls, key, concurrency, onProgress) {
+  async function loadRowsWithConcurrency(urls, key, concurrency, onProgress, prioritize) {
     const list = Array.isArray(urls) ? urls : [];
     if (!list.length) return { rows: [], failed: [] };
 
     const rowsByFile = new Array(list.length);
     const failed = [];
-    let cursor = 0;
+    const pending = list.map((url, index) => ({ url, index }));
     let completed = 0;
+
+    const takeNext = () => {
+      if (!pending.length) return null;
+      const priorityIndex = typeof prioritize === "function"
+        ? pending.findIndex(item => prioritize(item.url))
+        : -1;
+      const [next] = pending.splice(priorityIndex >= 0 ? priorityIndex : 0, 1);
+      return next || null;
+    };
 
     const worker = async () => {
       while (true) {
-        const index = cursor;
-        cursor += 1;
-        if (index >= list.length) return;
+        // Prioritet beregnes på nytt for hver fil. Et place som åpnes etter
+        // boot kan derfor hoppe foran resten av den pågående People-køen.
+        const next = takeNext();
+        if (!next) return;
 
-        const url = list[index];
+        const { url, index } = next;
         const data = await fetchJSON(url, { cache: "default" });
         if (data == null) failed.push(url);
         rowsByFile[index] = normalizeRows(data, key);
 
         completed += 1;
-        onProgress?.({ completed, total: list.length, failed: failed.length, url });
+        onProgress?.({
+          completed,
+          total: list.length,
+          failed: failed.length,
+          url,
+          rows: rowsByFile[index]
+        });
       }
     };
 
@@ -571,91 +587,90 @@
       const peopleFiles = [...new Set(manifest.files.map(normalizePeoplePath).filter(Boolean))];
       if (!peopleFiles.length) throw new Error("People-manifestet inneholder ingen filer");
 
-      const currentPlaceId = getCurrentPlaceId();
-      const hasPlaceSegment = file => currentPlaceId
-        && String(file).split("/").some(segment => segment === currentPlaceId);
-      const priorityFiles = peopleFiles.filter(hasPlaceSegment);
-      const remainingFiles = peopleFiles.filter(file => !hasPlaceSegment(file));
       const progressStep = Math.max(1, Math.ceil(peopleFiles.length / 20));
-      let completedOffset = 0;
-      let failedOffset = 0;
-      const progress = ({ completed, failed }) => {
-        const totalCompleted = completedOffset + completed;
-        const totalFailed = failedOffset + failed;
-        if (
-          totalCompleted === 1
-          || totalCompleted === peopleFiles.length
-          || totalCompleted % progressStep === 0
-        ) {
-          emit("hg:people-progress", {
-            completed: totalCompleted,
-            total: peopleFiles.length,
-            failed: totalFailed
-          });
+      const loadedRowsByFile = new Map();
+      let publishedPrioritySignature = "";
+      const hasPlaceSegment = (file, placeId) => placeId
+        && String(file).split("/").some(segment => segment === placeId);
+      const prioritizeOpenPlace = file => hasPlaceSegment(file, getCurrentPlaceId());
+
+      const publishOpenPlaceRows = () => {
+        const placeId = getCurrentPlaceId();
+        if (!placeId) return;
+        const rows = [];
+        for (const [file, fileRows] of loadedRowsByFile) {
+          if (hasPlaceSegment(file, placeId)) rows.push(...fileRows);
         }
-      };
+        if (!rows.length) return;
 
-      // Last profilene som ligger i mappen til det åpne stedet først. Dermed får
-      // PlaceCard ekte Personer før resten av det store registeret er ferdig.
-      const priorityFirstPass = priorityFiles.length
-        ? await loadRowsWithConcurrency(
-          priorityFiles,
-          "people",
-          PEOPLE_FETCH_CONCURRENCY,
-          progress
-        )
-        : { rows: [], failed: [] };
-      const priorityRetry = priorityFirstPass.failed.length
-        ? await loadRowsWithConcurrency(priorityFirstPass.failed, "people", 2)
-        : { rows: [], failed: [] };
-      const priorityRows = [...priorityFirstPass.rows, ...priorityRetry.rows];
-      const priorityFailed = priorityRetry.failed;
-      completedOffset += priorityFiles.length;
-      failedOffset += priorityFailed.length;
+        const signature = `${placeId}:${rows.map(row => String(row?.id || "")).sort().join("|")}`;
+        if (signature === publishedPrioritySignature) return;
+        publishedPrioritySignature = signature;
 
-      if (priorityRows.length) {
         const existingPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
-        window.PEOPLE = mergeRowsById(priorityRows, existingPeople);
+        window.PEOPLE = mergeRowsById(rows, existingPeople);
         emit("hg:people-priority-ready", {
-          placeId: currentPlaceId,
+          placeId,
           count: window.PEOPLE.length,
-          files: priorityFiles.length,
-          failedFiles: priorityFailed.length
+          files: peopleFiles.filter(file => hasPlaceSegment(file, placeId)).length
         });
         handlePeopleDataChange();
-      }
+      };
 
-      const remainingFirstPass = await loadRowsWithConcurrency(
-        remainingFiles,
+      const rememberRows = ({ url, rows }) => {
+        loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
+        publishOpenPlaceRows();
+      };
+
+      const firstPass = await loadRowsWithConcurrency(
+        peopleFiles,
         "people",
         PEOPLE_FETCH_CONCURRENCY,
-        progress
+        detail => {
+          rememberRows(detail);
+          if (
+            detail.completed === 1
+            || detail.completed === detail.total
+            || detail.completed % progressStep === 0
+          ) {
+            emit("hg:people-progress", {
+              completed: detail.completed,
+              total: detail.total,
+              failed: detail.failed
+            });
+          }
+        },
+        prioritizeOpenPlace
       );
 
       // Små, forbigående nettverksfeil skal ikke gi permanente hull i People.
       // Mislykkede filer får én roligere retry før datasettet publiseres.
-      const remainingRetry = remainingFirstPass.failed.length
-        ? await loadRowsWithConcurrency(remainingFirstPass.failed, "people", 2)
+      const retry = firstPass.failed.length
+        ? await loadRowsWithConcurrency(
+          firstPass.failed,
+          "people",
+          2,
+          rememberRows,
+          prioritizeOpenPlace
+        )
         : { rows: [], failed: [] };
-      const loadedRows = [
-        ...priorityRows,
-        ...remainingFirstPass.rows,
-        ...remainingRetry.rows
-      ];
-      const failedFiles = [...priorityFailed, ...remainingRetry.failed];
+      const loadedRows = [...firstPass.rows, ...retry.rows];
+      const failedFiles = retry.failed;
       if (!loadedRows.length && failedFiles.length === peopleFiles.length) {
         throw new Error("Ingen People-filer kunne lastes");
       }
 
+      publishOpenPlaceRows();
       const existingPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
       const peopleAll = mergeRowsById(loadedRows, existingPeople);
       window.PEOPLE = peopleAll;
+      const currentPlaceId = getCurrentPlaceId();
       setPeopleDataState("ready", {
         count: peopleAll.length,
         files: peopleFiles.length,
         failedFiles: failedFiles.length,
         concurrency: PEOPLE_FETCH_CONCURRENCY,
-        priorityFiles: priorityFiles.length,
+        priorityFiles: peopleFiles.filter(file => hasPlaceSegment(file, currentPlaceId)).length,
         partial: failedFiles.length > 0
       });
       return peopleAll;
