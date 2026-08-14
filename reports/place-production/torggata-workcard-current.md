@@ -37,6 +37,7 @@
 - Fase 16-audit: `reports/place-production/torggata-phase16-favorite-progress-audit-v1.json`
 - Fase 17-audit: `reports/place-production/torggata-phase17-profile-unlocks-audit-v1.json`
 - Fase 18-audit: `reports/place-production/torggata-phase18-wonderkammer-legacy-audit-v1.json`
+- Fase 19-audit: `reports/place-production/torggata-phase19-images-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -61,7 +62,8 @@
 | 16. Favoritt og place-progress | **ALLEREDE FERDIG – GODKJENT** | PR #1583/#1584/#1585-baselinen består; Torggata-status er regresjonslåst |
 | 17. Profil, miniProfile, unlocks og belønninger | **ALLEREDE FERDIG – GODKJENT** | profile/miniProfile/collection/unlock-eierne består; ikke-implementerte belønninger er N/A |
 | 18. Legacy Wonderkammer | **GODKJENT N/A** | ingen Torggata-Wonderkammerdata; tidligere materiale er allerede klassifisert til canonical eiere |
-| 19–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 19. Hovedbilder og rundingsbilder | **GODKJENT** | to lokale hovedbilder; People 7/7, Objects 1/1 og Brands 13/13 bildeklare med proveniens |
+| 20–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -625,3 +627,26 @@ BESLUTNING: N/A – ingen legacy-entry gjenstår å migrere, og nytt Wonderkamme
 **Fase 18 Legacy Wonderkammer = GODKJENT N/A.**
 
 Neste aktive fase: **19. Hovedbilder og rundingsbilder**.
+
+
+## Fase 19 – Hovedbilder og rundingsbilder
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+BILDEBASELINE: fase 8B Objects, fase 12 People-image review og fase 13 Brands-logoport
+KONKRET REGRESJONSEVIDENS: ingen
+BESLUTNING: BEHOLD – alle faktisk valgte rundinger er bildeklare; holdbacks forblir skjult
+```
+
+### Godkjent resultat
+
+- Hovedbildene finnes lokalt: `torggata_IMG.JPG` (171 621 byte) og `torggata_Front.WEBP` (135 586 byte); front/card bruker samme godkjente WEBP.
+- People-rundingen viser bare de 7 bildeklare profilene; 14 profiler uten trygg nettleserfil er eksplisitt holdback, ikke bilde-fallback.
+- Objects-rundingen har 1/1 konkret objektfoto av Byrute 8-skiltet med fotograf, Commons-kildeside og CC BY-SA 4.0.
+- Brands-rundingen har 13/13 lokale verifiserte logo-/ordmerkeassets med attribusjon; ingen generert eller rekonstruert logo.
+- Historiske personbilder og historiske ordmerker er identifisert som dokumentasjon, ikke fremstilt som samtidige foto.
+- Structures/Works er ikke valgt som canonical runding og får derfor ikke kunstige previews bare for fasefullføring.
+
+**Fase 19 Hovedbilder og rundingsbilder = GODKJENT.**
+
+Neste aktive fase: **20. Data-QA**.
