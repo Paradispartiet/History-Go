@@ -934,6 +934,6 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 
 ### Reparasjon og gate
 
-Reparasjonsløpet normaliserer enkeltprofiler, prioriterer profilene for åpent sted, hindrer falsk null, gir bildepreview et ikon-/antallsfallback, setter tilgjengelige navn på alle fire rundinger og korrigerer høyre/venstre-teksten. Sjekklisten er utvidet med eksplisitte produksjonskontroller for disse feilklassene.
+Reparasjonsløpet normaliserer enkeltprofiler, reprioriterer den pågående People-køen også når stedet åpnes etter kartstart, hindrer falsk null, gir alle fire Torggata-preview et ikon-/antallsfallback, gir People og Brands tastaturaktivering, setter tilgjengelige navn på alle fire rundinger og korrigerer høyre/venstre-teksten. Sjekklisten er utvidet med eksplisitte produksjonskontroller for disse feilklassene.
 
 **STATUS: REPARASJON PÅGÅR — IKKE PRODUKSJONSGODKJENT.** Ny godkjenning krever grønn CI/review, merge, vellykket Pages-deploy og ny manuell kontroll av Personer, alle fire rundinger, Før/etter, Nyheter, Lesespor og Mer.
