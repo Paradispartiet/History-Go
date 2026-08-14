@@ -1,0 +1,36 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "produksjonsassistent",
+  "mail_type": "followup",
+  "families": [{
+    "id": "produksjonsassistent_lokasjonsoppfolging",
+    "purpose": "La en tidligere lokasjonsavgjørelse kreve ny koordinering samme dag.",
+    "learning_focus": ["oppfolging", "status", "konsekvens"],
+    "mails": [{
+      "id": "film_tv_pa_followup_sideinngang_status",
+      "mail_type": "followup",
+      "mail_family": "produksjonsassistent_lokasjonsoppfolging",
+      "role_scope": "produksjonsassistent",
+      "phase": "workday",
+      "priority": 110,
+      "from": "Sara, lokasjonsansvarlig",
+      "people_ref": "sara_lokasjonsansvarlig",
+      "place_id": "opptakslokasjon_inngang",
+      "subject": "Rømningsveien er klar — kabelgaten er det ikke",
+      "summary": "Halve sideinngangen kan nå brukes, men bare dersom transport og kamera får ulike ruter.",
+      "situation": ["Avviket er mindre enn i morges, men ikke borte.", "En presis status kan hente inn tid uten å late som hele området er frigitt.", "En vag grønnmelding kan sende feil team inn i kabelgaten."],
+      "task_domain": "lokasjon_og_logistikk",
+      "competency": "avvikshandtering",
+      "pressure": "delvis_avklart",
+      "choice_axis": "presis_delstatus_vs_forenklet_gronnmelding",
+      "consequence_axis": "kontrollert_flyt_vs_ny_stans",
+      "narrative_arc": "lokasjon_delvis_frigitt",
+      "choices": [
+        {"id": "A", "label": "Send rutekart med tydelig begrensning", "reply": "Transport bruker nordruten; kamera venter. Kabelgaten er fortsatt sperret.", "effect": 1, "tags": ["clarity", "safety"], "feedback": "Avdelingene kan handle på en status som sier både ja og nei.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -2}}},
+        {"id": "B", "label": "Meld at sideinngangen er åpnet", "reply": "Sideinngangen er klar — kom inn fortløpende.", "effect": -1, "tags": ["tempo", "risk"], "feedback": "Den korte meldingen skjuler den viktigste begrensningen.", "effects": {"stats": {"status": 1, "risk": 3, "trust": -1}}}
+      ]
+    }]
+  }]
+}

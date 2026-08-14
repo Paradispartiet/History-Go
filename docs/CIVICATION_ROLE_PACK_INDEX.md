@@ -18,8 +18,8 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 - complete_reference_v2: 3
 - complete_reference: 0
 - playable_v1: 0
-- partial_pack: 22
-- role_model_only: 221
+- partial_pack: 23
+- role_model_only: 220
 - generated_stub: 0
 - broken_mapping: 0
 - missing: 49
@@ -54,7 +54,7 @@ Generert av `node scripts/audit-civication-role-packs.mjs`. Rapporten er en audi
 | film_tv | kurator_film_tv | film_tv_kurator_film_tv | Kurator (film/TV) | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | film_tv | manusmedarbeider | film_tv_manusmedarbeider | Manusmedarbeider | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | film_tv | prisvinner | film_tv_prisvinner | Prisvinner | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
-| film_tv | produksjonsassistent | film_tv_produksjonsassistent | Produksjonsassistent | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
+| film_tv | produksjonsassistent | film_tv_produksjonsassistent | Produksjonsassistent | ja | ja | ja | ja | ja | ja | nei | ja | nei | ja | ja | ja | ja | partial_pack |
 | film_tv | programleder | film_tv_programleder | Programleder | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | film_tv | regissor | film_tv_regissor | Regissør | ja | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |
 | film_tv | seer | film_tv_seer | Seer | ja | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | nei | ja | role_model_only |

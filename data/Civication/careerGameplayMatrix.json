@@ -7,11 +7,11 @@
     "work_worlds": 89,
     "statuses": {
       "reference_complete": 1,
-      "playable": 3,
+      "playable": 4,
       "partial": 20,
-      "architecture_only": 65
+      "architecture_only": 64
     },
-    "runtime_gate_pass": 9,
+    "runtime_gate_pass": 10,
     "life_story_complete": 11,
     "component_debt": {
       "entry": {
@@ -20,13 +20,13 @@
         "missing": 0
       },
       "day_one": {
-        "complete": 20,
+        "complete": 21,
         "partial": 4,
-        "missing": 65
+        "missing": 64
       },
       "workday_loop": {
-        "complete": 19,
-        "partial": 62,
+        "complete": 20,
+        "partial": 61,
         "missing": 8
       },
       "practice_stories": {
@@ -35,24 +35,24 @@
         "missing": 5
       },
       "people": {
-        "complete": 6,
+        "complete": 7,
         "partial": 17,
-        "missing": 66
-      },
-      "places": {
-        "complete": 8,
-        "partial": 0,
-        "missing": 81
-      },
-      "mail": {
-        "complete": 10,
-        "partial": 14,
         "missing": 65
       },
+      "places": {
+        "complete": 9,
+        "partial": 0,
+        "missing": 80
+      },
+      "mail": {
+        "complete": 11,
+        "partial": 14,
+        "missing": 64
+      },
       "knowledge": {
-        "complete": 20,
+        "complete": 21,
         "partial": 27,
-        "missing": 42
+        "missing": 41
       },
       "quality_axes": {
         "complete": 87,
@@ -65,14 +65,14 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 12,
+        "complete": 13,
         "partial": 9,
-        "missing": 68
+        "missing": 67
       },
       "performance": {
-        "complete": 15,
+        "complete": 16,
         "partial": 6,
-        "missing": 68
+        "missing": 67
       },
       "economy": {
         "complete": 81,
@@ -80,14 +80,14 @@
         "missing": 0
       },
       "progression": {
-        "complete": 15,
+        "complete": 16,
         "partial": 20,
-        "missing": 54
+        "missing": 53
       },
       "exit": {
-        "complete": 14,
+        "complete": 15,
         "partial": 21,
-        "missing": 54
+        "missing": 53
       }
     }
   },
@@ -1886,6 +1886,7 @@
       "category": "film_tv",
       "role_scope": "produksjonsassistent",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -1894,55 +1895,56 @@
       "role_ids": [
         "film_tv_produksjonsassistent"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/film_tv/produksjonsassistent.json"
         ],
         "work_grammar": "data/Civication/workGrammars/film_tv/produksjonsassistent.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/film_tv/produksjonsassistent_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
+            "count": 1
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
+            "count": 1
           },
           "story": {
             "path": null,
             "count": 0
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/film_tv/event/produksjonsassistent_event.json",
+            "count": 1
           },
           "micro": {
             "path": null,
             "count": 0
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/film_tv/knowledge/produksjonsassistent_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
           "tests/civication-film-tv-career-architecture.test.js",
           "tests/civication-film-tv-life-career-split.test.js",
+          "tests/civication-film-tv-produksjonsassistent-playability.test.js",
           "tests/civication-kunst-life-career-split.test.js",
           "tests/civication-life-position-career-split.test.js",
           "tests/civication-music-life-career-split.test.js",
@@ -1963,16 +1965,36 @@
             "note": "1 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/film_tv/produksjonsassistent_plan.json",
+              "tests/civication-film-tv-career-architecture.test.js",
+              "tests/civication-film-tv-life-career-split.test.js",
+              "tests/civication-film-tv-produksjonsassistent-playability.test.js",
+              "tests/civication-kunst-life-career-split.test.js",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-music-life-career-split.test.js",
+              "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/film_tv/produksjonsassistent.json"
+              "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
+              "data/Civication/mailPlans/film_tv/produksjonsassistent_plan.json",
+              "data/Civication/workGrammars/film_tv/produksjonsassistent.json",
+              "tests/civication-film-tv-career-architecture.test.js",
+              "tests/civication-film-tv-life-career-split.test.js",
+              "tests/civication-film-tv-produksjonsassistent-playability.test.js",
+              "tests/civication-kunst-life-career-split.test.js",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-music-life-career-split.test.js",
+              "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -1983,24 +2005,44 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
+              "data/Civication/roleModels/film_tv/produksjonsassistent.json",
+              "data/Civication/workGrammars/film_tv/produksjonsassistent.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/film_tv/produksjonsassistent.json",
+              "data/Civication/workGrammars/film_tv/produksjonsassistent.json"
+            ],
+            "note": "4 place/working-surface declarations."
           },
           "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
+              "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
+              "data/Civication/mailFamilies/film_tv/event/produksjonsassistent_event.json",
+              "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
+              "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
+              "data/Civication/mailFamilies/film_tv/knowledge/produksjonsassistent_knowledge.json",
+              "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
+              "data/Civication/mailPlans/film_tv/produksjonsassistent_plan.json"
+            ],
+            "note": "7/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No functional knowledge layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/film_tv/knowledge/produksjonsassistent_knowledge.json",
+              "data/Civication/roleModels/film_tv/produksjonsassistent.json",
+              "data/Civication/workGrammars/film_tv/produksjonsassistent.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
@@ -2019,14 +2061,36 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
+              "data/Civication/mailFamilies/film_tv/followup/produksjonsassistent_followup.json",
+              "tests/civication-film-tv-career-architecture.test.js",
+              "tests/civication-film-tv-life-career-split.test.js",
+              "tests/civication-film-tv-produksjonsassistent-playability.test.js",
+              "tests/civication-kunst-life-career-split.test.js",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-music-life-career-split.test.js",
+              "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/film_tv/produksjonsassistent_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-film-tv-career-architecture.test.js",
+              "tests/civication-film-tv-life-career-split.test.js",
+              "tests/civication-film-tv-produksjonsassistent-playability.test.js",
+              "tests/civication-kunst-life-career-split.test.js",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-music-life-career-split.test.js",
+              "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -2038,33 +2102,42 @@
             "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/film_tv/produksjonsassistent_plan.json",
+              "data/Civication/roleModels/film_tv/produksjonsassistent.json",
+              "data/Civication/workGrammars/film_tv/produksjonsassistent.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/film_tv/produksjonsassistent_plan.json",
+              "data/Civication/roleModels/film_tv/produksjonsassistent.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
           "knowledge",
-          "consequences",
-          "performance",
-          "progression",
-          "exit"
-        ],
-        "complete_components": [
-          "entry",
           "quality_axes",
           "authority",
-          "economy"
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
