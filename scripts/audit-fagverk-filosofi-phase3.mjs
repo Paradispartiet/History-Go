@@ -88,8 +88,9 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   assert(inventoryEntry?.pilot === false, 'Filosofi skal være individuelt Fase 3-fag, ikke pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'Filosofi har feil auditstatus');
   const registryChapterCount = (registry.subjects?.filosofi?.chapters || []).length;
-  const expectedEditorialStatus = registryChapterCount === 13 ? 'complete' : registryChapterCount > 0 ? 'chapters_in_progress' : 'structure_ready';
-  const expectedNextGate = registryChapterCount === 13 ? 'maintenance_source_refresh_and_place_case_expansion' : 'chapter_production';
+  const completion = json('data/fagverk/filosofi/filosofi_completion_v1.json');
+  const expectedEditorialStatus = completion.complete_ready ? 'complete' : registryChapterCount === 13 ? 'expanded_and_audited' : registryChapterCount > 0 ? 'chapters_in_progress' : 'structure_ready';
+  const expectedNextGate = completion.complete_ready ? 'maintenance_source_refresh_and_place_case_expansion' : registryChapterCount === 13 ? 'university_depth_article_by_article_review' : 'chapter_production';
   assert(statusEntry?.editorialStatus === expectedEditorialStatus, `Filosofi har feil editorial status: ${statusEntry?.editorialStatus} != ${expectedEditorialStatus}`);
   assert(statusEntry?.nextGate === expectedNextGate, `Filosofi har feil neste port: ${statusEntry?.nextGate} != ${expectedNextGate}`);
   assert(registry.placePage?.fallbackSubjectByCategory?.filosofi === 'filosofi', 'Filosofi-steder mangler Filosofi som fagverksfallback');
@@ -175,7 +176,7 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   const report = {
     schema: 'history_go_fagverk_filosofi_phase3_audit_v1',
     version: '1.0.0',
-    status: expectedEditorialStatus === 'complete' ? 'filosofi_phase_3_complete' : expectedEditorialStatus === 'chapters_in_progress' ? 'filosofi_phase_3_chapters_in_progress' : 'filosofi_phase_3_structure_ready',
+    status: expectedEditorialStatus === 'complete' ? 'filosofi_phase_3_complete' : expectedEditorialStatus === 'expanded_and_audited' ? 'filosofi_phase_3_expanded_and_audited' : expectedEditorialStatus === 'chapters_in_progress' ? 'filosofi_phase_3_chapters_in_progress' : 'filosofi_phase_3_structure_ready',
     generatedFrom: P,
     subject: {
       id: model.subject.id,
