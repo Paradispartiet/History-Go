@@ -109,10 +109,16 @@ test('runtime peker på enhet 11-briefen og godtar ikke tidligere Film og TV-por
     isFilmTvUnitElevenOrLaterGate('industry_regulation_distribution_full_chapter_complete_next_unit_source_brief'),
     false
   );
-  assert.equal(
-    registry.subjects.film_tv.chapters.some((row) => row.id === 'resepsjon-deltakelse-og-publikumsmetoder'),
-    false
+  const chapter = registry.subjects.film_tv.chapters.find(
+    (row) => row.id === 'resepsjon-deltakelse-og-publikumsmetoder'
   );
+  if (film.nextGate === 'reception_participation_audience_methods_source_brief_complete_full_chapter_production') {
+    assert.equal(chapter, undefined);
+  } else {
+    assert.equal(chapter.file, 'data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder.json');
+    assert.equal(chapter.claimsFile, 'data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder/claims.json');
+    assert.equal(chapter.briefFile, 'data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder/brief.json');
+  }
 });
 
 test('briefmotoren inneholder ingen SCM-synk eller GitHub-push', () => {
