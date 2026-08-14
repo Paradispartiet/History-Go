@@ -139,7 +139,7 @@
         MAP = null;
         mapReady = false;
         el.dataset.mapUnavailable = "1";
-        el.setAttribute("aria-label", "Kart utilgjengelig – innhold kan fortsatt brukes");
+        el.setAttribute("aria-label", "Kart utilgjengelig \\u2013 innhold kan fortsatt brukes");
         console.warn("[HGMap] WebGL-kart utilgjengelig; fortsetter uten kart.", error);
         return null;
       }
