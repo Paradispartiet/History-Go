@@ -17,6 +17,7 @@
 - Fase 7D-audit: `reports/place-production/torggata-phase7d-before-after-audit-v1.md`
 - Fase 7E-audit: `reports/place-production/torggata-phase7e-sources-audit-v1.md`
 - Gjenåpnet fase 7F-audit: `reports/place-production/torggata-phase7f-news-audit-v1.md`
+- Gjenåpnet fase 7G-audit: `reports/place-production/torggata-phase7g-reading-trail-audit-v1.md`
 - Fase 7-closeout: `reports/place-production/torggata-phase7-closeout-v1.md`
 - Fase 8-audit: `reports/place-production/torggata-phase8-rounds-audit-v1.md`
 - Fase 8A-audit: `reports/place-production/torggata-phase8a-people-audit-v1.md`
@@ -57,7 +58,7 @@
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **GJENÅPNET – 7D FØR/ETTER OG 7F NYHETER LØST; LESESPOR NESTE** | gammelt–nå-paret og to daterte 2026-notiser er publisert; Lesespor og Mer står fortsatt i kø |
+| 7. Popupfaner | **GJENÅPNET – 7D FØR/ETTER, 7F NYHETER OG 7G LESESPOR LØST; MER NESTE** | gammelt–nå-paret, to daterte 2026-notiser og tre åpne Lesespor er publisert; Mer står fortsatt i kø |
 | 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
@@ -789,6 +790,30 @@ Bindende rekkefølge videre:
 4. Fase 21/22 ny manuell UI- og innholds-QA — kø;
 5. Fase 24 ny sluttport — kø.
 
+## Gjenåpnet fase 7G – Lesespor
+
+- Alle manifest-lastede Oslo-Lesespor ble søkt; ingen Torggata-oppføring fantes i gjeldende datasett.
+- Tre åpne og direkte lesbare spor er lagt i `data/lesespor/oslo/lesespor_oslo_by.json`.
+- Oslo byleksikon gir sammenhengende gatehistorie og bygningsoversikt.
+- TØI rapport 1581/2017 gir videobasert og målt kunnskap om syklende, gående, interaksjoner og konflikter i Torggata/Brugata.
+- NLA gir prosjektfakta, gateprofil, materialer og navngitte fagaktører for opprustingen ferdigstilt i 2014.
+- Alle tre har `place_ids: ["torggata"]`, `access: "open"`, `rights: "link_only"`, direkte HTTPS-lenke og `verifiedAt: "2026-08-14"`.
+- Ingen oppføring bruker Torggata Bad, Rockefeller eller Youngstorget som stedfortreder for gaten.
+- Bare metadata, egen kort relevansbeskrivelse og ekstern lenke lagres; kildetekst kopieres ikke.
+- Repo-søk, åpningstilgang, utvalg, holdbacks og runtime-QA er dokumentert i `reports/place-production/torggata-phase7g-reading-trail-audit-v1.md`.
+- Automatiske tester kan låse schema, manifest, place-kobling, tilgang, URL og runtimefilter, men erstatter ikke manuell kontroll av den ferdige fanen.
+
+**Gjenåpnet fase 7G Lesespor = LØST AV DETTE ENDRINGSSETTET.**
+
+Neste forbedring: **Mer – KØET SOM NESTE**.
+
+Bindende rekkefølge videre:
+
+1. Mer — neste;
+2. Fase 8 rundingskoherens — kø;
+3. Fase 21/22 ny manuell UI- og innholds-QA — kø;
+4. Fase 24 ny sluttport — kø.
+
 ## Fase 24 – Ett-sted-PR
 
 ### Godkjent sluttresultat
@@ -808,11 +833,11 @@ Bindende rekkefølge videre:
 
 ## Manuell sluttvurdering – kvalitetsstatus gjenåpnet
 
-Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket opprinnelig fem blokkerende avvik. Punkt 1 og 2 er nå løst i de gjenåpnede fasene 7D og 7F; de tre øvrige er fortsatt åpne:
+Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket opprinnelig fem blokkerende avvik. Punkt 1, 2 og 3 er nå løst i de gjenåpnede fasene 7D, 7F og 7G; de to øvrige er fortsatt åpne:
 
 1. **LØST I GJENÅPNET FASE 7D – Før/etter.** Det svake 2009/2017-paret er erstattet av Torggata 30–36 mot Hausmanns gate, ca. 1965 mot 2025, med samme korte gatesegment og stabile ankere. Torggata Bad er avvist fordi badet har egen place-oppføring.
 2. **LØST I GJENÅPNET FASE 7F – Nyheter.** To daterte 2026-notiser fra Oslo kommune og Torggata Gateforening fyller fanen med aktuelle, gate-spesifikke opplysninger; smale eller stedsskjeve treff er holdt tilbake.
-3. **Lesespor er tomt.** De registrerte Torggata-lenkene ble holdt tilbake fordi de er betalingslåst, men søket ble avsluttet uten å etablere åpne, direkte lesbare alternativer.
+3. **LØST I GJENÅPNET FASE 7G – Lesespor.** Tre åpne, direkte lesbare og annoterte spor fra Oslo byleksikon, TØI og NLA gir historisk, empirisk og fysisk/faglig fordypning om selve gaten.
 4. **Mer er tom.** Torggata har nok navne-, språk-, arkiv-, observasjons- og relasjonsstoff til at manglende eksisterende Språkleksikon-post ikke er tilstrekkelig N/A-grunn.
 5. **Objects og Structures er kunstig splittet.** Objects bæres bare av én gjenstand, samtidig som Structures/Bygg dekker fysiske stedselementer. Rundingene er derfor ikke tydelige nok som to separate brukeropplevelser.
 
@@ -822,14 +847,14 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 - **fullført:** kontroller canonical place-register før motivvalg; et delsted med egen place-oppføring, som Torggata Bad, kan ikke brukes som stedfortreder for parent-place Torggata;
 - **fullført:** legg til minst ett skikkelig gammelt arkivlag mot et faktisk nåbilde når rettigheter og identitet er avklart;
 - **fullført:** produser relevante, daterte Nyheter etter fersksøk;
-- produser et reelt Lesespor med åpent, direkte lesbart Torggata-materiale, eller dokumenter et uttømmende strengt N/A-søk;
+- **fullført:** produser et reelt Lesespor med åpent, direkte lesbart Torggata-materiale etter repo- og kildesøk;
 - produser et reelt Mer-lag fra språk, arkiv, observasjoner, kunnskap eller kuraterte relasjoner;
 - revider rundingsvalget/kontrakten slik at fire innholdsrundinger fortsatt vises, men uten én kunstig Objects-runding eller uklar Objects/Structures-overlapp;
 - gjennomfør ny manuell slutt-QA før ferdigstatus kan gjeninnføres.
 
 ## Revidert seksdelt kvalitetsvurdering
 
-> Denne tabellen dokumenterer gjenåpningsøyeblikket før fase 7D og 7F ble reparert. Den er ikke en ny sluttvurdering. Tre redaksjonelle blokkere gjenstår, og full seksdelt re-score skal først gjøres etter Lesespor, Mer og rundingskoherens samt ny manuell UI-QA.
+> Denne tabellen dokumenterer gjenåpningsøyeblikket før fase 7D, 7F og 7G ble reparert. Den er ikke en ny sluttvurdering. To redaksjonelle blokkere gjenstår, og full seksdelt re-score skal først gjøres etter Mer og rundingskoherens samt ny manuell UI-QA.
 
 | Dimensjon | Score | Konkret evidens |
 | --- | ---: | --- |
@@ -840,8 +865,8 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 | Sikkerhet og ansvarlighet | **4/5** | People-holdbacks, kildegrenser og assetkontroll består; ingen nye sikkerhetsavvik er funnet. |
 | Vedlikeholdbarhet og etterprøvbarhet | **4/5** | Sporbarheten er god, men den tidligere kvalitetsporten fanget ikke brukeropplevelsens svakheter og må nå skjerpes. |
 
-**Historisk snapshot ved gjenåpning: 21/30.** Dekning og redaksjonell kvalitet var under minimum 4/5, med fem kritiske funn og fem uløste blokkere. Etter reparerte faser 7D og 7F er Før/etter- og Nyheter-funnene løst, og tre redaksjonelle blokkere gjenstår. Full ny score settes først etter de tre forbedringsfasene og manuell UI-QA.
+**Historisk snapshot ved gjenåpning: 21/30.** Dekning og redaksjonell kvalitet var under minimum 4/5, med fem kritiske funn og fem uløste blokkere. Etter reparerte faser 7D, 7F og 7G er Før/etter-, Nyheter- og Lesespor-funnene løst, og to redaksjonelle blokkere gjenstår. Full ny score settes først etter de to forbedringsfasene og manuell UI-QA.
 
-**Gjeldende kvalitetsport: IKKE BESTÅTT – TRE REDAKSJONELLE BLOKKERE GJENSTÅR.**
+**Gjeldende kvalitetsport: IKKE BESTÅTT – TO REDAKSJONELLE BLOKKERE GJENSTÅR.**
 
 **Torggata = IKKE SLUTTFØRT.**
