@@ -910,3 +910,30 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 **Gjeldende kvalitetsport: IKKE BESTÅTT – INGEN ÅPNE INNHOLDSFUNN, MEN MANUELL RE-QA GJENSTÅR.**
 
 **Torggata = IKKE SLUTTFØRT.**
+
+---
+
+## Produksjons-reQA etter fase 8F — reparasjon pågår (2026-08-14)
+
+**Kontrollert flate:** `https://paradispartiet.github.io/History-Go/#/place/torggata`  
+**Kontrollert main:** `0415adc24dc9c9effe0adcb39961ac992564c934`  
+**Deploy-evidens:** GitHub Pages-run `31811272880` = success.
+
+### Bestått visuelt
+
+- 4 + 1 vises som fire innholdsrundinger i 2 × 2-felt og separat Badge.
+- Bilder, Brands og Relaterte steder åpner reelle samlinger.
+- Nyheter, Lesespor og Mer er fylte.
+- Før/etter viser Torggata 30–36 fra ca. 1965 mot samme gateakse i 2025; Torggata Bad brukes ikke.
+
+### Blokkere som gjenåpnet slutt-QA
+
+1. Personer viste falsk `0` og tom popup selv om 17 Torggata-profiler finnes i manifestet. Root cause: enkeltobjekt-profiler ble ikke normalisert av bakgrunnslasteren, og loading-broen kunne bli hengende etter at PlaceCard skrev null.
+2. Relaterte steder viste et ødelagt Storgata-preview fordi begge bildefilreferansene er utilgjengelige. Runtime manglet feilfallback.
+3. Før/etter-teksten sa «venstre side», mens Torggata 30–36 visuelt ligger på høyre side i begge bildene.
+
+### Reparasjon og gate
+
+Reparasjonsløpet normaliserer enkeltprofiler, prioriterer profilene for åpent sted, hindrer falsk null, gir bildepreview et ikon-/antallsfallback, setter tilgjengelige navn på alle fire rundinger og korrigerer høyre/venstre-teksten. Sjekklisten er utvidet med eksplisitte produksjonskontroller for disse feilklassene.
+
+**STATUS: REPARASJON PÅGÅR — IKKE PRODUKSJONSGODKJENT.** Ny godkjenning krever grønn CI/review, merge, vellykket Pages-deploy og ny manuell kontroll av Personer, alle fire rundinger, Før/etter, Nyheter, Lesespor og Mer.
