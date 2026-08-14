@@ -1,0 +1,50 @@
+name: Materialize Philosophy complete once
+
+on:
+  push:
+    branches:
+      - agent/complete-philosophy-fagverk-materialize
+    paths:
+      - scripts/materialize-filosofi-complete.mjs
+      - .github/workflows/materialize-filosofi-complete-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/complete-philosophy-fagverk-materialize
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Materialize complete Philosophy corpus
+        run: |
+          node --check scripts/materialize-filosofi-complete.mjs
+          node scripts/materialize-filosofi-complete.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-filosofi-phase3.mjs
+          node tools/validate-filosofi-theory-quality.mjs
+      - name: Verify generated completion contract
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const a=JSON.parse(fs.readFileSync('reports/fagverk/filosofi-complete-audit.json','utf8'));
+          if(a.status!=='filosofi_complete') throw new Error('Philosophy completion audit not complete');
+          if(Object.values(a.gates).some(v=>v!==true)) throw new Error('Philosophy completion gate failed');
+          const r=JSON.parse(fs.readFileSync('data/fagverk/filosofi/filosofi_article_registry_v1.json','utf8'));
+          if(r.counts.standalone_articles!==54 || r.counts.integrated_concepts!==162 || r.counts.chapters!==13) throw new Error('Philosophy coverage incomplete');
+          NODE
+      - name: Commit deterministic outputs and remove one-shot workflow
+        run: |
+          rm .github/workflows/materialize-filosofi-complete-once.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fagverk/filosofi data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json data/fagverk/subject_status.json reports/fagverk/filosofi-complete-audit.json reports/fagverk/filosofi-phase3-audit.json scripts/materialize-filosofi-complete.mjs .github/workflows/materialize-filosofi-complete-once.yml
+          git diff --cached --quiet && exit 0
+          git commit -m 'Materialize complete Philosophy Fagverk'
+          git push origin HEAD:agent/complete-philosophy-fagverk-materialize
