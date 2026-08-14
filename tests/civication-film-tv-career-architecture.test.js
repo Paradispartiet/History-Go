@@ -6,7 +6,9 @@ const ROOT = path.join(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
 const badge = readJson('data/badges/film_tv.json');
+const overlay = readJson('data/Civication/badgeCareerContracts/film_tv.json');
 const evidence = readJson('data/Civication/filmTvCareerLifeEvidence.json');
+const patchByTitle = new Map((overlay.tiers || []).map((row) => [row.label, row.career_offer]));
 const jobs = [
   ['Produksjonsassistent',1,'produksjonsassistent'],
   ['Manusmedarbeider',1,'manusmedarbeider'],
@@ -17,16 +19,20 @@ const jobs = [
 ];
 
 assert.strictEqual(evidence.version, 2);
+assert.strictEqual(overlay.badge_id, 'film_tv');
+assert.strictEqual(overlay.evidence_ref, 'data/Civication/filmTvCareerLifeEvidence.json');
 assert.deepStrictEqual(evidence.canonical_decision.review_left_open, []);
 assert.deepStrictEqual(Object.keys(evidence.canonical_decision.work_worlds), jobs.map(([, ,scope]) => scope));
 
 for (const [title, salaryTier, scope] of jobs) {
   const tier = badge.tiers.find((candidate) => candidate.label === title);
+  const contract = patchByTitle.get(title);
   assert.ok(tier, `${title}: tier missing`);
   assert.strictEqual(tier.career_offer?.title, title);
-  assert.strictEqual(tier.career_offer?.policy, 'direct');
-  assert.strictEqual(tier.career_offer?.salary_tier, salaryTier);
-  assert.strictEqual(tier.career_offer?.role_scope, scope);
+  assert.strictEqual(contract?.title, title);
+  assert.strictEqual(contract?.policy, 'direct');
+  assert.strictEqual(contract?.salary_tier, salaryTier);
+  assert.strictEqual(contract?.role_scope, scope);
 
   const model = readJson(`data/Civication/roleModels/film_tv/${scope}.json`);
   assert.strictEqual(model.version, 2, `${scope}: role model must be v2`);
@@ -52,4 +58,5 @@ for (const [title, salaryTier, scope] of jobs) {
 
 assert.strictEqual(badge.tiers.filter((tier) => tier.life_position?.employment_independent === true).length, 9);
 assert.strictEqual(badge.tiers.filter((tier) => tier.career_offer).length, 6);
-console.log('civication Film/TV career architecture ok: 9 life/status tiers / 6 formal jobs / 6 v2 work worlds');
+assert.strictEqual(overlay.tiers.length, 6);
+console.log('civication Film/TV career architecture ok: 9 life/status tiers / 6 formal jobs / 6 v2 work worlds via Civication overlay');
