@@ -834,13 +834,15 @@ Popupen aggregerer canonical data; den skal ikke skape en ny parallell sannhet.
 - [ ] arkivsøk er utført etter skikkelig gamle bilder, ikke bare bilder fra hver side av en nyere ombygging;
 - [ ] et historisk sted med tilgjengelig arkivmateriale viser minst én reell gammel–nå-sammenligning som gjør lang tidsendring synlig;
 - [ ] primærparet viser samme gateutsnitt, bygg, plassrom eller annen tydelig gjenkjennelig del av stedet fra sammenlignbar retning og målestokk;
+- [ ] canonical place-register/manifester er søkt før motivet velges, slik at bygg, virksomheter, parker, plasser eller andre delsteder med egen place-oppføring blir oppdaget;
+- [ ] et delsted som har egen canonical place-oppføring brukes ikke som primært Før/etter-stedfortreder for et overordnet sted; det kan bare brukes som tydelig merket supplement eller lenket relasjon når det er relevant;
 - [ ] bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder, men består ikke alene som fullverdig primær Før/etter-sammenligning;
 - [ ] eldre historiske lag og en eventuell nyere ombyggingssammenligning kan vises som flere tydelig daterte par; 2009 → 2017 erstatter ikke automatisk et eldre historisk førbilde;
 - [ ] dagens bilde er faktisk aktuelt, eller er tydelig datert som et eldre «etter»-bilde uten å utgi seg for nåtid;
 - [ ] `before`, `now`, `change` er konkrete, kildebelagte og begrenset til det bildene faktisk lar spilleren sammenligne;
 - [ ] fotograf, dato, lisens, kilde og kamerastandpunkt/utsnitt er dokumentert for hvert bilde.
 
-**Stoppgate:** Før/etter er ikke ferdig når hovedparet viser forskjellige, vanskelig sammenlignbare utsnitt, når et innholdsrikt historisk sted mangler gjennomført arkivsøk, eller når «før» og «etter» bare dekker en kort nyere periode selv om eldre egnet materiale finnes.
+**Stoppgate:** Før/etter er ikke ferdig når hovedparet viser forskjellige, vanskelig sammenlignbare utsnitt, når et innholdsrikt historisk sted mangler gjennomført arkivsøk, når «før» og «etter» bare dekker en kort nyere periode selv om eldre egnet materiale finnes, eller når et underbygg/delsted med egen place-oppføring brukes som erstatning for stedet som faktisk produseres.
 
 ### Nyheter
 - [ ] repo, offisielle aktører, lokale medier og andre relevante ferske kilder er faktisk søkt;
