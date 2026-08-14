@@ -87,12 +87,14 @@ jobs:
           node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
           node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
           node scripts/build-fagverk-release-manifest.mjs
-      - name: Validate permanent Philosophy university-depth gates
-        run: |
-          node --test tests/fagverk-filosofi-university-depth.test.mjs
-          node --test tests/fagverk-filosofi-complete.test.mjs
-          node --test tests/fagverk-filosofi-editorial-style.test.mjs
-          node --test tests/fagverk-filosofi-phase3.test.mjs
+      - name: Validate Philosophy university depth
+        run: node --test tests/fagverk-filosofi-university-depth.test.mjs
+      - name: Validate Philosophy completion
+        run: node --test tests/fagverk-filosofi-complete.test.mjs
+      - name: Validate Philosophy editorial style
+        run: node --test tests/fagverk-filosofi-editorial-style.test.mjs
+      - name: Validate Philosophy phase 3
+        run: node --test tests/fagverk-filosofi-phase3.test.mjs
       - name: Validate Fagverk subject inventory
         run: node --test tests/fagverk-subject-inventory.test.mjs
       - name: Validate Fagverk general engine
