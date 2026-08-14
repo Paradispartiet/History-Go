@@ -1,0 +1,111 @@
+name: Torggata phase 13 Brands materialize
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase13-brands
+    paths:
+      - .github/workflows/torggata-phase13-brands-materialize.yml
+      - scripts/materialize-torggata-phase13-brands.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: torggata-phase13-brands-materialize
+  cancel-in-progress: false
+
+jobs:
+  materialize-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install repository dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install browser materialization dependency
+        run: |
+          npm install --no-save --package-lock=false playwright
+          npx playwright install --with-deps chromium
+
+      - name: Check materializer syntax
+        run: node --check scripts/materialize-torggata-phase13-brands.mjs
+
+      - name: Materialize phase 13 Brand assets
+        run: node scripts/materialize-torggata-phase13-brands.mjs
+
+      - name: Validate Torggata Brand contracts
+        run: |
+          node --test \
+            tests/torggata-phase8c-brands.test.mjs \
+            tests/torggata-phase13-brands.test.mjs \
+            tests/place-production-brand-quiz-governance.test.mjs \
+            tests/regjeringskvartalet-brands-phase.test.mjs
+
+      - name: TypeScript hard gates
+        run: |
+          npm run typecheck:web
+          npm run typecheck:scripts
+          npm run typecheck:tools
+
+      - name: Build guard
+        run: npm run build:web
+
+      - name: Remove temporary phase 13 tooling
+        run: |
+          rm -f .github/workflows/torggata-phase13-brand-candidates.yml
+          rm -f .github/workflows/torggata-phase13-brands-materialize.yml
+          rm -f scripts/torggata-phase13-brand-candidates.mjs
+          rm -f scripts/torggata-phase13-brand-deep-candidates.mjs
+          rm -f scripts/materialize-torggata-phase13-brands.mjs
+
+      - name: Validate permanent scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A
+          git diff --cached --check
+          echo 'Validated phase 13 diff:'
+          git diff --cached --name-status
+          unexpected="$(git diff --cached --name-only | grep -Ev '^(bilder/kort/brands/(john_dee|jernia_torggata|norli_eldorado|oslo_sportslager|oslo_bar_bowling|oslo_street_food|eldorado_bokhandel|adelsten|pm_jensen|karl_a_jensen_forretning|ingwald_nielsen)\.webp|data/brands/brands_master\.json|data/brands/brand_asset_attributions\.json|docs/BRAND_ASSETS\.md|reports/place-production/torggata-phase13-brands-audit-v1\.json|reports/place-production/torggata-workcard-current\.md|tests/torggata-phase13-brands\.test\.mjs|\.github/workflows/torggata-phase13-brand-candidates\.yml|\.github/workflows/torggata-phase13-brands-materialize\.yml|scripts/torggata-phase13-brand-candidates\.mjs|scripts/torggata-phase13-brand-deep-candidates\.mjs|scripts/materialize-torggata-phase13-brands\.mjs)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo 'Unexpected permanent scope:'
+            echo "$unexpected"
+            exit 1
+          fi
+          for temporary in \
+            .github/workflows/torggata-phase13-brand-candidates.yml \
+            .github/workflows/torggata-phase13-brands-materialize.yml \
+            scripts/torggata-phase13-brand-candidates.mjs \
+            scripts/torggata-phase13-brand-deep-candidates.mjs \
+            scripts/materialize-torggata-phase13-brands.mjs; do
+            if [ -e "$temporary" ]; then
+              echo "Temporary file still exists: $temporary"
+              exit 1
+            fi
+          done
+          if git diff --cached --quiet; then
+            echo 'No validated phase 13 changes to persist.'
+            exit 1
+          fi
+
+      - name: Persist phase 13
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Godkjenn Torggata fase 13 Brands'
+          git push origin HEAD:agent/torggata-phase13-brands
