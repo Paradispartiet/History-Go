@@ -67,8 +67,13 @@ jobs:
             node --test tests/film-tv-creative-work-technology-responsibility-source-brief-v1.test.mjs
           fi
 
-      - name: Materialize unit 9 runtime state
-        run: node scripts/materialize-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs --write
+      - name: Materialize unit 9 without rewinding later progression
+        run: |
+          if node -e "const fs=require('node:fs'); const registry=JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8')); process.exit(registry.subjects.film_tv.chapters.some((row)=>row.id==='industri-regulering-og-distribusjon') ? 0 : 1)"; then
+            echo 'Enhet 10 eller senere er registrert; beholder global Film og TV-progresjon og validerer enhet 9 read-only.'
+          else
+            node scripts/materialize-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs --write
+          fi
 
       - name: Build deterministic release
         run: node scripts/build-fagverk-release-manifest.mjs
