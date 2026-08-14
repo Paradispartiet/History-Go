@@ -115,3 +115,16 @@ Egen-place-regelen gjelder også People: Thorvald Meyer, Christian Morgenstierne
 - produksjonen viser `Personer = 4` og popupen åpner de samme fire.
 
 **Status: IKKE PRODUKSJONSGODKJENT.**
+
+
+## Tredje produksjonsverifikasjon etter PR #4982
+
+- Merge-SHA: `eb7caa2ef0a7e6678fa947d13e9b8634e3e529c4`
+- Pages-run: `31825055823` — `success`
+- Kontroll: ny cache-bustet produksjonsfane, observert i mer enn 60 sekunder
+
+Personer viste fortsatt `0`. PlaceCard var ferdig rendret uten loading-/feilmarkør, men popupgrunnlaget var tomt. De prioriterte People-filene var reparert; den gjenstående cachegrensen var `data/relations.json`, som inneholder de fire nye canonical Torggata-koblingene, men fortsatt ble hentet med `cache: "default"`. En eldre subressursrespons uten koblingene gir derfor tomt runtimeoppslag selv med ferske profiler.
+
+**Reparasjon:** begge mutable relasjonsregistrene hentes med `cache: "no-store"`. Bakgrunnslastertesten låser dette for både `data/relations.json` og `data/relations_philanthropy.json`, og produksjonssjekklisten gjør stale place→person-relasjoner til et eksplisitt blockerfunn.
+
+**Status: IKKE PRODUKSJONSGODKJENT.** Ny merge, eksakt Pages-success og manuell produksjonskontroll med `Personer = 4` er fortsatt obligatorisk.

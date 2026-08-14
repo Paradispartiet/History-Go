@@ -922,7 +922,7 @@ Denne oppskriften gjentar ikke rundingspalett, profiler eller naturkartkrav. **R
 - [ ] alle fire rundinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
 - [ ] hver runding åpnes i produksjon og viser reelt innhold; et korrekt register som ender i tom popup eller falsk 0 er ikke godkjent;
 - [ ] Personer-rundingen kontrollerer place-eierskap per profil: en personkobling som egentlig gjelder et delsted med egen canonical place, holdes tilbake eller flyttes til delstedet og kan ikke brukes som proxy for parent-place;
-- [ ] mutable People-manifest og profilfiler for åpent sted revalideres etter produksjonsendringer; aggregerte profilfiler uten place-id i filstien registreres i manifestets `priorityFilesByPlace`; en stale cache som gir tom popup eller falsk 0 er et blockerfunn;
+- [ ] mutable People-manifest, profilfiler for åpent sted og canonical relasjonsregistre revalideres etter produksjonsendringer; aggregerte profilfiler uten place-id i filstien registreres i manifestets `priorityFilesByPlace`; en stale cache som mangler nye place→person-koblinger, gir tom popup eller falsk 0 er et blockerfunn;
 - [ ] alle fire rundingene har et forståelig tilgjengelig navn i faktisk UI;
 - [ ] runtime og data bruker ikke legacy 6-/9-/12-rundersmodell i mediefeltet;
 - [ ] preview representerer samlingen ærlig og brukes ikke som innholdsfilter;

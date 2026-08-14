@@ -65,7 +65,7 @@
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
 | 11. Observer, Notat og Rute | **GODKJENT** | eksisterende Observer-, Notat- og navigasjonsruntime auditert; historisk rute begrunnet N/A |
-| 12. People–sted-koblinger | **GODKJENT** | 21/21 canonical koblinger og inspectable kilder beholdt; 7 synlige profiler er bildeklare; 14 bildeholdbacks er eksplisitte og bevarer koblingen |
+| 12. People–sted-koblinger | **GJENÅPNET; FJERDE REPARASJON PÅGÅR** | canonical målsett er Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm; Torggata Bad-proxyer og bredt områdefyll er holdt ute; produksjon viste fortsatt falsk 0 fordi stale `relations.json` manglet de nye koblingene |
 | 13. Brands | **GODKJENT** | 13/13 canonical brands har lokal verifisert logo eller autentisk historisk ordmerke/brandmark med proveniens; ingen genererte eller rekonstruerte logoer |
 | 14. Leksikon, relations, NextUp, Nearby, søk og i18n | **GODKJENT** | kildebåret Leksikon beholdt; `storgata`-relasjon, historiske aliaser og tre trofaste oversettelser regresjonslåst |
 | 15. Fysisk besøk / innsjekk | **ALLEREDE FERDIG – GODKJENT** | PR #3212/#3218-baselinen består med canonical Torggata-anker/radius og quiz/visit-separasjon |
@@ -74,7 +74,7 @@
 | 18. Legacy Wonderkammer | **GODKJENT N/A** | ingen Torggata-Wonderkammerdata; tidligere materiale er allerede klassifisert til canonical eiere |
 | 19. Hovedbilder og rundingsbilder | **GODKJENT** | to lokale hovedbilder; People 7/7, Objects 1/1 og Brands 13/13 bildeklare med proveniens |
 | 20. Data-QA | **GODKJENT** | canonical data, indekser, referanser og subsystemporter bestått på siste innholds-head |
-| 21. UI-QA | **HISTORISK GODKJENT; GJENÅPNET FOR RE-QA** | ny 8F-rundingsprofil må åpnes og kontrolleres manuelt i produksjonsflaten |
+| 21. UI-QA | **GJENÅPNET; PRODUKSJONSBLOCKER** | 4+1 og øvrige flater beholdes, men Personer må vise nøyaktig 4 etter fersk relasjonslast før Torggata kan lukkes |
 | 22. Innholds-QA | **HISTORISK GODKJENT; GJENÅPNET FOR RE-QA** | alle fem redaksjonelle funn er datareparert; samlet innholds- og UI-kontroll gjenstår |
 | 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
 | 24. Ett-sted-PR | **TEKNISK MERGET; REDAKSJONELL KVALITET GJENÅPNET** | PR #4962 og deploy er historisk verifisert, men manuell sluttvurdering avdekket fem blokkerende kvalitetsavvik |
@@ -967,3 +967,14 @@ Tredje reparasjon skal:
 - kreve ny Pages-deploy og manuell produksjonskontroll med Personer = 4.
 
 **STATUS: TREDJE REPARASJON PÅGÅR — PERSONER ER FORTSATT PRODUKSJONSBLOCKER.**
+
+
+## Produksjons-reQA 4 — stale relasjonsregister etter PR #4982 (2026-08-14)
+
+PR #4982 ble squash-merget som `eb7caa2ef0a7e6678fa947d13e9b8634e3e529c4`, og Pages-run `31825055823` fullførte med `success`. Ny cache-bustet produksjonsfane viste likevel `Personer = 0` etter mer enn 60 sekunder. DOM-en viste at PlaceCard var ferdig, uten loading-/feilmarkør, men uten personrader.
+
+Root cause er avgrenset: People-manifestet og prioriterte profilfiler blir nå revalidert, mens de fire nye canonical Torggata-koblingene ligger i `data/relations.json`. Relasjonslasteren brukte fortsatt `cache: "default"`, slik at en eldre nettleserrespons uten Torggata-koblingene kunne brukes sammen med de ferske profilene. Da returnerer `getPeopleForPlace("torggata")` tomt selv om de fire profilene er lastet.
+
+Fjerde reparasjon gjør begge mutable relasjonsregistrene cache-uavhengige med `no-store`, låser kontrakten i bakgrunnslastertesten og utvider den globale produksjonssjekklisten: ny eller endret place→person-relasjon skal ikke kunne skjules av stale cache. Etter ny merge og Pages-deploy skal en fersk produksjonskontroll bekrefte nøyaktig Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
+
+**STATUS: FJERDE REPARASJON PÅGÅR — TORGATTA ER IKKE FERDIG FØR PRODUKSJON VISER PERSONER = 4.**
