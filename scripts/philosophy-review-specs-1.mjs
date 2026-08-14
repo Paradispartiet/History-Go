@@ -15,7 +15,7 @@ export default {
   em_filosofi_gyldighet_holdbarhet: {
     thinkers: ['Gottlob Frege', 'Alfred Tarski'],
     anchors: ['logisk følge', 'gyldighet', 'sannhetsbevaring', 'holdbarhet', 'motmodell'],
-    debate: 'Debatten skiller den semantiske eller formelle egenskapen gyldighet fra spørsmålet om premissene faktisk er sanne eller godt begrunnet. Dette skillet er avgjørende for å unngå at et gyldig argument feilaktig behandles som et godt argument om verden.',
+    debate: 'Debatten skiller den semantiske eller formelle egenskapen gyldighet, forstått som sannhetsbevaring i deduktive følgerelasjoner, fra spørsmålet om premissene faktisk er sanne eller godt begrunnet. Dette skillet er avgjørende for å unngå at et gyldig argument feilaktig behandles som et godt argument om verden.',
     argument: [
       'P1: Et deduktivt argument er gyldig når det ikke finnes en mulig tolkning av den relevante formen der alle premissene er sanne og konklusjonen falsk; en motmodell er derfor nok til å vise ugyldighet.',
       'P2: Frege og den senere semantiske tradisjonen gjør det mulig å skille logisk følge fra psykologisk overbevisning: at en konklusjon virker plausibel sier ingenting om hvorvidt den følger av premissene.',
