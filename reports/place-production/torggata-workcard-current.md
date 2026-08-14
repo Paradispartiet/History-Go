@@ -793,7 +793,7 @@ Bindende rekkefølge videre:
 ## Gjenåpnet fase 7G – Lesespor
 
 - Alle manifest-lastede Oslo-Lesespor ble søkt; ingen Torggata-oppføring fantes i gjeldende datasett.
-- Tre åpne og direkte lesbare spor er lagt i `data/lesespor/oslo/lesespor_oslo_by_torggata.json`.
+- Tre åpne og direkte lesbare spor er lagt i `data/lesespor/oslo/lesespor_oslo_by.json`.
 - Oslo byleksikon gir sammenhengende gatehistorie og bygningsoversikt.
 - TØI rapport 1581/2017 gir videobasert og målt kunnskap om syklende, gående, interaksjoner og konflikter i Torggata/Brugata.
 - NLA gir prosjektfakta, gateprofil, materialer og navngitte fagaktører for opprustingen ferdigstilt i 2014.
