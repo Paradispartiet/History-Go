@@ -140,7 +140,11 @@ test('kapittelregistrering avanserer monotont og source briefen forblir uendret 
   assert.equal(registered.file, 'data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder.json');
   assert.equal(registered.claimsFile, 'data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder/claims.json');
   assert.equal(registered.briefFile, 'data/fagverk/film_tv/resepsjon-deltakelse-og-publikumsmetoder/brief.json');
-  assert.equal(film.nextGate, 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief');
+  assert.equal([
+    'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief',
+    'screen_places_identity_circulation_source_brief_complete_full_chapter_production',
+    'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief'
+  ].includes(film.nextGate), true);
   assert.equal(sourceBrief.status, 'source_claim_brief_complete_full_chapter_production');
   assert.equal(sourceBrief.runtime_registration.registered, false);
   assert.equal(sourceBrief.runtime_registration.allowed_before_full_chapter_gate, false);

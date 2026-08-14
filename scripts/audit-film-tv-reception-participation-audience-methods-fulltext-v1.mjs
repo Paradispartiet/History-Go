@@ -11,6 +11,10 @@ import {
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'resepsjon-deltakelse-og-publikumsmetoder';
 const OUTPUT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';
+const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';
+const SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
+const UNIT_ELEVEN_OR_LATER_GATES = new Set([OUTPUT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE]);
+const isFilmTvUnitElevenFulltextOrLaterGate = (gate) => UNIT_ELEVEN_OR_LATER_GATES.has(gate);
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`,
   brief: `data/fagverk/film_tv/${CHAPTER_ID}/brief.json`,
@@ -152,7 +156,7 @@ export function auditFilmTvReceptionParticipationAudienceMethodsFulltextV1({
       && chapterRecord?.claimsFile === P.claims
       && chapterRecord?.briefFile === P.brief
       && filmStatus?.editorialStatus === 'chapters_in_progress'
-      && filmStatus?.nextGate === OUTPUT_GATE,
+      && isFilmTvUnitElevenFulltextOrLaterGate(filmStatus?.nextGate),
     deterministic_generated_state_matches: isDeepStrictEqual(chapter, built.chapter)
       && isDeepStrictEqual(brief, built.chapterBrief)
       && isDeepStrictEqual(claimsDoc, built.claimsDoc)
