@@ -42,7 +42,7 @@
         value = response?.ok ? await response.json() : null;
       }
     } catch (error) {
-      if (root.DEBUG) console.warn("[CareerKnowledgeBridge] kunne ikke laste", file, error);
+      if (Reflect.get(root, "DEBUG")) console.warn("[CareerKnowledgeBridge] kunne ikke laste", file, error);
     }
 
     cache.set(file, value);

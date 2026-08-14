@@ -51,7 +51,7 @@
       section.hidden = false;
       return true;
     } catch (error) {
-      if (root.DEBUG) console.warn("[FagverkCareerUses] kunne ikke bygge jobbkoblingen", error);
+      if (Reflect.get(root, "DEBUG")) console.warn("[FagverkCareerUses] kunne ikke bygge jobbkoblingen", error);
       return false;
     }
   }
