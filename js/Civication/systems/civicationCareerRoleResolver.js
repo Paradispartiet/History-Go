@@ -59,6 +59,12 @@
     kunst_konservering_og_samling: 'kunst_konservering_og_samling',
     kunst_kunstnerisk_ledelse: 'kunst_kunstnerisk_ledelse',
     kunst_museumsledelse: 'kunst_museumsledelse',
+    scenekunst_scene_og_produksjon: 'scenekunst_scene_og_produksjon',
+    scenekunst_utoving_og_ensemble: 'scenekunst_utoving_og_ensemble',
+    scenekunst_dramaturgi_og_utvikling: 'scenekunst_dramaturgi_og_utvikling',
+    scenekunst_regi_og_koreografi: 'scenekunst_regi_og_koreografi',
+    scenekunst_program_og_kuratering: 'scenekunst_program_og_kuratering',
+    scenekunst_institusjonsledelse: 'scenekunst_institusjonsledelse',
     natur_felt_og_formidling: 'natur_felt_og_formidling',
     natur_forvaltning_og_radgivning: 'natur_forvaltning_og_radgivning',
     natur_biologi_og_forskning: 'natur_biologi_og_forskning',
@@ -207,6 +213,31 @@
   };
   const KUNST_NON_JOB_TITLES = new Set(['gallerist']);
 
+  const SCENEKUNST_ROLE_SCOPE_BY_TITLE = {
+    scenevert: 'scenekunst_scene_og_produksjon',
+    produksjonsassistent: 'scenekunst_scene_og_produksjon',
+    scenetekniker: 'scenekunst_scene_og_produksjon',
+    inspisientassistent: 'scenekunst_scene_og_produksjon',
+    produsent: 'scenekunst_scene_og_produksjon',
+    skuespiller_danser: 'scenekunst_utoving_og_ensemble',
+    dramaturg: 'scenekunst_dramaturgi_og_utvikling',
+    regissor: 'scenekunst_regi_og_koreografi',
+    koreograf: 'scenekunst_regi_og_koreografi',
+    scenekunstkurator: 'scenekunst_program_og_kuratering',
+    kunstnerisk_leder: 'scenekunst_institusjonsledelse',
+    teatersjef: 'scenekunst_institusjonsledelse'
+  };
+  const SCENEKUNST_NON_JOB_TITLES = new Set([
+    'publikum','utover','skuespiller_danser','dramaturg','regissor','koreograf','scenekunstkurator'
+  ]);
+  const SCENEKUNST_LEGACY_SCOPE_BY_ROLE_KEY = {
+    sceneassistent: 'scenekunst_scene_og_produksjon',
+    produksjonsmedarbeider: 'scenekunst_scene_og_produksjon',
+    ensemblemedlem: 'scenekunst_utoving_og_ensemble',
+    hovedrolleinnehaver: 'scenekunst_utoving_og_ensemble',
+    regissor_teater: 'scenekunst_regi_og_koreografi'
+  };
+
   const NATUR_ROLE_SCOPE_BY_TITLE = {
     feltassistent: 'natur_felt_og_formidling', naturveileder: 'natur_felt_og_formidling',
     naturforvalter: 'natur_forvaltning_og_radgivning', radgiver_miljo_natur: 'natur_forvaltning_og_radgivning',
@@ -321,6 +352,16 @@
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('kunst_')) return roleKey;
     }
 
+    if (careerId === 'scenekunst' || careerId === 'teater') {
+      if (careerId === 'teater' && SCENEKUNST_LEGACY_SCOPE_BY_ROLE_KEY[roleKey]) {
+        return SCENEKUNST_LEGACY_SCOPE_BY_ROLE_KEY[roleKey];
+      }
+      if (SCENEKUNST_NON_JOB_TITLES.has(titleKey) || SCENEKUNST_NON_JOB_TITLES.has(roleKey)) return 'unknown';
+      const hit = mapped(SCENEKUNST_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
+      if (hit) return hit;
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('scenekunst_')) return roleKey;
+    }
+
     if (careerId === 'natur') {
       const hit = mapped(NATUR_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
@@ -372,6 +413,7 @@
       'filosofi_forskning_og_formidling','filosofi_undervisning_og_akademia','musikk_scene_og_produksjon','musikk_utoving_og_ensemble',
       'historie_arkiv_og_dokumentasjon','historie_forvaltning_og_radgivning','historie_museum_og_samling','historie_forskning_og_akademia','historie_fagledelse','historie_institusjonsledelse',
       'kunst_publikum_og_formidling','kunst_utstillingsproduksjon','kunst_kuratering_og_program','kunst_konservering_og_samling','kunst_kunstnerisk_ledelse','kunst_museumsledelse',
+      'scenekunst_scene_og_produksjon','scenekunst_utoving_og_ensemble','scenekunst_dramaturgi_og_utvikling','scenekunst_regi_og_koreografi','scenekunst_program_og_kuratering','scenekunst_institusjonsledelse',
       'natur_felt_og_formidling','natur_forvaltning_og_radgivning','natur_biologi_og_forskning','natur_miljoledelse','natur_politisk_myndighet',
       'politikk_organisasjonsarbeid','politikk_politisk_radgivning','politikk_kommunal_ledelse','politikk_parlamentarisk_arbeid','politikk_regjeringsledelse',
       'subkultur_arrangementsdrift','subkultur_program_og_koordinering','subkultur_produksjon_og_prosjekt','subkultur_produksjonsledelse','subkultur_kulturarena_ledelse',
