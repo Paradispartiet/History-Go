@@ -1,0 +1,142 @@
+{
+  "schema": "history_go_film_tv_screen_places_identity_circulation_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-14",
+  "status": "source_claim_brief_complete_full_chapter_production",
+  "subject_id": "film_tv",
+  "planned_unit_id": "skjermsteder-identitet-og-sirkulasjon",
+  "future_chapter_id": "skjermsteder-identitet-og-sirkulasjon",
+  "runtime_registration": {
+    "registered": false,
+    "allowed_before_full_chapter_gate": false
+  },
+  "scope": {
+    "title": "Skjermsteder, identitet og sirkulasjon",
+    "primary_domain_ids": [
+      "sted_location_skjermgeografi"
+    ],
+    "prerequisite_planned_unit_ids": [
+      "skjermoffentlighet-fellesskap-og-samfunn",
+      "resepsjon-deltakelse-og-publikumsmetoder"
+    ],
+    "prerequisite_existing_chapter_ids": [],
+    "emne_count": 11,
+    "emne_ids": [
+      "em_film_tv_byen_som_audiovisuelt_bilde",
+      "em_film_tv_film_tv_geografi_og_romlig_sirkulasjon",
+      "em_film_tv_ikonisk_filmsted_og_sirkulasjon",
+      "em_film_tv_interior_bolig_og_skjermrom",
+      "em_film_tv_landskap_stemning_og_stedsetikk",
+      "em_film_tv_mobilitet_grenser_eksil_og_skjermrom",
+      "em_film_tv_rurale_perifere_og_arktiske_skjermgeografier",
+      "em_film_tv_sted_identitet_og_tilhorighet",
+      "em_film_tv_sted_som_audiovisuell_myte",
+      "em_film_tv_stedlig_skjermminne",
+      "em_film_tv_urban_skjermgeografi"
+    ],
+    "overlap_boundary": "Eier representasjon, identitet, romlig sirkulasjon, ikonisering, mytedannelse og minne knyttet til skjermsted. Fysisk produksjonsinngrep, bilderett, lokalsamfunnssamtykke, urfolks land- og billedrettigheter, filmturisme og dokumentert lokal økonomisk eller miljømessig virkning eies av enhet 13 og kan ikke importeres som ubeviste sideclaims."
+  },
+  "files": {
+    "sources": "data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_sources_v1.json",
+    "cases": "data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_cases_v1.json",
+    "topic_claims": "data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_topic_claims_v1.json"
+  },
+  "source_policy": {
+    "sources_are_inspectable_https": true,
+    "shown_place_actual_shooting_location_fictional_space_and_documented_local_effect_are_distinct": true,
+    "represented_place_is_not_automatic_evidence_of_lived_identity_belonging_or_local_effect": true,
+    "shooting_location_is_not_identical_to_the_place_named_or_shown_in_the_work": true,
+    "fictional_and_composite_geographies_must_be_labelled": true,
+    "maps_routes_geocoding_and_databases_document_spatial_relations_not_meaning_or_reception_alone": true,
+    "iconicity_requires_documented_repetition_circulation_intertext_or_recognition": true,
+    "landmark_visibility_is_not_proof_of_local_social_or_economic_effect": true,
+    "interior_representation_actual_building_studio_set_and_digital_space_are_distinct": true,
+    "landscape_atmosphere_is_an_audiovisual_construction_not_measured_audience_affect": true,
+    "screened_nature_is_not_evidence_of_actual_environmental_condition": true,
+    "rural_peripheral_and_arctic_geographies_are_not_homogeneous_or_empty": true,
+    "indigenous_cases_require_authorship_language_territory_knowledge_position_and_source_control": true,
+    "exile_diaspora_mobility_and_multilingualism_must_not_be_essentialised": true,
+    "place_identity_requires_named_actors_period_context_and_evidence_position": true,
+    "actual_identity_work_or_belonging_requires_person_or_community_evidence_not_representation_alone": true,
+    "place_myth_is_a_historical_pattern_of_representation_not_a_synonym_for_falsehood": true,
+    "personal_popular_public_archival_and_institutional_memory_are_distinct": true,
+    "archive_absence_claims_require_collection_search_metadata_digitisation_and_gap_reporting": true,
+    "memory_effect_theories_are_not_universal_measured_audience_outcomes": true,
+    "production_intervention_consent_image_rights_film_tourism_and_local_effects_are_deferred_to_unit_13": true,
+    "planned_claim_is_not_verified_claim": true,
+    "fulltext_requires_paragraph_level_claim_trace": true
+  },
+  "proposed_module_order": [
+    {
+      "id": "by-bolig-og-urban-skala",
+      "sequence": 1,
+      "emne_ids": [
+        "em_film_tv_byen_som_audiovisuelt_bilde",
+        "em_film_tv_urban_skjermgeografi",
+        "em_film_tv_interior_bolig_og_skjermrom"
+      ],
+      "purpose": "Går fra byen som komponert bilde via urban rytme og infrastruktur til boligens og interiørets medierte organisering."
+    },
+    {
+      "id": "landskap-periferi-og-arktis",
+      "sequence": 2,
+      "emne_ids": [
+        "em_film_tv_landskap_stemning_og_stedsetikk",
+        "em_film_tv_rurale_perifere_og_arktiske_skjermgeografier"
+      ],
+      "purpose": "Skiller setting, landskap, stemning og miljøideologi og behandler rurale, perifere og arktiske rom som historisk og politisk mangfoldige."
+    },
+    {
+      "id": "mobilitet-tilhorighet-og-romlig-sirkulasjon",
+      "sequence": 3,
+      "emne_ids": [
+        "em_film_tv_mobilitet_grenser_eksil_og_skjermrom",
+        "em_film_tv_sted_identitet_og_tilhorighet",
+        "em_film_tv_film_tv_geografi_og_romlig_sirkulasjon"
+      ],
+      "purpose": "Følger ruter, grenser, eksil, hjem, tilhørighet og verkets romlige sirkulasjon gjennom flere geografiske lag."
+    },
+    {
+      "id": "ikoniske-steder-myte-og-skjermminne",
+      "sequence": 4,
+      "emne_ids": [
+        "em_film_tv_ikonisk_filmsted_og_sirkulasjon",
+        "em_film_tv_sted_som_audiovisuell_myte",
+        "em_film_tv_stedlig_skjermminne"
+      ],
+      "purpose": "Undersøker hvordan steder blir ikoniske, mytiske og minnebærende gjennom gjentakelse, intertekst, arkiv og senere ombruk."
+    }
+  ],
+  "production_requirements": {
+    "section_scope_is_derived_from_emne_ownership": true,
+    "paragraph_and_claim_counts_follow_problem_complexity": true,
+    "current_claim_plan_counts_by_emne": [
+      5,
+      5,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      4
+    ],
+    "paragraph_claim_trace_required": true,
+    "every_planned_claim_must_be_verified_rewritten_or_rejected": true,
+    "every_used_source_must_support_at_least_one_final_claim": true,
+    "every_place_claim_must_name_shown_place_shooting_location_fictional_space_and_local_effect_status_when_relevant": true,
+    "every_map_or_database_claim_must_report_dataset_scope_metadata_method_and_gaps": true,
+    "every_iconicity_claim_must_name_object_form_circulation_arena_period_and_evidence_of_repetition_or_recognition": true,
+    "every_interior_claim_must_name_represented_room_actual_location_or_set_status_period_and_social_relation": true,
+    "every_landscape_claim_must_separate_formal_atmosphere_environmental_condition_and_production_effect": true,
+    "every_mobility_or_exile_claim_must_name_route_border_language_position_period_and_evidence_layer": true,
+    "every_rural_or_arctic_claim_must_name_region_community_authorship_language_and_territorial_scope": true,
+    "every_identity_claim_must_name_actor_group_place_relation_period_and_person_or_community_evidence_when_lived_identity_is_asserted": true,
+    "every_myth_claim_must_name_recurring_motif_corpus_period_and_circulation_path": true,
+    "every_memory_claim_must_name_source_date_provenance_version_reuse_context_and_archive_gap": true,
+    "chapter_registration_only_after_fulltext_claim_and_evidence_audit": true
+  },
+  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_skjermsteder_identitet_og_sirkulasjon"
+}
