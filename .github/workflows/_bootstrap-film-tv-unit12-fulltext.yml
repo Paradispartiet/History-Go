@@ -1,0 +1,81 @@
+name: Bootstrap Film TV unit 12 fulltext delivery
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit12-screen-places-fulltext
+    paths:
+      - ".delivery/film-tv-unit12/READY"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bootstrap-film-tv-unit12-fulltext
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/film-tv-unit12-screen-places-fulltext
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Restore reviewed delivery payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .delivery/film-tv-unit12/payload.part.* > /tmp/unit12payload.b64
+          printf '%s  %s\n' \
+            '8d1c2c0399991ff978bbc24bc3dfe8c78d49f3f8ea7fd7a87bd6644c791af3c3' \
+            '/tmp/unit12payload.b64' | sha256sum -c -
+          base64 --decode /tmp/unit12payload.b64 > /tmp/unit12payload.tgz
+          tar -tzf /tmp/unit12payload.tgz
+          tar -xzf /tmp/unit12payload.tgz
+          rm -rf .delivery/film-tv-unit12
+          rm -f .github/workflows/_bootstrap-film-tv-unit12-fulltext.yml
+          chmod +x \
+            scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs \
+            scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+
+      - name: Materialize and validate unit 12
+        run: |
+          set -euo pipefail
+          node --check scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node --check tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+          node scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs --write-report
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs --write-report
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write-report
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Commit complete delivery to feature branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Fullfør Film og TV-enhet 12 fulltekst"
+          git push origin HEAD:agent/film-tv-unit12-screen-places-fulltext
