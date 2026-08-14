@@ -14,8 +14,8 @@ test('Filosofi er individuelt materialisert og auditert som Fase 3-fag', () => {
   assert.equal(report.subject.adapter, 'standard');
   assert.equal(report.subject.navigationStatus, 'materialized');
   assert.equal(report.subject.assessmentStatus, 'audited');
-  assert.equal(report.subject.editorialStatus, 'structure_ready');
-  assert.equal(report.subject.nextGate, 'chapter_production');
+  assert.equal(report.subject.editorialStatus, 'complete');
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(report.subject.subjectPage, 'fagverk.html?subject=filosofi');
   assert.equal(report.subject.badgePage, 'data/fag/filosofi/merke_filosofi.html');
   assert.deepEqual(report.summary, {
@@ -29,7 +29,7 @@ test('Filosofi er individuelt materialisert og auditert som Fase 3-fag', () => {
     thinkerCount: 157,
     activeThinkerCount: 149,
     contextualThinkerCount: 8,
-    registeredChapterCount: 0
+    registeredChapterCount: 13
   });
 });
 
