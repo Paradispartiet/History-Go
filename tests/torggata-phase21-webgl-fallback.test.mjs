@@ -5,6 +5,7 @@ import vm from "node:vm";
 
 const mapSource = fs.readFileSync("js/map.js", "utf8");
 const appSource = fs.readFileSync("js/app.js", "utf8");
+const mapViewSource = fs.readFileSync("js/views/MapView.js", "utf8");
 const place = JSON.parse(fs.readFileSync("data/places/by/oslo/places/torggata.json", "utf8"));
 const phase19 = JSON.parse(fs.readFileSync("reports/place-production/torggata-phase19-images-audit-v1.json", "utf8"));
 const phase21 = JSON.parse(fs.readFileSync("reports/place-production/torggata-phase21-ui-qa-audit-v1.json", "utf8"));
@@ -113,6 +114,47 @@ test("index sanity accepts the explicit no-WebGL state but still rejects an unex
   const error = context.assertCriticalIndexRuntime();
   assert.equal(error?.name, "Error");
   assert.match(String(error?.message), /MAP – kartet ble ikke initialisert/);
+});
+
+test("no-WebGL place routing opens Torggata directly instead of requiring map flyTo", () => {
+  let openedPlace = null;
+  const classNames = new Set();
+  const window = {
+    fetch() { throw new Error("not used"); },
+    PLACES: [place],
+    MAP: null,
+    HGMap: {
+      getMap() { return null; },
+      resize() {}
+    },
+    openPlaceCard(nextPlace) { openedPlace = nextPlace; },
+    setNearbyCollapsed() {},
+    LayerManager: { setMode() {} }
+  };
+  const document = {
+    body: {
+      classList: {
+        add(...names) { names.forEach((name) => classNames.add(name)); },
+        remove(...names) { names.forEach((name) => classNames.delete(name)); }
+      }
+    },
+    baseURI: "https://history-go.test/",
+    getElementById() { return null; }
+  };
+  const context = vm.createContext({
+    window,
+    document,
+    URL,
+    Request,
+    Response,
+    Map,
+    console
+  });
+  vm.runInContext(mapViewSource, context, { filename: "MapView.js" });
+
+  assert.equal(window.HGMapView.openPlace("torggata"), true);
+  assert.equal(openedPlace?.id, "torggata");
+  assert.equal(classNames.has("hg-view-map"), true);
 });
 
 test("Torggata phase 19 and 21 evidence preserves four content rounds plus a separate Badge", () => {

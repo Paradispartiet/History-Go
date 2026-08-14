@@ -243,7 +243,14 @@
    */
   function navigateToPlace(place) {
     const map = window.HGMap?.getMap?.() || window.MAP;
-    if (!map?.flyTo || !Number.isFinite(place?.lon) || !Number.isFinite(place?.lat)) return false;
+    if (!Number.isFinite(place?.lon) || !Number.isFinite(place?.lat)) return false;
+
+    if (!map?.flyTo) {
+      cancelPendingPlaceNavigation();
+      if (typeof window.openPlaceCard !== "function") return false;
+      void window.openPlaceCard(place);
+      return true;
+    }
 
     hidePlaceCardForMap();
 

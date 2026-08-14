@@ -14,9 +14,10 @@
     "files": [
       "js/map.ts",
       "js/map.js",
-      "js/app.js"
+      "js/app.js",
+      "js/views/MapView.js"
     ],
-    "behavior": "catch the map constructor failure, expose map-unavailable state, let index sanity accept that explicit degraded state, and continue app boot",
+    "behavior": "catch only the map constructor failure, expose map-unavailable state, let index sanity accept that explicit degraded state, route place selections directly to PlaceCard when flyTo is unavailable, and continue app boot",
     "webgl_clients_unchanged": true
   },
   "retained_ui_contracts": [
@@ -34,7 +35,7 @@
     "legacy round suppression"
   ],
   "regression_test": "tests/torggata-phase21-webgl-fallback.test.mjs",
-  "conclusion": "The map is no longer a hard dependency for loading Torggata content, and UI-QA retains the canonical four content rounds plus separate Badge.",
+  "conclusion": "The map is no longer a hard dependency for loading or routing to Torggata content, and UI-QA retains the canonical four content rounds plus separate Badge.",
   "round_contract": {
     "content_rounds": [
       "people",
@@ -44,5 +45,10 @@
     ],
     "badge_separate": true,
     "visible_rounds_total": 5
+  },
+  "production_followup": {
+    "observed_after_first_safeguard": "Nearby changed the route to #/place/torggata, but MapView rejected the place when no flyTo-capable map existed.",
+    "correction": "MapView opens the selected PlaceCard directly only in the explicit no-map path; normal map clients retain moveend-gated flyTo behavior.",
+    "browser_result_pending": true
   }
 }

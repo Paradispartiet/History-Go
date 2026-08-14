@@ -681,6 +681,8 @@ Produksjonskontrollen på GitHub Pages fant at en nettleser uten WebGL stoppet h
 
 `HGMap.initMap` fanger nå bare kartkonstruksjonsfeilen, markerer kartcontaineren med `data-map-unavailable=1` og gir en tilgjengelig etikett. Den senere index-sanity-porten godtar dette eksplisitte degraderte kartstadiet, slik at resten av appen laster. Nettlesere med WebGL følger uendret kartflyt.
 
+Produksjonsoppfølgingen fant også at Nearby oppdaterte hash-ruten, men at `MapView` krevde en `flyTo`-kapabel kartinstans før PlaceCard kunne åpnes. I eksplisitt no-map-modus åpner `MapView` nå det valgte PlaceCard-et direkte; ordinære kartklienter beholder den eksisterende `flyTo`/`moveend`-porten.
+
 ### Godkjent resultat
 
 - Appen kan boote og laste Torggata selv når WebGL ikke finnes.
@@ -689,6 +691,7 @@ Produksjonskontrollen på GitHub Pages fant at en nettleser uten WebGL stoppet h
 - Popup- og rundingskontraktene beholdes med fire innholdsrundinger: People, Objects, Brands og Structures, samt separat fast Badge. People-korttekst, På stedet, visit, favoritt og quiz/visit-separasjon beholdes fra tidligere grønne faseporter.
 - Tomme/irrelevante flater og legacy 3×3/Wonderkammer er fortsatt undertrykt.
 - Regresjonstesten låser både at WebGL-konstruksjonsfeil degraderer kartet og at index-sanity godtar den eksplisitte `map-unavailable`-tilstanden uten å stoppe app-boot.
+- Samme test låser at `#/place/torggata` åpner Torggata direkte når kartet er utilgjengelig, uten å svekke kartklientenes flyTo-port.
 
 **Fase 21 UI-QA = GODKJENT ETTER SIKRINGSENDRING.**
 
