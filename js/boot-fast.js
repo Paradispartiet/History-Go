@@ -673,14 +673,26 @@
       let publishedPrioritySignature = "";
       const hasPlaceSegment = (file, placeId) => placeId
         && String(file).split("/").some(segment => segment === placeId);
-      const prioritizeOpenPlace = file => hasPlaceSegment(file, getCurrentPlaceId());
+      const priorityFilesByPlace = new Map(
+        Object.entries(manifest.priorityFilesByPlace || {}).map(([placeId, entries]) => [
+          String(placeId || "").trim(),
+          new Set((Array.isArray(entries) ? entries : [])
+            .map(normalizePeoplePath)
+            .filter(file => peopleFiles.includes(file)))
+        ])
+      );
+      const isPriorityFileForPlace = (file, placeId) => Boolean(
+        hasPlaceSegment(file, placeId)
+        || priorityFilesByPlace.get(String(placeId || "").trim())?.has(file)
+      );
+      const prioritizeOpenPlace = file => isPriorityFileForPlace(file, getCurrentPlaceId());
 
       const publishOpenPlaceRows = () => {
         const placeId = getCurrentPlaceId();
         if (!placeId) return;
         const rows = [];
         for (const [file, fileRows] of loadedRowsByFile) {
-          if (hasPlaceSegment(file, placeId)) rows.push(...fileRows);
+          if (isPriorityFileForPlace(file, placeId)) rows.push(...fileRows);
         }
         if (!rows.length) return;
 
@@ -693,7 +705,7 @@
         emit("hg:people-priority-ready", {
           placeId,
           count: window.PEOPLE.length,
-          files: peopleFiles.filter(file => hasPlaceSegment(file, placeId)).length
+          files: peopleFiles.filter(file => isPriorityFileForPlace(file, placeId)).length
         });
         handlePeopleDataChange();
       };
@@ -751,7 +763,7 @@
         files: peopleFiles.length,
         failedFiles: failedFiles.length,
         concurrency: PEOPLE_FETCH_CONCURRENCY,
-        priorityFiles: peopleFiles.filter(file => hasPlaceSegment(file, currentPlaceId)).length,
+        priorityFiles: peopleFiles.filter(file => isPriorityFileForPlace(file, currentPlaceId)).length,
         partial: failedFiles.length > 0
       });
       return peopleAll;

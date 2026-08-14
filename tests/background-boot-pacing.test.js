@@ -170,7 +170,7 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
 
   const peopleFiles = [
     ...Array.from({ length: 7 }, (_, index) => `people/test/person-${index + 2}.json`),
-    "people/by/place-1/person-1.json"
+    "people/by/oslo/people.json"
   ];
 
   async function fetchMock(input, init = {}) {
@@ -179,10 +179,15 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     fetchCache.set(url, init.cache || "default");
 
     if (url === "data/people/manifest.json") {
-      return response({ files: peopleFiles });
+      return response({
+        files: peopleFiles,
+        priorityFilesByPlace: {
+          "place-1": ["people/by/oslo/people.json"]
+        }
+      });
     }
 
-    if (/^data\/people\/(?:by\/place-1|test)\/person-/.test(url)) {
+    if (/^data\/people\/(?:by\/oslo\/people\.json|test\/person-)/.test(url)) {
       const attempts = (peopleAttempts.get(url) || 0) + 1;
       peopleAttempts.set(url, attempts);
       activePeopleFetches += 1;
@@ -192,7 +197,9 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
       if (url.endsWith("person-8.json") && attempts === 1) {
         return { ok: false, async json() { return null; } };
       }
-      const id = url.match(/person-(\d+)/)?.[1] || "x";
+      const id = url === "data/people/by/oslo/people.json"
+        ? "1"
+        : (url.match(/person-(\d+)/)?.[1] || "x");
       if (id === "1") {
         return response({ id: "person-1", name: "Person 1", place_ids: ["place-1"] });
       }
@@ -287,9 +294,9 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.equal(refreshRelationStates[0], false, "direkte place-profiler venter ikke på hele relasjonsregisteret");
   assert.deepEqual(Array.from(window.PEOPLE, person => person.id), ["person-1"]);
   assert.equal(
-    fetchCache.get("data/people/by/place-1/person-1.json"),
+    fetchCache.get("data/people/by/oslo/people.json"),
     "reload",
-    "profilfiler for åpent sted revalideres før de publiseres"
+    "manifestindeksert aggregatfil for åpent sted revalideres før den publiseres"
   );
   assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres så snart direkte People-profiler er brukbare");
 
