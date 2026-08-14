@@ -40,7 +40,6 @@ jobs:
           tar -tzf /tmp/unit12payload.tgz
           tar -xzf /tmp/unit12payload.tgz
           rm -rf .delivery/film-tv-unit12
-          rm -f .github/workflows/_bootstrap-film-tv-unit12-fulltext.yml
           chmod +x \
             scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs \
             scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
@@ -83,6 +82,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
+          git reset -- .github/workflows
           git diff --cached --check
           git commit -m "Publiser enhet 12-auditdiagnostikk"
           git push origin HEAD:agent/film-tv-unit12-screen-places-fulltext
@@ -115,6 +115,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
+          git reset -- .github/workflows
           git diff --cached --check
           git commit -m "Fullfør Film og TV-enhet 12 fulltekst"
           git push origin HEAD:agent/film-tv-unit12-screen-places-fulltext
