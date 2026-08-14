@@ -6,71 +6,24 @@
   "secondaryColor": "#114A84",
   "image": "bilder/merker/politikk.PNG",
   "description": "For den som undersøker hvordan institusjoner, lover, valg, forvaltning, offentlighet, konflikter og fordeling former samfunnet. Merket belønner dokumentert kunnskap, kildekritikk og evnen til å forklare politiske mekanismer fremfor partipreferanser.",
+  "career_life_evidence": "data/Civication/politikkCareerLifeEvidence.json",
   "tiers": [
-    {
-      "label": "Samfunnsengasjert borger",
-      "threshold": 5
-    },
-    {
-      "label": "Aktivist",
-      "threshold": 10
-    },
-    {
-      "label": "Tillitsvalgt",
-      "threshold": 15
-    },
-    {
-      "label": "Organisasjonssekretær",
-      "threshold": 25
-    },
-    {
-      "label": "Politisk rådgiver",
-      "threshold": 40
-    },
-    {
-      "label": "Kommunestyrerepresentant",
-      "threshold": 60
-    },
-    {
-      "label": "Ordfører",
-      "threshold": 85
-    },
-    {
-      "label": "Fylkespolitiker",
-      "threshold": 115
-    },
-    {
-      "label": "Stortingsrepresentant",
-      "threshold": 150
-    },
-    {
-      "label": "Komitéleder",
-      "threshold": 190
-    },
-    {
-      "label": "Statssekretær",
-      "threshold": 240
-    },
-    {
-      "label": "Statsråd (minister)",
-      "threshold": 300
-    },
-    {
-      "label": "Partileder",
-      "threshold": 380
-    },
-    {
-      "label": "Statsminister",
-      "threshold": 500
-    },
-    {
-      "label": "Demokratianalytiker",
-      "threshold": 650
-    },
-    {
-      "label": "Statsvitenskapelig ekspert",
-      "threshold": 800
-    }
+    {"label":"Samfunnsengasjert borger","threshold":5,"life_position":{"id":"samfunnsengasjert_borger","label":"Samfunnsengasjert borger","kind":"civic_engagement","employment_independent":true}},
+    {"label":"Aktivist","threshold":10,"life_position":{"id":"aktivist","label":"Aktivist","kind":"activism_practice","employment_independent":true}},
+    {"label":"Tillitsvalgt","threshold":15,"life_position":{"id":"tillitsvalgt","label":"Tillitsvalgt","kind":"representative_mandate","employment_independent":true}},
+    {"label":"Organisasjonssekretær","threshold":25,"career_offer":{"title":"Organisasjonssekretær","policy":"direct","salary_tier":1,"role_scope":"politikk_organisasjonsarbeid"}},
+    {"label":"Politisk rådgiver","threshold":40,"career_offer":{"title":"Politisk rådgiver","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"politikk_politisk_radgivning"}},
+    {"label":"Kommunestyrerepresentant","threshold":60,"life_position":{"id":"kommunestyrerepresentant","label":"Kommunestyrerepresentant","kind":"local_elected_mandate","employment_independent":true}},
+    {"label":"Ordfører","threshold":85,"career_offer":{"title":"Ordfører","policy":"appointment_required","qualification_ids":["election_or_mandate"],"salary_tier":2,"role_scope":"politikk_kommunal_ledelse"}},
+    {"label":"Fylkespolitiker","threshold":115,"life_position":{"id":"fylkespolitiker","label":"Fylkespolitiker","kind":"regional_elected_mandate","employment_independent":true}},
+    {"label":"Stortingsrepresentant","threshold":150,"career_offer":{"title":"Stortingsrepresentant","policy":"appointment_required","qualification_ids":["election_or_mandate"],"salary_tier":2,"role_scope":"politikk_parlamentarisk_arbeid"}},
+    {"label":"Komitéleder","threshold":190,"life_position":{"id":"komiteleder","label":"Komitéleder","kind":"parliamentary_leadership_mandate","employment_independent":true}},
+    {"label":"Statssekretær","threshold":240,"career_offer":{"title":"Statssekretær","policy":"appointment_required","qualification_ids":["public_office_appointment"],"salary_tier":2,"role_scope":"politikk_regjeringsledelse"}},
+    {"label":"Statsråd (minister)","threshold":300,"career_offer":{"title":"Statsråd (minister)","policy":"appointment_required","qualification_ids":["public_office_appointment"],"salary_tier":3,"role_scope":"politikk_regjeringsledelse"}},
+    {"label":"Partileder","threshold":380,"life_position":{"id":"partileder","label":"Partileder","kind":"party_leadership_mandate","employment_independent":true}},
+    {"label":"Statsminister","threshold":500,"career_offer":{"title":"Statsminister","policy":"appointment_required","qualification_ids":["public_office_appointment"],"salary_tier":3,"role_scope":"politikk_regjeringsledelse"}},
+    {"label":"Demokratianalytiker","threshold":650,"life_position":{"id":"demokratianalytiker","label":"Demokratianalytiker","kind":"democracy_analysis_expertise","employment_independent":true}},
+    {"label":"Statsvitenskapelig ekspert","threshold":800,"life_position":{"id":"statsvitenskapelig_ekspert","label":"Statsvitenskapelig ekspert","kind":"political_science_expertise","employment_independent":true}}
   ],
   "sub": [
     "storting_og_regjering",
