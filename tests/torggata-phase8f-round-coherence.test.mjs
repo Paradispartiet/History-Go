@@ -57,12 +57,19 @@ test("invalid or empty local profiles fall back to the standard category contrac
   assert.equal(w1.HGPlaceRounds.getConfigured(invalid), null);
   assert.deepStrictEqual(Array.from(w1.HGPlaceRounds.get(invalid)).map(def => def.id), ["people", "objects", "brands", "images"]);
 
+  const undocumented = JSON.parse(JSON.stringify(place));
+  undocumented.id = "undocumented_profile";
+  undocumented.round_profile.reason = "   ";
+  const w2 = runtime(undocumented);
+  assert.equal(w2.HGPlaceRounds.getConfigured(undocumented), null);
+  assert.deepStrictEqual(Array.from(w2.HGPlaceRounds.get(undocumented)).map(def => def.id), ["people", "objects", "brands", "images"]);
+
   const empty = JSON.parse(JSON.stringify(place));
   empty.id = "empty_profile";
   empty.related_place_ids = [];
-  const w2 = runtime(empty);
-  assert.equal(w2.HGPlaceRounds.getConfigured(empty), null);
-  assert.deepStrictEqual(Array.from(w2.HGPlaceRounds.get(empty)).map(def => def.id), ["people", "objects", "brands", "images"]);
+  const w3 = runtime(empty);
+  assert.equal(w3.HGPlaceRounds.getConfigured(empty), null);
+  assert.deepStrictEqual(Array.from(w3.HGPlaceRounds.get(empty)).map(def => def.id), ["people", "objects", "brands", "images"]);
 });
 
 test("backlog closes all five content findings and queues manual re-QA", () => {
