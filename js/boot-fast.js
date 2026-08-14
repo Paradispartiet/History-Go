@@ -306,8 +306,16 @@
         delete icon.dataset.hgPeopleStaleRefreshFor;
         icon.dataset.hgPeopleObservedPlace = placeId;
       }
+      const countText = String(
+        icon?.querySelector?.(".pc-round-count")?.textContent || ""
+      ).trim();
+      const renderedCount = Number(countText);
+      const hasRenderedPeople = Boolean(list?.querySelector?.("[data-person]"));
+      const renderHasPeople = (Number.isFinite(renderedCount) && renderedCount > 0)
+        || hasRenderedPeople;
       const previewReady = Boolean(icon?.querySelector?.("img"))
-        || icon?.dataset?.roundReady === "true";
+        || icon?.dataset?.roundReady === "true"
+        || renderHasPeople;
       if (
         icon
         && !previewReady
