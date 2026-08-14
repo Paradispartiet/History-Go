@@ -30,6 +30,7 @@
 - Fase 9-audit: `reports/place-production/torggata-phase9-onsite-audit-v1.json`
 - Fase 10-audit: `reports/place-production/torggata-phase10-quiz-audit-v1.json`
 - Fase 11-audit: `reports/place-production/torggata-phase11-observer-note-route-audit-v1.json`
+- Fase 12-audit: `reports/place-production/torggata-phase12-people-links-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -47,8 +48,9 @@
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
 | 11. Observer, Notat og Rute | **GODKJENT** | eksisterende Observer-, Notat- og navigasjonsruntime auditert; historisk rute begrunnet N/A |
-| 12. People–sted-koblinger | **PÅGÅR** | neste aktive fase; tidligere People-arbeid skal auditeres mot fase-12-kontrakten før nye profiler vurderes |
-| 13–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 12. People–sted-koblinger | **GODKJENT** | 21/21 canonical koblinger og inspectable kilder beholdt; 7 synlige profiler er bildeklare; 14 bildeholdbacks er eksplisitte og bevarer koblingen |
+| 13. Brands | **PÅGÅR** | re-audit eksisterende 8C Brands mot den selvstendige fase-13-kontrakten før ny Brand-produksjon |
+| 14–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -470,3 +472,23 @@ BESLUTNING: CLOSEOUT EXISTING OWNERS – ingen parallell place-state og ingen ru
 **Fase 11 Observer, Notat og Rute = GODKJENT.**
 
 Neste aktive fase: **12. People–sted-koblinger**.
+
+## Fase 12 – People–sted-koblinger
+
+TIDLIGERE-ARBEID-SØK: UTFØRT. 8A1 (#4831), 8A2 (#4840), 8A3 (#4842) og 8A-closeout (#4843) etablerte den canonical 21-personers Torggata-samlingen. Fase 12 har derfor ikke laget fillerpersoner eller flyttet primærankre, men re-auditert samme samling mot dagens strengere synlig-bildeport.
+
+### Godkjent resultat
+
+- 21/21 personer finnes nøyaktig én gang og beholder dokumentert Torggata-kobling;
+- 21/21 har inspectable ekstern kilde etter separat Thorvald Meyer-kildereparasjon i PR #4882;
+- fem nye dokumentarportretter er hentet gjennom canonical Wikidata/Wikimedia Commons-pipeline og får lokale filer + imageMeta + attribusjon;
+- Thorvald Meyer og Henrik Bull var allerede bildeklare, slik at den ferdige rundingen har **7 synlige og 7/7 bildeklare profiler**;
+- 14 øvrige profiler beholdes canonical, men har eksplisitt `roundHoldbacks: ["torggata"]` til bildeporten kan oppfylles;
+- Alexander Claes-kandidaten ble avvist fordi navnesøket traff feil person;
+- Nanna Brochs sterke P18-kandidat ble ikke publisert fordi originalen er TIFF og dagens apply-flyt ikke konverterer den trygt til nettleserformat;
+- ingen eksakte duplikater i `desc` eller `popupDesc`;
+- repoets globale People-image-audit har separat legacygjeld (303 manglende lokale filer + én kollisjon) og brukes ikke som Torggata-nevner.
+
+**Fase 12 People–sted-koblinger = GODKJENT når fase-12-regresjon, 8A-regresjon, People-image-kontrakttest, People-of-Places, Civication, TypeScript og build er grønne.**
+
+Neste aktive fase: **13. Brands**.

@@ -33,22 +33,32 @@ function runtimePeopleForTorggata() {
   return Array.from(context.getPeopleForPlace("torggata"));
 }
 
-test("Torggata 8A closeout resolves every produced canonical person without a quota ceiling", () => {
-  const resolved = runtimePeopleForTorggata();
-  const ids = resolved.map(person => String(person?.id || "").trim()).filter(Boolean);
-  const idSet = new Set(ids);
-  assert.equal(idSet.size, ids.length, "runtime People collection must be deduplicated");
-  for (const id of expected) assert.ok(idSet.has(id), `${id} must resolve through getPeopleForPlace('torggata')`);
-  assert.ok(ids.length >= expected.length, "later source-backed People may extend the collection; closeout must not impose a maximum quota");
+test("Torggata 8A closeout preserves every produced canonical person and Torggata linkage without a quota ceiling", () => {
+  const occurrences = new Map();
+  for (const person of people) {
+    const id = String(person?.id || "").trim();
+    if (!id) continue;
+    const list = occurrences.get(id) || [];
+    list.push(person);
+    occurrences.set(id, list);
+  }
+  for (const id of expected) {
+    const rows = occurrences.get(id) || [];
+    assert.equal(rows.length, 1, `${id} must exist exactly once in canonical manifest data`);
+    const person = rows[0];
+    const refs = [person.placeId, ...(Array.isArray(person.places) ? person.places : [])].map(String);
+    assert.ok(refs.includes("torggata"), `${id} must retain its canonical Torggata linkage`);
+  }
+  assert.ok(people.length >= expected.length, "later source-backed People may extend the collection; closeout must not impose a maximum quota");
 });
 
-test("no completed 8A person is hidden from the Torggata People round", () => {
+test("later image-readiness holdbacks do not delete approved 8A canonical links", () => {
   const byId = new Map(people.map(person => [String(person?.id || "").trim(), person]));
   for (const id of expected) {
     const person = byId.get(id);
-    assert.ok(person, `${id} must exist in manifest data`);
-    const holdbacks = Array.isArray(person.roundHoldbacks) ? person.roundHoldbacks.map(String) : [];
-    assert.equal(holdbacks.includes("torggata"), false, `${id} must not be held back from Torggata after approval`);
+    assert.ok(person, `${id} must remain in manifest data`);
+    const refs = [person.placeId, ...(Array.isArray(person.places) ? person.places : [])].map(String);
+    assert.ok(refs.includes("torggata"), `${id} must remain linked even when a later phase temporarily hides it from the round`);
   }
 });
 
