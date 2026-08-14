@@ -1,7 +1,18 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,"category":"natur","role_scope":"natur_forvaltning_og_radgivning","role_id":"natur_forvaltning_og_radgivning",
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"natur","role_scope":"natur_forvaltning_og_radgivning","role_id":"natur_forvaltning_og_radgivning",
   "badge_binding":{"badge_id":"natur","badge_titles":["Naturforvalter","Rådgiver (miljø/natur)","Seniorrådgiver (miljø/natur)"]},
-  "task_families":["naturkartlegging","konsekvensvurdering","miljorad","planarbeid","regelverksoppfolging"],
+  "work_world":"Forvaltning og rådgivning der naturdata, regelverk, tiltak og motstridende interesser må omsettes til et etterprøvbart beslutningsgrunnlag.",
+  "task_families":["naturkartlegging","konsekvensvurdering","miljøråd","planarbeid","regelverksoppfølging"],
+  "work_loops":["bestilling -> kunnskapsgrunnlag -> analyse -> alternativer -> råd -> dokumentasjon","tiltak -> naturverdi -> regelverk -> avbøting -> restusikkerhet -> anbefaling"],
   "pressure_axes":["naturverdi_vs_tiltak","faglig_uavhengighet_vs_bestilling","hastighet_vs_utredningskvalitet"],
-  "authority_boundary":{"may":["gi råd og utarbeide beslutningsgrunnlag"],"may_not":["late som råd er politisk vedtak","overskride delegert mandat"]}
+  "practice_stories":[
+    {"id":"svakt_kunnskapsgrunnlag","setup":"En plan skal avgjøres med mangelfull naturkartlegging.","decision":"Synliggjør datagap og hvilke konklusjoner som ikke kan trekkes.","learning":"manglende data er selv en relevant del av beslutningsgrunnlaget"},
+    {"id":"oppdragsgiver_press","setup":"Oppdragsgiver ønsker en mildere risikovurdering.","decision":"Behold den faglig begrunnede vurderingen og dokumenter premissene.","learning":"rådgiverrollen krever faglig integritet"},
+    {"id":"avboting","setup":"Et tiltak berører verdifull natur, men kan endres.","decision":"Sammenlign realistiske avbøtende alternativer og restkonsekvens.","learning":"råd skal gjøre reelle valg synlige"},
+    {"id":"kort_frist","setup":"En politisk frist er kortere enn normal utredningstid.","decision":"Lever det som kan kvalitetssikres og merk tydelig hva som gjenstår.","learning":"frist endrer ikke evidensnivået"},
+    {"id":"fagkonflikt","setup":"To fagmiljøer vurderer naturkonsekvensen ulikt.","decision":"Beskriv uenigheten, metodeforskjellene og hva som kan avklare den.","learning":"uenighet skal analyseres, ikke skjules"}
+  ],
+  "quality_axes":["faglig_integritet","regelverksforståelse","sporbarhet","alternativanalyse","usikkerhet","interessekonflikter"],
+  "authority_boundary":{"may":["gi råd og utarbeide beslutningsgrunnlag"],"may_not":["late som råd er politisk vedtak","overskride delegert mandat","endre funn for å tilfredsstille bestiller"]}
 }

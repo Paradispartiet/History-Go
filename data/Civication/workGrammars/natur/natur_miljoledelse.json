@@ -1,7 +1,18 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,"category":"natur","role_scope":"natur_miljoledelse","role_id":"natur_miljoledelse",
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"natur","role_scope":"natur_miljoledelse","role_id":"natur_miljoledelse",
   "badge_binding":{"badge_id":"natur","badge_titles":["Naturvernleder","Miljøsjef","Miljødirektør"]},
+  "work_world":"Miljøledelse der fag, folk, kapasitet, risiko og virksomhetsmål må håndteres innen et eksplisitt arbeidsgivermandat.",
   "task_families":["ledelse","prioritering","budsjett","bemanning","strategi","kvalitetsstyring"],
+  "work_loops":["mål -> risiko -> kapasitet -> prioritering -> ansvar -> oppfølging -> læring","avvik -> alvorlighetsgrad -> tiltak -> kommunikasjon -> kontroll -> lukking"],
   "pressure_axes":["kapasitet_vs_ambisjon","fag_vs_organisasjon","kortsiktig_leveranse_vs_langsiktig_naturverdi"],
-  "authority_boundary":{"may":["lede innen dokumentert arbeidsgivermandat"],"may_not":["selvutnevne seg","utøve ministermyndighet"]}
+  "practice_stories":[
+    {"id":"ressursmangel","setup":"Lovpålagte miljøoppgaver overstiger tilgjengelig kapasitet.","decision":"Prioriter risiko, dokumenter restanse og eskaler ressursbehov.","learning":"ledelse betyr å synliggjøre konsekvensene av prioritering"},
+    {"id":"miljoavvik","setup":"Et alvorlig miljøavvik oppdages i virksomheten.","decision":"Stans skade der det er mulig, sikre fakta og varsle riktig nivå.","learning":"omdømme skal aldri gå foran skadebegrensning"},
+    {"id":"fag_mot_maal","setup":"Fagmiljøet anbefaler noe som svekker et kortsiktig virksomhetsmål.","decision":"Gjør konsekvenser og alternativer eksplisitte før beslutning.","learning":"ledelse må tåle dårlige nyheter"},
+    {"id":"bemanningskrise","setup":"Nøkkelkompetanse forsvinner midt i en kritisk leveranse.","decision":"Reduser eller omprioriter leveransen fremfor å late som kapasiteten er uendret.","learning":"mandat må matches med reell kapasitet"},
+    {"id":"tone_ned_risiko","setup":"Toppledelsen ber om mildere språk om miljørisiko.","decision":"Skill kommunikasjon fra selve risikovurderingen og bevar sporbarheten.","learning":"lederansvar inkluderer integritet i rapporteringen"}
+  ],
+  "quality_axes":["mandatforståelse","miljørisiko","prioritering","kapasitetsstyring","faglig_integritet","ansvarlighet"],
+  "authority_boundary":{"may":["lede innen dokumentert arbeidsgivermandat"],"may_not":["selvutnevne seg","utøve ministermyndighet","skjule vesentlig miljørisiko"]}
 }

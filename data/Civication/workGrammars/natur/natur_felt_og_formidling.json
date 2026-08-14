@@ -1,7 +1,18 @@
 {
-  "schema":"civication_work_grammar_v2","version":2,"category":"natur","role_scope":"natur_felt_og_formidling","role_id":"natur_felt_og_formidling",
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"natur","role_scope":"natur_felt_og_formidling","role_id":"natur_felt_og_formidling",
   "badge_binding":{"badge_id":"natur","badge_titles":["Feltassistent","Naturveileder"]},
+  "work_world":"Feltlokaliteter og naturformidling der presis observasjon, sikkerhet og forståelig kommunikasjon må fungere samtidig.",
   "task_families":["feltregistrering","prøvetaking","observasjonslogg","naturformidling","besøksveiledning"],
+  "work_loops":["brief -> feltplan -> observasjon -> dokumentasjon -> kvalitetssjekk -> rapportering","målgruppe -> faggrunnlag -> formidling -> spørsmål -> korrigering -> læring"],
   "pressure_axes":["tempo_vs_presisjon","tilgjengelighet_vs_sårbar_natur","formidling_vs_forenkling"],
-  "authority_boundary":{"may":["samle og formidle data"],"may_not":["fatte forvaltningsvedtak","utøve politisk myndighet"]}
+  "practice_stories":[
+    {"id":"usikkert_artsfunn","setup":"Et artsfunn kan være sjeldent, men observasjonen er ufullstendig.","decision":"Dokumenter usikkerheten og innhent bekreftelse før sterk konklusjon.","learning":"et usikkert funn skal ikke bli sikkert fordi det er spennende"},
+    {"id":"feltvaer","setup":"Været gjør den planlagte prøvetakingen risikabel.","decision":"Endre eller avbryt planen i tråd med HMS.","learning":"databehov trumfer ikke sikkerhet"},
+    {"id":"publikum_saarbar_natur","setup":"En gruppe vil tett på en sårbar lokalitet.","decision":"Tilpass ruten og forklar hvorfor avstand er nødvendig.","learning":"god formidling beskytter også naturen"},
+    {"id":"mangelfull_logg","setup":"Et feltlag har glemt viktige metadata.","decision":"Marker datagapet og rekonstruer bare det som kan dokumenteres.","learning":"sporbarhet er viktigere enn en pen dataserie"},
+    {"id":"forenklet_budskap","setup":"En enkel forklaring blir faglig misvisende.","decision":"Behold et forståelig språk, men legg tilbake den avgjørende nyansen.","learning":"tilgjengelighet krever ikke feil sikkerhet"}
+  ],
+  "quality_axes":["feltpresisjon","HMS","sporbarhet","artsforståelse","formidling","usikkerhetshåndtering"],
+  "authority_boundary":{"may":["samle og formidle dokumenterte data"],"may_not":["fatte forvaltningsvedtak","utøve politisk myndighet","skjule usikkerhet"]}
 }
