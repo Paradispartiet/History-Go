@@ -1,0 +1,81 @@
+name: Torggata phase 13 asset review
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase13-logo-closeout-v2
+    paths:
+      - .github/workflows/torggata-phase13-asset-review.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch reviewed originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p review
+          fetch() { curl -L --fail --retry 3 --retry-delay 2 -A 'History-Go editorial asset review/1.0' "$2" -o "review/$1"; }
+          fetch angst.jpg 'https://cdn.sanity.io/images/jlrwvnbf/commercial/fbbc5cdfe17ed8eb1cd3157025129aa93e7f46ec-800x533.jpg?rect=0,41,800,453&w=1500&h=850&auto=format'
+          fetch eldorado.jpg 'https://bok365.no/wp-content/uploads/2018/02/Eldoradobokhandel-e1517502372579.jpg'
+          fetch adelsten.jpg 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Adelsten_Jensen_-_no-nb_digifoto_20160119_00047_NB_NS_000109A.jpg'
+          fetch pm_jensen.jpg 'https://dms01.dimu.org/image/012uMXHSuPgT?dimension=1800x1800&filename=021015463551.jpg'
+          fetch karl_a_jensen.jpg 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Karl_A._Jensens_nye_forretningsgaard_-_no-nb_digifoto_20160125_00124_NB_NS_000225.jpg'
+          fetch ingwald_nielsen.jpg 'https://dms01.dimu.org/image/0334BSdZhEwe?dimension=1800x1800&filename=021018750951.jpg'
+          fetch ludvig_jensen.jpg 'https://oslobyleksikon.no/images/1/1e/Torggata_5.jpg'
+          fetch john_dee.gif 'https://upload.wikimedia.org/wikipedia/commons/4/43/John_dee_venue_logo_black.gif'
+          fetch jernia.png 'https://upload.wikimedia.org/wikipedia/commons/6/65/Jernia_logo.png'
+          fetch norli.svg 'https://upload.wikimedia.org/wikipedia/commons/3/30/Norli.svg'
+          fetch oslo_bar_bowling.webp 'https://oslobowling.no/wp-content/uploads/2020/07/logo-web-cropped.webp'
+          fetch oslo_street_food.png 'https://images.squarespace-cdn.com/content/v1/6038204a6bf989551704f5c2/b48e68b9-ce76-4f9f-815e-8c8a7c781a0d/logo+white.png?format=1500w'
+          file review/*
+      - name: Capture Oslo Sportslager identity from official page
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm exec --yes playwright@1.55.0 install chromium --with-deps >/dev/null
+          cat > /tmp/capture.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({ headless: true });
+          const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+          await page.goto('https://oslosportslager.no/', { waitUntil: 'networkidle', timeout: 90000 });
+          const candidates = page.locator('img, svg');
+          let captured = false;
+          for (let i = 0; i < await candidates.count(); i++) {
+            const el = candidates.nth(i);
+            const alt = (await el.getAttribute('alt')) || '';
+            const src = (await el.getAttribute('src')) || '';
+            const aria = (await el.getAttribute('aria-label')) || '';
+            const label = `${alt} ${src} ${aria}`.toLowerCase();
+            if (label.includes('oslo') && (label.includes('sport') || label.includes('logo'))) {
+              const box = await el.boundingBox();
+              if (box && box.width >= 40 && box.height >= 20) {
+                await el.screenshot({ path: 'review/oslo_sportslager.png' });
+                captured = true;
+                break;
+              }
+            }
+          }
+          if (!captured) {
+            const header = page.locator('header').first();
+            await header.screenshot({ path: 'review/oslo_sportslager_header.png' });
+          }
+          await browser.close();
+          JS
+          node /tmp/capture.mjs
+      - name: Upload review originals
+        uses: actions/upload-artifact@v4
+        with:
+          name: torggata-phase13-reviewed-originals
+          path: review/
+          if-no-files-found: error
