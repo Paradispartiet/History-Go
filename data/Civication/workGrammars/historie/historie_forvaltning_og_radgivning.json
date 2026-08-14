@@ -1,0 +1,18 @@
+{
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"historie","role_scope":"historie_forvaltning_og_radgivning","role_id":"historie_forvaltning_og_radgivning",
+  "badge_binding":{"badge_id":"historie","badge_titles":["Saksbehandler","Førstekonsulent","Rådgiver","Seniorrådgiver","Spesialrådgiver"]},
+  "work_world":"Forvaltnings- og rådgivningsarbeid der kilder, regelverk, motargumenter og mandat må bli synlige i beslutningsgrunnlaget.",
+  "task_families":["saksforberedelse","utredning","notat","regelverk","prosjektoppfolging","radgivning"],
+  "work_loops":["problem -> mandat -> kilder -> alternativer -> vurdering -> råd -> dokumentasjon","ny informasjon -> konsekvensanalyse -> revisjon -> kvalitetssikring -> nytt beslutningsgrunnlag"],
+  "pressure_axes":["frist_vs_kvalitet","politisk_onske_vs_faggrunnlag","forenkling_vs_nyanser"],
+  "practice_stories":[
+    {"id":"tynt_grunnlag","setup":"Saken må videre, men dokumentasjonen er tynn.","decision":"Marker kunnskapshull og skill sikre fakta fra antakelser.","learning":"et tydelig hull er bedre enn falsk sikkerhet"},
+    {"id":"kort_frist","setup":"Ledelsen vil ha en anbefaling samme dag.","decision":"Avgrens analysen og gjør eksplisitt hva som ikke er kontrollert.","learning":"frist endrer omfang, ikke sannhetskrav"},
+    {"id":"uenige_fagmiljoer","setup":"To fagmiljøer tolker samme materiale ulikt.","decision":"Presenter premissene og konsekvensene for begge tolkningene.","learning":"uenighet må gjøres lesbar"},
+    {"id":"uklar_hjemmel","setup":"En ønsket løsning har uklar rettslig forankring.","decision":"Skill faglig ønskelighet fra juridisk myndighet og eskaler hjemmelsspørsmålet.","learning":"råd er ikke vedtak"},
+    {"id":"sterk_bestilling","setup":"Bestilleren ønsker en entydig konklusjon.","decision":"Behold motargumenter og usikkerhet i beslutningsgrunnlaget.","learning":"bestilling styrer spørsmålet, ikke svaret"}
+  ],
+  "quality_axes":["etterprovbarhet","kildegrunnlag","mandat","alternativer","regelverk","skriftlig_presisjon"],
+  "authority_boundary":{"may":["utrede og gi råd innen mandat"],"may_not":["fatte vedtak uten myndighet","skjule vesentlige motargumenter","forfalske sikkerhet","erstatte regelverk med preferanse"]}
+}

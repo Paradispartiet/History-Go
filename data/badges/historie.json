@@ -6,87 +6,28 @@
   "secondaryColor": "#533217",
   "image": "bilder/merker/historie.PNG",
   "description": "For dem som leter bakover for å forstå fremtiden. Historie er ikke fortid – det er minnets geografi.",
+  "career_life_evidence": "data/Civication/historieCareerLifeEvidence.json",
   "tiers": [
-    {
-      "label": "Student",
-      "threshold": 5
-    },
-    {
-      "label": "Masterstuden",
-      "threshold": 10
-    },
-    {
-      "label": "Doktorgradsstudent",
-      "threshold": 15
-    },
-    {
-      "label": "Arkivmedarbeider",
-      "threshold": 25
-    },
-    {
-      "label": "Saksbehandler",
-      "threshold": 40
-    },
-    {
-      "label": "Førstekonsulent",
-      "threshold": 60
-    },
-    {
-      "label": "Rådgiver",
-      "threshold": 85
-    },
-    {
-      "label": "Seniorrådgiver",
-      "threshold": 115
-    },
-    {
-      "label": "Arkivar",
-      "threshold": 150
-    },
-    {
-      "label": "Spesialrådgiver",
-      "threshold": 190
-    },
-    {
-      "label": "Konservator",
-      "threshold": 240
-    },
-    {
-      "label": "Kurator",
-      "threshold": 300
-    },
-    {
-      "label": "Senior konservator",
-      "threshold": 380
-    },
-    {
-      "label": "Senior kurator",
-      "threshold": 500
-    },
-    {
-      "label": "Forsker",
-      "threshold": 650
-    },
-    {
-      "label": "Seniorforsker",
-      "threshold": 800
-    },
-    {
-      "label": "Seksjonsleder",
-      "threshold": 1000
-    },
-    {
-      "label": "Avdelingsleder",
-      "threshold": 1250
-    },
-    {
-      "label": "Avdelingsdirektør",
-      "threshold": 1550
-    },
-    {
-      "label": "Direktør",
-      "threshold": 1900
-    }
+    {"label":"Student","threshold":5,"life_position":{"id":"student_historie","label":"Student","kind":"education_stage","employment_independent":true}},
+    {"label":"Masterstuden","threshold":10,"life_position":{"id":"masterstuden_historie","label":"Masterstuden","kind":"education_stage","employment_independent":true}},
+    {"label":"Doktorgradsstudent","threshold":15,"life_position":{"id":"doktorgradsstudent_historie","label":"Doktorgradsstudent","kind":"doctoral_study_stage","employment_independent":true},"career_unlock":{"title":"Doktorgradsstudent","policy":"qualification_required","qualification_ids":["academic_phd_admission_or_employment"],"salary_tier":1,"role_scope":"historie_forskning_og_akademia"}},
+    {"label":"Arkivmedarbeider","threshold":25,"career_offer":{"title":"Arkivmedarbeider","policy":"direct","salary_tier":1,"role_scope":"historie_arkiv_og_dokumentasjon"}},
+    {"label":"Saksbehandler","threshold":40,"career_offer":{"title":"Saksbehandler","policy":"direct","salary_tier":1,"role_scope":"historie_forvaltning_og_radgivning"}},
+    {"label":"Førstekonsulent","threshold":60,"career_offer":{"title":"Førstekonsulent","policy":"direct","salary_tier":1,"role_scope":"historie_forvaltning_og_radgivning"}},
+    {"label":"Rådgiver","threshold":85,"career_offer":{"title":"Rådgiver","policy":"direct","salary_tier":2,"role_scope":"historie_forvaltning_og_radgivning"}},
+    {"label":"Seniorrådgiver","threshold":115,"career_offer":{"title":"Seniorrådgiver","policy":"direct","salary_tier":2,"role_scope":"historie_forvaltning_og_radgivning"}},
+    {"label":"Arkivar","threshold":150,"career_offer":{"title":"Arkivar","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"historie_arkiv_og_dokumentasjon"}},
+    {"label":"Spesialrådgiver","threshold":190,"career_offer":{"title":"Spesialrådgiver","policy":"direct","salary_tier":2,"role_scope":"historie_forvaltning_og_radgivning"}},
+    {"label":"Konservator","threshold":240,"career_offer":{"title":"Konservator","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"historie_museum_og_samling"}},
+    {"label":"Kurator","threshold":300,"career_offer":{"title":"Kurator","policy":"direct","salary_tier":2,"role_scope":"historie_museum_og_samling"}},
+    {"label":"Senior konservator","threshold":380,"career_offer":{"title":"Senior konservator","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":3,"role_scope":"historie_museum_og_samling"}},
+    {"label":"Senior kurator","threshold":500,"career_offer":{"title":"Senior kurator","policy":"direct","salary_tier":3,"role_scope":"historie_museum_og_samling"}},
+    {"label":"Forsker","threshold":650,"career_offer":{"title":"Forsker","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"historie_forskning_og_akademia"}},
+    {"label":"Seniorforsker","threshold":800,"career_offer":{"title":"Seniorforsker","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":3,"role_scope":"historie_forskning_og_akademia"}},
+    {"label":"Seksjonsleder","threshold":1000,"career_offer":{"title":"Seksjonsleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"historie_fagledelse"}},
+    {"label":"Avdelingsleder","threshold":1250,"career_offer":{"title":"Avdelingsleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"historie_fagledelse"}},
+    {"label":"Avdelingsdirektør","threshold":1550,"career_offer":{"title":"Avdelingsdirektør","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"historie_institusjonsledelse"}},
+    {"label":"Direktør","threshold":1900,"career_offer":{"title":"Direktør","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"historie_institusjonsledelse"}}
   ],
   "sub": [
     "forhistorie",
