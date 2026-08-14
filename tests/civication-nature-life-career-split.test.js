@@ -8,6 +8,7 @@ const ROOT = path.join(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 const Resolver = require('../js/Civication/systems/civicationCareerRoleResolver.js');
 const rawBadge = readJson('data/badges/natur.json');
+const overlayIndex = readJson('data/Civication/badgeCareerContracts/index.json');
 const overlay = readJson('data/Civication/badgeCareerContracts/natur.json');
 const evidence = readJson('data/Civication/naturCareerLifeEvidence.json');
 const audit = readJson('data/Civication/badgeCareerAuditPolicy.json');
@@ -46,8 +47,10 @@ assert.ok(Array.isArray(rawBadge.groups) && rawBadge.groups.length >= 4,
 assert.ok(rawBadge.tiers.every((tier) => !tier.life_position && !tier.career_offer && !tier.career_unlock),
   'career metadata skal ligge i den validerte Civication-overlayen, ikke blåse opp Natur-fagfilen');
 
+assert.ok(overlayIndex.files.includes('data/Civication/badgeCareerContracts/natur.json'));
 assert.strictEqual(overlay.badge_id, 'natur');
 assert.strictEqual(overlay.evidence_ref, 'data/Civication/naturCareerLifeEvidence.json');
+assert.deepStrictEqual(overlay.allowed_tier_patch_fields, ['life_position','career_offer','career_unlock']);
 assert.deepStrictEqual(overlay.tiers.map((row) => row.label), expectedTiers.map(([label]) => label));
 assert.deepStrictEqual(evidence.canonical_decision.pure_life_or_practice_tiers, pureLife);
 assert.deepStrictEqual(evidence.canonical_decision.formal_job_tiers, jobs.map(([title]) => title));
@@ -77,6 +80,15 @@ assert.deepStrictEqual(natureCareer.economy.salary_by_tier, {'1':4,'2':7,'3':11}
 
 const meritsSource = fs.readFileSync(path.join(ROOT, 'js/Civication/merits-and-jobs.js'), 'utf8');
 const guardSource = fs.readFileSync(path.join(ROOT, 'js/Civication/systems/civicationCareerRealityGuard.js'), 'utf8');
+const shellBootSource = fs.readFileSync(path.join(ROOT, 'js/Civication/CivicationShellBoot.js'), 'utf8');
+const matrixSource = fs.readFileSync(path.join(ROOT, 'scripts/civication-badge-career-matrix.mjs'), 'utf8');
+assert.ok(meritsSource.includes('REQUIRED_BADGE_CAREER_CONTRACT_OVERLAYS = new Set(["natur"])'));
+assert.ok(meritsSource.includes('failClosedRequiredBadgeCareerContracts'));
+assert.ok(shellBootSource.includes('await window.ensureBadgeCareerContractsApplied();'),
+  'ShellBoot må materialisere overlay etter full Badge-reload');
+assert.ok(matrixSource.includes("data/Civication/badgeCareerContracts/index.json"),
+  'Badge Career Matrix må bruke samme overlay-kontrakt som runtime');
+
 const materializedBadge = JSON.parse(JSON.stringify(rawBadge));
 const pushed = [];
 let qualifications = new Set();
@@ -164,13 +176,19 @@ for (const [scope,titles] of Object.entries(evidence.canonical_decision.work_wor
   assert.strictEqual(model.category, 'natur');
   assert.strictEqual(model.role_scope, scope);
   assert.strictEqual(model.role_id, scope);
+  assert.strictEqual(model.source?.evidence, 'data/Civication/naturCareerLifeEvidence.json');
   assert.deepStrictEqual(model.badge_titles, titles);
-  assert.ok((model.authority_boundary?.may_not || []).length >= 2, `${scope}: myndighetsgrense mangler`);
+  assert.ok((model.competence_axes || []).length >= 6, `${scope}: kompetanseakser mangler`);
+  assert.ok((model.ideal_type_problems || []).length >= 5, `${scope}: idealtypiske problemer mangler`);
+  assert.ok((model.authority_boundaries?.cannot || []).length >= 4, `${scope}: myndighetsgrense mangler`);
   assert.strictEqual(grammar.version, 2);
   assert.strictEqual(grammar.role_scope, scope);
   assert.deepStrictEqual(grammar.badge_binding.badge_titles, titles);
-  assert.ok((grammar.task_families || []).length >= 4, `${scope}: arbeidsgrammatikk er for tynn`);
-  assert.ok((grammar.authority_boundary?.may_not || []).length >= 2, `${scope}: FWG-myndighetsgrense mangler`);
+  assert.ok((grammar.task_families || []).length >= 5, `${scope}: arbeidsgrammatikk er for tynn`);
+  assert.ok((grammar.work_loops || []).length >= 2, `${scope}: arbeidsløkker mangler`);
+  assert.ok((grammar.practice_stories || []).length >= 5, `${scope}: minst fem praksiscase kreves`);
+  assert.ok((grammar.quality_axes || []).length >= 6, `${scope}: kvalitetsakser mangler`);
+  assert.ok((grammar.authority_boundary?.may_not || []).length >= 3, `${scope}: FWG-myndighetsgrense mangler`);
 }
 
-console.log('civication nature life-career split ok: 3 life/practice tiers / 13 formal jobs / 5 work worlds / overlay fail-closed');
+console.log('civication nature life-career split ok: 3 life/practice tiers / 13 formal jobs / 5 high-quality work worlds / overlay fail-closed');
