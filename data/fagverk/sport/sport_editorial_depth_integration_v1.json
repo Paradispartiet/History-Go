@@ -1,9 +1,11 @@
 {
   "schema": "history_go_fagverk_sport_editorial_depth_integration_v1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "subject_id": "sport",
   "status": "complete",
   "updated_at": "2026-08-14",
+  "rebased_on_main": "2d15cb3908c307948ee2817818fee56770b2a962",
+  "shared_fagverk_state_synchronized": true,
   "article_registry": "data/fagverk/sport/sport_article_registry_v1.json",
   "completion_overlay": "data/fagverk/sport/sport_completion_v1.json",
   "scientific_quality_registry": "data/fagverk/sport/sport_scientific_quality_v1.json",
@@ -26,6 +28,7 @@
     "Alle 140 canonicale begreper skal være skrevet ut i artikkelprosa med definisjon, avgrensning og presisering, ikke bare referert med ID.",
     "Hver artikkel skal ha teori og rival, metode, claimproveniens, anvendelse og eksplisitt avgrensning.",
     "Der legacy-kapitlene ikke hadde direkte emne-til-paragraf-claim-mapping, brukes kun claims fra samme canonicale kapittel via deterministisk semantisk fallback, og fallback-statusen skal være synlig.",
-    "Scientific-quality-laget supplerer offisielle primærkilder; det erstatter ikke den separate formelle Sport Scientific Pipeline V2 og hevder ikke gjennomført systematisk review."
+    "Scientific-quality-laget supplerer offisielle primærkilder; det erstatter ikke den separate formelle Sport Scientific Pipeline V2 og hevder ikke gjennomført systematisk review.",
+    "Delte Fagverk registry- og releaseutdata skal være regenerert etter rebase mot siste main før merge."
   ]
 }
