@@ -73,7 +73,7 @@
 | 21. UI-QA | **GODKJENT ETTER SIKRINGSENDRING** | WebGL-feil stopper ikke lenger app-/PlaceCard-boot; produksjonsflaten kontrollert |
 | 22. Innholds-QA | **GODKJENT** | 18/18 claims, Story, 5 × 7 Quiz, People 21/21, Brands 13/13, bilder og 4+1-rundinger kontrollert uten filler |
 | 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
-| 24. Ett-sted-PR | **TEKNISK MERGET; REDAKSJONELL KVALITET GJENÅPNET** | PR #4962 og deploy er historisk verifisert, men manuell sluttvurdering avdekket fire blokkerende kvalitetsavvik |
+| 24. Ett-sted-PR | **TEKNISK MERGET; REDAKSJONELL KVALITET GJENÅPNET** | PR #4962 og deploy er historisk verifisert, men manuell sluttvurdering avdekket fem blokkerende kvalitetsavvik |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -760,18 +760,20 @@ Aktivt spor: **redaksjonell kvalitetsforbedring før ny ferdigvurdering**.
 
 ## Manuell sluttvurdering – kvalitetsstatus gjenåpnet
 
-Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket fire blokkerende avvik:
+Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket fem blokkerende avvik:
 
 1. **Før/etter er ikke en god nok sammenligning.** Bildene fra 2009 og 2017 viser ulike gateutsnitt. Begrensningen er dokumentert, men dokumentasjon gjør ikke paret visuelt godt. Torggata mangler også et skikkelig gammelt arkivbilde sammenlignet med et faktisk nåbilde.
 2. **Nyheter er tom.** Et aktivt og innholdsrikt bysted kan ikke ferdigmeldes med tom Nyheter-fane uten et dokumentert fersksøk og en streng begrunnelse.
-3. **Mer er tom.** Torggata har nok navne-, språk-, arkiv-, observasjons- og relasjonsstoff til at manglende eksisterende Språkleksikon-post ikke er tilstrekkelig N/A-grunn.
-4. **Objects og Structures er kunstig splittet.** Objects bæres bare av én gjenstand, samtidig som Structures/Bygg dekker fysiske stedselementer. Rundingene er derfor ikke tydelige nok som to separate brukeropplevelser.
+3. **Lesespor er tomt.** De registrerte Torggata-lenkene ble holdt tilbake fordi de er betalingslåst, men søket ble avsluttet uten å etablere åpne, direkte lesbare alternativer.
+4. **Mer er tom.** Torggata har nok navne-, språk-, arkiv-, observasjons- og relasjonsstoff til at manglende eksisterende Språkleksikon-post ikke er tilstrekkelig N/A-grunn.
+5. **Objects og Structures er kunstig splittet.** Objects bæres bare av én gjenstand, samtidig som Structures/Bygg dekker fysiske stedselementer. Rundingene er derfor ikke tydelige nok som to separate brukeropplevelser.
 
 ### Påkrevde forbedringer
 
 - bygg Før/etter med et sammenlignbart primærpar fra samme meningsfulle gateutsnitt;
 - legg til minst ett skikkelig gammelt arkivlag mot et faktisk nåbilde når rettigheter og identitet er avklart;
 - produser relevante, daterte Nyheter etter fersksøk;
+- produser et reelt Lesespor med åpent, direkte lesbart Torggata-materiale, eller dokumenter et uttømmende strengt N/A-søk;
 - produser et reelt Mer-lag fra språk, arkiv, observasjoner, kunnskap eller kuraterte relasjoner;
 - revider rundingsvalget/kontrakten slik at fire innholdsrundinger fortsatt vises, men uten én kunstig Objects-runding eller uklar Objects/Structures-overlapp;
 - gjennomfør ny manuell slutt-QA før ferdigstatus kan gjeninnføres.
@@ -781,13 +783,13 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 | Dimensjon | Score | Konkret evidens |
 | --- | ---: | --- |
 | Korrekthet og evidens | **4/5** | Claims og kildeproveniens er sterke, men Før/etter-parets ulike utsnitt gir en svakere visuell påstand enn auditen tidligere lot fremstå. |
-| Dekning og ferdigstillelse | **2/5** | Nyheter og Mer mangler, historisk gammel–nå-sammenligning mangler, og rundingssettet trenger ny produksjon. |
+| Dekning og ferdigstillelse | **2/5** | Nyheter, Lesespor og Mer mangler, historisk gammel–nå-sammenligning mangler, og rundingssettet trenger ny produksjon. |
 | Faglig/redaksjonell kvalitet | **2/5** | Før/etter er lite meningsfullt som hovedpar, og Objects/Structures-oppsplittingen oppleves kunstig. |
 | Teknisk integritet | **5/5** | CI, runtime, no-WebGL-ruting og 4+1-layout fungerer teknisk. Dette opphever ikke de redaksjonelle avvikene. |
 | Sikkerhet og ansvarlighet | **4/5** | People-holdbacks, kildegrenser og assetkontroll består; ingen nye sikkerhetsavvik er funnet. |
 | Vedlikeholdbarhet og etterprøvbarhet | **4/5** | Sporbarheten er god, men den tidligere kvalitetsporten fanget ikke brukeropplevelsens svakheter og må nå skjerpes. |
 
-**Total: 21/30.** Dekning og redaksjonell kvalitet er under minimum 4/5. Fire kritiske funn og fire uløste blokkere gjenstår.
+**Total: 21/30.** Dekning og redaksjonell kvalitet er under minimum 4/5. Fem kritiske funn og fem uløste blokkere gjenstår.
 
 **Kvalitetsport: IKKE BESTÅTT – GJENÅPNET FOR REDAKSJONELL FORBEDRING.**
 
