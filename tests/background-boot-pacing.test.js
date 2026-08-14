@@ -129,7 +129,10 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     },
     DataHub: {
       async loadPlacesBase() {
-        return [{ id: "place-1", name: "Teststed", desc: "Test" }];
+        return [
+          { id: "place-1", name: "Teststed", desc: "Test" },
+          { id: "place-2", name: "Relasjonssted", desc: "Test" }
+        ];
       },
       async loadNature() {},
       async loadLesespor() {}
@@ -192,7 +195,12 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
 
     if (url === "data/relations.json") {
       await delay(40);
-      return response({ relations: [{ id: "rel-1", place_id: "place-1", person_id: "person-1" }] });
+      return response({
+        relations: [
+          { id: "rel-1", place_id: "place-1", person_id: "person-1" },
+          { id: "rel-2", place_id: "place-2", person_id: "person-2" }
+        ]
+      });
     }
 
     if (url === "data/relations_philanthropy.json") {
@@ -340,6 +348,21 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     refreshCalls,
     refreshesAfterStaleRepair + 1,
     "stedsovergang nullstiller sperren nøyaktig én gang"
+  );
+
+  const refreshesBeforeRelationOnlyRepair = refreshCalls;
+  placeCard.dataset.currentPlaceId = "place-2";
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
+  peopleIcon.dataset.roundReady = "false";
+  mutationCallback?.([]);
+  await waitUntil(
+    () => refreshCalls > refreshesBeforeRelationOnlyRepair,
+    "relasjonskoblet person utløste ikke stale-reparasjon"
+  );
+  assert.equal(
+    refreshCalls,
+    refreshesBeforeRelationOnlyRepair + 1,
+    "relasjonskoblet person gir nøyaktig én stale-reparasjon"
   );
 
   console.log("People/relations are prioritized, bounded-parallel, and refresh the open round without a false zero");
