@@ -44,11 +44,15 @@ jobs:
           git show "${SOURCE_REF}:reports/place-production/torggata-phase12-image-review-summary-v1.json" > reports/place-production/torggata-phase12-image-review-summary-v1.json
           git show "${SOURCE_REF}:.github/workflows/torggata-phase12-closeout.yml" > /tmp/torggata-phase12-source.yml
 
+          # The source workflow installs dependencies with a scalar `run:` line,
+          # while the reviewed closeout steps below use block scripts. Install it
+          # explicitly before replaying those scripts.
+          npm ci --no-audit --no-fund
+
           python3 <<'PY'
           from pathlib import Path
           import re
           import subprocess
-          import sys
 
           lines = Path('/tmp/torggata-phase12-source.yml').read_text(encoding='utf-8').splitlines()
           steps = []
@@ -84,7 +88,6 @@ jobs:
               i = k
 
           required = {
-              'Install dependencies',
               'Build five reviewed Commons candidates',
               'Apply Torggata image holdbacks',
               'Mark audit PASS and validate permanent scope',
