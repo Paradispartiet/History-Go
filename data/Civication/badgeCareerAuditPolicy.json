@@ -1,7 +1,7 @@
 {
   "schema": "civication_badge_career_audit_policy_v1",
   "version": 1,
-  "reviewed_at": "2026-08-13",
+  "reviewed_at": "2026-08-14",
   "columns": [
     "label",
     "kind",
@@ -162,18 +162,18 @@
     ],
     "filosofi": [
       ["Nysgjerrig","game_rank_or_interest_status","not_job","replace",[]],
-      ["Spørrer","game_rank_or_interest_status","not_job","replace",[]],
-      ["Samtalepartner","game_rank_or_interest_status","not_job","replace",[]],
-      ["Argumentbygger","game_rank_or_interest_status","not_job","replace",[]],
-      ["Filosofistudent","education_stage","not_job","replace",[]],
-      ["Idéhistoriker","academic_or_qualified_profession","qualification_required","keep_with_gate",["relevant_education_or_employer_qualification"]],
-      ["Etiker","ambiguous_professional_identity","review_required","review",[]],
-      ["Logiker","ambiguous_professional_identity","review_required","review",[]],
-      ["Filosof","ambiguous_professional_identity","review_required","review",[]],
-      ["Fagfilosof","ambiguous_professional_identity","review_required","review",[]],
-      ["Foreleser","academic_or_qualified_profession","qualification_required","keep_with_gate",["relevant_education_or_employer_qualification"]],
-      ["Professor","academic_or_qualified_profession","qualification_required","keep_with_gate",["relevant_education_or_employer_qualification"]],
-      ["Filosofisk veileder","ambiguous_professional_identity","review_required","review",[]]
+      ["Spørrer","inquiry_practice","not_job","replace",[]],
+      ["Samtalepartner","dialogue_practice","not_job","replace",[]],
+      ["Argumentbygger","argumentation_practice","not_job","replace",[]],
+      ["Filosofistudent","learning_stage","not_job","replace",[]],
+      ["Idéhistoriker","qualified_profession","qualification_required","keep_with_gate",["relevant_education_or_employer_qualification"]],
+      ["Etiker","specialization_identity","not_job","replace",[]],
+      ["Logiker","specialization_identity","not_job","replace",[]],
+      ["Filosof","qualified_profession","qualification_required","keep_with_gate",["relevant_education_or_employer_qualification"]],
+      ["Fagfilosof","professional_field_identity","not_job","replace",[]],
+      ["Foreleser","teaching_position","appointment_required","keep_with_gate",["employer_appointment"]],
+      ["Professor","academic_position","qualification_required","keep_with_gate",["academic_qualification_and_employment"]],
+      ["Filosofisk veileder","professional_practice","not_job","replace",[]]
     ],
     "kunst": [
       ["Vertskap (museum/galleri)","actual_job","direct","keep",[]],
