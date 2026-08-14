@@ -7,6 +7,7 @@ import { JSDOM } from "jsdom";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const source = fs.readFileSync(path.join(__dirname, "../js/ui/place-rounds-visual-collections.js"), "utf8");
+const placeCardSource = fs.readFileSync(path.join(__dirname, "../js/ui/place-card.js"), "utf8");
 const windows = new Set();
 afterEach(() => { for (const w of windows) w.close(); windows.clear(); });
 const ICONS = ["People", "Badges", "Brands", "Nature", "Works", "Details", "Spots", "CivicationStore", "ForNa", "Fortellinger", "Leksikon", "Play", "Training", "Tasks"];
@@ -135,4 +136,12 @@ test("configured 4+1 rounds are labelled and broken related previews fall back c
   assert.match(relatedIcon.textContent, /🧭/);
   assert.match(relatedIcon.textContent, /1/);
   assert.equal(relatedIcon.querySelector("img"), null, "ødelagt bilde erstattes av ikon og antall");
+});
+
+test("core People and Brands rounds share preview fallback and keyboard activation", () => {
+  assert.match(placeCardSource, /const setRoundPreview =/);
+  assert.match(placeCardSource, /setRoundPreview\(peopleIcon, previewImage, previewAlt, "👥", persons\.length\)/);
+  assert.match(placeCardSource, /setRoundPreview\(brandsIcon, b0\?\.logo \|\| "", b0\?\.name \|\| b0\?\.label \|\| "", "🏷️", brands\.length\)/);
+  assert.match(placeCardSource, /iconEl\?\.addEventListener\("keydown", openRoundPopup\)/);
+  assert.match(placeCardSource, /e\?\.type === "keydown".*\["Enter", " "\]/);
 });
