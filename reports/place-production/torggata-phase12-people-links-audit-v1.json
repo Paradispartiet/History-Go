@@ -1,0 +1,119 @@
+{
+  "schema": "history_go_torggata_phase12_people_links_audit_v1",
+  "generated_at": "2026-08-13",
+  "place_id": "torggata",
+  "phase": 12,
+  "prior_work_gate": {
+    "status": "UTFØRT",
+    "prior_prs": [
+      4831,
+      4840,
+      4842,
+      4843
+    ],
+    "decision": "RE_AUDIT_AND_IMAGE_READINESS_REPAIR",
+    "note": "8A etablerte 21 kildebårne canonical People-koblinger. Fase 12 beholder koblingene og anvender den nyere, strengere synlig-bildeporten."
+  },
+  "canonical_people": {
+    "expected": 21,
+    "found": 21,
+    "torggata_linked": 21,
+    "inspectable_sources": 21,
+    "duplicate_ids": 0,
+    "exact_duplicate_desc": 0,
+    "exact_duplicate_popupDesc": 0
+  },
+  "image_baseline": {
+    "image_ready_before_phase12": 2,
+    "missing_before_phase12": 19
+  },
+  "image_review": {
+    "canonical_candidate_run": {
+      "requested": 19,
+      "with_any_candidates": 7,
+      "candidate_rows": 24
+    },
+    "applied_documentary_portraits": [
+      "christian_morgenstierne",
+      "arne_eide",
+      "harald_olsen",
+      "alma_fahlstrom",
+      "johan_fahlstrom"
+    ],
+    "rejected_identity": {
+      "person_id": "alexander_claes",
+      "reason": "WRONG_PERSON_MATCH",
+      "detail": "Navnesøket traff Wikidata Q610747 og et moderne fotballbilde; dette er ikke frisøren i Torggata 18 og kandidaten ble avvist."
+    },
+    "deferred_format": {
+      "person_id": "nanna_broch",
+      "reason": "TIFF_NOT_BROWSER_READY_IN_CURRENT_APPLY_PIPELINE",
+      "detail": "Sterk Commons P18-kandidat finnes, men originalen er TIFF. Dagens apply-flyt ville gi ikke-JPEG bytes et .jpg-filnavn uten konvertering, så bildet publiseres ikke."
+    },
+    "no_commons_candidate": [
+      "thoger_binneballe",
+      "ludvig_christian_jensen",
+      "adelsten_jensen",
+      "peter_marinius_jensen",
+      "karl_a_jensen",
+      "thorvald_jensen",
+      "wulff_becker",
+      "martin_heinz_zilsel",
+      "therese_hurwitz",
+      "jenny_hurwitz",
+      "fredrik_hurwitz",
+      "moritz_glott"
+    ],
+    "visible_image_ready": 7,
+    "held_back_pending_image": 14
+  },
+  "runtime_round": {
+    "required_visible": [
+      "thorvald_meyer",
+      "henrik_bull",
+      "christian_morgenstierne",
+      "arne_eide",
+      "harald_olsen",
+      "alma_fahlstrom",
+      "johan_fahlstrom"
+    ],
+    "held_back": [
+      "thoger_binneballe",
+      "ludvig_christian_jensen",
+      "adelsten_jensen",
+      "peter_marinius_jensen",
+      "karl_a_jensen",
+      "thorvald_jensen",
+      "nanna_broch",
+      "wulff_becker",
+      "martin_heinz_zilsel",
+      "alexander_claes",
+      "therese_hurwitz",
+      "jenny_hurwitz",
+      "fredrik_hurwitz",
+      "moritz_glott"
+    ],
+    "rule": "Every person returned by getPeopleForPlace(torggata) must have non-empty local image and cardImage."
+  },
+  "global_image_audit_baseline": {
+    "scope": "repo-wide legacy debt, not used as a Torggata completion denominator",
+    "total_people": 1403,
+    "people_without_image": 1024,
+    "missing_local_image_files": 303,
+    "duplicate_or_colliding_image_files": 1
+  },
+  "status": "PASS",
+  "next_phase": "13. Brands",
+  "validation": [
+    "torggata_phase12_people_links",
+    "torggata_phase8a_closeout",
+    "people_images_contract_tests",
+    "people_of_places",
+    "civication_history_people",
+    "torggata_phase11_regression",
+    "typecheck_web",
+    "typecheck_scripts",
+    "typecheck_tools",
+    "build_web"
+  ]
+}
