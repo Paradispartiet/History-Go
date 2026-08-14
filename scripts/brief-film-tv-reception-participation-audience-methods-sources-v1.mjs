@@ -9,7 +9,14 @@ const UNIT_ID = 'resepsjon-deltakelse-og-publikumsmetoder';
 const INPUT_GATE = 'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief';
 const OUTPUT_GATE = 'reception_participation_audience_methods_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';
-const UNIT_ELEVEN_PRODUCTION_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE]);
+const UNIT_TWELVE_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';
+const UNIT_TWELVE_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
+const UNIT_TWELVE_PRODUCTION_GATES = new Set([UNIT_TWELVE_SOURCE_GATE, UNIT_TWELVE_FULLTEXT_GATE]);
+const UNIT_ELEVEN_PRODUCTION_GATES = new Set([
+  OUTPUT_GATE,
+  FULLTEXT_GATE,
+  ...UNIT_TWELVE_PRODUCTION_GATES
+]);
 
 export const isFilmTvUnitElevenOrLaterGate = (gate) => UNIT_ELEVEN_PRODUCTION_GATES.has(gate);
 
@@ -88,7 +95,7 @@ export function buildFilmTvReceptionParticipationAudienceMethodsSourceBriefV1() 
   const engineSource = fs.readFileSync(fileURLToPath(import.meta.url), 'utf8');
   const forbiddenScmTokens = ['child_' + 'process', 'execFile' + 'Sync', 'spawn' + 'Sync'];
   const forbiddenGitCommand = new RegExp(`git\\s+(?:${['fetch', 'merge', 'push'].join('|')})`);
-  const laterGateAlreadyActive = currentGate === FULLTEXT_GATE;
+  const laterGateAlreadyActive = currentGate === FULLTEXT_GATE || UNIT_TWELVE_PRODUCTION_GATES.has(currentGate);
 
   registry.version = maxDottedVersion(registry.version, '2.94.0');
   registry.updatedAt = maxIsoDate(registry.updatedAt, '2026-08-14');
@@ -127,7 +134,7 @@ export function buildFilmTvReceptionParticipationAudienceMethodsSourceBriefV1() 
     existing_prerequisites_registered: unit.prerequisite_existing_chapter_ids.every((id) =>
       registry.subjects.film_tv.chapters.some((row) => row.id === id)
     ),
-    current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE].includes(currentGate),
+    current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE, UNIT_TWELVE_SOURCE_GATE, UNIT_TWELVE_FULLTEXT_GATE].includes(currentGate),
     exact_unit_emne_coverage: topicBriefs.length === unit.emne_count
       && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count
       && isDeepStrictEqual(brief.scope.emne_ids, unit.emne_ids)

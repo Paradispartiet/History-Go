@@ -7,6 +7,16 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'resepsjon-deltakelse-og-publikumsmetoder';
 const INPUT_GATE = 'reception_participation_audience_methods_source_brief_complete_full_chapter_production';
 const OUTPUT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';
+const UNIT_TWELVE_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';
+const UNIT_TWELVE_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
+const UNIT_ELEVEN_OR_LATER_PRODUCTION_GATES = new Set([
+  OUTPUT_GATE,
+  UNIT_TWELVE_SOURCE_GATE,
+  UNIT_TWELVE_FULLTEXT_GATE
+]);
+
+export const isFilmTvUnitElevenOrLaterGate = (gate) =>
+  UNIT_ELEVEN_OR_LATER_PRODUCTION_GATES.has(gate);
 
 const P = Object.freeze({
   sourceBrief: 'data/fag/TV_og_Film/film_tv_reception_participation_audience_methods_source_claim_brief_v1.json',
@@ -114,6 +124,8 @@ export function buildFilmTvReceptionParticipationAudienceMethodsFulltextV1() {
   const chapterBrief = structuredClone(read(P.brief));
   const registry = structuredClone(read(P.registry));
   const status = structuredClone(read(P.status));
+  const currentGate = status.subjects.find((row) => row.id === 'film_tv')?.nextGate;
+  const laterGateAlreadyActive = [UNIT_TWELVE_SOURCE_GATE, UNIT_TWELVE_FULLTEXT_GATE].includes(currentGate);
   const unit = learningPlan.planned_units.find((row) => row.id === CHAPTER_ID);
   assert(unit?.sequence === 11, 'Læringsplanen mangler enhet 11');
 
@@ -210,23 +222,27 @@ export function buildFilmTvReceptionParticipationAudienceMethodsFulltextV1() {
   const chapters = registry.subjects.film_tv.chapters;
   const chapterIndex = chapters.findIndex((row) => row.id === CHAPTER_ID);
   if (chapterIndex === -1) chapters.push(registryChapter); else chapters[chapterIndex] = registryChapter;
-  registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Resepsjon, deltakelse og publikumsmetoder er registrert etter fulltekst-, claim- og evidensport med 12 canonicale emner, 4 variable moduler, 12 emneeide seksjoner, 54 claimsporede fagavsnitt, 54/54 verifiserte claims, 36 brukte inspectable kilder og 32 dokumenterte case. Faktisk resepsjon holdes adskilt fra tekstlig mulighet, og survey, intervju, etnografi, panel, digital trace, eksperiment og arkiv beholder egne evidensroller. Neste port er kilde- og claimbrief for Skjermsteder, identitet og sirkulasjon.';
+  if (!laterGateAlreadyActive) {
+    registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Resepsjon, deltakelse og publikumsmetoder er registrert etter fulltekst-, claim- og evidensport med 12 canonicale emner, 4 variable moduler, 12 emneeide seksjoner, 54 claimsporede fagavsnitt, 54/54 verifiserte claims, 36 brukte inspectable kilder og 32 dokumenterte case. Faktisk resepsjon holdes adskilt fra tekstlig mulighet, og survey, intervju, etnografi, panel, digital trace, eksperiment og arkiv beholder egne evidensroller. Neste port er kilde- og claimbrief for Skjermsteder, identitet og sirkulasjon.';
+  }
   registry.subjects.film_tv.canonicalModel.eleventhSourceClaimBrief = P.sourceBrief;
 
   status.version = maxDottedVersion(status.version, '1.88.0');
   status.updatedAt = maxIsoDate(status.updatedAt, '2026-08-14');
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   assert(filmStatus, 'Mangler Film & TV-status');
-  filmStatus.editorialStatus = 'chapters_in_progress';
-  filmStatus.nextGate = OUTPUT_GATE;
-  filmStatus.note = 'Resepsjon, deltakelse og publikumsmetoder er registrert etter fulltekst- og evidensaudit: 12/12 canonicale emner, 4 variable moduler, 12 seksjoner, 54 claimsporede fagavsnitt, 54/54 løste claimplaner, 36 brukte inspectable kilder og 32 case. Verksanalyse, publikumsdata, digitale spor, historiske kilder og eksperimentelle effekter er avgrenset etter analyseenhet, konstruksjon, metode, periode, territorium og etikk. Neste port er kilde- og claimbrief for Skjermsteder, identitet og sirkulasjon.';
+  if (!laterGateAlreadyActive) {
+    filmStatus.editorialStatus = 'chapters_in_progress';
+    filmStatus.nextGate = OUTPUT_GATE;
+    filmStatus.note = 'Resepsjon, deltakelse og publikumsmetoder er registrert etter fulltekst- og evidensaudit: 12/12 canonicale emner, 4 variable moduler, 12 seksjoner, 54 claimsporede fagavsnitt, 54/54 løste claimplaner, 36 brukte inspectable kilder og 32 case. Verksanalyse, publikumsdata, digitale spor, historiske kilder og eksperimentelle effekter er avgrenset etter analyseenhet, konstruksjon, metode, periode, territorium og etikk. Neste port er kilde- og claimbrief for Skjermsteder, identitet og sirkulasjon.';
+  }
 
   return { sourceBrief, sources, cases, topicBriefs, chapter, chapterBrief, claimsDoc, registry, status, modules, sections, unit };
 }
 
 export function materializeFilmTvReceptionParticipationAudienceMethodsFulltextV1({ force = false } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  if (!force) assert([INPUT_GATE, OUTPUT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if (!force) assert([INPUT_GATE, OUTPUT_GATE, UNIT_TWELVE_SOURCE_GATE, UNIT_TWELVE_FULLTEXT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
   const built = buildFilmTvReceptionParticipationAudienceMethodsFulltextV1();
   write(P.chapter, built.chapter);
   write(P.brief, built.chapterBrief);

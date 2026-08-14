@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import {
   buildFilmTvReceptionParticipationAudienceMethodsFulltextV1,
-  CLAIM_SOURCE_IDS
+  CLAIM_SOURCE_IDS,
+  isFilmTvUnitElevenOrLaterGate
 } from './materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -152,7 +153,7 @@ export function auditFilmTvReceptionParticipationAudienceMethodsFulltextV1({
       && chapterRecord?.claimsFile === P.claims
       && chapterRecord?.briefFile === P.brief
       && filmStatus?.editorialStatus === 'chapters_in_progress'
-      && filmStatus?.nextGate === OUTPUT_GATE,
+      && isFilmTvUnitElevenOrLaterGate(filmStatus?.nextGate),
     deterministic_generated_state_matches: isDeepStrictEqual(chapter, built.chapter)
       && isDeepStrictEqual(brief, built.chapterBrief)
       && isDeepStrictEqual(claimsDoc, built.claimsDoc)
