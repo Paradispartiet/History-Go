@@ -99,3 +99,40 @@ test("nature map never falls back to generic main-map navigation", () => {
 test("People preview does not create people_ids filtering", () => {
   assert.ok(!source.includes("people_ids"));
 });
+
+test("configured 4+1 rounds are labelled and broken related previews fall back cleanly", async () => {
+  const place = {
+    id: "gate",
+    category: "by",
+    image: "gate.jpg",
+    related_place_ids: ["relatert"],
+    round_profile: {
+      schema: "history_go_place_round_profile_v1",
+      content_round_ids: ["people", "images", "brands", "related"],
+      reason: "Stedstilpasset, dokumentert profil."
+    }
+  };
+  const related = { id: "relatert", name: "Relatert sted", cardImage: "missing.jpg" };
+  const w = make(place, { PLACES: [place, related] });
+  await w.HGPlaceRounds.apply(place);
+
+  const expected = [
+    ["pcPeopleIcon", "Personer"],
+    ["pcObjectsIcon", "Bilder"],
+    ["pcBrandsIcon", "Brands"],
+    ["pcCategoryCollectionIcon", "Relaterte steder"]
+  ];
+  for (const [id, label] of expected) {
+    const icon = w.document.getElementById(id);
+    assert.equal(icon.getAttribute("aria-label"), label);
+    assert.equal(icon.getAttribute("role"), "button");
+    assert.equal(icon.getAttribute("tabindex"), "0");
+  }
+
+  const relatedIcon = w.document.getElementById("pcCategoryCollectionIcon");
+  assert.ok(relatedIcon.querySelector("img"), "related-rundingen starter med tilgjengelig preview");
+  relatedIcon.querySelector("img").dispatchEvent(new w.Event("error"));
+  assert.match(relatedIcon.textContent, /🧭/);
+  assert.match(relatedIcon.textContent, /1/);
+  assert.equal(relatedIcon.querySelector("img"), null, "ødelagt bilde erstattes av ikon og antall");
+});
