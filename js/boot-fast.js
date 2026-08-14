@@ -272,6 +272,10 @@
       // rekkefølge. Hvis en sen, tom render har skrevet 0 etter at dataene er
       // klare, gjør én ny render for dette stedet i stedet for å godta stale UI.
       const placeId = getCurrentPlaceId();
+      if (icon?.dataset && icon.dataset.hgPeopleObservedPlace !== placeId) {
+        delete icon.dataset.hgPeopleStaleRefreshFor;
+        icon.dataset.hgPeopleObservedPlace = placeId;
+      }
       const previewReady = Boolean(icon?.querySelector?.("img"))
         || icon?.dataset?.roundReady === "true";
       if (
@@ -283,9 +287,9 @@
         icon.dataset.hgPeopleStaleRefreshFor = placeId;
         scheduleCurrentPlacePeopleRefresh();
       }
-      // Behold engangssperren for stedet også når en <img> dukker opp:
+      // Behold engangssperren for samme sted også når en <img> dukker opp:
       // bildefeilen kan senere erstatte den med fallback og trigge observeren
-      // på nytt. Sperren nullstilles naturlig når et annet placeId åpnes.
+      // på nytt. Stedsovergangen over nullstiller sperren eksplisitt.
       return;
     }
 
