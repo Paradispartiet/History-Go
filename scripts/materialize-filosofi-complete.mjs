@@ -397,7 +397,7 @@ async function main(){
   if (!statusRow) throw new Error('Missing philosophy subject status');
   statusRow.navigationStatus='materialized'; statusRow.assessmentStatus='audited'; statusRow.editorialStatus='complete'; statusRow.nextGate='maintenance_source_refresh_and_place_case_expansion';
   statusRow.note=`Filosofi er redaksjonelt komplett: 13/13 fagområder, 54/54 selvstendige emneartikler, 162/162 canonicale begreper skrevet ut i artikkelprosa, 27 metoder, ${totalClaims} claimsporede kontrollpåstander og ${SOURCE_CATALOG.length} åpne faglige sekundærkilder. Hver artikkel har argumentrekonstruksjon, reell innvending/rival, metode- og evidensgrense; globale tradisjoner behandles på egne begrepspremisser.`;
-  status.version='1.85.0'; status.updatedAt='2026-08-14';
+  status.version=status.version || '1.85.0'; status.updatedAt='2026-08-14';
   await writeJson(SUBJECT_STATUS,status);
 
   console.log(JSON.stringify({status:'filosofi_complete',articles:54,chapters:13,concepts:162,totalWords,totalClaims,sources:SOURCE_CATALOG.length,minWords},null,2));
