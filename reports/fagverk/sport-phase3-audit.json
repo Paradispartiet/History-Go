@@ -1,7 +1,7 @@
 {
-  "schema": "history_go_fagverk_sport_phase3_audit_v2",
-  "version": "2.0.0",
-  "status": "sport_phase_3_preserved_during_chapter_production",
+  "schema": "history_go_fagverk_sport_phase3_audit_v3",
+  "version": "3.0.0",
+  "status": "sport_complete",
   "subject": {
     "id": "sport",
     "title": "Sport & lek",
@@ -9,8 +9,8 @@
     "adapter": "standard",
     "navigationStatus": "materialized",
     "assessmentStatus": "audited",
-    "editorialStatus": "chapters_in_progress",
-    "nextGate": "regler_spill_konkurranse_chapter_production",
+    "editorialStatus": "complete",
+    "nextGate": "maintenance_source_refresh_and_place_case_expansion",
     "subjectPage": "fagverk.html?subject=sport",
     "badgePage": "data/fag/sport/merke_sport.html"
   },
@@ -20,9 +20,13 @@
     "methodCount": 109,
     "mappingCount": 116,
     "hookCount": 60,
-    "registeredChapterCount": 1,
+    "registeredChapterCount": 6,
     "explicitMappingRowCount": 116,
-    "legacyUmbrellaEmneCount": 2
+    "legacyUmbrellaEmneCount": 2,
+    "sectionCount": 54,
+    "paragraphCount": 162,
+    "claimCount": 162,
+    "sourceRegistrationCount": 74
   },
   "canonicalDomainOrder": [
     "arenaer_steder_groundhopper",
@@ -52,6 +56,10 @@
     "groundhopperPlaceLogicPreserved": true,
     "badgeAndSubjectRoutesDistinct": true,
     "assessmentStatusAudited": true,
-    "editorialProgressionMonotonic": true
+    "editorialProgressionMonotonic": true,
+    "completeDomainCoverage": true,
+    "completeTopicCoverage": true,
+    "completeMethodCoverage": true,
+    "paragraphClaimTraceComplete": true
   }
 }
