@@ -292,6 +292,21 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   assert.ok(refreshCalls > refreshesBeforeStaleRepair, "sen tom PlaceCard-render repareres etter ready-eventet");
   assert.match(peopleIcon.innerHTML, />6</);
 
+  const refreshesAfterStaleRepair = refreshCalls;
+  peopleIcon.innerHTML = '<img src="/broken-person.jpg" alt="">';
+  peopleIcon.dataset.roundReady = "true";
+  mutationCallback?.([]);
+  await delay(5);
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
+  peopleIcon.dataset.roundReady = "false";
+  mutationCallback?.([]);
+  await delay(10);
+  assert.equal(
+    refreshCalls,
+    refreshesAfterStaleRepair,
+    "ødelagt previewbilde kan ikke starte en ny PlaceCard-refreshløkke"
+  );
+
   console.log("People/relations are prioritized, bounded-parallel, and refresh the open round without a false zero");
 })().catch(error => {
   console.error(error);
