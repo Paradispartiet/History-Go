@@ -41,6 +41,7 @@
 - Fase 20-audit: `reports/place-production/torggata-phase20-data-qa-audit-v1.json`
 - Fase 21-audit: `reports/place-production/torggata-phase21-ui-qa-audit-v1.json`
 - Fase 22-audit: `reports/place-production/torggata-phase22-content-qa-audit-v1.json`
+- Fase 23-audit: `reports/place-production/torggata-phase23-ci-gates-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -69,7 +70,8 @@
 | 20. Data-QA | **GODKJENT** | canonical data, indekser, referanser og subsystemporter bestått på siste innholds-head |
 | 21. UI-QA | **GODKJENT ETTER SIKRINGSENDRING** | WebGL-feil stopper ikke lenger app-/PlaceCard-boot; produksjonsflaten kontrollert |
 | 22. Innholds-QA | **GODKJENT** | 18/18 claims, Story, 5 × 7 Quiz, People 21/21, Brands 13/13, bilder og 4+1-rundinger kontrollert uten filler |
-| 23–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
+| 24. Ett-sted-PR | **IKKE STARTET** | sluttmergegate |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -718,3 +720,21 @@ Neste aktive fase: **22. Innholds-QA**.
 **Fase 22 Innholds-QA = GODKJENT.**
 
 Neste aktive fase: **23. CI / repository-gates**.
+
+## Fase 23 – CI / repository-gates
+
+### Godkjent resultat
+
+- Data checks / Places er grønn på fase-22-innholdshead `91fae7e…` i run `31793951339`; samme run har grønne People-, Category/quiz- og Knowledge-jobber.
+- Fagverk By er grønn på samme head i run `31793951291`.
+- TypeScript guard er grønn på samme head i run `31793951276`.
+- Place rounds governance er grønn på siste rundingsendrende merge `1c5f6535…` i run `31792843884`.
+- Pages-deployen som inneholder ferdig no-map-ruting er grønn på `adff3272…` i run `31793488096`.
+- Place description governance bæres eksplisitt videre fra fase 5 fordi tekst/claimpakke ikke er endret.
+- Koordinat-, People-data-, Stories- og Nature-gater er ikke relevante for fase 23-diffen; begrunnelsen er registrert per gate.
+- Manuell innholds- og UI-QA forblir egne godkjente porter og erstattes ikke av CI.
+- `tests/torggata-phase23-ci-gates.test.mjs` låser den eksakte portmatrisen.
+
+**Fase 23 CI / repository-gates = GODKJENT.**
+
+Neste aktive fase: **24. Ett-sted-PR**.

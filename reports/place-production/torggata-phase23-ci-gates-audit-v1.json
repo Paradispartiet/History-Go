@@ -1,0 +1,78 @@
+{
+  "schema_version": "torggata_phase23_ci_repository_gates_audit_v1",
+  "place_id": "torggata",
+  "phase": 23,
+  "generated_at": "2026-08-14",
+  "status": "APPROVED",
+  "validated_content_head": "91fae7e22f944fb80388cd4eb3613e5e7dbcdd70",
+  "validated_content_pr": 4960,
+  "gates": [
+    {
+      "id": "data_checks_places",
+      "status": "SUCCESS",
+      "run_id": 31793951339,
+      "head_sha": "91fae7e22f944fb80388cd4eb3613e5e7dbcdd70",
+      "includes": [
+        "Places data",
+        "People data",
+        "Category and quiz governance",
+        "Knowledge V2"
+      ]
+    },
+    {
+      "id": "fagverk_place_learning",
+      "status": "SUCCESS",
+      "run_id": 31793951291,
+      "head_sha": "91fae7e22f944fb80388cd4eb3613e5e7dbcdd70",
+      "workflow": "Fagverk By Data og styring Phase 4"
+    },
+    {
+      "id": "typescript_guard",
+      "status": "SUCCESS",
+      "run_id": 31793951276,
+      "head_sha": "91fae7e22f944fb80388cd4eb3613e5e7dbcdd70"
+    },
+    {
+      "id": "place_rounds_governance",
+      "status": "SUCCESS",
+      "run_id": 31792843884,
+      "head_sha": "1c5f6535d9858008b44acd2c7c5506ed2cd10d38",
+      "note": "Last round-contract-changing merge; later phases changed only no-map routing and audit evidence."
+    },
+    {
+      "id": "pages_deployment_no_map_routing",
+      "status": "SUCCESS",
+      "run_id": 31793488096,
+      "head_sha": "adff3272562dd91494bbd0b60659c0c85195803d"
+    },
+    {
+      "id": "place_description_governance",
+      "status": "CARRIED_FORWARD",
+      "evidence": "reports/place-production/torggata-phase5-description-audit-v1.md",
+      "justification": "No desc, popupDesc or production claim text changed after the approved phase 5 package."
+    },
+    {
+      "id": "coordinate_gate",
+      "status": "NOT_APPLICABLE",
+      "justification": "No coordinate, radius, anchor or routeSegments change in phases 14–23."
+    },
+    {
+      "id": "people_profile_and_links",
+      "status": "NOT_APPLICABLE",
+      "justification": "No People profile or link data changed; current People job is green inside Data checks run 31793951339."
+    },
+    {
+      "id": "stories_gate",
+      "status": "NOT_APPLICABLE",
+      "justification": "No Story file changed after the approved phase 7C episode_v1."
+    },
+    {
+      "id": "nature_gate",
+      "status": "NOT_APPLICABLE",
+      "justification": "Torggata is category by and phase 22 introduced no Nature mapping."
+    }
+  ],
+  "manual_qa_separate": true,
+  "manual_qa_evidence": "reports/place-production/torggata-phase21-ui-qa-audit-v1.json",
+  "conclusion": "All gates that own the final Torggata content/runtime state are green on exact recorded heads. Unaffected subsystem gates are explicitly carried forward or not applicable; CI is not used as a substitute for the completed content and production UI reviews."
+}
