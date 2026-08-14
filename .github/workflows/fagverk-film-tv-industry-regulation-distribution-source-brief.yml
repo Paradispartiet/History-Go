@@ -1,0 +1,110 @@
+name: Fagverk Film og TV industry regulation distribution source brief
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/TV_og_Film/film_tv_industry_regulation_distribution_*.json"
+      - "data/fagverk/fagverk_registry.json"
+      - "data/fagverk/subject_status.json"
+      - "data/fagverk/fagverk_release.json"
+      - "scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs"
+      - "scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs"
+      - "tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs"
+      - "reports/fagverk/film-tv-industry-regulation-distribution-source-brief-v1-audit.json"
+      - "reports/fagverk/film-tv-phase3-audit.json"
+      - "reports/fagverk/general-engine-audit.json"
+      - ".github/workflows/fagverk-film-tv-industry-regulation-distribution-source-brief.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/TV_og_Film/film_tv_industry_regulation_distribution_*.json"
+      - "data/fagverk/fagverk_registry.json"
+      - "data/fagverk/subject_status.json"
+      - "data/fagverk/fagverk_release.json"
+      - "scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs"
+      - "scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs"
+      - "tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs"
+      - "reports/fagverk/film-tv-industry-regulation-distribution-source-brief-v1-audit.json"
+      - "reports/fagverk/film-tv-phase3-audit.json"
+      - "reports/fagverk/general-engine-audit.json"
+      - ".github/workflows/fagverk-film-tv-industry-regulation-distribution-source-brief.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fagverk-film-tv-unit10-source-brief-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate industry regulation distribution source brief
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Validate syntax
+        run: |
+          node --check scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs
+          node --check scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
+          node --check tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+
+      - name: Materialize unit 10 source brief state
+        run: node scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs --write
+
+      - name: Build deterministic release
+        run: node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Refresh shared general engine audit
+        run: node scripts/audit-fagverk-general-engine.mjs --write-report
+
+      - name: Refresh shared Film and TV phase 3 audit
+        run: node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+
+      - name: Validate unit 10 source brief
+        run: |
+          node scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs
+          node --test tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+
+      - name: Validate completed unit 9 remains monotone
+        run: |
+          node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
+          node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
+
+      - name: Validate shared Film and TV baseline
+        run: |
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Persist deterministic unit 10 source brief outputs on PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/general-engine-audit.json \
+            reports/fagverk/film-tv-phase3-audit.json \
+            reports/fagverk/film-tv-industry-regulation-distribution-source-brief-v1-audit.json
+          if git diff --cached --quiet; then
+            echo 'Unit 10 source brief deterministic outputs already match.'
+            exit 0
+          fi
+          git commit -m 'Materialize Film TV unit 10 source brief state'
+          git push origin "HEAD:${HEAD_BRANCH}"

@@ -7,6 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ID = 'skapende-arbeid-teknologi-og-ansvar';
 const NEXT = 'creative_work_technology_responsibility_full_chapter_complete_next_unit_source_brief';
+const FILM_TV_PRODUCTION_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/;
 const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
 const write = (p, v) => { fs.mkdirSync(path.dirname(path.join(ROOT,p)), {recursive:true}); fs.writeFileSync(path.join(ROOT,p), `${JSON.stringify(v,null,2)}\n`); };
 const assert = (ok,m) => { if(!ok) throw new Error(m); };
@@ -44,7 +45,7 @@ export function auditFilmTvCreativeWorkTechnologyResponsibilityFulltextV1({write
     canonical_methods: chapter.method_ids.length>0 && isDeepStrictEqual(brief.requiredMethodIds,chapter.method_ids),
     immutable_source_brief: sourceBrief.status==='source_claim_brief_complete_full_chapter_production' && sourceBrief.runtime_registration.registered===false,
     registered: reg?.file===`data/fagverk/film_tv/${ID}.json` && reg?.claimsFile===`data/fagverk/film_tv/${ID}/claims.json`,
-    next_gate: film?.nextGate===NEXT,
+    next_gate: ['chapters_in_progress','complete'].includes(film?.editorialStatus) && FILM_TV_PRODUCTION_GATE.test(film?.nextGate || ''),
     consent_boundary: /samtykke.{0,160}(utøverens|utøveren)/i.test(combined),
     safety_boundary: /aktivitet.{0,160}fare.{0,160}ekspon/i.test(combined),
     accessibility_boundary: /(brukerbehov|brukerkrav).{0,220}(testing|testet)|(testing|testet).{0,220}(brukerbehov|brukerkrav)/i.test(combined),
