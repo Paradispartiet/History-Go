@@ -331,7 +331,11 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   placeCard.dataset.currentPlaceId = "place-3";
   mutationCallback?.([]);
   await waitUntil(
-    () => (peopleAttempts.get("data/people/by/oslo/late.json") || 0) >= 2,
+    () => (window.PEOPLE.find(person => person.id === "person-9")?.roundHoldbacks || []).includes("place-3"),
+    "sted åpnet etter full People-last publiserte ikke ferske aggregatdata"
+  );
+  assert.ok(
+    (peopleAttempts.get("data/people/by/oslo/late.json") || 0) >= 2,
     "sted åpnet etter full People-last revaliderte ikke aggregatfilen"
   );
   assert.equal(
