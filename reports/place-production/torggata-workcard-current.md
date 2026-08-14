@@ -49,7 +49,7 @@
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
 | 11. Observer, Notat og Rute | **GODKJENT** | eksisterende Observer-, Notat- og navigasjonsruntime auditert; historisk rute begrunnet N/A |
 | 12. People–sted-koblinger | **GODKJENT** | 21/21 canonical koblinger og inspectable kilder beholdt; 7 synlige profiler er bildeklare; 14 bildeholdbacks er eksplisitte og bevarer koblingen |
-| 13. Brands | **PÅGÅR** | re-audit eksisterende 8C Brands mot den selvstendige fase-13-kontrakten før ny Brand-produksjon |
+| 13. Brands | **GODKJENT** | 13/13 canonical brands har lokal verifisert logo eller autentisk historisk ordmerke/brandmark med proveniens; ingen genererte eller rekonstruerte logoer |
 | 14–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
