@@ -25,6 +25,9 @@ for (const field of ['before', 'now']) {
   assert.match(torggata.for_na[field], /Hausmanns gate/);
 }
 assert.match(torggata.for_na.change, /ikke i seg selv husleie, fortrengning eller automatisk sosial effekt/i);
+assert.match(torggata.for_na.before, /fasaderekken.*høyre side/i);
+assert.match(torggata.for_na.now, /fasaderekken.*høyre side/i);
+assert.doesNotMatch(torggata.for_na.before + torggata.for_na.now, /venstre side/i);
 
 assert(Array.isArray(torggata.for_na.lookFor), 'for_na.lookFor skal være liste');
 assert.strictEqual(torggata.for_na.lookFor.length, 3, 'for_na.lookFor skal ha tre presise observasjoner');
@@ -61,6 +64,7 @@ assert.match(popupSystem, /hovedparet for Torggata må vise selve gaten/i);
 assert.match(audit, /Eksplisitt avvist kandidat: Torggata Bad/i);
 assert.match(audit, /Badet har egen place-oppføring og kan ikke erstatte parent-place Torggata/i);
 assert.match(audit, /Torggata 30–36 ca\. 1965 \+ KartaView 2025 \| Valgt/i);
+assert.match(audit, /Fasaderekken Torggata 30–36 ligger visuelt på høyre side i begge bilder/i);
 assert.match(workcard, /Torggata Bad/i);
 assert.match(workcard, /egen place-oppføring/i);
 

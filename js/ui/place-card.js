@@ -1077,7 +1077,8 @@ if (!card.dataset.pcIconsBound) {
   };
 
   const bindRoundPopup = (iconEl, listEl, title, kind) => {
-  iconEl?.addEventListener("click", async (e) => {
+  const openRoundPopup = async (e) => {
+    if (e?.type === "keydown" && !["Enter", " "].includes(e.key)) return;
     e.preventDefault();
     e.stopPropagation();
 
@@ -1218,7 +1219,9 @@ if (!card.dataset.pcIconsBound) {
         kind
       });
     }
-  });
+  };
+  iconEl?.addEventListener("click", openRoundPopup);
+  iconEl?.addEventListener("keydown", openRoundPopup);
 };
 
 iconsWrap?.addEventListener("click", (e) => {
@@ -1292,6 +1295,29 @@ const setRoundLabel = (el, emoji, count = 0) => {
       ${hasCount ? `<span class="pc-round-count">${count}</span>` : ""}
     </div>
   `;
+};
+
+/**
+ * @param {HTMLElement | null} el
+ * @param {string} src
+ * @param {string} alt
+ * @param {string} fallbackEmoji
+ * @param {number} count
+ * @returns {void}
+ */
+const setRoundPreview = (el, src, alt, fallbackEmoji, count) => {
+  if (!el) return;
+  if (!src) {
+    setRoundLabel(el, fallbackEmoji, count);
+    el.dataset.roundReady = "false";
+    return;
+  }
+  el.innerHTML = `<img src="${escapePlaceCardHTML(src)}" class="pc-person-img" alt="${escapePlaceCardHTML(alt)}">`;
+  el.dataset.roundReady = "true";
+  el.querySelector("img")?.addEventListener("error", () => {
+    setRoundLabel(el, fallbackEmoji, count);
+    el.dataset.roundReady = "false";
+  }, { once:true });
 };
 
 if (isNarrow) {
@@ -1646,14 +1672,8 @@ if (peopleIcon) {
   const p0 = persons?.find(person => person?.cardImage || person?.imageCard || person?.image) || persons?.[0];
   const previewImage = p0?.cardImage || p0?.imageCard || p0?.image || "";
   const isIllustration = p0?.imageMeta?.mediaType === "editorial_illustration" || p0?.imageMeta?.source === "history_go_editorial_illustration";
-  if (previewImage) {
-    const previewAlt = isIllustration ? `Illustrasjon av ${p0.name || "person"}` : (p0.name || "");
-    peopleIcon.innerHTML = `<img src="${escapePlaceCardHTML(previewImage)}" class="pc-person-img" alt="${escapePlaceCardHTML(previewAlt)}">`;
-    peopleIcon.dataset.roundReady = "true";
-  } else {
-    setRoundLabel(peopleIcon, "👥", persons.length);
-    peopleIcon.dataset.roundReady = "false";
-  }
+  const previewAlt = isIllustration ? `Illustrasjon av ${p0?.name || "person"}` : (p0?.name || "");
+  setRoundPreview(peopleIcon, previewImage, previewAlt, "👥", persons.length);
 }
 
 
@@ -2124,11 +2144,7 @@ if (brandsEl) {
     : `<div class="pc-empty">Ingen brands ennå</div>`;
 
   const b0 = brands.find(b => b.logo);
-  if (b0?.logo) {
-    brandsIcon.innerHTML = `<img src="${b0.logo}" class="pc-person-img" alt="">`;
-  } else {
-    setRoundLabel(brandsIcon, "🏷️", brands.length);
-  }
+  setRoundPreview(brandsIcon, b0?.logo || "", b0?.label || "", "🏷️", brands.length);
 }
 
 

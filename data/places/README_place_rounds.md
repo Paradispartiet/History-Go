@@ -254,4 +254,6 @@ Et sted er rundingsklart når:
 9. de sju popup-SVG-ene står separat til høyre;
 10. Objects og Structures er ikke separate rundinger når skillet er kunstig eller samlingene i praksis beskriver de samme fysiske stedselementene;
 11. et place med egen canonical oppføring vises bare som eksplisitt `related`, aldri som parent-place-objekt eller -struktur;
-12. relevante rundings-, popup- og datagater passerer.
+12. hver runding har et forståelig tilgjengelig navn, og bilde-preview med manglende mediefil faller tilbake til rundingens ikon og antall uten ødelagt bildeikon;
+13. hver runding er åpnet på faktisk produksjonsflate og viser korrekt antall og reelt popupinnhold; falsk 0 mens data fortsatt lastes er ikke godkjent;
+14. relevante rundings-, popup- og datagater passerer.

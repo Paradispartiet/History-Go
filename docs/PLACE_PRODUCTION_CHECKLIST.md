@@ -98,6 +98,9 @@ Et sted kan ikke merkes `produksjonsklart` når nullmålingen eller fasesporinge
 ### Manuell sluttvurdering kan gjenåpne stedet
 
 - [ ] den synlige spilleropplevelsen vurderes som helhet etter at alle tekniske faser er merget;
+- [ ] hver av de fire innholdsrundingene åpnes på faktisk produksjonsflate; synlig antall, popupinnhold og datakilde må stemme, og en runding som viser falsk 0 under lasting er et blockerfunn;
+- [ ] alle rundings-preview kontrolleres for vellykket bildelast; manglende mediefil skal gi et tydelig ikon-/antallsfallback, aldri et ødelagt bildeikon;
+- [ ] Før/etter-tekstens retning, høyre/venstre, motivanker og observasjonsinstruks kontrolleres visuelt mot begge bildene;
 - [ ] tomme faner, svake bildevalg, kunstige samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner registreres som reelle kvalitetsavvik;
 - [ ] manuell kvalitetskritikk kan gjenåpne en tidligere godkjent fase og oppheve `SLUTTFØRT`;
 - [ ] grønn CI, komplett schema, kildeproveniens og korrekt feltantall brukes aldri til å overstyre en dokumentert svak sluttflate;
@@ -917,8 +920,11 @@ Denne oppskriften gjentar ikke rundingspalett, profiler eller naturkartkrav. **R
 - [ ] dersom standarden feiler, brukes bare den avgrensede og begrunnede `round_profile.content_round_ids`-overstyringen i rundingskontrakten; legacy `rounds` eller fri lokal palett er fortsatt forbudt;
 - [ ] kategoriens fjerde runding tilfører en ny opplevelse og er ikke bare et nytt navn på innhold som allerede ligger i en fast runding;
 - [ ] alle fire rundinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
+- [ ] hver runding åpnes i produksjon og viser reelt innhold; et korrekt register som ender i tom popup eller falsk 0 er ikke godkjent;
+- [ ] alle fire rundingene har et forståelig tilgjengelig navn i faktisk UI;
 - [ ] runtime og data bruker ikke legacy 6-/9-/12-rundersmodell i mediefeltet;
 - [ ] preview representerer samlingen ærlig og brukes ikke som innholdsfilter;
+- [ ] et preview med manglende/ødelagt bildefil faller tilbake til rundingens ikon og antall uten ødelagt bildeikon;
 - [ ] gammel place-spesifikk `rounds`-kuratering brukes ikke som ny standard.
 
 **Stoppgate:** Stedet er ikke rundingsklart dersom én av de fire rundingene er tynn, kunstig, misvisende eller i vesentlig semantisk overlapp med en annen runding. Fire plasser skal aldri fylles bare for å oppnå 4+1-layouten.
