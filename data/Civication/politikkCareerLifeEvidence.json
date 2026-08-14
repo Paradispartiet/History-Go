@@ -1,0 +1,37 @@
+{
+  "schema": "civication_politikk_career_life_evidence_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-14",
+  "badge_id": "politikk",
+  "principles": [
+    "Politikk-Badge-poeng dokumenterer kunnskap og samfunnsforståelse, ikke valgresultat, partimandat, ansettelse eller offentlig utnevnelse.",
+    "Valgte og representative verv kan være sterke livs- og mandatposisjoner uten å bli behandlet som faste lønnsjobber.",
+    "Bare eksplisitte formelle Civication-posisjoner får fast spill-lønn; valg- og utnevnelsesporter skal alltid feile lukket."
+  ],
+  "canonical_decision": {
+    "pure_life_or_practice_tiers": ["Samfunnsengasjert borger","Aktivist","Tillitsvalgt","Kommunestyrerepresentant","Fylkespolitiker","Komitéleder","Partileder","Demokratianalytiker","Statsvitenskapelig ekspert"],
+    "formal_job_tiers": ["Organisasjonssekretær","Politisk rådgiver","Ordfører","Stortingsrepresentant","Statssekretær","Statsråd (minister)","Statsminister"],
+    "review_left_open": [],
+    "work_worlds": {
+      "politikk_organisasjonsarbeid": ["Organisasjonssekretær"],
+      "politikk_politisk_radgivning": ["Politisk rådgiver"],
+      "politikk_kommunal_ledelse": ["Ordfører"],
+      "politikk_parlamentarisk_arbeid": ["Stortingsrepresentant"],
+      "politikk_regjeringsledelse": ["Statssekretær","Statsråd (minister)","Statsminister"]
+    }
+  },
+  "salary_mapping": {
+    "existing_politikk_bands_pc_per_week": {"1":6,"2":10,"3":18},
+    "note": "Dette er Civication-spilløkonomi, ikke norsk markeds- eller vervsgodtgjørelse."
+  },
+  "sources": [
+    {"id":"ordbokene_aktivist","publisher":"Språkrådet og Universitetet i Bergen","title":"Aktivist","url":"https://ordbokene.no/bm/610","supports":"Aktivist beskrives som en person som arbeider for direkte handling/aktivisme; Badge-labelen behandles derfor som praksis/identitet, ikke automatisk ansettelse."},
+    {"id":"arbeidstilsynet_tillitsvalgt","publisher":"Arbeidstilsynet","title":"Tillitsvalgte","url":"https://www.arbeidstilsynet.no/hms/roller-i-hms-arbeidet/tillitsvalgte/","supports":"Tillitsvalgte velges for å representere arbeidstakere/medlemmer; dette støtter mandat/verv fremfor automatisk fast jobb."},
+    {"id":"utdanning_organisasjonssekretaer","publisher":"Utdanning.no","title":"Sekretær","url":"https://utdanning.no/yrker/beskrivelse/sekretaer","supports":"NAV/Aa-registeret omfatter Organisasjonssekretær (interesseorganisasjoner), som støtter at dette er en faktisk stilling."},
+    {"id":"utdanning_statsviter","publisher":"Utdanning.no","title":"Statsviter","url":"https://utdanning.no/yrker/beskrivelse/statsviter","supports":"Statsviter er et reelt yrke, men arbeidstakere kan ha stillingstitler som rådgiver, konsulent og saksbehandler; Statsvitenskapelig ekspert beholdes derfor som ekspertstatus, ikke konkret arbeidsgivertittel."},
+    {"id":"regjeringen_politisk_ledelse","publisher":"Regjeringen","title":"Håndbok for politisk ledelse","url":"https://www.regjeringen.no/no/dokumenter/handbok-for-politisk-ledelse2/id2478689/?ch=3","supports":"Statsminister, statsråder og statssekretærer er formelt utnevnte politiske roller; politiske rådgivere engasjeres av Statsministerens kontor."},
+    {"id":"stortinget_representant","publisher":"Stortinget","title":"Hva gjør en representant?","url":"https://www.stortinget.no/no/Stortinget-og-demokratiet/Representantene/Hva-gjor-en-representant/","supports":"Stortingsrepresentant er et formelt folkevalgt verv med omfattende parlamentariske oppgaver og behandles som aktiv offentlig Civication-posisjon bak valgport."},
+    {"id":"stortinget_komite","publisher":"Stortinget","title":"Fagkomiteene","url":"https://www.stortinget.no/no/Stortinget-og-demokratiet/Organene/Fagkomiteene/","supports":"Komitéarbeid og komitéledelse springer ut av det parlamentariske mandatet; Komitéleder beholdes som mandatposisjon, ikke separat fast jobb."},
+    {"id":"regjeringen_kommunal_konstituering","publisher":"Regjeringen","title":"Konstituering i kommuner og fylkeskommuner – spørsmål og svar","url":"https://www.regjeringen.no/no/tema/kommuner-og-regioner/kommunalrett-og-kommunal-inndeling/kommuneloven2018/konstituering-i-kommuner-og-fylkeskommuner/sporsmal-og-svar/id2986514/","supports":"Kommunestyre og fylkesting konstituerer folkevalgte organer og velger ordfører; dette støtter eksplisitt valg-/mandatport."}
+  ]
+}
