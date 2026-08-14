@@ -399,6 +399,23 @@
     return arr(place?.[kind]).map((id, index) => normalizeItem(registry.find(row => s(row?.id) === s(id)) || id, index, kind)).filter(Boolean);
   }
 
+  function fallbackRoundHtml(def, count) {
+    return `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span><span class="pc-round-count">${count || ""}</span></div>`;
+  }
+
+  function renderRoundPreview(icon, preview, def, count) {
+    const fallback = fallbackRoundHtml(def, count);
+    if (!preview?.image) {
+      icon.innerHTML = fallback;
+      return;
+    }
+    icon.innerHTML = `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(preview.title)}">`;
+    icon.querySelector("img")?.addEventListener("error", () => {
+      icon.innerHTML = fallback;
+    }, { once:true });
+  }
+
+
   async function renderFixed(place, def) {
     const icon = document.getElementById(def.iconId);
     const list = document.getElementById(def.listId);
@@ -412,9 +429,7 @@
     const items = ["flora", "fauna"].includes(def.id) ? await natureItems(place, def.id) : collectionItems(place, def.id);
     list.innerHTML = renderRows(items, def);
     const preview = items.find(item => item.image);
-    icon.innerHTML = preview?.image
-      ? `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(preview.title)}">`
-      : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span><span class="pc-round-count">${items.length || ""}</span></div>`;
+    renderRoundPreview(icon, preview, def, items.length);
   }
 
   async function renderSecond(place) {
@@ -440,9 +455,7 @@
     icon.dataset.roundId = id;
     icon.setAttribute("aria-label", def.label);
     icon.title = def.label;
-    icon.innerHTML = preview?.image
-      ? `<img src="${esc(preview.image)}" class="pc-person-img" alt="${esc(preview.title)}">`
-      : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span><span class="pc-round-count">${items.length || ""}</span></div>`;
+    renderRoundPreview(icon, preview, def, items.length);
   }
 
   function showMissingDetailedMap(place) {
@@ -555,6 +568,15 @@
       return BY_ID.get(id)?.iconId;
     }).filter(Boolean);
     const allowed = new Set(slotIconIds);
+    selected.forEach((id, index) => {
+      const icon = document.getElementById(slotIconIds[index]);
+      const def = defFor(place, id);
+      if (!icon || !def) return;
+      icon.setAttribute("aria-label", def.label);
+      icon.setAttribute("role", "button");
+      icon.setAttribute("tabindex", "0");
+      icon.title = def.label;
+    });
     const grid = card.querySelector(".pc-icons-quad");
     const fourth = selected[3] || "images";
     card.dataset.roundMode = "category-four";
