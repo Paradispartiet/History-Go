@@ -73,8 +73,8 @@
     },
     "target": {
       "path": "data/places/by/oslo/places/torggata.json",
-      "bytes": 32399,
-      "sha256": "8e7aa9fc2b1b0aa8a2bbd6f577922cba23b796f7f56280bd0d9dd149c789f0e6"
+      "bytes": 28429,
+      "sha256": "9af91b42e2aaff0268a0347dd4800722ba152123eb770f5dbc1194e206f59a7f"
     },
     "target_index": {
       "path": "data/places/places_index.json",
@@ -82,7 +82,14 @@
       "selection_bytes": 1528,
       "selection_sha256": "cabf541e83e148000e50d745558e0048a46e02a047005d1704f616c63c480f96"
     },
-    "relations": [],
+    "relations": [
+      {
+        "path": "data/relations.json",
+        "matches": 4,
+        "selection_bytes": 1079,
+        "selection_sha256": "58fd358a0fa134140aeab8e6920e2466a43850700ef9f9f707ef75e3c83ed0ac"
+      }
+    ],
     "stories": [
       {
         "path": "data/stories/stories_torggata.json",
@@ -927,6 +934,30 @@
     }
   ],
   "story_units": [
+    {
+      "type": "relation",
+      "id": "rel_torggata_harald_olsen_eldorado",
+      "source_file": "data/relations.json",
+      "summary": "Tegnet varietéteateret Eldorado i Torggata 9, innviet i 1891."
+    },
+    {
+      "type": "relation",
+      "id": "rel_torggata_alma_fahlstrom_theater",
+      "source_file": "data/relations.json",
+      "summary": "Drev Fahlstrøms Theater i Torggata 9 og iscenesatte de fleste oppsetningene."
+    },
+    {
+      "type": "relation",
+      "id": "rel_torggata_johan_fahlstrom_theater",
+      "source_file": "data/relations.json",
+      "summary": "Drev Fahlstrøms Theater i Torggata 9, spilte hovedroller og tegnet dekorasjoner og kostymer."
+    },
+    {
+      "type": "relation",
+      "id": "rel_torggata_henrik_bull_theater",
+      "source_file": "data/relations.json",
+      "summary": "Tegnet ombyggingen av Eldorado i Torggata 9 til Fahlstrøms Theater, innviet i 1903."
+    },
     {
       "type": "story",
       "id": "st_torggata_ga_og_sykkelgate_2010",

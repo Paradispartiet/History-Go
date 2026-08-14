@@ -404,7 +404,10 @@
       const json = await loadJson(path);
       if (json) catalogs.push(json);
     }
-    return catalogs.flatMap(flattenCatalog);
+    const mails = catalogs.flatMap(flattenCatalog);
+    const bridge = window.CivicationCareerKnowledgeBridge;
+    if (!bridge?.decorateMail) return mails;
+    return await Promise.all(mails.map((mail) => bridge.decorateMail(mail)));
   }
 
   function hashString(input) {
@@ -557,7 +560,8 @@
 
     if (type === "story_or_context") return ["story", "people", "job"];
     if (type === "job" || type === "primary_work_mail") return ["job"];
-    if (type === "job_micro" || type === "micro" || slotId.includes("operational")) return ["micro", "job"];
+    if (slotId === "operational_batch") return ["micro", "consequence", "job"];
+    if (type === "job_micro" || type === "micro" || slotId === "operational_mail") return ["micro", "knowledge", "job"];
     if (type === "people" || type === "people_or_status" || slotId.includes("people")) return ["people", "micro"];
     if (type === "phase") return ["__generated_phase"];
     if (type === "conflict_or_event") return ["conflict", "event"];
@@ -578,6 +582,7 @@
       || type === "task_gate"
       || slotId === "preparation"
       || slotId === "day_goal_choice"
+      || slotId === "main_delivery"
       || slotId === "small_choice"
       || slotId === "afternoon_choice"
       || slotId === "plan_tomorrow";

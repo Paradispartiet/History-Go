@@ -1,0 +1,197 @@
+{
+  "schema_version": "torggata_quality_improvement_backlog_v1",
+  "place_id": "torggata",
+  "generated_at": "2026-08-14",
+  "status": "OPEN_BLOCKING_COMPLETION",
+  "source": "manual_user_quality_review",
+  "invariant": {
+    "content_rounds_total": 4,
+    "badge_separate": true,
+    "note": "The 4+1 layout remains. The four content rounds must be substantive, distinct and natural."
+  },
+  "findings": [
+    {
+      "id": "before_after_comparability_and_depth",
+      "severity": "BLOCKING",
+      "observed": "The current 2009 and 2017 images show different street views. They document the redevelopment period but do not form a strong visual before/after comparison and do not show a genuinely old Torggata against the present.",
+      "required_improvements": [
+        "Use a primary pair anchored to the same recognisable street segment or built element from a comparable direction and scale.",
+        "Add at least one genuinely old archival image compared with an actual current image when rights, identity and viewpoint are verified.",
+        "Keep the 2009/2017 redevelopment layer only as a clearly labelled supplemental comparison if it remains useful.",
+        "Check canonical place registries/manifests before choosing the comparison anchor.",
+        "Do not use a building, venue or subplace with its own History GO place as the primary stand-in for the parent place; Torggata Bad is explicitly rejected for Torggata."
+      ],
+      "acceptance": "Manual UI review can identify the same Torggata street element immediately, can see long-term historical change against an actual current image, and confirms that no subplace with its own place entry is used as the parent-place proxy.",
+      "workflow_status": "RESOLVED_PHASE_7D",
+      "resolution": {
+        "pair": "Torggata 30–36 toward Hausmanns gate, circa 1965 versus 2025-03-27",
+        "stable_anchors": [
+          "Torggata 30–36 facade row",
+          "same northeast street axis",
+          "Hausmanns gate and Ankertorget trees"
+        ],
+        "rejected_own_place_proxy": "Torggata Bad",
+        "evidence": "reports/place-production/torggata-phase7d-before-after-audit-v1.md"
+      }
+    },
+    {
+      "id": "news_missing",
+      "severity": "BLOCKING",
+      "observed": "The News tab has no content.",
+      "required_improvements": [
+        "Perform a fresh search across official actors, local media and relevant place organisations.",
+        "Publish dated, source-reviewed, place-specific items when available.",
+        "Use N/A only after documenting that fresh search and why no safe relevant item can be shown."
+      ],
+      "acceptance": "News contains useful current place-specific material, or a strict fresh-search N/A is documented and independently reviewable.",
+      "workflow_status": "RESOLVED_PHASE_7F",
+      "resolution": {
+        "items": [
+          "torggata_news_oslometer_2026",
+          "torggata_news_torggatelangs_september_2026"
+        ],
+        "source_owner": "data/leksikon/places/oslo/by/leksikon_oslo_by_torggata_news.json",
+        "verified_at": "2026-08-14",
+        "evidence": "reports/place-production/torggata-phase7f-news-audit-v1.md"
+      }
+    },
+    {
+      "id": "reading_trail_missing",
+      "severity": "BLOCKING",
+      "observed": "The Reading Trail is empty. Existing Torggata candidates were held back as paywalled, but the production did not establish open, directly readable alternatives.",
+      "required_improvements": [
+        "Search repository content, open journals, libraries, archives, institutions and other relevant reading owners.",
+        "Publish Torggata-specific, directly readable material with explicit place linkage.",
+        "Treat paywalled hits as holdbacks, not as sufficient reason to stop the search or approve N/A."
+      ],
+      "acceptance": "Reading Trail contains useful open directly readable Torggata material, or a strict documented search shows that no relevant rights-safe readable text can be shown.",
+      "workflow_status": "RESOLVED_PHASE_7G",
+      "resolution": {
+        "items": [
+          "lesespor_torggata_byleksikon_001",
+          "lesespor_torggata_toi_2017_001",
+          "lesespor_torggata_nla_001"
+        ],
+        "source_owner": "data/lesespor/oslo/lesespor_oslo_by.json",
+        "verified_at": "2026-08-14",
+        "evidence": "reports/place-production/torggata-phase7g-reading-trail-audit-v1.md"
+      }
+    },
+    {
+      "id": "more_missing",
+      "severity": "BLOCKING",
+      "observed": "The More tab has no content despite Torggata's rich name, language, archive, observation and relation potential.",
+      "required_improvements": [
+        "Search language history, archival details, observations, knowledge, fun facts and curated relations.",
+        "Produce a distinct additive layer that does not duplicate About or History."
+      ],
+      "acceptance": "More contains a useful Torggata-specific layer with sources and clear ownership, not filler.",
+      "workflow_status": "RESOLVED_PHASE_7H",
+      "resolution": {
+        "language_entries": [
+          "torggata_ovre_torvegade",
+          "torggata_torvegaden_1852",
+          "torggata_gang_og_sykkelprioritert_gate"
+        ],
+        "interpretation_sections": {
+          "what_to_notice": 2,
+          "why_it_matters": 2,
+          "counterpoints": 1
+        },
+        "source_owners": [
+          "data/leksikon/places/oslo/by/leksikon_oslo_by_torggata.json",
+          "data/leksikon/sprak/places/europe/norway/oslo/torggata.json"
+        ],
+        "verified_at": "2026-08-14",
+        "evidence": "reports/place-production/torggata-phase7h-more-audit-v1.md"
+      }
+    },
+    {
+      "id": "objects_structures_round_overlap",
+      "severity": "BLOCKING",
+      "observed": "Objects is represented by one artificial item while Structures/Buildings covers physical place elements, producing an unclear and forced split.",
+      "required_improvements": [
+        "Do not retain Objects as a separate round on the strength of one arbitrary item.",
+        "Merge or replace overlapping round concepts so all four content rounds are semantically distinct.",
+        "Update the canonical round contract/runtime first if the current fixed profile prevents a coherent Torggata solution."
+      ],
+      "acceptance": "All four content rounds remain visible, but each has a natural label, a substantive place-specific collection and no material semantic overlap; Badge remains separate.",
+      "workflow_status": "RESOLVED_PHASE_8F",
+      "resolution": {
+        "previous_rounds": [
+          "people",
+          "objects",
+          "brands",
+          "structures"
+        ],
+        "current_rounds": [
+          "people",
+          "images",
+          "brands",
+          "related"
+        ],
+        "removed_parent_proxy_collections": [
+          "objects",
+          "structures"
+        ],
+        "related_place_ids": [
+          "storgata",
+          "youngstorget",
+          "eldorado_bokhandel"
+        ],
+        "badge_separate": true,
+        "source_owner": "data/places/by/oslo/places/torggata.json",
+        "contract_owner": "data/places/README_place_rounds.md",
+        "evidence": "reports/place-production/torggata-phase8f-round-coherence-audit-v1.md"
+      }
+    }
+  ],
+  "completion_gate": {
+    "required_status": "ALL_FINDINGS_RESOLVED",
+    "manual_ui_review_required": true,
+    "rescore_required": true,
+    "minimum_dimension_score": 4,
+    "minimum_total_score": 27
+  },
+  "active_phase": {
+    "id": "manual_ui_and_content_reqa",
+    "status": "QUEUED_NEXT"
+  },
+  "sequence": [
+    {
+      "order": 1,
+      "id": "before_after_comparability_and_depth",
+      "status": "RESOLVED"
+    },
+    {
+      "order": 2,
+      "id": "news_missing",
+      "status": "RESOLVED"
+    },
+    {
+      "order": 3,
+      "id": "reading_trail_missing",
+      "status": "RESOLVED"
+    },
+    {
+      "order": 4,
+      "id": "more_missing",
+      "status": "RESOLVED"
+    },
+    {
+      "order": 5,
+      "id": "objects_structures_round_overlap",
+      "status": "RESOLVED"
+    },
+    {
+      "order": 6,
+      "id": "manual_ui_and_content_reqa",
+      "status": "QUEUED_NEXT"
+    },
+    {
+      "order": 7,
+      "id": "final_closeout",
+      "status": "QUEUED"
+    }
+  ]
+}

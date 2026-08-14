@@ -1,0 +1,129 @@
+{
+  "schema": "civication_scene_pipeline_policy_v1",
+  "version": 1,
+  "status": "migration_contract",
+  "effective_date": "2026-08-14",
+  "canonical_scene_contract": "data/Civication/sceneContractV1.schema.json",
+  "format_freeze": {
+    "new_mail_source_formats_allowed": false,
+    "new_scene_source_adapters_allowed_with_registration": true,
+    "rule": "Nytt gameplayinnhold skal bruke et registrert kildeformat som kan kompileres til civication_scene_v1. Mail er delivery, ikke en ny semantisk datamodell."
+  },
+  "canonical_axes": [
+    "domain",
+    "scene_kind",
+    "delivery",
+    "day_phase",
+    "arc_stage",
+    "interaction_mode",
+    "thread_id",
+    "practice_story_id",
+    "people_ids",
+    "place_id",
+    "effects",
+    "knowledge_contract"
+  ],
+  "legacy_plan_types": [
+    "job",
+    "knowledge",
+    "micro",
+    "people",
+    "conflict",
+    "followup",
+    "story",
+    "event",
+    "consequence"
+  ],
+  "legacy_type_mapping": {
+    "job": { "scene_kind": "task", "delivery": "mail" },
+    "knowledge": { "scene_kind": "knowledge", "delivery": "mail" },
+    "micro": { "scene_kind": "task", "delivery": "mail" },
+    "people": { "scene_kind": "relationship", "delivery": "mail" },
+    "conflict": { "scene_kind": "conflict", "delivery": "mail" },
+    "followup": { "scene_kind": "consequence", "delivery": "mail" },
+    "story": { "scene_kind": "milestone", "delivery": "mail" },
+    "event": { "scene_kind": "milestone", "delivery": "mail" },
+    "consequence": { "scene_kind": "consequence", "delivery": "mail" }
+  },
+  "target_ownership": {
+    "scene_catalog": "compiled_scene_registry_v1",
+    "scene_director": "CivicationDailyMailBuilder",
+    "choice_director": "CivicationChoiceDirector",
+    "delivery_surfaces": [
+      "CivicationMailEngine",
+      "CivicationNextAction"
+    ],
+    "source_adapters": [
+      "role_pack",
+      "work_grammar",
+      "private",
+      "life",
+      "social",
+      "narrative",
+      "fagverk"
+    ]
+  },
+  "interaction_rules": {
+    "decision_requires_real_choices": true,
+    "info_allows_zero_choices": true,
+    "task_requires_task_contract": true,
+    "generic_fallback_choices_forbidden": true,
+    "runtime_must_not_mask_missing_content": true
+  },
+  "knowledge_rules": {
+    "gameplay_rules_must_be_version_pinned": true,
+    "fagverk_may_update": [
+      "content.explanation",
+      "content.links",
+      "job_description"
+    ],
+    "fagverk_must_not_silently_update": [
+      "interaction_mode",
+      "choices",
+      "task_contract",
+      "effects",
+      "success_rule",
+      "answer_key"
+    ]
+  },
+  "workday_budget": {
+    "actual_work_situations_min": 3,
+    "actual_work_situations_max": 6,
+    "mail_items_are_not_a_gameplay_quota": true,
+    "reading_minutes_and_word_count_are_quality_observations_not_generation_targets": true
+  },
+  "audit": {
+    "script": "scripts/audit-civication-scene-pipeline.mjs",
+    "read_only": true,
+    "enforcement_mode": "observe",
+    "strict_mode_available": true,
+    "checks": [
+      "source_format_inventory",
+      "schema_less_legacy",
+      "duplicate_scene_ids",
+      "missing_internal_references",
+      "missing_plan_families",
+      "runtime_mail_type_parity",
+      "semantic_plan_step_reachability",
+      "event_engine_answer_wrappers",
+      "generic_fallback_choice_sources",
+      "daily_work_situation_budget"
+    ]
+  },
+  "phase_1_scope": {
+    "name": "Career Mail Architecture Audit + Scene Contract v1 + semantic reachability test",
+    "gameplay_changes_allowed": false,
+    "runtime_selection_changes_allowed": false,
+    "data_migration_allowed": false
+  },
+  "migration_order": [
+    "freeze_new_mail_formats",
+    "audit_and_scene_contract",
+    "make_all_nine_plan_types_directly_reachable",
+    "consolidate_scene_director_ownership",
+    "make_choice_director_the_only_answer_pipeline",
+    "convert_private_life_narrative_social_to_source_adapters",
+    "read_one_compiled_scene_registry",
+    "enable_blocking_semantic_playthrough_gate"
+  ]
+}

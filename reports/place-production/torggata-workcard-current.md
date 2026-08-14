@@ -16,6 +16,9 @@
 - Fase 7C-audit: `reports/place-production/torggata-phase7c-story-audit-v1.md`
 - Fase 7D-audit: `reports/place-production/torggata-phase7d-before-after-audit-v1.md`
 - Fase 7E-audit: `reports/place-production/torggata-phase7e-sources-audit-v1.md`
+- Gjenåpnet fase 7F-audit: `reports/place-production/torggata-phase7f-news-audit-v1.md`
+- Gjenåpnet fase 7G-audit: `reports/place-production/torggata-phase7g-reading-trail-audit-v1.md`
+- Gjenåpnet fase 7H-audit: `reports/place-production/torggata-phase7h-more-audit-v1.md`
 - Fase 7-closeout: `reports/place-production/torggata-phase7-closeout-v1.md`
 - Fase 8-audit: `reports/place-production/torggata-phase8-rounds-audit-v1.md`
 - Fase 8A-audit: `reports/place-production/torggata-phase8a-people-audit-v1.md`
@@ -27,6 +30,7 @@
 - Fase 8C-audit: `reports/place-production/torggata-phase8c-brands-audit-v1.json`
 - Fase 8D-audit: `reports/place-production/torggata-phase8d-structures-audit-v1.json`
 - Fase 8E-audit: `reports/place-production/torggata-phase8e-rounds-closeout-v1.json`
+- Gjenåpnet fase 8F-audit: `reports/place-production/torggata-phase8f-round-coherence-audit-v1.md`
 - Fase 9-audit: `reports/place-production/torggata-phase9-onsite-audit-v1.json`
 - Fase 10-audit: `reports/place-production/torggata-phase10-quiz-audit-v1.json`
 - Fase 11-audit: `reports/place-production/torggata-phase11-observer-note-route-audit-v1.json`
@@ -43,6 +47,7 @@
 - Fase 22-audit: `reports/place-production/torggata-phase22-content-qa-audit-v1.json`
 - Fase 23-audit: `reports/place-production/torggata-phase23-ci-gates-audit-v1.json`
 - Fase 24-audit: `reports/place-production/torggata-phase24-one-place-gate-audit-v1.json`
+- Åpen kvalitetsforbedring: `reports/place-production/torggata-quality-improvement-backlog-v1.json`
 
 ## Korrigert fasestatus
 
@@ -55,12 +60,12 @@
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
-| 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
+| 7. Popupfaner | **GJENÅPNET – 7D FØR/ETTER, 7F NYHETER, 7G LESESPOR OG 7H MER LØST** | gammelt–nå-paret, to daterte 2026-notiser, tre åpne Lesespor og et kildebelagt språk-/observasjonslag er publisert |
+| 8. Rundinger | **GJENÅPNET OG REPARERT I 8F; MANUELL RE-QA NESTE** | 4+1 beholdt som People · Bilder · Brands · Relaterte steder; den enslige Objects-posten og own-place-baserte Structures-rundingen er fjernet |
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
 | 11. Observer, Notat og Rute | **GODKJENT** | eksisterende Observer-, Notat- og navigasjonsruntime auditert; historisk rute begrunnet N/A |
-| 12. People–sted-koblinger | **GODKJENT** | 21/21 canonical koblinger og inspectable kilder beholdt; 7 synlige profiler er bildeklare; 14 bildeholdbacks er eksplisitte og bevarer koblingen |
+| 12. People–sted-koblinger | **GJENÅPNET; FJERDE REPARASJON PÅGÅR** | canonical målsett er Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm; Torggata Bad-proxyer og bredt områdefyll er holdt ute; produksjon viste fortsatt falsk 0 fordi stale `relations.json` manglet de nye koblingene |
 | 13. Brands | **GODKJENT** | 13/13 canonical brands har lokal verifisert logo eller autentisk historisk ordmerke/brandmark med proveniens; ingen genererte eller rekonstruerte logoer |
 | 14. Leksikon, relations, NextUp, Nearby, søk og i18n | **GODKJENT** | kildebåret Leksikon beholdt; `storgata`-relasjon, historiske aliaser og tre trofaste oversettelser regresjonslåst |
 | 15. Fysisk besøk / innsjekk | **ALLEREDE FERDIG – GODKJENT** | PR #3212/#3218-baselinen består med canonical Torggata-anker/radius og quiz/visit-separasjon |
@@ -69,10 +74,10 @@
 | 18. Legacy Wonderkammer | **GODKJENT N/A** | ingen Torggata-Wonderkammerdata; tidligere materiale er allerede klassifisert til canonical eiere |
 | 19. Hovedbilder og rundingsbilder | **GODKJENT** | to lokale hovedbilder; People 7/7, Objects 1/1 og Brands 13/13 bildeklare med proveniens |
 | 20. Data-QA | **GODKJENT** | canonical data, indekser, referanser og subsystemporter bestått på siste innholds-head |
-| 21. UI-QA | **GODKJENT ETTER SIKRINGSENDRING** | WebGL-feil stopper ikke lenger app-/PlaceCard-boot; produksjonsflaten kontrollert |
-| 22. Innholds-QA | **GODKJENT** | 18/18 claims, Story, 5 × 7 Quiz, People 21/21, Brands 13/13, bilder og 4+1-rundinger kontrollert uten filler |
+| 21. UI-QA | **GJENÅPNET; PRODUKSJONSBLOCKER** | 4+1 og øvrige flater beholdes, men Personer må vise nøyaktig 4 etter fersk relasjonslast før Torggata kan lukkes |
+| 22. Innholds-QA | **HISTORISK GODKJENT; GJENÅPNET FOR RE-QA** | alle fem redaksjonelle funn er datareparert; samlet innholds- og UI-kontroll gjenstår |
 | 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
-| 24. Ett-sted-PR | **GODKJENT, MERGET OG DEPLOYET** | PR #4962; final head `ce1f60231db52e2472fe334cded8eda140ae429a`; merge `44a9ecf6f11a797194c34573180278bc52e4770d`; Pages run `31794520090` success |
+| 24. Ett-sted-PR | **TEKNISK MERGET; REDAKSJONELL KVALITET GJENÅPNET** | PR #4962 og deploy er historisk verifisert, men manuell sluttvurdering avdekket fem blokkerende kvalitetsavvik |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -738,7 +743,116 @@ Neste aktive fase: **23. CI / repository-gates**.
 
 **Fase 23 CI / repository-gates = GODKJENT.**
 
-Ingen aktiv fase gjenstår. **Torggata er sluttført.**
+## Fase 7D – Før/etter gjenopprettet etter manuell kvalitetskritikk
+
+- Primærparet er nå Torggata 30–36 mot Hausmanns gate, ca. 1965 mot 27. mars 2025.
+- Begge bilder viser samme korte gatesegment, samme nordøstlige gateakse, samme fasaderekke og Ankertorget/Hausmanns gate i dybden.
+- Det historiske bildet er Oslo Museum `OB.A11305`, Henrik Ørsted, CC BY-NC-ND 3.0 NO.
+- Nåbildet er KartaView photo `2551570473`, CC BY-SA 4.0, med krediteringen «© Grab and KartaView Contributors».
+- 2009/2017-paret med ulike utsnitt er fjernet som primærpar.
+- Torggata Bad er eksplisitt avvist: badet har egen place-oppføring i History GO og kan derfor ikke brukes som stedfortreder for parent-place Torggata.
+- Global regel er lagt i både `docs/PLACE_PRODUCTION_CHECKLIST.md` og `docs/PLACE_POPUP_SYSTEM.md`: canonical place-register/manifester skal kontrolleres før motivvalg, og et delsted med egen place-oppføring kan ikke bære hovedparet for et overordnet sted.
+- Manuell bilde-QA og rettighetsgrense er dokumentert i `reports/place-production/torggata-phase7d-before-after-audit-v1.md`.
+- Automatiske tester låser identitet, dato, lisens, kameraretning, own-place-regel og avvist Torggata Bad; de erstatter ikke den manuelle visuelle kontrollen.
+
+**Fase 7D Før/etter = LØST AV DETTE ENDRINGSSETTET.**
+
+Neste forbedring: **Nyheter – KØET SOM NESTE**.
+
+Bindende rekkefølge videre:
+
+1. Nyheter — neste;
+2. Lesespor — kø;
+3. Mer — kø;
+4. Fase 8 rundingskoherens — kø;
+5. Fase 21/22 ny manuell UI- og innholds-QA — kø;
+6. Fase 24 ny sluttport — kø.
+
+## Gjenåpnet fase 7F – Nyheter
+
+- Canonical eier er manifest-lastede Leksikon-ekstraartikler, som er datakilden `place-popup-tabs.js` faktisk bruker for Nyheter.
+- To daterte og direkte kildebelagte 2026-notiser er lagt i `data/leksikon/places/oslo/by/leksikon_oslo_by_torggata_news.json`.
+- Oslo kommunes Oslometer-pilot gjelder Torggata fra 1. august til 31. oktober 2026.
+- Torggata Gateforening annonserer Torggatelangs 19. september 2026.
+- Begge notiser har hendelsesdato, status, `verifiedAt: 2026-08-14` og direkte HTTPS-kilde.
+- Treff om enkeltvirksomheter, enkelthendelser og kriminalitet er holdt tilbake når de var for smale, skjeve eller gjaldt en egen aktør/place.
+- Torggata Bad, Rockefeller og Youngstorget brukes ikke som stedfortredere for selve gaten.
+- Fersksøk, kildevalg, avvisninger og proporsjonalitetskontroll er dokumentert i `reports/place-production/torggata-phase7f-news-audit-v1.md`.
+- Automatiske tester kan låse schema, manifest, klassifikator, datoer og kilder, men erstatter ikke manuell kontroll av den ferdige fanen.
+
+**Gjenåpnet fase 7F Nyheter = LØST AV DETTE ENDRINGSSETTET.**
+
+Neste forbedring: **Lesespor – KØET SOM NESTE**.
+
+Bindende rekkefølge videre:
+
+1. Lesespor — neste;
+2. Mer — kø;
+3. Fase 8 rundingskoherens — kø;
+4. Fase 21/22 ny manuell UI- og innholds-QA — kø;
+5. Fase 24 ny sluttport — kø.
+
+## Gjenåpnet fase 7G – Lesespor
+
+- Alle manifest-lastede Oslo-Lesespor ble søkt; ingen Torggata-oppføring fantes i gjeldende datasett.
+- Tre åpne og direkte lesbare spor er lagt i `data/lesespor/oslo/lesespor_oslo_by.json`.
+- Oslo byleksikon gir sammenhengende gatehistorie og bygningsoversikt.
+- TØI rapport 1581/2017 gir videobasert og målt kunnskap om syklende, gående, interaksjoner og konflikter i Torggata/Brugata.
+- NLA gir prosjektfakta, gateprofil, materialer og navngitte fagaktører for opprustingen ferdigstilt i 2014.
+- Alle tre har `place_ids: ["torggata"]`, `access: "open"`, `rights: "link_only"`, direkte HTTPS-lenke og `verifiedAt: "2026-08-14"`.
+- Ingen oppføring bruker Torggata Bad, Rockefeller eller Youngstorget som stedfortreder for gaten.
+- Bare metadata, egen kort relevansbeskrivelse og ekstern lenke lagres; kildetekst kopieres ikke.
+- Repo-søk, åpningstilgang, utvalg, holdbacks og runtime-QA er dokumentert i `reports/place-production/torggata-phase7g-reading-trail-audit-v1.md`.
+- Automatiske tester kan låse schema, manifest, place-kobling, tilgang, URL og runtimefilter, men erstatter ikke manuell kontroll av den ferdige fanen.
+
+**Gjenåpnet fase 7G Lesespor = LØST AV DETTE ENDRINGSSETTET.**
+
+Neste forbedring: **Mer – KØET SOM NESTE**.
+
+Bindende rekkefølge videre:
+
+1. Mer — neste;
+2. Fase 8 rundingskoherens — kø;
+3. Fase 21/22 ny manuell UI- og innholds-QA — kø;
+4. Fase 24 ny sluttport — kø.
+
+## Gjenåpnet fase 7H – Mer
+
+- Canonical hovedartikkel har nå to «Legg merke til»-punkter, to «Hvorfor det betyr noe»-punkter og ett reelt motpunkt om skillet mellom gågate og gang-/sykkelprioritert gate.
+- En manifest-lastet Språkleksikon-fil for `torggata` forklarer «Øvre Torvegade», «Torvegaden» og «gang- og sykkelprioritert gate».
+- Alle forklaringer er kildebelagt med Oslo byleksikon, Lokalhistoriewiki, NLA eller Torggata Gateforening og kontrollert 2026-08-14.
+- Ingen tilfeldig Objects-artikkel, Torggata Bad eller annet eget place brukes for å fylle fanen.
+- Den generelle placegrensen er nå eksplisitt i både produksjonschecklisten og popupkontrakten: egne canonical places kan lenkes som relasjon/supplement, men kan ikke brukes i stedet for parent-place i noen fane, runding, bildepar, Story eller hovedpåstand.
+- Automatiske tester låser eier, manifest, place-ID, språkspor, observasjonsfelter, HTTPS-kilder og dokumentasjonsregel, men erstatter ikke slutt-UI-QA.
+
+**Gjenåpnet fase 7H Mer = LØST AV DETTE ENDRINGSSETTET.**
+
+Neste forbedring: **Fase 8 rundingskoherens – KØET SOM NESTE**.
+
+Bindende rekkefølge videre:
+
+1. Fase 8 rundingskoherens — neste;
+2. Fase 21/22 ny manuell UI- og innholds-QA — kø;
+3. Fase 24 ny sluttport — kø.
+
+## Gjenåpnet fase 8F – rundingskoherens
+
+- 4+1-kontrakten beholdes: fire innholdsrundinger i 2 × 2 og separat Badge.
+- Torggatas logical rounds er nå `people · images · brands · related`.
+- Den enslige Objects-posten er fjernet fra canonical place-data.
+- Structures-poster for Eldorado og Torggata Bad er fjernet fordi de har egne place-identiteter og ikke skal bære parent-place Torggata.
+- Relaterte steder er eksplisitte canonical lenker til `storgata`, `youngstorget` og `eldorado_bokhandel`; de presenteres ikke som Torggata-objekter eller -bygg.
+- Rundingskontrakten og runtime har en avgrenset, validert koherensprofil. Legacy `rounds` er fortsatt forbudt.
+- Automatiske tester kontrollerer fire logical IDs, samlingsinnhold, fallback, DOM-rekkefølge og separat Badge. Manuell browser-QA gjenstår.
+
+**Gjenåpnet fase 8F rundingskoherens = LØST AV DETTE ENDRINGSSETTET.**
+
+Neste forbedring: **Fase 21/22 ny manuell UI- og innholds-QA – KØET SOM NESTE**.
+
+Bindende rekkefølge videre:
+
+1. Fase 21/22 ny manuell UI- og innholds-QA — neste;
+2. Fase 24 ny sluttport og seksdelt re-score — kø.
 
 ## Fase 24 – Ett-sted-PR
 
@@ -755,23 +869,112 @@ Ingen aktiv fase gjenstår. **Torggata er sluttført.**
 - GitHub Pages build og deploy fullførte med success i run `31794520090`.
 - Produksjonen ble kontrollert med fire innholdsrundinger — People, Objects, Brands og Structures — samt separat Badge.
 
-**Fase 24 = GODKJENT, MERGET OG DEPLOYET.**
+**Fase 24 er teknisk merget og deployet; stedets redaksjonelle ferdigstatus er senere gjenåpnet.**
 
-## Obligatorisk seksdelt kvalitetsvurdering
+## Manuell sluttvurdering – kvalitetsstatus gjenåpnet
+
+Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket opprinnelig fem blokkerende avvik. Alle fem opprinnelige redaksjonelle innholdsfunn er nå løst i de gjenåpnede fasene 7D, 7F, 7G, 7H og 8F; manuell samlet re-QA gjenstår:
+
+1. **LØST I GJENÅPNET FASE 7D – Før/etter.** Det svake 2009/2017-paret er erstattet av Torggata 30–36 mot Hausmanns gate, ca. 1965 mot 2025, med samme korte gatesegment og stabile ankere. Torggata Bad er avvist fordi badet har egen place-oppføring.
+2. **LØST I GJENÅPNET FASE 7F – Nyheter.** To daterte 2026-notiser fra Oslo kommune og Torggata Gateforening fyller fanen med aktuelle, gate-spesifikke opplysninger; smale eller stedsskjeve treff er holdt tilbake.
+3. **LØST I GJENÅPNET FASE 7G – Lesespor.** Tre åpne, direkte lesbare og annoterte spor fra Oslo byleksikon, TØI og NLA gir historisk, empirisk og fysisk/faglig fordypning om selve gaten.
+4. **LØST I GJENÅPNET FASE 7H – Mer.** Tre kildebelagte språkspor og fem observerbare/tolkende gatepunkter fyller fanen uten tilfeldig objektfyll eller lån fra egne places.
+5. **LØST I GJENÅPNET FASE 8F – rundingskoherens.** People · Bilder · Brands · Relaterte steder erstatter den enslige Objects-posten og own-place-baserte Structures-rundingen; Badge er fortsatt separat.
+
+### Påkrevde forbedringer
+
+- **fullført:** bygg Før/etter med et sammenlignbart primærpar fra samme meningsfulle gateutsnitt;
+- **fullført:** kontroller canonical place-register før motivvalg; et delsted med egen place-oppføring, som Torggata Bad, kan ikke brukes som stedfortreder for parent-place Torggata;
+- **fullført:** legg til minst ett skikkelig gammelt arkivlag mot et faktisk nåbilde når rettigheter og identitet er avklart;
+- **fullført:** produser relevante, daterte Nyheter etter fersksøk;
+- **fullført:** produser et reelt Lesespor med åpent, direkte lesbart Torggata-materiale etter repo- og kildesøk;
+- **fullført:** produser et reelt Mer-lag fra språk og observerbar gateutforming uten tilfeldig objektfyll;
+- **fullført:** revider rundingsvalget/kontrakten slik at fire innholdsrundinger fortsatt vises, men uten én kunstig Objects-runding eller uklar Objects/Structures-overlapp;
+- gjennomfør ny manuell slutt-QA før ferdigstatus kan gjeninnføres.
+
+## Revidert seksdelt kvalitetsvurdering
+
+> Denne tabellen dokumenterer gjenåpningsøyeblikket før fase 7D, 7F, 7G, 7H og 8F ble reparert. Den er ikke en ny sluttvurdering. Ingen redaksjonell innholdsblokker gjenstår, men full seksdelt re-score kan først gjøres etter ny manuell UI- og innholds-QA.
 
 | Dimensjon | Score | Konkret evidens |
 | --- | ---: | --- |
-| Korrekthet og evidens | **5/5** | 18/18 produksjonsclaims er verifisert; `desc` 3/3 og `popupDesc` 31/31 setninger er claimmappet; Story, Quiz, People og Brands har egne kilde-/proveniensauditer. |
-| Dekning og ferdigstillelse | **5/5** | Fase 0–24 er behandlet; alle fire innholdsrundinger og separat Badge er kontrollert; begrunnede N/A-er og eksplisitte holdbacks er registrert uten filler eller skjulte neste-sted-endringer. |
-| Faglig/redaksjonell kvalitet | **5/5** | Innholdet er Torggata-spesifikt, den for sterke bassengpåstanden er fjernet, én sammenhengende `episode_v1`-Story er beholdt, og Works/usikre kandidater er utelatt. |
-| Teknisk integritet | **5/5** | Faseauditer og regresjonstester består; final docs-head har grønne Data checks, Fagverk/place learning, Fagverk By, TypeScript, Documentation governance og Place rounds governance; produksjonen er manuelt kontrollert i no-WebGL-modus. |
-| Sikkerhet og ansvarlighet | **4/5** | Stedspakken er ikke et klinisk eller juridisk høyrisikodomene; 14 People-bildeholdbacks bevarer koblinger uten uverifiserte bilder, Nature er begrunnet N/A, og genererte/rekonstruerte brandassets er avvist. |
-| Vedlikeholdbarhet og etterprøvbarhet | **5/5** | Canonical rundingskontrakt, styrende checklist, fase 0–24-auditer, workcard, eksakte SHA-er/run-ID-er og låsende tester gjør resultatet reproduserbart og reviewbart. |
+| Korrekthet og evidens | **4/5** | Claims og kildeproveniens er sterke, men Før/etter-parets ulike utsnitt gir en svakere visuell påstand enn auditen tidligere lot fremstå. |
+| Dekning og ferdigstillelse | **2/5** | Nyheter, Lesespor og Mer mangler, historisk gammel–nå-sammenligning mangler, og rundingssettet trenger ny produksjon. |
+| Faglig/redaksjonell kvalitet | **2/5** | Før/etter er lite meningsfullt som hovedpar, og Objects/Structures-oppsplittingen oppleves kunstig. |
+| Teknisk integritet | **5/5** | CI, runtime, no-WebGL-ruting og 4+1-layout fungerer teknisk. Dette opphever ikke de redaksjonelle avvikene. |
+| Sikkerhet og ansvarlighet | **4/5** | People-holdbacks, kildegrenser og assetkontroll består; ingen nye sikkerhetsavvik er funnet. |
+| Vedlikeholdbarhet og etterprøvbarhet | **4/5** | Sporbarheten er god, men den tidligere kvalitetsporten fanget ikke brukeropplevelsens svakheter og må nå skjerpes. |
 
-**Total: 29/30.** Alle dimensjoner er minst 4/5. Ingen kritiske avvik eller uløste blokkere gjenstår.
+**Historisk snapshot ved gjenåpning: 21/30.** Dekning og redaksjonell kvalitet var under minimum 4/5, med fem kritiske funn og fem uløste blokkere. Etter reparerte faser 7D, 7F, 7G, 7H og 8F er alle fem redaksjonelle innholdsfunn løst. Full ny score settes først etter manuell UI- og innholds-QA.
 
-Automatiske kontroller beviser ikke alene redaksjonell og visuell kvalitet. Derfor bygger konklusjonen også på full claim-/innholdsaudit, identitets- og provenancegjennomgang og manuell produksjonskontroll av samme Torggata-innhold.
+**Gjeldende kvalitetsport: IKKE BESTÅTT – INGEN ÅPNE INNHOLDSFUNN, MEN MANUELL RE-QA GJENSTÅR.**
 
-**Kvalitetsport: BESTÅTT – HØY KVALITET.**
+**Torggata = IKKE SLUTTFØRT.**
 
-**Torggata = SLUTTFØRT.**
+---
+
+## Produksjons-reQA etter fase 8F — reparasjon pågår (2026-08-14)
+
+**Kontrollert flate:** `https://paradispartiet.github.io/History-Go/#/place/torggata`  
+**Kontrollert main:** `0415adc24dc9c9effe0adcb39961ac992564c934`  
+**Deploy-evidens:** GitHub Pages-run `31811272880` = success.
+
+### Bestått visuelt
+
+- 4 + 1 vises som fire innholdsrundinger i 2 × 2-felt og separat Badge.
+- Bilder, Brands og Relaterte steder åpner reelle samlinger.
+- Nyheter, Lesespor og Mer er fylte.
+- Før/etter viser Torggata 30–36 fra ca. 1965 mot samme gateakse i 2025; Torggata Bad brukes ikke.
+
+### Blokkere som gjenåpnet slutt-QA
+
+1. Personer viste falsk `0` og tom popup selv om 17 Torggata-profiler finnes i manifestet. Root cause: enkeltobjekt-profiler ble ikke normalisert av bakgrunnslasteren, og loading-broen kunne bli hengende etter at PlaceCard skrev null.
+2. Relaterte steder viste et ødelagt Storgata-preview fordi begge bildefilreferansene er utilgjengelige. Runtime manglet feilfallback.
+3. Før/etter-teksten sa «venstre side», mens Torggata 30–36 visuelt ligger på høyre side i begge bildene.
+
+### Reparasjon og gate
+
+Reparasjonsløpet normaliserer enkeltprofiler, reprioriterer den pågående People-køen også når stedet åpnes etter kartstart, hindrer falsk null, gir alle fire Torggata-preview et ikon-/antallsfallback, gir People og Brands tastaturaktivering, setter tilgjengelige navn på alle fire rundinger og korrigerer høyre/venstre-teksten. Sjekklisten er utvidet med eksplisitte produksjonskontroller for disse feilklassene.
+
+**STATUS: REPARASJON PÅGÅR — IKKE PRODUKSJONSGODKJENT.** Ny godkjenning krever grønn CI/review, merge, vellykket Pages-deploy og ny manuell kontroll av Personer, alle fire rundinger, Før/etter, Nyheter, Lesespor og Mer.
+
+### Produksjons-reQA 2 — Personer fortsatt blokkert (2026-08-14)
+
+PR #4980 ble merget som `0946dbb3`, og Pages-run `31814847184` fullførte med success. Ny kontroll på den publiserte Torggata-flaten viste fortsatt `0` og tom Personer-popup. Sluttstatus forblir derfor åpen.
+
+Første loaderretting lastet og publiserte enkeltprofilene, men to timingforhold var fortsatt uløst: PlaceCard-refresh ventet på relasjonsregisteret selv om direkte place-profiler kan rendres uten det, og en sen initial tom render kunne overskrive ready-rerenderen. Andre reparasjon åpner refresh-gaten på brukbare People-data og gjør én recovery-render når ready-observeren ser en stale null for et sted som har synlige direkte profiler.
+
+**STATUS: ANDRE REPARASJON PÅGÅR — PERSONER ER FORTSATT PRODUKSJONSBLOCKER.**
+
+
+## Produksjons-reQA 3 — canonical People-data og cache fortsatt blokkert (2026-08-14)
+
+PR #4981 ble merget som `0f3c9418bc9cb36d25a18fe3fc1aae464b86cb79`, og Pages-run `31818244364` fullførte med success. En helt ny nettleserfane lastet den nye `boot-fast.js`-versjonen (oppdaterte linjenumre og `data-hg-people-observed-place="torggata"` var synlige), men Personer stod fortsatt som `0` og popupen var tom. Reparasjonen er derfor ikke sluttgodkjent.
+
+Ny datakontroll viste to mangler:
+
+1. `data/relations.json` hadde ingen canonical Torggata-relasjoner, selv om People-profilene har direkte place-felt.
+2. People-manifestet og profilfilene for åpent sted ble hentet med vanlig nettlesercache. En stale manifest-/profilrespons kan derfor omgå både direkte oppslag og recovery-logikk uten fetch-feil.
+
+Egen-place-regelen ble samtidig brukt på selve People-utvalget. Thorvald Meyer, Christian Morgenstierne og Arne Eides Torggata-kobling gjelder Torggata Bad, som har egen History GO-place, og kan derfor ikke brukes som proxy i Torggatas Personer-runding. Integrasjonstesten avdekket i tillegg tolv brede subkultur-/miljøkoblinger som ville gjort rundingen til generelt områdefyll; de får samme stedsspesifikke holdback. Det naturlige, kildebelagte Torggata-utvalget er dermed Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
+
+Tredje reparasjon skal:
+
+- legge fire canonical person–Torggata-relasjoner;
+- revalidere People-manifestet og profilfilene for åpent sted;
+- låse Torggata Bad-proxyene ute av parent-rundingen;
+- kjøre en integrasjonstest mot `getPeopleForPlace("torggata")`;
+- kreve ny Pages-deploy og manuell produksjonskontroll med Personer = 4.
+
+**STATUS: TREDJE REPARASJON PÅGÅR — PERSONER ER FORTSATT PRODUKSJONSBLOCKER.**
+
+
+## Produksjons-reQA 4 — stale relasjonsregister etter PR #4982 (2026-08-14)
+
+PR #4982 ble squash-merget som `eb7caa2ef0a7e6678fa947d13e9b8634e3e529c4`, og Pages-run `31825055823` fullførte med `success`. Ny cache-bustet produksjonsfane viste likevel `Personer = 0` etter mer enn 60 sekunder. DOM-en viste at PlaceCard var ferdig, uten loading-/feilmarkør, men uten personrader.
+
+Root cause er avgrenset: People-manifestet og prioriterte profilfiler blir nå revalidert, mens de fire nye canonical Torggata-koblingene ligger i `data/relations.json`. Relasjonslasteren brukte fortsatt `cache: "default"`, slik at en eldre nettleserrespons uten Torggata-koblingene kunne brukes sammen med de ferske profilene. Da returnerer `getPeopleForPlace("torggata")` tomt selv om de fire profilene er lastet.
+
+Fjerde reparasjon gjør begge mutable relasjonsregistrene cache-uavhengige med `no-store`, låser kontrakten i bakgrunnslastertesten og utvider den globale produksjonssjekklisten: ny eller endret place→person-relasjon skal ikke kunne skjules av stale cache. Etter ny merge og Pages-deploy skal en fersk produksjonskontroll bekrefte nøyaktig Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
+
+**STATUS: FJERDE REPARASJON PÅGÅR — TORGATTA ER IKKE FERDIG FØR PRODUKSJON VISER PERSONER = 4.**

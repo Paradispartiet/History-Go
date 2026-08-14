@@ -1,1 +1,74 @@
-{"schema":"civication_role_model_v2","version":2,"category":"film_tv","role_scope":"produksjonsassistent","role_id":"film_tv_produksjonsassistent","title":"Produksjonsassistent","source":{"badge_file":"data/badges/film_tv.json","evidence":"data/Civication/filmTvCareerLifeEvidence.json"},"badge_titles":["Produksjonsassistent"],"core_narrative":["Produksjonsassistenten holder den praktiske produksjonen i bevegelse uten å late som støttefunksjonen eier kunstneriske, tekniske eller sikkerhetskritiske beslutninger."],"competence_axes":["produksjonsflyt","kall_og_tidsplan","praktisk_koordinering","kommunikasjon","avvikshandtering","rolle_og_mandat"],"ideal_type_problems":[{"id":"forsinket_call","problem":"Et opptak ligger etter plan og flere avdelinger venter på samme avklaring."},{"id":"feil_versjon","problem":"To team arbeider med ulike versjoner av dagsplanen."},{"id":"lokasjon_avvik","problem":"Lokasjonen er ikke klar når teamet ankommer."},{"id":"utstyr_uten_mandat","problem":"Du blir bedt om å håndtere teknisk utstyr du ikke er opplært på."},{"id":"personvern_pa_sett","problem":"Produksjonsinformasjon med persondata deles bredere enn nødvendig."}],"authority_boundaries":{"cannot":["overstyre_regissor_produsent_eller_fagansvarlig","utfore_teknisk_eller_sikkerhetskritisk_arbeid_uten_opplaering","endre_call_sheet_eller_avtaler_uten_mandat","love_utbetaling_kreditering_eller_arbeidsvilkar"]},"notes":["Canonical Film/TV work world for the formal Produksjonsassistent job; audience and fame tiers remain separate life positions."]}
+{
+  "schema": "civication_role_model_v2",
+  "version": 2,
+  "category": "film_tv",
+  "role_scope": "produksjonsassistent",
+  "role_id": "film_tv_produksjonsassistent",
+  "title": "Produksjonsassistent",
+  "source": {
+    "badge_file": "data/badges/film_tv.json",
+    "evidence": "data/Civication/filmTvCareerLifeEvidence.json"
+  },
+  "badge_titles": ["Produksjonsassistent"],
+  "core_narrative": [
+    "Produksjonsassistenten holder den praktiske produksjonen i bevegelse uten å late som støttefunksjonen eier kunstneriske, tekniske eller sikkerhetskritiske beslutninger."
+  ],
+  "competence_axes": [
+    "produksjonsflyt",
+    "kall_og_tidsplan",
+    "praktisk_koordinering",
+    "kommunikasjon",
+    "avvikshandtering",
+    "rolle_og_mandat"
+  ],
+  "required_knowledge": {
+    "concepts": [
+      "Call sheet er dagens felles, versjonsstyrte produksjonsgrunnlag — ikke et personlig kladdeark.",
+      "Endringer skal avklares med beslutningseier og bekreftes hos berørte avdelinger.",
+      "Sikkerhet, adgang og personopplysninger følger minst nødvendig tilgang og lokal prosedyre.",
+      "Produksjonsassistenten kan stanse egen oppgave og eskalere, men ikke overta fagansvar."
+    ],
+    "application": "Kunnskap gir bedre beslutningsgrunnlag, lavere risiko og mer presise eskaleringer. Mangler spilleren kunnskap, kan hen be om hjelp i stedet for å bli hardt blokkert."
+  },
+  "related_people": [
+    {"id": "amir_innspillingsleder", "name": "Amir", "function": "Innspillingsleder og beslutningseier for dagens operative prioriteringer."},
+    {"id": "sara_lokasjonsansvarlig", "name": "Sara", "function": "Lokasjonsansvarlig som eier adgang, naboavklaringer og godkjent bruk av området."},
+    {"id": "line_produksjonskoordinator", "name": "Line", "function": "Produksjonskoordinator som følger call sheet, transport og avdelingsbehov."},
+    {"id": "ida_personvernkontakt", "name": "Ida", "function": "Personvernkontakt som hjelper ved feil deling av medvirkende- og kontaktdata."}
+  ],
+  "related_places": [
+    {"id": "produksjonskontor_callbord", "name": "Produksjonskontorets callbord", "function": "Felles flate for canonical call sheet, endringslogg og mottaksbekreftelser."},
+    {"id": "opptakslokasjon_inngang", "name": "Inngangen til opptakslokasjonen", "function": "Arbeidsflate for adgang, transport, ventende avdelinger og praktisk flyt."},
+    {"id": "sett_sikkerhetssone", "name": "Sikkerhetssonen på sett", "function": "Område der sikkerhetsbrief og fagansvar avgrenser hva assistenten kan gjøre."},
+    {"id": "produksjonskanal_tilgang", "name": "Produksjonens tilgangsstyrte kanal", "function": "Digital arbeidsflate for minst nødvendig deling av produksjons- og personopplysninger."}
+  ],
+  "ideal_type_problems": [
+    {"id": "forsinket_call", "problem": "Et opptak ligger etter plan og flere avdelinger venter på samme avklaring."},
+    {"id": "feil_versjon", "problem": "To team arbeider med ulike versjoner av dagsplanen."},
+    {"id": "lokasjon_avvik", "problem": "Lokasjonen er ikke klar når teamet ankommer."},
+    {"id": "utstyr_uten_mandat", "problem": "Du blir bedt om å håndtere teknisk utstyr du ikke er opplært på."},
+    {"id": "personvern_pa_sett", "problem": "Produksjonsinformasjon med persondata deles bredere enn nødvendig."}
+  ],
+  "authority_boundaries": {
+    "cannot": [
+      "overstyre_regissor_produsent_eller_fagansvarlig",
+      "utfore_teknisk_eller_sikkerhetskritisk_arbeid_uten_opplaering",
+      "endre_call_sheet_eller_avtaler_uten_mandat",
+      "love_utbetaling_kreditering_eller_arbeidsvilkar"
+    ]
+  },
+  "career_path": {
+    "entry_from": ["runneroppdrag", "frivillig_produksjon", "praktisk_logistikkarbeid"],
+    "progression_to": ["produksjonskoordinator", "lokasjonsassistent", "produksjonssekretaer"],
+    "possible_promotions": ["Produksjonskoordinator", "Assisterende produksjonsleder"],
+    "possible_exits": [
+      "Bytte til arrangements- eller logistikkarbeid",
+      "Gå til administrativ produksjonsstøtte",
+      "Avslutte etter prosjektkontrakten",
+      "Miste oppdraget ved gjentatte sikkerhets-, tillits- eller informasjonsbrudd"
+    ]
+  },
+  "notes": [
+    "Canonical Film/TV work world for the formal Produksjonsassistent job; audience and fame tiers remain separate life positions."
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.local/schemas/civication-scene-v1.schema.json",
+  "title": "Civication Scene Contract v1",
+  "description": "Canonical compiled gameplay scene. Mail is one delivery form; scene owns semantics, interaction, knowledge pinning and normalized effects.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "id",
+    "domain",
+    "scene_kind",
+    "delivery",
+    "day_phase",
+    "arc_stage",
+    "interaction_mode",
+    "thread_id",
+    "content",
+    "effects",
+    "knowledge_contract",
+    "provenance"
+  ],
+  "properties": {
+    "schema": { "const": "civication_scene_v1" },
+    "version": { "const": 1 },
+    "id": { "$ref": "#/$defs/nonEmptyId" },
+    "domain": {
+      "enum": ["work", "private", "life", "social", "system"]
+    },
+    "scene_kind": {
+      "enum": ["task", "relationship", "conflict", "knowledge", "consequence", "offer", "milestone"]
+    },
+    "delivery": {
+      "enum": ["mail", "meeting", "conversation", "task", "notification"]
+    },
+    "day_phase": {
+      "enum": ["morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"]
+    },
+    "arc_stage": {
+      "enum": ["intro", "early", "mid", "advanced", "mastery", "climax", "any"]
+    },
+    "interaction_mode": {
+      "enum": ["decision", "task", "ack", "info"]
+    },
+    "thread_id": { "$ref": "#/$defs/nonEmptyId" },
+    "practice_story_id": { "$ref": "#/$defs/nonEmptyId" },
+    "people_ids": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/nonEmptyId" },
+      "uniqueItems": true,
+      "default": []
+    },
+    "place_id": { "$ref": "#/$defs/nonEmptyId" },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject", "summary", "situation"],
+      "properties": {
+        "subject": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "situation": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "explanation": { "type": "string", "minLength": 1 },
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/link" },
+          "default": []
+        }
+      }
+    },
+    "choices": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/choice" },
+      "default": []
+    },
+    "task_contract": { "$ref": "#/$defs/taskContract" },
+    "effects": { "$ref": "#/$defs/effects" },
+    "knowledge_contract": { "$ref": "#/$defs/knowledgeContract" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adapter", "source_path", "source_id"],
+      "properties": {
+        "adapter": {
+          "enum": ["role_pack", "work_grammar", "mail_family", "private", "life", "social", "narrative", "system", "manual"]
+        },
+        "source_path": { "type": "string", "minLength": 1 },
+        "source_id": { "$ref": "#/$defs/nonEmptyId" },
+        "source_schema": { "type": "string", "minLength": 1 },
+        "compiled_at_build": { "type": "boolean", "default": true }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "interaction_mode": { "const": "decision" } },
+        "required": ["interaction_mode"]
+      },
+      "then": {
+        "required": ["choices"],
+        "properties": { "choices": { "minItems": 2 } }
+      }
+    },
+    {
+      "if": {
+        "properties": { "interaction_mode": { "const": "task" } },
+        "required": ["interaction_mode"]
+      },
+      "then": { "required": ["task_contract"] }
+    },
+    {
+      "if": {
+        "properties": { "interaction_mode": { "const": "info" } },
+        "required": ["interaction_mode"]
+      },
+      "then": {
+        "properties": { "choices": { "maxItems": 0 } }
+      }
+    },
+    {
+      "if": {
+        "properties": { "interaction_mode": { "const": "ack" } },
+        "required": ["interaction_mode"]
+      },
+      "then": {
+        "properties": { "choices": { "maxItems": 1 } }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmptyId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "ref"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "ref": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["fagverk", "place", "person", "task", "external"] }
+      }
+    },
+    "choice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "effects"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyId" },
+        "label": { "type": "string", "minLength": 1 },
+        "reply": { "type": "string", "minLength": 1 },
+        "feedback": { "type": "string", "minLength": 1 },
+        "effects": { "$ref": "#/$defs/effects" }
+      }
+    },
+    "taskContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_id", "completion_rule"],
+      "properties": {
+        "task_id": { "$ref": "#/$defs/nonEmptyId" },
+        "completion_rule": { "type": "string", "minLength": 1 },
+        "failure_rule": { "type": "string", "minLength": 1 },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true,
+          "default": []
+        }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "score_delta": { "type": "number", "default": 0 },
+        "quality_axes": {
+          "type": "object",
+          "additionalProperties": { "type": "number" },
+          "default": {}
+        },
+        "state_set": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["string", "number", "boolean", "null"]
+          },
+          "default": {}
+        },
+        "add_flags": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "uniqueItems": true,
+          "default": []
+        },
+        "remove_flags": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "uniqueItems": true,
+          "default": []
+        },
+        "progression": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "role_delta": { "type": "number", "default": 0 },
+            "competency_delta": { "type": "number", "default": 0 },
+            "autonomy_delta": { "type": "number", "default": 0 },
+            "economy_delta": { "type": "number", "default": 0 }
+          },
+          "default": {}
+        },
+        "trigger_scene_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyId" },
+          "uniqueItems": true,
+          "default": []
+        }
+      },
+      "default": {}
+    },
+    "knowledgeContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "mode", "source_refs", "frozen_fields"],
+      "properties": {
+        "version": { "const": 1 },
+        "mode": {
+          "enum": ["none", "pinned", "pinned_rules_dynamic_explanation"]
+        },
+        "ruleset_ref": { "type": "string", "minLength": 1 },
+        "ruleset_version": { "type": "string", "minLength": 1 },
+        "source_refs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "frozen_fields": {
+          "type": "array",
+          "items": {
+            "enum": ["interaction_mode", "choices", "task_contract", "effects", "success_rule", "answer_key"]
+          },
+          "uniqueItems": true
+        },
+        "dynamic_fields": {
+          "type": "array",
+          "items": {
+            "enum": ["content.explanation", "content.links", "job_description"]
+          },
+          "uniqueItems": true,
+          "default": []
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": { "enum": ["pinned", "pinned_rules_dynamic_explanation"] }
+            },
+            "required": ["mode"]
+          },
+          "then": {
+            "required": ["ruleset_ref", "ruleset_version"],
+            "properties": { "frozen_fields": { "minItems": 1 } }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": { "const": "pinned_rules_dynamic_explanation" }
+            },
+            "required": ["mode"]
+          },
+          "then": {
+            "properties": {
+              "dynamic_fields": {
+                "contains": { "const": "content.explanation" }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

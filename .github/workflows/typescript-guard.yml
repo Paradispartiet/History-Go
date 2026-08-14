@@ -149,6 +149,12 @@ jobs:
       - name: Test hidden developer mode
         run: node tests/hg-test-mode.test.js && node tests/header-search-menu.test.js
 
+      - name: People background loading regression
+        run: node tests/background-boot-pacing.test.js
+
+      - name: Torggata canonical People regression
+        run: node --test tests/torggata-phase12-people-links.test.mjs
+
       # For pull requests, root checkJs is a regression gate rather than a zero-debt gate.
       # Line/column positions are normalized so unrelated line shifts do not create false positives.
       - name: Guard against new legacy TypeScript regressions

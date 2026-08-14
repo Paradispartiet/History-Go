@@ -1,0 +1,36 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "produksjonsassistent",
+  "mail_type": "consequence",
+  "families": [{
+    "id": "produksjonsassistent_forsinket_konsekvens",
+    "purpose": "Vise at tidlige versjonsvalg får en senere produksjonskostnad.",
+    "learning_focus": ["sen_konsekvens", "tillit", "reparasjon"],
+    "mails": [{
+      "id": "film_tv_pa_consequence_transport_motte_feil",
+      "mail_type": "consequence",
+      "mail_family": "produksjonsassistent_forsinket_konsekvens",
+      "role_scope": "produksjonsassistent",
+      "phase": "workday",
+      "priority": 105,
+      "from": "Amir, innspillingsleder",
+      "people_ref": "amir_innspillingsleder",
+      "place_id": "produksjonskontor_callbord",
+      "subject": "Transporten møtte på gammel base",
+      "summary": "Én sjåfør brukte en lokal kopi av call sheet og manglet den bekreftede endringen.",
+      "situation": ["Konsekvensen kommer etter at første valget føltes ferdig.", "Du må skille mellom å skjule avviket, reparere det og dokumentere hvorfor mottaksbekreftelsen sviktet.", "God reparasjon kan koste status nå og bygge tillit senere."],
+      "task_domain": "avvik_og_overlevering",
+      "competency": "sporbarhet",
+      "pressure": "forsinkelse_er_synlig",
+      "choice_axis": "apen_reparasjon_vs_ansvarsforskyvning",
+      "consequence_axis": "langsiktig_tillit_vs_kortsiktig_fasade",
+      "narrative_arc": "call_sheet_sen_konsekvens",
+      "choices": [
+        {"id": "A", "label": "Logg bruddet, ring sjåføren og reparer flyten", "reply": "Jeg tar ansvar for mottakskontrollen, får bilen omdirigert og oppdaterer rutinen.", "effect": 1, "tags": ["repair", "trust"], "feedback": "Forsinkelsen forsvinner ikke, men produksjonen lærer hvor kjeden brast.", "effects": {"stats": {"quality": 2, "trust": 2, "status": -1, "risk": -2, "energy": -2}}},
+        {"id": "B", "label": "Si at sjåføren burde ha sjekket kanalen", "reply": "Riktig versjon lå ute; dette må transport følge bedre.", "effect": -1, "tags": ["blame", "risk"], "feedback": "Du beskytter egen status i øyeblikket og svekker tilliten i overleveringen.", "effects": {"stats": {"status": 1, "trust": -3, "risk": 2}}}
+      ]
+    }]
+  }]
+}

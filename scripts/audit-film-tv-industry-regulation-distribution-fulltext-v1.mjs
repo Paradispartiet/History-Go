@@ -9,10 +9,14 @@ const ID = 'industri-regulering-og-distribusjon';
 const NEXT = 'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief';
 const RECEPTION_SOURCE_GATE = 'reception_participation_audience_methods_source_brief_complete_full_chapter_production';
 const RECEPTION_FULLTEXT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';
+const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';
+const SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
 const UNIT_TEN_OR_LATER_PRODUCTION_GATES = new Set([
   NEXT,
   RECEPTION_SOURCE_GATE,
-  RECEPTION_FULLTEXT_GATE
+  RECEPTION_FULLTEXT_GATE,
+  SCREEN_PLACES_SOURCE_GATE,
+  SCREEN_PLACES_FULLTEXT_GATE
 ]);
 
 export const isFilmTvUnitTenOrLaterGate = (gate) => UNIT_TEN_OR_LATER_PRODUCTION_GATES.has(gate);

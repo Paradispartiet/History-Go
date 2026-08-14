@@ -1,0 +1,37 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "produksjonsassistent",
+  "mail_type": "job",
+  "families": [{
+    "id": "produksjonsassistent_call_sheet",
+    "purpose": "Åpne første opptaksdag med en reell versjonskonflikt.",
+    "learning_focus": ["versjonskontroll", "beslutningseier", "mottaksbekreftelse"],
+    "mails": [{
+      "id": "film_tv_pa_job_to_call_sheet",
+      "mail_type": "job",
+      "mail_family": "produksjonsassistent_call_sheet",
+      "role_scope": "produksjonsassistent",
+      "phase": "intro",
+      "priority": 130,
+      "stage": "stable",
+      "from": "Line, produksjonskoordinator",
+      "place_id": "produksjonskontor_callbord",
+      "subject": "To call sheets, én opptaksstart",
+      "summary": "Lys bruker versjon 7, transport bruker versjon 8, og begge ber deg bekrefte hvilken plan som gjelder før første bil kjører.",
+      "situation": ["Versjon 7 er merket 21:43 i går. Versjon 8 kom 05:52 uten tydelig endringslogg.", "Amir står som beslutningseier, men er i sikkerhetsbrief.", "Hvis du velger feil, møter folk på ulike steder; hvis du venter passivt, stopper transporten."],
+      "task_domain": "call_og_tidsplan",
+      "competency": "tidsplanpresisjon",
+      "pressure": "opptaksstart_om_18_minutter",
+      "choice_axis": "sporbar_avklaring_vs_antatt_svar",
+      "consequence_axis": "felles_flyt_vs_forsinkelse",
+      "narrative_arc": "call_sheet_versjonsbrudd",
+      "choices": [
+        {"id": "A", "label": "Be Amir bekrefte versjon og logg endringen", "reply": "Jeg stanser videresendingen, ber om én eksplisitt bekreftelse og sender canonical lenke til berørte avdelinger.", "effect": 1, "tags": ["process", "trust"], "feedback": "Det koster tre minutter, men alle får samme grunnlag.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Velg versjon 8 fordi den er nyest", "reply": "Jeg sender versjon 8 som gjeldende uten å forstyrre briefen.", "effect": -1, "tags": ["tempo", "risk"], "feedback": "Transporten kjører, men ingen kan forklare hva som faktisk ble godkjent.", "effects": {"stats": {"status": 1, "risk": 3, "trust": -2}}},
+        {"id": "C", "label": "Send begge og la avdelingene velge", "reply": "Jeg videresender begge versjoner med beskjed om at de må sjekke lokalt.", "effect": -1, "tags": ["avoidance", "risk"], "feedback": "Du flytter versjonskonflikten nedover i produksjonen.", "effects": {"stats": {"energy": 1, "quality": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}

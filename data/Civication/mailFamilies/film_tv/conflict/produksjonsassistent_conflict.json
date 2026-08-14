@@ -1,0 +1,36 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "produksjonsassistent",
+  "mail_type": "conflict",
+  "families": [{
+    "id": "produksjonsassistent_lokasjonskonflikt",
+    "purpose": "La tempo kollidere med lokasjonens sikkerhets- og adgangsgrenser.",
+    "learning_focus": ["sikkerhet", "eskalering", "praktisk_flyt"],
+    "mails": [{
+      "id": "film_tv_pa_conflict_sperret_sideinngang",
+      "mail_type": "conflict",
+      "mail_family": "produksjonsassistent_lokasjonskonflikt",
+      "role_scope": "produksjonsassistent",
+      "phase": "intro",
+      "priority": 115,
+      "from": "Sara, lokasjonsansvarlig",
+      "people_ref": "sara_lokasjonsansvarlig",
+      "place_id": "opptakslokasjon_inngang",
+      "subject": "Sideinngangen er ikke frigitt",
+      "summary": "Crewet står i regnet, men sideinngangen mangler sikkerhetskontroll og kan ikke åpnes ennå.",
+      "situation": ["Innspillingsleder vil vinne inn forsinkelsen.", "Sara sier det gjenstår en fysisk kontroll av rømningsvei og kabelgate.", "Du kan organisere ventingen og en godkjent alternativ flyt, men ikke åpne området selv."],
+      "task_domain": "lokasjon_og_logistikk",
+      "competency": "avvikshandtering",
+      "pressure": "sikkerhet_vs_tidsplan",
+      "choice_axis": "godkjent_omlegging_vs_snarvei",
+      "consequence_axis": "sikkerhet_og_tillit_vs_forsinkelsesrisiko",
+      "narrative_arc": "lokasjon_ikke_klar",
+      "choices": [
+        {"id": "A", "label": "Lag venteflyt og få Sara til å godkjenne alternativet", "reply": "Jeg samler crewet under tak, prioriterer hvem som må inn først og ber Sara bekrefte ny rute.", "effect": 1, "tags": ["safety", "coordination"], "feedback": "Du beskytter både mennesker og tidsplan ved å koordinere rundt grensen.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Slipp inn et lite team mens kontrollen pågår", "reply": "Jeg åpner for kamera og lyd først, så sparer vi noen minutter.", "effect": -1, "tags": ["tempo", "safety_risk"], "feedback": "En produksjonsassistent kan ikke oppheve en uferdig sikkerhetskontroll.", "effects": {"stats": {"status": 1, "risk": 4, "trust": -3}}}
+      ]
+    }]
+  }]
+}

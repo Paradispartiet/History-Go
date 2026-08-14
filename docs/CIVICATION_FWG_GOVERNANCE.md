@@ -36,4 +36,3 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 Kilde: `data/Civication/workGrammars/sosial_laering/barnehageassistent.json`
 
 Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
-

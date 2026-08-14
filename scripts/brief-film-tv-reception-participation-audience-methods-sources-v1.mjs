@@ -9,7 +9,14 @@ const UNIT_ID = 'resepsjon-deltakelse-og-publikumsmetoder';
 const INPUT_GATE = 'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief';
 const OUTPUT_GATE = 'reception_participation_audience_methods_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';
-const UNIT_ELEVEN_PRODUCTION_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE]);
+const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';
+const SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
+const UNIT_ELEVEN_PRODUCTION_GATES = new Set([
+  OUTPUT_GATE,
+  FULLTEXT_GATE,
+  SCREEN_PLACES_SOURCE_GATE,
+  SCREEN_PLACES_FULLTEXT_GATE
+]);
 
 export const isFilmTvUnitElevenOrLaterGate = (gate) => UNIT_ELEVEN_PRODUCTION_GATES.has(gate);
 
@@ -88,7 +95,7 @@ export function buildFilmTvReceptionParticipationAudienceMethodsSourceBriefV1() 
   const engineSource = fs.readFileSync(fileURLToPath(import.meta.url), 'utf8');
   const forbiddenScmTokens = ['child_' + 'process', 'execFile' + 'Sync', 'spawn' + 'Sync'];
   const forbiddenGitCommand = new RegExp(`git\\s+(?:${['fetch', 'merge', 'push'].join('|')})`);
-  const laterGateAlreadyActive = currentGate === FULLTEXT_GATE;
+  const laterGateAlreadyActive = [FULLTEXT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE].includes(currentGate);
 
   registry.version = maxDottedVersion(registry.version, '2.94.0');
   registry.updatedAt = maxIsoDate(registry.updatedAt, '2026-08-14');
@@ -127,7 +134,7 @@ export function buildFilmTvReceptionParticipationAudienceMethodsSourceBriefV1() 
     existing_prerequisites_registered: unit.prerequisite_existing_chapter_ids.every((id) =>
       registry.subjects.film_tv.chapters.some((row) => row.id === id)
     ),
-    current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE].includes(currentGate),
+    current_status_is_input_output_or_known_later_gate: currentGate === INPUT_GATE || isFilmTvUnitElevenOrLaterGate(currentGate),
     exact_unit_emne_coverage: topicBriefs.length === unit.emne_count
       && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count
       && isDeepStrictEqual(brief.scope.emne_ids, unit.emne_ids)
@@ -214,8 +221,13 @@ export function buildFilmTvReceptionParticipationAudienceMethodsSourceBriefV1() 
     accessibility_layers_are_separate: brief.source_policy.legal_or_technical_accessibility_provision_is_not_proof_of_discoverability_quality_usability_or_attendance,
     spectatorship_constructs_and_effect_scope_are_explicit: brief.source_policy.identification_liking_empathy_affect_arousal_and_embodiment_are_distinct
       && brief.source_policy.experimental_effects_remain_bounded_by_stimulus_design_measure_sample_and_context,
-    eleventh_source_brief_registered_without_chapter: registry.subjects.film_tv.canonicalModel.eleventhSourceClaimBrief === P.brief
-      && !registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID),
+    eleventh_source_brief_registration_matches_production_stage: registry.subjects.film_tv.canonicalModel.eleventhSourceClaimBrief === P.brief
+      && (laterGateAlreadyActive
+        ? registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID
+          && row.file === `data/fagverk/film_tv/${UNIT_ID}.json`
+          && row.claimsFile === `data/fagverk/film_tv/${UNIT_ID}/claims.json`
+          && row.briefFile === `data/fagverk/film_tv/${UNIT_ID}/brief.json`)
+        : !registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID)),
     status_advances_or_preserves_later_gate: laterGateAlreadyActive
       ? filmStatus.nextGate === currentGate
       : filmStatus.editorialStatus === 'chapters_in_progress' && filmStatus.nextGate === OUTPUT_GATE,
@@ -259,11 +271,11 @@ export function buildFilmTvReceptionParticipationAudienceMethodsSourceBriefV1() 
       score: 5,
       evidence_gate_ids: [
         'current_status_is_input_output_or_known_later_gate',
-        'eleventh_source_brief_registered_without_chapter',
+        'eleventh_source_brief_registration_matches_production_stage',
         'status_advances_or_preserves_later_gate',
         'registration_waits_for_fulltext_claim_source_audit'
       ],
-      evidence: 'Registry- og statusprogresjon er monoton, briefen registreres uten å registrere kapitlet, og fulltekstporten forblir en hard separat kontroll.'
+      evidence: 'Registry- og statusprogresjon er monoton: før fulltekst registreres bare briefen, mens den kjente fulltekstporten krever kapittel-, claim- og brieffiler med eksakt canonical registrering.'
     },
     safety_and_responsibility: {
       score: 5,

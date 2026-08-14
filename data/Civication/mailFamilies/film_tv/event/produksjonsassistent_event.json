@@ -1,0 +1,36 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "produksjonsassistent",
+  "mail_type": "event",
+  "families": [{
+    "id": "produksjonsassistent_avvikshendelse",
+    "purpose": "Teste sporbar status under en plutselig planendring.",
+    "learning_focus": ["avvikslogg", "overlevering", "mottaksbekreftelse"],
+    "mails": [{
+      "id": "film_tv_pa_event_scene_rekkefolge_endret",
+      "mail_type": "event",
+      "mail_family": "produksjonsassistent_avvikshendelse",
+      "role_scope": "produksjonsassistent",
+      "phase": "intro",
+      "priority": 95,
+      "from": "Amir, innspillingsleder",
+      "people_ref": "amir_innspillingsleder",
+      "place_id": "sett_sikkerhetssone",
+      "subject": "Scene 14 flyttes foran scene 11",
+      "summary": "En medvirkende må dra tidlig, og tre avdelinger trenger samme endring i løpet av få minutter.",
+      "situation": ["Amir har besluttet ny rekkefølge.", "Sminke, rekvisitt og transport har ulike deler av informasjonen.", "Oppgaven er å samle beslutningen i én sporbar status og bekrefte mottak."],
+      "task_domain": "avvik_og_overlevering",
+      "competency": "sporbarhet",
+      "pressure": "mange_mottakere_kort_tid",
+      "choice_axis": "samlet_endringslogg_vs_muntlig_stafett",
+      "consequence_axis": "koordinert_omstilling_vs_nytt_avvik",
+      "narrative_arc": "scenerekkefolge_endret",
+      "choices": [
+        {"id": "A", "label": "Publiser én endringslinje og hent bekreftelser", "reply": "Jeg skriver hvem som besluttet, hva som flyttes og hvilke avdelinger som må bekrefte.", "effect": 1, "tags": ["process", "coordination"], "feedback": "Kort tekst og eksplisitte mottakere gjør endringen håndterbar.", "effects": {"stats": {"quality": 2, "trust": 1, "risk": -1}}},
+        {"id": "B", "label": "Løp rundt og fortell det muntlig", "reply": "Jeg tar avdelingene én etter én for å spare tid på skriving.", "effect": 0, "tags": ["tempo", "fragility"], "feedback": "Noen får beskjed raskt, men ingen ser hvem som fortsatt mangler den.", "effects": {"stats": {"energy": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}
