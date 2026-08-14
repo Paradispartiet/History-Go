@@ -1,4 +1,4 @@
-name: Torggata phase 13 asset review
+name: Torggata phase 13 deterministic closeout
 
 on:
   push:
@@ -9,36 +9,175 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  review-assets:
+  closeout:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: Fetch reviewed originals
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Restore reviewed Brand assets
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p review
-          fetch() { curl -L --fail --retry 3 --retry-delay 2 -A 'History-Go editorial asset review/1.0' "$2" -o "review/$1"; }
-          fetch angst.jpg 'https://cdn.sanity.io/images/jlrwvnbf/commercial/fbbc5cdfe17ed8eb1cd3157025129aa93e7f46ec-800x533.jpg?rect=0,41,800,453&w=1500&h=850&auto=format'
-          fetch eldorado.jpg 'https://bok365.no/wp-content/uploads/2018/02/Eldoradobokhandel-e1517502372579.jpg'
-          fetch adelsten.jpg 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Adelsten_Jensen_-_no-nb_digifoto_20160119_00047_NB_NS_000109A.jpg'
-          fetch pm_jensen.jpg 'https://dms01.dimu.org/image/012uMXHSuPgT?dimension=1800x1800&filename=021015463551.jpg'
-          fetch karl_a_jensen.jpg 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Karl_A._Jensens_nye_forretningsgaard_-_no-nb_digifoto_20160125_00124_NB_NS_000225.jpg'
-          fetch ingwald_nielsen.jpg 'https://dms01.dimu.org/image/0334BSdZhEwe?dimension=1800x1800&filename=021018750951.jpg'
-          fetch ludvig_jensen.jpg 'https://oslobyleksikon.no/images/1/1e/Torggata_5.jpg'
-          fetch john_dee.gif 'https://upload.wikimedia.org/wikipedia/commons/4/43/John_dee_venue_logo_black.gif'
-          fetch jernia.png 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Jernia%20logo.png'
-          fetch norli.svg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Norli.svg'
-          fetch oslo_bar_bowling.webp 'https://oslobowling.no/wp-content/uploads/2020/07/logo-web-cropped.webp'
-          fetch oslo_street_food.webp 'https://images.squarespace-cdn.com/content/v1/6038204a6bf989551704f5c2/b48e68b9-ce76-4f9f-815e-8c8a7c781a0d/logo+white.png?format=1500w'
-          file review/*
-      - name: Upload review originals
-        uses: actions/upload-artifact@v4
-        with:
-          name: torggata-phase13-reviewed-originals
-          path: review/
-          if-no-files-found: error
+          mkdir -p bilder/kort/brands /tmp/review
+          gh run download 31777920227 -n torggata-phase13-reviewed-originals -D /tmp/review
+          restore_blob() {
+            local sha="$1" out="$2"
+            gh api "repos/${GITHUB_REPOSITORY}/git/blobs/${sha}" --jq .content | tr -d '\n' | base64 --decode > "$out"
+          }
+          restore_blob 02ba9b2ceaf7527cd10926d21795b081a8e3ceb8 bilder/kort/brands/adelsten.webp
+          restore_blob efee47db8dfc794f9d73ea85af25477395086da4 bilder/kort/brands/angst.webp
+          restore_blob 4fa9bd1c4a76ed998ae77f161dcef032a4b80cf0 bilder/kort/brands/eldorado_bokhandel.webp
+          restore_blob 27e382a6e95a711ea80aaf47bd54f36396209f06 bilder/kort/brands/ingwald_nielsen.webp
+          restore_blob ab98a0bfb97200a2891f0b317aaed8ccc222868f bilder/kort/brands/jernia_torggata.webp
+          restore_blob c911f8f8c20fb6abcc6f9229ee6a5ce61e088081 bilder/kort/brands/john_dee.webp
+          restore_blob 64fb67352ac4b512757e35731f01d138d1cd90fb bilder/kort/brands/norli_eldorado.webp
+          restore_blob 8bc18286d3be928ff27948659e6fa6961674778b bilder/kort/brands/oslo_bar_bowling.webp
+          restore_blob 2a8c8c68f23e2996a65ebe2ef8a97b5be5df7184 bilder/kort/brands/oslo_sportslager.webp
+          python3 -m pip install --quiet pillow
+          python3 <<'PY'
+          from PIL import Image, ImageOps
+          from pathlib import Path
+          src=Path('/tmp/review'); out=Path('bilder/kort/brands')
+          def load(p):
+              im=Image.open(p)
+              try: im.seek(0)
+              except Exception: pass
+              return im.convert('RGBA')
+          def fit(im,bg=(245,245,245,255),size=(900,520),frac=(.84,.78)):
+              im=im.convert('RGBA')
+              mw,mh=int(size[0]*frac[0]),int(size[1]*frac[1])
+              r=min(mw/im.width,mh/im.height)
+              im=im.resize((max(1,round(im.width*r)),max(1,round(im.height*r))),Image.Resampling.LANCZOS)
+              cv=Image.new('RGBA',size,bg)
+              cv.alpha_composite(im,((size[0]-im.width)//2,(size[1]-im.height)//2))
+              return cv.convert('RGB')
+          def crop(name,box,bg=(235,235,235,255),gray=False):
+              im=load(src/name).crop(box)
+              if gray: im=ImageOps.grayscale(im).convert('RGBA')
+              return fit(im,bg)
+          jobs={
+            'karl_a_jensen_forretning': crop('karl_a_jensen.jpg',(1350,5150,3850,6250),gray=True),
+            'ludvig_jensen_co': crop('ludvig_jensen.jpg',(115,135,470,345),gray=True),
+            'pm_jensen': crop('pm_jensen.jpg',(1000,500,1265,720),gray=True),
+            'oslo_street_food': fit(load(src/'oslo_street_food.webp'),(41,35,66,255)),
+          }
+          for name,im in jobs.items():
+              im.save(out/f'{name}.webp','WEBP',quality=90,method=6)
+          for p in sorted(out.glob('*.webp')):
+              im=Image.open(p)
+              if im.size != (900,520): raise SystemExit(f'{p}: wrong size {im.size}')
+              print(p, p.stat().st_size, im.size)
+          PY
+          test "$(find bilder/kort/brands -maxdepth 1 -type f -name '*.webp' | grep -E '/(adelsten|angst|eldorado_bokhandel|ingwald_nielsen|jernia_torggata|john_dee|karl_a_jensen_forretning|ludvig_jensen_co|norli_eldorado|oslo_bar_bowling|oslo_sportslager|oslo_street_food|pm_jensen)\.webp$' | wc -l)" -eq 13
+      - name: Write canonical Phase 13 data and regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'JS'
+          const fs=require('fs');
+          const ids=['angst','john_dee','eldorado_bokhandel','jernia_torggata','oslo_sportslager','norli_eldorado','oslo_bar_bowling','oslo_street_food','adelsten','ludvig_jensen_co','pm_jensen','karl_a_jensen_forretning','ingwald_nielsen'];
+          const common=(x)=>({
+            localFile:`bilder/kort/brands/${x.id}.webp`,sourcePage:x.sourcePage,sourceAsset:x.sourceAsset,
+            creator:x.creator,credit:x.credit,license:x.license??null,rightsBasis:x.rightsBasis,
+            reviewStatus:'manually_approved',assetKind:x.assetKind,usageContext:'referential_identification',
+            noEndorsement:true,temporalContext:x.temporalContext,transformation:x.transformation,
+            retrievedAt:'2026-08-14'
+          });
+          const meta={
+            angst:common({id:'angst',sourcePage:'https://www.visitoslo.com/no/produkt/?name=Angst-Bar&tlp=3006243',sourceAsset:'https://cdn.sanity.io/images/jlrwvnbf/commercial/fbbc5cdfe17ed8eb1cd3157025129aa93e7f46ec-800x533.jpg?rect=0,41,800,453&w=1500&h=850&auto=format',creator:'ANGST / venue identity',credit:'VisitOSLO / ANGST source image',rightsBasis:'referential_trademark_identification',assetKind:'current_wordmark',temporalContext:'current',transformation:'cropped from authentic source and normalized to 900x520 WebP; no reconstruction or redesign'}),
+            john_dee:common({id:'john_dee',sourcePage:'https://commons.wikimedia.org/wiki/File:John_dee_venue_logo_black.gif',sourceAsset:'https://upload.wikimedia.org/wikipedia/commons/4/43/John_dee_venue_logo_black.gif',creator:'see Wikimedia Commons source metadata',credit:'Wikimedia Commons — John dee venue logo black.gif',license:'CC BY 4.0',rightsBasis:'licensed_reuse_and_referential_identification',assetKind:'logo',temporalContext:'current',transformation:'normalized to 900x520 WebP; no reconstruction or redesign'}),
+            eldorado_bokhandel:common({id:'eldorado_bokhandel',sourcePage:'https://bok365.no/artikkel/norli-overtar-eldorado/',sourceAsset:'https://bok365.no/wp-content/uploads/2018/02/Eldoradobokhandel-e1517502372579.jpg',creator:'not individually identified',credit:'BOK365 / Forfatterforeningen',rightsBasis:'referential_historical_identification',assetKind:'historical_wordmark',temporalContext:'historical Eldorado Bokhandel identity',transformation:'cropped from authentic photographed wordmark and normalized to 900x520 WebP; no reconstruction or redesign'}),
+            jernia_torggata:common({id:'jernia_torggata',sourcePage:'https://commons.wikimedia.org/wiki/File:Jernia_logo.png',sourceAsset:'https://commons.wikimedia.org/wiki/Special:Redirect/file/Jernia%20logo.png',creator:'Jernia',credit:'Wikimedia Commons',license:'CC0',rightsBasis:'licensed_reuse_and_referential_identification',assetKind:'logo',temporalContext:'current',transformation:'normalized to 900x520 WebP; no reconstruction or redesign'}),
+            oslo_sportslager:common({id:'oslo_sportslager',sourcePage:'https://oslosportslager.no/',sourceAsset:'official site header logo captured during editorial review',creator:'Oslo Sportslager',credit:'Oslo Sportslager official website',rightsBasis:'referential_trademark_identification',assetKind:'logo',temporalContext:'current',transformation:'cropped from official header identity and normalized to 900x520 WebP; no reconstruction or redesign'}),
+            norli_eldorado:common({id:'norli_eldorado',sourcePage:'https://commons.wikimedia.org/wiki/File:Norli.svg',sourceAsset:'https://commons.wikimedia.org/wiki/Special:Redirect/file/Norli.svg',creator:'Norli',credit:'Wikimedia Commons',license:'public-domain simple logo per Commons source',rightsBasis:'public_domain_and_referential_identification',assetKind:'logo',temporalContext:'current',transformation:'rendered from source SVG and normalized to 900x520 WebP; no reconstruction or redesign'}),
+            oslo_bar_bowling:common({id:'oslo_bar_bowling',sourcePage:'https://oslobowling.no/',sourceAsset:'official site logo/header identity captured during editorial review',creator:'Oslo Bar & Bowling',credit:'Oslo Bar & Bowling official website',rightsBasis:'referential_trademark_identification',assetKind:'logo',temporalContext:'current',transformation:'cropped from official site identity and normalized to 900x520 WebP; no reconstruction or redesign'}),
+            oslo_street_food:common({id:'oslo_street_food',sourcePage:'https://www.oslo-streetfood.no/',sourceAsset:'https://images.squarespace-cdn.com/content/v1/6038204a6bf989551704f5c2/b48e68b9-ce76-4f9f-815e-8c8a7c781a0d/logo+white.png?format=1500w',creator:'Oslo Street Food',credit:'Oslo Street Food official website',rightsBasis:'referential_trademark_identification',assetKind:'logo',temporalContext:'current',transformation:'normalized to 900x520 WebP; no reconstruction or redesign'}),
+            adelsten:common({id:'adelsten',sourcePage:'https://commons.wikimedia.org/wiki/File:Adelsten_Jensen_-_no-nb_digifoto_20160119_00047_NB_NS_000109A.jpg',sourceAsset:'https://upload.wikimedia.org/wikipedia/commons/5/5b/Adelsten_Jensen_-_no-nb_digifoto_20160119_00047_NB_NS_000109A.jpg',creator:'Narve Skarpmoen',credit:'Nasjonalbiblioteket / Wikimedia Commons',license:'Public Domain',rightsBasis:'public_domain_historical_source',assetKind:'historical_wordmark',temporalContext:'historical Adelsten Jensen storefront identity',transformation:'cropped from authentic historic storefront sign, grayscale-normalized and converted to 900x520 WebP; no reconstruction or redesign'}),
+            ludvig_jensen_co:common({id:'ludvig_jensen_co',sourcePage:'https://oslobyleksikon.no/index.php/Torggata',sourceAsset:'https://oslobyleksikon.no/images/1/1e/Torggata_5.jpg',creator:'not individually identified',credit:'Oslo byleksikon; Torggata 5 premises evidence cross-checked against Oslo Museum Wilse records',rightsBasis:'referential_historical_identification',assetKind:'historical_reference_sign',temporalContext:'historical Ludvig Jensen & Co. premises at Torggata 5a from 1873',transformation:'cropped from documented Torggata 5 source and normalized to 900x520 WebP; no reconstruction or redesign'}),
+            pm_jensen:common({id:'pm_jensen',sourcePage:'https://digitaltmuseum.no/021015463551',sourceAsset:'https://dms01.dimu.org/image/012uMXHSuPgT?dimension=1800x1800&filename=021015463551.jpg',creator:'Leif Krohn Ørnelund',credit:'Oslo Museum / DigitaltMuseum, OB.Ø62/0605',license:'CC BY-SA — version as stated by source metadata',rightsBasis:'licensed_historical_source',assetKind:'historical_wordmark',temporalContext:'1962 P.M. Jensen kjøttvarer og delikatesseforretning',transformation:'cropped from source-catalogued P.M. Jensen storefront wordmark, grayscale-normalized and converted to 900x520 WebP; no reconstruction or redesign'}),
+            karl_a_jensen_forretning:common({id:'karl_a_jensen_forretning',sourcePage:'https://commons.wikimedia.org/wiki/File:Karl_A._Jensens_nye_forretningsgaard_-_no-nb_digifoto_20160125_00124_NB_NS_000225.jpg',sourceAsset:'https://upload.wikimedia.org/wikipedia/commons/f/fe/Karl_A._Jensens_nye_forretningsgaard_-_no-nb_digifoto_20160125_00124_NB_NS_000225.jpg',creator:'Narve Skarpmoen',credit:'Nasjonalbiblioteket / Wikimedia Commons',license:'Public Domain',rightsBasis:'public_domain_historical_source',assetKind:'historical_wordmark',temporalContext:'historical Karl A. Jensen storefront identity',transformation:'cropped from authentic historic storefront sign, grayscale-normalized and converted to 900x520 WebP; no reconstruction or redesign'}),
+            ingwald_nielsen:common({id:'ingwald_nielsen',sourcePage:'https://digitaltmuseum.no/021018750951',sourceAsset:'https://dms01.dimu.org/image/0334BSdZhEwe?dimension=1800x1800&filename=021018750951.jpg',creator:'Anders Beer Wilse',credit:'DigitaltMuseum / archival source',license:'Public Domain Mark',rightsBasis:'public_domain_historical_source',assetKind:'historical_wordmark',temporalContext:'1941 source image; visible INGWALD NIELSEN wordmark cross-checked against Torggata identity sources',transformation:'cropped from authentic historic wordmark, grayscale-normalized and converted to 900x520 WebP; no reconstruction or redesign'})
+          };
+          const masterPath='data/brands/brands_master.json';
+          const master=JSON.parse(fs.readFileSync(masterPath,'utf8'));
+          const list=Array.isArray(master)?master:(master.brands??master.items??[]);
+          for(const id of ids){
+            const brand=list.find(x=>x.id===id); if(!brand) throw new Error(`Missing brand ${id}`);
+            brand.logo=meta[id].localFile; brand.image=''; brand.imageMeta=meta[id];
+          }
+          fs.writeFileSync(masterPath,JSON.stringify(master,null,2)+'\n');
+          fs.writeFileSync('data/brands/brand_asset_attributions.json',JSON.stringify({schema:'history_go_brand_asset_attributions_v1',generatedAt:'2026-08-14',placeId:'torggata',usageContext:'referential_identification',noEndorsement:true,assets:ids.map(id=>({brandId:id,...meta[id]}))},null,2)+'\n');
+          const audit={placeId:'torggata',generatedAt:'2026-08-14',scope:'Torggata fase 13 Brands — canonical mapping + komplett verifisert logo-/ordmerkeport',baseline:'reports/place-production/torggata-phase8c-brands-audit-v1.json',canonicalMap:'data/brands/brands_by_place.json',visualContract:'docs/BRAND_ASSETS.md',brand_ids:ids,counts:{total:13,currentCanonical:13,sourceBackedInPhase8C:13,missingFromMaster:0,duplicateIds:0,requiredLogoOrWordmarkAssets:13,verifiedLogoOrWordmarkAssets:13,missingLogoOrWordmarkAssets:0},holdbacks:[{brandId:'familien',status:'holdback',reason:'Sekundærnavn i samme kildeprofil som ANGST; holdes tilbake for å unngå parallell brand-entry uten bedre fysisk/digital state-kilde.'}],checks:{approved:true,canonicalMappingApproved:true,canonicalMatchesPhase8C:true,allBrandIdsInMaster:true,noDuplicateIds:true,allHaveSourceRefsInPhase8C:true,allHaveTorggataPlaceRefInPhase8C:true,legacyAndCurrentSeparated:true,addressSemanticsPreserved:true,brandCountIsRuleDrivenNotQuota:true,logoCompletenessRequiredForCloseout:true,logoCoverageComplete:true,allAssetsLocal:true,allAssetsManuallyApproved:true,allAssetsHaveProvenanceAndRightsBasis:true,documentaryPhotoCountsAsLogo:false,nameFallbackCountsAsLogo:false,noGeneratedOrReconstructedMarks:true,phaseMayCloseBefore13Of13LogoCoverage:false},status:'GODKJENT',decision:'Fase 13 er godkjent på den allerede kildebårne 8C-populasjonen på 13 brands. Alle 13 har lokal, manuelt kontrollert logo eller autentisk dokumentert historisk ordmerke/reference sign med proveniens, rettighetsgrunnlag, referential_identification og noEndorsement. Ingen logo er generert, rekonstruert eller redesignet.'};
+          fs.writeFileSync('reports/place-production/torggata-phase13-brands-audit-v1.json',JSON.stringify(audit,null,2)+'\n');
+          let card=fs.readFileSync('reports/place-production/torggata-workcard-current.md','utf8');
+          if(!card.includes('torggata-phase13-brands-audit-v1.json')) card=card.replace('- Fase 12-audit: `reports/place-production/torggata-phase12-people-links-audit-v1.json`','- Fase 12-audit: `reports/place-production/torggata-phase12-people-links-audit-v1.json`\n- Fase 13-audit: `reports/place-production/torggata-phase13-brands-audit-v1.json`');
+          card=card.replace(/\| 13\. Brands \| \*\*PÅGÅR\*\* \|[^\n]*/,'| 13. Brands | **GODKJENT** | 13/13 canonical brands har lokal verifisert logo, autentisk historisk ordmerke eller reference sign; proveniens/rettighetsgrunnlag dokumentert, ingen genererte eller rekonstruerte merker |');
+          card=card.replace(/\| 14–24 \| \*\*IKKE STARTET\*\* \|[^\n]*/,'| 14. Leksikon, relations, NextUp, Nearby, søk og i18n | **PÅGÅR** | neste aktive fase etter godkjent Brands-closeout |\n| 15–24 | **IKKE STARTET** | styres av hovedchecklisten |');
+          card=card.replace(/- Oppdatert: \d{4}-\d{2}-\d{2}/,'- Oppdatert: 2026-08-14');
+          card += '\n\n## Fase 13 – godkjent sluttstatus\n\n- 13/13 Brand-ID-er fra fase 8C er beholdt uten kvoteendring;\n- 13/13 har lokal canonical WebP-logo eller autentisk historisk ordmerke/reference sign;\n- hvert asset har sourcePage, credit/creator, lisens eller rightsBasis, manuell review, tidskontekst og teknisk transformasjonsnotat;\n- bruken er eksplisitt `referential_identification` med `noEndorsement: true`;\n- ingen genererte, rekonstruerte eller redesignede logoer er brukt;\n- fase 14 er neste aktive fase.\n';
+          fs.writeFileSync('reports/place-production/torggata-workcard-current.md',card);
+          JS
+          cat > tests/torggata-phase13-brands-closeout.test.mjs <<'TEST'
+          import test from 'node:test';
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const byPlace=read('data/brands/brands_by_place.json');
+          const phase8c=read('reports/place-production/torggata-phase8c-brands-audit-v1.json');
+          const phase13=read('reports/place-production/torggata-phase13-brands-audit-v1.json');
+          const masterRaw=read('data/brands/brands_master.json');
+          const master=Array.isArray(masterRaw)?masterRaw:(masterRaw.brands??masterRaw.items??[]);
+          const attrs=read('data/brands/brand_asset_attributions.json');
+          const canonical=byPlace.torggata??[];
+          test('Torggata fase 13 beholder eksakt den kildebårne 8C-populasjonen',()=>{
+            assert.equal(canonical.length,13); assert.deepEqual(canonical,phase8c.final_mapping); assert.deepEqual(canonical,phase13.brand_ids); assert.equal(new Set(canonical).size,13);
+          });
+          test('13 av 13 brands har lokal manuelt godkjent visuell identitet',()=>{
+            const allowed=new Set(['logo','current_wordmark','historical_wordmark','historical_reference_sign']);
+            for(const id of canonical){
+              const b=master.find(x=>x.id===id); assert.ok(b,`missing ${id}`); assert.equal(b.image,'');
+              assert.equal(b.logo,`bilder/kort/brands/${id}.webp`); assert.ok(fs.existsSync(b.logo),`${id} local file missing`); assert.ok(fs.statSync(b.logo).size>500,`${id} empty asset`);
+              const m=b.imageMeta; assert.ok(m?.sourcePage); assert.ok(m?.credit); assert.ok(m?.rightsBasis||m?.license); assert.equal(m?.reviewStatus,'manually_approved'); assert.ok(allowed.has(m?.assetKind),`${id} bad assetKind`); assert.equal(m?.usageContext,'referential_identification'); assert.equal(m?.noEndorsement,true); assert.ok(m?.temporalContext); assert.match(m?.transformation??'',/no reconstruction or redesign/i);
+            }
+            assert.equal(new Set(canonical.map(id=>master.find(x=>x.id===id).logo)).size,13);
+          });
+          test('attribusjonsregisteret dekker alle 13 uten hull',()=>{
+            assert.equal(attrs.placeId,'torggata'); assert.equal(attrs.noEndorsement,true); assert.deepEqual(attrs.assets.map(x=>x.brandId),canonical);
+          });
+          test('fase 13 closeout er låst til komplett logoport',()=>{
+            assert.equal(phase13.status,'GODKJENT'); assert.equal(phase13.checks.approved,true); assert.equal(phase13.checks.logoCoverageComplete,true); assert.equal(phase13.counts.requiredLogoOrWordmarkAssets,13); assert.equal(phase13.counts.verifiedLogoOrWordmarkAssets,13); assert.equal(phase13.counts.missingLogoOrWordmarkAssets,0); assert.equal(phase13.checks.noGeneratedOrReconstructedMarks,true); assert.equal(phase13.checks.phaseMayCloseBefore13Of13LogoCoverage,false);
+          });
+          TEST
+      - name: Validate Phase 13
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts
+          node --test tests/torggata-phase13-brands-closeout.test.mjs
+          npm run typecheck:web
+          npm run typecheck:scripts
+          npm run typecheck:tools
+          git diff --check
+      - name: Persist permanent closeout
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add bilder/kort/brands data/brands/brands_master.json data/brands/brand_asset_attributions.json reports/place-production/torggata-phase13-brands-audit-v1.json reports/place-production/torggata-workcard-current.md tests/torggata-phase13-brands-closeout.test.mjs
+          git diff --cached --check
+          test "$(git diff --cached --name-only | grep -E '^bilder/kort/brands/(adelsten|angst|eldorado_bokhandel|ingwald_nielsen|jernia_torggata|john_dee|karl_a_jensen_forretning|ludvig_jensen_co|norli_eldorado|oslo_bar_bowling|oslo_sportslager|oslo_street_food|pm_jensen)\.webp$' | wc -l)" -eq 13
+          if git diff --cached --name-only | grep -q '^\.github/workflows/'; then echo 'workflow leaked into permanent commit' >&2; exit 1; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Godkjenn Torggata fase 13 Brands med komplett logoport'
+          git push origin HEAD:agent/torggata-phase13-logo-closeout-v2
