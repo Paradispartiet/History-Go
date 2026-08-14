@@ -1,0 +1,33 @@
+{
+  "schema": "civication_badge_career_contract_overlay_v1",
+  "version": 1,
+  "badge_id": "naeringsliv",
+  "evidence_ref": "data/Civication/naeringslivCareerLifeEvidence.json",
+  "allowed_tier_patch_fields": ["life_position", "career_offer", "career_unlock"],
+  "tiers": [
+    {"label":"Ekspeditør / butikkmedarbeider","career_offer":{"title":"Ekspeditør / butikkmedarbeider","policy":"direct","salary_tier":1,"role_scope":"naeringsliv_handel_og_kundeservice"}},
+    {"label":"Renholder","career_offer":{"title":"Renholder","policy":"direct","salary_tier":1,"role_scope":"naeringsliv_renhold_og_hygiene"}},
+    {"label":"Lager- og driftsmedarbeider","career_offer":{"title":"Lager- og driftsmedarbeider","policy":"direct","salary_tier":1,"role_scope":"naeringsliv_logistikk_og_drift"}},
+    {"label":"Økonomi- og administrasjonsmedarbeider","career_offer":{"title":"Økonomi- og administrasjonsmedarbeider","policy":"direct","salary_tier":1,"role_scope":"naeringsliv_administrasjon_og_okonomistyring"}},
+    {"label":"Fagarbeider","career_offer":{"title":"Fagarbeider","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":1,"role_scope":"naeringsliv_fag_og_produksjon"}},
+    {"label":"Skiftleder","career_offer":{"title":"Skiftleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":1,"role_scope":"naeringsliv_operativ_ledelse"}},
+    {"label":"Formann / arbeidsleder","career_offer":{"title":"Formann / arbeidsleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"naeringsliv_operativ_ledelse"}},
+    {"label":"Controller","career_offer":{"title":"Controller","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"naeringsliv_administrasjon_og_okonomistyring"}},
+    {"label":"Avdelingsleder","career_offer":{"title":"Avdelingsleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"naeringsliv_operativ_ledelse"}},
+    {"label":"Driftsleder","career_offer":{"title":"Driftsleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"naeringsliv_operativ_ledelse"}},
+    {"label":"Finansanalytiker","career_offer":{"title":"Finansanalytiker","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"naeringsliv_finans_og_kapitalforvaltning"}},
+    {"label":"Produksjonsleder","career_offer":{"title":"Produksjonsleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"naeringsliv_operativ_ledelse"}},
+    {"label":"Butikksjef / enhetsleder","career_offer":{"title":"Butikksjef / enhetsleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"naeringsliv_operativ_ledelse"}},
+    {"label":"Økonomi- og finanssjef","career_offer":{"title":"Økonomi- og finanssjef","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"naeringsliv_finansiell_ledelse"}},
+    {"label":"Daglig leder","career_offer":{"title":"Daglig leder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"naeringsliv_virksomhetsledelse"}},
+    {"label":"Finansdirektør","career_offer":{"title":"Finansdirektør","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"naeringsliv_finansiell_ledelse"}},
+    {"label":"Gründer","life_position":{"id":"grunder","label":"Gründer","kind":"entrepreneurial_practice_and_self_employment","employment_independent":true}},
+    {"label":"Bedriftseier","life_position":{"id":"bedriftseier","label":"Bedriftseier","kind":"business_ownership","employment_independent":true}},
+    {"label":"Konserndirektør","career_offer":{"title":"Konserndirektør","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"naeringsliv_virksomhetsledelse"}},
+    {"label":"Konsernsjef","career_offer":{"title":"Konsernsjef","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"naeringsliv_virksomhetsledelse"}},
+    {"label":"Investor","life_position":{"id":"investor","label":"Investor","kind":"capital_ownership_and_investment","employment_independent":true}},
+    {"label":"Kapitalforvalter","career_offer":{"title":"Kapitalforvalter","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":3,"role_scope":"naeringsliv_finans_og_kapitalforvaltning"}},
+    {"label":"Industribygger","life_position":{"id":"industribygger","label":"Industribygger","kind":"industrial_entrepreneurship_and_reputation","employment_independent":true}},
+    {"label":"Industrieier","life_position":{"id":"industrieier","label":"Industrieier","kind":"industrial_ownership","employment_independent":true}}
+  ]
+}
