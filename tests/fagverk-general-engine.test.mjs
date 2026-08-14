@@ -284,7 +284,7 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(sport.methodCount, 109);
   assert.equal(sport.mappingCount, 116);
   assert.equal(sport.hookCount, 60);
-  assert.equal(sport.chapterCount, 0);
+  assert.equal(sport.chapterCount, JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8')).subjects.sport.chapters.length);
   const filosofi = result.materializedRows.find((row) => row.id === 'filosofi');
   assert.ok(filosofi);
   assert.equal(filosofi.schemaFamily, 'foundation_v1');

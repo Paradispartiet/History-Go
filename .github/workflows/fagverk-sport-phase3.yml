@@ -16,6 +16,7 @@ on:
       - "scripts/audit-fagverk-subject-inventory.mjs"
       - "scripts/audit-fagverk-general-engine.mjs"
       - "scripts/audit-fagverk-sport-phase3.mjs"
+      - "scripts/materialize-sport-complete.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
@@ -30,6 +31,7 @@ on:
       - "data/badges/sport.json"
       - "data/fagverk/**"
       - "scripts/audit-fagverk-sport-phase3.mjs"
+      - "scripts/materialize-sport-complete.mjs"
       - "tests/fagverk-sport-phase3.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-sport-phase3.yml"
@@ -38,7 +40,6 @@ on:
 permissions:
   contents: read
 
-# Keep the permanent Sport gate on the connector-authored final PR head after one-shot materialization.
 jobs:
   validate:
     name: Validate Sport phase 3 materialization
@@ -51,6 +52,7 @@ jobs:
       - name: Validate syntax and deterministic reports
         run: |
           node --check scripts/audit-fagverk-sport-phase3.mjs
+          node --check scripts/materialize-sport-complete.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-sport-phase3.mjs

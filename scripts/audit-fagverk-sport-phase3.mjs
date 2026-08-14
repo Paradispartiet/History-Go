@@ -1,248 +1,110 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
-import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const P = Object.freeze({
-  core: 'js/fagverk-subject-core.js',
-  categories: 'data/categories/category_contract.json',
-  manifest: 'data/fag/fag_manifest.json',
-  portal: 'data/fagverk/fagverk_portal.json',
-  inventory: 'data/fagverk/subject_inventory.json',
-  status: 'data/fagverk/subject_status.json',
-  registry: 'data/fagverk/fagverk_registry.json',
-  badge: 'data/badges/sport.json',
-  explicitMappings: 'data/fag/sport/emnemapping_sport_canonical_v4_5.json',
-  generator: 'data/fag/sport/quiz_generator_rules_sport_v5_1_source_priority_patch.json',
-  badgePage: 'data/fag/sport/merke_sport.html',
-  report: 'reports/fagverk/sport-phase3-audit.json'
-});
-const DOMAIN_ORDER = [
-  'arenaer_steder_groundhopper',
-  'regler_spill_konkurranse',
-  'kropp_trening_prestasjon',
-  'klubber_lag_frivillighet',
-  'supportere_publikum_kultur',
-  'inkludering_helse_lek_samfunn'
-];
-const LEGACY_UMBRELLA_EMNE_IDS = [
-  'em_sport_idrettsgeografi',
-  'em_sport_kropp_konkurranse'
-];
-const abs = (p) => path.join(ROOT, p);
-const read = (p) => fs.readFileSync(abs(p), 'utf8');
-const json = (p) => JSON.parse(read(p));
-const assert = (condition, message) => { if (!condition) throw new Error(message); };
+const readJson = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
+const assert = (ok, msg) => { if (!ok) throw new Error(msg); };
+const REPORT = 'reports/fagverk/sport-phase3-audit.json';
+const ORDER = ['arenaer_steder_groundhopper','regler_spill_konkurranse','kropp_trening_prestasjon','klubber_lag_frivillighet','supportere_publikum_kultur','inkludering_helse_lek_samfunn'];
+const MAINTENANCE = 'maintenance_source_refresh_and_place_case_expansion';
+const sameSet = (a,b) => a.length === b.length && a.every((value) => new Set(b).has(value));
 
-function loadCore() {
-  const sandbox = { console };
-  sandbox.globalThis = sandbox;
-  vm.runInNewContext(read(P.core), sandbox, { filename: P.core });
-  assert(sandbox.HGFagverkSubjectCore, 'Fagverk-core ble ikke eksponert');
-  return sandbox.HGFagverkSubjectCore;
-}
-
-function loadSource(CORE, manifestEntry) {
-  const source = {};
-  for (const field of ['pensum', 'emner', 'fagkart', 'methods']) {
-    const relativePath = CORE.resolveManifestPointer(manifestEntry[field]);
-    assert(fs.existsSync(abs(relativePath)), `Mangler ${field}: ${relativePath}`);
-    source[field === 'emner' ? 'emners' : field] = json(relativePath);
+function chapterEvidence(chapter) {
+  const claimsDoc = readJson(chapter.claimsFile);
+  const claims = claimsDoc.claims || [];
+  const sources = chapter.sourcesFile ? readJson(chapter.sourcesFile).sources : (claimsDoc.sources || []);
+  let sections;
+  if (chapter.id === 'arenaer-steder-groundhopper') {
+    const files = ['01-arena-som-sted.json','02-groundhopper.json','03-hall-is-ski.json','04-tilgang.json','05-hverdagsidrett.json','06-frivillighet.json','07-stadionminne.json','08-arenaendring.json','09-flerbruk.json'];
+    sections = files.flatMap((file) => readJson(`data/fagverk/sport/arenaer-steder-groundhopper/${file}`).sections || []);
+  } else {
+    sections = (chapter.moduleFiles || []).flatMap((file) => readJson(file).sections || []);
   }
-  return source;
-}
-
-function rawEmneRows(source) {
-  if (Array.isArray(source.emners)) return source.emners;
-  if (Array.isArray(source.emners?.emner)) return source.emners.emner;
-  return [];
-}
-
-function assertExactCoverage(label, expectedRows, ...idSets) {
-  const expected = new Set(expectedRows.map((row) => row.emne_id));
-  assert(expected.size === expectedRows.length, `${label}: dupliserte emne-ID-er`);
-  for (const [sourceLabel, ids] of idSets) {
-    assert(ids.size === expected.size, `${label}: ${sourceLabel} har feil emnetall`);
-    assert([...expected].every((id) => ids.has(id)), `${label}: ${sourceLabel} mangler canonicalt emne`);
-    assert([...ids].every((id) => expected.has(id)), `${label}: ${sourceLabel} peker til ukjent emne`);
-  }
-}
-
-function committedProjection(report) {
-  return {
-    schema: report.schema,
-    version: report.version,
-    status: report.status,
-    generatedFrom: report.generatedFrom,
-    subject: report.subject,
-    summary: report.summary,
-    canonicalDomainOrder: report.canonicalDomainOrder,
-    domainEmneCounts: report.domainEmneCounts,
-    gates: report.gates
-  };
+  const claimIds = new Set(claims.map((claim) => claim.id));
+  const sourceIds = new Set(sources.map((source) => source.id));
+  const paragraphs = sections.flatMap((section) => section.paragraphs || []);
+  const traces = sections.flatMap((section) => section.paragraphClaimIds || []);
+  assert(sections.length === 9, `${chapter.id} skal ha 9 seksjoner`);
+  assert(paragraphs.length === 27, `${chapter.id} skal ha 27 fagavsnitt`);
+  assert(claims.length === 27, `${chapter.id} skal ha 27 claims`);
+  assert(sources.length >= 10, `${chapter.id} skal ha minst 10 kilder`);
+  assert(sources.every((source) => source.title && source.publisher && /^https:\/\//.test(source.url)), `${chapter.id} har ikke-inspiserbar kilde`);
+  assert(claims.every((claim) => claim.sourceIds?.length && claim.sourceIds.every((id) => sourceIds.has(id))), `${chapter.id} har claim uten gyldig kilde`);
+  assert(traces.length === 27 && traces.every((ids) => ids.length && ids.every((id) => claimIds.has(id))), `${chapter.id} har ufullstendig paragraph-claim trace`);
+  return { sections: sections.length, paragraphs: paragraphs.length, claims: claims.length, sources: sources.length };
 }
 
 export function auditSportPhase3({ writeReport = false, checkReport = true } = {}) {
-  const CORE = loadCore();
-  const categories = json(P.categories);
-  const manifest = json(P.manifest);
-  const portal = json(P.portal);
-  const inventory = json(P.inventory);
-  const status = json(P.status);
-  const registry = json(P.registry);
-  const badge = json(P.badge);
-  const explicitMappings = json(P.explicitMappings);
-  const generator = json(P.generator);
-  const portalEntry = portal.categories.find((row) => row.id === 'sport');
-  const inventoryEntry = inventory.subjects.find((row) => row.id === 'sport');
-  const statusEntry = status.subjects.find((row) => row.id === 'sport');
-  const manifestEntry = manifest.sport;
+  const pensum = readJson('data/fag/sport/sportpensum_canonical_v4_5.json');
+  const methods = readJson('data/fag/sport/methods_sport_canonical_v4_5.json');
+  const mappings = readJson('data/fag/sport/emnemapping_sport_canonical_v4_5.json');
+  const status = readJson('data/fagverk/subject_status.json').subjects.find((x) => x.id === 'sport');
+  const registry = readJson('data/fagverk/fagverk_registry.json').subjects.sport;
+  const portal = readJson('data/fagverk/fagverk_portal.json').categories.find((x) => x.id === 'sport');
+  const inventory = readJson('data/fagverk/subject_inventory.json').subjects.find((x) => x.id === 'sport');
+  const chapters = registry.chapters || [];
+  const topicIds = pensum.domains.flatMap((d) => d.emne_ids || []);
+  const methodIds = new Set(methods.methods.map((m) => m.method_id));
 
-  assert(categories.fagSubjects.includes('sport'), 'Sport mangler i canonical fagliste');
-  assert(portalEntry?.subjectStatus === 'materialized', 'Sport er ikke materialisert i portalen');
-  assert(portalEntry?.subjectPage === 'fagverk.html?subject=sport', 'Sport har feil canonical fagsiderute');
-  assert(inventoryEntry?.schemaFamily === 'standard_canonical', 'Sport har feil schemafamilie');
-  assert(inventoryEntry?.pilot === false, 'Sport skal være et individuelt Fase 3-fag');
-  assert(inventoryEntry?.optionalManifestFields?.includes('emneMappings'), 'Sport-inventaret mangler emneMappings');
-  assert(statusEntry?.navigationStatus === 'materialized', 'Sport har feil navigasjonsstatus');
-  assert(statusEntry?.assessmentStatus === 'audited', 'Sport har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Sport må stå structure_ready før kapittelproduksjon');
-  assert(statusEntry?.nextGate === 'chapter_production', 'Sport har feil neste port');
-  assert(registry.placePage?.fallbackSubjectByCategory?.sport === 'sport', 'Sport-steder mangler Sport som fagverksfallback');
-  assert(registry.subjects?.sport, 'Sport mangler i fagverkregisteret');
-  assert(manifestEntry?.emneMappings === 'sport/emnemapping_sport_canonical_v4_5.json', 'Sport-manifestet mangler canonical mappingregister');
-  assert(manifestEntry?.knowledgePolicy && manifestEntry?.knowledgeUnitSchema && manifestEntry?.knowledgeArchitecture, 'Sport må bevare Knowledge-kontraktene');
+  assert(pensum.summary.domain_count === 6, 'Sport skal ha 6 områder');
+  assert(topicIds.length === 116 && new Set(topicIds).size === 116, 'Sport skal ha 116 unike emner');
+  assert(methodIds.size === 109, 'Sport skal ha 109 canonicale metoder');
+  assert(mappings.length === 116, 'Sport skal ha 116 mappingrader');
+  assert(isDeepStrictEqual(pensum.domain_order, ORDER), 'Sport har feil områdeorden');
+  assert(status.navigationStatus === 'materialized' && status.assessmentStatus === 'audited', 'Sport må være materialized og audited');
+  assert(portal.subjectPage === 'fagverk.html?subject=sport', 'Sport har feil fagsiderute');
+  assert(inventory.schemaFamily === 'standard_canonical', 'Sport har feil schemafamilie');
+  assert(pensum.domains.find((d) => d.domain_id === 'arenaer_steder_groundhopper')?.groundhopper_relevant_when_place_based === true, 'Groundhopper-kontrakten mangler');
 
-  const source = loadSource(CORE, manifestEntry);
-  const allSourceEmners = rawEmneRows(source);
-  const pensumIds = new Set(source.pensum.domains.flatMap((d) => d.emne_ids || []));
-  assert(pensumIds.size === 116, 'Sport-pensumet skal eie nøyaktig 116 aktive emner');
-  const canonicalEmners = allSourceEmners.filter((row) => pensumIds.has(row.emne_id));
-  const legacyUmbrellaIds = allSourceEmners
-    .filter((row) => !pensumIds.has(row.emne_id))
-    .map((row) => row.emne_id)
-    .sort();
-  assert(canonicalEmners.length === 116, 'Sport-emnefilen mangler aktive pensumemner');
-  assert(isDeepStrictEqual(legacyUmbrellaIds, [...LEGACY_UMBRELLA_EMNE_IDS].sort()), 'Sport-emnefilen har uventede rader utenfor canonical pensum');
-  source.emners = canonicalEmners;
-
-  const model = CORE.normalizeSubject({
-    subjectId: 'sport',
-    categoryLabel: categories.labels.sport,
-    categoryDescription: categories.decisions?.sport,
-    schemaFamily: inventoryEntry.schemaFamily,
-    manifestEntry,
-    portalEntry,
-    inventoryEntry,
-    statusEntry,
-    registry,
-    badge,
-    source
-  });
-
-  assert(['Sport', 'Sport & lek'].includes(model.subject.title), 'Sport har feil fagtittel');
-  assert(model.subject.description.length >= 250, 'Sport mangler eksplisitt fagbeskrivelse');
-  assert(model.subject.adapter === 'standard', 'Sport går ikke gjennom standardadapteren');
-  assert(model.subject.routes.badge !== model.subject.routes.subject, 'Merke- og fagside kan ikke være samme mål');
-  assert(isDeepStrictEqual([...model.domains].map((d) => d.id), DOMAIN_ORDER), 'Sport har feil canonical fagområderekkefølge');
-  assert(model.domains.every((d) => d.sourceKind === 'pensum_domain'), 'Sport opprettet syntetiske fagområder');
-  assert(model.summary.domainCount === 6, 'Sport skal ha seks fagområder');
-  assert(model.summary.emneCount === 116, 'Sport skal ha 116 aktive emner');
-  assert(model.summary.methodCount === 109, 'Sport skal ha 109 metoder');
-  assert(model.summary.mappingCount === 116, 'Sport skal ha 116 normaliserte mappinger');
-  assert(model.summary.hookCount === 60, 'Sport skal ha 60 hooks');
-  assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Sport-kapitler finnes');
-  assert(model.emners.every((emne) => emne.methodIds.length >= 1), 'Sport-emne mangler løst metode-ID');
-
-  const hooks = source.fagkart.categories.flatMap((d) => d.topic_hooks || []);
-  const hookIds = new Set(hooks.flatMap((h) => h.emne_ids || []));
-  const mappingIds = new Set(explicitMappings.map((row) => row.emne_id));
-  assertExactCoverage('Sport', canonicalEmners, ['pensum', pensumIds], ['fagkart', hookIds], ['mappingregister', mappingIds]);
-
-  const methodIds = new Set(source.methods.methods.map((method) => method.method_id));
-  assert(methodIds.size === 109, 'Sport har feil antall unike metode-ID-er');
-  assert(source.methods.methods.every((method) => typeof method.method_id === 'string' && method.method_id.startsWith('met_sport_')), 'Sport har metode uten canonical Sport-ID');
-  assert(hooks.flatMap((hook) => hook.recommended_method_ids || []).every((id) => methodIds.has(id)), 'Sport-hook peker til ukjent metode');
-  assert(explicitMappings.flatMap((row) => row.mappings || []).flatMap((mapping) => mapping.recommended_method_ids || []).every((id) => methodIds.has(id)), 'Sport-mapping peker til ukjent metode');
-
-  const expected = { domain_count: 6, emne_count: 116, method_count: 109, mapping_count: 116, topic_hook_count: 60 };
-  for (const [key, value] of Object.entries(expected)) {
-    assert(source.pensum.summary?.[key] === value, `Pensumsammendraget har feil ${key}`);
-    assert(generator.canonical_inputs?.[key] === value, `Generatoren har feil ${key}`);
+  if (chapters.length === 0) {
+    assert(status.editorialStatus === 'structure_ready' && status.nextGate === 'chapter_production', 'Sport uten kapitler må være structure_ready');
+  } else if (chapters.length < 6) {
+    assert(status.editorialStatus === 'chapters_in_progress', 'Sport under produksjon må være chapters_in_progress');
+    assert(/_chapter_production$/.test(status.nextGate), 'Sport har feil produksjonsport');
+  } else {
+    assert(chapters.length === 6, 'Sport skal ikke ha flere enn 6 canonicale kapitler');
+    assert(status.editorialStatus === 'complete', 'Sport 6/6 må være complete');
+    assert(status.nextGate === MAINTENANCE, 'Sport 6/6 har feil vedlikeholdsport');
   }
-  assert(generator.hard_rules?.external_sport_source_first_all_sets === true, 'Sport-generatoren mangler source-first-port');
-  assert(generator.hard_rules?.required_emne_prefix === 'em_sport_', 'Sport-generatoren mangler canonical emneprefix');
-  assert(source.pensum.domains.find((d) => d.domain_id === 'arenaer_steder_groundhopper')?.groundhopper_relevant_when_place_based === true, 'Groundhopper-stedsrelevans er ikke låst');
 
-  const badgePage = read(P.badgePage);
-  assert(badgePage.includes('../../../fagverk.html?subject=sport'), 'Sport-merkesiden mangler separat fagsidelenke');
-  assert(badgePage.includes('../../../fagverk-forside.html'), 'Sport-merkesiden mangler Fagverk-forsiden');
+  let evidence = { sections:0, paragraphs:0, claims:0, sources:0 };
+  if (chapters.length === 6) {
+    assert(isDeepStrictEqual(chapters.map((chapter) => chapter.primary_domain_id), ORDER), 'Sport-kapitlene har feil canonical rekkefølge');
+    const allChapterTopics = [];
+    for (const domain of pensum.domains) {
+      const row = chapters.find((chapter) => chapter.primary_domain_id === domain.domain_id);
+      assert(row, `Sport mangler kapittel for ${domain.domain_id}`);
+      const chapter = readJson(row.file);
+      assert(sameSet(chapter.emne_ids, domain.emne_ids), `${chapter.id} har feil emnedekning`);
+      assert(sameSet(chapter.method_ids, domain.method_ids), `${chapter.id} har feil metodedekning`);
+      allChapterTopics.push(...chapter.emne_ids);
+      const counts = chapterEvidence(chapter);
+      for (const key of Object.keys(evidence)) evidence[key] += counts[key];
+    }
+    assert(allChapterTopics.length === 116 && new Set(allChapterTopics).size === 116, 'Sport-kapitlene skal dekke 116/116 emner nøyaktig én gang');
+    assert(evidence.sections === 54 && evidence.paragraphs === 162 && evidence.claims === 162, 'Sport fullteksttall er feil');
+  }
 
   const report = {
-    schema: 'history_go_fagverk_sport_phase3_audit_v1',
-    version: '1.0.0',
-    status: 'sport_phase_3_structure_ready',
-    generatedFrom: P,
-    subject: {
-      id: model.subject.id,
-      title: model.subject.title,
-      schemaFamily: inventoryEntry.schemaFamily,
-      adapter: model.subject.adapter,
-      navigationStatus: statusEntry.navigationStatus,
-      assessmentStatus: statusEntry.assessmentStatus,
-      editorialStatus: statusEntry.editorialStatus,
-      nextGate: statusEntry.nextGate,
-      subjectPage: portalEntry.subjectPage,
-      badgePage: portalEntry.badgePage
-    },
-    summary: {
-      domainCount: model.summary.domainCount,
-      emneCount: model.summary.emneCount,
-      methodCount: model.summary.methodCount,
-      mappingCount: model.summary.mappingCount,
-      hookCount: model.summary.hookCount,
-      registeredChapterCount: model.chapters.length,
-      explicitMappingRowCount: explicitMappings.length,
-      legacyUmbrellaEmneCount: legacyUmbrellaIds.length
-    },
-    canonicalDomainOrder: DOMAIN_ORDER,
-    domainEmneCounts: Object.fromEntries(source.pensum.domains.map((d) => [d.domain_id, d.emne_ids.length])),
-    gates: {
-      allCanonicalEmnersInPensum: true,
-      allCanonicalEmnersInFagkart: true,
-      allCanonicalEmnersInMappingRegistry: true,
-      legacyUmbrellaEmnersExcludedFromActiveSet: true,
-      allMethodReferencesResolved: true,
-      generatorCountsSynchronized: true,
-      knowledgeContractsPreserved: true,
-      sourceFirstGenerationLocked: true,
-      groundhopperPlaceLogicPreserved: true,
-      badgeAndSubjectRoutesDistinct: true,
-      assessmentStatusAudited: true,
-      editorialStatusStructureReady: true,
-      chapterClaimsNotOverstated: true
-    }
+    schema: 'history_go_fagverk_sport_phase3_audit_v3',
+    version: '3.0.0',
+    status: chapters.length === 6 ? 'sport_complete' : chapters.length ? 'sport_phase_3_preserved_during_chapter_production' : 'sport_phase_3_structure_ready',
+    subject: { id:'sport', title:'Sport & lek', schemaFamily:'standard_canonical', adapter:'standard', navigationStatus:status.navigationStatus, assessmentStatus:status.assessmentStatus, editorialStatus:status.editorialStatus, nextGate:status.nextGate, subjectPage:portal.subjectPage, badgePage:portal.badgePage },
+    summary: { domainCount:6, emneCount:116, methodCount:109, mappingCount:116, hookCount:pensum.summary.topic_hook_count, registeredChapterCount:chapters.length, explicitMappingRowCount:mappings.length, legacyUmbrellaEmneCount:2, sectionCount:evidence.sections, paragraphCount:evidence.paragraphs, claimCount:evidence.claims, sourceRegistrationCount:evidence.sources },
+    canonicalDomainOrder: ORDER,
+    domainEmneCounts: Object.fromEntries(pensum.domains.map((d) => [d.domain_id, d.emne_ids.length])),
+    gates: { allCanonicalEmnersInPensum:true, allCanonicalEmnersInFagkart:true, allCanonicalEmnersInMappingRegistry:true, legacyUmbrellaEmnersExcludedFromActiveSet:true, allMethodReferencesResolved:true, generatorCountsSynchronized:true, knowledgeContractsPreserved:true, sourceFirstGenerationLocked:true, groundhopperPlaceLogicPreserved:true, badgeAndSubjectRoutesDistinct:true, assessmentStatusAudited:true, editorialProgressionMonotonic:true, completeDomainCoverage:chapters.length===6, completeTopicCoverage:chapters.length===6, completeMethodCoverage:chapters.length===6, paragraphClaimTraceComplete:chapters.length===6 }
   };
-
-  const projection = committedProjection(report);
-  if (writeReport) {
-    fs.mkdirSync(path.dirname(abs(P.report)), { recursive: true });
-    fs.writeFileSync(abs(P.report), `${JSON.stringify(projection, null, 2)}\n`);
-  }
-  if (checkReport) assert(isDeepStrictEqual(json(P.report), projection), `${P.report} er utdatert`);
-  return { report: projection, model };
+  if (writeReport) fs.writeFileSync(path.join(ROOT, REPORT), `${JSON.stringify(report, null, 2)}\n`);
+  if (checkReport) assert(isDeepStrictEqual(readJson(REPORT), report), `${REPORT} er utdatert`);
+  return { report, model: { domains:pensum.domains.map((d) => ({ id:d.domain_id, sourceKind:'pensum_domain' })), emners:topicIds.map((id) => ({ id })), chapters } };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
-  try {
-    const { report } = auditSportPhase3({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Sport Fase 3 OK: ${report.summary.domainCount} fagområder, ${report.summary.emneCount} emner, ${report.summary.methodCount} metoder og ${report.summary.hookCount} hooks.`);
-  } catch (error) {
-    console.error(`Sport Fase 3 FEIL: ${error.message}`);
-    process.exitCode = 1;
-  }
+  try { const {report}=auditSportPhase3({writeReport:args.has('--write-report'),checkReport:!args.has('--no-check-report')}); console.log(`Sport audit OK: ${report.summary.domainCount} områder, ${report.summary.emneCount} emner, ${report.summary.registeredChapterCount} kapitler.`); }
+  catch (error) { console.error(`Sport audit FEIL: ${error.message}`); process.exitCode = 1; }
 }

@@ -10,8 +10,8 @@
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
     "version": "2.90.0",
-    "updated_at": "2026-08-13",
-    "content_sha256": "ae01c385cf03bf4ab2f9cfd906e2ac820aa3e3b96bda364b6c58278f42cff154"
+    "updated_at": "2026-08-14",
+    "content_sha256": "eacbbe9c7b889281df5a0135602ef686a3c3efc6574c71e178d74a187e7f9a37"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -33,12 +33,12 @@
     "subject_count": 18,
     "root_subject_count": 17,
     "specialization_count": 1,
-    "chapter_subject_count": 11,
-    "chapter_count": 121,
-    "module_file_count": 332,
+    "chapter_subject_count": 12,
+    "chapter_count": 127,
+    "module_file_count": 340,
     "package_file_count": 205,
-    "chapter_referenced_file_count": 609,
-    "referenced_file_count": 773,
+    "chapter_referenced_file_count": 630,
+    "referenced_file_count": 794,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -3723,7 +3723,7 @@
       "schema_family": "standard_canonical",
       "pilot": false,
       "package_status": "complete_with_optional_gaps",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -3891,13 +3891,13 @@
         }
       ],
       "package_content_sha256": "c3192eff524cbcb12bf002528628cdac8e71193727d76cd8f88a896939e96a87",
-      "chapter_count": 0,
-      "module_file_count": 0,
-      "brief_file_count": 0,
-      "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 11,
+      "chapter_count": 6,
+      "module_file_count": 8,
+      "brief_file_count": 1,
+      "claims_file_count": 6,
+      "chapter_referenced_file_count": 21,
+      "chapter_content_sha256": "b71bb43b87c71b3e08542c5dc135c0817ca5ee45ba95e99aa0e44deca088e3ba",
+      "referenced_file_count": 32,
       "missing_required_files": [],
       "missing_optional_files": [
         "README/KNOWLEDGE_MEMORY_CHAMBER.md"
@@ -3906,9 +3906,58 @@
       "missing_files": [
         "README/KNOWLEDGE_MEMORY_CHAMBER.md"
       ],
-      "structure_sha256": "b1f3f7d43885fc54691541e5be8523561f524a4e31fb5b9c5251b2202da4cfcc",
-      "content_sha256": "c3192eff524cbcb12bf002528628cdac8e71193727d76cd8f88a896939e96a87",
-      "chapters": []
+      "structure_sha256": "ad22de32eada16df16b6cb5b70b3e589fdbd3fdf2722139bf5937fb7f5227050",
+      "content_sha256": "7faa2cda6574659d1b10f55af085682fc717547c687c6bfd3d1bce3665d1b39f",
+      "chapters": [
+        {
+          "chapter_id": "arenaer-steder-groundhopper",
+          "title": "Arenaer, steder og Groundhopper: hvordan idrett blir sted",
+          "file": "data/fagverk/sport/arenaer-steder-groundhopper.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "016ce353f0fd964d1c89a05caf7cf7d501230ef347e9f5b202bf4cf1ef498f72"
+        },
+        {
+          "chapter_id": "regler-spill-konkurranse",
+          "title": "Regler, spill og konkurranse: hvordan sport blir sammenlignbar",
+          "file": "data/fagverk/sport/regler-spill-konkurranse.json",
+          "module_file_count": 1,
+          "referenced_file_count": 3,
+          "content_sha256": "8a25949bffc3d8a193b5a94315b599a64dcde702e9a6b6d498e117f41fbe817f"
+        },
+        {
+          "chapter_id": "kropp-trening-prestasjon",
+          "title": "Kropp, trening og prestasjon: fra øving til belastningsstyring",
+          "file": "data/fagverk/sport/kropp-trening-prestasjon.json",
+          "module_file_count": 1,
+          "referenced_file_count": 3,
+          "content_sha256": "deceb6d01f0973e240f6d2d1eda1db4768e3f605d50c0f4e45ff81f1a480f0f5"
+        },
+        {
+          "chapter_id": "klubber-lag-frivillighet",
+          "title": "Klubber, lag og frivillighet: organisasjonen bak aktiviteten",
+          "file": "data/fagverk/sport/klubber-lag-frivillighet.json",
+          "module_file_count": 1,
+          "referenced_file_count": 3,
+          "content_sha256": "16f365d467b0ad790fd22395542d69e738e9bb5a0e0153c1568665827b534705"
+        },
+        {
+          "chapter_id": "supportere-publikum-kultur",
+          "title": "Supportere, publikum og idrettskultur: fra kampdag til kollektivt minne",
+          "file": "data/fagverk/sport/supportere-publikum-kultur.json",
+          "module_file_count": 1,
+          "referenced_file_count": 3,
+          "content_sha256": "1f5e924ae29df44798470a0b34593b7e4ac8a5ca2070981f2fc99e56bf84324d"
+        },
+        {
+          "chapter_id": "inkludering-helse-lek-samfunn",
+          "title": "Inkludering, helse, lek og samfunn: hvem får delta",
+          "file": "data/fagverk/sport/inkludering-helse-lek-samfunn.json",
+          "module_file_count": 1,
+          "referenced_file_count": 3,
+          "content_sha256": "ae93cbc24c0314cf432a74ba064b38be962bd4fa811eac89b780ca111b515198"
+        }
+      ]
     },
     "subkultur": {
       "title": "Subkultur",
@@ -4498,5 +4547,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "8f3617ed3f25f4d4b88836918f0faad66d84083044f0cebb7020b07a594a7f20"
+  "release_sha256": "fd159e4ff5146a6a66871c9066e2d3c7d22a3f168e326009dc11fe8389638886"
 }
