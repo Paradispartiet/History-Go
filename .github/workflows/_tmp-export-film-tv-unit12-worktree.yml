@@ -1,0 +1,37 @@
+name: Temporary export Film and TV unit 12 worktree
+
+on:
+  push:
+    branches:
+      - codex/film-tv-unit12-screen-places-fulltext
+    paths:
+      - ".github/workflows/_tmp-export-film-tv-unit12-worktree.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: temporary-export-film-tv-unit12-worktree
+  cancel-in-progress: false
+
+jobs:
+  export:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: codex/film-tv-unit12-screen-places-fulltext
+
+      - name: Export checked-out repository
+        uses: actions/upload-artifact@v4
+        with:
+          name: film-tv-unit12-worktree
+          path: |
+            .
+            !.git/**
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
