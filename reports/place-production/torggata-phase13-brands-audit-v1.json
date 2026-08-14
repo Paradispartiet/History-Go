@@ -1,0 +1,50 @@
+{
+  "placeId": "torggata_oslo",
+  "generatedAt": "2026-08-14",
+  "scope": "Torggata fase 13 Brands closeout",
+  "baseline": "reports/place-production/torggata-phase8c-brands-audit-v1.json",
+  "canonicalMap": "data/brands/brands_by_place.json",
+  "brand_ids": [
+    "angst",
+    "john_dee",
+    "eldorado_bokhandel",
+    "jernia_torggata",
+    "oslo_sportslager",
+    "norli_eldorado",
+    "oslo_bar_bowling",
+    "oslo_street_food",
+    "adelsten",
+    "ludvig_jensen_co",
+    "pm_jensen",
+    "karl_a_jensen_forretning",
+    "ingwald_nielsen"
+  ],
+  "counts": {
+    "total": 13,
+    "currentCanonical": 13,
+    "sourceBackedInPhase8C": 13,
+    "missingFromMaster": 0,
+    "duplicateIds": 0
+  },
+  "holdbacks": [
+    {
+      "brandId": "familien",
+      "status": "holdback",
+      "reason": "Sekundærnavn i samme kildeprofil som ANGST; holdes tilbake for å unngå parallell brand-entry uten bedre fysisk/digital state-kilde."
+    }
+  ],
+  "checks": {
+    "approved": true,
+    "canonicalMatchesPhase8C": true,
+    "allBrandIdsInMaster": true,
+    "noDuplicateIds": true,
+    "allHaveSourceRefsInPhase8C": true,
+    "allHaveTorggataPlaceRefInPhase8C": true,
+    "legacyAndCurrentSeparated": true,
+    "noUnclearedLogoCopying": true,
+    "addressSemanticsPreserved": true,
+    "brandCountIsRuleDrivenNotQuota": true,
+    "logoCompletenessRequiredForCloseout": false
+  },
+  "decision": "Fase 13 gjenkontrollerer den allerede kildebårne 8C-utvelgelsen mot dagens canonical mapping. Mappingen er uendret: nøyaktig de samme 13 brand-ID-ene ligger på Torggata, alle finnes i masteren, og ingen ny canonical dataendring er nødvendig. Faseporten gjelder dokumentert stedstilknytning og redaksjonell brand-kvalitet; den gjøres ikke avhengig av dynamisk logo- eller bildeinnhenting."
+}
