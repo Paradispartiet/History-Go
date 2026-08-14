@@ -7,6 +7,16 @@ import { isDeepStrictEqual } from 'node:util';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ID = 'industri-regulering-og-distribusjon';
 const NEXT = 'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief';
+const RECEPTION_SOURCE_GATE = 'reception_participation_audience_methods_source_brief_complete_full_chapter_production';
+const RECEPTION_FULLTEXT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';
+const UNIT_TEN_OR_LATER_PRODUCTION_GATES = new Set([
+  NEXT,
+  RECEPTION_SOURCE_GATE,
+  RECEPTION_FULLTEXT_GATE
+]);
+
+export const isFilmTvUnitTenOrLaterGate = (gate) => UNIT_TEN_OR_LATER_PRODUCTION_GATES.has(gate);
+
 const read = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
 const write = (file, value) => {
   fs.mkdirSync(path.dirname(path.join(ROOT, file)), { recursive: true });
@@ -93,7 +103,8 @@ export function auditFilmTvIndustryRegulationDistributionFulltextV1({
     registered: registered?.file === `data/fagverk/film_tv/${ID}.json`
       && registered?.claimsFile === `data/fagverk/film_tv/${ID}/claims.json`
       && registered?.briefFile === `data/fagverk/film_tv/${ID}/brief.json`,
-    next_gate: film?.editorialStatus === 'chapters_in_progress' && film?.nextGate === NEXT,
+    next_gate: ['chapters_in_progress', 'complete'].includes(film?.editorialStatus)
+      && isFilmTvUnitTenOrLaterGate(film?.nextGate),
     funding_boundary: /tildeling.{0,180}(ikke|dokumenterer ikke).{0,180}(kvalitet|publikum|virkning)/i.test(combined),
     ownership_boundary: /tjeneste.{0,120}foretak.{0,120}konsern.{0,160}(kontroll|reell kontroll)/i.test(combined),
     platform_procedure_boundary: /informasjonskrav.{0,180}(ikke|ingen).{0,140}(lovbrudd|konklusjon)/i.test(combined),
