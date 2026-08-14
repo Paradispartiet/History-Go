@@ -1,0 +1,25 @@
+{
+  "schema": "civication_badge_career_contract_overlay_v1",
+  "version": 1,
+  "badge_id": "natur",
+  "evidence_ref": "data/Civication/naturCareerLifeEvidence.json",
+  "allowed_tier_patch_fields": ["life_position", "career_offer", "career_unlock"],
+  "tiers": [
+    {"label":"Naturinteressert","life_position":{"id":"naturinteressert","label":"Naturinteressert","kind":"nature_interest","employment_independent":true}},
+    {"label":"Feltobservatør","life_position":{"id":"feltobservator","label":"Feltobservatør","kind":"field_observation_practice","employment_independent":true}},
+    {"label":"Artsobservatør","life_position":{"id":"artsobservator","label":"Artsobservatør","kind":"species_observation_practice","employment_independent":true}},
+    {"label":"Feltassistent","career_offer":{"title":"Feltassistent","policy":"direct","salary_tier":1,"role_scope":"natur_felt_og_formidling"}},
+    {"label":"Naturveileder","career_offer":{"title":"Naturveileder","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":1,"role_scope":"natur_felt_og_formidling"}},
+    {"label":"Naturforvalter","career_offer":{"title":"Naturforvalter","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"natur_forvaltning_og_radgivning"}},
+    {"label":"Rådgiver (miljø/natur)","career_offer":{"title":"Rådgiver (miljø/natur)","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"natur_forvaltning_og_radgivning"}},
+    {"label":"Seniorrådgiver (miljø/natur)","career_offer":{"title":"Seniorrådgiver (miljø/natur)","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"natur_forvaltning_og_radgivning"}},
+    {"label":"Biolog","career_offer":{"title":"Biolog","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"natur_biologi_og_forskning"}},
+    {"label":"Økolog","career_offer":{"title":"Økolog","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"natur_biologi_og_forskning"}},
+    {"label":"Forsker (miljø/natur)","career_offer":{"title":"Forsker (miljø/natur)","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":2,"role_scope":"natur_biologi_og_forskning"}},
+    {"label":"Seniorforsker (miljø/natur)","career_offer":{"title":"Seniorforsker (miljø/natur)","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":3,"role_scope":"natur_biologi_og_forskning"}},
+    {"label":"Naturvernleder","career_offer":{"title":"Naturvernleder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"natur_miljoledelse"}},
+    {"label":"Miljøsjef","career_offer":{"title":"Miljøsjef","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"natur_miljoledelse"}},
+    {"label":"Miljødirektør","career_offer":{"title":"Miljødirektør","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"natur_miljoledelse"}},
+    {"label":"Statsråd (klima og miljø)","career_offer":{"title":"Statsråd (klima og miljø)","policy":"appointment_required","qualification_ids":["public_office_appointment"],"salary_tier":3,"role_scope":"natur_politisk_myndighet"}}
+  ]
+}
