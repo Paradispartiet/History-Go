@@ -38,7 +38,7 @@ jobs:
           path = Path('scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs')
           text = path.read_text()
           start = text.index('function renderParagraph(')
-          end = text.index('\n\nexport function buildFilmTvScreenPlacesIdentityCirculationFulltextV1()', start)
+          end = text.index('\n\nfunction buildModule(', start)
           replacement = r'''function renderParagraph({ topic, claim, claimIndex, editorial, selectedSources, selectedCases }) {
             const [primary, secondary, tertiary] = selectedSources;
             const [caseRow, controlCase] = selectedCases;
