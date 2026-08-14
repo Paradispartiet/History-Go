@@ -129,7 +129,7 @@
     return out;
   }
 
-  async function loadRowsWithConcurrency(urls, key, concurrency, onProgress, prioritize) {
+  async function loadRowsWithConcurrency(urls, key, concurrency, onProgress, prioritize, onStart) {
     const list = Array.isArray(urls) ? urls : [];
     if (!list.length) return { rows: [], failed: [] };
 
@@ -155,6 +155,7 @@
         if (!next) return;
 
         const { url, index } = next;
+        onStart?.({ url, index });
         const cache = prioritize?.(url) ? "reload" : "default";
         const data = await fetchJSON(url, { cache });
         if (data == null) failed.push(url);
@@ -689,6 +690,8 @@
       const progressStep = Math.max(1, Math.ceil(peopleFiles.length / 20));
       const loadedRowsByFile = new Map();
       const attemptedPeopleFiles = new Set();
+      const inFlightPeopleFiles = new Set();
+      const ordinaryRetryPendingFiles = new Set();
       const knownManifestIds = new Set();
       const failedRevalidationKeys = new Set();
       let lastRevalidationPlaceId = "";
@@ -747,8 +750,11 @@
         handlePeopleDataChange();
       };
 
-      const rememberRows = ({ url, rows, cache, ok }) => {
+      const rememberRows = ({ url, rows, cache, ok }, { ordinaryRetryComplete = false } = {}) => {
         attemptedPeopleFiles.add(url);
+        inFlightPeopleFiles.delete(url);
+        if (ordinaryRetryComplete) ordinaryRetryPendingFiles.delete(url);
+        else if (!ok) ordinaryRetryPendingFiles.add(url);
         if (ok) {
           for (const row of loadedRowsByFile.get(url) || []) {
             const id = String(row?.id || "").trim();
@@ -776,6 +782,8 @@
         const targets = peopleFiles.filter(file =>
           isPriorityFileForPlace(file, placeId)
           && attemptedPeopleFiles.has(file)
+          && !inFlightPeopleFiles.has(file)
+          && !ordinaryRetryPendingFiles.has(file)
           && !revalidatedFiles.has(file)
           && !failedRevalidationKeys.has(`${placeId}:${file}`)
         );
@@ -790,6 +798,7 @@
         let refreshedAny = false;
         const rememberRevalidatedRows = ({ url, rows, cache, ok }) => {
           attemptedPeopleFiles.add(url);
+          inFlightPeopleFiles.delete(url);
           if (!ok) return;
           refreshedAny = true;
           for (const row of loadedRowsByFile.get(url) || []) {
@@ -809,7 +818,8 @@
           "people",
           Math.min(3, PEOPLE_FETCH_CONCURRENCY),
           rememberRevalidatedRows,
-          () => true
+          () => true,
+          ({ url }) => inFlightPeopleFiles.add(url)
         ).then(async firstAttempt => {
           // En transient reload-feil får ett kontrollert nytt forsøk. Filer som
           // fortsatt feiler, beholder siste brukbare rader og forblir kvalifisert
@@ -821,7 +831,8 @@
               "people",
               2,
               rememberRevalidatedRows,
-              () => true
+              () => true,
+              ({ url }) => inFlightPeopleFiles.add(url)
             );
             remainingFailed = retryAttempt.failed;
           }
@@ -860,7 +871,8 @@
             });
           }
         },
-        prioritizeOpenPlace
+        prioritizeOpenPlace,
+        ({ url }) => inFlightPeopleFiles.add(url)
       );
 
       // Små, forbigående nettverksfeil skal ikke gi permanente hull i People.
@@ -870,8 +882,9 @@
           firstPass.failed,
           "people",
           2,
-          rememberRows,
-          prioritizeOpenPlace
+          detail => rememberRows(detail, { ordinaryRetryComplete: true }),
+          prioritizeOpenPlace,
+          ({ url }) => inFlightPeopleFiles.add(url)
         )
         : { rows: [], failed: [] };
       // loadedRowsByFile er autoritativ etter både førstegangslast, retry og

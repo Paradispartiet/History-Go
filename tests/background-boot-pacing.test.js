@@ -18,6 +18,8 @@ assert.match(boot, /PEOPLE_FETCH_CONCURRENCY/);
 assert.match(boot, /hg:people-priority-ready/);
 assert.match(boot, /HG_SHOULD_DEFER_PEOPLE_FOR_PLACE/);
 assert.match(boot, /hg:people-place-revalidation-needed/);
+assert.match(boot, /inFlightPeopleFiles/);
+assert.match(boot, /ordinaryRetryPendingFiles/);
 assert.match(boot, /typeof data === "object".*return \[data\]/);
 assert.match(boot, /for \(const \[label, task\] of tasks\)/);
 assert.match(boot, /await waitForBackgroundIdle\(\);\s*await runSafeAsync\(label, task\);/);
