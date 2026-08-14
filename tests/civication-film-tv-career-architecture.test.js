@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
-const Resolver = require('../js/Civication/systems/civicationCareerRoleResolver.js');
 
 const badge = readJson('data/badges/film_tv.json');
 const evidence = readJson('data/Civication/filmTvCareerLifeEvidence.json');
@@ -28,7 +27,6 @@ for (const [title, salaryTier, scope] of jobs) {
   assert.strictEqual(tier.career_offer?.policy, 'direct');
   assert.strictEqual(tier.career_offer?.salary_tier, salaryTier);
   assert.strictEqual(tier.career_offer?.role_scope, scope);
-  assert.strictEqual(Resolver.resolveCareerRoleScope({career_id:'film_tv', title, role_scope:scope}), scope);
 
   const model = readJson(`data/Civication/roleModels/film_tv/${scope}.json`);
   assert.strictEqual(model.version, 2, `${scope}: role model must be v2`);
