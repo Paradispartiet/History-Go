@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Strengthen fallback concept prose
+      - name: Strengthen fallback concept prose and diagnostics
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -34,6 +34,11 @@ jobs:
           new="""  const canonicalDefinition = cleanNorwegian(c.definition);\n  const genericDefinition = /betegner i .* en avgrenset måte å beskrive eller vurdere/i.test(canonicalDefinition);\n  const contextualDefinition = `${c.label.toLowerCase()} brukes i denne artikkelen som et arbeidsbegrep for å analysere ${lowerFirst(String(article.canonical_definition || article.title).replace(/\\.$/, ''))}; den presise rekkevidden må fastsettes gjennom begrepets relasjoner, eksempler, innvendinger og den teorien som brukes`;\n  const definition = CONCEPT_OVERRIDE[c.id] || (genericDefinition ? contextualDefinition : canonicalDefinition);"""
           if old not in s:
               raise SystemExit('Expected concept definition line not found')
+          s=s.replace(old,new)
+          old="    if(prose.some((p)=>/\\b[a-zæøå]+_[a-zæøå_]+\\b/.test(p))) throw new Error(`Raw identifier leaked into prose in ${article.id}`);"
+          new="""    const rawIdHit = prose.map((p,idx)=>({idx,p,match:p.match(/\\b[a-zæøå]+_[a-zæøå_]+\\b/)})).find((x)=>x.match);\n    if(rawIdHit) throw new Error(`Raw identifier leaked into prose in ${article.id} paragraph ${rawIdHit.idx}: ${rawIdHit.match[0]} :: ${rawIdHit.p}`);"""
+          if old not in s:
+              raise SystemExit('Expected raw identifier guard not found')
           p.write_text(s.replace(old,new))
           PY
       - name: Rebuild and polish complete Philosophy corpus
