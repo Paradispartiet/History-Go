@@ -1,0 +1,43 @@
+{
+  "schema": "civication_by_career_life_evidence_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-14",
+  "badge_id": "by",
+  "canonical_decision": {
+    "summary": "By & arkitektur har 16 canonicale Badge-tiers. Alle er reelle stillinger eller arbeidsposisjoner; poengprogresjon må likevel aldri overstyre reelle kvalifikasjons- eller utnevnelseskrav.",
+    "formal_job_tiers": ["Studentassistent","Praktikant (arkitektur/plan)","Prosjektmedarbeider","Saksbehandler (plan/bygg)","Førstekonsulent","Rådgiver (byutvikling)","Seniorrådgiver (byutvikling)","Arealplanlegger","Byplanlegger","Prosjektleder (byutvikling)","Seksjonsleder","Arkitekt","Seniorarkitekt","Fagsjef (plan/bygg)","Byarkitekt","Direktør (byutvikling)"],
+    "pure_life_or_practice_tiers": [],
+    "review_left_open": [],
+    "work_worlds": {
+      "by_assistent": ["Studentassistent","Praktikant (arkitektur/plan)","Prosjektmedarbeider"],
+      "by_saksbehandler": ["Saksbehandler (plan/bygg)","Førstekonsulent"],
+      "by_radgiver_plan": ["Rådgiver (byutvikling)","Seniorrådgiver (byutvikling)","Arealplanlegger","Byplanlegger"],
+      "by_prosjektleder": ["Prosjektleder (byutvikling)","Seksjonsleder","Fagsjef (plan/bygg)","Direktør (byutvikling)"],
+      "by_arkitekt": ["Arkitekt","Seniorarkitekt","Byarkitekt"]
+    },
+    "rules": [
+      "Studentassistent og plan-/arkitektfaglige kvalifikasjonsroller åpnes fail-closed til relevant kompetanse/ansettelse er dokumentert.",
+      "Arkitekt og Seniorarkitekt bruker utdannings-/ansettelsesport; auditpolicyen beskriver uttrykkelig at dette ikke er norsk autorisasjon for tittelen.",
+      "Seksjonsleder, Fagsjef, Byarkitekt og Direktør krever konkret arbeidsgiverutnevnelse.",
+      "Direkte jobbtiers er fortsatt konkrete stillinger; Badge-poeng lager et tilbud, ikke en fiktiv ansettelse utenom jobbsystemet."
+    ]
+  },
+  "salary_mapping": {
+    "existing_by_bands_pc_per_week": {"1":6,"2":9,"3":15},
+    "tier_groups": {
+      "1": ["Studentassistent","Praktikant (arkitektur/plan)","Prosjektmedarbeider","Saksbehandler (plan/bygg)","Førstekonsulent"],
+      "2": ["Rådgiver (byutvikling)","Seniorrådgiver (byutvikling)","Arealplanlegger","Byplanlegger","Prosjektleder (byutvikling)"],
+      "3": ["Seksjonsleder","Arkitekt","Seniorarkitekt","Fagsjef (plan/bygg)","Byarkitekt","Direktør (byutvikling)"]
+    },
+    "cross_requirements_preserved": {"3":[{"badge":"naeringsliv","min_tier":2},{"badge":"politikk","min_tier":1}]}
+  },
+  "sources": [
+    {"id":"utdanning_arealplanlegger","publisher":"Utdanning.no","title":"Arealplanlegger","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/arealplanlegger","supports":["Arealplanlegger","Byplanlegger","plan_og_saksbehandling"]},
+    {"id":"utdanning_arkitekt","publisher":"Utdanning.no","title":"Arkitekt","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/arkitekt","supports":["Arkitekt","Seniorarkitekt","Byarkitekt","arkitekturarbeid"]},
+    {"id":"utdanning_samfunnsplanlegger","publisher":"Utdanning.no","title":"Samfunnsplanlegger","checked_at":"2026-08-14","url":"https://utdanning.no/yrker/beskrivelse/samfunnsplanlegger","supports":["byutvikling","planprosess","utredning"]},
+    {"id":"hkdir_regulerte_yrker","publisher":"HK-dir","title":"Lovregulerte yrker","checked_at":"2026-08-14","url":"https://hkdir.no/utdanning-fra-utlandet/lovregulerte-yrker","supports":["qualification_model","regulert_vs_ikke_regulert"]},
+    {"id":"lovdata_pbl","publisher":"Lovdata","title":"Plan- og bygningsloven","checked_at":"2026-08-14","url":"https://lovdata.no/nav/lov/2008-06-27-71","supports":["planmyndighet","reguleringsplan","byggesak"]},
+    {"id":"kdd_planoversikt","publisher":"Kommunal- og distriktsdepartementet","title":"En kort oversikt over planlegging etter plan- og bygningsloven","checked_at":"2026-08-14","url":"https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/plan_bygningsloven/planlegging/nyiplan/oversikt_planlegging_plan_bygningsloven/id2868449/","supports":["planlegging","medvirkning","langsiktige_hensyn"]},
+    {"id":"kdd_medvirkning","publisher":"Kommunal- og distriktsdepartementet","title":"Medvirkning","checked_at":"2026-08-14","url":"https://www.regjeringen.no/no/tema/plan-bygg-og-eiendom/plan_bygningsloven/planlegging/fagtema/medvirkning/id2961720/","supports":["medvirkning","lokaldemokrati","interesseavveiing"]}
+  ]
+}
