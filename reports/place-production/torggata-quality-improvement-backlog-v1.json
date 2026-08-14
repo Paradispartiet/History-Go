@@ -1,0 +1,64 @@
+{
+  "schema_version": "torggata_quality_improvement_backlog_v1",
+  "place_id": "torggata",
+  "generated_at": "2026-08-14",
+  "status": "OPEN_BLOCKING_COMPLETION",
+  "source": "manual_user_quality_review",
+  "invariant": {
+    "content_rounds_total": 4,
+    "badge_separate": true,
+    "note": "The 4+1 layout remains. The four content rounds must be substantive, distinct and natural."
+  },
+  "findings": [
+    {
+      "id": "before_after_comparability_and_depth",
+      "severity": "BLOCKING",
+      "observed": "The current 2009 and 2017 images show different street views. They document the redevelopment period but do not form a strong visual before/after comparison and do not show a genuinely old Torggata against the present.",
+      "required_improvements": [
+        "Use a primary pair anchored to the same recognisable street segment or built element from a comparable direction and scale.",
+        "Add at least one genuinely old archival image compared with an actual current image when rights, identity and viewpoint are verified.",
+        "Keep the 2009/2017 redevelopment layer only as a clearly labelled supplemental comparison if it remains useful."
+      ],
+      "acceptance": "Manual UI review can identify the same place element immediately and can see both long-term historical change and any newer redevelopment change without misleading labels."
+    },
+    {
+      "id": "news_missing",
+      "severity": "BLOCKING",
+      "observed": "The News tab has no content.",
+      "required_improvements": [
+        "Perform a fresh search across official actors, local media and relevant place organisations.",
+        "Publish dated, source-reviewed, place-specific items when available.",
+        "Use N/A only after documenting that fresh search and why no safe relevant item can be shown."
+      ],
+      "acceptance": "News contains useful current place-specific material, or a strict fresh-search N/A is documented and independently reviewable."
+    },
+    {
+      "id": "more_missing",
+      "severity": "BLOCKING",
+      "observed": "The More tab has no content despite Torggata's rich name, language, archive, observation and relation potential.",
+      "required_improvements": [
+        "Search language history, archival details, observations, knowledge, fun facts and curated relations.",
+        "Produce a distinct additive layer that does not duplicate About or History."
+      ],
+      "acceptance": "More contains a useful Torggata-specific layer with sources and clear ownership, not filler."
+    },
+    {
+      "id": "objects_structures_round_overlap",
+      "severity": "BLOCKING",
+      "observed": "Objects is represented by one artificial item while Structures/Buildings covers physical place elements, producing an unclear and forced split.",
+      "required_improvements": [
+        "Do not retain Objects as a separate round on the strength of one arbitrary item.",
+        "Merge or replace overlapping round concepts so all four content rounds are semantically distinct.",
+        "Update the canonical round contract/runtime first if the current fixed profile prevents a coherent Torggata solution."
+      ],
+      "acceptance": "All four content rounds remain visible, but each has a natural label, a substantive place-specific collection and no material semantic overlap; Badge remains separate."
+    }
+  ],
+  "completion_gate": {
+    "required_status": "ALL_FINDINGS_RESOLVED",
+    "manual_ui_review_required": true,
+    "rescore_required": true,
+    "minimum_dimension_score": 4,
+    "minimum_total_score": 27
+  }
+}
