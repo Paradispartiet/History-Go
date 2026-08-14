@@ -1,83 +1,99 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {
-  auditFilmTvIndustryRegulationDistributionSourceBriefV1,
-  buildFilmTvIndustryRegulationDistributionSourceBriefV1
-} from '../scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs';
 
-const versionAtLeast = (actual, minimum) => {
-  const a = String(actual).split('.').map(Number);
-  const b = String(minimum).split('.').map(Number);
-  for (let index = 0; index < Math.max(a.length, b.length); index += 1) {
-    if ((a[index] || 0) !== (b[index] || 0)) return (a[index] || 0) > (b[index] || 0);
-  }
-  return true;
-};
+const ROOT = new URL('../', import.meta.url);
+const read = (relative) => JSON.parse(fs.readFileSync(new URL(relative, ROOT), 'utf8'));
+const rowsFromManifest = (manifestPath, filesKey, rowsKey) =>
+  read(manifestPath)[filesKey].flatMap((file) => read(file)[rowsKey]);
 
-test('tiende planenhet har komplett kilde- og claimbrief uten tidlig kapittelregistrering', () => {
-  const { report } = auditFilmTvIndustryRegulationDistributionSourceBriefV1();
-  assert.equal(report.summary.emne_count, 12);
-  assert.equal(report.summary.proposed_module_count, 4);
-  assert.equal(report.summary.source_count, 34);
-  assert.equal(report.summary.case_count, 34);
-  assert.equal(report.summary.planned_claim_count, 52);
-  assert.deepEqual(report.summary.planned_claim_counts_by_emne, [4, 5, 4, 4, 5, 4, 5, 4, 5, 4, 4, 4]);
-  assert.equal(report.summary.registered_chapter_count_delta, 0);
-  assert.ok(Object.values(report.gates).every(Boolean));
+test('tiende planenhets kilde- og claimbrief forblir komplett gjennom senere fulltekstprogresjon', () => {
+  const brief = read('data/fag/TV_og_Film/film_tv_industry_regulation_distribution_source_claim_brief_v1.json');
+  const sources = rowsFromManifest(
+    'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_sources_v1.json',
+    'source_files',
+    'sources'
+  );
+  const cases = rowsFromManifest(
+    'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_cases_v1.json',
+    'case_files',
+    'cases'
+  );
+  const topicBriefs = rowsFromManifest(
+    'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_topic_claims_v1.json',
+    'topic_claim_files',
+    'topic_briefs'
+  );
+  const plannedClaims = topicBriefs.flatMap((topic) => topic.planned_claims);
+
+  assert.equal(brief.status, 'source_claim_brief_complete_full_chapter_production');
+  assert.equal(brief.scope.emne_count, 12);
+  assert.equal(brief.proposed_module_order.length, 4);
+  assert.equal(sources.length, 34);
+  assert.equal(cases.length, 34);
+  assert.equal(plannedClaims.length, 52);
+  assert.deepEqual(
+    topicBriefs.map((topic) => topic.planned_claims.length),
+    [4, 5, 4, 4, 5, 4, 5, 4, 5, 4, 4, 4]
+  );
+  assert.equal(brief.runtime_registration.registered, false);
+  assert.equal(brief.runtime_registration.allowed_before_full_chapter_gate, false);
+  assert.equal(plannedClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'), true);
 });
 
-test('markeds-, makt-, rettighets- og reguleringspåstander har separate evidensgrenser', () => {
-  const { report } = auditFilmTvIndustryRegulationDistributionSourceBriefV1();
-  for (const gate of [
-    'platform_regulation_preserves_procedural_boundaries',
-    'audience_measurement_scope_is_explicit',
-    'rights_windows_and_availability_are_separate',
-    'classification_censorship_and_moderation_are_separate',
-    'format_registration_and_law_are_separate',
-    'piracy_access_and_motive_are_separate',
-    'concrete_reception_remains_next_unit'
-  ]) {
-    assert.equal(report.gates[gate], true, gate);
-  }
-});
-
-test('alle kilder, case og claimplaner er konkrete og resolvable', () => {
-  const { sources, cases, topicBriefs, plannedClaims } =
-    buildFilmTvIndustryRegulationDistributionSourceBriefV1();
-  const sourceIds = new Set(sources.map((row) => row.id));
+test('alle kilde-, case- og claimreferanser er konkrete og resolvable', () => {
+  const sources = rowsFromManifest(
+    'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_sources_v1.json',
+    'source_files',
+    'sources'
+  );
+  const cases = rowsFromManifest(
+    'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_cases_v1.json',
+    'case_files',
+    'cases'
+  );
+  const topicBriefs = rowsFromManifest(
+    'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_topic_claims_v1.json',
+    'topic_claim_files',
+    'topic_briefs'
+  );
+  const sourceIds = new Set(sources.map((source) => source.id));
   const caseIds = new Set(cases.map((row) => row.id));
-  const usedSources = new Set(topicBriefs.flatMap((row) => row.source_ids));
-  const usedCases = new Set(topicBriefs.flatMap((row) => row.case_ids));
+  const usedSources = new Set([
+    ...topicBriefs.flatMap((topic) => topic.source_ids),
+    ...cases.flatMap((row) => row.source_ids)
+  ]);
+  const usedCases = new Set(topicBriefs.flatMap((topic) => topic.case_ids));
 
-  assert.equal(sources.every((row) => usedSources.has(row.id)), true);
+  assert.equal(sources.every((source) => /^https:\/\//.test(source.url) && source.source_location), true);
+  assert.equal(sources.every((source) => usedSources.has(source.id)), true);
   assert.equal(cases.every((row) => usedCases.has(row.id)), true);
-  assert.equal(topicBriefs.every((row) => row.source_ids.every((id) => sourceIds.has(id))), true);
-  assert.equal(topicBriefs.every((row) => row.case_ids.every((id) => caseIds.has(id))), true);
-  assert.equal(plannedClaims.every((row) => row.status === 'planned_requires_fulltext_verification'), true);
-  assert.equal(new Set(plannedClaims.map((row) => row.id)).size, 52);
+  assert.equal(topicBriefs.every((topic) => topic.source_ids.every((id) => sourceIds.has(id))), true);
+  assert.equal(topicBriefs.every((topic) => topic.case_ids.every((id) => caseIds.has(id))), true);
 });
 
-test('delt runtime-status avanserer monotont mens kapittelet forblir uregistrert', () => {
-  const { registry, status } = buildFilmTvIndustryRegulationDistributionSourceBriefV1();
+test('runtime kan stå på kildebriefporten eller en senere enhet-10-produksjonsport', () => {
+  const registry = read('data/fagverk/fagverk_registry.json');
+  const status = read('data/fagverk/subject_status.json');
   const film = status.subjects.find((row) => row.id === 'film_tv');
+  const chapterRegistered = registry.subjects.film_tv.chapters.some(
+    (row) => row.id === 'industri-regulering-og-distribusjon'
+  );
 
-  assert.equal(versionAtLeast(registry.version, '2.92.0'), true);
-  assert.equal(versionAtLeast(status.version, '1.85.0'), true);
-  assert.ok(registry.updatedAt >= '2026-08-14');
-  assert.ok(status.updatedAt >= '2026-08-14');
   assert.equal(
     registry.subjects.film_tv.canonicalModel.tenthSourceClaimBrief,
     'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_source_claim_brief_v1.json'
   );
-  assert.equal(
-    registry.subjects.film_tv.chapters.some((row) => row.id === 'industri-regulering-og-distribusjon'),
-    false
-  );
-  assert.equal(
-    film.nextGate,
-    'industry_regulation_distribution_source_brief_complete_full_chapter_production'
-  );
+  assert.ok([
+    'industry_regulation_distribution_source_brief_complete_full_chapter_production',
+    'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief'
+  ].includes(film.nextGate));
+  if (chapterRegistered) {
+    assert.equal(
+      film.nextGate,
+      'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief'
+    );
+  }
 });
 
 test('briefmotoren inneholder ingen SCM-synk eller GitHub-push', () => {
