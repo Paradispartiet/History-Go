@@ -7,9 +7,10 @@ const gate = readJson("reports/place-production/torggata-phase24-one-place-gate-
 const phase21 = readJson("reports/place-production/torggata-phase21-ui-qa-audit-v1.json");
 const phase22 = readJson("reports/place-production/torggata-phase22-content-qa-audit-v1.json");
 const phase23 = readJson("reports/place-production/torggata-phase23-ci-gates-audit-v1.json");
+const backlog = readJson("reports/place-production/torggata-quality-improvement-backlog-v1.json");
 
 test("Torggata phase 24 is a strict one-place final PR", () => {
-  assert.equal(gate.status, "APPROVED_MERGED_DEPLOYED");
+  assert.equal(gate.status, "REOPENED_EDITORIAL_QUALITY");
   assert.deepEqual(gate.scope.places, ["torggata"]);
   assert.equal(gate.scope.active_phase, 24);
   assert.deepEqual(gate.scope.necessary_safeguard_changes, []);
@@ -47,16 +48,39 @@ test("final merge, deployment and 4+1 production evidence are locked", () => {
   assert.equal(gate.completion_evidence.badge_separate, true);
 });
 
-test("the mandatory six-part quality assessment passes the completion threshold", () => {
+test("manual quality review reopens completion until the five editorial blockers are fixed", () => {
   const assessment = gate.quality_assessment;
   assert.equal(assessment.dimensions.length, 6);
-  assert.equal(assessment.total, 29);
+  assert.equal(assessment.total, 21);
   assert.equal(assessment.required_total, 27);
-  assert.ok(assessment.dimensions.every((dimension) => dimension.score >= 4));
-  assert.deepEqual(assessment.critical_findings, []);
-  assert.deepEqual(assessment.unresolved_blockers, []);
-  assert.equal(assessment.gate, "PASSED_HIGH_QUALITY");
-  assert.match(assessment.automatic_checks_limit, /does not by itself prove editorial or visual quality/);
+  assert.ok(assessment.dimensions.some((dimension) => dimension.score < 4));
+  assert.equal(assessment.critical_findings.length, 5);
+  assert.equal(assessment.unresolved_blockers.length, 5);
+  assert.equal(assessment.gate, "FAILED_REOPENED_FOR_EDITORIAL_IMPROVEMENT");
+  assert.match(assessment.automatic_checks_limit, /do not prove/);
+  assert.equal(backlog.status, "OPEN_BLOCKING_COMPLETION");
+  assert.equal(backlog.findings.length, 5);
+  assert.deepEqual(backlog.invariant, {
+    content_rounds_total: 4,
+    badge_separate: true,
+    note: "The 4+1 layout remains. The four content rounds must be substantive, distinct and natural."
+  });
+  assert.ok(backlog.findings.every((finding) => finding.severity === "BLOCKING"));
+  assert.equal(backlog.completion_gate.manual_ui_review_required, true);
+  assert.equal(backlog.completion_gate.rescore_required, true);
+  assert.deepEqual(backlog.active_phase, {
+    id: "phase_7d_before_after",
+    status: "IN_PROGRESS_REOPENED",
+    exact_file_scope: [
+      "data/places/by/oslo/places/torggata.json",
+      "reports/place-production/torggata-phase7d-before-after-audit-v1.md",
+      "tests/place-card-for-na-torggata.test.js"
+    ]
+  });
+  assert.equal(backlog.sequence.length, 7);
+  assert.equal(backlog.sequence.filter((item) => item.status === "IN_PROGRESS").length, 1);
+  assert.equal(backlog.sequence[0].id, "before_after_comparability_and_depth");
+  assert.ok(backlog.sequence.slice(1).every((item) => item.status === "QUEUED"));
 });
 
 test("global checklist mirrors the canonical four-plus-separate-Badge contract", () => {
@@ -67,5 +91,14 @@ test("global checklist mirrors the canonical four-plus-separate-Badge contract",
   assert.match(contract, /Badges teller ikke som en av de fire rundingene/);
   assert.match(checklist, /MÅL FOR INNHOLDSRUNDINGER: 4 \+ separat fast Badge/);
   assert.match(checklist, /nøyaktig fire innholdsrundinger vises i et 2 × 2-felt/);
+  assert.match(checklist, /bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder/);
+  assert.match(checklist, /2009 → 2017 erstatter ikke automatisk et eldre historisk førbilde/);
+  assert.match(checklist, /Nyheter kan ikke godkjennes som tom\/N\/A/);
+  assert.match(checklist, /Lesespor kan ikke godkjennes som tom\/N\/A/);
+  assert.match(checklist, /betalingslåst er ikke tilstrekkelig N\/A-grunn/);
+  assert.match(checklist, /Mer kan ikke settes N\/A for et innholdsrikt sted/);
+  assert.match(checklist, /en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok/);
+  assert.match(checklist, /Objects og Structures\/Bygg brukes ikke som to separate rundinger/);
+  assert.match(checklist, /Fire plasser skal aldri fylles bare for å oppnå 4\+1-layouten/);
   assert.doesNotMatch(checklist, /tre innholdsrundinger|3 innholdsrundinger|tre-rundersrad|legacy 4-\/6-/i);
 });

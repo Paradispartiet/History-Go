@@ -43,6 +43,7 @@
 - Fase 22-audit: `reports/place-production/torggata-phase22-content-qa-audit-v1.json`
 - Fase 23-audit: `reports/place-production/torggata-phase23-ci-gates-audit-v1.json`
 - Fase 24-audit: `reports/place-production/torggata-phase24-one-place-gate-audit-v1.json`
+- Åpen kvalitetsforbedring: `reports/place-production/torggata-quality-improvement-backlog-v1.json`
 
 ## Korrigert fasestatus
 
@@ -55,7 +56,7 @@
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
+| 7. Popupfaner | **GJENÅPNET – 7D FØR/ETTER PÅGÅR** | tidligere PR-er er historisk merget; manuell sluttkritikk gjenåpner først 7D, mens Nyheter, Lesespor og Mer står i kø |
 | 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
@@ -72,7 +73,7 @@
 | 21. UI-QA | **GODKJENT ETTER SIKRINGSENDRING** | WebGL-feil stopper ikke lenger app-/PlaceCard-boot; produksjonsflaten kontrollert |
 | 22. Innholds-QA | **GODKJENT** | 18/18 claims, Story, 5 × 7 Quiz, People 21/21, Brands 13/13, bilder og 4+1-rundinger kontrollert uten filler |
 | 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
-| 24. Ett-sted-PR | **GODKJENT, MERGET OG DEPLOYET** | PR #4962; final head `ce1f60231db52e2472fe334cded8eda140ae429a`; merge `44a9ecf6f11a797194c34573180278bc52e4770d`; Pages run `31794520090` success |
+| 24. Ett-sted-PR | **TEKNISK MERGET; REDAKSJONELL KVALITET GJENÅPNET** | PR #4962 og deploy er historisk verifisert, men manuell sluttvurdering avdekket fem blokkerende kvalitetsavvik |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -738,7 +739,22 @@ Neste aktive fase: **23. CI / repository-gates**.
 
 **Fase 23 CI / repository-gates = GODKJENT.**
 
-Ingen aktiv fase gjenstår. **Torggata er sluttført.**
+Aktiv fase: **7D Før/etter – GJENÅPNET / PÅGÅR**.
+
+Eksakt aktivt filscope:
+
+- `data/places/by/oslo/places/torggata.json` — `for_na`, bildepar, labels og attribusjon;
+- `reports/place-production/torggata-phase7d-before-after-audit-v1.md` — revidert research, kamerastandpunkt og acceptance-evidens;
+- `tests/place-card-for-na-torggata.test.js` — sammenlignbart primærpar, gammelt–nå-lag og faktisk nåbilde.
+
+Ingen annen forbedringsfase er `PÅGÅR`. Bindende rekkefølge etter ny godkjenning av 7D:
+
+1. Nyheter — kø;
+2. Lesespor — kø;
+3. Mer — kø;
+4. Fase 8 rundingskoherens — kø;
+5. Fase 21/22 ny manuell UI- og innholds-QA — kø;
+6. Fase 24 ny sluttport — kø.
 
 ## Fase 24 – Ett-sted-PR
 
@@ -755,23 +771,41 @@ Ingen aktiv fase gjenstår. **Torggata er sluttført.**
 - GitHub Pages build og deploy fullførte med success i run `31794520090`.
 - Produksjonen ble kontrollert med fire innholdsrundinger — People, Objects, Brands og Structures — samt separat Badge.
 
-**Fase 24 = GODKJENT, MERGET OG DEPLOYET.**
+**Fase 24 er teknisk merget og deployet; stedets redaksjonelle ferdigstatus er senere gjenåpnet.**
 
-## Obligatorisk seksdelt kvalitetsvurdering
+## Manuell sluttvurdering – kvalitetsstatus gjenåpnet
+
+Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket fem blokkerende avvik:
+
+1. **Før/etter er ikke en god nok sammenligning.** Bildene fra 2009 og 2017 viser ulike gateutsnitt. Begrensningen er dokumentert, men dokumentasjon gjør ikke paret visuelt godt. Torggata mangler også et skikkelig gammelt arkivbilde sammenlignet med et faktisk nåbilde.
+2. **Nyheter er tom.** Et aktivt og innholdsrikt bysted kan ikke ferdigmeldes med tom Nyheter-fane uten et dokumentert fersksøk og en streng begrunnelse.
+3. **Lesespor er tomt.** De registrerte Torggata-lenkene ble holdt tilbake fordi de er betalingslåst, men søket ble avsluttet uten å etablere åpne, direkte lesbare alternativer.
+4. **Mer er tom.** Torggata har nok navne-, språk-, arkiv-, observasjons- og relasjonsstoff til at manglende eksisterende Språkleksikon-post ikke er tilstrekkelig N/A-grunn.
+5. **Objects og Structures er kunstig splittet.** Objects bæres bare av én gjenstand, samtidig som Structures/Bygg dekker fysiske stedselementer. Rundingene er derfor ikke tydelige nok som to separate brukeropplevelser.
+
+### Påkrevde forbedringer
+
+- bygg Før/etter med et sammenlignbart primærpar fra samme meningsfulle gateutsnitt;
+- legg til minst ett skikkelig gammelt arkivlag mot et faktisk nåbilde når rettigheter og identitet er avklart;
+- produser relevante, daterte Nyheter etter fersksøk;
+- produser et reelt Lesespor med åpent, direkte lesbart Torggata-materiale, eller dokumenter et uttømmende strengt N/A-søk;
+- produser et reelt Mer-lag fra språk, arkiv, observasjoner, kunnskap eller kuraterte relasjoner;
+- revider rundingsvalget/kontrakten slik at fire innholdsrundinger fortsatt vises, men uten én kunstig Objects-runding eller uklar Objects/Structures-overlapp;
+- gjennomfør ny manuell slutt-QA før ferdigstatus kan gjeninnføres.
+
+## Revidert seksdelt kvalitetsvurdering
 
 | Dimensjon | Score | Konkret evidens |
 | --- | ---: | --- |
-| Korrekthet og evidens | **5/5** | 18/18 produksjonsclaims er verifisert; `desc` 3/3 og `popupDesc` 31/31 setninger er claimmappet; Story, Quiz, People og Brands har egne kilde-/proveniensauditer. |
-| Dekning og ferdigstillelse | **5/5** | Fase 0–24 er behandlet; alle fire innholdsrundinger og separat Badge er kontrollert; begrunnede N/A-er og eksplisitte holdbacks er registrert uten filler eller skjulte neste-sted-endringer. |
-| Faglig/redaksjonell kvalitet | **5/5** | Innholdet er Torggata-spesifikt, den for sterke bassengpåstanden er fjernet, én sammenhengende `episode_v1`-Story er beholdt, og Works/usikre kandidater er utelatt. |
-| Teknisk integritet | **5/5** | Faseauditer og regresjonstester består; final docs-head har grønne Data checks, Fagverk/place learning, Fagverk By, TypeScript, Documentation governance og Place rounds governance; produksjonen er manuelt kontrollert i no-WebGL-modus. |
-| Sikkerhet og ansvarlighet | **4/5** | Stedspakken er ikke et klinisk eller juridisk høyrisikodomene; 14 People-bildeholdbacks bevarer koblinger uten uverifiserte bilder, Nature er begrunnet N/A, og genererte/rekonstruerte brandassets er avvist. |
-| Vedlikeholdbarhet og etterprøvbarhet | **5/5** | Canonical rundingskontrakt, styrende checklist, fase 0–24-auditer, workcard, eksakte SHA-er/run-ID-er og låsende tester gjør resultatet reproduserbart og reviewbart. |
+| Korrekthet og evidens | **4/5** | Claims og kildeproveniens er sterke, men Før/etter-parets ulike utsnitt gir en svakere visuell påstand enn auditen tidligere lot fremstå. |
+| Dekning og ferdigstillelse | **2/5** | Nyheter, Lesespor og Mer mangler, historisk gammel–nå-sammenligning mangler, og rundingssettet trenger ny produksjon. |
+| Faglig/redaksjonell kvalitet | **2/5** | Før/etter er lite meningsfullt som hovedpar, og Objects/Structures-oppsplittingen oppleves kunstig. |
+| Teknisk integritet | **5/5** | CI, runtime, no-WebGL-ruting og 4+1-layout fungerer teknisk. Dette opphever ikke de redaksjonelle avvikene. |
+| Sikkerhet og ansvarlighet | **4/5** | People-holdbacks, kildegrenser og assetkontroll består; ingen nye sikkerhetsavvik er funnet. |
+| Vedlikeholdbarhet og etterprøvbarhet | **4/5** | Sporbarheten er god, men den tidligere kvalitetsporten fanget ikke brukeropplevelsens svakheter og må nå skjerpes. |
 
-**Total: 29/30.** Alle dimensjoner er minst 4/5. Ingen kritiske avvik eller uløste blokkere gjenstår.
+**Total: 21/30.** Dekning og redaksjonell kvalitet er under minimum 4/5. Fem kritiske funn og fem uløste blokkere gjenstår.
 
-Automatiske kontroller beviser ikke alene redaksjonell og visuell kvalitet. Derfor bygger konklusjonen også på full claim-/innholdsaudit, identitets- og provenancegjennomgang og manuell produksjonskontroll av samme Torggata-innhold.
+**Kvalitetsport: IKKE BESTÅTT – GJENÅPNET FOR REDAKSJONELL FORBEDRING.**
 
-**Kvalitetsport: BESTÅTT – HØY KVALITET.**
-
-**Torggata = SLUTTFØRT.**
+**Torggata = IKKE SLUTTFØRT.**
