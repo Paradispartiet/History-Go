@@ -25,6 +25,7 @@ test("MapLibre WebGL failure degrades the map without aborting app boot", () => 
   };
   const context = vm.createContext({
     window,
+    maplibregl: window.maplibregl,
     document: {
       getElementById(id) { return id === "map" ? mapElement : null; },
       querySelector() { return null; },
@@ -61,6 +62,7 @@ test("post-construction map failures remain fatal and are not mislabeled as WebG
   };
   const context = vm.createContext({
     window,
+    maplibregl: window.maplibregl,
     document: {
       getElementById(id) { return id === "map" ? mapElement : null; },
       querySelector() { return null; },
