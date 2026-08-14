@@ -815,8 +815,8 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 | Sikkerhet og ansvarlighet | **4/5** | People-holdbacks, kildegrenser og assetkontroll består; ingen nye sikkerhetsavvik er funnet. |
 | Vedlikeholdbarhet og etterprøvbarhet | **4/5** | Sporbarheten er god, men den tidligere kvalitetsporten fanget ikke brukeropplevelsens svakheter og må nå skjerpes. |
 
-**Total: 21/30.** Dekning og redaksjonell kvalitet er under minimum 4/5. Fem kritiske funn og fem uløste blokkere gjenstår.
+**Historisk snapshot ved gjenåpning: 21/30.** Dekning og redaksjonell kvalitet var under minimum 4/5, med fem kritiske funn og fem uløste blokkere. Etter reparert fase 7D er Før/etter-funnet løst og fire redaksjonelle blokkere gjenstår. Full ny score settes først etter de fire forbedringsfasene og manuell UI-QA.
 
-**Kvalitetsport: IKKE BESTÅTT – GJENÅPNET FOR REDAKSJONELL FORBEDRING.**
+**Gjeldende kvalitetsport: IKKE BESTÅTT – FIRE REDAKSJONELLE BLOKKERE GJENSTÅR.**
 
 **Torggata = IKKE SLUTTFØRT.**
