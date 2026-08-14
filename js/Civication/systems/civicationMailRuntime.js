@@ -15,11 +15,15 @@
 
   const MAIL_TYPES = [
     "job",
-    "faction_choice",
+    "knowledge",
+    "micro",
     "people",
-    "story",
     "conflict",
-    "event"
+    "followup",
+    "story",
+    "event",
+    "consequence",
+    "faction_choice"
   ];
 
   const PHASE_ORDER = [

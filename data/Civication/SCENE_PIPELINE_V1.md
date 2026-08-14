@@ -2,7 +2,9 @@
 
 ## Status
 
-Dette er den normative migreringskontrakten for å konsolidere Civications mail- og karrieregameplay. Første leveranse er bevisst **read-only**: den endrer ikke scenevalg, døgnrytme, svarbehandling eller konsekvenser i runtime.
+Dette er den normative migreringskontrakten for å konsolidere Civications mail- og karrieregameplay.
+
+Fase 1 etablerte en bevisst read-only audit og Scene Contract v1 uten å endre scenevalg, døgnrytme, svarbehandling eller konsekvenser. Migreringstrinn 3 er nå gjennomført: normal planruntime laster alle ni canonicale plantyper direkte. Den globale auditten står fortsatt i `observe` fordi senere arkitekturgjeld ennå ikke er lukket.
 
 Kanoniske maskinlesbare kilder:
 
@@ -41,17 +43,45 @@ En scene skiller mellom:
 
 Informasjonsscener kan ha null valg. Beslutningsscener må ha minst to reelle valg. Oppgavescener må ha en eksplisitt `task_contract`. Runtime skal ikke generere standardvalg for å skjule manglende innhold.
 
-## Bekreftet baselinegjeld
+## Lukket migreringsgjeld: typeparitet og direkte reachability
 
-Auditten skal synliggjøre, ikke skjule, følgende forhold før migrering:
+`CivicationMailRuntime` laster nå disse ni plantypene gjennom samme planruntime:
 
-1. `CivicationMailRuntime` velger fra seks typer, mens de dramaturgiske planene bruker ni canonicale legacy-typer.
-2. Arealplanlegger har direkte innholdsfiler for `knowledge`, `micro`, `followup` og `consequence`, men disse lastes ikke av normal planruntime.
-3. Barnehageassistent har direkte innholdsfiler for `knowledge`, `followup` og `consequence`, men disse lastes ikke av normal planruntime.
-4. Dermed finnes syv konkrete plansteg med innhold som kan bli semantisk erstattet av en fallback-type.
-5. `DailyMailBuilder` kan generere generiske standardvalg når kildeinnholdet har færre enn to valg. Dette er forbudt i målkontrakten, men fjernes først i en egen gameplay-migrering.
-6. Flere moduler pakker inn `EventEngine.answer()`. Målet er ett prioritert handlerregister i `CivicationChoiceDirector`, ikke lastrekkefølge som implisitt kontrollflyt.
-7. Dagsprogrammet beskriver 18–26 elementer og 8 500–12 000 ord per dag. Målkontrakten bruker i stedet 3–6 faktiske arbeidssituasjoner; lesetid og ordmengde er observasjoner, ikke produksjonskvoter.
+1. `job`
+2. `knowledge`
+3. `micro`
+4. `people`
+5. `conflict`
+6. `followup`
+7. `story`
+8. `event`
+9. `consequence`
+
+`faction_choice` beholdes som en runtime-spesifikk type ved siden av de ni canonicale plantypene.
+
+Dette lukker den tidligere feilen der:
+
+- Arealplanleggers `knowledge`, `micro`, `followup` og `consequence` fantes som direkte innhold, men ikke ble lastet av normal planruntime.
+- Barnehageassistentens `knowledge`, `followup` og `consequence` fantes som direkte innhold, men ikke ble lastet av normal planruntime.
+- syv konkrete plansteg derfor kunne bli semantisk erstattet av en fallback-type selv om riktig katalog eksisterte.
+
+Reachability-regresjonen krever nå:
+
+- null plantyper som mangler i `CivicationMailRuntime`
+- null plansteg der direkte innhold finnes, men ikke lastes
+- direkte valg av riktig type og tillatt familie før fallback vurderes
+
+Fallbackrekkefølgen er foreløpig bevart for tilfeller der direkte innhold faktisk mangler. Den skal strammes inn som del av SceneDirector-migreringen, ikke skjult i denne typeparitetsendringen.
+
+## Bekreftet gjenværende migreringsgjeld
+
+Auditten skal fortsatt synliggjøre, ikke skjule, følgende forhold:
+
+1. `DailyMailBuilder` kan generere generiske standardvalg når kildeinnholdet har færre enn to valg. Dette er forbudt i målkontrakten, men fjernes i en egen gameplay-migrering.
+2. Flere moduler pakker inn `EventEngine.answer()`. Målet er ett prioritert handlerregister i `CivicationChoiceDirector`, ikke lastrekkefølge som implisitt kontrollflyt.
+3. Dagsprogrammet beskriver 18–26 elementer og 8 500–12 000 ord per dag. Målkontrakten bruker i stedet 3–6 faktiske arbeidssituasjoner; lesetid og ordmengde er observasjoner, ikke produksjonskvoter.
+4. `CivicationDailyMailBuilder`, `CivicationMailRuntime` og `CivicationWorkdayMailBuilder` har fortsatt overlappende seleksjonsansvar. Ett SceneDirector-eierskap er neste migreringsport.
+5. Runtime leser fortsatt kildekataloger direkte. Ett kompilert scene-register er måltilstanden etter at SceneDirector- og adaptergrensene er låst.
 
 ## Fagverk og stabile spilleregler
 
@@ -73,16 +103,16 @@ Slike felt skal være låst til en versjonert `ruleset_ref` i `knowledge_contrac
 
 ## Audit og overgang fra observasjon til gate
 
-Auditten er read-only og skriver aldri om data. Standardmodus rapporterer dagens gjeld med exit code 0. `--strict` finnes for å gjøre samme funn blokkerende, men skal ikke kobles til obligatorisk CI før planruntime er migrert.
+Auditten er read-only og skriver aldri om data. Standardmodus rapporterer gjenværende gjeld med exit code 0. `--strict` finnes for å gjøre samme funn blokkerende.
 
-Den semantiske reachability-testen beviser både algoritmen og dagens baseline. Når alle ni typer lastes direkte, skal baselineforventningen endres fra `observe` til `gate`; testen skal da kreve at hvert plansteg når en scene med riktig type og familie før fallback.
+Reachability-delen er nå en reell regresjonsport: testen krever typeparitet og direkte lasting av eksisterende innhold. Den globale `enforcement_mode` forblir `observe` til SceneDirector-eierskap, svarpipeline, generiske fallbackvalg og dagsbudsjett er migrert; ellers ville én samlet strict-gate blokkere på kjent, separat planlagt gjeld.
 
-## Migreringsrekkefølge
+## Migreringsrekkefølge og status
 
-1. Frys nye mailformater.
-2. Behold denne read-only-auditten og Scene Contract v1 som fasit.
-3. Gjør alle ni plantyper direkte nåbare.
-4. La `CivicationDailyMailBuilder` bli én SceneDirector og integrer/fjern separat WorkdayMailBuilder-eierskap.
+1. **Fullført:** Frys nye mailformater.
+2. **Fullført:** Behold read-only-auditten og Scene Contract v1 som fasit.
+3. **Fullført:** Gjør alle ni plantyper direkte nåbare.
+4. **Neste:** La `CivicationDailyMailBuilder` bli én SceneDirector og integrer/fjern separat WorkdayMailBuilder-eierskap.
 5. Flytt svarwrappere til eksplisitte `CivicationChoiceDirector`-handlere i fast rekkefølge.
 6. Gjør private, life, narrative og social til kildeadaptre.
 7. La runtime lese ett kompilert scene-register; fjern parallell seleksjon og gamle `jobbmails`.

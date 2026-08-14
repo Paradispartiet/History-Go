@@ -132,7 +132,7 @@ function makeCatalog({ category, roleScope, mailType, familyId, id }) {
 
     write(fixtureRoot, "js/Civication/systems/civicationMailRuntime.js", `
       (function () {
-        const MAIL_TYPES = ["job", "faction_choice", "people", "story", "conflict", "event"];
+        const MAIL_TYPES = ["job", "knowledge", "micro", "people", "conflict", "followup", "story", "event", "consequence", "faction_choice"];
         const proto = window.CivicationEventEngine?.prototype;
         const originalAnswer = proto.answer;
         proto.answer = async function (eventId, choiceId) {
@@ -214,8 +214,19 @@ function makeCatalog({ category, roleScope, mailType, familyId, id }) {
     const after = listFiles(fixtureRoot);
     assert.deepEqual(after, before, "auditten skal være read-only");
 
-    assert.deepEqual(fixtureAudit.runtime.runtime_mail_types, ["job", "faction_choice", "people", "story", "conflict", "event"]);
-    assert(fixtureAudit.runtime.missing_runtime_types.includes("knowledge"));
+    assert.deepEqual(fixtureAudit.runtime.runtime_mail_types, [
+      "job",
+      "knowledge",
+      "micro",
+      "people",
+      "conflict",
+      "followup",
+      "story",
+      "event",
+      "consequence",
+      "faction_choice"
+    ]);
+    assert.deepEqual(fixtureAudit.runtime.missing_runtime_types, []);
     assert.equal(fixtureAudit.runtime.answer_wrappers.length, 1);
     assert.equal(fixtureAudit.runtime.generic_fallback_choice_sources.length, 1);
 
@@ -224,34 +235,41 @@ function makeCatalog({ category, roleScope, mailType, familyId, id }) {
     const knowledgeStep = fixturePlan.steps.find((step) => step.type === "knowledge");
     const jobStep = fixturePlan.steps.find((step) => step.type === "job");
     assert.equal(knowledgeStep.content_exists, true, "knowledge-innholdet finnes fysisk");
-    assert.equal(knowledgeStep.content_loaded, false, "normal runtime laster ikke knowledge-katalogen");
-    assert.equal(knowledgeStep.direct_reachable, false);
-    assert.equal(knowledgeStep.resolution, "fallback_any_family");
-    assert.equal(knowledgeStep.resolved_type, "job");
-    assert.equal(knowledgeStep.semantic_substitution, true);
+    assert.equal(knowledgeStep.content_loaded, true, "normal runtime skal laste knowledge-katalogen");
+    assert.equal(knowledgeStep.direct_reachable, true);
+    assert.equal(knowledgeStep.resolution, "direct");
+    assert.equal(knowledgeStep.resolved_type, "knowledge");
+    assert.equal(knowledgeStep.semantic_substitution, false);
     assert.equal(jobStep.direct_reachable, true);
     assert.equal(jobStep.resolution, "direct");
     assert.equal(fixtureAudit.day_program.budget_conflict, true);
-    assert(renderMarkdown(fixtureAudit).includes("Innhold finnes, men lastes ikke"));
+    assert(renderMarkdown(fixtureAudit).includes("Mangler i normal planruntime: —"));
   } finally {
     fs.rmSync(fixtureRoot, { recursive: true, force: true });
   }
 
   if (fs.existsSync(path.join(repoRoot, "data/Civication/mailPlans"))) {
-    // Global observe-baseline uten å gjøre testen til evidens for én bestemt rolle.
-    // Neste migreringsleveranse endrer policy fra observe til gate.
+    // Global observe-baseline. Denne leveransen lukker typeparitet og direkte
+    // lasting, men gjør ikke senere migreringsgjeld til falskt grønn status.
     const actual = auditRepository(repoRoot);
     assert.equal(actual.contract.present, true);
     assert.equal(actual.policy.present, true);
     assert.equal(actual.mode, "observe");
-    for (const type of ["job", "knowledge", "micro", "people", "conflict", "followup", "story", "event", "consequence"]) {
+    const planTypes = ["job", "knowledge", "micro", "people", "conflict", "followup", "story", "event", "consequence"];
+    for (const type of planTypes) {
       assert(actual.runtime.plan_types.includes(type), `plantype mangler i global inventory: ${type}`);
+      assert(actual.runtime.runtime_mail_types.includes(type), `MailRuntime laster ikke plantypen direkte: ${type}`);
     }
-    for (const type of ["knowledge", "micro", "followup", "consequence"]) {
-      assert(actual.runtime.missing_runtime_types.includes(type), `baseline skal oppdage at MailRuntime ikke laster ${type}`);
+    assert.deepEqual(actual.runtime.missing_runtime_types, []);
+    assert.equal(actual.plan_reachability.content_exists_but_not_loaded.length, 0);
+    for (const plan of actual.plan_reachability.plans) {
+      for (const step of plan.steps) {
+        if (step.content_exists) {
+          assert.equal(step.content_loaded, true, `${plan.role_scope} steg ${step.step}/${step.type} finnes, men lastes ikke`);
+        }
+      }
     }
-    assert(actual.plan_reachability.content_exists_but_not_loaded.length >= 7);
-    assert(actual.runtime.answer_wrappers.length > 1, "auditten skal oppdage den parallelle answer-pipelinen");
+    assert(actual.runtime.answer_wrappers.length > 1, "auditten skal fortsatt oppdage den parallelle answer-pipelinen");
     assert(actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationDailyMailBuilder.js")));
   }
 
