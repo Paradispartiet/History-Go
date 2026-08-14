@@ -945,3 +945,25 @@ PR #4980 ble merget som `0946dbb3`, og Pages-run `31814847184` fullførte med su
 Første loaderretting lastet og publiserte enkeltprofilene, men to timingforhold var fortsatt uløst: PlaceCard-refresh ventet på relasjonsregisteret selv om direkte place-profiler kan rendres uten det, og en sen initial tom render kunne overskrive ready-rerenderen. Andre reparasjon åpner refresh-gaten på brukbare People-data og gjør én recovery-render når ready-observeren ser en stale null for et sted som har synlige direkte profiler.
 
 **STATUS: ANDRE REPARASJON PÅGÅR — PERSONER ER FORTSATT PRODUKSJONSBLOCKER.**
+
+
+## Produksjons-reQA 3 — canonical People-data og cache fortsatt blokkert (2026-08-14)
+
+PR #4981 ble merget som `0f3c9418bc9cb36d25a18fe3fc1aae464b86cb79`, og Pages-run `31818244364` fullførte med success. En helt ny nettleserfane lastet den nye `boot-fast.js`-versjonen (oppdaterte linjenumre og `data-hg-people-observed-place="torggata"` var synlige), men Personer stod fortsatt som `0` og popupen var tom. Reparasjonen er derfor ikke sluttgodkjent.
+
+Ny datakontroll viste to mangler:
+
+1. `data/relations.json` hadde ingen canonical Torggata-relasjoner, selv om People-profilene har direkte place-felt.
+2. People-manifestet og profilfilene for åpent sted ble hentet med vanlig nettlesercache. En stale manifest-/profilrespons kan derfor omgå både direkte oppslag og recovery-logikk uten fetch-feil.
+
+Egen-place-regelen ble samtidig brukt på selve People-utvalget. Thorvald Meyer, Christian Morgenstierne og Arne Eides Torggata-kobling gjelder Torggata Bad, som har egen History GO-place, og kan derfor ikke brukes som proxy i Torggatas Personer-runding. De får stedsspesifikk holdback. Det naturlige, kildebelagte Torggata-utvalget er dermed Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
+
+Tredje reparasjon skal:
+
+- legge fire canonical person–Torggata-relasjoner;
+- revalidere People-manifestet og profilfilene for åpent sted;
+- låse Torggata Bad-proxyene ute av parent-rundingen;
+- kjøre en integrasjonstest mot `getPeopleForPlace("torggata")`;
+- kreve ny Pages-deploy og manuell produksjonskontroll med Personer = 4.
+
+**STATUS: TREDJE REPARASJON PÅGÅR — PERSONER ER FORTSATT PRODUKSJONSBLOCKER.**

@@ -99,6 +99,7 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
 
 (async () => {
   const fetchLog = [];
+  const fetchCache = new Map();
   const lifecycle = [];
   let activePeopleFetches = 0;
   let maxPeopleFetches = 0;
@@ -172,9 +173,10 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     "people/by/place-1/person-1.json"
   ];
 
-  async function fetchMock(input) {
+  async function fetchMock(input, init = {}) {
     const url = String(input).replace(/^\//, "");
     fetchLog.push(url);
+    fetchCache.set(url, init.cache || "default");
 
     if (url === "data/people/manifest.json") {
       return response({ files: peopleFiles });
@@ -270,6 +272,7 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
 
   await window.bootCritical();
   assert.ok(fetchLog.includes("data/people/manifest.json"), "People starter straks critical boot er ferdig");
+  assert.equal(fetchCache.get("data/people/manifest.json"), "no-store", "People-manifestet omgår stale nettlesercache");
   assert.ok(fetchLog.includes("data/relations.json"), "Relasjoner starter straks critical boot er ferdig");
 
   await delay(2);
@@ -283,6 +286,11 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.equal(window.HG_PEOPLE_READY, false, "resten av People kan fortsatt laste");
   assert.equal(refreshRelationStates[0], false, "direkte place-profiler venter ikke på hele relasjonsregisteret");
   assert.deepEqual(Array.from(window.PEOPLE, person => person.id), ["person-1"]);
+  assert.equal(
+    fetchCache.get("data/people/by/place-1/person-1.json"),
+    "reload",
+    "profilfiler for åpent sted revalideres før de publiseres"
+  );
   assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres så snart direkte People-profiler er brukbare");
 
   await window.bootBackground();

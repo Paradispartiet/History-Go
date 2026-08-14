@@ -154,7 +154,9 @@
         if (!next) return;
 
         const { url, index } = next;
-        const data = await fetchJSON(url, { cache: "default" });
+        const data = await fetchJSON(url, {
+          cache: prioritize?.(url) ? "reload" : "default"
+        });
         if (data == null) failed.push(url);
         rowsByFile[index] = normalizeRows(data, key);
 
@@ -658,7 +660,7 @@
 
     peopleLoadPromise = (async () => {
       setPeopleDataState("loading", { phase: "manifest" });
-      const manifest = await fetchJSON("data/people/manifest.json", { cache: "default" });
+      const manifest = await fetchJSON("data/people/manifest.json", { cache: "no-store" });
       if (!manifest || !Array.isArray(manifest.files)) {
         throw new Error("People-manifestet kunne ikke lastes");
       }
