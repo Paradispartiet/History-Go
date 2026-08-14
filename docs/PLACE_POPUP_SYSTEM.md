@@ -31,6 +31,10 @@ Viktige eiergrenser:
 
 Popupen skal aggregere ferdige canonical data, ikke lage en ny sannhetskilde.
 
+### Placegrensen gjelder hele popupen
+
+Før innhold fordeles på faner, skal canonical place-register/manifester kontrolleres for bygg, virksomheter, parker, plasser og andre delsteder som har egne place-oppføringer. Innholdet skal ligge hos riktig place-eier. Et slikt delsted kan vises som tydelig merket relasjon eller supplement, men kan ikke brukes i stedet for parent-place i Om, Historie, Fortellinger, Før/etter, Nyheter, Lesespor, Kilder eller Mer. Den samme grensen gjelder rundinger, bildepar og hovedpåstander utenfor popupen.
+
 ## 2. De tre stedflatene
 
 Tre roller skal holdes adskilt:
