@@ -69,7 +69,7 @@ test("manual quality review records the original five findings and the current r
   assert.equal(backlog.completion_gate.manual_ui_review_required, true);
   assert.equal(backlog.completion_gate.rescore_required, true);
   assert.deepEqual(backlog.active_phase, {
-    id: "more_missing",
+    id: "objects_structures_round_overlap",
     status: "QUEUED_NEXT"
   });
   assert.equal(backlog.sequence.length, 7);
@@ -79,8 +79,8 @@ test("manual quality review records the original five findings and the current r
       { id: "before_after_comparability_and_depth", status: "RESOLVED" },
       { id: "news_missing", status: "RESOLVED" },
       { id: "reading_trail_missing", status: "RESOLVED" },
-      { id: "more_missing", status: "QUEUED_NEXT" },
-      { id: "objects_structures_round_overlap", status: "QUEUED" },
+      { id: "more_missing", status: "RESOLVED" },
+      { id: "objects_structures_round_overlap", status: "QUEUED_NEXT" },
       { id: "manual_ui_and_content_reqa", status: "QUEUED" },
       { id: "final_closeout", status: "QUEUED" }
     ]
