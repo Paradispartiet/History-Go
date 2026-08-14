@@ -937,3 +937,11 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 Reparasjonsløpet normaliserer enkeltprofiler, reprioriterer den pågående People-køen også når stedet åpnes etter kartstart, hindrer falsk null, gir alle fire Torggata-preview et ikon-/antallsfallback, gir People og Brands tastaturaktivering, setter tilgjengelige navn på alle fire rundinger og korrigerer høyre/venstre-teksten. Sjekklisten er utvidet med eksplisitte produksjonskontroller for disse feilklassene.
 
 **STATUS: REPARASJON PÅGÅR — IKKE PRODUKSJONSGODKJENT.** Ny godkjenning krever grønn CI/review, merge, vellykket Pages-deploy og ny manuell kontroll av Personer, alle fire rundinger, Før/etter, Nyheter, Lesespor og Mer.
+
+### Produksjons-reQA 2 — Personer fortsatt blokkert (2026-08-14)
+
+PR #4980 ble merget som `0946dbb3`, og Pages-run `31814847184` fullførte med success. Ny kontroll på den publiserte Torggata-flaten viste fortsatt `0` og tom Personer-popup. Sluttstatus forblir derfor åpen.
+
+Første loaderretting lastet og publiserte enkeltprofilene, men to timingforhold var fortsatt uløst: PlaceCard-refresh ventet på relasjonsregisteret selv om direkte place-profiler kan rendres uten det, og en sen initial tom render kunne overskrive ready-rerenderen. Andre reparasjon åpner refresh-gaten på brukbare People-data og gjør én recovery-render når ready-observeren ser en stale null for et sted som har synlige direkte profiler.
+
+**STATUS: ANDRE REPARASJON PÅGÅR — PERSONER ER FORTSATT PRODUKSJONSBLOCKER.**
