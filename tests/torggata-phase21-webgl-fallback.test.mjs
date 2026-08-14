@@ -45,6 +45,42 @@ test("MapLibre WebGL failure degrades the map without aborting app boot", () => 
   assert.ok(warnings.some((line) => line.includes("fortsetter uten kart")));
 });
 
+test("post-construction map failures remain fatal and are not mislabeled as WebGL fallback", () => {
+  const mapElement = {
+    dataset: {},
+    setAttribute() {}
+  };
+  const window = {
+    maplibregl: {
+      Map: class {
+        addControl() { throw new Error("Navigation control failed"); }
+        on() {}
+      },
+      NavigationControl: class {}
+    }
+  };
+  const context = vm.createContext({
+    window,
+    document: {
+      getElementById(id) { return id === "map" ? mapElement : null; },
+      querySelector() { return null; },
+      createElement() { return { dataset: {}, setAttribute() {}, appendChild() {} }; },
+      body: { appendChild() {} }
+    },
+    localStorage: { getItem() { return null; }, setItem() {} },
+    console,
+    setTimeout,
+    clearTimeout
+  });
+  vm.runInContext(mapSource, context, { filename: "map.js" });
+
+  assert.throws(
+    () => window.HGMap.initMap({ containerId: "map" }),
+    /Navigation control failed/
+  );
+  assert.equal(mapElement.dataset.mapUnavailable, undefined);
+});
+
 test("index sanity accepts the explicit no-WebGL state but still rejects an unexplained missing map", () => {
   const start = appSource.indexOf("function assertCriticalIndexRuntime()");
   const end = appSource.indexOf("function markAppReady()", start);
