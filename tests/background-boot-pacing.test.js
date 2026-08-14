@@ -15,6 +15,8 @@ assert.match(boot, /runSafeAsync\("loadPeopleBackground", loadPeopleBackground\)
 assert.match(boot, /await startPriorityPeopleDataLoad\(\);/);
 assert.match(boot, /function loadRowsWithConcurrency\(/);
 assert.match(boot, /PEOPLE_FETCH_CONCURRENCY/);
+assert.match(boot, /hg:people-priority-ready/);
+assert.match(boot, /typeof data === "object".*return \[data\]/);
 assert.match(boot, /for \(const \[label, task\] of tasks\)/);
 assert.match(boot, /await waitForBackgroundIdle\(\);\s*await runSafeAsync\(label, task\);/);
 assert.doesNotMatch(boot, /Promise\.allSettled\(tasks\)/);
@@ -142,11 +144,15 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     }
   });
 
+  window.addEventListener("hg:people-priority-ready", () => lifecycle.push("people-priority-ready"));
   window.addEventListener("hg:people-ready", () => lifecycle.push("people-ready"));
   window.addEventListener("hg:relations-ready", () => lifecycle.push("relations-ready"));
   window.addEventListener("hg:wonderkammer-ready", () => lifecycle.push("wonderkammer-ready"));
 
-  const peopleFiles = Array.from({ length: 8 }, (_, index) => `people/test/person-${index + 1}.json`);
+  const peopleFiles = [
+    "people/by/place-1/person-1.json",
+    ...Array.from({ length: 7 }, (_, index) => `people/test/person-${index + 2}.json`)
+  ];
 
   async function fetchMock(input) {
     const url = String(input).replace(/^\//, "");
@@ -156,7 +162,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
       return response({ files: peopleFiles });
     }
 
-    if (url.startsWith("data/people/test/person-")) {
+    if (/^data\/people\/(?:by\/place-1|test)\/person-/.test(url)) {
       const attempts = (peopleAttempts.get(url) || 0) + 1;
       peopleAttempts.set(url, attempts);
       activePeopleFetches += 1;
@@ -167,6 +173,9 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
         return { ok: false, async json() { return null; } };
       }
       const id = url.match(/person-(\d+)/)?.[1] || "x";
+      if (id === "1") {
+        return response({ id: "person-1", name: "Person 1", place_ids: ["place-1"] });
+      }
       return response({ people: [{ id: `person-${id}`, name: `Person ${id}`, place_ids: ["place-1"] }] });
     }
 
@@ -226,9 +235,21 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   assert.match(peopleIcon.innerHTML, /…/);
   assert.equal(peopleList.emptyNode.textContent, "Laster personer …");
 
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
+  peopleIcon.dataset.roundReady = "true";
+  window.dispatchEvent(new FakeCustomEvent("hg:people-progress"));
+  await delay(5);
+  assert.match(peopleIcon.innerHTML, /…/, "loading-broen overskriver en falsk null");
+
   await window.bootCritical();
   assert.ok(fetchLog.includes("data/people/manifest.json"), "People starter straks critical boot er ferdig");
   assert.ok(fetchLog.includes("data/relations.json"), "Relasjoner starter straks critical boot er ferdig");
+
+  await delay(12);
+  assert.ok(lifecycle.includes("people-priority-ready"), "profilene for åpent sted publiseres først");
+  assert.equal(window.HG_PEOPLE_READY, false, "resten av People kan fortsatt laste");
+  assert.deepEqual(Array.from(window.PEOPLE, person => person.id), ["person-1"]);
+  assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres når prioriterte People og relasjoner er brukbare");
 
   await window.bootBackground();
   await delay(20);
@@ -245,6 +266,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   const wonderIndex = fetchLog.indexOf("data/wonderkammer/index.json");
   assert.ok(peopleManifestIndex >= 0 && peopleManifestIndex < wonderIndex);
   assert.ok(relationIndex >= 0 && relationIndex < wonderIndex);
+  assert.ok(lifecycle.indexOf("people-priority-ready") < lifecycle.indexOf("people-ready"));
   assert.ok(lifecycle.indexOf("people-ready") < lifecycle.indexOf("wonderkammer-ready"));
   assert.ok(lifecycle.indexOf("relations-ready") < lifecycle.indexOf("wonderkammer-ready"));
 
