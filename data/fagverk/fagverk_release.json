@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "2.91.0",
     "updated_at": "2026-08-14",
-    "content_sha256": "2575d9618b272970ec5b7886dc29715156b88d24f86a0874675538dc2980538c"
+    "content_sha256": "8eba4cc9deb201e6478d6c2effce4ceb1b3bbd35eeb417a6d2994109435ac926"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -33,12 +33,12 @@
     "subject_count": 18,
     "root_subject_count": 17,
     "specialization_count": 1,
-    "chapter_subject_count": 12,
-    "chapter_count": 128,
+    "chapter_subject_count": 13,
+    "chapter_count": 141,
     "module_file_count": 344,
     "package_file_count": 205,
-    "chapter_referenced_file_count": 637,
-    "referenced_file_count": 801,
+    "chapter_referenced_file_count": 650,
+    "referenced_file_count": 814,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -658,7 +658,7 @@
       "schema_family": "foundation_v1",
       "pilot": false,
       "package_status": "complete",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -772,20 +772,125 @@
         }
       ],
       "package_content_sha256": "e5993af3efc3844d67f93f35765a464d27971e03bf2a88c95f9b0e2694712354",
-      "chapter_count": 0,
+      "chapter_count": 13,
       "module_file_count": 0,
       "brief_file_count": 0,
       "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 7,
+      "chapter_referenced_file_count": 13,
+      "chapter_content_sha256": "5ef844eb111a697707ab6d4ec35f7306b1964e11ae4c6ddf424e07793663686e",
+      "referenced_file_count": 20,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "240a36638376e9c937aaf7a6e40808e4bd236a81df3e2a0b9b924f0c6dea60ce",
-      "content_sha256": "e5993af3efc3844d67f93f35765a464d27971e03bf2a88c95f9b0e2694712354",
-      "chapters": []
+      "structure_sha256": "8018d2ad81ecae9c520107fd952fcef80d2db3eb40580ec0688a54d4d207b4c3",
+      "content_sha256": "372e53cacd1ea945cf2d2f7e25f763a84e2af66438f96fdf85afcc55f2c5404f",
+      "chapters": [
+        {
+          "chapter_id": "filosofi-argumentasjon-logikk",
+          "title": "Argumentasjon og logikk",
+          "file": "data/fagverk/filosofi/chapters/filosofi-argumentasjon-logikk.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "a917fd173c1a606d3fc6e6527e957bc493fb64515aaa822777869933130bc7c0"
+        },
+        {
+          "chapter_id": "filosofi-erkjennelse-sannhet",
+          "title": "Erkjennelse, sannhet og kunnskapsmakt",
+          "file": "data/fagverk/filosofi/chapters/filosofi-erkjennelse-sannhet.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "a4ad2182553e0c977f8948ab89ef5f6b7ba7f51c5d9debca28ea2a0b43f0caec"
+        },
+        {
+          "chapter_id": "filosofi-metafysikk-virkelighet",
+          "title": "Metafysikk, virkelighet og tid",
+          "file": "data/fagverk/filosofi/chapters/filosofi-metafysikk-virkelighet.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "b608b9a6c43cc05711e88c52455286cf098f987548556d1e5f64208d67f45630"
+        },
+        {
+          "chapter_id": "filosofi-sinn-bevissthet-identitet",
+          "title": "Sinn, bevissthet og personlig identitet",
+          "file": "data/fagverk/filosofi/chapters/filosofi-sinn-bevissthet-identitet.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "f32792fb3a15f4ac44c94a186ab323374c8376dffdc7b572a2f49085860b2821"
+        },
+        {
+          "chapter_id": "filosofi-etikk-moralpsykologi",
+          "title": "Etikk, dyd og moralsk ansvar",
+          "file": "data/fagverk/filosofi/chapters/filosofi-etikk-moralpsykologi.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "514a4989844c7e3d428816834f03d495fe1c3179d04434f8445983ab8e1a98cc"
+        },
+        {
+          "chapter_id": "filosofi-politisk-filosofi-rettferdighet",
+          "title": "Politisk filosofi, frihet og rettferdighet",
+          "file": "data/fagverk/filosofi/chapters/filosofi-politisk-filosofi-rettferdighet.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "186c04fe85906bb67d60cbf1bafd1ccf0066c0ce5525af84b82fd95c7557c20a"
+        },
+        {
+          "chapter_id": "filosofi-sosial-filosofi-makt",
+          "title": "Sosial filosofi, makt og frigjøring",
+          "file": "data/fagverk/filosofi/chapters/filosofi-sosial-filosofi-makt.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "08f1a8a55bd5d95be1e00d35f49984dbd849f7205ace054c6dbb60696e10a78b"
+        },
+        {
+          "chapter_id": "filosofi-estetikk-fortolkning",
+          "title": "Estetikk, kunst og fortolkning",
+          "file": "data/fagverk/filosofi/chapters/filosofi-estetikk-fortolkning.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "8ae195f92eefc73054b7d315d150b39f94a5871d90cb6c5d9fe699550d657ead"
+        },
+        {
+          "chapter_id": "filosofi-vitenskapsfilosofi",
+          "title": "Vitenskapsfilosofi og forklaring",
+          "file": "data/fagverk/filosofi/chapters/filosofi-vitenskapsfilosofi.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "b4b6e3da97e145adf3761754b2822e8e47ab77924caa9e76790885b1e2b65f36"
+        },
+        {
+          "chapter_id": "filosofi-teknologi-ai",
+          "title": "Teknologi, digitalitet og kunstig intelligens",
+          "file": "data/fagverk/filosofi/chapters/filosofi-teknologi-ai.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "3540f82bbc2e4d4e1202da9199008fc78f5c04ee03927efd195225b0217985db"
+        },
+        {
+          "chapter_id": "filosofi-eksistens-fenomenologi",
+          "title": "Eksistens, fenomenologi og livstolkning",
+          "file": "data/fagverk/filosofi/chapters/filosofi-eksistens-fenomenologi.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "bfe4e33ae2146cf23744bc50be4d3997847f372946650b50cfc4619fe08bb63a"
+        },
+        {
+          "chapter_id": "filosofi-miljo-dyr-klima",
+          "title": "Miljø-, dyre- og klimafilosofi",
+          "file": "data/fagverk/filosofi/chapters/filosofi-miljo-dyr-klima.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "70c58a45c60abce39bd44be4b6a636fb3cbd47bf38d4c100d9242637029d8375"
+        },
+        {
+          "chapter_id": "filosofi-globale-tradisjoner",
+          "title": "Globale tradisjoner og filosofihistorie",
+          "file": "data/fagverk/filosofi/chapters/filosofi-globale-tradisjoner.json",
+          "module_file_count": 0,
+          "referenced_file_count": 1,
+          "content_sha256": "e829d6748be0116feeffd3de50ccffd6dbcc85e65e16c4bddf7ad34e1ddf43c6"
+        }
+      ]
     },
     "historie": {
       "title": "Historie",
@@ -4555,5 +4660,5 @@
       "chapters": []
     }
   },
-  "release_sha256": "e042991de7093f5b388709369bb841d042e27f1c66397290dfab0568ce2af8bc"
+  "release_sha256": "4cd7f9fa97f8971038cdc26811d70ab4cbefea20141d9af166116c8cdaaea43f"
 }

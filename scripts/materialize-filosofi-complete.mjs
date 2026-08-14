@@ -295,7 +295,10 @@ async function main(){
     if (!guide) throw new Error(`Missing domain guide for ${emne.domain}`);
     const category = categoryById.get(emne.domain);
     const hook = hookFor(category, emne);
-    const articleConcepts = concepts.filter((c)=>(c.emne_ids||[]).includes(emne.emne_id));
+    const articleConcepts = (emne.core_concepts || []).map((id)=>conceptById.get(id)).filter(Boolean);
+    const forwardConceptIds = articleConcepts.map((c)=>c.id).sort();
+    const reverseConceptIds = concepts.filter((c)=>(c.emne_ids||[]).includes(emne.emne_id)).map((c)=>c.id).sort();
+    if (JSON.stringify(forwardConceptIds) !== JSON.stringify(reverseConceptIds)) throw new Error(`Concept mapping mismatch for ${emne.emne_id}: emne=${forwardConceptIds.join(',')} registry=${reverseConceptIds.join(',')}`);
     if (!articleConcepts.length) throw new Error(`No concepts mapped to ${emne.emne_id}`);
     articleConcepts.forEach((c)=>allConceptIds.add(c.id));
     const articleMethods = (emne.method_ids||[]).map((id)=>methodById.get(id)).filter(Boolean);

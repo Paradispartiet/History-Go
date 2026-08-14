@@ -87,8 +87,11 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   assert(inventoryEntry?.schemaFamily === 'foundation_v1', 'Filosofi har feil schemafamilie');
   assert(inventoryEntry?.pilot === false, 'Filosofi skal være individuelt Fase 3-fag, ikke pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'Filosofi har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Filosofi må stå structure_ready før kapittelproduksjon');
-  assert(statusEntry?.nextGate === 'chapter_production', 'Filosofi har feil neste port');
+  const registryChapterCount = (registry.subjects?.filosofi?.chapters || []).length;
+  const expectedEditorialStatus = registryChapterCount === 13 ? 'complete' : registryChapterCount > 0 ? 'chapters_in_progress' : 'structure_ready';
+  const expectedNextGate = registryChapterCount === 13 ? 'maintenance_source_refresh_and_place_case_expansion' : 'chapter_production';
+  assert(statusEntry?.editorialStatus === expectedEditorialStatus, `Filosofi har feil editorial status: ${statusEntry?.editorialStatus} != ${expectedEditorialStatus}`);
+  assert(statusEntry?.nextGate === expectedNextGate, `Filosofi har feil neste port: ${statusEntry?.nextGate} != ${expectedNextGate}`);
   assert(registry.placePage?.fallbackSubjectByCategory?.filosofi === 'filosofi', 'Filosofi-steder mangler Filosofi som fagverksfallback');
 
   const source = {};
@@ -126,7 +129,9 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   assert(model.summary.methodCount === 27, 'Filosofi skal ha 27 canonicale metoder');
   assert(model.summary.mappingCount === 54, 'Filosofi skal ha én normalisert mapping per emne');
   assert(model.summary.hookCount === 37, 'Filosofi skal ha 37 canonicale hooks');
-  assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Filosofi-kapitler finnes');
+  assert(model.chapters.length === registryChapterCount, 'Filosofi-modellen og registry er uenige om kapitteltall');
+  assert(model.chapters.length <= 13, 'Filosofi kan ikke ha flere enn 13 canonicale kapitler');
+  if (expectedEditorialStatus === 'complete') assert(model.chapters.length === 13, 'Complete Filosofi krever 13/13 kapitler');
   assert(model.domains.every((domain) => domain.sourceKind === 'fagkart_category'), 'Pensummoduler ble feilaktig renderer-fagområder');
   assert(source.pensum.modules.length === 13, 'Filosofi skal bevare tretten pensummoduler som progresjonslag');
   assert(source.emners.length === 54 && source.emners.every((emne) => emne.status === 'active'), 'Filosofi har feil aktiv emnekatalog');
@@ -170,7 +175,7 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   const report = {
     schema: 'history_go_fagverk_filosofi_phase3_audit_v1',
     version: '1.0.0',
-    status: 'filosofi_phase_3_structure_ready',
+    status: expectedEditorialStatus === 'complete' ? 'filosofi_phase_3_complete' : expectedEditorialStatus === 'chapters_in_progress' ? 'filosofi_phase_3_chapters_in_progress' : 'filosofi_phase_3_structure_ready',
     generatedFrom: P,
     subject: {
       id: model.subject.id,
@@ -212,7 +217,7 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
       philosophyPrinciplesLocked: true,
       badgeAndSubjectRoutesDistinct: true,
       assessmentStatusAudited: true,
-      editorialStatusStructureReady: true,
+      editorialLifecycleConsistent: statusEntry.editorialStatus === expectedEditorialStatus,
       chapterClaimsNotOverstated: true
     }
   };
