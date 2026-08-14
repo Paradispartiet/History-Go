@@ -1,0 +1,64 @@
+{
+  "schema": "history_go_place_phase15_physical_visit_audit_v1",
+  "place_id": "torggata",
+  "phase": 15,
+  "status": "approved_existing",
+  "audited_at": "2026-08-14",
+  "baseline_commit": "639f5640f9349ac53b84ffff32e238593fe5887e",
+  "prior_work_gate": {
+    "status": "completed",
+    "searched": [
+      "torggata physical visit and check-in history",
+      "PR #3212 / commit 9251227f4b5488e0403432369f43a1018e4f2982",
+      "PR #3218 / commit ea56d384e6d806219449834cf5e6071a52fd60e7",
+      "phase 9 Torggata onsite audit and regression",
+      "physical visit TypeScript runtime, generated browser bundle and quiz/visit separation test"
+    ],
+    "last_approved_pr_commit": "PR #3218 / ea56d384e6d806219449834cf5e6071a52fd60e7, preserving the separation first established in PR #3212 / 9251227f4b5488e0403432369f43a1018e4f2982",
+    "last_approved_state": "HGPhysicalVisits is the only physical write path; PlaceCard owns pcVisit; quiz writes are disabled; position gate uses canonical distance targets and place radius.",
+    "concrete_regression_evidence": "none",
+    "decision": "ALLEREDE FERDIG – closeout and Torggata-specific regression only"
+  },
+  "place_anchor": {
+    "lat": 59.91700148933685,
+    "lon": 10.75330911912394,
+    "r": 180,
+    "coordType": "street_geometry_midpoint",
+    "coordStatus": "verified_geometry",
+    "sourceObjectId": "osm-way:467290774"
+  },
+  "checks": {
+    "place_card_button": {
+      "status": "approved_existing",
+      "states": [
+        "Henter posisjon…",
+        "Gå nærmere: {meters} m",
+        "Registrer besøk",
+        "Besøkt ✅"
+      ]
+    },
+    "distance_gate": {
+      "status": "approved_existing",
+      "anchor_owner": "getPlaceDistanceTargets(place)",
+      "radius": 180,
+      "too_far_reason": "too_far"
+    },
+    "physical_registration": {
+      "status": "approved_existing",
+      "write_owner": "HGPhysicalVisits.record(place)",
+      "persistence": "visited_places compatibility path",
+      "result_label": "Besøkt ✅"
+    },
+    "quiz_separation": {
+      "status": "approved_existing",
+      "quiz_open_writes_physical_visit": false,
+      "quiz_completion_writes_physical_visit": false,
+      "collection_axis": "places_collected"
+    },
+    "storage": {
+      "status": "approved_existing",
+      "new_place_storage_fields": [],
+      "rule": "Torggata data adds no visit or check-in storage format."
+    }
+  }
+}
