@@ -207,32 +207,38 @@ export function buildClaimSourceIdsByClaim(topicBriefs) {
 function renderParagraph({ topic, claim, claimIndex, editorial, selectedSources, selectedCases }) {
   const [primary, secondary, tertiary] = selectedSources;
   const [caseRow, controlCase] = selectedCases;
+  const ordinal = claimIndex + 1;
+  const inlineProse = (value) => stripTerminalPunctuation(value)
+    .replace(/(?<=[.!?])\s+/gu, '; ')
+    .replace(/\s+/gu, ' ')
+    .trim();
+  const lowerInitial = (value) => String(value || '').replace(/^./u, (character) => character.toLocaleLowerCase('nb-NO'));
+  const paragraphLabel = `${editorial.title.toLocaleLowerCase('nb-NO')}, fagavsnitt ${ordinal}`;
   const sourceOne = primary
-    ? `Hovedsporet er «${primary.title}» fra ${primary.publisher}. ${sentence(primary.source_location)} Kilden brukes innenfor ${primary.territory}, og dens evidensrolle er ${primary.evidence_role}.`
+    ? `I ${paragraphLabel} er hovedsporet «${primary.title}» fra ${primary.publisher}: ${inlineProse(primary.source_location)}; kilden avgrenses til ${primary.territory}, med evidensrollen ${primary.evidence_role}.`
     : '';
   const sourceTwo = secondary
-    ? `Et uavhengig kontrollspor er «${secondary.title}» fra ${secondary.publisher}. ${sentence(secondary.source_location)} Kontrollens territorielle rekkevidde er ${secondary.territory}.`
+    ? `Kontrollsporet i ${paragraphLabel} er «${secondary.title}» fra ${secondary.publisher}: ${inlineProse(secondary.source_location)}; det brukes innenfor ${secondary.territory}.`
     : '';
   const sourceThree = tertiary
-    ? `Et tredje spor, «${tertiary.title}» fra ${tertiary.publisher}, brukes bare til å prøve rekkevidden: ${sentence(tertiary.source_location)}`
+    ? `Det tredje kildesporet i ${paragraphLabel}, «${tertiary.title}» fra ${tertiary.publisher}, prøver bare påstandens rekkevidde: ${inlineProse(tertiary.source_location)}.`
     : '';
   const caseSentence = caseRow
-    ? `Det dokumenterte caset ${caseRow.work} (${caseRow.medium}; ${caseRow.territory}) brukes fordi ${sentence(caseRow.purpose).replace(/^./u, (c) => c.toLowerCase())}`
+    ? `Hovedcaset i ${paragraphLabel} er ${caseRow.work} (${caseRow.medium}; ${caseRow.territory}); det brukes fordi ${lowerInitial(inlineProse(caseRow.purpose))}.`
     : '';
   const controlSentence = controlCase
-    ? `Som motkontroll står ${controlCase.work} i ${controlCase.territory}; dette caset avgrenser sammenligningen ved å ${sentence(controlCase.purpose).replace(/^./u, (c) => c.toLowerCase())}`
+    ? `Motcaset i ${paragraphLabel} er ${controlCase.work} i ${controlCase.territory}; det avgrenser sammenligningen ved å ${lowerInitial(inlineProse(controlCase.purpose))}.`
     : '';
-  const ordinal = claimIndex + 1;
   return [
-    `${editorial.title}, fagavsnitt ${ordinal}: ${sentence(claim.claim_focus)} ${editorial.lens}`,
+    `${editorial.title}, fagavsnitt ${ordinal}: ${inlineProse(claim.claim_focus)}; som analytisk linse brukes ${lowerInitial(inlineProse(editorial.lens))}.`,
     sourceOne,
     sourceTwo,
     sourceThree,
     caseSentence,
     controlSentence,
-    `Metodisk behandles sluttpåstanden som «${claim.claim_type}». Det betyr at verk, versjon, periode, territorium, kildetype og representasjonsgrep må navngis, og at motstridende evidens ikke skjules i en samlet formulering.`,
-    `${editorial.disagreement} For akkurat dette fagavsnittet er uenigheten en kontroll av påstandens omfang, ikke en anledning til å legge inn nye sideclaims.`,
-    `${editorial.limits[0]} ${editorial.limits[1]} Derfor gjelder konklusjonen bare den dokumenterte representasjonen, sirkulasjonen eller minnepraksisen som claimet beskriver; vist sted, faktisk opptakssted, fiktivt eller sammensatt rom og dokumentert lokal virkning forblir separate nivåer, og samtykke, bilderett, fysisk inngrep, filmturisme og miljømessig eller økonomisk lokal effekt ligger i enhet 13.`
+    `Metodisk behandles sluttpåstanden i ${paragraphLabel} som «${claim.claim_type}»; derfor må verk, versjon, periode, territorium, kildetype og representasjonsgrep navngis, mens motstridende evidens holdes synlig.`,
+    `${inlineProse(editorial.disagreement)}; i ${paragraphLabel} brukes denne uenigheten til å kontrollere påstandens omfang, ikke til å introdusere nye sideclaims.`,
+    `${inlineProse(editorial.limits[0])}; ${lowerInitial(inlineProse(editorial.limits[1]))}; konklusjonen i ${paragraphLabel} gjelder derfor bare den dokumenterte representasjonen, sirkulasjonen eller minnepraksisen i claimet, mens vist sted, faktisk opptakssted, fiktivt eller sammensatt rom og dokumentert lokal virkning forblir separate nivåer, og samtykke, bilderett, fysisk inngrep, filmturisme samt miljømessig eller økonomisk lokal effekt ligger i enhet 13.`
   ].filter(Boolean).join(' ');
 }
 
