@@ -41,7 +41,7 @@ export default {
   em_filosofi_afrikansk_filosofi_ubuntu: {
     thinkers: ['Kwasi Wiredu', 'Ifeanyi Menkiti', 'Kwame Gyekye'],
     anchors: ['ubuntu', 'personskap', 'fellesskap', 'moderat kommunitarisme', 'konseptuell avkolonisering'],
-    debate: 'Afrikansk filosofi rommer intern uenighet om personskap, fellesskap, språk og avkolonisering. Gyekyes moderate kommunitarisme er en eksplisitt mellomposisjon mot en sterk kollektiv prioritering, og debatten mellom sterke og moderate kommunitære fortolkninger viser hvorfor ubuntu ikke kan brukes som en homogen etikett for et helt kontinent.',
+    debate: 'Afrikansk filosofi rommer intern uenighet om personskap, fellesskap, språk og avkolonisering. Gyekyes moderat kommunitarisme er en eksplisitt mellomposisjon mot en sterk kollektiv prioritering, og debatten mellom sterke og moderate kommunitære fortolkninger viser hvorfor ubuntu ikke kan brukes som en homogen etikett for et helt kontinent.',
     argument: [
       'P1: Menkitis sterke kommunitære tese knytter fullt moralsk personskap til gradvis sosial og normativ oppnåelse i fellesskapet, og skiller dermed biologisk menneskelighet fra en rikere personstatus.',
       'P2: Gyekyes moderate kommunitarisme kritiserer en for sterk prioritering av fellesskapet ved å bevare individets kapasitet, verdighet og rett til kritikk som moralsk betydningsfulle også før eller mot kollektiv anerkjennelse.',
@@ -54,7 +54,7 @@ export default {
   em_filosofi_latinamerikansk_dekolonial_filosofi: {
     thinkers: ['Enrique Dussel', 'Aníbal Quijano', 'María Lugones'],
     anchors: ['kolonialitet', 'frigjøringsfilosofi', 'modernitet', 'kjønnssystem', 'epistemisk lokalisering'],
-    debate: 'Latinamerikansk frigjørings- og dekolonial filosofi undersøker hvordan koloniale maktformer kan fortsette etter formell kolonialisme. Dussel, Quijano og Lugones kobler økonomi, kunnskap, rase, kjønn og modernitet på ulike måter.',
+    debate: 'Latinamerikansk frigjørings- og dekolonial filosofi undersøker hvordan koloniale maktformer kan fortsette etter formell kolonialisme. Lugones analyserer et kolonialt kjønnssystem, mens epistemisk lokalisering gjør det nødvendig å spørre hvorfra universelle kunnskapskrav formuleres og hvilke erfaringer de ekskluderer. Dussel, Quijano og Lugones kobler økonomi, kunnskap, rase, kjønn og modernitet på ulike måter.',
     argument: [
       'P1: Dussels frigjøringsfilosofi tar utgangspunkt i dem som rammes av en orden og hevder at normativ kritikk må kunne begynne fra erfaringen til dem systemet ekskluderer, ikke bare fra ordenens egne legitimeringskategorier.',
       'P2: Quijanos kolonialitetsbegrep hevder at moderne kapitalisme og kunnskapsordener historisk er vevd sammen med rasial klassifikasjon, slik at formell avkolonisering ikke automatisk avvikler de etablerte hierarkiene.',
@@ -67,7 +67,7 @@ export default {
   em_filosofi_kjonn_performativitet_feminisme: {
     thinkers: ['Simone de Beauvoir', 'Judith Butler', 'Sally Haslanger'],
     anchors: ['kjønn', 'performativitet', 'sosial konstruksjon', 'materialitet', 'underordning'],
-    debate: 'Feministisk filosofi skiller mellom biologiske, sosiale og normative spørsmål om kjønn. De Beauvoir, Butler og Haslanger viser tre måter å analysere hvordan kjønn blir sosialt meningsbærende uten å redusere mennesker til enten ren biologi eller fri individuell selvskaping.',
+    debate: 'Feministisk filosofi skiller mellom biologiske, sosiale og normative spørsmål om kjønn. Sosial konstruksjon betegner her hvordan klassifikasjoner, normer og institusjoner kan gjøre kroppslige forskjeller sosialt og politisk virksomme uten å hevde at materialitet er uvirkelig. De Beauvoir, Butler og Haslanger viser tre måter å analysere hvordan kjønn blir sosialt meningsbærende uten å redusere mennesker til enten ren biologi eller fri individuell selvskaping.',
     argument: [
       'P1: De Beauvoirs tese om at man «blir» kvinne peker på at sosial posisjon, praksis og forventning former kjønnede liv på måter som ikke følger direkte av anatomi.',
       'P2: Butler utvikler performativitet som gjentatte normstyrte handlinger som produserer inntrykket av en stabil kjønnsidentitet; dette betyr ikke at individet fritt kan velge kjønn uten materielle eller sosiale begrensninger.',
@@ -93,7 +93,7 @@ export default {
   em_filosofi_klimarettferdighet_generasjoner: {
     thinkers: ['Stephen Gardiner', 'Henry Shue', 'Simon Caney'],
     anchors: ['intergenerasjonell rettferdighet', 'historisk ansvar', 'grunnleggende rettigheter', 'klimabyrde', 'perfekt moralsk storm'],
-    debate: 'Klimarettferdighet kombinerer fordelingsspørsmål med ansvar på tvers av tid og grenser. Gardiner, Shue og Caney undersøker hvorfor de som har bidratt minst til problemet ofte er mest utsatt, og hvordan plikter kan fordeles når årsaker og konsekvenser er historisk spredt.',
+    debate: 'Klimarettferdighet kombinerer fordelingsspørsmål med ansvar på tvers av tid og grenser. Intergenerasjonell rettferdighet spør hvilke plikter nålevende har overfor fremtidige personer, mens klimabyrde betegner kostnader ved utslippskutt, tilpasning og skade som må fordeles. Gardiners perfekt moralsk storm beskriver hvordan globale, intergenerasjonelle og teoretiske problemer kan forsterke fristelsen til å skyve byrder videre. Shue og Caney undersøker samtidig hvorfor de som har bidratt minst til problemet ofte er mest utsatt, og hvordan plikter kan fordeles når årsaker og konsekvenser er historisk spredt.',
     argument: [
       'P1: Klimaskade truer grunnleggende interesser som helse, bolig og livsgrunnlag, og Shues skille mellom grunnleggende rettigheter og luksusutslipp gir en normativ grunn til å behandle utslipp til nødvendige behov annerledes enn utslipp til marginalt forbruk.',
       'P2: Historisk ansvar er relevant fordi tidligere utslipp bidrar til dagens handlingsrom og skader, men ansvar kan ikke uten videre tilskrives nålevende individer for handlinger de ikke kontrollerte; institusjonell arv og fordel må analyseres separat.',
@@ -106,7 +106,7 @@ export default {
   em_filosofi_natur_egenverdi_dypokologi: {
     thinkers: ['Arne Næss', 'Holmes Rolston III', 'J. Baird Callicott'],
     anchors: ['egenverdi', 'dypøkologi', 'biosentrisk likhet', 'økologisk helhet', 'menneskesentrering'],
-    debate: 'Miljøetikken spør om natur har verdi bare gjennom menneskelige interesser eller også uavhengig av dem. Dypøkologi, teorier om naturens egenverdi og holistisk land-etikk gir ulike begrunnelser og ulike svar når individuelle organismer og økologiske helheter kommer i konflikt.',
+    debate: 'Miljøetikken spør om natur har verdi bare gjennom menneskelige interesser eller også uavhengig av dem. Menneskesentrering gjør menneskers interesser til primært eller eneste grunnlag for naturens moralske betydning, mens dypøkologi, teorier om naturens egenverdi og holistisk land-etikk utfordrer dette på ulike måter og gir ulike svar når individuelle organismer og økologiske helheter kommer i konflikt.',
     argument: [
       'P1: Næss’ dypøkologi utfordrer rent instrumentell naturverdi og utvider det moralske perspektivet mot økologisk selvrealisering og biosentrisk likhet, men slagordet om likhet trenger presisering når livsinteresser faktisk kolliderer.',
       'P2: Rolston forsvarer at arter, evolusjonære prosesser og økosystemer kan ha verdi som ikke bare er avledet av menneskelig preferanse, og gjør dermed naturens produktive prosesser til et normativt relevant objekt.',
@@ -119,7 +119,7 @@ export default {
   em_filosofi_okofeminisme_urfolkskunnskap: {
     thinkers: ['Val Plumwood', 'Karen Warren', 'Kyle Whyte'],
     anchors: ['økofeminisme', 'dualisme', 'relasjonell kunnskap', 'urfolkskunnskap', 'epistemisk suverenitet'],
-    debate: 'Økofeministisk og urfolksfilosofisk miljøtenkning undersøker hvordan natur/kultur-, mann/kvinne- og menneske/natur-dualismer kan inngå i hierarkiske maktordener. Samtidig må urfolkskunnskap behandles som spesifikke, levende epistemiske tradisjoner, ikke som en romantisert felles «økologisk visdom».',
+    debate: 'Økofeministisk og urfolksfilosofisk miljøtenkning undersøker hvordan natur/kultur-, mann/kvinne- og menneske/natur-dualismer kan inngå i hierarkiske maktordener. Relasjonell kunnskap fremhever at kunnskap om land, arter og praksiser kan være knyttet til langvarige relasjoner og forpliktelser, mens epistemisk suverenitet gjør det nødvendig å spørre hvem som har myndighet til å forvalte, dele og definere kunnskapen. Urfolkskunnskap må derfor behandles som spesifikke, levende epistemiske tradisjoner, ikke som en romantisert felles «økologisk visdom».',
     argument: [
       'P1: Plumwood viser hvordan hierarkiske dualismer ikke bare skiller kategorier, men kan konstruere den ene siden som norm og den andre som bakgrunn eller ressurs; dette kobler miljøkritikk til analyser av kjønn og kolonial makt.',
       'P2: Warrens logikk om dominans viser at en faktisk forskjell ikke i seg selv legitimerer hierarki; et ekstra normativt premiss er nødvendig for å gå fra «ulike» til «berettiget underordning».',
