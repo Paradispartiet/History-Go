@@ -2,7 +2,7 @@
 // CIVICATION: Jobbtilbud (offers) lagres i localStorage
 // ------------------------------------------------------------
 
-const REQUIRED_BADGE_CAREER_CONTRACT_OVERLAYS = new Set(["natur"]);
+const REQUIRED_BADGE_CAREER_CONTRACT_OVERLAYS = new Set(["natur", "naeringsliv"]);
 let badgeCareerContractOverlaysPromise = null;
 
 function applyBadgeCareerContractOverlay(badges, overlay) {
