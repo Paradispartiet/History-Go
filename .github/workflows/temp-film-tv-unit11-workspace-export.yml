@@ -1,0 +1,38 @@
+name: Temporary Film and TV unit 11 workspace export
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit11-fulltext-workspace
+    paths:
+      - ".github/workflows/temp-film-tv-unit11-workspace-export.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    name: Export unit 11 workspace snapshot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit11-fulltext-workspace
+          fetch-depth: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: history-go-film-tv-unit11-workspace-${{ github.sha }}
+          retention-days: 1
+          if-no-files-found: error
+          include-hidden-files: true
+          path: |
+            AGENTS.md
+            package.json
+            package-lock.json
+            tsconfig*.json
+            .github/workflows
+            data/fag/TV_og_Film
+            data/fagverk
+            reports/fagverk
+            scripts
+            tests
