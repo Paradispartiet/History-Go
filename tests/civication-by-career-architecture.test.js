@@ -73,6 +73,16 @@ for (const [scope,titles] of Object.entries(evidence.canonical_decision.work_wor
   assert.ok(grammar.practice_stories.length >= 5);
   assert.ok(grammar.quality_axes.length >= 6);
   assert.ok(grammar.authority_boundary.may_not.length >= 4);
+  if (scope === 'by_radgiver_plan') {
+    assert.ok(grammar.story_world?.simulation_promise, 'Arealplanlegger story_world må bevares');
+    assert.ok(grammar.practice_stories.length >= 8, 'Arealplanlegger er complete_reference_v2 og krever minst åtte historier');
+    assert.ok(grammar.fag_bindings?.required_concepts?.length > 0, 'Arealplanlegger må beholde faglig story-grunnlag');
+    assert.strictEqual(grammar.mail_generation_contract?.minimum_counts?.micro,16);
+    assert.strictEqual(grammar.mail_generation_contract?.minimum_counts?.followup,8);
+    assert.strictEqual(grammar.mail_generation_contract?.minimum_counts?.knowledge,8);
+    assert.strictEqual(grammar.mail_generation_contract?.minimum_counts?.consequence,8);
+    assert.strictEqual(grammar.day_one_contract?.title,'Kartet ser ryddig ut');
+  }
 }
 
 const meritsSource = fs.readFileSync(path.join(ROOT,'js/Civication/merits-and-jobs.js'),'utf8');
@@ -101,4 +111,4 @@ r=sandbox.window.CivicationJobs.pushOffer({career_id:'by',title:'Direktør (byut
 assert.strictEqual(sandbox.window.calculateWeeklySalary(career,0),6);
 assert.strictEqual(sandbox.window.calculateWeeklySalary(career,1),9);
 assert.strictEqual(sandbox.window.calculateWeeklySalary(career,2),15);
-console.log('civication By career architecture ok: 16 formal jobs / 5 work worlds / qualification and appointment gates / economy 6-9-15');
+console.log('civication By career architecture ok: 16 formal jobs / 5 work worlds / legacy Arealplanlegger mail-story contracts / economy 6-9-15');
