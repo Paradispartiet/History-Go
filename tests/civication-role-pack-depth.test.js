@@ -71,13 +71,19 @@ assert.strictEqual(byarkitekt.level, 'partial', 'Byarkitekt spiller by_arkitekt-
 assert.strictEqual(byarkitekt.role_scope, 'by_arkitekt');
 
 // 6) role_model_only-roller som IKKE resolves til en dypere pakke → generic.
+// Resolveren kan samle flere titler under et delt runtime-scope som ikke har en
+// egen rad i Role Pack Index. Da er status `missing`, men opplevd nivå er fortsatt
+// korrekt `generic`.
 const genericRows = realIndex.roles.filter((r) => r.status === 'role_model_only');
 assert(genericRows.length > 0, 'indeksen skal ha role_model_only-roller');
 const genericHits = genericRows
   .map((r) => depth.getPackDepthSync({ career_id: r.category, title: r.title }))
   .filter((vmRow) => vmRow && vmRow.level === 'generic');
 assert(genericHits.length > 0, 'minst én role_model_only-rolle skal klassifiseres generic');
-genericHits.forEach((vmRow) => assert.strictEqual(vmRow.status, 'role_model_only'));
+genericHits.forEach((vmRow) => assert(
+  ['role_model_only', 'missing'].includes(vmRow.status),
+  `generic rolle skal være role_model_only eller uløst delt scope, fikk ${vmRow.status}`
+));
 
 // 7) Ukjent rolle → null / tom HTML.
 assert.strictEqual(depth.getPackDepthSync({ career_id: 'tull', title: 'Finnes Ikke' }), null);
