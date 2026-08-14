@@ -1,0 +1,77 @@
+name: Patch Brand logo contract
+
+on:
+  push:
+    branches:
+      - agent/brand-logo-contract
+    paths:
+      - .github/workflows/patch-brand-logo-contract.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/brand-logo-contract
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Patch documentation contracts
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          checklist = Path('docs/PLACE_PRODUCTION_CHECKLIST.md')
+          text = checklist.read_text()
+          text = text.replace(
+              '**LES FØRST — obligatorisk:** `data/brands/brand_rules_v1_1.json`',
+              '**LES FØRST — obligatorisk:** `data/brands/brand_rules_v1_1.json` og `docs/BRAND_ASSETS.md`'
+          )
+          old = '- [ ] korrekt logo/brandbilde har kilde- og rettighetskontroll;'
+          new = '''- [ ] **alle** canonical Brands som skal være synlige i den ferdige rundingen har lokal, verifisert logo eller autentisk dokumentert historisk ordmerke/brandmark;\n- [ ] logo-/ordmerkedekning er **100 %** før Brand-fasen kan godkjennes;\n- [ ] vanlig dokumentarfoto kan supplere et brand, men teller ikke som logo;\n- [ ] navnefallback teller ikke som ferdig logoport;\n- [ ] historisk ordmerke kan hentes som kildebåret utsnitt fra foto/scan når det ikke rekonstrueres eller redesignes;\n- [ ] hver logo/ordmerke har proveniens, kilde- og rettighetskontroll og eksplisitt no-endorsement-kontekst;'''
+          if old not in text:
+              raise SystemExit('Brand logo checklist anchor missing')
+          text = text.replace(old, new)
+          checklist.write_text(text)
+
+          rules_path = Path('data/brands/brand_rules_v1_1.json')
+          rules = json.loads(rules_path.read_text())
+          rules['visual_identity_policy'] = {
+              'contract': 'docs/BRAND_ASSETS.md',
+              'finished_round_requirement': 'Every canonical Brand shown in a finished PlaceCard Brands round must have a verified local logo or authentic documented historic wordmark/brandmark.',
+              'coverage': '100_percent',
+              'documentary_photo_counts_as_logo': False,
+              'name_fallback_counts_as_logo': False,
+              'historic_wordmark_rule': 'A documented crop of an authentic historic sign or wordmark may satisfy the logo gate when provenance is inspectable and the mark is not reconstructed or redesigned.',
+              'generated_or_reconstructed_logos_allowed': False,
+              'usage_context': 'referential_identification',
+              'endorsement_claimed': False
+          }
+          gate = rules['place_production_gate']
+          gate['logo_closeout_rule'] = 'Brand production cannot close until every canonical Brand in the finished place round satisfies the visual identity policy at 100% coverage.'
+          gate['place_link_evidence'] = [
+              'direct official or otherwise inspectable source naming the Brand and its role at the place',
+              'stable canonical Brand identity and aliases',
+              'correct verified logo or authentic documented historic wordmark/brandmark with documented rights/source',
+              'temporal scope when the relationship is historical, temporary or project-specific'
+          ]
+          rules_path.write_text(json.dumps(rules, ensure_ascii=False, indent=2) + '\n')
+          PY
+      - name: Commit patched contracts
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            exit 0
+          fi
+          git config user.name history-go-bot
+          git config user.email actions@users.noreply.github.com
+          git add docs/PLACE_PRODUCTION_CHECKLIST.md data/brands/brand_rules_v1_1.json
+          git commit -m "Krev komplett logoport i Brand-produksjon"
+          git push origin HEAD:agent/brand-logo-contract
