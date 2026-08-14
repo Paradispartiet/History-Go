@@ -19,7 +19,7 @@ jobs:
         with:
           ref: agent/expand-philosophy-core-fields
           fetch-depth: 0
-      - name: Repair malformed object keys and capture parser result
+      - name: Repair malformed article object keys and capture parser result
         shell: bash
         run: |
           set -euo pipefail
@@ -28,15 +28,14 @@ jobs:
           import re
           p=Path('scripts/materialize-filosofi-major-field-coverage.mjs')
           s=p.read_text()
-          patterns=[
-              (r"([,{])\s*'([A-Za-z][A-Za-z0-9_]*):", r"\1\2:"),
-              (r'([,{])\s*"([A-Za-z][A-Za-z0-9_]*):', r'\1\2:'),
-          ]
-          total=0
-          for pattern,repl in patterns:
-              s,n=re.subn(pattern,repl,s)
-              total+=n
-          print(f'malformed_keys_repaired={total}')
+          fields=(
+            'id|title|level|definition|concepts|methods|hook|thinkers|sources|anchors|debate|problem|stakes|contrast|'
+            'argument|objection|reply|stress|theoryNotes|methodNote|methodBoundary|case|caseTest|sourceNote|'
+            'empiricalBoundary|limit|mastery'
+          )
+          pattern=rf"([,{{])\s*'({fields}):"
+          s,n=re.subn(pattern,r"\1\2:",s)
+          print(f'malformed_article_keys_repaired={n}')
           p.write_text(s)
           PY
           mkdir -p reports/tmp
@@ -58,8 +57,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if grep -qx ok reports/tmp/filosofi-materializer-syntax-status.txt; then
             git rm .github/workflows/fix-filosofi-major-field-materializer.yml
-            git rm -f reports/tmp/filosofi-materializer-context.txt reports/tmp/filosofi-materializer-syntax-status.txt
-            git add scripts/materialize-filosofi-major-field-coverage.mjs reports/tmp/filosofi-materializer-syntax.txt
+            git rm -f reports/tmp/filosofi-materializer-context.txt reports/tmp/filosofi-materializer-syntax-status.txt reports/tmp/filosofi-materializer-syntax.txt
+            git add scripts/materialize-filosofi-major-field-coverage.mjs
             git diff --cached --check
             git commit -m "Repair Philosophy materializer syntax"
           else
