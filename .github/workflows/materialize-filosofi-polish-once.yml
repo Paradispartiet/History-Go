@@ -56,12 +56,30 @@ jobs:
           s=s.replace(old,new)
           p.write_text(s)
           PY
-      - name: Rebuild and polish complete Philosophy corpus
+      - name: Materialize canonical Philosophy corpus
         run: |
           node --check scripts/materialize-filosofi-complete.mjs
-          node --check scripts/polish-filosofi-complete.mjs
           node scripts/materialize-filosofi-complete.mjs
-          node scripts/polish-filosofi-complete.mjs
+      - name: Polish Philosophy corpus with diagnostic capture
+        id: polish
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          node --check scripts/polish-filosofi-complete.mjs
+          node scripts/polish-filosofi-complete.mjs 2>&1 | tee filosofi-polish-debug.log
+      - name: Upload polish diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: filosofi-polish-debug
+          path: filosofi-polish-debug.log
+          if-no-files-found: warn
+      - name: Stop after failed polish
+        if: steps.polish.outcome != 'success'
+        run: exit 1
+      - name: Rebuild release and audits
+        run: |
           node scripts/build-fagverk-release-manifest.mjs
           node scripts/audit-fagverk-filosofi-phase3.mjs --write-report
           node tools/validate-filosofi-theory-quality.mjs
