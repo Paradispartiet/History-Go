@@ -1,4 +1,4 @@
-name: Diagnose Philosophy parser context
+name: Repair Philosophy materializer object keys
 
 on:
   push:
@@ -12,39 +12,32 @@ permissions:
   contents: write
 
 jobs:
-  diagnose:
+  repair:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out exact branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: agent/expand-philosophy-core-fields
           fetch-depth: 0
-      - name: Capture parser context
+      - name: Repair malformed keys and require valid syntax
         run: |
           python - <<'PY'
           from pathlib import Path
-          import subprocess,re
-          p='scripts/materialize-filosofi-major-field-coverage.mjs'
-          r=subprocess.run(['node','--check',p],text=True,capture_output=True)
-          err=r.stderr or r.stdout
-          lines=err.splitlines()
-          out=[err,'\n--- context ---']
-          for i,line in enumerate(lines):
-              m=re.search(r'materialize-filosofi-major-field-coverage\.mjs:(\d+)',line)
-              if not m: continue
-              lineno=int(m.group(1)); src=Path(p).read_text().splitlines()[lineno-1]
-              caret=lines[i+2] if i+2<len(lines) else ''
-              pos=caret.find('^')
-              out.append(f'line={lineno} caret={pos}')
-              out.append(src[max(0,pos-260):pos+260] if pos>=0 else src[:520])
-              break
-          Path('reports/tmp/filosofi-materializer-context.txt').write_text('\n'.join(out))
+          import re
+          p=Path('scripts/materialize-filosofi-major-field-coverage.mjs')
+          s=p.read_text()
+          s,n=re.subn(r",'([A-Za-z][A-Za-z0-9_]*):",r",\1:",s)
+          print('malformed_keys_repaired=',n)
+          p.write_text(s)
           PY
-      - name: Commit context diagnostic
+          node --check scripts/materialize-filosofi-major-field-coverage.mjs
+      - name: Commit valid materializer
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports/tmp/filosofi-materializer-context.txt
-          git commit -m "Capture Philosophy parser context"
+          git rm .github/workflows/fix-filosofi-major-field-materializer.yml
+          git rm -f reports/tmp/filosofi-materializer-syntax.txt reports/tmp/filosofi-materializer-context.txt
+          git add scripts/materialize-filosofi-major-field-coverage.mjs
+          git diff --cached --check
+          git commit -m "Repair Philosophy materializer object keys"
           git push origin HEAD:agent/expand-philosophy-core-fields
