@@ -1,0 +1,60 @@
+{
+  "schema_version": "torggata_phase17_profile_unlocks_audit_v1",
+  "place_id": "torggata",
+  "phase": 17,
+  "status": "ALREADY_DONE_APPROVED",
+  "prior_work_gate": {
+    "status": "COMPLETED",
+    "approved_baseline": [
+      {
+        "pr": 1040,
+        "role": "profile canonical progress sources"
+      },
+      {
+        "pr": 1244,
+        "role": "miniProfile visited and quiz counts"
+      },
+      {
+        "pr": 1581,
+        "role": "profile progress reuse audit"
+      },
+      {
+        "pr": 1583,
+        "role": "shared read-only reader"
+      },
+      {
+        "pr": 4445,
+        "role": "completion and collection definitions"
+      }
+    ]
+  },
+  "profile": {
+    "visited_source": "visited_places",
+    "quiz_sources": [
+      "HGLearningLog.getQuizHistory()",
+      "quiz_progress.completed"
+    ],
+    "collection_union": [
+      "visited_places",
+      "places_collected"
+    ],
+    "update_event": "updateProfile",
+    "result": "PASS"
+  },
+  "unlocks": {
+    "place_quiz_collection": "HGUnlocks -> places_collected",
+    "people_unlock": "N/A: all canonical Torggata questions target the place",
+    "object_unlock": "N/A: no canonical object target",
+    "category_merit": "generic runtime only; no place-specific guarantee",
+    "bronze_silver_gold": "N/A: no implemented Torggata contract",
+    "result": "PASS"
+  },
+  "next_action": {
+    "owner": "HGProfileProgressReader",
+    "phase16_baseline": true,
+    "result": "PASS"
+  },
+  "new_place_local_state": false,
+  "regression_test": "tests/torggata-phase17-profile-unlocks.test.mjs",
+  "conclusion": "Existing profile, miniProfile, collection and unlock owners satisfy phase 17; unsupported rewards remain explicit N/A."
+}
