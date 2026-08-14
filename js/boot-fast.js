@@ -187,10 +187,15 @@
       || (Array.isArray(window.PEOPLE) && window.PEOPLE.length > 0);
   }
 
-  function hasVisibleDirectPeopleForPlace(placeId) {
+  function hasVisiblePeopleForPlace(placeId) {
     const pid = String(placeId || "").trim();
     if (!pid || !Array.isArray(window.PEOPLE)) return false;
-    return window.PEOPLE.some(person => {
+    const visiblePeople = window.PEOPLE.filter(person => {
+      const holdbacks = (Array.isArray(person?.roundHoldbacks) ? person.roundHoldbacks : [])
+        .map(value => String(value || "").trim());
+      return !holdbacks.includes(pid);
+    });
+    const directMatch = visiblePeople.some(person => {
       const placeIds = [
         person?.placeId,
         person?.place_id,
@@ -202,9 +207,34 @@
       ].flatMap(value => Array.isArray(value) ? value : [value])
         .map(value => String(value || "").trim())
         .filter(Boolean);
-      const holdbacks = (Array.isArray(person?.roundHoldbacks) ? person.roundHoldbacks : [])
-        .map(value => String(value || "").trim());
-      return placeIds.includes(pid) && !holdbacks.includes(pid);
+      return placeIds.includes(pid);
+    });
+    if (directMatch) return true;
+
+    const visibleIds = new Set(visiblePeople
+      .map(person => String(person?.id || "").trim())
+      .filter(Boolean));
+    return (Array.isArray(window.RELATIONS) ? window.RELATIONS : []).some(relation => {
+      const directPlace = String(
+        relation?.placeId || relation?.place_id || relation?.place || ""
+      ).trim();
+      const fromType = String(relation?.fromType || relation?.from_type || "").trim();
+      const toType = String(relation?.toType || relation?.to_type || "").trim();
+      const fromId = String(relation?.fromId || relation?.from_id || "").trim();
+      const toId = String(relation?.toId || relation?.to_id || "").trim();
+      const relationPlace = directPlace
+        || (fromType === "place" ? fromId : "")
+        || (toType === "place" ? toId : "");
+      if (relationPlace !== pid) return false;
+
+      const personIds = [
+        relation?.personId,
+        relation?.person_id,
+        relation?.person,
+        fromType === "person" ? fromId : "",
+        toType === "person" ? toId : ""
+      ].map(value => String(value || "").trim()).filter(Boolean);
+      return personIds.some(id => visibleIds.has(id));
     });
   }
 
@@ -281,7 +311,7 @@
       if (
         icon
         && !previewReady
-        && hasVisibleDirectPeopleForPlace(placeId)
+        && hasVisiblePeopleForPlace(placeId)
         && icon.dataset.hgPeopleStaleRefreshFor !== placeId
       ) {
         icon.dataset.hgPeopleStaleRefreshFor = placeId;
