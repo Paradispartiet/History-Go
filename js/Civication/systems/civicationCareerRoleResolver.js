@@ -39,6 +39,10 @@
     sport_legende: 'sport_legende',
     media_redaksjon: 'media_redaksjon',
     media_redaksjonell_ledelse: 'media_redaksjonell_ledelse',
+    religion_formidling_og_kulturarv: 'religion_formidling_og_kulturarv',
+    religion_utredning_og_radgivning: 'religion_utredning_og_radgivning',
+    religion_forskning: 'religion_forskning',
+    religion_fagledelse: 'religion_fagledelse',
     subkultur_arrangementsdrift: 'subkultur_kulturhusvert',
     subkultur_program_og_koordinering: 'subkultur_arrangementsplanlegger',
     subkultur_produksjon_og_prosjekt: 'subkultur_produsent',
@@ -82,6 +86,12 @@
   const MEDIA_ROLE_SCOPE_BY_TITLE = {
     journalist: 'media_redaksjon', reporter: 'media_redaksjon', redaksjonsmedarbeider: 'media_redaksjon', redaktor: 'media_redaksjonell_ledelse', sjefredaktor: 'media_redaksjonell_ledelse', nyhetsleder: 'media_redaksjonell_ledelse'
   };
+  const RELIGION_ROLE_SCOPE_BY_TITLE = {
+    religionsformidler: 'religion_formidling_og_kulturarv', kurator: 'religion_formidling_og_kulturarv',
+    fagkonsulent: 'religion_utredning_og_radgivning', seniorradgiver: 'religion_utredning_og_radgivning',
+    religionshistoriker: 'religion_forskning', religionsviter: 'religion_forskning', forsker: 'religion_forskning', seniorforsker: 'religion_forskning',
+    fagansvarlig: 'religion_fagledelse', seksjonsleder: 'religion_fagledelse', avdelingsleder: 'religion_fagledelse', avdelingsdirektor: 'religion_fagledelse', direktor: 'religion_fagledelse'
+  };
   const SUBKULTUR_ROLE_SCOPE_BY_TITLE = {
     kulturhusvert: 'subkultur_arrangementsdrift', arrangementscrew: 'subkultur_arrangementsdrift', produksjonsassistent: 'subkultur_arrangementsdrift', kulturmedarbeider: 'subkultur_arrangementsdrift',
     arrangementsplanlegger: 'subkultur_program_og_koordinering', kulturkonsulent: 'subkultur_program_og_koordinering', booking_og_innholdskoordinator: 'subkultur_program_og_koordinering',
@@ -101,6 +111,8 @@
     const roleKey = slugify(activePosition?.role_key);
     const roleId = slugify(activePosition?.role_id);
     const titleKey = slugify(activePosition?.title);
+    const explicitScope = slugify(activePosition?.role_scope);
+    if (ROLE_ID_BY_SCOPE[explicitScope]) return explicitScope;
     if (ROLE_SCOPE_BY_ROLE_ID[roleId]) return ROLE_SCOPE_BY_ROLE_ID[roleId];
     if (ROLE_SCOPE_BY_ROLE_ID[roleKey]) return ROLE_SCOPE_BY_ROLE_ID[roleKey];
 
@@ -127,6 +139,11 @@
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('media_')) return roleKey;
       if (MEDIA_ROLE_SCOPE_BY_TITLE[roleKey]) return MEDIA_ROLE_SCOPE_BY_TITLE[roleKey];
       if (MEDIA_ROLE_SCOPE_BY_TITLE[titleKey]) return MEDIA_ROLE_SCOPE_BY_TITLE[titleKey];
+    }
+    if (careerId === 'religion') {
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('religion_')) return roleKey;
+      if (RELIGION_ROLE_SCOPE_BY_TITLE[roleKey]) return RELIGION_ROLE_SCOPE_BY_TITLE[roleKey];
+      if (RELIGION_ROLE_SCOPE_BY_TITLE[titleKey]) return RELIGION_ROLE_SCOPE_BY_TITLE[titleKey];
     }
     if (careerId === 'by') {
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('by_')) return roleKey;
@@ -166,6 +183,10 @@
       if (titleKey.includes('grunder') || titleKey.includes('bedriftseier') || titleKey.includes('konsern') || titleKey.includes('investor') || titleKey.includes('kapital') || titleKey.includes('industrieier') || titleKey.includes('industribygger')) return 'mellomleder';
     }
 
+    if (roleKey.includes('religion_formidling_og_kulturarv')) return 'religion_formidling_og_kulturarv';
+    if (roleKey.includes('religion_utredning_og_radgivning')) return 'religion_utredning_og_radgivning';
+    if (roleKey.includes('religion_forskning')) return 'religion_forskning';
+    if (roleKey.includes('religion_fagledelse')) return 'religion_fagledelse';
     if (roleKey.includes('subkultur_arrangementsdrift')) return 'subkultur_arrangementsdrift';
     if (roleKey.includes('subkultur_program_og_koordinering')) return 'subkultur_program_og_koordinering';
     if (roleKey.includes('subkultur_produksjon_og_prosjekt')) return 'subkultur_produksjon_og_prosjekt';

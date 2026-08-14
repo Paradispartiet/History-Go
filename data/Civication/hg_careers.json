@@ -49,6 +49,33 @@
     },
 
     {
+      "career_id": "religion",
+      "economy": {
+        "salary_by_tier": { "1": 5, "2": 8, "3": 14 },
+        "weekly_expenses": { "base": 1, "risk_modifier": 1.0 },
+        "risk": { "volatility": 0.2, "layoff_chance_per_week": 0.02 }
+      },
+      "capital_base": {
+        "economic": 1.0,
+        "cultural": 2.0,
+        "social": 1.2,
+        "symbolic": 1.6,
+        "political": 0.6
+      },
+      "world_logic": {
+        "maintenance": { "min_quiz_per_weeks": 1 },
+        "strikes": { "on_missed_maintenance": 1, "max_strikes": 3, "consequence": "fired" },
+        "fired_to": "nav"
+      },
+      "diegetic_text": {
+        "offer": ["En institusjon søker religionsfaglig kompetanse."],
+        "maintenance_warning": ["Kildegrunnlaget og oppfølgingen trenger arbeid."],
+        "fired": ["Stillingen avsluttes."],
+        "nav": ["Fagkunnskapen består, selv om stillingen gjør det ikke."]
+      }
+    },
+
+    {
       "career_id": "vitenskap",
       "economy": {
         "salary_by_tier": { "1": 6, "2": 10, "3": 17 },
