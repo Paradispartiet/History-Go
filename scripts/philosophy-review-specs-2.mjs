@@ -28,7 +28,7 @@ export default {
   em_filosofi_intentionalitet_representasjon: {
     thinkers: ['Franz Brentano', 'Jerry Fodor', 'Hubert Dreyfus'],
     anchors: ['intentionalitet', 'mental representasjon', 'aboutness', 'funksjonalisme', 'kroppslig mestring'],
-    debate: 'Intentionalitet er sinnets rettethet mot noe. Representasjonalistiske teorier forklarer denne rettetheten ved interne representasjoner og funksjonelle roller, mens fenomenologiske og enaktive innvendinger spør om praktisk, kroppslig omgang med verden kan være mer grunnleggende enn eksplisitte representasjoner.',
+    debate: 'Intentionalitet er sinnets rettethet mot noe, ofte omtalt som aboutness: mentale tilstander er om eller rettet mot et objekt, en sak eller et mulig forhold. Representasjonalistiske teorier forklarer denne rettetheten ved interne representasjoner og funksjonelle roller, mens fenomenologiske og enaktive innvendinger spør om praktisk, kroppslig omgang med verden kan være mer grunnleggende enn eksplisitte representasjoner.',
     argument: [
       'P1: Brentanos intentionalitetsbegrep identifiserer et særtrekk ved mentale fenomener: tanker, håp og frykt er om eller rettet mot noe, også når objektet ikke finnes.',
       'P2: Fodors representasjonalisme gir en mekanisme for systematisk tanke ved å postulere strukturer med semantisk innhold og kausale roller, men må forklare hvordan disse strukturene får determinate sannhetsbetingelser snarere enn bare korrelasjoner.',
@@ -41,7 +41,7 @@ export default {
   em_filosofi_personlig_identitet_selv: {
     thinkers: ['John Locke', 'Derek Parfit', 'Eric Olson'],
     anchors: ['personlig identitet', 'psykologisk kontinuitet', 'minne', 'reduksjonisme', 'animalisme'],
-    debate: 'Personlig identitet over tid kan knyttes til kropp, organisme, sjel eller psykologisk kontinuitet. Locke og Parfit gjør minne og andre psykologiske forbindelser sentrale, mens animalismen hevder at vi grunnleggende er menneskelige organismer.',
+    debate: 'Personlig identitet over tid kan knyttes til kropp, organisme, sjel eller psykologisk kontinuitet. Locke og Parfit gjør minne og andre psykologiske forbindelser sentrale, mens animalismen hevder at vi grunnleggende er menneskelige organismer. Parfits reduksjonisme hevder at personidentitet ikke krever et ytterligere, separat faktum utover bestemte fysiske og psykologiske kontinuitetsrelasjoner.',
     argument: [
       'P1: Lockes minnekriterium fanger hvorfor ansvar og selvtilskrivning synes knyttet til bevisst kontinuitet snarere enn til samme materielle bestanddeler gjennom hele livet.',
       'P2: Rene minnekriterier møter sirkularitets- og transitivitetsproblemer; derfor utvikles bredere teorier om overlappende psykologisk kontinuitet og riktig kausal forbindelse.',
@@ -80,7 +80,7 @@ export default {
   em_filosofi_omsorg_relasjon_sarbarhet: {
     thinkers: ['Carol Gilligan', 'Nel Noddings', 'Eva Feder Kittay'],
     anchors: ['omsorgsetikk', 'sårbarhet', 'avhengighet', 'relasjonell autonomi', 'upartiskhet'],
-    debate: 'Omsorgsetikken utfordrer moralteorier som behandler den autonome, uavhengige aktøren og upartiske regler som standardmodell. Den fremhever at avhengighet, omsorgsarbeid og konkrete relasjoner er moralsk grunnleggende uten at partiskhet dermed blir ubegrenset tillatt.',
+    debate: 'Omsorgsetikken utfordrer moralteorier som behandler den autonome, uavhengige aktøren og upartiske regler som standardmodell. Konflikten med upartiskhet er reell: konkrete omsorgsrelasjoner kan gi særlige grunner, men teorien må forklare når slike partikulære forpliktelser kan forsvares overfor fremmede og marginaliserte. Den fremhever at avhengighet, omsorgsarbeid og konkrete relasjoner er moralsk grunnleggende uten at partiskhet dermed blir ubegrenset tillatt.',
     argument: [
       'P1: Menneskelig liv innebærer perioder med dyp avhengighet, og moralske teorier som bare modellerer gjensidig uavhengige voksne risikerer å gjøre omsorgsarbeid og asymmetriske forpliktelser teoretisk sekundære.',
       'P2: Gilligan og Noddings viser hvordan oppmerksomhet på relasjon og respons kan avdekke moralske trekk som abstrakte regeltester overser, men omsorg kan også være paternalistisk eller ekskluderende.',
