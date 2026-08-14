@@ -105,5 +105,10 @@ test('Filosofi kan ikke være komplett før 54 av 54 har bestått samme port',()
   const reviewed=articles.filter((article)=>article.editorial_quality==='university_depth_reviewed');
   assert.equal(completion.reviewed_article_count,reviewed.length);
   assert.equal(completion.complete_ready,reviewed.length===54);
-  if(reviewed.length<54) assert.notEqual(completion.status,'complete');
+  if(reviewed.length<54){
+    assert.notEqual(completion.status,'complete');
+    assert.equal(completion.editorial_quality,'university_depth_review_in_progress');
+  } else {
+    assert.equal(completion.editorial_quality,'university_depth_reviewed');
+  }
 });
