@@ -39,6 +39,12 @@
     sport_legende: 'sport_legende',
     media_redaksjon: 'media_redaksjon',
     media_redaksjonell_ledelse: 'media_redaksjonell_ledelse',
+    produksjonsassistent: 'film_tv_produksjonsassistent',
+    manusmedarbeider: 'film_tv_manusmedarbeider',
+    programleder: 'film_tv_programleder',
+    kurator_film_tv: 'film_tv_kurator_film_tv',
+    regissor: 'film_tv_regissor',
+    serieskaper: 'film_tv_serieskaper',
     religion_formidling_og_kulturarv: 'religion_formidling_og_kulturarv',
     religion_utredning_og_radgivning: 'religion_utredning_og_radgivning',
     religion_forskning: 'religion_forskning',
@@ -134,6 +140,12 @@
   const MEDIA_ROLE_SCOPE_BY_TITLE = {
     journalist: 'media_redaksjon', reporter: 'media_redaksjon', redaksjonsmedarbeider: 'media_redaksjon',
     redaktor: 'media_redaksjonell_ledelse', sjefredaktor: 'media_redaksjonell_ledelse', nyhetsleder: 'media_redaksjonell_ledelse'
+  };
+
+  const FILM_TV_ROLE_SCOPE_BY_TITLE = {
+    produksjonsassistent: 'produksjonsassistent', manusmedarbeider: 'manusmedarbeider',
+    programleder: 'programleder', kurator_film_tv: 'kurator_film_tv',
+    regissor: 'regissor', serieskaper: 'serieskaper'
   };
 
   const RELIGION_ROLE_SCOPE_BY_TITLE = {
@@ -281,6 +293,11 @@
       const hit = mapped(MEDIA_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('media_')) return roleKey;
+    }
+    if (careerId === 'film_tv') {
+      const hit = mapped(FILM_TV_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
+      if (hit) return hit;
+      if (ROLE_ID_BY_SCOPE[explicitScope]) return explicitScope;
     }
     if (careerId === 'religion') {
       const hit = mapped(RELIGION_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
