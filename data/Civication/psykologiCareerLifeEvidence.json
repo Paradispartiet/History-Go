@@ -1,0 +1,91 @@
+{
+  "schema": "civication_psykologi_career_life_evidence_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-14",
+  "badge_id": "psykologi",
+  "badge_source": "data/badges/psykologi.json",
+  "principle": "Alle 13 canonicale Psykologi-tiers er faktiske jobb- eller stillingsposisjoner. History Go-poeng dokumenterer progresjon, men gir aldri i seg selv psykologautorisasjon, spesialistgodkjenning, arbeidsgiverutnevnelse eller akademisk kvalifikasjon/ansettelse.",
+  "canonical_decision": {
+    "formal_job_tiers": ["Miljøassistent","Sosialassistent","Aktivitetsleder (omsorgsarbeid)","Miljøarbeider","Veileder","Rådgiver","Seniorrådgiver","Psykolog","Spesialistpsykolog","Fagansvarlig","Klinikkleder","Forsker (psykologi)","Professor (psykologi)"],
+    "pure_life_or_practice_tiers": [],
+    "review_left_open": [],
+    "work_worlds": {
+      "psykologi_miljoarbeid": ["Miljøassistent","Sosialassistent","Aktivitetsleder (omsorgsarbeid)","Miljøarbeider"],
+      "psykologi_arbeids_og_karriereveiledning": ["Veileder","Rådgiver","Seniorrådgiver"],
+      "psykolog": ["Psykolog"],
+      "spesialistpsykolog": ["Spesialistpsykolog"],
+      "fagansvarlig": ["Fagansvarlig"],
+      "klinikkleder": ["Klinikkleder"],
+      "forsker_psykologi": ["Forsker (psykologi)"],
+      "professor_psykologi": ["Professor (psykologi)"]
+    }
+  },
+  "salary_mapping": {
+    "existing_psykologi_bands_pc_per_week": {"1":5,"2":9,"3":16,"4":18,"5":20,"6":23,"7":26,"8":30,"9":34,"10":38,"11":42,"12":46,"13":50},
+    "rule": "Eksisterende 13-nivå Psykologi-økonomi beholdes eksakt; hvert formaljobb-tier peker eksplisitt på sitt eksisterende salary_tier."
+  },
+  "supporting_evidence_files": [
+    "data/Civication/psychologyGuidanceEvidence.json",
+    "data/Civication/psychologyClinicalCareerEvidence.json",
+    "data/Civication/psychologyAcademicCareerEvidence.json"
+  ],
+  "sources": {
+    "utdanning_miljoarbeider": {
+      "publisher": "Utdanning.no",
+      "title": "Miljøarbeider",
+      "url": "https://utdanning.no/yrker/beskrivelse/miljoarbeider",
+      "checked_at": "2026-08-14",
+      "supports": ["Miljøarbeider som faktisk yrke", "Miljøassistent, Sosialassistent og Aktivitetsleder (omsorgsarbeid) som Aa-registertitler", "ingen én offisiell utdanning som gir miljøarbeidertittelen"]
+    },
+    "utdanning_jobbveileder": {
+      "publisher": "Utdanning.no",
+      "title": "Jobbveileder",
+      "url": "https://utdanning.no/yrker/beskrivelse/jobbveileder",
+      "checked_at": "2026-08-14",
+      "supports": ["arbeids- og utdanningsveiledning", "kartlegging", "oppfølging", "samarbeid med arbeidsgiver og NAV"]
+    },
+    "utdanning_karriereveileder": {
+      "publisher": "Utdanning.no",
+      "title": "Karriereveileder",
+      "url": "https://utdanning.no/yrker/beskrivelse/karriereveileder",
+      "checked_at": "2026-08-14",
+      "supports": ["karriereveiledning som faktisk jobb", "utdannings- og yrkesvalg", "arbeidsmarkedskunnskap"]
+    },
+    "helsedirektoratet_psykolog": {
+      "publisher": "Helsedirektoratet",
+      "title": "Ofte stilte spørsmål – Psykologer",
+      "url": "https://www.helsedirektoratet.no/autorisasjon-og-spesialistutdanning/autorisasjon-og-lisens/sok-om-autorisasjon-og-lisens/velg-yrkesgruppe/psykolog/ofte-stilte-sporsmal-psykologer",
+      "checked_at": "2026-08-14",
+      "supports": ["psykolog som beskyttet tittel", "norsk autorisasjon eller lisens som nødvendig port"]
+    },
+    "psykologforeningen_spesialist": {
+      "publisher": "Norsk psykologforening",
+      "title": "Reglement for spesialitetene i psykologi",
+      "url": "https://www.psykologforeningen.no/kurs-og-utdanning/reglement-for-spesialitetene-i-psykologi",
+      "checked_at": "2026-08-14",
+      "supports": ["spesialistkompetanse som separat dokumentert kvalifikasjon"]
+    },
+    "uh_forskrift_professor": {
+      "publisher": "Lovdata / Kunnskapsdepartementet",
+      "title": "Universitets- og høyskoleforskriften kapittel 3",
+      "url": "https://lovdata.no/dokument/SF/forskrift/2024-06-28-1392/kap3",
+      "checked_at": "2026-08-14",
+      "supports": ["professorens minstekrav", "doktorgrad eller tilsvarende", "utdanningsfaglig kompetanse", "institusjonell kompetansevurdering"]
+    }
+  },
+  "tier_evidence": {
+    "Miljøassistent": ["utdanning_miljoarbeider"],
+    "Sosialassistent": ["utdanning_miljoarbeider"],
+    "Aktivitetsleder (omsorgsarbeid)": ["utdanning_miljoarbeider"],
+    "Miljøarbeider": ["utdanning_miljoarbeider"],
+    "Veileder": ["utdanning_jobbveileder", "data/Civication/psychologyGuidanceEvidence.json"],
+    "Rådgiver": ["utdanning_karriereveileder", "data/Civication/psychologyGuidanceEvidence.json"],
+    "Seniorrådgiver": ["utdanning_karriereveileder", "data/Civication/psychologyGuidanceEvidence.json"],
+    "Psykolog": ["helsedirektoratet_psykolog", "data/Civication/psychologyClinicalCareerEvidence.json"],
+    "Spesialistpsykolog": ["psykologforeningen_spesialist", "data/Civication/psychologyClinicalCareerEvidence.json"],
+    "Fagansvarlig": ["data/Civication/psychologyClinicalCareerEvidence.json"],
+    "Klinikkleder": ["data/Civication/psychologyClinicalCareerEvidence.json"],
+    "Forsker (psykologi)": ["data/Civication/psychologyAcademicCareerEvidence.json"],
+    "Professor (psykologi)": ["uh_forskrift_professor", "data/Civication/psychologyAcademicCareerEvidence.json"]
+  }
+}
