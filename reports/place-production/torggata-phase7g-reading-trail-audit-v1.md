@@ -2,8 +2,8 @@
 
 - Dato: 2026-08-14
 - Place ID: `torggata`
-- Canonical eier: `data/lesespor/manifest.json`
-- Ny datafil: `data/lesespor/oslo/lesespor_oslo_by_torggata.json`
+- Canonical eier: `data/lesespor/oslo/lesespor_oslo_by.json`
+- Oppdatert canonical datafil: `data/lesespor/oslo/lesespor_oslo_by.json`
 - Runtime: `js/ui/place-popup-tabs.js`
 - Status: **KLAR FOR REVIEW**
 
@@ -90,6 +90,6 @@ De tre nye oppføringene består denne kontrakten. Automatiske tester kan låse 
 
 ## Beslutning
 
-**Lesespor-blokkeren er løst av gjenåpnet fase 7G** når data, manifest, backlog, workcard og test er merget med grønn CI.
+**Lesespor-blokkeren er løst av gjenåpnet fase 7G** når data, backlog, workcard og test er merget med grønn CI.
 
 Neste blocker i bindende rekkefølge: **Mer**.
