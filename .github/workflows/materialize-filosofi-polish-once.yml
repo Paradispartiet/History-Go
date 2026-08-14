@@ -37,6 +37,12 @@ jobs:
               raise SystemExit('Expected concept definition line not found')
           s=s.replace(old,new)
 
+          old="  return `${c.label}: ${definition}. ${contrast} En typisk feil er ${confusion}. ${application}`;"
+          new="  return `${c.label}: ${definition}. ${contrast} En typisk feil er ${confusion}. ${application} Hva som teller som et godt eksempel må begrunnes mot artikkelens problemstilling og de relevante moteksemplene, ikke bare mot ordlyden i definisjonen.`;"
+          if old not in s:
+              raise SystemExit('Expected concept paragraph return not found')
+          s=s.replace(old,new)
+
           old="""  const conceptById=new Map(conceptDoc.concepts.map((c)=>[c.id,c]));\n  const thinkerById=new Map(thinkerDoc.thinkers.map((t)=>[t.id,t]));"""
           new="""  const conceptById=new Map(conceptDoc.concepts.map((c)=>[c.id,c]));\n  const thinkerById=new Map(thinkerDoc.thinkers.map((t)=>[t.id,t]));\n  const methodDoc=await readJson('data/fag/filosofi/methods_filosofi_canonical_v1.json');\n  const emneDoc=await readJson('data/fag/filosofi/emner_filosofi_canonical_v1.json');\n  const fagkartDoc=await readJson('data/fag/filosofi/fagkart_filosofi_canonical_v1.json');\n  const humanLabels=new Map([\n    ...conceptDoc.concepts.map((c)=>[c.id,c.label]),\n    ...thinkerDoc.thinkers.map((t)=>[t.id,t.name]),\n    ...methodDoc.methods.map((m)=>[m.method_id,m.title]),\n    ...emneDoc.map((e)=>[e.emne_id,e.title]),\n    ...(fagkartDoc.categories||[]).map((c)=>[c.id,c.title])\n  ]);\n  for(const e of emneDoc) for(const place of (e.place_relevance||[])) if(place.includes('_')) humanLabels.set(place,place.replaceAll('_',' '));\n  for(const c of (fagkartDoc.categories||[])) for(const h of (c.topic_hooks||[])) if(h.id) humanLabels.set(h.id,h.title||h.label||h.id.replaceAll('_',' '));\n  const renderKnownIdentifiers=(text)=>String(text||'').replace(/\\b[a-zæøå]+(?:_[a-zæøå]+)+\\b/g,(token)=>humanLabels.get(token)||token);"""
           if old not in s:
