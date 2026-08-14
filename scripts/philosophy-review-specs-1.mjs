@@ -28,7 +28,7 @@ export default {
   em_filosofi_uformell_logikk_feilslutninger: {
     thinkers: ['Charles Hamblin', 'Douglas Walton'],
     anchors: ['feilslutning', 'ad hominem', 'stråmann', 'sirkelargument', 'dialektisk kontekst'],
-    debate: 'Uformell logikk spør om feilslutninger kan identifiseres ved faste former, eller om vurderingen avhenger av dialogtype, bevisbyrde og hvilken funksjon et argument har i konteksten.',
+    debate: 'Uformell logikk spør om feilslutninger kan identifiseres ved faste former, eller om vurderingen avhenger av dialogtype, bevisbyrde og hvilken funksjon et argument har i konteksten. En presis analyse må derfor angi hvilken dialektisk kontekst argumentet inngår i, fremfor å behandle feilslutningsetiketter som kontekstfrie diagnoser.',
     argument: [
       'P1: Et mønster som ad hominem er ikke automatisk feilaktig bare fordi det omtaler en person; relevansen av troverdighet avhenger av hvilken type påstand og evidens som vurderes.',
       'P2: Hamblins kritikk av læreboklister viser at navngitte feilslutninger blir pedagogisk tomme dersom de løsriver etiketten fra spørsmålet om hvorfor slutningen svikter.',
@@ -80,7 +80,7 @@ export default {
   em_filosofi_vitnesbyrd_ekspertise_tillit: {
     thinkers: ['Thomas Reid', 'Elizabeth Fricker', 'Alvin Goldman'],
     anchors: ['vitnesbyrd', 'reduksjonisme', 'anti-reduksjonisme', 'ekspertise', 'epistemisk tillit'],
-    debate: 'Epistemologien om vitnesbyrd spør om det er rasjonelt å tro andre uten selvstendig bevis for deres pålitelighet. Samtidig krever moderne ekspertavhengighet kriterier for å skille legitim epistemisk autoritet fra status, retorikk og institusjonell makt.',
+    debate: 'Epistemologien om vitnesbyrd spør om det er rasjonelt å tro andre uten selvstendig bevis for deres pålitelighet. Striden mellom reduksjonisme og anti-reduksjonisme gjelder om vitnesbyrd trenger positiv, uavhengig støtte eller har en presumptiv epistemisk rett til tillit. Samtidig krever moderne ekspertavhengighet kriterier for å skille legitim epistemisk autoritet fra status, retorikk og institusjonell makt.',
     argument: [
       'P1: Mye av det et individ vet om historie, medisin og vitenskap kan ikke verifiseres direkte av individet; vitnesbyrd er derfor en grunnleggende, ikke marginal, kilde til kunnskap.',
       'P2: En streng reduksjonisme krever positive grunner for talerens pålitelighet, mens anti-reduksjonistiske teorier gir vitnesbyrd en presumptiv rett til tillit inntil det finnes defeaters. Begge posisjoner må forklare hvordan feilinformasjon oppdages.',
@@ -106,7 +106,7 @@ export default {
   em_filosofi_arsak_nodvendighet_mulighet: {
     thinkers: ['David Hume', 'Saul Kripke', 'David Lewis'],
     anchors: ['årsak', 'kontrafaktisk', 'nødvendighet', 'mulig verden', 'modalitet'],
-    debate: 'Emnet kobler to problemer: hva som gjør et forhold kausalt, og hvordan nødvendighet og mulighet skal forstås. Hume utfordrer nødvendig forbindelse i erfaring, mens Kripke og Lewis utvikler moderne modalitetsrammer som skiller metafysisk nødvendighet fra bare faktisk regularitet.',
+    debate: 'Emnet kobler to problemer: hva som gjør et forhold kausalt, og hvordan nødvendighet og mulighet skal forstås. Hume utfordrer nødvendig forbindelse i erfaring, mens Kripke og Lewis utvikler moderne modalitetsrammer som skiller metafysisk nødvendighet fra bare faktisk regularitet. En mulig verden brukes i moderne semantikk til å representere et alternativt scenario, men spørsmålet om slike verdener også er ontologiske realiteter må holdes adskilt.',
     argument: [
       'P1: Humes regularitetsproblem viser at gjentatt samvariasjon alene ikke synliggjør en nødvendig forbindelse mellom årsak og virkning; flere konkurrerende forklaringer kan passe samme mønster.',
       'P2: Kontrafaktiske analyser forsøker å fange forskjellen ved å spørre om virkningen ville uteblitt dersom årsaken ikke hadde inntruffet, men slike analyser må håndtere overdeterminering og avhengighet mellom bakgrunnsbetingelser.',
