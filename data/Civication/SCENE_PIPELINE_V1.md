@@ -4,7 +4,7 @@
 
 Dette er den normative migreringskontrakten for å konsolidere Civications mail- og karrieregameplay.
 
-Fase 1 etablerte en bevisst read-only audit og Scene Contract v1 uten å endre scenevalg, døgnrytme, svarbehandling eller konsekvenser. Migreringstrinn 3 er gjennomført: normal planruntime laster alle ni canonicale plantyper direkte. Første del av trinn 4 er også gjennomført: `CivicationSceneDirector` er nå det ene offentlige innsteget for kandidatvalg fra Daily- og Workday-flyten. Den globale auditten står fortsatt i `observe` fordi det interne EventEngine-innsteget og senere arkitekturgjeld ennå ikke er lukket.
+Fase 1 etablerte en bevisst read-only audit og Scene Contract v1 uten å endre scenevalg, døgnrytme, svarbehandling eller konsekvenser. Migreringstrinn 3 er gjennomført: normal planruntime laster alle ni canonicale plantyper direkte. SceneDirector-cutover 4A og 4B er også gjennomført: Daily-, Workday- og EventEngine-flyten bruker ett canonicalt kandidatinnsteg. Den globale auditten står fortsatt i `observe` fordi ekstra-slot-seleksjon, svarpipeline og senere arkitekturgjeld ennå ikke er lukket.
 
 Kanoniske maskinlesbare kilder:
 
@@ -74,31 +74,40 @@ Reachability-regresjonen krever nå:
 
 Fallbackrekkefølgen er foreløpig bevart for tilfeller der direkte innhold faktisk mangler. Den skal strammes inn som del av SceneDirector-migreringen, ikke skjult i denne typeparitetsendringen.
 
-## SceneDirector-cutover: offentlig kandidatinnsteg
+## SceneDirector-cutover: ett kandidatinnsteg
 
-`CivicationWorkdayMailBuilder` oppretter nå `window.CivicationSceneDirector` etter at MailRuntime og eksisterende kandidat-utvidelser er lastet. Director fanger den komplette, outcome-aware kildeselektoren og eksponerer:
+`CivicationWorkdayMailBuilder` oppretter `window.CivicationSceneDirector` etter at MailRuntime og eksisterende kandidat-utvidelser er lastet. Director fanger den komplette, outcome-aware kildeselektoren og eksponerer:
 
 - `getWorkCandidates(active, state, options)`
 - `getPrimaryWorkScene(active, state, options)`
+- `getEventEnginePack(engine, active, state, roleKey)`
 - `inspect()` med begrenset seleksjonsspor
 
-Det gamle navnet `CivicationMailRuntime.makeCandidateMailsForActiveRole` beholdes som en ren alias til Director. Dermed går både:
+Det gamle navnet `CivicationMailRuntime.makeCandidateMailsForActiveRole` beholdes som en ren alias til Director. Dermed går:
 
 - Workday-adapterens eksplisitte kandidatvalg
 - DailyMailBuilders eksisterende primary-kall
+- EventEngines interne `buildMailPool`
 - eldre kompatibilitetskall
 
-gjennom samme offentlige innsteg, uten at dagsrytme, fallbackrekkefølge, karriereutfall eller scenevalg er endret i denne porten.
+gjennom samme canonicale innsteg.
+
+EventEngine-porten fjerner en konkret dobbel seleksjon. Tidligere kalte MailRuntime-wrapperen først EventEngines gamle `buildMailPool`, som igjen brukte den offentlige runtime-selektoren, og deretter MailRuntimes interne selektor én gang til. Nå skjer normal kandidatoppløsning nøyaktig én gang gjennom SceneDirector.
+
+Legacy-pack og RoleStoryletBridge brukes bare når Director returnerer null canonicale kandidater. En terminal karrieretilstand med `__career_outcome_terminal_closed` åpner ikke legacy-fallback. Den forrige `buildMailPool`-adapteren beholdes kun som eksplisitt feilsikring dersom Director selv kaster en feil.
 
 Eierskapstesten låser at:
 
 - Director registreres én gang
 - legacy-API-et peker på den samme funksjonen
 - outcome-aware kildeutvidelser bevares
-- hver Director-resolusjon bruker én kildeseleksjon
+- hver normal Director-resolusjon bruker én kildeseleksjon
+- EventEngine laster ikke legacy-pack når canonicalt innhold finnes
+- terminal karrieretilstand forblir lukket
+- reelt innholdsgap får nøyaktig én legacy-fallback
 - Workday fortsatt stempler arbeidsgiver, rolle, fase og `workday_day_index` korrekt
 
-Dette er første cutover-del, ikke sluttarkitekturen. `CivicationMailRuntime` er fortsatt kildeadapter, og EventEngines interne `buildMailPool` flyttes til Director i neste port.
+Dette er fortsatt en kontrollert cutover, ikke sluttarkitekturen. `CivicationMailRuntime` er kildeadapter, mens DailyBuilders ekstra-slot-seleksjon og kataloglasting er neste Director/Catalog-port.
 
 ## Bekreftet gjenværende migreringsgjeld
 
@@ -107,7 +116,7 @@ Auditten skal fortsatt synliggjøre, ikke skjule, følgende forhold:
 1. `DailyMailBuilder` kan generere generiske standardvalg når kildeinnholdet har færre enn to valg. Dette er forbudt i målkontrakten, men fjernes i en egen gameplay-migrering.
 2. Flere moduler pakker inn `EventEngine.answer()`. Målet er ett prioritert handlerregister i `CivicationChoiceDirector`, ikke lastrekkefølge som implisitt kontrollflyt.
 3. Dagsprogrammet beskriver 18–26 elementer og 8 500–12 000 ord per dag. Målkontrakten bruker i stedet 3–6 faktiske arbeidssituasjoner; lesetid og ordmengde er observasjoner, ikke produksjonskvoter.
-4. Daily- og Workday-kall deler nå ett offentlig SceneDirector-innsteg, men EventEngines interne `buildMailPool`, DailyBuilders ekstra-slot-seleksjon og MailRuntimes kildenormalisering er ennå ikke flyttet til én komplett Director/Catalog-pipeline.
+4. Primary-kandidatene eies nå av SceneDirector i Daily, Workday og EventEngine, men DailyBuilders ekstra-slot-seleksjon og dupliserte kildenormalisering er ennå ikke flyttet bak Director/Catalog-grensen.
 5. Runtime leser fortsatt kildekataloger direkte. Ett kompilert scene-register er måltilstanden etter at SceneDirector- og adaptergrensene er låst.
 
 ## Fagverk og stabile spilleregler
@@ -132,7 +141,7 @@ Slike felt skal være låst til en versjonert `ruleset_ref` i `knowledge_contrac
 
 Auditten er read-only og skriver aldri om data. Standardmodus rapporterer gjenværende gjeld med exit code 0. `--strict` finnes for å gjøre samme funn blokkerende.
 
-Reachability-delen er en reell regresjonsport: testen krever typeparitet og direkte lasting av eksisterende innhold. SceneDirector-eierskapstesten låser nå det offentlige Daily/Workday-innsteget. Den globale `enforcement_mode` forblir `observe` til det interne EventEngine-innsteget, svarpipeline, generiske fallbackvalg og dagsbudsjett er migrert; ellers ville én samlet strict-gate blokkere på kjent, separat planlagt gjeld.
+Reachability-delen er en reell regresjonsport: testen krever typeparitet og direkte lasting av eksisterende innhold. SceneDirector-eierskapstesten låser nå både det offentlige Daily/Workday-innsteget og EventEngines interne build-pool. Den globale `enforcement_mode` forblir `observe` til ekstra-slot-seleksjon, svarpipeline, generiske fallbackvalg og dagsbudsjett er migrert; ellers ville én samlet strict-gate blokkere på kjent, separat planlagt gjeld.
 
 ## Migreringsrekkefølge og status
 
@@ -141,7 +150,8 @@ Reachability-delen er en reell regresjonsport: testen krever typeparitet og dire
 3. **Fullført:** Gjør alle ni plantyper direkte nåbare.
 4. **Pågår:** Ett SceneDirector-eierskap.
    - **Fullført 4A:** Samle Daily/Workday-kall bak ett offentlig kandidatinnsteg.
-   - **Neste 4B:** Flytt EventEngines interne `buildMailPool` og DailyBuilders ekstra-slot-seleksjon bak Director/Catalog-grensen.
+   - **Fullført 4B:** Flytt EventEngines interne `buildMailPool` bak Director og fjern dobbeltseleksjonen.
+   - **Neste 4C:** Flytt DailyBuilders ekstra-slot-seleksjon og dupliserte kildenormalisering bak Director/Catalog-grensen.
 5. Flytt svarwrappere til eksplisitte `CivicationChoiceDirector`-handlere i fast rekkefølge.
 6. Gjør private, life, narrative og social til kildeadaptre.
 7. La runtime lese ett kompilert scene-register; fjern parallell seleksjon og gamle `jobbmails`.
