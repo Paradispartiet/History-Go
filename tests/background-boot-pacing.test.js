@@ -85,12 +85,21 @@ class FakeElement {
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+async function waitUntil(predicate, message, timeoutMs = 250) {
+  const startedAt = Date.now();
+  while (!predicate()) {
+    if (Date.now() - startedAt >= timeoutMs) throw new Error(message);
+    await delay(2);
+  }
+}
+
 (async () => {
   const fetchLog = [];
   const lifecycle = [];
   let activePeopleFetches = 0;
   let maxPeopleFetches = 0;
   let refreshCalls = 0;
+  const refreshRelationStates = [];
   let mutationCallback = null;
   const peopleAttempts = new Map();
 
@@ -137,6 +146,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     HGBrands: { async init() {} },
     async openPlaceCard() {
       refreshCalls += 1;
+      refreshRelationStates.push(window.HG_RELATIONS_READY);
       peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">6</span>';
       peopleIcon.dataset.roundReady = "true";
       peopleList.hasRenderedPeople = true;
@@ -253,10 +263,13 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   await delay(2);
   placeCard.dataset.currentPlaceId = "place-1";
 
-  await delay(18);
+  await waitUntil(
+    () => lifecycle.includes("people-priority-ready") && refreshCalls >= 1,
+    "prioritert People-data rendret ikke det åpne PlaceCard-et"
+  );
   assert.ok(lifecycle.includes("people-priority-ready"), "sted åpnet etter boot flyttes fram i den pågående People-køen");
   assert.equal(window.HG_PEOPLE_READY, false, "resten av People kan fortsatt laste");
-  assert.equal(window.HG_RELATIONS_READY, false, "direkte place-profiler venter ikke på hele relasjonsregisteret");
+  assert.equal(refreshRelationStates[0], false, "direkte place-profiler venter ikke på hele relasjonsregisteret");
   assert.deepEqual(Array.from(window.PEOPLE, person => person.id), ["person-1"]);
   assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres så snart direkte People-profiler er brukbare");
 
