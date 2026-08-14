@@ -54,12 +54,12 @@ test("manual quality review reopens completion until the four editorial blockers
   assert.equal(assessment.total, 21);
   assert.equal(assessment.required_total, 27);
   assert.ok(assessment.dimensions.some((dimension) => dimension.score < 4));
-  assert.equal(assessment.critical_findings.length, 4);
-  assert.equal(assessment.unresolved_blockers.length, 4);
+  assert.equal(assessment.critical_findings.length, 5);
+  assert.equal(assessment.unresolved_blockers.length, 5);
   assert.equal(assessment.gate, "FAILED_REOPENED_FOR_EDITORIAL_IMPROVEMENT");
   assert.match(assessment.automatic_checks_limit, /do not prove/);
   assert.equal(backlog.status, "OPEN_BLOCKING_COMPLETION");
-  assert.equal(backlog.findings.length, 4);
+  assert.equal(backlog.findings.length, 5);
   assert.deepEqual(backlog.invariant, {
     content_rounds_total: 4,
     badge_separate: true,
@@ -81,6 +81,8 @@ test("global checklist mirrors the canonical four-plus-separate-Badge contract",
   assert.match(checklist, /bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder/);
   assert.match(checklist, /2009 → 2017 erstatter ikke automatisk et eldre historisk førbilde/);
   assert.match(checklist, /Nyheter kan ikke godkjennes som tom\/N\/A/);
+  assert.match(checklist, /Lesespor kan ikke godkjennes som tom\/N\/A/);
+  assert.match(checklist, /betalingslåst er ikke tilstrekkelig N\/A-grunn/);
   assert.match(checklist, /Mer kan ikke settes N\/A for et innholdsrikt sted/);
   assert.match(checklist, /en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok/);
   assert.match(checklist, /Objects og Structures\/Bygg brukes ikke som to separate rundinger/);
