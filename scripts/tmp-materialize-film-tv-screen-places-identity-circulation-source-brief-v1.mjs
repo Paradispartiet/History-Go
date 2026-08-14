@@ -21,14 +21,14 @@ for (const [file, content] of Object.entries(payload.textFiles)) {
   fs.mkdirSync(path.dirname(abs(file)), { recursive: true });
   fs.writeFileSync(abs(file), content);
 }
-for (const patch of payload.patches) {
-  const current = fs.readFileSync(abs(patch.file), 'utf8');
-  if (!current.includes(patch.before)) {
-    if (current.includes(patch.after)) continue;
-    throw new Error(`Patchanker mangler i ${patch.file}`);
+for (const [file, before, after] of payload.patches) {
+  const current = fs.readFileSync(abs(file), 'utf8');
+  if (!current.includes(before)) {
+    if (current.includes(after)) continue;
+    throw new Error(`Patchanker mangler i ${file}`);
   }
-  const matches = current.split(patch.before).length - 1;
-  if (matches !== 1) throw new Error(`Patchanker er ikke entydig i ${patch.file}: ${matches}`);
-  fs.writeFileSync(abs(patch.file), current.replace(patch.before, patch.after));
+  const matches = current.split(before).length - 1;
+  if (matches !== 1) throw new Error(`Patchanker er ikke entydig i ${file}: ${matches}`);
+  fs.writeFileSync(abs(file), current.replace(before, after));
 }
 console.log(`Materialiserte ${Object.keys(payload.docs).length} statiske enhet-12-filer, ${Object.keys(payload.textFiles).length} produksjonsfiler og ${payload.patches.length} monotone regresjonspatcher.`);
