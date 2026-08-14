@@ -1,0 +1,16 @@
+{
+  "schema":"civication_work_grammar_v1","version":1,
+  "category":"musikk","role_scope":"musikk_scene_og_produksjon","role_id":"musikk_scene_og_produksjon",
+  "badge_binding":{"badge_titles":["Sceneassistent","Produksjonsassistent","Tekniker (lys/lyd)","Produksjonskoordinator"],"thresholds":[10,15,25,40]},
+  "work_world":"Konserter og musikkproduksjoner der scene, teknikk, crew og plan må fungere samtidig.",
+  "authority_boundary":"Spilleren kan handle innen tildelt produksjonsmandat og eskalere sikkerhetskritiske avvik, men kan ikke overstyre fagmyndighet, økonomisk fullmakt eller kunstnerisk ledelse.",
+  "work_loops":["brief -> plan -> rigg -> avvik -> gjennomføring -> nedrigg -> læring","behov -> kapasitetssjekk -> prioritering -> kommunikasjon -> dokumentasjon"],
+  "practice_stories":[
+    {"id":"rigg_forsinket","setup":"Rigg ligger etter plan før dørene åpner.","decision":"Prioriter kritisk sti uten å kutte HMS.","learning":"tempo må styres av risiko og avhengigheter"},
+    {"id":"signalfeil","setup":"Lydsignal faller ut under linecheck.","decision":"Feilsøk systematisk og informer produksjon.","learning":"teknisk presisjon krever ro og tydelig eskalering"},
+    {"id":"artistendring","setup":"Artist ønsker en sen sceneendring.","decision":"Vurder kapasitet, sikkerhet og tidskonsekvens før løfte.","learning":"service er ikke det samme som ubegrenset ja"},
+    {"id":"crew_mangel","setup":"En nøkkelperson i crewet uteblir.","decision":"Fordel oppgaver på nytt innen kompetansegrensene.","learning":"rollegrenser gjelder også under press"},
+    {"id":"utstyr_forsinket","setup":"Viktig utstyr kommer sent.","decision":"Lag fallback og oppdater alle avhengige aktører.","learning":"produksjonskvalitet handler om koordinert adaptasjon"}
+  ],
+  "quality_axes":["sikkerhet","produksjonsflyt","teknisk_presisjon","kommunikasjon","rolleforståelse","dokumentasjon"]
+}
