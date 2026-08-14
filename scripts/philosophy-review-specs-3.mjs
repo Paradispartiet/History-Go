@@ -2,7 +2,7 @@ export default {
   em_filosofi_rettferdighet_likhet_fordeling: {
     thinkers: ['John Rawls', 'Robert Nozick', 'Amartya Sen'],
     anchors: ['forskjellsprinsippet', 'mønstret fordeling', 'rettigheter', 'kapabilitet', 'rettferdighet'],
-    debate: 'Fordelingsrettferdighet kan vurderes ut fra mønstre i sluttfordelingen, historien som skapte eierskapet eller menneskers reelle kapabiliteter. Rawls, Nozick og Sen viser tre ulike måter å identifisere hva som er moralsk relevant når goder og byrder fordeles.',
+    debate: 'Fordelingsrettferdighet kan vurderes ut fra mønstre i sluttfordelingen, historien som skapte eierskapet eller menneskers reelle kapabiliteter. I Rawls’ teori er forskjellsprinsippet et kriterium for når ulikhet kan forsvares, mens Nozicks kritikk utfordrer mønstret fordeling som mål når historisk rettmessige overføringer stadig bryter mønsteret. Rawls, Nozick og Sen viser tre ulike måter å identifisere hva som er moralsk relevant når goder og byrder fordeles.',
     argument: [
       'P1: Rawls’ forskjellsprinsipp tillater ulikhet bare når institusjonelle ordninger forbedrer utsiktene til de dårligst stilte sammenlignet med relevante alternativer, og bygger dermed rettferdighetsvurderingen inn i grunnstrukturen.',
       'P2: Nozicks rettighetsteori avviser at en rettferdig fordeling kan vurderes bare som et mønster på ett tidspunkt; dersom beholdninger er tilegnet og overført rettmessig, kan omfordeling krenke individuelle rettigheter selv når et annet mønster ser mer likt ut.',
@@ -15,7 +15,7 @@ export default {
   em_filosofi_demokrati_offentlig_fornuft: {
     thinkers: ['John Rawls', 'Jürgen Habermas', 'David Estlund'],
     anchors: ['offentlig fornuft', 'deliberasjon', 'legitimitet', 'epistemisk verdi', 'demokrati'],
-    debate: 'Demokratisk legitimitet kan begrunnes ved lik politisk status, ved prosedyrer for offentlig begrunnelse eller delvis ved at demokratiske prosesser har epistemiske fordeler. Rawls, Habermas og Estlund gir ulike kombinasjoner av disse hensynene.',
+    debate: 'Demokratisk legitimitet kan begrunnes ved lik politisk status, ved prosedyrer for offentlig begrunnelse eller delvis ved at demokratiske prosesser har epistemiske fordeler. Deliberasjon betegner her den offentlige utvekslingen og prøvingen av grunner mellom politisk likeverdige borgere. Begrepet epistemisk verdi betegner spørsmålet om demokratiske prosedyrer også kan ha en kunnskapsmessig fordel uten at dette opphever kravet om politisk likhet. Rawls, Habermas og Estlund gir ulike kombinasjoner av disse hensynene.',
     argument: [
       'P1: Demokratisk makt er tvangsmakt og krever derfor en begrunnelse som behandler borgere som politisk like snarere enn som passive mottakere av et resultat.',
       'P2: Rawls’ offentlig fornuft begrenser hvilke typer grunner som bør bære konstitusjonelle og grunnleggende politiske beslutninger, slik at borgere med ulike omfattende livssyn kan møtes på gjensidig rettferdiggjørbare vilkår.',
