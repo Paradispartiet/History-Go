@@ -1,0 +1,45 @@
+name: Materialize rebased Sport editorial state
+
+on:
+  push:
+    branches: [agent/sport-editorial-depth-rebase-staging]
+    paths:
+      - ".github/workflows/sport-editorial-rebase-materialize.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/sport-editorial-depth-rebase-staging
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Rebuild Sport editorial and shared Fagverk state
+        run: |
+          node scripts/materialize-sport-editorial-depth.mjs
+          node scripts/enrich-sport-editorial-claim-provenance.mjs
+          node scripts/polish-sport-editorial-depth.mjs
+          node scripts/audit-fagverk-sport-editorial-depth.mjs --write-report --no-check-report
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-sport-editorial-depth.mjs
+          node --test tests/fagverk-sport-editorial-depth.test.mjs
+          node --test tests/fagverk-sport-editorial-style.test.mjs
+          node --test tests/fagverk-sport-phase3.test.mjs
+          node --test tests/fagverk-sport-scientific-quality.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+          git diff --check
+      - name: Commit rebased deterministic outputs and remove one-shot workflow
+        run: |
+          rm .github/workflows/sport-editorial-rebase-materialize.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json data/fagverk/sport reports/fagverk/sport-editorial-depth-audit.json .github/workflows/sport-editorial-rebase-materialize.yml
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Materialize rebased Sport editorial state"
+          git push origin HEAD:agent/sport-editorial-depth-rebase-staging
