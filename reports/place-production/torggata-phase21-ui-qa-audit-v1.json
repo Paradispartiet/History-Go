@@ -2,7 +2,7 @@
   "schema_version": "torggata_phase21_ui_qa_audit_v1",
   "place_id": "torggata",
   "phase": 21,
-  "status": "APPROVED_AFTER_SAFEGUARD",
+  "status": "APPROVED_PRODUCTION_VERIFIED",
   "production_url": "https://paradispartiet.github.io/History-Go/",
   "observed_issue": {
     "surface": "production",
@@ -49,6 +49,20 @@
   "production_followup": {
     "observed_after_first_safeguard": "Nearby changed the route to #/place/torggata, but MapView rejected the place when no flyTo-capable map existed.",
     "correction": "MapView opens the selected PlaceCard directly only in the explicit no-map path; normal map clients retain moveend-gated flyTo behavior.",
-    "browser_result_pending": true
+    "browser_result_pending": false,
+    "browser_verified_at": "2026-08-14",
+    "observed_place_id": "torggata",
+    "observed_route": "#/place/torggata",
+    "observed_round_count": 4,
+    "observed_round_category": "by",
+    "observed_fourth_round": "structures",
+    "observed_visible_rounds": [
+      "people",
+      "objects",
+      "brands",
+      "structures"
+    ],
+    "observed_badge_separate": true,
+    "app_startup_failure": false
   }
 }

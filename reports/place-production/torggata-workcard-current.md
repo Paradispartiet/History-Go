@@ -40,6 +40,7 @@
 - Fase 19-audit: `reports/place-production/torggata-phase19-images-audit-v1.json`
 - Fase 20-audit: `reports/place-production/torggata-phase20-data-qa-audit-v1.json`
 - Fase 21-audit: `reports/place-production/torggata-phase21-ui-qa-audit-v1.json`
+- Fase 22-audit: `reports/place-production/torggata-phase22-content-qa-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -67,7 +68,8 @@
 | 19. Hovedbilder og rundingsbilder | **GODKJENT** | to lokale hovedbilder; People 7/7, Objects 1/1 og Brands 13/13 bildeklare med proveniens |
 | 20. Data-QA | **GODKJENT** | canonical data, indekser, referanser og subsystemporter bestått på siste innholds-head |
 | 21. UI-QA | **GODKJENT ETTER SIKRINGSENDRING** | WebGL-feil stopper ikke lenger app-/PlaceCard-boot; produksjonsflaten kontrollert |
-| 22–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 22. Innholds-QA | **GODKJENT** | 18/18 claims, Story, 5 × 7 Quiz, People 21/21, Brands 13/13, bilder og 4+1-rundinger kontrollert uten filler |
+| 23–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -696,3 +698,23 @@ Produksjonsoppfølgingen fant også at Nearby oppdaterte hash-ruten, men at `Map
 **Fase 21 UI-QA = GODKJENT ETTER SIKRINGSENDRING.**
 
 Neste aktive fase: **22. Innholds-QA**.
+
+## Fase 22 – Innholds-QA
+
+### Godkjent resultat
+
+- Produksjonspakken står fortsatt `ready_v4_2` med 18/18 verifiserte claims og full setningsdekning for `desc` (3/3) og `popupDesc` (31/31).
+- Datoer, år, roller og tall ligger i den gjennomgåtte claimpakken; den tidligere for sterke første-25-metersbasseng-formuleringen forblir fjernet.
+- People følger canonical People of Places: 21/21 kildebårne koblinger, 7 synlige bildeklare profiler og 14 eksplisitte bildeholdbacks.
+- Den ene Storyen følger `episode_v1`, har tre HTTPS-kilder, maskinberegnet score 20 og ingen løse next-scenes.
+- Quizen er fortsatt canonical 5 × 7 = 35 spørsmål fra 12 gjennomgåtte kilder; avviste kausalpåstander og interne fagfiler som faktakilder er fortsatt ute.
+- Nature er begrunnet N/A for dette `by`-stedet; fase 22 oppretter ingen naturmapping.
+- Hovedbilder og rundingsbilder beholder identitet/proveniens. Structures bruker godkjent ikon-/antallsvisning og får ikke konstruert bilde.
+- Brands følger canonical definisjon med 13/13 kildebårne entries og 13/13 verifiserte logo-/ordmerkeassets.
+- Rundingsinnholdet er ikke filler: People, Objects, Brands og Structures er de fire synlige innholdsrundingene; Badge står separat. Works og usikkert/avvist innhold forblir utelatt.
+- Produksjonskontrollen på samme innhold bekrefter `torggata`, fire synlige innholdsrundinger, `by`, `structures` som fjerde og separat Badge uten startup-feil i no-WebGL-modus.
+- `tests/torggata-phase22-content-qa.test.mjs` låser hele fase-22-kontrakten.
+
+**Fase 22 Innholds-QA = GODKJENT.**
+
+Neste aktive fase: **23. CI / repository-gates**.

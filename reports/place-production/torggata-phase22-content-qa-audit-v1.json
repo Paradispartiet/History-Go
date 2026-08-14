@@ -1,0 +1,120 @@
+{
+  "schema_version": "torggata_phase22_content_qa_audit_v1",
+  "place_id": "torggata",
+  "phase": 22,
+  "generated_at": "2026-08-14",
+  "status": "APPROVED",
+  "checklist": [
+    {
+      "id": "inspectable_claim_support",
+      "status": "PASS",
+      "evidence": [
+        "data/places/production/torggata.json",
+        "reports/place-production/torggata-source-base-v1.md"
+      ],
+      "result": "18/18 production claims are verified; every desc/popupDesc sentence is mapped to claim IDs."
+    },
+    {
+      "id": "description_contract",
+      "status": "PASS",
+      "evidence": [
+        "data/places/production/torggata.json",
+        "reports/place-production/torggata-phase5-description-audit-v1.md"
+      ],
+      "result": "ready_v4_2 with current desc/popupDesc hashes and 3/3 plus 31/31 sentence coverage."
+    },
+    {
+      "id": "dates_years_roles_numbers",
+      "status": "PASS",
+      "evidence": [
+        "data/places/production/torggata.json",
+        "reports/place-production/torggata-phase7b-history-audit-v1.md"
+      ],
+      "result": "Dates, years, named roles and quantitative claims remain inside the verified production claim set; unsupported first/superlative wording remains removed."
+    },
+    {
+      "id": "people_of_places",
+      "status": "PASS",
+      "evidence": [
+        "reports/place-production/torggata-phase12-people-links-audit-v1.json"
+      ],
+      "result": "21/21 canonical people links have inspectable sources, zero duplicate IDs and zero duplicate descriptions."
+    },
+    {
+      "id": "people_profile_contract",
+      "status": "PASS",
+      "evidence": [
+        "reports/place-production/torggata-phase12-people-links-audit-v1.json"
+      ],
+      "result": "No new people were created in phase 22; the reviewed 7 visible image-ready profiles remain separate from 14 explicit image holdbacks."
+    },
+    {
+      "id": "stories_governance",
+      "status": "PASS",
+      "evidence": [
+        "data/stories/stories_torggata.json",
+        "reports/place-production/torggata-phase7c-story-audit-v1.md"
+      ],
+      "result": "Exactly one episode_v1 conflict story remains, with three HTTPS sources, computed score 20 and no unsupported related/next scenes."
+    },
+    {
+      "id": "quiz_canonical",
+      "status": "PASS",
+      "evidence": [
+        "reports/place-production/torggata-phase10-quiz-audit-v1.json"
+      ],
+      "result": "Canonical rich profile remains 5 sets × 7 questions = 35, supported by 12 reviewed sources; rejected causal and unsourced candidates remain held back."
+    },
+    {
+      "id": "nature_ownership",
+      "status": "N_A",
+      "evidence": [
+        "data/places/by/oslo/places/torggata.json"
+      ],
+      "result": "Torggata is category by. Phase 22 introduces no Nature mapping or nature claims."
+    },
+    {
+      "id": "image_identity",
+      "status": "PASS",
+      "evidence": [
+        "reports/place-production/torggata-phase19-images-audit-v1.json"
+      ],
+      "result": "Two local main images, People 7/7, Objects 1/1 and Brands 13/13 are identity/provenance reviewed; Structures intentionally uses icon/count without unsupported imagery."
+    },
+    {
+      "id": "brand_definition",
+      "status": "PASS",
+      "evidence": [
+        "reports/place-production/torggata-phase13-brands-audit-v1.json"
+      ],
+      "result": "13/13 rule-driven canonical brands have source linkage and verified local logo/wordmark assets; no generated or reconstructed logos."
+    },
+    {
+      "id": "round_content_and_holdbacks",
+      "status": "PASS",
+      "evidence": [
+        "reports/place-production/torggata-phase8e-rounds-closeout-v1.json",
+        "reports/place-production/torggata-phase19-images-audit-v1.json",
+        "reports/place-production/torggata-phase21-ui-qa-audit-v1.json"
+      ],
+      "result": "Production shows four non-filler content rounds—People, Objects, Brands, Structures—with separate Badge; Works and all rejected/uncertain candidates remain excluded."
+    }
+  ],
+  "production_ui_evidence": {
+    "url": "https://paradispartiet.github.io/History-Go/#/place/torggata",
+    "place_id": "torggata",
+    "round_count": 4,
+    "round_category": "by",
+    "fourth_round": "structures",
+    "visible_rounds": [
+      "people",
+      "objects",
+      "brands",
+      "structures"
+    ],
+    "badge_separate": true,
+    "webgl_unavailable_degraded_mode": true,
+    "startup_failure": false
+  },
+  "conclusion": "All phase 22 content checks pass. No unsupported claim, person, story, quiz fact, image, brand or filler round was introduced; reviewed holdbacks remain excluded."
+}
