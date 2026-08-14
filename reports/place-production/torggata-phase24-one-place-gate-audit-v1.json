@@ -3,7 +3,7 @@
   "place_id": "torggata",
   "phase": 24,
   "generated_at": "2026-08-14",
-  "status": "READY_FOR_SHA_LOCKED_FINAL_MERGE",
+  "status": "APPROVED_MERGED_DEPLOYED",
   "base_branch": "main",
   "base_sha": "6bcb447e8b8501ffa61303b4a9ec00ce8e0dfdd3",
   "scope": {
@@ -40,5 +40,21 @@
     "squash merge supplies expected_head_sha",
     "merged main and Pages deployment are verified before completion is reported"
   ],
-  "conclusion": "The Torggata package is ready for the final one-place PR. Completion is reported only after exact-head CI/review verification, SHA-locked squash merge, main verification and successful Pages deployment."
+  "conclusion": "The strict Torggata one-place gate passed on the unchanged final head, PR #4962 was SHA-locked squash-merged, main and Pages were verified, and production shows four content rounds plus separate Badge.",
+  "completion_evidence": {
+    "pr": 4962,
+    "final_head_sha": "ce1f60231db52e2472fe334cded8eda140ae429a",
+    "merge_commit": "44a9ecf6f11a797194c34573180278bc52e4770d",
+    "main_verified": true,
+    "pages_run_id": 31794520090,
+    "pages_status": "SUCCESS",
+    "production_round_count": 4,
+    "production_rounds": [
+      "people",
+      "objects",
+      "brands",
+      "structures"
+    ],
+    "badge_separate": true
+  }
 }
