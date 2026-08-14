@@ -1,4 +1,4 @@
-name: Repair and validate Film TV unit 12 fulltext
+name: Diagnose and validate Film TV unit 12 fulltext
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: repair-film-tv-unit12-fulltext
+  group: diagnose-film-tv-unit12-fulltext
   cancel-in-progress: false
 
 jobs:
@@ -81,22 +81,45 @@ jobs:
           rm -f reports/fagverk/film-tv-unit12-bootstrap-failure.log
           rm -rf .delivery/film-tv-unit12
 
-      - name: Validate syntax
+      - name: Run deterministic pipeline with exact log
+        id: pipeline
+        continue-on-error: true
+        shell: bash
         run: |
-          node --check scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
-          node --check scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
-          node --check tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+          set -euo pipefail
+          {
+            echo '== syntax =='
+            node --check scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+            node --check scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+            node --check tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+            echo '== materialize unit 12 =='
+            node scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write
+            echo '== refresh source brief =='
+            node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs --write
+            echo '== build release =='
+            node scripts/build-fagverk-release-manifest.mjs
+            echo '== shared audits =='
+            node scripts/audit-fagverk-general-engine.mjs --write-report
+            node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+            node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs --write-report
+            node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs --write-report
+            node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write-report
+          } 2>&1 | tee /tmp/unit12-repair.log
 
-      - name: Materialize and refresh deterministic state
+      - name: Publish exact failed state and log
+        if: steps.pipeline.outcome == 'failure'
+        shell: bash
         run: |
-          node scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write
-          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs --write
-          node scripts/build-fagverk-release-manifest.mjs
-          node scripts/audit-fagverk-general-engine.mjs --write-report
-          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
-          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs --write-report
-          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs --write-report
-          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write-report
+          set -euo pipefail
+          cp /tmp/unit12-repair.log reports/fagverk/film-tv-unit12-bootstrap-failure.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git reset -- .github/workflows
+          git diff --cached --check
+          git commit -m "Publiser reparert enhet 12-diagnostikk"
+          git push origin HEAD:agent/film-tv-unit12-screen-places-fulltext
+          exit 1
 
       - name: Validate unit 12 and monotone predecessors
         run: |
@@ -123,9 +146,7 @@ jobs:
           node --test tests/fagverk-release-manifest.test.mjs
 
       - name: Verify deterministic regeneration
-        shell: bash
         run: |
-          set -euo pipefail
           node scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write
           node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs --write
           node scripts/build-fagverk-release-manifest.mjs
