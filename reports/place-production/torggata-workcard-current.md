@@ -56,7 +56,7 @@
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **GJENÅPNET – 7D FØR/ETTER PÅGÅR** | tidligere PR-er er historisk merget; manuell sluttkritikk gjenåpner først 7D, mens Nyheter, Lesespor og Mer står i kø |
+| 7. Popupfaner | **GJENÅPNET – 7D FØR/ETTER LØST; NYHETER NESTE** | gammelt–nå-paret er erstattet med Torggata 30–36 ca. 1965 → 2025; Nyheter, Lesespor og Mer står fortsatt i kø |
 | 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
@@ -739,17 +739,25 @@ Neste aktive fase: **23. CI / repository-gates**.
 
 **Fase 23 CI / repository-gates = GODKJENT.**
 
-Aktiv fase: **7D Før/etter – GJENÅPNET / PÅGÅR**.
+## Fase 7D – Før/etter gjenopprettet etter manuell kvalitetskritikk
 
-Eksakt aktivt filscope:
+- Primærparet er nå Torggata 30–36 mot Hausmanns gate, ca. 1965 mot 27. mars 2025.
+- Begge bilder viser samme korte gatesegment, samme nordøstlige gateakse, samme fasaderekke og Ankertorget/Hausmanns gate i dybden.
+- Det historiske bildet er Oslo Museum `OB.A11305`, Henrik Ørsted, CC BY-NC-ND 3.0 NO.
+- Nåbildet er KartaView photo `2551570473`, CC BY-SA 4.0, med krediteringen «© Grab and KartaView Contributors».
+- 2009/2017-paret med ulike utsnitt er fjernet som primærpar.
+- Torggata Bad er eksplisitt avvist: badet har egen place-oppføring i History GO og kan derfor ikke brukes som stedfortreder for parent-place Torggata.
+- Global regel er lagt i både `docs/PLACE_PRODUCTION_CHECKLIST.md` og `docs/PLACE_POPUP_SYSTEM.md`: canonical place-register/manifester skal kontrolleres før motivvalg, og et delsted med egen place-oppføring kan ikke bære hovedparet for et overordnet sted.
+- Manuell bilde-QA og rettighetsgrense er dokumentert i `reports/place-production/torggata-phase7d-before-after-audit-v1.md`.
+- Automatiske tester låser identitet, dato, lisens, kameraretning, own-place-regel og avvist Torggata Bad; de erstatter ikke den manuelle visuelle kontrollen.
 
-- `data/places/by/oslo/places/torggata.json` — `for_na`, bildepar, labels og attribusjon;
-- `reports/place-production/torggata-phase7d-before-after-audit-v1.md` — revidert research, kamerastandpunkt og acceptance-evidens;
-- `tests/place-card-for-na-torggata.test.js` — sammenlignbart primærpar, gammelt–nå-lag og faktisk nåbilde.
+**Fase 7D Før/etter = LØST AV DETTE ENDRINGSSETTET.**
 
-Ingen annen forbedringsfase er `PÅGÅR`. Bindende rekkefølge etter ny godkjenning av 7D:
+Neste forbedring: **Nyheter – KØET SOM NESTE**.
 
-1. Nyheter — kø;
+Bindende rekkefølge videre:
+
+1. Nyheter — neste;
 2. Lesespor — kø;
 3. Mer — kø;
 4. Fase 8 rundingskoherens — kø;
@@ -775,9 +783,9 @@ Ingen annen forbedringsfase er `PÅGÅR`. Bindende rekkefølge etter ny godkjenn
 
 ## Manuell sluttvurdering – kvalitetsstatus gjenåpnet
 
-Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket fem blokkerende avvik:
+Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begrensninger var det samme som høy sluttkvalitet. Manuell vurdering av den faktiske brukerflaten avdekket opprinnelig fem blokkerende avvik. Punkt 1 er nå løst i den gjenåpnede fase 7D; de fire øvrige er fortsatt åpne:
 
-1. **Før/etter er ikke en god nok sammenligning.** Bildene fra 2009 og 2017 viser ulike gateutsnitt. Begrensningen er dokumentert, men dokumentasjon gjør ikke paret visuelt godt. Torggata mangler også et skikkelig gammelt arkivbilde sammenlignet med et faktisk nåbilde.
+1. **LØST I GJENÅPNET FASE 7D – Før/etter.** Det svake 2009/2017-paret er erstattet av Torggata 30–36 mot Hausmanns gate, ca. 1965 mot 2025, med samme korte gatesegment og stabile ankere. Torggata Bad er avvist fordi badet har egen place-oppføring.
 2. **Nyheter er tom.** Et aktivt og innholdsrikt bysted kan ikke ferdigmeldes med tom Nyheter-fane uten et dokumentert fersksøk og en streng begrunnelse.
 3. **Lesespor er tomt.** De registrerte Torggata-lenkene ble holdt tilbake fordi de er betalingslåst, men søket ble avsluttet uten å etablere åpne, direkte lesbare alternativer.
 4. **Mer er tom.** Torggata har nok navne-, språk-, arkiv-, observasjons- og relasjonsstoff til at manglende eksisterende Språkleksikon-post ikke er tilstrekkelig N/A-grunn.
@@ -785,8 +793,9 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 
 ### Påkrevde forbedringer
 
-- bygg Før/etter med et sammenlignbart primærpar fra samme meningsfulle gateutsnitt;
-- legg til minst ett skikkelig gammelt arkivlag mot et faktisk nåbilde når rettigheter og identitet er avklart;
+- **fullført:** bygg Før/etter med et sammenlignbart primærpar fra samme meningsfulle gateutsnitt;
+- **fullført:** kontroller canonical place-register før motivvalg; et delsted med egen place-oppføring, som Torggata Bad, kan ikke brukes som stedfortreder for parent-place Torggata;
+- **fullført:** legg til minst ett skikkelig gammelt arkivlag mot et faktisk nåbilde når rettigheter og identitet er avklart;
 - produser relevante, daterte Nyheter etter fersksøk;
 - produser et reelt Lesespor med åpent, direkte lesbart Torggata-materiale, eller dokumenter et uttømmende strengt N/A-søk;
 - produser et reelt Mer-lag fra språk, arkiv, observasjoner, kunnskap eller kuraterte relasjoner;
@@ -794,6 +803,8 @@ Den tidligere 29/30-vurderingen var for teknisk og godtok at dokumenterte begren
 - gjennomfør ny manuell slutt-QA før ferdigstatus kan gjeninnføres.
 
 ## Revidert seksdelt kvalitetsvurdering
+
+> Denne tabellen dokumenterer gjenåpningsøyeblikket før fase 7D ble reparert. Den er ikke en ny sluttvurdering. Fire redaksjonelle blokkere gjenstår, og full seksdelt re-score skal først gjøres etter Nyheter, Lesespor, Mer og rundingskoherens samt ny manuell UI-QA.
 
 | Dimensjon | Score | Konkret evidens |
 | --- | ---: | --- |
