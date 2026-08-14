@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REPORT_PATH = 'reports/civication-badge-career-matrix.generated.md';
 const POLICY_PATH = 'data/Civication/badgeCareerAuditPolicy.json';
+const CONTRACT_INDEX_PATH = 'data/Civication/badgeCareerContracts/index.json';
 
 function readJson(rel) {
   return JSON.parse(fs.readFileSync(path.join(repoRoot, rel), 'utf8'));
@@ -46,6 +47,42 @@ function getTierCareerContract(tier) {
   }
   return null;
 }
+function applyCareerContractOverlay(badge, overlay, coverageErrors) {
+  if (!overlay || String(overlay.badge_id || '') !== String(badge?.id || '')) return badge;
+  const allowed = new Set(Array.isArray(overlay.allowed_tier_patch_fields)
+    ? overlay.allowed_tier_patch_fields.map(String)
+    : ['life_position', 'career_offer', 'career_unlock']);
+  for (const key of allowed) {
+    if (!['life_position', 'career_offer', 'career_unlock'].includes(key)) {
+      coverageErrors.push(`${badge.id}: career-contract overlay tillater ulovlig felt ${key}`);
+    }
+  }
+  const seen = new Set();
+  for (const patch of Array.isArray(overlay.tiers) ? overlay.tiers : []) {
+    const label = String(patch?.label || '');
+    if (!label || seen.has(label)) {
+      coverageErrors.push(`${badge.id}: tom eller duplisert overlay-tittel «${label}»`);
+      continue;
+    }
+    seen.add(label);
+    const tier = (badge.tiers || []).find((candidate) => String(candidate?.label || '') === label);
+    if (!tier) {
+      coverageErrors.push(`${badge.id}: overlay peker på ukjent tier «${label}»`);
+      continue;
+    }
+    for (const [key, value] of Object.entries(patch || {})) {
+      if (key === 'label') continue;
+      if (!allowed.has(key) || !value || typeof value !== 'object' || Array.isArray(value)) {
+        coverageErrors.push(`${badge.id}/${label}: ulovlig overlay-patch ${key}`);
+        continue;
+      }
+      tier[key] = { ...value };
+    }
+  }
+  if (overlay.evidence_ref) badge.career_life_evidence = String(overlay.evidence_ref);
+  badge.career_contract_overlay = `${CONTRACT_INDEX_PATH}#${badge.id}`;
+  return badge;
+}
 function isRuntimeGateActivated(tier, offerPolicy, qualificationIds) {
   if (offerPolicy === 'direct') return true;
   const contract = getTierCareerContract(tier);
@@ -75,23 +112,30 @@ function salaryAuditForTier(tier, tierIndex, salaryByTier) {
 const badgeIndex = readJson('data/badges/index.json');
 const policy = readJson(POLICY_PATH);
 const mappings = readJson('data/Civication/badgeRoleMappings.json');
-const roleModelsManifest = readJson('data/Civication/roleModels/manifest.json');
 const rolePackIndex = readJson('data/Civication/rolePackIndex.json');
 const lifeStory = readJson('data/Civication/lifestory/manifest.json');
 const careerRulesRaw = normalizeCareerRules(readJson('data/Civication/hg_careers.json'));
-
-const roleModels = [];
-for (const rel of roleModelsManifest.files || []) {
+const overlayIndex = exists(CONTRACT_INDEX_PATH) ? readJson(CONTRACT_INDEX_PATH) : { files: [] };
+const overlaysByBadge = new Map();
+for (const rel of overlayIndex.files || []) {
   if (!exists(rel)) continue;
-  const model = readJson(rel);
-  roleModels.push({
-    path: rel,
-    category: String(model.category || rel.split('/').at(-2) || ''),
-    title: String(model.title || ''),
-    role_scope: String(model.role_scope || ''),
-    role_id: String(model.role_id || '')
-  });
+  const overlay = readJson(rel);
+  const badgeId = String(overlay?.badge_id || '');
+  if (badgeId) overlaysByBadge.set(badgeId, overlay);
 }
+
+const roleModels = walk('data/Civication/roleModels')
+  .filter((rel) => rel.endsWith('.json') && !rel.endsWith('/manifest.json'))
+  .map((rel) => {
+    const model = readJson(rel);
+    return {
+      path: rel,
+      category: String(model.category || rel.split('/').at(-2) || ''),
+      title: String(model.title || ''),
+      role_scope: String(model.role_scope || ''),
+      role_id: String(model.role_id || '')
+    };
+  });
 
 const workGrammars = walk('data/Civication/workGrammars')
   .filter((rel) => rel.endsWith('.json'))
@@ -127,6 +171,8 @@ const coverageErrors = [];
 for (const badgePath of badgeIndex.files || []) {
   const badge = readJson(badgePath);
   const badgeId = String(badge.id || '');
+  const overlay = overlaysByBadge.get(badgeId);
+  if (overlay) applyCareerContractOverlay(badge, overlay, coverageErrors);
   const policyRowsRaw = policy.badges?.[badgeId];
   if (!Array.isArray(policyRowsRaw)) {
     coverageErrors.push(`${badgeId}: mangler policy-rader`);
@@ -162,11 +208,15 @@ for (const badgePath of badgeIndex.files || []) {
     const effectiveQualificationIds = Array.isArray(careerContract?.qualification_ids)
       ? careerContract.qualification_ids
       : (policyRow.qualification_ids || []);
+    const contractScope = String(careerContract?.role_scope || '');
 
     const exactModel = careerContract
-      ? roleModels.find((model) => model.category === badgeId && model.title === careerTitle) || null
+      ? roleModels.find((model) => model.category === badgeId && (
+          model.title === careerTitle || (contractScope && model.role_scope === contractScope)
+        )) || null
       : null;
     const mappedScope = careerContract ? String(
+      contractScope ||
       titleToScope?.[title] ||
       careerTitleToScope?.[careerTitle] ||
       titleToScope?.[careerTitle] ||
@@ -266,6 +316,7 @@ lines.push('');
 lines.push('## Contract');
 lines.push('');
 lines.push('- Badge progression is knowledge/life progression, not automatically an employment hierarchy.');
+lines.push('- Badge career-contract overlays may add only life/job contract metadata to an existing exact tier label; they never rewrite badge identity, threshold or subject content.');
 lines.push('- A pure `life_position` without `career_offer`/`career_unlock` is complete as a non-job state and must never be counted as unresolved career-label debt.');
 lines.push('- `career_unlock.title` is the separate real job opportunity unlocked at the same threshold; accepting/rejecting that job does not erase the life position.');
 lines.push('- Formal employment continues to live in Civication active-position/job state. No active job still means formally unemployed even when a life position is active.');
@@ -327,9 +378,10 @@ lines.push('## Generated-data sources');
 lines.push('');
 for (const source of [
   'data/badges/index.json',
+  'data/Civication/badgeCareerContracts/index.json',
   'data/Civication/badgeCareerAuditPolicy.json',
   'data/Civication/badgeRoleMappings.json',
-  'data/Civication/roleModels/manifest.json',
+  'data/Civication/roleModels/',
   'data/Civication/workGrammars/',
   'data/Civication/rolePackIndex.json',
   'data/Civication/lifestory/manifest.json',
