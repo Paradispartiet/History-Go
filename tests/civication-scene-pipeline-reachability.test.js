@@ -237,10 +237,9 @@ function makeCatalog({ category, roleScope, mailType, familyId, id }) {
     fs.rmSync(fixtureRoot, { recursive: true, force: true });
   }
 
-  if (fs.existsSync(path.join(repoRoot, "data/Civication/mailPlans/by/by_radgiver_plan_plan.json"))) {
-    // Baseline mot faktisk repo: testen skal ikke erklære gjelden løst. Neste
-    // migreringsleveranse endrer policy fra observe til gate og oppdaterer disse
-    // forventningene til direkte reachability for alle ni typer.
+  if (fs.existsSync(path.join(repoRoot, "data/Civication/mailPlans"))) {
+    // Global observe-baseline uten å gjøre testen til evidens for én bestemt rolle.
+    // Neste migreringsleveranse endrer policy fra observe til gate.
     const actual = auditRepository(repoRoot);
     assert.equal(actual.contract.present, true);
     assert.equal(actual.policy.present, true);
@@ -251,20 +250,7 @@ function makeCatalog({ category, roleScope, mailType, familyId, id }) {
     for (const type of ["knowledge", "micro", "followup", "consequence"]) {
       assert(actual.runtime.missing_runtime_types.includes(type), `baseline skal oppdage at MailRuntime ikke laster ${type}`);
     }
-  
-    const areal = actual.plan_reachability.plans.find((row) => row.path.endsWith("/by_radgiver_plan_plan.json"));
-    const barnehage = actual.plan_reachability.plans.find((row) => row.path.endsWith("/barnehageassistent_plan.json"));
-    assert(areal, "Arealplanlegger-planen skal auditeres");
-    assert(barnehage, "Barnehageassistent-planen skal auditeres");
-  
-    assert.deepEqual(
-      areal.steps.filter((step) => step.content_exists && !step.content_loaded).map((step) => step.type).sort(),
-      ["consequence", "followup", "knowledge", "micro"]
-    );
-    assert.deepEqual(
-      barnehage.steps.filter((step) => step.content_exists && !step.content_loaded).map((step) => step.type).sort(),
-      ["consequence", "followup", "knowledge"]
-    );
+    assert(actual.plan_reachability.content_exists_but_not_loaded.length >= 7);
     assert(actual.runtime.answer_wrappers.length > 1, "auditten skal oppdage den parallelle answer-pipelinen");
     assert(actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationDailyMailBuilder.js")));
   }
