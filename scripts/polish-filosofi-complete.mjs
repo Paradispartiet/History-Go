@@ -96,8 +96,8 @@ function sourceMerge(doc){
 
 function cleanNorwegian(text){
   return String(text||'')
-    .replaceAll('canonicale','kanoniske')
-    .replaceAll('canonical','kanonisk')
+    .replace(/\bcanonicale\b/gi,'kanoniske')
+    .replace(/\bcanonical\b/gi,'kanonisk')
     .replaceAll('agency','agens')
     .replace(/\s+/g,' ')
     .trim();
@@ -105,7 +105,10 @@ function cleanNorwegian(text){
 
 function conceptParagraph(c, article, conceptById, index){
   const rel = (c.related_ids||[]).map((id)=>conceptById.get(id)?.label).filter(Boolean).slice(0,2);
-  const definition = CONCEPT_OVERRIDE[c.id] || cleanNorwegian(c.definition);
+  const canonicalDefinition = cleanNorwegian(c.definition);
+  const genericDefinition = /betegner i .* en avgrenset måte å beskrive eller vurdere/i.test(canonicalDefinition);
+  const contextualDefinition = `${c.label.toLowerCase()} brukes i denne artikkelen som et arbeidsbegrep for å analysere ${lowerFirst(String(article.canonical_definition || article.title).replace(/\.$/, ''))}; den presise rekkevidden må fastsettes gjennom begrepets relasjoner, eksempler, innvendinger og den teorien som brukes`;
+  const definition = CONCEPT_OVERRIDE[c.id] || (genericDefinition ? contextualDefinition : canonicalDefinition);
   const confusion = cleanNorwegian((c.common_confusions||[])[0] || `å bruke ${c.label.toLowerCase()} som en løs etikett`);
   const contrast = rel.length ? `${c.label} må særlig holdes fra ${rel.join(' og ')}; relasjon mellom begrepene må vises i argumentet, ikke bare nevnes.` : cleanNorwegian(c.distinction);
   const application = index % 3 === 0
@@ -113,7 +116,7 @@ function conceptParagraph(c, article, conceptById, index){
     : index % 3 === 1
       ? `En presis bruk i ${article.title.toLowerCase()} krever derfor et eksempel eller moteksempel som viser når ${c.label.toLowerCase()} gjelder, og når et nærliggende begrep er bedre.`
       : `Begrepet er faglig mest nyttig når det kan brukes til å avgjøre en konkret uenighet i ${article.title.toLowerCase()}, ikke når det bare fungerer som navn på temaet.`;
-  return `${c.label}: ${definition}. ${contrast} En typisk feil er ${confusion}. ${application}`;
+  return `${c.label}: ${definition}. ${contrast} En typisk feil er ${confusion}. ${application} Hva som teller som et godt eksempel må begrunnes mot artikkelens problemstilling og de relevante moteksemplene, ikke bare mot ordlyden i definisjonen.`;
 }
 
 function polishArgumentSection(section){
@@ -157,6 +160,19 @@ async function main(){
   ]);
   const conceptById=new Map(conceptDoc.concepts.map((c)=>[c.id,c]));
   const thinkerById=new Map(thinkerDoc.thinkers.map((t)=>[t.id,t]));
+  const methodDoc=await readJson('data/fag/filosofi/methods_filosofi_canonical_v1.json');
+  const emneDoc=await readJson('data/fag/filosofi/emner_filosofi_canonical_v1.json');
+  const fagkartDoc=await readJson('data/fag/filosofi/fagkart_filosofi_canonical_v1.json');
+  const humanLabels=new Map([
+    ...conceptDoc.concepts.map((c)=>[c.id,c.label]),
+    ...thinkerDoc.thinkers.map((t)=>[t.id,t.name]),
+    ...methodDoc.methods.map((m)=>[m.method_id,m.title]),
+    ...emneDoc.map((e)=>[e.emne_id,e.title]),
+    ...(fagkartDoc.categories||[]).map((c)=>[c.id,c.title])
+  ]);
+  for(const e of emneDoc) for(const place of (e.place_relevance||[])) if(place.includes('_')) humanLabels.set(place,place.replaceAll('_',' '));
+  for(const c of (fagkartDoc.categories||[])) for(const h of (c.topic_hooks||[])) if(h.id) humanLabels.set(h.id,h.title||h.label||h.id.replaceAll('_',' '));
+  const renderKnownIdentifiers=(text)=>String(text||'').replace(/\b[a-zæøå]+(?:_[a-zæøå]+)+\b/g,(token)=>humanLabels.get(token)||token);
   const sources=sourceMerge(sourceDoc);
   const sourceIds=new Set(sources.sources.map((s)=>s.id));
   const articleById=new Map();
@@ -180,7 +196,7 @@ async function main(){
     if(objection) objection.paragraphs=polishObjection(objection);
     const method=article.sections.find((s)=>s.id==='metode');
     if(method) method.paragraphs=polishMethod(method);
-    for(const section of article.sections) section.paragraphs=section.paragraphs.map(cleanNorwegian);
+    for(const section of article.sections) section.paragraphs=section.paragraphs.map((p)=>renderKnownIdentifiers(cleanNorwegian(p)));
 
     const go=GLOBAL[article.id];
     if(go){
@@ -203,7 +219,8 @@ async function main(){
     if(article.source_ids.some((id)=>!sourceIds.has(id))) throw new Error(`Unknown source in ${article.id}`);
     const prose=article.sections.flatMap((s)=>s.paragraphs);
     if(prose.some((p)=>/dersom .*\. først og fremst/.test(p))) throw new Error(`Awkward objection remained in ${article.id}`);
-    if(prose.some((p)=>/\b[a-zæøå]+_[a-zæøå_]+\b/.test(p))) throw new Error(`Raw identifier leaked into prose in ${article.id}`);
+    const rawIdHit = prose.map((p,idx)=>({idx,p,match:p.match(/\b[a-zæøå]+_[a-zæøå_]+\b/)})).find((x)=>x.match);
+    if(rawIdHit) throw new Error(`Unresolved raw identifier in ${article.id} paragraph ${rawIdHit.idx}: ${rawIdHit.match[0]} :: ${rawIdHit.p}`);
     if(prose.some((p)=>p.includes('Metoden skal brukes på et eksplisitt argument, begrep, tekst, case, observasjon eller dokumentert stedlig forhold. Metoden skal brukes'))) throw new Error(`Duplicate method gate in ${article.id}`);
     const words=wc(prose.join(' '));
     const paragraphs=prose.length;
