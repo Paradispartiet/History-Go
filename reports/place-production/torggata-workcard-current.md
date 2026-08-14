@@ -757,4 +757,21 @@ Ingen aktiv fase gjenstår. **Torggata er sluttført.**
 
 **Fase 24 = GODKJENT, MERGET OG DEPLOYET.**
 
+## Obligatorisk seksdelt kvalitetsvurdering
+
+| Dimensjon | Score | Konkret evidens |
+| --- | ---: | --- |
+| Korrekthet og evidens | **5/5** | 18/18 produksjonsclaims er verifisert; `desc` 3/3 og `popupDesc` 31/31 setninger er claimmappet; Story, Quiz, People og Brands har egne kilde-/proveniensauditer. |
+| Dekning og ferdigstillelse | **5/5** | Fase 0–24 er behandlet; alle fire innholdsrundinger og separat Badge er kontrollert; begrunnede N/A-er og eksplisitte holdbacks er registrert uten filler eller skjulte neste-sted-endringer. |
+| Faglig/redaksjonell kvalitet | **5/5** | Innholdet er Torggata-spesifikt, den for sterke bassengpåstanden er fjernet, én sammenhengende `episode_v1`-Story er beholdt, og Works/usikre kandidater er utelatt. |
+| Teknisk integritet | **5/5** | Faseauditer og regresjonstester består; final docs-head har grønne Data checks, Fagverk/place learning, Fagverk By, TypeScript, Documentation governance og Place rounds governance; produksjonen er manuelt kontrollert i no-WebGL-modus. |
+| Sikkerhet og ansvarlighet | **4/5** | Stedspakken er ikke et klinisk eller juridisk høyrisikodomene; 14 People-bildeholdbacks bevarer koblinger uten uverifiserte bilder, Nature er begrunnet N/A, og genererte/rekonstruerte brandassets er avvist. |
+| Vedlikeholdbarhet og etterprøvbarhet | **5/5** | Canonical rundingskontrakt, styrende checklist, fase 0–24-auditer, workcard, eksakte SHA-er/run-ID-er og låsende tester gjør resultatet reproduserbart og reviewbart. |
+
+**Total: 29/30.** Alle dimensjoner er minst 4/5. Ingen kritiske avvik eller uløste blokkere gjenstår.
+
+Automatiske kontroller beviser ikke alene redaksjonell og visuell kvalitet. Derfor bygger konklusjonen også på full claim-/innholdsaudit, identitets- og provenancegjennomgang og manuell produksjonskontroll av samme Torggata-innhold.
+
+**Kvalitetsport: BESTÅTT – HØY KVALITET.**
+
 **Torggata = SLUTTFØRT.**
