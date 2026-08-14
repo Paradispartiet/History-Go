@@ -1,0 +1,49 @@
+name: Fagverk Sport scientific quality
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/sport/sport_scientific_pipeline_manifest_v2.json"
+      - "data/fagverk/sport/**"
+      - "scripts/audit-fagverk-sport-scientific-quality.mjs"
+      - "scripts/audit-fagverk-sport-phase3.mjs"
+      - "tests/fagverk-sport-scientific-quality.test.mjs"
+      - "tests/fagverk-sport-phase3.test.mjs"
+      - "reports/fagverk/sport-scientific-quality-audit.json"
+      - ".github/workflows/fagverk-sport-scientific-quality.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/sport/sport_scientific_pipeline_manifest_v2.json"
+      - "data/fagverk/sport/**"
+      - "scripts/audit-fagverk-sport-scientific-quality.mjs"
+      - "scripts/audit-fagverk-sport-phase3.mjs"
+      - "tests/fagverk-sport-scientific-quality.test.mjs"
+      - "tests/fagverk-sport-phase3.test.mjs"
+      - "reports/fagverk/sport-scientific-quality-audit.json"
+      - ".github/workflows/fagverk-sport-scientific-quality.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Sport scientific quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Validate deterministic scientific quality audit
+        run: |
+          node --check scripts/audit-fagverk-sport-scientific-quality.mjs
+          node scripts/audit-fagverk-sport-scientific-quality.mjs
+          node scripts/audit-fagverk-sport-phase3.mjs
+      - name: Validate Sport scientific and completion contracts
+        run: |
+          node --test tests/fagverk-sport-scientific-quality.test.mjs
+          node --test tests/fagverk-sport-phase3.test.mjs
+      - name: Validate clean patch
+        run: git diff --check
