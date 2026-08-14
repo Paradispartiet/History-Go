@@ -1,7 +1,7 @@
 export default {
   em_filosofi_argument_premiss_konklusjon: {
     thinkers: ['Aristoteles', 'Stephen Toulmin'],
-    anchors: ['premiss', 'konklusjon', 'enthymem', 'warrant', 'gyldighet'],
+    anchors: ['premiss', 'konklusjon', 'enthymemer', 'warrant', 'gyldighet'],
     debate: 'Kjernen er om argumenter best forstås som formelle følgerelasjoner mellom premisser og konklusjon, eller om rekonstruksjonen også må bevare de pragmatiske og dialektiske rollene som gjør en grunn relevant i en konkret argumentasjon.',
     argument: [
       'P1: Et argument er ikke bare en rekke setninger; minst én påstand må fungere som grunn for en annen. Derfor må en rekonstruksjon skille premisser fra konklusjon og angi hvilken støtterelasjon som påstås.',
