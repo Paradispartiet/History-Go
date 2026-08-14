@@ -91,6 +91,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   let activePeopleFetches = 0;
   let maxPeopleFetches = 0;
   let refreshCalls = 0;
+  let mutationCallback = null;
   const peopleAttempts = new Map();
 
   const placeCard = new FakeElement("placeCard");
@@ -180,7 +181,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     }
 
     if (url === "data/relations.json") {
-      await delay(2);
+      await delay(40);
       return response({ relations: [{ id: "rel-1", place_id: "place-1", person_id: "person-1" }] });
     }
 
@@ -220,6 +221,10 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     navigator: { hardwareConcurrency: 8 },
     fetch: fetchMock,
     CustomEvent: FakeCustomEvent,
+    MutationObserver: class {
+      constructor(callback) { mutationCallback = callback; }
+      observe() {}
+    },
     performance: { now: () => Date.now() },
     console: { ...console, warn() {} },
     setTimeout,
@@ -251,8 +256,9 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   await delay(18);
   assert.ok(lifecycle.includes("people-priority-ready"), "sted åpnet etter boot flyttes fram i den pågående People-køen");
   assert.equal(window.HG_PEOPLE_READY, false, "resten av People kan fortsatt laste");
+  assert.equal(window.HG_RELATIONS_READY, false, "direkte place-profiler venter ikke på hele relasjonsregisteret");
   assert.deepEqual(Array.from(window.PEOPLE, person => person.id), ["person-1"]);
-  assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres når prioriterte People og relasjoner er brukbare");
+  assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres så snart direkte People-profiler er brukbare");
 
   await window.bootBackground();
   await delay(20);
@@ -275,6 +281,15 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres på nytt når People og relasjoner er klare");
   assert.doesNotMatch(peopleIcon.innerHTML, /…/);
+  assert.match(peopleIcon.innerHTML, />6</);
+
+  const refreshesBeforeStaleRepair = refreshCalls;
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
+  peopleIcon.dataset.roundReady = "false";
+  peopleList.hasRenderedPeople = false;
+  mutationCallback?.([]);
+  await delay(10);
+  assert.ok(refreshCalls > refreshesBeforeStaleRepair, "sen tom PlaceCard-render repareres etter ready-eventet");
   assert.match(peopleIcon.innerHTML, />6</);
 
   console.log("People/relations are prioritized, bounded-parallel, and refresh the open round without a false zero");
