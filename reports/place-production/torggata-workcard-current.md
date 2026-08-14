@@ -34,6 +34,7 @@
 - Fase 13-audit: `reports/place-production/torggata-phase13-brands-audit-v1.json`
 - Fase 14-audit: `reports/place-production/torggata-phase14-discovery-audit-v1.json`
 - Fase 15-audit: `reports/place-production/torggata-phase15-physical-visit-audit-v1.json`
+- Fase 16-audit: `reports/place-production/torggata-phase16-favorite-progress-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -55,7 +56,8 @@
 | 13. Brands | **GODKJENT** | 13/13 canonical brands har lokal verifisert logo eller autentisk historisk ordmerke/brandmark med proveniens; ingen genererte eller rekonstruerte logoer |
 | 14. Leksikon, relations, NextUp, Nearby, søk og i18n | **GODKJENT** | kildebåret Leksikon beholdt; `storgata`-relasjon, historiske aliaser og tre trofaste oversettelser regresjonslåst |
 | 15. Fysisk besøk / innsjekk | **ALLEREDE FERDIG – GODKJENT** | PR #3212/#3218-baselinen består med canonical Torggata-anker/radius og quiz/visit-separasjon |
-| 16–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 16. Favoritt og place-progress | **ALLEREDE FERDIG – GODKJENT** | PR #1583/#1584/#1585-baselinen består; Torggata-status er regresjonslåst |
+| 17–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -545,4 +547,29 @@ BESLUTNING: ALLEREDE FERDIG – kun Torggata-spesifikk closeout og regresjonslå
 
 **Fase 15 Fysisk besøk / innsjekk = ALLEREDE FERDIG – GODKJENT.**
 
-Neste aktive fase: **16. Multiplayer og sosiale koblinger**.
+Neste aktive fase: **16. Favoritt og place-progress**.
+
+
+## Fase 16 – Favoritt og place-progress
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+SISTE GODKJENTE PR/COMMIT: PR #1583 (shared read-only reader), PR #1584 / 684afccb73f6ea055422ca5b5b841237308df7b4 (PlaceCard-status) og PR #1585 (Nearby-status)
+SISTE GODKJENTE TILSTAND: HGFavoritePlaces eier favoritt-write; HGProfileProgressReader leser favoritt, fysisk besøk og quiz; PlaceCard/Nearby deler samme summary
+KONKRET REGRESJONSEVIDENS: ingen
+BESLUTNING: ALLEREDE FERDIG – kun Torggata-spesifikk closeout og regresjonslås
+```
+
+### Godkjent resultat
+
+- `HGFavoritePlaces` er eneste eier av `hg_favorite_place_ids_v1`; PlaceCard-stjernen bruker `has/toggle` og lager ingen alternativ state.
+- `HGProfileProgressReader` leser samme favoritt-ID i place-summary og profile-summary.
+- Besøkt og quiz-fullført er uavhengige akser: ingen → `open`, bare besøkt → `quiz`, bare quiz → `visit`, begge → `completed`.
+- PlaceCard og Nearby viser `Favoritt`, besøkt/quiz-status og neste handling fra samme read-only summary.
+- Nearby beholder favorittfilteret, men har ikke en konkurrerende favorittknapp; endring gjøres i PlaceCard.
+- Torggata-place-data inneholder ingen favoritt-, visit-, quiz- eller progress-state.
+- `tests/torggata-phase16-favorite-progress.test.mjs` kjører den faktiske runtimekoden og låser eier, lesing, alle fire progresjonstilstander og flatekonsistens.
+
+**Fase 16 Favoritt og place-progress = ALLEREDE FERDIG – GODKJENT.**
+
+Neste aktive fase: **17. Profil, miniProfile, unlocks og belønninger**.

@@ -1,0 +1,80 @@
+{
+  "schema_version": "torggata_phase16_favorite_progress_audit_v1",
+  "place_id": "torggata",
+  "phase": 16,
+  "status": "ALREADY_DONE_APPROVED",
+  "prior_work_gate": {
+    "status": "COMPLETED",
+    "approved_baseline": [
+      {
+        "pr": 1583,
+        "role": "shared read-only profile progress reader"
+      },
+      {
+        "pr": 1584,
+        "merge_commit": "684afccb73f6ea055422ca5b5b841237308df7b4",
+        "role": "PlaceCard progress status surface"
+      },
+      {
+        "pr": 1585,
+        "role": "Nearby progress status surface"
+      }
+    ],
+    "decision": "Keep existing owners and add only Torggata-specific regression evidence."
+  },
+  "favorite": {
+    "storage_owner": "window.HGFavoritePlaces",
+    "storage_key": "hg_favorite_place_ids_v1",
+    "writer": "PlaceCard pcFavorite uses HGFavoritePlaces.toggle(place.id)",
+    "reader": "HGProfileProgressReader.getFavoritePlaceIds/isFavoritePlace",
+    "nearby_control": "filter only; no competing per-card star",
+    "result": "PASS"
+  },
+  "progress_matrix": [
+    {
+      "visited": false,
+      "quiz_completed": false,
+      "status": "unknown",
+      "next_action": "open"
+    },
+    {
+      "visited": true,
+      "quiz_completed": false,
+      "status": "visited",
+      "next_action": "quiz"
+    },
+    {
+      "visited": false,
+      "quiz_completed": true,
+      "status": "quiz_completed",
+      "next_action": "visit"
+    },
+    {
+      "visited": true,
+      "quiz_completed": true,
+      "status": "completed",
+      "next_action": "completed"
+    }
+  ],
+  "surfaces": {
+    "place_card": "shared reader renders status, favorite and remaining action",
+    "nearby": "shared reader annotates the existing card with the same axes",
+    "profile": "getProfileProgressSummary exposes the same favorite/visited/quiz source sets",
+    "result": "PASS"
+  },
+  "place_data": {
+    "new_local_progress_state": false,
+    "forbidden_fields_absent": [
+      "favorite",
+      "favorite_state",
+      "visited",
+      "visit_status",
+      "quiz_completed",
+      "progress",
+      "next_action"
+    ],
+    "result": "PASS"
+  },
+  "regression_test": "tests/torggata-phase16-favorite-progress.test.mjs",
+  "conclusion": "Phase 16 is already implemented by shared runtimes and is approved for Torggata without data or gameplay changes."
+}
