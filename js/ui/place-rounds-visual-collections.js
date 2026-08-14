@@ -297,7 +297,8 @@
   function configuredRoundIds(place) {
     if (normalizeCategory(place) === "natur") return null;
     const ids = arr(place?.round_profile?.content_round_ids).map(s);
-    const valid = ids.length === 4
+    const valid = s(place?.round_profile?.reason).length > 0
+      && ids.length === 4
       && ids[0] === "people"
       && STANDARD_SECOND_ROUNDS.has(ids[1])
       && ids[2] === "brands"
