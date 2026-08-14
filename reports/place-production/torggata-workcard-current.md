@@ -35,6 +35,7 @@
 - Fase 14-audit: `reports/place-production/torggata-phase14-discovery-audit-v1.json`
 - Fase 15-audit: `reports/place-production/torggata-phase15-physical-visit-audit-v1.json`
 - Fase 16-audit: `reports/place-production/torggata-phase16-favorite-progress-audit-v1.json`
+- Fase 17-audit: `reports/place-production/torggata-phase17-profile-unlocks-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -57,7 +58,8 @@
 | 14. Leksikon, relations, NextUp, Nearby, søk og i18n | **GODKJENT** | kildebåret Leksikon beholdt; `storgata`-relasjon, historiske aliaser og tre trofaste oversettelser regresjonslåst |
 | 15. Fysisk besøk / innsjekk | **ALLEREDE FERDIG – GODKJENT** | PR #3212/#3218-baselinen består med canonical Torggata-anker/radius og quiz/visit-separasjon |
 | 16. Favoritt og place-progress | **ALLEREDE FERDIG – GODKJENT** | PR #1583/#1584/#1585-baselinen består; Torggata-status er regresjonslåst |
-| 17–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 17. Profil, miniProfile, unlocks og belønninger | **ALLEREDE FERDIG – GODKJENT** | profile/miniProfile/collection/unlock-eierne består; ikke-implementerte belønninger er N/A |
+| 18–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -573,3 +575,29 @@ BESLUTNING: ALLEREDE FERDIG – kun Torggata-spesifikk closeout og regresjonslå
 **Fase 16 Favoritt og place-progress = ALLEREDE FERDIG – GODKJENT.**
 
 Neste aktive fase: **17. Profil, miniProfile, unlocks og belønninger**.
+
+
+## Fase 17 – Profil, miniProfile, unlocks og belønninger
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+SISTE GODKJENTE PR/COMMIT: PR #1040 (canonical profile-kilder), PR #1244 (miniProfile-telling), PR #1581/#1583 (gjenbrukbar read-only progresjon) og PR #4445 (completion-/collection-kontrakt)
+SISTE GODKJENTE TILSTAND: profile viser fysisk besøkte steder; miniProfile teller besøkt og quiz; HGProfilePlaceCollection viser unionen visited_places + places_collected; HGUnlocks dispatcher updateProfile
+KONKRET REGRESJONSEVIDENS: ingen
+BESLUTNING: ALLEREDE FERDIG – behold eiere, klassifiser uimplementerte rewards eksplisitt N/A
+```
+
+### Godkjent resultat
+
+- Fysisk besøkt Torggata leses fra `visited_places` i profil, kart, timeline og miniProfile.
+- Quizstatus leses fra unionen av LearningLog og `quiz_progress.completed`; miniProfile og full profil teller samme quiz-ID uten duplikat.
+- Stedskunnskap kan legge Torggata i `places_collected`; profile-collection viser unionen av fysisk besøkt og quiz-samlet og beholder kilden «Besøkt»/«Quiz».
+- `HGUnlocks.recordCollectedPlace` dispatcher `updateProfile`; profilflatene rerendres på den eide hendelsen.
+- Torggata-quizen har bare place-target. People-unlock og Object/funn-unlock er derfor **N/A**, ikke påstått som belønning.
+- By-merit/badge vises bare dersom den generelle merit-runtimen faktisk har skrevet den. Torggata har ingen egen Bronse/Sølv/Gull-kontrakt; nivåbelønning er **N/A**.
+- Neste handling beholdes fra den delte place-progress-readeren godkjent i fase 16.
+- Ingen ny Torggata-spesifikk reward- eller profile-state er opprettet.
+
+**Fase 17 Profil, miniProfile, unlocks og belønninger = ALLEREDE FERDIG – GODKJENT.**
+
+Neste aktive fase: **18. Legacy Wonderkammer**.
