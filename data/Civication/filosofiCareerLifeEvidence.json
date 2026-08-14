@@ -1,0 +1,108 @@
+{
+  "schema": "civication_filosofi_career_life_evidence_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-14",
+  "badge_id": "filosofi",
+  "principles": [
+    "Filosofi-Badge-poeng dokumenterer læring, filosofisk praksis og progresjon; de dokumenterer ikke arbeidsforhold, studieopptak eller akademisk myndighet.",
+    "Etiker, Logiker og Fagfilosof beholdes som faglige identiteter eller spesialiseringer og gir ikke automatisk fast jobb eller lønn.",
+    "Filosofisk veileder behandles som filosofisk praksis. Slik praksis kan være betalt eller selvstendig i virkeligheten, men Badge-posisjonen alene oppretter ikke et fast arbeidsforhold i Civication.",
+    "Filosof er en dokumentert yrkes-/stillingstittel, men Civication krever relevant utdanning, arbeidsgiverkvalifikasjon eller tilsvarende eksplisitt kvalifikasjonsbevis før den kan materialiseres som jobb.",
+    "Professor er en beskyttet akademisk tittel og kan aldri oppnås gjennom Badge-poeng alene.",
+    "Lønnsbåndene er Civication-spilløkonomi og skal ikke tolkes som norsk markeds- eller tariffstatistikk."
+  ],
+  "canonical_decision": {
+    "pure_life_or_practice_tiers": [
+      "Nysgjerrig",
+      "Spørrer",
+      "Samtalepartner",
+      "Argumentbygger",
+      "Filosofistudent",
+      "Etiker",
+      "Logiker",
+      "Fagfilosof",
+      "Filosofisk veileder"
+    ],
+    "formal_job_tiers": [
+      "Idéhistoriker",
+      "Filosof",
+      "Foreleser",
+      "Professor"
+    ],
+    "review_left_open": [],
+    "work_worlds": {
+      "filosofi_forskning_og_formidling": ["Idéhistoriker", "Filosof"],
+      "filosofi_undervisning_og_akademia": ["Foreleser", "Professor"]
+    }
+  },
+  "tier_decisions": [
+    {"title":"Nysgjerrig","decision":"life_position","kind":"exploration_interest","reason":"Interesse- og læringsposisjon, ikke arbeidstittel."},
+    {"title":"Spørrer","decision":"life_position","kind":"inquiry_practice","reason":"Filosofisk spørrepraksis, ikke arbeidstittel."},
+    {"title":"Samtalepartner","decision":"life_position","kind":"dialogue_practice","reason":"Dialogpraksis kan finnes i mange livs- og arbeidssituasjoner, men Badge-labelen er ikke et konkret arbeidsforhold."},
+    {"title":"Argumentbygger","decision":"life_position","kind":"argumentation_practice","reason":"Kompetanse-/praksisposisjon, ikke jobb."},
+    {"title":"Filosofistudent","decision":"life_position","kind":"learning_stage","reason":"Badge-læringsstadium; skal ikke brukes som bevis på formelt studieopptak."},
+    {"title":"Idéhistoriker","decision":"formal_job","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"filosofi_forskning_og_formidling","reason":"Idéhistoriker finnes som registrert stillingstittel i NAV/Aa-register-familien for historikere."},
+    {"title":"Etiker","decision":"life_position","kind":"ethics_specialization","reason":"Etikk er dokumentert filosofisk fordypningsområde; Badge-labelen alene beviser ikke en bestemt jobb."},
+    {"title":"Logiker","decision":"life_position","kind":"logic_specialization","reason":"Logikk er dokumentert filosofisk fordypningsområde; Badge-labelen alene beviser ikke en bestemt jobb."},
+    {"title":"Filosof","decision":"formal_job","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"filosofi_forskning_og_formidling","reason":"Filosof er dokumentert som yrke og NAV/Aa-register-stillingstittel, men arbeidslivet bruker også ofte andre stillingstitler."},
+    {"title":"Fagfilosof","decision":"life_position","kind":"professional_field_identity","reason":"Faglig identitet uten tilstrekkelig grunnlag for automatisk fast arbeidsforhold."},
+    {"title":"Foreleser","decision":"formal_job","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"filosofi_undervisning_og_akademia","reason":"Forelesning er reelt arbeid, men krever et konkret undervisningsoppdrag eller arbeidsforhold i Civication."},
+    {"title":"Professor","decision":"formal_job","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":3,"role_scope":"filosofi_undervisning_og_akademia","reason":"Professor er en beskyttet akademisk tittel knyttet til kvalifikasjon og ansettelse."},
+    {"title":"Filosofisk veileder","decision":"life_position","kind":"philosophical_practice","reason":"Utdanning.no beskriver filosofisk praksis og veiledning, ofte også som selvstendig virksomhet. Fast Badge-lønn ville likevel feilaktig gjøre praksisen til et arbeidsforhold."}
+  ],
+  "salary_mapping": {
+    "source": "Civication game economy; humanities baseline reused from History/Religion",
+    "existing_filosofi_bands_pc_per_week": {"1":5,"2":8,"3":14},
+    "formal_jobs": {
+      "Idéhistoriker": 2,
+      "Filosof": 2,
+      "Foreleser": 2,
+      "Professor": 3
+    },
+    "not_salary_jobs": [
+      "Nysgjerrig",
+      "Spørrer",
+      "Samtalepartner",
+      "Argumentbygger",
+      "Filosofistudent",
+      "Etiker",
+      "Logiker",
+      "Fagfilosof",
+      "Filosofisk veileder"
+    ]
+  },
+  "sources": [
+    {
+      "id": "utdanning_filosof",
+      "publisher": "Utdanning.no",
+      "title": "Filosof",
+      "url": "https://utdanning.no/yrker/beskrivelse/filosof",
+      "checked_at": "2026-08-14",
+      "supports": ["Filosof som yrke og NAV/Aa-register-stillingstittel", "filosofisk praksis og veiledning", "undervisning, forskning, formidling og konsulentarbeid", "mange filosofer arbeider under andre stillingstitler eller selvstendig"]
+    },
+    {
+      "id": "utdanning_filosofi_master_uio",
+      "publisher": "Utdanning.no / Universitetet i Oslo",
+      "title": "Filosofi (master)",
+      "url": "https://utdanning.no/utdanning/uio.no/filosofi_master",
+      "checked_at": "2026-08-14",
+      "supports": ["etikk og logikk som filosofiske fordypningsområder", "arbeidsområder som analyse, veiledning, undervisning, forskning og kulturformidling"]
+    },
+    {
+      "id": "utdanning_historiker",
+      "publisher": "Utdanning.no",
+      "title": "Historiker",
+      "url": "https://utdanning.no/yrker/beskrivelse/historiker",
+      "checked_at": "2026-08-14",
+      "supports": ["IDEHISTORIKER som NAV/Aa-register-stillingstittel"]
+    },
+    {
+      "id": "utdanning_professor",
+      "publisher": "Utdanning.no",
+      "title": "Professor",
+      "url": "https://utdanning.no/yrker/beskrivelse/professor",
+      "checked_at": "2026-08-14",
+      "supports": ["professor som beskyttet tittel", "ansettelse ved universitet eller høgskole", "forskning, undervisning og veiledning"]
+    }
+  ]
+}
