@@ -94,7 +94,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   const peopleAttempts = new Map();
 
   const placeCard = new FakeElement("placeCard");
-  placeCard.dataset.currentPlaceId = "place-1";
+  placeCard.dataset.currentPlaceId = "";
   const peopleIcon = new FakeElement("pcPeopleIcon");
   const peopleList = new FakeElement("pcPeopleList", { emptyText: "Ingen personer ennå" });
   const elements = new Map([
@@ -150,8 +150,8 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   window.addEventListener("hg:wonderkammer-ready", () => lifecycle.push("wonderkammer-ready"));
 
   const peopleFiles = [
-    "people/by/place-1/person-1.json",
-    ...Array.from({ length: 7 }, (_, index) => `people/test/person-${index + 2}.json`)
+    ...Array.from({ length: 7 }, (_, index) => `people/test/person-${index + 2}.json`),
+    "people/by/place-1/person-1.json"
   ];
 
   async function fetchMock(input) {
@@ -245,8 +245,11 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   assert.ok(fetchLog.includes("data/people/manifest.json"), "People starter straks critical boot er ferdig");
   assert.ok(fetchLog.includes("data/relations.json"), "Relasjoner starter straks critical boot er ferdig");
 
-  await delay(12);
-  assert.ok(lifecycle.includes("people-priority-ready"), "profilene for åpent sted publiseres først");
+  await delay(2);
+  placeCard.dataset.currentPlaceId = "place-1";
+
+  await delay(18);
+  assert.ok(lifecycle.includes("people-priority-ready"), "sted åpnet etter boot flyttes fram i den pågående People-køen");
   assert.equal(window.HG_PEOPLE_READY, false, "resten av People kan fortsatt laste");
   assert.deepEqual(Array.from(window.PEOPLE, person => person.id), ["person-1"]);
   assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres når prioriterte People og relasjoner er brukbare");
