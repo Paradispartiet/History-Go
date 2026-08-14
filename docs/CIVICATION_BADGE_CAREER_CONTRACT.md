@@ -36,6 +36,22 @@ Når en tier er en spillbar identitet/status kan den ha:
 
 Dette er riktig sted for titler som `Gangster`, `Dandy`, `Kultfigur`, `Undergrunnsikon`, `Legend`, `Popstjerne`, `Olympisk mester`, `Ikon` og andre morsomme eller symbolske posisjoner — dersom de faktisk gir godt spillinnhold.
 
+## Validerte career-contract overlays
+
+Store fagfiler kan beholde Badge-, fag-, quiz- og artsstrukturen urørt mens Civication-kontrakten materialiseres fra `data/Civication/badgeCareerContracts/`.
+
+En slik overlay er **ikke en alternativ Badge-kilde**. Den kan bare legge til følgende felter på en allerede eksisterende, eksakt `tier.label`:
+
+- `life_position`
+- `career_offer`
+- `career_unlock`
+
+Overlayen får aldri endre `badge.id`, `tier.label`, `tier.threshold`, `sub`, `groups`, quizdata eller annet faginnhold. Ukjent badge, ukjent tier, duplisert label eller ulovlig patchfelt skal feile lukket.
+
+`js/Civication/merits-and-jobs.js` materialiserer overlayene før jobbtilbud vurderes. `CivicationShellBoot` materialiserer dem på nytt etter full Badge-reload, slik at boot aldri kan overskrive career-kontrakten med rå fagdata. Påkrevde overlays skal ved lastefeil blokkere jobbmaterialisering fremfor å falle tilbake til en skjult `direct`-policy.
+
+`scripts/civication-badge-career-matrix.mjs` bruker samme overlaydata ved audit. Dermed vurderer runtime og den permanente Badge Career Matrix den samme kontrakten, mens den opprinnelige Badge-stigen fortsatt er autoritativ for navn og poenggrenser.
+
 ## `career_unlock`: jobbsporet er separat
 
 En livsposisjon kan samtidig låse opp en saklig jobbmulighet:
@@ -153,11 +169,12 @@ En spiller kan dermed ha både **jobbfortelling** og **livsfortelling** samme da
 
 `js/Civication/merits-and-jobs.js` materialiserer jobbtilbud slik:
 
-1. Finn canonical Badge-tier.
-2. Hvis tier har `career_unlock`, bruk **den separate jobbens tittel og gate**.
-3. Ellers bruk eksisterende `career_offer`/tier-tittel.
-4. Send bare den faktiske jobbtittelen videre til `CivicationJobs.pushOffer`.
-5. Behold `badge_tier_label` og `life_position_label` som proveniens — aldri som aktiv stillingstittel.
+1. Last canonical Badge-data og materialiser eventuelle validerte career-contract overlays.
+2. Finn canonical Badge-tier.
+3. Hvis tier har `career_unlock`, bruk **den separate jobbens tittel og gate**.
+4. Ellers bruk eksisterende `career_offer`/tier-tittel.
+5. Send bare den faktiske jobbtittelen videre til `CivicationJobs.pushOffer`.
+6. Behold `badge_tier_label` og `life_position_label` som proveniens — aldri som aktiv stillingstittel.
 
 Dette gjelder både ordinær merit-flyt og andre eksisterende kodeveier som treffer den sentrale `pushOffer`-porten.
 
@@ -180,6 +197,8 @@ Det laget skal aldri bruke en kul identitet som bevis på fast lønn.
 Testene skal håndheve at:
 
 - Badge-label og jobb-title kan være forskjellige uten at noen av dem omskrives
+- career-contract overlays aldri kan endre Badge-navn, tier-label, threshold eller fagstruktur
+- påkrevde overlays og gated jobber feiler lukket
 - `Gangster` kan være aktiv livsposisjon mens formell arbeidsstatus er arbeidsledig
 - samme spiller kan få/ha en reell jobb uten å miste livsposisjonen
 - `career_unlock` materialiserer riktig jobbtitle

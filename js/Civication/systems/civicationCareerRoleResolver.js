@@ -47,6 +47,11 @@
     filosofi_undervisning_og_akademia: 'filosofi_undervisning_og_akademia',
     musikk_scene_og_produksjon: 'musikk_scene_og_produksjon',
     musikk_utoving_og_ensemble: 'musikk_utoving_og_ensemble',
+    natur_felt_og_formidling: 'natur_felt_og_formidling',
+    natur_forvaltning_og_radgivning: 'natur_forvaltning_og_radgivning',
+    natur_biologi_og_forskning: 'natur_biologi_og_forskning',
+    natur_miljoledelse: 'natur_miljoledelse',
+    natur_politisk_myndighet: 'natur_politisk_myndighet',
     subkultur_arrangementsdrift: 'subkultur_kulturhusvert',
     subkultur_program_og_koordinering: 'subkultur_arrangementsplanlegger',
     subkultur_produksjon_og_prosjekt: 'subkultur_produsent',
@@ -103,6 +108,13 @@
   const MUSIKK_ROLE_SCOPE_BY_TITLE = {
     sceneassistent: 'musikk_scene_og_produksjon', produksjonsassistent: 'musikk_scene_og_produksjon', tekniker_lys_lyd: 'musikk_scene_og_produksjon', produksjonskoordinator: 'musikk_scene_og_produksjon',
     utovende_musiker: 'musikk_utoving_og_ensemble', fast_musiker_band_ensemble: 'musikk_utoving_og_ensemble'
+  };
+  const NATUR_ROLE_SCOPE_BY_TITLE = {
+    feltassistent: 'natur_felt_og_formidling', naturveileder: 'natur_felt_og_formidling',
+    naturforvalter: 'natur_forvaltning_og_radgivning', radgiver_miljo_natur: 'natur_forvaltning_og_radgivning', seniorradgiver_miljo_natur: 'natur_forvaltning_og_radgivning',
+    biolog: 'natur_biologi_og_forskning', okolog: 'natur_biologi_og_forskning', forsker_miljo_natur: 'natur_biologi_og_forskning', seniorforsker_miljo_natur: 'natur_biologi_og_forskning',
+    naturvernleder: 'natur_miljoledelse', miljosjef: 'natur_miljoledelse', miljodirektor: 'natur_miljoledelse',
+    statsrad_klima_og_miljo: 'natur_politisk_myndighet'
   };
   const SUBKULTUR_ROLE_SCOPE_BY_TITLE = {
     kulturhusvert: 'subkultur_arrangementsdrift', arrangementscrew: 'subkultur_arrangementsdrift', produksjonsassistent: 'subkultur_arrangementsdrift', kulturmedarbeider: 'subkultur_arrangementsdrift',
@@ -167,6 +179,11 @@
       if (MUSIKK_ROLE_SCOPE_BY_TITLE[roleKey]) return MUSIKK_ROLE_SCOPE_BY_TITLE[roleKey];
       if (MUSIKK_ROLE_SCOPE_BY_TITLE[titleKey]) return MUSIKK_ROLE_SCOPE_BY_TITLE[titleKey];
     }
+    if (careerId === 'natur') {
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('natur_')) return roleKey;
+      if (NATUR_ROLE_SCOPE_BY_TITLE[roleKey]) return NATUR_ROLE_SCOPE_BY_TITLE[roleKey];
+      if (NATUR_ROLE_SCOPE_BY_TITLE[titleKey]) return NATUR_ROLE_SCOPE_BY_TITLE[titleKey];
+    }
     if (careerId === 'by') {
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('by_')) return roleKey;
       if (BY_ROLE_SCOPE_BY_TITLE[titleKey]) return BY_ROLE_SCOPE_BY_TITLE[titleKey];
@@ -213,6 +230,11 @@
     if (roleKey.includes('filosofi_undervisning_og_akademia')) return 'filosofi_undervisning_og_akademia';
     if (roleKey.includes('musikk_scene_og_produksjon')) return 'musikk_scene_og_produksjon';
     if (roleKey.includes('musikk_utoving_og_ensemble')) return 'musikk_utoving_og_ensemble';
+    if (roleKey.includes('natur_felt_og_formidling')) return 'natur_felt_og_formidling';
+    if (roleKey.includes('natur_forvaltning_og_radgivning')) return 'natur_forvaltning_og_radgivning';
+    if (roleKey.includes('natur_biologi_og_forskning')) return 'natur_biologi_og_forskning';
+    if (roleKey.includes('natur_miljoledelse')) return 'natur_miljoledelse';
+    if (roleKey.includes('natur_politisk_myndighet')) return 'natur_politisk_myndighet';
     if (roleKey.includes('subkultur_arrangementsdrift')) return 'subkultur_arrangementsdrift';
     if (roleKey.includes('subkultur_program_og_koordinering')) return 'subkultur_program_og_koordinering';
     if (roleKey.includes('subkultur_produksjon_og_prosjekt')) return 'subkultur_produksjon_og_prosjekt';

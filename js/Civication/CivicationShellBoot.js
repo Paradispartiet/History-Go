@@ -8,9 +8,8 @@
 //   - life-position-runtime (identitet/livsløp uavhengig av jobb)
 //   - career-reality-guard (rene livsposisjoner er ikke jobber; lønn følger faktisk jobb-tier)
 //   - livelihood-runtime (inntektsstrømmer uavhengig av jobb og identitet)
-//   - CivicationUI.init(): kart/SVG-kart, dashboard, nabolag/kapital,
-//     psyke, identitet, hjem, offentlig feed, aktiv rolle, folk, butikk,
-//     track-HUD, footer, panelnavigasjon og robuste empty states.
+//   - CivicationUI.init(): kart/SVG-kart, dashboard, kapital, psyke, identitet, hjem, offentlig feed,
+//     aktiv rolle, folk, butikk, track-HUD, footer, panelnavigasjon og robuste empty states.
 //
 // Skallet skal ALLTID kunne starte — også om day/life-story-motorene
 // (mail, arbeidsdag, dagfase) feiler eller mangler. Derfor kjøres skallet
@@ -189,6 +188,9 @@
       fetchJsonStrict("data/Civication/hg_careers.json")
     ]);
     window.BADGES = badges;
+    if (typeof window.ensureBadgeCareerContractsApplied === "function") {
+      await window.ensureBadgeCareerContractsApplied();
+    }
     window.HG_CAREERS = Array.isArray((/** @type {CiviShellCareerPayload} */ (careersJson))?.careers)
       ? (/** @type {CiviShellCareerPayload} */ (careersJson)).careers
       : [];

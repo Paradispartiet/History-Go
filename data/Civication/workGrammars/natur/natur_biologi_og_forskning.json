@@ -1,0 +1,18 @@
+{
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"natur","role_scope":"natur_biologi_og_forskning","role_id":"natur_biologi_og_forskning",
+  "badge_binding":{"badge_id":"natur","badge_titles":["Biolog","Økolog","Forsker (miljø/natur)","Seniorforsker (miljø/natur)"]},
+  "work_world":"Biologisk og økologisk kunnskapsproduksjon der metode, data, reproduserbarhet og usikkerhet bestemmer hvor sterke konklusjoner som er forsvarlige.",
+  "task_families":["forskningsdesign","feltarbeid","laboratoriearbeid","dataanalyse","rapportering","publisering"],
+  "work_loops":["spørsmål -> hypotese -> metode -> data -> analyse -> tolkning -> kontroll -> publisering","avvik -> feilsøk -> metodevurdering -> ny analyse -> dokumentert konklusjon"],
+  "pressure_axes":["hypotese_vs_data","grundighet_vs_frist","faglig_usikkerhet_vs_beslutningsbehov"],
+  "practice_stories":[
+    {"id":"hypotese_faller","setup":"Data støtter ikke hypotesen prosjektet ble bygget rundt.","decision":"Rapporter resultatet og undersøk alternative forklaringer uten å omskrive data.","learning":"forskning tester ideer, den bekrefter dem ikke på bestilling"},
+    {"id":"metodefeil","setup":"En mulig metodefeil oppdages sent.","decision":"Avgrens hvilke resultater som påvirkes og kjør nødvendige kontroller.","learning":"kvalitet krever å tåle at arbeid må gjøres om"},
+    {"id":"sterk_bestiller","setup":"En bestiller ønsker en sikrere konklusjon enn data tillater.","decision":"Beskriv konfidens og begrensninger eksplisitt.","learning":"beslutningsbehov skaper ikke evidens"},
+    {"id":"replikasjon","setup":"Et sentralt funn lar seg ikke reprodusere.","decision":"Undersøk metode og rapporter avviket åpent.","learning":"reproduserbarhet er en styrke, også når den utfordrer første funn"},
+    {"id":"publiseringsfrist","setup":"Fristen kommer før alle kvalitetskontroller er ferdige.","decision":"Utsett sterke konklusjoner eller merk analysen foreløpig.","learning":"publiseringstempo skal ikke skjule usikkerhet"}
+  ],
+  "quality_axes":["metodekvalitet","dataintegritet","reproduserbarhet","kildekritikk","usikkerhet","forskningsetikk"],
+  "authority_boundary":{"may":["produsere og vurdere faglig kunnskap"],"may_not":["forfalske kvalifikasjon eller data","utøve politisk eller administrativ myndighet uten mandat","skjule negative funn"]}
+}

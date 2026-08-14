@@ -2,11 +2,113 @@
 // CIVICATION: Jobbtilbud (offers) lagres i localStorage
 // ------------------------------------------------------------
 
+const REQUIRED_BADGE_CAREER_CONTRACT_OVERLAYS = new Set(["natur"]);
+let badgeCareerContractOverlaysPromise = null;
+
+function applyBadgeCareerContractOverlay(badges, overlay) {
+  if (!overlay || typeof overlay !== "object") throw new Error("invalid_badge_career_contract_overlay");
+  const badgeId = String(overlay.badge_id || "").trim();
+  if (!badgeId) throw new Error("badge_career_contract_overlay_missing_badge_id");
+  const badge = (Array.isArray(badges) ? badges : []).find((candidate) => String(candidate?.id || "").trim() === badgeId);
+  if (!badge || !Array.isArray(badge.tiers)) throw new Error(`badge_career_contract_overlay_unknown_badge:${badgeId}`);
+
+  const allowed = new Set(Array.isArray(overlay.allowed_tier_patch_fields)
+    ? overlay.allowed_tier_patch_fields.map((value) => String(value || "").trim()).filter(Boolean)
+    : ["life_position", "career_offer", "career_unlock"]);
+  const forbidden = [...allowed].filter((key) => !["life_position", "career_offer", "career_unlock"].includes(key));
+  if (forbidden.length) throw new Error(`badge_career_contract_overlay_forbidden_fields:${forbidden.join(",")}`);
+
+  const seen = new Set();
+  for (const patch of Array.isArray(overlay.tiers) ? overlay.tiers : []) {
+    const label = String(patch?.label || "").trim();
+    if (!label || seen.has(label)) throw new Error(`badge_career_contract_overlay_duplicate_or_empty_label:${badgeId}:${label}`);
+    seen.add(label);
+    const tier = badge.tiers.find((candidate) => String(candidate?.label || "").trim() === label);
+    if (!tier) throw new Error(`badge_career_contract_overlay_unknown_tier:${badgeId}:${label}`);
+
+    for (const key of Object.keys(patch || {})) {
+      if (key === "label") continue;
+      if (!allowed.has(key)) throw new Error(`badge_career_contract_overlay_illegal_patch:${badgeId}:${label}:${key}`);
+      const value = patch[key];
+      if (!value || typeof value !== "object" || Array.isArray(value)) {
+        throw new Error(`badge_career_contract_overlay_invalid_contract:${badgeId}:${label}:${key}`);
+      }
+      tier[key] = { ...value };
+    }
+  }
+
+  if (overlay.evidence_ref) badge.career_life_evidence = String(overlay.evidence_ref);
+  badge.career_contract_overlay = `data/Civication/badgeCareerContracts/${badgeId}.json`;
+  return badge;
+}
+
+async function loadBadgeCareerContractOverlays() {
+  if (badgeCareerContractOverlaysPromise) return badgeCareerContractOverlaysPromise;
+  badgeCareerContractOverlaysPromise = (async () => {
+    const index = await fetch("data/Civication/badgeCareerContracts/index.json", { cache: "no-store" }).then((response) => {
+      if (!response.ok) throw new Error(`badge_career_contract_index_http_${response.status}`);
+      return response.json();
+    });
+    const files = Array.isArray(index?.files) ? index.files.map((file) => String(file || "").trim()).filter(Boolean) : [];
+    const overlays = [];
+    for (const file of files) {
+      const overlay = await fetch(file, { cache: "no-store" }).then((response) => {
+        if (!response.ok) throw new Error(`badge_career_contract_overlay_http_${response.status}:${file}`);
+        return response.json();
+      });
+      overlays.push(overlay);
+    }
+    return overlays;
+  })();
+  return badgeCareerContractOverlaysPromise;
+}
+
+function failClosedRequiredBadgeCareerContracts(badges, reason) {
+  for (const badge of Array.isArray(badges) ? badges : []) {
+    const badgeId = String(badge?.id || "").trim();
+    if (!REQUIRED_BADGE_CAREER_CONTRACT_OVERLAYS.has(badgeId) || !Array.isArray(badge.tiers)) continue;
+    badge.career_contract_overlay_error = String(reason?.message || reason || "overlay_unavailable");
+    for (const tier of badge.tiers) {
+      if (tier?.life_position || tier?.career_offer || tier?.career_unlock) continue;
+      tier.career_offer = {
+        title: String(tier?.label || "").trim(),
+        policy: "review_required"
+      };
+    }
+  }
+}
+
+async function ensureBadgeCareerContractsApplied() {
+  const badges = Array.isArray(window.BADGES) ? window.BADGES : [];
+  if (!badges.length) return badges;
+  try {
+    const overlays = await loadBadgeCareerContractOverlays();
+    const applied = new Set();
+    for (const overlay of overlays) {
+      const badge = applyBadgeCareerContractOverlay(badges, overlay);
+      applied.add(String(badge?.id || "").trim());
+    }
+    for (const requiredBadgeId of REQUIRED_BADGE_CAREER_CONTRACT_OVERLAYS) {
+      if (badges.some((badge) => String(badge?.id || "").trim() === requiredBadgeId) && !applied.has(requiredBadgeId)) {
+        throw new Error(`required_badge_career_contract_overlay_missing:${requiredBadgeId}`);
+      }
+    }
+  } catch (error) {
+    console.error("[Civication Career] badge career contract overlay failed closed", error);
+    failClosedRequiredBadgeCareerContracts(badges, error);
+  }
+  return badges;
+}
+
 async function ensureCivicationBadgesLoaded() {
-  if (Array.isArray(window.BADGES) && window.BADGES.length) return;
+  if (Array.isArray(window.BADGES) && window.BADGES.length) {
+    await ensureBadgeCareerContractsApplied();
+    return;
+  }
 
   if (typeof window.ensureBadgesLoaded === "function") {
     await window.ensureBadgesLoaded();
+    await ensureBadgeCareerContractsApplied();
     return;
   }
 
@@ -24,10 +126,14 @@ async function ensureCivicationBadgesLoaded() {
       if (Array.isArray(p.badges)) return p.badges.filter(b => !!b && typeof b === "object");
       return (typeof p.id === "string" && Array.isArray(p.tiers)) ? [p] : [];
     });
-    if (window.BADGES.length) return;
+    if (window.BADGES.length) {
+      await ensureBadgeCareerContractsApplied();
+      return;
+    }
   } catch {}
 
   window.BADGES = Array.isArray(window.BADGES) ? window.BADGES : [];
+  await ensureBadgeCareerContractsApplied();
 }
 
 function getTierCareerContract(tier) {
@@ -178,6 +284,8 @@ function installCareerOfferGate() {
 }
 
 installCareerOfferGate();
+window.applyBadgeCareerContractOverlay = applyBadgeCareerContractOverlay;
+window.ensureBadgeCareerContractsApplied = ensureBadgeCareerContractsApplied;
 window.evaluateCareerOfferPolicy = evaluateCareerOfferPolicy;
 window.resolveCareerOfferFromBadgeTier = resolveCareerOfferFromBadgeTier;
 
