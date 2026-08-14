@@ -57,19 +57,24 @@ jobs:
           set -e
           if [ "$MERGE_STATUS" -ne 0 ]; then
             mapfile -t UNMERGED < <(git diff --name-only --diff-filter=U | sort)
-            printf 'Unmerged files:\n%s\n' "${UNMERGED[*]}"
-            EXPECTED=(
-              data/fagverk/fagverk_registry.json
-              data/fagverk/fagverk_release.json
-              data/fagverk/subject_status.json
-            )
-            mapfile -t EXPECTED_SORTED < <(printf '%s\n' "${EXPECTED[@]}" | sort)
-            if [ "$(printf '%s\n' "${UNMERGED[@]}")" != "$(printf '%s\n' "${EXPECTED_SORTED[@]}")" ]; then
-              echo '::error::Unexpected merge conflict set; refusing automatic resolution.'
+            printf 'Unmerged files:\n'
+            printf '%s\n' "${UNMERGED[@]}"
+            if [ "${#UNMERGED[@]}" -eq 0 ]; then
+              echo '::error::Merge failed without an unmerged conflict set; refusing automatic resolution.'
               exit 1
             fi
-            git checkout --theirs -- "${EXPECTED[@]}"
-            git add "${EXPECTED[@]}"
+            for path in "${UNMERGED[@]}"; do
+              case "$path" in
+                data/fagverk/fagverk_registry.json|data/fagverk/fagverk_release.json|data/fagverk/subject_status.json)
+                  ;;
+                *)
+                  echo "::error::Unexpected merge conflict outside allowlist: $path"
+                  exit 1
+                  ;;
+              esac
+            done
+            git checkout --theirs -- "${UNMERGED[@]}"
+            git add "${UNMERGED[@]}"
           fi
       - name: Restore verified Philosophy entries on top of current main
         run: |
