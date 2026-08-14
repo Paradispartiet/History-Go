@@ -30,6 +30,8 @@ jobs:
       - name: Assert immutable branch input
         run: |
           test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch origin main
       - name: Save verified Philosophy shared entries
         run: |
@@ -117,8 +119,6 @@ jobs:
             echo "::error::Branch moved during main sync: expected $EXPECTED_SHA, found $REMOTE_SHA"
             exit 1
           fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json data/fagverk/subject_status.json reports/fagverk/filosofi-phase3-audit.json reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json
           git commit -m 'Sync Philosophy university review with current main'
           git push --force-with-lease="refs/heads/$TARGET_BRANCH:$EXPECTED_SHA" origin "HEAD:refs/heads/$TARGET_BRANCH"
