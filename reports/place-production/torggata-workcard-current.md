@@ -38,6 +38,7 @@
 - Fase 17-audit: `reports/place-production/torggata-phase17-profile-unlocks-audit-v1.json`
 - Fase 18-audit: `reports/place-production/torggata-phase18-wonderkammer-legacy-audit-v1.json`
 - Fase 19-audit: `reports/place-production/torggata-phase19-images-audit-v1.json`
+- Fase 20-audit: `reports/place-production/torggata-phase20-data-qa-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -63,7 +64,8 @@
 | 17. Profil, miniProfile, unlocks og belønninger | **ALLEREDE FERDIG – GODKJENT** | profile/miniProfile/collection/unlock-eierne består; ikke-implementerte belønninger er N/A |
 | 18. Legacy Wonderkammer | **GODKJENT N/A** | ingen Torggata-Wonderkammerdata; tidligere materiale er allerede klassifisert til canonical eiere |
 | 19. Hovedbilder og rundingsbilder | **GODKJENT** | to lokale hovedbilder; People 7/7, Objects 1/1 og Brands 13/13 bildeklare med proveniens |
-| 20–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 20. Data-QA | **GODKJENT** | canonical data, indekser, referanser og subsystemporter bestått på siste innholds-head |
+| 21–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -650,3 +652,20 @@ BESLUTNING: BEHOLD – alle faktisk valgte rundinger er bildeklare; holdbacks fo
 **Fase 19 Hovedbilder og rundingsbilder = GODKJENT.**
 
 Neste aktive fase: **20. Data-QA**.
+
+
+## Fase 20 – Data-QA
+
+### Godkjent resultat
+
+- Canonical JSON parser og place-manifest består; `torggata` er unik og source-loadet.
+- `places_index.json` er regenerert fra source og synkron med canonical koordinat-/alias-/relationsdata.
+- `category=by`, begge emne-ID-er, coordinate contract og description-production/claim-paritet er tidligere grønt låst.
+- People 21/21, Works 5/5, Brands 13/13, Story, 5 × 7 quiz, i18n og `storgata`-relasjon har gyldige referanser.
+- Ingen historisk rute hevdes; routeSegments beholdes som geometri.
+- Fase 14–17-regresjonene, Places data, Category/quiz governance, Knowledge V2, Fagverk By og TypeScript guard var grønne på uendret fase-head.
+- Fase 20 endrer ingen data og oppretter ingen ny duplikat-ID.
+
+**Fase 20 Data-QA = GODKJENT.**
+
+Neste aktive fase: **21. UI-QA**.
