@@ -62,6 +62,18 @@ jobs:
           s=s.replace(old,new)
           p.write_text(s)
           PY
+      - name: Normalize canonical casing in editorial prose
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/polish-filosofi-complete.mjs')
+          s=p.read_text()
+          old="""    .replaceAll('canonicale','kanoniske')\n    .replaceAll('canonical','kanonisk')"""
+          new="""    .replace(/\\bcanonicale\\b/gi,'kanoniske')\n    .replace(/\\bcanonical\\b/gi,'kanonisk')"""
+          if old not in s:
+              raise SystemExit('Expected canonical cleanup lines not found')
+          p.write_text(s.replace(old,new))
+          PY
       - name: Materialize canonical Philosophy corpus
         run: |
           node --check scripts/materialize-filosofi-complete.mjs
