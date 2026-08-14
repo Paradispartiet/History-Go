@@ -1,0 +1,55 @@
+name: Fix Philosophy major-field materializer source
+
+on:
+  push:
+    branches:
+      - agent/expand-philosophy-core-fields
+    paths:
+      - .github/workflows/fix-filosofi-major-field-materializer.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/expand-philosophy-core-fields
+          fetch-depth: 0
+
+      - name: Patch committed materializer source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/materialize-filosofi-major-field-coverage.mjs')
+          s=p.read_text()
+          start=s.index('// Add missing seventh field:')
+          end=s.index('const NEW_DOMAIN_ORDER=', start)
+          s=s[:start]+s[end:]
+          marker="const proseSections=(a,art)=>{"
+          helper="""const comparativeDepth=(art)=>{\n  const thinkerNames=art.thinkers.map((t)=>t.name).join(', ');\n  const workNames=art.thinkers.map((t)=>t.works[0]).join('; ');\n  const conceptNames=art.concepts.map((c)=>c.label).join(', ');\n  return [\n    'Den komparative testen i ' + art.title + ' må gå lenger enn å plassere navn ved siden av hverandre. ' + thinkerNames + ' må leses som posisjoner med forskjellige forklaringsforpliktelser, og primærverkene ' + workNames + ' brukes til å kontrollere hva rivalene faktisk hevder. I dette problemet er ' + conceptNames + ' analytiske knutepunkter: hvert begrep må identifisere hvilket premiss, hvilken overgang eller hvilken type forklaring som står på spill. En sterk sammenligning spør derfor hvilken rival som kan forklare samme problem med færrest ubegrunnede tillegg, hvilke moteksempler som rammer teorien, og om en løsning på ett delproblem flytter en kostnad til ontologi, epistemologi, normativitet eller metode. Artikkelen skal dermed gjøre uenigheten rekonstruerbar premiss for premiss, slik at leseren kan se både forklaringsgevinsten og prisen ved hver posisjon.',\n    'Faglig fordypning krever dessuten at den deklarerte hoveddebatten faktisk styrer analysen: ' + art.debate + ' Denne debatten brukes som kontroll mot navnedropping. Begrepene ' + conceptNames + ' skal derfor ikke bare defineres, men spores videre inn i argument, innvending, svar, metode og case. Dersom en rival endrer definisjonen av ett av begrepene, må analysen vise om det endrer en inferens eller bare terminologien. Dersom et empirisk premiss er nødvendig, skal det identifiseres som empirisk og ikke smugles inn gjennom et filosofisk verk. Et universitetssvar skal til slutt kunne angi den sterkeste versjonen av minst to posisjoner, hvorfor en innvending treffer et bestemt premiss, hva svaret faktisk redder, og hvilket spørsmål som fortsatt står åpent. Dermed blir fordypningen artikkelspesifikk selv om kvalitetskravene er felles.'\n  ];\n};\n\n"""
+          if marker not in s:
+              raise SystemExit('Missing proseSections marker')
+          s=s.replace(marker,helper+marker,1)
+          old="    {id:'problem',title:'Problemet',paragraphs:[art.problem,art.stakes,art.contrast]},"
+          new="    {id:'problem',title:'Problemet',paragraphs:[art.problem,art.stakes,art.contrast,...comparativeDepth(art)]},"
+          if old not in s:
+              raise SystemExit('Missing problem-section line')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+          PY
+          node --check scripts/materialize-filosofi-major-field-coverage.mjs
+
+      - name: Commit deterministic source fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/fix-filosofi-major-field-materializer.yml
+          git add scripts/materialize-filosofi-major-field-coverage.mjs
+          git diff --cached --check
+          git commit -m "Fix Philosophy major-field materializer source"
+          git push origin HEAD:agent/expand-philosophy-core-fields
