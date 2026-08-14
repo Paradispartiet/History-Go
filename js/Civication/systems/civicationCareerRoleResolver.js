@@ -47,6 +47,12 @@
     filosofi_undervisning_og_akademia: 'filosofi_undervisning_og_akademia',
     musikk_scene_og_produksjon: 'musikk_scene_og_produksjon',
     musikk_utoving_og_ensemble: 'musikk_utoving_og_ensemble',
+    historie_arkiv_og_dokumentasjon: 'historie_arkiv_og_dokumentasjon',
+    historie_forvaltning_og_radgivning: 'historie_forvaltning_og_radgivning',
+    historie_museum_og_samling: 'historie_museum_og_samling',
+    historie_forskning_og_akademia: 'historie_forskning_og_akademia',
+    historie_fagledelse: 'historie_fagledelse',
+    historie_institusjonsledelse: 'historie_institusjonsledelse',
     natur_felt_og_formidling: 'natur_felt_og_formidling',
     natur_forvaltning_og_radgivning: 'natur_forvaltning_og_radgivning',
     natur_biologi_og_forskning: 'natur_biologi_og_forskning',
@@ -199,6 +205,29 @@
     fast_musiker_band_ensemble: 'musikk_utoving_og_ensemble'
   };
 
+  const HISTORIE_ROLE_SCOPE_BY_TITLE = {
+    doktorgradsstudent: 'historie_forskning_og_akademia',
+    arkivmedarbeider: 'historie_arkiv_og_dokumentasjon',
+    saksbehandler: 'historie_forvaltning_og_radgivning',
+    forstekonsulent: 'historie_forvaltning_og_radgivning',
+    radgiver: 'historie_forvaltning_og_radgivning',
+    seniorradgiver: 'historie_forvaltning_og_radgivning',
+    arkivar: 'historie_arkiv_og_dokumentasjon',
+    spesialradgiver: 'historie_forvaltning_og_radgivning',
+    konservator: 'historie_museum_og_samling',
+    kurator: 'historie_museum_og_samling',
+    senior_konservator: 'historie_museum_og_samling',
+    senior_kurator: 'historie_museum_og_samling',
+    forsker: 'historie_forskning_og_akademia',
+    seniorforsker: 'historie_forskning_og_akademia',
+    seksjonsleder: 'historie_fagledelse',
+    avdelingsleder: 'historie_fagledelse',
+    avdelingsdirektor: 'historie_institusjonsledelse',
+    direktor: 'historie_institusjonsledelse'
+  };
+
+  const HISTORIE_NON_JOB_TITLES = new Set(['student', 'masterstuden']);
+
   const NATUR_ROLE_SCOPE_BY_TITLE = {
     feltassistent: 'natur_felt_og_formidling',
     naturveileder: 'natur_felt_og_formidling',
@@ -330,6 +359,13 @@
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('musikk_')) return roleKey;
     }
 
+    if (careerId === 'historie') {
+      if (HISTORIE_NON_JOB_TITLES.has(titleKey) || HISTORIE_NON_JOB_TITLES.has(roleKey)) return 'unknown';
+      const hit = mapped(HISTORIE_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
+      if (hit) return hit;
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('historie_')) return roleKey;
+    }
+
     if (careerId === 'natur') {
       const hit = mapped(NATUR_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
@@ -388,6 +424,12 @@
       'filosofi_undervisning_og_akademia',
       'musikk_scene_og_produksjon',
       'musikk_utoving_og_ensemble',
+      'historie_arkiv_og_dokumentasjon',
+      'historie_forvaltning_og_radgivning',
+      'historie_museum_og_samling',
+      'historie_forskning_og_akademia',
+      'historie_fagledelse',
+      'historie_institusjonsledelse',
       'natur_felt_og_formidling',
       'natur_forvaltning_og_radgivning',
       'natur_biologi_og_forskning',

@@ -1,0 +1,18 @@
+{
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"historie","role_scope":"historie_forskning_og_akademia","role_id":"historie_forskning_og_akademia",
+  "badge_binding":{"badge_id":"historie","badge_titles":["Doktorgradsstudent","Forsker","Seniorforsker"]},
+  "work_world":"Historisk forskning der spørsmål, kilder, metode, historiografi og eksplisitt usikkerhet avgjør hvor sterke fortolkninger som er forsvarlige.",
+  "task_families":["forskningssporsmal","kildesok","kildekritikk","analyse","akademisk_skriving","publisering"],
+  "work_loops":["sporsmal -> kilder -> kontekst -> metode -> analyse -> argument -> motproving -> publisering","ny_kilde -> kildekritikk -> konsekvens_for_tese -> revisjon -> dokumentert_fortolkning"],
+  "pressure_axes":["tese_vs_kilder","fortelling_vs_kompleksitet","publisering_vs_modenhet"],
+  "practice_stories":[
+    {"id":"motbevis","setup":"En ny kilde svekker hovedtesen.","decision":"Revider argumentet og gjør konsekvensen synlig.","learning":"historisk forskning må tåle at gode teser faller"},
+    {"id":"fragmentert_kildegrunnlag","setup":"Materialet er ujevnt bevart og favoriserer én aktørgruppe.","decision":"Analyser fraværet som kildeproblem og begrens konklusjonen.","learning":"arkivets stillhet er ikke nøytral"},
+    {"id":"anakronisme","setup":"Et moderne begrep gjør fortiden lett å forklare, men passer dårlig i samtidens kategorier.","decision":"Bruk begrepet analytisk bare hvis forskjellen til samtidens språk forklares.","learning":"analyse må ikke viske ut historisk forskjell"},
+    {"id":"historiografisk_strid","setup":"Sterke fagtradisjoner tolker samme hendelse ulikt.","decision":"Sammenlign premisser, kilder og forklaringsnivå før egen posisjon tas.","learning":"uenighet er data om fagets begrunnelser"},
+    {"id":"publiseringspress","setup":"Manuset kan sendes nå, men en sentral kildegruppe er ikke kontrollert.","decision":"Avgrens påstanden eller gjør kontrollen før publisering.","learning":"publiseringstempo er ikke evidens"}
+  ],
+  "quality_axes":["kildekritikk","metode","historiografi","argumentasjon","usikkerhet","forskningsetikk"],
+  "authority_boundary":{"may":["produsere og vurdere historisk kunnskap"],"may_not":["oppfinne kilder","skjule motbevis","late som tolkning er ubestridt fakta","utøve offentlig myndighet uten mandat"]}
+}

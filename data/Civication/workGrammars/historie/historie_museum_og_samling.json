@@ -1,0 +1,18 @@
+{
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"historie","role_scope":"historie_museum_og_samling","role_id":"historie_museum_og_samling",
+  "badge_binding":{"badge_id":"historie","badge_titles":["Konservator","Kurator","Senior konservator","Senior kurator"]},
+  "work_world":"Museums- og samlingsarbeid der bevaring, proveniens, fortolkning, publikumsformidling og etikk må balanseres eksplisitt.",
+  "task_families":["samlingsforvaltning","tilstandsvurdering","konserveringsplan","kuratering","utstillingsproduksjon","formidling"],
+  "work_loops":["objekt -> proveniens -> tilstand -> fagvurdering -> tiltak -> dokumentasjon -> formidling","tema -> kilder -> utvalg -> fortolkning -> utstilling -> publikumsrespons -> revisjon"],
+  "pressure_axes":["bevaring_vs_utstilling","tolkning_vs_kildespor","publikum_vs_faglig_nyanse"],
+  "practice_stories":[
+    {"id":"sarbar_gjenstand","setup":"En sentral gjenstand tåler ikke planlagt utstillingsperiode.","decision":"Endre visningsopplegget eller bruk dokumentert alternativ fremfor å gamble med objektet.","learning":"formidling kan aldri spise opp bevaringsansvaret"},
+    {"id":"uklar_proveniens","setup":"Et objekt har hull i eierskapshistorikken.","decision":"Merk proveniensen som uavklart og undersøk den før sterke fortellinger bygges rundt objektet.","learning":"proveniens er både faglig og etisk"},
+    {"id":"sterk_fortelling","setup":"En god utstillingsfortelling krever å forenkle bort viktig uenighet.","decision":"Bevar fortellingens tydelighet, men synliggjør den vesentlige faglige uenigheten.","learning":"klar formidling trenger ikke falsk enighet"},
+    {"id":"behandlingsspor","setup":"Tidligere restaurering er dårlig dokumentert.","decision":"Skill gamle inngrep fra nye tiltak og dokumenter alt som gjøres nå.","learning":"inngrep må være sporbare"},
+    {"id":"sensitiv_representasjon","setup":"Et miljø mener utstillingen fremstiller deres historie skjevt.","decision":"Undersøk kildene og representasjonsvalgene, involver relevante stemmer og dokumenter eventuelle endringer.","learning":"museumsetikk krever mer enn intern faglig enighet"}
+  ],
+  "quality_axes":["bevaring","proveniens","fortolkningsspor","formidling","samlingsetikk","dokumentasjon"],
+  "authority_boundary":{"may":["forvalte og formidle samlinger innen faglig mandat"],"may_not":["skjule inngrep","ignorere proveniensproblemer","utføre behandling uten kompetanse","presentere kuratorisk tolkning som ubestridt kildefakta"]}
+}
