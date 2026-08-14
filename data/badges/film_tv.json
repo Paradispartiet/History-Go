@@ -6,22 +6,158 @@
   "image": "bilder/merker/film_tv.PNG",
   "description": "For dem som ser verden som fortellinger i bilder og lyd – fra kinoens mørke til seriens lange form. Film og TV er både drøm, dokument og felles hukommelse.",
   "tiers": [
-    {"label":"Seer","threshold":5,"life_position":{"id":"seer","label":"Seer","kind":"audience_identity","description":"Film og serier er blitt en faktisk del av hverdagen din, ikke bare noe som står på i bakgrunnen.","hooks":["kino","streaming","anbefalinger"],"employment_independent":true}},
-    {"label":"Filminteressert","threshold":10,"life_position":{"id":"filminteressert","label":"Filminteressert","kind":"hobby_identity","description":"Du følger filmer, serier og folkene bak dem og begynner å velge mer bevisst hva du ser.","hooks":["filmprat","premierer","nye_funn"],"employment_independent":true}},
-    {"label":"Filmfantast","threshold":15,"life_position":{"id":"filmfantast","label":"Filmfantast","kind":"enthusiast_identity","description":"Du organiserer fritid rundt filmer og serier og har alltid én visning, serie eller regissør til du vil innom.","hooks":["maraton","filmklubb","favoritter"],"employment_independent":true}},
-    {"label":"Kjenner","threshold":25,"life_position":{"id":"kjenner","label":"Kjenner","kind":"knowledge_identity","description":"Du kjenner formspråk, sjangre, epoker og produksjonsvalg godt nok til at andre faktisk spør deg hva de bør se.","hooks":["analyse","anbefalinger","uenighet"],"employment_independent":true}},
-    {"label":"Connaisseur","threshold":40,"life_position":{"id":"connaisseur","label":"Connaisseur","kind":"reputation_status","description":"Smaken din er blitt en del av ryktet ditt. Du jakter festivalfilmer, restaurerte verk og ting som ikke ligger øverst i strømmetjenesten.","hooks":["festival","sjeldne_visninger","smak_og_status"],"employment_independent":true}},
-    {"label":"Produksjonsassistent","threshold":60,"career_offer":{"title":"Produksjonsassistent","policy":"direct","salary_tier":1,"role_scope":"produksjonsassistent"}},
-    {"label":"Manusmedarbeider","threshold":85,"career_offer":{"title":"Manusmedarbeider","policy":"direct","salary_tier":1,"role_scope":"manusmedarbeider"}},
-    {"label":"Programleder","threshold":115,"career_offer":{"title":"Programleder","policy":"direct","salary_tier":2,"role_scope":"programleder"}},
-    {"label":"Kurator (film/TV)","threshold":150,"career_offer":{"title":"Kurator (film/TV)","policy":"direct","salary_tier":2,"role_scope":"kurator_film_tv"}},
-    {"label":"Regissør","threshold":190,"career_offer":{"title":"Regissør","policy":"direct","salary_tier":3,"role_scope":"regissor"}},
-    {"label":"Serieskaper","threshold":240,"career_offer":{"title":"Serieskaper","policy":"direct","salary_tier":3,"role_scope":"serieskaper"}},
-    {"label":"Prisvinner","threshold":300,"life_position":{"id":"prisvinner","label":"Prisvinner","kind":"achievement_status","description":"Et verk du har vært med på har fått en pris. Det endrer omdømme og hvem som ringer, men det er ikke en ny arbeidsgiver.","hooks":["pris","presse","festivalinvitasjon","forhandlingsrom"],"employment_independent":true}},
-    {"label":"Internasjonalt gjennomslag","threshold":380,"life_position":{"id":"internasjonalt_gjennomslag","label":"Internasjonalt gjennomslag","kind":"reputation_status","description":"Arbeidet ditt har fått publikum eller bransjeoppmerksomhet utenfor Norge. Flere dører åpnes, men du må fortsatt inngå faktiske avtaler.","hooks":["internasjonal_festival","agentkontakt","reise","nye_avtaler"],"employment_independent":true}},
-    {"label":"Film- og TV-stjerne","threshold":500,"life_position":{"id":"film_og_tv_stjerne","label":"Film- og TV-stjerne","kind":"fame_status","description":"Du er blitt bredt gjenkjennelig i film- og TV-offentligheten. Berømmelse gir tilgang og press, men er ikke en stillingskontrakt.","hooks":["presse","gjenkjennelse","invitasjoner","omdommerisiko"],"employment_independent":true}},
-    {"label":"Ikon","threshold":650,"life_position":{"id":"ikon","label":"Ikon","kind":"legacy_status","description":"Navnet ditt har fått en varig kulturell tyngde. Gamle verk lever videre, nye prosjekter får ekstra oppmerksomhet og forventningene er enorme.","hooks":["retrospektiv","arv","kanon","store_forventninger"],"employment_independent":true}}
+    {
+      "label": "Seer",
+      "threshold": 5,
+      "life_position": {
+        "id": "seer",
+        "label": "Seer",
+        "kind": "audience_identity",
+        "description": "Film og serier er blitt en faktisk del av hverdagen din, ikke bare noe som står på i bakgrunnen.",
+        "hooks": ["kino", "streaming", "anbefalinger"],
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Filminteressert",
+      "threshold": 10,
+      "life_position": {
+        "id": "filminteressert",
+        "label": "Filminteressert",
+        "kind": "hobby_identity",
+        "description": "Du følger filmer, serier og folkene bak dem og begynner å velge mer bevisst hva du ser.",
+        "hooks": ["filmprat", "premierer", "nye_funn"],
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Filmfantast",
+      "threshold": 15,
+      "life_position": {
+        "id": "filmfantast",
+        "label": "Filmfantast",
+        "kind": "enthusiast_identity",
+        "description": "Du organiserer fritid rundt filmer og serier og har alltid én visning, serie eller regissør til du vil innom.",
+        "hooks": ["maraton", "filmklubb", "favoritter"],
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Kjenner",
+      "threshold": 25,
+      "life_position": {
+        "id": "kjenner",
+        "label": "Kjenner",
+        "kind": "knowledge_identity",
+        "description": "Du kjenner formspråk, sjangre, epoker og produksjonsvalg godt nok til at andre faktisk spør deg hva de bør se.",
+        "hooks": ["analyse", "anbefalinger", "uenighet"],
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Connaisseur",
+      "threshold": 40,
+      "life_position": {
+        "id": "connaisseur",
+        "label": "Connaisseur",
+        "kind": "reputation_status",
+        "description": "Smaken din er blitt en del av ryktet ditt. Du jakter festivalfilmer, restaurerte verk og ting som ikke ligger øverst i strømmetjenesten.",
+        "hooks": ["festival", "sjeldne_visninger", "smak_og_status"],
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Produksjonsassistent",
+      "threshold": 60,
+      "career_offer": { "title": "Produksjonsassistent", "policy": "direct", "salary_tier": 1 }
+    },
+    {
+      "label": "Manusmedarbeider",
+      "threshold": 85,
+      "career_offer": { "title": "Manusmedarbeider", "policy": "direct", "salary_tier": 1 }
+    },
+    {
+      "label": "Programleder",
+      "threshold": 115,
+      "career_offer": { "title": "Programleder", "policy": "direct", "salary_tier": 2 }
+    },
+    {
+      "label": "Kurator (film/TV)",
+      "threshold": 150,
+      "career_offer": { "title": "Kurator (film/TV)", "policy": "direct", "salary_tier": 2 }
+    },
+    {
+      "label": "Regissør",
+      "threshold": 190,
+      "career_offer": { "title": "Regissør", "policy": "direct", "salary_tier": 3 }
+    },
+    {
+      "label": "Serieskaper",
+      "threshold": 240,
+      "career_offer": { "title": "Serieskaper", "policy": "direct", "salary_tier": 3 }
+    },
+    {
+      "label": "Prisvinner",
+      "threshold": 300,
+      "life_position": {
+        "id": "prisvinner",
+        "label": "Prisvinner",
+        "kind": "achievement_status",
+        "description": "Et verk du har vært med på har fått en pris. Det endrer omdømme og hvem som ringer, men det er ikke en ny arbeidsgiver.",
+        "hooks": ["pris", "presse", "festivalinvitasjon", "forhandlingsrom"],
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Internasjonalt gjennomslag",
+      "threshold": 380,
+      "life_position": {
+        "id": "internasjonalt_gjennomslag",
+        "label": "Internasjonalt gjennomslag",
+        "kind": "reputation_status",
+        "description": "Arbeidet ditt har fått publikum eller bransjeoppmerksomhet utenfor Norge. Flere dører åpnes, men du må fortsatt inngå faktiske avtaler.",
+        "hooks": ["internasjonal_festival", "agentkontakt", "reise", "nye_avtaler"],
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Film- og TV-stjerne",
+      "threshold": 500,
+      "life_position": {
+        "id": "film_og_tv_stjerne",
+        "label": "Film- og TV-stjerne",
+        "kind": "fame_status",
+        "description": "Du er blitt bredt gjenkjennelig i film- og TV-offentligheten. Berømmelse gir tilgang og press, men er ikke en stillingskontrakt.",
+        "hooks": ["presse", "gjenkjennelse", "invitasjoner", "omdommerisiko"],
+        "employment_independent": true
+      }
+    },
+    {
+      "label": "Ikon",
+      "threshold": 650,
+      "life_position": {
+        "id": "ikon",
+        "label": "Ikon",
+        "kind": "legacy_status",
+        "description": "Navnet ditt har fått en varig kulturell tyngde. Gamle verk lever videre, nye prosjekter får ekstra oppmerksomhet og forventningene er enorme.",
+        "hooks": ["retrospektiv", "arv", "kanon", "store_forventninger"],
+        "employment_independent": true
+      }
+    }
   ],
-  "sub":["spillefilm","kortfilm","dokumentarfilm","tv_serier","nyheter_og_reportasje","klassikere","norsk_film_og_tv","filmfestivaler","filmlocations","film_og_tv_produksjon","arkiv_og_kanon","visningssteder"],
-  "career_life_evidence":"data/Civication/filmTvCareerLifeEvidence.json"
+  "sub": [
+    "spillefilm",
+    "kortfilm",
+    "dokumentarfilm",
+    "tv_serier",
+    "nyheter_og_reportasje",
+    "klassikere",
+    "norsk_film_og_tv",
+    "filmfestivaler",
+    "filmlocations",
+    "film_og_tv_produksjon",
+    "arkiv_og_kanon",
+    "visningssteder"
+  ],
+  "career_life_evidence": "data/Civication/filmTvCareerLifeEvidence.json"
 }
