@@ -25,47 +25,23 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-
           p=Path('tests/fagverk-subject-inventory.test.mjs')
           s=p.read_text()
-          old="""  for (const id of ['scenekunst', 'vitenskap', 'filosofi']) {
-    const subject = s.subjects.find((x) => x.id === id);
-    assert.equal(subject.editorialStatus, 'structure_ready');
-    assert.equal(subject.nextGate, 'chapter_production');
-  }
-"""
-          new="""  for (const id of ['scenekunst', 'vitenskap']) {
-    const subject = s.subjects.find((x) => x.id === id);
-    assert.equal(subject.editorialStatus, 'structure_ready');
-    assert.equal(subject.nextGate, 'chapter_production');
-  }
-
-  const filosofi = s.subjects.find((x) => x.id === 'filosofi');
-  assert.equal(filosofi.editorialStatus, 'complete');
-  assert.equal(filosofi.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
-"""
-          if old not in s:
-              raise SystemExit('Expected stale Philosophy inventory contract not found')
+          old="  for (const id of ['scenekunst', 'vitenskap', 'filosofi']) {\n    const subject = s.subjects.find((x) => x.id === id);\n    assert.equal(subject.editorialStatus, 'structure_ready');\n    assert.equal(subject.nextGate, 'chapter_production');\n  }\n"
+          new="  for (const id of ['scenekunst', 'vitenskap']) {\n    const subject = s.subjects.find((x) => x.id === id);\n    assert.equal(subject.editorialStatus, 'structure_ready');\n    assert.equal(subject.nextGate, 'chapter_production');\n  }\n\n  const filosofi = s.subjects.find((x) => x.id === 'filosofi');\n  assert.equal(filosofi.editorialStatus, 'complete');\n  assert.equal(filosofi.nextGate, 'maintenance_source_refresh_and_place_case_expansion');\n"
+          if old not in s: raise SystemExit('Expected stale Philosophy inventory contract not found')
           p.write_text(s.replace(old,new))
-
           p=Path('tests/fagverk-general-engine.test.mjs')
           s=p.read_text()
           old="  assert.equal(filosofi.chapterCount, 0);"
           new="  assert.equal(filosofi.chapterCount, 13);"
-          if old not in s:
-              raise SystemExit('Expected stale Philosophy general-engine chapter contract not found')
+          if old not in s: raise SystemExit('Expected stale Philosophy general-engine chapter contract not found')
           p.write_text(s.replace(old,new))
-
           p=Path('tests/fagverk-filosofi-phase3.test.mjs')
           s=p.read_text()
-          replacements={
-            "  assert.equal(report.subject.editorialStatus, 'structure_ready');":"  assert.equal(report.subject.editorialStatus, 'complete');",
-            "  assert.equal(report.subject.nextGate, 'chapter_production');":"  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');",
-            "    registeredChapterCount: 0":"    registeredChapterCount: 13"
-          }
+          replacements={"  assert.equal(report.subject.editorialStatus, 'structure_ready');":"  assert.equal(report.subject.editorialStatus, 'complete');","  assert.equal(report.subject.nextGate, 'chapter_production');":"  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');","    registeredChapterCount: 0":"    registeredChapterCount: 13"}
           for old,new in replacements.items():
-              if old not in s:
-                  raise SystemExit(f'Expected stale Philosophy phase3 contract not found: {old}')
+              if old not in s: raise SystemExit(f'Expected stale Philosophy phase3 contract not found: {old}')
               s=s.replace(old,new)
           p.write_text(s)
           PY
