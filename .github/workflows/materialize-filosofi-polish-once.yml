@@ -90,10 +90,15 @@ jobs:
           node scripts/audit-fagverk-filosofi-phase3.mjs --write-report
           node tools/validate-filosofi-theory-quality.mjs
       - name: Validate completion and editorial quality
+        id: validate
+        continue-on-error: true
+        shell: bash
         run: |
-          node --test tests/fagverk-filosofi-complete.test.mjs
-          node --test tests/fagverk-filosofi-editorial-style.test.mjs
-          node - <<'NODE'
+          set -o pipefail
+          {
+            node --test tests/fagverk-filosofi-complete.test.mjs
+            node --test tests/fagverk-filosofi-editorial-style.test.mjs
+            node - <<'NODE'
           const fs=require('fs');
           const a=JSON.parse(fs.readFileSync('reports/fagverk/filosofi-complete-audit.json','utf8'));
           if(a.status!=='filosofi_complete') throw new Error('Philosophy completion audit not complete');
@@ -102,6 +107,21 @@ jobs:
           const r=JSON.parse(fs.readFileSync('data/fagverk/filosofi/filosofi_article_registry_v1.json','utf8'));
           if(r.counts.standalone_articles!==54 || r.counts.integrated_concepts!==162 || r.counts.chapters!==13) throw new Error('Philosophy coverage incomplete');
           NODE
+          } 2>&1 | tee filosofi-validation-debug.log
+      - name: Upload validation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: filosofi-validation-debug
+          path: |
+            filosofi-validation-debug.log
+            reports/fagverk/filosofi-complete-audit.json
+            data/fagverk/filosofi/filosofi_completion_v1.json
+            data/fagverk/filosofi/filosofi_article_registry_v1.json
+          if-no-files-found: warn
+      - name: Stop after failed validation
+        if: steps.validate.outcome != 'success'
+        run: exit 1
       - name: Commit deterministic polished outputs and remove one-shot workflow
         run: |
           rm .github/workflows/materialize-filosofi-polish-once.yml
