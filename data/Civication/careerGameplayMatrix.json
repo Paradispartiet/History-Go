@@ -7,8 +7,8 @@
     "work_worlds": 89,
     "statuses": {
       "reference_complete": 1,
-      "playable": 2,
-      "partial": 21,
+      "playable": 3,
+      "partial": 20,
       "architecture_only": 65
     },
     "runtime_gate_pass": 9,
@@ -40,9 +40,9 @@
         "missing": 66
       },
       "places": {
-        "complete": 7,
+        "complete": 8,
         "partial": 0,
-        "missing": 82
+        "missing": 81
       },
       "mail": {
         "complete": 10,
@@ -70,8 +70,8 @@
         "missing": 68
       },
       "performance": {
-        "complete": 14,
-        "partial": 7,
+        "complete": 15,
+        "partial": 6,
         "missing": 68
       },
       "economy": {
@@ -80,14 +80,14 @@
         "missing": 0
       },
       "progression": {
-        "complete": 14,
-        "partial": 21,
+        "complete": 15,
+        "partial": 20,
         "missing": 54
       },
       "exit": {
-        "complete": 13,
+        "complete": 14,
         "partial": 21,
-        "missing": 55
+        "missing": 54
       }
     }
   },
@@ -7625,7 +7625,7 @@
         "avdelingsleder",
         "naer_avdelingsleder"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/avdelingsleder.json"
@@ -7676,6 +7676,7 @@
         },
         "role_tests": [
           "tests/civication-avdelingsleder-first-week-praksisfortellinger.test.js",
+          "tests/civication-avdelingsleder-playability.test.js",
           "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
           "tests/civication-avdelingsleder-two-week-flow.test.js",
           "tests/civication-history-life-career-split.test.js",
@@ -7701,6 +7702,7 @@
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/avdelingsleder_plan.json",
               "tests/civication-avdelingsleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-avdelingsleder-playability.test.js",
               "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
               "tests/civication-avdelingsleder-two-week-flow.test.js",
               "tests/civication-history-life-career-split.test.js",
@@ -7718,6 +7720,7 @@
               "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json",
               "tests/civication-avdelingsleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-avdelingsleder-playability.test.js",
               "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
               "tests/civication-avdelingsleder-two-week-flow.test.js",
               "tests/civication-history-life-career-split.test.js",
@@ -7748,9 +7751,13 @@
             "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/avdelingsleder.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json"
+            ],
+            "note": "4 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
@@ -7801,6 +7808,7 @@
             "level": "complete",
             "evidence": [
               "tests/civication-avdelingsleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-avdelingsleder-playability.test.js",
               "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
               "tests/civication-avdelingsleder-two-week-flow.test.js",
               "tests/civication-history-life-career-split.test.js",
@@ -7811,12 +7819,20 @@
             "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/avdelingsleder_plan.json",
-              "data/Civication/praksisfortellinger_registry.json"
+              "tests/civication-avdelingsleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-avdelingsleder-playability.test.js",
+              "tests/civication-avdelingsleder-second-week-praksisfortellinger.test.js",
+              "tests/civication-avdelingsleder-two-week-flow.test.js",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-history-life-career-split.test.js",
+              "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-religion-life-career-split.test.js",
+              "tests/civication-renholder-role-package.test.js"
             ],
-            "note": "Performance signals/outcomes exist without a complete tested evaluation."
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -7828,38 +7844,44 @@
             "note": "Exact salary exists for all 5 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/avdelingsleder_plan.json",
               "data/Civication/roleModels/naeringsliv/avdelingsleder.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json",
-              "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json"
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/naeringsliv/avdelingsleder_plan.json",
+              "data/Civication/roleModels/naeringsliv/avdelingsleder.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
         "runtime_gate": true,
-        "missing_components": [
-          "places",
-          "exit"
-        ],
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
           "people",
+          "places",
           "mail",
           "knowledge",
           "quality_axes",
           "authority",
           "consequences",
-          "economy"
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 5,
         "practice_weeks": [
