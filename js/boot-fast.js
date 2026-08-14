@@ -282,9 +282,10 @@
       ) {
         icon.dataset.hgPeopleStaleRefreshFor = placeId;
         scheduleCurrentPlacePeopleRefresh();
-      } else if (icon?.querySelector?.("img") && icon?.dataset) {
-        delete icon.dataset.hgPeopleStaleRefreshFor;
       }
+      // Behold engangssperren for stedet også når en <img> dukker opp:
+      // bildefeilen kan senere erstatte den med fallback og trigge observeren
+      // på nytt. Sperren nullstilles naturlig når et annet placeId åpnes.
       return;
     }
 
