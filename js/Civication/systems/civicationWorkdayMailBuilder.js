@@ -1,63 +1,85 @@
-// js/Civication/systems/civicationWorkdayMailBuilder.js
-// CivicationWorkdayMailBuilder — arbeidsdagsadapter for canonicale jobbscener.
-//
-// Prinsipp (se js/Civication/README.md «To rytmer»):
-//   Civication har to helt adskilte innholdssystemer:
-//     1) Private fase-mailer  — CivicationPrivatePhaseMailBuilder
-//     2) Arbeidslivsscener    — CivicationSceneDirector via denne adapteren
-//
-//   Arbeidslivsscener lever KUN i arbeidsdagen (forenoon/workday-runtime) og er
-//   knyttet til arbeidsgiver/rolle/workday_day_index. SceneDirector velger neste
-//   canonicale kandidat; denne filen stempler bare arbeidsdagens leveringsfelt.
-//
-//   Kontrakt: en arbeidslivsmail kan bare ha phase_tag "forenoon" eller
-//   "workday". Alt annet avvises/klippes til arbeidsdagen.
-
+// CivicationWorkdayMailBuilder + SceneDirector/SceneCatalog migration adapter.
+// 4C moves Daily extra-slot catalog loading, normalization and selection behind
+// CivicationSceneDirector/CivicationSceneCatalog without changing the day rhythm.
 (function () {
   "use strict";
-
   const WORK_PHASES = ["forenoon", "workday"];
+  const WORK_PHASE_SET = new Set(WORK_PHASES);
   const WORK_MAIL_CLASS = "daily_workday";
   const SCENE_DIRECTOR_VERSION = 1;
+  const SCENE_CATALOG_VERSION = 1;
   const SELECTION_TRACE_LIMIT = 80;
+  const CATALOG_TRACE_LIMIT = 80;
   const EVENT_ENGINE_PATCH_FLAG = "__civicationSceneDirectorBuildMailPoolPatched";
-
+  const DAILY_BUILDER_PATCH_FLAG = "__civicationSceneDirectorCatalogPatched";
+  const DAILY_RUNTIME_MARKER = "__scene_director_daily_extras";
+  const DAY_RUNTIME_KEY = "mail_day_runtime_v1";
+  const EXTRA_MAIL_TYPES = [
+    "people",
+    "story",
+    "conflict",
+    "event",
+    "faction_choice",
+    "micro",
+    "followup",
+    "knowledge",
+    "consequence"
+  ];
+  const CASE_THREAD_TYPES = new Set(["micro", "followup", "knowledge", "consequence"]);
+  const REPRESENTATIVE_PHASE_RANK = {
+    morning: 0,
+    intro: 0,
+    forenoon: 1,
+    early: 1,
+    workday: 2,
+    mid: 2,
+    lunch: 3,
+    stable: 3,
+    afternoon: 4,
+    dinner: 5,
+    evening: 6,
+    late: 6,
+    day_end: 7,
+    advanced: 8,
+    mastery: 9
+  };
+  const REPRESENTATIVE_PHASE_RANK_DEFAULT = 10;
   const WORK_PHASE_LABELS = {
     forenoon: "Formiddag",
     workday: "Arbeidsdag"
   };
-
   function norm(value) {
     return String(value == null ? "" : value).trim();
   }
-
   function slugify(value) {
     return norm(value)
       .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
       .replace(/[^a-z0-9_]+/g, "_")
-      .replace(/^_+|_+$/g, "") || "x";
+      .replace(/^_+|_+$/g, "");
   }
-
   function todayKey() {
     return new Date().toISOString().slice(0, 10);
   }
-
-  function isWorkPhase(phaseId) {
-    return WORK_PHASES.includes(norm(phaseId));
+  function uniqueStrings(values) {
+    return [...new Set((Array.isArray(values) ? values : []).map(norm).filter(Boolean))];
   }
-
+  function isWorkPhase(phaseId) {
+    return WORK_PHASE_SET.has(norm(phaseId));
+  }
   function phaseLabel(phaseId) {
     return WORK_PHASE_LABELS[norm(phaseId)] || norm(phaseId) || "Arbeidsdag";
   }
-
   function getState() {
     return window.CivicationState?.getState?.() || {};
   }
-
+  function setState(patch) {
+    return window.CivicationState?.setState?.(patch || {}) || null;
+  }
   function getActive() {
     return window.CivicationState?.getActivePosition?.() || null;
   }
-
   function resolveRoleScope(active) {
     const pos = active || getActive();
     const resolver = window.CivicationCareerRoleResolver?.resolveCareerRoleScope;
@@ -67,7 +89,6 @@
     }
     return norm(pos?.role_scope || pos?.role_key || pos?.role_id);
   }
-
   function getEmployerId(active) {
     const pos = active || getActive();
     const wr = window.CivicationWorkdayRuntime;
@@ -77,12 +98,10 @@
     }
     return norm(pos?.brand_id || pos?.employer_id);
   }
-
   function getWorkdayDayIndex() {
     return Number(window.CivicationWorkdayRuntime?.getWorkdayDayIndex?.() || 0);
   }
-
-  function normalizeChoices(choices) {
+  function normalizeWorkdayChoices(choices) {
     if (!Array.isArray(choices)) return [];
     return choices
       .map((choice, index) => ({
@@ -92,18 +111,10 @@
       }))
       .filter((choice) => choice.id && choice.label);
   }
-
-  // Klipper enhver fase til en gyldig arbeidsdag-fase. Arbeidslivsmail som kommer
-  // inn med en privat/ukjent fase blir tvunget til «workday», aldri sluppet ut i
-  // en privat fase.
   function clampWorkPhase(phaseId) {
     const phase = norm(phaseId);
     return isWorkPhase(phase) ? phase : "workday";
   }
-
-  // Stempler de faste arbeidslivs-feltene autoritativt: arbeidsklasse, source,
-  // arbeidsgiver/rolle-binding og workday_day_index. phase_tag klippes alltid til
-  // forenoon/workday.
   function stampWorkdayFields(event, phaseId, active, options = {}) {
     const phase = clampWorkPhase(phaseId);
     const roleScope = resolveRoleScope(active);
@@ -124,18 +135,549 @@
       workday_day_index: getWorkdayDayIndex()
     };
   }
-
   function makeDefaultTagRules() {
     return {
       max_tags_per_choice: 2,
       memory_window: 12
     };
   }
-
-  // SceneDirector bygger EventEngine-pakken direkte. Dette fjerner den gamle
-  // dobbeltseleksjonen der MailRuntimes wrapper først kalte EventEngines
-  // buildMailPool (som igjen kalte den offentlige selektoren) og deretter kalte
-  // den interne MailRuntime-selektoren én gang til.
+  function threadKeyForMail(mail) {
+    const explicit = norm(mail?.thread_key || mail?.threadKey);
+    if (explicit) return explicit;
+    const scope = slugify(mail?.role_scope) || "role";
+    const arc = slugify(mail?.narrative_arc);
+    if (arc && CASE_THREAD_TYPES.has(norm(mail?.mail_type))) return `${scope}.case.${arc}`;
+    const id = slugify(mail?.source_mail_id || mail?.id);
+    return id ? `${scope}.mail.${id}` : "";
+  }
+  function isCaseThreadKey(key) {
+    return norm(key).includes(".case.");
+  }
+  function representativePhaseRank(mail) {
+    const rank = REPRESENTATIVE_PHASE_RANK[norm(mail?.phase)];
+    return typeof rank === "number" ? rank : REPRESENTATIVE_PHASE_RANK_DEFAULT;
+  }
+  function preferAsThreadRepresentative(candidate, current) {
+    if (!current) return true;
+    const canonicalA = candidate?.thread_canonical === true ? 1 : 0;
+    const canonicalB = current?.thread_canonical === true ? 1 : 0;
+    if (canonicalA !== canonicalB) return canonicalA > canonicalB;
+    const rankA = representativePhaseRank(candidate);
+    const rankB = representativePhaseRank(current);
+    if (rankA !== rankB) return rankA < rankB;
+    const prioA = Number(candidate?.priority || 0);
+    const prioB = Number(current?.priority || 0);
+    if (prioA !== prioB) return prioA > prioB;
+    return norm(candidate?.id) < norm(current?.id);
+  }
+  function collapsePoolToCanonicalThreads(pool, excludedThreadKeys, consumedIds) {
+    const rest = [];
+    const byThread = new Map();
+    for (const mail of (Array.isArray(pool) ? pool : [])) {
+      const key = threadKeyForMail(mail);
+      const stamped = norm(mail?.thread_key) ? mail : { ...mail, thread_key: key };
+      if (!isCaseThreadKey(key)) {
+        rest.push(stamped);
+        continue;
+      }
+      if (excludedThreadKeys?.has?.(key)) continue;
+      if (consumedIds?.has?.(norm(mail?.id))) continue;
+      const current = byThread.get(key);
+      if (preferAsThreadRepresentative(stamped, current)) byThread.set(key, stamped);
+    }
+    return [...rest, ...byThread.values()];
+  }
+  function createSceneCatalog() {
+    const jsonCache = new Map();
+    const jsonInflight = new Map();
+    const catalogTrace = [];
+    function getPlanPath(active) {
+      const category = norm(active?.career_id);
+      const roleScope = resolveRoleScope(active);
+      if (!category || !roleScope) return null;
+      return `data/Civication/mailPlans/${category}/${roleScope}_plan.json`;
+    }
+    function getFamilyPaths(active) {
+      const category = norm(active?.career_id);
+      const roleScope = resolveRoleScope(active);
+      if (!category || !roleScope) return [];
+      const paths = [
+        `data/Civication/mailFamilies/${category}/job/${roleScope}_intro_v2.json`,
+        `data/Civication/mailFamilies/${category}/job/${roleScope}_job.json`
+      ];
+      for (const type of EXTRA_MAIL_TYPES) {
+        paths.push(`data/Civication/mailFamilies/${category}/${type}/${roleScope}_${type}.json`);
+      }
+      return paths;
+    }
+    async function loadJson(path) {
+      const p = norm(path);
+      if (!p) return null;
+      if (jsonCache.has(p)) return jsonCache.get(p);
+      if (jsonInflight.has(p)) return jsonInflight.get(p);
+      const pending = (async () => {
+        try {
+          const store = window.CivicationJsonStore;
+          if (typeof store?.fetchJson === "function") {
+            const value = await store.fetchJson(p);
+            jsonCache.set(p, value || null);
+            return value || null;
+          }
+          if (typeof window.fetch !== "function") {
+            jsonCache.set(p, null);
+            return null;
+          }
+          const response = await window.fetch(p, { cache: "no-store" });
+          if (!response?.ok) {
+            jsonCache.set(p, null);
+            return null;
+          }
+          const value = await response.json();
+          jsonCache.set(p, value || null);
+          return value || null;
+        } catch (error) {
+          if (window.DEBUG) console.warn("[CivicationSceneCatalog] kunne ikke laste", p, error);
+          jsonCache.set(p, null);
+          return null;
+        }
+      })();
+      jsonInflight.set(p, pending);
+      try {
+        return await pending;
+      } finally {
+        jsonInflight.delete(p);
+      }
+    }
+    function normalizeChoices(choices) {
+      const list = Array.isArray(choices) ? choices : [];
+      const normalized = list
+        .filter(Boolean)
+        .map((choice) => ({
+          ...choice,
+          id: norm(choice.id),
+          label: norm(choice.label),
+          effect: Number(choice.effect || 0),
+          tags: Array.isArray(choice.tags) ? choice.tags.map(norm).filter(Boolean) : [],
+          feedback: norm(choice.feedback)
+        }))
+        .filter((choice) => choice.id && choice.label);
+      if (normalized.length >= 2) return normalized;
+      return [
+        {
+          id: "A",
+          label: "Gjør dette ryddig og dokumenter det",
+          effect: 1,
+          tags: ["process", "integrity"],
+          feedback: "Du velger kontroll, sporbarhet og tydelighet.",
+          __civi_fallback_choice: true
+        },
+        {
+          id: "B",
+          label: "Løs det raskt og gå videre",
+          effect: 0,
+          tags: ["tempo", "risk"],
+          feedback: "Du får fart på saken, men må tåle at noe blir mindre grundig.",
+          __civi_fallback_choice: true
+        }
+      ];
+    }
+    function flattenCatalog(catalog, sourcePath = "") {
+      const out = [];
+      const families = Array.isArray(catalog?.families) ? catalog.families : [];
+      const catalogType = norm(catalog?.mail_type);
+      for (const family of families) {
+        const familyId = norm(family?.id);
+        const mails = Array.isArray(family?.mails) ? family.mails : [];
+        for (const mail of mails) {
+          const id = norm(mail?.id);
+          if (!id) continue;
+          out.push({
+            ...mail,
+            id,
+            category: norm(catalog?.category),
+            role_scope: norm(mail?.role_scope || catalog?.role_scope),
+            mail_type: norm(mail?.mail_type || catalogType || "job"),
+            mail_family: norm(mail?.mail_family || familyId),
+            choices: normalizeChoices(mail?.choices),
+            situation: Array.isArray(mail?.situation)
+              ? mail.situation.map(norm).filter(Boolean)
+              : [norm(mail?.summary)].filter(Boolean),
+            scene_catalog_source_path: norm(sourcePath),
+            scene_catalog_version: SCENE_CATALOG_VERSION
+          });
+        }
+      }
+      return out;
+    }
+    async function decorateMails(mails) {
+      const list = Array.isArray(mails) ? mails : [];
+      const bridge = window.CivicationCareerKnowledgeBridge;
+      if (typeof bridge?.decorateMail !== "function") return list;
+      return Promise.all(list.map((mail) => bridge.decorateMail(mail)));
+    }
+    async function getRoleMails(active, state = getState(), options = {}) {
+      const paths = getFamilyPaths(active);
+      const catalogs = await Promise.all(paths.map(async (path) => ({
+        path,
+        value: await loadJson(path)
+      })));
+      const flattened = catalogs.flatMap(({ path, value }) => value ? flattenCatalog(value, path) : []);
+      const mails = await decorateMails(flattened);
+      catalogTrace.push({
+        at: new Date().toISOString(),
+        consumer: norm(options.consumer || "scene_director") || "scene_director",
+        career_id: norm(active?.career_id),
+        role_scope: resolveRoleScope(active),
+        path_count: paths.length,
+        catalog_count: catalogs.filter((row) => !!row.value).length,
+        mail_count: mails.length
+      });
+      if (catalogTrace.length > CATALOG_TRACE_LIMIT) {
+        catalogTrace.splice(0, catalogTrace.length - CATALOG_TRACE_LIMIT);
+      }
+      return mails;
+    }
+    async function getRolePlan(active) {
+      return loadJson(getPlanPath(active));
+    }
+    async function prewarm(active, options = {}) {
+      if (!active) return { warmed: false, reason: "no_active_role" };
+      const paths = getFamilyPaths(active);
+      const planPath = getPlanPath(active);
+      await Promise.all([
+        planPath ? loadJson(planPath) : Promise.resolve(null),
+        ...paths.map((path) => loadJson(path))
+      ]);
+      return {
+        warmed: true,
+        owner: "CivicationSceneCatalog",
+        role_scope: resolveRoleScope(active),
+        family_path_count: paths.length,
+        consumer: norm(options.consumer || "daily_prewarm") || "daily_prewarm"
+      };
+    }
+    function inspect() {
+      return {
+        version: SCENE_CATALOG_VERSION,
+        owner: "CivicationSceneCatalog",
+        source_format: "legacy_mail_families_adapter",
+        compiled_registry_ready: false,
+        cache_size: jsonCache.size,
+        inflight_count: jsonInflight.size,
+        catalog_trace: catalogTrace.slice()
+      };
+    }
+    return {
+      version: SCENE_CATALOG_VERSION,
+      getPlanPath,
+      getFamilyPaths,
+      loadJson,
+      normalizeChoices,
+      flattenCatalog,
+      getRoleMails,
+      getRolePlan,
+      prewarm,
+      inspect
+    };
+  }
+  function ensureSceneCatalog() {
+    if (window.CivicationSceneCatalog?.getRoleMails) return window.CivicationSceneCatalog;
+    const catalog = createSceneCatalog();
+    window.CivicationSceneCatalog = catalog;
+    return catalog;
+  }
+  function hashString(input) {
+    let h = 2166136261;
+    const value = String(input || "");
+    for (let index = 0; index < value.length; index += 1) {
+      h ^= value.charCodeAt(index);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function seededScore(seed, mail) {
+    const priority = Number(mail?.priority || 1);
+    return priority * 100000 + hashString(`${seed}:${mail?.id || ""}`);
+  }
+  function progressionText(mail) {
+    return [
+      mail?.id,
+      mail?.source_mail_id,
+      mail?.mail_family,
+      mail?.mail_type,
+      mail?.phase,
+      mail?.stage,
+      mail?.package,
+      mail?.package_id,
+      mail?.family_id,
+      ...(Array.isArray(mail?.mail_tags) ? mail.mail_tags : []),
+      ...(Array.isArray(mail?.tags) ? mail.tags : [])
+    ].map(slugify).filter(Boolean).join(" ");
+  }
+  function extractProgressionWeek(mail) {
+    const text = progressionText(mail);
+    const weekMatch = text.match(/(?:^|_)week_?([0-9]+)(?:_|$)|(?:^|_)w_?([0-9]+)(?:_|$)/);
+    if (weekMatch) return Number(weekMatch[1] || weekMatch[2] || 0) || null;
+    if (/(^|_)first_week(_|$)/.test(text)) return 1;
+    if (/(^|_)second_week(_|$)/.test(text)) return 2;
+    return null;
+  }
+  function stepIndexFromState(state, plan) {
+    const progress = state?.mail_plan_progress && typeof state.mail_plan_progress === "object"
+      ? state.mail_plan_progress
+      : {};
+    const planId = norm(plan?.id);
+    const byPlan = planId && progress[planId] && typeof progress[planId] === "object"
+      ? progress[planId]
+      : null;
+    for (const value of [byPlan?.step_index, progress.step_index, progress.current_step_index]) {
+      const number = Number(value);
+      if (Number.isFinite(number) && number >= 0) return Math.floor(number);
+    }
+    return 0;
+  }
+  function inferMaxWeekFromPlan(plan, stepIndex, plannedPrimary) {
+    const plannedWeek = extractProgressionWeek(plannedPrimary);
+    if (plannedWeek) return plannedWeek;
+    const sequence = Array.isArray(plan?.sequence) ? plan.sequence : [];
+    const current = sequence[Math.max(0, Math.min(sequence.length - 1, Number(stepIndex || 0)))] || null;
+    const currentText = progressionText({
+      id: `${current?.phase || ""}_${current?.step_goal || ""}`,
+      mail_family: uniqueStrings(current?.allowed_families).join("_")
+    });
+    if (/(^|_)week2(_|$)|(^|_)second_week(_|$)/.test(currentText)) return 2;
+    if (/(^|_)week1(_|$)|(^|_)first_week(_|$)|(^|_)intro(_|$)/.test(currentText)) return 1;
+    return Number(stepIndex || 0) >= 10 ? 2 : 1;
+  }
+  function consumedSet(state) {
+    const consumed = state?.consumed && typeof state.consumed === "object"
+      ? Object.keys(state.consumed)
+      : [];
+    const mailRuntime = state?.mail_runtime_v1 && typeof state.mail_runtime_v1 === "object"
+      ? state.mail_runtime_v1
+      : {};
+    const dayRuntime = state?.[DAY_RUNTIME_KEY] && typeof state[DAY_RUNTIME_KEY] === "object"
+      ? state[DAY_RUNTIME_KEY]
+      : {};
+    return new Set(uniqueStrings([
+      ...consumed,
+      ...(Array.isArray(mailRuntime.consumed_ids) ? mailRuntime.consumed_ids : []),
+      ...(Array.isArray(dayRuntime.answered_ids) ? dayRuntime.answered_ids : []),
+      ...(Array.isArray(dayRuntime.delivered_ids) ? dayRuntime.delivered_ids : [])
+    ]));
+  }
+  function mailMatchesDailyProgression(mail, context) {
+    const id = norm(mail?.id || mail?.source_mail_id);
+    if (!id) return false;
+    if (context?.used_ids?.has?.(id)) return false;
+    if (id === norm(context?.planned_primary_id)) return false;
+    const text = progressionText(mail);
+    const week = extractProgressionWeek(mail);
+    const maxWeek = Math.max(1, Number(context?.max_week || 1));
+    if (week && week > maxWeek) return false;
+    if (/(^|_)(advanced|mastery|late_game|later_phase|senere|viderekommen)(_|$)/.test(text) && maxWeek < 2) return false;
+    if (/(^|_)(week2|second_week)(_|$)/.test(text) && maxWeek < 2) return false;
+    return true;
+  }
+  function preferredTypesForDailySlot(slotId) {
+    const slot = slugify(slotId);
+    if (slot === "primary_work_mail" || slot === "main_delivery") return ["job"];
+    if (slot === "operational_batch") return ["micro", "consequence", "job"];
+    if (slot === "operational_mail") return ["micro", "knowledge", "job"];
+    if (slot === "people_ping" || slot.includes("people")) return ["people", "micro"];
+    if (slot === "conflict_or_event") return ["conflict", "event"];
+    if (slot === "analysis_followup" || slot === "followup") return ["followup", "people", "job"];
+    if (slot === "knowledge" || slot.includes("learning")) return ["knowledge", "story", "job"];
+    if (slot === "consequence" || slot.includes("consequence")) return ["consequence", "followup", "people"];
+    if (slot === "small_choice" || slot === "micro_choice") return ["micro"];
+    if (slot === "task_gate") return ["task_gate", "job", "micro"];
+    return [];
+  }
+  function isStrictDailySlot(slotId) {
+    const slot = slugify(slotId);
+    return slot === "small_choice" || slot === "task_gate" || slot === "main_delivery";
+  }
+  function pickDailyExtra(pool, wantedTypes, usedSourceIds, seed, phaseId, slotId, context) {
+    const wantedList = uniqueStrings(wantedTypes);
+    const wanted = new Set(wantedList);
+    if (!wanted.size) return null;
+    const safe = (Array.isArray(pool) ? pool : []).filter((mail) => mailMatchesDailyProgression(mail, context));
+    let candidates = safe.filter((mail) => {
+      const id = norm(mail?.id);
+      return id && !usedSourceIds.has(id) && wanted.has(norm(mail?.mail_type));
+    });
+    const primaryType = wantedList[0];
+    if (CASE_THREAD_TYPES.has(primaryType)) {
+      const primaryCandidates = candidates.filter((mail) => norm(mail?.mail_type) === primaryType);
+      if (primaryCandidates.length) candidates = primaryCandidates;
+    }
+    if (!candidates.length && !isStrictDailySlot(slotId)) {
+      candidates = safe.filter((mail) => {
+        const id = norm(mail?.id);
+        return id && !usedSourceIds.has(id);
+      });
+    }
+    candidates.sort((a, b) => {
+      const phase = norm(phaseId);
+      const aPhase = norm(a?.phase) === phase ? 500000 : 0;
+      const bPhase = norm(b?.phase) === phase ? 500000 : 0;
+      return (bPhase + seededScore(seed, b)) - (aPhase + seededScore(seed, a));
+    });
+    const selected = candidates[0] || null;
+    if (selected) usedSourceIds.add(norm(selected.id));
+    return selected;
+  }
+  function plannedEventFromRuntime(runtime) {
+    return (Array.isArray(runtime?.items) ? runtime.items : [])
+      .map((row) => row?.event || null)
+      .find((event) => event && (
+        norm(event?.source_type) === "planned" ||
+        event?.daily_mail_meta?.advances_role_plan === true
+      )) || null;
+  }
+  function addExistingSourcesToUsed(runtime, usedSourceIds) {
+    for (const row of (Array.isArray(runtime?.items) ? runtime.items : [])) {
+      const event = row?.event || {};
+      if (norm(event?.source_type) === "daily_generated") continue;
+      const sourceId = norm(event?.source_mail_id || event?.daily_mail_meta?.source_mail_id);
+      if (sourceId) usedSourceIds.add(sourceId);
+    }
+  }
+  function occurrenceIndexForRow(items, rowIndex) {
+    const row = items[rowIndex] || {};
+    const phase = norm(row?.phase || row?.event?.phase_tag);
+    const slot = norm(row?.slot || row?.event?.daily_mail_meta?.slot);
+    let occurrence = 0;
+    for (let index = 0; index < rowIndex; index += 1) {
+      const other = items[index] || {};
+      if (norm(other?.phase || other?.event?.phase_tag) !== phase) continue;
+      if (norm(other?.slot || other?.event?.daily_mail_meta?.slot) !== slot) continue;
+      occurrence += 1;
+    }
+    return occurrence;
+  }
+  function toDailyCatalogMail(active, sourceMail, row, rowIndex, runtime) {
+    const catalog = ensureSceneCatalog();
+    const phase = clampWorkPhase(row?.phase || row?.event?.phase_tag);
+    const slot = norm(row?.slot || row?.event?.daily_mail_meta?.slot || "operational_mail");
+    const slotId = slugify(slot);
+    const sourceId = norm(sourceMail?.id);
+    const date = norm(runtime?.date) || todayKey();
+    const ordinal = rowIndex + 1;
+    const runtimeInstanceKey = norm(runtime?.runtime_instance_key);
+    const eventId = `${sourceId}__daily_${date}_${phase}_${slotId}_${ordinal}${runtimeInstanceKey}`;
+    return stampWorkdayFields({
+      ...sourceMail,
+      id: eventId,
+      source_mail_id: sourceId,
+      thread_key: norm(sourceMail?.thread_key) || threadKeyForMail(sourceMail),
+      source_type: "daily_extra",
+      stage: norm(sourceMail?.stage || "stable") || "stable",
+      choices: catalog.normalizeChoices(sourceMail?.choices),
+      scene_catalog_owner: "CivicationSceneCatalog",
+      scene_catalog_version: SCENE_CATALOG_VERSION,
+      daily_mail_meta: {
+        date,
+        phase,
+        phase_label: phaseLabel(phase),
+        slot,
+        source_mail_id: sourceId,
+        source_mail_type: norm(sourceMail?.mail_type),
+        source_mail_family: norm(sourceMail?.mail_family),
+        advances_role_plan: false,
+        workday_day_index: getWorkdayDayIndex(),
+        selection_owner: "CivicationSceneDirector"
+      },
+      mail_tags: uniqueStrings([
+        ...(Array.isArray(sourceMail?.mail_tags) ? sourceMail.mail_tags : []),
+        "daily_mail",
+        "daily_extra",
+        "scene_catalog",
+        phase,
+        slot
+      ])
+    }, phase, active, { planned: false });
+  }
+  async function populateDailyExtraSlots(active, state, runtime, options = {}) {
+    const catalog = ensureSceneCatalog();
+    const base = runtime && typeof runtime === "object" ? runtime : null;
+    if (!active || !base || !Array.isArray(base.items)) return base;
+    const selectionSnapshot = options.selection_snapshot || null;
+    if (selectionSnapshot?.terminal_closed === true) {
+      return {
+        ...base,
+        [DAILY_RUNTIME_MARKER]: true,
+        scene_catalog_version: SCENE_CATALOG_VERSION,
+        daily_extra_owner: "CivicationSceneDirector",
+        daily_extra_catalog_count: 0,
+        daily_extra_terminal_closed: true,
+        daily_extra_updated_at: new Date().toISOString()
+      };
+    }
+    const currentState = state && typeof state === "object" ? state : getState();
+    const [plan, sourcePool] = await Promise.all([
+      catalog.getRolePlan(active),
+      catalog.getRoleMails(active, currentState, {
+        consumer: norm(options.consumer || "daily_extra_slots") || "daily_extra_slots"
+      })
+    ]);
+    const plannedPrimary = /** @type {any} */ (plannedEventFromRuntime(base));
+    const usedSourceIds = consumedSet(currentState);
+    addExistingSourcesToUsed(base, usedSourceIds);
+    const plannedId = norm(
+      plannedPrimary?.source_mail_id ||
+      plannedPrimary?.daily_mail_meta?.source_mail_id ||
+      plannedPrimary?.id
+    );
+    if (plannedId) usedSourceIds.add(plannedId);
+    const plannedThreadKey = plannedPrimary ? threadKeyForMail(plannedPrimary) : "";
+    const excludedThreadKeys = new Set(isCaseThreadKey(plannedThreadKey) ? [plannedThreadKey] : []);
+    const dayPool = collapsePoolToCanonicalThreads(sourcePool, excludedThreadKeys, usedSourceIds);
+    const stepIndex = stepIndexFromState(currentState, plan);
+    const context = {
+      role_scope: resolveRoleScope(active),
+      step_index: stepIndex,
+      max_week: Math.max(1, inferMaxWeekFromPlan(plan, stepIndex, plannedPrimary)),
+      planned_primary_id: plannedId,
+      used_ids: usedSourceIds
+    };
+    let selectedCount = 0;
+    const selectedSourceIds = [];
+    const items = base.items.map((row, rowIndex, allRows) => {
+      const phase = norm(row?.phase || row?.event?.phase_tag);
+      const event = row?.event || {};
+      if (!isWorkPhase(phase)) return row;
+      if (row?.phase_generator) return row;
+      if (norm(event?.source_type) !== "daily_generated") return row;
+      if (event?.go_to_work === true) return row;
+      const slot = norm(row?.slot || event?.daily_mail_meta?.slot);
+      const wanted = preferredTypesForDailySlot(slot);
+      if (!wanted.length) return row;
+      const occurrence = occurrenceIndexForRow(allRows, rowIndex);
+      const seed = `${norm(base.date) || todayKey()}:${resolveRoleScope(active)}:${phase}:${slot}:${occurrence}:${rowIndex + 1}`;
+      const selected = pickDailyExtra(dayPool, wanted, usedSourceIds, seed, phase, slot, context);
+      if (!selected) return row;
+      selectedCount += 1;
+      selectedSourceIds.push(norm(selected.id));
+      return {
+        ...row,
+        event: toDailyCatalogMail(active, selected, row, rowIndex, base),
+        selected_by: "CivicationSceneDirector",
+        catalog_source_id: norm(selected.id)
+      };
+    });
+    return {
+      ...base,
+      items,
+      [DAILY_RUNTIME_MARKER]: true,
+      scene_catalog_version: SCENE_CATALOG_VERSION,
+      daily_extra_owner: "CivicationSceneDirector",
+      daily_extra_catalog_count: selectedCount,
+      daily_extra_source_ids: selectedSourceIds,
+      daily_extra_terminal_closed: false,
+      daily_extra_updated_at: new Date().toISOString()
+    };
+  }
   async function buildEventEnginePack(director, engine, active, state, roleKey) {
     const candidates = await director.getWorkCandidates(active, state, {
       consumer: "event_engine_build_mail_pool"
@@ -145,7 +687,6 @@
       ...mail,
       source_type: norm(mail?.source_type) || "planned"
     }));
-
     if (taggedRuntimeMails.length || suppressFallback) {
       return {
         role: norm(active?.career_id) || null,
@@ -159,9 +700,6 @@
         __terminal_closed: suppressFallback
       };
     }
-
-    // Legacy brukes bare når den canonicale rollen faktisk ikke leverer noen
-    // kandidat. Lastingen gjøres her, uten å kjøre en ny canonical seleksjon.
     const packFile = typeof engine?.resolvePackFile === "function"
       ? engine.resolvePackFile(active, roleKey)
       : null;
@@ -174,7 +712,6 @@
           source_type: "legacy_pack"
         }))
       : [];
-
     const roleMails = await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
       active,
       state
@@ -183,7 +720,6 @@
       ...mail,
       source_type: norm(mail?.source_type) || "role"
     }));
-
     return {
       role: pack?.role || norm(active?.career_id) || null,
       tag_rules: pack?.tag_rules || makeDefaultTagRules(),
@@ -196,13 +732,11 @@
       __terminal_closed: false
     };
   }
-
   function patchEventEngineCandidateOwner(director) {
-    const proto = window.CivicationEventEngine?.prototype;
+    const proto = /** @type {any} */ (window.CivicationEventEngine?.prototype);
     if (!proto || !director) return false;
     if (proto[EVENT_ENGINE_PATCH_FLAG] === true) return true;
     if (typeof proto.buildMailPool !== "function") return false;
-
     const previousBuildMailPool = proto.buildMailPool;
     proto.buildMailPool = async function sceneDirectorBuildMailPool(active, state, roleKey) {
       try {
@@ -214,33 +748,24 @@
         return previousBuildMailPool.call(this, active, state, roleKey);
       }
     };
-
     proto[EVENT_ENGINE_PATCH_FLAG] = true;
     proto.__civicationSceneDirectorBuildMailPoolPatchedAt = new Date().toISOString();
     return true;
   }
-
-  // Første SceneDirector-cutover: WorkdayBuilder lastes etter MailRuntime og
-  // kandidat-utvidelsene (bl.a. CareerOutcomeRuntime). Den fanger derfor den
-  // komplette, outcome-aware selektoren én gang og gjør Director til eneste
-  // offentlige innsteg for Daily/Workday-kall. I 4B overtar Director også
-  // EventEngines interne kandidatinnsteg.
   function ensureSceneDirector() {
     if (window.CivicationSceneDirector?.getWorkCandidates) {
       patchEventEngineCandidateOwner(window.CivicationSceneDirector);
       return window.CivicationSceneDirector;
     }
-
     const runtime = window.CivicationMailRuntime;
     const sourceSelector = runtime?.makeCandidateMailsForActiveRole;
     if (typeof sourceSelector !== "function") return null;
-
     const boundSourceSelector = sourceSelector.bind(runtime);
     const selectionTrace = [];
-
+    const selectionSnapshots = new Map();
     function recordSelection(active, candidates, options = {}) {
       const first = Array.isArray(candidates) ? candidates[0] || null : null;
-      selectionTrace.push({
+      const snapshot = {
         at: new Date().toISOString(),
         consumer: norm(options.consumer || "mail_runtime_compat") || "mail_runtime_compat",
         career_id: norm(active?.career_id),
@@ -248,20 +773,21 @@
         candidate_count: Array.isArray(candidates) ? candidates.length : 0,
         selected_id: norm(first?.id) || null,
         selected_type: norm(first?.mail_type) || null,
-        selected_family: norm(first?.mail_family) || null
-      });
+        selected_family: norm(first?.mail_family) || null,
+        terminal_closed: candidates?.__career_outcome_terminal_closed === true
+      };
+      selectionTrace.push(snapshot);
+      selectionSnapshots.set(snapshot.role_scope, snapshot);
       if (selectionTrace.length > SELECTION_TRACE_LIMIT) {
         selectionTrace.splice(0, selectionTrace.length - SELECTION_TRACE_LIMIT);
       }
     }
-
     async function getWorkCandidates(active, state = getState(), options = {}) {
       const candidates = await boundSourceSelector(active, state);
       const normalized = Array.isArray(candidates) ? candidates : [];
       recordSelection(active, normalized, options);
       return normalized;
     }
-
     async function getPrimaryWorkScene(active, state = getState(), options = {}) {
       const candidates = await getWorkCandidates(active, state, {
         ...options,
@@ -269,44 +795,308 @@
       });
       return candidates[0] || null;
     }
-
     async function getEventEnginePack(engine, active, state = getState(), roleKey) {
       return buildEventEnginePack(director, engine, active, state, roleKey);
     }
-
+    async function getDailyCatalog(active, state = getState(), options = {}) {
+      const catalog = ensureSceneCatalog();
+      return {
+        role_scope: resolveRoleScope(active),
+        plan: await catalog.getRolePlan(active),
+        mails: await catalog.getRoleMails(active, state, {
+          ...options,
+          consumer: norm(options.consumer || "daily_catalog") || "daily_catalog"
+        })
+      };
+    }
+    function getLastSelectionSnapshot(active) {
+      return selectionSnapshots.get(resolveRoleScope(active)) || null;
+    }
+    async function populateDirectorOwnedDailyExtras(active, state = getState(), runtimeValue, options = {}) {
+      return populateDailyExtraSlots(active, state, runtimeValue, {
+        ...options,
+        selection_snapshot: getLastSelectionSnapshot(active)
+      });
+    }
+    async function prewarmDailyCatalog(active, options = {}) {
+      return ensureSceneCatalog().prewarm(active, options);
+    }
     function inspect() {
       const active = getActive();
-      const proto = window.CivicationEventEngine?.prototype;
+      const proto = /** @type {any} */ (window.CivicationEventEngine?.prototype);
+      const dailyBuilder = window.CivicationDailyMailBuilder;
       return {
         version: SCENE_DIRECTOR_VERSION,
         owner: "CivicationSceneDirector",
         source_adapter: "CivicationMailRuntime.makeCandidateMailsForActiveRole",
+        scene_catalog_owner: "CivicationSceneCatalog",
         active_role_scope: active ? resolveRoleScope(active) : null,
         event_engine_candidate_owner: proto?.[EVENT_ENGINE_PATCH_FLAG] === true,
-        selection_trace: selectionTrace.slice()
+        daily_extra_slot_owner: dailyBuilder?.[DAILY_BUILDER_PATCH_FLAG] === true,
+        selection_trace: selectionTrace.slice(),
+        scene_catalog: ensureSceneCatalog().inspect()
       };
     }
-
     const director = {
       version: SCENE_DIRECTOR_VERSION,
       getWorkCandidates,
       getPrimaryWorkScene,
       getEventEnginePack,
+      getDailyCatalog,
+      getLastSelectionSnapshot,
+      populateDailyExtraSlots: populateDirectorOwnedDailyExtras,
+      prewarmDailyCatalog,
       inspect
     };
-
     window.CivicationSceneDirector = director;
-    // Bakoverkompatibilitet: DailyMailBuilder og eldre kall bruker fortsatt dette
-    // navnet, men funksjonsreferansen er nå Directorens autoritative innsteg.
     runtime.makeCandidateMailsForActiveRole = director.getWorkCandidates;
     patchEventEngineCandidateOwner(director);
     return director;
   }
-
+  let legacyCatalogSuppressionDepth = 0;
+  let restoreSuppressedCatalogSources = null;
+  function isLegacyFamilyPath(path) {
+    return norm(path).replace(/^\.?\//, "").startsWith("data/Civication/mailFamilies/");
+  }
+  function installLegacyCatalogSuppression() {
+    const restorers = [];
+    const store = window.CivicationJsonStore;
+    if (typeof store?.fetchJson === "function") {
+      const previous = store.fetchJson;
+      const wrapper = function sceneCatalogSuppressLegacyFetch(path, ...args) {
+        if (isLegacyFamilyPath(path)) return Promise.resolve(null);
+        return previous.call(this, path, ...args);
+      };
+      store.fetchJson = wrapper;
+      restorers.push(() => {
+        if (store.fetchJson === wrapper) store.fetchJson = previous;
+      });
+    }
+    if (typeof window.fetch === "function") {
+      const previous = window.fetch;
+      const wrapper = function sceneCatalogSuppressLegacyWindowFetch(path, ...args) {
+        if (isLegacyFamilyPath(path)) return Promise.resolve({ ok: false, status: 404 });
+        return previous.call(this, path, ...args);
+      };
+      window.fetch = wrapper;
+      restorers.push(() => {
+        if (window.fetch === wrapper) window.fetch = previous;
+      });
+    }
+    return () => {
+      for (const restore of restorers.reverse()) restore();
+    };
+  }
+  async function withLegacyDailyCatalogSuppressed(callback) {
+    legacyCatalogSuppressionDepth += 1;
+    if (legacyCatalogSuppressionDepth === 1) {
+      restoreSuppressedCatalogSources = installLegacyCatalogSuppression();
+    }
+    try {
+      return await callback();
+    } finally {
+      legacyCatalogSuppressionDepth = Math.max(0, legacyCatalogSuppressionDepth - 1);
+      if (legacyCatalogSuppressionDepth === 0 && restoreSuppressedCatalogSources) {
+        restoreSuppressedCatalogSources();
+        restoreSuppressedCatalogSources = null;
+      }
+    }
+  }
+  function runtimeMatchesActive(runtime, active, date) {
+    if (!runtime || !Array.isArray(runtime?.items) || !runtime.items.length) return false;
+    return norm(runtime.date) === norm(date) && norm(runtime.role_scope) === resolveRoleScope(active);
+  }
+  async function ensureCatalogOwnedDailyRuntime(builder, director, active, options = {}) {
+    if (!active || !builder || !director) return null;
+    const date = norm(options.date || todayKey());
+    const state = getState();
+    const existing = state?.[DAY_RUNTIME_KEY];
+    if (options.forceNew !== true && runtimeMatchesActive(existing, active, date)) {
+      if (existing?.[DAILY_RUNTIME_MARKER] === true) return existing;
+      const adopted = await director.populateDailyExtraSlots(active, state, existing, {
+        consumer: "daily_runtime_adoption"
+      });
+      setState({ [DAY_RUNTIME_KEY]: adopted });
+      return adopted;
+    }
+    const built = await builder.buildQueue(active, {
+      ...options,
+      date,
+      forceNew: options.forceNew === true
+    });
+    if (built) setState({ [DAY_RUNTIME_KEY]: built });
+    return built;
+  }
+  function patchDailyEventEngineEntry(builder, director) {
+    const proto = /** @type {any} */ (window.CivicationEventEngine?.prototype);
+    if (!proto || typeof proto.onAppOpen !== "function") return false;
+    if (proto.__civicationSceneDirectorDailyEntry === proto.onAppOpen) return true;
+    const previousOnAppOpen = proto.onAppOpen;
+    const wrapped = async function sceneDirectorDailyOnAppOpen(options = {}) {
+      const active = getActive();
+      if (active && options?.skipDailyMailBuilder !== true) {
+        await ensureCatalogOwnedDailyRuntime(builder, director, active, {
+          date: options?.date,
+          forceNew: options?.forceNewDailyMail === true
+        });
+      }
+      return previousOnAppOpen.call(this, options);
+    };
+    proto.onAppOpen = wrapped;
+    proto.__civicationSceneDirectorDailyEntry = wrapped;
+    proto.__civicationSceneDirectorDailyEntryPatchedAt = new Date().toISOString();
+    return true;
+  }
+  function defer(callback) {
+    Promise.resolve().then(callback).catch((error) => {
+      if (window.DEBUG) console.warn("[CivicationSceneDirector] utsatt Daily-patch feilet", error);
+    });
+  }
+  function scheduleDailyEventEnginePatch(builder, director) {
+    const schedule = () => defer(() => patchDailyEventEngineEntry(builder, director));
+    schedule();
+    if (typeof document !== "undefined" && document?.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", schedule, { once: true });
+    }
+    if (typeof window.addEventListener === "function") {
+      window.addEventListener("civi:dataReady", schedule);
+      window.addEventListener("civi:booted", schedule);
+    }
+  }
+  function patchDailyBuilder(builder, director) {
+    if (!builder || typeof builder !== "object" || !director) return builder;
+    if (builder[DAILY_BUILDER_PATCH_FLAG] === true) {
+      scheduleDailyEventEnginePatch(builder, director);
+      return builder;
+    }
+    const catalog = ensureSceneCatalog();
+    const originalBuildQueue = typeof builder.buildQueue === "function" ? builder.buildQueue : null;
+    const originalPrewarm = typeof builder.prewarm === "function" ? builder.prewarm : null;
+    const originalStartToday = typeof builder.startToday === "function" ? builder.startToday : null;
+    const originalEnqueueNext = typeof builder.enqueueNext === "function" ? builder.enqueueNext : null;
+    const originalEnqueuePhaseBundle = typeof builder.enqueuePhaseBundle === "function" ? builder.enqueuePhaseBundle : null;
+    const originalInspect = typeof builder.inspect === "function" ? builder.inspect : null;
+    if (originalBuildQueue) {
+      builder.buildQueue = async function sceneDirectorBuildDailyQueue(active, options = {}) {
+        const runtime = await withLegacyDailyCatalogSuppressed(
+          () => originalBuildQueue.call(builder, active, options)
+        );
+        return director.populateDailyExtraSlots(active, getState(), runtime, {
+          consumer: "daily_mail_builder_extra_slots"
+        });
+      };
+    }
+    if (originalPrewarm) {
+      builder.prewarm = async function sceneDirectorPrewarmDaily(activeOverride) {
+        const active = activeOverride || getActive();
+        const legacy = await withLegacyDailyCatalogSuppressed(
+          () => originalPrewarm.call(builder, activeOverride)
+        );
+        const catalogResult = active
+          ? await director.prewarmDailyCatalog(active, { consumer: "daily_mail_builder_prewarm" })
+          : { warmed: false, reason: "no_active_role" };
+        return {
+          ...(legacy && typeof legacy === "object" ? legacy : {}),
+          scene_catalog: catalogResult,
+          selection_owner: "CivicationSceneDirector"
+        };
+      };
+    }
+    if (originalStartToday) {
+      builder.startToday = async function sceneDirectorStartToday(options = {}) {
+        const active = options.active || getActive();
+        if (active) {
+          await ensureCatalogOwnedDailyRuntime(builder, director, active, {
+            date: options.date,
+            forceNew: options.forceNew === true
+          });
+        }
+        return originalStartToday.call(builder, {
+          ...options,
+          active,
+          forceNew: false
+        });
+      };
+    }
+    if (originalEnqueueNext) {
+      builder.enqueueNext = async function sceneDirectorEnqueueNext(engine, options = {}) {
+        const active = options.active || getActive();
+        if (active) {
+          await ensureCatalogOwnedDailyRuntime(builder, director, active, {
+            date: options.date,
+            forceNew: options.forceNew === true
+          });
+        }
+        return originalEnqueueNext.call(builder, engine, {
+          ...options,
+          active,
+          forceNew: false
+        });
+      };
+    }
+    if (originalEnqueuePhaseBundle) {
+      builder.enqueuePhaseBundle = async function sceneDirectorEnqueuePhaseBundle(engine, options = {}) {
+        const active = options.active || getActive();
+        if (active) {
+          await ensureCatalogOwnedDailyRuntime(builder, director, active, {
+            date: options.date,
+            forceNew: options.forceNew === true
+          });
+        }
+        return originalEnqueuePhaseBundle.call(builder, engine, {
+          ...options,
+          active,
+          forceNew: false
+        });
+      };
+    }
+    if (originalInspect) {
+      builder.inspect = function sceneDirectorInspectDaily() {
+        const base = originalInspect.call(builder);
+        return {
+          ...(base && typeof base === "object" ? base : {}),
+          scene_director_daily_extra_owner: true,
+          scene_catalog: catalog.inspect()
+        };
+      };
+    }
+    builder.getFamilyPaths = catalog.getFamilyPaths;
+    builder.getSceneCatalog = () => catalog;
+    builder.ensureSceneDirectorRuntime = (active, options = {}) =>
+      ensureCatalogOwnedDailyRuntime(builder, director, active || getActive(), options);
+    builder[DAILY_BUILDER_PATCH_FLAG] = true;
+    builder.__civicationSceneDirectorCatalogPatchedAt = new Date().toISOString();
+    scheduleDailyEventEnginePatch(builder, director);
+    return builder;
+  }
+  function installDailyBuilderBridge(director) {
+    if (!director) return false;
+    const current = window.CivicationDailyMailBuilder;
+    if (current && typeof current === "object") {
+      patchDailyBuilder(current, director);
+    }
+    const descriptor = Object.getOwnPropertyDescriptor(window, "CivicationDailyMailBuilder");
+    if (descriptor && descriptor.configurable === false) return !!current;
+    const descriptorSetter = /** @type {any} */ (descriptor?.set);
+    if (descriptorSetter?.__civicationSceneDirectorBridge === true) return true;
+    let value = current;
+    const setter = function setDailyBuilder(next) {
+      value = patchDailyBuilder(next, director);
+    };
+    setter.__civicationSceneDirectorBridge = true;
+    Object.defineProperty(window, "CivicationDailyMailBuilder", {
+      configurable: true,
+      enumerable: true,
+      get() {
+        return value;
+      },
+      set: setter
+    });
+    return true;
+  }
   async function loadWorkdayCandidates(active, state = getState()) {
     const director = ensureSceneDirector();
     if (!director || typeof director.getWorkCandidates !== "function") return [];
-
     try {
       const list = await director.getWorkCandidates(active, state, {
         consumer: "workday_mail_builder"
@@ -317,21 +1107,19 @@
       return [];
     }
   }
-
   function toWorkdayMail(active, sourceMail, phaseId, index, options = {}) {
     const phase = clampWorkPhase(phaseId);
     const date = norm(options.date) || todayKey();
     const runtimeInstanceKey = norm(options.runtimeInstanceKey);
     const sourceId = norm(sourceMail?.id);
     const eventId = `${sourceId || "work"}__workday_${date}_${phase}_${index}${runtimeInstanceKey}`;
-
     return stampWorkdayFields({
       ...sourceMail,
       id: eventId,
       source_mail_id: sourceId,
       thread_key: norm(sourceMail?.thread_key) || `${resolveRoleScope(active) || "role"}.mail.${slugify(eventId)}`,
       stage: norm(sourceMail?.stage || "stable") || "stable",
-      choices: normalizeChoices(sourceMail?.choices),
+      choices: normalizeWorkdayChoices(sourceMail?.choices),
       daily_mail_meta: {
         date,
         phase,
@@ -351,15 +1139,11 @@
       ].filter(Boolean)
     }, phase, active, { planned: index === 0 });
   }
-
-  // Bygger arbeidsdag-køen: fordeler arbeidslivsscenene på forenoon (primær) og
-  // workday (resten). Returnerer runtime-rader klare til å legges inn i dagskøen.
   async function buildWorkdayItems(active, options = {}) {
     const pos = active || getActive();
     if (!pos) return [];
     const candidates = await loadWorkdayCandidates(pos, options.state || getState());
     if (!candidates.length) return [];
-
     const items = [];
     candidates.forEach((mail, index) => {
       const phase = index === 0 ? "forenoon" : "workday";
@@ -372,9 +1156,9 @@
     });
     return items;
   }
-
-  ensureSceneDirector();
-
+  ensureSceneCatalog();
+  const director = ensureSceneDirector();
+  installDailyBuilderBridge(director);
   window.CivicationWorkdayMailBuilder = {
     WORK_PHASES: WORK_PHASES.slice(),
     WORK_MAIL_CLASS,
@@ -385,8 +1169,11 @@
     getEmployerId,
     getWorkdayDayIndex,
     stampWorkdayFields,
+    ensureSceneCatalog,
     ensureSceneDirector,
+    installDailyBuilderBridge,
     patchEventEngineCandidateOwner,
+    patchDailyBuilder,
     loadWorkdayCandidates,
     toWorkdayMail,
     buildWorkdayItems

@@ -47,7 +47,8 @@
   },
   "target_ownership": {
     "scene_catalog": "compiled_scene_registry_v1",
-    "scene_director": "CivicationDailyMailBuilder",
+    "scene_catalog_migration_adapter": "CivicationSceneCatalog",
+    "scene_director": "CivicationSceneDirector",
     "choice_director": "CivicationChoiceDirector",
     "delivery_surfaces": [
       "CivicationMailEngine",
@@ -120,7 +121,8 @@
     "freeze_new_mail_formats",
     "audit_and_scene_contract",
     "make_all_nine_plan_types_directly_reachable",
-    "consolidate_scene_director_ownership",
+    "consolidate_scene_director_and_catalog_ownership",
+    "remove_generic_runtime_choices",
     "make_choice_director_the_only_answer_pipeline",
     "convert_private_life_narrative_social_to_source_adapters",
     "read_one_compiled_scene_registry",
