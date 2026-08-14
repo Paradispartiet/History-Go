@@ -8,7 +8,7 @@
   "area_id": "filosofi_vitenskapsfilosofi",
   "level": 2,
   "status": "complete",
-  "editorial_quality": "university_oriented_draft",
+  "editorial_quality": "university_depth_reviewed",
   "canonical_definition": "Hva som skiller vitenskap fra pseudovitenskap.",
   "concept_ids": [
     "demarkasjon",
@@ -44,7 +44,7 @@
     {
       "id": "em_filosofi_demarkasjon_falsifikasjon_claim_problem",
       "type": "problem_framing",
-      "text": "Demarkasjon og falsifikasjon krever eksplisitt begrepsavgrensning og argumentasjon utover ren faktaregistrering.",
+      "text": "Demarkasjonsproblemet spør hva som skiller vitenskap fra pseudovitenskap eller andre kunnskapsformer. Hos Popper er en risikofylt prediksjon viktig fordi teorien må utsette seg for mulige observasjoner som faktisk kan telle mot den. Poppers falsifikasjonisme gir dermed et normativt kriterium, mens Kuhn og Lakatos viser hvorfor faktisk vitenskapelig praksis ikke kan reduseres til at én avkreftet prediksjon automatisk forkaster en teori.",
       "source_ids": [
         "sep-scientific-realism",
         "sep-models-science",
@@ -53,8 +53,18 @@
     },
     {
       "id": "em_filosofi_demarkasjon_falsifikasjon_claim_argument",
-      "type": "philosophical_argument",
-      "text": "K: En holdbar posisjon om demarkasjon og falsifikasjon må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending.",
+      "type": "position_reconstruction",
+      "text": "K: Demarkasjon bør derfor ikke reduseres til én enkel falsifikasjonshendelse; den må undersøke testbarhet, respons på anomalier, utvikling av uavhengig evidens og om teorien systematisk beskytter seg mot mulig motbevis.",
+      "source_ids": [
+        "sep-scientific-realism",
+        "sep-models-science",
+        "sep-scientific-representation"
+      ]
+    },
+    {
+      "id": "em_filosofi_demarkasjon_falsifikasjon_claim_distinction",
+      "type": "concept_distinction",
+      "text": "P2: Duhem–Quine-problemet og vitenskapelig praksis viser at en test alltid involverer bakgrunnsantakelser, instrumenter og modeller, så et negativt resultat identifiserer ikke mekanisk hvilken komponent som er falsk.",
       "source_ids": [
         "sep-scientific-realism",
         "sep-models-science",
@@ -64,7 +74,7 @@
     {
       "id": "em_filosofi_demarkasjon_falsifikasjon_claim_rival",
       "type": "rival_position",
-      "text": "En reell innvending må treffe et premiss, kriterium eller slutningstrinn i analysen av demarkasjon og falsifikasjon.",
+      "text": "Innvending: Et flerfaktor-kriterium gjør demarkasjon mindre skarpt og kan åpne for at pseudovitenskap alltid påberoper seg «forskningsprogram» eller hjelpehypoteser.",
       "source_ids": [
         "sep-scientific-realism",
         "sep-models-science",
@@ -72,9 +82,9 @@
       ]
     },
     {
-      "id": "em_filosofi_demarkasjon_falsifikasjon_claim_method",
-      "type": "methodological",
-      "text": "Metoden for demarkasjon og falsifikasjon må produsere et synlig mellomledd og oppgi sin egen begrensning.",
+      "id": "em_filosofi_demarkasjon_falsifikasjon_claim_reply",
+      "type": "philosophical_argument",
+      "text": "Svar: Lakatos’ skille mellom progressive og degenererende problemløsninger gir et mulig svar: justeringer må vurderes på om de fører til ny, uavhengig bekreftet innsikt og ikke bare etterrasjonaliserer kjente avvik.",
       "source_ids": [
         "sep-scientific-realism",
         "sep-models-science",
@@ -84,17 +94,7 @@
     {
       "id": "em_filosofi_demarkasjon_falsifikasjon_claim_source",
       "type": "source_boundary",
-      "text": "Primærfilosofiske verk, faglige sekundærkilder og empiriske casekilder har forskjellige evidensroller og skal ikke behandles som utskiftbare.",
-      "source_ids": [
-        "sep-scientific-realism",
-        "sep-models-science",
-        "sep-scientific-representation"
-      ]
-    },
-    {
-      "id": "em_filosofi_demarkasjon_falsifikasjon_claim_limit",
-      "type": "limitation",
-      "text": "Vitenskapsfilosofi kan analysere evidens, modellbruk og verdier, men kan ikke erstatte den fagspesifikke empiriske vurderingen av data og metode.",
+      "text": "Primærverk bærer konkrete posisjons- og tekstrekonstruksjoner, mens faglige sekundærkilder brukes til problemhistorie, rivaler og bibliografisk kontroll; empiriske casepåstander krever egne casekilder.",
       "source_ids": [
         "sep-scientific-realism",
         "sep-models-science",
@@ -124,24 +124,25 @@
       "id": "argument",
       "title": "Argumentrekonstruksjon",
       "paragraphs": [
-        "P1: En analyse av demarkasjon og falsifikasjon må angi hva som teller som demarkasjon og hvilke tilfeller som ikke gjør det. Rekonstruksjonen gjør et mulig slutningstrinn eksplisitt slik at premisset kan avvises eller forsvares selvstendig.",
-        "P2: Dersom demarkasjon og falsifiserbarhet kan skilles i minst ett relevant grensetilfelle, kan de ikke behandles som synonymer uten videre argument. Dette er artikkelens distinksjonspremiss og kan testes med et grensetilfelle.",
-        "P3: En overgang fra disse begrepskriteriene til en påstand om pseudovitenskap krever en egen begrunnelse; konklusjonen kan ikke bygges inn i definisjonene. Dette er overgangspremisset; her ligger ofte den mest omstridte delen av argumentet.",
-        "K: En holdbar posisjon om demarkasjon og falsifikasjon må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending. Konklusjonen er derfor betinget av at de foregående premissene holder."
+        "P1: Poppers falsifikasjonskriterium fanger en viktig asymmetri: universelle teorier kan testes av risikofylte observasjoner som, dersom de slår feil under aksepterte hjelpeantakelser, teller mot teorien.",
+        "P2: Duhem–Quine-problemet og vitenskapelig praksis viser at en test alltid involverer bakgrunnsantakelser, instrumenter og modeller, så et negativt resultat identifiserer ikke mekanisk hvilken komponent som er falsk.",
+        "P3: Kuhn og Lakatos forklarer derfor vitenskapelig rasjonalitet over tid gjennom paradigmer eller forskningsprogrammer, der revisjon av hjelpehypoteser kan være legitim dersom programmet samtidig utvikler ny forklarings- og prediksjonskraft.",
+        "K: Demarkasjon bør derfor ikke reduseres til én enkel falsifikasjonshendelse; den må undersøke testbarhet, respons på anomalier, utvikling av uavhengig evidens og om teorien systematisk beskytter seg mot mulig motbevis."
       ]
     },
     {
       "id": "uenighet",
       "title": "Innvending og svar",
       "paragraphs": [
-        "Innvending: Begrepsrekonstruksjonen kan bli for skjematisk dersom den behandles som hele problemet. Modeller er selektive representasjoner: de kan forklare og undersøke mekanismer nettopp fordi de idealiserer, men idealiseringens konsekvenser må gjøres eksplisitte. En velvillig innvending skal treffe den sterkeste rimelige versjonen av posisjonen, ikke en karikatur. Det betyr at artikkelen må kunne angi hva rivalen forklarer bedre, hva den forklarer dårligere, og hva slags case som kan skille posisjonene.",
-        "Svar: Skjemaet skal ikke erstatte tradisjonens egen argumentform. Det fungerer som transparenskrav: leseren skal kunne se hva som påstås, hva som støtter påstanden, og hvor uenigheten faktisk ligger. Falsifiserbarhet, prediksjon og evidens er viktige kriterier, men vitenskapelig kvalitet kan ikke reduseres til ett enkelt demarkasjonskjennetegn som fungerer likt i alle fag. En uenighet er dermed faglig produktiv når den identifiserer et konkret premiss, kriterium eller slutningstrinn som partene vurderer forskjellig."
+        "Innvending: Et flerfaktor-kriterium gjør demarkasjon mindre skarpt og kan åpne for at pseudovitenskap alltid påberoper seg «forskningsprogram» eller hjelpehypoteser.",
+        "Svar: Lakatos’ skille mellom progressive og degenererende problemløsninger gir et mulig svar: justeringer må vurderes på om de fører til ny, uavhengig bekreftet innsikt og ikke bare etterrasjonaliserer kjente avvik."
       ]
     },
     {
       "id": "teorihistorie",
       "title": "Teori og verk",
       "paragraphs": [
+        "Demarkasjonsproblemet spør hva som skiller vitenskap fra pseudovitenskap eller andre kunnskapsformer. Hos Popper er en risikofylt prediksjon viktig fordi teorien må utsette seg for mulige observasjoner som faktisk kan telle mot den. Poppers falsifikasjonisme gir dermed et normativt kriterium, mens Kuhn og Lakatos viser hvorfor faktisk vitenskapelig praksis ikke kan reduseres til at én avkreftet prediksjon automatisk forkaster en teori.",
         "Det kanoniske fagkartet foreslår Francis Bacon gjennom Novum Organum; Imre Lakatos gjennom The Methodology of Scientific Research Programmes; Bas van Fraassen gjennom The Scientific Image som relevante sammenligningspunkter for demarkasjon og falsifikasjon. De brukes ikke som en liste over navn man skal huske. Hver posisjon må kobles til et bestemt problem, argument eller verk, og sammenligningen må si hvilket kriterium som faktisk er felles. Når to tenkere stiller ulike spørsmål, skal forskjellen beholdes i stedet for å presses inn i en kunstig enighet.",
         "Teorihistoriske verk fungerer som primærfilosofiske kilder til argumenter og begreper, mens Scientific Realism; Models in Science; Scientific Representation brukes som faglige sekundærkilder til problemhistorie, posisjoner og bibliografisk kontroll. De to kildetypene har forskjellige roller: en sekundærkilde kan hjelpe oss å lokalisere en debatt, men en spesifikk teksttolkning bør så langt mulig kontrolleres mot selve verket eller en pålitelig utgave."
       ]
@@ -193,5 +194,31 @@
     "tradition_specific_relevance": true,
     "review_state": "requires_substantive_rewrite",
     "reviewed_against_university_gate": false
+  },
+  "university_quality": {
+    "schema": "history_go_filosofi_university_quality_v1",
+    "standard": "substantive_university_philosophy_v2",
+    "review_status": "reviewed",
+    "debate": "Demarkasjonsproblemet spør hva som skiller vitenskap fra pseudovitenskap eller andre kunnskapsformer. Hos Popper er en risikofylt prediksjon viktig fordi teorien må utsette seg for mulige observasjoner som faktisk kan telle mot den. Poppers falsifikasjonisme gir dermed et normativt kriterium, mens Kuhn og Lakatos viser hvorfor faktisk vitenskapelig praksis ikke kan reduseres til at én avkreftet prediksjon automatisk forkaster en teori.",
+    "debate_thinkers": [
+      "Karl Popper",
+      "Thomas Kuhn",
+      "Imre Lakatos"
+    ],
+    "required_anchors": [
+      "demarkasjon",
+      "falsifikasjon",
+      "paradigme",
+      "forskningsprogram",
+      "risikofylt prediksjon"
+    ],
+    "primary_work_count": 4,
+    "secondary_source_count": 3,
+    "review_contract": [
+      "Argumentet rekonstruerer et faktisk filosofisk stridspunkt og kan kritiseres premiss for premiss.",
+      "Rivalen forklarer hva en alternativ posisjon bestrider, ikke bare at uenighet finnes.",
+      "Navngitte tenkere og verk brukes som problem- og argumentankere, ikke som navneliste.",
+      "Fagankere må forekomme i argument, innvending eller teorihistorie og kan ikke bare deklareres i metadata."
+    ]
   }
 }

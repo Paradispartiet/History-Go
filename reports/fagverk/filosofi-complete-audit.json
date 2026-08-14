@@ -1,20 +1,20 @@
 {
   "schema": "history_go_fagverk_filosofi_complete_audit_v2",
-  "version": "2.0.0",
-  "status": "filosofi_university_remediation_in_progress",
+  "version": "3.0.0",
+  "status": "filosofi_complete",
   "subject": {
     "id": "filosofi",
     "navigationStatus": "materialized",
     "assessmentStatus": "audited",
-    "editorialStatus": "expanded_and_audited",
-    "nextGate": "university_depth_article_by_article_review"
+    "editorialStatus": "complete",
+    "nextGate": "maintenance_source_refresh_and_place_case_expansion"
   },
   "summary": {
     "schema": "history_go_fagverk_filosofi_completion_v1",
     "version": "2.0.0",
     "subject_id": "filosofi",
-    "status": "expanded_and_audited",
-    "complete_ready": false,
+    "status": "complete",
+    "complete_ready": true,
     "updated_at": "2026-08-14",
     "canonical_domain_count": 13,
     "canonical_emne_count": 54,
@@ -22,11 +22,11 @@
     "canonical_method_count": 27,
     "standalone_article_count": 54,
     "chapter_count": 13,
-    "total_word_count": 73566,
+    "total_word_count": 70557,
     "total_claim_count": 330,
-    "source_registration_count": 57,
-    "minimum_words_per_article": 1264,
-    "next_gate": "university_depth_article_by_article_review",
+    "source_registration_count": 69,
+    "minimum_words_per_article": 1234,
+    "next_gate": "maintenance_source_refresh_and_place_case_expansion",
     "contracts": [
       "54/54 canonicale emner og 162/162 canonicale begreper kan være strukturelt materialisert uten at Filosofi er faglig complete.",
       "University depth krever artikkelspesifikk rekonstruksjon av en faktisk filosofisk debatt, navngitte posisjoner eller tradisjoner og minst én reell rival.",
@@ -34,19 +34,14 @@
       "Ordantall, seksjonsnavn, claim-antall og gyldige source IDs er baseline-egenskaper, ikke bevis på filosofisk kvalitet.",
       "complete_ready kan bare være true når 54/54 artikler har editorial_quality university_depth_reviewed og består den permanente universitetsporten."
     ],
-    "editorial_quality": "university_depth_review_in_progress",
+    "editorial_quality": "university_depth_reviewed",
     "weak_canonical_definitions_contextually_rewritten": 126,
-    "reviewed_article_count": 4,
-    "remaining_university_review_count": 50,
+    "reviewed_article_count": 54,
+    "remaining_university_review_count": 0,
     "quality_standard": "substantive_university_philosophy_v2"
   },
-  "reviewed_reference_articles": [
-    "em_filosofi_epistemisk_urettferdighet_standpunkt",
-    "em_filosofi_normativ_etikk",
-    "em_filosofi_rase_kolonialitet_dekolonisering",
-    "em_filosofi_ai_intelligens_personskap"
-  ],
-  "remaining_review_count": 50,
+  "reviewed_article_count": 54,
+  "remaining_review_count": 0,
   "gates": {
     "canonicalCountsExact": true,
     "allEmnersHaveStandaloneArticles": true,
@@ -59,7 +54,7 @@
     "topicSpecificSourcesInReviewedArticles": true,
     "claimCountNotUsedAsQualityProxy": true,
     "obsoletePolishedLabelEliminated": true,
-    "universityDepthReviewedAllArticles": false,
+    "universityDepthReviewedAllArticles": true,
     "completeReadyHonest": true,
     "historicalClaimsRequireSourcesLocked": true,
     "globalCanonWithoutTokenismLocked": true

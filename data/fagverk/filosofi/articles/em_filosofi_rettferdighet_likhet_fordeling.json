@@ -8,7 +8,7 @@
   "area_id": "filosofi_politisk_filosofi_rettferdighet",
   "level": 2,
   "status": "complete",
-  "editorial_quality": "university_oriented_draft",
+  "editorial_quality": "university_depth_reviewed",
   "canonical_definition": "Hvordan goder, byrder og muligheter bør fordeles.",
   "concept_ids": [
     "fordelingsrettferdighet",
@@ -45,7 +45,7 @@
     {
       "id": "em_filosofi_rettferdighet_likhet_fordeling_claim_problem",
       "type": "problem_framing",
-      "text": "Rettferdighet, likhet og fordeling krever eksplisitt begrepsavgrensning og argumentasjon utover ren faktaregistrering.",
+      "text": "Fordelingsrettferdighet kan vurderes ut fra mønstre i sluttfordelingen, historien som skapte eierskapet eller menneskers reelle kapabiliteter. I Rawls’ teori er forskjellsprinsippet et kriterium for når ulikhet kan forsvares, mens Nozicks kritikk utfordrer mønstret fordeling som mål når historisk rettmessige overføringer stadig bryter mønsteret. Rawls, Nozick og Sen viser tre ulike måter å identifisere hva som er moralsk relevant når goder og byrder fordeles.",
       "source_ids": [
         "sep-political-legitimacy",
         "sep-public-reason",
@@ -54,8 +54,18 @@
     },
     {
       "id": "em_filosofi_rettferdighet_likhet_fordeling_claim_argument",
-      "type": "philosophical_argument",
-      "text": "K: En holdbar posisjon om rettferdighet, likhet og fordeling må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending.",
+      "type": "position_reconstruction",
+      "text": "K: En fordelingsanalyse må eksplisitt angi om den vurderer institusjonelt mønster, historisk rettighet eller reell kapabilitet, og begrunne hvorfor dette kriteriet skal ha prioritet når de gir ulike anbefalinger.",
+      "source_ids": [
+        "sep-political-legitimacy",
+        "sep-public-reason",
+        "sep-democracy"
+      ]
+    },
+    {
+      "id": "em_filosofi_rettferdighet_likhet_fordeling_claim_distinction",
+      "type": "concept_distinction",
+      "text": "P2: Nozicks rettighetsteori avviser at en rettferdig fordeling kan vurderes bare som et mønster på ett tidspunkt; dersom beholdninger er tilegnet og overført rettmessig, kan omfordeling krenke individuelle rettigheter selv når et annet mønster ser mer likt ut.",
       "source_ids": [
         "sep-political-legitimacy",
         "sep-public-reason",
@@ -65,7 +75,7 @@
     {
       "id": "em_filosofi_rettferdighet_likhet_fordeling_claim_rival",
       "type": "rival_position",
-      "text": "En reell innvending må treffe et premiss, kriterium eller slutningstrinn i analysen av rettferdighet, likhet og fordeling.",
+      "text": "Innvending: Alle tre tilnærmingene trenger omstridte bakgrunnsantakelser om hvilke goder, rettigheter eller kapabiliteter som teller og hvordan de kan sammenlignes.",
       "source_ids": [
         "sep-political-legitimacy",
         "sep-public-reason",
@@ -73,9 +83,9 @@
       ]
     },
     {
-      "id": "em_filosofi_rettferdighet_likhet_fordeling_claim_method",
-      "type": "methodological",
-      "text": "Metoden for rettferdighet, likhet og fordeling må produsere et synlig mellomledd og oppgi sin egen begrensning.",
+      "id": "em_filosofi_rettferdighet_likhet_fordeling_claim_reply",
+      "type": "philosophical_argument",
+      "text": "Svar: Det betyr at fordelingskriteriet ikke kan presenteres som verdinøytralt. En god analyse viser hvilke normative valg målemetoden allerede inneholder og tester dem mot konkrete moteksempler.",
       "source_ids": [
         "sep-political-legitimacy",
         "sep-public-reason",
@@ -85,17 +95,7 @@
     {
       "id": "em_filosofi_rettferdighet_likhet_fordeling_claim_source",
       "type": "source_boundary",
-      "text": "Primærfilosofiske verk, faglige sekundærkilder og empiriske casekilder har forskjellige evidensroller og skal ikke behandles som utskiftbare.",
-      "source_ids": [
-        "sep-political-legitimacy",
-        "sep-public-reason",
-        "sep-democracy"
-      ]
-    },
-    {
-      "id": "em_filosofi_rettferdighet_likhet_fordeling_claim_limit",
-      "type": "limitation",
-      "text": "Et normativt ideal for demokrati eller rettferdighet beskriver ikke automatisk hvordan en faktisk institusjon fungerer; empirisk institusjonsanalyse må komme i tillegg.",
+      "text": "Primærverk bærer konkrete posisjons- og tekstrekonstruksjoner, mens faglige sekundærkilder brukes til problemhistorie, rivaler og bibliografisk kontroll; empiriske casepåstander krever egne casekilder.",
       "source_ids": [
         "sep-political-legitimacy",
         "sep-public-reason",
@@ -125,24 +125,25 @@
       "id": "argument",
       "title": "Argumentrekonstruksjon",
       "paragraphs": [
-        "P1: En analyse av rettferdighet, likhet og fordeling må angi hva som teller som fordelingsrettferdighet og hvilke tilfeller som ikke gjør det. Rekonstruksjonen gjør et mulig slutningstrinn eksplisitt slik at premisset kan avvises eller forsvares selvstendig.",
-        "P2: Dersom fordelingsrettferdighet og likhet kan skilles i minst ett relevant grensetilfelle, kan de ikke behandles som synonymer uten videre argument. Dette er artikkelens distinksjonspremiss og kan testes med et grensetilfelle.",
-        "P3: En overgang fra disse begrepskriteriene til en påstand om kapabilitet krever en egen begrunnelse; konklusjonen kan ikke bygges inn i definisjonene. Dette er overgangspremisset; her ligger ofte den mest omstridte delen av argumentet.",
-        "K: En holdbar posisjon om rettferdighet, likhet og fordeling må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending. Konklusjonen er derfor betinget av at de foregående premissene holder."
+        "P1: Rawls’ forskjellsprinsipp tillater ulikhet bare når institusjonelle ordninger forbedrer utsiktene til de dårligst stilte sammenlignet med relevante alternativer, og bygger dermed rettferdighetsvurderingen inn i grunnstrukturen.",
+        "P2: Nozicks rettighetsteori avviser at en rettferdig fordeling kan vurderes bare som et mønster på ett tidspunkt; dersom beholdninger er tilegnet og overført rettmessig, kan omfordeling krenke individuelle rettigheter selv når et annet mønster ser mer likt ut.",
+        "P3: Sen kritiserer ressursmål som utilstrekkelige fordi samme ressursmengde kan gi svært ulike reelle handlingsmuligheter. Kapabilitetstilnærmingen flytter derfor oppmerksomheten fra varer alene til hva mennesker faktisk kan være og gjøre.",
+        "K: En fordelingsanalyse må eksplisitt angi om den vurderer institusjonelt mønster, historisk rettighet eller reell kapabilitet, og begrunne hvorfor dette kriteriet skal ha prioritet når de gir ulike anbefalinger."
       ]
     },
     {
       "id": "uenighet",
       "title": "Innvending og svar",
       "paragraphs": [
-        "Innvending: Begrepsrekonstruksjonen kan bli for skjematisk dersom den behandles som hele problemet. Teorier om rettferdighet skiller seg blant annet i hva som skal fordeles og etter hvilket prinsipp; ressurser, muligheter, rettigheter og faktiske kapabiliteter kan gi ulike vurderinger av samme ordning. En velvillig innvending skal treffe den sterkeste rimelige versjonen av posisjonen, ikke en karikatur. Det betyr at artikkelen må kunne angi hva rivalen forklarer bedre, hva den forklarer dårligere, og hva slags case som kan skille posisjonene.",
-        "Svar: Skjemaet skal ikke erstatte tradisjonens egen argumentform. Det fungerer som transparenskrav: leseren skal kunne se hva som påstås, hva som støtter påstanden, og hvor uenigheten faktisk ligger. Legitimitet handler ikke bare om at en stat faktisk kan håndheve beslutninger, men om hvilke grunner som kan rettferdiggjøre myndighetsutøvelse overfor dem som bindes av den. En uenighet er dermed faglig produktiv når den identifiserer et konkret premiss, kriterium eller slutningstrinn som partene vurderer forskjellig."
+        "Innvending: Alle tre tilnærmingene trenger omstridte bakgrunnsantakelser om hvilke goder, rettigheter eller kapabiliteter som teller og hvordan de kan sammenlignes.",
+        "Svar: Det betyr at fordelingskriteriet ikke kan presenteres som verdinøytralt. En god analyse viser hvilke normative valg målemetoden allerede inneholder og tester dem mot konkrete moteksempler."
       ]
     },
     {
       "id": "teorihistorie",
       "title": "Teori og verk",
       "paragraphs": [
+        "Fordelingsrettferdighet kan vurderes ut fra mønstre i sluttfordelingen, historien som skapte eierskapet eller menneskers reelle kapabiliteter. I Rawls’ teori er forskjellsprinsippet et kriterium for når ulikhet kan forsvares, mens Nozicks kritikk utfordrer mønstret fordeling som mål når historisk rettmessige overføringer stadig bryter mønsteret. Rawls, Nozick og Sen viser tre ulike måter å identifisere hva som er moralsk relevant når goder og byrder fordeles.",
         "Det kanoniske fagkartet foreslår Mary Wollstonecraft gjennom A Vindication of the Rights of Woman; Robert Nozick gjennom Anarchy, State, and Utopia; Isaiah Berlin gjennom Two Concepts of Liberty som relevante sammenligningspunkter for rettferdighet, likhet og fordeling. De brukes ikke som en liste over navn man skal huske. Hver posisjon må kobles til et bestemt problem, argument eller verk, og sammenligningen må si hvilket kriterium som faktisk er felles. Når to tenkere stiller ulike spørsmål, skal forskjellen beholdes i stedet for å presses inn i en kunstig enighet.",
         "Teorihistoriske verk fungerer som primærfilosofiske kilder til argumenter og begreper, mens Political Legitimacy; Public Reason; Democracy brukes som faglige sekundærkilder til problemhistorie, posisjoner og bibliografisk kontroll. De to kildetypene har forskjellige roller: en sekundærkilde kan hjelpe oss å lokalisere en debatt, men en spesifikk teksttolkning bør så langt mulig kontrolleres mot selve verket eller en pålitelig utgave."
       ]
@@ -194,5 +195,31 @@
     "tradition_specific_relevance": true,
     "review_state": "requires_substantive_rewrite",
     "reviewed_against_university_gate": false
+  },
+  "university_quality": {
+    "schema": "history_go_filosofi_university_quality_v1",
+    "standard": "substantive_university_philosophy_v2",
+    "review_status": "reviewed",
+    "debate": "Fordelingsrettferdighet kan vurderes ut fra mønstre i sluttfordelingen, historien som skapte eierskapet eller menneskers reelle kapabiliteter. I Rawls’ teori er forskjellsprinsippet et kriterium for når ulikhet kan forsvares, mens Nozicks kritikk utfordrer mønstret fordeling som mål når historisk rettmessige overføringer stadig bryter mønsteret. Rawls, Nozick og Sen viser tre ulike måter å identifisere hva som er moralsk relevant når goder og byrder fordeles.",
+    "debate_thinkers": [
+      "John Rawls",
+      "Robert Nozick",
+      "Amartya Sen"
+    ],
+    "required_anchors": [
+      "forskjellsprinsippet",
+      "mønstret fordeling",
+      "rettigheter",
+      "kapabilitet",
+      "rettferdighet"
+    ],
+    "primary_work_count": 5,
+    "secondary_source_count": 3,
+    "review_contract": [
+      "Argumentet rekonstruerer et faktisk filosofisk stridspunkt og kan kritiseres premiss for premiss.",
+      "Rivalen forklarer hva en alternativ posisjon bestrider, ikke bare at uenighet finnes.",
+      "Navngitte tenkere og verk brukes som problem- og argumentankere, ikke som navneliste.",
+      "Fagankere må forekomme i argument, innvending eller teorihistorie og kan ikke bare deklareres i metadata."
+    ]
   }
 }

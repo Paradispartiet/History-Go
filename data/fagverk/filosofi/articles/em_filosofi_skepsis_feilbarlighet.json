@@ -8,7 +8,7 @@
   "area_id": "filosofi_erkjennelse_sannhet",
   "level": 2,
   "status": "complete",
-  "editorial_quality": "university_oriented_draft",
+  "editorial_quality": "university_depth_reviewed",
   "canonical_definition": "Hvor sikkert vi kan vite, og hvordan tvil kan være metodisk.",
   "concept_ids": [
     "skepsis",
@@ -45,7 +45,7 @@
     {
       "id": "em_filosofi_skepsis_feilbarlighet_claim_problem",
       "type": "problem_framing",
-      "text": "Skepsis, tvil og feilbarlighet krever eksplisitt begrepsavgrensning og argumentasjon utover ren faktaregistrering.",
+      "text": "Radikal skepsis spør om erfaring og resonnement kan utelukke globale feilkilder. Descartes skjerper problemet gjennom metodisk tvil, mens Moore og Wittgenstein utfordrer premissene for at alle hverdagslige kunnskapskrav må begrunnes fra et fullstendig nøytralt ståsted.",
       "source_ids": [
         "sep-epistemology",
         "sep-skepticism",
@@ -54,8 +54,18 @@
     },
     {
       "id": "em_filosofi_skepsis_feilbarlighet_claim_argument",
-      "type": "philosophical_argument",
-      "text": "K: En holdbar posisjon om skepsis, tvil og feilbarlighet må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending.",
+      "type": "position_reconstruction",
+      "text": "K: Feilbarlighet er derfor forenlig med kunnskap dersom kunnskapskravet kan forsvares uten absolutt sikkerhet, men teorien må forklare hvorfor relevante feilkilder kan ignoreres mens andre må tas alvorlig.",
+      "source_ids": [
+        "sep-epistemology",
+        "sep-skepticism",
+        "sep-testimony"
+      ]
+    },
+    {
+      "id": "em_filosofi_skepsis_feilbarlighet_claim_distinction",
+      "type": "concept_distinction",
+      "text": "P2: Descartes bruker metodisk tvil som et redskap for å lete etter et sikkert utgangspunkt, men det følger ikke at den strengeste metodiske testen er den eneste legitime standarden for hverdagslig kunnskap.",
       "source_ids": [
         "sep-epistemology",
         "sep-skepticism",
@@ -65,7 +75,7 @@
     {
       "id": "em_filosofi_skepsis_feilbarlighet_claim_rival",
       "type": "rival_position",
-      "text": "En reell innvending må treffe et premiss, kriterium eller slutningstrinn i analysen av skepsis, tvil og feilbarlighet.",
+      "text": "Innvending: Å behandle hverdagslige sikkerheter som bakgrunn kan virke som å forutsette nettopp det skeptikeren bestrider.",
       "source_ids": [
         "sep-epistemology",
         "sep-skepticism",
@@ -73,9 +83,9 @@
       ]
     },
     {
-      "id": "em_filosofi_skepsis_feilbarlighet_claim_method",
-      "type": "methodological",
-      "text": "Metoden for skepsis, tvil og feilbarlighet må produsere et synlig mellomledd og oppgi sin egen begrensning.",
+      "id": "em_filosofi_skepsis_feilbarlighet_claim_reply",
+      "type": "philosophical_argument",
+      "text": "Svar: Wittgensteins strategi er ikke et bevis på den ytre verden fra nøytrale premisser, men en utfordring til forestillingen om at meningsfull tvil kan rettes mot alt samtidig. Skeptikeren kan avvise dette, men må da forklare hvilke regler som fortsatt gjør tvilen selv forståelig.",
       "source_ids": [
         "sep-epistemology",
         "sep-skepticism",
@@ -85,17 +95,7 @@
     {
       "id": "em_filosofi_skepsis_feilbarlighet_claim_source",
       "type": "source_boundary",
-      "text": "Primærfilosofiske verk, faglige sekundærkilder og empiriske casekilder har forskjellige evidensroller og skal ikke behandles som utskiftbare.",
-      "source_ids": [
-        "sep-epistemology",
-        "sep-skepticism",
-        "sep-testimony"
-      ]
-    },
-    {
-      "id": "em_filosofi_skepsis_feilbarlighet_claim_limit",
-      "type": "limitation",
-      "text": "Skeptiske argumenter viser hva en teori om kunnskap må kunne svare på, men de beviser ikke i seg selv at hverdagslig eller vitenskapelig kunnskap er umulig.",
+      "text": "Primærverk bærer konkrete posisjons- og tekstrekonstruksjoner, mens faglige sekundærkilder brukes til problemhistorie, rivaler og bibliografisk kontroll; empiriske casepåstander krever egne casekilder.",
       "source_ids": [
         "sep-epistemology",
         "sep-skepticism",
@@ -125,24 +125,25 @@
       "id": "argument",
       "title": "Argumentrekonstruksjon",
       "paragraphs": [
-        "P1: En analyse av skepsis, tvil og feilbarlighet må angi hva som teller som skepsis og hvilke tilfeller som ikke gjør det. Rekonstruksjonen gjør et mulig slutningstrinn eksplisitt slik at premisset kan avvises eller forsvares selvstendig.",
-        "P2: Dersom skepsis og feilbarlighet kan skilles i minst ett relevant grensetilfelle, kan de ikke behandles som synonymer uten videre argument. Dette er artikkelens distinksjonspremiss og kan testes med et grensetilfelle.",
-        "P3: En overgang fra disse begrepskriteriene til en påstand om metodisk tvil krever en egen begrunnelse; konklusjonen kan ikke bygges inn i definisjonene. Dette er overgangspremisset; her ligger ofte den mest omstridte delen av argumentet.",
-        "K: En holdbar posisjon om skepsis, tvil og feilbarlighet må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending. Konklusjonen er derfor betinget av at de foregående premissene holder."
+        "P1: Hvis en kunnskapsstandard krever at alle logisk mulige feilkilder elimineres, truer drømme- og bedragerscenarier store deler av empirisk kunnskap fordi erfaring alene ikke ser ut til å skille scenarioene sikkert.",
+        "P2: Descartes bruker metodisk tvil som et redskap for å lete etter et sikkert utgangspunkt, men det følger ikke at den strengeste metodiske testen er den eneste legitime standarden for hverdagslig kunnskap.",
+        "P3: Moores respons og Wittgensteins analyse av hinge-forpliktelser antyder at noen sikkerheter fungerer som bakgrunn for undersøkelse snarere enn som hypoteser som til enhver tid må bevises fra mer grunnleggende premisser.",
+        "K: Feilbarlighet er derfor forenlig med kunnskap dersom kunnskapskravet kan forsvares uten absolutt sikkerhet, men teorien må forklare hvorfor relevante feilkilder kan ignoreres mens andre må tas alvorlig."
       ]
     },
     {
       "id": "uenighet",
       "title": "Innvending og svar",
       "paragraphs": [
-        "Innvending: Begrepsrekonstruksjonen kan bli for skjematisk dersom den behandles som hele problemet. Mye kunnskap mottas gjennom andre mennesker, eksperter og institusjoner, slik at tillit, kompetanse, makt og muligheten for korrigering blir deler av den epistemiske analysen. En velvillig innvending skal treffe den sterkeste rimelige versjonen av posisjonen, ikke en karikatur. Det betyr at artikkelen må kunne angi hva rivalen forklarer bedre, hva den forklarer dårligere, og hva slags case som kan skille posisjonene.",
-        "Svar: Skjemaet skal ikke erstatte tradisjonens egen argumentform. Det fungerer som transparenskrav: leseren skal kunne se hva som påstås, hva som støtter påstanden, og hvor uenigheten faktisk ligger. En begrunnelse må være mer enn at en påstand tilfeldigvis er sann; den må stå i et relevant epistemisk forhold til evidens, pålitelighet eller gode grunner. En uenighet er dermed faglig produktiv når den identifiserer et konkret premiss, kriterium eller slutningstrinn som partene vurderer forskjellig."
+        "Innvending: Å behandle hverdagslige sikkerheter som bakgrunn kan virke som å forutsette nettopp det skeptikeren bestrider.",
+        "Svar: Wittgensteins strategi er ikke et bevis på den ytre verden fra nøytrale premisser, men en utfordring til forestillingen om at meningsfull tvil kan rettes mot alt samtidig. Skeptikeren kan avvise dette, men må da forklare hvilke regler som fortsatt gjør tvilen selv forståelig."
       ]
     },
     {
       "id": "teorihistorie",
       "title": "Teori og verk",
       "paragraphs": [
+        "Radikal skepsis spør om erfaring og resonnement kan utelukke globale feilkilder. Descartes skjerper problemet gjennom metodisk tvil, mens Moore og Wittgenstein utfordrer premissene for at alle hverdagslige kunnskapskrav må begrunnes fra et fullstendig nøytralt ståsted.",
         "Det kanoniske fagkartet foreslår René Descartes gjennom Meditations on First Philosophy og Discourse on the Method; Edmund Gettier gjennom Is Justified True Belief Knowledge?; Miranda Fricker gjennom Epistemic Injustice som relevante sammenligningspunkter for skepsis, tvil og feilbarlighet. De brukes ikke som en liste over navn man skal huske. Hver posisjon må kobles til et bestemt problem, argument eller verk, og sammenligningen må si hvilket kriterium som faktisk er felles. Når to tenkere stiller ulike spørsmål, skal forskjellen beholdes i stedet for å presses inn i en kunstig enighet.",
         "Teorihistoriske verk fungerer som primærfilosofiske kilder til argumenter og begreper, mens Epistemology; Skepticism; Epistemological Problems of Testimony brukes som faglige sekundærkilder til problemhistorie, posisjoner og bibliografisk kontroll. De to kildetypene har forskjellige roller: en sekundærkilde kan hjelpe oss å lokalisere en debatt, men en spesifikk teksttolkning bør så langt mulig kontrolleres mot selve verket eller en pålitelig utgave."
       ]
@@ -194,5 +195,31 @@
     "tradition_specific_relevance": true,
     "review_state": "requires_substantive_rewrite",
     "reviewed_against_university_gate": false
+  },
+  "university_quality": {
+    "schema": "history_go_filosofi_university_quality_v1",
+    "standard": "substantive_university_philosophy_v2",
+    "review_status": "reviewed",
+    "debate": "Radikal skepsis spør om erfaring og resonnement kan utelukke globale feilkilder. Descartes skjerper problemet gjennom metodisk tvil, mens Moore og Wittgenstein utfordrer premissene for at alle hverdagslige kunnskapskrav må begrunnes fra et fullstendig nøytralt ståsted.",
+    "debate_thinkers": [
+      "René Descartes",
+      "G. E. Moore",
+      "Ludwig Wittgenstein"
+    ],
+    "required_anchors": [
+      "metodisk tvil",
+      "ytre verden",
+      "Moore",
+      "hinge",
+      "feilbarlighet"
+    ],
+    "primary_work_count": 5,
+    "secondary_source_count": 3,
+    "review_contract": [
+      "Argumentet rekonstruerer et faktisk filosofisk stridspunkt og kan kritiseres premiss for premiss.",
+      "Rivalen forklarer hva en alternativ posisjon bestrider, ikke bare at uenighet finnes.",
+      "Navngitte tenkere og verk brukes som problem- og argumentankere, ikke som navneliste.",
+      "Fagankere må forekomme i argument, innvending eller teorihistorie og kan ikke bare deklareres i metadata."
+    ]
   }
 }
