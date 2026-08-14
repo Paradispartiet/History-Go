@@ -2144,7 +2144,7 @@ if (brandsEl) {
     : `<div class="pc-empty">Ingen brands ennå</div>`;
 
   const b0 = brands.find(b => b.logo);
-  setRoundPreview(brandsIcon, b0?.logo || "", b0?.name || b0?.label || "", "🏷️", brands.length);
+  setRoundPreview(brandsIcon, b0?.logo || "", b0?.label || "", "🏷️", brands.length);
 }
 
 
