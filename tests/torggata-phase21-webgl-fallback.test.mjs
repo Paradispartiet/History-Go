@@ -157,15 +157,14 @@ test("no-WebGL place routing opens Torggata directly instead of requiring map fl
   assert.equal(classNames.has("hg-view-map"), true);
 });
 
-test("Torggata phase 19 and 21 evidence preserves four content rounds plus a separate Badge", () => {
+test("phase 19/21 remain historical snapshots while 8F queues new manual QA", () => {
   assert.equal(place.category, "by");
-  assert.equal(place.structures.length, 2);
   assert.deepEqual(Object.keys(phase19.rounds), ["people", "objects", "brands", "structures"]);
-  assert.equal(phase19.rounds.structures.visible, 2);
-  assert.equal(phase19.rounds.structures.preview_mode, "canonical_icon_and_count");
   assert.deepEqual(phase21.round_contract.content_rounds, ["people", "objects", "brands", "structures"]);
   assert.equal(phase21.round_contract.badge_separate, true);
-  assert.ok(phase21.retained_ui_contracts.includes("four content rounds plus separate Badge"));
-  assert.match(workcard, /fire innholdsrundinger: People, Objects, Brands og Structures/);
-  assert.doesNotMatch(workcard, /tre innholdsrundinger|Structures\/Works er ikke valgt som canonical runding/);
+  assert.deepEqual(place.round_profile.content_round_ids, ["people", "images", "brands", "related"]);
+  assert.equal(Object.prototype.hasOwnProperty.call(place, "objects"), false);
+  assert.equal(Object.prototype.hasOwnProperty.call(place, "structures"), false);
+  assert.match(workcard, /People · Bilder · Brands · Relaterte steder/);
+  assert.match(workcard, /GJENÅPNET FOR RE-QA/);
 });
