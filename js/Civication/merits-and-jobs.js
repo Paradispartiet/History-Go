@@ -367,14 +367,16 @@ async function rebuildJobOffersFromCurrentMerits() {
 
     const tier = deriveTierFromPoints(badge, points);
     if (!tier || !Number.isFinite(Number(tier.threshold))) continue;
-    if ((tier.tierIndex ?? 0) <= 0) continue;
+    // tierIndex -1 means points are still below the first canonical threshold.
+    // tierIndex 0 is the first real Badge tier and may be a valid job offer.
+    if ((tier.tierIndex ?? -1) < 0) continue;
     if (!qualifiesForTierWithCross(badgeId, tier.tierIndex)) continue;
 
     const candidate = {
       badge,
       tier,
       points,
-      tierIndex: Number(tier.tierIndex || 0)
+      tierIndex: Number(tier.tierIndex ?? -1)
     };
 
     if (!bestCandidate ||
