@@ -1,7 +1,7 @@
 {
   "schema": "civication_film_tv_career_life_evidence_v1",
-  "version": 1,
-  "reviewed_at": "2026-08-13",
+  "version": 2,
+  "reviewed_at": "2026-08-14",
   "sources": [
     {
       "id": "utdanning_regissor_2025",
@@ -41,30 +41,22 @@
     }
   ],
   "canonical_decision": {
-    "life_only_tiers": [
-      "Seer",
-      "Filminteressert",
-      "Filmfantast",
-      "Kjenner",
-      "Connaisseur",
-      "Prisvinner",
-      "Internasjonalt gjennomslag",
-      "Film- og TV-stjerne",
-      "Ikon"
-    ],
-    "formal_job_tiers": [
-      "Produksjonsassistent",
-      "Manusmedarbeider",
-      "Programleder",
-      "Kurator (film/TV)",
-      "Regissør",
-      "Serieskaper"
-    ],
+    "life_only_tiers": ["Seer","Filminteressert","Filmfantast","Kjenner","Connaisseur","Prisvinner","Internasjonalt gjennomslag","Film- og TV-stjerne","Ikon"],
+    "formal_job_tiers": ["Produksjonsassistent","Manusmedarbeider","Programleder","Kurator (film/TV)","Regissør","Serieskaper"],
+    "review_left_open": [],
+    "work_worlds": {
+      "produksjonsassistent": ["Produksjonsassistent"],
+      "manusmedarbeider": ["Manusmedarbeider"],
+      "programleder": ["Programleder"],
+      "kurator_film_tv": ["Kurator (film/TV)"],
+      "regissor": ["Regissør"],
+      "serieskaper": ["Serieskaper"]
+    },
     "notes": [
       "Publikums-, kunnskaps-, pris-, gjennomslags-, berømmelses- og ikonstatus skal aldri materialiseres som formell jobb bare fordi et Badge-nivå er nådd.",
-      "Reelle produksjonsroller kan fortsatt tilbys som arbeid gjennom CivicationJobs.",
+      "De seks reelle jobb-tierene er nå eksplisitt bundet til canonicale work worlds som bevarer de eksisterende rolle-scope-ID-ene.",
       "Videre Badge-progresjon etter at en jobb er tatt skal ikke automatisk oppgradere lønnen til en annen status-tiers lønn.",
-      "Pris, festival, gjennomslag og berømmelse bør senere påvirke omdømme, invitasjoner, forhandlingsrom og livelihood-opportunities — ikke active_position."
+      "Pris, festival, gjennomslag og berømmelse påvirker omdømme og muligheter, ikke active_position."
     ]
   }
 }
