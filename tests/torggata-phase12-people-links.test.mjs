@@ -84,3 +84,46 @@ test("Torggata People has canonical relations and excludes Torggata Bad proxies"
   for(const id of ["thorvald_meyer","christian_morgenstierne","arne_eide"]) assert.equal(relIds.has(id),false,`${id} belongs to the separate Torggata Bad place`);
   assert.deepEqual(runtimePeopleForTorggata().map(p=>p.id).sort(),requiredVisible.slice().sort());
 });
+
+test("pending People revalidation keeps usable profiles visible",()=>{
+  const popupSource=fs.readFileSync(path.join(ROOT,"js/ui/popup-utils.js"),"utf8");
+  const placeCardRuntime=fs.readFileSync(path.join(ROOT,"js/ui/place-card-epoke.js"),"utf8");
+  const events=[];
+
+  class TestCustomEvent{
+    constructor(type,options={}){this.type=type;this.detail=options.detail}
+  }
+
+  const context={
+    console,
+    PEOPLE:people,
+    PLACES:[{id:"torggata",category:"by"}],
+    RELATIONS:relations,
+    HG_SHOULD_DEFER_PEOPLE_FOR_PLACE(){return true},
+    dispatchEvent(event){events.push(event.type);return true},
+    CustomEvent:TestCustomEvent,
+    document:{
+      addEventListener(){},
+      createElement(){return{}},
+      body:{appendChild(){}},
+      getElementById(){return null}
+    },
+    requestAnimationFrame(){},
+    setTimeout,
+    clearTimeout,
+    setInterval,
+    clearInterval,
+    async openPlaceCard(){return true}
+  };
+  context.window=context;
+  context.globalThis=context;
+  vm.createContext(context);
+  vm.runInContext(popupSource,context,{filename:"popup-utils.js"});
+  vm.runInContext(placeCardRuntime,context,{filename:"place-card-epoke.js"});
+
+  const visible=Array.from(context.getPeopleForPlace("torggata"));
+  assert.deepEqual(visible.map(person=>person.id).sort(),requiredVisible.slice().sort());
+  assert.ok(events.includes("hg:people-place-revalidation-needed"),"fresh data must still be requested");
+  assert.equal(context.HGPeopleVisibilityPolicy?.mode,"stale-while-revalidate");
+  assert.equal(context.HGPeopleVisibilityPolicy?.hidesUsableCache,false);
+});
