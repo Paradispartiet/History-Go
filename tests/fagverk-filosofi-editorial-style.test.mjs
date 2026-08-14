@@ -27,6 +27,13 @@ const banned=[
   /\b[a-zæøå]+_[a-zæøå_]+\b/
 ];
 
+const genericArgumentPatterns=[
+  /En analyse av .* må angi hva som teller som/i,
+  /kan de ikke behandles som synonymer uten videre argument/i,
+  /En overgang fra disse begrepskriteriene til en påstand om/i,
+  /må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene/i
+];
+
 test('Filosofi-prosa er fri for kjente maskinmønstre og rå ID-er',()=>{
   for(const article of articles){
     const prose=article.sections.flatMap((s)=>s.paragraphs||[]).join('\n');
@@ -34,13 +41,25 @@ test('Filosofi-prosa er fri for kjente maskinmønstre og rå ID-er',()=>{
   }
 });
 
-test('argumentrekonstruksjonen gjentar ikke identisk kontrollsetning',()=>{
+test('argumentrekonstruksjonen gjentar ikke identisk kontrollsetning i samme artikkel',()=>{
   for(const article of articles){
     const arg=article.sections.find((s)=>s.id==='argument');
     assert.ok(arg);
     const normalized=arg.paragraphs.map((p)=>p.replace(/^P\d:|^K:/,'').trim());
     assert.equal(new Set(normalized).size,normalized.length,`${article.id} har dupliserte argumentavsnitt`);
   }
+});
+
+test('universitetsreviewede artikler får ikke bruke den gamle metamalens argument',()=>{
+  const reviewed=articles.filter((article)=>article.editorial_quality==='university_depth_reviewed');
+  for(const article of reviewed){
+    const argument=article.sections.find((s)=>s.id==='argument')?.paragraphs.join(' ')||'';
+    for(const pattern of genericArgumentPatterns){
+      assert.doesNotMatch(argument,pattern,`${article.id} bruker gammel metamal ${pattern}`);
+    }
+  }
+  const signatures=reviewed.map((article)=>article.sections.find((s)=>s.id==='argument')?.paragraphs.join(' ').toLocaleLowerCase('nb'));
+  assert.equal(new Set(signatures).size,signatures.length,'reviewede artikler deler identisk argumentrekonstruksjon');
 });
 
 test('globale tradisjoner har tradisjonsspesifikke tenkere før komparasjon',()=>{
@@ -55,14 +74,12 @@ test('globale tradisjoner har tradisjonsspesifikke tenkere før komparasjon',()=
   }
 });
 
-test('begrepsavsnitt er faktisk forklarende og ikke bare etiketter',()=>{
+test('begrepsavsnitt forklarer begreper uten å tvinges inn i én boilerplate-formel',()=>{
   for(const article of articles){
     const section=article.sections.find((s)=>s.id==='begreper');
     assert.ok(section);
-    for(const p of section.paragraphs){
-      assert.ok(p.split(/\s+/).length>=45,`${article.id} har for tynt begrepsavsnitt`);
-      assert.match(p,/typisk feil|skal særlig holdes fra|må skilles/i,`${article.id} mangler begrepsavgrensning`);
-      assert.match(p,/premiss|kriterium|grensetilfelle|eksempel|uenighet/i,`${article.id} mangler begrepsanvendelse`);
+    for(const paragraph of section.paragraphs){
+      assert.ok(paragraph.split(/\s+/).length>=45,`${article.id} har for tynt begrepsavsnitt`);
     }
   }
 });
