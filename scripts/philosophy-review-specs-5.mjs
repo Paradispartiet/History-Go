@@ -28,7 +28,7 @@ export default {
   em_filosofi_islamsk_jodisk_filosofi: {
     thinkers: ['Avicenna', 'Averroes', 'Moses Maimonides'],
     anchors: ['falsafa', 'nødvendig eksisterende', 'intellekt', 'åpenbaring', 'negativ teologi'],
-    debate: 'Middelalderens islamske og jødiske filosofi utviklet selvstendige metafysiske, epistemologiske og politiske argumenter i dialog med gresk filosofi og religiøse teksttradisjoner. Avicenna, Averroes og Maimonides er uenige om flere sentrale spørsmål og kan ikke reduseres til «tro versus fornuft».',
+    debate: 'Middelalderens islamske falsafa og jødiske filosofi utviklet selvstendige metafysiske, epistemologiske og politiske argumenter i dialog med gresk filosofi og religiøse teksttradisjoner. Avicenna, Averroes og Maimonides er uenige om flere sentrale spørsmål og kan ikke reduseres til «tro versus fornuft».',
     argument: [
       'P1: Avicennas skille mellom essens og eksistens og argument for et nødvendig eksisterende gir en metafysisk struktur der kontingente ting krever en forklaringsgrunn som ikke selv er kontingent.',
       'P2: Averroes forsvarer filosofisk demonstrasjon og aristotelisk analyse som legitimt for kvalifiserte lesere og utfordrer forestillingen om at åpenbaring og filosofi nødvendigvis må konkurrere på samme fortolkningsnivå.',
@@ -41,7 +41,7 @@ export default {
   em_filosofi_afrikansk_filosofi_ubuntu: {
     thinkers: ['Kwasi Wiredu', 'Ifeanyi Menkiti', 'Kwame Gyekye'],
     anchors: ['ubuntu', 'personskap', 'fellesskap', 'moderat kommunitarisme', 'konseptuell avkolonisering'],
-    debate: 'Afrikansk filosofi rommer intern uenighet om personskap, fellesskap, språk og avkolonisering. Debatten mellom sterke og moderate kommunitære fortolkninger viser hvorfor ubuntu ikke kan brukes som en homogen etikett for et helt kontinent.',
+    debate: 'Afrikansk filosofi rommer intern uenighet om personskap, fellesskap, språk og avkolonisering. Gyekyes moderate kommunitarisme er en eksplisitt mellomposisjon mot en sterk kollektiv prioritering, og debatten mellom sterke og moderate kommunitære fortolkninger viser hvorfor ubuntu ikke kan brukes som en homogen etikett for et helt kontinent.',
     argument: [
       'P1: Menkitis sterke kommunitære tese knytter fullt moralsk personskap til gradvis sosial og normativ oppnåelse i fellesskapet, og skiller dermed biologisk menneskelighet fra en rikere personstatus.',
       'P2: Gyekyes moderate kommunitarisme kritiserer en for sterk prioritering av fellesskapet ved å bevare individets kapasitet, verdighet og rett til kritikk som moralsk betydningsfulle også før eller mot kollektiv anerkjennelse.',
