@@ -41,7 +41,16 @@ jobs:
       - name: Prepare topic-specific secondary sources
         run: node scripts/prepare-filosofi-university-review-sources.mjs
       - name: Materialize substantive article-by-article university review
-        run: node scripts/materialize-filosofi-university-review.mjs
+        run: |
+          set +e
+          OUTPUT="$(node scripts/materialize-filosofi-university-review.mjs 2>&1)"
+          STATUS=$?
+          printf '%s\n' "$OUTPUT"
+          if [ "$STATUS" -ne 0 ]; then
+            MESSAGE="$(printf '%s' "$OUTPUT" | tail -n 8 | tr '\n' ' ' | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')"
+            echo "::error title=Philosophy materializer::$MESSAGE"
+            exit "$STATUS"
+          fi
       - name: Refresh deterministic Philosophy and shared Fagverk reports
         run: |
           node scripts/audit-fagverk-filosofi-phase3.mjs --write-report --no-check-report
