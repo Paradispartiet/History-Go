@@ -93,11 +93,12 @@ jobs:
           node --test tests/fagverk-filosofi-complete.test.mjs
           node --test tests/fagverk-filosofi-editorial-style.test.mjs
           node --test tests/fagverk-filosofi-phase3.test.mjs
-      - name: Validate shared Fagverk regressions
-        run: |
-          node --test tests/fagverk-subject-inventory.test.mjs
-          node --test tests/fagverk-general-engine.test.mjs
-          node --test tests/fagverk-release-manifest.test.mjs
+      - name: Validate Fagverk subject inventory
+        run: node --test tests/fagverk-subject-inventory.test.mjs
+      - name: Validate Fagverk general engine
+        run: node --test tests/fagverk-general-engine.test.mjs
+      - name: Validate Fagverk release manifest
+        run: node --test tests/fagverk-release-manifest.test.mjs
       - name: Assert the materialized review is complete and non-generic
         run: |
           node - <<'NODE'
