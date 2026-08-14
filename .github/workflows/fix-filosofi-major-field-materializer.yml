@@ -1,4 +1,4 @@
-name: Fix Philosophy major-field materializer source
+name: Diagnose Philosophy major-field materializer source
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  fix-source:
+  diagnose-source:
     runs-on: ubuntu-latest
     steps:
       - name: Check out exact branch
@@ -21,31 +21,16 @@ jobs:
           ref: agent/expand-philosophy-core-fields
           fetch-depth: 0
 
-      - name: Verify original source syntax
-        run: node --check scripts/materialize-filosofi-major-field-coverage.mjs
-
-      - name: Remove false six-area guard only
+      - name: Capture exact Node parser error
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-          p=Path('scripts/materialize-filosofi-major-field-coverage.mjs')
-          s=p.read_text()
-          pattern=r"// Add missing seventh field:[\s\S]*?(?=const NEW_DOMAIN_ORDER=)"
-          s2,n=re.subn(pattern,'',s,count=1)
-          print(f'guard_replacements={n}')
-          if n != 1:
-              raise SystemExit('Expected exactly one false guard block')
-          p.write_text(s2)
-          PY
-          node --check scripts/materialize-filosofi-major-field-coverage.mjs
+          mkdir -p reports/tmp
+          node --check scripts/materialize-filosofi-major-field-coverage.mjs > reports/tmp/filosofi-materializer-syntax.txt 2>&1 || true
+          cat reports/tmp/filosofi-materializer-syntax.txt
 
-      - name: Commit guard repair only
+      - name: Commit parser diagnostic
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm .github/workflows/fix-filosofi-major-field-materializer.yml
-          git add scripts/materialize-filosofi-major-field-coverage.mjs
-          git diff --cached --check
-          git commit -m "Remove false Philosophy major-field guard"
+          git add reports/tmp/filosofi-materializer-syntax.txt
+          git commit -m "Capture Philosophy materializer syntax error"
           git push origin HEAD:agent/expand-philosophy-core-fields
