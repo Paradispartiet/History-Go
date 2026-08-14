@@ -763,7 +763,10 @@
           && !failedRevalidationKeys.has(`${placeId}:${file}`)
         );
         if (!targets.length) {
-          publishOpenPlaceRows();
+          const hasFailedForPlace = peopleFiles.some(file =>
+            failedRevalidationKeys.has(`${placeId}:${file}`)
+          );
+          if (!hasFailedForPlace) publishOpenPlaceRows();
           return Promise.resolve();
         }
 
@@ -813,9 +816,10 @@
           }
         }).finally(() => {
           openPlaceRevalidationPromise = null;
-          if (getCurrentPlaceId() !== placeId) {
-            setTimeout(() => void revalidateOpenPlacePeopleFiles?.(), 0);
-          }
+          // Rescan alltid: en annen prioritetsfil kan ha fullført sin opprinnelige
+          // fetch mens denne target-snapshoten var aktiv. Feilgaten over gjør at
+          // vedvarende failures ikke starter en ny syklus.
+          setTimeout(() => void revalidateOpenPlacePeopleFiles?.(), 0);
         });
         return openPlaceRevalidationPromise;
       };
