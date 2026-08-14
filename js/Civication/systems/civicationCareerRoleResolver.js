@@ -65,6 +65,12 @@
     scenekunst_regi_og_koreografi: 'scenekunst_regi_og_koreografi',
     scenekunst_program_og_kuratering: 'scenekunst_program_og_kuratering',
     scenekunst_institusjonsledelse: 'scenekunst_institusjonsledelse',
+    vitenskap_assistent_og_laboratorium: 'vitenskap_assistent_og_laboratorium',
+    vitenskap_doktorlop_og_postdoktor: 'vitenskap_doktorlop_og_postdoktor',
+    vitenskap_forskning: 'vitenskap_forskning',
+    vitenskap_undervisning_og_forskning: 'vitenskap_undervisning_og_forskning',
+    vitenskap_forskningsledelse: 'vitenskap_forskningsledelse',
+    vitenskap_institusjonsledelse: 'vitenskap_institusjonsledelse',
     natur_felt_og_formidling: 'natur_felt_og_formidling',
     natur_forvaltning_og_radgivning: 'natur_forvaltning_og_radgivning',
     natur_biologi_og_forskning: 'natur_biologi_og_forskning',
@@ -97,65 +103,31 @@
   ROLE_SCOPE_BY_ROLE_ID.barnehageassistent = 'barnehageassistent';
 
   const NAERINGSLIV_ROLE_SCOPE_BY_TITLE = {
-    arbeider: 'arbeider',
-    ekspeditor: 'ekspeditor',
-    butikkmedarbeider: 'ekspeditor',
-    ekspeditor_butikkmedarbeider: 'ekspeditor',
-    lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider',
-    renholder: 'renholder',
-    okonomi_og_administrasjonsmedarbeider: 'administrasjonsmedarbeider',
-    administrasjonsmedarbeider: 'administrasjonsmedarbeider',
-    fagarbeider: 'fagarbeider',
-    skiftleder: 'formann',
-    formann: 'formann',
-    arbeidsleder: 'formann',
-    formann_arbeidsleder: 'formann',
-    controller: 'controller',
-    finansanalytiker: 'controller',
-    okonomi_og_finanssjef: 'controller',
-    finansdirektor: 'controller',
-    avdelingsleder: 'avdelingsleder',
-    driftsleder: 'avdelingsleder',
-    produksjonsleder: 'avdelingsleder',
-    butikksjef_enhetsleder: 'avdelingsleder',
-    daglig_leder: 'avdelingsleder',
-    konserndirektor: 'mellomleder',
-    konsernsjef: 'mellomleder',
-    kapitalforvalter: 'mellomleder'
+    arbeider: 'arbeider', ekspeditor: 'ekspeditor', butikkmedarbeider: 'ekspeditor', ekspeditor_butikkmedarbeider: 'ekspeditor',
+    lager_og_driftsmedarbeider: 'lager_og_driftsmedarbeider', renholder: 'renholder',
+    okonomi_og_administrasjonsmedarbeider: 'administrasjonsmedarbeider', administrasjonsmedarbeider: 'administrasjonsmedarbeider',
+    fagarbeider: 'fagarbeider', skiftleder: 'formann', formann: 'formann', arbeidsleder: 'formann', formann_arbeidsleder: 'formann',
+    controller: 'controller', finansanalytiker: 'controller', okonomi_og_finanssjef: 'controller', finansdirektor: 'controller',
+    avdelingsleder: 'avdelingsleder', driftsleder: 'avdelingsleder', produksjonsleder: 'avdelingsleder',
+    butikksjef_enhetsleder: 'avdelingsleder', daglig_leder: 'avdelingsleder', konserndirektor: 'mellomleder',
+    konsernsjef: 'mellomleder', kapitalforvalter: 'mellomleder'
   };
+  const NAERINGSLIV_NON_JOB_TITLES = new Set(['grunder','bedriftseier','investor','industribygger','industrieier']);
 
-  const NAERINGSLIV_NON_JOB_TITLES = new Set([
-    'grunder','bedriftseier','investor','industribygger','industrieier'
-  ]);
-
-  const SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE = {
-    barnehageassistent_pedagogisk_medarbeider: 'barnehageassistent'
-  };
+  const SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE = { barnehageassistent_pedagogisk_medarbeider: 'barnehageassistent' };
 
   const BY_ROLE_SCOPE_BY_TITLE = {
-    studentassistent: 'by_assistent',
-    praktikant_arkitektur_plan: 'by_assistent',
-    prosjektmedarbeider: 'by_assistent',
-    saksbehandler_plan_bygg: 'by_saksbehandler',
-    forstekonsulent: 'by_saksbehandler',
-    radgiver_byutvikling: 'by_radgiver_plan',
-    seniorradgiver_byutvikling: 'by_radgiver_plan',
-    arealplanlegger: 'by_radgiver_plan',
-    byplanlegger: 'by_radgiver_plan',
-    prosjektleder_byutvikling: 'by_prosjektleder',
-    seksjonsleder: 'by_prosjektleder',
-    fagsjef_plan_bygg: 'by_prosjektleder',
-    direktor_byutvikling: 'by_prosjektleder',
-    arkitekt: 'by_arkitekt',
-    seniorarkitekt: 'by_arkitekt',
-    byarkitekt: 'by_arkitekt'
+    studentassistent: 'by_assistent', praktikant_arkitektur_plan: 'by_assistent', prosjektmedarbeider: 'by_assistent',
+    saksbehandler_plan_bygg: 'by_saksbehandler', forstekonsulent: 'by_saksbehandler',
+    radgiver_byutvikling: 'by_radgiver_plan', seniorradgiver_byutvikling: 'by_radgiver_plan', arealplanlegger: 'by_radgiver_plan', byplanlegger: 'by_radgiver_plan',
+    prosjektleder_byutvikling: 'by_prosjektleder', seksjonsleder: 'by_prosjektleder', fagsjef_plan_bygg: 'by_prosjektleder', direktor_byutvikling: 'by_prosjektleder',
+    arkitekt: 'by_arkitekt', seniorarkitekt: 'by_arkitekt', byarkitekt: 'by_arkitekt'
   };
 
   const SPORT_ROLE_SCOPE_BY_TITLE = {
-    mosjonist: 'sport_utover', aktiv_utover: 'sport_utover', konkurranseutover: 'sport_utover',
-    klubbspiller: 'sport_utover', eliteseriespiller: 'sport_utover', profesjonell_utover: 'sport_utover',
-    landslagsutover: 'sport_utover', kaptein: 'sport_kaptein', trener: 'sport_trener',
-    hovedtrener: 'sport_trener', sportssjef: 'sport_sportsledelse', olympisk_mester: 'sport_legende',
+    mosjonist: 'sport_utover', aktiv_utover: 'sport_utover', konkurranseutover: 'sport_utover', klubbspiller: 'sport_utover',
+    eliteseriespiller: 'sport_utover', profesjonell_utover: 'sport_utover', landslagsutover: 'sport_utover', kaptein: 'sport_kaptein',
+    trener: 'sport_trener', hovedtrener: 'sport_trener', sportssjef: 'sport_sportsledelse', olympisk_mester: 'sport_legende',
     idrettsstjerne: 'sport_legende', idrettslegende: 'sport_legende'
   };
 
@@ -167,9 +139,9 @@
   const RELIGION_ROLE_SCOPE_BY_TITLE = {
     religionsformidler: 'religion_formidling_og_kulturarv', kurator: 'religion_formidling_og_kulturarv',
     fagkonsulent: 'religion_utredning_og_radgivning', seniorradgiver: 'religion_utredning_og_radgivning',
-    religionshistoriker: 'religion_forskning', religionsviter: 'religion_forskning', forsker: 'religion_forskning',
-    seniorforsker: 'religion_forskning', fagansvarlig: 'religion_fagledelse', seksjonsleder: 'religion_fagledelse',
-    avdelingsleder: 'religion_fagledelse', avdelingsdirektor: 'religion_fagledelse', direktor: 'religion_fagledelse'
+    religionshistoriker: 'religion_forskning', religionsviter: 'religion_forskning', forsker: 'religion_forskning', seniorforsker: 'religion_forskning',
+    fagansvarlig: 'religion_fagledelse', seksjonsleder: 'religion_fagledelse', avdelingsleder: 'religion_fagledelse',
+    avdelingsdirektor: 'religion_fagledelse', direktor: 'religion_fagledelse'
   };
 
   const FILOSOFI_ROLE_SCOPE_BY_TITLE = {
@@ -188,93 +160,87 @@
     saksbehandler: 'historie_forvaltning_og_radgivning', forstekonsulent: 'historie_forvaltning_og_radgivning',
     radgiver: 'historie_forvaltning_og_radgivning', seniorradgiver: 'historie_forvaltning_og_radgivning',
     arkivar: 'historie_arkiv_og_dokumentasjon', spesialradgiver: 'historie_forvaltning_og_radgivning',
-    konservator: 'historie_museum_og_samling', kurator: 'historie_museum_og_samling',
-    senior_konservator: 'historie_museum_og_samling', senior_kurator: 'historie_museum_og_samling',
-    forsker: 'historie_forskning_og_akademia', seniorforsker: 'historie_forskning_og_akademia',
-    seksjonsleder: 'historie_fagledelse', avdelingsleder: 'historie_fagledelse',
+    konservator: 'historie_museum_og_samling', kurator: 'historie_museum_og_samling', senior_konservator: 'historie_museum_og_samling', senior_kurator: 'historie_museum_og_samling',
+    forsker: 'historie_forskning_og_akademia', seniorforsker: 'historie_forskning_og_akademia', seksjonsleder: 'historie_fagledelse', avdelingsleder: 'historie_fagledelse',
     avdelingsdirektor: 'historie_institusjonsledelse', direktor: 'historie_institusjonsledelse'
   };
-  const HISTORIE_NON_JOB_TITLES = new Set(['student', 'masterstuden']);
+  const HISTORIE_NON_JOB_TITLES = new Set(['student','masterstuden']);
 
   const KUNST_ROLE_SCOPE_BY_TITLE = {
-    vertskap_museum_galleri: 'kunst_publikum_og_formidling',
-    gallerimedarbeider: 'kunst_publikum_og_formidling',
-    formidler: 'kunst_publikum_og_formidling',
-    produksjonsassistent: 'kunst_utstillingsproduksjon',
-    utstillingskoordinator: 'kunst_utstillingsproduksjon',
-    utstillingsprodusent: 'kunst_utstillingsproduksjon',
-    kuratorassistent: 'kunst_kuratering_og_program',
-    kurator: 'kunst_kuratering_og_program',
-    senior_kurator: 'kunst_kuratering_og_program',
-    konservator: 'kunst_konservering_og_samling',
-    senior_konservator: 'kunst_konservering_og_samling',
-    kunstnerisk_leder: 'kunst_kunstnerisk_ledelse',
-    museumsdirektor: 'kunst_museumsledelse'
+    vertskap_museum_galleri: 'kunst_publikum_og_formidling', gallerimedarbeider: 'kunst_publikum_og_formidling', formidler: 'kunst_publikum_og_formidling',
+    produksjonsassistent: 'kunst_utstillingsproduksjon', utstillingskoordinator: 'kunst_utstillingsproduksjon', utstillingsprodusent: 'kunst_utstillingsproduksjon',
+    kuratorassistent: 'kunst_kuratering_og_program', kurator: 'kunst_kuratering_og_program', senior_kurator: 'kunst_kuratering_og_program',
+    konservator: 'kunst_konservering_og_samling', senior_konservator: 'kunst_konservering_og_samling',
+    kunstnerisk_leder: 'kunst_kunstnerisk_ledelse', museumsdirektor: 'kunst_museumsledelse'
   };
   const KUNST_NON_JOB_TITLES = new Set(['gallerist']);
 
   const SCENEKUNST_ROLE_SCOPE_BY_TITLE = {
-    scenevert: 'scenekunst_scene_og_produksjon',
-    produksjonsassistent: 'scenekunst_scene_og_produksjon',
-    scenetekniker: 'scenekunst_scene_og_produksjon',
-    inspisientassistent: 'scenekunst_scene_og_produksjon',
-    produsent: 'scenekunst_scene_og_produksjon',
-    skuespiller_danser: 'scenekunst_utoving_og_ensemble',
-    dramaturg: 'scenekunst_dramaturgi_og_utvikling',
-    regissor: 'scenekunst_regi_og_koreografi',
-    koreograf: 'scenekunst_regi_og_koreografi',
-    scenekunstkurator: 'scenekunst_program_og_kuratering',
-    kunstnerisk_leder: 'scenekunst_institusjonsledelse',
-    teatersjef: 'scenekunst_institusjonsledelse'
+    scenevert: 'scenekunst_scene_og_produksjon', produksjonsassistent: 'scenekunst_scene_og_produksjon', scenetekniker: 'scenekunst_scene_og_produksjon',
+    inspisientassistent: 'scenekunst_scene_og_produksjon', produsent: 'scenekunst_scene_og_produksjon', skuespiller_danser: 'scenekunst_utoving_og_ensemble',
+    dramaturg: 'scenekunst_dramaturgi_og_utvikling', regissor: 'scenekunst_regi_og_koreografi', koreograf: 'scenekunst_regi_og_koreografi',
+    scenekunstkurator: 'scenekunst_program_og_kuratering', kunstnerisk_leder: 'scenekunst_institusjonsledelse', teatersjef: 'scenekunst_institusjonsledelse'
   };
-  const SCENEKUNST_NON_JOB_TITLES = new Set([
-    'publikum','utover','skuespiller_danser','dramaturg','regissor','koreograf','scenekunstkurator'
-  ]);
+  const SCENEKUNST_NON_JOB_TITLES = new Set(['publikum','utover','skuespiller_danser','dramaturg','regissor','koreograf','scenekunstkurator']);
   const SCENEKUNST_LEGACY_SCOPE_BY_ROLE_KEY = {
-    sceneassistent: 'scenekunst_scene_og_produksjon',
-    produksjonsmedarbeider: 'scenekunst_scene_og_produksjon',
-    ensemblemedlem: 'scenekunst_utoving_og_ensemble',
-    hovedrolleinnehaver: 'scenekunst_utoving_og_ensemble',
-    regissor_teater: 'scenekunst_regi_og_koreografi'
+    sceneassistent: 'scenekunst_scene_og_produksjon', produksjonsmedarbeider: 'scenekunst_scene_og_produksjon',
+    ensemblemedlem: 'scenekunst_utoving_og_ensemble', hovedrolleinnehaver: 'scenekunst_utoving_og_ensemble', regissor_teater: 'scenekunst_regi_og_koreografi'
+  };
+
+  const VITENSKAP_ROLE_SCOPE_BY_TITLE = {
+    studentassistent: 'vitenskap_assistent_og_laboratorium', vitenskapelig_assistent: 'vitenskap_assistent_og_laboratorium',
+    forskningsassistent: 'vitenskap_assistent_og_laboratorium', laboratorieassistent: 'vitenskap_assistent_og_laboratorium',
+    stipendiat_phd: 'vitenskap_doktorlop_og_postdoktor', stipendiat: 'vitenskap_doktorlop_og_postdoktor', postdoktor: 'vitenskap_doktorlop_og_postdoktor',
+    forsker: 'vitenskap_forskning', seniorforsker: 'vitenskap_forskning',
+    forsteamanuensis: 'vitenskap_undervisning_og_forskning', professor: 'vitenskap_undervisning_og_forskning',
+    forskningsleder: 'vitenskap_forskningsledelse', instituttleder: 'vitenskap_institusjonsledelse', dekan: 'vitenskap_institusjonsledelse'
+  };
+  const VITENSKAP_LEGACY_SCOPE_BY_ROLE_ID = {
+    vitenskap_studentassistent: 'vitenskap_assistent_og_laboratorium',
+    vitenskap_vitenskapelig_assistent: 'vitenskap_assistent_og_laboratorium',
+    vitenskap_forskningsassistent: 'vitenskap_assistent_og_laboratorium',
+    vitenskap_laboratorieassistent: 'vitenskap_assistent_og_laboratorium',
+    vitenskap_stipendiat_phd: 'vitenskap_doktorlop_og_postdoktor',
+    vitenskap_postdoktor: 'vitenskap_doktorlop_og_postdoktor',
+    vitenskap_forsker: 'vitenskap_forskning',
+    vitenskap_seniorforsker: 'vitenskap_forskning',
+    vitenskap_forsteamanuensis: 'vitenskap_undervisning_og_forskning',
+    vitenskap_professor: 'vitenskap_undervisning_og_forskning',
+    vitenskap_forskningsleder: 'vitenskap_forskningsledelse',
+    vitenskap_instituttleder: 'vitenskap_institusjonsledelse',
+    vitenskap_dekan: 'vitenskap_institusjonsledelse'
   };
 
   const NATUR_ROLE_SCOPE_BY_TITLE = {
-    feltassistent: 'natur_felt_og_formidling', naturveileder: 'natur_felt_og_formidling',
-    naturforvalter: 'natur_forvaltning_og_radgivning', radgiver_miljo_natur: 'natur_forvaltning_og_radgivning',
-    seniorradgiver_miljo_natur: 'natur_forvaltning_og_radgivning', biolog: 'natur_biologi_og_forskning',
-    okolog: 'natur_biologi_og_forskning', forsker_miljo_natur: 'natur_biologi_og_forskning',
-    seniorforsker_miljo_natur: 'natur_biologi_og_forskning', naturvernleder: 'natur_miljoledelse',
-    miljosjef: 'natur_miljoledelse', miljodirektor: 'natur_miljoledelse', statsrad_klima_og_miljo: 'natur_politisk_myndighet'
+    feltassistent: 'natur_felt_og_formidling', naturveileder: 'natur_felt_og_formidling', naturforvalter: 'natur_forvaltning_og_radgivning',
+    radgiver_miljo_natur: 'natur_forvaltning_og_radgivning', seniorradgiver_miljo_natur: 'natur_forvaltning_og_radgivning',
+    biolog: 'natur_biologi_og_forskning', okolog: 'natur_biologi_og_forskning', forsker_miljo_natur: 'natur_biologi_og_forskning',
+    seniorforsker_miljo_natur: 'natur_biologi_og_forskning', naturvernleder: 'natur_miljoledelse', miljosjef: 'natur_miljoledelse', miljodirektor: 'natur_miljoledelse',
+    statsrad_klima_og_miljo: 'natur_politisk_myndighet'
   };
 
   const POLITIKK_ROLE_SCOPE_BY_TITLE = {
-    organisasjonssekretaer: 'politikk_organisasjonsarbeid', politisk_radgiver: 'politikk_politisk_radgivning',
-    ordforer: 'politikk_kommunal_ledelse', stortingsrepresentant: 'politikk_parlamentarisk_arbeid',
-    statssekretaer: 'politikk_regjeringsledelse', statsrad_minister: 'politikk_regjeringsledelse',
+    organisasjonssekretaer: 'politikk_organisasjonsarbeid', politisk_radgiver: 'politikk_politisk_radgivning', ordforer: 'politikk_kommunal_ledelse',
+    stortingsrepresentant: 'politikk_parlamentarisk_arbeid', statssekretaer: 'politikk_regjeringsledelse', statsrad_minister: 'politikk_regjeringsledelse',
     statsminister: 'politikk_regjeringsledelse'
   };
 
   const SUBKULTUR_ROLE_SCOPE_BY_TITLE = {
-    kulturhusvert: 'subkultur_arrangementsdrift', arrangementscrew: 'subkultur_arrangementsdrift',
-    produksjonsassistent: 'subkultur_arrangementsdrift', kulturmedarbeider: 'subkultur_arrangementsdrift',
-    arrangementsplanlegger: 'subkultur_program_og_koordinering', kulturkonsulent: 'subkultur_program_og_koordinering',
-    booking_og_innholdskoordinator: 'subkultur_program_og_koordinering', produsent: 'subkultur_produksjon_og_prosjekt',
-    prosjektleder_kulturarrangement: 'subkultur_produksjon_og_prosjekt', produksjonsleder: 'subkultur_produksjonsledelse',
-    daglig_leder_kulturarena: 'subkultur_kulturarena_ledelse', observor: 'subkultur_arrangementsdrift',
-    deltaker: 'subkultur_arrangementsdrift', hakkekylling: 'subkultur_arrangementsdrift', gatesmart: 'subkultur_arrangementsdrift',
-    crew: 'subkultur_program_og_koordinering', gangster: 'subkultur_program_og_koordinering', dandy: 'subkultur_program_og_koordinering',
-    kultfigur: 'subkultur_produksjon_og_prosjekt', trendsetter: 'subkultur_produksjon_og_prosjekt',
-    undergrunnsikon: 'subkultur_produksjonsledelse', legend: 'subkultur_kulturarena_ledelse'
+    kulturhusvert: 'subkultur_arrangementsdrift', arrangementscrew: 'subkultur_arrangementsdrift', produksjonsassistent: 'subkultur_arrangementsdrift',
+    kulturmedarbeider: 'subkultur_arrangementsdrift', arrangementsplanlegger: 'subkultur_program_og_koordinering', kulturkonsulent: 'subkultur_program_og_koordinering',
+    booking_og_innholdskoordinator: 'subkultur_program_og_koordinering', produsent: 'subkultur_produksjon_og_prosjekt', prosjektleder_kulturarrangement: 'subkultur_produksjon_og_prosjekt',
+    produksjonsleder: 'subkultur_produksjonsledelse', daglig_leder_kulturarena: 'subkultur_kulturarena_ledelse', observor: 'subkultur_arrangementsdrift',
+    deltaker: 'subkultur_arrangementsdrift', hakkekylling: 'subkultur_arrangementsdrift', gatesmart: 'subkultur_arrangementsdrift', crew: 'subkultur_program_og_koordinering',
+    gangster: 'subkultur_program_og_koordinering', dandy: 'subkultur_program_og_koordinering', kultfigur: 'subkultur_produksjon_og_prosjekt',
+    trendsetter: 'subkultur_produksjon_og_prosjekt', undergrunnsikon: 'subkultur_produksjonsledelse', legend: 'subkultur_kulturarena_ledelse'
   };
 
   const PSYKOLOGI_ROLE_SCOPE_BY_TITLE = {
-    miljoassistent: 'psykologi_miljoarbeid', sosialassistent: 'psykologi_miljoarbeid',
-    aktivitetsleder_omsorgsarbeid: 'psykologi_miljoarbeid', miljoarbeider: 'psykologi_miljoarbeid',
-    veileder: 'psykologi_arbeids_og_karriereveiledning', radgiver: 'psykologi_arbeids_og_karriereveiledning',
-    seniorradgiver: 'psykologi_arbeids_og_karriereveiledning', jobbveileder: 'psykologi_arbeids_og_karriereveiledning',
-    karriereveileder: 'psykologi_arbeids_og_karriereveiledning', karriereradgiver: 'psykologi_arbeids_og_karriereveiledning',
-    psykolog: 'psykolog', spesialistpsykolog: 'spesialistpsykolog', fagansvarlig: 'fagansvarlig',
-    klinikkleder: 'klinikkleder', forsker_psykologi: 'forsker_psykologi', professor_psykologi: 'professor_psykologi'
+    miljoassistent: 'psykologi_miljoarbeid', sosialassistent: 'psykologi_miljoarbeid', aktivitetsleder_omsorgsarbeid: 'psykologi_miljoarbeid', miljoarbeider: 'psykologi_miljoarbeid',
+    veileder: 'psykologi_arbeids_og_karriereveiledning', radgiver: 'psykologi_arbeids_og_karriereveiledning', seniorradgiver: 'psykologi_arbeids_og_karriereveiledning',
+    jobbveileder: 'psykologi_arbeids_og_karriereveiledning', karriereveileder: 'psykologi_arbeids_og_karriereveiledning', karriereradgiver: 'psykologi_arbeids_og_karriereveiledning',
+    psykolog: 'psykolog', spesialistpsykolog: 'spesialistpsykolog', fagansvarlig: 'fagansvarlig', klinikkleder: 'klinikkleder',
+    forsker_psykologi: 'forsker_psykologi', professor_psykologi: 'professor_psykologi'
   };
 
   function mapped(map, roleKey, titleKey) {
@@ -297,13 +263,11 @@
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && (roleKey.startsWith('psykologi_') || roleKey.endsWith('_psykologi'))) return roleKey;
     }
-
     if (careerId === 'subkultur') {
       const hit = mapped(SUBKULTUR_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('subkultur_')) return roleKey;
     }
-
     if (careerId === 'sport') {
       const hit = mapped(SPORT_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
@@ -313,67 +277,61 @@
       if (titleKey.includes('trener')) return 'sport_trener';
       if (titleKey.includes('sportssjef')) return 'sport_sportsledelse';
     }
-
     if (careerId === 'media') {
       const hit = mapped(MEDIA_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('media_')) return roleKey;
     }
-
     if (careerId === 'religion') {
       const hit = mapped(RELIGION_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('religion_')) return roleKey;
     }
-
     if (careerId === 'filosofi') {
       const hit = mapped(FILOSOFI_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('filosofi_')) return roleKey;
     }
-
     if (careerId === 'musikk') {
       const hit = mapped(MUSIKK_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('musikk_')) return roleKey;
     }
-
     if (careerId === 'historie') {
       if (HISTORIE_NON_JOB_TITLES.has(titleKey) || HISTORIE_NON_JOB_TITLES.has(roleKey)) return 'unknown';
       const hit = mapped(HISTORIE_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('historie_')) return roleKey;
     }
-
     if (careerId === 'kunst') {
       if (KUNST_NON_JOB_TITLES.has(titleKey) || KUNST_NON_JOB_TITLES.has(roleKey)) return 'unknown';
       const hit = mapped(KUNST_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('kunst_')) return roleKey;
     }
-
     if (careerId === 'scenekunst' || careerId === 'teater') {
-      if (careerId === 'teater' && SCENEKUNST_LEGACY_SCOPE_BY_ROLE_KEY[roleKey]) {
-        return SCENEKUNST_LEGACY_SCOPE_BY_ROLE_KEY[roleKey];
-      }
+      if (careerId === 'teater' && SCENEKUNST_LEGACY_SCOPE_BY_ROLE_KEY[roleKey]) return SCENEKUNST_LEGACY_SCOPE_BY_ROLE_KEY[roleKey];
       if (SCENEKUNST_NON_JOB_TITLES.has(titleKey) || SCENEKUNST_NON_JOB_TITLES.has(roleKey)) return 'unknown';
       const hit = mapped(SCENEKUNST_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('scenekunst_')) return roleKey;
     }
-
+    if (careerId === 'vitenskap') {
+      if (VITENSKAP_LEGACY_SCOPE_BY_ROLE_ID[roleId]) return VITENSKAP_LEGACY_SCOPE_BY_ROLE_ID[roleId];
+      const hit = mapped(VITENSKAP_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
+      if (hit) return hit;
+      if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('vitenskap_')) return roleKey;
+    }
     if (careerId === 'natur') {
       const hit = mapped(NATUR_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('natur_')) return roleKey;
     }
-
     if (careerId === 'politikk') {
       const hit = mapped(POLITIKK_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (ROLE_ID_BY_SCOPE[roleKey] && roleKey.startsWith('politikk_')) return roleKey;
     }
-
     if (careerId === 'by') {
       const hit = mapped(BY_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
@@ -384,13 +342,11 @@
       if (titleKey.includes('prosjektleder') || titleKey.includes('seksjonsleder') || titleKey.includes('fagsjef') || titleKey.includes('direktor')) return 'by_prosjektleder';
       if (titleKey.includes('arkitekt')) return 'by_arkitekt';
     }
-
     if (careerId === 'sosial_laering') {
       const hit = mapped(SOSIAL_LAERING_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
       if (hit) return hit;
       if (roleKey.includes('barnehageassistent') || titleKey.includes('barnehageassistent') || titleKey.includes('pedagogisk_medarbeider')) return 'barnehageassistent';
     }
-
     if (careerId === 'naeringsliv') {
       if (NAERINGSLIV_NON_JOB_TITLES.has(titleKey) || NAERINGSLIV_NON_JOB_TITLES.has(roleKey)) return 'unknown';
       const hit = mapped(NAERINGSLIV_ROLE_SCOPE_BY_TITLE, roleKey, titleKey);
@@ -414,6 +370,7 @@
       'historie_arkiv_og_dokumentasjon','historie_forvaltning_og_radgivning','historie_museum_og_samling','historie_forskning_og_akademia','historie_fagledelse','historie_institusjonsledelse',
       'kunst_publikum_og_formidling','kunst_utstillingsproduksjon','kunst_kuratering_og_program','kunst_konservering_og_samling','kunst_kunstnerisk_ledelse','kunst_museumsledelse',
       'scenekunst_scene_og_produksjon','scenekunst_utoving_og_ensemble','scenekunst_dramaturgi_og_utvikling','scenekunst_regi_og_koreografi','scenekunst_program_og_kuratering','scenekunst_institusjonsledelse',
+      'vitenskap_assistent_og_laboratorium','vitenskap_doktorlop_og_postdoktor','vitenskap_forskning','vitenskap_undervisning_og_forskning','vitenskap_forskningsledelse','vitenskap_institusjonsledelse',
       'natur_felt_og_formidling','natur_forvaltning_og_radgivning','natur_biologi_og_forskning','natur_miljoledelse','natur_politisk_myndighet',
       'politikk_organisasjonsarbeid','politikk_politisk_radgivning','politikk_kommunal_ledelse','politikk_parlamentarisk_arbeid','politikk_regjeringsledelse',
       'subkultur_arrangementsdrift','subkultur_program_og_koordinering','subkultur_produksjon_og_prosjekt','subkultur_produksjonsledelse','subkultur_kulturarena_ledelse',
@@ -421,7 +378,6 @@
       'sport_utover','sport_kaptein','sport_trener','sport_sportsledelse','sport_legende','media_redaksjonell_ledelse','media_redaksjon',
       'by_assistent','by_saksbehandler','by_radgiver_plan','by_prosjektleder','by_arkitekt'
     ];
-
     for (const scope of genericScopes) {
       if (roleKey.includes(scope)) return scope;
     }
