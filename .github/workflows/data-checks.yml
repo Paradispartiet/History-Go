@@ -24,6 +24,7 @@ on:
       - 'tests/quiz-content-quality-audit.test.mjs'
       - 'tests/torggata-phase14-discovery.test.mjs'
       - 'tests/torggata-phase15-physical-visit.test.mjs'
+      - 'tests/torggata-phase16-favorite-progress.test.mjs'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
       - 'scripts/build-civication-history-people-index.mts'
@@ -150,6 +151,9 @@ jobs:
 
       - name: Test Torggata phase 15 physical visit contract
         run: node --test tests/torggata-phase15-physical-visit.test.mjs
+
+      - name: Test Torggata phase 16 favorite and progress contract
+        run: node --test tests/torggata-phase16-favorite-progress.test.mjs
 
       - name: Enforce Politikk place production reports
         shell: bash
