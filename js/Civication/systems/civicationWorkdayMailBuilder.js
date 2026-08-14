@@ -621,7 +621,7 @@
         consumer: norm(options.consumer || "daily_extra_slots") || "daily_extra_slots"
       })
     ]);
-    const plannedPrimary = plannedEventFromRuntime(base);
+    const plannedPrimary = /** @type {any} */ (plannedEventFromRuntime(base));
     const usedSourceIds = consumedSet(currentState);
     addExistingSourcesToUsed(base, usedSourceIds);
     const plannedId = norm(
@@ -733,7 +733,7 @@
     };
   }
   function patchEventEngineCandidateOwner(director) {
-    const proto = window.CivicationEventEngine?.prototype;
+    const proto = /** @type {any} */ (window.CivicationEventEngine?.prototype);
     if (!proto || !director) return false;
     if (proto[EVENT_ENGINE_PATCH_FLAG] === true) return true;
     if (typeof proto.buildMailPool !== "function") return false;
@@ -823,7 +823,7 @@
     }
     function inspect() {
       const active = getActive();
-      const proto = window.CivicationEventEngine?.prototype;
+      const proto = /** @type {any} */ (window.CivicationEventEngine?.prototype);
       const dailyBuilder = window.CivicationDailyMailBuilder;
       return {
         version: SCENE_DIRECTOR_VERSION,
@@ -928,7 +928,7 @@
     return built;
   }
   function patchDailyEventEngineEntry(builder, director) {
-    const proto = window.CivicationEventEngine?.prototype;
+    const proto = /** @type {any} */ (window.CivicationEventEngine?.prototype);
     if (!proto || typeof proto.onAppOpen !== "function") return false;
     if (proto.__civicationSceneDirectorDailyEntry === proto.onAppOpen) return true;
     const previousOnAppOpen = proto.onAppOpen;
