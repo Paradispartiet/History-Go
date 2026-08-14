@@ -325,7 +325,10 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.ok(lifecycle.includes("people-priority-ready"), "sted åpnet etter boot flyttes fram i den pågående People-køen");
   assert.equal(window.HG_PEOPLE_READY, false, "resten av People kan fortsatt laste");
   assert.equal(refreshRelationStates[0], false, "direkte place-profiler venter ikke på hele relasjonsregisteret");
-  assert.deepEqual(Array.from(window.PEOPLE, person => person.id), ["person-1"]);
+  assert.ok(
+    Array.from(window.PEOPLE, person => person.id).includes("person-1"),
+    "prioritert profil for åpent sted er publisert selv om andre ferdiglastede manifestprofiler også bevares"
+  );
   assert.equal(
     fetchCache.get("data/people/by/oslo/people.json"),
     "reload",
