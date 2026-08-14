@@ -19,7 +19,8 @@
         "Add at least one genuinely old archival image compared with an actual current image when rights, identity and viewpoint are verified.",
         "Keep the 2009/2017 redevelopment layer only as a clearly labelled supplemental comparison if it remains useful."
       ],
-      "acceptance": "Manual UI review can identify the same place element immediately and can see both long-term historical change and any newer redevelopment change without misleading labels."
+      "acceptance": "Manual UI review can identify the same place element immediately and can see both long-term historical change and any newer redevelopment change without misleading labels.",
+      "workflow_status": "IN_PROGRESS"
     },
     {
       "id": "news_missing",
@@ -30,7 +31,20 @@
         "Publish dated, source-reviewed, place-specific items when available.",
         "Use N/A only after documenting that fresh search and why no safe relevant item can be shown."
       ],
-      "acceptance": "News contains useful current place-specific material, or a strict fresh-search N/A is documented and independently reviewable."
+      "acceptance": "News contains useful current place-specific material, or a strict fresh-search N/A is documented and independently reviewable.",
+      "workflow_status": "QUEUED"
+    },
+    {
+      "id": "reading_trail_missing",
+      "severity": "BLOCKING",
+      "observed": "The Reading Trail is empty. Existing Torggata candidates were held back as paywalled, but the production did not establish open, directly readable alternatives.",
+      "required_improvements": [
+        "Search repository content, open journals, libraries, archives, institutions and other relevant reading owners.",
+        "Publish Torggata-specific, directly readable material with explicit place linkage.",
+        "Treat paywalled hits as holdbacks, not as sufficient reason to stop the search or approve N/A."
+      ],
+      "acceptance": "Reading Trail contains useful open directly readable Torggata material, or a strict documented search shows that no relevant rights-safe readable text can be shown.",
+      "workflow_status": "QUEUED"
     },
     {
       "id": "more_missing",
@@ -40,7 +54,8 @@
         "Search language history, archival details, observations, knowledge, fun facts and curated relations.",
         "Produce a distinct additive layer that does not duplicate About or History."
       ],
-      "acceptance": "More contains a useful Torggata-specific layer with sources and clear ownership, not filler."
+      "acceptance": "More contains a useful Torggata-specific layer with sources and clear ownership, not filler.",
+      "workflow_status": "QUEUED"
     },
     {
       "id": "objects_structures_round_overlap",
@@ -51,7 +66,8 @@
         "Merge or replace overlapping round concepts so all four content rounds are semantically distinct.",
         "Update the canonical round contract/runtime first if the current fixed profile prevents a coherent Torggata solution."
       ],
-      "acceptance": "All four content rounds remain visible, but each has a natural label, a substantive place-specific collection and no material semantic overlap; Badge remains separate."
+      "acceptance": "All four content rounds remain visible, but each has a natural label, a substantive place-specific collection and no material semantic overlap; Badge remains separate.",
+      "workflow_status": "QUEUED"
     }
   ],
   "completion_gate": {
@@ -60,5 +76,51 @@
     "rescore_required": true,
     "minimum_dimension_score": 4,
     "minimum_total_score": 27
-  }
+  },
+  "active_phase": {
+    "id": "phase_7d_before_after",
+    "status": "IN_PROGRESS_REOPENED",
+    "exact_file_scope": [
+      "data/places/by/oslo/places/torggata.json",
+      "reports/place-production/torggata-phase7d-before-after-audit-v1.md",
+      "tests/place-card-for-na-torggata.test.js"
+    ]
+  },
+  "sequence": [
+    {
+      "order": 1,
+      "id": "before_after_comparability_and_depth",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "order": 2,
+      "id": "news_missing",
+      "status": "QUEUED"
+    },
+    {
+      "order": 3,
+      "id": "reading_trail_missing",
+      "status": "QUEUED"
+    },
+    {
+      "order": 4,
+      "id": "more_missing",
+      "status": "QUEUED"
+    },
+    {
+      "order": 5,
+      "id": "objects_structures_round_overlap",
+      "status": "QUEUED"
+    },
+    {
+      "order": 6,
+      "id": "manual_ui_and_content_reqa",
+      "status": "QUEUED"
+    },
+    {
+      "order": 7,
+      "id": "final_closeout",
+      "status": "QUEUED"
+    }
+  ]
 }
