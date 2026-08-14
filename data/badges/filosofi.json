@@ -8,19 +8,19 @@
   "description": "For dem som undersøker begreper, argumenter, verdier og de grunnleggende spørsmålene om kunnskap, virkelighet og liv.",
   "career_life_evidence": "data/Civication/filosofiCareerLifeEvidence.json",
   "tiers": [
-    {"label":"Nysgjerrig","threshold":5,"life_position":{"kind":"exploration_interest","employment_independent":true}},
-    {"label":"Spørrer","threshold":10,"life_position":{"kind":"inquiry_practice","employment_independent":true}},
-    {"label":"Samtalepartner","threshold":15,"life_position":{"kind":"dialogue_practice","employment_independent":true}},
-    {"label":"Argumentbygger","threshold":25,"life_position":{"kind":"argumentation_practice","employment_independent":true}},
-    {"label":"Filosofistudent","threshold":40,"life_position":{"kind":"learning_stage","employment_independent":true}},
+    {"label":"Nysgjerrig","threshold":5,"life_position":{"id":"nysgjerrig","label":"Nysgjerrig","kind":"exploration_interest","employment_independent":true}},
+    {"label":"Spørrer","threshold":10,"life_position":{"id":"sporrer","label":"Spørrer","kind":"inquiry_practice","employment_independent":true}},
+    {"label":"Samtalepartner","threshold":15,"life_position":{"id":"samtalepartner","label":"Samtalepartner","kind":"dialogue_practice","employment_independent":true}},
+    {"label":"Argumentbygger","threshold":25,"life_position":{"id":"argumentbygger","label":"Argumentbygger","kind":"argumentation_practice","employment_independent":true}},
+    {"label":"Filosofistudent","threshold":40,"life_position":{"id":"filosofistudent","label":"Filosofistudent","kind":"learning_stage","employment_independent":true}},
     {"label":"Idéhistoriker","threshold":60,"career_offer":{"title":"Idéhistoriker","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"filosofi_forskning_og_formidling"}},
-    {"label":"Etiker","threshold":85,"life_position":{"kind":"ethics_specialization","employment_independent":true}},
-    {"label":"Logiker","threshold":115,"life_position":{"kind":"logic_specialization","employment_independent":true}},
+    {"label":"Etiker","threshold":85,"life_position":{"id":"etiker","label":"Etiker","kind":"ethics_specialization","employment_independent":true}},
+    {"label":"Logiker","threshold":115,"life_position":{"id":"logiker","label":"Logiker","kind":"logic_specialization","employment_independent":true}},
     {"label":"Filosof","threshold":150,"career_offer":{"title":"Filosof","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":2,"role_scope":"filosofi_forskning_og_formidling"}},
-    {"label":"Fagfilosof","threshold":190,"life_position":{"kind":"professional_field_identity","employment_independent":true}},
+    {"label":"Fagfilosof","threshold":190,"life_position":{"id":"fagfilosof","label":"Fagfilosof","kind":"professional_field_identity","employment_independent":true}},
     {"label":"Foreleser","threshold":240,"career_offer":{"title":"Foreleser","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"filosofi_undervisning_og_akademia"}},
     {"label":"Professor","threshold":300,"career_offer":{"title":"Professor","policy":"qualification_required","qualification_ids":["academic_qualification_and_employment"],"salary_tier":3,"role_scope":"filosofi_undervisning_og_akademia"}},
-    {"label":"Filosofisk veileder","threshold":380,"life_position":{"kind":"philosophical_practice","employment_independent":true}}
+    {"label":"Filosofisk veileder","threshold":380,"life_position":{"id":"filosofisk_veileder","label":"Filosofisk veileder","kind":"philosophical_practice","employment_independent":true}}
   ],
   "sub": [
     "etikk","logikk","erkjennelsesteori","metafysikk","politisk_filosofi","estetikk","idehistorie","vitenskapsfilosofi","eksistensialisme","fenomenologi","sprakfilosofi","miljofilosofi"
