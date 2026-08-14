@@ -1077,7 +1077,8 @@
     }
     const descriptor = Object.getOwnPropertyDescriptor(window, "CivicationDailyMailBuilder");
     if (descriptor && descriptor.configurable === false) return !!current;
-    if (descriptor?.set?.__civicationSceneDirectorBridge === true) return true;
+    const descriptorSetter = /** @type {any} */ (descriptor?.set);
+    if (descriptorSetter?.__civicationSceneDirectorBridge === true) return true;
     let value = current;
     const setter = function setDailyBuilder(next) {
       value = patchDailyBuilder(next, director);
