@@ -31,6 +31,8 @@ on:
       - 'reports/place-production/torggata-phase22-content-qa-audit-v1.json'
       - 'tests/torggata-phase23-ci-gates.test.mjs'
       - 'reports/place-production/torggata-phase23-ci-gates-audit-v1.json'
+      - 'tests/torggata-phase24-one-place-gate.test.mjs'
+      - 'reports/place-production/torggata-phase24-one-place-gate-audit-v1.json'
       - 'js/map.ts'
       - 'js/map.js'
       - 'js/app.js'
@@ -176,6 +178,9 @@ jobs:
 
       - name: Test Torggata phase 23 repository gates
         run: node --test tests/torggata-phase23-ci-gates.test.mjs
+
+      - name: Test Torggata phase 24 one-place merge gate
+        run: node --test tests/torggata-phase24-one-place-gate.test.mjs
 
       - name: Enforce Politikk place production reports
         shell: bash
