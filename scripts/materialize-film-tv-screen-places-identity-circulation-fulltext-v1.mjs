@@ -207,39 +207,121 @@ export function buildClaimSourceIdsByClaim(topicBriefs) {
 function renderParagraph({ topic, claim, claimIndex, editorial, selectedSources, selectedCases }) {
   const [primary, secondary, tertiary] = selectedSources;
   const [caseRow, controlCase] = selectedCases;
-  const ordinal = claimIndex + 1;
-  const inlineProse = (value) => stripTerminalPunctuation(value)
-    .replace(/(?<=[.!?])\s+/gu, '; ')
-    .replace(/\s+/gu, ' ')
-    .trim();
-  const lowerInitial = (value) => String(value || '').replace(/^./u, (character) => character.toLocaleLowerCase('nb-NO'));
-  const paragraphLabel = `${editorial.title.toLocaleLowerCase('nb-NO')}, fagavsnitt ${ordinal}`;
   const sourceOne = primary
-    ? `I ${paragraphLabel} er hovedsporet «${primary.title}» fra ${primary.publisher}: ${inlineProse(primary.source_location)}; kilden avgrenses til ${primary.territory}, med evidensrollen ${primary.evidence_role}.`
+    ? `Hovedsporet er «${primary.title}» fra ${primary.publisher}. ${sentence(primary.source_location)} Kilden brukes innenfor ${primary.territory}, og dens evidensrolle er ${primary.evidence_role}.`
     : '';
   const sourceTwo = secondary
-    ? `Kontrollsporet i ${paragraphLabel} er «${secondary.title}» fra ${secondary.publisher}: ${inlineProse(secondary.source_location)}; det brukes innenfor ${secondary.territory}.`
+    ? `Et uavhengig kontrollspor er «${secondary.title}» fra ${secondary.publisher}. ${sentence(secondary.source_location)} Kontrollens territorielle rekkevidde er ${secondary.territory}.`
     : '';
   const sourceThree = tertiary
-    ? `Det tredje kildesporet i ${paragraphLabel}, «${tertiary.title}» fra ${tertiary.publisher}, prøver bare påstandens rekkevidde: ${inlineProse(tertiary.source_location)}.`
+    ? `Et tredje spor, «${tertiary.title}» fra ${tertiary.publisher}, brukes bare til å prøve rekkevidden: ${sentence(tertiary.source_location)}`
     : '';
   const caseSentence = caseRow
-    ? `Hovedcaset i ${paragraphLabel} er ${caseRow.work} (${caseRow.medium}; ${caseRow.territory}); det brukes fordi ${lowerInitial(inlineProse(caseRow.purpose))}.`
+    ? `Det dokumenterte caset ${caseRow.work} (${caseRow.medium}; ${caseRow.territory}) brukes fordi ${sentence(caseRow.purpose).replace(/^./u, (c) => c.toLowerCase())}`
     : '';
   const controlSentence = controlCase
-    ? `Motcaset i ${paragraphLabel} er ${controlCase.work} i ${controlCase.territory}; det avgrenser sammenligningen ved å ${lowerInitial(inlineProse(controlCase.purpose))}.`
+    ? `Som motkontroll står ${controlCase.work} i ${controlCase.territory}; dette caset avgrenser sammenligningen ved å ${sentence(controlCase.purpose).replace(/^./u, (c) => c.toLowerCase())}`
     : '';
+  const ordinal = claimIndex + 1;
   return [
-    `${editorial.title}, fagavsnitt ${ordinal}: ${inlineProse(claim.claim_focus)}; som analytisk linse brukes ${lowerInitial(inlineProse(editorial.lens))}.`,
+    `${editorial.title}, fagavsnitt ${ordinal}: ${sentence(claim.claim_focus)} ${editorial.lens}`,
     sourceOne,
     sourceTwo,
     sourceThree,
     caseSentence,
     controlSentence,
-    `Metodisk behandles sluttpåstanden i ${paragraphLabel} som «${claim.claim_type}»; derfor må verk, versjon, periode, territorium, kildetype og representasjonsgrep navngis, mens motstridende evidens holdes synlig.`,
-    `${inlineProse(editorial.disagreement)}; i ${paragraphLabel} brukes denne uenigheten til å kontrollere påstandens omfang, ikke til å introdusere nye sideclaims.`,
-    `${inlineProse(editorial.limits[0])}; ${lowerInitial(inlineProse(editorial.limits[1]))}; konklusjonen i ${paragraphLabel} gjelder derfor bare den dokumenterte representasjonen, sirkulasjonen eller minnepraksisen i claimet, mens vist sted, faktisk opptakssted, fiktivt eller sammensatt rom og dokumentert lokal virkning forblir separate nivåer, og samtykke, bilderett, fysisk inngrep, filmturisme samt miljømessig eller økonomisk lokal effekt ligger i enhet 13.`
+    `Metodisk behandles sluttpåstanden som «${claim.claim_type}». Det betyr at verk, versjon, periode, territorium, kildetype og representasjonsgrep må navngis, og at motstridende evidens ikke skjules i en samlet formulering.`,
+    `${editorial.disagreement} For akkurat dette fagavsnittet er uenigheten en kontroll av påstandens omfang, ikke en anledning til å legge inn nye sideclaims.`,
+    `${editorial.limits[0]} ${editorial.limits[1]} Derfor gjelder konklusjonen bare den dokumenterte representasjonen, sirkulasjonen eller minnepraksisen som claimet beskriver; vist sted, faktisk opptakssted, fiktivt eller sammensatt rom og dokumentert lokal virkning forblir separate nivåer, og samtykke, bilderett, fysisk inngrep, filmturisme og miljømessig eller økonomisk lokal effekt ligger i enhet 13.`
   ].filter(Boolean).join(' ');
+}
+
+function buildModule({ modulePlan, sequence, topicsByEmne, sourceById, caseById, emneById, claimSourceIds }) {
+  const moduleTopics = modulePlan.emne_ids.map((id) => {
+    const topic = topicsByEmne.get(id);
+    assert(topic, `Modul ${modulePlan.id} mangler topic brief for ${id}`);
+    return topic;
+  });
+  const sections = moduleTopics.map((topic) => {
+    const editorial = TOPIC_EDITORIAL[topic.emne_id];
+    assert(editorial, `Mangler redaksjonell profil for ${topic.emne_id}`);
+    const emne = emneById.get(topic.emne_id);
+    assert(emne, `Mangler canonicalt emne ${topic.emne_id}`);
+    const topicCases = topic.case_ids.map((id) => caseById.get(id));
+    assert(topicCases.every(Boolean), `Ukjent case i ${topic.emne_id}`);
+    const paragraphs = topic.planned_claims.map((claim, claimIndex) => {
+      const selectedSources = claimSourceIds[claim.id].map((id) => sourceById.get(id));
+      assert(selectedSources.every(Boolean), `Ukjent sluttkilde for ${claim.id}`);
+      const selectedCases = [
+        topicCases[claimIndex % topicCases.length],
+        topicCases[(claimIndex + 1) % topicCases.length]
+      ];
+      return renderParagraph({ topic, claim, claimIndex, editorial, selectedSources, selectedCases });
+    });
+    const researchAnchors = topic.source_ids
+      .map((id) => sourceById.get(id))
+      .filter(Boolean)
+      .map((row) => `${row.publisher}: ${row.title}`);
+    return {
+      id: `section-${slug(topic.emne_id.replace(/^em_film_tv_/u, ''))}`,
+      title: emne.title || editorial.title,
+      emne_ids: [topic.emne_id],
+      paragraphs,
+      paragraphClaimIds: topic.planned_claims.map((claim) => [claim.id]),
+      keyPoints: [
+        topic.planned_claims[0].claim_focus,
+        topic.planned_claims.at(-1).claim_focus
+      ],
+      keyPointClaimIds: [
+        [topic.planned_claims[0].id],
+        [topic.planned_claims.at(-1).id]
+      ],
+      documentedCaseIds: [...topic.case_ids],
+      theoryResearchers: researchAnchors.slice(0, Math.max(2, Math.min(4, researchAnchors.length))),
+      methodLimits: [...editorial.limits],
+      documentedDisagreement: editorial.disagreement
+    };
+  });
+  const prefix = String(sequence).padStart(2, '0');
+  const moduleId = `${prefix}-${modulePlan.id}`;
+  const firstSection = sections[0];
+  const lastSection = sections.at(-1);
+  return {
+    id: moduleId,
+    title: MODULE_TITLES[modulePlan.id] || modulePlan.id,
+    sections,
+    concepts: [
+      {
+        id: `${moduleId}-scope`,
+        term: MODULE_TITLES[modulePlan.id] || modulePlan.id,
+        definition: modulePlan.purpose
+      },
+      {
+        id: `${moduleId}-evidenslag`,
+        term: 'Evidenslag',
+        definition: 'Et eksplisitt skille mellom representert rom, produksjonsrom, sirkulasjonsrom, levd erfaring og dokumentert lokal virkning.'
+      },
+      {
+        id: `${moduleId}-rekkevidde`,
+        term: 'Kilderekkevidde',
+        definition: 'Den avgrensede perioden, territorielle rammen, medieformen og institusjonelle posisjonen en kilde faktisk kan støtte.'
+      }
+    ],
+    selfCheck: [
+      {
+        question: `Hva er hovedoppgaven i modulen «${MODULE_TITLES[modulePlan.id] || modulePlan.id}»?`,
+        answer: modulePlan.purpose
+      },
+      {
+        question: `Hvilken første metodegrense gjelder for ${firstSection.title}?`,
+        answer: firstSection.methodLimits[0]
+      },
+      {
+        question: `Hvilken siste metodegrense gjelder for ${lastSection.title}?`,
+        answer: lastSection.methodLimits[1]
+      }
+    ]
+  };
 }
 
 export function buildFilmTvScreenPlacesIdentityCirculationFulltextV1() {
