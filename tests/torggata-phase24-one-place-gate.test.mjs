@@ -69,7 +69,7 @@ test("manual quality review records the original five findings and the current r
   assert.equal(backlog.completion_gate.manual_ui_review_required, true);
   assert.equal(backlog.completion_gate.rescore_required, true);
   assert.deepEqual(backlog.active_phase, {
-    id: "reading_trail_missing",
+    id: "more_missing",
     status: "QUEUED_NEXT"
   });
   assert.equal(backlog.sequence.length, 7);
@@ -78,8 +78,8 @@ test("manual quality review records the original five findings and the current r
     [
       { id: "before_after_comparability_and_depth", status: "RESOLVED" },
       { id: "news_missing", status: "RESOLVED" },
-      { id: "reading_trail_missing", status: "QUEUED_NEXT" },
-      { id: "more_missing", status: "QUEUED" },
+      { id: "reading_trail_missing", status: "RESOLVED" },
+      { id: "more_missing", status: "QUEUED_NEXT" },
       { id: "objects_structures_round_overlap", status: "QUEUED" },
       { id: "manual_ui_and_content_reqa", status: "QUEUED" },
       { id: "final_closeout", status: "QUEUED" }
@@ -94,6 +94,9 @@ test("manual quality review records the original five findings and the current r
   const news = backlog.findings.find((finding) => finding.id === "news_missing");
   assert.equal(news.workflow_status, "RESOLVED_PHASE_7F");
   assert.equal(news.resolution.items.length, 2);
+  const reading = backlog.findings.find((finding) => finding.id === "reading_trail_missing");
+  assert.equal(reading.workflow_status, "RESOLVED_PHASE_7G");
+  assert.equal(reading.resolution.items.length, 3);
 });
 
 test("global checklist mirrors the canonical four-plus-separate-Badge contract", () => {
