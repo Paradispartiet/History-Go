@@ -1,0 +1,41 @@
+name: Torggata phase 13 brand candidates
+
+on:
+  push:
+    branches:
+      - agent/torggata-phase13-brands
+    paths:
+      - .github/workflows/torggata-phase13-brand-candidates.yml
+      - scripts/torggata-phase13-brand-candidates.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  candidates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build candidate package
+        run: node scripts/torggata-phase13-brand-candidates.mjs
+
+      - name: Upload candidate review package
+        uses: actions/upload-artifact@v4
+        with:
+          name: torggata-phase13-brand-candidates
+          path: reports/place-production/torggata-phase13-candidate-work
+          if-no-files-found: error
+          retention-days: 7
