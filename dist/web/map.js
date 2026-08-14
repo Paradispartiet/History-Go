@@ -112,28 +112,37 @@
         mapStyleMode = STYLE_MODE_STANDARD;
         saveMapStyleMode(mapStyleMode);
       }
-      MAP = new maplibregl.Map({
-        container: containerId,
-        style: getStyleUrlForMode(mapStyleMode),
-        center: [START.lon, START.lat],
-        zoom: START.zoom,
-        pitch: DEFAULT_MAP_PITCH,
-        bearing: 0,
-        antialias: true
-      });
-      MAP.addControl(
-        new maplibregl.NavigationControl({ showCompass: false }),
-        "bottom-right"
-      );
-      MAP.on("load", () => {
-        mapReady = true;
-        ensureMapStyleToggle(containerId);
-        MAP.resize();
-        applyStandardMapPalette();
-        drawPlaceMarkers();
-        moveMarkersOnTop();
-      });
-      return MAP;
+      try {
+        MAP = new maplibregl.Map({
+          container: containerId,
+          style: getStyleUrlForMode(mapStyleMode),
+          center: [START.lon, START.lat],
+          zoom: START.zoom,
+          pitch: DEFAULT_MAP_PITCH,
+          bearing: 0,
+          antialias: true
+        });
+        MAP.addControl(
+          new maplibregl.NavigationControl({ showCompass: false }),
+          "bottom-right"
+        );
+        MAP.on("load", () => {
+          mapReady = true;
+          ensureMapStyleToggle(containerId);
+          MAP.resize();
+          applyStandardMapPalette();
+          drawPlaceMarkers();
+          moveMarkersOnTop();
+        });
+        return MAP;
+      } catch (error) {
+        MAP = null;
+        mapReady = false;
+        el.dataset.mapUnavailable = "1";
+        el.setAttribute("aria-label", "Kart utilgjengelig – innhold kan fortsatt brukes");
+        console.warn("[HGMap] WebGL-kart utilgjengelig; fortsetter uten kart.", error);
+        return null;
+      }
     }
     function resize() {
       if (MAP && typeof MAP.resize === "function") MAP.resize();
