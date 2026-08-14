@@ -72,7 +72,7 @@
 | 21. UI-QA | **GODKJENT ETTER SIKRINGSENDRING** | WebGL-feil stopper ikke lenger app-/PlaceCard-boot; produksjonsflaten kontrollert |
 | 22. Innholds-QA | **GODKJENT** | 18/18 claims, Story, 5 × 7 Quiz, People 21/21, Brands 13/13, bilder og 4+1-rundinger kontrollert uten filler |
 | 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
-| 24. Ett-sted-PR | **KLAR FOR SHA-LÅST SLUTTMERGE** | kun Torggata-closeout; eksakt diff/head/CI/review/Pages kontrolleres i slutt-PR |
+| 24. Ett-sted-PR | **GODKJENT, MERGET OG DEPLOYET** | PR #4962; final head `ce1f60231db52e2472fe334cded8eda140ae429a`; merge `44a9ecf6f11a797194c34573180278bc52e4770d`; Pages run `31794520090` success |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -738,22 +738,40 @@ Neste aktive fase: **23. CI / repository-gates**.
 
 **Fase 23 CI / repository-gates = GODKJENT.**
 
-Neste aktive fase: **24. Ett-sted-PR**.
+Ingen aktiv fase gjenstår. **Torggata er sluttført.**
 
 ## Fase 24 – Ett-sted-PR
 
-### Sluttmergegate
+### Godkjent sluttresultat
 
-- PR-en gjelder bare `torggata` og fase 24.
-- Ingen People-, Story-, Quiz-, Objects-, Structures-, Brands-, bilde- eller place-data endres i slutt-PR-en.
-- Neste sted er ikke blandet inn.
-- Forventet sluttdiff er nøyaktig workflow, fase-24-audit, fase-24-test og dette workcardet.
-- Branchen skal være à jour med `main` før merge.
-- Alle reviewtråder skal være løst.
-- Alle relevante workflows skal være grønne på én uendret final head.
-- Manuell QA gjelder samme Torggata-innhold og er registrert i fase 21/22.
-- Squash-mergen skal bruke `expected_head_sha`.
-- Faktisk `main` og Pages skal kontrolleres etter merge før Torggata meldes ferdig.
-- `tests/torggata-phase24-one-place-gate.test.mjs` låser scope og forutsetninger.
+- Slutt-PR #4962 gjaldt bare `torggata` og fase 24.
+- Sluttdiffen bestod nøyaktig av workflow, fase-24-audit, fase-24-test og dette workcardet.
+- Ingen People-, Story-, Quiz-, Objects-, Structures-, Brands-, bilde- eller place-data ble endret i slutt-PR-en.
+- Neste sted var ikke blandet inn.
+- Alle reviewtråder var løst.
+- Data checks, Fagverk By og TypeScript guard var grønne på uendret final head `ce1f60231db52e2472fe334cded8eda140ae429a`.
+- PR-en ble SHA-låst squash-merget til `44a9ecf6f11a797194c34573180278bc52e4770d`.
+- `main` ble verifisert på samme merge-commit.
+- GitHub Pages build og deploy fullførte med success i run `31794520090`.
+- Produksjonen ble kontrollert med fire innholdsrundinger — People, Objects, Brands og Structures — samt separat Badge.
 
-**Fase 24 = KLAR FOR SHA-LÅST SLUTTMERGE.**
+**Fase 24 = GODKJENT, MERGET OG DEPLOYET.**
+
+## Obligatorisk seksdelt kvalitetsvurdering
+
+| Dimensjon | Score | Konkret evidens |
+| --- | ---: | --- |
+| Korrekthet og evidens | **5/5** | 18/18 produksjonsclaims er verifisert; `desc` 3/3 og `popupDesc` 31/31 setninger er claimmappet; Story, Quiz, People og Brands har egne kilde-/proveniensauditer. |
+| Dekning og ferdigstillelse | **5/5** | Fase 0–24 er behandlet; alle fire innholdsrundinger og separat Badge er kontrollert; begrunnede N/A-er og eksplisitte holdbacks er registrert uten filler eller skjulte neste-sted-endringer. |
+| Faglig/redaksjonell kvalitet | **5/5** | Innholdet er Torggata-spesifikt, den for sterke bassengpåstanden er fjernet, én sammenhengende `episode_v1`-Story er beholdt, og Works/usikre kandidater er utelatt. |
+| Teknisk integritet | **5/5** | Faseauditer og regresjonstester består; final docs-head har grønne Data checks, Fagverk/place learning, Fagverk By, TypeScript, Documentation governance og Place rounds governance; produksjonen er manuelt kontrollert i no-WebGL-modus. |
+| Sikkerhet og ansvarlighet | **4/5** | Stedspakken er ikke et klinisk eller juridisk høyrisikodomene; 14 People-bildeholdbacks bevarer koblinger uten uverifiserte bilder, Nature er begrunnet N/A, og genererte/rekonstruerte brandassets er avvist. |
+| Vedlikeholdbarhet og etterprøvbarhet | **5/5** | Canonical rundingskontrakt, styrende checklist, fase 0–24-auditer, workcard, eksakte SHA-er/run-ID-er og låsende tester gjør resultatet reproduserbart og reviewbart. |
+
+**Total: 29/30.** Alle dimensjoner er minst 4/5. Ingen kritiske avvik eller uløste blokkere gjenstår.
+
+Automatiske kontroller beviser ikke alene redaksjonell og visuell kvalitet. Derfor bygger konklusjonen også på full claim-/innholdsaudit, identitets- og provenancegjennomgang og manuell produksjonskontroll av samme Torggata-innhold.
+
+**Kvalitetsport: BESTÅTT – HØY KVALITET.**
+
+**Torggata = SLUTTFØRT.**

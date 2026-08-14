@@ -137,7 +137,7 @@ STEDSTYPE:
 KOORDINATSTATUS:
 DESCRIPTION-PRODUCTION-PACKAGE:
 LEKSIKON-ID/FIL:
-MÅL FOR INNHOLDSRUNDINGER: 3 + fast Badges
+MÅL FOR INNHOLDSRUNDINGER: 4 + separat fast Badge
 VALGTE RUNDINGER:
 PEOPLE-KANDIDATER:
 WORKS-KANDIDATER:
@@ -867,10 +867,10 @@ Status kan ikke arves mellom faner. Særlig gjelder:
 Denne oppskriften gjentar ikke rundingspalett, profiler eller naturkartkrav. **Rundingskontrakten eier hele rundingsmodellen.**
 
 - [ ] stedet følger canonical rundingskontrakt;
-- [ ] Badges-rundingen vises fast øverst til høyre ved stedsoverskriften og teller ikke blant de tre innholdsrundingene;
-- [ ] nøyaktig tre innholdsrundinger vises på én horisontal rad ved `frontImage`;
+- [ ] Badge-rundingen vises fast øverst til høyre ved stedsoverskriften og teller ikke blant de fire innholdsrundingene;
+- [ ] nøyaktig fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
 - [ ] vanlig sted bruker `people · objects · brands`, mens natursted bruker `map · flora · fauna`;
-- [ ] runtime og data bruker ikke legacy 4-/6-/9-/12-rundersmodell i mediefeltet;
+- [ ] runtime og data bruker ikke legacy 6-/9-/12-rundersmodell i mediefeltet;
 - [ ] preview brukes ikke som innholdsfilter;
 - [ ] gammel place-spesifikk `rounds`-kuratering brukes ikke som ny standard.
 
@@ -1199,12 +1199,12 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] popup har Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer;
 - [ ] rundingssettet følger `data/places/README_place_rounds.md`;
 - [ ] fast Badges-runding vises øverst til høyre ved stedsoverskriften;
-- [ ] tre innholdsrundinger vises på én horisontal rad ved `frontImage`;
+- [ ] fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
 - [ ] alle valgte rundinger har korrekte bilder;
 - [ ] People-kortet viser personens korte `desc`, ikke hele `popupDesc`;
 - [ ] full People-tekst vises først i personpopupen;
 - [ ] Badges åpner riktig sted/fagverk;
-- [ ] Badges og de tre canonicale innholdsrundingene åpner riktig innhold;
+- [ ] Badge og de fire canonicale innholdsrundingene åpner riktig innhold;
 - [ ] Brands viser bare kandidater som består `data/brands/brand_rules_v1_1.json` og har dokumentert stedskobling;
 - [ ] natursteder bruker den canonical naturprofilen;
 - [ ] Civication/Wonderkammer vises ikke som canonical runding;
@@ -1318,7 +1318,7 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 ### Rundinger
 - [ ] `data/places/README_place_rounds.md` er fulgt;
 - [ ] Badges vises fast øverst til høyre ved stedsoverskriften;
-- [ ] stedet viser nøyaktig tre innholdsrundinger fra riktig fast profil;
+- [ ] stedet viser nøyaktig fire innholdsrundinger fra riktig canonical profil;
 - [ ] preview og innhold følger rundingskontrakten.
 
 ### På stedet / læring
@@ -1428,10 +1428,10 @@ LES: docs/PLACE_POPUP_SYSTEM.md
 
 ### F. Rundinger
 LES: data/places/README_place_rounds.md
-Mål: [ ] 3 innholdsrundinger + fast Badges
-- [ ] Badges — fast øverst til høyre
+Mål: [ ] 4 innholdsrundinger + separat fast Badge
+- [ ] Badge — separat og fast øverst til høyre
 - [ ] riktig fast profil: `people · objects · brands` / `map · flora · fauna`
-- [ ] tre innholdsrundinger på én horisontal rad ved `frontImage`
+- [ ] fire innholdsrundinger i et 2 × 2-felt ved `frontImage`
 For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] riktig flow
 
 ### G. People / Stories / Quiz
@@ -1478,7 +1478,7 @@ For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] 
 - [ ] rundingsbilder
 - [ ] identitet/attribusjon
 - [ ] JSON/referanser
-- [ ] tre-rundersrad + fast Badges-plassering
+- [ ] fire-runders 2 × 2-felt + separat Badge-plassering
 - [ ] popupfaner
 - [ ] relevant CI
 - [ ] ren slutt-diff

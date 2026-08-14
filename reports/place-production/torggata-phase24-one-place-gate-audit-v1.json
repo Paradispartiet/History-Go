@@ -3,7 +3,7 @@
   "place_id": "torggata",
   "phase": 24,
   "generated_at": "2026-08-14",
-  "status": "READY_FOR_SHA_LOCKED_FINAL_MERGE",
+  "status": "APPROVED_MERGED_DEPLOYED",
   "base_branch": "main",
   "base_sha": "6bcb447e8b8501ffa61303b4a9ec00ce8e0dfdd3",
   "scope": {
@@ -40,5 +40,63 @@
     "squash merge supplies expected_head_sha",
     "merged main and Pages deployment are verified before completion is reported"
   ],
-  "conclusion": "The Torggata package is ready for the final one-place PR. Completion is reported only after exact-head CI/review verification, SHA-locked squash merge, main verification and successful Pages deployment."
+  "conclusion": "The strict Torggata one-place gate passed on the unchanged final head, PR #4962 was SHA-locked squash-merged, main and Pages were verified, and production shows four content rounds plus separate Badge.",
+  "completion_evidence": {
+    "pr": 4962,
+    "final_head_sha": "ce1f60231db52e2472fe334cded8eda140ae429a",
+    "merge_commit": "44a9ecf6f11a797194c34573180278bc52e4770d",
+    "main_verified": true,
+    "pages_run_id": 31794520090,
+    "pages_status": "SUCCESS",
+    "production_round_count": 4,
+    "production_rounds": [
+      "people",
+      "objects",
+      "brands",
+      "structures"
+    ],
+    "badge_separate": true
+  },
+  "quality_assessment": {
+    "scale": "1-5",
+    "dimensions": [
+      {
+        "id": "correctness_and_evidence",
+        "score": 5,
+        "evidence": "18/18 verified production claims; desc 3/3 and popupDesc 31/31 sentence coverage; source/provenance audits for Story, Quiz, People and Brands."
+      },
+      {
+        "id": "coverage_and_completion",
+        "score": 5,
+        "evidence": "Phases 0-24 completed; four content rounds plus separate Badge verified; N/A decisions and holdbacks explicit; no next-place scope."
+      },
+      {
+        "id": "editorial_quality",
+        "score": 5,
+        "evidence": "Torggata-specific copy and episode_v1 Story; unsupported superlative removed; filler Works and uncertain candidates excluded."
+      },
+      {
+        "id": "technical_integrity",
+        "score": 5,
+        "evidence": "Final documentation head passed Data checks, Fagverk/place learning, Fagverk By, TypeScript, Documentation governance and Place rounds governance; production manually verified in no-WebGL mode."
+      },
+      {
+        "id": "safety_and_responsibility",
+        "score": 4,
+        "evidence": "No clinical/legal high-risk scope; People image holdbacks prevent unverified imagery; Nature N/A is explicit; generated/reconstructed brand assets excluded."
+      },
+      {
+        "id": "maintainability_and_verifiability",
+        "score": 5,
+        "evidence": "Canonical contract, global checklist, phase 0-24 audits, exact SHAs/run IDs and regression tests preserve reproducibility and reviewability."
+      }
+    ],
+    "total": 29,
+    "minimum_per_dimension": 4,
+    "required_total": 27,
+    "critical_findings": [],
+    "unresolved_blockers": [],
+    "automatic_checks_limit": "Green automation does not by itself prove editorial or visual quality; full content/provenance audits and manual same-content production UI review provide the additional evidence.",
+    "gate": "PASSED_HIGH_QUALITY"
+  }
 }
