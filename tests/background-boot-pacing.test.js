@@ -451,6 +451,7 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.doesNotMatch(peopleIcon.innerHTML, /…/);
   assert.match(peopleIcon.innerHTML, />6</);
 
+  delete peopleIcon.dataset.hgPeopleStaleRefreshFor;
   const refreshesBeforeValidFallback = refreshCalls;
   peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">6</span>';
   peopleIcon.dataset.roundReady = "false";
