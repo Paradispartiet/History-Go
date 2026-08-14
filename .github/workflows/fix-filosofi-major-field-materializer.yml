@@ -1,4 +1,4 @@
-name: Repair Philosophy materializer object keys
+name: Repair Philosophy materializer syntax
 
 on:
   push:
@@ -19,25 +19,54 @@ jobs:
         with:
           ref: agent/expand-philosophy-core-fields
           fetch-depth: 0
-      - name: Repair malformed keys and require valid syntax
+      - name: Repair malformed object keys and capture parser result
+        shell: bash
         run: |
+          set -euo pipefail
           python - <<'PY'
           from pathlib import Path
           import re
           p=Path('scripts/materialize-filosofi-major-field-coverage.mjs')
           s=p.read_text()
-          s,n=re.subn(r",'([A-Za-z][A-Za-z0-9_]*):",r",\1:",s)
-          print('malformed_keys_repaired=',n)
+          patterns=[
+              (r"([,{])\s*'([A-Za-z][A-Za-z0-9_]*):", r"\1\2:"),
+              (r'([,{])\s*"([A-Za-z][A-Za-z0-9_]*):', r'\1\2:'),
+          ]
+          total=0
+          for pattern,repl in patterns:
+              s,n=re.subn(pattern,repl,s)
+              total+=n
+          print(f'malformed_keys_repaired={total}')
           p.write_text(s)
           PY
-          node --check scripts/materialize-filosofi-major-field-coverage.mjs
-      - name: Commit valid materializer
+          mkdir -p reports/tmp
+          set +e
+          node --check scripts/materialize-filosofi-major-field-coverage.mjs >reports/tmp/filosofi-materializer-syntax.txt 2>&1
+          status=$?
+          set -e
+          echo "node_check_exit=$status" >> reports/tmp/filosofi-materializer-syntax.txt
+          if [ "$status" -eq 0 ]; then
+            echo ok > reports/tmp/filosofi-materializer-syntax-status.txt
+          else
+            echo failed > reports/tmp/filosofi-materializer-syntax-status.txt
+          fi
+      - name: Commit repaired source or exact diagnostic
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm .github/workflows/fix-filosofi-major-field-materializer.yml
-          git rm -f reports/tmp/filosofi-materializer-syntax.txt reports/tmp/filosofi-materializer-context.txt
-          git add scripts/materialize-filosofi-major-field-coverage.mjs
-          git diff --cached --check
-          git commit -m "Repair Philosophy materializer object keys"
+          if grep -qx ok reports/tmp/filosofi-materializer-syntax-status.txt; then
+            git rm .github/workflows/fix-filosofi-major-field-materializer.yml
+            git rm -f reports/tmp/filosofi-materializer-context.txt reports/tmp/filosofi-materializer-syntax-status.txt
+            git add scripts/materialize-filosofi-major-field-coverage.mjs reports/tmp/filosofi-materializer-syntax.txt
+            git diff --cached --check
+            git commit -m "Repair Philosophy materializer syntax"
+          else
+            git add reports/tmp/filosofi-materializer-syntax.txt reports/tmp/filosofi-materializer-syntax-status.txt
+            git commit -m "Capture exact Philosophy materializer parser failure"
+          fi
           git push origin HEAD:agent/expand-philosophy-core-fields
+          if grep -qx failed reports/tmp/filosofi-materializer-syntax-status.txt 2>/dev/null; then
+            exit 1
+          fi
