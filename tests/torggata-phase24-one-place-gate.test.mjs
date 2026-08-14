@@ -69,7 +69,7 @@ test("manual quality review records the original five findings and the current r
   assert.equal(backlog.completion_gate.manual_ui_review_required, true);
   assert.equal(backlog.completion_gate.rescore_required, true);
   assert.deepEqual(backlog.active_phase, {
-    id: "news_missing",
+    id: "reading_trail_missing",
     status: "QUEUED_NEXT"
   });
   assert.equal(backlog.sequence.length, 7);
@@ -77,8 +77,8 @@ test("manual quality review records the original five findings and the current r
     backlog.sequence.map(({ id, status }) => ({ id, status })),
     [
       { id: "before_after_comparability_and_depth", status: "RESOLVED" },
-      { id: "news_missing", status: "QUEUED_NEXT" },
-      { id: "reading_trail_missing", status: "QUEUED" },
+      { id: "news_missing", status: "RESOLVED" },
+      { id: "reading_trail_missing", status: "QUEUED_NEXT" },
       { id: "more_missing", status: "QUEUED" },
       { id: "objects_structures_round_overlap", status: "QUEUED" },
       { id: "manual_ui_and_content_reqa", status: "QUEUED" },
@@ -91,6 +91,9 @@ test("manual quality review records the original five findings and the current r
   assert.equal(beforeAfter.workflow_status, "RESOLVED_PHASE_7D");
   assert.equal(beforeAfter.resolution.rejected_own_place_proxy, "Torggata Bad");
   assert.match(beforeAfter.resolution.pair, /ca|circa/i);
+  const news = backlog.findings.find((finding) => finding.id === "news_missing");
+  assert.equal(news.workflow_status, "RESOLVED_PHASE_7F");
+  assert.equal(news.resolution.items.length, 2);
 });
 
 test("global checklist mirrors the canonical four-plus-separate-Badge contract", () => {

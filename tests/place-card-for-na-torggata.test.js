@@ -69,7 +69,8 @@ assert(finding, 'kvalitetsfunnet skal finnes');
 assert.strictEqual(finding.workflow_status, 'RESOLVED_PHASE_7D');
 assert.strictEqual(finding.resolution.rejected_own_place_proxy, 'Torggata Bad');
 assert.strictEqual(backlog.sequence[0].status, 'RESOLVED');
-assert.deepStrictEqual(backlog.active_phase, { id: 'news_missing', status: 'QUEUED_NEXT' });
+assert.strictEqual(backlog.findings.find(item => item.id === 'news_missing').workflow_status, 'RESOLVED_PHASE_7F');
+assert.deepStrictEqual(backlog.active_phase, { id: 'reading_trail_missing', status: 'QUEUED_NEXT' });
 
 assert(placeCardJs.includes('function renderPlaceCardForNa'), 'PlaceCard skal rendre for_na');
 assert(placeCardJs.includes('renderPlaceCardForNa(currentPlace || place)'), 'Før/nå-popup skal bruke for_na-renderer');
