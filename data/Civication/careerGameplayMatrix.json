@@ -6,8 +6,8 @@
   "summary": {
     "work_worlds": 89,
     "statuses": {
-      "reference_complete": 0,
-      "playable": 3,
+      "reference_complete": 1,
+      "playable": 2,
       "partial": 21,
       "architecture_only": 65
     },
@@ -60,8 +60,8 @@
         "missing": 0
       },
       "authority": {
-        "complete": 79,
-        "partial": 10,
+        "complete": 80,
+        "partial": 9,
         "missing": 0
       },
       "consequences": {
@@ -10491,7 +10491,7 @@
         "naer_renholder",
         "renholder"
       ],
-      "status": "playable",
+      "status": "reference_complete",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/renholder.json"
@@ -10541,6 +10541,7 @@
         },
         "role_tests": [
           "tests/civication-badge-career-contract.test.js",
+          "tests/civication-career-gameplay-matrix.test.js",
           "tests/civication-lifestory-endings.test.js",
           "tests/civication-lifestory-place-marker.test.js",
           "tests/civication-lifestory-renholder.test.js",
@@ -10582,6 +10583,7 @@
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/renholder_plan.json",
               "tests/civication-badge-career-contract.test.js",
+              "tests/civication-career-gameplay-matrix.test.js",
               "tests/civication-lifestory-endings.test.js",
               "tests/civication-lifestory-place-marker.test.js",
               "tests/civication-lifestory-renholder.test.js",
@@ -10606,6 +10608,7 @@
               "data/Civication/mailPlans/naeringsliv/renholder_plan.json",
               "data/Civication/workGrammars/naeringsliv/renholder.json",
               "tests/civication-badge-career-contract.test.js",
+              "tests/civication-career-gameplay-matrix.test.js",
               "tests/civication-lifestory-endings.test.js",
               "tests/civication-lifestory-place-marker.test.js",
               "tests/civication-lifestory-renholder.test.js",
@@ -10695,12 +10698,12 @@
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
           },
           "authority": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/roleModels/naeringsliv/renholder.json",
               "data/Civication/workGrammars/naeringsliv/renholder.json"
             ],
-            "note": "Role content exists, but authority is not an explicit machine-auditable boundary."
+            "note": "Explicit authority boundary exists."
           },
           "consequences": {
             "level": "complete",
@@ -10708,6 +10711,7 @@
               "data/Civication/mailFamilies/naeringsliv/consequence/renholder_consequence.json",
               "data/Civication/mailFamilies/naeringsliv/followup/renholder_followup.json",
               "tests/civication-badge-career-contract.test.js",
+              "tests/civication-career-gameplay-matrix.test.js",
               "tests/civication-lifestory-endings.test.js",
               "tests/civication-lifestory-place-marker.test.js",
               "tests/civication-lifestory-renholder.test.js",
@@ -10730,6 +10734,7 @@
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/renholder_plan.json",
               "tests/civication-badge-career-contract.test.js",
+              "tests/civication-career-gameplay-matrix.test.js",
               "tests/civication-career-outcomes.test.js",
               "tests/civication-lifestory-endings.test.js",
               "tests/civication-lifestory-place-marker.test.js",
@@ -10789,6 +10794,7 @@
           "mail",
           "knowledge",
           "quality_axes",
+          "authority",
           "consequences",
           "performance",
           "economy",

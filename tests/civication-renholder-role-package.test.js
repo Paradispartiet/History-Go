@@ -50,6 +50,13 @@ assert.equal(workGrammar.category, 'naeringsliv');
 assert.equal(workGrammar.role_scope, 'renholder');
 assert.equal(workGrammar.role_id, 'naer_renholder');
 assert.equal(workGrammar.title, 'Renholder');
+assert.deepEqual(Object.keys(workGrammar.authority_boundary), ['may', 'may_not', 'escalate_when']);
+for (const field of ['may', 'may_not', 'escalate_when']) {
+  assert.ok(Array.isArray(workGrammar.authority_boundary[field]) && workGrammar.authority_boundary[field].length >= 4, `authority_boundary.${field} must define at least four concrete rules`);
+}
+assert.ok(workGrammar.authority_boundary.may.some(rule => rule.includes('sikre') || rule.includes('stenge')), 'renholder must be able to secure an unsafe work surface');
+assert.ok(workGrammar.authority_boundary.may_not.some(rule => rule.includes('Badge-status')), 'Badge status must never expand workplace authority');
+assert.ok(workGrammar.authority_boundary.escalate_when.some(rule => rule.includes('minimumsstandard')), 'impossible minimum standard must trigger escalation');
 for (const mailType of ['job', 'people', 'conflict', 'story', 'event', 'micro', 'followup', 'knowledge', 'consequence']) {
   assert.ok(workGrammar.mail_generation_contract.required_mail_types.includes(mailType), `workGrammar missing required mail type ${mailType}`);
 }

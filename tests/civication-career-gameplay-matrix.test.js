@@ -37,4 +37,10 @@ assert(matrix.worlds.some((world) => world.key === 'by/by_radgiver_plan'), 'shar
 assert(!matrix.worlds.some((world) => world.key === 'by/arealplanlegger'), 'tier/roleModel slug does not duplicate shared By work world');
 assert(!matrix.worlds.some((world) => /populaerkultur/.test(world.key)), 'removed legacy roleModel namespace does not become a work world');
 
+const renholder = matrix.worlds.find((world) => world.key === 'naeringsliv/renholder');
+assert(renholder, 'Renholder reference work world exists');
+assert.strictEqual(renholder.status, 'reference_complete', 'Renholder is the first complete gameplay reference');
+assert.strictEqual(renholder.audit.components.authority.level, 'complete', 'Renholder authority boundary is machine-auditable');
+assert.strictEqual(renholder.audit.complete_components.length, policy.contract_components.length, 'Renholder completes all 15 contract components');
+
 console.log(`PASS: Career Gameplay Matrix v1 covers ${matrix.worlds.length} canonical work worlds with a deterministic 15-component gate.`);
