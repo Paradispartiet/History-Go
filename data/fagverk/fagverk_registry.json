@@ -2877,9 +2877,288 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
-        "note": "Tretten fagkart-eide områder styrer rendererstrukturen. 54 aktive emner, 27 metoder og 37 hooks er løst; pensummodulene er progresjon. Begreps- og teoretikerregistrene er canonicale referanseregistre. Ingen kapitler registreres før fulltekst, claims og inspectable kilder finnes."
+        "note": "Filosofi er fullført med 13/13 canonicale fagområder, 54/54 selvstendige emneartikler, 162/162 begreper skrevet ut i artikkelprosa, 27 canonicale metoder og 324 claimsporede kontrollpåstander. Argument-first, kilderolle, rivalposisjon og metodebegrensning er permanente porter."
       },
-      "chapters": []
+      "chapters": [
+        {
+          "id": "filosofi-argumentasjon-logikk",
+          "title": "Argumentasjon og logikk",
+          "file": "data/fagverk/filosofi/chapters/filosofi-argumentasjon-logikk.json",
+          "primary_domain_id": "argumentasjon_logikk",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_argument_premiss_konklusjon",
+            "em_filosofi_gyldighet_holdbarhet",
+            "em_filosofi_uformell_logikk_feilslutninger",
+            "em_filosofi_dialog_uenighet"
+          ],
+          "article_ids": [
+            "em_filosofi_argument_premiss_konklusjon",
+            "em_filosofi_gyldighet_holdbarhet",
+            "em_filosofi_uformell_logikk_feilslutninger",
+            "em_filosofi_dialog_uenighet"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-erkjennelse-sannhet",
+          "title": "Erkjennelse, sannhet og kunnskapsmakt",
+          "file": "data/fagverk/filosofi/chapters/filosofi-erkjennelse-sannhet.json",
+          "primary_domain_id": "erkjennelse_sannhet",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_kunnskap_begrunnelse_sannhet",
+            "em_filosofi_skepsis_feilbarlighet",
+            "em_filosofi_vitnesbyrd_ekspertise_tillit",
+            "em_filosofi_epistemisk_urettferdighet_standpunkt"
+          ],
+          "article_ids": [
+            "em_filosofi_kunnskap_begrunnelse_sannhet",
+            "em_filosofi_skepsis_feilbarlighet",
+            "em_filosofi_vitnesbyrd_ekspertise_tillit",
+            "em_filosofi_epistemisk_urettferdighet_standpunkt"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-metafysikk-virkelighet",
+          "title": "Metafysikk, virkelighet og tid",
+          "file": "data/fagverk/filosofi/chapters/filosofi-metafysikk-virkelighet.json",
+          "primary_domain_id": "metafysikk_virkelighet",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_ontologi_substans_relajson",
+            "em_filosofi_arsak_nodvendighet_mulighet",
+            "em_filosofi_tid_endring_prosess",
+            "em_filosofi_realisme_antirealisme"
+          ],
+          "article_ids": [
+            "em_filosofi_ontologi_substans_relajson",
+            "em_filosofi_arsak_nodvendighet_mulighet",
+            "em_filosofi_tid_endring_prosess",
+            "em_filosofi_realisme_antirealisme"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-sinn-bevissthet-identitet",
+          "title": "Sinn, bevissthet og personlig identitet",
+          "file": "data/fagverk/filosofi/chapters/filosofi-sinn-bevissthet-identitet.json",
+          "primary_domain_id": "sinn_bevissthet_identitet",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_kropp_sinn_bevissthet",
+            "em_filosofi_intentionalitet_representasjon",
+            "em_filosofi_personlig_identitet_selv",
+            "em_filosofi_fri_vilje_ansvar"
+          ],
+          "article_ids": [
+            "em_filosofi_kropp_sinn_bevissthet",
+            "em_filosofi_intentionalitet_representasjon",
+            "em_filosofi_personlig_identitet_selv",
+            "em_filosofi_fri_vilje_ansvar"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-etikk-moralpsykologi",
+          "title": "Etikk, dyd og moralsk ansvar",
+          "file": "data/fagverk/filosofi/chapters/filosofi-etikk-moralpsykologi.json",
+          "primary_domain_id": "etikk_moralpsykologi",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_normativ_etikk",
+            "em_filosofi_metaetikk_moralsk_sannhet",
+            "em_filosofi_omsorg_relasjon_sarbarhet",
+            "em_filosofi_anvendt_etikk_ansvar"
+          ],
+          "article_ids": [
+            "em_filosofi_normativ_etikk",
+            "em_filosofi_metaetikk_moralsk_sannhet",
+            "em_filosofi_omsorg_relasjon_sarbarhet",
+            "em_filosofi_anvendt_etikk_ansvar"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-politisk-filosofi-rettferdighet",
+          "title": "Politisk filosofi, frihet og rettferdighet",
+          "file": "data/fagverk/filosofi/chapters/filosofi-politisk-filosofi-rettferdighet.json",
+          "primary_domain_id": "politisk_filosofi_rettferdighet",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_stat_samfunnskontrakt_legitimitet",
+            "em_filosofi_frihet_rettigheter_tvang",
+            "em_filosofi_rettferdighet_likhet_fordeling",
+            "em_filosofi_demokrati_offentlig_fornuft"
+          ],
+          "article_ids": [
+            "em_filosofi_stat_samfunnskontrakt_legitimitet",
+            "em_filosofi_frihet_rettigheter_tvang",
+            "em_filosofi_rettferdighet_likhet_fordeling",
+            "em_filosofi_demokrati_offentlig_fornuft"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-sosial-filosofi-makt",
+          "title": "Sosial filosofi, makt og frigjøring",
+          "file": "data/fagverk/filosofi/chapters/filosofi-sosial-filosofi-makt.json",
+          "primary_domain_id": "sosial_filosofi_makt",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_makt_disiplin_hegemoni",
+            "em_filosofi_rase_kolonialitet_dekolonisering",
+            "em_filosofi_kjonn_performativitet_feminisme",
+            "em_filosofi_anerkjennelse_fremmedgjoring_frigjoring"
+          ],
+          "article_ids": [
+            "em_filosofi_makt_disiplin_hegemoni",
+            "em_filosofi_rase_kolonialitet_dekolonisering",
+            "em_filosofi_kjonn_performativitet_feminisme",
+            "em_filosofi_anerkjennelse_fremmedgjoring_frigjoring"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-estetikk-fortolkning",
+          "title": "Estetikk, kunst og fortolkning",
+          "file": "data/fagverk/filosofi/chapters/filosofi-estetikk-fortolkning.json",
+          "primary_domain_id": "estetikk_fortolkning",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_skjonnhet_smak_dom",
+            "em_filosofi_kunstverk_kunststatus_institusjon",
+            "em_filosofi_hermeneutikk_fortolkning",
+            "em_filosofi_kunst_politikk_offentlighet"
+          ],
+          "article_ids": [
+            "em_filosofi_skjonnhet_smak_dom",
+            "em_filosofi_kunstverk_kunststatus_institusjon",
+            "em_filosofi_hermeneutikk_fortolkning",
+            "em_filosofi_kunst_politikk_offentlighet"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-vitenskapsfilosofi",
+          "title": "Vitenskapsfilosofi og forklaring",
+          "file": "data/fagverk/filosofi/chapters/filosofi-vitenskapsfilosofi.json",
+          "primary_domain_id": "vitenskapsfilosofi",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_demarkasjon_falsifikasjon",
+            "em_filosofi_paradigmer_forskningsprogrammer",
+            "em_filosofi_evidens_forklaring_modell",
+            "em_filosofi_verdier_objektivitet_vitenskap"
+          ],
+          "article_ids": [
+            "em_filosofi_demarkasjon_falsifikasjon",
+            "em_filosofi_paradigmer_forskningsprogrammer",
+            "em_filosofi_evidens_forklaring_modell",
+            "em_filosofi_verdier_objektivitet_vitenskap"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-teknologi-ai",
+          "title": "Teknologi, digitalitet og kunstig intelligens",
+          "file": "data/fagverk/filosofi/chapters/filosofi-teknologi-ai.json",
+          "primary_domain_id": "teknologi_ai",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_teknologi_makt_infrastruktur",
+            "em_filosofi_ai_intelligens_personskap",
+            "em_filosofi_algoritmisk_rettferdighet_ansvar",
+            "em_filosofi_data_personvern_overvaking"
+          ],
+          "article_ids": [
+            "em_filosofi_teknologi_makt_infrastruktur",
+            "em_filosofi_ai_intelligens_personskap",
+            "em_filosofi_algoritmisk_rettferdighet_ansvar",
+            "em_filosofi_data_personvern_overvaking"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-eksistens-fenomenologi",
+          "title": "Eksistens, fenomenologi og livstolkning",
+          "file": "data/fagverk/filosofi/chapters/filosofi-eksistens-fenomenologi.json",
+          "primary_domain_id": "eksistens_fenomenologi",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_eksistens_mening_autentisitet",
+            "em_filosofi_angst_absurditet_dodelighet",
+            "em_filosofi_fenomenologi_livsverden_kropp",
+            "em_filosofi_den_andre_ansikt_ansvar"
+          ],
+          "article_ids": [
+            "em_filosofi_eksistens_mening_autentisitet",
+            "em_filosofi_angst_absurditet_dodelighet",
+            "em_filosofi_fenomenologi_livsverden_kropp",
+            "em_filosofi_den_andre_ansikt_ansvar"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-miljo-dyr-klima",
+          "title": "Miljø-, dyre- og klimafilosofi",
+          "file": "data/fagverk/filosofi/chapters/filosofi-miljo-dyr-klima.json",
+          "primary_domain_id": "miljo_dyr_klima",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_natur_egenverdi_dypokologi",
+            "em_filosofi_dyr_moralsk_status",
+            "em_filosofi_klimarettferdighet_generasjoner",
+            "em_filosofi_okofeminisme_urfolkskunnskap"
+          ],
+          "article_ids": [
+            "em_filosofi_natur_egenverdi_dypokologi",
+            "em_filosofi_dyr_moralsk_status",
+            "em_filosofi_klimarettferdighet_generasjoner",
+            "em_filosofi_okofeminisme_urfolkskunnskap"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-globale-tradisjoner",
+          "title": "Globale tradisjoner og filosofihistorie",
+          "file": "data/fagverk/filosofi/chapters/filosofi-globale-tradisjoner.json",
+          "primary_domain_id": "globale_tradisjoner",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_antikk_middelalder_modernitet",
+            "em_filosofi_kinesisk_filosofi",
+            "em_filosofi_indisk_buddhistisk_filosofi",
+            "em_filosofi_islamsk_jodisk_filosofi",
+            "em_filosofi_afrikansk_filosofi_ubuntu",
+            "em_filosofi_latinamerikansk_dekolonial_filosofi"
+          ],
+          "article_ids": [
+            "em_filosofi_antikk_middelalder_modernitet",
+            "em_filosofi_kinesisk_filosofi",
+            "em_filosofi_indisk_buddhistisk_filosofi",
+            "em_filosofi_islamsk_jodisk_filosofi",
+            "em_filosofi_afrikansk_filosofi_ubuntu",
+            "em_filosofi_latinamerikansk_dekolonial_filosofi"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        }
+      ],
+      "editorialPlan": {
+        "targetChapterCount": 13,
+        "completionRequirements": [
+          "all_13_canonical_domains_covered",
+          "all_54_canonical_emners_have_standalone_articles",
+          "all_162_canonical_concepts_written_out",
+          "argument_reconstruction_and_real_objection_every_article",
+          "method_and_method_limit_every_article",
+          "historical_normative_empirical_source_roles_separated",
+          "global_canon_without_tokenism",
+          "full_subject_audit_green"
+        ],
+        "nextGate": "maintenance_source_refresh_and_place_case_expansion"
+      }
     },
     "film_tv": {
       "title": "Film & TV",

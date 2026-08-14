@@ -87,11 +87,15 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   assert.equal(religion.editorialStatus, 'complete');
   assert.equal(religion.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
 
-  for (const id of ['scenekunst', 'vitenskap', 'filosofi']) {
+  for (const id of ['scenekunst', 'vitenskap']) {
     const subject = s.subjects.find((x) => x.id === id);
     assert.equal(subject.editorialStatus, 'structure_ready');
     assert.equal(subject.nextGate, 'chapter_production');
   }
+
+  const filosofi = s.subjects.find((x) => x.id === 'filosofi');
+  assert.equal(filosofi.editorialStatus, 'complete');
+  assert.equal(filosofi.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
 
   const filmTv = s.subjects.find((x) => x.id === 'film_tv');
   const filmTvChapterCount = readJson('data/fagverk/fagverk_registry.json').subjects.film_tv.chapters.length;

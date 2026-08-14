@@ -294,7 +294,7 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(filosofi.methodCount, 27);
   assert.equal(filosofi.mappingCount, 54);
   assert.equal(filosofi.hookCount, 37);
-  assert.equal(filosofi.chapterCount, 0);
+  assert.equal(filosofi.chapterCount, 13);
   const filmTv = result.materializedRows.find((row) => row.id === 'film_tv');
   assert.ok(filmTv);
   assert.equal(filmTv.schemaFamily, 'standard_canonical');
