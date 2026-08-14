@@ -40,6 +40,13 @@ jobs:
           npm install --no-save --package-lock=false playwright
           npx playwright install --with-deps chromium
 
+      - name: Use responsive Ingwald Nielsen museum derivative
+        shell: bash
+        run: |
+          set -euo pipefail
+          sed -i 's|042sBYQ9PkvR?dimension=1800x1800|042sBYQ9PkvR?dimension=1000x1000|' scripts/materialize-torggata-phase13-brands.mjs
+          grep -F '042sBYQ9PkvR?dimension=1000x1000' scripts/materialize-torggata-phase13-brands.mjs
+
       - name: Check materializer syntax
         run: node --check scripts/materialize-torggata-phase13-brands.mjs
 
