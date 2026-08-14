@@ -14,12 +14,9 @@ permissions:
 jobs:
   review-assets:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
       - name: Fetch reviewed originals
         shell: bash
         run: |
@@ -37,42 +34,8 @@ jobs:
           fetch jernia.png 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Jernia%20logo.png'
           fetch norli.svg 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Norli.svg'
           fetch oslo_bar_bowling.webp 'https://oslobowling.no/wp-content/uploads/2020/07/logo-web-cropped.webp'
-          fetch oslo_street_food.png 'https://images.squarespace-cdn.com/content/v1/6038204a6bf989551704f5c2/b48e68b9-ce76-4f9f-815e-8c8a7c781a0d/logo+white.png?format=1500w'
+          fetch oslo_street_food.webp 'https://images.squarespace-cdn.com/content/v1/6038204a6bf989551704f5c2/b48e68b9-ce76-4f9f-815e-8c8a7c781a0d/logo+white.png?format=1500w'
           file review/*
-      - name: Capture Oslo Sportslager identity from official page
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm exec --yes playwright@1.55.0 install chromium --with-deps >/dev/null
-          cat > /tmp/capture.mjs <<'JS'
-          import { chromium } from 'playwright';
-          const browser = await chromium.launch({ headless: true });
-          const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
-          await page.goto('https://oslosportslager.no/', { waitUntil: 'networkidle', timeout: 90000 });
-          const candidates = page.locator('img, svg');
-          let captured = false;
-          for (let i = 0; i < await candidates.count(); i++) {
-            const el = candidates.nth(i);
-            const alt = (await el.getAttribute('alt')) || '';
-            const src = (await el.getAttribute('src')) || '';
-            const aria = (await el.getAttribute('aria-label')) || '';
-            const label = `${alt} ${src} ${aria}`.toLowerCase();
-            if (label.includes('oslo') && (label.includes('sport') || label.includes('logo'))) {
-              const box = await el.boundingBox();
-              if (box && box.width >= 40 && box.height >= 20) {
-                await el.screenshot({ path: 'review/oslo_sportslager.png' });
-                captured = true;
-                break;
-              }
-            }
-          }
-          if (!captured) {
-            const header = page.locator('header').first();
-            await header.screenshot({ path: 'review/oslo_sportslager_header.png' });
-          }
-          await browser.close();
-          JS
-          node /tmp/capture.mjs
       - name: Upload review originals
         uses: actions/upload-artifact@v4
         with:
