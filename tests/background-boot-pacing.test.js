@@ -361,6 +361,9 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     "ferske holdbacks erstatter stale aggregatdata etter stedsskifte"
   );
 
+  // Den vellykkede place-3-revalideringen planlegger en gyldig refresh.
+  // La den fullføre før outage-scenariet måler at ingen nye refreshes oppstår.
+  await delay(20);
   const refreshesBeforePersistentOutage = refreshCalls;
   peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">6</span>';
   peopleIcon.dataset.roundReady = "true";
