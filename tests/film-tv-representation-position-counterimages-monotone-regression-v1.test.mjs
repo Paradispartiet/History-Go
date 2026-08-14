@@ -7,7 +7,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
 const CHAPTER_ID = 'representasjon-posisjon-og-motbilder';
-const UNIT8_OUTPUT_GATE = 'screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief';
+const UNIT8_ID = 'skjermoffentlighet-fellesskap-og-samfunn';
+const FILM_TV_PRODUCTION_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/;
 
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`,
@@ -19,7 +20,7 @@ const P = Object.freeze({
   report: 'reports/fagverk/film-tv-representation-position-counterimages-fulltext-v1-audit.json'
 });
 
-test('enhet 7 forblir komplett etter at Film & TV har avansert til enhet 8', () => {
+test('enhet 7 forblir komplett etter at Film & TV har avansert til enhet 8 eller senere', () => {
   const chapter = read(P.chapter);
   const brief = read(P.brief);
   const claimsDoc = read(P.claims);
@@ -29,6 +30,7 @@ test('enhet 7 forblir komplett etter at Film & TV har avansert til enhet 8', () 
   const report = read(P.report);
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   const registryChapter = registry.subjects.film_tv.chapters.find((row) => row.id === CHAPTER_ID);
+  const registeredUnit8 = registry.subjects.film_tv.chapters.find((row) => row.id === UNIT8_ID);
   const plannedClaims = sourceBrief.topic_briefs.flatMap((row) => row.planned_claims);
 
   assert.equal(chapter.id, CHAPTER_ID);
@@ -58,6 +60,7 @@ test('enhet 7 forblir komplett etter at Film & TV har avansert til enhet 8', () 
   assert.equal(registryChapter.claimsFile, P.claims);
   assert.equal(registryChapter.briefFile, P.brief);
   assert.deepEqual(registryChapter.emne_ids, chapter.emne_ids);
+  assert.ok(registeredUnit8);
 
   assert.equal(report.status, 'representation_position_counterimages_chapter_verified_registered');
   assert.equal(report.canonicalCoverage.exactCoverage, '10/10 canonical emner');
@@ -65,5 +68,5 @@ test('enhet 7 forblir komplett etter at Film & TV har avansert til enhet 8', () 
   assert.ok(Object.values(report.gates).every(Boolean));
 
   assert.equal(filmStatus.editorialStatus, 'chapters_in_progress');
-  assert.equal(filmStatus.nextGate, UNIT8_OUTPUT_GATE);
+  assert.match(filmStatus.nextGate, FILM_TV_PRODUCTION_GATE);
 });
