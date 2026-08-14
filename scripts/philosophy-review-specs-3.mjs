@@ -54,7 +54,7 @@ export default {
   em_filosofi_skjonnhet_smak_dom: {
     thinkers: ['David Hume', 'Immanuel Kant', 'Frank Sibley'],
     anchors: ['smak', 'estetisk dom', 'interesseløshet', 'standard of taste', 'estetiske begreper'],
-    debate: 'Estetisk dom synes både personlig og kravfull: vi uttrykker smak, men argumenterer også som om noen vurderinger kan være bedre enn andre. Hume og Kant forsøker å forklare denne dobbeltheten, mens Sibley undersøker hvordan estetiske begreper faktisk brukes.',
+    debate: 'Estetisk dom synes både personlig og kravfull: vi uttrykker smak, men argumenterer også som om noen vurderinger kan være bedre enn andre. Kants begrep om interesseløshet forsøker å skille estetisk velbehag fra begjær og privat nytte, mens Humes standard of taste undersøker hvordan kritisk kompetanse kan begrunne forskjeller i dom uten å gjøre smak mekanisk objektiv. Sibley undersøker hvordan estetiske begreper faktisk brukes.',
     argument: [
       'P1: Hume erkjenner variasjon i smak, men hevder at øvelse, sammenligning, sansningens finhet og fravær av relevante fordommer kan gi noen dommere større pålitelighet uten å gjøre skjønnhet til en enkel målbar egenskap.',
       'P2: Kant analyserer estetisk velbehag som interesseløst og dommen som subjektiv, men med et krav om allmenn tilslutning; dette forsøker å forklare hvorfor «jeg liker» og «dette er vakkert» ikke fungerer identisk.',
@@ -67,7 +67,7 @@ export default {
   em_filosofi_kunstverk_kunststatus_institusjon: {
     thinkers: ['Arthur Danto', 'George Dickie', 'Morris Weitz'],
     anchors: ['kunststatus', 'kunstverden', 'institusjonell teori', 'åpent begrep', 'indiscernibles'],
-    debate: 'Definisjonen av kunst utfordres av verk som ikke kan identifiseres gjennom synlige egenskaper alene. Weitz, Danto og Dickie viser tre ulike svar: avvise en essensiell definisjon, vektlegge fortolkende kunsthistorisk kontekst eller gjøre institusjonell status sentral.',
+    debate: 'Definisjonen av kunst utfordres av verk som ikke kan identifiseres gjennom synlige egenskaper alene. Weitz behandler kunst som et åpent begrep, Danto vektlegger fortolkende kunsthistorisk kontekst, og Dickies institusjonell teori gjør sosialt tildelt kunststatus sentral. De tre svarene konkurrerer om hvorvidt kunst kan defineres og hva slags relasjon til en kunstverden som i så fall er konstitutiv.',
     argument: [
       'P1: Weitz hevder at kunstbegrepet er åpent fordi praksisen stadig kan utvides med nye former som ikke deler ett sett nødvendige og tilstrekkelige manifeste egenskaper.',
       'P2: Dantos indiscernibles-problem viser at to perceptuelt like objekter kan ha ulik kunststatus dersom det ene inngår i en kunsthistorisk og fortolkende sammenheng som det andre mangler.',
@@ -80,7 +80,7 @@ export default {
   em_filosofi_kunst_politikk_offentlighet: {
     thinkers: ['Walter Benjamin', 'Theodor W. Adorno', 'Jacques Rancière'],
     anchors: ['aura', 'kulturindustri', 'offentlighet', 'sanselig orden', 'politisk kunst'],
-    debate: 'Kunstens politiske betydning kan ligge i innhold, produksjonsform, distribusjon eller i hvordan verk organiserer hva som kan sanses og diskuteres offentlig. Benjamin, Adorno og Rancière representerer ulike svar på forholdet mellom estetisk autonomi og politisk virkning.',
+    debate: 'Kunstens politiske betydning kan ligge i innhold, produksjonsform, distribusjon eller i hvordan verk organiserer hva som kan sanses og diskuteres offentlig. Hos Rancière betegner sanselig orden fordelingen av hvem og hva som kan fremtre som synlig, hørbart og politisk relevant. Benjamin, Adorno og Rancière representerer ulike svar på forholdet mellom estetisk autonomi og politisk virkning.',
     argument: [
       'P1: Benjamin viser at teknisk reproduksjon endrer verkets aura og sosiale sirkulasjon, noe som kan åpne kunst for nye masser og nye politiske funksjoner uten at teknologien i seg selv bestemmer frigjørende bruk.',
       'P2: Adornos kulturindustrikritikk advarer mot at markedets standardisering kan gjøre estetisk produksjon til bekreftelse av eksisterende samfunnsformer, men hans autonomibegrep innebærer ikke at kunst er politisk bare når den uttrykker et eksplisitt budskap.',
@@ -93,7 +93,7 @@ export default {
   em_filosofi_demarkasjon_falsifikasjon: {
     thinkers: ['Karl Popper', 'Thomas Kuhn', 'Imre Lakatos'],
     anchors: ['demarkasjon', 'falsifikasjon', 'paradigme', 'forskningsprogram', 'risikofylt prediksjon'],
-    debate: 'Demarkasjonsproblemet spør hva som skiller vitenskap fra pseudovitenskap eller andre kunnskapsformer. Poppers falsifikasjonisme gir et normativt kriterium, mens Kuhn og Lakatos viser hvorfor faktisk vitenskapelig praksis ikke kan reduseres til at én avkreftet prediksjon automatisk forkaster en teori.',
+    debate: 'Demarkasjonsproblemet spør hva som skiller vitenskap fra pseudovitenskap eller andre kunnskapsformer. Hos Popper er en risikofylt prediksjon viktig fordi teorien må utsette seg for mulige observasjoner som faktisk kan telle mot den. Poppers falsifikasjonisme gir dermed et normativt kriterium, mens Kuhn og Lakatos viser hvorfor faktisk vitenskapelig praksis ikke kan reduseres til at én avkreftet prediksjon automatisk forkaster en teori.',
     argument: [
       'P1: Poppers falsifikasjonskriterium fanger en viktig asymmetri: universelle teorier kan testes av risikofylte observasjoner som, dersom de slår feil under aksepterte hjelpeantakelser, teller mot teorien.',
       'P2: Duhem–Quine-problemet og vitenskapelig praksis viser at en test alltid involverer bakgrunnsantakelser, instrumenter og modeller, så et negativt resultat identifiserer ikke mekanisk hvilken komponent som er falsk.',
@@ -106,7 +106,7 @@ export default {
   em_filosofi_evidens_forklaring_modell: {
     thinkers: ['Carl Hempel', 'Bas van Fraassen', 'Nancy Cartwright'],
     anchors: ['evidens', 'forklaring', 'modell', 'lovmessighet', 'empirisk adekvans'],
-    debate: 'Vitenskapelige forklaringer kan forstås som subsumsjon under lover, som svar på kontrastive hvorfor-spørsmål eller som modellbaserte representasjoner som idealiserer. Hempel, van Fraassen og Cartwright viser hvorfor evidens, forklaring og modell ikke er samme epistemiske relasjon.',
+    debate: 'Vitenskapelige forklaringer kan forstås som subsumsjon under lover, som svar på kontrastive hvorfor-spørsmål eller som modellbaserte representasjoner som idealiserer. Lovmessighet er sentral i Hempels modell fordi forklaringen må knytte hendelsen til generelle lover, mens van Fraassen og Cartwright viser hvorfor evidens, forklaring og modell ikke er samme epistemiske relasjon.',
     argument: [
       'P1: Hempels deduktiv-nomologiske modell viser hvordan en hendelse kan forklares ved å følge fra lover og initialbetingelser, men kjente asymmetri- og relevansproblemer viser at logisk deduksjon alene ikke er nok for forklaring.',
       'P2: Van Fraassen fremhever at forklaringer svarer på kontekstuelle hvorfor-spørsmål og at vitenskapelig aksept kan sikte mot empirisk adekvans uten å forplikte seg til sannheten om alle uobserverbare mekanismer.',
@@ -119,7 +119,7 @@ export default {
   em_filosofi_paradigmer_forskningsprogrammer: {
     thinkers: ['Thomas Kuhn', 'Imre Lakatos', 'Paul Feyerabend'],
     anchors: ['paradigme', 'normalvitenskap', 'forskningsprogram', 'anomali', 'metodologisk pluralisme'],
-    debate: 'Kuhn, Lakatos og Feyerabend utfordrer forestillingen om én tidløs vitenskapelig metode. De er likevel uenige om hvor sterkt historiske brudd begrenser rasjonell sammenligning, og om metoderegler kan beskytte vitenskapens kritiske karakter uten å stivne til dogme.',
+    debate: 'Kuhn, Lakatos og Feyerabend utfordrer forestillingen om én tidløs vitenskapelig metode. Metodologisk pluralisme betegner her påstanden om at ulike forskningssituasjoner kan kreve ulike strategier og at ett universelt sett metoderegler kan bli historisk misvisende. De er likevel uenige om hvor sterkt historiske brudd begrenser rasjonell sammenligning, og om metoderegler kan beskytte vitenskapens kritiske karakter uten å stivne til dogme.',
     argument: [
       'P1: Kuhns normalvitenskap forklarer hvorfor forskere legitimt kan arbeide innen et paradigme selv om anomalier finnes; en vitenskapelig tradisjon trenger stabile eksempler, instrumenter og problemer for å produsere kumulativ detaljkunnskap.',
       'P2: Paradigmeskifter gjør likevel standarder og problemoppfatninger delvis historiske, noe som skaper spørsmålet om rivaler kan sammenlignes uten et helt nøytralt målesystem.',
