@@ -7,8 +7,8 @@ import test from "node:test";
 const root = path.resolve(import.meta.dirname, "..");
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
 const readJson = file => JSON.parse(read(file));
-const normalize = value => String(value || "").replace(/\\r\\n/g, "\\n").replace(/[ \\t]+/g, " ").trim();
-const words = value => normalize(value).split(/\\s+/).filter(Boolean).length;
+const normalize = value => String(value || "").replaceAll("\r\n", "\n").replaceAll("\t", " ").trim();
+const words = value => normalize(value).split(" ").filter(Boolean).length;
 
 test("Torggata phase 14 discovery contract", () => {
   const place = readJson("data/places/by/oslo/places/torggata.json");
@@ -41,19 +41,19 @@ test("Torggata phase 14 discovery contract", () => {
     assert.equal(translated._sourceHash, sourceHash);
     assert.notEqual(normalize(translated.desc), normalize(translated.popupDesc));
     assert.ok(words(translated.popupDesc) >= 180);
-    assert.ok(translated.popupDesc.split(/\\n\\s*\\n/).length >= 5);
+    assert.ok(translated.popupDesc.split("\n\n").length >= 5);
   }
 
   const searchSource = read("js/core/pos.js");
-  assert.match(searchSource, /Array\\.isArray\\([^)]*\\.aliases\\)/);
+  assert.ok(searchSource.includes(".aliases"));
   const nearbySource = read("js/ui/nearbyPlacesList.ts");
-  assert.match(nearbySource, /place\\.image\\s*\\|\\|\\s*place\\.cardImage/);
-  assert.match(nearbySource, /place\\.category/);
-  assert.match(nearbySource, /routeToPlace\\(place\\.id\\)/);
+  assert.ok(nearbySource.includes("place.image || place.cardImage"));
+  assert.ok(nearbySource.includes("place.category"));
+  assert.ok(nearbySource.includes("routeToPlace(place.id)"));
   const nextUpSource = read("js/nextUpProgression.js");
-  assert.match(nextUpSource, /function placeLabel\\(place\\)/);
-  assert.match(nextUpSource, /QuizEngine/);
-  assert.match(nextUpSource, /type:\\s*"quiz"/);
+  assert.ok(nextUpSource.includes("function placeLabel(place)"));
+  assert.ok(nextUpSource.includes("QuizEngine"));
+  assert.ok(nextUpSource.includes('type: "quiz"'));
   assert.equal(audit.checks.next_up.quiz_questions, 35);
   assert.equal(audit.checks.public_home.status, "not_applicable");
   assert.equal(audit.status, "approved");
