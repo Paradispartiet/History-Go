@@ -325,7 +325,9 @@ function assertCriticalIndexRuntime() {
     missing.push("HGMap (js/map.js) – kartmotoren er ikke lastet");
   }
 
-  if (!window.MAP && !window.HGMap?.getMap?.()) {
+  const mapElement = document.getElementById("map");
+  const mapExplicitlyUnavailable = mapElement?.dataset?.mapUnavailable === "1";
+  if (!window.MAP && !window.HGMap?.getMap?.() && !mapExplicitlyUnavailable) {
     missing.push("MAP – kartet ble ikke initialisert (window.HGMap.initMap krever maplibregl)");
   }
 

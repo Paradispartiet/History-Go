@@ -13,9 +13,10 @@
   "safeguard": {
     "files": [
       "js/map.ts",
-      "js/map.js"
+      "js/map.js",
+      "js/app.js"
     ],
-    "behavior": "catch only map constructor failure, expose map-unavailable state, continue app boot",
+    "behavior": "catch the map constructor failure, expose map-unavailable state, let index sanity accept that explicit degraded state, and continue app boot",
     "webgl_clients_unchanged": true
   },
   "retained_ui_contracts": [
@@ -23,7 +24,7 @@
     "search/Nearby route to torggata",
     "PlaceCard identity/content",
     "popup tabs",
-    "Badges plus three rounds",
+    "four content rounds plus separate Badge",
     "People short card text",
     "Brands",
     "onsite row",
@@ -33,5 +34,15 @@
     "legacy round suppression"
   ],
   "regression_test": "tests/torggata-phase21-webgl-fallback.test.mjs",
-  "conclusion": "The map is no longer a hard dependency for loading Torggata content."
+  "conclusion": "The map is no longer a hard dependency for loading Torggata content, and UI-QA retains the canonical four content rounds plus separate Badge.",
+  "round_contract": {
+    "content_rounds": [
+      "people",
+      "objects",
+      "brands",
+      "structures"
+    ],
+    "badge_separate": true,
+    "visible_rounds_total": 5
+  }
 }
