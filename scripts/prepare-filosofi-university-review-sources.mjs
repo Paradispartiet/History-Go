@@ -39,6 +39,15 @@ const supplementalSources = [
     use: 'Emnespesifikk sekundærkilde til pramāṇa-tradisjoner, buddhistisk epistemologi og konkurrerende klassiske indiske teorier om kunnskap, persepsjon og inferens.'
   },
   {
+    id: 'iep-nagarjuna',
+    title: 'Nagarjuna',
+    publisher: 'Internet Encyclopedia of Philosophy',
+    kind: 'scholarly_reference',
+    url: 'https://iep.utm.edu/nagarjun/',
+    access: 'open_web',
+    use: 'Emnespesifikk sekundærkilde til Nāgārjunas Madhyamaka-argumentasjon, śūnyatā, kritikk av substansmetafysikk og buddhistiske teorier om kunnskap.'
+  },
+  {
     id: 'sep-latin-american-philosophy',
     title: 'Latin American Philosophy',
     publisher: 'Stanford Encyclopedia of Philosophy',
@@ -46,6 +55,15 @@ const supplementalSources = [
     url: 'https://plato.stanford.edu/entries/latin-american-philosophy/',
     access: 'open_web',
     use: 'Emnespesifikk sekundærkilde til latinamerikansk filosofihistorie og problemkonteksten for frigjørings- og dekoloniale tradisjoner; brukes sammen med de direkte kildene til kolonialitet og kjønn.'
+  },
+  {
+    id: 'sep-philosophy-liberation',
+    title: 'Philosophy of Liberation',
+    publisher: 'Stanford Encyclopedia of Philosophy',
+    kind: 'scholarly_reference',
+    url: 'https://plato.stanford.edu/entries/liberation/',
+    access: 'open_web',
+    use: 'Emnespesifikk sekundærkilde til latinamerikansk frigjøringsfilosofi, Dussel, avhengighet, Eurocentrismekritikk og interne strømninger i frigjøringstradisjonen.'
   }
 ];
 
@@ -65,8 +83,16 @@ article.source_ids = [...new Set([
   'sep-conceptual-art',
   'iep-aesthetics-art-definition'
 ])];
-indianArticle.source_ids = [...new Set([...(indianArticle.source_ids || []), 'sep-indian-epistemology'])];
-latinAmericanArticle.source_ids = [...new Set([...(latinAmericanArticle.source_ids || []), 'sep-latin-american-philosophy'])];
+indianArticle.source_ids = [...new Set([
+  ...(indianArticle.source_ids || []),
+  'sep-indian-epistemology',
+  'iep-nagarjuna'
+])];
+latinAmericanArticle.source_ids = [...new Set([
+  ...(latinAmericanArticle.source_ids || []),
+  'sep-latin-american-philosophy',
+  'sep-philosophy-liberation'
+])];
 
 const required = ['sep-art-definition', 'sep-conceptual-art', 'iep-aesthetics-art-definition'];
 for (const sourceId of required) {
@@ -78,12 +104,14 @@ for (const sourceId of required) {
   }
 }
 
-for (const [target, sourceId] of [
-  [indianArticle, 'sep-indian-epistemology'],
-  [latinAmericanArticle, 'sep-latin-american-philosophy']
+for (const [target, requiredSourceIds] of [
+  [indianArticle, ['sep-indian-epistemology', 'iep-nagarjuna']],
+  [latinAmericanArticle, ['sep-latin-american-philosophy', 'sep-philosophy-liberation']]
 ]) {
-  if (!target.source_ids.includes(sourceId)) throw new Error(`${target.id}: mangler emnespesifikk sekundærkilde ${sourceId}`);
-  if (!sources.sources.some((row) => row.id === sourceId)) throw new Error(`${target.id}: ukjent sekundærkilde ${sourceId}`);
+  for (const sourceId of requiredSourceIds) {
+    if (!target.source_ids.includes(sourceId)) throw new Error(`${target.id}: mangler emnespesifikk sekundærkilde ${sourceId}`);
+    if (!sources.sources.some((row) => row.id === sourceId)) throw new Error(`${target.id}: ukjent sekundærkilde ${sourceId}`);
+  }
   if (new Set(target.source_ids).size < 3) throw new Error(`${target.id}: har fortsatt færre enn tre unike sekundærkilder`);
 }
 
@@ -92,8 +120,8 @@ fs.writeFileSync(ARTICLE_PATH, `${JSON.stringify(article, null, 2)}\n`, 'utf8');
 fs.writeFileSync(INDIAN_ARTICLE_PATH, `${JSON.stringify(indianArticle, null, 2)}\n`, 'utf8');
 fs.writeFileSync(LATIN_AMERICAN_ARTICLE_PATH, `${JSON.stringify(latinAmericanArticle, null, 2)}\n`, 'utf8');
 console.log(`${article.id}: låst til tre direkte sekundærkilder om kunstdefinisjon/institusjon i tillegg til eksisterende estetikkilder.`);
-console.log(`${indianArticle.id}: supplert med Stanford Encyclopedia of Philosophy om klassisk indisk epistemologi.`);
-console.log(`${latinAmericanArticle.id}: supplert med Stanford Encyclopedia of Philosophy om latinamerikansk filosofi.`);
+console.log(`${indianArticle.id}: supplert med distinkte sekundærkilder om klassisk indisk epistemologi og Nāgārjuna.`);
+console.log(`${latinAmericanArticle.id}: supplert med distinkte sekundærkilder om latinamerikansk filosofi og frigjøringsfilosofi.`);
 
 const registry = JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf8'));
 let sourceGapCount = 0;
