@@ -56,7 +56,7 @@
 | 4. Kategori, Badges, emner og Fagverk | **GODKJENT** | PR #4813, merge `094fbcef5119fb6e3c427df2ee59ee645bd79795` |
 | 5. `desc` + `popupDesc` | **GODKJENT** | PR #4815, merge `0528b259fcb6dc0e2a3ea68b6d3e3925bbfe5a4e` |
 | 6. Strukturerte place-profiler | **GODKJENT** | PR #4816, merge `e155aea8b0717c623a1de9904dcc253e8820f356` |
-| 7. Popupfaner | **GODKJENT** | audit PR #4817; 7A #4820; 7B #4822; 7C #4824; 7D #4826; 7E #4827; closeout i aktiv status-PR |
+| 7. Popupfaner | **GJENÅPNET – 7D FØR/ETTER PÅGÅR** | tidligere PR-er er historisk merget; manuell sluttkritikk gjenåpner først 7D, mens Nyheter, Lesespor og Mer står i kø |
 | 8. Rundinger | **GODKJENT** | audit PR #4829; **8A People GODKJENT**; **8B Objects GODKJENT**; **8C Brands GODKJENT**; **8D Bygg og anlegg GODKJENT**; **8E legacy rounds + slutt-UI GODKJENT** |
 | 9. På stedet | **GODKJENT** | legacy `tasks_profile` migrert ut + onsite-runtime/regresjon godkjent |
 | 10. Quiz | **GODKJENT** | full canonical quizProduction-pakke, 5 × 7 kildebårne spørsmål |
@@ -739,7 +739,22 @@ Neste aktive fase: **23. CI / repository-gates**.
 
 **Fase 23 CI / repository-gates = GODKJENT.**
 
-Aktivt spor: **redaksjonell kvalitetsforbedring før ny ferdigvurdering**.
+Aktiv fase: **7D Før/etter – GJENÅPNET / PÅGÅR**.
+
+Eksakt aktivt filscope:
+
+- `data/places/by/oslo/places/torggata.json` — `for_na`, bildepar, labels og attribusjon;
+- `reports/place-production/torggata-phase7d-before-after-audit-v1.md` — revidert research, kamerastandpunkt og acceptance-evidens;
+- `tests/place-card-for-na-torggata.test.js` — sammenlignbart primærpar, gammelt–nå-lag og faktisk nåbilde.
+
+Ingen annen forbedringsfase er `PÅGÅR`. Bindende rekkefølge etter ny godkjenning av 7D:
+
+1. Nyheter — kø;
+2. Lesespor — kø;
+3. Mer — kø;
+4. Fase 8 rundingskoherens — kø;
+5. Fase 21/22 ny manuell UI- og innholds-QA — kø;
+6. Fase 24 ny sluttport — kø.
 
 ## Fase 24 – Ett-sted-PR
 
