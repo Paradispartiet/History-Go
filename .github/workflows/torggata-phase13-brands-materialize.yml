@@ -47,6 +47,51 @@ jobs:
           sed -i 's|042sBYQ9PkvR?dimension=1800x1800|042sBYQ9PkvR?dimension=1000x1000|' scripts/materialize-torggata-phase13-brands.mjs
           grep -F '042sBYQ9PkvR?dimension=1000x1000' scripts/materialize-torggata-phase13-brands.mjs
 
+      - name: Harden CI-safe materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/materialize-torggata-phase13-brands.mjs')
+          text = path.read_text(encoding='utf-8')
+
+          old_capture = """    await page.screenshot({
+              path: tempShot,
+              clip: {
+                x: Math.max(0, box.x),
+                y: Math.max(0, box.y),
+                width: box.width,
+                height: box.height,
+              },
+              omitBackground: false,
+            });"""
+          new_capture = """    await img.screenshot({
+              path: tempShot,
+              omitBackground: false,
+            });"""
+          if old_capture not in text:
+              raise SystemExit('Oslo Sportslager screenshot block not found')
+          text = text.replace(old_capture, new_capture, 1)
+
+          replacements = {
+              'normalized to fixed logo-card canvas; no identity reconstruction':
+                  'normalized to fixed logo-card canvas; source identity preserved',
+              'cropped to fixed landscape card with source crop only; not reconstructed':
+                  'cropped to fixed landscape card using source pixels only',
+          }
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'Metadata wording not found: {old}')
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+          grep -F 'await img.screenshot({' scripts/materialize-torggata-phase13-brands.mjs
+          grep -F 'source identity preserved' scripts/materialize-torggata-phase13-brands.mjs
+          grep -F 'using source pixels only' scripts/materialize-torggata-phase13-brands.mjs
+
       - name: Check materializer syntax
         run: node --check scripts/materialize-torggata-phase13-brands.mjs
 
