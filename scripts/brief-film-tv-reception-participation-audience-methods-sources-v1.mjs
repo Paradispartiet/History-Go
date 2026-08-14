@@ -214,8 +214,13 @@ export function buildFilmTvReceptionParticipationAudienceMethodsSourceBriefV1() 
     accessibility_layers_are_separate: brief.source_policy.legal_or_technical_accessibility_provision_is_not_proof_of_discoverability_quality_usability_or_attendance,
     spectatorship_constructs_and_effect_scope_are_explicit: brief.source_policy.identification_liking_empathy_affect_arousal_and_embodiment_are_distinct
       && brief.source_policy.experimental_effects_remain_bounded_by_stimulus_design_measure_sample_and_context,
-    eleventh_source_brief_registered_without_chapter: registry.subjects.film_tv.canonicalModel.eleventhSourceClaimBrief === P.brief
-      && !registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID),
+    eleventh_source_brief_registration_matches_production_stage: registry.subjects.film_tv.canonicalModel.eleventhSourceClaimBrief === P.brief
+      && (laterGateAlreadyActive
+        ? registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID
+          && row.file === `data/fagverk/film_tv/${UNIT_ID}.json`
+          && row.claimsFile === `data/fagverk/film_tv/${UNIT_ID}/claims.json`
+          && row.briefFile === `data/fagverk/film_tv/${UNIT_ID}/brief.json`)
+        : !registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID)),
     status_advances_or_preserves_later_gate: laterGateAlreadyActive
       ? filmStatus.nextGate === currentGate
       : filmStatus.editorialStatus === 'chapters_in_progress' && filmStatus.nextGate === OUTPUT_GATE,
@@ -259,11 +264,11 @@ export function buildFilmTvReceptionParticipationAudienceMethodsSourceBriefV1() 
       score: 5,
       evidence_gate_ids: [
         'current_status_is_input_output_or_known_later_gate',
-        'eleventh_source_brief_registered_without_chapter',
+        'eleventh_source_brief_registration_matches_production_stage',
         'status_advances_or_preserves_later_gate',
         'registration_waits_for_fulltext_claim_source_audit'
       ],
-      evidence: 'Registry- og statusprogresjon er monoton, briefen registreres uten å registrere kapitlet, og fulltekstporten forblir en hard separat kontroll.'
+      evidence: 'Registry- og statusprogresjon er monoton: før fulltekst registreres bare briefen, mens den kjente fulltekstporten krever kapittel-, claim- og brieffiler med eksakt canonical registrering.'
     },
     safety_and_responsibility: {
       score: 5,
