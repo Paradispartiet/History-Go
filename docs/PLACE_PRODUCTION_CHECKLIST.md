@@ -2,7 +2,7 @@
 
 Status: **canonical produksjonsarbeidsflyt**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-03**
+Sist kontrollert: **2026-08-14**
 
 Dette dokumentet er arbeidsoppskriften for å ferdigstille **ett History GO-sted om gangen**.
 
@@ -95,6 +95,14 @@ IKKE STARTET → PÅGÅR → KLAR FOR REVIEW → GODKJENT / BEGRUNNET N/A
 
 Et sted kan ikke merkes `produksjonsklart` når nullmålingen eller fasesporingen mangler, når en relevant fase fortsatt er `IKKE STARTET`/`PÅGÅR`, eller når en teknisk minimumstest motsies av den synlige redaksjonelle kvaliteten.
 
+### Manuell sluttvurdering kan gjenåpne stedet
+
+- [ ] den synlige spilleropplevelsen vurderes som helhet etter at alle tekniske faser er merget;
+- [ ] tomme faner, svake bildevalg, kunstige samlinger og taksonomisk korrekte men brukerfiendtlige kombinasjoner registreres som reelle kvalitetsavvik;
+- [ ] manuell kvalitetskritikk kan gjenåpne en tidligere godkjent fase og oppheve `SLUTTFØRT`;
+- [ ] grønn CI, komplett schema, kildeproveniens og korrekt feltantall brukes aldri til å overstyre en dokumentert svak sluttflate;
+- [ ] den seksdelte kvalitetsvurderingen omscores når nye sluttfunn endrer dekning eller redaksjonell kvalitet.
+
 ---
 
 # DEL A — ARBEIDSKORT FOR DET AKTIVE STEDET
@@ -160,6 +168,11 @@ POPUPSTATUS — NYHETER:
 POPUPSTATUS — LESESPOR:
 POPUPSTATUS — KILDER:
 POPUPSTATUS — MER:
+MANUELL SLUTT-QA — FØR/ETTER-SAMMENLIGNING:
+MANUELL SLUTT-QA — NYHETER-DEKNING:
+MANUELL SLUTT-QA — MER-DEKNING:
+MANUELL SLUTT-QA — RUNDINGSKOHERENS:
+MANUELL SLUTT-QA — KRITISKE FUNN/BLOKKERE:
 ```
 
 Arbeidskortet skal gjøre det tydelig **hva stedet er, hvor canonical sannhet ligger, hvilke subsystemer som er relevante og hvilke kontrakter som skal brukes**.
@@ -818,14 +831,27 @@ Popupen aggregerer canonical data; den skal ikke skape en ny parallell sannhet.
 
 ### Før/etter
 - [ ] `for_na` vurdert;
-- [ ] historisk og dagens bilde viser samme meningsfulle stedssammenligning;
-- [ ] `before`, `now`, `change` er konkrete og kildebelagte.
+- [ ] arkivsøk er utført etter skikkelig gamle bilder, ikke bare bilder fra hver side av en nyere ombygging;
+- [ ] et historisk sted med tilgjengelig arkivmateriale viser minst én reell gammel–nå-sammenligning som gjør lang tidsendring synlig;
+- [ ] primærparet viser samme gateutsnitt, bygg, plassrom eller annen tydelig gjenkjennelig del av stedet fra sammenlignbar retning og målestokk;
+- [ ] bilder fra ulike kamerastandpunkter kan brukes som supplerende historiske bilder, men består ikke alene som fullverdig primær Før/etter-sammenligning;
+- [ ] eldre historiske lag og en eventuell nyere ombyggingssammenligning kan vises som flere tydelig daterte par; 2009 → 2017 erstatter ikke automatisk et eldre historisk førbilde;
+- [ ] dagens bilde er faktisk aktuelt, eller er tydelig datert som et eldre «etter»-bilde uten å utgi seg for nåtid;
+- [ ] `before`, `now`, `change` er konkrete, kildebelagte og begrenset til det bildene faktisk lar spilleren sammenligne;
+- [ ] fotograf, dato, lisens, kilde og kamerastandpunkt/utsnitt er dokumentert for hvert bilde.
+
+**Stoppgate:** Før/etter er ikke ferdig når hovedparet viser forskjellige, vanskelig sammenlignbare utsnitt, når et innholdsrikt historisk sted mangler gjennomført arkivsøk, eller når «før» og «etter» bare dekker en kort nyere periode selv om eldre egnet materiale finnes.
 
 ### Nyheter
+- [ ] repo, offisielle aktører, lokale medier og andre relevante ferske kilder er faktisk søkt;
 - [ ] historiske og nyere notiser vurdert;
+- [ ] aktive bysteder, institusjoner og kultursteder har daterte, stedsspesifikke og ferskt kontrollerte notiser når slikt materiale finnes;
+- [ ] tomt eksisterende datasett er aldri alene grunnlag for N/A;
 - [ ] proporsjonalitet beholdes;
-- [ ] nåtidsnotiser er ferskt kontrollert;
+- [ ] nåtidsnotiser er ferskt kontrollert og har tydelig publiserings-/hendelsesdato;
 - [ ] notis gjøres ikke til Story uten narrativ grunn.
+
+**Stoppgate:** Nyheter kan ikke godkjennes som tom/N/A for et aktivt, innholdsrikt sted før et dokumentert fersksøk viser at ingen relevante, trygge og stedsspesifikke notiser kan publiseres.
 
 ### Lesespor
 - [ ] eksisterende Lesespor søkt;
@@ -841,12 +867,16 @@ Popupen aggregerer canonical data; den skal ikke skape en ny parallell sannhet.
 
 ### Mer
 - [ ] Språkleksikon vurdert;
+- [ ] navnehistorie, ordbruk, lokale uttrykk og andre relevante språklag er søkt;
 - [ ] observations/knowledge/funfacts vurdert;
-- [ ] curated relations vurdert;
-- [ ] «legg merke til»-momenter vurdert;
+- [ ] arkivspor, små stedsspesifikke detaljer, kuraterte relasjoner og «legg merke til»-momenter er vurdert;
+- [ ] minst ett reelt tilleggslag produseres når kildene bærer det; Mer skal tilføre noe som ikke allerede står i Om eller Historie;
+- [ ] tomt eksisterende datasett er aldri alene grunnlag for N/A;
 - [ ] Mer brukes ikke som søppelskuff for handlinger eller fysiske Objects/Details/Spots.
 
-Alle åtte får egen status: **ikke startet**, **pågår**, **klar for review**, **ferdig** eller **N/A med fanespesifikk begrunnelse og evidenspeker**.
+**Stoppgate:** Mer kan ikke settes N/A for et innholdsrikt sted bare fordi Språkleksikon-posten mangler. Først skal relevante språk-, arkiv-, observasjons-, kunnskaps- og relasjonseiere være konkret undersøkt.
+
+Alle åtte får egen status: **ikke startet**, **pågår**, **klar for review**, **ferdig** eller **N/A med fanespesifikk begrunnelse, dokumentert søk og evidenspeker**.
 
 Status kan ikke arves mellom faner. Særlig gjelder:
 
@@ -869,10 +899,18 @@ Denne oppskriften gjentar ikke rundingspalett, profiler eller naturkartkrav. **R
 - [ ] stedet følger canonical rundingskontrakt;
 - [ ] Badge-rundingen vises fast øverst til høyre ved stedsoverskriften og teller ikke blant de fire innholdsrundingene;
 - [ ] nøyaktig fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
-- [ ] vanlig sted bruker `people · objects · brands`, mens natursted bruker `map · flora · fauna`;
+- [ ] hver runding har en naturlig brukerforståelse, en tydelig egen innholdstype og en reell stedsspesifikk samling;
+- [ ] en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig runding;
+- [ ] Objects og Structures/Bygg brukes ikke som to separate rundinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
+- [ ] to semantisk overlappende rundinger slås sammen eller erstattes av et mer meningsfullt canonical alternativ; hvis dagens rundingskontrakt hindrer dette, må kontrakt og runtime forbedres før stedet kan ferdigmeldes;
+- [ ] vanlig sted vurderer `people · objects · brands`, og natursted `map · flora · fauna`, men fast profil fritar aldri fra relevans-, substans- og koherenskontrollen;
+- [ ] kategoriens fjerde runding tilfører en ny opplevelse og er ikke bare et nytt navn på innhold som allerede ligger i en fast runding;
+- [ ] alle fire rundinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
 - [ ] runtime og data bruker ikke legacy 6-/9-/12-rundersmodell i mediefeltet;
-- [ ] preview brukes ikke som innholdsfilter;
+- [ ] preview representerer samlingen ærlig og brukes ikke som innholdsfilter;
 - [ ] gammel place-spesifikk `rounds`-kuratering brukes ikke som ny standard.
+
+**Stoppgate:** Stedet er ikke rundingsklart dersom én av de fire rundingene er tynn, kunstig, misvisende eller i vesentlig semantisk overlapp med en annen runding. Fire plasser skal aldri fylles bare for å oppnå 4+1-layouten.
 
 ---
 
@@ -1197,6 +1235,8 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] navn/kategori/hovedbilde/`desc` riktige;
 - [ ] `popupDesc`/popup åpner riktig;
 - [ ] popup har Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer;
+- [ ] Før/etter-hovedparet er visuelt sammenlignbart og inkluderer et reelt gammelt–nå-lag når stedet og arkivtilgangen tilsier det;
+- [ ] Nyheter og Mer er kontrollert som faktiske brukerflater; tomt/N/A er ikke godkjent bare fordi data mangler;
 - [ ] rundingssettet følger `data/places/README_place_rounds.md`;
 - [ ] fast Badges-runding vises øverst til høyre ved stedsoverskriften;
 - [ ] fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
@@ -1205,6 +1245,8 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] full People-tekst vises først i personpopupen;
 - [ ] Badges åpner riktig sted/fagverk;
 - [ ] Badge og de fire canonicale innholdsrundingene åpner riktig innhold;
+- [ ] de fire rundingene er innholdsmessig tydelige og ikke kunstige eller semantisk overlappende;
+- [ ] Objects bæres av en naturlig samling og er ikke en egen runding bare på grunn av én tilfeldig gjenstand;
 - [ ] Brands viser bare kandidater som består `data/brands/brand_rules_v1_1.json` og har dokumentert stedskobling;
 - [ ] natursteder bruker den canonical naturprofilen;
 - [ ] Civication/Wonderkammer vises ikke som canonical runding;
@@ -1230,7 +1272,10 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] Nature følger naturmappingens eierskap og evidens;
 - [ ] bilder identitetskontrollert;
 - [ ] Brands følger den canonicale Brand-definisjonen uten å snevres inn til bare forbrukermerker eller utvides til en generell aktørrestkategori;
+- [ ] Før/etter er vurdert for sammenlignbart utsnitt, historisk dybde og faktisk nåbilde — ikke bare lisens og kilder;
+- [ ] Nyheter og Mer har reell dekning eller en dokumentert, streng N/A-begrunnelse etter aktivt søk;
 - [ ] rundingsinnhold er ikke filler;
+- [ ] rundingene er samlet vurdert for brukerforståelse, substans og semantisk overlapp;
 - [ ] avvist/usikkert innhold er fortsatt utelatt.
 
 ---
@@ -1310,15 +1355,17 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] Historie;
 - [ ] Fortellinger / N/A;
 - [ ] Før/etter / N/A;
-- [ ] Nyheter / N/A;
+- [ ] Nyheter / strengt dokumentert N/A etter fersksøk;
 - [ ] Lesespor / N/A;
 - [ ] Kilder;
-- [ ] Mer / N/A.
+- [ ] Mer / strengt dokumentert N/A etter søk i alle relevante innholdseiere.
 
 ### Rundinger
 - [ ] `data/places/README_place_rounds.md` er fulgt;
 - [ ] Badges vises fast øverst til høyre ved stedsoverskriften;
 - [ ] stedet viser nøyaktig fire innholdsrundinger fra riktig canonical profil;
+- [ ] hver runding er substansiell, naturlig og tydelig forskjellig fra de andre;
+- [ ] Objects og Structures/Bygg er ikke kunstig splittet;
 - [ ] preview og innhold følger rundingskontrakten.
 
 ### På stedet / læring
@@ -1432,7 +1479,8 @@ Mål: [ ] 4 innholdsrundinger + separat fast Badge
 - [ ] Badge — separat og fast øverst til høyre
 - [ ] riktig fast profil: `people · objects · brands` / `map · flora · fauna`
 - [ ] fire innholdsrundinger i et 2 × 2-felt ved `frontImage`
-For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] riktig flow
+For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] substansiell  [ ] bildeklart  [ ] riktig flow
+Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures-splitt  [ ] ingen enkel gjenstand som fyll
 
 ### G. People / Stories / Quiz
 - [ ] People of Places lest og vurdert
@@ -1476,6 +1524,8 @@ For hver innholdsrunding: [ ] relevant  [ ] stedsspesifikk  [ ] bildeklart  [ ] 
 ### K. Bilder og slutt-QA
 - [ ] hovedbilder
 - [ ] rundingsbilder
+- [ ] Før/etter: sammenlignbart utsnitt + gammel–nå-lag + faktisk nåbilde
+- [ ] Nyheter og Mer: innhold eller strengt dokumentert N/A etter søk
 - [ ] identitet/attribusjon
 - [ ] JSON/referanser
 - [ ] fire-runders 2 × 2-felt + separat Badge-plassering
