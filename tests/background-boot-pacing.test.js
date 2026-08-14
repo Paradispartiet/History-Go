@@ -320,6 +320,28 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     "ødelagt previewbilde kan ikke starte en ny PlaceCard-refreshløkke"
   );
 
+  placeCard.dataset.currentPlaceId = "place-2";
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">4</span>';
+  peopleIcon.dataset.roundReady = "true";
+  mutationCallback?.([]);
+  await delay(5);
+  assert.equal(peopleIcon.dataset.hgPeopleObservedPlace, "place-2");
+  assert.equal(peopleIcon.dataset.hgPeopleStaleRefreshFor, undefined);
+
+  placeCard.dataset.currentPlaceId = "place-1";
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
+  peopleIcon.dataset.roundReady = "false";
+  mutationCallback?.([]);
+  await waitUntil(
+    () => refreshCalls > refreshesAfterStaleRepair,
+    "retur til stedet åpnet ikke engangssperren for en ny stale-reparasjon"
+  );
+  assert.equal(
+    refreshCalls,
+    refreshesAfterStaleRepair + 1,
+    "stedsovergang nullstiller sperren nøyaktig én gang"
+  );
+
   console.log("People/relations are prioritized, bounded-parallel, and refresh the open round without a false zero");
 })().catch(error => {
   console.error(error);
