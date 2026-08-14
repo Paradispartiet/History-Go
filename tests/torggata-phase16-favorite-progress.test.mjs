@@ -36,8 +36,8 @@ test("Torggata uses the existing favorite owner and profile reader", () => {
   assert.equal(favorites.toggle(PLACE_ID), true);
   assert.equal(favorites.has(PLACE_ID), true);
   assert.equal(reader.isFavoritePlace(PLACE_ID), true);
-  assert.deepEqual(reader.getFavoritePlaceIdList(), [PLACE_ID]);
-  assert.deepEqual(reader.getProfileProgressSummary().favoritePlaceIds, [PLACE_ID]);
+  assert.deepEqual(Array.from(reader.getFavoritePlaceIdList()), [PLACE_ID]);
+  assert.deepEqual(Array.from(reader.getProfileProgressSummary().favoritePlaceIds), [PLACE_ID]);
   assert.equal(JSON.parse(localStorage.getItem(favorites.key))[0], PLACE_ID);
   assert.equal(favorites.toggle(PLACE_ID), false);
 });
