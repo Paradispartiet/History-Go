@@ -141,7 +141,7 @@ test("configured 4+1 rounds are labelled and broken related previews fall back c
 test("core People and Brands rounds share preview fallback and keyboard activation", () => {
   assert.match(placeCardSource, /const setRoundPreview =/);
   assert.match(placeCardSource, /setRoundPreview\(peopleIcon, previewImage, previewAlt, "👥", persons\.length\)/);
-  assert.match(placeCardSource, /setRoundPreview\(brandsIcon, b0\?\.logo \|\| "", b0\?\.name \|\| b0\?\.label \|\| "", "🏷️", brands\.length\)/);
+  assert.match(placeCardSource, /setRoundPreview\(brandsIcon, b0\?\.logo \|\| "", b0\?\.label \|\| "", "🏷️", brands\.length\)/);
   assert.match(placeCardSource, /iconEl\?\.addEventListener\("keydown", openRoundPopup\)/);
   assert.match(placeCardSource, /e\?\.type === "keydown".*\["Enter", " "\]/);
 });
