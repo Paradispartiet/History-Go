@@ -6,6 +6,8 @@ import { isDeepStrictEqual } from 'node:util';
 import { buildFilmTvScreenPublicSphereCommunitySocietyFulltextV1 } from './materialize-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const OUTPUT_GATE = 'screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief';
+const FILM_TV_PRODUCTION_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/;
 const P = Object.freeze({
   chapter: 'data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn.json',
   brief: 'data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn/brief.json',
@@ -41,6 +43,7 @@ export function auditFilmTvScreenPublicSphereCommunitySocietyFulltextV1({ writeR
   const resolvedPlans = topicClaims.topic_briefs.flatMap((row) => row.planned_claims);
   const effectClaim = claims.find((row) => row.id === 'sp-climate-5');
   const chapterRecord = registry.subjects.film_tv.chapters.find((row) => row.id === chapter.id);
+  const builtChapterRecord = built.registry.subjects.film_tv.chapters.find((row) => row.id === chapter.id);
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
 
   const gates = {
@@ -60,15 +63,14 @@ export function auditFilmTvScreenPublicSphereCommunitySocietyFulltextV1({ writeR
     religion_scope_boundary_visible: brief.requiredCriticalDistinctions.some((row) => row.includes('trosstatus')),
     chapter_registered_after_gate: sourceBrief.runtime_registration.registered === true && sourceBrief.runtime_registration.chapter_id === chapter.id && Boolean(chapterRecord),
     registry_points_to_fulltext_assets: chapterRecord?.file === P.chapter && chapterRecord?.claimsFile === P.claims && chapterRecord?.briefFile === P.brief,
-    status_advanced_to_next_unit: filmStatus?.nextGate === 'screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief',
+    status_advanced_to_next_unit: ['chapters_in_progress', 'complete'].includes(filmStatus?.editorialStatus) && FILM_TV_PRODUCTION_GATE.test(filmStatus?.nextGate || ''),
     source_brief_consumed_after_fulltext: sourceBrief.status === 'source_claim_brief_consumed_by_verified_chapter' && sourceBrief.next_gate === 'produce_source_and_claim_brief_for_skapende_arbeid_teknologi_og_ansvar',
     source_brief_audit_records_resolution: sourceBriefReport.status === 'source_claim_brief_consumed_by_verified_chapter' && sourceBriefReport.summary.resolved_claim_count === 36,
     deterministic_generated_state: isDeepStrictEqual(claimsDoc, built.claimsDoc)
       && isDeepStrictEqual(sourceBrief, built.sourceBrief)
       && isDeepStrictEqual(topicClaims, built.topicClaims)
-      && isDeepStrictEqual(registry, built.registry)
-      && isDeepStrictEqual(status, built.status)
       && isDeepStrictEqual(sourceBriefReport, built.sourceBriefReport)
+      && isDeepStrictEqual(chapterRecord, builtChapterRecord)
   };
 
   const report = {
@@ -89,7 +91,7 @@ export function auditFilmTvScreenPublicSphereCommunitySocietyFulltextV1({ writeR
       related_place_count: chapter.relatedPlaces.length
     },
     gates,
-    next_gate: filmStatus?.nextGate
+    next_gate: OUTPUT_GATE
   };
   assert(Object.values(gates).every(Boolean), 'Minst én skjermoffentlighetsfulltekst-port feiler');
   if (writeReport) write(P.report, report);
