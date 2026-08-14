@@ -6,6 +6,7 @@ on:
       - agent/complete-philosophy-fagverk-materialize
     paths:
       - scripts/materialize-filosofi-complete.mjs
+      - scripts/audit-fagverk-filosofi-phase3.mjs
       - .github/workflows/materialize-filosofi-complete-once.yml
 
 permissions:
@@ -22,12 +23,49 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Align generator and lifecycle audit with canonical Philosophy ownership
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('scripts/materialize-filosofi-complete.mjs')
+          s = p.read_text()
+          old = "    const articleConcepts = concepts.filter((c)=>(c.emne_ids||[]).includes(emne.emne_id));"
+          new = """    const articleConcepts = (emne.core_concepts || []).map((id)=>conceptById.get(id)).filter(Boolean);\n    const forwardConceptIds = articleConcepts.map((c)=>c.id).sort();\n    const reverseConceptIds = concepts.filter((c)=>(c.emne_ids||[]).includes(emne.emne_id)).map((c)=>c.id).sort();\n    if (JSON.stringify(forwardConceptIds) !== JSON.stringify(reverseConceptIds)) throw new Error(`Concept mapping mismatch for ${emne.emne_id}: emne=${forwardConceptIds.join(',')} registry=${reverseConceptIds.join(',')}`);"""
+          if old not in s:
+              raise SystemExit('Expected Philosophy concept mapping line not found')
+          p.write_text(s.replace(old, new))
+
+          p = Path('scripts/audit-fagverk-filosofi-phase3.mjs')
+          s = p.read_text()
+          old = """  assert(statusEntry?.assessmentStatus === 'audited', 'Filosofi har feil auditstatus');\n  assert(statusEntry?.editorialStatus === 'structure_ready', 'Filosofi må stå structure_ready før kapittelproduksjon');\n  assert(statusEntry?.nextGate === 'chapter_production', 'Filosofi har feil neste port');"""
+          new = """  assert(statusEntry?.assessmentStatus === 'audited', 'Filosofi har feil auditstatus');\n  const registryChapterCount = (registry.subjects?.filosofi?.chapters || []).length;\n  const expectedEditorialStatus = registryChapterCount === 13 ? 'complete' : registryChapterCount > 0 ? 'chapters_in_progress' : 'structure_ready';\n  const expectedNextGate = registryChapterCount === 13 ? 'maintenance_source_refresh_and_place_case_expansion' : 'chapter_production';\n  assert(statusEntry?.editorialStatus === expectedEditorialStatus, `Filosofi har feil editorial status: ${statusEntry?.editorialStatus} != ${expectedEditorialStatus}`);\n  assert(statusEntry?.nextGate === expectedNextGate, `Filosofi har feil neste port: ${statusEntry?.nextGate} != ${expectedNextGate}`);"""
+          if old not in s:
+              raise SystemExit('Expected Philosophy lifecycle status block not found')
+          s = s.replace(old, new)
+          old = "  assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Filosofi-kapitler finnes');"
+          new = """  assert(model.chapters.length === registryChapterCount, 'Filosofi-modellen og registry er uenige om kapitteltall');\n  assert(model.chapters.length <= 13, 'Filosofi kan ikke ha flere enn 13 canonicale kapitler');\n  if (expectedEditorialStatus === 'complete') assert(model.chapters.length === 13, 'Complete Filosofi krever 13/13 kapitler');"""
+          if old not in s:
+              raise SystemExit('Expected Philosophy zero-chapter assertion not found')
+          s = s.replace(old, new)
+          old = "    status: 'filosofi_phase_3_structure_ready',"
+          new = "    status: expectedEditorialStatus === 'complete' ? 'filosofi_phase_3_complete' : expectedEditorialStatus === 'chapters_in_progress' ? 'filosofi_phase_3_chapters_in_progress' : 'filosofi_phase_3_structure_ready',"
+          if old not in s:
+              raise SystemExit('Expected Philosophy phase status not found')
+          s = s.replace(old, new)
+          old = "      editorialStatusStructureReady: true,"
+          new = "      editorialLifecycleConsistent: statusEntry.editorialStatus === expectedEditorialStatus,"
+          if old not in s:
+              raise SystemExit('Expected Philosophy editorial gate not found')
+          p.write_text(s.replace(old, new))
+          PY
       - name: Materialize complete Philosophy corpus
         run: |
           node --check scripts/materialize-filosofi-complete.mjs
+          node --check scripts/audit-fagverk-filosofi-phase3.mjs
           node scripts/materialize-filosofi-complete.mjs
           node scripts/build-fagverk-release-manifest.mjs
-          node scripts/audit-fagverk-filosofi-phase3.mjs
+          node scripts/audit-fagverk-filosofi-phase3.mjs --write-report
           node tools/validate-filosofi-theory-quality.mjs
       - name: Verify generated completion contract
         run: |
@@ -38,13 +76,15 @@ jobs:
           if(Object.values(a.gates).some(v=>v!==true)) throw new Error('Philosophy completion gate failed');
           const r=JSON.parse(fs.readFileSync('data/fagverk/filosofi/filosofi_article_registry_v1.json','utf8'));
           if(r.counts.standalone_articles!==54 || r.counts.integrated_concepts!==162 || r.counts.chapters!==13) throw new Error('Philosophy coverage incomplete');
+          const p=JSON.parse(fs.readFileSync('reports/fagverk/filosofi-phase3-audit.json','utf8'));
+          if(p.status!=='filosofi_phase_3_complete' || p.summary.registeredChapterCount!==13) throw new Error('Philosophy lifecycle audit not complete');
           NODE
       - name: Commit deterministic outputs and remove one-shot workflow
         run: |
           rm .github/workflows/materialize-filosofi-complete-once.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/fagverk/filosofi data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json data/fagverk/subject_status.json reports/fagverk/filosofi-complete-audit.json reports/fagverk/filosofi-phase3-audit.json scripts/materialize-filosofi-complete.mjs .github/workflows/materialize-filosofi-complete-once.yml
+          git add data/fagverk/filosofi data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json data/fagverk/subject_status.json reports/fagverk/filosofi-complete-audit.json reports/fagverk/filosofi-phase3-audit.json scripts/materialize-filosofi-complete.mjs scripts/audit-fagverk-filosofi-phase3.mjs .github/workflows/materialize-filosofi-complete-once.yml
           git diff --cached --quiet && exit 0
           git commit -m 'Materialize complete Philosophy Fagverk'
           git push origin HEAD:agent/complete-philosophy-fagverk-materialize
