@@ -47,7 +47,7 @@ Dette er en identitetsstoppgate, ikke en vurdering av hvor gode bad-bildene isol
 - lisens: CC BY-NC-ND 3.0 NO;
 - mediaversjon: Oslo Museums uendrede `decoimage` med innebygd kreditering.
 
-Bildet viser fasaderekken på venstre side, den asfalterte kjørebanen, bilbruk og gateaksen fram mot trærne ved Ankertorget.
+Bildet viser fasaderekken på høyre side, den asfalterte kjørebanen, bilbruk og gateaksen fram mot trærne ved Ankertorget.
 
 ### Nå – samme gateakse, 27. mars 2025
 
@@ -68,7 +68,7 @@ KartaView har sladdet identifiserbare ansikter. Den viste mediefilen er den beha
 
 Paret er valgt fordi brukeren kan finne de samme faste orienteringspunktene umiddelbart:
 
-1. den sammenhengende fasaderekken Torggata 30–36 på venstre side;
+1. den sammenhengende fasaderekken Torggata 30–36 på høyre side;
 2. samme retning nordøst mot Hausmanns gate;
 3. trærne og åpningen ved Ankertorget i enden av gateaksen;
 4. sammenlignbar gatehøyde og målestokk.
@@ -103,6 +103,8 @@ Det historiske fotografiet har den restriktive lisensen CC BY-NC-ND 3.0 NO. Det 
 Hvis produktets distribusjon blir kommersiell, er det historiske bildet en eksplisitt rettighetsblokkering som må erstattes eller klareres før videre bruk.
 
 ## Manuell bilde-QA
+
+**Korrigering etter produksjons-reQA 2026-08-14:** Fasaderekken Torggata 30–36 ligger visuelt på høyre side i begge bilder. Tidligere «venstre side» var en tekstfeil; motivparet og gateaksen er uendret.
 
 Begge mediefilene ble åpnet i original/tilstrekkelig høy oppløsning 2026-08-14.
 
