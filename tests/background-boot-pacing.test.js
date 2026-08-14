@@ -358,6 +358,10 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.ok(lifecycle.indexOf("people-ready") < lifecycle.indexOf("wonderkammer-ready"));
   assert.ok(lifecycle.indexOf("relations-ready") < lifecycle.indexOf("wonderkammer-ready"));
 
+  // Stedsskifte-revalideringen publiserer og planlegger én asynkron PlaceCard-refresh.
+  // La den fullføres før de eksisterende engangssperre-assertene måler nye kall.
+  await delay(20);
+
   assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres på nytt når People og relasjoner er klare");
   assert.doesNotMatch(peopleIcon.innerHTML, /…/);
   assert.match(peopleIcon.innerHTML, />6</);
