@@ -30,13 +30,13 @@ Den manuelle re-QA-en ble gjort mot faktisk publisert PlaceCard etter at 4+1-pro
 
 Produksjonsflaten viste `0` og «Ingen personer ennå». Manifestet inneholder 17 profiler under `data/people/by/oslo/torggata/`, hvorav de bildeklare profilene skal kunne vises. Profilfilene er canonical enkeltobjekter. `js/boot-fast.js` godtok bare lister eller `{people:[...]}`, og normaliserte derfor disse profilene til tom liste. I tillegg kunne loading-broen beholde tilstanden `loading` samtidig som PlaceCard hadde skrevet et synlig nulltall.
 
-**Reparasjon:** enkeltobjekt med `id` normaliseres til én rad; filer i mappen til åpent place prioriteres og publiseres før resten av registeret; åpent PlaceCard kan oppdateres på delvis brukbare People/relations-data; loading-broen gjenoppretter lastemarkør hvis en falsk null overskriver den.
+**Reparasjon:** enkeltobjekt med `id` normaliseres til én rad; People-køen beregner prioritet på nytt for hver fil, slik at et place som åpnes etter vanlig kartstart flyttes fram og publiseres før resten av registeret; åpent PlaceCard kan oppdateres på delvis brukbare People/relations-data; loading-broen gjenoppretter lastemarkør hvis en falsk null overskriver den.
 
 ### 2. Ødelagt preview i Relaterte steder
 
 Storgata har bildefilreferanser som ikke svarer på publisert flate. Rundingen rendret et vanlig `img` uten error-fallback og viste derfor et ødelagt bildeikon. Selve relasjonslisten var korrekt.
 
-**Reparasjon:** alle canonical rundings-preview får felles error-fallback til rundingens eget ikon og faktisk antall. De fire synlige rundingene får samtidig eksplisitt `aria-label`, `role=button`, `tabindex=0` og `title`.
+**Reparasjon:** alle fire previewene i Torggatas valgte profil får error-fallback til rundingens eget ikon og faktisk antall, også core-rundingene People og Brands. De fire synlige rundingene får samtidig eksplisitt `aria-label`, `role=button`, `tabindex=0` og `title`; core-popupbindingen håndterer Enter og mellomrom i tillegg til klikk.
 
 ### 3. Feil sideangivelse i Før/etter
 
@@ -59,7 +59,7 @@ Den tidligere innførte identitetsstoppen består: et delsted med egen canonical
 ## Regresjonslås
 
 - `tests/background-boot-pacing.test.js`: enkeltobjekt, prioritert place-lasting, delpublisering, retry, bounded concurrency, PlaceCard-refresh og falsk-null-bro.
-- `tests/place-rounds-visual-collections.test.mjs`: tilgjengelige navn og bilde-error-fallback.
+- `tests/place-rounds-visual-collections.test.mjs`: tilgjengelige navn, bilde-error-fallback for alle fire Torggata-rundinger og tastaturbinding for core-rundingene.
 - `tests/place-card-for-na-torggata.test.js`: korrekt høyresideangivelse og oppdatert audit.
 - Deterministisk quiz-kontekst oppdateres bare med ny byte-/SHA256-identitet for canonical place-filen.
 
