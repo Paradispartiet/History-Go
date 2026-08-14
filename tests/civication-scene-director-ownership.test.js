@@ -8,11 +8,27 @@ const workdayPath = fs.existsSync(path.join(repoRoot, "js/Civication/systems/civ
   ? path.join(repoRoot, "js/Civication/systems/civicationWorkdayMailBuilder.js")
   : "/tmp/civicationWorkdayMailBuilder.js";
 const dailyPath = path.join(repoRoot, "js/Civication/systems/civicationDailyMailBuilder.js");
+const loaderPath = path.join(repoRoot, "js/Civication/civicationShellLoader.js");
 
 const workdaySource = fs.readFileSync(workdayPath, "utf8");
 assert(workdaySource.includes("window.CivicationSceneDirector = director"));
 assert(workdaySource.includes("runtime.makeCandidateMailsForActiveRole = director.getWorkCandidates"));
 assert(workdaySource.includes('consumer: "workday_mail_builder"'));
+
+// Loaderrekkefølgen er en del av cutover-kontrakten: Director skal fange den
+// komplette, outcome-aware selektoren etter at CareerOutcomeRuntime er lastet,
+// men før DailyMailBuilder begynner å bruke legacy-navnet som Director-alias.
+if (fs.existsSync(loaderPath)) {
+  const loaderSource = fs.readFileSync(loaderPath, "utf8");
+  const runtimeIndex = loaderSource.indexOf('"js/Civication/systems/civicationMailRuntime.js"');
+  const outcomeIndex = loaderSource.indexOf('"js/Civication/systems/civicationCareerOutcomeRuntime.js"');
+  const workdayIndex = loaderSource.indexOf('"js/Civication/systems/civicationWorkdayMailBuilder.js"');
+  const dailyIndex = loaderSource.indexOf('"js/Civication/systems/civicationDailyMailBuilder.js"');
+  assert(runtimeIndex >= 0 && outcomeIndex >= 0 && workdayIndex >= 0 && dailyIndex >= 0);
+  assert(runtimeIndex < outcomeIndex, "MailRuntime skal lastes før outcome-utvidelsen");
+  assert(outcomeIndex < workdayIndex, "SceneDirector skal fange outcome-aware selektor");
+  assert(workdayIndex < dailyIndex, "Director-alias skal finnes før DailyMailBuilder lastes");
+}
 
 // DailyMailBuilder beholder sitt gamle kall i denne fasen. Det er bevisst:
 // WorkdayBuilder lastes først og gjør dette runtime-navnet til en alias til
