@@ -1,0 +1,73 @@
+name: Temporary refresh Film and TV unit 12 source brief
+
+on:
+  push:
+    branches:
+      - codex/film-tv-unit12-screen-places-source-brief-clean
+    paths:
+      - ".github/workflows/_tmp-refresh-film-tv-unit12-source-brief.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temporary-refresh-film-tv-unit12-source-brief
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: codex/film-tv-unit12-screen-places-source-brief-clean
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Regenerate unit 12 and deterministic global state
+        run: |
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs --write
+          node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs --write
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs --write-report
+          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+
+      - name: Validate regenerated state
+        run: |
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
+          node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+          node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
+          node --test tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+          node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
+          node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Commit refreshed state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --stat
+          if git diff --cached --quiet; then
+            echo "No deterministic refresh changes"
+            exit 0
+          fi
+          git commit -m "Regenerer enhet 12 på fersk hovedgren"
+          git push origin HEAD:codex/film-tv-unit12-screen-places-source-brief-clean
