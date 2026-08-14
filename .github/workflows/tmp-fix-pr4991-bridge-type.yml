@@ -25,8 +25,10 @@ jobs:
           text = path.read_text(encoding="utf-8")
 
           old = '    if (descriptor?.set?.__civicationSceneDirectorBridge === true) return true;'
-          new = '''    const descriptorSetter = /** @type {any} */ (descriptor?.set);
-    if (descriptorSetter?.__civicationSceneDirectorBridge === true) return true;'''
+          new = (
+              '    const descriptorSetter = /** @type {any} */ (descriptor?.set);'
+              '\n    if (descriptorSetter?.__civicationSceneDirectorBridge === true) return true;'
+          )
           count = text.count(old)
           if count != 1:
               raise SystemExit(f"expected one descriptor setter target, found {count}")
