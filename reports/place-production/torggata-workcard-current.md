@@ -956,7 +956,7 @@ Ny datakontroll viste to mangler:
 1. `data/relations.json` hadde ingen canonical Torggata-relasjoner, selv om People-profilene har direkte place-felt.
 2. People-manifestet og profilfilene for åpent sted ble hentet med vanlig nettlesercache. En stale manifest-/profilrespons kan derfor omgå både direkte oppslag og recovery-logikk uten fetch-feil.
 
-Egen-place-regelen ble samtidig brukt på selve People-utvalget. Thorvald Meyer, Christian Morgenstierne og Arne Eides Torggata-kobling gjelder Torggata Bad, som har egen History GO-place, og kan derfor ikke brukes som proxy i Torggatas Personer-runding. De får stedsspesifikk holdback. Det naturlige, kildebelagte Torggata-utvalget er dermed Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
+Egen-place-regelen ble samtidig brukt på selve People-utvalget. Thorvald Meyer, Christian Morgenstierne og Arne Eides Torggata-kobling gjelder Torggata Bad, som har egen History GO-place, og kan derfor ikke brukes som proxy i Torggatas Personer-runding. Integrasjonstesten avdekket i tillegg tolv brede subkultur-/miljøkoblinger som ville gjort rundingen til generelt områdefyll; de får samme stedsspesifikke holdback. Det naturlige, kildebelagte Torggata-utvalget er dermed Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
 
 Tredje reparasjon skal:
 

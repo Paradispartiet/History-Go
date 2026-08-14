@@ -16,7 +16,7 @@ const expected=[
   "alexander_claes","therese_hurwitz","jenny_hurwitz","fredrik_hurwitz","moritz_glott"
 ];
 const requiredVisible=["henrik_bull","harald_olsen","alma_fahlstrom","johan_fahlstrom"];
-const requiredHoldbacks=["thorvald_meyer","christian_morgenstierne","arne_eide","thoger_binneballe","ludvig_christian_jensen","adelsten_jensen","peter_marinius_jensen","karl_a_jensen","thorvald_jensen","nanna_broch","wulff_becker","martin_heinz_zilsel","alexander_claes","therese_hurwitz","jenny_hurwitz","fredrik_hurwitz","moritz_glott"];
+const requiredHoldbacks=["thorvald_meyer","christian_morgenstierne","arne_eide","blitz_miljoet","christopher_nielsen","don_martin","gateavisa_miljoet","hariton_pushwagner","hausmania_miljoet","kjetil_rolness","oslo_graffiti_miljoet","oslo_skateboardmiljoet","radi_orakel","tommy_tee","warlocks_oslo","thoger_binneballe","ludvig_christian_jensen","adelsten_jensen","peter_marinius_jensen","karl_a_jensen","thorvald_jensen","nanna_broch","wulff_becker","martin_heinz_zilsel","alexander_claes","therese_hurwitz","jenny_hurwitz","fredrik_hurwitz","moritz_glott"];
 
 function runtimePeopleForTorggata(){
   const source=fs.readFileSync(path.join(ROOT,"js/ui/popup-utils.js"),"utf8");
@@ -52,7 +52,7 @@ test("every person visible in the finished Torggata People round is image-ready"
   }
 });
 
-test("all 14 image holdbacks preserve canonical linkage and explain the gate",()=>{
+test("all place-scoped People holdbacks preserve canonical linkage and explain the gate",()=>{
   const byId=new Map(people.map(p=>[String(p?.id||"").trim(),p]));
   for(const id of requiredHoldbacks){
     const p=byId.get(id); assert.ok(p,`${id} missing`);

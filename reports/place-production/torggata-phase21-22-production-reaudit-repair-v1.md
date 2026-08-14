@@ -104,7 +104,7 @@ Den nye runtimekoden var lastet, men Personer viste fortsatt `0` og tom popup. D
 
 Canonical datakontroll viste at `data/relations.json` manglet Torggata-relasjoner. Direkte place-felt er fortsatt gyldige, men produksjonskjeden skal også ha canonical relasjoner for de faktisk valgte profilene. Manifest og profilfiler for åpent sted skal dessuten revalideres, slik at en stale nettlesercache ikke kan holde rundingen på null uten nettverksfeil.
 
-Egen-place-regelen gjelder også People: Thorvald Meyer, Christian Morgenstierne og Arne Eides Torggata-referanser beskriver Torggata Bad. Siden badet har egen canonical History GO-place, holdes de tilbake fra parent-rundingen. Godkjent målsett for Torggata er fire personer: Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
+Egen-place-regelen gjelder også People: Thorvald Meyer, Christian Morgenstierne og Arne Eides Torggata-referanser beskriver Torggata Bad. Siden badet har egen canonical History GO-place, holdes de tilbake fra parent-rundingen. Integrasjonstesten fant også tolv brede subkultur-/miljøkoblinger uten tilstrekkelig spesifikt Torggata-stedspunkt; disse holdes tilbake for å hindre generelt områdefyll. Godkjent målsett for Torggata er fire personer: Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
 
 ### Tredje reparasjonsgate
 
