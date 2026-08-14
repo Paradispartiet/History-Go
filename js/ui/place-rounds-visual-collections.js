@@ -27,6 +27,7 @@
   const BY_ID = new Map(ALL_DEFS.map(def => [def.id, def]));
   const GENERAL_BASE = Object.freeze(["people", "objects", "brands"]);
   const NATURE_BASE = Object.freeze(["map", "flora", "fauna"]);
+  const STANDARD_SECOND_ROUNDS = new Set(["objects", "images"]);
 
   const CATEGORY_FOURTH = Object.freeze({
     by:"structures",
@@ -73,6 +74,7 @@
   const esc = value => String(value ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;");
   let scheduled = false;
   let badgeBound = false;
+  let secondBound = false;
   let categoryBound = false;
 
   function normalizeCategory(place) {
@@ -292,7 +294,27 @@
     return CATEGORY_FOURTH[normalizeCategory(place)] || "images";
   }
 
+  function configuredRoundIds(place) {
+    if (normalizeCategory(place) === "natur") return null;
+    const ids = arr(place?.round_profile?.content_round_ids).map(s);
+    const valid = ids.length === 4
+      && ids[0] === "people"
+      && STANDARD_SECOND_ROUNDS.has(ids[1])
+      && ids[2] === "brands"
+      && Object.prototype.hasOwnProperty.call(FOURTH_DEFS, ids[3])
+      && ids[1] !== ids[3]
+      && collectionItems(place, ids[1]).length > 0
+      && collectionItems(place, ids[3]).length > 0;
+    return valid ? ids : null;
+  }
+
+  function secondRoundId(place) {
+    return configuredRoundIds(place)?.[1] || "objects";
+  }
+
   function fourthRoundId(place) {
+    const configured = configuredRoundIds(place);
+    if (configured) return configured[3];
     const preferred = preferredFourthId(place);
     return collectionItems(place, preferred).length ? preferred : "images";
   }
@@ -308,7 +330,14 @@
     return id in FOURTH_DEFS ? { ...def, label:fourthLabel(place, id) } : def;
   }
 
+  function secondDef(place) {
+    const def = defFor(place, secondRoundId(place));
+    return def ? { ...def, iconId:"pcObjectsIcon", listId:"pcObjectsList" } : null;
+  }
+
   function selectedIds(place) {
+    const configured = configuredRoundIds(place);
+    if (configured) return configured;
     const base = normalizeCategory(place) === "natur" ? NATURE_BASE : GENERAL_BASE;
     return [...base, fourthRoundId(place)];
   }
@@ -387,6 +416,17 @@
       : `<div class="pc-round-label"><span class="pc-round-emoji">${def.fallbackIcon}</span><span class="pc-round-count">${items.length || ""}</span></div>`;
   }
 
+  async function renderSecond(place) {
+    const def = secondDef(place);
+    if (!def) return;
+    await renderFixed(place, def);
+    const icon = document.getElementById("pcObjectsIcon");
+    if (!icon) return;
+    icon.dataset.roundId = def.id;
+    icon.setAttribute("aria-label", def.label);
+    icon.title = def.label;
+  }
+
   function renderFourth(place) {
     const id = fourthRoundId(place);
     const def = defFor(place, id);
@@ -435,6 +475,26 @@
     icon.addEventListener("keydown", open);
   }
 
+  function bindSecond() {
+    if (secondBound) return;
+    const icon = document.getElementById("pcObjectsIcon");
+    if (!icon) return;
+    secondBound = true;
+    const open = async event => {
+      if (event?.type === "keydown" && !["Enter", " "].includes(event.key)) return;
+      event?.preventDefault?.();
+      event?.stopPropagation?.();
+      const place = currentPlace();
+      if (!place) return;
+      await renderSecond(place);
+      const def = secondDef(place);
+      const html = s(document.getElementById("pcObjectsList")?.innerHTML) || '<div class="pc-empty">Ingen innhold ennå</div>';
+      global.showPlaceCardRoundPopup?.({ title:def?.label || "Gjenstander", subtitle:s(place.name || place.title), html, place, kind:def?.id || "objects" });
+    };
+    icon.addEventListener("click", open);
+    icon.addEventListener("keydown", open);
+  }
+
   function bindFourth() {
     if (categoryBound) return;
     const icon = document.getElementById("pcCategoryCollectionIcon");
@@ -477,20 +537,29 @@
     ensureDom();
     bindBadge();
     ensureBadgePlacement();
-    for (const def of FIXED_DEFS.filter(item => ["objects", "map", "flora", "fauna"].includes(item.id))) {
+    for (const def of FIXED_DEFS.filter(item => ["map", "flora", "fauna"].includes(item.id))) {
       await renderFixed(place, def);
       bindFixed(def);
     }
+    await renderSecond(place);
+    bindSecond();
     renderFourth(place);
     bindFourth();
 
     const selected = selectedIds(place);
-    const allowed = new Set(selected.map(id => id in FOURTH_DEFS ? "pcCategoryCollectionIcon" : BY_ID.get(id)?.iconId).filter(Boolean));
+    const configured = configuredRoundIds(place);
+    const slotIconIds = selected.map((id, index) => {
+      if (configured && index === 1) return "pcObjectsIcon";
+      if (index === 3) return "pcCategoryCollectionIcon";
+      return BY_ID.get(id)?.iconId;
+    }).filter(Boolean);
+    const allowed = new Set(slotIconIds);
     const grid = card.querySelector(".pc-icons-quad");
     const fourth = selected[3] || "images";
     card.dataset.roundMode = "category-four";
     card.dataset.roundCount = "4";
     card.dataset.roundCategory = normalizeCategory(place);
+    card.dataset.roundSecond = selected[1] || "";
     card.dataset.roundFourth = fourth;
 
     if (grid) {
@@ -499,8 +568,7 @@
         icon.hidden = !show;
         icon.setAttribute("aria-hidden", show ? "false" : "true");
         if (show) {
-          const id = icon.id === "pcCategoryCollectionIcon" ? fourth : FIXED_DEFS.find(item => item.iconId === icon.id)?.id;
-          icon.style.order = String(selected.indexOf(id));
+          icon.style.order = String(slotIconIds.indexOf(icon.id));
         } else {
           icon.style.order = "";
         }
@@ -515,6 +583,7 @@
       grid.dataset.roundMode = "category-four";
       grid.dataset.roundCount = "4";
       grid.dataset.roundCategory = normalizeCategory(place);
+      grid.dataset.roundSecond = selected[1] || "";
       grid.dataset.roundFourth = fourth;
       grid.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))";
       grid.style.gridTemplateRows = "repeat(2, minmax(0, 1fr))";
@@ -551,6 +620,7 @@
       base:{ standard:[...GENERAL_BASE], natur:[...NATURE_BASE] },
       fourthByCategory:CATEGORY_FOURTH,
       byId,
+      getConfigured:configuredRoundIds,
       get:place => selectedIds(place).map(id => defFor(place, id)).filter(Boolean),
       getFourth:fourthRoundId,
       getFourthLabel:fourthLabel,
@@ -565,6 +635,7 @@
     ensureDom();
     installApi();
     bindBadge();
+    bindSecond();
     bindFourth();
     patchOpenPlaceCard();
     scheduleApply();
@@ -581,6 +652,7 @@
     ids:ALL_DEFS.map(def => def.id), registry:[...ALL_DEFS], badge:BY_ID.get("badges"),
     base:{ standard:[...GENERAL_BASE], natur:[...NATURE_BASE] },
     fourthByCategory:CATEGORY_FOURTH,
+    getConfigured:configuredRoundIds,
     get:selectedIds, getFourth:fourthRoundId, getFourthLabel:fourthLabel, getItems:collectionItems, apply
   };
 
