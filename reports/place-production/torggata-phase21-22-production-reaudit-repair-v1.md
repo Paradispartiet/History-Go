@@ -63,6 +63,23 @@ Den tidligere innførte identitetsstoppen består: et delsted med egen canonical
 - `tests/place-card-for-na-torggata.test.js`: korrekt høyresideangivelse og oppdatert audit.
 - Deterministisk quiz-kontekst oppdateres bare med ny byte-/SHA256-identitet for canonical place-filen.
 
+## Første produksjonsverifikasjon etter PR #4980
+
+- Merge: `0946dbb3f65c2be9ea12cf556791f2fdb97f929d`
+- Pages-run: `31814847184` = success
+- Kontroll: vanlig publisert PlaceCard, cache-bustet dokument og eksplisitt reload
+
+Relaterte steder viste korrekt ikon-/antallsfallback og de øvrige tidligere beståtte flatene var intakte, men Personer viste fortsatt `0` og «Ingen personer ennå». Første reparasjon er derfor **ikke godkjent som sluttresultat**.
+
+Den nye loaderen publiserer de direkte Torggata-profilene, men PlaceCard kan fortsatt ende med en sen tom render: refresh-gaten ventet også på relasjonsregisteret, og en initial render med tomt People-datasett kunne fullføre etter ready-eventet og overskrive den korrekte rerenderen. Produksjonsobserveren godtok deretter den stale nullen fordi dataene allerede stod som ready.
+
+Andre reparasjon:
+
+1. direkte place-profiler kan trigge PlaceCard-refresh straks People-data er brukbare, uten å vente på hele relasjonsregisteret;
+2. ready-observeren oppdager én sen tom render når synlige direkte profiler finnes;
+3. én stedsspesifikk recovery-render kjøres etter den stale DOM-mutasjonen;
+4. testen forsinker relasjonsdata, åpner place etter boot og simulerer en tom render etter ready.
+
 ## Godkjenningsgate
 
 Denne auditen godkjenner ikke sluttflaten på forhånd. Etter merge skal den nye main-versjonen deployes, og produksjonsflaten skal manuelt bekrefte:
