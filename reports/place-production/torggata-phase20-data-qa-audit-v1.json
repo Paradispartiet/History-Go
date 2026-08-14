@@ -1,0 +1,36 @@
+{
+  "schema_version": "torggata_phase20_data_qa_audit_v1",
+  "place_id": "torggata",
+  "phase": 20,
+  "status": "APPROVED",
+  "checks": {
+    "json_parse": "PASS",
+    "unique_place_id": "PASS",
+    "manifest_loaded": "PASS",
+    "generated_index_sync": "PASS",
+    "category": "PASS",
+    "emne_ids": "PASS",
+    "coordinate_contract": "PASS",
+    "description_claim_parity": "PASS",
+    "people_refs": "21/21 PASS",
+    "works_refs": "5/5 PASS",
+    "brands_refs": "13/13 PASS",
+    "story_manifest": "PASS",
+    "quiz_production": "5x7 PASS",
+    "relations": "storgata PASS",
+    "i18n_aliases": "PASS",
+    "duplicate_ids_introduced": 0
+  },
+  "ci_evidence": {
+    "latest_content_pr": 4953,
+    "head_sha": "236c75794194a229ebcb08e115d1e470b3a5bbfd",
+    "checks": [
+      "Data checks",
+      "TypeScript guard",
+      "Fagverk By Data og styring Phase 4"
+    ],
+    "conclusion": "all success"
+  },
+  "data_changes_in_phase20": false,
+  "conclusion": "All relevant Torggata data and subsystem references validate."
+}
