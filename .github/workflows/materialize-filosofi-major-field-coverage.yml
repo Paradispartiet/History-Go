@@ -36,15 +36,16 @@ jobs:
           start=s.index("// Add missing seventh field:")
           end=s.index("const NEW_DOMAIN_ORDER=", start)
           s=s[:start]+s[end:]
-
           old="    {id:'problem',title:'Problemet',paragraphs:[art.problem,art.stakes,art.contrast]},"
-          new="""    {id:'problem',title:'Problemet',paragraphs:[
-      art.problem,
-      art.stakes,
-      art.contrast,
-      `Den komparative testen må gå lenger enn å plassere navn ved siden av hverandre. ${art.thinkers.map((t)=>t.name).join(', ')} må leses som posisjoner med forskjellige forklaringsforpliktelser, og primærverkene ${art.thinkers.map((t)=>t.works[0]).join('; ')} brukes til å kontrollere hva rivalene faktisk hevder. I dette problemet er ${art.concepts.map((c)=>c.label).join(', ')} ikke parallelle gloser, men analytiske knutepunkter: hvert begrep må identifisere hvilket premiss, hvilken overgang eller hvilken type forklaring som står på spill. En sterk sammenligning spør derfor ikke bare hvem som "mener hva", men hvilken rival som kan forklare samme problem med færrest ubegrunnede tillegg, hvilke moteksempler som rammer teorien, og om en løsning på ett delproblem flytter en kostnad til ontologi, epistemologi, normativitet eller metode. På den måten blir ${art.title} et selvstendig universitetsproblem der uenigheten kan rekonstrueres og kritiseres premiss for premiss.`,
-      `Faglig fordypning krever også at teoriens forklaringsgevinst skilles fra dens pris. Når ${art.thinkers[0].name} leses mot ${art.thinkers[1].name}${art.thinkers[2] ? ` og ${art.thinkers[2].name}` : ''}, må analysen vise hvilken observasjon, intuisjon, institusjonell praksis eller formell struktur hver posisjon forsøker å bevare, og hva den eventuelt må gi opp for å gjøre det. De sentrale begrepene ${art.concepts.map((c)=>c.label).join(', ')} fungerer som kontrollpunkter fordi en endring i definisjon eller distinksjon kan endre hele argumentets gyldighet. Det er derfor utilstrekkelig å konkludere med at rivalene "har ulike perspektiver". Et universitetssvar skal identifisere den sterkeste versjonen av minst to posisjoner, angi hvorfor en innvending treffer et bestemt premiss, og forklare hva som fortsatt står åpent etter svaret. Slik unngår artikkelen både navnedropping og kunstig konsensus, samtidig som den gjør den reelle forskningsuenigheten etterprøvbar for leseren.`
-    ]},"""
+          new="\n".join([
+              "    {id:'problem',title:'Problemet',paragraphs:[",
+              "      art.problem,",
+              "      art.stakes,",
+              "      art.contrast,",
+              "      `Den komparative testen må gå lenger enn å plassere navn ved siden av hverandre. ${art.thinkers.map((t)=>t.name).join(', ')} må leses som posisjoner med forskjellige forklaringsforpliktelser, og primærverkene ${art.thinkers.map((t)=>t.works[0]).join('; ')} brukes til å kontrollere hva rivalene faktisk hevder. I dette problemet er ${art.concepts.map((c)=>c.label).join(', ')} ikke parallelle gloser, men analytiske knutepunkter: hvert begrep må identifisere hvilket premiss, hvilken overgang eller hvilken type forklaring som står på spill. En sterk sammenligning spør derfor ikke bare hvem som mener hva, men hvilken rival som kan forklare samme problem med færrest ubegrunnede tillegg, hvilke moteksempler som rammer teorien, og om en løsning på ett delproblem flytter en kostnad til ontologi, epistemologi, normativitet eller metode. På den måten blir ${art.title} et selvstendig universitetsproblem der uenigheten kan rekonstrueres og kritiseres premiss for premiss.`,",
+              "      `Faglig fordypning krever også at teoriens forklaringsgevinst skilles fra dens pris. Når ${art.thinkers[0].name} leses mot ${art.thinkers[1].name}${art.thinkers[2] ? ` og ${art.thinkers[2].name}` : ''}, må analysen vise hvilken observasjon, intuisjon, institusjonell praksis eller formell struktur hver posisjon forsøker å bevare, og hva den eventuelt må gi opp for å gjøre det. De sentrale begrepene ${art.concepts.map((c)=>c.label).join(', ')} fungerer som kontrollpunkter fordi en endring i definisjon eller distinksjon kan endre hele argumentets gyldighet. Det er derfor utilstrekkelig å konkludere med at rivalene har ulike perspektiver. Et universitetssvar skal identifisere den sterkeste versjonen av minst to posisjoner, angi hvorfor en innvending treffer et bestemt premiss, og forklare hva som fortsatt står åpent etter svaret. Slik unngår artikkelen både navnedropping og kunstig konsensus, samtidig som den gjør den reelle forskningsuenigheten etterprøvbar for leseren.`",
+              "    ]},",
+          ])
           if old not in s:
               raise SystemExit('Could not find Philosophy problem-section materializer line')
           s=s.replace(old,new,1)
