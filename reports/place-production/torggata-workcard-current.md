@@ -33,6 +33,7 @@
 - Fase 12-audit: `reports/place-production/torggata-phase12-people-links-audit-v1.json`
 - Fase 13-audit: `reports/place-production/torggata-phase13-brands-audit-v1.json`
 - Fase 14-audit: `reports/place-production/torggata-phase14-discovery-audit-v1.json`
+- Fase 15-audit: `reports/place-production/torggata-phase15-physical-visit-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -53,7 +54,8 @@
 | 12. People–sted-koblinger | **GODKJENT** | 21/21 canonical koblinger og inspectable kilder beholdt; 7 synlige profiler er bildeklare; 14 bildeholdbacks er eksplisitte og bevarer koblingen |
 | 13. Brands | **GODKJENT** | 13/13 canonical brands har lokal verifisert logo eller autentisk historisk ordmerke/brandmark med proveniens; ingen genererte eller rekonstruerte logoer |
 | 14. Leksikon, relations, NextUp, Nearby, søk og i18n | **GODKJENT** | kildebåret Leksikon beholdt; `storgata`-relasjon, historiske aliaser og tre trofaste oversettelser regresjonslåst |
-| 15–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 15. Fysisk besøk / innsjekk | **ALLEREDE FERDIG – GODKJENT** | PR #3212/#3218-baselinen består med canonical Torggata-anker/radius og quiz/visit-separasjon |
+| 16–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -519,3 +521,28 @@ BESLUTNING: RETROFIT ONLY – behold ferdige eiere, rett bare de tre dokumentert
 **Fase 14 = GODKJENT når fase-14-test, Places data og TypeScript/build-porter er grønne.**
 
 Neste aktive fase: **15. Fysisk besøk / innsjekk**.
+
+## Fase 15 – Fysisk besøk / innsjekk
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+SISTE GODKJENTE PR/COMMIT: PR #3218 / ea56d384e6d806219449834cf5e6071a52fd60e7; separasjonen først etablert i PR #3212 / 9251227f4b5488e0403432369f43a1018e4f2982
+SISTE GODKJENTE TILSTAND: HGPhysicalVisits eier fysisk write; PlaceCard eier pcVisit; quiz-write er deaktivert; posisjonsgate bruker canonical targets og radius
+KONKRET REGRESJONSEVIDENS: ingen
+BESLUTNING: ALLEREDE FERDIG – kun Torggata-spesifikk closeout og regresjonslås
+```
+
+### Godkjent resultat
+
+- PlaceCard viser riktig fysisk statusrekke: `Henter posisjon…`, `Gå nærmere`, `Registrer besøk` og `Besøkt ✅`.
+- Torggata bruker den tidligere godkjente gategeometrien `59.91700148933685, 10.75330911912394` med radius `180`.
+- For stor avstand gir `too_far` og beregnet restavstand; registreringsknappen er deaktivert.
+- Gyldig avstand registrerer via eksisterende `HGPhysicalVisits.record(place)` og leses tilbake som fysisk `Besøkt`.
+- Quizåpning/-fullføring skriver ikke fysisk status; `saveVisitedFromQuiz` returnerer `false` og quiz-samling forblir egen `places_collected`-akse.
+- Torggata-data har ingen egen visit-, check-in- eller konkurrerende storage-modell.
+- Fase-9 På stedet-arbeidet beholdes som separat aktivitetsflate og er ikke duplisert.
+- `tests/torggata-phase15-physical-visit.test.mjs` låser hele fase-15-kontrakten.
+
+**Fase 15 Fysisk besøk / innsjekk = ALLEREDE FERDIG – GODKJENT.**
+
+Neste aktive fase: **16. Multiplayer og sosiale koblinger**.

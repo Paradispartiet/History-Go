@@ -23,6 +23,7 @@ on:
       - 'tests/etne-people-of-places-*.test.js'
       - 'tests/quiz-content-quality-audit.test.mjs'
       - 'tests/torggata-phase14-discovery.test.mjs'
+      - 'tests/torggata-phase15-physical-visit.test.mjs'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
       - 'scripts/build-civication-history-people-index.mts'
@@ -146,6 +147,9 @@ jobs:
 
       - name: Test Torggata phase 14 discovery contract
         run: node --test tests/torggata-phase14-discovery.test.mjs
+
+      - name: Test Torggata phase 15 physical visit contract
+        run: node --test tests/torggata-phase15-physical-visit.test.mjs
 
       - name: Enforce Politikk place production reports
         shell: bash
