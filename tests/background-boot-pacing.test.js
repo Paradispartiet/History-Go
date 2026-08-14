@@ -62,6 +62,10 @@ class FakeElement {
 
   querySelector(selector) {
     if (selector === "img") return this.innerHTML.includes("<img") ? {} : null;
+    if (selector === ".pc-round-count") {
+      const match = this.innerHTML.match(/pc-round-count[^>]*>([^<]*)</);
+      return match ? { textContent: match[1] } : null;
+    }
     if (selector === ".pc-empty") return this.emptyNode;
     if (selector === "[data-person], .pc-relations-section") return this.hasRenderedPeople ? {} : null;
     if (selector === ".places-loading-text") return null;
@@ -303,6 +307,19 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres på nytt når People og relasjoner er klare");
   assert.doesNotMatch(peopleIcon.innerHTML, /…/);
   assert.match(peopleIcon.innerHTML, />6</);
+
+  const refreshesBeforeValidFallback = refreshCalls;
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">6</span>';
+  peopleIcon.dataset.roundReady = "false";
+  peopleList.hasRenderedPeople = true;
+  mutationCallback?.([]);
+  await delay(10);
+  assert.equal(
+    refreshCalls,
+    refreshesBeforeValidFallback,
+    "gyldig positiv fallback uten bilde må ikke bruke stale-sperren"
+  );
+  assert.equal(peopleIcon.dataset.hgPeopleStaleRefreshFor, undefined);
 
   const refreshesBeforeStaleRepair = refreshCalls;
   peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
