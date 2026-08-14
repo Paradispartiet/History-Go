@@ -2,7 +2,7 @@ export default {
   em_filosofi_verdier_objektivitet_vitenskap: {
     thinkers: ['Max Weber', 'Helen Longino', 'Heather Douglas'],
     anchors: ['objektivitet', 'verdifrihet', 'bakgrunnsantakelser', 'induktiv risiko', 'kritisk fellesskap'],
-    debate: 'Vitenskapelig objektivitet kan ikke uten videre identifiseres med fravær av alle verdier. Weber, Longino og Douglas skiller mellom verdier som styrer problemvalg, sosiale betingelser for kritikk og normative vurderinger av hvor mye evidens som kreves før en feilrisiko aksepteres.',
+    debate: 'Vitenskapelig objektivitet kan ikke uten videre identifiseres med fravær av alle verdier. Verdifrihet er derfor et omstridt ideal: Weber skiller beskrivelse fra forskerens normative anbefalinger, mens Longino gjør et kritisk fellesskap med reell adgang til innvendinger til en sosial betingelse for objektivitet. Douglas viser i tillegg hvordan normative vurderinger kan påvirke hvor mye evidens som kreves før en feilrisiko aksepteres.',
     argument: [
       'P1: Webers ideal om verdifri analyse skiller vitenskapelig beskrivelse fra forskerens personlige anbefalinger, men han erkjenner samtidig at valg av forskningsproblem og relevans skjer innenfor menneskelige verdihorisonter.',
       'P2: Longino viser at evidens aldri tolkes uten bakgrunnsantakelser, og at objektivitet derfor kan styrkes sosialt gjennom offentlig kritikk, respons på innvendinger og et mangfold av kompetente perspektiver som kan avdekke skjulte antakelser.',
