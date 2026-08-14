@@ -3,7 +3,7 @@
   "place_id": "torggata",
   "phase": 24,
   "generated_at": "2026-08-14",
-  "status": "APPROVED_MERGED_DEPLOYED",
+  "status": "REOPENED_EDITORIAL_QUALITY",
   "base_branch": "main",
   "base_sha": "6bcb447e8b8501ffa61303b4a9ec00ce8e0dfdd3",
   "scope": {
@@ -40,7 +40,7 @@
     "squash merge supplies expected_head_sha",
     "merged main and Pages deployment are verified before completion is reported"
   ],
-  "conclusion": "The strict Torggata one-place gate passed on the unchanged final head, PR #4962 was SHA-locked squash-merged, main and Pages were verified, and production shows four content rounds plus separate Badge.",
+  "conclusion": "PR #4962 remains historically merged and deployed, but Torggata is not editorially complete. Manual review reopened the place until before/after, News, More and round coherence are materially improved and re-reviewed.",
   "completion_evidence": {
     "pr": 4962,
     "final_head_sha": "ce1f60231db52e2472fe334cded8eda140ae429a",
@@ -62,41 +62,54 @@
     "dimensions": [
       {
         "id": "correctness_and_evidence",
-        "score": 5,
-        "evidence": "18/18 verified production claims; desc 3/3 and popupDesc 31/31 sentence coverage; source/provenance audits for Story, Quiz, People and Brands."
+        "score": 4,
+        "evidence": "Claims and provenance remain strong, but different viewpoints weaken the user-facing before/after comparison."
       },
       {
         "id": "coverage_and_completion",
-        "score": 5,
-        "evidence": "Phases 0-24 completed; four content rounds plus separate Badge verified; N/A decisions and holdbacks explicit; no next-place scope."
+        "score": 2,
+        "evidence": "News and More are empty; a genuinely old-to-current comparison is missing; round selection requires new work."
       },
       {
         "id": "editorial_quality",
-        "score": 5,
-        "evidence": "Torggata-specific copy and episode_v1 Story; unsupported superlative removed; filler Works and uncertain candidates excluded."
+        "score": 2,
+        "evidence": "The 2009/2017 main pair is not visually comparable enough, and Objects versus Structures is an artificial split in the current Torggata surface."
       },
       {
         "id": "technical_integrity",
         "score": 5,
-        "evidence": "Final documentation head passed Data checks, Fagverk/place learning, Fagverk By, TypeScript, Documentation governance and Place rounds governance; production manually verified in no-WebGL mode."
+        "evidence": "CI, runtime, no-WebGL routing and the four-plus-Badge layout remain technically verified."
       },
       {
         "id": "safety_and_responsibility",
         "score": 4,
-        "evidence": "No clinical/legal high-risk scope; People image holdbacks prevent unverified imagery; Nature N/A is explicit; generated/reconstructed brand assets excluded."
+        "evidence": "People holdbacks, source boundaries and asset controls remain valid; no new safety issue was identified."
       },
       {
         "id": "maintainability_and_verifiability",
-        "score": 5,
-        "evidence": "Canonical contract, global checklist, phase 0-24 audits, exact SHAs/run IDs and regression tests preserve reproducibility and reviewability."
+        "score": 4,
+        "evidence": "Traceability is strong, but the previous quality gate failed to catch visible editorial weakness and has now been tightened."
       }
     ],
-    "total": 29,
+    "total": 21,
     "minimum_per_dimension": 4,
     "required_total": 27,
-    "critical_findings": [],
-    "unresolved_blockers": [],
-    "automatic_checks_limit": "Green automation does not by itself prove editorial or visual quality; full content/provenance audits and manual same-content production UI review provide the additional evidence.",
-    "gate": "PASSED_HIGH_QUALITY"
-  }
+    "critical_findings": [
+      "Before/after primary images use different street views and do not provide a strong visual comparison.",
+      "No genuinely old archival-to-current comparison is present.",
+      "News and More are empty in an otherwise content-rich active place.",
+      "Objects is supported by one artificial item and overlaps semantically with Structures."
+    ],
+    "unresolved_blockers": [
+      "Produce a comparable primary before/after pair and add a genuinely old archival-to-current layer.",
+      "Produce source-reviewed current News content or document a strict fresh-search N/A.",
+      "Produce a substantive More layer from language, archives, observations, knowledge or curated relations.",
+      "Revise the canonical round choice/contract so four content rounds remain without an artificial Objects/Structures split."
+    ],
+    "automatic_checks_limit": "Green automation, complete schemas, provenance and explicit limitations do not prove that the visible comparison, tab coverage or round composition is good.",
+    "gate": "FAILED_REOPENED_FOR_EDITORIAL_IMPROVEMENT"
+  },
+  "reopened_at": "2026-08-14",
+  "reopen_reason": "Manual review found that technical completion and provenance did not yield a sufficiently strong user-facing result.",
+  "improvement_backlog": "reports/place-production/torggata-quality-improvement-backlog-v1.json"
 }
