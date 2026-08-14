@@ -17,10 +17,22 @@
       "required_improvements": [
         "Use a primary pair anchored to the same recognisable street segment or built element from a comparable direction and scale.",
         "Add at least one genuinely old archival image compared with an actual current image when rights, identity and viewpoint are verified.",
-        "Keep the 2009/2017 redevelopment layer only as a clearly labelled supplemental comparison if it remains useful."
+        "Keep the 2009/2017 redevelopment layer only as a clearly labelled supplemental comparison if it remains useful.",
+        "Check canonical place registries/manifests before choosing the comparison anchor.",
+        "Do not use a building, venue or subplace with its own History GO place as the primary stand-in for the parent place; Torggata Bad is explicitly rejected for Torggata."
       ],
-      "acceptance": "Manual UI review can identify the same place element immediately and can see both long-term historical change and any newer redevelopment change without misleading labels.",
-      "workflow_status": "IN_PROGRESS"
+      "acceptance": "Manual UI review can identify the same Torggata street element immediately, can see long-term historical change against an actual current image, and confirms that no subplace with its own place entry is used as the parent-place proxy.",
+      "workflow_status": "RESOLVED_PHASE_7D",
+      "resolution": {
+        "pair": "Torggata 30–36 toward Hausmanns gate, circa 1965 versus 2025-03-27",
+        "stable_anchors": [
+          "Torggata 30–36 facade row",
+          "same northeast street axis",
+          "Hausmanns gate and Ankertorget trees"
+        ],
+        "rejected_own_place_proxy": "Torggata Bad",
+        "evidence": "reports/place-production/torggata-phase7d-before-after-audit-v1.md"
+      }
     },
     {
       "id": "news_missing",
@@ -78,24 +90,19 @@
     "minimum_total_score": 27
   },
   "active_phase": {
-    "id": "phase_7d_before_after",
-    "status": "IN_PROGRESS_REOPENED",
-    "exact_file_scope": [
-      "data/places/by/oslo/places/torggata.json",
-      "reports/place-production/torggata-phase7d-before-after-audit-v1.md",
-      "tests/place-card-for-na-torggata.test.js"
-    ]
+    "id": "news_missing",
+    "status": "QUEUED_NEXT"
   },
   "sequence": [
     {
       "order": 1,
       "id": "before_after_comparability_and_depth",
-      "status": "IN_PROGRESS"
+      "status": "RESOLVED"
     },
     {
       "order": 2,
       "id": "news_missing",
-      "status": "QUEUED"
+      "status": "QUEUED_NEXT"
     },
     {
       "order": 3,
