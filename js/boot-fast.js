@@ -625,7 +625,10 @@
     relationsLoadPromise = (async () => {
       setRelationsDataState("loading", { files: RELATION_FILE_LIST.length });
       const datasets = await Promise.all(
-        // Relasjoner er mutable produksjonsdata og kan inneholde helt nye place→person-koblinger.\n        // En cache-bust på dokumentet oppdaterer ikke subressursen, så begge små registre\n        // må omgå stale nettlesercache på samme måte som People-manifestet.\n        RELATION_FILE_LIST.map(url => fetchJSON(url, { cache: "no-store" }))
+        // Relasjoner er mutable produksjonsdata og kan inneholde helt nye place→person-koblinger.
+        // En cache-bust på dokumentet oppdaterer ikke subressursen, så begge små registre
+        // må omgå stale nettlesercache på samme måte som People-manifestet.
+        RELATION_FILE_LIST.map(url => fetchJSON(url, { cache: "no-store" }))
       );
       const loadedFiles = datasets.filter(data => data != null).length;
       if (!loadedFiles) throw new Error("Ingen relasjonsfiler kunne lastes");
