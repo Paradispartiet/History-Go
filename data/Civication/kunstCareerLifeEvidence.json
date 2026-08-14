@@ -1,0 +1,86 @@
+{
+  "schema": "civication_kunst_career_life_evidence_v1",
+  "version": 1,
+  "reviewed_at": "2026-08-14",
+  "badge_id": "kunst",
+  "principles": [
+    "Kunst-Badge-poeng dokumenterer kunstfaglig læring og progresjon; de dokumenterer ikke ansettelse, frilansoppdrag, profesjonskompetanse eller lederutnevnelse.",
+    "Gallerist er en profesjonell eller næringsmessig galleridriftposisjon og skal ikke automatisk materialiseres som fast lønnsjobb.",
+    "Kurator kan være både ansatt og frilans; Badge-tieren er derfor en employment-independent kuratorpraksis med separat formell jobbopplåsing.",
+    "Konservatorarbeid er tydelig kompetansebundet; senior konservator krever både relevant kompetanse og konkret arbeidsgiverutnevnelse.",
+    "Kunstnerisk leder og Museumsdirektør er formelle lederstillinger og krever konkret utnevnelse.",
+    "Lønnsbåndene 4 / 7 / 13 PC per uke er eksisterende Civication-spilløkonomi og er ikke norsk lønnsstatistikk."
+  ],
+  "canonical_decision": {
+    "pure_life_or_practice_tiers": ["Gallerist"],
+    "life_with_separate_career_unlock": ["Kurator"],
+    "formal_job_tiers": ["Vertskap (museum/galleri)","Gallerimedarbeider","Formidler","Produksjonsassistent","Utstillingskoordinator","Kuratorassistent","Senior kurator","Konservator","Senior konservator","Utstillingsprodusent","Kunstnerisk leder","Museumsdirektør"],
+    "review_left_open": [],
+    "work_worlds": {
+      "kunst_publikum_og_formidling": ["Vertskap (museum/galleri)","Gallerimedarbeider","Formidler"],
+      "kunst_utstillingsproduksjon": ["Produksjonsassistent","Utstillingskoordinator","Utstillingsprodusent"],
+      "kunst_kuratering_og_program": ["Kuratorassistent","Kurator","Senior kurator"],
+      "kunst_konservering_og_samling": ["Konservator","Senior konservator"],
+      "kunst_kunstnerisk_ledelse": ["Kunstnerisk leder"],
+      "kunst_museumsledelse": ["Museumsdirektør"]
+    }
+  },
+  "salary_mapping": {
+    "principle": "salary_tier velger kun eksisterende Civication-spilløkonomibånd.",
+    "existing_kunst_bands_pc_per_week": {"1":4,"2":7,"3":13},
+    "not_fixed_salary_positions": ["Gallerist","Kurator"],
+    "formal_or_gated_positions": {
+      "Vertskap (museum/galleri)":1,"Gallerimedarbeider":1,"Formidler":1,"Produksjonsassistent":1,"Utstillingskoordinator":2,"Kuratorassistent":2,"Kurator":2,"Senior kurator":2,"Konservator":2,"Senior konservator":3,"Utstillingsprodusent":3,"Kunstnerisk leder":3,"Museumsdirektør":3
+    }
+  },
+  "sources": [
+    {
+      "id":"utdanning_kurator_2026",
+      "publisher":"Utdanning.no",
+      "title":"Kurator",
+      "url":"https://utdanning.no/yrker/beskrivelse/kurator",
+      "checked_at":"2026-08-14",
+      "supports":["Kurator er et reelt yrke i museer og gallerier.","Kurator kan også arbeide frilans.","Det kreves ingen bestemt utdanning for å bli kurator.","Aa-registeret omfatter blant annet Kurator, Museumsdirektør, Utstillingskoordinator, Gallerileder og Gallerimedarbeider."]
+    },
+    {
+      "id":"utdanning_kunst_kulturformidler_2026",
+      "publisher":"Utdanning.no",
+      "title":"Kunst- og kulturformidler",
+      "url":"https://utdanning.no/yrker/beskrivelse/kunst-_og_kulturformidler",
+      "checked_at":"2026-08-14",
+      "supports":["Kunst- og kulturformidler er et reelt yrke i blant annet museer og gallerier.","Relevant faglig bakgrunn er vanlig og arbeidsgiverkompetanse må skilles fra Badge-poeng."]
+    },
+    {
+      "id":"utdanning_konservering_uio_2026",
+      "publisher":"Utdanning.no / Universitetet i Oslo",
+      "title":"Konservering",
+      "url":"https://utdanning.no/utdanning/uio.no/konservering",
+      "checked_at":"2026-08-14",
+      "supports":["Master i konservering er profesjonsrettet og gir godkjenning som konservator etter endt utdanning og praksis.","Konservatorer arbeider ved museer, samlinger, gallerier, private atelierer og forskningsinstitusjoner."]
+    },
+    {
+      "id":"ordbokene_gallerist_2026",
+      "publisher":"Språkrådet / Universitetet i Bergen",
+      "title":"gallerist",
+      "url":"https://ordbokene.no/bm/97191",
+      "checked_at":"2026-08-14",
+      "supports":["Gallerist betyr person som driver kunstgalleri.","Begrepet beskriver drift/virke og dokumenterer ikke i seg selv et fast arbeidstakerforhold."]
+    },
+    {
+      "id":"kulturdirektoratet_visuell_kunst_kunstnere_2026",
+      "publisher":"Kulturdirektoratet",
+      "title":"Visuell kunst – produksjon og formidling – kunstnere",
+      "url":"https://www.kulturdirektoratet.no/utlysninger/nkf-vis-8-apr-2026",
+      "checked_at":"2026-08-14",
+      "supports":["Det profesjonelle visuelle kunstfeltet omfatter frilanskuratorer og prosjektbasert arbeid.","Frilanspraksis må ikke oversettes automatisk til fast lønnsansettelse."]
+    },
+    {
+      "id":"kulturdirektoratet_visningssteder_2026",
+      "publisher":"Kulturdirektoratet",
+      "title":"Visuell kunst – produksjon og formidling – visningssteder",
+      "url":"https://www.kulturdirektoratet.no/utlysninger/nkf-viv-8-apr-2026",
+      "checked_at":"2026-08-14",
+      "supports":["Visningssteder kan være institusjoner, organisasjoner, private/offentlige virksomheter eller enkeltpersonforetak.","Kunstfeltets driftsformer omfatter flere organisasjonsformer enn ordinær fast ansettelse."]
+    }
+  ]
+}

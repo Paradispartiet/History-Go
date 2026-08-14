@@ -1,37 +1,17 @@
 {
-  "id": "scenekunst",
-  "name": "Scenekunst",
-  "icon": "🎭",
-  "color": "#B35C9E",
-  "secondaryColor": "#3A1836",
-  "image": "bilder/merker/scenekunst.svg",
-  "description": "For dem som utforsker teater, dans, musikal, revy, standup, improvisasjon og levende sceneproduksjon.",
-  "tiers": [
-    { "label": "Publikum", "threshold": 5 },
-    { "label": "Scenevert", "threshold": 10 },
-    { "label": "Produksjonsassistent", "threshold": 15 },
-    { "label": "Scenetekniker", "threshold": 25 },
-    { "label": "Inspisientassistent", "threshold": 40 },
-    { "label": "Utøver", "threshold": 60 },
-    { "label": "Skuespiller / danser", "threshold": 85 },
-    { "label": "Dramaturg", "threshold": 115 },
-    { "label": "Regissør", "threshold": 150 },
-    { "label": "Koreograf", "threshold": 190 },
-    { "label": "Produsent", "threshold": 240 },
-    { "label": "Kunstnerisk leder", "threshold": 300 },
-    { "label": "Teatersjef", "threshold": 380 },
-    { "label": "Scenekunstkurator", "threshold": 500 }
-  ],
-  "sub": [
-    "teater",
-    "dans",
-    "drama",
-    "musikaler",
-    "revy",
-    "standup_og_humor",
-    "impro",
-    "barneteater",
-    "performance",
-    "sceneinstitusjoner"
-  ]
-}
+  "id":"scenekunst","name":"Scenekunst","icon":"🎭","color":"#2C1E2F","secondaryColor":"#E63946","image":"bilder/merker/scenekunst.png","description":"For dem som følger teater, dans, performance og scenekunstens uttrykk, praksiser og institusjoner.","career_life_evidence":"data/Civication/scenekunstCareerLifeEvidence.json","tiers":[
+    {"label":"Publikum","threshold":5,"life_position":{"id":"publikum","label":"Publikum","kind":"audience_status","employment_independent":true}},
+    {"label":"Scenevert","threshold":10,"career_offer":{"title":"Scenevert","policy":"direct","salary_tier":1,"role_scope":"scenekunst_scene_og_produksjon"}},
+    {"label":"Produksjonsassistent","threshold":15,"career_offer":{"title":"Produksjonsassistent","policy":"direct","salary_tier":1,"role_scope":"scenekunst_scene_og_produksjon"}},
+    {"label":"Scenetekniker","threshold":25,"career_offer":{"title":"Scenetekniker","policy":"qualification_required","qualification_ids":["relevant_education_or_employer_qualification"],"salary_tier":1,"role_scope":"scenekunst_scene_og_produksjon"}},
+    {"label":"Inspisientassistent","threshold":40,"career_offer":{"title":"Inspisientassistent","policy":"direct","salary_tier":1,"role_scope":"scenekunst_scene_og_produksjon"}},
+    {"label":"Utøver","threshold":60,"life_position":{"id":"utover","label":"Utøver","kind":"artistic_performance_practice","employment_independent":true}},
+    {"label":"Skuespiller / danser","threshold":85,"life_position":{"id":"skuespiller_danser","label":"Skuespiller / danser","kind":"professional_performance_practice_or_livelihood","employment_independent":true},"career_unlock":{"title":"Skuespiller / danser","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"scenekunst_utoving_og_ensemble"}},
+    {"label":"Dramaturg","threshold":115,"life_position":{"id":"dramaturg","label":"Dramaturg","kind":"dramaturgical_practice_or_livelihood","employment_independent":true},"career_unlock":{"title":"Dramaturg","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"scenekunst_dramaturgi_og_utvikling"}},
+    {"label":"Regissør","threshold":150,"life_position":{"id":"regissor","label":"Regissør","kind":"directing_practice_or_livelihood","employment_independent":true},"career_unlock":{"title":"Regissør","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"scenekunst_regi_og_koreografi"}},
+    {"label":"Koreograf","threshold":190,"life_position":{"id":"koreograf","label":"Koreograf","kind":"choreographic_practice_or_self_employment","employment_independent":true},"career_unlock":{"title":"Koreograf","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":2,"role_scope":"scenekunst_regi_og_koreografi"}},
+    {"label":"Produsent","threshold":240,"career_offer":{"title":"Produsent","policy":"direct","salary_tier":3,"role_scope":"scenekunst_scene_og_produksjon"}},
+    {"label":"Kunstnerisk leder","threshold":300,"career_offer":{"title":"Kunstnerisk leder","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"scenekunst_institusjonsledelse"}},
+    {"label":"Teatersjef","threshold":380,"career_offer":{"title":"Teatersjef","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"scenekunst_institusjonsledelse"}},
+    {"label":"Scenekunstkurator","threshold":500,"life_position":{"id":"scenekunstkurator","label":"Scenekunstkurator","kind":"curatorial_programming_practice_or_livelihood","employment_independent":true},"career_unlock":{"title":"Scenekunstkurator","policy":"appointment_required","qualification_ids":["employer_appointment"],"salary_tier":3,"role_scope":"scenekunst_program_og_kuratering"}}
+  ],"sub":["teater","dans","performance","musikkteater","sceneproduksjon","regi","dramaturgi"]}
