@@ -1,0 +1,91 @@
+{
+  "schema": "history_go_fagverk_sport_scientific_quality_v1",
+  "version": "1.0.0",
+  "subject_id": "sport",
+  "status": "scientifically_strengthened",
+  "updated_at": "2026-08-14",
+  "scope": {
+    "purpose": "Strengthen the six completed Sport Fagverk chapters with peer-reviewed academic research while preserving official rules, governance and facility sources as primary evidence for institutional facts.",
+    "not_a_formal_systematic_review": true,
+    "v2_pipeline_publication_status_unchanged": true,
+    "editorial_scientific_quality_can_pass_independently_of_v2_publication_ready_claims": true
+  },
+  "quality_contract": {
+    "min_peer_reviewed_sources_per_chapter": 3,
+    "min_synthesis_sources_per_chapter": 1,
+    "min_unique_peer_reviewed_sources_total": 20,
+    "min_unique_claims_academically_mapped_total": 40,
+    "accepted_synthesis_classes": ["systematic_review", "systematic_review_meta_analysis", "umbrella_review", "review_of_reviews", "consensus_statement", "critical_review", "literature_review"],
+    "principles": [
+      "Official rules and institutional documents remain the best source for what a rule, policy, facility or governing body formally states.",
+      "Empirical, causal, health, learning, participation, identity and inequality claims require an academic research layer.",
+      "Every academic source is mapped to explicit existing claim IDs and carries an evidence class plus limitations.",
+      "Contradictory or methodologically contested literatures are represented rather than flattened into one certainty claim.",
+      "Cross-sectional associations are never rewritten as causal effects without stronger designs."
+    ]
+  },
+  "chapters": [
+    {
+      "chapter_id": "arenaer-steder-groundhopper",
+      "scientific_focus": ["built environment and physical activity", "sport-event legacy", "stadium and urban development", "displacement and equity"],
+      "sources": [
+        {"id":"sport-sci-arena-sallis-2016","title":"Physical activity in relation to urban environments in 14 cities worldwide: a cross-sectional study","year":2016,"journal":"The Lancet","peer_reviewed":true,"evidence_class":"peer_reviewed_original","url":"https://pubmed.ncbi.nlm.nih.gov/27045735/","doi":"10.1016/S0140-6736(15)01284-2","pmid":"27045735","supported_claim_ids":["sasg-17","sasg-20","sasg-26","sasg-27"],"limitations":"Cross-sectional evidence supports environment-activity associations, not simple causal attribution to one facility."},
+        {"id":"sport-sci-arena-annear-2019","title":"Sports mega-event legacies and adult physical activity: A systematic literature review and research agenda","year":2019,"journal":"European Journal of Sport Science","peer_reviewed":true,"evidence_class":"systematic_review","url":"https://pubmed.ncbi.nlm.nih.gov/30556493/","doi":"10.1080/17461391.2018.1554002","pmid":"30556493","supported_claim_ids":["sasg-17","sasg-21","sasg-22","sasg-27"],"limitations":"Mega-event evidence is heterogeneous and does not directly estimate everyday use of Oslo facilities."},
+        {"id":"sport-sci-arena-bradbury-2023","title":"The impact of professional sports franchises and venues on local economies: A comprehensive survey","year":2023,"journal":"Journal of Economic Surveys","peer_reviewed":true,"evidence_class":"literature_review","url":"https://doi.org/10.1111/joes.12533","doi":"10.1111/joes.12533","supported_claim_ids":["sasg-21","sasg-22","sasg-27"],"limitations":"Venue economics is context-dependent and cannot be generalized to social or health outcomes."},
+        {"id":"sport-sci-arena-rocha-xiao-2022","title":"Sport Mega-Events and Displacement of Host Community Residents: A Systematic Review","year":2022,"journal":"Frontiers in Sports and Active Living","peer_reviewed":true,"evidence_class":"systematic_review","url":"https://pubmed.ncbi.nlm.nih.gov/35072066/","doi":"10.3389/fspor.2021.805567","pmid":"35072066","supported_claim_ids":["sasg-21","sasg-22","sasg-26","sasg-27"],"limitations":"Displacement evidence is concentrated on Olympic host contexts and cannot be transferred mechanically to local arena redevelopment."}
+      ]
+    },
+    {
+      "chapter_id": "regler-spill-konkurranse",
+      "scientific_focus": ["performance analysis", "tactical context", "tracking data", "measurement validity"],
+      "sources": [
+        {"id":"sport-sci-rules-mackenzie-cushion-2013","title":"Performance analysis in football: a critical review and implications for future research","year":2013,"journal":"Journal of Sports Sciences","peer_reviewed":true,"evidence_class":"critical_review","url":"https://pubmed.ncbi.nlm.nih.gov/23249092/","doi":"10.1080/02640414.2012.746720","pmid":"23249092","supported_claim_ids":["rsk-12","rsk-17","rsk-18","rsk-21","rsk-27"],"limitations":"Football-focused review; measurement and context findings should be transferred cautiously to other sports."},
+        {"id":"sport-sci-rules-sarmento-2014","title":"Match analysis in football: a systematic review","year":2014,"journal":"Journal of Sports Sciences","peer_reviewed":true,"evidence_class":"systematic_review","url":"https://pubmed.ncbi.nlm.nih.gov/24787442/","doi":"10.1080/02640414.2014.898852","pmid":"24787442","supported_claim_ids":["rsk-12","rsk-17","rsk-18","rsk-21","rsk-27"],"limitations":"Evidence is football-specific and much of the underlying work is descriptive rather than causal."},
+        {"id":"sport-sci-rules-goes-2021","title":"Unlocking the potential of big data to support tactical performance analysis in professional soccer: A systematic review","year":2021,"journal":"European Journal of Sport Science","peer_reviewed":true,"evidence_class":"systematic_review","url":"https://pubmed.ncbi.nlm.nih.gov/32297547/","doi":"10.1080/17461391.2020.1747552","pmid":"32297547","supported_claim_ids":["rsk-17","rsk-18","rsk-21"],"limitations":"Tracking-data findings depend on feature construction, aggregation and modelling choices; they are not raw ground truth."},
+        {"id":"sport-sci-rules-sarmento-2022","title":"Match Analysis in Team Ball Sports: An Umbrella Review of Systematic Reviews and Meta-Analyses","year":2022,"journal":"Sports Medicine - Open","peer_reviewed":true,"evidence_class":"umbrella_review","url":"https://pubmed.ncbi.nlm.nih.gov/35553279/","doi":"10.1186/s40798-022-00454-7","pmid":"35553279","supported_claim_ids":["rsk-12","rsk-18","rsk-21","rsk-27"],"limitations":"The umbrella review found low confidence in much of the underlying review literature, requiring cautious interpretation."}
+      ]
+    },
+    {
+      "chapter_id": "kropp-trening-prestasjon",
+      "scientific_focus": ["training load and injury risk", "injury prevention", "motor learning", "publication bias and uncertainty"],
+      "balance_requirements": [{"topic":"attentional focus and motor learning","source_ids":["sport-sci-body-chua-2021","sport-sci-body-mckay-2024"],"reason":"Represent both the earlier positive meta-analytic conclusion and the later publication-bias-sensitive reanalysis."}],
+      "sources": [
+        {"id":"sport-sci-body-soligard-2016","title":"How much is too much? (Part 1) International Olympic Committee consensus statement on load in sport and risk of injury","year":2016,"journal":"British Journal of Sports Medicine","peer_reviewed":true,"evidence_class":"consensus_statement","url":"https://pubmed.ncbi.nlm.nih.gov/27535989/","doi":"10.1136/bjsports-2016-096581","pmid":"27535989","supported_claim_ids":["ktp-07","ktp-09","ktp-10","ktp-11","ktp-27"],"limitations":"Consensus synthesis is authoritative but not a single pooled causal estimate across all sports and athletes."},
+        {"id":"sport-sci-body-rossler-2014","title":"Exercise-based injury prevention in child and adolescent sport: a systematic review and meta-analysis","year":2014,"journal":"Sports Medicine","peer_reviewed":true,"evidence_class":"systematic_review_meta_analysis","url":"https://pubmed.ncbi.nlm.nih.gov/25129698/","doi":"10.1007/s40279-014-0234-2","pmid":"25129698","supported_claim_ids":["ktp-11","ktp-12","ktp-27"],"limitations":"Evidence is strongest for organized youth sport and less complete for children under 14 and individual sports."},
+        {"id":"sport-sci-body-chua-2021","title":"Superiority of external attentional focus for motor performance and learning: Systematic reviews and meta-analyses","year":2021,"journal":"Psychological Bulletin","peer_reviewed":true,"evidence_class":"systematic_review_meta_analysis","url":"https://pubmed.ncbi.nlm.nih.gov/34843301/","doi":"10.1037/bul0000335","pmid":"34843301","supported_claim_ids":["ktp-02","ktp-04"],"limitations":"Average effects span heterogeneous tasks and are explicitly balanced here against later publication-bias-sensitive reanalysis."},
+        {"id":"sport-sci-body-mckay-2024","title":"Reporting bias, not external focus: A robust Bayesian meta-analysis and systematic review of the external focus of attention literature","year":2024,"journal":"Psychological Bulletin","peer_reviewed":true,"evidence_class":"systematic_review_meta_analysis","url":"https://pubmed.ncbi.nlm.nih.gov/39480294/","doi":"10.1037/bul0000451","pmid":"39480294","supported_claim_ids":["ktp-02","ktp-04"],"limitations":"Reanalysis challenges a previously strong consensus and shows how publication bias can materially change conclusions.","use_role":"counterevidence_and_uncertainty"}
+      ]
+    },
+    {
+      "chapter_id": "klubber-lag-frivillighet",
+      "scientific_focus": ["youth persistence and dropout", "psychosocial outcomes", "volunteering", "club-role heterogeneity"],
+      "sources": [
+        {"id":"sport-sci-club-eime-2013","title":"A systematic review of the psychological and social benefits of participation in sport for children and adolescents","year":2013,"journal":"International Journal of Behavioral Nutrition and Physical Activity","peer_reviewed":true,"evidence_class":"systematic_review","url":"https://pubmed.ncbi.nlm.nih.gov/23945179/","doi":"10.1186/1479-5868-10-98","pmid":"23945179","supported_claim_ids":["klf-13","klf-17","klf-18","klf-19","klf-27"],"limitations":"Most included studies were cross-sectional, limiting causal conclusions about psychosocial benefits."},
+        {"id":"sport-sci-club-zhang-2022","title":"Predictors of Persistent Participation in Youth Sport: A Systematic Review and Meta-Analysis","year":2022,"journal":"Frontiers in Psychology","peer_reviewed":true,"evidence_class":"systematic_review_meta_analysis","url":"https://pubmed.ncbi.nlm.nih.gov/35712153/","doi":"10.3389/fpsyg.2022.871936","pmid":"35712153","supported_claim_ids":["klf-16","klf-17","klf-18","klf-19"],"limitations":"Associations combine heterogeneous sports, measures and designs and do not prove one universal dropout mechanism."},
+        {"id":"sport-sci-club-angosto-2021","title":"Motivations and Future Intentions in Sport Event Volunteering: A Systematic Review","year":2021,"journal":"Sustainability","peer_reviewed":true,"evidence_class":"systematic_review","url":"https://doi.org/10.3390/su132212454","doi":"10.3390/su132212454","supported_claim_ids":["klf-10","klf-11","klf-12"],"limitations":"Focuses mainly on event volunteering, so transfer to routine club volunteering requires caution."},
+        {"id":"sport-sci-club-hallmann-2025","title":"Non-profit sports club volunteers: same, same, but different or one and the same?","year":2025,"journal":"European Sport Management Quarterly","peer_reviewed":true,"evidence_class":"peer_reviewed_original","url":"https://doi.org/10.1080/16184742.2025.2455980","doi":"10.1080/16184742.2025.2455980","supported_claim_ids":["klf-10","klf-12","klf-15"],"limitations":"Survey evidence supports role heterogeneity but is not a universal causal model of volunteering."}
+      ]
+    },
+    {
+      "chapter_id": "supportere-publikum-kultur",
+      "scientific_focus": ["fan identity", "identity fusion", "wellbeing and loneliness", "intergroup hostility", "fan-club relationships"],
+      "sources": [
+        {"id":"sport-sci-fan-koo-2025","title":"Is social identity theory enough to cover sports fans' behavior?: additional perspective from identity fusion theory","year":2025,"journal":"Frontiers in Psychology","peer_reviewed":true,"evidence_class":"literature_review","url":"https://pubmed.ncbi.nlm.nih.gov/40567877/","doi":"10.3389/fpsyg.2025.1574520","pmid":"40567877","supported_claim_ids":["spk-01","spk-10","spk-13","spk-21","spk-27"],"limitations":"Narrative review integrates identity frameworks; it is not a quantitative synthesis of effect sizes."},
+        {"id":"sport-sci-fan-keyes-2023","title":"Attending live sporting events predicts subjective wellbeing and reduces loneliness","year":2023,"journal":"Frontiers in Public Health","peer_reviewed":true,"evidence_class":"peer_reviewed_original","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC9848399/","doi":"10.3389/fpubh.2022.989706","supported_claim_ids":["spk-04","spk-13","spk-22"],"limitations":"Observational UK survey associations have small effect sizes and do not establish that attendance causes wellbeing changes."},
+        {"id":"sport-sci-fan-white-2021","title":"Pathways to prejudice and outgroup hostility: Group alignment and intergroup conflict among football fans","year":2021,"journal":"Journal of Applied Social Psychology","peer_reviewed":true,"evidence_class":"peer_reviewed_original","url":"https://doi.org/10.1111/jasp.12773","doi":"10.1111/jasp.12773","supported_claim_ids":["spk-10","spk-12","spk-21","spk-27"],"limitations":"Fieldwork concerns specific supporter groups and should not be generalized to all fans or rivalries."},
+        {"id":"sport-sci-fan-smith-2026","title":"Football Clubs as Identity Leaders: Communication and Club Action on Fan-Club Relationships","year":2026,"journal":"Journal of Community & Applied Social Psychology","peer_reviewed":true,"evidence_class":"peer_reviewed_original","url":"https://doi.org/10.1002/casp.70247","doi":"10.1002/casp.70247","supported_claim_ids":["spk-01","spk-13","spk-21","spk-23"],"limitations":"Qualitative sample is small and context-specific; it strengthens mechanism understanding rather than prevalence estimates."}
+      ]
+    },
+    {
+      "chapter_id": "inkludering-helse-lek-samfunn",
+      "scientific_focus": ["socioeconomic inequality", "gendered participation", "disability and access", "youth mental and social outcomes", "organized sport and health"],
+      "sources": [
+        {"id":"sport-sci-inclusion-owen-2022","title":"Fair play? Participation equity in organised sport and physical activity among children and adolescents in high income countries: a systematic review and meta-analysis","year":2022,"journal":"International Journal of Behavioral Nutrition and Physical Activity","peer_reviewed":true,"evidence_class":"systematic_review_meta_analysis","url":"https://pubmed.ncbi.nlm.nih.gov/35303869/","doi":"10.1186/s12966-022-01263-7","pmid":"35303869","supported_claim_ids":["ihls-10","ihls-12","ihls-16","ihls-17","ihls-27"],"limitations":"High-income-country evidence does not remove local variation in fees, welfare systems or sport structure."},
+        {"id":"sport-sci-inclusion-jaarsma-2014","title":"Barriers to and facilitators of sports participation for people with physical disabilities: a systematic review","year":2014,"journal":"Scandinavian Journal of Medicine & Science in Sports","peer_reviewed":true,"evidence_class":"systematic_review","url":"https://pubmed.ncbi.nlm.nih.gov/24730752/","doi":"10.1111/sms.12218","pmid":"24730752","supported_claim_ids":["ihls-16","ihls-17","ihls-19","ihls-21","ihls-27"],"limitations":"Evidence overrepresents spinal cord injury and older studies; barrier patterns vary by impairment and age."},
+        {"id":"sport-sci-inclusion-hopkins-2022","title":"A Systematic Review of Factors Associated with Sport Participation among Adolescent Females","year":2022,"journal":"International Journal of Environmental Research and Public Health","peer_reviewed":true,"evidence_class":"systematic_review","url":"https://pubmed.ncbi.nlm.nih.gov/35329041/","doi":"10.3390/ijerph19063353","pmid":"35329041","supported_claim_ids":["ihls-13","ihls-14","ihls-15","ihls-27"],"limitations":"Focuses on adolescent girls and participation factors; it does not describe all gender identities or life stages."},
+        {"id":"sport-sci-inclusion-wade-2026","title":"The impact of sports participation on psychological health and social outcomes in children and adolescents: a systematic review and update to the Mental Health through Sport conceptual model","year":2026,"journal":"Systematic Reviews","peer_reviewed":true,"evidence_class":"systematic_review","url":"https://pubmed.ncbi.nlm.nih.gov/41814431/","doi":"10.1186/s13643-026-03104-1","pmid":"41814431","supported_claim_ids":["ihls-04","ihls-07","ihls-08","ihls-09","ihls-27"],"limitations":"Observational evidence remains vulnerable to confounding even though the review also includes experimental and longitudinal studies."},
+        {"id":"sport-sci-inclusion-bjornara-2021","title":"Does organized sports participation in childhood and adolescence positively influence health? A review of reviews","year":2021,"journal":"Preventive Medicine Reports","peer_reviewed":true,"evidence_class":"review_of_reviews","url":"https://pubmed.ncbi.nlm.nih.gov/34150481/","doi":"10.1016/j.pmedr.2021.101425","pmid":"34150481","supported_claim_ids":["ihls-04","ihls-05","ihls-06","ihls-27"],"limitations":"A review of reviews inherits heterogeneity and quality limits from underlying syntheses and does not justify universal benefit claims."}
+      ]
+    }
+  ]
+}
