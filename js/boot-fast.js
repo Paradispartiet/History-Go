@@ -182,12 +182,60 @@
     return window.HG_PEOPLE_READY === true && window.HG_RELATIONS_READY === true;
   }
 
-  function peopleAndRelationsUsable() {
-    const peopleUsable = window.HG_PEOPLE_READY === true
+  function peopleDataUsable() {
+    return window.HG_PEOPLE_READY === true
       || (Array.isArray(window.PEOPLE) && window.PEOPLE.length > 0);
-    const relationsUsable = window.HG_RELATIONS_READY === true
-      || (Array.isArray(window.RELATIONS) && window.RELATIONS.length > 0);
-    return peopleUsable && relationsUsable;
+  }
+
+  function hasVisiblePeopleForPlace(placeId) {
+    const pid = String(placeId || "").trim();
+    if (!pid || !Array.isArray(window.PEOPLE)) return false;
+    const visiblePeople = window.PEOPLE.filter(person => {
+      const holdbacks = (Array.isArray(person?.roundHoldbacks) ? person.roundHoldbacks : [])
+        .map(value => String(value || "").trim());
+      return !holdbacks.includes(pid);
+    });
+    const directMatch = visiblePeople.some(person => {
+      const placeIds = [
+        person?.placeId,
+        person?.place_id,
+        person?.place,
+        person?.places,
+        person?.placeIds,
+        person?.place_ids,
+        person?.source_place_id
+      ].flatMap(value => Array.isArray(value) ? value : [value])
+        .map(value => String(value || "").trim())
+        .filter(Boolean);
+      return placeIds.includes(pid);
+    });
+    if (directMatch) return true;
+
+    const visibleIds = new Set(visiblePeople
+      .map(person => String(person?.id || "").trim())
+      .filter(Boolean));
+    return (Array.isArray(window.RELATIONS) ? window.RELATIONS : []).some(relation => {
+      const directPlace = String(
+        relation?.placeId || relation?.place_id || relation?.place || ""
+      ).trim();
+      const fromType = String(relation?.fromType || relation?.from_type || "").trim();
+      const toType = String(relation?.toType || relation?.to_type || "").trim();
+      const fromId = String(relation?.fromId || relation?.from_id || "").trim();
+      const toId = String(relation?.toId || relation?.to_id || "").trim();
+      const relationPlace = directPlace
+        || (fromType === "place" ? fromId : "")
+        || (toType === "place" ? toId : "");
+      if (relationPlace !== pid) return false;
+
+      const personIds = [
+        relation?.personId,
+        relation?.person_id,
+        relation?.person,
+        fromType === "person" ? fromId : "",
+        toType === "person" ? toId : ""
+      ].map(value => String(value || "").trim()).filter(Boolean);
+      return personIds.some(id => visibleIds.has(id));
+    });
   }
 
   function getCurrentPlaceId() {
@@ -225,7 +273,7 @@
   }
 
   function scheduleCurrentPlacePeopleRefresh() {
-    if (!peopleAndRelationsUsable() || currentPlacePeopleRefreshScheduled) return;
+    if (!peopleDataUsable() || currentPlacePeopleRefreshScheduled) return;
     currentPlacePeopleRefreshScheduled = true;
 
     setTimeout(() => {
@@ -249,6 +297,37 @@
       list?.removeAttribute("aria-busy");
       if (icon?.dataset) delete icon.dataset.hgPeopleDataState;
       if (list?.dataset) delete list.dataset.hgPeopleDataState;
+
+      // Initial PlaceCard-render og People-last kan fullføres i motsatt
+      // rekkefølge. Hvis en sen, tom render har skrevet 0 etter at dataene er
+      // klare, gjør én ny render for dette stedet i stedet for å godta stale UI.
+      const placeId = getCurrentPlaceId();
+      if (icon?.dataset && icon.dataset.hgPeopleObservedPlace !== placeId) {
+        delete icon.dataset.hgPeopleStaleRefreshFor;
+        icon.dataset.hgPeopleObservedPlace = placeId;
+      }
+      const countText = String(
+        icon?.querySelector?.(".pc-round-count")?.textContent || ""
+      ).trim();
+      const renderedCount = Number(countText);
+      const hasRenderedPeople = Boolean(list?.querySelector?.("[data-person]"));
+      const renderHasPeople = (Number.isFinite(renderedCount) && renderedCount > 0)
+        || hasRenderedPeople;
+      const previewReady = Boolean(icon?.querySelector?.("img"))
+        || icon?.dataset?.roundReady === "true"
+        || renderHasPeople;
+      if (
+        icon
+        && !previewReady
+        && hasVisiblePeopleForPlace(placeId)
+        && icon.dataset.hgPeopleStaleRefreshFor !== placeId
+      ) {
+        icon.dataset.hgPeopleStaleRefreshFor = placeId;
+        scheduleCurrentPlacePeopleRefresh();
+      }
+      // Behold engangssperren for samme sted også når en <img> dukker opp:
+      // bildefeilen kan senere erstatte den med fallback og trigge observeren
+      // på nytt. Stedsovergangen over nullstiller sperren eksplisitt.
       return;
     }
 

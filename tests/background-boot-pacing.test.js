@@ -62,6 +62,10 @@ class FakeElement {
 
   querySelector(selector) {
     if (selector === "img") return this.innerHTML.includes("<img") ? {} : null;
+    if (selector === ".pc-round-count") {
+      const match = this.innerHTML.match(/pc-round-count[^>]*>([^<]*)</);
+      return match ? { textContent: match[1] } : null;
+    }
     if (selector === ".pc-empty") return this.emptyNode;
     if (selector === "[data-person], .pc-relations-section") return this.hasRenderedPeople ? {} : null;
     if (selector === ".places-loading-text") return null;
@@ -85,12 +89,22 @@ class FakeElement {
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+async function waitUntil(predicate, message, timeoutMs = 250) {
+  const startedAt = Date.now();
+  while (!predicate()) {
+    if (Date.now() - startedAt >= timeoutMs) throw new Error(message);
+    await delay(2);
+  }
+}
+
 (async () => {
   const fetchLog = [];
   const lifecycle = [];
   let activePeopleFetches = 0;
   let maxPeopleFetches = 0;
   let refreshCalls = 0;
+  const refreshRelationStates = [];
+  let mutationCallback = null;
   const peopleAttempts = new Map();
 
   const placeCard = new FakeElement("placeCard");
@@ -119,7 +133,10 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     },
     DataHub: {
       async loadPlacesBase() {
-        return [{ id: "place-1", name: "Teststed", desc: "Test" }];
+        return [
+          { id: "place-1", name: "Teststed", desc: "Test" },
+          { id: "place-2", name: "Relasjonssted", desc: "Test" }
+        ];
       },
       async loadNature() {},
       async loadLesespor() {}
@@ -136,6 +153,7 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     HGBrands: { async init() {} },
     async openPlaceCard() {
       refreshCalls += 1;
+      refreshRelationStates.push(window.HG_RELATIONS_READY);
       peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">6</span>';
       peopleIcon.dataset.roundReady = "true";
       peopleList.hasRenderedPeople = true;
@@ -180,8 +198,13 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     }
 
     if (url === "data/relations.json") {
-      await delay(2);
-      return response({ relations: [{ id: "rel-1", place_id: "place-1", person_id: "person-1" }] });
+      await delay(40);
+      return response({
+        relations: [
+          { id: "rel-1", place_id: "place-1", person_id: "person-1" },
+          { id: "rel-2", place_id: "place-2", person_id: "person-2" }
+        ]
+      });
     }
 
     if (url === "data/relations_philanthropy.json") {
@@ -220,6 +243,10 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     navigator: { hardwareConcurrency: 8 },
     fetch: fetchMock,
     CustomEvent: FakeCustomEvent,
+    MutationObserver: class {
+      constructor(callback) { mutationCallback = callback; }
+      observe() {}
+    },
     performance: { now: () => Date.now() },
     console: { ...console, warn() {} },
     setTimeout,
@@ -248,11 +275,15 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   await delay(2);
   placeCard.dataset.currentPlaceId = "place-1";
 
-  await delay(18);
+  await waitUntil(
+    () => lifecycle.includes("people-priority-ready") && refreshCalls >= 1,
+    "prioritert People-data rendret ikke det åpne PlaceCard-et"
+  );
   assert.ok(lifecycle.includes("people-priority-ready"), "sted åpnet etter boot flyttes fram i den pågående People-køen");
   assert.equal(window.HG_PEOPLE_READY, false, "resten av People kan fortsatt laste");
+  assert.equal(refreshRelationStates[0], false, "direkte place-profiler venter ikke på hele relasjonsregisteret");
   assert.deepEqual(Array.from(window.PEOPLE, person => person.id), ["person-1"]);
-  assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres når prioriterte People og relasjoner er brukbare");
+  assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres så snart direkte People-profiler er brukbare");
 
   await window.bootBackground();
   await delay(20);
@@ -276,6 +307,80 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   assert.ok(refreshCalls >= 1, "åpent PlaceCard rendres på nytt når People og relasjoner er klare");
   assert.doesNotMatch(peopleIcon.innerHTML, /…/);
   assert.match(peopleIcon.innerHTML, />6</);
+
+  const refreshesBeforeValidFallback = refreshCalls;
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">6</span>';
+  peopleIcon.dataset.roundReady = "false";
+  peopleList.hasRenderedPeople = true;
+  mutationCallback?.([]);
+  await delay(10);
+  assert.equal(
+    refreshCalls,
+    refreshesBeforeValidFallback,
+    "gyldig positiv fallback uten bilde må ikke bruke stale-sperren"
+  );
+  assert.equal(peopleIcon.dataset.hgPeopleStaleRefreshFor, undefined);
+
+  const refreshesBeforeStaleRepair = refreshCalls;
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
+  peopleIcon.dataset.roundReady = "false";
+  peopleList.hasRenderedPeople = false;
+  mutationCallback?.([]);
+  await delay(10);
+  assert.ok(refreshCalls > refreshesBeforeStaleRepair, "sen tom PlaceCard-render repareres etter ready-eventet");
+  assert.match(peopleIcon.innerHTML, />6</);
+
+  const refreshesAfterStaleRepair = refreshCalls;
+  peopleIcon.innerHTML = '<img src="/broken-person.jpg" alt="">';
+  peopleIcon.dataset.roundReady = "true";
+  mutationCallback?.([]);
+  await delay(5);
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
+  peopleIcon.dataset.roundReady = "false";
+  mutationCallback?.([]);
+  await delay(10);
+  assert.equal(
+    refreshCalls,
+    refreshesAfterStaleRepair,
+    "ødelagt previewbilde kan ikke starte en ny PlaceCard-refreshløkke"
+  );
+
+  placeCard.dataset.currentPlaceId = "place-2";
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">4</span>';
+  peopleIcon.dataset.roundReady = "true";
+  mutationCallback?.([]);
+  await delay(5);
+  assert.equal(peopleIcon.dataset.hgPeopleObservedPlace, "place-2");
+  assert.equal(peopleIcon.dataset.hgPeopleStaleRefreshFor, undefined);
+
+  placeCard.dataset.currentPlaceId = "place-1";
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
+  peopleIcon.dataset.roundReady = "false";
+  mutationCallback?.([]);
+  await waitUntil(
+    () => refreshCalls > refreshesAfterStaleRepair,
+    "retur til stedet åpnet ikke engangssperren for en ny stale-reparasjon"
+  );
+  assert.equal(
+    refreshCalls,
+    refreshesAfterStaleRepair + 1,
+    "stedsovergang nullstiller sperren nøyaktig én gang"
+  );
+
+  const refreshesBeforeRelationOnlyRepair = refreshCalls;
+  placeCard.dataset.currentPlaceId = "place-2";
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">0</span>';
+  peopleIcon.dataset.roundReady = "false";
+  mutationCallback?.([]);
+  await waitUntil(
+    () => refreshCalls > refreshesBeforeRelationOnlyRepair,
+    "relasjonskoblet person utløste ikke stale-reparasjon"
+  );
+  assert.equal(
+    refreshCalls,
+    refreshesBeforeRelationOnlyRepair + 1,
+    "relasjonskoblet person gir nøyaktig én stale-reparasjon"
+  );
 
   console.log("People/relations are prioritized, bounded-parallel, and refresh the open round without a false zero");
 })().catch(error => {
