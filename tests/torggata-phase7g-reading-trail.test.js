@@ -6,7 +6,7 @@ const repo = path.resolve(__dirname, '..');
 const read = relativePath => fs.readFileSync(path.join(repo, relativePath), 'utf8');
 const readJson = relativePath => JSON.parse(read(relativePath));
 
-const readingPath = 'data/lesespor/oslo/lesespor_oslo_by_torggata.json';
+const readingPath = 'data/lesespor/oslo/lesespor_oslo_by.json';
 const data = readJson(readingPath);
 const manifest = readJson('data/lesespor/manifest.json');
 const backlog = readJson('reports/place-production/torggata-quality-improvement-backlog-v1.json');
@@ -20,17 +20,19 @@ assert.strictEqual(data.city, 'oslo');
 assert.strictEqual(data.category, 'by');
 assert.strictEqual(data.rights_policy.default, 'link_only');
 assert(Array.isArray(data.items));
-assert.strictEqual(data.items.length, 3);
-assert.deepStrictEqual(data.items.map(item => item.id), [
+const items = data.items.filter(item => item.place_ids?.includes('torggata'));
+assert.strictEqual(items.length, 3);
+assert.deepStrictEqual(items.map(item => item.id), [
   'lesespor_torggata_byleksikon_001',
   'lesespor_torggata_toi_2017_001',
   'lesespor_torggata_nla_001'
 ]);
 
-for (const item of data.items) {
+for (const item of items) {
   assert.deepStrictEqual(item.place_ids, ['torggata']);
   assert.strictEqual(item.access, 'open');
   assert.strictEqual(item.rights, 'link_only');
+  assert.strictEqual(item.source_quality, 'recognized');
   assert.strictEqual(item.verifiedAt, '2026-08-14');
   assert(/^https:\/\//.test(item.url));
   assert(String(item.popupDesc).length > 170);
@@ -38,13 +40,13 @@ for (const item of data.items) {
   assert(!/Torggata Bad|Rockefeller|Youngstorget/.test(item.popupDesc));
 }
 
-const byleksikon = data.items[0];
+const byleksikon = items[0];
 assert.strictEqual(byleksikon.publication, 'Oslo byleksikon');
 assert.strictEqual(byleksikon.url, 'https://oslobyleksikon.no/index.php/Torggata');
 assert.match(byleksikon.popupDesc, /1846 til 1876/);
 assert.match(byleksikon.relevance, /selve Torggata fra Stortorvet til Ankertorget/);
 
-const toi = data.items[1];
+const toi = items[1];
 assert.strictEqual(toi.year, 2017);
 assert.strictEqual(toi.type, 'forskningsrapport');
 assert.strictEqual(toi.author, 'Torkel Bjørnskau, Oddrun Helen Hagen og Ole Aasvik');
@@ -52,18 +54,16 @@ assert.match(toi.url, /^https:\/\/www\.toi\.no\/publikasjoner\/sykling-i-gagater
 assert.match(toi.popupDesc, /videoregistreringer, fartsmålinger og registrerte interaksjoner/);
 assert.match(toi.access_note, /åpent sammendrag og lenke til hele rapporten/);
 
-const nla = data.items[2];
+const nla = items[2];
 assert.strictEqual(nla.year, 2014);
 assert.strictEqual(nla.date_type, 'project_completion');
 assert.strictEqual(nla.publication, 'Norske landskapsarkitekters forening (NLA)');
 assert.strictEqual(nla.url, 'https://landskapsarkitektur.no/prosjekter/torggata');
 assert.match(nla.popupDesc, /asymmetriske gateprofilen/);
 
-const manifestEntry = 'oslo/lesespor_oslo_by_torggata.json';
+const manifestEntry = 'oslo/lesespor_oslo_by.json';
 assert.strictEqual(manifest.files.filter(file => file === manifestEntry).length, 1);
-const byIndex = manifest.files.indexOf('oslo/lesespor_oslo_by.json');
-assert.strictEqual(manifest.files[byIndex + 1], manifestEntry);
-assert.strictEqual(manifest.generated_at, '2026-08-14T00:00:00+02:00');
+assert(!manifest.files.includes('oslo/lesespor_oslo_by_torggata.json'));
 
 assert.match(runtime, /list\(item\?\.place_ids\)\.map\(text\)\.includes\(placeId\)/);
 assert.match(runtime, /paywall.*subscription.*subscriber.*abonnement.*betalingsmur.*krever abonnement/);
@@ -77,13 +77,13 @@ assert.match(audit, /Oslo byleksikon[\s\S]*Publisert/);
 assert.match(audit, /Transportøkonomisk institutt[\s\S]*Publisert/);
 assert.match(audit, /Norske landskapsarkitekters forening[\s\S]*Publisert/);
 assert.match(audit, /Torggata Bad-artikler[\s\S]*Avvist som parent-place-spor/);
-assert.match(audit, /kildetekst kopieres ikke/);
+assert.match(audit, /artikkel- eller rapporttekst kopieres/);
 assert.match(audit, /Automatiske tester[\s\S]*beviser ikke alene/);
 
 const finding = backlog.findings.find(item => item.id === 'reading_trail_missing');
 assert(finding);
 assert.strictEqual(finding.workflow_status, 'RESOLVED_PHASE_7G');
-assert.deepStrictEqual(finding.resolution.items, data.items.map(item => item.id));
+assert.deepStrictEqual(finding.resolution.items, items.map(item => item.id));
 assert.strictEqual(finding.resolution.source_owner, readingPath);
 assert.strictEqual(finding.resolution.verified_at, '2026-08-14');
 assert.strictEqual(backlog.sequence[0].status, 'RESOLVED');
