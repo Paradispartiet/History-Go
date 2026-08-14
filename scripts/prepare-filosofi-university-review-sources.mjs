@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCE_PATH = path.join(ROOT, 'data/fagverk/filosofi/filosofi_sources_v1.json');
 const ARTICLE_PATH = path.join(ROOT, 'data/fagverk/filosofi/articles/em_filosofi_kunstverk_kunststatus_institusjon.json');
+const REGISTRY_PATH = path.join(ROOT, 'data/fagverk/filosofi/filosofi_article_registry_v1.json');
 
 const supplementalSources = [
   {
@@ -56,3 +57,15 @@ for (const sourceId of required) {
 fs.writeFileSync(SOURCE_PATH, `${JSON.stringify(sources, null, 2)}\n`, 'utf8');
 fs.writeFileSync(ARTICLE_PATH, `${JSON.stringify(article, null, 2)}\n`, 'utf8');
 console.log(`${article.id}: låst til tre direkte sekundærkilder om kunstdefinisjon/institusjon i tillegg til eksisterende estetikkilder.`);
+
+const registry = JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf8'));
+let sourceGapCount = 0;
+for (const row of registry.articles || []) {
+  const target = JSON.parse(fs.readFileSync(path.join(ROOT, row.file), 'utf8'));
+  const count = new Set(target.source_ids || []).size;
+  if (count < 3) {
+    sourceGapCount += 1;
+    console.log(`::notice title=Philosophy source gap::${target.id}: har ${count} unike sekundærkilder`);
+  }
+}
+console.log(`Philosophy source-gap diagnostic: ${sourceGapCount} artikler har færre enn tre unike sekundærkilder før materialisering.`);
