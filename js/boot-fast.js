@@ -57,6 +57,7 @@
   let priorityPeopleDataPromise = null;
   let peopleSurfaceUpdateScheduled = false;
   let currentPlacePeopleRefreshScheduled = false;
+  let revalidateOpenPlacePeopleFiles = null;
 
   window.HG_PEOPLE_READY = Array.isArray(window.PEOPLE) && window.PEOPLE.length > 0;
   window.HG_PEOPLE_LOADING = false;
@@ -128,7 +129,7 @@
     return out;
   }
 
-  async function loadRowsWithConcurrency(urls, key, concurrency, onProgress, prioritize) {
+  async function loadRowsWithConcurrency(urls, key, concurrency, onProgress, prioritize, onStart) {
     const list = Array.isArray(urls) ? urls : [];
     if (!list.length) return { rows: [], failed: [] };
 
@@ -154,7 +155,9 @@
         if (!next) return;
 
         const { url, index } = next;
-        const data = await fetchJSON(url, { cache: "default" });
+        onStart?.({ url, index });
+        const cache = prioritize?.(url) ? "reload" : "default";
+        const data = await fetchJSON(url, { cache });
         if (data == null) failed.push(url);
         rowsByFile[index] = normalizeRows(data, key);
 
@@ -164,6 +167,8 @@
           total: list.length,
           failed: failed.length,
           url,
+          cache,
+          ok: data != null,
           rows: rowsByFile[index]
         });
       }
@@ -273,7 +278,10 @@
   }
 
   function scheduleCurrentPlacePeopleRefresh() {
-    if (!peopleDataUsable() || currentPlacePeopleRefreshScheduled) return;
+    const placeId = getCurrentPlaceId();
+    const placeNeedsRevalidation = typeof window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE === "function"
+      && window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE(placeId);
+    if (!peopleDataUsable() || placeNeedsRevalidation || currentPlacePeopleRefreshScheduled) return;
     currentPlacePeopleRefreshScheduled = true;
 
     setTimeout(() => {
@@ -289,7 +297,10 @@
   function updatePeopleSurfaceState() {
     const icon = document.getElementById("pcPeopleIcon");
     const list = document.getElementById("pcPeopleList");
-    const ready = peopleAndRelationsReady();
+    const placeId = getCurrentPlaceId();
+    const placeNeedsRevalidation = typeof window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE === "function"
+      && window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE(placeId);
+    const ready = peopleAndRelationsReady() && !placeNeedsRevalidation;
     const failed = window.HG_PEOPLE_STATUS === "error" || window.HG_RELATIONS_STATUS === "error";
 
     if (ready) {
@@ -367,6 +378,7 @@
   function handlePeopleDataChange() {
     schedulePeopleSurfaceUpdate();
     scheduleCurrentPlacePeopleRefresh();
+    void revalidateOpenPlacePeopleFiles?.();
   }
 
   function installPeopleRoundLoadingBridge() {
@@ -379,8 +391,16 @@
 
       card.dataset.hgPeopleLoadingObserved = "1";
       if (typeof MutationObserver === "function") {
-        const observer = new MutationObserver(() => schedulePeopleSurfaceUpdate());
-        observer.observe(card, { childList: true, subtree: true });
+        const observer = new MutationObserver(() => {
+          schedulePeopleSurfaceUpdate();
+          void revalidateOpenPlacePeopleFiles?.();
+        });
+        observer.observe(card, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ["data-current-place-id"]
+        });
       }
       schedulePeopleSurfaceUpdate();
     };
@@ -395,6 +415,7 @@
       "hg:people-loading",
       "hg:people-progress",
       "hg:people-priority-ready",
+      "hg:people-place-revalidation-needed",
       "hg:people-ready",
       "hg:people-error",
       "hg:relations-loading",
@@ -658,7 +679,7 @@
 
     peopleLoadPromise = (async () => {
       setPeopleDataState("loading", { phase: "manifest" });
-      const manifest = await fetchJSON("data/people/manifest.json", { cache: "default" });
+      const manifest = await fetchJSON("data/people/manifest.json", { cache: "no-store" });
       if (!manifest || !Array.isArray(manifest.files)) {
         throw new Error("People-manifestet kunne ikke lastes");
       }
@@ -668,37 +689,168 @@
 
       const progressStep = Math.max(1, Math.ceil(peopleFiles.length / 20));
       const loadedRowsByFile = new Map();
+      const attemptedPeopleFiles = new Set();
+      const inFlightPeopleFiles = new Set();
+      const ordinaryRetryPendingFiles = new Set();
+      const knownManifestIds = new Set();
+      const failedRevalidationKeys = new Set();
+      let lastRevalidationPlaceId = "";
       let publishedPrioritySignature = "";
       const hasPlaceSegment = (file, placeId) => placeId
         && String(file).split("/").some(segment => segment === placeId);
-      const prioritizeOpenPlace = file => hasPlaceSegment(file, getCurrentPlaceId());
+      const priorityFilesByPlace = new Map(
+        Object.entries(manifest.priorityFilesByPlace || {}).map(([placeId, entries]) => [
+          String(placeId || "").trim(),
+          new Set((Array.isArray(entries) ? entries : [])
+            .map(normalizePeoplePath)
+            .filter(file => peopleFiles.includes(file)))
+        ])
+      );
+      const isPriorityFileForPlace = (file, placeId) => Boolean(
+        hasPlaceSegment(file, placeId)
+        || priorityFilesByPlace.get(String(placeId || "").trim())?.has(file)
+      );
+      const prioritizeOpenPlace = file => isPriorityFileForPlace(file, getCurrentPlaceId());
+      const revalidatedFiles = new Set();
+      let openPlaceRevalidationPromise = null;
+
+      window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE = (placeId) => {
+        const pid = String(placeId || "").trim();
+        if (!pid) return false;
+        const priorityFiles = peopleFiles.filter(file => isPriorityFileForPlace(file, pid));
+        return priorityFiles.length > 0
+          && priorityFiles.some(file => !revalidatedFiles.has(file));
+      };
 
       const publishOpenPlaceRows = () => {
         const placeId = getCurrentPlaceId();
         if (!placeId) return;
         const rows = [];
+        let hasLoadedPriorityFile = false;
         for (const [file, fileRows] of loadedRowsByFile) {
-          if (hasPlaceSegment(file, placeId)) rows.push(...fileRows);
+          if (!isPriorityFileForPlace(file, placeId)) continue;
+          hasLoadedPriorityFile = true;
+          rows.push(...fileRows);
         }
-        if (!rows.length) return;
+        if (!hasLoadedPriorityFile) return;
 
         const signature = `${placeId}:${rows.map(row => String(row?.id || "")).sort().join("|")}`;
         if (signature === publishedPrioritySignature) return;
         publishedPrioritySignature = signature;
 
-        const existingPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
-        window.PEOPLE = mergeRowsById(rows, existingPeople);
+        const manifestRows = peopleFiles.flatMap(file => loadedRowsByFile.get(file) || []);
+        const existingExternalPeople = (Array.isArray(window.PEOPLE) ? window.PEOPLE : [])
+          .filter(person => !knownManifestIds.has(String(person?.id || "").trim()));
+        window.PEOPLE = mergeRowsById(manifestRows, existingExternalPeople);
         emit("hg:people-priority-ready", {
           placeId,
           count: window.PEOPLE.length,
-          files: peopleFiles.filter(file => hasPlaceSegment(file, placeId)).length
+          files: peopleFiles.filter(file => isPriorityFileForPlace(file, placeId)).length
         });
         handlePeopleDataChange();
       };
 
-      const rememberRows = ({ url, rows }) => {
-        loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
+      const rememberRows = ({ url, rows, cache, ok }, { ordinaryRetryComplete = false } = {}) => {
+        attemptedPeopleFiles.add(url);
+        inFlightPeopleFiles.delete(url);
+        if (ordinaryRetryComplete) ordinaryRetryPendingFiles.delete(url);
+        else if (!ok) ordinaryRetryPendingFiles.add(url);
+        if (ok) {
+          for (const row of loadedRowsByFile.get(url) || []) {
+            const id = String(row?.id || "").trim();
+            if (id) knownManifestIds.add(id);
+          }
+          for (const row of Array.isArray(rows) ? rows : []) {
+            const id = String(row?.id || "").trim();
+            if (id) knownManifestIds.add(id);
+          }
+          loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
+          if (cache === "reload") revalidatedFiles.add(url);
+        }
         publishOpenPlaceRows();
+      };
+
+      revalidateOpenPlacePeopleFiles = () => {
+        const placeId = getCurrentPlaceId();
+        if (!placeId) return Promise.resolve();
+        if (placeId !== lastRevalidationPlaceId) {
+          failedRevalidationKeys.clear();
+          lastRevalidationPlaceId = placeId;
+        }
+        if (openPlaceRevalidationPromise) return openPlaceRevalidationPromise;
+
+        const targets = peopleFiles.filter(file =>
+          isPriorityFileForPlace(file, placeId)
+          && attemptedPeopleFiles.has(file)
+          && !inFlightPeopleFiles.has(file)
+          && !ordinaryRetryPendingFiles.has(file)
+          && !revalidatedFiles.has(file)
+          && !failedRevalidationKeys.has(`${placeId}:${file}`)
+        );
+        if (!targets.length) {
+          const hasFailedForPlace = peopleFiles.some(file =>
+            failedRevalidationKeys.has(`${placeId}:${file}`)
+          );
+          if (!hasFailedForPlace) publishOpenPlaceRows();
+          return Promise.resolve();
+        }
+
+        let refreshedAny = false;
+        const rememberRevalidatedRows = ({ url, rows, cache, ok }) => {
+          attemptedPeopleFiles.add(url);
+          inFlightPeopleFiles.delete(url);
+          if (!ok) return;
+          refreshedAny = true;
+          for (const row of loadedRowsByFile.get(url) || []) {
+            const id = String(row?.id || "").trim();
+            if (id) knownManifestIds.add(id);
+          }
+          for (const row of Array.isArray(rows) ? rows : []) {
+            const id = String(row?.id || "").trim();
+            if (id) knownManifestIds.add(id);
+          }
+          loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
+          if (cache === "reload") revalidatedFiles.add(url);
+        };
+
+        openPlaceRevalidationPromise = loadRowsWithConcurrency(
+          targets,
+          "people",
+          Math.min(3, PEOPLE_FETCH_CONCURRENCY),
+          rememberRevalidatedRows,
+          () => true,
+          ({ url }) => inFlightPeopleFiles.add(url)
+        ).then(async firstAttempt => {
+          // En transient reload-feil får ett kontrollert nytt forsøk. Filer som
+          // fortsatt feiler, beholder siste brukbare rader og forblir kvalifisert
+          // for en senere place-/datahendelse.
+          let remainingFailed = firstAttempt.failed;
+          if (remainingFailed.length) {
+            const retryAttempt = await loadRowsWithConcurrency(
+              remainingFailed,
+              "people",
+              2,
+              rememberRevalidatedRows,
+              () => true,
+              ({ url }) => inFlightPeopleFiles.add(url)
+            );
+            remainingFailed = retryAttempt.failed;
+          }
+          for (const file of remainingFailed) {
+            failedRevalidationKeys.add(`${placeId}:${file}`);
+          }
+          if (refreshedAny) {
+            publishedPrioritySignature = "";
+            publishOpenPlaceRows();
+          }
+        }).finally(() => {
+          openPlaceRevalidationPromise = null;
+          // Rescan alltid: en annen prioritetsfil kan ha fullført sin opprinnelige
+          // fetch mens denne target-snapshoten var aktiv. Feilgaten over gjør at
+          // vedvarende failures ikke starter en ny syklus.
+          setTimeout(() => void revalidateOpenPlacePeopleFiles?.(), 0);
+        });
+        return openPlaceRevalidationPromise;
       };
 
       const firstPass = await loadRowsWithConcurrency(
@@ -719,7 +871,8 @@
             });
           }
         },
-        prioritizeOpenPlace
+        prioritizeOpenPlace,
+        ({ url }) => inFlightPeopleFiles.add(url)
       );
 
       // Små, forbigående nettverksfeil skal ikke gi permanente hull i People.
@@ -729,19 +882,24 @@
           firstPass.failed,
           "people",
           2,
-          rememberRows,
-          prioritizeOpenPlace
+          detail => rememberRows(detail, { ordinaryRetryComplete: true }),
+          prioritizeOpenPlace,
+          ({ url }) => inFlightPeopleFiles.add(url)
         )
         : { rows: [], failed: [] };
-      const loadedRows = [...firstPass.rows, ...retry.rows];
+      // loadedRowsByFile er autoritativ etter både førstegangslast, retry og
+      // eventuell place-utløst revalidering. Ikke la stale firstPass-rader
+      // overskrive ferske aggregatrader i sluttpubliseringen.
+      const loadedRows = peopleFiles.flatMap(file => loadedRowsByFile.get(file) || []);
       const failedFiles = retry.failed;
       if (!loadedRows.length && failedFiles.length === peopleFiles.length) {
         throw new Error("Ingen People-filer kunne lastes");
       }
 
       publishOpenPlaceRows();
-      const existingPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
-      const peopleAll = mergeRowsById(loadedRows, existingPeople);
+      const existingExternalPeople = (Array.isArray(window.PEOPLE) ? window.PEOPLE : [])
+        .filter(person => !knownManifestIds.has(String(person?.id || "").trim()));
+      const peopleAll = mergeRowsById(loadedRows, existingExternalPeople);
       window.PEOPLE = peopleAll;
       const currentPlaceId = getCurrentPlaceId();
       setPeopleDataState("ready", {
@@ -749,7 +907,7 @@
         files: peopleFiles.length,
         failedFiles: failedFiles.length,
         concurrency: PEOPLE_FETCH_CONCURRENCY,
-        priorityFiles: peopleFiles.filter(file => hasPlaceSegment(file, currentPlaceId)).length,
+        priorityFiles: peopleFiles.filter(file => isPriorityFileForPlace(file, currentPlaceId)).length,
         partial: failedFiles.length > 0
       });
       return peopleAll;

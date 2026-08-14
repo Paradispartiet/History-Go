@@ -92,3 +92,26 @@ Denne auditen godkjenner ikke sluttflaten på forhånd. Etter merge skal den nye
 - 4 + 1-geometrien er uendret.
 
 **Sluttstatus kan først settes etter denne produksjonsverifikasjonen.**
+
+
+## Andre produksjonsverifikasjon etter PR #4981
+
+- Merge: `0f3c9418bc9cb36d25a18fe3fc1aae464b86cb79`
+- Pages-run: `31818244364` = success
+- Kontroll: publisert PlaceCard i ny nettleserfane etter ferdig deploy
+
+Den nye runtimekoden var lastet, men Personer viste fortsatt `0` og tom popup. DOM-en bekreftet at ready-observeren hadde observert `torggata`, uten at den fant synlige Torggata-profiler og satte recovery-sperren. PR #4981 er derfor ikke godkjent som sluttresultat.
+
+Canonical datakontroll viste at `data/relations.json` manglet Torggata-relasjoner. Direkte place-felt er fortsatt gyldige, men produksjonskjeden skal også ha canonical relasjoner for de faktisk valgte profilene. Manifest og profilfiler for åpent sted skal dessuten revalideres, slik at en stale nettlesercache ikke kan holde rundingen på null uten nettverksfeil.
+
+Egen-place-regelen gjelder også People: Thorvald Meyer, Christian Morgenstierne og Arne Eides Torggata-referanser beskriver Torggata Bad. Siden badet har egen canonical History GO-place, holdes de tilbake fra parent-rundingen. Integrasjonstesten fant også tolv brede subkultur-/miljøkoblinger uten tilstrekkelig spesifikt Torggata-stedspunkt; disse holdes tilbake for å hindre generelt områdefyll. Godkjent målsett for Torggata er fire personer: Henrik Bull, Harald Olsen, Alma Fahlstrøm og Johan Fahlstrøm.
+
+### Tredje reparasjonsgate
+
+- fire canonical Torggata-relasjoner finnes og peker på bildeklare profiler;
+- Torggata Bad-proxyene er eksplisitt holdt tilbake fra `torggata`;
+- manifestet hentes uten stale cache og åpne-place-profiler revalideres;
+- runtime-integrasjonstesten returnerer nøyaktig de fire godkjente profilene;
+- produksjonen viser `Personer = 4` og popupen åpner de samme fire.
+
+**Status: IKKE PRODUKSJONSGODKJENT.**
