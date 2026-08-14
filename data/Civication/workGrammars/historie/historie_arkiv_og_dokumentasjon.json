@@ -1,0 +1,18 @@
+{
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"historie","role_scope":"historie_arkiv_og_dokumentasjon","role_id":"historie_arkiv_og_dokumentasjon",
+  "badge_binding":{"badge_id":"historie","badge_titles":["Arkivmedarbeider","Arkivar"]},
+  "work_world":"Arkivarbeid der proveniens, metadata, innsyn, bevaring og sporbarhet avgjør om dokumentasjon kan brukes som kilde og rettighetsgrunnlag.",
+  "task_families":["journalforing","registrering","katalogisering","innsyn","digital_bevaring","formidling"],
+  "work_loops":["mottak -> proveniens -> registrering -> kvalitetssikring -> tilgang -> bevaring","foresporsel -> identifisering -> regelvurdering -> gjenfinning -> dokumentert svar"],
+  "pressure_axes":["tilgang_vs_personvern","tempo_vs_metadata","bevaring_vs_formatrisiko"],
+  "practice_stories":[
+    {"id":"uklar_proveniens","setup":"En viktig samling mangler sikker proveniens.","decision":"Stans bastante beskrivelser, dokumenter usikkerheten og rekonstruer kjeden før publisering.","learning":"kontekst er en del av kilden"},
+    {"id":"innsyn_personvern","setup":"En bruker ber om materiale med mulig personsensitiv informasjon.","decision":"Skill gjenfinning fra innsynsavgjørelse og dokumenter hvilke regler som må vurderes.","learning":"tilgjengelighet er ikke grenseløs"},
+    {"id":"metadata_press","setup":"En stor leveranse må registreres raskt.","decision":"Prioriter minimumsmetadata som bevarer proveniens og etterprøvbarhet før volum.","learning":"hurtig registrering uten sporbarhet skaper ny gjeld"},
+    {"id":"formatrisiko","setup":"Filer ligger i et gammelt format som snart ikke kan åpnes.","decision":"Planlegg kontrollert migrering med originalbevaring og verifikasjon.","learning":"digital bevaring krever aktiv forvaltning"},
+    {"id":"feil_katalogtekst","setup":"En katalogtekst viser seg å inneholde en gammel feil.","decision":"Korriger beskrivelsen transparent uten å omskrive originalmaterialet.","learning":"arkivet må skille kilde fra metadata"}
+  ],
+  "quality_axes":["proveniens","sporbarhet","metadata","tilgjengelighet","regelverk","bevaring"],
+  "authority_boundary":{"may":["ordne, beskrive og tilgjengeliggjøre dokumentasjon innen mandat"],"may_not":["endre originalkilder","skjule usikker proveniens","gi ulovlig innsyn","forfalske metadata"]}
+}
