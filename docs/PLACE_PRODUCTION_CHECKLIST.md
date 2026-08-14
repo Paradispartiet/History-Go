@@ -855,8 +855,14 @@ Popupen aggregerer canonical data; den skal ikke skape en ny parallell sannhet.
 
 ### Lesespor
 - [ ] eksisterende Lesespor søkt;
+- [ ] repo, åpne tidsskrifter, biblioteker, arkiv, institusjoner, forlag/forfattere og andre relevante leseeiere er konkret undersøkt;
 - [ ] `place_ids` peker eksplisitt til stedet;
-- [ ] stedsspesifikk åpen flate viser bare egnet direkte lesbart materiale.
+- [ ] stedsspesifikk åpen flate viser egnet, direkte lesbart og faktisk Torggata-relevant materiale;
+- [ ] betalingslåste lenker registreres som holdback, men brukes ikke som begrunnelse for å avslutte søket etter åpne alternativer;
+- [ ] tomt eksisterende datasett er aldri alene grunnlag for N/A;
+- [ ] Lesespor tilfører fordypning og er ikke bare en ny kopi av Kilder-fanen.
+
+**Stoppgate:** Lesespor kan ikke godkjennes som tom/N/A for et innholdsrikt sted før et dokumentert søk viser at ingen relevant, rettighetsmessig trygg og direkte lesbar tekst kan vises. At de første treffene er betalingslåst er ikke tilstrekkelig N/A-grunn.
 
 ### Kilder
 - [ ] `source_summary.safe_sources` / aktiv kildeflate vurdert;
@@ -1236,7 +1242,7 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] `popupDesc`/popup åpner riktig;
 - [ ] popup har Om · Historie · Fortellinger · Før/etter · Nyheter · Lesespor · Kilder · Mer;
 - [ ] Før/etter-hovedparet er visuelt sammenlignbart og inkluderer et reelt gammelt–nå-lag når stedet og arkivtilgangen tilsier det;
-- [ ] Nyheter og Mer er kontrollert som faktiske brukerflater; tomt/N/A er ikke godkjent bare fordi data mangler;
+- [ ] Nyheter, Lesespor og Mer er kontrollert som faktiske brukerflater; tomt/N/A er ikke godkjent bare fordi data mangler;
 - [ ] rundingssettet følger `data/places/README_place_rounds.md`;
 - [ ] fast Badges-runding vises øverst til høyre ved stedsoverskriften;
 - [ ] fire innholdsrundinger vises i et 2 × 2-felt ved `frontImage`;
@@ -1273,7 +1279,7 @@ En valgt runding uten reelt visuelt innhold er ikke produksjonsklar selv om JSON
 - [ ] bilder identitetskontrollert;
 - [ ] Brands følger den canonicale Brand-definisjonen uten å snevres inn til bare forbrukermerker eller utvides til en generell aktørrestkategori;
 - [ ] Før/etter er vurdert for sammenlignbart utsnitt, historisk dybde og faktisk nåbilde — ikke bare lisens og kilder;
-- [ ] Nyheter og Mer har reell dekning eller en dokumentert, streng N/A-begrunnelse etter aktivt søk;
+- [ ] Nyheter, Lesespor og Mer har reell dekning eller en dokumentert, streng N/A-begrunnelse etter aktivt søk;
 - [ ] rundingsinnhold er ikke filler;
 - [ ] rundingene er samlet vurdert for brukerforståelse, substans og semantisk overlapp;
 - [ ] avvist/usikkert innhold er fortsatt utelatt.
@@ -1356,7 +1362,7 @@ Et sted er **sted-produksjon ferdig** først når hvert punkt nedenfor er sant e
 - [ ] Fortellinger / N/A;
 - [ ] Før/etter / N/A;
 - [ ] Nyheter / strengt dokumentert N/A etter fersksøk;
-- [ ] Lesespor / N/A;
+- [ ] Lesespor / strengt dokumentert N/A etter søk etter direkte lesbart materiale;
 - [ ] Kilder;
 - [ ] Mer / strengt dokumentert N/A etter søk i alle relevante innholdseiere.
 
@@ -1525,7 +1531,7 @@ Samlet: [ ] tydelig forskjellige samlinger  [ ] ingen kunstig Objects/Structures
 - [ ] hovedbilder
 - [ ] rundingsbilder
 - [ ] Før/etter: sammenlignbart utsnitt + gammel–nå-lag + faktisk nåbilde
-- [ ] Nyheter og Mer: innhold eller strengt dokumentert N/A etter søk
+- [ ] Nyheter, Lesespor og Mer: innhold eller strengt dokumentert N/A etter søk
 - [ ] identitet/attribusjon
 - [ ] JSON/referanser
 - [ ] fire-runders 2 × 2-felt + separat Badge-plassering
