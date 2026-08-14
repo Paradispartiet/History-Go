@@ -40,6 +40,35 @@ jobs:
           node-version: '24'
       - name: Prepare topic-specific secondary sources
         run: node scripts/prepare-filosofi-university-review-sources.mjs
+      - name: Preflight all substantive Philosophy anchors
+        run: |
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          import spec1 from './scripts/philosophy-review-specs-1.mjs';
+          import spec2 from './scripts/philosophy-review-specs-2.mjs';
+          import spec3 from './scripts/philosophy-review-specs-3.mjs';
+          import spec4 from './scripts/philosophy-review-specs-4.mjs';
+          import spec5 from './scripts/philosophy-review-specs-5.mjs';
+          const specs={...spec1,...spec2,...spec3,...spec4,...spec5};
+          const registry=JSON.parse(fs.readFileSync('data/fagverk/filosofi/filosofi_article_registry_v1.json','utf8'));
+          const rows=new Map(registry.articles.map(row=>[row.id,row]));
+          const missing=[];
+          for(const [id,spec] of Object.entries(specs)){
+            const row=rows.get(id);
+            if(!row){ missing.push([id,'<unknown article>']); continue; }
+            const article=JSON.parse(fs.readFileSync(row.file,'utf8'));
+            const theory=(article.sections.find(section=>section.id==='teorihistorie')?.paragraphs||[]).join(' ');
+            const substantive=[spec.debate,...spec.argument,spec.objection,spec.reply,theory].join(' ').toLocaleLowerCase('nb');
+            for(const anchor of spec.anchors||[]){
+              if(!substantive.includes(String(anchor).toLocaleLowerCase('nb'))) missing.push([id,anchor]);
+            }
+          }
+          if(missing.length){
+            for(const [id,anchor] of missing) console.log(`::error title=Philosophy anchor preflight::${id}: faganker ${anchor} finnes ikke i substansiell prosa`);
+            throw new Error(`Philosophy anchor preflight found ${missing.length} missing anchors`);
+          }
+          console.log(`Philosophy anchor preflight passed for ${Object.keys(specs).length} article specs.`);
+          NODE
       - name: Materialize substantive article-by-article university review
         run: |
           set +e
