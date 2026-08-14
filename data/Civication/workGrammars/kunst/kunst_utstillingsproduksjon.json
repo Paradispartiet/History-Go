@@ -1,0 +1,18 @@
+{
+  "schema":"civication_work_grammar_v2","version":2,
+  "category":"kunst","role_scope":"kunst_utstillingsproduksjon","role_id":"kunst_utstillingsproduksjon",
+  "badge_binding":{"badge_id":"kunst","badge_titles":["Produksjonsassistent","Utstillingskoordinator","Utstillingsprodusent"]},
+  "work_world":"Utstillingsproduksjon der kunstnerisk intensjon må realiseres innen konkrete rammer for tid, rom, sikkerhet, økonomi og logistikk.",
+  "task_families":["produksjonsplan","transport_og_logistikk","installasjon","leverandoroppfolging","budsjett_og_innkjop","apningsberedskap"],
+  "work_loops":["brief -> avhengigheter -> plan -> gjennomfor -> kontroll -> avvik -> lukking","endring -> konsekvensvurdering -> godkjenning -> replanlegg -> informer -> dokumenter"],
+  "pressure_axes":["kunstnerisk_intensjon_vs_gjennomforbarhet","frist_vs_sikkerhet","budsjett_vs_kvalitet"],
+  "practice_stories":[
+    {"id":"transportforsinkelse","setup":"Et sentralt verk blir forsinket i transporten.","decision":"Replanlegg installasjonen rundt dokumenterte avhengigheter og informer alle berørte.","learning":"god produksjon tåler endring uten å skjule konsekvenser"},
+    {"id":"sen_endring","setup":"Kunstneren ønsker en stor endring to dager før åpning.","decision":"Vurder sikkerhet, tid, budsjett og mandat før endringen godkjennes eller avslås.","learning":"kunstnerisk frihet må kobles til gjennomførbarhet"},
+    {"id":"budsjettavvik","setup":"En kritisk leveranse blir dyrere enn planlagt.","decision":"Synliggjør avviket og be om beslutning før ny forpliktelse tas.","learning":"produksjonsansvar inkluderer økonomisk sporbarhet"},
+    {"id":"usikker_installasjon","setup":"En installasjon kan skade både verk og publikum.","decision":"Stans arbeidet og hent riktig teknisk eller konserveringsfaglig godkjenning.","learning":"åpningstidspunkt trumfer ikke sikkerhet"},
+    {"id":"leverandorbrudd","setup":"En leverandør dokumenterer ikke nødvendige sikkerhetskrav.","decision":"Ikke godkjenn leveransen før kravene er oppfylt eller alternativ løsning er valgt.","learning":"eksterne leverandører reduserer ikke institusjonens ansvar"}
+  ],
+  "quality_axes":["planpresisjon","sikkerhet","budsjettkontroll","logistikk","kommunikasjon","avvikssporbarhet"],
+  "authority_boundary":{"may":["koordinere produksjon","stanse arbeid ved risiko","bestille innen delegert ramme"],"may_not":["endre kunstnerisk innhold uten mandat","overskride budsjettfullmakt","omgå forsikrings- eller lånekrav","godkjenne uforsvarlig installasjon"]}
+}
