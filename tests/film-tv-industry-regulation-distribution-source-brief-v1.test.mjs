@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { isFilmTvUnitTenOrLaterGate } from '../scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs';
 
 const ROOT = new URL('../', import.meta.url);
 const read = (relative) => JSON.parse(fs.readFileSync(new URL(relative, ROOT), 'utf8'));
@@ -72,28 +73,28 @@ test('alle kilde-, case- og claimreferanser er konkrete og resolvable', () => {
   assert.equal(topicBriefs.every((topic) => topic.case_ids.every((id) => caseIds.has(id))), true);
 });
 
-test('runtime kan stå på kildebriefporten eller en senere enhet-10-produksjonsport', () => {
+test('runtime kan stå på enhet-10-porten eller kjente senere porter, men aldri på en tidligere port', () => {
   const registry = read('data/fagverk/fagverk_registry.json');
   const status = read('data/fagverk/subject_status.json');
   const film = status.subjects.find((row) => row.id === 'film_tv');
-  const chapterRegistered = registry.subjects.film_tv.chapters.some(
-    (row) => row.id === 'industri-regulering-og-distribusjon'
-  );
 
   assert.equal(
     registry.subjects.film_tv.canonicalModel.tenthSourceClaimBrief,
     'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_source_claim_brief_v1.json'
   );
-  assert.ok([
-    'industry_regulation_distribution_source_brief_complete_full_chapter_production',
-    'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief'
-  ].includes(film.nextGate));
-  if (chapterRegistered) {
-    assert.equal(
-      film.nextGate,
-      'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief'
-    );
-  }
+  assert.equal(isFilmTvUnitTenOrLaterGate(film.nextGate), true);
+  assert.equal(
+    isFilmTvUnitTenOrLaterGate('creative_work_technology_responsibility_full_chapter_complete_next_unit_source_brief'),
+    false
+  );
+  assert.equal(
+    isFilmTvUnitTenOrLaterGate('screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief'),
+    false
+  );
+  assert.equal(
+    registry.subjects.film_tv.chapters.some((row) => row.id === 'industri-regulering-og-distribusjon'),
+    true
+  );
 });
 
 test('briefmotoren inneholder ingen SCM-synk eller GitHub-push', () => {

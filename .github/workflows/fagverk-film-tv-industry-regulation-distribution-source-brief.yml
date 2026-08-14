@@ -64,9 +64,13 @@ jobs:
           node --check tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
           node --check tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
 
-      - name: Rebuild deterministic unit 10 state
+      - name: Rebuild deterministic unit 10 state without rewinding later progression
         run: |
-          node scripts/materialize-film-tv-industry-regulation-distribution-fulltext-v1.mjs --write
+          if node -e "const r=require('./data/fagverk/fagverk_registry.json'); process.exit(r.subjects?.film_tv?.canonicalModel?.eleventhSourceClaimBrief ? 0 : 1)"; then
+            echo 'Unit 11 or later is registered; preserve global Film and TV progression.'
+          else
+            node scripts/materialize-film-tv-industry-regulation-distribution-fulltext-v1.mjs --write
+          fi
           node scripts/build-fagverk-release-manifest.mjs
           node scripts/audit-fagverk-general-engine.mjs --write-report
           node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs --write-report
