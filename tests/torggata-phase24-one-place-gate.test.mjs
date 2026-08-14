@@ -48,7 +48,7 @@ test("final merge, deployment and 4+1 production evidence are locked", () => {
   assert.equal(gate.completion_evidence.badge_separate, true);
 });
 
-test("manual quality review reopens completion until the four editorial blockers are fixed", () => {
+test("manual quality review reopens completion until the five editorial blockers are fixed", () => {
   const assessment = gate.quality_assessment;
   assert.equal(assessment.dimensions.length, 6);
   assert.equal(assessment.total, 21);
@@ -68,6 +68,19 @@ test("manual quality review reopens completion until the four editorial blockers
   assert.ok(backlog.findings.every((finding) => finding.severity === "BLOCKING"));
   assert.equal(backlog.completion_gate.manual_ui_review_required, true);
   assert.equal(backlog.completion_gate.rescore_required, true);
+  assert.deepEqual(backlog.active_phase, {
+    id: "phase_7d_before_after",
+    status: "IN_PROGRESS_REOPENED",
+    exact_file_scope: [
+      "data/places/by/oslo/places/torggata.json",
+      "reports/place-production/torggata-phase7d-before-after-audit-v1.md",
+      "tests/place-card-for-na-torggata.test.js"
+    ]
+  });
+  assert.equal(backlog.sequence.length, 7);
+  assert.equal(backlog.sequence.filter((item) => item.status === "IN_PROGRESS").length, 1);
+  assert.equal(backlog.sequence[0].id, "before_after_comparability_and_depth");
+  assert.ok(backlog.sequence.slice(1).every((item) => item.status === "QUEUED"));
 });
 
 test("global checklist mirrors the canonical four-plus-separate-Badge contract", () => {
