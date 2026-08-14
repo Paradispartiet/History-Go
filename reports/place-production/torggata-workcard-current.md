@@ -42,6 +42,7 @@
 - Fase 21-audit: `reports/place-production/torggata-phase21-ui-qa-audit-v1.json`
 - Fase 22-audit: `reports/place-production/torggata-phase22-content-qa-audit-v1.json`
 - Fase 23-audit: `reports/place-production/torggata-phase23-ci-gates-audit-v1.json`
+- Fase 24-audit: `reports/place-production/torggata-phase24-one-place-gate-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -71,7 +72,7 @@
 | 21. UI-QA | **GODKJENT ETTER SIKRINGSENDRING** | WebGL-feil stopper ikke lenger app-/PlaceCard-boot; produksjonsflaten kontrollert |
 | 22. Innholds-QA | **GODKJENT** | 18/18 claims, Story, 5 × 7 Quiz, People 21/21, Brands 13/13, bilder og 4+1-rundinger kontrollert uten filler |
 | 23. CI / repository-gates | **GODKJENT** | eksakte grønne Data/Places-, Fagverk By-, TypeScript-, rundings- og Pages-kjøringer registrert |
-| 24. Ett-sted-PR | **IKKE STARTET** | sluttmergegate |
+| 24. Ett-sted-PR | **KLAR FOR SHA-LÅST SLUTTMERGE** | kun Torggata-closeout; eksakt diff/head/CI/review/Pages kontrolleres i slutt-PR |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -738,3 +739,21 @@ Neste aktive fase: **23. CI / repository-gates**.
 **Fase 23 CI / repository-gates = GODKJENT.**
 
 Neste aktive fase: **24. Ett-sted-PR**.
+
+## Fase 24 – Ett-sted-PR
+
+### Sluttmergegate
+
+- PR-en gjelder bare `torggata` og fase 24.
+- Ingen People-, Story-, Quiz-, Objects-, Structures-, Brands-, bilde- eller place-data endres i slutt-PR-en.
+- Neste sted er ikke blandet inn.
+- Forventet sluttdiff er nøyaktig workflow, fase-24-audit, fase-24-test og dette workcardet.
+- Branchen skal være à jour med `main` før merge.
+- Alle reviewtråder skal være løst.
+- Alle relevante workflows skal være grønne på én uendret final head.
+- Manuell QA gjelder samme Torggata-innhold og er registrert i fase 21/22.
+- Squash-mergen skal bruke `expected_head_sha`.
+- Faktisk `main` og Pages skal kontrolleres etter merge før Torggata meldes ferdig.
+- `tests/torggata-phase24-one-place-gate.test.mjs` låser scope og forutsetninger.
+
+**Fase 24 = KLAR FOR SHA-LÅST SLUTTMERGE.**

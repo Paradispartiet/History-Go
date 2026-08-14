@@ -1,0 +1,44 @@
+{
+  "schema_version": "torggata_phase24_one_place_merge_gate_v1",
+  "place_id": "torggata",
+  "phase": 24,
+  "generated_at": "2026-08-14",
+  "status": "READY_FOR_SHA_LOCKED_FINAL_MERGE",
+  "base_branch": "main",
+  "base_sha": "6bcb447e8b8501ffa61303b4a9ec00ce8e0dfdd3",
+  "scope": {
+    "places": [
+      "torggata"
+    ],
+    "active_phase": 24,
+    "necessary_safeguard_changes": [],
+    "dependent_content_changes": [],
+    "next_place_included": false
+  },
+  "expected_changed_files": [
+    ".github/workflows/data-checks.yml",
+    "reports/place-production/torggata-phase24-one-place-gate-audit-v1.json",
+    "reports/place-production/torggata-workcard-current.md",
+    "tests/torggata-phase24-one-place-gate.test.mjs"
+  ],
+  "prerequisites": {
+    "phase21_ui_qa": "APPROVED_PRODUCTION_VERIFIED",
+    "phase22_content_qa": "APPROVED",
+    "phase23_repository_gates": "APPROVED",
+    "manual_same_content_ui_qa": true,
+    "production_place_id": "torggata",
+    "production_round_contract": "people · objects · brands · structures + separate Badge",
+    "production_no_webgl_route": true
+  },
+  "merge_requirements": [
+    "PR applies to one place and phase 24 only",
+    "final diff equals expected_changed_files",
+    "branch is current with main",
+    "all review threads are resolved",
+    "all relevant workflows succeed on unchanged final head",
+    "manual same-content UI evidence remains approved",
+    "squash merge supplies expected_head_sha",
+    "merged main and Pages deployment are verified before completion is reported"
+  ],
+  "conclusion": "The Torggata package is ready for the final one-place PR. Completion is reported only after exact-head CI/review verification, SHA-locked squash merge, main verification and successful Pages deployment."
+}
