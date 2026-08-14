@@ -5,9 +5,9 @@ Eier: `place_rounds_contract`
 Runtime: `js/ui/place-rounds-visual-collections.js`  
 Layout: `js/ui/place-rounds-fill-layout.js` og `css/place-rounds-fill-layout.css`  
 Sted-for-sted arbeidsflyt: `docs/PLACE_PRODUCTION_CHECKLIST.md`  
-Sist kontrollert: **2026-08-04**
+Sist kontrollert: **2026-08-14**
 
-Denne filen bestemmer hva som er en PlaceCard-runding, hvor rundingene plasseres og hvordan kategoriens fjerde runding velges.
+Denne filen bestemmer hva som er en PlaceCard-runding, hvor rundingene plasseres, hvordan kategoriens standardprofil velges og når en stedsspesifikk koherensprofil er påkrevd.
 
 > **Rundinger er tydelige, visuelle samlinger. De skal aldri opprettes bare for å fylle et tomt felt.**
 
@@ -21,7 +21,7 @@ Et PlaceCard viser alltid:
 
 Badges teller ikke som en av de fire rundingene i mediefeltet. PlaceCard har dermed fem synlige rundinger totalt.
 
-## 2. De tre faste rundingene
+## 2. Standardprofil og kontrollert stedsoverstyring
 
 Vanlige steder bruker:
 
@@ -35,11 +35,37 @@ Natursteder bruker:
 map · flora · fauna · [kategoriens fjerde]
 ```
 
-De tre faste rundingene skal ikke erstattes av tilfeldige kategori- eller fallbackvalg.
+Dette er standardprofiler, ikke en kvote som kan overstyre redaksjonell kvalitet. Når standarden gir en tynn, kunstig eller overlappende samling, skal stedet bruke en auditert `round_profile.content_round_ids` med nøyaktig fire IDs.
 
-## 3. Den fjerde rundingen
+Uten en gyldig stedsoverstyring er `Bilder` som eneste generelle reserve når kategoriens fjerde samling mangler; reserven gjør aldri en tom eller kunstig samling gyldig.
 
-Den fjerde rundingen er kategoriavhengig, men velges bare når samlingen har reelt innhold. Dersom normalvalget er tomt, brukes `Bilder` som eneste generelle reserve.
+For vanlige steder støtter runtime en avgrenset koherensoverstyring:
+
+```json
+{
+  "round_profile": {
+    "content_round_ids": ["people", "images", "brands", "related"],
+    "reason": "konkret redaksjonell begrunnelse",
+    "verifiedAt": "YYYY-MM-DD"
+  }
+}
+```
+
+Krav:
+
+- `people` og `brands` beholdes i henholdsvis første og tredje posisjon;
+- andre posisjon er `objects` eller `images`;
+- fjerde posisjon velges fra den canonical fjerde-rundingspoolen;
+- andre og fjerde posisjon kan ikke være samme runding;
+- begge overstyrte samlinger må ha reelt innhold;
+- `reason` skal dokumentere hvilket konkret relevans-, substans- eller overlappsproblem standarden løste;
+- overstyringen skal testes i faktisk 2 × 2-layout.
+
+Overstyringen er ikke en fri legacy-`rounds`-liste. Den er en begrenset kvalitetsventil for å hindre filler.
+
+## 3. Den fjerde standardrundingen
+
+Uten en godkjent stedsoverstyring er den fjerde rundingen kategoriavhengig og velges bare når samlingen har reelt innhold. Dersom normalvalget er tomt, brukes `Bilder` som generell reserve.
 
 | Kategori | Normal fjerde runding | Brukerrettet navn |
 | --- | --- | --- |
@@ -106,9 +132,9 @@ images
 ```
 
 - `badges` står ved overskriften;
-- `people`, `objects` og `brands` er de tre faste samlingene på vanlige steder;
+- `people`, `objects` og `brands` er standardbasen på vanlige steder; `objects` kan erstattes av `images` gjennom den avgrensede koherensprofilen;
 - `map`, `flora` og `fauna` er naturstedets tre faste samlinger;
-- de seks siste ID-ene er tillatte fjerde-rundinger;
+- de seks siste ID-ene er tillatte fjerde-rundinger og kan velges eksplisitt i en gyldig koherensprofil;
 - `productions` får alltid et kategoriens konkret brukerrettet navn;
 - `images` er eneste generelle reserve.
 
@@ -219,11 +245,13 @@ Et sted er rundingsklart når:
 
 1. Badges vises ved stedsoverskriften;
 2. fire rundinger vises i et 2 × 2-felt;
-3. de tre faste rundingene er bevart for vanlig sted eller natursted;
-4. den fjerde rundingen følger kategorimatrisen;
-5. normalvalget har reelt stedsspesifikt innhold, ellers brukes Bilder;
+3. standardprofilen brukes når den er substansiell og koherent; ellers finnes en gyldig, begrunnet `round_profile.content_round_ids`;
+4. den fjerde standardrundingen følger kategorimatrisen, eller er eksplisitt valgt i den kontrollerte koherensprofilen;
+5. alle valgte samlinger har reelt stedsspesifikt innhold; `images` brukes bare når bildene faktisk dokumenterer stedet;
 6. generisk Works, Details, Spots og Civication ikke vises som rundinger;
 7. People-previewet ikke filtrerer People-popupen;
 8. naturstedets Kart åpner et faktisk tur-/naturkart;
 9. de sju popup-SVG-ene står separat til høyre;
-10. relevante rundings-, popup- og datagater passerer.
+10. Objects og Structures er ikke separate rundinger når skillet er kunstig eller samlingene i praksis beskriver de samme fysiske stedselementene;
+11. et place med egen canonical oppføring vises bare som eksplisitt `related`, aldri som parent-place-objekt eller -struktur;
+12. relevante rundings-, popup- og datagater passerer.

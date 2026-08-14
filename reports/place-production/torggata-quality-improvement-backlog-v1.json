@@ -116,7 +116,34 @@
         "Update the canonical round contract/runtime first if the current fixed profile prevents a coherent Torggata solution."
       ],
       "acceptance": "All four content rounds remain visible, but each has a natural label, a substantive place-specific collection and no material semantic overlap; Badge remains separate.",
-      "workflow_status": "QUEUED"
+      "workflow_status": "RESOLVED_PHASE_8F",
+      "resolution": {
+        "previous_rounds": [
+          "people",
+          "objects",
+          "brands",
+          "structures"
+        ],
+        "current_rounds": [
+          "people",
+          "images",
+          "brands",
+          "related"
+        ],
+        "removed_parent_proxy_collections": [
+          "objects",
+          "structures"
+        ],
+        "related_place_ids": [
+          "storgata",
+          "youngstorget",
+          "eldorado_bokhandel"
+        ],
+        "badge_separate": true,
+        "source_owner": "data/places/by/oslo/places/torggata.json",
+        "contract_owner": "data/places/README_place_rounds.md",
+        "evidence": "reports/place-production/torggata-phase8f-round-coherence-audit-v1.md"
+      }
     }
   ],
   "completion_gate": {
@@ -127,7 +154,7 @@
     "minimum_total_score": 27
   },
   "active_phase": {
-    "id": "objects_structures_round_overlap",
+    "id": "manual_ui_and_content_reqa",
     "status": "QUEUED_NEXT"
   },
   "sequence": [
@@ -154,12 +181,12 @@
     {
       "order": 5,
       "id": "objects_structures_round_overlap",
-      "status": "QUEUED_NEXT"
+      "status": "RESOLVED"
     },
     {
       "order": 6,
       "id": "manual_ui_and_content_reqa",
-      "status": "QUEUED"
+      "status": "QUEUED_NEXT"
     },
     {
       "order": 7,

@@ -16,14 +16,19 @@ test("Torggata phase 14 discovery contract", () => {
   const indexRows = Array.isArray(indexData) ? indexData : indexData.places;
   const indexed = indexRows.find(row => row.id === "torggata");
   const storgata = indexRows.find(row => row.id === "storgata");
+  const youngstorget = indexRows.find(row => row.id === "youngstorget");
+  const eldorado = indexRows.find(row => row.id === "eldorado_bokhandel");
   const lexicon = readJson("data/leksikon/places/oslo/by/leksikon_oslo_by_torggata.json");
   const audit = readJson("reports/place-production/torggata-phase14-discovery-audit-v1.json");
 
   assert.equal(place.id, "torggata");
   assert.equal(place.name, "Torggata");
   assert.deepEqual(place.aliases, ["Øvre Torvegade", "Torvegaden"]);
-  assert.deepEqual(place.related_place_ids, ["storgata"]);
+  assert.deepEqual(place.related_place_ids, ["storgata", "youngstorget", "eldorado_bokhandel"]);
+  assert.deepEqual(place.round_profile.content_round_ids, ["people", "images", "brands", "related"]);
   assert.ok(storgata);
+  assert.ok(youngstorget);
+  assert.ok(eldorado);
   assert.deepEqual(indexed.aliases, place.aliases);
 
   assert.equal(lexicon.place_id, "torggata");

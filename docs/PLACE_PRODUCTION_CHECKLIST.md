@@ -913,7 +913,8 @@ Denne oppskriften gjentar ikke rundingspalett, profiler eller naturkartkrav. **R
 - [ ] en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok til å gjøre Objects til en kvalitetsmessig ferdig runding;
 - [ ] Objects og Structures/Bygg brukes ikke som to separate rundinger når innholdet i praksis er de samme fysiske stedselementene eller forskjellen er uklar for spilleren;
 - [ ] to semantisk overlappende rundinger slås sammen eller erstattes av et mer meningsfullt canonical alternativ; hvis dagens rundingskontrakt hindrer dette, må kontrakt og runtime forbedres før stedet kan ferdigmeldes;
-- [ ] vanlig sted vurderer `people · objects · brands`, og natursted `map · flora · fauna`, men fast profil fritar aldri fra relevans-, substans- og koherenskontrollen;
+- [ ] vanlig sted vurderer standarden `people · objects · brands`, og natursted `map · flora · fauna`, men standardprofilen fritar aldri fra relevans-, substans- og koherenskontrollen;
+- [ ] dersom standarden feiler, brukes bare den avgrensede og begrunnede `round_profile.content_round_ids`-overstyringen i rundingskontrakten; legacy `rounds` eller fri lokal palett er fortsatt forbudt;
 - [ ] kategoriens fjerde runding tilfører en ny opplevelse og er ikke bare et nytt navn på innhold som allerede ligger i en fast runding;
 - [ ] alle fire rundinger vurderes samlet i faktisk UI; korrekt JSON hver for seg er ikke tilstrekkelig;
 - [ ] runtime og data bruker ikke legacy 6-/9-/12-rundersmodell i mediefeltet;

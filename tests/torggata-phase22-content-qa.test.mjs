@@ -51,18 +51,19 @@ test("quiz, people, brands and images retain reviewed populations and holdbacks"
   assert.deepEqual(Object.keys(images.rounds), ["people", "objects", "brands", "structures"]);
   assert.equal(images.rounds.structures.visible, 2);
   assert.equal(images.rounds.structures.preview_mode, "canonical_icon_and_count");
+  assert.deepEqual(place.round_profile.content_round_ids, ["people", "images", "brands", "related"]);
   assert.equal(images.generated_or_reconstructed_assets, 0);
 });
 
-test("production evidence is the canonical four content rounds plus separate Badge", () => {
+test("historical production evidence is retained and current 8F profile awaits re-QA", () => {
   assert.equal(place.category, "by");
-  assert.equal(place.structures.length, 2);
   assert.equal(phase21.status, "APPROVED_PRODUCTION_VERIFIED");
-  assert.equal(phase21.production_followup.browser_result_pending, false);
   assert.equal(phase21.production_followup.observed_round_count, 4);
-  assert.equal(phase21.production_followup.observed_fourth_round, "structures");
   assert.deepEqual(phase21.production_followup.observed_visible_rounds, ["people", "objects", "brands", "structures"]);
   assert.equal(phase21.production_followup.observed_badge_separate, true);
   assert.equal(audit.production_ui_evidence.round_count, 4);
   assert.equal(audit.production_ui_evidence.badge_separate, true);
+  assert.deepEqual(place.round_profile.content_round_ids, ["people", "images", "brands", "related"]);
+  assert.equal(Object.prototype.hasOwnProperty.call(place, "objects"), false);
+  assert.equal(Object.prototype.hasOwnProperty.call(place, "structures"), false);
 });
