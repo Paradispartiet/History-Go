@@ -193,6 +193,8 @@ Sjekk:
 - [ ] søk repoet etter place-ID;
 - [ ] søk fullt navn, gamle navn, aliaser og stavevarianter;
 - [ ] bekreft at samme fysiske/historiske objekt ikke allerede finnes som et annet canonical place;
+- [ ] kartlegg bygg, virksomheter, parker, plasser og andre delsteder innenfor eller langs stedet som allerede har egne canonical place-oppføringer;
+- [ ] legg innholdet hos riktig place-eier: et delsted med egen place-oppføring kan lenkes som relasjon eller brukes som tydelig avgrenset supplement, men kan ikke brukes i stedet for parent-place i noen fane, runding, bildepar, Story eller hovedpåstand;
 - [ ] finn manifest-loadet source-fil som faktisk eier stedet;
 - [ ] aggregate-/legacyfil er ikke feilaktig edit-target;
 - [ ] definer place-objektet i én presis setning;
@@ -200,7 +202,7 @@ Sjekk:
 
 ### Stoppgate
 
-Ikke produser videre hvis place-identiteten eller source of truth er uklar.
+Ikke produser videre hvis place-identiteten eller source of truth er uklar, eller hvis innhold fra et eget canonical place brukes som stedfortreder for stedet som produseres.
 
 ---
 
