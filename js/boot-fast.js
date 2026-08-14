@@ -746,8 +746,10 @@
           return Promise.resolve();
         }
 
+        let refreshedAny = false;
         const rememberRevalidatedRows = ({ url, rows, cache, ok }) => {
           if (!ok) return;
+          refreshedAny = true;
           loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
           if (cache === "reload") revalidatedFiles.add(url);
         };
@@ -771,8 +773,10 @@
               () => true
             );
           }
-          publishedPrioritySignature = "";
-          publishOpenPlaceRows();
+          if (refreshedAny) {
+            publishedPrioritySignature = "";
+            publishOpenPlaceRows();
+          }
         }).finally(() => {
           openPlaceRevalidationPromise = null;
           if (getCurrentPlaceId() !== placeId) {

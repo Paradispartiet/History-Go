@@ -137,7 +137,8 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
         return [
           { id: "place-1", name: "Teststed", desc: "Test" },
           { id: "place-2", name: "Relasjonssted", desc: "Test" },
-          { id: "place-3", name: "Sent åpnet sted", desc: "Test" }
+          { id: "place-3", name: "Sent åpnet sted", desc: "Test" },
+          { id: "place-4", name: "Sted med vedvarende feil", desc: "Test" }
         ];
       },
       async loadNature() {},
@@ -172,7 +173,8 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
   const peopleFiles = [
     ...Array.from({ length: 7 }, (_, index) => `people/test/person-${index + 2}.json`),
     "people/by/oslo/people.json",
-    "people/by/oslo/late.json"
+    "people/by/oslo/late.json",
+    "people/by/oslo/outage.json"
   ];
 
   async function fetchMock(input, init = {}) {
@@ -185,12 +187,13 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
         files: peopleFiles,
         priorityFilesByPlace: {
           "place-1": ["people/by/oslo/people.json"],
-          "place-3": ["people/by/oslo/late.json"]
+          "place-3": ["people/by/oslo/late.json"],
+          "place-4": ["people/by/oslo/outage.json"]
         }
       });
     }
 
-    if (/^data\/people\/(?:by\/oslo\/(?:people|late)\.json|test\/person-)/.test(url)) {
+    if (/^data\/people\/(?:by\/oslo\/(?:people|late|outage)\.json|test\/person-)/.test(url)) {
       const attempts = (peopleAttempts.get(url) || 0) + 1;
       peopleAttempts.set(url, attempts);
       activePeopleFetches += 1;
@@ -200,6 +203,7 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
       if (
         (url.endsWith("person-8.json") && attempts === 1)
         || (url.endsWith("/late.json") && init.cache === "reload" && attempts === 2)
+        || (url.endsWith("/outage.json") && init.cache === "reload")
       ) {
         return { ok: false, async json() { return null; } };
       }
@@ -207,7 +211,9 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
         ? "1"
         : (url === "data/people/by/oslo/late.json"
           ? "9"
-          : (url.match(/person-(\d+)/)?.[1] || "x"));
+          : (url === "data/people/by/oslo/outage.json"
+            ? "10"
+            : (url.match(/person-(\d+)/)?.[1] || "x")));
       if (id === "1") {
         return response({ id: "person-1", name: "Person 1", place_ids: ["place-1"] });
       }
@@ -218,6 +224,9 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
           place_ids: ["place-3"],
           roundHoldbacks: init.cache === "reload" ? ["place-3"] : []
         });
+      }
+      if (id === "10") {
+        return response({ id: "person-10", name: "Person 10", place_ids: ["place-4"] });
       }
       return response({ people: [{ id: `person-${id}`, name: `Person ${id}`, place_ids: ["place-1"] }] });
     }
@@ -350,6 +359,28 @@ async function waitUntil(predicate, message, timeoutMs = 250) {
     Array.from(window.PEOPLE.find(person => person.id === "person-9")?.roundHoldbacks || []),
     ["place-3"],
     "ferske holdbacks erstatter stale aggregatdata etter stedsskifte"
+  );
+
+  const refreshesBeforePersistentOutage = refreshCalls;
+  peopleIcon.innerHTML = '<span class="pc-round-emoji">👥</span><span class="pc-round-count">6</span>';
+  peopleIcon.dataset.roundReady = "true";
+  peopleList.hasRenderedPeople = true;
+  placeCard.dataset.currentPlaceId = "place-4";
+  mutationCallback?.([]);
+  await waitUntil(
+    () => (peopleAttempts.get("data/people/by/oslo/outage.json") || 0) >= 3,
+    "vedvarende reload-feil fikk ikke det ene kontrollerte retry-forsøket"
+  );
+  await delay(30);
+  assert.equal(
+    peopleAttempts.get("data/people/by/oslo/outage.json"),
+    3,
+    "vedvarende feil må stoppe etter første reload og ett retry"
+  );
+  assert.equal(
+    refreshCalls,
+    refreshesBeforePersistentOutage,
+    "ingen vellykket revalidering må ikke publisere eller trigge PlaceCard-refresh"
   );
 
   const peopleManifestIndex = fetchLog.indexOf("data/people/manifest.json");
