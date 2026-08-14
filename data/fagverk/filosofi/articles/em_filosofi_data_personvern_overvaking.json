@@ -8,7 +8,7 @@
   "area_id": "filosofi_teknologi_ai",
   "level": 3,
   "status": "complete",
-  "editorial_quality": "university_oriented_draft",
+  "editorial_quality": "university_depth_reviewed",
   "canonical_definition": "Hva kontroll over informasjon betyr for frihet og demokrati.",
   "concept_ids": [
     "personvern",
@@ -46,7 +46,7 @@
     {
       "id": "em_filosofi_data_personvern_overvaking_claim_problem",
       "type": "problem_framing",
-      "text": "Data, personvern og overvåking krever eksplisitt begrepsavgrensning og argumentasjon utover ren faktaregistrering.",
+      "text": "Personvern kan forstås som vern mot inntrengning, kontroll over informasjon eller passende informasjonsflyt i sosiale kontekster. Foucaults panoptikon er relevant som modell for hvordan muligheten for observasjon kan internaliseres og forme atferd. Overvåkingsfilosofi legger dermed til spørsmålet om makt: mennesker kan endre atferd og avhengighetsforhold selv når ingen enkelt databit er hemmelig.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -55,8 +55,18 @@
     },
     {
       "id": "em_filosofi_data_personvern_overvaking_claim_argument",
-      "type": "philosophical_argument",
-      "text": "K: En holdbar posisjon om data, personvern og overvåking må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending.",
+      "type": "position_reconstruction",
+      "text": "K: Personvernanalysen må derfor vurdere både selve informasjonen, retningen på informasjonsflyten og den maktrelasjonen systematisk overvåking skaper; «dataene var allerede tilgjengelige» er ikke alene et tilstrekkelig normativt forsvar.",
+      "source_ids": [
+        "sep-technology",
+        "sep-ai-ethics",
+        "sep-privacy"
+      ]
+    },
+    {
+      "id": "em_filosofi_data_personvern_overvaking_claim_distinction",
+      "type": "concept_distinction",
+      "text": "P2: Nissenbaums kontekstuelle integritet forklarer hvorfor informasjon kan være offentlig i én relasjon og likevel misbrukes når den flyttes til en ny aktør, et nytt formål eller en ny beslutningskontekst uten passende normer.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -66,7 +76,7 @@
     {
       "id": "em_filosofi_data_personvern_overvaking_claim_rival",
       "type": "rival_position",
-      "text": "En reell innvending må treffe et premiss, kriterium eller slutningstrinn i analysen av data, personvern og overvåking.",
+      "text": "Innvending: Kulturelt og institusjonelt variable informasjonsnormer kan gjøre kontekstuell integritet konservativ og beskytte eksisterende praksiser bare fordi de er etablerte.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -74,9 +84,9 @@
       ]
     },
     {
-      "id": "em_filosofi_data_personvern_overvaking_claim_method",
-      "type": "methodological",
-      "text": "Metoden for data, personvern og overvåking må produsere et synlig mellomledd og oppgi sin egen begrensning.",
+      "id": "em_filosofi_data_personvern_overvaking_claim_reply",
+      "type": "philosophical_argument",
+      "text": "Svar: Kontekstnormer må selv kunne kritiseres ut fra interesser, makt, rettigheter og formål. Teorien er sterkest når den brukes diagnostisk til å identifisere normbrudd og deretter åpner for en separat normativ vurdering av om normen er legitim.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -86,17 +96,7 @@
     {
       "id": "em_filosofi_data_personvern_overvaking_claim_source",
       "type": "source_boundary",
-      "text": "Primærfilosofiske verk, faglige sekundærkilder og empiriske casekilder har forskjellige evidensroller og skal ikke behandles som utskiftbare.",
-      "source_ids": [
-        "sep-technology",
-        "sep-ai-ethics",
-        "sep-privacy"
-      ]
-    },
-    {
-      "id": "em_filosofi_data_personvern_overvaking_claim_limit",
-      "type": "limitation",
-      "text": "Et filosofisk algoritmeaudit kan avdekke normative antakelser og ansvarsgap, men må kombineres med teknisk dokumentasjon og empiriske data for å fastslå faktiske feilrater eller skjevheter.",
+      "text": "Primærverk bærer konkrete posisjons- og tekstrekonstruksjoner, mens faglige sekundærkilder brukes til problemhistorie, rivaler og bibliografisk kontroll; empiriske casepåstander krever egne casekilder.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -126,24 +126,25 @@
       "id": "argument",
       "title": "Argumentrekonstruksjon",
       "paragraphs": [
-        "P1: En analyse av data, personvern og overvåking må angi hva som teller som personvern og hvilke tilfeller som ikke gjør det. Rekonstruksjonen gjør et mulig slutningstrinn eksplisitt slik at premisset kan avvises eller forsvares selvstendig.",
-        "P2: Dersom personvern og overvåking kan skilles i minst ett relevant grensetilfelle, kan de ikke behandles som synonymer uten videre argument. Dette er artikkelens distinksjonspremiss og kan testes med et grensetilfelle.",
-        "P3: En overgang fra disse begrepskriteriene til en påstand om informasjonsautonomi krever en egen begrunnelse; konklusjonen kan ikke bygges inn i definisjonene. Dette er overgangspremisset; her ligger ofte den mest omstridte delen av argumentet.",
-        "K: En holdbar posisjon om data, personvern og overvåking må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending. Konklusjonen er derfor betinget av at de foregående premissene holder."
+        "P1: Warren og Brandeis’ klassiske vern av privatliv viser at skade kan bestå i uønsket eksponering og ikke bare i økonomisk tap eller fysisk inntrengning.",
+        "P2: Nissenbaums kontekstuelle integritet forklarer hvorfor informasjon kan være offentlig i én relasjon og likevel misbrukes når den flyttes til en ny aktør, et nytt formål eller en ny beslutningskontekst uten passende normer.",
+        "P3: Foucaults panoptiske analyse viser at overvåking også kan virke gjennom forventningen om mulig observasjon og dermed forme atferd, selvdisiplin og asymmetrisk kunnskap om personer.",
+        "K: Personvernanalysen må derfor vurdere både selve informasjonen, retningen på informasjonsflyten og den maktrelasjonen systematisk overvåking skaper; «dataene var allerede tilgjengelige» er ikke alene et tilstrekkelig normativt forsvar."
       ]
     },
     {
       "id": "uenighet",
       "title": "Innvending og svar",
       "paragraphs": [
-        "Innvending: Begrepsrekonstruksjonen kan bli for skjematisk dersom den behandles som hele problemet. At et system produserer intelligente resultater avgjør ikke alene om det forstår eller har moralsk status; funksjon, bevissthet, agens og personbegrep må holdes analytisk fra hverandre. En velvillig innvending skal treffe den sterkeste rimelige versjonen av posisjonen, ikke en karikatur. Det betyr at artikkelen må kunne angi hva rivalen forklarer bedre, hva den forklarer dårligere, og hva slags case som kan skille posisjonene.",
-        "Svar: Skjemaet skal ikke erstatte tradisjonens egen argumentform. Det fungerer som transparenskrav: leseren skal kunne se hva som påstås, hva som støtter påstanden, og hvor uenigheten faktisk ligger. Tekniske systemer fordeler muligheter og begrensninger gjennom design, data, standarder og infrastruktur; derfor må ansvar analyseres langs hele kjeden og ikke bare hos sluttbrukeren. En uenighet er dermed faglig produktiv når den identifiserer et konkret premiss, kriterium eller slutningstrinn som partene vurderer forskjellig."
+        "Innvending: Kulturelt og institusjonelt variable informasjonsnormer kan gjøre kontekstuell integritet konservativ og beskytte eksisterende praksiser bare fordi de er etablerte.",
+        "Svar: Kontekstnormer må selv kunne kritiseres ut fra interesser, makt, rettigheter og formål. Teorien er sterkest når den brukes diagnostisk til å identifisere normbrudd og deretter åpner for en separat normativ vurdering av om normen er legitim."
       ]
     },
     {
       "id": "teorihistorie",
       "title": "Teori og verk",
       "paragraphs": [
+        "Personvern kan forstås som vern mot inntrengning, kontroll over informasjon eller passende informasjonsflyt i sosiale kontekster. Foucaults panoptikon er relevant som modell for hvordan muligheten for observasjon kan internaliseres og forme atferd. Overvåkingsfilosofi legger dermed til spørsmålet om makt: mennesker kan endre atferd og avhengighetsforhold selv når ingen enkelt databit er hemmelig.",
         "Det kanoniske fagkartet foreslår Martin Heidegger gjennom The Question Concerning Technology og Being and Time; Lewis Mumford gjennom The Myth of the Machine og Technics and Civilization; Hans Jonas gjennom The Imperative of Responsibility som relevante sammenligningspunkter for data, personvern og overvåking. De brukes ikke som en liste over navn man skal huske. Hver posisjon må kobles til et bestemt problem, argument eller verk, og sammenligningen må si hvilket kriterium som faktisk er felles. Når to tenkere stiller ulike spørsmål, skal forskjellen beholdes i stedet for å presses inn i en kunstig enighet.",
         "Teorihistoriske verk fungerer som primærfilosofiske kilder til argumenter og begreper, mens Philosophy of Technology; Ethics of Artificial Intelligence and Robotics; Privacy brukes som faglige sekundærkilder til problemhistorie, posisjoner og bibliografisk kontroll. De to kildetypene har forskjellige roller: en sekundærkilde kan hjelpe oss å lokalisere en debatt, men en spesifikk teksttolkning bør så langt mulig kontrolleres mot selve verket eller en pålitelig utgave."
       ]
@@ -195,5 +196,31 @@
     "tradition_specific_relevance": true,
     "review_state": "requires_substantive_rewrite",
     "reviewed_against_university_gate": false
+  },
+  "university_quality": {
+    "schema": "history_go_filosofi_university_quality_v1",
+    "standard": "substantive_university_philosophy_v2",
+    "review_status": "reviewed",
+    "debate": "Personvern kan forstås som vern mot inntrengning, kontroll over informasjon eller passende informasjonsflyt i sosiale kontekster. Foucaults panoptikon er relevant som modell for hvordan muligheten for observasjon kan internaliseres og forme atferd. Overvåkingsfilosofi legger dermed til spørsmålet om makt: mennesker kan endre atferd og avhengighetsforhold selv når ingen enkelt databit er hemmelig.",
+    "debate_thinkers": [
+      "Samuel Warren",
+      "Helen Nissenbaum",
+      "Michel Foucault"
+    ],
+    "required_anchors": [
+      "personvern",
+      "kontekstuell integritet",
+      "overvåking",
+      "panoptikon",
+      "informasjonsflyt"
+    ],
+    "primary_work_count": 6,
+    "secondary_source_count": 3,
+    "review_contract": [
+      "Argumentet rekonstruerer et faktisk filosofisk stridspunkt og kan kritiseres premiss for premiss.",
+      "Rivalen forklarer hva en alternativ posisjon bestrider, ikke bare at uenighet finnes.",
+      "Navngitte tenkere og verk brukes som problem- og argumentankere, ikke som navneliste.",
+      "Fagankere må forekomme i argument, innvending eller teorihistorie og kan ikke bare deklareres i metadata."
+    ]
   }
 }

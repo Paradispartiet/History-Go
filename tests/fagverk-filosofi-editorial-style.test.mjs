@@ -13,10 +13,10 @@ const byId=new Map(articles.map((a)=>[a.id,a]));
 const GLOBAL={
   em_filosofi_antikk_middelalder_modernitet:{allowed:['platon','aristoteles','augustin','thomas_aquinas','rene_descartes','immanuel_kant'],sources:['sep-socrates','sep-medieval-philosophy','sep-early-modern-rationalism']},
   em_filosofi_kinesisk_filosofi:{allowed:['konfucius','laozi','zhuangzi'],sources:['sep-chinese-ethics','sep-chinese-epistemology','sep-zhuangzi']},
-  em_filosofi_indisk_buddhistisk_filosofi:{allowed:['nagarjuna','vasubandhu','shankara','ramanuja','dharmakirti'],sources:['sep-indian-epistemology','sep-nagarjuna']},
+  em_filosofi_indisk_buddhistisk_filosofi:{allowed:['nagarjuna','vasubandhu','shankara','ramanuja','dharmakirti'],sources:['sep-indian-epistemology','sep-nagarjuna','iep-nagarjuna']},
   em_filosofi_islamsk_jodisk_filosofi:{allowed:['al_farabi','ibn_rushd','al_ghazali','maimonides'],sources:['sep-islamic-metaphysics','sep-medieval-philosophy','sep-maimonides']},
   em_filosofi_afrikansk_filosofi_ubuntu:{allowed:['anton_wilhelm_amo','sophie_oluwole','kwasi_wiredu'],sources:['sep-africana','sep-african-sage','sep-akan-person']},
-  em_filosofi_latinamerikansk_dekolonial_filosofi:{allowed:['enrique_dussel','anibal_quijano'],sources:['sep-latin-american','sep-latin-american-history']}
+  em_filosofi_latinamerikansk_dekolonial_filosofi:{allowed:['enrique_dussel','anibal_quijano'],sources:['sep-latin-american','sep-latin-american-history','sep-latin-american-philosophy','sep-philosophy-liberation']}
 };
 
 const banned=[
@@ -62,12 +62,13 @@ test('universitetsreviewede artikler får ikke bruke den gamle metamalens argume
   assert.equal(new Set(signatures).size,signatures.length,'reviewede artikler deler identisk argumentrekonstruksjon');
 });
 
-test('globale tradisjoner har tradisjonsspesifikke tenkere før komparasjon',()=>{
+test('globale tradisjoner har tradisjonsspesifikke tenkere og eksplisitt universitetsdybde i kildene før komparasjon',()=>{
   for(const [id,rule] of Object.entries(GLOBAL)){
     const article=byId.get(id);
     assert.ok(article,`mangler global artikkel ${id}`);
     assert.ok(article.thinker_refs.length>=2,`${id} har for få relevante tenkere`);
     assert.ok(article.thinker_refs.every((x)=>rule.allowed.includes(x)),`${id} har irrelevant tenker: ${article.thinker_refs.join(', ')}`);
+    assert.ok(rule.sources.length>=3,`${id} har for svak permanent kildekontrakt`);
     assert.deepEqual([...article.source_ids].sort(),[...rule.sources].sort(),`${id} har feil tradisjonsspesifikke kilder`);
     const theory=article.sections.find((s)=>s.id==='teorihistorie');
     assert.ok(theory?.paragraphs?.length>=3,`${id} mangler eksplisitt tradisjonsrelevans`);

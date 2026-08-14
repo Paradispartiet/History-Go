@@ -8,7 +8,7 @@
   "area_id": "filosofi_teknologi_ai",
   "level": 3,
   "status": "complete",
-  "editorial_quality": "university_oriented_draft",
+  "editorial_quality": "university_depth_reviewed",
   "canonical_definition": "Skjevhet, forklarbarhet og ansvar i automatiserte systemer.",
   "concept_ids": [
     "algoritmisk_skjevhet",
@@ -44,7 +44,7 @@
     {
       "id": "em_filosofi_algoritmisk_rettferdighet_ansvar_claim_problem",
       "type": "problem_framing",
-      "text": "Algoritmisk rettferdighet og ansvar krever eksplisitt begrepsavgrensning og argumentasjon utover ren faktaregistrering.",
+      "text": "Algoritmisk rettferdighet kan ikke avgjøres ved én matematisk fairness-metrikk når ulike mål er inkompatible og modellen inngår i et sosioteknisk system av data, mennesker, regler og institusjonelle beslutninger. Youngs perspektiv gjør strukturell urettferdighet relevant når skade produseres av samvirkende praksiser uten én enkelt tilstrekkelig årsaksaktør. Rawls, Nissenbaum og Young gir ressurser til å skille fordelingskriterier, kontekstuelle normer og strukturelt ansvar.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -53,8 +53,18 @@
     },
     {
       "id": "em_filosofi_algoritmisk_rettferdighet_ansvar_claim_argument",
-      "type": "philosophical_argument",
-      "text": "K: En holdbar posisjon om algoritmisk rettferdighet og ansvar må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending.",
+      "type": "position_reconstruction",
+      "text": "K: Algoritmisk ansvar krever derfor mer enn modellkort eller én fairness-score: analysen må begrunne metrikkvalget, dokumentere institusjonell bruk og fordele handlingsansvar til aktører som faktisk kan endre systemet.",
+      "source_ids": [
+        "sep-technology",
+        "sep-ai-ethics",
+        "sep-privacy"
+      ]
+    },
+    {
+      "id": "em_filosofi_algoritmisk_rettferdighet_ansvar_claim_distinction",
+      "type": "concept_distinction",
+      "text": "P2: Rawlsiansk analyse retter blikket mot hvordan institusjoner fordeler grunnleggende muligheter, mens Nissenbaums kontekstuelle integritet viser at legitim databruk også avhenger av hvilke informasjonsnormer som gjelder i den konkrete sosiale konteksten.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -64,7 +74,7 @@
     {
       "id": "em_filosofi_algoritmisk_rettferdighet_ansvar_claim_rival",
       "type": "rival_position",
-      "text": "En reell innvending må treffe et premiss, kriterium eller slutningstrinn i analysen av algoritmisk rettferdighet og ansvar.",
+      "text": "Innvending: Dersom ansvar spres på mange aktører, kan ingen holdes tydelig ansvarlig og strukturelt ansvar ende som ansvarspulverisering.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -72,9 +82,9 @@
       ]
     },
     {
-      "id": "em_filosofi_algoritmisk_rettferdighet_ansvar_claim_method",
-      "type": "methodological",
-      "text": "Metoden for algoritmisk rettferdighet og ansvar må produsere et synlig mellomledd og oppgi sin egen begrensning.",
+      "id": "em_filosofi_algoritmisk_rettferdighet_ansvar_claim_reply",
+      "type": "philosophical_argument",
+      "text": "Svar: Strukturell analyse må suppleres med konkrete rolleforpliktelser, beslutningsmyndighet og sporbarhet. Felles ansvar betyr ikke identisk ansvar; den som kan endre modell, terskel, innkjøpskrav eller klageordning har ulike men spesifiserbare plikter.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -84,17 +94,7 @@
     {
       "id": "em_filosofi_algoritmisk_rettferdighet_ansvar_claim_source",
       "type": "source_boundary",
-      "text": "Primærfilosofiske verk, faglige sekundærkilder og empiriske casekilder har forskjellige evidensroller og skal ikke behandles som utskiftbare.",
-      "source_ids": [
-        "sep-technology",
-        "sep-ai-ethics",
-        "sep-privacy"
-      ]
-    },
-    {
-      "id": "em_filosofi_algoritmisk_rettferdighet_ansvar_claim_limit",
-      "type": "limitation",
-      "text": "Et filosofisk algoritmeaudit kan avdekke normative antakelser og ansvarsgap, men må kombineres med teknisk dokumentasjon og empiriske data for å fastslå faktiske feilrater eller skjevheter.",
+      "text": "Primærverk bærer konkrete posisjons- og tekstrekonstruksjoner, mens faglige sekundærkilder brukes til problemhistorie, rivaler og bibliografisk kontroll; empiriske casepåstander krever egne casekilder.",
       "source_ids": [
         "sep-technology",
         "sep-ai-ethics",
@@ -124,24 +124,25 @@
       "id": "argument",
       "title": "Argumentrekonstruksjon",
       "paragraphs": [
-        "P1: En analyse av algoritmisk rettferdighet og ansvar må angi hva som teller som algoritmisk skjevhet og hvilke tilfeller som ikke gjør det. Rekonstruksjonen gjør et mulig slutningstrinn eksplisitt slik at premisset kan avvises eller forsvares selvstendig.",
-        "P2: Dersom algoritmisk skjevhet og forklarbarhet kan skilles i minst ett relevant grensetilfelle, kan de ikke behandles som synonymer uten videre argument. Dette er artikkelens distinksjonspremiss og kan testes med et grensetilfelle.",
-        "P3: En overgang fra disse begrepskriteriene til en påstand om ansvarsgap krever en egen begrunnelse; konklusjonen kan ikke bygges inn i definisjonene. Dette er overgangspremisset; her ligger ofte den mest omstridte delen av argumentet.",
-        "K: En holdbar posisjon om algoritmisk rettferdighet og ansvar må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene og tåle minst én reell rival eller innvending. Konklusjonen er derfor betinget av at de foregående premissene holder."
+        "P1: En fairness-metrikk uttrykker et normativt valg om hvilke grupper, feil og fordelingsmønstre som skal behandles likt; teknisk optimalisering kan derfor ikke velge rettferdighetskriteriet uten en forutgående normativ begrunnelse.",
+        "P2: Rawlsiansk analyse retter blikket mot hvordan institusjoner fordeler grunnleggende muligheter, mens Nissenbaums kontekstuelle integritet viser at legitim databruk også avhenger av hvilke informasjonsnormer som gjelder i den konkrete sosiale konteksten.",
+        "P3: Youngs modell for strukturelt ansvar viser hvorfor skade fra algoritmiske systemer ofte ikke kan lokaliseres til én aktør; utviklere, innkjøpere, ledere og institusjoner kan ha ulike former for ansvar for et sosioteknisk mønster de sammen opprettholder.",
+        "K: Algoritmisk ansvar krever derfor mer enn modellkort eller én fairness-score: analysen må begrunne metrikkvalget, dokumentere institusjonell bruk og fordele handlingsansvar til aktører som faktisk kan endre systemet."
       ]
     },
     {
       "id": "uenighet",
       "title": "Innvending og svar",
       "paragraphs": [
-        "Innvending: Begrepsrekonstruksjonen kan bli for skjematisk dersom den behandles som hele problemet. At et system produserer intelligente resultater avgjør ikke alene om det forstår eller har moralsk status; funksjon, bevissthet, agens og personbegrep må holdes analytisk fra hverandre. En velvillig innvending skal treffe den sterkeste rimelige versjonen av posisjonen, ikke en karikatur. Det betyr at artikkelen må kunne angi hva rivalen forklarer bedre, hva den forklarer dårligere, og hva slags case som kan skille posisjonene.",
-        "Svar: Skjemaet skal ikke erstatte tradisjonens egen argumentform. Det fungerer som transparenskrav: leseren skal kunne se hva som påstås, hva som støtter påstanden, og hvor uenigheten faktisk ligger. Tekniske systemer fordeler muligheter og begrensninger gjennom design, data, standarder og infrastruktur; derfor må ansvar analyseres langs hele kjeden og ikke bare hos sluttbrukeren. En uenighet er dermed faglig produktiv når den identifiserer et konkret premiss, kriterium eller slutningstrinn som partene vurderer forskjellig."
+        "Innvending: Dersom ansvar spres på mange aktører, kan ingen holdes tydelig ansvarlig og strukturelt ansvar ende som ansvarspulverisering.",
+        "Svar: Strukturell analyse må suppleres med konkrete rolleforpliktelser, beslutningsmyndighet og sporbarhet. Felles ansvar betyr ikke identisk ansvar; den som kan endre modell, terskel, innkjøpskrav eller klageordning har ulike men spesifiserbare plikter."
       ]
     },
     {
       "id": "teorihistorie",
       "title": "Teori og verk",
       "paragraphs": [
+        "Algoritmisk rettferdighet kan ikke avgjøres ved én matematisk fairness-metrikk når ulike mål er inkompatible og modellen inngår i et sosioteknisk system av data, mennesker, regler og institusjonelle beslutninger. Youngs perspektiv gjør strukturell urettferdighet relevant når skade produseres av samvirkende praksiser uten én enkelt tilstrekkelig årsaksaktør. Rawls, Nissenbaum og Young gir ressurser til å skille fordelingskriterier, kontekstuelle normer og strukturelt ansvar.",
         "Det kanoniske fagkartet foreslår Gilbert Simondon gjennom On the Mode of Existence of Technical Objects; Andrew Feenberg gjennom Transforming Technology; Shannon Vallor gjennom Technology and the Virtues som relevante sammenligningspunkter for algoritmisk rettferdighet og ansvar. De brukes ikke som en liste over navn man skal huske. Hver posisjon må kobles til et bestemt problem, argument eller verk, og sammenligningen må si hvilket kriterium som faktisk er felles. Når to tenkere stiller ulike spørsmål, skal forskjellen beholdes i stedet for å presses inn i en kunstig enighet.",
         "Teorihistoriske verk fungerer som primærfilosofiske kilder til argumenter og begreper, mens Philosophy of Technology; Ethics of Artificial Intelligence and Robotics; Privacy brukes som faglige sekundærkilder til problemhistorie, posisjoner og bibliografisk kontroll. De to kildetypene har forskjellige roller: en sekundærkilde kan hjelpe oss å lokalisere en debatt, men en spesifikk teksttolkning bør så langt mulig kontrolleres mot selve verket eller en pålitelig utgave."
       ]
@@ -193,5 +194,31 @@
     "tradition_specific_relevance": true,
     "review_state": "requires_substantive_rewrite",
     "reviewed_against_university_gate": false
+  },
+  "university_quality": {
+    "schema": "history_go_filosofi_university_quality_v1",
+    "standard": "substantive_university_philosophy_v2",
+    "review_status": "reviewed",
+    "debate": "Algoritmisk rettferdighet kan ikke avgjøres ved én matematisk fairness-metrikk når ulike mål er inkompatible og modellen inngår i et sosioteknisk system av data, mennesker, regler og institusjonelle beslutninger. Youngs perspektiv gjør strukturell urettferdighet relevant når skade produseres av samvirkende praksiser uten én enkelt tilstrekkelig årsaksaktør. Rawls, Nissenbaum og Young gir ressurser til å skille fordelingskriterier, kontekstuelle normer og strukturelt ansvar.",
+    "debate_thinkers": [
+      "John Rawls",
+      "Helen Nissenbaum",
+      "Iris Marion Young"
+    ],
+    "required_anchors": [
+      "algoritmisk rettferdighet",
+      "fairness-metrikk",
+      "ansvar",
+      "sosioteknisk system",
+      "strukturell urettferdighet"
+    ],
+    "primary_work_count": 4,
+    "secondary_source_count": 3,
+    "review_contract": [
+      "Argumentet rekonstruerer et faktisk filosofisk stridspunkt og kan kritiseres premiss for premiss.",
+      "Rivalen forklarer hva en alternativ posisjon bestrider, ikke bare at uenighet finnes.",
+      "Navngitte tenkere og verk brukes som problem- og argumentankere, ikke som navneliste.",
+      "Fagankere må forekomme i argument, innvending eller teorihistorie og kan ikke bare deklareres i metadata."
+    ]
   }
 }
