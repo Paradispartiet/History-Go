@@ -1015,7 +1015,7 @@ Researchrekkefølge:
 
 ## 13. Brands
 
-**LES FØRST — obligatorisk:** `data/brands/brand_rules_v1_1.json`
+**LES FØRST — obligatorisk:** `data/brands/brand_rules_v1_1.json` og `docs/BRAND_ASSETS.md`
 
 Brands er ikke begrenset til forbrukermerker. Profesjonelle firmaer, arkitektur-/ingeniørfirmaer, entreprenører, venue-/galleri-/serveringsidentiteter, institusjonsmerker, subkulturmerker, legacy-navn og skiltidentiteter kan kvalifisere når de har selvstendig gjenkjennelse og en dokumentert rolle ved stedet.
 
@@ -1025,7 +1025,12 @@ Brands er ikke begrenset til forbrukermerker. Profesjonelle firmaer, arkitektur-
 - [ ] aktørtype alene brukes verken som godkjenning eller avslag;
 - [ ] gjenbruk eksisterende ID når kandidaten allerede er canonical;
 - [ ] dokumenter Brand–sted-koblingen med inspectable kilde, konkret rolle og tidsrom;
-- [ ] korrekt logo/brandbilde har kilde- og rettighetskontroll;
+- [ ] **alle** canonical Brands som skal være synlige i den ferdige rundingen har lokal, verifisert logo eller autentisk dokumentert historisk ordmerke/brandmark;
+- [ ] logo-/ordmerkedekning er **100 %** før Brand-fasen kan godkjennes;
+- [ ] vanlig dokumentarfoto kan supplere et brand, men teller ikke som logo;
+- [ ] navnefallback teller ikke som ferdig logoport;
+- [ ] historisk ordmerke kan hentes som kildebåret utsnitt fra foto/scan når det ikke rekonstrueres eller redesignes;
+- [ ] hver logo/ordmerke har proveniens, kilde- og rettighetskontroll og eksplisitt no-endorsement-kontekst;
 - [ ] personer, objekter og generiske aktørnavn omklassifiseres ikke til Brands;
 - [ ] null treff i Brand-master eller `brands_by_place` behandles som «må researches», ikke som N/A;
 - [ ] N/A brukes bare etter dokumentert kandidatsøk og kandidatspesifikke avvisningsgrunner.
