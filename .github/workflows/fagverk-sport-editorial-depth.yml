@@ -1,0 +1,72 @@
+name: Fagverk Sport editorial depth
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/sport/emner_sport_canonical_v4_5.json"
+      - "data/fag/sport/begreper_sport_canonical_v5.json"
+      - "data/fag/sport/emne_theory_coverage_sport_v6.json"
+      - "data/fag/sport/theory_units_sport_canonical_v6.json"
+      - "data/fag/sport/emnemapping_sport_canonical_v4_5.json"
+      - "data/fag/sport/methods_sport_canonical_v4_5.json"
+      - "data/fag/sport/methods_sport_quality_v5.json"
+      - "data/fag/sport/sportpensum_canonical_v4_5.json"
+      - "data/fagverk/fagverk_registry.json"
+      - "data/fagverk/sport/**"
+      - "scripts/materialize-sport-editorial-depth.mjs"
+      - "scripts/enrich-sport-editorial-claim-provenance.mjs"
+      - "scripts/polish-sport-editorial-depth.mjs"
+      - "scripts/audit-fagverk-sport-editorial-depth.mjs"
+      - "tests/fagverk-sport-editorial-depth.test.mjs"
+      - "tests/fagverk-sport-editorial-style.test.mjs"
+      - "tests/fagverk-sport-phase3.test.mjs"
+      - "tests/fagverk-sport-scientific-quality.test.mjs"
+      - "reports/fagverk/sport-editorial-depth-audit.json"
+      - ".github/workflows/fagverk-sport-editorial-depth.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/sport/**"
+      - "data/fagverk/fagverk_registry.json"
+      - "data/fagverk/sport/**"
+      - "scripts/materialize-sport-editorial-depth.mjs"
+      - "scripts/enrich-sport-editorial-claim-provenance.mjs"
+      - "scripts/polish-sport-editorial-depth.mjs"
+      - "scripts/audit-fagverk-sport-editorial-depth.mjs"
+      - "tests/fagverk-sport-editorial-depth.test.mjs"
+      - "tests/fagverk-sport-editorial-style.test.mjs"
+      - "reports/fagverk/sport-editorial-depth-audit.json"
+      - ".github/workflows/fagverk-sport-editorial-depth.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Sport editorial depth
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Validate deterministic article corpus
+        run: |
+          node --check scripts/materialize-sport-editorial-depth.mjs
+          node --check scripts/enrich-sport-editorial-claim-provenance.mjs
+          node --check scripts/polish-sport-editorial-depth.mjs
+          node --check scripts/audit-fagverk-sport-editorial-depth.mjs
+          node scripts/materialize-sport-editorial-depth.mjs
+          node scripts/enrich-sport-editorial-claim-provenance.mjs
+          node scripts/polish-sport-editorial-depth.mjs
+          git diff --exit-code -- data/fagverk/sport/articles data/fagverk/sport/sport_article_registry_v1.json data/fagverk/sport/sport_completion_v1.json data/fagverk/fagverk_registry.json
+      - name: Validate editorial, scientific and completion contracts
+        run: |
+          node scripts/audit-fagverk-sport-editorial-depth.mjs
+          node --test tests/fagverk-sport-editorial-depth.test.mjs
+          node --test tests/fagverk-sport-editorial-style.test.mjs
+          node --test tests/fagverk-sport-phase3.test.mjs
+          node --test tests/fagverk-sport-scientific-quality.test.mjs
+      - name: Validate clean patch
+        run: git diff --check
