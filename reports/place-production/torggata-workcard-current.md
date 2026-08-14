@@ -36,6 +36,7 @@
 - Fase 15-audit: `reports/place-production/torggata-phase15-physical-visit-audit-v1.json`
 - Fase 16-audit: `reports/place-production/torggata-phase16-favorite-progress-audit-v1.json`
 - Fase 17-audit: `reports/place-production/torggata-phase17-profile-unlocks-audit-v1.json`
+- Fase 18-audit: `reports/place-production/torggata-phase18-wonderkammer-legacy-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -59,7 +60,8 @@
 | 15. Fysisk besøk / innsjekk | **ALLEREDE FERDIG – GODKJENT** | PR #3212/#3218-baselinen består med canonical Torggata-anker/radius og quiz/visit-separasjon |
 | 16. Favoritt og place-progress | **ALLEREDE FERDIG – GODKJENT** | PR #1583/#1584/#1585-baselinen består; Torggata-status er regresjonslåst |
 | 17. Profil, miniProfile, unlocks og belønninger | **ALLEREDE FERDIG – GODKJENT** | profile/miniProfile/collection/unlock-eierne består; ikke-implementerte belønninger er N/A |
-| 18–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 18. Legacy Wonderkammer | **GODKJENT N/A** | ingen Torggata-Wonderkammerdata; tidligere materiale er allerede klassifisert til canonical eiere |
+| 19–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -601,3 +603,25 @@ BESLUTNING: ALLEREDE FERDIG – behold eiere, klassifiser uimplementerte rewards
 **Fase 17 Profil, miniProfile, unlocks og belønninger = ALLEREDE FERDIG – GODKJENT.**
 
 Neste aktive fase: **18. Legacy Wonderkammer**.
+
+
+## Fase 18 – Legacy Wonderkammer
+
+```text
+TIDLIGERE-ARBEID-SØK: UTFØRT
+SISTE GODKJENTE TILSTAND: fase 8E fjernet Wonderkammer som canonical runding; fase 9 flyttet handlinger til På stedet; fase 7/8 klassifiserte Historie, Story, Works, Objects og relations hos riktige eiere
+KONKRET REGRESJONSEVIDENS: ingen canonical Torggata-fil inneholder wonderkammer/WK-payload
+BESLUTNING: N/A – ingen legacy-entry gjenstår å migrere, og nytt Wonderkammer skal ikke produseres
+```
+
+### Godkjent resultat
+
+- Canonical Torggata har ingen `wonderkammer`, `wk`, `finds` eller `collection_objects`-restkategori.
+- Fysiske ting ligger i `objects`; bygg i `structures`; verk i `works`; personer i People; kronologi i Historie; narrativ i Story; handlinger i På stedet; navigasjon i relations/NextUp.
+- `civication_store` beholdes som separat spillsystem og regnes ikke som Wonderkammer-runding.
+- Ingen legacy-entry slettes i fase 18 fordi ingen umigrert Torggata-entry finnes.
+- Ingen ny Wonderkammer-produksjon er laget.
+
+**Fase 18 Legacy Wonderkammer = GODKJENT N/A.**
+
+Neste aktive fase: **19. Hovedbilder og rundingsbilder**.
