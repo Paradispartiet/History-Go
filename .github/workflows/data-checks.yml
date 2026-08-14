@@ -26,6 +26,9 @@ on:
       - 'tests/torggata-phase15-physical-visit.test.mjs'
       - 'tests/torggata-phase16-favorite-progress.test.mjs'
       - 'tests/torggata-phase17-profile-unlocks.test.mjs'
+      - 'tests/torggata-phase21-webgl-fallback.test.mjs'
+      - 'js/map.ts'
+      - 'js/map.js'
       - 'scripts/check-people.sh'
       - 'scripts/check-places.sh'
       - 'scripts/build-civication-history-people-index.mts'
@@ -158,6 +161,9 @@ jobs:
 
       - name: Test Torggata phase 17 profile and unlock contract
         run: node --test tests/torggata-phase17-profile-unlocks.test.mjs
+
+      - name: Test Torggata phase 21 WebGL fallback
+        run: node --test tests/torggata-phase21-webgl-fallback.test.mjs
 
       - name: Enforce Politikk place production reports
         shell: bash

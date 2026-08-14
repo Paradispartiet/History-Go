@@ -39,6 +39,7 @@
 - Fase 18-audit: `reports/place-production/torggata-phase18-wonderkammer-legacy-audit-v1.json`
 - Fase 19-audit: `reports/place-production/torggata-phase19-images-audit-v1.json`
 - Fase 20-audit: `reports/place-production/torggata-phase20-data-qa-audit-v1.json`
+- Fase 21-audit: `reports/place-production/torggata-phase21-ui-qa-audit-v1.json`
 
 ## Korrigert fasestatus
 
@@ -65,7 +66,8 @@
 | 18. Legacy Wonderkammer | **GODKJENT N/A** | ingen Torggata-Wonderkammerdata; tidligere materiale er allerede klassifisert til canonical eiere |
 | 19. Hovedbilder og rundingsbilder | **GODKJENT** | to lokale hovedbilder; People 7/7, Objects 1/1 og Brands 13/13 bildeklare med proveniens |
 | 20. Data-QA | **GODKJENT** | canonical data, indekser, referanser og subsystemporter bestått på siste innholds-head |
-| 21–24 | **IKKE STARTET** | styres av hovedchecklisten |
+| 21. UI-QA | **GODKJENT ETTER SIKRINGSENDRING** | WebGL-feil stopper ikke lenger app-/PlaceCard-boot; produksjonsflaten kontrollert |
+| 22–24 | **IKKE STARTET** | styres av hovedchecklisten |
 
 ## Tidligere-arbeid-gate – koordinater
 
@@ -669,3 +671,25 @@ Neste aktive fase: **20. Data-QA**.
 **Fase 20 Data-QA = GODKJENT.**
 
 Neste aktive fase: **21. UI-QA**.
+
+
+## Fase 21 – UI-QA
+
+### Avvik og sikringsendring
+
+Produksjonskontrollen på GitHub Pages fant at en nettleser uten WebGL stoppet hele `bootCritical` i `maplibregl.Map`. Dette gjorde ikke bare kartet utilgjengelig; det hindret også søk, Nearby og PlaceCard og viste «Appen kunne ikke lastes».
+
+`HGMap.initMap` fanger nå bare kartkonstruksjonsfeilen, markerer kartcontaineren med `data-map-unavailable=1`, gir en tilgjengelig etikett og lar resten av appen laste. Nettlesere med WebGL følger uendret kartflyt.
+
+### Godkjent resultat
+
+- Appen kan boote og laste Torggata selv når WebGL ikke finnes.
+- Kartmarkør/koordinat er fortsatt dekket av canonical coordinate gate på ordinære WebGL-klienter.
+- Nearby/søk, PlaceCard, navn, By-kategori, hovedbilde, desc og popup kan åpnes uten at kartmotoren blir en hard avhengighet.
+- Popup- og rundingskontraktene, fast Badges, tre innholdsrundinger, People-korttekst, Brands, På stedet, visit, favoritt og quiz/visit-separasjon beholdes fra tidligere grønne faseporter.
+- Tomme/irrelevante flater og legacy 3×3/Wonderkammer er fortsatt undertrykt.
+- Regresjonstesten låser at WebGL-konstruksjonsfeil degraderer kartet, men ikke kaster videre til app-boot.
+
+**Fase 21 UI-QA = GODKJENT ETTER SIKRINGSENDRING.**
+
+Neste aktive fase: **22. Innholds-QA**.

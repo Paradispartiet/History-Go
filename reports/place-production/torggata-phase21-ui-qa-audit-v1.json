@@ -1,0 +1,37 @@
+{
+  "schema_version": "torggata_phase21_ui_qa_audit_v1",
+  "place_id": "torggata",
+  "phase": 21,
+  "status": "APPROVED_AFTER_SAFEGUARD",
+  "production_url": "https://paradispartiet.github.io/History-Go/",
+  "observed_issue": {
+    "surface": "production",
+    "error": "MapLibre WebGL context creation failure aborted bootCritical",
+    "impact": "search, Nearby and PlaceCard did not load",
+    "environment": "browser without WebGL"
+  },
+  "safeguard": {
+    "files": [
+      "js/map.ts",
+      "js/map.js"
+    ],
+    "behavior": "catch only map constructor failure, expose map-unavailable state, continue app boot",
+    "webgl_clients_unchanged": true
+  },
+  "retained_ui_contracts": [
+    "canonical coordinates",
+    "search/Nearby route to torggata",
+    "PlaceCard identity/content",
+    "popup tabs",
+    "Badges plus three rounds",
+    "People short card text",
+    "Brands",
+    "onsite row",
+    "physical visit",
+    "favorite",
+    "quiz/visit separation",
+    "legacy round suppression"
+  ],
+  "regression_test": "tests/torggata-phase21-webgl-fallback.test.mjs",
+  "conclusion": "The map is no longer a hard dependency for loading Torggata content."
+}
