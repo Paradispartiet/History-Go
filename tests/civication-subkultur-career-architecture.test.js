@@ -78,6 +78,7 @@ for (const [scope, titles] of Object.entries(evidence.canonical_decision.work_wo
 
 const pushes = [];
 let qualifications = new Set();
+let activePosition = null;
 const sandbox = {
   console, setTimeout:()=>0, clearTimeout:()=>{}, fetch:async()=>({ok:true,json:async()=>({})}),
   localStorage:{getItem:()=>null,setItem:()=>{}}, document:{addEventListener:()=>{}},
@@ -87,17 +88,25 @@ const sandbox = {
   window:{
     BADGES:[badge], HG_CAREERS:[career],
     CivicationJobs:{pushOffer(o){pushes.push(o);return {ok:true,offer:o}},canReceiveNewOffers:()=>true,getOffers:()=>[]},
-    CivicationQualifications:{hasAll(ids){return ids.every(id=>qualifications.has(id))}}, dispatchEvent:()=>{}
+    CivicationQualifications:{hasAll(ids){return ids.every(id=>qualifications.has(id))}},
+    CivicationState:{getActivePosition:()=>activePosition},
+    calculateWeeklySalary:(careerRow,tierIndex)=>Number(careerRow?.economy?.salary_by_tier?.[String(Number(tierIndex)+1)]||0),
+    dispatchEvent:()=>{}
   }
 };
 sandbox.window.window=sandbox.window; sandbox.globalThis=sandbox.window; vm.createContext(sandbox);
 vm.runInContext(fs.readFileSync(path.join(ROOT,'js/Civication/merits-and-jobs.js'),'utf8'),sandbox,{filename:'merits-and-jobs.js'});
+vm.runInContext(fs.readFileSync(path.join(ROOT,'js/Civication/systems/civicationCareerRealityGuard.js'),'utf8'),sandbox,{filename:'civicationCareerRealityGuard.js'});
+
 let result = sandbox.window.CivicationJobs.pushOffer({career_id:'subkultur',title:'Gangster',threshold:60,points_at_offer:60});
 assert.strictEqual(result.ok,true);
 assert.strictEqual(pushes.at(-1).title,'Kulturkonsulent');
 assert.strictEqual(pushes.at(-1).badge_tier_label,'Gangster');
-assert.strictEqual(pushes.at(-1).salary_tier,2);
-assert.strictEqual(pushes.at(-1).role_scope,'subkultur_program_og_koordinering');
+assert.strictEqual(Resolver.resolveCareerRoleScope(pushes.at(-1)),'subkultur_program_og_koordinering');
+activePosition = pushes.at(-1);
+assert.strictEqual(sandbox.window.calculateWeeklySalary(career, 5),7,
+  'Kulturkonsulent salary resolves through Badge threshold -> career_unlock.salary_tier 2');
+
 result = sandbox.window.CivicationJobs.pushOffer({career_id:'subkultur',title:'Undergrunnsikon',threshold:190,points_at_offer:190});
 assert.strictEqual(result.ok,false);
 assert.strictEqual(result.reason,'career_qualification_required');
@@ -105,8 +114,10 @@ qualifications = new Set(['employer_appointment']);
 result = sandbox.window.CivicationJobs.pushOffer({career_id:'subkultur',title:'Undergrunnsikon',threshold:190,points_at_offer:190});
 assert.strictEqual(result.ok,true);
 assert.strictEqual(pushes.at(-1).title,'Produksjonsleder');
-assert.strictEqual(pushes.at(-1).salary_tier,3);
-assert.strictEqual(pushes.at(-1).role_scope,'subkultur_produksjonsledelse');
+assert.strictEqual(Resolver.resolveCareerRoleScope(pushes.at(-1)),'subkultur_produksjonsledelse');
+activePosition = pushes.at(-1);
+assert.strictEqual(sandbox.window.calculateWeeklySalary(career, 9),13,
+  'Produksjonsleder salary resolves through Badge threshold -> career_unlock.salary_tier 3');
 
 async function runtimeIntegration() {
   const dom = new JSDOM('<!doctype html><html><body></body></html>', {url:'http://localhost/Civication.html',runScripts:'outside-only'});
