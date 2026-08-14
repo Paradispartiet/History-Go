@@ -20,6 +20,7 @@
   const WORK_MAIL_CLASS = "daily_workday";
   const SCENE_DIRECTOR_VERSION = 1;
   const SELECTION_TRACE_LIMIT = 80;
+  const EVENT_ENGINE_PATCH_FLAG = "__civicationSceneDirectorBuildMailPoolPatched";
 
   const WORK_PHASE_LABELS = {
     forenoon: "Formiddag",
@@ -124,13 +125,109 @@
     };
   }
 
+  function makeDefaultTagRules() {
+    return {
+      max_tags_per_choice: 2,
+      memory_window: 12
+    };
+  }
+
+  // SceneDirector bygger EventEngine-pakken direkte. Dette fjerner den gamle
+  // dobbeltseleksjonen der MailRuntimes wrapper først kalte EventEngines
+  // buildMailPool (som igjen kalte den offentlige selektoren) og deretter kalte
+  // den interne MailRuntime-selektoren én gang til.
+  async function buildEventEnginePack(director, engine, active, state, roleKey) {
+    const candidates = await director.getWorkCandidates(active, state, {
+      consumer: "event_engine_build_mail_pool"
+    });
+    const suppressFallback = candidates?.__career_outcome_terminal_closed === true;
+    const taggedRuntimeMails = candidates.map((mail) => ({
+      ...mail,
+      source_type: norm(mail?.source_type) || "planned"
+    }));
+
+    if (taggedRuntimeMails.length || suppressFallback) {
+      return {
+        role: norm(active?.career_id) || null,
+        tag_rules: makeDefaultTagRules(),
+        tracks: [],
+        mails: taggedRuntimeMails,
+        __civication_mail_runtime: true,
+        __civication_scene_director: true,
+        __runtime_candidate_count: taggedRuntimeMails.length,
+        __legacy_fallback: false,
+        __terminal_closed: suppressFallback
+      };
+    }
+
+    // Legacy brukes bare når den canonicale rollen faktisk ikke leverer noen
+    // kandidat. Lastingen gjøres her, uten å kjøre en ny canonical seleksjon.
+    const packFile = typeof engine?.resolvePackFile === "function"
+      ? engine.resolvePackFile(active, roleKey)
+      : null;
+    const pack = typeof engine?.loadPack === "function"
+      ? await engine.loadPack(packFile)
+      : null;
+    const packMails = Array.isArray(pack?.mails)
+      ? pack.mails.map((mail) => ({
+          ...mail,
+          source_type: "legacy_pack"
+        }))
+      : [];
+
+    const roleMails = await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
+      active,
+      state
+    ) || [];
+    const taggedRoleMails = roleMails.map((mail) => ({
+      ...mail,
+      source_type: norm(mail?.source_type) || "role"
+    }));
+
+    return {
+      role: pack?.role || norm(active?.career_id) || null,
+      tag_rules: pack?.tag_rules || makeDefaultTagRules(),
+      tracks: Array.isArray(pack?.tracks) ? pack.tracks : [],
+      mails: [...taggedRoleMails, ...packMails],
+      __civication_mail_runtime: true,
+      __civication_scene_director: true,
+      __runtime_candidate_count: 0,
+      __legacy_fallback: true,
+      __terminal_closed: false
+    };
+  }
+
+  function patchEventEngineCandidateOwner(director) {
+    const proto = window.CivicationEventEngine?.prototype;
+    if (!proto || !director) return false;
+    if (proto[EVENT_ENGINE_PATCH_FLAG] === true) return true;
+    if (typeof proto.buildMailPool !== "function") return false;
+
+    const previousBuildMailPool = proto.buildMailPool;
+    proto.buildMailPool = async function sceneDirectorBuildMailPool(active, state, roleKey) {
+      try {
+        return await buildEventEnginePack(director, this, active, state, roleKey);
+      } catch (error) {
+        if (window.DEBUG) {
+          console.warn("[CivicationSceneDirector] EventEngine-pack feilet; bruker forrige adapter", error);
+        }
+        return previousBuildMailPool.call(this, active, state, roleKey);
+      }
+    };
+
+    proto[EVENT_ENGINE_PATCH_FLAG] = true;
+    proto.__civicationSceneDirectorBuildMailPoolPatchedAt = new Date().toISOString();
+    return true;
+  }
+
   // Første SceneDirector-cutover: WorkdayBuilder lastes etter MailRuntime og
   // kandidat-utvidelsene (bl.a. CareerOutcomeRuntime). Den fanger derfor den
   // komplette, outcome-aware selektoren én gang og gjør Director til eneste
-  // offentlige innsteg for Daily/Workday-kall. EventEngines interne build-pool
-  // flyttes i neste, separat port.
+  // offentlige innsteg for Daily/Workday-kall. I 4B overtar Director også
+  // EventEngines interne kandidatinnsteg.
   function ensureSceneDirector() {
     if (window.CivicationSceneDirector?.getWorkCandidates) {
+      patchEventEngineCandidateOwner(window.CivicationSceneDirector);
       return window.CivicationSceneDirector;
     }
 
@@ -173,13 +270,19 @@
       return candidates[0] || null;
     }
 
+    async function getEventEnginePack(engine, active, state = getState(), roleKey) {
+      return buildEventEnginePack(director, engine, active, state, roleKey);
+    }
+
     function inspect() {
       const active = getActive();
+      const proto = window.CivicationEventEngine?.prototype;
       return {
         version: SCENE_DIRECTOR_VERSION,
         owner: "CivicationSceneDirector",
         source_adapter: "CivicationMailRuntime.makeCandidateMailsForActiveRole",
         active_role_scope: active ? resolveRoleScope(active) : null,
+        event_engine_candidate_owner: proto?.[EVENT_ENGINE_PATCH_FLAG] === true,
         selection_trace: selectionTrace.slice()
       };
     }
@@ -188,6 +291,7 @@
       version: SCENE_DIRECTOR_VERSION,
       getWorkCandidates,
       getPrimaryWorkScene,
+      getEventEnginePack,
       inspect
     };
 
@@ -195,6 +299,7 @@
     // Bakoverkompatibilitet: DailyMailBuilder og eldre kall bruker fortsatt dette
     // navnet, men funksjonsreferansen er nå Directorens autoritative innsteg.
     runtime.makeCandidateMailsForActiveRole = director.getWorkCandidates;
+    patchEventEngineCandidateOwner(director);
     return director;
   }
 
@@ -281,6 +386,7 @@
     getWorkdayDayIndex,
     stampWorkdayFields,
     ensureSceneDirector,
+    patchEventEngineCandidateOwner,
     loadWorkdayCandidates,
     toWorkdayMail,
     buildWorkdayItems
