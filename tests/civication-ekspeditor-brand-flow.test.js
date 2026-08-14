@@ -5,9 +5,10 @@ const path = require('path');
 const vm = require('vm');
 
 const repoRoot = path.resolve(__dirname, '..');
+const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(repoRoot, rel), 'utf8'));
 
 function makeStorage(seed = {}) {
-  const store = new Map(Object.entries(seed).map(([k, v]) => [k, String(v)]));
+  const store = new Map(Object.entries(seed).map(([key, value]) => [key, String(value)]));
   return {
     getItem(key) { return store.has(key) ? store.get(key) : null; },
     setItem(key, value) { store.set(String(key), String(value)); },
@@ -33,8 +34,7 @@ function makeFetch(rootDir) {
 }
 
 function loadScript(relPath) {
-  const code = fs.readFileSync(path.join(repoRoot, relPath), 'utf8');
-  vm.runInThisContext(code, { filename: relPath });
+  vm.runInThisContext(fs.readFileSync(path.join(repoRoot, relPath), 'utf8'), { filename: relPath });
 }
 
 function resetRuntime(seedStorage = {}) {
@@ -42,18 +42,20 @@ function resetRuntime(seedStorage = {}) {
   global.localStorage = makeStorage(seedStorage);
   global.fetch = makeFetch(repoRoot);
   global.Event = class Event { constructor(type) { this.type = type; } };
-  global.CustomEvent = class CustomEvent extends Event { constructor(type, init = {}) { super(type); this.detail = init.detail; } };
+  global.CustomEvent = class CustomEvent extends Event {
+    constructor(type, init = {}) { super(type); this.detail = init.detail; }
+  };
   global.document = { readyState: 'complete', addEventListener() {} };
   global.addEventListener = () => {};
   global.dispatchEvent = () => {};
   global.location = { href: 'http://localhost/Civication.html' };
-
   global.HG_CAREERS = [];
   global.BRANDS_MASTER = [];
   global.BRANDS = [];
-  global.HGBrands = { all: [{ id: 'narvesen', name: 'Narvesen', sector: 'kiosk_retail', brand_type: 'retail' }] };
+  global.HGBrands = {
+    all: [{ id: 'narvesen', name: 'Narvesen', sector: 'kiosk_retail', brand_type: 'retail' }]
+  };
   global.BRANDS_BY_PLACE = { place_x: ['narvesen'] };
-
   global.CivicationCalendar = { getPhase() { return 'morning'; } };
   global.getNextDayCarryover = () => ({ visibilityBias: 0, processBias: 0 });
   global.applyMorningCarryoverEffects = () => {};
@@ -78,25 +80,27 @@ function resetRuntime(seedStorage = {}) {
   loadScript('js/Civication/systems/civicationMailRuntime.js');
   loadScript('js/Civication/merits-and-jobs.js');
 
-  const engine = new global.CivicationEventEngine();
-  global.HG_CiviEngine = engine;
+  global.HG_CiviEngine = new global.CivicationEventEngine();
 
-  global.BADGES = [{
-    id: 'naeringsliv',
-    name: 'Næringsliv',
-    tiers: [
-      { threshold: 0, label: 'Start' },
-      { threshold: 1, label: 'Ekspeditør / butikkmedarbeider' }
-    ]
-  }];
+  // Career-contract overlays are deliberately fail-closed. This fixture must
+  // therefore use the canonical required Badge files instead of a synthetic
+  // two-tier Næringsliv stub that cannot satisfy the overlay contract.
+  global.BADGES = [
+    readJson('data/badges/naeringsliv.json'),
+    readJson('data/badges/natur.json')
+  ];
 }
 
 function setupMerits() {
-  localStorage.setItem('merits_by_category', JSON.stringify({ naeringsliv: { points: 1 } }));
+  localStorage.setItem('merits_by_category', JSON.stringify({ naeringsliv: { points: 5 } }));
 }
 
-async function scenarioA() {
-  resetRuntime({ visited_places: JSON.stringify({}), hg_unlocks_v1: JSON.stringify({}), quiz_progress: JSON.stringify({}) });
+async function scenarioBlockedWithoutEmployer() {
+  resetRuntime({
+    visited_places: JSON.stringify({}),
+    hg_unlocks_v1: JSON.stringify({}),
+    quiz_progress: JSON.stringify({})
+  });
   setupMerits();
   global.CivicationState.setInbox([]);
   global.CivicationState.setActivePosition(null);
@@ -104,23 +108,21 @@ async function scenarioA() {
   const result = await global.rebuildJobOffersFromCurrentMerits();
   assert.strictEqual(result.ok, false);
   assert.strictEqual(result.reason, 'no_unlocked_brand_employer');
-
-  const offers = global.CivicationJobs.getOffers();
-  assert.strictEqual(offers.length, 0);
+  assert.strictEqual(global.CivicationJobs.getOffers().length, 0);
 
   const inbox = global.CivicationState.getInbox();
   assert.strictEqual(inbox.length, 1);
   assert.strictEqual(inbox[0].status, 'pending');
   assert.ok(Number.isFinite(inbox[0].createdAt));
-  const ev = inbox[0].event || {};
-  assert.strictEqual(ev.source_type, 'blocked_job');
-  assert.strictEqual(ev.mail_class, 'opportunity_blocked');
-  assert.strictEqual(ev.career_id, 'naeringsliv');
-  assert.strictEqual(ev.role_scope, 'ekspeditor');
-  assert.strictEqual(ev.reason, 'no_unlocked_brand_employer');
+  const event = inbox[0].event || {};
+  assert.strictEqual(event.source_type, 'blocked_job');
+  assert.strictEqual(event.mail_class, 'opportunity_blocked');
+  assert.strictEqual(event.career_id, 'naeringsliv');
+  assert.strictEqual(event.role_scope, 'ekspeditor');
+  assert.strictEqual(event.reason, 'no_unlocked_brand_employer');
 }
 
-async function scenarioBAndC() {
+async function scenarioUnlockedEmployer() {
   localStorage.setItem('visited_places', JSON.stringify(['place_x']));
   localStorage.setItem('hg_unlocks_v1', JSON.stringify({ place_x: true }));
   localStorage.setItem('quiz_progress', JSON.stringify({ place_x: { completed: true } }));
@@ -133,6 +135,7 @@ async function scenarioBAndC() {
 
   const offers = global.CivicationJobs.getOffers();
   assert.ok(offers[0]);
+  assert.strictEqual(offers[0].title, 'Ekspeditør / butikkmedarbeider');
   assert.strictEqual(offers[0].brand_id, 'narvesen');
   assert.strictEqual(offers[0].brand_name, 'Narvesen');
   assert.strictEqual(offers[0].employer_context.source, 'HGBrands');
@@ -144,7 +147,6 @@ async function scenarioBAndC() {
 
   const accepted = global.CivicationJobs.acceptOffer(offers[0].offer_key);
   assert.strictEqual(accepted.ok, true);
-
   const active = global.CivicationState.getActivePosition();
   assert.strictEqual(active.brand_id, 'narvesen');
   assert.strictEqual(active.brand_name, 'Narvesen');
@@ -161,19 +163,16 @@ async function scenarioBAndC() {
     'data/Civication/mailFamilies/naeringsliv/story/ekspeditor_story.json',
     'data/Civication/mailFamilies/naeringsliv/event/ekspeditor_event.json'
   ];
-  expectedFamilies.forEach((p) => assert(inspect.family_paths.includes(p), `Missing ${p}`));
+  expectedFamilies.forEach((family) => assert.ok(inspect.family_paths.includes(family), `Missing ${family}`));
 
-  const debugCandidates = await global.CivicationMailRuntime.debugCandidates();
-  assert.ok(Array.isArray(debugCandidates) && debugCandidates.length > 0);
-  const ekspeditorCandidate = debugCandidates.find(
-    (m) => m && (String(m.role_scope || '') === 'ekspeditor' || String(m.id || '').includes('ekspeditor'))
-  );
-  assert.ok(ekspeditorCandidate, 'Expected at least one ekspeditor-consistent candidate');
+  const candidates = await global.CivicationMailRuntime.debugCandidates();
+  assert.ok(Array.isArray(candidates) && candidates.length > 0);
+  assert.ok(candidates.some((mail) => mail && (
+    String(mail.role_scope || '') === 'ekspeditor' || String(mail.id || '').includes('ekspeditor')
+  )));
 }
 
 function verifyLoadOrder() {
-  // Lastekontrakten for v1 bor nå i legacy-loaderen (Civication v2 laster ikke
-  // disse i hovedflyten) — se docs/civication-life-story-system.md §11.
   const { LEGACY_SCRIPTS } = require(path.join(repoRoot, 'js/Civication/civicationLegacyLoader.js'));
   const scripts = [
     'js/Civication/core/civicationJobs.js',
@@ -185,26 +184,19 @@ function verifyLoadOrder() {
     'js/Civication/merits-and-jobs.js'
   ];
   const indexes = scripts.map((src) => LEGACY_SCRIPTS.indexOf(src));
-  indexes.forEach((idx, i) => assert.ok(idx !== -1, `Missing script: ${scripts[i]}`));
+  indexes.forEach((index, i) => assert.ok(index !== -1, `Missing script: ${scripts[i]}`));
   for (let i = 1; i < indexes.length; i += 1) {
     assert.ok(indexes[i - 1] < indexes[i], `${scripts[i - 1]} should load before ${scripts[i]}`);
   }
 
-  // Etter boot-splitten bor script-once-dedupen i CivicationShellBoot.
   const boot = fs.readFileSync(path.join(repoRoot, 'js/Civication/CivicationShellBoot.js'), 'utf8');
-  // Implementation-agnostic dedup check: the loader scans existing scripts
-  // (document.scripts) and short-circuits before appending. Assert behaviour
-  // rather than an exact source string so equivalent refactors don't break it.
-  assert.ok(
-    /document\.scripts|querySelector\(\s*`?script\[src/.test(boot),
-    'boot loader should look for an already-loaded script before appending'
-  );
-  assert.ok(/if\s*\(\s*existing\s*\)/.test(boot), 'boot loader should short-circuit on existing script');
+  assert.ok(/document\.scripts|querySelector\(\s*`?script\[src/.test(boot));
+  assert.ok(/if\s*\(\s*existing\s*\)/.test(boot));
 }
 
 (async function run() {
   verifyLoadOrder();
-  await scenarioA();
-  await scenarioBAndC();
-  console.log('civication ekspeditor brand flow ok');
+  await scenarioBlockedWithoutEmployer();
+  await scenarioUnlockedEmployer();
+  console.log('civication ekspeditor brand flow ok with canonical Næringsliv career overlay');
 })();
