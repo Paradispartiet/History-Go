@@ -1,0 +1,42 @@
+name: TEMP fix Film TV unit 14 idempotence
+
+on:
+  push:
+    branches:
+      - "agent/film-tv-unit14-archive-preservation-access-authenticity-fulltext"
+    paths:
+      - ".trigger/unit14-idempotence-fix"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch canonical case title field
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs')
+          s = p.read_text()
+          old = '      title: row.work,\n'
+          new = '      title: row.title,\n'
+          assert s.count(old) == 1, s.count(old)
+          p.write_text(s.replace(old, new))
+          PY
+          node --check scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs
+      - name: Remove one-shot fix and publish
+        env:
+          BRANCH: agent/film-tv-unit14-archive-preservation-access-authenticity-fulltext
+        run: |
+          rm -f .github/workflows/temp-film-tv-unit14-idempotence-fix.yml .trigger/unit14-idempotence-fix
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs .github/workflows/temp-film-tv-unit14-idempotence-fix.yml .trigger/unit14-idempotence-fix
+          git diff --cached --check
+          git commit -m "Fix Film TV unit 14 case title materialization"
+          git push origin "HEAD:refs/heads/${BRANCH}"
