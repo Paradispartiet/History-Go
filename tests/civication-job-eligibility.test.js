@@ -34,6 +34,21 @@ async function run() {
   global.dispatchEvent = () => {};
   global.Event = class Event { constructor(type) { this.type = type; } };
 
+  const registeredAnswerMiddlewares = [];
+  global.CivicationChoiceDirector = {
+    registerAnswerMiddleware(name, fn, priority = 100) {
+      const key = String(name || '');
+      if (!registeredAnswerMiddlewares.some((entry) => entry.name === key)) {
+        registeredAnswerMiddlewares.push({ name: key, fn, priority: Number(priority || 100) });
+        registeredAnswerMiddlewares.sort((a, b) => a.priority - b.priority);
+      }
+      return true;
+    },
+    listAnswerMiddlewares() {
+      return registeredAnswerMiddlewares.map((entry) => ({ name: entry.name, priority: entry.priority }));
+    }
+  };
+
   global.CivicationState = {
     getState() { return state; },
     setState(patch) { state = { ...state, ...patch }; return patch; },
@@ -48,7 +63,7 @@ async function run() {
 
   const E = global.CivicationJobEligibilityRuntime;
   assert.strictEqual(typeof E, 'object', 'CivicationJobEligibilityRuntime is exported');
-  for (const fn of ['getJobOfferEligibility', 'createFiredReentryLock', 'clearReentryLockIfQualified', 'processAnsweredMail', 'resolveCategory']) {
+  for (const fn of ['getJobOfferEligibility', 'createFiredReentryLock', 'clearReentryLockIfQualified', 'processAnsweredMail', 'resolveCategory', 'registerAnswerMiddleware']) {
     assert.strictEqual(typeof E[fn], 'function', `${fn} is exported`);
   }
 
@@ -327,7 +342,7 @@ async function run() {
   assert.strictEqual(snap.hasQuizSource, true, 'snapshot flags a readable quiz source');
 
   // ==================================================================================
-  // End-to-end through patched CivicationEventEngine.answer.
+  // End-to-end through registered ChoiceDirector answer middleware.
   // ==================================================================================
   let engineState = {
     job_learning_progress: {
@@ -354,21 +369,41 @@ async function run() {
   }
   global.CivicationEventEngine = FakeEngine;
 
-  assert.strictEqual(E.patchEventEngineAnswer(), true, 'answer patch applies once');
-  assert.strictEqual(E.patchEventEngineAnswer(), false, 'answer patch is idempotent');
+  const originalEngineAnswer = FakeEngine.prototype.answer;
+  assert.strictEqual(E.patchEventEngineAnswer(), true, 'compatibility API registers answer middleware');
+  assert.strictEqual(E.registerAnswerMiddleware(), true, 'middleware registration is idempotent');
+  assert.strictEqual(FakeEngine.prototype.answer, originalEngineAnswer, 'eligibility never patches EventEngine.answer directly');
+  assert.strictEqual(registeredAnswerMiddlewares.filter((entry) => entry.name === 'job_eligibility_runtime').length, 1, 'eligibility middleware is registered exactly once');
+  const eligibilityStage = registeredAnswerMiddlewares.find((entry) => entry.name === 'job_eligibility_runtime');
+  assert(eligibilityStage && typeof eligibilityStage.fn === 'function', 'eligibility middleware is available');
+  assert.strictEqual(eligibilityStage.priority, 50, 'eligibility middleware stays at priority 50');
+
+  async function answerThroughEligibility(engine, eventId, choiceId) {
+    const pendingSnapshot = engine.getPendingEvent();
+    return eligibilityStage.fn(
+      {
+        engine,
+        eventId,
+        choiceId,
+        pending: pendingSnapshot,
+        eventObj: pendingSnapshot?.event || null
+      },
+      () => originalEngineAnswer.call(engine, eventId, choiceId)
+    );
+  }
 
   const engine = new FakeEngine();
-  await engine.answer('fire_e2e', 'A');
-  assert.strictEqual(engineState.career_reentry_locks.naeringsliv.status, 'locked', 'engine FIRED creates the lock from the captured active position');
-  assert.strictEqual(engineState.job_learning_progress.naer_fagarbeider.mastered, true, 'learning progress preserved through fired (engine)');
-  assert.deepStrictEqual(engineState.job_learning_progress.naer_fagarbeider.unlocked_skills, ['x'], 'unlocked skills preserved through fired (engine)');
+  await answerThroughEligibility(engine, 'fire_e2e', 'A');
+  assert.strictEqual(engineState.career_reentry_locks.naeringsliv.status, 'locked', 'middleware FIRED creates the lock from the captured active position');
+  assert.strictEqual(engineState.job_learning_progress.naer_fagarbeider.mastered, true, 'learning progress preserved through fired (middleware)');
+  assert.deepStrictEqual(engineState.job_learning_progress.naer_fagarbeider.unlocked_skills, ['x'], 'unlocked skills preserved through fired (middleware)');
 
   // Now the player works in another category and answers a plan mail there.
   engineActive = { career_id: 'media', role_id: 'med_journalist', title: 'Journalist' };
   pending = { status: 'pending', event: { id: 'plan_e2e', source_type: 'planned', mail_type: 'job' } };
-  await engine.answer('plan_e2e', 'A');
-  assert.strictEqual(engineState.career_reentry_locks.naeringsliv.status, 'cleared', 'plan mail in another category clears the lock (engine)');
-  assert.strictEqual(engineState.career_reentry_locks.naeringsliv.cleared_by_category, 'media', 'engine clear records the clearing category');
+  await answerThroughEligibility(engine, 'plan_e2e', 'A');
+  assert.strictEqual(engineState.career_reentry_locks.naeringsliv.status, 'cleared', 'plan mail in another category clears the lock (middleware)');
+  assert.strictEqual(engineState.career_reentry_locks.naeringsliv.cleared_by_category, 'media', 'middleware clear records the clearing category');
 
   // ==================================================================================
   // pushOffer patch: blocks locked category, enriches eligible offers (additive).
