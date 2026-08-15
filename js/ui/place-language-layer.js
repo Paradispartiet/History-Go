@@ -98,6 +98,30 @@
     uncertain: "Usikkert dokumentert"
   });
 
+  const BLOCKED_LANGUAGE_TYPES = new Set([
+    "arrangement",
+    "event",
+    "competition",
+    "sports_event",
+    "record",
+    "result",
+    "stat",
+    "statistikk",
+    "stevne"
+  ]);
+
+  function isLanguageEntry(entry) {
+    const raw = slug(entry?.type || entry?.kind || "");
+    if (!raw || BLOCKED_LANGUAGE_TYPES.has(raw)) return false;
+    if (TYPE_ALIASES[raw]) return true;
+    const signals = [
+      raw,
+      ...list(entry?.tags).map(slug)
+    ].join(" ");
+    return ["ord", "uttrykk", "begrep", "term", "navn", "sprak", "dialekt", "uttale"]
+      .some(signal => signals.includes(signal));
+  }
+
   function canonicalType(entry) {
     const raw = slug(entry?.type || entry?.kind || "term");
     return TYPE_ALIASES[raw] || "term";
@@ -223,7 +247,7 @@
   }
 
   function captureLanguageKnowledge(entry, context = {}) {
-    if (!entry || !text(entry.id || entry.term)) return null;
+    if (!entry || !text(entry.id || entry.term) || !isLanguageEntry(entry)) return null;
     const incoming = knowledgeEntryForLanguage(entry, context);
     const rows = readKnowledgeEntries();
     const index = rows.findIndex(row => text(row?.id) === incoming.id || text(row?.knowledge_unit_id) === incoming.id);
@@ -347,7 +371,7 @@
   }
 
   function renderLanguagePanel(place, article) {
-    const entries = list(article?.entries).filter(entry => text(entry?.id || entry?.term));
+    const entries = list(article?.entries).filter(isLanguageEntry);
     const counts = countByType(entries);
     const filters = [...counts.entries()]
       .sort((a, b) => b[1] - a[1])
@@ -454,7 +478,7 @@
       const collectButton = target?.closest("[data-language-collect]");
       if (!collectButton || collectButton.hasAttribute("disabled")) return;
       const entryId = text(collectButton.getAttribute("data-language-collect"));
-      const entry = list(article?.entries).find(row => text(row?.id || row?.term) === entryId);
+      const entry = list(article?.entries).find(row => text(row?.id || row?.term) === entryId && isLanguageEntry(row));
       if (!entry) return;
       installKnowledgeBridge();
       const captured = captureLanguageKnowledge(entry, {
@@ -480,7 +504,7 @@
     const placeId = text(place?.id);
     if (!placeId) return;
     const loaded = await loadForPlace(placeId);
-    const entries = list(loaded?.article?.entries).filter(entry => text(entry?.id || entry?.term));
+    const entries = list(loaded?.article?.entries).filter(isLanguageEntry);
     if (!loaded || !entries.length) return;
 
     const popup = document.querySelector(".hg-popup.place-popup-v2");
@@ -531,7 +555,6 @@
       morePanel.dataset.hgLanguageDeduper = "1";
       const observer = new MutationObserver(() => removeLegacyLanguageSection(morePanel));
       observer.observe(morePanel, { childList: true, subtree: true });
-      popup.addEventListener("DOMNodeRemoved", () => observer.disconnect(), { once: true });
       setTimeout(() => observer.disconnect(), 10000);
     }
   }
@@ -560,6 +583,7 @@
   global.HGLanguageLayer = {
     loadForPlace,
     canonicalType,
+    isLanguageEntry,
     captureLanguageKnowledge,
     getCollected: collectedLanguageEntries,
     isCollected,
