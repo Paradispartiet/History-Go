@@ -23,8 +23,38 @@ const P = Object.freeze({
   sources: 'data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_sources_v1.json',
   cases: 'data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_cases_v1.json',
   topicClaims: 'data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_topic_claims_v1.json',
-  report: 'reports/fagverk/film-tv-archive-preservation-access-authenticity-source-brief-v1-audit.json'
+  report: 'reports/fagverk/film-tv-archive-preservation-access-authenticity-source-brief-v1-audit.json',
+  historyAudit: 'reports/fagverk/film-tv-history-movements-historiography-fulltext-v1-audit.json',
+  documentaryAudit: 'reports/fagverk/film-tv-documentary-evidence-ethics-fulltext-v1-audit.json',
+  creativeAudit: 'reports/fagverk/film-tv-creative-work-technology-responsibility-fulltext-v1-audit.json'
 });
+
+const PREREQUISITES = Object.freeze([
+  {
+    id: 'filmhistorie-bevegelser-og-historiografi',
+    file: 'data/fagverk/film_tv/filmhistorie-bevegelser-og-historiografi.json',
+    claimsFile: 'data/fagverk/film_tv/filmhistorie-bevegelser-og-historiografi/claims.json',
+    briefFile: 'data/fagverk/film_tv/filmhistorie-bevegelser-og-historiografi/brief.json',
+    auditFile: P.historyAudit,
+    auditStatus: 'history_movements_historiography_chapter_verified_registered'
+  },
+  {
+    id: 'dokumentar-evidens-og-etikk',
+    file: 'data/fagverk/film_tv/dokumentar-evidens-og-etikk.json',
+    claimsFile: 'data/fagverk/film_tv/dokumentar-evidens-og-etikk/claims.json',
+    briefFile: 'data/fagverk/film_tv/dokumentar-evidens-og-etikk/brief.json',
+    auditFile: P.documentaryAudit,
+    auditStatus: 'documentary_evidence_ethics_chapter_verified_registered'
+  },
+  {
+    id: 'skapende-arbeid-teknologi-og-ansvar',
+    file: 'data/fagverk/film_tv/skapende-arbeid-teknologi-og-ansvar.json',
+    claimsFile: 'data/fagverk/film_tv/skapende-arbeid-teknologi-og-ansvar/claims.json',
+    briefFile: 'data/fagverk/film_tv/skapende-arbeid-teknologi-og-ansvar/brief.json',
+    auditFile: P.creativeAudit,
+    auditStatus: 'creative_work_technology_responsibility_chapter_verified_registered'
+  }
+]);
 
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
@@ -44,6 +74,15 @@ const maxDottedVersion = (current, floor) => {
 };
 const maxIsoDate = (current, floor) => current && current > floor ? current : floor;
 const normalizeEditorialText = (value) => String(value || '').toLocaleLowerCase('nb-NO').replace(/\s+/gu, ' ').trim();
+
+function prerequisiteIsMaterializedAndAudited(registry, prerequisite) {
+  const chapter = registry.subjects.film_tv.chapters.find((row) => row.id === prerequisite.id);
+  if (!chapter) return false;
+  if (chapter.file !== prerequisite.file || chapter.claimsFile !== prerequisite.claimsFile || chapter.briefFile !== prerequisite.briefFile) return false;
+  if (![prerequisite.file, prerequisite.claimsFile, prerequisite.briefFile, prerequisite.auditFile].every((file) => fs.existsSync(abs(file)))) return false;
+  const audit = read(prerequisite.auditFile);
+  return audit.status === prerequisite.auditStatus;
+}
 
 export function buildFilmTvArchivePreservationAccessAuthenticitySourceBriefV1() {
   const plan = read(P.plan);
@@ -73,10 +112,7 @@ export function buildFilmTvArchivePreservationAccessAuthenticitySourceBriefV1() 
   const caseIds = new Set(cases.map((row) => row.id));
   const caseById = new Map(cases.map((row) => [row.id, row]));
   const plannedClaims = topicBriefs.flatMap((row) => row.planned_claims || []);
-  const usedSourceIds = new Set([
-    ...topicBriefs.flatMap((row) => row.source_ids || []),
-    ...cases.flatMap((row) => row.source_ids || [])
-  ]);
+  const usedSourceIds = new Set([...topicBriefs.flatMap((row) => row.source_ids || []), ...cases.flatMap((row) => row.source_ids || [])]);
   const usedCaseIds = new Set(topicBriefs.flatMap((row) => row.case_ids || []));
   const claimCounts = topicBriefs.map((row) => (row.planned_claims || []).length);
   const moduleEmneIds = brief.proposed_module_order.flatMap((row) => row.emne_ids);
@@ -86,6 +122,8 @@ export function buildFilmTvArchivePreservationAccessAuthenticitySourceBriefV1() 
   const engineSource = fs.readFileSync(fileURLToPath(import.meta.url), 'utf8');
   const forbiddenScmTokens = ['child_' + 'process', 'execFile' + 'Sync', 'spawn' + 'Sync'];
   const forbiddenGitCommand = new RegExp(`git\\s+(?:${['fetch', 'merge', 'push'].join('|')})`);
+
+  const prerequisitesVerified = PREREQUISITES.every((prerequisite) => prerequisiteIsMaterializedAndAudited(registry, prerequisite));
 
   registry.version = maxDottedVersion(registry.version, '3.00.0');
   registry.updatedAt = maxIsoDate(registry.updatedAt, '2026-08-15');
@@ -111,123 +149,42 @@ export function buildFilmTvArchivePreservationAccessAuthenticitySourceBriefV1() 
   };
 
   const gates = {
-    exact_unit_fourteen_problem_set_and_sequence: unit.sequence === 14
-      && plan.production_sequence[13] === UNIT_ID
-      && unit.emne_count === 11,
-    exact_prerequisite_contract: isDeepStrictEqual(
-      unit.prerequisite_planned_unit_ids,
-      ['filmhistorie-bevegelser-og-historiografi', 'dokumentar-evidens-og-etikk', 'skapende-arbeid-teknologi-og-ansvar']
-    ) && isDeepStrictEqual(unit.prerequisite_existing_chapter_ids, []),
-    planned_prerequisites_registered: unit.prerequisite_planned_unit_ids.every((id) =>
-      registry.subjects.film_tv.chapters.some((row) => row.id === id)
-    ),
+    exact_unit_fourteen_problem_set_and_sequence: unit.sequence === 14 && plan.production_sequence[13] === UNIT_ID && unit.emne_count === 11,
+    exact_prerequisite_contract: isDeepStrictEqual(unit.prerequisite_planned_unit_ids, PREREQUISITES.map((row) => row.id)) && isDeepStrictEqual(unit.prerequisite_existing_chapter_ids, []),
+    prerequisite_fulltext_artifacts_and_audits_green: prerequisitesVerified,
     current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE].includes(currentGate),
-    exact_unit_emne_coverage: topicBriefs.length === unit.emne_count
-      && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count
-      && isDeepStrictEqual(brief.scope.emne_ids, unit.emne_ids)
-      && unit.emne_ids.every((id) => topicBriefs.some((row) => row.emne_id === id)),
+    exact_unit_emne_coverage: topicBriefs.length === unit.emne_count && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count && isDeepStrictEqual(brief.scope.emne_ids, unit.emne_ids) && unit.emne_ids.every((id) => topicBriefs.some((row) => row.emne_id === id)),
     all_emners_active_canonical: topicBriefs.every((row) => emneById.get(row.emne_id)?.status === 'active'),
     all_canonical_topics_have_methods: topicBriefs.every((row) => {
       const canonical = emneById.get(row.emne_id);
       const canonicalMethodIds = canonical?.method_ids || canonical?.recommended_method_ids || [];
-      return Array.isArray(canonicalMethodIds)
-        && canonicalMethodIds.length > 0
-        && canonicalMethodIds.every((id) => methodIds.has(id));
+      return Array.isArray(canonicalMethodIds) && canonicalMethodIds.length > 0 && canonicalMethodIds.every((id) => methodIds.has(id));
     }),
-    thirty_inspectable_https_sources: sources.length === 30
-      && new Set(sources.map((row) => row.id)).size === 30
-      && sources.every((row) => row.url?.startsWith('https://')
-        && row.source_location
-        && row.territory
-        && row.evidence_role
-        && row.retrieval_status === 'verified_2026-08-15'),
+    thirty_inspectable_https_sources: sources.length === 30 && new Set(sources.map((row) => row.id)).size === 30 && sources.every((row) => row.url?.startsWith('https://') && row.source_location && row.territory && row.evidence_role && row.retrieval_status === 'verified_2026-08-15'),
     evidence_source_families_present: Object.values(sourceFamiliesPresent).every(Boolean),
     every_source_used: sources.every((row) => usedSourceIds.has(row.id)),
     every_source_reference_resolves: [...usedSourceIds].every((id) => sourceIds.has(id)),
-    twenty_six_documented_cases_used: cases.length === 26
-      && new Set(cases.map((row) => row.id)).size === 26
-      && cases.every((row) => usedCaseIds.has(row.id))
-      && cases.every((row) => row.source_ids.length > 0 && row.purpose && row.territory && row.years),
+    twenty_six_documented_cases_used: cases.length === 26 && new Set(cases.map((row) => row.id)).size === 26 && cases.every((row) => usedCaseIds.has(row.id)) && cases.every((row) => row.source_ids.length > 0 && row.purpose && row.territory && row.years),
     every_case_reference_resolves: topicBriefs.every((row) => row.case_ids.every((id) => caseIds.has(id))),
-    every_case_has_evidence_overlap_with_owning_topic: topicBriefs.every((topic) =>
-      topic.case_ids.every((id) => caseById.get(id).source_ids.some((sourceId) => topic.source_ids.includes(sourceId)))
-    ),
-    fifty_three_variable_planned_claims: plannedClaims.length === 53
-      && new Set(plannedClaims.map((row) => row.id)).size === 53
-      && isDeepStrictEqual(claimCounts, [5, 5, 5, 5, 5, 5, 5, 5, 4, 5, 4])
-      && new Set(claimCounts).size > 1,
-    no_planned_claim_overstated_as_verified: plannedClaims.every((row) =>
-      row.status === 'planned_requires_fulltext_verification'
-    ),
-    all_topics_have_sources_cases_claims_and_goal: topicBriefs.every((row) =>
-      row.source_ids.length >= 4
-      && row.case_ids.length >= 3
-      && row.planned_claims.length >= 4
-      && row.learning_goal
-    ),
-    editorial_specificity_checked_across_entire_brief: normalizedLearningGoals.length === 11
-      && new Set(normalizedLearningGoals).size === 11
-      && normalizedLearningGoals.every((value) => value.length >= 80 && !placeholderPattern.test(value))
-      && normalizedClaimFocuses.length === 53
-      && new Set(normalizedClaimFocuses).size === 53
-      && normalizedClaimFocuses.every((value) => value.length >= 80 && !placeholderPattern.test(value))
-      && plannedClaims.every((row) => typeof row.claim_type === 'string' && row.claim_type.length >= 8),
-    topic_source_case_combinations_are_distinct: new Set(topicBriefs.map((row) =>
-      JSON.stringify({ source_ids: row.source_ids, case_ids: row.case_ids })
-    )).size === topicBriefs.length,
-    four_variable_modules_cover_every_emne_once: brief.proposed_module_order.length === 4
-      && isDeepStrictEqual(brief.proposed_module_order.map((row) => row.emne_ids.length), [3, 3, 3, 2])
-      && moduleEmneIds.length === unit.emne_count
-      && new Set(moduleEmneIds).size === unit.emne_count
-      && unit.emne_ids.every((id) => moduleEmneIds.includes(id)),
-    source_documents_are_versioned_and_scoped: sourceDocument.schema === 'history_go_film_tv_archive_preservation_access_authenticity_sources_v1'
-      && sourceDocument.version === '1.0.0'
-      && sourceDocument.planned_unit_id === UNIT_ID
-      && caseDocument.schema === 'history_go_film_tv_archive_preservation_access_authenticity_cases_v1'
-      && caseDocument.version === '1.0.0'
-      && caseDocument.planned_unit_id === UNIT_ID
-      && topicClaimDocument.schema === 'history_go_film_tv_archive_preservation_access_authenticity_topic_claims_v1'
-      && topicClaimDocument.version === '1.0.0'
-      && topicClaimDocument.planned_unit_id === UNIT_ID,
-    brief_engine_contains_no_scm_sync_or_push: forbiddenScmTokens.every((token) => !engineSource.includes(token))
-      && !forbiddenGitCommand.test(engineSource),
-    preservation_digitization_restoration_reconstruction_access_are_separate:
-      brief.source_policy.preservation_digitization_restoration_reconstruction_and_access_are_distinct_actions
-      && brief.source_policy.digital_copy_does_not_prove_long_term_preservation
-      && brief.source_policy.streaming_availability_does_not_equal_archival_preservation_or_permanent_access,
-    provenance_metadata_and_object_levels_are_explicit:
-      brief.source_policy.archive_object_work_manifestation_item_and_access_copy_are_distinct
-      && brief.source_policy.provenance_requires_documented_chain_not_filename_or_visual_similarity
-      && brief.source_policy.metadata_and_cataloguing_are_evidence_infrastructure_not_neutral_description
-      && brief.source_policy.catalog_entry_does_not_prove_item_survival_completeness_or_viewing_access,
-    access_rights_privacy_and_reuse_are_separate:
-      brief.source_policy.findability_access_right_to_view_and_right_to_reuse_are_distinct
-      && brief.source_policy.copyright_permission_privacy_data_protection_contract_and_archive_policy_are_distinct
-      && brief.source_policy.public_interest_archiving_does_not_remove_data_protection_safeguards,
-    indigenous_and_community_control_are_explicit:
-      brief.source_policy.rights_holder_permission_does_not_override_indigenous_collective_cultural_control
-      && brief.source_policy.indigenous_and_community_material_requires_community_led_or_authoritative_protocol_sources
-      && brief.source_policy.repatriation_digital_return_access_copy_and_transfer_of_custody_are_distinct,
-    born_digital_migration_and_authenticity_are_separate:
-      brief.source_policy.born_digital_preservation_requires_fixity_storage_monitoring_format_strategy_and_documented_events
-      && brief.source_policy.format_migration_is_a_preservation_event_not_proof_of_unchanged_identity,
-    streaming_catalog_instability_is_method_bounded:
-      brief.source_policy.platform_catalog_change_requires_date_territory_account_state_and_collection_method
-      && brief.source_policy.streaming_availability_does_not_equal_archival_preservation_or_permanent_access,
-    restoration_versions_loss_and_reconstruction_are_separate:
-      brief.source_policy.restoration_intervention_must_be_documented_and_reversible_where_practicable
-      && brief.source_policy.restored_version_is_not_automatically_the_original_or_single_authoritative_version
-      && brief.source_policy.absence_missing_footage_and_destroyed_material_are_not_interchangeable_claims
-      && brief.source_policy.reconstruction_must_mark_inference_substitution_and_unknown_material,
+    every_case_has_evidence_overlap_with_owning_topic: topicBriefs.every((topic) => topic.case_ids.every((id) => caseById.get(id).source_ids.some((sourceId) => topic.source_ids.includes(sourceId)))),
+    fifty_three_variable_planned_claims: plannedClaims.length === 53 && new Set(plannedClaims.map((row) => row.id)).size === 53 && isDeepStrictEqual(claimCounts, [5, 5, 5, 5, 5, 5, 5, 5, 4, 5, 4]) && new Set(claimCounts).size > 1,
+    no_planned_claim_overstated_as_verified: plannedClaims.every((row) => row.status === 'planned_requires_fulltext_verification'),
+    all_topics_have_sources_cases_claims_and_goal: topicBriefs.every((row) => row.source_ids.length >= 4 && row.case_ids.length >= 3 && row.planned_claims.length >= 4 && row.learning_goal),
+    editorial_specificity_checked_across_entire_brief: normalizedLearningGoals.length === 11 && new Set(normalizedLearningGoals).size === 11 && normalizedLearningGoals.every((value) => value.length >= 80 && !placeholderPattern.test(value)) && normalizedClaimFocuses.length === 53 && new Set(normalizedClaimFocuses).size === 53 && normalizedClaimFocuses.every((value) => value.length >= 80 && !placeholderPattern.test(value)) && plannedClaims.every((row) => typeof row.claim_type === 'string' && row.claim_type.length >= 8),
+    topic_source_case_combinations_are_distinct: new Set(topicBriefs.map((row) => JSON.stringify({ source_ids: row.source_ids, case_ids: row.case_ids }))).size === topicBriefs.length,
+    four_variable_modules_cover_every_emne_once: brief.proposed_module_order.length === 4 && isDeepStrictEqual(brief.proposed_module_order.map((row) => row.emne_ids.length), [3, 3, 3, 2]) && moduleEmneIds.length === unit.emne_count && new Set(moduleEmneIds).size === unit.emne_count && unit.emne_ids.every((id) => moduleEmneIds.includes(id)),
+    source_documents_are_versioned_and_scoped: sourceDocument.schema === 'history_go_film_tv_archive_preservation_access_authenticity_sources_v1' && sourceDocument.version === '1.0.0' && sourceDocument.planned_unit_id === UNIT_ID && caseDocument.schema === 'history_go_film_tv_archive_preservation_access_authenticity_cases_v1' && caseDocument.version === '1.0.0' && caseDocument.planned_unit_id === UNIT_ID && topicClaimDocument.schema === 'history_go_film_tv_archive_preservation_access_authenticity_topic_claims_v1' && topicClaimDocument.version === '1.0.0' && topicClaimDocument.planned_unit_id === UNIT_ID,
+    brief_engine_contains_no_scm_sync_or_push: forbiddenScmTokens.every((token) => !engineSource.includes(token)) && !forbiddenGitCommand.test(engineSource),
+    preservation_digitization_restoration_reconstruction_access_are_separate: brief.source_policy.preservation_digitization_restoration_reconstruction_and_access_are_distinct_actions && brief.source_policy.digital_copy_does_not_prove_long_term_preservation && brief.source_policy.streaming_availability_does_not_equal_archival_preservation_or_permanent_access,
+    provenance_metadata_and_object_levels_are_explicit: brief.source_policy.archive_object_work_manifestation_item_and_access_copy_are_distinct && brief.source_policy.provenance_requires_documented_chain_not_filename_or_visual_similarity && brief.source_policy.metadata_and_cataloguing_are_evidence_infrastructure_not_neutral_description && brief.source_policy.catalog_entry_does_not_prove_item_survival_completeness_or_viewing_access,
+    access_rights_privacy_and_reuse_are_separate: brief.source_policy.findability_access_right_to_view_and_right_to_reuse_are_distinct && brief.source_policy.copyright_permission_privacy_data_protection_contract_and_archive_policy_are_distinct && brief.source_policy.public_interest_archiving_does_not_remove_data_protection_safeguards,
+    indigenous_and_community_control_are_explicit: brief.source_policy.rights_holder_permission_does_not_override_indigenous_collective_cultural_control && brief.source_policy.indigenous_and_community_material_requires_community_led_or_authoritative_protocol_sources && brief.source_policy.repatriation_digital_return_access_copy_and_transfer_of_custody_are_distinct,
+    born_digital_migration_and_authenticity_are_separate: brief.source_policy.born_digital_preservation_requires_fixity_storage_monitoring_format_strategy_and_documented_events && brief.source_policy.format_migration_is_a_preservation_event_not_proof_of_unchanged_identity,
+    streaming_catalog_instability_is_method_bounded: brief.source_policy.platform_catalog_change_requires_date_territory_account_state_and_collection_method && brief.source_policy.streaming_availability_does_not_equal_archival_preservation_or_permanent_access,
+    restoration_versions_loss_and_reconstruction_are_separate: brief.source_policy.restoration_intervention_must_be_documented_and_reversible_where_practicable && brief.source_policy.restored_version_is_not_automatically_the_original_or_single_authoritative_version && brief.source_policy.absence_missing_footage_and_destroyed_material_are_not_interchangeable_claims && brief.source_policy.reconstruction_must_mark_inference_substitution_and_unknown_material,
     production_archive_is_not_released_work: brief.source_policy.production_archive_material_is_not_identical_to_the_released_work,
-    fulltext_claim_trace_and_verification_boundary_explicit:
-      brief.source_policy.planned_claim_is_not_verified_claim
-      && brief.source_policy.fulltext_requires_paragraph_level_claim_trace
-      && brief.runtime_registration.registered === false
-      && brief.runtime_registration.allowed_before_full_chapter_gate === false,
-    unit_fifteen_boundary_explicit: normalizeEditorialText(brief.scope.overlap_boundary).includes('enhet 15')
-      && normalizeEditorialText(brief.scope.overlap_boundary).includes('kanonisering')
-      && normalizeEditorialText(brief.scope.overlap_boundary).includes('kollektivt minne'),
+    fulltext_claim_trace_and_verification_boundary_explicit: brief.source_policy.planned_claim_is_not_verified_claim && brief.source_policy.fulltext_requires_paragraph_level_claim_trace && brief.runtime_registration.registered === false && brief.runtime_registration.allowed_before_full_chapter_gate === false,
+    unit_fifteen_boundary_explicit: normalizeEditorialText(brief.scope.overlap_boundary).includes('enhet 15') && normalizeEditorialText(brief.scope.overlap_boundary).includes('kanonisering') && normalizeEditorialText(brief.scope.overlap_boundary).includes('kollektivt minne'),
     all_source_policy_guards_remain_true: Object.values(brief.source_policy).every((value) => value === true)
   };
 
@@ -242,7 +199,7 @@ export function buildFilmTvArchivePreservationAccessAuthenticitySourceBriefV1() 
       correctness_and_evidence: { score: 5, evidence: '30 inspectable kilder er organisert i fem komplementære evidensfamilier; alle 30 er brukt og alle kildehenvisninger resolver.' },
       coverage_and_completion: { score: 5, evidence: '11/11 canonicale emner er eid nøyaktig én gang gjennom fire moduler, 53 planlagte claims og 26 dokumenterte case.' },
       editorial_quality: { score: 5, evidence: 'Alle læringsmål og claimfokus er særskrevne, substansielle, unike og uten placeholderprosa; claimmengden varierer med problemkompleksitet.' },
-      technical_integrity: { score: 5, evidence: 'Kilde-, case- og claimreferanser er resolvable; canonicale metoder finnes; registry/status-progresjon er monoton og runtime-registrering er eksplisitt blokkert.' },
+      technical_integrity: { score: 5, evidence: 'Forutsetningskapitlene kreves både registrert med korrekt filkontrakt og dokumentert grønne i egne fulltekstaudits; alle kilde-, case- og emnereferanser er resolvable.' },
       safety_and_responsibility: { score: 5, evidence: 'Personvern, rettigheter, sensitivt materiale, urfolks- og fellesskapskontroll, rekonstruksjonsusikkerhet og plattformobservasjon har separate evidensgrenser.' },
       maintainability_and_reproducibility: { score: 5, evidence: 'Briefmotoren er SCM-fri, datadokumentene er versjonerte, gateovergangen er deterministisk og enhet 15-grensen er permanent eksplisitt.' }
     },
