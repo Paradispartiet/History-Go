@@ -2,7 +2,7 @@
 
 Status: **canonical dokumentasjonsinngang**
 Register: [`documentation_registry.json`](./documentation_registry.json)
-Sist kontrollert: **2026-08-03**
+Sist kontrollert: **2026-08-15**
 
 Dette dokumentet svarer på tre spørsmål:
 
@@ -19,6 +19,14 @@ Dette dokumentet svarer på tre spørsmål:
 Markdown-filer blir ikke automatisk runtime-data. Produksjonsinnhold styres av source-data, manifester, loadere og validering. Dokumentasjonen styrer arkitektur, arbeidsmåte og kontrakter; CI må håndheve reglene som ikke kan overlates til tekst alene.
 
 ## Leserekkefølge
+
+### Etikk, ansvarlig næringsliv og aktsomhet
+
+1. [`ETHICAL_GUIDELINES_V1.md`](./ETHICAL_GUIDELINES_V1.md) — canonical etiske retningslinjer for personvern, kildebruk/opphavsrett, AI, ikke-diskriminering, antikorrupsjon, leverandører, barn/unge, tilgjengelighet og ansvarlig innholdsproduksjon
+2. [`DUE_DILIGENCE_ASSESSMENT_V1.md`](./DUE_DILIGENCE_ASSESSMENT_V1.md) — canonical risikobasert aktsomhetsvurdering for egen virksomhet og leverandørkjede med tiltak, ansvar, oppfølging og revisjon
+3. [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md) — bindende faglig sannhets- og kildeverifikasjonsregel for brukerrettet innhold
+
+Etikkpolicyen eier de overordnede virksomhetsprinsippene. Aktsomhetsvurderingen eier risikoregisteret og oppfølgingen. Mer spesifikke privacy-, safety-, bilde-, data- og produksjonskontrakter kan stille strengere krav, men ikke svekke disse grensene.
 
 ### Teknologi, språk, backend og dataeierskap
 
