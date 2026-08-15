@@ -72,10 +72,20 @@ jobs:
             source = source.replace(setAnchor, 'const UNIT_ELEVEN_OR_LATER_GATES = new Set([OUTPUT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE, LOCATION_PRODUCTION_SOURCE_GATE, LOCATION_PRODUCTION_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE]);');
             fs.writeFileSync(file, source);
           }
+
+          {
+            const file = 'tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs';
+            let source = fs.readFileSync(file, 'utf8');
+            const anchor = "    'location_production_place_ethics_full_chapter_complete_next_unit_source_brief'\n  ].includes(film.nextGate), true);";
+            if (!source.includes(anchor)) throw new Error('unit11 fulltext test: later gate assertion anchor missing');
+            source = source.replace(anchor, "    'location_production_place_ethics_full_chapter_complete_next_unit_source_brief',\n    'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production',\n    'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief'\n  ].includes(film.nextGate), true);");
+            fs.writeFileSync(file, source);
+          }
           EOF
           node --check scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
           node --check scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
           node --check scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node --check tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
 
       - name: Set synthetic unit 14 gate
         run: |
@@ -114,6 +124,7 @@ jobs:
           git add scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs \
                   scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs \
                   scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs \
+                  tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs \
                   .trigger/unit14-unit11-monotone-repair \
                   .github/workflows/temp-film-tv-unit14-unit11-monotone-repair.yml
           git config user.name "github-actions[bot]"
