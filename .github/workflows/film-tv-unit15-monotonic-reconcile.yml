@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  patch-monotonic-gates:
+  reconcile-and-audit:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -18,102 +18,150 @@ jobs:
           ref: agent/film-tv-unit15-cultural-heritage-canon-stars-memory-source-brief
           fetch-depth: 0
 
-      - name: Patch Unit 14 gates for legal Unit 15 advancement
+      - name: Merge current main without rewriting Unit 15
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Make Units 11 to 13 monotonic through Unit 15
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
 
           unit15 = "cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production"
+          anchor = "const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';"
+          constant = f"const UNIT15_SOURCE_GATE = '{unit15}';"
 
-          def replace_exact(path, old, new):
+          files_with_gate_sets = [
+              "scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs",
+              "scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs",
+              "scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs",
+              "scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs",
+              "scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs",
+              "scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs",
+          ]
+          for path in files_with_gate_sets:
               p = Path(path)
               text = p.read_text()
-              if old not in text:
-                  raise SystemExit(f"Expected pattern missing in {path}: {old[:120]}")
-              p.write_text(text.replace(old, new, 1))
+              if constant not in text:
+                  if anchor not in text:
+                      raise SystemExit(f"Archive gate anchor missing in {path}")
+                  text = text.replace(anchor, anchor + "\n" + constant, 1)
+              old = "ARCHIVE_PRESERVATION_FULLTEXT_GATE]);"
+              new = "ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE]);"
+              if new not in text:
+                  if old not in text:
+                      raise SystemExit(f"Later-gate set terminator missing in {path}")
+                  text = text.replace(old, new)
+              p.write_text(text)
 
-          source = "scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs"
-          replace_exact(
-              source,
-              "const FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';\nconst UNIT_FOURTEEN_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE]);",
-              f"const FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';\nconst UNIT_FIFTEEN_SOURCE_GATE = '{unit15}';\nconst UNIT_FOURTEEN_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE, UNIT_FIFTEEN_SOURCE_GATE]);"
-          )
-          replace_exact(
-              source,
-              "  const laterGateAlreadyActive = currentGate === FULLTEXT_GATE;",
-              "  const laterGateAlreadyActive = [FULLTEXT_GATE, UNIT_FIFTEEN_SOURCE_GATE].includes(currentGate);"
-          )
-          replace_exact(
-              source,
-              "    current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE].includes(currentGate),",
-              "    current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE, UNIT_FIFTEEN_SOURCE_GATE].includes(currentGate),"
-          )
-
-          materializer = Path("scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs")
-          text = materializer.read_text()
-          old = "const OUTPUT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';"
-          new = old + f"\nconst UNIT_FIFTEEN_SOURCE_GATE = '{unit15}';"
-          if old not in text or "const UNIT_FIFTEEN_SOURCE_GATE" in text:
-              raise SystemExit("Unexpected Unit 14 materializer gate constants")
-          text = text.replace(old, new, 1)
-          old = "  if (![SOURCE_BRIEF_GATE, OUTPUT_GATE].includes(filmStatus.nextGate)) throw new Error(`Uventet Film & TV-gate for enhet 14 fulltekst: ${filmStatus.nextGate}`);"
-          new = "  const laterGateAlreadyActive = filmStatus.nextGate === UNIT_FIFTEEN_SOURCE_GATE;\n  if (![SOURCE_BRIEF_GATE, OUTPUT_GATE, UNIT_FIFTEEN_SOURCE_GATE].includes(filmStatus.nextGate)) throw new Error(`Uventet Film & TV-gate for enhet 14 fulltekst: ${filmStatus.nextGate}`);"
-          if old not in text:
-              raise SystemExit("Unit 14 materializer status guard missing")
-          text = text.replace(old, new, 1)
-          text, count = re.subn(
-              r"(?m)^  registry\.subjects\.film_tv\.canonicalModel\.note = (.+);$",
-              r"  if (!laterGateAlreadyActive) registry.subjects.film_tv.canonicalModel.note = \1;",
-              text,
-              count=1,
-          )
-          if count != 1:
-              raise SystemExit("Unit 14 materializer registry-note guard patch failed")
-          pattern = re.compile(
-              r"  filmStatus\.editorialStatus = 'chapters_in_progress';\n"
-              r"  filmStatus\.nextGate = OUTPUT_GATE;\n"
-              r"  filmStatus\.note = (.+);\n"
-          )
-          match = pattern.search(text)
-          if not match:
-              raise SystemExit("Unit 14 materializer status write block missing")
-          replacement = (
-              "  if (!laterGateAlreadyActive) {\n"
-              "    filmStatus.editorialStatus = 'chapters_in_progress';\n"
-              "    filmStatus.nextGate = OUTPUT_GATE;\n"
-              f"    filmStatus.note = {match.group(1)};\n"
-              "  }\n"
-          )
-          text = pattern.sub(replacement, text, count=1)
-          materializer.write_text(text)
-
-          audit = "scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs"
-          replace_exact(
-              audit,
-              "const OUTPUT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';",
-              f"const OUTPUT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';\nconst UNIT_FIFTEEN_SOURCE_GATE = '{unit15}';"
-          )
-          replace_exact(
-              audit,
-              "      && filmStatus?.nextGate === OUTPUT_GATE",
-              "      && [OUTPUT_GATE, UNIT_FIFTEEN_SOURCE_GATE].includes(filmStatus?.nextGate)"
-          )
+          files_with_direct_later_arrays = [
+              "scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs",
+              "scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs",
+          ]
+          for path in files_with_direct_later_arrays:
+              p = Path(path)
+              text = p.read_text()
+              if constant not in text:
+                  if anchor not in text:
+                      raise SystemExit(f"Archive gate anchor missing in {path}")
+                  text = text.replace(anchor, anchor + "\n" + constant, 1)
+              old = "ARCHIVE_PRESERVATION_FULLTEXT_GATE].includes"
+              new = "ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE].includes"
+              if new not in text:
+                  if old not in text:
+                      raise SystemExit(f"Later-gate array missing in {path}")
+                  text = text.replace(old, new)
+              p.write_text(text)
           PY
 
-      - name: Commit compatibility patch
+      - name: Register Unit 15 source brief canonically
         shell: bash
         run: |
-          if git diff --quiet; then
-            echo "No compatibility changes needed."
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("data/fagverk/fagverk_registry.json")
+          registry = json.loads(path.read_text())
+          current = tuple(int(part) for part in registry.get("version", "0.0.0").split("."))
+          floor = (3, 2, 0)
+          if current < floor:
+              registry["version"] = "3.02.0"
+          registry["updatedAt"] = max(registry.get("updatedAt", ""), "2026-08-15")
+          model = registry["subjects"]["film_tv"]["canonicalModel"]
+          model["fifteenthSourceClaimBrief"] = "data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json"
+          model["note"] = "Film & TVs variable canon har 192 emner. Kilde- og claimbriefen for Kulturarv, kanon, stjerner og minne er materialisert med 12/12 canonicale emner, 4 moduler, 14 eksplisitte metodebaser, 56 planlagte claims, 26 inspectable kilder og 24 dokumenterte case. Popularitet er ikke i seg selv kanon, kulturarv, kultstatus eller kollektivt minne; stjernepersona, rollefigur, privatperson og senere myte holdes adskilt; og festivalminne, motarkiv, nostalgi, reprise/ombruk, sitatsirkulasjon og TV-minne har egne evidensgrenser. Kapitlet er ikke runtime-registrert før fulltekst- og claimspesifikk evidensport er bestått."
+          path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n")
+          PY
+
+      - name: Add permanent Unit 15 registry integration test
+        shell: bash
+        run: |
+          cat > tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs <<'EOF'
+          import test from 'node:test';
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+
+          const read = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
+          const SOURCE_BRIEF = 'data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json';
+          const UNIT15_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
+
+          test('Unit 15 source brief er canonicalt registrert uten tidlig kapittelregistrering', () => {
+            const registry = read('data/fagverk/fagverk_registry.json');
+            const status = read('data/fagverk/subject_status.json');
+            const brief = read(SOURCE_BRIEF);
+            const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
+
+            assert.equal(registry.subjects.film_tv.canonicalModel.fifteenthSourceClaimBrief, SOURCE_BRIEF);
+            assert.equal(filmStatus.nextGate, UNIT15_GATE);
+            assert.equal(brief.runtime_registration.registered, false);
+            assert.equal(brief.runtime_registration.allowed_before_full_chapter_gate, false);
+            assert.equal(registry.subjects.film_tv.chapters.some((row) => row.id === 'kulturarv-kanon-stjerner-og-minne'), false);
+          });
+          EOF
+
+      - name: Run Unit 15 and monotonic predecessor gates
+        shell: bash
+        run: |
+          node scripts/brief-film-tv-cultural-heritage-canon-stars-memory-sources-v1.mjs
+          node --test \
+            tests/film-tv-cultural-heritage-canon-stars-memory-source-brief-v1.test.mjs \
+            tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs
+
+      - name: Rebuild and verify Fagverk release manifest
+        shell: bash
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+
+      - name: Commit reconciled Unit 15 artifacts
+        shell: bash
+        run: |
+          if git diff --quiet && git status --porcelain --untracked-files=all | grep -q '^$'; then
+            echo "No reconciliation changes needed."
             exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
-            scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs \
-            scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs \
-            scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs
-          git commit -m "Make Film TV Unit 14 gates monotonic for Unit 15"
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/film-tv-cultural-heritage-canon-stars-memory-source-brief-v1-audit.json \
+            tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs \
+            scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs \
+            scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs \
+            scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs \
+            scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs \
+            scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs \
+            scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs \
+            scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs \
+            scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          git commit -m "Complete Film TV Unit 15 source brief contract"
           git push origin HEAD:agent/film-tv-unit15-cultural-heritage-canon-stars-memory-source-brief
