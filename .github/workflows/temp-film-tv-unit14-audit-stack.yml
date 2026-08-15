@@ -22,32 +22,20 @@ jobs:
         run: node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs --write
       - name: Materialize fulltext
         run: node --input-type=module -e "import('./scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs').then(m => m.materializeFilmTvArchivePreservationAccessAuthenticityFulltextV1())"
-      - name: Identify deterministic mismatch
+      - name: Print chapter mismatch fields
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import { isDeepStrictEqual } from 'node:util';
           const m = await import('./scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs');
-          const built = m.buildFilmTvArchivePreservationAccessAuthenticityFulltextV1();
-          const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
-          const checks = [
-            ['chapter', 'data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet.json', built.chapter],
-            ['brief', 'data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet/brief.json', built.chapterBrief],
-            ['claims', 'data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet/claims.json', built.claimsDoc],
-            ['registry', 'data/fagverk/fagverk_registry.json', built.registry],
-            ['status', 'data/fagverk/subject_status.json', built.status]
-          ];
-          built.modules.forEach((v, i) => checks.push([`module-${i + 1}`, built.chapter.moduleFiles[i], v]));
-          let failed = false;
-          for (const [name, p, expected] of checks) {
-            const actual = read(p);
-            const ok = isDeepStrictEqual(actual, expected);
-            console.log(`${name}: ${ok ? 'MATCH' : 'MISMATCH'}`);
-            if (!ok) {
-              failed = true;
-              if (name === 'registry') console.log('registry versions/chapters', actual.version, expected.version, actual.subjects.film_tv.chapters.length, expected.subjects.film_tv.chapters.length);
-              if (name === 'status') console.log('status versions/gates', actual.version, expected.version, actual.subjects.find(x=>x.id==='film_tv')?.nextGate, expected.subjects.find(x=>x.id==='film_tv')?.nextGate);
+          const expected = m.buildFilmTvArchivePreservationAccessAuthenticityFulltextV1().chapter;
+          const actual = JSON.parse(fs.readFileSync('data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet.json', 'utf8'));
+          for (const key of new Set([...Object.keys(actual), ...Object.keys(expected)])) {
+            if (!isDeepStrictEqual(actual[key], expected[key])) {
+              console.log(`MISMATCH ${key}`);
+              console.log('ACTUAL', JSON.stringify(actual[key]));
+              console.log('EXPECTED', JSON.stringify(expected[key]));
             }
           }
-          if (failed) process.exitCode = 2;
+          if (!isDeepStrictEqual(actual, expected)) process.exitCode = 2;
           NODE
