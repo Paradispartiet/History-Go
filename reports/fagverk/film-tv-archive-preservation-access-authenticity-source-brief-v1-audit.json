@@ -1,0 +1,110 @@
+{
+  "schema": "history_go_film_tv_archive_preservation_access_authenticity_source_brief_v1_audit",
+  "version": "1.0.0",
+  "updated_at": "2026-08-15",
+  "status": "archive_preservation_access_authenticity_source_brief_verified",
+  "subject_id": "film_tv",
+  "planned_unit_id": "arkiv-bevaring-tilgang-og-autentisitet",
+  "summary": {
+    "emne_count": 11,
+    "module_count": 4,
+    "planned_claim_count": 53,
+    "source_count": 30,
+    "used_source_count": 30,
+    "case_count": 26,
+    "used_case_count": 26
+  },
+  "claim_counts_by_emne": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    4,
+    5,
+    4
+  ],
+  "quality_assessment": {
+    "schema": "history_go_six_dimension_quality_assessment_v1",
+    "assessment_scope": "film_tv_unit_14_source_claim_brief",
+    "scale": {
+      "minimum": 1,
+      "maximum": 5
+    },
+    "threshold": {
+      "minimum_dimension_score": 4,
+      "minimum_total_score": 27,
+      "maximum_total_score": 30,
+      "critical_deviations_allowed": 0
+    },
+    "dimensions": {
+      "correctness_and_evidence": {
+        "score": 5,
+        "evidence": "30 inspectable kilder er organisert i fem komplementære evidensfamilier; alle 30 er brukt og alle kildehenvisninger resolver."
+      },
+      "coverage_and_completion": {
+        "score": 5,
+        "evidence": "11/11 canonicale emner er eid nøyaktig én gang gjennom fire moduler, 53 planlagte claims og 26 dokumenterte case."
+      },
+      "editorial_quality": {
+        "score": 5,
+        "evidence": "Alle læringsmål og claimfokus er særskrevne, substansielle, unike og uten placeholderprosa; claimmengden varierer med problemkompleksitet."
+      },
+      "technical_integrity": {
+        "score": 5,
+        "evidence": "Forutsetningskapitlene kreves både registrert med korrekt filkontrakt og dokumentert grønne i egne fulltekstaudits; alle kilde-, case- og emnereferanser er resolvable."
+      },
+      "safety_and_responsibility": {
+        "score": 5,
+        "evidence": "Personvern, rettigheter, sensitivt materiale, urfolks- og fellesskapskontroll, rekonstruksjonsusikkerhet og plattformobservasjon har separate evidensgrenser."
+      },
+      "maintainability_and_reproducibility": {
+        "score": 5,
+        "evidence": "Briefmotoren er SCM-fri, datadokumentene er versjonerte, gateovergangen er deterministisk og enhet 15-grensen er permanent eksplisitt."
+      }
+    },
+    "total_score": 30,
+    "critical_deviations": [],
+    "unresolved_blockers": [],
+    "conclusion": "high_quality_source_brief_ready_for_fulltext"
+  },
+  "gates": {
+    "exact_unit_fourteen_problem_set_and_sequence": true,
+    "exact_prerequisite_contract": true,
+    "prerequisite_fulltext_artifacts_and_audits_green": true,
+    "current_status_is_input_output_or_known_later_gate": true,
+    "exact_unit_emne_coverage": true,
+    "all_emners_active_canonical": true,
+    "all_canonical_topics_have_methods": true,
+    "thirty_inspectable_https_sources": true,
+    "evidence_source_families_present": true,
+    "every_source_used": true,
+    "every_source_reference_resolves": true,
+    "twenty_six_documented_cases_used": true,
+    "every_case_reference_resolves": true,
+    "every_case_has_evidence_overlap_with_owning_topic": true,
+    "fifty_three_variable_planned_claims": true,
+    "no_planned_claim_overstated_as_verified": true,
+    "all_topics_have_sources_cases_claims_and_goal": true,
+    "editorial_specificity_checked_across_entire_brief": true,
+    "topic_source_case_combinations_are_distinct": true,
+    "four_variable_modules_cover_every_emne_once": true,
+    "source_documents_are_versioned_and_scoped": true,
+    "brief_engine_contains_no_scm_sync_or_push": true,
+    "preservation_digitization_restoration_reconstruction_access_are_separate": true,
+    "provenance_metadata_and_object_levels_are_explicit": true,
+    "access_rights_privacy_and_reuse_are_separate": true,
+    "indigenous_and_community_control_are_explicit": true,
+    "born_digital_migration_and_authenticity_are_separate": true,
+    "streaming_catalog_instability_is_method_bounded": true,
+    "restoration_versions_loss_and_reconstruction_are_separate": true,
+    "production_archive_is_not_released_work": true,
+    "fulltext_claim_trace_and_verification_boundary_explicit": true,
+    "unit_fifteen_boundary_explicit": true,
+    "all_source_policy_guards_remain_true": true
+  },
+  "next_gate": "archive_preservation_access_authenticity_source_brief_complete_full_chapter_production"
+}
