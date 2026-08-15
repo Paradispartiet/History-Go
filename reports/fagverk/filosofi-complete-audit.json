@@ -1,6 +1,6 @@
 {
-  "schema": "history_go_fagverk_filosofi_complete_audit_v2",
-  "version": "3.0.0",
+  "schema": "history_go_fagverk_filosofi_complete_audit_v3",
+  "version": "4.0.0",
   "status": "filosofi_complete",
   "subject": {
     "id": "filosofi",
@@ -11,37 +11,43 @@
   },
   "summary": {
     "schema": "history_go_fagverk_filosofi_completion_v1",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "subject_id": "filosofi",
     "status": "complete",
     "complete_ready": true,
     "updated_at": "2026-08-14",
-    "canonical_domain_count": 13,
-    "canonical_emne_count": 54,
-    "canonical_concept_count": 162,
-    "canonical_method_count": 27,
-    "standalone_article_count": 54,
-    "chapter_count": 13,
-    "total_word_count": 70557,
-    "total_claim_count": 330,
-    "source_registration_count": 69,
+    "canonical_domain_count": 20,
+    "canonical_emne_count": 68,
+    "canonical_concept_count": 204,
+    "canonical_method_count": 34,
+    "standalone_article_count": 68,
+    "chapter_count": 20,
+    "total_word_count": 88965,
+    "total_claim_count": 428,
+    "source_registration_count": 110,
     "minimum_words_per_article": 1234,
     "next_gate": "maintenance_source_refresh_and_place_case_expansion",
     "contracts": [
-      "54/54 canonicale emner og 162/162 canonicale begreper kan være strukturelt materialisert uten at Filosofi er faglig complete.",
+      "68/68 canonicale emner og 204/204 canonicale begreper kan være strukturelt materialisert uten at Filosofi er faglig complete.",
       "University depth krever artikkelspesifikk rekonstruksjon av en faktisk filosofisk debatt, navngitte posisjoner eller tradisjoner og minst én reell rival.",
       "University depth krever relevante primærverk der verkargumenter står sentralt og emnespesifikke sekundærkilder til den faktiske problemstillingen.",
       "Ordantall, seksjonsnavn, claim-antall og gyldige source IDs er baseline-egenskaper, ikke bevis på filosofisk kvalitet.",
-      "complete_ready kan bare være true når 54/54 artikler har editorial_quality university_depth_reviewed og består den permanente universitetsporten."
+      "complete_ready kan bare være true når 68/68 artikler har editorial_quality university_depth_reviewed, består den permanente universitetsporten og alle major university fields i feltbenchmarken er eksplisitt dekket."
     ],
     "editorial_quality": "university_depth_reviewed",
     "weak_canonical_definitions_contextually_rewritten": 126,
-    "reviewed_article_count": 54,
+    "reviewed_article_count": 68,
     "remaining_university_review_count": 0,
-    "quality_standard": "substantive_university_philosophy_v2"
+    "quality_standard": "substantive_university_philosophy_v3_major_fields"
   },
-  "reviewed_article_count": 54,
+  "reviewed_article_count": 68,
   "remaining_review_count": 0,
+  "field_coverage": {
+    "status": "major_university_fields_complete",
+    "benchmark_field_count": 22,
+    "newly_closed_gap_count": 7,
+    "scope_definition": "Komplett dekning betyr at alle hovedfelt i den eksplisitte universitetsbenchmarken har egen eller integrert canonical dekning. Påstanden gjelder major university fields, ikke at enhver mulig forskningsnisje eller fremtidig spesialisering er uttømt."
+  },
   "gates": {
     "canonicalCountsExact": true,
     "allEmnersHaveStandaloneArticles": true,
@@ -55,6 +61,8 @@
     "claimCountNotUsedAsQualityProxy": true,
     "obsoletePolishedLabelEliminated": true,
     "universityDepthReviewedAllArticles": true,
+    "majorUniversityFieldsCovered": true,
+    "majorFieldScopeBoundedHonestly": true,
     "completeReadyHonest": true,
     "historicalClaimsRequireSourcesLocked": true,
     "globalCanonWithoutTokenismLocked": true
