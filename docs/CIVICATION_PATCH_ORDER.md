@@ -1,6 +1,6 @@
 # Civication Patch Order
 
-Civication-runtimen er bygget av mange små moduler som koordinerer noen få delte funksjoner. Kandidatflyten har fortsatt enkelte historiske wrappers. **Svarflyten er under aktiv strangler-migrering til `CivicationChoiceDirector`**, som skal være eneste eier av `CivicationEventEngine.prototype.answer` når migreringen er ferdig.
+Civication-runtimen er bygget av mange små moduler som koordinerer noen få delte funksjoner. Kandidatflyten har fortsatt enkelte historiske wrappers. **Svarflyten er ferdig strangler-migrert til `CivicationChoiceDirector`**, som er eneste eier av `CivicationEventEngine.prototype.answer` i standard Civication-runtime.
 
 > Kilde: `js/Civication/civicationShellLoader.js`, de aktuelle runtimefilene og Scene Pipeline-policyen. Ikke gjett rekkefølgen — kontroller den faktiske scriptlista og ChoiceDirector-registeret.
 
@@ -89,7 +89,8 @@ Lavere middleware-prioritet ligger **ytterst** og kjøres derfor først før `ne
 | 50 | `systems/civicationJobEligibilityRuntime.js` | Fanger aktiv jobb før inner svar; oppretter/clearer FIRED reentry-lock kun etter vellykket svar | innenfor Daily / utenfor gjenværende legacy-kjede |
 | 60 | `systems/civicationJobLearningRuntime.js` | Fanger aktiv rolle før inner svar; registrerer kvalifiserende jobblæring kun etter vellykket svar | innenfor Eligibility / utenfor gjenværende legacy-kjede |
 | 70 | `systems/civicationCareerOutcomeRuntime.js` | Setter FIRED stability før inner svar uten rollback; anvender terminal outcome-state etter vellykket svar | innenfor Learning / utenfor gjenværende legacy-kjede |
-| 80 | `systems/civicationMailRuntime.js` | Skriver planned/thread mailplan-state før inner svar uten rollback; anvender brandkonsekvens og triggered thread etter vellykket svar | innenfor CareerOutcome / utenfor siste legacy-wrapper |
+| 80 | `systems/civicationMailRuntime.js` | Skriver planned/thread mailplan-state før inner svar uten rollback; anvender brandkonsekvens og triggered thread etter vellykket svar | innenfor CareerOutcome |
+| 90 | `systems/day/dayPatches.js` | Bevarer recovery/onboarding, followup-suppression, task-kapital og fasekoordinering rundt terminalt EventEngine-svar | innerst / direkte rundt original EventEngine.answer |
 
 Denne rekkefølgen bevarer den tidligere nestingen:
 
@@ -102,7 +103,9 @@ ActiveRole pre
         → Learning pre (capture active)
           → CareerOutcome pre (FIRED stability ved behov)
             → MailRuntime pre (planned/thread state ved behov)
-              → siste legacy answer-wrapper
+              → dayPatches pre (followup-suppression ved fase-event)
+                → original EventEngine.answer
+              ← dayPatches post (onboarding/recovery/task/fase ved success)
             ← MailRuntime post (brand / triggered thread ved success)
           ← CareerOutcome post (terminal outcome-state ved success)
         ← Learning post (jobblæring best-effort ved success)
@@ -113,15 +116,11 @@ ActiveRole pre
 ← ActiveRole post
 ```
 
-### Gjenværende legacy `answer`-wrappere
+### Direkte `answer`-wrappere er avviklet
 
-Denne ene modulen wrapper fortsatt `EventEngine.answer` direkte og skal flyttes inn i middleware-registeret i neste port:
+Ingen modul i standard `DAY_SCRIPTS` wrapper lenger `EventEngine.answer` direkte utenom `CivicationChoiceDirector`. `dayPatches` registrerer nå `day_patches` som deferred middleware priority 90 fordi modulen lastes før Director. ChoiceDirector adopterer registreringen ved boot og kaller deretter den originale EventEngine-implementasjonen som terminal.
 
-| Neste middleware-prioritet | Modul | Nåværende ansvar |
-| --- | --- | --- |
-| 90 | `systems/day/dayPatches.js` | recovery/onboarding, task-kapital, fase/followup-koordinering |
-
-`CivicationChoiceDirector` lastes fortsatt etter `dayPatches`. Derfor fanger Director denne siste legacy-wrapperen som sin terminal og legger de eksplisitte middleware-stegene rundt den. Det er siste overgangstilstand før ChoiceDirector er eneste answer-eier.
+En loader-basert regresjonstest kontrollerer den faktiske `DAY_SCRIPTS`-listen og krever at `systems/day/dayChoiceDirector.js` er den eneste aktive produksjonsmodulen som tilordner `proto.answer`.
 
 ### Valg-handler-registeret
 
@@ -176,10 +175,11 @@ Begge er **kun visning** — effektene beregnes i `dayConsequences`.
 7. Kandidat-mailer hører til kandidat-sømmen, ikke answer-pipelinen. Løs kobling hører til event-bussen.
 8. Oppdater denne filen når en legacy-wrapper flyttes, og lås rekkefølgen med Civication-regresjon.
 
-## Gjenværende mål for 4F
+## 4F answer-pipeline fullført
 
-- Flytt `dayPatches` answer-del → priority 90.
-- Når `dayPatches` answer-del er flyttet, skal `CivicationChoiceDirector` være den eneste modulen som tilordner `CivicationEventEngine.prototype.answer` i den aktive produksjonsruntimen.
+- `dayPatches` answer-del er flyttet til priority 90.
+- `CivicationChoiceDirector` er eneste modul som tilordner `CivicationEventEngine.prototype.answer` i den aktive produksjonsruntimen.
+- Videre answer-logikk skal gå gjennom middleware- eller handler-registeret; direkte wrappers regnes som arkitekturregresjon.
 
 ## Kjente forbehold
 
