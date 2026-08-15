@@ -23,7 +23,7 @@ jobs:
           git status --short
       - name: Build exact migration artifact
         run: |
-          mkdir -p /tmp/direct-tabs-patched
+          mkdir -p /tmp/direct-tabs-patched/js/ui /tmp/direct-tabs-patched/tests
           for file in \
             .github/workflows/language-layer-checks.yml \
             css/place-popup-tabs.css \
