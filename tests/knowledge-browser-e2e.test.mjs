@@ -110,7 +110,8 @@ assert.match(languageContent, /Språksamlingen din/);
 assert.match(languageContent, /e2e place/i);
 assert.match(languageContent, /«Itte» brukes som en lokal form for «ikke»/);
 assert.match(languageContent, /Uttrykk/);
-assert.match(languageContent, /Samlet språkspor/);
+assert.match(languageContent, /Språk · e2e place/);
+assert.match(languageContent, /e2e/);
 assert.equal(await page.getAttribute('#knowledgeSubjectNav a[href="knowledge.html?collection=language"]', "href"), "knowledge.html?collection=language");
 
 await browser.close(); server.close();
