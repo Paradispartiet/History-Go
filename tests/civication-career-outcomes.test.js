@@ -76,6 +76,21 @@ async function run() {
   global.addEventListener = () => {};
   global.dispatchEvent = () => {};
   global.Event = class Event { constructor(type) { this.type = type; } };
+
+  const registeredAnswerMiddlewares = [];
+  global.CivicationChoiceDirector = {
+    registerAnswerMiddleware(name, fn, priority = 100) {
+      const key = String(name || '');
+      if (!registeredAnswerMiddlewares.some((entry) => entry.name === key)) {
+        registeredAnswerMiddlewares.push({ name: key, fn, priority: Number(priority || 100) });
+        registeredAnswerMiddlewares.sort((a, b) => a.priority - b.priority);
+      }
+      return true;
+    },
+    listAnswerMiddlewares() {
+      return registeredAnswerMiddlewares.map((entry) => ({ name: entry.name, priority: entry.priority }));
+    }
+  };
   global.weekKey = () => '2026-W23';
 
   global.CivicationState = {
@@ -98,6 +113,7 @@ async function run() {
     async answer() { return { ok: true, feedback: 'answered' }; }
     async buildMailPool() { return { mails: [{ id: 'legacy_mail', source_type: 'legacy_pack' }] }; }
   }
+  const originalEventEngineAnswer = CivicationEventEngine.prototype.answer;
   global.CivicationEventEngine = CivicationEventEngine;
 
   global.CivicationMailRuntime = {
@@ -109,6 +125,27 @@ async function run() {
   };
 
   loadScript('js/Civication/systems/civicationCareerOutcomeRuntime.js');
+
+  assert.strictEqual(CivicationEventEngine.prototype.answer, originalEventEngineAnswer, 'career outcome must not patch EventEngine.answer directly');
+  assert.strictEqual(global.CivicationCareerOutcomeRuntime.registerAnswerMiddleware(), true, 'middleware registration is idempotent');
+  assert.strictEqual(registeredAnswerMiddlewares.filter((entry) => entry.name === 'career_outcome_runtime').length, 1, 'career outcome middleware registers exactly once');
+  const outcomeStage = registeredAnswerMiddlewares.find((entry) => entry.name === 'career_outcome_runtime');
+  assert(outcomeStage && typeof outcomeStage.fn === 'function', 'career outcome middleware is available');
+  assert.strictEqual(outcomeStage.priority, 70, 'career outcome middleware stays at priority 70');
+
+  async function answerThroughOutcome(engine, eventId, choiceId) {
+    const pendingSnapshot = engine.getPendingEvent();
+    return outcomeStage.fn(
+      {
+        engine,
+        eventId,
+        choiceId,
+        pending: pendingSnapshot,
+        eventObj: pendingSnapshot?.event || null
+      },
+      () => originalEventEngineAnswer.call(engine, eventId, choiceId)
+    );
+  }
 
   const promoted = global.CivicationCareerOutcomeRuntime.decideOutcome(
     active,
@@ -241,7 +278,7 @@ async function run() {
       decided_at: '2026-06-03T00:00:00.000Z'
     }
   };
-  await new global.CivicationEventEngine({ status: 'pending', event: outcomeEvent }).answer('answer_outcome', 'A');
+  await answerThroughOutcome(new global.CivicationEventEngine({ status: 'pending', event: outcomeEvent }), 'answer_outcome', 'A');
   assert.strictEqual(state.career_outcome_state.status, 'PROMOTED', 'Answer-flow should apply career outcome state');
 
   state = {};
@@ -258,7 +295,7 @@ async function run() {
       role_plan_id: 'test_plan_v1'
     }
   };
-  await new global.CivicationEventEngine({ status: 'pending', event: personalEvent }).answer('personal_001', 'A');
+  await answerThroughOutcome(new global.CivicationEventEngine({ status: 'pending', event: personalEvent }), 'personal_001', 'A');
   assert.strictEqual(state.career_outcome_state, undefined, 'Personal messages must not receive career outcome handling');
 
   console.log('PASS: Civication career outcome tests completed.');

@@ -23,6 +23,9 @@ function makeStorage() {
 
 function bootstrap(activePosition = null) {
   global.window = global;
+  delete global.CivicationChoiceDirector;
+  delete global.CivicationSceneInteraction;
+  delete global.__civicationChoiceAnswerMiddlewareQueue;
   global.localStorage = makeStorage();
   global.Event = class Event { constructor(type) { this.type = type; } };
   global.CustomEvent = class CustomEvent { constructor(type, init) { this.type = type; this.detail = (init && init.detail) || null; } };
@@ -38,12 +41,14 @@ function bootstrap(activePosition = null) {
 
   global.CivicationEventEngine = function CivicationEventEngine() {};
   global.CivicationEventEngine.prototype.getPendingEvent = function getPendingEvent() { return this.__pending || null; };
-  global.CivicationEventEngine.prototype.answer = async function answer() { return { ok: true }; };
+  global.CivicationEventEngine.prototype.answer = async function answer() { return this.__answerResult || { ok: true }; };
 
   loadScript('js/Civication/core/civicationState.js');
   loadScript('js/Civication/systems/civicationCareerRoleResolver.js');
   loadScript('js/Civication/systems/civicationBrandJobState.js');
   loadScript('js/Civication/systems/civicationMailRuntime.js');
+  loadScript('js/Civication/systems/civicationSceneInteraction.js');
+  loadScript('js/Civication/systems/day/dayChoiceDirector.js');
 
   global.CivicationState.setActivePosition(activePosition);
   return { events, consequences };
@@ -119,9 +124,8 @@ function bootstrap(activePosition = null) {
 
   // G fail path: no apply on ok false
   const base = JSON.stringify(state);
-  global.CivicationEventEngine.prototype.answer = async function answerFail() { return { ok: false }; };
-  global.CivicationMailRuntime.patchEventEngine();
   const engineFail = new global.CivicationEventEngine();
+  engineFail.__answerResult = { ok: false };
   engineFail.__pending = { event: { id: 'mail_int_fail', source_type: 'planned', role_scope: 'ekspeditor', brand_id: 'norli', mail_tags: ['brand_mail'], choices: [{ id: 'no', tags: ['kvalitet'] }] } };
   await engineFail.answer('mail_int_fail', 'no');
   assert.strictEqual(JSON.stringify(global.CivicationBrandJobState.getState()), base);

@@ -30,6 +30,21 @@ async function run() {
   global.dispatchEvent = () => {};
   global.Event = class Event { constructor(type) { this.type = type; } };
 
+  const registeredAnswerMiddlewares = [];
+  global.CivicationChoiceDirector = {
+    registerAnswerMiddleware(name, fn, priority = 100) {
+      const key = String(name || '');
+      if (!registeredAnswerMiddlewares.some((entry) => entry.name === key)) {
+        registeredAnswerMiddlewares.push({ name: key, fn, priority: Number(priority || 100) });
+        registeredAnswerMiddlewares.sort((a, b) => a.priority - b.priority);
+      }
+      return true;
+    },
+    listAnswerMiddlewares() {
+      return registeredAnswerMiddlewares.map((entry) => ({ name: entry.name, priority: entry.priority }));
+    }
+  };
+
   global.CivicationState = {
     getState() { return state; },
     setState(patch) { state = { ...state, ...patch }; return patch; },
@@ -355,8 +370,8 @@ async function run() {
     'no active role => no learning step'
   );
 
-  // End-to-end through a patched event engine: answering a planned job mail advances
-  // stored learning, and re-answering the same mail does not double count.
+  // End-to-end through registered ChoiceDirector middleware: answering a planned job
+  // mail advances stored learning, and re-answering the same mail does not double count.
   let engineState = {};
   let enginePending = { status: 'pending', event: { id: 'naer_prog_e2e', source_type: 'planned', mail_type: 'job' } };
   const engineActive = activeP;
@@ -371,19 +386,39 @@ async function run() {
   }
   global.CivicationEventEngine = FakeEngine;
 
-  assert.strictEqual(Runtime.patchEventEngineAnswer(), true, 'answer patch applies once');
-  assert.strictEqual(Runtime.patchEventEngineAnswer(), false, 'answer patch is idempotent');
+  const originalEngineAnswer = FakeEngine.prototype.answer;
+  assert.strictEqual(Runtime.patchEventEngineAnswer(), true, 'compatibility API registers answer middleware');
+  assert.strictEqual(Runtime.registerAnswerMiddleware(), true, 'middleware registration is idempotent');
+  assert.strictEqual(FakeEngine.prototype.answer, originalEngineAnswer, 'job learning never patches EventEngine.answer directly');
+  assert.strictEqual(registeredAnswerMiddlewares.filter((entry) => entry.name === 'job_learning_runtime').length, 1, 'job learning middleware is registered exactly once');
+  const learningStage = registeredAnswerMiddlewares.find((entry) => entry.name === 'job_learning_runtime');
+  assert(learningStage && typeof learningStage.fn === 'function', 'job learning middleware is available');
+  assert.strictEqual(learningStage.priority, 60, 'job learning middleware stays at priority 60');
+
+  async function answerThroughLearning(engine, eventId, choiceId) {
+    const pendingSnapshot = engine.getPendingEvent();
+    return learningStage.fn(
+      {
+        engine,
+        eventId,
+        choiceId,
+        pending: pendingSnapshot,
+        eventObj: pendingSnapshot?.event || null
+      },
+      () => originalEngineAnswer.call(engine, eventId, choiceId)
+    );
+  }
 
   const engine = new FakeEngine();
-  await engine.answer('naer_prog_e2e', 'A');
+  await answerThroughLearning(engine, 'naer_prog_e2e', 'A');
   assert.strictEqual(engineState.job_learning_progress.naer_prog.steps, 1, 'answering a planned job mail advances learning');
   assert.strictEqual(engineState.job_learning_progress.naer_prog.last_updated_day, 5, 'uses the calendar day');
 
-  await engine.answer('naer_prog_e2e', 'A');
+  await answerThroughLearning(engine, 'naer_prog_e2e', 'A');
   assert.strictEqual(engineState.job_learning_progress.naer_prog.steps, 1, 're-answering the same mail does not double count');
 
   enginePending = { status: 'pending', event: { id: 'naer_prog_outcome', source_type: 'role_outcome', mail_class: 'career_outcome' } };
-  await engine.answer('naer_prog_outcome', 'A');
+  await answerThroughLearning(engine, 'naer_prog_outcome', 'A');
   assert.strictEqual(engineState.job_learning_progress.naer_prog.steps, 1, 'answering the outcome mail does not grant a learning step');
 
   // ===========================================================================

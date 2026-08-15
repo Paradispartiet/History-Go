@@ -104,6 +104,8 @@ async function run() {
   loadScript('js/Civication/systems/civicationCareerRoleResolver.js');
   loadScript('js/Civication/systems/civicationMailRuntime.js');
   loadScript('js/Civication/systems/civicationLifeMailRuntime.js');
+  loadScript('js/Civication/systems/civicationSceneInteraction.js');
+  loadScript('js/Civication/systems/day/dayChoiceDirector.js');
 
   const engine = new global.CivicationEventEngine();
   global.HG_CiviEngine = engine;
@@ -120,7 +122,12 @@ async function run() {
   assert.strictEqual(
     global.CivicationMailRuntime.inspect().patched,
     true,
-    'CivicationMailRuntime should patch EventEngine prototype'
+    'CivicationMailRuntime should patch non-answer EventEngine surfaces'
+  );
+  assert.strictEqual(
+    global.CivicationMailRuntime.inspect().answer_middleware_registered,
+    true,
+    'CivicationMailRuntime answer flow should be registered in ChoiceDirector'
   );
 
   const mailRuntimeInspect = global.CivicationMailRuntime.inspect();
