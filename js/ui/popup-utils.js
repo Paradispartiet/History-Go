@@ -296,17 +296,6 @@ function getPeopleForPlace(placeId) {
   const pid = _s(placeId);
   if (!pid) return [];
 
-  const shouldDefer = typeof window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE === "function"
-    && window.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE(pid);
-  if (shouldDefer) {
-    try {
-      window.dispatchEvent(new CustomEvent("hg:people-place-revalidation-needed", {
-        detail: { placeId: pid }
-      }));
-    } catch {}
-    return [];
-  }
-
   const rels = getRelationsForPlace(pid);
   const peopleArr = Array.isArray(window.PEOPLE)
     ? window.PEOPLE
