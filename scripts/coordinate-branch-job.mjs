@@ -59,6 +59,20 @@ if (!doc.includes('## Scene Interaction 4D: ingen syntetiske runtimevalg')) {
 const testPath = 'tests/civication-scene-interaction-no-fallback.test.js';
 fs.writeFileSync(testPath, `const assert = require("node:assert/strict");\nconst fs = require("node:fs");\nconst path = require("node:path");\nconst vm = require("node:vm");\n\nconst repoRoot = process.env.CIVICATION_TEST_REPO_ROOT || path.resolve(__dirname, "..");\nconst workdayPath = path.join(repoRoot, "js/Civication/systems/civicationWorkdayMailBuilder.js");\nconst dailyPath = path.join(repoRoot, "js/Civication/systems/civicationDailyMailBuilder.js");\nconst workdaySource = fs.readFileSync(workdayPath, "utf8");\nconst dailySource = fs.readFileSync(dailyPath, "utf8");\n\nfor (const source of [workdaySource, dailySource]) {\n  assert(!source.includes("__civi_fallback_choice"));\n  assert(!source.includes("Gjør dette ryddig og dokumenter det"));\n  assert(!source.includes("Løs det raskt og gå videre"));\n}\n\nconst windowObject = {\n  DEBUG: false,\n  CivicationState: {\n    getState: () => ({}),\n    getActivePosition: () => null\n  },\n  CivicationMailRuntime: {\n    makeCandidateMailsForActiveRole: async () => []\n  }\n};\nwindowObject.window = windowObject;\nwindowObject.addEventListener = () => {};\nconst documentObject = { readyState: "loading", addEventListener: () => {} };\nconst context = vm.createContext({\n  window: windowObject,\n  document: documentObject,\n  console,\n  Date,\n  Array,\n  Object,\n  String,\n  Number,\n  Promise,\n  Set,\n  Map,\n  Math,\n  Event: function Event(type) { this.type = type; }\n});\nvm.runInContext(workdaySource, context, { filename: workdayPath });\n\nconst normalize = windowObject.CivicationSceneCatalog?.normalizeChoices;\nassert.equal(typeof normalize, "function");\nassert.deepEqual(Array.from(normalize([])), []);\nconst one = Array.from(normalize([{ id: "ack", label: "Bekreft" }]));\nassert.equal(one.length, 1);\nassert.equal(one[0].id, "ack");\nassert.equal(one[0].label, "Bekreft");\nconst two = Array.from(normalize([\n  { id: "A", label: "Undersøk" },\n  { id: "B", label: "Eskaler" }\n]));\nassert.equal(two.length, 2);\nassert.deepEqual(two.map((choice) => choice.id), ["A", "B"]);\nassert(two.every((choice) => choice.__civi_fallback_choice !== true));\n\nconsole.log("civication-scene-interaction-no-fallback.test.js: PASS");\n`, 'utf8');
 
+const reachabilityPath = 'tests/civication-scene-pipeline-reachability.test.js';
+let reachability = fs.readFileSync(reachabilityPath, 'utf8');
+const legacyFallbackAssertion = '    assert(actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationDailyMailBuilder.js")));';
+const migratedFallbackAssertions = [
+  '    assert(!actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationDailyMailBuilder.js")), "Daily-builder skal ikke lenger generere fallbackvalg");',
+  '    assert(!actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationWorkdayMailBuilder.js")), "Workday-builder skal ikke lenger generere fallbackvalg");'
+].join('\n');
+if (reachability.includes(legacyFallbackAssertion)) {
+  reachability = reachability.replace(legacyFallbackAssertion, migratedFallbackAssertions);
+  fs.writeFileSync(reachabilityPath, reachability, 'utf8');
+} else if (!reachability.includes('Daily-builder skal ikke lenger generere fallbackvalg') || !reachability.includes('Workday-builder skal ikke lenger generere fallbackvalg')) {
+  throw new Error(`${reachabilityPath}: expected legacy or migrated fallback assertion not found`);
+}
+
 fs.rmSync('.github/workflows/civication-scene-interaction-4d-temp.yml', { force: true });
 fs.rmSync('.github/civication-scene-interaction-4d-trigger', { force: true });
 
