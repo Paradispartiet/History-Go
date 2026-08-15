@@ -1,0 +1,135 @@
+{
+  "schema": "history_go_film_tv_screen_places_identity_circulation_fulltext_v1_audit",
+  "version": "1.0.0",
+  "updated_at": "2026-08-14",
+  "status": "screen_places_identity_circulation_chapter_verified_registered",
+  "subject_id": "film_tv",
+  "chapter_id": "skjermsteder-identitet-og-sirkulasjon",
+  "summary": {
+    "emne_count": 11,
+    "module_count": 4,
+    "section_count": 11,
+    "paragraph_count": 52,
+    "verified_claim_count": 52,
+    "used_source_count": 36,
+    "case_count": 33,
+    "method_count": 15,
+    "self_check_count": 12,
+    "minimum_paragraph_word_count": 358,
+    "maximum_repeated_sentence_count": 1
+  },
+  "module_paragraph_counts": [
+    13,
+    10,
+    15,
+    14
+  ],
+  "quality_assessment": {
+    "schema": "history_go_six_dimension_quality_assessment_v1",
+    "assessment_scope": "film_tv_unit_12_verified_full_chapter",
+    "scale": {
+      "minimum": 1,
+      "maximum": 5
+    },
+    "threshold": {
+      "minimum_dimension_score": 4,
+      "minimum_total_score": 27,
+      "maximum_total_score": 30,
+      "critical_deviations_allowed": 0
+    },
+    "dimensions": {
+      "correctness_and_evidence": {
+        "score": 5,
+        "evidence_gate_ids": [
+          "fifty_two_verified_final_claims",
+          "claim_specific_evidence_complete_and_resolvable",
+          "all_thirty_six_inspectable_sources_used"
+        ],
+        "evidence": "52/52 sluttclaims har claimspesifikk evidens fra 36/36 inspiserbare kilder, og alle kilder brukes innenfor emnets dokumenterte brief."
+      },
+      "coverage_and_completion": {
+        "score": 5,
+        "evidence_gate_ids": [
+          "exact_eleven_canonical_emne_coverage",
+          "four_variable_modules_and_eleven_emne_owned_sections",
+          "thirty_three_documented_cases_renderable"
+        ],
+        "evidence": "Alle 11 canonicale emner er dekket én gang gjennom fire variable moduler, 11 emneeide seksjoner, 52 fagavsnitt og 33 dokumenterte case."
+      },
+      "editorial_quality": {
+        "score": 4,
+        "evidence_gate_ids": [
+          "fifty_two_substantive_unique_paragraphs",
+          "editorial_sentence_repetition_controlled",
+          "sections_have_research_method_and_disagreement"
+        ],
+        "evidence": "Alle fagavsnitt er substansielle og unike, setningsgjenbruk er kontrollert, og hver seksjon har egne forskningsankre, metodegrenser og dokumentert faglig spenning."
+      },
+      "technical_integrity": {
+        "score": 5,
+        "evidence_gate_ids": [
+          "paragraph_and_keypoint_claim_trace_complete",
+          "canonical_methods_resolve",
+          "materializer_outputs_match_committed_files"
+        ],
+        "evidence": "Kapittel, moduler, brief, claims, register og status materialiseres deterministisk, og alle avsnitts- og nøkkelpunktreferanser er resolvable."
+      },
+      "safety_and_responsibility": {
+        "score": 5,
+        "evidence_gate_ids": [
+          "indigenous_source_control_and_arctic_diversity_explicit",
+          "identity_representation_and_lived_belonging_separated",
+          "unit_thirteen_boundary_explicit"
+        ],
+        "evidence": "Urfolksstyrt kildekontroll, arktisk heterogenitet, person- og fellesskapsevidens og grensen mot samtykke, bilderett, inngrep og lokal effekt er eksplisitte."
+      },
+      "maintainability_and_reproducibility": {
+        "score": 5,
+        "evidence_gate_ids": [
+          "source_brief_is_immutable_historical_input",
+          "chapter_registered_and_status_advanced",
+          "materializer_and_audit_are_scm_free"
+        ],
+        "evidence": "Den historiske source briefen forblir uendret input, progresjonen er monoton, og materializer og audit er rene dataverktøy uten SCM-sideeffekter."
+      }
+    },
+    "total_score": 29,
+    "critical_deviations": [],
+    "unresolved_blockers": [],
+    "automation_limits": [
+      "Automatiske porter kontrollerer dekning, sporbarhet, kildebruk, kontrakter, metodegrenser og deterministisk materialisering.",
+      "Menneskelig stil- og brukstesting kan gi senere pedagogisk finjustering uten å endre evidensstatus."
+    ],
+    "conclusion": "high_quality_verified_full_chapter"
+  },
+  "gates": {
+    "exact_eleven_canonical_emne_coverage": true,
+    "four_variable_modules_and_eleven_emne_owned_sections": true,
+    "fifty_two_verified_final_claims": true,
+    "claim_specific_evidence_complete_and_resolvable": true,
+    "all_thirty_six_inspectable_sources_used": true,
+    "thirty_three_documented_cases_renderable": true,
+    "fifty_two_substantive_unique_paragraphs": true,
+    "editorial_sentence_repetition_controlled": true,
+    "paragraph_and_keypoint_claim_trace_complete": true,
+    "canonical_methods_resolve": true,
+    "sections_have_research_method_and_disagreement": true,
+    "twelve_distributed_self_checks": true,
+    "four_place_and_viewing_layers_separated": true,
+    "maps_routes_and_databases_bounded": true,
+    "interior_building_set_and_lived_home_separated": true,
+    "landscape_atmosphere_environment_and_production_effect_separated": true,
+    "indigenous_source_control_and_arctic_diversity_explicit": true,
+    "mobility_exile_diaspora_and_viewing_layers_separated": true,
+    "identity_representation_and_lived_belonging_separated": true,
+    "iconicity_myth_memory_and_local_effect_separated": true,
+    "archive_provenance_and_memory_effect_bounded": true,
+    "unit_thirteen_boundary_explicit": true,
+    "source_brief_is_immutable_historical_input": true,
+    "chapter_registered_and_status_advanced": true,
+    "materializer_outputs_match_committed_files": true,
+    "materializer_and_audit_are_scm_free": true,
+    "all_source_policy_guards_remain_true": true
+  },
+  "next_gate": "screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief"
+}
