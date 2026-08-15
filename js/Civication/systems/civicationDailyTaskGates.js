@@ -167,7 +167,7 @@
 
     const profile = copy[gateId] || copy.main_delivery;
 
-    return {
+    const event = {
       id: `${roleScope}_${gateId}_${date}`,
       source: "Civication",
       source_type: "daily_task_gate",
@@ -219,6 +219,8 @@
         requires_task: true
       }
     };
+    const interaction = window.CivicationSceneInteraction;
+    return typeof interaction?.decorate === "function" ? interaction.decorate(event) : event;
   }
 
   function defaultGates() {
