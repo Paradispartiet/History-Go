@@ -7,10 +7,13 @@ on:
       - 'js/ui/place-language-layer.js'
       - 'css/place-language-layer.css'
       - 'js/config.js'
+      - 'js/knowledgePage.js'
+      - 'AHA/docs/AHA_HISTORYGO_IMPORT.md'
       - 'docs/SPRAKLEKSIKON.md'
       - 'docs/PLACE_POPUP_SYSTEM.md'
       - 'data/leksikon/README_LEKSIKON.md'
       - 'tests/place-language-layer.test.mjs'
+      - 'tests/knowledge-browser-e2e.test.mjs'
       - '.github/workflows/language-layer-checks.yml'
   workflow_dispatch:
 
@@ -32,6 +35,9 @@ jobs:
 
       - name: Check language runtime syntax
         run: node --check js/ui/place-language-layer.js
+
+      - name: Check Knowledge collection syntax
+        run: node --check js/knowledgePage.js
 
       - name: Test language data and integration contract
         run: node --test tests/place-language-layer.test.mjs
