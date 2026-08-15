@@ -127,6 +127,15 @@ jobs:
           git add -A
           git status --short
 
+      - name: Reject staged workflow changes
+        run: |
+          staged="$(git diff --cached --name-only)"
+          printf '%s\n' "$staged"
+          if printf '%s\n' "$staged" | grep -q '^\.github/workflows/'; then
+            echo 'Refusing to publish generated commit with workflow-file changes staged.' >&2
+            exit 1
+          fi
+
       - name: Check staged Philosophy diff
         run: git diff --cached --check
 
@@ -134,4 +143,4 @@ jobs:
         run: git commit -m "Expand Philosophy to full major-field coverage"
 
       - name: Push permanent Philosophy expansion
-        run: git push origin HEAD:agent/expand-philosophy-core-fields
+        run: git push origin HEAD:refs/heads/agent/philosophy-core-fields-generated
