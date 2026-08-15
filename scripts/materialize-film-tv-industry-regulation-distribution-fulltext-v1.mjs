@@ -7,6 +7,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'industri-regulering-og-distribusjon';
 const INPUT_GATE = 'industry_regulation_distribution_source_brief_complete_full_chapter_production';
 const OUTPUT_GATE = 'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief';
+const UNIT15_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 
 const P = Object.freeze({
   sourceBrief: 'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_source_claim_brief_v1.json',
@@ -112,6 +113,8 @@ export function buildFilmTvIndustryRegulationDistributionFulltextV1() {
   const chapterBrief = structuredClone(read(P.brief));
   const registry = structuredClone(read(P.registry));
   const status = structuredClone(read(P.status));
+  const currentGate = status.subjects.find((row) => row.id === 'film_tv')?.nextGate;
+  const laterGateAlreadyActive = currentGate === UNIT15_SOURCE_GATE;
   const unit = learningPlan.planned_units.find((row) => row.id === CHAPTER_ID);
   assert(unit, 'Læringsplanen mangler enhet 10');
 
@@ -193,16 +196,18 @@ export function buildFilmTvIndustryRegulationDistributionFulltextV1() {
   const chapters = registry.subjects.film_tv.chapters;
   const chapterIndex = chapters.findIndex((row) => row.id === CHAPTER_ID);
   if (chapterIndex === -1) chapters.push(registryChapter); else chapters[chapterIndex] = registryChapter;
-  registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Industri, regulering og distribusjon er registrert etter fulltekst-, claim- og evidensport med 12 canonicale emner, 4 moduler, 12 emneeide seksjoner, 52 claimsporede fagavsnitt, 52/52 verifiserte claims, 34 brukte inspectable kilder og 34 case. Støtte, eierskap, plattformfunksjon, publikumsmåling, rettigheter, klassifisering, format og håndheving holdes i separate evidensspor med eksplisitt tid og territorium. Neste port er kilde- og claimbrief for Resepsjon, deltakelse og publikumsmetoder.';
+  if (!laterGateAlreadyActive) registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Industri, regulering og distribusjon er registrert etter fulltekst-, claim- og evidensport med 12 canonicale emner, 4 moduler, 12 emneeide seksjoner, 52 claimsporede fagavsnitt, 52/52 verifiserte claims, 34 brukte inspectable kilder og 34 case. Støtte, eierskap, plattformfunksjon, publikumsmåling, rettigheter, klassifisering, format og håndheving holdes i separate evidensspor med eksplisitt tid og territorium. Neste port er kilde- og claimbrief for Resepsjon, deltakelse og publikumsmetoder.';
   registry.subjects.film_tv.canonicalModel.tenthSourceClaimBrief = P.sourceBrief;
 
   status.version = maxDottedVersion(status.version, '1.86.0');
   status.updatedAt = maxIsoDate(status.updatedAt, '2026-08-14');
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   assert(filmStatus, 'Mangler Film & TV-status');
-  filmStatus.editorialStatus = 'chapters_in_progress';
-  filmStatus.nextGate = OUTPUT_GATE;
-  filmStatus.note = 'Industri, regulering og distribusjon er registrert etter fulltekst- og evidensaudit: 12/12 canonicale emner, 4 moduler, 12 seksjoner, 52 claimsporede fagavsnitt, 52/52 løste claimplaner, 34 brukte inspectable kilder og 34 case. Marked, makt, rettigheter og regulering er avgrenset med aktør, objekt, metode, periode og territorium. Neste port er kilde- og claimbrief for Resepsjon, deltakelse og publikumsmetoder.';
+  if (!laterGateAlreadyActive) {
+    filmStatus.editorialStatus = 'chapters_in_progress';
+    filmStatus.nextGate = OUTPUT_GATE;
+    filmStatus.note = 'Industri, regulering og distribusjon er registrert etter fulltekst- og evidensaudit: 12/12 canonicale emner, 4 moduler, 12 seksjoner, 52 claimsporede fagavsnitt, 52/52 løste claimplaner, 34 brukte inspectable kilder og 34 case. Marked, makt, rettigheter og regulering er avgrenset med aktør, objekt, metode, periode og territorium. Neste port er kilde- og claimbrief for Resepsjon, deltakelse og publikumsmetoder.';
+  }
 
   return {
     sourceBrief,
@@ -221,7 +226,7 @@ export function buildFilmTvIndustryRegulationDistributionFulltextV1() {
 
 export function materializeFilmTvIndustryRegulationDistributionFulltextV1({ force = false } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  if (!force) assert([INPUT_GATE, OUTPUT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if (!force) assert([INPUT_GATE, OUTPUT_GATE, UNIT15_SOURCE_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
   const built = buildFilmTvIndustryRegulationDistributionFulltextV1();
   write(P.chapter, built.chapter);
   write(P.brief, built.chapterBrief);
