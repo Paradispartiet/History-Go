@@ -1,4 +1,4 @@
-name: Agent write smoke
+name: Agent direct tabs migration
 
 on:
   push:
@@ -8,8 +8,23 @@ permissions:
   contents: write
 
 jobs:
-  smoke:
+  migrate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo smoke
+        with:
+          ref: agent/sprakleksikon-2-0
+          fetch-depth: 0
+      - name: Apply direct-tab migration
+        run: python scripts/agent_direct_tabs_patch.py
+      - name: Verify patch
+        run: |
+          git diff --check
+          git status --short
+      - name: Commit migration
+        run: |
+          git config user.name "History Go migration bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Gjør popupens tilleggsinnhold til direktefaner"
+          git push origin HEAD:agent/sprakleksikon-2-0
