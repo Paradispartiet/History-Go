@@ -9,6 +9,8 @@ const SOURCE_BRIEF_GATE = 'screen_places_identity_circulation_source_brief_compl
 const OUTPUT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
 const UNIT13_SOURCE_BRIEF_GATE = 'location_production_place_ethics_source_brief_complete_full_chapter_production';
 const UNIT13_FULLTEXT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';
+const ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
+const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 
 const P = Object.freeze({
   sourceBrief: 'data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_source_claim_brief_v1.json',
@@ -516,7 +518,7 @@ export function buildFilmTvScreenPlacesIdentityCirculationFulltextV1() {
   if (chapterIndex === -1) chapters.push(registryChapter); else chapters[chapterIndex] = registryChapter;
   registry.subjects.film_tv.canonicalModel.twelfthSourceClaimBrief = P.sourceBrief;
   const registryFilmStatus = status.subjects.find((row) => row.id === 'film_tv');
-  if (![UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE].includes(registryFilmStatus?.nextGate)) {
+  if (![UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE].includes(registryFilmStatus?.nextGate)) {
     registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Skjermsteder, identitet og sirkulasjon er fulltekstregistrert med 11 canonicale emner, 4 variable moduler, 11 emneeide seksjoner, 52 claimsporede fagavsnitt, 52/52 verifiserte claims, 36 brukte inspectable kilder og 33 dokumenterte case. Vist sted, faktisk opptakssted, studiobygget eller digitalt rom, fiktiv eller sammensatt geografi, visningsrom og lokal virkning holdes adskilt. Neste port er kilde- og claimbrief for Location, produksjon og stedsetikk.';
   }
 
