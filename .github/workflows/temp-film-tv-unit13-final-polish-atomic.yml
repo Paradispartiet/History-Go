@@ -88,11 +88,14 @@ jobs:
           node --check tests/film-tv-location-production-place-ethics-source-brief-v1.test.mjs
           node --check tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
 
-      - name: Materialize polished unit 13
-        run: |
-          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs --write
-          node scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
-          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs --write-report
+      - name: Materialize unit 13 source brief
+        run: node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs --write
+
+      - name: Materialize unit 13 fulltext
+        run: node scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
+
+      - name: Audit materialized unit 13
+        run: node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs --write-report
 
       - name: Refresh predecessor and shared deterministic state
         run: |
