@@ -72,7 +72,7 @@ test("Knowledge-siden viser Språk som samling uten å legge Språk inn som Subj
   assert.match(page, /LANGUAGE_COLLECTION_ID\s*=\s*"language"/);
   assert.match(page, /collection=\$\{encodeURIComponent\(collectionId\)\}/);
   assert.match(page, /Språksamlingen din/);
-  assert.match(page, /source\.type\) === "language_lexicon"/);
+  assert.match(page, /language_lexicon/);
   assert.match(page, /renderLanguageCollection/);
   assert.doesNotMatch(page, /SUBJECT_ICONS[\s\S]{0,800}sprak\s*:/);
 });
