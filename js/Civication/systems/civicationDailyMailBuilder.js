@@ -1386,13 +1386,14 @@
       ?? !!norm(active?.career_id);
     let goToWorkInjected = false;
 
-    // Adaptor-modell: de private fasene eies av CivicationPrivatePhaseMailBuilder
-    // (egne fase-familier, maks 1 aktiv mail per fase, alltid daily_private uten
-    // rolle-/arbeidsgiver-binding). Er den lastet, delegerer vi hele den private
-    // fasen dit i stedet for den gamle placeholder-genereringen. Uten modulen
-    // faller vi tilbake til den innebygde genereringen (bakoverkompatibelt).
-    const privatePhaseBuilder = window.CivicationPrivatePhaseMailBuilder;
-    const usePrivatePhaseBuilder = typeof privatePhaseBuilder?.buildPhaseMail === "function";
+    // 4G-A: private fasemaler er en registrert kildeadapter. Daily kjenner ikke
+    // produsentmodulen direkte; SceneCatalog er den eneste adaptergrensen.
+    // Uten registrert adapter beholdes den eksisterende innebygde placeholder-
+    // fallbacken, men standard DAY_SCRIPTS registrerer `private` før Daily lastes.
+    const sceneCatalog = /** @type {any} */ (window.CivicationSceneCatalog);
+    const usePrivateSourceAdapter =
+      typeof sceneCatalog?.getSourceScenes === "function" &&
+      !!sceneCatalog?.getSourceAdapter?.("private");
 
     for (const phase of phases) {
       const phaseId = norm(phase?.id || "morning");
@@ -1411,18 +1412,21 @@
         });
       }
 
-      // Delegér den private fasen til CivicationPrivatePhaseMailBuilder: én
-      // dedikert privat fase-mail (mat/hvile/økonomi/familie/…), aldri jobb.
+      // Hent privat scene gjennom SceneCatalogs registrerte `private`-adapter.
       // Morgenen med aktiv jobb eies av «Gå til jobb»-overgangen alene.
       // day_end beholder sin egen dagslutt-/oppsummeringsgenerator (allerede
       // privat) fordi den driver dagsoppsummerings-UI-et.
-      if (privatePhase && usePrivatePhaseBuilder && phaseId !== "day_end") {
+      if (privatePhase && usePrivateSourceAdapter && phaseId !== "day_end") {
         const skipMorningContent = phaseId === "morning" && hasActiveJob;
         if (!skipMorningContent) {
-          const privateEvent = await privatePhaseBuilder.buildPhaseMail(phaseId, active, {
+          const privateScenes = await sceneCatalog.getSourceScenes("private", {
+            phaseId,
+            active,
             date,
-            runtimeInstanceKey
+            runtimeInstanceKey,
+            consumer: "daily_mail_builder_private_phase"
           });
+          const privateEvent = Array.isArray(privateScenes) ? privateScenes[0] : null;
           if (privateEvent) {
             ordinal += 1;
             items.push({
