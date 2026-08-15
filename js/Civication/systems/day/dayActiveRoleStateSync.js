@@ -2,9 +2,13 @@
 // CivicationActiveRoleStateSync — holder mail-systemets binding i synk med aktiv rolle.
 // Utleder thread-fase (intro→early→mid→climax→mastery), sikrer mail_system-state for aktiv
 // rolle og rydder nav-pending når en aktiv rolle finnes.
-// Hekter seg på: patcher EventEngine.answer; booter på civi:dataReady / civi:booted.
+// Answer-sideeffekten registreres som outer middleware i CivicationChoiceDirector.
 (function () {
   "use strict";
+
+  const ANSWER_MIDDLEWARE_NAME = "active_role_state_sync";
+  const ANSWER_MIDDLEWARE_PRIORITY = 10;
+  const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
 
   function normStr(v) {
     return String(v || "").trim();
@@ -294,11 +298,50 @@
     return false;
   }
 
+  async function activeRoleAnswerMiddleware(ctx, next) {
+    const engine = ctx?.engine || null;
+    const pendingEvent = ctx?.eventObj ? { ...ctx.eventObj } : null;
+    const res = await next();
+    if (res?.ok && pendingEvent) {
+      registerAnsweredMail(pendingEvent);
+      syncMailPlanProgressFromMailSystem();
+      await ensureMailSystemForActiveRole(engine);
+    }
+    return res;
+  }
+
+  function registerAnswerMiddleware() {
+    const director = window.CivicationChoiceDirector;
+    if (director?.registerAnswerMiddleware) {
+      return director.registerAnswerMiddleware(
+        ANSWER_MIDDLEWARE_NAME,
+        activeRoleAnswerMiddleware,
+        ANSWER_MIDDLEWARE_PRIORITY
+      );
+    }
+
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationChoiceAnswerMiddlewareQueue?: Array<{ name: string, fn: Function, priority: number }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY])
+      ? runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY]
+      : (runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY] = []);
+    if (!queue.some(entry => entry?.name === ANSWER_MIDDLEWARE_NAME)) {
+      queue.push({
+        name: ANSWER_MIDDLEWARE_NAME,
+        fn: activeRoleAnswerMiddleware,
+        priority: ANSWER_MIDDLEWARE_PRIORITY
+      });
+    }
+    return true;
+  }
+
   function patchEngine() {
     const Engine = window.CivicationEventEngine;
     if (!Engine || !Engine.prototype) return false;
     const proto = Engine.prototype;
-    if (proto.__activeRoleStateSyncPatched) return true;
+    if (proto.__activeRoleStateSyncPatched) {
+      registerAnswerMiddleware();
+      return true;
+    }
 
     const originalOnAppOpen = proto.onAppOpen;
     if (typeof originalOnAppOpen === "function") {
@@ -332,21 +375,7 @@
       };
     }
 
-    const originalAnswer = proto.answer;
-    if (typeof originalAnswer === "function") {
-      proto.answer = async function patchedAnswer(eventId, choiceId) {
-        const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
-        const pendingEvent = pending?.event ? { ...pending.event } : null;
-        const res = await originalAnswer.call(this, eventId, choiceId);
-        if (res?.ok && pendingEvent) {
-          registerAnsweredMail(pendingEvent);
-          syncMailPlanProgressFromMailSystem();
-          await ensureMailSystemForActiveRole(this);
-        }
-        return res;
-      };
-    }
-
+    registerAnswerMiddleware();
     proto.__activeRoleStateSyncPatched = true;
     return true;
   }
@@ -378,6 +407,7 @@
     ensureMailSystemForActiveRole,
     registerAnsweredMail,
     clearNavPendingWhenActiveRoleExists,
+    registerAnswerMiddleware,
     patchEngine
   };
 })();

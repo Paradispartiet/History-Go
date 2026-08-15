@@ -9,6 +9,9 @@
 
   const STATE_KEY = "life_mail_runtime_v1";
   const MANIFEST_PATH = "data/Civication/lifeMails/life_manifest.json";
+  const ANSWER_MIDDLEWARE_NAME = "life_mail_runtime";
+  const ANSWER_MIDDLEWARE_PRIORITY = 30;
+  const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
 
   const jsonCache = new Map();
 
@@ -334,9 +337,49 @@
       tags.has("subculture_edge");
   }
 
+  async function lifeMailAnswerMiddleware(ctx, next) {
+    const eventObj = ctx?.eventObj || null;
+    const isLifeMail = norm(eventObj?.source_type) === "life" || norm(eventObj?.mail_class) === "life";
+    const result = await next();
+
+    if (result?.ok !== false && isLifeMail) {
+      markLifeMailAnswered(eventObj, ctx?.choiceId);
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+    }
+
+    return result;
+  }
+
+  function registerAnswerMiddleware() {
+    const director = window.CivicationChoiceDirector;
+    if (director?.registerAnswerMiddleware) {
+      return director.registerAnswerMiddleware(
+        ANSWER_MIDDLEWARE_NAME,
+        lifeMailAnswerMiddleware,
+        ANSWER_MIDDLEWARE_PRIORITY
+      );
+    }
+
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationChoiceAnswerMiddlewareQueue?: Array<{ name: string, fn: Function, priority: number }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY])
+      ? runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY]
+      : (runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY] = []);
+    if (!queue.some(entry => entry?.name === ANSWER_MIDDLEWARE_NAME)) {
+      queue.push({
+        name: ANSWER_MIDDLEWARE_NAME,
+        fn: lifeMailAnswerMiddleware,
+        priority: ANSWER_MIDDLEWARE_PRIORITY
+      });
+    }
+    return true;
+  }
+
   function patchEventEngine() {
     const proto = window.CivicationEventEngine?.prototype;
-    if (!proto || proto.__civicationLifeMailRuntimePatched === true) return false;
+    if (!proto || proto.__civicationLifeMailRuntimePatched === true) {
+      registerAnswerMiddleware();
+      return false;
+    }
 
     const legacyOnAppOpen = proto.onAppOpen;
     proto.onAppOpen = async function lifeRuntimeOnAppOpen(opts = {}) {
@@ -362,24 +405,7 @@
       return { enqueued: false, reason: active ? "life_no_match" : "no_active_job" };
     };
 
-    const legacyAnswer = proto.answer;
-    proto.answer = async function lifeRuntimeAnswer(eventId, choiceId) {
-      const pending = this.getPendingEvent ? this.getPendingEvent() : null;
-      const eventObj = pending?.event || null;
-      const isLifeMail = norm(eventObj?.source_type) === "life" || norm(eventObj?.mail_class) === "life";
-
-      const result = typeof legacyAnswer === "function"
-        ? await legacyAnswer.call(this, eventId, choiceId)
-        : { ok: false };
-
-      if (result?.ok !== false && isLifeMail) {
-        markLifeMailAnswered(eventObj, choiceId);
-        try { window.dispatchEvent(new Event("updateProfile")); } catch {}
-      }
-
-      return result;
-    };
-
+    registerAnswerMiddleware();
     proto.__civicationLifeMailRuntimePatched = true;
     proto.__civicationLifeMailRuntimePatchedAt = new Date().toISOString();
     return true;
@@ -394,6 +420,7 @@
       tags: Array.from(getStateTags(state)),
       pending: Array.isArray(getInbox()) ? getInbox().find(item => item?.status === "pending")?.event || null : null,
       patched: window.CivicationEventEngine?.prototype?.__civicationLifeMailRuntimePatched === true,
+      answer_middleware_registered: window.CivicationChoiceDirector?.listAnswerMiddlewares?.().some?.(entry => entry?.name === ANSWER_MIDDLEWARE_NAME) === true,
       cache_size: jsonCache.size
     };
   }
@@ -416,6 +443,7 @@
     makeCandidateLifeMails,
     makeNextLifeMail,
     markLifeMailAnswered,
+    registerAnswerMiddleware,
     patchEventEngine
   };
 
