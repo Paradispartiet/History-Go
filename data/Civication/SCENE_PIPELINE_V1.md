@@ -145,7 +145,7 @@ De gamle interne Daily-funksjonene finnes foreløpig som kompatibilitetskode i f
 
 1. Dagsprogrammet beskriver fortsatt en eldre element-/ordmengdemodell. Målkontrakten bruker 3–6 faktiske arbeidssituasjoner; lesetid og ordmengde er observasjoner, ikke produksjonskvoter.
 2. SceneCatalog leser fortsatt registrerte kildekataloger. Ett kompilert scene-register er måltilstanden etter at kildeadapterne er samlet.
-3. 4G-A–4G-B har flyttet `private` og `life` bak rene SceneCatalog-adaptre. `narrative` og `social` gjenstår før source-adapter-steget er fullført.
+3. 4G-A–4G-C har flyttet `private`, `life` og `narrative` bak rene SceneCatalog-adaptre. `social` gjenstår før source-adapter-steget er fullført.
 
 ## Fagverk og stabile spilleregler
 
@@ -185,7 +185,8 @@ Reachability-testen håndhever typeparitet og direkte lasting. SceneDirector-eie
 7. **Pågår 4G:** Gjør private, life, narrative og social til kildeadaptre.
    - **Fullført 4G-A:** `private` registreres deferred og konsumeres via `CivicationSceneCatalog`; Daily har ingen direkte produsentkobling.
    - **Fullført 4G-B:** `life` registreres som egen SceneCatalog-adapter; standard Life-`onAppOpen` konsumerer kilden via Catalog uten direkte produsentfallback.
-   - **Gjenstår:** `narrative`, `social`.
+   - **Fullført 4G-C:** `narrative` eier manifest/stream-eligibility og storylet→scene bak SceneCatalog; Daily eier fortsatt dagsplassering og narrativ state/effect-transaksjon.
+   - **Gjenstår:** `social`.
 8. La runtime lese ett kompilert scene-register; fjern parallelle kildeveier og gamle `jobbmails`.
 9. Slå på blokkerende semantisk spilltest: plansteg → scene → valg/oppgave/info → konsekvens → progresjon → neste steg.
 
@@ -236,4 +237,23 @@ Regresjonen krever at:
 - standard Life-`onAppOpen` ikke kaller Life-produsenten direkte;
 - deferred Life-registrering adopteres idempotent;
 - answer-middleware-navn og priority 30 er uendret;
+- `compiled_registry_ready` fortsatt er `false`.
+
+
+## Source adapters 4G-C: narrative
+
+`CivicationNarrativeSceneSource` registrerer `narrative` i det eksisterende SceneCatalog-registeret med `source_format: civication_narrative_stream_v1`. Modulen eier manifest-/streamlasting, stream- og storylet-eligibility, vekt/manifestrekkefølge og storylet→scene-materialisering. Standard `DAY_SCRIPTS` laster kilden etter Workday/SceneCatalog og før Daily.
+
+Daily beholder dagsorkestreringen: hvilke slots som finnes, private/work-separasjonen, `narrative_state_v1`, valg-/effekttransaksjonen og hvor en same-day storylet settes inn. Selve sceneproduksjonen går derimot gjennom `CivicationSceneCatalog.getSourceScenes("narrative", ...)` både ved normal dagsbygging og når `opens_streams` injiserer en ny storylet samme dag. Daily refererer aldri `CivicationNarrativeSceneSource` direkte.
+
+4G-C bevarer de eksisterende reglene for manifestrekkefølge, første kvalifiserte storylet per stream, `weight_when`, phase/time-slot, private blokkering av work/class_case/conflict, scene-ID/thread-key, valg, `opens_streams` og prefererte injeksjonsfaser. Catalog legger bare til vanlig source-provenance og Scene Interaction-dekorering. De gamle interne narrative kildefunksjonene kan ligge som kompatibilitetskode frem til compiled-registry-cutoveren, men normal Daily-produksjon kaller dem ikke.
+
+Regresjonen krever at:
+
+- loaderrekkefølgen er SceneCatalog → Narrative source → Daily;
+- Catalog eier nøyaktig én `narrative`-adapter;
+- normal `buildQueue` ikke laster streammanifest, velger storylet eller materialiserer narrative scene direkte;
+- same-day `opens_streams`-injeksjon bruker samme Catalog-adapter;
+- private/work-separasjon, sceneidentitet, valg og injeksjonsfase bevares;
+- Daily answer-middleware forblir priority 40;
 - `compiled_registry_ready` fortsatt er `false`.
