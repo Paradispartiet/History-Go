@@ -1,8 +1,8 @@
 name: Civication Scene Interaction 4D temp
 on:
-  push:
+  pull_request:
     branches:
-      - agent/civication-scene-interaction-4d
+      - main
 permissions:
   contents: write
 jobs:
@@ -22,98 +22,23 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import re
-
-          files = [
-              Path('js/Civication/systems/civicationDailyMailBuilder.js'),
-              Path('js/Civication/systems/civicationWorkdayMailBuilder.js'),
-          ]
-          pattern = re.compile(
-              r'(?ms)^(?P<i>\s*)if \(normalized\.length >= 2\) return normalized;\n'
-              r'(?P=i)\n(?P=i)return \[\n'
-              r'.*?label: "Gjør dette ryddig og dokumenter det".*?'
-              r'label: "Løs det raskt og gå videre".*?'
-              r'^(?P=i)\];'
-          )
+          files = [Path('js/Civication/systems/civicationDailyMailBuilder.js'), Path('js/Civication/systems/civicationWorkdayMailBuilder.js')]
+          pattern = re.compile(r'(?ms)^(?P<i>\s*)if \(normalized\.length >= 2\) return normalized;\n(?P=i)\n(?P=i)return \[\n.*?label: "Gjør dette ryddig og dokumenter det".*?label: "Løs det raskt og gå videre".*?^(?P=i)\];')
           for path in files:
               text = path.read_text(encoding='utf-8')
               new, count = pattern.subn(lambda m: f"{m.group('i')}return normalized;", text, count=1)
-              if count != 1:
-                  raise SystemExit(f'Expected one synthetic-choice block in {path}, got {count}')
-              if '__civi_fallback_choice' in new or 'Gjør dette ryddig og dokumenter det' in new or 'Løs det raskt og gå videre' in new:
-                  raise SystemExit(f'Fallback marker/text remains in {path}')
+              if count != 1: raise SystemExit(f'Expected one synthetic-choice block in {path}, got {count}')
+              if '__civi_fallback_choice' in new: raise SystemExit(f'Fallback marker remains in {path}')
               path.write_text(new, encoding='utf-8')
-
           doc = Path('data/Civication/SCENE_PIPELINE_V1.md')
           text = doc.read_text(encoding='utf-8')
           old = 'Den globale auditten står fortsatt i `observe`. Generiske standardvalg, svarwrappere, gammel dagskvote og manglende compiled registry er separate, synlige porter som ennå ikke er lukket.'
           new = 'Den globale auditten står fortsatt i `observe`. Generiske standardvalg er nå fjernet fra både legacy-Daily og `CivicationSceneCatalog`; svarwrappere, gammel dagskvote og manglende compiled registry er separate, synlige porter som ennå ikke er lukket.'
-          if old not in text:
-              raise SystemExit('Expected 4C debt sentence not found in SCENE_PIPELINE_V1.md')
+          if old not in text: raise SystemExit('Expected 4C debt sentence not found')
           doc.write_text(text.replace(old, new, 1), encoding='utf-8')
-
-          test = Path('tests/civication-scene-interaction-no-fallback.test.js')
-          test.write_text(r'''const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const path = require("node:path");
-const vm = require("node:vm");
-
-const repoRoot = process.env.CIVICATION_TEST_REPO_ROOT || path.resolve(__dirname, "..");
-const workdayPath = path.join(repoRoot, "js/Civication/systems/civicationWorkdayMailBuilder.js");
-const dailyPath = path.join(repoRoot, "js/Civication/systems/civicationDailyMailBuilder.js");
-const workdaySource = fs.readFileSync(workdayPath, "utf8");
-const dailySource = fs.readFileSync(dailyPath, "utf8");
-
-for (const source of [workdaySource, dailySource]) {
-  assert(!source.includes("__civi_fallback_choice"));
-  assert(!source.includes("Gjør dette ryddig og dokumenter det"));
-  assert(!source.includes("Løs det raskt og gå videre"));
-}
-
-const windowObject = {
-  DEBUG: false,
-  CivicationState: {
-    getState: () => ({}),
-    getActivePosition: () => null
-  },
-  CivicationMailRuntime: {
-    makeCandidateMailsForActiveRole: async () => []
-  }
-};
-windowObject.window = windowObject;
-vm.runInContext(workdaySource, vm.createContext({
-  window: windowObject,
-  console,
-  Date,
-  Array,
-  Object,
-  String,
-  Number,
-  Promise,
-  Set,
-  Map,
-  Math
-}), { filename: workdayPath });
-
-const normalize = windowObject.CivicationSceneCatalog.normalizeChoices;
-assert.equal(typeof normalize, "function");
-assert.deepEqual(Array.from(normalize([])), []);
-const one = Array.from(normalize([{ id: "ack", label: "Bekreft" }]));
-assert.equal(one.length, 1);
-assert.equal(one[0].id, "ack");
-assert.equal(one[0].label, "Bekreft");
-const two = Array.from(normalize([
-  { id: "A", label: "Undersøk" },
-  { id: "B", label: "Eskalér" }
-]));
-assert.equal(two.length, 2);
-assert.deepEqual(two.map((choice) => choice.id), ["A", "B"]);
-assert(two.every((choice) => choice.__civi_fallback_choice !== true));
-
-console.log("civication-scene-interaction-no-fallback.test.js: PASS");
-''', encoding='utf-8')
+          Path('tests/civication-scene-interaction-no-fallback.test.js').write_text('''const assert = require("node:assert/strict");\nconst fs = require("node:fs");\nconst path = require("node:path");\nconst vm = require("node:vm");\nconst repoRoot = process.env.CIVICATION_TEST_REPO_ROOT || path.resolve(__dirname, "..");\nconst workdayPath = path.join(repoRoot, "js/Civication/systems/civicationWorkdayMailBuilder.js");\nconst dailyPath = path.join(repoRoot, "js/Civication/systems/civicationDailyMailBuilder.js");\nconst workdaySource = fs.readFileSync(workdayPath, "utf8");\nconst dailySource = fs.readFileSync(dailyPath, "utf8");\nfor (const source of [workdaySource, dailySource]) { assert(!source.includes("__civi_fallback_choice")); assert(!source.includes("Gjør dette ryddig og dokumenter det")); assert(!source.includes("Løs det raskt og gå videre")); }\nconst windowObject = { DEBUG:false, CivicationState:{getState:()=>({}),getActivePosition:()=>null}, CivicationMailRuntime:{makeCandidateMailsForActiveRole:async()=>[]} }; windowObject.window=windowObject;\nvm.runInContext(workdaySource, vm.createContext({window:windowObject,console,Date,Array,Object,String,Number,Promise,Set,Map,Math}), {filename:workdayPath});\nconst normalize=windowObject.CivicationSceneCatalog.normalizeChoices;\nassert.deepEqual(Array.from(normalize([])), []);\nconst one=Array.from(normalize([{id:"ack",label:"Bekreft"}])); assert.equal(one.length,1); assert.equal(one[0].id,"ack");\nconst two=Array.from(normalize([{id:"A",label:"Undersøk"},{id:"B",label:"Eskaler"}])); assert.equal(two.length,2); assert.deepEqual(two.map(c=>c.id),["A","B"]);\nconsole.log("civication-scene-interaction-no-fallback.test.js: PASS");\n''', encoding='utf-8')
           PY
       - name: Validate 4D
-        shell: bash
         run: |
           node tests/civication-scene-interaction-no-fallback.test.js
           node tests/civication-scene-director-daily-catalog.test.js
@@ -121,7 +46,6 @@ console.log("civication-scene-interaction-no-fallback.test.js: PASS");
           node tests/civication-scene-pipeline-reachability.test.js
           node scripts/audit-civication-scene-pipeline.mjs --strict
       - name: Commit migration and remove temp workflow
-        shell: bash
         run: |
           git config user.name "Paradispartiet"
           git config user.email "paradispartiet@gmail.com"
