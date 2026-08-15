@@ -134,7 +134,11 @@ test('kapittelregistrering avanserer monotont og source briefen forblir historis
   assert.equal(registered.file, 'data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon.json');
   assert.equal(registered.claimsFile, 'data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon/claims.json');
   assert.equal(registered.briefFile, 'data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon/brief.json');
-  assert.equal(film.nextGate, 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief');
+  assert.equal([
+    'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief',
+    'location_production_place_ethics_source_brief_complete_full_chapter_production',
+    'location_production_place_ethics_full_chapter_complete_next_unit_source_brief'
+  ].includes(film.nextGate), true);
   assert.equal(sourceBrief.status, 'source_claim_brief_complete_full_chapter_production');
   assert.equal(sourceBrief.runtime_registration.registered, false);
   assert.equal(sourceBrief.runtime_registration.allowed_before_full_chapter_gate, false);

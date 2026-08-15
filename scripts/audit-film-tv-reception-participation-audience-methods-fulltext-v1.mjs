@@ -13,7 +13,9 @@ const CHAPTER_ID = 'resepsjon-deltakelse-og-publikumsmetoder';
 const OUTPUT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';
 const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';
 const SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
-const UNIT_ELEVEN_OR_LATER_GATES = new Set([OUTPUT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE]);
+const LOCATION_PRODUCTION_SOURCE_GATE = 'location_production_place_ethics_source_brief_complete_full_chapter_production';
+const LOCATION_PRODUCTION_FULLTEXT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';
+const UNIT_ELEVEN_OR_LATER_GATES = new Set([OUTPUT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE, LOCATION_PRODUCTION_SOURCE_GATE, LOCATION_PRODUCTION_FULLTEXT_GATE]);
 const isFilmTvUnitElevenFulltextOrLaterGate = (gate) => UNIT_ELEVEN_OR_LATER_GATES.has(gate);
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`,

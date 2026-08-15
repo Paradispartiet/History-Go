@@ -1,0 +1,128 @@
+{
+  "schema": "history_go_film_tv_location_production_place_ethics_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-15",
+  "status": "location_production_place_ethics_source_brief_complete_full_chapter_production",
+  "subject_id": "film_tv",
+  "planned_unit_id": "location-produksjon-og-stedsetikk",
+  "future_chapter_id": "location-produksjon-og-stedsetikk",
+  "runtime_registration": {
+    "registered": false,
+    "allowed_before_full_chapter_gate": false
+  },
+  "scope": {
+    "title": "Location, produksjon og stedsetikk",
+    "primary_domain_ids": [
+      "sted_location_skjermgeografi"
+    ],
+    "prerequisite_planned_unit_ids": [
+      "skjermsteder-identitet-og-sirkulasjon",
+      "skapende-arbeid-teknologi-og-ansvar"
+    ],
+    "prerequisite_existing_chapter_ids": [],
+    "emne_count": 8,
+    "emne_ids": [
+      "em_film_tv_filmturisme_og_lokale_virkninger",
+      "em_film_tv_gate_kamera_og_offentlig_rom",
+      "em_film_tv_innspillingsspor_og_stedlig_endring",
+      "em_film_tv_location_valg_og_filmsted",
+      "em_film_tv_locationokologi_inngrep_og_miljokonsekvens",
+      "em_film_tv_lokalsamfunn_samtykke_og_stedlig_produksjonsmakt",
+      "em_film_tv_studio_backlot_virtuelt_rom_og_stedserstatning",
+      "em_film_tv_urfolkslandskap_stedskunnskap_og_bilderett"
+    ],
+    "overlap_boundary": "Eier produksjonens fysiske, økologiske, juridiske og sosiale inngrep i locations: locationvalg, gate/offentlig rom, produksjonsspor, miljøkonsekvens, lokalsamfunn og samtykke, urfolkslandskap/ stedskunnskap/bilderett, studio/backlot/virtuelt rom og dokumentert filmturisme/lokal virkning. Enhet 12 eier skjermrepresentasjon, identitet, romlig sirkulasjon, ikonisering, myte og minne; enhet 9 eier generell produksjonsteknologi og ansvar."
+  },
+  "files": {
+    "sources": "data/fag/TV_og_Film/film_tv_location_production_place_ethics_sources_v1.json",
+    "cases": "data/fag/TV_og_Film/film_tv_location_production_place_ethics_cases_v1.json",
+    "topic_claims": "data/fag/TV_og_Film/film_tv_location_production_place_ethics_topic_claims_v1.json"
+  },
+  "source_policy": {
+    "represented_place_shooting_location_production_base_and_local_effect_are_distinct": true,
+    "location_choice_requires_production_evidence_not_screen_similarity_alone": true,
+    "public_access_does_not_equal_single_owner_or_unrestricted_production_control": true,
+    "location_permission_person_consent_community_consultation_and_cultural_protocol_are_distinct": true,
+    "absence_of_documented_objection_is_not_community_consent": true,
+    "community_is_not_a_single_actor_and_claims_must_name_who_was_consulted": true,
+    "individual_release_does_not_clear_collective_indigenous_cultural_or_intellectual_property": true,
+    "indigenous_land_and_knowledge_claims_prioritise_indigenous_led_sources": true,
+    "environmental_standard_or_permit_is_not_proof_of_zero_environmental_impact": true,
+    "carbon_accounting_and_site_specific_ecological_impact_are_distinct": true,
+    "protected_or_sensitive_location_claims_require_site_species_season_activity_and_permission_scope": true,
+    "physical_site_change_restoration_and_no_harm_are_separate_claims": true,
+    "studio_backlot_physical_set_led_volume_digital_asset_and_fictional_place_are_distinct": true,
+    "virtual_production_may_shift_travel_or_location_pressure_but_does_not_automatically_reduce_total_impact": true,
+    "digital_recreation_rights_are_jurisdiction_and_contract_specific": true,
+    "screen_tourism_inspiration_visitation_attributed_spend_and_causal_local_effect_are_distinct": true,
+    "tourism_claims_require_population_period_method_baseline_and_attribution_limit": true,
+    "local_economic_benefit_does_not_alone_establish_social_legitimacy_or_consent": true,
+    "planned_claim_is_not_verified_claim": true,
+    "fulltext_requires_paragraph_level_claim_trace": true
+  },
+  "proposed_module_order": [
+    {
+      "id": "locationvalg-og-offentlig-rom",
+      "sequence": 1,
+      "emne_ids": [
+        "em_film_tv_location_valg_og_filmsted",
+        "em_film_tv_gate_kamera_og_offentlig_rom"
+      ],
+      "purpose": "Går fra location scouting, tilgang og stedserstatning til kameraets og filmteamets faktiske beslag av gate, eiendom og offentlig rom."
+    },
+    {
+      "id": "produksjonsspor-og-locationokologi",
+      "sequence": 2,
+      "emne_ids": [
+        "em_film_tv_innspillingsspor_og_stedlig_endring",
+        "em_film_tv_locationokologi_inngrep_og_miljokonsekvens"
+      ],
+      "purpose": "Skiller fysiske/organisatoriske innspillingsspor fra karbon-, ressurs- og biodiversitetsvirkning og krever stedsspesifikk dokumentasjon."
+    },
+    {
+      "id": "lokalsamfunn-samtykke-og-urfolkslandskap",
+      "sequence": 3,
+      "emne_ids": [
+        "em_film_tv_lokalsamfunn_samtykke_og_stedlig_produksjonsmakt",
+        "em_film_tv_urfolkslandskap_stedskunnskap_og_bilderett"
+      ],
+      "purpose": "Analyserer hvem som får beslutte, hvem som bærer belastning og hvilke samtykke-, konsultasjons-, kultur- og kunnskapsrettigheter som gjelder, med urfolksstyrte kilder der relevant."
+    },
+    {
+      "id": "stedserstatning-filmturisme-og-lokal-virkning",
+      "sequence": 4,
+      "emne_ids": [
+        "em_film_tv_studio_backlot_virtuelt_rom_og_stedserstatning",
+        "em_film_tv_filmturisme_og_lokale_virkninger"
+      ],
+      "purpose": "Knytter studio/backlot/virtuelt rom og stedserstatning til et strengt skille mellom produksjonsrom, turistbesøk og dokumentert lokal økonomisk eller sosial virkning."
+    }
+  ],
+  "production_requirements": {
+    "section_scope_is_derived_from_emne_ownership": true,
+    "paragraph_and_claim_counts_follow_problem_complexity": true,
+    "current_claim_plan_counts_by_emne": [
+      5,
+      5,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "paragraph_claim_trace_required": true,
+    "every_planned_claim_must_be_verified_rewritten_or_rejected": true,
+    "every_used_source_must_support_at_least_one_final_claim": true,
+    "every_location_choice_claim_must_name_actual_shoot_location_represented_place_decision_context_and_source": true,
+    "every_public_space_claim_must_name_jurisdiction_owner_or_manager_activity_obstruction_or_control_and_relevant_rule": true,
+    "every_site_change_claim_must_name_before_during_after_state_and_evidence_of_modification_restoration_or_damage": true,
+    "every_environmental_claim_must_name_site_activity_environmental_object_baseline_method_period_and_uncertainty": true,
+    "every_community_claim_must_name_consulted_actors_decision_power_burdens_benefits_and_documented_process": true,
+    "every_indigenous_claim_must_name_people_or_community_territory_language_knowledge_position_consultation_and_source_control": true,
+    "every_virtual_or_substitution_claim_must_name_physical_stage_set_digital_asset_represented_place_and_shifted_cost_or_impact_layer": true,
+    "every_tourism_claim_must_name_visitor_population_period_location_measurement_method_attribution_scope_and_alternative_explanations": true,
+    "chapter_registration_only_after_fulltext_claim_and_evidence_audit": true
+  },
+  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_location_production_place_ethics"
+}
