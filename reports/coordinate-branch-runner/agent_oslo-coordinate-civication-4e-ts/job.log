@@ -1,0 +1,194 @@
+
+> history-go@0.0.0 typecheck:web
+> tsc -p tsconfig.web.json
+
+
+> history-go@0.0.0 build:web
+> node build/build-web.mjs
+
+
+  dist/web/knowledgeV2.js             82.6kb
+  dist/web/hgKnowledgeEngine.js       25.1kb
+  dist/web/knowledge.js               16.7kb
+  dist/web/fagHealthReport.js         11.7kb
+  dist/web/courses.js                 10.8kb
+  dist/web/hgSocialPrivacy.js         10.5kb
+  dist/web/emnerLoader.js              5.2kb
+  dist/web/hgModeration.js             3.1kb
+  dist/web/hgInsights.js               2.1kb
+  dist/web/emneDekning.js              1.9kb
+  dist/web/fagkartLoader.js            1.8kb
+  dist/web/trivia.js                   1.0kb
+  dist/web/knowledgeV2.js.map        138.8kb
+  dist/web/hgKnowledgeEngine.js.map   40.6kb
+  dist/web/knowledge.js.map           28.8kb
+  dist/web/fagHealthReport.js.map     19.3kb
+  dist/web/courses.js.map             18.1kb
+  dist/web/hgSocialPrivacy.js.map     16.5kb
+  dist/web/emnerLoader.js.map          9.9kb
+  dist/web/hgModeration.js.map         4.5kb
+  ...and 4 more output files...
+
+⚡ Done in 21ms
+
+  dist/web/map.js                         36.0kb
+  dist/web/map-controls-runtime.js        21.6kb
+  dist/web/place-card-quizcards-patch.js  19.5kb
+  dist/web/search.js                      11.2kb
+  dist/web/nearbyFilterControls.js         9.3kb
+  dist/web/nearbyPeopleList.js             6.5kb
+  dist/web/layerManager.js                 6.2kb
+  dist/web/hgSocialMeetFastApiClient.js    6.1kb
+  dist/web/civicationSceneInteraction.js   5.8kb
+  dist/web/nearbyPlacesList.js             5.4kb
+  dist/web/nearbyFilters.js                5.4kb
+  dist/web/nearbyPlaceSelector.js          5.3kb
+  dist/web/left-panel.js                   5.2kb
+  dist/web/categories.js                   5.2kb
+  dist/web/nearbyBadgesPanel.js            4.1kb
+  dist/web/leftPanelMode.js                3.8kb
+  dist/web/nearbyDrawer.js                 2.1kb
+
+⚡ Done in 16ms
+
+  dist/web/pos.js  17.0kb
+
+⚡ Done in 4ms
+[build:web] built 30 entry/entries -> dist/web
+civication-scene-interaction-contract.test.js: PASS
+civication-scene-interaction-no-fallback.test.js: PASS
+civication-scene-director-ownership.test.js: PASS
+civication-scene-director-daily-catalog.test.js: PASS
+civication-task-gate-inline.test.js passed
+civication-scene-pipeline-reachability.test.js: PASS
+# Civication Scene Pipeline v1 — read-only architecture audit
+
+Generated: `2026-08-15T08:04:18.885Z`
+
+Mode: **observe**. Auditten skriver ikke til repoet.
+
+## Sammendrag
+
+| Måling | Resultat |
+|---|---:|
+| Scene-/mailrelaterte JSON-filer | 241 |
+| Scene-lignende poster | 1638 |
+| Kildeformater | 36 |
+| Schema-løse filer | 49 |
+| Dupliserte scene-ID-er | 16 |
+| Manglende interne referanser | 10 |
+| Mailplaner | 25 |
+| Plansteg | 377 |
+| Direkte nåbare plansteg | 369 (97.9 %) |
+| Innhold finnes, men lastes ikke | 0 |
+| Semantiske fallback-erstatninger | 0 |
+| Plantyper som mangler i MailRuntime | 0 |
+| EventEngine.answer-wrappere | 9 |
+| Kilder til generiske fallback-valg | 0 |
+
+## Typeparitet
+
+- Planene bruker: `conflict`, `consequence`, `event`, `followup`, `job`, `knowledge`, `micro`, `people`, `story`
+- `CivicationMailRuntime` laster: `job`, `knowledge`, `micro`, `people`, `conflict`, `followup`, `story`, `event`, `consequence`, `faction_choice`
+- `DailyMailBuilder` kjenner: `people`, `story`, `conflict`, `event`, `faction_choice`, `micro`, `followup`, `knowledge`, `consequence`
+- Mangler i normal planruntime: —
+
+## Semantisk plan-reachability
+
+| Plan | Direkte | Innhold finnes, ikke lastet | Semantisk erstatning | Uløst |
+|---|---:|---:|---:|---:|
+| `data/Civication/mailPlans/by/by_arkitekt_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/by/by_assistent_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/by/by_prosjektleder_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/by/by_radgiver_plan_plan.json` | 12/12 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/by/by_saksbehandler_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/film_tv/produksjonsassistent_plan.json` | 4/4 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/administrasjonsmedarbeider_plan.json` | 20/20 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/arbeider_plan.json` | 32/32 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/avdelingsleder_plan.json` | 27/27 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/controller_plan.json` | 28/28 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json` | 30/30 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json` | 36/36 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/formann_plan.json` | 31/31 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/kapital_og_eierskap_plan.json` | 0/8 | 0 | 0 | 8 |
+| `data/Civication/mailPlans/naeringsliv/mellomleder_plan.json` | 25/25 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/naeringsliv/renholder_plan.json` | 20/20 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/sport/sport_kaptein_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/sport/sport_legende_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/sport/sport_sportsledelse_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/sport/sport_trener_plan.json` | 8/8 | 0 | 0 | 0 |
+| `data/Civication/mailPlans/sport/sport_utover_plan.json` | 8/8 | 0 | 0 | 0 |
+
+## Format- og ID-audit
+
+| Format | Filer | Scener |
+|---|---:|---:|
+| `schema:civication_mail_family_catalog_v1` | 100 | 1269 |
+| `schema:civication_mail_plan_v1` | 25 | 7 |
+| `schema:civication_role_content_v1` | 20 | 61 |
+| `schema-less:other` | 15 | 0 |
+| `schema-less:scenes` | 14 | 0 |
+| `schema-less:threads` | 14 | 0 |
+| `schema:civication_mail_family_catalog_v2` | 9 | 136 |
+| `schema-less:mails` | 6 | 66 |
+| `schema:civication_private_phase_mail_family_v1` | 6 | 45 |
+| `schema:civication_narrative_stream_v1` | 4 | 26 |
+| `schema:civication_life_mail_family_catalog_v1` | 3 | 14 |
+| `schema:civication_by_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_film_tv_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_filosofi_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_historie_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_kunst_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_life_mail_manifest_v1` | 1 | 0 |
+| `schema:civication_life_position_catalog_v1` | 1 | 0 |
+| `schema:civication_lifestory_livelihood_overlays_v1` | 1 | 0 |
+| `schema:civication_literature_career_life_evidence_v2` | 1 | 0 |
+| `schema:civication_mail_day_program_v1` | 1 | 0 |
+| `schema:civication_media_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_musikk_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_naeringsliv_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_narrative_manifest_v1` | 1 | 0 |
+| `schema:civication_natur_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_politikk_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_psykologi_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_religion_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_role_mail_plan_v1` | 1 | 0 |
+| `schema:civication_role_threads_v1` | 1 | 6 |
+| `schema:civication_scene_pipeline_policy_v1` | 1 | 0 |
+| `schema:civication_sport_career_life_evidence_v1` | 1 | 0 |
+| `schema:civication_story_threads_v1` | 1 | 8 |
+| `schema:civication_vitenskap_career_life_evidence_v1` | 1 | 0 |
+
+## Svarpipeline
+
+- Wrappere rundt `EventEngine.answer()`: 9
+  - `js/Civication/systems/civicationCareerOutcomeRuntime.js`
+  - `js/Civication/systems/civicationDailyMailBuilder.js`
+  - `js/Civication/systems/civicationJobEligibilityRuntime.js`
+  - `js/Civication/systems/civicationJobLearningRuntime.js`
+  - `js/Civication/systems/civicationLifeMailRuntime.js`
+  - `js/Civication/systems/civicationMailRuntime.js`
+  - `js/Civication/systems/day/dayActiveRoleStateSync.js`
+  - `js/Civication/systems/day/dayChoiceDirector.js`
+  - `js/Civication/systems/day/dayPatches.js`
+- Generiske fallback-valg finnes i: —
+
+## Dagsprogram
+
+- Deklarert mål: 18–26 elementer; anbefalt 22.
+- Deklarert tekstmål: 8500–12000 ord.
+- Slotkapasitet: 40 totalt, 9 i arbeidsfasene.
+- Scene Pipeline-policy: 3–6 faktiske arbeidssituasjoner.
+- Budsjettkonflikt: **ja**.
+
+## Gate-status
+
+Observasjonsmodus rapporterer 36 funn uten å endre data eller stoppe standardkjøringen.
+Kjør med `--strict` for å gjøre de samme funnene blokkerende når migreringen er klar for gate.
+
+Civication Scene Interaction 4E TypeScript materialization validated.
