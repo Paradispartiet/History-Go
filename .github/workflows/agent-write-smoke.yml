@@ -16,7 +16,7 @@ jobs:
           ref: agent/sprakleksikon-2-0
           fetch-depth: 0
       - name: Apply direct-tab migration
-        run: python scripts/agent_direct_tabs_patch.py
+        run: python scripts/agent_direct_tabs_patch_keep_helpers.py
       - name: Verify patch
         run: |
           git diff --check
