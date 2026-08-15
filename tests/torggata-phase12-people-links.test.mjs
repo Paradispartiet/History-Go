@@ -85,7 +85,7 @@ test("Torggata People has canonical relations and excludes Torggata Bad proxies"
   assert.deepEqual(runtimePeopleForTorggata().map(p=>p.id).sort(),requiredVisible.slice().sort());
 });
 
-test("pending People revalidation keeps usable profiles visible",()=>{
+test("cache-first People keeps usable profiles visible without the obsolete revalidation bridge",()=>{
   const popupSource=fs.readFileSync(path.join(ROOT,"js/ui/popup-utils.js"),"utf8");
   const placeCardRuntime=fs.readFileSync(path.join(ROOT,"js/ui/place-card-epoke.js"),"utf8");
   const events=[];
@@ -94,12 +94,13 @@ test("pending People revalidation keeps usable profiles visible",()=>{
     constructor(type,options={}){this.type=type;this.detail=options.detail}
   }
 
+  const legacyGate=()=>true;
   const context={
     console,
     PEOPLE:people,
     PLACES:[{id:"torggata",category:"by"}],
     RELATIONS:relations,
-    HG_SHOULD_DEFER_PEOPLE_FOR_PLACE(){return true},
+    HG_SHOULD_DEFER_PEOPLE_FOR_PLACE:legacyGate,
     dispatchEvent(event){events.push(event.type);return true},
     CustomEvent:TestCustomEvent,
     document:{
@@ -123,7 +124,8 @@ test("pending People revalidation keeps usable profiles visible",()=>{
 
   const visible=Array.from(context.getPeopleForPlace("torggata"));
   assert.deepEqual(visible.map(person=>person.id).sort(),requiredVisible.slice().sort());
-  assert.ok(events.includes("hg:people-place-revalidation-needed"),"fresh data must still be requested");
-  assert.equal(context.HGPeopleVisibilityPolicy?.mode,"stale-while-revalidate");
-  assert.equal(context.HGPeopleVisibilityPolicy?.hidesUsableCache,false);
+  assert.equal(context.HG_SHOULD_DEFER_PEOPLE_FOR_PLACE,legacyGate,"cache-first lookup must not mutate a legacy gate");
+  assert.equal(events.includes("hg:people-place-revalidation-needed"),false,"per-place revalidation must not control People visibility");
+  assert.equal(context.__HG_PEOPLE_SWR_INSTALLED__,undefined,"obsolete SWR bridge must stay removed");
+  assert.equal(context.HGPeopleVisibilityPolicy,undefined,"obsolete SWR policy marker must stay removed");
 });
