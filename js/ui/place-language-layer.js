@@ -11,6 +11,7 @@
   const KNOWLEDGE_SCHEMA = "history_go_knowledge_entry_v2";
   const KNOWLEDGE_VERSION = 2;
   const SOURCE_TYPE = "language_lexicon";
+  const COLLECTION_KIND = "language";
   const articleCache = new Map();
   let manifestPromise = null;
 
@@ -55,6 +56,39 @@
     } catch {
       return "";
     }
+  }
+
+  function normalizeSubjectId(value) {
+    const raw = text(value);
+    if (!raw) return "";
+    try {
+      if (typeof global.DomainRegistry?.toRuntimeCategoryId === "function") {
+        return text(global.DomainRegistry.toRuntimeCategoryId(raw));
+      }
+      if (typeof global.DomainRegistry?.resolve === "function") {
+        return text(global.DomainRegistry.resolve(raw));
+      }
+    } catch {}
+    return raw === "popkultur" ? "populaerkultur" : raw;
+  }
+
+  function resolveSubjectId(entry, context = {}) {
+    const candidates = [
+      entry?.subject_id,
+      entry?.fagkart_category_id,
+      context.article?.subject_id,
+      context.article?.fagkart_category_id,
+      context.subjectId,
+      context.categoryId,
+      context.place?.categoryId,
+      context.place?.category,
+      context.place?.domain
+    ];
+    for (const candidate of candidates) {
+      const resolved = normalizeSubjectId(candidate);
+      if (resolved && resolved !== "sprak") return resolved;
+    }
+    return "";
   }
 
   const TYPE_ALIASES = Object.freeze({
@@ -114,10 +148,7 @@
     const raw = slug(entry?.type || entry?.kind || "");
     if (!raw || BLOCKED_LANGUAGE_TYPES.has(raw)) return false;
     if (TYPE_ALIASES[raw]) return true;
-    const signals = [
-      raw,
-      ...list(entry?.tags).map(slug)
-    ].join(" ");
+    const signals = [raw, ...list(entry?.tags).map(slug)].join(" ");
     return ["ord", "uttrykk", "begrep", "term", "navn", "sprak", "dialekt", "uttale"]
       .some(signal => signals.includes(signal));
   }
@@ -167,8 +198,7 @@
   }
 
   function knowledgeId(entry) {
-    const entryId = slug(entry?.id || entry?.term || "entry") || "entry";
-    return `ku_sprak_${entryId}`;
+    return text(entry?.knowledge_unit_id) || `ku_sprak_${slug(entry?.id || entry?.term || "entry") || "entry"}`;
   }
 
   function readKnowledgeEntries() {
@@ -191,6 +221,9 @@
   }
 
   function knowledgeEntryForLanguage(entry, context = {}) {
+    const subjectId = resolveSubjectId(entry, context);
+    if (!subjectId) return null;
+
     const now = new Date().toISOString();
     const id = knowledgeId(entry);
     const placeId = text(context.placeId);
@@ -201,26 +234,30 @@
     const example = text(entry?.example);
     const dialectArea = text(entry?.dialect_area || context.article?.dialect_area);
     const emneIds = unique([...(list(context.article?.emne_ids)), ...(list(entry?.emne_ids))]);
+    const explicitConceptIds = unique(entry?.concept_ids);
+    const explicitConcepts = unique(entry?.concepts);
+    const explicitTermIds = unique([entry?.term_id, ...(list(entry?.term_ids))]);
+    const termIds = explicitTermIds.length
+      ? explicitTermIds
+      : [`term_${slug(subjectId) || "subject"}_sprak_${slug(entry?.id || term) || "entry"}`];
     const tags = unique([...(list(entry?.tags)), "språkleksikon", canonical, dialectArea]);
-    const concepts = unique([dialectArea, typeLabel(entry)]);
-    const termId = `term_sprak_${slug(entry?.id || term) || "entry"}`;
-    const conceptIds = concepts.map(value => `co_sprak_${slug(value)}`).filter(value => value !== "co_sprak_");
 
     return {
       schema: KNOWLEDGE_SCHEMA,
       version: KNOWLEDGE_VERSION,
       id,
       knowledge_unit_id: id,
-      subject_id: "sprak",
-      fagkart_category_id: "sprak",
+      subject_id: subjectId,
+      fagkart_category_id: subjectId,
       emne_ids: emneIds,
-      concept_ids: conceptIds,
-      term_ids: [termId],
-      story_ids: [],
-      concepts,
+      concept_ids: explicitConceptIds,
+      term_ids: termIds,
+      story_ids: unique(entry?.story_ids),
+      concepts: explicitConcepts,
       terms: [term],
       tags,
-      kind: "language",
+      kind: COLLECTION_KIND,
+      collection_kind: COLLECTION_KIND,
       dimension: canonical,
       topic: placeName ? `Språk på ${placeName}` : "Stedbundet språk",
       text: [meaning, example ? `Eksempel: ${example}` : ""].filter(Boolean).join(" ") || term,
@@ -239,16 +276,18 @@
       content_quality: {
         version: 2,
         precise_claim: Boolean(meaning),
-        canonical_capture: true,
-        source_bound: true
+        canonical_capture: Boolean(entry?.knowledge_unit_id),
+        source_bound: true,
+        language_entry_id: text(entry?.id) || null
       },
-      link_status: emneIds.length ? "linked" : "language_lexicon"
+      link_status: emneIds.length ? "linked" : "language_source_bound_unresolved"
     };
   }
 
   function captureLanguageKnowledge(entry, context = {}) {
     if (!entry || !text(entry.id || entry.term) || !isLanguageEntry(entry)) return null;
     const incoming = knowledgeEntryForLanguage(entry, context);
+    if (!incoming) return null;
     const rows = readKnowledgeEntries();
     const index = rows.findIndex(row => text(row?.id) === incoming.id || text(row?.knowledge_unit_id) === incoming.id);
 
@@ -263,7 +302,7 @@
 
     try {
       global.dispatchEvent?.(new CustomEvent("hg:knowledgeCollected", {
-        detail: { source: SOURCE_TYPE, entry: incoming }
+        detail: { source: SOURCE_TYPE, collection_kind: COLLECTION_KIND, entry: incoming }
       }));
       global.dispatchEvent?.(new CustomEvent("updateProfile"));
     } catch {}
@@ -271,25 +310,14 @@
   }
 
   function collectedLanguageEntries() {
-    return readKnowledgeEntries().filter(row => text(row?.source?.type) === SOURCE_TYPE);
+    return readKnowledgeEntries().filter(row => text(row?.source?.type) === SOURCE_TYPE || text(row?.collection_kind) === COLLECTION_KIND);
   }
 
   function installKnowledgeBridge() {
     const api = global.HGKnowledgeV2;
     if (!api || api.__hgLanguageBridge) return Boolean(api);
-
     api.captureLanguageKnowledge = captureLanguageKnowledge;
     api.getCollectedLanguageEntries = collectedLanguageEntries;
-
-    if (typeof api.buildProfile === "function") {
-      const originalBuildProfile = api.buildProfile.bind(api);
-      api.buildProfile = async function buildProfileWithLanguageLabel(options) {
-        const profile = await originalBuildProfile(options);
-        if (profile?.subjects?.sprak) profile.subjects.sprak.label = "Språk";
-        return profile;
-      };
-    }
-
     api.__hgLanguageBridge = true;
     return true;
   }
@@ -396,15 +424,15 @@
   }
 
   function activateTab(tablist, panelWrap, id, focus = false) {
-    const selected = tablist.querySelector(`[data-place-tab="${CSS.escape(id)}"]`);
+    const selected = /** @type {HTMLElement | null} */ (tablist.querySelector(`[data-place-tab="${CSS.escape(id)}"]`));
     if (!selected) return;
     tablist.querySelectorAll("[role=tab]").forEach(button => {
       const active = button === selected;
       button.setAttribute("aria-selected", active ? "true" : "false");
-      button.tabIndex = active ? 0 : -1;
+      if (button instanceof HTMLElement) button.tabIndex = active ? 0 : -1;
     });
     panelWrap.querySelectorAll(":scope > [data-place-panel]").forEach(panel => {
-      panel.hidden = panel.dataset.placePanel !== id;
+      if (panel instanceof HTMLElement) panel.hidden = panel.dataset.placePanel !== id;
     });
     if (focus) selected.focus();
   }
@@ -421,7 +449,7 @@
     }, true);
 
     tablist.addEventListener("keydown", event => {
-      const buttons = [...tablist.querySelectorAll("[role=tab]")];
+      const buttons = [...tablist.querySelectorAll("[role=tab]")].filter(button => button instanceof HTMLElement);
       const index = buttons.indexOf(document.activeElement);
       if (index < 0) return;
       let next = index;
@@ -443,7 +471,7 @@
     });
   }
 
-  function addLanguageTeaser(tabsArticle, place, entries, tablist, panelWrap) {
+  function addLanguageTeaser(tabsArticle, entries, tablist, panelWrap) {
     const about = tabsArticle.querySelector('[data-place-panel="about"]');
     if (!about || about.querySelector("[data-language-teaser]")) return;
     const terms = entries.slice(0, 3).map(entry => text(entry?.term || entry?.title || entry?.id)).filter(Boolean);
@@ -470,7 +498,7 @@
         const filter = text(filterButton.getAttribute("data-language-filter")) || "all";
         panel.querySelectorAll("[data-language-filter]").forEach(button => button.setAttribute("aria-pressed", button === filterButton ? "true" : "false"));
         panel.querySelectorAll("[data-language-entry]").forEach(card => {
-          card.hidden = filter !== "all" && card.getAttribute("data-language-type") !== filter;
+          if (card instanceof HTMLElement) card.hidden = filter !== "all" && card.getAttribute("data-language-type") !== filter;
         });
         return;
       }
@@ -482,13 +510,15 @@
       if (!entry) return;
       installKnowledgeBridge();
       const captured = captureLanguageKnowledge(entry, {
+        place,
         placeId: text(place?.id || article?.place_id),
         placeName: text(place?.name),
+        categoryId: text(place?.categoryId || place?.category || place?.domain),
         article,
         sourceFile
       });
       if (!captured) {
-        global.showToast?.("Kunne ikke samle språkoppføringen.");
+        global.showToast?.("Språkoppføringen mangler en sikker fagkobling og ble ikke samlet.");
         return;
       }
       panel.querySelectorAll(`[data-language-collect="${CSS.escape(entryId)}"]`).forEach(button => {
@@ -509,8 +539,8 @@
 
     const popup = document.querySelector(".hg-popup.place-popup-v2");
     const tabsArticle = popup?.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');
-    const tablist = tabsArticle?.querySelector(".hg-place-tabs");
-    const panelWrap = tabsArticle?.querySelector(".hg-place-tab-panels");
+    const tablist = /** @type {HTMLElement | null} */ (tabsArticle?.querySelector(".hg-place-tabs") || null);
+    const panelWrap = /** @type {HTMLElement | null} */ (tabsArticle?.querySelector(".hg-place-tab-panels") || null);
     if (!popup?.isConnected || !tabsArticle || !tablist || !panelWrap) return;
 
     installGenericTabBridge(tablist, panelWrap);
@@ -546,7 +576,7 @@
 
     panel.innerHTML = renderLanguagePanel(place, loaded.article);
     bindLanguagePanel(panel, place, loaded.article, loaded.sourceFile);
-    addLanguageTeaser(tabsArticle, place, entries, tablist, panelWrap);
+    addLanguageTeaser(tabsArticle, entries, tablist, panelWrap);
     tabsArticle.dataset.hgLanguageLayer = "1";
 
     const morePanel = panelWrap.querySelector('[data-place-panel="more"]');
@@ -584,6 +614,7 @@
     loadForPlace,
     canonicalType,
     isLanguageEntry,
+    resolveSubjectId,
     captureLanguageKnowledge,
     getCollected: collectedLanguageEntries,
     isCollected,
