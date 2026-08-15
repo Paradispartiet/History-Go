@@ -1,0 +1,141 @@
+name: People progressive repair temp
+
+on:
+  push:
+    branches:
+      - agent/restore-people-runtime-before-revalidation
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Publish People progressively without a visibility gate
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          boot_path = Path("js/boot-fast.js")
+          boot = boot_path.read_text(encoding="utf-8")
+
+          old_priority = "\n".join([
+              '      const hasPlaceSegment = (file, placeId) => placeId',
+              '        && String(file).split("/").some(segment => segment === placeId);',
+              '      const prioritizeOpenPlace = file => hasPlaceSegment(file, getCurrentPlaceId());',
+          ])
+          new_priority = "\n".join([
+              '      const hasPlaceSegment = (file, placeId) => placeId',
+              '        && String(file).split("/").some(segment => segment === placeId);',
+              '      const priorityFilesByPlace = new Map(',
+              '        Object.entries(manifest.priorityFilesByPlace || {}).map(([placeId, entries]) => [',
+              '          String(placeId || "").trim(),',
+              '          new Set((Array.isArray(entries) ? entries : [])',
+              '            .map(normalizePeoplePath)',
+              '            .filter(file => peopleFiles.includes(file)))',
+              '        ])',
+              '      );',
+              '      const isPriorityFileForPlace = (file, placeId) => Boolean(',
+              '        hasPlaceSegment(file, placeId)',
+              '        || priorityFilesByPlace.get(String(placeId || "").trim())?.has(file)',
+              '      );',
+              '      const prioritizeOpenPlace = file => isPriorityFileForPlace(file, getCurrentPlaceId());',
+          ])
+
+          if "hg:people-progressive-ready" not in boot:
+              if old_priority not in boot:
+                  raise SystemExit("Fant ikke forventet stabil People-priorityblokk")
+              boot = boot.replace(old_priority, new_priority, 1)
+
+              replacements = [
+                  (
+                      '          if (hasPlaceSegment(file, placeId)) rows.push(...fileRows);',
+                      '          if (isPriorityFileForPlace(file, placeId)) rows.push(...fileRows);',
+                  ),
+                  (
+                      '          files: peopleFiles.filter(file => hasPlaceSegment(file, placeId)).length',
+                      '          files: peopleFiles.filter(file => isPriorityFileForPlace(file, placeId)).length',
+                  ),
+                  (
+                      '        priorityFiles: peopleFiles.filter(file => hasPlaceSegment(file, currentPlaceId)).length,',
+                      '        priorityFiles: peopleFiles.filter(file => isPriorityFileForPlace(file, currentPlaceId)).length,',
+                  ),
+              ]
+              for old, new in replacements:
+                  if old not in boot:
+                      raise SystemExit(f"Fant ikke forventet People-kilde: {old}")
+                  boot = boot.replace(old, new, 1)
+
+              old_remember = "\n".join([
+                  '      const rememberRows = ({ url, rows }) => {',
+                  '        loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);',
+                  '        publishOpenPlaceRows();',
+                  '      };',
+              ])
+              new_remember = "\n".join([
+                  '      const rememberRows = ({ url, rows }) => {',
+                  '        const fileRows = Array.isArray(rows) ? rows : [];',
+                  '        loadedRowsByFile.set(url, fileRows);',
+                  '',
+                  '        // Publiser hver ferdig People-fil umiddelbart. Full ready-status kan',
+                  '        // fortsatt vente på manifestet, men UI skal aldri vente på alle filer.',
+                  '        if (fileRows.length) {',
+                  '          const existingPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];',
+                  '          window.PEOPLE = mergeRowsById(fileRows, existingPeople);',
+                  '          emit("hg:people-progressive-ready", {',
+                  '            file: url,',
+                  '            added: fileRows.length,',
+                  '            count: window.PEOPLE.length',
+                  '          });',
+                  '          handlePeopleDataChange();',
+                  '        }',
+                  '',
+                  '        publishOpenPlaceRows();',
+                  '      };',
+              ])
+              if old_remember not in boot:
+                  raise SystemExit("Fant ikke forventet stabil rememberRows-blokk")
+              boot = boot.replace(old_remember, new_remember, 1)
+
+          if "HG_SHOULD_DEFER_PEOPLE_FOR_PLACE" in boot:
+              raise SystemExit("People-visningssperren finnes fortsatt i boot-fast.js")
+
+          boot_path.write_text(boot, encoding="utf-8")
+
+          test_path = Path("tests/background-boot-pacing.test.js")
+          test_source = test_path.read_text(encoding="utf-8")
+          anchor = 'assert.match(boot, /hg:people-priority-ready/);\n'
+          checks = "".join([
+              'assert.match(boot, /hg:people-progressive-ready/);\n',
+              'assert.doesNotMatch(boot, /HG_SHOULD_DEFER_PEOPLE_FOR_PLACE/);\n',
+          ])
+          if "hg:people-progressive-ready/" not in test_source:
+              if anchor not in test_source:
+                  raise SystemExit("Fant ikke People-testankeret")
+              test_source = test_source.replace(anchor, anchor + checks, 1)
+          test_path.write_text(test_source, encoding="utf-8")
+          PY
+
+      - name: Run People regression
+        run: node tests/background-boot-pacing.test.js
+
+      - name: Remove one-shot workflow and publish repair
+        shell: bash
+        run: |
+          rm -f .github/workflows/people-progressive-repair-temp.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/boot-fast.js tests/background-boot-pacing.test.js .github/workflows/people-progressive-repair-temp.yml
+          git commit -m "Publiser People progressivt under bakgrunnslast"
+          git push origin HEAD:${{ github.ref_name }}
