@@ -5,16 +5,13 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const UNIT_ID = 'skjermsteder-identitet-og-sirkulasjon';
-const INPUT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';
-const OUTPUT_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';
-const FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
-const UNIT13_SOURCE_BRIEF_GATE = 'location_production_place_ethics_source_brief_complete_full_chapter_production';
-const UNIT13_FULLTEXT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';
-const UNIT_TWELVE_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE, UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE]);
-const UNIT_TWELVE_POST_BRIEF_GATES = new Set([FULLTEXT_GATE, UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE]);
+const UNIT_ID = 'location-produksjon-og-stedsetikk';
+const INPUT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
+const OUTPUT_GATE = 'location_production_place_ethics_source_brief_complete_full_chapter_production';
+const FULLTEXT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';
+const UNIT_THIRTEEN_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE]);
 
-export const isFilmTvUnitTwelveOrLaterGate = (gate) => UNIT_TWELVE_OR_LATER_GATES.has(gate);
+export const isFilmTvUnitThirteenOrLaterGate = (gate) => UNIT_THIRTEEN_OR_LATER_GATES.has(gate);
 
 const P = Object.freeze({
   plan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
@@ -22,12 +19,11 @@ const P = Object.freeze({
   methods: 'data/fag/TV_og_Film/methods_film_tv_canonical_v4_5.json',
   registry: 'data/fagverk/fagverk_registry.json',
   status: 'data/fagverk/subject_status.json',
-  release: 'data/fagverk/fagverk_release.json',
-  brief: 'data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_source_claim_brief_v1.json',
-  sources: 'data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_sources_v1.json',
-  cases: 'data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_cases_v1.json',
-  topicClaims: 'data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_topic_claims_v1.json',
-  report: 'reports/fagverk/film-tv-screen-places-identity-circulation-source-brief-v1-audit.json'
+  brief: 'data/fag/TV_og_Film/film_tv_location_production_place_ethics_source_claim_brief_v1.json',
+  sources: 'data/fag/TV_og_Film/film_tv_location_production_place_ethics_sources_v1.json',
+  cases: 'data/fag/TV_og_Film/film_tv_location_production_place_ethics_cases_v1.json',
+  topicClaims: 'data/fag/TV_og_Film/film_tv_location_production_place_ethics_topic_claims_v1.json',
+  report: 'reports/fagverk/film-tv-location-production-place-ethics-source-brief-v1-audit.json'
 });
 
 const abs = (file) => path.join(ROOT, file);
@@ -51,10 +47,10 @@ const maxDottedVersion = (current, floor) => {
 const maxIsoDate = (current, floor) => current && current > floor ? current : floor;
 const normalizeEditorialText = (value) => String(value || '').toLowerCase().replace(/\s+/g, ' ').trim();
 
-export function buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1() {
+export function buildFilmTvLocationProductionPlaceEthicsSourceBriefV1() {
   const plan = read(P.plan);
   const unit = plan.planned_units.find((row) => row.id === UNIT_ID);
-  assert(unit, 'Læringsplanen mangler Skjermsteder, identitet og sirkulasjon');
+  assert(unit, 'Læringsplanen mangler Location, produksjon og stedsetikk');
 
   const emners = read(P.emners);
   const emneById = new Map(emners.map((row) => [row.emne_id, row]));
@@ -66,7 +62,7 @@ export function buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1() {
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   assert(filmStatus, 'Mangler Film & TV-status');
   const currentGate = filmStatus.nextGate;
-  const laterGateAlreadyActive = UNIT_TWELVE_POST_BRIEF_GATES.has(currentGate);
+  const laterGateAlreadyActive = currentGate === FULLTEXT_GATE;
 
   const brief = read(P.brief);
   const sourceManifest = read(P.sources);
@@ -93,43 +89,42 @@ export function buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1() {
   const forbiddenScmTokens = ['child_' + 'process', 'execFile' + 'Sync', 'spawn' + 'Sync'];
   const forbiddenGitCommand = new RegExp(`git\\s+(?:${['fetch', 'merge', 'push'].join('|')})`);
 
-  registry.version = maxDottedVersion(registry.version, '2.96.0');
-  registry.updatedAt = maxIsoDate(registry.updatedAt, '2026-08-14');
-  registry.subjects.film_tv.canonicalModel.twelfthSourceClaimBrief = P.brief;
+  registry.version = maxDottedVersion(registry.version, '2.98.0');
+  registry.updatedAt = maxIsoDate(registry.updatedAt, '2026-08-15');
+  registry.subjects.film_tv.canonicalModel.thirteenthSourceClaimBrief = P.brief;
   if (!laterGateAlreadyActive) {
-    registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Kilde- og claimbriefen for Skjermsteder, identitet og sirkulasjon er ferdig med 11 canonicale emner, 4 variable moduler, 52 planlagte claims, 36 inspectable kilder og 33 dokumenterte verk-, sted-, kart-, interiør-, landskaps-, mobilitets-, myte- og minnecase. Vist sted, faktisk opptakssted, fiktivt eller sammensatt rom og dokumentert lokal virkning holdes eksplisitt adskilt. Kapitlet er ikke registrert før fulltekst-, claim- og evidensporten er bestått.';
+    registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Kilde- og claimbriefen for Location, produksjon og stedsetikk er ferdig med 8 canonicale emner, 4 variable moduler, 39 planlagte claims, 26 inspectable kilder og 24 dokumenterte location-, offentlig-rom-, økologi-, samtykke-, urfolks-, virtuelt-rom- og filmturismecase. Locationtillatelse, personsamtykke, lokalsamfunnskonsultasjon, kulturell protokoll, karbonregnskap, stedsspesifikk miljøvirkning og turistvirkning holdes eksplisitt adskilt. Kapitlet er ikke registrert før fulltekst-, claim- og evidensporten er bestått.';
   }
 
-  status.version = maxDottedVersion(status.version, '1.89.0');
-  status.updatedAt = maxIsoDate(status.updatedAt, '2026-08-14');
+  status.version = maxDottedVersion(status.version, '1.91.0');
+  status.updatedAt = maxIsoDate(status.updatedAt, '2026-08-15');
   if (!laterGateAlreadyActive) {
     filmStatus.editorialStatus = 'chapters_in_progress';
     filmStatus.nextGate = OUTPUT_GATE;
-    filmStatus.note = 'Kilde- og claimbriefen for Skjermsteder, identitet og sirkulasjon er ferdig: 11/11 canonicale emner, 4 variable moduler, 52 planlagte claims, 36 inspectable kilder og 33 case. Stedsrepresentasjon, opptakssted, fiktivt rom, kartdata, identitet, ikonisering, mytedannelse og minne har separate evidensroller. Produksjonsinngrep, samtykke, bilderett, filmturisme og dokumentert lokal virkning forblir i enhet 13. Neste port er fulltekstproduksjon og claimspesifikk evidensmapping.';
+    filmStatus.note = 'Kilde- og claimbriefen for Location, produksjon og stedsetikk er ferdig: 8/8 canonicale emner, 4 variable moduler, 39 planlagte claims, 26 inspectable kilder og 24 case. Produksjonssted, offentlig rom, fysiske spor, locationøkologi, lokalsamfunn/samtykke, urfolkslandskap/bilderett, virtuelt rom/stedserstatning og filmturisme har separate evidenskrav. Neste port er fulltekstproduksjon og claimspesifikk evidensmapping.';
   }
 
   const sourceFamiliesPresent = {
-    cityAndUrbanForm: ['sp01-mennel-cities-cinema', 'sp02-alsayyad-cinematic-urbanism', 'sp05-jacobs-city-symphony'].every((id) => sourceIds.has(id)),
-    cartographyAndFilmGeography: ['sp06-conley-cartographic-cinema', 'sp07-castro-mapping-impulse', 'sp08-roberts-film-mobility-urban-space'].every((id) => sourceIds.has(id)),
-    domesticAndInterior: ['sp13-colomina-privacy-publicity', 'sp14-spigel-make-room-tv', 'sp15-wojcik-apartment-plot', 'sp16-wojcik-apartment-complex'].every((id) => sourceIds.has(id)),
-    landscapeEcologyAndArctic: ['sp18-lefebvre-landscape-film', 'sp19-kaapa-nordic-ecology', 'sp20-mackenzie-stenport-films-ice', 'sp21-rust-monani-cubitt-ecocinema'].every((id) => sourceIds.has(id)),
-    mobilityExileAndDiaspora: ['sp22-naficy-accented-cinema', 'sp23-marks-skin-film', 'sp24-groening-cinema-beyond-territory'].every((id) => sourceIds.has(id)),
-    identityMythMemoryAndArchive: ['sp11-tuan-space-place', 'sp12-cresswell-in-place-out-place', 'sp25-landsberg-prosthetic-memory', 'sp26-kuhn-everyday-magic', 'sp29-torlasco-heretical-archive'].every((id) => sourceIds.has(id)),
-    inspectableFilmInstitutionCases: ['sp31-bfi-britain-film-map', 'sp32-bfi-man-movie-camera', 'sp33-bfi-metropolis', 'sp34-criterion-do-right-thing', 'sp35-criterion-rebecca-house', 'sp36-isuma-atanarjuat'].every((id) => sourceIds.has(id))
+    locationLaborAndChoice: ['lp01-celik-rappas-filming-european-cities', 'lp02-celik-rappas-finding-locations', 'lp03-hollywood-on-location'].every((id) => sourceIds.has(id)),
+    publicSpacePermissionAndPeople: ['lp04-film-london-code', 'lp05-film-london-permission', 'lp06-film-london-people', 'lp07-film-london-partnership'].every((id) => sourceIds.has(id)),
+    indigenousProtocolsAndRights: ['lp11-isfi-ofelas', 'lp12-screen-australia-pathways', 'lp13-screen-australia-documentary-consent', 'lp14-screen-australia-icip'].every((id) => sourceIds.has(id)),
+    sustainabilityBiodiversityAndSensitiveSites: ['lp09-bfi-sustainability', 'lp10-bfi-screen-new-deal', 'lp15-nordic-ecological-standard', 'lp16-npws-wildlife-filming', 'lp17-exmoor-filming'].every((id) => sourceIds.has(id)),
+    filmTourismAndMeasurement: ['lp18-visitscotland-screen-tourism', 'lp19-visitscotland-outlander', 'lp20-mbie-screen-tourism-effects', 'lp21-beeton-film-induced-tourism', 'lp22-riley-baker-van-doren', 'lp23-busby-klug-measurement'].every((id) => sourceIds.has(id)),
+    virtualProductionAndDigitalSubstitution: ['lp08-film-london-digital-recreation', 'lp24-swords-willment-virtual-production', 'lp25-ilm-mandalorian', 'lp26-ilm-stagecraft'].every((id) => sourceIds.has(id))
   };
 
   const gates = {
-    exact_unit_twelve_problem_set_and_sequence: unit.sequence === 12
-      && plan.production_sequence[11] === UNIT_ID
-      && unit.emne_count === 11,
+    exact_unit_thirteen_problem_set_and_sequence: unit.sequence === 13
+      && plan.production_sequence[12] === UNIT_ID
+      && unit.emne_count === 8,
     exact_prerequisite_contract: isDeepStrictEqual(
       unit.prerequisite_planned_unit_ids,
-      ['skjermoffentlighet-fellesskap-og-samfunn', 'resepsjon-deltakelse-og-publikumsmetoder']
+      ['skjermsteder-identitet-og-sirkulasjon', 'skapende-arbeid-teknologi-og-ansvar']
     ) && isDeepStrictEqual(unit.prerequisite_existing_chapter_ids, []),
     planned_prerequisites_registered: unit.prerequisite_planned_unit_ids.every((id) =>
       registry.subjects.film_tv.chapters.some((row) => row.id === id)
     ),
-    current_status_is_input_output_or_known_later_gate: currentGate === INPUT_GATE || isFilmTvUnitTwelveOrLaterGate(currentGate),
+    current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE].includes(currentGate),
     exact_unit_emne_coverage: topicBriefs.length === unit.emne_count
       && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count
       && isDeepStrictEqual(brief.scope.emne_ids, unit.emne_ids)
@@ -141,82 +136,84 @@ export function buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1() {
         && canonical.method_ids.length > 0
         && canonical.method_ids.every((id) => methodIds.has(id));
     }),
-    thirty_six_inspectable_https_sources: sources.length === 36 && sources.every((row) =>
+    twenty_six_inspectable_https_sources: sources.length === 26 && sources.every((row) =>
       row.url.startsWith('https://')
       && row.source_location
       && row.territory
-      && row.retrieval_status === 'verified_2026-08-14'
+      && row.retrieval_status === 'verified_2026-08-15'
     ),
     evidence_source_families_present: Object.values(sourceFamiliesPresent).every(Boolean),
     every_source_used: sources.every((row) => usedSourceIds.has(row.id)),
     every_source_reference_resolves: [...usedSourceIds].every((id) => sourceIds.has(id)),
-    thirty_three_documented_cases_used: cases.length === 33
+    twenty_four_documented_cases_used: cases.length === 24
       && cases.every((row) => usedCaseIds.has(row.id))
       && cases.every((row) => row.source_ids.length > 0 && row.purpose && row.territory && row.years),
     every_case_reference_resolves: topicBriefs.every((row) => row.case_ids.every((id) => caseIds.has(id))),
     every_case_source_available_to_owning_topic: topicBriefs.every((topic) =>
       topic.case_ids.every((id) => caseById.get(id).source_ids.every((sourceId) => topic.source_ids.includes(sourceId)))
     ),
-    fifty_two_variable_planned_claims: plannedClaims.length === 52
-      && new Set(plannedClaims.map((row) => row.id)).size === 52
-      && isDeepStrictEqual(claimCounts, [5, 5, 4, 4, 5, 5, 5, 5, 5, 5, 4])
+    thirty_nine_variable_planned_claims: plannedClaims.length === 39
+      && new Set(plannedClaims.map((row) => row.id)).size === 39
+      && isDeepStrictEqual(claimCounts, [5, 5, 4, 5, 5, 5, 5, 5])
       && new Set(claimCounts).size > 1,
     no_planned_claim_overstated_as_verified: plannedClaims.every((row) =>
       row.status === 'planned_requires_fulltext_verification'
     ),
     all_topics_have_sources_cases_claims_and_goal: topicBriefs.every((row) =>
-      row.source_ids.length >= 3
+      row.source_ids.length >= 4
       && row.case_ids.length >= 3
       && row.planned_claims.length >= 4
       && row.learning_goal
     ),
-    editorial_specificity_checked_across_entire_brief: normalizedLearningGoals.length === 11
-      && new Set(normalizedLearningGoals).size === 11
+    editorial_specificity_checked_across_entire_brief: normalizedLearningGoals.length === 8
+      && new Set(normalizedLearningGoals).size === 8
       && normalizedLearningGoals.every((value) => value.length >= 60 && !placeholderPattern.test(value))
-      && normalizedClaimFocuses.length === 52
-      && new Set(normalizedClaimFocuses).size === 52
+      && normalizedClaimFocuses.length === 39
+      && new Set(normalizedClaimFocuses).size === 39
       && normalizedClaimFocuses.every((value) => value.length >= 60 && !placeholderPattern.test(value))
       && plannedClaims.every((row) => typeof row.claim_type === 'string' && row.claim_type.length >= 8),
     topic_source_case_combinations_are_distinct: new Set(topicBriefs.map((row) =>
       JSON.stringify({ source_ids: row.source_ids, case_ids: row.case_ids })
     )).size === topicBriefs.length,
     four_variable_modules_cover_every_emne_once: brief.proposed_module_order.length === 4
-      && isDeepStrictEqual(brief.proposed_module_order.map((row) => row.emne_ids.length), [3, 2, 3, 3])
+      && isDeepStrictEqual(brief.proposed_module_order.map((row) => row.emne_ids.length), [2, 2, 2, 2])
       && moduleEmneIds.length === unit.emne_count
       && new Set(moduleEmneIds).size === unit.emne_count
       && unit.emne_ids.every((id) => moduleEmneIds.includes(id)),
-    versioned_manifest_contracts: sourceManifest.schema === 'history_go_film_tv_screen_places_identity_circulation_sources_manifest_v1'
+    versioned_manifest_contracts: sourceManifest.schema === 'history_go_film_tv_location_production_place_ethics_sources_manifest_v1'
       && sourceManifest.version === '1.0.0'
       && sourceManifest.source_files.length === 2
-      && caseManifest.schema === 'history_go_film_tv_screen_places_identity_circulation_cases_manifest_v1'
+      && caseManifest.schema === 'history_go_film_tv_location_production_place_ethics_cases_manifest_v1'
       && caseManifest.version === '1.0.0'
       && caseManifest.case_files.length === 2
-      && topicClaimManifest.schema === 'history_go_film_tv_screen_places_identity_circulation_topic_claims_manifest_v1'
+      && topicClaimManifest.schema === 'history_go_film_tv_location_production_place_ethics_topic_claims_manifest_v1'
       && topicClaimManifest.version === '1.0.0'
       && topicClaimManifest.topic_claim_files.length === 2,
     brief_engine_contains_no_scm_sync_or_push: forbiddenScmTokens.every((token) => !engineSource.includes(token))
       && !forbiddenGitCommand.test(engineSource),
-    four_place_layers_are_permanent: brief.source_policy.shown_place_actual_shooting_location_fictional_space_and_documented_local_effect_are_distinct
-      && brief.source_policy.shooting_location_is_not_identical_to_the_place_named_or_shown_in_the_work
-      && brief.source_policy.fictional_and_composite_geographies_must_be_labelled,
-    maps_and_icons_keep_evidence_boundaries: brief.source_policy.maps_routes_geocoding_and_databases_document_spatial_relations_not_meaning_or_reception_alone
-      && brief.source_policy.iconicity_requires_documented_repetition_circulation_intertext_or_recognition
-      && brief.source_policy.landmark_visibility_is_not_proof_of_local_social_or_economic_effect,
-    interior_landscape_and_environment_layers_are_separate: brief.source_policy.interior_representation_actual_building_studio_set_and_digital_space_are_distinct
-      && brief.source_policy.landscape_atmosphere_is_an_audiovisual_construction_not_measured_audience_affect
-      && brief.source_policy.screened_nature_is_not_evidence_of_actual_environmental_condition,
-    rural_arctic_indigenous_and_exile_scope_is_explicit: brief.source_policy.rural_peripheral_and_arctic_geographies_are_not_homogeneous_or_empty
-      && brief.source_policy.indigenous_cases_require_authorship_language_territory_knowledge_position_and_source_control
-      && brief.source_policy.exile_diaspora_mobility_and_multilingualism_must_not_be_essentialised,
-    identity_myth_memory_and_archive_layers_are_separate: brief.source_policy.place_identity_requires_named_actors_period_context_and_evidence_position
-      && brief.source_policy.actual_identity_work_or_belonging_requires_person_or_community_evidence_not_representation_alone
-      && brief.source_policy.place_myth_is_a_historical_pattern_of_representation_not_a_synonym_for_falsehood
-      && brief.source_policy.personal_popular_public_archival_and_institutional_memory_are_distinct
-      && brief.source_policy.archive_absence_claims_require_collection_search_metadata_digitisation_and_gap_reporting
-      && brief.source_policy.memory_effect_theories_are_not_universal_measured_audience_outcomes,
-    unit_thirteen_boundary_is_explicit: brief.source_policy.production_intervention_consent_image_rights_film_tourism_and_local_effects_are_deferred_to_unit_13
-      && /enhet 13/i.test(brief.scope.overlap_boundary),
-    twelfth_source_brief_registration_matches_production_stage: registry.subjects.film_tv.canonicalModel.twelfthSourceClaimBrief === P.brief
+    permissions_consent_and_community_power_are_separate:
+      brief.source_policy.public_access_does_not_equal_single_owner_or_unrestricted_production_control
+      && brief.source_policy.location_permission_person_consent_community_consultation_and_cultural_protocol_are_distinct
+      && brief.source_policy.absence_of_documented_objection_is_not_community_consent
+      && brief.source_policy.community_is_not_a_single_actor_and_claims_must_name_who_was_consulted,
+    indigenous_land_knowledge_and_collective_rights_are_explicit:
+      brief.source_policy.individual_release_does_not_clear_collective_indigenous_cultural_or_intellectual_property
+      && brief.source_policy.indigenous_land_and_knowledge_claims_prioritise_indigenous_led_sources,
+    carbon_site_ecology_and_restoration_are_separate:
+      brief.source_policy.environmental_standard_or_permit_is_not_proof_of_zero_environmental_impact
+      && brief.source_policy.carbon_accounting_and_site_specific_ecological_impact_are_distinct
+      && brief.source_policy.protected_or_sensitive_location_claims_require_site_species_season_activity_and_permission_scope
+      && brief.source_policy.physical_site_change_restoration_and_no_harm_are_separate_claims,
+    physical_virtual_and_digital_substitution_layers_are_separate:
+      brief.source_policy.studio_backlot_physical_set_led_volume_digital_asset_and_fictional_place_are_distinct
+      && brief.source_policy.virtual_production_may_shift_travel_or_location_pressure_but_does_not_automatically_reduce_total_impact
+      && brief.source_policy.digital_recreation_rights_are_jurisdiction_and_contract_specific,
+    tourism_visitation_spend_and_local_effect_are_separate:
+      brief.source_policy.screen_tourism_inspiration_visitation_attributed_spend_and_causal_local_effect_are_distinct
+      && brief.source_policy.tourism_claims_require_population_period_method_baseline_and_attribution_limit
+      && brief.source_policy.local_economic_benefit_does_not_alone_establish_social_legitimacy_or_consent,
+    thirteenth_source_brief_registration_matches_production_stage:
+      registry.subjects.film_tv.canonicalModel.thirteenthSourceClaimBrief === P.brief
       && (laterGateAlreadyActive
         ? registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID
           && row.file === `data/fagverk/film_tv/${UNIT_ID}.json`
@@ -235,52 +232,51 @@ export function buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1() {
     correctness_and_evidence: {
       score: 5,
       evidence_gate_ids: [
-        'thirty_six_inspectable_https_sources',
+        'twenty_six_inspectable_https_sources',
         'every_source_used',
         'every_source_reference_resolves',
-        'every_case_source_available_to_owning_topic',
-        'four_place_layers_are_permanent'
+        'every_case_source_available_to_owning_topic'
       ],
-      evidence: '36/36 inspectable HTTPS-kilder er brukt, alle kilde- og casereferanser er resolvable, og vist sted, opptakssted, fiktivt rom og dokumentert lokal virkning beholder egne evidenskrav.'
+      evidence: '26/26 inspectable HTTPS-kilder er brukt, alle kilde- og casereferanser er resolvable, og casenes kilder er tilgjengelige innenfor hvert emnes avgrensede evidensgrunnlag.'
     },
     coverage_and_completion: {
       score: 5,
       evidence_gate_ids: [
         'exact_unit_emne_coverage',
-        'thirty_three_documented_cases_used',
-        'fifty_two_variable_planned_claims',
+        'twenty_four_documented_cases_used',
+        'thirty_nine_variable_planned_claims',
         'four_variable_modules_cover_every_emne_once'
       ],
-      evidence: 'Briefen dekker 11/11 canonicale emner i fire variable moduler med 52 problemavledede claimplaner, 36 kilder og 33 dokumenterte case uten emnehull eller dobbelte eiere.'
+      evidence: 'Briefen dekker 8/8 canonicale emner i fire variable moduler med 39 problemavledede claimplaner, 26 kilder og 24 dokumenterte case uten emnehull eller dobbelte eiere.'
     },
     editorial_quality: {
       score: 4,
       evidence_gate_ids: [
         'editorial_specificity_checked_across_entire_brief',
         'topic_source_case_combinations_are_distinct',
-        'no_planned_claim_overstated_as_verified',
-        'identity_myth_memory_and_archive_layers_are_separate'
+        'no_planned_claim_overstated_as_verified'
       ],
-      evidence: 'Alle 11 læringsmål og 52 claimfokus er unike, substansielle og plassholderfrie; stedsidentitet, myte og minne har distinkte kilde- og casekonstellasjoner. Fulltekstprosa er ennå ikke vurdert.'
+      evidence: 'Alle åtte læringsmål og 39 claimfokus er unike, substansielle og plassholderfrie; claimplanene skiller beslutning, tillatelse, virkning og metode før fulltekstprosa vurderes.'
     },
     technical_integrity: {
       score: 5,
       evidence_gate_ids: [
         'current_status_is_input_output_or_known_later_gate',
-        'twelfth_source_brief_registration_matches_production_stage',
+        'thirteenth_source_brief_registration_matches_production_stage',
         'status_advances_or_preserves_later_gate',
         'registration_waits_for_fulltext_claim_source_audit'
       ],
-      evidence: 'Registry- og statusprogresjonen er monoton: briefen registreres som produksjonsgrunnlag, mens kapittelet ikke blir runtime-registrert før fulltekst-, claim- og evidensporten er bestått.'
+      evidence: 'Registry- og statusprogresjonen er monoton: briefen registreres som produksjonsgrunnlag, mens selve kapittelet ikke blir runtime-registrert før fulltekst-, claim- og evidensporten er bestått.'
     },
     safety_and_responsibility: {
       score: 5,
       evidence_gate_ids: [
-        'rural_arctic_indigenous_and_exile_scope_is_explicit',
-        'interior_landscape_and_environment_layers_are_separate',
-        'unit_thirteen_boundary_is_explicit'
+        'permissions_consent_and_community_power_are_separate',
+        'indigenous_land_knowledge_and_collective_rights_are_explicit',
+        'carbon_site_ecology_and_restoration_are_separate',
+        'tourism_visitation_spend_and_local_effect_are_separate'
       ],
-      evidence: 'Rurale, perifere, arktiske, urfolks-, eksil- og diasporacase har eksplisitte språk-, territoriums-, opphavs- og kunnskapsgrenser; produksjonsinngrep og lokal virkning utsettes til riktig metodeport.'
+      evidence: 'Personsamtykke, lokalsamfunnskonsultasjon, urfolksstyrte protokoller, kollektiv kulturkunnskap, stedlig økologi og lokal turistvirkning har egne evidenskrav og kan ikke erstattes av generelle tillatelser eller økonomiske gevinster.'
     },
     maintainability_and_reproducibility: {
       score: 5,
@@ -303,7 +299,7 @@ export function buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1() {
     && qualityGateReferences.every((gateId) => gates[gateId] === true);
   const qualityAssessment = {
     schema: 'history_go_six_dimension_quality_assessment_v1',
-    assessment_scope: 'film_tv_unit_12_source_and_claim_brief',
+    assessment_scope: 'film_tv_unit_13_source_and_claim_brief',
     scale: { minimum: 1, maximum: 5 },
     threshold: {
       minimum_dimension_score: 4,
@@ -318,7 +314,7 @@ export function buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1() {
     full_chapter_assessed: false,
     automation_limits: [
       'Vurderingen gjelder kilde- og claimbriefen, ikke det framtidige fulltekstkapitlet.',
-      'Automatiske porter kan kontrollere dekning, unikhet, referanser og kontrakter, men kan ikke alene bevise kvaliteten på prosa som ennå ikke er skrevet.'
+      'Automatiske porter kan kontrollere dekning, unikhet, referanser, evidensgrenser og kontrakter, men kan ikke alene bevise kvaliteten på prosa som ennå ikke er skrevet.'
     ],
     conclusion: qualityPasses ? 'high_quality_source_claim_brief' : 'quality_gate_failed'
   };
@@ -328,9 +324,9 @@ export function buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1() {
     && qualityAssessment.conclusion === 'high_quality_source_claim_brief';
 
   const report = {
-    schema: 'history_go_film_tv_screen_places_identity_circulation_source_brief_v1_audit',
+    schema: 'history_go_film_tv_location_production_place_ethics_source_brief_v1_audit',
     version: '1.0.0',
-    updated_at: '2026-08-14',
+    updated_at: '2026-08-15',
     status: brief.status,
     subject_id: 'film_tv',
     planned_unit_id: UNIT_ID,
@@ -364,11 +360,11 @@ export function buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1() {
   return { brief, sources, cases, topicBriefs, plannedClaims, report, registry, status, unit };
 }
 
-export function auditFilmTvScreenPlacesIdentityCirculationSourceBriefV1({
+export function auditFilmTvLocationProductionPlaceEthicsSourceBriefV1({
   writeFiles = false,
   checkFiles = true
 } = {}) {
-  const built = buildFilmTvScreenPlacesIdentityCirculationSourceBriefV1();
+  const built = buildFilmTvLocationProductionPlaceEthicsSourceBriefV1();
   if (writeFiles) {
     write(P.registry, built.registry);
     write(P.status, built.status);
@@ -385,13 +381,13 @@ export function auditFilmTvScreenPlacesIdentityCirculationSourceBriefV1({
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
-    const built = auditFilmTvScreenPlacesIdentityCirculationSourceBriefV1({
+    const built = auditFilmTvLocationProductionPlaceEthicsSourceBriefV1({
       writeFiles: args.has('--write'),
       checkFiles: !args.has('--write')
     });
-    console.log(`Film & TV enhet 12 kildebrief OK: ${built.report.summary.planned_claim_count} claims, ${built.report.summary.source_count} kilder og ${built.report.summary.case_count} case.`);
+    console.log(`Film & TV enhet 13 kildebrief OK: ${built.report.summary.planned_claim_count} claims, ${built.report.summary.source_count} kilder og ${built.report.summary.case_count} case.`);
   } catch (error) {
-    console.error(`Film & TV enhet 12 kildebrief FEIL: ${error.message}`);
+    console.error(`Film & TV enhet 13 kildebrief FEIL: ${error.message}`);
     process.exitCode = 1;
   }
 }

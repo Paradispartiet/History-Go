@@ -11,6 +11,9 @@ import {
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'skjermsteder-identitet-og-sirkulasjon';
 const OUTPUT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
+const UNIT13_SOURCE_BRIEF_GATE = 'location_production_place_ethics_source_brief_complete_full_chapter_production';
+const UNIT13_FULLTEXT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';
+const UNIT_TWELVE_FULLTEXT_OR_LATER_GATES = new Set([OUTPUT_GATE, UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE]);
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`,
   brief: `data/fagverk/film_tv/${CHAPTER_ID}/brief.json`,
@@ -187,7 +190,7 @@ export function auditFilmTvScreenPlacesIdentityCirculationFulltextV1({ writeRepo
       && chapterRecord?.briefFile === P.brief
       && registry.subjects.film_tv.canonicalModel.twelfthSourceClaimBrief === P.sourceBrief
       && filmStatus?.editorialStatus === 'chapters_in_progress'
-      && filmStatus?.nextGate === OUTPUT_GATE
+      && UNIT_TWELVE_FULLTEXT_OR_LATER_GATES.has(filmStatus?.nextGate)
       && versionAtLeast(registry.version, '2.97.0')
       && versionAtLeast(status.version, '1.90.0'),
     materializer_outputs_match_committed_files: isDeepStrictEqual(chapter, built.chapter)
