@@ -50,17 +50,31 @@ test("alle stedsspråkfiler har stabil identitet og gyldig grunnstruktur", () =>
   }
 });
 
-test("språkflaten bruker canonical Knowledge V2-lager og ikke separat samlingslager", () => {
+test("språkflaten bruker canonical Knowledge V2-lager og en samlingsfasett, ikke et falskt fag", () => {
   const runtime = read("js/ui/place-language-layer.js");
   assert.match(runtime, /KNOWLEDGE_KEY\s*=\s*"hg_knowledge_entries_v2"/);
   assert.match(runtime, /SOURCE_TYPE\s*=\s*"language_lexicon"/);
-  assert.match(runtime, /subject_id:\s*"sprak"/);
+  assert.match(runtime, /COLLECTION_KIND\s*=\s*"language"/);
+  assert.match(runtime, /resolveSubjectId/);
+  assert.match(runtime, /subject_id:\s*subjectId/);
+  assert.match(runtime, /collection_kind:\s*COLLECTION_KIND/);
+  assert.doesNotMatch(runtime, /subject_id:\s*["']sprak["']/);
   assert.match(runtime, /TAB_ID\s*=\s*"language"/);
   assert.match(runtime, /Språk på stedet/);
   assert.match(runtime, /dialect_feature/);
   assert.match(runtime, /place_name/);
   assert.match(runtime, /language_history/);
   assert.doesNotMatch(runtime, /language_collection|dialect_collection|hg_language_collection/i);
+});
+
+test("Knowledge-siden viser Språk som samling uten å legge Språk inn som Subject", () => {
+  const page = read("js/knowledgePage.js");
+  assert.match(page, /LANGUAGE_COLLECTION_ID\s*=\s*"language"/);
+  assert.match(page, /collection=\$\{encodeURIComponent\(collectionId\)\}/);
+  assert.match(page, /Språksamlingen din/);
+  assert.match(page, /source\.type\) === "language_lexicon"/);
+  assert.match(page, /renderLanguageCollection/);
+  assert.doesNotMatch(page, /SUBJECT_ICONS[\s\S]{0,800}sprak\s*:/);
 });
 
 test("legacy-arrangementer blir ikke løftet som språkinnhold", () => {
@@ -84,6 +98,14 @@ test("språkflaten lastes etter både Knowledge V2 og popup-loaderen", () => {
   assert.ok(popupLoaderIndex >= 0, "PlaceCard popup-loader mangler i runtime-listen");
   assert.ok(languageIndex > knowledgeIndex, "språkflaten må lastes etter Knowledge V2");
   assert.ok(languageIndex > popupLoaderIndex, "språkflaten må lastes etter popup-tab-loaderen");
+});
+
+test("AHA-importgrensen inkluderer hele Knowledge V2 og dermed språkfasetten", () => {
+  const aha = read("AHA/docs/AHA_HISTORYGO_IMPORT.md");
+  assert.match(aha, /canonical Knowledge V2/);
+  assert.match(aha, /hg_knowledge_entries_v2/);
+  const runtime = read("js/ui/place-language-layer.js");
+  assert.match(runtime, /source:\s*\{[\s\S]*type:\s*SOURCE_TYPE/);
 });
 
 test("Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny runding", () => {
