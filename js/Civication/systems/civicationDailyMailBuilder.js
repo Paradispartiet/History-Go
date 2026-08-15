@@ -14,6 +14,9 @@
   const NARRATIVE_MANIFEST_PATH = "data/Civication/narratives/manifest.json";
   const NARRATIVE_KEY = "narrative_state_v1";
   const PATCHED_FLAG = "__civicationDailyMailBuilderPatched";
+  const ANSWER_MIDDLEWARE_NAME = "daily_mail_builder";
+  const ANSWER_MIDDLEWARE_PRIORITY = 40;
+  const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
 
   const EXTRA_MAIL_TYPES = [
     "people",
@@ -2054,13 +2057,90 @@
       !!eventObj?.daily_mail_meta;
   }
 
+  async function dailyMailAnswerMiddleware(ctx, next) {
+    const engine = ctx?.engine || null;
+    const eventObj = ctx?.eventObj || null;
+    const eventId = norm(eventObj?.id || ctx?.eventId);
+    const choiceId = norm(ctx?.choiceId);
+    const daily = isDailyEvent(eventObj);
+
+    // Mark the daily runtime before the remaining inner answer pipeline runs so
+    // dayPatches/onAppOpen can advance to the next runtime item, but keep the
+    // inbox item pending until EventEngine has consumed it. Resolving the mail
+    // here caused the inner answer chain to return not_found and forced
+    // NextActionUI into its slow deliverQueuedAction fallback.
+    if (daily) await markAnswered(eventId, choiceId, { resolveMail: false });
+
+    let result;
+    const typedEngine = /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (engine || {});
+    const previousSuppress = typedEngine.__civiSuppressImmediateFollowup;
+    if (daily && engine) typedEngine.__civiSuppressImmediateFollowup = true;
+    try {
+      result = await next();
+    } finally {
+      if (daily && engine) typedEngine.__civiSuppressImmediateFollowup = previousSuppress === true;
+    }
+
+    if (daily && result?.ok !== false) {
+      try { window.CivicationMailEngine?.markResolved?.(eventId, eventId, choiceId); } catch {}
+      result = { ...(result || {}), dailyRuntimeAnswered: true };
+    }
+
+    if (daily && result?.ok === false) {
+      // Restore as delivered if the answer did not go through.
+      const runtime = getRuntime();
+      if (runtime && Array.isArray(runtime.items)) {
+        const items = runtime.items.map(row => {
+          if (norm(row?.event?.id) !== eventId) return row;
+          return { ...row, status: "delivered", choice_id: null, answered_at: null };
+        });
+        setRuntime({
+          ...runtime,
+          answered_ids: (Array.isArray(runtime.answered_ids) ? runtime.answered_ids : []).filter(x => norm(x) !== eventId),
+          items
+        });
+      }
+    }
+
+    return result;
+  }
+
+  function registerAnswerMiddleware() {
+    const director = window.CivicationChoiceDirector;
+    if (director?.registerAnswerMiddleware) {
+      return director.registerAnswerMiddleware(
+        ANSWER_MIDDLEWARE_NAME,
+        dailyMailAnswerMiddleware,
+        ANSWER_MIDDLEWARE_PRIORITY
+      );
+    }
+
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationChoiceAnswerMiddlewareQueue?: Array<{ name: string, fn: Function, priority: number }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY])
+      ? runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY]
+      : (runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY] = []);
+    if (!queue.some(entry => entry?.name === ANSWER_MIDDLEWARE_NAME)) {
+      queue.push({
+        name: ANSWER_MIDDLEWARE_NAME,
+        fn: dailyMailAnswerMiddleware,
+        priority: ANSWER_MIDDLEWARE_PRIORITY
+      });
+    }
+    return true;
+  }
+
   function patchEventEngine() {
     const proto = window.CivicationEventEngine?.prototype;
-    if (!proto || proto[PATCHED_FLAG]) return false;
-    if (typeof proto.onAppOpen !== "function" || typeof proto.answer !== "function") return false;
+    if (!proto || typeof proto.onAppOpen !== "function") {
+      registerAnswerMiddleware();
+      return false;
+    }
+    if (proto[PATCHED_FLAG]) {
+      registerAnswerMiddleware();
+      return false;
+    }
 
     const previousOnAppOpen = proto.onAppOpen;
-    const previousAnswer = proto.answer;
     proto[PATCHED_FLAG] = true;
 
     proto.onAppOpen = async function dailyMailOnAppOpen(opts = {}) {
@@ -2075,50 +2155,7 @@
       return previousOnAppOpen.call(this, opts);
     };
 
-    proto.answer = async function dailyMailAnswer(eventId, choiceId) {
-      const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
-      const eventObj = pending?.event || null;
-      const daily = isDailyEvent(eventObj);
-
-      // Mark the daily runtime before the legacy wrappers run so dayPatches/onAppOpen can
-      // advance to the next runtime item, but keep the inbox item pending until EventEngine
-      // has consumed it. Resolving the mail here caused the legacy answer chain to return
-      // not_found and forced NextActionUI into its slow deliverQueuedAction fallback.
-      if (daily) await markAnswered(eventObj?.id || eventId, choiceId, { resolveMail: false });
-
-      let result;
-      const previousSuppress = /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup;
-      if (daily) /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup = true;
-      try {
-        result = await previousAnswer.call(this, eventId, choiceId);
-      } finally {
-        if (daily) /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup = previousSuppress === true;
-      }
-
-      if (daily && result?.ok !== false) {
-        try { window.CivicationMailEngine?.markResolved?.(eventObj?.id || eventId, eventObj?.id || eventId, norm(choiceId)); } catch {}
-        result = { ...(result || {}), dailyRuntimeAnswered: true };
-      }
-
-      if (daily && result?.ok === false) {
-        // Restore as delivered if the answer did not go through.
-        const runtime = getRuntime();
-        if (runtime && Array.isArray(runtime.items)) {
-          const items = runtime.items.map(row => {
-            if (norm(row?.event?.id) !== norm(eventObj?.id || eventId)) return row;
-            return { ...row, status: "delivered", choice_id: null, answered_at: null };
-          });
-          setRuntime({
-            ...runtime,
-            answered_ids: (Array.isArray(runtime.answered_ids) ? runtime.answered_ids : []).filter(x => norm(x) !== norm(eventObj?.id || eventId)),
-            items
-          });
-        }
-      }
-
-      return result;
-    };
-
+    registerAnswerMiddleware();
     return true;
   }
 
@@ -2156,6 +2193,7 @@
       by_status: counts.byStatus,
       pending: getInbox(window.HG_CiviEngine).find(item => item?.status === "pending")?.event || null,
       patched: window.CivicationEventEngine?.prototype?.[PATCHED_FLAG] === true,
+      answer_middleware_registered: window.CivicationChoiceDirector?.listAnswerMiddlewares?.().some?.(entry => entry?.name === ANSWER_MIDDLEWARE_NAME) === true,
       cache_size: jsonCache.size,
       narrative_state_v1: getNarrativeState(getState()),
       narrative_active_streams: getNarrativeState(getState()).active_streams,
@@ -2272,6 +2310,7 @@
     getDaySummary: () => window.CivicationDayProgression?.getDayEndSummary?.() || null,
     markAnswered,
     answerBundleItem: markAnswered,
+    registerAnswerMiddleware,
     markHandled,
     threadKeyForMail,
     isPrivatePhase,
