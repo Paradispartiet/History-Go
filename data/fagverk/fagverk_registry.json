@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "2.96.0",
+  "version": "2.97.0",
   "updatedAt": "2026-08-14",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -2877,7 +2877,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
-        "note": "Filosofi har 13/13 kapitler, 54/54 selvstendige artikler, 162/162 canonicale begreper og 54/54 artikler individuelt reviewet mot substantive_university_philosophy_v2. Strukturell dekning, universitetsdybde og completion er låst som separate porter."
+        "note": "Filosofi har 20 canonicale hovedområder og 68 university-depth-reviewede emneartikler. Major-field benchmarken er permanent materialisert i data/fagverk/filosofi/filosofi_field_coverage_v1.json."
       },
       "chapters": [
         {
@@ -3143,10 +3143,122 @@
             "em_filosofi_latinamerikansk_dekolonial_filosofi"
           ],
           "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-sprakfilosofi",
+          "title": "Språkfilosofi, mening og bruk",
+          "file": "data/fagverk/filosofi/chapters/filosofi-sprakfilosofi.json",
+          "primary_domain_id": "sprakfilosofi",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_mening_referanse_sannhetsbetingelser",
+            "em_filosofi_sprakhandling_pragmatikk_regelfolging"
+          ],
+          "article_ids": [
+            "em_filosofi_mening_referanse_sannhetsbetingelser",
+            "em_filosofi_sprakhandling_pragmatikk_regelfolging"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-religionsfilosofi",
+          "title": "Religionsfilosofi, gudsbegrep og tro",
+          "file": "data/fagverk/filosofi/chapters/filosofi-religionsfilosofi.json",
+          "primary_domain_id": "religionsfilosofi",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_gudsargumenter_nodvendighet_forklaring",
+            "em_filosofi_ondskap_skjulthet_religios_epistemologi"
+          ],
+          "article_ids": [
+            "em_filosofi_gudsargumenter_nodvendighet_forklaring",
+            "em_filosofi_ondskap_skjulthet_religios_epistemologi"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-rettsfilosofi",
+          "title": "Rettsfilosofi, autoritet og fortolkning",
+          "file": "data/fagverk/filosofi/chapters/filosofi-rettsfilosofi.json",
+          "primary_domain_id": "rettsfilosofi",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_rettens_natur_positivisme_naturrett",
+            "em_filosofi_rettstolkning_prinsipper_straff"
+          ],
+          "article_ids": [
+            "em_filosofi_rettens_natur_positivisme_naturrett",
+            "em_filosofi_rettstolkning_prinsipper_straff"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-matematikkfilosofi",
+          "title": "Matematikkfilosofi, objekter og bevis",
+          "file": "data/fagverk/filosofi/chapters/filosofi-matematikkfilosofi.json",
+          "primary_domain_id": "matematikkfilosofi",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_matematiske_objekter_platonisme_nominalisme",
+            "em_filosofi_matematisk_bevis_formalisme_intuisjonisme"
+          ],
+          "article_ids": [
+            "em_filosofi_matematiske_objekter_platonisme_nominalisme",
+            "em_filosofi_matematisk_bevis_formalisme_intuisjonisme"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-handlingsfilosofi",
+          "title": "Handlingsfilosofi, intensjon og agency",
+          "file": "data/fagverk/filosofi/chapters/filosofi-handlingsfilosofi.json",
+          "primary_domain_id": "handlingsfilosofi",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_intensjon_grunner_arsaker_handling",
+            "em_filosofi_delt_handling_kollektiv_agency_ansvar"
+          ],
+          "article_ids": [
+            "em_filosofi_intensjon_grunner_arsaker_handling",
+            "em_filosofi_delt_handling_kollektiv_agency_ansvar"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-fysikkfilosofi",
+          "title": "Fysikkfilosofi, romtid og kvanteteori",
+          "file": "data/fagverk/filosofi/chapters/filosofi-fysikkfilosofi.json",
+          "primary_domain_id": "fysikkfilosofi",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_romtid_relativitet_tid",
+            "em_filosofi_kvantemekanikk_maling_realisme"
+          ],
+          "article_ids": [
+            "em_filosofi_romtid_relativitet_tid",
+            "em_filosofi_kvantemekanikk_maling_realisme"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
+        },
+        {
+          "id": "filosofi-sannsynlighet-beslutning",
+          "title": "Sannsynlighet, risiko og beslutningsteori",
+          "file": "data/fagverk/filosofi/chapters/filosofi-sannsynlighet-beslutning.json",
+          "primary_domain_id": "sannsynlighet_beslutning",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_filosofi_sannsynlighet_frekvens_bayes",
+            "em_filosofi_beslutning_forventet_nytte_risiko"
+          ],
+          "article_ids": [
+            "em_filosofi_sannsynlighet_frekvens_bayes",
+            "em_filosofi_beslutning_forventet_nytte_risiko"
+          ],
+          "claimsFile": "data/fagverk/filosofi/filosofi_article_registry_v1.json"
         }
       ],
       "editorialPlan": {
-        "targetChapterCount": 13,
+        "targetChapterCount": 20,
         "completionRequirements": [
           "all_13_canonical_domains_covered",
           "all_54_canonical_emners_have_standalone_articles",

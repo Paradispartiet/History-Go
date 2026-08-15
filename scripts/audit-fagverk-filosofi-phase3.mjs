@@ -17,23 +17,31 @@ const P = Object.freeze({
   badge: 'data/badges/filosofi.json',
   badgePage: 'data/fag/filosofi/merke_filosofi.html',
   concepts: 'data/fag/filosofi/begreper_filosofi_canonical_v2.json',
+  coverage: 'data/fagverk/filosofi/filosofi_field_coverage_v1.json',
   thinkers: 'data/fag/filosofi/teoretikere_filosofi_canonical_v2.json',
   report: 'reports/fagverk/filosofi-phase3-audit.json'
 });
 const DOMAIN_ORDER = [
-  'argumentasjon_logikk',
-  'erkjennelse_sannhet',
-  'metafysikk_virkelighet',
-  'sinn_bevissthet_identitet',
-  'etikk_moralpsykologi',
-  'politisk_filosofi_rettferdighet',
-  'sosial_filosofi_makt',
-  'estetikk_fortolkning',
-  'vitenskapsfilosofi',
-  'teknologi_ai',
-  'eksistens_fenomenologi',
-  'miljo_dyr_klima',
-  'globale_tradisjoner'
+  "argumentasjon_logikk",
+  "erkjennelse_sannhet",
+  "metafysikk_virkelighet",
+  "sinn_bevissthet_identitet",
+  "etikk_moralpsykologi",
+  "politisk_filosofi_rettferdighet",
+  "sosial_filosofi_makt",
+  "estetikk_fortolkning",
+  "vitenskapsfilosofi",
+  "teknologi_ai",
+  "eksistens_fenomenologi",
+  "miljo_dyr_klima",
+  "globale_tradisjoner",
+  "sprakfilosofi",
+  "religionsfilosofi",
+  "rettsfilosofi",
+  "matematikkfilosofi",
+  "handlingsfilosofi",
+  "fysikkfilosofi",
+  "sannsynlighet_beslutning"
 ];
 const abs = (relativePath) => path.join(ROOT, relativePath);
 const read = (relativePath) => fs.readFileSync(abs(relativePath), 'utf8');
@@ -72,6 +80,8 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   const registry = json(P.registry);
   const badge = json(P.badge);
   const concepts = json(P.concepts);
+  const coverage = json(P.coverage);
+  const EXPECTED = coverage.expected_counts;
   const thinkers = json(P.thinkers);
   const portalEntry = portal.categories.find((row) => row.id === 'filosofi');
   const inventoryEntry = inventory.subjects.find((row) => row.id === 'filosofi');
@@ -89,8 +99,8 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   assert(statusEntry?.assessmentStatus === 'audited', 'Filosofi har feil auditstatus');
   const registryChapterCount = (registry.subjects?.filosofi?.chapters || []).length;
   const completion = json('data/fagverk/filosofi/filosofi_completion_v1.json');
-  const expectedEditorialStatus = completion.complete_ready ? 'complete' : registryChapterCount === 13 ? 'expanded_and_audited' : registryChapterCount > 0 ? 'chapters_in_progress' : 'structure_ready';
-  const expectedNextGate = completion.complete_ready ? 'maintenance_source_refresh_and_place_case_expansion' : registryChapterCount === 13 ? 'university_depth_article_by_article_review' : 'chapter_production';
+  const expectedEditorialStatus = completion.complete_ready ? 'complete' : registryChapterCount === EXPECTED.chapters ? 'expanded_and_audited' : registryChapterCount > 0 ? 'chapters_in_progress' : 'structure_ready';
+  const expectedNextGate = completion.complete_ready ? 'maintenance_source_refresh_and_place_case_expansion' : registryChapterCount === EXPECTED.chapters ? 'university_depth_article_by_article_review' : 'chapter_production';
   assert(statusEntry?.editorialStatus === expectedEditorialStatus, `Filosofi har feil editorial status: ${statusEntry?.editorialStatus} != ${expectedEditorialStatus}`);
   assert(statusEntry?.nextGate === expectedNextGate, `Filosofi har feil neste port: ${statusEntry?.nextGate} != ${expectedNextGate}`);
   assert(registry.placePage?.fallbackSubjectByCategory?.filosofi === 'filosofi', 'Filosofi-steder mangler Filosofi som fagverksfallback');
@@ -125,25 +135,25 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   assert(model.subject.routes.badge !== model.subject.routes.subject, 'Merke- og fagside kan ikke være samme mål');
   const modelDomainIds = new Set(model.domains.map((domain) => domain.id));
   assert(modelDomainIds.size === DOMAIN_ORDER.length && DOMAIN_ORDER.every((id) => modelDomainIds.has(id)), 'Filosofi har feil source-definert fagområdesett');
-  assert(model.summary.domainCount === 13, 'Filosofi skal ha tretten fagområder');
-  assert(model.summary.emneCount === 54, 'Filosofi skal ha 54 aktive emner');
-  assert(model.summary.methodCount === 27, 'Filosofi skal ha 27 canonicale metoder');
-  assert(model.summary.mappingCount === 54, 'Filosofi skal ha én normalisert mapping per emne');
-  assert(model.summary.hookCount === 37, 'Filosofi skal ha 37 canonicale hooks');
+  assert(model.summary.domainCount === EXPECTED.domains, 'Filosofi skal ha tretten fagområder');
+  assert(model.summary.emneCount === EXPECTED.articles, 'Filosofi skal ha 54 aktive emner');
+  assert(model.summary.methodCount === EXPECTED.methods, 'Filosofi skal ha 27 canonicale metoder');
+  assert(model.summary.mappingCount === EXPECTED.articles, 'Filosofi skal ha én normalisert mapping per emne');
+  assert(model.summary.hookCount === EXPECTED.hooks, 'Filosofi skal ha 37 canonicale hooks');
   assert(model.chapters.length === registryChapterCount, 'Filosofi-modellen og registry er uenige om kapitteltall');
-  assert(model.chapters.length <= 13, 'Filosofi kan ikke ha flere enn 13 canonicale kapitler');
-  if (expectedEditorialStatus === 'complete') assert(model.chapters.length === 13, 'Complete Filosofi krever 13/13 kapitler');
+  assert(model.chapters.length <= EXPECTED.chapters, 'Filosofi kan ikke ha flere enn 13 canonicale kapitler');
+  if (expectedEditorialStatus === 'complete') assert(model.chapters.length === EXPECTED.chapters, 'Complete Filosofi krever 13/13 kapitler');
   assert(model.domains.every((domain) => domain.sourceKind === 'fagkart_category'), 'Pensummoduler ble feilaktig renderer-fagområder');
-  assert(source.pensum.modules.length === 13, 'Filosofi skal bevare tretten pensummoduler som progresjonslag');
-  assert(source.emners.length === 54 && source.emners.every((emne) => emne.status === 'active'), 'Filosofi har feil aktiv emnekatalog');
-  assert(source.methods.methods.length === 27 && source.methods.methods.every((method) => method.canonical_status === 'canonical'), 'Filosofi har feil canonical metodekatalog');
+  assert(source.pensum.modules.length === EXPECTED.domains, 'Filosofi skal bevare tretten pensummoduler som progresjonslag');
+  assert(source.emners.length === EXPECTED.articles && source.emners.every((emne) => emne.status === 'active'), 'Filosofi har feil aktiv emnekatalog');
+  assert(source.methods.methods.length === EXPECTED.methods && source.methods.methods.every((method) => method.canonical_status === 'canonical'), 'Filosofi har feil canonical metodekatalog');
   assert(model.emners.every((emne) => model.domainsById.has(emne.domainId)), 'Filosofi har emne uten fagområde');
   assert(model.emners.every((emne) => emne.methodIds.every((id) => model.methodsById.has(id))), 'Filosofi har emne med ukjent metode');
 
   const sourceEmneIds = new Set(source.emners.map((row) => row.emne_id));
   const fagkartEmneIds = new Set(source.fagkart.categories.flatMap((domain) => domain.emne_ids || []));
   const courseEmneIds = new Set(source.pensum.modules.flatMap((module) => module.emner || []));
-  assert(sourceEmneIds.size === 54, 'Filosofi har dupliserte eller manglende canonicale emner');
+  assert(sourceEmneIds.size === EXPECTED.articles, 'Filosofi har dupliserte eller manglende canonicale emner');
   assert(fagkartEmneIds.size === sourceEmneIds.size && [...sourceEmneIds].every((id) => fagkartEmneIds.has(id)), 'Fagkartet dekker ikke alle Filosofi-emner');
   assert(courseEmneIds.size === sourceEmneIds.size && [...sourceEmneIds].every((id) => courseEmneIds.has(id)), 'Pensummodulene dekker ikke alle Filosofi-emner');
 
@@ -152,10 +162,12 @@ export function auditFilosofiPhase3({ writeReport = false, checkReport = true } 
   const conceptIds = new Set(concepts.concepts.map((concept) => concept.id));
   const thinkerIds = new Set(thinkers.thinkers.map((thinker) => thinker.id));
   const methodIds = new Set(source.methods.methods.map((method) => method.method_id));
-  assert(hookIds.size === 37, 'Filosofi har dupliserte eller manglende canonicale hooks');
-  assert(concepts.counts?.total === 162 && concepts.concepts.length === 162, 'Filosofi-begrepsregisteret skal ha 162 canonicale begreper');
-  assert(thinkers.counts?.total === 157 && thinkers.thinkers.length === 157, 'Filosofi-teoretikerregisteret skal ha 157 oppføringer');
-  assert(thinkers.counts?.active === 149 && thinkers.counts?.contextual === 8, 'Filosofi-teoretikerstatusene er ute av synk');
+  assert(hookIds.size === EXPECTED.hooks, 'Filosofi har dupliserte eller manglende canonicale hooks');
+  assert(concepts.counts?.total === EXPECTED.concepts && concepts.concepts.length === EXPECTED.concepts, 'Filosofi-begrepsregisteret skal ha 162 canonicale begreper');
+  assert(thinkers.counts?.total === thinkers.thinkers.length, 'Filosofi-teoretikerregisterets totaltall er ute av synk');
+  const computedActiveThinkers = thinkers.thinkers.filter((thinker) => thinker.status === 'active').length;
+  const computedContextualThinkers = thinkers.thinkers.filter((thinker) => thinker.status === 'contextual').length;
+  assert(thinkers.counts?.active === computedActiveThinkers && thinkers.counts?.contextual === computedContextualThinkers, 'Filosofi-teoretikerstatusene er ute av synk');
   assert(source.pensum.modules.flatMap((module) => module.konsepter || []).every((id) => conceptIds.has(id)), 'Pensum refererer ukjent Filosofi-begrep');
   assert(source.emners.flatMap((emne) => emne.core_concepts || []).every((id) => conceptIds.has(id)), 'Emnekatalogen refererer ukjent Filosofi-begrep');
   assert(source.emners.flatMap((emne) => emne.theory_hook_ids || []).every((id) => hookIds.has(id)), 'Emnekatalogen refererer ukjent Filosofi-hook');

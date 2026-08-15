@@ -101,11 +101,11 @@ test('claim-mønster er ikke lenger mekanisk 54 ganger seks',()=>{
   assert.ok(reviewed.every((article)=>article.claims.some((claim)=>['position_reconstruction','concept_distinction','historical_position'].includes(claim.type))), 'reviewede artikler mangler substansielle claim-typer');
 });
 
-test('Filosofi kan ikke være komplett før 54 av 54 har bestått samme port',()=>{
+test('Filosofi kan ikke være komplett før alle registrerte artikler har bestått samme port',()=>{
   const reviewed=articles.filter((article)=>article.editorial_quality==='university_depth_reviewed');
   assert.equal(completion.reviewed_article_count,reviewed.length);
-  assert.equal(completion.complete_ready,reviewed.length===54);
-  if(reviewed.length<54){
+  assert.equal(completion.complete_ready,reviewed.length===articles.length);
+  if(reviewed.length<articles.length){
     assert.notEqual(completion.status,'complete');
     assert.equal(completion.editorial_quality,'university_depth_review_in_progress');
   } else {

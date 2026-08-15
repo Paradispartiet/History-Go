@@ -93,14 +93,18 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
     assert.equal(subject.nextGate, 'chapter_production');
   }
 
-  // Filosofi has complete structural Fase 3 coverage, but editorial completion is
-  // deliberately gated by article-by-article substantive university review. Do not
-  // collapse "materialized + audited" back into "editorially complete" here.
+  // Filosofi is complete only when the explicit major-field coverage contract and
+  // article-by-article university review agree. Keep the status gate tied to that
+  // canonical contract instead of freezing a historical 13-field snapshot here.
   const filosofi = s.subjects.find((x) => x.id === 'filosofi');
   const filosofiCompletion = readJson('data/fagverk/filosofi/filosofi_completion_v1.json');
-  assert.equal(filosofiCompletion.standalone_article_count, 54);
-  assert.equal(filosofiCompletion.chapter_count, 13);
-  assert.equal(filosofiCompletion.canonical_concept_count, 162);
+  const filosofiCoverage = readJson('data/fagverk/filosofi/filosofi_field_coverage_v1.json');
+  const expected = filosofiCoverage.expected_counts;
+  assert.equal(filosofiCoverage.status, 'major_university_fields_complete');
+  assert.equal(filosofiCompletion.standalone_article_count, expected.articles);
+  assert.equal(filosofiCompletion.chapter_count, expected.chapters);
+  assert.equal(filosofiCompletion.canonical_concept_count, expected.concepts);
+  assert.equal(filosofiCompletion.canonical_method_count, expected.methods);
   assert.equal(filosofi.navigationStatus, 'materialized');
   assert.equal(filosofi.assessmentStatus, 'audited');
   assert.equal(filosofi.editorialStatus, filosofiCompletion.complete_ready ? 'complete' : 'expanded_and_audited');
@@ -110,7 +114,10 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
       ? 'maintenance_source_refresh_and_place_case_expansion'
       : 'university_depth_article_by_article_review'
   );
-  assert.equal(filosofiCompletion.complete_ready, filosofiCompletion.reviewed_article_count === 54);
+  assert.equal(
+    filosofiCompletion.complete_ready,
+    filosofiCompletion.reviewed_article_count === expected.articles && filosofiCoverage.complete_ready
+  );
 
   const filmTv = s.subjects.find((x) => x.id === 'film_tv');
   const filmTvChapterCount = readJson('data/fagverk/fagverk_registry.json').subjects.film_tv.chapters.length;
