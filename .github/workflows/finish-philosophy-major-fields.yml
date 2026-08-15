@@ -10,6 +10,8 @@ on:
 permissions:
   contents: write
 
+# Temporary deterministic closer: materialize, rebuild every derived report, run the
+# permanent quality gates separately, then delete the temporary infrastructure.
 jobs:
   finish:
     runs-on: ubuntu-latest
