@@ -449,7 +449,7 @@
     }, true);
 
     tablist.addEventListener("keydown", event => {
-      const buttons = [...tablist.querySelectorAll("[role=tab]")].filter(button => button instanceof HTMLElement);
+      const buttons = [...tablist.querySelectorAll("[role=tab]")];
       const index = buttons.indexOf(document.activeElement);
       if (index < 0) return;
       let next = index;
@@ -458,9 +458,11 @@
       else if (event.key === "Home") next = 0;
       else if (event.key === "End") next = buttons.length - 1;
       else return;
+      const nextButton = buttons[next];
+      if (!(nextButton instanceof HTMLElement)) return;
       event.preventDefault();
       event.stopImmediatePropagation();
-      activateTab(tablist, panelWrap, buttons[next].dataset.placeTab, true);
+      activateTab(tablist, panelWrap, nextButton.dataset.placeTab, true);
     }, true);
   }
 
