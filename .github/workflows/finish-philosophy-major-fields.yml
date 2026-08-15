@@ -11,7 +11,8 @@ permissions:
   contents: write
 
 # Temporary deterministic closer: materialize, rebuild every derived report, run the
-# permanent quality gates separately, then delete the temporary infrastructure.
+# permanent quality gates separately, then commit the generated expansion. Temporary
+# workflows are removed afterward with the authenticated GitHub connector.
 jobs:
   finish:
     runs-on: ubuntu-latest
@@ -113,13 +114,11 @@ jobs:
         if: always()
         run: node --test tests/fagverk-filosofi-field-coverage.test.mjs
 
-      - name: Commit only permanent Philosophy expansion
+      - name: Commit permanent Philosophy expansion
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm scripts/materialize-filosofi-major-field-coverage.mjs
-          git rm .github/workflows/materialize-filosofi-major-field-coverage.yml
-          git rm .github/workflows/finish-philosophy-major-fields.yml
+          git rm --ignore-unmatch scripts/materialize-filosofi-major-field-coverage.mjs
           git add -A
           git status --short
           git diff --cached --check
