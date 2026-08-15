@@ -12,6 +12,9 @@
   "use strict";
 
   const RUNTIME_KEY = "mail_runtime_v1";
+  const ANSWER_MIDDLEWARE_NAME = "mail_runtime";
+  const ANSWER_MIDDLEWARE_PRIORITY = 80;
+  const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
 
   const MAIL_TYPES = [
     "job",
@@ -632,6 +635,67 @@
     return true;
   }
 
+  async function mailRuntimeAnswerMiddleware(ctx, next) {
+    const eventObj = ctx?.eventObj || null;
+    const eventId = ctx?.eventId;
+    const choiceId = ctx?.choiceId;
+    const active = getActive();
+    const choice = Array.isArray(eventObj?.choices)
+      ? eventObj.choices.find(row => norm(row?.id) === norm(choiceId)) || null
+      : null;
+    const triggerId = norm(choice?.triggers_on_choice);
+    const sourcePhaseTag = norm(eventObj?.phase_tag || window.CivicationCalendar?.getPhase?.()) || "morning";
+
+    // Preserve historical timing exactly: planned/thread runtime state is written
+    // before the inner answer chain and is not rolled back if the inner answer fails.
+    if (eventObj && norm(eventObj.id) === norm(eventId) && choice) {
+      const patch = buildRuntimeStatePatchForAnswer(active, eventObj, choiceId);
+      if (patch) setState(patch);
+    }
+
+    const result = await next();
+
+    if (result?.ok !== false && eventObj && choice) {
+      const brandConsequence = window.CivicationBrandJobState?.applyChoiceConsequences?.(eventObj, choice) || null;
+      if (brandConsequence && result && typeof result === "object") result.brand_consequence = brandConsequence;
+    }
+
+    if (result?.ok !== false && triggerId) {
+      await enqueueThread(triggerId, {
+        triggeredBy: eventId,
+        choiceId,
+        sourcePhaseTag,
+        replacePending: true
+      });
+    }
+
+    return result;
+  }
+
+  function registerAnswerMiddleware() {
+    const director = window.CivicationChoiceDirector;
+    if (director?.registerAnswerMiddleware) {
+      return director.registerAnswerMiddleware(
+        ANSWER_MIDDLEWARE_NAME,
+        mailRuntimeAnswerMiddleware,
+        ANSWER_MIDDLEWARE_PRIORITY
+      );
+    }
+
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationChoiceAnswerMiddlewareQueue?: Array<{ name: string, fn: Function, priority: number }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY])
+      ? runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY]
+      : (runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY] = []);
+    if (!queue.some(entry => entry?.name === ANSWER_MIDDLEWARE_NAME)) {
+      queue.push({
+        name: ANSWER_MIDDLEWARE_NAME,
+        fn: mailRuntimeAnswerMiddleware,
+        priority: ANSWER_MIDDLEWARE_PRIORITY
+      });
+    }
+    return true;
+  }
+
   function patchEventEngine() {
     const proto = window.CivicationEventEngine?.prototype;
     if (!proto) return false;
@@ -704,43 +768,6 @@
       return Array.isArray(pack?.mails) ? pack.mails[0] || null : null;
     };
 
-    const originalAnswer = proto.answer;
-    if (typeof originalAnswer === "function") {
-      proto.answer = async function runtimeAnswer(eventId, choiceId) {
-        const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
-        const eventObj = pending?.event || null;
-        const active = getActive();
-        const choice = Array.isArray(eventObj?.choices)
-          ? eventObj.choices.find(row => norm(row?.id) === norm(choiceId)) || null
-          : null;
-        const triggerId = norm(choice?.triggers_on_choice);
-        const sourcePhaseTag = norm(eventObj?.phase_tag || window.CivicationCalendar?.getPhase?.()) || "morning";
-
-        if (eventObj && norm(eventObj.id) === norm(eventId) && choice) {
-          const patch = buildRuntimeStatePatchForAnswer(active, eventObj, choiceId);
-          if (patch) setState(patch);
-        }
-
-        const result = await originalAnswer.call(this, eventId, choiceId);
-
-        if (result?.ok !== false && eventObj && choice) {
-          const brandConsequence = window.CivicationBrandJobState?.applyChoiceConsequences?.(eventObj, choice) || null;
-          if (brandConsequence && result && typeof result === "object") result.brand_consequence = brandConsequence;
-        }
-
-        if (result?.ok !== false && triggerId) {
-          await enqueueThread(triggerId, {
-            triggeredBy: eventId,
-            choiceId,
-            sourcePhaseTag,
-            replacePending: true
-          });
-        }
-
-        return result;
-      };
-    }
-
     proto.__civicationMailRuntimePatched = true;
     proto.__civicationMailRuntimePatchedAt = new Date().toISOString();
     return true;
@@ -763,6 +790,7 @@
       mail_plan_progress: state?.mail_plan_progress || null,
       mail_system: state?.mail_system || null,
       patched: proto?.__civicationMailRuntimePatched === true,
+      answer_middleware_registered: window.CivicationChoiceDirector?.listAnswerMiddlewares?.().some?.(entry => entry?.name === ANSWER_MIDDLEWARE_NAME) === true,
       thread_count: threadIndex.size,
       cache_size: jsonCache.size
     };
@@ -776,6 +804,7 @@
 
   function boot() {
     patchEventEngine();
+    registerAnswerMiddleware();
   }
 
   // Forhåndslast alt svarstien trenger (plan + alle mailfamilier) mens
@@ -798,7 +827,8 @@
     getFamilyPaths,
     makeCandidateMailsForActiveRole,
     enqueueThread,
-    patchEventEngine
+    patchEventEngine,
+    registerAnswerMiddleware
   };
 
   if (document.readyState === "loading") {
