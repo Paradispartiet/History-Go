@@ -1,0 +1,65 @@
+name: TEMP diagnose Film TV unit 13 monotone regression
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit13-location-production-place-ethics-fulltext-complete
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit13-location-production-place-ethics-fulltext-complete
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Recreate validated unit 13 state
+        run: |
+          python .bootstrap/unit13-fulltext-patch.py
+          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs --write
+          node scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs --write-report
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs --write
+          node scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+      - name: Identify exact failing monotone command
+        shell: bash
+        run: |
+          set +e
+          check() {
+            label="$1"; shift
+            output=$("$@" 2>&1); code=$?
+            if [ "$code" -ne 0 ]; then
+              clean=$(printf '%s' "$output" | tr '\n' ' ' | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
+              echo "::error title=$label::$clean"
+              exit "$code"
+            fi
+            echo "PASS $label"
+          }
+          check unit13-source-script node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs
+          check unit13-source-test node --test tests/film-tv-location-production-place-ethics-source-brief-v1.test.mjs
+          check unit13-fulltext-audit node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          check unit13-fulltext-test node --test tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+          check unit12-source-script node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs
+          check unit12-fulltext-audit node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          check unit12-source-test node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
+          check unit12-fulltext-test node --test tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+          check unit11-source-script node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+          check unit11-fulltext-audit node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          check unit11-source-test node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
+          check unit11-fulltext-test node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+          check unit10-fulltext-audit node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+          check unit10-source-test node --test tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+          check unit10-fulltext-test node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
+          check unit9-fulltext-audit node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
+          check unit9-fulltext-test node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
