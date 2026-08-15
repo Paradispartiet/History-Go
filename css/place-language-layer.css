@@ -1,0 +1,359 @@
+/* ============================================================
+   PLACE LANGUAGE LAYER
+   Språkleksikon som valgfri, stedbundet kunnskapsflate.
+   Ingen egen PlaceCard-runding: popupen eier presentasjonen.
+   ============================================================ */
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-place-language-tab{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-place-language-tab > span{
+  min-width: 18px;
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  color: currentColor;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser{
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 18px;
+  padding: 14px;
+  border: 1px solid rgba(246,200,0,.28);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(246,200,0,.10), rgba(255,255,255,.025));
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser > div{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser > div > span{
+  color: #ffe168;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser > div > strong{
+  color: rgba(255,255,255,.78);
+  font-size: 12px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser p{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser p span{
+  padding: 6px 9px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 999px;
+  background: rgba(0,0,0,.16);
+  color: rgba(255,255,255,.82);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser button,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect{
+  width: fit-content;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid rgba(246,200,0,.46);
+  border-radius: 999px;
+  background: rgba(246,200,0,.13);
+  color: #ffe168;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser button:hover,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser button:focus-visible,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect:hover,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect:focus-visible{
+  border-color: rgba(246,200,0,.78);
+  background: rgba(246,200,0,.2);
+  outline: none;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-layer{
+  display: grid;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-hero{
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid rgba(246,200,0,.24);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(246,200,0,.08), rgba(0,0,0,.2));
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-kicker{
+  color: #ffe168;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-hero h2{
+  margin: 0;
+  color: #fff;
+  font-size: clamp(21px, 5vw, 28px);
+  line-height: 1.15;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-hero > p{
+  margin: 0;
+  color: rgba(255,255,255,.72);
+  line-height: 1.5;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-summary{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 4px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-summary span{
+  padding: 6px 9px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 999px;
+  background: rgba(0,0,0,.16);
+  color: rgba(255,255,255,.64);
+  font-size: 11px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-summary strong{
+  color: #fff;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-filters{
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 1px 0 3px;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-filters button{
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  background: rgba(255,255,255,.035);
+  color: rgba(255,255,255,.66);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-filters button span{
+  opacity: .65;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-filters button[aria-pressed="true"]{
+  border-color: rgba(246,200,0,.5);
+  background: rgba(246,200,0,.13);
+  color: #ffe168;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-list{
+  display: grid;
+  gap: 12px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-entry{
+  display: grid;
+  gap: 11px;
+  padding: 15px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 18px;
+  background: rgba(0,0,0,.18);
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-entry[hidden]{
+  display: none;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-entry > header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-entry-type{
+  color: #ffe168;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-entry h3{
+  margin: 3px 0 0;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-status{
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  color: rgba(255,255,255,.62);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-meaning,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-context,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-related{
+  margin: 0;
+  color: rgba(255,255,255,.78);
+  line-height: 1.5;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-context strong,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-related strong{
+  display: block;
+  margin-bottom: 3px;
+  color: rgba(255,255,255,.5);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-example{
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 11px 12px;
+  border-left: 3px solid rgba(246,200,0,.58);
+  border-radius: 0 12px 12px 0;
+  background: rgba(246,200,0,.055);
+  color: rgba(255,255,255,.82);
+  font-style: normal;
+  line-height: 1.45;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-example span{
+  color: rgba(255,255,255,.46);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-meta{
+  display: grid;
+  gap: 0;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-meta:empty{
+  display: none;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-meta-row{
+  display: grid;
+  grid-template-columns: minmax(94px, .34fr) minmax(0, 1fr);
+  gap: 10px;
+  margin: 0;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,.055);
+  color: rgba(255,255,255,.68);
+  font-size: 12px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-meta-row:last-child{
+  border-bottom: 0;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-meta-row strong{
+  color: rgba(255,255,255,.46);
+  font-weight: 800;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-tags span{
+  padding: 5px 8px;
+  border: 1px solid rgba(255,255,255,.075);
+  border-radius: 999px;
+  color: rgba(255,255,255,.55);
+  font-size: 10px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-entry > footer{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 2px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-sources{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-sources a{
+  color: rgba(255,225,104,.82);
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect.is-collected,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect:disabled{
+  border-color: rgba(255,255,255,.09);
+  background: rgba(255,255,255,.035);
+  color: rgba(255,255,255,.48);
+  cursor: default;
+}
+
+@media (max-width: 720px){
+  body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser > div,
+  body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-entry > footer{
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-meta-row{
+    grid-template-columns: 88px minmax(0, 1fr);
+  }
+
+  body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-collect{
+    width: 100%;
+  }
+}
