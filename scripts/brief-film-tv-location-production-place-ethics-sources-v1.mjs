@@ -9,7 +9,9 @@ const UNIT_ID = 'location-produksjon-og-stedsetikk';
 const INPUT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
 const OUTPUT_GATE = 'location_production_place_ethics_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';
-const UNIT_THIRTEEN_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE]);
+const ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
+const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
+const UNIT_THIRTEEN_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE]);
 
 export const isFilmTvUnitThirteenOrLaterGate = (gate) => UNIT_THIRTEEN_OR_LATER_GATES.has(gate);
 
@@ -62,7 +64,7 @@ export function buildFilmTvLocationProductionPlaceEthicsSourceBriefV1() {
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   assert(filmStatus, 'Mangler Film & TV-status');
   const currentGate = filmStatus.nextGate;
-  const laterGateAlreadyActive = currentGate === FULLTEXT_GATE;
+  const laterGateAlreadyActive = UNIT_THIRTEEN_OR_LATER_GATES.has(currentGate);
 
   const brief = read(P.brief);
   const sourceManifest = read(P.sources);
@@ -124,7 +126,7 @@ export function buildFilmTvLocationProductionPlaceEthicsSourceBriefV1() {
     planned_prerequisites_registered: unit.prerequisite_planned_unit_ids.every((id) =>
       registry.subjects.film_tv.chapters.some((row) => row.id === id)
     ),
-    current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE].includes(currentGate),
+    current_status_is_input_output_or_known_later_gate: currentGate === INPUT_GATE || isFilmTvUnitThirteenOrLaterGate(currentGate),
     exact_unit_emne_coverage: topicBriefs.length === unit.emne_count
       && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count
       && isDeepStrictEqual(brief.scope.emne_ids, unit.emne_ids)

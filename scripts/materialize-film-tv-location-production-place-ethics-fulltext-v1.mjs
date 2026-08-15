@@ -7,6 +7,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'location-produksjon-og-stedsetikk';
 const SOURCE_BRIEF_GATE = 'location_production_place_ethics_source_brief_complete_full_chapter_production';
 const OUTPUT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';
+const ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
+const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 const P = Object.freeze({
   plan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
   emners: 'data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json',
@@ -203,6 +205,9 @@ export function buildFilmTvLocationProductionPlaceEthicsFulltextV1() {
   const methodIds = new Set(methods.map((row) => row.method_id || row.id));
   const registry = structuredClone(read(P.registry));
   const status = structuredClone(read(P.status));
+  const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
+  if (!filmStatus) throw new Error('Mangler Film & TV-status');
+  const unitFourteenOrLaterGateActive = [ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE].includes(filmStatus.nextGate);
   const sourceById = new Map(sources.map((row) => [row.id, row]));
   const caseById = new Map(cases.map((row) => [row.id, row]));
   const topicById = new Map(topicBriefs.map((row) => [row.emne_id, row]));
@@ -259,12 +264,10 @@ export function buildFilmTvLocationProductionPlaceEthicsFulltextV1() {
   const chapterIndex = registry.subjects.film_tv.chapters.findIndex((row) => row.id === CHAPTER_ID);
   if (chapterIndex === -1) registry.subjects.film_tv.chapters.push(registryChapter); else registry.subjects.film_tv.chapters[chapterIndex] = registryChapter;
   registry.subjects.film_tv.canonicalModel.thirteenthSourceClaimBrief = P.sourceBrief;
-  registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Location, produksjon og stedsetikk er fulltekstregistrert med 8 canonicale emner, 4 variable moduler, 8 emneeide seksjoner, 39 claimsporede fagavsnitt, 39/39 verifiserte claims, 26 brukte inspectable kilder og 24 dokumenterte case. Locationtillatelse, samtykke, kulturell protokoll, karbon, stedlig økologi, virtuell stedserstatning og filmturisme har separate evidensgrenser. Neste port er kilde- og claimbrief for Arkiv, bevaring, tilgang og autentisitet.';
+  if (!unitFourteenOrLaterGateActive) registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Location, produksjon og stedsetikk er fulltekstregistrert med 8 canonicale emner, 4 variable moduler, 8 emneeide seksjoner, 39 claimsporede fagavsnitt, 39/39 verifiserte claims, 26 brukte inspectable kilder og 24 dokumenterte case. Locationtillatelse, samtykke, kulturell protokoll, karbon, stedlig økologi, virtuell stedserstatning og filmturisme har separate evidensgrenser. Neste port er kilde- og claimbrief for Arkiv, bevaring, tilgang og autentisitet.';
 
   status.version = maxDottedVersion(status.version, '1.92.0');
   status.updatedAt = maxIsoDate(status.updatedAt, '2026-08-15');
-  const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
-  if (!filmStatus) throw new Error('Mangler Film & TV-status');
   if ([SOURCE_BRIEF_GATE, OUTPUT_GATE].includes(filmStatus.nextGate)) {
     filmStatus.editorialStatus = 'chapters_in_progress';
     filmStatus.nextGate = OUTPUT_GATE;
