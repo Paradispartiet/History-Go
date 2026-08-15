@@ -57,6 +57,7 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     "dist/web/knowledge.js",
     "dist/web/hgInsights.js",
     "dist/web/knowledgeV2.js",
+    "js/ui/place-language-layer.js",
     "js/hgSocialGuards.js",
     "js/knowledgeMatch.js",
     "js/progress/profileProgressReader.js",
