@@ -32,65 +32,85 @@ jobs:
 
           old_priority = '''      const hasPlaceSegment = (file, placeId) => placeId
                 && String(file).split("/").some(segment => segment === placeId);
-              const prioritizeOpenPlace = file => hasPlaceSegment(file, getCurrentPlaceId());
-          '''
+              const prioritizeOpenPlace = file => hasPlaceSegment(file, getCurrentPlaceId());'''.replace('              ', '      ')
           new_priority = '''      const hasPlaceSegment = (file, placeId) => placeId
-                && String(file).split("/").some(segment => segment === placeId);
-              const priorityFilesByPlace = new Map(
-                Object.entries(manifest.priorityFilesByPlace || {}).map(([placeId, entries]) => [
-                  String(placeId || "").trim(),
-                  new Set((Array.isArray(entries) ? entries : [])
-                    .map(normalizePeoplePath)
-                    .filter(file => peopleFiles.includes(file)))
-                ])
-              );
-              const isPriorityFileForPlace = (file, placeId) => Boolean(
-                hasPlaceSegment(file, placeId)
-                || priorityFilesByPlace.get(String(placeId || "").trim())?.has(file)
-              );
-              const prioritizeOpenPlace = file => isPriorityFileForPlace(file, getCurrentPlaceId());
-          '''
+        && String(file).split("/").some(segment => segment === placeId);
+      const priorityFilesByPlace = new Map(
+        Object.entries(manifest.priorityFilesByPlace || {}).map(([placeId, entries]) => [
+          String(placeId || "").trim(),
+          new Set((Array.isArray(entries) ? entries : [])
+            .map(normalizePeoplePath)
+            .filter(file => peopleFiles.includes(file)))
+        ])
+      );
+      const isPriorityFileForPlace = (file, placeId) => Boolean(
+        hasPlaceSegment(file, placeId)
+        || priorityFilesByPlace.get(String(placeId || "").trim())?.has(file)
+      );
+      const prioritizeOpenPlace = file => isPriorityFileForPlace(file, getCurrentPlaceId());'''
+
+          # Use the exact stable #4981 block seen in boot-fast.js. Keep the check
+          # strict so a future source change cannot silently patch the wrong code.
+          old_priority = '''      const hasPlaceSegment = (file, placeId) => placeId
+        && String(file).split("/").some(segment => segment === placeId);
+      const prioritizeOpenPlace = file => hasPlaceSegment(file, getCurrentPlaceId());'''
 
           if 'hg:people-progressive-ready' not in boot:
               if old_priority not in boot:
                   raise SystemExit('Fant ikke forventet #4981 priority-blokk i boot-fast.js')
               boot = boot.replace(old_priority, new_priority, 1)
+
+              old_open_place = '          if (hasPlaceSegment(file, placeId)) rows.push(...fileRows);'
+              if old_open_place not in boot:
+                  raise SystemExit('Fant ikke forventet open-place filter')
               boot = boot.replace(
-                  '          if (hasPlaceSegment(file, placeId)) rows.push(...fileRows);',
+                  old_open_place,
                   '          if (isPriorityFileForPlace(file, placeId)) rows.push(...fileRows);',
                   1
               )
+
+              old_file_count = '          files: peopleFiles.filter(file => hasPlaceSegment(file, placeId)).length'
+              if old_file_count not in boot:
+                  raise SystemExit('Fant ikke forventet priority file count')
               boot = boot.replace(
-                  '          files: peopleFiles.filter(file => hasPlaceSegment(file, placeId)).length',
+                  old_file_count,
                   '          files: peopleFiles.filter(file => isPriorityFileForPlace(file, placeId)).length',
                   1
               )
+
+              old_ready_count = '        priorityFiles: peopleFiles.filter(file => hasPlaceSegment(file, currentPlaceId)).length,'
+              if old_ready_count not in boot:
+                  raise SystemExit('Fant ikke forventet ready priority count')
+              boot = boot.replace(
+                  old_ready_count,
+                  '        priorityFiles: peopleFiles.filter(file => isPriorityFileForPlace(file, currentPlaceId)).length,',
+                  1
+              )
+
               old_remember = '''      const rememberRows = ({ url, rows }) => {
-                loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
-                publishOpenPlaceRows();
-              };
-          '''
+        loadedRowsByFile.set(url, Array.isArray(rows) ? rows : []);
+        publishOpenPlaceRows();
+      };'''
               new_remember = '''      const rememberRows = ({ url, rows }) => {
-                const fileRows = Array.isArray(rows) ? rows : [];
-                loadedRowsByFile.set(url, fileRows);
+        const fileRows = Array.isArray(rows) ? rows : [];
+        loadedRowsByFile.set(url, fileRows);
 
-                // Gjør hver ferdig People-fil tilgjengelig umiddelbart. Den globale
-                // ferdigstatusen kan fortsatt vente på manifestet, men PlaceCard skal
-                // aldri vente på alle øvrige personfiler før brukbare profiler finnes.
-                if (fileRows.length) {
-                  const existingPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
-                  window.PEOPLE = mergeRowsById(fileRows, existingPeople);
-                  emit("hg:people-progressive-ready", {
-                    file: url,
-                    added: fileRows.length,
-                    count: window.PEOPLE.length
-                  });
-                  handlePeopleDataChange();
-                }
+        // Publiser hver ferdig People-fil med én gang. HG_PEOPLE_READY betyr
+        // fortsatt at hele manifestpasset er ferdig, men PlaceCard skal ikke
+        // vente på alle andre personfiler før tilgjengelige profiler kan vises.
+        if (fileRows.length) {
+          const existingPeople = Array.isArray(window.PEOPLE) ? window.PEOPLE : [];
+          window.PEOPLE = mergeRowsById(fileRows, existingPeople);
+          emit("hg:people-progressive-ready", {
+            file: url,
+            added: fileRows.length,
+            count: window.PEOPLE.length
+          });
+          handlePeopleDataChange();
+        }
 
-                publishOpenPlaceRows();
-              };
-          '''
+        publishOpenPlaceRows();
+      };'''
               if old_remember not in boot:
                   raise SystemExit('Fant ikke forventet #4981 rememberRows-blokk i boot-fast.js')
               boot = boot.replace(old_remember, new_remember, 1)
