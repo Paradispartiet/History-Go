@@ -331,7 +331,7 @@ export function buildFilmTvArchivePreservationAccessAuthenticityFulltextV1() {
     relatedPlaces: [],
     workCases: cases.map((row) => ({
       id: row.id,
-      title: row.work,
+      title: row.title,
       year: row.years,
       medium: row.medium,
       territory: row.territory,
