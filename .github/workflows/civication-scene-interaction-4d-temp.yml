@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/civication-scene-interaction-4d
+          ref: ${{ github.head_ref || github.ref_name }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -145,4 +145,4 @@ console.log("civication-scene-interaction-no-fallback.test.js: PASS");
           git rm .github/workflows/civication-scene-interaction-4d-temp.yml
           git add js/Civication/systems/civicationDailyMailBuilder.js js/Civication/systems/civicationWorkdayMailBuilder.js data/Civication/SCENE_PIPELINE_V1.md tests/civication-scene-interaction-no-fallback.test.js
           git commit -m "Fjern generiske runtimevalg fra SceneCatalog"
-          git push origin HEAD:agent/civication-scene-interaction-4d
+          git push origin "HEAD:${{ github.head_ref || github.ref_name }}"
