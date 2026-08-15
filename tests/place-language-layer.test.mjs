@@ -75,12 +75,15 @@ test("legacy-arrangementer blir ikke løftet som språkinnhold", () => {
   assert.ok(bislett.entries.some(entry => entry.type === "arrangement"), "fixture må fortsatt dekke legacy-arrangement");
 });
 
-test("språkflaten lastes etter Knowledge V2", () => {
+test("språkflaten lastes etter både Knowledge V2 og popup-loaderen", () => {
   const config = read("js/config.js");
   const knowledgeIndex = config.indexOf('"dist/web/knowledgeV2.js"');
+  const popupLoaderIndex = config.indexOf('"js/ui/place-card-status-surface.js"');
   const languageIndex = config.indexOf('"js/ui/place-language-layer.js"');
   assert.ok(knowledgeIndex >= 0, "Knowledge V2 mangler i runtime-listen");
+  assert.ok(popupLoaderIndex >= 0, "PlaceCard popup-loader mangler i runtime-listen");
   assert.ok(languageIndex > knowledgeIndex, "språkflaten må lastes etter Knowledge V2");
+  assert.ok(languageIndex > popupLoaderIndex, "språkflaten må lastes etter popup-tab-loaderen");
 });
 
 test("Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny runding", () => {
