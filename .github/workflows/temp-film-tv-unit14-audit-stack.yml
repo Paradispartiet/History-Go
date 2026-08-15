@@ -1,0 +1,30 @@
+name: TEMP diagnose Film TV unit 14 audit stack
+
+on:
+  push:
+    branches:
+      - "agent/film-tv-unit14-archive-preservation-access-authenticity-fulltext"
+    paths:
+      - ".trigger/unit14-audit-stack"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Rebuild source brief
+        run: node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs --write
+      - name: Materialize fulltext
+        run: node --input-type=module -e "import('./scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs').then(m => m.materializeFilmTvArchivePreservationAccessAuthenticityFulltextV1())"
+      - name: Audit fulltext uncaught
+        run: |
+          node --input-type=module <<'NODE'
+          const m = await import('./scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs');
+          m.auditFilmTvArchivePreservationAccessAuthenticityFulltextV1({ writeReport: true, checkReport: false });
+          NODE
