@@ -85,6 +85,7 @@ Lavere middleware-prioritet ligger **ytterst** og kjøres derfor først før `ne
 | 10 | `systems/day/dayActiveRoleStateSync.js` | Synker `mail_system`, thread-fase og aktiv rolle etter vellykket svar | ytterst |
 | 20 | `dayChoiceDirector.js` | **builtin `choice_contract`**: validering + choice-handlerpunkt | canonical grense |
 | 30 | `systems/civicationLifeMailRuntime.js` | Registrerer besvart life/private-mail etter vellykket inner svar | innenfor kontrakten |
+| 40 | `systems/civicationDailyMailBuilder.js` | Daily-runtime markering, suppress-followup og rollback ved svarfeil | innenfor Life / utenfor gjenværende legacy-kjede |
 
 Denne rekkefølgen bevarer den tidligere nestingen:
 
@@ -92,7 +93,9 @@ Denne rekkefølgen bevarer den tidligere nestingen:
 ActiveRole pre
 → Choice contract / validation
   → Life pre
-    → gjenværende legacy svarstabel
+    → Daily pre
+      → gjenværende legacy svarstabel
+    ← Daily post / rollback
   ← Life post
 ← choice handlers
 ← ActiveRole post
@@ -100,7 +103,7 @@ ActiveRole pre
 
 ### Gjenværende legacy `answer`-wrappere
 
-Disse seks modulene wrapper fortsatt `EventEngine.answer` direkte og skal flyttes inn i middleware-registeret i neste porter. De står her i historisk inner→outer-rekkefølge:
+Disse fem modulene wrapper fortsatt `EventEngine.answer` direkte og skal flyttes inn i middleware-registeret i neste porter. De står her i historisk inner→outer-rekkefølge:
 
 | Neste middleware-prioritet | Modul | Nåværende ansvar |
 | --- | --- | --- |
@@ -109,9 +112,8 @@ Disse seks modulene wrapper fortsatt `EventEngine.answer` direkte og skal flytte
 | 70 | `systems/civicationCareerOutcomeRuntime.js` | terminal outcome/FIRED-forberedelse og outcome-state |
 | 60 | `systems/civicationJobLearningRuntime.js` | læringsprogresjon fra besvart jobbmail |
 | 50 | `systems/civicationJobEligibilityRuntime.js` | FIRED reentry-lock / clear etter arbeid i annen kategori |
-| 40 | `systems/civicationDailyMailBuilder.js` | daily-runtime markering, suppress-followup og rollback ved svarfeil |
 
-`CivicationChoiceDirector` lastes fortsatt etter disse seks i 4F-B1. Derfor fanger Director den gjenværende legacy-kjeden som sin terminal og legger de eksplisitte middleware-stegene rundt den. Det er bevisst en overgangstilstand, ikke sluttarkitekturen.
+`CivicationChoiceDirector` lastes fortsatt etter disse fem. Derfor fanger Director den gjenværende legacy-kjeden som sin terminal og legger de eksplisitte middleware-stegene rundt den. Det er bevisst en overgangstilstand, ikke sluttarkitekturen.
 
 ### Valg-handler-registeret
 
@@ -168,13 +170,12 @@ Begge er **kun visning** — effektene beregnes i `dayConsequences`.
 
 ## Gjenværende mål for 4F
 
-- Flytt `civicationDailyMailBuilder` → priority 40.
 - Flytt `civicationJobEligibilityRuntime` → priority 50.
 - Flytt `civicationJobLearningRuntime` → priority 60.
 - Flytt `civicationCareerOutcomeRuntime` → priority 70.
 - Flytt `civicationMailRuntime` → priority 80.
 - Flytt `dayPatches` answer-del → priority 90.
-- Når disse seks er borte, skal `CivicationChoiceDirector` være den eneste modulen som tilordner `CivicationEventEngine.prototype.answer` i den aktive produksjonsruntimen.
+- Når disse fem er borte, skal `CivicationChoiceDirector` være den eneste modulen som tilordner `CivicationEventEngine.prototype.answer` i den aktive produksjonsruntimen.
 
 ## Kjente forbehold
 
