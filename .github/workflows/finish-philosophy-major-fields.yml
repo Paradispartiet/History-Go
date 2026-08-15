@@ -25,40 +25,26 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Strengthen subjective-probability argument
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('scripts/materialize-filosofi-major-field-coverage.mjs')
-          s = p.read_text()
-          old = "P2: Ramsey og de Finetti lar sannsynlighet uttrykke grader av tro som må være koherente med agentens preferanser og hypotetiske innsatser. Dette håndterer unike hendelser, men reiser spørsmålet om to koherente agenter med svært forskjellige priorer begge kan være like rasjonelle før evidens."
-          new = "P2: Ramsey og de Finetti lar subjektiv sannsynlighet uttrykke grader av tro som må være koherente med agentens preferanser og hypotetiske innsatser. Dette håndterer unike hendelser, men reiser spørsmålet om to koherente agenter med svært forskjellige priorer begge kan være like rasjonelle før evidens."
-          count = s.count(old)
-          if count != 1:
-              raise SystemExit(f'Expected exactly one Ramsey/de Finetti paragraph, found {count}')
-          p.write_text(s.replace(old, new, 1))
-          PY
-          node --check scripts/materialize-filosofi-major-field-coverage.mjs
-
-      - name: Commit substantive repair before materialization
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/materialize-filosofi-major-field-coverage.mjs
-          git diff --cached --check
-          git commit -m "Strengthen subjective-probability argument anchor"
-          git push origin HEAD:agent/expand-philosophy-core-fields
+      - name: Validate materializer syntax
+        run: node --check scripts/materialize-filosofi-major-field-coverage.mjs
 
       - name: Materialize seven missing major fields
         run: node scripts/materialize-filosofi-major-field-coverage.mjs
 
-      - name: Rebuild deterministic Philosophy and shared reports
-        run: |
-          node tools/validate-filosofi-theory-quality.mjs
-          node scripts/audit-fagverk-filosofi-phase3.mjs --write-report --no-check-report
-          node scripts/audit-fagverk-subject-inventory.mjs
-          node scripts/audit-fagverk-general-engine.mjs
-          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate Philosophy theory quality
+        run: node tools/validate-filosofi-theory-quality.mjs
+
+      - name: Write Philosophy phase3 report
+        run: node scripts/audit-fagverk-filosofi-phase3.mjs --write-report --no-check-report
+
+      - name: Rebuild subject inventory
+        run: node scripts/audit-fagverk-subject-inventory.mjs
+
+      - name: Rebuild general engine
+        run: node scripts/audit-fagverk-general-engine.mjs
+
+      - name: Rebuild release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
 
       - name: Validate permanent Philosophy quality gates
         run: |
@@ -76,6 +62,8 @@ jobs:
 
       - name: Commit only permanent Philosophy expansion
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm scripts/materialize-filosofi-major-field-coverage.mjs
           git rm .github/workflows/materialize-filosofi-major-field-coverage.yml
           git rm .github/workflows/finish-philosophy-major-fields.yml
