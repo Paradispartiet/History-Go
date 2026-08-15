@@ -12,6 +12,9 @@
   const ANSWER_MIDDLEWARE_NAME = "life_mail_runtime";
   const ANSWER_MIDDLEWARE_PRIORITY = 30;
   const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
+  const SCENE_SOURCE_ADAPTER_NAME = "life";
+  const SCENE_SOURCE_FORMAT = "life_mail_manifest_v1";
+  const SCENE_SOURCE_ADAPTER_QUEUE_KEY = "__civicationSceneSourceAdapterQueue";
 
   const jsonCache = new Map();
 
@@ -288,6 +291,37 @@
     return candidates[0] || null;
   }
 
+  async function getSourceScenes(context = {}) {
+    const event = await makeNextLifeMail({
+      active: context.active ?? getActive(),
+      state: context.state || getState()
+    });
+    return event ? [event] : [];
+  }
+
+  const LIFE_SOURCE_ADAPTER = Object.freeze({
+    name: SCENE_SOURCE_ADAPTER_NAME,
+    version: 1,
+    source_format: SCENE_SOURCE_FORMAT,
+    getScenes: getSourceScenes
+  });
+
+  function registerSceneSourceAdapter() {
+    const catalog = window.CivicationSceneCatalog;
+    if (typeof catalog?.registerSourceAdapter === "function") {
+      return catalog.registerSourceAdapter(SCENE_SOURCE_ADAPTER_NAME, LIFE_SOURCE_ADAPTER);
+    }
+
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationSceneSourceAdapterQueue?: Array<{ name?: string, adapter?: any }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow[SCENE_SOURCE_ADAPTER_QUEUE_KEY])
+      ? runtimeWindow[SCENE_SOURCE_ADAPTER_QUEUE_KEY]
+      : (runtimeWindow[SCENE_SOURCE_ADAPTER_QUEUE_KEY] = []);
+    const existing = queue.find((entry) => entry?.name === SCENE_SOURCE_ADAPTER_NAME);
+    if (existing) return existing.adapter === LIFE_SOURCE_ADAPTER;
+    queue.push({ name: SCENE_SOURCE_ADAPTER_NAME, adapter: LIFE_SOURCE_ADAPTER });
+    return true;
+  }
+
   function markLifeMailAnswered(eventObj, choiceId) {
     const id = norm(eventObj?.id);
     if (!id) return null;
@@ -391,10 +425,23 @@
       const state = this.getState ? this.getState() : getState();
 
       if (phase === "morning" && shouldTryLifeMail(active, state)) {
-        const ev = await makeNextLifeMail({ active, state });
+        const catalog = window.CivicationSceneCatalog;
+        const scenes = typeof catalog?.getSourceScenes === "function"
+          ? await catalog.getSourceScenes(SCENE_SOURCE_ADAPTER_NAME, {
+            active,
+            state,
+            consumer: "civicationLifeMailRuntime.onAppOpen"
+          })
+          : [];
+        const ev = Array.isArray(scenes) ? scenes[0] || null : null;
         if (ev) {
           this.enqueueEvent?.(ev);
-          return { enqueued: true, type: "life", event: ev };
+          return {
+            enqueued: true,
+            type: "life",
+            event: ev,
+            source_adapter: norm(ev?.scene_source_adapter || SCENE_SOURCE_ADAPTER_NAME)
+          };
         }
       }
 
@@ -421,6 +468,7 @@
       pending: Array.isArray(getInbox()) ? getInbox().find(item => item?.status === "pending")?.event || null : null,
       patched: window.CivicationEventEngine?.prototype?.__civicationLifeMailRuntimePatched === true,
       answer_middleware_registered: window.CivicationChoiceDirector?.listAnswerMiddlewares?.().some?.(entry => entry?.name === ANSWER_MIDDLEWARE_NAME) === true,
+      source_adapter_registered: window.CivicationSceneCatalog?.getSourceAdapter?.(SCENE_SOURCE_ADAPTER_NAME) === LIFE_SOURCE_ADAPTER,
       cache_size: jsonCache.size
     };
   }
@@ -430,6 +478,7 @@
   }
 
   function boot() {
+    registerSceneSourceAdapter();
     patchEventEngine();
   }
 
@@ -442,10 +491,15 @@
     loadJson,
     makeCandidateLifeMails,
     makeNextLifeMail,
+    getSourceScenes,
+    sourceAdapter: LIFE_SOURCE_ADAPTER,
+    registerSceneSourceAdapter,
     markLifeMailAnswered,
     registerAnswerMiddleware,
     patchEventEngine
   };
+
+  registerSceneSourceAdapter();
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot, { once: true });
