@@ -189,3 +189,9 @@ Reachability-testen håndhever typeparitet og direkte lasting. SceneDirector-eie
 9. Slå på blokkerende semantisk spilltest: plansteg → scene → valg/oppgave/info → konsekvens → progresjon → neste steg.
 
 Renholder og Arealplanlegger er de første bevisrollene etter at interaksjonskontrakten og svartransaksjonen er samlet.
+
+## Scene Interaction 4D: ingen syntetiske runtimevalg
+
+Runtime genererer ikke lenger standardvalgene «Gjør dette ryddig og dokumenter det» / «Løs det raskt og gå videre» når kildeinnholdet har færre enn to valg. Både legacy-Daily-normaliseringen og `CivicationSceneCatalog` bevarer nå bare kildeeide valg: null valg forblir null, ett eksplisitt valg forblir ett, og to eller flere reelle valg normaliseres uten semantisk erstatning.
+
+Dette lukker bare den syntetiske fallbacken. Neste interaksjonsport skal klassifisere `decision`, `task`, `info` og `ack` eksplisitt og blokkere mangelfulle beslutningsscener i stedet for å dikte gameplay. Den globale Scene Pipeline-auditen forblir derfor i `observe` inntil svarpipeline, interaksjonsklassifisering, dagsbudsjett og compiled registry er migrert.

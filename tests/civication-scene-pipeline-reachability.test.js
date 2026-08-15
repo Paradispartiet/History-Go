@@ -270,7 +270,8 @@ function makeCatalog({ category, roleScope, mailType, familyId, id }) {
       }
     }
     assert(actual.runtime.answer_wrappers.length > 1, "auditten skal fortsatt oppdage den parallelle answer-pipelinen");
-    assert(actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationDailyMailBuilder.js")));
+    assert(!actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationDailyMailBuilder.js")), "Daily-builder skal ikke lenger generere fallbackvalg");
+    assert(!actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationWorkdayMailBuilder.js")), "Workday-builder skal ikke lenger generere fallbackvalg");
   }
 
   console.log("civication-scene-pipeline-reachability.test.js: PASS");
