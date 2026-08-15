@@ -515,8 +515,8 @@
 
     installGenericTabBridge(tablist, panelWrap);
 
-    let tab = tablist.querySelector(`[data-place-tab="${TAB_ID}"]`);
-    let panel = panelWrap.querySelector(`[data-place-panel="${TAB_ID}"]`);
+    let tab = /** @type {HTMLButtonElement | null} */ (tablist.querySelector(`[data-place-tab="${TAB_ID}"]`));
+    let panel = /** @type {HTMLElement | null} */ (panelWrap.querySelector(`[data-place-panel="${TAB_ID}"]`));
     if (!tab) {
       tab = document.createElement("button");
       tab.type = "button";
