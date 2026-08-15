@@ -47,7 +47,7 @@ jobs:
           EOF
           node --check scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
 
-      - name: Prove unit 11 accepts the unit 14 gate
+      - name: Set synthetic unit 14 gate
         run: |
           cp data/fagverk/subject_status.json /tmp/subject_status.json
           node --input-type=module <<'EOF'
@@ -59,13 +59,33 @@ jobs:
           film.nextGate = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
           fs.writeFileSync(file, `${JSON.stringify(status, null, 2)}\n`);
           EOF
-          node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
-          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
-          node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
-          node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
-          mv /tmp/subject_status.json data/fagverk/subject_status.json
+
+      - name: Probe unit 11 source brief
+        id: source_brief
+        continue-on-error: true
+        run: node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+
+      - name: Probe unit 11 fulltext audit
+        id: fulltext_audit
+        continue-on-error: true
+        run: node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+
+      - name: Probe unit 11 source brief tests
+        id: source_test
+        continue-on-error: true
+        run: node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
+
+      - name: Probe unit 11 fulltext tests
+        id: fulltext_test
+        continue-on-error: true
+        run: node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+
+      - name: Restore subject status
+        if: always()
+        run: mv /tmp/subject_status.json data/fagverk/subject_status.json
 
       - name: Commit focused unit 11 repair
+        if: steps.source_brief.outcome == 'success' && steps.fulltext_audit.outcome == 'success' && steps.source_test.outcome == 'success' && steps.fulltext_test.outcome == 'success'
         run: |
           rm -f .trigger/unit14-unit11-monotone-repair
           rm -f .github/workflows/temp-film-tv-unit14-unit11-monotone-repair.yml
