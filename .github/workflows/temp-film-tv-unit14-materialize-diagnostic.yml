@@ -1,0 +1,50 @@
+name: TEMP diagnose Film TV unit 14 materialization
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
+    paths:
+      - ".trigger/unit14-materialize-diagnostic"
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Repair community evidence mapping in working tree
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from 'node:fs';
+          const file = 'data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_topic_claims_v1.json';
+          const document = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const topic = document.topic_briefs.find((row) => row.emne_id === 'em_film_tv_dekolonisering_repatriering_og_fellesskapskontroll');
+          if (!topic) throw new Error('Community-control topic missing');
+          const sourceId = 'ap01-fiaf-code-ethics-2025';
+          if (!topic.source_ids.includes(sourceId)) topic.source_ids.unshift(sourceId);
+          fs.writeFileSync(file, `${JSON.stringify(document, null, 2)}\n`);
+          EOF
+      - name: Capture exact materializer failure
+        run: |
+          set +e
+          node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs --write > /tmp/unit14-materialize.log 2>&1
+          code=$?
+          mkdir -p reports/fagverk
+          {
+            echo "exit_code=$code"
+            cat /tmp/unit14-materialize.log
+          } > reports/fagverk/unit14-materialize-diagnostic.txt
+          git add reports/fagverk/unit14-materialize-diagnostic.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Record Film TV unit 14 materialization failure"
+          git push origin HEAD:agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
