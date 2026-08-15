@@ -95,7 +95,14 @@ jobs:
         run: node scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
 
       - name: Audit materialized unit 13
-        run: node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs --write-report
+        shell: bash
+        run: |
+          set +e
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs --write-report > /tmp/unit13-audit.log 2>&1
+          status=$?
+          cat /tmp/unit13-audit.log
+          echo "audit_exit_code=$status"
+          exit "$status"
 
       - name: Refresh predecessor and shared deterministic state
         run: |
