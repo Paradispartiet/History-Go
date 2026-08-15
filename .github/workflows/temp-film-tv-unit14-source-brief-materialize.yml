@@ -1,0 +1,88 @@
+name: TEMP materialize Film TV unit 14 source brief
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
+    paths:
+      - ".trigger/unit14-source-brief"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-film-tv-unit14-source-brief
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Validate new source brief syntax
+        run: |
+          node --check scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs
+          node --check tests/film-tv-archive-preservation-access-authenticity-source-brief-v1.test.mjs
+
+      - name: Materialize unit 14 source brief state
+        run: |
+          node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+
+      - name: Validate unit 14 source brief
+        run: |
+          node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs
+          node --test tests/film-tv-archive-preservation-access-authenticity-source-brief-v1.test.mjs
+
+      - name: Validate completed unit 13 remains monotone
+        run: |
+          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --test tests/film-tv-location-production-place-ethics-source-brief-v1.test.mjs
+          node --test tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+
+      - name: Validate units 12 through 9 remain monotone
+        run: |
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+          node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+          node --test tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+          node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
+          node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
+
+      - name: Validate shared Film and TV baseline
+        run: |
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Commit permanent source brief state and remove temporary trigger infrastructure
+        shell: bash
+        run: |
+          rm -f .trigger/unit14-source-brief
+          rm -f .github/workflows/temp-film-tv-unit14-source-brief-materialize.yml
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Materialize Film TV unit 14 source brief"
+          git push origin HEAD:agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
