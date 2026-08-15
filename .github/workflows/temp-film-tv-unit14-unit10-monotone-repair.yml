@@ -1,0 +1,84 @@
+name: TEMP repair Film TV unit 10 monotone gate
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
+    paths:
+      - ".trigger/unit14-unit10-monotone-repair"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-film-tv-unit14-unit10-monotone-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Extend unit 10 audit gate through unit 14
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from 'node:fs';
+          const file = 'scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs';
+          let source = fs.readFileSync(file, 'utf8');
+          const anchor = "const LOCATION_PRODUCTION_FULLTEXT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';";
+          if (!source.includes(anchor)) throw new Error('Unit 10 location gate anchor missing');
+          if (!source.includes('ARCHIVE_PRESERVATION_SOURCE_GATE')) {
+            source = source.replace(anchor, `${anchor}\nconst ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';\nconst ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';`);
+          }
+          const setAnchor = '  LOCATION_PRODUCTION_SOURCE_GATE,\n  LOCATION_PRODUCTION_FULLTEXT_GATE\n]);';
+          if (!source.includes(setAnchor)) throw new Error('Unit 10 production gate set anchor missing');
+          source = source.replace(setAnchor, '  LOCATION_PRODUCTION_SOURCE_GATE,\n  LOCATION_PRODUCTION_FULLTEXT_GATE,\n  ARCHIVE_PRESERVATION_SOURCE_GATE,\n  ARCHIVE_PRESERVATION_FULLTEXT_GATE\n]);');
+          fs.writeFileSync(file, source);
+          EOF
+          node --check scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+
+      - name: Set synthetic unit 14 gate
+        run: |
+          cp data/fagverk/subject_status.json /tmp/subject_status.json
+          node --input-type=module <<'EOF'
+          import fs from 'node:fs';
+          const file = 'data/fagverk/subject_status.json';
+          const status = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const film = status.subjects.find((row) => row.id === 'film_tv');
+          if (!film) throw new Error('Film & TV status missing');
+          film.nextGate = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
+          fs.writeFileSync(file, `${JSON.stringify(status, null, 2)}\n`);
+          EOF
+
+      - name: Validate unit 10 audit
+        run: node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+
+      - name: Validate unit 10 source brief tests
+        run: node --test tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+
+      - name: Validate unit 10 fulltext tests
+        run: node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
+
+      - name: Restore subject status
+        if: always()
+        run: |
+          if [ -f /tmp/subject_status.json ]; then mv /tmp/subject_status.json data/fagverk/subject_status.json; fi
+
+      - name: Commit focused unit 10 repair
+        run: |
+          rm -f .trigger/unit14-unit10-monotone-repair
+          rm -f .github/workflows/temp-film-tv-unit14-unit10-monotone-repair.yml
+          git add scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs \
+                  .trigger/unit14-unit10-monotone-repair \
+                  .github/workflows/temp-film-tv-unit14-unit10-monotone-repair.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Allow Film TV unit 10 regression through unit 14"
+          git push origin HEAD:agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
