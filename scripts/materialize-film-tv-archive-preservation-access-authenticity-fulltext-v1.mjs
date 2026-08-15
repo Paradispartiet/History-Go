@@ -7,6 +7,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'arkiv-bevaring-tilgang-og-autentisitet';
 const SOURCE_BRIEF_GATE = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
 const OUTPUT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
+const UNIT_FIFTEEN_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const P = Object.freeze({
   plan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
   emners: 'data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json',
@@ -281,7 +282,8 @@ export function buildFilmTvArchivePreservationAccessAuthenticityFulltextV1() {
   const status = structuredClone(read(P.status));
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   if (!filmStatus) throw new Error('Mangler Film & TV-status');
-  if (![SOURCE_BRIEF_GATE, OUTPUT_GATE].includes(filmStatus.nextGate)) throw new Error(`Uventet Film & TV-gate for enhet 14 fulltekst: ${filmStatus.nextGate}`);
+  const laterGateAlreadyActive = filmStatus.nextGate === UNIT_FIFTEEN_SOURCE_GATE;
+  if (![SOURCE_BRIEF_GATE, OUTPUT_GATE, UNIT_FIFTEEN_SOURCE_GATE].includes(filmStatus.nextGate)) throw new Error(`Uventet Film & TV-gate for enhet 14 fulltekst: ${filmStatus.nextGate}`);
 
   const sourceById = new Map(sources.map((row) => [row.id, row]));
   const caseById = new Map(cases.map((row) => [row.id, row]));
@@ -412,13 +414,15 @@ export function buildFilmTvArchivePreservationAccessAuthenticityFulltextV1() {
   if (chapterIndex === -1) registry.subjects.film_tv.chapters.push(registryChapter);
   else registry.subjects.film_tv.chapters[chapterIndex] = registryChapter;
   registry.subjects.film_tv.canonicalModel.fourteenthSourceClaimBrief = P.sourceBrief;
-  registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Arkiv, bevaring, tilgang og autentisitet er fulltekstregistrert med 11/11 canonicale emner, 4 variable moduler, 11 emneeide seksjoner, 53 claimsporede fagavsnitt, 53/53 verifiserte claims, 30 brukte inspectable kilder og 26 dokumenterte arkivcase. Bevaring, digitalisering, restaurering, rekonstruksjon, tilgang, proveniens, metadata, rettigheter/personvern, kollektiv kulturell kontroll, born-digital migrering, plattformustabilitet og dokumentert tap har separate evidensgrenser. Neste port er kilde- og claimbrief for Kulturarv, kanon, stjerner og minne.';
+  if (!laterGateAlreadyActive) registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Arkiv, bevaring, tilgang og autentisitet er fulltekstregistrert med 11/11 canonicale emner, 4 variable moduler, 11 emneeide seksjoner, 53 claimsporede fagavsnitt, 53/53 verifiserte claims, 30 brukte inspectable kilder og 26 dokumenterte arkivcase. Bevaring, digitalisering, restaurering, rekonstruksjon, tilgang, proveniens, metadata, rettigheter/personvern, kollektiv kulturell kontroll, born-digital migrering, plattformustabilitet og dokumentert tap har separate evidensgrenser. Neste port er kilde- og claimbrief for Kulturarv, kanon, stjerner og minne.';
 
   status.version = maxDottedVersion(status.version, '1.94.0');
   status.updatedAt = maxIsoDate(status.updatedAt, '2026-08-15');
-  filmStatus.editorialStatus = 'chapters_in_progress';
-  filmStatus.nextGate = OUTPUT_GATE;
-  filmStatus.note = 'Arkiv, bevaring, tilgang og autentisitet er fulltekstregistrert etter claim- og evidensaudit: 11/11 canonicale emner, 4 moduler, 11 seksjoner, 53 claimsporede fagavsnitt, 53/53 løste claimplaner, 30 brukte inspectable kilder og 26 case. Neste port er kilde- og claimbrief for Kulturarv, kanon, stjerner og minne.';
+  if (!laterGateAlreadyActive) {
+    filmStatus.editorialStatus = 'chapters_in_progress';
+    filmStatus.nextGate = OUTPUT_GATE;
+    filmStatus.note = 'Arkiv, bevaring, tilgang og autentisitet er fulltekstregistrert etter claim- og evidensaudit: 11/11 canonicale emner, 4 moduler, 11 seksjoner, 53 claimsporede fagavsnitt, 53/53 løste claimplaner, 30 brukte inspectable kilder og 26 case. Neste port er kilde- og claimbrief for Kulturarv, kanon, stjerner og minne.';
+  }
 
   return {
     sourceBrief,
