@@ -1,6 +1,7 @@
 from pathlib import Path
 import runpy
 
+# Midlertidig wrapper: behold hjelpefilene i worktree slik at Actions bare kan eksportere den validerte faglige patchen.
 ORIGINAL_UNLINK = Path.unlink
 ROOT = Path(__file__).resolve().parents[1]
 PROTECTED = {
