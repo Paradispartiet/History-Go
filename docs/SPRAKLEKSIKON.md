@@ -5,7 +5,7 @@ Dataeier: `data/leksikon/sprak/`
 Presentasjon: `js/ui/place-language-layer.js`  
 Samling: `HGKnowledgeV2` / `hg_knowledge_entries_v2`
 
-Språkleksikonet er History GOs system for språk som faktisk er knyttet til steder. Det bygger videre på det eksisterende Leksikon-laget; det er **ikke** en ny dialektmotor, en ny PlaceCard-runding eller en separat samlingsdatabase.
+Språkleksikonet er History GOs system for språk som faktisk er knyttet til steder. Det bygger videre på det eksisterende Leksikon-laget; det er **ikke** en ny dialektmotor, en ny PlaceCard-runding, et nytt History GO-fag eller en separat samlingsdatabase.
 
 ## 1. Hovedregel
 
@@ -60,6 +60,11 @@ Minimum:
 
 Når materialet gir dekning, kan oppføringen også ha:
 
+- `knowledge_unit_id`
+- `subject_id` / `fagkart_category_id`
+- `term_id` / `term_ids`
+- `concept_ids` og eksplisitte `concepts`
+- `story_ids`
 - `example`
 - `pronunciation`
 - `audio`
@@ -79,6 +84,8 @@ Når materialet gir dekning, kan oppføringen også ha:
 - `sources`
 
 Ikke fyll felter ved gjetning. Fravær er bedre enn falsk presisjon.
+
+For ny produksjon bør faglige Knowledge-ID-er være eksplisitte når de finnes. Legacy-oppføringer kan fortsatt vises og samles via en stabil, kildebundet overgangs-ID, men dette gjør dem ikke automatisk til ferdig emne-/concept-koblet fagverk.
 
 ## 5. Status
 
@@ -105,6 +112,7 @@ En språkoppføring skal vurderes for:
 6. **Kilder** — brukerrettede kildelenker skal være HTTPS.
 7. **Deduplisering** — samme språkfenomen skal kunne relateres på tvers av steder i stedet for å få motstridende kopier.
 8. **Ingen completeness-fyll** — et sted kan ha null språkoppføringer.
+9. **Fagkobling** — en samlet oppføring skal beholde et faktisk History GO-subject fra DomainRegistry/place-konteksten; `sprak` skal ikke oppfinnes som et nytt Subject bare for UI-formål.
 
 Vanlige norske ord skal ikke merkes som lokale bare fordi de forekommer i en lokal kilde. Lokalt særpreg må dokumenteres.
 
@@ -139,17 +147,21 @@ Oppføringen lagres i den canonicale Knowledge V2-butikken:
 
 med blant annet:
 
-- `subject_id: "sprak"`;
-- `kind: "language"`;
+- et faktisk `subject_id` / `fagkart_category_id` løst fra oppføringen eller stedet;
+- `kind: "language"` og `collection_kind: "language"` som samlingsfasett;
 - en stabil `knowledge_unit_id`;
 - `source.type: "language_lexicon"`;
 - `source.place_id`;
 - `source.source_file`;
-- term, tags, språkfamilie/type og eventuelle `emne_ids`.
+- term, tags, språkfamilie/type og eventuelle `emne_ids`/canonical ID-er.
+
+**Språk er altså en samlingstype på tvers av fag, ikke et nytt fag.** Et by-sted kan fortsatt produsere `subject_id: "by"`, et sportssted `subject_id: "sport"`, osv. Språkfasetten gjør disse oppføringene samlet tilgjengelige uten å forvrenge fagkartet.
+
+`knowledge.html?collection=language` viser brukerens Språksamling gruppert etter sted. Språk vises også som en egen samlingsinngang i Minnekammeret når minst én språkoppføring er samlet.
 
 Det opprettes **ingen** `language_collection`, `dialect_collection` eller annen parallell localStorage-kilde.
 
-Å åpne et sted samler ikke språk automatisk. Samling er en eksplisitt brukerhandling.
+Å åpne et sted samler ikke språk automatisk. Samling er en eksplisitt brukerhandling. Hvis runtime ikke kan løse en sikker fagkobling, skal oppføringen ikke samles som om koblingen var kjent.
 
 ## 9. Relasjoner på tvers av steder
 
@@ -159,14 +171,16 @@ Et ord som finnes i flere områder skal kunne kobles til flere relevante places.
 
 ## 10. AHA
 
-AHA skal senere kunne analysere brukerens faktisk samlede språkoppføringer via Knowledge V2, for eksempel:
+History GO eksporterer hele canonical Knowledge V2 gjennom `aha_import_payload_v1`. Samlede språkoppføringer ligger derfor allerede på den eksisterende AHA-importgrensen som `hg_knowledge_entries_v2`; det trengs ingen separat språkeksport.
+
+AHA kan bruke kilde, sted, `collection_kind`, type, term, tags og eventuelle canonical koblinger til å analysere brukerens faktisk samlede språkoppføringer, for eksempel:
 
 - mønstre mellom besøkte dialektområder;
 - felles ordhistorie;
 - endringer mellom historiske og moderne former;
 - forbindelser mellom språk, handel, migrasjon, arbeid eller stedshistorie.
 
-AHA skal ikke finne på lokale språkformer for å fylle slike analyser. Kildebundne språkoppføringer er grunnlaget.
+History GO skal ikke generere AHA-innsikter lokalt. AHA-EchoNet eier tolkningen etter importgrensen. AHA skal ikke finne på lokale språkformer for å fylle analyser; kildebundne språkoppføringer er grunnlaget.
 
 ## 11. Lyd
 
@@ -176,6 +190,7 @@ Schemaet reserverer `audio`, men lyd er ikke et krav i v2. Når lyd innføres, m
 
 - Ikke lag en separat dialektdatabase ved siden av Språkleksikonet.
 - Ikke gjeninnfør Språkleksikon som PlaceCard-runding.
+- Ikke opprett `sprak` som et falskt Knowledge-Subject bare for å få en egen UI-fane.
 - Ikke legg språkinnhold i place-filer bare fordi popupen viser det.
 - Ikke merk generelt norsk som lokalt uten belegg.
 - Ikke presenter historiske former som moderne uten dokumentasjon.
@@ -192,4 +207,5 @@ En oppføring er klar når:
 4. tids-/geografipåstander er avgrenset;
 5. kildene er inspiserbare og brukerrettede URL-er er HTTPS;
 6. den ikke dupliserer en eksisterende canonical oppføring uten relasjonsgrunn;
-7. språk-auditen passerer.
+7. eventuell Knowledge-fagkobling peker til et faktisk canonical Subject;
+8. språk-auditen passerer.
