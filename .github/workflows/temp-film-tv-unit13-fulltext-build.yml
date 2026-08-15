@@ -1,0 +1,158 @@
+name: TEMP build Film TV unit 13 fulltext
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit13-location-production-place-ethics-fulltext-complete
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-film-tv-unit13-fulltext-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit13-location-production-place-ethics-fulltext-complete
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Harden unit 13 materializer before first materialization
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs')
+          text = p.read_text()
+
+          anchor = "const unique = (values) => [...new Set(values)];\n"
+          helper = """const unique = (values) => [...new Set(values)];
+          const findPlannedUnit = (document, id) => {
+            if (Array.isArray(document?.planned_units)) return document.planned_units.find((row) => row.id === id);
+            const queue = [document];
+            while (queue.length) {
+              const value = queue.shift();
+              if (!value || typeof value !== 'object') continue;
+              if (value.id === id || value.planned_unit_id === id || value.slug === id) return value;
+              for (const nested of Object.values(value)) {
+                if (Array.isArray(nested)) queue.push(...nested);
+                else if (nested && typeof nested === 'object') queue.push(nested);
+              }
+            }
+            return null;
+          };
+          """
+          if anchor not in text: raise SystemExit('findPlannedUnit anchor missing')
+          text = text.replace(anchor, helper, 1)
+          text = text.replace("const unit = plan.planned_units.find((row) => row.id === CHAPTER_ID);", "const unit = findPlannedUnit(plan, CHAPTER_ID);", 1)
+          text = text.replace("primary_domain_id: unit.primary_domain_ids[0],", "primary_domain_id: sourceBrief.scope.primary_domain_ids[0],", 1)
+          text = text.replace("const sectionMethodIds = (canonical.method_ids || []).filter((id) => methodIds.has(id));", "const sectionMethodIds = (canonical.method_ids || canonical.recommended_method_ids || []).filter((id) => methodIds.has(id));", 1)
+          text = text.replace("const usedMethodIds = unique(unit.emne_ids.flatMap((id) => emneById.get(id)?.method_ids || []).filter((id) => methodIds.has(id)));", "const usedMethodIds = unique(unit.emne_ids.flatMap((id) => emneById.get(id)?.method_ids || emneById.get(id)?.recommended_method_ids || []).filter((id) => methodIds.has(id)));", 1)
+
+          start = text.index('function renderParagraph(')
+          end = text.index('\nfunction buildModule(', start)
+          if start < 0 or end < 0: raise SystemExit('renderParagraph anchors missing')
+          replacement = r'''function renderParagraph({ topic, claim, claimIndex, editorial, sources, cases }) {
+            const primary = sources[0];
+            const secondary = sources[1] || primary;
+            const tertiary = sources[2] || secondary;
+            const mainCase = cases[claimIndex % cases.length];
+            const controlCase = cases[(claimIndex + 1) % cases.length] || mainCase;
+            const focus = String(claim.claim_focus || '').replace(/[.!?]+$/u, '');
+            const evidenceRule = claimFamilyRule(claim.claim_type);
+            return `${claim.claim_focus} For påstanden «${focus}» må analysen starte i produksjonens dokumenterte handlinger og ikke i en antakelse om hva et bilde av stedet betyr. ${primary.publisher} plasserer akkurat dette evidensleddet i ${primary.territory}: ${primary.source_location} Som sekundær kontroll gir ${secondary.publisher} gjennom «${secondary.title}» rollen ${secondary.evidence_role}; den avgrenser hva «${focus}» kan hevde uten å gjøre lokale regler eller ett produksjonsforløp universelt. En tredje kontroll fra ${tertiary.publisher} brukes for å hindre at claimet glir mellom jurisdiksjon, produksjonsnivå og faktisk lokal virkning. Caset «${mainCase.work}» (${mainCase.years}, ${mainCase.territory}) er valgt for dette claimet fordi ${mainCase.purpose} Motcaset «${controlCase.work}» gjør samme kontroll vanskeligere og viser hvorfor kategorien må testes mot et annet institusjonelt eller stedlig oppsett. For «${focus}» er den metodiske linsen at ${editorial.lens} Evidensregelen for dette claimet er: ${evidenceRule} Derfor får en tillatelse, release, standard, konsultasjon, måling eller digital teknikk bare den evidensstyrken de navngitte kildene faktisk gir i dette avsnittet. Den claimspesifikke grensen er: ${editorial.limits[claimIndex % editorial.limits.length]} Uenigheten som må beholdes i analysen av «${focus}» er at ${editorial.disagreement} Sluttkravet for nettopp dette claimet er en kontrollert kjede fra påstanden via ${primary.id}, ${secondary.id} og «${mainCase.work}» til en eksplisitt avgrensning; representert sted, opptakssted, produksjonsbase og dokumentert lokal effekt må fortsatt holdes adskilt når de er relevante.`;
+          }
+          '''
+          text = text[:start] + replacement + text[end:]
+          p.write_text(text)
+          PY
+
+      - name: Validate syntax
+        run: |
+          node --check scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --check tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+
+      - name: Refresh source brief before fulltext gate
+        run: node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs --write
+
+      - name: Materialize and audit unit 13 fulltext
+        run: |
+          node scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs --write-report
+
+      - name: Refresh completed unit 12 monotonically
+        run: |
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs --write
+          node scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write-report
+
+      - name: Refresh shared deterministic state
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+
+      - name: Validate unit 13 fulltext and source brief
+        run: |
+          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --test tests/film-tv-location-production-place-ethics-source-brief-v1.test.mjs
+          node --test tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+
+      - name: Validate units 12 through 9 remain monotone
+        run: |
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+          node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+          node --test tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+          node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
+          node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
+
+      - name: Validate shared Film and TV baseline
+        run: |
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Commit validated fulltext state
+        shell: bash
+        run: |
+          git add -- \
+            scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs \
+            scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs \
+            tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs \
+            data/fagverk/film_tv/location-produksjon-og-stedsetikk.json \
+            data/fagverk/film_tv/location-produksjon-og-stedsetikk \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/film-tv-location-production-place-ethics-source-brief-v1-audit.json \
+            reports/fagverk/film-tv-location-production-place-ethics-fulltext-v1-audit.json \
+            reports/fagverk/film-tv-screen-places-identity-circulation-source-brief-v1-audit.json \
+            reports/fagverk/film-tv-screen-places-identity-circulation-fulltext-v1-audit.json \
+            reports/fagverk/general-engine-audit.json \
+            reports/fagverk/film-tv-phase3-audit.json
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Complete Film TV unit 13 fulltext"
+          git push origin HEAD:agent/film-tv-unit13-location-production-place-ethics-fulltext-complete
