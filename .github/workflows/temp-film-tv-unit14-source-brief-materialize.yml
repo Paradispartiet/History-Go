@@ -26,6 +26,19 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Repair community evidence mapping
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from 'node:fs';
+          const file = 'data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_topic_claims_v1.json';
+          const document = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const topic = document.topic_briefs.find((row) => row.emne_id === 'em_film_tv_dekolonisering_repatriering_og_fellesskapskontroll');
+          if (!topic) throw new Error('Community-control topic missing');
+          const sourceId = 'ap01-fiaf-code-ethics-2025';
+          if (!topic.source_ids.includes(sourceId)) topic.source_ids.unshift(sourceId);
+          fs.writeFileSync(file, `${JSON.stringify(document, null, 2)}\n`);
+          EOF
+
       - name: Validate new source brief syntax
         run: |
           node --check scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs
