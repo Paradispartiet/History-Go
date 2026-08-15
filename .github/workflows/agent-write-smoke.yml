@@ -1,11 +1,11 @@
-name: Agent direct tabs migration
+name: Agent direct tabs artifact
 
 on:
   push:
     branches: [agent/sprakleksikon-2-0]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   migrate:
@@ -21,11 +21,31 @@ jobs:
         run: |
           git diff --check
           git status --short
-      - name: Commit and publish migration
+      - name: Build exact migration artifact
         run: |
-          git config user.name "History Go migration bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add -A
-          git commit -m "Gjør popupens tilleggsinnhold til direktefaner"
-          git pull --rebase origin agent/sprakleksikon-2-0
-          git push origin HEAD:agent/sprakleksikon-2-0
+          mkdir -p /tmp/direct-tabs-patched
+          for file in \
+            .github/workflows/language-layer-checks.yml \
+            css/place-popup-tabs.css \
+            data/leksikon/README_LEKSIKON.md \
+            docs/PLACE_POPUP_SYSTEM.md \
+            docs/PLACE_PRODUCTION_CHECKLIST.md \
+            docs/SPRAKLEKSIKON.md \
+            js/config.js \
+            tests/place-language-layer.test.mjs \
+            tests/regjeringskvartalet-more-phase.test.mjs \
+            tests/regjeringskvartalet-ui-production-audit.test.mjs \
+            tests/torggata-phase7h-more.test.js; do
+            mkdir -p "/tmp/direct-tabs-patched/$(dirname "$file")"
+            cp "$file" "/tmp/direct-tabs-patched/$file"
+          done
+          cp js/ui/place-popup-direct-tabs.js /tmp/direct-tabs-patched/js/ui/place-popup-direct-tabs.js
+          cp tests/place-popup-direct-tabs.test.mjs /tmp/direct-tabs-patched/tests/place-popup-direct-tabs.test.mjs
+          git diff --no-color > /tmp/direct-tabs-patched/direct-tabs.patch
+          tar -C /tmp -czf /tmp/direct-tabs-patched.tar.gz direct-tabs-patched
+      - name: Upload exact migration artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: direct-tabs-patched-files
+          path: /tmp/direct-tabs-patched.tar.gz
+          if-no-files-found: error
