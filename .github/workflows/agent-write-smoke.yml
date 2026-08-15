@@ -1,11 +1,11 @@
-name: Agent direct tabs artifact
+name: Agent direct tabs publish
 
 on:
   push:
     branches: [agent/sprakleksikon-2-0]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   migrate:
@@ -15,37 +15,20 @@ jobs:
         with:
           ref: agent/sprakleksikon-2-0
           fetch-depth: 0
-      - name: Apply direct-tab migration
+      - name: Apply validated direct-tab migration
         run: python scripts/agent_direct_tabs_patch_keep_helpers.py
-      - name: Verify patch
+      - name: Exclude workflow mutation from bot commit
+        run: git checkout HEAD -- .github/workflows/language-layer-checks.yml
+      - name: Verify publishable diff
         run: |
           git diff --check
           git status --short
-      - name: Build exact migration artifact
+          test -n "$(git status --short)"
+      - name: Commit and push canonical product changes
         run: |
-          mkdir -p /tmp/direct-tabs-patched/js/ui /tmp/direct-tabs-patched/tests
-          for file in \
-            .github/workflows/language-layer-checks.yml \
-            css/place-popup-tabs.css \
-            data/leksikon/README_LEKSIKON.md \
-            docs/PLACE_POPUP_SYSTEM.md \
-            docs/PLACE_PRODUCTION_CHECKLIST.md \
-            docs/SPRAKLEKSIKON.md \
-            js/config.js \
-            tests/place-language-layer.test.mjs \
-            tests/regjeringskvartalet-more-phase.test.mjs \
-            tests/regjeringskvartalet-ui-production-audit.test.mjs \
-            tests/torggata-phase7h-more.test.js; do
-            mkdir -p "/tmp/direct-tabs-patched/$(dirname "$file")"
-            cp "$file" "/tmp/direct-tabs-patched/$file"
-          done
-          cp js/ui/place-popup-direct-tabs.js /tmp/direct-tabs-patched/js/ui/place-popup-direct-tabs.js
-          cp tests/place-popup-direct-tabs.test.mjs /tmp/direct-tabs-patched/tests/place-popup-direct-tabs.test.mjs
-          git diff --no-color > /tmp/direct-tabs-patched/direct-tabs.patch
-          tar -C /tmp -czf /tmp/direct-tabs-patched.tar.gz direct-tabs-patched
-      - name: Upload exact migration artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: direct-tabs-patched-files
-          path: /tmp/direct-tabs-patched.tar.gz
-          if-no-files-found: error
+          git config user.name "History Go migration bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add css/place-popup-tabs.css data/leksikon/README_LEKSIKON.md docs/PLACE_POPUP_SYSTEM.md docs/PLACE_PRODUCTION_CHECKLIST.md docs/SPRAKLEKSIKON.md js/config.js tests/place-language-layer.test.mjs tests/regjeringskvartalet-more-phase.test.mjs tests/regjeringskvartalet-ui-production-audit.test.mjs tests/torggata-phase7h-more.test.js
+          git commit -m "Gjør popupens tilleggsinnhold til direktefaner"
+          git pull --rebase origin agent/sprakleksikon-2-0
+          git push origin HEAD:agent/sprakleksikon-2-0
