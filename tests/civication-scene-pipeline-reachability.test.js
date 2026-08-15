@@ -269,7 +269,11 @@ function makeCatalog({ category, roleScope, mailType, familyId, id }) {
         }
       }
     }
-    assert(actual.runtime.answer_wrappers.length > 1, "auditten skal fortsatt oppdage den parallelle answer-pipelinen");
+    assert.deepEqual(
+      actual.runtime.answer_wrappers,
+      ["js/Civication/systems/day/dayChoiceDirector.js"],
+      "auditten skal bevise at ChoiceDirector er eneste aktive answer-eier"
+    );
     assert(!actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationDailyMailBuilder.js")), "Daily-builder skal ikke lenger generere fallbackvalg");
     assert(!actual.runtime.generic_fallback_choice_sources.some((file) => file.endsWith("civicationWorkdayMailBuilder.js")), "Workday-builder skal ikke lenger generere fallbackvalg");
   }
