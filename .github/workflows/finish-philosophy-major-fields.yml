@@ -40,8 +40,10 @@ jobs:
       - name: Rebuild subject inventory
         run: node scripts/audit-fagverk-subject-inventory.mjs
 
-      - name: Rebuild general engine
-        run: node scripts/audit-fagverk-general-engine.mjs
+      - name: Rebuild and verify general engine
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs
 
       - name: Rebuild release manifest
         run: node scripts/build-fagverk-release-manifest.mjs
@@ -49,6 +51,7 @@ jobs:
       - name: Validate permanent Philosophy quality gates
         run: |
           node scripts/audit-fagverk-filosofi-phase3.mjs
+          node scripts/audit-fagverk-general-engine.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
