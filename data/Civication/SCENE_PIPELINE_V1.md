@@ -145,7 +145,7 @@ De gamle interne Daily-funksjonene finnes foreløpig som kompatibilitetskode i f
 
 1. Dagsprogrammet beskriver fortsatt en eldre element-/ordmengdemodell. Målkontrakten bruker 3–6 faktiske arbeidssituasjoner; lesetid og ordmengde er observasjoner, ikke produksjonskvoter.
 2. SceneCatalog leser fortsatt registrerte kildekataloger. Ett kompilert scene-register er måltilstanden etter at kildeadapterne er samlet.
-3. 4G-A har flyttet `private` bak en ren SceneCatalog-adapter. `life`, `narrative` og `social` gjenstår før source-adapter-steget er fullført.
+3. 4G-A–4G-B har flyttet `private` og `life` bak rene SceneCatalog-adaptre. `narrative` og `social` gjenstår før source-adapter-steget er fullført.
 
 ## Fagverk og stabile spilleregler
 
@@ -184,7 +184,8 @@ Reachability-testen håndhever typeparitet og direkte lasting. SceneDirector-eie
 6. **Fullført 4F:** `CivicationChoiceDirector` er eneste aktive `EventEngine.answer`-eier; rundt-semantikk ligger i eksplisitt prioritert middleware.
 7. **Pågår 4G:** Gjør private, life, narrative og social til kildeadaptre.
    - **Fullført 4G-A:** `private` registreres deferred og konsumeres via `CivicationSceneCatalog`; Daily har ingen direkte produsentkobling.
-   - **Gjenstår:** `life`, `narrative`, `social`.
+   - **Fullført 4G-B:** `life` registreres som egen SceneCatalog-adapter; standard Life-`onAppOpen` konsumerer kilden via Catalog uten direkte produsentfallback.
+   - **Gjenstår:** `narrative`, `social`.
 8. La runtime lese ett kompilert scene-register; fjern parallelle kildeveier og gamle `jobbmails`.
 9. Slå på blokkerende semantisk spilltest: plansteg → scene → valg/oppgave/info → konsekvens → progresjon → neste steg.
 
@@ -217,4 +218,22 @@ Regresjonen krever at:
 - Catalog adopterer nøyaktig én `private`-adapter;
 - Daily har null direkte referanse til Private-builderen;
 - adapterkallet velger samme scene som den eksisterende produsentlogikken;
+- `compiled_registry_ready` fortsatt er `false`.
+
+## Source adapters 4G-B: life
+
+`CivicationLifeMailRuntime` registrerer `life` i det samme SceneCatalog-registeret med `source_format: life_mail_manifest_v1`. Life-generatoren (`makeCandidateLifeMails` / `makeNextLifeMail`) beholder sitt eksisterende eierskap til manifestlasting, eligibility, consumed-state, syklus og prioritering; adapteren er bare den navngitte kildegrensen rundt samme produsent.
+
+I standard `DAY_SCRIPTS` lastes Workday/SceneCatalog før Life. `lifeRuntimeOnAppOpen` ber derfor nå `CivicationSceneCatalog.getSourceScenes("life", ...)` om kandidaten og har ingen direkte `makeNextLifeMail()`-fallback. Adapteren støtter likevel samme deferred kø som Private, slik at isolerte test-/alternativlastere kan registrere Life før Catalog uten å opprette et parallelt eierlag.
+
+4G-B endrer ikke morning-gaten, `shouldTryLifeMail`, valgt scene, valg, consumed-state eller answer-semantikk. Den eksisterende `life_mail_runtime`-middlewareen forblir uendret på priority 30. Catalog legger bare til den samme provenance- og Scene Interaction-dekoreringen som for øvrige adapterkilder.
+
+Regresjonen krever at:
+
+- standard loader rekkefølge plasserer SceneCatalog før Life;
+- Catalog eier nøyaktig én `life`-adapter;
+- adapteren velger samme scene som `makeNextLifeMail`;
+- standard Life-`onAppOpen` ikke kaller Life-produsenten direkte;
+- deferred Life-registrering adopteres idempotent;
+- answer-middleware-navn og priority 30 er uendret;
 - `compiled_registry_ready` fortsatt er `false`.
