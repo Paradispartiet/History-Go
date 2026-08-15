@@ -1,0 +1,148 @@
+name: TEMP atomic final polish Film TV unit 13
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit13-final-editorial-polish
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-film-tv-unit13-final-polish-atomic
+  cancel-in-progress: false
+
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/film-tv-unit13-final-editorial-polish
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Apply editorial polish atomically
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          materializer_path = Path('scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs')
+          audit_path = Path('scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs')
+
+          materializer = materializer_path.read_text()
+          new_render = r'''function renderParagraph({ topic, claim, claimIndex, editorial, sources, cases }) {
+            const primary = sources[0];
+            const secondary = sources[1] || primary;
+            const tertiary = sources[2] || secondary;
+            const mainCase = cases[claimIndex % cases.length];
+            const controlCase = cases[(claimIndex + 1) % cases.length] || mainCase;
+            const evidenceRule = claimFamilyRule(claim.claim_type);
+            const limit = editorial.limits[claimIndex % editorial.limits.length];
+            const sourceA = `${primary.publisher} dokumenterer dette i ${primary.territory} gjennom «${primary.title}»: ${primary.source_location}`;
+            const sourceB = `${secondary.publisher} fungerer som kontrollkilde med evidensrollen ${secondary.evidence_role}; «${secondary.title}» avgrenser hva som kan generaliseres utover ${secondary.territory}.`;
+            const sourceC = tertiary.id !== secondary.id
+              ? `${tertiary.publisher} tilfører et tredje evidenslag gjennom «${tertiary.title}», slik at konklusjonen ikke hviler på én institusjon eller én type dokumentasjon.`
+              : '';
+            const caseA = `Hovedcaset «${mainCase.work}» (${mainCase.years}, ${mainCase.territory}) er relevant fordi ${mainCase.purpose}`;
+            const caseB = `«${controlCase.work}» brukes som motcase: ${controlCase.purpose}`;
+            const conclusion = 'Konklusjonen begrenses derfor til det kildene faktisk dokumenterer; representert sted, opptakssted, produksjonsbase og dokumentert lokal effekt holdes fortsatt adskilt når de er relevante.';
+            const variants = [
+              `${claim.claim_focus} ${editorial.lens} ${sourceA} ${sourceB} ${sourceC} ${caseA} ${caseB} Metodisk følger analysen regelen: ${evidenceRule} ${limit} ${editorial.disagreement} ${conclusion}`,
+              `${claim.claim_focus} ${caseA} ${caseB} Sammenligningen blir først faglig brukbar når produksjonsforløpet kobles til kilder med kjent rekkevidde. ${sourceA} ${sourceB} ${sourceC} Den analytiske linsen er at ${editorial.lens} Evidenskravet er derfor: ${evidenceRule} ${editorial.disagreement} ${limit} ${conclusion}`,
+              `${claim.claim_focus} ${editorial.lens} Før en årsak eller rettighet tilskrives produksjonen, må evidensnivået avgrenses: ${evidenceRule} ${sourceA} ${sourceB} ${caseA} ${sourceC} ${caseB} ${editorial.disagreement} Den claimspesifikke grensen er tydelig: ${limit} ${conclusion}`,
+              `${claim.claim_focus} Den sentrale faglige spenningen er at ${editorial.disagreement} ${sourceA} ${caseA} ${sourceB} ${caseB} ${sourceC} Dette leses gjennom følgende linse: ${editorial.lens} Metodisk gjelder ${evidenceRule} ${limit} ${conclusion}`
+            ];
+            return variants[claimIndex % variants.length].replace(/\s+/gu, ' ').trim();
+          }'''
+          pattern = r"function renderParagraph\(\{ topic, claim, claimIndex, editorial, sources, cases \}\) \{.*?\n\}\n\nfunction buildModule"
+          materializer, count = re.subn(pattern, new_render + '\n\nfunction buildModule', materializer, flags=re.S)
+          if count != 1:
+              raise SystemExit(f'expected exactly one renderParagraph replacement, got {count}')
+          materializer_path.write_text(materializer)
+
+          audit = audit_path.read_text()
+          needle = "    editorial_sentence_repetition_controlled: maximumRepeatedSentenceCount <= 3,\n"
+          gate = "    claim_focus_boilerplate_removed: paragraphs.every((paragraph) => !paragraph.includes('For påstanden «') && !paragraph.includes('Den metodiske linsen for «') && !paragraph.includes('Sluttkravet for «')),\n"
+          if 'claim_focus_boilerplate_removed:' not in audit:
+              if needle not in audit:
+                  raise SystemExit('audit repetition gate anchor missing')
+              audit = audit.replace(needle, needle + gate, 1)
+          audit_path.write_text(audit)
+          PY
+
+      - name: Validate syntax
+        run: |
+          node --check scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs
+          node --check scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --check tests/film-tv-location-production-place-ethics-source-brief-v1.test.mjs
+          node --check tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+
+      - name: Materialize polished unit 13
+        run: |
+          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs --write
+          node scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs --write-report
+
+      - name: Refresh predecessor and shared deterministic state
+        run: |
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs --write
+          node scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+
+      - name: Validate polished unit 13
+        run: |
+          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --test tests/film-tv-location-production-place-ethics-source-brief-v1.test.mjs
+          node --test tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+
+      - name: Validate units 12 through 9 remain monotone
+        run: |
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+          node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+          node --test tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+          node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
+          node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
+
+      - name: Validate shared Film and TV baseline
+        run: |
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Remove temporary validation infrastructure
+        run: |
+          git rm -f .github/workflows/temp-film-tv-unit13-final-polish-atomic.yml
+          if [ -f .github/workflows/temp-film-tv-unit13-editorial-polish-validate.yml ]; then
+            git rm -f .github/workflows/temp-film-tv-unit13-editorial-polish-validate.yml
+          fi
+
+      - name: Commit final polished state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Polish Film TV unit 13 editorial fulltext"
+          git push origin HEAD:agent/film-tv-unit13-final-editorial-polish
