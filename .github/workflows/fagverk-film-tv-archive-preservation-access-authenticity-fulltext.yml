@@ -77,7 +77,7 @@ jobs:
       - name: Materialize unit 14 fulltext state
         run: |
           node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs --write
-          node scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs
+          node --input-type=module -e "import('./scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs').then(m => m.materializeFilmTvArchivePreservationAccessAuthenticityFulltextV1())"
           node scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs --write-report
 
       - name: Refresh unit 13 and shared deterministic state
