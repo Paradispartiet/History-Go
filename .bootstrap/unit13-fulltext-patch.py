@@ -54,8 +54,26 @@ replacement = r'''function renderParagraph({ topic, claim, claimIndex, editorial
 text = text[:start] + replacement + text[end:]
 p.write_text(text)
 
-replace_once(
-    'scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs',
-    "materializer_and_audit_are_scm_free: !/child_process|execFileSync|spawnSync|git\\s+(?:fetch|merge|push)/u.test(`${materializerSource}\\n${auditSource}`),",
-    "materializer_and_audit_are_scm_free: !/node:child_process|child_process|execFileSync|spawnSync|git\\s+(?:fetch|merge|push)/u.test(materializerSource),"
+audit = Path('scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs')
+audit_text = audit.read_text()
+old_gate = "materializer_and_audit_are_scm_free: !/child_process|execFileSync|spawnSync|git\\s+(?:fetch|merge|push)/u.test(`${materializerSource}\\n${auditSource}`),"
+intermediate_gate = "materializer_and_audit_are_scm_free: !/node:child_process|child_process|execFileSync|spawnSync|git\\s+(?:fetch|merge|push)/u.test(materializerSource),"
+if old_gate in audit_text:
+    audit_text = audit_text.replace(old_gate, intermediate_gate, 1)
+helper_anchor = "  const allPolicies = sourceBrief.source_policy;\n"
+helper_code = """  const allPolicies = sourceBrief.source_policy;
+  const forbiddenScmTokens = ['child_' + 'process', 'execFile' + 'Sync', 'spawn' + 'Sync'];
+  const forbiddenGitCommand = new RegExp(`git\\\\s+(?:${['fetch', 'merge', 'push'].join('|')})`);
+"""
+if 'const forbiddenScmTokens =' not in audit_text:
+    if helper_anchor not in audit_text:
+        raise SystemExit('audit SCM helper anchor missing')
+    audit_text = audit_text.replace(helper_anchor, helper_code, 1)
+if intermediate_gate not in audit_text:
+    raise SystemExit('audit SCM gate anchor missing')
+audit_text = audit_text.replace(
+    intermediate_gate,
+    "materializer_and_audit_are_scm_free: forbiddenScmTokens.every((token) => !materializerSource.includes(token) && !auditSource.includes(token)) && !forbiddenGitCommand.test(materializerSource) && !forbiddenGitCommand.test(auditSource),",
+    1
 )
+audit.write_text(audit_text)
