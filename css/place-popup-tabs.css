@@ -8,17 +8,26 @@ body.hg-app .hg-place-popup-v2[data-hg-place-tabs="1"] .hg-place-tabs{
   top: 0;
   z-index: 6;
   display: flex;
+  flex-wrap: nowrap;
   gap: 8px;
   margin: 18px -4px 0;
   padding: 4px 4px 10px;
+  max-width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
   overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 4px;
+  white-space: nowrap;
   scrollbar-width: thin;
   background: linear-gradient(180deg, rgba(5,8,14,.98) 72%, rgba(5,8,14,0));
 }
 
 body.hg-app .hg-place-popup-v2[data-hg-place-tabs="1"] .hg-place-tab{
   flex: 0 0 auto;
+  scroll-snap-align: start;
   min-height: 38px;
   padding: 8px 12px;
   border: 1px solid rgba(255,255,255,.11);

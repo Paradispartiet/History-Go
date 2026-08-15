@@ -51,7 +51,10 @@ Disse er ikke én brukerrettet «Leksikon-hub» lenger. De fordeles etter semant
 | Lesespor | **Lesespor** |
 | `externalLinks`, source summaries | **Kilder** |
 | Språkleksikon | valgfri **Språk**-fane når stedet har språkoppføringer |
-| tolkning, klassifikasjon, legacy-objekter | **Mer** |
+| `interpretation.what_to_notice` | valgfri **Legg merke til**-fane |
+| `interpretation.why_it_matters` | valgfri **Betydning**-fane |
+| `interpretation.counterpoints` | valgfri **Motpunkter**-fane |
+| legacy-objekter / `artifacts` | valgfri **Spor & objekter**-fane |
 
 `for_na` kommer fra place-data og vises i den separate **Før/etter**-fanen.
 
@@ -156,7 +159,7 @@ Datakildene beholdes under:
 - `data/leksikon/sprak/schema_v2.json`;
 - stedsspesifikke filer under `data/leksikon/sprak/places/`.
 
-Når et sted har minst én språkoppføring, fremhever `js/ui/place-language-layer.js` materialet med en valgfri **Språk**-fane og en kompakt «Språk på stedet»-forhåndsvisning i Om. Tomme språkflater vises ikke.
+Når et sted har minst én språkoppføring, fremhever `js/ui/place-language-layer.js` materialet med en valgfri, direkte **Språk**-fane i den horisontalt scrollbar fanestripen og en kompakt «Språk på stedet»-forhåndsvisning i Om. Tomme språkflater vises ikke.
 
 Språkleksikon er fortsatt ikke en PlaceCard-runding. Det er et kunnskapslag. En bruker kan eksplisitt samle enkeltoppføringer inn i den eksisterende Knowledge V2-butikken; runtime skal ikke opprette et parallelt dialekt-/språklager.
 

@@ -35,7 +35,7 @@ Popupen skal aggregere ferdige canonical data, ikke lage en ny sannhetskilde.
 
 ### Placegrensen gjelder hele popupen
 
-Før innhold fordeles på faner, skal canonical place-register/manifester kontrolleres for bygg, virksomheter, parker, plasser og andre delsteder som har egne place-oppføringer. Innholdet skal ligge hos riktig place-eier. Et slikt delsted kan vises som tydelig merket relasjon eller supplement, men kan ikke brukes i stedet for parent-place i Om, Historie, Fortellinger, Før/etter, Nyheter, Lesespor, Kilder, Språk eller Mer. Den samme grensen gjelder rundinger, bildepar og hovedpåstander utenfor popupen.
+Før innhold fordeles på faner, skal canonical place-register/manifester kontrolleres for bygg, virksomheter, parker, plasser og andre delsteder som har egne place-oppføringer. Innholdet skal ligge hos riktig place-eier. Et slikt delsted kan vises som tydelig merket relasjon eller supplement, men kan ikke brukes i stedet for parent-place i Om, Historie, Fortellinger, Før/etter, Nyheter, Lesespor, Kilder, Språk eller andre datastyrte direktefaner. Den samme grensen gjelder rundinger, bildepar og hovedpåstander utenfor popupen.
 
 ## 2. De tre stedflatene
 
@@ -66,7 +66,7 @@ Data skal ikke kopieres inn i én gigantisk place-fil bare fordi popupen viser d
 
 ## 4. Canonical popupfaner
 
-Popupen har åtte faste grunnfaner:
+Popupen har sju faste grunnfaner:
 
 ```text
 Om
@@ -76,18 +76,26 @@ Før/etter
 Nyheter
 Lesespor
 Kilder
-Mer
 ```
 
-I tillegg finnes én **datastyrt, valgfri** fane:
+I tillegg kan source-eide, **datastyrte direktefaner** materialiseres når stedet faktisk har slikt innhold. Dagens definerte familier er:
 
 ```text
 Språk
+Spor & objekter
+Legg merke til
+Betydning
+Motpunkter
+Relasjoner
+Kunnskap
+Observasjoner
 ```
 
-Språk vises bare når stedet har minst én gyldig Språkleksikon-oppføring. Den plasseres før Mer. Et sted uten språkdata skal ikke få en tom språkfane.
+Det finnes **ingen brukerrettet `Mer`-fane**. Legacy-runtimen kan fortsatt bruke et frakoblet `more`-panel som intern staging under migrering, men alt innhold som havner der skal materialiseres som en navngitt direktefane før brukeren ser popupen. Ukjent legacy-innhold får en konkret faneetikett fra sin egen overskrift og skal reviewes; det skal ikke samles i en ny restkategori.
 
-På mobil er fanene en horisontalt scrollbar fanestripe med korrekt tab-semantikk og tastaturnavigasjon.
+Datastyrte faner vises bare når innholdet finnes. Et sted uten språk, observasjoner eller andre tilleggslag skal ikke få tomme faner.
+
+På alle skjermstørrelser er fanene **én sammenhengende horisontal rad**. Raden brytes ikke. På mobil og smale vinduer kan hele fanestripen sveipes/rulles horisontalt, og aktiv fane rulles inn i synsfeltet. Tab-semantikk og tastaturnavigasjon beholdes.
 
 ## 5. Om
 
@@ -233,23 +241,22 @@ Brukeren kan eksplisitt samle en språkoppføring. Samlingen skrives til canonic
 
 Språk skal ikke vises bare for å fylle fanestripen. Mangler dokumentert språkstoff, mangler fanen.
 
-## 13. Mer
+## 13. Datastyrte direktefaner
 
-Mer er smalere kunnskapsinnhold, ikke restkategori.
+Smale kunnskapslag som tidligere ble samlet under **Mer**, vises nå direkte i den samme scrollbar fanestripen. Hver fane beholder sin canonical kildeeier:
 
-Tillatt kan være:
+- **Spor & objekter** — kildebelagte `artifacts`/legacy-objekter som fortsatt er popupkunnskap og ikke en egen PlaceCard-runding;
+- **Legg merke til** — `interpretation.what_to_notice`;
+- **Betydning** — `interpretation.why_it_matters`;
+- **Motpunkter** — `interpretation.counterpoints` og tydelige inferensgrenser;
+- **Relasjoner** — curated relations som faktisk forklarer stedet;
+- **Kunnskap** — source-eid Knowledge/funfacts når gjeldende unlock- og Knowledge-regler tillater det;
+- **Observasjoner** — dokumenterte observasjonsflater;
+- **Språk** — eies separat av Språkleksikon-kontrakten i punkt 12.
 
-- observations;
-- Knowledge/funfacts når unlockregler tillater det;
-- curated relations som forklarer stedet;
-- kildebelagte «legg merke til»-momenter;
-- brukerrettede klassifikasjoner/tags.
+Handlinger skal ikke ligge i disse fanene. Fysiske stedselementer skal heller ikke flyttes hit bare fordi en annen presentasjonsflate mangler.
 
-Språkleksikon hører ikke lenger som standard under Mer når den dedikerte språkflaten er aktiv.
-
-Handlinger skal ikke ligge her.
-
-Fysiske stedselementer skal ikke parkeres permanent i Mer bare fordi riktig presentasjonsflate mangler.
+En direktefane skal bare materialiseres når den har reelt innhold. Det er ikke lov å gjeninnføre `Mer`, «Annet» eller en annen generell søppelskuff for å redusere antall faner; bredden håndteres av den horisontalt scrollbar fanestripen.
 
 ## 14. På stedet
 

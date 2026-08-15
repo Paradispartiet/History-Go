@@ -94,10 +94,12 @@ test("språkflaten lastes etter både Knowledge V2 og popup-loaderen", () => {
   const knowledgeIndex = config.indexOf('"dist/web/knowledgeV2.js"');
   const popupLoaderIndex = config.indexOf('"js/ui/place-card-status-surface.js"');
   const languageIndex = config.indexOf('"js/ui/place-language-layer.js"');
+  const directTabsIndex = config.indexOf('"js/ui/place-popup-direct-tabs.js"');
   assert.ok(knowledgeIndex >= 0, "Knowledge V2 mangler i runtime-listen");
   assert.ok(popupLoaderIndex >= 0, "PlaceCard popup-loader mangler i runtime-listen");
   assert.ok(languageIndex > knowledgeIndex, "språkflaten må lastes etter Knowledge V2");
   assert.ok(languageIndex > popupLoaderIndex, "språkflaten må lastes etter popup-tab-loaderen");
+  assert.ok(directTabsIndex > languageIndex, "direktefane-adapteren må lastes etter språkadapteren");
 });
 
 test("AHA-importgrensen inkluderer hele Knowledge V2 og dermed språkfasetten", () => {
@@ -115,4 +117,15 @@ test("Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny rundi
   assert.match(contract, /hg_knowledge_entries_v2/);
   assert.match(popup, /datastyrt, valgfri/);
   assert.match(popup, /Språk/);
+});
+
+
+test("place-produksjon låser dialektord som Språkleksikon-jobb", () => {
+  const checklist = read("docs/PLACE_PRODUCTION_CHECKLIST.md");
+  const contract = read("docs/SPRAKLEKSIKON.md");
+  assert.match(checklist, /dialektord/i);
+  assert.match(checklist, /lokalt uttrykk|lokale uttrykk/i);
+  assert.match(checklist, /skal ikke diktes/i);
+  assert.match(contract, /obligatorisk produksjonsjobb/i);
+  assert.match(contract, /minst ett reelt kildebelagt \*\*dialektord eller lokalt uttrykk\*\*/i);
 });

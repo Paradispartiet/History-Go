@@ -116,9 +116,24 @@ En språkoppføring skal vurderes for:
 
 Vanlige norske ord skal ikke merkes som lokale bare fordi de forekommer i en lokal kilde. Lokalt særpreg må dokumenteres.
 
-## 7. Presentasjon i stedspopupen
+## 7. Dialektord og lokale uttrykk er en obligatorisk produksjonsjobb
 
-De åtte grunnfanene i stedspopupen består. Når stedet har minst én gyldig språkoppføring, legger `place-language-layer.js` til en valgfri **Språk**-fane før **Mer**.
+Når et sted **får eller vesentlig reviderer et Språkleksikon**, skal produksjonen alltid inneholde et eksplisitt søk etter dokumenterte dialektord, lokale ordformer, lokale uttrykk og talemåter som faktisk kan knyttes til stedet eller dialektområdet.
+
+Produksjonsregelen er:
+
+- det skal søkes aktivt i ordbøker, dialektarkiv, lokale historiesamlinger, talemålsmateriale og andre relevante kilder — ikke bare i eksisterende History GO-data;
+- når kildene bærer det, skal minst ett reelt kildebelagt **dialektord eller lokalt uttrykk** produseres som `word` eller `expression`;
+- et Språkleksikon som bare består av stedsnavn, administrative fagord eller generelt norsk regnes ikke som redaksjonelt ferdig dersom researchen dokumenterer lokale ordformer eller uttrykk;
+- betydning, geografisk utbredelse og historisk/moderne status skal avgrenses etter kilden;
+- dialektord skal aldri konstrueres, moderniseres eller gjøres «mer lokale» av språkmodell eller redaksjonell gjetning;
+- dersom et dokumentert søk faktisk ikke finner et forsvarlig dialektord/lokalt uttrykk, registreres søket og kildene som begrunnet holdback/N/A for akkurat denne deljobben. Fravær skal dokumenteres, ikke fylles med oppdiktet språk.
+
+Dette er et produksjonskrav for Språkleksikon, ikke et krav om at alle steder i History GO må ha en språkfane.
+
+## 8. Presentasjon i stedspopupen
+
+De faste grunnfanene i stedspopupen består. Når stedet har minst én gyldig språkoppføring, legger `place-language-layer.js` til en valgfri, direkte **Språk**-fane i den samme horisontalt scrollbar fanestripen. Det finnes ingen brukerrettet **Mer**-fane.
 
 Språkfanen viser:
 
@@ -137,7 +152,7 @@ Når språkdata ikke finnes, vises verken tom språkfane eller teaser.
 
 Språk er fortsatt **ikke** en PlaceCard-runding.
 
-## 8. Samling
+## 9. Samling
 
 Brukeren kan eksplisitt samle en språkoppføring med **Samle kunnskapen**.
 
@@ -163,13 +178,13 @@ Det opprettes **ingen** `language_collection`, `dialect_collection` eller annen 
 
 Å åpne et sted samler ikke språk automatisk. Samling er en eksplisitt brukerhandling. Hvis runtime ikke kan løse en sikker fagkobling, skal oppføringen ikke samles som om koblingen var kjent.
 
-## 9. Relasjoner på tvers av steder
+## 10. Relasjoner på tvers av steder
 
 `related_places` og `related_entries` gjør modellen klar for språkgeografi uten å innføre et eget atlaslager.
 
 Et ord som finnes i flere områder skal kunne kobles til flere relevante places. Senere kartvisning skal lese disse relasjonene; den skal ikke bygge en konkurrerende sannhetskilde.
 
-## 10. AHA
+## 11. AHA
 
 History GO eksporterer hele canonical Knowledge V2 gjennom `aha_import_payload_v1`. Samlede språkoppføringer ligger derfor allerede på den eksisterende AHA-importgrensen som `hg_knowledge_entries_v2`; det trengs ingen separat språkeksport.
 
@@ -182,11 +197,11 @@ AHA kan bruke kilde, sted, `collection_kind`, type, term, tags og eventuelle can
 
 History GO skal ikke generere AHA-innsikter lokalt. AHA-EchoNet eier tolkningen etter importgrensen. AHA skal ikke finne på lokale språkformer for å fylle analyser; kildebundne språkoppføringer er grunnlaget.
 
-## 11. Lyd
+## 12. Lyd
 
 Schemaet reserverer `audio`, men lyd er ikke et krav i v2. Når lyd innføres, må uttaleopptak ha avklart kilde, rettigheter, geografisk representativitet og metadata. Tekstlig `pronunciation` kan brukes uten lyd når kilden støtter det.
 
-## 12. Ikke gjør dette
+## 13. Ikke gjør dette
 
 - Ikke lag en separat dialektdatabase ved siden av Språkleksikonet.
 - Ikke gjeninnfør Språkleksikon som PlaceCard-runding.
@@ -194,10 +209,11 @@ Schemaet reserverer `audio`, men lyd er ikke et krav i v2. Når lyd innføres, m
 - Ikke legg språkinnhold i place-filer bare fordi popupen viser det.
 - Ikke merk generelt norsk som lokalt uten belegg.
 - Ikke presenter historiske former som moderne uten dokumentasjon.
+- Ikke avslutt et Språkleksikon med bare navn eller generelle fagtermer når kildene dokumenterer lokale ord eller uttrykk.
 - Ikke samle språkoppføringer automatisk ved åpning.
 - Ikke bruk AHA-generert tekst som kilde for nye språkoppføringer.
 
-## 13. Produksjonsklar oppføring
+## 14. Produksjonsklar oppføring
 
 En oppføring er klar når:
 
