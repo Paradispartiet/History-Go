@@ -84,6 +84,20 @@ const maxDottedVersion = (current, floor) => {
 };
 const maxIsoDate = (current, floor) => current && current > floor ? current : floor;
 const unique = (values) => [...new Set(values)];
+const findPlannedUnit = (document, id) => {
+  if (Array.isArray(document?.planned_units)) return document.planned_units.find((row) => row.id === id);
+  const queue = [document];
+  while (queue.length) {
+    const value = queue.shift();
+    if (!value || typeof value !== 'object') continue;
+    if (value.id === id || value.planned_unit_id === id || value.slug === id) return value;
+    for (const nested of Object.values(value)) {
+      if (Array.isArray(nested)) queue.push(...nested);
+      else if (nested && typeof nested === 'object') queue.push(nested);
+    }
+  }
+  return null;
+};
 const claimFamilyRule = (type = '') => {
   const value = type.toLowerCase();
   if (/ecolog|environment|biodiversity|wildlife|sustain|carbon|restoration/.test(value)) return 'Miljøslutningen må skille systemisk karbon- eller ressursstyring fra den stedsspesifikke økologien; sted, naturverdi eller art, sesong, aktivitet, vilkår og dokumentert utfall er separate ledd.';
@@ -120,7 +134,9 @@ function renderParagraph({ topic, claim, claimIndex, editorial, sources, cases }
   const tertiary = sources[2] || secondary;
   const mainCase = cases[claimIndex % cases.length];
   const controlCase = cases[(claimIndex + 1) % cases.length] || mainCase;
-  return `${claim.claim_focus} Analysen må starte i produksjonens dokumenterte handlinger, ikke i en antakelse om hva et bilde av stedet betyr. ${primary.publisher} plasserer dette i ${primary.territory}: ${primary.source_location} ${secondary.publisher} gir et annet evidensledd gjennom «${secondary.title}» og rollen ${secondary.evidence_role}; denne kilden avgrenser hva som faktisk kan hevdes uten å gjøre lokale regler eller ett produksjonsforløp universelt. ${tertiary.publisher} brukes som kontroll for at samme begrep ikke glir mellom jurisdiksjon, produksjonsnivå og faktisk lokal virkning. Caset «${mainCase.work}» (${mainCase.years}, ${mainCase.territory}) er relevant fordi ${mainCase.purpose} Motcaset «${controlCase.work}» viser hvorfor samme analytiske kategori må testes mot et annet institusjonelt eller stedlig oppsett. Metodisk følger avsnittet ${editorial.lens} ${claimFamilyRule(claim.claim_type)} Det betyr at tillatelse, samtykke, standard, konsultasjon, måling eller digital teknikk bare får den evidensstyrken dokumentasjonen faktisk gir. ${editorial.limits[claimIndex % editorial.limits.length]} Den faglige uenigheten er derfor ikke et pyntelag: ${editorial.disagreement} Avsnittets sluttkrav er et kontrollert claimspor fra påstanden via navngitte kilder og case til en eksplisitt avgrensning; representert sted, opptakssted, produksjonsbase og dokumentert lokal effekt må holdes adskilt når de er relevante.`;
+  const focus = String(claim.claim_focus || '').replace(/[.!?]+$/u, '');
+  const evidenceRule = claimFamilyRule(claim.claim_type);
+  return `${claim.claim_focus} For påstanden «${focus}» må analysen starte i produksjonens dokumenterte handlinger og ikke i en antakelse om hva et bilde av stedet betyr. ${primary.publisher} plasserer akkurat dette evidensleddet i ${primary.territory}: ${primary.source_location} Som sekundær kontroll gir ${secondary.publisher} gjennom «${secondary.title}» rollen ${secondary.evidence_role}; den avgrenser hva «${focus}» kan hevde uten å gjøre lokale regler eller ett produksjonsforløp universelt. For «${focus}» brukes dessuten ${tertiary.publisher} som tredje kontroll slik at claimet ikke glir mellom jurisdiksjon, produksjonsnivå og faktisk lokal virkning. Caset «${mainCase.work}» (${mainCase.years}, ${mainCase.territory}) er valgt for dette claimet fordi ${mainCase.purpose} Motcaset «${controlCase.work}» gjør kontrollen av «${focus}» vanskeligere og viser hvorfor kategorien må testes mot et annet institusjonelt eller stedlig oppsett. Den metodiske linsen for «${focus}» er at ${editorial.lens} Evidensregelen for «${focus}» er: ${evidenceRule} Derfor får tillatelse, release, standard, konsultasjon, måling eller digital teknikk i claimet «${focus}» bare den evidensstyrken de navngitte kildene faktisk gir. Den claimspesifikke grensen for «${focus}» er: ${editorial.limits[claimIndex % editorial.limits.length]} Uenigheten som må beholdes i analysen av «${focus}» er at ${editorial.disagreement} Sluttkravet for «${focus}» er en kontrollert kjede fra påstanden via ${primary.id}, ${secondary.id} og «${mainCase.work}» til en eksplisitt avgrensning; representert sted, opptakssted, produksjonsbase og dokumentert lokal effekt må fortsatt holdes adskilt når de er relevante.`;
 }
 
 function buildModule({ modulePlan, moduleIndex, topicById, emneById, sourceById, caseById, claimSourceIds, methodIds }) {
@@ -134,7 +150,7 @@ function buildModule({ modulePlan, moduleIndex, topicById, emneById, sourceById,
       sources: claimSourceIds[claim.id].map((id) => sourceById.get(id)),
       cases: topicCases
     }));
-    const sectionMethodIds = (canonical.method_ids || []).filter((id) => methodIds.has(id));
+    const sectionMethodIds = (canonical.method_ids || canonical.recommended_method_ids || []).filter((id) => methodIds.has(id));
     return {
       id: emneId,
       title: canonical.title,
@@ -178,7 +194,7 @@ export function buildFilmTvLocationProductionPlaceEthicsFulltextV1() {
   const cases = rowsFromManifest(P.cases, 'case_files', 'cases');
   const topicBriefs = rowsFromManifest(P.topicClaims, 'topic_claim_files', 'topic_briefs');
   const plan = read(P.plan);
-  const unit = plan.planned_units.find((row) => row.id === CHAPTER_ID);
+  const unit = findPlannedUnit(plan, CHAPTER_ID);
   if (!unit || unit.sequence !== 13) throw new Error('Canonical unit 13 mangler');
   const emners = read(P.emners);
   const emneById = new Map(emners.map((row) => [row.emne_id, row]));
@@ -196,13 +212,13 @@ export function buildFilmTvLocationProductionPlaceEthicsFulltextV1() {
   const modules = modulePlans.map((modulePlan, index) => buildModule({ modulePlan, moduleIndex: index, topicById, emneById, sourceById, caseById, claimSourceIds, methodIds }));
   const sections = modules.flatMap((module) => module.sections);
   const sectionByClaim = new Map(sections.flatMap((section) => section.paragraphClaimIds.map((id) => [id, section.id])));
-  const usedMethodIds = unique(unit.emne_ids.flatMap((id) => emneById.get(id)?.method_ids || []).filter((id) => methodIds.has(id)));
+  const usedMethodIds = unique(unit.emne_ids.flatMap((id) => emneById.get(id)?.method_ids || emneById.get(id)?.recommended_method_ids || []).filter((id) => methodIds.has(id)));
 
   const chapter = {
     schema: 'history_go_fagverk_chapter_v1', version: '1.0.0', subject_id: 'film_tv', id: CHAPTER_ID,
     title: 'Location, produksjon og stedsetikk: inngrep, samtykke, økologi og lokal virkning',
     subtitle: 'Locationvalg, offentlig rom, innspillingsspor, miljøkonsekvens, lokalsamfunn, urfolkslandskap, virtuelt rom og filmturisme',
-    primary_domain_id: unit.primary_domain_ids[0],
+    primary_domain_id: sourceBrief.scope.primary_domain_ids[0],
     lead: 'Et location er både et bilde, et arbeidssted, et regulert rom og et sted der mennesker, natur, kultur og økonomi kan påvirkes. Kapitlet skiller derfor representert sted, faktisk opptakssted, produksjonsbase, studio/backlot, LED- eller digitalt rom og dokumentert lokal effekt. Tillatelse, individuelt samtykke, lokalsamfunnskonsultasjon og kulturell protokoll holdes fra hverandre; karbonregnskap skilles fra stedsspesifikk økologi; permit og standard skilles fra etterlevelse og målt utfall; og filmturisme skilles i inspirasjon, besøk, attribuert forbruk og kausal lokal virkning. Arkivets proveniens, bevaring, tilgang, rettigheter og versjonshistorie hører til neste planenhet.',
     diagnosticQuestions: [
       { question: 'Er et offentlig sted automatisk fritt å filme?', answer: 'Nei. Eier, forvalter, aktivitet, kamerastandpunkt, sikkerhet og jurisdiksjon kan utløse forskjellige krav.' },

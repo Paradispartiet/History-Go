@@ -49,6 +49,8 @@ export function auditFilmTvLocationProductionPlaceEthicsFulltextV1({ writeReport
   const materializerSource = fs.readFileSync(abs('scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs'), 'utf8');
   const auditSource = fs.readFileSync(fileURLToPath(import.meta.url), 'utf8');
   const allPolicies = sourceBrief.source_policy;
+  const forbiddenScmTokens = ['child_' + 'process', 'execFile' + 'Sync', 'spawn' + 'Sync'];
+  const forbiddenGitCommand = new RegExp(`git\\s+(?:${['fetch', 'merge', 'push'].join('|')})`);
   const exactClaimTrace = sections.every((section) => section.paragraphs.length === section.paragraphClaimIds.length)
     && new Set(sections.flatMap((section) => section.paragraphClaimIds)).size === 39;
 
@@ -133,7 +135,7 @@ export function auditFilmTvLocationProductionPlaceEthicsFulltextV1({ writeReport
       && isDeepStrictEqual(read(P.registry), registry)
       && isDeepStrictEqual(read(P.status), status)
       && modules.every((module, index) => isDeepStrictEqual(read(chapter.moduleFiles[index]), module)),
-    materializer_and_audit_are_scm_free: !/child_process|execFileSync|spawnSync|git\s+(?:fetch|merge|push)/u.test(`${materializerSource}\n${auditSource}`),
+    materializer_and_audit_are_scm_free: forbiddenScmTokens.every((token) => !materializerSource.includes(token) && !auditSource.includes(token)) && !forbiddenGitCommand.test(materializerSource) && !forbiddenGitCommand.test(auditSource),
     all_source_policy_guards_remain_true: Object.values(allPolicies).every((value) => value === true)
   };
   for (const [id, ok] of Object.entries(gates)) assert(ok, `Fulltekstgate feilet: ${id}`);
