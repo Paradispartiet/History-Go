@@ -149,6 +149,9 @@ jobs:
       - name: Test hidden developer mode
         run: node tests/hg-test-mode.test.js && node tests/header-search-menu.test.js
 
+      - name: NextUp progressive PlaceCard regression
+        run: node tests/nextup-progressive-placecard-state.test.js
+
       - name: People background loading regression
         run: node tests/background-boot-pacing.test.js
 

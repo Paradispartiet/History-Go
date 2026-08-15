@@ -10,6 +10,9 @@
 
   const KEY = "hg_unlocks_v1";
   const PLACE_COLLECTION_KEY = "places_collected";
+  const NEXTUP_TRI_KEY = "hg_nextup_tri";
+  const NEXTUP_PENDING_SCHEMA = "hg_nextup_pending_v1";
+  const nextUpTriByPlace = new Map();
 
   function dispatchProfileUpdate() {
     try { window.dispatchEvent(new Event("updateProfile")); } catch {}
@@ -79,6 +82,122 @@
 
   function normId(s) {
     return String(s || "").trim();
+  }
+
+  function isRecord(value) {
+    return !!value && typeof value === "object" && !Array.isArray(value);
+  }
+
+  function readNextUpTri() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(NEXTUP_TRI_KEY) || "null");
+      return isRecord(parsed) ? parsed : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function currentPlaceCardId() {
+    return normId(document.getElementById("placeCard")?.dataset?.currentPlaceId);
+  }
+
+  function isPendingNextUpTri(tri) {
+    return isRecord(tri) && normId(tri.schema) === NEXTUP_PENDING_SCHEMA;
+  }
+
+  function isResolvedNextUpTri(tri) {
+    if (!isRecord(tri) || isPendingNextUpTri(tri)) return false;
+    const schema = normId(tri.schema);
+    return schema.startsWith("hg_nextup_v4") ||
+      Array.isArray(tri.suggestions) ||
+      !!(tri.spatial || tri.wk || tri.narrative || tri.concept);
+  }
+
+  function triPlaceId(tri) {
+    return normId(isRecord(tri) ? tri.current_place_id : "");
+  }
+
+  function cacheResolvedNextUpTri(tri, fallbackPlaceId = "") {
+    if (!isResolvedNextUpTri(tri)) return null;
+    const placeId = triPlaceId(tri) || normId(fallbackPlaceId);
+    if (!placeId) return null;
+    const normalized = triPlaceId(tri) === placeId
+      ? tri
+      : { ...tri, current_place_id: placeId };
+    nextUpTriByPlace.set(placeId, normalized);
+    return normalized;
+  }
+
+  function preservedNextUpTriForPlace(placeId) {
+    const id = normId(placeId);
+    if (!id) return null;
+
+    // localStorage is the source of truth for the currently displayed place.
+    // This matters after a mode change, because nextUpRuntime rebuilds directly
+    // and persists the newer tri without emitting hg:mpNextUp again.
+    const stored = readNextUpTri();
+    if (isResolvedNextUpTri(stored) && triPlaceId(stored) === id) {
+      nextUpTriByPlace.set(id, stored);
+      return stored;
+    }
+
+    const cached = nextUpTriByPlace.get(id);
+    return isResolvedNextUpTri(cached) ? cached : null;
+  }
+
+  function makePendingNextUpTri(placeId) {
+    return {
+      schema: NEXTUP_PENDING_SCHEMA,
+      current_place_id: normId(placeId),
+      generated_at: new Date().toISOString(),
+      pending: true,
+      candidate_counts: {},
+      suggestions: []
+    };
+  }
+
+  // PlaceCard åpnes progressivt. Etter første NextUp-bygg kan fullPlace/natur/
+  // sosial-data åpne det samme kortet på nytt. place-card.js sender da tri:null,
+  // samtidig som nav-Settet bevisst hindrer et nytt kandidatbygg. Uten denne
+  // vakten overskriver nextUpRuntime den ferdige tri-en med {}, og bare den
+  // globale historiske ruten blir stående. Bevar derfor siste ferdige tri per
+  // sted; på første åpning brukes kun en ikke-destruktiv pending-tri frem til
+  // HGNavigator leverer kandidatene.
+  function preserveNextUpTriEvent(event) {
+    const detail = event?.detail;
+    if (!isRecord(detail)) return null;
+
+    const currentPlaceId = currentPlaceCardId();
+    const incoming = detail.tri;
+
+    if (isResolvedNextUpTri(incoming)) {
+      const incomingPlaceId = triPlaceId(incoming);
+
+      // Ta vare på en ferdig tri selv om et sent async-resultat kommer etter at
+      // brukeren har skiftet sted, men vis aldri forslag fra feil sted.
+      if (incomingPlaceId) cacheResolvedNextUpTri(incoming, incomingPlaceId);
+      if (currentPlaceId && incomingPlaceId && incomingPlaceId !== currentPlaceId) {
+        const recovered = preservedNextUpTriForPlace(currentPlaceId);
+        detail.tri = recovered || makePendingNextUpTri(currentPlaceId);
+        return detail.tri;
+      }
+
+      const normalized = cacheResolvedNextUpTri(incoming, currentPlaceId);
+      if (normalized) detail.tri = normalized;
+      return detail.tri || null;
+    }
+
+    if (!currentPlaceId) return incoming || null;
+
+    const recovered = preservedNextUpTriForPlace(currentPlaceId);
+    if (recovered) {
+      detail.tri = recovered;
+      return recovered;
+    }
+
+    const pending = makePendingNextUpTri(currentPlaceId);
+    detail.tri = pending;
+    return pending;
   }
 
   function recordFromQuiz({ quizId, categoryId, item, targetId }) {
@@ -163,11 +282,18 @@
   window.HGUnlocks = {
     key: KEY,
     placeCollectionKey: PLACE_COLLECTION_KEY,
+    nextUpTriKey: NEXTUP_TRI_KEY,
     load,
     loadCollectedPlaces,
     recordCollectedPlace,
-    recordFromQuiz
+    recordFromQuiz,
+    preserveNextUpTriEvent,
+    getPreservedNextUpTri: preservedNextUpTriForPlace
   };
+
+  // Capture-fasen gjør kontrakten robust selv om nextUpRuntime/core-card-listenere
+  // registreres i en annen rekkefølge senere.
+  window.addEventListener("hg:mpNextUp", preserveNextUpTriEvent, true);
 
   window.addEventListener("hg:target-unlock", (event) => {
     const detail = /** @type {CustomEvent} */ (event).detail || {};
