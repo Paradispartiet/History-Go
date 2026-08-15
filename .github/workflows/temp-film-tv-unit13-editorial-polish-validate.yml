@@ -1,0 +1,100 @@
+name: TEMP validate Film TV unit 13 editorial polish
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit13-location-production-place-ethics-fulltext-complete
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-film-tv-unit13-editorial-polish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit13-location-production-place-ethics-fulltext-complete
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Apply editorial polish
+        run: python .bootstrap/unit13-editorial-polish.py
+
+      - name: Validate syntax
+        run: |
+          node --check scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --check tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+
+      - name: Materialize and audit unit 13
+        shell: bash
+        run: |
+          set +e
+          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs --write >/tmp/source.log 2>&1
+          code=$?; if [ "$code" -ne 0 ]; then echo "::error title=Unit13 source brief::$(cat /tmp/source.log)"; exit "$code"; fi
+          node scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs >/tmp/materializer.log 2>&1
+          code=$?; if [ "$code" -ne 0 ]; then echo "::error title=Unit13 materializer::$(cat /tmp/materializer.log)"; exit "$code"; fi
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs --write-report >/tmp/audit.log 2>&1
+          code=$?; if [ "$code" -ne 0 ]; then echo "::error title=Unit13 audit::$(cat /tmp/audit.log)"; exit "$code"; fi
+          cat /tmp/materializer.log /tmp/audit.log
+
+      - name: Refresh completed unit 12 and shared deterministic state
+        run: |
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs --write
+          node scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-general-engine.mjs --write-report
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report
+
+      - name: Validate unit 13 source brief and fulltext
+        run: |
+          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --test tests/film-tv-location-production-place-ethics-source-brief-v1.test.mjs
+          node --test tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+
+      - name: Validate units 12 through 9 remain monotone
+        run: |
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+          node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+          node --test tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+          node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
+          node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
+
+      - name: Validate shared Film and TV baseline
+        run: |
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Commit polish only after full validation
+        shell: bash
+        run: |
+          rm -rf .bootstrap
+          git add -A
+          git reset -- .github/workflows/temp-film-tv-unit13-editorial-polish-validate.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Polish Film TV unit 13 fulltext"
+          git push origin HEAD:agent/film-tv-unit13-location-production-place-ethics-fulltext-complete
