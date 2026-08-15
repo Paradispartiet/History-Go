@@ -50,10 +50,16 @@ jobs:
               : '';
             const caseA = `Hovedcaset «${mainCase.work}» (${mainCase.years}, ${mainCase.territory}) er relevant fordi ${mainCase.purpose}`;
             const caseB = `«${controlCase.work}» brukes som motcase: ${controlCase.purpose}`;
-            const conclusion = 'Konklusjonen begrenses derfor til det kildene faktisk dokumenterer; representert sted, opptakssted, produksjonsbase og dokumentert lokal effekt holdes fortsatt adskilt når de er relevante.';
+            const conclusionVariants = [
+              `For «${mainCase.work}» avgrenser derfor «${primary.title}» resultatet til sitt dokumenterte nivå; representert sted, opptakssted, produksjonsbase og lokal effekt må fortsatt belegges hver for seg.`,
+              `I sammenstillingen av «${mainCase.work}» og «${controlCase.work}» kan «${secondary.title}» ikke bære mer enn sitt dokumenterte evidensnivå; sted, base og lokal virkning holdes derfor analytisk adskilt.`,
+              `Når «${primary.title}» leses mot «${secondary.title}», viser «${mainCase.work}» hvorfor representert sted, opptakssted, produksjonsbase og lokal effekt må dokumenteres som separate ledd.`,
+              `Casene «${mainCase.work}» og «${controlCase.work}» avgrenser dermed hva kildene kan underbygge; deres representerte steder, opptakssteder, produksjonsbaser og lokale effekter kan ikke slås sammen uten egen dokumentasjon.`
+            ];
+            const conclusion = conclusionVariants[claimIndex % conclusionVariants.length];
             const variants = [
               `${claim.claim_focus} ${editorial.lens} ${sourceA} ${sourceB} ${sourceC} ${caseA} ${caseB} Metodisk følger analysen regelen: ${evidenceRule} ${limit} ${editorial.disagreement} ${conclusion}`,
-              `${claim.claim_focus} ${caseA} ${caseB} Sammenligningen blir først faglig brukbar når produksjonsforløpet kobles til kilder med kjent rekkevidde. ${sourceA} ${sourceB} ${sourceC} Den analytiske linsen er at ${editorial.lens} Evidenskravet er derfor: ${evidenceRule} ${editorial.disagreement} ${limit} ${conclusion}`,
+              `${claim.claim_focus} ${caseA} ${caseB} I «${mainCase.work}» blir sammenligningen først faglig brukbar når produksjonsforløpet kobles til kilder med kjent rekkevidde. ${sourceA} ${sourceB} ${sourceC} Den analytiske linsen er at ${editorial.lens} Evidenskravet er derfor: ${evidenceRule} ${editorial.disagreement} ${limit} ${conclusion}`,
               `${claim.claim_focus} ${editorial.lens} Før en årsak eller rettighet tilskrives produksjonen, må evidensnivået avgrenses: ${evidenceRule} ${sourceA} ${sourceB} ${caseA} ${sourceC} ${caseB} ${editorial.disagreement} Den claimspesifikke grensen er tydelig: ${limit} ${conclusion}`,
               `${claim.claim_focus} Den sentrale faglige spenningen er at ${editorial.disagreement} ${sourceA} ${caseA} ${sourceB} ${caseB} ${sourceC} Dette leses gjennom følgende linse: ${editorial.lens} Metodisk gjelder ${evidenceRule} ${limit} ${conclusion}`
             ];
