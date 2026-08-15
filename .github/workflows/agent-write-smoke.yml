@@ -21,10 +21,11 @@ jobs:
         run: |
           git diff --check
           git status --short
-      - name: Commit migration
+      - name: Commit and publish migration
         run: |
           git config user.name "History Go migration bot"
           git config user.email "actions@users.noreply.github.com"
           git add -A
           git commit -m "Gjør popupens tilleggsinnhold til direktefaner"
+          git pull --rebase origin agent/sprakleksikon-2-0
           git push origin HEAD:agent/sprakleksikon-2-0
