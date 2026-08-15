@@ -46,6 +46,7 @@ const SOURCE_MAPPED_ENTRIES = [
 // old URLs valid while the surrounding loader remains legacy JavaScript.
 const STARTUP_ENTRIES = [
   { in: "js/map-controls-runtime.ts", out: "map-controls-runtime" },
+  { in: "js/civicationSceneInteraction.ts", out: "civicationSceneInteraction" },
   { in: "js/core/categories.ts", out: "categories" },
   { in: "js/core/layerManager.ts", out: "layerManager" },
   { in: "js/map.ts", out: "map" },
@@ -70,6 +71,7 @@ const COMPACT_STARTUP_ENTRIES = [
 ];
 
 const STARTUP_COMPATIBILITY_OUTPUTS = [
+  { out: "civicationSceneInteraction", target: "js/Civication/systems/civicationSceneInteraction.js" },
   { out: "categories", target: "js/core/categories.js" },
   { out: "layerManager", target: "js/core/layerManager.js" },
   { out: "map", target: "js/map.js" },
