@@ -30,7 +30,16 @@ jobs:
         run: node --check scripts/materialize-filosofi-major-field-coverage.mjs
 
       - name: Materialize seven missing major fields
-        run: node scripts/materialize-filosofi-major-field-coverage.mjs
+        shell: bash
+        run: |
+          set +e
+          node scripts/materialize-filosofi-major-field-coverage.mjs 2>&1 | tee /tmp/philosophy-materializer.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            message=$(grep -m1 -E 'Error:|AssertionError' /tmp/philosophy-materializer.log || tail -n 1 /tmp/philosophy-materializer.log)
+            echo "::error title=Philosophy materializer::${message}"
+            exit "$status"
+          fi
 
       - name: Rebuild deterministic Philosophy and shared reports
         run: |
