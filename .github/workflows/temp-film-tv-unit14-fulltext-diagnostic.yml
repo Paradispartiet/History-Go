@@ -1,0 +1,28 @@
+name: TEMP diagnose Film TV unit 14 fulltext
+
+on:
+  push:
+    branches:
+      - "agent/film-tv-unit14-archive-preservation-access-authenticity-fulltext"
+    paths:
+      - ".trigger/unit14-fulltext-diagnostic"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Rebuild source brief in working tree
+        run: node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs --write
+      - name: Show full build stack
+        run: |
+          node --input-type=module <<'NODE'
+          const module = await import('./scripts/materialize-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs');
+          module.buildFilmTvArchivePreservationAccessAuthenticityFulltextV1();
+          NODE
