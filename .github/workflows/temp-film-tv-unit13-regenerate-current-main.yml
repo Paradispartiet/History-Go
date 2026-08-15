@@ -25,6 +25,70 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Extend earlier Film and TV gates monotonically to unit 13
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          U13_SOURCE = "location_production_place_ethics_source_brief_complete_full_chapter_production"
+          U13_FULL = "location_production_place_ethics_full_chapter_complete_next_unit_source_brief"
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              text = p.read_text()
+              if old not in text:
+                  raise SystemExit(f"Expected patch anchor missing in {path}: {old[:120]!r}")
+              p.write_text(text.replace(old, new, 1))
+
+          p = 'scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs'
+          replace_once(
+              p,
+              "const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';\nconst SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';\nconst UNIT_ELEVEN_PRODUCTION_GATES = new Set([\n  OUTPUT_GATE,\n  FULLTEXT_GATE,\n  SCREEN_PLACES_SOURCE_GATE,\n  SCREEN_PLACES_FULLTEXT_GATE\n]);",
+              f"const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';\nconst SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';\nconst LOCATION_PRODUCTION_SOURCE_GATE = '{U13_SOURCE}';\nconst LOCATION_PRODUCTION_FULLTEXT_GATE = '{U13_FULL}';\nconst UNIT_ELEVEN_PRODUCTION_GATES = new Set([\n  OUTPUT_GATE,\n  FULLTEXT_GATE,\n  SCREEN_PLACES_SOURCE_GATE,\n  SCREEN_PLACES_FULLTEXT_GATE,\n  LOCATION_PRODUCTION_SOURCE_GATE,\n  LOCATION_PRODUCTION_FULLTEXT_GATE\n]);"
+          )
+          replace_once(
+              p,
+              "  const laterGateAlreadyActive = [FULLTEXT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE].includes(currentGate);",
+              "  const laterGateAlreadyActive = [FULLTEXT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE, LOCATION_PRODUCTION_SOURCE_GATE, LOCATION_PRODUCTION_FULLTEXT_GATE].includes(currentGate);"
+          )
+
+          p = 'scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs'
+          replace_once(
+              p,
+              "const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';\nconst SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';\nconst UNIT_TWELVE_OR_LATER_GATES = new Set([SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE]);",
+              f"const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';\nconst SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';\nconst LOCATION_PRODUCTION_SOURCE_GATE = '{U13_SOURCE}';\nconst LOCATION_PRODUCTION_FULLTEXT_GATE = '{U13_FULL}';\nconst UNIT_TWELVE_OR_LATER_GATES = new Set([SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE, LOCATION_PRODUCTION_SOURCE_GATE, LOCATION_PRODUCTION_FULLTEXT_GATE]);"
+          )
+
+          p = 'scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs'
+          replace_once(
+              p,
+              "const OUTPUT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';\nconst SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';\nconst SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';\nconst UNIT_ELEVEN_OR_LATER_GATES = new Set([OUTPUT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE]);",
+              f"const OUTPUT_GATE = 'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief';\nconst SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';\nconst SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';\nconst LOCATION_PRODUCTION_SOURCE_GATE = '{U13_SOURCE}';\nconst LOCATION_PRODUCTION_FULLTEXT_GATE = '{U13_FULL}';\nconst UNIT_ELEVEN_OR_LATER_GATES = new Set([OUTPUT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE, LOCATION_PRODUCTION_SOURCE_GATE, LOCATION_PRODUCTION_FULLTEXT_GATE]);"
+          )
+
+          p = 'tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs'
+          replace_once(
+              p,
+              "    'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief',\n    'screen_places_identity_circulation_source_brief_complete_full_chapter_production',\n    'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief'\n  ].includes(film.nextGate), true);",
+              f"    'reception_participation_audience_methods_full_chapter_complete_next_unit_source_brief',\n    'screen_places_identity_circulation_source_brief_complete_full_chapter_production',\n    'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief',\n    '{U13_SOURCE}',\n    '{U13_FULL}'\n  ].includes(film.nextGate), true);"
+          )
+
+          p = 'scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs'
+          replace_once(
+              p,
+              "const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';\nconst SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';\nconst UNIT_TEN_OR_LATER_PRODUCTION_GATES = new Set([\n  NEXT,\n  RECEPTION_SOURCE_GATE,\n  RECEPTION_FULLTEXT_GATE,\n  SCREEN_PLACES_SOURCE_GATE,\n  SCREEN_PLACES_FULLTEXT_GATE\n]);",
+              f"const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_brief_complete_full_chapter_production';\nconst SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';\nconst LOCATION_PRODUCTION_SOURCE_GATE = '{U13_SOURCE}';\nconst LOCATION_PRODUCTION_FULLTEXT_GATE = '{U13_FULL}';\nconst UNIT_TEN_OR_LATER_PRODUCTION_GATES = new Set([\n  NEXT,\n  RECEPTION_SOURCE_GATE,\n  RECEPTION_FULLTEXT_GATE,\n  SCREEN_PLACES_SOURCE_GATE,\n  SCREEN_PLACES_FULLTEXT_GATE,\n  LOCATION_PRODUCTION_SOURCE_GATE,\n  LOCATION_PRODUCTION_FULLTEXT_GATE\n]);"
+          )
+          PY
+
+      - name: Validate monotone patch syntax
+        run: |
+          node --check scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+          node --check scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+          node --check tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+
       - name: Regenerate unit 13 and shared deterministic state
         run: |
           node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs --write
@@ -47,15 +111,21 @@ jobs:
           node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
           node --test tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
 
-      - name: Validate completed units 11 through 9 remain monotone
+      - name: Validate completed unit 11 remains monotone
         run: |
           node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
           node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
           node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
           node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+
+      - name: Validate completed unit 10 remains monotone
+        run: |
           node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
           node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
           node --test tests/film-tv-industry-regulation-distribution-source-brief-v1.test.mjs
+
+      - name: Validate completed unit 9 remains monotone
+        run: |
           node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
           node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
 
@@ -69,10 +139,15 @@ jobs:
           node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
 
-      - name: Commit regenerated outputs
+      - name: Commit regenerated outputs and monotone gates
         shell: bash
         run: |
           git add -- \
+            scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs \
+            scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs \
+            scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs \
+            scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs \
+            tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs \
             data/fagverk/fagverk_registry.json \
             data/fagverk/subject_status.json \
             data/fagverk/fagverk_release.json \
@@ -82,12 +157,7 @@ jobs:
             reports/fagverk/film-tv-screen-places-identity-circulation-fulltext-v1-audit.json \
             reports/fagverk/film-tv-location-production-place-ethics-source-brief-v1-audit.json
 
-          if git diff --cached --quiet; then
-            echo "No deterministic output changes to commit."
-            exit 0
-          fi
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Regenerate Film TV unit 13 outputs on current main"
+          git commit -m "Regenerate Film TV unit 13 on current main"
           git push origin HEAD:agent/film-tv-unit13-location-production-place-ethics-source-brief
