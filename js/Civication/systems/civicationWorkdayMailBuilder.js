@@ -261,25 +261,7 @@
           feedback: norm(choice.feedback)
         }))
         .filter((choice) => choice.id && choice.label);
-      if (normalized.length >= 2) return normalized;
-      return [
-        {
-          id: "A",
-          label: "Gjør dette ryddig og dokumenter det",
-          effect: 1,
-          tags: ["process", "integrity"],
-          feedback: "Du velger kontroll, sporbarhet og tydelighet.",
-          __civi_fallback_choice: true
-        },
-        {
-          id: "B",
-          label: "Løs det raskt og gå videre",
-          effect: 0,
-          tags: ["tempo", "risk"],
-          feedback: "Du får fart på saken, men må tåle at noe blir mindre grundig.",
-          __civi_fallback_choice: true
-        }
-      ];
+      return normalized;
     }
     function flattenCatalog(catalog, sourcePath = "") {
       const out = [];
