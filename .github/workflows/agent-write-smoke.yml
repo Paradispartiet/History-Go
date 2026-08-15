@@ -1,0 +1,15 @@
+name: Agent write smoke
+
+on:
+  push:
+    branches: [agent/sprakleksikon-2-0]
+
+permissions:
+  contents: write
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo smoke
