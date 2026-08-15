@@ -63,6 +63,18 @@ test("språkflaten bruker canonical Knowledge V2-lager og ikke separat samlingsl
   assert.doesNotMatch(runtime, /language_collection|dialect_collection|hg_language_collection/i);
 });
 
+test("legacy-arrangementer blir ikke løftet som språkinnhold", () => {
+  const runtime = read("js/ui/place-language-layer.js");
+  assert.match(runtime, /BLOCKED_LANGUAGE_TYPES/);
+  assert.match(runtime, /"arrangement"/);
+  assert.match(runtime, /"event"/);
+  assert.match(runtime, /"stevne"/);
+  assert.match(runtime, /filter\(isLanguageEntry\)/);
+
+  const bislett = json(manifest.place_files.bislett_stadion);
+  assert.ok(bislett.entries.some(entry => entry.type === "arrangement"), "fixture må fortsatt dekke legacy-arrangement");
+});
+
 test("språkflaten lastes etter Knowledge V2", () => {
   const config = read("js/config.js");
   const knowledgeIndex = config.indexOf('"dist/web/knowledgeV2.js"');
