@@ -97,6 +97,8 @@ async function run() {
   loadScript('js/Civication/mailPlanBridge.js');
   loadScript('js/Civication/systems/civicationCareerRoleResolver.js');
   loadScript('js/Civication/systems/civicationMailRuntime.js');
+  loadScript('js/Civication/systems/civicationSceneInteraction.js');
+  loadScript('js/Civication/systems/day/dayChoiceDirector.js');
   loadScript('js/Civication/ui/CivicationUI.js');
 
   const incomingCalls = { applyConsequences: 0, enqueueFollowup: 0 };
