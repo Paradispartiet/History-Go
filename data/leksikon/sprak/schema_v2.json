@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.local/schemas/sprakleksikon-v2.json",
+  "title": "History Go Språkleksikon v2",
+  "description": "Canonical kontrakt for stedbundet språkinnhold. Modellen utvider eksisterende stedsspesifikke språkfiler uten å kreve at alle steder har språkinnhold.",
+  "type": "object",
+  "required": ["place_id", "title", "entries"],
+  "properties": {
+    "place_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "verified_at": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "dialect_area": { "type": "string", "minLength": 1 },
+    "emne_ids": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["url"],
+      "properties": {
+        "label": { "type": "string" },
+        "title": { "type": "string" },
+        "url": { "type": "string", "pattern": "^https://" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "relation": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "label": { "type": "string" },
+            "name": { "type": "string" },
+            "title": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "entry": {
+      "type": "object",
+      "required": ["id", "term", "type", "meaning"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "term": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "minLength": 1 },
+        "meaning": { "type": "string", "minLength": 1 },
+        "example": { "type": "string" },
+        "pronunciation": { "type": "string" },
+        "audio": { "type": "string" },
+        "dialect_area": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["current", "common", "older", "rare", "historical", "uncertain"]
+        },
+        "usage": { "type": "string" },
+        "etymology": { "type": "string" },
+        "historical_period": { "type": "string" },
+        "language_family": { "type": "string" },
+        "context": { "type": "string" },
+        "notes": { "type": "string" },
+        "emne_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "related_entries": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/relation" }
+        },
+        "related_places": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/relation" }
+        },
+        "linked_to": {
+          "type": "object",
+          "properties": {
+            "kind": { "type": "string" },
+            "id": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "sources": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/source" }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
