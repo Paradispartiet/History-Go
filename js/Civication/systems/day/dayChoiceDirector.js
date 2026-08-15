@@ -1,14 +1,105 @@
 // js/Civication/systems/day/dayChoiceDirector.js
-// CivicationChoiceDirector — sentralt, prioritert register av valg-håndterere.
-// Patcher EventEngine.answer én gang og kjører registrerte handlere på hvert svar.
-// Felles innstegspunkt for valg-konsekvenser (faction, npc m.fl. registrerer seg her).
+// CivicationChoiceDirector — canonical svargrense + prioritert register av valg-håndterere.
+// Patcher EventEngine.answer én gang, validerer Scene Interaction-kontrakten før state muteres,
+// og kjører registrerte valg-handlere etter et vellykket svar med et reelt kildeeid valg.
 (function () {
   "use strict";
 
+  const ANSWER_CONTRACT_VERSION = 1;
   const handlers = [];
 
   function normStr(v) {
     return String(v || "").trim();
+  }
+
+  function normalizedChoices(eventObj) {
+    return Array.isArray(eventObj?.choices) ? eventObj.choices.filter(Boolean) : [];
+  }
+
+  function getInteraction(eventObj) {
+    const classify = window.CivicationSceneInteraction?.classify;
+    if (typeof classify !== "function" || !eventObj) return null;
+    try {
+      return classify(eventObj);
+    } catch (err) {
+      console.warn("[dayChoiceDirector] interaction classification failed", err);
+      return {
+        valid: false,
+        actionable: false,
+        mode: normStr(eventObj?.interaction_mode) || "unknown",
+        block_reason: "interaction_classification_failed"
+      };
+    }
+  }
+
+  function validateAnswerBoundary(eventObj, choiceId) {
+    const interaction = getInteraction(eventObj);
+    const choices = normalizedChoices(eventObj);
+    const resolvedChoiceId = normStr(choiceId);
+    const choice = choices.find((candidate) => (
+      candidate && normStr(candidate.id) === resolvedChoiceId
+    )) || null;
+
+    // Legacy/test contexts that have not loaded SceneInteraction yet retain their old path.
+    // Production Civication loads SceneInteraction before ChoiceDirector.
+    if (!interaction) {
+      return {
+        ok: true,
+        interaction: null,
+        choice
+      };
+    }
+
+    if (interaction.valid !== true) {
+      return {
+        ok: false,
+        reason: normStr(interaction.block_reason) || "invalid_interaction",
+        interaction,
+        choice: null
+      };
+    }
+
+    if (interaction.actionable !== true) {
+      return {
+        ok: false,
+        reason: "interaction_not_actionable",
+        interaction,
+        choice: null
+      };
+    }
+
+    const mode = normStr(interaction.mode);
+    const choiceRequired = mode === "decision" || mode === "ack" || (mode === "task" && choices.length > 0);
+    if (choiceRequired && !choice) {
+      return {
+        ok: false,
+        reason: "bad_choice",
+        interaction,
+        choice: null
+      };
+    }
+
+    return {
+      ok: true,
+      interaction,
+      choice
+    };
+  }
+
+  function blockedAnswerResult(boundary) {
+    return {
+      ok: false,
+      reason: boundary?.reason || "interaction_blocked",
+      interaction_mode: boundary?.interaction?.mode || null,
+      choice_director: {
+        version: ANSWER_CONTRACT_VERSION,
+        blocked: true,
+        interaction_mode: boundary?.interaction?.mode || null,
+        interaction_valid: boundary?.interaction?.valid === true,
+        interaction_actionable: boundary?.interaction?.actionable === true,
+        handler_results: []
+      }
+    };
   }
 
   function sortHandlers() {
@@ -67,35 +158,59 @@
     proto.answer = async function (eventId, choiceId) {
       const pending = this.getPendingEvent ? this.getPendingEvent() : null;
       const eventObj = pending?.event || null;
-      const choice = Array.isArray(eventObj?.choices)
-        ? eventObj.choices.find((c) => c && normStr(c.id) === normStr(choiceId)) || null
-        : null;
+      const pendingEventId = normStr(eventObj?.id);
+      const requestedEventId = normStr(eventId);
+
+      // La den underliggende motoren eie not_found/ID-feil. Interaksjonsgrensen skal bare
+      // validere den scenen som faktisk forsøkes besvart.
+      if (!eventObj || (pendingEventId && requestedEventId && pendingEventId !== requestedEventId)) {
+        return previous.call(this, eventId, choiceId);
+      }
+
+      const boundary = validateAnswerBoundary(eventObj, choiceId);
+      if (!boundary.ok) {
+        return blockedAnswerResult(boundary);
+      }
+
       const active = window.CivicationState?.getActivePosition?.() || null;
       const stateBefore = window.CivicationState?.getState?.() || {};
-
       const result = await previous.call(this, eventId, choiceId);
 
-      if (!result?.ok || !eventObj || !choice) {
+      if (!result?.ok || !eventObj) {
         return result;
       }
 
-      const ctx = {
-        engine: this,
-        eventId: normStr(eventId),
-        choiceId: normStr(choiceId),
-        pending,
-        eventObj,
-        choice,
-        result,
-        active,
-        stateBefore,
-        getState() {
-          return window.CivicationState?.getState?.() || {};
-        }
-      };
+      const interaction = boundary.interaction;
+      const choice = boundary.choice;
+      let handlerResults = [];
 
-      const handlerResults = await runHandlers(ctx);
+      if (choice) {
+        const ctx = {
+          engine: this,
+          eventId: requestedEventId,
+          choiceId: normStr(choiceId),
+          pending,
+          eventObj,
+          choice,
+          interaction,
+          result,
+          active,
+          stateBefore,
+          getState() {
+            return window.CivicationState?.getState?.() || {};
+          }
+        };
+
+        handlerResults = await runHandlers(ctx);
+      }
+
       result.choice_director = {
+        version: ANSWER_CONTRACT_VERSION,
+        blocked: false,
+        interaction_mode: interaction?.mode || null,
+        interaction_valid: interaction ? interaction.valid === true : null,
+        interaction_actionable: interaction ? interaction.actionable === true : null,
+        choice_id: choice ? normStr(choice.id) : null,
         handler_results: handlerResults
       };
 
@@ -106,7 +221,11 @@
   }
 
   window.CivicationChoiceDirector = {
+    version: ANSWER_CONTRACT_VERSION,
     registerHandler,
+    validateAnswer(eventObj, choiceId) {
+      return validateAnswerBoundary(eventObj, choiceId);
+    },
     listHandlers() {
       return handlers.map((h) => ({ name: h.name, priority: h.priority }));
     }
