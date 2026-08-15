@@ -14,6 +14,9 @@
   const STATE_KEY = "career_outcome_state";
   const PATCHED_FLAG = "__civicationCareerOutcomeRuntimePatched";
   const TERMINAL_STATUSES = ["PROMOTED", "STAGNATED", "FIRED"];
+  const ANSWER_MIDDLEWARE_NAME = "career_outcome_runtime";
+  const ANSWER_MIDDLEWARE_PRIORITY = 70;
+  const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
 
   const DEFAULT_OUTCOME_RULES = {
     fired: {
@@ -535,39 +538,61 @@
     return true;
   }
 
-  function patchEventEngineAnswer() {
-    const proto = window.CivicationEventEngine?.prototype;
-    if (!proto || proto.__civicationCareerOutcomeAnswerPatched === true) return false;
-    if (typeof proto.answer !== "function") return false;
+  async function careerOutcomeAnswerMiddleware(ctx, next) {
+    const eventObj = ctx?.eventObj || null;
+    const isOutcome = norm(eventObj?.source_type) === "role_outcome" || norm(eventObj?.mail_class) === "career_outcome";
 
-    const original = proto.answer;
-    proto.answer = async function outcomeAnswer(eventId, choiceId) {
-      const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
-      const eventObj = pending?.event || null;
-      const isOutcome = norm(eventObj?.source_type) === "role_outcome" || norm(eventObj?.mail_class) === "career_outcome";
+    // Preserve the historical pre-answer FIRED mutation exactly. It deliberately has
+    // no rollback: inner answer failures still leave stability=FIRED, just as the
+    // previous direct wrapper did.
+    const outcomeStatus = norm(eventObj?.career_outcome_meta?.status);
+    if (isOutcome && outcomeStatus === "FIRED") {
+      /** @type {{ consumed?: Record<string, unknown> } | null | undefined} */
+      const current = getState();
+      const consumed = (current && typeof current.consumed === "object" && current.consumed !== null)
+        ? { ...current.consumed }
+        : {};
+      setState({ stability: "FIRED", consumed });
+    }
 
-      const outcomeStatus = norm(eventObj?.career_outcome_meta?.status);
-      if (isOutcome && outcomeStatus === "FIRED") {
-        /** @type {{ consumed?: Record<string, unknown> } | null | undefined} */
-        const current = getState();
-        const consumed = (current && typeof current.consumed === "object" && current.consumed !== null)
-          ? { ...current.consumed }
-          : {};
-        setState({ stability: "FIRED", consumed });
-      }
+    const result = await next();
 
-      const result = await original.call(this, eventId, choiceId);
+    if (result?.ok !== false && isOutcome) {
+      applyOutcomeState(eventObj);
+      try { window.dispatchEvent(new Event("updateProfile")); } catch {}
+    }
 
-      if (result?.ok !== false && isOutcome) {
-        applyOutcomeState(eventObj);
-        try { window.dispatchEvent(new Event("updateProfile")); } catch {}
-      }
+    return result;
+  }
 
-      return result;
-    };
+  function registerAnswerMiddleware() {
+    const director = window.CivicationChoiceDirector;
+    if (director?.registerAnswerMiddleware) {
+      return director.registerAnswerMiddleware(
+        ANSWER_MIDDLEWARE_NAME,
+        careerOutcomeAnswerMiddleware,
+        ANSWER_MIDDLEWARE_PRIORITY
+      );
+    }
 
-    proto.__civicationCareerOutcomeAnswerPatched = true;
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationChoiceAnswerMiddlewareQueue?: Array<{ name: string, fn: Function, priority: number }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY])
+      ? runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY]
+      : (runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY] = []);
+    if (!queue.some(entry => entry?.name === ANSWER_MIDDLEWARE_NAME)) {
+      queue.push({
+        name: ANSWER_MIDDLEWARE_NAME,
+        fn: careerOutcomeAnswerMiddleware,
+        priority: ANSWER_MIDDLEWARE_PRIORITY
+      });
+    }
     return true;
+  }
+
+  // Compatibility API for existing callers/tests. The name remains during migration,
+  // but it now registers middleware and never patches EventEngine.answer directly.
+  function patchEventEngineAnswer() {
+    return registerAnswerMiddleware();
   }
 
   // Pure, DOM-free view model for the day-phase UI. Reads career_outcome_state
@@ -654,7 +679,7 @@
   function boot() {
     patchMailRuntime();
     patchEventEngineBuildMailPool();
-    patchEventEngineAnswer();
+    registerAnswerMiddleware();
   }
 
   window.CivicationCareerOutcomeRuntime = {
@@ -663,6 +688,7 @@
     patchMailRuntime,
     patchEventEngineBuildMailPool,
     patchEventEngineAnswer,
+    registerAnswerMiddleware,
     makeTerminalCandidateIfNeeded,
     getTerminalPlanState,
     applyOutcomeState,
@@ -673,7 +699,7 @@
       return {
         patched: window.CivicationMailRuntime?.[PATCHED_FLAG] === true,
         build_mail_pool_patched: window.CivicationEventEngine?.prototype?.__civicationCareerOutcomeBuildMailPoolPatched === true,
-        answer_patched: window.CivicationEventEngine?.prototype?.__civicationCareerOutcomeAnswerPatched === true,
+        answer_middleware_registered: window.CivicationChoiceDirector?.listAnswerMiddlewares?.().some?.(entry => entry?.name === ANSWER_MIDDLEWARE_NAME) === true,
         state: defaultOutcomeState(getState())
       };
     }
