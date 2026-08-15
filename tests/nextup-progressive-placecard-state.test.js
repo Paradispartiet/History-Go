@@ -117,7 +117,7 @@ function createStorage(seed = {}) {
   guard(event);
   assert.equal(event.detail.tri.schema, "hg_nextup_pending_v1");
   assert.equal(event.detail.tri.current_place_id, "torggata");
-  assert.deepEqual(event.detail.tri.suggestions, []);
+  assert.equal(event.detail.tri.suggestions.length, 0);
 
   const torggataTri = {
     schema: "hg_nextup_v4",
