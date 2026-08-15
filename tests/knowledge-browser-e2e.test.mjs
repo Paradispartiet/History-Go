@@ -62,5 +62,56 @@ assert.equal(profile.subjects.by.emner.find((emne) => emne.emne_id === "em_by_e2
 assert.match(await page.textContent("#knowledgeContent"), /Arkitekt A tegnet E2E-stedet/);
 assert.equal(profile.quiz_memory.summary.review_count, 0);
 assert.equal((await page.textContent("#knowledgeMemoryOverview")).includes("Gjenta feil"), false);
+
+await page.evaluate(() => {
+  const entries = JSON.parse(localStorage.getItem("hg_knowledge_entries_v2") || "[]");
+  entries.push({
+    schema: "history_go_knowledge_entry_v2",
+    version: 2,
+    id: "ku_sprak_e2e_vending",
+    knowledge_unit_id: "ku_sprak_e2e_vending",
+    subject_id: "by",
+    fagkart_category_id: "by",
+    emne_ids: [],
+    concept_ids: [],
+    term_ids: ["term_by_sprak_e2e_vending"],
+    story_ids: [],
+    concepts: [],
+    terms: ["itte"],
+    tags: ["språkleksikon", "expression"],
+    kind: "language",
+    collection_kind: "language",
+    dimension: "expression",
+    topic: "Språk på E2E-sted",
+    text: "«Itte» brukes som en lokal form for «ikke» i denne testoppføringen.",
+    source: {
+      type: "language_lexicon",
+      quiz_id: null,
+      target_id: "e2e_place",
+      place_id: "e2e_place",
+      person_id: null,
+      source_file: "data/leksikon/sprak/places/e2e_place.json",
+      unit_id: "e2e_vending"
+    },
+    link_status: "language_source_bound_unresolved"
+  });
+  localStorage.setItem("hg_knowledge_entries_v2", JSON.stringify(entries));
+});
+
+await page.goto(base + "/tests/fixtures/knowledge-e2e.html?collection=language");
+await page.waitForFunction(() => document.querySelector("#knowledgeLoading")?.hidden === true);
+const languageProfile = await page.evaluate(() => window.hgKnowledgeProfileV2);
+const languageNav = await page.textContent("#knowledgeSubjectNav");
+const languageContent = await page.textContent("#knowledgeContent");
+assert.equal(languageProfile.subjects.sprak, undefined);
+assert.equal(languageProfile.subjects.by.knowledge_count, 3);
+assert.match(languageNav, /Språk\s*1/);
+assert.match(languageContent, /Språksamlingen din/);
+assert.match(languageContent, /e2e place/i);
+assert.match(languageContent, /«Itte» brukes som en lokal form for «ikke»/);
+assert.match(languageContent, /Uttrykk/);
+assert.match(languageContent, /Samlet språkspor/);
+assert.equal(await page.getAttribute('#knowledgeSubjectNav a[href="knowledge.html?collection=language"]', "href"), "knowledge.html?collection=language");
+
 await browser.close(); server.close();
 console.log("knowledge browser e2e ok");
