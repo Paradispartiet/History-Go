@@ -114,13 +114,24 @@ jobs:
         if: always()
         run: node --test tests/fagverk-filosofi-field-coverage.test.mjs
 
-      - name: Commit permanent Philosophy expansion
+      - name: Configure git identity
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm --ignore-unmatch scripts/materialize-filosofi-major-field-coverage.mjs
+
+      - name: Remove temporary materializer
+        run: git rm --ignore-unmatch scripts/materialize-filosofi-major-field-coverage.mjs
+
+      - name: Stage permanent Philosophy expansion
+        run: |
           git add -A
           git status --short
-          git diff --cached --check
-          git commit -m "Expand Philosophy to full major-field coverage"
-          git push origin HEAD:agent/expand-philosophy-core-fields
+
+      - name: Check staged Philosophy diff
+        run: git diff --cached --check
+
+      - name: Commit permanent Philosophy expansion
+        run: git commit -m "Expand Philosophy to full major-field coverage"
+
+      - name: Push permanent Philosophy expansion
+        run: git push origin HEAD:agent/expand-philosophy-core-fields
