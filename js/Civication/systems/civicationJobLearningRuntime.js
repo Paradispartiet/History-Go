@@ -24,6 +24,9 @@
 
   // Andel av mastery_threshold som markerer at spilleren begynner å bli utlært.
   const NEARING_RATIO = 0.6;
+  const ANSWER_MIDDLEWARE_NAME = "job_learning_runtime";
+  const ANSWER_MIDDLEWARE_PRIORITY = 60;
+  const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
 
   // Et tydelig sted å forberede jobb-metadata. Reelle per-rolle-profiler kan legges i
   // data/Civication/jobLearningProfiles.json og registreres via registerProfiles().
@@ -616,45 +619,62 @@
     }
   }
 
-  // Patch CivicationEventEngine.answer to record a learning step after a successful
-  // answer to a qualifying job mail. Mirrors how CivicationCareerOutcomeRuntime patches
-  // answer; never touches career_outcome_state. Idempotent and guarded.
-  function patchEventEngineAnswer() {
-    const proto = window.CivicationEventEngine?.prototype;
-    if (!proto || proto.__civicationJobLearningAnswerPatched === true) return false;
-    if (typeof proto.answer !== "function") return false;
+  // ChoiceDirector around-answer middleware: capture the active role before the inner
+  // chain because an outcome may clear it, then record learning only after a
+  // successful qualifying job-mail answer. Never touches career_outcome_state.
+  async function jobLearningAnswerMiddleware(ctx, next) {
+    const eventObj = ctx?.eventObj || null;
+    const active = getActive();
+    const result = await next();
 
-    const original = proto.answer;
-    proto.answer = async function jobLearningAnswer(eventId, choiceId) {
-      const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
-      const eventObj = pending?.event || null;
-      // Capture the active role before answering, in case the answer flow clears it.
-      const active = getActive();
-
-      const result = await original.call(this, eventId, choiceId);
-
-      if (result?.ok !== false && eventObj && active) {
-        try {
-          const patch = recordJobLearningForAnsweredMail(getState(), active, eventObj, { day: currentLearningDay() });
-          if (patch) {
-            setState(patch);
-            try { window.dispatchEvent(new Event("updateProfile")); } catch (_e) {}
-          }
-        } catch (_err) {
-          // Learning progress is best-effort: never break the answer flow.
+    if (result?.ok !== false && eventObj && active) {
+      try {
+        const patch = recordJobLearningForAnsweredMail(getState(), active, eventObj, { day: currentLearningDay() });
+        if (patch) {
+          setState(patch);
+          try { window.dispatchEvent(new Event("updateProfile")); } catch (_e) {}
         }
+      } catch (_err) {
+        // Learning progress is best-effort: never break the answer flow.
       }
+    }
 
-      return result;
-    };
+    return result;
+  }
 
-    proto.__civicationJobLearningAnswerPatched = true;
+  function registerAnswerMiddleware() {
+    const director = window.CivicationChoiceDirector;
+    if (director?.registerAnswerMiddleware) {
+      return director.registerAnswerMiddleware(
+        ANSWER_MIDDLEWARE_NAME,
+        jobLearningAnswerMiddleware,
+        ANSWER_MIDDLEWARE_PRIORITY
+      );
+    }
+
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationChoiceAnswerMiddlewareQueue?: Array<{ name: string, fn: Function, priority: number }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY])
+      ? runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY]
+      : (runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY] = []);
+    if (!queue.some(entry => entry?.name === ANSWER_MIDDLEWARE_NAME)) {
+      queue.push({
+        name: ANSWER_MIDDLEWARE_NAME,
+        fn: jobLearningAnswerMiddleware,
+        priority: ANSWER_MIDDLEWARE_PRIORITY
+      });
+    }
     return true;
+  }
+
+  // Compatibility API for existing callers/tests. The name remains during migration,
+  // but it now registers middleware and never patches EventEngine.answer directly.
+  function patchEventEngineAnswer() {
+    return registerAnswerMiddleware();
   }
 
   function boot() {
     loadProfilesData();
-    patchEventEngineAnswer();
+    registerAnswerMiddleware();
   }
 
   window.CivicationJobLearningRuntime = {
@@ -677,6 +697,7 @@
     shouldMailGrantLearning,
     recordJobLearningForAnsweredMail,
     patchEventEngineAnswer,
+    registerAnswerMiddleware,
     PROGRESS_KEY,
     DEFAULT_PROFILE,
     DEFAULT_MASTERY_THRESHOLD,
@@ -684,7 +705,7 @@
       return {
         profiles: Object.keys(PROFILE_REGISTRY),
         default_mastery_threshold: DEFAULT_MASTERY_THRESHOLD,
-        answer_patched: window.CivicationEventEngine?.prototype?.__civicationJobLearningAnswerPatched === true,
+        answer_middleware_registered: window.CivicationChoiceDirector?.listAnswerMiddlewares?.().some?.(entry => entry?.name === ANSWER_MIDDLEWARE_NAME) === true,
         sample: getJobLearningViewModel(getState(), getActive())
       };
     }
