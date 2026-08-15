@@ -1,0 +1,191 @@
+name: Film TV Unit 15 final reconciliation
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit15-cultural-heritage-canon-stars-memory-source-brief
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit15-cultural-heritage-canon-stars-memory-source-brief
+          fetch-depth: 0
+
+      - name: Merge current main
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Make Unit 10 to 13 gates monotonic through Unit 15
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          GATE = "cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production"
+
+          def add_constant(path, anchor="const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';"):
+              p = Path(path)
+              text = p.read_text()
+              const = f"const UNIT15_SOURCE_GATE = '{GATE}';"
+              if const not in text:
+                  if anchor not in text:
+                      raise SystemExit(f"anchor missing: {path}")
+                  text = text.replace(anchor, anchor + "\n" + const, 1)
+              p.write_text(text)
+
+          # Unit 10 audit: extend the existing monotonic gate set.
+          p = Path('scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs')
+          text = p.read_text()
+          anchor = "const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';"
+          const = f"const UNIT15_SOURCE_GATE = '{GATE}';"
+          if const not in text:
+              text = text.replace(anchor, anchor + "\n" + const, 1)
+          old = "  ARCHIVE_PRESERVATION_FULLTEXT_GATE\n]);"
+          new = "  ARCHIVE_PRESERVATION_FULLTEXT_GATE,\n  UNIT15_SOURCE_GATE\n]);"
+          if new not in text:
+              if old not in text: raise SystemExit('Unit10 audit gate set missing')
+              text = text.replace(old, new, 1)
+          p.write_text(text)
+
+          # Unit 10 source brief: preserve later status/registry while retaining its historical audit contract.
+          p = Path('scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs')
+          text = p.read_text()
+          output_anchor = "const OUTPUT_GATE = 'industry_regulation_distribution_source_brief_complete_full_chapter_production';"
+          if "const UNIT15_SOURCE_GATE" not in text:
+              text = text.replace(output_anchor, output_anchor + f"\nconst UNIT15_SOURCE_GATE = '{GATE}';", 1)
+          current_anchor = "  const currentGate = status.subjects.find((row) => row.id === 'film_tv')?.nextGate;"
+          if "const laterGateAlreadyActive = currentGate === UNIT15_SOURCE_GATE;" not in text:
+              text = text.replace(current_anchor, current_anchor + "\n  const laterGateAlreadyActive = currentGate === UNIT15_SOURCE_GATE;", 1)
+          text = text.replace(
+              "  registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Kilde- og claimbriefen for Industri, regulering og distribusjon er ferdig med 12 canonicale emner, 4 variable moduler, 52 planlagte claims, 34 inspectable kilder og 34 dokumenterte system-, regel-, markeds- og rettighetscase. Markeds- og maktpåstander må navngi tid, territorium, aktør, metode og evidensrolle. Kapitlet er ikke registrert før fulltekst-, claim- og evidensporten er bestått.';",
+              "  if (!laterGateAlreadyActive) registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Kilde- og claimbriefen for Industri, regulering og distribusjon er ferdig med 12 canonicale emner, 4 variable moduler, 52 planlagte claims, 34 inspectable kilder og 34 dokumenterte system-, regel-, markeds- og rettighetscase. Markeds- og maktpåstander må navngi tid, territorium, aktør, metode og evidensrolle. Kapitlet er ikke registrert før fulltekst-, claim- og evidensporten er bestått.';"
+          )
+          status_block = "  filmStatus.editorialStatus = 'chapters_in_progress';\n  filmStatus.nextGate = OUTPUT_GATE;\n  filmStatus.note = 'Kilde- og claimbriefen for Industri, regulering og distribusjon er ferdig: 12/12 canonicale emner, 4 variable moduler, 52 planlagte claims, 34 inspectable kilder og 34 case. Eierskap, finansiering, markeder, plattformer, publikumsmåling, rettigheter, klassifisering, sensur, formathandel og uformell distribusjon har separate evidensspor med eksplisitt tid og territorium. Neste port er fulltekstproduksjon og claimspesifikk evidensmapping.';"
+          if status_block in text:
+              text = text.replace(status_block, "  if (!laterGateAlreadyActive) {\n" + "\n".join("  " + line for line in status_block.splitlines()) + "\n  }", 1)
+          text = text.replace("current_status_is_input_or_output_gate: [INPUT_GATE, OUTPUT_GATE].includes(currentGate),", "current_status_is_input_or_output_gate: [INPUT_GATE, OUTPUT_GATE, UNIT15_SOURCE_GATE].includes(currentGate),")
+          text = text.replace("&& filmStatus.nextGate === OUTPUT_GATE,", "&& [OUTPUT_GATE, UNIT15_SOURCE_GATE].includes(filmStatus.nextGate),")
+          p.write_text(text)
+
+          # Unit 10 fulltext materializer: do not regress canonical status or note from Unit 15.
+          p = Path('scripts/materialize-film-tv-industry-regulation-distribution-fulltext-v1.mjs')
+          text = p.read_text()
+          output_anchor = "const OUTPUT_GATE = 'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief';"
+          if "const UNIT15_SOURCE_GATE" not in text:
+              text = text.replace(output_anchor, output_anchor + f"\nconst UNIT15_SOURCE_GATE = '{GATE}';", 1)
+          status_clone = "  const status = structuredClone(read(P.status));"
+          if "const laterGateAlreadyActive = currentGate === UNIT15_SOURCE_GATE;" not in text:
+              text = text.replace(status_clone, status_clone + "\n  const currentGate = status.subjects.find((row) => row.id === 'film_tv')?.nextGate;\n  const laterGateAlreadyActive = currentGate === UNIT15_SOURCE_GATE;", 1)
+          text = re.sub(r"(?m)^  registry\.subjects\.film_tv\.canonicalModel\.note = (.+);$", r"  if (!laterGateAlreadyActive) registry.subjects.film_tv.canonicalModel.note = \1;", text, count=1)
+          block = re.search(r"  filmStatus\.editorialStatus = 'chapters_in_progress';\n  filmStatus\.nextGate = OUTPUT_GATE;\n  filmStatus\.note = (.+);\n", text)
+          if block:
+              replacement = "  if (!laterGateAlreadyActive) {\n    filmStatus.editorialStatus = 'chapters_in_progress';\n    filmStatus.nextGate = OUTPUT_GATE;\n    filmStatus.note = " + block.group(1) + ";\n  }\n"
+              text = text[:block.start()] + replacement + text[block.end():]
+          text = text.replace("[INPUT_GATE, OUTPUT_GATE].includes(currentGate)", "[INPUT_GATE, OUTPUT_GATE, UNIT15_SOURCE_GATE].includes(currentGate)")
+          p.write_text(text)
+
+          # Units 11-13 use explicit "or later" sets/arrays through Unit 14. Extend those to Unit 15.
+          set_files = [
+              'scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs',
+              'scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs',
+              'scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs',
+              'scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs',
+              'scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs',
+              'scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs',
+          ]
+          for path in set_files:
+              add_constant(path)
+              p = Path(path); text = p.read_text()
+              # Handles both one-line and multi-line Set endings.
+              text = re.sub(r"ARCHIVE_PRESERVATION_FULLTEXT_GATE(\s*)\]\);", r"ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE\1]);", text)
+              p.write_text(text)
+
+          array_files = [
+              'scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs',
+              'scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs',
+          ]
+          for path in array_files:
+              add_constant(path)
+              p = Path(path); text = p.read_text()
+              text = text.replace('ARCHIVE_PRESERVATION_FULLTEXT_GATE].includes', 'ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE].includes')
+              p.write_text(text)
+          PY
+
+      - name: Register Unit 15 source brief and regression contract
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('data/fagverk/fagverk_registry.json')
+          registry = json.loads(path.read_text())
+          try:
+              current = tuple(int(x) for x in registry.get('version','0.0.0').split('.'))
+          except ValueError:
+              current = (0,0,0)
+          if current < (3,2,0): registry['version'] = '3.02.0'
+          registry['updatedAt'] = max(registry.get('updatedAt',''), '2026-08-15')
+          model = registry['subjects']['film_tv']['canonicalModel']
+          model['fifteenthSourceClaimBrief'] = 'data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json'
+          model['note'] = 'Film & TVs variable canon har 192 emner. Kilde- og claimbriefen for Kulturarv, kanon, stjerner og minne er materialisert med 12/12 canonicale emner, 4 moduler, 14 eksplisitte metodebaser, 56 planlagte claims, 26 inspectable kilder og 24 dokumenterte case. Popularitet er ikke i seg selv kanon, kulturarv, kultstatus eller kollektivt minne; stjernepersona, rollefigur, privatperson og senere myte holdes adskilt; og festivalminne, motarkiv, nostalgi, reprise/ombruk, sitatsirkulasjon og TV-minne har egne evidensgrenser. Kapitlet er ikke runtime-registrert før fulltekst- og claimspesifikk evidensport er bestått.'
+          path.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + '\n')
+          PY
+          cat > tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs <<'EOF'
+          import test from 'node:test';
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          const read = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
+          const SOURCE = 'data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json';
+          const GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
+          test('Unit 15 source brief er canonicalt registrert uten tidlig kapittelregistrering', () => {
+            const registry = read('data/fagverk/fagverk_registry.json');
+            const status = read('data/fagverk/subject_status.json');
+            const brief = read(SOURCE);
+            const film = status.subjects.find((row) => row.id === 'film_tv');
+            assert.equal(registry.subjects.film_tv.canonicalModel.fifteenthSourceClaimBrief, SOURCE);
+            assert.equal(film.nextGate, GATE);
+            assert.equal(brief.runtime_registration.registered, false);
+            assert.equal(brief.runtime_registration.allowed_before_full_chapter_gate, false);
+            assert.equal(registry.subjects.film_tv.chapters.some((row) => row.id === 'kulturarv-kanon-stjerner-og-minne'), false);
+          });
+          EOF
+
+      - name: Run Unit 10 through Unit 15 gates
+        shell: bash
+        run: |
+          node scripts/brief-film-tv-cultural-heritage-canon-stars-memory-sources-v1.mjs
+          node --test tests/film-tv-cultural-heritage-canon-stars-memory-source-brief-v1.test.mjs tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs
+          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs
+
+      - name: Rebuild release manifest
+        shell: bash
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+
+      - name: Commit final reconciliation
+        shell: bash
+        run: |
+          git add data/fagverk/fagverk_registry.json data/fagverk/fagverk_release.json reports/fagverk/film-tv-cultural-heritage-canon-stars-memory-source-brief-v1-audit.json tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs scripts/brief-film-tv-industry-regulation-distribution-sources-v1.mjs scripts/materialize-film-tv-industry-regulation-distribution-fulltext-v1.mjs scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs scripts/materialize-film-tv-reception-participation-audience-methods-fulltext-v1.mjs scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          if git diff --cached --quiet; then
+            echo 'No final reconciliation diff.'
+          else
+            git commit -m 'Complete Film TV Unit 15 source brief contract'
+          fi
+          git push origin HEAD:agent/film-tv-unit15-cultural-heritage-canon-stars-memory-source-brief
