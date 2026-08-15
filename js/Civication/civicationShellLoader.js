@@ -147,6 +147,7 @@
     "js/Civication/systems/civicationDayFlow.js",
     "js/Civication/systems/civicationPrivatePhaseMailBuilder.js",
     "js/Civication/systems/civicationWorkdayMailBuilder.js",
+    "js/Civication/systems/civicationNarrativeSceneSource.js",
     "js/Civication/systems/civicationDailyMailBuilder.js",
     "js/Civication/ui/CivicationTestModeUI.js",
     "js/Civication/ui/CivicationConsequenceFeedback.js",

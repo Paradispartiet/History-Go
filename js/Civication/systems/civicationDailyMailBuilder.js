@@ -1172,43 +1172,33 @@
   async function findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, active, state) {
     const items = Array.isArray(runtime?.items) ? runtime.items : [];
     const narrativeState = getNarrativeState(state);
-    const streams = await getAvailableNarrativeStreams();
-    if (!streams.length) return null;
+    const sceneCatalog = /** @type {any} */ (window.CivicationSceneCatalog);
+    if (typeof sceneCatalog?.getSourceScenes !== "function" || !sceneCatalog?.getSourceAdapter?.("narrative")) return null;
 
-    const existingKeys = new Set(items
+    const existingKeys = items
       .map(row => `${norm(row?.event?.narrative_stream_id)}::${norm(row?.event?.narrative_storylet_id)}`)
-      .filter(k => k !== "::"));
+      .filter(key => key !== "::");
+    const answeredKeys = Object.keys(narrativeState.stream_progress || {})
+      .filter(key => narrativeState.stream_progress[key]?.answered)
+      .map(key => `${norm(narrativeState.stream_progress[key]?.stream_id)}::${norm(narrativeState.stream_progress[key]?.storylet_id)}`);
 
-    const answeredKeys = new Set(
-      Object.keys(narrativeState.stream_progress || {})
-        .filter(k => narrativeState.stream_progress[k]?.answered)
-        .map(k => `${norm(narrativeState.stream_progress[k]?.stream_id)}::${norm(narrativeState.stream_progress[k]?.storylet_id)}`)
-    );
-
-    for (const streamId of uniqueStrings(openedStreamIds)) {
-      const stream = streams.find(s => norm(s?.id) === streamId);
-      if (!stream) continue;
-      // applies_when styrer automatisk aktivering.
-      // opens_streams er en eksplisitt narrativ overgang og skal kunne injiseres samme dag.
-
-      const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
-      const storylet = storylets
-        .filter(st => {
-          const key = `${norm(stream.id)}::${norm(st?.id)}`;
-          return norm(st?.id) && !existingKeys.has(key) && !answeredKeys.has(key)
-            && storyletMatchesContext(st, stream, active, state, narrativeState);
-        })
-        .sort((a, b) => storyletWeight(b, narrativeState, active, state) - storyletWeight(a, narrativeState, active, state))[0];
-      if (!storylet) continue;
-
-      return {
-        stream,
-        storylet,
-        preferredPhases: phasePreferenceForStreamType(stream?.type)
-      };
-    }
-
-    return null;
+    const scenes = await sceneCatalog.getSourceScenes("narrative", {
+      mode: "opened_streams",
+      opened_stream_ids: uniqueStrings(openedStreamIds),
+      exclude_storylet_keys: uniqueStrings([...existingKeys, ...answeredKeys]),
+      active,
+      state,
+      narrativeState,
+      date: norm(runtime?.date) || todayKey(),
+      ordinal: Date.now(),
+      consumer: "daily_mail_builder_narrative_injection"
+    });
+    const event = Array.isArray(scenes) ? scenes[0] || null : null;
+    if (!event) return null;
+    return {
+      event,
+      preferredPhases: uniqueStrings(event?.narrative_source_meta?.preferred_phases || [])
+    };
   }
 
   function insertNarrativeStoryletAfterCurrent(runtime, storyletEvent, preferredPhases) {
@@ -1348,15 +1338,19 @@
     const program = await loadJson(DAY_PROGRAM_PATH) || defaultProgram();
     const plan = await loadJson(getPlanPath(active));
     const pool = await loadCatalogMails(active);
-    const { streams } = await loadNarrativeStreams();
+    const sceneCatalog = /** @type {any} */ (window.CivicationSceneCatalog);
+    const narrativeSourceAdapter = sceneCatalog?.getSourceAdapter?.("narrative") || null;
     const narrativeState = getNarrativeState(state);
-    const matchedStreams = streams.filter(stream => streamMatches(stream, active, state, narrativeState));
-    const activeStreamIds = uniqueStrings(narrativeState.active_streams || []);
-    const candidateStreams = streams.filter(stream => {
-      const id = norm(stream?.id);
-      return !!id && (activeStreamIds.includes(id) || matchedStreams.some(ms => norm(ms?.id) === id));
-    });
-    const nextNarrativeState = { ...narrativeState, active_streams: uniqueStrings([...(narrativeState.active_streams||[]), ...matchedStreams.map(s => norm(s.id))]), updated_at: new Date().toISOString() };
+    const narrativeActivation = typeof narrativeSourceAdapter?.getActivationSnapshot === "function"
+      ? await narrativeSourceAdapter.getActivationSnapshot({ active, state, narrativeState })
+      : { matched_stream_ids: [], candidate_stream_ids: [] };
+    const matchedNarrativeStreamIds = uniqueStrings(narrativeActivation?.matched_stream_ids || []);
+    const candidateNarrativeStreamIds = uniqueStrings(narrativeActivation?.candidate_stream_ids || []);
+    const nextNarrativeState = {
+      ...narrativeState,
+      active_streams: uniqueStrings([...(narrativeState.active_streams || []), ...matchedNarrativeStreamIds]),
+      updated_at: new Date().toISOString()
+    };
     setState({ [NARRATIVE_KEY]: nextNarrativeState });
     const plannedPrimary = await getPlannedPrimary(active, state);
     const usedSourceIds = consumedSet(state);
@@ -1390,7 +1384,6 @@
     // produsentmodulen direkte; SceneCatalog er den eneste adaptergrensen.
     // Uten registrert adapter beholdes den eksisterende innebygde placeholder-
     // fallbacken, men standard DAY_SCRIPTS registrerer `private` før Daily lastes.
-    const sceneCatalog = /** @type {any} */ (window.CivicationSceneCatalog);
     const usePrivateSourceAdapter =
       typeof sceneCatalog?.getSourceScenes === "function" &&
       !!sceneCatalog?.getSourceAdapter?.("private");
@@ -1464,15 +1457,28 @@
           }
 
           const narrativeUsed = new Set([...answeredNarrativeStorylets, ...queuedNarrativeStorylets]);
-          const narrativeCandidates = storyletsForSlot(candidateStreams, phaseId, narrativeUsed, active, state, nextNarrativeState)
-            // Private faser slipper aldri inn jobb/rolle-narrativer (work/class_case/conflict).
-            .filter(pick => !privatePhase || !WORK_STREAM_TYPES.has(slugify(pick?.stream?.type)));
-          const narrativePick = narrativeCandidates[0];
-          if (narrativePick) {
-            const event = storyletToEvent(active, phase, slot, narrativePick.stream, narrativePick.storylet, ordinal);
-            const storyletKey = `${norm(narrativePick.stream.id)}::${norm(narrativePick.storylet.id)}`;
+          const narrativeScenes = typeof sceneCatalog?.getSourceScenes === "function" && narrativeSourceAdapter
+            ? await sceneCatalog.getSourceScenes("narrative", {
+              mode: "slot",
+              phaseId,
+              phase,
+              slot,
+              active,
+              state,
+              narrativeState: nextNarrativeState,
+              candidate_stream_ids: candidateNarrativeStreamIds,
+              used_storylet_keys: [...narrativeUsed],
+              exclude_work_streams: privatePhase,
+              date,
+              ordinal,
+              consumer: "daily_mail_builder_narrative_slot"
+            })
+            : [];
+          const narrativeEvent = Array.isArray(narrativeScenes) ? narrativeScenes[0] || null : null;
+          if (narrativeEvent) {
+            const storyletKey = `${norm(narrativeEvent.narrative_stream_id)}::${norm(narrativeEvent.narrative_storylet_id)}`;
             queuedNarrativeStorylets.add(storyletKey);
-            items.push({ status: "queued", phase: phaseId, slot: norm(slot?.slot || slot?.type), event });
+            items.push({ status: "queued", phase: phaseId, slot: norm(slot?.slot || slot?.type), event: narrativeEvent });
             continue;
           }
 
@@ -2012,14 +2018,15 @@
       const openedStreamIds = uniqueStrings(rowEvent?.narrative_effects?.opens_streams || []);
       if (openedStreamIds.length) {
         const injectable = await findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, getActive(), getState());
-        if (injectable) {
-          const fallbackPhase = injectable.preferredPhases[0] || "afternoon";
-          const injectedEvent = /** @type {any} */ (storyletToEvent(getActive(), { id: fallbackPhase, label: fallbackPhase }, { slot: "injected_narrative" }, injectable.stream, injectable.storylet, Date.now()));
-          injectedEvent.injected_by_choice = true;
-          injectedEvent.injected_at = new Date().toISOString();
-          injectedEvent.daily_mail_meta = {
-            ...(injectedEvent.daily_mail_meta || {}),
-            slot: "injected_narrative"
+        if (injectable?.event) {
+          const injectedEvent = {
+            ...injectable.event,
+            injected_by_choice: true,
+            injected_at: new Date().toISOString(),
+            daily_mail_meta: {
+              ...(injectable.event?.daily_mail_meta || {}),
+              slot: "injected_narrative"
+            }
           };
           const injected = insertNarrativeStoryletAfterCurrent({ ...runtime, items }, injectedEvent, injectable.preferredPhases);
           if (injected.inserted) {
