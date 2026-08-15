@@ -137,7 +137,9 @@ test('kapittelregistrering avanserer monotont og source briefen forblir historis
   assert.equal([
     'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief',
     'location_production_place_ethics_source_brief_complete_full_chapter_production',
-    'location_production_place_ethics_full_chapter_complete_next_unit_source_brief'
+    'location_production_place_ethics_full_chapter_complete_next_unit_source_brief',
+    'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production',
+    'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief'
   ].includes(film.nextGate), true);
   assert.equal(sourceBrief.status, 'source_claim_brief_complete_full_chapter_production');
   assert.equal(sourceBrief.runtime_registration.registered, false);

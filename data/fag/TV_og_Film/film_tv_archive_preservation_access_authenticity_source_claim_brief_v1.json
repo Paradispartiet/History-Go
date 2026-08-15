@@ -1,0 +1,129 @@
+{
+  "schema": "history_go_film_tv_archive_preservation_access_authenticity_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-15",
+  "status": "archive_preservation_access_authenticity_source_brief_complete_full_chapter_production",
+  "subject_id": "film_tv",
+  "planned_unit_id": "arkiv-bevaring-tilgang-og-autentisitet",
+  "future_chapter_id": "arkiv-bevaring-tilgang-og-autentisitet",
+  "runtime_registration": {
+    "registered": false,
+    "allowed_before_full_chapter_gate": false
+  },
+  "scope": {
+    "title": "Arkiv, bevaring, tilgang og autentisitet",
+    "primary_domain_ids": ["arkiv_kulturarv_minne_stjerner"],
+    "prerequisite_planned_unit_ids": [
+      "filmhistorie-bevegelser-og-historiografi",
+      "dokumentar-evidens-og-etikk",
+      "skapende-arbeid-teknologi-og-ansvar"
+    ],
+    "prerequisite_existing_chapter_ids": [],
+    "emne_count": 11,
+    "emne_ids": [
+      "em_film_tv_arkivbilder_kontekst_og_ombruk",
+      "em_film_tv_arkivtilgang_personvern_saarbarhet_og_rettigheter",
+      "em_film_tv_audiovisuell_bevaring_og_restaurering",
+      "em_film_tv_dekolonisering_repatriering_og_fellesskapskontroll",
+      "em_film_tv_digitalfodte_verk_formatforvitring_og_migrering",
+      "em_film_tv_film_tv_arkiv_institusjoner_og_praksis",
+      "em_film_tv_metadata_katalogisering_proveniens_og_finnbarhet",
+      "em_film_tv_plattformkataloger_forsvinnende_verk_og_digital_tilgang",
+      "em_film_tv_produksjonsarkiv_manus_kostyme_og_ephemera",
+      "em_film_tv_restaureringsetikk_autentisitet_og_verkversjoner",
+      "em_film_tv_tapte_bilder_fravaer_og_rekonstruksjon"
+    ],
+    "overlap_boundary": "Eier arkivobjektets proveniens, bevaring, restaurering, metadata, tilgang, personvern/rettigheter, digital migrering, fellesskapskontroll, produksjonsarkiv, versjonshistorie og dokumentert fravær. Enhet 15 eier kanonisering, stjerneproduksjon og kollektivt minne; enhet 4 eier historiografisk periodisering og enhet 6 dokumentarisk sannhetskrav i selve verket."
+  },
+  "files": {
+    "sources": "data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_sources_v1.json",
+    "cases": "data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_cases_v1.json",
+    "topic_claims": "data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_topic_claims_v1.json"
+  },
+  "source_policy": {
+    "preservation_digitization_restoration_reconstruction_and_access_are_distinct_actions": true,
+    "digital_copy_does_not_prove_long_term_preservation": true,
+    "streaming_availability_does_not_equal_archival_preservation_or_permanent_access": true,
+    "catalog_entry_does_not_prove_item_survival_completeness_or_viewing_access": true,
+    "archive_object_work_manifestation_item_and_access_copy_are_distinct": true,
+    "provenance_requires_documented_chain_not_filename_or_visual_similarity": true,
+    "restoration_intervention_must_be_documented_and_reversible_where_practicable": true,
+    "restored_version_is_not_automatically_the_original_or_single_authoritative_version": true,
+    "absence_missing_footage_and_destroyed_material_are_not_interchangeable_claims": true,
+    "reconstruction_must_mark_inference_substitution_and_unknown_material": true,
+    "metadata_and_cataloguing_are_evidence_infrastructure_not_neutral_description": true,
+    "findability_access_right_to_view_and_right_to_reuse_are_distinct": true,
+    "copyright_permission_privacy_data_protection_contract_and_archive_policy_are_distinct": true,
+    "public_interest_archiving_does_not_remove_data_protection_safeguards": true,
+    "rights_holder_permission_does_not_override_indigenous_collective_cultural_control": true,
+    "indigenous_and_community_material_requires_community_led_or_authoritative_protocol_sources": true,
+    "repatriation_digital_return_access_copy_and_transfer_of_custody_are_distinct": true,
+    "born_digital_preservation_requires_fixity_storage_monitoring_format_strategy_and_documented_events": true,
+    "format_migration_is_a_preservation_event_not_proof_of_unchanged_identity": true,
+    "platform_catalog_change_requires_date_territory_account_state_and_collection_method": true,
+    "production_archive_material_is_not_identical_to_the_released_work": true,
+    "planned_claim_is_not_verified_claim": true,
+    "fulltext_requires_paragraph_level_claim_trace": true
+  },
+  "proposed_module_order": [
+    {
+      "id": "institusjoner-bevaring-og-digital-varighet",
+      "sequence": 1,
+      "emne_ids": [
+        "em_film_tv_film_tv_arkiv_institusjoner_og_praksis",
+        "em_film_tv_audiovisuell_bevaring_og_restaurering",
+        "em_film_tv_digitalfodte_verk_formatforvitring_og_migrering"
+      ],
+      "purpose": "Etablerer arkivets institusjonelle ansvar og skiller fysisk/digital bevaring, restaurering, lagring, fixity, migrering og faktisk tilgang."
+    },
+    {
+      "id": "metadata-tilgang-rettigheter-og-plattformustabilitet",
+      "sequence": 2,
+      "emne_ids": [
+        "em_film_tv_metadata_katalogisering_proveniens_og_finnbarhet",
+        "em_film_tv_arkivtilgang_personvern_saarbarhet_og_rettigheter",
+        "em_film_tv_plattformkataloger_forsvinnende_verk_og_digital_tilgang"
+      ],
+      "purpose": "Kobler identifikasjon og proveniens til hva som faktisk kan finnes, sees og gjenbrukes, og skiller arkivtilgang fra midlertidig kommersiell katalogtilgjengelighet."
+    },
+    {
+      "id": "ombruk-fellesskapskontroll-og-produksjonsarkiv",
+      "sequence": 3,
+      "emne_ids": [
+        "em_film_tv_arkivbilder_kontekst_og_ombruk",
+        "em_film_tv_dekolonisering_repatriering_og_fellesskapskontroll",
+        "em_film_tv_produksjonsarkiv_manus_kostyme_og_ephemera"
+      ],
+      "purpose": "Analyserer hvordan arkivmateriale får ny kontekst, hvem som kan styre sensitivt eller kollektivt materiale, og hvordan manus, kostyme, design og ephemera dokumenterer produksjon uten å være identiske med sluttverket."
+    },
+    {
+      "id": "autentisitet-versjoner-fravaer-og-rekonstruksjon",
+      "sequence": 4,
+      "emne_ids": [
+        "em_film_tv_restaureringsetikk_autentisitet_og_verkversjoner",
+        "em_film_tv_tapte_bilder_fravaer_og_rekonstruksjon"
+      ],
+      "purpose": "Avslutter med versjonshistorie, dokumenterte inngrep og fravær: autentisitet behandles som sporbar material- og beslutningshistorie, ikke som påstand om én tidløs original."
+    }
+  ],
+  "production_requirements": {
+    "section_scope_is_derived_from_emne_ownership": true,
+    "paragraph_and_claim_counts_follow_problem_complexity": true,
+    "current_claim_plan_counts_by_emne": [5, 5, 5, 5, 5, 5, 5, 5, 4, 5, 4],
+    "paragraph_claim_trace_required": true,
+    "every_planned_claim_must_be_verified_rewritten_or_rejected": true,
+    "every_used_source_must_support_at_least_one_final_claim": true,
+    "every_archive_object_claim_must_name_institution_collection_object_or_work_level_carrier_or_format_and_source": true,
+    "every_preservation_claim_must_name_object_state_intervention_preservation_goal_and_documented_uncertainty": true,
+    "every_digital_preservation_claim_must_name_received_format_storage_or_fixity_strategy_preservation_event_and_future_access_limit": true,
+    "every_metadata_claim_must_name_record_level_identifier_provenance_field_or_rule_and_findability_limit": true,
+    "every_access_claim_must_separate_discovery_viewing_copying_reuse_rights_privacy_and_contractual_restrictions": true,
+    "every_indigenous_or_community_control_claim_must_name_people_or_community_material_relationship_requested_control_protocol_and_source_authority": true,
+    "every_streaming_catalog_claim_must_name_service_territory_observation_date_title_or_catalog_scope_and_collection_method": true,
+    "every_production_archive_claim_must_name_material_type_creator_or_provenance_collection_context_and_relation_to_released_work": true,
+    "every_restoration_or_version_claim_must_name_source_elements_interventions_version_identity_presentation_context_and_documentation": true,
+    "every_loss_or_reconstruction_claim_must_name_what_is_missing_evidence_for_loss_surviving_basis_reconstruction_method_and_inference_boundary": true,
+    "chapter_registration_only_after_fulltext_claim_and_evidence_audit": true
+  },
+  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_archive_preservation_access_authenticity"
+}

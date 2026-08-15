@@ -11,8 +11,10 @@ const OUTPUT_GATE = 'screen_places_identity_circulation_source_brief_complete_fu
 const FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
 const UNIT13_SOURCE_BRIEF_GATE = 'location_production_place_ethics_source_brief_complete_full_chapter_production';
 const UNIT13_FULLTEXT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';
-const UNIT_TWELVE_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE, UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE]);
-const UNIT_TWELVE_POST_BRIEF_GATES = new Set([FULLTEXT_GATE, UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE]);
+const ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
+const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
+const UNIT_TWELVE_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE, UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE]);
+const UNIT_TWELVE_POST_BRIEF_GATES = new Set([FULLTEXT_GATE, UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE]);
 
 export const isFilmTvUnitTwelveOrLaterGate = (gate) => UNIT_TWELVE_OR_LATER_GATES.has(gate);
 

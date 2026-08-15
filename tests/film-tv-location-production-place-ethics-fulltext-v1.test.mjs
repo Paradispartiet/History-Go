@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { buildFilmTvLocationProductionPlaceEthicsFulltextV1, buildClaimSourceIdsByClaim } from '../scripts/materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs';
 import { auditFilmTvLocationProductionPlaceEthicsFulltextV1 } from '../scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs';
+import { isFilmTvUnitThirteenOrLaterGate } from '../scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs';
 
 const ROOT = new URL('../', import.meta.url);
 const read = (relative) => JSON.parse(fs.readFileSync(new URL(relative, ROOT), 'utf8'));
@@ -97,7 +98,7 @@ test('kapittelregistrering avanserer monotont og source briefen forblir historis
   assert.equal(registered.file, 'data/fagverk/film_tv/location-produksjon-og-stedsetikk.json');
   assert.equal(registered.claimsFile, 'data/fagverk/film_tv/location-produksjon-og-stedsetikk/claims.json');
   assert.equal(registered.briefFile, 'data/fagverk/film_tv/location-produksjon-og-stedsetikk/brief.json');
-  assert.equal(film.nextGate, 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief');
+  assert.equal(isFilmTvUnitThirteenOrLaterGate(film.nextGate), true);
   assert.equal(sourceBrief.status, 'location_production_place_ethics_source_brief_complete_full_chapter_production');
   assert.equal(sourceBrief.runtime_registration.registered, false);
   assert.equal(sourceBrief.runtime_registration.allowed_before_full_chapter_gate, false);

@@ -13,6 +13,8 @@ const SCREEN_PLACES_SOURCE_GATE = 'screen_places_identity_circulation_source_bri
 const SCREEN_PLACES_FULLTEXT_GATE = 'screen_places_identity_circulation_full_chapter_complete_next_unit_source_brief';
 const LOCATION_PRODUCTION_SOURCE_GATE = 'location_production_place_ethics_source_brief_complete_full_chapter_production';
 const LOCATION_PRODUCTION_FULLTEXT_GATE = 'location_production_place_ethics_full_chapter_complete_next_unit_source_brief';
+const ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
+const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 const UNIT_TEN_OR_LATER_PRODUCTION_GATES = new Set([
   NEXT,
   RECEPTION_SOURCE_GATE,
@@ -20,7 +22,9 @@ const UNIT_TEN_OR_LATER_PRODUCTION_GATES = new Set([
   SCREEN_PLACES_SOURCE_GATE,
   SCREEN_PLACES_FULLTEXT_GATE,
   LOCATION_PRODUCTION_SOURCE_GATE,
-  LOCATION_PRODUCTION_FULLTEXT_GATE
+  LOCATION_PRODUCTION_FULLTEXT_GATE,
+  ARCHIVE_PRESERVATION_SOURCE_GATE,
+  ARCHIVE_PRESERVATION_FULLTEXT_GATE
 ]);
 
 export const isFilmTvUnitTenOrLaterGate = (gate) => UNIT_TEN_OR_LATER_PRODUCTION_GATES.has(gate);

@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { buildFilmTvLocationProductionPlaceEthicsFulltextV1 } from './materialize-film-tv-location-production-place-ethics-fulltext-v1.mjs';
+import { isFilmTvUnitThirteenOrLaterGate } from './brief-film-tv-location-production-place-ethics-sources-v1.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'location-produksjon-og-stedsetikk';
@@ -123,7 +124,7 @@ export function auditFilmTvLocationProductionPlaceEthicsFulltextV1({ writeReport
       && registryChapter?.claimsFile === P.claims
       && registryChapter?.briefFile === P.brief
       && registry.subjects.film_tv.canonicalModel.thirteenthSourceClaimBrief === P.sourceBrief
-      && filmStatus?.nextGate === OUTPUT_GATE
+      && isFilmTvUnitThirteenOrLaterGate(filmStatus?.nextGate)
       && versionAtLeast(registry.version, '2.99.0')
       && versionAtLeast(status.version, '1.92.0'),
     materializer_outputs_match_committed_files: fs.existsSync(abs(P.chapter))
