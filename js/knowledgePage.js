@@ -2,6 +2,7 @@
 (function () {
   "use strict";
 
+  const LANGUAGE_COLLECTION_ID = "language";
   const SUBJECT_ICONS = Object.freeze({
     historie: "⌛",
     vitenskap: "✦",
@@ -18,8 +19,19 @@
     psykologi: "◉"
   });
 
+  const LANGUAGE_DIMENSION_LABELS = Object.freeze({
+    word: "Ord",
+    expression: "Uttrykk",
+    dialect_feature: "Dialekttrekk",
+    pronunciation: "Uttale",
+    place_name: "Stedsnavn",
+    language_history: "Språkhistorie",
+    term: "Begrep"
+  });
+
   let activeProfile = null;
   let activeSubjectId = "";
+  let activeCollectionId = "";
 
   function s(value) {
     return String(value == null ? "" : value).trim();
@@ -51,17 +63,37 @@
     return `knowledge.html?subject=${encodeURIComponent(subjectId)}`;
   }
 
+  function collectionHref(collectionId) {
+    return `knowledge.html?collection=${encodeURIComponent(collectionId)}`;
+  }
+
   function subjectIcon(subjectId) {
     return SUBJECT_ICONS[s(subjectId)] || "•";
   }
 
+  function isLanguageEntry(entry) {
+    return s(entry?.source?.type) === "language_lexicon"
+      || s(entry?.collection_kind) === LANGUAGE_COLLECTION_ID
+      || s(entry?.kind) === LANGUAGE_COLLECTION_ID;
+  }
+
+  function entryHref(entry) {
+    return isLanguageEntry(entry)
+      ? collectionHref(LANGUAGE_COLLECTION_ID)
+      : subjectHref(entry?._subject_id || entry?.subject_id || entry?.fagkart_category_id || "");
+  }
+
   function sourceLabel(entry) {
     const source = entry?.source || {};
+    if (s(source.type) === "language_lexicon") {
+      const target = source.place_id || source.target_id;
+      return target ? `Språk · ${humanizeId(target)}` : "Språkleksikon";
+    }
     if (source.place_id) return `Sted · ${humanizeId(source.place_id)}`;
     if (source.person_id) return `Person · ${humanizeId(source.person_id)}`;
     if (source.target_id) return `Kilde · ${humanizeId(source.target_id)}`;
     if (source.quiz_id) return `Quiz · ${humanizeId(source.quiz_id)}`;
-    return source.type === "legacy_quiz_knowledge" ? "Eldre quizkunnskap" : "Quiz";
+    return source.type === "legacy_quiz_knowledge" ? "Eldre quizkunnskap" : "Knowledge";
   }
 
   function renderSummary(profile) {
@@ -82,15 +114,32 @@
       .sort((a, b) => Number(b.knowledge_count || 0) - Number(a.knowledge_count || 0) || s(a.label).localeCompare(s(b.label), "nb"));
   }
 
-  function renderSubjectNav(profile, selectedSubjectId) {
+  function allEntries(profile) {
+    return sortedSubjects(profile).flatMap((subject) => (subject.entries || []).map((entry) => ({
+      ...entry,
+      _subject_id: subject.subject_id,
+      _subject_label: subject.label
+    })));
+  }
+
+  function languageEntries(profile) {
+    return allEntries(profile).filter(isLanguageEntry);
+  }
+
+  function renderSubjectNav(profile, selectedSubjectId, selectedCollectionId) {
     const root = document.getElementById("knowledgeSubjectNav");
     if (!root) return;
 
     const subjects = sortedSubjects(profile);
+    const languageCount = languageEntries(profile).length;
     root.innerHTML = [
-      `<a class="kv2-subject-pill ${selectedSubjectId ? "" : "is-active"}" href="knowledge.html">Alle</a>`,
+      `<a class="kv2-subject-pill ${selectedSubjectId || selectedCollectionId ? "" : "is-active"}" href="knowledge.html">Alle</a>`,
+      languageCount ? `
+        <a class="kv2-subject-pill ${selectedCollectionId === LANGUAGE_COLLECTION_ID ? "is-active" : ""}" href="${collectionHref(LANGUAGE_COLLECTION_ID)}">
+          <span>Språk</span><small>${languageCount}</small>
+        </a>` : "",
       ...subjects.map((subject) => `
-        <a class="kv2-subject-pill ${selectedSubjectId === subject.subject_id ? "is-active" : ""}" href="${subjectHref(subject.subject_id)}">
+        <a class="kv2-subject-pill ${!selectedCollectionId && selectedSubjectId === subject.subject_id ? "is-active" : ""}" href="${subjectHref(subject.subject_id)}">
           <span>${esc(subject.label)}</span><small>${Number(subject.knowledge_count || 0)}</small>
         </a>
       `)
@@ -106,14 +155,6 @@
     `).join("")}</div>`;
   }
 
-  function allEntries(profile) {
-    return sortedSubjects(profile).flatMap((subject) => (subject.entries || []).map((entry) => ({
-      ...entry,
-      _subject_id: subject.subject_id,
-      _subject_label: subject.label
-    })));
-  }
-
   function recentEntries(profile, limit = 7) {
     return allEntries(profile)
       .sort((a, b) => {
@@ -126,12 +167,12 @@
 
   function renderRecent(profile) {
     const entries = recentEntries(profile);
-    if (!entries.length) return `<p class="kv2-empty">Ingen quizkunnskap er samlet ennå.</p>`;
+    if (!entries.length) return `<p class="kv2-empty">Ingen kunnskap er samlet ennå.</p>`;
 
     return `<div class="kv2-recent-list">${entries.map((entry) => `
       <article class="kv2-recent-item">
         <span class="kv2-recent-meta">${esc(entry._subject_label)} · ${esc(sourceLabel(entry))}</span>
-        <a href="${subjectHref(entry._subject_id)}">${esc(entry.topic || "Kunnskap")}</a>
+        <a href="${entryHref(entry)}">${esc(entry.topic || "Kunnskap")}</a>
         <p>${esc(entry.text || "")}</p>
       </article>
     `).join("")}</div>`;
@@ -158,6 +199,23 @@
     }).join("")}</div>`;
   }
 
+  function renderLanguageCollectionCard(profile) {
+    const entries = languageEntries(profile);
+    if (!entries.length) return "";
+    const places = new Set(entries.map((entry) => s(entry?.source?.place_id || entry?.source?.target_id)).filter(Boolean));
+    return `
+      <section class="kv2-panel">
+        <div class="kv2-panel-head"><div><span class="kv2-eyebrow">Samling</span><h2>Språk</h2></div></div>
+        <a class="kv2-subject-row" href="${collectionHref(LANGUAGE_COLLECTION_ID)}">
+          <div class="kv2-subject-row-main">
+            <div class="kv2-subject-row-title"><span aria-hidden="true">Aa</span><strong>Språksamlingen din</strong></div>
+            <p>${entries.length} ${entries.length === 1 ? "språkspor" : "språkspor"} fra ${places.size} ${places.size === 1 ? "sted" : "steder"}</p>
+          </div>
+          <strong class="kv2-subject-row-count">${entries.length}</strong>
+        </a>
+      </section>`;
+  }
+
   function renderAll(profile) {
     const root = document.getElementById("knowledgeContent");
     if (!root) return;
@@ -173,6 +231,7 @@
         </section>
 
         <div class="kv2-side-stack">
+          ${renderLanguageCollectionCard(profile)}
           <section class="kv2-panel">
             <div class="kv2-panel-head"><div><span class="kv2-eyebrow">Sist lært</span><h2>Nylig kunnskap</h2></div></div>
             ${renderRecent(profile)}
@@ -186,6 +245,12 @@
     `;
   }
 
+  function dimensionLabel(entry) {
+    const dimension = s(entry?.dimension || "generelt");
+    if (isLanguageEntry(entry)) return LANGUAGE_DIMENSION_LABELS[dimension] || humanizeId(dimension) || "Språk";
+    return dimension;
+  }
+
   function renderEntry(entry) {
     const emneIds = Array.isArray(entry?.resolved_emne_ids) ? entry.resolved_emne_ids : [];
     const concepts = Array.isArray(entry?.concepts) ? entry.concepts : [];
@@ -193,13 +258,17 @@
       <article class="kv2-entry">
         <div class="kv2-entry-head">
           <strong>${esc(entry?.topic || "Kunnskap")}</strong>
-          <span>${esc(entry?.dimension || "generelt")}</span>
+          <span>${esc(dimensionLabel(entry))}</span>
         </div>
         <p>${esc(entry?.text || "")}</p>
         ${concepts.length ? `<div class="kv2-entry-concepts">${concepts.map((concept) => `<span>${esc(concept)}</span>`).join("")}</div>` : ""}
         <div class="kv2-entry-source">
           <span>${esc(sourceLabel(entry))}</span>
-          ${emneIds.length ? `<span>${emneIds.map((id) => esc(humanizeId(id))).join(" · ")}</span>` : `<span class="kv2-warning-text">Ikke plassert i emne</span>`}
+          ${emneIds.length
+            ? `<span>${emneIds.map((id) => esc(humanizeId(id))).join(" · ")}</span>`
+            : isLanguageEntry(entry)
+              ? `<span>Samlet språkspor</span>`
+              : `<span class="kv2-warning-text">Ikke plassert i emne</span>`}
         </div>
       </article>
     `;
@@ -283,14 +352,65 @@
     `;
   }
 
+  function groupLanguageEntriesByPlace(entries) {
+    const groups = new Map();
+    entries.forEach((entry) => {
+      const placeId = s(entry?.source?.place_id || entry?.source?.target_id) || "ukjent_sted";
+      const rows = groups.get(placeId) || [];
+      rows.push(entry);
+      groups.set(placeId, rows);
+    });
+    return [...groups.entries()]
+      .map(([placeId, rows]) => ({ placeId, label: humanizeId(placeId), entries: rows }))
+      .sort((a, b) => a.label.localeCompare(b.label, "nb"));
+  }
+
+  function renderLanguageCollection(profile) {
+    const root = document.getElementById("knowledgeContent");
+    if (!root) return;
+    const entries = languageEntries(profile);
+    const groups = groupLanguageEntriesByPlace(entries);
+    const dimensions = new Set(entries.map((entry) => s(entry?.dimension)).filter(Boolean));
+
+    root.innerHTML = `
+      <section class="kv2-panel kv2-subject-hero">
+        <a class="kv2-back" href="knowledge.html">← Hele minnekammeret</a>
+        <span class="kv2-eyebrow">Aa Samling</span>
+        <h2>Språksamlingen din</h2>
+        <p class="kv2-muted">Ord, uttrykk, dialekttrekk, stedsnavn og andre dokumenterte språkspor du har samlet på steder i History Go.</p>
+        <div class="kv2-subject-metrics">
+          <span>${entries.length} ${entries.length === 1 ? "språkspor" : "språkspor"}</span>
+          <span>${groups.length} ${groups.length === 1 ? "sted" : "steder"}</span>
+          <span>${dimensions.size} ${dimensions.size === 1 ? "type" : "typer"}</span>
+        </div>
+      </section>
+
+      <section class="kv2-panel">
+        <div class="kv2-panel-head"><div><span class="kv2-eyebrow">Steder</span><h2>Språk du har samlet</h2></div></div>
+        ${groups.length ? `<div class="kv2-emne-list">${groups.map((group, index) => `
+          <details class="kv2-emne" ${index === 0 ? "open" : ""}>
+            <summary>
+              <span><strong>${esc(group.label)}</strong><small>${group.entries.length} ${group.entries.length === 1 ? "språkspor" : "språkspor"}</small></span>
+              <span class="kv2-emne-toggle" aria-hidden="true">＋</span>
+            </summary>
+            <div class="kv2-emne-body">${group.entries.map(renderEntry).join("")}</div>
+          </details>
+        `).join("")}</div>` : `<p class="kv2-empty">Du har ikke samlet språkspor ennå.</p>`}
+      </section>
+    `;
+  }
+
   function entryMatches(entry, query) {
     const haystack = [
       entry?._subject_label,
       entry?.topic,
       entry?.text,
       entry?.dimension,
+      entry?.collection_kind,
+      entry?.source?.type,
       sourceLabel(entry),
       ...(entry?.concepts || []),
+      ...(entry?.tags || []),
       ...(entry?.resolved_emne_ids || []).map(humanizeId)
     ].map(s).join(" ").toLowerCase();
     return haystack.includes(query);
@@ -302,7 +422,8 @@
     const query = s(rawQuery).toLowerCase();
     if (!query) return renderCurrentView();
 
-    const matches = allEntries(profile).filter((entry) => entryMatches(entry, query)).slice(0, 60);
+    const entries = activeCollectionId === LANGUAGE_COLLECTION_ID ? languageEntries(profile) : allEntries(profile);
+    const matches = entries.filter((entry) => entryMatches(entry, query)).slice(0, 60);
     root.innerHTML = `
       <section class="kv2-panel">
         <div class="kv2-panel-head">
@@ -311,7 +432,7 @@
         ${matches.length ? `<div class="kv2-search-results">${matches.map((entry) => `
           <article class="kv2-search-result">
             <span class="kv2-search-meta">${esc(entry._subject_label)} · ${esc(sourceLabel(entry))}</span>
-            <a href="${subjectHref(entry._subject_id)}">${esc(entry.topic || "Kunnskap")}</a>
+            <a href="${entryHref(entry)}">${esc(entry.topic || "Kunnskap")}</a>
             <p>${esc(entry.text || "")}</p>
           </article>
         `).join("")}</div>` : `<p class="kv2-empty">Ingen kunnskap matcher søket.</p>`}
@@ -319,14 +440,14 @@
     `;
   }
 
-  function renderRouteError(subjectId) {
+  function renderRouteError(value) {
     const root = document.getElementById("knowledgeContent");
     if (!root) return;
     root.innerHTML = `
       <section class="kv2-panel kv2-route-error">
         <span class="kv2-eyebrow">Ugyldig lenke</span>
-        <h2>Faget «${esc(subjectId)}» finnes ikke</h2>
-        <p class="kv2-muted">Lenken peker til et fag som ikke finnes i Knowledge-modellen.</p>
+        <h2>Visningen «${esc(value)}» finnes ikke</h2>
+        <p class="kv2-muted">Lenken peker til en del av Knowledge-modellen som ikke finnes.</p>
         <a href="knowledge.html">Åpne hele kunnskapsprofilen</a>
       </section>
     `;
@@ -334,6 +455,10 @@
 
   function renderCurrentView() {
     if (!activeProfile) return;
+    if (activeCollectionId) {
+      if (activeCollectionId === LANGUAGE_COLLECTION_ID) return renderLanguageCollection(activeProfile);
+      return renderRouteError(activeCollectionId);
+    }
     if (!activeSubjectId) return renderAll(activeProfile);
     const subject = activeProfile.subjects?.[activeSubjectId];
     if (subject) renderSubject(subject);
@@ -354,7 +479,8 @@
     const loading = document.getElementById("knowledgeLoading");
     const error = document.getElementById("knowledgeError");
     const params = new URLSearchParams(location.search);
-    activeSubjectId = s(params.get("subject"));
+    activeCollectionId = s(params.get("collection"));
+    activeSubjectId = activeCollectionId ? "" : s(params.get("subject"));
 
     if (!window.HGKnowledgeV2?.buildProfile) {
       if (loading) loading.hidden = true;
@@ -369,7 +495,7 @@
       activeProfile = await window.HGKnowledgeV2.buildProfile();
       window.hgKnowledgeProfileV2 = activeProfile;
       renderSummary(activeProfile);
-      renderSubjectNav(activeProfile, activeSubjectId);
+      renderSubjectNav(activeProfile, activeSubjectId, activeCollectionId);
       renderCurrentView();
       bindSearch();
       window.HGKnowledgeV2.renderQuizMemoryOverview?.(activeProfile);
