@@ -37,8 +37,15 @@ jobs:
           for path in files:
               text = path.read_text(encoding='utf-8')
               new, count = pattern.subn(lambda m: f"{m.group('i')}return normalized;", text, count=1)
-              if count != 1:
-                  raise SystemExit(f'Expected one synthetic-choice block in {path}, got {count}')
+              if count == 0:
+                  forbidden = (
+                      '__civi_fallback_choice',
+                      'Gjør dette ryddig og dokumenter det',
+                      'Løs det raskt og gå videre',
+                  )
+                  if any(value in text for value in forbidden):
+                      raise SystemExit(f'Fallback block in {path} was present but not recognized')
+                  new = text
               if '__civi_fallback_choice' in new or 'Gjør dette ryddig og dokumenter det' in new or 'Løs det raskt og gå videre' in new:
                   raise SystemExit(f'Fallback marker/text remains in {path}')
               path.write_text(new, encoding='utf-8')
@@ -64,9 +71,10 @@ jobs:
               ),
           ]
           for old, new in replacements:
-              if old not in text:
-                  raise SystemExit(f'Expected current pipeline text not found: {old[:80]}')
-              text = text.replace(old, new, 1)
+              if old in text:
+                  text = text.replace(old, new, 1)
+              elif new not in text:
+                  raise SystemExit(f'Expected current or migrated pipeline text not found: {old[:80]}')
           doc.write_text(text, encoding='utf-8')
 
           Path('tests/civication-scene-interaction-no-fallback.test.js').write_text(r'''const assert = require("node:assert/strict");
@@ -142,7 +150,12 @@ console.log("civication-scene-interaction-no-fallback.test.js: PASS");
         run: |
           git config user.name "Paradispartiet"
           git config user.email "paradispartiet@gmail.com"
-          git rm .github/workflows/civication-scene-interaction-4d-temp.yml
+          git rm --ignore-unmatch .github/workflows/civication-scene-interaction-4d-temp.yml
+          git rm --ignore-unmatch .github/civication-scene-interaction-4d-trigger
           git add js/Civication/systems/civicationDailyMailBuilder.js js/Civication/systems/civicationWorkdayMailBuilder.js data/Civication/SCENE_PIPELINE_V1.md tests/civication-scene-interaction-no-fallback.test.js
+          if git diff --cached --quiet; then
+            echo "4D already materialized on this head."
+            exit 0
+          fi
           git commit -m "Fjern generiske runtimevalg fra SceneCatalog"
           git push origin "HEAD:${{ github.head_ref || github.ref_name }}"
