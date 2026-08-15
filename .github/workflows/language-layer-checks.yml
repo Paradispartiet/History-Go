@@ -1,0 +1,37 @@
+name: Language layer checks
+
+on:
+  pull_request:
+    paths:
+      - 'data/leksikon/sprak/**'
+      - 'js/ui/place-language-layer.js'
+      - 'css/place-language-layer.css'
+      - 'js/config.js'
+      - 'docs/SPRAKLEKSIKON.md'
+      - 'docs/PLACE_POPUP_SYSTEM.md'
+      - 'data/leksikon/README_LEKSIKON.md'
+      - 'tests/place-language-layer.test.mjs'
+      - '.github/workflows/language-layer-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  language-layer:
+    name: Språkleksikon v2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check language runtime syntax
+        run: node --check js/ui/place-language-layer.js
+
+      - name: Test language data and integration contract
+        run: node --test tests/place-language-layer.test.mjs
