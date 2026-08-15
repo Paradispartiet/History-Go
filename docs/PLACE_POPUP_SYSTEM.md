@@ -4,8 +4,9 @@ Status: **canonical presentasjonskontrakt**
 Eier: `place_popup_presentation_contract`  
 Basisruntime: `js/ui/place-popup-v2.js`  
 Faner: `js/ui/place-popup-tabs.js`  
+Språkadapter: `js/ui/place-language-layer.js`  
 På stedet: `js/ui/place-onsite-surface.js`  
-Sist kontrollert: **2026-07-28**
+Sist kontrollert: **2026-08-15**
 
 Stedspopupen er den komplette brukerrettede **kunnskapsflaten** for ett canonical History GO-sted. PlaceCard er det kompakte kontrollrommet.
 
@@ -26,6 +27,7 @@ Viktige eiergrenser:
 | People | `docs/PEOPLE_PROFILE_CANONICAL.md` + `docs/people-of-places-method.md` |
 | Quiz | `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md` |
 | Rundinger | `data/places/README_place_rounds.md` |
+| Språkleksikon | `docs/SPRAKLEKSIKON.md` |
 | Nature | `README/nature_mapping_workflow.md` |
 | Koordinater | coordinate-kontraktene |
 
@@ -33,7 +35,7 @@ Popupen skal aggregere ferdige canonical data, ikke lage en ny sannhetskilde.
 
 ### Placegrensen gjelder hele popupen
 
-Før innhold fordeles på faner, skal canonical place-register/manifester kontrolleres for bygg, virksomheter, parker, plasser og andre delsteder som har egne place-oppføringer. Innholdet skal ligge hos riktig place-eier. Et slikt delsted kan vises som tydelig merket relasjon eller supplement, men kan ikke brukes i stedet for parent-place i Om, Historie, Fortellinger, Før/etter, Nyheter, Lesespor, Kilder eller Mer. Den samme grensen gjelder rundinger, bildepar og hovedpåstander utenfor popupen.
+Før innhold fordeles på faner, skal canonical place-register/manifester kontrolleres for bygg, virksomheter, parker, plasser og andre delsteder som har egne place-oppføringer. Innholdet skal ligge hos riktig place-eier. Et slikt delsted kan vises som tydelig merket relasjon eller supplement, men kan ikke brukes i stedet for parent-place i Om, Historie, Fortellinger, Før/etter, Nyheter, Lesespor, Kilder, Språk eller Mer. Den samme grensen gjelder rundinger, bildepar og hovedpåstander utenfor popupen.
 
 ## 2. De tre stedflatene
 
@@ -51,6 +53,7 @@ Popupen leser fra eksisterende eide systemer:
 
 - manifest-loadede place-filer → identitet, `desc`, `popupDesc`, place-profiler;
 - Leksikon → hovedartikkel, facts, chronology, nyhetsspor, `externalLinks`;
+- Språkleksikon → `data/leksikon/sprak/manifest.json` og stedsspesifikke språkfiler;
 - Stories → canonical Stories;
 - `for_na` → Før/etter;
 - Lesespor → Lesespor;
@@ -63,7 +66,7 @@ Data skal ikke kopieres inn i én gigantisk place-fil bare fordi popupen viser d
 
 ## 4. Canonical popupfaner
 
-Popupen har nøyaktig disse åtte hovedfanene:
+Popupen har åtte faste grunnfaner:
 
 ```text
 Om
@@ -76,7 +79,15 @@ Kilder
 Mer
 ```
 
-På mobil er dette en horisontalt scrollbar fanestripe med korrekt tab-semantikk og tastaturnavigasjon.
+I tillegg finnes én **datastyrt, valgfri** fane:
+
+```text
+Språk
+```
+
+Språk vises bare når stedet har minst én gyldig Språkleksikon-oppføring. Den plasseres før Mer. Et sted uten språkdata skal ikke få en tom språkfane.
+
+På mobil er fanene en horisontalt scrollbar fanestripe med korrekt tab-semantikk og tastaturnavigasjon.
 
 ## 5. Om
 
@@ -94,13 +105,16 @@ Typisk innhold:
 - fysisk miljø/funksjon;
 - `nature_profile`;
 - type-spesifikke fysiske seksjoner;
-- «Se etter på stedet» når dette beskriver et kjennetegn og ikke en oppgave.
+- «Se etter på stedet» når dette beskriver et kjennetegn og ikke en oppgave;
+- en kompakt «Språk på stedet»-teaser når Språkleksikon faktisk har innhold.
 
 ### Én visuell eier per opplysning
 
 Samme nøkkeltall skal ikke gjentas i heroen og i en type-spesifikk detaljseksjon. Headeren eier orientering som kategori, primært år og stedstype. Den relevante detaljseksjonen eier areal, høyde, høyeste punkt, terreng, fysisk utstrekning, etasjer, kapasitet, materiale og konstruksjon.
 
 People- og Story-antall skal normalt ikke vises som egne hero-nøkkeltall når innholdet allerede har egne seksjoner. Badgeflaten eier fagområde, epoke, underbadges og emner.
+
+Språkteaseren eier bare oppdagelsen av språkflaten. Den skal ikke duplisere hele språkfanen.
 
 ### Viktig `popupDesc`-regel
 
@@ -197,24 +211,47 @@ Regler:
 - eksterne lenker åpnes sikkert;
 - interne researchnotater, coordinate-audits, hold-back claims og tekniske IDs vises ikke som vanlig kildeinnhold.
 
-## 12. Mer
+## 12. Språk
+
+Språk er en valgfri, stedbundet kunnskapsfane. Produksjons- og datakontrakten eies av `docs/SPRAKLEKSIKON.md`.
+
+Fanen kan vise:
+
+- lokale ord;
+- uttrykk og talemåter;
+- dialekttrekk;
+- uttale;
+- stedsnavn og historiske navneformer;
+- språkhistorie;
+- betydning og eksempelbruk;
+- tidsstatus og geografisk utbredelse;
+- etymologi når den er dokumentert;
+- relaterte steder og språkspor;
+- kilder.
+
+Brukeren kan eksplisitt samle en språkoppføring. Samlingen skrives til canonical Knowledge V2 (`hg_knowledge_entries_v2`) med `source.type = "language_lexicon"`. Det skal ikke opprettes et parallelt språk- eller dialektlager.
+
+Språk skal ikke vises bare for å fylle fanestripen. Mangler dokumentert språkstoff, mangler fanen.
+
+## 13. Mer
 
 Mer er smalere kunnskapsinnhold, ikke restkategori.
 
 Tillatt kan være:
 
-- Språkleksikon;
 - observations;
 - Knowledge/funfacts når unlockregler tillater det;
 - curated relations som forklarer stedet;
 - kildebelagte «legg merke til»-momenter;
 - brukerrettede klassifikasjoner/tags.
 
+Språkleksikon hører ikke lenger som standard under Mer når den dedikerte språkflaten er aktiv.
+
 Handlinger skal ikke ligge her.
 
 Fysiske stedselementer skal ikke parkeres permanent i Mer bare fordi riktig presentasjonsflate mangler.
 
-## 13. På stedet
+## 14. På stedet
 
 På stedet er **ikke en fast knapperekke**. Synlighet eies av den canonical kategori-/stedstype-kontrakten:
 
@@ -231,11 +268,13 @@ Bredt tilgjengelige møteflater er **Social Meet / Avtal å møtes** og **Kunnsk
 
 Quiz, Observer, Notat og Rute beholder egne flows utenfor På stedet-baren.
 
-## 14. Rundinger
+## 15. Rundinger
 
 Rundingsmodellen eies **kun** av `data/places/README_place_rounds.md`. Popup-kontrakten gjentar ikke palett, profiler, antall eller naturkartkrav.
 
-## 15. Wonderkammer
+Språk er et popup-/kunnskapslag, ikke en ny runding.
+
+## 16. Wonderkammer
 
 Wonderkammer er legacy migreringsgrunnlag, ikke en ny popupflate eller runding.
 
@@ -243,7 +282,7 @@ Legacy-innhold migreres etter faktisk type til subsystemet som eier innholdet. P
 
 Nye Wonderkammer-entries skal ikke produseres gjennom popup-systemet.
 
-## 16. Strukturerte place-felt
+## 17. Strukturerte place-felt
 
 ### `spatial_profile`
 
@@ -269,7 +308,9 @@ Landskap/naturtype/habitat/sesong til Om. Ikke automatisk Nature-runding.
 
 Brukerrettede sikre kilder til Kilder. Interne audits/researchfelt vises ikke.
 
-## 17. Typeprofiler
+Språkleksikon skal ikke legges inn som et nytt strukturert place-felt; språkdata eies separat av `data/leksikon/sprak/`.
+
+## 18. Typeprofiler
 
 Typeprofiler er researchprioritering, ikke krav om kunstig feltdekning.
 
@@ -283,15 +324,16 @@ Eksempler:
 
 Faktiske tekster følger fortsatt `PLACE_DESCRIPTION_CANONICAL.md`.
 
-## 18. Sluttregel
+## 19. Sluttregel
 
 Popupen er produksjonsklar når:
 
-1. alle relevante faner er vurdert;
-2. innholdet kommer fra riktig canonical eier;
-3. `desc`/`popupDesc` har bestått sin egen produksjonsprotokoll;
-4. Stories/People/Nature/Quiz ikke er lokalt improvisert;
-5. popupen ikke brukes som restplass for rundinger eller handlinger;
-6. UI og relevante audits/tester passerer.
+1. alle relevante grunnfaner er vurdert;
+2. Språk er vurdert når stedet har dokumentert språkstoff;
+3. innholdet kommer fra riktig canonical eier;
+4. `desc`/`popupDesc` har bestått sin egen produksjonsprotokoll;
+5. Stories/People/Nature/Quiz/Språk ikke er lokalt improvisert;
+6. popupen ikke brukes som restplass for rundinger eller handlinger;
+7. UI og relevante audits/tester passerer.
 
 Full stedsgate ligger i `docs/PLACE_PRODUCTION_CHECKLIST.md`.
