@@ -168,6 +168,7 @@ declare global {
     openSpotMatchList?: (...args: any[]) => any;
     CivicationCareerOutcomeRuntime?: any;
     CivicationChoiceDirector?: any;
+    CivicationSceneInteraction?: any;
     CivicationChoiceToneVariants?: any;
     CivicationDailyMailBuilder?: any;
     CivicationDailyTaskGates?: any;
