@@ -21,30 +21,42 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Repair community evidence mapping in working tree
+      - name: Diagnose case evidence overlaps after intended community repair
         run: |
           node --input-type=module <<'EOF'
           import fs from 'node:fs';
-          const file = 'data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_topic_claims_v1.json';
-          const document = JSON.parse(fs.readFileSync(file, 'utf8'));
-          const topic = document.topic_briefs.find((row) => row.emne_id === 'em_film_tv_dekolonisering_repatriering_og_fellesskapskontroll');
-          if (!topic) throw new Error('Community-control topic missing');
-          const sourceId = 'ap01-fiaf-code-ethics-2025';
-          if (!topic.source_ids.includes(sourceId)) topic.source_ids.unshift(sourceId);
-          fs.writeFileSync(file, `${JSON.stringify(document, null, 2)}\n`);
+          const topicFile = 'data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_topic_claims_v1.json';
+          const caseFile = 'data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_cases_v1.json';
+          const topicsDoc = JSON.parse(fs.readFileSync(topicFile, 'utf8'));
+          const casesDoc = JSON.parse(fs.readFileSync(caseFile, 'utf8'));
+          const community = topicsDoc.topic_briefs.find((row) => row.emne_id === 'em_film_tv_dekolonisering_repatriering_og_fellesskapskontroll');
+          if (!community) throw new Error('Community-control topic missing');
+          if (!community.source_ids.includes('ap01-fiaf-code-ethics-2025')) community.source_ids.unshift('ap01-fiaf-code-ethics-2025');
+          const caseById = new Map(casesDoc.cases.map((row) => [row.id, row]));
+          const failures = [];
+          for (const topic of topicsDoc.topic_briefs) {
+            for (const caseId of topic.case_ids || []) {
+              const item = caseById.get(caseId);
+              if (!item) {
+                failures.push({ emne_id: topic.emne_id, case_id: caseId, reason: 'missing_case' });
+                continue;
+              }
+              const overlap = item.source_ids.filter((id) => topic.source_ids.includes(id));
+              if (overlap.length === 0) {
+                failures.push({
+                  emne_id: topic.emne_id,
+                  case_id: caseId,
+                  topic_source_ids: topic.source_ids,
+                  case_source_ids: item.source_ids
+                });
+              }
+            }
+          }
+          fs.mkdirSync('reports/fagverk', { recursive: true });
+          fs.writeFileSync('reports/fagverk/unit14-evidence-overlap-diagnostic.json', `${JSON.stringify({ failure_count: failures.length, failures }, null, 2)}\n`);
           EOF
-      - name: Capture exact materializer failure
-        run: |
-          set +e
-          node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs --write > /tmp/unit14-materialize.log 2>&1
-          code=$?
-          mkdir -p reports/fagverk
-          {
-            echo "exit_code=$code"
-            cat /tmp/unit14-materialize.log
-          } > reports/fagverk/unit14-materialize-diagnostic.txt
-          git add reports/fagverk/unit14-materialize-diagnostic.txt
+          git add reports/fagverk/unit14-evidence-overlap-diagnostic.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Record Film TV unit 14 materialization failure"
+          git commit -m "Record Film TV unit 14 evidence overlap gaps"
           git push origin HEAD:agent/film-tv-unit14-archive-preservation-access-authenticity-source-brief
