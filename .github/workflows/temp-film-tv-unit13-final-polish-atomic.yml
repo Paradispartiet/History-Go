@@ -60,7 +60,12 @@ jobs:
             return variants[claimIndex % variants.length].replace(/\s+/gu, ' ').trim();
           }'''
           pattern = r"function renderParagraph\(\{ topic, claim, claimIndex, editorial, sources, cases \}\) \{.*?\n\}\n\nfunction buildModule"
-          materializer, count = re.subn(pattern, new_render + '\n\nfunction buildModule', materializer, flags=re.S)
+          materializer, count = re.subn(
+              pattern,
+              lambda _match: new_render + '\n\nfunction buildModule',
+              materializer,
+              flags=re.S,
+          )
           if count != 1:
               raise SystemExit(f'expected exactly one renderParagraph replacement, got {count}')
           materializer_path.write_text(materializer)
