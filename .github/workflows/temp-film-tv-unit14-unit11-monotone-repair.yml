@@ -60,32 +60,22 @@ jobs:
           fs.writeFileSync(file, `${JSON.stringify(status, null, 2)}\n`);
           EOF
 
-      - name: Probe unit 11 source brief
-        id: source_brief
-        continue-on-error: true
+      - name: Validate unit 11 source brief
         run: node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
 
-      - name: Probe unit 11 fulltext audit
-        id: fulltext_audit
-        continue-on-error: true
+      - name: Validate unit 11 fulltext audit
         run: node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
 
-      - name: Probe unit 11 source brief tests
-        id: source_test
-        continue-on-error: true
+      - name: Validate unit 11 source brief tests
         run: node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
 
-      - name: Probe unit 11 fulltext tests
-        id: fulltext_test
-        continue-on-error: true
+      - name: Validate unit 11 fulltext tests
         run: node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
 
       - name: Restore subject status
-        if: always()
         run: mv /tmp/subject_status.json data/fagverk/subject_status.json
 
       - name: Commit focused unit 11 repair
-        if: steps.source_brief.outcome == 'success' && steps.fulltext_audit.outcome == 'success' && steps.source_test.outcome == 'success' && steps.fulltext_test.outcome == 'success'
         run: |
           rm -f .trigger/unit14-unit11-monotone-repair
           rm -f .github/workflows/temp-film-tv-unit14-unit11-monotone-repair.yml
