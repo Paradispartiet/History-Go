@@ -125,6 +125,8 @@ jobs:
       - name: Stage permanent Philosophy expansion
         run: |
           git add -A
+          git restore --staged -- .github/workflows
+          git restore --worktree -- .github/workflows
           git status --short
 
       - name: Reject staged workflow changes
