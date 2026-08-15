@@ -65,6 +65,22 @@
   function uniqueStrings(values) {
     return [...new Set((Array.isArray(values) ? values : []).map(norm).filter(Boolean))];
   }
+  function getSceneInteraction() {
+    return window.CivicationSceneInteraction || null;
+  }
+  function decorateSceneInteraction(scene) {
+    const interaction = getSceneInteraction();
+    return typeof interaction?.decorate === "function" ? interaction.decorate(scene) : scene;
+  }
+  function isActionableSceneCandidate(scene) {
+    const interaction = getSceneInteraction();
+    return typeof interaction?.isActionable === "function" ? interaction.isActionable(scene) : true;
+  }
+  function filterActionableSceneCandidates(candidates) {
+    const interaction = getSceneInteraction();
+    if (typeof interaction?.filterActionable !== "function") return Array.isArray(candidates) ? candidates : [];
+    return interaction.filterActionable(candidates);
+  }
   function isWorkPhase(phaseId) {
     return WORK_PHASE_SET.has(norm(phaseId));
   }
@@ -273,7 +289,7 @@
         for (const mail of mails) {
           const id = norm(mail?.id);
           if (!id) continue;
-          out.push({
+          out.push(decorateSceneInteraction({
             ...mail,
             id,
             category: norm(catalog?.category),
@@ -286,7 +302,7 @@
               : [norm(mail?.summary)].filter(Boolean),
             scene_catalog_source_path: norm(sourcePath),
             scene_catalog_version: SCENE_CATALOG_VERSION
-          });
+          }));
         }
       }
       return out;
@@ -304,7 +320,7 @@
         value: await loadJson(path)
       })));
       const flattened = catalogs.flatMap(({ path, value }) => value ? flattenCatalog(value, path) : []);
-      const mails = await decorateMails(flattened);
+      const mails = (await decorateMails(flattened)).map(decorateSceneInteraction);
       catalogTrace.push({
         at: new Date().toISOString(),
         consumer: norm(options.consumer || "scene_director") || "scene_director",
@@ -483,7 +499,9 @@
     const wantedList = uniqueStrings(wantedTypes);
     const wanted = new Set(wantedList);
     if (!wanted.size) return null;
-    const safe = (Array.isArray(pool) ? pool : []).filter((mail) => mailMatchesDailyProgression(mail, context));
+    const safe = (Array.isArray(pool) ? pool : [])
+      .filter((mail) => mailMatchesDailyProgression(mail, context))
+      .filter(isActionableSceneCandidate);
     let candidates = safe.filter((mail) => {
       const id = norm(mail?.id);
       return id && !usedSourceIds.has(id) && wanted.has(norm(mail?.mail_type));
@@ -664,7 +682,9 @@
     const candidates = await director.getWorkCandidates(active, state, {
       consumer: "event_engine_build_mail_pool"
     });
-    const suppressFallback = candidates?.__career_outcome_terminal_closed === true;
+    const terminalClosed = candidates?.__career_outcome_terminal_closed === true;
+    const interactionSuppressed = candidates?.__scene_interaction_suppress_legacy_fallback === true;
+    const suppressFallback = terminalClosed || interactionSuppressed;
     const taggedRuntimeMails = candidates.map((mail) => ({
       ...mail,
       source_type: norm(mail?.source_type) || "planned"
@@ -679,7 +699,8 @@
         __civication_scene_director: true,
         __runtime_candidate_count: taggedRuntimeMails.length,
         __legacy_fallback: false,
-        __terminal_closed: suppressFallback
+        __terminal_closed: terminalClosed,
+        __interaction_suppressed: interactionSuppressed
       };
     }
     const packFile = typeof engine?.resolvePackFile === "function"
@@ -756,7 +777,10 @@
         selected_id: norm(first?.id) || null,
         selected_type: norm(first?.mail_type) || null,
         selected_family: norm(first?.mail_family) || null,
-        terminal_closed: candidates?.__career_outcome_terminal_closed === true
+        terminal_closed: candidates?.__career_outcome_terminal_closed === true,
+        interaction_input_count: Number(candidates?.__scene_interaction_input_count || 0),
+        interaction_blocked_count: Number(candidates?.__scene_interaction_blocked_count || 0),
+        interaction_passive_count: Number(candidates?.__scene_interaction_passive_count || 0)
       };
       selectionTrace.push(snapshot);
       selectionSnapshots.set(snapshot.role_scope, snapshot);
@@ -766,7 +790,7 @@
     }
     async function getWorkCandidates(active, state = getState(), options = {}) {
       const candidates = await boundSourceSelector(active, state);
-      const normalized = Array.isArray(candidates) ? candidates : [];
+      const normalized = filterActionableSceneCandidates(candidates);
       recordSelection(active, normalized, options);
       return normalized;
     }
