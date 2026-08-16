@@ -4,6 +4,19 @@
   "status": "migration_contract",
   "effective_date": "2026-08-14",
   "canonical_scene_contract": "data/Civication/sceneContractV1.schema.json",
+  "compiled_scene_registry_contract": {
+    "schema": "compiled_scene_registry_v1",
+    "version": 1,
+    "schema_path": "data/Civication/compiledSceneRegistryV1.schema.json",
+    "compiler": "scripts/build-civication-scene-registry.mjs",
+    "default_output": "data/Civication/compiledSceneRegistryV1.json",
+    "status": "contract_and_compiler_ready",
+    "runtime_reads_registry": false,
+    "compatibility_projection_is_generated_not_source": true,
+    "runtime_cutover_requires_zero_shadowed_duplicates": true,
+    "duplicate_id_policy": "Compileren speiler SceneCatalogs runtime-kilderekkefølge. En senere duplicate kan bare inventeres som shadowed når routing-signaturen er identisk; ellers feiler build. Canonicale scene-ID-er omskrives aldri for å skjule kollisjoner.",
+    "cutover_rule": "Runtime skal ikke bytte fra mailFamilies til compiled registry før id-, valg-, eligibility-, thread-, consequence- og selection-paritet er bevist og shadowed duplicate-gjeld er null."
+  },
   "format_freeze": {
     "new_mail_source_formats_allowed": false,
     "new_scene_source_adapters_allowed_with_registration": true,

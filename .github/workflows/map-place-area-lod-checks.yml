@@ -1,0 +1,52 @@
+name: Map place area LOD checks
+
+on:
+  pull_request:
+    paths:
+      - 'js/map.ts'
+      - 'js/map.js'
+      - 'dist/web/map.js'
+      - 'dist/web/map.js.map'
+      - 'tests/map-place-area-lod.test.mjs'
+      - 'data/places/**'
+      - '.github/workflows/map-place-area-lod-checks.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'js/map.ts'
+      - 'js/map.js'
+      - 'dist/web/map.js'
+      - 'dist/web/map.js.map'
+      - 'tests/map-place-area-lod.test.mjs'
+      - 'data/places/**'
+      - '.github/workflows/map-place-area-lod-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  area-lod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify area-place LOD contract
+        run: node --test tests/map-place-area-lod.test.mjs
+
+      - name: Typecheck web runtime
+        run: npm run typecheck:web
+
+      - name: Verify committed map builds are synchronized
+        shell: bash
+        run: |
+          npm run build:web
+          git diff --exit-code -- js/map.js dist/web/map.js dist/web/map.js.map

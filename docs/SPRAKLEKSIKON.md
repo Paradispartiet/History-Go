@@ -116,20 +116,33 @@ En språkoppføring skal vurderes for:
 
 Vanlige norske ord skal ikke merkes som lokale bare fordi de forekommer i en lokal kilde. Lokalt særpreg må dokumenteres.
 
-## 7. Dialektord og lokale uttrykk er en obligatorisk produksjonsjobb
+## 7. Dialektord og lokale uttrykk — områdeeierskap styrer kravet
 
-Når et sted **får eller vesentlig reviderer et Språkleksikon**, skal produksjonen alltid inneholde et eksplisitt søk etter dokumenterte dialektord, lokale ordformer, lokale uttrykk og talemåter som faktisk kan knyttes til stedet eller dialektområdet.
+Dialektord og lokale uttrykk skal ikke presses inn på alle Places. Før språkproduksjon klassifiseres place-objektets **canonical identitet**: representerer det et område/språkmiljø, et enkeltsted, eller et enkeltsted med en direkte dokumentert språkhistorie?
+
+For **område-Places** er dialektord og lokale uttrykk en **obligatorisk produksjonsjobb**. Det gjelder steder som faktisk representerer et strøk, en bydel, by/bygd, ladested eller annet dokumentert lokalt miljø. `placeScope: "area"` er den canonicale semantiske datamarkøren for slikt områdeeierskap. `coordRole` og `coordType` beskriver hvordan et sted eller en flate er koordinatfestet; `area_anchor`, `park_anchor`, sentroid- og andre geometriske ankertyper gir derfor **ikke** områdeeierskap alene. Eldre `district_anchor`- og eksplisitte områdeklassifikasjoner brukes bare som migreringsbelegg for å sette `placeScope` eksplisitt.
 
 Produksjonsregelen er:
 
+- et område-Place skal ha et eksplisitt researchspor etter dokumenterte dialektord, lokale ordformer, lokale uttrykk og talemåter som kan knyttes til området eller det dokumenterte dialektmiljøet;
 - det skal søkes aktivt i ordbøker, dialektarkiv, lokale historiesamlinger, talemålsmateriale og andre relevante kilder — ikke bare i eksisterende History GO-data;
 - når kildene bærer det, skal minst ett reelt kildebelagt **dialektord eller lokalt uttrykk** produseres som `word` eller `expression`;
-- et Språkleksikon som bare består av stedsnavn, administrative fagord eller generelt norsk regnes ikke som redaksjonelt ferdig dersom researchen dokumenterer lokale ordformer eller uttrykk;
+- et område-Språkleksikon som bare består av stedsnavn, administrative fagord eller generelt norsk regnes ikke som redaksjonelt ferdig dersom researchen dokumenterer lokale ordformer eller uttrykk;
 - betydning, geografisk utbredelse og historisk/moderne status skal avgrenses etter kilden;
 - dialektord skal aldri konstrueres, moderniseres eller gjøres «mer lokale» av språkmodell eller redaksjonell gjetning;
 - dersom et dokumentert søk faktisk ikke finner et forsvarlig dialektord/lokalt uttrykk, registreres søket og kildene som begrunnet holdback/N/A for akkurat denne deljobben. Fravær skal dokumenteres, ikke fylles med oppdiktet språk.
 
-Dette er et produksjonskrav for Språkleksikon, ikke et krav om at alle steder i History GO må ha en språkfane.
+For **enkelt-Places** — for eksempel et enkelt bygg, en institusjon, et monument, et kunstverk eller et annet avgrenset objekt — er geografisk plassering i et dialektområde **ikke nok** til å kreve dialektord. Slike steder får `word`/`expression` bare når ordet, kallenavnet, talemåten, fag-/arbeidsspråket eller språkfenomenet har en direkte dokumentert forbindelse til akkurat stedet.
+
+Gater, markeder, havner, arbeidsmiljøer og andre avgrensede miljøer kan derfor få lokale ord selv om de ikke er område-Places, men bare når den direkte stedstilknytningen er dokumentert. Generelle Oslo-, Sagene- eller Østfold-ord skal ikke kopieres inn i hvert enkelt Place som ligger der.
+
+### Canonical språk-eier
+
+Et språkfenomen skal som hovedregel eies av **nærmeste relevante område-Place**. Et Sagene-ord eies derfor av Sagene når kildene gjelder Sagene som språkmiljø. En skole, fabrikk eller bygning på Sagene kan peke til språksporet gjennom `related_places` / `related_entries` når det er relevant, i stedet for å opprette en konkurrerende kopi.
+
+Unntaket er når enkeltstedet selv er den dokumenterte språk-eieren — for eksempel et lokalt kallenavn på bygget, et uttrykk som oppstod ved arbeidsplassen eller et stedsspesifikt fagord.
+
+Dette er et produksjonskrav for relevante Språkleksikon, ikke et krav om at alle steder i History GO må ha en språkfane.
 
 ## 8. Presentasjon i stedspopupen
 
