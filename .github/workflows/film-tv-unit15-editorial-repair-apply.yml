@@ -57,7 +57,7 @@ jobs:
         run: node scripts/audit-fagverk-subject-inventory.mjs
 
       - name: Refresh general engine audit
-        run: node scripts/audit-fagverk-general-engine.mjs
+        run: node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
 
       - name: Refresh Film TV phase3 audit
         run: node scripts/audit-fagverk-film-tv-phase3.mjs --write-report --no-check-report
