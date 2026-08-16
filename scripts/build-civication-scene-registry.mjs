@@ -1,0 +1,608 @@
+#!/usr/bin/env node
+import { createHash } from "node:crypto";
+import { access, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { pathToFileURL } from "node:url";
+
+export const REGISTRY_SCHEMA = "compiled_scene_registry_v1";
+export const REGISTRY_VERSION = 1;
+export const COMPILER_VERSION = 1;
+export const SCENE_SCHEMA = "civication_scene_v1";
+export const SCENE_VERSION = 1;
+export const SOURCE_ROOT = "data/Civication/mailFamilies";
+export const LEGACY_FALLBACK_ROOT = "data/Civication/jobbmails";
+export const DEFAULT_OUTPUT = "data/Civication/compiledSceneRegistryV1.json";
+
+const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]*$/;
+const DAY_PHASES = new Set([
+  "morning", "forenoon", "workday", "lunch", "afternoon", "dinner", "evening", "day_end", "any"
+]);
+const ARC_STAGES = new Set(["intro", "early", "mid", "advanced", "mastery", "climax", "any"]);
+// Must mirror CivicationSceneCatalog.getFamilyPaths() ordering. Job is loaded
+// before every extra type; a later duplicate with the same routing signature is
+// therefore shadowed by the earlier source in today's stable candidate ordering.
+const EXTRA_MAIL_TYPES = Object.freeze([
+  "people",
+  "story",
+  "conflict",
+  "event",
+  "faction_choice",
+  "micro",
+  "followup",
+  "knowledge",
+  "consequence"
+]);
+const EXTRA_MAIL_TYPE_SET = new Set(EXTRA_MAIL_TYPES);
+const SCENE_KIND_BY_MAIL_TYPE = Object.freeze({
+  job: "task",
+  knowledge: "knowledge",
+  micro: "task",
+  people: "relationship",
+  conflict: "conflict",
+  followup: "consequence",
+  story: "milestone",
+  event: "milestone",
+  consequence: "consequence",
+  faction_choice: "conflict"
+});
+const DYNAMIC_SOURCES = Object.freeze([
+  { name: "private", source_format: "private_phase_mail_families_v1", materialization: "runtime" },
+  { name: "life", source_format: "life_mail_manifest_v1", materialization: "runtime" },
+  { name: "narrative", source_format: "civication_narrative_stream_v1", materialization: "runtime" },
+  { name: "social", source_format: "civication_social_encounter_v1", materialization: "runtime" }
+]);
+
+function norm(value) {
+  return String(value == null ? "" : value).trim();
+}
+
+function numberOr(value, fallback = 0) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function assertId(value, label) {
+  const id = norm(value);
+  if (!id || !ID_RE.test(id)) throw new Error(`${label} har ugyldig id: ${JSON.stringify(value)}`);
+  return id;
+}
+
+function stableValue(value) {
+  if (Array.isArray(value)) return value.map(stableValue);
+  if (!value || typeof value !== "object") return value;
+  return Object.fromEntries(
+    Object.keys(value)
+      .sort((a, b) => a.localeCompare(b, "en"))
+      .map((key) => [key, stableValue(value[key])])
+  );
+}
+
+export function stableStringify(value, space = 0) {
+  return JSON.stringify(stableValue(value), null, space);
+}
+
+function sha256(value) {
+  return createHash("sha256").update(typeof value === "string" ? value : stableStringify(value)).digest("hex");
+}
+
+async function exists(filePath) {
+  try {
+    await access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function walkFiles(rootDir, predicate = () => true) {
+  if (!(await exists(rootDir))) return [];
+  const out = [];
+  async function visit(dir) {
+    const entries = await readdir(dir, { withFileTypes: true });
+    entries.sort((a, b) => a.name.localeCompare(b.name, "en"));
+    for (const entry of entries) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) await visit(full);
+      else if (entry.isFile() && predicate(full)) out.push(full);
+    }
+  }
+  await visit(rootDir);
+  return out;
+}
+
+function repoRelative(repoRoot, filePath) {
+  return path.relative(repoRoot, filePath).split(path.sep).join("/");
+}
+
+function uniqueStrings(values) {
+  const out = [];
+  const seen = new Set();
+  for (const value of Array.isArray(values) ? values : []) {
+    const text = norm(value);
+    if (!text || seen.has(text)) continue;
+    seen.add(text);
+    out.push(text);
+  }
+  return out;
+}
+
+function uniqueIds(values) {
+  return uniqueStrings(values).filter((value) => ID_RE.test(value));
+}
+
+function normalizeRuntimeChoices(choices) {
+  return (Array.isArray(choices) ? choices : [])
+    .filter((choice) => choice && typeof choice === "object")
+    .map((choice, index) => ({
+      ...choice,
+      id: norm(choice.id) || String.fromCharCode(65 + index),
+      label: norm(choice.label || choice.text || choice.id),
+      effect: numberOr(choice.effect, 0),
+      tags: uniqueStrings(choice.tags),
+      feedback: norm(choice.feedback)
+    }))
+    .filter((choice) => choice.id && choice.label);
+}
+
+function normalizeProgression(value) {
+  const input = value && typeof value === "object" ? value : {};
+  const out = {};
+  for (const key of ["role_delta", "competency_delta", "autonomy_delta", "economy_delta"]) {
+    if (Number.isFinite(Number(input[key]))) out[key] = Number(input[key]);
+  }
+  return out;
+}
+
+function normalizeEffects(value, legacyScoreDelta) {
+  const input = value && typeof value === "object" && !Array.isArray(value) ? value : {};
+  const out = {};
+  const score = Number.isFinite(Number(input.score_delta)) ? Number(input.score_delta) : legacyScoreDelta;
+  if (Number.isFinite(score)) out.score_delta = score;
+
+  if (input.quality_axes && typeof input.quality_axes === "object" && !Array.isArray(input.quality_axes)) {
+    const axes = {};
+    for (const [key, raw] of Object.entries(input.quality_axes)) {
+      if (Number.isFinite(Number(raw))) axes[key] = Number(raw);
+    }
+    if (Object.keys(axes).length) out.quality_axes = axes;
+  }
+  if (input.state_set && typeof input.state_set === "object" && !Array.isArray(input.state_set)) {
+    const stateSet = {};
+    for (const [key, raw] of Object.entries(input.state_set)) {
+      if (["string", "number", "boolean"].includes(typeof raw) || raw === null) stateSet[key] = raw;
+    }
+    if (Object.keys(stateSet).length) out.state_set = stateSet;
+  }
+  const addFlags = uniqueIds(input.add_flags);
+  if (addFlags.length) out.add_flags = addFlags;
+  const removeFlags = uniqueIds(input.remove_flags);
+  if (removeFlags.length) out.remove_flags = removeFlags;
+  const progression = normalizeProgression(input.progression);
+  if (Object.keys(progression).length) out.progression = progression;
+  const triggerSceneIds = uniqueIds(input.trigger_scene_ids);
+  if (triggerSceneIds.length) out.trigger_scene_ids = triggerSceneIds;
+  return out;
+}
+
+function canonicalChoices(runtimeChoices, sourcePath, sceneId) {
+  return runtimeChoices.map((choice, index) => {
+    const out = {
+      id: assertId(choice.id, `${sourcePath} :: ${sceneId} choice[${index}]`),
+      label: norm(choice.label),
+      effects: normalizeEffects(choice.effects, numberOr(choice.effect, 0))
+    };
+    const reply = norm(choice.reply);
+    if (reply) out.reply = reply;
+    const feedback = norm(choice.feedback);
+    if (feedback) out.feedback = feedback;
+    return out;
+  });
+}
+
+function normalizeTaskContract(mail) {
+  const source = mail?.task_contract && typeof mail.task_contract === "object" ? mail.task_contract : null;
+  if (!source) return null;
+  const taskId = norm(source.task_id);
+  const completionRule = norm(source.completion_rule);
+  if (!taskId || !ID_RE.test(taskId) || !completionRule) return null;
+  const out = { task_id: taskId, completion_rule: completionRule };
+  const failureRule = norm(source.failure_rule);
+  if (failureRule) out.failure_rule = failureRule;
+  const evidenceRefs = uniqueStrings(source.evidence_refs);
+  if (evidenceRefs.length) out.evidence_refs = evidenceRefs;
+  return out;
+}
+
+function normalizeKnowledgeContract(value) {
+  const source = value && typeof value === "object" && !Array.isArray(value) ? value : null;
+  if (!source) return { version: 1, mode: "none", source_refs: [], frozen_fields: [] };
+  const allowedModes = new Set(["none", "pinned", "pinned_rules_dynamic_explanation"]);
+  const mode = allowedModes.has(norm(source.mode)) ? norm(source.mode) : "none";
+  const out = {
+    version: 1,
+    mode,
+    source_refs: uniqueStrings(source.source_refs),
+    frozen_fields: uniqueStrings(source.frozen_fields).filter((field) =>
+      ["interaction_mode", "choices", "task_contract", "effects", "success_rule", "answer_key"].includes(field)
+    )
+  };
+  const dynamicFields = uniqueStrings(source.dynamic_fields).filter((field) =>
+    ["content.explanation", "content.links", "job_description"].includes(field)
+  );
+  if (dynamicFields.length) out.dynamic_fields = dynamicFields;
+  if (mode !== "none") {
+    const rulesetRef = norm(source.ruleset_ref);
+    const rulesetVersion = norm(source.ruleset_version);
+    if (!rulesetRef || !rulesetVersion) {
+      return { version: 1, mode: "none", source_refs: out.source_refs, frozen_fields: [] };
+    }
+    out.ruleset_ref = rulesetRef;
+    out.ruleset_version = rulesetVersion;
+  }
+  return out;
+}
+
+function resolveInteractionMode(mail, choices, taskContract) {
+  const explicit = norm(mail?.interaction_mode);
+  if (["decision", "task", "ack", "info"].includes(explicit)) return explicit;
+  if (taskContract) return "task";
+  if (choices.length >= 2) return "decision";
+  if (choices.length === 1) return "ack";
+  return "info";
+}
+
+function resolveArcStage(mail) {
+  for (const candidate of [mail?.arc_stage, mail?.phase, mail?.stage]) {
+    const value = norm(candidate).toLowerCase();
+    if (ARC_STAGES.has(value)) return value;
+  }
+  return "any";
+}
+
+function resolveDayPhase(mail) {
+  for (const candidate of [mail?.day_phase, mail?.phase_tag]) {
+    const value = norm(candidate).toLowerCase();
+    if (DAY_PHASES.has(value)) return value;
+  }
+  return "any";
+}
+
+function canonicalThreadId(mail, roleScope, sceneId) {
+  for (const candidate of [mail?.thread_id, mail?.thread_key, mail?.threadKey]) {
+    const value = norm(candidate);
+    if (value && ID_RE.test(value)) return value;
+  }
+  return assertId(`${roleScope}.mail.${sceneId}`, "generated thread_id");
+}
+
+function canonicalContent(mail, sceneId) {
+  const subject = norm(mail?.subject || mail?.title || sceneId);
+  const summary = norm(mail?.summary || mail?.purpose || subject);
+  const situation = (Array.isArray(mail?.situation) ? mail.situation : []).map(norm).filter(Boolean);
+  const out = {
+    subject: subject || sceneId,
+    summary: summary || subject || sceneId,
+    situation: situation.length ? situation : [summary || subject || sceneId]
+  };
+  const explanation = norm(mail?.explanation);
+  if (explanation) out.explanation = explanation;
+  const links = (Array.isArray(mail?.links) ? mail.links : [])
+    .filter((link) => link && typeof link === "object")
+    .map((link) => ({
+      label: norm(link.label),
+      ref: norm(link.ref),
+      ...(norm(link.kind) && ["fagverk", "place", "person", "task", "external"].includes(norm(link.kind))
+        ? { kind: norm(link.kind) }
+        : {})
+    }))
+    .filter((link) => link.label && link.ref);
+  if (links.length) out.links = links;
+  return out;
+}
+
+// Return the exact runtime source rank used by SceneCatalog.getFamilyPaths().
+// null means physically present but not reachable by that owner.
+export function runtimeSourceRank(sourcePath, catalog) {
+  const category = norm(catalog?.category);
+  const roleScope = norm(catalog?.role_scope);
+  const mailType = norm(catalog?.mail_type || "job").toLowerCase();
+  if (!category || !roleScope) return null;
+  const normalizedPath = norm(sourcePath).replace(/\\/g, "/");
+  if (normalizedPath === `${SOURCE_ROOT}/${category}/job/${roleScope}_intro_v2.json`) return 0;
+  if (normalizedPath === `${SOURCE_ROOT}/${category}/job/${roleScope}_job.json`) return 1;
+  if (!EXTRA_MAIL_TYPE_SET.has(mailType)) return null;
+  const extraIndex = EXTRA_MAIL_TYPES.indexOf(mailType);
+  const canonical = `${SOURCE_ROOT}/${category}/${mailType}/${roleScope}_${mailType}.json`;
+  return normalizedPath === canonical ? 2 + extraIndex : null;
+}
+
+export function isRuntimeReachableCatalog(sourcePath, catalog) {
+  return runtimeSourceRank(sourcePath, catalog) !== null;
+}
+
+function compileMail({ catalog, family, mail, sourcePath }) {
+  const category = assertId(mail?.category || catalog?.category, `${sourcePath} category`);
+  const roleScope = assertId(mail?.role_scope || catalog?.role_scope, `${sourcePath} role_scope`);
+  const mailType = norm(mail?.mail_type || catalog?.mail_type || "job").toLowerCase();
+  const sceneId = assertId(mail?.id, `${sourcePath} mail`);
+  const runtimeChoices = normalizeRuntimeChoices(mail?.choices);
+  const choices = canonicalChoices(runtimeChoices, sourcePath, sceneId);
+  const taskContract = normalizeTaskContract(mail);
+  const interactionMode = resolveInteractionMode(mail, choices, taskContract);
+  if (interactionMode === "decision" && choices.length < 2) throw new Error(`${sourcePath} :: ${sceneId} decision mangler to reelle valg`);
+  if (interactionMode === "task" && !taskContract) throw new Error(`${sourcePath} :: ${sceneId} task mangler gyldig task_contract`);
+  if (interactionMode === "info" && choices.length) throw new Error(`${sourcePath} :: ${sceneId} info kan ikke ha valg`);
+  if (interactionMode === "ack" && choices.length > 1) throw new Error(`${sourcePath} :: ${sceneId} ack kan ikke ha mer enn ett valg`);
+
+  const situation = (Array.isArray(mail?.situation) ? mail.situation : []).map(norm).filter(Boolean);
+  const compatibilityProjection = {
+    ...mail,
+    id: sceneId,
+    category,
+    role_scope: roleScope,
+    mail_type: mailType,
+    mail_family: norm(mail?.mail_family || family?.id),
+    choices: runtimeChoices,
+    situation: situation.length ? situation : [norm(mail?.summary)].filter(Boolean),
+    scene_catalog_source_path: sourcePath,
+    scene_catalog_version: 1
+  };
+
+  const scene = {
+    schema: SCENE_SCHEMA,
+    version: SCENE_VERSION,
+    id: sceneId,
+    domain: "work",
+    scene_kind: SCENE_KIND_BY_MAIL_TYPE[mailType] || "task",
+    delivery: "mail",
+    day_phase: resolveDayPhase(mail),
+    arc_stage: resolveArcStage(mail),
+    interaction_mode: interactionMode,
+    thread_id: canonicalThreadId(mail, roleScope, sceneId),
+    content: canonicalContent(mail, sceneId),
+    choices,
+    effects: normalizeEffects(mail?.effects),
+    knowledge_contract: normalizeKnowledgeContract(mail?.knowledge_contract),
+    provenance: {
+      adapter: "mail_family",
+      source_path: sourcePath,
+      source_id: sceneId,
+      source_schema: norm(catalog?.schema || "civication_mail_family_catalog_v1"),
+      compiled_at_build: true
+    }
+  };
+  const practiceStoryId = norm(mail?.practice_story_id);
+  if (practiceStoryId && ID_RE.test(practiceStoryId)) scene.practice_story_id = practiceStoryId;
+  const peopleIds = uniqueIds(mail?.people_ids);
+  if (peopleIds.length) scene.people_ids = peopleIds;
+  const placeId = norm(mail?.place_id);
+  if (placeId && ID_RE.test(placeId)) scene.place_id = placeId;
+  if (interactionMode === "task") scene.task_contract = taskContract;
+
+  return {
+    id: sceneId,
+    category,
+    role_scope: roleScope,
+    mail_type: mailType,
+    source_path: sourcePath,
+    source_schema: norm(catalog?.schema || "civication_mail_family_catalog_v1"),
+    source_hash: sha256(mail),
+    scene,
+    compatibility_projection: compatibilityProjection
+  };
+}
+
+function duplicateRoutingSignature(entry) {
+  const mail = entry?.compatibility_projection || {};
+  return stableStringify({
+    mail_type: norm(mail.mail_type),
+    mail_family: norm(mail.mail_family),
+    priority: numberOr(mail.priority, 1),
+    phase: norm(mail.phase),
+    stage: norm(mail.stage || "stable") || "stable",
+    cooldown: numberOr(mail.cooldown, 0),
+    repeatable: mail.repeatable === true,
+    thread_key: norm(mail.thread_key || mail.threadKey),
+    narrative_arc: norm(mail.narrative_arc),
+    thread_canonical: mail.thread_canonical === true,
+    requires: mail.requires || null,
+    forbids: mail.forbids || null,
+    required_flags: uniqueStrings(mail.required_flags),
+    forbidden_flags: uniqueStrings(mail.forbidden_flags)
+  });
+}
+
+function canShadowDuplicate(kept, shadowed) {
+  return duplicateRoutingSignature(kept) === duplicateRoutingSignature(shadowed);
+}
+
+function assertRegistryEntry(entry) {
+  const scene = entry?.scene;
+  if (!scene || scene.schema !== SCENE_SCHEMA || scene.version !== SCENE_VERSION) {
+    throw new Error(`${entry?.source_path || "unknown"} :: ${entry?.id || "unknown"} mangler civication_scene_v1`);
+  }
+  assertId(scene.id, "scene.id");
+  assertId(scene.thread_id, `${scene.id} thread_id`);
+  if (scene.interaction_mode === "decision" && scene.choices.length < 2) throw new Error(`${scene.id} decision uten to valg`);
+  if (scene.interaction_mode === "task" && !scene.task_contract) throw new Error(`${scene.id} task uten task_contract`);
+  if (scene.interaction_mode === "info" && scene.choices.length !== 0) throw new Error(`${scene.id} info med valg`);
+  if (scene.interaction_mode === "ack" && scene.choices.length > 1) throw new Error(`${scene.id} ack med for mange valg`);
+  return true;
+}
+
+export async function compileRegistryFromRepo(repoRoot = process.cwd()) {
+  const absoluteRepoRoot = path.resolve(repoRoot);
+  const sourceFiles = await walkFiles(path.join(absoluteRepoRoot, SOURCE_ROOT), (filePath) => filePath.endsWith(".json"));
+  if (!sourceFiles.length) throw new Error(`Ingen JSON-kilder funnet under ${SOURCE_ROOT}`);
+
+  const reachableCatalogs = [];
+  const ignoredSourceFiles = [];
+  for (const filePath of sourceFiles) {
+    const sourcePath = repoRelative(absoluteRepoRoot, filePath);
+    let catalog;
+    try {
+      catalog = JSON.parse(await readFile(filePath, "utf8"));
+    } catch (error) {
+      throw new Error(`${sourcePath} er ugyldig JSON: ${error.message}`);
+    }
+    const rank = catalog && Array.isArray(catalog.families) ? runtimeSourceRank(sourcePath, catalog) : null;
+    if (rank === null) {
+      ignoredSourceFiles.push(sourcePath);
+      continue;
+    }
+    reachableCatalogs.push({ sourcePath, catalog, rank });
+  }
+
+  // The filesystem inventory order is irrelevant. Runtime owner order is:
+  // category/role, intro, job, then EXTRA_MAIL_TYPES in declared order.
+  reachableCatalogs.sort((a, b) =>
+    norm(a.catalog?.category).localeCompare(norm(b.catalog?.category), "en") ||
+    norm(a.catalog?.role_scope).localeCompare(norm(b.catalog?.role_scope), "en") ||
+    a.rank - b.rank ||
+    a.sourcePath.localeCompare(b.sourcePath, "en")
+  );
+
+  const entries = [];
+  const compiledSourceFiles = [];
+  const shadowedDuplicates = [];
+  const seenSceneIds = new Map();
+  for (const { sourcePath, catalog, rank } of reachableCatalogs) {
+    compiledSourceFiles.push(sourcePath);
+    for (const family of catalog.families) {
+      for (const mail of Array.isArray(family?.mails) ? family.mails : []) {
+        const entry = compileMail({ catalog, family, mail, sourcePath });
+        assertRegistryEntry(entry);
+        const previous = seenSceneIds.get(entry.id);
+        if (previous) {
+          if (!canShadowDuplicate(previous.entry, entry)) {
+            throw new Error(
+              `Duplikat scene-id ${entry.id} har ulik runtime-routing: ${previous.entry.source_path} og ${sourcePath}`
+            );
+          }
+          shadowedDuplicates.push({
+            id: entry.id,
+            kept_source_path: previous.entry.source_path,
+            kept_source_rank: previous.rank,
+            shadowed_source_path: sourcePath,
+            shadowed_source_rank: rank,
+            routing_signature: sha256(duplicateRoutingSignature(entry))
+          });
+          continue;
+        }
+        seenSceneIds.set(entry.id, { entry, rank });
+        entries.push(entry);
+      }
+    }
+  }
+
+  entries.sort((a, b) =>
+    a.category.localeCompare(b.category, "en") ||
+    a.role_scope.localeCompare(b.role_scope, "en") ||
+    a.mail_type.localeCompare(b.mail_type, "en") ||
+    a.id.localeCompare(b.id, "en")
+  );
+  shadowedDuplicates.sort((a, b) =>
+    a.id.localeCompare(b.id, "en") || a.shadowed_source_path.localeCompare(b.shadowed_source_path, "en")
+  );
+
+  const roleIndex = {};
+  for (const entry of entries) {
+    const key = `${entry.category}/${entry.role_scope}`;
+    if (!roleIndex[key]) roleIndex[key] = [];
+    roleIndex[key].push(entry.id);
+  }
+  const sortedRoleIndex = Object.fromEntries(
+    Object.entries(roleIndex)
+      .sort(([a], [b]) => a.localeCompare(b, "en"))
+      .map(([key, ids]) => [key, [...ids].sort((a, b) => a.localeCompare(b, "en"))])
+  );
+
+  const legacyFallbackFiles = await walkFiles(
+    path.join(absoluteRepoRoot, LEGACY_FALLBACK_ROOT),
+    (filePath) => filePath.endsWith(".json")
+  );
+
+  const baseRegistry = {
+    schema: REGISTRY_SCHEMA,
+    version: REGISTRY_VERSION,
+    compiler_version: COMPILER_VERSION,
+    scene_contract: "data/Civication/sceneContractV1.schema.json",
+    source_root: SOURCE_ROOT,
+    compiled_source_files: [...compiledSourceFiles],
+    ignored_source_files: [...ignoredSourceFiles].sort((a, b) => a.localeCompare(b, "en")),
+    shadowed_duplicates: shadowedDuplicates,
+    runtime_materialized_sources: DYNAMIC_SOURCES.map((entry) => ({ ...entry })),
+    entries,
+    role_index: sortedRoleIndex,
+    legacy_fallback_inventory: { root: LEGACY_FALLBACK_ROOT, file_count: legacyFallbackFiles.length },
+    stats: {
+      input_file_count: sourceFiles.length,
+      compiled_source_file_count: compiledSourceFiles.length,
+      ignored_source_file_count: ignoredSourceFiles.length,
+      shadowed_duplicate_count: shadowedDuplicates.length,
+      scene_count: entries.length,
+      role_count: Object.keys(sortedRoleIndex).length
+    }
+  };
+  return { ...baseRegistry, registry_hash: sha256(baseRegistry) };
+}
+
+export async function writeRegistry(repoRoot = process.cwd(), outputPath = DEFAULT_OUTPUT) {
+  const registry = await compileRegistryFromRepo(repoRoot);
+  const absoluteOutput = path.resolve(repoRoot, outputPath);
+  await mkdir(path.dirname(absoluteOutput), { recursive: true });
+  await writeFile(absoluteOutput, `${stableStringify(registry, 2)}\n`, "utf8");
+  return { registry, outputPath: repoRelative(path.resolve(repoRoot), absoluteOutput) };
+}
+
+export async function checkRegistry(repoRoot = process.cwd(), outputPath = DEFAULT_OUTPUT) {
+  const registry = await compileRegistryFromRepo(repoRoot);
+  const absoluteOutput = path.resolve(repoRoot, outputPath);
+  if (!(await exists(absoluteOutput))) throw new Error(`${outputPath} finnes ikke; kjør compiler med --write når 4H-B materialiserer registryet`);
+  const current = await readFile(absoluteOutput, "utf8");
+  const expected = `${stableStringify(registry, 2)}\n`;
+  if (current !== expected) throw new Error(`${outputPath} er ute av sync med kildene`);
+  return registry;
+}
+
+function parseCliArgs(argv) {
+  const args = new Set(argv);
+  const outIndex = argv.indexOf("--out");
+  return {
+    write: args.has("--write"),
+    check: args.has("--check"),
+    json: args.has("--json"),
+    outputPath: outIndex >= 0 && argv[outIndex + 1] ? argv[outIndex + 1] : DEFAULT_OUTPUT
+  };
+}
+
+async function main() {
+  const cli = parseCliArgs(process.argv.slice(2));
+  if (cli.write && cli.check) throw new Error("Bruk enten --write eller --check, ikke begge");
+  let registry;
+  if (cli.write) ({ registry } = await writeRegistry(process.cwd(), cli.outputPath));
+  else if (cli.check) registry = await checkRegistry(process.cwd(), cli.outputPath);
+  else registry = await compileRegistryFromRepo(process.cwd());
+  const summary = {
+    schema: registry.schema,
+    version: registry.version,
+    registry_hash: registry.registry_hash,
+    scenes: registry.stats.scene_count,
+    roles: registry.stats.role_count,
+    compiled_source_files: registry.stats.compiled_source_file_count,
+    ignored_source_files: registry.stats.ignored_source_file_count,
+    shadowed_duplicates: registry.stats.shadowed_duplicate_count,
+    legacy_fallback_files: registry.legacy_fallback_inventory.file_count,
+    wrote: cli.write ? cli.outputPath : null,
+    checked: cli.check ? cli.outputPath : null
+  };
+  console.log(cli.json ? JSON.stringify(summary) : `[CivicationSceneRegistry] ${JSON.stringify(summary)}`);
+}
+
+const invokedPath = process.argv[1] ? pathToFileURL(path.resolve(process.argv[1])).href : "";
+if (invokedPath && import.meta.url === invokedPath) {
+  main().catch((error) => {
+    console.error(`[CivicationSceneRegistry] ${error?.stack || error}`);
+    process.exitCode = 1;
+  });
+}
