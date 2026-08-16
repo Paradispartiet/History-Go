@@ -115,8 +115,8 @@ test("Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny rundi
   const popup = read("docs/PLACE_POPUP_SYSTEM.md");
   assert.match(contract, /ikke.*PlaceCard-runding/i);
   assert.match(contract, /hg_knowledge_entries_v2/);
-  assert.match(popup, /datastyrt, valgfri/);
-  assert.match(popup, /Språk/);
+  assert.match(popup, /datastyrte direktefaner/i);
+  assert.match(popup, /Språk er en valgfri/i);
 });
 
 
