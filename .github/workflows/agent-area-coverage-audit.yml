@@ -75,16 +75,26 @@ jobs:
           npm run places:index:build
           npm run build:web
 
-      - name: Verify semantic scope contracts
-        shell: bash
-        run: |
-          node scripts/audit-place-scope.mjs
-          node --test tests/map-place-area-lod.test.mjs
-          node --test tests/place-language-layer.test.mjs
-          npm run typecheck:web
-          npm run places:index:check
-          npm run places:coords:check
-          git diff --check
+      - name: Audit semantic Place scope
+        run: node scripts/audit-place-scope.mjs
+
+      - name: Test map Place area LOD
+        run: node --test tests/map-place-area-lod.test.mjs
+
+      - name: Test language layer scope contract
+        run: node --test tests/place-language-layer.test.mjs
+
+      - name: Typecheck web
+        run: npm run typecheck:web
+
+      - name: Verify places index
+        run: npm run places:index:check
+
+      - name: Verify place coordinates
+        run: npm run places:coords:check
+
+      - name: Verify clean diff syntax
+        run: git diff --check
 
       - name: Commit product migration
         shell: bash
