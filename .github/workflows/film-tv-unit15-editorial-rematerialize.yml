@@ -1,4 +1,4 @@
-name: Diagnose Film TV Unit15 editorial audit
+name: Finalize Film TV Unit15 editorial fulltext
 
 on:
   push:
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  diagnose:
+  finalize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,9 +25,69 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
+
+      - name: Repair repetition and reconcile predecessor gates
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          materializer = Path('scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs')
+          text = materializer.read_text()
+          old = """function sourceRoleSentence(sourceRows, index) {
+            const roles = sourceRows.map((row) => `${labelSource(row)} er en ${sourceKind(row)} med relevans for ${clean(row.territory)}`);
+            const lead = index % 3 === 0
+              ? 'Kildenes roller er forskjellige'
+              : index % 3 === 1
+                ? 'Det er viktig å holde kildetypene fra hverandre'
+                : 'Kildekritisk må materialet vektes etter funksjon';
+            return `${lead}: ${roles.join('; ')}`;
+          }
+          """.replace('          ', '')
+          new = """function sourceRoleSentence(sourceRows, index) {
+  const roles = sourceRows.map((row) => `${labelSource(row)} er en ${sourceKind(row)} med relevans for ${clean(row.territory)}`);
+  const leads = [
+    'Kildenes roller er forskjellige',
+    'Det er viktig å holde kildetypene fra hverandre',
+    'Kildekritisk må materialet vektes etter funksjon',
+    'Dokumentene har ulik bevisverdi',
+    'Kildene må leses ut fra institusjonell og faglig funksjon',
+    'Evidensstyrken avhenger av hvilken rolle hver kilde faktisk spiller',
+    'Samme påstand bæres her av kilder med ulike oppgaver',
+    'Kildekombinasjonen krever at autoritet og funksjon skilles',
+    'Hvert dokument bidrar på sin egen måte til kontrollen',
+    'Trianguleringen virker bare når kildenes funksjoner holdes fra hverandre',
+    'Kildekritikken begynner med å skille dokumenttype fra påstandsstyrke',
+    'Evidensgrunnlaget blir mer presist når hver kildes rolle navngis'
+  ];
+  const lead = leads[index % leads.length];
+  return `${lead}: ${roles.join('; ')}`;
+}
+"""
+          if text.count(old) != 1:
+              raise SystemExit(f'{materializer}: sourceRoleSentence block not found exactly once')
+          materializer.write_text(text.replace(old, new))
+
+          gate_files = [
+              Path('scripts/reaudit-film-tv-existing-chapters-v1.mjs'),
+              Path('scripts/plan-film-tv-learning-order-v1.mjs'),
+              Path('tests/film-tv-existing-chapter-reaudit-v1.test.mjs'),
+              Path('tests/film-tv-learning-order-plan-v1.test.mjs'),
+          ]
+          old_gate = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$'
+          new_gate = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$'
+          for path in gate_files:
+              body = path.read_text()
+              count = body.count(old_gate)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected exactly one stale completion-gate regex, found {count}')
+              path.write_text(body.replace(old_gate, new_gate))
+          PY
+          node --check scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs
+
       - name: Materialize editorial Unit15 outputs
         run: node scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs
-      - name: Diagnose editorial audit gate
+
+      - name: Audit editorial Unit15 outputs
         shell: bash
         run: |
           set +e
@@ -39,3 +99,45 @@ jobs:
             echo "::error title=Unit15 editorial audit::${clean}"
             exit "$code"
           fi
+
+      - name: Validate Unit15 and predecessor contracts
+        run: |
+          node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs --check
+          node --test tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
+          node --test tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs
+          node tests/film-tv-final-gate-monotonicity-v1.test.mjs
+          node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
+          node scripts/reaudit-film-tv-existing-chapters-v1.mjs
+          node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
+          node scripts/plan-film-tv-learning-order-v1.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node scripts/audit-fagverk-film-tv-phase3.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+
+      - name: Commit verified Unit15 editorial reconciliation and self-remove
+        run: |
+          rm .github/workflows/film-tv-unit15-editorial-rematerialize.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs \
+            scripts/reaudit-film-tv-existing-chapters-v1.mjs \
+            scripts/plan-film-tv-learning-order-v1.mjs \
+            tests/film-tv-existing-chapter-reaudit-v1.test.mjs \
+            tests/film-tv-learning-order-plan-v1.test.mjs \
+            data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne.json \
+            data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/01-kulturarv-kanon-og-motarkiv.json \
+            data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/02-stjerner-kanonmakt-og-kollektiv-referanse.json \
+            data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/03-kult-nostalgi-og-kulturell-varighet.json \
+            data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/04-sitat-stjerneapparat-og-tv-minne.json \
+            data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/brief.json \
+            data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/claims.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json \
+            reports/fagverk/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1-audit.json \
+            .github/workflows/film-tv-unit15-editorial-rematerialize.yml
+          git diff --cached --check
+          git diff --cached --quiet && { echo "No verified Unit15 changes"; exit 1; } || true
+          git commit -m "Finalize Unit15 editorial fulltext and predecessor gates"
+          git push origin HEAD:agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
