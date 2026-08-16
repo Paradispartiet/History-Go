@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.local/schemas/compiled-scene-registry-v1.schema.json",
+  "title": "Civication Compiled Scene Registry v1",
+  "description": "Deterministic build artifact for Civication scene sources. Canonical scene semantics and a temporary generated compatibility projection live in one artifact during runtime cutover.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "compiler_version",
+    "scene_contract",
+    "source_root",
+    "compiled_source_files",
+    "ignored_source_files",
+    "shadowed_duplicates",
+    "runtime_materialized_sources",
+    "entries",
+    "role_index",
+    "legacy_fallback_inventory",
+    "stats",
+    "registry_hash"
+  ],
+  "properties": {
+    "schema": { "const": "compiled_scene_registry_v1" },
+    "version": { "const": 1 },
+    "compiler_version": { "const": 1 },
+    "scene_contract": { "const": "data/Civication/sceneContractV1.schema.json" },
+    "source_root": { "const": "data/Civication/mailFamilies" },
+    "compiled_source_files": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^data/Civication/mailFamilies/.+\\.json$" },
+      "uniqueItems": true
+    },
+    "ignored_source_files": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^data/Civication/mailFamilies/.+\\.json$" },
+      "uniqueItems": true
+    },
+    "shadowed_duplicates": {
+      "type": "array",
+      "description": "Reachable duplicate scene IDs whose later source has the same runtime routing signature and is therefore shadowed by the earlier SceneCatalog source order. 4H-B must clear this debt before runtime cutover.",
+      "items": { "$ref": "#/$defs/shadowedDuplicate" }
+    },
+    "runtime_materialized_sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/runtimeSource" },
+      "uniqueItems": true
+    },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    },
+    "role_index": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "$ref": "#/$defs/nonEmptyId" },
+        "uniqueItems": true
+      }
+    },
+    "legacy_fallback_inventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["root", "file_count"],
+      "properties": {
+        "root": { "const": "data/Civication/jobbmails" },
+        "file_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_file_count",
+        "compiled_source_file_count",
+        "ignored_source_file_count",
+        "shadowed_duplicate_count",
+        "scene_count",
+        "role_count"
+      ],
+      "properties": {
+        "input_file_count": { "type": "integer", "minimum": 0 },
+        "compiled_source_file_count": { "type": "integer", "minimum": 0 },
+        "ignored_source_file_count": { "type": "integer", "minimum": 0 },
+        "shadowed_duplicate_count": { "type": "integer", "minimum": 0 },
+        "scene_count": { "type": "integer", "minimum": 0 },
+        "role_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "registry_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "$defs": {
+    "nonEmptyId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "runtimeSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "source_format", "materialization"],
+      "properties": {
+        "name": { "enum": ["private", "life", "narrative", "social"] },
+        "source_format": { "type": "string", "minLength": 1 },
+        "materialization": { "const": "runtime" }
+      }
+    },
+    "shadowedDuplicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kept_source_path",
+        "kept_source_rank",
+        "shadowed_source_path",
+        "shadowed_source_rank",
+        "routing_signature"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyId" },
+        "kept_source_path": { "type": "string", "pattern": "^data/Civication/mailFamilies/.+\\.json$" },
+        "kept_source_rank": { "type": "integer", "minimum": 0 },
+        "shadowed_source_path": { "type": "string", "pattern": "^data/Civication/mailFamilies/.+\\.json$" },
+        "shadowed_source_rank": { "type": "integer", "minimum": 0 },
+        "routing_signature": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "category",
+        "role_scope",
+        "mail_type",
+        "source_path",
+        "source_schema",
+        "source_hash",
+        "scene",
+        "compatibility_projection"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyId" },
+        "category": { "$ref": "#/$defs/nonEmptyId" },
+        "role_scope": { "$ref": "#/$defs/nonEmptyId" },
+        "mail_type": { "type": "string", "minLength": 1 },
+        "source_path": { "type": "string", "pattern": "^data/Civication/mailFamilies/.+\\.json$" },
+        "source_schema": { "type": "string", "minLength": 1 },
+        "source_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "scene": { "$ref": "./sceneContractV1.schema.json" },
+        "compatibility_projection": {
+          "type": "object",
+          "description": "Temporary compiler-generated projection consumed only during the 4H runtime parity cutover. It is not a second source of truth.",
+          "additionalProperties": true,
+          "required": ["id", "category", "role_scope", "mail_type", "choices", "situation", "scene_catalog_source_path", "scene_catalog_version"]
+        }
+      }
+    }
+  }
+}
