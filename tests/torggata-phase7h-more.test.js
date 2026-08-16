@@ -13,6 +13,7 @@ const language = readJson(languagePath);
 const manifest = readJson('data/leksikon/sprak/manifest.json');
 const backlog = readJson('reports/place-production/torggata-quality-improvement-backlog-v1.json');
 const runtime = read('js/ui/place-popup-tabs.js');
+const directTabsRuntime = read('js/ui/place-popup-direct-tabs.js');
 const checklist = read('docs/PLACE_PRODUCTION_CHECKLIST.md');
 const popupContract = read('docs/PLACE_POPUP_SYSTEM.md');
 const audit = read('reports/place-production/torggata-phase7h-more-audit-v1.md');
@@ -54,11 +55,12 @@ for (const entry of language.entries) {
 assert.strictEqual(manifest.place_files.torggata, languagePath);
 
 assert.match(runtime, /renderMore\(main, buckets\.objects, language\)/);
-assert.match(runtime, /interpretation\.what_to_notice/);
-assert.match(runtime, /interpretation\.why_it_matters/);
-assert.match(runtime, /interpretation\.counterpoints/);
-assert.match(runtime, /list\(languageArticle\?\.entries\)/);
-assert.match(runtime, /Språkleksikon/);
+assert.match(directTabsRuntime, /Spor & objekter/);
+assert.match(directTabsRuntime, /Legg merke til/);
+assert.match(directTabsRuntime, /Betydning/);
+assert.match(directTabsRuntime, /Motpunkter/);
+assert.match(directTabsRuntime, /Språk/);
+assert.match(directTabsRuntime, /moreTab\?\.remove\(\)/);
 
 const finding = backlog.findings.find(item => item.id === 'more_missing');
 assert(finding);
@@ -75,7 +77,7 @@ assert.deepStrictEqual(backlog.active_phase, {
 assert.match(checklist, /delsteder innenfor eller langs stedet som allerede har egne canonical place-oppføringer/);
 assert.match(checklist, /kan ikke brukes i stedet for parent-place i noen fane, runding, bildepar, Story eller hovedpåstand/);
 assert.match(popupContract, /Placegrensen gjelder hele popupen/);
-assert.match(popupContract, /kan ikke brukes i stedet for parent-place i Om, Historie, Fortellinger, Før\/etter, Nyheter, Lesespor, Kilder eller Mer/);
+assert.match(popupContract, /kan ikke brukes i stedet for parent-place i Om, Historie, Fortellinger, Før\/etter, Nyheter, Lesespor, Kilder, Språk eller andre datastyrte direktefaner/);
 assert.match(audit, /Torggata Bad, Rockefeller, Youngstorget[\s\S]*brukes ikke som Mer-erstatning/);
 assert.match(audit, /Automatiske tester[\s\S]*beviser ikke alene/);
 assert.match(workcard, /Gjenåpnet fase 7H Mer = LØST/);

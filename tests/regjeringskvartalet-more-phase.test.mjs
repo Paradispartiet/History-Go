@@ -10,6 +10,7 @@ const languagePath = 'data/leksikon/sprak/places/europe/norway/oslo/regjeringskv
 const language = readJson(languagePath);
 const languageManifest = readJson('data/leksikon/sprak/manifest.json');
 const runtime = fs.readFileSync('js/ui/place-popup-tabs.js', 'utf8');
+const directTabsRuntime = fs.readFileSync('js/ui/place-popup-direct-tabs.js', 'utf8');
 const report = fs.readFileSync('reports/place-production/regjeringskvartalet-politikk-v1.md', 'utf8');
 
 test('Regjeringskvartalet har et lite canonical Språkleksikon for Mer', () => {
@@ -61,15 +62,14 @@ test('Mer holder Knowledge, funfacts, relasjoner og Objects i sine canonicale ei
   assert.match(report, /Artifacts\/Objects er N\/A.*fase 11/s);
 });
 
-test('Eksisterende Mer-renderer viser tolkning, Språkleksikon og sikre kildelenker', () => {
-  assert.match(runtime, /function languageCards\(items\)/);
-  assert.match(runtime, /item\?\.context/);
-  assert.match(runtime, /class="hg-place-more-source"/);
-  assert.match(runtime, /target="_blank" rel="noopener noreferrer"/);
+test('Legacy Mer-hydrering materialiseres som direkte faner', () => {
   assert.match(runtime, /section\("Legg merke til"/);
   assert.match(runtime, /section\("Hvorfor det betyr noe"/);
   assert.match(runtime, /section\("Motpunkter"/);
-  assert.match(runtime, /section\("Språkleksikon", languageCards\(languageEntries\)\)/);
+  assert.match(directTabsRuntime, /"legg merke til": \["notice", "Legg merke til"\]/);
+  assert.match(directTabsRuntime, /"hvorfor det betyr noe": \["meaning", "Betydning"\]/);
+  assert.match(directTabsRuntime, /"motpunkter": \["counterpoints", "Motpunkter"\]/);
+  assert.match(directTabsRuntime, /moreTab\?\.remove\(\)/);
 });
 
 test('Fasekortet lukker Kilder, åpner Mer og peker videre til Objects', () => {

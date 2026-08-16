@@ -21,7 +21,8 @@ Det er en **ruterings- og sjekkliste**, ikke en erstatning for subsystemenes egn
 | Canonical stedstandard | `docs/PLACE_STANDARD.md` |
 | `desc` og `popupDesc` | **`data/places/regler/PLACE_DESCRIPTION_CANONICAL.md`** |
 | Description-produksjonspakke | `data/places/regler/place_description_production_v4_2.schema.json` |
-| Stedspopup / åtte faner | **`docs/PLACE_POPUP_SYSTEM.md`** |
+| Stedspopup / direkte faner og scrollbar | **`docs/PLACE_POPUP_SYSTEM.md`** |
+| Språkleksikon / dialektord og lokale uttrykk | **`docs/SPRAKLEKSIKON.md`** |
 | PlaceCard-rundinger | **`data/places/README_place_rounds.md`** |
 | Brands-semantikk, klassifisering og place-kobling | **`data/brands/brand_rules_v1_1.json`** |
 | Kategori / canonical kategori-ID-er | `data/categories/category_contract.json` |
@@ -73,7 +74,7 @@ Det er derfor ikke lov å:
 
 ## Obligatorisk arbeidsmåte — nullmåling og én fase om gangen
 
-Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-, Historie-, Næringsliv- og Subkultur-gate når relevant, alle åtte popupfaner, rundinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
+Før et eksisterende eller nytt sted fylles, skal det lages en skriftlig nullmåling og sanerings-/produksjonsplan. Nullmålingen skal minst dekke canonical identitet, Politikk-, Historie-, Næringsliv- og Subkultur-gate når relevant, alle relevante popupfaner, inkludert datastyrte direktefaner, rundinger, People, Objects, Brands, Badges, Stories, Quiz, Knowledge, kilder og faktisk UI-visning.
 
 Produksjonen deles deretter i små faser. Bare én fase kan ha status `PÅGÅR` om gangen:
 
@@ -148,6 +149,8 @@ STEDSTYPE:
 KOORDINATSTATUS:
 DESCRIPTION-PRODUCTION-PACKAGE:
 LEKSIKON-ID/FIL:
+SPRÅKLEKSIKON-STATUS:
+DIALEKTORD/LOKALE UTTRYKK — RESEARCH OG PRODUKSJON:
 MÅL FOR INNHOLDSRUNDINGER: 4 + separat fast Badge
 VALGTE RUNDINGER:
 PEOPLE-KANDIDATER:
@@ -170,10 +173,17 @@ POPUPSTATUS — FØR/ETTER:
 POPUPSTATUS — NYHETER:
 POPUPSTATUS — LESESPOR:
 POPUPSTATUS — KILDER:
-POPUPSTATUS — MER:
+POPUPSTATUS — SPRÅK:
+POPUPSTATUS — SPOR OG OBJEKTER:
+POPUPSTATUS — LEGG MERKE TIL:
+POPUPSTATUS — BETYDNING:
+POPUPSTATUS — MOTPUNKTER:
+POPUPSTATUS — RELASJONER:
+POPUPSTATUS — KUNNSKAP:
+POPUPSTATUS — OBSERVASJONER:
 MANUELL SLUTT-QA — FØR/ETTER-SAMMENLIGNING:
 MANUELL SLUTT-QA — NYHETER-DEKNING:
-MANUELL SLUTT-QA — MER-DEKNING:
+MANUELL SLUTT-QA — DIREKTE TILLEGGSFANER:
 MANUELL SLUTT-QA — RUNDINGSKOHERENS:
 MANUELL SLUTT-QA — KRITISKE FUNN/BLOKKERE:
 ```
@@ -807,7 +817,7 @@ Kontroller spesielt der relevant:
 
 # DEL C — STEDSPOPUPEN
 
-## 7. Alle åtte faner vurderes
+## 7. Alle relevante faner vurderes
 
 **LES FØRST — obligatorisk:** `docs/PLACE_POPUP_SYSTEM.md`
 
@@ -878,18 +888,40 @@ Popupen aggregerer canonical data; den skal ikke skape en ny parallell sannhet.
 - [ ] brukerrettede lenker er relevante, HTTPS og dedupliserte;
 - [ ] interne audits/researchnotater lekker ikke ut.
 
-### Mer
-- [ ] Språkleksikon vurdert;
-- [ ] navnehistorie, ordbruk, lokale uttrykk og andre relevante språklag er søkt;
-- [ ] observations/knowledge/funfacts vurdert;
-- [ ] arkivspor, små stedsspesifikke detaljer, kuraterte relasjoner og «legg merke til»-momenter er vurdert;
-- [ ] minst ett reelt tilleggslag produseres når kildene bærer det; Mer skal tilføre noe som ikke allerede står i Om eller Historie;
-- [ ] tomt eksisterende datasett er aldri alene grunnlag for N/A;
-- [ ] Mer brukes ikke som søppelskuff for handlinger eller fysiske Objects/Details/Spots.
+### Språk — direkte fane når relevant
+**LES FØRST — obligatorisk ved Språkleksikon-produksjon:** `docs/SPRAKLEKSIKON.md`
 
-**Stoppgate:** Mer kan ikke settes N/A for et innholdsrikt sted bare fordi Språkleksikon-posten mangler. Først skal relevante språk-, arkiv-, observasjons-, kunnskaps- og relasjonseiere være konkret undersøkt.
+- [ ] eksisterende Språkleksikon-record og språkmanifest er søkt;
+- [ ] navnehistorie, ordbruk, lokale uttrykk, talemålsmateriale og andre relevante språklag er undersøkt i eksterne kilder;
+- [ ] **hver opprettelse eller vesentlige revisjon av Språkleksikon inkluderer et eksplisitt researchspor etter dialektord og lokale uttrykk**;
+- [ ] når kildene bærer det, produseres minst ett reelt, kildebelagt **dialektord eller lokalt uttrykk** som `word` eller `expression` — Språkleksikon skal ikke stoppe ved bare navn eller generelle fagord når lokale former finnes;
+- [ ] betydning, eksempel, geografisk utbredelse og historisk/moderne status avgrenses etter kildene;
+- [ ] dialektord eller lokale uttrykk skal ikke diktes, normaliseres fram eller konstrueres av språkmodell;
+- [ ] dersom eksplisitt søk ikke finner et forsvarlig dialektord/lokalt uttrykk, dokumenteres søkte kilder og begrunnet holdback/N/A for denne deljobben i stedet for filler;
+- [ ] språkoppføringer er reelt sted- eller områdebundet og dupliserer ikke bare Om/Historie;
+- [ ] brukerrettede kilder er inspectable HTTPS-lenker;
+- [ ] tomt eksisterende språksett er aldri alene grunnlag for N/A.
 
-Alle åtte får egen status: **ikke startet**, **pågår**, **klar for review**, **ferdig** eller **N/A med fanespesifikk begrunnelse, dokumentert søk og evidenspeker**.
+**Stoppgate:** Et Språkleksikon kan ikke ferdigmeldes etter bare stedsnavn, administrative begreper eller generelle fagord dersom kildegrunnlaget dokumenterer lokale ordformer eller uttrykk. Manglende dokumenterbart dialektord etter reelt søk er lov; oppdiktet dialektord er ikke lov.
+
+### Datastyrte direkte tilleggsfaner
+
+Det finnes ikke lenger en brukerrettet **Mer**-fane. Når source-data finnes, materialiseres de som egne faner i den samme horisontalt scrollbar fanestripen:
+
+- [ ] **Spor & objekter** vurdert for kildebelagte popup-`artifacts`/legacy-objekter som ikke eies av en annen flate;
+- [ ] **Legg merke til** vurdert fra `interpretation.what_to_notice`;
+- [ ] **Betydning** vurdert fra `interpretation.why_it_matters`;
+- [ ] **Motpunkter** vurdert fra `interpretation.counterpoints` og inferensgrenser;
+- [ ] **Relasjoner** vurdert når curated relations faktisk forklarer stedet;
+- [ ] **Kunnskap** vurdert etter Knowledge-/unlock-eierskapet;
+- [ ] **Observasjoner** vurdert når observasjonsdata finnes;
+- [ ] hvert tilleggslag får en navngitt direktefane bare når det faktisk har innhold;
+- [ ] ukjent legacy-innhold får en konkret, reviewbar faneetikett fra sin egen overskrift og parkeres ikke i en ny restkategori;
+- [ ] ingen av disse fanene brukes som søppelskuff for handlinger eller for fysiske elementer som egentlig eies av rundinger eller andre places.
+
+**Stoppgate:** Innhold som tidligere lå i Mer kan ikke skjules bak en restfane. Det skal enten ligge hos riktig eksisterende eier, vises som en konkret direktefane, eller utelates med dokumentert grunn.
+
+Hver fast og hver faktisk materialisert datastyrt fane får egen status: **ikke startet**, **pågår**, **klar for review**, **ferdig** eller **N/A med fanespesifikk begrunnelse, dokumentert søk og evidenspeker**.
 
 Status kan ikke arves mellom faner. Særlig gjelder:
 
