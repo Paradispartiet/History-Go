@@ -120,12 +120,17 @@ test("Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny rundi
 });
 
 
-test("place-produksjon låser dialektord som Språkleksikon-jobb", () => {
+test("place-produksjon låser dialektord til riktig place-eier", () => {
   const checklist = read("docs/PLACE_PRODUCTION_CHECKLIST.md");
   const contract = read("docs/SPRAKLEKSIKON.md");
-  assert.match(checklist, /dialektord/i);
-  assert.match(checklist, /lokalt uttrykk|lokale uttrykk/i);
+  assert.match(checklist, /SPRÅK-PLACE-SCOPE — OMRÅDE \/ DIREKTE SPRÅKSTED \/ ENKELTSTED/);
+  assert.match(checklist, /coordRole: "area_anchor"/);
+  assert.match(checklist, /for \*\*enkeltsted\*\* er dialektord ikke et krav/i);
   assert.match(checklist, /skal ikke diktes/i);
   assert.match(contract, /obligatorisk produksjonsjobb/i);
+  assert.match(contract, /coordRole: "area_anchor"/);
   assert.match(contract, /minst ett reelt kildebelagt \*\*dialektord eller lokalt uttrykk\*\*/i);
+  assert.match(contract, /geografisk plassering i et dialektområde \*\*ikke nok\*\*/i);
+  assert.match(contract, /nærmeste relevante område-Place/i);
+  assert.match(contract, /related_places.*related_entries/i);
 });
