@@ -147,6 +147,7 @@ NÆRINGSLIV-DAGENS DRIFTSSTATUS:
 NÆRINGSLIV-PRODUKSJONSRAPPORT:
 STEDSTYPE:
 KOORDINATSTATUS:
+PLACE-SCOPE (canonical): `area` / ikke satt
 DESCRIPTION-PRODUCTION-PACKAGE:
 LEKSIKON-ID/FIL:
 SPRÅKLEKSIKON-STATUS:
@@ -889,12 +890,23 @@ Popupen aggregerer canonical data; den skal ikke skape en ny parallell sannhet.
 - [ ] brukerrettede lenker er relevante, HTTPS og dedupliserte;
 - [ ] interne audits/researchnotater lekker ikke ut.
 
+### Place-scope — semantisk områdeeierskap
+
+- [ ] `placeScope: "area"` settes bare når Place faktisk representerer et geografisk, urbant eller lokalt område som brukeren kan forstå som et område — for eksempel strøk, bydel, by/bygd, tettsted eller ladested;
+- [ ] `coordRole` og `coordType` beskriver koordinatgeometri og kan **ikke** alene gjøre et Place til område-Place; parker, torg, stadioner, gravlunder, museer, festninger og andre fysiske flater blir ikke område-Places bare fordi koordinaten bruker `area_anchor`;
+- [ ] nye område-Places får `placeScope` eksplisitt i canonical Place-data; runtime skal ikke gjette områdeeierskap fra navn, kategori eller koordinatrolle;
+- [ ] ved lav kartzoom er `placeScope: "area"` den eneste Place-klassen som beholder vanlig place-prikk, label og klikkeflate; detalj-Places kommer tilbake ved innzooming;
+- [ ] et område-Place kan eie områdebundet språk og relasjoner, mens underliggende enkeltsteder peker til områdeeieren i stedet for å kopiere samme innhold.
+
+**Stoppgate:** `area_anchor` er ikke synonymt med område-Place. Semantisk scope og koordinatankertype skal holdes som to separate kontrakter.
+
 ### Språk — direkte fane når relevant
 **LES FØRST — obligatorisk ved Språkleksikon-produksjon:** `docs/SPRAKLEKSIKON.md`
 
 - [ ] eksisterende Språkleksikon-record og språkmanifest er søkt;
 - [ ] place-objektet er klassifisert som **område-Place**, **direkte språksted** eller **enkeltsted** ut fra canonical identitet — ikke bare navn;
-- [ ] `coordRole: "area_anchor"` behandles som primær eksisterende markør for områdeeierskap; dokumentert `district_anchor`/områdeidentitet kan støtte vurderingen;
+- [ ] `placeScope: "area"` er canonical markør for områdeeierskap; `coordRole`/`coordType` er bare koordinatgeometri og gir ikke språk-eierskap alene;
+- [ ] ved migrering kan eksplisitt `district_anchor`, `quiz_profile.place_type: "omrade"` og andre klart semantiske områdeklassifikasjoner brukes som belegg, men resultatet skal lagres som `placeScope: "area"`;
 - [ ] for **område-Place** er navnehistorie, ordbruk, dialektord, lokale uttrykk, talemålsmateriale og andre relevante språklag undersøkt i eksterne kilder;
 - [ ] for **område-Place** produseres minst ett reelt, kildebelagt **dialektord eller lokalt uttrykk** som `word` eller `expression` når kildene bærer det — området skal ikke stoppe ved bare navn eller generelle fagord når lokale former finnes;
 - [ ] for **enkeltsted** er dialektord ikke et krav bare fordi stedet ligger i et dialektområde; ord/uttrykk produseres bare når det finnes en direkte dokumentert språklig forbindelse til akkurat stedet;

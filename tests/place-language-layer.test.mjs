@@ -124,13 +124,24 @@ test("place-produksjon låser dialektord til riktig place-eier", () => {
   const checklist = read("docs/PLACE_PRODUCTION_CHECKLIST.md");
   const contract = read("docs/SPRAKLEKSIKON.md");
   assert.match(checklist, /SPRÅK-PLACE-SCOPE — OMRÅDE \/ DIREKTE SPRÅKSTED \/ ENKELTSTED/);
-  assert.match(checklist, /coordRole: "area_anchor"/);
+  assert.match(checklist, /placeScope:\s*"area"/);
   assert.match(checklist, /for \*\*enkeltsted\*\* er dialektord ikke et krav/i);
   assert.match(checklist, /skal ikke diktes/i);
   assert.match(contract, /obligatorisk produksjonsjobb/i);
-  assert.match(contract, /coordRole: "area_anchor"/);
+  assert.match(contract, /placeScope:\s*"area"/);
   assert.match(contract, /minst ett reelt kildebelagt \*\*dialektord eller lokalt uttrykk\*\*/i);
   assert.match(contract, /geografisk plassering i et dialektområde \*\*ikke nok\*\*/i);
   assert.match(contract, /nærmeste relevante område-Place/i);
   assert.match(contract, /related_places.*related_entries/i);
+});
+
+
+
+test("områdeeierskap bruker canonical placeScope, ikke koordinatrollen", () => {
+  const checklist = read("docs/PLACE_PRODUCTION_CHECKLIST.md");
+  const contract = read("docs/SPRAKLEKSIKON.md");
+  assert.match(checklist, /placeScope:\s*"area"/);
+  assert.match(contract, /placeScope:\s*"area"/);
+  assert.match(contract, /coordRole[\s\S]{0,180}koordinat/i);
+  assert.doesNotMatch(contract, /coordRole:\s*"area_anchor"[^\n]*primær/i);
 });
