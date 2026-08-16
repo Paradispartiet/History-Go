@@ -294,12 +294,13 @@ try {
     'Kilder',
     'Relasjoner',
     'Kunnskap',
-    'Observasjoner'
+    'Observasjoner',
+    'Språk'
   ]);
-  assert.equal(await page.locator('[role="tabpanel"]').count(), 10);
+  assert.equal(await page.locator('[role="tabpanel"]').count(), 11);
   assert.equal(await page.locator('[data-place-tab="more"]').count(), 0);
 
-  for (const id of ['about', 'history', 'stories', 'before-after', 'news', 'reading', 'sources', 'relations', 'knowledge', 'observations']) {
+  for (const id of ['about', 'history', 'stories', 'before-after', 'news', 'reading', 'sources', 'relations', 'knowledge', 'observations', 'language']) {
     await page.locator(`[data-place-tab="${id}"]`).click();
     assert.equal(await page.locator(`[data-place-tab="${id}"]`).getAttribute('aria-selected'), 'true');
     assert.equal(await page.locator(`#hg-place-panel-${id}`).evaluate(panel => panel.hidden), false);
@@ -311,7 +312,7 @@ try {
 
   await page.locator('[data-place-tab="about"]').focus();
   await page.keyboard.press('End');
-  assert.equal(await page.locator('[data-place-tab="observations"]').getAttribute('aria-selected'), 'true');
+  assert.equal(await page.locator('[data-place-tab="language"]').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('Home');
   assert.equal(await page.locator('[data-place-tab="about"]').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('ArrowRight');
