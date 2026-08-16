@@ -58,6 +58,22 @@ test('universitetsstatus kan ikke sertifiseres av kjent generator-malprosa', () 
   }
 });
 
+test('teorihistorie er fri for regex-skjøter fra quality-repair', () => {
+  for (const article of articles.filter(isSubstantivelyReviewed)) {
+    const theory = sectionProse(article, 'teorihistorie');
+    assert.doesNotMatch(
+      theory,
+      /brukes som primæranker for\s{2,}/u,
+      `${article.id}: teorihistorien har dobbel-space skjøt etter primæranker-transformasjon`
+    );
+    assert.doesNotMatch(
+      theory,
+      /\b[A-ZÆØÅ]\.\s*[A-ZÆØÅ]\.?(?=[A-ZÆØÅ][^.!?]{0,160}brukes som primæranker)/u,
+      `${article.id}: teorihistorien har initialer skjøtet direkte til en primærverktittel`
+    );
+  }
+});
+
 test('kildeavsnittet må omtale de faktiske emnespesifikke sekundærkildene og ikke et annet emnes kildeliste', () => {
   const searchableTitles = sourceRegistry.sources
     .filter((source) => norm(source.title).length >= 10)
