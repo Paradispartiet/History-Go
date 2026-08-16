@@ -7,7 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ID = 'skapende-arbeid-teknologi-og-ansvar';
 const NEXT = 'creative_work_technology_responsibility_full_chapter_complete_next_unit_source_brief';
-const FILM_TV_PRODUCTION_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/;
+const FILM_TV_PRODUCTION_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/;
 const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
 const write = (p, v) => { fs.mkdirSync(path.dirname(path.join(ROOT,p)), {recursive:true}); fs.writeFileSync(path.join(ROOT,p), `${JSON.stringify(v,null,2)}\n`); };
 const assert = (ok,m) => { if(!ok) throw new Error(m); };
