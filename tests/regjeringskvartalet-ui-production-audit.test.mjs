@@ -23,6 +23,7 @@ const regjeringskvartaletPeople = people.filter(person => (
 const report = read('reports/place-production/regjeringskvartalet-politikk-v1.md');
 const appRuntime = read('js/app.js');
 const popupRuntime = read('js/ui/place-popup-tabs.js');
+const directTabsRuntime = read('js/ui/place-popup-direct-tabs.js');
 const roundsRuntime = read('js/ui/place-rounds-visual-collections.js');
 const popupCss = read('css/place-popup-tabs.css');
 const fagverkHtml = read('fagverk-sted.html');
@@ -79,8 +80,7 @@ for (const [id, label] of [
   ['before-after', 'Før/etter'],
   ['news', 'Nyheter'],
   ['reading', 'Lesespor'],
-  ['sources', 'Kilder'],
-  ['more', 'Mer']
+  ['sources', 'Kilder']
 ]) {
   assert.ok(popupRuntime.includes(`["${id}", "${label}"]`));
 }
@@ -92,6 +92,10 @@ assert.match(popupRuntime, /event\.key === "ArrowLeft"/);
 assert.match(popupRuntime, /event\.key === "Home"/);
 assert.match(popupRuntime, /event\.key === "End"/);
 assert.match(popupCss, /overflow-x:\s*auto/);
+assert.match(popupCss, /flex-wrap:\s*nowrap/);
+assert.match(popupCss, /white-space:\s*nowrap/);
+assert.match(directTabsRuntime, /moreTab\?\.remove\(\)/);
+assert.match(directTabsRuntime, /scrollIntoView/);
 assert.match(popupCss, /@media \(max-width: 720px\)/);
 assert.match(popupCss, /\.hg-place-before-after-media\{[\s\S]*grid-template-columns:\s*1fr/);
 assert.match(popupCss, /:focus-visible/);
@@ -183,6 +187,9 @@ const fixture = `<!doctype html>
           <h1>Regjeringskvartalet</h1>
           <div class="hg-place-popup-text"><p>Canonical popupgrunnlag.</p></div>
         </section>
+        <section class="hg-place-relations-section"><h3>Relasjoner</h3><p>Canonical relasjon.</p></section>
+        <section class="hg-place-knowledge-section"><h3>Kunnskap</h3><p>Canonical kunnskap.</p></section>
+        <section class="hg-place-observations-section"><h3>Observasjoner</h3><p>Canonical observasjon.</p></section>
       </div>
     </article>
   </div>
@@ -198,6 +205,7 @@ const fixture = `<!doctype html>
   <script src="/js/stories/stories_loader.js"></script>
   <script src="/js/brands/brands_loader.js"></script>
   <script src="/js/ui/place-popup-tabs.js"></script>
+  <script src="/js/ui/place-popup-direct-tabs.js"></script>
   <script>
     const storyInitA = window.HGStories.init();
     const storyInitB = window.HGStories.init();
@@ -284,11 +292,15 @@ try {
     'Nyheter',
     'Lesespor',
     'Kilder',
-    'Mer'
+    'Relasjoner',
+    'Kunnskap',
+    'Observasjoner',
+    'Språk'
   ]);
-  assert.equal(await page.locator('[role="tabpanel"]').count(), 8);
+  assert.equal(await page.locator('[role="tabpanel"]').count(), 11);
+  assert.equal(await page.locator('[data-place-tab="more"]').count(), 0);
 
-  for (const id of ['about', 'history', 'stories', 'before-after', 'news', 'reading', 'sources', 'more']) {
+  for (const id of ['about', 'history', 'stories', 'before-after', 'news', 'reading', 'sources', 'relations', 'knowledge', 'observations', 'language']) {
     await page.locator(`[data-place-tab="${id}"]`).click();
     assert.equal(await page.locator(`[data-place-tab="${id}"]`).getAttribute('aria-selected'), 'true');
     assert.equal(await page.locator(`#hg-place-panel-${id}`).evaluate(panel => panel.hidden), false);
@@ -300,7 +312,7 @@ try {
 
   await page.locator('[data-place-tab="about"]').focus();
   await page.keyboard.press('End');
-  assert.equal(await page.locator('[data-place-tab="more"]').getAttribute('aria-selected'), 'true');
+  assert.equal(await page.locator('[data-place-tab="language"]').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('Home');
   assert.equal(await page.locator('[data-place-tab="about"]').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('ArrowRight');

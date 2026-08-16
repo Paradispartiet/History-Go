@@ -1,10 +1,14 @@
 // js/Civication/systems/day/dayPatches.js
 // Dag-fase-patch/bootstrap: recovery-/onboarding-events, task-kapital fra valg, og etter-svar-
-// effekter. Patcher EventEngine.answer/onAppOpen, TaskEngine og Jobs. Dagrytmen og fase-
+// effekter. Registrerer answer-middleware i ChoiceDirector og patcher onAppOpen, TaskEngine og Jobs. Dagrytmen og fase-
 // genereringen eies av DailyMailBuilder + mailDayProgram (PR A–E). Arbeidsdagspanelet (inkl.
 // fase-HUD + ukesrapport/kontakter/kunnskaps-task) rendres nativt av CivicationUI.renderWorkdayPanel
 // (PR D/G) — denne modulen monkey-patcher ikke lenger renderWorkdayPanel.
 (function () {
+
+const ANSWER_MIDDLEWARE_NAME = "day_patches";
+const ANSWER_MIDDLEWARE_PRIORITY = 90;
+const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
 
 function clearPendingEventById(engine, eventId) {
   if (!engine || !eventId) return false;
@@ -386,7 +390,6 @@ function patchEventEngine() {
   proto.__dayPhasePatched = true;
 
   const legacyOnAppOpen = proto.onAppOpen;
-  const legacyAnswer = proto.answer;
 
   proto.onAppOpen = async function (opts = {}) {
     const active = window.CivicationState?.getActivePosition?.();
@@ -441,158 +444,177 @@ function patchEventEngine() {
       : { enqueued: false, reason: "no_day_phase_generator" };
   };
 
-    proto.answer = async function (eventId, choiceId) {
-      const engine = /** @type {any} */ (this);
-      const pending = engine.getPendingEvent ? engine.getPendingEvent() : null;
-      const pendingEventId = String(pending?.event?.id || eventId || "").trim();
-      const active = window.CivicationState?.getActivePosition?.();
-      const onboardingEvent = pending?.event && isOnboardingEvent(pending.event);
-      const recoveryEvent = pending?.event && isRecoveryEvent(pending.event);
-
-      const inferredPhaseTag =
-        pending?.event?.phase_tag ||
-        (window.CivicationCalendar?.getPhase?.() === "morning" ? "morning" : null);
-
-      const phaseTag = inferredPhaseTag;
-
-      let originalFollowup = null;
-      if (phaseTag && typeof engine.enqueueImmediateFollowupEvent === "function") {
-        originalFollowup = engine.enqueueImmediateFollowupEvent;
-        engine.enqueueImmediateFollowupEvent = function () {
-          return Promise.resolve({
-            enqueued: false,
-            reason: "day_phase_blocked"
-          });
-        };
-      }
-
-      const result = legacyAnswer
-        ? await legacyAnswer.call(this, eventId, choiceId)
-        : { ok: false };
-
-      if (originalFollowup) {
-        engine.enqueueImmediateFollowupEvent = originalFollowup;
-      }
-
-      if (!result?.ok) return result;
-
-      if (onboardingEvent) {
-        updateOnboardingFromEvent(active, pending.event);
-        clearPendingEventById(engine, pendingEventId);
-
-        try {
-          const onboarding = /** @type {{ complete?: unknown } | null | undefined} */ (
-            window.CivicationState?.getOnboardingState?.(active)
-          );
-          if (onboarding?.complete === true) {
-            await engine.onAppOpen?.({ force: true });
-          }
-        } catch {}
-
-        rerenderCivicationUiNow();
-        window.dispatchEvent(new Event("updateProfile"));
-        return result;
-      }
-
-      if (!phaseTag) return result;
-
-      const choice =
-       Array.isArray(pending?.event?.choices)
-        ? pending.event.choices.find((c) => c && c.id === choiceId)
-        : null;
-
-appendDayChoiceLog({
-  phase: phaseTag,
-  subject: String(pending?.event?.subject || ""),
-  choiceId,
-  label: choice?.label || (phaseTag === "day_end" ? "Bekreftet dagslutt" : ""),
-  feedback: String(result?.feedback || ""),
-  effect: Number(result?.effect || 0)
-});
-
-applyPhaseChoiceEffects(phaseTag, choiceId, choice);
-applyTaskCapitalFromChoice(phaseTag, pending?.event, choice, result);
-
-window.CivicationTaskEngine?.completeByMail?.(
-  pending?.event?.id,
-  {
-    choiceId,
-    effect: Number(result?.effect || 0),
-    feedback: String(result?.feedback || ""),
-    capitalApplied: true
   }
-);
 
-maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);    
+async function dayPatchesAnswerMiddleware(ctx, proceed) {
+  const engine = /** @type {any} */ (ctx?.engine);
+  const eventId = ctx?.eventId;
+  const choiceId = ctx?.choiceId;
+  const pending = engine?.getPendingEvent ? engine.getPendingEvent() : null;
+  const pendingEventId = String(pending?.event?.id || eventId || "").trim();
+  const active = window.CivicationState?.getActivePosition?.();
+  const onboardingEvent = pending?.event && isOnboardingEvent(pending.event);
+  const recoveryEvent = pending?.event && isRecoveryEvent(pending.event);
 
-      try {
-        window.CivicationJobs?.maybeOfferCareerProgression?.(active);
-      } catch {}
+  const inferredPhaseTag =
+    pending?.event?.phase_tag ||
+    (window.CivicationCalendar?.getPhase?.() === "morning" ? "morning" : null);
+  const phaseTag = inferredPhaseTag;
 
-      if (recoveryEvent) {
-        clearPendingEventById(engine, pendingEventId);
-        try {
-          await engine.onAppOpen?.({ force: true });
-        } catch {}
-        rerenderCivicationUiNow();
-        window.dispatchEvent(new Event("updateProfile"));
-        return result;
-      }
-        
-      const cal = window.CivicationCalendar;
-      if (!cal) return result;
-
-      // For daily-events eier DailyMailBuilder fasen via item.phase (satt i enqueueNext),
-      // og CivicationDayProgression.advancePhaseIfReady avanserer først når fasens items er
-      // tomme. dayPatches skal da ikke flytte fasen selv — ellers blir det to fase-eiere
-      // og fasen ping-ponger. Etter-svar-effektene over (logg, fase-/kapitaleffekter, task,
-      // kontakter, karriere-hooks) beholdes for alle events. Den eldre fase-først-flyten
-      // (legacy/non-daily events) beholder per-svar-avanseringen sin uendret.
-      const dailyRuntimeEvent = isDailyRuntimeEvent(pending?.event);
-
-      if (!dailyRuntimeEvent) {
-        if (phaseTag === "morning") {
-          cal.markDailyFlag?.("morning_done", true);
-          cal.setPhase?.("lunch");
-        } else if (phaseTag === "lunch") {
-          cal.markDailyFlag?.("lunch_done", true);
-          cal.setPhase?.("afternoon");
-        } else if (phaseTag === "afternoon") {
-          cal.markDailyFlag?.("afternoon_done", true);
-          cal.setPhase?.("evening");
-        } else if (phaseTag === "evening") {
-          cal.markDailyFlag?.("evening_done", true);
-          cal.setPhase?.("day_end");
-        } else if (phaseTag === "day_end") {
-          const summary = cal.getDailySummary?.();
-          if (summary) {
-            saveDailySummaryToWeek(summary);
-
-            const activePosition = /** @type {{ career_id?: unknown } | null | undefined} */ (
-              window.CivicationState?.getActivePosition?.()
-            );
-            const activeCareerId =
-            activePosition?.career_id || "";
-
-            finalizeWeekIfNeeded(activeCareerId);
-          }
-          cal.resetForNewDay?.();
-        }
-      }
-
-      clearPendingEventById(engine, pendingEventId);
-
-      try {
-        clearPendingEventById(engine, pendingEventId);
-        await engine.onAppOpen?.({ force: true });
-      } catch {}
-
-      rerenderCivicationUiNow();
-      window.dispatchEvent(new Event("updateProfile"));
-
-      return result;
+  let originalFollowup = null;
+  if (phaseTag && typeof engine?.enqueueImmediateFollowupEvent === "function") {
+    originalFollowup = engine.enqueueImmediateFollowupEvent;
+    engine.enqueueImmediateFollowupEvent = function () {
+      return Promise.resolve({
+        enqueued: false,
+        reason: "day_phase_blocked"
+      });
     };
   }
+
+  // Bevar historisk nesting: dayPatches ligger innerst etter MailRuntime (priority 80).
+  // Callbacken heter med vilje proceed; day-flyten har andre historiske next-hjelpere.
+  const result = await proceed();
+
+  if (originalFollowup) {
+    engine.enqueueImmediateFollowupEvent = originalFollowup;
+  }
+
+  if (!result?.ok) return result;
+
+  if (onboardingEvent) {
+    updateOnboardingFromEvent(active, pending.event);
+    clearPendingEventById(engine, pendingEventId);
+
+    try {
+      const onboarding = /** @type {{ complete?: unknown } | null | undefined} */ (
+        window.CivicationState?.getOnboardingState?.(active)
+      );
+      if (onboarding?.complete === true) {
+        await engine.onAppOpen?.({ force: true });
+      }
+    } catch {}
+
+    rerenderCivicationUiNow();
+    window.dispatchEvent(new Event("updateProfile"));
+    return result;
+  }
+
+  if (!phaseTag) return result;
+
+  const choice =
+    Array.isArray(pending?.event?.choices)
+      ? pending.event.choices.find((c) => c && c.id === choiceId)
+      : null;
+
+  appendDayChoiceLog({
+    phase: phaseTag,
+    subject: String(pending?.event?.subject || ""),
+    choiceId,
+    label: choice?.label || (phaseTag === "day_end" ? "Bekreftet dagslutt" : ""),
+    feedback: String(result?.feedback || ""),
+    effect: Number(result?.effect || 0)
+  });
+
+  applyPhaseChoiceEffects(phaseTag, choiceId, choice);
+  applyTaskCapitalFromChoice(phaseTag, pending?.event, choice, result);
+
+  window.CivicationTaskEngine?.completeByMail?.(
+    pending?.event?.id,
+    {
+      choiceId,
+      effect: Number(result?.effect || 0),
+      feedback: String(result?.feedback || ""),
+      capitalApplied: true
+    }
+  );
+
+  maybeCreateContactFromChoice(phaseTag, pending?.event, choice, result);
+
+  try {
+    window.CivicationJobs?.maybeOfferCareerProgression?.(active);
+  } catch {}
+
+  if (recoveryEvent) {
+    clearPendingEventById(engine, pendingEventId);
+    try {
+      await engine.onAppOpen?.({ force: true });
+    } catch {}
+    rerenderCivicationUiNow();
+    window.dispatchEvent(new Event("updateProfile"));
+    return result;
+  }
+
+  const cal = window.CivicationCalendar;
+  if (!cal) return result;
+
+  // DailyMailBuilder + CivicationDayProgression eier fasen for daily-runtime-events.
+  // Legacy/non-daily events beholder den historiske per-svar-avanseringen.
+  const dailyRuntimeEvent = isDailyRuntimeEvent(pending?.event);
+
+  if (!dailyRuntimeEvent) {
+    if (phaseTag === "morning") {
+      cal.markDailyFlag?.("morning_done", true);
+      cal.setPhase?.("lunch");
+    } else if (phaseTag === "lunch") {
+      cal.markDailyFlag?.("lunch_done", true);
+      cal.setPhase?.("afternoon");
+    } else if (phaseTag === "afternoon") {
+      cal.markDailyFlag?.("afternoon_done", true);
+      cal.setPhase?.("evening");
+    } else if (phaseTag === "evening") {
+      cal.markDailyFlag?.("evening_done", true);
+      cal.setPhase?.("day_end");
+    } else if (phaseTag === "day_end") {
+      const summary = cal.getDailySummary?.();
+      if (summary) {
+        saveDailySummaryToWeek(summary);
+        const activePosition = /** @type {{ career_id?: unknown } | null | undefined} */ (
+          window.CivicationState?.getActivePosition?.()
+        );
+        const activeCareerId = activePosition?.career_id || "";
+        finalizeWeekIfNeeded(activeCareerId);
+      }
+      cal.resetForNewDay?.();
+    }
+  }
+
+  clearPendingEventById(engine, pendingEventId);
+
+  try {
+    clearPendingEventById(engine, pendingEventId);
+    await engine.onAppOpen?.({ force: true });
+  } catch {}
+
+  rerenderCivicationUiNow();
+  window.dispatchEvent(new Event("updateProfile"));
+  return result;
+}
+
+function registerAnswerMiddleware() {
+  const director = window.CivicationChoiceDirector;
+  if (director?.registerAnswerMiddleware) {
+    return director.registerAnswerMiddleware(
+      ANSWER_MIDDLEWARE_NAME,
+      dayPatchesAnswerMiddleware,
+      ANSWER_MIDDLEWARE_PRIORITY
+    );
+  }
+
+  const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationChoiceAnswerMiddlewareQueue?: Array<{ name: string, fn: Function, priority: number }> }} */ (window);
+  const queue = Array.isArray(runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY])
+    ? runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY]
+    : (runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY] = []);
+
+  if (!queue.some((entry) => entry?.name === ANSWER_MIDDLEWARE_NAME)) {
+    queue.push({
+      name: ANSWER_MIDDLEWARE_NAME,
+      fn: dayPatchesAnswerMiddleware,
+      priority: ANSWER_MIDDLEWARE_PRIORITY
+    });
+  }
+  return true;
+}
 
 function patchTaskEngine() {
   const engine = window.CivicationTaskEngine;
@@ -679,6 +701,7 @@ function patchTaskEngine() {
 
   function initPatches() {
   patchEventEngine();
+  registerAnswerMiddleware();
   patchTaskEngine();
   patchJobs();
 }

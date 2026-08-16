@@ -31,6 +31,9 @@
 
   const PRIVATE_PHASES = ["morning", "lunch", "afternoon", "dinner", "evening", "day_end"];
   const FAMILY_DIR = "data/Civication/privatePhaseMailFamilies";
+  const SCENE_SOURCE_ADAPTER_NAME = "private";
+  const SCENE_SOURCE_FORMAT = "private_phase_mail_families_v1";
+  const SCENE_SOURCE_ADAPTER_QUEUE_KEY = "__civicationSceneSourceAdapterQueue";
 
   const PRIVATE_PHASE_LABELS = {
     morning: "Morgen",
@@ -344,6 +347,41 @@
     return event;
   }
 
+  async function getSourceScenes(context = {}) {
+    const phaseId = norm(context?.phaseId || context?.phase_id);
+    const active = context?.active || null;
+    const event = await buildPhaseMail(phaseId, active, {
+      date: norm(context?.date),
+      runtimeInstanceKey: norm(context?.runtimeInstanceKey || context?.runtime_instance_key),
+      rotation: norm(context?.rotation),
+      ...(context?.signals && typeof context.signals === "object" ? { signals: context.signals } : {})
+    });
+    return event ? [event] : [];
+  }
+
+  const PRIVATE_SOURCE_ADAPTER = Object.freeze({
+    name: SCENE_SOURCE_ADAPTER_NAME,
+    version: 1,
+    source_format: SCENE_SOURCE_FORMAT,
+    getScenes: getSourceScenes
+  });
+
+  function registerSceneSourceAdapter() {
+    const catalog = window.CivicationSceneCatalog;
+    if (typeof catalog?.registerSourceAdapter === "function") {
+      return catalog.registerSourceAdapter(SCENE_SOURCE_ADAPTER_NAME, PRIVATE_SOURCE_ADAPTER);
+    }
+
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationSceneSourceAdapterQueue?: Array<{ name?: string, adapter?: any }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow.__civicationSceneSourceAdapterQueue)
+      ? runtimeWindow.__civicationSceneSourceAdapterQueue
+      : (runtimeWindow.__civicationSceneSourceAdapterQueue = []);
+    const existing = queue.find((entry) => entry?.name === SCENE_SOURCE_ADAPTER_NAME);
+    if (existing) return existing.adapter === PRIVATE_SOURCE_ADAPTER;
+    queue.push({ name: SCENE_SOURCE_ADAPTER_NAME, adapter: PRIVATE_SOURCE_ADAPTER });
+    return true;
+  }
+
   // Bygger ett kø-item pr. private fase (maks 1 aktiv mail per private fase).
   // Returnerer runtime-rader klare til å legges inn i dagskøen. Profil-signalene
   // hentes én gang og gjenbrukes for alle fasene.
@@ -378,6 +416,11 @@
     resolveWeightPath,
     chooseMail,
     buildPhaseMail,
-    buildPrivatePhaseItems
+    buildPrivatePhaseItems,
+    getSourceScenes,
+    registerSceneSourceAdapter,
+    sourceAdapter: PRIVATE_SOURCE_ADAPTER
   };
+
+  registerSceneSourceAdapter();
 })();

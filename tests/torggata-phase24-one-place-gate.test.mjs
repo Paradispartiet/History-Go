@@ -114,7 +114,7 @@ test("global checklist mirrors the canonical four-plus-separate-Badge contract",
   assert.match(checklist, /Nyheter kan ikke godkjennes som tom\/N\/A/);
   assert.match(checklist, /Lesespor kan ikke godkjennes som tom\/N\/A/);
   assert.match(checklist, /betalingslåst er ikke tilstrekkelig N\/A-grunn/);
-  assert.match(checklist, /Mer kan ikke settes N\/A for et innholdsrikt sted/);
+  assert.match(checklist, /Innhold som tidligere lå i Mer kan ikke skjules bak en restfane/);
   assert.match(checklist, /en enkelt vilkårlig eller taksonomisk konstruert gjenstand er ikke nok/);
   assert.match(checklist, /Objects og Structures\/Bygg brukes ikke som to separate rundinger/);
   assert.match(checklist, /Fire plasser skal aldri fylles bare for å oppnå 4\+1-layouten/);

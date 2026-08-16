@@ -61,6 +61,8 @@ window.HG_NATURTRO_STYLE_ID = "streets-v4";
     "js/knowledgeMatch.js",
     "js/progress/profileProgressReader.js",
     "js/ui/place-card-status-surface.js",
+    "js/ui/place-language-layer.js",
+    "js/ui/place-popup-direct-tabs.js",
     "js/ui/header-menu.js",
     "js/ui/psychology-room-entry.js",
     "js/ui/badges.js"

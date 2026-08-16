@@ -14,6 +14,9 @@
   const NARRATIVE_MANIFEST_PATH = "data/Civication/narratives/manifest.json";
   const NARRATIVE_KEY = "narrative_state_v1";
   const PATCHED_FLAG = "__civicationDailyMailBuilderPatched";
+  const ANSWER_MIDDLEWARE_NAME = "daily_mail_builder";
+  const ANSWER_MIDDLEWARE_PRIORITY = 40;
+  const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
 
   const EXTRA_MAIL_TYPES = [
     "people",
@@ -1169,43 +1172,33 @@
   async function findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, active, state) {
     const items = Array.isArray(runtime?.items) ? runtime.items : [];
     const narrativeState = getNarrativeState(state);
-    const streams = await getAvailableNarrativeStreams();
-    if (!streams.length) return null;
+    const sceneCatalog = /** @type {any} */ (window.CivicationSceneCatalog);
+    if (typeof sceneCatalog?.getSourceScenes !== "function" || !sceneCatalog?.getSourceAdapter?.("narrative")) return null;
 
-    const existingKeys = new Set(items
+    const existingKeys = items
       .map(row => `${norm(row?.event?.narrative_stream_id)}::${norm(row?.event?.narrative_storylet_id)}`)
-      .filter(k => k !== "::"));
+      .filter(key => key !== "::");
+    const answeredKeys = Object.keys(narrativeState.stream_progress || {})
+      .filter(key => narrativeState.stream_progress[key]?.answered)
+      .map(key => `${norm(narrativeState.stream_progress[key]?.stream_id)}::${norm(narrativeState.stream_progress[key]?.storylet_id)}`);
 
-    const answeredKeys = new Set(
-      Object.keys(narrativeState.stream_progress || {})
-        .filter(k => narrativeState.stream_progress[k]?.answered)
-        .map(k => `${norm(narrativeState.stream_progress[k]?.stream_id)}::${norm(narrativeState.stream_progress[k]?.storylet_id)}`)
-    );
-
-    for (const streamId of uniqueStrings(openedStreamIds)) {
-      const stream = streams.find(s => norm(s?.id) === streamId);
-      if (!stream) continue;
-      // applies_when styrer automatisk aktivering.
-      // opens_streams er en eksplisitt narrativ overgang og skal kunne injiseres samme dag.
-
-      const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
-      const storylet = storylets
-        .filter(st => {
-          const key = `${norm(stream.id)}::${norm(st?.id)}`;
-          return norm(st?.id) && !existingKeys.has(key) && !answeredKeys.has(key)
-            && storyletMatchesContext(st, stream, active, state, narrativeState);
-        })
-        .sort((a, b) => storyletWeight(b, narrativeState, active, state) - storyletWeight(a, narrativeState, active, state))[0];
-      if (!storylet) continue;
-
-      return {
-        stream,
-        storylet,
-        preferredPhases: phasePreferenceForStreamType(stream?.type)
-      };
-    }
-
-    return null;
+    const scenes = await sceneCatalog.getSourceScenes("narrative", {
+      mode: "opened_streams",
+      opened_stream_ids: uniqueStrings(openedStreamIds),
+      exclude_storylet_keys: uniqueStrings([...existingKeys, ...answeredKeys]),
+      active,
+      state,
+      narrativeState,
+      date: norm(runtime?.date) || todayKey(),
+      ordinal: Date.now(),
+      consumer: "daily_mail_builder_narrative_injection"
+    });
+    const event = Array.isArray(scenes) ? scenes[0] || null : null;
+    if (!event) return null;
+    return {
+      event,
+      preferredPhases: uniqueStrings(event?.narrative_source_meta?.preferred_phases || [])
+    };
   }
 
   function insertNarrativeStoryletAfterCurrent(runtime, storyletEvent, preferredPhases) {
@@ -1345,15 +1338,19 @@
     const program = await loadJson(DAY_PROGRAM_PATH) || defaultProgram();
     const plan = await loadJson(getPlanPath(active));
     const pool = await loadCatalogMails(active);
-    const { streams } = await loadNarrativeStreams();
+    const sceneCatalog = /** @type {any} */ (window.CivicationSceneCatalog);
+    const narrativeSourceAdapter = sceneCatalog?.getSourceAdapter?.("narrative") || null;
     const narrativeState = getNarrativeState(state);
-    const matchedStreams = streams.filter(stream => streamMatches(stream, active, state, narrativeState));
-    const activeStreamIds = uniqueStrings(narrativeState.active_streams || []);
-    const candidateStreams = streams.filter(stream => {
-      const id = norm(stream?.id);
-      return !!id && (activeStreamIds.includes(id) || matchedStreams.some(ms => norm(ms?.id) === id));
-    });
-    const nextNarrativeState = { ...narrativeState, active_streams: uniqueStrings([...(narrativeState.active_streams||[]), ...matchedStreams.map(s => norm(s.id))]), updated_at: new Date().toISOString() };
+    const narrativeActivation = typeof narrativeSourceAdapter?.getActivationSnapshot === "function"
+      ? await narrativeSourceAdapter.getActivationSnapshot({ active, state, narrativeState })
+      : { matched_stream_ids: [], candidate_stream_ids: [] };
+    const matchedNarrativeStreamIds = uniqueStrings(narrativeActivation?.matched_stream_ids || []);
+    const candidateNarrativeStreamIds = uniqueStrings(narrativeActivation?.candidate_stream_ids || []);
+    const nextNarrativeState = {
+      ...narrativeState,
+      active_streams: uniqueStrings([...(narrativeState.active_streams || []), ...matchedNarrativeStreamIds]),
+      updated_at: new Date().toISOString()
+    };
     setState({ [NARRATIVE_KEY]: nextNarrativeState });
     const plannedPrimary = await getPlannedPrimary(active, state);
     const usedSourceIds = consumedSet(state);
@@ -1383,13 +1380,13 @@
       ?? !!norm(active?.career_id);
     let goToWorkInjected = false;
 
-    // Adaptor-modell: de private fasene eies av CivicationPrivatePhaseMailBuilder
-    // (egne fase-familier, maks 1 aktiv mail per fase, alltid daily_private uten
-    // rolle-/arbeidsgiver-binding). Er den lastet, delegerer vi hele den private
-    // fasen dit i stedet for den gamle placeholder-genereringen. Uten modulen
-    // faller vi tilbake til den innebygde genereringen (bakoverkompatibelt).
-    const privatePhaseBuilder = window.CivicationPrivatePhaseMailBuilder;
-    const usePrivatePhaseBuilder = typeof privatePhaseBuilder?.buildPhaseMail === "function";
+    // 4G-A: private fasemaler er en registrert kildeadapter. Daily kjenner ikke
+    // produsentmodulen direkte; SceneCatalog er den eneste adaptergrensen.
+    // Uten registrert adapter beholdes den eksisterende innebygde placeholder-
+    // fallbacken, men standard DAY_SCRIPTS registrerer `private` før Daily lastes.
+    const usePrivateSourceAdapter =
+      typeof sceneCatalog?.getSourceScenes === "function" &&
+      !!sceneCatalog?.getSourceAdapter?.("private");
 
     for (const phase of phases) {
       const phaseId = norm(phase?.id || "morning");
@@ -1408,18 +1405,21 @@
         });
       }
 
-      // Delegér den private fasen til CivicationPrivatePhaseMailBuilder: én
-      // dedikert privat fase-mail (mat/hvile/økonomi/familie/…), aldri jobb.
+      // Hent privat scene gjennom SceneCatalogs registrerte `private`-adapter.
       // Morgenen med aktiv jobb eies av «Gå til jobb»-overgangen alene.
       // day_end beholder sin egen dagslutt-/oppsummeringsgenerator (allerede
       // privat) fordi den driver dagsoppsummerings-UI-et.
-      if (privatePhase && usePrivatePhaseBuilder && phaseId !== "day_end") {
+      if (privatePhase && usePrivateSourceAdapter && phaseId !== "day_end") {
         const skipMorningContent = phaseId === "morning" && hasActiveJob;
         if (!skipMorningContent) {
-          const privateEvent = await privatePhaseBuilder.buildPhaseMail(phaseId, active, {
+          const privateScenes = await sceneCatalog.getSourceScenes("private", {
+            phaseId,
+            active,
             date,
-            runtimeInstanceKey
+            runtimeInstanceKey,
+            consumer: "daily_mail_builder_private_phase"
           });
+          const privateEvent = Array.isArray(privateScenes) ? privateScenes[0] : null;
           if (privateEvent) {
             ordinal += 1;
             items.push({
@@ -1457,15 +1457,28 @@
           }
 
           const narrativeUsed = new Set([...answeredNarrativeStorylets, ...queuedNarrativeStorylets]);
-          const narrativeCandidates = storyletsForSlot(candidateStreams, phaseId, narrativeUsed, active, state, nextNarrativeState)
-            // Private faser slipper aldri inn jobb/rolle-narrativer (work/class_case/conflict).
-            .filter(pick => !privatePhase || !WORK_STREAM_TYPES.has(slugify(pick?.stream?.type)));
-          const narrativePick = narrativeCandidates[0];
-          if (narrativePick) {
-            const event = storyletToEvent(active, phase, slot, narrativePick.stream, narrativePick.storylet, ordinal);
-            const storyletKey = `${norm(narrativePick.stream.id)}::${norm(narrativePick.storylet.id)}`;
+          const narrativeScenes = typeof sceneCatalog?.getSourceScenes === "function" && narrativeSourceAdapter
+            ? await sceneCatalog.getSourceScenes("narrative", {
+              mode: "slot",
+              phaseId,
+              phase,
+              slot,
+              active,
+              state,
+              narrativeState: nextNarrativeState,
+              candidate_stream_ids: candidateNarrativeStreamIds,
+              used_storylet_keys: [...narrativeUsed],
+              exclude_work_streams: privatePhase,
+              date,
+              ordinal,
+              consumer: "daily_mail_builder_narrative_slot"
+            })
+            : [];
+          const narrativeEvent = Array.isArray(narrativeScenes) ? narrativeScenes[0] || null : null;
+          if (narrativeEvent) {
+            const storyletKey = `${norm(narrativeEvent.narrative_stream_id)}::${norm(narrativeEvent.narrative_storylet_id)}`;
             queuedNarrativeStorylets.add(storyletKey);
-            items.push({ status: "queued", phase: phaseId, slot: norm(slot?.slot || slot?.type), event });
+            items.push({ status: "queued", phase: phaseId, slot: norm(slot?.slot || slot?.type), event: narrativeEvent });
             continue;
           }
 
@@ -2005,14 +2018,15 @@
       const openedStreamIds = uniqueStrings(rowEvent?.narrative_effects?.opens_streams || []);
       if (openedStreamIds.length) {
         const injectable = await findInjectableStoryletForOpenedStreams(runtime, openedStreamIds, getActive(), getState());
-        if (injectable) {
-          const fallbackPhase = injectable.preferredPhases[0] || "afternoon";
-          const injectedEvent = /** @type {any} */ (storyletToEvent(getActive(), { id: fallbackPhase, label: fallbackPhase }, { slot: "injected_narrative" }, injectable.stream, injectable.storylet, Date.now()));
-          injectedEvent.injected_by_choice = true;
-          injectedEvent.injected_at = new Date().toISOString();
-          injectedEvent.daily_mail_meta = {
-            ...(injectedEvent.daily_mail_meta || {}),
-            slot: "injected_narrative"
+        if (injectable?.event) {
+          const injectedEvent = {
+            ...injectable.event,
+            injected_by_choice: true,
+            injected_at: new Date().toISOString(),
+            daily_mail_meta: {
+              ...(injectable.event?.daily_mail_meta || {}),
+              slot: "injected_narrative"
+            }
           };
           const injected = insertNarrativeStoryletAfterCurrent({ ...runtime, items }, injectedEvent, injectable.preferredPhases);
           if (injected.inserted) {
@@ -2054,13 +2068,90 @@
       !!eventObj?.daily_mail_meta;
   }
 
+  async function dailyMailAnswerMiddleware(ctx, next) {
+    const engine = ctx?.engine || null;
+    const eventObj = ctx?.eventObj || null;
+    const eventId = norm(eventObj?.id || ctx?.eventId);
+    const choiceId = norm(ctx?.choiceId);
+    const daily = isDailyEvent(eventObj);
+
+    // Mark the daily runtime before the remaining inner answer pipeline runs so
+    // dayPatches/onAppOpen can advance to the next runtime item, but keep the
+    // inbox item pending until EventEngine has consumed it. Resolving the mail
+    // here caused the inner answer chain to return not_found and forced
+    // NextActionUI into its slow deliverQueuedAction fallback.
+    if (daily) await markAnswered(eventId, choiceId, { resolveMail: false });
+
+    let result;
+    const typedEngine = /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (engine || {});
+    const previousSuppress = typedEngine.__civiSuppressImmediateFollowup;
+    if (daily && engine) typedEngine.__civiSuppressImmediateFollowup = true;
+    try {
+      result = await next();
+    } finally {
+      if (daily && engine) typedEngine.__civiSuppressImmediateFollowup = previousSuppress === true;
+    }
+
+    if (daily && result?.ok !== false) {
+      try { window.CivicationMailEngine?.markResolved?.(eventId, eventId, choiceId); } catch {}
+      result = { ...(result || {}), dailyRuntimeAnswered: true };
+    }
+
+    if (daily && result?.ok === false) {
+      // Restore as delivered if the answer did not go through.
+      const runtime = getRuntime();
+      if (runtime && Array.isArray(runtime.items)) {
+        const items = runtime.items.map(row => {
+          if (norm(row?.event?.id) !== eventId) return row;
+          return { ...row, status: "delivered", choice_id: null, answered_at: null };
+        });
+        setRuntime({
+          ...runtime,
+          answered_ids: (Array.isArray(runtime.answered_ids) ? runtime.answered_ids : []).filter(x => norm(x) !== eventId),
+          items
+        });
+      }
+    }
+
+    return result;
+  }
+
+  function registerAnswerMiddleware() {
+    const director = window.CivicationChoiceDirector;
+    if (director?.registerAnswerMiddleware) {
+      return director.registerAnswerMiddleware(
+        ANSWER_MIDDLEWARE_NAME,
+        dailyMailAnswerMiddleware,
+        ANSWER_MIDDLEWARE_PRIORITY
+      );
+    }
+
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationChoiceAnswerMiddlewareQueue?: Array<{ name: string, fn: Function, priority: number }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY])
+      ? runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY]
+      : (runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY] = []);
+    if (!queue.some(entry => entry?.name === ANSWER_MIDDLEWARE_NAME)) {
+      queue.push({
+        name: ANSWER_MIDDLEWARE_NAME,
+        fn: dailyMailAnswerMiddleware,
+        priority: ANSWER_MIDDLEWARE_PRIORITY
+      });
+    }
+    return true;
+  }
+
   function patchEventEngine() {
     const proto = window.CivicationEventEngine?.prototype;
-    if (!proto || proto[PATCHED_FLAG]) return false;
-    if (typeof proto.onAppOpen !== "function" || typeof proto.answer !== "function") return false;
+    if (!proto || typeof proto.onAppOpen !== "function") {
+      registerAnswerMiddleware();
+      return false;
+    }
+    if (proto[PATCHED_FLAG]) {
+      registerAnswerMiddleware();
+      return false;
+    }
 
     const previousOnAppOpen = proto.onAppOpen;
-    const previousAnswer = proto.answer;
     proto[PATCHED_FLAG] = true;
 
     proto.onAppOpen = async function dailyMailOnAppOpen(opts = {}) {
@@ -2075,50 +2166,7 @@
       return previousOnAppOpen.call(this, opts);
     };
 
-    proto.answer = async function dailyMailAnswer(eventId, choiceId) {
-      const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
-      const eventObj = pending?.event || null;
-      const daily = isDailyEvent(eventObj);
-
-      // Mark the daily runtime before the legacy wrappers run so dayPatches/onAppOpen can
-      // advance to the next runtime item, but keep the inbox item pending until EventEngine
-      // has consumed it. Resolving the mail here caused the legacy answer chain to return
-      // not_found and forced NextActionUI into its slow deliverQueuedAction fallback.
-      if (daily) await markAnswered(eventObj?.id || eventId, choiceId, { resolveMail: false });
-
-      let result;
-      const previousSuppress = /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup;
-      if (daily) /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup = true;
-      try {
-        result = await previousAnswer.call(this, eventId, choiceId);
-      } finally {
-        if (daily) /** @type {{ __civiSuppressImmediateFollowup?: boolean }} */ (this).__civiSuppressImmediateFollowup = previousSuppress === true;
-      }
-
-      if (daily && result?.ok !== false) {
-        try { window.CivicationMailEngine?.markResolved?.(eventObj?.id || eventId, eventObj?.id || eventId, norm(choiceId)); } catch {}
-        result = { ...(result || {}), dailyRuntimeAnswered: true };
-      }
-
-      if (daily && result?.ok === false) {
-        // Restore as delivered if the answer did not go through.
-        const runtime = getRuntime();
-        if (runtime && Array.isArray(runtime.items)) {
-          const items = runtime.items.map(row => {
-            if (norm(row?.event?.id) !== norm(eventObj?.id || eventId)) return row;
-            return { ...row, status: "delivered", choice_id: null, answered_at: null };
-          });
-          setRuntime({
-            ...runtime,
-            answered_ids: (Array.isArray(runtime.answered_ids) ? runtime.answered_ids : []).filter(x => norm(x) !== norm(eventObj?.id || eventId)),
-            items
-          });
-        }
-      }
-
-      return result;
-    };
-
+    registerAnswerMiddleware();
     return true;
   }
 
@@ -2156,6 +2204,7 @@
       by_status: counts.byStatus,
       pending: getInbox(window.HG_CiviEngine).find(item => item?.status === "pending")?.event || null,
       patched: window.CivicationEventEngine?.prototype?.[PATCHED_FLAG] === true,
+      answer_middleware_registered: window.CivicationChoiceDirector?.listAnswerMiddlewares?.().some?.(entry => entry?.name === ANSWER_MIDDLEWARE_NAME) === true,
       cache_size: jsonCache.size,
       narrative_state_v1: getNarrativeState(getState()),
       narrative_active_streams: getNarrativeState(getState()).active_streams,
@@ -2272,6 +2321,7 @@
     getDaySummary: () => window.CivicationDayProgression?.getDayEndSummary?.() || null,
     markAnswered,
     answerBundleItem: markAnswered,
+    registerAnswerMiddleware,
     markHandled,
     threadKeyForMail,
     isPrivatePhase,

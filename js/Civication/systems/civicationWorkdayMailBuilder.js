@@ -10,6 +10,7 @@
   const SCENE_CATALOG_VERSION = 1;
   const SELECTION_TRACE_LIMIT = 80;
   const CATALOG_TRACE_LIMIT = 80;
+  const SCENE_SOURCE_ADAPTER_QUEUE_KEY = "__civicationSceneSourceAdapterQueue";
   const EVENT_ENGINE_PATCH_FLAG = "__civicationSceneDirectorBuildMailPoolPatched";
   const DAILY_BUILDER_PATCH_FLAG = "__civicationSceneDirectorCatalogPatched";
   const DAILY_RUNTIME_MARKER = "__scene_director_daily_extras";
@@ -207,6 +208,75 @@
     const jsonCache = new Map();
     const jsonInflight = new Map();
     const catalogTrace = [];
+    /** @type {Map<string, any>} */
+    const sourceAdapters = new Map();
+    const sourceAdapterTrace = [];
+
+    function normalizeSourceAdapterName(value) {
+      return norm(value).toLowerCase();
+    }
+
+    function registerSourceAdapter(name, adapter) {
+      const adapterName = normalizeSourceAdapterName(name || adapter?.name);
+      const candidate = /** @type {any} */ (adapter);
+      if (!adapterName || typeof candidate?.getScenes !== "function") return false;
+
+      const existing = sourceAdapters.get(adapterName);
+      if (existing) return existing === candidate;
+
+      sourceAdapters.set(adapterName, candidate);
+      sourceAdapterTrace.push({
+        at: new Date().toISOString(),
+        action: "registered",
+        name: adapterName,
+        source_format: norm(candidate.source_format || candidate.sourceFormat)
+      });
+      if (sourceAdapterTrace.length > CATALOG_TRACE_LIMIT) {
+        sourceAdapterTrace.splice(0, sourceAdapterTrace.length - CATALOG_TRACE_LIMIT);
+      }
+      return true;
+    }
+
+    function adoptQueuedSourceAdapters() {
+      const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationSceneSourceAdapterQueue?: Array<{ name?: string, adapter?: any }> }} */ (window);
+      const queue = Array.isArray(runtimeWindow.__civicationSceneSourceAdapterQueue)
+        ? runtimeWindow.__civicationSceneSourceAdapterQueue
+        : [];
+      for (const entry of queue) registerSourceAdapter(entry?.name, entry?.adapter);
+      return sourceAdapters.size;
+    }
+
+    function getSourceAdapter(name) {
+      adoptQueuedSourceAdapters();
+      return sourceAdapters.get(normalizeSourceAdapterName(name)) || null;
+    }
+
+    function listSourceAdapters() {
+      adoptQueuedSourceAdapters();
+      return Array.from(sourceAdapters.entries()).map(([name, adapter]) => ({
+        name,
+        source_format: norm(adapter?.source_format || adapter?.sourceFormat),
+        version: Number(adapter?.version || 1)
+      }));
+    }
+
+    async function getSourceScenes(name, context = {}) {
+      const adapterName = normalizeSourceAdapterName(name);
+      const adapter = getSourceAdapter(adapterName);
+      if (!adapter) return [];
+
+      const result = await adapter.getScenes(context || {});
+      const scenes = Array.isArray(result) ? result : (result ? [result] : []);
+      return scenes
+        .filter((scene) => scene && typeof scene === "object")
+        .map((scene) => decorateSceneInteraction({
+          ...scene,
+          scene_source_adapter: adapterName,
+          scene_source_format: norm(adapter?.source_format || adapter?.sourceFormat),
+          scene_catalog_owner: "CivicationSceneCatalog",
+          scene_catalog_version: SCENE_CATALOG_VERSION
+        }));
+    }
     function getPlanPath(active) {
       const category = norm(active?.career_id);
       const roleScope = resolveRoleScope(active);
@@ -362,9 +432,12 @@
         compiled_registry_ready: false,
         cache_size: jsonCache.size,
         inflight_count: jsonInflight.size,
+        source_adapters: listSourceAdapters(),
+        source_adapter_trace: sourceAdapterTrace.slice(),
         catalog_trace: catalogTrace.slice()
       };
     }
+    adoptQueuedSourceAdapters();
     return {
       version: SCENE_CATALOG_VERSION,
       getPlanPath,
@@ -372,6 +445,11 @@
       loadJson,
       normalizeChoices,
       flattenCatalog,
+      registerSourceAdapter,
+      adoptQueuedSourceAdapters,
+      getSourceAdapter,
+      listSourceAdapters,
+      getSourceScenes,
       getRoleMails,
       getRolePlan,
       prewarm,

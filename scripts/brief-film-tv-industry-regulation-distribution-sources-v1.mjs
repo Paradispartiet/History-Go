@@ -8,6 +8,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const UNIT_ID = 'industri-regulering-og-distribusjon';
 const INPUT_GATE = 'creative_work_technology_responsibility_full_chapter_complete_next_unit_source_brief';
 const OUTPUT_GATE = 'industry_regulation_distribution_source_brief_complete_full_chapter_production';
+const UNIT15_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 
 const P = Object.freeze({
   plan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
@@ -54,6 +55,7 @@ export function buildFilmTvIndustryRegulationDistributionSourceBriefV1() {
   const registry = structuredClone(read(P.registry));
   const status = structuredClone(read(P.status));
   const currentGate = status.subjects.find((row) => row.id === 'film_tv')?.nextGate;
+  const laterGateAlreadyActive = currentGate === UNIT15_SOURCE_GATE;
   const brief = read(P.brief);
   const sourceManifest = read(P.sources);
   const caseManifest = read(P.cases);
@@ -77,16 +79,18 @@ export function buildFilmTvIndustryRegulationDistributionSourceBriefV1() {
 
   registry.version = maxDottedVersion(registry.version, '2.92.0');
   registry.updatedAt = maxIsoDate(registry.updatedAt, '2026-08-14');
-  registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Kilde- og claimbriefen for Industri, regulering og distribusjon er ferdig med 12 canonicale emner, 4 variable moduler, 52 planlagte claims, 34 inspectable kilder og 34 dokumenterte system-, regel-, markeds- og rettighetscase. Markeds- og maktpåstander må navngi tid, territorium, aktør, metode og evidensrolle. Kapitlet er ikke registrert før fulltekst-, claim- og evidensporten er bestått.';
+  if (!laterGateAlreadyActive) registry.subjects.film_tv.canonicalModel.note = 'Film & TVs variable canon har 192 emner. Kilde- og claimbriefen for Industri, regulering og distribusjon er ferdig med 12 canonicale emner, 4 variable moduler, 52 planlagte claims, 34 inspectable kilder og 34 dokumenterte system-, regel-, markeds- og rettighetscase. Markeds- og maktpåstander må navngi tid, territorium, aktør, metode og evidensrolle. Kapitlet er ikke registrert før fulltekst-, claim- og evidensporten er bestått.';
   registry.subjects.film_tv.canonicalModel.tenthSourceClaimBrief = P.brief;
 
   status.version = maxDottedVersion(status.version, '1.85.0');
   status.updatedAt = maxIsoDate(status.updatedAt, '2026-08-14');
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   assert(filmStatus, 'Mangler Film & TV-status');
-  filmStatus.editorialStatus = 'chapters_in_progress';
-  filmStatus.nextGate = OUTPUT_GATE;
-  filmStatus.note = 'Kilde- og claimbriefen for Industri, regulering og distribusjon er ferdig: 12/12 canonicale emner, 4 variable moduler, 52 planlagte claims, 34 inspectable kilder og 34 case. Eierskap, finansiering, markeder, plattformer, publikumsmåling, rettigheter, klassifisering, sensur, formathandel og uformell distribusjon har separate evidensspor med eksplisitt tid og territorium. Neste port er fulltekstproduksjon og claimspesifikk evidensmapping.';
+  if (!laterGateAlreadyActive) {
+    filmStatus.editorialStatus = 'chapters_in_progress';
+    filmStatus.nextGate = OUTPUT_GATE;
+    filmStatus.note = 'Kilde- og claimbriefen for Industri, regulering og distribusjon er ferdig: 12/12 canonicale emner, 4 variable moduler, 52 planlagte claims, 34 inspectable kilder og 34 case. Eierskap, finansiering, markeder, plattformer, publikumsmåling, rettigheter, klassifisering, sensur, formathandel og uformell distribusjon har separate evidensspor med eksplisitt tid og territorium. Neste port er fulltekstproduksjon og claimspesifikk evidensmapping.';
+  }
 
   const evidenceSourceTypesPresent = {
     regulation: /regulation|regulatory|statute|jurisprudence/.test(evidenceInventory),
@@ -107,7 +111,7 @@ export function buildFilmTvIndustryRegulationDistributionSourceBriefV1() {
     existing_prerequisites_registered: unit.prerequisite_existing_chapter_ids.every((id) =>
       registry.subjects.film_tv.chapters.some((row) => row.id === id)
     ),
-    current_status_is_input_or_output_gate: [INPUT_GATE, OUTPUT_GATE].includes(currentGate),
+    current_status_is_input_or_output_gate: [INPUT_GATE, OUTPUT_GATE, UNIT15_SOURCE_GATE].includes(currentGate),
     exact_unit_emne_coverage: topicBriefs.length === unit.emne_count
       && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count
       && isDeepStrictEqual(brief.scope.emne_ids, unit.emne_ids)
@@ -189,7 +193,7 @@ export function buildFilmTvIndustryRegulationDistributionSourceBriefV1() {
     tenth_source_brief_registered_without_chapter: registry.subjects.film_tv.canonicalModel.tenthSourceClaimBrief === P.brief
       && !registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID),
     status_advances_to_fulltext_gate: filmStatus.editorialStatus === 'chapters_in_progress'
-      && filmStatus.nextGate === OUTPUT_GATE,
+      && [OUTPUT_GATE, UNIT15_SOURCE_GATE].includes(filmStatus.nextGate),
     registration_waits_for_fulltext_claim_source_audit: !brief.runtime_registration.registered
       && !brief.runtime_registration.allowed_before_full_chapter_gate
       && brief.production_requirements.chapter_registration_only_after_fulltext_claim_and_evidence_audit

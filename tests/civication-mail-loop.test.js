@@ -103,7 +103,49 @@ async function run() {
   loadScript('js/Civication/mailPlanBridge.js');
   loadScript('js/Civication/systems/civicationCareerRoleResolver.js');
   loadScript('js/Civication/systems/civicationMailRuntime.js');
+
+  // Denne testen kjører et smalt runtime-utvalg i stedet for standard DAY_SCRIPTS.
+  // Life skal likevel konsumere gjennom den canonicale SceneCatalog-grensen, ikke
+  // falle tilbake til direkte produsentkall bare fordi Workday-builderen ikke lastes her.
+  const sourceAdapters = new Map();
+  global.CivicationSceneCatalog = {
+    registerSourceAdapter(name, adapter) {
+      const key = String(name || '').trim().toLowerCase();
+      if (!key || typeof adapter?.getScenes !== 'function') return false;
+      const existing = sourceAdapters.get(key);
+      if (existing) return existing === adapter;
+      sourceAdapters.set(key, adapter);
+      return true;
+    },
+    getSourceAdapter(name) {
+      return sourceAdapters.get(String(name || '').trim().toLowerCase()) || null;
+    },
+    listSourceAdapters() {
+      return Array.from(sourceAdapters.entries()).map(([name, adapter]) => ({
+        name,
+        source_format: String(adapter?.source_format || ''),
+        version: Number(adapter?.version || 1)
+      }));
+    },
+    async getSourceScenes(name, context = {}) {
+      const key = String(name || '').trim().toLowerCase();
+      const adapter = sourceAdapters.get(key);
+      if (!adapter) return [];
+      const result = await adapter.getScenes(context);
+      const scenes = Array.isArray(result) ? result : (result ? [result] : []);
+      return scenes.map(scene => ({
+        ...scene,
+        scene_source_adapter: key,
+        scene_source_format: String(adapter?.source_format || ''),
+        scene_catalog_owner: 'CivicationSceneCatalog',
+        scene_catalog_version: 1
+      }));
+    }
+  };
+
   loadScript('js/Civication/systems/civicationLifeMailRuntime.js');
+  loadScript('js/Civication/systems/civicationSceneInteraction.js');
+  loadScript('js/Civication/systems/day/dayChoiceDirector.js');
 
   const engine = new global.CivicationEventEngine();
   global.HG_CiviEngine = engine;
@@ -120,7 +162,12 @@ async function run() {
   assert.strictEqual(
     global.CivicationMailRuntime.inspect().patched,
     true,
-    'CivicationMailRuntime should patch EventEngine prototype'
+    'CivicationMailRuntime should patch non-answer EventEngine surfaces'
+  );
+  assert.strictEqual(
+    global.CivicationMailRuntime.inspect().answer_middleware_registered,
+    true,
+    'CivicationMailRuntime answer flow should be registered in ChoiceDirector'
   );
 
   const mailRuntimeInspect = global.CivicationMailRuntime.inspect();
@@ -256,6 +303,7 @@ async function run() {
 
   const pendingLife = getPendingEvent();
   assert(pendingLife && pendingLife.source_type === 'life', 'Expected pending life mail');
+  assert.strictEqual(pendingLife.scene_source_adapter, 'life', 'Life mail should cross the SceneCatalog source adapter boundary');
   const lifeChoice = pendingLife.choices && pendingLife.choices[0];
   assert(lifeChoice && lifeChoice.id, 'Expected answer choice on life mail');
 

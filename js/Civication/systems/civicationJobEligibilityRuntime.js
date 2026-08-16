@@ -30,6 +30,9 @@
 
   // Egen state-slice i hg_civi_state_v1. Kategorinøkkel (f.eks. "naeringsliv", "media").
   const LOCKS_KEY = "career_reentry_locks";
+  const ANSWER_MIDDLEWARE_NAME = "job_eligibility_runtime";
+  const ANSWER_MIDDLEWARE_PRIORITY = 50;
+  const ANSWER_MIDDLEWARE_QUEUE_KEY = "__civicationChoiceAnswerMiddlewareQueue";
 
   function norm(value) {
     return String(value || "").trim();
@@ -642,41 +645,58 @@
   // Wiring.
   // ---------------------------------------------------------------------------
 
-  // Patch CivicationEventEngine.answer: etter en vellykket besvarelse, oppdater reentry
-  // locks. FIRED-outcome → opprett lock for fired-kategorien; plan-fremmende mail i en
-  // annen kategori → clear lock. Speiler hvordan job learning / career outcome patcher
-  // answer. Skriver ALDRI career_outcome_state. Idempotent og guardet.
-  function patchEventEngineAnswer() {
-    const proto = window.CivicationEventEngine?.prototype;
-    if (!proto || proto.__civicationJobEligibilityAnswerPatched === true) return false;
-    if (typeof proto.answer !== "function") return false;
+  // ChoiceDirector around-answer middleware: capture active position before the inner
+  // chain because a FIRED outcome may clear it, then update reentry locks only after a
+  // successful answer. This preserves the previous wrapper timing without owning
+  // CivicationEventEngine.prototype.answer directly.
+  async function jobEligibilityAnswerMiddleware(ctx, next) {
+    const eventObj = ctx?.eventObj || null;
+    const activeBefore = getActive();
+    const result = await next();
 
-    const original = proto.answer;
-    proto.answer = async function jobEligibilityAnswer(eventId, choiceId) {
-      const pending = typeof this.getPendingEvent === "function" ? this.getPendingEvent() : null;
-      const eventObj = pending?.event || null;
-      // Fang aktiv stilling FØR svaret: FIRED-flyten nuller hg_active_position_v1.
-      const activeBefore = getActive();
-
-      const result = await original.call(this, eventId, choiceId);
-
-      if (result?.ok !== false && eventObj) {
-        try {
-          const patch = processAnsweredMail(getState(), activeBefore, eventObj);
-          if (patch) {
-            setState(patch);
-            try { window.dispatchEvent(new Event("updateProfile")); } catch (_e) {}
-          }
-        } catch (_err) {
-          // Reentry-lock er best-effort: aldri bryt svar-flyten.
+    if (result?.ok !== false && eventObj) {
+      try {
+        const patch = processAnsweredMail(getState(), activeBefore, eventObj);
+        if (patch) {
+          setState(patch);
+          try { window.dispatchEvent(new Event("updateProfile")); } catch (_e) {}
         }
+      } catch (_err) {
+        // Reentry-lock er best-effort: aldri bryt svar-flyten.
       }
+    }
 
-      return result;
-    };
+    return result;
+  }
 
-    proto.__civicationJobEligibilityAnswerPatched = true;
+  function registerAnswerMiddleware() {
+    const director = window.CivicationChoiceDirector;
+    if (director?.registerAnswerMiddleware) {
+      return director.registerAnswerMiddleware(
+        ANSWER_MIDDLEWARE_NAME,
+        jobEligibilityAnswerMiddleware,
+        ANSWER_MIDDLEWARE_PRIORITY
+      );
+    }
+
+    const runtimeWindow = /** @type {Window & typeof globalThis & { __civicationChoiceAnswerMiddlewareQueue?: Array<{ name: string, fn: Function, priority: number }> }} */ (window);
+    const queue = Array.isArray(runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY])
+      ? runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY]
+      : (runtimeWindow[ANSWER_MIDDLEWARE_QUEUE_KEY] = []);
+    if (!queue.some(entry => entry?.name === ANSWER_MIDDLEWARE_NAME)) {
+      queue.push({
+        name: ANSWER_MIDDLEWARE_NAME,
+        fn: jobEligibilityAnswerMiddleware,
+        priority: ANSWER_MIDDLEWARE_PRIORITY
+      });
+    }
     return true;
+  }
+
+  // Compatibility API for existing callers/tests. The name remains during migration,
+  // but it now registers middleware and never patches EventEngine.answer directly.
+  function patchEventEngineAnswer() {
+    return registerAnswerMiddleware();
   }
 
   // Patch CivicationJobs.pushOffer: trygt filterpunkt. Når et tilbuds kategori er aktivt
@@ -729,7 +749,7 @@
 
   function boot() {
     loadKnowledgeRequirements();
-    patchEventEngineAnswer();
+    registerAnswerMiddleware();
     patchJobsPushOffer();
   }
 
@@ -760,6 +780,7 @@
     decorateOfferWithEligibility,
     // Wiring
     patchEventEngineAnswer,
+    registerAnswerMiddleware,
     patchJobsPushOffer,
     boot,
     inspect() {
@@ -771,7 +792,7 @@
           .filter(([, lock]) => isLockActive(lock))
           .map(([category]) => category),
         all_locks: locks,
-        answer_patched: window.CivicationEventEngine?.prototype?.__civicationJobEligibilityAnswerPatched === true,
+        answer_middleware_registered: window.CivicationChoiceDirector?.listAnswerMiddlewares?.().some?.(entry => entry?.name === ANSWER_MIDDLEWARE_NAME) === true,
         push_offer_patched: /** @type {any} */ (window.CivicationJobs)?.__civicationEligibilityPushOfferPatched === true,
         sample_eligibility: getJobOfferEligibility(state, active || {}, { active })
       };
