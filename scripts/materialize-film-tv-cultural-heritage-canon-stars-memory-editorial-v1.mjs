@@ -67,7 +67,6 @@ function buildEditorialParagraph({ section, claim, methodRows, sourceRows, caseR
   const focus = clean(claim.claim);
   const opening = openingVariants[(topicIndex * 2 + claimIndex) % openingVariants.length](section.title, focus);
   const lens = clause(section.definition || section.learningGoal);
-  const analyticLens = clause(section.documentedDisagreement ? section.definition : section.learningGoal);
   const methods = methodRows.slice(0, 4);
   const methodText = methods.map((row) => `${clean(row.title)} brukes til å ${lowerFirst(clause(row.purpose))}`).join('; ');
   const labels = sourceRows.map(labelSource);
@@ -81,19 +80,20 @@ function buildEditorialParagraph({ section, claim, methodRows, sourceRows, caseR
   const limitB = clause(section.methodLimits?.[(claimIndex + 1) % section.methodLimits.length]);
   const question = clause(section.evidenceQuestion);
   const claimAnchor = focus.length > 115 ? `${focus.slice(0, 112).trim()}…` : focus;
+  const sectionLabel = section.title.toLocaleLowerCase('nb-NO');
 
   return [
     sentence(opening),
     sentence(`Begrepet avgrenses her slik: ${lens}; derfor må «${claimAnchor}» vurderes innenfor en navngitt aktør-, tids- og mediekontekst`),
-    sentence(`Metodisk er ikke én etikett nok: ${methodText}; metodene brukes som forskjellige kontroller på hvilke spor som kan bære akkurat denne slutningen`),
+    sentence(`For «${claimAnchor}» er ikke én metodeetikett nok: ${methodText}; metodene fungerer som forskjellige kontroller på hvilke spor som kan bære akkurat denne slutningen`),
     sentence(sourceLead),
     sentence(`${sourceRoles}; kombinasjonen gjør det mulig å sammenholde forskjellige typer dokumentasjon uten å gjøre én kilde eller institusjon til universell fasit for «${claimAnchor}»`),
     sentence(caseText),
-    sentence(`Caset brukes analytisk fordi det konkretiserer prosessen i påstanden, men det generaliseres ikke utover perioden, offentligheten eller institusjonen som kildene faktisk dekker`),
+    sentence(`I vurderingen av «${claimAnchor}» brukes caset analytisk fordi det konkretiserer prosessen, men det generaliseres ikke utover perioden, offentligheten eller institusjonen som kildene faktisk dekker`),
     sentence(`For «${claimAnchor}» er den relevante faglige uenigheten at ${lowerFirst(disagreement)}; analysen må derfor vise hvilket evidensnivå som avgjør mellom forklaringene i dette konkrete tilfellet`),
-    sentence(`To inferensgrenser er særlig viktige i denne påstanden: ${lowerFirst(limitA)}; i tillegg ${lowerFirst(limitB)}; begge grensene hindrer at synlighet, berømmelse eller tilgjengelighet gjøres om til sterkere kulturarv-, kanon- eller minneclaims enn materialet bærer`),
+    sentence(`For «${claimAnchor}» er to inferensgrenser særlig viktige: ${lowerFirst(limitA)}; i tillegg ${lowerFirst(limitB)}; begge grensene hindrer at synlighet, berømmelse eller tilgjengelighet gjøres om til sterkere kulturarv-, kanon- eller minneclaims enn materialet bærer`),
     sentence(`Det avgjørende evidensspørsmålet for «${claimAnchor}» er dermed ${lowerFirst(question)}; svaret må kunne spores tilbake til kilder, case, periode og metode før påstanden behandles som verifisert`),
-    sentence(`Konklusjonen er derfor avgrenset: claimet kan beholdes når de navngitte sporene faktisk dokumenterer prosessen, men ikke som en generell regel om popularitet, kvalitet, stjernestatus, kultstatus eller kollektiv erindring`)
+    sentence(`Konklusjonen for ${sectionLabel} er derfor avgrenset til «${claimAnchor}»: påstanden kan beholdes når de navngitte sporene faktisk dokumenterer prosessen, men ikke som en generell regel om popularitet, kvalitet, stjernestatus, kultstatus eller kollektiv erindring`)
   ].join(' ');
 }
 
