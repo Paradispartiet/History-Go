@@ -81,12 +81,15 @@ test('kildeavsnittet må omtale de faktiske emnespesifikke sekundærkildene og i
       .map((id) => sourcesById.get(id))
       .filter(Boolean)
       .map((source) => norm(source.title));
+    const primaryTitles = (article.primary_work_refs || []).map((title) => norm(title));
 
     for (const candidate of searchableTitles) {
       if (declared.has(candidate.id)) continue;
-      // A short registry title such as "Metaphysics" can be a literal substring
-      // of a longer, legitimately declared title. That is not source contamination.
+      // A registry title can occur literally inside a longer, legitimately declared
+      // secondary-source title or inside a named primary work. Neither is evidence
+      // that the unrelated registry source itself has contaminated this article.
       if (declaredTitles.some((title) => title.includes(candidate.needle))) continue;
+      if (primaryTitles.some((title) => title.includes(candidate.needle))) continue;
       if (!sourceProse.includes(candidate.needle)) continue;
       assert.fail(
         `${article.id}: kildedrøftingen navngir ${candidate.title}, men artikkelen deklarerer ikke ${candidate.id}`
