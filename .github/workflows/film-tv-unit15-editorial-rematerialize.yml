@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
-          fetch-depth: 0
+          fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
@@ -33,39 +33,31 @@ jobs:
 
           materializer = Path('scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs')
           text = materializer.read_text()
-          old = """function sourceRoleSentence(sourceRows, index) {
-            const roles = sourceRows.map((row) => `${labelSource(row)} er en ${sourceKind(row)} med relevans for ${clean(row.territory)}`);
-            const lead = index % 3 === 0
-              ? 'Kildenes roller er forskjellige'
-              : index % 3 === 1
-                ? 'Det er viktig å holde kildetypene fra hverandre'
-                : 'Kildekritisk må materialet vektes etter funksjon';
-            return `${lead}: ${roles.join('; ')}`;
-          }
-          """.replace('          ', '')
-          new = """function sourceRoleSentence(sourceRows, index) {
-  const roles = sourceRows.map((row) => `${labelSource(row)} er en ${sourceKind(row)} med relevans for ${clean(row.territory)}`);
-  const leads = [
-    'Kildenes roller er forskjellige',
-    'Det er viktig å holde kildetypene fra hverandre',
-    'Kildekritisk må materialet vektes etter funksjon',
-    'Dokumentene har ulik bevisverdi',
-    'Kildene må leses ut fra institusjonell og faglig funksjon',
-    'Evidensstyrken avhenger av hvilken rolle hver kilde faktisk spiller',
-    'Samme påstand bæres her av kilder med ulike oppgaver',
-    'Kildekombinasjonen krever at autoritet og funksjon skilles',
-    'Hvert dokument bidrar på sin egen måte til kontrollen',
-    'Trianguleringen virker bare når kildenes funksjoner holdes fra hverandre',
-    'Kildekritikken begynner med å skille dokumenttype fra påstandsstyrke',
-    'Evidensgrunnlaget blir mer presist når hver kildes rolle navngis'
-  ];
-  const lead = leads[index % leads.length];
-  return `${lead}: ${roles.join('; ')}`;
-}
-"""
-          if text.count(old) != 1:
-              raise SystemExit(f'{materializer}: sourceRoleSentence block not found exactly once')
-          materializer.write_text(text.replace(old, new))
+          start = text.index('function sourceRoleSentence(sourceRows, index) {')
+          end = text.index('\nfunction methodSentence', start)
+          new_lines = [
+              'function sourceRoleSentence(sourceRows, index) {',
+              '  const roles = sourceRows.map((row) => `${labelSource(row)} er en ${sourceKind(row)} med relevans for ${clean(row.territory)}`);',
+              '  const leads = [',
+              "    'Kildenes roller er forskjellige',",
+              "    'Det er viktig å holde kildetypene fra hverandre',",
+              "    'Kildekritisk må materialet vektes etter funksjon',",
+              "    'Dokumentene har ulik bevisverdi',",
+              "    'Kildene må leses ut fra institusjonell og faglig funksjon',",
+              "    'Evidensstyrken avhenger av hvilken rolle hver kilde faktisk spiller',",
+              "    'Samme påstand bæres her av kilder med ulike oppgaver',",
+              "    'Kildekombinasjonen krever at autoritet og funksjon skilles',",
+              "    'Hvert dokument bidrar på sin egen måte til kontrollen',",
+              "    'Trianguleringen virker bare når kildenes funksjoner holdes fra hverandre',",
+              "    'Kildekritikken begynner med å skille dokumenttype fra påstandsstyrke',",
+              "    'Evidensgrunnlaget blir mer presist når hver kildes rolle navngis'",
+              '  ];',
+              '  const lead = leads[index % leads.length];',
+              "  return `${lead}: ${roles.join('; ')}`;",
+              '}',
+          ]
+          text = text[:start] + '\n'.join(new_lines) + '\n' + text[end:]
+          materializer.write_text(text)
 
           gate_files = [
               Path('scripts/reaudit-film-tv-existing-chapters-v1.mjs'),
@@ -95,7 +87,7 @@ jobs:
           code=$?
           printf '%s\n' "$output"
           if [ "$code" -ne 0 ]; then
-            clean=$(printf '%s' "$output" | tr '\n' ' ' | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
+            clean=$(printf '%s' "$output" | tr '\n' ' ' | sed 's/%/%25/g')
             echo "::error title=Unit15 editorial audit::${clean}"
             exit "$code"
           fi
