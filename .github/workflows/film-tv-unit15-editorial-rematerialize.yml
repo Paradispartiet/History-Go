@@ -30,33 +30,25 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
           path = Path('scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs')
           text = path.read_text()
-
-          old_lower = """const lowerFirst = (value) => {
-            const text = noTerminal(value);
-            return text ? text.charAt(0).toLocaleLowerCase('nb-NO') + text.slice(1) : text;
-          };
-          """.replace('          ', '')
-          new_lower = """const inlineText = (value) => noTerminal(value).replace(/([.!?])\\s+/gu, '; ').trim();
-const lowerFirst = (value) => {
-  const text = inlineText(value);
-  return text ? text.charAt(0).toLocaleLowerCase('nb-NO') + text.slice(1) : text;
-};
-"""
-          if text.count(old_lower) != 1:
-              raise SystemExit('lowerFirst block not found exactly once')
-          text = text.replace(old_lower, new_lower)
-
-          question_token = '${clean(q)}'
-          if text.count(question_token) != 4:
-              raise SystemExit(f'expected 4 direct clean(q) question insertions, found {text.count(question_token)}')
-          text = text.replace(question_token, '${inlineText(q)}')
-
-          start = text.index('function sourceRoleSentence(sourceRows, index) {')
-          end = text.index('\nfunction methodSentence', start)
-          lines = [
+          lower_start = text.index('const lowerFirst = (value) => {')
+          lower_end = text.index('\nconst sentence =', lower_start)
+          lower_lines = [
+              "const inlineText = (value) => noTerminal(value).replace(/([.!?])\\s+/gu, '; ').trim();",
+              'const lowerFirst = (value) => {',
+              '  const text = inlineText(value);',
+              "  return text ? text.charAt(0).toLocaleLowerCase('nb-NO') + text.slice(1) : text;",
+              '};',
+          ]
+          text = text[:lower_start] + '\n'.join(lower_lines) + text[lower_end:]
+          token = '${clean(q)}'
+          if text.count(token) != 4:
+              raise SystemExit(f'expected 4 clean(q) insertions, found {text.count(token)}')
+          text = text.replace(token, '${inlineText(q)}')
+          role_start = text.index('function sourceRoleSentence(sourceRows, index) {')
+          role_end = text.index('\nfunction methodSentence', role_start)
+          role_lines = [
               'function sourceRoleSentence(sourceRows, index) {',
               '  const roles = sourceRows.map((row) => `${labelSource(row)} er en ${sourceKind(row)} med relevans for ${clean(row.territory)}`);',
               '  const leads = [',
@@ -77,9 +69,8 @@ const lowerFirst = (value) => {
               "  return `${lead}: ${roles.join('; ')}`;",
               '}',
           ]
-          text = text[:start] + '\n'.join(lines) + '\n' + text[end:]
+          text = text[:role_start] + '\n'.join(role_lines) + text[role_end:]
           path.write_text(text)
-
           gate_files = [
               Path('scripts/reaudit-film-tv-existing-chapters-v1.mjs'),
               Path('scripts/plan-film-tv-learning-order-v1.mjs'),
