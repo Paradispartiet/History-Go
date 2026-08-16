@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SCRIPTS = path.join(ROOT, 'scripts');
+// Predecessor audits are historical safeguards: once Unit15 exists, rebuilding them must preserve the later completion-audit gate rather than regress Film & TV state.
 const OBSOLETE_GATE_FRAGMENT = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$';
 const FINAL_GATE_FRAGMENT = 'full_chapter_complete_completion_audit';
 
