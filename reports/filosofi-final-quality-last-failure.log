@@ -1,0 +1,71 @@
+✔ Filosofi beholder eksakt canonical dekning uten å forveksle dekning med universitetsdybde (1.1412ms)
+✔ alle artikler har solid strukturell baseline, men struktur er ikke kvalitetsproxy (18.617632ms)
+✔ completion er bare grønn når alle artikler er individuelt universitetsreviewet og feltbenchmarken er komplett (0.231309ms)
+✔ alle canonicale begreper er skrevet ut i faktisk artikkelprosa (4.383607ms)
+✔ kapitlene eier alle emneartikler uten duplikat (0.348105ms)
+✔ Filosofi-kildene er inspectable og rollebeskrevet (0.491441ms)
+✔ completion-auditen skiller strukturelle porter, universitetsdybde og feltdekning (0.338009ms)
+✔ Filosofi-prosa er fri for kjente maskinmønstre og rå ID-er (7.70221ms)
+✔ argumentrekonstruksjonen gjentar ikke identisk kontrollsetning i samme artikkel (0.640916ms)
+✔ universitetsreviewede artikler får ikke bruke den gamle metamalens argument (1.681575ms)
+✔ globale tradisjoner har tradisjonsspesifikke tenkere og eksplisitt universitetsdybde i kildene før komparasjon (0.956993ms)
+✔ begrepsavsnitt forklarer begreper uten å tvinges inn i én boilerplate-formel (1.85131ms)
+✔ university_depth_reviewed kan ikke motsies av artikkelens egen review-state (1.31394ms)
+✔ universitetsstatus kan ikke sertifiseres av kjent generator-malprosa (17.908102ms)
+✖ kildeavsnittet må omtale de faktiske emnespesifikke sekundærkildene og ikke et annet emnes kildeliste (2.133816ms)
+✔ primærverk skal være reelle argumentankere, ikke bare metadata (1.759932ms)
+✔ Filosofi er materialisert og auditert som komplett major-field Fase 3-fag (32.024419ms)
+✔ Filosofi beholder fagkart-eide områder og pensum som progresjonslag (18.926006ms)
+✔ Filosofi løser emner, metoder, hooks, begreper og teoretikere (16.584792ms)
+✔ Filosofi låser argument-first, kildekrav, global kanon og konsistent sluttstatus (12.43294ms)
+✔ ingen Filosofi-artikkel kan lenger være selvdeklarert university_depth_polished (0.860036ms)
+✔ de fire artiklene som avslørte den falske porten er substansielt universitetsreviewet (0.505863ms)
+✖ hver universitetsreviewet artikkel har reelt rekonstruerbart argument, rival og kilder (1.491558ms)
+✔ claim-mønster er ikke lenger mekanisk 54 ganger seks (0.267403ms)
+✔ Filosofi kan ikke være komplett før alle registrerte artikler har bestått samme port (0.167312ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 23
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 258.44511
+
+✖ failing tests:
+
+test at tests/fagverk-filosofi-final-quality.test.mjs:61:1
+✖ kildeavsnittet må omtale de faktiske emnespesifikke sekundærkildene og ikke et annet emnes kildeliste (2.133816ms)
+  AssertionError [ERR_ASSERTION]: em_filosofi_kunnskap_begrunnelse_sannhet: kildedrøftingen navngir Metaphysics, men artikkelen deklarerer ikke sep-metaphysics
+      at TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/fagverk-filosofi-final-quality.test.mjs:82:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/fagverk-filosofi-university-depth.test.mjs:71:1
+✖ hver universitetsreviewet artikkel har reelt rekonstruerbart argument, rival og kilder (1.491558ms)
+  AssertionError [ERR_ASSERTION]: em_filosofi_vitnesbyrd_ekspertise_tillit deklarerer uten å bruke faganker ekspertise
+      at TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/fagverk-filosofi-university-depth.test.mjs:93:58)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
