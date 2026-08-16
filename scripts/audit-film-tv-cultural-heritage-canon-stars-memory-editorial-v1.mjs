@@ -36,6 +36,8 @@ const sentenceKey = (value) => String(value || '')
   .replace(/[«»“”"']/gu, '')
   .replace(/\s+/gu, ' ')
   .trim();
+const openingKey = (value) => sentenceKey(value).split(/\s+/u).slice(0, 7).join(' ');
+const occurrences = (haystack, needle) => needle ? String(haystack).split(String(needle)).length - 1 : 0;
 
 const FORBIDDEN_EDITORIAL_FRAGMENTS = [
   'Spor 1-',
@@ -56,7 +58,15 @@ const FORBIDDEN_EDITORIAL_FRAGMENTS = [
   'Som uavhengig kontrollanker brukes',
   'inspectable lokasjon',
   'Claimet kan verifiseres som planlagt',
-  'Inferensgrensen blokkerer snarveien'
+  'Inferensgrensen blokkerer snarveien',
+  'For «',
+  'er ikke én metodeetikett nok',
+  'brukes disse kildene som den konkrete dokumentasjonskjeden',
+  'kombinasjonen gjør det mulig å sammenholde forskjellige typer dokumentasjon',
+  'I vurderingen av «',
+  'er to inferensgrenser særlig viktige',
+  'Det avgjørende evidensspørsmålet for «',
+  'Konklusjonen for '
 ];
 
 function maximumRepeatedSentenceCount(paragraphs) {
@@ -71,15 +81,27 @@ function maximumRepeatedSentenceCount(paragraphs) {
   return Math.max(0, ...counts.values());
 }
 
+function maximumOpeningCount(paragraphs) {
+  const counts = new Map();
+  for (const paragraph of paragraphs) {
+    const key = openingKey(paragraph);
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  return Math.max(0, ...counts.values());
+}
+
 export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeReport = false, checkReport = false } = {}) {
   const built = buildFilmTvCulturalHeritageCanonStarsMemoryEditorialV1();
   const sections = built.modules.flatMap((module) => module.sections || []);
   const paragraphs = sections.flatMap((section) => section.paragraphs || []);
   const claims = built.claimsDoc.claims || [];
+  const claimsById = new Map(claims.map((row) => [row.id, row]));
   const sourceIds = new Set((built.sources || []).map((row) => row.id));
   const usedSourceIds = new Set(claims.flatMap((row) => row.source_ids || []));
   const usedCaseIds = new Set(claims.map((row) => row.case_id).filter(Boolean));
   const repeatedSentenceCount = maximumRepeatedSentenceCount(paragraphs);
+  const distinctOpeningCount = new Set(paragraphs.map(openingKey)).size;
+  const repeatedOpeningCount = maximumOpeningCount(paragraphs);
   const filmStatus = built.status.subjects.find((row) => row.id === 'film_tv');
   const registryChapter = built.registry.subjects.film_tv.chapters.find((row) => row.id === CHAPTER_ID);
   const committedModules = MODULE_FILES.map(read);
@@ -106,10 +128,15 @@ export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeRe
       && sections.every((section) => section.paragraphs.length === section.paragraphClaimIds.length)
       && new Set(sections.flatMap((section) => section.paragraphClaimIds)).size === 56,
     substantive_editorial_depth: paragraphs.every((paragraph) => paragraph.length >= 1200 && wordCount(paragraph) >= 180),
-    generator_log_prose_absent: paragraphs.every((paragraph) => FORBIDDEN_EDITORIAL_FRAGMENTS.every((fragment) => !paragraph.includes(fragment))),
-    sentence_repetition_controlled: repeatedSentenceCount <= 3,
+    generator_log_and_hidden_template_prose_absent: paragraphs.every((paragraph) => FORBIDDEN_EDITORIAL_FRAGMENTS.every((fragment) => !paragraph.includes(fragment))),
+    sentence_repetition_controlled: repeatedSentenceCount <= 2,
+    openings_structurally_varied: distinctOpeningCount >= 12 && repeatedOpeningCount <= 6,
+    claim_text_not_rhetorically_repeated: sections.every((section) => section.paragraphs.every((paragraph, index) => {
+      const claim = claimsById.get(section.paragraphClaimIds[index]);
+      return claim && occurrences(paragraph, claim.claim) === 1;
+    })),
     source_case_method_discussion_visible: sections.every((section) => section.paragraphs.every((paragraph, index) => {
-      const claim = claims.find((row) => row.id === section.paragraphClaimIds[index]);
+      const claim = claimsById.get(section.paragraphClaimIds[index]);
       const caseRow = built.cases.find((row) => row.id === claim?.case_id);
       const sourceRows = (claim?.source_ids || []).map((id) => built.sources.find((row) => row.id === id)).filter(Boolean);
       const methodRows = (claim?.method_basis_ids || []).map((id) => built.sourceBrief.method_basis.find((row) => row.id === id)).filter(Boolean);
@@ -139,7 +166,7 @@ export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeRe
 
   const report = {
     schema: 'history_go_film_tv_cultural_heritage_canon_stars_memory_fulltext_audit_v2',
-    version: '2.0.0',
+    version: '2.1.0',
     updated_at: '2026-08-16',
     status: 'cultural_heritage_canon_stars_memory_editorial_fulltext_verified',
     chapter_id: CHAPTER_ID,
@@ -156,6 +183,8 @@ export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeRe
       canonical_method_count: 13,
       minimum_paragraph_word_count: Math.min(...paragraphs.map(wordCount)),
       maximum_repeated_sentence_count: repeatedSentenceCount,
+      distinct_opening_count: distinctOpeningCount,
+      maximum_repeated_opening_count: repeatedOpeningCount,
       forbidden_editorial_fragment_count: FORBIDDEN_EDITORIAL_FRAGMENTS.reduce((sum, fragment) => sum + paragraphs.filter((paragraph) => paragraph.includes(fragment)).length, 0)
     },
     gates,
@@ -163,7 +192,7 @@ export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeRe
       dimensions: {
         correctness_and_evidence: { score: 5, evidence: '56/56 sluttclaims beholder claimspesifikke kilder, case og metoder, og alle 26 kilder og 24 case er aktivt brukt.' },
         coverage_and_completion: { score: 5, evidence: '12/12 canonicale emner dekkes i fire moduler med én-til-én-sporing mellom 56 claims og 56 fagavsnitt.' },
-        editorial_quality: { score: 5, evidence: 'Fagavsnittene er sammenhengende prosa uten sporlogg, generatorfraser eller overdrevet setningsrepetisjon, samtidig som faglig uenighet og inferensgrenser forblir eksplisitte.' },
+        editorial_quality: { score: 5, evidence: 'Fagavsnittene har variert argumentrekkefølge og åpning, claimteksten gjentas ikke retorisk, og både sporlogg og den skjulte For-claim/Konklusjonen-for-malen er permanent blokkert.' },
         technical_integrity: { score: 5, evidence: 'Den redaksjonelle materialiseringen er deterministisk og committed kapittel-, modul-, claim-, registry- og statusfiler matcher bygget output.' },
         safety_and_responsibility: { score: 5, evidence: 'Popularitet, berømmelse, kultstatus, privat materiale, nostalgi og kollektivt minne kan ikke kortslutte de dokumenterte evidensgrensene.' },
         maintainability_and_reproducibility: { score: 5, evidence: 'Canonical source brief beholdes som historisk input, editorial materializer kan regenerere fullteksten, og neste gate forblir separat helhetsaudit fremfor falsk complete-status.' }
@@ -190,5 +219,5 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const writeReport = process.argv.includes('--write');
   const checkReport = process.argv.includes('--check');
   const report = auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeReport, checkReport });
-  console.log(`Film & TV Unit15 editorial audit: ${report.summary.paragraph_count}/56 avsnitt, ${report.summary.minimum_paragraph_word_count} ord minimum, ${report.summary.forbidden_editorial_fragment_count} forbudte malfragmenter.`);
+  console.log(`Film & TV Unit15 editorial audit: ${report.summary.paragraph_count}/56 avsnitt, ${report.summary.minimum_paragraph_word_count} ord minimum, ${report.summary.distinct_opening_count} ulike åpninger, ${report.summary.forbidden_editorial_fragment_count} forbudte malfragmenter.`);
 }
