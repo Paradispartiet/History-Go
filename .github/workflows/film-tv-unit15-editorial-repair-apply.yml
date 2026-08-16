@@ -53,12 +53,17 @@ jobs:
           node scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs
           node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs --write
 
-      - name: Rebuild shared deterministic audits
-        run: |
-          node scripts/audit-fagverk-subject-inventory.mjs
-          node scripts/audit-fagverk-general-engine.mjs
-          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report --no-check-report
-          node scripts/build-fagverk-release-manifest.mjs
+      - name: Refresh subject inventory audit
+        run: node scripts/audit-fagverk-subject-inventory.mjs
+
+      - name: Refresh general engine audit
+        run: node scripts/audit-fagverk-general-engine.mjs
+
+      - name: Refresh Film TV phase3 audit
+        run: node scripts/audit-fagverk-film-tv-phase3.mjs --write-report --no-check-report
+
+      - name: Rebuild release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
 
       - name: Validate Unit15 and shared contracts
         run: |
