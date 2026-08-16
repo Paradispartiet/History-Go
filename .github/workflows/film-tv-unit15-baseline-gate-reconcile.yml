@@ -1,0 +1,80 @@
+name: Film TV Unit15 baseline gate reconcile
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
+    paths:
+      - ".github/workflows/film-tv-unit15-baseline-gate-reconcile.yml"
+
+concurrency:
+  group: film-tv-unit15-baseline-gate-reconcile
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Reconcile final completion gate in historical baseline audits
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          files = [
+              Path('scripts/audit-film-tv-variable-inventory-v1.mjs'),
+              Path('scripts/reaudit-film-tv-existing-chapters-v1.mjs'),
+              Path('scripts/plan-film-tv-learning-order-v1.mjs'),
+          ]
+          old = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$'
+          new = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$'
+          for path in files:
+              text = path.read_text()
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected exactly one stale production-gate regex, found {count}')
+              path.write_text(text.replace(old, new))
+          PY
+
+      - name: Validate reconciled baseline scripts
+        run: |
+          node --check scripts/audit-film-tv-variable-inventory-v1.mjs
+          node --check scripts/reaudit-film-tv-existing-chapters-v1.mjs
+          node --check scripts/plan-film-tv-learning-order-v1.mjs
+          node scripts/audit-film-tv-variable-inventory-v1.mjs
+          node scripts/reaudit-film-tv-existing-chapters-v1.mjs
+          node scripts/plan-film-tv-learning-order-v1.mjs
+          node scripts/audit-fagverk-film-tv-phase3.mjs
+          node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+
+      - name: Validate relevant contracts
+        run: |
+          node --test tests/film-tv-variable-inventory-v1.test.mjs
+          node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
+          node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
+
+      - name: Remove one-shot workflow
+        if: success()
+        run: rm .github/workflows/film-tv-unit15-baseline-gate-reconcile.yml
+
+      - name: Commit permanent reconciliation
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/audit-film-tv-variable-inventory-v1.mjs scripts/reaudit-film-tv-existing-chapters-v1.mjs scripts/plan-film-tv-learning-order-v1.mjs .github/workflows/film-tv-unit15-baseline-gate-reconcile.yml
+          git commit -m "Keep Film TV baseline audits monotone through Unit15 completion gate"
+          git push origin HEAD:agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
