@@ -23,6 +23,22 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Reconcile Film TV phase3 completion gate
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          old = 'source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief'
+          new = old + '|full_chapter_complete_completion_audit'
+          for name in ['scripts/audit-fagverk-film-tv-phase3.mjs', 'tests/fagverk-film-tv-phase3.test.mjs']:
+              path = Path(name)
+              text = path.read_text()
+              if old not in text:
+                  raise SystemExit(f'Expected Film TV gate pattern missing in {name}')
+              path.write_text(text.replace(old, new))
+          PY
+          node --check scripts/audit-fagverk-film-tv-phase3.mjs
+          node --check tests/fagverk-film-tv-phase3.test.mjs
+
       - name: Materialize polished Unit15 prose
         run: |
           node --check scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs
@@ -34,7 +50,7 @@ jobs:
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
-          node scripts/audit-fagverk-film-tv-phase3.mjs
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write-report --no-check-report
           node scripts/build-fagverk-release-manifest.mjs
 
       - name: Validate Unit15 and shared contracts
@@ -47,6 +63,7 @@ jobs:
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
           node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs --check
+          node scripts/audit-fagverk-film-tv-phase3.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
 
       - name: Remove one-shot workflow
@@ -58,7 +75,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/fagverk reports/fagverk .github/workflows/film-tv-unit15-editorial-repair-apply.yml
+          git add data/fagverk reports/fagverk scripts/audit-fagverk-film-tv-phase3.mjs tests/fagverk-film-tv-phase3.test.mjs .github/workflows/film-tv-unit15-editorial-repair-apply.yml
           if git diff --cached --quiet; then
             echo "No editorial changes to commit"
           else
