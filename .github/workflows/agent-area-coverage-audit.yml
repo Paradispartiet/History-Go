@@ -14,126 +14,68 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Audit every canonical Place for low-zoom area coverage
+      - name: Audit semantic area-place signals
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('fs');
           const path = require('path');
-
           const manifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
-          const areaLikeLocatorTypes = new Set([
-            'neighborhood', 'district', 'borough', 'municipality', 'city', 'town',
-            'village', 'locality', 'county', 'region', 'natural_area'
-          ]);
-
           const rows = [];
-          const errors = [];
 
           for (const rel of manifest.files || []) {
-            const full = path.join('data', rel);
-            let data;
-            try {
-              data = JSON.parse(fs.readFileSync(full, 'utf8'));
-            } catch (error) {
-              errors.push({ file: rel, error: error.message });
-              continue;
-            }
-
-            let items;
-            if (Array.isArray(data)) items = data;
-            else if (Array.isArray(data?.places)) items = data.places;
-            else items = [data];
-
+            const data = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
+            const items = Array.isArray(data) ? data : Array.isArray(data?.places) ? data.places : [data];
             for (const p of items) {
-              if (!p || typeof p !== 'object') continue;
-              const id = String(p.id || '').trim();
-              const name = String(p.name || p.title || '').trim();
-              if (!id && !name) continue;
-
+              if (!p || typeof p !== 'object' || (!p.id && !p.name)) continue;
               const bits = rel.split('/');
-              const domain = bits[1] || 'unknown';
-              const region = bits[2] || 'unknown';
-              const coordRole = String(p.coordRole || '').trim().toLowerCase();
               const coordType = String(p.coordType || '').trim().toLowerCase();
+              const coordRole = String(p.coordRole || '').trim().toLowerCase();
               const locatorType = String(p.locatorType || '').trim().toLowerCase();
-              const isCanonicalArea = coordRole === 'area_anchor';
-              const isLegacyArea = coordType === 'district_anchor' || coordType.endsWith('_area_anchor');
-              const isArea = isCanonicalArea || isLegacyArea;
-              const city = String(
-                p.municipality || p.city || p.address?.city || p.address?.municipality ||
-                p.location?.city || p.location?.municipality || ''
-              ).trim();
-
+              const quizType = String(p.quiz_profile?.place_type || '').trim().toLowerCase();
+              const sourceObjectId = String(p.sourceObjectId || '').trim().toLowerCase();
+              const coordSource = String(p.coordSource || '').trim().toLowerCase();
+              const note = String(p.coordNote || '').trim().toLowerCase();
+              const districtAnchor = coordType === 'district_anchor';
+              const quizArea = ['omrade', 'område', 'area', 'district', 'neighborhood', 'neighbourhood'].includes(quizType);
+              const locatorArea = ['neighborhood','neighbourhood','district','borough','municipality','city','town','village','locality','county','region'].includes(locatorType);
+              const explicitStrok = sourceObjectId.includes('strok') || coordSource.includes('strøk') || /\bstrøket\b|\bstrøk\b/.test(note);
+              const semanticCandidate = districtAnchor || quizArea || locatorArea || explicitStrok;
               rows.push({
-                file: rel, domain, region, id, name, city, locatorType, coordRole, coordType,
-                isCanonicalArea, isLegacyArea, isArea,
-                looksAreaLike: areaLikeLocatorTypes.has(locatorType)
+                id: p.id || '', name: p.name || p.title || '', domain: bits[1] || '', region: bits[2] || '',
+                category: p.category || '', locatorType, coordRole, coordType, quizType,
+                districtAnchor, quizArea, locatorArea, explicitStrok, semanticCandidate, file: rel
               });
             }
           }
 
-          const by = (items, key) => {
-            const map = new Map();
-            for (const item of items) {
-              const value = item[key] || 'unknown';
-              const bucket = map.get(value) || [];
-              bucket.push(item);
-              map.set(value, bucket);
-            }
-            return map;
-          };
-
-          const regionSummary = [...by(rows, 'region')].map(([region, items]) => ({
-            region,
-            total: items.length,
-            area: items.filter(x => x.isArea).length,
-            canonicalArea: items.filter(x => x.isCanonicalArea).length,
-            legacyOnlyArea: items.filter(x => x.isLegacyArea && !x.isCanonicalArea).length,
-            areaLikeButNotAnchor: items.filter(x => x.looksAreaLike && !x.isArea).length,
-            cities: [...new Set(items.map(x => x.city).filter(Boolean))].slice(0, 12)
-          })).sort((a, b) => b.total - a.total || a.region.localeCompare(b.region));
-
-          const anchors = rows.filter(x => x.isArea).map(x => ({
-            id: x.id, name: x.name, region: x.region, city: x.city,
-            locatorType: x.locatorType, coordRole: x.coordRole, coordType: x.coordType, file: x.file
-          })).sort((a, b) => a.region.localeCompare(b.region) || a.name.localeCompare(b.name));
-
-          const areaCandidates = rows.filter(x => x.looksAreaLike && !x.isArea).map(x => ({
-            id: x.id, name: x.name, region: x.region, city: x.city,
-            locatorType: x.locatorType, coordRole: x.coordRole, coordType: x.coordType, file: x.file
-          })).sort((a, b) => a.region.localeCompare(b.region) || a.name.localeCompare(b.name));
-
-          const gaps = regionSummary.filter(x => x.total >= 3 && x.area === 0);
-          const summary = {
-            manifestFiles: (manifest.files || []).length,
-            parsedPlaceRecords: rows.length,
-            parseErrors: errors.length,
-            areaAnchors: anchors.length,
-            canonicalAreaAnchors: rows.filter(x => x.isCanonicalArea).length,
-            legacyOnlyAreaAnchors: rows.filter(x => x.isLegacyArea && !x.isCanonicalArea).length,
-            areaLikeButNotAnchor: areaCandidates.length,
-            regionsWithPlaces: regionSummary.length,
-            regionsWithAreaAnchors: regionSummary.filter(x => x.area > 0).length,
-            regionsWith3PlusPlacesButNoAreaAnchor: gaps.length
-          };
-
-          console.log('=== SUMMARY ===');
-          console.log(JSON.stringify(summary, null, 2));
-          console.log('=== REGION SUMMARY ===');
-          console.log(JSON.stringify(regionSummary, null, 2));
-          console.log('=== AREA ANCHORS ===');
-          console.log(JSON.stringify(anchors, null, 2));
-          console.log('=== AREA-LIKE PLACES NOT MARKED AS AREA ANCHOR ===');
-          console.log(JSON.stringify(areaCandidates, null, 2));
-          console.log('=== COVERAGE GAPS (>=3 places, zero area anchors) ===');
-          console.log(JSON.stringify(gaps, null, 2));
-          if (errors.length) {
-            console.log('=== PARSE ERRORS ===');
-            console.log(JSON.stringify(errors, null, 2));
+          const candidates = rows.filter(x => x.semanticCandidate).sort((a,b) => a.region.localeCompare(b.region) || a.name.localeCompare(b.name));
+          const currentCoordinateAreas = rows.filter(x => x.coordRole === 'area_anchor' || x.coordType.endsWith('_area_anchor') || x.coordType === 'district_anchor');
+          const coordinateOnly = currentCoordinateAreas.filter(x => !x.semanticCandidate);
+          const byRegion = {};
+          for (const x of candidates) {
+            const r = byRegion[x.region] ||= { totalCandidates: 0, districtAnchor: 0, quizArea: 0, locatorArea: 0, explicitStrok: 0 };
+            r.totalCandidates++;
+            if (x.districtAnchor) r.districtAnchor++;
+            if (x.quizArea) r.quizArea++;
+            if (x.locatorArea) r.locatorArea++;
+            if (x.explicitStrok) r.explicitStrok++;
           }
+
+          const quizTypeCounts = {};
+          for (const x of rows) if (x.quizType) quizTypeCounts[x.quizType] = (quizTypeCounts[x.quizType] || 0) + 1;
+
+          console.log('=== SEMANTIC SUMMARY ===');
+          console.log(JSON.stringify({
+            totalPlaces: rows.length,
+            currentCoordinateAreaAnchors: currentCoordinateAreas.length,
+            semanticAreaCandidates: candidates.length,
+            coordinateAnchorsWithoutSemanticAreaSignal: coordinateOnly.length,
+            quizTypeCounts,
+            byRegion
+          }, null, 2));
+          console.log('=== SEMANTIC AREA CANDIDATES ===');
+          console.log(JSON.stringify(candidates, null, 2));
+          console.log('=== SAMPLE COORDINATE-ONLY AREA ANCHORS (first 40) ===');
+          console.log(JSON.stringify(coordinateOnly.slice(0, 40), null, 2));
           NODE
