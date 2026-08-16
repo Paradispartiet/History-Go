@@ -1,0 +1,73 @@
+name: Clean Philosophy theory-history repair joins
+
+on:
+  push:
+    branches:
+      - agent/philosophy-final-qa-repair
+    paths:
+      - scripts/repair-filosofi-theory-join-artifacts.mjs
+      - tests/fagverk-filosofi-final-quality.test.mjs
+      - .github/workflows/philosophy-theory-join-cleanup.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/philosophy-final-qa-repair
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Remove theory-history transform artifacts
+        run: node scripts/repair-filosofi-theory-join-artifacts.mjs
+      - name: Rebuild Philosophy deterministic audits
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-filosofi-phase3.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate full Philosophy quality contract
+        id: validate
+        shell: bash
+        run: |
+          set +e
+          node --test tests/fagverk-filosofi-phase3.test.mjs \
+            tests/fagverk-filosofi-complete.test.mjs \
+            tests/fagverk-filosofi-editorial-style.test.mjs \
+            tests/fagverk-filosofi-university-depth.test.mjs \
+            tests/fagverk-filosofi-final-quality.test.mjs \
+            2>&1 | tee reports/filosofi-final-quality-last-failure.log
+          status=${PIPESTATUS[0]}
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Persist exact validation failure
+        if: steps.validate.outputs.status != '0'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/filosofi-final-quality-last-failure.log
+          git commit -m 'Record Philosophy theory cleanup failure'
+          git push origin HEAD:agent/philosophy-final-qa-repair
+          exit 1
+      - name: Remove temporary repair machinery
+        if: steps.validate.outputs.status == '0'
+        run: |
+          rm -f reports/filosofi-final-quality-last-failure.log
+          rm -f scripts/repair-filosofi-final-quality.mjs
+          rm -f scripts/repair-filosofi-required-anchors.mjs
+          rm -f scripts/repair-filosofi-theory-join-artifacts.mjs
+          rm -f .github/workflows/philosophy-theory-join-cleanup.yml
+      - name: Commit cleaned Philosophy corpus
+        if: steps.validate.outputs.status == '0'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fagverk/filosofi data/fag/filosofi reports scripts tests .github/workflows
+          git commit -m 'Polish Philosophy theory-history references'
+          git push origin HEAD:agent/philosophy-final-qa-repair
