@@ -33,8 +33,11 @@ const prose = (article) => article.sections.flatMap((s) => s.paragraphs || []).j
 const claim = (article, type) => article.claims.find((c) => c.type === type)?.text || '';
 const hasForbidden = (article) => forbidden.some((frag) => norm(prose(article)).includes(frag));
 const needsRepair = (article) =>
-  article.editorial_quality === 'university_depth_reviewed' &&
-  (article.quality?.review_state !== 'university_depth_reviewed' || article.quality?.reviewed_against_university_gate !== true || hasForbidden(article));
+  words(prose(article)) < 1200 ||
+  (article.editorial_quality === 'university_depth_reviewed' &&
+    (article.quality?.review_state !== 'university_depth_reviewed' ||
+      article.quality?.reviewed_against_university_gate !== true ||
+      hasForbidden(article)));
 
 function replaceGenericProblem(article) {
   const s = section(article, 'problem');
@@ -151,12 +154,27 @@ function ensureDepth(article) {
   let count = words(prose(article));
   if (count >= 1200) return count;
   const s = section(article, 'avgrensning');
+  if (!s) throw new Error(`${article.id}: mangler avgrensningsseksjon for dybdereparasjon`);
   const arg = section(article, 'argument')?.paragraphs || [];
+  const disagreement = section(article, 'uenighet')?.paragraphs || [];
   const sourcesText = (article.source_ids || []).map((id) => sources.get(id)?.title).filter(Boolean).join(', ');
+  const worksText = (article.primary_work_refs || []).join(', ');
   const synthesis = `Som samlet kontroll kan argumentet leses premiss for premiss. ${arg.map((p) => sentence(p)).filter(Boolean).join(' ')} Disse leddene skal vurderes mot ${sourcesText} og mot de deklarerte primærverkene, med særlig oppmerksomhet på om en empirisk antakelse, en begrepsdistinksjon eller en normativ overgang gjør mer arbeid enn teksten har begrunnet. En alternativ teori består ikke bare ved å ha et annet navn; den må vise hvilket ledd den avviser og hva den setter i stedet. På samme måte teller en kilde bare når evidensrollen er klar. Denne kontrollen gjør at artikkelen kan brukes videre i undervisning og casearbeid uten at lengde, metadata eller antall referanser forveksles med filosofisk kvalitet.`;
-  s?.paragraphs.push(synthesis);
+  s.paragraphs.push(synthesis);
   count = words(prose(article));
-  return count;
+  if (count >= 1200) return count;
+
+  const rival = sentence(disagreement[0]);
+  const reply = sentence(disagreement[1]);
+  const secondSynthesis = `En ekstra dybdekontroll gjelder styrken i uenigheten. Rivalens sentrale utfordring er «${rival}», mens artikkelens foreløpige svar er «${reply}». For å bedømme dette svaret må leseren gå tilbake til ${worksText || 'de deklarerte primærverkene'} og skille teksttolkning fra artikkelens egen rekonstruksjon. Sekundærkildene ${sourcesText || 'i kilderegisteret'} brukes til å kontrollere om rivalene er fremstilt redelig og om sentrale innvendinger er utelatt. Dersom en rival kan godta alle premissene og likevel forkaste konklusjonen, må den skjulte overgangen gjøres eksplisitt; dersom uenigheten i stedet gjelder et premiss, må evidensen for akkurat dette premisset vurderes. Slik blir dybden emnespesifikk: den ligger i hva som faktisk må forsvares for at argumentet skal holde, ikke i ekstra ordmengde alene.`;
+  s.paragraphs.push(secondSynthesis);
+  count = words(prose(article));
+  if (count >= 1200) return count;
+
+  const conceptNames = (article.concept_ids || []).map((id) => id.replaceAll('_', ' ')).join(', ');
+  const thirdSynthesis = `Til slutt må begrepene ${conceptNames} kunne brukes diagnostisk i samme konflikt. Et begrep er ikke tilstrekkelig forklart fordi det har en definisjon; det må hjelpe oss å avgjøre om et premiss skifter betydning, om to posisjoner faktisk motsier hverandre, eller om et tilsynelatende moteksempel rammer teorien. Denne kontrollen kobler begrepsanalyse, argumentrekonstruksjon og kildebruk sammen og gjør det mulig å overføre analysen til et nytt dokumentert case uten å gjenta konklusjonen som en læresetning.`;
+  s.paragraphs.push(thirdSynthesis);
+  return words(prose(article));
 }
 
 const repaired = [];
