@@ -66,6 +66,25 @@ jobs:
           path.write_text(updated, encoding='utf-8')
           PY
 
+      - name: Migrate language owner assertions to canonical placeScope
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('tests/place-language-layer.test.mjs')
+          text = path.read_text(encoding='utf-8')
+          replacements = {
+              '  assert.match(checklist, /coordRole: \\"area_anchor\\"/);': '  assert.match(checklist, /placeScope:\\s*\\"area\\"/);',
+              '  assert.match(contract, /coordRole: \\"area_anchor\\"/);': '  assert.match(contract, /placeScope:\\s*\\"area\\"/);',
+          }
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f'Expected legacy language assertion not found: {old}')
+              text = text.replace(old, new, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
@@ -96,7 +115,7 @@ jobs:
       - name: Verify clean diff syntax
         run: git diff --check
 
-      - name: Commit product migration
+      - name: Commit product migration and remove one-shot helpers
         shell: bash
         run: |
           git config user.name "History Go migration bot"
@@ -105,6 +124,7 @@ jobs:
             docs/SPRAKLEKSIKON.md docs/PLACE_PRODUCTION_CHECKLIST.md \
             tests/map-place-area-lod.test.mjs tests/place-language-layer.test.mjs \
             scripts/audit-place-scope.mjs
+          git rm .github/workflows/agent-area-coverage-audit.yml scripts/agent_place_scope_migration.py
           if git diff --cached --quiet; then
             echo "No product changes to commit"
             exit 0
