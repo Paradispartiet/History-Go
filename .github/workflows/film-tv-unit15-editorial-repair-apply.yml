@@ -9,6 +9,7 @@ on:
       - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs"
       - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs"
       - "tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs"
+      - "tests/fagverk-subject-inventory.test.mjs"
       - ".github/workflows/film-tv-unit15-editorial-repair-apply.yml"
 
 concurrency:
@@ -33,6 +34,7 @@ jobs:
       - name: Reconcile Film TV phase3 completion gate
         run: |
           python - <<'PY'
+          from pathlib import import_module
           from pathlib import Path
           old = 'source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief'
           new = old + '|full_chapter_complete_completion_audit'
