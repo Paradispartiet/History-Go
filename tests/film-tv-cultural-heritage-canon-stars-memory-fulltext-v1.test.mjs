@@ -7,26 +7,34 @@ const ROOT = new URL('../', import.meta.url);
 const read = (relative) => JSON.parse(fs.readFileSync(new URL(relative, ROOT), 'utf8'));
 const SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
+const FORBIDDEN = [
+  /\bSpor \d+-\d+\b/u,
+  /Analyselinsen er/u,
+  /Metodisk kombineres/u,
+  /Som første evidensanker brukes/u,
+  /Som uavhengig kontrollanker brukes/u,
+  /inspectable lokasjon/u,
+  /Claimet kan verifiseres som planlagt/u,
+  /Inferensgrensen blokkerer snarveien/u
+];
 
-test('Unit15 fulltekst dekker eksakt 12 emner i fire moduler og 56 sluttclaims', () => {
+test('Unit15 fulltekst dekker eksakt 12 emner, 56 sluttclaims og hele evidensinventaret', () => {
   const report = auditFilmTvCulturalHeritageCanonStarsMemoryFulltextV1();
-  assert.deepEqual(report.summary, {
-    emne_count: 12,
-    module_count: 4,
-    section_count: 12,
-    paragraph_count: 56,
-    verified_claim_count: 56,
-    source_count: 26,
-    used_source_count: 26,
-    case_count: 24,
-    used_case_count: 24,
-    canonical_method_count: 13,
-    maximum_repeated_sentence_count: report.summary.maximum_repeated_sentence_count
-  });
-  assert.deepEqual(report.module_paragraph_counts, [14,14,14,14]);
+  assert.equal(report.summary.emne_count, 12);
+  assert.equal(report.summary.module_count, 4);
+  assert.equal(report.summary.section_count, 12);
+  assert.equal(report.summary.paragraph_count, 56);
+  assert.equal(report.summary.verified_claim_count, 56);
+  assert.equal(report.summary.source_count, 26);
+  assert.equal(report.summary.used_source_count, 26);
+  assert.equal(report.summary.case_count, 24);
+  assert.equal(report.summary.used_case_count, 24);
+  assert.equal(report.summary.canonical_method_count, 13);
+  assert.equal(report.summary.minimum_paragraph_word_count >= 180, true);
   assert.equal(report.summary.maximum_repeated_sentence_count <= 3, true);
+  assert.equal(report.summary.forbidden_editorial_fragment_count, 0);
   assert.equal(Object.values(report.gates).every(Boolean), true);
-  assert.equal(report.status, 'cultural_heritage_canon_stars_memory_fulltext_verified');
+  assert.equal(report.status, 'cultural_heritage_canon_stars_memory_editorial_fulltext_verified');
 });
 
 test('alle planlagte claims beholdes som historisk briefinput mens sluttclaims er verifisert', () => {
@@ -41,7 +49,7 @@ test('alle planlagte claims beholdes som historisk briefinput mens sluttclaims e
   assert.deepEqual(finalClaims.map((row) => row.claim), planned.map((row) => row.claim_focus));
 });
 
-test('sluttclaims har claimspesifikke inspectable kilder og alle 26 kilder brukes', () => {
+test('sluttclaims har claimspesifikke kilder og alle 26 kilder brukes', () => {
   const claimsDoc = read('data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/claims.json');
   const sourceIds = new Set(claimsDoc.sources.map((row) => row.id));
   const used = new Set(claimsDoc.claims.flatMap((row) => row.source_ids));
@@ -51,13 +59,29 @@ test('sluttclaims har claimspesifikke inspectable kilder og alle 26 kilder bruke
   assert.equal(claimsDoc.sources.every((row) => used.has(row.id)), true);
 });
 
+test('Unit15-prosa kan ikke falle tilbake til sporlogg eller generatorfrase', () => {
+  const modules = [
+    '01-kulturarv-kanon-og-motarkiv.json',
+    '02-stjerner-kanonmakt-og-kollektiv-referanse.json',
+    '03-kult-nostalgi-og-kulturell-varighet.json',
+    '04-sitat-stjerneapparat-og-tv-minne.json'
+  ].map((file) => read(`data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/${file}`));
+  const paragraphs = modules.flatMap((module) => module.sections.flatMap((section) => section.paragraphs));
+  assert.equal(paragraphs.length, 56);
+  for (const paragraph of paragraphs) {
+    for (const pattern of FORBIDDEN) assert.doesNotMatch(paragraph, pattern);
+  }
+});
+
 test('popularitet, stjerneteleologi, kultstatus, nostalgi og kollektivt minne kan ikke kortslutte evidens', () => {
-  const report = auditFilmTvCulturalHeritageCanonStarsMemoryFulltextV1();
-  assert.equal(report.gates.popularity_heritage_canon_and_memory_shortcuts_blocked, true);
-  assert.equal(report.gates.star_persona_role_private_person_and_teleology_separated, true);
-  assert.equal(report.gates.cult_festival_home_movie_and_counterarchive_boundaries_explicit, true);
-  assert.equal(report.gates.circulation_nostalgia_collective_memory_and_quotation_boundaries_explicit, true);
-  assert.equal(report.gates.tv_memory_levels_separated, true);
+  const sourceBrief = read('data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json');
+  const policy = sourceBrief.source_policy;
+  assert.equal(policy.popularity_does_not_prove_canon_heritage_cult_status_or_collective_memory, true);
+  assert.equal(policy.later_stardom_must_not_be_projected_backwards_without_contemporary_evidence, true);
+  assert.equal(policy.cult_status_requires_documented_reception_or_audience_practice_and_an_explicit_definition, true);
+  assert.equal(policy.nostalgic_textual_framing_does_not_prove_audience_nostalgia, true);
+  assert.equal(policy.collective_memory_claims_require_defined_group_period_and_mediation_process, true);
+  assert.equal(auditFilmTvCulturalHeritageCanonStarsMemoryFulltextV1().gates.source_policy_remains_strict, true);
 });
 
 test('Unit15 registreres, men Film & TV kan ikke bli complete før helhetsaudit', () => {
@@ -75,17 +99,22 @@ test('Unit15 registreres, men Film & TV kan ikke bli complete før helhetsaudit'
 
 test('seksdelt kvalitetsvurdering består uten å forskuttere fagets complete-status', () => {
   const assessment = auditFilmTvCulturalHeritageCanonStarsMemoryFulltextV1().quality_assessment;
-  assert.deepEqual(Object.values(assessment.dimensions).map((row) => row.score), [5,5,4,5,5,5]);
-  assert.equal(assessment.total_score, 29);
-  assert.equal(assessment.conclusion, 'high_quality_verified_full_chapter');
+  assert.deepEqual(Object.values(assessment.dimensions).map((row) => row.score), [5,5,5,5,5,5]);
+  assert.equal(assessment.total_score, 30);
+  assert.equal(assessment.conclusion, 'high_quality_editorial_full_chapter_verified');
   assert.deepEqual(assessment.critical_deviations, []);
   assert.deepEqual(assessment.unresolved_blockers, []);
 });
 
 test('Unit15 fulltekstverktøy inneholder ingen SCM-synk eller GitHub-push', () => {
-  const materializer = fs.readFileSync(new URL('../scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs', import.meta.url), 'utf8');
-  const audit = fs.readFileSync(new URL('../scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs', import.meta.url), 'utf8');
-  for (const source of [materializer, audit]) {
+  const files = [
+    '../scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs',
+    '../scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs',
+    '../scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs',
+    '../scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs'
+  ];
+  for (const file of files) {
+    const source = fs.readFileSync(new URL(file, import.meta.url), 'utf8');
     assert.doesNotMatch(source, /child_process|git\s+(fetch|merge|push)|execFileSync|spawnSync/);
   }
 });
