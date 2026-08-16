@@ -30,7 +30,6 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
           files = [
               Path('scripts/reaudit-film-tv-existing-chapters-v1.mjs'),
               Path('scripts/plan-film-tv-learning-order-v1.mjs'),
@@ -46,20 +45,30 @@ jobs:
               print(f'Reconciled {path}')
           PY
 
-      - name: Validate permanent predecessor contracts
+      - name: Syntax
         run: |
           node --check scripts/reaudit-film-tv-existing-chapters-v1.mjs
           node --check scripts/plan-film-tv-learning-order-v1.mjs
-          node scripts/reaudit-film-tv-existing-chapters-v1.mjs
-          node scripts/plan-film-tv-learning-order-v1.mjs
-          node tests/film-tv-final-gate-monotonicity-v1.test.mjs
-          node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
-          node --test tests/film-tv-learning-order-plan-v1.test.mjs
-          node --test tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
-          node --test tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs
-          node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
-          node scripts/audit-fagverk-film-tv-phase3.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Existing chapter reaudit
+        run: node scripts/reaudit-film-tv-existing-chapters-v1.mjs
+      - name: Learning order plan
+        run: node scripts/plan-film-tv-learning-order-v1.mjs
+      - name: Final gate monotonicity
+        run: node tests/film-tv-final-gate-monotonicity-v1.test.mjs
+      - name: Existing chapter regression
+        run: node --test tests/film-tv-existing-chapter-reaudit-v1.test.mjs
+      - name: Learning order regression
+        run: node --test tests/film-tv-learning-order-plan-v1.test.mjs
+      - name: Unit15 fulltext regression
+        run: node --test tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
+      - name: Unit15 registry regression
+        run: node --test tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs
+      - name: Unit15 predecessor monotonicity
+        run: node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
+      - name: Film TV phase3 audit
+        run: node scripts/audit-fagverk-film-tv-phase3.mjs
+      - name: Release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
 
       - name: Commit verified reconciliation and self-remove
         run: |
