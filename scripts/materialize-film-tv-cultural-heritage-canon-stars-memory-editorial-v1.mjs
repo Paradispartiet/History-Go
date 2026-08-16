@@ -65,6 +65,8 @@ const openingVariants = [
 
 function buildEditorialParagraph({ section, claim, methodRows, sourceRows, caseRow, topicIndex, claimIndex }) {
   const focus = clean(claim.claim);
+  const claimAnchor = focus.length > 115 ? `${focus.slice(0, 112).trim()}…` : focus;
+  const sectionLabel = section.title.toLocaleLowerCase('nb-NO');
   const opening = openingVariants[(topicIndex * 2 + claimIndex) % openingVariants.length](section.title, focus);
   const lens = clause(section.definition || section.learningGoal);
   const methods = methodRows.slice(0, 4);
@@ -73,20 +75,18 @@ function buildEditorialParagraph({ section, claim, methodRows, sourceRows, caseR
   const sourceLead = sourceLeadVariants[(topicIndex + claimIndex) % sourceLeadVariants.length](labels.join(labels.length > 2 ? ', ' : ' og '));
   const sourceRoles = sourceRows.map((row) => `${labelSource(row)} fungerer her som ${sourceKind(row)} fra ${clean(row.territory)}`).join('; ');
   const caseText = caseRow
-    ? `Caset «${clean(caseRow.title)}» (${clean(caseRow.years)}, ${clean(caseRow.territory)}) gir et konkret prøvepunkt: ${lowerFirst(clause(caseRow.purpose))}`
-    : 'Ingen enkeltcase får bære konklusjonen alene; slutningen må derfor forankres i kildene, perioden og den eksplisitte avgrensningen';
+    ? `For «${claimAnchor}» gir caset «${clean(caseRow.title)}» (${clean(caseRow.years)}, ${clean(caseRow.territory)}) et konkret prøvepunkt: ${lowerFirst(clause(caseRow.purpose))}`
+    : `For «${claimAnchor}» finnes det ikke ett selvstendig case som kan bære slutningen; vurderingen må derfor forankres i kildene, perioden og den eksplisitte avgrensningen`;
   const disagreement = clause(section.documentedDisagreement);
   const limitA = clause(section.methodLimits?.[claimIndex % section.methodLimits.length]);
   const limitB = clause(section.methodLimits?.[(claimIndex + 1) % section.methodLimits.length]);
   const question = clause(section.evidenceQuestion);
-  const claimAnchor = focus.length > 115 ? `${focus.slice(0, 112).trim()}…` : focus;
-  const sectionLabel = section.title.toLocaleLowerCase('nb-NO');
 
   return [
     sentence(opening),
     sentence(`Begrepet avgrenses her slik: ${lens}; derfor må «${claimAnchor}» vurderes innenfor en navngitt aktør-, tids- og mediekontekst`),
     sentence(`For «${claimAnchor}» er ikke én metodeetikett nok: ${methodText}; metodene fungerer som forskjellige kontroller på hvilke spor som kan bære akkurat denne slutningen`),
-    sentence(sourceLead),
+    sentence(`${sourceLead}; for «${claimAnchor}» brukes disse kildene som den konkrete dokumentasjonskjeden, ikke som generell autoritet for hele emnet`),
     sentence(`${sourceRoles}; kombinasjonen gjør det mulig å sammenholde forskjellige typer dokumentasjon uten å gjøre én kilde eller institusjon til universell fasit for «${claimAnchor}»`),
     sentence(caseText),
     sentence(`I vurderingen av «${claimAnchor}» brukes caset analytisk fordi det konkretiserer prosessen, men det generaliseres ikke utover perioden, offentligheten eller institusjonen som kildene faktisk dekker`),
