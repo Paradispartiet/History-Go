@@ -6,6 +6,7 @@ on:
       - agent/philosophy-final-qa-repair
     paths:
       - scripts/repair-filosofi-final-quality.mjs
+      - scripts/repair-filosofi-required-anchors.mjs
       - .github/workflows/philosophy-final-quality-repair-apply.yml
   workflow_dispatch:
 
@@ -24,7 +25,9 @@ jobs:
         with:
           node-version: '24'
       - name: Rewrite affected Philosophy prose and reconcile review state
-        run: node scripts/repair-filosofi-final-quality.mjs
+        run: |
+          node scripts/repair-filosofi-final-quality.mjs
+          node scripts/repair-filosofi-required-anchors.mjs
       - name: Rebuild Philosophy deterministic audits
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs
