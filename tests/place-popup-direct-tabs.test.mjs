@@ -38,7 +38,7 @@ test("alle kjente Mer-eiere får direkte faner", () => {
   assert.match(directTabs, /hg-place-relations-section/);
   assert.match(directTabs, /hg-place-knowledge-section/);
   assert.match(directTabs, /hg-place-observations-section/);
-  assert.match(directTabs, /data\.generated === "more"/);
+  assert.match(directTabs, /dataset\.generated === "more"/);
 });
 
 test("fanestripen er én horisontalt scrollbar og touch-vennlig linje", () => {
