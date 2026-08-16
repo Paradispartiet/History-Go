@@ -1,4 +1,4 @@
-name: Agent area coverage audit
+name: Agent placeScope migration
 
 on:
   push:
@@ -6,57 +6,57 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit:
+  migrate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: agent/place-area-coverage-audit
+          fetch-depth: 0
 
-      - name: Audit explicit semantic area types
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Apply canonical scope migration
+        run: python scripts/agent_place_scope_migration.py
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild canonical indexes and web runtime
         shell: bash
         run: |
-          node <<'NODE'
-          const fs = require('fs');
-          const path = require('path');
-          const manifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
-          const rows = [];
-          const areaQuizTypes = new Set([
-            'omrade', 'område', 'boligomrade', 'boligområde', 'bydel', 'by', 'tettstad',
-            'ladested', 'ladested_og_ferdselssted', 'alternativ_bydel'
-          ]);
+          npm run places:index:build
+          npm run build:web
 
-          for (const rel of manifest.files || []) {
-            const data = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
-            const items = Array.isArray(data) ? data : Array.isArray(data?.places) ? data.places : [data];
-            for (const p of items) {
-              if (!p || typeof p !== 'object' || (!p.id && !p.name)) continue;
-              const bits = rel.split('/');
-              const quizType = String(p.quiz_profile?.place_type || '').trim().toLowerCase();
-              const coordType = String(p.coordType || '').trim().toLowerCase();
-              const locatorType = String(p.locatorType || '').trim().toLowerCase();
-              const topLevelType = String(p.placeType || p.place_type || p.type || '').trim().toLowerCase();
-              const explicit = coordType === 'district_anchor' || areaQuizTypes.has(quizType);
-              if (!explicit) continue;
-              rows.push({
-                id: p.id || '', name: p.name || p.title || '', domain: bits[1] || '', region: bits[2] || '',
-                category: p.category || '', quizType, coordType, coordRole: p.coordRole || '', locatorType,
-                topLevelType, file: rel
-              });
-            }
-          }
+      - name: Verify semantic scope contracts
+        shell: bash
+        run: |
+          node scripts/audit-place-scope.mjs
+          node --test tests/map-place-area-lod.test.mjs
+          node --test tests/place-language-layer.test.mjs
+          npm run typecheck:web
+          npm run places:index:check
+          npm run places:coords:check
+          git diff --check
 
-          const byRegion = {};
-          const byQuizType = {};
-          for (const x of rows) {
-            byRegion[x.region] = (byRegion[x.region] || 0) + 1;
-            const key = x.quizType || '(district_anchor without quiz type)';
-            byQuizType[key] = (byQuizType[key] || 0) + 1;
-          }
-          rows.sort((a,b) => a.region.localeCompare(b.region) || a.name.localeCompare(b.name));
-          console.log('=== EXPLICIT AREA-TYPE SUMMARY ===');
-          console.log(JSON.stringify({ count: rows.length, byRegion, byQuizType }, null, 2));
-          console.log('=== EXPLICIT AREA-TYPE RECORDS ===');
-          console.log(JSON.stringify(rows, null, 2));
-          NODE
+      - name: Commit product migration
+        shell: bash
+        run: |
+          git config user.name "History Go migration bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/places js/map.ts js/map.js dist/web/map.js dist/web/map.js.map \
+            docs/SPRAKLEKSIKON.md docs/PLACE_PRODUCTION_CHECKLIST.md \
+            tests/map-place-area-lod.test.mjs tests/place-language-layer.test.mjs \
+            scripts/audit-place-scope.mjs
+          if git diff --cached --quiet; then
+            echo "No product changes to commit"
+            exit 0
+          fi
+          git commit -m "Skill semantisk Place-scope fra koordinatankre"
+          git push origin HEAD:agent/place-area-coverage-audit
