@@ -65,18 +65,35 @@ jobs:
       - name: Rebuild release manifest
         run: node scripts/build-fagverk-release-manifest.mjs
 
-      - name: Validate Unit15 and shared contracts
-        run: |
-          node --test tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
-          node --test tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs
-          node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
-          node --test tests/fagverk-film-tv-phase3.test.mjs
-          node --test tests/fagverk-subject-inventory.test.mjs
-          node --test tests/fagverk-general-engine.test.mjs
-          node --test tests/fagverk-release-manifest.test.mjs
-          node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs --check
-          node scripts/audit-fagverk-film-tv-phase3.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Test Unit15 fulltext contract
+        run: node --test tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
+
+      - name: Test Unit15 registry contract
+        run: node --test tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs
+
+      - name: Test Unit15 predecessor monotonicity
+        run: node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
+
+      - name: Test Film TV phase3 contract
+        run: node --test tests/fagverk-film-tv-phase3.test.mjs
+
+      - name: Test subject inventory contract
+        run: node --test tests/fagverk-subject-inventory.test.mjs
+
+      - name: Test general engine contract
+        run: node --test tests/fagverk-general-engine.test.mjs
+
+      - name: Test release manifest contract
+        run: node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Check Unit15 editorial audit
+        run: node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs --check
+
+      - name: Check Film TV phase3 audit
+        run: node scripts/audit-fagverk-film-tv-phase3.mjs
+
+      - name: Check release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
 
       - name: Remove one-shot workflow
         if: success()
