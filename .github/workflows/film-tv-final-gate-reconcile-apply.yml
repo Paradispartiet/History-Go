@@ -1,0 +1,73 @@
+name: Apply Film TV final gate reconciliation
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
+    paths:
+      - .github/workflows/film-tv-final-gate-reconcile-apply.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: film-tv-unit15-final-gate-reconcile
+  cancel-in-progress: true
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Reconcile only the obsolete Film TV production-gate regex
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+
+          const dir = 'scripts';
+          const oldFragment = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$';
+          const newFragment = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$';
+          const files = fs.readdirSync(dir)
+            .filter((name) => name.endsWith('.mjs'))
+            .filter((name) => name.startsWith('audit-film-tv-') || name.startsWith('audit-fagverk-film-tv-'));
+          const changed = [];
+          for (const name of files) {
+            const file = path.join(dir, name);
+            const before = fs.readFileSync(file, 'utf8');
+            if (!before.includes(oldFragment)) continue;
+            const after = before.replaceAll(oldFragment, newFragment);
+            fs.writeFileSync(file, after);
+            changed.push(name);
+          }
+          if (changed.length < 2) {
+            throw new Error(`Expected at least two stale Film & TV predecessor audits, changed ${changed.length}: ${changed.join(', ')}`);
+          }
+          console.log(`Reconciled ${changed.length} Film & TV predecessor audits:`);
+          for (const name of changed) console.log(`- ${name}`);
+          NODE
+      - name: Validate monotonicity and shared Film TV audits
+        run: |
+          node tests/film-tv-final-gate-monotonicity-v1.test.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-film-tv-phase3.mjs
+          node scripts/audit-film-tv-curriculum-completeness-v1.mjs
+          node scripts/audit-film-tv-variable-inventory-v1.mjs
+          node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
+          node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs
+      - name: Remove one-shot workflow and commit reconciliation
+        run: |
+          rm .github/workflows/film-tv-final-gate-reconcile-apply.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts tests .github/workflows/film-tv-final-gate-reconcile-apply.yml
+          git diff --cached --check
+          git commit -m "Reconcile Film TV predecessor audits with Unit15 final gate"
+          git push origin HEAD:agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
