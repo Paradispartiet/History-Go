@@ -75,8 +75,8 @@ jobs:
           path = Path('tests/place-language-layer.test.mjs')
           text = path.read_text(encoding='utf-8')
           replacements = {
-              '  assert.match(checklist, /coordRole: \\"area_anchor\\"/);': '  assert.match(checklist, /placeScope:\\s*\\"area\\"/);',
-              '  assert.match(contract, /coordRole: \\"area_anchor\\"/);': '  assert.match(contract, /placeScope:\\s*\\"area\\"/);',
+              r'  assert.match(checklist, /coordRole: \"area_anchor\"/);': r'  assert.match(checklist, /placeScope:\s*"area"/);',
+              r'  assert.match(contract, /coordRole: \"area_anchor\"/);': r'  assert.match(contract, /placeScope:\s*"area"/);',
           }
           for old, new in replacements.items():
               if old not in text:
