@@ -77,10 +77,18 @@ test('kildeavsnittet må omtale de faktiske emnespesifikke sekundærkildene og i
     }
 
     const declared = new Set(article.source_ids || []);
+    const declaredTitles = [...declared]
+      .map((id) => sourcesById.get(id))
+      .filter(Boolean)
+      .map((source) => norm(source.title));
+
     for (const candidate of searchableTitles) {
+      if (declared.has(candidate.id)) continue;
+      // A short registry title such as "Metaphysics" can be a literal substring
+      // of a longer, legitimately declared title. That is not source contamination.
+      if (declaredTitles.some((title) => title.includes(candidate.needle))) continue;
       if (!sourceProse.includes(candidate.needle)) continue;
-      assert.ok(
-        declared.has(candidate.id),
+      assert.fail(
         `${article.id}: kildedrøftingen navngir ${candidate.title}, men artikkelen deklarerer ikke ${candidate.id}`
       );
     }
