@@ -26,6 +26,7 @@
     const L_LAB = "hg-places-label";
     const PLACE_LABEL_MIN_ZOOM = 13.8;
     const PLACE_DETAIL_MIN_ZOOM = 12;
+    const PLACE_SCOPE_AREA = "area";
     const PLACE_ZOOM_LOD_FILTER = ["any", [">=", ["zoom"], PLACE_DETAIL_MIN_ZOOM], ["==", ["get", "isAreaPlace"], 1]];
     const PLACE_HIT_LAYERS = [L_HIT, L_DOTS, L_LAB, L_GLOW];
     const PLACE_HIT_PRIORITY = [L_HIT, L_DOTS, L_LAB, L_GLOW];
@@ -604,9 +605,7 @@
       };
     }
     function isAreaPlace(place) {
-      const coordRole = String((place == null ? void 0 : place.coordRole) || "").trim().toLowerCase();
-      const coordType = String((place == null ? void 0 : place.coordType) || "").trim().toLowerCase();
-      return coordRole === "area_anchor" || coordType === "district_anchor" || coordType.endsWith("_area_anchor");
+      return String((place == null ? void 0 : place.placeScope) || "").trim().toLowerCase() === PLACE_SCOPE_AREA;
     }
     function drawPlaceMarkers() {
       var _a;

@@ -63,6 +63,7 @@ on:
       - 'docs/FAGVERK_NAVIGATION.md'
       - 'docs/FAGVERK_PLACE_DESIGN.md'
       - 'scripts/audit-place-images.mjs'
+      - 'scripts/lib/place-image-change-classifier.mjs'
       - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'scripts/audit-fagverk-general-engine.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
@@ -74,6 +75,7 @@ on:
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/place-learning-surface.test.js'
+      - 'tests/place-image-audit-changed.test.mjs'
       - 'tests/politikk-fag-integration.test.mjs'
       - 'tests/header-search-menu.test.js'
       - 'reports/fagverk/**'
@@ -175,6 +177,8 @@ jobs:
           node --check js/ui/place-learning-canonical.js
           node --check js/ui/place-card-status-surface.js
           node --check scripts/audit-place-images.mjs
+          node --check scripts/lib/place-image-change-classifier.mjs
+          node --check tests/place-image-audit-changed.test.mjs
           node --check scripts/audit-fagverk-subject-inventory.mjs
           node --check scripts/audit-fagverk-general-engine.mjs
       - name: Validate canonical subjects, textbook data, category design, links and place integration
@@ -191,6 +195,7 @@ jobs:
           node --test tests/fagverk-link-audit.test.mjs
           node --test tests/place-learning-surface.test.js
           node tests/header-search-menu.test.js
+          node --test tests/place-image-audit-changed.test.mjs
       - name: Require valid images on new and changed places
         run: node scripts/audit-place-images.mjs --mode=changed
       - name: Build and verify full place image backlog

@@ -120,7 +120,7 @@ Vanlige norske ord skal ikke merkes som lokale bare fordi de forekommer i en lok
 
 Dialektord og lokale uttrykk skal ikke presses inn på alle Places. Før språkproduksjon klassifiseres place-objektets **canonical identitet**: representerer det et område/språkmiljø, et enkeltsted, eller et enkeltsted med en direkte dokumentert språkhistorie?
 
-For **område-Places** er dialektord og lokale uttrykk en **obligatorisk produksjonsjobb**. Det gjelder steder som faktisk representerer et strøk, en bydel, by/bygd, ladested eller annet dokumentert lokalt miljø. `coordRole: "area_anchor"` er den primære eksisterende datamarkøren for slikt områdeeierskap. `coordType: "district_anchor"` og tilsvarende dokumentert områdeidentitet kan støtte klassifiseringen, men skal ikke brukes til å overstyre hva place-objektet faktisk representerer.
+For **område-Places** er dialektord og lokale uttrykk en **obligatorisk produksjonsjobb**. Det gjelder steder som faktisk representerer et strøk, en bydel, by/bygd, ladested eller annet dokumentert lokalt miljø. `placeScope: "area"` er den canonicale semantiske datamarkøren for slikt områdeeierskap. `coordRole` og `coordType` beskriver hvordan et sted eller en flate er koordinatfestet; `area_anchor`, `park_anchor`, sentroid- og andre geometriske ankertyper gir derfor **ikke** områdeeierskap alene. Eldre `district_anchor`- og eksplisitte områdeklassifikasjoner brukes bare som migreringsbelegg for å sette `placeScope` eksplisitt.
 
 Produksjonsregelen er:
 
