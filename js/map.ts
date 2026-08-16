@@ -29,6 +29,8 @@
   const L_DOTS = "hg-places-dots";
   const L_LAB  = "hg-places-label";
   const PLACE_LABEL_MIN_ZOOM = 13.8;
+  const PLACE_DETAIL_MIN_ZOOM = 12;
+  const PLACE_ZOOM_LOD_FILTER: any = ["any", [">=", ["zoom"], PLACE_DETAIL_MIN_ZOOM], ["==", ["get", "isAreaPlace"], 1]];
   const PLACE_HIT_LAYERS = [L_HIT, L_DOTS, L_LAB, L_GLOW];
   const PLACE_HIT_PRIORITY = [L_HIT, L_DOTS, L_LAB, L_GLOW];
   const PLACE_TAP_TOLERANCE_PX = 12;
@@ -686,6 +688,12 @@
     };
   }
 
+  function isAreaPlace(place) {
+    const coordRole = String(place?.coordRole || "").trim().toLowerCase();
+    const coordType = String(place?.coordType || "").trim().toLowerCase();
+    return coordRole === "area_anchor" || coordType === "district_anchor" || coordType.endsWith("_area_anchor");
+  }
+
   function drawPlaceMarkers() {
     if (!MAP) return;
     if (!Array.isArray(PLACES) || PLACES.length === 0) return;
@@ -722,6 +730,7 @@
           id: p.id,
           name: p.name || "",
           visited: isVisited ? 1 : 0,
+          isAreaPlace: isAreaPlace(p) ? 1 : 0,
           coordinateTrust,
           coordinateTrustNote: coordinateTrust === "review" || coordinateTrust === "unknown" ? "Koordinat trenger kontroll" : "",
           fill,
@@ -747,6 +756,7 @@
 
     MAP.addLayer({
       id: L_GLOW,
+      filter: PLACE_ZOOM_LOD_FILTER,
       type: "circle",
       source: SRC,
       paint: getPlaceGlowPaint()
@@ -754,6 +764,7 @@
 
     MAP.addLayer({
       id: L_DOTS,
+      filter: PLACE_ZOOM_LOD_FILTER,
       type: "circle",
       source: SRC,
       paint: {
@@ -778,6 +789,7 @@
 
     MAP.addLayer({
       id: L_LAB,
+      filter: PLACE_ZOOM_LOD_FILTER,
       type: "symbol",
       source: SRC,
       layout: {
@@ -794,6 +806,7 @@
 
     MAP.addLayer({
       id: L_HIT,
+      filter: PLACE_ZOOM_LOD_FILTER,
       type: "circle",
       source: SRC,
       paint: {
@@ -1007,6 +1020,7 @@
     setUser,
 
     getCoordinateTrust,
+    isAreaPlace,
 
     maybeDrawMarkers,
     refreshMarkers
