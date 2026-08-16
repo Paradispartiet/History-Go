@@ -45,20 +45,42 @@ jobs:
               print(f'Patched {path}')
           PY
 
-      - name: Run exact Industry baseline after known fixes
+      - name: Enumerate exact Industry baseline failures
+        shell: bash
         run: |
-          node --test \
+          set +e
+          failed=0
+          for f in \
             tests/fagverk-film-tv-architectural-full-chapter.test.mjs \
             tests/fagverk-film-tv-innovation-full-chapter.test.mjs \
-            tests/fagverk-film-tv-reception-context-full-chapter.test.mjs
-          node tests/film-tv-phase-b.test.mjs
-          node tests/film-tv-unit2-source-brief-v1.test.mjs
-          node tests/film-tv-unit3-innovation-source-brief-v1.test.mjs
-          node tests/film-tv-unit4-reception-context-source-brief-v1.test.mjs
-          node tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
-          node tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+            tests/fagverk-film-tv-reception-context-full-chapter.test.mjs; do
+            echo "=== NODE TEST $f ==="
+            node --test "$f"
+            code=$?
+            if [ "$code" -ne 0 ]; then
+              echo "::error title=Failing Industry node-test::$f"
+              failed=1
+            fi
+          done
+          for f in \
+            tests/film-tv-phase-b.test.mjs \
+            tests/film-tv-unit2-source-brief-v1.test.mjs \
+            tests/film-tv-unit3-innovation-source-brief-v1.test.mjs \
+            tests/film-tv-unit4-reception-context-source-brief-v1.test.mjs \
+            tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs \
+            tests/film-tv-learning-order-monotone-regression-v1.test.mjs; do
+            echo "=== NODE $f ==="
+            node "$f"
+            code=$?
+            if [ "$code" -ne 0 ]; then
+              echo "::error title=Failing Industry script-test::$f"
+              failed=1
+            fi
+          done
+          exit "$failed"
 
       - name: Run every Phase4 Film TV glob test separately
+        if: always()
         shell: bash
         run: |
           set +e
@@ -70,7 +92,7 @@ jobs:
             node --test "$f"
             code=$?
             if [ "$code" -ne 0 ]; then
-              echo "::error title=Failing Film TV test::$f"
+              echo "::error title=Failing Phase4 Film TV test::$f"
               failed=1
             fi
           done
