@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Audit semantic area-place signals
+      - name: Audit explicit semantic area types
         shell: bash
         run: |
           node <<'NODE'
@@ -22,6 +22,10 @@ jobs:
           const path = require('path');
           const manifest = JSON.parse(fs.readFileSync('data/places/manifest.json', 'utf8'));
           const rows = [];
+          const areaQuizTypes = new Set([
+            'omrade', 'område', 'boligomrade', 'boligområde', 'bydel', 'by', 'tettstad',
+            'ladested', 'ladested_og_ferdselssted', 'alternativ_bydel'
+          ]);
 
           for (const rel of manifest.files || []) {
             const data = JSON.parse(fs.readFileSync(path.join('data', rel), 'utf8'));
@@ -29,53 +33,30 @@ jobs:
             for (const p of items) {
               if (!p || typeof p !== 'object' || (!p.id && !p.name)) continue;
               const bits = rel.split('/');
-              const coordType = String(p.coordType || '').trim().toLowerCase();
-              const coordRole = String(p.coordRole || '').trim().toLowerCase();
-              const locatorType = String(p.locatorType || '').trim().toLowerCase();
               const quizType = String(p.quiz_profile?.place_type || '').trim().toLowerCase();
-              const sourceObjectId = String(p.sourceObjectId || '').trim().toLowerCase();
-              const coordSource = String(p.coordSource || '').trim().toLowerCase();
-              const note = String(p.coordNote || '').trim().toLowerCase();
-              const districtAnchor = coordType === 'district_anchor';
-              const quizArea = ['omrade', 'område', 'area', 'district', 'neighborhood', 'neighbourhood'].includes(quizType);
-              const locatorArea = ['neighborhood','neighbourhood','district','borough','municipality','city','town','village','locality','county','region'].includes(locatorType);
-              const explicitStrok = sourceObjectId.includes('strok') || coordSource.includes('strøk') || /\bstrøket\b|\bstrøk\b/.test(note);
-              const semanticCandidate = districtAnchor || quizArea || locatorArea || explicitStrok;
+              const coordType = String(p.coordType || '').trim().toLowerCase();
+              const locatorType = String(p.locatorType || '').trim().toLowerCase();
+              const topLevelType = String(p.placeType || p.place_type || p.type || '').trim().toLowerCase();
+              const explicit = coordType === 'district_anchor' || areaQuizTypes.has(quizType);
+              if (!explicit) continue;
               rows.push({
                 id: p.id || '', name: p.name || p.title || '', domain: bits[1] || '', region: bits[2] || '',
-                category: p.category || '', locatorType, coordRole, coordType, quizType,
-                districtAnchor, quizArea, locatorArea, explicitStrok, semanticCandidate, file: rel
+                category: p.category || '', quizType, coordType, coordRole: p.coordRole || '', locatorType,
+                topLevelType, file: rel
               });
             }
           }
 
-          const candidates = rows.filter(x => x.semanticCandidate).sort((a,b) => a.region.localeCompare(b.region) || a.name.localeCompare(b.name));
-          const currentCoordinateAreas = rows.filter(x => x.coordRole === 'area_anchor' || x.coordType.endsWith('_area_anchor') || x.coordType === 'district_anchor');
-          const coordinateOnly = currentCoordinateAreas.filter(x => !x.semanticCandidate);
           const byRegion = {};
-          for (const x of candidates) {
-            const r = byRegion[x.region] ||= { totalCandidates: 0, districtAnchor: 0, quizArea: 0, locatorArea: 0, explicitStrok: 0 };
-            r.totalCandidates++;
-            if (x.districtAnchor) r.districtAnchor++;
-            if (x.quizArea) r.quizArea++;
-            if (x.locatorArea) r.locatorArea++;
-            if (x.explicitStrok) r.explicitStrok++;
+          const byQuizType = {};
+          for (const x of rows) {
+            byRegion[x.region] = (byRegion[x.region] || 0) + 1;
+            const key = x.quizType || '(district_anchor without quiz type)';
+            byQuizType[key] = (byQuizType[key] || 0) + 1;
           }
-
-          const quizTypeCounts = {};
-          for (const x of rows) if (x.quizType) quizTypeCounts[x.quizType] = (quizTypeCounts[x.quizType] || 0) + 1;
-
-          console.log('=== SEMANTIC SUMMARY ===');
-          console.log(JSON.stringify({
-            totalPlaces: rows.length,
-            currentCoordinateAreaAnchors: currentCoordinateAreas.length,
-            semanticAreaCandidates: candidates.length,
-            coordinateAnchorsWithoutSemanticAreaSignal: coordinateOnly.length,
-            quizTypeCounts,
-            byRegion
-          }, null, 2));
-          console.log('=== SEMANTIC AREA CANDIDATES ===');
-          console.log(JSON.stringify(candidates, null, 2));
-          console.log('=== SAMPLE COORDINATE-ONLY AREA ANCHORS (first 40) ===');
-          console.log(JSON.stringify(coordinateOnly.slice(0, 40), null, 2));
+          rows.sort((a,b) => a.region.localeCompare(b.region) || a.name.localeCompare(b.name));
+          console.log('=== EXPLICIT AREA-TYPE SUMMARY ===');
+          console.log(JSON.stringify({ count: rows.length, byRegion, byQuizType }, null, 2));
+          console.log('=== EXPLICIT AREA-TYPE RECORDS ===');
+          console.log(JSON.stringify(rows, null, 2));
           NODE
