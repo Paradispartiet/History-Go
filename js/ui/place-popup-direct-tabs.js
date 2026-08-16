@@ -8,6 +8,7 @@
   const INSTALL_FLAG = "__HG_PLACE_POPUP_DIRECT_TABS_INSTALLED__";
   const BRIDGE_FLAG = "hgDirectTabBridge";
   const MORE_ID = "more";
+  const bridgedDecorators = new WeakSet();
 
   const text = value => String(value == null ? "" : value).trim();
   const slug = value => text(value)
@@ -105,7 +106,8 @@
 
     tablist.addEventListener("keydown", event => {
       const buttons = [...tablist.querySelectorAll("[role=tab]")].filter(button => button instanceof HTMLElement);
-      const index = buttons.indexOf(document.activeElement);
+      const activeElement = document.activeElement;
+      const index = activeElement instanceof HTMLElement ? buttons.indexOf(activeElement) : -1;
       if (index < 0 || !buttons.length) return;
       let next = index;
       if (event.key === "ArrowRight") next = (index + 1) % buttons.length;
@@ -194,8 +196,25 @@
     return true;
   }
 
+  function installDecoratorBridge() {
+    const api = global.HGPlacePopupTabs;
+    const currentDecorate = api?.decoratePopup;
+    if (typeof currentDecorate !== "function" || bridgedDecorators.has(currentDecorate)) return;
+
+    const wrappedDecorate = function decoratePopupWithDirectTabs(place) {
+      const result = currentDecorate.apply(this, arguments);
+      try { decoratePopup(); } catch (error) { if (global.DEBUG) console.warn("[place-popup-direct-tabs]", error); }
+      return result;
+    };
+    bridgedDecorators.add(wrappedDecorate);
+    api.decoratePopup = wrappedDecorate;
+  }
+
   function install() {
-    if (global[INSTALL_FLAG]) return true;
+    if (global[INSTALL_FLAG]) {
+      installDecoratorBridge();
+      return true;
+    }
     const current = global.showPlacePopup;
     if (typeof current !== "function" || current.__hgPlacePopupTabs !== true) return false;
 
@@ -210,6 +229,7 @@
     wrapped.__previous = current;
     global.showPlacePopup = wrapped;
     global.HGPlacePopupDirectTabs = { decoratePopup, activate };
+    installDecoratorBridge();
     global[INSTALL_FLAG] = true;
     return true;
   }
