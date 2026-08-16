@@ -11,7 +11,7 @@ Fase 1 etablerte en read-only audit og Scene Contract v1 uten å endre scenevalg
 - EventEngine oppløser canonicale arbeidskandidater én gang;
 - DailyBuilders ekstra arbeids-slot, familiekataloglasting og kildenormalisering ligger bak `CivicationSceneDirector` og `CivicationSceneCatalog`.
 
-Den globale auditten står fortsatt i `observe`. Generiske runtimevalg og parallelle `answer()`-wrappere er nå lukket gjennom 4D–4F. Gjenværende synlig gjeld er kildeadapter-cutover, dagsbudsjett, compiled registry og den senere blokkerende semantiske spilltesten.
+Den globale auditten står fortsatt i `observe`. Generiske runtimevalg, parallelle `answer()`-wrappere og kildeadapter-cutoveren er nå lukket gjennom 4D–4G. Gjenværende synlig gjeld er dagsbudsjett, compiled registry og den senere blokkerende semantiske spilltesten.
 
 Kanoniske maskinlesbare kilder:
 
@@ -29,7 +29,7 @@ Kanoniske maskinlesbare kilder:
 ```text
 RolePack / FWG ─┐
 Private / Life ─┼─> kildeadaptre -> normalisering/kompilering -> SceneCatalog
-Narrativer ─────┤                                            |
+Narrativ / Social┤                                            |
 Fagverket ──────┘                                      SceneDirector
                                                              |
                                                    delivery / NextAction
@@ -144,8 +144,7 @@ De gamle interne Daily-funksjonene finnes foreløpig som kompatibilitetskode i f
 ## Bekreftet gjenværende migreringsgjeld
 
 1. Dagsprogrammet beskriver fortsatt en eldre element-/ordmengdemodell. Målkontrakten bruker 3–6 faktiske arbeidssituasjoner; lesetid og ordmengde er observasjoner, ikke produksjonskvoter.
-2. SceneCatalog leser fortsatt registrerte kildekataloger. Ett kompilert scene-register er måltilstanden etter at kildeadapterne er samlet.
-3. 4G-A–4G-C har flyttet `private`, `life` og `narrative` bak rene SceneCatalog-adaptre. `social` gjenstår før source-adapter-steget er fullført.
+2. SceneCatalog leser fortsatt registrerte kildekataloger. Ett kompilert scene-register er måltilstanden nå som `private`, `life`, `narrative` og `social` er samlet bak registrerte kildeadaptre.
 
 ## Fagverk og stabile spilleregler
 
@@ -169,7 +168,7 @@ Slike felt skal være låst til en versjonert `ruleset_ref` i `knowledge_contrac
 
 Auditten er read-only og skriver aldri om data. Standardmodus rapporterer gjenværende gjeld med exit code 0. `--strict` gjør de samme funnene blokkerende.
 
-Reachability-testen håndhever typeparitet og direkte lasting. SceneDirector-eierskapstesten låser kandidatkjeden og EventEngine. Daily-katalogtesten låser 4C-grensen. Global `enforcement_mode` forblir `observe` til generiske fallbackvalg, svarpipeline, dagsbudsjett og compiled registry er migrert.
+Reachability-testen håndhever typeparitet og direkte lasting. SceneDirector-eierskapstesten låser kandidatkjeden og EventEngine. Daily-katalogtesten låser 4C-grensen. Global `enforcement_mode` forblir `observe` til dagsbudsjett og compiled registry er migrert og den blokkerende semantiske spilltesten kan slås på.
 
 ## Migreringsrekkefølge og status
 
@@ -182,12 +181,12 @@ Reachability-testen håndhever typeparitet og direkte lasting. SceneDirector-eie
    - **Fullført 4C:** Flytt Daily-ekstrascener, familielasting og normalisering bak Director/SceneCatalog.
 5. **Fullført 4D–4E:** Fjern generiske runtimevalg og krev korrekt `decision`, `task`, `info` eller `ack`.
 6. **Fullført 4F:** `CivicationChoiceDirector` er eneste aktive `EventEngine.answer`-eier; rundt-semantikk ligger i eksplisitt prioritert middleware.
-7. **Pågår 4G:** Gjør private, life, narrative og social til kildeadaptre.
+7. **Fullført 4G:** Gjør private, life, narrative og social til kildeadaptre.
    - **Fullført 4G-A:** `private` registreres deferred og konsumeres via `CivicationSceneCatalog`; Daily har ingen direkte produsentkobling.
    - **Fullført 4G-B:** `life` registreres som egen SceneCatalog-adapter; standard Life-`onAppOpen` konsumerer kilden via Catalog uten direkte produsentfallback.
    - **Fullført 4G-C:** `narrative` eier manifest/stream-eligibility og storylet→scene bak SceneCatalog; Daily eier fortsatt dagsplassering og narrativ state/effect-transaksjon.
-   - **Gjenstår:** `social`.
-8. La runtime lese ett kompilert scene-register; fjern parallelle kildeveier og gamle `jobbmails`.
+   - **Fullført 4G-D:** `social` registreres som SceneCatalog-adapter; FriendsEngine er synkron kompatibilitetsfasade mot den registrerte adapteren, mens kart, private meldinger og samtalekonsekvenser beholder eksisterende semantikk.
+8. **Neste:** La runtime lese ett kompilert scene-register; fjern parallelle kildeveier og gamle `jobbmails`.
 9. Slå på blokkerende semantisk spilltest: plansteg → scene → valg/oppgave/info → konsekvens → progresjon → neste steg.
 
 Renholder og Arealplanlegger er de første bevisrollene etter at interaksjonskontrakten og svartransaksjonen er samlet.
@@ -256,4 +255,23 @@ Regresjonen krever at:
 - same-day `opens_streams`-injeksjon bruker samme Catalog-adapter;
 - private/work-separasjon, sceneidentitet, valg og injeksjonsfase bevares;
 - Daily answer-middleware forblir priority 40;
+- `compiled_registry_ready` fortsatt er `false`.
+
+## Source adapters 4G-D: social
+
+`CivicationSocialSceneSource` registrerer `social` i det eksisterende SceneCatalog-registeret med `source_format: civication_social_encounter_v1`. Modulen fanger den eksisterende deterministiske `CivicationFriendsEngine.getSocialEncountersForLocation`-produsenten én gang og gjør deretter FriendsEngines offentlige `getSocialEncountersForLocation` og `canApproachFriendAtLocation` til synkrone kompatibilitetsfasader mot den registrerte adapteren.
+
+I standard `DAY_SCRIPTS` lastes `CivicationSocialSceneSource` etter `CivicationWorkdayMailBuilder`, som allerede har opprettet SceneCatalog, og før Daily fortsetter. Det betyr at normal runtime aldri trenger en direkte raw-producer-fallback. Hvis en alternativ testloader laster Social tidligere, kan adapteren bare legges i den samme deferred registreringskøen som Private/Life; den offentlige fasaden feiler lukket til Catalog faktisk eier adapteren.
+
+Social er en annen leveringsflate enn den choice-baserte Daily-svarsløyfen. Encounter-modellen beholder derfor `action: "approach"` og mottakerens `responseOptions` (`reply`, `ignore`, `decline`) uten å bli tvangsklassifisert som `decision`/`info` av ChoiceDirector. `CivicationFriendMessages`, `CivicationRelationshipEngine` og `CivicationSocialConversationEngine` beholder eierskap til privat melding, svar, relasjonskonsekvens og samtaletråd. Adapteren legger bare på source-provenance; den endrer ikke hvem som møtes, hvor, når eller hvilke svar som finnes.
+
+Regresjonen krever at:
+
+- standard loaderrekkefølge er SceneCatalog → Social source → Daily;
+- Catalog eier nøyaktig én `social`-adapter;
+- FriendsEngines offentlige møteoppslag og `canApproachFriendAtLocation` går gjennom den registrerte adapteren;
+- valgt person, fase, locationId, `approach` og `reply/ignore/decline` er identiske med den eksisterende produsenten;
+- CityLayer kjenner bare FriendsEngine-fasaden, ikke Social-produsenten direkte;
+- registrering er idempotent og CityLayer får én rerender etter cutover;
+- eksisterende private meldings-, respons-, relasjons- og samtaletester forblir grønne;
 - `compiled_registry_ready` fortsatt er `false`.
