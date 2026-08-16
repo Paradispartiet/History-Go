@@ -18,8 +18,9 @@ const MODULE_FILES = [
 
 const clean = (value) => String(value || '').replace(/\s+/gu, ' ').trim();
 const noTerminal = (value) => clean(value).replace(/[.!?]+$/u, '').trim();
+const inlineText = (value) => noTerminal(value).replace(/([.!?])\s+/gu, '; ').trim();
 const lowerFirst = (value) => {
-  const text = noTerminal(value);
+  const text = inlineText(value);
   return text ? text.charAt(0).toLocaleLowerCase('nb-NO') + text.slice(1) : text;
 };
 const sentence = (value) => {
@@ -100,11 +101,11 @@ const LIMIT_LEADS = [
 ];
 
 const QUESTION_LEADS = [
-  (q) => `Det avgjørende kontrollspørsmålet blir derfor: ${clean(q)}`,
-  (q) => `Før påstanden kan godtas, må analysen svare på ett konkret evidensspørsmål: ${clean(q)}`,
+  (q) => `Det avgjørende kontrollspørsmålet blir derfor: ${inlineText(q)}`,
+  (q) => `Før påstanden kan godtas, må analysen svare på ett konkret evidensspørsmål: ${inlineText(q)}`,
   (q) => `Vurderingen står eller faller på spørsmålet ${lowerFirst(q)}`,
-  (q) => `Det som faktisk må dokumenteres, kan formuleres slik: ${clean(q)}`,
-  (q) => `En etterprøvbar konklusjon krever svar på følgende: ${clean(q)}`,
+  (q) => `Det som faktisk må dokumenteres, kan formuleres slik: ${inlineText(q)}`,
+  (q) => `En etterprøvbar konklusjon krever svar på følgende: ${inlineText(q)}`,
   (q) => `Evidenskravet kan til slutt uttrykkes som spørsmålet ${lowerFirst(q)}`
 ];
 
@@ -119,41 +120,50 @@ const CLOSINGS = [
   (title) => `Analysen ender dermed i en kontrollert, kildebåret vurdering av ${title.toLocaleLowerCase('nb-NO')}, ikke i en generell rangering av kulturell verdi`
 ];
 
-function sourceRoleSentence(sourceRows, index) {
+function sourceRoleSentence(sourceRows, index, sectionTitle) {
   const roles = sourceRows.map((row) => `${labelSource(row)} er en ${sourceKind(row)} med relevans for ${clean(row.territory)}`);
-  const lead = index % 3 === 0
-    ? 'Kildenes roller er forskjellige'
-    : index % 3 === 1
-      ? 'Det er viktig å holde kildetypene fra hverandre'
-      : 'Kildekritisk må materialet vektes etter funksjon';
-  return `${lead}: ${roles.join('; ')}`;
+  const leads = [
+    'Kildenes roller er forskjellige',
+    'Det er viktig å holde kildetypene fra hverandre',
+    'Kildekritisk må materialet vektes etter funksjon',
+    'Dokumentene har ulik bevisverdi',
+    'Kildene må leses ut fra institusjonell og faglig funksjon',
+    'Evidensstyrken avhenger av hvilken rolle hver kilde faktisk spiller',
+    'Samme påstand bæres her av kilder med ulike oppgaver',
+    'Kildekombinasjonen krever at autoritet og funksjon skilles',
+    'Hvert dokument bidrar på sin egen måte til kontrollen',
+    'Trianguleringen virker bare når kildenes funksjoner holdes fra hverandre',
+    'Kildekritikken begynner med å skille dokumenttype fra påstandsstyrke',
+    'Evidensgrunnlaget blir mer presist når hver kildes rolle navngis'
+  ];
+  const lead = leads[index % leads.length];
+  return `${lead}: ${roles.join('; ')}; denne kildevektingen gjelder ${clean(sectionTitle).toLocaleLowerCase('nb-NO')}`;
 }
-
 function methodSentence(methodRows, index) {
   const selected = methodRows.slice(0, 4);
   const text = selected.map((row) => `${clean(row.title)} ${lowerFirst(row.purpose)}`).join('; ');
   return METHOD_LEADS[index % METHOD_LEADS.length](text);
 }
 
-function caseSentence(caseRow, index) {
+function caseSentence(caseRow, index, sectionTitle) {
+  const context = `; caset brukes her som prøvepunkt for ${clean(sectionTitle).toLocaleLowerCase('nb-NO')}`;
   if (!caseRow) {
     const variants = [
       'Her finnes ikke ett enkelt case som kan bære slutningen; kildekjeden og den historiske konteksten må derfor gjøre hele evidensarbeidet',
       'Fraværet av et selvstendig case gjør kildekritikken viktigere: slutningen må kunne rekonstrueres direkte fra de navngitte dokumentene',
       'Ingen enkelt case får fungere som snarvei; vurderingen må i stedet bygges fra daterte kilder og eksplisitt kontekst'
     ];
-    return variants[index % variants.length];
+    return `${variants[index % variants.length]}${context}`;
   }
-  return CASE_LEADS[index % CASE_LEADS.length](caseRow);
+  return `${CASE_LEADS[index % CASE_LEADS.length](caseRow)}${context}`;
 }
-
 function buildEditorialParagraph({ section, claim, methodRows, sourceRows, caseRow, globalIndex }) {
   const focus = clean(claim.claim);
   const labels = sourceRows.map(labelSource).join(sourceRows.length > 2 ? ', ' : ' og ');
-  const sourceLead = SOURCE_LEADS[globalIndex % SOURCE_LEADS.length](labels);
-  const sourceRole = sourceRoleSentence(sourceRows, globalIndex);
+  const sourceLead = `${SOURCE_LEADS[globalIndex % SOURCE_LEADS.length](labels)}; dette kildevalget gjelder ${clean(section.title).toLocaleLowerCase('nb-NO')}`;
+  const sourceRole = sourceRoleSentence(sourceRows, globalIndex, section.title);
   const method = methodSentence(methodRows, globalIndex);
-  const concreteCase = caseSentence(caseRow, globalIndex);
+  const concreteCase = caseSentence(caseRow, globalIndex, section.title);
   const disagreement = DISAGREEMENT_LEADS[globalIndex % DISAGREEMENT_LEADS.length](section.documentedDisagreement);
   const limits = LIMIT_LEADS[globalIndex % LIMIT_LEADS.length](
     section.methodLimits?.[globalIndex % section.methodLimits.length],

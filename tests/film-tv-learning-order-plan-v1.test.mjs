@@ -28,6 +28,6 @@ test('første produksjonskandidat krever kilde- og claimbrief før registrering'
   assert.equal(result.plan.first_production_candidate.required_next_artifact, 'source_and_claim_brief');
   assert.match(result.plan.first_production_candidate.registration_status, /^not_registered/);
   const currentFilmTvGate = result.status.subjects.find((row) => row.id === 'film_tv').nextGate;
-  assert.ok(currentFilmTvGate === 'learning_order_plan_complete_first_chapter_source_brief' || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(currentFilmTvGate));
+  assert.ok(currentFilmTvGate === 'learning_order_plan_complete_first_chapter_source_brief' || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(currentFilmTvGate));
   assert.equal(result.registry.subjects.film_tv.canonicalModel.learningOrderPlan, 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json');
 });

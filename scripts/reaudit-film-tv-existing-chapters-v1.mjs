@@ -87,7 +87,7 @@ export function buildFilmTvExistingChapterReauditV1() {
   const registry = structuredClone(read(P.registry));
   const currentFilmStatus = read(P.status).subjects.find((row) => row.id === 'film_tv');
   const laterLearningOrderGate = currentFilmStatus?.nextGate === 'learning_order_plan_complete_first_chapter_source_brief'
-    || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(currentFilmStatus?.nextGate || '');
+    || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(currentFilmStatus?.nextGate || '');
   if (!laterLearningOrderGate) {
     registry.version = '2.73.0';
     registry.updatedAt = '2026-08-11';
