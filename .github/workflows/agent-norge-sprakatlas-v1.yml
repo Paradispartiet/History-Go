@@ -1,0 +1,40 @@
+name: Agent Norge språkatlas v1
+
+on:
+  push:
+    branches:
+      - agent/norge-sprakatlas-v1
+    paths:
+      - .github/workflows/agent-norge-sprakatlas-v1.yml
+      - scripts/agent_build_norge_sprakatlas_v1.py
+
+permissions:
+  contents: write
+
+jobs:
+  build-atlas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/norge-sprakatlas-v1
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Materialize national language atlas
+        run: python scripts/agent_build_norge_sprakatlas_v1.py
+      - name: Check generated runtime and tests
+        run: |
+          node --check js/ui/place-language-layer.js
+          node --test tests/place-language-dialect-scope.test.mjs
+      - name: Commit generated product files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/leksikon/sprak js/ui/place-language-layer.js css/place-language-layer.css docs/SPRAKLEKSIKON.md tests/place-language-dialect-scope.test.mjs
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Bygg Språkatlas Norge v1"
+          git push origin HEAD:agent/norge-sprakatlas-v1
