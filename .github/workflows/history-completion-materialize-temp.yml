@@ -1,0 +1,46 @@
+name: History completion materialize temporary
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'tools/materialize-historie-editorial-chapters.mjs'
+      - 'data/fag/historie/historiography_evidence_historie_v1.json'
+      - '.github/workflows/history-completion-materialize-temp.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/history-completion-audit'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact History branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Materialize repaired History prose
+        run: node tools/materialize-historie-editorial-chapters.mjs
+
+      - name: Commit materialized History corpus back to the same branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fagverk/historie data/fagverk/fagverk_registry.json data/fagverk/subject_status.json
+          if git diff --cached --quiet; then
+            echo 'History materialization already current.'
+            exit 0
+          fi
+          git commit -m 'Materialize repaired History completion prose'
+          git push origin "HEAD:${GITHUB_HEAD_REF}"
