@@ -39,8 +39,11 @@ jobs:
           node --check tests/film-tv-holistic-completion-v1.test.mjs
 
       - name: Namespace collided screen-place claim ids
+        id: namespace
+        shell: bash
         run: |
-          node <<'NODE'
+          set -o pipefail
+          node <<'NODE' 2>&1 | tee film-tv-namespace.log
           const fs = require('node:fs');
           const chapterPath = 'data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon.json';
           const claimsPath = 'data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon/claims.json';
@@ -53,25 +56,63 @@ jobs:
             }
           }
           if (!remap.size) throw new Error('Expected sp-* claim ids to namespace in skjermsteder unit');
-          for (const claim of ledger.claims || []) claim.id = remap.get(claim.id) || claim.id;
+
+          const remapTrace = (value) => {
+            if (Array.isArray(value)) return value.map(remapTrace);
+            if (typeof value === 'string') return remap.get(value) || value;
+            return value;
+          };
+
+          for (const claim of ledger.claims || []) {
+            claim.id = remap.get(claim.id) || claim.id;
+          }
           fs.writeFileSync(claimsPath, `${JSON.stringify(ledger, null, 2)}\n`);
+
           for (const moduleFile of chapter.moduleFiles || []) {
             const module = JSON.parse(fs.readFileSync(moduleFile, 'utf8'));
             for (const section of module.sections || []) {
-              section.paragraphClaimIds = (section.paragraphClaimIds || []).map((ids) =>
-                ids.map((id) => remap.get(id) || id)
-              );
+              section.paragraphClaimIds = remapTrace(section.paragraphClaimIds || []);
             }
             fs.writeFileSync(moduleFile, `${JSON.stringify(module, null, 2)}\n`);
           }
+
           const unresolved = [];
           for (const moduleFile of chapter.moduleFiles || []) {
-            const text = fs.readFileSync(moduleFile, 'utf8');
-            for (const oldId of remap.keys()) if (text.includes(`\"${oldId}\"`)) unresolved.push(`${moduleFile}:${oldId}`);
+            const module = JSON.parse(fs.readFileSync(moduleFile, 'utf8'));
+            for (const section of module.sections || []) {
+              for (const id of (section.paragraphClaimIds || []).flat(Infinity)) {
+                if (typeof id === 'string' && remap.has(id)) {
+                  unresolved.push(`${moduleFile}:${section.id}:${id}`);
+                }
+              }
+            }
           }
-          if (unresolved.length) throw new Error(`Unresolved old claim ids: ${unresolved.join(', ')}`);
+          if (unresolved.length) throw new Error(`Unresolved old paragraph claim ids: ${unresolved.join(', ')}`);
+
+          const ledgerIds = new Set((ledger.claims || []).map((claim) => claim.id));
+          const missing = [];
+          for (const moduleFile of chapter.moduleFiles || []) {
+            const module = JSON.parse(fs.readFileSync(moduleFile, 'utf8'));
+            for (const section of module.sections || []) {
+              for (const id of (section.paragraphClaimIds || []).flat(Infinity)) {
+                if (typeof id === 'string' && !ledgerIds.has(id)) {
+                  missing.push(`${moduleFile}:${section.id}:${id}`);
+                }
+              }
+            }
+          }
+          if (missing.length) throw new Error(`Paragraph claim ids missing from namespaced ledger: ${missing.join(', ')}`);
           console.log(`Namespaced ${remap.size} skjermsteder claim ids and paragraph traces`);
           NODE
+
+      - name: Upload namespace diagnostic
+        if: failure() && steps.namespace.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: film-tv-namespace-diagnostic-${{ github.sha }}
+          path: film-tv-namespace.log
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Materialize holistic completion state
         id: materialize
