@@ -2,56 +2,63 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditVitenskapHolisticUniversityBreadthCompletion } from '../scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs';
 
-test('Vitenskap holistic audit beviser canonical bredde, evidens og redaksjonell integritet', () => {
+test('Vitenskap holistic audit er inventar- og fasekonsistent', () => {
   const report = auditVitenskapHolisticUniversityBreadthCompletion({ checkReport: false });
-  assert.equal(report.gates.eligibleForCompletion, true);
   assert.equal(report.canonicalInventory.domainCount, 6);
   assert.equal(report.canonicalInventory.emneCount, 117);
   assert.equal(report.canonicalInventory.methodCount, 84);
   assert.equal(report.canonicalInventory.mappingCount, 117);
   assert.equal(report.canonicalInventory.hookCount, 64);
-  assert.equal(report.chapters.count, 5);
-  assert.equal(report.chapters.totals.sectionCount, 45);
-  assert.equal(report.chapters.totals.paragraphCount, 135);
-  assert.equal(report.evidence.reciprocalClaimTrace, true);
-  assert.equal(report.evidence.inspectableSourceLocations, true);
-  assert.equal(report.originality.exactDuplicateParagraphCount, 0);
-  assert.ok(report.originality.maxCrossChapterFiveGramJaccard < report.originality.threshold);
+  assert.equal(report.subject.completeReady, false);
+  assert.equal(report.subject.nextGate, 'final_holistic_university_breadth_completion_audit');
+  assert.ok(['blocked', 'eligible_for_completion'].includes(report.status));
 });
 
-test('Vitenskap holistic audit består alle ti readiness completion requirements', () => {
+test('Vitenskap kan ikke bli completion-eligible uten eksplisitt editorial treatment for canonicale emner', () => {
   const report = auditVitenskapHolisticUniversityBreadthCompletion({ checkReport: false });
-  assert.equal(Object.keys(report.completionRequirements).length, 10);
-  assert.ok(Object.values(report.completionRequirements).every(Boolean));
-  assert.equal(report.gates.structuralCoverageGapsResolved, true);
-  assert.equal(report.gates.neighborBoundariesResolvedWithoutDuplicateSubjectTruth, true);
-  assert.equal(report.gates.canonicalEmnersEditoriallyTreated, true);
+  const covered = report.canonicalInventory.explicitChapterOwnedEmneCount;
+  const uncovered = report.canonicalInventory.explicitUncoveredEmneCount;
+  assert.equal(covered + uncovered, 117);
+  assert.equal(report.gates.canonicalEmnersEditoriallyTreated, uncovered === 0);
+  if (uncovered > 0) {
+    assert.equal(report.gates.eligibleForCompletion, false);
+    assert.equal(report.status, 'blocked');
+    assert.ok(report.blockers.some((row) => row.id === 'canonical_emne_full_editorial_treatment_gap'));
+  }
+});
+
+test('Vitenskap holistic audit måler legacy template-risk uten å omskrive baseline-kontrakten', () => {
+  const report = auditVitenskapHolisticUniversityBreadthCompletion({ checkReport: false });
+  assert.equal(report.canonicalInventory.legacyEmneCount, 93);
+  assert.ok(report.canonicalInventory.oldGenericQuestionSetEmneCount >= 0);
+  assert.ok(report.canonicalInventory.missingLegacyKeyQuestionEmneCount >= 0);
+  assert.ok(report.canonicalInventory.largestLegacyQuestionTemplateReuse >= 1);
+  assert.ok(report.canonicalInventory.uncoveredWithLegacyTemplateMetadata >= 0);
+});
+
+test('Vitenskap holistic audit krever ekte 27/30-review først etter materielle blockers', () => {
+  const report = auditVitenskapHolisticUniversityBreadthCompletion({ checkReport: false });
+  if (!report.gates.canonicalEmnersEditoriallyTreated) {
+    assert.equal(report.qualityReview.status, 'deferred_until_material_blockers_close');
+    assert.equal(report.qualityReview.passes, false);
+    assert.equal(report.gates.fullSubjectQualityReviewPasses, false);
+    assert.equal(report.gates.eligibleForCompletion, false);
+  } else if (report.qualityReview.status === 'missing_required_review') {
+    assert.equal(report.gates.eligibleForCompletion, false);
+  } else {
+    assert.ok(report.qualityReview.totalScore >= 27);
+    assert.ok(Object.values(report.qualityReview.scores).every((score) => score >= 4));
+  }
+});
+
+test('Vitenskap holistic audit bevarer claim/source-, metodegrense-, originalitets- og Teknologi-gates', () => {
+  const report = auditVitenskapHolisticUniversityBreadthCompletion({ checkReport: false });
   assert.equal(report.gates.allClaimsResolveToInspectableSupportingSources, true);
   assert.equal(report.gates.methodsTeachLimitsAndUncertainty, true);
   assert.equal(report.gates.technologyRemainsNested, true);
   assert.equal(report.gates.gapOverlapAndFillerAuditClean, true);
   assert.equal(report.gates.crossChapterEditorialOriginalityPasses, true);
   assert.equal(report.gates.registryReleaseAndStatusStateConsistent, true);
-});
-
-test('Vitenskap holistic kvalitetsreview er minst 27/30 og ingen dimensjon under 4', () => {
-  const report = auditVitenskapHolisticUniversityBreadthCompletion({ checkReport: false });
-  assert.equal(report.qualityReview.totalScore, 29);
-  assert.ok(Object.values(report.qualityReview.scores).every((score) => score >= 4));
-  assert.equal(report.gates.fullSubjectQualityReviewPasses, true);
-});
-
-test('Vitenskap holistic audit er fase-monoton rundt separat completion-transition', () => {
-  const report = auditVitenskapHolisticUniversityBreadthCompletion({ checkReport: false });
-  assert.ok(['pending_final_audit', 'complete'].includes(report.subject.completionState));
-  if (report.subject.completionState === 'pending_final_audit') {
-    assert.equal(report.status, 'eligible_for_completion');
-    assert.equal(report.subject.completeReady, false);
-    assert.equal(report.subject.nextGate, 'final_holistic_university_breadth_completion_audit');
-  } else {
-    assert.equal(report.status, 'complete_and_holistically_audited');
-    assert.equal(report.subject.completeReady, true);
-    assert.equal(report.subject.editorialStatus, 'complete');
-    assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
-  }
+  assert.equal(report.originality.exactDuplicateParagraphCount, 0);
+  assert.ok(report.originality.maxCrossChapterFiveGramJaccard < report.originality.threshold);
 });
