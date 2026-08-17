@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Inspect all canonical Vitenskap emners
+      - name: Inspect canonical Vitenskap editorial field shapes
         run: |
           node <<'NODE'
           const fs = require('node:fs');
@@ -30,42 +30,59 @@ jobs:
           const chapters = registry.subjects.vitenskap.chapters;
           const owned = new Set(chapters.flatMap(c => c.emne_ids || []));
           const methodIds = new Set(methods.map(m => m.method_id));
+          const methodRefs = (e) => Array.isArray(e.methods) ? e.methods : Array.isArray(e.method_ids) ? e.method_ids : [];
+          const questionRefs = (e) => Array.isArray(e.key_questions) ? e.key_questions : Array.isArray(e.questions) ? e.questions : Array.isArray(e.keyQuestions) ? e.keyQuestions : [];
           const lens = (field) => emners.map(e => (e[field] || '').trim().length).sort((a,b)=>a-b);
           const stats = (arr) => ({min:arr[0], median:arr[Math.floor(arr.length/2)], max:arr.at(-1)});
-          const invalid = emners.filter(e =>
-            e.canonical_status !== 'canonical' ||
-            !e.title || !e.definition || !e.why_it_matters ||
+          const strictInvalid = emners.filter(e =>
+            e.canonical_status !== 'canonical' || !e.title || !e.definition || !e.why_it_matters ||
             !Array.isArray(e.key_questions) || e.key_questions.length < 3 ||
-            !Array.isArray(e.methods) || e.methods.length < 3 ||
-            !e.methods.every(id => methodIds.has(id))
+            !Array.isArray(e.methods) || e.methods.length < 3 || !e.methods.every(id => methodIds.has(id))
+          );
+          const schemaAwareInvalid = emners.filter(e =>
+            e.canonical_status !== 'canonical' || !e.title || !e.definition || !e.why_it_matters ||
+            questionRefs(e).length < 3 || methodRefs(e).length < 3 || !methodRefs(e).every(id => methodIds.has(id))
           );
           const defs = emners.map(e => e.definition.trim());
-          const duplicateDefs = defs.length - new Set(defs).size;
-          const duplicateTitles = emners.length - new Set(emners.map(e=>e.title.trim())).size;
           const mappingIds = new Set(mappings.map(m=>m.emne_id));
-          const unMapped = emners.filter(e=>!mappingIds.has(e.emne_id)).map(e=>e.emne_id);
           const unowned = emners.filter(e=>!owned.has(e.emne_id));
           const byDomain = Object.fromEntries([...new Set(emners.map(e=>e.domain))].sort().map(d=>[d,emners.filter(e=>e.domain===d).length]));
+          const fieldCounts = {
+            methods: emners.filter(e=>Array.isArray(e.methods)).length,
+            method_ids: emners.filter(e=>Array.isArray(e.method_ids)).length,
+            bothMethodFields: emners.filter(e=>Array.isArray(e.methods)&&Array.isArray(e.method_ids)).length,
+            neitherMethodField: emners.filter(e=>!Array.isArray(e.methods)&&!Array.isArray(e.method_ids)).length,
+            key_questions: emners.filter(e=>Array.isArray(e.key_questions)).length,
+            questions: emners.filter(e=>Array.isArray(e.questions)).length,
+            keyQuestions: emners.filter(e=>Array.isArray(e.keyQuestions)).length
+          };
+          const distribution = (values) => Object.fromEntries([...new Set(values)].sort((a,b)=>a-b).map(v=>[v,values.filter(x=>x===v).length]));
+          const statusDistribution = Object.fromEntries([...new Set(emners.map(e=>String(e.canonical_status)))].sort().map(v=>[v,emners.filter(e=>String(e.canonical_status)===v).length]));
+          const sampleIds = [
+            'em_vit_abstraksjon_forenkling',
+            'em_vit_universitet_kunnskapsproduksjon',
+            'em_vit_empiri_evidens',
+            'em_vit_matematisk_bevis_og_deduksjon',
+            'em_vit_biomedisinsk_mekanisme_og_modell'
+          ];
+          const sample = sampleIds.map(id => emners.find(e=>e.emne_id===id)).filter(Boolean).map(e=>({
+            emne_id:e.emne_id,title:e.title,domain:e.domain,area_id:e.area_id,canonical_status:e.canonical_status,registry_version:e.registry_version,
+            keys:Object.keys(e).sort(),definitionLength:(e.definition||'').length,whyItMattersLength:(e.why_it_matters||'').length,
+            key_questions:e.key_questions,questions:e.questions,keyQuestions:e.keyQuestions,methods:e.methods,method_ids:e.method_ids,
+            resolvedQuestionCount:questionRefs(e).length,resolvedMethodCount:methodRefs(e).length
+          }));
           console.log(JSON.stringify({
-            emneCount: emners.length,
-            chapterCount: chapters.length,
-            chapterOwnedEmneCount: owned.size,
-            unownedEmneCount: unowned.length,
-            invalidEditorialEmneCount: invalid.length,
-            duplicateDefinitionCount: duplicateDefs,
-            duplicateTitleCount: duplicateTitles,
-            unmappedCount: unMapped.length,
-            definitionLength: stats(lens('definition')),
-            whyItMattersLength: stats(lens('why_it_matters')),
-            minKeyQuestions: Math.min(...emners.map(e=>(e.key_questions||[]).length)),
-            minMethods: Math.min(...emners.map(e=>(e.methods||[]).length)),
-            byDomain,
-            firstTwentyUnowned: unowned.slice(0,20).map(e=>({id:e.emne_id,title:e.title,domain:e.domain}))
+            emneCount:emners.length,chapterCount:chapters.length,chapterOwnedEmneCount:owned.size,unownedEmneCount:unowned.length,
+            strictInvalidEditorialEmneCount:strictInvalid.length,schemaAwareInvalidEditorialEmneCount:schemaAwareInvalid.length,
+            duplicateDefinitionCount:defs.length-new Set(defs).size,duplicateTitleCount:emners.length-new Set(emners.map(e=>e.title.trim())).size,
+            unmappedCount:emners.filter(e=>!mappingIds.has(e.emne_id)).length,
+            definitionLength:stats(lens('definition')),whyItMattersLength:stats(lens('why_it_matters')),
+            fieldCounts,statusDistribution,
+            resolvedQuestionCountDistribution:distribution(emners.map(e=>questionRefs(e).length)),
+            resolvedMethodCountDistribution:distribution(emners.map(e=>methodRefs(e).length)),
+            byDomain,sample,
+            schemaAwareInvalidIds:schemaAwareInvalid.map(e=>e.emne_id)
           }, null, 2));
-          if (invalid.length) {
-            console.error('INVALID_EDITORIAL_EMNERS', invalid.map(e=>e.emne_id));
-            process.exitCode = 2;
-          }
           NODE
       - name: Verify current permanent Vitenskap gates
         run: |
