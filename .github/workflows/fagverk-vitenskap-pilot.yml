@@ -58,17 +58,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Validate syntax and deterministic reports
+      - name: Validate audit script syntax
         run: |
           node --check scripts/audit-fagverk-vitenskap-pilot.mjs
           node --check scripts/audit-fagverk-vitenskap-university-readiness.mjs
           node --check scripts/audit-fagverk-vitenskap-unit1.mjs
+      - name: Validate shared Fagverk inventory and engine
+        run: |
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
+      - name: Validate Vitenskap structure and university readiness
+        run: |
           node scripts/audit-fagverk-vitenskap-pilot.mjs
           node scripts/audit-fagverk-vitenskap-university-readiness.mjs
-          node scripts/audit-fagverk-vitenskap-unit1.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Validate Vitenskap Unit 1 content integrity
+        run: node scripts/audit-fagverk-vitenskap-unit1.mjs
+      - name: Validate release manifest remains deterministic
+        run: node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk, Vitenskap and Teknologi contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
