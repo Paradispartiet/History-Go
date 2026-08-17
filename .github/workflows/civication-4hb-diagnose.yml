@@ -63,13 +63,49 @@ jobs:
           PY
       - name: Apply 4H-B cutover patch set
         run: python scripts/.tmp-civication-4hb-cutover.py
-      - name: Preserve legacy runtime order in role index
+      - name: Preserve legacy runtime semantics in compiler
         run: |
           python - <<'PY'
           from pathlib import Path
           p = Path('scripts/build-civication-scene-registry.mjs')
           text = p.read_text(encoding='utf-8')
-          old = '''  entries.sort((a, b) =>
+
+          old_choices = '''function normalizeRuntimeChoices(choices) {
+            return (Array.isArray(choices) ? choices : [])
+              .filter((choice) => choice && typeof choice === "object")
+              .map((choice, index) => ({
+                ...choice,
+                id: norm(choice.id) || String.fromCharCode(65 + index),
+                label: norm(choice.label || choice.text || choice.id),
+                effect: numberOr(choice.effect, 0),
+                tags: uniqueStrings(choice.tags),
+                feedback: norm(choice.feedback)
+              }))
+              .filter((choice) => choice.id && choice.label);
+          }
+'''
+          new_choices = '''function normalizeRuntimeChoices(choices) {
+            // Must mirror CivicationSceneCatalog.normalizeChoices() exactly.
+            // Compatibility projection preserves tag order and duplicates because
+            // stable candidate semantics include the legacy normalized mail shape.
+            return (Array.isArray(choices) ? choices : [])
+              .filter(Boolean)
+              .map((choice) => ({
+                ...choice,
+                id: norm(choice?.id),
+                label: norm(choice?.label),
+                effect: Number(choice?.effect || 0),
+                tags: Array.isArray(choice?.tags) ? choice.tags.map(norm).filter(Boolean) : [],
+                feedback: norm(choice?.feedback)
+              }))
+              .filter((choice) => choice.id && choice.label);
+          }
+'''
+          if text.count(old_choices) != 1:
+              raise SystemExit(f'compiler runtime-choice anchor count={text.count(old_choices)}')
+          text = text.replace(old_choices, new_choices, 1)
+
+          old_order = '''  entries.sort((a, b) =>
             a.category.localeCompare(b.category, "en") ||
             a.role_scope.localeCompare(b.role_scope, "en") ||
             a.mail_type.localeCompare(b.mail_type, "en") ||
@@ -91,7 +127,7 @@ jobs:
               .map(([key, ids]) => [key, [...ids].sort((a, b) => a.localeCompare(b, "en"))])
           );
 '''
-          new = '''  // role_index is runtime-semantic: preserve source-rank, source-file and in-file mail order.
+          new_order = '''  // role_index is runtime-semantic: preserve source-rank, source-file and in-file mail order.
           // entries may still be canonically sorted for stable reviewable output after the index is captured.
           const roleIndex = {};
           for (const entry of entries) {
@@ -115,9 +151,9 @@ jobs:
               .sort(([a], [b]) => a.localeCompare(b, "en"))
           );
 '''
-          if text.count(old) != 1:
-              raise SystemExit(f'compiler role-index anchor count={text.count(old)}')
-          p.write_text(text.replace(old, new, 1), encoding='utf-8')
+          if text.count(old_order) != 1:
+              raise SystemExit(f'compiler role-index anchor count={text.count(old_order)}')
+          p.write_text(text.replace(old_order, new_order, 1), encoding='utf-8')
           PY
       - name: Materialize compiled registry
         run: node scripts/build-civication-scene-registry.mjs --write
@@ -151,7 +187,7 @@ jobs:
       - name: SceneCatalog daily cutover gate
         run: node tests/civication-scene-director-daily-catalog.test.js
       - name: Run full Civication suite
-        run: node tests/run-civication-tests.mjs
+        run: npm run test:civication
       - name: Verify clean patch
         run: git diff --check
       - name: Commit materialized 4H-B cutover
