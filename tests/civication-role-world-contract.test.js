@@ -5,6 +5,11 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const read = (rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const json = (rel) => JSON.parse(read(rel));
+const referenceIdentity = (entry) => ({
+  category: entry.category,
+  role_scope: entry.role_scope,
+  status: entry.status
+});
 
 const scenePolicy = json('data/Civication/scenePipelinePolicyV1.json');
 assert.equal(scenePolicy.compiled_scene_registry_contract.completed_phase, '4H-D');
@@ -51,8 +56,7 @@ assert.equal(authoringChecklist.schema, 'civication_role_world_authoring_checkli
 assert.equal(authoringChecklist.policy, 'data/Civication/roleWorldPolicy.json');
 assert.equal(authoringChecklist.reference_world, 'data/Civication/roleWorlds/naeringsliv/ekspeditor.json');
 assert.ok(Array.isArray(authoringChecklist.reference_worlds));
-assert.ok(authoringChecklist.reference_worlds.includes(index.roles[0].path));
-assert.ok(authoringChecklist.reference_worlds.includes(index.roles[1].path));
+for (const entry of index.roles) assert.ok(authoringChecklist.reference_worlds.includes(entry.path));
 assert.equal(authoringChecklist.principles.new_runtime_forbidden, true);
 assert.equal(authoringChecklist.principles.new_parallel_scene_format_forbidden, true);
 assert.equal(authoringChecklist.principles.reuse_before_rewrite, true);
@@ -61,17 +65,7 @@ assert.equal(authoringChecklist.principles.reference_world_content_may_be_copied
 assert.deepEqual(authoringChecklist.next_reference_world, policy.next_reference_world);
 assert.deepEqual(
   authoringChecklist.workflow.map((step) => step.id),
-  [
-    'lock_scope',
-    'inventory_sources',
-    'write_world_bible',
-    'design_season_grid',
-    'design_threads',
-    'design_aftermath',
-    'materialize_existing_pipeline',
-    'register_and_audit',
-    'clean_and_merge'
-  ]
+  ['lock_scope', 'inventory_sources', 'write_world_bible', 'design_season_grid', 'design_threads', 'design_aftermath', 'materialize_existing_pipeline', 'register_and_audit', 'clean_and_merge']
 );
 for (const step of authoringChecklist.workflow) {
   assert.ok(String(step.title || '').trim(), `Authoring step ${step.id} must have title`);
@@ -95,10 +89,9 @@ for (const [profile, ids] of Object.entries(themeBank.reference_profiles || {}))
 }
 
 assert.equal(schema.properties.schema.const, 'civication_role_world_v1');
-assert.ok(schema.required.includes('season'));
-assert.ok(schema.required.includes('primary_threads'));
-assert.ok(schema.required.includes('private_aftermath'));
-assert.ok(schema.required.includes('delayed_consequences'));
+for (const required of ['season', 'primary_threads', 'private_aftermath', 'delayed_consequences']) {
+  assert.ok(schema.required.includes(required));
+}
 
 const requiredNpcFields = new Set(policy.npc_required_fields);
 const validPhases = new Set(policy.season_contract.day_phases);
@@ -114,50 +107,40 @@ for (const entry of index.roles || []) {
   assert.equal(world.status, entry.status);
   assert.ok(policy.role_world_statuses.includes(world.status));
 
-  for (const themeId of world.theme_ids || []) {
-    assert.ok(themeIds.has(themeId), `Unknown Role World theme: ${themeId}`);
-  }
-
+  for (const themeId of world.theme_ids || []) assert.ok(themeIds.has(themeId), `Unknown Role World theme: ${themeId}`);
   for (const npc of world.recurring_people_archetypes || []) {
-    for (const field of requiredNpcFields) {
-      assert.ok(String(npc[field] || '').trim(), `${entry.path}: NPC ${npc.id || '?'} missing ${field}`);
-    }
+    for (const field of requiredNpcFields) assert.ok(String(npc[field] || '').trim(), `${entry.path}: NPC ${npc.id || '?'} missing ${field}`);
   }
 
-  if (world.status === 'role_world_complete') {
-    assert.equal(world.season.days, 14);
-    assert.deepEqual(world.season.day_phases, policy.season_contract.day_phases);
-    assert.equal(world.season.coverage.length, 56, `${entry.path}: complete Role World must have 56 coverage beats`);
+  if (world.status !== 'role_world_complete') continue;
+  assert.equal(world.season.days, 14);
+  assert.deepEqual(world.season.day_phases, policy.season_contract.day_phases);
+  assert.equal(world.season.coverage.length, 56, `${entry.path}: complete Role World must have 56 coverage beats`);
 
-    const coverageKeys = new Set();
-    for (const beat of world.season.coverage) {
-      assert.ok(Number.isInteger(beat.day) && beat.day >= 1 && beat.day <= 14);
-      assert.ok(validPhases.has(beat.phase));
-      assert.ok(allowedBeatTypes.has(beat.beat_type));
-      assert.ok(String(beat.summary || '').trim());
-      assert.ok(Array.isArray(beat.materialization_refs) && beat.materialization_refs.length > 0);
-      const key = `${beat.day}/${beat.phase}`;
-      assert.ok(!coverageKeys.has(key), `${entry.path}: duplicate day/phase ${key}`);
-      coverageKeys.add(key);
-    }
-    for (let day = 1; day <= 14; day += 1) {
-      for (const phase of policy.season_contract.day_phases) {
-        assert.ok(coverageKeys.has(`${day}/${phase}`), `${entry.path}: missing ${day}/${phase}`);
-      }
-    }
-
-    assert.ok(Array.isArray(world.primary_threads) && world.primary_threads.length > 0);
-    for (const thread of world.primary_threads) {
-      assert.ok(thread.beat_refs.length >= 5 && thread.beat_refs.length <= 10, `${entry.path}: primary thread ${thread.id} must have 5–10 beat refs`);
-      for (const beatRef of thread.beat_refs) {
-        assert.ok(coverageKeys.has(beatRef), `${entry.path}: primary thread ${thread.id} references missing beat ${beatRef}`);
-      }
-    }
-    assert.ok(Array.isArray(world.private_aftermath) && world.private_aftermath.length > 0);
-    assert.ok(Array.isArray(world.delayed_consequences) && world.delayed_consequences.length > 0);
-    assert.equal(world.materialization.no_new_runtime, true);
-    assert.ok(Array.isArray(world.materialization.source_refs) && world.materialization.source_refs.length > 0);
+  const coverageKeys = new Set();
+  for (const beat of world.season.coverage) {
+    assert.ok(Number.isInteger(beat.day) && beat.day >= 1 && beat.day <= 14);
+    assert.ok(validPhases.has(beat.phase));
+    assert.ok(allowedBeatTypes.has(beat.beat_type));
+    assert.ok(String(beat.summary || '').trim());
+    assert.ok(Array.isArray(beat.materialization_refs) && beat.materialization_refs.length > 0);
+    const key = `${beat.day}/${beat.phase}`;
+    assert.ok(!coverageKeys.has(key), `${entry.path}: duplicate day/phase ${key}`);
+    coverageKeys.add(key);
   }
+  for (let day = 1; day <= 14; day += 1) {
+    for (const phase of policy.season_contract.day_phases) assert.ok(coverageKeys.has(`${day}/${phase}`), `${entry.path}: missing ${day}/${phase}`);
+  }
+
+  assert.ok(Array.isArray(world.primary_threads) && world.primary_threads.length > 0);
+  for (const thread of world.primary_threads) {
+    assert.ok(thread.beat_refs.length >= 5 && thread.beat_refs.length <= 10, `${entry.path}: primary thread ${thread.id} must have 5–10 beat refs`);
+    for (const beatRef of thread.beat_refs) assert.ok(coverageKeys.has(beatRef), `${entry.path}: primary thread ${thread.id} references missing beat ${beatRef}`);
+  }
+  assert.ok(Array.isArray(world.private_aftermath) && world.private_aftermath.length > 0);
+  assert.ok(Array.isArray(world.delayed_consequences) && world.delayed_consequences.length > 0);
+  assert.equal(world.materialization.no_new_runtime, true);
+  assert.ok(Array.isArray(world.materialization.source_refs) && world.materialization.source_refs.length > 0);
 }
 
 const roleWorldDoc = read('docs/CIVICATION_ROLE_WORLD_STANDARD.md');
@@ -186,12 +169,12 @@ assert.doesNotMatch(roleMailDoc, /Dette er autoritativ jobbmailflyt/);
 
 const completeWorlds = index.roles.filter((entry) => entry.status === 'role_world_complete');
 assert.equal(completeWorlds.length, 2, 'The second Role World production wave must expose exactly two completed reference worlds');
-assert.deepEqual(
-  { category: completeWorlds[0].category, role_scope: completeWorlds[0].role_scope },
-  { category: 'naeringsliv', role_scope: 'ekspeditor' },
-  'Ekspeditor must remain the first completed Role World'
-);
-assert.deepEqual(completeWorlds[0], index.first_reference_world);
-assert.deepEqual(completeWorlds[1], index.second_reference_world);
+assert.deepEqual(referenceIdentity(completeWorlds[0]), {
+  category: 'naeringsliv',
+  role_scope: 'ekspeditor',
+  status: 'role_world_complete'
+}, 'Ekspeditor must remain the first completed Role World');
+assert.deepEqual(referenceIdentity(completeWorlds[0]), index.first_reference_world);
+assert.deepEqual(referenceIdentity(completeWorlds[1]), index.second_reference_world);
 
 console.log('Civication Role World contract: OK');
