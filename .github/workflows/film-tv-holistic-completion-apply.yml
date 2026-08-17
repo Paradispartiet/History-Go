@@ -210,7 +210,7 @@ jobs:
           set -o pipefail
           {
             echo '== subject inventory =='
-            node scripts/audit-fagverk-subject-inventory.mjs --write
+            node scripts/audit-fagverk-subject-inventory.mjs --write-report
             echo '== general engine =='
             node scripts/audit-fagverk-general-engine.mjs --write
             echo '== film tv phase3 =='
