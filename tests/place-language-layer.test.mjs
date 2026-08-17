@@ -122,7 +122,7 @@ test("Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny rundi
 });
 
 
-test("place-produksjon skiller Språkleksikon fra area-eid dialektlag", () => {
+test("place-produksjon låser dialektord til riktig place-eier", () => {
   const checklist = read("docs/PLACE_PRODUCTION_CHECKLIST.md");
   const contract = read("docs/SPRAKLEKSIKON.md");
 
