@@ -72,7 +72,8 @@ test('kapittelregistrering og fagstatus avanserer monotont til neste kildebrief'
   );
   assert.equal([
     'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief',
-    'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit'
+    'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit',
+    'maintenance_source_refresh_and_place_case_expansion'
   ].includes(film.nextGate), true);
 });
 

@@ -3389,7 +3389,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Film & TVs variable canon har 192 emner. Kilde- og claimbriefen for Kulturarv, kanon, stjerner og minne er materialisert med 12/12 canonicale emner, 4 moduler, 14 eksplisitte metodebaser, 56 planlagte claims, 26 inspectable kilder og 24 dokumenterte case. Popularitet er ikke i seg selv kanon, kulturarv, kultstatus eller kollektivt minne; stjernepersona, rollefigur, privatperson og senere myte holdes adskilt; og festivalminne, motarkiv, nostalgi, reprise/ombruk, sitatsirkulasjon og TV-minne har egne evidensgrenser. Kapitlet er ikke runtime-registrert før fulltekst- og claimspesifikk evidensport er bestått.",
+        "note": "Film & TV er complete etter én holistisk sluttport for den variable 192-emne-canonen: to bevarte anchor-kapitler dekker 38 canonicale emner og 15 faglig avgrensede fulltekstenheter dekker de resterende 154. Porten krever eksakt chapter/brief-eierskap uten hull, duplikater eller overlapp, paragraph→claim-spor, globalt unike claim- og section-id-er, metode- og domenedekning samt verifiserte claims med inspectable kilder i alle 17 kapitler. De 15 nye planenhetene må i tillegg ha eksakt section→emne-eierskap og eksplisitt godkjent verifikasjonsresolution. De to reauditerte legacy-anchorene beholdes på sitt dokumenterte schema uten å late som de har module/section emne-felt de aldri har hatt.",
         "learningOrderPlan": "data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json",
         "firstSourceClaimBrief": "data/fag/TV_og_Film/film_tv_audiovisual_form_source_claim_brief_v1.json",
         "secondSourceClaimBrief": "data/fag/TV_og_Film/film_tv_narrative_viewpoint_genre_source_claim_brief_v1.json",
@@ -3406,7 +3406,8 @@
         "thirteenthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_location_production_place_ethics_source_claim_brief_v1.json",
         "fourteenthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_source_claim_brief_v1.json",
         "fifteenthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json",
-        "fifteenthChapterFulltext": "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne.json"
+        "fifteenthChapterFulltext": "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne.json",
+        "completionAudit": "reports/fagverk/film-tv-holistic-completion-v1-audit.json"
       },
       "chapters": [
         {
@@ -3781,7 +3782,27 @@
           "sourceBriefFile": "data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json"
         }
       ],
-      "note": "Film & TV har nå materialisert alle 15 planlagte fagverksenheter. Enhet 15, Kulturarv, kanon, stjerner og minne, dekker 12 canonicale emner i fire moduler med 56 verifiserte claimsporede fagavsnitt, 26 inspectable kilder og 24 dokumenterte case. Complete-status settes ikke her; neste separate port er helhetsaudit av alle 192 canonicale emner, registrerte kapitler og permanente kvalitetskrav."
+      "note": "Film & TV er redaksjonelt complete etter én reconcilet 192-emne-helhetsaudit: 17 kapitler totalt, der to navngitte legacy-anchor-kapitler dekker 38 emner og 15 produserte planenheter dekker de resterende 154. Sluttporten låser chapter/brief-eierskap, section→emne-eierskap for de 15 nye enhetene, paragraph→claim-spor, global claim/section-unikhet, metode- og domenedekning og inspectable kildeevidens. Videre arbeid er vedlikehold, kildeoppdatering og stedscaseutvidelse.",
+      "editorialPlan": {
+        "derivedChapterCount": 17,
+        "completionRequirements": [
+          "all_192_canonical_emners_accounted_for_exactly_once",
+          "two_named_anchor_chapters_cover_exactly_38",
+          "fifteen_planned_units_cover_exactly_154",
+          "all_17_chapters_have_verified_claims_and_inspectable_sources",
+          "registry_chapter_and_brief_topic_ownership_is_exact",
+          "all_planned_unit_sections_own_exact_topic_sets",
+          "all_paragraphs_have_registered_claim_trace",
+          "claim_and_section_ids_are_globally_unique",
+          "all_canonical_methods_and_domains_are_covered",
+          "all_planned_units_registered_as_fulltext_chapters",
+          "all_unit_claims_verified_with_approved_resolution",
+          "no_unknown_or_planned_only_claim_resolution_counts_as_verified",
+          "all_claims_use_registered_inspectable_sources",
+          "full_subject_audit_green"
+        ],
+        "nextGate": "maintenance_source_refresh_and_place_case_expansion"
+      }
     }
   },
   "placeLinks": {

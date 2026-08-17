@@ -88,6 +88,39 @@ test("Etne-piloten er et reelt, eksplisitt area-eid dialektlag", () => {
   }
 });
 
+test("Sagene-utvidelsen er et reelt area-eid og kildebelagt oslomål-lag", () => {
+  const places = loadPlacesById();
+  const fixtureId = "sagene";
+  const place = places.get(fixtureId);
+  assert.ok(place, "sagene må finnes i canonical Places");
+  assert.equal(place.placeScope, "area", "Sagene-laget må eies av et canonical område-Place");
+
+  const relative = languageManifest.place_files?.[fixtureId];
+  assert.equal(relative, "data/leksikon/sprak/places/europe/norway/oslo/sagene.json");
+  const article = json(relative);
+  assert.equal(article.place_id, fixtureId);
+  assert.equal(article.dialect_area, "Tradisjonelt oslomål");
+  assert.match(String(article.notes || ""), /ikke[^.]*unik/i, "Sagene-laget må eksplisitt unngå påstand om lokal eksklusivitet");
+
+  const dialectEntries = (article.entries || []).filter(entry => isDialectEntry(entry, article));
+  assert.ok(dialectEntries.length >= 4, "Sagene-utvidelsen skal ha flere reelle dialektspor");
+  const terms = new Set(dialectEntries.map(entry => text(entry.term).toLowerCase()));
+  for (const term of ["værra", "gutta", "hu", "henner"]) {
+    assert.ok(terms.has(term), `Sagene-utvidelsen mangler det kildebelagte språksporet ${term}`);
+  }
+
+  for (const entry of dialectEntries) {
+    assert.equal(entry.layer, "dialect", `${entry.id}: Sagene-innhold skal ha eksplisitt layer=dialect`);
+    assert.equal(entry.dialect_area, "Tradisjonelt oslomål", `${entry.id}: dialektområdet skal være bredere enn bare Sagene`);
+    assert.ok(text(entry.meaning), `${entry.id}: meaning mangler`);
+    assert.ok(text(entry.context), `${entry.id}: kildekontekst mangler`);
+    assert.ok(Array.isArray(entry.sources) && entry.sources.length >= 2, `${entry.id}: språksporet trenger flere kildebelegg`);
+    for (const source of entry.sources) {
+      assert.match(String(source?.url || ""), /^https:\/\//, `${entry.id}: brukerrettet kilde må være HTTPS`);
+    }
+  }
+});
+
 test("enkelt-Places kan ha Språkleksikon uten å bli dialekt-eiere", () => {
   const places = loadPlacesById();
   const fixtureId = "tinghuset";

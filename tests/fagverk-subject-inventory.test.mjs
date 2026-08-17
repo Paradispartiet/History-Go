@@ -137,11 +137,25 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
 
   const filmTv = s.subjects.find((x) => x.id === 'film_tv');
   const filmTvChapterCount = readJson('data/fagverk/fagverk_registry.json').subjects.film_tv.chapters.length;
-  assert.ok(filmTvChapterCount >= 1);
-  assert.equal(filmTv.editorialStatus, 'chapters_in_progress');
-  const legacyFilmTvGates = new Set(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief']);
-  const isFilmTvProductionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(filmTv.nextGate);
-  assert.ok(legacyFilmTvGates.has(filmTv.nextGate) || isFilmTvProductionGate);
+  assert.ok(filmTvChapterCount >= 1 && filmTvChapterCount <= 17);
+  if (filmTv.editorialStatus === 'complete') {
+    assert.equal(filmTvChapterCount, 17);
+    assert.equal(filmTv.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
+    const completion = readJson('reports/fagverk/film-tv-holistic-completion-v1-audit.json');
+    assert.equal(completion.status, 'complete');
+    assert.equal(completion.summary.canonical_emne_count, 192);
+    assert.equal(completion.summary.anchor_chapter_count, 2);
+    assert.equal(completion.summary.anchor_emne_count, 38);
+    assert.equal(completion.summary.planned_unit_count, 15);
+    assert.equal(completion.summary.planned_unit_emne_count, 154);
+    assert.equal(completion.summary.registered_chapter_count, 17);
+    assert.ok(Object.values(completion.gates).every(Boolean));
+  } else {
+    assert.equal(filmTv.editorialStatus, 'chapters_in_progress');
+    const legacyFilmTvGates = new Set(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief']);
+    const isFilmTvProductionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(filmTv.nextGate);
+    assert.ok(legacyFilmTvGates.has(filmTv.nextGate) || isFilmTvProductionGate);
+  }
 });
 
 test('baseline report er en deterministisk projeksjon av eide kilder', () => {

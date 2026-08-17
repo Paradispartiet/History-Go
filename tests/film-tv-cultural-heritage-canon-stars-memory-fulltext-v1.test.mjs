@@ -7,6 +7,7 @@ const ROOT = new URL('../', import.meta.url);
 const read = (relative) => JSON.parse(fs.readFileSync(new URL(relative, ROOT), 'utf8'));
 const SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
 const FORBIDDEN = [
   /\bSpor \d+-\d+\b/u,
   /Analyselinsen er/u,
@@ -84,7 +85,7 @@ test('popularitet, stjerneteleologi, kultstatus, nostalgi og kollektivt minne ka
   assert.equal(auditFilmTvCulturalHeritageCanonStarsMemoryFulltextV1().gates.source_policy_remains_strict, true);
 });
 
-test('Unit15 registreres, men Film & TV kan ikke bli complete før helhetsaudit', () => {
+test('Unit15-registrering er monoton fra completion-audit til bevist helhetscompletion', () => {
   const registry = read('data/fagverk/fagverk_registry.json');
   const status = read('data/fagverk/subject_status.json');
   const film = status.subjects.find((row) => row.id === 'film_tv');
@@ -92,9 +93,20 @@ test('Unit15 registreres, men Film & TV kan ikke bli complete før helhetsaudit'
   assert.ok(row);
   assert.equal(row.file, 'data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne.json');
   assert.equal(registry.subjects.film_tv.canonicalModel.fifteenthChapterFulltext, row.file);
-  assert.equal(film.editorialStatus, 'chapters_in_progress');
-  assert.equal(film.nextGate, FULLTEXT_GATE);
   assert.notEqual(film.nextGate, SOURCE_GATE);
+
+  if (film.editorialStatus === 'complete') {
+    assert.equal(film.nextGate, MAINTENANCE_GATE);
+    assert.equal(registry.subjects.film_tv.chapters.length, 17);
+    const completion = read('reports/fagverk/film-tv-holistic-completion-v1-audit.json');
+    assert.equal(completion.status, 'complete');
+    assert.equal(completion.summary.canonical_emne_count, 192);
+    assert.equal(completion.summary.registered_chapter_count, 17);
+    assert.ok(Object.values(completion.gates).every(Boolean));
+  } else {
+    assert.equal(film.editorialStatus, 'chapters_in_progress');
+    assert.equal(film.nextGate, FULLTEXT_GATE);
+  }
 });
 
 test('seksdelt kvalitetsvurdering består uten å forskuttere fagets complete-status', () => {

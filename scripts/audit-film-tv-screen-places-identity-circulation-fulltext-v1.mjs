@@ -17,7 +17,8 @@ const ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authentici
 const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 const UNIT15_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const UNIT_FIFTEEN_COMPLETION_AUDIT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
-const UNIT_TWELVE_FULLTEXT_OR_LATER_GATES = new Set([OUTPUT_GATE, UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE]);
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
+const UNIT_TWELVE_FULLTEXT_OR_LATER_GATES = new Set([OUTPUT_GATE, UNIT13_SOURCE_BRIEF_GATE, UNIT13_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE]);
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`,
   brief: `data/fagverk/film_tv/${CHAPTER_ID}/brief.json`,
@@ -106,7 +107,7 @@ export function auditFilmTvScreenPlacesIdentityCirculationFulltextV1({ writeRepo
       Array.isArray(claim.source_ids)
       && claim.source_ids.length >= 2
       && claim.source_ids.every((id) => sourceIds.has(id))
-      && isDeepStrictEqual(claim.source_ids, expectedClaimSourceIds[claim.id])
+      && isDeepStrictEqual(claim.source_ids, expectedClaimSourceIds[claim.claim_plan_id || claim.id])
     ),
     all_thirty_six_inspectable_sources_used: sourceIds.size === 36
       && usedSourceIds.size === 36
@@ -193,7 +194,7 @@ export function auditFilmTvScreenPlacesIdentityCirculationFulltextV1({ writeRepo
       && chapterRecord?.claimsFile === P.claims
       && chapterRecord?.briefFile === P.brief
       && registry.subjects.film_tv.canonicalModel.twelfthSourceClaimBrief === P.sourceBrief
-      && filmStatus?.editorialStatus === 'chapters_in_progress'
+      && ['chapters_in_progress', 'complete'].includes(filmStatus?.editorialStatus)
       && UNIT_TWELVE_FULLTEXT_OR_LATER_GATES.has(filmStatus?.nextGate)
       && versionAtLeast(registry.version, '2.97.0')
       && versionAtLeast(status.version, '1.90.0'),

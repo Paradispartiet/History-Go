@@ -11,6 +11,7 @@ const CHAPTER_ID = 'arkiv-bevaring-tilgang-og-autentisitet';
 const OUTPUT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 const UNIT_FIFTEEN_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const UNIT_FIFTEEN_COMPLETION_AUDIT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`,
   brief: `data/fagverk/film_tv/${CHAPTER_ID}/brief.json`,
@@ -152,7 +153,7 @@ export function auditFilmTvArchivePreservationAccessAuthenticityFulltextV1({ wri
       && registryChapter?.claimsFile === P.claims
       && registryChapter?.briefFile === P.brief
       && registry.subjects.film_tv.canonicalModel.fourteenthSourceClaimBrief === P.sourceBrief
-      && [OUTPUT_GATE, UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(filmStatus?.nextGate)
+      && [OUTPUT_GATE, UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE].includes(filmStatus?.nextGate)
       && isFilmTvUnitFourteenOrLaterGate(filmStatus?.nextGate)
       && versionAtLeast(registry.version, '3.01.0')
       && versionAtLeast(status.version, '1.94.0'),

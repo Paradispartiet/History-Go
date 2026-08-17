@@ -102,49 +102,10 @@ async function run() {
   loadScript('js/Civication/systems/day/dayPatches.js');
   loadScript('js/Civication/mailPlanBridge.js');
   loadScript('js/Civication/systems/civicationCareerRoleResolver.js');
-  loadScript('js/Civication/systems/civicationMailRuntime.js');
-
-  // Denne testen kjører et smalt runtime-utvalg i stedet for standard DAY_SCRIPTS.
-  // Life skal likevel konsumere gjennom den canonicale SceneCatalog-grensen, ikke
-  // falle tilbake til direkte produsentkall bare fordi Workday-builderen ikke lastes her.
-  const sourceAdapters = new Map();
-  global.CivicationSceneCatalog = {
-    registerSourceAdapter(name, adapter) {
-      const key = String(name || '').trim().toLowerCase();
-      if (!key || typeof adapter?.getScenes !== 'function') return false;
-      const existing = sourceAdapters.get(key);
-      if (existing) return existing === adapter;
-      sourceAdapters.set(key, adapter);
-      return true;
-    },
-    getSourceAdapter(name) {
-      return sourceAdapters.get(String(name || '').trim().toLowerCase()) || null;
-    },
-    listSourceAdapters() {
-      return Array.from(sourceAdapters.entries()).map(([name, adapter]) => ({
-        name,
-        source_format: String(adapter?.source_format || ''),
-        version: Number(adapter?.version || 1)
-      }));
-    },
-    async getSourceScenes(name, context = {}) {
-      const key = String(name || '').trim().toLowerCase();
-      const adapter = sourceAdapters.get(key);
-      if (!adapter) return [];
-      const result = await adapter.getScenes(context);
-      const scenes = Array.isArray(result) ? result : (result ? [result] : []);
-      return scenes.map(scene => ({
-        ...scene,
-        scene_source_adapter: key,
-        scene_source_format: String(adapter?.source_format || ''),
-        scene_catalog_owner: 'CivicationSceneCatalog',
-        scene_catalog_version: 1
-      }));
-    }
-  };
-
-  loadScript('js/Civication/systems/civicationLifeMailRuntime.js');
   loadScript('js/Civication/systems/civicationSceneInteraction.js');
+  loadScript('js/Civication/systems/civicationMailRuntime.js');
+  loadScript('js/Civication/systems/civicationWorkdayMailBuilder.js');
+  loadScript('js/Civication/systems/civicationLifeMailRuntime.js');
   loadScript('js/Civication/systems/day/dayChoiceDirector.js');
 
   const engine = new global.CivicationEventEngine();
