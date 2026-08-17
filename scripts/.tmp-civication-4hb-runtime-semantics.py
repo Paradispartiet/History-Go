@@ -17,26 +17,54 @@ old_choices = '''function normalizeRuntimeChoices(choices) {
     .filter((choice) => choice.id && choice.label);
 }
 '''
-new_choices = '''function normalizeRuntimeChoices(choices) {
-  // Must mirror CivicationSceneCatalog.normalizeChoices() exactly.
-  // Compatibility projection preserves tag order and duplicates because
-  // stable candidate semantics include the legacy normalized mail shape.
+new_choices = '''function normalizeCanonicalChoiceInputs(choices) {
   return (Array.isArray(choices) ? choices : [])
-    .filter(Boolean)
-    .map((choice) => ({
+    .filter((choice) => choice && typeof choice === "object")
+    .map((choice, index) => ({
       ...choice,
-      id: norm(choice?.id),
-      label: norm(choice?.label),
-      effect: Number(choice?.effect || 0),
-      tags: Array.isArray(choice?.tags) ? choice.tags.map(norm).filter(Boolean) : [],
-      feedback: norm(choice?.feedback)
+      id: norm(choice.id) || String.fromCharCode(65 + index),
+      label: norm(choice.label || choice.text || choice.id),
+      effect: numberOr(choice.effect, 0),
+      tags: uniqueStrings(choice.tags),
+      feedback: norm(choice.feedback)
     }))
     .filter((choice) => choice.id && choice.label);
 }
+
+function compatibilityChoiceInputs(choices) {
+  // Keep the on-disk compatibility projection JSON-safe and source-faithful.
+  // SceneCatalog applies its legacy normalizeChoices() after registry load, so
+  // runtime-only values such as NaN are reproduced in memory instead of being
+  // serialized as null. Array order and duplicate tags are deliberately kept.
+  return (Array.isArray(choices) ? choices : [])
+    .filter((choice) => choice && typeof choice === "object")
+    .map((choice) => ({ ...choice }));
+}
 '''
 if text.count(old_choices) != 1:
-    raise SystemExit(f"compiler runtime-choice anchor count={text.count(old_choices)}")
+    raise SystemExit(f"compiler choice-normalization anchor count={text.count(old_choices)}")
 text = text.replace(old_choices, new_choices, 1)
+
+old_compile = '''  const runtimeChoices = normalizeRuntimeChoices(mail?.choices);
+  const choices = canonicalChoices(runtimeChoices, sourcePath, sceneId);
+  const taskContract = normalizeTaskContract(mail);
+'''
+new_compile = '''  const canonicalChoiceInputs = normalizeCanonicalChoiceInputs(mail?.choices);
+  const compatibilityChoices = compatibilityChoiceInputs(mail?.choices);
+  const choices = canonicalChoices(canonicalChoiceInputs, sourcePath, sceneId);
+  const taskContract = normalizeTaskContract(mail);
+'''
+if text.count(old_compile) != 1:
+    raise SystemExit(f"compiler compileMail choice anchor count={text.count(old_compile)}")
+text = text.replace(old_compile, new_compile, 1)
+
+old_projection = '''    choices: runtimeChoices,
+'''
+new_projection = '''    choices: compatibilityChoices,
+'''
+if text.count(old_projection) != 1:
+    raise SystemExit(f"compiler compatibility projection choice anchor count={text.count(old_projection)}")
+text = text.replace(old_projection, new_projection, 1)
 
 old_order = '''  entries.sort((a, b) =>
     a.category.localeCompare(b.category, "en") ||
@@ -89,4 +117,4 @@ if text.count(old_order) != 1:
 text = text.replace(old_order, new_order, 1)
 
 p.write_text(text, encoding="utf-8")
-print("Patched compiler to preserve legacy choice normalization and runtime role order")
+print("Patched compiler with JSON-safe compatibility choices and legacy runtime role order")
