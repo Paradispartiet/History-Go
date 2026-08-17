@@ -14,6 +14,12 @@ const P = Object.freeze({
 });
 const PRE_COMPLETION_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
 const FINAL_GATE = 'maintenance_source_refresh_and_place_case_expansion';
+const PLANNED_UNIT_COUNT = 15;
+const LEGACY_CHAPTER_IDS = Object.freeze([
+  'kinoer-visningssteder-og-publikum',
+  'produksjonskultur-og-arbeidsdeling'
+]);
+const REGISTERED_CHAPTER_COUNT = PLANNED_UNIT_COUNT + LEGACY_CHAPTER_IDS.length;
 
 const abs = (file) => path.join(ROOT, file);
 const json = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
@@ -68,7 +74,14 @@ function buildAudit() {
   assert(Array.isArray(emner) && emner.length === 192, 'Film & TV skal ha 192 canonicale emner ved completion-porten');
   assert(Array.isArray(fagkart.categories) && fagkart.categories.length === 10, 'Film & TV skal ha 10 canonicale fagområder ved completion-porten');
   assert(registry && Array.isArray(registry.chapters), 'Film & TV mangler registry-kapitler');
-  assert(registry.chapters.length === 15, `Film & TV skal ha 15 planlagte kapitler; fant ${registry.chapters.length}`);
+  assert(
+    registry.chapters.length === REGISTERED_CHAPTER_COUNT,
+    `Film & TV skal ha ${REGISTERED_CHAPTER_COUNT} registrerte kapitler (${PLANNED_UNIT_COUNT} planlagte enheter + ${LEGACY_CHAPTER_IDS.length} reauditerte legacy-kapitler); fant ${registry.chapters.length}`
+  );
+  const registryChapterIds = new Set(registry.chapters.map((row) => row.id));
+  LEGACY_CHAPTER_IDS.forEach((chapterId) => {
+    assert(registryChapterIds.has(chapterId), `Film & TV mangler reauditerte legacy-kapittel ${chapterId}`);
+  });
   assert(status, 'Film & TV mangler subject_status');
   assert([PRE_COMPLETION_GATE, FINAL_GATE].includes(status.nextGate), `Uventet Film & TV nextGate: ${status.nextGate}`);
   if (status.nextGate === PRE_COMPLETION_GATE) assert(status.editorialStatus === 'chapters_in_progress', 'Pre-completion gate krever chapters_in_progress');
@@ -140,7 +153,7 @@ function buildAudit() {
     assert(moduleFiles.length > 0, `${registryRow.id}: mangler moduleFiles`);
     moduleCount += moduleFiles.length;
     const chapterSectionIds = new Set();
-    const sectionCoveredEmner = new Set();
+    const sectionCoveredEmners = new Set();
     let chapterParagraphs = 0;
     let chapterSections = 0;
 
@@ -158,7 +171,7 @@ function buildAudit() {
         assert(Array.isArray(section.emne_ids) && section.emne_ids.length > 0, `${registryRow.id}/${section.id}: mangler emne_ids`);
         for (const emneId of section.emne_ids) {
           assert(chapter.emne_ids.includes(emneId), `${registryRow.id}/${section.id}: section peker utenfor kapittelets emner: ${emneId}`);
-          sectionCoveredEmner.add(emneId);
+          sectionCoveredEmners.add(emneId);
         }
         assert(Array.isArray(section.paragraphs) && section.paragraphs.length > 0, `${registryRow.id}/${section.id}: mangler paragraphs`);
         assert(Array.isArray(section.paragraphClaimIds), `${registryRow.id}/${section.id}: mangler paragraphClaimIds`);
@@ -174,7 +187,7 @@ function buildAudit() {
     }
 
     assert(
-      sameSet(sectionCoveredEmner, new Set(chapter.emne_ids)),
+      sameSet(sectionCoveredEmners, new Set(chapter.emne_ids)),
       `${registryRow.id}: modulene dekker ikke nøyaktig kapittelets emne_ids`
     );
 
@@ -217,10 +230,10 @@ function buildAudit() {
     });
   }
 
-  const missingEmner = canonicalIds.filter((id) => !ownedBy.has(id));
-  const duplicateOwnedEmner = canonicalIds.filter((id) => (ownedBy.get(id) || []).length !== 1);
-  assert(missingEmner.length === 0, `Film & TV har udekkede canonicale emner: ${missingEmner.join(', ')}`);
-  assert(duplicateOwnedEmner.length === 0, `Film & TV har emner som ikke eies nøyaktig én gang: ${duplicateOwnedEmner.join(', ')}`);
+  const missingEmners = canonicalIds.filter((id) => !ownedBy.has(id));
+  const duplicateOwnedEmners = canonicalIds.filter((id) => (ownedBy.get(id) || []).length !== 1);
+  assert(missingEmners.length === 0, `Film & TV har udekkede canonicale emner: ${missingEmners.join(', ')}`);
+  assert(duplicateOwnedEmners.length === 0, `Film & TV har emner som ikke eies nøyaktig én gang: ${duplicateOwnedEmners.join(', ')}`);
   assert(ownedBy.size === canonicalSet.size, `Kapittel-eierskapet dekker ${ownedBy.size}/${canonicalSet.size} emner`);
 
   const missingMethods = sortNb([...requiredMethods].filter((methodId) => !usedMethods.has(methodId)));
@@ -243,6 +256,8 @@ function buildAudit() {
     },
     materialized: {
       chapter_count: registry.chapters.length,
+      planned_unit_count: PLANNED_UNIT_COUNT,
+      reaudited_legacy_chapter_count: LEGACY_CHAPTER_IDS.length,
       module_count: moduleCount,
       section_count: sectionCount,
       paragraph_count: paragraphCount,
@@ -253,8 +268,8 @@ function buildAudit() {
     },
     coverage: {
       covered_emne_count: ownedBy.size,
-      missing_emne_ids: missingEmner,
-      duplicate_owned_emne_ids: duplicateOwnedEmner,
+      missing_emne_ids: missingEmners,
+      duplicate_owned_emne_ids: duplicateOwnedEmners,
       covered_domain_count: coveredDomains.size,
       missing_required_method_ids: missingMethods
     },
@@ -282,10 +297,10 @@ function applyCompleteStatus(report) {
   const status = statusDocument.subjects.find((row) => row.id === 'film_tv');
   registryDocument.version = '3.04.0';
   registryDocument.updatedAt = '2026-08-17';
-  registry.canonicalModel.note = `Film & TV er komplett etter separat helhetsaudit: ${report.canonical.domain_count}/${report.canonical.domain_count} canonicale fagområder og ${report.canonical.emne_count}/${report.canonical.emne_count} canonicale emner er dekket nøyaktig én gang gjennom ${report.materialized.chapter_count} fullverdige kapitler. Kapittelsettet har ${report.materialized.module_count} moduler, ${report.materialized.section_count} seksjoner, ${report.materialized.paragraph_count} claimsporede fagavsnitt, ${report.materialized.claim_count} verifiserte claims, ${report.materialized.source_registration_count} inspectable kilderegistreringer og bruker alle ${report.canonical.required_method_count} canonicalt krevde emnemetoder.`;
+  registry.canonicalModel.note = `Film & TV er komplett etter separat helhetsaudit: ${report.canonical.domain_count}/${report.canonical.domain_count} canonicale fagområder og ${report.canonical.emne_count}/${report.canonical.emne_count} canonicale emner er dekket nøyaktig én gang gjennom ${report.materialized.chapter_count} registrerte, fullverdige kapitler (${report.materialized.planned_unit_count} planlagte enheter + ${report.materialized.reaudited_legacy_chapter_count} reauditerte legacy-kapitler). Kapittelsettet har ${report.materialized.module_count} moduler, ${report.materialized.section_count} seksjoner, ${report.materialized.paragraph_count} claimsporede fagavsnitt, ${report.materialized.claim_count} verifiserte claims, ${report.materialized.source_registration_count} inspectable kilderegistreringer og bruker alle ${report.canonical.required_method_count} canonicalt krevde emnemetoder.`;
   registry.canonicalModel.completionAudit = P.report;
   registry.editorialPlan = {
-    targetChapterCount: 15,
+    targetChapterCount: REGISTERED_CHAPTER_COUNT,
     completionRequirements: [
       'all_10_canonical_domains_covered',
       'all_192_canonical_emners_covered_exactly_once',
@@ -299,13 +314,13 @@ function applyCompleteStatus(report) {
     completionAudit: P.report,
     nextGate: FINAL_GATE
   };
-  registry.note = `Film & TV er redaksjonelt komplett etter egen helhetsaudit. Alle 15 planlagte enheter er materialisert, og auditen verifiserer 10/10 canonicale fagområder og 192/192 canonicale emner med eksakt ett kapittel-eierskap per emne, ${report.materialized.paragraph_count} claimsporede fagavsnitt, ${report.materialized.claim_count} verifiserte claims og ${report.materialized.source_registration_count} inspectable kilderegistreringer. Videre arbeid er vedlikehold, kildeoppdatering og nye dokumenterte case under de samme permanente portene.`;
+  registry.note = `Film & TV er redaksjonelt komplett etter egen helhetsaudit. Alle ${report.materialized.planned_unit_count}/${report.materialized.planned_unit_count} planlagte enheter og ${report.materialized.reaudited_legacy_chapter_count}/${report.materialized.reaudited_legacy_chapter_count} reauditerte legacy-kapitler er materialisert (${report.materialized.chapter_count}/${report.materialized.chapter_count} registrerte kapitler totalt), og auditen verifiserer 10/10 canonicale fagområder og 192/192 canonicale emner med eksakt ett kapittel-eierskap per emne, ${report.materialized.paragraph_count} claimsporede fagavsnitt, ${report.materialized.claim_count} verifiserte claims og ${report.materialized.source_registration_count} inspectable kilderegistreringer. Videre arbeid er vedlikehold, kildeoppdatering og nye dokumenterte case under de samme permanente portene.`;
 
   statusDocument.version = '1.97.0';
   statusDocument.updatedAt = '2026-08-17';
   status.editorialStatus = 'complete';
   status.nextGate = FINAL_GATE;
-  status.note = `Film & TV er komplett etter separat helhetsaudit: 10/10 canonicale fagområder, 192/192 canonicale emner og 15/15 planlagte kapitler. Emnene eies nøyaktig én gang i kapittelsettet; modulene inneholder ${report.materialized.paragraph_count} claimsporede fagavsnitt, ${report.materialized.claim_count} verifiserte claims og ${report.materialized.source_registration_count} inspectable kilderegistreringer. Alle canonicalt krevde emnemetoder brukes. Videre arbeid er vedlikehold, kildeoppdatering og caseutvidelse.`;
+  status.note = `Film & TV er komplett etter separat helhetsaudit: 10/10 canonicale fagområder, 192/192 canonicale emner og ${report.materialized.chapter_count}/${report.materialized.chapter_count} registrerte kapitler (${report.materialized.planned_unit_count} planlagte enheter + ${report.materialized.reaudited_legacy_chapter_count} reauditerte legacy-kapitler). Emnene eies nøyaktig én gang i kapittelsettet; modulene inneholder ${report.materialized.paragraph_count} claimsporede fagavsnitt, ${report.materialized.claim_count} verifiserte claims og ${report.materialized.source_registration_count} inspectable kilderegistreringer. Alle canonicalt krevde emnemetoder brukes. Videre arbeid er vedlikehold, kildeoppdatering og caseutvidelse.`;
 
   writeJson(P.registry, registryDocument);
   writeJson(P.status, statusDocument);
