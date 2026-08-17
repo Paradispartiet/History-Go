@@ -33,11 +33,14 @@ jobs:
         run: npm ci
 
       - name: Apply 4H-C fail-closed cutover
-        run: python scripts/.tmp-civication-4hc-apply.py
+        run: |
+          python scripts/.tmp-civication-4hc-apply.py
+          python scripts/.tmp-civication-4hc-fix-stale-test.py
 
       - name: Verify 4H-C focused contracts
         run: |
           node tests/civication-scene-director-ownership.test.js
+          node tests/civication-scene-interaction-contract.test.js
           node tests/civication-legacy-work-fallback-closed.test.js
           node scripts/build-civication-scene-registry.mjs --check
 
@@ -77,11 +80,13 @@ jobs:
           git rm -f \
             .github/workflows/civication-4hc-apply.yml \
             scripts/.tmp-civication-4hc-apply.py \
+            scripts/.tmp-civication-4hc-fix-stale-test.py \
             scripts/.tmp-civication-4hc-suite-failure.log
           git add \
             js/Civication/core/civicationEventEngine.js \
             js/Civication/systems/civicationWorkdayMailBuilder.js \
             tests/civication-scene-director-ownership.test.js \
+            tests/civication-scene-interaction-contract.test.js \
             tests/civication-legacy-work-fallback-closed.test.js \
             data/Civication/scenePipelinePolicyV1.json \
             data/Civication/SCENE_PIPELINE_V1.md
