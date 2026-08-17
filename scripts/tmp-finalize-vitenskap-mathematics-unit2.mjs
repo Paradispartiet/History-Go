@@ -67,6 +67,16 @@ breadthTest = replaceOnce(breadthTest, 'assert.equal(report.editorialState.edito
 breadthTest = replaceOnce(breadthTest, 'assert.equal(report.editorialState.registeredChapterCount, 1);', 'assert.equal(report.editorialState.registeredChapterCount, 2);', 'breadth test chapters');
 fs.writeFileSync(breadthTestFile, breadthTest);
 
+const generalEngineTestFile = 'tests/fagverk-general-engine.test.mjs';
+let generalEngineTest = fs.readFileSync(generalEngineTestFile, 'utf8');
+generalEngineTest = replaceOnce(
+  generalEngineTest,
+  '  assert.equal(vitenskap.chapterCount, 1);',
+  '  assert.equal(vitenskap.chapterCount, 2);',
+  'general engine Vitenskap chapter count'
+);
+fs.writeFileSync(generalEngineTestFile, generalEngineTest);
+
 const chapterPath = 'data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell.json';
 const claimsPath = 'data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/claims.json';
 const briefPath = 'data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/brief.json';
