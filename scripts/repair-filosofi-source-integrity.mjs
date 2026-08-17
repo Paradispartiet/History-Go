@@ -50,12 +50,12 @@ const PRIMARY_WORK_OVERRIDES = {
 
 const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 const writeJson = (p, value) => fs.writeFileSync(p, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
-const normalize = (value) => String(value ?? '')
-  .normalize('NFKD')
-  .replace(/[\u0300-\u036f]/g, '')
-  .toLowerCase()
-  .replace(/[^a-z0-9]+/g, ' ')
-  .trim();
+const normalize = (value) => String(value ?? '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const nameToken = (name) => normalize(name).split(/\s+/).filter((part) => part.length >= 3).at(-1) ?? normalize(name);
+const containsActor = (text, name) => {
+  const haystack = ` ${normalize(text)} `;
+  return haystack.includes(` ${normalize(name)} `) || haystack.includes(` ${nameToken(name)} `);
+};
 const words = (text) => String(text ?? '').trim().split(/\s+/u).filter(Boolean).length;
 const articleWords = (article) => words((article.sections ?? []).flatMap((s) => s.paragraphs ?? []).join(' '));
 
@@ -64,26 +64,22 @@ const thinkers = thinkerRegistry.thinkers ?? [];
 const thinkerByName = new Map(thinkers.map((t) => [normalize(t.name), t]));
 const thinkersByLastToken = new Map();
 for (const thinker of thinkers) {
-  const token = normalize(thinker.name).split(/\s+/).at(-1);
+  const token = nameToken(thinker.name);
   if (!token) continue;
   const rows = thinkersByLastToken.get(token) ?? [];
   rows.push(thinker);
   thinkersByLastToken.set(token, rows);
 }
-
 function resolveThinker(name) {
   const direct = thinkerByName.get(normalize(name));
   if (direct) return direct;
-  const token = normalize(name).split(/\s+/).at(-1);
-  const candidates = thinkersByLastToken.get(token) ?? [];
+  const candidates = thinkersByLastToken.get(nameToken(name)) ?? [];
   return candidates.length === 1 ? candidates[0] : null;
 }
 
 function autoPrimaryAnchors(article, canonicalDebateThinkers) {
   const oldWorks = new Set((article.primary_work_refs ?? []).map(normalize));
   const anchors = [];
-
-  // Preserve relevant old anchors first, but only if the work belongs to a canonical debate thinker.
   for (const thinker of canonicalDebateThinkers) {
     for (const work of thinker.works ?? []) {
       if (!oldWorks.has(normalize(work))) continue;
@@ -91,15 +87,12 @@ function autoPrimaryAnchors(article, canonicalDebateThinkers) {
       break;
     }
   }
-
-  // Then prefer breadth across debate thinkers before a second work from the same thinker.
   for (const thinker of canonicalDebateThinkers) {
     if (anchors.length >= 3) break;
     if (anchors.some((anchor) => anchor.canonical_ref === thinker.id)) continue;
     const work = (thinker.works ?? [])[0];
     if (work) anchors.push({ actor: thinker.name, canonical_ref: thinker.id, work });
   }
-
   if (anchors.length < 2) {
     for (const thinker of canonicalDebateThinkers) {
       for (const work of thinker.works ?? []) {
@@ -118,9 +111,7 @@ function buildPrimaryAnchors(article, canonicalDebateThinkers) {
   if (!override) return autoPrimaryAnchors(article, canonicalDebateThinkers);
   const debateNames = new Set((article.university_quality?.debate_thinkers ?? []).map(normalize));
   return override.map((anchor) => {
-    if (!debateNames.has(normalize(anchor.actor))) {
-      throw new Error(`${article.id}: override-aktør ${anchor.actor} finnes ikke i debate_thinkers`);
-    }
+    if (!debateNames.has(normalize(anchor.actor))) throw new Error(`${article.id}: override-aktør ${anchor.actor} finnes ikke i debate_thinkers`);
     const canonical = resolveThinker(anchor.actor);
     if (canonical && !(canonical.works ?? []).some((work) => normalize(work) === normalize(anchor.work))) {
       throw new Error(`${article.id}: ${anchor.work} er ikke registrert som verk av ${canonical.name}`);
@@ -129,21 +120,25 @@ function buildPrimaryAnchors(article, canonicalDebateThinkers) {
   });
 }
 
-function replacePrimaryGrounding(article, anchors) {
+function replacePrimaryGrounding(article, anchors, debateNames) {
   const theory = (article.sections ?? []).find((s) => s.id === 'teorihistorie');
   if (!theory) throw new Error(`${article.id}: mangler teorihistorie`);
   const sourceSection = (article.sections ?? []).find((s) => s.id === 'kilder');
   const citations = anchors.map((anchor) => `${anchor.work} (${anchor.actor})`);
   const debate = article.university_quality?.debate ?? '';
   const grounding = `Primærverkankrene er ${citations.join('; ')}. De brukes til å kontrollere de navngitte debattaktørenes egne argumenter i artikkelens stridspunkt, ikke som en generell kanonliste. ${debate}`;
-  const oldPrimaryPattern = /Primærverk(?:ene|ankrene)/iu;
-
+  const genericPrimaryPattern = /Primærverk(?:ene|ankrene)/iu;
+  const individualPrimaryPattern = /brukes som primæranker for/iu;
   let replaced = false;
-  theory.paragraphs = (theory.paragraphs ?? []).map((paragraph) => {
-    if (!oldPrimaryPattern.test(paragraph)) return paragraph;
-    if (replaced) return null;
-    replaced = true;
-    return grounding;
+  theory.paragraphs = (theory.paragraphs ?? []).map((raw) => {
+    const paragraph = String(raw).replace('Lon The Morality of Law', 'The Morality of Law');
+    if (genericPrimaryPattern.test(paragraph)) {
+      if (replaced) return null;
+      replaced = true;
+      return grounding;
+    }
+    if (individualPrimaryPattern.test(paragraph) && !debateNames.some((name) => containsActor(paragraph, name))) return null;
+    return paragraph;
   }).filter(Boolean);
   if (!replaced) theory.paragraphs.push(grounding);
 
@@ -151,7 +146,7 @@ function replacePrimaryGrounding(article, anchors) {
     const boundary = `Primærverkankrene ${citations.join('; ')} brukes ved konkrete posisjons- og argumentrekonstruksjoner. De emnespesifikke sekundærkildene brukes til problemhistorie, rivaler, fortolkningskontroll og bibliografi; empiriske casepåstander krever egne casekilder.`;
     let sourceReplaced = false;
     sourceSection.paragraphs = (sourceSection.paragraphs ?? []).map((paragraph) => {
-      if (!oldPrimaryPattern.test(paragraph)) return paragraph;
+      if (!genericPrimaryPattern.test(paragraph)) return paragraph;
       if (sourceReplaced) return null;
       sourceReplaced = true;
       return boundary;
@@ -163,32 +158,23 @@ function replacePrimaryGrounding(article, anchors) {
 const files = fs.readdirSync(ARTICLES_DIR).filter((name) => name.endsWith('.json')).sort();
 if (files.length !== 68) throw new Error(`Forventet 68 Filosofi-artikler, fikk ${files.length}`);
 
-// Preflight every article before writing anything.
 const plans = [];
 for (const file of files) {
   const p = path.join(ARTICLES_DIR, file);
   const article = readJson(p);
   const debateNames = article.university_quality?.debate_thinkers ?? [];
   if (debateNames.length < 2) throw new Error(`${article.id}: mangler minst to debate_thinkers`);
-
-  const canonicalDebateThinkers = debateNames
-    .map(resolveThinker)
-    .filter(Boolean)
-    .filter((thinker, index, rows) => rows.findIndex((row) => row.id === thinker.id) === index);
+  const canonicalDebateThinkers = debateNames.map(resolveThinker).filter(Boolean).filter((thinker, index, rows) => rows.findIndex((row) => row.id === thinker.id) === index);
   const anchors = buildPrimaryAnchors(article, canonicalDebateThinkers);
   if (anchors.length < 2) throw new Error(`${article.id}: mangler minst to debattspesifikke primærverkankre`);
-  if (new Set(anchors.map((anchor) => normalize(anchor.work))).size !== anchors.length) {
-    throw new Error(`${article.id}: dupliserte primærverkankre`);
-  }
+  if (new Set(anchors.map((anchor) => normalize(anchor.work))).size !== anchors.length) throw new Error(`${article.id}: dupliserte primærverkankre`);
   plans.push({ p, article, debateNames, canonicalDebateThinkers, anchors });
 }
 
 const repaired = [];
-for (const plan of plans) {
-  const { p, article, debateNames, canonicalDebateThinkers, anchors } = plan;
+for (const { p, article, debateNames, canonicalDebateThinkers, anchors } of plans) {
   const beforeThinkers = JSON.stringify(article.thinker_refs ?? []);
   const beforeWorks = JSON.stringify(article.primary_work_refs ?? []);
-
   article.thinker_refs = canonicalDebateThinkers.map((thinker) => thinker.id);
   article.primary_work_refs = anchors.map((anchor) => anchor.work);
   article.university_quality.primary_work_count = anchors.length;
@@ -201,12 +187,9 @@ for (const plan of plans) {
     canonical_thinker_refs: article.thinker_refs,
     primary_work_anchors: anchors
   };
-  replacePrimaryGrounding(article, anchors);
+  replacePrimaryGrounding(article, anchors, debateNames);
   writeJson(p, article);
-
-  if (beforeThinkers !== JSON.stringify(article.thinker_refs) || beforeWorks !== JSON.stringify(article.primary_work_refs)) {
-    repaired.push(article.id);
-  }
+  if (beforeThinkers !== JSON.stringify(article.thinker_refs) || beforeWorks !== JSON.stringify(article.primary_work_refs)) repaired.push(article.id);
 }
 
 const articleRegistry = readJson(REGISTRY_PATH);
