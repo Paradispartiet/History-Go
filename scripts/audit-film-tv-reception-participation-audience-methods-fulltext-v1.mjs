@@ -19,7 +19,8 @@ const ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authentici
 const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 const UNIT15_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const UNIT_FIFTEEN_COMPLETION_AUDIT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
-const UNIT_ELEVEN_OR_LATER_GATES = new Set([OUTPUT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE, LOCATION_PRODUCTION_SOURCE_GATE, LOCATION_PRODUCTION_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE]);
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
+const UNIT_ELEVEN_OR_LATER_GATES = new Set([OUTPUT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE, LOCATION_PRODUCTION_SOURCE_GATE, LOCATION_PRODUCTION_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE]);
 const isFilmTvUnitElevenFulltextOrLaterGate = (gate) => UNIT_ELEVEN_OR_LATER_GATES.has(gate);
 const P = Object.freeze({
   chapter: `data/fagverk/film_tv/${CHAPTER_ID}.json`,
@@ -161,7 +162,7 @@ export function auditFilmTvReceptionParticipationAudienceMethodsFulltextV1({
     chapter_is_registered_and_status_advanced_exactly_once: chapterRecord?.file === P.chapter
       && chapterRecord?.claimsFile === P.claims
       && chapterRecord?.briefFile === P.brief
-      && filmStatus?.editorialStatus === 'chapters_in_progress'
+      && ['chapters_in_progress', 'complete'].includes(filmStatus?.editorialStatus)
       && isFilmTvUnitElevenFulltextOrLaterGate(filmStatus?.nextGate),
     deterministic_generated_state_matches: isDeepStrictEqual(chapter, built.chapter)
       && isDeepStrictEqual(brief, built.chapterBrief)

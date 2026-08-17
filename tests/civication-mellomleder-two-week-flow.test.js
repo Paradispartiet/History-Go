@@ -326,6 +326,7 @@ function makeHarness() {
     loadScript('js/Civication/systems/day/dayChoiceDirector.js');
     loadScript('js/Civication/systems/day/dayConsequences.js');
     loadScript('js/Civication/systems/civicationMailRuntime.js');
+  loadScript('js/Civication/systems/civicationWorkdayMailBuilder.js');
   }
 
   global.CivicationState.setActivePosition({

@@ -6,8 +6,9 @@ const SOURCE = 'data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory
 const CHAPTER = 'data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne.json';
 const SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const FULLTEXT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
 const FINAL_GATE = 'maintenance_source_refresh_and_place_case_expansion';
-const LATER_GATES = new Set([SOURCE_GATE, FULLTEXT_GATE, FINAL_GATE]);
+const LATER_GATES = new Set([SOURCE_GATE, FULLTEXT_GATE, MAINTENANCE_GATE, FINAL_GATE]);
 
 test('Unit 15 source brief forblir canonical når fulltekst og senere porter avanserer', () => {
   const registry = read('data/fagverk/fagverk_registry.json');

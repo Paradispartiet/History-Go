@@ -320,10 +320,16 @@ export function runtimeSourceRank(sourcePath, catalog) {
   const normalizedPath = norm(sourcePath).replace(/\\/g, "/");
   if (normalizedPath === `${SOURCE_ROOT}/${category}/job/${roleScope}_intro_v2.json`) return 0;
   if (normalizedPath === `${SOURCE_ROOT}/${category}/job/${roleScope}_job.json`) return 1;
-  if (!EXTRA_MAIL_TYPE_SET.has(mailType)) return null;
-  const extraIndex = EXTRA_MAIL_TYPES.indexOf(mailType);
-  const canonical = `${SOURCE_ROOT}/${category}/${mailType}/${roleScope}_${mailType}.json`;
-  return normalizedPath === canonical ? 2 + extraIndex : null;
+  if (EXTRA_MAIL_TYPE_SET.has(mailType)) {
+    const extraIndex = EXTRA_MAIL_TYPES.indexOf(mailType);
+    const canonical = `${SOURCE_ROOT}/${category}/${mailType}/${roleScope}_${mailType}.json`;
+    if (normalizedPath === canonical) return 2 + extraIndex;
+  }
+  const brandId = norm(catalog?.brand_id).toLowerCase();
+  if (brandId && normalizedPath === `${SOURCE_ROOT}/${category}/brand/${roleScope}_${brandId}.json`) {
+    return 2 + EXTRA_MAIL_TYPES.length;
+  }
+  return null;
 }
 
 export function isRuntimeReachableCatalog(sourcePath, catalog) {

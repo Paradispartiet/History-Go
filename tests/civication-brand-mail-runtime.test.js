@@ -39,6 +39,7 @@ function reset(activePosition) {
   loadScript('js/Civication/core/civicationState.js');
   loadScript('js/Civication/systems/civicationCareerRoleResolver.js');
   loadScript('js/Civication/systems/civicationMailRuntime.js');
+  loadScript('js/Civication/systems/civicationWorkdayMailBuilder.js');
   global.CivicationState.setActivePosition(activePosition);
   global.CivicationState.setInbox([]);
 }

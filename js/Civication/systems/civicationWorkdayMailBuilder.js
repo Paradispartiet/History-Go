@@ -452,7 +452,13 @@
           scene_catalog_version: SCENE_CATALOG_VERSION
         });
       });
-      const mails = (await decorateMails(flattened)).map(decorateSceneInteraction);
+      const activeBrandId = slugify(active?.brand_id || "");
+      const brandFiltered = flattened.filter((mail) => {
+        const mailBrandId = slugify(mail?.brand_id || "");
+        if (!mailBrandId) return true;
+        return !!activeBrandId && mailBrandId === activeBrandId;
+      });
+      const mails = (await decorateMails(brandFiltered)).map(decorateSceneInteraction);
       catalogTrace.push({
         at: new Date().toISOString(),
         consumer: norm(options.consumer || "scene_director") || "scene_director",
