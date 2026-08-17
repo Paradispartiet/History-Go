@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHAPTER_ID = 'kulturarv-kanon-stjerner-og-minne';
 const OUTPUT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
 const P = Object.freeze({
   plan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
   sourceBrief: 'data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json',

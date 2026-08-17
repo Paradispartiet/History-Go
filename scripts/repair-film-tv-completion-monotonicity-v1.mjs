@@ -47,7 +47,7 @@ function addMaintenanceToLaterGateSets(text) {
 
   next = next.replace(/new Set\(\[([\s\S]*?)\]\)/g, (whole, body) => {
     if (!new RegExp(`\\b${gateVar}\\b`).test(body) || /\bMAINTENANCE_GATE\b/.test(body)) return whole;
-    const updatedBody = body.replace(new RegExp(`\\b${gateVar}\\b\\s*,?`), `${gateVar}, MAINTENANCE_GATE`);
+    const updatedBody = body.replace(new RegExp(`\\b${gateVar}\\b`), `${gateVar}, MAINTENANCE_GATE`);
     return `new Set([${updatedBody}])`;
   });
   return next;
@@ -62,11 +62,11 @@ function addMaintenanceToNextGateIncludes(text) {
     if (/\bMAINTENANCE_GATE\b/.test(body) || body.includes(`'${MAINTENANCE_GATE}'`) || body.includes(`\"${MAINTENANCE_GATE}\"`)) return whole;
 
     if (gateVar && new RegExp(`\\b${gateVar}\\b`).test(body)) {
-      const updatedBody = body.replace(new RegExp(`\\b${gateVar}\\b\\s*,?`), `${gateVar}, MAINTENANCE_GATE`);
+      const updatedBody = body.replace(new RegExp(`\\b${gateVar}\\b`), `${gateVar}, MAINTENANCE_GATE`);
       return `[${updatedBody}].includes(${argument})`;
     }
 
-    const literalPattern = new RegExp(`(['\"])${FINAL_GATE}\\1\\s*,?`);
+    const literalPattern = new RegExp(`(['\"])${FINAL_GATE}\\1`);
     if (literalPattern.test(body)) {
       const updatedBody = body.replace(literalPattern, (match, quote) => `${quote}${FINAL_GATE}${quote},\n    ${quote}${MAINTENANCE_GATE}${quote}`);
       return `[${updatedBody}].includes(${argument})`;

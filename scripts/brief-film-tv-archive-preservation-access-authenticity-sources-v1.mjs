@@ -11,7 +11,8 @@ const OUTPUT_GATE = 'archive_preservation_access_authenticity_source_brief_compl
 const FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 const UNIT_FIFTEEN_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const UNIT_FIFTEEN_COMPLETION_AUDIT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
-const UNIT_FOURTEEN_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE, UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE]);
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
+const UNIT_FOURTEEN_OR_LATER_GATES = new Set([OUTPUT_GATE, FULLTEXT_GATE, UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE]);
 
 export const isFilmTvUnitFourteenOrLaterGate = (gate) => UNIT_FOURTEEN_OR_LATER_GATES.has(gate);
 
@@ -101,7 +102,7 @@ export function buildFilmTvArchivePreservationAccessAuthenticitySourceBriefV1() 
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   assert(filmStatus, 'Mangler Film & TV-status');
   const currentGate = filmStatus.nextGate;
-  const laterGateAlreadyActive = [FULLTEXT_GATE, UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(currentGate);
+  const laterGateAlreadyActive = [FULLTEXT_GATE, UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE].includes(currentGate);
 
   const brief = read(P.brief);
   const sourceDocument = read(P.sources);
@@ -154,7 +155,7 @@ export function buildFilmTvArchivePreservationAccessAuthenticitySourceBriefV1() 
     exact_unit_fourteen_problem_set_and_sequence: unit.sequence === 14 && plan.production_sequence[13] === UNIT_ID && unit.emne_count === 11,
     exact_prerequisite_contract: isDeepStrictEqual(unit.prerequisite_planned_unit_ids, PREREQUISITES.map((row) => row.id)) && isDeepStrictEqual(unit.prerequisite_existing_chapter_ids, []),
     prerequisite_fulltext_artifacts_and_audits_green: prerequisitesVerified,
-    current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE, UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(currentGate),
+    current_status_is_input_output_or_known_later_gate: [INPUT_GATE, OUTPUT_GATE, FULLTEXT_GATE, UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE].includes(currentGate),
     exact_unit_emne_coverage: topicBriefs.length === unit.emne_count && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count && isDeepStrictEqual(brief.scope.emne_ids, unit.emne_ids) && unit.emne_ids.every((id) => topicBriefs.some((row) => row.emne_id === id)),
     all_emners_active_canonical: topicBriefs.every((row) => emneById.get(row.emne_id)?.status === 'active'),
     all_canonical_topics_have_methods: topicBriefs.every((row) => {

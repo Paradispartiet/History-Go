@@ -44,7 +44,7 @@ test('Film & TV-fagets tekniske baseline er bevart etter kapittel 1', () => {
   const { report } = auditFilmTvKinoerVisningsstederPublikumPhase4();
   const committed = JSON.parse(fs.readFileSync(path.join(root, 'reports/fagverk/film-tv-kinoer-visningssteder-publikum-phase4-audit.json'), 'utf8'));
   assert.ok(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief'].includes(report.subject.nextGate)
-    || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(report.subject.nextGate));
+    || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit|maintenance_source_refresh_and_place_case_expansion)$/.test(report.subject.nextGate));
   assert.equal('nextGate' in committed.subject, false);
   assert.equal('registeredChapterCount' in committed.subject, false);
   assert.equal(report.subject.canonicalDomainCount, 10);

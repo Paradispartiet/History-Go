@@ -197,7 +197,7 @@ export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeRe
           && committedRegistry.subjects.film_tv.canonicalModel.fifteenthChapterFulltext === P.chapter
           && committedFilmStatus?.editorialStatus === 'complete'
           && committedFilmStatus?.nextGate === MAINTENANCE_GATE
-        : filmStatus?.editorialStatus === 'chapters_in_progress' && filmStatus?.nextGate === OUTPUT_GATE),
+        : ['chapters_in_progress', 'complete'].includes(filmStatus?.editorialStatus) && filmStatus?.nextGate === OUTPUT_GATE),
     deterministic_editorial_outputs_match_committed_files: isDeepStrictEqual(committedChapter, expectedCompletedChapter)
       && isDeepStrictEqual(read(P.brief), built.chapterBrief)
       && isDeepStrictEqual(read(P.claims), built.claimsDoc)

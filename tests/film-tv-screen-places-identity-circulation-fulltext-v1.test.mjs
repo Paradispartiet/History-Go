@@ -57,11 +57,11 @@ test('alle 52 sluttclaims har claimspesifikk evidens og bruker alle 36 briefkild
 
   assert.equal(claims.length, 52);
   assert.equal(new Set(claims.map((claim) => claim.id)).size, 52);
-  assert.deepEqual(new Set(Object.keys(expected)), new Set(claims.map((claim) => claim.id)));
+  assert.deepEqual(new Set(Object.keys(expected)), new Set(claims.map((claim) => claim.claim_plan_id || claim.id)));
   assert.equal(claims.every((claim) => claim.status === 'verified'), true);
   assert.equal(claims.every((claim) => claim.plan_resolution === 'verified_as_planned'), true);
   assert.equal(claims.every((claim) => claim.source_ids.length >= 2), true);
-  assert.equal(claims.every((claim) => assert.deepEqual(claim.source_ids, expected[claim.id]) === undefined), true);
+  assert.equal(claims.every((claim) => assert.deepEqual(claim.source_ids, expected[claim.claim_plan_id || claim.id]) === undefined), true);
   assert.equal(built.sources.every((source) => usedSources.has(source.id)), true);
 });
 
@@ -140,7 +140,8 @@ test('kapittelregistrering avanserer monotont og source briefen forblir historis
     'location_production_place_ethics_full_chapter_complete_next_unit_source_brief',
     'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production',
     'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief',
-    'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit'
+    'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit',
+    'maintenance_source_refresh_and_place_case_expansion'
   ].includes(film.nextGate), true);
   assert.equal(sourceBrief.status, 'source_claim_brief_complete_full_chapter_production');
   assert.equal(sourceBrief.runtime_registration.registered, false);

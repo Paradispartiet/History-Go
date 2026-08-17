@@ -8,7 +8,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
 const UNIT8_ID = 'skjermoffentlighet-fellesskap-og-samfunn';
 // Etter registrert enhet 8 kan Film & TV stå i kildebrief-, fullkapittel- eller separat completion-audit-port for enhver senere enhet.
-const FILM_TV_PRODUCTION_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/;
+const FILM_TV_PRODUCTION_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit|maintenance_source_refresh_and_place_case_expansion)$/;
 
 test('Film & TV-læringsrekkefølgen bevares når produksjonen har avansert til enhet 8 eller senere', () => {
   const plan = read('data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json');

@@ -384,7 +384,7 @@ export function auditFilmTvVariableInventoryV1({ write = false, check = true } =
     'canonical_chapter_reaudit_complete_learning_order_plan',
     'learning_order_plan_complete_first_chapter_source_brief'
   ]);
-  const productionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(status?.nextGate || '');
+  const productionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit|maintenance_source_refresh_and_place_case_expansion)$/.test(status?.nextGate || '');
   assert(legacyProgressionGates.has(status?.nextGate) || productionGate, 'Film & TV skal stå på canonical migrasjon, kapittelreaudit, læringsrekkefølge, kildebrief eller fulltekstproduksjon etter gapdesign');
 
   const requiredGapIds = [
