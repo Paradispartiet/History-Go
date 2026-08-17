@@ -47,6 +47,10 @@ export function classifyFilmTvSourceAuthority(source) {
     return 'scholarly_book';
   }
 
+  if (/professional|standards?[-_ ]?body|ethics[-_ ]?(code|guidance)|research[-_ ]?ethics[-_ ]?guidance|web[-_ ]?accessibility[-_ ]?guidance/.test(type)) {
+    return 'professional_secondary';
+  }
+
   if (/national[-_ ]?regulator.*(research|survey|data|report)|official[-_ ]?(statistics|data|research)|government[-_ ]?(statistics|data|research)|census|administrative[-_ ]?data|audience[-_ ]?measurement|industry[-_ ]?data[-_ ]?(inventory|report)|survey[-_ ]?methodology|independent[-_ ]?national[-_ ]?survey|cross[-_ ]?platform[-_ ]?industry[-_ ]?and[-_ ]?audience[-_ ]?report/.test(type)
     || (/ofcom|statistics norway|statistisk sentralbyrå|eurostat|pew research center|european audiovisual observatory/.test(text)
       && /(research|survey|data|statistics|methodology|report|inventory)/.test(text))) {
