@@ -8,7 +8,9 @@ test('Film & TV completion audit locks exact canonical coverage and evidence tra
   assert.equal(report.status, 'complete_ready_verified');
   assert.equal(report.canonical.domain_count, 10);
   assert.equal(report.canonical.emne_count, 192);
-  assert.equal(report.materialized.chapter_count, 15);
+  assert.equal(report.materialized.chapter_count, 17);
+  assert.equal(report.materialized.planned_unit_count, 15);
+  assert.equal(report.materialized.reaudited_legacy_chapter_count, 2);
   assert.equal(report.coverage.covered_emne_count, 192);
   assert.deepEqual(report.coverage.missing_emne_ids, []);
   assert.deepEqual(report.coverage.duplicate_owned_emne_ids, []);
@@ -22,5 +24,5 @@ test('Film & TV completion audit locks exact canonical coverage and evidence tra
   assert.ok(report.canonical.required_method_count > 0);
   assert.ok(report.materialized.used_method_count >= report.canonical.required_method_count);
   assert.ok(Object.values(report.quality_gates).every(Boolean));
-  assert.equal(report.chapter_summaries.length, 15);
+  assert.equal(report.chapter_summaries.length, 17);
 });
