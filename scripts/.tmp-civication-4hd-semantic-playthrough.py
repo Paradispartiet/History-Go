@@ -1,0 +1,270 @@
+from pathlib import Path
+import re
+
+runtime_path = Path('js/Civication/systems/civicationMailRuntime.js')
+source = runtime_path.read_text()
+source = source.replace(
+    '// - Data bestemmer innholdet: mailPlans + mailFamilies.',
+    '// - SceneCatalog/compiled registry bestemmer sceneinnholdet; MailRuntime eier plan/progresjon.'
+)
+pattern = re.compile(r"  async function makeCandidateMailsForActiveRole\(active, state = getState\(\)\) \{.*?\n  \}\n\n  function buildRuntimeStatePatchForAnswer", re.S)
+replacement = r'''  function selectCandidateMailsFromResolvedSources(active, state, plan, mails) {
+    if (!active || !plan || !Array.isArray(plan.sequence) || !plan.sequence.length) return [];
+    if (!Array.isArray(mails) || !mails.length) return [];
+
+    const runtime = getPlanProgress(state, plan);
+    const consumedIds = new Set(getConsumedIds(state));
+    const sequence = plan.sequence.map((step, index) => ({ step, index }));
+    const current = getCurrentStep(plan, runtime);
+    const currentIndex = sequence.find(row => row.step === current)?.index ?? Math.max(0, Number(runtime.step_index || 0));
+
+    let candidates = candidatesForStep(active, plan, current, currentIndex, mails, consumedIds, { strictFamily: true });
+
+    if (!candidates.length) {
+      const fallbackTypes = Array.isArray(current?.fallback_types) ? current.fallback_types.map(norm).filter(Boolean) : [];
+      for (const fallbackType of fallbackTypes) {
+        candidates = candidatesForStep(active, plan, current, currentIndex, mails, consumedIds, {
+          type: fallbackType,
+          strictFamily: true
+        });
+        if (candidates.length) break;
+
+        candidates = candidatesForStep(active, plan, current, currentIndex, mails, consumedIds, {
+          type: fallbackType,
+          strictFamily: false
+        });
+        if (candidates.length) break;
+      }
+    }
+
+    if (!candidates.length) {
+      for (const row of sequence) {
+        if (row.index === currentIndex) continue;
+        candidates = candidatesForStep(active, plan, row.step, row.index, mails, consumedIds, { strictFamily: true });
+        if (candidates.length) break;
+      }
+    }
+
+    return sortCandidates(candidates, currentIndex, runtime);
+  }
+
+  async function makeCandidateMailsForActiveRole(active, state = getState()) {
+    if (!active) return [];
+
+    const catalog = window.CivicationSceneCatalog;
+    if (typeof catalog?.getRolePlan !== "function" || typeof catalog?.getRoleMails !== "function") {
+      if (window.DEBUG) console.warn("[CivicationMailRuntime] SceneCatalog mangler; planned gameplay lukkes fail-closed");
+      return [];
+    }
+
+    const [plan, mails] = await Promise.all([
+      catalog.getRolePlan(active),
+      catalog.getRoleMails(active, state, { consumer: "mail_runtime_primary" })
+    ]);
+    return selectCandidateMailsFromResolvedSources(active, state, plan, mails);
+  }
+
+  function buildRuntimeStatePatchForAnswer'''
+source, count = pattern.subn(replacement, source, count=1)
+if count != 1:
+    raise SystemExit(f'Expected one makeCandidate block, got {count}')
+
+prewarm_pattern = re.compile(r"  // Forhåndslast alt svarstien trenger \(plan \+ alle mailfamilier\) mens\n  // spilleren leser meldingen — svaret skal aldri vente på nettverket\.\n  async function prewarm\(activeOverride\) \{.*?\n  \}\n", re.S)
+prewarm_replacement = '''  // Forhåndslast den canonicale SceneCatalog/registry-grensen. Rå mailFamilies er ikke
+  // en gameplay-fallback etter 4H-B/4H-D; før SceneCatalog finnes varmes bare planen.
+  async function prewarm(activeOverride) {
+    const active = activeOverride || getActive();
+    if (!active) return { warmed: false, reason: "no_active" };
+    const catalog = window.CivicationSceneCatalog;
+    if (typeof catalog?.prewarm === "function") {
+      return catalog.prewarm(active, { consumer: "mail_runtime_prewarm" });
+    }
+    await loadJson(getPlanPath(active));
+    return { warmed: true, scene_catalog_pending: true };
+  }
+'''
+source, count = prewarm_pattern.subn(prewarm_replacement, source, count=1)
+if count != 1:
+    raise SystemExit(f'Expected one prewarm block, got {count}')
+runtime_path.write_text(source)
+
+mail_loop = Path('tests/civication-mail-loop.test.js')
+loop_source = mail_loop.read_text()
+loop_pattern = re.compile(
+    r"  loadScript\('js/Civication/systems/civicationCareerRoleResolver\.js'\);\n"
+    r"  loadScript\('js/Civication/systems/civicationMailRuntime\.js'\);\n\n"
+    r"  // Denne testen kjører et smalt runtime-utvalg.*?"
+    r"  loadScript\('js/Civication/systems/civicationSceneInteraction\.js'\);\n",
+    re.S
+)
+loop_replacement = """  loadScript('js/Civication/systems/civicationCareerRoleResolver.js');
+  loadScript('js/Civication/systems/civicationSceneInteraction.js');
+  loadScript('js/Civication/systems/civicationMailRuntime.js');
+  loadScript('js/Civication/systems/civicationWorkdayMailBuilder.js');
+  loadScript('js/Civication/systems/civicationLifeMailRuntime.js');
+"""
+loop_source, count = loop_pattern.subn(loop_replacement, loop_source, count=1)
+if count != 1:
+    raise SystemExit(f'Expected one mail-loop SceneCatalog harness block, got {count}')
+loop_source = loop_source.replace("  loadScript('js/Civication/systems/civicationLifeMailRuntime.js');\n  loadScript('js/Civication/systems/day/dayChoiceDirector.js');", "  loadScript('js/Civication/systems/day/dayChoiceDirector.js');", 1)
+mail_loop.write_text(loop_source)
+
+test = r'''#!/usr/bin/env node
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+
+const repoRoot = path.resolve(__dirname, '..');
+const registry = JSON.parse(fs.readFileSync(path.join(repoRoot, 'data/Civication/compiledSceneRegistryV1.json'), 'utf8'));
+const rawReads = [];
+
+function readJson(rel) {
+  return JSON.parse(fs.readFileSync(path.join(repoRoot, rel), 'utf8'));
+}
+function load(rel, context) {
+  vm.runInContext(fs.readFileSync(path.join(repoRoot, rel), 'utf8'), context, { filename: rel });
+}
+function clone(value) { return JSON.parse(JSON.stringify(value)); }
+
+let active = null;
+let state = {};
+let inbox = [];
+const storage = new Map();
+function reset(nextActive) {
+  active = clone(nextActive);
+  state = {
+    stability: 'STABLE', warning_used: false, strikes: 0, score: 0,
+    active_role_key: active.role_key, consumed: {}, identity_tags: [], tracks: [], track_progress: {},
+    mail_runtime_v1: { version: 1, role_plan_id: null, role_scope: null, career_id: null, step_index: 0, consumed_ids: [], history: [] }
+  };
+  inbox = [];
+}
+
+const windowObject = {
+  DEBUG: false,
+  localStorage: {
+    getItem(key) { return storage.has(key) ? storage.get(key) : null; },
+    setItem(key, value) { storage.set(String(key), String(value)); },
+    removeItem(key) { storage.delete(key); }
+  },
+  document: { readyState: 'complete', addEventListener() {} },
+  addEventListener() {}, dispatchEvent() {},
+  CivicationState: {
+    getState: () => state,
+    setState(patch) { state = { ...state, ...(patch || {}) }; return state; },
+    getActivePosition: () => active,
+    setActivePosition(next) { active = next; return active; },
+    getInbox: () => inbox,
+    setInbox(next) { inbox = Array.isArray(next) ? next : []; return inbox; },
+    getPulse: () => ({ date: '2026-08-17', seen: {} }),
+    setPulse() {}, appendJobHistoryEnded() {}
+  },
+  CivicationCareerRoleResolver: {
+    resolveCareerRoleScope(pos) { return String(pos?.role_scope || pos?.role_key || '').trim(); },
+    resolveCareerRole(pos) { return { role_scope: pos?.role_scope, role_key: pos?.role_key, role_id: pos?.role_id }; }
+  },
+  CivicationJsonStore: {
+    async fetchJson(rel) {
+      const p = String(rel || '');
+      if (p.startsWith('data/Civication/mailFamilies/')) {
+        rawReads.push(p);
+        throw new Error(`4H-D forbids raw gameplay catalog read: ${p}`);
+      }
+      const full = path.join(repoRoot, p);
+      if (!fs.existsSync(full)) return null;
+      return readJson(p);
+    }
+  },
+  CivicationWorkdayRuntime: { getEmployerId: () => 'semantic_fixture', getWorkdayDayIndex: () => 1 },
+  CivicationCareerKnowledgeBridge: { decorateMail: async (mail) => mail }
+};
+windowObject.window = windowObject;
+windowObject.globalThis = windowObject;
+windowObject.Event = class Event { constructor(type) { this.type = type; } };
+const context = vm.createContext({
+  window: windowObject, globalThis: windowObject, document: windowObject.document,
+  localStorage: windowObject.localStorage, Event: windowObject.Event,
+  console, Date, Promise, Map, Set, Object, Array, String, Number, Boolean, JSON, Math
+});
+
+load('js/Civication/core/civicationEventEngine.js', context);
+load('js/Civication/systems/civicationSceneInteraction.js', context);
+load('js/Civication/systems/civicationMailRuntime.js', context);
+load('js/Civication/systems/civicationWorkdayMailBuilder.js', context);
+load('js/Civication/systems/day/dayChoiceDirector.js', context);
+
+const engine = new windowObject.CivicationEventEngine();
+engine.__civiSuppressImmediateFollowup = true;
+
+async function proveRole(fixture) {
+  reset(fixture.active);
+  const roleKey = `${fixture.active.career_id}/${fixture.active.role_scope}`;
+  const registryIds = new Set(registry.role_index[roleKey] || []);
+  assert(registryIds.size > 0, `${fixture.name}: compiled role_index missing`);
+
+  const plan = await windowObject.CivicationSceneCatalog.getRolePlan(fixture.active);
+  assert.equal(plan.role_scope, fixture.active.role_scope, `${fixture.name}: plan role_scope`);
+  const firstPlanStep = plan.sequence[0];
+  const first = await windowObject.CivicationSceneDirector.getPrimaryWorkScene(fixture.active, state, { consumer: '4hd_semantic_gate_first' });
+  assert(first, `${fixture.name}: first planned scene missing`);
+  assert(registryIds.has(first.id), `${fixture.name}: first scene must come from compiled role_index`);
+  assert.equal(first.source_type, 'planned', `${fixture.name}: first scene must be planned`);
+  assert.equal(first.mail_plan_meta?.step_index, 0, `${fixture.name}: first scene must bind plan step 0`);
+  assert.equal(first.mail_type, firstPlanStep.type, `${fixture.name}: first scene must match step type`);
+  assert(firstPlanStep.allowed_families.includes(first.mail_family), `${fixture.name}: first scene must match allowed family`);
+  const interaction = windowObject.CivicationSceneInteraction.classify(first);
+  assert.equal(interaction.valid, true, `${fixture.name}: first interaction valid`);
+  assert.equal(interaction.actionable, true, `${fixture.name}: first interaction actionable`);
+  assert(first.choices.length > 0, `${fixture.name}: proof scene needs a real response`);
+
+  engine.enqueueEvent(first);
+  const pending = engine.getPendingEvent();
+  assert.equal(pending?.event?.id, first.id, `${fixture.name}: planned scene delivered to EventEngine`);
+  const chosen = first.choices.find((choice) => !choice.triggers_on_choice) || first.choices[0];
+  const scoreBefore = Number(state.score || 0);
+  const result = await engine.answer(first.id, chosen.id);
+  assert.equal(result?.ok, true, `${fixture.name}: ChoiceDirector answer should succeed`);
+  assert.equal(result?.choice_director?.blocked, false, `${fixture.name}: ChoiceDirector owns successful boundary`);
+  assert.equal(result?.choice_director?.choice_id, chosen.id, `${fixture.name}: ChoiceDirector records choice`);
+  assert.equal(state.mail_runtime_v1?.step_index, 1, `${fixture.name}: MailRuntime must advance plan step`);
+  assert.equal(state.consumed?.[first.id], true, `${fixture.name}: answered scene consumed`);
+  assert.equal(state.mail_runtime_v1?.history?.at(-1)?.id, first.id, `${fixture.name}: progression history records scene`);
+  assert.equal(Number(state.score || 0), Math.max(-5, Math.min(2, scoreBefore + Number(chosen.effect || 0))), `${fixture.name}: EventEngine consequence applied`);
+
+  inbox = [];
+  const secondPlanStep = plan.sequence[1];
+  const second = await windowObject.CivicationSceneDirector.getPrimaryWorkScene(fixture.active, state, { consumer: '4hd_semantic_gate_next' });
+  assert(second, `${fixture.name}: next planned scene missing after answer`);
+  assert(registryIds.has(second.id), `${fixture.name}: next scene must come from compiled role_index`);
+  assert.notEqual(second.id, first.id, `${fixture.name}: consumed scene must not repeat`);
+  assert.equal(second.mail_plan_meta?.step_index, 1, `${fixture.name}: next scene must bind plan step 1`);
+  assert.equal(second.mail_type, secondPlanStep.type, `${fixture.name}: next scene must match next step type`);
+  assert(secondPlanStep.allowed_families.includes(second.mail_family), `${fixture.name}: next scene must match next allowed family`);
+
+  return { name: fixture.name, first: first.id, choice: chosen.id, next: second.id };
+}
+
+(async () => {
+  assert.equal(windowObject.CivicationMailRuntime.inspect().answer_middleware_registered, true, 'MailRuntime middleware must be registered in ChoiceDirector');
+  const proofs = [];
+  proofs.push(await proveRole({
+    name: 'Renholder',
+    active: { career_id: 'naeringsliv', role_scope: 'renholder', role_key: 'renholder', role_id: 'naer_renholder', title: 'Renholder' }
+  }));
+  proofs.push(await proveRole({
+    name: 'Arealplanlegger',
+    active: { career_id: 'by', role_scope: 'by_radgiver_plan', role_key: 'by_radgiver_plan', role_id: 'by_radgiver_plan', title: 'Arealplanlegger' }
+  }));
+
+  assert.deepEqual(rawReads, [], `4H-D primary playthrough must not read raw mailFamilies: ${rawReads.join(', ')}`);
+  const inspect = windowObject.CivicationSceneDirector.inspect();
+  assert.equal(inspect.scene_catalog?.source_format, 'compiled_scene_registry_v1');
+  assert.equal(inspect.scene_catalog?.compiled_registry_loaded, true);
+  console.log(`Civication 4H-D semantic playthrough gate OK: ${JSON.stringify(proofs)}`);
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+'''
+Path('tests/civication-semantic-playthrough-gate.test.js').write_text(test)
