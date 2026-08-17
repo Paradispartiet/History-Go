@@ -19,71 +19,32 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Inspect canonical Vitenskap editorial field shapes
+      - name: Inspect canonical editorial thresholds and real gaps
         run: |
           node <<'NODE'
           const fs = require('node:fs');
           const emners = JSON.parse(fs.readFileSync('data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json','utf8'));
           const registry = JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));
-          const methods = JSON.parse(fs.readFileSync('data/fag/vitenskap/methods_vitenskap_canonical_v4_6.json','utf8')).methods;
-          const mappings = JSON.parse(fs.readFileSync('data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json','utf8'));
-          const chapters = registry.subjects.vitenskap.chapters;
-          const owned = new Set(chapters.flatMap(c => c.emne_ids || []));
-          const methodIds = new Set(methods.map(m => m.method_id));
-          const methodRefs = (e) => Array.isArray(e.methods) ? e.methods : Array.isArray(e.method_ids) ? e.method_ids : [];
-          const questionRefs = (e) => Array.isArray(e.key_questions) ? e.key_questions : Array.isArray(e.questions) ? e.questions : Array.isArray(e.keyQuestions) ? e.keyQuestions : [];
-          const lens = (field) => emners.map(e => (e[field] || '').trim().length).sort((a,b)=>a-b);
-          const stats = (arr) => ({min:arr[0], median:arr[Math.floor(arr.length/2)], max:arr.at(-1)});
-          const strictInvalid = emners.filter(e =>
-            e.canonical_status !== 'canonical' || !e.title || !e.definition || !e.why_it_matters ||
-            !Array.isArray(e.key_questions) || e.key_questions.length < 3 ||
-            !Array.isArray(e.methods) || e.methods.length < 3 || !e.methods.every(id => methodIds.has(id))
-          );
-          const schemaAwareInvalid = emners.filter(e =>
-            e.canonical_status !== 'canonical' || !e.title || !e.definition || !e.why_it_matters ||
-            questionRefs(e).length < 3 || methodRefs(e).length < 3 || !methodRefs(e).every(id => methodIds.has(id))
-          );
-          const defs = emners.map(e => e.definition.trim());
-          const mappingIds = new Set(mappings.map(m=>m.emne_id));
-          const unowned = emners.filter(e=>!owned.has(e.emne_id));
-          const byDomain = Object.fromEntries([...new Set(emners.map(e=>e.domain))].sort().map(d=>[d,emners.filter(e=>e.domain===d).length]));
-          const fieldCounts = {
-            methods: emners.filter(e=>Array.isArray(e.methods)).length,
-            method_ids: emners.filter(e=>Array.isArray(e.method_ids)).length,
-            bothMethodFields: emners.filter(e=>Array.isArray(e.methods)&&Array.isArray(e.method_ids)).length,
-            neitherMethodField: emners.filter(e=>!Array.isArray(e.methods)&&!Array.isArray(e.method_ids)).length,
-            key_questions: emners.filter(e=>Array.isArray(e.key_questions)).length,
-            questions: emners.filter(e=>Array.isArray(e.questions)).length,
-            keyQuestions: emners.filter(e=>Array.isArray(e.keyQuestions)).length
-          };
-          const distribution = (values) => Object.fromEntries([...new Set(values)].sort((a,b)=>a-b).map(v=>[v,values.filter(x=>x===v).length]));
-          const statusDistribution = Object.fromEntries([...new Set(emners.map(e=>String(e.canonical_status)))].sort().map(v=>[v,emners.filter(e=>String(e.canonical_status)===v).length]));
-          const sampleIds = [
-            'em_vit_abstraksjon_forenkling',
-            'em_vit_universitet_kunnskapsproduksjon',
-            'em_vit_empiri_evidens',
-            'em_vit_matematisk_bevis_og_deduksjon',
-            'em_vit_biomedisinsk_mekanisme_og_modell'
-          ];
-          const sample = sampleIds.map(id => emners.find(e=>e.emne_id===id)).filter(Boolean).map(e=>({
-            emne_id:e.emne_id,title:e.title,domain:e.domain,area_id:e.area_id,canonical_status:e.canonical_status,registry_version:e.registry_version,
-            keys:Object.keys(e).sort(),definitionLength:(e.definition||'').length,whyItMattersLength:(e.why_it_matters||'').length,
-            key_questions:e.key_questions,questions:e.questions,keyQuestions:e.keyQuestions,methods:e.methods,method_ids:e.method_ids,
-            resolvedQuestionCount:questionRefs(e).length,resolvedMethodCount:methodRefs(e).length
+          const owned = new Set(registry.subjects.vitenskap.chapters.flatMap(c => c.emne_ids || []));
+          const methodCounts = Object.fromEntries([...new Set(emners.map(e=>e.methods.length))].sort((a,b)=>a-b).map(n=>[n,emners.filter(e=>e.methods.length===n).length]));
+          const byVersion = Object.fromEntries([...new Set(emners.map(e=>e.registry_version))].sort().map(v=>[v,{
+            count:emners.filter(e=>e.registry_version===v).length,
+            methodCounts:Object.fromEntries([...new Set(emners.filter(e=>e.registry_version===v).map(e=>e.methods.length))].sort((a,b)=>a-b).map(n=>[n,emners.filter(e=>e.registry_version===v&&e.methods.length===n).length])),
+            missingKeyQuestionCount:emners.filter(e=>e.registry_version===v&&(!Array.isArray(e.key_questions)||e.key_questions.length<3)).length
+          }]));
+          const missingQuestions = emners.filter(e=>!Array.isArray(e.key_questions)||e.key_questions.length<3).map(e=>({
+            id:e.emne_id,title:e.title,domain:e.domain,registry_version:e.registry_version,chapterOwned:owned.has(e.emne_id),
+            definition:e.definition,why_it_matters:e.why_it_matters,methods:e.methods,
+            analysis_axes:e.analysis_axes,quiz_angles:e.quiz_angles,scope_guard:e.scope_guard,anti_patterns:e.anti_patterns,
+            recommended_methods:e.recommended_methods
           }));
-          console.log(JSON.stringify({
-            emneCount:emners.length,chapterCount:chapters.length,chapterOwnedEmneCount:owned.size,unownedEmneCount:unowned.length,
-            strictInvalidEditorialEmneCount:strictInvalid.length,schemaAwareInvalidEditorialEmneCount:schemaAwareInvalid.length,
-            duplicateDefinitionCount:defs.length-new Set(defs).size,duplicateTitleCount:emners.length-new Set(emners.map(e=>e.title.trim())).size,
-            unmappedCount:emners.filter(e=>!mappingIds.has(e.emne_id)).length,
-            definitionLength:stats(lens('definition')),whyItMattersLength:stats(lens('why_it_matters')),
-            fieldCounts,statusDistribution,
-            resolvedQuestionCountDistribution:distribution(emners.map(e=>questionRefs(e).length)),
-            resolvedMethodCountDistribution:distribution(emners.map(e=>methodRefs(e).length)),
-            byDomain,sample,
-            schemaAwareInvalidIds:schemaAwareInvalid.map(e=>e.emne_id)
-          }, null, 2));
+          const twoMethodExamples = emners.filter(e=>e.methods.length===2).slice(0,12).map(e=>({id:e.emne_id,title:e.title,registry_version:e.registry_version,methods:e.methods,method_gate_required:e.method_gate_required,recommended_methods:e.recommended_methods}));
+          console.log(JSON.stringify({methodCounts,byVersion,missingQuestions,twoMethodExamples},null,2));
           NODE
+          echo '--- Existing repository thresholds mentioning Vitenskap method/question counts ---'
+          grep -R -n -E "key_questions.{0,60}(length|>=|<)|methods.{0,60}(length|>=|<)|method_ids.{0,60}(length|>=|<)" scripts tests data/fag/vitenskap/SET_MAL_README_vitenskap_v4_3.md 2>/dev/null \
+            | grep -E "vitenskap|Vitenskap|emne|canonical" \
+            | head -200 || true
       - name: Verify current permanent Vitenskap gates
         run: |
           node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs
