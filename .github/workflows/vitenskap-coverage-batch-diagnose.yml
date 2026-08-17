@@ -1,0 +1,61 @@
+name: Vitenskap coverage batch diagnose
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-editorial-coverage-repair-1
+    paths:
+      - '.github/workflows/vitenskap-coverage-batch-diagnose.yml'
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Inventory uncovered canonical emner
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const emners = read('data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json');
+          const mappings = read('data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json');
+          const pensum = read('data/fag/vitenskap/vitenskappensum_canonical_v4_6.json');
+          const registry = read('data/fagverk/fagverk_registry.json');
+          const chapters = registry.subjects.vitenskap.chapters || [];
+          const owned = new Set(chapters.flatMap((c) => c.emne_ids || []));
+          const uncovered = emners.filter((e) => !owned.has(e.emne_id));
+          const mappingById = new Map(mappings.map((m) => [m.emne_id, m]));
+          console.log('EMNE_KEYS', JSON.stringify(Object.keys(emners[0] || {})));
+          console.log('MAPPING_KEYS', JSON.stringify(Object.keys(mappings[0] || {})));
+          console.log('PENSUM_KEYS', JSON.stringify(Object.keys(pensum || {})));
+          console.log('PENSUM_SUMMARY', JSON.stringify(pensum.summary));
+          console.log('COUNTS', JSON.stringify({ total: emners.length, owned: owned.size, uncovered: uncovered.length }));
+          const candidateKeys = ['domain_id','domain','family_id','family','subfield_id','subfield','area_id','area','fagomrade_id','fagomrade','category_id','category','strand_id','strand'];
+          for (const key of candidateKeys) {
+            const counts = {};
+            for (const e of uncovered) {
+              const m = mappingById.get(e.emne_id) || {};
+              const value = e[key] ?? m[key];
+              if (value !== undefined && value !== null) counts[String(value)] = (counts[String(value)] || 0) + 1;
+            }
+            if (Object.keys(counts).length) console.log(`GROUP_${key}`, JSON.stringify(counts));
+          }
+          console.log('SAMPLE_EMNE', JSON.stringify(uncovered[0], null, 2));
+          console.log('SAMPLE_MAPPING', JSON.stringify(mappingById.get(uncovered[0]?.emne_id), null, 2));
+          for (const e of uncovered) {
+            console.log('UNCOVERED', JSON.stringify({
+              emne_id: e.emne_id,
+              title: e.title,
+              registry_version: e.registry_version,
+              definition: e.definition,
+              why_it_matters: e.why_it_matters,
+              key_questions: e.key_questions,
+              methods: e.methods,
+              mapping: mappingById.get(e.emne_id) || null
+            }));
+          }
+          NODE
