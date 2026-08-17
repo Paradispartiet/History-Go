@@ -38,9 +38,14 @@ assert.equal(themeBank.copyright_and_runtime_guard.scene_id_allowed, false);
 assert.equal(themeBank.copyright_and_runtime_guard.copy_plot_allowed, false);
 assert.equal(themeBank.copyright_and_runtime_guard.copy_character_allowed, false);
 assert.equal(themeBank.copyright_and_runtime_guard.copy_dialogue_allowed, false);
+assert.equal(themeBank.copyright_and_runtime_guard.reconstruct_specific_scene_allowed, false);
 assert.ok(themeBank.themes.length >= 12);
 const themeIds = new Set(themeBank.themes.map((entry) => entry.id));
 assert.equal(themeIds.size, themeBank.themes.length);
+for (const [profile, ids] of Object.entries(themeBank.reference_profiles || {})) {
+  assert.ok(Array.isArray(ids) && ids.length > 0, `${profile}: theme reference profile must not be empty`);
+  for (const id of ids) assert.ok(themeIds.has(id), `${profile}: unknown reference theme ${id}`);
+}
 
 assert.equal(schema.properties.schema.const, 'civication_role_world_v1');
 assert.ok(schema.required.includes('season'));
@@ -77,7 +82,6 @@ for (const entry of index.roles || []) {
     assert.equal(world.season.coverage.length, 56, `${entry.path}: complete Role World must have 56 coverage beats`);
 
     const coverageKeys = new Set();
-    const coverageRefs = new Set();
     for (const beat of world.season.coverage) {
       assert.ok(Number.isInteger(beat.day) && beat.day >= 1 && beat.day <= 14);
       assert.ok(validPhases.has(beat.phase));
@@ -87,7 +91,6 @@ for (const entry of index.roles || []) {
       const key = `${beat.day}/${beat.phase}`;
       assert.ok(!coverageKeys.has(key), `${entry.path}: duplicate day/phase ${key}`);
       coverageKeys.add(key);
-      coverageRefs.add(key);
     }
     for (let day = 1; day <= 14; day += 1) {
       for (const phase of policy.season_contract.day_phases) {
@@ -98,6 +101,9 @@ for (const entry of index.roles || []) {
     assert.ok(Array.isArray(world.primary_threads) && world.primary_threads.length > 0);
     for (const thread of world.primary_threads) {
       assert.ok(thread.beat_refs.length >= 5 && thread.beat_refs.length <= 10, `${entry.path}: primary thread ${thread.id} must have 5–10 beat refs`);
+      for (const beatRef of thread.beat_refs) {
+        assert.ok(coverageKeys.has(beatRef), `${entry.path}: primary thread ${thread.id} references missing beat ${beatRef}`);
+      }
     }
     assert.ok(Array.isArray(world.private_aftermath) && world.private_aftermath.length > 0);
     assert.ok(Array.isArray(world.delayed_consequences) && world.delayed_consequences.length > 0);
@@ -115,7 +121,7 @@ assert.match(roleWorldDoc, /reference_complete.*ikke.*Role World/is);
 assert.match(roleWorldDoc, /14 dager/is);
 assert.match(roleWorldDoc, /56 dramaturgiske/is);
 assert.match(roleWorldDoc, /5–10/is);
-assert.match(roleWorldDoc, /ingen ny runtime|ingen ny runtime/is);
+assert.match(roleWorldDoc, /ingen ny runtime/is);
 assert.match(careerDoc, /reference_complete.*ikke.*fylt rolleverden/is);
 assert.match(sceneDoc, /4H-D fullført/);
 assert.doesNotMatch(sceneDoc, /Neste 4H-D/);
