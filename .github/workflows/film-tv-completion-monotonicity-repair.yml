@@ -52,12 +52,17 @@ jobs:
           node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
           node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
 
-      - name: Validate unit 11 reception
-        run: |
-          node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
-          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
-          node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
-          node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+      - name: Validate unit 11 source brief
+        run: node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+
+      - name: Validate unit 11 fulltext audit
+        run: node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+
+      - name: Validate unit 11 source brief test
+        run: node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
+
+      - name: Validate unit 11 fulltext test
+        run: node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
 
       - name: Validate unit 12 screen places
         run: |
