@@ -28,7 +28,9 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - name: Apply 4H-D runtime and gate patch
-        run: python scripts/.tmp-civication-4hd-semantic-playthrough.py
+        run: |
+          python scripts/.tmp-civication-4hd-semantic-playthrough.py
+          python scripts/.tmp-civication-4hd-mail-loop-debug.py
       - name: Run focused 4H-D gate
         run: node tests/civication-semantic-playthrough-gate.test.js
       - name: Run legacy mail-loop regression
@@ -42,8 +44,10 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add -f .tmp-civication-4hd-mail-loop.log
-            git commit -m "Capture Civication 4H-D mail-loop failure"
-            git push origin HEAD:agent/civication-4hd-semantic-playthrough-gate-20260817
+            if ! git diff --cached --quiet; then
+              git commit -m "Capture Civication 4H-D mail-loop failure"
+              git push origin HEAD:agent/civication-4hd-semantic-playthrough-gate-20260817
+            fi
           fi
           exit "$status"
       - name: Run full Civication suite
