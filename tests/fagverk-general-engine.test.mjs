@@ -315,7 +315,8 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(vitenskap.methodCount, 84);
   assert.equal(vitenskap.mappingCount, 93);
   assert.equal(vitenskap.hookCount, 60);
-  assert.equal(vitenskap.chapterCount, 0);
+  assert.equal(vitenskap.chapterCount, 1);
+  assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
   assert.ok(result.report.summary.adapterFamiliesExercised.includes('by_compatibility'));
   assert.ok(result.report.summary.adapterFamiliesExercised.includes('foundation_v1'));
   assert.equal(result.report.summary.politicsFallbacks, 0);

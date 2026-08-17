@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "3.03.0",
-  "updatedAt": "2026-08-15",
+  "version": "3.04.0",
+  "updatedAt": "2026-08-17",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
     "genericForAllCanonicalPlaces": true,
@@ -664,9 +664,30 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Vitenskapsfagets seks fagområder eier toppstrukturen. Teknologi er en nested technology_scientific_v2_4-spesialisering under samme fag og badge, ikke et eget toppfag. Ingen kapitler registreres før fulltekst, claims og kilder er produsert."
+        "note": "Vitenskapsfagets seks fagområder eier toppstrukturen. Teknologi er en nested technology_scientific_v2_4-spesialisering under samme fag og badge, ikke et eget toppfag. Første fulltekstkapittel er nå canonicalt registrert med paragraph-level claims og inspectable kilder; videre kapittelproduksjon kan fortsette, men fire universitetsbreddegap må fortsatt reconciles før complete."
       },
-      "chapters": []
+      "chapters": [
+        {
+          "id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+          "title": "Fra observasjon til etterprøvbar kunnskap",
+          "subtitle": "Hvordan institusjoner, instrumenter, standarder, måleusikkerhet, fagfellekritikk, reproducerbarhet og replikasjon gjør vitenskapelige påstander kontrollerbare uten å gjøre dem ufeilbarlige",
+          "file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap.json",
+          "primary_domain_id": "institusjoner_laboratorier_kunnskapssteder",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_vit_universitet_kunnskapsproduksjon",
+            "em_vit_laboratorium_praksis",
+            "em_vit_instrumenter_maling",
+            "em_vit_forskningsinfrastruktur",
+            "em_vit_fagmiljo_standarder",
+            "em_vit_fagfellevurdering",
+            "em_vit_reproduserbarhet",
+            "em_vit_institusjonell_tillit"
+          ],
+          "claimsFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json",
+          "briefFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/brief.json"
+        }
+      ]
     },
     "religion": {
       "title": "Religion",

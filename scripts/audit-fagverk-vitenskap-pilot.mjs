@@ -98,8 +98,8 @@ export function auditVitenskapPilot({ writeReport = false, checkReport = true } 
   assert(inventoryEntry?.schemaFamily === 'standard_canonical', 'Vitenskap har feil schemafamilie');
   assert(inventoryEntry?.pilot === true, 'Vitenskap er ikke registrert som fase-2-pilot');
   assert(statusEntry?.assessmentStatus === 'audited', 'Vitenskap har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Vitenskap må stå structure_ready før kapittelproduksjon');
-  assert(statusEntry?.nextGate === 'chapter_production', 'Vitenskap har feil neste port');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Vitenskap må stå chapters_in_progress etter registrert Unit 1');
+  assert(statusEntry?.nextGate === 'university_breadth_gap_reconciliation_and_remaining_chapter_production', 'Vitenskap har feil neste port etter Unit 1');
   assert(registry.placePage?.fallbackSubjectByCategory?.vitenskap === 'vitenskap', 'Vitenskap-steder mangler Vitenskap som fagverksfallback');
   assert(specializationEntry?.canonicalParentSubject === 'vitenskap', 'Teknologi har feil canonical forelder');
   assert(specializationEntry?.badgeId === 'vitenskap', 'Teknologi har feil badge-eier');
@@ -132,7 +132,7 @@ export function auditVitenskapPilot({ writeReport = false, checkReport = true } 
   assert(model.summary.methodCount === 84, 'Vitenskap skal ha 84 canonicale metoder');
   assert(model.summary.mappingCount === 93, 'Vitenskap skal ha én normalisert primærmapping per emne');
   assert(model.summary.hookCount === 60, 'Vitenskap skal ha 60 canonicale hooks');
-  assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Vitenskap-kapitler finnes');
+  assert(model.chapters.length === 1, 'Vitenskap skal ha nøyaktig ett registrert kapittel etter Unit 1');
   assert(model.emners.every((emne) => emne.methodIds.length >= 2), 'Vitenskap-emne mangler minst to løste metoder');
   assert(model.emners.every((emne) => emne.methodLabels.length === 0), 'Vitenskap har uløst tekst/metode-ID i emnekatalogen');
 
@@ -185,8 +185,8 @@ export function auditVitenskapPilot({ writeReport = false, checkReport = true } 
   const emneStatusCounts = Object.fromEntries(unique(source.emners.map((emne) => emne.status)).sort().map((value) => [value, source.emners.filter((emne) => emne.status === value).length]));
   const report = {
     schema: 'history_go_fagverk_vitenskap_pilot_audit_v1',
-    version: '1.0.0',
-    status: 'vitenskap_with_nested_teknologi_pilot_structure_ready',
+    version: '1.1.0',
+    status: 'vitenskap_with_nested_teknologi_chapter_production',
     generatedFrom: P,
     subject: {
       id: model.subject.id,
@@ -238,7 +238,8 @@ export function auditVitenskapPilot({ writeReport = false, checkReport = true } 
       vitenskapPlaceFallbackCorrect: true,
       badgeAndSubjectRoutesDistinct: true,
       assessmentStatusAudited: true,
-      editorialStatusStructureReady: true,
+      editorialStatusChaptersInProgress: true,
+      registeredChapterPresent: true,
       chapterClaimsNotOverstated: true
     }
   };

@@ -125,7 +125,7 @@ assert.deepEqual(adapters, [{ name: "private", source_format: "private_phase_mai
   // Re-registration of the same producer is idempotent and creates no parallel owner.
   assert.equal(windowObject.CivicationPrivatePhaseMailBuilder.registerSceneSourceAdapter(), true);
   assert.equal(catalog.listSourceAdapters().length, 1);
-  assert.equal(catalog.inspect().compiled_registry_ready, false, "4G-A skal ikke smuginnføre compiled registry");
+  assert.equal(catalog.inspect().compiled_registry_ready, true, "4H-B skal eksponere compiled registry uten å endre private-adaptereierskap");
 
   console.log("civication-scene-source-adapter-private.test.js: PASS");
 })().catch((error) => {

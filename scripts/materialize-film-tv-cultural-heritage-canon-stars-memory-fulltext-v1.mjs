@@ -402,7 +402,7 @@ export function buildFilmTvCulturalHeritageCanonStarsMemoryFulltextV1() {
   filmRegistry.canonicalModel.fifteenthChapterFulltext = P.chapter;
   filmRegistry.note = 'Film & TV har nå materialisert alle 15 planlagte fagverksenheter. Enhet 15, Kulturarv, kanon, stjerner og minne, dekker 12 canonicale emner i fire moduler med 56 verifiserte claimsporede fagavsnitt, 26 inspectable kilder og 24 dokumenterte case. Complete-status settes ikke her; neste separate port er helhetsaudit av alle 192 canonicale emner, registrerte kapitler og permanente kvalitetskrav.';
   if (!versionAtLeast(registry.version, '3.03.0')) registry.version = '3.03.0';
-  registry.updatedAt = '2026-08-15';
+  if (!registry.updatedAt || registry.updatedAt < '2026-08-15') registry.updatedAt = '2026-08-15';
 
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   if (!filmStatus) throw new Error('Mangler film_tv i subject_status');
@@ -410,7 +410,7 @@ export function buildFilmTvCulturalHeritageCanonStarsMemoryFulltextV1() {
   filmStatus.nextGate = OUTPUT_GATE;
   filmStatus.note = 'Unit15-fullteksten er materialisert og claimspesifikt verifisert: 12/12 canonicale emner, fire moduler, 56/56 sluttclaims, 26 inspectable kilder og 24 dokumenterte case. Popularitet kan ikke kortslutte kulturarv/kanon/kult/minne; star text, historisk status, motarkiv, programhistorie, reprise, sitat, nostalgi og TV-minne har egne evidensgrenser. Siden dette er siste planenhet går neste port til en separat Film & TV-helhetsaudit før complete kan settes.';
   if (!versionAtLeast(status.version, '1.96.0')) status.version = '1.96.0';
-  status.updatedAt = '2026-08-15';
+  if (!status.updatedAt || status.updatedAt < '2026-08-15') status.updatedAt = '2026-08-15';
 
   return { plan, sourceBrief, sources, cases, topics, chapter, chapterBrief, claimsDoc, modules, sections, claimSourceIds, usedCaseIds, moduleParagraphCounts, registry, status };
 }

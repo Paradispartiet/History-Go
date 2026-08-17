@@ -149,14 +149,14 @@ assert.equal(engine.canApproachFriendAtLocation("friend_demo_02", "leisure", "pa
   // Samme adapter kan registreres igjen uten et konkurrerende eierlag.
   assert.equal(social.registerSceneSourceAdapter(), true);
   assert.equal(catalog.listSourceAdapters().length, 1);
-  assert.equal(catalog.inspect().compiled_registry_ready, false, "4G-D skal ikke smuginnføre compiled registry");
+  assert.equal(catalog.inspect().compiled_registry_ready, true, "4H-B skal eksponere compiled registry uten å endre social-adaptereierskap");
   const inspection = social.inspect();
   assert.equal(inspection.adapter_name, "social");
   assert.equal(inspection.source_format, "civication_social_encounter_v1");
   assert.equal(inspection.version, 1);
   assert.equal(inspection.registered, true);
   assert.equal(inspection.catalog_owner, "CivicationSceneCatalog");
-  assert.equal(inspection.compiled_registry_ready, false);
+  assert.equal(inspection.compiled_registry_ready, true);
   assert.equal(inspection.friends_engine_facade_installed, true);
 
   console.log("civication-scene-source-adapter-social.test.js: PASS");
