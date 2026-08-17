@@ -132,6 +132,7 @@ function replacePrimaryGrounding(article, anchors, debateNames) {
   if (!theory) throw new Error(`${article.id}: mangler teorihistorie`);
   const sourceSection = (article.sections ?? []).find((s) => s.id === 'kilder');
   const citations = anchors.map((anchor) => `${anchor.work} (${anchor.actor})`);
+  const workTitles = anchors.map((anchor) => anchor.work);
   const debate = article.university_quality?.debate ?? '';
   const grounding = `Primærverkankrene er ${citations.join('; ')}. De brukes til å kontrollere de navngitte debattaktørenes egne argumenter i artikkelens stridspunkt, ikke som en generell kanonliste. ${debate}`;
   const genericPrimaryPattern = /Primærverk(?:ene|ankrene)/iu;
@@ -150,7 +151,7 @@ function replacePrimaryGrounding(article, anchors, debateNames) {
   if (!replaced) theory.paragraphs.push(grounding);
 
   if (sourceSection) {
-    const boundary = `Primærverkankrene ${citations.join('; ')} brukes ved konkrete posisjons- og argumentrekonstruksjoner. De emnespesifikke sekundærkildene brukes til problemhistorie, rivaler, fortolkningskontroll og bibliografi; empiriske casepåstander krever egne casekilder.`;
+    const boundary = `Primærverkankrene ${workTitles.join('; ')} brukes ved konkrete posisjons- og argumentrekonstruksjoner. De emnespesifikke sekundærkildene brukes til problemhistorie, rivaler, fortolkningskontroll og bibliografi; empiriske casepåstander krever egne casekilder.`;
     let sourceReplaced = false;
     sourceSection.paragraphs = (sourceSection.paragraphs ?? []).map((paragraph) => {
       if (!genericPrimaryPattern.test(paragraph)) return paragraph;
