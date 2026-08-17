@@ -1,187 +1,300 @@
 # Civication Patch Order
 
-Civication-runtimen er bygget av mange små moduler som koordinerer noen få delte funksjoner. Kandidatflyten har fortsatt enkelte historiske wrappers. **Svarflyten er ferdig strangler-migrert til `CivicationChoiceDirector`**, som er eneste eier av `CivicationEventEngine.prototype.answer` i standard Civication-runtime.
+Status: **canonical runtime coordination guide**  
+Sist kontrollert: **2026-08-17**
 
-> Kilde: `js/Civication/civicationShellLoader.js`, de aktuelle runtimefilene og Scene Pipeline-policyen. Ikke gjett rekkefølgen — kontroller den faktiske scriptlista og ChoiceDirector-registeret.
+Civication-runtimen består av flere små moduler, men to kritiske grenser er nå strangler-migrert og skal behandles som canonical:
+
+1. **kandidat-/scenegrensen**: `CivicationSceneCatalog` + `CivicationSceneDirector`;
+2. **svargrensen**: `CivicationChoiceDirector`.
+
+Historiske broer og aliaser kan fortsatt eksistere for kompatibilitet, men de eier ikke lenger rå work-kilder eller `EventEngine.answer`.
+
+> Kilder: faktisk runtimekode i `js/Civication/`, `data/Civication/SCENE_PIPELINE_V1.md`, `data/Civication/scenePipelinePolicyV1.json` og permanente Scene Pipeline-regresjoner. Ved konflikt skal kode + testet pipeline vinne over eldre README-formuleringer.
+
+## Oversikt
+
+```text
+authored work source (`mailFamilies` m.m.)
+        ↓ build
+compiled_scene_registry_v1
+        ↓
+CivicationSceneCatalog
+        ↓
+CivicationMailRuntime plan/progresjonsfiltrering
++ CivicationSceneDirector samlet kandidat-/day-/EventEngine-eierskap
+        ↓
+delivery / NextAction / EventEngine queue
+        ↓
+CivicationChoiceDirector
+        ↓
+domeneeide middleware/handlers
+        ↓
+state / consequence / progression / livelihood / UI-events
+```
+
+Private, life, narrative og social går via registrerte SceneCatalog-source adapters. De skal ikke opprette konkurrerende svar- eller sceneeierskap.
+
+---
 
 ## De tre delte sømmene
 
-All cross-modul-koordinering går hovedsakelig gjennom tre mekanismer:
+### 1. Scene/kandidat-sømmen
 
-1. **`window.CiviMailPlanBridge.makeCandidateMailsForActiveRole(active, state)`** — bygger dagens kandidat-mailer for aktiv rolle. Wrappes for å filtrere/score/variere kandidatene.
-2. **`CivicationChoiceDirector`** — canonical svargrense for `CivicationEventEngine.prototype.answer(eventId, choiceId)`. Rundt-svar-logikk registreres som prioritert middleware; valgkonsekvenser registreres som handlers.
-3. **Event-bussen** (`window` `CustomEvent`-er, f.eks. `civi:npcReaction`, `civi:inboxChanged`) — løs, rekkefølge-uavhengig kobling mellom moduler.
+Canonical source-/kandidatsøm er nå:
 
-I tillegg dekoreres to **renderere** (`renderWorkdayPanel`, `renderCivicationInbox`) for å injisere UI uten å eie panelet.
+- `window.CivicationSceneCatalog` — laster/normaliserer canonical kilder;
+- `window.CivicationSceneDirector` — samler kandidatvalg for Workday, Daily og EventEngine;
+- `CivicationMailRuntime` — eier plan/progresjon og filtrering mot resolved scene-data.
 
-## Strangler-prinsippet for svarflyten
+For work-scenes leser `CivicationSceneCatalog.getRoleMails()` det materialiserte `data/Civication/compiledSceneRegistryV1.json` gjennom `role_index`. Rå `mailFamilies` er **source-of-build**, ikke normal runtime-kilde.
 
-Historisk gjorde hver modul dette:
+`CivicationMailRuntime.makeCandidateMailsForActiveRole(active, state)` gjør ikke lenger egen rå kataloglasting. Den krever SceneCatalog og bruker:
 
-```js
-const prev = target.fn;
-target.fn = async function (...args) {
-  // egen før-/etterlogikk
-  return prev ? prev.apply(this, args) : undefined;
-};
+```text
+SceneCatalog.getRolePlan(active)
++ SceneCatalog.getRoleMails(active, state)
+→ MailRuntime.selectCandidateMailsFromResolvedSources(...)
 ```
 
-Det gjorde oppførselen avhengig av scriptrekkefølgen. Den nye modellen er:
+Hvis SceneCatalog mangler, lukkes planned gameplay fail-closed og returnerer ingen kandidater.
 
-```js
-CivicationChoiceDirector.registerAnswerMiddleware(name, async (ctx, next) => {
-  // før
-  const result = await next();
-  // etter
-  return result;
-}, priority);
-```
+### 2. Canonical svar-søm
 
-Lavere middleware-prioritet ligger **ytterst** og kjøres derfor først før `next()` og sist etter `next()`. Middleware som lastes før ChoiceDirector kan legge seg i den deferred køen `__civicationChoiceAnswerMiddlewareQueue`; Director adopterer køen ved boot. Det gjør at wrapperne kan flyttes én for én uten å endre scriptrekkefølgen eller gameplayet.
+`CivicationChoiceDirector` er eneste aktive eier av `CivicationEventEngine.prototype.answer` i standardruntime. Rundt-svar-semantikk registreres som prioritert middleware; etter-svar-konsekvenser registreres som handlers.
+
+Ny kode skal **ikke** direkte wrappe eller erstatte `EventEngine.answer`.
+
+### 3. Event-bussen
+
+Løs, rekkefølge-uavhengig kobling bruker `window`-events som `civi:npcReaction`, `civi:inboxChanged`, `civi:dayPhaseChanged` og `updateProfile`.
+
+Event-bussen skal brukes for observasjon/varsling, ikke som skjult eier av scenevalg eller svartransaksjonen.
 
 ---
 
-## Søm 1 — `makeCandidateMailsForActiveRole`
+## Kandidatpipeline etter 4H-D
 
-`CiviMailPlanBridge.makeCandidateMailsForActiveRole` (definert i `js/Civication/mailPlanBridge.js`) er den kanoniske kandidat-sømmen. Når `CivicationMailRuntime` er aktiv, delegerer broen til runtimens egen `makeCandidateMailsForActiveRole`, som leser `mailPlans` + `mailFamilies`.
+### Source ownership
 
-### Wrappere på **broen** (`window.CiviMailPlanBridge`), i lasterekkefølge
+For work-scenes:
 
-| Modul | Rolle |
-| --- | --- |
-| `systems/day/dayPeopleMeetingGate.js` | Porter people-meeting-mailer inn/ut av kandidatsettet |
-| `systems/day/dayPeopleMeetingRelationshipVariant.js` | Varierer people-meeting-mailer etter relasjonstilstand |
-| `systems/day/dayChoiceToneVariants.js` | Gir valgene tonevarianter (samme effekt, ulik ordlyd) |
-| `systems/day/dayAllianceMailScoring.js` | Vekter kandidatene etter alliansestate |
-| `systems/day/dayFactionMailScoring.js` | Vekter kandidatene etter fraksjonsmatch |
-| `systems/day/dayFactionVoice.js` | Legger fraksjonens «stemme»/innramming på mailene |
+```text
+mailFamilies / authored catalogs
+→ scripts/build-civication-scene-registry.mjs
+→ compiledSceneRegistryV1.json
+→ CivicationSceneCatalog.getRoleMails()
+```
 
-### Wrapper på **runtimen** (`CivicationMailRuntime`)
+Registryet validerer schema/version, krever null shadowed duplicates og gir SceneCatalog en deterministisk `role_index`.
 
-| Modul | Rolle |
-| --- | --- |
-| `systems/civicationCareerOutcomeRuntime.js` | Gjør kandidatene karriere-utfall-bevisste (`runtimeApi.makeCandidateMailsForActiveRole`) |
+Brand-scener ligger i samme compiled registry og filtreres mot aktiv `brand_id`, slik at Ekspeditør-varianter ikke lekker mellom arbeidsgivere.
 
-**Effektiv pipeline:** `bro (day-wrappere) → runtime (careerOutcome-wrapper) → mailPlan/mailFamilies-data`.
+### Plan ownership
+
+`mailPlan` er fortsatt authored progresjonsplan. SceneCatalog kan laste planen, men `CivicationMailRuntime` eier:
+
+- current step;
+- consumed IDs;
+- plan history;
+- strict family/type matching;
+- fallback **innen canonical plan/data**;
+- kandidat-scoring/rangering;
+- plansteg-progresjon etter gyldig svar.
+
+«Fallback» her betyr eksplisitte `fallback_types` eller andre canonical plansteg mot det samme resolved scene-settet. Det betyr **ikke** legacy-pack, RoleStoryletBridge, rå jobbmails eller generisk syntetisk karrieremail.
+
+### SceneDirector ownership
+
+SceneDirector er den samlede runtimeinngangen for Workday/Daily/EventEngine-kandidater og bevarer blant annet:
+
+- outcome-aware selection;
+- Daily-ekstrascener;
+- terminalt lukket karriere;
+- Scene Interaction-kontrakten;
+- katalog- og selection provenance.
+
+Kompatibilitetsaliaser kan finnes, men skal delegere inn i denne kjeden i stedet for å opprette en ny kildeleser.
+
+### Fail-closed-regel
+
+Etter 4H-C gjelder:
+
+- null canonical kandidater → tom/no-op gameplay-resultat;
+- SceneDirector/SceneCatalog-feil → fail-closed tom kandidatpool;
+- ingen `legacy_pack`-fallback;
+- ingen RoleStoryletBridge-fallback;
+- ingen gammel `buildMailPool`-fallback;
+- ingen syntetisk generisk karrieremail.
+
+Manglende gameplay skal løses ved å produsere canonical authored innhold, ikke ved å skjule hullet i runtime.
 
 ---
 
-## Søm 2 — canonical `answer`-pipeline
+## Canonical `answer`-pipeline
 
-### Canonical eier
+### ChoiceDirector-eier
 
 `systems/day/dayChoiceDirector.js` eier den offentlige svargrensen. Den:
 
-- validerer Scene Interaction-kontrakten (`decision` / `task` / `ack` / `info`) før inner state-mutasjon;
-- eier det prioriterte rundt-svar-registeret `registerAnswerMiddleware(name, fn, priority)`;
-- eier valg-handler-registeret `registerHandler(name, fn, priority)`;
-- eksponerer `listAnswerMiddlewares()` slik at faktisk runtime-rekkefølge kan inspiseres;
-- adopterer middleware som ble registrert før Director ble lastet.
+- validerer Scene Interaction-kontrakten (`decision`, `task`, `ack`, `info`) før state-mutasjon;
+- eier `registerAnswerMiddleware(name, fn, priority)`;
+- eier `registerHandler(name, fn, priority)`;
+- eksponerer faktisk middleware-rekkefølge;
+- adopterer deferred registreringer fra moduler som lastes tidligere.
 
-### Flyttet til eksplisitt ChoiceDirector-middleware
+Lavere middleware-prioritet ligger ytterst og kjøres derfor først før `next()` og sist etter `next()`.
 
-| Prioritet | Modul | Rolle | Plassering |
-| --- | --- | --- | --- |
-| 10 | `systems/day/dayActiveRoleStateSync.js` | Synker `mail_system`, thread-fase og aktiv rolle etter vellykket svar | ytterst |
-| 20 | `dayChoiceDirector.js` | **builtin `choice_contract`**: validering + choice-handlerpunkt | canonical grense |
-| 30 | `systems/civicationLifeMailRuntime.js` | Registrerer besvart life/private-mail etter vellykket inner svar | innenfor kontrakten |
-| 40 | `systems/civicationDailyMailBuilder.js` | Daily-runtime markering, suppress-followup og rollback ved svarfeil | innenfor Life |
-| 50 | `systems/civicationJobEligibilityRuntime.js` | Fanger aktiv jobb før inner svar; oppretter/clearer FIRED reentry-lock kun etter vellykket svar | innenfor Daily / utenfor gjenværende legacy-kjede |
-| 60 | `systems/civicationJobLearningRuntime.js` | Fanger aktiv rolle før inner svar; registrerer kvalifiserende jobblæring kun etter vellykket svar | innenfor Eligibility / utenfor gjenværende legacy-kjede |
-| 70 | `systems/civicationCareerOutcomeRuntime.js` | Setter FIRED stability før inner svar uten rollback; anvender terminal outcome-state etter vellykket svar | innenfor Learning / utenfor gjenværende legacy-kjede |
-| 80 | `systems/civicationMailRuntime.js` | Skriver planned/thread mailplan-state før inner svar uten rollback; anvender brandkonsekvens og triggered thread etter vellykket svar | innenfor CareerOutcome |
-| 90 | `systems/day/dayPatches.js` | Bevarer recovery/onboarding, followup-suppression, task-kapital og fasekoordinering rundt terminalt EventEngine-svar | innerst / direkte rundt original EventEngine.answer |
+### Middleware-rekkefølge
 
-Denne rekkefølgen bevarer den tidligere nestingen:
+| Prioritet | Modul | Ansvar |
+| --- | --- | --- |
+| 10 | `dayActiveRoleStateSync` | synk av mail/thread/aktiv rolle etter vellykket svar |
+| 20 | ChoiceDirector builtin `choice_contract` | Scene Interaction-validering og choice-handlerpunkt |
+| 30 | `CivicationLifeMailRuntime` | registrerer besvart life/private scene/mail |
+| 40 | `CivicationDailyMailBuilder` | Daily-runtime markering, suppression og rollback |
+| 50 | `CivicationJobEligibilityRuntime` | reentry-/eligibility-state |
+| 60 | `CivicationJobLearningRuntime` | kvalifiserende jobblæring |
+| 70 | `CivicationCareerOutcomeRuntime` | terminalt karriereutfall |
+| 80 | `CivicationMailRuntime` | planned/thread planstate, brandkonsekvens og triggered thread |
+| 90 | `dayPatches` | recovery/onboarding/task-/fasekoordinering rundt original answer |
+
+Effektiv nesting:
 
 ```text
 ActiveRole pre
-→ Choice contract / validation
-  → Life pre
-    → Daily pre
-      → Eligibility pre (capture activeBefore)
-        → Learning pre (capture active)
-          → CareerOutcome pre (FIRED stability ved behov)
-            → MailRuntime pre (planned/thread state ved behov)
-              → dayPatches pre (followup-suppression ved fase-event)
+→ choice contract
+  → Life
+    → Daily
+      → Eligibility
+        → Learning
+          → CareerOutcome
+            → MailRuntime
+              → dayPatches
                 → original EventEngine.answer
-              ← dayPatches post (onboarding/recovery/task/fase ved success)
-            ← MailRuntime post (brand / triggered thread ved success)
-          ← CareerOutcome post (terminal outcome-state ved success)
-        ← Learning post (jobblæring best-effort ved success)
-      ← Eligibility post (reentry-lock best-effort ved success)
-    ← Daily post / rollback
+              ← dayPatches post
+            ← MailRuntime post
+          ← CareerOutcome post
+        ← Learning post
+      ← Eligibility post
+    ← Daily post/rollback
   ← Life post
 ← choice handlers
 ← ActiveRole post
 ```
 
-### Direkte `answer`-wrappere er avviklet
+### Choice-handlere
 
-Ingen modul i standard `DAY_SCRIPTS` wrapper lenger `EventEngine.answer` direkte utenom `CivicationChoiceDirector`. `dayPatches` registrerer nå `day_patches` som deferred middleware priority 90 fordi modulen lastes før Director. ChoiceDirector adopterer registreringen ved boot og kaller deretter den originale EventEngine-implementasjonen som terminal.
+Handlers reagerer på et **kildeeid, vellykket valg** etter inner svarpipeline. De skal ikke brukes til rundt-semantikk som trenger før/etter `next()`.
 
-En loader-basert regresjonstest kontrollerer den faktiske `DAY_SCRIPTS`-listen og krever at `systems/day/dayChoiceDirector.js` er den eneste aktive produksjonsmodulen som tilordner `proto.answer`.
-
-### Valg-handler-registeret
-
-Choice-handlere reagerer på et **reelt kildeeid valg** etter at inner svarpipeline har lyktes. De skal ikke brukes til rundt-semantikk som trenger før/etter `next()`.
-
-| Prioritet | Modul | Handler |
+| Prioritet | Handler | Funksjon |
 | --- | --- | --- |
-| 10 | `systems/day/dayConsequences.js` | `dayConsequences` (kapital/psyke/grenbias-deltaer) |
-| 15 | `systems/day/dayCharacterReplyConsequences.js` | `character_reply_consequence` (NPC-karaktersvar) |
-| 20 | `systems/day/dayFactionNpcReactions.js` | `faction_npc_reaction` (fraksjonsfarget NPC-replikk) |
-| 20 | `systems/day/dayNpcReactions.js` | `npcReactions` (produserer `civi:npcReaction`) |
+| 10 | `dayConsequences` | kapital/psyke/grenbias-deltaer |
+| 15 | `character_reply_consequence` | NPC-karaktersvar |
+| 20 | faction reaction | fraksjonsfarget NPC-reaksjon |
+| 20 | `npcReactions` | produserer `civi:npcReaction` |
 
-**Ny kode skal ikke legge til en direkte `EventEngine.answer`-wrapper.** Bruk `registerAnswerMiddleware` for rundt-svar-semantikk og `registerHandler` for choice-konsekvenser.
+Levevei-opportunities og andre domeneeide konsekvenser skal kobles til den vellykkede canonical scene-/choice-transaksjonen; de skal ikke introdusere en alternativ answer-motor.
+
+---
+
+## Scene Interaction-kontrakten
+
+Scene Pipeline skiller mellom:
+
+- `decision` — minst to reelle kildeeide valg;
+- `task` — eksplisitt `task_contract`;
+- `ack` — eksplisitt bekreftelse/ett kildeeid valg;
+- `info` — ingen valg nødvendig.
+
+Runtime skal ikke generere standardvalg for å gjøre passivt eller mangelfullt innhold «spillbart».
+
+Dette er spesielt viktig for Role World-produksjon: 14 dager × fire dramaturgiske ankerpunkter betyr ikke 56 kunstige A/B/C-spørsmål. Morgen kan være `info`, lunsj en relationship/conversation, ettermiddag `decision` eller `task`, og kveld en private consequence/ack-scene.
+
+---
+
+## Role World og kandidatpipeline
+
+`docs/CIVICATION_ROLE_WORLD_STANDARD.md` er en **redaksjonell produksjonsstandard**, ikke runtime-eier.
+
+En Role World skal materialiseres i eksisterende canonical kilder:
+
+```text
+roleModel / FWG / mailPlan / authored work data
++ private / life / narrative / social sources
+→ SceneCatalog-grensen
+```
+
+Ikke bygg:
+
+- `roleWorldRuntime`;
+- ny separat korrespondansemotor;
+- livelihood-mailmotor;
+- bolig-mailmotor;
+- ny SceneDirector;
+- ny answer-wrapper.
+
+Hvis en ny type producer trengs, skal den enten materialisere til et registrert source-format eller registreres eksplisitt som source adapter i SceneCatalog-policyen.
 
 ---
 
 ## Renderer-dekoratører
 
-`renderWorkdayPanel` defineres i `ui/CivicationUI.js` og re-eksponeres globalt + speiles til `CivicationUI.renderWorkdayPanel` av `systems/day/dayPatches.js`. `renderCivicationInbox` kommer fra UI-laget.
+`renderWorkdayPanel` og `renderCivicationInbox` kan dekoreres for visning, men rendererne eier ikke konsekvensberegning.
+
+Eksempler:
 
 | Modul | Injiserer |
 | --- | --- |
-| `systems/day/dayConsequencesUI.js` | Konsekvensboks (kapital/psyke-delta) i innboks + arbeidsdag |
-| `systems/day/dayNarrativeConsequencesUI.js` | Narrativ (tillitsbasert) konsekvenstekst i innboks + arbeidsdag |
+| `dayConsequencesUI` | konsekvensboks i innboks/arbeidsdag |
+| `dayNarrativeConsequencesUI` | narrativ konsekvenstekst |
 
-Begge er **kun visning** — effektene beregnes i `dayConsequences`.
+Effektene skal komme fra den canonicale svar-/konsekvenskjeden.
 
 ---
 
-## Event-bussen (rekkefølge-uavhengig)
+## Event-bussen
 
-| Event | Typisk produsent | Typiske konsumenter |
+| Event | Typisk produsent | Typisk bruk |
 | --- | --- | --- |
-| `civi:booted` | `CivicationBoot` | Moduler som må vente på ferdig boot |
-| `civi:dataReady` | boot/dataflyt | `dayActiveRoleStateSync` m.fl. |
-| `civi:inboxChanged` | progression/mail | UI-paneler |
-| `civi:dayPhaseChanged` | `dayProgressionController` | day-/fase-UI |
-| `civi:npcReaction` | NPC-reaction-systemene | allianse-, fraksjons- og karaktertråder |
-| `civi:homeChanged`, `civi:mapRendered`, `civi:*MapTransformChanged` | kart/hjem-UI | tilhørende UI-lag |
-| `updateProfile` | mange | History GO-profil + AHA-eksport |
+| `civi:booted` | Civication boot | moduler som venter på ferdig boot |
+| `civi:dataReady` | boot/dataflyt | state-sync m.m. |
+| `civi:inboxChanged` | progression/mail | UI |
+| `civi:dayPhaseChanged` | day progression | fase-UI |
+| `civi:npcReaction` | NPC reaction handlers | allianse/fraksjon/karaktertråder |
+| `updateProfile` | flere domener | profil/AHA-lesing |
 
 ---
 
-## Regler for ny svarlogikk
+## Regler for ny kode
 
-1. **Validerings- og svargrensen eies av ChoiceDirector.** Ikke opprett nye direkte `proto.answer = ...`-patcher.
-2. Trenger logikken kode både før og etter svaret, rollback eller midlertidig suppress-state: bruk `registerAnswerMiddleware`.
-3. Trenger logikken bare å reagere på et vellykket, reelt valg: bruk `registerHandler`.
-4. Middleware-prioritet er en del av kontrakten. Lavere tall er ytterst. Bevar dokumentert plassering ved migrering.
-5. Middleware må kalle `next()` maksimalt én gang. Director avviser dobbelt `next()` med `choice_director_next_called_twice`.
-6. Skriv ikke effekter to ganger. Progresjonseierskap ligger fortsatt hos de respektive runtime-eierne; migreringen flytter **koblingsmekanismen**, ikke domenansvaret.
-7. Kandidat-mailer hører til kandidat-sømmen, ikke answer-pipelinen. Løs kobling hører til event-bussen.
-8. Oppdater denne filen når en legacy-wrapper flyttes, og lås rekkefølgen med Civication-regresjon.
+1. **SceneCatalog/SceneDirector eier kandidatgrensen.** Ikke opprett en parallell raw-source reader.
+2. `mailFamilies` er authored source-of-build for work, ikke normal runtime API.
+3. `CivicationMailRuntime` eier plan/progresjon mot resolved scene-data.
+4. **ChoiceDirector eier svargrensen.** Ikke opprett direkte `proto.answer = ...`-patcher.
+5. Bruk `registerAnswerMiddleware` for rundt-svar-semantikk.
+6. Bruk `registerHandler` for konsekvenser av et vellykket valg.
+7. Middleware må kalle `next()` maksimalt én gang.
+8. Ikke skriv samme effekt i flere domener uten eksplisitt kontrakt.
+9. Manglende canonical innhold skal fail-closed; ikke legg inn generisk fallback.
+10. Role World-innhold skal bruke eksisterende scene-/source-arkitektur.
+11. Oppdater denne filen hvis runtime-eierskap faktisk flyttes.
 
-## 4F answer-pipeline fullført
+---
 
-- `dayPatches` answer-del er flyttet til priority 90.
-- `CivicationChoiceDirector` er eneste modul som tilordner `CivicationEventEngine.prototype.answer` i den aktive produksjonsruntimen.
-- Videre answer-logikk skal gå gjennom middleware- eller handler-registeret; direkte wrappers regnes som arkitekturregresjon.
+## 4F–4H status
 
-## Kjente forbehold
+- **4F fullført:** `CivicationChoiceDirector` er eneste aktive `EventEngine.answer`-eier.
+- **4G fullført:** private, life, narrative og social er bak registrerte SceneCatalog-source adapters.
+- **4H-A fullført:** deterministic `compiled_scene_registry_v1`-kontrakt/compiler.
+- **4H-B fullført:** normal work-runtime leser compiled registry gjennom SceneCatalog; parity/sync er gated.
+- **4H-C fullført:** legacy gameplay fallbacks er lukket fail-closed.
+- **4H-D fullført:** primær MailRuntime-path bruker SceneCatalog/compiled registry, brand-isolasjon er bevart, og permanent semantisk playthrough tester `compiled scene → EventEngine delivery → ChoiceDirector answer → MailRuntime progression`.
 
-- `systems/civicationRuntimeSanityGuard.js` har historisk kode som patcher `proto.answer`, men lastes ikke av standard Civication-runtime. Hvis den skal aktiveres, må den først konverteres til ChoiceDirector-middleware.
-- Wrapper-migreringen skal ikke endre gameplay-effekter, source ownership eller interaction-mode-semantikk. Hver port må være regresjonsgrønn før neste wrapper flyttes.
+Det finnes derfor **ingen planlagt 4H-E** i denne dokumentasjonslinjen. Neste verdiløft er primært authored gameplay/Role World-dybde og dokumentert produktinnhold, ikke en ny kandidat- eller svararkitektur.
+
+## Kjente dokumentasjons-/kompatibilitetsforbehold
+
+- Historiske navn som `mail`, `mailPlanBridge` og `RoleStoryletBridge` kan fortsatt finnes i kode eller eldre data. De skal ikke tolkes som dagens source ownership.
+- `systems/civicationRuntimeSanityGuard.js` har historisk answer-patchkode, men lastes ikke av standardruntime. Hvis den skal aktiveres, må den først inn i ChoiceDirector-kontrakten.
+- Runtimefiler kan beholde migreringskompatibilitet så lenge permanente tester beviser at normal produksjonsflyt ikke gjenåpner legacyveier.
