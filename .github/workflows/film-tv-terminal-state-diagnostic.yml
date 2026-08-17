@@ -1,27 +1,47 @@
-name: Film TV terminal state diagnostic
+name: Film TV terminal state repair
 
 on:
-  pull_request:
-    branches: [main]
   push:
     branches:
       - agent/film-tv-holistic-192-completion-audit
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  diagnose:
+  repair:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Locate stale Film TV progression assertions
+        with:
+          ref: agent/film-tv-holistic-192-completion-audit
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Apply completion monotonicity repair
+        run: node scripts/repair-film-tv-completion-monotonicity-v1.mjs --write
+      - name: Verify no stale terminal-state contracts remain
+        run: node scripts/repair-film-tv-completion-monotonicity-v1.mjs
+      - name: Run Film and TV regression tests
         shell: bash
         run: |
           set -euo pipefail
-          echo '=== chapters_in_progress assertions ==='
-          grep -RInE "chapters_in_progress" scripts tests --include='*film-tv*.mjs' --include='*film_tv*.mjs' || true
-          echo '=== legacy production/completion gate assertions ==='
-          grep -RInE "source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit" scripts tests --include='*film-tv*.mjs' --include='*film_tv*.mjs' || true
-          echo '=== maintenance gate references ==='
-          grep -RIn "maintenance_source_refresh_and_place_case_expansion" scripts tests data/fagverk/subject_status.json --include='*.mjs' --include='*.json' || true
+          node --test tests/*film-tv*.test.mjs tests/fagverk-film-tv*.test.mjs
+      - name: Verify authoritative holistic completion gate
+        run: |
+          node scripts/audit-film-tv-holistic-completion-v1.mjs
+          node --test tests/film-tv-holistic-completion-v1.test.mjs
+      - name: Commit verified repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo 'No repair diff required.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts tests
+          git commit -m 'fix(film-tv): preserve completion monotonicity across legacy gates'
+          git push origin HEAD:agent/film-tv-holistic-192-completion-audit
