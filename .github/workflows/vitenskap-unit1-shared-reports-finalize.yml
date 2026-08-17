@@ -20,30 +20,50 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Reconcile shared subject-status regression test
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'tests/fagverk-subject-inventory.test.mjs';
+          let source = fs.readFileSync(file, 'utf8');
+          const before = `  for (const id of ['scenekunst', 'vitenskap']) {\n    const subject = s.subjects.find((x) => x.id === id);\n    assert.equal(subject.editorialStatus, 'structure_ready');\n    assert.equal(subject.nextGate, 'chapter_production');\n  }`;
+          const after = `  const scenekunst = s.subjects.find((x) => x.id === 'scenekunst');\n  assert.equal(scenekunst.editorialStatus, 'structure_ready');\n  assert.equal(scenekunst.nextGate, 'chapter_production');\n\n  const vitenskap = s.subjects.find((x) => x.id === 'vitenskap');\n  assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');\n  assert.equal(vitenskap.nextGate, 'university_breadth_gap_reconciliation_and_remaining_chapter_production');`;
+          if (!source.includes(before)) throw new Error('Fant ikke forventet pre-Unit-1 Vitenskap-statusblokk i subject inventory-testen');
+          source = source.replace(before, after);
+          fs.writeFileSync(file, source);
+          NODE
       - name: Regenerate shared deterministic Fagverk reports
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
           node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
-      - name: Validate shared and Vitenskap gates
-        run: |
-          node scripts/audit-fagverk-subject-inventory.mjs
-          node scripts/audit-fagverk-general-engine.mjs
-          node scripts/audit-fagverk-vitenskap-university-readiness.mjs
-          node scripts/audit-fagverk-vitenskap-unit1.mjs
-          node scripts/build-fagverk-release-manifest.mjs --check
-          node --test tests/fagverk-subject-inventory.test.mjs
-          node --test tests/fagverk-general-engine.test.mjs
-          node --test tests/fagverk-vitenskap-university-readiness.test.mjs
-          node --test tests/fagverk-vitenskap-unit1.test.mjs
-          git diff --check
-      - name: Commit regenerated shared reports
+      - name: Commit permanent test and regenerated reports
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json
+          git add tests/fagverk-subject-inventory.test.mjs reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json
           if git diff --cached --quiet; then
-            echo 'Shared reports already current.'
-            exit 0
+            echo 'Shared test and reports already current.'
+          else
+            git commit -m 'Reconcile shared Fagverk reports for Vitenskap Unit 1'
+            git push origin HEAD:agent/vitenskap-unit1-registry-integration
           fi
-          git commit -m 'Regenerate shared Fagverk reports for Vitenskap Unit 1'
-          git push origin HEAD:agent/vitenskap-unit1-registry-integration
+      - name: Validate subject inventory audit
+        run: node scripts/audit-fagverk-subject-inventory.mjs
+      - name: Validate general engine audit
+        run: node scripts/audit-fagverk-general-engine.mjs
+      - name: Validate Vitenskap university readiness
+        run: node scripts/audit-fagverk-vitenskap-university-readiness.mjs
+      - name: Validate Vitenskap Unit 1 content integrity
+        run: node scripts/audit-fagverk-vitenskap-unit1.mjs
+      - name: Validate release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Test subject inventory
+        run: node --test tests/fagverk-subject-inventory.test.mjs
+      - name: Test general engine
+        run: node --test tests/fagverk-general-engine.test.mjs
+      - name: Test Vitenskap university readiness
+        run: node --test tests/fagverk-vitenskap-university-readiness.test.mjs
+      - name: Test Vitenskap Unit 1
+        run: node --test tests/fagverk-vitenskap-unit1.test.mjs
+      - name: Validate clean diff
+        run: git diff --check
