@@ -193,7 +193,7 @@ vm.runInContext(narrativeSource, context, { filename: narrativePath });
 
   assert.equal(source.registerSceneSourceAdapter(), true, "samme narrative-produsent skal registreres idempotent");
   assert.equal(catalog.listSourceAdapters().filter(entry => entry.name === "narrative").length, 1);
-  assert.equal(catalog.inspect().compiled_registry_ready, false, "4G-C skal ikke smuginnføre compiled registry");
+  assert.equal(catalog.inspect().compiled_registry_ready, true, "4H-B skal eksponere compiled registry uten å endre narrative-adaptereierskap");
 
   console.log("civication-scene-source-adapter-narrative.test.js: PASS");
 })().catch((error) => {

@@ -2,9 +2,9 @@
 
 ## Status
 
-4H-A etablerer kontrakten og den deterministiske compileren for `compiled_scene_registry_v1`.
+4H-A etablerte kontrakten og den deterministiske compileren for `compiled_scene_registry_v1`. **4H-B er nå runtime-cutoveren:** det materialiserte `data/Civication/compiledSceneRegistryV1.json` er den statiske work-scene-kilden som `CivicationSceneCatalog` leser i runtime.
 
-Dette trinnet **bytter ikke runtime-leseren**. `CivicationSceneCatalog` leser fortsatt dagens `mailFamilies` til 4H-B har bevist full runtime-paritet. `compiled_registry_ready` skal derfor fortsatt være `false` i produksjonsruntime etter 4H-A.
+`mailFamilies` er fortsatt source-of-build i denne fasen, men kan ikke leses direkte av normal work-runtime. `node scripts/build-civication-scene-registry.mjs --check` er permanent sync-gate, parity-testen låser før/etter-semantikken, og `compiled_registry_ready` er `true` først etter at shadowed duplicate-gjelden er null.
 
 Normative filer:
 
@@ -98,24 +98,13 @@ Mail-family-scener kompileres til `civication_scene_v1` med:
 
 Det er bevisst **ingen** syntetiske valg eller ny gameplaylogikk i compileren.
 
-## 4H-B — neste port
+## 4H-B — fullført runtime-cutover
 
-4H-B skal materialisere registryet og gjøre SceneCatalog til leser av dette artefaktet for arbeidskatalogen. Cutoveren skal være låst av parity-test før rå `mailFamilies`-lesing fjernes fra runtime.
+4H-B materialiserer og committer registryet, håndhever `--check`, og gjør `CivicationSceneCatalog` til runtime-leser av registryet for work-scenes. Den ene runtime-reachable skyggekopien av `ml_faction_001` er fjernet; den eksisterende vinnerscenen i `naeringsliv/job/mellomleder_job.json` er uendret. `shadowed_duplicate_count` er derfor null før cutover.
 
-Minstekrav før cutover:
+Den permanente parity-porten beviser hele runtime-projeksjonen før/etter, inkludert scene-ID-er per rolle, mailtype/familie/source-path, choices/tags/effect/feedback/reply, priority/cooldown/repeatable/phase/stage og øvrige eligibility-felt, thread/dedupe, Career Knowledge Bridge, kandidatsett og deterministisk utvalg. Renholder og Arealplanlegger brukes som representative arbeidsdager. Terminal karriere forblir lukket.
 
-1. samme scene-ID-er per rolle;
-2. samme mailtype/familie og source-path;
-3. samme valg, choice tags, effect, feedback og reply;
-4. samme priority/cooldown/repeatable/phase/stage og øvrige eligibility-felt;
-5. samme thread-dedupe;
-6. samme Career Knowledge Bridge-dekorering;
-7. samme deterministiske utvalg i SceneDirector/Daily;
-8. terminal karriere åpner ikke fallback;
-9. representative Renholder- og Arealplanlegger-arbeidsdager har identisk kandidatsett før/etter;
-10. `shadowed_duplicate_count === 0` før `compiled_registry_ready` kan bli `true`.
-
-Først når disse er grønne kan `CivicationSceneCatalog.inspect().compiled_registry_ready` settes til `true`.
+`private`, `life`, `narrative` og `social` forblir runtime-materialiserte source adapters bak samme SceneCatalog. De flates ikke inn i det statiske registryet.
 
 ## 4H-C — fjern parallelle legacyveier
 
