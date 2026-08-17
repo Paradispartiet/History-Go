@@ -1,18 +1,17 @@
-name: Materialize Vitenskap Unit 1 registry integration
+name: Finalize Vitenskap Unit 1 registry integration
 
 on:
   push:
     branches:
       - agent/vitenskap-unit1-registry-integration
     paths:
-      - 'scripts/materialize-vitenskap-unit1-registry-integration.mjs'
       - '.github/workflows/vitenskap-unit1-registry-materialize.yml'
 
 permissions:
   contents: write
 
 jobs:
-  materialize:
+  finalize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,24 +20,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Materialize canonical registry and status
-        run: node scripts/materialize-vitenskap-unit1-registry-integration.mjs
-      - name: Rebuild deterministic Fagverk release
-        run: node scripts/build-fagverk-release-manifest.mjs
-      - name: Validate generated state
+      - name: Regenerate permanent readiness audit report
+        run: node scripts/audit-fagverk-vitenskap-university-readiness.mjs --write-report --no-check-report
+      - name: Validate permanent Vitenskap gates and release
         run: |
-          node scripts/audit-fagverk-vitenskap-university-readiness.mjs || true
+          node scripts/audit-fagverk-vitenskap-university-readiness.mjs
           node scripts/audit-fagverk-vitenskap-unit1.mjs
+          node --test tests/fagverk-vitenskap-university-readiness.test.mjs
+          node --test tests/fagverk-vitenskap-unit1.test.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
           git diff --check
-      - name: Commit generated integration
+      - name: Commit regenerated permanent report
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/fagverk/fagverk_registry.json data/fagverk/subject_status.json data/fag/vitenskap/vitenskap_university_readiness_v1.json data/fagverk/fagverk_release.json
+          git add reports/fagverk/vitenskap-university-readiness-audit.json
           if git diff --cached --quiet; then
-            echo 'No generated changes to commit.'
+            echo 'Readiness report already current.'
             exit 0
           fi
-          git commit -m 'Materialize Vitenskap Unit 1 registry integration'
+          git commit -m 'Regenerate Vitenskap Unit 1 readiness audit report'
           git push origin HEAD:agent/vitenskap-unit1-registry-integration
