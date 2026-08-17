@@ -1,0 +1,34 @@
+name: Fagverk Philosophy source integrity
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/filosofi/**'
+      - 'data/fagverk/filosofi/**'
+      - 'tests/fagverk-filosofi-source-integrity.test.mjs'
+      - '.github/workflows/fagverk-filosofi-source-integrity.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/fag/filosofi/**'
+      - 'data/fagverk/filosofi/**'
+      - 'tests/fagverk-filosofi-source-integrity.test.mjs'
+      - '.github/workflows/fagverk-filosofi-source-integrity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  source-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit Philosophy source integrity
+        run: node --test tests/fagverk-filosofi-source-integrity.test.mjs
