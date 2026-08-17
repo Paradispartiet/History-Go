@@ -9,6 +9,7 @@ const P = Object.freeze({
   spec: 'data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json',
   emners: 'data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json',
   methods: 'data/fag/vitenskap/methods_vitenskap_canonical_v4_6.json',
+  chapter: 'data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell.json',
   brief: 'data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/brief.json',
   claims: 'data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/claims.json'
 });
@@ -54,14 +55,24 @@ export function auditVitenskapMathematicsSourceBrief() {
   const claimsDocument = json(P.claims);
 
   assert(readiness.subject_id === 'vitenskap', 'Readiness peker ikke til Vitenskap');
-  assert(readiness.complete_ready === false, 'Matematikk-brief kan ikke gjøre Vitenskap complete');
+  assert(readiness.complete_ready === false, 'Matematikk-arbeid kan ikke gjøre Vitenskap complete');
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'v4.6 structural blocking gaps skal være reconcilet');
-  assert((readiness.editorial_blockers || []).includes('mathematics_formal_sciences'), 'Matematikk må fortsatt være redaksjonell blocker før fulltekst og registrering');
   assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate');
   assert(readiness.current_inventory?.vitenskap?.emne_count === 117, 'Vitenskap må stå på 117 canonicale emner');
-  assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 1, 'Source brief må ikke registrere nytt kapittel');
   assert(readiness.current_inventory?.teknologi?.top_level_subject === false, 'Teknologi må forbli nested');
   assert(readiness.current_inventory?.teknologi?.canonical_parent_subject === 'vitenskap', 'Teknologi har feil canonical parent');
+
+  const mathCoverage = readiness.coverage_families?.find((row) => row.id === 'mathematics_formal_sciences');
+  const mathStillBlocked = (readiness.editorial_blockers || []).includes('mathematics_formal_sciences');
+  if (mathStillBlocked) {
+    assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 1, 'Før fulltekstregistrering skal Vitenskap ha ett kapittel');
+    assert(mathCoverage?.status === 'inventory_reconciled', 'Før fulltekstregistrering skal matematikk være inventory_reconciled');
+  } else {
+    assert(readiness.current_inventory?.vitenskap?.registered_chapter_count >= 2, 'Etter lukket matematikk-blocker må Unit 2 være registrert');
+    assert(mathCoverage?.status === 'chapter_materialized', 'Etter fulltekstregistrering skal matematikk være chapter_materialized');
+    assert(mathCoverage?.materialized_chapter_id === 'vitenskap-matematisk-bevis-struktur-og-modell', 'Matematikkfamilien mangler chapter-link etter fulltekst');
+    assert(fs.existsSync(abs(P.chapter)), 'Matematikk-blocker kan ikke lukkes uten materialisert kapittelroot');
+  }
 
   const family = spec.families?.find((row) => row.coverage_family_id === 'mathematics_formal_sciences');
   assert(family, 'Mangler mathematics_formal_sciences i v4.6 reconciliation-spec');
@@ -95,7 +106,7 @@ export function auditVitenskapMathematicsSourceBrief() {
   assert(brief.sourceStrategy?.noDecorativeSources === true, 'Matematikk-brief må blokkere dekorative kilder');
   assert(brief.sourceStrategy?.primaryOrOfficialTechnicalSourcesPreferred === true, 'Matematikk-brief må prioritere primære/officiale tekniske kilder');
   assert(brief.qa?.formalVsEmpiricalBoundaryRequired === true, 'Matematikk-brief må låse formell/empirisk grense');
-  assert(brief.qa?.mathematicsEditorialBlockerRemainsOpenUntilFulltextAndRegistration === true, 'Matematikk-brief må bevare editorial blocker');
+  assert(brief.qa?.mathematicsEditorialBlockerRemainsOpenUntilFulltextAndRegistration === true, 'Brief-kontrakten må kreve blocker fram til fulltekstregistrering');
 
   const rejected = (brief.rejectedOrDeferred || []).map((row) => `${row.detail || ''} ${row.reason || ''}`.toLowerCase());
   assert(rejected.some((text) => text.includes('bevis') && text.includes('empir')), 'Brief må avvise bevis = empirisk evidens');
@@ -128,9 +139,7 @@ export function auditVitenskapMathematicsSourceBrief() {
       assert(sectionUse.has(sectionId), `${claim.id} peker til uventet planlagt seksjon ${sectionId}`);
       sectionUse.set(sectionId, sectionUse.get(sectionId) + 1);
     }
-    if (claim.classification === 'cross-source-synthesis') {
-      assert(claim.source_ids.length >= 2, `${claim.id} er synthesis uten flere kilder`);
-    }
+    if (claim.classification === 'cross-source-synthesis') assert(claim.source_ids.length >= 2, `${claim.id} er synthesis uten flere kilder`);
   }
   assert([...sourceUse.values()].every((count) => count >= 1), 'Matematikk-brief har dekorativ kilde uten claim-bruk');
   assert([...sectionUse.values()].every((count) => count >= 2), 'En planlagt Unit 2-seksjon har for svakt claim-grunnlag');
@@ -141,7 +150,7 @@ export function auditVitenskapMathematicsSourceBrief() {
 
   return {
     schema: 'history_go_fagverk_vitenskap_mathematics_source_brief_audit_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     status: 'pass',
     subject: 'vitenskap',
     chapterId: brief.chapter_id,
@@ -160,7 +169,7 @@ export function auditVitenskapMathematicsSourceBrief() {
       sourcesInspectableAndUsed: true,
       claimsVerifiedAndTracePlanned: true,
       formalEmpiricalBoundaryLocked: true,
-      mathematicsEditorialBlockerRemainsOpen: true,
+      sourceBriefPhaseConsistentWithReadiness: true,
       prematureCompleteBlocked: true,
       technologyRemainsNested: true
     }
