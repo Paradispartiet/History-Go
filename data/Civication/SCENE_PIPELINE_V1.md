@@ -1,60 +1,204 @@
 # Civication Scene Pipeline v1
 
-## Status
+Status: **canonical scene/runtime-kontrakt**  
+Sist kontrollert: **2026-08-17**
 
-Dette er den normative migreringskontrakten for å konsolidere Civications mail- og karrieregameplay.
+## Formål
 
-Fase 1 etablerte en read-only audit og Scene Contract v1 uten å endre scenevalg, døgnrytme, svarbehandling eller konsekvenser. Migreringstrinn 3 og SceneDirector-cutover 4A–4C er nå gjennomført:
+Denne filen beskriver den aktive Scene Pipeline-arkitekturen etter at 4F–4H-migreringen er fullført.
 
-- alle ni canonicale plantyper er direkte nåbare;
-- Daily, Workday og EventEngine bruker ett outcome-aware kandidatinnsteg;
-- EventEngine oppløser canonicale arbeidskandidater én gang;
-- DailyBuilders ekstra arbeids-slot, familiekataloglasting og kildenormalisering ligger bak `CivicationSceneDirector` og `CivicationSceneCatalog`.
+Den grunnleggende beslutningen er:
 
-Den globale auditten står fortsatt i `observe`. Generiske runtimevalg, parallelle `answer()`-wrappere og kildeadapter-cutoveren er nå lukket gjennom 4D–4G. Gjenværende synlig gjeld er dagsbudsjett, compiled registry og den senere blokkerende semantiske spilltesten.
+> **`scene` er gameplay-enheten. `mail` er én av flere leveringsformer.**
 
-Kanoniske maskinlesbare kilder:
+Civication skal derfor ikke utvikles som en samling parallelle mailmotorer. Work, private, life, narrative og social kan ha forskjellige produsenter, men de møtes ved én canonical scene-/kandidatgrense og én canonical svargrense der interaksjonen bruker EventEngine/ChoiceDirector.
+
+Kanoniske maskinlesbare kilder og gates:
 
 - `data/Civication/sceneContractV1.schema.json`
 - `data/Civication/scenePipelinePolicyV1.json`
+- `data/Civication/compiledSceneRegistryV1.schema.json`
+- `data/Civication/compiledSceneRegistryV1.json`
+- `scripts/build-civication-scene-registry.mjs`
 - `scripts/audit-civication-scene-pipeline.mjs`
 - `tests/civication-scene-pipeline-reachability.test.js`
 - `tests/civication-scene-director-ownership.test.js`
 - `tests/civication-scene-director-daily-catalog.test.js`
+- `tests/civication-compiled-scene-registry-parity.test.js`
+- `tests/civication-legacy-work-fallback-closed.test.js`
+- `tests/civication-semantic-playthrough-gate.test.js`
 
-## Arkitekturbeslutning
-
-`scene` er gameplay-enheten. `mail` er én av flere leveringsformer.
+## Arkitektur
 
 ```text
-RolePack / FWG ─┐
-Private / Life ─┼─> kildeadaptre -> normalisering/kompilering -> SceneCatalog
-Narrativ / Social┤                                            |
-Fagverket ──────┘                                      SceneDirector
-                                                             |
-                                                   delivery / NextAction
-                                                             |
-                                                        ChoiceDirector
-                                                             |
-                                         konsekvens -> progresjon -> state
+Authored work sources ───────────────┐
+Private / Life source adapters ──────┤
+Narrative / Social source adapters ──┼→ SceneCatalog
+Fagverk / knowledge decoration ──────┘       │
+                                             ▼
+                                      SceneDirector
+                                             │
+                                  delivery / NextAction
+                                             │
+                                      ChoiceDirector
+                                             │
+                              consequence / progression
+                                             │
+                                           state
 ```
 
-En scene skiller mellom:
+For work er det ett ekstra build-ledd:
 
-- domene (`work`, `private`, `life`, `social`, `system`)
-- scenetype (`task`, `relationship`, `conflict`, `knowledge`, `consequence`, `offer`, `milestone`)
-- levering (`mail`, `meeting`, `conversation`, `task`, `notification`)
-- faktisk døgnfase og dramaturgisk stadium
-- interaksjonsmodus (`decision`, `task`, `ack`, `info`)
-- tråd, praksisfortelling, personer og sted
-- én normalisert effektmodell
-- én versjonert `knowledge_contract`
+```text
+mailFamilies / authored work catalogs
+→ deterministic compiler
+→ compiled_scene_registry_v1
+→ CivicationSceneCatalog
+```
 
-Informasjonsscener kan ha null valg. Beslutningsscener må ha minst to reelle valg. Oppgavescener må ha en eksplisitt `task_contract`. Runtime skal ikke generere standardvalg for å skjule manglende innhold.
+`mailFamilies` er dermed **source-of-build**, ikke normal work-runtime-kilde.
 
-## Lukket migreringsgjeld: typeparitet og direkte reachability
+## Scene Contract
 
-`CivicationMailRuntime` laster disse ni plantypene gjennom samme planruntime:
+En canonical scene skiller mellom:
+
+- domene (`work`, `private`, `life`, `social`, `system`);
+- scenetype (`task`, `relationship`, `conflict`, `knowledge`, `consequence`, `offer`, `milestone`);
+- levering (`mail`, `meeting`, `conversation`, `task`, `notification`);
+- faktisk døgnfase;
+- dramaturgisk stadium;
+- interaksjonsmodus (`decision`, `task`, `ack`, `info`);
+- tråd/praksisfortelling;
+- personer og sted;
+- én normalisert effektmodell;
+- én versjonert `knowledge_contract`.
+
+Informasjonsscener kan ha null valg. Beslutningsscener må ha minst to reelle kildeeide valg. Oppgavescener må ha en eksplisitt `task_contract`.
+
+Runtime skal aldri dikte standardvalg for å skjule manglende innhold.
+
+---
+
+## Work pipeline etter 4H-D
+
+### 1. Authoring
+
+Work-innhold skrives fortsatt i de etablerte dataformatene, særlig:
+
+- roleModel/FWG;
+- `mailPlan`;
+- `mailFamilies` og registrerte work-kataloger;
+- knowledge-/practice-story metadata.
+
+Dette er produksjonskilder, ikke selvstendige runtime-eiere.
+
+### 2. Deterministisk kompilering
+
+`build-civication-scene-registry.mjs` materialiserer `compiled_scene_registry_v1`.
+
+Registryet inneholder blant annet:
+
+- canonical scene-ID;
+- `civication_scene_v1`-projeksjon;
+- compatibility projection;
+- source provenance og source hash;
+- role index;
+- registry hash;
+- inventory av source files, ignored sources og eventuelle shadowed duplicates.
+
+Normal runtime kan bare bruke registryet når shadowed duplicate-gjeld er null.
+
+`node scripts/build-civication-scene-registry.mjs --check` er permanent sync-gate.
+
+### 3. SceneCatalog
+
+`CivicationSceneCatalog` er source-/normaliseringsgrensen.
+
+For work:
+
+- `getRoleMails()` leser compiled registry + `role_index`;
+- brand-spesifikke scener filtreres mot aktiv `brand_id`;
+- Career Knowledge Bridge-dekorering bevares;
+- raw `mailFamilies` leses ikke av normal gameplay-runtime.
+
+`getRolePlan()` kan fortsatt laste authored `mailPlan`, fordi planen er progresjonskontrakt og ikke sceneinnhold.
+
+For private/life/narrative/social bruker samme Catalog registrerte source adapters.
+
+### 4. MailRuntime
+
+`CivicationMailRuntime` eier **plan/progresjon**, ikke rå scene-source loading.
+
+Primær kandidatvei er:
+
+```text
+SceneCatalog.getRolePlan(active)
++ SceneCatalog.getRoleMails(active, state)
+→ MailRuntime.selectCandidateMailsFromResolvedSources(...)
+```
+
+MailRuntime eier blant annet:
+
+- current plan step;
+- consumed IDs;
+- plan history;
+- family/type matching;
+- canonical `fallback_types` innen samme resolved scene-sett;
+- kandidat-scoring;
+- plansteg-progresjon etter gyldig svar;
+- thread-/brandrelatert progresjonsstate.
+
+Hvis SceneCatalog mangler, lukkes planned gameplay fail-closed.
+
+### 5. SceneDirector
+
+`CivicationSceneDirector` er ett samlet kandidatinnsteg for Workday, Daily og EventEngine.
+
+Det eksponerer blant annet:
+
+- `getWorkCandidates(active, state, options)`;
+- `getPrimaryWorkScene(active, state, options)`;
+- `getEventEnginePack(engine, active, state, roleKey)`;
+- Daily catalog/extra-slot helpers;
+- selection snapshots/provenance.
+
+Kompatibilitetsaliaser kan eksistere, men skal delegere inn i denne kjeden.
+
+### 6. Delivery og svar
+
+Scene leveres gjennom eksisterende flater, primært NextAction/MailEngine/EventEngine avhengig av scenetype.
+
+`CivicationChoiceDirector` er eneste aktive `EventEngine.answer`-eier i standardruntime og validerer Scene Interaction før domenemiddleware/handlers får anvende konsekvenser.
+
+---
+
+## Fail-closed etter 4H-C
+
+Følgende fallbackveier er lukket for work-gameplay:
+
+- `data/Civication/jobbmails` som runtimekilde;
+- legacy pack-fallback;
+- RoleStoryletBridge-fallback;
+- gammel `buildMailPool`-fallback;
+- syntetisk generisk karrieremail;
+- generiske runtimevalg som erstatter manglende kildeeide valg.
+
+Regelen er:
+
+```text
+null canonical kandidat → no-op
+SceneDirector/SceneCatalog-feil → fail-closed tom kandidatpool
+```
+
+Arkiv/migreringsdata kan ligge i repoet uten å være gameplaykilde.
+
+Manglende rolleinnhold skal produseres, ikke maskeres.
+
+---
+
+## Typeparitet og direkte reachability
+
+Disse ni plantypene er direkte nåbare gjennom samme planruntime:
 
 1. `job`
 2. `knowledge`
@@ -66,85 +210,171 @@ Informasjonsscener kan ha null valg. Beslutningsscener må ha minst to reelle va
 8. `event`
 9. `consequence`
 
-`faction_choice` beholdes som en runtime-spesifikk type ved siden av de ni canonicale plantypene.
+`faction_choice` beholdes som runtime-spesifikk type ved siden av de ni canonicale plantypene.
 
-Reachability-regresjonen krever:
+Reachability-porten krever:
 
-- null plantyper som mangler i `CivicationMailRuntime`;
-- null plansteg der direkte innhold finnes, men ikke lastes;
-- direkte valg av riktig type og tillatt familie før fallback vurderes.
+- ingen deklarert plantype som MailRuntime ikke kan nå;
+- ingen plansteg med direkte canonical innhold som likevel ikke kan velges;
+- riktig type og tillatt familie før canonical fallback vurderes.
 
-Dette lukker den tidligere feilen der Arealplanlegger og Barnehageassistent hadde direkte `knowledge`-, `micro`-, `followup`- og `consequence`-innhold som normal runtime likevel ikke nådde.
+---
 
-## SceneDirector-cutover 4A–4B: ett kandidatinnsteg
+## Scene Interaction 4D–4E
 
-`CivicationWorkdayMailBuilder` oppretter `window.CivicationSceneDirector` etter at MailRuntime og eksisterende kandidat-utvidelser er lastet. Director fanger den komplette, outcome-aware kildeselektoren og eksponerer:
+Runtime genererer ikke lenger standardvalgene «gjør det ryddig» / «løs det raskt» når kilden mangler reelle valg.
 
-- `getWorkCandidates(active, state, options)`
-- `getPrimaryWorkScene(active, state, options)`
-- `getEventEnginePack(engine, active, state, roleKey)`
-- `inspect()` med begrenset seleksjonsspor
+`CivicationSceneInteraction` håndhever:
 
-Det gamle navnet `CivicationMailRuntime.makeCandidateMailsForActiveRole` er en ren alias til Director. Workday, Dailys primærscene, EventEngines `buildMailPool` og eldre kompatibilitetskall går derfor gjennom samme canonicale innsteg.
+- `decision` → minst to reelle valg;
+- `task` → eksplisitt task contract;
+- `ack` → eksplisitt bekreftelse/ett kildeeid valg;
+- `info` → null valg er gyldig.
 
-4H-C har lukket fallbacken: EventEngine laster aldri legacy-pack eller RoleStoryletBridge når Director returnerer null canonicale kandidater. En tom kandidatpool er et eksplisitt no-op. Hvis Director kaster en feil, lukkes gameplay fail-closed med tom pool; den forrige `buildMailPool`-adapteren gjenåpnes ikke.
+En eksplisitt `decision` med for få valg blokkeres i stedet for å bli omskrevet.
 
-## SceneDirector-cutover 4C: Daily-ekstrascener og katalogeierskap
+Passive `info`-scener er semantisk gyldige. Der en bestemt delivery-flate ennå ikke har egen passiv presentasjon, skal runtime ikke gjøre dem om til falske decisions.
 
-`window.CivicationSceneCatalog` er nå den ene runtimeadapteren for dagens kildekataloger. Den eier:
+---
 
-- canonical liste over rollefamiliestier;
-- lasting og cache av plan og mailfamilier;
-- flattening av familiekataloger;
-- valg- og felt-normalisering under migreringen;
-- Career Knowledge Bridge-dekorering;
-- progresjonsfiltrering, case-tråd-deduplisering og deterministisk rangering.
+## ChoiceDirector 4F
 
-`CivicationSceneCatalog` leser nå det materialiserte `compiled_scene_registry_v1` for work-scenes. `mailFamilies` er source-of-build med permanent `--check`-gate, men normal runtime går ikke tilbake til rå kataloglesing. `private`, `life`, `narrative` og `social` forblir runtime-materialiserte source adapters.
+`CivicationChoiceDirector` er canonical svargrense for EventEngine-interaksjoner.
 
-SceneDirector eksponerer nå i tillegg:
+Rundt-svar-logikk bruker prioritert middleware. Konsekvenser av et vellykket valg bruker handlers eller domeneeide runtimehooks.
 
-- `getDailyCatalog(active, state, options)`
-- `populateDailyExtraSlots(active, state, runtime, options)`
-- `prewarmDailyCatalog(active, options)`
-- `getLastSelectionSnapshot(active)` for å bevare terminalt karriereutfall gjennom samme købygging
+Standard nesting er dokumentert i `docs/CIVICATION_PATCH_ORDER.md`.
 
-Dailys offentlige API og døgnrytme er bevart. Den normale købyggingen følger denne rekkefølgen:
+Ny kode skal ikke direkte wrappe `CivicationEventEngine.prototype.answer`.
+
+Dette gjelder også nye konsekvensområder som livelihood: en opportunity som oppstår fra et valg er en konsekvens av den canonicale scene-/choice-transaksjonen, ikke en ny svarmotor.
+
+---
+
+## Source adapters 4G
+
+### Private
+
+`CivicationPrivatePhaseMailBuilder` registrerer `private` bak SceneCatalog. Daily trenger ikke kjenne produsenten direkte.
+
+### Life
+
+`CivicationLifeMailRuntime` registrerer `life` bak SceneCatalog. Eksisterende eligibility, consumed-state, syklus og priority beholdes.
+
+### Narrative
+
+`CivicationNarrativeSceneSource` registrerer `narrative`. Kilden eier manifest-/stream-eligibility og storylet→scene-materialisering; Daily eier dagsplassering og narrativ state/effect-transaksjon.
+
+### Social
+
+`CivicationSocialSceneSource` registrerer `social`. FriendsEngine kan være kompatibilitetsfasade, mens private meldinger, svar, relasjonskonsekvens og samtaletråder beholder sitt domeneeierskap.
+
+Source adapters er produsentgrenser, ikke et konkurrerende registry.
+
+---
+
+## Compiled registry 4H-A–4H-B
+
+4H-A etablerte schema/compiler og deterministic registry contract.
+
+4H-B materialiserte registryet og flyttet normal work-runtime over til det etter at før/etter-paritet var bevist.
+
+Parity-porten dekker blant annet:
+
+- scene-ID-er per rolle;
+- type/familie/source path;
+- choices/tags/effect/feedback/reply;
+- priority/cooldown/repeatable/phase/stage;
+- eligibility;
+- thread/dedupe;
+- knowledge decoration;
+- kandidatsett og deterministisk utvalg.
+
+Renholder og Arealplanlegger er representative bevisroller for denne kjeden.
+
+---
+
+## Semantisk playthrough 4H-D
+
+4H-D er **fullført**.
+
+Den permanente blokkerende testen `tests/civication-semantic-playthrough-gate.test.js` beviser en faktisk spillkjede:
 
 ```text
-Daily bygger fasekø, private scener, narrativer og canonical primærscene
-→ gammel intern mailFamilies-lesing undertrykkes i dette avgrensede kallrommet
-→ SceneCatalog laster og normaliserer kildene én gang
-→ SceneDirector fyller bare genererte plassholdere i forenoon/workday
-→ ferdig runtime lagres og gjenbrukes av Dailys eksisterende levering
+compiled scene selection
+→ SceneDirector primary scene
+→ EventEngine delivery
+→ ChoiceDirector answer
+→ EventEngine consequence
+→ MailRuntime plan progression
+→ consumed/history
+→ next canonical plan scene
 ```
 
-Director erstatter ikke:
+Testen avviser samtidig raw `mailFamilies`-reads i primærkjeden.
 
-- canonical primærscene;
-- private faser;
-- narrative storylets;
-- fasegeneratorer;
-- allerede valgte eller besvarte runtimeelementer.
+Ekspeditør-brandscener er også kompilert og filtrert mot aktiv brand slik at brandinnhold ikke lekker mellom arbeidsgivere.
 
-Eksisterende same-day runtime adopteres uten å nullstille status eller progresjon. Nye ekstrascener får eksplisitt katalog- og seleksjonsprovenance. Terminalt lukket karriere får null Daily-ekstrascener og åpner ikke gammel katalogfallback.
+Det finnes **ingen planlagt 4H-E** i denne migreringsrekken.
 
-Regresjonstesten for 4C beviser:
+---
 
-- at Daily-fasaden patches før normal bruk;
-- at Dailys gamle familiekataloglesing ikke treffer kilden;
-- at hver katalogfil lastes gjennom SceneCatalog, ikke både Daily og Catalog;
-- at Director fyller riktige `job`, `micro`, `people`, `conflict`, `followup` og `consequence`-slot uten kilde-ID-duplikater;
-- at Career Knowledge Bridge-dekorering og arbeidsdagstempling bevares;
-- at `startToday` gjenbruker den Director-bygde runtimekøen;
-- at terminal karriere forblir lukket.
+## Status etter 4H-D
 
-De gamle interne Daily-funksjonene finnes foreløpig som kompatibilitetskode i filen, men normal produksjonsflyt leser ikke rollefamilier gjennom dem. De fjernes fysisk sammen med senere compiled-registry-cutover, ikke ved å reaktivere et konkurrerende eierlag.
+Fullført:
 
-## Bekreftet gjenværende migreringsgjeld
+1. freeze av nye tilfeldige mailformater;
+2. Scene Contract og audit;
+3. typeparitet/reachability;
+4. SceneDirector/SceneCatalog ownership;
+5. eksplisitt interaction contract uten syntetiske choices;
+6. ChoiceDirector som eneste answer-eier;
+7. private/life/narrative/social source adapters;
+8. compiled registry for work;
+9. lukket legacy fallback;
+10. blokkerende semantisk playthrough.
 
-1. Dagsprogrammet beskriver fortsatt en eldre element-/ordmengdemodell. Målkontrakten bruker 3–6 faktiske arbeidssituasjoner; lesetid og ordmengde er observasjoner, ikke produksjonskvoter.
-2. **Lukket i 4H-C:** parallelle legacyveier, særlig `data/Civication/jobbmails`, er blokkert som gameplaykilde og fallback. Arkiv/migreringsdata kan bli liggende i repoet, men runtime kan ikke bruke dem som reserveinnhold.
+Gjenværende Scene Pipeline-kvalitetsgjeld skal ikke forveksles med en ny arkitekturfase. Aktuelle områder er blant annet:
+
+- finjustering/håndheving av dagsbudsjett;
+- bedre presentasjon av passive `info`-scener der delivery-flaten trenger det;
+- authored innholdsdybde;
+- Role World-produksjon.
+
+Den globale pipeline-auditten kan fortsatt stå i `observe` for gjeld som ikke er gjort blokkerende. Det betyr ikke at 4H-cutoveren er uferdig.
+
+---
+
+## Role World: neste innholdsretning, ikke ny runtime
+
+`docs/CIVICATION_ROLE_WORLD_STANDARD.md` definerer den høyere redaksjonelle målstandarden for en fylt rolleverden.
+
+Den skal bruke denne pipeline-arkitekturen:
+
+```text
+sosiologisk rollebibel / tematikk
+→ roleModel + FWG + mailPlan + authored work sources
+  + private/life/narrative/social sources
+→ SceneCatalog
+→ SceneDirector
+→ delivery
+→ ChoiceDirector
+→ konsekvenser
+```
+
+Role World skal **ikke** introdusere:
+
+- ny `roleWorldRuntime`;
+- ny mailmotor;
+- ny sceneformatfamilie bare for korrespondanse;
+- egen bolig-/livelihood-/vennemotor ved siden av SceneCatalog;
+- ny answer-wrapper.
+
+14 dager × morgen/lunsj/ettermiddag/kveld er en dramaturgisk produksjonsstandard, ikke en kvote på 56 beslutningsmailer. `info`, `relationship`, `task`, `decision`, `ack` og ulike delivery-former skal brukes etter semantikken.
+
+Viktige korrespondansetråder bør utvikles over flere beats/dager med eksisterende thread IDs, flags, effects, `next_bias` og consequences i stedet for å tvinge lange klikkdialoger inn i én scene.
+
+---
 
 ## Fagverk og stabile spilleregler
 
@@ -156,123 +386,30 @@ Fagverket kan forbedre:
 
 Fagverket kan ikke stille endre:
 
+- interaksjonsmodus;
 - valg;
-- oppgavekrav;
-- effekter og konsekvensregler;
-- fasit eller suksessregel;
-- interaksjonsmodus.
+- task requirements;
+- effekter/konsekvensregler;
+- fasit/success rule.
 
-Slike felt skal være låst til en versjonert `ruleset_ref` i `knowledge_contract`. Dynamisk forklaring er bare tillatt når de frosne gameplayfeltene fortsatt peker på samme regler.
+Gameplay-regler skal være versjonspinnet gjennom `knowledge_contract`/`ruleset_ref` der relevant.
 
-## Audit og overgang fra observasjon til gate
+---
 
-Auditten er read-only og skriver aldri om data. Standardmodus rapporterer gjenværende gjeld med exit code 0. `--strict` gjør de samme funnene blokkerende.
+## Audits
 
-Reachability-testen håndhever typeparitet og direkte lasting. SceneDirector-eierskapstesten låser kandidatkjeden og EventEngine. Daily-katalogtesten låser 4C-grensen. Global `enforcement_mode` forblir `observe` til dagsbudsjett og compiled registry er migrert og den blokkerende semantiske spilltesten kan slås på.
+`audit-civication-scene-pipeline.mjs` er read-only som standard. `--strict` kan gjøre de samme funnene blokkerende.
 
-## Migreringsrekkefølge og status
+Separate permanente tester håndhever allerede de viktigste migrerte grensene:
 
-1. **Fullført:** Frys nye mailformater.
-2. **Fullført:** Behold read-only-auditten og Scene Contract v1 som fasit.
-3. **Fullført:** Gjør alle ni plantyper direkte nåbare.
-4. **Fullført:** Ett SceneDirector- og katalogeierskap.
-   - **Fullført 4A:** Samle Daily/Workday-kall bak ett offentlig kandidatinnsteg.
-   - **Fullført 4B:** Flytt EventEngines interne `buildMailPool` bak Director og fjern dobbeltseleksjonen.
-   - **Fullført 4C:** Flytt Daily-ekstrascener, familielasting og normalisering bak Director/SceneCatalog.
-5. **Fullført 4D–4E:** Fjern generiske runtimevalg og krev korrekt `decision`, `task`, `info` eller `ack`.
-6. **Fullført 4F:** `CivicationChoiceDirector` er eneste aktive `EventEngine.answer`-eier; rundt-semantikk ligger i eksplisitt prioritert middleware.
-7. **Fullført 4G:** Gjør private, life, narrative og social til kildeadaptre.
-   - **Fullført 4G-A:** `private` registreres deferred og konsumeres via `CivicationSceneCatalog`; Daily har ingen direkte produsentkobling.
-   - **Fullført 4G-B:** `life` registreres som egen SceneCatalog-adapter; standard Life-`onAppOpen` konsumerer kilden via Catalog uten direkte produsentfallback.
-   - **Fullført 4G-C:** `narrative` eier manifest/stream-eligibility og storylet→scene bak SceneCatalog; Daily eier fortsatt dagsplassering og narrativ state/effect-transaksjon.
-   - **Fullført 4G-D:** `social` registreres som SceneCatalog-adapter; FriendsEngine er synkron kompatibilitetsfasade mot den registrerte adapteren, mens kart, private meldinger og samtalekonsekvenser beholder eksisterende semantikk.
-8. **Fullført 4H-A–4H-C:** Materialiser `compiled_scene_registry_v1`, bevis før/etter-paritet, la SceneCatalog lese registryet for work-scenes og blokker alle parallelle legacy-/`jobbmails`-fallbacks.
-   - **Fullført 4H-C:** null canonical kandidat gir no-op; Director-feil gir fail-closed tom pool; legacy-pack, RoleStoryletBridge, gammel `buildMailPool` og generisk karrieremail kan ikke overta gameplay.
-9. **Neste 4H-D:** slå på blokkerende semantisk spilltest: plansteg → scene → valg/oppgave/info → konsekvens → progresjon → neste steg.
+- direct reachability;
+- Director ownership;
+- Daily Catalog ownership;
+- interaction contract;
+- ChoiceDirector ownership;
+- source adapters;
+- compiled registry parity/sync;
+- fail-closed legacy policy;
+- semantic playthrough.
 
-Renholder og Arealplanlegger er de første bevisrollene etter at interaksjonskontrakten og svartransaksjonen er samlet.
-
-## Scene Interaction 4D: ingen syntetiske runtimevalg
-
-Runtime genererer ikke lenger standardvalgene «Gjør dette ryddig og dokumenter det» / «Løs det raskt og gå videre» når kildeinnholdet har færre enn to valg. Både legacy-Daily-normaliseringen og `CivicationSceneCatalog` bevarer nå bare kildeeide valg: null valg forblir null, ett eksplisitt valg forblir ett, og to eller flere reelle valg normaliseres uten semantisk erstatning.
-
-Dette lukker bare den syntetiske fallbacken. Neste interaksjonsport skal klassifisere `decision`, `task`, `info` og `ack` eksplisitt og blokkere mangelfulle beslutningsscener i stedet for å dikte gameplay. Den globale Scene Pipeline-auditen forblir derfor i `observe` inntil svarpipeline, interaksjonsklassifisering, dagsbudsjett og compiled registry er migrert.
-
-## Scene Interaction 4E: eksplisitt interaksjonskontrakt
-
-`CivicationSceneInteraction` er nå én delt runtime-adapter for Scene Contract v1-modusene `decision`, `task`, `ack` og `info`. Legacy-scener uten eksplisitt modus klassifiseres deterministisk fra kildeeide strukturer: oppgavekontrakt/-signal → `task`, minst to valg → `decision`, ett valg → `ack`, ingen valg → `info`. En eksplisitt modus blir aldri nedgradert for å få scenen til å passe.
-
-SceneDirector sender bare gyldige, handlingskrevende scener inn i den eksisterende svarsløyfen. En eksplisitt `decision` med færre enn to reelle valg blokkeres som `decision_requires_two_choices`; passive `info`-scener beholdes som gyldig semantikk i katalogen, men materialiseres ikke som åpne dagsrader før en egen passiv leveringsport finnes. Når canonical-kilden finnes men bare består av blokkert/passivt innhold, er legacy-gameplay-fallback også sperret slik at runtime ikke erstatter semantikken med et annet spillvalg. Daily task gates bruker samme kontrakt og mapper eksisterende `task_gate_id` + `expected_output` til canonical `task_contract` uten å dikte ny oppgavelogikk. ChoiceDirector-eierskapet ble senere samlet i 4F og er nå eneste aktive `EventEngine.answer`-pipeline.
-
-
-## Source adapters 4G-A: private
-
-`CivicationSceneCatalog` har nå ett lite kildeadapterregister som overgangsgrense før den senere `compiled_scene_registry_v1`-cutoveren. Dette er ikke et nytt parallelt registry: Catalog forblir eier, adapterne er navngitte produsentgrenser, og `compiled_registry_ready` forblir `false`.
-
-`CivicationPrivatePhaseMailBuilder` registrerer `private` med `source_format: private_phase_mail_families_v1`. Fordi Private lastes før Workday/SceneCatalog i standard `DAY_SCRIPTS`, bruker den en deferred registreringskø som Catalog adopterer ved opprettelse. Daily kjenner ikke lenger `CivicationPrivatePhaseMailBuilder` direkte; den ber `CivicationSceneCatalog.getSourceScenes("private", ...)` om fasens scene.
-
-4G-A endrer ikke utvalg, døgnrytme, private felt, valg eller fasebegrensninger. Den samme `buildPhaseMail`-logikken er adapterens produsent. Catalog legger bare til provenance (`scene_source_adapter`, `scene_source_format`, `scene_catalog_owner`, `scene_catalog_version`) og den eksisterende Scene Interaction-dekoreringen.
-
-Regresjonen krever at:
-
-- Private kan registrere seg før SceneCatalog finnes;
-- Catalog adopterer nøyaktig én `private`-adapter;
-- Daily har null direkte referanse til Private-builderen;
-- adapterkallet velger samme scene som den eksisterende produsentlogikken;
-- `compiled_registry_ready` fortsatt er `false`.
-
-## Source adapters 4G-B: life
-
-`CivicationLifeMailRuntime` registrerer `life` i det samme SceneCatalog-registeret med `source_format: life_mail_manifest_v1`. Life-generatoren (`makeCandidateLifeMails` / `makeNextLifeMail`) beholder sitt eksisterende eierskap til manifestlasting, eligibility, consumed-state, syklus og prioritering; adapteren er bare den navngitte kildegrensen rundt samme produsent.
-
-I standard `DAY_SCRIPTS` lastes Workday/SceneCatalog før Life. `lifeRuntimeOnAppOpen` ber derfor nå `CivicationSceneCatalog.getSourceScenes("life", ...)` om kandidaten og har ingen direkte `makeNextLifeMail()`-fallback. Adapteren støtter likevel samme deferred kø som Private, slik at isolerte test-/alternativlastere kan registrere Life før Catalog uten å opprette et parallelt eierlag.
-
-4G-B endrer ikke morning-gaten, `shouldTryLifeMail`, valgt scene, valg, consumed-state eller answer-semantikk. Den eksisterende `life_mail_runtime`-middlewareen forblir uendret på priority 30. Catalog legger bare til den samme provenance- og Scene Interaction-dekoreringen som for øvrige adapterkilder.
-
-Regresjonen krever at:
-
-- standard loader rekkefølge plasserer SceneCatalog før Life;
-- Catalog eier nøyaktig én `life`-adapter;
-- adapteren velger samme scene som `makeNextLifeMail`;
-- standard Life-`onAppOpen` ikke kaller Life-produsenten direkte;
-- deferred Life-registrering adopteres idempotent;
-- answer-middleware-navn og priority 30 er uendret;
-- `compiled_registry_ready` fortsatt er `false`.
-
-
-## Source adapters 4G-C: narrative
-
-`CivicationNarrativeSceneSource` registrerer `narrative` i det eksisterende SceneCatalog-registeret med `source_format: civication_narrative_stream_v1`. Modulen eier manifest-/streamlasting, stream- og storylet-eligibility, vekt/manifestrekkefølge og storylet→scene-materialisering. Standard `DAY_SCRIPTS` laster kilden etter Workday/SceneCatalog og før Daily.
-
-Daily beholder dagsorkestreringen: hvilke slots som finnes, private/work-separasjonen, `narrative_state_v1`, valg-/effekttransaksjonen og hvor en same-day storylet settes inn. Selve sceneproduksjonen går derimot gjennom `CivicationSceneCatalog.getSourceScenes("narrative", ...)` både ved normal dagsbygging og når `opens_streams` injiserer en ny storylet samme dag. Daily refererer aldri `CivicationNarrativeSceneSource` direkte.
-
-4G-C bevarer de eksisterende reglene for manifestrekkefølge, første kvalifiserte storylet per stream, `weight_when`, phase/time-slot, private blokkering av work/class_case/conflict, scene-ID/thread-key, valg, `opens_streams` og prefererte injeksjonsfaser. Catalog legger bare til vanlig source-provenance og Scene Interaction-dekorering. De gamle interne narrative kildefunksjonene kan ligge som kompatibilitetskode frem til compiled-registry-cutoveren, men normal Daily-produksjon kaller dem ikke.
-
-Regresjonen krever at:
-
-- loaderrekkefølgen er SceneCatalog → Narrative source → Daily;
-- Catalog eier nøyaktig én `narrative`-adapter;
-- normal `buildQueue` ikke laster streammanifest, velger storylet eller materialiserer narrative scene direkte;
-- same-day `opens_streams`-injeksjon bruker samme Catalog-adapter;
-- private/work-separasjon, sceneidentitet, valg og injeksjonsfase bevares;
-- Daily answer-middleware forblir priority 40;
-- `compiled_registry_ready` fortsatt er `false`.
-
-## Source adapters 4G-D: social
-
-`CivicationSocialSceneSource` registrerer `social` i det eksisterende SceneCatalog-registeret med `source_format: civication_social_encounter_v1`. Modulen fanger den eksisterende deterministiske `CivicationFriendsEngine.getSocialEncountersForLocation`-produsenten én gang og gjør deretter FriendsEngines offentlige `getSocialEncountersForLocation` og `canApproachFriendAtLocation` til synkrone kompatibilitetsfasader mot den registrerte adapteren.
-
-I standard `DAY_SCRIPTS` lastes `CivicationSocialSceneSource` etter `CivicationWorkdayMailBuilder`, som allerede har opprettet SceneCatalog, og før Daily fortsetter. Det betyr at normal runtime aldri trenger en direkte raw-producer-fallback. Hvis en alternativ testloader laster Social tidligere, kan adapteren bare legges i den samme deferred registreringskøen som Private/Life; den offentlige fasaden feiler lukket til Catalog faktisk eier adapteren.
-
-Social er en annen leveringsflate enn den choice-baserte Daily-svarsløyfen. Encounter-modellen beholder derfor `action: "approach"` og mottakerens `responseOptions` (`reply`, `ignore`, `decline`) uten å bli tvangsklassifisert som `decision`/`info` av ChoiceDirector. `CivicationFriendMessages`, `CivicationRelationshipEngine` og `CivicationSocialConversationEngine` beholder eierskap til privat melding, svar, relasjonskonsekvens og samtaletråd. Adapteren legger bare på source-provenance; den endrer ikke hvem som møtes, hvor, når eller hvilke svar som finnes.
-
-Regresjonen krever at:
-
-- standard loaderrekkefølge er SceneCatalog → Social source → Daily;
-- Catalog eier nøyaktig én `social`-adapter;
-- FriendsEngines offentlige møteoppslag og `canApproachFriendAtLocation` går gjennom den registrerte adapteren;
-- valgt person, fase, locationId, `approach` og `reply/ignore/decline` er identiske med den eksisterende produsenten;
-- CityLayer kjenner bare FriendsEngine-fasaden, ikke Social-produsenten direkte;
-- registrering er idempotent og CityLayer får én rerender etter cutover;
-- eksisterende private meldings-, respons-, relasjons- og samtaletester forblir grønne;
-- `compiled_registry_ready` fortsatt er `false`.
+Dokumentasjonen skal aldri bruke en eldre migreringsfase som «neste» når den permanente testen og `main` allerede viser at fasen er fullført.
