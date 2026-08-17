@@ -22,7 +22,7 @@ const EXPECTED_METHODS = [
   'met_vit_maleinstrumentanalyse','met_vit_modellanalyse','met_vit_beregningsanalyse','met_vit_eksperimentanalyse',
   'met_vit_systemanalyse','met_vit_sensoranalyse','met_vit_statistisk_analyse','met_vit_observasjonsanalyse'
 ];
-const EXPECTED_REMAINING_BLOCKERS = ['chemistry_material_science','medicine_biomedicine_public_health'];
+const ALLOWED_LATER_BLOCKERS = ['chemistry_material_science','medicine_biomedicine_public_health'];
 const abs = (p) => path.join(ROOT, p);
 const json = (p) => JSON.parse(fs.readFileSync(abs(p), 'utf8'));
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
@@ -77,16 +77,16 @@ export function auditVitenskapPhysicsAstronomyFulltext() {
   assert(misconceptions.some((r)=>/kvante/i.test(r.claim+r.correction)), 'Unit 3 mangler kvante-korreksjon');
   assert(misconceptions.some((r)=>/Standard Model/i.test(r.claim+r.correction) && /gravitasjon/i.test(r.correction)), 'Unit 3 mangler Standard Model/gravitasjon-korreksjon');
   assert(readiness.complete_ready===false, 'Unit 3 kan ikke gjøre Vitenskap complete-ready');
-  assert(readiness.current_inventory?.vitenskap?.registered_chapter_count===3, 'Readiness må registrere tre Vitenskap-kapitler');
-  assert(isDeepStrictEqual(sorted(readiness.editorial_blockers||[]),sorted(EXPECTED_REMAINING_BLOCKERS)), 'Etter Unit 3 skal bare kjemi og medisin blokkere breadth completion');
+  assert(readiness.current_inventory?.vitenskap?.registered_chapter_count>=3, 'Readiness må bevare minst tre Vitenskap-kapitler etter Unit 3');
+  assert((readiness.editorial_blockers||[]).every((id)=>ALLOWED_LATER_BLOCKERS.includes(id)) && !(readiness.editorial_blockers||[]).includes('physics_astronomy'), 'Senere units kan bare redusere Unit 3 sitt tillatte blocker-sett');
   const physics=readiness.coverage_families?.find((r)=>r.id==='physics_astronomy');
   assert(physics?.status==='chapter_materialized' && physics?.materialized_chapter_id===CHAPTER_ID, 'Fysikkfamilien er ikke chapter_materialized');
   assert(readiness.current_inventory?.teknologi?.top_level_subject===false && readiness.current_inventory?.teknologi?.canonical_parent_subject==='vitenskap', 'Teknologi må forbli nested');
   const registryChapter=registrySubject?.chapters?.find((r)=>r.id===CHAPTER_ID);
-  assert(registrySubject?.chapters?.length===3 && registryChapter, 'Vitenskap-registry skal ha tre kapitler inkludert Unit 3');
+  assert(registrySubject?.chapters?.length>=3 && registryChapter, 'Vitenskap-registry må bevare Unit 3');
   assert(registryChapter.file===P.chapter && registryChapter.claimsFile===P.claims && registryChapter.briefFile===P.brief, 'Fysikk-registry peker til feil filer');
   assert(sameSet(registryChapter.emne_ids,EXPECTED_EMNES), 'Fysikk-registry har feil emnesett');
-  assert(releaseSubject?.chapter_status==='materialized' && releaseSubject?.chapter_count===3 && releaseSubject?.missing_chapter_files?.length===0, 'Release må materialisere tre Vitenskap-kapitler uten manglende filer');
-  return {schema:'history_go_fagverk_vitenskap_physics_astronomy_fulltext_audit_v1',version:'1.0.0',status:'pass',subject:'vitenskap',chapterId:CHAPTER_ID,summary:{emneCount:8,methodCount:8,moduleCount:3,sectionCount:9,paragraphCount:27,sourceCount:12,claimCount:20,misconceptionCount:4,workedExampleCount:2,applicationTaskCount:4,selfCheckCount:6,registeredChapterCount:3,remainingEditorialBlockerCount:2},gates:{measurementModelBoundaryLocked:true,claimTraceReciprocalAndComplete:true,sourceClaimIntegrityPreserved:true,physicsChapterMaterializedAndRegistered:true,physicsEditorialBlockerResolved:true,twoBreadthEditorialBlockersRemain:true,prematureCompleteBlocked:true,technologyRemainsNested:true}};
+  assert(releaseSubject?.chapter_status==='materialized' && releaseSubject?.chapter_count===registrySubject.chapters.length && releaseSubject?.chapter_count>=3 && releaseSubject?.missing_chapter_files?.length===0, 'Release må bevare Unit 3 og følge registry uten manglende filer');
+  return {schema:'history_go_fagverk_vitenskap_physics_astronomy_fulltext_audit_v1',version:'1.0.0',status:'pass',subject:'vitenskap',chapterId:CHAPTER_ID,summary:{emneCount:8,methodCount:8,moduleCount:3,sectionCount:9,paragraphCount:27,sourceCount:12,claimCount:20,misconceptionCount:4,workedExampleCount:2,applicationTaskCount:4,selfCheckCount:6,registeredChapterCount:readiness.current_inventory.vitenskap.registered_chapter_count,remainingEditorialBlockerCount:(readiness.editorial_blockers||[]).length},gates:{measurementModelBoundaryLocked:true,claimTraceReciprocalAndComplete:true,sourceClaimIntegrityPreserved:true,physicsChapterMaterializedAndRegistered:true,physicsEditorialBlockerResolved:true,remainingBreadthEditorialBlockersConsistent:true,prematureCompleteBlocked:true,technologyRemainsNested:true}};
 }
 if (process.argv[1] && fileURLToPath(import.meta.url)===path.resolve(process.argv[1])) console.log(JSON.stringify(auditVitenskapPhysicsAstronomyFulltext(),null,2));
