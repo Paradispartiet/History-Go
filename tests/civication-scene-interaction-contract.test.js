@@ -211,10 +211,12 @@ vm.runInContext(workdaySource, context, { filename: workdayPath });
   assert.equal(legacyRoleLoads, 0);
 
   sourceMode = "empty";
-  const fallbackPack = await engine.buildMailPool(active, state, "fixture_role");
-  assert.equal(fallbackPack.__legacy_fallback, true, "reelt tom canonical kilde kan fortsatt bruke eksisterende fallback i denne porten");
-  assert.equal(legacyPackLoads, 1);
-  assert.equal(legacyRoleLoads, 1);
+  const emptyPack = await engine.buildMailPool(active, state, "fixture_role");
+  assert.equal(emptyPack.__legacy_fallback, false, "reelt tom canonical kilde skal være fail-closed etter 4H-C");
+  assert.equal(emptyPack.__no_runtime_candidates, true);
+  assert.equal(emptyPack.mails.length, 0);
+  assert.equal(legacyPackLoads, 0);
+  assert.equal(legacyRoleLoads, 0);
 
   sourceMode = "closed";
   const closedPack = await engine.buildMailPool(active, state, "fixture_role");

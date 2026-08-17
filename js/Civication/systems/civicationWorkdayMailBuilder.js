@@ -830,55 +830,22 @@
     });
     const terminalClosed = candidates?.__career_outcome_terminal_closed === true;
     const interactionSuppressed = candidates?.__scene_interaction_suppress_legacy_fallback === true;
-    const suppressFallback = terminalClosed || interactionSuppressed;
     const taggedRuntimeMails = candidates.map((mail) => ({
       ...mail,
       source_type: norm(mail?.source_type) || "planned"
     }));
-    if (taggedRuntimeMails.length || suppressFallback) {
-      return {
-        role: norm(active?.career_id) || null,
-        tag_rules: makeDefaultTagRules(),
-        tracks: [],
-        mails: taggedRuntimeMails,
-        __civication_mail_runtime: true,
-        __civication_scene_director: true,
-        __runtime_candidate_count: taggedRuntimeMails.length,
-        __legacy_fallback: false,
-        __terminal_closed: terminalClosed,
-        __interaction_suppressed: interactionSuppressed
-      };
-    }
-    const packFile = typeof engine?.resolvePackFile === "function"
-      ? engine.resolvePackFile(active, roleKey)
-      : null;
-    const pack = typeof engine?.loadPack === "function"
-      ? await engine.loadPack(packFile)
-      : null;
-    const packMails = Array.isArray(pack?.mails)
-      ? pack.mails.map((mail) => ({
-          ...mail,
-          source_type: "legacy_pack"
-        }))
-      : [];
-    const roleMails = await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
-      active,
-      state
-    ) || [];
-    const taggedRoleMails = roleMails.map((mail) => ({
-      ...mail,
-      source_type: norm(mail?.source_type) || "role"
-    }));
     return {
-      role: pack?.role || norm(active?.career_id) || null,
-      tag_rules: pack?.tag_rules || makeDefaultTagRules(),
-      tracks: Array.isArray(pack?.tracks) ? pack.tracks : [],
-      mails: [...taggedRoleMails, ...packMails],
+      role: norm(active?.career_id) || null,
+      tag_rules: makeDefaultTagRules(),
+      tracks: [],
+      mails: taggedRuntimeMails,
       __civication_mail_runtime: true,
       __civication_scene_director: true,
-      __runtime_candidate_count: 0,
-      __legacy_fallback: true,
-      __terminal_closed: false
+      __runtime_candidate_count: taggedRuntimeMails.length,
+      __legacy_fallback: false,
+      __terminal_closed: terminalClosed,
+      __interaction_suppressed: interactionSuppressed,
+      __no_runtime_candidates: taggedRuntimeMails.length === 0
     };
   }
   function patchEventEngineCandidateOwner(director) {
@@ -886,15 +853,28 @@
     if (!proto || !director) return false;
     if (proto[EVENT_ENGINE_PATCH_FLAG] === true) return true;
     if (typeof proto.buildMailPool !== "function") return false;
-    const previousBuildMailPool = proto.buildMailPool;
     proto.buildMailPool = async function sceneDirectorBuildMailPool(active, state, roleKey) {
       try {
         return await buildEventEnginePack(director, this, active, state, roleKey);
       } catch (error) {
         if (window.DEBUG) {
-          console.warn("[CivicationSceneDirector] EventEngine-pack feilet; bruker forrige adapter", error);
+          console.warn("[CivicationSceneDirector] EventEngine-pack feilet; gameplay lukkes fail-closed", error);
         }
-        return previousBuildMailPool.call(this, active, state, roleKey);
+        return {
+          role: norm(active?.career_id) || null,
+          tag_rules: makeDefaultTagRules(),
+          tracks: [],
+          mails: [],
+          __civication_mail_runtime: true,
+          __civication_scene_director: true,
+          __runtime_candidate_count: 0,
+          __legacy_fallback: false,
+          __terminal_closed: false,
+          __interaction_suppressed: false,
+          __no_runtime_candidates: true,
+          __scene_director_error: true,
+          __scene_director_error_message: norm(error?.message || error)
+        };
       }
     };
     proto[EVENT_ENGINE_PATCH_FLAG] = true;
