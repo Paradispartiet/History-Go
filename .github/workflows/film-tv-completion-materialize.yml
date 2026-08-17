@@ -1,0 +1,58 @@
+name: Materialize Film TV completion audit
+
+on:
+  push:
+    branches:
+      - agent/film-tv-completion-audit
+    paths:
+      - 'scripts/audit-film-tv-completion-v1.mjs'
+      - 'tests/film-tv-completion-v1.test.mjs'
+      - '.github/workflows/fagverk-film-tv-complete.yml'
+      - '.github/workflows/film-tv-completion-materialize.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: film-tv-completion-materialize
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-completion-audit
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate syntax
+        run: |
+          node --check scripts/audit-film-tv-completion-v1.mjs
+          node --check tests/film-tv-completion-v1.test.mjs
+      - name: Materialize completion report and final status
+        run: node scripts/audit-film-tv-completion-v1.mjs --apply-complete --write-report --no-check-report
+      - name: Rebuild deterministic release
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Validate materialized completion state
+        run: |
+          node scripts/audit-film-tv-completion-v1.mjs
+          node --test tests/film-tv-completion-v1.test.mjs
+          node scripts/audit-fagverk-film-tv-phase3.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Persist completion state and remove one-shot workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/film-tv-completion-materialize.yml
+          git add data/fagverk/fagverk_registry.json data/fagverk/subject_status.json data/fagverk/fagverk_release.json reports/fagverk/film-tv-completion-v1.json .github/workflows/fagverk-film-tv-complete.yml scripts/audit-film-tv-completion-v1.mjs tests/film-tv-completion-v1.test.mjs
+          if git diff --cached --quiet; then
+            echo 'No completion changes to persist'
+            exit 0
+          fi
+          git commit -m 'Complete Film TV holistic audit'
+          git push origin HEAD:agent/film-tv-completion-audit
