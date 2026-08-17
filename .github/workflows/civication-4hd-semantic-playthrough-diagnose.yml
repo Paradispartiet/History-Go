@@ -33,6 +33,7 @@ jobs:
           python scripts/.tmp-civication-4hd-semantic-playthrough.py
           python scripts/.tmp-civication-4hd-mail-loop-debug.py
           python scripts/.tmp-civication-4hd-stage2.py
+          python scripts/.tmp-civication-4hd-film-harness.py
           node scripts/build-civication-scene-registry.mjs --write
           node scripts/build-civication-scene-registry.mjs --check
           node scripts/audit-civication-career-gameplay.mjs --write
@@ -40,6 +41,8 @@ jobs:
         run: node tests/civication-semantic-playthrough-gate.test.js
       - name: Run brand runtime regression
         run: node tests/civication-brand-mail-runtime.test.js
+      - name: Run Film TV runtime regression
+        run: node tests/civication-film-tv-produksjonsassistent-playability.test.js
       - name: Run legacy mail-loop regression
         run: node tests/civication-mail-loop.test.js
       - name: Run full Civication suite
