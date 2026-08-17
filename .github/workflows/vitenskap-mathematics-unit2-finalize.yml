@@ -1,0 +1,203 @@
+name: Finalize Vitenskap mathematics Unit 2
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-mathematics-formal-sciences-fulltext
+    paths:
+      - '.github/workflows/vitenskap-mathematics-unit2-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vitenskap-mathematics-formal-sciences-fulltext
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Make v4.6 breadth audit monotone across chapter production
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs';
+          let source = fs.readFileSync(file, 'utf8');
+          const replaceOnce = (before, after) => {
+            if (!source.includes(before)) throw new Error(`Breadth audit mangler forventet snapshot:\n${before}`);
+            source = source.replace(before, after);
+          };
+          replaceOnce(
+            "  assert(readiness.version === '1.2.0', 'Readiness har feil post-reconciliation-versjon');",
+            "  assert(['1.2.0', '1.3.0'].includes(readiness.version), 'Readiness har ukjent post-reconciliation-versjon');"
+          );
+          replaceOnce(
+`  assert(isDeepStrictEqual(readiness.current_inventory.vitenskap, {
+    domain_count: 6,
+    emne_count: 117,
+    method_count: 84,
+    mapping_count: 117,
+    hook_count: 64,
+    registered_chapter_count: 1
+  }), 'Readiness har feil v4.6-inventar');`,
+`  assert(readiness.current_inventory.vitenskap?.domain_count === 6, 'Readiness har feil domain count');
+  assert(readiness.current_inventory.vitenskap?.emne_count === 117, 'Readiness har feil emne count');
+  assert(readiness.current_inventory.vitenskap?.method_count === 84, 'Readiness har feil method count');
+  assert(readiness.current_inventory.vitenskap?.mapping_count === 117, 'Readiness har feil mapping count');
+  assert(readiness.current_inventory.vitenskap?.hook_count === 64, 'Readiness har feil hook count');
+  assert(readiness.current_inventory.vitenskap?.registered_chapter_count === registry.subjects?.vitenskap?.chapters?.length, 'Readiness og registry har ulik chapter count');`
+          );
+          replaceOnce(
+            "  assert(isDeepStrictEqual(sorted(readiness.editorial_blockers || []), sorted(EXPECTED_FAMILIES)), 'Fire breadth-familier skal forbli editorial blockers');",
+`  const editorialBlockers = readiness.editorial_blockers || [];
+  assert(editorialBlockers.length >= 1, 'Minst én breadth-family må blokkere mens Vitenskap ikke er complete');
+  assert(editorialBlockers.every((id) => EXPECTED_FAMILIES.includes(id)), 'Readiness har ukjent breadth editorial blocker');`
+          );
+          replaceOnce(
+            "    assert(family?.status === 'inventory_reconciled', `${id} er ikke inventory_reconciled`);",
+`    if (editorialBlockers.includes(id)) {
+      assert(family?.status === 'inventory_reconciled', `${id} må være inventory_reconciled mens den blokkerer`);
+    } else {
+      assert(family?.status === 'chapter_materialized', `${id} kan bare lukkes etter materialisert kapittel`);
+      assert(typeof family?.materialized_chapter_id === 'string' && registry.subjects.vitenskap.chapters.some((row) => row.id === family.materialized_chapter_id), `${id} mangler registrert materialized chapter`);
+    }`
+          );
+          replaceOnce(
+`  assert(registry.subjects?.vitenskap?.chapters?.length === 1, 'Registry må beholde nøyaktig Unit 1 som registrert kapittel');
+  assert(registry.subjects.vitenskap.chapters[0].id === 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap', 'Registry har feil Vitenskap-kapittel');`,
+`  assert(registry.subjects?.vitenskap?.chapters?.some((row) => row.id === 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap'), 'Registry må bevare Unit 1');
+  assert(registry.subjects.vitenskap.chapters.length === readiness.current_inventory.vitenskap.registered_chapter_count, 'Registry og readiness har ulik chapter count');`
+          );
+          fs.writeFileSync(file, source);
+
+          const testFile = 'tests/fagverk-vitenskap-breadth-reconciliation.test.mjs';
+          let testSource = fs.readFileSync(testFile, 'utf8');
+          const testReplace = (before, after) => {
+            if (!testSource.includes(before)) throw new Error(`Breadth test mangler forventet snapshot: ${before}`);
+            testSource = testSource.replace(before, after);
+          };
+          testReplace('assert.equal(report.editorialState.editorialBlockerCount, 4);', 'assert.equal(report.editorialState.editorialBlockerCount, 3);');
+          testReplace('assert.equal(report.editorialState.registeredChapterCount, 1);', 'assert.equal(report.editorialState.registeredChapterCount, 2);');
+          fs.writeFileSync(testFile, testSource);
+          NODE
+
+      - name: Apply Unit 2 registry and readiness transition
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const chapterPath = 'data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell.json';
+          const claimsPath = 'data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/claims.json';
+          const briefPath = 'data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/brief.json';
+          const chapter = JSON.parse(fs.readFileSync(chapterPath, 'utf8'));
+          const registryPath = 'data/fagverk/fagverk_registry.json';
+          const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+          const subject = registry.subjects?.vitenskap;
+          if (!subject?.chapters || subject.chapters.length !== 1 || subject.chapters[0].id !== 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap') {
+            throw new Error('Vitenskap registry er ikke på forventet pre-Unit2 state');
+          }
+          subject.chapters.push({
+            id: chapter.chapter_id,
+            title: chapter.title,
+            subtitle: chapter.subtitle,
+            file: chapterPath,
+            primary_domain_id: chapter.primary_domain_id,
+            chapter_role: 'core',
+            emne_ids: chapter.emne_ids,
+            claimsFile: claimsPath,
+            briefFile: briefPath
+          });
+          registry.version = '3.06.0';
+          registry.updatedAt = '2026-08-17';
+          subject.canonicalModel.note = 'Vitenskapsfagets seks fagområder eier toppstrukturen. Canonical inventory v4.6 har 117 emner, 84 metoder, 117 mappinger og 64 hooks. Matematikk/formelle fag er nå fulltekstmaterialisert og registrert som andre Vitenskap-kapittel; fysikk/astronomi, kjemi/materialvitenskap og medisin/biomedisin/folkehelse gjenstår som redaksjonelle breadth-blockers. Teknologi forblir nested technology_scientific_v2_4-spesialisering under samme fag og badge. Inventory-bredde og ett materialisert breadth-kapittel er fortsatt ikke subject completion.';
+          fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2) + '\n');
+
+          const readinessPath = 'data/fag/vitenskap/vitenskap_university_readiness_v1.json';
+          const readiness = JSON.parse(fs.readFileSync(readinessPath, 'utf8'));
+          if (readiness.version !== '1.2.0' || readiness.current_inventory?.vitenskap?.registered_chapter_count !== 1) {
+            throw new Error('Readiness er ikke på forventet pre-Unit2 state');
+          }
+          const expected = ['mathematics_formal_sciences','physics_astronomy','chemistry_material_science','medicine_biomedicine_public_health'];
+          if (JSON.stringify(readiness.editorial_blockers) !== JSON.stringify(expected)) throw new Error('Readiness har uventet blocker-rekkefølge før Unit2');
+          const math = readiness.coverage_families.find((row) => row.id === 'mathematics_formal_sciences');
+          if (!math || math.status !== 'inventory_reconciled') throw new Error('Matematikkfamilien er ikke inventory_reconciled før Unit2');
+          readiness.version = '1.3.0';
+          readiness.current_inventory.vitenskap.registered_chapter_count = 2;
+          readiness.editorial_blockers = readiness.editorial_blockers.filter((id) => id !== 'mathematics_formal_sciences');
+          math.status = 'chapter_materialized';
+          math.reason = 'Canonical inventory v4.6 dekker bevis og deduksjon, algebraiske strukturer, analyse og kontinuitet, geometri og symmetri samt diskret matematikk og kombinatorikk. Familien er nå fulltekstmaterialisert i tre redigerte moduler med claimsporing, worked examples, anvendelsesoppgaver og eksplisitt skille mellom formell gyldighet og empirisk modellvalidering. Dette lukker matematikk som editorial blocker, men gjør ikke Vitenskap complete fordi tre andre breadth-familier fortsatt gjenstår.';
+          math.materialized_chapter_id = chapter.chapter_id;
+          math.materialized_evidence = {
+            method_count: chapter.method_ids.length,
+            module_count: chapter.moduleFiles.length,
+            section_count: 9,
+            paragraph_count: 27,
+            source_count: 10,
+            claim_count: 18
+          };
+          fs.writeFileSync(readinessPath, JSON.stringify(readiness, null, 2) + '\n');
+          NODE
+
+      - name: Regenerate deterministic shared state
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-vitenskap-university-readiness.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+
+      - name: Validate Vitenskap Unit 1 and Unit 2 progression
+        run: |
+          node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs
+          node scripts/audit-fagverk-vitenskap-pilot.mjs
+          node scripts/audit-fagverk-vitenskap-university-readiness.mjs
+          node scripts/audit-fagverk-vitenskap-unit1.mjs
+          node scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs
+          node scripts/audit-fagverk-vitenskap-mathematics-fulltext.mjs
+          node --test tests/fagverk-vitenskap-breadth-reconciliation.test.mjs
+          node --test tests/fagverk-vitenskap-pilot.test.mjs
+          node --test tests/fagverk-vitenskap-university-readiness.test.mjs
+          node --test tests/fagverk-vitenskap-unit1.test.mjs
+          node --test tests/fagverk-vitenskap-mathematics-source-brief.test.mjs
+          node --test tests/fagverk-vitenskap-mathematics-fulltext.test.mjs
+
+      - name: Validate shared Fagverk and nested Technology
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+          node --test tests/vitenskap-teknologi-category-contract.test.mjs
+          node tools/build-teknologi-editorial-v3.mjs --check
+          node tools/validate-teknologi-foundation.mjs
+          node tools/validate-teknologi-quality-v2_1.mjs
+          node tools/validate-teknologi-ontology-v2_2.mjs
+          node tools/validate-teknologi-evidence-v2_3.mjs
+          node scripts/validate-teknologi-editorial-v3.mjs
+          git diff --check
+
+      - name: Commit Unit 2 canonical state transition
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs \
+            tests/fagverk-vitenskap-breadth-reconciliation.test.mjs \
+            data/fag/vitenskap/vitenskap_university_readiness_v1.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/vitenskap-breadth-reconciliation-audit.json \
+            reports/fagverk/vitenskap-university-readiness-audit.json \
+            reports/fagverk/subject-baseline.json \
+            reports/fagverk/general-engine-audit.json
+          if git diff --cached --quiet; then
+            echo 'No canonical Unit 2 state changes to commit.'
+          else
+            git commit -m 'Register Vitenskap mathematics Unit 2'
+            git push origin HEAD:agent/vitenskap-mathematics-formal-sciences-fulltext
+          fi
