@@ -211,7 +211,7 @@ export function buildFilmTvLearningOrderPlanV1() {
 
   const currentStatus = read(P.status);
   const filmNextGate = currentStatus.subjects.find((row) => row.id === 'film_tv')?.nextGate || '';
-  const laterSourceBriefGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(filmNextGate);
+  const laterSourceBriefGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit|maintenance_source_refresh_and_place_case_expansion)$/.test(filmNextGate);
   const registry = structuredClone(read(P.registry));
   if (!laterSourceBriefGate) {
     registry.version = '2.74.0';

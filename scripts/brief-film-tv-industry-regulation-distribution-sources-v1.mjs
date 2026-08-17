@@ -10,6 +10,7 @@ const INPUT_GATE = 'creative_work_technology_responsibility_full_chapter_complet
 const OUTPUT_GATE = 'industry_regulation_distribution_source_brief_complete_full_chapter_production';
 const UNIT15_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const UNIT_FIFTEEN_COMPLETION_AUDIT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
 
 const P = Object.freeze({
   plan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
@@ -56,7 +57,7 @@ export function buildFilmTvIndustryRegulationDistributionSourceBriefV1() {
   const registry = structuredClone(read(P.registry));
   const status = structuredClone(read(P.status));
   const currentGate = status.subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  const laterGateAlreadyActive = [UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(currentGate);
+  const laterGateAlreadyActive = [UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE].includes(currentGate);
   const brief = read(P.brief);
   const sourceManifest = read(P.sources);
   const caseManifest = read(P.cases);
@@ -112,7 +113,7 @@ export function buildFilmTvIndustryRegulationDistributionSourceBriefV1() {
     existing_prerequisites_registered: unit.prerequisite_existing_chapter_ids.every((id) =>
       registry.subjects.film_tv.chapters.some((row) => row.id === id)
     ),
-    current_status_is_input_or_output_gate: [INPUT_GATE, OUTPUT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(currentGate),
+    current_status_is_input_or_output_gate: [INPUT_GATE, OUTPUT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE].includes(currentGate),
     exact_unit_emne_coverage: topicBriefs.length === unit.emne_count
       && new Set(topicBriefs.map((row) => row.emne_id)).size === unit.emne_count
       && isDeepStrictEqual(brief.scope.emne_ids, unit.emne_ids)
@@ -194,7 +195,7 @@ export function buildFilmTvIndustryRegulationDistributionSourceBriefV1() {
     tenth_source_brief_registered_without_chapter: registry.subjects.film_tv.canonicalModel.tenthSourceClaimBrief === P.brief
       && !registry.subjects.film_tv.chapters.some((row) => row.id === UNIT_ID),
     status_advances_to_fulltext_gate: filmStatus.editorialStatus === 'chapters_in_progress'
-      && [OUTPUT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(filmStatus.nextGate),
+      && [OUTPUT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE].includes(filmStatus.nextGate),
     registration_waits_for_fulltext_claim_source_audit: !brief.runtime_registration.registered
       && !brief.runtime_registration.allowed_before_full_chapter_gate
       && brief.production_requirements.chapter_registration_only_after_fulltext_claim_and_evidence_audit

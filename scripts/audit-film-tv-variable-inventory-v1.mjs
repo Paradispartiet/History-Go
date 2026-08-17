@@ -377,14 +377,14 @@ export function auditFilmTvVariableInventoryV1({ write = false, check = true } =
   assert(inventory.emner.every((row) => row.evidence_refs.length > 0 && row.evidence_refs.every((id) => evidenceIds.has(id))), 'Et emne mangler gyldig evidensreferanse');
   assert(inventory.emner.every((row) => row.domain_id && row.definition && row.boundary), 'Et emne mangler eier, definisjon eller grense');
   assert(inventory.policy.no_target_domain_count && inventory.policy.no_target_emne_count, 'Inventaret har gjeninnført en målkvote');
-  assert(status?.editorialStatus === 'chapters_in_progress', 'Film & TV skal fortsatt stå som pågående');
+  assert(status?.editorialStatus === 'chapters_in_progress' || (status?.editorialStatus === 'complete' && status?.nextGate === 'maintenance_source_refresh_and_place_case_expansion'), 'Film & TV skal stå som pågående eller i bevist complete-/maintenance-tilstand');
   const legacyProgressionGates = new Set([
     'canonical_inventory_migration',
     'canonical_inventory_migrated_existing_chapter_reaudit',
     'canonical_chapter_reaudit_complete_learning_order_plan',
     'learning_order_plan_complete_first_chapter_source_brief'
   ]);
-  const productionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(status?.nextGate || '');
+  const productionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit|maintenance_source_refresh_and_place_case_expansion)$/.test(status?.nextGate || '');
   assert(legacyProgressionGates.has(status?.nextGate) || productionGate, 'Film & TV skal stå på canonical migrasjon, kapittelreaudit, læringsrekkefølge, kildebrief eller fulltekstproduksjon etter gapdesign');
 
   const requiredGapIds = [

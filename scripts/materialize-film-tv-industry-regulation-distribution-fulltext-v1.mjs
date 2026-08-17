@@ -9,6 +9,7 @@ const INPUT_GATE = 'industry_regulation_distribution_source_brief_complete_full_
 const OUTPUT_GATE = 'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief';
 const UNIT15_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const UNIT_FIFTEEN_COMPLETION_AUDIT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
 
 const P = Object.freeze({
   sourceBrief: 'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_source_claim_brief_v1.json',
@@ -115,7 +116,7 @@ export function buildFilmTvIndustryRegulationDistributionFulltextV1() {
   const registry = structuredClone(read(P.registry));
   const status = structuredClone(read(P.status));
   const currentGate = status.subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  const laterGateAlreadyActive = [UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(currentGate);
+  const laterGateAlreadyActive = [UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE].includes(currentGate);
   const unit = learningPlan.planned_units.find((row) => row.id === CHAPTER_ID);
   assert(unit, 'Læringsplanen mangler enhet 10');
 
@@ -227,7 +228,7 @@ export function buildFilmTvIndustryRegulationDistributionFulltextV1() {
 
 export function materializeFilmTvIndustryRegulationDistributionFulltextV1({ force = false } = {}) {
   const currentGate = read(P.status).subjects.find((row) => row.id === 'film_tv')?.nextGate;
-  if (!force) assert([INPUT_GATE, OUTPUT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
+  if (!force) assert([INPUT_GATE, OUTPUT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE].includes(currentGate), `Uventet Film & TV-port: ${currentGate}`);
   const built = buildFilmTvIndustryRegulationDistributionFulltextV1();
   write(P.chapter, built.chapter);
   write(P.brief, built.chapterBrief);

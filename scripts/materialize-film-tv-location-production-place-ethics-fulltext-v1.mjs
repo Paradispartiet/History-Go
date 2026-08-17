@@ -11,6 +11,7 @@ const ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authentici
 const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 const UNIT15_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
 const UNIT_FIFTEEN_COMPLETION_AUDIT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
+const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
 const P = Object.freeze({
   plan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
   emners: 'data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json',
@@ -209,7 +210,7 @@ export function buildFilmTvLocationProductionPlaceEthicsFulltextV1() {
   const status = structuredClone(read(P.status));
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   if (!filmStatus) throw new Error('Mangler Film & TV-status');
-  const unitFourteenOrLaterGateActive = [ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(filmStatus.nextGate);
+  const unitFourteenOrLaterGateActive = [ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE, MAINTENANCE_GATE].includes(filmStatus.nextGate);
   const sourceById = new Map(sources.map((row) => [row.id, row]));
   const caseById = new Map(cases.map((row) => [row.id, row]));
   const topicById = new Map(topicBriefs.map((row) => [row.emne_id, row]));

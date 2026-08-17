@@ -7,7 +7,7 @@ import { buildFilmTvScreenPublicSphereCommunitySocietyFulltextV1 } from './mater
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUTPUT_GATE = 'screen_public_sphere_community_society_full_chapter_complete_next_unit_source_brief';
-const FILM_TV_PRODUCTION_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/;
+const FILM_TV_PRODUCTION_GATE = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit|maintenance_source_refresh_and_place_case_expansion)$/;
 const P = Object.freeze({
   chapter: 'data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn.json',
   brief: 'data/fagverk/film_tv/skjermoffentlighet-fellesskap-og-samfunn/brief.json',
