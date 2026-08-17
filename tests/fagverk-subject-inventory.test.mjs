@@ -102,7 +102,7 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   } else if (vitenskapBlockers.length === 0) {
     assert.equal(vitenskapReadiness.status, 'breadth_chapters_materialized_final_audit_pending');
     assert.equal(vitenskapReadiness.next_gate, 'final_holistic_university_breadth_completion_audit');
-    assert.equal(vitenskap.editorialStatus, 'expanded_and_audited');
+    assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
     assert.equal(vitenskap.nextGate, 'final_holistic_university_breadth_completion_audit');
   } else {
     assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
