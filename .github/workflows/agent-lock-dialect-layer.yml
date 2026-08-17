@@ -31,8 +31,11 @@ jobs:
       - name: Check dialect scope test syntax
         run: node --check tests/place-language-dialect-scope.test.mjs
 
-      - name: Run legacy language regression
-        run: node --test tests/place-language-layer.test.mjs
+      - name: Run legacy runtime and data regressions
+        run: node --test --test-name-pattern='manifestet|stedsspråkfiler|språkflaten bruker|Knowledge-siden|legacy-arrangementer|språkflaten lastes|AHA-importgrensen' tests/place-language-layer.test.mjs
+
+      - name: Run legacy documentation regressions
+        run: node --test --test-name-pattern='Språkleksikon-dokumentasjonen|place-produksjon|områdeeierskap' tests/place-language-layer.test.mjs
 
       - name: Run dialect scope regression
         run: node --test tests/place-language-dialect-scope.test.mjs
