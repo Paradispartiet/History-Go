@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditVitenskapUnit1 } from '../scripts/audit-fagverk-vitenskap-unit1.mjs';
 
-test('Vitenskap Unit 1 materialiserer readiness-låst første kapittel uten premature complete', () => {
+test('Vitenskap Unit 1 bevares gjennom senere breadth-kapitler uten premature complete', () => {
   const report = auditVitenskapUnit1();
   assert.equal(report.status, 'pass');
   assert.equal(report.subject, 'vitenskap');
@@ -22,6 +22,7 @@ test('Vitenskap Unit 1 materialiserer readiness-låst første kapittel uten prem
   assert.equal(report.gates.readinessUnitMatched, true);
   assert.equal(report.gates.canonicalEmnersAndMethodsResolved, true);
   assert.equal(report.gates.structuralCoverageGapsReconciled, true);
+  assert.equal(report.gates.breadthProgressionMonotone, true);
   assert.equal(report.gates.breadthEditorialBlockersRemainOpen, true);
   assert.equal(report.gates.prematureCompleteBlocked, true);
   assert.equal(report.gates.technologyRemainsNested, true);

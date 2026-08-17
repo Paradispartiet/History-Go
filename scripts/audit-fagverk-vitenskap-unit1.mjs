@@ -30,7 +30,7 @@ const EXPECTED_METHODS = [
   'met_vit_fagfelleanalyse',
   'met_vit_feilkildeanalyse'
 ];
-const EXPECTED_BREADTH_FAMILIES = [
+const BREADTH_FAMILIES = [
   'mathematics_formal_sciences',
   'physics_astronomy',
   'chemistry_material_science',
@@ -54,11 +54,18 @@ export function auditVitenskapUnit1() {
   assert(readiness.subject_id === 'vitenskap', 'Readiness peker ikke til vitenskap');
   assert(readiness.complete_ready === false, 'Unit 1 må ikke gjøre hele Vitenskap complete');
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'Strukturelle readiness-gap må være reconcilet etter v4.6');
-  assert(sameSet(readiness.editorial_blockers || [], EXPECTED_BREADTH_FAMILIES), 'De fire breadth-familiene må forbli åpne som redaksjonelle blockers');
-  for (const id of EXPECTED_BREADTH_FAMILIES) {
+  const openBlockers = readiness.editorial_blockers || [];
+  assert(openBlockers.length >= 1, 'Så lenge Vitenskap ikke er complete må minst én breadth editorial blocker stå åpen');
+  assert(openBlockers.every((id) => BREADTH_FAMILIES.includes(id)), 'Readiness har ukjent breadth editorial blocker');
+  for (const id of BREADTH_FAMILIES) {
     const family = readiness.coverage_families?.find((row) => row.id === id);
-    assert(family?.status === 'inventory_reconciled', `${id} må være inventory_reconciled etter v4.6`);
     assert(family?.requires_canonical_inventory_change === false, `${id} kan ikke kreve ny inventory-endring etter v4.6`);
+    if (openBlockers.includes(id)) {
+      assert(family?.status === 'inventory_reconciled', `${id} må være inventory_reconciled mens familien er editorial blocker`);
+    } else {
+      assert(family?.status === 'chapter_materialized', `${id} kan bare lukkes som blocker når kapittel er materialisert`);
+      assert(typeof family?.materialized_chapter_id === 'string' && family.materialized_chapter_id.length > 0, `${id} mangler materialized chapter-link`);
+    }
   }
   assert(readiness.current_inventory?.teknologi?.top_level_subject === false, 'Teknologi må forbli nested');
   assert(readiness.current_inventory?.teknologi?.canonical_parent_subject === 'vitenskap', 'Teknologi har feil canonical parent');
@@ -85,7 +92,7 @@ export function auditVitenskapUnit1() {
   assert(Array.isArray(chapter.moduleFiles) && chapter.moduleFiles.length === 3, 'Unit 1 skal ha tre redigerte moduler');
   assert(chapter.briefFile === P.brief && chapter.claimsFile === P.claims, 'Kapittelroot peker ikke til canonical brief/claims');
   assert(chapter.qualityGuard?.structuralCoverageGapsReconciled === true, 'Unit 1 må eksplisitt erkjenne at v4.6 har reconcilet de strukturelle breddegapene');
-  assert(chapter.qualityGuard?.breadthEditorialBlockersRemainOpen === true, 'Unit 1 må eksplisitt bevare breadth-familiene som redaksjonelle blockers');
+  assert(chapter.qualityGuard?.breadthEditorialBlockersRemainOpen === true, 'Unit 1 må eksplisitt bevare at breadth completion krever videre redaksjonelt arbeid');
   assert(chapter.qualityGuard?.doesNotClaimSubjectComplete === true, 'Unit 1 må eksplisitt blokkere premature complete');
   assert(chapter.qualityGuard?.technologyRemainsNested === true, 'Unit 1 må bevare nested Teknologi');
   assert(chapter.qualityGuard?.noPeerReviewTruthShortcut === true, 'Unit 1 må eksplisitt blokkere peer-review truth shortcut');
@@ -158,7 +165,7 @@ export function auditVitenskapUnit1() {
 
   return {
     schema: 'history_go_fagverk_vitenskap_unit1_audit_v1',
-    version: '1.1.0',
+    version: '1.2.0',
     status: 'pass',
     subject: 'vitenskap',
     chapterId: chapter.chapter_id,
@@ -180,6 +187,7 @@ export function auditVitenskapUnit1() {
       paragraphClaimsResolved: true,
       sourceLocatorsInspectable: true,
       structuralCoverageGapsReconciled: true,
+      breadthProgressionMonotone: true,
       breadthEditorialBlockersRemainOpen: true,
       prematureCompleteBlocked: true,
       technologyRemainsNested: true,

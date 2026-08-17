@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "3.05.0",
+  "version": "3.06.0",
   "updatedAt": "2026-08-17",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -664,7 +664,7 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Vitenskapsfagets seks fagområder eier toppstrukturen. Canonical inventory v4.6 har 117 emner, 84 metoder, 117 mappinger og 64 hooks etter reconciliation av matematikk/formelle fag, fysikk/astronomi, kjemi/materialvitenskap og medisin/biomedisin/folkehelse. Teknologi er fortsatt nested technology_scientific_v2_4-spesialisering under samme fag og badge, ikke et eget toppfag. Inventory-bredde er ikke lik redaksjonell completion; videre fulltekstkapittelproduksjon er fortsatt blocking før complete."
+        "note": "Vitenskapsfagets seks fagområder eier toppstrukturen. Canonical inventory v4.6 har 117 emner, 84 metoder, 117 mappinger og 64 hooks. Matematikk/formelle fag er nå fulltekstmaterialisert og registrert som andre Vitenskap-kapittel; fysikk/astronomi, kjemi/materialvitenskap og medisin/biomedisin/folkehelse gjenstår som redaksjonelle breadth-blockers. Teknologi forblir nested technology_scientific_v2_4-spesialisering under samme fag og badge. Inventory-bredde og ett materialisert breadth-kapittel er fortsatt ikke subject completion."
       },
       "chapters": [
         {
@@ -686,6 +686,23 @@
           ],
           "claimsFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json",
           "briefFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/brief.json"
+        },
+        {
+          "id": "vitenskap-matematisk-bevis-struktur-og-modell",
+          "title": "Matematisk bevis, struktur og modell",
+          "subtitle": "Fra deduktiv gyldighet og maskinsjekkede bevis til algebraiske transformasjoner, kontinuerlig analyse, symmetri og diskrete strukturer – uten å forveksle formell korrekthet med empirisk validering",
+          "file": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell.json",
+          "primary_domain_id": "metoder_maling_modeller",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_vit_matematisk_bevis_og_deduksjon",
+            "em_vit_algebra_og_strukturer",
+            "em_vit_analyse_endring_og_kontinuitet",
+            "em_vit_geometri_rom_og_symmetri",
+            "em_vit_diskret_matematikk_og_kombinatorikk"
+          ],
+          "claimsFile": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/claims.json",
+          "briefFile": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/brief.json"
         }
       ]
     },

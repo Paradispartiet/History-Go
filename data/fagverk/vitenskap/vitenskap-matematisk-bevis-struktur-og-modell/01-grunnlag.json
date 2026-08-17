@@ -1,0 +1,97 @@
+{
+  "sections": [
+    {
+      "id": "vit2-grunnlag-1",
+      "title": "Hva et matematisk bevis faktisk etablerer",
+      "paragraphs": [
+        "Et matematisk bevis er ikke en ekstra overbevisende observasjon av verden. Det begynner med et presist utsagn, eksplisitte definisjoner og forutsetninger, og viser at konklusjonen følger gjennom tillatte slutninger. Lean-dokumentasjonen gjør denne strukturen særlig synlig fordi proposisjoner behandles som formelle objekter og bevis som objekter som kan kontrolleres. Det avgjørende er derfor ikke hvor plausibel konklusjonen virker, men om slutningskjeden faktisk bærer fra de oppgitte premissene til det som hevdes.",
+        "Denne formen for begrunnelse skiller påstanden som skal bevises fra selve beviskonstruksjonen. Lean Language Reference krever at theorem-statementet er en proposisjon og holder theorem-headeren adskilt fra proof body. Det gir en nyttig faglig vane også uten programmering: skriv først nøyaktig hva som påstås, hvilke objekter utsagnet gjelder for, og hvilke antakelser som er aktive; vurder deretter om hvert steg i argumentet er legitimt. Et uklart utsagn kan ikke reddes av avansert symbolmanipulasjon.",
+        "Når matematikk brukes i fysikk, økonomi, biologi eller teknologi kommer et ekstra ledd inn. Et formelt korrekt bevis kan vise at en konklusjon følger i modellen, men det viser ikke alene at modellens variabler, forutsetninger eller idealiseringer beskriver det empiriske systemet godt. Derfor må to spørsmål holdes fra hverandre: Er den matematiske slutningen korrekt gitt antakelsene, og er antakelsene og representasjonen faglig rimelige for fenomenet? Å blande disse spørsmålene gjør formell sikkerhet til en falsk garanti for empirisk sannhet."
+      ],
+      "paragraphClaimIds": [
+        ["vit2-01", "vit2-02"],
+        ["vit2-02", "vit2-03"],
+        ["vit2-01", "vit2-03", "vit2-15"]
+      ],
+      "keyPoints": [
+        "Et bevis etablerer en konklusjon fra eksplisitte formelle forutsetninger; det er en annen begrunnelsesform enn empirisk evidens.",
+        "Et matematisk resultat blir ikke automatisk en valid beskrivelse av verden før modellens fortolkning og anvendelsesgrunnlag er vurdert."
+      ],
+      "keyPointClaimIds": [
+        ["vit2-01", "vit2-02", "vit2-03"],
+        ["vit2-15"]
+      ]
+    },
+    {
+      "id": "vit2-grunnlag-2",
+      "title": "Induksjon, proof terms og uavhengig kontroll",
+      "paragraphs": [
+        "Induksjon viser hvordan et bevis kan følge strukturen til objektet det handler om. I et klassisk naturlig-tall-eksempel skilles et grunntilfelle fra et induksjonstrinn: man viser at utsagnet gjelder ved starten, antar at det gjelder for et vilkårlig trinn, og viser at dette er nok til å etablere neste. Lean uttrykker den samme logikken gjennom induktive definisjoner og recursors. Poenget er ikke å gjenta mange eksempler, men å begrunne hele den rekursive strukturen med et endelig argument.",
+        "Formelle bevisverktøy introduserer samtidig et viktig skille mellom den programvaren som hjelper oss å finne eller konstruere et bevis og den mindre delen av systemet som faktisk kontrollerer resultatet. Lean-dokumentasjonen beskriver hvordan output fra equation compiler ender som termer som kontrolleres uavhengig av kernel. Dette er en kontrollarkitektur: avanserte automatiske verktøy kan være komplekse, men det ferdige bevisobjektet må fortsatt tilfredsstille de grunnleggende reglene som den betrodde kjernen håndhever.",
+        "Det er fristende å tolke maskinsjekking som at menneskelig vurdering ikke lenger trengs. Det er feil. Formaliseringen må fortsatt uttrykke riktig theorem statement, riktige definisjoner og relevante antakelser. En maskin kan kontrollere at en proof term har riktig type uten å avgjøre om forskeren formaliserte det vitenskapelige spørsmålet hun egentlig ønsket å stille. Derfor bør formell verifikasjon leses som svært streng kontroll av eksplisitte slutninger, ikke som en erstatning for problemformulering, modellvalg eller empirisk vurdering."
+      ],
+      "paragraphClaimIds": [
+        ["vit2-04"],
+        ["vit2-05"],
+        ["vit2-04", "vit2-05"]
+      ],
+      "keyPoints": [
+        "Induksjon begrunner en hel struktur ved å koble et grunntilfelle til et generelt induksjonstrinn.",
+        "Formelle verktøy kan konstruere komplekse bevis, mens en liten betrodd kernel kontrollerer at det ferdige bevisobjektet følger systemets regler."
+      ],
+      "keyPointClaimIds": [
+        ["vit2-04"],
+        ["vit2-05"]
+      ]
+    },
+    {
+      "id": "vit2-grunnlag-3",
+      "title": "Matematikk er et landskap av strukturer, ikke bare beregning",
+      "paragraphs": [
+        "Skolematematikk kan gi inntrykk av at faget først og fremst handler om å regne fram et tall. Universitetsmatematikken er bredere. UiO Universitetsbibliotekets kontrollerte vokabular organiserer blant annet algebra, geometri, kombinatorikk, matematisk analyse, matematiske modeller og symbolsk logikk under matematikk. Det er en nyttig påminnelse om at beregning bare er én aktivitet blant flere: matematikk klassifiserer strukturer, beviser egenskaper, undersøker transformasjoner og bygger representasjoner som kan brukes på svært ulike problemer.",
+        "Diskret matematikk gjør dette særlig tydelig fordi objektene ofte er tellbare og relasjonelle. MITs Mathematics for Computer Science kombinerer definisjoner og bevismetoder med mengder, relasjoner, grafteori, rekurrenser, telling og kombinatorikk. En graf er for eksempel ikke først og fremst en tegnet kurve, men en abstrakt struktur av noder og forbindelser. Det samme nettverksmønsteret kan representere ruter, avhengigheter, kommunikasjon eller sosiale relasjoner uten at matematikken bestemmer hva nodene fysisk er.",
+        "Denne abstraksjonen gjør matematikk kraftig, men den skaper også et ansvar. Når vi oversetter et konkret problem til en graf, en ligning eller et annet formelt objekt, velger vi hvilke egenskaper som skal bevares og hvilke detaljer som skal ignoreres. MIT-kurset legger vekt på proof techniques, induksjon, motsigelsesbevis, grafer, permutasjoner og kombinasjoner nettopp fordi diskrete problemer krever mer enn mekanisk regning. Den vitenskapelige bruken blir god først når representasjonen er eksplisitt nok til at andre kan vurdere både matematikken og oversettelsen fra fenomen til struktur."
+      ],
+      "paragraphClaimIds": [
+        ["vit2-13"],
+        ["vit2-06"],
+        ["vit2-06", "vit2-07"]
+      ],
+      "keyPoints": [
+        "Matematikk omfatter blant annet analyse av strukturer, transformasjoner, bevis, modeller og diskrete relasjoner; faget kan ikke reduseres til tallregning.",
+        "En diskret representasjon må gjøre tydelig hva noder, relasjoner og telleobjekter står for i den konkrete anvendelsen."
+      ],
+      "keyPointClaimIds": [
+        ["vit2-13", "vit2-06"],
+        ["vit2-07"]
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "matematisk-proposisjon",
+      "term": "Matematisk proposisjon",
+      "definition": "Et presist formulert utsagn som i et formelt system kan være målet for et bevis og vurderes relativt til eksplisitte definisjoner og forutsetninger."
+    },
+    {
+      "id": "matematisk-bevis",
+      "term": "Matematisk bevis",
+      "definition": "En eksplisitt slutningskjede som viser at en konklusjon følger fra oppgitte definisjoner, aksiomer eller antakelser etter gyldige regler."
+    },
+    {
+      "id": "proof-term",
+      "term": "Proof term",
+      "definition": "Et formelt bevisobjekt som i et system som Lean kan kontrolleres maskinelt mot proposisjonen det hevdes å bevise."
+    },
+    {
+      "id": "matematisk-induksjon",
+      "term": "Matematisk induksjon",
+      "definition": "Bevismetode der et grunntilfelle og et induksjonstrinn sammen etablerer et utsagn for alle objekter i en induktivt definert struktur."
+    },
+    {
+      "id": "diskret-struktur",
+      "term": "Diskret struktur",
+      "definition": "En matematisk struktur bygget av adskilte eller tellbare objekter og relasjoner, som grafer, mengder, kombinasjoner eller rekursive objekter."
+    }
+  ]
+}

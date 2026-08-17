@@ -16,6 +16,7 @@ const P = Object.freeze({
   report: 'reports/fagverk/vitenskap-pilot-audit.json'
 });
 
+const FIRST_UNIT_ID = 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap';
 const abs = (p) => path.join(ROOT, p);
 const json = (p) => JSON.parse(fs.readFileSync(abs(p), 'utf8'));
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
@@ -67,7 +68,10 @@ export function auditVitenskapPilot({ writeReport = false, checkReport = true } 
   assert(statusEntry?.assessmentStatus === 'audited', 'Vitenskap må være audited');
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Vitenskap må stå chapters_in_progress');
   assert(statusEntry?.nextGate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Vitenskap har feil neste port');
-  assert(registrySubject?.chapters?.length === 1, 'Vitenskap skal ha ett registrert fulltekstkapittel');
+  assert(Array.isArray(registrySubject?.chapters) && registrySubject.chapters.length >= 1, 'Vitenskap må ha minst ett registrert fulltekstkapittel');
+  assert(registrySubject.chapters.some((row) => row.id === FIRST_UNIT_ID), 'Vitenskap må bevare Unit 1 gjennom senere kapittelproduksjon');
+  assert(new Set(registrySubject.chapters.map((row) => row.id)).size === registrySubject.chapters.length, 'Vitenskap-registry har dupliserte chapter-ID-er');
+  assert(registrySubject.chapters.every((row) => row.file && fs.existsSync(abs(row.file))), 'Vitenskap-registry peker til manglende kapittelroot');
 
   const inputs = generator.canonical_inputs || {};
   assert(inputs.pensum === 'vitenskappensum_canonical_v4_6.json', 'Quizgenerator peker til stale pensum');
@@ -84,7 +88,7 @@ export function auditVitenskapPilot({ writeReport = false, checkReport = true } 
 
   const report = {
     schema: 'history_go_fagverk_vitenskap_pilot_audit_v1',
-    version: '1.2.0',
+    version: '1.3.0',
     status: 'vitenskap_with_nested_teknologi_canonical_v4_6_chapter_production',
     generatedFrom: P,
     subject: {
@@ -113,6 +117,7 @@ export function auditVitenskapPilot({ writeReport = false, checkReport = true } 
       exactInventoryLocked: true,
       allMappingsUnique: true,
       editorialStatusChaptersInProgress: true,
+      chapterProgressionMonotone: true,
       registeredChapterPresent: true,
       generatorUsesCanonicalV46: true,
       technologyRemainsNested: true
@@ -132,7 +137,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const args = new Set(process.argv.slice(2));
   try {
     const { report } = auditVitenskapPilot({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Vitenskap pilot OK: ${report.inventory.emneCount} emner, ${report.inventory.topicHookCount} hooks, ${report.subject.registeredChapterCount} kapittel`);
+    console.log(`Vitenskap pilot OK: ${report.inventory.emneCount} emner, ${report.inventory.topicHookCount} hooks, ${report.subject.registeredChapterCount} kapitler`);
   } catch (error) {
     console.error(error.stack || error.message);
     process.exitCode = 1;

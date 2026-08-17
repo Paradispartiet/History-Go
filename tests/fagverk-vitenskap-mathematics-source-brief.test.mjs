@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditVitenskapMathematicsSourceBrief } from '../scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs';
 
-test('Vitenskap matematikk-source brief låser canonical v4.6-familie uten premature completion', () => {
+test('Vitenskap matematikk-source brief låser canonical v4.6-familie gjennom fulltekstprogresjon', () => {
   const report = auditVitenskapMathematicsSourceBrief();
   assert.equal(report.status, 'pass');
   assert.equal(report.subject, 'vitenskap');
@@ -18,7 +18,7 @@ test('Vitenskap matematikk-source brief låser canonical v4.6-familie uten prema
     scenarioCount: 4
   });
   assert.equal(report.gates.canonicalV46MathFamilyLocked, true);
-  assert.equal(report.gates.mathematicsEditorialBlockerRemainsOpen, true);
+  assert.equal(report.gates.sourceBriefPhaseConsistentWithReadiness, true);
   assert.equal(report.gates.prematureCompleteBlocked, true);
   assert.equal(report.gates.technologyRemainsNested, true);
 });
