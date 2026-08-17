@@ -1,4 +1,4 @@
-# TEMP capture full-suite failure after focused gates are green
+# TEMP 4H-D integration diagnose; remove before PR
 name: TEMP Civication 4H-D semantic playthrough diagnose
 
 on:
@@ -28,12 +28,18 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci --ignore-scripts
-      - name: Apply 4H-D runtime and gate patch
+      - name: Apply 4H-D runtime/compiler/harness patch
         run: |
           python scripts/.tmp-civication-4hd-semantic-playthrough.py
           python scripts/.tmp-civication-4hd-mail-loop-debug.py
+          python scripts/.tmp-civication-4hd-stage2.py
+          node scripts/build-civication-scene-registry.mjs --write
+          node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-career-gameplay.mjs --write
       - name: Run focused 4H-D gate
         run: node tests/civication-semantic-playthrough-gate.test.js
+      - name: Run brand runtime regression
+        run: node tests/civication-brand-mail-runtime.test.js
       - name: Run legacy mail-loop regression
         run: node tests/civication-mail-loop.test.js
       - name: Run full Civication suite
@@ -53,15 +59,35 @@ jobs:
             fi
           fi
           exit "$status"
-      - name: Commit verified 4H-D runtime and test changes
+      - name: Commit verified permanent 4H-D changes
         if: success()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add js/Civication/systems/civicationMailRuntime.js tests/civication-mail-loop.test.js tests/civication-semantic-playthrough-gate.test.js
+          git add \
+            scripts/build-civication-scene-registry.mjs \
+            data/Civication/compiledSceneRegistryV1.json \
+            data/Civication/careerGameplayMatrix.json \
+            reports/civication-career-gameplay-matrix.md \
+            js/Civication/systems/civicationMailRuntime.js \
+            js/Civication/systems/civicationWorkdayMailBuilder.js \
+            tests/civication-mail-loop.test.js \
+            tests/civication-semantic-playthrough-gate.test.js \
+            tests/civication-brand-mail-runtime.test.js \
+            tests/civication-controller-day1-daily-builder.test.js \
+            tests/civication-controller-two-week-flow.test.js \
+            tests/civication-ekspeditor-brand-flow.test.js \
+            tests/civication-ekspeditor-ui-flow.test.js \
+            tests/civication-fagarbeider-two-week-flow.test.js \
+            tests/civication-film-tv-produksjonsassistent-playability.test.js \
+            tests/civication-first-week-praksisfortellinger.test.js \
+            tests/civication-mellomleder-two-week-flow.test.js \
+            tests/civication-praksisfortellinger-cross-role.test.js \
+            tests/civication-praksisfortellinger-two-week-flow.test.js \
+            tests/civication-second-week-praksisfortellinger.test.js
           if git diff --cached --quiet; then
             echo "No verified changes to commit"
           else
-            git commit -m "Add Civication 4H-D semantic playthrough gate"
+            git commit -m "Complete Civication 4H-D semantic playthrough gate"
             git push origin HEAD:agent/civication-4hd-semantic-playthrough-gate-20260817
           fi
