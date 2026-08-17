@@ -1,0 +1,49 @@
+name: Finalize Vitenskap Unit 1 shared Fagverk reports
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-unit1-registry-integration
+    paths:
+      - '.github/workflows/vitenskap-unit1-shared-reports-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vitenskap-unit1-registry-integration
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Regenerate shared deterministic Fagverk reports
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+      - name: Validate shared and Vitenskap gates
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-vitenskap-university-readiness.mjs
+          node scripts/audit-fagverk-vitenskap-unit1.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-vitenskap-university-readiness.test.mjs
+          node --test tests/fagverk-vitenskap-unit1.test.mjs
+          git diff --check
+      - name: Commit regenerated shared reports
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json
+          if git diff --cached --quiet; then
+            echo 'Shared reports already current.'
+            exit 0
+          fi
+          git commit -m 'Regenerate shared Fagverk reports for Vitenskap Unit 1'
+          git push origin HEAD:agent/vitenskap-unit1-registry-integration
