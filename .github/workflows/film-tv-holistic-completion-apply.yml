@@ -39,7 +39,20 @@ jobs:
           node --check tests/film-tv-holistic-completion-v1.test.mjs
 
       - name: Materialize holistic completion state
-        run: node scripts/audit-film-tv-holistic-completion-v1.mjs --write
+        id: materialize
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/audit-film-tv-holistic-completion-v1.mjs --write 2>&1 | tee film-tv-holistic-materialize.log
+
+      - name: Upload materialize diagnostic
+        if: failure() && steps.materialize.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: film-tv-holistic-materialize-diagnostic-${{ github.sha }}
+          path: film-tv-holistic-materialize.log
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Rebuild shared deterministic audits
         run: |
