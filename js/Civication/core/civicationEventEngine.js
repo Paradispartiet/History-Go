@@ -411,48 +411,20 @@ async buildMailPool(active, state, role_key) {
     source_type: m?.source_type || "planned"
   }));
 
-  let taggedLegacyMails = [];
-  let legacyRole = active?.career_id || null;
-  let legacyTagRules = {
-    max_tags_per_choice: 2,
-    memory_window: 12
+  return {
+    role: active?.career_id || null,
+    tag_rules: {
+      max_tags_per_choice: 2,
+      memory_window: 12
+    },
+    tracks: [],
+    mails: taggedRuntimeMails,
+    __civication_mail_runtime: true,
+    __legacy_fallback: false,
+    __runtime_candidate_count: taggedRuntimeMails.length,
+    __no_runtime_candidates: taggedRuntimeMails.length === 0
   };
-  let legacyTracks = [];
-  if (!taggedRuntimeMails.length) {
-    const packFile = this.resolvePackFile(active, role_key);
-    const pack = await this.loadPack(packFile);
-    legacyRole = pack?.role || active?.career_id || null;
-    legacyTagRules = pack?.tag_rules || legacyTagRules;
-    legacyTracks = Array.isArray(pack?.tracks) ? pack.tracks : [];
-    const packMails = Array.isArray(pack?.mails)
-      ? pack.mails.map((m) => ({
-          ...m,
-          source_type: "legacy_pack"
-        }))
-      : [];
-
-    const roleMails =
-      await window.CiviRoleStoryletBridge?.makeCandidateMailsForActiveRole?.(
-        active,
-        state
-      ) || [];
-
-    const taggedRoleMails = roleMails.map((m) => ({
-      ...m,
-      source_type: m?.source_type || "role"
-    }));
-    taggedLegacyMails = [...taggedRoleMails, ...packMails];
-  }
-
-return {
-  role: legacyRole,
-  tag_rules: legacyTagRules,
-  tracks: legacyTracks,
-  mails: [
-    ...taggedRuntimeMails,
-    ...taggedLegacyMails
-  ]
-};}
+}
   
   // -------- event selection --------
 
@@ -888,116 +860,6 @@ if (activeConflicts.length > 1) {
     ) || null;
   }
 
-  buildGenericChoices(stage) {
-    if (stage === "warning" || stage === "warning_danger") {
-      return [
-        {
-          id: "A",
-          label: "Lag en ryddig plan og forankre den",
-          effect: 1,
-          tags: ["process", "legitimacy"],
-          feedback: "Du skaper struktur rundt saken. Det roer systemet."
-        },
-        {
-          id: "B",
-          label: "Løs det raskt og hold det i gang",
-          effect: 0,
-          tags: ["shortcut", "visibility"],
-          feedback: "Det går videre. Du vet at det er skjørt."
-        },
-        {
-          id: "C",
-          label: "Skyv det litt foran deg",
-          effect: -1,
-          tags: ["avoidance", "laziness"],
-          feedback: "Du kjøper tid. Tid er ikke alltid gratis."
-        }
-      ];
-    }
-
-    return [
-      {
-        id: "A",
-        label: "Lag en ryddig plan og dokumenter",
-        effect: 1,
-        tags: ["process", "craft"],
-        feedback: "Det blir ryddigere. Ingen jubler, men det virker."
-      },
-      {
-        id: "B",
-        label: "Løs det raskt og send videre",
-        effect: 0,
-        tags: ["shortcut", "visibility"],
-        feedback: "Det fungerer nå. Du vet ikke om det holder lenge."
-      },
-      {
-        id: "C",
-        label: "La det ligge litt",
-        effect: -1,
-        tags: ["avoidance", "laziness"],
-        feedback: "Det blir stille. Det er sjelden et godt tegn."
-      }
-    ];
-  }
-
-  makeGenericCareerEvent(active, state, reason) {
-    const careerId = String(active?.career_id || "").trim();
-    const title = String(active?.title || "Rolle").trim() || "Rolle";
-    const career = this.getCareerRules(careerId);
-    const stability = String(state?.stability || "STABLE").toUpperCase();
-
-    let stage = "stable";
-    if (stability === "WARNING") stage = "warning";
-    if (stability === "FIRED") stage = "warning_danger";
-
-    const diegetic = career?.diegetic_text || {};
-    const intro = Array.isArray(diegetic.offer) ? diegetic.offer[0] : "";
-    const warn = Array.isArray(diegetic.maintenance_warning)
-      ? diegetic.maintenance_warning[0]
-      : "";
-
-    const subject =
-      stage === "warning" || stage === "warning_danger"
-        ? `${title}: situasjonen må avklares`
-        : `${title}: ny arbeidsoppgave`;
-
-    const tail =
-      reason === "job_accepted"
-        ? "Dette er den første meldingen i rollen din."
-        : "Denne rollen har ikke egen mailpack ennå, så Civication lager en generisk jobbmail.";
-
-    const situation =
-      stage === "warning" || stage === "warning_danger"
-        ? [
-            warn || "Det er friksjon rundt arbeidet ditt.",
-            "Du må velge hvordan du håndterer situasjonen.",
-            tail
-          ]
-        : [
-            intro || "Du får en ny oppgave i rollen din.",
-            "Hvordan du løser den former rollen videre.",
-            tail
-          ];
-
-    return {
-      id: `generic_${careerId || slugify(title)}_${stage}_${Date.now()}`,
-      stage,
-      source: "Civication",
-      subject,
-      situation,
-      mail_tags: ["generic", careerId || "career", reason || "fallback"],
-      choices: this.buildGenericChoices(stage),
-      __pack: {
-        role: careerId || null,
-        tag_rules: {
-          max_tags_per_choice: 2,
-          memory_window: 12
-        },
-        tracks: []
-      }
-    };
-  }
-
   decorateWorkMail(eventObj, active, reason) {
     if (!eventObj || !active) return eventObj;
 
@@ -1312,58 +1174,28 @@ async ensureConflictState(active) {
     const pack = await this.buildMailPool(active, stateWithStory, role_key);
 
 if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-  const generic = this.makeGenericCareerEvent(
-    active,
-    state,
-    force ? "job_accepted" : "missing_pack"
-  );
-
-  const decorated = this.decorateWorkMail(
-    generic,
-    active,
-    force ? "job_accepted" : "missing_pack"
-  );
-
-  this.enqueueEvent(decorated);
-
   if (!force) {
     this.markPulseUsed();
   }
-
   return {
-    enqueued: true,
-    type: "generic",
-    reason: "missing_pack",
-    event: decorated
+    enqueued: false,
+    type: "none",
+    reason: pack?.__scene_director_error === true
+      ? "scene_director_error"
+      : "no_runtime_candidates"
   };
 }
 
 const chosen = this.pickEventFromPack(pack, stateWithStory);
 
 if (!chosen) {
-  const generic = this.makeGenericCareerEvent(
-    active,
-    state,
-    force ? "job_accepted" : "no_candidates"
-  );
-
-  const decorated = this.decorateWorkMail(
-    generic,
-    active,
-    force ? "job_accepted" : "no_candidates"
-  );
-
-  this.enqueueEvent(decorated);
-
   if (!force) {
     this.markPulseUsed();
   }
-
   return {
-    enqueued: true,
-    type: "generic",
-    reason: "no_candidates",
-    event: decorated
+    enqueued: false,
+    type: "none",
+    reason: "no_runtime_candidate_selected"
   };
 }
 
@@ -1413,52 +1245,22 @@ if (!chosen) {
   const pack = await this.buildMailPool(active, state, role_key);
     
     if (!pack || !Array.isArray(pack.mails) || !pack.mails.length) {
-      const generic = this.makeGenericCareerEvent(
-        active,
-        state,
-        "followup_missing_pack"
-      );
-
-      const decorated = this.decorateWorkMail(
-        generic,
-        active,
-        "followup_missing_pack"
-      );
-
-      this.enqueueEvent(decorated);
-      window.dispatchEvent(new Event("updateProfile"));
-
       return {
-        enqueued: true,
-        type: "generic",
-        reason: "missing_pack",
-        event: decorated
+        enqueued: false,
+        type: "none",
+        reason: pack?.__scene_director_error === true
+          ? "scene_director_error"
+          : "no_runtime_candidates"
       };
     }
 
     const chosen = this.pickEventFromPack(pack, state);
 
     if (!chosen) {
-      const generic = this.makeGenericCareerEvent(
-        active,
-        state,
-        "followup_no_candidates"
-      );
-
-      const decorated = this.decorateWorkMail(
-        generic,
-        active,
-        "followup_no_candidates"
-      );
-
-      this.enqueueEvent(decorated);
-      window.dispatchEvent(new Event("updateProfile"));
-
       return {
-        enqueued: true,
-        type: "generic",
-        reason: "no_candidates",
-        event: decorated
+        enqueued: false,
+        type: "none",
+        reason: "no_runtime_candidate_selected"
       };
     }
 

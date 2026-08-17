@@ -18,8 +18,17 @@
     "cutover_rule": "Runtime skal ikke bytte fra mailFamilies til compiled registry før id-, valg-, eligibility-, thread-, consequence- og selection-paritet er bevist og shadowed duplicate-gjeld er null.",
     "sync_gate": "node scripts/build-civication-scene-registry.mjs --check",
     "parity_test": "tests/civication-compiled-scene-registry-parity.test.js",
-    "completed_phase": "4H-B",
-    "next_phase": "4H-C"
+    "completed_phase": "4H-C",
+    "next_phase": "4H-D",
+    "legacy_fallback_policy": {
+      "jobbmails_runtime_gameplay_allowed": false,
+      "legacy_pack_runtime_fallback_allowed": false,
+      "generic_career_mail_runtime_fallback_allowed": false,
+      "role_storylet_runtime_fallback_allowed": false,
+      "previous_build_mail_pool_runtime_fallback_allowed": false,
+      "scene_director_error_mode": "fail_closed_no_gameplay",
+      "archive_data_may_remain_in_repo": true
+    }
   },
   "format_freeze": {
     "new_mail_source_formats_allowed": false,
