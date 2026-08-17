@@ -19,24 +19,35 @@ jobs:
           fetch-depth: 0
       - name: Apply targeted documentation reconciliation
         run: python3 scripts/tmp-civication-doc-reconcile.py
-      - name: Validate edited JSON and documentation references
+      - name: Validate reconciled documents
         run: |
           python3 -m json.tool docs/documentation_registry.json >/dev/null
           python3 -m json.tool data/Civication/scenePipelinePolicyV1.json >/dev/null
-          grep -q 'Role World' docs/CIVICATION_README.md
-          grep -q '4H-D fullført' docs/CIVICATION_PATCH_ORDER.md
-          grep -q 'compiledSceneRegistryV1.json' js/Civication/README.md
-          grep -q 'CIVICATION_ROLE_WORLD_STANDARD.md' docs/README.md
+          python3 - <<'PY'
+          from pathlib import Path
+          checks = {
+              'js/Civication/README.md': ['Nåværende scene- og svarownership etter 4H-D', 'compiledSceneRegistryV1.json'],
+              'docs/CIVICATION_DATA_LAYERS.md': ['Oppdatert scene-, Role World- og leveveigrense', 'compiledSceneRegistryV1.json'],
+              'docs/README.md': ['### Civication', 'CIVICATION_ROLE_WORLD_STANDARD.md'],
+              'docs/CIVICATION_PATCH_ORDER.md': ['4H-D fullført'],
+          }
+          for path, needles in checks.items():
+              text = Path(path).read_text(encoding='utf-8')
+              for needle in needles:
+                  if needle not in text:
+                      raise SystemExit(f'{path}: missing {needle!r}')
+          PY
       - name: Remove temporary apply files
         run: |
           rm -f scripts/tmp-civication-doc-reconcile.py
           rm -f .github/workflows/civication-role-world-doc-reconcile.yml
+          rm -f .github/civication-docs-trigger.txt
       - name: Commit reconciled documentation
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add docs js/Civication/README.md data/Civication/README-mailsystem-og-rolemodels.md data/Civication/SCENE_PIPELINE_V1.md data/Civication/scenePipelinePolicyV1.json
-          git add -u scripts/tmp-civication-doc-reconcile.py .github/workflows/civication-role-world-doc-reconcile.yml
+          git add -u scripts/tmp-civication-doc-reconcile.py .github/workflows/civication-role-world-doc-reconcile.yml .github/civication-docs-trigger.txt
           if git diff --cached --quiet; then
             echo 'No changes to commit'
             exit 0
