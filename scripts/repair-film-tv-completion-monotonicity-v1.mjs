@@ -58,7 +58,7 @@ function addMaintenanceToNextGateIncludes(text) {
   const gateVar = gateConst?.[1];
   let next = ensureMaintenanceConstant(text, gateConst);
 
-  return next.replace(/\[([\s\S]*?)\]\.includes\(([^)]*(?:nextGate|currentGate)[^)]*)\)/g, (whole, body, argument) => {
+  return next.replace(/\[([^\]]*)\]\.includes\(([^)]*(?:nextGate|currentGate)[^)]*)\)/g, (whole, body, argument) => {
     if (/\bMAINTENANCE_GATE\b/.test(body) || body.includes(`'${MAINTENANCE_GATE}'`) || body.includes(`\"${MAINTENANCE_GATE}\"`)) return whole;
 
     if (gateVar && new RegExp(`\\b${gateVar}\\b`).test(body)) {
@@ -102,7 +102,7 @@ function unresolvedProblems(rel, text) {
     }
   }
 
-  for (const match of text.matchAll(/\[([\s\S]*?)\]\.includes\(([^)]*(?:nextGate|currentGate)[^)]*)\)/g)) {
+  for (const match of text.matchAll(/\[([^\]]*)\]\.includes\(([^)]*(?:nextGate|currentGate)[^)]*)\)/g)) {
     const body = match[1];
     const hasFinal = body.includes(FINAL_GATE) || (gateConst && new RegExp(`\\b${gateConst[1]}\\b`).test(body));
     const hasMaintenance = body.includes(MAINTENANCE_GATE) || /\bMAINTENANCE_GATE\b/.test(body);
