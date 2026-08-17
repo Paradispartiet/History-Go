@@ -31,16 +31,25 @@ jobs:
       - name: Check dialect scope test syntax
         run: node --check tests/place-language-dialect-scope.test.mjs
 
-      - name: Run legacy runtime and data regressions
-        run: node --test --test-name-pattern='manifestet|stedsspråkfiler|språkflaten bruker|Knowledge-siden|legacy-arrangementer|språkflaten lastes|AHA-importgrensen' tests/place-language-layer.test.mjs
-
-      - name: Run legacy documentation regressions
+      - name: Legacy manifest regression
+        run: node --test --test-name-pattern='Språkleksikon-manifestet' tests/place-language-layer.test.mjs
+      - name: Legacy language files regression
+        run: node --test --test-name-pattern='alle stedsspråkfiler' tests/place-language-layer.test.mjs
+      - name: Legacy Knowledge runtime regression
+        run: node --test --test-name-pattern='språkflaten bruker canonical Knowledge' tests/place-language-layer.test.mjs
+      - name: Legacy Knowledge page regression
+        run: node --test --test-name-pattern='Knowledge-siden viser' tests/place-language-layer.test.mjs
+      - name: Legacy blocked entries regression
+        run: node --test --test-name-pattern='legacy-arrangementer' tests/place-language-layer.test.mjs
+      - name: Legacy load order regression
+        run: node --test --test-name-pattern='språkflaten lastes' tests/place-language-layer.test.mjs
+      - name: Legacy AHA boundary regression
+        run: node --test --test-name-pattern='AHA-importgrensen' tests/place-language-layer.test.mjs
+      - name: Legacy documentation regressions
         run: node --test --test-name-pattern='Språkleksikon-dokumentasjonen|place-produksjon|områdeeierskap' tests/place-language-layer.test.mjs
-
-      - name: Run dialect scope regression
+      - name: Dialect scope regression
         run: node --test tests/place-language-dialect-scope.test.mjs
-
-      - name: Run direct language tab regression
+      - name: Direct language tab regression
         run: node --test tests/place-popup-direct-tabs.test.mjs
 
       - name: Audit canonical Place scope
