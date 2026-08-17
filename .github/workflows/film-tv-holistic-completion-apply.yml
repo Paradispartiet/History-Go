@@ -1,0 +1,80 @@
+name: Apply Film TV holistic completion
+
+on:
+  push:
+    branches:
+      - agent/film-tv-holistic-192-completion-audit
+    paths:
+      - .github/workflows/film-tv-holistic-completion-apply.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: film-tv-holistic-completion-apply
+  cancel-in-progress: true
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-holistic-192-completion-audit
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Validate completion scripts
+        run: |
+          node --check scripts/audit-film-tv-holistic-completion-v1.mjs
+          node --check tests/film-tv-holistic-completion-v1.test.mjs
+
+      - name: Materialize holistic completion state
+        run: node scripts/audit-film-tv-holistic-completion-v1.mjs --write
+
+      - name: Rebuild shared deterministic audits
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs --write
+          node scripts/audit-fagverk-general-engine.mjs --write
+          node scripts/audit-fagverk-film-tv-phase3.mjs --write
+          node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Validate holistic and shared contracts
+        run: |
+          node scripts/audit-film-tv-holistic-completion-v1.mjs
+          node --test tests/film-tv-holistic-completion-v1.test.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-film-tv-phase3.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Validate Unit15 and monotone predecessors
+        run: |
+          node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
+          node --test tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
+          node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
+          node --test tests/film-tv-final-gate-monotonicity-v1.test.mjs
+
+      - name: Remove one-shot workflow
+        run: rm .github/workflows/film-tv-holistic-completion-apply.yml
+
+      - name: Commit verified completion outputs
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Materialize Film TV holistic 192-emne completion"
+            git push origin HEAD:agent/film-tv-holistic-192-completion-audit
+          fi
