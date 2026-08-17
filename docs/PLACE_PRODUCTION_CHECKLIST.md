@@ -151,7 +151,8 @@ PLACE-SCOPE (canonical): `area` / ikke satt
 DESCRIPTION-PRODUCTION-PACKAGE:
 LEKSIKON-ID/FIL:
 SPRÅKLEKSIKON-STATUS:
-SPRÅK-PLACE-SCOPE — OMRÅDE / DIREKTE SPRÅKSTED / ENKELTSTED:
+SPRÅKLEKSIKON-TYPE — OMRÅDE / DIREKTE SPRÅKSTED / ENKELTSTED:
+DIALEKTLAG — KUN `placeScope: "area"` / N/A:
 DIALEKTORD/LOKALE UTTRYKK — RESEARCH OG PRODUKSJON:
 MÅL FOR INNHOLDSRUNDINGER: 4 + separat fast Badge
 VALGTE RUNDINGER:
@@ -904,22 +905,25 @@ Popupen aggregerer canonical data; den skal ikke skape en ny parallell sannhet.
 **LES FØRST — obligatorisk ved Språkleksikon-produksjon:** `docs/SPRAKLEKSIKON.md`
 
 - [ ] eksisterende Språkleksikon-record og språkmanifest er søkt;
+- [ ] Språkleksikonet og dialektlaget er vurdert som **to forskjellige nivåer**: Språkleksikon kan finnes på alle Place-typer, dialektinnhold kan kun eies av et område-Place;
 - [ ] place-objektet er klassifisert som **område-Place**, **direkte språksted** eller **enkeltsted** ut fra canonical identitet — ikke bare navn;
-- [ ] `placeScope: "area"` er canonical markør for områdeeierskap; `coordRole`/`coordType` er bare koordinatgeometri og gir ikke språk-eierskap alene;
-- [ ] ved migrering kan eksplisitt `district_anchor`, `quiz_profile.place_type: "omrade"` og andre klart semantiske områdeklassifikasjoner brukes som belegg, men resultatet skal lagres som `placeScope: "area"`;
+- [ ] `placeScope: "area"` er den eneste canonical tillatelsen til å eie dialektlaget; `coordRole`/`coordType` er bare koordinatgeometri og gir aldri dialekt-eierskap;
+- [ ] `DIALEKTLAG` i arbeidskortet er satt til aktivt bare når `placeScope: "area"`; alle andre Places får N/A;
 - [ ] for **område-Place** er navnehistorie, ordbruk, dialektord, lokale uttrykk, talemålsmateriale og andre relevante språklag undersøkt i eksterne kilder;
-- [ ] for **område-Place** produseres minst ett reelt, kildebelagt **dialektord eller lokalt uttrykk** som `word` eller `expression` når kildene bærer det — området skal ikke stoppe ved bare navn eller generelle fagord når lokale former finnes;
-- [ ] for **enkeltsted** er dialektord ikke et krav bare fordi stedet ligger i et dialektområde; ord/uttrykk produseres bare når det finnes en direkte dokumentert språklig forbindelse til akkurat stedet;
-- [ ] gater, markeder, havner, arbeidsmiljøer og lignende behandles som **direkte språksted** bare når den lokale ordbruken faktisk er dokumentert for miljøet;
-- [ ] et generelt områdeord eies av nærmeste relevante område-Place og dupliseres ikke inn i underliggende bygg/institusjoner; relevante enkeltsteder bruker `related_places` / `related_entries`;
+- [ ] for **område-Place** produseres minst ett reelt, kildebelagt **dialektord eller lokalt uttrykk** som `word` eller `expression` med `layer: "dialect"` når kildene bærer det;
+- [ ] nyproduksjon som er dialekt merkes eksplisitt med `layer: "dialect"`; `dialect_feature` og `dialect_area` regnes alltid som dialektinnhold og krever derfor `placeScope: "area"`;
+- [ ] `word`/`expression` på et **enkeltsted** kan brukes for dokumentert stedsspesifikt Språkleksikon, men er ikke dialekt og skal ikke merkes `layer: "dialect"` eller få `dialect_area`;
+- [ ] gater, markeder, havner, arbeidsmiljøer og lignende kan være **direkte språksted** for stedsspesifikt språk, men «direkte språksted» gir aldri rett til å eie dialektlaget;
+- [ ] et generelt områdeord eies av nærmeste relevante område-Place og dupliseres ikke inn i underliggende bygg, institusjoner, gater eller andre enkeltsteder; relevante enkeltsteder bruker `related_places` / `related_entries`;
 - [ ] betydning, eksempel, geografisk utbredelse og historisk/moderne status avgrenses etter kildene;
-- [ ] dialektord eller lokale uttrykk skal ikke diktes, normaliseres fram eller konstrueres av språkmodell;
+- [ ] dialektord eller lokale talemålsformer skal ikke diktes, normaliseres fram eller konstrueres av språkmodell;
 - [ ] dersom eksplisitt søk på et område-Place ikke finner et forsvarlig dialektord/lokalt uttrykk, dokumenteres søkte kilder og begrunnet holdback/N/A for denne deljobben i stedet for filler;
+- [ ] enkeltsted med Språkleksikon er eksplisitt kontrollert for at innholdet ikke feilklassifiseres som dialekt;
 - [ ] språkoppføringer er reelt sted- eller områdebundet og dupliserer ikke bare Om/Historie;
 - [ ] brukerrettede kilder er inspectable HTTPS-lenker;
 - [ ] tomt eksisterende språksett er aldri alene grunnlag for N/A.
 
-**Stoppgate:** Et område-Språkleksikon kan ikke ferdigmeldes etter bare stedsnavn, administrative begreper eller generelle fagord dersom kildegrunnlaget dokumenterer lokale ordformer eller uttrykk. Et enkeltbygg eller en institusjon skal på den andre siden ikke få generelle områdeord bare for å fylle Språk-fanen. Manglende dokumenterbart dialektord etter reelt søk er lov; oppdiktet eller feil-eid dialektord er ikke lov.
+**Stoppgate:** Dialektinnhold kan kun eies av et område-Place med `placeScope: "area"`. `layer: "dialect"`, `dialect_feature` eller `dialect_area` på et enkelt-Place er blocker. Et enkeltsted kan fortsatt ha et godt Språkleksikon med stedsspesifikt språk, men ikke et dialektlag. Manglende dokumenterbart dialektord etter reelt søk på et område-Place er lov; oppdiktet, duplisert eller feil-eid dialektinnhold er ikke lov.
 
 ### Datastyrte direkte tilleggsfaner
 

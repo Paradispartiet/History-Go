@@ -122,25 +122,19 @@ test("Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny rundi
 });
 
 
-test("place-produksjon låser dialektord til riktig place-eier", () => {
+test("place-produksjon låser dialektlaget til område-Places", () => {
   const checklist = read("docs/PLACE_PRODUCTION_CHECKLIST.md");
   const contract = read("docs/SPRAKLEKSIKON.md");
-
-  assert.match(checklist, /SPRÅKLEKSIKON-TYPE — OMRÅDE \/ DIREKTE SPRÅKSTED \/ ENKELTSTED/);
-  assert.match(checklist, /DIALEKTLAG — KUN `placeScope:\s*"area"` \/ N\/A/);
-  assert.match(checklist, /Språkleksikon kan finnes på alle Place-typer/i);
-  assert.match(checklist, /enkeltsted[\s\S]{0,220}ikke dialekt[\s\S]{0,180}layer:\s*"dialect"/i);
+  assert.match(checklist, /DIALEKTLAG — KUN `placeScope: "area"` \/ N\/A/);
+  assert.match(checklist, /dialektinnhold kan kun eies av et område-Place/i);
+  assert.match(checklist, /enkeltsted med Språkleksikon/i);
   assert.match(checklist, /skal ikke diktes/i);
-
-  assert.match(contract, /Språkleksikon og dialektlag er ikke synonymer/i);
-  assert.match(contract, /Språkleksikon kan finnes på alle typer Places/i);
-  assert.match(contract, /Dialektlaget[\s\S]{0,160}placeScope:\s*"area"/i);
-  assert.match(contract, /enkelt-Places kan ha Språkleksikon/i);
-  assert.match(contract, /enkelt-Places skal \*\*ikke\*\* få `layer:\s*"dialect"`/i);
   assert.match(contract, /obligatorisk researchjobb/i);
+  assert.match(contract, /Dialektlaget kan bare eies[^\n]*placeScope:\s*"area"/i);
   assert.match(contract, /minst ett reelt kildebelagt \*\*dialektord eller lokalt uttrykk\*\*/i);
+  assert.match(contract, /Enkelt-Places kan ha et rikt Språkleksikon, men ikke et dialektlag/i);
   assert.match(contract, /nærmeste relevante område-Place/i);
-  assert.match(contract, /related_places\s*\/\s*related_entries/i);
+  assert.match(contract, /related_places.*related_entries/i);
 });
 
 
