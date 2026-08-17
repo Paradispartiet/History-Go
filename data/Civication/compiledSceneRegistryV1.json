@@ -47,6 +47,8 @@
     "data/Civication/mailFamilies/naeringsliv/story/ekspeditor_story.json",
     "data/Civication/mailFamilies/naeringsliv/conflict/ekspeditor_conflict.json",
     "data/Civication/mailFamilies/naeringsliv/event/ekspeditor_event.json",
+    "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+    "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
     "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_intro_v2.json",
     "data/Civication/mailFamilies/naeringsliv/job/fagarbeider_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
@@ -42957,6 +42959,216 @@
     {
       "category": "naeringsliv",
       "compatibility_projection": {
+        "brand_id": "narvesen",
+        "brand_name": "Narvesen",
+        "brand_role": "kioskmedarbeider",
+        "category": "naeringsliv",
+        "choice_axis": "struktur_vs_reaksjon",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du skaper ro og fremdrift i en presset situasjon.",
+            "id": "A",
+            "label": "Kommuniser kørekkefølge og deleger kort",
+            "tags": [
+              "kunde",
+              "drift"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Det går fort i starten, men skaper fort mer forvirring.",
+            "id": "B",
+            "label": "Hopp mellom oppgaver uten plan",
+            "tags": [
+              "tempo",
+              "snarvei"
+            ]
+          }
+        ],
+        "competency": "prioritering",
+        "consequence_axis": "kontroll_vs_kaos",
+        "id": "ekspeditor_narvesen_005",
+        "mail_family": "travelt_gulv",
+        "mail_type": "event",
+        "narrative_arc": "yrkesstolthet_i_hverdagen",
+        "pressure": "travelt_gulv",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Kaffemaskin stanser, en kunde vil betale tobakk, og en annen spør etter pakkelevering samtidig."
+        ],
+        "subject": "Tre samtidige forespørsler ved disken",
+        "summary": "Du må prioritere tydelig under høyt trykk.",
+        "task_domain": "frontline_operations"
+      },
+      "id": "ekspeditor_narvesen_005",
+      "mail_type": "event",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du skaper ro og fremdrift i en presset situasjon.",
+            "id": "A",
+            "label": "Kommuniser kørekkefølge og deleger kort"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Det går fort i starten, men skaper fort mer forvirring.",
+            "id": "B",
+            "label": "Hopp mellom oppgaver uten plan"
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kaffemaskin stanser, en kunde vil betale tobakk, og en annen spør etter pakkelevering samtidig."
+          ],
+          "subject": "Tre samtidige forespørsler ved disken",
+          "summary": "Du må prioritere tydelig under høyt trykk."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_narvesen_005",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_narvesen_005",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_narvesen_005",
+        "version": 1
+      },
+      "source_hash": "5459e636f95c415bb30883b6f71e39cb2bc67df705179d6a35231c4de58922a9",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "brand_id": "norli",
+        "brand_name": "Norli",
+        "brand_role": "bokhandler",
+        "category": "naeringsliv",
+        "choice_axis": "vertskap_vs_kun_drift",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du løfter butikkopplevelsen uten å miste kontroll.",
+            "id": "A",
+            "label": "Koordiner kort møtepunkt og informer kunder",
+            "tags": [
+              "vertskap",
+              "kunde"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Driften går, men du mister en god relasjonsmulighet.",
+            "id": "B",
+            "label": "Ignorer besøket og fortsett som vanlig",
+            "tags": [
+              "tempo",
+              "drift"
+            ]
+          }
+        ],
+        "competency": "rolleforstaelse",
+        "consequence_axis": "opplevelse_vs_tempo",
+        "id": "ekspeditor_norli_005",
+        "mail_family": "yrkesidentitet_pa_gulvet",
+        "mail_type": "event",
+        "narrative_arc": "yrkesstolthet_i_hverdagen",
+        "pressure": "travelt_gulv",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Butikken får et spontant forfatterbesøk mens du håndterer kø, rydding og spørsmål."
+        ],
+        "subject": "Forfatterbesøk rett før stengetid",
+        "summary": "Du velger hvordan du representerer rollen når det er travelt.",
+        "task_domain": "frontline_operations"
+      },
+      "id": "ekspeditor_norli_005",
+      "mail_type": "event",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du løfter butikkopplevelsen uten å miste kontroll.",
+            "id": "A",
+            "label": "Koordiner kort møtepunkt og informer kunder"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Driften går, men du mister en god relasjonsmulighet.",
+            "id": "B",
+            "label": "Ignorer besøket og fortsett som vanlig"
+          }
+        ],
+        "content": {
+          "situation": [
+            "Butikken får et spontant forfatterbesøk mens du håndterer kø, rydding og spørsmål."
+          ],
+          "subject": "Forfatterbesøk rett før stengetid",
+          "summary": "Du velger hvordan du representerer rollen når det er travelt."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_norli_005",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_norli_005",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_norli_005",
+        "version": 1
+      },
+      "source_hash": "37ebd4a58a3be03bf9b77be6c8b546f2c65da63fccae516034549fea0b49d3fd",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
         "category": "naeringsliv",
         "choice_axis": "ta_eierskap_vs_vente_på_mandat",
         "choices": [
@@ -45582,6 +45794,426 @@
     {
       "category": "naeringsliv",
       "compatibility_projection": {
+        "brand_id": "narvesen",
+        "brand_name": "Narvesen",
+        "brand_role": "kioskmedarbeider",
+        "category": "naeringsliv",
+        "choice_axis": "faktasjekk_vs_flyt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du løser feilen tydelig og beholder flyt i køen.",
+            "id": "A",
+            "label": "Bekreft kampanjen og korriger manuelt",
+            "tags": [
+              "kunde",
+              "kvalitet"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Raskt nå, men skaper irritasjon og mulig klage.",
+            "id": "B",
+            "label": "Ta fullpris for å holde linjen i gang",
+            "tags": [
+              "tempo",
+              "snarvei"
+            ]
+          }
+        ],
+        "competency": "noyaktighet_under_press",
+        "consequence_axis": "tillit_vs_tempo",
+        "id": "ekspeditor_narvesen_001",
+        "mail_family": "kasse_og_pris",
+        "mail_type": "job",
+        "narrative_arc": "forste_uke_pa_gulvet",
+        "pressure": "hoy_ko",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En kunde peker på kombo-plakaten, men kassa registrerer fullpris på pølse og drikke."
+        ],
+        "subject": "Kampanjepris på pølsekombo slår ikke inn",
+        "summary": "Kassa viser feil pris i lunsjrush.",
+        "task_domain": "cash_desk"
+      },
+      "id": "ekspeditor_narvesen_001",
+      "mail_type": "job",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du løser feilen tydelig og beholder flyt i køen.",
+            "id": "A",
+            "label": "Bekreft kampanjen og korriger manuelt"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Raskt nå, men skaper irritasjon og mulig klage.",
+            "id": "B",
+            "label": "Ta fullpris for å holde linjen i gang"
+          }
+        ],
+        "content": {
+          "situation": [
+            "En kunde peker på kombo-plakaten, men kassa registrerer fullpris på pølse og drikke."
+          ],
+          "subject": "Kampanjepris på pølsekombo slår ikke inn",
+          "summary": "Kassa viser feil pris i lunsjrush."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_narvesen_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_narvesen_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_narvesen_001",
+        "version": 1
+      },
+      "source_hash": "7f9c95f4bcb0b2d0b6b164e35ad6a444dd2994c226052687089626920a73633d",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "brand_id": "narvesen",
+        "brand_name": "Narvesen",
+        "brand_role": "kioskmedarbeider",
+        "category": "naeringsliv",
+        "choice_axis": "dobbeltsjekk_vs_gjett",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du prioriterer trygghet og korrekt informasjon.",
+            "id": "A",
+            "label": "Sjekk ingredienslisten før svar",
+            "tags": [
+              "kvalitet",
+              "kunde"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Raskt levert, men med unødvendig risiko.",
+            "id": "B",
+            "label": "Svar etter antakelse for å spare tid",
+            "tags": [
+              "tempo",
+              "snarvei"
+            ]
+          }
+        ],
+        "competency": "presis_kommunikasjon",
+        "consequence_axis": "trygghet_vs_tempo",
+        "id": "ekspeditor_narvesen_002",
+        "mail_family": "kundemote_og_service",
+        "mail_type": "job",
+        "narrative_arc": "kundenes_blikk",
+        "pressure": "rush",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En pendler spør om en wrap inneholder nøtter mens flere står i kø bak."
+        ],
+        "subject": "Morgenkunde vil ha raskt allergisvar",
+        "summary": "Du må svare presist under tidspress.",
+        "task_domain": "customer_service"
+      },
+      "id": "ekspeditor_narvesen_002",
+      "mail_type": "job",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du prioriterer trygghet og korrekt informasjon.",
+            "id": "A",
+            "label": "Sjekk ingredienslisten før svar"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Raskt levert, men med unødvendig risiko.",
+            "id": "B",
+            "label": "Svar etter antakelse for å spare tid"
+          }
+        ],
+        "content": {
+          "situation": [
+            "En pendler spør om en wrap inneholder nøtter mens flere står i kø bak."
+          ],
+          "subject": "Morgenkunde vil ha raskt allergisvar",
+          "summary": "Du må svare presist under tidspress."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_narvesen_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_narvesen_002",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_narvesen_002",
+        "version": 1
+      },
+      "source_hash": "506da46cd7e8a52229d8265b7f44b89a4deec2a8e3039290fc3d86853de6077d",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "brand_id": "norli",
+        "brand_name": "Norli",
+        "brand_role": "bokhandler",
+        "category": "naeringsliv",
+        "choice_axis": "faktasjekk_vs_flyt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du sikrer riktig pris og bygger tillit hos kunden.",
+            "id": "A",
+            "label": "Sjekk kampanjeark og korriger pris i kassa",
+            "tags": [
+              "kvalitet",
+              "kunde"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du sparer tid nå, men skaper misnøye og mulig reklamasjon.",
+            "id": "B",
+            "label": "Ta ordinær pris for å få køen raskere videre",
+            "tags": [
+              "tempo",
+              "snarvei"
+            ]
+          }
+        ],
+        "competency": "noyaktighet_under_press",
+        "consequence_axis": "tillit_vs_tempo",
+        "id": "ekspeditor_norli_001",
+        "mail_family": "kasse_og_pris",
+        "mail_type": "job",
+        "narrative_arc": "forste_uke_pa_gulvet",
+        "pressure": "hoy_ko",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En kunde viser hylleetikett med kampanjepris på en roman, men kassa viser ordinær pris."
+        ],
+        "subject": "Prisavvik på ny roman i kassa",
+        "summary": "Hyllepris og kassepris stemmer ikke på en nyutgivelse.",
+        "task_domain": "cash_desk"
+      },
+      "id": "ekspeditor_norli_001",
+      "mail_type": "job",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du sikrer riktig pris og bygger tillit hos kunden.",
+            "id": "A",
+            "label": "Sjekk kampanjeark og korriger pris i kassa"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du sparer tid nå, men skaper misnøye og mulig reklamasjon.",
+            "id": "B",
+            "label": "Ta ordinær pris for å få køen raskere videre"
+          }
+        ],
+        "content": {
+          "situation": [
+            "En kunde viser hylleetikett med kampanjepris på en roman, men kassa viser ordinær pris."
+          ],
+          "subject": "Prisavvik på ny roman i kassa",
+          "summary": "Hyllepris og kassepris stemmer ikke på en nyutgivelse."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_norli_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_norli_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_norli_001",
+        "version": 1
+      },
+      "source_hash": "120ee9016b72e251ce0fee66748cf251796be4d3c5787f3e283c42ac832df766",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "brand_id": "norli",
+        "brand_name": "Norli",
+        "brand_role": "bokhandler",
+        "category": "naeringsliv",
+        "choice_axis": "kartlegging_vs_hurtigforslag",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du finner en bok som passer bedre og øker sjansen for leseglede.",
+            "id": "A",
+            "label": "Still spørsmål om interesser før du anbefaler",
+            "tags": [
+              "kvalitet",
+              "kunde"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Raskt levert, men rådet kan bomme på behovet.",
+            "id": "B",
+            "label": "Pek på bestselgerhyllen uten avklaring",
+            "tags": [
+              "tempo",
+              "snarvei"
+            ]
+          }
+        ],
+        "competency": "kundedialog",
+        "consequence_axis": "treffsikkerhet_vs_tempo",
+        "id": "ekspeditor_norli_002",
+        "mail_family": "kundemote_og_service",
+        "mail_type": "job",
+        "narrative_arc": "fra_ansatt_til_fagperson",
+        "pressure": "forventning",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En foresatt spør etter en bok til en 13-åring som ikke liker å lese."
+        ],
+        "subject": "Kunde ber om leseforslag til ungdom",
+        "summary": "Du må gi trygg og relevant bokveiledning.",
+        "task_domain": "product_guidance"
+      },
+      "id": "ekspeditor_norli_002",
+      "mail_type": "job",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du finner en bok som passer bedre og øker sjansen for leseglede.",
+            "id": "A",
+            "label": "Still spørsmål om interesser før du anbefaler"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Raskt levert, men rådet kan bomme på behovet.",
+            "id": "B",
+            "label": "Pek på bestselgerhyllen uten avklaring"
+          }
+        ],
+        "content": {
+          "situation": [
+            "En foresatt spør etter en bok til en 13-åring som ikke liker å lese."
+          ],
+          "subject": "Kunde ber om leseforslag til ungdom",
+          "summary": "Du må gi trygg og relevant bokveiledning."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_norli_002",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_norli_002",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_norli_002",
+        "version": 1
+      },
+      "source_hash": "4b459035b286999b58c4193aaea57eef83e4c03d0f33f518deb83f3796b0077a",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
         "category": "naeringsliv",
         "choice_axis": "kampanje_vs_reelt_behov",
         "choices": [
@@ -47970,6 +48602,216 @@
       },
       "source_hash": "3ccd0e44fb28a877ff85cc83d421bf72d6eb8d90dd8a30bba908c47c9b080316",
       "source_path": "data/Civication/mailFamilies/naeringsliv/job/ekspeditor_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "brand_id": "narvesen",
+        "brand_name": "Narvesen",
+        "brand_role": "kioskmedarbeider",
+        "category": "naeringsliv",
+        "choice_axis": "fikse_selv_vs_lare_bort",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du styrker laget og reduserer gjentatte stopp.",
+            "id": "A",
+            "label": "Forklar sjekklisten og fordel oppgaver",
+            "tags": [
+              "kollega",
+              "kvalitet"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du redder øyeblikket, men lærer ikke bort rutinen.",
+            "id": "B",
+            "label": "Fyll opp i skjul og si ingenting",
+            "tags": [
+              "tempo",
+              "snarvei"
+            ]
+          }
+        ],
+        "competency": "veiledning",
+        "consequence_axis": "kortsiktig_flyt_vs_langsiktig_stabilitet",
+        "id": "ekspeditor_narvesen_003",
+        "mail_family": "ny_kollega_og_tillit",
+        "mail_type": "people",
+        "narrative_arc": "forste_uke_pa_gulvet",
+        "pressure": "travelt_gulv",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Småvarer ved kassa er tomme i ettermiddagsrush fordi ny kollega ikke kjenner sjekklisten."
+        ],
+        "subject": "Ny kollega glemmer påfyll av småvarer",
+        "summary": "Du velger mellom å ta alt selv eller bygge rutine.",
+        "task_domain": "teamwork"
+      },
+      "id": "ekspeditor_narvesen_003",
+      "mail_type": "people",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du styrker laget og reduserer gjentatte stopp.",
+            "id": "A",
+            "label": "Forklar sjekklisten og fordel oppgaver"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du redder øyeblikket, men lærer ikke bort rutinen.",
+            "id": "B",
+            "label": "Fyll opp i skjul og si ingenting"
+          }
+        ],
+        "content": {
+          "situation": [
+            "Småvarer ved kassa er tomme i ettermiddagsrush fordi ny kollega ikke kjenner sjekklisten."
+          ],
+          "subject": "Ny kollega glemmer påfyll av småvarer",
+          "summary": "Du velger mellom å ta alt selv eller bygge rutine."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_narvesen_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_narvesen_003",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_narvesen_003",
+        "version": 1
+      },
+      "source_hash": "258974cb7df8e8bb239d07c76aad64edbd6c5fbd3e7b50c80f3efff02355f099",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "brand_id": "norli",
+        "brand_name": "Norli",
+        "brand_role": "bokhandler",
+        "category": "naeringsliv",
+        "choice_axis": "rette_opp_selv_vs_lare_bort",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du investerer i læring og færre feil senere.",
+            "id": "A",
+            "label": "Vis systemet kort og rett opp sammen",
+            "tags": [
+              "kollega",
+              "kvalitet"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du løser situasjonen nå, men feilen gjentas lett.",
+            "id": "B",
+            "label": "Rydd i stillhet og la kollega fortsette",
+            "tags": [
+              "tempo",
+              "snarvei"
+            ]
+          }
+        ],
+        "competency": "veiledning",
+        "consequence_axis": "kortsiktig_flyt_vs_langsiktig_kvalitet",
+        "id": "ekspeditor_norli_003",
+        "mail_family": "ny_kollega_og_tillit",
+        "mail_type": "people",
+        "narrative_arc": "forste_uke_pa_gulvet",
+        "pressure": "tidspress",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En ny kollega plasserer flere titler feil i skjønnlitteraturveggen midt i ettermiddagsrush."
+        ],
+        "subject": "Ny kollega roter i alfabetiseringen",
+        "summary": "Du må balansere tempo og opplæring i bokavdelingen.",
+        "task_domain": "teamwork"
+      },
+      "id": "ekspeditor_norli_003",
+      "mail_type": "people",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du investerer i læring og færre feil senere.",
+            "id": "A",
+            "label": "Vis systemet kort og rett opp sammen"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du løser situasjonen nå, men feilen gjentas lett.",
+            "id": "B",
+            "label": "Rydd i stillhet og la kollega fortsette"
+          }
+        ],
+        "content": {
+          "situation": [
+            "En ny kollega plasserer flere titler feil i skjønnlitteraturveggen midt i ettermiddagsrush."
+          ],
+          "subject": "Ny kollega roter i alfabetiseringen",
+          "summary": "Du må balansere tempo og opplæring i bokavdelingen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_norli_003",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_norli_003",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_norli_003",
+        "version": 1
+      },
+      "source_hash": "185d1d3027b703e02a5f4ac8f0691ba9172878530aa24b4be55ca5925d8e43f1",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -50621,6 +51463,216 @@
       },
       "source_hash": "f2c20a354b8e9e79982b779afd425a4d1ea42ec2dae22975c6d5ffae52f696b6",
       "source_path": "data/Civication/mailFamilies/naeringsliv/people/ekspeditor_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "brand_id": "narvesen",
+        "brand_name": "Narvesen",
+        "brand_role": "kioskmedarbeider",
+        "category": "naeringsliv",
+        "choice_axis": "relevans_vs_pushing",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Forslaget oppleves nyttig og situasjonstilpasset.",
+            "id": "A",
+            "label": "Anbefal ferdig kombo som sparer tid",
+            "tags": [
+              "kunde",
+              "salg"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du forsøker mersalg, men med lav treffsikkerhet.",
+            "id": "B",
+            "label": "Tilby tilfeldig ekstra uten behovsavklaring",
+            "tags": [
+              "tempo",
+              "salg"
+            ]
+          }
+        ],
+        "competency": "behovsavdekking",
+        "consequence_axis": "tillit_vs_kortsiktig_omsetning",
+        "id": "ekspeditor_narvesen_004",
+        "mail_family": "salg_og_veiledning",
+        "mail_type": "story",
+        "narrative_arc": "kundenes_blikk",
+        "pressure": "rush",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En kunde ber om kaffe to go og noe raskt å spise før toget går."
+        ],
+        "subject": "Frokostkunde trenger rask pakkeløsning",
+        "summary": "Du vurderer relevant mersalg i farta.",
+        "task_domain": "sales_dialog"
+      },
+      "id": "ekspeditor_narvesen_004",
+      "mail_type": "story",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Forslaget oppleves nyttig og situasjonstilpasset.",
+            "id": "A",
+            "label": "Anbefal ferdig kombo som sparer tid"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du forsøker mersalg, men med lav treffsikkerhet.",
+            "id": "B",
+            "label": "Tilby tilfeldig ekstra uten behovsavklaring"
+          }
+        ],
+        "content": {
+          "situation": [
+            "En kunde ber om kaffe to go og noe raskt å spise før toget går."
+          ],
+          "subject": "Frokostkunde trenger rask pakkeløsning",
+          "summary": "Du vurderer relevant mersalg i farta."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_narvesen_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_narvesen_004",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_narvesen_004",
+        "version": 1
+      },
+      "source_hash": "55dfb1a54e5e0ef5ff69017d7419b57dee8b10d751a12b6e1ba99999e3706efb",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "brand_id": "norli",
+        "brand_name": "Norli",
+        "brand_role": "bokhandler",
+        "category": "naeringsliv",
+        "choice_axis": "relevant_merverdi_vs_pushe_salg",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Rådet oppleves relevant og bygger tillit.",
+            "id": "A",
+            "label": "Gi ett målrettet forslag med begrunnelse",
+            "tags": [
+              "kunde",
+              "fag"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du forsøker mersalg, men risikoen for bom er høy.",
+            "id": "B",
+            "label": "Legg til tilfeldig kampanjebok ved kassa",
+            "tags": [
+              "tempo",
+              "salg"
+            ]
+          }
+        ],
+        "competency": "behovsavdekking",
+        "consequence_axis": "omdomme_vs_kortsiktig_omsetning",
+        "id": "ekspeditor_norli_004",
+        "mail_family": "salg_og_veiledning",
+        "mail_type": "story",
+        "narrative_arc": "fra_ansatt_til_fagperson",
+        "pressure": "kundeflyt",
+        "role_scope": "ekspeditor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "En student kjøper pensumbok og spør om noe lettlest for pauser i eksamensperioden."
+        ],
+        "subject": "Anbefalningstabell for pensum og tilleggsbok",
+        "summary": "Kunde vil ha pensumbok, du vurderer ekstra anbefaling.",
+        "task_domain": "sales_dialog"
+      },
+      "id": "ekspeditor_norli_004",
+      "mail_type": "story",
+      "role_scope": "ekspeditor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Rådet oppleves relevant og bygger tillit.",
+            "id": "A",
+            "label": "Gi ett målrettet forslag med begrunnelse"
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du forsøker mersalg, men risikoen for bom er høy.",
+            "id": "B",
+            "label": "Legg til tilfeldig kampanjebok ved kassa"
+          }
+        ],
+        "content": {
+          "situation": [
+            "En student kjøper pensumbok og spør om noe lettlest for pauser i eksamensperioden."
+          ],
+          "subject": "Anbefalningstabell for pensum og tilleggsbok",
+          "summary": "Kunde vil ha pensumbok, du vurderer ekstra anbefaling."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "ekspeditor_norli_004",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "ekspeditor_norli_004",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "ekspeditor.mail.ekspeditor_norli_004",
+        "version": 1
+      },
+      "source_hash": "08b46b7ba2debd494c428a9e5139486e9f7aaeb903874f4c6785628d06078949",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -126282,15 +127334,13 @@
     }
   ],
   "ignored_source_files": [
-    "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_narvesen.json",
-    "data/Civication/mailFamilies/naeringsliv/brand/ekspeditor_norli.json",
     "data/Civication/mailFamilies/naeringsliv/job/mellomleder_fraksjonsvalg.json"
   ],
   "legacy_fallback_inventory": {
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "4bb900cd4cf721b08ca23917e9c02458931069da376a572f71b26eefe7375e7b",
+  "registry_hash": "fdc921605022ea0449e4876adabd01c99765a4ec411a7d68d5f4ae9ad93ce2fd",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -126655,7 +127705,17 @@
       "ekspeditor_event_lager_001",
       "ekspeditor_event_salg_001",
       "ekspeditor_event_kollega_001",
-      "ekspeditor_event_ansvar_001"
+      "ekspeditor_event_ansvar_001",
+      "ekspeditor_narvesen_001",
+      "ekspeditor_narvesen_002",
+      "ekspeditor_narvesen_003",
+      "ekspeditor_narvesen_004",
+      "ekspeditor_narvesen_005",
+      "ekspeditor_norli_001",
+      "ekspeditor_norli_002",
+      "ekspeditor_norli_003",
+      "ekspeditor_norli_004",
+      "ekspeditor_norli_005"
     ],
     "naeringsliv/fagarbeider": [
       "job_fagarbeider_week1_first_inspection",
@@ -127189,11 +128249,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 105,
-    "ignored_source_file_count": 3,
+    "compiled_source_file_count": 107,
+    "ignored_source_file_count": 1,
     "input_file_count": 108,
     "role_count": 26,
-    "scene_count": 817,
+    "scene_count": 827,
     "shadowed_duplicate_count": 0
   },
   "version": 1

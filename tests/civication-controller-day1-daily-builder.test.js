@@ -62,6 +62,7 @@ async function run() {
   loadScript('js/Civication/systems/day/dayChoiceDirector.js');
   loadScript('js/Civication/systems/day/dayConsequences.js');
   loadScript('js/Civication/systems/civicationMailRuntime.js');
+  loadScript('js/Civication/systems/civicationWorkdayMailBuilder.js');
   loadScript('js/Civication/systems/civicationDailyMailBuilder.js');
 
   global.CivicationState.setActivePosition({

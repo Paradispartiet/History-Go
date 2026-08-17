@@ -78,6 +78,7 @@ function resetRuntime(seedStorage = {}) {
   loadScript('js/Civication/systems/civicationBlockedJobMessages.js');
   loadScript('js/Civication/systems/civicationBrandEmployerBridge.js');
   loadScript('js/Civication/systems/civicationMailRuntime.js');
+  loadScript('js/Civication/systems/civicationWorkdayMailBuilder.js');
   loadScript('js/Civication/merits-and-jobs.js');
 
   global.HG_CiviEngine = new global.CivicationEventEngine();

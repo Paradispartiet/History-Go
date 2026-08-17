@@ -3,7 +3,7 @@
 //
 // Prinsipp:
 // - Én runtime eier jobbmailflyten.
-// - Data bestemmer innholdet: mailPlans + mailFamilies.
+// - SceneCatalog/compiled registry bestemmer sceneinnholdet; MailRuntime eier plan/progresjon.
 // - EventEngine beholder generisk ansvar: enqueue, answer, state.
 // - Day-systemet kan fortsatt kalle buildMailPool/pickEventFromPack, men kandidatene kommer herfra.
 // - Kun planned/thread-mails får skrive mail_runtime_v1.
@@ -453,18 +453,11 @@
       .sort((a, b) => Number(b._runtime_score || 0) - Number(a._runtime_score || 0));
   }
 
-  async function makeCandidateMailsForActiveRole(active, state = getState()) {
-    if (!active) return [];
-
-    const planPath = getPlanPath(active);
-    const plan = await loadJson(planPath);
-    if (!plan || !Array.isArray(plan.sequence) || !plan.sequence.length) return [];
+  function selectCandidateMailsFromResolvedSources(active, state, plan, mails) {
+    if (!active || !plan || !Array.isArray(plan.sequence) || !plan.sequence.length) return [];
+    if (!Array.isArray(mails) || !mails.length) return [];
 
     const runtime = getPlanProgress(state, plan);
-    const catalogs = await loadCatalogs(active);
-    const mails = catalogs.flatMap(flattenCatalog);
-    if (!mails.length) return [];
-
     const consumedIds = new Set(getConsumedIds(state));
     const sequence = plan.sequence.map((step, index) => ({ step, index }));
     const current = getCurrentStep(plan, runtime);
@@ -498,6 +491,22 @@
     }
 
     return sortCandidates(candidates, currentIndex, runtime);
+  }
+
+  async function makeCandidateMailsForActiveRole(active, state = getState()) {
+    if (!active) return [];
+
+    const catalog = window.CivicationSceneCatalog;
+    if (typeof catalog?.getRolePlan !== "function" || typeof catalog?.getRoleMails !== "function") {
+      if (window.DEBUG) console.warn("[CivicationMailRuntime] SceneCatalog mangler; planned gameplay lukkes fail-closed");
+      return [];
+    }
+
+    const [plan, mails] = await Promise.all([
+      catalog.getRolePlan(active),
+      catalog.getRoleMails(active, state, { consumer: "mail_runtime_primary" })
+    ]);
+    return selectCandidateMailsFromResolvedSources(active, state, plan, mails);
   }
 
   function buildRuntimeStatePatchForAnswer(active, eventObj, choiceId) {
@@ -807,13 +816,17 @@
     registerAnswerMiddleware();
   }
 
-  // Forhåndslast alt svarstien trenger (plan + alle mailfamilier) mens
-  // spilleren leser meldingen — svaret skal aldri vente på nettverket.
+  // Forhåndslast den canonicale SceneCatalog/registry-grensen. Rå mailFamilies er ikke
+  // en gameplay-fallback etter 4H-B/4H-D; før SceneCatalog finnes varmes bare planen.
   async function prewarm(activeOverride) {
     const active = activeOverride || getActive();
     if (!active) return { warmed: false, reason: "no_active" };
-    await Promise.all([loadJson(getPlanPath(active)), loadCatalogs(active)]);
-    return { warmed: true };
+    const catalog = window.CivicationSceneCatalog;
+    if (typeof catalog?.prewarm === "function") {
+      return catalog.prewarm(active, { consumer: "mail_runtime_prewarm" });
+    }
+    await loadJson(getPlanPath(active));
+    return { warmed: true, scene_catalog_pending: true };
   }
 
   window.CivicationMailRuntime = {
