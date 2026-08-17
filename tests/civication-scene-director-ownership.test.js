@@ -9,6 +9,7 @@ const workdayPath = fs.existsSync(path.join(repoRoot, "js/Civication/systems/civ
   : "/tmp/civicationWorkdayMailBuilder.js";
 const dailyPath = path.join(repoRoot, "js/Civication/systems/civicationDailyMailBuilder.js");
 const loaderPath = path.join(repoRoot, "js/Civication/civicationShellLoader.js");
+const eventEnginePath = path.join(repoRoot, "js/Civication/core/civicationEventEngine.js");
 
 const workdaySource = fs.readFileSync(workdayPath, "utf8");
 assert(workdaySource.includes("window.CivicationSceneDirector = director"));
@@ -16,6 +17,22 @@ assert(workdaySource.includes("runtime.makeCandidateMailsForActiveRole = directo
 assert(workdaySource.includes('consumer: "workday_mail_builder"'));
 assert(workdaySource.includes('consumer: "event_engine_build_mail_pool"'));
 assert(workdaySource.includes("__civicationSceneDirectorBuildMailPoolPatched"));
+assert(!workdaySource.includes('source_type: "legacy_pack"'), "SceneDirector skal aldri materialisere legacy_pack");
+assert(!workdaySource.includes("previousBuildMailPool.call"), "SceneDirector-feil skal ikke gjenåpne gammel buildMailPool");
+assert(!workdaySource.includes("engine.resolvePackFile(active, roleKey)"), "SceneDirector skal ikke resolve legacy pack");
+assert(!workdaySource.includes("engine.loadPack(packFile)"), "SceneDirector skal ikke laste legacy pack");
+
+const eventEngineSource = fs.readFileSync(eventEnginePath, "utf8");
+const corePoolStart = eventEngineSource.indexOf("async buildMailPool(active, state, role_key) {");
+const corePoolEnd = eventEngineSource.indexOf("// -------- event selection --------", corePoolStart);
+assert(corePoolStart >= 0 && corePoolEnd > corePoolStart, "core buildMailPool skal finnes");
+const corePoolSource = eventEngineSource.slice(corePoolStart, corePoolEnd);
+assert(!corePoolSource.includes("resolvePackFile"), "core buildMailPool skal ikke resolve legacy pack");
+assert(!corePoolSource.includes("loadPack"), "core buildMailPool skal ikke laste legacy pack");
+assert(!corePoolSource.includes("CiviRoleStoryletBridge"), "core buildMailPool skal ikke åpne parallell RoleStorylet-fallback");
+assert(!corePoolSource.includes("legacy_pack"), "core buildMailPool skal ikke materialisere legacy_pack");
+assert(!eventEngineSource.includes("makeGenericCareerEvent("), "generisk karrieregameplay skal være fjernet");
+assert(!eventEngineSource.includes("Denne rollen har ikke egen mailpack ennå"), "manglende canonicalt innhold skal ikke maskeres");
 
 // Loaderrekkefølgen er en del av cutover-kontrakten: Director skal fange den
 // komplette, outcome-aware selektoren etter at CareerOutcomeRuntime er lastet,
@@ -210,17 +227,15 @@ vm.runInContext(workdaySource, context, { filename: workdayPath });
 
   sourceMode = "fallback";
   const fallbackPack = await engine.buildMailPool(active, state, "fixture_role");
-  assert.equal(fallbackPack.__legacy_fallback, true);
+  assert.equal(fallbackPack.__legacy_fallback, false);
   assert.equal(fallbackPack.__runtime_candidate_count, 0);
-  assert.equal(fallbackPack.role, "fixture_legacy");
-  assert.deepEqual(Array.from(fallbackPack.tracks), ["legacy_track"]);
-  assert.deepEqual(
-    Array.from(fallbackPack.mails, (mail) => `${mail.id}:${mail.source_type}`),
-    ["legacy_role_001:role", "legacy_pack_001:legacy_pack"]
-  );
-  assert.equal(loadPackCalls, 1, "legacy-pack skal lastes nøyaktig én gang ved reelt innholdsgap");
-  assert.equal(roleBridgeCalls, 1, "legacy role bridge skal bare kjøres i fallback");
-  assert.equal(previousBuildCalls, 0, "canonical og legacy normalflyt skal begge eies av Director");
+  assert.equal(fallbackPack.__no_runtime_candidates, true);
+  assert.equal(fallbackPack.role, "fixture");
+  assert.deepEqual(Array.from(fallbackPack.tracks), []);
+  assert.deepEqual(Array.from(fallbackPack.mails), []);
+  assert.equal(loadPackCalls, 0, "innholdsgap skal aldri laste legacy-pack");
+  assert.equal(roleBridgeCalls, 0, "innholdsgap skal aldri åpne parallell RoleStorylet-fallback");
+  assert.equal(previousBuildCalls, 0, "tom canonical pool skal fortsatt eies av Director");
 
   const inspection = director.inspect();
   assert.equal(inspection.owner, "CivicationSceneDirector");
@@ -245,8 +260,14 @@ vm.runInContext(workdaySource, context, { filename: workdayPath });
 
   sourceMode = "error";
   const failsafePack = await engine.buildMailPool(active, state, "fixture_role");
-  assert.equal(failsafePack.role, "previous");
-  assert.equal(previousBuildCalls, 1, "forrige adapter brukes bare som eksplisitt feilsikring");
+  assert.equal(failsafePack.role, "fixture");
+  assert.equal(failsafePack.__legacy_fallback, false);
+  assert.equal(failsafePack.__scene_director_error, true);
+  assert.equal(failsafePack.__no_runtime_candidates, true);
+  assert.deepEqual(Array.from(failsafePack.mails), []);
+  assert.equal(previousBuildCalls, 0, "SceneDirector-feil skal lukke gameplay, ikke kalle gammel adapter");
+  assert.equal(loadPackCalls, 0);
+  assert.equal(roleBridgeCalls, 0);
   assert.equal(sourceCalls, 8);
 
   console.log("civication-scene-director-ownership.test.js: PASS");

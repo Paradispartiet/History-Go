@@ -1,0 +1,189 @@
+{
+  "sections": [
+    {
+      "id": "vit2-anvendelse-1",
+      "title": "Scenario: hva kontrollerer Lean – og hva kontrollerer det ikke?",
+      "paragraphs": [
+        "Tenk deg at en forsker formaliserer et theorem i Lean. Første kontroll er selve theorem statementet: hva er proposisjonen, hvilke typer og variabler inngår, og hvilke antakelser er eksplisitte? Lean behandler proposisjoner og bevis som formelle objekter, og Language Reference skiller theorem-headeren fra kroppen som konstruerer beviset. Det gjør det mulig å kontrollere at den matematiske oppgaven faktisk er presist formulert før man diskuterer om et bestemt bevis er elegant, kort eller automatisk generert.",
+        "Deretter undersøker vi beviskonstruksjonen. Hvis argumentet bruker induksjon, må strukturen i beviset svare til den induktive definisjonen: et grunntilfelle og et eller flere steg som dekker hvordan nye objekter bygges. Automatisering kan hjelpe, men Lean-dokumentasjonen beskriver at genererte bevisobjekter fortsatt kontrolleres av kernel. Derfor kan vi skille mellom et verktøy som foreslår eller bygger en proof term og den betrodde kontrollen som avgjør om termen faktisk har typen proposisjonen krever.",
+        "Til slutt kommer spørsmålet Lean ikke kan avgjøre alene. Hvis teoremet inngår i en fysisk modell, må forskeren fortsatt vise at størrelsene, idealiseringene og antakelsene har en forsvarlig empirisk fortolkning. Kernel kan avvise en ugyldig slutning, men den kan ikke måle en partikkel, avgjøre om et datasett er representativt eller bevise at en forenklet modell passer et bestemt system. Scenarioet lærer derfor en dobbel kontroll: først formell korrekthet, deretter modellens vitenskapelige relevans og empiriske grunnlag."
+      ],
+      "paragraphClaimIds": [
+        ["vit2-02", "vit2-03"],
+        ["vit2-04", "vit2-05"],
+        ["vit2-02", "vit2-05", "vit2-15"]
+      ],
+      "keyPoints": [
+        "En proof checker kan kontrollere et presist theorem statement og proof object innenfor det formelle systemet.",
+        "Empirisk modellvalidering krever en separat vurdering av hvordan formelle variabler, antakelser og resultater kobles til observasjon og måling."
+      ],
+      "keyPointClaimIds": [
+        ["vit2-02", "vit2-03", "vit2-05"],
+        ["vit2-15"]
+      ]
+    },
+    {
+      "id": "vit2-anvendelse-2",
+      "title": "Scenario: samme struktur, annen basis – og en modell som må forsvares",
+      "paragraphs": [
+        "Anta at en lineær transformasjon beskrives med én matrise i basis A og en annen matrise i basis B. Det betyr ikke automatisk at vi har to forskjellige transformasjoner. MITs lineær algebra-materiale behandler lineære transformasjoner og change of basis nettopp for å skille den underliggende avbildningen fra koordinatene vi bruker til å representere den. Brukeren må derfor identifisere hva som er invariant: hvilke vektorer eller relasjoner transformasjonen faktisk sender til hverandre, og hvilke tall som bare endres fordi beskrivelsessystemet er byttet.",
+        "Legg så til en empirisk anvendelse. Kanskje koordinatene representerer målte størrelser som varierer kontinuerlig, og modellen bruker derivasjon eller integrasjon til å beskrive endring. Calculus kan være utført korrekt, men det følger ikke derav at kontinuitetsantakelsen passer datasystemet. Diskrete hendelser, terskler eller individuelle aktører kan gjøre en annen modell mer informativ. Den matematiske oppgaven er å analysere hva som følger gitt representasjonen; den vitenskapelige oppgaven er i tillegg å undersøke om representasjonen bevarer det fenomenet vi faktisk ønsker å forklare.",
+        "En korrekt beregning kan derfor ende i en dårlig vitenskapelig konklusjon dersom problemet er feil oversatt. Hvis en modell antar linearitet der systemet har sterke ikke-lineære overganger, eller kontinuitet der sjeldne diskrete hendelser dominerer, kan algebraen og analysen være feilfri mens anvendelsen er svak. Omvendt kan et godt modellvalg gi nyttig innsikt selv om representasjonen er en idealisering. Det viktige er å dokumentere hvilke trekk som er abstrahert, hvilke som bevares, og hvilken empiri som støtter at modellen brukes på riktig skala."
+      ],
+      "paragraphClaimIds": [
+        ["vit2-09", "vit2-10", "vit2-18"],
+        ["vit2-08", "vit2-16", "vit2-17"],
+        ["vit2-15", "vit2-17", "vit2-18"]
+      ],
+      "keyPoints": [
+        "Endring av basis kan endre koordinatrepresentasjonen uten å endre den underliggende lineære strukturen.",
+        "Matematisk korrekthet og empirisk modelladekvathet er to forskjellige kontrollspørsmål som må dokumenteres hver for seg."
+      ],
+      "keyPointClaimIds": [
+        ["vit2-09", "vit2-10", "vit2-18"],
+        ["vit2-15", "vit2-17"]
+      ]
+    },
+    {
+      "id": "vit2-anvendelse-3",
+      "title": "Scenario: symmetri, graf og diskret modell",
+      "paragraphs": [
+        "Tenk deg et nettverk av fem stasjoner og forbindelsene mellom dem. En diskret analyse starter ikke med avstand i meter, men med hvilke noder som er koblet sammen og hvilke ruter eller kombinasjoner som er mulige. MITs diskretmatematikk-kurs kombinerer grafer, relasjoner, telling og proof techniques fordi slike spørsmål kan avgjøres av strukturen i forbindelsene. Hvis to nettverk har samme abstrakte grafstruktur, kan de dele matematiske egenskaper selv om de ligger i forskjellige byer eller representerer helt andre typer systemer.",
+        "Legg så til et symmetrispørsmål. Hvis en ommerking eller transformasjon av nodene bevarer alle relevante forbindelser, har vi en strukturell invarians som kan analyseres algebraisk. MIT Algebra I gir et språk for symmetrigrupper, mens Euclid-caset fra UiO minner om den historiske forbindelsen mellom geometriske objekter og demonstrasjon. Ingen av kildene reduserer symmetri til at figurer ser pene eller like ut; spørsmålet er hvilke transformasjoner som er tillatt og hvilke relasjoner som forblir uendret.",
+        "Til slutt må modellen knyttes tilbake til fenomenet. En graf kan ignorere avstand, kapasitet, tid eller retning dersom disse egenskapene ikke er kodet inn. Det kan være riktig for ett spørsmål og katastrofalt for et annet. Matematisk abstraksjon gjør det mulig å gjenbruke samme struktur på mange problemer, men den vitenskapelige anvendelsen krever at vi forklarer hva nodene og kantene betyr, hvorfor de valgte relasjonene er relevante, og hvilke egenskaper modellen bevisst lar ligge utenfor."
+      ],
+      "paragraphClaimIds": [
+        ["vit2-07", "vit2-16"],
+        ["vit2-12", "vit2-14"],
+        ["vit2-07", "vit2-12", "vit2-18"]
+      ],
+      "keyPoints": [
+        "Grafer og kombinatoriske modeller representerer diskrete relasjoner og kan dele struktur på tvers av helt forskjellige konkrete systemer.",
+        "Symmetri og invarians må defineres gjennom transformasjoner og bevarte relasjoner, og modellen må eksplisitt si hva den utelater."
+      ],
+      "keyPointClaimIds": [
+        ["vit2-07", "vit2-18"],
+        ["vit2-12", "vit2-14"]
+      ]
+    }
+  ],
+  "workedExamples": [
+    {
+      "id": "vit2-worked-proof-boundary",
+      "title": "Les et theorem i fire lag",
+      "prompt": "Et maskinsjekket theorem brukes som del av en fysisk modell. Hvordan avgjør du hva som faktisk er bevist, og hva som fortsatt må testes empirisk?",
+      "analysis": [
+        "Skriv theorem statementet eksplisitt og identifiser variabler, typer, definisjoner og antakelser.",
+        "Skill proof body eller proof term fra påstanden den skal bevise, og kontroller hvilken formell slutning som faktisk er etablert.",
+        "Undersøk om automatiske konstruksjoner ender i et bevisobjekt som den betrodde kernel kontrollerer.",
+        "Oversett deretter de formelle objektene tilbake til den empiriske modellen: Hva representerer variablene, og hvordan er koblingen til observasjon eller måling begrunnet?",
+        "Formuler sluttkonklusjonen slik at formell sikkerhet ikke brukes som erstatning for empirisk validering."
+      ],
+      "claim_ids": ["vit2-02", "vit2-03", "vit2-04", "vit2-05", "vit2-15"]
+    },
+    {
+      "id": "vit2-worked-change-basis",
+      "title": "Skift representasjon uten å miste objektet",
+      "prompt": "To matriser ser forskjellige ut, men hevdes å beskrive samme lineære transformasjon i to basiser. Hvordan analyserer du påstanden og en eventuell vitenskapelig anvendelse?",
+      "analysis": [
+        "Identifiser vektorrommet, transformasjonen og de to basisene før du sammenligner matrisetallene direkte.",
+        "Kontroller hvordan change of basis forbinder representasjonene og hvilke egenskaper ved transformasjonen som skal være invariante.",
+        "Skill den abstrakte lineære strukturen fra den konkrete betydningen som er gitt til koordinatene i anvendelsen.",
+        "Undersøk om linearitet, kontinuitet eller andre modellantakelser er rimelige for fenomenet og skalaen som studeres.",
+        "Rapporter separat hva algebraen viser og hva empirisk evidens støtter om modellen."
+      ],
+      "claim_ids": ["vit2-09", "vit2-10", "vit2-17", "vit2-18"]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "task": "Klassifiser påstander som formelle, empiriske eller modellbroer.",
+      "prompts": [
+        "Et theorem følger fra de oppgitte aksiomene.",
+        "En fysisk størrelse oppfører seg lineært i et måleområde.",
+        "En matematisk variabel representerer temperatur i forsøket.",
+        "Et datasett støtter at den valgte modellen passer bedre enn et alternativ."
+      ]
+    },
+    {
+      "task": "Analyser en change-of-basis-situasjon.",
+      "prompts": [
+        "Hva er det underliggende matematiske objektet?",
+        "Hvilke deler av representasjonen endres med basisen?",
+        "Hvilke egenskaper forventes å være invariante?",
+        "Hvis koordinatene har empirisk betydning, hva må begrunnes utenfor algebraen?"
+      ]
+    },
+    {
+      "task": "Velg mellom en kontinuerlig og en diskret modell.",
+      "prompts": [
+        "Hva er objektene eller størrelsene som skal representeres?",
+        "Er lokale endringsrater og akkumulering sentrale, eller er individuelle forbindelser og hendelser viktigere?",
+        "Hva forsvinner dersom problemet glattes til en kontinuerlig modell?",
+        "Hva forsvinner dersom det deles opp i diskrete enheter?"
+      ]
+    },
+    {
+      "task": "Undersøk et symmetri- eller nettverksargument.",
+      "prompts": [
+        "Hvilken transformasjon eller ommerking utføres?",
+        "Hvilke egenskaper eller relasjoner skal være uendret?",
+        "Er likheten matematisk definert eller bare visuelt antydet?",
+        "Hvilke konkrete egenskaper ved systemet er ikke kodet i den abstrakte strukturen?"
+      ]
+    }
+  ],
+  "selfCheck": [
+    {
+      "question": "Hva er forskjellen mellom et matematisk bevis og empirisk evidens?",
+      "answer": "Et bevis viser at en konklusjon følger fra eksplisitte formelle forutsetninger; empirisk evidens vurderer hvordan en påstand eller modell støttes av observasjon, måling eller data."
+    },
+    {
+      "question": "Hva kontrollerer en proof checker som Lean?",
+      "answer": "Den kontrollerer at det formaliserte bevisobjektet tilfredsstiller reglene og har typen som theorem statementet krever; den validerer ikke automatisk en empirisk fortolkning."
+    },
+    {
+      "question": "Hvorfor kan samme lineære transformasjon få forskjellige matriser?",
+      "answer": "Fordi matrisen er en koordinatrepresentasjon relativt til en valgt basis; ved basisbytte kan tallene endres selv om den underliggende avbildningen er den samme."
+    },
+    {
+      "question": "Hva skiller en kontinuerlig fra en diskret modell?",
+      "answer": "Kontinuerlige modeller representerer variasjon og akkumulering gjennom kontinuerlige størrelser, mens diskrete modeller organiserer adskilte eller tellbare objekter og relasjoner."
+    },
+    {
+      "question": "Hva betyr symmetri i dette kapittelet?",
+      "answer": "At spesifiserte transformasjoner bevarer relevante matematiske egenskaper eller relasjoner; visuell likhet alene er ikke definisjonen."
+    },
+    {
+      "question": "Hvorfor er en korrekt beregning ikke alltid en god vitenskapelig konklusjon?",
+      "answer": "Fordi beregningen kan være korrekt gitt antakelsene samtidig som modellvalget, variabeltolkningen eller koblingen til empiri er dårlig begrunnet."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "modellbro",
+      "term": "Modellbro",
+      "definition": "Det eksplisitte argumentet som forbinder et matematisk objekt eller resultat med størrelser, relasjoner eller mekanismer i et konkret empirisk system."
+    },
+    {
+      "id": "change-of-basis",
+      "term": "Change of basis",
+      "definition": "Overgang mellom ulike koordinatrepresentasjoner av objekter og lineære transformasjoner i det samme vektorrommet."
+    },
+    {
+      "id": "graf",
+      "term": "Graf",
+      "definition": "En diskret matematisk struktur av noder og forbindelser som representerer relasjoner uten å bestemme hva de konkrete objektene må være."
+    },
+    {
+      "id": "symmetri",
+      "term": "Symmetri",
+      "definition": "Struktur uttrykt gjennom transformasjoner som bevarer spesifiserte egenskaper eller relasjoner."
+    },
+    {
+      "id": "modelladekvathet",
+      "term": "Modelladekvathet",
+      "definition": "Hvor godt en matematisk representasjon, med sine antakelser og idealiseringer, er egnet til å beskrive eller forklare det konkrete spørsmålet den brukes på."
+    }
+  ]
+}

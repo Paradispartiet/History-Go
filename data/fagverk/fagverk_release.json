@@ -9,9 +9,9 @@
   "registry": {
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
-    "version": "3.04.0",
+    "version": "3.06.0",
     "updated_at": "2026-08-17",
-    "content_sha256": "43db5f5c63037b743e10d8c85976203ae0dac13ec59bf1bd60844888c426a8f7"
+    "content_sha256": "ebcebf55708a07b3f758b8508185af47cfd8a3a49d2bf90d1eb98176a2095137"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,18 +27,18 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "c797a190383789a6cb0dab672ec8c8d692092cf93a11de4241843c974f3c169a"
+    "content_sha256": "11a8d59dce7070f1bd620e2479e28d248570c78f03dbfbc8e40c73e2f97ddaa9"
   },
   "summary": {
     "subject_count": 18,
     "root_subject_count": 17,
     "specialization_count": 1,
-    "chapter_subject_count": 13,
-    "chapter_count": 154,
-    "module_file_count": 368,
+    "chapter_subject_count": 14,
+    "chapter_count": 158,
+    "module_file_count": 380,
     "package_file_count": 205,
-    "chapter_referenced_file_count": 699,
-    "referenced_file_count": 863,
+    "chapter_referenced_file_count": 723,
+    "referenced_file_count": 887,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -552,14 +552,14 @@
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 114,
-      "chapter_content_sha256": "e823baf203a8b208c00a51a86ffb5266bbbbcbc1dd925a4bc290b717045597be",
+      "chapter_content_sha256": "3ffb028f13a2742a1a03d0c47fbd70ce8e817aa46e77feb09c12bc17617ddd60",
       "referenced_file_count": 122,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
       "structure_sha256": "fa1aa9d206a68ce075117f929fd25bf8373123ca36246d8aae026e64e6052986",
-      "content_sha256": "c5dcdcde5ba55ab847f4e7fabf61ec13bbbdc0a70ae45ccd74fcbd14cc58fb4c",
+      "content_sha256": "d21c354754910fc3dc6d756380105a08949121864c7fe940923dbd439c81be5c",
       "chapters": [
         {
           "chapter_id": "kinoer-visningssteder-og-publikum",
@@ -671,7 +671,7 @@
           "file": "data/fagverk/film_tv/skjermsteder-identitet-og-sirkulasjon.json",
           "module_file_count": 4,
           "referenced_file_count": 7,
-          "content_sha256": "e33dbaf286161c7c5668fcdf6d61622760bad3330a3326b0583c0ded15dfcd22"
+          "content_sha256": "beade885cf1def07520fba028e6d3e2685f019c81c9a8aaedf3871aa73ae6908"
         },
         {
           "chapter_id": "location-produksjon-og-stedsetikk",
@@ -4634,7 +4634,7 @@
       "schema_family": "standard_canonical",
       "pilot": true,
       "package_status": "complete",
-      "chapter_status": "not_materialized",
+      "chapter_status": "materialized",
       "required_manifest_fields": [
         "pensum",
         "emner",
@@ -4663,7 +4663,7 @@
       "optional_package_file_count": 3,
       "package_files": [
         {
-          "path": "data/fag/vitenskap/emner_vitenskap_canonical_v4_5.json",
+          "path": "data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json",
           "required": true,
           "fields": [
             "emner"
@@ -4672,10 +4672,10 @@
             "emner"
           ],
           "exists": true,
-          "content_sha256": "3656ea6c23288379b9f2c7b0eacc5ae28be7c3efdb1d3f1d4633dc08bb4a34a5"
+          "content_sha256": "0a5366674ab3df2cada77baf330e112099c157c5c10f572adfc08689cf574dc1"
         },
         {
-          "path": "data/fag/vitenskap/fagkart_vitenskap_canonical_v4_5.json",
+          "path": "data/fag/vitenskap/fagkart_vitenskap_canonical_v4_6.json",
           "required": true,
           "fields": [
             "fagkart"
@@ -4684,10 +4684,10 @@
             "fagkart"
           ],
           "exists": true,
-          "content_sha256": "83fc0ef4778b2ded06c71dfa4124bf8982b79066891ef93801c845502d541957"
+          "content_sha256": "3a0981c4f2f4dbfca8bf8e148ab54f1451997a727469d25e5e160f432985f436"
         },
         {
-          "path": "data/fag/vitenskap/methods_vitenskap_canonical_v4_5.json",
+          "path": "data/fag/vitenskap/methods_vitenskap_canonical_v4_6.json",
           "required": true,
           "fields": [
             "methods"
@@ -4696,7 +4696,7 @@
             "methods"
           ],
           "exists": true,
-          "content_sha256": "c13af853541caf560e46aee6db974397f9bc328510992a553acf8af53be0c000"
+          "content_sha256": "b4390db9560a7cb9c834136da64ac64248381543b1d3dd6986f7b02249d6c238"
         },
         {
           "path": "data/fag/vitenskap/supersetQUIZMAL_vitenskap.json",
@@ -4711,7 +4711,7 @@
           "content_sha256": "7e5fab7694749f7b84f172297788e01a901b8e85f8cfa429cf1f9d659417b7fc"
         },
         {
-          "path": "data/fag/vitenskap/vitenskappensum_canonical_v4_5.json",
+          "path": "data/fag/vitenskap/vitenskappensum_canonical_v4_6.json",
           "required": true,
           "fields": [
             "pensum"
@@ -4720,7 +4720,7 @@
             "pensum"
           ],
           "exists": true,
-          "content_sha256": "888b5d696727a3ba009e422f938bfb94f462d6b01da72cdbdbcd9fa2bbc6960a"
+          "content_sha256": "f1909039be99837ace964d157c221ef7ad8410767656ebc537478f135d047279"
         },
         {
           "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -4747,22 +4747,55 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "4657773fc809d95f24e8c33c34824f555d11e89d34578cf4739b6caf22bec31e",
-      "chapter_count": 0,
-      "module_file_count": 0,
-      "brief_file_count": 0,
-      "claims_file_count": 0,
-      "chapter_referenced_file_count": 0,
-      "chapter_content_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "referenced_file_count": 7,
+      "package_content_sha256": "1cb0494e52e45b8c38628e3c03ed5cbb6054ce823699f7ee4bdc2255c66dabb9",
+      "chapter_count": 4,
+      "module_file_count": 12,
+      "brief_file_count": 4,
+      "claims_file_count": 4,
+      "chapter_referenced_file_count": 24,
+      "chapter_content_sha256": "e1492365b88b2a65121e163c4843fe1d5168210786f0d76123a4bd3f99726c98",
+      "referenced_file_count": 31,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "a8862d834e23e8c3c1f0d8759acb0d3f3886c8cc40a08e90b4801b18f58eb651",
-      "content_sha256": "4657773fc809d95f24e8c33c34824f555d11e89d34578cf4739b6caf22bec31e",
-      "chapters": []
+      "structure_sha256": "a54fb29a952095d1d9edfddc041e4f570fd60d83555bcfd99f10990357ee93a9",
+      "content_sha256": "9fb1535c5fb89a85b60600ed8a00c966da310218e8a72163b90c67c2e121bcf0",
+      "chapters": [
+        {
+          "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+          "title": "Fra observasjon til etterprøvbar kunnskap",
+          "file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "77e16e05bbec2eacf4777d0afd7ea033bea22805b831d3b107523be602b9f91a"
+        },
+        {
+          "chapter_id": "vitenskap-matematisk-bevis-struktur-og-modell",
+          "title": "Matematisk bevis, struktur og modell",
+          "file": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "b03346aa5fc1c2c67ba3e3fcc4fe983042bea4bd74b6844ed2d20252aa4417a5"
+        },
+        {
+          "chapter_id": "vitenskap-fysikk-fra-bevegelse-til-kosmos",
+          "title": "Fysikk fra bevegelse til kosmos",
+          "file": "data/fagverk/vitenskap/vitenskap-fysikk-fra-bevegelse-til-kosmos.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "798dd44581c0f6254c1e0c4304656f7b8f687158f14b0d4cf64c22babadee9b7"
+        },
+        {
+          "chapter_id": "vitenskap-kjemi-fra-atomstruktur-til-materialegenskap",
+          "title": "Kjemi fra atomstruktur til materialegenskap",
+          "file": "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap.json",
+          "module_file_count": 3,
+          "referenced_file_count": 6,
+          "content_sha256": "e0b04d4acdbf6337c59de00eb2e619397605d735646a4cfb3a6dc69da33bfd3a"
+        }
+      ]
     }
   },
-  "release_sha256": "b876b65e86e9f6076c8931f597f5c1436a010834a0292d32870b95d639d2f567"
+  "release_sha256": "f37a4f3fbfe2cf10c00c5ec09fd635c7d62d67ac97b45d04e6074cfc519c25d5"
 }

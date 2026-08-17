@@ -7,6 +7,8 @@ Samling: `HGKnowledgeV2` / `hg_knowledge_entries_v2`
 
 Språkleksikonet er History GOs system for språk som faktisk er knyttet til steder. Det bygger videre på det eksisterende Leksikon-laget; det er **ikke** en ny dialektmotor, en ny PlaceCard-runding, et nytt History GO-fag eller en separat samlingsdatabase.
 
+**Språkleksikon og dialektlag er ikke synonymer.** Språkleksikon kan finnes på alle typer Places når stedet har dokumentert språkstoff. Dialektlaget er en avgrenset innholdsfamilie inne i Språkleksikonet og kan bare eies av et canonical Place med `placeScope: "area"`.
+
 ## 1. Hovedregel
 
 > **Språkdata eies av Språkleksikonet. Stedspopupen eier presentasjonen. Knowledge V2 eier brukerens samlede kunnskap.**
@@ -68,6 +70,7 @@ Når materialet gir dekning, kan oppføringen også ha:
 - `example`
 - `pronunciation`
 - `audio`
+- `layer` (`language` / `dialect`)
 - `dialect_area`
 - `status`
 - `usage`
@@ -116,33 +119,45 @@ En språkoppføring skal vurderes for:
 
 Vanlige norske ord skal ikke merkes som lokale bare fordi de forekommer i en lokal kilde. Lokalt særpreg må dokumenteres.
 
-## 7. Dialektord og lokale uttrykk — områdeeierskap styrer kravet
+## 7. Språkleksikon og dialektlag — hardt skille
 
-Dialektord og lokale uttrykk skal ikke presses inn på alle Places. Før språkproduksjon klassifiseres place-objektets **canonical identitet**: representerer det et område/språkmiljø, et enkeltsted, eller et enkeltsted med en direkte dokumentert språkhistorie?
+Språkleksikonet kan brukes på alle typer Places når språkstoffet har en direkte, dokumentert stedstilknytning. **Dialektlaget er strengere:** Dialektlaget kan bare eies av et canonical Place med `placeScope: "area"`. Det finnes ingen unntak for gater, bygg, institusjoner, markeder, havner, arbeidsplasser eller andre enkelt-Places.
 
-For **område-Places** er dialektord og lokale uttrykk en **obligatorisk produksjonsjobb**. Det gjelder steder som faktisk representerer et strøk, en bydel, by/bygd, ladested eller annet dokumentert lokalt miljø. `placeScope: "area"` er den canonicale semantiske datamarkøren for slikt områdeeierskap. `coordRole` og `coordType` beskriver hvordan et sted eller en flate er koordinatfestet; `area_anchor`, `park_anchor`, sentroid- og andre geometriske ankertyper gir derfor **ikke** områdeeierskap alene. Eldre `district_anchor`- og eksplisitte områdeklassifikasjoner brukes bare som migreringsbelegg for å sette `placeScope` eksplisitt.
+Dette betyr:
 
-Produksjonsregelen er:
+- et område-Place kan eie både vanlig Språkleksikon og dialektinnhold;
+- enkelt-Places kan ha Språkleksikon med historiske navn, kallenavn, fagord, arbeidsspråk, stedsspesifikke ord og uttrykk eller annen dokumentert språkbruk;
+- enkelt-Places skal **ikke** få `layer: "dialect"`, `dialect_area` eller `dialect_feature`, selv når stedet ligger i et dialektområde;
+- et stedsspesifikt uttrykk som faktisk oppstod ved et enkeltsted kan eies av enkeltstedets Språkleksikon som vanlig språkinnhold, men gjør ikke enkeltstedet til dialektområde eller dialekteier;
+- generelle Sagene-, Oslo-, Østfold- eller andre områdeformer eies av nærmeste relevante område-Place og relateres videre, ikke kopieres til underliggende enkeltsteder.
 
-- et område-Place skal ha et eksplisitt researchspor etter dokumenterte dialektord, lokale ordformer, lokale uttrykk og talemåter som kan knyttes til området eller det dokumenterte dialektmiljøet;
-- det skal søkes aktivt i ordbøker, dialektarkiv, lokale historiesamlinger, talemålsmateriale og andre relevante kilder — ikke bare i eksisterende History GO-data;
-- når kildene bærer det, skal minst ett reelt kildebelagt **dialektord eller lokalt uttrykk** produseres som `word` eller `expression`;
-- et område-Språkleksikon som bare består av stedsnavn, administrative fagord eller generelt norsk regnes ikke som redaksjonelt ferdig dersom researchen dokumenterer lokale ordformer eller uttrykk;
-- betydning, geografisk utbredelse og historisk/moderne status skal avgrenses etter kilden;
-- dialektord skal aldri konstrueres, moderniseres eller gjøres «mer lokale» av språkmodell eller redaksjonell gjetning;
-- dersom et dokumentert søk faktisk ikke finner et forsvarlig dialektord/lokalt uttrykk, registreres søket og kildene som begrunnet holdback/N/A for akkurat denne deljobben. Fravær skal dokumenteres, ikke fylles med oppdiktet språk.
+### Canonical markør for dialektinnhold
 
-For **enkelt-Places** — for eksempel et enkelt bygg, en institusjon, et monument, et kunstverk eller et annet avgrenset objekt — er geografisk plassering i et dialektområde **ikke nok** til å kreve dialektord. Slike steder får `word`/`expression` bare når ordet, kallenavnet, talemåten, fag-/arbeidsspråket eller språkfenomenet har en direkte dokumentert forbindelse til akkurat stedet.
+Nyproduksjon skal merke dialektinnhold eksplisitt med `layer: "dialect"`. En oppføring regnes som del av dialektlaget når minst ett av disse forholdene gjelder:
 
-Gater, markeder, havner, arbeidsmiljøer og andre avgrensede miljøer kan derfor få lokale ord selv om de ikke er område-Places, men bare når den direkte stedstilknytningen er dokumentert. Generelle Oslo-, Sagene- eller Østfold-ord skal ikke kopieres inn i hvert enkelt Place som ligger der.
+- `layer: "dialect"`;
+- canonical type er `dialect_feature` / `dialekttrekk`;
+- `dialect_area` er satt på oppføringen eller språkfilen.
 
-### Canonical språk-eier
+`word` og `expression` er **ikke automatisk dialekt**. På et område-Place skal et dialektord eller områdebundet lokalt uttrykk produseres som `word`/`expression` med `layer: "dialect"`. På et enkelt-Place kan `word`/`expression` brukes for dokumentert stedsspesifikt språk, men da er laget vanlig `language` og ikke dialekt.
 
-Et språkfenomen skal som hovedregel eies av **nærmeste relevante område-Place**. Et Sagene-ord eies derfor av Sagene når kildene gjelder Sagene som språkmiljø. En skole, fabrikk eller bygning på Sagene kan peke til språksporet gjennom `related_places` / `related_entries` når det er relevant, i stedet for å opprette en konkurrerende kopi.
+### Produksjonsregel for område-Places
 
-Unntaket er når enkeltstedet selv er den dokumenterte språk-eieren — for eksempel et lokalt kallenavn på bygget, et uttrykk som oppstod ved arbeidsplassen eller et stedsspesifikt fagord.
+For Places med `placeScope: "area"` er dialektord og lokale talemålsformer en **obligatorisk researchjobb**. Det skal søkes aktivt i ordbøker, dialektarkiv, lokale historiesamlinger, talemålsmateriale og andre relevante eksterne kilder. Når kildene bærer det, skal minst ett reelt kildebelagt **dialektord eller lokalt uttrykk** produseres som `word` eller `expression` med `layer: "dialect"`.
 
-Dette er et produksjonskrav for relevante Språkleksikon, ikke et krav om at alle steder i History GO må ha en språkfane.
+Betydning, geografisk utbredelse og historisk/moderne status skal avgrenses etter kildene. Dialektord skal aldri konstrueres, moderniseres eller gjøres «mer lokale» av språkmodell eller redaksjonell gjetning. Dersom et dokumentert søk ikke finner et forsvarlig dialektord/lokalt uttrykk, registreres søkte kilder og begrunnet holdback/N/A i stedet for filler.
+
+### Enkelt-Places og direkte språksteder
+
+Enkelt-Places kan ha et rikt Språkleksikon, men ikke et dialektlag. Historiske gatenavn på Torggata, et dokumentert kallenavn på en bygning, et fagord ved Bislett stadion eller et arbeidsplassuttrykk kan være gyldig språkinnhold når kildene bærer det. Slike oppføringer skal ikke merkes som dialekt og skal ikke bruke et bredere dialektområde som om enkeltstedet eide det.
+
+Gater, markeder, havner og arbeidsmiljøer kan fortsatt være **direkte språksteder** for stedsspesifikke uttrykk. «Direkte språksted» er en Språkleksikon-klassifisering, ikke en dialektklassifisering.
+
+### Canonical dialekt-eier
+
+Et dialektfenomen eies av **nærmeste relevante område-Place**. Et Sagene-ord eies av Sagene når kildene gjelder Sagene som språkmiljø. En skole, fabrikk, gate eller bygning på Sagene kan peke til språksporet gjennom `related_places` / `related_entries`, men oppretter ikke en konkurrerende dialektkopi.
+
+**Stoppgate:** Dialektinnhold på et Place uten `placeScope: "area"` er en datamodellfeil. Flytt innholdet til riktig områdeeier eller klassifiser det som vanlig, direkte stedsspesifikt Språkleksikon dersom det faktisk tilhører enkeltstedet.
 
 ## 8. Presentasjon i stedspopupen
 

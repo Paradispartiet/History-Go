@@ -87,11 +87,13 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   assert.equal(religion.editorialStatus, 'complete');
   assert.equal(religion.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
 
-  for (const id of ['scenekunst', 'vitenskap']) {
-    const subject = s.subjects.find((x) => x.id === id);
-    assert.equal(subject.editorialStatus, 'structure_ready');
-    assert.equal(subject.nextGate, 'chapter_production');
-  }
+  const scenekunst = s.subjects.find((x) => x.id === 'scenekunst');
+  assert.equal(scenekunst.editorialStatus, 'structure_ready');
+  assert.equal(scenekunst.nextGate, 'chapter_production');
+
+  const vitenskap = s.subjects.find((x) => x.id === 'vitenskap');
+  assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
+  assert.equal(vitenskap.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');
 
   // Filosofi is complete only when the explicit major-field coverage contract and
   // article-by-article university review agree. Keep the status gate tied to that

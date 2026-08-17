@@ -87,7 +87,7 @@ Dette lukker den tidligere feilen der Arealplanlegger og Barnehageassistent hadd
 
 Det gamle navnet `CivicationMailRuntime.makeCandidateMailsForActiveRole` er en ren alias til Director. Workday, Dailys primærscene, EventEngines `buildMailPool` og eldre kompatibilitetskall går derfor gjennom samme canonicale innsteg.
 
-EventEngine laster legacy-pack og RoleStoryletBridge bare når Director returnerer null canonicale kandidater. En terminal karrieretilstand med `__career_outcome_terminal_closed` åpner ikke legacy-fallback. Den forrige `buildMailPool`-adapteren brukes bare som eksplisitt feilsikring dersom Director selv kaster en feil.
+4H-C har lukket fallbacken: EventEngine laster aldri legacy-pack eller RoleStoryletBridge når Director returnerer null canonicale kandidater. En tom kandidatpool er et eksplisitt no-op. Hvis Director kaster en feil, lukkes gameplay fail-closed med tom pool; den forrige `buildMailPool`-adapteren gjenåpnes ikke.
 
 ## SceneDirector-cutover 4C: Daily-ekstrascener og katalogeierskap
 
@@ -100,7 +100,7 @@ EventEngine laster legacy-pack og RoleStoryletBridge bare når Director returner
 - Career Knowledge Bridge-dekorering;
 - progresjonsfiltrering, case-tråd-deduplisering og deterministisk rangering.
 
-Dette er en kildeadapter mot legacy `mailFamilies`, ikke sluttens `compiled_scene_registry_v1`. Registry-cutoveren kommer senere uten at Daily igjen får katalogeierskap.
+`CivicationSceneCatalog` leser nå det materialiserte `compiled_scene_registry_v1` for work-scenes. `mailFamilies` er source-of-build med permanent `--check`-gate, men normal runtime går ikke tilbake til rå kataloglesing. `private`, `life`, `narrative` og `social` forblir runtime-materialiserte source adapters.
 
 SceneDirector eksponerer nå i tillegg:
 
@@ -144,7 +144,7 @@ De gamle interne Daily-funksjonene finnes foreløpig som kompatibilitetskode i f
 ## Bekreftet gjenværende migreringsgjeld
 
 1. Dagsprogrammet beskriver fortsatt en eldre element-/ordmengdemodell. Målkontrakten bruker 3–6 faktiske arbeidssituasjoner; lesetid og ordmengde er observasjoner, ikke produksjonskvoter.
-2. SceneCatalog leser fortsatt registrerte kildekataloger. Ett kompilert scene-register er måltilstanden nå som `private`, `life`, `narrative` og `social` er samlet bak registrerte kildeadaptre.
+2. **Lukket i 4H-C:** parallelle legacyveier, særlig `data/Civication/jobbmails`, er blokkert som gameplaykilde og fallback. Arkiv/migreringsdata kan bli liggende i repoet, men runtime kan ikke bruke dem som reserveinnhold.
 
 ## Fagverk og stabile spilleregler
 
@@ -186,8 +186,9 @@ Reachability-testen håndhever typeparitet og direkte lasting. SceneDirector-eie
    - **Fullført 4G-B:** `life` registreres som egen SceneCatalog-adapter; standard Life-`onAppOpen` konsumerer kilden via Catalog uten direkte produsentfallback.
    - **Fullført 4G-C:** `narrative` eier manifest/stream-eligibility og storylet→scene bak SceneCatalog; Daily eier fortsatt dagsplassering og narrativ state/effect-transaksjon.
    - **Fullført 4G-D:** `social` registreres som SceneCatalog-adapter; FriendsEngine er synkron kompatibilitetsfasade mot den registrerte adapteren, mens kart, private meldinger og samtalekonsekvenser beholder eksisterende semantikk.
-8. **Neste:** La runtime lese ett kompilert scene-register; fjern parallelle kildeveier og gamle `jobbmails`.
-9. Slå på blokkerende semantisk spilltest: plansteg → scene → valg/oppgave/info → konsekvens → progresjon → neste steg.
+8. **Fullført 4H-A–4H-C:** Materialiser `compiled_scene_registry_v1`, bevis før/etter-paritet, la SceneCatalog lese registryet for work-scenes og blokker alle parallelle legacy-/`jobbmails`-fallbacks.
+   - **Fullført 4H-C:** null canonical kandidat gir no-op; Director-feil gir fail-closed tom pool; legacy-pack, RoleStoryletBridge, gammel `buildMailPool` og generisk karrieremail kan ikke overta gameplay.
+9. **Neste 4H-D:** slå på blokkerende semantisk spilltest: plansteg → scene → valg/oppgave/info → konsekvens → progresjon → neste steg.
 
 Renholder og Arealplanlegger er de første bevisrollene etter at interaksjonskontrakten og svartransaksjonen er samlet.
 

@@ -83,7 +83,9 @@ test("legacy-arrangementer blir ikke løftet som språkinnhold", () => {
   assert.match(runtime, /"arrangement"/);
   assert.match(runtime, /"event"/);
   assert.match(runtime, /"stevne"/);
-  assert.match(runtime, /filter\(isLanguageEntry\)/);
+  assert.match(runtime, /function\s+isAllowedLanguageEntry\s*\(/);
+  assert.match(runtime, /if\s*\(!isLanguageEntry\(entry\)\)\s*return false/);
+  assert.match(runtime, /filter\(entry\s*=>\s*isAllowedLanguageEntry\(entry,\s*loaded\.article,\s*place\)\)/);
 
   const bislett = json(manifest.place_files.bislett_stadion);
   assert.ok(bislett.entries.some(entry => entry.type === "arrangement"), "fixture må fortsatt dekke legacy-arrangement");
@@ -120,17 +122,17 @@ test("Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny rundi
 });
 
 
-test("place-produksjon låser dialektord til riktig place-eier", () => {
+test("place-produksjon låser dialektlaget til område-Places", () => {
   const checklist = read("docs/PLACE_PRODUCTION_CHECKLIST.md");
   const contract = read("docs/SPRAKLEKSIKON.md");
-  assert.match(checklist, /SPRÅK-PLACE-SCOPE — OMRÅDE \/ DIREKTE SPRÅKSTED \/ ENKELTSTED/);
-  assert.match(checklist, /placeScope:\s*"area"/);
-  assert.match(checklist, /for \*\*enkeltsted\*\* er dialektord ikke et krav/i);
+  assert.match(checklist, /DIALEKTLAG — KUN `placeScope: "area"` \/ N\/A/);
+  assert.match(checklist, /dialektinnhold kan kun eies av et område-Place/i);
+  assert.match(checklist, /enkeltsted med Språkleksikon/i);
   assert.match(checklist, /skal ikke diktes/i);
-  assert.match(contract, /obligatorisk produksjonsjobb/i);
-  assert.match(contract, /placeScope:\s*"area"/);
+  assert.match(contract, /obligatorisk researchjobb/i);
+  assert.match(contract, /Dialektlaget kan bare eies[^\n]*placeScope:\s*"area"/i);
   assert.match(contract, /minst ett reelt kildebelagt \*\*dialektord eller lokalt uttrykk\*\*/i);
-  assert.match(contract, /geografisk plassering i et dialektområde \*\*ikke nok\*\*/i);
+  assert.match(contract, /Enkelt-Places kan ha et rikt Språkleksikon, men ikke et dialektlag/i);
   assert.match(contract, /nærmeste relevante område-Place/i);
   assert.match(contract, /related_places.*related_entries/i);
 });
@@ -142,6 +144,7 @@ test("områdeeierskap bruker canonical placeScope, ikke koordinatrollen", () => 
   const contract = read("docs/SPRAKLEKSIKON.md");
   assert.match(checklist, /placeScope:\s*"area"/);
   assert.match(contract, /placeScope:\s*"area"/);
-  assert.match(contract, /coordRole[\s\S]{0,180}koordinat/i);
+  assert.match(checklist, /coordRole[\s\S]{0,120}koordinatgeometri/i);
+  assert.match(checklist, /coordRole[\s\S]{0,180}gir aldri dialekt-eierskap/i);
   assert.doesNotMatch(contract, /coordRole:\s*"area_anchor"[^\n]*primær/i);
 });

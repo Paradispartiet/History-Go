@@ -311,11 +311,12 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(vitenskap.schemaFamily, 'standard_canonical');
   assert.equal(vitenskap.adapter, 'standard');
   assert.equal(vitenskap.domainCount, 6);
-  assert.equal(vitenskap.emneCount, 93);
+  assert.equal(vitenskap.emneCount, 117);
   assert.equal(vitenskap.methodCount, 84);
-  assert.equal(vitenskap.mappingCount, 93);
-  assert.equal(vitenskap.hookCount, 60);
-  assert.equal(vitenskap.chapterCount, 0);
+  assert.equal(vitenskap.mappingCount, 117);
+  assert.equal(vitenskap.hookCount, 64);
+  assert.equal(vitenskap.chapterCount, JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8')).subjects.vitenskap.chapters.length);
+  assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
   assert.ok(result.report.summary.adapterFamiliesExercised.includes('by_compatibility'));
   assert.ok(result.report.summary.adapterFamiliesExercised.includes('foundation_v1'));
   assert.equal(result.report.summary.politicsFallbacks, 0);

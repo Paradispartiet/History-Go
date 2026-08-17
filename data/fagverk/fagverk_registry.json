@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "3.04.0",
+  "version": "3.06.0",
   "updatedAt": "2026-08-17",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -664,9 +664,85 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Vitenskapsfagets seks fagområder eier toppstrukturen. Teknologi er en nested technology_scientific_v2_4-spesialisering under samme fag og badge, ikke et eget toppfag. Ingen kapitler registreres før fulltekst, claims og kilder er produsert."
+        "note": "Vitenskapsfagets seks fagområder eier toppstrukturen. Canonical inventory v4.6 har 117 emner, 84 metoder, 117 mappinger og 64 hooks. Matematikk/formelle fag er nå fulltekstmaterialisert og registrert som andre Vitenskap-kapittel; fysikk/astronomi, kjemi/materialvitenskap og medisin/biomedisin/folkehelse gjenstår som redaksjonelle breadth-blockers. Teknologi forblir nested technology_scientific_v2_4-spesialisering under samme fag og badge. Inventory-bredde og ett materialisert breadth-kapittel er fortsatt ikke subject completion."
       },
-      "chapters": []
+      "chapters": [
+        {
+          "id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+          "title": "Fra observasjon til etterprøvbar kunnskap",
+          "subtitle": "Hvordan institusjoner, instrumenter, standarder, måleusikkerhet, fagfellekritikk, reproducerbarhet og replikasjon gjør vitenskapelige påstander kontrollerbare uten å gjøre dem ufeilbarlige",
+          "file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap.json",
+          "primary_domain_id": "institusjoner_laboratorier_kunnskapssteder",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_vit_universitet_kunnskapsproduksjon",
+            "em_vit_laboratorium_praksis",
+            "em_vit_instrumenter_maling",
+            "em_vit_forskningsinfrastruktur",
+            "em_vit_fagmiljo_standarder",
+            "em_vit_fagfellevurdering",
+            "em_vit_reproduserbarhet",
+            "em_vit_institusjonell_tillit"
+          ],
+          "claimsFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json",
+          "briefFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/brief.json"
+        },
+        {
+          "id": "vitenskap-matematisk-bevis-struktur-og-modell",
+          "title": "Matematisk bevis, struktur og modell",
+          "subtitle": "Fra deduktiv gyldighet og maskinsjekkede bevis til algebraiske transformasjoner, kontinuerlig analyse, symmetri og diskrete strukturer – uten å forveksle formell korrekthet med empirisk validering",
+          "file": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell.json",
+          "primary_domain_id": "metoder_maling_modeller",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_vit_matematisk_bevis_og_deduksjon",
+            "em_vit_algebra_og_strukturer",
+            "em_vit_analyse_endring_og_kontinuitet",
+            "em_vit_geometri_rom_og_symmetri",
+            "em_vit_diskret_matematikk_og_kombinatorikk"
+          ],
+          "claimsFile": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/claims.json",
+          "briefFile": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/brief.json"
+        },
+        {
+          "id": "vitenskap-fysikk-fra-bevegelse-til-kosmos",
+          "title": "Fysikk fra bevegelse til kosmos",
+          "subtitle": "Fra målte posisjoner og energiregnskap til felt, kvantetilstander, relativitet, atomspektre og multibudbringerastronomi – med instrument og modell synlige i hele evidenskjeden",
+          "file": "data/fagverk/vitenskap/vitenskap-fysikk-fra-bevegelse-til-kosmos.json",
+          "primary_domain_id": "natur_medisin_miljo",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_vit_mekanikk_krefter_bevegelse",
+            "em_vit_energi_termodynamikk",
+            "em_vit_bolger_og_optikk",
+            "em_vit_elektromagnetisme",
+            "em_vit_kvantefysikk",
+            "em_vit_relativitet",
+            "em_vit_atom_og_kjernefysikk",
+            "em_vit_astronomi_og_kosmologi"
+          ],
+          "claimsFile": "data/fagverk/vitenskap/vitenskap-fysikk-fra-bevegelse-til-kosmos/claims.json",
+          "briefFile": "data/fagverk/vitenskap/vitenskap-fysikk-fra-bevegelse-til-kosmos/brief.json"
+        },
+        {
+          "id": "vitenskap-kjemi-fra-atomstruktur-til-materialegenskap",
+          "title": "Kjemi fra atomstruktur til materialegenskap",
+          "subtitle": "Fra periodiske mønstre og binding til reaksjonsregnskap, termodynamikk, kinetikk, analytiske signaler og materialkarakterisering – med prøve, instrument og modell synlige i hele evidenskjeden",
+          "file": "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap.json",
+          "primary_domain_id": "natur_medisin_miljo",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_vit_atomstruktur_og_periodesystem",
+            "em_vit_kjemiske_bindinger_og_struktur",
+            "em_vit_reaksjoner_stokiometri_og_likevekt",
+            "em_vit_kjemisk_termodynamikk_og_kinetikk",
+            "em_vit_analytisk_kjemi_og_spektroskopi",
+            "em_vit_materialkjemi_og_egenskaper"
+          ],
+          "claimsFile": "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap/claims.json",
+          "briefFile": "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap/brief.json"
+        }
+      ]
     },
     "religion": {
       "title": "Religion",

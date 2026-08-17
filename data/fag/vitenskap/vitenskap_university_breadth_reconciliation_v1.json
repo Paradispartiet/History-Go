@@ -1,0 +1,395 @@
+{
+  "schema": "history_go_vitenskap_university_breadth_reconciliation_v1",
+  "version": "1.0.0",
+  "subject_id": "vitenskap",
+  "canonical_parent_model": "six_domain_standard_canonical",
+  "source_inventory_version": "vitenskappensum_v4_5",
+  "target_inventory_version": "vitenskappensum_v4_6",
+  "updated_at": "2026-08-17",
+  "purpose": "Reconcile de fire eksplisitte universitetsbreddegapene i Vitenskap inn i den eksisterende seksområdersmodellen uten nye toppfag, parallelle kategorier eller duplisering av Natur, Filosofi eller den nested Teknologi-spesialiseringen.",
+  "rules": {
+    "preserve_domain_count": 6,
+    "preserve_method_count": 84,
+    "add_emne_count": 24,
+    "add_hook_count": 4,
+    "add_mapping_count": 24,
+    "target_emne_count": 117,
+    "target_hook_count": 64,
+    "target_mapping_count": 117,
+    "complete_ready_after_reconciliation": false,
+    "inventory_reconciliation_is_not_editorial_completion": true,
+    "technology_remains_nested": true,
+    "neighbor_boundaries_preserved": [
+      "natur",
+      "filosofi",
+      "teknologi"
+    ],
+    "required_emne_prefix": "em_vit_",
+    "new_top_level_subjects_forbidden": true,
+    "new_parallel_domains_forbidden": true
+  },
+  "benchmark_ids": [
+    "benchmark_hkdir_realfag_2026",
+    "benchmark_ntnu_naturvitenskap_studier_2026",
+    "benchmark_uib_nt_2026",
+    "benchmark_uit_nt_studier_2026",
+    "benchmark_uhr_mnt_engineering"
+  ],
+  "families": [
+    {
+      "coverage_family_id": "mathematics_formal_sciences",
+      "label": "Matematikk, formelle strukturer og bevis",
+      "target_domain_id": "metoder_maling_modeller",
+      "hook": {
+        "id": "matematikk_formelle_fag",
+        "title": "Matematikk og formelle fag",
+        "recommended_method_ids": [
+          "met_vit_beregningsanalyse",
+          "met_vit_modellanalyse",
+          "met_vit_statistisk_analyse",
+          "met_vit_teorianalyse"
+        ],
+        "recommended_oslo_cases": [
+          "Universitetet i Oslo",
+          "Blindern",
+          "Observatoriet"
+        ]
+      },
+      "topics": [
+        {
+          "id": "em_vit_matematisk_bevis_og_deduksjon",
+          "candidate_key": "matematisk_bevis_og_deduksjon",
+          "title": "Matematisk bevis og deduksjon",
+          "short_label": "Bevis og deduksjon",
+          "definition": "Hvordan matematiske påstander etableres gjennom eksplisitte definisjoner, aksiomer, logiske slutninger og bevis, og hvorfor denne formen for begrunnelse skiller seg fra empirisk testing uten å være løsrevet fra vitenskapelig modellering og måling.",
+          "why_it_matters": "Gir et nødvendig skille mellom formell gyldighet og empirisk evidens og gjør det mulig å forstå hvorfor matematikk både har egne beviskrav og fungerer som språk og verktøy i naturvitenskapelige modeller.",
+          "keywords": ["bevis", "deduksjon", "aksiom", "logikk", "gyldighet"],
+          "method_ids": ["met_vit_teorianalyse", "met_vit_beregningsanalyse", "met_vit_modellanalyse"],
+          "key_questions": ["Hva gjør en matematisk slutning gyldig?", "Hvordan skiller bevis seg fra empirisk bekreftelse?", "Når kan et formelt resultat brukes i en empirisk modell?"]
+        },
+        {
+          "id": "em_vit_algebra_og_strukturer",
+          "candidate_key": "algebra_og_strukturer",
+          "title": "Algebra og strukturer",
+          "short_label": "Algebra og struktur",
+          "definition": "Studiet av symboler, operasjoner, relasjoner og abstrakte strukturer som gjør det mulig å uttrykke mønstre uavhengig av ett bestemt fysisk system og å undersøke hvilke egenskaper som bevares under transformasjoner.",
+          "why_it_matters": "Algebraisk struktur er grunnlag for store deler av matematisk modellering, fysikk, dataanalyse og beregning og viser hvordan abstraksjon kan gjøre svært ulike problemer sammenlignbare.",
+          "keywords": ["algebra", "struktur", "operasjon", "relasjon", "abstraksjon"],
+          "method_ids": ["met_vit_teorianalyse", "met_vit_modellanalyse", "met_vit_beregningsanalyse"],
+          "key_questions": ["Hva abstraheres bort når en struktur formaliseres?", "Hvilke relasjoner bevares?", "Hvordan kan samme algebraiske struktur beskrive ulike systemer?"]
+        },
+        {
+          "id": "em_vit_analyse_endring_og_kontinuitet",
+          "candidate_key": "analyse_endring_og_kontinuitet",
+          "title": "Analyse, endring og kontinuitet",
+          "short_label": "Analyse og kontinuitet",
+          "definition": "Matematiske verktøy for grenser, kontinuitet, derivasjon, integrasjon og endring som gjør det mulig å formulere og undersøke kontinuerlige prosesser, vekst, bevegelse og akkumulasjon presist.",
+          "why_it_matters": "Analyse er sentral i fysikk, statistikk, økonomi, biologi og tekniske modeller fordi mange vitenskapelige spørsmål handler om hvordan størrelser varierer og hvordan lokale endringer bygger opp globale mønstre.",
+          "keywords": ["analyse", "kontinuitet", "derivasjon", "integrasjon", "endring"],
+          "method_ids": ["met_vit_beregningsanalyse", "met_vit_modellanalyse", "met_vit_statistisk_analyse"],
+          "key_questions": ["Hvordan beskrives endring matematisk?", "Hva betyr kontinuitet i en modell?", "Når er en kontinuerlig modell en rimelig idealisering?"]
+        },
+        {
+          "id": "em_vit_geometri_rom_og_symmetri",
+          "candidate_key": "geometri_rom_og_symmetri",
+          "title": "Geometri, rom og symmetri",
+          "short_label": "Rom og symmetri",
+          "definition": "Matematiske beskrivelser av form, avstand, dimensjon, koordinater, transformasjoner og symmetrier som lar forskere representere romlige relasjoner og undersøke hvilke egenskaper som er uforandret under bestemte endringer.",
+          "why_it_matters": "Geometri og symmetri er grunnleggende for kart, astronomi, mekanikk, relativitet, krystallografi, bildeanalyse og mange modeller der romlig struktur bærer fysisk eller informasjonsmessig mening.",
+          "keywords": ["geometri", "rom", "symmetri", "transformasjon", "dimensjon"],
+          "method_ids": ["met_vit_modellanalyse", "met_vit_beregningsanalyse", "met_vit_visualiseringsanalyse"],
+          "key_questions": ["Hva bevares under en transformasjon?", "Hvordan velges koordinatsystem?", "Når er geometrisk symmetri vitenskapelig informativ?"]
+        },
+        {
+          "id": "em_vit_diskret_matematikk_og_kombinatorikk",
+          "candidate_key": "diskret_matematikk_og_kombinatorikk",
+          "title": "Diskret matematikk og kombinatorikk",
+          "short_label": "Diskrete strukturer",
+          "definition": "Studiet av tellbare og diskrete strukturer som grafer, mengder, nettverk, kombinasjoner og algoritmiske relasjoner, der problemene ikke beskrives som kontinuerlige størrelser, men som adskilte objekter og forbindelser.",
+          "why_it_matters": "Diskret matematikk er grunnlag for informatikk, nettverksanalyse, sannsynlighetsmodeller, optimalisering og systemanalyse og gir Vitenskap en formell bro til den nested Teknologi-spesialiseringen uten å gjøre Teknologi til eget toppfag.",
+          "keywords": ["diskret matematikk", "kombinatorikk", "graf", "nettverk", "algoritme"],
+          "method_ids": ["met_vit_beregningsanalyse", "met_vit_algoritmeanalyse", "met_vit_modellanalyse"],
+          "key_questions": ["Hva gjør et problem diskret?", "Hvordan representeres forbindelser som graf?", "Hvordan påvirker kombinatorisk vekst beregnbarhet?"]
+        }
+      ]
+    },
+    {
+      "coverage_family_id": "physics_astronomy",
+      "label": "Fysikk og astronomi",
+      "target_domain_id": "natur_medisin_miljo",
+      "hook": {
+        "id": "fysikk_astronomi",
+        "title": "Fysikk og astronomi",
+        "recommended_method_ids": [
+          "met_vit_maleinstrumentanalyse",
+          "met_vit_modellanalyse",
+          "met_vit_beregningsanalyse",
+          "met_vit_eksperimentanalyse"
+        ],
+        "recommended_oslo_cases": [
+          "Observatoriet",
+          "Universitetet i Oslo",
+          "Blindern",
+          "Teknisk Museum"
+        ]
+      },
+      "topics": [
+        {
+          "id": "em_vit_mekanikk_krefter_bevegelse",
+          "candidate_key": "mekanikk_krefter_bevegelse",
+          "title": "Mekanikk, krefter og bevegelse",
+          "short_label": "Mekanikk",
+          "definition": "Hvordan posisjon, hastighet, akselerasjon, kraft, masse og bevegelsesmengde brukes til å beskrive og modellere bevegelse fra kontrollerte forsøk til astronomiske systemer, med tydelige idealiseringer og måleforutsetninger.",
+          "why_it_matters": "Mekanikk viser hvordan matematiske lover, instrumentmålinger og modeller kobles i et klassisk naturvitenskapelig kunnskapsfelt og gir et grunnlag for senere energi-, felt- og relativitetsmodeller.",
+          "keywords": ["mekanikk", "kraft", "bevegelse", "akselerasjon", "bevegelsesmengde"],
+          "method_ids": ["met_vit_maleinstrumentanalyse", "met_vit_modellanalyse", "met_vit_beregningsanalyse"],
+          "key_questions": ["Hvilke størrelser må måles for å beskrive bevegelse?", "Hvilke idealiseringer ligger i modellen?", "Når bryter en klassisk mekanisk modell sammen?"]
+        },
+        {
+          "id": "em_vit_energi_termodynamikk",
+          "candidate_key": "energi_termodynamikk",
+          "title": "Energi og termodynamikk",
+          "short_label": "Energi og termodynamikk",
+          "definition": "Hvordan energi, arbeid, varme, temperatur, entropi og likevekt brukes til å analysere omvandling og begrensninger i fysiske systemer fra laboratorieprosesser til klima, kjemi og teknologi.",
+          "why_it_matters": "Termodynamikk binder fysikk til kjemi, materialer, biologi og teknologi og viser hvordan universelle regnskaps- og begrensningsprinsipper kan gi sterke forklaringer uten detaljkunnskap om hvert mikroskopisk ledd.",
+          "keywords": ["energi", "varme", "temperatur", "entropi", "termodynamikk"],
+          "method_ids": ["met_vit_modellanalyse", "met_vit_maleinstrumentanalyse", "met_vit_systemanalyse"],
+          "key_questions": ["Hvordan føres energiregnskapet?", "Hva måles når temperatur bestemmes?", "Hva sier entropi om mulige prosesser?"]
+        },
+        {
+          "id": "em_vit_bolger_og_optikk",
+          "candidate_key": "bolger_og_optikk",
+          "title": "Bølger og optikk",
+          "short_label": "Bølger og optikk",
+          "definition": "Hvordan bølgelengde, frekvens, amplitude, interferens, diffraksjon og lysforplantning brukes til å beskrive bølgefenomener og hvordan optiske instrumenter omformer slike fenomener til målbare signaler.",
+          "why_it_matters": "Bølge- og optikkforståelse er sentral for astronomi, mikroskopi, spektroskopi, kommunikasjon og måleteknikk og viser tett samspill mellom teori, instrument og observasjon.",
+          "keywords": ["bølge", "optikk", "lys", "interferens", "diffraksjon"],
+          "method_ids": ["met_vit_maleinstrumentanalyse", "met_vit_sensoranalyse", "met_vit_modellanalyse"],
+          "key_questions": ["Hvilke bølgeegenskaper måles?", "Hvordan påvirker instrumentet observasjonen?", "Hva kan interferens og diffraksjon avsløre?"]
+        },
+        {
+          "id": "em_vit_elektromagnetisme",
+          "candidate_key": "elektromagnetisme",
+          "title": "Elektromagnetisme",
+          "short_label": "Elektromagnetisme",
+          "definition": "Hvordan elektrisk ladning, strøm, elektriske og magnetiske felt og elektromagnetiske bølger beskrives og måles, og hvordan feltbegrepet kobler lokale observasjoner til en sammenhengende fysisk teori.",
+          "why_it_matters": "Elektromagnetisme er grunnlag for store deler av moderne instrumentering, energi- og kommunikasjonsteknologi og gir en viktig bro mellom fysisk teori og den nested Teknologi-spesialiseringen.",
+          "keywords": ["elektrisitet", "magnetisme", "felt", "strøm", "elektromagnetisk bølge"],
+          "method_ids": ["met_vit_maleinstrumentanalyse", "met_vit_modellanalyse", "met_vit_eksperimentanalyse"],
+          "key_questions": ["Hvordan påvises et felt gjennom måling?", "Hvordan knyttes strøm og magnetisme sammen?", "Hvilke idealiseringer ligger i feltmodellen?"]
+        },
+        {
+          "id": "em_vit_kvantefysikk",
+          "candidate_key": "kvantefysikk",
+          "title": "Kvantefysikk",
+          "short_label": "Kvantefysikk",
+          "definition": "Fysiske modeller for mikroskopiske systemer der kvantisering, superposisjon, sannsynlighetsfordelinger og måleutfall krever andre begreper enn klassisk mekanikk, og der teoriens prediksjoner må knyttes til konkrete eksperimenter.",
+          "why_it_matters": "Kvantefysikk er nødvendig for å forstå atomstruktur, spektroskopi, halvledere og moderne materialfysikk, men må undervises gjennom dokumenterte modeller og eksperimenter fremfor mystifiserende analogier.",
+          "keywords": ["kvante", "superposisjon", "sannsynlighet", "måling", "mikrofysikk"],
+          "method_ids": ["met_vit_modellanalyse", "met_vit_eksperimentanalyse", "met_vit_statistisk_analyse"],
+          "key_questions": ["Hva predikerer modellen probabilistisk?", "Hvilket eksperiment skiller mellom hypoteser?", "Hvorfor kan klassiske begreper være utilstrekkelige?"]
+        },
+        {
+          "id": "em_vit_relativitet",
+          "candidate_key": "relativitet",
+          "title": "Relativitet",
+          "short_label": "Relativitet",
+          "definition": "Hvordan rom, tid, samtidighet, energi og gravitasjon beskrives når observatørens bevegelse eller sterke gravitasjonsfelt gjør klassiske antakelser utilstrekkelige, og hvordan modellene testes gjennom presise observasjoner og målinger.",
+          "why_it_matters": "Relativitet viser hvordan grunnbegreper kan endres når empiriske og teoretiske krav skjerpes og gir en viktig case for forholdet mellom matematisk struktur, prediksjon og observasjon.",
+          "keywords": ["relativitet", "romtid", "samtidighet", "gravitasjon", "referansesystem"],
+          "method_ids": ["met_vit_modellanalyse", "met_vit_beregningsanalyse", "met_vit_maleinstrumentanalyse"],
+          "key_questions": ["Hvilke størrelser er observatøravhengige?", "Hvordan testes en relativistisk prediksjon?", "Når er klassisk mekanikk en god tilnærming?"]
+        },
+        {
+          "id": "em_vit_atom_og_kjernefysikk",
+          "candidate_key": "atom_og_kjernefysikk",
+          "title": "Atom- og kjernefysikk",
+          "short_label": "Atom- og kjernefysikk",
+          "definition": "Hvordan atomers elektronstruktur, kjerner, isotoper, radioaktivitet og kjernereaksjoner undersøkes gjennom energinivåer, stråling, spektre, detektorer og modeller som kobler mikroskopisk struktur til målbare signaler.",
+          "why_it_matters": "Feltet forbinder kvantefysikk med kjemi, materialanalyse, medisin, energi og sikkerhet og krever presis forståelse av instrumenter, sannsynlighet og strålingsmåling.",
+          "keywords": ["atom", "kjerne", "isotop", "radioaktivitet", "stråling"],
+          "method_ids": ["met_vit_maleinstrumentanalyse", "met_vit_sensoranalyse", "met_vit_statistisk_analyse"],
+          "key_questions": ["Hvordan identifiseres isotoper?", "Hva forteller et energispekter?", "Hvordan kvantifiseres usikkerhet i strålingsmålinger?"]
+        },
+        {
+          "id": "em_vit_astronomi_og_kosmologi",
+          "candidate_key": "astronomi_og_kosmologi",
+          "title": "Astronomi og kosmologi",
+          "short_label": "Astronomi og kosmologi",
+          "definition": "Hvordan observasjoner av lys, spektra, posisjon, tid og andre signaler brukes til å undersøke stjerner, galakser, planetsystemer og universets utvikling når forskeren ikke kan manipulere studieobjektene direkte.",
+          "why_it_matters": "Astronomi viser hvordan observasjonsvitenskap kombinerer instrumenter, fysikk, statistikk og modeller over enorme avstander og tidsskalaer og gir Observatoriet en tydelig faglig forankring i Vitenskap.",
+          "keywords": ["astronomi", "kosmologi", "stjerne", "galakse", "observatorium"],
+          "method_ids": ["met_vit_observasjonsanalyse", "met_vit_maleinstrumentanalyse", "met_vit_modellanalyse"],
+          "key_questions": ["Hvordan utledes fysiske egenskaper fra fjernobservasjoner?", "Hvilken rolle spiller instrumentkalibrering?", "Hvordan testes kosmologiske modeller mot data?"]
+        }
+      ]
+    },
+    {
+      "coverage_family_id": "chemistry_material_science",
+      "label": "Kjemi og materialvitenskap",
+      "target_domain_id": "natur_medisin_miljo",
+      "hook": {
+        "id": "kjemi_materialvitenskap",
+        "title": "Kjemi og materialvitenskap",
+        "recommended_method_ids": [
+          "met_vit_materialanalyse",
+          "met_vit_laboratorieanalyse",
+          "met_vit_maleinstrumentanalyse",
+          "met_vit_evidensanalyse"
+        ],
+        "recommended_oslo_cases": [
+          "Universitetet i Oslo",
+          "Blindern",
+          "Teknisk Museum",
+          "Rikshospitalet"
+        ]
+      },
+      "topics": [
+        {
+          "id": "em_vit_atomstruktur_og_periodesystem",
+          "candidate_key": "atomstruktur_og_periodesystem",
+          "title": "Atomstruktur og periodesystem",
+          "short_label": "Atomstruktur",
+          "definition": "Hvordan atomkjerner, elektroner, energinivåer og periodiske mønstre brukes til å forklare grunnstoffers egenskaper og reaksjonsmønstre, med kobling mellom modeller av mikroskopisk struktur og målbare kjemiske observasjoner.",
+          "why_it_matters": "Atomstruktur gir et felles grunnlag for kjemiske bindinger, spektroskopi, materialegenskaper og mange laboratoriemetoder og binder kjemi tydelig til kvantefysikk uten å slå fagene sammen.",
+          "keywords": ["atomstruktur", "grunnstoff", "periodesystem", "elektron", "energinivå"],
+          "method_ids": ["met_vit_modellanalyse", "met_vit_laboratorieanalyse", "met_vit_evidensanalyse"],
+          "key_questions": ["Hvilke observasjoner støtter atommodellen?", "Hva forklarer periodiske mønstre?", "Hvordan kobles energinivåer til målbare spektre?"]
+        },
+        {
+          "id": "em_vit_kjemiske_bindinger_og_struktur",
+          "candidate_key": "kjemiske_bindinger_og_struktur",
+          "title": "Kjemiske bindinger og struktur",
+          "short_label": "Binding og struktur",
+          "definition": "Hvordan elektronfordeling, ioniske og kovalente bindinger, intermolekylære krefter og molekylær geometri brukes til å forklare stoffers stabilitet, form, løselighet, fase og andre observerbare egenskaper.",
+          "why_it_matters": "Binding og struktur forbinder mikroskopiske modeller med makroskopiske materialegenskaper og er nødvendig for å forstå både kjemiske reaksjoner, biomedisinske molekyler og materialvitenskap.",
+          "keywords": ["binding", "molekyl", "struktur", "elektron", "materialegenskap"],
+          "method_ids": ["met_vit_modellanalyse", "met_vit_materialanalyse", "met_vit_laboratorieanalyse"],
+          "key_questions": ["Hvordan forklarer binding struktur?", "Hvilke målinger kan skille strukturmodeller?", "Hvordan kobles molekylstruktur til materialegenskap?"]
+        },
+        {
+          "id": "em_vit_reaksjoner_stokiometri_og_likevekt",
+          "candidate_key": "reaksjoner_stokiometri_og_likevekt",
+          "title": "Reaksjoner, støkiometri og likevekt",
+          "short_label": "Reaksjon og likevekt",
+          "definition": "Hvordan kjemiske reaksjoner beskrives kvantitativt gjennom stoffmengde, massebalanse, reaksjonslikninger og likevekter, og hvordan konsentrasjon, temperatur og andre betingelser påvirker observerte sammensetninger.",
+          "why_it_matters": "Kvantitativ reaksjonsforståelse er grunnleggende for laboratoriearbeid, miljøkjemi, legemidler, industri og materialframstilling og gjør presis måling viktigere enn kvalitative reaksjonsfortellinger.",
+          "keywords": ["reaksjon", "støkiometri", "likevekt", "stoffmengde", "konsentrasjon"],
+          "method_ids": ["met_vit_laboratorieanalyse", "met_vit_maleinstrumentanalyse", "met_vit_beregningsanalyse"],
+          "key_questions": ["Hvordan kontrolleres masse- og stoffbalanse?", "Hva bestemmer likevektsposisjonen?", "Hvordan påvirker måleusikkerhet beregnet sammensetning?"]
+        },
+        {
+          "id": "em_vit_kjemisk_termodynamikk_og_kinetikk",
+          "candidate_key": "kjemisk_termodynamikk_og_kinetikk",
+          "title": "Kjemisk termodynamikk og kinetikk",
+          "short_label": "Termodynamikk og kinetikk",
+          "definition": "Hvordan energiforskjeller, entropi, fri energi, aktiveringsbarrierer og reaksjonshastigheter brukes til å skille mellom om en kjemisk prosess er termodynamisk mulig og hvor raskt den faktisk skjer.",
+          "why_it_matters": "Skillet mellom drivkraft og hastighet er avgjørende i kjemi, materialer, biokjemi og industri og hindrer den vanlige feilen å behandle en gunstig reaksjon som om den nødvendigvis skjer raskt.",
+          "keywords": ["termodynamikk", "kinetikk", "fri energi", "reaksjonshastighet", "aktiveringsenergi"],
+          "method_ids": ["met_vit_modellanalyse", "met_vit_laboratorieanalyse", "met_vit_statistisk_analyse"],
+          "key_questions": ["Er prosessen termodynamisk gunstig?", "Hva bestemmer reaksjonshastigheten?", "Hvordan skilles kinetiske og termodynamiske forklaringer eksperimentelt?"]
+        },
+        {
+          "id": "em_vit_analytisk_kjemi_og_spektroskopi",
+          "candidate_key": "analytisk_kjemi_og_spektroskopi",
+          "title": "Analytisk kjemi og spektroskopi",
+          "short_label": "Analytisk kjemi",
+          "definition": "Hvordan prøvetaking, separasjon, kalibrering, spektroskopi og andre instrumentelle metoder brukes til å identifisere og kvantifisere kjemiske stoffer, med eksplisitt behandling av deteksjonsgrenser, interferens og usikkerhet.",
+          "why_it_matters": "Analytisk kjemi viser direkte hvordan en materiell prøve blir til et evidensgrunnlag og kobler kjemi til Unit 1s krav om kalibrering, sporbarhet, feilkilder og etterprøvbar måling.",
+          "keywords": ["analyse", "spektroskopi", "prøve", "kalibrering", "deteksjonsgrense"],
+          "method_ids": ["met_vit_maleinstrumentanalyse", "met_vit_kalibreringsanalyse", "met_vit_materialanalyse"],
+          "key_questions": ["Hvordan representerer prøven systemet?", "Hvordan kalibreres signalet?", "Hvilke interferenser og deteksjonsgrenser må dokumenteres?"]
+        },
+        {
+          "id": "em_vit_materialkjemi_og_egenskaper",
+          "candidate_key": "materialkjemi_og_egenskaper",
+          "title": "Materialkjemi og egenskaper",
+          "short_label": "Materialkjemi",
+          "definition": "Hvordan sammensetning, binding, mikrostruktur og framstillingsbetingelser påvirker mekaniske, elektriske, optiske, termiske og kjemiske materialegenskaper og hvordan slike egenskaper karakteriseres eksperimentelt.",
+          "why_it_matters": "Materialkjemi lager en tydelig vitenskapelig bro til Teknologi: Vitenskap eier forklaringen og evidensen for egenskaper, mens Teknologi kan eie design, produksjon og systemanvendelse.",
+          "keywords": ["materiale", "mikrostruktur", "egenskap", "karakterisering", "sammensetning"],
+          "method_ids": ["met_vit_materialanalyse", "met_vit_maleinstrumentanalyse", "met_vit_laboratorieanalyse"],
+          "key_questions": ["Hvilken struktur gir den målte egenskapen?", "Hvordan karakteriseres materialet?", "Hvordan skilles materialforklaring fra teknologisk anvendelse?"]
+        }
+      ]
+    },
+    {
+      "coverage_family_id": "medicine_biomedicine_public_health",
+      "label": "Medisin, biomedisin og folkehelse",
+      "target_domain_id": "natur_medisin_miljo",
+      "hook": {
+        "id": "medisin_biomedisin_folkehelse",
+        "title": "Medisin, biomedisin og folkehelse",
+        "recommended_method_ids": [
+          "met_vit_evidensanalyse",
+          "met_vit_epidemiologisk_analyse",
+          "met_vit_statistisk_analyse",
+          "met_vit_risikoanalyse"
+        ],
+        "recommended_oslo_cases": [
+          "Rikshospitalet",
+          "Ullevål sykehus",
+          "Universitetet i Oslo",
+          "Blindern"
+        ]
+      },
+      "topics": [
+        {
+          "id": "em_vit_biomedisinsk_mekanisme_og_modell",
+          "candidate_key": "biomedisinsk_mekanisme_og_modell",
+          "title": "Biomedisinsk mekanisme og modell",
+          "short_label": "Biomedisinsk mekanisme",
+          "definition": "Hvordan biologiske prosesser, sykdomsmekanismer og eksperimentelle modeller brukes til å foreslå og teste forklaringer på helse og sykdom, med tydelig skille mellom modellorganisme, laboratoriefunn og klinisk betydning.",
+          "why_it_matters": "Biomedisin krever at mekanistiske forklaringer kobles til relevant evidens og at resultater fra modeller ikke automatisk overføres til mennesker eller klinisk behandling.",
+          "keywords": ["biomedisin", "mekanisme", "modell", "sykdom", "translasjon"],
+          "method_ids": ["met_vit_modellanalyse", "met_vit_laboratorieanalyse", "met_vit_evidensanalyse"],
+          "key_questions": ["Hva er den foreslåtte mekanismen?", "Hvilken modell produserte evidensen?", "Hva kreves før funnet kan overføres klinisk?"]
+        },
+        {
+          "id": "em_vit_diagnostikk_biomarkorer_og_testegenskaper",
+          "candidate_key": "diagnostikk_biomarkorer_og_testegenskaper",
+          "title": "Diagnostikk, biomarkører og testegenskaper",
+          "short_label": "Diagnostikk og biomarkører",
+          "definition": "Hvordan diagnostiske tester og biomarkører vurderes gjennom målekvalitet, referansegrunnlag, sensitivitet, spesifisitet, prediktive verdier og kontekst, slik at en testverdi ikke forveksles med en diagnose i seg selv.",
+          "why_it_matters": "Testegenskaper kobler laboratoriemåling til kliniske beslutninger og viser hvorfor samme test kan få ulik betydning ved ulik sykdomsforekomst, terskel og pasientgruppe.",
+          "keywords": ["diagnostikk", "biomarkør", "sensitivitet", "spesifisitet", "prediktiv verdi"],
+          "method_ids": ["met_vit_statistisk_analyse", "met_vit_maleinstrumentanalyse", "met_vit_evidensanalyse"],
+          "key_questions": ["Hva er referansestandarden?", "Hvordan påvirker terskelen sensitivitet og spesifisitet?", "Når endres testens prediktive verdi?"]
+        },
+        {
+          "id": "em_vit_kliniske_studier_og_intervensjoner",
+          "candidate_key": "kliniske_studier_og_intervensjoner",
+          "title": "Kliniske studier og intervensjoner",
+          "short_label": "Kliniske studier",
+          "definition": "Hvordan kliniske intervensjoner undersøkes gjennom studiedesign, sammenligningsgrupper, randomisering, blinding, utfallsmål, protokoller og forhåndsdefinerte analyser, og hvordan designvalg påvirker hvilke kausale slutninger som kan forsvares.",
+          "why_it_matters": "Kliniske studier er sentrale for behandlingsevidens og gir en konkret arena for å anvende eksperiment-, statistikk-, feilkilde- og reproduserbarhetskrav fra resten av Vitenskap-faget.",
+          "keywords": ["klinisk studie", "randomisering", "kontrollgruppe", "blinding", "utfallsmål"],
+          "method_ids": ["met_vit_eksperimentanalyse", "met_vit_statistisk_analyse", "met_vit_evidensanalyse"],
+          "key_questions": ["Hva er sammenligningsgrunnlaget?", "Hvordan reduseres systematisk skjevhet?", "Hvilke utfall var forhåndsdefinert?"]
+        },
+        {
+          "id": "em_vit_behandlingsevidens_og_effekt",
+          "candidate_key": "behandlingsevidens_og_effekt",
+          "title": "Behandlingsevidens og effekt",
+          "short_label": "Behandlingsevidens",
+          "definition": "Hvordan behandlingseffekt vurderes ved å skille relativ og absolutt effekt, usikkerhet, bivirkninger, heterogenitet og relevans for ulike pasientgrupper, og ved å sammenholde enkeltstudier med et bredere evidensgrunnlag.",
+          "why_it_matters": "En statistisk forskjell er ikke automatisk en viktig klinisk effekt. Emnet gjør det mulig å vurdere både styrke, størrelse, usikkerhet og praktisk betydning i medisinske påstander.",
+          "keywords": ["behandling", "effekt", "absolutt risiko", "relativ risiko", "usikkerhet"],
+          "method_ids": ["met_vit_evidensanalyse", "met_vit_statistisk_analyse", "met_vit_risikoanalyse"],
+          "key_questions": ["Hvor stor er den absolutte effekten?", "Hvor usikkert er estimatet?", "Gjelder resultatet den aktuelle pasientgruppen?"]
+        },
+        {
+          "id": "em_vit_folkehelse_arsak_og_forebygging",
+          "candidate_key": "folkehelse_arsak_og_forebygging",
+          "title": "Folkehelse, årsak og forebygging",
+          "short_label": "Folkehelse og forebygging",
+          "definition": "Hvordan sykdomsbyrde, eksponeringer, risiko, kausale modeller og forebyggende tiltak undersøkes på befolkningsnivå, der randomiserte forsøk ofte må kombineres med observasjonsdata, naturlige eksperimenter og systematiske sammenligninger.",
+          "why_it_matters": "Folkehelse viser hvordan vitenskapelig evidens brukes når årsaker er sammensatte og tiltak virker på grupper og systemer, og bygger bro til epidemiologi uten å gjøre politikk eller helsetjeneste til hovedfag.",
+          "keywords": ["folkehelse", "forebygging", "epidemiologi", "kausalitet", "risiko"],
+          "method_ids": ["met_vit_epidemiologisk_analyse", "met_vit_kausalitetsanalyse", "met_vit_risikoanalyse"],
+          "key_questions": ["Hva er den relevante eksponeringen?", "Hvordan håndteres konfundering?", "Hvilken evidens støtter at et tiltak forebygger sykdom?"]
+        }
+      ]
+    }
+  ]
+}

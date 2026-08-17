@@ -26,6 +26,18 @@ const APPROVED_PLAN_RESOLUTION_SET = new Set(APPROVED_PLAN_RESOLUTIONS);
 const abs = (file) => path.join(ROOT, file);
 const read = (file) => JSON.parse(fs.readFileSync(abs(file), 'utf8'));
 const write = (file, value) => fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\n`);
+const versionParts = (value) => String(value || '0.0.0').split('.').map((part) => Number.parseInt(part, 10) || 0);
+const maxVersion = (a, b) => {
+  const av = versionParts(a);
+  const bv = versionParts(b);
+  for (let i = 0; i < Math.max(av.length, bv.length); i += 1) {
+    const ai = av[i] || 0;
+    const bi = bv[i] || 0;
+    if (ai > bi) return a;
+    if (bi > ai) return b;
+  }
+  return a || b;
+};
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
 const unique = (items) => [...new Set(items)];
 const sorted = (items) => [...items].sort((a, b) => String(a).localeCompare(String(b), 'nb'));
@@ -385,7 +397,7 @@ export function buildFilmTvHolisticCompletionV1() {
     next_gate: FINAL_GATE
   };
 
-  registry.version = '3.04.0';
+  registry.version = maxVersion(registry.version, '3.04.0');
   registry.updatedAt = '2026-08-17';
   subject.canonicalModel.note = 'Film & TV er complete etter én holistisk sluttport for den variable 192-emne-canonen: to bevarte anchor-kapitler dekker 38 canonicale emner og 15 faglig avgrensede fulltekstenheter dekker de resterende 154. Porten krever eksakt chapter/brief-eierskap uten hull, duplikater eller overlapp, paragraph→claim-spor, globalt unike claim- og section-id-er, metode- og domenedekning samt verifiserte claims med inspectable kilder i alle 17 kapitler. De 15 nye planenhetene må i tillegg ha eksakt section→emne-eierskap og eksplisitt godkjent verifikasjonsresolution. De to reauditerte legacy-anchorene beholdes på sitt dokumenterte schema uten å late som de har module/section emne-felt de aldri har hatt.';
   subject.canonicalModel.completionAudit = P.report;
@@ -411,7 +423,7 @@ export function buildFilmTvHolisticCompletionV1() {
   };
   subject.note = 'Film & TV er redaksjonelt complete etter én reconcilet 192-emne-helhetsaudit: 17 kapitler totalt, der to navngitte legacy-anchor-kapitler dekker 38 emner og 15 produserte planenheter dekker de resterende 154. Sluttporten låser chapter/brief-eierskap, section→emne-eierskap for de 15 nye enhetene, paragraph→claim-spor, global claim/section-unikhet, metode- og domenedekning og inspectable kildeevidens. Videre arbeid er vedlikehold, kildeoppdatering og stedscaseutvidelse.';
 
-  status.version = '1.97.0';
+  status.version = maxVersion(status.version, '1.97.0');
   status.updatedAt = '2026-08-17';
   filmStatus.editorialStatus = 'complete';
   filmStatus.nextGate = FINAL_GATE;

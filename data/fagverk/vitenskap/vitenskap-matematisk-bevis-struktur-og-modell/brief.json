@@ -1,0 +1,185 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "vitenskap",
+  "chapter_id": "vitenskap-matematisk-bevis-struktur-og-modell",
+  "primary_domain_id": "metoder_maling_modeller",
+  "coverage_family_id": "mathematics_formal_sciences",
+  "purpose": "Gi en kildebelagt universitetsnær innføring i matematikk som formelt kunnskapsfelt: hvordan definisjoner, aksiomer, logiske slutninger og bevis etablerer resultater; hvordan algebraiske, analytiske, geometriske og diskrete strukturer organiserer relasjoner; og hvordan slike resultater først blir empirisk informative når de kobles til en modell, en fortolkning og et dokumentert anvendelsesgrunnlag.",
+  "audience": "Brukere som kjenner skolematematikk og vitenskapelig metode, men trenger å forstå forskjellen mellom matematisk bevis, beregning, abstrakt struktur, modell og empirisk test på universitetsnivå.",
+  "learningArc": [
+    "skille et matematisk utsagn fra et empirisk utsagn og forklare hva et bevis faktisk etablerer innenfor eksplisitte definisjoner, aksiomer og slutningsregler",
+    "rekonstruere en enkel deduktiv argumentkjede og skille gyldig slutning fra plausibel, men ubegrunnet konklusjon",
+    "forklare hvordan algebra abstraherer operasjoner og relasjoner slik at samme struktur kan brukes på ulike konkrete systemer",
+    "forstå grenser, kontinuitet, derivasjon og integrasjon som formelle verktøy for å beskrive endring og akkumulering, samtidig som valg av kontinuerlig modell må begrunnes i anvendelsen",
+    "analysere geometri og symmetri gjennom transformasjoner, invarians, koordinater og representasjoner fremfor å redusere geometri til figurgjenkjenning",
+    "skille kontinuerlige fra diskrete strukturer og bruke grafer, relasjoner, telling og algoritmiske strukturer som eksempler på diskret matematikk",
+    "forklare hva en maskinsjekket formell proof checker som Lean kontrollerer, og hvorfor dette ikke alene validerer en fysisk eller empirisk fortolkning av teoremet",
+    "avslutte med en modellkjede som holder formell korrekthet, beregningsforutsetninger, fortolkning og empirisk evidens eksplisitt adskilt"
+  ],
+  "requiredEmneIds": [
+    "em_vit_matematisk_bevis_og_deduksjon",
+    "em_vit_algebra_og_strukturer",
+    "em_vit_analyse_endring_og_kontinuitet",
+    "em_vit_geometri_rom_og_symmetri",
+    "em_vit_diskret_matematikk_og_kombinatorikk"
+  ],
+  "requiredMethodIds": [
+    "met_vit_teorianalyse",
+    "met_vit_beregningsanalyse",
+    "met_vit_modellanalyse",
+    "met_vit_statistisk_analyse",
+    "met_vit_visualiseringsanalyse",
+    "met_vit_algoritmeanalyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "matematisk proposisjon vs empirisk påstand",
+    "bevis vs observasjons- eller måleevidens",
+    "formell gyldighet vs sann premiss eller korrekt modellfortolkning",
+    "aksiom eller definisjon vs empirisk hypotese",
+    "maskinsjekket proof term vs empirisk validering av en anvendt modell",
+    "algebraisk struktur vs ett bestemt fysisk system",
+    "symbolmanipulasjon vs bevart struktur under transformasjon",
+    "derivert som lokal endringsrate i en modell vs fysisk målt endring",
+    "integral som matematisk akkumulering vs målt totalstørrelse",
+    "kontinuerlig idealisering vs diskret struktur",
+    "geometrisk transformasjon vs fysisk bevegelse",
+    "symmetri som invarians under transformasjon vs visuell likhet alene",
+    "graf som abstrakt relasjonsstruktur vs geografisk diagram eller kurve",
+    "kombinatorisk mulighetsrom vs empirisk frekvens",
+    "beregnbar løsning vs vitenskapelig relevant løsning"
+  ],
+  "namedResearchersAndFrameworks": [
+    {
+      "name": "Euclid",
+      "role": "Historisk case for organisering av geometri gjennom definisjoner, postulatlignende forutsetninger og demonstrasjoner; brukes kildekritisk som eksempel på bevistradisjon, ikke som moderne aksiomatisering i alle detaljer."
+    },
+    {
+      "name": "Jeremy Avigad, Leonardo de Moura, Soonho Kong og Sebastian Ullrich / Lean Community",
+      "role": "Official Lean-dokumentasjon brukes for propositions-as-types, proof terms, induksjon, aksiomer og kernel-sjekking i moderne formell verifikasjon."
+    },
+    {
+      "name": "Gilbert Strang",
+      "role": "MITs lineær algebra-materiale brukes for vektorrom, lineære transformasjoner, basisendring, egenverdier og forbindelsen mellom abstrakt lineær struktur og anvendelser."
+    },
+    {
+      "name": "Michael Artin",
+      "role": "MIT Algebra I brukes som universitetsanker for grupper, vektorrom, lineære transformasjoner og symmetrigrupper."
+    },
+    {
+      "name": "Eric Lehman, F. Thomson Leighton og Albert R. Meyer",
+      "role": "MIT Mathematics for Computer Science brukes for definisjoner, bevismetoder, induksjon, grafer, relasjoner, telling og andre diskrete strukturer."
+    }
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "official Lean documentation for formal propositions, proof terms, induction, axioms and kernel-checked proof objects",
+      "MIT OpenCourseWare Mathematics sources for linear algebra, algebra/symmetry, calculus and discrete mathematics",
+      "University of Oslo Library controlled mathematics vocabularies for local disciplinary breadth and terminology",
+      "University of Oslo Bibliotheca Polyglotta Euclid material for a historically inspectable geometry/proof case",
+      "canonical Vitenskap v4.6 files for emne-, metode-, hook- and domain governance, never as external factual evidence"
+    ],
+    "minimumExternalSources": 10,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "noDecorativeSources": true,
+    "primaryOrOfficialTechnicalSourcesPreferred": true
+  },
+  "documentedCasesOrScenarios": [
+    {
+      "id": "scenario-lean-proof-check",
+      "type": "teaching_scenario",
+      "title": "Hva kontrollerer en formell proof checker?",
+      "basis": ["Lean – Theorem Proving in Lean 4", "Lean Language Reference – Theorems"],
+      "purpose": "La brukeren skille mellom et presist theorem statement, antakelser og et proof term som aksepteres av kernel, og den separate oppgaven å begrunne at en empirisk modell faktisk passer fenomenet den brukes på."
+    },
+    {
+      "id": "scenario-lineaer-transformasjon",
+      "type": "worked_mathematical_case",
+      "title": "Samme struktur, ny basis",
+      "basis": ["MIT OpenCourseWare – Linear Algebra", "MIT OpenCourseWare – Algebra I"],
+      "purpose": "Bruke vektorrom, lineær transformasjon og basisendring til å vise hvordan representasjonen kan endres uten at den underliggende lineære avbildningen blir et annet matematisk objekt."
+    },
+    {
+      "id": "scenario-kontinuerlig-diskret",
+      "type": "model_comparison",
+      "title": "Kontinuerlig endring eller diskret nettverk?",
+      "basis": ["MIT OpenCourseWare – Single Variable Calculus", "MIT OpenCourseWare – Mathematics for Computer Science"],
+      "purpose": "La brukeren sammenligne en kontinuerlig modell formulert med derivasjon/integrasjon med en diskret graf- eller tellemodell og identifisere hva modellvalget forutsetter."
+    },
+    {
+      "id": "scenario-symmetri-invarians",
+      "type": "worked_mathematical_case",
+      "title": "Symmetri som det som bevares",
+      "basis": ["MIT OpenCourseWare – Algebra I", "University of Oslo Bibliotheca Polyglotta – Euclid material"],
+      "purpose": "Flytte symmetribegrepet fra visuell likhet til transformasjoner og invariante egenskaper, med klassisk geometri som historisk kontrast og moderne gruppestruktur som analytisk ramme."
+    }
+  ],
+  "localAnchors": [
+    {
+      "place": "Universitetet i Oslo / Blindern",
+      "role": "Lokalt universitetsanker for matematikk som selvstendig formelt fag og som metodegrunnlag for andre vitenskaper."
+    },
+    {
+      "place": "Observatoriet",
+      "role": "Historisk Oslo-bro mellom matematisk/geometrisk modellering og målingsbasert astronomi; brukes for å holde formelt resultat og empirisk anvendelse adskilt."
+    }
+  ],
+  "scope": {
+    "included": [
+      "matematisk bevis, deduksjon, definisjoner, aksiomer, antakelser og slutningsregler",
+      "formell verifikasjon og maskinsjekkede bevis som moderne eksempel på eksplisitt proof checking",
+      "algebraiske strukturer, vektorrom, lineære transformasjoner og representasjon",
+      "analyse gjennom grenser, kontinuitet, derivasjon, integrasjon og endring",
+      "geometri, koordinater, transformasjoner og symmetri/invarians",
+      "diskrete strukturer, grafer, relasjoner, kombinatorikk, telling og algoritmisk struktur",
+      "broen fra matematisk resultat til vitenskapelig modell, inkludert forutsetninger og empirisk fortolkning"
+    ],
+    "excluded": [
+      "påstand om at matematisk bevis i seg selv validerer en fysisk, sosial eller biologisk modell empirisk",
+      "påstand om at formell verifikasjon gjør modellforutsetninger eller måledata sanne",
+      "et generisk matematikkhistorisk kanonkapittel som erstatter egne historiske fag",
+      "bevisfilosofisk heldebatt om platonisme, formalisme eller matematisk sannhet som hører hjemme i Filosofi",
+      "full teknisk fordypning i abstrakt algebra, reell analyse, differensialgeometri eller beregningskompleksitet utover kapittelets læringsmål",
+      "reduksjon av geometri til tegning eller symmetri til visuell pynt",
+      "reduksjon av diskret matematikk til programmering eller av matematikk til beregning alene"
+    ]
+  },
+  "rejectedOrDeferred": [
+    {
+      "detail": "At et matematisk bevis bare er svært sterk empirisk evidens.",
+      "reason": "Bevis og empirisk evidens har ulike begrunnelsesformer. Et bevis etablerer en konklusjon fra eksplisitte formelle forutsetninger; empiriske påstander krever i tillegg at modellen og dens kobling til observasjon er begrunnet."
+    },
+    {
+      "detail": "At en theorem prover avgjør om en fysisk modell er sann i verden.",
+      "reason": "En proof checker kontrollerer den formaliserte påstanden og bevisobjektet i det valgte formelle systemet. Empirisk adequacy, målegrunnlag og modellfortolkning må vurderes separat."
+    },
+    {
+      "detail": "At algebra er regning med bokstaver.",
+      "reason": "Universitetsalgebra handler også om abstrakte strukturer, operasjoner, transformasjoner og egenskaper som bevares på tvers av representasjoner."
+    },
+    {
+      "detail": "At en kontinuerlig matematisk modell er mer virkelig enn en diskret modell.",
+      "reason": "Kontinuerlige og diskrete modeller representerer ulike strukturer og idealiseringer; modellvalg må begrunnes av problemet og anvendelsen."
+    },
+    {
+      "detail": "At symmetri bare betyr visuell likhet eller at to bilder ser like ut.",
+      "reason": "Kapittelet behandler symmetri analytisk gjennom transformasjoner og egenskaper som forblir uendret."
+    }
+  ],
+  "qa": {
+    "threeEditedModules": true,
+    "workedExamples": true,
+    "renderableWorkedExampleAnalysis": true,
+    "misconceptions": true,
+    "applicationTasks": true,
+    "selfCheck": true,
+    "documentedTeachingScenarios": true,
+    "inspectableSources": true,
+    "paragraphLevelClaims": true,
+    "permanentAudit": true,
+    "crossChapterOriginalityRequired": true,
+    "formalVsEmpiricalBoundaryRequired": true,
+    "mathematicsEditorialBlockerRemainsOpenUntilFulltextAndRegistration": true
+  }
+}

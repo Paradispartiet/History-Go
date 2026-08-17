@@ -1,0 +1,235 @@
+{
+  "schema": "history_go_fagverk_claim_registry_v1",
+  "version": "1.0.0",
+  "subject_id": "vitenskap",
+  "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+  "verified_at": "2026-08-17",
+  "sources": [
+    {
+      "id": "vit1-01-oecd-frascati",
+      "label": "OECD – Frascati Manual 2015",
+      "url": "https://www.oecd.org/en/publications/frascati-manual-2015_9789264239012-en.html",
+      "publisher": "OECD",
+      "type": "international-method-standard",
+      "source_location": "Abstract and manual overview describing the internationally recognised methodology, basic concepts, classifications and sector guidance for research and experimental development statistics"
+    },
+    {
+      "id": "vit1-02-oecd-oslo-rd",
+      "label": "OECD – Oslo Manual 2018, section 4.2.1 Research and experimental development activities",
+      "url": "https://www.oecd.org/en/publications/2018/10/oslo-manual-2018_g1g9373b/full-report/component-10.html",
+      "publisher": "OECD",
+      "type": "international-method-standard",
+      "source_location": "Paragraphs 4.10–4.11 summarising the Frascati definition of R&D and the five criteria novel, creative, uncertain, systematic and transferable and/or reproducible"
+    },
+    {
+      "id": "vit1-03-ec-research-infrastructure",
+      "label": "European Commission – Research Infrastructures",
+      "url": "https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/research-infrastructures_en",
+      "publisher": "European Commission",
+      "type": "institutional-definition",
+      "source_location": "Policy and strategy section defining research infrastructures and listing major equipment, collections/archives/data infrastructures, computing systems and communication networks"
+    },
+    {
+      "id": "vit1-04-nist-traceability-policy",
+      "label": "NIST – Policy on Metrological Traceability",
+      "url": "https://www.nist.gov/calibrations/traceability",
+      "publisher": "National Institute of Standards and Technology",
+      "type": "metrology-policy",
+      "source_location": "Introduction and Policy Statement, especially the definition of metrological traceability as a documented unbroken calibration chain with each link contributing to measurement uncertainty"
+    },
+    {
+      "id": "vit1-05-nist-traceability-faq",
+      "label": "NIST – Metrological Traceability: Frequently Asked Questions and NIST Policy",
+      "url": "https://www.nist.gov/metrology/metrological-traceability",
+      "publisher": "National Institute of Standards and Technology",
+      "type": "metrology-guidance",
+      "source_location": "Sections 3 and 5.1–5.2 explaining that traceability is a property of a measurement result, not an instrument or laboratory, and specifying the documented chain and uncertainty requirements"
+    },
+    {
+      "id": "vit1-06-nasem-reproducibility",
+      "label": "National Academies – Reproducibility and Replicability in Science",
+      "url": "https://nap.nationalacademies.org/catalog/25303/reproducibility-and-replicability-in-science",
+      "publisher": "National Academies of Sciences, Engineering, and Medicine",
+      "type": "consensus-study-report",
+      "source_location": "Executive Summary and chapter 3 definitions: reproducibility uses the same input data, computational steps, methods, code and analysis conditions; replicability uses new data to address the same scientific question"
+    },
+    {
+      "id": "vit1-07-nih-rigor",
+      "label": "NIH – Enhancing Reproducibility through Rigor and Transparency",
+      "url": "https://grants.nih.gov/policy-and-compliance/policy-topics/reproducibility",
+      "publisher": "National Institutes of Health",
+      "type": "research-policy-guidance",
+      "source_location": "Definition of Scientific Rigor and goals for unbiased, well-controlled experimental design, methodology, analysis, interpretation and reporting"
+    },
+    {
+      "id": "vit1-08-nih-peer-review",
+      "label": "NIH Grants Policy Statement – 2.4 The Peer Review Process",
+      "url": "https://grants.nih.gov/grants/policy/nihgps/HTML5/section_2/2.4_the_peer_review_process.htm",
+      "publisher": "National Institutes of Health",
+      "type": "peer-review-policy",
+      "source_location": "Section 2.4 describing peer review of scientific and technical merit, the aim of a fair and objective process and the two sequential review levels for NIH grant applications"
+    },
+    {
+      "id": "vit1-09-unesco-open-science",
+      "label": "UNESCO – Recommendation on Open Science",
+      "url": "https://www.unesco.org/en/legal-affairs/recommendation-open-science",
+      "publisher": "UNESCO",
+      "type": "international-recommendation",
+      "source_location": "Definition, values and guiding principles, especially transparency, scrutiny, critique and reproducibility; also the conditions under which access can legitimately be restricted"
+    },
+    {
+      "id": "vit1-10-nih-replication-2026",
+      "label": "NIH – Strengthening Replication and Reproducibility of NIH-funded Research",
+      "url": "https://www.nih.gov/replicationandreproducibility",
+      "publisher": "National Institutes of Health",
+      "type": "research-policy-programme",
+      "source_location": "2026 programme overview on independent replication, standardising and sharing data, open availability of findings and infrastructure for replication and reproducibility science"
+    }
+  ],
+  "claims": [
+    {
+      "id": "vit1-01",
+      "claim": "OECDs Frascati-rammeverk er en internasjonalt anerkjent metodikk for å definere, klassifisere og samle sammenlignbare data om forskning og utvikling.",
+      "source_ids": ["vit1-01-oecd-frascati"],
+      "classification": "institusjonell-metode",
+      "status": "verified",
+      "used_in": ["vit1-grunnlag-1"]
+    },
+    {
+      "id": "vit1-02",
+      "claim": "I OECDs operasjonalisering må FoU være ny, kreativ, ha et usikkert utfall, være systematisk og være overførbar og/eller reproducerbar.",
+      "source_ids": ["vit1-02-oecd-oslo-rd"],
+      "classification": "metodedefinisjon",
+      "status": "verified",
+      "used_in": ["vit1-grunnlag-1"]
+    },
+    {
+      "id": "vit1-03",
+      "claim": "EU-kommisjonen definerer forskningsinfrastruktur som fasiliteter som tilbyr ressurser og tjenester forskningsmiljøer trenger for å utføre forskning og fremme innovasjon.",
+      "source_ids": ["vit1-03-ec-research-infrastructure"],
+      "classification": "institusjonell-definisjon",
+      "status": "verified",
+      "used_in": ["vit1-grunnlag-1", "vit1-anvendelse-1"]
+    },
+    {
+      "id": "vit1-04",
+      "claim": "Forskningsinfrastruktur kan omfatte store instrumenter, samlinger og arkiver, vitenskapelige datainfrastrukturer, datasystemer og kommunikasjonsnettverk; den er derfor mer enn en fysisk laboratoriebygning.",
+      "source_ids": ["vit1-03-ec-research-infrastructure"],
+      "classification": "institusjonell-definisjon",
+      "status": "verified",
+      "used_in": ["vit1-grunnlag-1", "vit1-anvendelse-1"]
+    },
+    {
+      "id": "vit1-05",
+      "claim": "NISTs definisjon av metrologisk sporbarhet krever at et måleresultat kan knyttes til en referanse gjennom en dokumentert ubrutt kjede av kalibreringer, der hvert ledd bidrar til måleusikkerheten.",
+      "source_ids": ["vit1-04-nist-traceability-policy", "vit1-05-nist-traceability-faq"],
+      "classification": "metrologi",
+      "status": "verified",
+      "used_in": ["vit1-grunnlag-2", "vit1-grunnlag-3", "vit1-anvendelse-2"]
+    },
+    {
+      "id": "vit1-06",
+      "claim": "Metrologisk sporbarhet er ifølge NIST en egenskap ved måleresultatet, ikke ved instrumentet, laboratoriet eller kalibreringssertifikatet isolert.",
+      "source_ids": ["vit1-05-nist-traceability-faq"],
+      "classification": "metrologi",
+      "status": "verified",
+      "used_in": ["vit1-grunnlag-2", "vit1-anvendelse-2"]
+    },
+    {
+      "id": "vit1-07",
+      "claim": "At et instrument er kalibrert er ikke alene nok til å gjøre senere måleresultater sporbare; selve målekjeden, referansene og usikkerheten må dokumenteres.",
+      "source_ids": ["vit1-04-nist-traceability-policy", "vit1-05-nist-traceability-faq"],
+      "classification": "metrologi",
+      "status": "verified",
+      "used_in": ["vit1-grunnlag-2", "vit1-grunnlag-3", "vit1-anvendelse-2"]
+    },
+    {
+      "id": "vit1-08",
+      "claim": "NIST behandler et måleresultat som en målt verdi sammen med dokumentert måleusikkerhet; usikkerheten er derfor del av resultatet, ikke bare en fotnote til det.",
+      "source_ids": ["vit1-05-nist-traceability-faq"],
+      "classification": "metrologi",
+      "status": "verified",
+      "used_in": ["vit1-grunnlag-2", "vit1-grunnlag-3", "vit1-anvendelse-2"]
+    },
+    {
+      "id": "vit1-09",
+      "claim": "National Academies definerer reproducibility som å oppnå konsistente beregningsresultater med de samme dataene, beregningstrinnene, metodene, koden og analysebetingelsene.",
+      "source_ids": ["vit1-06-nasem-reproducibility"],
+      "classification": "metodedefinisjon",
+      "status": "verified",
+      "used_in": ["vit1-fordypning-1", "vit1-fordypning-2", "vit1-anvendelse-3"]
+    },
+    {
+      "id": "vit1-10",
+      "claim": "National Academies definerer replicability som konsistente resultater på tvers av studier som undersøker samme vitenskapelige spørsmål med egne nye data.",
+      "source_ids": ["vit1-06-nasem-reproducibility"],
+      "classification": "metodedefinisjon",
+      "status": "verified",
+      "used_in": ["vit1-fordypning-1", "vit1-fordypning-2", "vit1-anvendelse-3"]
+    },
+    {
+      "id": "vit1-11",
+      "claim": "Uenighet mellom studier betyr ikke automatisk at én studie må forkastes; forskjeller kan skyldes blant annet instrumenter, design, kontekst eller andre forhold som må undersøkes.",
+      "source_ids": ["vit1-06-nasem-reproducibility"],
+      "classification": "metodebegrensning",
+      "status": "verified",
+      "used_in": ["vit1-fordypning-2", "vit1-anvendelse-3"]
+    },
+    {
+      "id": "vit1-12",
+      "claim": "NIH definerer vitenskapelig rigor som streng anvendelse av vitenskapelig metode for å sikre robust og minst mulig skjev eksperimentell design, metodikk, analyse, fortolkning og rapportering.",
+      "source_ids": ["vit1-07-nih-rigor"],
+      "classification": "forskningskvalitet",
+      "status": "verified",
+      "used_in": ["vit1-fordypning-1", "vit1-fordypning-3"]
+    },
+    {
+      "id": "vit1-13",
+      "claim": "NIHs fagfellevurdering av søknader vurderer vitenskapelig og teknisk kvalitet gjennom en prosess som uttrykkelig skal være rettferdig og objektiv; den er en evaluering av foreslått forskning, ikke en senere replikasjon av resultater.",
+      "source_ids": ["vit1-08-nih-peer-review", "vit1-06-nasem-reproducibility"],
+      "classification": "synthesis",
+      "status": "verified",
+      "used_in": ["vit1-fordypning-1"]
+    },
+    {
+      "id": "vit1-14",
+      "claim": "UNESCOs Recommendation on Open Science løfter transparens, granskning, kritikk og reproducerbarhet fram som prinsipper som skal styrke rigor i vitenskapelige resultater.",
+      "source_ids": ["vit1-09-unesco-open-science"],
+      "classification": "open-science-policy",
+      "status": "verified",
+      "used_in": ["vit1-fordypning-3", "vit1-anvendelse-1"]
+    },
+    {
+      "id": "vit1-15",
+      "claim": "UNESCO beskriver åpen vitenskap som så åpen som mulig, men åpner for legitime begrensninger blant annet for personvern, konfidensialitet, immaterielle rettigheter og sensitiv kunnskap.",
+      "source_ids": ["vit1-09-unesco-open-science"],
+      "classification": "open-science-boundary",
+      "status": "verified",
+      "used_in": ["vit1-fordypning-3", "vit1-anvendelse-1"]
+    },
+    {
+      "id": "vit1-16",
+      "claim": "National Academies framstiller reprodusering og replikasjon som kontrollformer som kan øke tilliten til robustheten i et kunnskapsgrunnlag, uten at vitenskap dermed blir absolutt sikker.",
+      "source_ids": ["vit1-06-nasem-reproducibility"],
+      "classification": "evidenssyntese",
+      "status": "verified",
+      "used_in": ["vit1-anvendelse-1", "vit1-anvendelse-3"]
+    },
+    {
+      "id": "vit1-17",
+      "claim": "NIH har i 2026 eksplisitt løftet fram uavhengig replikasjon, standardisering og deling av data og varig infrastruktur for replikasjons- og reproducerbarhetsarbeid som egne tiltak.",
+      "source_ids": ["vit1-10-nih-replication-2026"],
+      "classification": "current-research-policy",
+      "status": "verified",
+      "used_in": ["vit1-fordypning-2"]
+    },
+    {
+      "id": "vit1-18",
+      "claim": "For dette kapittelet behandles institusjonell tillit som begrunnet når leseren kan følge den relevante kjeden av metode, måling, usikkerhet, faglig kritikk, dokumentasjon og uavhengig kontroll; institusjonsnavnet alene er ikke tilstrekkelig evidens for en konkret påstand.",
+      "source_ids": ["vit1-04-nist-traceability-policy", "vit1-06-nasem-reproducibility", "vit1-09-unesco-open-science"],
+      "classification": "editorial-synthesis",
+      "status": "verified",
+      "used_in": ["vit1-grunnlag-1", "vit1-grunnlag-3", "vit1-fordypning-3", "vit1-anvendelse-1"]
+    }
+  ]
+}

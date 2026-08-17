@@ -95,6 +95,46 @@ const catalogs = {
   }
 };
 
+
+const COMPILED_REGISTRY_PATH = "data/Civication/compiledSceneRegistryV1.json";
+const fixtureEntries = Object.entries(catalogs)
+  .filter(([sourcePath]) => sourcePath.includes("/mailFamilies/"))
+  .flatMap(([sourcePath, value]) => (value.families || []).flatMap((family) => (family.mails || []).map((sourceMail) => ({
+    id: sourceMail.id,
+    category: value.category,
+    role_scope: value.role_scope,
+    mail_type: sourceMail.mail_type || value.mail_type || "job",
+    source_path: sourcePath,
+    compatibility_projection: {
+      ...sourceMail,
+      id: sourceMail.id,
+      category: value.category,
+      role_scope: sourceMail.role_scope || value.role_scope,
+      mail_type: sourceMail.mail_type || value.mail_type || "job",
+      mail_family: sourceMail.mail_family || family.id,
+      choices: (sourceMail.choices || []).map((choice) => ({
+        ...choice,
+        id: String(choice.id || "").trim(),
+        label: String(choice.label || choice.text || choice.id || "").trim(),
+        effect: Number(choice.effect || 0),
+        tags: Array.isArray(choice.tags) ? choice.tags.map((tag) => String(tag).trim()).filter(Boolean) : [],
+        feedback: String(choice.feedback || "").trim()
+      })),
+      situation: Array.isArray(sourceMail.situation) ? sourceMail.situation : [sourceMail.summary].filter(Boolean),
+      scene_catalog_source_path: sourcePath,
+      scene_catalog_version: 1
+    }
+  }))));
+catalogs[COMPILED_REGISTRY_PATH] = {
+  schema: "compiled_scene_registry_v1",
+  version: 1,
+  registry_hash: "fixture_registry_hash",
+  stats: { shadowed_duplicate_count: 0 },
+  shadowed_duplicates: [],
+  entries: fixtureEntries,
+  role_index: { "fixture/fixture_role": fixtureEntries.map((entry) => entry.id) }
+};
+
 const underlyingCalls = [];
 const store = {
   fetchJson: async (sourcePath) => {
@@ -261,8 +301,13 @@ windowObject.CivicationDailyMailBuilder = dailyBuilder;
   const microPath = "data/Civication/mailFamilies/fixture/micro/fixture_role_micro.json";
   assert.equal(
     underlyingCalls.filter((sourcePath) => sourcePath === microPath).length,
+    0,
+    "Etter 4H-B skal normal runtime aldri lese rå mailFamilies"
+  );
+  assert.equal(
+    underlyingCalls.filter((sourcePath) => sourcePath === COMPILED_REGISTRY_PATH).length,
     1,
-    "Katalogfilen skal lastes én gang av SceneCatalog, ikke av Daily"
+    "SceneCatalog skal lese det materialiserte registryet én gang"
   );
 
   const prewarm = await windowObject.CivicationDailyMailBuilder.prewarm(active);
@@ -293,6 +338,8 @@ windowObject.CivicationDailyMailBuilder = dailyBuilder;
   assert.equal(inspection.scene_catalog_owner, "CivicationSceneCatalog");
   assert.equal(inspection.daily_extra_slot_owner, true);
   assert.equal(inspection.scene_catalog.owner, "CivicationSceneCatalog");
+  assert.equal(inspection.scene_catalog.source_format, "compiled_scene_registry_v1");
+  assert.equal(inspection.scene_catalog.compiled_registry_ready, true);
   assert(sourceCalls >= 3);
 
   console.log("civication-scene-director-daily-catalog.test.js: PASS");
