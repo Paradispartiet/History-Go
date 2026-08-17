@@ -1,0 +1,77 @@
+name: Vitenskap final holistic diagnose
+
+on:
+  push:
+    branches: [agent/vitenskap-final-holistic-university-breadth-completion-audit]
+    paths:
+      - '.github/workflows/vitenskap-final-holistic-diagnose.yml'
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vitenskap-final-holistic-university-breadth-completion-audit
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Inspect all canonical Vitenskap emners
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const emners = JSON.parse(fs.readFileSync('data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json','utf8'));
+          const registry = JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));
+          const methods = JSON.parse(fs.readFileSync('data/fag/vitenskap/methods_vitenskap_canonical_v4_6.json','utf8')).methods;
+          const mappings = JSON.parse(fs.readFileSync('data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json','utf8'));
+          const chapters = registry.subjects.vitenskap.chapters;
+          const owned = new Set(chapters.flatMap(c => c.emne_ids || []));
+          const methodIds = new Set(methods.map(m => m.method_id));
+          const lens = (field) => emners.map(e => (e[field] || '').trim().length).sort((a,b)=>a-b);
+          const stats = (arr) => ({min:arr[0], median:arr[Math.floor(arr.length/2)], max:arr.at(-1)});
+          const invalid = emners.filter(e =>
+            e.canonical_status !== 'canonical' ||
+            !e.title || !e.definition || !e.why_it_matters ||
+            !Array.isArray(e.key_questions) || e.key_questions.length < 3 ||
+            !Array.isArray(e.methods) || e.methods.length < 3 ||
+            !e.methods.every(id => methodIds.has(id))
+          );
+          const defs = emners.map(e => e.definition.trim());
+          const duplicateDefs = defs.length - new Set(defs).size;
+          const duplicateTitles = emners.length - new Set(emners.map(e=>e.title.trim())).size;
+          const mappingIds = new Set(mappings.map(m=>m.emne_id));
+          const unMapped = emners.filter(e=>!mappingIds.has(e.emne_id)).map(e=>e.emne_id);
+          const unowned = emners.filter(e=>!owned.has(e.emne_id));
+          const byDomain = Object.fromEntries([...new Set(emners.map(e=>e.domain))].sort().map(d=>[d,emners.filter(e=>e.domain===d).length]));
+          console.log(JSON.stringify({
+            emneCount: emners.length,
+            chapterCount: chapters.length,
+            chapterOwnedEmneCount: owned.size,
+            unownedEmneCount: unowned.length,
+            invalidEditorialEmneCount: invalid.length,
+            duplicateDefinitionCount: duplicateDefs,
+            duplicateTitleCount: duplicateTitles,
+            unmappedCount: unMapped.length,
+            definitionLength: stats(lens('definition')),
+            whyItMattersLength: stats(lens('why_it_matters')),
+            minKeyQuestions: Math.min(...emners.map(e=>(e.key_questions||[]).length)),
+            minMethods: Math.min(...emners.map(e=>(e.methods||[]).length)),
+            byDomain,
+            firstTwentyUnowned: unowned.slice(0,20).map(e=>({id:e.emne_id,title:e.title,domain:e.domain}))
+          }, null, 2));
+          if (invalid.length) {
+            console.error('INVALID_EDITORIAL_EMNERS', invalid.map(e=>e.emne_id));
+            process.exitCode = 2;
+          }
+          NODE
+      - name: Verify current permanent Vitenskap gates
+        run: |
+          node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs
+          node scripts/audit-fagverk-vitenskap-pilot.mjs
+          node scripts/audit-fagverk-vitenskap-university-readiness.mjs
+          node scripts/audit-fagverk-vitenskap-unit1.mjs
+          node scripts/audit-fagverk-vitenskap-mathematics-fulltext.mjs
+          node scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs
+          node scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs
+          node scripts/audit-fagverk-vitenskap-medicine-biomedicine-public-health-fulltext.mjs
