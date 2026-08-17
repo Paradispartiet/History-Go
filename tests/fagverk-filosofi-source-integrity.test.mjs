@@ -15,109 +15,103 @@ const normalize = (value) => String(value ?? '')
   .toLowerCase()
   .replace(/[^a-z0-9]+/g, ' ')
   .trim();
-
-const distinctiveToken = (name) => {
-  const tokens = normalize(name).split(/\s+/).filter((token) => token.length >= 3);
-  return tokens.at(-1) ?? normalize(name);
-};
-
+const distinctiveToken = (name) => normalize(name).split(/\s+/).filter((token) => token.length >= 3).at(-1) ?? normalize(name);
 const containsName = (text, name) => {
   const haystack = ` ${normalize(text)} `;
   const full = normalize(name);
   const token = distinctiveToken(name);
   return (full && haystack.includes(` ${full} `)) || (token && haystack.includes(` ${token} `));
 };
-
-const sectionText = (article, sectionIds) => (article.sections ?? [])
-  .filter((section) => sectionIds.includes(section.id))
+const sectionText = (article, ids) => (article.sections ?? [])
+  .filter((section) => ids.includes(section.id))
   .flatMap((section) => section.paragraphs ?? [])
   .join('\n');
 
-const theoryParagraphs = (article) => (article.sections ?? [])
-  .find((section) => section.id === 'teorihistorie')?.paragraphs ?? [];
-
-const thinkersRegistry = readJson(THINKERS_PATH);
-const thinkerById = new Map((thinkersRegistry.thinkers ?? []).map((thinker) => [thinker.id, thinker]));
-const thinkerByNormalizedName = new Map((thinkersRegistry.thinkers ?? []).map((thinker) => [normalize(thinker.name), thinker]));
-
-const articleFiles = fs.readdirSync(ARTICLES_DIR)
-  .filter((name) => name.endsWith('.json'))
-  .sort();
-
-const auditArticle = (article, file) => {
-  const substantiveText = sectionText(article, ['problem', 'begreper', 'argument', 'uenighet', 'teorihistorie', 'avgrensning']);
-  const theory = theoryParagraphs(article);
-  const thinkerRefs = article.thinker_refs ?? [];
-  const primaryWorkRefs = article.primary_work_refs ?? [];
-  const debateThinkers = article.university_quality?.debate_thinkers ?? [];
-
-  const resolvedThinkers = thinkerRefs.map((id) => thinkerById.get(id)).filter(Boolean);
-  const unresolvedThinkerRefs = thinkerRefs.filter((id) => !thinkerById.has(id));
-  const decorativeThinkerRefs = resolvedThinkers
-    .filter((thinker) => !containsName(substantiveText, thinker.name))
-    .map((thinker) => ({ id: thinker.id, name: thinker.name }));
-
-  const explicitPrimaryAnchors = primaryWorkRefs.filter((work) => theory.some((paragraph) => {
-    const hasWork = normalize(paragraph).includes(normalize(work));
-    if (!hasWork) return false;
-    return debateThinkers.some((name) => containsName(paragraph, name))
-      || resolvedThinkers.some((thinker) => containsName(paragraph, thinker.name));
-  }));
-  const decorativePrimaryWorkRefs = primaryWorkRefs.filter((work) => !explicitPrimaryAnchors.includes(work));
-
-  const missingCanonicalDebateThinkerRefs = debateThinkers.flatMap((name) => {
-    const canonical = thinkerByNormalizedName.get(normalize(name));
-    if (!canonical || thinkerRefs.includes(canonical.id)) return [];
-    return [{ name, expected_ref: canonical.id }];
-  });
-
-  const debateThinkersMissingFromProse = debateThinkers.filter((name) => !containsName(substantiveText, name));
-  const genericTheoryPrimaryTemplate = theory.some((paragraph) => /Primærverkene .+ brukes for å følge hvordan de navngitte posisjonene/u.test(paragraph));
-
-  const issues = {};
-  if (unresolvedThinkerRefs.length) issues.unresolved_thinker_refs = unresolvedThinkerRefs;
-  if (decorativeThinkerRefs.length) issues.decorative_thinker_refs = decorativeThinkerRefs;
-  if (decorativePrimaryWorkRefs.length) issues.decorative_primary_work_refs = decorativePrimaryWorkRefs;
-  if (missingCanonicalDebateThinkerRefs.length) issues.missing_canonical_debate_thinker_refs = missingCanonicalDebateThinkerRefs;
-  if (debateThinkersMissingFromProse.length) issues.debate_thinkers_missing_from_prose = debateThinkersMissingFromProse;
-  if (genericTheoryPrimaryTemplate) issues.generic_theory_primary_template = true;
-  if (explicitPrimaryAnchors.length < 2) issues.explicit_primary_anchor_count = explicitPrimaryAnchors.length;
-
-  return {
-    file,
-    id: article.id,
-    title: article.title,
-    domain_id: article.domain_id,
-    thinker_refs: thinkerRefs,
-    debate_thinkers: debateThinkers,
-    primary_work_refs: primaryWorkRefs,
-    explicit_primary_anchors: explicitPrimaryAnchors,
-    issues
-  };
+const registry = readJson(THINKERS_PATH);
+const thinkers = registry.thinkers ?? [];
+const thinkerById = new Map(thinkers.map((thinker) => [thinker.id, thinker]));
+const thinkerByName = new Map(thinkers.map((thinker) => [normalize(thinker.name), thinker]));
+const thinkersByLastToken = new Map();
+for (const thinker of thinkers) {
+  const token = normalize(thinker.name).split(/\s+/).at(-1);
+  const rows = thinkersByLastToken.get(token) ?? [];
+  rows.push(thinker);
+  thinkersByLastToken.set(token, rows);
+}
+const resolveThinker = (name) => {
+  const direct = thinkerByName.get(normalize(name));
+  if (direct) return direct;
+  const candidates = thinkersByLastToken.get(normalize(name).split(/\s+/).at(-1)) ?? [];
+  return candidates.length === 1 ? candidates[0] : null;
 };
 
-test('all university-reviewed Philosophy articles have source-integrity alignment', () => {
-  const articles = articleFiles.map((file) => ({ file, article: readJson(path.join(ARTICLES_DIR, file)) }));
-  assert.equal(articles.length, 68, 'canonical Philosophy article count changed');
+const articleFiles = fs.readdirSync(ARTICLES_DIR).filter((name) => name.endsWith('.json')).sort();
 
-  const reviewed = articles.filter(({ article }) => article.quality?.review_state === 'university_depth_reviewed');
-  assert.equal(reviewed.length, 68, 'all canonical Philosophy articles must remain university_depth_reviewed');
+test('all 68 university-reviewed Philosophy articles align debate thinkers, refs and primary works', () => {
+  assert.equal(articleFiles.length, 68, 'canonical Philosophy article count changed');
+  const offenders = [];
 
-  const audit = reviewed.map(({ article, file }) => auditArticle(article, file));
-  const offenders = audit.filter((entry) => Object.keys(entry.issues).length > 0);
+  for (const file of articleFiles) {
+    const article = readJson(path.join(ARTICLES_DIR, file));
+    assert.equal(article.quality?.review_state, 'university_depth_reviewed', `${article.id}: review state changed`);
 
-  if (offenders.length) {
-    console.error(JSON.stringify({
-      schema: 'history_go_filosofi_source_integrity_audit_v1',
-      article_count: audit.length,
-      offender_count: offenders.length,
-      offenders
-    }, null, 2));
+    const debateNames = article.university_quality?.debate_thinkers ?? [];
+    const resolvedDebate = debateNames.map((name) => ({ name, thinker: resolveThinker(name) }));
+    const canonicalDebate = resolvedDebate.filter((row) => row.thinker).map((row) => row.thinker);
+    const thinkerRefs = article.thinker_refs ?? [];
+    const resolvedRefs = thinkerRefs.map((id) => thinkerById.get(id)).filter(Boolean);
+    const primaryWorks = article.primary_work_refs ?? [];
+    const substantive = sectionText(article, ['problem', 'argument', 'uenighet', 'teorihistorie', 'avgrensning']);
+    const theory = sectionText(article, ['teorihistorie']);
+    const issues = {};
+
+    const unresolvedRefs = thinkerRefs.filter((id) => !thinkerById.has(id));
+    if (unresolvedRefs.length) issues.unresolved_thinker_refs = unresolvedRefs;
+
+    const unresolvedDebate = resolvedDebate.filter((row) => !row.thinker).map((row) => row.name);
+    if (unresolvedDebate.length) issues.unresolved_debate_thinkers = unresolvedDebate;
+
+    const missingDebateRefs = canonicalDebate.filter((thinker) => !thinkerRefs.includes(thinker.id)).map((thinker) => thinker.id);
+    if (missingDebateRefs.length) issues.missing_debate_thinker_refs = missingDebateRefs;
+
+    const decorativeRefs = resolvedRefs.filter((thinker) => !containsName(substantive, thinker.name)).map((thinker) => thinker.id);
+    if (decorativeRefs.length) issues.decorative_thinker_refs = decorativeRefs;
+
+    const nonDebateRefs = resolvedRefs.filter((thinker) => !canonicalDebate.some((debate) => debate.id === thinker.id)).map((thinker) => thinker.id);
+    if (nonDebateRefs.length) issues.non_debate_thinker_refs = nonDebateRefs;
+
+    const ownedWorks = new Map();
+    for (const thinker of resolvedRefs) {
+      for (const work of thinker.works ?? []) ownedWorks.set(normalize(work), thinker.id);
+    }
+    const unownedWorks = primaryWorks.filter((work) => !ownedWorks.has(normalize(work)));
+    if (unownedWorks.length) issues.primary_works_not_owned_by_debate_refs = unownedWorks;
+
+    const ungroundedWorks = primaryWorks.filter((work) => !normalize(theory).includes(normalize(work)));
+    if (ungroundedWorks.length) issues.primary_works_missing_from_theory_history = ungroundedWorks;
+
+    if (primaryWorks.length < 2) issues.primary_work_count = primaryWorks.length;
+    if (article.university_quality?.primary_work_count !== primaryWorks.length) {
+      issues.stale_primary_work_count = article.university_quality?.primary_work_count;
+    }
+    if (article.quality?.source_integrity?.state !== 'reviewed') issues.source_integrity_state = article.quality?.source_integrity?.state ?? null;
+
+    if (Object.keys(issues).length) offenders.push({
+      id: article.id,
+      title: article.title,
+      debate_thinkers: debateNames,
+      thinker_refs: thinkerRefs,
+      primary_work_refs: primaryWorks,
+      issues
+    });
   }
 
-  assert.equal(
-    offenders.length,
-    0,
-    `${offenders.length}/68 Philosophy articles fail source-integrity alignment; see structured audit above`
-  );
+  if (offenders.length) console.error(JSON.stringify({
+    schema: 'history_go_filosofi_source_integrity_audit_v2',
+    article_count: articleFiles.length,
+    offender_count: offenders.length,
+    offenders
+  }, null, 2));
+
+  assert.equal(offenders.length, 0, `${offenders.length}/68 Philosophy articles fail debate-aligned source integrity`);
 });
