@@ -55,7 +55,7 @@ const existingEmneIds = new Set(emners.map((row) => row.emne_id));
 const existingHookIds = new Set(fagkart.categories.flatMap((category) => (category.topic_hooks || []).map((hook) => hook.id)));
 const readinessFamilyById = new Map(readiness.coverage_families.map((row) => [row.id, row]));
 const specFamilyById = new Map(spec.families.map((row) => [row.coverage_family_id, row]));
-const newTopics = spec.families.flatMap((family) => family.topics.map((topic) => ({ ...topic, family })));
+const newTopics = spec.families.flatMap((family) => family.topics.map((topic) => ({ topic, family })));
 assert(newTopics.length === 24, 'Breadth-spec skal ha 24 topics');
 assert(new Set(newTopics.map(({ topic }) => topic.id)).size === 24, 'Breadth-spec har dupliserte emne-ID-er');
 assert(spec.families.length === 4, 'Breadth-spec skal ha fire familier');
@@ -165,27 +165,58 @@ function buildEmne(topic, family) {
 }
 
 function buildMapping(topic, family) {
-  const template = mappings.find((row) => row.domain === family.target_domain_id);
+  const domain = pensumDomainById.get(family.target_domain_id);
+  const template = mappings.find((row) => (row.mappings || []).some((mapping) => mapping.fagkart_kategori === family.target_domain_id));
   assert(template, `Mangler mapping-template for ${family.target_domain_id}`);
   const record = clone(template);
+  const sourceMapping = template.mappings.find((mapping) => mapping.fagkart_kategori === family.target_domain_id) || template.mappings[0];
+  const primary = clone(sourceMapping);
   record.emne_id = topic.id;
-  record.domain = family.target_domain_id;
-  record.subject_primary = 'vitenskap';
-  record.tags = unique([...(topic.keywords || []), family.label, 'universitetsbredde']);
-  record.place_fit = family.hook.recommended_oslo_cases;
-  record.role = 'university_breadth_reconciliation';
-  record.methods = topic.method_ids;
-  record.method_labels = [];
-  record.thinkers = [];
+  record.title = topic.title;
+  primary.fagkart_kategori = family.target_domain_id;
+  primary.fagkart_kategori_tittel = domain.label;
+  primary.topic_hook = family.hook.id;
+  primary.topic_hook_tittel = family.hook.title;
+  primary.mapping_tier = 'primary';
+  primary.priority_score = 10;
+  primary.tenkere = [];
+  primary.thinker_ids = [];
+  primary.norwegian_thinker_ids = [];
+  primary.norwegian_thinkers = [];
+  primary.comparison_pairs = [];
+  primary.recommended_oslo_cases = family.hook.recommended_oslo_cases;
+  primary.recommended_method_ids = topic.method_ids;
+  primary.generator_constraints = {
+    ...(primary.generator_constraints || {}),
+    require_concrete_institution_method_model_instrument_or_discovery: true,
+    require_external_claim_basis: true,
+    do_not_generate_from_hook_label_only: true,
+    do_not_generate_from_emne_label_only: true,
+    required_emne_prefix: 'em_vit_'
+  };
+  record.mappings = [primary];
+  record.mapping_status = 'tiered+canonical';
+  record.primary_hooks = [family.hook.id];
+  record.secondary_hooks = [];
+  record.reserve_hooks = [];
+  record.canonical_thinkers = [];
+  record.canonical_thinker_ids = [];
+  record.norwegian_thinker_ids = [];
   record.norwegian_thinkers = [];
-  record.best_place_types = pensumDomainById.get(family.target_domain_id).best_place_types || [];
-  record.related_subjects = relatedSubjectsForFamily(family.coverage_family_id);
-  record.primary_hook = family.hook.id;
-  record.valid_hooks = [family.hook.id];
+  record.theory_diversity_score = 0;
+  record.has_norwegian_theory_path = false;
+  record.recommended_oslo_cases = family.hook.recommended_oslo_cases;
+  record.recommended_method_ids = topic.method_ids;
   record.canonical_status = 'canonical';
   record.registry_version = 'vitenskappensum_v4_6';
+  record.case_gate_required = true;
+  record.method_gate_required = true;
+  record.source_anchor_required = true;
+  record.external_claim_basis_required = true;
+  record.institution_method_model_instrument_or_discovery_anchor_required = true;
   record.breadth_reconciliation = {
     coverage_family_id: family.coverage_family_id,
+    hook_id: family.hook.id,
     spec_version: spec.version
   };
   return record;

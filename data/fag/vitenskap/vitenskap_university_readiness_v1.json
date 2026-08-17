@@ -1,10 +1,10 @@
 {
   "schema": "history_go_fagverk_vitenskap_university_readiness_v1",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "updated_at": "2026-08-17",
   "subject_id": "vitenskap",
   "title": "Vitenskap & teknologi",
-  "status": "chapter_production_in_progress_gaps_open",
+  "status": "breadth_inventory_reconciled_chapter_production_in_progress",
   "complete_ready": false,
   "purpose": "Låse en etterprøvbar universitetsnær dekningskontrakt før Vitenskap erklæres heldekkende. Kontrakten bevarer den eksisterende seksområders strukturen og nested Teknologi-pakken, men skiller mellom sterke eksisterende lag, nabofag som skal kobles uten duplisering, og faglige hull som må inn i det canonicale inventaret før complete.",
   "canonical_scope": {
@@ -16,10 +16,10 @@
   "current_inventory": {
     "vitenskap": {
       "domain_count": 6,
-      "emne_count": 93,
+      "emne_count": 117,
       "method_count": 84,
-      "mapping_count": 93,
-      "hook_count": 60,
+      "mapping_count": 117,
+      "hook_count": 64,
       "registered_chapter_count": 1
     },
     "teknologi": {
@@ -119,11 +119,11 @@
     {
       "id": "mathematics_formal_sciences",
       "label": "Matematikk, formelle strukturer og bevis",
-      "status": "gap",
+      "status": "inventory_reconciled",
       "existing_domain_ids": [
         "metoder_maling_modeller"
       ],
-      "reason": "Dagens inventar har statistikk, sannsynlighet, beregning og matematisk modellering, men mangler et eksplisitt faglig grunnlag i bevis, algebra, analyse, geometri, diskret matematikk og forholdet mellom formell deduksjon og empirisk testing.",
+      "reason": "Dagens inventar har statistikk, sannsynlighet, beregning og matematisk modellering, men mangler et eksplisitt faglig grunnlag i bevis, algebra, analyse, geometri, diskret matematikk og forholdet mellom formell deduksjon og empirisk testing. Gapet er nå reconcilet på canonical inventory-nivå gjennom 5 eksplisitte emner i eksisterende domain metoder_maling_modeller. Full redaksjonell kapittelbehandling gjenstår og inventory-reconciliation er ikke completion.",
       "candidate_topics": [
         "matematisk_bevis_og_deduksjon",
         "algebra_og_strukturer",
@@ -131,16 +131,25 @@
         "geometri_rom_og_symmetri",
         "diskret_matematikk_og_kombinatorikk"
       ],
-      "requires_canonical_inventory_change": true
+      "requires_canonical_inventory_change": false,
+      "reconciled_emne_ids": [
+        "em_vit_matematisk_bevis_og_deduksjon",
+        "em_vit_algebra_og_strukturer",
+        "em_vit_analyse_endring_og_kontinuitet",
+        "em_vit_geometri_rom_og_symmetri",
+        "em_vit_diskret_matematikk_og_kombinatorikk"
+      ],
+      "reconciled_hook_id": "matematikk_formelle_fag",
+      "reconciliation_spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json"
     },
     {
       "id": "physics_astronomy",
       "label": "Fysikk og astronomi",
-      "status": "gap",
+      "status": "inventory_reconciled",
       "existing_domain_ids": [
         "natur_medisin_miljo"
       ],
-      "reason": "Instrument- og målingsperspektivet er sterkt, men det finnes ikke heldekkende behandling av mekanikk, energi, termodynamikk, bølger, elektromagnetisme, kvantefysikk, relativitet, atom-/kjernefysikk eller astronomi som vitenskapelige kunnskapsområder.",
+      "reason": "Instrument- og målingsperspektivet er sterkt, men det finnes ikke heldekkende behandling av mekanikk, energi, termodynamikk, bølger, elektromagnetisme, kvantefysikk, relativitet, atom-/kjernefysikk eller astronomi som vitenskapelige kunnskapsområder. Gapet er nå reconcilet på canonical inventory-nivå gjennom 8 eksplisitte emner i eksisterende domain natur_medisin_miljo. Full redaksjonell kapittelbehandling gjenstår og inventory-reconciliation er ikke completion.",
       "candidate_topics": [
         "mekanikk_krefter_bevegelse",
         "energi_termodynamikk",
@@ -151,17 +160,29 @@
         "atom_og_kjernefysikk",
         "astronomi_og_kosmologi"
       ],
-      "requires_canonical_inventory_change": true
+      "requires_canonical_inventory_change": false,
+      "reconciled_emne_ids": [
+        "em_vit_mekanikk_krefter_bevegelse",
+        "em_vit_energi_termodynamikk",
+        "em_vit_bolger_og_optikk",
+        "em_vit_elektromagnetisme",
+        "em_vit_kvantefysikk",
+        "em_vit_relativitet",
+        "em_vit_atom_og_kjernefysikk",
+        "em_vit_astronomi_og_kosmologi"
+      ],
+      "reconciled_hook_id": "fysikk_astronomi",
+      "reconciliation_spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json"
     },
     {
       "id": "chemistry_material_science",
       "label": "Kjemi og materialvitenskap",
-      "status": "gap",
+      "status": "inventory_reconciled",
       "existing_domain_ids": [
         "institusjoner_laboratorier_kunnskapssteder",
         "natur_medisin_miljo"
       ],
-      "reason": "Kjemilaboratorium, prøver og materialanalyse finnes, og Teknologi har material-/produksjonsområde, men grunnleggende kjemisk struktur, binding, reaksjon, termodynamikk/kinetikk og analytisk kjemi er ikke behandlet som sammenhengende vitenskapsstoff.",
+      "reason": "Kjemilaboratorium, prøver og materialanalyse finnes, og Teknologi har material-/produksjonsområde, men grunnleggende kjemisk struktur, binding, reaksjon, termodynamikk/kinetikk og analytisk kjemi er ikke behandlet som sammenhengende vitenskapsstoff. Gapet er nå reconcilet på canonical inventory-nivå gjennom 6 eksplisitte emner i eksisterende domain natur_medisin_miljo. Full redaksjonell kapittelbehandling gjenstår og inventory-reconciliation er ikke completion.",
       "candidate_topics": [
         "atomstruktur_og_periodesystem",
         "kjemiske_bindinger_og_struktur",
@@ -170,7 +191,17 @@
         "analytisk_kjemi_og_spektroskopi",
         "materialkjemi_og_egenskaper"
       ],
-      "requires_canonical_inventory_change": true
+      "requires_canonical_inventory_change": false,
+      "reconciled_emne_ids": [
+        "em_vit_atomstruktur_og_periodesystem",
+        "em_vit_kjemiske_bindinger_og_struktur",
+        "em_vit_reaksjoner_stokiometri_og_likevekt",
+        "em_vit_kjemisk_termodynamikk_og_kinetikk",
+        "em_vit_analytisk_kjemi_og_spektroskopi",
+        "em_vit_materialkjemi_og_egenskaper"
+      ],
+      "reconciled_hook_id": "kjemi_materialvitenskap",
+      "reconciliation_spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json"
     },
     {
       "id": "biology_life_sciences",
@@ -193,12 +224,12 @@
     {
       "id": "medicine_biomedicine_public_health",
       "label": "Medisin, biomedisin og folkehelse",
-      "status": "gap",
+      "status": "inventory_reconciled",
       "existing_domain_ids": [
         "institusjoner_laboratorier_kunnskapssteder",
         "natur_medisin_miljo"
       ],
-      "reason": "Klinisk evidens, epidemiologi, sykehus og medisinsk forskning finnes, men biomedisinsk mekanisme, diagnostikk, kliniske studier, behandlingsevidens og folkehelse må bindes til en tydelig læringsprogresjon før scope kan kalles heldekkende.",
+      "reason": "Klinisk evidens, epidemiologi, sykehus og medisinsk forskning finnes, men biomedisinsk mekanisme, diagnostikk, kliniske studier, behandlingsevidens og folkehelse må bindes til en tydelig læringsprogresjon før scope kan kalles heldekkende. Gapet er nå reconcilet på canonical inventory-nivå gjennom 5 eksplisitte emner i eksisterende domain natur_medisin_miljo. Full redaksjonell kapittelbehandling gjenstår og inventory-reconciliation er ikke completion.",
       "candidate_topics": [
         "biomedisinsk_mekanisme_og_modell",
         "diagnostikk_biomarkorer_og_testegenskaper",
@@ -206,7 +237,16 @@
         "behandlingsevidens_og_effekt",
         "folkehelse_arsak_og_forebygging"
       ],
-      "requires_canonical_inventory_change": true
+      "requires_canonical_inventory_change": false,
+      "reconciled_emne_ids": [
+        "em_vit_biomedisinsk_mekanisme_og_modell",
+        "em_vit_diagnostikk_biomarkorer_og_testegenskaper",
+        "em_vit_kliniske_studier_og_intervensjoner",
+        "em_vit_behandlingsevidens_og_effekt",
+        "em_vit_folkehelse_arsak_og_forebygging"
+      ],
+      "reconciled_hook_id": "medisin_biomedisin_folkehelse",
+      "reconciliation_spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json"
     },
     {
       "id": "computing_data_ai",
@@ -252,12 +292,7 @@
       "reason": "Eksisterende inventar dekker finansiering, ekspertmakt, forskningsansvar, interessekonflikt, risiko, kontrovers, offentlig tillit, standarder, styring og formidling."
     }
   ],
-  "blocking_gaps": [
-    "mathematics_formal_sciences",
-    "physics_astronomy",
-    "chemistry_material_science",
-    "medicine_biomedicine_public_health"
-  ],
+  "blocking_gaps": [],
   "first_production_unit": {
     "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
     "primary_domain_id": "institusjoner_laboratorier_kunnskapssteder",
@@ -320,5 +355,22 @@
       "no_generic_template_reuse"
     ]
   },
-  "next_gate": "reconcile_blocking_coverage_gaps_and_continue_chapter_production"
+  "next_gate": "remaining_chapter_production_across_reconciled_university_breadth",
+  "editorial_blockers": [
+    "mathematics_formal_sciences",
+    "physics_astronomy",
+    "chemistry_material_science",
+    "medicine_biomedicine_public_health"
+  ],
+  "breadth_reconciliation": {
+    "status": "canonical_inventory_reconciled",
+    "spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json",
+    "source_inventory": "v4.5",
+    "target_inventory": "v4.6",
+    "added_emne_count": 24,
+    "added_hook_count": 4,
+    "preserved_domain_count": 6,
+    "preserved_method_count": 84,
+    "complete_ready": false
+  }
 }
