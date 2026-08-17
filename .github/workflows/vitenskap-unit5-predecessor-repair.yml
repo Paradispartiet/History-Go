@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Make predecessor source-brief gates monotone
+      - name: Make Unit 1 progression gate phase-monotone
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -31,51 +31,52 @@ jobs:
               p = Path(path)
               text = p.read_text()
               if old not in text:
-                  raise SystemExit(f'Missing expected text in {path}: {old[:120]!r}')
+                  raise SystemExit(f'Missing expected text in {path}: {old[:140]!r}')
               p.write_text(text.replace(old, new, 1))
 
-          repairs = [
-              (
-                  'scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs',
-                  "  assert(readiness.complete_ready === false, 'Matematikk-arbeid kan ikke gjøre Vitenskap complete');\n",
-                  "  assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate');\n",
-                  "  if (mathStillBlocked) {\n    assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 1, 'Før fulltekstregistrering skal Vitenskap ha ett kapittel');",
-                  "  if (mathStillBlocked) {\n    assert(readiness.complete_ready === false, 'Vitenskap kan ikke være complete mens matematikk fortsatt er editorial blocker');\n    assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate før Unit 2-fulltekst');\n    assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 1, 'Før fulltekstregistrering skal Vitenskap ha ett kapittel');"
-              ),
-              (
-                  'scripts/audit-fagverk-vitenskap-physics-astronomy-source-brief.mjs',
-                  "  assert(readiness.complete_ready === false, 'Fysikk-arbeid kan ikke gjøre Vitenskap complete');\n",
-                  "  assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate');\n",
-                  "  if (physicsStillBlocked) {\n    assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 2, 'Før fysikk-fulltekstregistrering skal Vitenskap ha to kapitler');",
-                  "  if (physicsStillBlocked) {\n    assert(readiness.complete_ready === false, 'Vitenskap kan ikke være complete mens fysikk fortsatt er editorial blocker');\n    assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate før Unit 3-fulltekst');\n    assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 2, 'Før fysikk-fulltekstregistrering skal Vitenskap ha to kapitler');"
-              ),
-              (
-                  'scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs',
-                  "  assert(readiness.complete_ready === false, 'Kjemi-arbeid kan ikke gjøre Vitenskap complete');\n",
-                  "  assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate');\n",
-                  "  if (chemistryStillBlocked) {\n    assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 3, 'Før kjemi-fulltekstregistrering skal Vitenskap ha tre kapitler');",
-                  "  if (chemistryStillBlocked) {\n    assert(readiness.complete_ready === false, 'Vitenskap kan ikke være complete mens kjemi fortsatt er editorial blocker');\n    assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate før Unit 4-fulltekst');\n    assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 3, 'Før kjemi-fulltekstregistrering skal Vitenskap ha tre kapitler');"
-              ),
-          ]
+          audit = 'scripts/audit-fagverk-vitenskap-unit1.mjs'
+          test = 'tests/fagverk-vitenskap-unit1.test.mjs'
 
-          for path, complete_assert, gate_assert, blocked_old, blocked_new in repairs:
-              replace_exact(path, complete_assert, '')
-              replace_exact(path, gate_assert, '')
-              replace_exact(path, blocked_old, blocked_new)
+          replace_exact(
+              audit,
+              "  assert(readiness.complete_ready === false, 'Unit 1 må ikke gjøre hele Vitenskap complete');\n",
+              ''
+          )
+          replace_exact(
+              audit,
+              "  assert(openBlockers.length >= 1, 'Så lenge Vitenskap ikke er complete må minst én breadth editorial blocker stå åpen');",
+              "  if (openBlockers.length === 0 && readiness.complete_ready === false) {\n"
+              "    assert(readiness.status === 'breadth_chapters_materialized_final_audit_pending', '0 breadth-blockers før complete krever final-audit-pending status');\n"
+              "    assert(readiness.next_gate === 'final_holistic_university_breadth_completion_audit', '0 breadth-blockers før complete krever separat holistic final audit');\n"
+              "  }\n"
+              "  if (readiness.complete_ready === true) {\n"
+              "    assert(openBlockers.length === 0, 'Complete Vitenskap kan ikke ha åpne breadth editorial blockers');\n"
+              "  }"
+          )
+          replace_exact(
+              audit,
+              '      breadthEditorialBlockersRemainOpen: true,',
+              '      breadthEditorialBlockersRemainOpen: openBlockers.length > 0,'
+          )
+          replace_exact(
+              test,
+              '  assert.equal(report.gates.breadthEditorialBlockersRemainOpen, true);',
+              "  assert.equal(typeof report.gates.breadthEditorialBlockersRemainOpen, 'boolean');"
+          )
           PY
+          node --check scripts/audit-fagverk-vitenskap-unit1.mjs
+          node --test tests/fagverk-vitenskap-unit1.test.mjs
           node --check scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs
           node --check scripts/audit-fagverk-vitenskap-physics-astronomy-source-brief.mjs
           node --check scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs
 
-      - name: Commit predecessor repair
+      - name: Commit Unit 1 predecessor repair
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs \
-            scripts/audit-fagverk-vitenskap-physics-astronomy-source-brief.mjs \
-            scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs
-          git diff --cached --quiet && { echo 'Expected predecessor repairs missing'; exit 1; }
-          git commit -m 'Make Vitenskap source-brief gates monotone'
+          git add scripts/audit-fagverk-vitenskap-unit1.mjs tests/fagverk-vitenskap-unit1.test.mjs
+          git diff --cached --quiet && { echo 'Expected Unit 1 predecessor repair missing'; exit 1; }
+          git commit -m 'Make Vitenskap Unit 1 progression gate monotone'
           git push origin HEAD:agent/vitenskap-medicine-biomedicine-public-health-fulltext
 
       - name: Apply fail-fast Unit 5 transition
