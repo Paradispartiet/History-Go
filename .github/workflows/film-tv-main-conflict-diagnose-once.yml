@@ -1,0 +1,45 @@
+name: Film TV main conflict diagnose once
+
+on:
+  push:
+    branches:
+      - agent/film-tv-holistic-192-completion-audit
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact PR head
+        uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-holistic-192-completion-audit
+          fetch-depth: 0
+
+      - name: Diagnose merge conflicts against latest main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          set +e
+          git merge --no-commit --no-ff origin/main
+          merge_rc=$?
+          set -e
+          conflicts="$(git diff --name-only --diff-filter=U)"
+          if [[ -z "$conflicts" ]]; then
+            git merge --abort || true
+            if [[ $merge_rc -ne 0 ]]; then
+              echo "::error title=Film TV main reconciliation::Merge failed without listed unmerged paths"
+              exit 1
+            fi
+            echo "No merge conflicts against latest main."
+            exit 0
+          fi
+          inline="$(printf '%s\n' "$conflicts" | paste -sd ',' -)"
+          echo "::error title=Film TV main reconciliation conflicts::$inline"
+          printf '%s\n' "$conflicts"
+          git merge --abort || true
+          exit 1
