@@ -30,7 +30,7 @@ test('Film & TV variable canon remains materialized after later chapter producti
   const postMigrationGate = status.nextGate === 'canonical_inventory_migrated_existing_chapter_reaudit'
     || status.nextGate === 'canonical_chapter_reaudit_complete_learning_order_plan'
     || status.nextGate === 'learning_order_plan_complete_first_chapter_source_brief'
-    || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(status.nextGate)
+    || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(status.nextGate)
     || status.nextGate === 'maintenance_source_refresh_and_place_case_expansion';
   assert.ok(postMigrationGate);
 });
