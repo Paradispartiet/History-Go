@@ -1,0 +1,74 @@
+{
+  "schema": "history_go_fagverk_chapter_v1",
+  "version": "1.0.0",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "id": "vitenskap-kjemi-fra-atomstruktur-til-materialegenskap",
+  "chapter_id": "vitenskap-kjemi-fra-atomstruktur-til-materialegenskap",
+  "primary_domain_id": "natur_medisin_miljo",
+  "coverage_family_id": "chemistry_material_science",
+  "editorialStatus": "chapter_ready",
+  "claimTraceRequired": true,
+  "emne_ids": [
+    "em_vit_atomstruktur_og_periodesystem",
+    "em_vit_kjemiske_bindinger_og_struktur",
+    "em_vit_reaksjoner_stokiometri_og_likevekt",
+    "em_vit_kjemisk_termodynamikk_og_kinetikk",
+    "em_vit_analytisk_kjemi_og_spektroskopi",
+    "em_vit_materialkjemi_og_egenskaper"
+  ],
+  "method_ids": [
+    "met_vit_modellanalyse",
+    "met_vit_laboratorieanalyse",
+    "met_vit_evidensanalyse",
+    "met_vit_materialanalyse",
+    "met_vit_maleinstrumentanalyse",
+    "met_vit_beregningsanalyse",
+    "met_vit_statistisk_analyse",
+    "met_vit_kalibreringsanalyse"
+  ],
+  "title": "Kjemi fra atomstruktur til materialegenskap",
+  "subtitle": "Fra periodiske mønstre og binding til reaksjonsregnskap, termodynamikk, kinetikk, analytiske signaler og materialkarakterisering – med prøve, instrument og modell synlige i hele evidenskjeden",
+  "lead": "Kjemi blir etterprøvbar når vi kan følge veien fra en modell av mikroskopisk struktur til en målbar påstand om stoff, reaksjon eller materiale. Dette kapittelet kobler atomstruktur og binding til støkiometri og likevekt, skiller termodynamisk drivkraft fra reaksjonshastighet, og viser hvordan laboratorieprøver blir til analytiske resultater gjennom instrumentrespons, kalibrering og referansedata. Materialvitenskap behandles som en struktur–egenskap-kjede der sammensetning alene ikke er nok: atomorden, fase, defekter og mikrostruktur kan være avgjørende. Teknologisk design forblir et senere anvendelsesledd i den nested Teknologi-spesialiseringen.",
+  "learningObjectives": [
+    "forklare hvordan atomnummer, elektronisk struktur og periodiske mønstre brukes i kjemiske modeller og skille dem fra standard atomvekt og isotopsammensetning",
+    "koble bindingsmodeller og molekylgeometri til observerbare egenskaper uten å forveksle modelltegning med direkte observasjon",
+    "bruke stoffmengde, reaksjonslikninger, støkiometri og massebalanse som kvantitativt regnskap og skille dette fra reaksjonsmekanisme",
+    "skille kjemisk likevekt, termodynamisk drivkraft, aktiveringsenergi og reaksjonshastighet og forklare hva katalyse faktisk endrer",
+    "rekonstruere en analytisk evidenskjede fra representativ prøve via instrumentrespons og kalibrering til identifikasjon eller kvantifisering",
+    "vurdere deteksjonsgrenser og referansespektre som begrensede evidensledd fremfor automatiske bevis på fravær eller identitet",
+    "koble sammensetning, binding, atomorden, defekter og mikrostruktur til målte materialegenskaper",
+    "skille vitenskapelig materialkarakterisering fra teknologisk design, produksjonsoptimalisering og produktvalg"
+  ],
+  "diagnosticQuestions": [
+    {"question": "Viser en balansert reaksjonslikning hvordan reaksjonen skjer?", "answer": "Nei. Den balanserte likningen gir stoff- og masseforhold; mekanismen krever separat kinetisk og eksperimentell evidens."},
+    {"question": "Går en termodynamisk gunstig reaksjon nødvendigvis raskt?", "answer": "Nei. Reaksjonshastighet avhenger av kinetikk og aktiveringsbarrierer; drivkraft og hastighet må analyseres separat."},
+    {"question": "Flytter en katalysator likevektskonstanten?", "answer": "Ikke ved samme temperatur. Katalysatoren endrer reaksjonsvei og hastighet mot likevekt, ikke den termodynamiske likevektskonstanten."},
+    {"question": "Betyr ikke-detektert at stoffet ikke finnes?", "answer": "Nei. Det betyr at signalet ikke kan skilles fra blanken under den aktuelle metodens deteksjonsbetingelser med den angitte sikkerheten."},
+    {"question": "Er ett spektralt bibliotektreff en sikker identifikasjon?", "answer": "Nei. Prøvematrise, instrument, kalibrering, interferenser, alternative forbindelser og ofte flere signaler må vurderes."},
+    {"question": "Bestemmer kjemisk sammensetning alene et materiales egenskaper?", "answer": "Nei. Binding, fase, atomorden, defekter, mikrostruktur og prosesseringshistorie kan endre egenskapene betydelig."}
+  ],
+  "moduleFiles": [
+    "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap/01-grunnlag.json",
+    "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap/02-fordypning.json",
+    "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap/03-anvendelse.json"
+  ],
+  "briefFile": "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap/brief.json",
+  "claimsFile": "data/fagverk/vitenskap/vitenskap-kjemi-fra-atomstruktur-til-materialegenskap/claims.json",
+  "universityReadinessFile": "data/fag/vitenskap/vitenskap_university_readiness_v1.json",
+  "qualityGuard": {
+    "atomicModelVsObservedPropertyExplicit": true,
+    "reactionEquationVsMechanismExplicit": true,
+    "thermodynamicsVsKineticsExplicit": true,
+    "catalysisVsEquilibriumExplicit": true,
+    "sampleSignalCalibrationInferenceChainExplicit": true,
+    "detectionLimitVsAbsenceExplicit": true,
+    "spectralMatchVsIdentificationExplicit": true,
+    "compositionMicrostructurePropertyChainExplicit": true,
+    "materialsVsTechnologyBoundaryExplicit": true,
+    "doesNotClaimSubjectComplete": true,
+    "remainingBreadthEditorialBlockersRequired": true,
+    "technologyRemainsNested": true,
+    "noGenericTemplateReuse": true
+  }
+}
