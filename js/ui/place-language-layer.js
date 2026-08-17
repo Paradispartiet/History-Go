@@ -158,6 +158,23 @@
     return TYPE_ALIASES[raw] || "term";
   }
 
+  function languageLayer(entry, article = null) {
+    const explicit = slug(entry?.layer);
+    if (explicit === "dialect") return "dialect";
+    if (canonicalType(entry) === "dialect_feature") return "dialect";
+    if (text(entry?.dialect_area || article?.dialect_area)) return "dialect";
+    return "language";
+  }
+
+  function isDialectEntry(entry, article = null) {
+    return languageLayer(entry, article) === "dialect";
+  }
+
+  function isAllowedLanguageEntry(entry, article, place) {
+    if (!isLanguageEntry(entry)) return false;
+    return !isDialectEntry(entry, article) || slug(place?.placeScope) === "area";
+  }
+
   function typeLabel(entry) {
     const canonical = canonicalType(entry);
     if (canonical === "term") {
@@ -223,6 +240,8 @@
   function knowledgeEntryForLanguage(entry, context = {}) {
     const subjectId = resolveSubjectId(entry, context);
     if (!subjectId) return null;
+    const layer = languageLayer(entry, context.article);
+    if (layer === "dialect" && slug(context.place?.placeScope) !== "area") return null;
 
     const now = new Date().toISOString();
     const id = knowledgeId(entry);
@@ -240,7 +259,7 @@
     const termIds = explicitTermIds.length
       ? explicitTermIds
       : [`term_${slug(subjectId) || "subject"}_sprak_${slug(entry?.id || term) || "entry"}`];
-    const tags = unique([...(list(entry?.tags)), "språkleksikon", canonical, dialectArea]);
+    const tags = unique([...(list(entry?.tags)), "språkleksikon", canonical, layer, dialectArea]);
 
     return {
       schema: KNOWLEDGE_SCHEMA,
@@ -278,7 +297,8 @@
         precise_claim: Boolean(meaning),
         canonical_capture: Boolean(entry?.knowledge_unit_id),
         source_bound: true,
-        language_entry_id: text(entry?.id) || null
+        language_entry_id: text(entry?.id) || null,
+        language_layer: layer
       },
       link_status: emneIds.length ? "linked" : "language_source_bound_unresolved"
     };
@@ -399,7 +419,7 @@
   }
 
   function renderLanguagePanel(place, article) {
-    const entries = list(article?.entries).filter(isLanguageEntry);
+    const entries = list(article?.entries).filter(entry => isAllowedLanguageEntry(entry, article, place));
     const counts = countByType(entries);
     const filters = [...counts.entries()]
       .sort((a, b) => b[1] - a[1])
@@ -508,7 +528,7 @@
       const collectButton = target?.closest("[data-language-collect]");
       if (!collectButton || collectButton.hasAttribute("disabled")) return;
       const entryId = text(collectButton.getAttribute("data-language-collect"));
-      const entry = list(article?.entries).find(row => text(row?.id || row?.term) === entryId && isLanguageEntry(row));
+      const entry = list(article?.entries).find(row => text(row?.id || row?.term) === entryId && isAllowedLanguageEntry(row, article, place));
       if (!entry) return;
       installKnowledgeBridge();
       const captured = captureLanguageKnowledge(entry, {
@@ -536,8 +556,9 @@
     const placeId = text(place?.id);
     if (!placeId) return;
     const loaded = await loadForPlace(placeId);
-    const entries = list(loaded?.article?.entries).filter(isLanguageEntry);
-    if (!loaded || !entries.length) return;
+    if (!loaded) return;
+    const entries = list(loaded.article?.entries).filter(entry => isAllowedLanguageEntry(entry, loaded.article, place));
+    if (!entries.length) return;
 
     const popup = document.querySelector(".hg-popup.place-popup-v2");
     const tabsArticle = popup?.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');
@@ -616,6 +637,8 @@
     loadForPlace,
     canonicalType,
     isLanguageEntry,
+    isDialectEntry,
+    isAllowedLanguageEntry,
     resolveSubjectId,
     captureLanguageKnowledge,
     getCollected: collectedLanguageEntries,
