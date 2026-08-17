@@ -1,65 +1,75 @@
-AssertionError [ERR_ASSERTION]: by/by_radgiver_plan: full runtime-projeksjon skal være identisk
+AssertionError [ERR_ASSERTION]: materialized registry skal være byte-semantisk synkron med source-of-build
 + actual - expected ... Lines skipped
 
-  [
-    {
+  {
+    compiled_source_files: [
 ...
-            'sporbarhet',
-            'etterproevbar'
-+         ]
-+       },
-+       {
-+         effect: 1,
-+         feedback: 'Notatet blir lett å handle på, men målkonflikten ligger mellom linjene for den som leser fort.',
-+         id: 'B',
-+         label: 'Hold notatet kort og handlingsrettet',
-+         reply: 'Jeg holder notatet kort og handlingsrettet så saken kan tas videre.',
-+         tags: [
-+           'handlingsrettet',
-+           'lesbar_sak',
-+           'sporbarhet'
-+         ]
-+       }
-+     ],
-+     competency: 'konsekvenslesing',
-+     consequence_axis: 'sporbarhet_vs_klagerisiko',
-+     cooldown: 1,
-+     from: 'elin_plansjef',
-+     id: 'by_areal_consequence_001',
-+     learning_focus: [
-+       'sporbarhet',
-+       'Linjen på kartet',
-+       'Kartet lyver ikke, men det tier'
+          choices: [
+            {
++             effect: null,
+-             effect: NaN,
+              effects: {
+                accuracy: 3,
 ...
--           'sporbarhet'
--         ]
--       },
--       {
--         effect: 1,
--         feedback: 'Notatet blir lett å handle på, men målkonflikten ligger mellom linjene for den som leser fort.',
--         id: 'B',
--         label: 'Hold notatet kort og handlingsrettet',
--         reply: 'Jeg holder notatet kort og handlingsrettet så saken kan tas videre.',
--         tags: [
--           'handlingsrettet',
--           'lesbar_sak',
--           'sporbarhet'
--         ]
--       }
--     ],
--     competency: 'konsekvenslesing',
--     consequence_axis: 'sporbarhet_vs_klagerisiko',
--     cooldown: 1,
--     from: 'elin_plansjef',
--     id: 'by_areal_consequence_001',
--     learning_focus: [
--       'sporbarhet',
--       'Linjen på kartet',
+            },
+            {
++             effect: null,
+-             effect: NaN,
+              effects: {
+                decision_quality: -1,
 ...
-    at /home/runner/work/History-Go/History-Go/tests/civication-compiled-scene-registry-parity.test.js:211:12 {
+            },
+            {
++             effect: null,
+-             effect: NaN,
+              effects: {
+                conflict: 1,
+...
+          choices: [
+            {
++             effect: null,
+-             effect: NaN,
+              effects: {
+                accuracy: 3,
+...
+            },
+            {
++             effect: null,
+-             effect: NaN,
+              effects: {
+                deadline_met: 2,
+...
+            },
+            {
++             effect: null,
+-             effect: NaN,
+              effects: {
+                accuracy: 1,
+...
+          choices: [
+            {
++             effect: null,
+-             effect: NaN,
+              effects: {
+                accuracy: 5,
+...
+            },
+            {
++             effect: null,
+-             effect: NaN,
+              effects: {
+                future_risk: 3,
+...
+            },
+            {
++             effect: null,
+...
+-             effect: NaN,
+...
+    at /home/runner/work/History-Go/History-Go/tests/civication-compiled-scene-registry-parity.test.js:183:10 {
   generatedMessage: false,
   code: 'ERR_ASSERTION',
-  actual: [Array],
-  expected: [Array],
+  actual: [Object],
+  expected: [Object],
   operator: 'deepStrictEqual'
 }
