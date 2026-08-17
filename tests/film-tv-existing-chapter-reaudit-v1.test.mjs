@@ -23,6 +23,6 @@ test('kapittel, brief og registry bruker samme canonicale emne-ID-er', () => {
   const nextGate = result.status.subjects.find((row) => row.id === 'film_tv').nextGate;
   const postReauditGate = nextGate === 'canonical_chapter_reaudit_complete_learning_order_plan'
     || nextGate === 'learning_order_plan_complete_first_chapter_source_brief'
-    || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(nextGate);
+    || /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(nextGate);
   assert.ok(postReauditGate);
 });

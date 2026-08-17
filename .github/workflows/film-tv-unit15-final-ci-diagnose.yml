@@ -1,0 +1,100 @@
+name: Diagnose remaining Film TV Unit15 predecessor regressions
+
+on:
+  push:
+    branches:
+      - agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
+    paths:
+      - .github/workflows/film-tv-unit15-final-ci-diagnose.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: film-tv-unit15-final-ci-diagnose
+  cancel-in-progress: true
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/film-tv-unit15-cultural-heritage-canon-stars-memory-fulltext
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Patch known stale monotone tests in workspace
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          files = [
+              Path('tests/film-tv-learning-order-monotone-regression-v1.test.mjs'),
+              Path('tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs'),
+          ]
+          old = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$'
+          new = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$'
+          for path in files:
+              text = path.read_text()
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'{path}: expected exactly one stale production-gate regex, found {count}')
+              path.write_text(text.replace(old, new))
+              print(f'Patched {path}')
+          PY
+
+      - name: Enumerate exact Industry baseline failures
+        shell: bash
+        run: |
+          set +e
+          failed=0
+          for f in \
+            tests/fagverk-film-tv-architectural-full-chapter.test.mjs \
+            tests/fagverk-film-tv-innovation-full-chapter.test.mjs \
+            tests/fagverk-film-tv-reception-context-full-chapter.test.mjs; do
+            echo "=== NODE TEST $f ==="
+            node --test "$f"
+            code=$?
+            if [ "$code" -ne 0 ]; then
+              echo "::error title=Failing Industry node-test::$f"
+              failed=1
+            fi
+          done
+          for f in \
+            tests/film-tv-phase-b.test.mjs \
+            tests/film-tv-unit2-source-brief-v1.test.mjs \
+            tests/film-tv-unit3-innovation-source-brief-v1.test.mjs \
+            tests/film-tv-unit4-reception-context-source-brief-v1.test.mjs \
+            tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs \
+            tests/film-tv-learning-order-monotone-regression-v1.test.mjs; do
+            echo "=== NODE $f ==="
+            node "$f"
+            code=$?
+            if [ "$code" -ne 0 ]; then
+              echo "::error title=Failing Industry script-test::$f"
+              failed=1
+            fi
+          done
+          exit "$failed"
+
+      - name: Run every Phase4 Film TV glob test separately
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          failed=0
+          count=0
+          for f in tests/fagverk-film-tv-*.test.mjs; do
+            count=$((count + 1))
+            echo "=== RUN $f ==="
+            node --test "$f"
+            code=$?
+            if [ "$code" -ne 0 ]; then
+              echo "::error title=Failing Phase4 Film TV test::$f"
+              failed=1
+            fi
+          done
+          echo "Inspected $count fagverk-film-tv tests"
+          exit "$failed"

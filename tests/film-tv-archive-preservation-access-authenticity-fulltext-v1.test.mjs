@@ -124,7 +124,10 @@ test('kapittelregistrering avanserer monotont og source briefen forblir historis
   assert.equal(registered.claimsFile, 'data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet/claims.json');
   assert.equal(registered.briefFile, 'data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet/brief.json');
   assert.equal(isFilmTvUnitFourteenOrLaterGate(film.nextGate), true);
-  assert.equal(film.nextGate, 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief');
+  assert.equal([
+    'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief',
+    'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit'
+  ].includes(film.nextGate), true);
   assert.equal(sourceBrief.status, 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production');
   assert.equal(sourceBrief.runtime_registration.registered, false);
   assert.equal(sourceBrief.runtime_registration.allowed_before_full_chapter_gate, false);

@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1
+} from './audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs';
+
+export const auditFilmTvCulturalHeritageCanonStarsMemoryFulltextV1 = auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1;
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const writeReport = process.argv.includes('--write');
+  const checkReport = process.argv.includes('--check');
+  const report = auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeReport, checkReport });
+  console.log(`Film & TV Unit15 fulltekstaudit: ${report.summary.paragraph_count}/56 redaksjonelle fagavsnitt, ${report.summary.minimum_paragraph_word_count} ord minimum, ${report.summary.forbidden_editorial_fragment_count} forbudte malfragmenter.`);
+}

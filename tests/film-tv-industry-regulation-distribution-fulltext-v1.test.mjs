@@ -70,10 +70,10 @@ test('kapittelregistrering og fagstatus avanserer monotont til neste kildebrief'
     registry.subjects.film_tv.canonicalModel.tenthSourceClaimBrief,
     'data/fag/TV_og_Film/film_tv_industry_regulation_distribution_source_claim_brief_v1.json'
   );
-  assert.equal(
-    film.nextGate,
-    'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief'
-  );
+  assert.equal([
+    'industry_regulation_distribution_full_chapter_complete_next_unit_source_brief',
+    'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit'
+  ].includes(film.nextGate), true);
 });
 
 test('markeds-, plattform-, publikum-, rettighets- og reguleringsgrenser er eksplisitte', () => {

@@ -93,7 +93,7 @@ export function auditFilmTvProduksjonStudioFilmarbeidPhase4({ writeReport = fals
   assert(isDeepStrictEqual(registryChapter.emne_ids, resolvedEmneIds), 'Registry-emnene er ikke projisert gjennom legacyaliasene');
   assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');
   const historicalGates = new Set(['remaining_domain_chapter_production', 'curriculum_completeness_refactor', 'canonical_inventory_migration', 'canonical_inventory_migrated_existing_chapter_reaudit', 'canonical_chapter_reaudit_complete_learning_order_plan', 'learning_order_plan_complete_first_chapter_source_brief']);
-  const productionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(statusEntry.nextGate);
+  const productionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(statusEntry.nextGate);
   assert(historicalGates.has(statusEntry.nextGate) || productionGate, 'Film & TV har feil neste port');
   assert(phase3.report.summary.domainCount === 10 && phase3.report.summary.emneCount === 192, 'Det migrerte Film & TV-inventaret er ikke bevart');
   assert(phase3.report.summary.registeredChapterCount >= 2, 'Fase 3-auditen ser ikke de bevarte Film & TV-kapitlene');

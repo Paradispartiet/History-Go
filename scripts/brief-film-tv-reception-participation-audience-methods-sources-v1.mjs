@@ -16,6 +16,7 @@ const LOCATION_PRODUCTION_FULLTEXT_GATE = 'location_production_place_ethics_full
 const ARCHIVE_PRESERVATION_SOURCE_GATE = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
 const ARCHIVE_PRESERVATION_FULLTEXT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 const UNIT15_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
+const UNIT_FIFTEEN_COMPLETION_AUDIT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
 const UNIT_ELEVEN_PRODUCTION_GATES = new Set([
   OUTPUT_GATE,
   FULLTEXT_GATE,
@@ -24,7 +25,7 @@ const UNIT_ELEVEN_PRODUCTION_GATES = new Set([
   LOCATION_PRODUCTION_SOURCE_GATE,
   LOCATION_PRODUCTION_FULLTEXT_GATE,
   ARCHIVE_PRESERVATION_SOURCE_GATE,
-  ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE
+  ARCHIVE_PRESERVATION_FULLTEXT_GATE, UNIT15_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE
 ]);
 
 export const isFilmTvUnitElevenOrLaterGate = (gate) => UNIT_ELEVEN_PRODUCTION_GATES.has(gate);
@@ -104,7 +105,9 @@ export function buildFilmTvReceptionParticipationAudienceMethodsSourceBriefV1() 
   const engineSource = fs.readFileSync(fileURLToPath(import.meta.url), 'utf8');
   const forbiddenScmTokens = ['child_' + 'process', 'execFile' + 'Sync', 'spawn' + 'Sync'];
   const forbiddenGitCommand = new RegExp(`git\\s+(?:${['fetch', 'merge', 'push'].join('|')})`);
-  const laterGateAlreadyActive = [FULLTEXT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE, LOCATION_PRODUCTION_SOURCE_GATE, LOCATION_PRODUCTION_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE].includes(currentGate);
+  const laterGateAlreadyActive = [FULLTEXT_GATE, SCREEN_PLACES_SOURCE_GATE, SCREEN_PLACES_FULLTEXT_GATE, LOCATION_PRODUCTION_SOURCE_GATE, LOCATION_PRODUCTION_FULLTEXT_GATE, ARCHIVE_PRESERVATION_SOURCE_GATE, ARCHIVE_PRESERVATION_FULLTEXT_GATE,
+  UNIT_FIFTEEN_COMPLETION_AUDIT_GATE
+].includes(currentGate);
 
   registry.version = maxDottedVersion(registry.version, '2.94.0');
   registry.updatedAt = maxIsoDate(registry.updatedAt, '2026-08-14');

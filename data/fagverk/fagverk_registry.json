@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "3.02.0",
+  "version": "3.03.0",
   "updatedAt": "2026-08-15",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -3312,7 +3312,8 @@
         "twelfthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_screen_places_identity_circulation_source_claim_brief_v1.json",
         "thirteenthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_location_production_place_ethics_source_claim_brief_v1.json",
         "fourteenthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_archive_preservation_access_authenticity_source_claim_brief_v1.json",
-        "fifteenthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json"
+        "fifteenthSourceClaimBrief": "data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json",
+        "fifteenthChapterFulltext": "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne.json"
       },
       "chapters": [
         {
@@ -3670,8 +3671,24 @@
           ],
           "claimsFile": "data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet/claims.json",
           "briefFile": "data/fagverk/film_tv/arkiv-bevaring-tilgang-og-autentisitet/brief.json"
+        },
+        {
+          "id": "kulturarv-kanon-stjerner-og-minne",
+          "title": "Kulturarv, kanon, stjerner og minne: hvordan audiovisuell kultur får varighet",
+          "file": "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne.json",
+          "briefFile": "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/brief.json",
+          "claimsFile": "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/claims.json",
+          "moduleFiles": [
+            "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/01-kulturarv-kanon-og-motarkiv.json",
+            "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/02-stjerner-kanonmakt-og-kollektiv-referanse.json",
+            "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/03-kult-nostalgi-og-kulturell-varighet.json",
+            "data/fagverk/film_tv/kulturarv-kanon-stjerner-og-minne/04-sitat-stjerneapparat-og-tv-minne.json"
+          ],
+          "primaryDomainId": "arkiv_kulturarv_minne_stjerner",
+          "sourceBriefFile": "data/fag/TV_og_Film/film_tv_cultural_heritage_canon_stars_memory_source_claim_brief_v1.json"
         }
-      ]
+      ],
+      "note": "Film & TV har nå materialisert alle 15 planlagte fagverksenheter. Enhet 15, Kulturarv, kanon, stjerner og minne, dekker 12 canonicale emner i fire moduler med 56 verifiserte claimsporede fagavsnitt, 26 inspectable kilder og 24 dokumenterte case. Complete-status settes ikke her; neste separate port er helhetsaudit av alle 192 canonicale emner, registrerte kapitler og permanente kvalitetskrav."
     }
   },
   "placeLinks": {

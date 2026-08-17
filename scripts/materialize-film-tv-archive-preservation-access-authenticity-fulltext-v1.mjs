@@ -8,6 +8,7 @@ const CHAPTER_ID = 'arkiv-bevaring-tilgang-og-autentisitet';
 const SOURCE_BRIEF_GATE = 'archive_preservation_access_authenticity_source_brief_complete_full_chapter_production';
 const OUTPUT_GATE = 'archive_preservation_access_authenticity_full_chapter_complete_next_unit_source_brief';
 const UNIT_FIFTEEN_SOURCE_GATE = 'cultural_heritage_canon_stars_memory_source_brief_complete_full_chapter_production';
+const UNIT_FIFTEEN_COMPLETION_AUDIT_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
 const P = Object.freeze({
   plan: 'data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json',
   emners: 'data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json',
@@ -282,8 +283,8 @@ export function buildFilmTvArchivePreservationAccessAuthenticityFulltextV1() {
   const status = structuredClone(read(P.status));
   const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
   if (!filmStatus) throw new Error('Mangler Film & TV-status');
-  const laterGateAlreadyActive = filmStatus.nextGate === UNIT_FIFTEEN_SOURCE_GATE;
-  if (![SOURCE_BRIEF_GATE, OUTPUT_GATE, UNIT_FIFTEEN_SOURCE_GATE].includes(filmStatus.nextGate)) throw new Error(`Uventet Film & TV-gate for enhet 14 fulltekst: ${filmStatus.nextGate}`);
+  const laterGateAlreadyActive = [UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(filmStatus.nextGate);
+  if (![SOURCE_BRIEF_GATE, OUTPUT_GATE, UNIT_FIFTEEN_SOURCE_GATE, UNIT_FIFTEEN_COMPLETION_AUDIT_GATE].includes(filmStatus.nextGate)) throw new Error(`Uventet Film & TV-gate for enhet 14 fulltekst: ${filmStatus.nextGate}`);
 
   const sourceById = new Map(sources.map((row) => [row.id, row]));
   const caseById = new Map(cases.map((row) => [row.id, row]));

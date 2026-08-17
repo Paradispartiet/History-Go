@@ -21,7 +21,7 @@ test('Film & TV er materialisert med canonical dekning og audiovisuelle source-f
     'learning_order_plan_complete_first_chapter_source_brief',
     'maintenance_source_refresh_and_place_case_expansion'
   ]);
-  const isProductionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(report.subject.nextGate);
+  const isProductionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(report.subject.nextGate);
   assert.ok(legacyGates.has(report.subject.nextGate) || isProductionGate);
 
   assert.deepEqual(report.summary, {

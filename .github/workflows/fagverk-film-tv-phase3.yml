@@ -25,6 +25,10 @@ on:
       - "scripts/reaudit-film-tv-existing-chapters-v1.mjs"
       - "scripts/plan-film-tv-learning-order-v1.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
+      - "scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs"
+      - "scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs"
+      - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
       - "tests/fagverk-film-tv-phase3.test.mjs"
@@ -36,6 +40,9 @@ on:
       - "tests/film-tv-learning-order-plan-v1.test.mjs"
       - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
       - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
+      - "tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs"
+      - "tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs"
+      - "tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
@@ -60,6 +67,10 @@ on:
       - "scripts/reaudit-film-tv-existing-chapters-v1.mjs"
       - "scripts/plan-film-tv-learning-order-v1.mjs"
       - "scripts/build-fagverk-release-manifest.mjs"
+      - "scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs"
+      - "scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs"
+      - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs"
+      - "scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs"
       - "tests/fagverk-subject-inventory.test.mjs"
       - "tests/fagverk-general-engine.test.mjs"
       - "tests/fagverk-film-tv-phase3.test.mjs"
@@ -71,6 +82,9 @@ on:
       - "tests/film-tv-learning-order-plan-v1.test.mjs"
       - "tests/film-tv-learning-order-monotone-regression-v1.test.mjs"
       - "tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs"
+      - "tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs"
+      - "tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs"
+      - "tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs"
       - "tests/fagverk-release-manifest.test.mjs"
       - "reports/fagverk/**"
       - ".github/workflows/fagverk-film-tv-phase3.yml"
@@ -97,11 +111,18 @@ jobs:
           node --check scripts/audit-film-tv-variable-inventory-v1.mjs
           node --check scripts/reaudit-film-tv-existing-chapters-v1.mjs
           node --check scripts/plan-film-tv-learning-order-v1.mjs
+          node --check scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
+          node --check scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs
+          node --check scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs
           node --check tests/film-tv-canonical-migration-monotone-regression-v1.test.mjs
           node --check tests/film-tv-existing-chapter-reaudit-v1.test.mjs
           node --check tests/film-tv-learning-order-plan-v1.test.mjs
           node --check tests/film-tv-learning-order-monotone-regression-v1.test.mjs
           node --check tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --check tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
+          node --check tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs
+          node --check tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-film-tv-phase3.mjs
@@ -110,6 +131,7 @@ jobs:
           node scripts/audit-film-tv-variable-inventory-v1.mjs
           node scripts/reaudit-film-tv-existing-chapters-v1.mjs
           node scripts/plan-film-tv-learning-order-v1.mjs
+          node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
 
       - name: Validate stable Film and TV contracts
@@ -125,4 +147,7 @@ jobs:
           node --test tests/film-tv-learning-order-plan-v1.test.mjs
           node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
           node --test tests/film-tv-representation-position-counterimages-monotone-regression-v1.test.mjs
+          node --test tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
+          node --test tests/film-tv-cultural-heritage-canon-stars-memory-registry-v1.test.mjs
+          node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs

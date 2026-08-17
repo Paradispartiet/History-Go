@@ -125,7 +125,7 @@ export function auditFilmTvCurriculumCompletenessV1({ writeReport = false, check
     'canonical_chapter_reaudit_complete_learning_order_plan',
     'learning_order_plan_complete_first_chapter_source_brief'
   ]);
-  const isLaterProductionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief)$/.test(status?.nextGate || '');
+  const isLaterProductionGate = /(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$/.test(status?.nextGate || '');
   if (migratedLegacyGates.has(status?.nextGate) || isLaterProductionGate) {
     const inventory = json(P.inventory);
     const historical = json(P.report);
