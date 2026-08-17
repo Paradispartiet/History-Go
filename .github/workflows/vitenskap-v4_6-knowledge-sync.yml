@@ -33,10 +33,11 @@ jobs:
             'data/quiz/quiz_vitenskap.json',
             'data/knowledge/knowledge_units.generated.json',
             'data/knowledge/knowledge_emne_review_queue.generated.json',
-            'reports/knowledge-id-backfill.json'
+            'reports/knowledge-id-backfill.json',
+            'reports/knowledge-contract-audit.json'
           ]);
           const rows = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf8' })
-            .trim().split('\n').filter(Boolean);
+            .split('\n').filter(Boolean);
           const changed = rows.map((row) => row.slice(3));
           const unexpected = changed.filter((file) => !allowed.has(file));
           if (unexpected.length) throw new Error(`Unexpected Knowledge generator outputs: ${unexpected.join(', ')}`);
@@ -59,6 +60,7 @@ jobs:
             data/quiz/quiz_vitenskap.json \
             data/knowledge/knowledge_units.generated.json \
             data/knowledge/knowledge_emne_review_queue.generated.json \
-            reports/knowledge-id-backfill.json
+            reports/knowledge-id-backfill.json \
+            reports/knowledge-contract-audit.json
           git commit -m 'Regenerate Knowledge outputs for Vitenskap v4.6'
           git push origin HEAD:agent/vitenskap-university-breadth-reconciliation
