@@ -75,7 +75,25 @@ function addMaintenanceToNextGateIncludes(text) {
   });
 }
 
-function transform(text) {
+function addUnit12Diagnostics(rel, text) {
+  if (rel === 'scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs'
+      && !text.includes('::error title=Film TV Unit12 source brief::')) {
+    return text.replace(
+      '    console.error(`Film & TV enhet 12 kildebrief FEIL: ${error.message}`);',
+      '    if (process.env.GITHUB_ACTIONS) console.error(`::error title=Film TV Unit12 source brief::${error.message}`);\n    console.error(`Film & TV enhet 12 kildebrief FEIL: ${error.message}`);'
+    );
+  }
+  if (rel === 'scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs'
+      && !text.includes('::error title=Film TV Unit12 fulltext::')) {
+    return text.replace(
+      '    console.error(`Film & TV enhet 12 fulltekst FEIL: ${error.message}`);',
+      '    if (process.env.GITHUB_ACTIONS) console.error(`::error title=Film TV Unit12 fulltext::${error.message}`);\n    console.error(`Film & TV enhet 12 fulltekst FEIL: ${error.message}`);'
+    );
+  }
+  return text;
+}
+
+function transform(rel, text) {
   let next = addMaintenanceToProductionRegexes(text);
   next = addMaintenanceToLaterGateSets(next);
   next = addMaintenanceToNextGateIncludes(next);
@@ -87,6 +105,7 @@ function transform(text) {
     "filmStatus?.editorialStatus === 'chapters_in_progress'",
     "['chapters_in_progress', 'complete'].includes(filmStatus?.editorialStatus)"
   );
+  next = addUnit12Diagnostics(rel, next);
   return next;
 }
 
@@ -127,9 +146,9 @@ const files = TARGET_DIRS.flatMap((dir) => walk(path.join(ROOT, dir)))
 const changed = [];
 const unresolved = [];
 for (const file of files) {
-  const before = fs.readFileSync(file, 'utf8');
-  const after = transform(before);
   const rel = relative(file);
+  const before = fs.readFileSync(file, 'utf8');
+  const after = transform(rel, before);
 
   if (before !== after) {
     changed.push(rel);
