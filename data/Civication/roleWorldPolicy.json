@@ -4,6 +4,8 @@
   "status": "canonical_editorial_completion_contract",
   "effective_date": "2026-08-18",
   "standard": "docs/CIVICATION_ROLE_WORLD_STANDARD.md",
+  "authoring_guide": "docs/CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md",
+  "authoring_checklist": "data/Civication/roleWorldAuthoringChecklist.json",
   "schema_path": "data/Civication/roleWorldV1.schema.json",
   "index_path": "data/Civication/roleWorlds/index.json",
   "theme_bank": "data/Civication/roleWorldThemeBank.json",
@@ -43,7 +45,12 @@
   ],
   "season_contract": {
     "days": 14,
-    "day_phases": ["morning", "lunch", "afternoon", "evening"],
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
     "required_unique_coverage_slots_for_complete": 56,
     "coverage_is_dramaturgical_not_decision_quota": true,
     "allowed_beat_types": [
@@ -128,12 +135,16 @@
   },
   "first_reference_world": {
     "category": "naeringsliv",
-    "role_scope": "ekspeditor"
+    "role_scope": "ekspeditor",
+    "status": "role_world_complete"
+  },
+  "next_reference_world": {
+    "category": "naeringsliv",
+    "role_scope": "renholder"
   },
   "later_reference_candidates": [
-    "naeringsliv/renholder",
-    "naeringsliv/controller",
     "by/by_radgiver_plan",
+    "naeringsliv/controller",
     "sport/sport_utover"
   ]
 }
