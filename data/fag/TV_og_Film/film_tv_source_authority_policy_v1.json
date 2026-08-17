@@ -1,0 +1,65 @@
+{
+  "schema": "history_go_film_tv_source_authority_policy_v1",
+  "version": "1.0.1",
+  "updated_at": "2026-08-17",
+  "subject_id": "film_tv",
+  "status": "active",
+  "purpose": "Normalize every registered Film & TV source into an authority class and require academic secondary evidence for claim types that depend on research rather than primary, legal, archival or institutional documentation alone.",
+  "authority_classes": {
+    "peer_reviewed_scholarship": "Peer-reviewed journal research or equivalent peer-reviewed scholarly publication.",
+    "scholarly_book": "Academic monograph, scholarly handbook, university-press chapter or equivalent research synthesis.",
+    "primary_source": "Contemporaneous or first-party object, statement, production record, programme, interview, dataset or other direct evidence.",
+    "official_statistics": "Official, regulator, public-body or established institutional research/statistics with a defined method, population or administrative basis.",
+    "law_regulation": "Legislation, regulation, court or treaty material, regulator rule, formal policy framework or authoritative legal guidance.",
+    "archive_institution": "Archive, library, museum, cinematheque, catalogue, preservation body or collection documentation used for provenance, object, version or heritage claims.",
+    "professional_secondary": "Professional, industry, standards-body, trade, festival, educational or other secondary source that is useful but is not automatically academic research."
+  },
+  "academic_secondary_classes": [
+    "peer_reviewed_scholarship",
+    "scholarly_book"
+  ],
+  "empirical_effect_required_class": "peer_reviewed_scholarship",
+  "research_required_evidence_mode_patterns": [
+    "theor",
+    "theory",
+    "construct",
+    "methodological",
+    "method-limit",
+    "spectator",
+    "affect",
+    "identification",
+    "reception-theory",
+    "identity-work",
+    "causal",
+    "effect"
+  ],
+  "research_requirement_exclusion_mode_tokens": [
+    "boundary",
+    "deferred"
+  ],
+  "empirical_effect_evidence_mode_patterns": [
+    "experimental",
+    "causal",
+    "effect"
+  ],
+  "empirical_effect_exclusion_mode_tokens": [
+    "boundary",
+    "deferred"
+  ],
+  "completion_invariants": {
+    "registered_chapter_count": 17,
+    "source_registration_count": 416,
+    "verified_claim_count": 663,
+    "terminal_gate": "maintenance_source_refresh_and_place_case_expansion"
+  },
+  "policy": {
+    "classify_every_source_registration": true,
+    "fail_unknown_authority_class": true,
+    "require_http_source_url": true,
+    "require_source_location": true,
+    "require_research_secondary_for_research_claims": true,
+    "require_peer_reviewed_source_for_empirical_effect_claims": true,
+    "boundary_claims_do_not_count_as_positive_effect_claims": true,
+    "do_not_reopen_canonical_completion": true
+  }
+}
