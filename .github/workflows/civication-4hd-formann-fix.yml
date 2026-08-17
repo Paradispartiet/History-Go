@@ -1,0 +1,34 @@
+name: TEMP Civication 4H-D Formann harness fix
+
+on:
+  push:
+    branches:
+      - agent/civication-4hd-semantic-playthrough-gate-20260817
+    paths:
+      - .github/workflows/civication-4hd-formann-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-4hd-semantic-playthrough-gate-20260817
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --no-audit --no-fund
+      - name: Patch missing production SceneCatalog harness load
+        run: python -c "from pathlib import Path; p=Path('tests/civication-formann-two-week-flow.test.js'); s=p.read_text(); old=\"    loadScript('js/Civication/systems/civicationMailRuntime.js');\\n\"; new=old+\"    loadScript('js/Civication/systems/civicationWorkdayMailBuilder.js');\\n\"; assert old in s and 'civicationWorkdayMailBuilder.js' not in s; p.write_text(s.replace(old,new,1))"
+      - name: Verify Formann flow
+        run: node tests/civication-formann-two-week-flow.test.js
+      - name: Commit verified harness fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tests/civication-formann-two-week-flow.test.js
+          git commit -m "Fix Civication 4H-D Formann SceneCatalog harness"
+          git push origin HEAD:agent/civication-4hd-semantic-playthrough-gate-20260817
