@@ -1,0 +1,68 @@
+name: Vitenskap final audit integrate main
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-final-holistic-university-breadth-completion-audit
+    paths:
+      - '.github/workflows/vitenskap-final-audit-integrate-main.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/vitenskap-final-holistic-university-breadth-completion-audit
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Configure commit identity
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+      - name: Merge current main locally
+        run: |
+          git fetch origin main
+          git merge --no-ff origin/main -m "Merge current main into Vitenskap final holistic audit"
+      - name: Verify permanent holistic blocker audit
+        run: |
+          node --check scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs
+          node scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs
+          node --test tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs
+      - name: Verify Vitenskap progression and release gates
+        run: |
+          node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs
+          node scripts/audit-fagverk-vitenskap-pilot.mjs
+          node scripts/audit-fagverk-vitenskap-university-readiness.mjs
+          node scripts/audit-fagverk-vitenskap-unit1.mjs
+          node scripts/audit-fagverk-vitenskap-mathematics-fulltext.mjs
+          node scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs
+          node scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs
+          node scripts/audit-fagverk-vitenskap-medicine-biomedicine-public-health-fulltext.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-vitenskap-audit.test.mjs
+          node --test tests/fagverk-science-engine.test.mjs
+          node --test tests/fagverk-subject-registry.test.mjs
+      - name: Verify nested Teknologi quality
+        run: |
+          node --test tests/vitenskap-teknologi-category-contract.test.mjs
+          node tools/build-teknologi-editorial-v3.mjs --check
+          node tools/validate-teknologi-foundation.mjs
+          node tools/validate-teknologi-quality-v2_1.mjs
+          node tools/validate-teknologi-ontology-v2_2.mjs
+          node tools/validate-teknologi-evidence-v2_3.mjs
+          node scripts/validate-teknologi-editorial-v3.mjs
+          node --test tests/fagverk-technology-readiness.test.mjs
+          node --test tests/fagverk-technology-frontend-schema.test.mjs
+          node --test tests/fagverk-technology-phase1-to4-audit.test.mjs
+      - name: Remove integration helper and push only after green verification
+        run: |
+          git rm .github/workflows/vitenskap-final-audit-integrate-main.yml
+          git commit -m "Remove Vitenskap final audit integration helper"
+          git push origin HEAD:agent/vitenskap-final-holistic-university-breadth-completion-audit
