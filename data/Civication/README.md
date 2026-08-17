@@ -1,189 +1,98 @@
 # Civication
 
-Civication er History Go sitt system for arbeid, roller, status, institusjoner, hverdagsliv og sosial læring.
+Civication er History GOs system for arbeid, livsposisjon, levevei, økonomi, psyke, relasjoner, bolig/livssituasjon, status og sosial læring.
 
-Civication skal ikke bare være en jobbmail-generator.
-
-Civication skal bygge små sosiologiske hverdagsdramaer der spilleren lærer hvordan moderne mennesker lever, arbeider, tilpasser seg, strever, spiller roller og forsøker å beholde verdighet under press.
-
-## Kjerneprinsipp
+## Ett system, fire lag
 
 ```text
-Rolle -> sosial verden -> arbeidspress -> korrespondanse -> valg -> konsekvens
+SPILLERENS LIV
+jobb + livsposisjon + livelihood + økonomi + psyke + relasjoner + bolig + status
+        ↓ context / eligibility
+ROLE WORLD
+samfunn + klasse + makt + arbeid + familie + ambisjon + faste mennesker + 14-dagers dramaturgi
+        ↓ authored content
+SCENE PIPELINE
+civication_scene_v1 → compiled registry → SceneCatalog → SceneDirector → ChoiceDirector
+        ↓ consequences
+LIVET FORANDRER SEG
+jobb + relasjoner + psyke + livelihood + økonomi + bolig + omdømme + senere scener
 ```
 
-En rolle er ikke ferdig fordi den har én morgenmail i to uker.
+Vi mangler ikke en ny motor for dypere roller. Den tekniske Scene Pipeline er konsolidert gjennom 4H-D. Det åpne arbeidet er redaksjonell dybdeproduksjon.
 
-En rolle er først fylt når den har:
+## Role World
 
-- et sosialt miljø
-- faste NPC-typer
-- tydelig klasse-, status- og maktstruktur
-- morgen, lunsj, ettermiddag og kveld
-- små korrespondanser, ikke bare enkeltmailer
-- minst 5-10 meldingsvekslinger i viktige tråder
-- private ettervirkninger av arbeidsdagen
-- konsekvenser som kommer tilbake senere
-- sosiologisk læring gjennom handling
+Canonical standard: [`../../docs/CIVICATION_ROLE_WORLD_STANDARD.md`](../../docs/CIVICATION_ROLE_WORLD_STANDARD.md).
 
-## Hva Civication-mailer skal være
+En Role World gjør en teknisk jobbrolle til en liten sosial serie. Den eier blant annet:
 
-Civication-mailer skal ikke være tilfeldige hendelser med valg.
+- sosiologisk hovedproblem
+- abstrakte temaakser
+- sosialt miljø
+- faste NPC-typer og relasjoner
+- langsomme state-akser
+- 14 dager × morgen/lunsj/ettermiddag/kveld
+- utviklede relasjonelle tråder
+- privat etterklang og senere konsekvenser
 
-De skal være små spillbare scener.
+Role World er **redaksjonelt**. Det får ingen egen runtime og materialiseres inn i eksisterende sourceformater og Scene Pipeline.
 
-Hver viktig mail eller tråd bør ha:
+## Film/Story Theme Bank
 
-1. konkret avsender
-2. konkret situasjon
-3. sosialt press
-4. faglig eller praktisk problem
-5. tydelig rolleposisjon
-6. valg som ikke bare er rett/galt
-7. konsekvens for tillit, status, relasjon, risiko eller selvforståelse
-8. etterklang i senere meldinger
+[`roleWorldThemeBank.json`](./roleWorldThemeBank.json) inneholder bare abstrakte temaer. Filmhistorie og dramaturgi kan inspirere konflikter som fremmedgjøring, klasse, emosjonelt arbeid, statusangst, usynlig arbeid, kropp/disiplin og ambisjon.
 
-## Leveverden, ikke bare oppgaver
+Det er eksplisitt forbudt å bruke banken til å kopiere handling, karakterer, dialog eller konkrete filmscener. Temaer blir heller aldri gameplay-state eller scene-ID-er.
 
-Arbeidslivet i Civication skal føles som en verden.
+## Completion betyr to forskjellige ting
 
-Derfor bør hver rolle ha en dagsrytme:
+Dagens Career Gameplay Matrix bruker blant annet `reference_complete`. Det er en teknisk/innholdsmessig career-status og beholdes for kompatibilitet.
+
+Den betyr **ikke** at rolleverdenen er fylt.
+
+`role_world_complete` er en separat, strengere status som bare kan gis når Role World-standarden og den permanente kontraktstesten består.
+
+I den nye Role World-indeksen er ingen rolle markert komplett ennå.
+
+## 14-dagersstandarden
+
+14 dager × fire døgnbeats er dramaturgisk dekning, ikke en beslutningskvote.
 
 ```text
-Morgen: arbeidspress, mål, beskjed, krav
-Lunsj: kollegaer, rykter, sosial friksjon, kropp, pause
-Ettermiddag: konflikt, konsekvens, kunde, sjef, system
-Kveld: privatliv, familie, venner, ensomhet, økonomi, slitenhet, drømmer
+morgen       info / press / beskjed
+tlunsj        relasjon / rykte / kropp / sosial friksjon
+ettermiddag  task / conflict / decision
+kveld        privat etterklang / økonomi / vennskap / refleksjon
 ```
 
-Dette gjør at spilleren ikke bare svarer på oppgaver, men lever gjennom en sosial posisjon.
+En dag kan derfor ha fire meningsfulle beats uten fire store strategiske valg.
 
-## Sosiologiske stereotypier
+Viktige relasjonelle tråder skal utvikle seg over flere scener. «5–10 utvekslinger» betyr en tråd som lever over omtrent 5–10 beats, ikke ti klikk i hver scene.
 
-NPC-er skal først være sosiale typer.
+## Runtimefasit
 
-Ikke flate vitser, men gjenkjennelige posisjoner i et miljø:
-
-- den glatte lederen
-- den gamle ringreven
-- den kyniske kollegaen
-- den flinke ekstrahjelpen
-- den krenkede kunden
-- den rike kunden
-- den fattige kunden
-- den usynlige arbeideren
-- den moralske vennen
-- familien som trenger at du holder ut
-- personen som vil opp og bort
-- personen som har gitt opp
-
-Hver type skal ha en funksjon:
+Se [`SCENE_PIPELINE_V1.md`](./SCENE_PIPELINE_V1.md).
 
 ```text
-klasseposisjon
-status
-makt over spilleren
-hva de vil ha
-hva de skjuler
-hvordan de snakker
-hva de lærer spilleren
+authored sources
+→ civication_scene_v1
+→ compiledSceneRegistryV1
+→ SceneCatalog
+→ SceneDirector
+→ NextAction/delivery
+→ ChoiceDirector
+→ EventEngine/consequences
 ```
 
-Stereotypien er starten. Dybde kommer når typen får motsetninger, historie og konsekvenser.
+Mail er én delivery. `RoleStoryletBridge` og `jobbmails` er ikke gameplayfallbacks.
 
-## Film som inspirasjonsbank
+## Første Role World
 
-Civication kan bruke filmhistorien og HG Film Producer som tematisk inspirasjonsbank.
-
-Vi kopierer ikke filmer, karakterer, scener eller dialog.
-
-Vi bruker filmene fordi de ofte undersøker det moderne mennesket strever med:
-
-- fremmedgjøring
-- klasse
-- arbeid
-- statusangst
-- forbruk
-- skam
-- ensomhet
-- begjær
-- familieplikt
-- ambisjon
-- kropp
-- moral under press
-- byliv
-- masker og roller
-- drømmen om et annet liv
-
-Riktig oversettelse er:
+Første fullstendige referanseproduksjon er:
 
 ```text
-Film -> tema -> sosiologisk konflikt -> rollehverdag -> korrespondanse -> valg
+naeringsliv / ekspeditor
 ```
 
-Eksempel:
+Ekspeditør har allerede gode byggesteiner — `service_mask`, arbeids/private beats, personer, praksisfortellinger og consequence flags — men er ikke `role_world_complete` før den nye 14-dagers sosiale serien faktisk er materialisert og auditert.
 
-```text
-En film om fremmedgjøring i byen
-blir ikke kopiert som plot.
-Den kan inspirere en ekspeditør-rolle der spilleren møter hundrevis av mennesker,
-men likevel ikke blir sett som et helt menneske.
-```
-
-## Definisjon av “fylt rolle”
-
-En rolle kan ha flere modenhetsnivåer.
-
-| Nivå | Betydning |
-|---|---|
-| Baseline | Rollen har id, mapping, learning profile, mailPlan og noen mailFamilies. |
-| Spillbar start | Rollen kan gi spilleren enkelte jobbmailer eller en enkel to-ukers praksisfortelling. |
-| Leveverden | Rollen har dagsrytme, NPC-er, flere tider på dagen og private etterklanger. |
-| Korrespondanseverden | Viktige hendelser består av 5-10 meldingsvekslinger, ikke bare én mail. |
-| Sosiologisk serie | Rollen har 14-dagers bue, faste relasjoner, klassiske konflikter og konsekvenser som kommer tilbake. |
-
-Bare siste nivå kan regnes som egentlig fylt.
-
-## Første anbefalte rolleverdener
-
-Start med én rolle og bygg den dypt før mange roller utvides grunt.
-
-Anbefalt første rolle:
-
-```text
-naer_ekspeditor
-```
-
-Grunn:
-
-- lav terskel for spillerforståelse
-- sterk klasse- og statusakse
-- tydelig kundemakt
-- rikt rom for sosiologiske stereotypier
-- naturlig morgen/lunsj/ettermiddag/kveld-struktur
-- godt egnet for filmtemaer som fremmedgjøring, service, forbruk, skam og drømmen om et annet liv
-
-## Arbeidsrekkefølge
-
-Ikke start med JSON.
-
-Start med rolleverdnen:
-
-1. Sosiologisk kjerne
-2. Filmtema-inspirasjoner
-3. Sosialt miljø
-4. NPC-typer
-5. 14-dagers sesongbue
-6. Dagsrytme
-7. Korrespondanseform
-8. Valgtyper
-9. Konsekvensvariabler
-10. Først deretter JSON, mailPlans og mailFamilies
-
-## Retning
-
-Civication skal gjøre arbeidsliv og hverdagsliv spillbart.
-
-Målet er ikke bare at spilleren får en jobb.
-
-Målet er at spilleren merker hva en sosial rolle gjør med blikket, kroppen, tiden, språket, pengene, relasjonene og selvbildet.
+Deretter kan samme mønster brukes på blant annet Renholder, Controller, By-rådgiver og Sport-utøver.
