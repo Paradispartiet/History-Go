@@ -13,7 +13,7 @@ const start = source.indexOf('function buildMapping(topic, family) {');
 const end = source.indexOf('\nfunction buildHook(family) {', start);
 if (start < 0 || end < 0) throw new Error('Fant ikke buildMapping-blokken');
 
-const replacement = String.raw`function buildMapping(topic, family) {
+const replacement = `function buildMapping(topic, family) {
   const domain = pensumDomainById.get(family.target_domain_id);
   const template = mappings.find((row) => (row.mappings || []).some((mapping) => mapping.fagkart_kategori === family.target_domain_id));
   assert(template, \`Mangler mapping-template for \${family.target_domain_id}\`);
