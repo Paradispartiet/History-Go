@@ -38,6 +38,8 @@ jobs:
         run: python scripts/.tmp-civication-4hb-runtime-semantics.py
       - name: Materialize compiled registry
         run: node scripts/build-civication-scene-registry.mjs --write
+      - name: Rebuild career gameplay audit artifacts
+        run: node scripts/audit-civication-career-gameplay.mjs --write
       - name: Verify registry sync and zero shadowed duplicates
         run: |
           node scripts/build-civication-scene-registry.mjs --check
@@ -93,10 +95,16 @@ jobs:
             data/Civication/COMPILED_SCENE_REGISTRY_V1.md \
             data/Civication/SCENE_PIPELINE_V1.md \
             data/Civication/scenePipelinePolicyV1.json \
+            data/Civication/careerGameplayMatrix.json \
+            reports/civication-career-gameplay-matrix.md \
             js/Civication/systems/civicationWorkdayMailBuilder.js \
             tests/civication-compiled-scene-registry.test.js \
             tests/civication-compiled-scene-registry-parity.test.js \
             tests/civication-scene-director-daily-catalog.test.js \
+            tests/civication-scene-source-adapter-life.test.js \
+            tests/civication-scene-source-adapter-narrative.test.js \
+            tests/civication-scene-source-adapter-private.test.js \
+            tests/civication-scene-source-adapter-social.test.js \
             .github/workflows/civication.yml
           git diff --cached --quiet && { echo "No materialized changes to commit"; exit 1; }
           git commit -m "Complete Civication 4H-B compiled registry cutover"
