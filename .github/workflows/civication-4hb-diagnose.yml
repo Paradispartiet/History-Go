@@ -89,23 +89,19 @@ jobs:
         run: |
           git config user.name "Paradispartiet"
           git config user.email "paradispartiet@gmail.com"
-          git add \
+          git add -A \
             scripts/build-civication-scene-registry.mjs \
-            data/Civication/compiledSceneRegistryV1.json \
-            data/Civication/COMPILED_SCENE_REGISTRY_V1.md \
-            data/Civication/SCENE_PIPELINE_V1.md \
-            data/Civication/scenePipelinePolicyV1.json \
-            data/Civication/careerGameplayMatrix.json \
+            data/Civication \
             reports/civication-career-gameplay-matrix.md \
             js/Civication/systems/civicationWorkdayMailBuilder.js \
-            tests/civication-compiled-scene-registry.test.js \
-            tests/civication-compiled-scene-registry-parity.test.js \
-            tests/civication-scene-director-daily-catalog.test.js \
-            tests/civication-scene-source-adapter-life.test.js \
-            tests/civication-scene-source-adapter-narrative.test.js \
-            tests/civication-scene-source-adapter-private.test.js \
-            tests/civication-scene-source-adapter-social.test.js \
+            tests \
             .github/workflows/civication.yml
+          staged="$(git diff --cached --name-only)"
+          printf '%s\n' "$staged"
+          if printf '%s\n' "$staged" | grep -E '(^|/)\.tmp-civication-4hb-|civication-4hb-(diagnose|order-fix)\.yml'; then
+            echo "Temporary 4H-B artifact entered permanent staging set"
+            exit 1
+          fi
           git diff --cached --quiet && { echo "No materialized changes to commit"; exit 1; }
           git commit -m "Complete Civication 4H-B compiled registry cutover"
           git push origin HEAD:agent/civication-4hb-compiled-registry-cutover
