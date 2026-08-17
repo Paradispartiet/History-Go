@@ -30,25 +30,55 @@ function addMaintenanceToProductionRegexes(text) {
   );
 }
 
-function addMaintenanceToLaterGateCollections(text) {
-  const gateConst = text.match(new RegExp(`const\\s+([A-Z0-9_]+)\\s*=\\s*['\"]${FINAL_GATE}['\"];`));
+function finalGateConstant(text) {
+  return text.match(new RegExp(`const\\s+([A-Z0-9_]+)\\s*=\\s*['\"]${FINAL_GATE}['\"];`));
+}
+
+function ensureMaintenanceConstant(text, gateConst) {
+  if (!gateConst || text.includes(`const MAINTENANCE_GATE = '${MAINTENANCE_GATE}';`)) return text;
+  return text.replace(gateConst[0], `${gateConst[0]}\nconst MAINTENANCE_GATE = '${MAINTENANCE_GATE}';`);
+}
+
+function addMaintenanceToLaterGateSets(text) {
+  const gateConst = finalGateConstant(text);
   if (!gateConst) return text;
-
   const gateVar = gateConst[1];
-  if (!text.includes(`const MAINTENANCE_GATE = '${MAINTENANCE_GATE}';`)) {
-    text = text.replace(gateConst[0], `${gateConst[0]}\nconst MAINTENANCE_GATE = '${MAINTENANCE_GATE}';`);
-  }
+  let next = ensureMaintenanceConstant(text, gateConst);
 
-  return text.replace(/\[([\s\S]*?)\]/g, (whole, body) => {
+  next = next.replace(/new Set\(\[([\s\S]*?)\]\)/g, (whole, body) => {
     if (!new RegExp(`\\b${gateVar}\\b`).test(body) || /\bMAINTENANCE_GATE\b/.test(body)) return whole;
     const updatedBody = body.replace(new RegExp(`\\b${gateVar}\\b\\s*,?`), `${gateVar}, MAINTENANCE_GATE`);
-    return `[${updatedBody}]`;
+    return `new Set([${updatedBody}])`;
+  });
+  return next;
+}
+
+function addMaintenanceToNextGateIncludes(text) {
+  const gateConst = finalGateConstant(text);
+  const gateVar = gateConst?.[1];
+  let next = ensureMaintenanceConstant(text, gateConst);
+
+  return next.replace(/\[([\s\S]*?)\]\.includes\(([^)]*(?:nextGate|currentGate)[^)]*)\)/g, (whole, body, argument) => {
+    if (/\bMAINTENANCE_GATE\b/.test(body) || body.includes(`'${MAINTENANCE_GATE}'`) || body.includes(`\"${MAINTENANCE_GATE}\"`)) return whole;
+
+    if (gateVar && new RegExp(`\\b${gateVar}\\b`).test(body)) {
+      const updatedBody = body.replace(new RegExp(`\\b${gateVar}\\b\\s*,?`), `${gateVar}, MAINTENANCE_GATE`);
+      return `[${updatedBody}].includes(${argument})`;
+    }
+
+    const literalPattern = new RegExp(`(['\"])${FINAL_GATE}\\1\\s*,?`);
+    if (literalPattern.test(body)) {
+      const updatedBody = body.replace(literalPattern, (match, quote) => `${quote}${FINAL_GATE}${quote},\n    ${quote}${MAINTENANCE_GATE}${quote}`);
+      return `[${updatedBody}].includes(${argument})`;
+    }
+    return whole;
   });
 }
 
 function transform(text) {
   let next = addMaintenanceToProductionRegexes(text);
-  next = addMaintenanceToLaterGateCollections(next);
+  next = addMaintenanceToLaterGateSets(next);
+  next = addMaintenanceToNextGateIncludes(next);
   next = next.replace(
     "assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');",
     "assert(['chapters_in_progress', 'complete'].includes(statusEntry.editorialStatus), 'Film & TV skal stå i produksjon eller bevist complete-tilstand');"
@@ -62,14 +92,21 @@ function unresolvedProblems(rel, text) {
     problems.push(`${rel}: stale production-gate regex`);
   }
 
-  const gateConst = text.match(new RegExp(`const\\s+([A-Z0-9_]+)\\s*=\\s*['\"]${FINAL_GATE}['\"];`));
+  const gateConst = finalGateConstant(text);
   if (gateConst) {
     const gateVar = gateConst[1];
-    for (const match of text.matchAll(/\[([\s\S]*?)\]/g)) {
+    for (const match of text.matchAll(/new Set\(\[([\s\S]*?)\]\)/g)) {
       if (new RegExp(`\\b${gateVar}\\b`).test(match[1]) && !/\bMAINTENANCE_GATE\b/.test(match[1])) {
-        problems.push(`${rel}: later-gate collection containing ${gateVar} omits MAINTENANCE_GATE`);
+        problems.push(`${rel}: later-gate Set containing ${gateVar} omits MAINTENANCE_GATE`);
       }
     }
+  }
+
+  for (const match of text.matchAll(/\[([\s\S]*?)\]\.includes\(([^)]*(?:nextGate|currentGate)[^)]*)\)/g)) {
+    const body = match[1];
+    const hasFinal = body.includes(FINAL_GATE) || (gateConst && new RegExp(`\\b${gateConst[1]}\\b`).test(body));
+    const hasMaintenance = body.includes(MAINTENANCE_GATE) || /\bMAINTENANCE_GATE\b/.test(body);
+    if (hasFinal && !hasMaintenance) problems.push(`${rel}: nextGate/currentGate include-list omits maintenance gate`);
   }
 
   if (/audit-fagverk-film-tv-(?:kinoer-visningssteder-publikum|produksjon-studio-filmarbeid)-phase4\.mjs$/.test(rel)
