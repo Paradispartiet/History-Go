@@ -68,4 +68,38 @@ if text.count(old_terminal) != 1:
 text = text.replace(old_terminal, new_terminal, 1)
 
 p.write_text(text, encoding='utf-8')
-print('Repaired one-shot 4H-B anchors, role fixtures and terminal parity flow')
+
+# 4G deliberately prohibited a compiled registry because that phase only introduced
+# dynamic source adapters. 4H-B is the explicit compiled work-scene cutover, so those
+# same regression tests must now prove that the adapters coexist with the compiled owner.
+adapter_expectations = {
+    'tests/civication-scene-source-adapter-life.test.js': [
+        ('assert.equal(catalog.inspect().compiled_registry_ready, false, "4G-B skal ikke smuginnføre compiled registry");',
+         'assert.equal(catalog.inspect().compiled_registry_ready, true, "4H-B skal eksponere compiled registry uten å endre Life-adaptereierskap");')
+    ],
+    'tests/civication-scene-source-adapter-narrative.test.js': [
+        ('assert.equal(catalog.inspect().compiled_registry_ready, false, "4G-C skal ikke smuginnføre compiled registry");',
+         'assert.equal(catalog.inspect().compiled_registry_ready, true, "4H-B skal eksponere compiled registry uten å endre narrative-adaptereierskap");')
+    ],
+    'tests/civication-scene-source-adapter-private.test.js': [
+        ('assert.equal(catalog.inspect().compiled_registry_ready, false, "4G-A skal ikke smuginnføre compiled registry");',
+         'assert.equal(catalog.inspect().compiled_registry_ready, true, "4H-B skal eksponere compiled registry uten å endre private-adaptereierskap");')
+    ],
+    'tests/civication-scene-source-adapter-social.test.js': [
+        ('assert.equal(catalog.inspect().compiled_registry_ready, false, "4G-D skal ikke smuginnføre compiled registry");',
+         'assert.equal(catalog.inspect().compiled_registry_ready, true, "4H-B skal eksponere compiled registry uten å endre social-adaptereierskap");'),
+        ('assert.equal(inspection.compiled_registry_ready, false);',
+         'assert.equal(inspection.compiled_registry_ready, true);')
+    ],
+}
+for rel, replacements in adapter_expectations.items():
+    test_path = Path(rel)
+    test_text = test_path.read_text(encoding='utf-8')
+    for old, new in replacements:
+        count = test_text.count(old)
+        if count != 1:
+            raise SystemExit(f'{rel}: expected one 4G compiled-registry gate, found {count}')
+        test_text = test_text.replace(old, new, 1)
+    test_path.write_text(test_text, encoding='utf-8')
+
+print('Repaired one-shot 4H-B anchors, role fixtures, terminal parity flow and 4G adapter gates')
