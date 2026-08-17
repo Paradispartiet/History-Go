@@ -92,8 +92,22 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   assert.equal(scenekunst.nextGate, 'chapter_production');
 
   const vitenskap = s.subjects.find((x) => x.id === 'vitenskap');
-  assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
-  assert.equal(vitenskap.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');
+  const vitenskapReadiness = readJson('data/fag/vitenskap/vitenskap_university_readiness_v1.json');
+  const vitenskapBlockers = vitenskapReadiness.breadth_blockers ?? [];
+  if (vitenskapReadiness.complete_ready === true) {
+    assert.equal(vitenskapBlockers.length, 0);
+    assert.equal(vitenskap.editorialStatus, 'complete');
+    assert.notEqual(vitenskap.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');
+    assert.notEqual(vitenskap.nextGate, 'final_holistic_university_breadth_completion_audit');
+  } else if (vitenskapBlockers.length === 0) {
+    assert.equal(vitenskapReadiness.status, 'breadth_chapters_materialized_final_audit_pending');
+    assert.equal(vitenskapReadiness.next_gate, 'final_holistic_university_breadth_completion_audit');
+    assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
+    assert.equal(vitenskap.nextGate, 'final_holistic_university_breadth_completion_audit');
+  } else {
+    assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
+    assert.equal(vitenskap.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');
+  }
 
   // Filosofi is complete only when the explicit major-field coverage contract and
   // article-by-article university review agree. Keep the status gate tied to that

@@ -187,7 +187,7 @@ export function auditVitenskapBreadthReconciliation({ writeReport = false, check
   assert(inputs.domain_count === 6 && inputs.emne_count === 117 && inputs.method_count === 84 && inputs.mapping_count === 117 && inputs.topic_hook_count === 64, 'Generator har feil v4.6-tellinger');
 
   assert(['1.2.0', '1.3.0'].includes(readiness.version), 'Readiness har ukjent post-reconciliation-versjon');
-  assert(readiness.status === 'breadth_inventory_reconciled_chapter_production_in_progress', 'Readiness har feil post-reconciliation-status');
+  assert(['breadth_inventory_reconciled_chapter_production_in_progress','breadth_chapters_materialized_final_audit_pending'].includes(readiness.status), 'Readiness har feil post-reconciliation-status');
   assert(readiness.complete_ready === false, 'Inventory-reconciliation kan ikke gjøre Vitenskap complete-ready');
   assert(readiness.current_inventory.vitenskap?.domain_count === 6, 'Readiness har feil domain count');
   assert(readiness.current_inventory.vitenskap?.emne_count === 117, 'Readiness har feil emne count');
@@ -197,7 +197,7 @@ export function auditVitenskapBreadthReconciliation({ writeReport = false, check
   assert(readiness.current_inventory.vitenskap?.registered_chapter_count === registry.subjects?.vitenskap?.chapters?.length, 'Readiness og registry har ulik chapter count');
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'Strukturelle blocking gaps skal være reconcilet');
   const editorialBlockers = readiness.editorial_blockers || [];
-  assert(editorialBlockers.length >= 1, 'Minst én breadth-family må blokkere mens Vitenskap ikke er complete');
+  assert(editorialBlockers.length <= EXPECTED_FAMILIES.length, 'Readiness har for mange breadth editorial blockers');
   assert(editorialBlockers.every((id) => EXPECTED_FAMILIES.includes(id)), 'Readiness har ukjent breadth editorial blocker');
   for (const id of EXPECTED_FAMILIES) {
     const family = readiness.coverage_families.find((row) => row.id === id);
@@ -213,11 +213,12 @@ export function auditVitenskapBreadthReconciliation({ writeReport = false, check
     assert(family?.reconciled_hook_id === specFamily.hook.id, `${id} har feil reconcilet hook`);
   }
   assert(readiness.first_production_unit?.status === 'materialized_and_registered', 'Unit 1 må forbli registrert');
-  assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har feil neste port');
+  const expectedProgressGate = editorialBlockers.length === 0 ? 'final_holistic_university_breadth_completion_audit' : 'remaining_chapter_production_across_reconciled_university_breadth';
+  assert(readiness.next_gate === expectedProgressGate, 'Readiness har feil neste port');
 
   const statusEntry = status.subjects?.find((row) => row.id === 'vitenskap');
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Vitenskap kan ikke forlate chapters_in_progress');
-  assert(statusEntry?.nextGate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Subject status har feil neste port');
+  assert(statusEntry?.nextGate === expectedProgressGate, 'Subject status har feil neste port');
   assert(registry.subjects?.vitenskap?.chapters?.some((row) => row.id === 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap'), 'Registry må bevare Unit 1');
   assert(registry.subjects.vitenskap.chapters.length === readiness.current_inventory.vitenskap.registered_chapter_count, 'Registry og readiness har ulik chapter count');
 
@@ -261,7 +262,7 @@ export function auditVitenskapBreadthReconciliation({ writeReport = false, check
       newTopicTextIndependentAndSubstantial: true,
       manifestAndGeneratorUseV46: true,
       structuralGapsReconciled: true,
-      editorialBlockersRemainOpen: true,
+      editorialBlockersRemainOpen: editorialBlockers.length > 0,
       prematureCompleteBlocked: true,
       technologyRemainsNested: true,
       unit1RegistrationPreserved: true
