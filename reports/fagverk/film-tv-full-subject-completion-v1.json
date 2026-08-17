@@ -1,0 +1,61 @@
+{
+  "schema": "history_go_film_tv_full_subject_completion_audit_v1",
+  "version": "1.0.0",
+  "subject_id": "film_tv",
+  "status": "film_tv_full_subject_completion_verified",
+  "canonicalInventory": {
+    "source": "data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json",
+    "topicCount": 192,
+    "domainCount": 10,
+    "authority": "variable_canon_v4_5"
+  },
+  "chapterSet": {
+    "registry": "data/fagverk/fagverk_registry.json#subjects.film_tv.chapters",
+    "registeredChapterCount": 17,
+    "chapterFilesRequired": true,
+    "briefFilesRequired": true,
+    "claimsFilesRequired": true,
+    "moduleFilesRequired": true
+  },
+  "coverage": {
+    "assignmentRule": "each_canonical_topic_exactly_once",
+    "missingTopics": [],
+    "unknownTopics": [],
+    "duplicateTopics": [],
+    "allTenCanonicalDomainsCovered": true
+  },
+  "evidenceContract": {
+    "chapterAndBriefTopicOwnershipMustMatch": true,
+    "moduleOwnershipMustResolveChapterTopicsExactlyOnce": true,
+    "claimsMustBeUniqueAndVerified": true,
+    "everyClaimMustResolveAtLeastOneRegisteredSource": true,
+    "everyRegisteredSourceMustExposeInspectableHttpUrl": true,
+    "everyClaimMustExposeAtLeastOneTraceTarget": true
+  },
+  "historicalAuditBoundary": {
+    "migrationAudit": "reports/fagverk/film-tv-curriculum-completeness-v1.json",
+    "rule": "The historical quota/migration audit remains historical evidence and is not reused as the final completion gate."
+  },
+  "gates": {
+    "canonicalInventory192": true,
+    "tenCanonicalDomains": true,
+    "seventeenRegisteredChapters": true,
+    "chapterFilesResolvable": true,
+    "briefOwnershipAligned": true,
+    "moduleOwnershipAligned": true,
+    "exactCanonicalCoverage": true,
+    "noMissingTopics": true,
+    "noUnknownTopics": true,
+    "noDuplicateOwnership": true,
+    "verifiedClaimStructure": true,
+    "claimSourceResolution": true,
+    "inspectableSourceUrls": true,
+    "traceTargetsPresent": true,
+    "permanentRegressionRequired": true
+  },
+  "completion": {
+    "editorialStatus": "complete",
+    "nextGate": "maintenance_source_refresh_and_place_case_expansion",
+    "meaning": "Complete means the current 192-topic canonical Film & TV curriculum is fully and uniquely owned by the registered chapter set under the permanent evidence contract; it does not mean future research, source refreshes or new place/case expansion are exhausted."
+  }
+}
