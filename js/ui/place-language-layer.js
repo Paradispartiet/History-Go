@@ -369,8 +369,11 @@
     return clean ? `<p class="hg-language-meta-row"><strong>${esc(label)}</strong><span>${esc(clean)}</span></p>` : "";
   }
 
-  function entryCard(entry) {
+  function entryCard(entry, article = null) {
     const canonical = canonicalType(entry);
+    const layer = languageLayer(entry, article);
+    const dialect = layer === "dialect";
+    const dialectArea = text(entry?.dialect_area || article?.dialect_area);
     const term = text(entry?.term || entry?.title || entry?.id || "Språkoppføring");
     const meaning = text(entry?.meaning || entry?.description || entry?.desc);
     const status = STATUS_LABELS[slug(entry?.status)] || text(entry?.status);
@@ -379,10 +382,13 @@
     const collected = isCollected(entry);
 
     return `
-      <article class="hg-language-entry" data-language-entry data-language-type="${esc(canonical)}" data-language-entry-id="${esc(entry?.id || term)}">
+      <article class="hg-language-entry${dialect ? " is-dialect" : ""}" data-language-entry data-language-type="${esc(canonical)}" data-language-layer="${esc(layer)}" data-language-entry-id="${esc(entry?.id || term)}">
         <header>
           <div>
-            <span class="hg-language-entry-type">${esc(typeLabel(entry))}</span>
+            <div class="hg-language-entry-labels">
+              <span class="hg-language-entry-type">${esc(typeLabel(entry))}</span>
+              ${dialect ? `<span class="hg-language-layer-badge">Dialekt${dialectArea ? ` · ${esc(dialectArea)}` : ""}</span>` : ""}
+            </div>
             <h3>${esc(term)}</h3>
           </div>
           ${status ? `<span class="hg-language-status">${esc(status)}</span>` : ""}
@@ -420,12 +426,17 @@
 
   function renderLanguagePanel(place, article) {
     const entries = list(article?.entries).filter(entry => isAllowedLanguageEntry(entry, article, place));
+    const dialectEntries = entries.filter(entry => isDialectEntry(entry, article));
     const counts = countByType(entries);
-    const filters = [...counts.entries()]
+    const dialectArea = text(article?.dialect_area || dialectEntries.map(entry => entry?.dialect_area).find(Boolean));
+    const typeFilters = [...counts.entries()]
       .sort((a, b) => b[1] - a[1])
       .map(([type, count]) => `<button type="button" data-language-filter="${esc(type)}" aria-pressed="false">${esc(TYPE_LABELS[type] || "Begrep")} <span>${count}</span></button>`)
       .join("");
-    const dialectArea = text(article?.dialect_area);
+    const dialectFilter = dialectEntries.length
+      ? `<button type="button" data-language-filter="dialect" aria-pressed="false">Dialekt <span>${dialectEntries.length}</span></button>`
+      : "";
+    const filters = `${dialectFilter}${typeFilters}`;
 
     return `
       <div class="hg-language-layer" data-language-place="${esc(place?.id || article?.place_id)}">
@@ -434,11 +445,19 @@
           <h2>${esc(place?.name || article?.title || "Språkleksikon")}</h2>
           <p>${entries.length} ${entries.length === 1 ? "språkoppføring" : "språkoppføringer"}${dialectArea ? ` · ${esc(dialectArea)}` : ""}. Ord, uttrykk, navn og dialekttrekk samles som dokumentert stedskunnskap.</p>
           <div class="hg-language-summary">
+            ${dialectEntries.length ? `<span class="is-dialect"><strong>${dialectEntries.length}</strong> dialektspor</span>` : ""}
             ${[...counts.entries()].map(([type, count]) => `<span><strong>${count}</strong> ${esc((TYPE_LABELS[type] || "begrep").toLowerCase())}</span>`).join("")}
           </div>
         </header>
+        ${dialectEntries.length ? `
+          <section class="hg-language-dialect-intro" aria-label="Dialektlag">
+            <div class="hg-language-kicker">Dialektlag</div>
+            <strong>${esc(dialectArea || place?.name || "Lokalt talemål")}</strong>
+            <p>Disse språksporene er kildebelagt som del av talemålet i området. Et ord kan også finnes i andre dialektområder; lokal attestasjon betyr ikke at formen er unik her.</p>
+          </section>
+        ` : ""}
         ${filters ? `<nav class="hg-language-filters" aria-label="Filtrer Språkleksikon"><button type="button" data-language-filter="all" aria-pressed="true">Alle <span>${entries.length}</span></button>${filters}</nav>` : ""}
-        <div class="hg-language-list">${entries.map(entryCard).join("")}</div>
+        <div class="hg-language-list">${entries.map(entry => entryCard(entry, article)).join("")}</div>
       </div>
     `;
   }
@@ -493,15 +512,16 @@
     });
   }
 
-  function addLanguageTeaser(tabsArticle, entries, tablist, panelWrap) {
+  function addLanguageTeaser(tabsArticle, entries, tablist, panelWrap, article) {
     const about = tabsArticle.querySelector('[data-place-panel="about"]');
     if (!about || about.querySelector("[data-language-teaser]")) return;
     const terms = entries.slice(0, 3).map(entry => text(entry?.term || entry?.title || entry?.id)).filter(Boolean);
+    const dialectCount = entries.filter(entry => isDialectEntry(entry, article)).length;
     const teaser = document.createElement("section");
     teaser.className = "hg-language-teaser";
     teaser.dataset.languageTeaser = "1";
     teaser.innerHTML = `
-      <div><span>Språk på stedet</span><strong>${entries.length} ${entries.length === 1 ? "oppføring" : "oppføringer"}</strong></div>
+      <div><span>Språk på stedet${dialectCount ? " · Dialektlag" : ""}</span><strong>${entries.length} ${entries.length === 1 ? "oppføring" : "oppføringer"}</strong></div>
       ${terms.length ? `<p>${terms.map(term => `<span>${esc(term)}</span>`).join("")}</p>` : ""}
       <button type="button" data-open-language-tab>Åpne språkleksikon</button>
     `;
@@ -520,7 +540,10 @@
         const filter = text(filterButton.getAttribute("data-language-filter")) || "all";
         panel.querySelectorAll("[data-language-filter]").forEach(button => button.setAttribute("aria-pressed", button === filterButton ? "true" : "false"));
         panel.querySelectorAll("[data-language-entry]").forEach(card => {
-          if (card instanceof HTMLElement) card.hidden = filter !== "all" && card.getAttribute("data-language-type") !== filter;
+          if (!(card instanceof HTMLElement)) return;
+          const matches = filter === "all"
+            || (filter === "dialect" ? card.getAttribute("data-language-layer") === "dialect" : card.getAttribute("data-language-type") === filter);
+          card.hidden = !matches;
         });
         return;
       }
@@ -599,7 +622,7 @@
 
     panel.innerHTML = renderLanguagePanel(place, loaded.article);
     bindLanguagePanel(panel, place, loaded.article, loaded.sourceFile);
-    addLanguageTeaser(tabsArticle, entries, tablist, panelWrap);
+    addLanguageTeaser(tabsArticle, entries, tablist, panelWrap, loaded.article);
     tabsArticle.dataset.hgLanguageLayer = "1";
 
     const morePanel = panelWrap.querySelector('[data-place-panel="more"]');

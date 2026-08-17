@@ -56,6 +56,38 @@ test("dialektinnhold kan bare eies av canonical area-Places", () => {
   }
 });
 
+test("Etne-piloten er et reelt, eksplisitt area-eid dialektlag", () => {
+  const places = loadPlacesById();
+  const fixtureId = "etnesjoen_tettstad";
+  const place = places.get(fixtureId);
+  assert.ok(place, "Etne-fixturen må finnes i canonical Places");
+  assert.equal(place.placeScope, "area", "Etne-piloten må eies av et canonical område-Place");
+
+  const relative = languageManifest.place_files?.[fixtureId];
+  assert.ok(relative, "Etne-piloten må være registrert i Språkleksikon-manifestet");
+  const article = json(relative);
+  assert.equal(article.place_id, fixtureId);
+  assert.equal(article.dialect_area, "Etne");
+
+  const dialectEntries = (article.entries || []).filter(entry => isDialectEntry(entry, article));
+  assert.ok(dialectEntries.length >= 4, "Etne-piloten skal ha flere reelle dialektspor, ikke en tom kontraktfixture");
+  const terms = new Set(dialectEntries.map(entry => text(entry.term).toLowerCase()));
+  for (const term of ["snedden", "maula", "himaspøta", "øvegjidde"]) {
+    assert.ok(terms.has(term), `Etne-piloten mangler det kildebelagte språksporet ${term}`);
+  }
+
+  for (const entry of dialectEntries) {
+    assert.equal(entry.layer, "dialect", `${entry.id}: nyprodusert dialektinnhold skal ha eksplisitt layer=dialect`);
+    assert.equal(entry.dialect_area, "Etne", `${entry.id}: dialektområdet skal være eksplisitt avgrenset`);
+    assert.ok(text(entry.meaning), `${entry.id}: meaning mangler`);
+    assert.ok(text(entry.context), `${entry.id}: kildekontekst mangler`);
+    assert.ok(Array.isArray(entry.sources) && entry.sources.length >= 2, `${entry.id}: dialektsporet trenger både lokal attestasjon og betydningsbelegg`);
+    for (const source of entry.sources) {
+      assert.match(String(source?.url || ""), /^https:\/\//, `${entry.id}: brukerrettet kilde må være HTTPS`);
+    }
+  }
+});
+
 test("enkelt-Places kan ha Språkleksikon uten å bli dialekt-eiere", () => {
   const places = loadPlacesById();
   const fixtureId = "tinghuset";
@@ -77,6 +109,19 @@ test("runtime nekter dialektlag på ikke-area Places og beholder laget i Knowled
   assert.match(runtime, /placeScope[\s\S]{0,120}["']area["']/);
   assert.match(runtime, /language_layer:\s*layer/);
   assert.match(runtime, /filter\(entry\s*=>\s*isAllowedLanguageEntry\(entry,\s*loaded\.article,\s*place\)\)/);
+});
+
+test("områdeeid dialektlag fremheves uten å bli en egen PlaceCard-runding", () => {
+  const runtime = read("js/ui/place-language-layer.js");
+  const css = read("css/place-language-layer.css");
+  assert.match(runtime, /data-language-layer=/);
+  assert.match(runtime, /hg-language-dialect-intro/);
+  assert.match(runtime, /data-language-filter="dialect"/);
+  assert.match(runtime, /filter\s*===\s*"dialect"/);
+  assert.match(runtime, /Dialektlag/);
+  assert.match(css, /hg-language-dialect-intro/);
+  assert.match(css, /hg-language-entry\.is-dialect/);
+  assert.doesNotMatch(runtime, /dialect.*PlaceCard-runding/i);
 });
 
 test("dokumentasjon og checklist skiller Språkleksikon fra det områdebundne dialektlaget", () => {
