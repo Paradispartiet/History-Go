@@ -23,16 +23,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           set +e
-          git merge --no-commit --no-ff origin/main
+          merge_output="$(git merge --no-commit --no-ff origin/main 2>&1)"
           merge_rc=$?
           set -e
+          printf '%s\n' "$merge_output"
           conflicts="$(git diff --name-only --diff-filter=U)"
           if [[ -z "$conflicts" ]]; then
             git merge --abort || true
             if [[ $merge_rc -ne 0 ]]; then
-              echo "::error title=Film TV main reconciliation::Merge failed without listed unmerged paths"
+              inline_output="$(printf '%s' "$merge_output" | tr '\n' ' ' | cut -c1-900)"
+              echo "::error title=Film TV main reconciliation::$inline_output"
               exit 1
             fi
             echo "No merge conflicts against latest main."
