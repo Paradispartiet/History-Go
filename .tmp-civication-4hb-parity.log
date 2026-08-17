@@ -1,58 +1,60 @@
-AssertionError [ERR_ASSERTION]: by/by_arkitekt: full runtime-projeksjon skal være identisk
+AssertionError [ERR_ASSERTION]: by/by_radgiver_plan: full runtime-projeksjon skal være identisk
 + actual - expected ... Lines skipped
 
   [
     {
-      category: 'by',
-+     choice_axis: 'omarbeide_forsteetasje_vs_beholde_effektivitet',
--     choice_axis: 'justere_volum_vs_beholde_objekt',
-      choices: [
-        {
-          effect: 1,
-+         feedback: 'Du gjør bygget mindre effektivt internt, men mer generøst mot byen.',
--         feedback: 'Du lar gaterommet korrigere modellen.',
-          id: 'A',
-+         label: 'Omarbeid førsteetasjen med flere åpninger, innganger og synlige funksjoner',
-+         reply: 'Jeg omarbeider førsteetasjen med flere åpninger, innganger og synlige funksjoner.',
--         label: 'Juster volumet mot gata og forklar tapet i objektkraft',
--         reply: 'Jeg justerer volumet mot gata og forklarer tapet i objektkraft.',
-          tags: [
-+           'ground_floor',
-+           'city_life',
-+           'program'
--           'scale',
--           'street',
--           'quality'
-          ]
-        },
-        {
-          effect: -1,
-+         feedback: 'En pen lukket flate er fortsatt en lukket flate.',
--         feedback: 'Bygget blir tydeligere som objekt, men svakere i møtet med gata.',
-          id: 'B',
-+         label: 'Behold effektiv plan og kompenser med fasadekvalitet',
-+         reply: 'Jeg beholder effektiv plan og kompenserer med fasadekvalitet.',
--         label: 'Behold volumet og styrk argumentet for helhetlig form',
--         reply: 'Jeg beholder volumet og styrker argumentet for helhetlig form.',
-          tags: [
-+           'facade',
-+           'efficiency',
--           'form',
--           'object',
-            'risk'
-          ]
-        }
-      ],
-+     competency: 'program_og_byliv',
-+     consequence_axis: 'byliv_vs_logistikk',
--     competency: 'skala_og_gaterom',
--     consequence_axis: 'byromskvalitet_vs_formkraft',
-      cooldown: 1,
-+     from: 'bylivsansvarlig_sara',
-+     id: 'by_arkitekt_job_forste_001',
 ...
--     from: 'atelierleder_nora',
--     id: 'by_arkitekt_job_volum_001',
+            'sporbarhet',
+            'etterproevbar'
++         ]
++       },
++       {
++         effect: 1,
++         feedback: 'Notatet blir lett å handle på, men målkonflikten ligger mellom linjene for den som leser fort.',
++         id: 'B',
++         label: 'Hold notatet kort og handlingsrettet',
++         reply: 'Jeg holder notatet kort og handlingsrettet så saken kan tas videre.',
++         tags: [
++           'handlingsrettet',
++           'lesbar_sak',
++           'sporbarhet'
++         ]
++       }
++     ],
++     competency: 'konsekvenslesing',
++     consequence_axis: 'sporbarhet_vs_klagerisiko',
++     cooldown: 1,
++     from: 'elin_plansjef',
++     id: 'by_areal_consequence_001',
++     learning_focus: [
++       'sporbarhet',
++       'Linjen på kartet',
++       'Kartet lyver ikke, men det tier'
+...
+-           'sporbarhet'
+-         ]
+-       },
+-       {
+-         effect: 1,
+-         feedback: 'Notatet blir lett å handle på, men målkonflikten ligger mellom linjene for den som leser fort.',
+-         id: 'B',
+-         label: 'Hold notatet kort og handlingsrettet',
+-         reply: 'Jeg holder notatet kort og handlingsrettet så saken kan tas videre.',
+-         tags: [
+-           'handlingsrettet',
+-           'lesbar_sak',
+-           'sporbarhet'
+-         ]
+-       }
+-     ],
+-     competency: 'konsekvenslesing',
+-     consequence_axis: 'sporbarhet_vs_klagerisiko',
+-     cooldown: 1,
+-     from: 'elin_plansjef',
+-     id: 'by_areal_consequence_001',
+-     learning_focus: [
+-       'sporbarhet',
+-       'Linjen på kartet',
 ...
     at /home/runner/work/History-Go/History-Go/tests/civication-compiled-scene-registry-parity.test.js:211:12 {
   generatedMessage: false,
