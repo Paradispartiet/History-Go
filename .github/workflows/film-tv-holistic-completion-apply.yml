@@ -154,6 +154,39 @@ jobs:
           console.log(`Normalized ${normalized} planned-unit paragraph claim traces to explicit arrays`);
           NODE
 
+      - name: Reconcile canonical method bindings into chapters
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const canonical = JSON.parse(fs.readFileSync('data/fag/TV_og_Film/emner_film_tv_canonical_v4_5.json', 'utf8'));
+          const registry = JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json', 'utf8'));
+          const canonicalById = new Map(canonical.map((row) => [row.emne_id, row]));
+          let added = 0;
+          const touched = [];
+
+          for (const row of registry.subjects.film_tv.chapters || []) {
+            const chapter = JSON.parse(fs.readFileSync(row.file, 'utf8'));
+            const required = new Set();
+            for (const emneId of chapter.emne_ids || []) {
+              const emne = canonicalById.get(emneId);
+              if (!emne) throw new Error(`${row.id}: unknown canonical emne ${emneId}`);
+              for (const methodId of [...(emne.method_ids || []), ...(emne.methods || [])]) {
+                if (methodId) required.add(methodId);
+              }
+            }
+            const methods = new Set(chapter.method_ids || []);
+            const before = methods.size;
+            for (const methodId of required) methods.add(methodId);
+            if (methods.size !== before) {
+              added += methods.size - before;
+              chapter.method_ids = [...methods].sort((a, b) => a.localeCompare(b, 'nb'));
+              fs.writeFileSync(row.file, `${JSON.stringify(chapter, null, 2)}\n`);
+              touched.push(`${row.id}:+${methods.size - before}`);
+            }
+          }
+          console.log(`Added ${added} canonical method bindings across ${touched.length} chapters${touched.length ? ` (${touched.join(', ')})` : ''}`);
+          NODE
+
       - name: Materialize holistic completion state
         id: materialize
         shell: bash
