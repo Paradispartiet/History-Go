@@ -2,7 +2,7 @@
 
 Status: **canonical dokumentasjonsinngang**
 Register: [`documentation_registry.json`](./documentation_registry.json)
-Sist kontrollert: **2026-08-15**
+Sist kontrollert: **2026-08-17**
 
 Dette dokumentet svarer på tre spørsmål:
 

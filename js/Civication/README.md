@@ -1,6 +1,6 @@
 # Civication — motorer og spillvei gjennom dagen
 
-Oppdatert: 2026-07-07
+Oppdatert: 2026-08-17
 
 Civication er en samfunns-/livssimulator som kjøres fra `Civication.html` (og delvis fra
 `index.html`/`profile.html`). Dette dokumentet forklarer **motorene** og **den ene spillveien
@@ -31,6 +31,27 @@ og FWG-standarden i [`docs/CIVICATION_WORK_GRAMMAR_STANDARD.md`](../../docs/CIVI
 > senere-i-dag og arkiv. Mail er bare én scenevisning; innboks er arkiv/bakgrunn, ikke
 > hovedspillet — men den er del av skallet og vises som standard.
 > Se [`docs/civication-life-story-system.md`](../../docs/civication-life-story-system.md).
+
+## Nåværende scene- og svarownership etter 4H-D
+
+Den gamle «mail = gameplay-enhet»-beskrivelsen er ikke lenger presis. Dagens canonicale kjede er:
+
+```text
+authored work data (`mailFamilies` m.m.)
+→ deterministic build
+→ `compiledSceneRegistryV1.json`
+→ `CivicationSceneCatalog`
+→ `CivicationMailRuntime` plan/progresjonsfiltrering + `CivicationSceneDirector` kandidatownership
+→ delivery / NextAction / EventEngine
+→ `CivicationChoiceDirector`
+→ konsekvenser og domeneeid state
+```
+
+`mailFamilies` er fortsatt source-of-build for work-scenes, men normal runtime leser det kompilerte registryet. `CivicationMailRuntime` eier plan/progresjon; det er ikke lenger en rå mailFamily-loader. `CivicationSceneDirector` samler Workday/Daily/EventEngine-kandidatveien, og `CivicationChoiceDirector` er eneste aktive `EventEngine.answer`-eier.
+
+Private, life, narrative og social er registrerte SceneCatalog-source adapters. Legacy pack, RoleStoryletBridge, gammel `buildMailPool` og syntetisk generisk karrieremail får ikke overta når canonical scene mangler. Null canonical kandidat er fail-closed/no-op.
+
+Den høyere redaksjonelle definisjonen av en «fylt» rolle ligger i [`docs/CIVICATION_ROLE_WORLD_STANDARD.md`](../../docs/CIVICATION_ROLE_WORLD_STANDARD.md). Career Gameplay `reference_complete` er en teknisk/produksjonsmessig status og skal ikke forveksles med full Role World-dybde.
 
 ## Boot-arkitektur: skall-boot vs. dag-/life-story-boot
 
@@ -116,7 +137,7 @@ LifeMailRuntime   (livshendelser) ─┘                         ↑ svar ↓
 | Motor | Global | Ansvar |
 | --- | --- | --- |
 | DailyMailBuilder | `CivicationDailyMailBuilder` | Bygger dagskøen fra `data/Civication/mailDayProgram.json`: faser (`morning … day_end`), slots, volum og rytme. **Ruter jobbinnhold kun til arbeidsfasene (`forenoon`+`workday`); private faser får personlige/genererte mailer** (se «To rytmer»). Holder uke-2-innhold (`_week2_`/`advanced` i id/family) utenfor dag 1 til rolleplanen når det. `buildQueue` / `enqueueNext` / `inspect`. |
-| MailRuntime | `CivicationMailRuntime` | **Langsiktig rolleprogresjon.** Resolver aktiv rolle, leser `mailPlans/{kategori}/{role_scope}_plan.json`, velger neste jobbmail fra stegets `allowed_families`, og fører rolleplanen videre. |
+| MailRuntime | `CivicationMailRuntime` | **Langsiktig rolleprogresjon.** Leser plan via SceneCatalog, bruker SceneCatalog-resolved compiled work-scenes og eier step/consumed/history/scoring/progresjon; leser ikke rå `mailFamilies` som normal gameplaykilde. |
 | MailEngine | `CivicationMailEngine` | **Innboks/lagring.** Mail-envelopes, pending/resolved/read/archive/delete, dedupe, legacy-speil til `hg_civi_inbox_v1`. `answerMail(mailId, choiceId)` kaller EventEngine og markerer resolved. |
 | EventEngine | `CivicationEventEngine` / `HG_CiviEngine` | Generisk hendelsesmotor: `answer`/resolution, choice-effekter (score, strikes, stability, kapital, psyke, task completion, followups, warnings/fired). |
 | IncomingFlow | `CivicationIncomingFlow` | Binder mailbatcher til dagfaser/kanaler; styrer hvilke innkommende saker som leveres når. |
@@ -127,8 +148,7 @@ LifeMailRuntime   (livshendelser) ─┘                         ↑ svar ↓
 | HistoryFigures | `CivicationHistoryFigures` | **Byens skikkelser.** Deterministisk fase-simulering som lar samlede History Go-personer (via HistoryPeopleBridge) dukke opp som kulturelt nærvær på bykartet i fritids-/kveldsfasene. **Sted-kobling:** personer hvis ekte History Go-placeId finnes i bymodellen (socialPlaces bærer `sourcePlaceId`) prioriteres og stilles ved sitt eget sted (`presence.atHomePlace`); resten fyller opp på generiske kultur-/park-/kafésteder. Ikke venner: egen gullring-markør og eget detaljkort i CityLayer, ingen samtale-/relasjonssløyfe. Samme samling + dag + fase gir samme skikkelser. `pickFiguresForPhase` (ren, testbar) / `getFiguresForRender`. |
 | ProfileSignalBridge | `CivicationProfileSignalBridge` | **History Go → private fase-mailer.** Normaliserer spillerens History Go-profil (HG_IdentityCore, `hg_capital_v1`, CivicationPsyche inkl. `psyche.energy`, `visited_places`, `merits_by_category`, `people_collected`, `hg_learning_log_v1`) til `{ identity, capital, psyche, historyGoCollection, profileTags, privatePhaseWeights }`. Offentlig API: `getSignals`, `getProfileTags`, `getPrivatePhaseWeights`, `inspect`. `getSignals()` returnerer alltid et stabilt objekt, også når alle kilder mangler (`identity.focus` har 7 dimensjoner, `psyche.energy` er `null` når ukjent). Leser kun; skriver aldri. Brukes av PrivatePhaseMailBuilder — aldri av jobbmail-sporet. |
 
-Arbeidsdeling i én setning: **MailRuntime velger hvilken mail som skal komme, DailyMailBuilder
-bestemmer dagens rytme, MailEngine lagrer og viser den, EventEngine beregner svaret.**
+Arbeidsdeling i én setning: **SceneCatalog løser kildene, MailRuntime eier plan/progresjon, SceneDirector samler kandidatvalget, DailyMailBuilder bestemmer dagens rytme, MailEngine leverer/lagrer, og ChoiceDirector eier svargrensen rundt EventEngine.**
 
 ## To rytmer: privat døgn vs. arbeidsdag
 

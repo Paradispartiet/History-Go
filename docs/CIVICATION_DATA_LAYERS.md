@@ -14,6 +14,28 @@ Civication har flere datalag fordi de løser ulike oppgaver. Poenget er ikke å 
 
 Dette dokumentet beskriver dagens repo-kontrakt for disse lagene, særlig hvordan `data/Civication/jobLearningProfiles.json` henger sammen med `role_id`, aktiv rolle og `state.job_learning_progress`.
 
+## 1A. Oppdatert scene-, Role World- og leveveigrense
+
+Etter Scene Pipeline 4F–4H må datalagene leses med tre ekstra skiller:
+
+1. **Authored source vs runtime scene:** `mailFamilies` er authored source-of-build for work; normal work-runtime leser `compiledSceneRegistryV1.json` gjennom `CivicationSceneCatalog`.
+2. **Teknisk jobbkompletthet vs fylt rolleverden:** Career Gameplay Matrix måler `architecture_only/partial/playable/reference_complete`; `CIVICATION_ROLE_WORLD_STANDARD.md` eier den høyere redaksjonelle 14-dagers/sosiologiske standarden.
+3. **Jobb vs levevei:** formell lønn eies av jobbøkonomien, mens freelance/gigs/royalties/støtte/nullinntekt eies av `CivicationLivelihoods`. En scene kan opprette en opportunity, men produsenten skriver aldri sideinntekt direkte til wallet.
+
+Den canonicale sceneveien er:
+
+```text
+roleModel/FWG + mailPlan + authored work data
+→ compiled_scene_registry_v1
+→ SceneCatalog
+→ MailRuntime plan/progresjon + SceneDirector selection
+→ delivery
+→ ChoiceDirector
+→ consequences/state
+```
+
+Private/life/narrative/social bruker registrerte SceneCatalog-source adapters. Role World er en produksjonsstandard over disse lagene, ikke et nytt runtimeformat.
+
 ## 2. Hovedmodell
 
 - `data/Civication/hg_careers.json`
@@ -38,11 +60,21 @@ Dette dokumentet beskriver dagens repo-kontrakt for disse lagene, særlig hvorda
   - svarer på: hvilke jobbmail-steg driver rollen videre, hvilken dramaturgisk plan har rollen, og hvilke planregler kan terminalt career outcome bruke?
   - skal ikke eie: mastery eller unlocked skills direkte
 
+- `data/Civication/mailFamilies/`
+  - eier: authored work scene/mail source-data
+  - svarer på: konkrete situasjoner, personer, tasks, choices, effects, threads og narrative arcs som skal kompileres til canonical scenes
+  - skal ikke eie: normal runtime source selection; produksjonsruntime leser compiled registry via SceneCatalog
+
+- `data/Civication/compiledSceneRegistryV1.json`
+  - eier: materialisert, deterministisk work-scene-katalog for normal runtime
+  - bygges fra registrerte authored work sources av `scripts/build-civication-scene-registry.mjs`
+  - svarer på: canonical scene entries, compatibility projections, provenance/source hashes, role index og registry hash
+  - skal ikke redigeres som authored gameplay; kildefilen skal endres og registryet regenereres
+
 - `data/Civication/jobbmails/`
-  - eier: legacy/generelle mail packs og eldre jobbmailinnhold
-  - eksisterende næringslivsinnhold ligger blant annet i `data/Civication/jobbmails/naeringsliv/naeringslivCivic.json`, med manifest i `data/Civication/jobbmails/naeringsliv/naer_manifest.json`
-  - svarer på: fallback/eldre mailinnhold og generelle jobbmailer som ikke nødvendigvis er del av en rolleplan
-  - skal ikke eie: job learning state
+  - eier: legacy-/arkiv-/migreringsdata
+  - kan beholdes for historikk og migrering
+  - skal ikke brukes som runtime gameplaykilde eller fallback etter 4H-C
 
 - `state.job_learning_progress`
   - eier: spillerens faktiske læringsprogresjon per rolle

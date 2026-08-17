@@ -2,7 +2,7 @@
   "schema_version": 1,
   "registry_status": "canonical",
   "owner": "history-go-documentation",
-  "last_verified": "2026-08-15",
+  "last_verified": "2026-08-17",
   "status_definitions": {
     "canonical": "Normativ kilde for et avgrenset ansvarsområde. Kan blokkere endringer og skal holdes oppdatert.",
     "operational": "Aktiv inngang, implementasjonsstatus eller arbeidsinstruks uten å opprette en parallell sannhet.",
@@ -309,11 +309,11 @@
     {
       "path": "docs/CIVICATION_README.md",
       "status": "operational",
-      "role": "Felles inngang til Civication-runtime, data-, rolle-, mail-, debatt- og FWG-dokumentasjon",
+      "role": "Felles inngang til current Civication scene-, gameplay-, Role World-, life- og datakontrakter",
       "owns": [
         "civication_documentation_entry"
       ],
-      "last_verified": "2026-07-25"
+      "last_verified": "2026-08-17"
     },
     {
       "path": "docs/CIVICATION_DEBATE_SYSTEM.md",
@@ -1115,6 +1115,94 @@
         "history_go_due_diligence"
       ],
       "last_verified": "2026-08-15"
+    },
+    {
+      "path": "data/Civication/SCENE_PIPELINE_V1.md",
+      "status": "canonical",
+      "role": "Normativ scene-, source-adapter-, compiled-registry-, SceneDirector- og ChoiceDirector-kontrakt",
+      "owns": [
+        "civication_scene_pipeline_contract"
+      ],
+      "last_verified": "2026-08-17"
+    },
+    {
+      "path": "data/Civication/scenePipelinePolicyV1.json",
+      "status": "canonical",
+      "role": "Maskinlesbar policy for Scene Pipeline ownership, format freeze, interaction rules og 4H-D-status",
+      "owns": [
+        "civication_scene_pipeline_policy"
+      ],
+      "last_verified": "2026-08-17"
+    },
+    {
+      "path": "docs/CIVICATION_PATCH_ORDER.md",
+      "status": "canonical",
+      "role": "Normativ koordinasjonsguide for candidate ownership, ChoiceDirector middleware og runtime-sømmer",
+      "owns": [
+        "civication_runtime_coordination"
+      ],
+      "last_verified": "2026-08-17"
+    },
+    {
+      "path": "data/Civication/README-mailsystem-og-rolemodels.md",
+      "status": "canonical",
+      "role": "Datakontrakt for roleModel/FWG, mailPlan, authored work sources og compiled scene-boundary",
+      "owns": [
+        "civication_authored_role_scene_data_contract"
+      ],
+      "last_verified": "2026-08-17"
+    },
+    {
+      "path": "docs/CIVICATION_CAREER_GAMEPLAY_CONTRACT.md",
+      "status": "canonical",
+      "role": "Permanent 15-komponents kontrakt for teknisk spillbare arbeidsverdener og statussemantikk",
+      "owns": [
+        "civication_career_gameplay_contract"
+      ],
+      "last_verified": "2026-08-17"
+    },
+    {
+      "path": "data/Civication/careerGameplayPolicy.json",
+      "status": "canonical",
+      "role": "Maskinlesbar intent for Career Gameplay reference roles, pilot wave og minimumsgates",
+      "owns": [
+        "civication_career_gameplay_policy"
+      ],
+      "last_verified": "2026-08-17"
+    },
+    {
+      "path": "reports/civication-career-gameplay-matrix.md",
+      "status": "operational",
+      "role": "Generert commit-bundet Career Gameplay-status; canonical intent ligger i careerGameplayPolicy.json",
+      "owns": [],
+      "last_verified": "2026-08-17"
+    },
+    {
+      "path": "docs/CIVICATION_ROLE_WORLD_STANDARD.md",
+      "status": "canonical",
+      "role": "Redaksjonell produksjonsstandard for fylt rolleverden: sosiologisk bibel, cast, 14-dagers bue, threads og privat etterklang",
+      "owns": [
+        "civication_role_world_editorial_standard"
+      ],
+      "last_verified": "2026-08-17"
+    },
+    {
+      "path": "docs/CIVICATION_DATA_LAYERS.md",
+      "status": "operational",
+      "role": "Datalagsguide for Civication state, learning, authored sources, compiled scenes og domeneskiller",
+      "owns": [
+        "civication_data_layer_guide"
+      ],
+      "last_verified": "2026-08-17"
+    },
+    {
+      "path": "js/Civication/README.md",
+      "status": "operational",
+      "role": "Motoroversikt for Civication shell/day UI og current scene-/answer ownership",
+      "owns": [
+        "civication_runtime_guide"
+      ],
+      "last_verified": "2026-08-17"
     }
   ]
 }
