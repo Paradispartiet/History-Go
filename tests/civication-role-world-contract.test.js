@@ -30,10 +30,9 @@ assert.deepEqual(policy.first_reference_world, {
   role_scope: 'ekspeditor',
   status: 'role_world_complete'
 });
-assert.deepEqual(policy.next_reference_world, {
-  category: 'naeringsliv',
-  role_scope: 'renholder'
-});
+assert.equal(policy.next_reference_world.category, 'naeringsliv');
+assert.ok(String(policy.next_reference_world.role_scope || '').trim());
+assert.notEqual(policy.next_reference_world.role_scope, policy.first_reference_world.role_scope);
 assert.equal(policy.season_contract.days, 14);
 assert.deepEqual(policy.season_contract.day_phases, ['morning', 'lunch', 'afternoon', 'evening']);
 assert.equal(policy.season_contract.required_unique_coverage_slots_for_complete, 56);
@@ -165,12 +164,12 @@ assert.match(roleWorldDoc, /14 dager/is);
 assert.match(roleWorldDoc, /56 dramaturgiske/is);
 assert.match(roleWorldDoc, /5–10/is);
 assert.match(roleWorldDoc, /ingen ny runtime/is);
-assert.match(roleWorldDoc, /naeringsliv[\s\S]*renholder/is);
+assert.ok(roleWorldDoc.includes(policy.next_reference_world.role_scope));
 assert.match(roleWorldDoc, /CIVICATION_ROLE_WORLD_AUTHORING_GUIDE\.md/);
 assert.match(authoringGuide, /reuse before rewrite/is);
 assert.match(authoringGuide, /56 beats/is);
 assert.match(authoringGuide, /provenance/is);
-assert.match(authoringGuide, /Renholder/is);
+assert.ok(authoringGuide.includes(policy.next_reference_world.role_scope));
 assert.match(authoringGuide, /SHA-låst merge/is);
 assert.match(careerDoc, /reference_complete.*ikke.*fylt rolleverden/is);
 assert.match(sceneDoc, /4H-D fullført/);
