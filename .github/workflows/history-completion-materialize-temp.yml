@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'tools/materialize-historie-editorial-chapters.mjs'
+      - 'tools/audit-historie-semantic-hook-alignment.mjs'
       - 'data/fag/historie/historiography_evidence_historie_v1.json'
       - '.github/workflows/history-completion-materialize-temp.yml'
 
@@ -37,6 +38,52 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Reconcile curated semantic primary and secondary hooks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const emnePath = 'data/fag/historie/emner_historie_canonical_v4_5.json';
+          const blueprintPaths = [
+            'reports/historie-canonical-migration/industri-arbeid-question-blueprints.json',
+            'reports/historie-canonical-migration/velferd-question-blueprints.json',
+            'reports/historie-canonical-migration/byhistorie-question-blueprints.json'
+          ];
+          const emner = JSON.parse(fs.readFileSync(emnePath, 'utf8'));
+          const byId = new Map(emner.map((emne) => [emne.emne_id, emne]));
+          let changed = 0;
+          let checked = 0;
+          const repairs = [];
+          for (const blueprintPath of blueprintPaths) {
+            const rows = JSON.parse(fs.readFileSync(blueprintPath, 'utf8'));
+            for (const row of rows) {
+              checked += 1;
+              const emne = byId.get(row.emne_id);
+              if (!emne) throw new Error(`${blueprintPath}: missing ${row.emne_id}`);
+              const beforePrimary = Array.isArray(emne.primary_theory_hooks) ? emne.primary_theory_hooks[0] : null;
+              const beforeSecondary = Array.isArray(emne.secondary_theory_hooks) ? emne.secondary_theory_hooks[0] : null;
+              const expectedPrimary = row.primary_hook_id;
+              const expectedSecondary = row.secondary_hook_id || null;
+              if (beforePrimary !== expectedPrimary || beforeSecondary !== expectedSecondary) {
+                emne.primary_theory_hooks = [expectedPrimary];
+                emne.secondary_theory_hooks = expectedSecondary ? [expectedSecondary] : [];
+                changed += 1;
+                repairs.push(`${row.emne_id}: ${beforePrimary} -> ${expectedPrimary}; secondary ${beforeSecondary} -> ${expectedSecondary}`);
+              }
+            }
+          }
+          fs.writeFileSync(emnePath, `${JSON.stringify(emner, null, 2)}\n`);
+          console.log(`Curated History semantic hooks checked: ${checked}; repaired: ${changed}`);
+          for (const repair of repairs) console.log(`REPAIR ${repair}`);
+          NODE
+
+      - name: Rebuild semantic identity report and validate hook alignment
+        run: |
+          node tools/audit-historie-canonical-emner.mjs --write-report
+          node tools/audit-historie-semantic-hook-alignment.mjs
+
       - name: Materialize repaired History prose
         run: node tools/materialize-historie-editorial-chapters.mjs
 
@@ -44,8 +91,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add data/fagverk/historie data/fagverk/fagverk_registry.json data/fagverk/subject_status.json
+          git add \
+            data/fag/historie/emner_historie_canonical_v4_5.json \
+            reports/fagverk/historie-canonical-emne-identity-audit.json \
+            data/fagverk/historie \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Materialize repaired History completion prose'
+            git commit -m 'Reconcile History semantic hooks and rematerialize prose'
           fi
           git push origin "HEAD:${GITHUB_HEAD_REF}"
