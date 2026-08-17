@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditVitenskapMedicineBiomedicinePublicHealthFulltext } from '../scripts/audit-fagverk-vitenskap-medicine-biomedicine-public-health-fulltext.mjs';
 
+// Unit 5 closes breadth production, but the separate holistic audit still owns subject completion.
 test('Vitenskap Unit 5 materialiserer medisin som femte kapittel uten premature completion',()=>{
  const report=auditVitenskapMedicineBiomedicinePublicHealthFulltext();
  assert.equal(report.status,'pass');
