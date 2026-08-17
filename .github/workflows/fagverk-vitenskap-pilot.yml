@@ -18,11 +18,13 @@ on:
       - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-vitenskap-pilot.mjs'
       - 'scripts/audit-fagverk-vitenskap-university-readiness.mjs'
+      - 'scripts/audit-fagverk-vitenskap-unit1.mjs'
       - 'scripts/build-fagverk-release-manifest.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-vitenskap-pilot.test.mjs'
       - 'tests/fagverk-vitenskap-university-readiness.test.mjs'
+      - 'tests/fagverk-vitenskap-unit1.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - 'tests/vitenskap-teknologi-category-contract.test.mjs'
       - 'reports/fagverk/**'
@@ -36,8 +38,10 @@ on:
       - 'data/fagverk/**'
       - 'scripts/audit-fagverk-vitenskap-pilot.mjs'
       - 'scripts/audit-fagverk-vitenskap-university-readiness.mjs'
+      - 'scripts/audit-fagverk-vitenskap-unit1.mjs'
       - 'tests/fagverk-vitenskap-pilot.test.mjs'
       - 'tests/fagverk-vitenskap-university-readiness.test.mjs'
+      - 'tests/fagverk-vitenskap-unit1.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-vitenskap-pilot.yml'
   workflow_dispatch:
@@ -58,10 +62,12 @@ jobs:
         run: |
           node --check scripts/audit-fagverk-vitenskap-pilot.mjs
           node --check scripts/audit-fagverk-vitenskap-university-readiness.mjs
+          node --check scripts/audit-fagverk-vitenskap-unit1.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-vitenskap-pilot.mjs
           node scripts/audit-fagverk-vitenskap-university-readiness.mjs
+          node scripts/audit-fagverk-vitenskap-unit1.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk, Vitenskap and Teknologi contracts
         run: |
@@ -69,6 +75,7 @@ jobs:
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-vitenskap-pilot.test.mjs
           node --test tests/fagverk-vitenskap-university-readiness.test.mjs
+          node --test tests/fagverk-vitenskap-unit1.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
           node --test tests/vitenskap-teknologi-category-contract.test.mjs
       - name: Validate nested Teknologi scientific package
