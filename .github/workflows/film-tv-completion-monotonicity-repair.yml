@@ -1,0 +1,103 @@
+name: Repair Film TV completion monotonicity
+
+on:
+  push:
+    branches: [agent/film-tv-holistic-192-completion-audit]
+    paths:
+      - "scripts/repair-film-tv-completion-monotonicity-v1.mjs"
+      - ".github/workflows/film-tv-completion-monotonicity-repair.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: film-tv-completion-monotonicity-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Repair historical Film TV progression predicates
+        run: |
+          node --check scripts/repair-film-tv-completion-monotonicity-v1.mjs
+          node scripts/repair-film-tv-completion-monotonicity-v1.mjs --write
+          node scripts/repair-film-tv-completion-monotonicity-v1.mjs
+
+      - name: Validate units 8 through 10
+        run: |
+          node scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
+          node --test tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
+          node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
+          node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
+          node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
+
+      - name: Validate units 11 through 14
+        run: |
+          node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
+          node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
+          node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+          node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs
+          node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
+          node --test tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+          node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs
+          node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
+          node --test tests/film-tv-location-production-place-ethics-source-brief-v1.test.mjs
+          node --test tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+          node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs
+          node scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs
+          node --test tests/film-tv-archive-preservation-access-authenticity-source-brief-v1.test.mjs
+          node --test tests/film-tv-archive-preservation-access-authenticity-fulltext-v1.test.mjs
+
+      - name: Validate legacy chapters and stable baseline
+        run: |
+          node scripts/audit-fagverk-film-tv-kinoer-visningssteder-publikum-phase4.mjs
+          node scripts/audit-fagverk-film-tv-produksjon-studio-filmarbeid-phase4.mjs
+          node scripts/audit-fagverk-film-tv-phase3.mjs
+          node scripts/plan-film-tv-learning-order-v1.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/film-tv-learning-order-plan-v1.test.mjs
+          node --test tests/film-tv-learning-order-monotone-regression-v1.test.mjs
+
+      - name: Validate final completion remains authoritative
+        run: |
+          node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
+          node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
+          node --test tests/film-tv-final-gate-monotonicity-v1.test.mjs
+          node scripts/audit-film-tv-holistic-completion-v1.mjs
+          node --test tests/film-tv-holistic-completion-v1.test.mjs
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-film-tv-phase3.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+
+      - name: Remove temporary repair machinery
+        run: |
+          rm scripts/repair-film-tv-completion-monotonicity-v1.mjs
+          rm .github/workflows/film-tv-completion-monotonicity-repair.yml
+
+      - name: Commit verified monotonicity repair
+        run: |
+          git add scripts tests .github/workflows/film-tv-completion-monotonicity-repair.yml
+          if git diff --cached --quiet; then
+            echo "No repair changes to commit"
+            exit 1
+          fi
+          git commit -m "Make historical Film TV gates monotone after completion"
+          git push origin HEAD:${GITHUB_REF_NAME}
