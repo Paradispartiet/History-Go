@@ -71,17 +71,44 @@ export function classifyFilmTvSourceAuthority(source) {
   return null;
 }
 
-function matchesAny(value, patterns) {
-  const text = normalize(value);
-  return patterns.some((pattern) => text.includes(normalize(pattern)));
+function modeTokens(value) {
+  return normalize(value).split(/[^a-z0-9æøå]+/u).filter(Boolean);
+}
+
+function matchesModePattern(value, rawPattern) {
+  const tokens = modeTokens(value);
+  const patternTokens = modeTokens(rawPattern);
+  if (!patternTokens.length) return false;
+
+  if (patternTokens.length === 1) {
+    const pattern = patternTokens[0];
+    return tokens.some((token) => token === pattern || token.startsWith(pattern));
+  }
+
+  for (let index = 0; index <= tokens.length - patternTokens.length; index += 1) {
+    const slice = tokens.slice(index, index + patternTokens.length);
+    if (slice.every((token, offset) => token === patternTokens[offset] || token.startsWith(patternTokens[offset]))) return true;
+  }
+  return false;
+}
+
+function matchesAnyModePattern(value, patterns) {
+  return patterns.some((pattern) => matchesModePattern(value, pattern));
+}
+
+function hasExcludedModeToken(value, excludedTokens) {
+  const tokens = new Set(modeTokens(value));
+  return (excludedTokens || []).some((token) => tokens.has(normalize(token)));
 }
 
 function claimAcademicRequirement(claim, policy) {
-  return matchesAny(claim.evidence_mode, policy.research_required_evidence_mode_patterns || []);
+  if (hasExcludedModeToken(claim.evidence_mode, policy.research_requirement_exclusion_mode_tokens)) return false;
+  return matchesAnyModePattern(claim.evidence_mode, policy.research_required_evidence_mode_patterns || []);
 }
 
 function claimPeerReviewedRequirement(claim, policy) {
-  return matchesAny(claim.evidence_mode, policy.empirical_effect_evidence_mode_patterns || []);
+  if (hasExcludedModeToken(claim.evidence_mode, policy.empirical_effect_exclusion_mode_tokens)) return false;
+  return matchesAnyModePattern(claim.evidence_mode, policy.empirical_effect_evidence_mode_patterns || []);
 }
 
 export function buildFilmTvSourceAuthorityAudit() {
@@ -182,7 +209,7 @@ export function buildFilmTvSourceAuthorityAudit() {
 
   return {
     schema: 'history_go_film_tv_source_authority_quality_audit_v1',
-    version: '1.0.0',
+    version: '1.0.1',
     subject_id: 'film_tv',
     status: Object.values(gates).every(Boolean) ? 'pass' : 'fail',
     summary: {
