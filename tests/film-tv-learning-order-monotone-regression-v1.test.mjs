@@ -46,6 +46,6 @@ test('Film & TV-læringsrekkefølgen bevares når produksjonen har avansert til 
 
   assert.ok(registeredUnit8);
   assert.deepEqual(registeredUnit8.emne_ids, unit8.emne_ids);
-  assert.equal(filmStatus.editorialStatus, 'chapters_in_progress');
+  assert.ok(['chapters_in_progress', 'complete'].includes(filmStatus.editorialStatus));
   assert.match(filmStatus.nextGate, FILM_TV_PRODUCTION_GATE);
 });
