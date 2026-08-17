@@ -5,8 +5,9 @@ import {
   auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1
 } from './audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs';
 
-// Historical Unit15 fulltext verification delegates to the completion-aware editorial audit,
-// so a later proven 192-topic / 17-chapter Film & TV state is never treated as a regression.
+// Historical Unit15 fulltext verification delegates to the completion-aware editorial audit.
+// A later proven 192-topic / 17-chapter state and its normalized paragraph-claim trace shape
+// are therefore reauditable without reopening or regressing the completed Film & TV subject.
 export const auditFilmTvCulturalHeritageCanonStarsMemoryFulltextV1 = auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1;
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
