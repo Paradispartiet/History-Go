@@ -1,0 +1,52 @@
+name: Diagnose Vitenskap Unit 1 Film TV cross-regression
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-unit1-registry-integration
+    paths:
+      - '.github/workflows/vitenskap-unit1-film-tv-cross-regression-diagnose.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Syntax checks
+        run: |
+          node --check scripts/audit-fagverk-film-tv-phase3.mjs
+          node --check scripts/audit-film-tv-curriculum-completeness-v1.mjs
+          node --check scripts/audit-film-tv-legacy-emne-classification-v1.mjs
+          node --check scripts/audit-film-tv-variable-inventory-v1.mjs
+          node --check scripts/reaudit-film-tv-existing-chapters-v1.mjs
+          node --check scripts/plan-film-tv-learning-order-v1.mjs
+          node --check scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
+          node --check scripts/materialize-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs
+          node --check scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
+          node --check scripts/audit-film-tv-cultural-heritage-canon-stars-memory-editorial-v1.mjs
+      - name: Shared subject inventory
+        run: node scripts/audit-fagverk-subject-inventory.mjs
+      - name: Shared general engine
+        run: node scripts/audit-fagverk-general-engine.mjs
+      - name: Film TV phase 3 audit
+        run: node scripts/audit-fagverk-film-tv-phase3.mjs
+      - name: Film TV curriculum completeness
+        run: node scripts/audit-film-tv-curriculum-completeness-v1.mjs
+      - name: Film TV legacy classification
+        run: node scripts/audit-film-tv-legacy-emne-classification-v1.mjs
+      - name: Film TV variable inventory
+        run: node scripts/audit-film-tv-variable-inventory-v1.mjs
+      - name: Film TV existing chapter reaudit
+        run: node scripts/reaudit-film-tv-existing-chapters-v1.mjs
+      - name: Film TV learning order
+        run: node scripts/plan-film-tv-learning-order-v1.mjs
+      - name: Film TV Unit 15 fulltext audit
+        run: node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
+      - name: Shared release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs --check
