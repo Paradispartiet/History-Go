@@ -83,6 +83,10 @@ function transform(text) {
     "assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');",
     "assert(['chapters_in_progress', 'complete'].includes(statusEntry.editorialStatus), 'Film & TV skal stå i produksjon eller bevist complete-tilstand');"
   );
+  next = next.replace(
+    "filmStatus?.editorialStatus === 'chapters_in_progress'",
+    "['chapters_in_progress', 'complete'].includes(filmStatus?.editorialStatus)"
+  );
   return next;
 }
 
