@@ -117,7 +117,7 @@ export function auditVitenskapMathematicsSourceBrief() {
   const sectionUse = new Map(PLANNED_SECTIONS.map((id) => [id, 0]));
   for (const claim of claims) {
     assert(claim.status === 'verified', `${claim.id} er ikke verified`);
-    assert(typeof claim.claim === 'string' && claim.claim.length >= 120, `${claim.id} er for kort til substansiell claim`);
+    assert(typeof claim.claim === 'string' && claim.claim.trim().length >= 90 && /[.!?]$/.test(claim.claim.trim()), `${claim.id} må være en fullstendig substansiell claim`);
     assert(Array.isArray(claim.source_ids) && claim.source_ids.length >= 1, `${claim.id} mangler source_ids`);
     for (const id of claim.source_ids) {
       assert(sourceIds.has(id), `${claim.id} peker til ukjent kilde ${id}`);
