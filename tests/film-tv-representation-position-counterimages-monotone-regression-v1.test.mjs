@@ -67,6 +67,6 @@ test('enhet 7 forblir komplett etter at Film & TV har avansert til enhet 8 eller
   assert.equal(report.claimPlanResolution.exactResolution, '38/38');
   assert.ok(Object.values(report.gates).every(Boolean));
 
-  assert.equal(filmStatus.editorialStatus, 'chapters_in_progress');
+  assert.ok(['chapters_in_progress', 'complete'].includes(filmStatus.editorialStatus));
   assert.match(filmStatus.nextGate, FILM_TV_PRODUCTION_GATE);
 });

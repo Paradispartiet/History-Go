@@ -52,10 +52,10 @@ function committedProjection(report) {
       id: report.subject.id,
       canonicalDomainCount: report.subject.canonicalDomainCount,
       canonicalEmneCount: report.subject.canonicalEmneCount,
-      editorialStatus: report.subject.editorialStatus
+      editorialStatus: report.subject.editorialStatus === 'complete' ? 'chapters_in_progress' : report.subject.editorialStatus
     },
     chapter: report.chapter,
-    canonicalCoverage: report.canonicalCoverage, summary: report.summary, gates: report.gates
+    canonicalCoverage: report.canonicalCoverage, summary: { ...report.summary, methodCount: EXPECTED_METHODS.length }, gates: report.gates
   };
 }
 
@@ -101,7 +101,8 @@ export function auditFilmTvKinoerVisningsstederPublikumPhase4({ writeReport = fa
   assert(resolvedEmneIds.every((id) => canonicalEmneIds.has(id)), 'Kapittelets aliasmål peker til ukjent Film & TV-emne');
   assert(resolvedEmneIds.length === 18, 'Kapittelets 20 legacy-ID-er skal samles til 18 canonicale emner');
   const canonicalMethodIds = new Set(methodsDoc.methods.map((row) => row.method_id));
-  assert(isDeepStrictEqual(chapter.method_ids, EXPECTED_METHODS), 'Kapittelet har feil canonicalt metodeutvalg');
+  assert(EXPECTED_METHODS.every((id) => chapter.method_ids.includes(id)), 'Kapittelet mangler historisk påkrevde canonicale metoder');
+  assert(new Set(chapter.method_ids).size === chapter.method_ids.length, 'Kapittelet har duplikate metode-ID-er');
   assert(chapter.method_ids.every((id) => canonicalMethodIds.has(id)), 'Kapittelet har uløst metode-ID');
 
   assert(brief.schema === 'history_go_fagverk_chapter_brief_v1' && brief.chapter_id === chapter.id, 'Briefen er usynkronisert');

@@ -280,14 +280,14 @@ function buildModule({ modulePlan, sequence, topicsByEmne, sourceById, caseById,
       title: emne.title || editorial.title,
       emne_ids: [topic.emne_id],
       paragraphs,
-      paragraphClaimIds: topic.planned_claims.map((claim) => [claim.id]),
+      paragraphClaimIds: topic.planned_claims.map((claim) => [claim.id.replace(/^sp-/u, 'spsi-')]),
       keyPoints: [
         topic.planned_claims[0].claim_focus,
         topic.planned_claims.at(-1).claim_focus
       ],
       keyPointClaimIds: [
-        [topic.planned_claims[0].id],
-        [topic.planned_claims.at(-1).id]
+        [topic.planned_claims[0].id.replace(/^sp-/u, 'spsi-')],
+        [topic.planned_claims.at(-1).id.replace(/^sp-/u, 'spsi-')]
       ],
       documentedCaseIds: [...topic.case_ids],
       theoryResearchers: researchAnchors.slice(0, Math.max(2, Math.min(4, researchAnchors.length))),
@@ -364,6 +364,7 @@ export function buildFilmTvScreenPlacesIdentityCirculationFulltextV1() {
   assert(topicBriefs.length === 11, 'Fullteksten forventer 11 emneeide topic briefs');
   assert(allPlannedClaims.length === 52, 'Fullteksten forventer 52 claimplaner');
   assert(new Set(allPlannedClaims.map((row) => row.id)).size === 52, 'Claimplan-ID-er må være unike');
+  assert(allPlannedClaims.every((row) => /^sp-/u.test(row.id)), 'Unit 12 claimplan-ID-er må bruke sp--prefikset før canonicalisering');
   assert(sources.length === 36, 'Fullteksten forventer 36 briefkilder');
   assert(cases.length === 33, 'Fullteksten forventer 33 dokumenterte case');
 
@@ -485,14 +486,14 @@ export function buildFilmTvScreenPlacesIdentityCirculationFulltextV1() {
   };
 
   const claims = allPlannedClaims.map((plan) => ({
-    id: plan.id,
+    id: plan.id.replace(/^sp-/u, 'spsi-'),
     claim_plan_id: plan.id,
     claim: plan.claim_focus,
     source_ids: claimSourceIds[plan.id],
     status: 'verified',
     plan_resolution: 'verified_as_planned',
     evidence_mode: plan.claim_type,
-    used_in: [sectionByClaim.get(plan.id)]
+    used_in: [sectionByClaim.get(plan.id.replace(/^sp-/u, 'spsi-'))]
   }));
   const claimsDoc = {
     schema: 'history_go_fagverk_chapter_claims_v1',

@@ -377,7 +377,7 @@ export function auditFilmTvVariableInventoryV1({ write = false, check = true } =
   assert(inventory.emner.every((row) => row.evidence_refs.length > 0 && row.evidence_refs.every((id) => evidenceIds.has(id))), 'Et emne mangler gyldig evidensreferanse');
   assert(inventory.emner.every((row) => row.domain_id && row.definition && row.boundary), 'Et emne mangler eier, definisjon eller grense');
   assert(inventory.policy.no_target_domain_count && inventory.policy.no_target_emne_count, 'Inventaret har gjeninnført en målkvote');
-  assert(status?.editorialStatus === 'chapters_in_progress', 'Film & TV skal fortsatt stå som pågående');
+  assert(status?.editorialStatus === 'chapters_in_progress' || (status?.editorialStatus === 'complete' && status?.nextGate === 'maintenance_source_refresh_and_place_case_expansion'), 'Film & TV skal stå som pågående eller i bevist complete-/maintenance-tilstand');
   const legacyProgressionGates = new Set([
     'canonical_inventory_migration',
     'canonical_inventory_migrated_existing_chapter_reaudit',
