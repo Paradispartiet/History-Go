@@ -38,6 +38,25 @@ jobs:
           delete p.files;
           fs.writeFileSync(file, JSON.stringify(p, null, 2) + '\n');
           NODE
+      - name: Reconcile shared v4.6 regression expectations
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const replaceOnce = (file, before, after) => {
+            let source = fs.readFileSync(file, 'utf8');
+            if (!source.includes(before)) throw new Error(`${file}: mangler forventet gammel verdi ${before}`);
+            source = source.replace(before, after);
+            fs.writeFileSync(file, source);
+          };
+          replaceOnce(
+            'tests/fagverk-subject-inventory.test.mjs',
+            "assert.equal(vitenskap.nextGate, 'university_breadth_gap_reconciliation_and_remaining_chapter_production');",
+            "assert.equal(vitenskap.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');"
+          );
+          replaceOnce('tests/fagverk-general-engine.test.mjs', 'assert.equal(vitenskap.emneCount, 93);', 'assert.equal(vitenskap.emneCount, 117);');
+          replaceOnce('tests/fagverk-general-engine.test.mjs', 'assert.equal(vitenskap.mappingCount, 93);', 'assert.equal(vitenskap.mappingCount, 117);');
+          replaceOnce('tests/fagverk-general-engine.test.mjs', 'assert.equal(vitenskap.hookCount, 60);', 'assert.equal(vitenskap.hookCount, 64);');
+          NODE
       - name: Regenerate deterministic Science and shared reports
         run: |
           node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs --write-report --no-check-report
@@ -83,7 +102,9 @@ jobs:
             reports/fagverk/vitenskap-pilot-audit.json \
             reports/fagverk/vitenskap-university-readiness-audit.json \
             reports/fagverk/subject-baseline.json \
-            reports/fagverk/general-engine-audit.json
+            reports/fagverk/general-engine-audit.json \
+            tests/fagverk-subject-inventory.test.mjs \
+            tests/fagverk-general-engine.test.mjs
           if git diff --cached --quiet; then
             echo 'No generated finalization changes.'
           else
