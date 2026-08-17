@@ -34,8 +34,10 @@ test('Film & TV completion is one reconciled 192-topic / 17-chapter evidence and
   });
   assert.ok(Object.values(report.gates).every(Boolean));
   assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.brief_matches_chapter_emne_set));
-  assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.modules_match_chapter_emne_set));
-  assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.sections_cover_chapter_emne_set));
+  assert.ok(report.anchors.every((chapter) => chapter.section_topic_trace_mode === 'legacy_optional'));
+  assert.ok(report.units.every((chapter) => chapter.section_topic_trace_mode === 'required_exact'));
+  assert.ok(report.units.every((chapter) => chapter.sections_match_chapter_emne_set));
+  assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.optional_module_topic_declarations_consistent));
   assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.all_paragraphs_claim_traced));
   assert.ok(report.anchors.every((chapter) => chapter.all_claims_verified_with_approved_resolution));
   assert.ok(report.anchors.every((chapter) => chapter.every_claim_uses_registered_source));
@@ -54,7 +56,8 @@ test('Film & TV completion is one reconciled 192-topic / 17-chapter evidence and
   assert.equal(filmStatus.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
   assert.equal(registry.subjects.film_tv.editorialPlan.derivedChapterCount, 17);
   assert.equal(registry.subjects.film_tv.editorialPlan.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
-  assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('registry_brief_module_and_section_topic_ownership_is_exact'));
+  assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('registry_chapter_and_brief_topic_ownership_is_exact'));
+  assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('all_planned_unit_sections_own_exact_topic_sets'));
   assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('all_paragraphs_have_registered_claim_trace'));
   assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('claim_and_section_ids_are_globally_unique'));
   assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('all_canonical_methods_and_domains_are_covered'));
