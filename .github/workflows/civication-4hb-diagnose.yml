@@ -68,7 +68,19 @@ jobs:
       - name: SceneCatalog daily cutover gate
         run: node tests/civication-scene-director-daily-catalog.test.js
       - name: Run full Civication suite
-        run: npm run test:civication
+        id: suite
+        continue-on-error: true
+        run: npm run test:civication > .tmp-civication-4hb-suite.log 2>&1
+      - name: Persist exact full-suite failure
+        if: steps.suite.outcome == 'failure'
+        run: |
+          cat .tmp-civication-4hb-suite.log
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git add -f .tmp-civication-4hb-suite.log
+          git commit -m "Capture 4H-B full-suite failure [skip ci]"
+          git push origin HEAD:agent/civication-4hb-compiled-registry-cutover
+          exit 1
       - name: Verify clean patch
         run: git diff --check
       - name: Commit materialized 4H-B cutover
