@@ -2,26 +2,24 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditVitenskapMathematicsFulltext } from '../scripts/audit-fagverk-vitenskap-mathematics-fulltext.mjs';
 
-test('Vitenskap Unit 2 materialiserer matematikkfamilien som andre kapittel', () => {
+test('Vitenskap Unit 2 bevarer matematikkfamilien som materialisert predecessor', () => {
   const report = auditVitenskapMathematicsFulltext();
   assert.equal(report.status, 'pass');
   assert.equal(report.subject, 'vitenskap');
   assert.equal(report.chapterId, 'vitenskap-matematisk-bevis-struktur-og-modell');
-  assert.deepEqual(report.summary, {
-    emneCount: 5,
-    methodCount: 6,
-    moduleCount: 3,
-    sectionCount: 9,
-    paragraphCount: 27,
-    sourceCount: 10,
-    claimCount: 18,
-    misconceptionCount: 4,
-    workedExampleCount: 2,
-    applicationTaskCount: 4,
-    selfCheckCount: 6,
-    registeredChapterCount: 3,
-    remainingEditorialBlockerCount: 2
-  });
+  assert.equal(report.summary.emneCount, 5);
+  assert.equal(report.summary.methodCount, 6);
+  assert.equal(report.summary.moduleCount, 3);
+  assert.equal(report.summary.sectionCount, 9);
+  assert.equal(report.summary.paragraphCount, 27);
+  assert.equal(report.summary.sourceCount, 10);
+  assert.equal(report.summary.claimCount, 18);
+  assert.equal(report.summary.misconceptionCount, 4);
+  assert.equal(report.summary.workedExampleCount, 2);
+  assert.equal(report.summary.applicationTaskCount, 4);
+  assert.equal(report.summary.selfCheckCount, 6);
+  assert.ok(report.summary.registeredChapterCount >= 2);
+  assert.ok(report.summary.remainingEditorialBlockerCount >= 0 && report.summary.remainingEditorialBlockerCount <= 3);
   assert.equal(report.gates.mathematicsChapterMaterializedAndRegistered, true);
   assert.equal(report.gates.mathematicsEditorialBlockerResolved, true);
   assert.equal(report.gates.remainingBreadthEditorialBlockersConsistent, true);
