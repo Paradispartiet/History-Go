@@ -28,6 +28,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Register existing Trondheim area Place
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'data/places/manifest.json';
+          const relative = 'places/subkultur/trondelag/svartlamon_trondheim/svartlamon_trondheim.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          manifest.files = Array.isArray(manifest.files) ? manifest.files : [];
+          if (!manifest.files.includes(relative)) manifest.files.push(relative);
+          fs.writeFileSync(file, JSON.stringify(manifest, null, 2) + '\n');
+          NODE
       - name: Materialize national language atlas
         run: python scripts/agent_build_norge_sprakatlas_v1.py
       - name: Check generated runtime and tests
@@ -38,7 +52,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/leksikon/sprak js/ui/place-language-layer.js css/place-language-layer.css docs/SPRAKLEKSIKON.md tests/place-language-dialect-scope.test.mjs
+          git add data/places/manifest.json data/leksikon/sprak js/ui/place-language-layer.js css/place-language-layer.css docs/SPRAKLEKSIKON.md tests/place-language-dialect-scope.test.mjs
           if git diff --cached --quiet; then
             exit 0
           fi
