@@ -7,59 +7,45 @@ import { auditVitenskapPilot } from '../scripts/audit-fagverk-vitenskap-pilot.mj
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('Vitenskap er materialisert, auditert og i canonical kapittelproduksjon', () => {
+test('Vitenskap-piloten låser canonical v4.6 og fortsatt kapittelproduksjon', () => {
   const { report } = auditVitenskapPilot();
   assert.equal(report.subject.id, 'vitenskap');
-  assert.equal(report.subject.schemaFamily, 'standard_canonical');
-  assert.equal(report.subject.adapter, 'standard');
-  assert.equal(report.subject.navigationStatus, 'materialized');
-  assert.equal(report.subject.assessmentStatus, 'audited');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'university_breadth_gap_reconciliation_and_remaining_chapter_production');
-  assert.deepEqual(report.emneStatusCounts, { active: 89, core: 4 });
-  assert.deepEqual(report.summary, {
+  assert.equal(report.subject.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');
+  assert.equal(report.subject.registeredChapterCount, 1);
+  assert.deepEqual(report.inventory, {
     domainCount: 6,
-    emneCount: 93,
+    emneCount: 117,
     methodCount: 84,
-    mappingCount: 93,
-    hookCount: 60,
-    registeredChapterCount: 1,
-    technologyDomainCount: 12,
-    technologyEmneCount: 48,
-    technologyMethodCount: 35,
-    technologyMappingCount: 48,
-    technologyHookCount: 36,
-    technologyProgressionModuleCount: 12
+    mappingCount: 117,
+    topicHookCount: 64
   });
-});
-
-test('alle 93 Vitenskap-emner er integrert uten kunstige fagområder', () => {
-  const { report, model } = auditVitenskapPilot();
-  assert.equal(Object.values(report.domainEmneCounts).reduce((sum, count) => sum + count, 0), 93);
-  assert.ok(model.domains.every((domain) => domain.sourceKind === 'pensum_domain'));
-  assert.ok(model.emners.every((emne) => emne.methodIds.length >= 2));
-  assert.equal(report.gates.allVitenskapEmnersIntegrated, true);
-  assert.equal(report.gates.explicitMappingAndGeneratorCountsSynchronized, true);
-  assert.equal(report.gates.noSyntheticVitenskapDomains, true);
-  assert.equal(report.gates.vitenskapPlaceFallbackCorrect, true);
+  assert.equal(report.gates.canonicalModelV46, true);
+  assert.equal(report.gates.exactInventoryLocked, true);
   assert.equal(report.gates.editorialStatusChaptersInProgress, true);
   assert.equal(report.gates.registeredChapterPresent, true);
 });
 
-test('Teknologi forblir nested spesialisering uten toppnivårute eller eget merke', () => {
-  const { report, technology } = auditVitenskapPilot();
-  assert.deepEqual(report.specialization, {
-    id: 'teknologi',
+test('alle 117 Vitenskap-emner har unik canonical mapping og generatoren bruker v4.6', () => {
+  const { report, pensum, mappings } = auditVitenskapPilot();
+  assert.equal(pensum.domains.length, 6);
+  assert.equal(mappings.length, 117);
+  assert.equal(new Set(mappings.map((row) => row.emne_id)).size, 117);
+  assert.equal(report.gates.allMappingsUnique, true);
+  assert.equal(report.gates.generatorUsesCanonicalV46, true);
+});
+
+test('Teknologi forblir nested spesialisering under Vitenskap', () => {
+  const { report } = auditVitenskapPilot();
+  assert.deepEqual(report.technology, {
     canonicalParentSubject: 'vitenskap',
-    badgeId: 'vitenskap',
-    schemaFamily: 'technology_scientific_v2_4',
-    adapter: 'technology',
-    topLevelRoute: '',
-    scientificStatus: 'canonical_scientific_subject'
+    topLevelSubject: false,
+    areaCount: 12,
+    topicCount: 48,
+    methodCount: 35,
+    hookCount: 36
   });
-  assert.ok(technology.domains.every((domain) => domain.sourceKind === 'fagkart_category'));
-  assert.equal(report.gates.technologyRemainsNestedSpecialization, true);
-  assert.equal(report.gates.technologyHasNoTopLevelRouteOrBadge, true);
+  assert.equal(report.gates.technologyRemainsNested, true);
 });
 
 test('Vitenskap-merkesiden skiller merket fra fagsiden', () => {
