@@ -29,12 +29,15 @@ if count != 1:
     raise SystemExit(f'CI registry replacement anchor: expected one source block, found {count}')
 text = text.replace(old_ci, new_ci, 1)
 
-stale_role = 'offentlig/renholder'
-replacement_role = 'naeringsliv/administrasjonsmedarbeider'
-role_count = text.count(stale_role)
-if role_count != 3:
-    raise SystemExit(f'stale representative role anchor: expected 3 occurrences, found {role_count}')
-text = text.replace(stale_role, replacement_role)
+role_replacements = {
+    'offentlig/renholder': ('naeringsliv/administrasjonsmedarbeider', 3),
+    'by/arealplanlegger_plan': ('by/by_radgiver_plan', 1),
+}
+for stale_role, (replacement_role, expected_count) in role_replacements.items():
+    role_count = text.count(stale_role)
+    if role_count != expected_count:
+        raise SystemExit(f'{stale_role} fixture anchor: expected {expected_count} occurrences, found {role_count}')
+    text = text.replace(stale_role, replacement_role)
 
 p.write_text(text, encoding='utf-8')
-print('Repaired one-shot 4H-B anchors and representative role fixtures')
+print('Repaired one-shot 4H-B anchors and canonical representative role fixtures')
