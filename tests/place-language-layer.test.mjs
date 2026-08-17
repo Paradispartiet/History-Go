@@ -150,6 +150,7 @@ test("områdeeierskap bruker canonical placeScope, ikke koordinatrollen", () => 
   const contract = read("docs/SPRAKLEKSIKON.md");
   assert.match(checklist, /placeScope:\s*"area"/);
   assert.match(contract, /placeScope:\s*"area"/);
-  assert.match(contract, /coordRole[\s\S]{0,180}koordinat/i);
+  assert.match(checklist, /coordRole[\s\S]{0,120}koordinatgeometri/i);
+  assert.match(checklist, /coordRole[\s\S]{0,180}gir aldri dialekt-eierskap/i);
   assert.doesNotMatch(contract, /coordRole:\s*"area_anchor"[^\n]*primær/i);
 });
