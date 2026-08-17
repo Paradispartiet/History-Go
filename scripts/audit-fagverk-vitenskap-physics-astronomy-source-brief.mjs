@@ -61,9 +61,7 @@ export function auditVitenskapPhysicsAstronomySourceBrief() {
   const claimsDocument = json(P.claims);
 
   assert(readiness.subject_id === 'vitenskap', 'Readiness peker ikke til Vitenskap');
-  assert(readiness.complete_ready === false, 'Fysikk-arbeid kan ikke gjøre Vitenskap complete');
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'v4.6 structural blocking gaps skal være reconcilet');
-  assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate');
   assert(readiness.current_inventory?.vitenskap?.emne_count === 117, 'Vitenskap må stå på 117 canonicale emner');
   assert(readiness.current_inventory?.teknologi?.top_level_subject === false, 'Teknologi må forbli nested');
   assert(readiness.current_inventory?.teknologi?.canonical_parent_subject === 'vitenskap', 'Teknologi har feil canonical parent');
@@ -71,6 +69,8 @@ export function auditVitenskapPhysicsAstronomySourceBrief() {
   const physicsCoverage = readiness.coverage_families?.find((row) => row.id === 'physics_astronomy');
   const physicsStillBlocked = (readiness.editorial_blockers || []).includes('physics_astronomy');
   if (physicsStillBlocked) {
+    assert(readiness.complete_ready === false, 'Vitenskap kan ikke være complete mens fysikk fortsatt er editorial blocker');
+    assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate før Unit 3-fulltekst');
     assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 2, 'Før fysikk-fulltekstregistrering skal Vitenskap ha to kapitler');
     assert(physicsCoverage?.status === 'inventory_reconciled', 'Før fysikk-fulltekstregistrering skal fysikk være inventory_reconciled');
   } else {

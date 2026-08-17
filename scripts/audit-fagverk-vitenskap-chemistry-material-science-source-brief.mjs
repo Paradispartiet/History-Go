@@ -59,9 +59,7 @@ export function auditVitenskapChemistryMaterialScienceSourceBrief() {
   const claimsDocument = json(P.claims);
 
   assert(readiness.subject_id === 'vitenskap', 'Readiness peker ikke til Vitenskap');
-  assert(readiness.complete_ready === false, 'Kjemi-arbeid kan ikke gjøre Vitenskap complete');
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'v4.6 structural blocking gaps skal være reconcilet');
-  assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate');
   assert(readiness.current_inventory?.vitenskap?.emne_count === 117, 'Vitenskap må stå på 117 canonicale emner');
   assert(readiness.current_inventory?.teknologi?.top_level_subject === false, 'Teknologi må forbli nested');
   assert(readiness.current_inventory?.teknologi?.canonical_parent_subject === 'vitenskap', 'Teknologi har feil canonical parent');
@@ -69,6 +67,8 @@ export function auditVitenskapChemistryMaterialScienceSourceBrief() {
   const chemistryCoverage = readiness.coverage_families?.find((row) => row.id === 'chemistry_material_science');
   const chemistryStillBlocked = (readiness.editorial_blockers || []).includes('chemistry_material_science');
   if (chemistryStillBlocked) {
+    assert(readiness.complete_ready === false, 'Vitenskap kan ikke være complete mens kjemi fortsatt er editorial blocker');
+    assert(readiness.next_gate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Readiness har uventet next gate før Unit 4-fulltekst');
     assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 3, 'Før kjemi-fulltekstregistrering skal Vitenskap ha tre kapitler');
     assert(chemistryCoverage?.status === 'inventory_reconciled', 'Før kjemi-fulltekstregistrering skal kjemi være inventory_reconciled');
   } else {

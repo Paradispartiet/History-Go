@@ -100,11 +100,11 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
   assert(['1.2.0', '1.3.0'].includes(readiness.version), 'Vitenskap readiness har ukjent post-reconciliation-versjon');
   assert(readiness.subject_id === 'vitenskap', 'Vitenskap readiness har feil subject_id');
   assert(readiness.title === categories.labels.vitenskap, 'Vitenskap readiness har feil canonical tittel');
-  assert(readiness.status === 'breadth_inventory_reconciled_chapter_production_in_progress', 'Vitenskap readiness har feil chapter-production-status');
+  assert(['breadth_inventory_reconciled_chapter_production_in_progress','breadth_chapters_materialized_final_audit_pending'].includes(readiness.status), 'Vitenskap readiness har feil chapter-production-status');
   assert(readiness.complete_ready === false, 'Breadth-kapittelproduksjon kan ikke gjøre Vitenskap complete-ready før alle blockers er lukket');
   assert(readiness.canonical_scope?.no_fixed_completion_quota === true, 'Vitenskap må fortsatt forby tallkvote som ferdigbevis');
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Vitenskap må forbli chapters_in_progress');
-  assert(statusEntry?.nextGate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Vitenskap har feil neste port');
+  assert(['remaining_chapter_production_across_reconciled_university_breadth','final_holistic_university_breadth_completion_audit'].includes(statusEntry?.nextGate), 'Vitenskap har feil neste port');
 
   assert(isDeepStrictEqual(pensum.summary, {
     domain_count: 6,
@@ -152,7 +152,10 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
   const statusCounts = Object.fromEntries([...allowedStatuses].map((name) => [name, readiness.coverage_families.filter((row) => row.status === name).length]));
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'Strukturelle blocking gaps skal være reconcilet');
   const editorialBlockers = readiness.editorial_blockers || [];
-  assert(editorialBlockers.length >= 1, 'Så lenge complete_ready=false skal minst én breadth-family stå som editorial blocker');
+  assert(editorialBlockers.length <= BREADTH_FAMILIES.length, 'Readiness har for mange breadth editorial blockers');
+  const expectedProgressGate = editorialBlockers.length === 0 ? 'final_holistic_university_breadth_completion_audit' : 'remaining_chapter_production_across_reconciled_university_breadth';
+  assert(readiness.next_gate === expectedProgressGate, 'Readiness next_gate matcher ikke breadth-fremdriften');
+  assert(statusEntry.nextGate === expectedProgressGate, 'Subject status nextGate matcher ikke breadth-fremdriften');
   assert(editorialBlockers.every((id) => BREADTH_FAMILIES.includes(id)), 'Readiness har ukjent breadth editorial blocker');
 
   const materializedBreadthFamilies = [];
@@ -197,7 +200,7 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
   const report = {
     schema: 'history_go_fagverk_vitenskap_university_readiness_audit_v1',
     version: '1.3.0',
-    status: 'breadth_inventory_reconciled_chapter_production_in_progress',
+    status: readiness.status,
     generatedFrom: P,
     subject: {
       id: 'vitenskap',

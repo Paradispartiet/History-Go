@@ -29,12 +29,12 @@ test('inventory-gapene er reconcilet men redaksjonell completion forblir blokker
   const { report } = auditVitenskapBreadthReconciliation();
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.completeReady, false);
-  assert.equal(report.subject.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');
+  assert.equal(report.subject.nextGate, 'final_holistic_university_breadth_completion_audit');
   assert.equal(report.editorialState.structuralBlockingGapCount, 0);
-  assert.ok(report.editorialState.editorialBlockerCount >= 1 && report.editorialState.editorialBlockerCount <= 3);
-  assert.ok(report.editorialState.registeredChapterCount >= 2);
+  assert.equal(report.editorialState.editorialBlockerCount, 0);
+  assert.ok(report.editorialState.registeredChapterCount >= 5);
   assert.equal(report.gates.structuralGapsReconciled, true);
-  assert.equal(report.gates.editorialBlockersRemainOpen, true);
+  assert.equal(report.gates.editorialBlockersRemainOpen, false);
   assert.equal(report.gates.prematureCompleteBlocked, true);
 });
 

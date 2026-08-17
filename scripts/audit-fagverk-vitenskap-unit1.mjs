@@ -52,10 +52,15 @@ export function auditVitenskapUnit1() {
   const claimsDocument = json(P.claims);
 
   assert(readiness.subject_id === 'vitenskap', 'Readiness peker ikke til vitenskap');
-  assert(readiness.complete_ready === false, 'Unit 1 må ikke gjøre hele Vitenskap complete');
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'Strukturelle readiness-gap må være reconcilet etter v4.6');
   const openBlockers = readiness.editorial_blockers || [];
-  assert(openBlockers.length >= 1, 'Så lenge Vitenskap ikke er complete må minst én breadth editorial blocker stå åpen');
+  if (openBlockers.length === 0 && readiness.complete_ready === false) {
+    assert(readiness.status === 'breadth_chapters_materialized_final_audit_pending', '0 breadth-blockers før complete krever final-audit-pending status');
+    assert(readiness.next_gate === 'final_holistic_university_breadth_completion_audit', '0 breadth-blockers før complete krever separat holistic final audit');
+  }
+  if (readiness.complete_ready === true) {
+    assert(openBlockers.length === 0, 'Complete Vitenskap kan ikke ha åpne breadth editorial blockers');
+  }
   assert(openBlockers.every((id) => BREADTH_FAMILIES.includes(id)), 'Readiness har ukjent breadth editorial blocker');
   for (const id of BREADTH_FAMILIES) {
     const family = readiness.coverage_families?.find((row) => row.id === id);
@@ -188,7 +193,7 @@ export function auditVitenskapUnit1() {
       sourceLocatorsInspectable: true,
       structuralCoverageGapsReconciled: true,
       breadthProgressionMonotone: true,
-      breadthEditorialBlockersRemainOpen: true,
+      breadthEditorialBlockersRemainOpen: openBlockers.length > 0,
       prematureCompleteBlocked: true,
       technologyRemainsNested: true,
       peerReviewTruthShortcutBlocked: true,
