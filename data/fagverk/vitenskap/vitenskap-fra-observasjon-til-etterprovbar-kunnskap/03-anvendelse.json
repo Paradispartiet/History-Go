@@ -1,0 +1,178 @@
+{
+  "sections": [
+    {
+      "id": "vit1-anvendelse-1",
+      "title": "Tillit skal kunne rekonstrueres som en evidenskjede",
+      "paragraphs": [
+        "Når en institusjon publiserer et resultat, er det fristende å spørre om vi stoler på institusjonen. Et bedre vitenskapelig spørsmål er hvilke kontrollledd som gjør akkurat denne påstanden rimelig å stole på. Finn først ut hva som ble undersøkt, hvem som kunne undersøke det, hvilken infrastruktur som ble brukt, hvordan metode og data ble dokumentert, og hvilke uavhengige kontrollmuligheter som finnes.",
+        "Forskningsinfrastruktur er en del av denne kjeden fordi den bestemmer hvilke observasjoner som kan produseres og lagres. Et forskningsmiljø kan være avhengig av et fysisk instrument, et referansearkiv, en dataplattform og et beregningsnettverk samtidig. Åpen vitenskap kan gjøre flere av disse leddene synlige, men sensitive data kan fortsatt kreve begrenset tilgang. Spør derfor både hva som er tilgjengelig og om begrensningen er faglig og etisk begrunnet.",
+        "Institusjonell tillit blir da verken blind eller kynisk. En påstand fortjener sterkere tillit når metode, måling, usikkerhet, faglig kritikk og kontroll peker i samme retning. Hvis ett ledd er svakt, skal konklusjonen justeres til det kildene faktisk tåler. Navnet på universitetet, tidsskriftet eller laboratoriet kan være relevant kontekst, men erstatter ikke evidenskjeden."
+      ],
+      "paragraphClaimIds": [
+        ["vit1-18", "vit1-03"],
+        ["vit1-04", "vit1-14", "vit1-15"],
+        ["vit1-16", "vit1-18"]
+      ],
+      "keyPoints": [
+        "Begrunnet vitenskapelig tillit kan brytes ned i kontrollerbare ledd i stedet for å hvile på institusjonsnavn alene.",
+        "Åpenhet er én kontrollmekanisme blant flere og må kombineres med metode, målekvalitet og kritikk."
+      ],
+      "keyPointClaimIds": [
+        ["vit1-18"],
+        ["vit1-14", "vit1-18"]
+      ]
+    },
+    {
+      "id": "vit1-anvendelse-2",
+      "title": "Scenario: fra sensorverdi til sporbar måling",
+      "paragraphs": [
+        "Tenk deg at to laboratorier måler samme type fysisk størrelse og rapporterer litt forskjellige verdier. Den raske reaksjonen er å spørre hvilket laboratorium som har rett. Kalibreringsanalysen starter et annet sted: Hva er den presise størrelsen som måles? Hvilke instrumenter og miljøbetingelser ble brukt? Hvilke referanser ble instrumentene kalibrert mot? Og hvor stor måleusikkerhet følger med hvert resultat?",
+        "Hvis det ene laboratoriet bare kan vise til at instrumentet har et kalibreringssertifikat, er sporbarhetskjeden fortsatt ufullstendig. NIST krever at det konkrete måleresultatet kan følges gjennom en dokumentert kjede av sammenligninger og usikkerheter. Brukeren må derfor skille mellom instrumentets historikk og dokumentasjonen av den aktuelle målingen.",
+        "Først når begge resultatene har sammenlignbare måledefinisjoner, referanser og usikkerheter, kan forskjellen tolkes faglig. Verdiene kan være reelt uforenlige, de kan være konsistente innenfor usikkerheten, eller målesystemene kan ha forskjeller som gjør direkte sammenligning misvisende. Poenget er at flere desimaler aldri kan erstatte kjennskap til målekjeden."
+      ],
+      "paragraphClaimIds": [
+        ["vit1-05", "vit1-08"],
+        ["vit1-06", "vit1-07"],
+        ["vit1-05", "vit1-08"]
+      ],
+      "keyPoints": [
+        "Sammenlign måledefinisjon, kalibreringsreferanser og usikkerhet før du sammenligner tallene som om de var direkte likeverdige.",
+        "Et kalibreringssertifikat dokumenterer ikke automatisk sporbarheten til enhver senere måling."
+      ],
+      "keyPointClaimIds": [
+        ["vit1-05", "vit1-08"],
+        ["vit1-07"]
+      ]
+    },
+    {
+      "id": "vit1-anvendelse-3",
+      "title": "Scenario: samme data eller nye data?",
+      "paragraphs": [
+        "En forskergruppe publiserer et resultat basert på et datasett og en analysepipeline. Gruppe B får tilgang til de samme dataene og den samme koden og klarer å produsere de samme tabellene og estimatene. Etter National Academies-definisjonen har de vist computational reproducibility. De har kontrollert at den rapporterte beregningskjeden lar seg rekonstruere; de har ennå ikke samlet ny empiri.",
+        "Gruppe C gjennomfører deretter en ny studie av det samme vitenskapelige spørsmålet og samler egne data med sammenlignbar, men ikke nødvendigvis identisk, metode. Dette er en replikasjonsprøve. Hvis resultatet avviker, skal analysen ikke stoppe ved ordet «replikasjonskrise». Undersøk forskjeller i utvalg, måling, instrumenter, prosedyrer, analyse og kontekst før du bestemmer hva avviket betyr.",
+        "Når flere uavhengige studier og analyser peker i samme retning, kan tilliten til kunnskapsgrunnlaget øke. Men konsistens er ikke absolutt sikkerhet, og ett avvik er ikke automatisk diskvalifiserende. Den universitetsnære ferdigheten er å beskrive nøyaktig hvilken type kontroll som er gjennomført, hva den støtter, og hva som fortsatt er usikkert."
+      ],
+      "paragraphClaimIds": [
+        ["vit1-09"],
+        ["vit1-10", "vit1-11"],
+        ["vit1-16"]
+      ],
+      "keyPoints": [
+        "Samme data og kode tester reproducibility; nye data i en ny studie tester replicability.",
+        "Avvik mellom studier er et signal om videre analyse, ikke en automatisk dom over hele kunnskapsfeltet."
+      ],
+      "keyPointClaimIds": [
+        ["vit1-09", "vit1-10"],
+        ["vit1-11"]
+      ]
+    }
+  ],
+  "workedExamples": [
+    {
+      "id": "vit1-worked-malekjede",
+      "title": "Les en målepåstand baklengs",
+      "prompt": "Et laboratorium skriver at en verdi er 12,347 enheter. Hvilke opplysninger trenger du før du kan bruke tallet som en sporbar vitenskapelig måling?",
+      "analysis": [
+        "Identifiser først hva som faktisk er målt og under hvilke betingelser.",
+        "Finn instrument, kalibreringsreferanser og dokumentert sporbarhetskjede.",
+        "Finn måleusikkerheten og hvilke komponenter som inngår i den.",
+        "Undersøk om standard/protokoll faktisk gjelder for den konkrete bruken.",
+        "Sammenlign først deretter resultatet med andre målinger."
+      ],
+      "claim_ids": ["vit1-05", "vit1-06", "vit1-07", "vit1-08"]
+    },
+    {
+      "id": "vit1-worked-reanalyse",
+      "title": "Klassifiser kontrollformen",
+      "prompt": "Tre grupper kontrollerer en publisert studie: én leser manuskriptet kritisk, én kjører samme kode på samme data, og én samler nye data. Hva har de tre faktisk testet?",
+      "analysis": [
+        "Kritisk lesing/fagfellevurdering tester argumentasjon, design, rapportering og synlige svakheter, men produserer ikke automatisk ny empiri.",
+        "Samme kode og data tester computational reproducibility.",
+        "Nye data rettet mot samme vitenskapelige spørsmål tester replicability.",
+        "Resultatene fra de tre kontrollformene må ikke slås sammen som om de var samme type evidens."
+      ],
+      "claim_ids": ["vit1-09", "vit1-10", "vit1-13"]
+    }
+  ],
+  "applicationTasks": [
+    {
+      "task": "Rekonstruer evidenskjeden bak én kvantitativ forskningspåstand.",
+      "prompts": [
+        "Hva er observasjonen eller målingen?",
+        "Hvilket instrument, datasett eller register produserte den?",
+        "Hvordan er kalibrering, standardisering eller datakvalitet dokumentert?",
+        "Hvilken usikkerhet eller begrensning følger med påstanden?",
+        "Hvilke former for uavhengig kontroll finnes?"
+      ]
+    },
+    {
+      "task": "Klassifiser fire kontrollhandlinger som fagfellekritikk, reproducibility, replicability eller ingen av delene.",
+      "prompts": [
+        "En fagperson vurderer studiedesignet før finansiering.",
+        "En analytiker kjører samme kode på samme rådata.",
+        "Et nytt laboratorium samler egne data om samme spørsmål.",
+        "En avis gjengir konklusjonen uten metodeinformasjon."
+      ]
+    },
+    {
+      "task": "Analyser en påstand om at en studie er 'åpen'.",
+      "prompts": [
+        "Hvilke deler er faktisk tilgjengelige: artikkel, data, kode, protokoll eller metadata?",
+        "Finnes legitime grunner til at enkelte data ikke kan være åpne?",
+        "Er dokumentasjonen tilstrekkelig til å forstå eller kontrollere analysen uten tilgang til sensitive rådata?"
+      ]
+    },
+    {
+      "task": "Vurder institusjonell tillit uten autoritetsargument.",
+      "prompts": [
+        "Hvilke konkrete kvalitetskontroller kan dokumenteres?",
+        "Hva kan kontrolleres av utenforstående?",
+        "Hva er fortsatt avhengig av intern dokumentasjon eller ekspertvurdering?",
+        "Hvor sterkt kan konklusjonen formuleres gitt disse begrensningene?"
+      ]
+    }
+  ],
+  "selfCheck": [
+    {
+      "question": "Hvorfor er et kalibrert instrument ikke automatisk det samme som en sporbar måling?",
+      "answer": "Fordi sporbarhet gjelder det konkrete måleresultatet og krever en dokumentert kjede av referanser og usikkerheter for den aktuelle målingen."
+    },
+    {
+      "question": "Hva er forskjellen mellom fagfellevurdering og replikasjon?",
+      "answer": "Fagfellevurdering er kritisk faglig vurdering av framlagt arbeid; replikasjon innebærer en ny studie med nye data rettet mot samme vitenskapelige spørsmål."
+    },
+    {
+      "question": "Hva betyr reproducibility i dette kapittelet?",
+      "answer": "At konsistente beregningsresultater kan oppnås med samme data, kode, metoder og analysebetingelser som originalarbeidet."
+    },
+    {
+      "question": "Hvorfor trenger et måleresultat en usikkerhet?",
+      "answer": "Fordi usikkerheten uttrykker hvor presist verdien er bestemt og er nødvendig for å vurdere om forskjeller mellom målinger er faglig meningsfulle."
+    },
+    {
+      "question": "Betyr åpen vitenskap at alle data alltid må publiseres åpent?",
+      "answer": "Nei. Åpenhet skal maksimeres, men personvern, konfidensialitet, sikkerhet, rettigheter og sensitiv kunnskap kan kreve legitime begrensninger."
+    },
+    {
+      "question": "Hva er den sikreste måten å begrunne tillit til en vitenskapelig påstand på?",
+      "answer": "Ved å vise den konkrete evidenskjeden: metode, måling/data, usikkerhet, dokumentasjon, faglig kritikk og relevante uavhengige kontroller."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "evidenskjede",
+      "term": "Evidenskjede",
+      "definition": "Den dokumenterbare forbindelsen fra spørsmål og metode via observasjon eller måling, analyse og usikkerhet til kritikk, kontroll og konklusjon."
+    },
+    {
+      "id": "begrunnet-tillit",
+      "term": "Begrunnet tillit",
+      "definition": "Tillit som bygger på synlige og relevante kontrollmekanismer, ikke bare på status, tittel eller institusjonsnavn."
+    },
+    {
+      "id": "uavhengig-kontroll",
+      "term": "Uavhengig kontroll",
+      "definition": "Kontroll utført av andre aktører eller analyser som ikke bare gjentar originalforfatterens egen vurdering av arbeidet."
+    }
+  ]
+}
