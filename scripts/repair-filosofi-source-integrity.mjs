@@ -18,6 +18,11 @@ const PRIMARY_WORK_OVERRIDES = {
     { actor: 'Franz Brentano', work: 'Psychology from an Empirical Standpoint' },
     { actor: 'Jerry Fodor', work: 'The Language of Thought' }
   ],
+  em_filosofi_fenomenologi_livsverden_kropp: [
+    { actor: 'Edmund Husserl', work: 'Ideas Pertaining to a Pure Phenomenology' },
+    { actor: 'Martin Heidegger', work: 'Being and Time' },
+    { actor: 'Maurice Merleau-Ponty', work: 'Phenomenology of Perception' }
+  ],
   em_filosofi_klimarettferdighet_generasjoner: [
     { actor: 'Stephen Gardiner', work: 'A Perfect Moral Storm' },
     { actor: 'Henry Shue', work: 'Subsistence Emissions and Luxury Emissions' }
