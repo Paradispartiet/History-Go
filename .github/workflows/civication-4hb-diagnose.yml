@@ -65,11 +65,12 @@ jobs:
           }
           console.log(`4H-B registry: ${registry.stats.scene_count} scenes / ${registry.stats.role_count} roles / 0 shadowed`);
           NODE
-      - name: Run 4H-B focused gates
-        run: |
-          node tests/civication-compiled-scene-registry.test.js
-          node tests/civication-compiled-scene-registry-parity.test.js
-          node tests/civication-scene-director-daily-catalog.test.js
+      - name: Registry contract gate
+        run: node tests/civication-compiled-scene-registry.test.js
+      - name: Before-after parity gate
+        run: node tests/civication-compiled-scene-registry-parity.test.js
+      - name: SceneCatalog daily cutover gate
+        run: node tests/civication-scene-director-daily-catalog.test.js
       - name: Run full Civication suite
         run: node tests/run-civication-tests.mjs
       - name: Verify clean patch
