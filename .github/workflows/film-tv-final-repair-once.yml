@@ -54,7 +54,8 @@ jobs:
           allowed='^(scripts/repair-film-tv-completion-monotonicity-v1\.mjs|tests/film-tv-representation-position-counterimages-monotone-regression-v1\.test\.mjs|scripts/audit-film-tv-variable-inventory-v1\.mjs|scripts/audit-fagverk-film-tv-kinoer-visningssteder-publikum-phase4\.mjs|scripts/audit-fagverk-film-tv-produksjon-studio-filmarbeid-phase4\.mjs|scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1\.mjs)$'
           unexpected="$(git diff --name-only | grep -Ev "$allowed" || true)"
           if [[ -n "$unexpected" ]]; then
-            echo "::error title=Unexpected Film TV repair drift::Repair changed files outside the locked source/test set"
+            unexpected_inline="$(printf '%s' "$unexpected" | paste -sd ', ' -)"
+            echo "::error title=Unexpected Film TV repair drift::Repair changed files outside the locked source/test set: $unexpected_inline"
             printf '%s\n' "$unexpected"
             git diff -- $unexpected
             exit 1
