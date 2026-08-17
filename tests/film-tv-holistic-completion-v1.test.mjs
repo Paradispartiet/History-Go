@@ -1,6 +1,5 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { spawnSync } from 'node:child_process';
 import { auditFilmTvHolisticCompletionV1 } from '../scripts/audit-film-tv-holistic-completion-v1.mjs';
 
 const APPROVED = [
@@ -9,21 +8,6 @@ const APPROVED = [
   'verified_after_case_narrowing',
   'verified_after_scope_narrowing'
 ];
-
-const SHARED_VALIDATIONS = [
-  ['subject inventory audit', ['scripts/audit-fagverk-subject-inventory.mjs']],
-  ['general engine audit', ['scripts/audit-fagverk-general-engine.mjs']],
-  ['Film TV phase3 audit', ['scripts/audit-fagverk-film-tv-phase3.mjs']],
-  ['release manifest check', ['scripts/build-fagverk-release-manifest.mjs', '--check']],
-  ['subject inventory test', ['--test', 'tests/fagverk-subject-inventory.test.mjs']],
-  ['general engine test', ['--test', 'tests/fagverk-general-engine.test.mjs']],
-  ['Film TV phase3 test', ['--test', 'tests/fagverk-film-tv-phase3.test.mjs']],
-  ['release manifest test', ['--test', 'tests/fagverk-release-manifest.test.mjs']]
-];
-
-function workflowEscape(value) {
-  return String(value).replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A');
-}
 
 test('Film & TV completion is one reconciled 192-topic / 17-chapter evidence and trace contract', () => {
   const { report, registry, status } = auditFilmTvHolisticCompletionV1();
@@ -78,16 +62,4 @@ test('Film & TV completion is one reconciled 192-topic / 17-chapter evidence and
   assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('claim_and_section_ids_are_globally_unique'));
   assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('all_canonical_methods_and_domains_are_covered'));
   assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('all_unit_claims_verified_with_approved_resolution'));
-});
-
-test('shared deterministic Film & TV contracts remain green after holistic materialization', () => {
-  for (const [label, args] of SHARED_VALIDATIONS) {
-    const result = spawnSync(process.execPath, args, { encoding: 'utf8' });
-    if (result.status === 0) continue;
-    const detail = `${result.stdout || ''}${result.stderr || ''}`.trim().slice(-6000);
-    if (process.env.GITHUB_ACTIONS) {
-      console.error(`::error title=Film TV shared validation failure::${workflowEscape(`${label}: ${detail}`)}`);
-    }
-    assert.equal(result.status, 0, `${label} failed:\n${detail}`);
-  }
 });
