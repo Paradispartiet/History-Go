@@ -21,7 +21,8 @@ test('Vitenskap Unit 1 materialiserer readiness-låst første kapittel uten prem
   });
   assert.equal(report.gates.readinessUnitMatched, true);
   assert.equal(report.gates.canonicalEmnersAndMethodsResolved, true);
-  assert.equal(report.gates.blockingCoverageGapsRemainOpen, true);
+  assert.equal(report.gates.structuralCoverageGapsReconciled, true);
+  assert.equal(report.gates.breadthEditorialBlockersRemainOpen, true);
   assert.equal(report.gates.prematureCompleteBlocked, true);
   assert.equal(report.gates.technologyRemainsNested, true);
 });
