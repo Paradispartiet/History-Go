@@ -83,7 +83,9 @@ test("legacy-arrangementer blir ikke løftet som språkinnhold", () => {
   assert.match(runtime, /"arrangement"/);
   assert.match(runtime, /"event"/);
   assert.match(runtime, /"stevne"/);
-  assert.match(runtime, /filter\(isLanguageEntry\)/);
+  assert.match(runtime, /function\s+isAllowedLanguageEntry\s*\(/);
+  assert.match(runtime, /if\s*\(!isLanguageEntry\(entry\)\)\s*return false/);
+  assert.match(runtime, /filter\(entry\s*=>\s*isAllowedLanguageEntry\(entry,\s*loaded\.article,\s*place\)\)/);
 
   const bislett = json(manifest.place_files.bislett_stadion);
   assert.ok(bislett.entries.some(entry => entry.type === "arrangement"), "fixture må fortsatt dekke legacy-arrangement");
