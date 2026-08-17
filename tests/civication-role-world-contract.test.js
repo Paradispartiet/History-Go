@@ -30,9 +30,13 @@ assert.deepEqual(policy.first_reference_world, {
   role_scope: 'ekspeditor',
   status: 'role_world_complete'
 });
-assert.equal(policy.next_reference_world.category, 'naeringsliv');
+assert.deepEqual(policy.second_reference_world, index.second_reference_world);
+assert.equal(policy.second_reference_world.status, 'role_world_complete');
+assert.ok(String(policy.second_reference_world.role_scope || '').trim());
+assert.notEqual(policy.second_reference_world.role_scope, policy.first_reference_world.role_scope);
+assert.ok(String(policy.next_reference_world.category || '').trim());
 assert.ok(String(policy.next_reference_world.role_scope || '').trim());
-assert.notEqual(policy.next_reference_world.role_scope, policy.first_reference_world.role_scope);
+assert.notEqual(policy.next_reference_world.role_scope, policy.second_reference_world.role_scope);
 assert.equal(policy.season_contract.days, 14);
 assert.deepEqual(policy.season_contract.day_phases, ['morning', 'lunch', 'afternoon', 'evening']);
 assert.equal(policy.season_contract.required_unique_coverage_slots_for_complete, 56);
@@ -46,6 +50,9 @@ assert.equal(policy.materialization.jobbmails_runtime_fallback_allowed, false);
 assert.equal(authoringChecklist.schema, 'civication_role_world_authoring_checklist_v1');
 assert.equal(authoringChecklist.policy, 'data/Civication/roleWorldPolicy.json');
 assert.equal(authoringChecklist.reference_world, 'data/Civication/roleWorlds/naeringsliv/ekspeditor.json');
+assert.ok(Array.isArray(authoringChecklist.reference_worlds));
+assert.ok(authoringChecklist.reference_worlds.includes(index.roles[0].path));
+assert.ok(authoringChecklist.reference_worlds.includes(index.roles[1].path));
 assert.equal(authoringChecklist.principles.new_runtime_forbidden, true);
 assert.equal(authoringChecklist.principles.new_parallel_scene_format_forbidden, true);
 assert.equal(authoringChecklist.principles.reuse_before_rewrite, true);
@@ -178,11 +185,13 @@ assert.match(roleMailDoc, /Mail er delivery/);
 assert.doesNotMatch(roleMailDoc, /Dette er autoritativ jobbmailflyt/);
 
 const completeWorlds = index.roles.filter((entry) => entry.status === 'role_world_complete');
-assert.equal(completeWorlds.length, 1, 'The first Role World production wave must expose exactly one completed reference world');
+assert.equal(completeWorlds.length, 2, 'The second Role World production wave must expose exactly two completed reference worlds');
 assert.deepEqual(
   { category: completeWorlds[0].category, role_scope: completeWorlds[0].role_scope },
   { category: 'naeringsliv', role_scope: 'ekspeditor' },
   'Ekspeditor must remain the first completed Role World'
 );
+assert.deepEqual(completeWorlds[0], index.first_reference_world);
+assert.deepEqual(completeWorlds[1], index.second_reference_world);
 
 console.log('Civication Role World contract: OK');
