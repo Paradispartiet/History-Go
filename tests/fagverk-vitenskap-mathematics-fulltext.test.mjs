@@ -19,12 +19,12 @@ test('Vitenskap Unit 2 materialiserer matematikkfamilien som andre kapittel', ()
     workedExampleCount: 2,
     applicationTaskCount: 4,
     selfCheckCount: 6,
-    registeredChapterCount: 2,
-    remainingEditorialBlockerCount: 3
+    registeredChapterCount: 3,
+    remainingEditorialBlockerCount: 2
   });
   assert.equal(report.gates.mathematicsChapterMaterializedAndRegistered, true);
   assert.equal(report.gates.mathematicsEditorialBlockerResolved, true);
-  assert.equal(report.gates.threeBreadthEditorialBlockersRemain, true);
+  assert.equal(report.gates.remainingBreadthEditorialBlockersConsistent, true);
   assert.equal(report.gates.prematureCompleteBlocked, true);
 });
 

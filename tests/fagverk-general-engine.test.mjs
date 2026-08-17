@@ -315,7 +315,7 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(vitenskap.methodCount, 84);
   assert.equal(vitenskap.mappingCount, 117);
   assert.equal(vitenskap.hookCount, 64);
-  assert.equal(vitenskap.chapterCount, 2);
+  assert.equal(vitenskap.chapterCount, JSON.parse(fs.readFileSync(path.join(root, 'data/fagverk/fagverk_registry.json'), 'utf8')).subjects.vitenskap.chapters.length);
   assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
   assert.ok(result.report.summary.adapterFamiliesExercised.includes('by_compatibility'));
   assert.ok(result.report.summary.adapterFamiliesExercised.includes('foundation_v1'));

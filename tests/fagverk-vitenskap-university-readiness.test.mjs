@@ -3,7 +3,6 @@ import assert from 'node:assert/strict';
 import { auditVitenskapUniversityReadiness } from '../scripts/audit-fagverk-vitenskap-university-readiness.mjs';
 
 const EDITORIAL_BLOCKERS = [
-  'physics_astronomy',
   'chemistry_material_science',
   'medicine_biomedicine_public_health'
 ];
@@ -20,18 +19,18 @@ test('Vitenskap university readiness viser matematikk-kapittelproduksjon uten å
   assert.equal(report.inventory.vitenskap.method_count, 84);
   assert.equal(report.inventory.vitenskap.mapping_count, 117);
   assert.equal(report.inventory.vitenskap.hook_count, 64);
-  assert.equal(report.inventory.vitenskap.registered_chapter_count, 2);
+  assert.equal(report.inventory.vitenskap.registered_chapter_count, 3);
   assert.equal(report.coverageSummary.familyCount, 12);
   assert.deepEqual(report.coverageSummary.statusCounts, {
     strong: 4,
-    inventory_reconciled: 3,
-    chapter_materialized: 1,
+    inventory_reconciled: 2,
+    chapter_materialized: 2,
     neighbor_bridge_required: 2,
     nested_strong: 2
   });
   assert.equal(report.coverageSummary.structuralBlockingGapCount, 0);
-  assert.equal(report.coverageSummary.editorialBlockerCount, 3);
-  assert.equal(report.coverageSummary.materializedBreadthFamilyCount, 1);
+  assert.equal(report.coverageSummary.editorialBlockerCount, 2);
+  assert.equal(report.coverageSummary.materializedBreadthFamilyCount, 2);
 });
 
 test('matematikk er materialisert mens tre realfagsfamilier fortsatt blokkerer editorial completion', () => {
@@ -39,7 +38,8 @@ test('matematikk er materialisert mens tre realfagsfamilier fortsatt blokkerer e
   assert.deepEqual(report.structuralBlockingGaps, []);
   assert.deepEqual(report.editorialBlockers, EDITORIAL_BLOCKERS);
   assert.deepEqual(report.materializedBreadthFamilies, [
-    { id: 'mathematics_formal_sciences', chapterId: 'vitenskap-matematisk-bevis-struktur-og-modell' }
+    { id: 'mathematics_formal_sciences', chapterId: 'vitenskap-matematisk-bevis-struktur-og-modell' },
+    { id: 'physics_astronomy', chapterId: 'vitenskap-fysikk-fra-bevegelse-til-kosmos' }
   ]);
   const math = readiness.coverage_families.find((row) => row.id === 'mathematics_formal_sciences');
   assert.equal(math.status, 'chapter_materialized');
@@ -83,9 +83,9 @@ test('første produksjonsenhet bevares og registry/release har to kapitler', () 
     source_count: 10,
     claim_count: 18
   });
-  assert.equal(report.registration.registryChapterCount, 2);
+  assert.equal(report.registration.registryChapterCount, 3);
   assert.equal(report.registration.releaseChapterStatus, 'materialized');
-  assert.equal(report.registration.releaseChapterCount, 2);
+  assert.equal(report.registration.releaseChapterCount, 3);
   assert.equal(report.registration.releaseMissingFileCount, 0);
   assert.equal(report.gates.firstProductionUnitPreserved, true);
   assert.equal(report.gates.registryAndReleaseAligned, true);

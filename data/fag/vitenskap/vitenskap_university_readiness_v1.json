@@ -20,7 +20,7 @@
       "method_count": 84,
       "mapping_count": 117,
       "hook_count": 64,
-      "registered_chapter_count": 2
+      "registered_chapter_count": 3
     },
     "teknologi": {
       "canonical_parent_subject": "vitenskap",
@@ -154,11 +154,11 @@
     {
       "id": "physics_astronomy",
       "label": "Fysikk og astronomi",
-      "status": "inventory_reconciled",
+      "status": "chapter_materialized",
       "existing_domain_ids": [
         "natur_medisin_miljo"
       ],
-      "reason": "Instrument- og målingsperspektivet er sterkt, men det finnes ikke heldekkende behandling av mekanikk, energi, termodynamikk, bølger, elektromagnetisme, kvantefysikk, relativitet, atom-/kjernefysikk eller astronomi som vitenskapelige kunnskapsområder. Gapet er nå reconcilet på canonical inventory-nivå gjennom 8 eksplisitte emner i eksisterende domain natur_medisin_miljo. Full redaksjonell kapittelbehandling gjenstår og inventory-reconciliation er ikke completion.",
+      "reason": "Canonical inventory v4.6 dekker åtte eksplisitte fysikk- og astronomiemner. Familien er nå fulltekstmaterialisert i tre redigerte moduler med claimsporing, worked examples, anvendelsesoppgaver og eksplisitte skiller mellom måling, modell, instrumentrespons og observasjon. Dette lukker fysikk og astronomi som editorial blocker, men gjør ikke Vitenskap complete fordi kjemi/materialvitenskap og medisin/biomedisin/folkehelse fortsatt gjenstår.",
       "candidate_topics": [
         "mekanikk_krefter_bevegelse",
         "energi_termodynamikk",
@@ -181,7 +181,16 @@
         "em_vit_astronomi_og_kosmologi"
       ],
       "reconciled_hook_id": "fysikk_astronomi",
-      "reconciliation_spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json"
+      "reconciliation_spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json",
+      "materialized_chapter_id": "vitenskap-fysikk-fra-bevegelse-til-kosmos",
+      "materialized_evidence": {
+        "method_count": 8,
+        "module_count": 3,
+        "section_count": 9,
+        "paragraph_count": 27,
+        "source_count": 12,
+        "claim_count": 20
+      }
     },
     {
       "id": "chemistry_material_science",
@@ -366,7 +375,6 @@
   },
   "next_gate": "remaining_chapter_production_across_reconciled_university_breadth",
   "editorial_blockers": [
-    "physics_astronomy",
     "chemistry_material_science",
     "medicine_biomedicine_public_health"
   ],
