@@ -38,48 +38,48 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Reconcile curated semantic primary and secondary hooks
+      - name: Repair permanent editorial-hook policy
         shell: bash
         run: |
           set -euo pipefail
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
 
-          const emnePath = 'data/fag/historie/emner_historie_canonical_v4_5.json';
-          const blueprintPaths = [
-            'reports/historie-canonical-migration/industri-arbeid-question-blueprints.json',
-            'reports/historie-canonical-migration/velferd-question-blueprints.json',
-            'reports/historie-canonical-migration/byhistorie-question-blueprints.json'
-          ];
-          const emner = JSON.parse(fs.readFileSync(emnePath, 'utf8'));
-          const byId = new Map(emner.map((emne) => [emne.emne_id, emne]));
-          let changed = 0;
-          let checked = 0;
-          const repairs = [];
-          for (const blueprintPath of blueprintPaths) {
-            const rows = JSON.parse(fs.readFileSync(blueprintPath, 'utf8'));
-            for (const row of rows) {
-              checked += 1;
-              const emne = byId.get(row.emne_id);
-              if (!emne) throw new Error(`${blueprintPath}: missing ${row.emne_id}`);
-              const beforePrimary = Array.isArray(emne.primary_theory_hooks) ? emne.primary_theory_hooks[0] : null;
-              const beforeSecondary = Array.isArray(emne.secondary_theory_hooks) ? emne.secondary_theory_hooks[0] : null;
-              const expectedPrimary = row.primary_hook_id;
-              const expectedSecondary = row.secondary_hook_id || null;
-              if (beforePrimary !== expectedPrimary || beforeSecondary !== expectedSecondary) {
-                emne.primary_theory_hooks = [expectedPrimary];
-                emne.secondary_theory_hooks = expectedSecondary ? [expectedSecondary] : [];
-                changed += 1;
-                repairs.push(`${row.emne_id}: ${beforePrimary} -> ${expectedPrimary}; secondary ${beforeSecondary} -> ${expectedSecondary}`);
-              }
-            }
+          const generatorPath = 'tools/materialize-historie-editorial-chapters.mjs';
+          let generator = fs.readFileSync(generatorPath, 'utf8');
+          if (!generator.includes('const EDITORIAL_BLUEPRINT_FILES = [')) {
+            const anchor = "const historiographyDocument = readJson('data/fag/historie/historiography_evidence_historie_v1.json');\n";
+            const insertion = `${anchor}const EDITORIAL_BLUEPRINT_FILES = [\n  'reports/historie-canonical-migration/industri-arbeid-question-blueprints.json',\n  'reports/historie-canonical-migration/velferd-question-blueprints.json',\n  'reports/historie-canonical-migration/byhistorie-question-blueprints.json'\n];\nconst editorialBlueprintByEmneId = new Map(EDITORIAL_BLUEPRINT_FILES\n  .flatMap((file) => list(readJson(file)))\n  .map((row) => [row.emne_id, row]));\n`;
+            if (!generator.includes(anchor)) throw new Error('Generator historiography anchor not found');
+            generator = generator.replace(anchor, insertion);
           }
-          fs.writeFileSync(emnePath, `${JSON.stringify(emner, null, 2)}\n`);
-          console.log(`Curated History semantic hooks checked: ${checked}; repaired: ${changed}`);
-          for (const repair of repairs) console.log(`REPAIR ${repair}`);
+
+          const oldTheoryPackage = `function theoryPackage(category, emne) {\n  const semanticHookId = list(emne.primary_theory_hooks)[0];\n  if (!semanticHookId) throw new Error(\`${'${category.id}/${emne.emne_id}'}: mangler primary_theory_hooks\`);\n  const hook = list(category.topic_hooks).find((item) => item.id === semanticHookId);\n  if (!hook) throw new Error(\`${'${category.id}/${emne.emne_id}'}: semantisk hook ${'${semanticHookId}'} finnes ikke i fagkartkategorien\`);\n  if (!list(hook.emne_ids).includes(emne.emne_id)) throw new Error(\`${'${semanticHookId}'}: hooken er ikke koblet til ${'${emne.emne_id}'}\`);\n  const theory = theoryByHookId.get(semanticHookId);\n  if (!theory) throw new Error(\`${'${semanticHookId}'}: mangler teoriobjekt\`);\n  const theoryEvidence = evidenceByTheoryId.get(theory.theory_id);\n  if (!theoryEvidence || theoryEvidence.status !== 'evidence_ready') throw new Error(\`${'${theory.theory_id}'}: mangler ferdig evidens\`);\n  const claims = list(theoryEvidence.claim_ids).map((id) => claimById.get(id)).filter(Boolean);\n  if (!claims.length) throw new Error(\`${'${theory.theory_id}'}: mangler claims\`);\n  return { emneId: emne.emne_id, semanticHookId, hook, theory, theoryEvidence, claims };\n}`;
+          const newTheoryPackage = `function theoryPackage(category, emne) {\n  const semanticHookId = list(emne.primary_theory_hooks)[0];\n  if (!semanticHookId) throw new Error(\`${'${category.id}/${emne.emne_id}'}: mangler canonical primary_theory_hooks\`);\n  const editorialBlueprint = editorialBlueprintByEmneId.get(emne.emne_id);\n  const editorialHookId = editorialBlueprint?.primary_hook_id || semanticHookId;\n  const hook = list(category.topic_hooks).find((item) => item.id === editorialHookId);\n  if (!hook) throw new Error(\`${'${category.id}/${emne.emne_id}'}: redaksjonell hook ${'${editorialHookId}'} finnes ikke i fagkartkategorien\`);\n  if (!list(hook.emne_ids).includes(emne.emne_id)) throw new Error(\`${'${editorialHookId}'}: redaksjonell hook er ikke koblet til ${'${emne.emne_id}'}\`);\n  const theory = theoryByHookId.get(editorialHookId);\n  if (!theory) throw new Error(\`${'${editorialHookId}'}: mangler teoriobjekt\`);\n  const theoryEvidence = evidenceByTheoryId.get(theory.theory_id);\n  if (!theoryEvidence || theoryEvidence.status !== 'evidence_ready') throw new Error(\`${'${theory.theory_id}'}: mangler ferdig evidens\`);\n  const claims = list(theoryEvidence.claim_ids).map((id) => claimById.get(id)).filter(Boolean);\n  if (!claims.length) throw new Error(\`${'${theory.theory_id}'}: mangler claims\`);\n  return { emneId: emne.emne_id, semanticHookId, editorialHookId, hook, theory, theoryEvidence, claims };\n}`;
+          if (!generator.includes('editorialHookId, hook, theory')) {
+            if (!generator.includes(oldTheoryPackage)) throw new Error('Old theoryPackage block not found');
+            generator = generator.replace(oldTheoryPackage, newTheoryPackage);
+          }
+          if (!generator.includes('editorialHookId: pack.editorialHookId,')) {
+            const sectionAnchor = '    semanticHookId: pack.semanticHookId,\n    theoryId: pack.theory.theory_id,';
+            if (!generator.includes(sectionAnchor)) throw new Error('Section semantic hook anchor not found');
+            generator = generator.replace(sectionAnchor, '    semanticHookId: pack.semanticHookId,\n    editorialHookId: pack.editorialHookId,\n    theoryId: pack.theory.theory_id,');
+          }
+          fs.writeFileSync(generatorPath, generator);
+
+          const auditPath = 'tools/audit-historie-semantic-hook-alignment.mjs';
+          let audit = fs.readFileSync(auditPath, 'utf8');
+          const start = audit.indexOf('  const curatedMismatches = [];');
+          const endNeedle = '  assert.deepEqual(curatedMismatches, [], `Kuraterte History-hooks er semantisk feilordnet: ${curatedMismatches.map((row) => `${row.emne_id}:${row.actual_primary}->${row.expected_primary}`).join(\', \')}`);';
+          const endStart = audit.indexOf(endNeedle);
+          if (start < 0 || endStart < 0) throw new Error('Semantic audit curated mismatch block not found');
+          const end = endStart + endNeedle.length;
+          const replacement = `  const curatedMismatches = [];\n  for (const blueprint of blueprintRows) {\n    const emne = emneById.get(blueprint.emne_id);\n    assert.ok(emne, \`${'${blueprint.blueprint_file}'}: ukjent emne ${'${blueprint.emne_id}'}\`);\n    const mappedHooks = list(mappingByEmne.get(blueprint.emne_id)?.mappings).map((row) => row.topic_hook);\n    const editorialHookIds = unique([blueprint.primary_hook_id, blueprint.secondary_hook_id]);\n    assert.ok(blueprint.primary_hook_id, \`${'${blueprint.emne_id}'}: kuratert blueprint mangler primary_hook_id\`);\n    for (const editorialHookId of editorialHookIds) {\n      const hook = hookById.get(editorialHookId);\n      if (!hook || !list(hook.emne_ids).includes(blueprint.emne_id) || !theoryByHookId.has(editorialHookId) || !mappedHooks.includes(editorialHookId)) {\n        curatedMismatches.push({ emne_id: blueprint.emne_id, editorial_hook_id: editorialHookId, blueprint_file: blueprint.blueprint_file });\n      }\n    }\n  }\n  assert.deepEqual(curatedMismatches, [], \`Kuraterte redaksjonelle History-hooks mangler gyldig hook/mapping/teorikjede: ${'${curatedMismatches.map((row) => `${row.emne_id}:${row.editorial_hook_id}`).join(", ")}'}\`);`;
+          audit = `${audit.slice(0, start)}${replacement}${audit.slice(end)}`;
+          fs.writeFileSync(auditPath, audit);
           NODE
 
-      - name: Rebuild semantic identity report and validate hook alignment
+      - name: Validate canonical identity and curated editorial hooks
         run: |
           node tools/audit-historie-canonical-emner.mjs --write-report
           node tools/audit-historie-semantic-hook-alignment.mjs
@@ -87,17 +87,21 @@ jobs:
       - name: Materialize repaired History prose
         run: node tools/materialize-historie-editorial-chapters.mjs
 
-      - name: Commit materialized History corpus and push the same branch
+      - name: Verify deterministic materialization
+        run: node tools/materialize-historie-editorial-chapters.mjs --check
+
+      - name: Commit permanent hook policy and materialized History corpus
         shell: bash
         run: |
           set -euo pipefail
           git add \
-            data/fag/historie/emner_historie_canonical_v4_5.json \
+            tools/materialize-historie-editorial-chapters.mjs \
+            tools/audit-historie-semantic-hook-alignment.mjs \
             reports/fagverk/historie-canonical-emne-identity-audit.json \
             data/fagverk/historie \
             data/fagverk/fagverk_registry.json \
             data/fagverk/subject_status.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Reconcile History semantic hooks and rematerialize prose'
+            git commit -m 'Separate History semantic identity from editorial theory hooks'
           fi
           git push origin "HEAD:${GITHUB_HEAD_REF}"
