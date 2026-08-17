@@ -79,7 +79,19 @@ jobs:
       - name: Registry contract gate
         run: node tests/civication-compiled-scene-registry.test.js
       - name: Before-after parity gate
-        run: node tests/civication-compiled-scene-registry-parity.test.js
+        id: parity
+        continue-on-error: true
+        run: node tests/civication-compiled-scene-registry-parity.test.js > .tmp-civication-4hb-parity.log 2>&1
+      - name: Persist exact parity failure
+        if: steps.parity.outcome == 'failure'
+        run: |
+          cat .tmp-civication-4hb-parity.log
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git add -f .tmp-civication-4hb-parity.log
+          git commit -m "Capture 4H-B parity failure [skip ci]"
+          git push origin HEAD:agent/civication-4hb-compiled-registry-cutover
+          exit 1
       - name: SceneCatalog daily cutover gate
         run: node tests/civication-scene-director-daily-catalog.test.js
       - name: Run full Civication suite
