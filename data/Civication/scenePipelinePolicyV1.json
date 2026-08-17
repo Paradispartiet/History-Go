@@ -1,8 +1,8 @@
 {
   "schema": "civication_scene_pipeline_policy_v1",
   "version": 1,
-  "status": "migration_contract",
-  "effective_date": "2026-08-14",
+  "status": "canonical_runtime_contract",
+  "effective_date": "2026-08-18",
   "canonical_scene_contract": "data/Civication/sceneContractV1.schema.json",
   "compiled_scene_registry_contract": {
     "schema": "compiled_scene_registry_v1",
@@ -10,16 +10,17 @@
     "schema_path": "data/Civication/compiledSceneRegistryV1.schema.json",
     "compiler": "scripts/build-civication-scene-registry.mjs",
     "default_output": "data/Civication/compiledSceneRegistryV1.json",
-    "status": "materialized_runtime_cutover_complete",
+    "status": "runtime_cutover_and_semantic_playthrough_complete",
     "runtime_reads_registry": true,
     "compatibility_projection_is_generated_not_source": true,
     "runtime_cutover_requires_zero_shadowed_duplicates": true,
     "duplicate_id_policy": "Compileren speiler SceneCatalogs runtime-kilderekkefølge. En senere duplicate kan bare inventeres som shadowed når routing-signaturen er identisk; ellers feiler build. Canonicale scene-ID-er omskrives aldri for å skjule kollisjoner.",
-    "cutover_rule": "Runtime skal ikke bytte fra mailFamilies til compiled registry før id-, valg-, eligibility-, thread-, consequence- og selection-paritet er bevist og shadowed duplicate-gjeld er null.",
+    "cutover_rule": "Normal jobbgameplay leser compiled_scene_registry_v1 gjennom CivicationSceneCatalog. mailFamilies og andre registrerte kildeformater er source-of-build og skal ikke gjeninnføres som parallelle runtime-lesere.",
     "sync_gate": "node scripts/build-civication-scene-registry.mjs --check",
     "parity_test": "tests/civication-compiled-scene-registry-parity.test.js",
-    "completed_phase": "4H-C",
-    "next_phase": "4H-D",
+    "semantic_playthrough_test": "tests/civication-semantic-playthrough-gate.test.js",
+    "completed_phase": "4H-D",
+    "next_phase": "role_world_editorial_standardization",
     "legacy_fallback_policy": {
       "jobbmails_runtime_gameplay_allowed": false,
       "legacy_pack_runtime_fallback_allowed": false,
@@ -61,61 +62,23 @@
     "consequence"
   ],
   "legacy_type_mapping": {
-    "job": {
-      "scene_kind": "task",
-      "delivery": "mail"
-    },
-    "knowledge": {
-      "scene_kind": "knowledge",
-      "delivery": "mail"
-    },
-    "micro": {
-      "scene_kind": "task",
-      "delivery": "mail"
-    },
-    "people": {
-      "scene_kind": "relationship",
-      "delivery": "mail"
-    },
-    "conflict": {
-      "scene_kind": "conflict",
-      "delivery": "mail"
-    },
-    "followup": {
-      "scene_kind": "consequence",
-      "delivery": "mail"
-    },
-    "story": {
-      "scene_kind": "milestone",
-      "delivery": "mail"
-    },
-    "event": {
-      "scene_kind": "milestone",
-      "delivery": "mail"
-    },
-    "consequence": {
-      "scene_kind": "consequence",
-      "delivery": "mail"
-    }
+    "job": { "scene_kind": "task", "delivery": "mail" },
+    "knowledge": { "scene_kind": "knowledge", "delivery": "mail" },
+    "micro": { "scene_kind": "task", "delivery": "mail" },
+    "people": { "scene_kind": "relationship", "delivery": "mail" },
+    "conflict": { "scene_kind": "conflict", "delivery": "mail" },
+    "followup": { "scene_kind": "consequence", "delivery": "mail" },
+    "story": { "scene_kind": "milestone", "delivery": "mail" },
+    "event": { "scene_kind": "milestone", "delivery": "mail" },
+    "consequence": { "scene_kind": "consequence", "delivery": "mail" }
   },
   "target_ownership": {
     "scene_catalog": "compiled_scene_registry_v1",
-    "scene_catalog_migration_adapter": "CivicationSceneCatalog",
+    "scene_catalog_adapter": "CivicationSceneCatalog",
     "scene_director": "CivicationSceneDirector",
     "choice_director": "CivicationChoiceDirector",
-    "delivery_surfaces": [
-      "CivicationMailEngine",
-      "CivicationNextAction"
-    ],
-    "source_adapters": [
-      "role_pack",
-      "work_grammar",
-      "private",
-      "life",
-      "social",
-      "narrative",
-      "fagverk"
-    ]
+    "delivery_surfaces": ["CivicationMailEngine", "CivicationNextAction"],
+    "source_adapters": ["role_pack", "work_grammar", "private", "life", "social", "narrative", "fagverk"]
   },
   "interaction_rules": {
     "decision_requires_real_choices": true,
@@ -126,25 +89,34 @@
   },
   "knowledge_rules": {
     "gameplay_rules_must_be_version_pinned": true,
-    "fagverk_may_update": [
-      "content.explanation",
-      "content.links",
-      "job_description"
-    ],
-    "fagverk_must_not_silently_update": [
-      "interaction_mode",
-      "choices",
-      "task_contract",
-      "effects",
-      "success_rule",
-      "answer_key"
-    ]
+    "fagverk_may_update": ["content.explanation", "content.links", "job_description"],
+    "fagverk_must_not_silently_update": ["interaction_mode", "choices", "task_contract", "effects", "success_rule", "answer_key"]
   },
   "workday_budget": {
     "actual_work_situations_min": 3,
     "actual_work_situations_max": 6,
     "mail_items_are_not_a_gameplay_quota": true,
     "reading_minutes_and_word_count_are_quality_observations_not_generation_targets": true
+  },
+  "semantic_playthrough_gate": {
+    "status": "complete_and_blocking",
+    "source_pr": 5053,
+    "test": "tests/civication-semantic-playthrough-gate.test.js",
+    "proves": [
+      "compiled_scene_selection",
+      "event_engine_delivery",
+      "choice_director_answer",
+      "consequence_application",
+      "mail_runtime_plan_progression",
+      "next_scene_progression"
+    ]
+  },
+  "role_world_boundary": {
+    "policy": "data/Civication/roleWorldPolicy.json",
+    "standard": "docs/CIVICATION_ROLE_WORLD_STANDARD.md",
+    "editorial_only": true,
+    "may_not_create_new_runtime": true,
+    "materializes_into_existing_scene_sources": true
   },
   "audit": {
     "script": "scripts/audit-civication-scene-pipeline.mjs",
@@ -164,21 +136,8 @@
       "daily_work_situation_budget"
     ]
   },
-  "phase_1_scope": {
-    "name": "Career Mail Architecture Audit + Scene Contract v1 + semantic reachability test",
-    "gameplay_changes_allowed": false,
-    "runtime_selection_changes_allowed": false,
-    "data_migration_allowed": false
-  },
-  "migration_order": [
-    "freeze_new_mail_formats",
-    "audit_and_scene_contract",
-    "make_all_nine_plan_types_directly_reachable",
-    "consolidate_scene_director_and_catalog_ownership",
-    "remove_generic_runtime_choices",
-    "make_choice_director_the_only_answer_pipeline",
-    "convert_private_life_narrative_social_to_source_adapters",
-    "read_one_compiled_scene_registry",
-    "enable_blocking_semantic_playthrough_gate"
-  ]
+  "closed_migration": {
+    "phases": ["4A", "4B", "4C", "4D", "4E", "4F", "4G-A", "4G-B", "4G-C", "4G-D", "4H-A", "4H-B", "4H-C", "4H-D"],
+    "rule": "Detaljert migreringshistorikk hører hjemme i Git/PR-historikken. Aktive kontrakter beskriver dagens eiergrenser."
+  }
 }

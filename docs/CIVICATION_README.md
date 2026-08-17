@@ -1,76 +1,103 @@
 # Civication — dokumentasjonsinngang
 
 Status: **operational dokumentasjonsinngang**  
-Sist kontrollert: **2026-07-25**
+Sist kontrollert: **2026-08-18**
 
-Civication er et eget produkt/subsystem i samme repo. Denne filen er inngangen til Civication-dokumentasjonen; den skal ikke kopiere runtime-regler eller produktsannhet fra dokumentene som faktisk eier dem.
+Civication er ett subsystem for arbeid, hverdagsliv, sosial posisjon, levevei og konsekvenser. Denne filen peker til dokumentene som faktisk eier hvert ansvarsområde; den skal ikke opprette parallelle sannheter.
 
 ## Start her
 
-- [`../js/Civication/README.md`](../js/Civication/README.md) — motoroversikt, boot-arkitektur og den aktive spillveien gjennom dagen
-- [`CIVICATION_DATA_LAYERS.md`](./CIVICATION_DATA_LAYERS.md) — datalag og ansvar
-- [`../data/Civication/README-mailsystem-og-rolemodels.md`](../data/Civication/README-mailsystem-og-rolemodels.md) — badge → role model → mail plan → mail family
-- [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — normativ FWG/work grammar-standard
-- [`civication-life-story-system.md`](./civication-life-story-system.md) — Life Story / Min dag-systemet
+1. [`CIVICATION_ROLE_WORLD_STANDARD.md`](./CIVICATION_ROLE_WORLD_STANDARD.md) — canonical redaksjonell standard for «rollen som liten sosial serie» og `role_world_complete`.
+2. [`../data/Civication/SCENE_PIPELINE_V1.md`](../data/Civication/SCENE_PIPELINE_V1.md) — canonical runtimekjede etter fullført 4H-D.
+3. [`../js/Civication/README.md`](../js/Civication/README.md) — motoroversikt, shell/dagflyt og dagens eiergrenser.
+4. [`CIVICATION_CAREER_GAMEPLAY_CONTRACT.md`](./CIVICATION_CAREER_GAMEPLAY_CONTRACT.md) — de 15 career-komponentene og teknisk `reference_complete`.
+5. [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — normativ FWG/work grammar-standard.
+6. [`civication-life-story-system.md`](./civication-life-story-system.md) — Life Story / Min dag.
+
+## To completion-begreper som ikke må blandes
+
+`reference_complete` og `role_world_complete` betyr forskjellige ting.
+
+- `reference_complete` kommer fra Career Gameplay Matrix og beviser den eksisterende jobbløkken: 15 komponenter, Life Story, praksisdybde og to uker.
+- `role_world_complete` er den strengere sosiale serie-statusen: 14 dager × fire faser, sosial/NPC-bibel, utviklede relasjonelle tråder, privat etterklang, forsinkede konsekvenser og materialisering gjennom Scene Pipeline.
+
+En rolle kan derfor være teknisk `reference_complete` uten å være en fylt rolleverden.
+
+## Role World og redaksjonelt råmateriale
+
+- [`CIVICATION_ROLE_WORLD_STANDARD.md`](./CIVICATION_ROLE_WORLD_STANDARD.md) — normativ kvalitets- og completionkontrakt.
+- [`../data/Civication/roleWorldPolicy.json`](../data/Civication/roleWorldPolicy.json) — maskinlesbar policy.
+- [`../data/Civication/roleWorldV1.schema.json`](../data/Civication/roleWorldV1.schema.json) — schema for Role World-filer.
+- [`../data/Civication/roleWorldThemeBank.json`](../data/Civication/roleWorldThemeBank.json) — abstrakt Film/Story Theme Bank, kun redaksjonell.
+- [`../data/Civication/roleWorlds/index.json`](../data/Civication/roleWorlds/index.json) — canonical Role World-status. Ingen rolle er forhåndsmerket komplett.
+
+Theme Bank kan inspirere sosiologiske konflikter, men skal aldri kopiere filmplot, karakterer, dialog eller konkrete scener. Tema-ID-er er ikke gameplay-state.
+
+## Scene Pipeline
+
+4H-D er fullført. Aktiv kjede:
+
+```text
+authored sources
+→ civication_scene_v1
+→ compiledSceneRegistryV1
+→ SceneCatalog
+→ SceneDirector
+→ NextAction/delivery
+→ ChoiceDirector
+→ EventEngine/consequences
+```
+
+Mail er én delivery og et authored kildeformat. Rå `mailFamilies`, `jobbmails`, RoleStoryletBridge og generiske career-mails er ikke parallelle runtimefallbacks.
 
 ## Roller og jobbinnhold
 
-- [`CIVICATION_ROLE_PACK.md`](./CIVICATION_ROLE_PACK.md) — inngang og dedup-kontrakt for rollepakken
-- [`CIVICATION_ROLE_PACK_STANDARD.md`](./CIVICATION_ROLE_PACK_STANDARD.md) — detaljert role-pack-kontrakt
-- [`CIVICATION_ROLE_PACK_INDEX.md`](./CIVICATION_ROLE_PACK_INDEX.md) — eneste genererte markdown-index for role-pack-status; regenereres sammen med runtime-indeksen
-- [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — normativ arbeidsgrammatikk
-- [`CIVICATION_FWG_GOVERNANCE.md`](./CIVICATION_FWG_GOVERNANCE.md) — eneste genererte markdown-audit for om FWG faktisk styrer mailFamilies
+- [`CIVICATION_ROLE_PACK.md`](./CIVICATION_ROLE_PACK.md) — rollepakkeinngang og dedup-grense.
+- [`CIVICATION_ROLE_PACK_STANDARD.md`](./CIVICATION_ROLE_PACK_STANDARD.md) — detaljert role-pack-kontrakt.
+- [`CIVICATION_ROLE_PACK_INDEX.md`](./CIVICATION_ROLE_PACK_INDEX.md) — generert role-pack-status.
+- [`CIVICATION_WORK_GRAMMAR_STANDARD.md`](./CIVICATION_WORK_GRAMMAR_STANDARD.md) — arbeidsgrammatikk.
+- [`CIVICATION_FWG_GOVERNANCE.md`](./CIVICATION_FWG_GOVERNANCE.md) — generert FWG-governance-audit.
+- [`../data/Civication/README-mailsystem-og-rolemodels.md`](../data/Civication/README-mailsystem-og-rolemodels.md) — authoring-guide for roleModel/FWG/mailPlan/mailFamilies etter Scene Pipeline-cutover.
 
-`npm run audit:civication:role-packs` skriver `docs/CIVICATION_ROLE_PACK_INDEX.md` og `data/Civication/rolePackIndex.json`. Det skal ikke opprettes en parallell kopi under `reports/`.
+## Mail og tråder
 
-`npm run audit:civication:fwg-governance` skriver bare `docs/CIVICATION_FWG_GOVERNANCE.md`. Filen er commit-bundet status, ikke en normativ FWG-kontrakt, og skal ikke kopieres til `reports/civication-fwg-governance.md`.
+Maildokumentene beskriver **delivery/source-format**, ikke en egen gameplaymotor:
 
-De tidligere filene `README/CIVICATION_JOB_MODEL.md` og `README/CIVICATION_job_model.md` var samme tidlige jobbmodell med formateringsforskjeller. De er fjernet. Aktiv modell for mestring, konsekvens, progresjon og komplett jobbinnhold ligger i role-pack-, work-grammar-, roleModel-, mailPlan- og mailFamily-kontraktene over.
+- [`CIVICATION_MAIL_PURPOSE.md`](./CIVICATION_MAIL_PURPOSE.md)
+- [`CIVICATION_MAIL_SCHEMA.md`](./CIVICATION_MAIL_SCHEMA.md)
+- [`CIVICATION_MAIL_STANDARD.md`](./CIVICATION_MAIL_STANDARD.md)
+- [`CIVICATION_THREAD_STANDARD.md`](./CIVICATION_THREAD_STANDARD.md)
 
-## Debatt og konfrontasjon
+En lokal `Re:`-thread i mailformatet er ikke det samme som en Role World-primary thread. Den siste kan utvikle seg over 5–10 beats/scener på tvers av flere dager og deliveries.
 
-- [`CIVICATION_DEBATE_SYSTEM.md`](./CIVICATION_DEBATE_SYSTEM.md) — Civications interne rolle-, kapital-, identitets- og psykebaserte konfrontasjonsmotor
-- [`CIVICATION_HISTORY_GO_DEBATE_SURFACE.md`](./CIVICATION_HISTORY_GO_DEBATE_SURFACE.md) — History GO-flaten som produserer `HGDebates`-signaler gjennom stedlige debatter og standpunkt
+## Debatt og History Go
 
-Disse er to ulike systemflater og skal ikke slås sammen uten en eksplisitt runtimebeslutning.
+- [`CIVICATION_DEBATE_SYSTEM.md`](./CIVICATION_DEBATE_SYSTEM.md) — Civications konfrontasjonsmotor.
+- [`CIVICATION_HISTORY_GO_DEBATE_SURFACE.md`](./CIVICATION_HISTORY_GO_DEBATE_SURFACE.md) — History GO-signaler og stedlige debatter.
 
-## Mail og dagflyt
+## Levevei
 
-- [`CIVICATION_MAIL_PURPOSE.md`](./CIVICATION_MAIL_PURPOSE.md) — formål og avgrensning
-- [`CIVICATION_MAIL_SCHEMA.md`](./CIVICATION_MAIL_SCHEMA.md) — schema
-- [`CIVICATION_MAIL_STANDARD.md`](./CIVICATION_MAIL_STANDARD.md) — innholdsstandard
-- [`CIVICATION_THREAD_STANDARD.md`](./CIVICATION_THREAD_STANDARD.md) — trådstandard
-- [`CIVICATION_PATCH_ORDER.md`](./CIVICATION_PATCH_ORDER.md) — patch-/lastrekkefølge
+Levevei er allerede et eget implementert lag gjennom `CivicationLivelihoods` og opportunity-kjeden. Role World skal koble authored scener og konsekvenser til dette laget når relevant; det skal ikke bygges en ny livelihood-/økonomimotor.
 
 ## Audits og statusdokumenter
 
-Filer med `AUDIT`, `REVIEW`, `STATUS` eller datostempel er snapshots med mindre de er registrert som canonical i `documentation_registry.json`. Genererte operational-filer er reproducerbare statusflater og skal ikke overstyre de normative kontraktene de kontrollerer.
+Filer med `AUDIT`, `REVIEW`, `STATUS` eller datostempel er snapshots med mindre de uttrykkelig er normative kontrakter. Genererte statusflater skal ikke overstyre policy/schema/runtime.
 
-Følgende håndskrevne snapshots er flyttet byte-identisk til [`../reports/archive/2026-07/`](../reports/archive/2026-07/):
+Historiske migreringsbeskrivelser for Scene Pipeline 4A–4H-D hører nå hjemme i PR-/Git-historikken. Aktive fasitfiler beskriver dagens eiergrenser.
 
-- `CIVICATION_BADGE_ROLE_MAPPING_AUDIT.md`
-- `CIVICATION_FLOW_AUDIT.md`
-- `CIVICATION_FUNCTIONALITY_REVIEW.md`
-- `CIVICATION_RUNTIME_OWNERSHIP_AUDIT.md`
-- `CIVICATION_WORKDAY_PHASE_INTEGRATION_AUDIT.md`
-- `civication-status-audit.md`
+## Overordnet prioritet
 
-Arkivfilene er sporbarhet, ikke runtimefasit. Bruk de aktive kontraktene og faktisk kode-/teststatus for nåsituasjonen.
+Ved konflikt gjelder:
 
-## Overordnet teknisk prioritet
+1. [`HISTORY_GO_TECHNICAL_ARCHITECTURE.md`](./HISTORY_GO_TECHNICAL_ARCHITECTURE.md)
+2. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md)
+3. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md)
+4. [`../data/Civication/scenePipelinePolicyV1.json`](../data/Civication/scenePipelinePolicyV1.json)
+5. [`../data/Civication/SCENE_PIPELINE_V1.md`](../data/Civication/SCENE_PIPELINE_V1.md)
+6. [`CIVICATION_ROLE_WORLD_STANDARD.md`](./CIVICATION_ROLE_WORLD_STANDARD.md) for redaksjonell Role World-completion
+7. spesifikke role/FWG/mail/life-kontrakter
+8. genererte audits og historiske snapshots
 
-Ved konflikt gjelder denne rekkefølgen:
+## Neste reelle produksjonssteg
 
-1. [`HISTORY_GO_TECHNICAL_ARCHITECTURE.md`](./HISTORY_GO_TECHNICAL_ARCHITECTURE.md) — språk-, backend- og dataeierskap
-2. [`../README/SYSTEM_REGISTRY.md`](../README/SYSTEM_REGISTRY.md) — overordnet runtime-eierskap
-3. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive Civication- og subsystemkontrakter
-4. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — dagens runtime-flyt
-5. [`../js/Civication/README.md`](../js/Civication/README.md) — Civication-motorene og dagflyten
-6. spesifikke data-/mail-/rolle-/FWG-/debattkontrakter
-7. genererte audits og historiske snapshots
-
-## Regel for nye Civication-dokumenter
-
-Ikke opprett en ny generell `CivicationREADME`, `CivicationGameREADME`, `CIVICATION_JOB_MODEL`, `CIVICATION_STATUS` eller systemoversikt ved siden av denne filen. Oppdater dokumentet som eier det konkrete ansvarsområdet. Tidsbundne undersøkelser skal normalt ligge i `reports/`; reproducerbare statusindekser skal ha én registrert output-path.
-
-De tidligere generelle Civication-chatutkastene og `README/CivicationGameREADME.md` er fjernet fra aktivt tre. Historikken finnes fortsatt i Git.
+Første fullstendige Role World skal være `naeringsliv/ekspeditor`. Den skal gjenbruke eksisterende Ekspeditør-innhold og materialisere 14-dagers sosial dramaturgi gjennom den eksisterende Scene Pipeline. Ingen ny runtime skal bygges.
