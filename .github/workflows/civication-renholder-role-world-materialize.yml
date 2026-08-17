@@ -68,16 +68,31 @@ jobs:
           node scripts/build-civication-scene-registry.mjs --write
           node scripts/audit-civication-career-gameplay.mjs --write
 
-      - name: Verify Renholder Role World and existing packages
+      - name: Verify Role World contract
+        run: node tests/civication-role-world-contract.test.js
+
+      - name: Verify Renholder Role World quality
+        run: node tests/civication-renholder-role-world.test.js
+
+      - name: Verify Renholder role package
+        run: node tests/civication-renholder-role-package.test.js
+
+      - name: Verify Renholder first practice week
+        run: node tests/civication-renholder-first-week-praksisfortellinger.test.js
+
+      - name: Verify Renholder second practice week
+        run: node tests/civication-renholder-second-week-praksisfortellinger.test.js
+
+      - name: Verify Renholder Life Story
+        run: node tests/civication-lifestory-renholder.test.js
+
+      - name: Verify generated registries and matrices
         run: |
-          node tests/civication-role-world-contract.test.js
-          node tests/civication-renholder-role-world.test.js
-          node tests/civication-renholder-role-package.test.js
-          node tests/civication-renholder-first-week-praksisfortellinger.test.js
-          node tests/civication-renholder-second-week-praksisfortellinger.test.js
-          node tests/civication-lifestory-renholder.test.js
           node scripts/build-civication-scene-registry.mjs --check
           node scripts/audit-civication-career-gameplay.mjs --check
+
+      - name: Verify legacy Renholder naming is gone
+        run: |
           if grep -R "Sissel" data/Civication/mailFamilies/naeringsliv/job/renholder_job.json; then
             echo 'Legacy Sissel naming remains in canonical Renholder job source' >&2
             exit 1
