@@ -12,7 +12,7 @@ test('Vitenskap-piloten låser canonical v4.6 og fortsatt kapittelproduksjon', (
   assert.equal(report.subject.id, 'vitenskap');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
   assert.equal(report.subject.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');
-  assert.equal(report.subject.registeredChapterCount, 2);
+  assert.ok(report.subject.registeredChapterCount >= 2);
   assert.deepEqual(report.inventory, {
     domainCount: 6,
     emneCount: 117,

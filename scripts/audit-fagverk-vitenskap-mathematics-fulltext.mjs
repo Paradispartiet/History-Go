@@ -120,8 +120,8 @@ export function auditVitenskapMathematicsFulltext() {
   assert(misconceptions.some((row) => /symmetri/i.test(row.claim) && /transformasjon/i.test(row.correction)), 'Unit 2 mangler symmetri/invarians-korreksjon');
 
   assert(readiness.complete_ready === false, 'Unit 2 kan ikke gjøre Vitenskap complete-ready');
-  assert(readiness.current_inventory?.vitenskap?.registered_chapter_count === 2, 'Readiness må registrere to Vitenskap-kapitler');
-  assert(isDeepStrictEqual(sorted(readiness.editorial_blockers || []), sorted(EXPECTED_REMAINING_BLOCKERS)), 'Etter Unit 2 skal bare fysikk, kjemi og medisin blokkere breadth completion');
+  assert(readiness.current_inventory?.vitenskap?.registered_chapter_count >= 2, 'Readiness må bevare minst to Vitenskap-kapitler etter Unit 2');
+  assert((readiness.editorial_blockers || []).every((id) => EXPECTED_REMAINING_BLOCKERS.includes(id)) && !(readiness.editorial_blockers || []).includes('mathematics_formal_sciences'), 'Senere units kan bare redusere Unit 2 sitt tillatte blocker-sett');
   const mathFamily = readiness.coverage_families?.find((row) => row.id === 'mathematics_formal_sciences');
   assert(mathFamily?.status === 'chapter_materialized', 'Matematikkfamilien må være chapter_materialized');
   assert(mathFamily?.materialized_chapter_id === CHAPTER_ID, 'Matematikkfamilien mangler materialized chapter-link');
@@ -129,11 +129,11 @@ export function auditVitenskapMathematicsFulltext() {
   assert(readiness.current_inventory?.teknologi?.top_level_subject === false && readiness.current_inventory?.teknologi?.canonical_parent_subject === 'vitenskap', 'Teknologi må forbli nested');
 
   const registryChapter = registrySubject?.chapters?.find((row) => row.id === CHAPTER_ID);
-  assert(registrySubject?.chapters?.length === 2, 'Vitenskap-registry skal ha nøyaktig to kapitler etter Unit 2');
+  assert(registrySubject?.chapters?.length >= 2, 'Vitenskap-registry må bevare minst to kapitler etter Unit 2');
   assert(registryChapter, 'Matematikk-kapittelet mangler i registry');
   assert(registryChapter.file === P.chapter && registryChapter.claimsFile === P.claims && registryChapter.briefFile === P.brief, 'Matematikk-registry peker til feil filer');
   assert(sameSet(registryChapter.emne_ids, EXPECTED_EMNES), 'Matematikk-registry har feil emnesett');
-  assert(releaseSubject?.chapter_status === 'materialized' && releaseSubject?.chapter_count === 2, 'Release må materialisere to Vitenskap-kapitler');
+  assert(releaseSubject?.chapter_status === 'materialized' && releaseSubject?.chapter_count === registrySubject.chapters.length && releaseSubject?.chapter_count >= 2, 'Release må bevare Unit 2 og følge registry-kapitteltallet');
   assert(releaseSubject?.missing_chapter_files?.length === 0, 'Vitenskap release har manglende kapittelfiler');
 
   return {
@@ -163,7 +163,7 @@ export function auditVitenskapMathematicsFulltext() {
       sourceClaimIntegrityPreserved: true,
       mathematicsChapterMaterializedAndRegistered: true,
       mathematicsEditorialBlockerResolved: true,
-      threeBreadthEditorialBlockersRemain: true,
+      remainingBreadthEditorialBlockersConsistent: true,
       prematureCompleteBlocked: true,
       technologyRemainsNested: true
     }

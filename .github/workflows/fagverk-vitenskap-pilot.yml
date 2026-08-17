@@ -23,6 +23,7 @@ on:
       - 'scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs'
       - 'scripts/audit-fagverk-vitenskap-mathematics-fulltext.mjs'
       - 'scripts/audit-fagverk-vitenskap-physics-astronomy-source-brief.mjs'
+      - 'scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs'
       - 'scripts/build-fagverk-release-manifest.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
@@ -33,6 +34,7 @@ on:
       - 'tests/fagverk-vitenskap-mathematics-source-brief.test.mjs'
       - 'tests/fagverk-vitenskap-mathematics-fulltext.test.mjs'
       - 'tests/fagverk-vitenskap-physics-astronomy-source-brief.test.mjs'
+      - 'tests/fagverk-vitenskap-physics-astronomy-fulltext.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - 'tests/vitenskap-teknologi-category-contract.test.mjs'
       - 'reports/fagverk/**'
@@ -51,6 +53,7 @@ on:
       - 'scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs'
       - 'scripts/audit-fagverk-vitenskap-mathematics-fulltext.mjs'
       - 'scripts/audit-fagverk-vitenskap-physics-astronomy-source-brief.mjs'
+      - 'scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs'
       - 'tests/fagverk-vitenskap-breadth-reconciliation.test.mjs'
       - 'tests/fagverk-vitenskap-pilot.test.mjs'
       - 'tests/fagverk-vitenskap-university-readiness.test.mjs'
@@ -58,6 +61,7 @@ on:
       - 'tests/fagverk-vitenskap-mathematics-source-brief.test.mjs'
       - 'tests/fagverk-vitenskap-mathematics-fulltext.test.mjs'
       - 'tests/fagverk-vitenskap-physics-astronomy-source-brief.test.mjs'
+      - 'tests/fagverk-vitenskap-physics-astronomy-fulltext.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-vitenskap-pilot.yml'
   workflow_dispatch:
@@ -83,6 +87,7 @@ jobs:
           node --check scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs
           node --check scripts/audit-fagverk-vitenskap-mathematics-fulltext.mjs
           node --check scripts/audit-fagverk-vitenskap-physics-astronomy-source-brief.mjs
+          node --check scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs
       - name: Validate shared Fagverk inventory and engine
         run: |
           node scripts/audit-fagverk-subject-inventory.mjs
@@ -148,6 +153,20 @@ jobs:
             exit "$status"
           fi
           printf '%s\n' "$output"
+      - name: Validate Vitenskap Unit 3 physics astronomy fulltext
+        shell: bash
+        run: |
+          set +e
+          output=$(node scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs 2>&1)
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ]; then
+            message=$(printf '%s' "$output" | tail -n 12 | tr '\n' ' ' | sed 's/%/%25/g; s/\r/%0D/g; s/\n/%0A/g')
+            echo "::error file=scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs,title=Vitenskap physics astronomy fulltext audit failed::$message"
+            printf '%s\n' "$output"
+            exit "$status"
+          fi
+          printf '%s\n' "$output"
       - name: Validate release manifest remains deterministic
         run: node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk, Vitenskap and Teknologi contracts
@@ -161,6 +180,7 @@ jobs:
           node --test tests/fagverk-vitenskap-mathematics-source-brief.test.mjs
           node --test tests/fagverk-vitenskap-mathematics-fulltext.test.mjs
           node --test tests/fagverk-vitenskap-physics-astronomy-source-brief.test.mjs
+          node --test tests/fagverk-vitenskap-physics-astronomy-fulltext.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
           node --test tests/vitenskap-teknologi-category-contract.test.mjs
       - name: Validate nested Teknologi scientific package
