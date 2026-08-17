@@ -99,6 +99,11 @@ function normalizedParagraphClaimTraceShape(module) {
   return copy;
 }
 
+function failGate(id) {
+  if (process.env.GITHUB_ACTIONS) console.error(`::error title=Unit15 editorial gate failure::${id}`);
+  throw new Error(`Unit15 editorial gate feilet: ${id}`);
+}
+
 export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeReport = false, checkReport = false } = {}) {
   const built = buildFilmTvCulturalHeritageCanonStarsMemoryEditorialV1();
   const sections = built.modules.flatMap((module) => module.sections || []);
@@ -184,7 +189,7 @@ export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeRe
         : isDeepStrictEqual(module, built.modules[index]))
   };
 
-  for (const [id, ok] of Object.entries(gates)) assert(ok, `Unit15 editorial gate feilet: ${id}`);
+  for (const [id, ok] of Object.entries(gates)) if (!ok) failGate(id);
 
   const report = {
     schema: 'history_go_film_tv_cultural_heritage_canon_stars_memory_fulltext_audit_v2',
