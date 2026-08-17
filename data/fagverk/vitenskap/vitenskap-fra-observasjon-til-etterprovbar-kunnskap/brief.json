@@ -1,0 +1,156 @@
+{
+  "schema": "history_go_fagverk_chapter_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "vitenskap",
+  "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+  "primary_domain_id": "institusjoner_laboratorier_kunnskapssteder",
+  "purpose": "Gi en kildebelagt universitetsnær innføring i hvordan en observasjon blir til etterprøvbar vitenskapelig kunnskap gjennom organiserte forskningsmiljøer, instrumenter, målesystemer, standarder, fagfellekritikk, reproducerbarhet, replikasjon og åpenhet, uten å fremstille institusjonell autoritet eller fagfellevurdering som garanti for sannhet.",
+  "audience": "Brukere som kjenner grunnideen om vitenskapelig metode, men trenger å forstå den materielle og institusjonelle kjeden fra observasjon og måling til kontroll, kritikk, deling og begrunnet tillit.",
+  "learningArc": [
+    "skille observasjon fra et ferdig vitenskapelig resultat og identifisere mellomleddene som gjør observasjonen etterprøvbar",
+    "forklare hvordan universiteter, laboratorier og forskningsinfrastruktur organiserer arbeid, utstyr, data og kompetanse uten å gjøre institusjonen til sannhetsgarant",
+    "skille instrumentavlesning, kalibrering, sporbarhet og måleusikkerhet",
+    "analysere hvordan standarder og protokoller gjør resultater sammenlignbare samtidig som lokale betingelser og feilkilder må dokumenteres",
+    "skille fagfellevurdering fra uavhengig replikasjon og forklare hva hver kontrollform kan og ikke kan vise",
+    "skille computational reproducibility fra replicability etter National Academies-definisjonene",
+    "forklare hvordan åpen vitenskap kan styrke innsyn, kritikk og gjenbruk, samtidig som personvern, sikkerhet og andre legitime grenser kan begrense åpenhet",
+    "avslutte med en evidenskjede der påstandens styrke svarer til metode, målegrunnlag, usikkerhet, kontroll og uavhengig etterprøving"
+  ],
+  "requiredEmneIds": [
+    "em_vit_universitet_kunnskapsproduksjon",
+    "em_vit_laboratorium_praksis",
+    "em_vit_instrumenter_maling",
+    "em_vit_forskningsinfrastruktur",
+    "em_vit_fagmiljo_standarder",
+    "em_vit_fagfellevurdering",
+    "em_vit_reproduserbarhet",
+    "em_vit_institusjonell_tillit"
+  ],
+  "requiredMethodIds": [
+    "met_vit_institusjonsanalyse",
+    "met_vit_kalibreringsanalyse",
+    "met_vit_usikkerhetsanalyse",
+    "met_vit_fagfelleanalyse",
+    "met_vit_feilkildeanalyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "observasjon vs vitenskapelig resultat",
+    "instrumentavlesning vs måleresultat med usikkerhet",
+    "kalibrert instrument vs sporbar måling",
+    "standardisering vs feilfrihet",
+    "institusjonell autoritet vs dokumentert evidens",
+    "fagfellevurdering vs sannhetsgaranti",
+    "computational reproducibility vs replicability med nye data",
+    "gjentakelse av analyse vs uavhengig ny studie",
+    "uenighet mellom studier vs automatisk forskningssvikt",
+    "åpenhet vs grenseløs publisering av sensitive data",
+    "konsensus vs enstemmighet",
+    "begrunnet tillit vs ukritisk tillit"
+  ],
+  "namedResearchersAndFrameworks": [
+    {
+      "name": "Charles D. Ehrlich",
+      "role": "NIST-metrolog; brukes for å forklare hvordan karakterisering av målesystemer, kalibrering og usikkerhet påvirker sporbarheten til måleresultater."
+    },
+    {
+      "name": "National Academies Committee on Reproducibility and Replicability in Science",
+      "role": "Brukes for det eksplisitte skillet mellom computational reproducibility og replicability og for analysen av hvordan flere studier bygger tillit til et kunnskapsgrunnlag."
+    },
+    {
+      "name": "Robert K. Merton",
+      "role": "Historisk sosiologi-of-science-referanse for å diskutere normer, institusjoner og vitenskapelig fellesskap; behandles som analytisk ramme, ikke som beskrivelse av hvordan alle forskningsmiljøer faktisk fungerer."
+    },
+    {
+      "name": "Helen Longino",
+      "role": "Brukes som analytisk bro til kritisk samhandling og hvorfor faglig kontroll krever reell mulighet for kritikk; filosofisk fordypning forblir i Filosofi."
+    }
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "NIST-kilder om metrologisk sporbarhet, kalibrering og måleusikkerhet",
+      "National Academies-konsensusrapport om reproducibility og replicability",
+      "NIH-policy om rigor, reproducibility og fagfellevurdering",
+      "UNESCO Recommendation on Open Science om transparens, kritikk, reproducerbarhet og legitime begrensninger på åpenhet",
+      "EU-kommisjonens definisjon og avgrensning av forskningsinfrastruktur",
+      "OECD Frascati Manual for organisert forskning og utvikling",
+      "canonical Vitenskap-v4.5-filer som emne-, metode- og teoristyring, aldri som ekstern faktakilde"
+    ],
+    "minimumExternalSources": 8,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "noDecorativeSources": true
+  },
+  "documentedCasesOrScenarios": [
+    {
+      "id": "scenario-malekjede",
+      "type": "teaching_scenario",
+      "title": "Fra sensorverdi til sporbar måling",
+      "basis": ["NIST policy on metrological traceability", "NIST calibration and uncertainty guidance"],
+      "purpose": "La brukeren rekonstruere kjeden fra definert measurand og instrument via kalibreringsreferanser og usikkerhetsbudsjett til en påstand som kan sammenlignes med andre målinger."
+    },
+    {
+      "id": "scenario-reanalyse-replikasjon",
+      "type": "teaching_scenario",
+      "title": "Samme data eller nye data?",
+      "basis": ["National Academies Reproducibility and Replicability in Science", "NIH rigor and reproducibility policy"],
+      "purpose": "La brukeren skille mellom å kjøre samme analyse på samme data og kode og å gjennomføre en ny studie med nye data for å undersøke samme vitenskapelige spørsmål."
+    },
+    {
+      "id": "scenario-fagfelle-tillit",
+      "type": "teaching_scenario",
+      "title": "Hva kan fagfellevurdering faktisk støtte?",
+      "basis": ["NIH peer review policy", "UNESCO Recommendation on Open Science"],
+      "purpose": "La brukeren skille vurdering av metode, rigor og faglig kvalitet fra senere empirisk kontroll, reanalyse og replikasjon."
+    }
+  ],
+  "scope": {
+    "included": [
+      "universitet, laboratorium og forskningsmiljø som organiserte kunnskapspraksiser",
+      "forskningsinfrastruktur som instrumenter, samlinger, dataressurser, databehandling og nettverk",
+      "instrumentering, kalibrering, sporbarhet, standardisering, usikkerhet og feilkilder",
+      "fagfellevurdering, rigor, computational reproducibility og replicability",
+      "åpen vitenskap, dokumentasjon, kritikk, datadeling og legitime tilgangsgrenser",
+      "institusjonell tillit analysert som resultat av etterprøvbare prosesser fremfor merkevare eller status"
+    ],
+    "excluded": [
+      "påstand om at én universell vitenskapelig metode passer alle fag",
+      "filosofisk heldebatt om sannhet, realisme eller induksjon som allerede eies av Filosofi",
+      "grunnfaglig dybde i fysikk, kjemi, matematikk eller medisin som readiness-kontrakten fortsatt markerer som egne blocking gaps",
+      "påstand om at fagfellevurdering beviser at et resultat er sant",
+      "påstand om at replikasjon alltid skal gi identisk resultat",
+      "påstand om at et instrument er sporbar bare fordi det en gang er kalibrert",
+      "krav om åpne persondata, sikkerhetssensitive data eller annet materiale som har legitime beskyttelsesbehov"
+    ]
+  },
+  "rejectedOrDeferred": [
+    {
+      "detail": "Et generisk femtrinnsskjema kalt den vitenskapelige metode.",
+      "reason": "Fag varierer i design, data, teori og kontrollformer. Kapittelet lærer en evidenskjede og eksplisitte kontrollspørsmål i stedet for å fremstille én lineær oppskrift som universell."
+    },
+    {
+      "detail": "At fagfellevurdert betyr sant.",
+      "reason": "Peer review er en kontrollprosess for kvalitet og faglig vurdering; resultater kan fortsatt kritiseres, reanalyseres og replikeres."
+    },
+    {
+      "detail": "At full åpenhet alltid er mulig eller riktig.",
+      "reason": "UNESCO-prinsippet er så åpent som mulig, men anerkjenner begrensninger knyttet til blant annet personvern, konfidensialitet, rettigheter og sensitiv kunnskap."
+    },
+    {
+      "detail": "At høy institusjonell status alene er evidens for en faglig påstand.",
+      "reason": "Institusjoner organiserer kompetanse og kontroll, men kapittelets claimstyrke skal avgjøres av den konkrete evidenskjeden."
+    }
+  ],
+  "qa": {
+    "threeEditedModules": true,
+    "workedExamples": true,
+    "renderableWorkedExampleAnalysis": true,
+    "misconceptions": true,
+    "applicationTasks": true,
+    "selfCheck": true,
+    "documentedTeachingScenarios": true,
+    "inspectableSources": true,
+    "paragraphLevelClaims": true,
+    "permanentAudit": true,
+    "crossChapterOriginalityRequired": true
+  }
+}
