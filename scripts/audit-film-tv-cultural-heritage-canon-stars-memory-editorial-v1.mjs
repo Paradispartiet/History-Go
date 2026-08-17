@@ -91,6 +91,14 @@ function maximumOpeningCount(paragraphs) {
   return Math.max(0, ...counts.values());
 }
 
+function normalizedParagraphClaimTraceShape(module) {
+  const copy = structuredClone(module);
+  for (const section of copy.sections || []) {
+    section.paragraphClaimIds = (section.paragraphClaimIds || []).map((trace) => Array.isArray(trace) ? trace : [trace]);
+  }
+  return copy;
+}
+
 export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeReport = false, checkReport = false } = {}) {
   const built = buildFilmTvCulturalHeritageCanonStarsMemoryEditorialV1();
   const sections = built.modules.flatMap((module) => module.sections || []);
@@ -171,7 +179,9 @@ export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeRe
       && isDeepStrictEqual(read(P.claims), built.claimsDoc)
       && (completionAlreadyActive || isDeepStrictEqual(read(P.registry), built.registry))
       && (completionAlreadyActive || isDeepStrictEqual(read(P.status), built.status))
-      && committedModules.every((module, index) => isDeepStrictEqual(module, built.modules[index]))
+      && committedModules.every((module, index) => completionAlreadyActive
+        ? isDeepStrictEqual(normalizedParagraphClaimTraceShape(module), normalizedParagraphClaimTraceShape(built.modules[index]))
+        : isDeepStrictEqual(module, built.modules[index]))
   };
 
   for (const [id, ok] of Object.entries(gates)) assert(ok, `Unit15 editorial gate feilet: ${id}`);
@@ -205,7 +215,7 @@ export function auditFilmTvCulturalHeritageCanonStarsMemoryEditorialV1({ writeRe
         correctness_and_evidence: { score: 5, evidence: '56/56 sluttclaims beholder claimspesifikke kilder, case og metoder, og alle 26 kilder og 24 case er aktivt brukt.' },
         coverage_and_completion: { score: 5, evidence: '12/12 canonicale emner dekkes i fire moduler med én-til-én-sporing mellom 56 claims og 56 fagavsnitt.' },
         editorial_quality: { score: 5, evidence: 'Fagavsnittene har variert argumentrekkefølge og åpning, claimteksten gjentas ikke retorisk, og både sporlogg og den skjulte For-claim/Konklusjonen-for-malen er permanent blokkert.' },
-        technical_integrity: { score: 5, evidence: 'Den redaksjonelle materialiseringen er deterministisk for Unit15-innholdet og tolererer bare en senere, bevist helhetscompletion i registry/status.' },
+        technical_integrity: { score: 5, evidence: 'Den redaksjonelle materialiseringen er deterministisk for Unit15-innholdet; etter helhetscompletion godtas bare den eksplisitte én-claim-per-avsnitt-arraynormaliseringen og den senere registry/status-tilstanden.' },
         safety_and_responsibility: { score: 5, evidence: 'Popularitet, berømmelse, kultstatus, privat materiale, nostalgi og kollektivt minne kan ikke kortslutte de dokumenterte evidensgrensene.' },
         maintainability_and_reproducibility: { score: 5, evidence: 'Canonical source brief beholdes som historisk input, Unit15 kan reauditeres uten å regressere en senere 192/17-completion, og fulltekstporten forblir eksplisitt i førtilstanden.' }
       },
