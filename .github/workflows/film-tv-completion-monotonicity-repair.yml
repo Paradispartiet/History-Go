@@ -37,12 +37,18 @@ jobs:
           node scripts/repair-film-tv-completion-monotonicity-v1.mjs --write
           node scripts/repair-film-tv-completion-monotonicity-v1.mjs
 
-      - name: Validate units 8 through 10
+      - name: Validate unit 8 screen public sphere
         run: |
           node scripts/audit-film-tv-screen-public-sphere-community-society-fulltext-v1.mjs
           node --test tests/film-tv-screen-public-sphere-community-society-fulltext-v1.test.mjs
+
+      - name: Validate unit 9 creative work
+        run: |
           node scripts/audit-film-tv-creative-work-technology-responsibility-fulltext-v1.mjs
           node --test tests/film-tv-creative-work-technology-responsibility-fulltext-v1.test.mjs
+
+      - name: Validate unit 10 industry
+        run: |
           node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
           node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
 
