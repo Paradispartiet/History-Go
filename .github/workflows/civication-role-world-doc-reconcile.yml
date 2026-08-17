@@ -1,0 +1,45 @@
+name: Civication role world docs reconcile
+
+on:
+  push:
+    branches:
+      - agent/civication-role-world-documentation-reconciliation
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-role-world-documentation-reconciliation
+          fetch-depth: 0
+      - name: Apply targeted documentation reconciliation
+        run: python3 scripts/tmp-civication-doc-reconcile.py
+      - name: Validate edited JSON and documentation references
+        run: |
+          python3 -m json.tool docs/documentation_registry.json >/dev/null
+          python3 -m json.tool data/Civication/scenePipelinePolicyV1.json >/dev/null
+          grep -q 'Role World' docs/CIVICATION_README.md
+          grep -q '4H-D fullført' docs/CIVICATION_PATCH_ORDER.md
+          grep -q 'compiledSceneRegistryV1.json' js/Civication/README.md
+          grep -q 'CIVICATION_ROLE_WORLD_STANDARD.md' docs/README.md
+      - name: Remove temporary apply files
+        run: |
+          rm -f scripts/tmp-civication-doc-reconcile.py
+          rm -f .github/workflows/civication-role-world-doc-reconcile.yml
+      - name: Commit reconciled documentation
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add docs js/Civication/README.md data/Civication/README-mailsystem-og-rolemodels.md data/Civication/SCENE_PIPELINE_V1.md data/Civication/scenePipelinePolicyV1.json
+          git add -u scripts/tmp-civication-doc-reconcile.py .github/workflows/civication-role-world-doc-reconcile.yml
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+            exit 0
+          fi
+          git commit -m 'Reconcile Civication documentation ownership'
+          git push origin HEAD:agent/civication-role-world-documentation-reconciliation
