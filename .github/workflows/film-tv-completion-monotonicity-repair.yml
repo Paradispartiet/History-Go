@@ -46,20 +46,29 @@ jobs:
           node scripts/audit-film-tv-industry-regulation-distribution-fulltext-v1.mjs
           node --test tests/film-tv-industry-regulation-distribution-fulltext-v1.test.mjs
 
-      - name: Validate units 11 through 14
+      - name: Validate unit 11 reception
         run: |
           node scripts/brief-film-tv-reception-participation-audience-methods-sources-v1.mjs
           node scripts/audit-film-tv-reception-participation-audience-methods-fulltext-v1.mjs
           node --test tests/film-tv-reception-participation-audience-methods-source-brief-v1.test.mjs
           node --test tests/film-tv-reception-participation-audience-methods-fulltext-v1.test.mjs
+
+      - name: Validate unit 12 screen places
+        run: |
           node scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs
           node scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs
           node --test tests/film-tv-screen-places-identity-circulation-source-brief-v1.test.mjs
           node --test tests/film-tv-screen-places-identity-circulation-fulltext-v1.test.mjs
+
+      - name: Validate unit 13 location ethics
+        run: |
           node scripts/brief-film-tv-location-production-place-ethics-sources-v1.mjs
           node scripts/audit-film-tv-location-production-place-ethics-fulltext-v1.mjs
           node --test tests/film-tv-location-production-place-ethics-source-brief-v1.test.mjs
           node --test tests/film-tv-location-production-place-ethics-fulltext-v1.test.mjs
+
+      - name: Validate unit 14 archive preservation
+        run: |
           node scripts/brief-film-tv-archive-preservation-access-authenticity-sources-v1.mjs
           node scripts/audit-film-tv-archive-preservation-access-authenticity-fulltext-v1.mjs
           node --test tests/film-tv-archive-preservation-access-authenticity-source-brief-v1.test.mjs
