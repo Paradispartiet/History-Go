@@ -1,0 +1,78 @@
+{
+  "schema": "history_go_fagverk_chapter_v1",
+  "version": "1.0.0",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "id": "vitenskap-medisin-fra-mekanisme-til-folkehelse",
+  "chapter_id": "vitenskap-medisin-fra-mekanisme-til-folkehelse",
+  "primary_domain_id": "natur_medisin_miljo",
+  "coverage_family_id": "medicine_biomedicine_public_health",
+  "editorialStatus": "chapter_ready",
+  "claimTraceRequired": true,
+  "scopeNote": "Universitetsfaglig forskningsmetode og evidensvurdering; kapittelet gir ikke individuell diagnose eller behandlingsråd.",
+  "emne_ids": [
+    "em_vit_biomedisinsk_mekanisme_og_modell",
+    "em_vit_diagnostikk_biomarkorer_og_testegenskaper",
+    "em_vit_kliniske_studier_og_intervensjoner",
+    "em_vit_behandlingsevidens_og_effekt",
+    "em_vit_folkehelse_arsak_og_forebygging"
+  ],
+  "method_ids": [
+    "met_vit_modellanalyse",
+    "met_vit_laboratorieanalyse",
+    "met_vit_evidensanalyse",
+    "met_vit_statistisk_analyse",
+    "met_vit_maleinstrumentanalyse",
+    "met_vit_eksperimentanalyse",
+    "met_vit_risikoanalyse",
+    "met_vit_epidemiologisk_analyse",
+    "met_vit_kausalitetsanalyse"
+  ],
+  "title": "Medisin fra mekanisme til folkehelse",
+  "subtitle": "Fra biomedisinske modeller og biomarkører via diagnostisk validering og randomiserte studier til behandlingseffekt, epidemiologi og kausal forebygging",
+  "lead": "Medisinsk kunnskap består av flere evidensnivåer som ikke kan erstattes av hverandre. Et robust mekanistisk funn i en modell er ikke automatisk klinisk effekt hos mennesker; en presis biomarkørmåling er ikke i seg selv en diagnose; et statistisk signifikant studieresultat er ikke det samme som stor pasientnytte; og en epidemiologisk assosiasjon er ikke alene en årsaksforklaring. Kapittelet følger derfor evidenskjeden fra modellvalg og laboratorierigør via testvalidering, forhåndsdefinerte kliniske studier og evidenssyntese til befolkningsdata og forebygging. Hele framstillingen gjelder forskningsmetode og evidensvurdering, ikke individuell medisinsk beslutningsstøtte.",
+  "learningObjectives": [
+    "skille reproduserbarhet i en biomedisinsk modell fra dokumentert menneskelig relevans og klinisk nytte",
+    "skille biomarkør, analytisk validering, klinisk validering, testsignal og diagnose",
+    "forklare sensitivitet og spesifisitet og vise hvorfor prediktive verdier også avhenger av prevalens eller pretest-sannsynlighet",
+    "rekonstruere en randomisert studies evidenskjede fra protokoll og registrering via randomisering og analyseplan til rapportert effekt",
+    "skille relativ behandlingseffekt fra absolutt effekt, grunnrisiko, usikkerhet, harms og klinisk betydning",
+    "vurdere enkeltstudier i lys av risiko for bias, systematisk evidenssyntese og evidenssikkerhet",
+    "identifisere confounding, seleksjonsbias og informasjonsbias som alternative forklaringer på epidemiologiske assosiasjoner",
+    "skille befolkningsmessig samvariasjon før og etter et tiltak fra en kausalt identifisert forebyggingseffekt"
+  ],
+  "diagnosticQuestions": [
+    {"question": "Beviser et reproduserbart resultat i en celle- eller dyremodell at en behandling virker hos mennesker?", "answer": "Nei. Modellrigor og menneskelig relevans er separate kvalitetskrav; klinisk effekt krever evidens i relevant menneskelig kontekst."},
+    {"question": "Er en positiv biomarkørverdi i seg selv en diagnose?", "answer": "Nei. Målingen må være analytisk validert og klinisk validert i en definert brukskontekst og tolkes mot referansestandard og populasjon."},
+    {"question": "Har en test samme positive prediktive verdi i alle populasjoner dersom sensitivitet og spesifisitet er uendret?", "answer": "Nei. Prediktive verdier påvirkes av sykdomsprevalens eller pretest-sannsynlighet."},
+    {"question": "Garanterer prospektiv registrering og CONSORT-rapportering at en studie har lav risiko for bias?", "answer": "Nei. Åpenhet gjør design og avvik kontrollerbare, men randomisering, allokering, manglende data, utfall og analyse må fortsatt vurderes."},
+    {"question": "Betyr statistisk signifikans automatisk at behandlingseffekten er klinisk viktig?", "answer": "Nei. Effektstørrelse, absolutt grunnrisiko, usikkerhet, harms og relevans må vurderes."},
+    {"question": "Beviser et fall i sykdomsrate etter et folkehelsetiltak at tiltaket forårsaket fallet?", "answer": "Nei. Tidsrekkefølge er relevant, men sammenligningsgrunnlag, confounding, bias og samtidige endringer må analyseres før kausal effekt hevdes."}
+  ],
+  "moduleFiles": [
+    "data/fagverk/vitenskap/vitenskap-medisin-fra-mekanisme-til-folkehelse/01-grunnlag.json",
+    "data/fagverk/vitenskap/vitenskap-medisin-fra-mekanisme-til-folkehelse/02-fordypning.json",
+    "data/fagverk/vitenskap/vitenskap-medisin-fra-mekanisme-til-folkehelse/03-anvendelse.json"
+  ],
+  "briefFile": "data/fagverk/vitenskap/vitenskap-medisin-fra-mekanisme-til-folkehelse/brief.json",
+  "claimsFile": "data/fagverk/vitenskap/vitenskap-medisin-fra-mekanisme-til-folkehelse/claims.json",
+  "universityReadinessFile": "data/fag/vitenskap/vitenskap_university_readiness_v1.json",
+  "qualityGuard": {
+    "modelVsHumanClinicalEvidenceExplicit": true,
+    "biomarkerVsDiagnosisExplicit": true,
+    "analyticalVsClinicalValidationExplicit": true,
+    "sensitivitySpecificityVsPredictiveValueExplicit": true,
+    "trialRegistrationVsBiasGuaranteeExplicit": true,
+    "prespecificationVsPostHocExplicit": true,
+    "relativeVsAbsoluteEffectExplicit": true,
+    "statisticalVsClinicalImportanceExplicit": true,
+    "benefitVsHarmsExplicit": true,
+    "associationVsCausationExplicit": true,
+    "confoundingAndBiasExplicit": true,
+    "noIndividualMedicalAdvice": true,
+    "doesNotClaimSubjectComplete": true,
+    "finalHolisticReadinessRequired": true,
+    "technologyRemainsNested": true,
+    "noGenericTemplateReuse": true
+  }
+}
