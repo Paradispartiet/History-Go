@@ -45,7 +45,15 @@ const PRIMARY_WORK_OVERRIDES = {
     { actor: 'Max Weber', work: 'Science as a Vocation' },
     { actor: 'Helen Longino', work: 'Science as Social Knowledge' },
     { actor: 'Heather Douglas', work: 'Science, Policy, and the Value-Free Ideal' }
+  ],
+  em_filosofi_vitnesbyrd_ekspertise_tillit: [
+    { actor: 'Elizabeth Fricker', work: 'Telling and Trusting: Reductionism and Anti-Reductionism in the Epistemology of Testimony' },
+    { actor: 'Alvin Goldman', work: 'Knowledge in a Social World' }
   ]
+};
+
+const DEBATE_THINKER_REMOVALS = {
+  em_filosofi_intensjon_grunner_arsaker_handling: new Set(['david hume'])
 };
 
 const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -61,45 +69,42 @@ const articleWords = (article) => words((article.sections ?? []).flatMap((s) => 
 
 const thinkerRegistry = readJson(THINKERS_PATH);
 const thinkers = thinkerRegistry.thinkers ?? [];
+const thinkerById = new Map(thinkers.map((t) => [t.id, t]));
 const thinkerByName = new Map(thinkers.map((t) => [normalize(t.name), t]));
-const thinkersByLastToken = new Map();
-for (const thinker of thinkers) {
-  const token = nameToken(thinker.name);
-  if (!token) continue;
-  const rows = thinkersByLastToken.get(token) ?? [];
-  rows.push(thinker);
-  thinkersByLastToken.set(token, rows);
-}
+const THINKER_ALIASES = new Map([
+  [normalize('Averroes'), 'ibn_rushd'],
+  [normalize('Kyle Whyte'), 'kyle_whyte']
+]);
 function resolveThinker(name) {
   const direct = thinkerByName.get(normalize(name));
   if (direct) return direct;
-  const candidates = thinkersByLastToken.get(nameToken(name)) ?? [];
-  return candidates.length === 1 ? candidates[0] : null;
+  const aliasId = THINKER_ALIASES.get(normalize(name));
+  return aliasId ? thinkerById.get(aliasId) ?? null : null;
 }
 
 const hasWork = (anchors, work) => anchors.some((anchor) => normalize(anchor.work) === normalize(work));
 
-function autoPrimaryAnchors(article, canonicalDebateThinkers) {
+function autoPrimaryAnchors(article, canonicalDebateActors) {
   const oldWorks = new Set((article.primary_work_refs ?? []).map(normalize));
   const anchors = [];
-  for (const thinker of canonicalDebateThinkers) {
+  for (const { actor, thinker } of canonicalDebateActors) {
     for (const work of thinker.works ?? []) {
       if (!oldWorks.has(normalize(work)) || hasWork(anchors, work)) continue;
-      anchors.push({ actor: thinker.name, canonical_ref: thinker.id, work });
+      anchors.push({ actor, canonical_ref: thinker.id, work });
       break;
     }
   }
-  for (const thinker of canonicalDebateThinkers) {
+  for (const { actor, thinker } of canonicalDebateActors) {
     if (anchors.length >= 3) break;
     if (anchors.some((anchor) => anchor.canonical_ref === thinker.id)) continue;
     const work = (thinker.works ?? []).find((candidate) => !hasWork(anchors, candidate));
-    if (work) anchors.push({ actor: thinker.name, canonical_ref: thinker.id, work });
+    if (work) anchors.push({ actor, canonical_ref: thinker.id, work });
   }
   if (anchors.length < 2) {
-    for (const thinker of canonicalDebateThinkers) {
+    for (const { actor, thinker } of canonicalDebateActors) {
       for (const work of thinker.works ?? []) {
         if (hasWork(anchors, work)) continue;
-        anchors.push({ actor: thinker.name, canonical_ref: thinker.id, work });
+        anchors.push({ actor, canonical_ref: thinker.id, work });
         if (anchors.length >= 2) break;
       }
       if (anchors.length >= 2) break;
@@ -108,9 +113,9 @@ function autoPrimaryAnchors(article, canonicalDebateThinkers) {
   return anchors.slice(0, 3);
 }
 
-function buildPrimaryAnchors(article, canonicalDebateThinkers) {
+function buildPrimaryAnchors(article, canonicalDebateActors) {
   const override = PRIMARY_WORK_OVERRIDES[article.id];
-  if (!override) return autoPrimaryAnchors(article, canonicalDebateThinkers);
+  if (!override) return autoPrimaryAnchors(article, canonicalDebateActors);
   const debateNames = new Set((article.university_quality?.debate_thinkers ?? []).map(normalize));
   return override.map((anchor) => {
     if (!debateNames.has(normalize(anchor.actor))) throw new Error(`${article.id}: override-aktør ${anchor.actor} finnes ikke i debate_thinkers`);
@@ -164,20 +169,29 @@ const plans = [];
 for (const file of files) {
   const p = path.join(ARTICLES_DIR, file);
   const article = readJson(p);
+  const removals = DEBATE_THINKER_REMOVALS[article.id] ?? new Set();
+  if (removals.size) {
+    article.university_quality.debate_thinkers = (article.university_quality?.debate_thinkers ?? []).filter((name) => !removals.has(normalize(name)));
+  }
   const debateNames = article.university_quality?.debate_thinkers ?? [];
   if (debateNames.length < 2) throw new Error(`${article.id}: mangler minst to debate_thinkers`);
-  const canonicalDebateThinkers = debateNames.map(resolveThinker).filter(Boolean).filter((thinker, index, rows) => rows.findIndex((row) => row.id === thinker.id) === index);
-  const anchors = buildPrimaryAnchors(article, canonicalDebateThinkers);
+  const canonicalDebateActors = [];
+  for (const actor of debateNames) {
+    const thinker = resolveThinker(actor);
+    if (!thinker || canonicalDebateActors.some((row) => row.thinker.id === thinker.id)) continue;
+    canonicalDebateActors.push({ actor, thinker });
+  }
+  const anchors = buildPrimaryAnchors(article, canonicalDebateActors);
   if (anchors.length < 2) throw new Error(`${article.id}: mangler minst to debattspesifikke primærverkankre`);
   if (new Set(anchors.map((anchor) => normalize(anchor.work))).size !== anchors.length) throw new Error(`${article.id}: dupliserte primærverkankre`);
-  plans.push({ p, article, debateNames, canonicalDebateThinkers, anchors });
+  plans.push({ p, article, debateNames, canonicalDebateActors, anchors });
 }
 
 const repaired = [];
-for (const { p, article, debateNames, canonicalDebateThinkers, anchors } of plans) {
+for (const { p, article, debateNames, canonicalDebateActors, anchors } of plans) {
   const beforeThinkers = JSON.stringify(article.thinker_refs ?? []);
   const beforeWorks = JSON.stringify(article.primary_work_refs ?? []);
-  article.thinker_refs = canonicalDebateThinkers.map((thinker) => thinker.id);
+  article.thinker_refs = canonicalDebateActors.map(({ thinker }) => thinker.id);
   article.primary_work_refs = anchors.map((anchor) => anchor.work);
   article.university_quality.primary_work_count = anchors.length;
   article.quality = article.quality ?? {};
