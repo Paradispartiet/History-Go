@@ -15,6 +15,7 @@ assert.equal(scenePolicy.compiled_scene_registry_contract.legacy_fallback_policy
 assert.equal(scenePolicy.compiled_scene_registry_contract.legacy_fallback_policy.jobbmails_runtime_gameplay_allowed, false);
 
 const policy = json('data/Civication/roleWorldPolicy.json');
+const authoringChecklist = json('data/Civication/roleWorldAuthoringChecklist.json');
 const themeBank = json('data/Civication/roleWorldThemeBank.json');
 const index = json('data/Civication/roleWorlds/index.json');
 const schema = json('data/Civication/roleWorldV1.schema.json');
@@ -22,6 +23,17 @@ const schema = json('data/Civication/roleWorldV1.schema.json');
 assert.equal(policy.runtime_boundary.new_runtime_allowed, false);
 assert.equal(policy.runtime_boundary.new_parallel_scene_format_allowed, false);
 assert.equal(policy.career_status_boundary.not_equivalent_to, 'role_world_complete');
+assert.equal(policy.authoring_guide, 'docs/CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md');
+assert.equal(policy.authoring_checklist, 'data/Civication/roleWorldAuthoringChecklist.json');
+assert.deepEqual(policy.first_reference_world, {
+  category: 'naeringsliv',
+  role_scope: 'ekspeditor',
+  status: 'role_world_complete'
+});
+assert.deepEqual(policy.next_reference_world, {
+  category: 'naeringsliv',
+  role_scope: 'renholder'
+});
 assert.equal(policy.season_contract.days, 14);
 assert.deepEqual(policy.season_contract.day_phases, ['morning', 'lunch', 'afternoon', 'evening']);
 assert.equal(policy.season_contract.required_unique_coverage_slots_for_complete, 56);
@@ -31,6 +43,35 @@ assert.equal(policy.thread_contract.primary_thread_beats_max, 10);
 assert.equal(policy.materialization.raw_mailfamilies_runtime_fallback_allowed, false);
 assert.equal(policy.materialization.role_storylet_runtime_fallback_allowed, false);
 assert.equal(policy.materialization.jobbmails_runtime_fallback_allowed, false);
+
+assert.equal(authoringChecklist.schema, 'civication_role_world_authoring_checklist_v1');
+assert.equal(authoringChecklist.policy, 'data/Civication/roleWorldPolicy.json');
+assert.equal(authoringChecklist.reference_world, 'data/Civication/roleWorlds/naeringsliv/ekspeditor.json');
+assert.equal(authoringChecklist.principles.new_runtime_forbidden, true);
+assert.equal(authoringChecklist.principles.new_parallel_scene_format_forbidden, true);
+assert.equal(authoringChecklist.principles.reuse_before_rewrite, true);
+assert.equal(authoringChecklist.principles.reference_world_structure_may_be_reused, true);
+assert.equal(authoringChecklist.principles.reference_world_content_may_be_copied, false);
+assert.deepEqual(authoringChecklist.next_reference_world, policy.next_reference_world);
+assert.deepEqual(
+  authoringChecklist.workflow.map((step) => step.id),
+  [
+    'lock_scope',
+    'inventory_sources',
+    'write_world_bible',
+    'design_season_grid',
+    'design_threads',
+    'design_aftermath',
+    'materialize_existing_pipeline',
+    'register_and_audit',
+    'clean_and_merge'
+  ]
+);
+for (const step of authoringChecklist.workflow) {
+  assert.ok(String(step.title || '').trim(), `Authoring step ${step.id} must have title`);
+  assert.ok(Array.isArray(step.required) && step.required.length > 0, `Authoring step ${step.id} must have requirements`);
+}
+assert.ok(authoringChecklist.minimum_role_specific_quality_gate.length >= 5);
 
 assert.equal(themeBank.copyright_and_runtime_guard.editorial_only, true);
 assert.equal(themeBank.copyright_and_runtime_guard.runtime_state_allowed, false);
@@ -114,6 +155,7 @@ for (const entry of index.roles || []) {
 }
 
 const roleWorldDoc = read('docs/CIVICATION_ROLE_WORLD_STANDARD.md');
+const authoringGuide = read('docs/CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md');
 const careerDoc = read('docs/CIVICATION_CAREER_GAMEPLAY_CONTRACT.md');
 const sceneDoc = read('data/Civication/SCENE_PIPELINE_V1.md');
 const roleMailDoc = read('data/Civication/README-mailsystem-og-rolemodels.md');
@@ -123,6 +165,13 @@ assert.match(roleWorldDoc, /14 dager/is);
 assert.match(roleWorldDoc, /56 dramaturgiske/is);
 assert.match(roleWorldDoc, /5–10/is);
 assert.match(roleWorldDoc, /ingen ny runtime/is);
+assert.match(roleWorldDoc, /naeringsliv[\s\S]*renholder/is);
+assert.match(roleWorldDoc, /CIVICATION_ROLE_WORLD_AUTHORING_GUIDE\.md/);
+assert.match(authoringGuide, /reuse before rewrite/is);
+assert.match(authoringGuide, /56 beats/is);
+assert.match(authoringGuide, /provenance/is);
+assert.match(authoringGuide, /Renholder/is);
+assert.match(authoringGuide, /SHA-låst merge/is);
 assert.match(careerDoc, /reference_complete.*ikke.*fylt rolleverden/is);
 assert.match(sceneDoc, /4H-D fullført/);
 assert.doesNotMatch(sceneDoc, /Neste 4H-D/);
