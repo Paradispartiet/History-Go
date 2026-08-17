@@ -19,32 +19,43 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Inspect canonical editorial thresholds and real gaps
+      - name: Measure question originality and method-limit coverage
         run: |
           node <<'NODE'
           const fs = require('node:fs');
           const emners = JSON.parse(fs.readFileSync('data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json','utf8'));
-          const registry = JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json','utf8'));
-          const owned = new Set(registry.subjects.vitenskap.chapters.flatMap(c => c.emne_ids || []));
-          const methodCounts = Object.fromEntries([...new Set(emners.map(e=>e.methods.length))].sort((a,b)=>a-b).map(n=>[n,emners.filter(e=>e.methods.length===n).length]));
-          const byVersion = Object.fromEntries([...new Set(emners.map(e=>e.registry_version))].sort().map(v=>[v,{
-            count:emners.filter(e=>e.registry_version===v).length,
-            methodCounts:Object.fromEntries([...new Set(emners.filter(e=>e.registry_version===v).map(e=>e.methods.length))].sort((a,b)=>a-b).map(n=>[n,emners.filter(e=>e.registry_version===v&&e.methods.length===n).length])),
-            missingKeyQuestionCount:emners.filter(e=>e.registry_version===v&&(!Array.isArray(e.key_questions)||e.key_questions.length<3)).length
-          }]));
-          const missingQuestions = emners.filter(e=>!Array.isArray(e.key_questions)||e.key_questions.length<3).map(e=>({
-            id:e.emne_id,title:e.title,domain:e.domain,registry_version:e.registry_version,chapterOwned:owned.has(e.emne_id),
-            definition:e.definition,why_it_matters:e.why_it_matters,methods:e.methods,
-            analysis_axes:e.analysis_axes,quiz_angles:e.quiz_angles,scope_guard:e.scope_guard,anti_patterns:e.anti_patterns,
-            recommended_methods:e.recommended_methods
-          }));
-          const twoMethodExamples = emners.filter(e=>e.methods.length===2).slice(0,12).map(e=>({id:e.emne_id,title:e.title,registry_version:e.registry_version,methods:e.methods,method_gate_required:e.method_gate_required,recommended_methods:e.recommended_methods}));
-          console.log(JSON.stringify({methodCounts,byVersion,missingQuestions,twoMethodExamples},null,2));
+          const methods = JSON.parse(fs.readFileSync('data/fag/vitenskap/methods_vitenskap_canonical_v4_6.json','utf8')).methods;
+          const norm = (s) => String(s||'').trim().replace(/\s+/g,' ');
+          const setKey = (e) => JSON.stringify((e.key_questions||[]).map(norm));
+          const group = new Map();
+          for (const e of emners) {
+            const key=setKey(e);
+            if (!group.has(key)) group.set(key,[]);
+            group.get(key).push(e.emne_id);
+          }
+          const reusedSets=[...group.entries()].map(([questions,ids])=>({count:ids.length,ids,questions:JSON.parse(questions)})).filter(x=>x.count>1).sort((a,b)=>b.count-a.count);
+          const qFreq=new Map();
+          for(const e of emners) for(const q of e.key_questions||[]) qFreq.set(norm(q),(qFreq.get(norm(q))||0)+1);
+          const reusedQuestions=[...qFreq.entries()].map(([question,count])=>({count,question})).filter(x=>x.count>1).sort((a,b)=>b.count-a.count).slice(0,20);
+          const missingQuestions=emners.filter(e=>(e.key_questions||[]).length<3).map(e=>({id:e.emne_id,title:e.title,domain:e.domain,definition:e.definition,why_it_matters:e.why_it_matters,analysis_axes:e.analysis_axes,methods:e.methods}));
+          const methodKeyCounts=Object.fromEntries([...new Set(methods.flatMap(m=>Object.keys(m)))].sort().map(k=>[k,methods.filter(m=>Object.prototype.hasOwnProperty.call(m,k)).length]));
+          const likelyLimitFields=['limitations','limits','limitations_and_uncertainty','uncertainty','failure_modes','caveats','blindspots','scope_guard','limitations_note'];
+          const methodLimitCoverage=Object.fromEntries(likelyLimitFields.map(k=>[k,methods.filter(m=>m[k] && (Array.isArray(m[k])?m[k].length:String(m[k]).trim().length)).length]));
+          const methodSamples=methods.slice(0,4).map(m=>Object.fromEntries(Object.entries(m).filter(([k])=>['method_id','title','label','definition','limitations','limits','limitations_and_uncertainty','uncertainty','failure_modes','caveats','blindspots','scope_guard','when_to_use','what_it_can_not_show'].includes(k))));
+          console.log(JSON.stringify({
+            emneCount:emners.length,
+            uniqueQuestionSetCount:group.size,
+            reusedQuestionSetCount:reusedSets.length,
+            emnersInReusedQuestionSets:reusedSets.reduce((s,x)=>s+x.count,0),
+            largestReusedQuestionSets:reusedSets.slice(0,10),
+            reusedIndividualQuestions:reusedQuestions,
+            missingQuestions,
+            methodCatalogCount:methods.length,
+            methodKeyCounts,
+            methodLimitCoverage,
+            methodSamples
+          },null,2));
           NODE
-          echo '--- Existing repository thresholds mentioning Vitenskap method/question counts ---'
-          grep -R -n -E "key_questions.{0,60}(length|>=|<)|methods.{0,60}(length|>=|<)|method_ids.{0,60}(length|>=|<)" scripts tests data/fag/vitenskap/SET_MAL_README_vitenskap_v4_3.md 2>/dev/null \
-            | grep -E "vitenskap|Vitenskap|emne|canonical" \
-            | head -200 || true
       - name: Verify current permanent Vitenskap gates
         run: |
           node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs
@@ -61,4 +72,3 @@ jobs:
           node scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs --write-report --no-check-report
           node --test tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs
           git diff --check
-          git diff -- reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json
