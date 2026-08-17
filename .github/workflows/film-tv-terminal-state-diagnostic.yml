@@ -1,0 +1,27 @@
+name: Film TV terminal state diagnostic
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches:
+      - agent/film-tv-holistic-192-completion-audit
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Locate stale Film TV progression assertions
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '=== chapters_in_progress assertions ==='
+          grep -RInE "chapters_in_progress" scripts tests --include='*film-tv*.mjs' --include='*film_tv*.mjs' || true
+          echo '=== legacy production/completion gate assertions ==='
+          grep -RInE "source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit" scripts tests --include='*film-tv*.mjs' --include='*film_tv*.mjs' || true
+          echo '=== maintenance gate references ==='
+          grep -RIn "maintenance_source_refresh_and_place_case_expansion" scripts tests data/fagverk/subject_status.json --include='*.mjs' --include='*.json' || true
