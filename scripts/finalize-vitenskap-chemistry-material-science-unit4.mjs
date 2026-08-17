@@ -45,4 +45,17 @@ replaceOnce('tests/fagverk-vitenskap-university-readiness.test.mjs',"    { id: '
 replaceOnce('tests/fagverk-vitenskap-university-readiness.test.mjs',"assert.equal(report.registration.registryChapterCount, 3);","assert.equal(report.registration.registryChapterCount, 4);");
 replaceOnce('tests/fagverk-vitenskap-university-readiness.test.mjs',"assert.equal(report.registration.releaseChapterCount, 3);","assert.equal(report.registration.releaseChapterCount, 4);");
 replaceOnce('tests/fagverk-vitenskap-university-readiness.test.mjs',"test('matematikk er materialisert mens tre realfagsfamilier fortsatt blokkerer editorial completion', () => {","test('matematikk, fysikk og kjemi er materialisert mens medisin fortsatt blokkerer editorial completion', () => {");
+
+const workflow='.github/workflows/fagverk-vitenskap-pilot.yml';
+const scriptBrief="      - 'scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs'";
+const scriptFull="      - 'scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs'";
+replaceOnce(workflow,scriptBrief,`${scriptBrief}\n${scriptFull}`);
+replaceOnce(workflow,scriptBrief,`${scriptBrief}\n${scriptFull}`);
+const testBrief="      - 'tests/fagverk-vitenskap-chemistry-material-science-source-brief.test.mjs'";
+const testFull="      - 'tests/fagverk-vitenskap-chemistry-material-science-fulltext.test.mjs'";
+replaceOnce(workflow,testBrief,`${testBrief}\n${testFull}`);
+replaceOnce(workflow,testBrief,`${testBrief}\n${testFull}`);
+replaceOnce(workflow,"          node --check scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs","          node --check scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs\n          node --check scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs");
+replaceOnce(workflow,"      - name: Validate release manifest remains deterministic",`      - name: Validate Vitenskap Unit 4 chemistry material science fulltext\n        shell: bash\n        run: |\n          set +e\n          output=$(node scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs 2>&1)\n          status=$?\n          set -e\n          if [ \"$status\" -ne 0 ]; then\n            message=$(printf '%s' \"$output\" | tail -n 12 | tr '\\n' ' ' | sed 's/%/%25/g; s/\\r/%0D/g; s/\\n/%0A/g')\n            echo \"::error file=scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs,title=Vitenskap chemistry material science fulltext audit failed::$message\"\n            printf '%s\\n' \"$output\"\n            exit \"$status\"\n          fi\n          printf '%s\\n' \"$output\"\n      - name: Validate release manifest remains deterministic`);
+replaceOnce(workflow,"          node --test tests/fagverk-vitenskap-chemistry-material-science-source-brief.test.mjs","          node --test tests/fagverk-vitenskap-chemistry-material-science-source-brief.test.mjs\n          node --test tests/fagverk-vitenskap-chemistry-material-science-fulltext.test.mjs");
 console.log('Vitenskap Unit 4 state transition prepared');
