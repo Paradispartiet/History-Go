@@ -97,6 +97,7 @@ async function run() {
     'js/Civication/systems/day/dayChoiceDirector.js',
     'js/Civication/systems/day/dayConsequences.js',
     'js/Civication/systems/civicationMailRuntime.js',
+    'js/Civication/systems/civicationWorkdayMailBuilder.js',
     'js/Civication/systems/civicationDailyMailBuilder.js',
     'js/Civication/systems/civicationCareerOutcomeRuntime.js'
   ]) loadScript(script);
