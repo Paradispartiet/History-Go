@@ -39,5 +39,33 @@ for stale_role, (replacement_role, expected_count) in role_replacements.items():
         raise SystemExit(f'{stale_role} fixture anchor: expected {expected_count} occurrences, found {role_count}')
     text = text.replace(stale_role, replacement_role)
 
+old_terminal = '''  const terminalRuntime = makeRuntimeContext({ roleKey:"naeringsliv/administrasjonsmedarbeider", legacyMails: legacyByRole.get("naeringsliv/administrasjonsmedarbeider"), registry: materialized, mode:"compiled", terminal:true });
+  const terminalDay = await terminalRuntime.windowObject.CivicationSceneDirector.populateDailyExtraSlots(
+    terminalRuntime.active, {}, makeBaseRuntime("2026-08-18"), { selection_snapshot: { terminal_closed:true } }
+  );
+  assert.equal(terminalDay.daily_extra_terminal_closed, true);
+  assert.equal(terminalDay.daily_extra_catalog_count, 0);
+  assert.equal(workdayProjection(terminalDay).rows.length, 0, "terminal karriere skal ikke åpne arbeidsfallback");
+  const terminalPack = await new terminalRuntime.windowObject.CivicationEventEngine().buildMailPool(terminalRuntime.active, {}, "renholder");
+  assert.equal(terminalPack.__legacy_fallback, false, "terminal karriere skal ikke åpne EventEngine legacy-fallback");
+  assert.equal(terminalPack.__terminal_closed, true);
+'''
+new_terminal = '''  const terminalRuntime = makeRuntimeContext({ roleKey:"naeringsliv/administrasjonsmedarbeider", legacyMails: legacyByRole.get("naeringsliv/administrasjonsmedarbeider"), registry: materialized, mode:"compiled", terminal:true });
+  const terminalCandidates = await terminalRuntime.windowObject.CivicationSceneDirector.getWorkCandidates(terminalRuntime.active, {});
+  assert.equal(terminalCandidates.__career_outcome_terminal_closed, true, "terminal source selection skal eie terminal snapshot");
+  const terminalDay = await terminalRuntime.windowObject.CivicationSceneDirector.populateDailyExtraSlots(
+    terminalRuntime.active, {}, makeBaseRuntime("2026-08-18")
+  );
+  assert.equal(terminalDay.daily_extra_terminal_closed, true);
+  assert.equal(terminalDay.daily_extra_catalog_count, 0);
+  assert.equal(workdayProjection(terminalDay).rows.length, 0, "terminal karriere skal ikke åpne arbeidsfallback");
+  const terminalPack = await new terminalRuntime.windowObject.CivicationEventEngine().buildMailPool(terminalRuntime.active, {}, "administrasjonsmedarbeider");
+  assert.equal(terminalPack.__legacy_fallback, false, "terminal karriere skal ikke åpne EventEngine legacy-fallback");
+  assert.equal(terminalPack.__terminal_closed, true);
+'''
+if text.count(old_terminal) != 1:
+    raise SystemExit(f'terminal parity fixture anchor: expected 1 occurrence, found {text.count(old_terminal)}')
+text = text.replace(old_terminal, new_terminal, 1)
+
 p.write_text(text, encoding='utf-8')
-print('Repaired one-shot 4H-B anchors and canonical representative role fixtures')
+print('Repaired one-shot 4H-B anchors, role fixtures and terminal parity flow')
