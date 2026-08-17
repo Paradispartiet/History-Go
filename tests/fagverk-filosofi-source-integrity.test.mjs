@@ -20,18 +20,15 @@ const registry = readJson(THINKERS_PATH);
 const thinkers = registry.thinkers ?? [];
 const thinkerById = new Map(thinkers.map((t) => [t.id, t]));
 const thinkerByName = new Map(thinkers.map((t) => [normalize(t.name), t]));
-const thinkersByLast = new Map();
-for (const thinker of thinkers) {
-  const key = token(thinker.name);
-  const rows = thinkersByLast.get(key) ?? [];
-  rows.push(thinker);
-  thinkersByLast.set(key, rows);
-}
+const THINKER_ALIASES = new Map([
+  [normalize('Averroes'), 'ibn_rushd'],
+  [normalize('Kyle Whyte'), 'kyle_whyte']
+]);
 const resolveThinker = (name) => {
   const direct = thinkerByName.get(normalize(name));
   if (direct) return direct;
-  const rows = thinkersByLast.get(token(name)) ?? [];
-  return rows.length === 1 ? rows[0] : null;
+  const aliasId = THINKER_ALIASES.get(normalize(name));
+  return aliasId ? thinkerById.get(aliasId) ?? null : null;
 };
 
 const articleFiles = fs.readdirSync(ARTICLES_DIR).filter((name) => name.endsWith('.json')).sort();
