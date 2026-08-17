@@ -2,39 +2,50 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditVitenskapUniversityReadiness } from '../scripts/audit-fagverk-vitenskap-university-readiness.mjs';
 
-test('Vitenskap university readiness viser reell kapittelproduksjon uten å overrapportere complete', () => {
+const EDITORIAL_BLOCKERS = [
+  'mathematics_formal_sciences',
+  'physics_astronomy',
+  'chemistry_material_science',
+  'medicine_biomedicine_public_health'
+];
+
+test('Vitenskap university readiness viser v4.6-kapittelproduksjon uten å overrapportere complete', () => {
   const { report } = auditVitenskapUniversityReadiness();
   assert.equal(report.subject.id, 'vitenskap');
   assert.equal(report.subject.title, 'Vitenskap & teknologi');
   assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'university_breadth_gap_reconciliation_and_remaining_chapter_production');
+  assert.equal(report.subject.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');
   assert.equal(report.subject.completeReady, false);
+  assert.equal(report.inventory.vitenskap.domain_count, 6);
+  assert.equal(report.inventory.vitenskap.emne_count, 117);
+  assert.equal(report.inventory.vitenskap.method_count, 84);
+  assert.equal(report.inventory.vitenskap.mapping_count, 117);
+  assert.equal(report.inventory.vitenskap.hook_count, 64);
   assert.equal(report.inventory.vitenskap.registered_chapter_count, 1);
   assert.equal(report.coverageSummary.familyCount, 12);
   assert.deepEqual(report.coverageSummary.statusCounts, {
     strong: 4,
-    gap: 4,
+    inventory_reconciled: 4,
     neighbor_bridge_required: 2,
     nested_strong: 2
   });
-  assert.equal(report.coverageSummary.blockingGapCount, 4);
+  assert.equal(report.coverageSummary.structuralBlockingGapCount, 0);
+  assert.equal(report.coverageSummary.editorialBlockerCount, 4);
 });
 
-test('realfagsgap er eksplisitte og kan ikke forsvinne bak første materialiserte kapittel', () => {
+test('realfagsgap er strukturelt reconcilet men forblir eksplisitte redaksjonelle blockers', () => {
   const { report, readiness } = auditVitenskapUniversityReadiness();
-  assert.deepEqual(report.blockingGaps, [
-    'mathematics_formal_sciences',
-    'physics_astronomy',
-    'chemistry_material_science',
-    'medicine_biomedicine_public_health'
-  ]);
-  for (const id of report.blockingGaps) {
+  assert.deepEqual(report.structuralBlockingGaps, []);
+  assert.deepEqual(report.editorialBlockers, EDITORIAL_BLOCKERS);
+  for (const id of report.editorialBlockers) {
     const family = readiness.coverage_families.find((row) => row.id === id);
-    assert.equal(family.status, 'gap');
-    assert.equal(family.requires_canonical_inventory_change, true);
-    assert.ok(family.candidate_topics.length >= 5);
+    assert.equal(family.status, 'inventory_reconciled');
+    assert.equal(family.requires_canonical_inventory_change, false);
+    assert.ok(family.reconciled_emne_ids.length >= 5);
+    assert.ok(family.reconciled_hook_id);
   }
-  assert.equal(report.gates.fixedCompletionQuotaForbidden, true);
+  assert.equal(report.gates.structuralBreadthGapsReconciled, true);
+  assert.equal(report.gates.editorialBreadthBlockersExplicit, true);
   assert.equal(report.gates.prematureCompleteBlocked, true);
 });
 
@@ -46,7 +57,7 @@ test('Teknologi forblir nested og universitetsbredden bruker inspiserbare benchm
   assert.equal(report.inventory.teknologi.emne_count, 48);
   assert.equal(report.benchmarks.length, 5);
   assert.ok(report.benchmarks.every((row) => row.url.startsWith('https://')));
-  assert.equal(report.gates.nestedTechnologyInventoryLocked, true);
+  assert.equal(report.gates.technologyRemainsNested, true);
   assert.equal(report.gates.officialBenchmarksInspectable, true);
 });
 
@@ -67,10 +78,7 @@ test('første produksjonsenhet er materialisert og canonicalt registrert', () =>
   assert.equal(report.registration.registryChapterCount, 1);
   assert.equal(report.registration.releaseChapterStatus, 'materialized');
   assert.equal(report.registration.releaseChapterCount, 1);
-  assert.equal(report.registration.releaseModuleFileCount, 3);
   assert.equal(report.registration.releaseMissingFileCount, 0);
-  assert.equal(report.gates.firstProductionUnitUsesOnlyCanonicalEmners, true);
-  assert.equal(report.gates.firstProductionUnitMaterializedAndRegistered, true);
-  assert.equal(report.gates.registryChapterRegistered, true);
-  assert.equal(report.gates.releaseManifestAligned, true);
+  assert.equal(report.gates.firstProductionUnitPreserved, true);
+  assert.equal(report.gates.registryAndReleaseAligned, true);
 });
