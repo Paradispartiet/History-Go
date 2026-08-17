@@ -1,0 +1,128 @@
+name: Civication 4H-B runtime-order repair
+
+on:
+  push:
+    branches:
+      - agent/civication-4hb-compiled-registry-cutover
+    paths:
+      - .github/workflows/civication-4hb-order-fix.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: civication-4hb-order-repair
+  cancel-in-progress: true
+
+jobs:
+  repair-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-4hb-compiled-registry-cutover
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Repair stale one-shot anchors
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/.tmp-civication-4hb-cutover.py')
+          text = p.read_text(encoding='utf-8')
+          start = "test = replace_regex_once(\n    test,\n    r'  // To canonicale runtime-paths har i dagens datatre samme scene-ID.*?"
+          end = "    'compiler duplicate debt block'\n)"
+          i = text.find(start)
+          if i < 0:
+              raise SystemExit('compiler duplicate replacement start not found')
+          j = text.find(end, i)
+          if j < 0:
+              raise SystemExit('compiler duplicate replacement end not found')
+          j += len(end)
+          replacement = '''test = replace_once(
+              test,
+              ''' + repr('''  // To canonicale runtime-paths har i dagens datatre samme scene-ID og identisk\n  // routing-signatur. Runtime laster job-kilden først; compileren skal derfor\n  // beholde den første og inventere den senere kopien som eksplisitt gjeld.\n  const duplicateEntries = first.entries.filter((entry) => entry.id === duplicateSceneId);\n  assert.equal(duplicateEntries.length, 1);\n  assert.equal(duplicateEntries[0].source_path, keptDuplicateSource);\n  const duplicateDebt = first.shadowed_duplicates.find((entry) => entry.id === duplicateSceneId);\n  assert(duplicateDebt, "kjent route-ekvivalent duplicate skal inventeres");\n  assert.equal(duplicateDebt.kept_source_path, keptDuplicateSource);\n  assert.equal(duplicateDebt.shadowed_source_path, shadowedDuplicateSource);\n  assert.equal(duplicateDebt.kept_source_rank < duplicateDebt.shadowed_source_rank);\n  assert.match(duplicateDebt.routing_signature, /^[a-f0-9]{64}$/);\n''') + ''',
+              ''' + repr('''  // 4H-B fjerner den eneste runtime-reachable skyggekopien uten å endre vinnerscenen.\n  assert.equal(first.stats.shadowed_duplicate_count, 0, "4H-B krever null shadowed duplicate-gjeld");\n  assert.deepEqual(first.shadowed_duplicates, []);\n  assert.equal(first.entries.filter((entry) => entry.id === duplicateSceneId).length, 1);\n''') + ''',
+              'compiler duplicate debt block'
+          )'''
+          text = text[:i] + replacement + text[j:]
+          old_ci = ("    '      - name: Run Civication tests\\n        run: node tests/run-civication-tests.mjs\\n',\n"
+                    "    '      - name: Verify compiled scene registry is synchronized\\n        run: node scripts/build-civication-scene-registry.mjs --check\\n      - name: Run Civication tests\\n        run: node tests/run-civication-tests.mjs\\n',\n")
+          new_ci = ("    '      - name: Run complete Civication suite\\n        run: npm run test:civication\\n',\n"
+                    "    '      - name: Verify compiled scene registry is synchronized\\n        run: node scripts/build-civication-scene-registry.mjs --check\\n      - name: Run complete Civication suite\\n        run: npm run test:civication\\n',\n")
+          if text.count(old_ci) != 1:
+              raise SystemExit(f'CI anchor count={text.count(old_ci)}')
+          p.write_text(text.replace(old_ci, new_ci, 1), encoding='utf-8')
+          PY
+      - name: Apply 4H-B cutover
+        run: python scripts/.tmp-civication-4hb-cutover.py
+      - name: Preserve old runtime ordering in role_index
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/build-civication-scene-registry.mjs')
+          lines = p.read_text(encoding='utf-8').splitlines(keepends=True)
+          entries_i = lines.index('  entries.sort((a, b) =>\n')
+          role_i = lines.index('  const roleIndex = {};\n')
+          sorted_i = lines.index('  const sortedRoleIndex = Object.fromEntries(\n')
+          end_i = next(i for i in range(sorted_i + 1, len(lines)) if lines[i] == '  );\n')
+          if not (entries_i < role_i < sorted_i < end_i):
+              raise SystemExit('unexpected compiler role-index layout')
+          role_build = [
+              '  // role_index is runtime-semantic: preserve source-rank, source-file and in-file mail order.\n',
+              '  const roleIndex = {};\n',
+              '  for (const entry of entries) {\n',
+              '    const key = `${entry.category}/${entry.role_scope}`;\n',
+              '    if (!roleIndex[key]) roleIndex[key] = [];\n',
+              '    roleIndex[key].push(entry.id);\n',
+              '  }\n',
+              '\n'
+          ]
+          sorted_build = [
+              '  const sortedRoleIndex = Object.fromEntries(\n',
+              '    Object.entries(roleIndex).sort(([a], [b]) => a.localeCompare(b, "en"))\n',
+              '  );\n'
+          ]
+          lines[role_i:end_i + 1] = sorted_build
+          lines[entries_i:entries_i] = role_build
+          p.write_text(''.join(lines), encoding='utf-8')
+          PY
+      - name: Materialize and check registry
+        run: |
+          node scripts/build-civication-scene-registry.mjs --write
+          node scripts/build-civication-scene-registry.mjs --check
+          node --input-type=module <<'NODE'
+          import { compileRegistryFromRepo } from './scripts/build-civication-scene-registry.mjs';
+          const registry = await compileRegistryFromRepo(process.cwd());
+          if (registry.stats.shadowed_duplicate_count !== 0) throw new Error('shadowed_duplicate_count must be zero');
+          console.log(JSON.stringify(registry.stats));
+          NODE
+      - name: Registry contract
+        run: node tests/civication-compiled-scene-registry.test.js
+      - name: Before-after parity
+        run: node tests/civication-compiled-scene-registry-parity.test.js
+      - name: Daily cutover
+        run: node tests/civication-scene-director-daily-catalog.test.js
+      - name: Full Civication suite
+        run: node tests/run-civication-tests.mjs
+      - run: git diff --check
+      - name: Commit permanent 4H-B files
+        run: |
+          git config user.name "Paradispartiet"
+          git config user.email "paradispartiet@gmail.com"
+          git add \
+            scripts/build-civication-scene-registry.mjs \
+            data/Civication/compiledSceneRegistryV1.json \
+            data/Civication/COMPILED_SCENE_REGISTRY_V1.md \
+            data/Civication/SCENE_PIPELINE_V1.md \
+            data/Civication/scenePipelinePolicyV1.json \
+            js/Civication/systems/civicationWorkdayMailBuilder.js \
+            tests/civication-compiled-scene-registry.test.js \
+            tests/civication-compiled-scene-registry-parity.test.js \
+            tests/civication-scene-director-daily-catalog.test.js \
+            .github/workflows/civication.yml
+          git diff --cached --quiet && { echo "No permanent 4H-B changes"; exit 1; }
+          git commit -m "Complete Civication 4H-B compiled registry cutover"
+          git push origin HEAD:agent/civication-4hb-compiled-registry-cutover
