@@ -1,6 +1,6 @@
 {
   "schema": "history_go_film_tv_source_authority_policy_v1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "updated_at": "2026-08-17",
   "subject_id": "film_tv",
   "status": "active",
@@ -33,10 +33,18 @@
     "causal",
     "effect"
   ],
+  "research_requirement_exclusion_mode_tokens": [
+    "boundary",
+    "deferred"
+  ],
   "empirical_effect_evidence_mode_patterns": [
     "experimental",
     "causal",
     "effect"
+  ],
+  "empirical_effect_exclusion_mode_tokens": [
+    "boundary",
+    "deferred"
   ],
   "completion_invariants": {
     "registered_chapter_count": 17,
@@ -51,6 +59,7 @@
     "require_source_location": true,
     "require_research_secondary_for_research_claims": true,
     "require_peer_reviewed_source_for_empirical_effect_claims": true,
+    "boundary_claims_do_not_count_as_positive_effect_claims": true,
     "do_not_reopen_canonical_completion": true
   }
 }
