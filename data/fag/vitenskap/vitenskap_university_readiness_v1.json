@@ -1,10 +1,10 @@
 {
   "schema": "history_go_fagverk_vitenskap_university_readiness_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "updated_at": "2026-08-17",
   "subject_id": "vitenskap",
   "title": "Vitenskap & teknologi",
-  "status": "readiness_locked_gaps_open",
+  "status": "chapter_production_in_progress_gaps_open",
   "complete_ready": false,
   "purpose": "Låse en etterprøvbar universitetsnær dekningskontrakt før Vitenskap erklæres heldekkende. Kontrakten bevarer den eksisterende seksområders strukturen og nested Teknologi-pakken, men skiller mellom sterke eksisterende lag, nabofag som skal kobles uten duplisering, og faglige hull som må inn i det canonicale inventaret før complete.",
   "canonical_scope": {
@@ -20,7 +20,7 @@
       "method_count": 84,
       "mapping_count": 93,
       "hook_count": 60,
-      "registered_chapter_count": 0
+      "registered_chapter_count": 1
     },
     "teknologi": {
       "canonical_parent_subject": "vitenskap",
@@ -92,94 +92,163 @@
       "id": "scientific_practice_institutions",
       "label": "Vitenskapelig praksis, institusjoner og forskningsinfrastruktur",
       "status": "strong",
-      "existing_domain_ids": ["institusjoner_laboratorier_kunnskapssteder"],
+      "existing_domain_ids": [
+        "institusjoner_laboratorier_kunnskapssteder"
+      ],
       "reason": "Eksisterende inventar dekker universitet, laboratorium, observatorium, infrastruktur, fagmiljø, fagfellevurdering, reproduserbarhet, autoritet og tillit."
     },
     {
       "id": "methods_measurement_statistics_models",
       "label": "Metode, eksperiment, måling, statistikk og modeller",
       "status": "strong",
-      "existing_domain_ids": ["metoder_maling_modeller"],
+      "existing_domain_ids": [
+        "metoder_maling_modeller"
+      ],
       "reason": "Eksisterende inventar dekker hypotese, observasjon, eksperiment, variabler, kalibrering, standardisering, statistikk, usikkerhet, klassifikasjon, modeller og simulering."
     },
     {
       "id": "science_history_philosophy_sts",
       "label": "Vitenskapshistorie, vitenskapsfilosofi og STS",
       "status": "strong",
-      "existing_domain_ids": ["paradigmer_teorier_sannhet", "institusjoner_laboratorier_kunnskapssteder"],
+      "existing_domain_ids": [
+        "paradigmer_teorier_sannhet",
+        "institusjoner_laboratorier_kunnskapssteder"
+      ],
       "reason": "Kuhn, Popper, Merton, Longino, Latour, Haraway, Jasanoff og andre er allerede integrert som analytiske spor; selvstendig filosofisk dybde forblir i Filosofi."
     },
     {
       "id": "mathematics_formal_sciences",
       "label": "Matematikk, formelle strukturer og bevis",
       "status": "gap",
-      "existing_domain_ids": ["metoder_maling_modeller"],
+      "existing_domain_ids": [
+        "metoder_maling_modeller"
+      ],
       "reason": "Dagens inventar har statistikk, sannsynlighet, beregning og matematisk modellering, men mangler et eksplisitt faglig grunnlag i bevis, algebra, analyse, geometri, diskret matematikk og forholdet mellom formell deduksjon og empirisk testing.",
-      "candidate_topics": ["matematisk_bevis_og_deduksjon", "algebra_og_strukturer", "analyse_endring_og_kontinuitet", "geometri_rom_og_symmetri", "diskret_matematikk_og_kombinatorikk"],
+      "candidate_topics": [
+        "matematisk_bevis_og_deduksjon",
+        "algebra_og_strukturer",
+        "analyse_endring_og_kontinuitet",
+        "geometri_rom_og_symmetri",
+        "diskret_matematikk_og_kombinatorikk"
+      ],
       "requires_canonical_inventory_change": true
     },
     {
       "id": "physics_astronomy",
       "label": "Fysikk og astronomi",
       "status": "gap",
-      "existing_domain_ids": ["natur_medisin_miljo"],
+      "existing_domain_ids": [
+        "natur_medisin_miljo"
+      ],
       "reason": "Instrument- og målingsperspektivet er sterkt, men det finnes ikke heldekkende behandling av mekanikk, energi, termodynamikk, bølger, elektromagnetisme, kvantefysikk, relativitet, atom-/kjernefysikk eller astronomi som vitenskapelige kunnskapsområder.",
-      "candidate_topics": ["mekanikk_krefter_bevegelse", "energi_termodynamikk", "bolger_og_optikk", "elektromagnetisme", "kvantefysikk", "relativitet", "atom_og_kjernefysikk", "astronomi_og_kosmologi"],
+      "candidate_topics": [
+        "mekanikk_krefter_bevegelse",
+        "energi_termodynamikk",
+        "bolger_og_optikk",
+        "elektromagnetisme",
+        "kvantefysikk",
+        "relativitet",
+        "atom_og_kjernefysikk",
+        "astronomi_og_kosmologi"
+      ],
       "requires_canonical_inventory_change": true
     },
     {
       "id": "chemistry_material_science",
       "label": "Kjemi og materialvitenskap",
       "status": "gap",
-      "existing_domain_ids": ["institusjoner_laboratorier_kunnskapssteder", "natur_medisin_miljo"],
+      "existing_domain_ids": [
+        "institusjoner_laboratorier_kunnskapssteder",
+        "natur_medisin_miljo"
+      ],
       "reason": "Kjemilaboratorium, prøver og materialanalyse finnes, og Teknologi har material-/produksjonsområde, men grunnleggende kjemisk struktur, binding, reaksjon, termodynamikk/kinetikk og analytisk kjemi er ikke behandlet som sammenhengende vitenskapsstoff.",
-      "candidate_topics": ["atomstruktur_og_periodesystem", "kjemiske_bindinger_og_struktur", "reaksjoner_stokiometri_og_likevekt", "kjemisk_termodynamikk_og_kinetikk", "analytisk_kjemi_og_spektroskopi", "materialkjemi_og_egenskaper"],
+      "candidate_topics": [
+        "atomstruktur_og_periodesystem",
+        "kjemiske_bindinger_og_struktur",
+        "reaksjoner_stokiometri_og_likevekt",
+        "kjemisk_termodynamikk_og_kinetikk",
+        "analytisk_kjemi_og_spektroskopi",
+        "materialkjemi_og_egenskaper"
+      ],
       "requires_canonical_inventory_change": true
     },
     {
       "id": "biology_life_sciences",
       "label": "Biologi og livsvitenskap",
       "status": "neighbor_bridge_required",
-      "existing_domain_ids": ["natur_medisin_miljo"],
+      "existing_domain_ids": [
+        "natur_medisin_miljo"
+      ],
       "reason": "Klassifikasjon, økologi og biologihistorie finnes i Vitenskap, mens Natur & miljø allerede har selvstendig organismisk, evolusjonær og økologisk fagdybde. Vitenskap trenger eksplisitte broer til celle/molekyl, genetikk, evolusjon og eksperimentell biologi uten å kopiere Natur."
     },
     {
       "id": "earth_climate_ocean_space",
       "label": "Jord, klima, hav og jordsystem",
       "status": "neighbor_bridge_required",
-      "existing_domain_ids": ["natur_medisin_miljo"],
+      "existing_domain_ids": [
+        "natur_medisin_miljo"
+      ],
       "reason": "Geologi, klima, miljøovervåking og systemtenkning finnes allerede, mens Natur & miljø eier mye av substansen. Vitenskap skal gjøre måle-, modell- og evidenskjedene eksplisitte og koble videre til Natur."
     },
     {
       "id": "medicine_biomedicine_public_health",
       "label": "Medisin, biomedisin og folkehelse",
       "status": "gap",
-      "existing_domain_ids": ["institusjoner_laboratorier_kunnskapssteder", "natur_medisin_miljo"],
+      "existing_domain_ids": [
+        "institusjoner_laboratorier_kunnskapssteder",
+        "natur_medisin_miljo"
+      ],
       "reason": "Klinisk evidens, epidemiologi, sykehus og medisinsk forskning finnes, men biomedisinsk mekanisme, diagnostikk, kliniske studier, behandlingsevidens og folkehelse må bindes til en tydelig læringsprogresjon før scope kan kalles heldekkende.",
-      "candidate_topics": ["biomedisinsk_mekanisme_og_modell", "diagnostikk_biomarkorer_og_testegenskaper", "kliniske_studier_og_intervensjoner", "behandlingsevidens_og_effekt", "folkehelse_arsak_og_forebygging"],
+      "candidate_topics": [
+        "biomedisinsk_mekanisme_og_modell",
+        "diagnostikk_biomarkorer_og_testegenskaper",
+        "kliniske_studier_og_intervensjoner",
+        "behandlingsevidens_og_effekt",
+        "folkehelse_arsak_og_forebygging"
+      ],
       "requires_canonical_inventory_change": true
     },
     {
       "id": "computing_data_ai",
       "label": "Informatikk, data og kunstig intelligens",
       "status": "nested_strong",
-      "existing_domain_ids": ["teknologi_data_infrastruktur"],
-      "technology_area_ids": ["07_datamaskiner_operativsystemer", "08_programvareteknikk", "09_algoritmer_data_ai", "10_nettverk_cybersikkerhet_infrastruktur"],
+      "existing_domain_ids": [
+        "teknologi_data_infrastruktur"
+      ],
+      "technology_area_ids": [
+        "07_datamaskiner_operativsystemer",
+        "08_programvareteknikk",
+        "09_algoritmer_data_ai",
+        "10_nettverk_cybersikkerhet_infrastruktur"
+      ],
       "reason": "Den nested Teknologi-pakken dekker datamaskiner, operativsystemer, programvare, algoritmer, data, AI, nettverk, cybersikkerhet og digital infrastruktur."
     },
     {
       "id": "engineering_technology_systems",
       "label": "Ingeniørfag og teknologiske systemer",
       "status": "nested_strong",
-      "existing_domain_ids": ["teknologi_data_infrastruktur"],
-      "technology_area_ids": ["01_teknologivitenskap_design", "02_systemer_arkitektur_palitelighet", "03_mekanikk_energi_maskiner", "04_materialer_produksjon", "05_elektronikk_signaler_regulering", "06_robotikk_automatisering", "11_menneske_teknologi_hci", "12_teknologihistorie_sts_risiko_baerekraft"],
+      "existing_domain_ids": [
+        "teknologi_data_infrastruktur"
+      ],
+      "technology_area_ids": [
+        "01_teknologivitenskap_design",
+        "02_systemer_arkitektur_palitelighet",
+        "03_mekanikk_energi_maskiner",
+        "04_materialer_produksjon",
+        "05_elektronikk_signaler_regulering",
+        "06_robotikk_automatisering",
+        "11_menneske_teknologi_hci",
+        "12_teknologihistorie_sts_risiko_baerekraft"
+      ],
       "reason": "Teknologi scientific-pakken dekker design, systemarkitektur, mekanikk/energi/maskiner, materialer/produksjon, elektronikk, regulering, robotikk, HCI, historie, STS, risiko og bærekraft."
     },
     {
       "id": "ethics_governance_research_integrity",
       "label": "Forskningsetikk, styring, tillit og ansvar",
       "status": "strong",
-      "existing_domain_ids": ["samfunn_makt_etikk"],
+      "existing_domain_ids": [
+        "samfunn_makt_etikk"
+      ],
       "reason": "Eksisterende inventar dekker finansiering, ekspertmakt, forskningsansvar, interessekonflikt, risiko, kontrovers, offentlig tillit, standarder, styring og formidling."
     }
   ],
@@ -192,7 +261,7 @@
   "first_production_unit": {
     "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
     "primary_domain_id": "institusjoner_laboratorier_kunnskapssteder",
-    "status": "ready_for_chapter_brief",
+    "status": "materialized_and_registered",
     "emne_ids": [
       "em_vit_universitet_kunnskapsproduksjon",
       "em_vit_laboratorium_praksis",
@@ -203,7 +272,18 @@
       "em_vit_reproduserbarhet",
       "em_vit_institusjonell_tillit"
     ],
-    "reason": "Produksjonsenheten bruker bare allerede canonicale emner i et sterkt eksisterende område. Den kan produseres mens de fire breddehullene reconciles, men kan ikke brukes som bevis for at hele faget er complete."
+    "reason": "Produksjonsenheten bruker bare allerede canonicale emner i et sterkt eksisterende område og er nå fulltekstmaterialisert, claimsporet, kildebelagt, permanent auditert og registrert i Fagverk-registryen. Den dokumenterer reell kapittelproduksjon, men kan ikke brukes som bevis for at hele faget er complete så lenge de fire breddehullene og resterende redaksjonell behandling står åpne.",
+    "chapter_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap.json",
+    "brief_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/brief.json",
+    "claims_file": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json",
+    "materialized_evidence": {
+      "method_count": 5,
+      "module_count": 3,
+      "section_count": 9,
+      "paragraph_count": 27,
+      "source_count": 10,
+      "claim_count": 18
+    }
   },
   "completion_requirements": [
     "all_blocking_coverage_gaps_reconciled_into_canonical_inventory_or_explicitly_justified_elsewhere",
@@ -239,5 +319,6 @@
       "resolved_source_and_claim_ids",
       "no_generic_template_reuse"
     ]
-  }
+  },
+  "next_gate": "reconcile_blocking_coverage_gaps_and_continue_chapter_production"
 }
