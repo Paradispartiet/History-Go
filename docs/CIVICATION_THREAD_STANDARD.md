@@ -1,288 +1,67 @@
 # Civication Thread Standard
 
-Dette dokumentet definerer standarden for thread-mails i Civication.
+Status: **authoringstandard for lokale delivery-threads**  
+Sist reconcilet: **2026-08-18**
 
-Hovedmailen er scenen. Threaden er etterklangen.
+## 1. To forskjellige betydninger av «thread»
 
-En thread skal ikke bare være en ekstra mail. Den skal vise at spillerens svar faktisk ble lest av noen, og at relasjonen, tilliten eller situasjonen endret seg litt.
+Civication bruker ordet tråd på to nivåer som ikke må blandes.
 
-Standarden bygger på `docs/CIVICATION_MAIL_STANDARD.md` og V2-blueprinten i `data/Civication/mailFamilies/BLUEPRINT_README.md`.
+### Lokal mail-/delivery-thread
 
-## 1. Hva en thread er
+En lokal thread er en kort oppfølging, ofte `Re:`, som kan trigges av et valg. Den viser at svaret ble lest og at en person eller situasjon reagerte.
 
-En Civication-thread er en Re:-oppfølger som trigges av et valg i en hovedmail.
+### Role World primary thread
 
-Den skal normalt gjøre én av disse tingene:
+En primary thread er en større relasjonell bue som kan gå på tvers av work/private/social, flere deliveries og flere dager. For `role_world_complete` skal en primær relasjonell tråd ha 5–10 faktiske beat-referanser.
 
-1. Vise en sosial reaksjon på spillerens valg.
-2. Forsterke avsenderens stemme.
-3. Endre tillit, avstand, respekt, irritasjon eller allianse.
-4. Gjøre konsekvensen av valget konkret.
-5. Åpne en relasjon eller lukke en relasjon litt.
-6. Peke mot en senere konflikt uten å starte en helt ny stor scene.
+Se [`CIVICATION_ROLE_WORLD_STANDARD.md`](./CIVICATION_ROLE_WORLD_STANDARD.md).
 
-Hvis hovedmailen spør: «Hva gjør du?», skal threaden svare: «Slik ble det oppfattet.»
+## 2. Scene er gameplay-enheten
 
-## 2. Forskjellen på hovedmail og thread
+Den gamle formuleringen «hovedmailen er scenen» er pensjonert. En scene kan leveres som mail, conversation, meeting, task eller notification.
 
-### Hovedmail
+En lokal mail-thread er derfor et authored deliverymønster som normaliseres til Scene Contract; den er ikke en egen gameplaymodell.
 
-```text
-Noe skjer.
-Du må velge.
-Valget peker i en retning.
-```
+## 3. Hva en lokal thread skal gjøre
 
-### Thread
+En thread bør gjøre minst én av disse tingene:
 
-```text
-Noen reagerer.
-Relasjonen flytter seg litt.
-Konsekvensen blir synlig.
-```
+1. vise en sosial reaksjon på spillerens valg;
+2. forsterke personens stemme;
+3. flytte tillit, avstand, respekt eller irritasjon;
+4. gjøre en konsekvens konkret;
+5. åpne eller lukke en liten relasjonell mulighet;
+6. peke mot et senere beat uten å late som hele buen er ferdig.
 
-Threaden skal derfor være kortere, skarpere og mer relasjonell enn hovedmailen.
+Hvis hovedbeaten spør «hva gjør du?», kan threaden vise «slik ble det oppfattet».
 
-## 3. Grunnform
+## 4. Form og lengde
 
-Alle nye threads bør følge denne formen:
+En lokal thread er normalt kortere enn beatet som utløste den. Ett `ack`-svar kan være nok. To eller flere valg skal bare brukes hvis oppfølgingen faktisk er en ny `decision`.
 
-```json
-{
-  "id": "inger_thread_tall_a",
-  "from": "inger_avdelingsleder",
-  "place_id": "lilleborg_fabrikker",
-  "subject": "Re: Tall for september — vi må snakke",
-  "phase": "intro",
-  "priority": 70,
-  "cooldown": 0,
-  "purpose": "Vise at Inger belønner realistisk ansvar og gir spilleren en konkret frist.",
-  "stakes": "Spilleren får tillit, men også en plass i Ingers tidsplan.",
-  "situation": [
-    "Kort reaksjon.",
-    "Hva avsenderen sier.",
-    "Hva dette betyr sosialt."
-  ],
-  "choices": [
-    {
-      "id": "A",
-      "label": "Kort svar.",
-      "reply": "Kort svar.",
-      "tags": ["legitimacy"],
-      "effect": 0,
-      "feedback": "Kort etterklang."
-    }
-  ]
-}
-```
+Ikke gi en passiv reaksjon syntetiske valg.
 
-`purpose` og `stakes` skal beskrive threadens funksjon, ikke gjenta hovedmailens formål.
+## 5. Sosial hukommelse
 
-## 4. Lengde
+Threaden bør reagere på det konkrete valget, ikke bare gi en generisk tekst. Den kan sette eller forsterke eksisterende effects, tags, flags, `next_bias` eller thread state når det finnes en canonical kontrakt for dette.
 
-En thread skal være kort.
+## 6. Forholdet til 5–10-beat-standarden
 
-Normal lengde:
+Det er **ikke** krav om 5–10 klikk i hver mail-thread.
 
-- `subject`: helst `Re: <opprinnelig emne>`
-- `situation`: 2–3 linjer
-- samlet situasjonstekst: ca. 35–80 ord
-- `choices`: normalt 1 valg
-- `feedback`: 1 setning
+Det strengere Role World-kravet betyr at viktige relasjoner skal få en serie av omtrent 5–10 beats/scener/meldinger over tid. En lokal `Re:`-mail kan være ett av disse beatene.
 
-Threaden kan ha 2 valg bare hvis svaret faktisk åpner et nytt sosialt valg. Ellers skal den være enkel.
+## 7. Kvalitetssjekk
 
-## 5. Hva threaden skal gjøre dramaturgisk
+Før en lokal thread-source legges inn:
 
-En thread kan ha ulike funksjoner.
+- reagerer den på et faktisk valg eller hendelse?
+- er avsenderen tydelig?
+- er den kortere og mer spesifikk enn en ny hovedsak?
+- endrer eller dokumenterer den relasjonen/situasjonen?
+- har den riktig interaksjonsmodus?
+- kan den materialiseres til `civication_scene_v1`?
+- inngår den i en større primary thread hvis relasjonen er viktig for Role World?
 
-### Bekreftelse
-
-Viser at spilleren gjorde noe som ble oppfattet positivt.
-
-Eksempel:
-
-```text
-Egil sier ikke mye, men han gir deg neste oppgave.
-```
-
-### Korrigering
-
-Viser at svaret var forståelig, men ikke helt riktig sosialt.
-
-Eksempel:
-
-```text
-Marit svarer høflig, men markerer at systemet fortsatt trenger din egen bekreftelse.
-```
-
-### Åpning
-
-Åpner en relasjon eller fremtidig linje.
-
-Eksempel:
-
-```text
-Roger sier at du kan komme til ham hvis ledelsen presser pauser eller overtid.
-```
-
-### Lukking
-
-Viser at en person trekker seg litt unna.
-
-Eksempel:
-
-```text
-Liv svarer kort. Hun fikk en regel, men ikke den kunnskapen hun spurte etter.
-```
-
-### Forpliktelse
-
-Gir spilleren en frist, avtale eller forventning.
-
-Eksempel:
-
-```text
-Inger gir deg fredag 16:00. Tillit blir til deadline.
-```
-
-### Posisjonering
-
-Viser at svaret ditt plasserer deg i en allianse eller utenfor en allianse.
-
-Eksempel:
-
-```text
-Stein går videre med forslaget alene. Du er høflig ute av rommet.
-```
-
-## 6. Threadens valg
-
-Thread-valg skal være korte og konkrete.
-
-Gode thread-valg:
-
-```text
-«Greit. Jeg er der.»
-«OK. Jeg leser og bekrefter.»
-«På vei.»
-«Vi ses 09:30.»
-```
-
-Dårlige thread-valg:
-
-```text
-Bygg tillit
-Vær strategisk
-Svar positivt
-Ta ansvar
-```
-
-En thread bør ikke skape store, nye beslutningstrær med mindre den bevisst starter en ny relasjonell bue.
-
-## 7. Threadens feedback
-
-Feedback i threads skal vise den lille ettervirkningen.
-
-God feedback:
-
-```text
-Avtalen står. Tor noterer.
-Roger registrerer deg som en allierbar.
-Du holder døra på gløtt, men du har lukket et lite vindu.
-```
-
-Dårlig feedback:
-
-```text
-Du får +1 tillit.
-Dette var et godt valg.
-Relasjonen forbedres.
-```
-
-Systemet kan lese tags og effect. Teksten skal vise menneskelig reaksjon.
-
-## 8. Tags i threads
-
-Thread-tags skal være få og presise.
-
-Typiske tags:
-
-```text
-legitimacy
-visibility
-relations
-alliance
-isolation
-mentor
-process
-humility
-loyalty_to_workers
-loyalty_to_leader
-avoidance
-risk
-```
-
-Thread-tags bør helst forsterke retningen fra hovedvalget, ikke introdusere helt ny tematikk.
-
-## 9. Når man skal bruke threads
-
-Bruk thread når:
-
-- valget er sosialt viktig
-- en NPC bør reagere direkte
-- relasjonen bør flytte seg litt
-- svaret kan åpne en senere konflikt
-- spilleren bør føle at valget faktisk ble sendt til noen
-
-Ikke bruk thread når:
-
-- valget bare avslutter en enkel oppgave
-- feedbacken allerede gjør jobben
-- threaden bare gjentar hovedmailen
-- du ikke har en tydelig avsenderreaksjon
-
-## 10. Kvalitetssjekk før en thread legges inn
-
-Før en thread legges inn, sjekk:
-
-1. Er threaden direkte knyttet til et valg?
-2. Reagerer avsenderen på det spilleren faktisk valgte?
-3. Har threaden et eget `purpose`?
-4. Har threaden egne `stakes`?
-5. Er den kortere enn hovedmailen?
-6. Endrer den relasjonen eller situasjonen litt?
-7. Har den en tydelig stemme?
-8. Unngår den å starte en helt ny stor sak uten grunn?
-9. Har den konkrete valg/replikk?
-10. Gir feedbacken sosial etterklang?
-
-## 11. Standard arbeidsflyt for å skrive threads
-
-For hver hovedmail:
-
-1. Les hovedmailens `purpose` og `stakes`.
-2. Les hvert valg.
-3. Spør: Hvordan ville avsenderen reagert på akkurat dette svaret?
-4. Skriv én kort Re:-mail per viktig valg.
-5. Gi threaden eget `purpose` og `stakes`.
-6. Hold situasjonen kort.
-7. Gi normalt bare ett svarvalg.
-8. La feedbacken vise sosial etterklang.
-
-## 12. Retning
-
-Threads skal gjøre Civication levende.
-
-De skal skape følelsen av at arbeidslivet ikke bare består av oppgaver, men av mennesker som husker hvordan du svarte.
-
-Hver thread skal derfor spørre:
-
-```text
-Hvordan ble svaret ditt oppfattet?
-Hva åpnet det?
-Hva lukket det?
-Hvem ser deg litt annerledes nå?
-```
-
-Dette er standarden for threads fremover.
+Threads skal gjøre Civication levende ved å gi mennesker hukommelse, ikke ved å øke klikkmengden.
