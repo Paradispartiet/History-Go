@@ -94,8 +94,7 @@ jobs:
             data/Civication \
             reports/civication-career-gameplay-matrix.md \
             js/Civication/systems/civicationWorkdayMailBuilder.js \
-            tests \
-            .github/workflows/civication.yml
+            tests
           staged="$(git diff --cached --name-only)"
           printf '%s\n' "$staged"
           if printf '%s\n' "$staged" | grep -E '(^|/)\.tmp-civication-4hb-|civication-4hb-(diagnose|order-fix)\.yml'; then
