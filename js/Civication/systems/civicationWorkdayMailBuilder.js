@@ -8,6 +8,7 @@
   const WORK_MAIL_CLASS = "daily_workday";
   const SCENE_DIRECTOR_VERSION = 1;
   const SCENE_CATALOG_VERSION = 1;
+  const COMPILED_REGISTRY_PATH = "data/Civication/compiledSceneRegistryV1.json";
   const SELECTION_TRACE_LIMIT = 80;
   const CATALOG_TRACE_LIMIT = 80;
   const SCENE_SOURCE_ADAPTER_QUEUE_KEY = "__civicationSceneSourceAdapterQueue";
@@ -211,6 +212,8 @@
     /** @type {Map<string, any>} */
     const sourceAdapters = new Map();
     const sourceAdapterTrace = [];
+    let compiledRegistrySnapshot = null;
+    let compiledRegistryPromise = null;
 
     function normalizeSourceAdapterName(value) {
       return norm(value).toLowerCase();
@@ -334,6 +337,44 @@
         jsonInflight.delete(p);
       }
     }
+    async function loadCompiledRegistry() {
+      if (compiledRegistrySnapshot) return compiledRegistrySnapshot;
+      if (compiledRegistryPromise) return compiledRegistryPromise;
+      compiledRegistryPromise = (async () => {
+        const registry = await loadJson(COMPILED_REGISTRY_PATH);
+        if (!registry || registry.schema !== "compiled_scene_registry_v1" || Number(registry.version) !== 1) {
+          throw new Error("Civication compiled scene registry mangler eller har ugyldig schema/version");
+        }
+        if (Number(registry?.stats?.shadowed_duplicate_count || 0) !== 0 || (registry.shadowed_duplicates || []).length !== 0) {
+          throw new Error("Civication compiled scene registry kan ikke brukes med shadowed duplicates");
+        }
+        if (!Array.isArray(registry.entries) || !registry.role_index || typeof registry.role_index !== "object") {
+          throw new Error("Civication compiled scene registry mangler entries/role_index");
+        }
+        const byId = new Map();
+        for (const entry of registry.entries) {
+          const id = norm(entry?.id);
+          if (!id || byId.has(id)) throw new Error(`Civication compiled scene registry har duplikat/manglende id: ${id || "<tom>"}`);
+          if (!entry?.compatibility_projection || typeof entry.compatibility_projection !== "object") {
+            throw new Error(`Civication compiled scene registry mangler compatibility_projection for ${id}`);
+          }
+          byId.set(id, entry);
+        }
+        for (const [roleKey, ids] of Object.entries(registry.role_index)) {
+          if (!Array.isArray(ids)) throw new Error(`Civication compiled scene registry har ugyldig role_index for ${roleKey}`);
+          for (const id of ids) {
+            if (!byId.has(norm(id))) throw new Error(`Civication compiled scene registry role_index peker på ukjent scene ${id}`);
+          }
+        }
+        compiledRegistrySnapshot = { registry, byId };
+        return compiledRegistrySnapshot;
+      })();
+      try {
+        return await compiledRegistryPromise;
+      } finally {
+        compiledRegistryPromise = null;
+      }
+    }
     function normalizeChoices(choices) {
       const list = Array.isArray(choices) ? choices : [];
       const normalized = list
@@ -384,20 +425,43 @@
       return Promise.all(list.map((mail) => bridge.decorateMail(mail)));
     }
     async function getRoleMails(active, state = getState(), options = {}) {
-      const paths = getFamilyPaths(active);
-      const catalogs = await Promise.all(paths.map(async (path) => ({
-        path,
-        value: await loadJson(path)
-      })));
-      const flattened = catalogs.flatMap(({ path, value }) => value ? flattenCatalog(value, path) : []);
+      const category = norm(active?.career_id);
+      const roleScope = resolveRoleScope(active);
+      if (!category || !roleScope) return [];
+      const compiled = await loadCompiledRegistry();
+      const roleKey = `${category}/${roleScope}`;
+      const ids = Array.isArray(compiled.registry.role_index?.[roleKey])
+        ? compiled.registry.role_index[roleKey]
+        : [];
+      const flattened = ids.map((id) => {
+        const entry = compiled.byId.get(norm(id));
+        if (!entry) throw new Error(`Civication compiled scene registry mangler ${id} for ${roleKey}`);
+        const projection = entry.compatibility_projection || {};
+        return decorateSceneInteraction({
+          ...projection,
+          id: norm(projection.id || entry.id),
+          category: norm(projection.category || entry.category),
+          role_scope: norm(projection.role_scope || entry.role_scope),
+          mail_type: norm(projection.mail_type || entry.mail_type || "job"),
+          mail_family: norm(projection.mail_family),
+          choices: normalizeChoices(projection.choices),
+          situation: Array.isArray(projection.situation)
+            ? projection.situation.map(norm).filter(Boolean)
+            : [norm(projection.summary)].filter(Boolean),
+          scene_catalog_source_path: norm(entry.source_path || projection.scene_catalog_source_path),
+          scene_catalog_version: SCENE_CATALOG_VERSION
+        });
+      });
       const mails = (await decorateMails(flattened)).map(decorateSceneInteraction);
       catalogTrace.push({
         at: new Date().toISOString(),
         consumer: norm(options.consumer || "scene_director") || "scene_director",
-        career_id: norm(active?.career_id),
-        role_scope: resolveRoleScope(active),
-        path_count: paths.length,
-        catalog_count: catalogs.filter((row) => !!row.value).length,
+        career_id: category,
+        role_scope: roleScope,
+        registry_path: COMPILED_REGISTRY_PATH,
+        registry_hash: norm(compiled.registry.registry_hash),
+        path_count: 1,
+        catalog_count: 1,
         mail_count: mails.length
       });
       if (catalogTrace.length > CATALOG_TRACE_LIMIT) {
@@ -410,17 +474,18 @@
     }
     async function prewarm(active, options = {}) {
       if (!active) return { warmed: false, reason: "no_active_role" };
-      const paths = getFamilyPaths(active);
       const planPath = getPlanPath(active);
-      await Promise.all([
-        planPath ? loadJson(planPath) : Promise.resolve(null),
-        ...paths.map((path) => loadJson(path))
+      const [compiled] = await Promise.all([
+        loadCompiledRegistry(),
+        planPath ? loadJson(planPath) : Promise.resolve(null)
       ]);
       return {
         warmed: true,
         owner: "CivicationSceneCatalog",
         role_scope: resolveRoleScope(active),
-        family_path_count: paths.length,
+        family_path_count: 0,
+        registry_path: COMPILED_REGISTRY_PATH,
+        registry_hash: norm(compiled.registry.registry_hash),
         consumer: norm(options.consumer || "daily_prewarm") || "daily_prewarm"
       };
     }
@@ -428,8 +493,11 @@
       return {
         version: SCENE_CATALOG_VERSION,
         owner: "CivicationSceneCatalog",
-        source_format: "legacy_mail_families_adapter",
-        compiled_registry_ready: false,
+        source_format: "compiled_scene_registry_v1",
+        compiled_registry_ready: true,
+        compiled_registry_path: COMPILED_REGISTRY_PATH,
+        compiled_registry_loaded: !!compiledRegistrySnapshot,
+        compiled_registry_hash: norm(compiledRegistrySnapshot?.registry?.registry_hash),
         cache_size: jsonCache.size,
         inflight_count: jsonInflight.size,
         source_adapters: listSourceAdapters(),

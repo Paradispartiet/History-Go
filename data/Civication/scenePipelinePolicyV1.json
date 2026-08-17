@@ -10,12 +10,16 @@
     "schema_path": "data/Civication/compiledSceneRegistryV1.schema.json",
     "compiler": "scripts/build-civication-scene-registry.mjs",
     "default_output": "data/Civication/compiledSceneRegistryV1.json",
-    "status": "contract_and_compiler_ready",
-    "runtime_reads_registry": false,
+    "status": "materialized_runtime_cutover_complete",
+    "runtime_reads_registry": true,
     "compatibility_projection_is_generated_not_source": true,
     "runtime_cutover_requires_zero_shadowed_duplicates": true,
     "duplicate_id_policy": "Compileren speiler SceneCatalogs runtime-kilderekkefølge. En senere duplicate kan bare inventeres som shadowed når routing-signaturen er identisk; ellers feiler build. Canonicale scene-ID-er omskrives aldri for å skjule kollisjoner.",
-    "cutover_rule": "Runtime skal ikke bytte fra mailFamilies til compiled registry før id-, valg-, eligibility-, thread-, consequence- og selection-paritet er bevist og shadowed duplicate-gjeld er null."
+    "cutover_rule": "Runtime skal ikke bytte fra mailFamilies til compiled registry før id-, valg-, eligibility-, thread-, consequence- og selection-paritet er bevist og shadowed duplicate-gjeld er null.",
+    "sync_gate": "node scripts/build-civication-scene-registry.mjs --check",
+    "parity_test": "tests/civication-compiled-scene-registry-parity.test.js",
+    "completed_phase": "4H-B",
+    "next_phase": "4H-C"
   },
   "format_freeze": {
     "new_mail_source_formats_allowed": false,
@@ -48,15 +52,42 @@
     "consequence"
   ],
   "legacy_type_mapping": {
-    "job": { "scene_kind": "task", "delivery": "mail" },
-    "knowledge": { "scene_kind": "knowledge", "delivery": "mail" },
-    "micro": { "scene_kind": "task", "delivery": "mail" },
-    "people": { "scene_kind": "relationship", "delivery": "mail" },
-    "conflict": { "scene_kind": "conflict", "delivery": "mail" },
-    "followup": { "scene_kind": "consequence", "delivery": "mail" },
-    "story": { "scene_kind": "milestone", "delivery": "mail" },
-    "event": { "scene_kind": "milestone", "delivery": "mail" },
-    "consequence": { "scene_kind": "consequence", "delivery": "mail" }
+    "job": {
+      "scene_kind": "task",
+      "delivery": "mail"
+    },
+    "knowledge": {
+      "scene_kind": "knowledge",
+      "delivery": "mail"
+    },
+    "micro": {
+      "scene_kind": "task",
+      "delivery": "mail"
+    },
+    "people": {
+      "scene_kind": "relationship",
+      "delivery": "mail"
+    },
+    "conflict": {
+      "scene_kind": "conflict",
+      "delivery": "mail"
+    },
+    "followup": {
+      "scene_kind": "consequence",
+      "delivery": "mail"
+    },
+    "story": {
+      "scene_kind": "milestone",
+      "delivery": "mail"
+    },
+    "event": {
+      "scene_kind": "milestone",
+      "delivery": "mail"
+    },
+    "consequence": {
+      "scene_kind": "consequence",
+      "delivery": "mail"
+    }
   },
   "target_ownership": {
     "scene_catalog": "compiled_scene_registry_v1",
