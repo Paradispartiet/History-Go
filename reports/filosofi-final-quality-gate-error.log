@@ -1,0 +1,54 @@
+TAP version 13
+# Subtest: university_depth_reviewed kan ikke motsies av artikkelens egen review-state
+ok 1 - university_depth_reviewed kan ikke motsies av artikkelens egen review-state
+  ---
+  duration_ms: 1.084884
+  type: 'test'
+  ...
+# Subtest: universitetsstatus kan ikke sertifiseres av kjent generator-malprosa
+ok 2 - universitetsstatus kan ikke sertifiseres av kjent generator-malprosa
+  ---
+  duration_ms: 14.017422
+  type: 'test'
+  ...
+# Subtest: teorihistorie er fri for regex-skjøter fra quality-repair
+ok 3 - teorihistorie er fri for regex-skjøter fra quality-repair
+  ---
+  duration_ms: 0.838562
+  type: 'test'
+  ...
+# Subtest: kildeavsnittet må omtale de faktiske emnespesifikke sekundærkildene og ikke et annet emnes kildeliste
+not ok 4 - kildeavsnittet må omtale de faktiske emnespesifikke sekundærkildene og ikke et annet emnes kildeliste
+  ---
+  duration_ms: 2.648806
+  type: 'test'
+  location: '/home/runner/work/History-Go/History-Go/tests/fagverk-filosofi-final-quality.test.mjs:77:1'
+  failureType: 'testCodeFailure'
+  error: 'em_filosofi_skepsis_feilbarlighet: kildedrøftingen navngir Ludwig Wittgenstein, men artikkelen deklarerer ikke sep-wittgenstein'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  operator: 'fail'
+  stack: |-
+    TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/fagverk-filosofi-final-quality.test.mjs:110:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: primærverk skal være reelle argumentankere, ikke bare metadata
+ok 5 - primærverk skal være reelle argumentankere, ikke bare metadata
+  ---
+  duration_ms: 1.876819
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 4
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 99.880754
