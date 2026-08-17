@@ -1,9 +1,9 @@
 name: Civication Ekspeditor Role World materialize
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/civication-ekspeditor-role-world
+      - main
     paths:
       - data/Civication/roleWorlds/.materialize-ekspeditor
 
@@ -16,12 +16,13 @@ concurrency:
 
 jobs:
   materialize:
+    if: github.event.pull_request.head.ref == 'agent/civication-ekspeditor-role-world'
     runs-on: ubuntu-latest
     steps:
-      - name: Check out branch
+      - name: Check out PR branch
         uses: actions/checkout@v4
         with:
-          ref: agent/civication-ekspeditor-role-world
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Set up Node
@@ -72,4 +73,4 @@ jobs:
             exit 1
           fi
           git commit -m "Materialize Ekspeditor Role World status"
-          git push origin HEAD:agent/civication-ekspeditor-role-world
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
