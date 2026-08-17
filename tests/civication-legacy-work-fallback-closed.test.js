@@ -40,12 +40,15 @@ assert(!immediateFollowup.includes('type: "generic"'), "followup kan ikke lage g
 assert(onAppOpen.includes('"no_runtime_candidates"'), "tom canonical pool skal være eksplisitt no-op");
 assert(immediateFollowup.includes('"no_runtime_candidates"'), "tom followup-pool skal være eksplisitt no-op");
 
-const fallbackPolicy = policy.compiled_scene_registry_contract?.legacy_fallback_policy || {};
-assert.equal(policy.compiled_scene_registry_contract?.completed_phase, "4H-C");
-assert.equal(policy.compiled_scene_registry_contract?.next_phase, "4H-D");
+const registryContract = policy.compiled_scene_registry_contract || {};
+const fallbackPolicy = registryContract.legacy_fallback_policy || {};
+assert.equal(registryContract.completed_phase, "4H-D");
+assert.equal(registryContract.next_phase, "role_world_editorial_standardization");
 assert.equal(fallbackPolicy.jobbmails_runtime_gameplay_allowed, false);
 assert.equal(fallbackPolicy.legacy_pack_runtime_fallback_allowed, false);
 assert.equal(fallbackPolicy.generic_career_mail_runtime_fallback_allowed, false);
+assert.equal(fallbackPolicy.role_storylet_runtime_fallback_allowed, false);
+assert.equal(fallbackPolicy.previous_build_mail_pool_runtime_fallback_allowed, false);
 assert.equal(fallbackPolicy.scene_director_error_mode, "fail_closed_no_gameplay");
 
 console.log("civication-legacy-work-fallback-closed.test.js: PASS");

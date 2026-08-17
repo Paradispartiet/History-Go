@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.local/schemas/civication-role-world-v1.json",
+  "title": "Civication Role World v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "category",
+    "role_scope",
+    "title",
+    "status",
+    "sociological_core",
+    "theme_ids",
+    "social_environments",
+    "recurring_people_archetypes",
+    "slow_axes",
+    "season",
+    "primary_threads",
+    "private_aftermath",
+    "delayed_consequences",
+    "materialization"
+  ],
+  "properties": {
+    "schema": { "const": "civication_role_world_v1" },
+    "version": { "const": 1 },
+    "category": { "type": "string", "minLength": 1 },
+    "role_scope": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "status": {
+      "enum": ["role_world_not_started", "role_world_in_production", "role_world_complete"]
+    },
+    "sociological_core": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["main_problem", "description"],
+      "properties": {
+        "main_problem": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 }
+      }
+    },
+    "theme_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "social_environments": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "recurring_people_archetypes": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "social_function",
+          "class_position",
+          "status",
+          "power_over_player",
+          "wants",
+          "conceals",
+          "speech_style",
+          "teaches_player"
+        ],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "social_function": { "type": "string", "minLength": 1 },
+          "class_position": { "type": "string", "minLength": 1 },
+          "status": { "type": "string", "minLength": 1 },
+          "power_over_player": { "type": "string", "minLength": 1 },
+          "wants": { "type": "string", "minLength": 1 },
+          "conceals": { "type": "string", "minLength": 1 },
+          "speech_style": { "type": "string", "minLength": 1 },
+          "teaches_player": { "type": "string", "minLength": 1 },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "slow_axes": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "meaning", "runtime_binding"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "meaning": { "type": "string", "minLength": 1 },
+          "runtime_binding": {
+            "enum": ["existing", "editorial_only_until_governed"]
+          }
+        }
+      }
+    },
+    "season": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["days", "day_phases", "coverage"],
+      "properties": {
+        "days": { "const": 14 },
+        "day_phases": {
+          "const": ["morning", "lunch", "afternoon", "evening"]
+        },
+        "coverage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["day", "phase", "beat_type", "summary", "materialization_refs"],
+            "properties": {
+              "day": { "type": "integer", "minimum": 1, "maximum": 14 },
+              "phase": { "enum": ["morning", "lunch", "afternoon", "evening"] },
+              "beat_type": {
+                "enum": ["info", "conversation", "relationship", "social", "task", "decision", "consequence", "private_consequence"]
+              },
+              "summary": { "type": "string", "minLength": 1 },
+              "thread_ids": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "materialization_refs": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "primary_threads": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "relationship", "beat_refs"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "relationship": { "type": "string", "minLength": 1 },
+          "beat_refs": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 10,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "private_aftermath": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "description", "materialization_refs"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "materialization_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "delayed_consequences": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "setup_ref", "return_ref", "domains"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "setup_ref": { "type": "string", "minLength": 1 },
+          "return_ref": { "type": "string", "minLength": 1 },
+          "domains": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": ["job", "relationship", "psyche", "livelihood", "economy", "housing", "reputation", "narrative"]
+            }
+          }
+        }
+      }
+    },
+    "materialization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["no_new_runtime", "source_refs"],
+      "properties": {
+        "no_new_runtime": { "const": true },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "role_world_complete" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "season": {
+            "properties": {
+              "coverage": { "minItems": 56, "maxItems": 56 }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
