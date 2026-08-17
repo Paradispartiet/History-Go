@@ -114,6 +114,46 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
+      - name: Normalize planned-unit paragraph claim traces
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const plan = JSON.parse(fs.readFileSync('data/fag/TV_og_Film/film_tv_learning_order_plan_v1.json', 'utf8'));
+          const registry = JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json', 'utf8'));
+          const chapters = registry.subjects.film_tv.chapters;
+          let normalized = 0;
+
+          for (const unit of plan.planned_units || []) {
+            const row = chapters.find((chapter) => chapter.id === unit.id);
+            if (!row) throw new Error(`Planned unit missing from registry: ${unit.id}`);
+            const chapter = JSON.parse(fs.readFileSync(row.file, 'utf8'));
+            for (const moduleFile of chapter.moduleFiles || row.moduleFiles || []) {
+              const module = JSON.parse(fs.readFileSync(moduleFile, 'utf8'));
+              let changed = false;
+              for (const section of module.sections || []) {
+                const paragraphs = section.paragraphs || [];
+                const traces = section.paragraphClaimIds;
+                if (!Array.isArray(traces) || traces.length !== paragraphs.length) {
+                  throw new Error(`${unit.id}/${section.id}: paragraphClaimIds shape does not match paragraphs`);
+                }
+                section.paragraphClaimIds = traces.map((trace, index) => {
+                  if (typeof trace === 'string' && trace.length > 0) {
+                    normalized += 1;
+                    changed = true;
+                    return [trace];
+                  }
+                  if (Array.isArray(trace) && trace.length > 0 && trace.every((id) => typeof id === 'string' && id.length > 0)) {
+                    return trace;
+                  }
+                  throw new Error(`${unit.id}/${section.id}: paragraph ${index + 1} has invalid claim trace`);
+                });
+              }
+              if (changed) fs.writeFileSync(moduleFile, `${JSON.stringify(module, null, 2)}\n`);
+            }
+          }
+          console.log(`Normalized ${normalized} planned-unit paragraph claim traces to explicit arrays`);
+          NODE
+
       - name: Materialize holistic completion state
         id: materialize
         shell: bash
