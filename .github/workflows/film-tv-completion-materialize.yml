@@ -32,27 +32,6 @@ jobs:
         run: |
           node --check scripts/audit-film-tv-completion-v1.mjs
           node --check tests/film-tv-completion-v1.test.mjs
-      - name: Diagnose legacy chapter schema
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const registry = JSON.parse(fs.readFileSync('data/fagverk/fagverk_registry.json', 'utf8')).subjects.film_tv;
-          const row = registry.chapters.find((entry) => entry.id === 'layout-bilde-klipp-og-lyd');
-          if (!row) throw new Error('Missing layout-bilde-klipp-og-lyd registry row');
-          const chapter = JSON.parse(fs.readFileSync(row.file, 'utf8'));
-          console.log(JSON.stringify({
-            registry: row,
-            chapter: {
-              file: row.file,
-              keys: Object.keys(chapter),
-              id: chapter.id,
-              chapter_id: chapter.chapter_id,
-              subject_id: chapter.subject_id,
-              subject: chapter.subject,
-              type: chapter.type
-            }
-          }, null, 2));
-          NODE
       - name: Materialize completion report and final status
         run: node scripts/audit-film-tv-completion-v1.mjs --apply-complete --write-report --no-check-report
       - name: Rebuild deterministic release
