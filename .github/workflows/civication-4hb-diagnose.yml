@@ -51,12 +51,10 @@ jobs:
           )'''
           text = text[:i] + replacement + text[j:]
 
-          old_ci = """    '      - name: Run Civication tests\\n        run: node tests/run-civication-tests.mjs\\n',
-    '      - name: Verify compiled scene registry is synchronized\\n        run: node scripts/build-civication-scene-registry.mjs --check\\n      - name: Run Civication tests\\n        run: node tests/run-civication-tests.mjs\\n',
-"""
-          new_ci = """    '      - name: Run complete Civication suite\\n        run: npm run test:civication\\n',
-    '      - name: Verify compiled scene registry is synchronized\\n        run: node scripts/build-civication-scene-registry.mjs --check\\n      - name: Run complete Civication suite\\n        run: npm run test:civication\\n',
-"""
+          old_ci = ("    '      - name: Run Civication tests\\n        run: node tests/run-civication-tests.mjs\\n',\n"
+                    "    '      - name: Verify compiled scene registry is synchronized\\n        run: node scripts/build-civication-scene-registry.mjs --check\\n      - name: Run Civication tests\\n        run: node tests/run-civication-tests.mjs\\n',\n")
+          new_ci = ("    '      - name: Run complete Civication suite\\n        run: npm run test:civication\\n',\n"
+                    "    '      - name: Verify compiled scene registry is synchronized\\n        run: node scripts/build-civication-scene-registry.mjs --check\\n      - name: Run complete Civication suite\\n        run: npm run test:civication\\n',\n")
           count = text.count(old_ci)
           if count != 1:
               raise SystemExit(f'CI registry replacement anchor: expected one source block, found {count}')
