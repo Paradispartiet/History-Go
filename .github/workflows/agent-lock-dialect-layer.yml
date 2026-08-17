@@ -71,15 +71,13 @@ jobs:
       - name: Verify clean diff syntax
         run: git diff --check
 
-      - name: Commit permanent product changes
+      - name: Commit non-workflow permanent changes
         run: |
           git config user.name "History Go migration bot"
           git config user.email "actions@users.noreply.github.com"
-          git rm .github/workflows/agent-lock-dialect-layer.yml scripts/agent_lock_dialect_layer.py
           git add docs/SPRAKLEKSIKON.md docs/PLACE_PRODUCTION_CHECKLIST.md \
             data/leksikon/sprak/schema_v2.json js/ui/place-language-layer.js \
-            tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs \
-            .github/workflows/language-layer-checks.yml
+            tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs
           git diff --cached --check
           git commit -m "Lås dialektlaget til område-Places"
           git push origin HEAD:agent/lock-dialect-to-area-places
