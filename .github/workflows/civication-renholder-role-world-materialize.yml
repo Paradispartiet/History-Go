@@ -1,0 +1,102 @@
+name: Civication Renholder Role World materialize
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - data/Civication/roleWorlds/.materialize-renholder
+
+permissions:
+  contents: write
+
+concurrency:
+  group: civication-renholder-role-world-materialize
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.ref == 'agent/civication-renholder-role-world'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Reconcile Renholder names and canonical docs
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          const jobPath = 'data/Civication/mailFamilies/naeringsliv/job/renholder_job.json';
+          let jobText = fs.readFileSync(jobPath, 'utf8');
+          if (!jobText.includes('Sissel')) throw new Error('Expected legacy Sissel naming in Renholder job source');
+          jobText = jobText.replaceAll('Sissel', 'Kari');
+          fs.writeFileSync(jobPath, jobText);
+
+          const standardPath = 'docs/CIVICATION_ROLE_WORLD_STANDARD.md';
+          let standard = fs.readFileSync(standardPath, 'utf8');
+          const standardStart = standard.indexOf('## 13. Reference-status og neste produksjon');
+          const standardEnd = standard.indexOf('## 14. Canonical authoring workflow');
+          if (standardStart < 0 || standardEnd <= standardStart) throw new Error('Could not locate Role World reference-status section');
+          const newStandardSection = `## 13. Reference-status og neste produksjon\n\nDe to første reference Role Worlds er nå materialisert og permanent testet:\n\n\`\`\`text\nnaeringsliv/ekspeditor → role_world_complete\nnaeringsliv/renholder  → role_world_complete\n\`\`\`\n\nEkspeditør og Renholder er strukturreferanser for metoden, ikke innholdsmaler som senere roller skal kopiere. Renholder beviser at standarden også fungerer for usynlig arbeid, kropp/HMS, avvik og privat arbeidslekkasje.\n\nNeste reference Role World er:\n\n\`\`\`text\nby/by_radgiver_plan\n\`\`\`\n\nBy-rådgiver skal teste samme authoring-prosess i en kunnskaps- og forvaltningsverden med byråkratisk makt, lokal kunnskap, politisk/administrativt press, faglig integritet og lojalitet oppover/nedover.\n\nDeretter følger:\n\n\`\`\`text\nnaeringsliv/controller\nsport/sport_utover\n\`\`\`\n\nMålet er å bevise standarden på tvers av servicearbeid, usynlig arbeid, forvaltning, tall/kontroll og kropp/prestasjon før bred masseproduksjon.\n\n`;
+          standard = standard.slice(0, standardStart) + newStandardSection + standard.slice(standardEnd);
+          fs.writeFileSync(standardPath, standard);
+
+          const guidePath = 'docs/CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md';
+          let guide = fs.readFileSync(guidePath, 'utf8');
+          const guideStart = guide.indexOf('## 15. Reference-sekvens');
+          if (guideStart < 0) throw new Error('Could not locate Role World authoring reference sequence');
+          const newGuideSection = `## 15. Reference-sekvens\n\nDe to første reference worlds er materialisert:\n\n\`\`\`text\nnaeringsliv/ekspeditor → role_world_complete\nnaeringsliv/renholder  → role_world_complete\n\`\`\`\n\nDe viser at samme produksjonsmetode kan bære både servicearbeid og usynlig fysisk arbeid uten å kopiere innhold, NPC-er eller konfliktakser.\n\nNeste reference Role World er:\n\n\`\`\`text\nby/by_radgiver_plan\n\`\`\`\n\nDeretter:\n\n\`\`\`text\nnaeringsliv/controller\nsport/sport_utover\n\`\`\`\n\nPoenget med rekkefølgen er å bevise metoden på tvers av servicearbeid, usynlig arbeid, forvaltning, tall/kontroll og kropp/prestasjon før bred masseproduksjon.\n`;
+          guide = guide.slice(0, guideStart) + newGuideSection;
+          fs.writeFileSync(guidePath, guide);
+          NODE
+
+      - name: Regenerate Scene Registry and Career Gameplay outputs
+        run: |
+          node scripts/build-civication-scene-registry.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --write
+
+      - name: Verify Renholder Role World and existing packages
+        run: |
+          node tests/civication-role-world-contract.test.js
+          node tests/civication-renholder-role-world.test.js
+          node tests/civication-renholder-role-package.test.js
+          node tests/civication-renholder-first-week-praksisfortellinger.test.js
+          node tests/civication-renholder-second-week-praksisfortellinger.test.js
+          node tests/civication-lifestory-renholder.test.js
+          node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-career-gameplay.mjs --check
+          if grep -R "Sissel" data/Civication/mailFamilies/naeringsliv/job/renholder_job.json; then
+            echo 'Legacy Sissel naming remains in canonical Renholder job source' >&2
+            exit 1
+          fi
+
+      - name: Commit generated reconciliation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- \
+            data/Civication/mailFamilies/naeringsliv/job/renholder_job.json \
+            data/Civication/compiledSceneRegistryV1.json \
+            data/Civication/careerGameplayMatrix.json \
+            reports/civication-career-gameplay-matrix.md \
+            docs/CIVICATION_ROLE_WORLD_STANDARD.md \
+            docs/CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md
+          if git diff --cached --quiet; then
+            echo "Expected Renholder reconciliation produced no diff" >&2
+            exit 1
+          fi
+          git commit -m "Materialize Renholder Role World reconciliation"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
