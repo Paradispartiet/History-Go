@@ -1,0 +1,82 @@
+{
+  "schema": "history_go_fagverk_chapter_v1",
+  "version": "1.0.0",
+  "subject": "vitenskap",
+  "subject_id": "vitenskap",
+  "id": "vitenskap-matematisk-bevis-struktur-og-modell",
+  "chapter_id": "vitenskap-matematisk-bevis-struktur-og-modell",
+  "primary_domain_id": "metoder_maling_modeller",
+  "coverage_family_id": "mathematics_formal_sciences",
+  "editorialStatus": "chapter_ready",
+  "claimTraceRequired": true,
+  "emne_ids": [
+    "em_vit_matematisk_bevis_og_deduksjon",
+    "em_vit_algebra_og_strukturer",
+    "em_vit_analyse_endring_og_kontinuitet",
+    "em_vit_geometri_rom_og_symmetri",
+    "em_vit_diskret_matematikk_og_kombinatorikk"
+  ],
+  "method_ids": [
+    "met_vit_teorianalyse",
+    "met_vit_beregningsanalyse",
+    "met_vit_modellanalyse",
+    "met_vit_statistisk_analyse",
+    "met_vit_visualiseringsanalyse",
+    "met_vit_algoritmeanalyse"
+  ],
+  "title": "Matematisk bevis, struktur og modell",
+  "subtitle": "Fra deduktiv gyldighet og maskinsjekkede bevis til algebraiske transformasjoner, kontinuerlig analyse, symmetri og diskrete strukturer – uten å forveksle formell korrekthet med empirisk validering",
+  "lead": "Matematikk kan gi konklusjoner med en type sikkerhet som skiller seg fra observasjonsfagenes evidens, men den sikkerheten gjelder det som følger fra eksplisitte definisjoner og forutsetninger. Dette kapittelet lærer å holde tre nivåer fra hverandre: den formelle slutningen, den matematiske representasjonen og den empiriske anvendelsen. Gjennom Lean, lineær algebra, analyse, symmetri og diskrete strukturer undersøker brukeren hva bevis etablerer, hva abstraksjon bevarer, og hvilke ekstra argumenter som kreves når matematikk brukes til å beskrive verden.",
+  "learningObjectives": [
+    "skille matematisk proposisjon og bevis fra empirisk påstand og observasjonsevidens",
+    "rekonstruere en deduktiv argumentkjede med eksplisitte definisjoner, antakelser og gyldige slutninger",
+    "forklare hvordan induksjon og maskinsjekkede proof terms brukes til å kontrollere formelle argumenter uten å gjøre theorem-proveren til empirisk dommer",
+    "analysere algebraiske strukturer, lineære transformasjoner og basisbytte som forskjeller mellom matematisk objekt og representasjon",
+    "bruke grenser, derivasjon og integrasjon til å forklare kontinuerlig endring og akkumulering og samtidig identifisere modellforutsetningene",
+    "analysere geometri og symmetri gjennom transformasjoner og invarians fremfor visuell likhet alene",
+    "skille kontinuerlige og diskrete representasjoner og bruke grafer, relasjoner og kombinatorikk som eksempler på diskrete strukturer",
+    "vurdere matematisk modelladekvathet ved å holde formell korrekthet, representasjon og empirisk støtte eksplisitt adskilt"
+  ],
+  "diagnosticQuestions": [
+    {
+      "question": "Er et matematisk bevis bare svært sterk empirisk evidens?",
+      "answer": "Nei. Et bevis viser hva som følger fra eksplisitte formelle forutsetninger; empirisk evidens handler om hvordan en påstand eller modell støttes av observasjon, måling eller data."
+    },
+    {
+      "question": "Hvis Lean godtar et theorem, har Lean da vist at en fysisk modell er sann?",
+      "answer": "Nei. Lean kan kontrollere den formaliserte slutningen, men den empiriske fortolkningen av variabler, antakelser og modell må begrunnes separat."
+    },
+    {
+      "question": "Kan samme lineære transformasjon få to forskjellige matriser?",
+      "answer": "Ja. Matrisen avhenger av valgt basis, mens den underliggende lineære avbildningen kan være den samme."
+    },
+    {
+      "question": "Er en kontinuerlig modell alltid mer presis enn en diskret modell?",
+      "answer": "Nei. Kontinuerlige og diskrete modeller bevarer ulike typer struktur; valg av representasjon må begrunnes av spørsmålet og fenomenet."
+    },
+    {
+      "question": "Betyr matematisk symmetri bare at to figurer ser like ut?",
+      "answer": "Nei. Symmetri analyseres gjennom spesifiserte transformasjoner og hvilke egenskaper eller relasjoner som forblir uendret."
+    }
+  ],
+  "moduleFiles": [
+    "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/01-grunnlag.json",
+    "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/02-fordypning.json",
+    "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/03-anvendelse.json"
+  ],
+  "briefFile": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/brief.json",
+  "claimsFile": "data/fagverk/vitenskap/vitenskap-matematisk-bevis-struktur-og-modell/claims.json",
+  "universityReadinessFile": "data/fag/vitenskap/vitenskap_university_readiness_v1.json",
+  "qualityGuard": {
+    "formalVsEmpiricalBoundaryExplicit": true,
+    "noProofEqualsEmpiricalEvidenceShortcut": true,
+    "noTheoremProverEmpiricalValidationShortcut": true,
+    "representationVsObjectDistinctionExplicit": true,
+    "continuousVsDiscreteModelChoiceExplicit": true,
+    "symmetryRequiresTransformationAndInvariance": true,
+    "doesNotClaimSubjectComplete": true,
+    "remainingBreadthEditorialBlockersRequired": true,
+    "technologyRemainsNested": true,
+    "noGenericTemplateReuse": true
+  }
+}
