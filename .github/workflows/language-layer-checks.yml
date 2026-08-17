@@ -16,6 +16,7 @@ on:
       - 'docs/PLACE_PRODUCTION_CHECKLIST.md'
       - 'data/leksikon/README_LEKSIKON.md'
       - 'tests/place-language-layer.test.mjs'
+      - 'tests/place-language-dialect-scope.test.mjs'
       - 'tests/place-popup-direct-tabs.test.mjs'
       - 'tests/knowledge-browser-e2e.test.mjs'
       - '.github/workflows/language-layer-checks.yml'
@@ -46,4 +47,4 @@ jobs:
         run: node --check js/knowledgePage.js
 
       - name: Test language data, dialect checklist and direct-tab contract
-        run: node --test tests/place-language-layer.test.mjs tests/place-popup-direct-tabs.test.mjs
+        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/place-popup-direct-tabs.test.mjs
