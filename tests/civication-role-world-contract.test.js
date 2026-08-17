@@ -64,6 +64,7 @@ for (const entry of index.roles || []) {
   assert.equal(world.version, 1);
   assert.equal(world.category, entry.category);
   assert.equal(world.role_scope, entry.role_scope);
+  assert.equal(world.status, entry.status);
   assert.ok(policy.role_world_statuses.includes(world.status));
 
   for (const themeId of world.theme_ids || []) {
@@ -128,6 +129,12 @@ assert.doesNotMatch(sceneDoc, /Neste 4H-D/);
 assert.match(roleMailDoc, /Mail er delivery/);
 assert.doesNotMatch(roleMailDoc, /Dette er autoritativ jobbmailflyt/);
 
-assert.equal(index.roles.filter((entry) => entry.status === 'role_world_complete').length, 0, 'No Role World may be predeclared complete before a registered world file exists');
+const completeWorlds = index.roles.filter((entry) => entry.status === 'role_world_complete');
+assert.equal(completeWorlds.length, 1, 'The first Role World production wave must expose exactly one completed reference world');
+assert.deepEqual(
+  { category: completeWorlds[0].category, role_scope: completeWorlds[0].role_scope },
+  { category: 'naeringsliv', role_scope: 'ekspeditor' },
+  'Ekspeditor must remain the first completed Role World'
+);
 
 console.log('Civication Role World contract: OK');
