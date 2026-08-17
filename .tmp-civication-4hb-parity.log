@@ -1,65 +1,8 @@
-AssertionError [ERR_ASSERTION]: naeringsliv/administrasjonsmedarbeider: full runtime-projeksjon skal være identisk
-+ actual - expected ... Lines skipped
-
-  [
-    {
-...
-      choices: [
-        {
-+         effects: {
-+           deadline_pressure: 1,
-+           documentation_quality: 3,
-+           process_quality: 2,
-+           stress: 1,
-+           traceability: 3,
-+           trust_economy: 2
-+         },
-+         feedback: 'Bra. Det tar litt mer tid nå, men sparer mye tid senere. Bilag uten eier blir fort små hull i virksomhetens hukommelse.',
-+         id: 'A',
-+         label: 'Finne eier før bilaget sendes videre',
-+         next_bias: {
-+           set_flags: [
-+             'administrasjonsmedarbeider_week1_finds_owner_first'
-+           ]
-+         },
-+         reply: 'Jeg setter bilaget på vent, kontakter drift og økonomi, og ber om konkret eier/godkjenner før det bokføres.',
-+         triggers_on_choice: 'administrasjonsmedarbeider_week1_finds_owner_first'
-+       },
-+       {
-+         effects: {
-+           deadline_met: 1,
-+           documentation_quality: 1,
-+           future_risk: 1,
-...
--         effect: 0,
--         effects: {
--           deadline_pressure: 1,
--           documentation_quality: 3,
--           process_quality: 2,
--           stress: 1,
--           traceability: 3,
--           trust_economy: 2
--         },
--         feedback: 'Bra. Det tar litt mer tid nå, men sparer mye tid senere. Bilag uten eier blir fort små hull i virksomhetens hukommelse.',
--         id: 'A',
--         label: 'Finne eier før bilaget sendes videre',
--         next_bias: {
--           set_flags: [
--             'administrasjonsmedarbeider_week1_finds_owner_first'
--           ]
--         },
--         reply: 'Jeg setter bilaget på vent, kontakter drift og økonomi, og ber om konkret eier/godkjenner før det bokføres.',
--         tags: [],
--         triggers_on_choice: 'administrasjonsmedarbeider_week1_finds_owner_first'
--       },
--       {
--         effect: 0,
--         effects: {
-...
-    at /home/runner/work/History-Go/History-Go/tests/civication-compiled-scene-registry-parity.test.js:211:12 {
+AssertionError [ERR_ASSERTION]: offentlig/renholder må finnes som representativ 4H-B-rolle
+    at /home/runner/work/History-Go/History-Go/tests/civication-compiled-scene-registry-parity.test.js:257:5 {
   generatedMessage: false,
   code: 'ERR_ASSERTION',
-  actual: [Array],
-  expected: [Array],
-  operator: 'deepStrictEqual'
+  actual: false,
+  expected: true,
+  operator: '=='
 }
