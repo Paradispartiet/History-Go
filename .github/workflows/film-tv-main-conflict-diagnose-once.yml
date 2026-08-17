@@ -112,25 +112,54 @@ jobs:
             exit 1
           fi
 
-      - name: Validate reconciled Film TV completion and shared contracts
+      - name: Validate holistic 192 completion
         shell: bash
         run: |
           set -euo pipefail
           node scripts/audit-film-tv-holistic-completion-v1.mjs
           node --test tests/film-tv-holistic-completion-v1.test.mjs
+
+      - name: Validate shared subject inventory
+        shell: bash
+        run: |
+          set -euo pipefail
           node scripts/audit-fagverk-subject-inventory.mjs
           node --test tests/fagverk-subject-inventory.test.mjs
+
+      - name: Validate shared general engine
+        shell: bash
+        run: |
+          set -euo pipefail
           node scripts/audit-fagverk-general-engine.mjs
           node --test tests/fagverk-general-engine.test.mjs
+
+      - name: Validate Film TV phase3
+        shell: bash
+        run: |
+          set -euo pipefail
           node scripts/audit-fagverk-film-tv-phase3.mjs
           node --test tests/fagverk-film-tv-phase3.test.mjs
+
+      - name: Validate release manifest
+        shell: bash
+        run: |
+          set -euo pipefail
           node scripts/build-fagverk-release-manifest.mjs --check
           node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Validate Unit15 and monotone completion gates
+        shell: bash
+        run: |
+          set -euo pipefail
           node scripts/audit-film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.mjs
           node --test tests/film-tv-cultural-heritage-canon-stars-memory-fulltext-v1.test.mjs
           node --test tests/film-tv-unit15-fulltext-predecessor-monotonicity-v1.test.mjs
           node --test tests/film-tv-final-gate-monotonicity-v1.test.mjs
 
+      - name: Validate terminal Film TV state
+        shell: bash
+        run: |
+          set -euo pipefail
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const status = JSON.parse(fs.readFileSync('data/fagverk/subject_status.json', 'utf8'));
