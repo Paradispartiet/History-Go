@@ -100,7 +100,7 @@ EventEngine laster legacy-pack og RoleStoryletBridge bare når Director returner
 - Career Knowledge Bridge-dekorering;
 - progresjonsfiltrering, case-tråd-deduplisering og deterministisk rangering.
 
-Dette er en kildeadapter mot legacy `mailFamilies`, ikke sluttens `compiled_scene_registry_v1`. Registry-cutoveren kommer senere uten at Daily igjen får katalogeierskap.
+`CivicationSceneCatalog` leser nå det materialiserte `compiled_scene_registry_v1` for work-scenes. `mailFamilies` er source-of-build med permanent `--check`-gate, men normal runtime går ikke tilbake til rå kataloglesing. `private`, `life`, `narrative` og `social` forblir runtime-materialiserte source adapters.
 
 SceneDirector eksponerer nå i tillegg:
 
@@ -144,7 +144,7 @@ De gamle interne Daily-funksjonene finnes foreløpig som kompatibilitetskode i f
 ## Bekreftet gjenværende migreringsgjeld
 
 1. Dagsprogrammet beskriver fortsatt en eldre element-/ordmengdemodell. Målkontrakten bruker 3–6 faktiske arbeidssituasjoner; lesetid og ordmengde er observasjoner, ikke produksjonskvoter.
-2. SceneCatalog leser fortsatt registrerte kildekataloger. Ett kompilert scene-register er måltilstanden nå som `private`, `life`, `narrative` og `social` er samlet bak registrerte kildeadaptre.
+2. 4H-C skal fjerne/blokkere parallelle legacyveier, særlig `data/Civication/jobbmails`, slik at arkiv/migreringsdata aldri kan fungere som gameplaykilde eller fallback.
 
 ## Fagverk og stabile spilleregler
 
@@ -186,8 +186,9 @@ Reachability-testen håndhever typeparitet og direkte lasting. SceneDirector-eie
    - **Fullført 4G-B:** `life` registreres som egen SceneCatalog-adapter; standard Life-`onAppOpen` konsumerer kilden via Catalog uten direkte produsentfallback.
    - **Fullført 4G-C:** `narrative` eier manifest/stream-eligibility og storylet→scene bak SceneCatalog; Daily eier fortsatt dagsplassering og narrativ state/effect-transaksjon.
    - **Fullført 4G-D:** `social` registreres som SceneCatalog-adapter; FriendsEngine er synkron kompatibilitetsfasade mot den registrerte adapteren, mens kart, private meldinger og samtalekonsekvenser beholder eksisterende semantikk.
-8. **Neste:** La runtime lese ett kompilert scene-register; fjern parallelle kildeveier og gamle `jobbmails`.
-9. Slå på blokkerende semantisk spilltest: plansteg → scene → valg/oppgave/info → konsekvens → progresjon → neste steg.
+8. **Fullført 4H-A–4H-B:** Materialiser `compiled_scene_registry_v1`, bevis før/etter-paritet og la SceneCatalog lese registryet for work-scenes.
+   - **Neste 4H-C:** fjern/blokker parallelle legacyveier og gamle `jobbmails` som gameplay/fallback.
+9. **Deretter 4H-D:** slå på blokkerende semantisk spilltest: plansteg → scene → valg/oppgave/info → konsekvens → progresjon → neste steg.
 
 Renholder og Arealplanlegger er de første bevisrollene etter at interaksjonskontrakten og svartransaksjonen er samlet.
 

@@ -164,7 +164,7 @@ function createHarness({ lifeFirst = false } = {}) {
 
   assert.equal(life.registerSceneSourceAdapter(), true, "samme Life-produsent skal kunne registreres idempotent");
   assert.equal(catalog.listSourceAdapters().length, 1);
-  assert.equal(catalog.inspect().compiled_registry_ready, false, "4G-B skal ikke smuginnføre compiled registry");
+  assert.equal(catalog.inspect().compiled_registry_ready, true, "4H-B skal eksponere compiled registry uten å endre Life-adaptereierskap");
 
   const engine = new MockEventEngine();
   const result = await engine.onAppOpen();

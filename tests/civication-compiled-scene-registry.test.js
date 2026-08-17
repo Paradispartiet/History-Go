@@ -19,8 +19,6 @@ const samplePath = path.join(repoRoot, "data/Civication/mailFamilies/by/job", `$
 const duplicateRoleScope = ["mel", "lom", "le", "der"].join("");
 const duplicateSceneId = ["ml", "faction", "001"].join("_");
 const unreachableDuplicateCopy = `data/Civication/mailFamilies/naeringsliv/job/${duplicateRoleScope}_fraksjonsvalg.json`;
-const keptDuplicateSource = `data/Civication/mailFamilies/naeringsliv/job/${duplicateRoleScope}_job.json`;
-const shadowedDuplicateSource = `data/Civication/mailFamilies/naeringsliv/faction_choice/${duplicateRoleScope}_faction_choice.json`;
 
 const registrySchema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
 const sceneSchema = JSON.parse(fs.readFileSync(sceneSchemaPath, "utf8"));
@@ -56,7 +54,7 @@ assert.equal(sceneSchema.properties.schema.const, "civication_scene_v1");
   assert.deepEqual(
     first.runtime_materialized_sources.map((source) => source.name),
     ["private", "life", "narrative", "social"],
-    "4G-adapterne skal beskrives som runtime-materialiserte under 4H-A"
+    "4G-adapterne skal fortsatt være runtime-materialiserte etter 4H-B"
   );
   for (const source of first.runtime_materialized_sources) {
     assert.equal(source.materialization, "runtime");
@@ -67,18 +65,10 @@ assert.equal(sceneSchema.properties.schema.const, "civication_scene_v1");
   assert(first.ignored_source_files.includes(unreachableDuplicateCopy));
   assert(!first.compiled_source_files.includes(unreachableDuplicateCopy));
 
-  // To canonicale runtime-paths har i dagens datatre samme scene-ID og identisk
-  // routing-signatur. Runtime laster job-kilden først; compileren skal derfor
-  // beholde den første og inventere den senere kopien som eksplisitt gjeld.
-  const duplicateEntries = first.entries.filter((entry) => entry.id === duplicateSceneId);
-  assert.equal(duplicateEntries.length, 1);
-  assert.equal(duplicateEntries[0].source_path, keptDuplicateSource);
-  const duplicateDebt = first.shadowed_duplicates.find((entry) => entry.id === duplicateSceneId);
-  assert(duplicateDebt, "kjent route-ekvivalent duplicate skal inventeres");
-  assert.equal(duplicateDebt.kept_source_path, keptDuplicateSource);
-  assert.equal(duplicateDebt.shadowed_source_path, shadowedDuplicateSource);
-  assert(duplicateDebt.kept_source_rank < duplicateDebt.shadowed_source_rank);
-  assert.match(duplicateDebt.routing_signature, /^[a-f0-9]{64}$/);
+  // 4H-B fjerner den eneste runtime-reachable skyggekopien uten å endre vinnerscenen.
+  assert.equal(first.stats.shadowed_duplicate_count, 0, "4H-B krever null shadowed duplicate-gjeld");
+  assert.deepEqual(first.shadowed_duplicates, []);
+  assert.equal(first.entries.filter((entry) => entry.id === duplicateSceneId).length, 1);
 
   const ids = new Set();
   const indexedIds = new Set();
