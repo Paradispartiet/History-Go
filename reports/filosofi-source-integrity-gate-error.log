@@ -1,0 +1,145 @@
+TAP version 13
+# {
+#   "schema": "history_go_filosofi_source_integrity_audit_v3",
+#   "article_count": 68,
+#   "offender_count": 4,
+#   "offenders": [
+#     {
+#       "id": "em_filosofi_intensjon_grunner_arsaker_handling",
+#       "title": "Intensjon, grunner og årsaker i handling",
+#       "debate_actors": [
+#         "G. E. M. Anscombe",
+#         "Donald Davidson",
+#         "Michael Bratman",
+#         "David Hume"
+#       ],
+#       "thinker_refs": [
+#         "gem_anscombe",
+#         "donald_davidson",
+#         "michael_bratman",
+#         "david_hume"
+#       ],
+#       "primary_work_refs": [
+#         "Intention",
+#         "Actions, Reasons, and Causes",
+#         "Intention, Plans, and Practical Reason"
+#       ],
+#       "issues": {
+#         "decorative_thinker_refs": [
+#           "david_hume"
+#         ]
+#       }
+#     },
+#     {
+#       "id": "em_filosofi_islamsk_jodisk_filosofi",
+#       "title": "Islamsk og jødisk filosofi",
+#       "debate_actors": [
+#         "Avicenna",
+#         "Averroes",
+#         "Moses Maimonides"
+#       ],
+#       "thinker_refs": [
+#         "ibn_rushd",
+#         "maimonides"
+#       ],
+#       "primary_work_refs": [
+#         "The Incoherence of the Incoherence",
+#         "The Guide for the Perplexed"
+#       ],
+#       "issues": {
+#         "anchor_actor_not_in_debate": [
+#           {
+#             "actor": "Ibn Rushd (Averroes)",
+#             "canonical_ref": "ibn_rushd",
+#             "work": "The Incoherence of the Incoherence"
+#           }
+#         ]
+#       }
+#     },
+#     {
+#       "id": "em_filosofi_okofeminisme_urfolkskunnskap",
+#       "title": "Økofeminisme og urfolkskunnskap",
+#       "debate_actors": [
+#         "Val Plumwood",
+#         "Karen Warren",
+#         "Kyle Whyte"
+#       ],
+#       "thinker_refs": [
+#         "val_plumwood",
+#         "kyle_whyte"
+#       ],
+#       "primary_work_refs": [
+#         "Indigenous Climate Change Studies",
+#         "Feminism and the Mastery of Nature"
+#       ],
+#       "issues": {
+#         "anchor_actor_not_in_debate": [
+#           {
+#             "actor": "Kyle Powys Whyte",
+#             "canonical_ref": "kyle_whyte",
+#             "work": "Indigenous Climate Change Studies"
+#           }
+#         ]
+#       }
+#     },
+#     {
+#       "id": "em_filosofi_vitnesbyrd_ekspertise_tillit",
+#       "title": "Vitnesbyrd, ekspertise og tillit",
+#       "debate_actors": [
+#         "Thomas Reid",
+#         "Elizabeth Fricker",
+#         "Alvin Goldman"
+#       ],
+#       "thinker_refs": [
+#         "miranda_fricker",
+#         "alvin_goldman"
+#       ],
+#       "primary_work_refs": [
+#         "Epistemology and Cognition",
+#         "Epistemic Injustice"
+#       ],
+#       "issues": {
+#         "anchor_actor_not_in_debate": [
+#           {
+#             "actor": "Miranda Fricker",
+#             "canonical_ref": "miranda_fricker",
+#             "work": "Epistemic Injustice"
+#           }
+#         ]
+#       }
+#     }
+#   ]
+# }
+# Subtest: all 68 university-reviewed Philosophy articles have debate-aligned source integrity
+not ok 1 - all 68 university-reviewed Philosophy articles have debate-aligned source integrity
+  ---
+  duration_ms: 39.531557
+  type: 'test'
+  location: '/home/runner/work/History-Go/History-Go/tests/fagverk-filosofi-source-integrity.test.mjs:39:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    4/68 Philosophy articles fail debate-aligned source integrity
+    
+    4 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 4
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///home/runner/work/History-Go/History-Go/tests/fagverk-filosofi-source-integrity.test.mjs:101:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 103.207545
