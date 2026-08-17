@@ -1,90 +1,45 @@
 {
   "schema": "history_go_fagverk_vitenskap_pilot_audit_v1",
-  "version": "1.1.0",
-  "status": "vitenskap_with_nested_teknologi_chapter_production",
+  "version": "1.2.0",
+  "status": "vitenskap_with_nested_teknologi_canonical_v4_6_chapter_production",
   "generatedFrom": {
-    "core": "js/fagverk-subject-core.js",
-    "categories": "data/categories/category_contract.json",
     "manifest": "data/fag/fag_manifest.json",
-    "portal": "data/fagverk/fagverk_portal.json",
-    "inventory": "data/fagverk/subject_inventory.json",
     "status": "data/fagverk/subject_status.json",
     "registry": "data/fagverk/fagverk_registry.json",
-    "badge": "data/badges/vitenskap.json",
-    "explicitMappings": "data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_5.json",
+    "pensum": "data/fag/vitenskap/vitenskappensum_canonical_v4_6.json",
+    "mappings": "data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json",
     "generator": "data/fag/vitenskap/quiz_generator_rules_vitenskap_v5_1_source_priority_patch.json",
     "technologyIndex": "data/fag/teknologi/teknologi_scientific_v2/index.json",
     "report": "reports/fagverk/vitenskap-pilot-audit.json"
   },
   "subject": {
     "id": "vitenskap",
-    "title": "Vitenskap & teknologi",
-    "schemaFamily": "standard_canonical",
-    "adapter": "standard",
-    "navigationStatus": "materialized",
-    "assessmentStatus": "audited",
     "editorialStatus": "chapters_in_progress",
-    "nextGate": "university_breadth_gap_reconciliation_and_remaining_chapter_production",
-    "subjectPage": "fagverk.html?subject=vitenskap",
-    "badgePage": "data/fag/vitenskap/merke_vitenskap (2).html"
+    "nextGate": "remaining_chapter_production_across_reconciled_university_breadth",
+    "registeredChapterCount": 1
   },
-  "specialization": {
-    "id": "teknologi",
-    "canonicalParentSubject": "vitenskap",
-    "badgeId": "vitenskap",
-    "schemaFamily": "technology_scientific_v2_4",
-    "adapter": "technology",
-    "topLevelRoute": "",
-    "scientificStatus": "canonical_scientific_subject"
-  },
-  "summary": {
+  "inventory": {
     "domainCount": 6,
-    "emneCount": 93,
+    "emneCount": 117,
     "methodCount": 84,
-    "mappingCount": 93,
-    "hookCount": 60,
-    "registeredChapterCount": 1,
-    "technologyDomainCount": 12,
-    "technologyEmneCount": 48,
-    "technologyMethodCount": 35,
-    "technologyMappingCount": 48,
-    "technologyHookCount": 36,
-    "technologyProgressionModuleCount": 12
+    "mappingCount": 117,
+    "topicHookCount": 64
   },
-  "canonicalDomainOrder": [
-    "institusjoner_laboratorier_kunnskapssteder",
-    "metoder_maling_modeller",
-    "paradigmer_teorier_sannhet",
-    "teknologi_data_infrastruktur",
-    "natur_medisin_miljo",
-    "samfunn_makt_etikk"
-  ],
-  "domainEmneCounts": {
-    "institusjoner_laboratorier_kunnskapssteder": 22,
-    "metoder_maling_modeller": 15,
-    "paradigmer_teorier_sannhet": 15,
-    "teknologi_data_infrastruktur": 13,
-    "natur_medisin_miljo": 14,
-    "samfunn_makt_etikk": 14
-  },
-  "emneStatusCounts": {
-    "active": 89,
-    "core": 4
+  "technology": {
+    "canonicalParentSubject": "vitenskap",
+    "topLevelSubject": false,
+    "areaCount": 12,
+    "topicCount": 48,
+    "methodCount": 35,
+    "hookCount": 36
   },
   "gates": {
-    "manifestFirstSourcesResolved": true,
-    "allVitenskapEmnersIntegrated": true,
-    "noSyntheticVitenskapDomains": true,
-    "allMethodReferencesResolved": true,
-    "explicitMappingAndGeneratorCountsSynchronized": true,
-    "technologyAdapterExercised": true,
-    "technologyRemainsNestedSpecialization": true,
-    "technologyHasNoTopLevelRouteOrBadge": true,
-    "vitenskapPlaceFallbackCorrect": true,
-    "badgeAndSubjectRoutesDistinct": true,
-    "assessmentStatusAudited": true,
+    "canonicalModelV46": true,
+    "exactInventoryLocked": true,
+    "allMappingsUnique": true,
     "editorialStatusChaptersInProgress": true,
     "registeredChapterPresent": true,
-    "chapterClaimsNotOverstated": true
+    "generatorUsesCanonicalV46": true,
+    "technologyRemainsNested": true
   }
 }

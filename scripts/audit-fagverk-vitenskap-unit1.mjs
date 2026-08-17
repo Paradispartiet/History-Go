@@ -6,8 +6,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = Object.freeze({
   readiness: 'data/fag/vitenskap/vitenskap_university_readiness_v1.json',
-  emners: 'data/fag/vitenskap/emner_vitenskap_canonical_v4_5.json',
-  methods: 'data/fag/vitenskap/methods_vitenskap_canonical_v4_5.json',
+  emners: 'data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json',
+  methods: 'data/fag/vitenskap/methods_vitenskap_canonical_v4_6.json',
   chapter: 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap.json',
   brief: 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/brief.json',
   claims: 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json'
@@ -30,7 +30,7 @@ const EXPECTED_METHODS = [
   'met_vit_fagfelleanalyse',
   'met_vit_feilkildeanalyse'
 ];
-const EXPECTED_GAPS = [
+const EXPECTED_BREADTH_FAMILIES = [
   'mathematics_formal_sciences',
   'physics_astronomy',
   'chemistry_material_science',
@@ -53,7 +53,13 @@ export function auditVitenskapUnit1() {
 
   assert(readiness.subject_id === 'vitenskap', 'Readiness peker ikke til vitenskap');
   assert(readiness.complete_ready === false, 'Unit 1 må ikke gjøre hele Vitenskap complete');
-  assert(sameSet(readiness.blocking_gaps || [], EXPECTED_GAPS), 'De fire readiness-gapene må forbli åpne i Unit 1');
+  assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'Strukturelle readiness-gap må være reconcilet etter v4.6');
+  assert(sameSet(readiness.editorial_blockers || [], EXPECTED_BREADTH_FAMILIES), 'De fire breadth-familiene må forbli åpne som redaksjonelle blockers');
+  for (const id of EXPECTED_BREADTH_FAMILIES) {
+    const family = readiness.coverage_families?.find((row) => row.id === id);
+    assert(family?.status === 'inventory_reconciled', `${id} må være inventory_reconciled etter v4.6`);
+    assert(family?.requires_canonical_inventory_change === false, `${id} kan ikke kreve ny inventory-endring etter v4.6`);
+  }
   assert(readiness.current_inventory?.teknologi?.top_level_subject === false, 'Teknologi må forbli nested');
   assert(readiness.current_inventory?.teknologi?.canonical_parent_subject === 'vitenskap', 'Teknologi har feil canonical parent');
   assert(readiness.first_production_unit?.chapter_id === chapter.chapter_id, 'Kapittelet avviker fra readiness sin første produksjonsenhet');
@@ -78,7 +84,8 @@ export function auditVitenskapUnit1() {
   assert(sameSet(chapter.method_ids || [], EXPECTED_METHODS), 'Kapittelroot har feil metodesett');
   assert(Array.isArray(chapter.moduleFiles) && chapter.moduleFiles.length === 3, 'Unit 1 skal ha tre redigerte moduler');
   assert(chapter.briefFile === P.brief && chapter.claimsFile === P.claims, 'Kapittelroot peker ikke til canonical brief/claims');
-  assert(chapter.qualityGuard?.blockingCoverageGapsRemainOpen === true, 'Unit 1 må eksplisitt bevare readiness-gapene');
+  assert(chapter.qualityGuard?.structuralCoverageGapsReconciled === true, 'Unit 1 må eksplisitt erkjenne at v4.6 har reconcilet de strukturelle breddegapene');
+  assert(chapter.qualityGuard?.breadthEditorialBlockersRemainOpen === true, 'Unit 1 må eksplisitt bevare breadth-familiene som redaksjonelle blockers');
   assert(chapter.qualityGuard?.doesNotClaimSubjectComplete === true, 'Unit 1 må eksplisitt blokkere premature complete');
   assert(chapter.qualityGuard?.technologyRemainsNested === true, 'Unit 1 må bevare nested Teknologi');
   assert(chapter.qualityGuard?.noPeerReviewTruthShortcut === true, 'Unit 1 må eksplisitt blokkere peer-review truth shortcut');
@@ -151,7 +158,7 @@ export function auditVitenskapUnit1() {
 
   return {
     schema: 'history_go_fagverk_vitenskap_unit1_audit_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     status: 'pass',
     subject: 'vitenskap',
     chapterId: chapter.chapter_id,
@@ -172,7 +179,8 @@ export function auditVitenskapUnit1() {
       canonicalEmnersAndMethodsResolved: true,
       paragraphClaimsResolved: true,
       sourceLocatorsInspectable: true,
-      blockingCoverageGapsRemainOpen: true,
+      structuralCoverageGapsReconciled: true,
+      breadthEditorialBlockersRemainOpen: true,
       prematureCompleteBlocked: true,
       technologyRemainsNested: true,
       peerReviewTruthShortcutBlocked: true,

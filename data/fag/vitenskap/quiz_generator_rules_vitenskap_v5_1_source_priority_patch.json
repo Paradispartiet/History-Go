@@ -5,16 +5,16 @@
   "scope": "oslo_og_omegn",
   "purpose": "Stramme inn quizgeneratoren for Vitenskap slik at konkrete institusjoner, universiteter, laboratorier, observatorier, instrumenter, målinger, datasett, forskningsmiljøer, metoder, modeller, teknologiske systemer, medisinske case, miljømålinger, vitenskapelige gjennombrudd, forskningspublikasjoner, rapporter, arkiver og fagmiljøkilder dominerer synlig spørsmålsinnhold. Fagkart, methods, emner, emnemapping og pensum skal styre struktur, metode, teori og progresjon, men ikke fungere som hovedkilde til faktapåstander.",
   "canonical_inputs": {
-    "fagkart": "fagkart_vitenskap_canonical_v4_5.json",
-    "methods": "methods_vitenskap_canonical_v4_5.json",
-    "emner": "emner_vitenskap_canonical_v4_5.json",
-    "emnemapping": "emnemapping_vitenskap_canonical_v4_5.json",
-    "pensum": "vitenskappensum_canonical_v4_5.json",
+    "fagkart": "fagkart_vitenskap_canonical_v4_6.json",
+    "methods": "methods_vitenskap_canonical_v4_6.json",
+    "emner": "emner_vitenskap_canonical_v4_6.json",
+    "emnemapping": "emnemapping_vitenskap_canonical_v4_6.json",
+    "pensum": "vitenskappensum_canonical_v4_6.json",
     "domain_count": 6,
-    "emne_count": 93,
+    "emne_count": 117,
     "method_count": 84,
-    "mapping_count": 93,
-    "topic_hook_count": 60
+    "mapping_count": 117,
+    "topic_hook_count": 64
   },
   "hard_rules": {
     "source_dominance_rule": "Eksterne vitenskapsfaglige, institusjonshistoriske, metodehistoriske, teknologihistoriske, medisinske, miljøfaglige, forskningsmessige, rapportbaserte, arkivbaserte og fagfellevurderte kilder skal dominere det synlige faktainnholdet i vitenskapsquizzer. Canonical-filene er styringsfiler, ikke faktakilde.",
@@ -317,5 +317,13 @@
     "source_note_definition": "Kort kildebeskrivelse som sier hvilken type vitenskapelig, institusjonshistorisk, metodehistorisk, teknologihistorisk, medisinsk, miljøfaglig, rapportbasert eller fagfellevurdert kilde som er brukt."
   },
   "diagnosis_note": "Når mange filer er opplastet, må modellen ikke overvekte canonical systemfiler bare fordi de er mange. For vitenskap skal konkrete institusjoner, universiteter, laboratorier, observatorier, instrumenter, målinger, datasett, forskningsmiljøer, metoder, modeller, teknologiske systemer, medisinske case, miljømålinger, vitenskapelige gjennombrudd, forskningspublikasjoner, rapporter, arkiver og fagmiljøkilder dominere synlig quizinnhold. Fagkart, methods, emner, emnemapping og pensum er styring.",
-  "migration_note": "Eksisterende places_vitenskap og people_vitenskap bør migreres til em_vit_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er vitenskap og ikke natur, politikk, historie, by, media, kunst, litteratur, sport, musikk, populærkultur, subkultur, psykologi, næringsliv eller annet fag."
+  "migration_note": "Eksisterende places_vitenskap og people_vitenskap bør migreres til em_vit_* bare etter at hvert objekt er lest. Det må samtidig sjekkes at hovedkategori faktisk er vitenskap og ikke natur, politikk, historie, by, media, kunst, litteratur, sport, musikk, populærkultur, subkultur, psykologi, næringsliv eller annet fag.",
+  "university_breadth_reconciliation": {
+    "status": "canonical_inventory_reconciled",
+    "spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json",
+    "coverage_family_count": 4,
+    "added_emne_count": 24,
+    "added_hook_count": 4,
+    "new_parallel_domains": 0
+  }
 }
