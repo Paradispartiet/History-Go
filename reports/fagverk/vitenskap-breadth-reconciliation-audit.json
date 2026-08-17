@@ -1,0 +1,133 @@
+{
+  "schema": "history_go_fagverk_vitenskap_breadth_reconciliation_audit_v1",
+  "version": "1.0.0",
+  "status": "canonical_inventory_reconciled_editorial_work_open",
+  "generatedFrom": {
+    "spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json",
+    "emners45": "data/fag/vitenskap/emner_vitenskap_canonical_v4_5.json",
+    "mappings45": "data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_5.json",
+    "fagkart45": "data/fag/vitenskap/fagkart_vitenskap_canonical_v4_5.json",
+    "methods45": "data/fag/vitenskap/methods_vitenskap_canonical_v4_5.json",
+    "pensum45": "data/fag/vitenskap/vitenskappensum_canonical_v4_5.json",
+    "emners46": "data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json",
+    "mappings46": "data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json",
+    "fagkart46": "data/fag/vitenskap/fagkart_vitenskap_canonical_v4_6.json",
+    "methods46": "data/fag/vitenskap/methods_vitenskap_canonical_v4_6.json",
+    "pensum46": "data/fag/vitenskap/vitenskappensum_canonical_v4_6.json",
+    "manifest": "data/fag/fag_manifest.json",
+    "generator": "data/fag/vitenskap/quiz_generator_rules_vitenskap_v5_1_source_priority_patch.json",
+    "readiness": "data/fag/vitenskap/vitenskap_university_readiness_v1.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "report": "reports/fagverk/vitenskap-breadth-reconciliation-audit.json"
+  },
+  "subject": {
+    "id": "vitenskap",
+    "editorialStatus": "chapters_in_progress",
+    "completeReady": false,
+    "nextGate": "remaining_chapter_production_across_reconciled_university_breadth"
+  },
+  "baseline": {
+    "domains": 6,
+    "emnes": 93,
+    "methods": 84,
+    "mappings": 93,
+    "hooks": 60
+  },
+  "reconciled": {
+    "domains": 6,
+    "emnes": 117,
+    "methods": 84,
+    "mappings": 117,
+    "hooks": 64
+  },
+  "delta": {
+    "domains": 0,
+    "emnes": 24,
+    "methods": 0,
+    "mappings": 24,
+    "hooks": 4
+  },
+  "families": [
+    {
+      "id": "mathematics_formal_sciences",
+      "domainId": "metoder_maling_modeller",
+      "hookId": "matematikk_formelle_fag",
+      "emneCount": 5,
+      "emneIds": [
+        "em_vit_matematisk_bevis_og_deduksjon",
+        "em_vit_algebra_og_strukturer",
+        "em_vit_analyse_endring_og_kontinuitet",
+        "em_vit_geometri_rom_og_symmetri",
+        "em_vit_diskret_matematikk_og_kombinatorikk"
+      ]
+    },
+    {
+      "id": "physics_astronomy",
+      "domainId": "natur_medisin_miljo",
+      "hookId": "fysikk_astronomi",
+      "emneCount": 8,
+      "emneIds": [
+        "em_vit_mekanikk_krefter_bevegelse",
+        "em_vit_energi_termodynamikk",
+        "em_vit_bolger_og_optikk",
+        "em_vit_elektromagnetisme",
+        "em_vit_kvantefysikk",
+        "em_vit_relativitet",
+        "em_vit_atom_og_kjernefysikk",
+        "em_vit_astronomi_og_kosmologi"
+      ]
+    },
+    {
+      "id": "chemistry_material_science",
+      "domainId": "natur_medisin_miljo",
+      "hookId": "kjemi_materialvitenskap",
+      "emneCount": 6,
+      "emneIds": [
+        "em_vit_atomstruktur_og_periodesystem",
+        "em_vit_kjemiske_bindinger_og_struktur",
+        "em_vit_reaksjoner_stokiometri_og_likevekt",
+        "em_vit_kjemisk_termodynamikk_og_kinetikk",
+        "em_vit_analytisk_kjemi_og_spektroskopi",
+        "em_vit_materialkjemi_og_egenskaper"
+      ]
+    },
+    {
+      "id": "medicine_biomedicine_public_health",
+      "domainId": "natur_medisin_miljo",
+      "hookId": "medisin_biomedisin_folkehelse",
+      "emneCount": 5,
+      "emneIds": [
+        "em_vit_biomedisinsk_mekanisme_og_modell",
+        "em_vit_diagnostikk_biomarkorer_og_testegenskaper",
+        "em_vit_kliniske_studier_og_intervensjoner",
+        "em_vit_behandlingsevidens_og_effekt",
+        "em_vit_folkehelse_arsak_og_forebygging"
+      ]
+    }
+  ],
+  "editorialState": {
+    "structuralBlockingGapCount": 0,
+    "editorialBlockerCount": 4,
+    "registeredChapterCount": 1
+  },
+  "gates": {
+    "exactV45BaselineLocked": true,
+    "exactV46TargetLocked": true,
+    "oldInventoryPreserved": true,
+    "exactTwentyFourTopicDelta": true,
+    "exactFourHookDelta": true,
+    "noNewDomains": true,
+    "noNewMethods": true,
+    "canonicalInternalVersionConsistency": true,
+    "mappingSchemaCanonical": true,
+    "allNewMethodsResolve": true,
+    "newTopicTextIndependentAndSubstantial": true,
+    "manifestAndGeneratorUseV46": true,
+    "structuralGapsReconciled": true,
+    "editorialBlockersRemainOpen": true,
+    "prematureCompleteBlocked": true,
+    "technologyRemainsNested": true,
+    "unit1RegistrationPreserved": true
+  }
+}

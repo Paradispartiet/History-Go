@@ -93,7 +93,7 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
 
   const vitenskap = s.subjects.find((x) => x.id === 'vitenskap');
   assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');
-  assert.equal(vitenskap.nextGate, 'university_breadth_gap_reconciliation_and_remaining_chapter_production');
+  assert.equal(vitenskap.nextGate, 'remaining_chapter_production_across_reconciled_university_breadth');
 
   // Filosofi is complete only when the explicit major-field coverage contract and
   // article-by-article university review agree. Keep the status gate tied to that
