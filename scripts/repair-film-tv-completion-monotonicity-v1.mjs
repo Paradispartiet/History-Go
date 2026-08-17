@@ -7,11 +7,9 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WRITE = process.argv.includes('--write');
 const FINAL_GATE = 'cultural_heritage_canon_stars_memory_full_chapter_complete_completion_audit';
 const MAINTENANCE_GATE = 'maintenance_source_refresh_and_place_case_expansion';
-const STALE_PRODUCTION_PATTERN = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit)$';
-const COMPLETION_AWARE_PRODUCTION_PATTERN = '(?:source_brief_complete_full_chapter_production|full_chapter_complete_next_unit_source_brief|full_chapter_complete_completion_audit|maintenance_source_refresh_and_place_case_expansion)$';
-
 const TARGET_DIRS = ['scripts', 'tests'];
 const TARGET_FILE = /(?:film-tv|fagverk-film-tv).*\.mjs$/;
+const SELF = 'scripts/repair-film-tv-completion-monotonicity-v1.mjs';
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -23,6 +21,13 @@ function walk(dir) {
 
 function relative(file) {
   return path.relative(ROOT, file).split(path.sep).join('/');
+}
+
+function addMaintenanceToProductionRegexes(text) {
+  return text.replace(
+    /full_chapter_complete_completion_audit\)\$/g,
+    'full_chapter_complete_completion_audit|maintenance_source_refresh_and_place_case_expansion)$'
+  );
 }
 
 function addMaintenanceToLaterGateSets(text) {
@@ -42,7 +47,7 @@ function addMaintenanceToLaterGateSets(text) {
 }
 
 function transform(text) {
-  let next = text.split(STALE_PRODUCTION_PATTERN).join(COMPLETION_AWARE_PRODUCTION_PATTERN);
+  let next = addMaintenanceToProductionRegexes(text);
   next = addMaintenanceToLaterGateSets(next);
   next = next.replace(
     "assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');",
@@ -51,8 +56,32 @@ function transform(text) {
   return next;
 }
 
+function unresolvedProblems(rel, text) {
+  const problems = [];
+  if (/full_chapter_complete_completion_audit\)\$/.test(text)) {
+    problems.push(`${rel}: stale production-gate regex`);
+  }
+
+  const gateConst = text.match(new RegExp(`const\\s+([A-Z0-9_]+)\\s*=\\s*['\"]${FINAL_GATE}['\"];`));
+  if (gateConst) {
+    const gateVar = gateConst[1];
+    for (const match of text.matchAll(/new Set\(\[([\s\S]*?)\]\)/g)) {
+      if (new RegExp(`\\b${gateVar}\\b`).test(match[1]) && !/\bMAINTENANCE_GATE\b/.test(match[1])) {
+        problems.push(`${rel}: later-gate set containing ${gateVar} omits MAINTENANCE_GATE`);
+      }
+    }
+  }
+
+  if (/audit-fagverk-film-tv-(?:kinoer-visningssteder-publikum|produksjon-studio-filmarbeid)-phase4\.mjs$/.test(rel)
+      && text.includes("statusEntry.editorialStatus === 'chapters_in_progress'")) {
+    problems.push(`${rel}: legacy chapter audit still pins chapters_in_progress`);
+  }
+  return problems;
+}
+
 const files = TARGET_DIRS.flatMap((dir) => walk(path.join(ROOT, dir)))
-  .filter((file) => TARGET_FILE.test(relative(file)));
+  .filter((file) => TARGET_FILE.test(relative(file)))
+  .filter((file) => relative(file) !== SELF);
 
 const changed = [];
 const unresolved = [];
@@ -67,24 +96,7 @@ for (const file of files) {
   }
 
   const checked = WRITE ? after : before;
-  if (checked.includes(STALE_PRODUCTION_PATTERN)) {
-    unresolved.push(`${rel}: stale production-gate regex`);
-  }
-
-  const gateConst = checked.match(new RegExp(`const\\s+([A-Z0-9_]+)\\s*=\\s*['\"]${FINAL_GATE}['\"];`));
-  if (gateConst) {
-    const gateVar = gateConst[1];
-    for (const match of checked.matchAll(/new Set\(\[([\s\S]*?)\]\)/g)) {
-      if (new RegExp(`\\b${gateVar}\\b`).test(match[1]) && !/\bMAINTENANCE_GATE\b/.test(match[1])) {
-        unresolved.push(`${rel}: later-gate set containing ${gateVar} omits MAINTENANCE_GATE`);
-      }
-    }
-  }
-
-  if (/audit-fagverk-film-tv-(?:kinoer-visningssteder-publikum|produksjon-studio-filmarbeid)-phase4\.mjs$/.test(rel)
-      && checked.includes("statusEntry.editorialStatus === 'chapters_in_progress'")) {
-    unresolved.push(`${rel}: legacy chapter audit still pins chapters_in_progress`);
-  }
+  unresolved.push(...unresolvedProblems(rel, checked));
 }
 
 if (unresolved.length) {
