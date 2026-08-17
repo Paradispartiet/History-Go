@@ -77,12 +77,14 @@ function resolveThinker(name) {
   return candidates.length === 1 ? candidates[0] : null;
 }
 
+const hasWork = (anchors, work) => anchors.some((anchor) => normalize(anchor.work) === normalize(work));
+
 function autoPrimaryAnchors(article, canonicalDebateThinkers) {
   const oldWorks = new Set((article.primary_work_refs ?? []).map(normalize));
   const anchors = [];
   for (const thinker of canonicalDebateThinkers) {
     for (const work of thinker.works ?? []) {
-      if (!oldWorks.has(normalize(work))) continue;
+      if (!oldWorks.has(normalize(work)) || hasWork(anchors, work)) continue;
       anchors.push({ actor: thinker.name, canonical_ref: thinker.id, work });
       break;
     }
@@ -90,13 +92,13 @@ function autoPrimaryAnchors(article, canonicalDebateThinkers) {
   for (const thinker of canonicalDebateThinkers) {
     if (anchors.length >= 3) break;
     if (anchors.some((anchor) => anchor.canonical_ref === thinker.id)) continue;
-    const work = (thinker.works ?? [])[0];
+    const work = (thinker.works ?? []).find((candidate) => !hasWork(anchors, candidate));
     if (work) anchors.push({ actor: thinker.name, canonical_ref: thinker.id, work });
   }
   if (anchors.length < 2) {
     for (const thinker of canonicalDebateThinkers) {
       for (const work of thinker.works ?? []) {
-        if (anchors.some((anchor) => normalize(anchor.work) === normalize(work))) continue;
+        if (hasWork(anchors, work)) continue;
         anchors.push({ actor: thinker.name, canonical_ref: thinker.id, work });
         if (anchors.length >= 2) break;
       }
