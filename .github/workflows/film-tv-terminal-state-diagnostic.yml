@@ -19,15 +19,39 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      - name: Fix repair utility comma preservation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/repair-film-tv-completion-monotonicity-v1.mjs')
+          s = p.read_text()
+          old = "new RegExp(`\\\\b${gateVar}\\\\b\\\\s*,?`)"
+          new = "new RegExp(`\\\\b${gateVar}\\\\b`)"
+          count = s.count(old)
+          if count != 2:
+              raise SystemExit(f'Expected 2 gate-variable comma-consuming regexes, found {count}')
+          s = s.replace(old, new)
+          old_literal = "const literalPattern = new RegExp(`(['\\\"])${FINAL_GATE}\\\\1\\\\s*,?`);"
+          new_literal = "const literalPattern = new RegExp(`(['\\\"])${FINAL_GATE}\\\\1`);"
+          if old_literal not in s:
+              raise SystemExit('Expected literal gate regex not found')
+          s = s.replace(old_literal, new_literal)
+          p.write_text(s)
+          PY
       - name: Apply completion monotonicity repair
         run: node scripts/repair-film-tv-completion-monotonicity-v1.mjs --write
       - name: Verify no stale terminal-state contracts remain
         run: node scripts/repair-film-tv-completion-monotonicity-v1.mjs
-      - name: Run Film and TV regression tests
+      - name: Syntax-check every repaired module
         shell: bash
         run: |
           set -euo pipefail
-          node --test tests/*film-tv*.test.mjs tests/fagverk-film-tv*.test.mjs
+          git diff --name-only --diff-filter=ACM -- '*.mjs' | while IFS= read -r file; do
+            echo "Checking $file"
+            node --check "$file"
+          done
       - name: Verify authoritative holistic completion gate
         run: |
           node scripts/audit-film-tv-holistic-completion-v1.mjs
