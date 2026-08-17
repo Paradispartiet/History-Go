@@ -7,15 +7,15 @@ import { auditVitenskapPilot } from '../scripts/audit-fagverk-vitenskap-pilot.mj
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('Vitenskap er materialisert og auditert som structure-ready pilot', () => {
+test('Vitenskap er materialisert, auditert og i canonical kapittelproduksjon', () => {
   const { report } = auditVitenskapPilot();
   assert.equal(report.subject.id, 'vitenskap');
   assert.equal(report.subject.schemaFamily, 'standard_canonical');
   assert.equal(report.subject.adapter, 'standard');
   assert.equal(report.subject.navigationStatus, 'materialized');
   assert.equal(report.subject.assessmentStatus, 'audited');
-  assert.equal(report.subject.editorialStatus, 'structure_ready');
-  assert.equal(report.subject.nextGate, 'chapter_production');
+  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
+  assert.equal(report.subject.nextGate, 'university_breadth_gap_reconciliation_and_remaining_chapter_production');
   assert.deepEqual(report.emneStatusCounts, { active: 89, core: 4 });
   assert.deepEqual(report.summary, {
     domainCount: 6,
@@ -23,7 +23,7 @@ test('Vitenskap er materialisert og auditert som structure-ready pilot', () => {
     methodCount: 84,
     mappingCount: 93,
     hookCount: 60,
-    registeredChapterCount: 0,
+    registeredChapterCount: 1,
     technologyDomainCount: 12,
     technologyEmneCount: 48,
     technologyMethodCount: 35,
@@ -42,6 +42,8 @@ test('alle 93 Vitenskap-emner er integrert uten kunstige fagområder', () => {
   assert.equal(report.gates.explicitMappingAndGeneratorCountsSynchronized, true);
   assert.equal(report.gates.noSyntheticVitenskapDomains, true);
   assert.equal(report.gates.vitenskapPlaceFallbackCorrect, true);
+  assert.equal(report.gates.editorialStatusChaptersInProgress, true);
+  assert.equal(report.gates.registeredChapterPresent, true);
 });
 
 test('Teknologi forblir nested spesialisering uten toppnivårute eller eget merke', () => {
