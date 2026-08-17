@@ -1,0 +1,68 @@
+name: Fagverk Film og TV holistic completion
+
+on:
+  pull_request:
+    paths:
+      - "data/fag/TV_og_Film/**"
+      - "data/fagverk/**"
+      - "scripts/audit-film-tv-holistic-completion-v1.mjs"
+      - "scripts/audit-fagverk-subject-inventory.mjs"
+      - "scripts/audit-fagverk-general-engine.mjs"
+      - "scripts/audit-fagverk-film-tv-phase3.mjs"
+      - "scripts/build-fagverk-release-manifest.mjs"
+      - "tests/film-tv-holistic-completion-v1.test.mjs"
+      - "tests/fagverk-subject-inventory.test.mjs"
+      - "tests/fagverk-general-engine.test.mjs"
+      - "tests/fagverk-film-tv-phase3.test.mjs"
+      - "tests/fagverk-release-manifest.test.mjs"
+      - "reports/fagverk/film-tv-holistic-completion-v1-audit.json"
+      - ".github/workflows/fagverk-film-tv-holistic-completion.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/fag/TV_og_Film/**"
+      - "data/fagverk/**"
+      - "scripts/audit-film-tv-holistic-completion-v1.mjs"
+      - "scripts/audit-fagverk-subject-inventory.mjs"
+      - "scripts/audit-fagverk-general-engine.mjs"
+      - "scripts/audit-fagverk-film-tv-phase3.mjs"
+      - "scripts/build-fagverk-release-manifest.mjs"
+      - "tests/film-tv-holistic-completion-v1.test.mjs"
+      - "tests/fagverk-subject-inventory.test.mjs"
+      - "tests/fagverk-general-engine.test.mjs"
+      - "tests/fagverk-film-tv-phase3.test.mjs"
+      - "tests/fagverk-release-manifest.test.mjs"
+      - "reports/fagverk/film-tv-holistic-completion-v1-audit.json"
+      - ".github/workflows/fagverk-film-tv-holistic-completion.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Film og TV holistic completion
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Validate 192-emne completion contract
+        run: |
+          node --check scripts/audit-film-tv-holistic-completion-v1.mjs
+          node --check tests/film-tv-holistic-completion-v1.test.mjs
+          node scripts/audit-film-tv-holistic-completion-v1.mjs
+          node --test tests/film-tv-holistic-completion-v1.test.mjs
+
+      - name: Validate shared Film TV and release contracts
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-film-tv-phase3.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-film-tv-phase3.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
