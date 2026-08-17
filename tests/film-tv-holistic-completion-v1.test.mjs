@@ -9,14 +9,19 @@ const APPROVED = [
   'verified_after_scope_narrowing'
 ];
 
-test('Film & TV completion is exactly 192 = 38 anchors + 154 planned-unit emner with verified evidence in all 17 chapters', () => {
+test('Film & TV completion is one reconciled 192-topic / 17-chapter evidence and trace contract', () => {
   const { report, registry, status } = auditFilmTvHolisticCompletionV1();
+  assert.equal(report.summary.canonical_domain_count, 10);
   assert.equal(report.summary.canonical_emne_count, 192);
+  assert.ok(report.summary.required_method_count > 0);
   assert.equal(report.summary.anchor_chapter_count, 2);
   assert.equal(report.summary.anchor_emne_count, 38);
   assert.equal(report.summary.planned_unit_count, 15);
   assert.equal(report.summary.planned_unit_emne_count, 154);
   assert.equal(report.summary.registered_chapter_count, 17);
+  assert.ok(report.summary.module_count > 0);
+  assert.ok(report.summary.section_count > 0);
+  assert.ok(report.summary.paragraph_count > 0);
   assert.deepEqual(report.approved_plan_resolutions, APPROVED);
   assert.ok(report.observed_plan_resolutions.every((value) => APPROVED.includes(value)));
   assert.deepEqual(report.discrepancies, {
@@ -24,20 +29,34 @@ test('Film & TV completion is exactly 192 = 38 anchors + 154 planned-unit emner 
     extra_emne_ids: [],
     duplicate_emne_ids: [],
     anchor_unit_overlap_ids: [],
-    unknown_resolution_claim_ids: []
+    unknown_resolution_claim_ids: [],
+    missing_method_ids: []
   });
   assert.ok(Object.values(report.gates).every(Boolean));
+  assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.brief_matches_chapter_emne_set));
+  assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.modules_match_chapter_emne_set));
+  assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.sections_cover_chapter_emne_set));
+  assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.all_paragraphs_claim_traced));
   assert.ok(report.anchors.every((chapter) => chapter.all_claims_verified_with_approved_resolution));
   assert.ok(report.anchors.every((chapter) => chapter.every_claim_uses_registered_source));
   assert.ok(report.anchors.every((chapter) => chapter.all_sources_inspectable));
+  assert.ok(report.units.every((unit) => unit.exact_plan_emne_match));
   assert.ok(report.units.every((unit) => unit.all_claims_verified_with_approved_resolution));
   assert.ok(report.units.every((unit) => unit.unknown_resolution_claim_ids.length === 0));
   assert.ok([...report.anchors, ...report.units].every((chapter) => chapter.no_planned_only_claims));
   assert.ok(report.units.every((unit) => unit.every_claim_uses_registered_source));
   assert.ok(report.units.every((unit) => unit.all_sources_inspectable));
-  assert.equal(status.subjects.find((row) => row.id === 'film_tv').editorialStatus, 'complete');
-  assert.equal(status.subjects.find((row) => row.id === 'film_tv').nextGate, 'maintenance_source_refresh_and_place_case_expansion');
+
+  const filmStatus = status.subjects.find((row) => row.id === 'film_tv');
+  assert.equal(filmStatus.navigationStatus, 'materialized');
+  assert.equal(filmStatus.assessmentStatus, 'audited');
+  assert.equal(filmStatus.editorialStatus, 'complete');
+  assert.equal(filmStatus.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
+  assert.equal(registry.subjects.film_tv.editorialPlan.derivedChapterCount, 17);
   assert.equal(registry.subjects.film_tv.editorialPlan.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
-  assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('all_17_chapters_have_verified_claims_and_inspectable_sources'));
+  assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('registry_brief_module_and_section_topic_ownership_is_exact'));
+  assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('all_paragraphs_have_registered_claim_trace'));
+  assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('claim_and_section_ids_are_globally_unique'));
+  assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('all_canonical_methods_and_domains_are_covered'));
   assert.ok(registry.subjects.film_tv.editorialPlan.completionRequirements.includes('all_unit_claims_verified_with_approved_resolution'));
 });
