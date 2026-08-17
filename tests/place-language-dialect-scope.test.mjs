@@ -86,7 +86,7 @@ test("dokumentasjon og checklist skiller Språkleksikon fra det områdebundne di
   assert.match(contract, /Språkleksikon[^\n]*kan finnes på alle typer Places/i);
   assert.match(contract, /Dialektlaget[^\n]*bare[^\n]*placeScope:\s*"area"/i);
   assert.match(contract, /enkelt-Places[^\n]*kan[^\n]*Språkleksikon/i);
-  assert.match(contract, /skal ikke[^\n]*layer:\s*"dialect"/i);
+  assert.match(contract, /skal\s+(?:\*\*)?ikke(?:\*\*)?[^\n]*layer:\s*"dialect"/i);
   assert.match(checklist, /DIALEKTLAG — KUN `placeScope: "area"` \/ N\/A/);
   assert.match(checklist, /dialektinnhold[^\n]*kun[^\n]*område-Place/i);
   assert.match(checklist, /enkeltsted[^\n]*Språkleksikon[^\n]*ikke[^\n]*dialekt/i);
