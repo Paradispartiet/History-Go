@@ -1,0 +1,76 @@
+name: Reconcile Vitenskap pilot after Unit 1
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-unit1-registry-integration
+    paths:
+      - '.github/workflows/vitenskap-unit1-pilot-reconcile.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vitenskap-unit1-registry-integration
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Reconcile permanent Vitenskap pilot audit and test
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const auditFile = 'scripts/audit-fagverk-vitenskap-pilot.mjs';
+          let audit = fs.readFileSync(auditFile, 'utf8');
+          const replacements = [
+            ["assert(statusEntry?.editorialStatus === 'structure_ready', 'Vitenskap må stå structure_ready før kapittelproduksjon');", "assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Vitenskap må stå chapters_in_progress etter registrert Unit 1');"],
+            ["assert(statusEntry?.nextGate === 'chapter_production', 'Vitenskap har feil neste port');", "assert(statusEntry?.nextGate === 'university_breadth_gap_reconciliation_and_remaining_chapter_production', 'Vitenskap har feil neste port etter Unit 1');"],
+            ["assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Vitenskap-kapitler finnes');", "assert(model.chapters.length === 1, 'Vitenskap skal ha nøyaktig ett registrert kapittel etter Unit 1');"],
+            ["version: '1.0.0',\n    status: 'vitenskap_with_nested_teknologi_pilot_structure_ready',", "version: '1.1.0',\n    status: 'vitenskap_with_nested_teknologi_chapter_production',"],
+            ["editorialStatusStructureReady: true,\n      chapterClaimsNotOverstated: true", "editorialStatusChaptersInProgress: true,\n      registeredChapterPresent: true,\n      chapterClaimsNotOverstated: true"]
+          ];
+          for (const [before, after] of replacements) {
+            if (!audit.includes(before)) throw new Error(`Mangler forventet audit-fragment: ${before}`);
+            audit = audit.replace(before, after);
+          }
+          fs.writeFileSync(auditFile, audit);
+
+          const testFile = 'tests/fagverk-vitenskap-pilot.test.mjs';
+          let test = fs.readFileSync(testFile, 'utf8');
+          const testReplacements = [
+            ["test('Vitenskap er materialisert og auditert som structure-ready pilot'", "test('Vitenskap er materialisert, auditert og i canonical kapittelproduksjon'"],
+            ["assert.equal(report.subject.editorialStatus, 'structure_ready');", "assert.equal(report.subject.editorialStatus, 'chapters_in_progress');"],
+            ["assert.equal(report.subject.nextGate, 'chapter_production');", "assert.equal(report.subject.nextGate, 'university_breadth_gap_reconciliation_and_remaining_chapter_production');"],
+            ["registeredChapterCount: 0,", "registeredChapterCount: 1,"],
+            ["  assert.equal(report.gates.vitenskapPlaceFallbackCorrect, true);", "  assert.equal(report.gates.vitenskapPlaceFallbackCorrect, true);\n  assert.equal(report.gates.editorialStatusChaptersInProgress, true);\n  assert.equal(report.gates.registeredChapterPresent, true);"]
+          ];
+          for (const [before, after] of testReplacements) {
+            if (!test.includes(before)) throw new Error(`Mangler forventet test-fragment: ${before}`);
+            test = test.replace(before, after);
+          }
+          fs.writeFileSync(testFile, test);
+          NODE
+      - name: Regenerate deterministic Vitenskap pilot report
+        run: node scripts/audit-fagverk-vitenskap-pilot.mjs --write-report --no-check-report
+      - name: Validate all permanent Vitenskap contracts
+        run: |
+          node scripts/audit-fagverk-vitenskap-pilot.mjs
+          node scripts/audit-fagverk-vitenskap-university-readiness.mjs
+          node scripts/audit-fagverk-vitenskap-unit1.mjs
+          node --test tests/fagverk-vitenskap-pilot.test.mjs
+          node --test tests/fagverk-vitenskap-university-readiness.test.mjs
+          node --test tests/fagverk-vitenskap-unit1.test.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          git diff --check
+      - name: Commit permanent pilot reconciliation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/audit-fagverk-vitenskap-pilot.mjs tests/fagverk-vitenskap-pilot.test.mjs reports/fagverk/vitenskap-pilot-audit.json
+          git commit -m 'Reconcile Vitenskap pilot with registered Unit 1'
+          git push origin HEAD:agent/vitenskap-unit1-registry-integration
