@@ -25,13 +25,20 @@ jobs:
       - name: Apply hard dialect ownership contract
         run: python scripts/agent_lock_dialect_layer.py
 
-      - name: Verify dialect ownership and runtime syntax
-        run: |
-          node --check js/ui/place-language-layer.js
-          node --check tests/place-language-dialect-scope.test.mjs
-          node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/place-popup-direct-tabs.test.mjs
-          node scripts/audit-place-scope.mjs
-          git diff --check
+      - name: Check language runtime syntax
+        run: node --check js/ui/place-language-layer.js
+
+      - name: Check dialect scope test syntax
+        run: node --check tests/place-language-dialect-scope.test.mjs
+
+      - name: Run language and dialect regression tests
+        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/place-popup-direct-tabs.test.mjs
+
+      - name: Audit canonical Place scope
+        run: node scripts/audit-place-scope.mjs
+
+      - name: Verify clean diff syntax
+        run: git diff --check
 
       - name: Commit permanent product changes
         run: |
