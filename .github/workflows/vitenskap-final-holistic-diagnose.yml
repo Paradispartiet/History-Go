@@ -19,89 +19,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Dry-run domain and axis grounded key questions
+      - name: Validate holistic blocker audit without changing completion state
         run: |
+          node --check scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs
+          node scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs --write-report --no-check-report
+          node --test tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs
           node <<'NODE'
-          const fs = require('node:fs');
-          const crypto = require('node:crypto');
-          const emners = JSON.parse(fs.readFileSync('data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json','utf8'));
-          const methods = JSON.parse(fs.readFileSync('data/fag/vitenskap/methods_vitenskap_canonical_v4_6.json','utf8')).methods;
-          const methodById = new Map(methods.map(m=>[m.method_id,m]));
-          const legacy = emners.filter(e=>e.registry_version==='vitenskappensum_v4_5');
-          const norm = s => String(s||'').trim().replace(/\s+/g,' ');
-          const lowerFirst = s => s ? s.charAt(0).toLowerCase()+s.slice(1) : s;
-          const cleanAxis = s => norm(s).replace(/[?.!]+$/,'');
-          const hash = s => parseInt(crypto.createHash('sha256').update(s).digest('hex').slice(0,8),16);
-          const patterns = [
-            (e,a,m)=>`Hva står faglig på spill i ${lowerFirst(e.title)} når vi skiller mellom «${a[0]}» og «${a[1]}», og hvilke observasjoner ville få oss til å endre vurdering?`,
-            (e,a,m)=>`Hvordan kan ${m[0]} brukes til å undersøke spenningen «${a[0]}» mot «${a[1]}» i ${lowerFirst(e.title)}, og hvor kan metoden gi et misvisende bilde?`,
-            (e,a,m)=>`Når «${a[0]}» og «${a[1]}» peker i ulike retninger, hvilken type evidens bør veie tyngst i en analyse av ${lowerFirst(e.title)}?`,
-            (e,a,m)=>`Hvilke antakelser blir synlige hvis ${lowerFirst(e.title)} studeres gjennom både ${m[0]} og ${m[1]}, særlig langs aksen «${a[0]}» versus «${a[1]}»?`,
-            (e,a,m)=>`Hvordan ville to forskere som vektlegger henholdsvis «${a[0]}» og «${a[1]}» kunne tolke samme materiale om ${lowerFirst(e.title)} forskjellig?`,
-            (e,a,m)=>`Hva måtte dokumenteres for å avgjøre om «${a[0]}» eller «${a[1]}» best forklarer et konkret tilfelle av ${lowerFirst(e.title)}?`,
-            (e,a,m)=>`På hvilken måte kan valget mellom ${m[0]} og ${m[1]} endre konklusjonen om ${lowerFirst(e.title)}, spesielt når «${a[0]}» står mot «${a[1]}»?`,
-            (e,a,m)=>`Hvilken feilkilde er mest kritisk når ${lowerFirst(e.title)} analyseres langs «${a[0]}» og «${a[1]}», og hvordan kan den oppdages eller avgrenses?`,
-            (e,a,m)=>`Hvordan kan et dokumentert case skille mellom konkurrerende forklaringer på ${lowerFirst(e.title)} når «${a[0]}» settes opp mot «${a[1]}»?`,
-            (e,a,m)=>`Hva kan ${m[0]} vise om ${lowerFirst(e.title)} som ${m[1]} ikke kan, sett i lys av «${a[0]}» og «${a[1]}»?`,
-            (e,a,m)=>`Hvilke konsekvenser får det for kunnskapsgrunnlaget om ${lowerFirst(e.title)} dersom vi prioriterer «${a[0]}» fremfor «${a[1]}»?`,
-            (e,a,m)=>`Hvordan bør usikkerhet kommuniseres i påstander om ${lowerFirst(e.title)} når analysen avhenger av både «${a[0]}» og «${a[1]}»?`
-          ];
-          function questions(e){
-            const axes=(e.analysis_axes||[]).map(cleanAxis).filter(Boolean);
-            if(axes.length<4) throw new Error(`${e.emne_id}: trenger minst fire analyseakser for emnespesifikke spørsmål`);
-            const m=(e.methods||[]).map(id=>methodById.get(id)?.title||id);
-            if(m.length<2) throw new Error(`${e.emne_id}: trenger minst to metoder`);
-            const seed=hash(e.emne_id);
-            const pairs=[[0,1],[2,3],[axes.length>5?4:0,axes.length>5?5:2]];
-            return pairs.map((pair,i)=>{
-              const p=patterns[(seed + i*5) % patterns.length];
-              return p(e,[axes[pair[0]],axes[pair[1]]],m);
-            });
-          }
-          const generated=legacy.map(e=>({id:e.emne_id,title:e.title,domain:e.domain,questions:questions(e),axes:e.analysis_axes,methods:e.methods}));
-          const setKeys=generated.map(r=>JSON.stringify(r.questions));
-          const allQuestions=generated.flatMap(r=>r.questions);
-          const uniqueSets=new Set(setKeys);
-          const uniqueQuestions=new Set(allQuestions);
-          const oldGeneric=new Set([
-            'Hvilken konkret institusjon, metode, instrument, modell, datasett, observasjon, forskningsmiljø eller vitenskapelig kilde gjør emnet relevant?',
-            'Hvordan produseres, måles, standardiseres, modelleres, testes eller kritiseres kunnskapen her?',
-            'Hvilke kilder, arkivspor, forskningsrapporter, fagpublikasjoner, institusjonskilder, datasett eller dokumenterte vitenskapelige praksiser kan bekrefte påstanden?'
-          ]);
-          const notGrounded=[];
-          for(const r of generated){
-            const e=legacy.find(x=>x.emne_id===r.id);
-            const axes=(e.analysis_axes||[]).map(cleanAxis);
-            const methodTitles=(e.methods||[]).map(id=>methodById.get(id)?.title||id);
-            for(const q of r.questions){
-              const axisHits=axes.filter(a=>q.includes(`«${a}»`)).length;
-              const titleHit=q.toLowerCase().includes(e.title.toLowerCase());
-              const methodHit=methodTitles.some(m=>q.includes(m));
-              if(axisHits<2 || (!titleHit && !methodHit)) notGrounded.push({id:r.id,q,axisHits,titleHit,methodHit});
-            }
-          }
-          const domains=[...new Set(legacy.map(e=>e.domain))].sort();
-          const domainOverview=domains.map(domain=>({
-            domain,count:legacy.filter(e=>e.domain===domain).length,
-            examples:generated.filter(e=>e.domain===domain).slice(0,3).map(({id,title,questions})=>({id,title,questions}))
-          }));
-          console.log(JSON.stringify({
-            legacyCount:legacy.length,
-            domainCount:domains.length,
-            domainOverview,
-            uniqueQuestionSetCount:uniqueSets.size,
-            uniqueIndividualQuestionCount:uniqueQuestions.size,
-            oldGenericQuestionReuseCount:allQuestions.filter(q=>oldGeneric.has(q)).length,
-            ungroundedQuestionCount:notGrounded.length,
-            duplicateSetCount:generated.length-uniqueSets.size,
-            duplicateQuestionCount:allQuestions.length-uniqueQuestions.size
-          },null,2));
-          if(uniqueSets.size!==legacy.length) throw new Error('Dry-run ga dupliserte spørsmålssett');
-          if(uniqueQuestions.size!==allQuestions.length) throw new Error('Dry-run ga dupliserte enkeltspørsmål');
-          if(allQuestions.some(q=>oldGeneric.has(q))) throw new Error('Dry-run gjenbruker gammel generisk spørsmålsmal');
-          if(notGrounded.length) throw new Error(`Dry-run har ${notGrounded.length} spørsmål uten nok emnespesifikk forankring`);
+          const report = JSON.parse(require('node:fs').readFileSync('reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json','utf8'));
+          console.log(JSON.stringify({status:report.status, inventory:report.canonicalInventory, blockers:report.blockers, gates:report.gates, qualityReview:report.qualityReview}, null, 2));
           NODE
-      - name: Verify current permanent Vitenskap gates
+          git diff --check
+      - name: Verify existing Vitenskap gates remain green
         run: |
           node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs
           node scripts/audit-fagverk-vitenskap-pilot.mjs
