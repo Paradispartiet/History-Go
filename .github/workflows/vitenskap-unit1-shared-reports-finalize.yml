@@ -20,31 +20,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Reconcile shared subject-status regression test
+      - name: Reconcile general-engine Unit 1 regression test
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          const file = 'tests/fagverk-subject-inventory.test.mjs';
+          const file = 'tests/fagverk-general-engine.test.mjs';
           let source = fs.readFileSync(file, 'utf8');
-          const before = `  for (const id of ['scenekunst', 'vitenskap']) {\n    const subject = s.subjects.find((x) => x.id === id);\n    assert.equal(subject.editorialStatus, 'structure_ready');\n    assert.equal(subject.nextGate, 'chapter_production');\n  }`;
-          const after = `  const scenekunst = s.subjects.find((x) => x.id === 'scenekunst');\n  assert.equal(scenekunst.editorialStatus, 'structure_ready');\n  assert.equal(scenekunst.nextGate, 'chapter_production');\n\n  const vitenskap = s.subjects.find((x) => x.id === 'vitenskap');\n  assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');\n  assert.equal(vitenskap.nextGate, 'university_breadth_gap_reconciliation_and_remaining_chapter_production');`;
-          if (!source.includes(before)) throw new Error('Fant ikke forventet pre-Unit-1 Vitenskap-statusblokk i subject inventory-testen');
+          const before = "  assert.equal(vitenskap.chapterCount, 0);";
+          const after = "  assert.equal(vitenskap.chapterCount, 1);\n  assert.equal(vitenskap.editorialStatus, 'chapters_in_progress');";
+          if (!source.includes(before)) throw new Error('Fant ikke forventet pre-Unit-1 chapterCount for Vitenskap i general-engine-testen');
           source = source.replace(before, after);
           fs.writeFileSync(file, source);
           NODE
-      - name: Regenerate shared deterministic Fagverk reports
-        run: |
-          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
-          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
-      - name: Commit permanent test and regenerated reports
+      - name: Commit permanent general-engine regression update
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tests/fagverk-subject-inventory.test.mjs reports/fagverk/subject-baseline.json reports/fagverk/general-engine-audit.json
+          git add tests/fagverk-general-engine.test.mjs
           if git diff --cached --quiet; then
-            echo 'Shared test and reports already current.'
+            echo 'General-engine test already current.'
           else
-            git commit -m 'Reconcile shared Fagverk reports for Vitenskap Unit 1'
+            git commit -m 'Reconcile general engine with Vitenskap Unit 1'
             git push origin HEAD:agent/vitenskap-unit1-registry-integration
           fi
       - name: Validate subject inventory audit
