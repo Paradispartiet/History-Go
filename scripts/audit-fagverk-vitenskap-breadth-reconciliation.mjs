@@ -186,23 +186,28 @@ export function auditVitenskapBreadthReconciliation({ writeReport = false, check
   assert(inputs.pensum === 'vitenskappensum_canonical_v4_6.json', 'Generator peker til stale pensum');
   assert(inputs.domain_count === 6 && inputs.emne_count === 117 && inputs.method_count === 84 && inputs.mapping_count === 117 && inputs.topic_hook_count === 64, 'Generator har feil v4.6-tellinger');
 
-  assert(readiness.version === '1.2.0', 'Readiness har feil post-reconciliation-versjon');
+  assert(['1.2.0', '1.3.0'].includes(readiness.version), 'Readiness har ukjent post-reconciliation-versjon');
   assert(readiness.status === 'breadth_inventory_reconciled_chapter_production_in_progress', 'Readiness har feil post-reconciliation-status');
   assert(readiness.complete_ready === false, 'Inventory-reconciliation kan ikke gjøre Vitenskap complete-ready');
-  assert(isDeepStrictEqual(readiness.current_inventory.vitenskap, {
-    domain_count: 6,
-    emne_count: 117,
-    method_count: 84,
-    mapping_count: 117,
-    hook_count: 64,
-    registered_chapter_count: 1
-  }), 'Readiness har feil v4.6-inventar');
+  assert(readiness.current_inventory.vitenskap?.domain_count === 6, 'Readiness har feil domain count');
+  assert(readiness.current_inventory.vitenskap?.emne_count === 117, 'Readiness har feil emne count');
+  assert(readiness.current_inventory.vitenskap?.method_count === 84, 'Readiness har feil method count');
+  assert(readiness.current_inventory.vitenskap?.mapping_count === 117, 'Readiness har feil mapping count');
+  assert(readiness.current_inventory.vitenskap?.hook_count === 64, 'Readiness har feil hook count');
+  assert(readiness.current_inventory.vitenskap?.registered_chapter_count === registry.subjects?.vitenskap?.chapters?.length, 'Readiness og registry har ulik chapter count');
   assert(Array.isArray(readiness.blocking_gaps) && readiness.blocking_gaps.length === 0, 'Strukturelle blocking gaps skal være reconcilet');
-  assert(isDeepStrictEqual(sorted(readiness.editorial_blockers || []), sorted(EXPECTED_FAMILIES)), 'Fire breadth-familier skal forbli editorial blockers');
+  const editorialBlockers = readiness.editorial_blockers || [];
+  assert(editorialBlockers.length >= 1, 'Minst én breadth-family må blokkere mens Vitenskap ikke er complete');
+  assert(editorialBlockers.every((id) => EXPECTED_FAMILIES.includes(id)), 'Readiness har ukjent breadth editorial blocker');
   for (const id of EXPECTED_FAMILIES) {
     const family = readiness.coverage_families.find((row) => row.id === id);
     const specFamily = spec.families.find((row) => row.coverage_family_id === id);
-    assert(family?.status === 'inventory_reconciled', `${id} er ikke inventory_reconciled`);
+    if (editorialBlockers.includes(id)) {
+      assert(family?.status === 'inventory_reconciled', `${id} må være inventory_reconciled mens den blokkerer`);
+    } else {
+      assert(family?.status === 'chapter_materialized', `${id} kan bare lukkes etter materialisert kapittel`);
+      assert(typeof family?.materialized_chapter_id === 'string' && registry.subjects.vitenskap.chapters.some((row) => row.id === family.materialized_chapter_id), `${id} mangler registrert materialized chapter`);
+    }
     assert(family?.requires_canonical_inventory_change === false, `${id} krever fortsatt inventory-endring`);
     assert(isDeepStrictEqual(sorted(family?.reconciled_emne_ids || []), sorted(specFamily.topics.map((row) => row.id))), `${id} har feil reconcilet emnesett`);
     assert(family?.reconciled_hook_id === specFamily.hook.id, `${id} har feil reconcilet hook`);
@@ -213,8 +218,8 @@ export function auditVitenskapBreadthReconciliation({ writeReport = false, check
   const statusEntry = status.subjects?.find((row) => row.id === 'vitenskap');
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Vitenskap kan ikke forlate chapters_in_progress');
   assert(statusEntry?.nextGate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Subject status har feil neste port');
-  assert(registry.subjects?.vitenskap?.chapters?.length === 1, 'Registry må beholde nøyaktig Unit 1 som registrert kapittel');
-  assert(registry.subjects.vitenskap.chapters[0].id === 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap', 'Registry har feil Vitenskap-kapittel');
+  assert(registry.subjects?.vitenskap?.chapters?.some((row) => row.id === 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap'), 'Registry må bevare Unit 1');
+  assert(registry.subjects.vitenskap.chapters.length === readiness.current_inventory.vitenskap.registered_chapter_count, 'Registry og readiness har ulik chapter count');
 
   const report = {
     schema: 'history_go_fagverk_vitenskap_breadth_reconciliation_audit_v1',
