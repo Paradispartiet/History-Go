@@ -74,7 +74,11 @@ function assertInspectableSource(source, chapterId) {
   assert(typeof source.source_location === 'string' && source.source_location.trim().length > 0, `${chapterId}/${source.id}: source mangler source_location`);
 }
 
-function auditChapterIntegrity(registryRow, globalState, { plannedEmneIds = null, requirePlanResolution = false } = {}) {
+function auditChapterIntegrity(
+  registryRow,
+  globalState,
+  { plannedEmneIds = null, requirePlanResolution = false, requireSectionTopicOwnership = false } = {}
+) {
   assert(registryRow?.id && registryRow.file, 'Registry-kapittel mangler id eller file');
   assert(fs.existsSync(abs(registryRow.file)), `${registryRow.id}: kapittelfilen finnes ikke`);
   const chapter = read(registryRow.file);
@@ -111,8 +115,8 @@ function auditChapterIntegrity(registryRow, globalState, { plannedEmneIds = null
   const moduleFiles = resolveModuleFiles(registryRow, chapter);
   assert(moduleFiles.length > 0, `${registryRow.id}: mangler moduleFiles`);
   assert(unique(moduleFiles).length === moduleFiles.length, `${registryRow.id}: dupliserte moduleFiles`);
-  const moduleCoveredEmners = [];
-  const sectionCoveredEmners = new Set();
+  const declaredModuleTopics = [];
+  const explicitSectionTopics = [];
   const chapterSectionIds = new Set();
   let chapterSections = 0;
   let chapterParagraphs = 0;
@@ -122,8 +126,13 @@ function auditChapterIntegrity(registryRow, globalState, { plannedEmneIds = null
     const module = read(moduleFile);
     assert((module.chapter_id || registryRow.id) === registryRow.id, `${registryRow.id}/${moduleFile}: module chapter_id avviker`);
     assert((module.subject_id || module.subject || 'film_tv') === 'film_tv', `${registryRow.id}/${moduleFile}: module subject avviker`);
-    assert(Array.isArray(module.emne_ids) && module.emne_ids.length > 0, `${registryRow.id}/${moduleFile}: mangler module emne_ids`);
-    moduleCoveredEmners.push(...module.emne_ids);
+    if (Array.isArray(module.emne_ids)) {
+      assert(module.emne_ids.length > 0, `${registryRow.id}/${moduleFile}: tom module emne_ids-deklarasjon`);
+      for (const emneId of module.emne_ids) {
+        assert(chapter.emne_ids.includes(emneId), `${registryRow.id}/${moduleFile}: modul peker utenfor kapittelets emner: ${emneId}`);
+      }
+      declaredModuleTopics.push(...module.emne_ids);
+    }
     assert(Array.isArray(module.sections) && module.sections.length > 0, `${registryRow.id}/${module.id || moduleFile}: mangler sections`);
 
     for (const section of module.sections) {
@@ -132,11 +141,18 @@ function auditChapterIntegrity(registryRow, globalState, { plannedEmneIds = null
       globalState.globalSectionIds.add(section.id);
       chapterSectionIds.add(section.id);
       chapterSections += 1;
-      assert(Array.isArray(section.emne_ids) && section.emne_ids.length > 0, `${registryRow.id}/${section.id}: mangler emne_ids`);
-      for (const emneId of section.emne_ids) {
-        assert(chapter.emne_ids.includes(emneId), `${registryRow.id}/${section.id}: section peker utenfor kapittelets emner: ${emneId}`);
-        sectionCoveredEmners.add(emneId);
+
+      if (requireSectionTopicOwnership) {
+        assert(Array.isArray(section.emne_ids) && section.emne_ids.length > 0, `${registryRow.id}/${section.id}: planenhet mangler section emne_ids`);
       }
+      if (Array.isArray(section.emne_ids)) {
+        assert(section.emne_ids.length > 0, `${registryRow.id}/${section.id}: tom section emne_ids-deklarasjon`);
+        for (const emneId of section.emne_ids) {
+          assert(chapter.emne_ids.includes(emneId), `${registryRow.id}/${section.id}: section peker utenfor kapittelets emner: ${emneId}`);
+          explicitSectionTopics.push(emneId);
+        }
+      }
+
       assert(Array.isArray(section.paragraphs) && section.paragraphs.length > 0, `${registryRow.id}/${section.id}: mangler paragraphs`);
       assert(Array.isArray(section.paragraphClaimIds), `${registryRow.id}/${section.id}: mangler paragraphClaimIds`);
       assert(section.paragraphClaimIds.length === section.paragraphs.length, `${registryRow.id}/${section.id}: paragraphClaimIds matcher ikke paragraphs`);
@@ -149,8 +165,14 @@ function auditChapterIntegrity(registryRow, globalState, { plannedEmneIds = null
     }
   }
 
-  assert(exactSet(moduleCoveredEmners, chapter.emne_ids), `${registryRow.id}: modulene dekker ikke nøyaktig kapittelets emne_ids uten overlapp`);
-  assert(sameSet([...sectionCoveredEmners], chapter.emne_ids), `${registryRow.id}: seksjonene dekker ikke nøyaktig kapittelets emne_ids`);
+  if (declaredModuleTopics.length > 0) {
+    assert(exactSet(declaredModuleTopics, chapter.emne_ids), `${registryRow.id}: eksplisitte module emne_ids dekker ikke nøyaktig kapittelets emner uten overlapp`);
+  }
+  if (requireSectionTopicOwnership) {
+    assert(exactSet(explicitSectionTopics, chapter.emne_ids), `${registryRow.id}: planenhetens seksjoner dekker ikke nøyaktig kapittelets emner uten overlapp`);
+  } else if (explicitSectionTopics.length > 0) {
+    assert(explicitSectionTopics.every((id) => chapter.emne_ids.includes(id)), `${registryRow.id}: legacy-seksjon peker utenfor kapittelets emner`);
+  }
 
   const ledger = read(claimsFile);
   assert((ledger.chapter_id || registryRow.id) === registryRow.id, `${registryRow.id}: claims chapter_id avviker`);
@@ -204,14 +226,15 @@ function auditChapterIntegrity(registryRow, globalState, { plannedEmneIds = null
     paragraph_count: chapterParagraphs,
     claim_count: claims.length,
     source_count: sources.length,
+    section_topic_trace_mode: requireSectionTopicOwnership ? 'required_exact' : 'legacy_optional',
     exact_plan_emne_match: plannedEmneIds ? exactSet(chapter.emne_ids, plannedEmneIds) : true,
     all_claims_verified_with_approved_resolution: claims.every((claim) => claim.status === 'verified' && (!requirePlanResolution || APPROVED_PLAN_RESOLUTION_SET.has(claim.plan_resolution))),
     no_planned_only_claims: claims.every((claim) => claim.status !== 'planned' && claim.plan_resolution !== 'planned_only'),
     every_claim_uses_registered_source: claims.every((claim) => Array.isArray(claim.source_ids) && claim.source_ids.length > 0 && claim.source_ids.every((id) => sourceIdSet.has(id))),
     all_sources_inspectable: sources.every((source) => typeof source.url === 'string' && /^https?:\/\//.test(source.url) && typeof source.source_location === 'string' && source.source_location.trim().length > 0),
     brief_matches_chapter_emne_set: exactSet(requiredBriefIds, chapter.emne_ids),
-    modules_match_chapter_emne_set: exactSet(moduleCoveredEmners, chapter.emne_ids),
-    sections_cover_chapter_emne_set: sameSet([...sectionCoveredEmners], chapter.emne_ids),
+    optional_module_topic_declarations_consistent: declaredModuleTopics.length === 0 || exactSet(declaredModuleTopics, chapter.emne_ids),
+    sections_match_chapter_emne_set: requireSectionTopicOwnership ? exactSet(explicitSectionTopics, chapter.emne_ids) : null,
     all_paragraphs_claim_traced: true,
     verified_resolution_values: resolutionValues,
     unknown_resolution_claim_ids: unknownResolutionClaims
@@ -261,7 +284,14 @@ export function buildFilmTvHolisticCompletionV1() {
   const unitEvidence = registeredUnits.map((chapter, index) => {
     const unit = plannedUnits[index];
     assert(chapter, `${unit.id}: planenhet er ikke registrert som kapittel`);
-    return { unit_id: unit.id, ...auditChapterIntegrity(chapter, globalState, { plannedEmneIds: unit.emne_ids || [], requirePlanResolution: true }) };
+    return {
+      unit_id: unit.id,
+      ...auditChapterIntegrity(chapter, globalState, {
+        plannedEmneIds: unit.emne_ids || [],
+        requirePlanResolution: true,
+        requireSectionTopicOwnership: true
+      })
+    };
   });
 
   const combinedIds = [...anchorIds, ...plannedIds];
@@ -290,8 +320,9 @@ export function buildFilmTvHolisticCompletionV1() {
     registered_unit_coverage_matches_plan: registeredUnitIds.length === 154 && exactSet(registeredUnitIds, plannedIds),
     all_unit_chapters_match_planned_emne_sets: unitEvidence.every((row) => row.exact_plan_emne_match),
     all_briefs_match_chapter_emne_sets: allEvidence.every((row) => row.brief_matches_chapter_emne_set),
-    all_modules_match_chapter_emne_sets: allEvidence.every((row) => row.modules_match_chapter_emne_set),
-    all_sections_cover_chapter_emne_sets: allEvidence.every((row) => row.sections_cover_chapter_emne_set),
+    legacy_anchor_topic_ownership_is_chapter_and_brief_level: anchorEvidence.every((row) => row.section_topic_trace_mode === 'legacy_optional' && row.brief_matches_chapter_emne_set),
+    all_unit_sections_match_chapter_emne_sets: unitEvidence.every((row) => row.section_topic_trace_mode === 'required_exact' && row.sections_match_chapter_emne_set),
+    optional_module_topic_declarations_are_consistent: allEvidence.every((row) => row.optional_module_topic_declarations_consistent),
     every_paragraph_has_claim_trace: allEvidence.every((row) => row.all_paragraphs_claim_traced),
     global_claim_ids_are_unique: globalState.globalClaimIds.size === allEvidence.reduce((sum, row) => sum + row.claim_count, 0),
     global_section_ids_are_unique: globalState.globalSectionIds.size === allEvidence.reduce((sum, row) => sum + row.section_count, 0),
@@ -311,12 +342,16 @@ export function buildFilmTvHolisticCompletionV1() {
 
   const report = {
     schema: 'history_go_film_tv_holistic_completion_audit_v1',
-    version: '1.2.0',
+    version: '1.2.1',
     updated_at: '2026-08-17',
     status: 'complete',
     subject_id: 'film_tv',
     approved_plan_resolutions: APPROVED_PLAN_RESOLUTIONS,
     observed_plan_resolutions: observedResolutionValues,
+    topic_trace_policy: {
+      anchors: 'chapter_and_brief_exact_ownership_with_paragraph_claim_trace; legacy module/section topic fields are optional',
+      planned_units: 'chapter_and_brief_exact_ownership_plus exact section emne ownership and paragraph claim trace'
+    },
     summary: {
       canonical_domain_count: canonicalDomains.size,
       canonical_emne_count: canonicalIds.length,
@@ -352,7 +387,7 @@ export function buildFilmTvHolisticCompletionV1() {
 
   registry.version = '3.04.0';
   registry.updatedAt = '2026-08-17';
-  subject.canonicalModel.note = 'Film & TV er complete etter én holistisk sluttport for den variable 192-emne-canonen: to bevarte anchor-kapitler dekker 38 canonicale emner og 15 faglig avgrensede fulltekstenheter dekker de resterende 154. Porten krever eksakt eierskap uten hull, duplikater eller overlapp, korrekt registry/brief/modul/seksjon-spor, globalt unike claim- og section-id-er, metode- og domenedekning, paragraph→claim-spor samt verifiserte claims med inspectable kilder i alle 17 kapitler. De 15 planenhetene må i tillegg bruke en eksplisitt godkjent verifikasjonsresolution; planned-only claims kan aldri telle som verifisert evidens.';
+  subject.canonicalModel.note = 'Film & TV er complete etter én holistisk sluttport for den variable 192-emne-canonen: to bevarte anchor-kapitler dekker 38 canonicale emner og 15 faglig avgrensede fulltekstenheter dekker de resterende 154. Porten krever eksakt chapter/brief-eierskap uten hull, duplikater eller overlapp, paragraph→claim-spor, globalt unike claim- og section-id-er, metode- og domenedekning samt verifiserte claims med inspectable kilder i alle 17 kapitler. De 15 nye planenhetene må i tillegg ha eksakt section→emne-eierskap og eksplisitt godkjent verifikasjonsresolution. De to reauditerte legacy-anchorene beholdes på sitt dokumenterte schema uten å late som de har module/section emne-felt de aldri har hatt.';
   subject.canonicalModel.completionAudit = P.report;
   subject.editorialPlan = {
     derivedChapterCount: 17,
@@ -361,7 +396,8 @@ export function buildFilmTvHolisticCompletionV1() {
       'two_named_anchor_chapters_cover_exactly_38',
       'fifteen_planned_units_cover_exactly_154',
       'all_17_chapters_have_verified_claims_and_inspectable_sources',
-      'registry_brief_module_and_section_topic_ownership_is_exact',
+      'registry_chapter_and_brief_topic_ownership_is_exact',
+      'all_planned_unit_sections_own_exact_topic_sets',
       'all_paragraphs_have_registered_claim_trace',
       'claim_and_section_ids_are_globally_unique',
       'all_canonical_methods_and_domains_are_covered',
@@ -373,13 +409,13 @@ export function buildFilmTvHolisticCompletionV1() {
     ],
     nextGate: FINAL_GATE
   };
-  subject.note = 'Film & TV er redaksjonelt complete etter én reconcilet 192-emne-helhetsaudit: 17 kapitler totalt, der to navngitte anchor-kapitler dekker 38 emner og 15 produserte planenheter dekker de resterende 154. Sluttporten låser også brief/modul/seksjon-eierskap, paragraph→claim-spor, global claim/section-unikhet, metode- og domenedekning og inspectable kildeevidens. Videre arbeid er vedlikehold, kildeoppdatering og stedscaseutvidelse.';
+  subject.note = 'Film & TV er redaksjonelt complete etter én reconcilet 192-emne-helhetsaudit: 17 kapitler totalt, der to navngitte legacy-anchor-kapitler dekker 38 emner og 15 produserte planenheter dekker de resterende 154. Sluttporten låser chapter/brief-eierskap, section→emne-eierskap for de 15 nye enhetene, paragraph→claim-spor, global claim/section-unikhet, metode- og domenedekning og inspectable kildeevidens. Videre arbeid er vedlikehold, kildeoppdatering og stedscaseutvidelse.';
 
   status.version = '1.97.0';
   status.updatedAt = '2026-08-17';
   filmStatus.editorialStatus = 'complete';
   filmStatus.nextGate = FINAL_GATE;
-  filmStatus.note = 'Film & TV er complete etter reconcilet helhetsaudit: alle 192 canonicale emner er dekket nøyaktig én gang som 38 emner i to bevarte anchor-kapitler + 154 emner i 15 fullproduserte planenheter. Sluttporten krever 17 unike kapittel- og filregistreringer, eksakt registry/brief/modul/seksjon-eierskap, paragraph→claim-spor, globalt unike claim- og section-id-er, metode- og domenedekning samt verifiserte, kildebundne claims med inspectable kilder. Videre arbeid er vedlikehold, kildeoppdatering og stedscaseutvidelse.';
+  filmStatus.note = 'Film & TV er complete etter reconcilet helhetsaudit: alle 192 canonicale emner er dekket nøyaktig én gang som 38 emner i to bevarte legacy-anchor-kapitler + 154 emner i 15 fullproduserte planenheter. Sluttporten krever 17 unike kapittel- og filregistreringer, eksakt chapter/brief-eierskap, exact section→emne-eierskap for de 15 nye enhetene, paragraph→claim-spor, globalt unike claim- og section-id-er, metode- og domenedekning samt verifiserte, kildebundne claims med inspectable kilder. Videre arbeid er vedlikehold, kildeoppdatering og stedscaseutvidelse.';
 
   return { report, registry, status };
 }
