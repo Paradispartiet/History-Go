@@ -30,6 +30,16 @@ test('Film & TV research-dependent claims have academic authority support', () =
   assert.equal(report.gates.empirical_effect_claims_have_peer_reviewed_evidence, true);
 });
 
+test('evidence-boundary claims are not misclassified as positive empirical-effect claims', () => {
+  const report = buildFilmTvSourceAuthorityAudit();
+  const byId = new Map(report.claim_authority_checks.map((row) => [row.claim_id, row]));
+
+  for (const claimId of ['sp-nation-3', 'ir-coproduction-5', 'ir-platform-5', 'rp-children-4', 'spsi-myth-5']) {
+    assert.equal(byId.get(claimId)?.requires_peer_reviewed, false, `${claimId} is an evidence boundary, not a positive effect claim`);
+  }
+  assert.equal(byId.get('ap-loss-3')?.requires_academic_secondary, false, 'reconstruction must not match the construct token');
+});
+
 test('Film & TV quality layer preserves canonical completion and maintenance terminal gate', () => {
   const report = buildFilmTvSourceAuthorityAudit();
 
