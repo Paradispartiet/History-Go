@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_vitenskap_university_readiness_audit_v1",
   "version": "1.3.0",
-  "status": "breadth_inventory_reconciled_chapter_production_in_progress",
+  "status": "breadth_chapters_materialized_final_audit_pending",
   "generatedFrom": {
     "categories": "data/categories/category_contract.json",
     "status": "data/fagverk/subject_status.json",
@@ -18,7 +18,7 @@
     "id": "vitenskap",
     "title": "Vitenskap & teknologi",
     "editorialStatus": "chapters_in_progress",
-    "nextGate": "remaining_chapter_production_across_reconciled_university_breadth",
+    "nextGate": "final_holistic_university_breadth_completion_audit",
     "completeReady": false
   },
   "inventory": {
@@ -28,7 +28,7 @@
       "method_count": 84,
       "mapping_count": 117,
       "hook_count": 64,
-      "registered_chapter_count": 4
+      "registered_chapter_count": 5
     },
     "teknologi": {
       "canonical_parent_subject": "vitenskap",
@@ -77,19 +77,17 @@
     "familyCount": 12,
     "statusCounts": {
       "strong": 4,
-      "inventory_reconciled": 1,
-      "chapter_materialized": 3,
+      "inventory_reconciled": 0,
+      "chapter_materialized": 4,
       "neighbor_bridge_required": 2,
       "nested_strong": 2
     },
     "structuralBlockingGapCount": 0,
-    "editorialBlockerCount": 1,
-    "materializedBreadthFamilyCount": 3
+    "editorialBlockerCount": 0,
+    "materializedBreadthFamilyCount": 4
   },
   "structuralBlockingGaps": [],
-  "editorialBlockers": [
-    "medicine_biomedicine_public_health"
-  ],
+  "editorialBlockers": [],
   "materializedBreadthFamilies": [
     {
       "id": "mathematics_formal_sciences",
@@ -102,6 +100,10 @@
     {
       "id": "chemistry_material_science",
       "chapterId": "vitenskap-kjemi-fra-atomstruktur-til-materialegenskap"
+    },
+    {
+      "id": "medicine_biomedicine_public_health",
+      "chapterId": "vitenskap-medisin-fra-mekanisme-til-folkehelse"
     }
   ],
   "neighborBoundaries": [
@@ -142,9 +144,9 @@
     }
   },
   "registration": {
-    "registryChapterCount": 4,
+    "registryChapterCount": 5,
     "releaseChapterStatus": "materialized",
-    "releaseChapterCount": 4,
+    "releaseChapterCount": 5,
     "releaseMissingFileCount": 0
   },
   "gates": {

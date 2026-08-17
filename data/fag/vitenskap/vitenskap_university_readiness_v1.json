@@ -4,7 +4,7 @@
   "updated_at": "2026-08-17",
   "subject_id": "vitenskap",
   "title": "Vitenskap & teknologi",
-  "status": "breadth_inventory_reconciled_chapter_production_in_progress",
+  "status": "breadth_chapters_materialized_final_audit_pending",
   "complete_ready": false,
   "purpose": "Låse en etterprøvbar universitetsnær dekningskontrakt før Vitenskap erklæres heldekkende. Kontrakten bevarer den eksisterende seksområders strukturen og nested Teknologi-pakken, men skiller mellom sterke eksisterende lag, nabofag som skal kobles uten duplisering, og faglige hull som må inn i det canonicale inventaret før complete.",
   "canonical_scope": {
@@ -20,7 +20,7 @@
       "method_count": 84,
       "mapping_count": 117,
       "hook_count": 64,
-      "registered_chapter_count": 4
+      "registered_chapter_count": 5
     },
     "teknologi": {
       "canonical_parent_subject": "vitenskap",
@@ -251,12 +251,12 @@
     {
       "id": "medicine_biomedicine_public_health",
       "label": "Medisin, biomedisin og folkehelse",
-      "status": "inventory_reconciled",
+      "status": "chapter_materialized",
       "existing_domain_ids": [
         "institusjoner_laboratorier_kunnskapssteder",
         "natur_medisin_miljo"
       ],
-      "reason": "Klinisk evidens, epidemiologi, sykehus og medisinsk forskning finnes, men biomedisinsk mekanisme, diagnostikk, kliniske studier, behandlingsevidens og folkehelse må bindes til en tydelig læringsprogresjon før scope kan kalles heldekkende. Gapet er nå reconcilet på canonical inventory-nivå gjennom 5 eksplisitte emner i eksisterende domain natur_medisin_miljo. Full redaksjonell kapittelbehandling gjenstår og inventory-reconciliation er ikke completion.",
+      "reason": "Canonical v4.6-familien er fulltekstmaterialisert i tre redigerte moduler med ni seksjoner, 27 claimsporede fagavsnitt, diagnostisk evidenskjede, randomisert behandlingseffekt og epidemiologisk kausalitetsanalyse. Modelltranslasjon, analytisk versus klinisk validering, sensitivitet/spesifisitet versus prevalensavhengige prediktive verdier, relativ versus absolutt effekt og assosiasjon versus årsak er eksplisitte kvalitetsgrenser. Dette lukker siste breadth-blocker, men complete_ready forblir false fram til separat helhetsaudit.",
       "candidate_topics": [
         "biomedisinsk_mekanisme_og_modell",
         "diagnostikk_biomarkorer_og_testegenskaper",
@@ -273,7 +273,16 @@
         "em_vit_folkehelse_arsak_og_forebygging"
       ],
       "reconciled_hook_id": "medisin_biomedisin_folkehelse",
-      "reconciliation_spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json"
+      "reconciliation_spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json",
+      "materialized_chapter_id": "vitenskap-medisin-fra-mekanisme-til-folkehelse",
+      "materialized_evidence": {
+        "method_count": 9,
+        "module_count": 3,
+        "section_count": 9,
+        "paragraph_count": 27,
+        "source_count": 12,
+        "claim_count": 20
+      }
     },
     {
       "id": "computing_data_ai",
@@ -382,10 +391,8 @@
       "no_generic_template_reuse"
     ]
   },
-  "next_gate": "remaining_chapter_production_across_reconciled_university_breadth",
-  "editorial_blockers": [
-    "medicine_biomedicine_public_health"
-  ],
+  "next_gate": "final_holistic_university_breadth_completion_audit",
+  "editorial_blockers": [],
   "breadth_reconciliation": {
     "status": "canonical_inventory_reconciled",
     "spec": "data/fag/vitenskap/vitenskap_university_breadth_reconciliation_v1.json",

@@ -18,12 +18,12 @@ test('Vitenskap Unit 4 materialiserer kjemi og materialvitenskap som fjerde kapi
     workedExampleCount: 2,
     applicationTaskCount: 4,
     selfCheckCount: 6,
-    registeredChapterCount: 4,
-    remainingEditorialBlockerCount: 1
+    registeredChapterCount: 5,
+    remainingEditorialBlockerCount: 0
   });
   assert.equal(report.gates.chemistryChapterMaterializedAndRegistered, true);
   assert.equal(report.gates.chemistryEditorialBlockerResolved, true);
-  assert.equal(report.gates.oneBreadthEditorialBlockerRemains, true);
+  assert.equal(report.gates.oneBreadthEditorialBlockerRemains, false);
   assert.equal(report.gates.prematureCompleteBlocked, true);
 });
 

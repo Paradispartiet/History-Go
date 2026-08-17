@@ -67,7 +67,7 @@ export function auditVitenskapPilot({ writeReport = false, checkReport = true } 
   assert(statusEntry?.navigationStatus === 'materialized', 'Vitenskap må være materialized');
   assert(statusEntry?.assessmentStatus === 'audited', 'Vitenskap må være audited');
   assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Vitenskap må stå chapters_in_progress');
-  assert(statusEntry?.nextGate === 'remaining_chapter_production_across_reconciled_university_breadth', 'Vitenskap har feil neste port');
+  assert(['remaining_chapter_production_across_reconciled_university_breadth','final_holistic_university_breadth_completion_audit'].includes(statusEntry?.nextGate), 'Vitenskap har feil neste port');
   assert(Array.isArray(registrySubject?.chapters) && registrySubject.chapters.length >= 1, 'Vitenskap må ha minst ett registrert fulltekstkapittel');
   assert(registrySubject.chapters.some((row) => row.id === FIRST_UNIT_ID), 'Vitenskap må bevare Unit 1 gjennom senere kapittelproduksjon');
   assert(new Set(registrySubject.chapters.map((row) => row.id)).size === registrySubject.chapters.length, 'Vitenskap-registry har dupliserte chapter-ID-er');
