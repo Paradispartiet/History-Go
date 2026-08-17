@@ -43,7 +43,22 @@ jobs:
             exit "$code"
           fi
       - name: Verify source-integrity gate
-        run: node --test tests/fagverk-filosofi-source-integrity.test.mjs
+        shell: bash
+        run: |
+          set +e
+          node --test tests/fagverk-filosofi-source-integrity.test.mjs > /tmp/filosofi-source-integrity-gate.log 2>&1
+          code=$?
+          cat /tmp/filosofi-source-integrity-gate.log
+          if [ "$code" -ne 0 ]; then
+            mkdir -p reports
+            cp /tmp/filosofi-source-integrity-gate.log reports/filosofi-source-integrity-gate-error.log
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add reports/filosofi-source-integrity-gate-error.log
+            git commit -m 'Persist Philosophy source-integrity gate failure'
+            git push origin HEAD:agent/philosophy-quality-repair-source-integrity
+            exit "$code"
+          fi
       - name: Verify existing Philosophy final-quality gate
         run: node --test tests/fagverk-filosofi-final-quality.test.mjs
       - name: Verify existing Philosophy university-depth gate
