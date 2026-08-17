@@ -1,0 +1,130 @@
+{
+  "schema": "history_go_fagverk_vitenskap_university_readiness_audit_v1",
+  "version": "1.0.0",
+  "status": "readiness_locked_gaps_open",
+  "generatedFrom": {
+    "categories": "data/categories/category_contract.json",
+    "status": "data/fagverk/subject_status.json",
+    "pensum": "data/fag/vitenskap/vitenskappensum_canonical_v4_5.json",
+    "technologyIndex": "data/fag/teknologi/teknologi_scientific_v2/index.json",
+    "readiness": "data/fag/vitenskap/vitenskap_university_readiness_v1.json",
+    "report": "reports/fagverk/vitenskap-university-readiness-audit.json"
+  },
+  "subject": {
+    "id": "vitenskap",
+    "title": "Vitenskap & teknologi",
+    "editorialStatus": "structure_ready",
+    "nextGate": "chapter_production",
+    "completeReady": false
+  },
+  "inventory": {
+    "vitenskap": {
+      "domain_count": 6,
+      "emne_count": 93,
+      "method_count": 84,
+      "mapping_count": 93,
+      "hook_count": 60,
+      "registered_chapter_count": 0
+    },
+    "teknologi": {
+      "canonical_parent_subject": "vitenskap",
+      "top_level_subject": false,
+      "domain_count": 12,
+      "emne_count": 48,
+      "method_count": 35,
+      "mapping_count": 48,
+      "hook_count": 36,
+      "progression_module_count": 12
+    }
+  },
+  "benchmarks": [
+    {
+      "id": "benchmark_hkdir_realfag_2026",
+      "publisher": "Direktoratet for høyere utdanning og kompetanse (HK-dir)",
+      "url": "https://hkdir.no/no/rapporter-undersokelser-og-statistikk/les-rapporten/tilbudstall-for-universitet-og-hogskoler-i-samordna-opptak-2026/soking-til-utdanningsomrader",
+      "verified_at": "2026-08-17"
+    },
+    {
+      "id": "benchmark_ntnu_naturvitenskap_studier_2026",
+      "publisher": "NTNU, Fakultet for naturvitenskap",
+      "url": "https://www.ntnu.no/nv/studier",
+      "verified_at": "2026-08-17"
+    },
+    {
+      "id": "benchmark_uib_nt_2026",
+      "publisher": "Universitetet i Bergen, Fakultet for naturvitenskap og teknologi",
+      "url": "https://www.uib.no/nt",
+      "verified_at": "2026-08-17"
+    },
+    {
+      "id": "benchmark_uit_nt_studier_2026",
+      "publisher": "UiT Norges arktiske universitet, Fakultet for naturvitenskap og teknologi",
+      "url": "https://uit.no/utdanning?p_dimension_id=88131",
+      "verified_at": "2026-08-17"
+    },
+    {
+      "id": "benchmark_uhr_mnt_engineering",
+      "publisher": "Universitets- og høgskolerådet, UHR-MNT",
+      "url": "https://www.uhr.no/strategiske-enheter/fagstrategiske-enheter/uhr-matematikk-naturvitenskap-og-teknologi/nasjonale-retningslinjer-for-ingeniorutdanningene/",
+      "verified_at": "2026-08-17"
+    }
+  ],
+  "coverageSummary": {
+    "familyCount": 12,
+    "statusCounts": {
+      "strong": 4,
+      "gap": 4,
+      "neighbor_bridge_required": 2,
+      "nested_strong": 2
+    },
+    "blockingGapCount": 4
+  },
+  "blockingGaps": [
+    "mathematics_formal_sciences",
+    "physics_astronomy",
+    "chemistry_material_science",
+    "medicine_biomedicine_public_health"
+  ],
+  "neighborBoundaries": [
+    {
+      "subject_id": "natur",
+      "relationship": "neighbor_bridge_required"
+    },
+    {
+      "subject_id": "filosofi",
+      "relationship": "neighbor_bridge_required"
+    },
+    {
+      "subject_id": "teknologi",
+      "relationship": "nested_specialization"
+    }
+  ],
+  "firstProductionUnit": {
+    "chapterId": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+    "primaryDomainId": "institusjoner_laboratorier_kunnskapssteder",
+    "emneIds": [
+      "em_vit_universitet_kunnskapsproduksjon",
+      "em_vit_laboratorium_praksis",
+      "em_vit_instrumenter_maling",
+      "em_vit_forskningsinfrastruktur",
+      "em_vit_fagmiljo_standarder",
+      "em_vit_fagfellevurdering",
+      "em_vit_reproduserbarhet",
+      "em_vit_institusjonell_tillit"
+    ],
+    "status": "ready_for_chapter_brief"
+  },
+  "gates": {
+    "canonicalScopeMatchesCategoryContract": true,
+    "fixedCompletionQuotaForbidden": true,
+    "existingVitenskapInventoryLocked": true,
+    "nestedTechnologyInventoryLocked": true,
+    "officialBenchmarksInspectable": true,
+    "coverageFamiliesExplicit": true,
+    "blockingGapsExplicit": true,
+    "neighborBoundariesExplicit": true,
+    "firstProductionUnitUsesOnlyCanonicalEmners": true,
+    "prematureCompleteBlocked": true,
+    "qualityThresholdLocked": true
+  }
+}
