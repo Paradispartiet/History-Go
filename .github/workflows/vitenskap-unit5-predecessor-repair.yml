@@ -1,4 +1,3 @@
-# rerun after phase-monotone shared inventory test
 name: Vitenskap Unit 5 predecessor repair and finalize
 
 on:
@@ -6,6 +5,8 @@ on:
     branches: [agent/vitenskap-medicine-biomedicine-public-health-fulltext]
     paths:
       - '.github/workflows/vitenskap-unit5-predecessor-repair.yml'
+      - 'tests/fagverk-subject-inventory.test.mjs'
+      - 'tests/fagverk-general-engine.test.mjs'
   workflow_dispatch:
 
 permissions:
