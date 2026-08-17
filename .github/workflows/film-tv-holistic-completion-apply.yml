@@ -6,6 +6,8 @@ on:
       - agent/film-tv-holistic-192-completion-audit
     paths:
       - .github/workflows/film-tv-holistic-completion-apply.yml
+      - scripts/audit-film-tv-holistic-completion-v1.mjs
+      - tests/film-tv-holistic-completion-v1.test.mjs
 
 permissions:
   contents: write
@@ -20,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/film-tv-holistic-192-completion-audit
+          ref: ${{ github.sha }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -75,6 +77,11 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
+            remote_head="$(git ls-remote origin "refs/heads/${GITHUB_REF_NAME}" | cut -f1)"
+            if [ "$remote_head" != "$GITHUB_SHA" ]; then
+              echo "Branch moved during holistic completion run: expected $GITHUB_SHA, found $remote_head"
+              exit 1
+            fi
             git commit -m "Materialize Film TV holistic 192-emne completion"
             git push origin HEAD:agent/film-tv-holistic-192-completion-audit
           fi
