@@ -76,21 +76,29 @@ function addMaintenanceToNextGateIncludes(text) {
 }
 
 function addUnit12Diagnostics(rel, text) {
+  let next = text;
   if (rel === 'scripts/brief-film-tv-screen-places-identity-circulation-sources-v1.mjs'
-      && !text.includes('::error title=Film TV Unit12 source brief::')) {
-    return text.replace(
+      && !next.includes('::error title=Film TV Unit12 source brief::')) {
+    next = next.replace(
       '    console.error(`Film & TV enhet 12 kildebrief FEIL: ${error.message}`);',
       '    if (process.env.GITHUB_ACTIONS) console.error(`::error title=Film TV Unit12 source brief::${error.message}`);\n    console.error(`Film & TV enhet 12 kildebrief FEIL: ${error.message}`);'
     );
   }
-  if (rel === 'scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs'
-      && !text.includes('::error title=Film TV Unit12 fulltext::')) {
-    return text.replace(
-      '    console.error(`Film & TV enhet 12 fulltekst FEIL: ${error.message}`);',
-      '    if (process.env.GITHUB_ACTIONS) console.error(`::error title=Film TV Unit12 fulltext::${error.message}`);\n    console.error(`Film & TV enhet 12 fulltekst FEIL: ${error.message}`);'
-    );
+  if (rel === 'scripts/audit-film-tv-screen-places-identity-circulation-fulltext-v1.mjs') {
+    if (!next.includes('::error title=Film TV Unit12 claim evidence mismatch::')) {
+      next = next.replace(
+        '  const expectedClaimSourceIds = buildClaimSourceIdsByClaim(built.topicBriefs);',
+        '  const expectedClaimSourceIds = buildClaimSourceIdsByClaim(built.topicBriefs);\n  const claimEvidenceMismatch = claims.find((claim) => !isDeepStrictEqual(claim.source_ids, expectedClaimSourceIds[claim.id]));\n  if (claimEvidenceMismatch && process.env.GITHUB_ACTIONS) {\n    console.error(`::error title=Film TV Unit12 claim evidence mismatch::${claimEvidenceMismatch.id} actual=${JSON.stringify(claimEvidenceMismatch.source_ids)} expected=${JSON.stringify(expectedClaimSourceIds[claimEvidenceMismatch.id])}`);\n  }'
+      );
+    }
+    if (!next.includes('::error title=Film TV Unit12 fulltext::')) {
+      next = next.replace(
+        '    console.error(`Film & TV enhet 12 fulltekst FEIL: ${error.message}`);',
+        '    if (process.env.GITHUB_ACTIONS) console.error(`::error title=Film TV Unit12 fulltext::${error.message}`);\n    console.error(`Film & TV enhet 12 fulltekst FEIL: ${error.message}`);'
+      );
+    }
   }
-  return text;
+  return next;
 }
 
 function transform(rel, text) {
