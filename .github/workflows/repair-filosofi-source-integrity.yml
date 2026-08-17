@@ -60,7 +60,22 @@ jobs:
             exit "$code"
           fi
       - name: Verify existing Philosophy final-quality gate
-        run: node --test tests/fagverk-filosofi-final-quality.test.mjs
+        shell: bash
+        run: |
+          set +e
+          node --test tests/fagverk-filosofi-final-quality.test.mjs > /tmp/filosofi-final-quality-gate.log 2>&1
+          code=$?
+          cat /tmp/filosofi-final-quality-gate.log
+          if [ "$code" -ne 0 ]; then
+            mkdir -p reports
+            cp /tmp/filosofi-final-quality-gate.log reports/filosofi-final-quality-gate-error.log
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add reports/filosofi-final-quality-gate-error.log
+            git commit -m 'Persist Philosophy final-quality gate failure'
+            git push origin HEAD:agent/philosophy-quality-repair-source-integrity
+            exit "$code"
+          fi
       - name: Verify existing Philosophy university-depth gate
         run: node --test tests/fagverk-filosofi-university-depth.test.mjs
       - name: Commit materialized repair
