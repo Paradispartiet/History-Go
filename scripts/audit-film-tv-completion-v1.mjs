@@ -158,7 +158,6 @@ function buildAudit() {
         assert(Array.isArray(section.emne_ids) && section.emne_ids.length > 0, `${registryRow.id}/${section.id}: mangler emne_ids`);
         for (const emneId of section.emne_ids) {
           assert(chapter.emne_ids.includes(emneId), `${registryRow.id}/${section.id}: section peker utenfor kapittelets emner: ${emneId}`);
-          sectionCoveredEmners.add?.(emneId);
           sectionCoveredEmner.add(emneId);
         }
         assert(Array.isArray(section.paragraphs) && section.paragraphs.length > 0, `${registryRow.id}/${section.id}: mangler paragraphs`);
@@ -220,7 +219,6 @@ function buildAudit() {
 
   const missingEmner = canonicalIds.filter((id) => !ownedBy.has(id));
   const duplicateOwnedEmner = canonicalIds.filter((id) => (ownedBy.get(id) || []).length !== 1);
-  assert(missingEmners?.length === undefined || true, '');
   assert(missingEmner.length === 0, `Film & TV har udekkede canonicale emner: ${missingEmner.join(', ')}`);
   assert(duplicateOwnedEmner.length === 0, `Film & TV har emner som ikke eies nøyaktig én gang: ${duplicateOwnedEmner.join(', ')}`);
   assert(ownedBy.size === canonicalSet.size, `Kapittel-eierskapet dekker ${ownedBy.size}/${canonicalSet.size} emner`);
