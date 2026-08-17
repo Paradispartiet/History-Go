@@ -72,8 +72,8 @@ const transformReplacement = `  next = next.replace(
     "assert.ok(['chapters_in_progress', 'complete'].includes(filmStatus.editorialStatus));"
   );
   next = next.replace(
-    "invariant(status.editorialStatus === 'chapters_in_progress', 'Film & TV skal fortsatt stå som pågående');",
-    "invariant(status.editorialStatus === 'chapters_in_progress' || (status.editorialStatus === 'complete' && status.nextGate === 'maintenance_source_refresh_and_place_case_expansion'), 'Film & TV skal stå som pågående eller i bevist complete-/maintenance-tilstand');"
+    "assert(status?.editorialStatus === 'chapters_in_progress', 'Film & TV skal fortsatt stå som pågående');",
+    "assert(status?.editorialStatus === 'chapters_in_progress' || (status?.editorialStatus === 'complete' && status?.nextGate === 'maintenance_source_refresh_and_place_case_expansion'), 'Film & TV skal stå som pågående eller i bevist complete-/maintenance-tilstand');"
   );
   next = next.replace(
     "assert(isDeepStrictEqual(chapter.method_ids, EXPECTED_METHODS), 'Kapittelet har feil canonicalt metodeutvalg');",
@@ -95,7 +95,7 @@ const unresolvedReplacement = `  if (/audit-fagverk-film-tv-(?:kinoer-visningsst
   if (/assert\\.equal\\(filmStatus\\.editorialStatus,\\s*['\"]chapters_in_progress['\"]\\)/.test(text)) {
     problems.push(\`${'${rel}'}: stale exact Film & TV editorialStatus assertion\`);
   }
-  if (text.includes("invariant(status.editorialStatus === 'chapters_in_progress', 'Film & TV skal fortsatt stå som pågående');")) {
+  if (text.includes("assert(status?.editorialStatus === 'chapters_in_progress', 'Film & TV skal fortsatt stå som pågående');")) {
     problems.push(\`${'${rel}'}: variable inventory still pins chapters_in_progress\`);
   }
   if (/audit-fagverk-film-tv-(?:kinoer-visningssteder-publikum|produksjon-studio-filmarbeid)-phase4\\.mjs$/.test(rel)
