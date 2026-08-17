@@ -34,6 +34,8 @@ const genericArgumentPatterns=[
   /må derfor gjøre begrepsgrensene eksplisitte, vise slutningstrinnene/i
 ];
 
+const normalize=(value)=>String(value??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('nb').replace(/[^a-z0-9æøå]+/g,' ').trim();
+
 test('Filosofi-prosa er fri for kjente maskinmønstre og rå ID-er',()=>{
   for(const article of articles){
     const prose=article.sections.flatMap((s)=>s.paragraphs||[]).join('\n');
@@ -62,15 +64,34 @@ test('universitetsreviewede artikler får ikke bruke den gamle metamalens argume
   assert.equal(new Set(signatures).size,signatures.length,'reviewede artikler deler identisk argumentrekonstruksjon');
 });
 
-test('globale tradisjoner har tradisjonsspesifikke tenkere og eksplisitt universitetsdybde i kildene før komparasjon',()=>{
+test('globale tradisjoner har tradisjonsspesifikke debattaktører, primærankre og eksplisitt universitetsdybde før komparasjon',()=>{
   for(const [id,rule] of Object.entries(GLOBAL)){
     const article=byId.get(id);
     assert.ok(article,`mangler global artikkel ${id}`);
-    assert.ok(article.thinker_refs.length>=2,`${id} har for få relevante tenkere`);
-    assert.ok(article.thinker_refs.every((x)=>rule.allowed.includes(x)),`${id} har irrelevant tenker: ${article.thinker_refs.join(', ')}`);
+
+    const quality=article.university_quality;
+    const integrity=article.quality?.source_integrity;
+    const debateActors=quality?.debate_thinkers??[];
+    const anchors=integrity?.primary_work_anchors??[];
+    const theory=article.sections.find((s)=>s.id==='teorihistorie');
+    const theoryText=(theory?.paragraphs??[]).join(' ');
+
+    assert.ok(debateActors.length>=2,`${id} har for få eksplisitte debattaktører`);
+    assert.equal(integrity?.state,'reviewed',`${id} mangler reviewet source-integrity`);
+    assert.deepEqual(integrity?.debate_actors,debateActors,`${id} har stale debattaktører i source-integrity`);
+    assert.deepEqual(integrity?.canonical_thinker_refs,article.thinker_refs,`${id} har stale canonical thinker refs`);
+    assert.ok(article.thinker_refs.every((x)=>rule.allowed.includes(x)),`${id} har irrelevant canonical tenker: ${article.thinker_refs.join(', ')}`);
+
+    assert.ok(anchors.length>=2,`${id} har for få debattspesifikke primærverkankre`);
+    const debateKeys=new Set(debateActors.map(normalize));
+    for(const anchor of anchors){
+      assert.ok(debateKeys.has(normalize(anchor.actor)),`${id} har primæranker for aktør utenfor debatten: ${anchor.actor}`);
+      assert.ok(normalize(theoryText).includes(normalize(anchor.actor)),`${id} bruker ikke primæranker-aktøren ${anchor.actor} i teorihistorien`);
+      assert.ok(normalize(theoryText).includes(normalize(anchor.work)),`${id} bruker ikke primærverket ${anchor.work} i teorihistorien`);
+    }
+
     assert.ok(rule.sources.length>=3,`${id} har for svak permanent kildekontrakt`);
     assert.deepEqual([...article.source_ids].sort(),[...rule.sources].sort(),`${id} har feil tradisjonsspesifikke kilder`);
-    const theory=article.sections.find((s)=>s.id==='teorihistorie');
     assert.ok(theory?.paragraphs?.length>=3,`${id} mangler eksplisitt tradisjonsrelevans`);
   }
 });
