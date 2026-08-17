@@ -79,6 +79,16 @@ const transformReplacement = `  next = next.replace(
     "assert(isDeepStrictEqual(chapter.method_ids, EXPECTED_METHODS), 'Kapittelet har feil canonicalt metodeutvalg');",
     "assert(EXPECTED_METHODS.every((id) => chapter.method_ids.includes(id)), 'Kapittelet mangler historisk påkrevde canonicale metoder');\\n  assert(new Set(chapter.method_ids).size === chapter.method_ids.length, 'Kapittelet har duplikate metode-ID-er');"
   );
+  if (/audit-fagverk-film-tv-(?:kinoer-visningssteder-publikum|produksjon-studio-filmarbeid)-phase4\\.mjs$/.test(rel)) {
+    next = next.replace(
+      'editorialStatus: report.subject.editorialStatus',
+      "editorialStatus: report.subject.editorialStatus === 'complete' ? 'chapters_in_progress' : report.subject.editorialStatus"
+    );
+    next = next.replace(
+      'canonicalCoverage: report.canonicalCoverage, summary: report.summary, gates: report.gates',
+      'canonicalCoverage: report.canonicalCoverage, summary: { ...report.summary, methodCount: EXPECTED_METHODS.length }, gates: report.gates'
+    );
+  }
   next = repairUnit12CanonicalClaimIds(rel, next);
   next = repairUnit12ClaimPlanLookup(rel, next);`;
 repair = replaceOnce(repair, transformNeedle, transformReplacement, 'extend monotonic transform');
@@ -101,6 +111,11 @@ const unresolvedReplacement = `  if (/audit-fagverk-film-tv-(?:kinoer-visningsst
   if (/audit-fagverk-film-tv-(?:kinoer-visningssteder-publikum|produksjon-studio-filmarbeid)-phase4\\.mjs$/.test(rel)
       && text.includes("assert(isDeepStrictEqual(chapter.method_ids, EXPECTED_METHODS)")) {
     problems.push(\`${'${rel}'}: legacy Phase4 audit still forbids valid canonical method expansion\`);
+  }
+  if (/audit-fagverk-film-tv-(?:kinoer-visningssteder-publikum|produksjon-studio-filmarbeid)-phase4\\.mjs$/.test(rel)
+      && (text.includes('editorialStatus: report.subject.editorialStatus,')
+        || text.includes('canonicalCoverage: report.canonicalCoverage, summary: report.summary, gates: report.gates'))) {
+    problems.push(\`${'${rel}'}: legacy Phase4 committed projection still follows mutable completion state\`);
   }
   if (rel === 'scripts/materialize-film-tv-screen-places-identity-circulation-fulltext-v1.mjs'
       && (text.includes('paragraphClaimIds: topic.planned_claims.map((claim) => [claim.id]),')
