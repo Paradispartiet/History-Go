@@ -1,4 +1,4 @@
-# TEMP retry after correcting Life runtime load order
+# TEMP capture full-suite failure after focused gates are green
 name: TEMP Civication 4H-D semantic playthrough diagnose
 
 on:
@@ -35,24 +35,24 @@ jobs:
       - name: Run focused 4H-D gate
         run: node tests/civication-semantic-playthrough-gate.test.js
       - name: Run legacy mail-loop regression
+        run: node tests/civication-mail-loop.test.js
+      - name: Run full Civication suite
         shell: bash
         run: |
           set +e
-          node tests/civication-mail-loop.test.js > .tmp-civication-4hd-mail-loop.log 2>&1
+          npm run test:civication > .tmp-civication-4hd-full-suite.log 2>&1
           status=$?
-          cat .tmp-civication-4hd-mail-loop.log
+          cat .tmp-civication-4hd-full-suite.log
           if [ "$status" -ne 0 ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add -f .tmp-civication-4hd-mail-loop.log
+            git add -f .tmp-civication-4hd-full-suite.log
             if ! git diff --cached --quiet; then
-              git commit -m "Capture Civication 4H-D mail-loop failure"
+              git commit -m "Capture Civication 4H-D full-suite failure"
               git push origin HEAD:agent/civication-4hd-semantic-playthrough-gate-20260817
             fi
           fi
           exit "$status"
-      - name: Run full Civication suite
-        run: npm run test:civication
       - name: Commit verified 4H-D runtime and test changes
         if: success()
         run: |
