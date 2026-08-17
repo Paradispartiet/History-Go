@@ -19,6 +19,30 @@ jobs:
           ref: agent/film-tv-holistic-192-completion-audit
           fetch-depth: 0
 
+      - name: Make holistic shared versions monotone
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'scripts/audit-film-tv-holistic-completion-v1.mjs';
+          let source = fs.readFileSync(file, 'utf8');
+          const helperNeedle = "const write = (file, value) => fs.writeFileSync(abs(file), `${JSON.stringify(value, null, 2)}\\n`);\n";
+          const helper = `${helperNeedle}const versionParts = (value) => String(value || '0.0.0').split('.').map((part) => Number.parseInt(part, 10) || 0);\nconst maxVersion = (a, b) => {\n  const av = versionParts(a);\n  const bv = versionParts(b);\n  for (let i = 0; i < Math.max(av.length, bv.length); i += 1) {\n    const ai = av[i] || 0;\n    const bi = bv[i] || 0;\n    if (ai > bi) return a;\n    if (bi > ai) return b;\n  }\n  return a || b;\n};\n`;
+          const replacements = [
+            [helperNeedle, helper],
+            ["  registry.version = '3.04.0';", "  registry.version = maxVersion(registry.version, '3.04.0');"],
+            ["  status.version = '1.97.0';", "  status.version = maxVersion(status.version, '1.97.0');"]
+          ];
+          for (const [before, after] of replacements) {
+            const count = source.split(before).length - 1;
+            if (count !== 1) throw new Error(`Expected exactly one holistic monotonicity needle, found ${count}: ${before}`);
+            source = source.replace(before, after);
+          }
+          fs.writeFileSync(file, source);
+          NODE
+          node --check scripts/audit-film-tv-holistic-completion-v1.mjs
+
       - name: Merge latest main and resolve only proven shared registries
         shell: bash
         run: |
@@ -112,11 +136,16 @@ jobs:
             exit 1
           fi
 
-      - name: Validate holistic 192 completion
+      - name: Validate holistic 192 completion audit
         shell: bash
         run: |
           set -euo pipefail
           node scripts/audit-film-tv-holistic-completion-v1.mjs
+
+      - name: Validate holistic 192 completion test
+        shell: bash
+        run: |
+          set -euo pipefail
           node --test tests/film-tv-holistic-completion-v1.test.mjs
 
       - name: Validate shared subject inventory
