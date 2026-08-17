@@ -1,0 +1,32 @@
+name: Civication 4H-B diagnose
+
+on:
+  push:
+    branches:
+      - agent/civication-4hb-compiled-registry-cutover
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  registry-diagnosis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Compile registry summary
+        run: node scripts/build-civication-scene-registry.mjs --json
+      - name: Print shadowed duplicates
+        run: |
+          node --input-type=module <<'NODE'
+          import { compileRegistryFromRepo } from './scripts/build-civication-scene-registry.mjs';
+          const registry = await compileRegistryFromRepo(process.cwd());
+          console.log(JSON.stringify({
+            stats: registry.stats,
+            shadowed_duplicates: registry.shadowed_duplicates
+          }, null, 2));
+          if (!registry.stats.shadowed_duplicate_count) console.log('NO_SHADOWED_DUPLICATES');
+          NODE
