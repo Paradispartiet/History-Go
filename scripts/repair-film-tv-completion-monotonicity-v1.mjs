@@ -30,7 +30,7 @@ function addMaintenanceToProductionRegexes(text) {
   );
 }
 
-function addMaintenanceToLaterGateSets(text) {
+function addMaintenanceToLaterGateCollections(text) {
   const gateConst = text.match(new RegExp(`const\\s+([A-Z0-9_]+)\\s*=\\s*['\"]${FINAL_GATE}['\"];`));
   if (!gateConst) return text;
 
@@ -39,16 +39,16 @@ function addMaintenanceToLaterGateSets(text) {
     text = text.replace(gateConst[0], `${gateConst[0]}\nconst MAINTENANCE_GATE = '${MAINTENANCE_GATE}';`);
   }
 
-  return text.replace(/new Set\(\[([\s\S]*?)\]\)/g, (whole, body) => {
+  return text.replace(/\[([\s\S]*?)\]/g, (whole, body) => {
     if (!new RegExp(`\\b${gateVar}\\b`).test(body) || /\bMAINTENANCE_GATE\b/.test(body)) return whole;
     const updatedBody = body.replace(new RegExp(`\\b${gateVar}\\b\\s*,?`), `${gateVar}, MAINTENANCE_GATE`);
-    return `new Set([${updatedBody}])`;
+    return `[${updatedBody}]`;
   });
 }
 
 function transform(text) {
   let next = addMaintenanceToProductionRegexes(text);
-  next = addMaintenanceToLaterGateSets(next);
+  next = addMaintenanceToLaterGateCollections(next);
   next = next.replace(
     "assert(statusEntry.editorialStatus === 'chapters_in_progress', 'Film & TV skal stå chapters_in_progress');",
     "assert(['chapters_in_progress', 'complete'].includes(statusEntry.editorialStatus), 'Film & TV skal stå i produksjon eller bevist complete-tilstand');"
@@ -65,9 +65,9 @@ function unresolvedProblems(rel, text) {
   const gateConst = text.match(new RegExp(`const\\s+([A-Z0-9_]+)\\s*=\\s*['\"]${FINAL_GATE}['\"];`));
   if (gateConst) {
     const gateVar = gateConst[1];
-    for (const match of text.matchAll(/new Set\(\[([\s\S]*?)\]\)/g)) {
+    for (const match of text.matchAll(/\[([\s\S]*?)\]/g)) {
       if (new RegExp(`\\b${gateVar}\\b`).test(match[1]) && !/\bMAINTENANCE_GATE\b/.test(match[1])) {
-        problems.push(`${rel}: later-gate set containing ${gateVar} omits MAINTENANCE_GATE`);
+        problems.push(`${rel}: later-gate collection containing ${gateVar} omits MAINTENANCE_GATE`);
       }
     }
   }
