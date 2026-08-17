@@ -28,6 +28,7 @@ jobs:
         run: |
           node scripts/build-fagverk-release-manifest.mjs
           node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-vitenskap-pilot.mjs --write-report --no-check-report
           node scripts/audit-fagverk-vitenskap-university-readiness.mjs --write-report --no-check-report
           node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
           node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
@@ -75,6 +76,7 @@ jobs:
             data/fagverk/fagverk_registry.json \
             data/fagverk/fagverk_release.json \
             reports/fagverk/vitenskap-breadth-reconciliation-audit.json \
+            reports/fagverk/vitenskap-pilot-audit.json \
             reports/fagverk/vitenskap-university-readiness-audit.json \
             reports/fagverk/subject-baseline.json \
             reports/fagverk/general-engine-audit.json
