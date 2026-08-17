@@ -1,0 +1,47 @@
+name: Repair Philosophy source integrity
+
+on:
+  push:
+    branches:
+      - agent/philosophy-quality-repair-source-integrity
+    paths:
+      - 'scripts/repair-filosofi-source-integrity.mjs'
+      - '.github/workflows/repair-filosofi-source-integrity.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: agent/philosophy-quality-repair-source-integrity
+          fetch-depth: 0
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize debate-aligned source integrity
+        run: node scripts/repair-filosofi-source-integrity.mjs
+      - name: Verify source-integrity gate
+        run: node --test tests/fagverk-filosofi-source-integrity.test.mjs
+      - name: Verify existing Philosophy final-quality gate
+        run: node --test tests/fagverk-filosofi-final-quality.test.mjs
+      - name: Verify existing Philosophy university-depth gate
+        run: node --test tests/fagverk-filosofi-university-depth.test.mjs
+      - name: Commit materialized repair
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No repair changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fagverk/filosofi/articles data/fagverk/filosofi/filosofi_article_registry_v1.json data/fagverk/filosofi/filosofi_completion_v1.json
+          git commit -m 'Materialize Philosophy source integrity repair'
+          git push origin HEAD:agent/philosophy-quality-repair-source-integrity
