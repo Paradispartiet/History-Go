@@ -41,20 +41,45 @@ for (let day = 1; day <= 14; day += 1) {
   }
 }
 
-function findObjectId(value, wanted) {
-  if (Array.isArray(value)) return value.some((item) => findObjectId(item, wanted));
-  if (!value || typeof value !== 'object') return false;
-  if (String(value.id || '') === wanted) return true;
-  return Object.values(value).some((item) => findObjectId(item, wanted));
+const identifierFields = new Set([
+  'id',
+  'mail_id',
+  'scene_id',
+  'scenario_id',
+  'story_id',
+  'thread_id',
+  'event_id',
+  'key'
+]);
+function collectDeclaredIdentifiers(value, out = new Set()) {
+  if (Array.isArray(value)) {
+    for (const item of value) collectDeclaredIdentifiers(item, out);
+    return out;
+  }
+  if (!value || typeof value !== 'object') return out;
+  for (const [key, item] of Object.entries(value)) {
+    if (identifierFields.has(key) && (typeof item === 'string' || typeof item === 'number')) {
+      out.add(String(item));
+    }
+    collectDeclaredIdentifiers(item, out);
+  }
+  return out;
 }
 
+const sourceIdentifierCache = new Map();
 const materializationUse = new Map();
 function verifyMaterializationRef(refString) {
-  const [filePath, objectId] = String(refString).split('#');
-  assert.ok(filePath && objectId, `materialization ref must be file#id: ${refString}`);
+  const hashIndex = String(refString).indexOf('#');
+  assert.ok(hashIndex > 0 && hashIndex < String(refString).length - 1, `materialization ref must be file#id: ${refString}`);
+  const filePath = String(refString).slice(0, hashIndex);
+  const objectId = String(refString).slice(hashIndex + 1);
   assert.ok(fs.existsSync(rel(filePath)), `missing materialization file ${filePath}`);
-  const source = readJson(filePath);
-  assert.ok(findObjectId(source, objectId), `missing materialization id ${objectId} in ${filePath}`);
+  let declaredIds = sourceIdentifierCache.get(filePath);
+  if (!declaredIds) {
+    declaredIds = collectDeclaredIdentifiers(readJson(filePath));
+    sourceIdentifierCache.set(filePath, declaredIds);
+  }
+  assert.ok(declaredIds.has(objectId), `missing materialization id ${objectId} in ${filePath}`);
   materializationUse.set(refString, (materializationUse.get(refString) || 0) + 1);
 }
 
