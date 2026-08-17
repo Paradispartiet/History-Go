@@ -121,6 +121,68 @@ test("Sagene-utvidelsen er et reelt area-eid og kildebelagt oslomål-lag", () =>
   }
 });
 
+test("Oslo-atlaset skiller historisk øst/vest og multietnisk norsk uten bydelsstereotypier", () => {
+  const places = loadPlacesById();
+  const fixtures = [
+    {
+      id: "frogner",
+      area: /Oslo vest.*vestkantmål.*dannet dagligtale/i,
+      terms: ["trappen", "solen", "guttene", "frogner-r"],
+      notes: [/historisk/i, /ikke[^.]*alle/i],
+      forbiddenCanonical: /fisefin/i
+    },
+    {
+      id: "vaalerenga",
+      area: /østkantmål.*vikamål/i,
+      terms: ["trappa", "sola", "komma", "tjukk l"],
+      notes: [/ikke[^.]*unik/i, /dagens talemål|dagens.*blandet/i],
+      forbiddenCanonical: /østkantfolk|arbeiderklassefolk/i
+    },
+    {
+      id: "holmlia",
+      area: /^Multietnisk norsk i Oslo$/i,
+      terms: ["wolla / wallah", "kæbe", "sjpa", "baosj"],
+      notes: [/ikke alle/i, /kebabnorsk/i, /stigmatiserende|flåsete/i],
+      forbiddenCanonical: /kebabnorsk/i
+    }
+  ];
+
+  for (const fixture of fixtures) {
+    const place = places.get(fixture.id);
+    assert.ok(place, `${fixture.id}: område-Place må finnes i canonical manifest`);
+    assert.equal(place.placeScope, "area", `${fixture.id}: språkankeret må være placeScope=area`);
+
+    const relative = languageManifest.place_files?.[fixture.id];
+    assert.ok(relative, `${fixture.id}: språkfil må være registrert i Språkleksikon-manifestet`);
+    const article = json(relative);
+    assert.equal(article.place_id, fixture.id, `${fixture.id}: place_id må være canonical`);
+    assert.match(article.dialect_area, fixture.area, `${fixture.id}: dialektområdet må beskrive språkvarianten, ikke stereotype beboerne`);
+    assert.doesNotMatch(`${article.title} ${article.dialect_area}`, fixture.forbiddenCanonical, `${fixture.id}: stereotyp merkelapp skal ikke være canonical tittel eller område`);
+    for (const pattern of fixture.notes) {
+      assert.match(text(article.notes), pattern, `${fixture.id}: notes mangler nødvendig avgrensning ${pattern}`);
+    }
+
+    const dialectEntries = (article.entries || []).filter(entry => isDialectEntry(entry, article));
+    assert.ok(dialectEntries.length >= 4, `${fixture.id}: området skal ha flere faktiske språkspor`);
+    const terms = new Set(dialectEntries.map(entry => text(entry.term).toLowerCase()));
+    for (const term of fixture.terms) {
+      assert.ok(terms.has(term), `${fixture.id}: mangler språksporet ${term}`);
+    }
+
+    for (const entry of dialectEntries) {
+      assert.equal(entry.layer, "dialect", `${entry.id}: Oslo-atlaset krever eksplisitt layer=dialect`);
+      assert.equal(entry.dialect_area, article.dialect_area, `${entry.id}: entry og artikkel må bruke samme, nyanserte områdebetegnelse`);
+      assert.ok(text(entry.meaning), `${entry.id}: meaning mangler`);
+      assert.ok(text(entry.usage), `${entry.id}: usage mangler`);
+      assert.ok(text(entry.context), `${entry.id}: context mangler`);
+      assert.ok(Array.isArray(entry.sources) && entry.sources.length >= 2, `${entry.id}: språksporet trenger flere kildebelegg`);
+      for (const source of entry.sources) {
+        assert.match(String(source?.url || ""), /^https:\/\//, `${entry.id}: brukerrettet kilde må være HTTPS`);
+      }
+    }
+  }
+});
+
 test("enkelt-Places kan ha Språkleksikon uten å bli dialekt-eiere", () => {
   const places = loadPlacesById();
   const fixtureId = "tinghuset";
