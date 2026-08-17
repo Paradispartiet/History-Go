@@ -1,0 +1,97 @@
+name: Vitenskap Unit 4 finalize
+
+on:
+  push:
+    branches: [agent/vitenskap-chemistry-material-science-fulltext]
+    paths:
+      - '.github/workflows/vitenskap-unit4-finalize.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vitenskap-chemistry-material-science-fulltext
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate finalizer and audit syntax
+        run: |
+          node --check scripts/finalize-vitenskap-chemistry-material-science-unit4.mjs
+          node --check scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs
+          node --check scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs
+          node --check scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs
+      - name: Apply fail-fast Unit 4 state transition
+        run: node scripts/finalize-vitenskap-chemistry-material-science-unit4.mjs
+      - name: Regenerate deterministic release and reports
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-vitenskap-pilot.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-vitenskap-university-readiness.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-subject-inventory.mjs --write-report --no-check-report
+          node scripts/audit-fagverk-general-engine.mjs --write-report --no-check-report
+      - name: Validate all Vitenskap progression gates
+        run: |
+          node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs
+          node scripts/audit-fagverk-vitenskap-pilot.mjs
+          node scripts/audit-fagverk-vitenskap-university-readiness.mjs
+          node scripts/audit-fagverk-vitenskap-unit1.mjs
+          node scripts/audit-fagverk-vitenskap-mathematics-source-brief.mjs
+          node scripts/audit-fagverk-vitenskap-mathematics-fulltext.mjs
+          node scripts/audit-fagverk-vitenskap-physics-astronomy-source-brief.mjs
+          node scripts/audit-fagverk-vitenskap-physics-astronomy-fulltext.mjs
+          node scripts/audit-fagverk-vitenskap-chemistry-material-science-source-brief.mjs
+          node scripts/audit-fagverk-vitenskap-chemistry-material-science-fulltext.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Validate permanent Vitenskap tests
+        run: |
+          node --test tests/fagverk-vitenskap-breadth-reconciliation.test.mjs
+          node --test tests/fagverk-vitenskap-pilot.test.mjs
+          node --test tests/fagverk-vitenskap-university-readiness.test.mjs
+          node --test tests/fagverk-vitenskap-unit1.test.mjs
+          node --test tests/fagverk-vitenskap-mathematics-source-brief.test.mjs
+          node --test tests/fagverk-vitenskap-mathematics-fulltext.test.mjs
+          node --test tests/fagverk-vitenskap-physics-astronomy-source-brief.test.mjs
+          node --test tests/fagverk-vitenskap-physics-astronomy-fulltext.test.mjs
+          node --test tests/fagverk-vitenskap-chemistry-material-science-source-brief.test.mjs
+          node --test tests/fagverk-vitenskap-chemistry-material-science-fulltext.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+      - name: Validate shared Fagverk and nested Teknologi
+        run: |
+          node scripts/audit-fagverk-subject-inventory.mjs
+          node scripts/audit-fagverk-general-engine.mjs
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/vitenskap-teknologi-category-contract.test.mjs
+          node tools/build-teknologi-editorial-v3.mjs --check
+          node tools/validate-teknologi-foundation.mjs
+          node tools/validate-teknologi-quality-v2_1.mjs
+          node tools/validate-teknologi-ontology-v2_2.mjs
+          node tools/validate-teknologi-evidence-v2_3.mjs
+          node scripts/validate-teknologi-editorial-v3.mjs
+      - name: Validate diff
+        run: git diff --check
+      - name: Commit deterministic Unit 4 state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fag/vitenskap/vitenskap_university_readiness_v1.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/fagverk_release.json \
+            reports/fagverk/vitenskap-breadth-reconciliation-audit.json \
+            reports/fagverk/vitenskap-pilot-audit.json \
+            reports/fagverk/vitenskap-university-readiness-audit.json \
+            reports/fagverk/subject-baseline.json \
+            reports/fagverk/general-engine-audit.json \
+            tests/fagverk-vitenskap-university-readiness.test.mjs \
+            .github/workflows/fagverk-vitenskap-pilot.yml
+          git diff --cached --quiet && { echo 'Expected Unit 4 state changes missing'; exit 1; }
+          git commit -m 'Register Vitenskap chemistry material science fulltext'
+          git push origin HEAD:agent/vitenskap-chemistry-material-science-fulltext
