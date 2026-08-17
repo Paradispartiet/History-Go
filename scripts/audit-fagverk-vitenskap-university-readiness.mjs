@@ -11,6 +11,9 @@ const P = Object.freeze({
   pensum: 'data/fag/vitenskap/vitenskappensum_canonical_v4_5.json',
   technologyIndex: 'data/fag/teknologi/teknologi_scientific_v2/index.json',
   readiness: 'data/fag/vitenskap/vitenskap_university_readiness_v1.json',
+  registry: 'data/fagverk/fagverk_registry.json',
+  release: 'data/fagverk/fagverk_release.json',
+  chapter: 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap.json',
   report: 'reports/fagverk/vitenskap-university-readiness-audit.json'
 });
 
@@ -52,6 +55,10 @@ const FIRST_UNIT_EMNES = [
   'em_vit_reproduserbarhet',
   'em_vit_institusjonell_tillit'
 ];
+const FIRST_UNIT_ID = 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap';
+const FIRST_UNIT_FILE = `data/fagverk/vitenskap/${FIRST_UNIT_ID}.json`;
+const FIRST_UNIT_BRIEF = `data/fagverk/vitenskap/${FIRST_UNIT_ID}/brief.json`;
+const FIRST_UNIT_CLAIMS = `data/fagverk/vitenskap/${FIRST_UNIT_ID}/claims.json`;
 
 const abs = (relativePath) => path.join(ROOT, relativePath);
 const json = (relativePath) => JSON.parse(fs.readFileSync(abs(relativePath), 'utf8'));
@@ -71,6 +78,7 @@ function committedProjection(report) {
     blockingGaps: report.blockingGaps,
     neighborBoundaries: report.neighborBoundaries,
     firstProductionUnit: report.firstProductionUnit,
+    registration: report.registration,
     gates: report.gates
   };
 }
@@ -81,13 +89,18 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
   const pensum = json(P.pensum);
   const technologyIndex = json(P.technologyIndex);
   const readiness = json(P.readiness);
+  const registry = json(P.registry);
+  const release = json(P.release);
+  const chapter = json(P.chapter);
   const statusEntry = status.subjects.find((row) => row.id === 'vitenskap');
+  const registrySubject = registry.subjects?.vitenskap;
+  const releaseSubject = release.subjects?.vitenskap;
 
   assert(readiness.schema === 'history_go_fagverk_vitenskap_university_readiness_v1', 'Vitenskap readiness har feil schema');
-  assert(readiness.version === '1.0.0', 'Vitenskap readiness har uventet versjon');
+  assert(readiness.version === '1.1.0', 'Vitenskap readiness har uventet versjon');
   assert(readiness.subject_id === 'vitenskap', 'Vitenskap readiness har feil subject_id');
   assert(readiness.title === categories.labels.vitenskap, 'Vitenskap readiness har feil canonical tittel');
-  assert(readiness.status === 'readiness_locked_gaps_open', 'Vitenskap readiness kan ikke skjule åpne dekningsgap');
+  assert(readiness.status === 'chapter_production_in_progress_gaps_open', 'Vitenskap readiness må vise både kapittelproduksjon og åpne dekningsgap');
   assert(readiness.complete_ready === false, 'Vitenskap kan ikke være complete-ready med åpne dekningsgap');
   assert(readiness.canonical_scope?.no_fixed_completion_quota === true, 'Vitenskap readiness må forby tallkvote som ferdigbevis');
   for (const phrase of ['naturvitenskap', 'medisin', 'matematikk', 'teknologi']) {
@@ -97,8 +110,8 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
   assert(!categories.fagSubjects.includes('teknologi'), 'Teknologi kan ikke være eget canonicalt toppfag');
   assert(statusEntry?.navigationStatus === 'materialized', 'Vitenskap skal være teknisk materialisert');
   assert(statusEntry?.assessmentStatus === 'audited', 'Vitenskap skal være strukturelt auditert');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Readiness-PR skal ikke late som kapitler er produsert');
-  assert(statusEntry?.nextGate === 'chapter_production', 'Vitenskap skal fortsatt ha chapter_production som neste produksjonsport');
+  assert(statusEntry?.editorialStatus === 'chapters_in_progress', 'Registrert Unit 1 skal sette Vitenskap til chapters_in_progress');
+  assert(statusEntry?.nextGate === 'university_breadth_gap_reconciliation_and_remaining_chapter_production', 'Vitenskap har feil neste port etter Unit 1');
 
   assert(pensum.subject_id === 'vitenskap', 'Vitenskap-pensum har feil subject_id');
   assert(pensum.summary.domain_count === 6, 'Vitenskap readiness forventer seks eksisterende områder');
@@ -112,8 +125,8 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
     method_count: 84,
     mapping_count: 93,
     hook_count: 60,
-    registered_chapter_count: 0
-  }), 'Vitenskap readiness har feil eksisterende inventar');
+    registered_chapter_count: 1
+  }), 'Vitenskap readiness har feil eksisterende inventar etter Unit 1');
 
   assert(isDeepStrictEqual(technologyIndex.counts, {
     areas: 12,
@@ -179,13 +192,46 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
   assert(technologyBoundary?.relationship === 'nested_specialization', 'Teknologi må være nested_specialization');
 
   const firstUnit = readiness.first_production_unit;
-  assert(firstUnit.chapter_id === 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap', 'Vitenskap readiness har feil første produksjonsenhet');
+  assert(firstUnit.chapter_id === FIRST_UNIT_ID, 'Vitenskap readiness har feil første produksjonsenhet');
   assert(firstUnit.primary_domain_id === 'institusjoner_laboratorier_kunnskapssteder', 'Første produksjonsenhet har feil primærdomene');
-  assert(firstUnit.status === 'ready_for_chapter_brief', 'Første produksjonsenhet er ikke brief-ready');
+  assert(firstUnit.status === 'materialized_and_registered', 'Første produksjonsenhet er ikke materialisert og registrert');
   assert(isDeepStrictEqual(firstUnit.emne_ids, FIRST_UNIT_EMNES), 'Første produksjonsenhet har feil emneutvalg');
+  assert(firstUnit.chapter_file === FIRST_UNIT_FILE, 'Første produksjonsenhet har feil chapter_file');
+  assert(firstUnit.brief_file === FIRST_UNIT_BRIEF, 'Første produksjonsenhet har feil brief_file');
+  assert(firstUnit.claims_file === FIRST_UNIT_CLAIMS, 'Første produksjonsenhet har feil claims_file');
+  assert(isDeepStrictEqual(firstUnit.materialized_evidence, {
+    method_count: 5,
+    module_count: 3,
+    section_count: 9,
+    paragraph_count: 27,
+    source_count: 10,
+    claim_count: 18
+  }), 'Første produksjonsenhet har feil materialisert evidens');
   const primaryDomain = pensum.domains.find((row) => row.domain_id === firstUnit.primary_domain_id);
   assert(primaryDomain, 'Første produksjonsenhet peker til ukjent Vitenskap-domene');
   assert(firstUnit.emne_ids.every((id) => primaryDomain.emne_ids.includes(id)), 'Første produksjonsenhet bruker emne utenfor primærdomene');
+
+  assert(chapter.chapter_id === FIRST_UNIT_ID, 'Unit 1-kapittelroot har feil ID');
+  assert(chapter.editorialStatus === 'chapter_ready', 'Unit 1-kapittelroot er ikke chapter_ready');
+  assert(isDeepStrictEqual(chapter.emne_ids, FIRST_UNIT_EMNES), 'Unit 1-kapittelroot har feil emnesett');
+  assert(chapter.briefFile === FIRST_UNIT_BRIEF && chapter.claimsFile === FIRST_UNIT_CLAIMS, 'Unit 1-kapittelroot har feil brief/claims-referanse');
+
+  assert(Array.isArray(registrySubject?.chapters) && registrySubject.chapters.length === 1, 'Vitenskap registry skal ha nøyaktig ett canonicalt kapittel etter Unit 1');
+  const registryChapter = registrySubject.chapters[0];
+  assert(registryChapter.id === FIRST_UNIT_ID, 'Vitenskap registry har feil Unit 1-ID');
+  assert(registryChapter.file === FIRST_UNIT_FILE, 'Vitenskap registry har feil Unit 1-fil');
+  assert(registryChapter.primary_domain_id === firstUnit.primary_domain_id, 'Vitenskap registry har feil Unit 1-domene');
+  assert(registryChapter.chapter_role === 'core', 'Vitenskap Unit 1 må være core-kapittel');
+  assert(isDeepStrictEqual(registryChapter.emne_ids, FIRST_UNIT_EMNES), 'Vitenskap registry har feil Unit 1-emner');
+  assert(registryChapter.briefFile === FIRST_UNIT_BRIEF && registryChapter.claimsFile === FIRST_UNIT_CLAIMS, 'Vitenskap registry har feil Unit 1-evidensfiler');
+
+  assert(release.summary?.missing_file_count === 0, 'Fagverk release har manglende filer');
+  assert(releaseSubject?.chapter_status === 'materialized', 'Vitenskap er ikke materialized i release');
+  assert(releaseSubject?.chapter_count === 1, 'Vitenskap release skal ha nøyaktig ett registrert kapittel');
+  assert(releaseSubject?.module_file_count === 3, 'Vitenskap release skal ha tre Unit 1-moduler');
+  assert(releaseSubject?.brief_file_count === 1 && releaseSubject?.claims_file_count === 1, 'Vitenskap release mangler brief/claims');
+  assert(releaseSubject?.missing_chapter_files?.length === 0, 'Vitenskap release har manglende kapittelfiler');
+  assert(releaseSubject?.chapters?.length === 1 && releaseSubject.chapters[0].chapter_id === FIRST_UNIT_ID, 'Vitenskap release har feil kapittel-ID');
 
   assert(readiness.completion_requirements.length >= 9, 'Vitenskap readiness har for svak completion-kontrakt');
   assert(readiness.quality_contract?.minimum_dimension_score === 4, 'Vitenskap quality gate må kreve minst 4/5 per dimensjon');
@@ -194,8 +240,8 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
 
   const report = {
     schema: 'history_go_fagverk_vitenskap_university_readiness_audit_v1',
-    version: '1.0.0',
-    status: 'readiness_locked_gaps_open',
+    version: '1.1.0',
+    status: 'chapter_production_in_progress_gaps_open',
     generatedFrom: P,
     subject: {
       id: 'vitenskap',
@@ -217,7 +263,18 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
       chapterId: firstUnit.chapter_id,
       primaryDomainId: firstUnit.primary_domain_id,
       emneIds: firstUnit.emne_ids,
-      status: firstUnit.status
+      status: firstUnit.status,
+      chapterFile: firstUnit.chapter_file,
+      briefFile: firstUnit.brief_file,
+      claimsFile: firstUnit.claims_file,
+      materializedEvidence: firstUnit.materialized_evidence
+    },
+    registration: {
+      registryChapterCount: registrySubject.chapters.length,
+      releaseChapterStatus: releaseSubject.chapter_status,
+      releaseChapterCount: releaseSubject.chapter_count,
+      releaseModuleFileCount: releaseSubject.module_file_count,
+      releaseMissingFileCount: release.summary.missing_file_count
     },
     gates: {
       canonicalScopeMatchesCategoryContract: true,
@@ -229,6 +286,9 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
       blockingGapsExplicit: true,
       neighborBoundariesExplicit: true,
       firstProductionUnitUsesOnlyCanonicalEmners: true,
+      firstProductionUnitMaterializedAndRegistered: true,
+      registryChapterRegistered: true,
+      releaseManifestAligned: true,
       prematureCompleteBlocked: true,
       qualityThresholdLocked: true
     }
@@ -240,14 +300,14 @@ export function auditVitenskapUniversityReadiness({ writeReport = false, checkRe
     fs.writeFileSync(abs(P.report), `${JSON.stringify(committed, null, 2)}\n`);
   }
   if (checkReport) assert(isDeepStrictEqual(json(P.report), committed), `${P.report} er utdatert`);
-  return { report, readiness, pensum, technologyIndex };
+  return { report, readiness, pensum, technologyIndex, registry, release };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = new Set(process.argv.slice(2));
   try {
     const { report } = auditVitenskapUniversityReadiness({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Vitenskap university readiness OK: ${report.coverageSummary.familyCount} coverage-familier, ${report.coverageSummary.blockingGapCount} blokkerende gap, completeReady=${report.subject.completeReady}`);
+    console.log(`Vitenskap university readiness OK: ${report.registration.registryChapterCount} registrert kapittel, ${report.coverageSummary.blockingGapCount} blokkerende gap, completeReady=${report.subject.completeReady}`);
   } catch (error) {
     console.error(error.stack || error.message);
     process.exitCode = 1;
