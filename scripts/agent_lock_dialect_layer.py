@@ -13,7 +13,7 @@ def replace_once(path, old, new):
 def regex_once(path, pattern, replacement):
     p = Path(path)
     text = p.read_text(encoding="utf-8")
-    updated, count = re.subn(pattern, replacement, text, count=1)
+    updated, count = re.subn(pattern, lambda _match: replacement, text, count=1)
     if count != 1:
         raise SystemExit(f"{path}: expected one regex replacement, got {count}")
     p.write_text(updated, encoding="utf-8")
