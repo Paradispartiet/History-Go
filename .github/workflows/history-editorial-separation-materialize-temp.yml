@@ -1,7 +1,7 @@
 name: History editorial separation materialize temporary
 # Self-reporting one-shot writer. It either commits the repaired generator/corpus or only a failure report. Delete before merge.
 # Materialization is branch-SHA locked; latest main is reconciled again before final CI and merge.
-# Use the separate macOS runner pool to avoid the saturated Ubuntu queue.
+# Uses macOS runner pool and refreshes the deterministic History subject-audit snapshot before strict validation.
 
 on:
   push:
@@ -55,6 +55,7 @@ jobs:
               ('materialize_corpus', ['node', 'tools/materialize-historie-editorial-chapters.mjs']),
               ('deterministic_replay', ['node', 'tools/materialize-historie-editorial-chapters.mjs', '--check']),
               ('editorial_quality', ['node', 'tools/validate-historie-editorial-quality.mjs']),
+              ('refresh_subject_audit', ['node', 'scripts/audit-fagverk-historie.mjs', '--write-report']),
               ('shared_history_audit', ['node', 'scripts/audit-fagverk-historie.mjs']),
           ]
           results = []
@@ -105,6 +106,7 @@ jobs:
               data/fagverk/historie \
               data/fagverk/fagverk_registry.json \
               data/fagverk/subject_status.json \
+              reports/fagverk/historie-subject-audit.json \
               reports/fagverk/historie-editorial-materialization-temp.json
             message='Separate History semantic identity from editorial theory selection'
           else
@@ -112,7 +114,8 @@ jobs:
               tools/materialize-historie-editorial-chapters.mjs \
               data/fagverk/historie \
               data/fagverk/fagverk_registry.json \
-              data/fagverk/subject_status.json || true
+              data/fagverk/subject_status.json \
+              reports/fagverk/historie-subject-audit.json || true
             git add reports/fagverk/historie-editorial-materialization-temp.json
             message='Record History editorial materialization diagnosis'
           fi
