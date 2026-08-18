@@ -1,0 +1,636 @@
+{
+  "version": 1,
+  "rolle": "controller",
+  "scenes": [
+    {
+      "id": "controller_ls_home_01",
+      "threadId": "controller_control_home",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": "venn",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Jonas sier at ikke alt trenger et kontrollspor",
+      "tekst": "Du spør hvem som sa hva, når det skjedde og om han har meldingen. Jonas blir stille og sier at han fortalte deg hvordan han hadde det, ikke leverte dokumentasjon til et møte.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_slapp_beviskravet": true
+            },
+            "threads": {
+              "controller_control_home": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "venn": 4
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_home_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_presset_bevis": true
+            },
+            "threads": {
+              "controller_control_home": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "venn": -3
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_home_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controller_ls_home_02",
+      "threadId": "controller_control_home",
+      "fase": "kveld",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "venn",
+      "tilgjengelighet": "laast",
+      "prioritet": 7,
+      "tittel": "Samtalen uten fotnoter",
+      "tekst": "Jonas tar opp temaet igjen. Denne gangen spør han om du kan høre hele historien før du begynner å teste om delene henger sammen.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_lyttet_for_konklusjon": true
+            },
+            "threads": {
+              "controller_control_home": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "venn": 4
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_gjorde_samtalen_til_revisjon": true
+            },
+            "threads": {
+              "controller_control_home": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "venn": -3
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        }
+      ]
+    },
+    {
+      "id": "controller_ls_friend_01",
+      "threadId": "controller_friend_trust",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "melding",
+      "avsender": "venn",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "«Du tror meg jo ikke før alt kan bevises»",
+      "tekst": "En kort melding fra Jonas treffer hardere enn en lang rapport. Han har lagt merke til at du svarer med kontrollspørsmål når han egentlig trenger at noen tror på opplevelsen hans.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_svarte_med_tillit": true
+            },
+            "threads": {
+              "controller_friend_trust": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "venn": 4
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_friend_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_svarte_med_kontroll": true
+            },
+            "threads": {
+              "controller_friend_trust": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "venn": -3
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_friend_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controller_ls_friend_02",
+      "threadId": "controller_friend_trust",
+      "fase": "kveld",
+      "dag": 4,
+      "visningstype": "samtale",
+      "avsender": "venn",
+      "tilgjengelighet": "laast",
+      "prioritet": 7,
+      "tittel": "Tillit uten avstemming",
+      "tekst": "Dere møtes igjen. Jonas spør ikke om du kan slutte å være controller, bare om du kan la noen setninger få være sanne før de blir analysert.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_reparerte_tillit": true
+            },
+            "threads": {
+              "controller_friend_trust": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "venn": 4
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_forsvarte_kontrollblikket": true
+            },
+            "threads": {
+              "controller_friend_trust": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "venn": -3
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        }
+      ]
+    },
+    {
+      "id": "controller_ls_family_01",
+      "threadId": "controller_family_status",
+      "fase": "kveld",
+      "dag": 2,
+      "visningstype": "telefon",
+      "avsender": "familie",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Søsteren din ber deg snakke vanlig",
+      "tekst": "Du forklarer en familiesak med ord som premiss, avvik og handlingsrom. Søsteren din ler først, før hun spør om du kan snakke med henne som søster og ikke som et beslutningsgrunnlag.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_snakket_enkelt": true
+            },
+            "threads": {
+              "controller_family_status": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "familie": 4
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_family_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_underviste_familien": true
+            },
+            "threads": {
+              "controller_family_status": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "familie": -3
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_family_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controller_ls_family_02",
+      "threadId": "controller_family_status",
+      "fase": "kveld",
+      "dag": 5,
+      "visningstype": "samtale",
+      "avsender": "familie",
+      "tilgjengelighet": "laast",
+      "prioritet": 7,
+      "tittel": "Hvem har egentlig status i rommet?",
+      "tekst": "Søsteren din sier hun er stolt av jobben din, men at hun merker når fagspråket gjør det vanskeligere å motsi deg. Du må velge om statusen skal forsvare deg eller åpne samtalen.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_spurte_tilbake": true
+            },
+            "threads": {
+              "controller_family_status": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "familie": 4
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_brukte_statussprak": true
+            },
+            "threads": {
+              "controller_family_status": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "familie": -3
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        }
+      ]
+    },
+    {
+      "id": "controller_ls_pressure_01",
+      "threadId": "controller_pressure_identity",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "møte",
+      "avsender": "ingrid_okonomisjef",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Ingrid trenger ett tall før møtet",
+      "tekst": "Ingrid trenger en prognose hun kan ta inn i ledergruppen. Du har et intervall og tre usikre premisser. Hun spør hvilket tall hun skal bruke på førstesiden.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_skrev_forbehold": true
+            },
+            "threads": {
+              "controller_pressure_identity": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "ingrid_okonomisjef": 4
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_pressure_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_valgte_ro": true
+            },
+            "threads": {
+              "controller_pressure_identity": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "ingrid_okonomisjef": -3
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_pressure_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controller_ls_pressure_02",
+      "threadId": "controller_pressure_identity",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "intern vurdering",
+      "avsender": "driftsleder",
+      "tilgjengelighet": "laast",
+      "prioritet": 7,
+      "tittel": "Det sikre tallet blir sitert som sannhet",
+      "tekst": "Et tall du formulerte for å gjøre møtet håndterlig er nå gjentatt som sikker prognose. Driftsleder spør hvor sikker økonomi egentlig var da beslutningen ble tatt.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_korrigerte_sikkerheten": true
+            },
+            "threads": {
+              "controller_pressure_identity": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "driftsleder": 4
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_forsvarte_det_sikre_tallet": true
+            },
+            "threads": {
+              "controller_pressure_identity": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "driftsleder": -3
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        }
+      ]
+    },
+    {
+      "id": "controller_ls_audit_01",
+      "threadId": "controller_audit_memory",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "revisor",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Revisor ber om grunnen, ikke bare beløpet",
+      "tekst": "Posten kan forklares muntlig av Marius, men underlaget er spredt. Revisor spør etter dokumentasjonen som viser hvem som visste hva da posten ble vurdert.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_bygde_revisjonsspor": true
+            },
+            "threads": {
+              "controller_audit_memory": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "revisor": 4
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_audit_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_stolte_paa_muntlig_hukommelse": true
+            },
+            "threads": {
+              "controller_audit_memory": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "revisor": -3
+            }
+          },
+          "konsekvensTekst": "Du merker at måten du svarer på nå vil forme den neste samtalen mer enn selve formuleringen.",
+          "laaserOpp": [
+            "controller_ls_audit_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controller_ls_audit_02",
+      "threadId": "controller_audit_memory",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "samtale",
+      "avsender": "marius_regnskap",
+      "tilgjengelighet": "laast",
+      "prioritet": 7,
+      "tittel": "Marius spør om kontrollen skal lære noe",
+      "tekst": "Når underlaget endelig er samlet, viser det et tilbakevendende hull mellom mottak og periodisering. Marius spør om dere bare skal lukke avviket eller endre prosessen som lager det.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si tydelig hva du vet, hva du ikke vet, og hva du trenger fra den andre før du konkluderer.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "psyke": 1,
+              "energi": -2
+            },
+            "flagg": {
+              "controller_endret_prosessen": true
+            },
+            "threads": {
+              "controller_audit_memory": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "marius_regnskap": 4
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        },
+        {
+          "id": "B",
+          "tekst": "Gjør situasjonen enklere ved å presse fram én forklaring eller ett svar som kan lukkes nå.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "synlighet": 2,
+              "energi": -1
+            },
+            "flagg": {
+              "controller_lukket_bare_avviket": true
+            },
+            "threads": {
+              "controller_audit_memory": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "marius_regnskap": -3
+            }
+          },
+          "konsekvensTekst": "Valget blir stående som en liten, men tydelig endring i hvordan du bærer rollen videre."
+        }
+      ]
+    }
+  ]
+}

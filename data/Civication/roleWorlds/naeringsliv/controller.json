@@ -1,0 +1,857 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "controller",
+  "title": "Controller — tallene som får organisasjonen til å handle",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å utøve definisjonsmakt gjennom tall uten å gjøre måling, klassifisering og rapportering til en penere virkelighet enn organisasjonen faktisk har grunnlag for.",
+    "description": "Controlleren står mellom regnskap, drift, ledelse og revisjon. Rollen gjør komplekse hendelser lesbare gjennom tall, men må samtidig beskytte organisasjonen mot falsk sikkerhet, kosmetisk resultatstyring og kontrollformer som gjør at mennesker skjuler problemer før de kan forstås."
+  },
+  "theme_ids": [
+    "numerical_control",
+    "bureaucratic_power",
+    "loyalty_up_down",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "månedsrapporten og økonomisystemet der avvik blir synlige før årsakene er forstått",
+    "driftsmøtet der fysisk vareflyt, bemanning og kampanjer møter økonomiens kategorier",
+    "ledergruppen der korte styringssignaler kan bli beslutninger før usikkerheten rekker å følge med",
+    "revisjonssporet der muntlig kunnskap må overleve som etterprøvbar dokumentasjon",
+    "prognose- og budsjettarbeidet der fremtiden forhandles gjennom antakelser, scenarioer og status",
+    "vennskap og familie der kontrollspørsmål, fagspråk og profesjonell autoritet kan følge spilleren hjem"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "ingrid_okonomisjef",
+      "social_function": "linjeleder som trenger beslutningsklar styringsinformasjon",
+      "class_position": "økonomileder med formell myndighet og direkte tilgang til toppledelsen",
+      "status": "høy formell status",
+      "power_over_player": "setter frister, prioriterer rapportpakker og påvirker spillerens videre ansvar",
+      "wants": "at tallene er presise nok til å styre og korte nok til å bli brukt",
+      "conceals": "hvor ofte hun selv må velge mellom synlig usikkerhet og et tydelig budskap oppover",
+      "speech_style": "kort, rolig og resultatorientert; spør hva hun trygt kan si i møtet",
+      "teaches_player": "at ledelseslojalitet ikke er det samme som å levere ønsket konklusjon"
+    },
+    {
+      "id": "marius_regnskap",
+      "social_function": "underlags- og avstemmingspartner som kjenner postene bak rapporten",
+      "class_position": "fagmedarbeider med høy detaljkunnskap, men mindre organisatorisk status enn ledelsen",
+      "status": "sideordnet fagstatus",
+      "power_over_player": "kan gjøre et tall etterprøvbart eller vise at sporet ikke holder",
+      "wants": "at avstemminger lukkes med reelt underlag og at små differanser ikke blir permanent normalitet",
+      "conceals": "hvor mye historisk praksis som bygger på muntlige snarveier han selv har lært å leve med",
+      "speech_style": "detaljert og pragmatisk; peker ofte på filen, bilaget eller mottakslinjen som mangler",
+      "teaches_player": "at intern kontroll er hverdagsarbeid, ikke bare revisjonens krav"
+    },
+    {
+      "id": "driftsleder",
+      "social_function": "operativ kunnskapsbærer som forklarer hva tallene betyr på gulvet",
+      "class_position": "leder nær produksjon og vareflyt med ansvar for mennesker og praktisk gjennomføring",
+      "status": "høy lokal status, lavere rapportmakt enn økonomiledelsen",
+      "power_over_player": "kan gi eller holde tilbake årsaksforklaringer som økonomi trenger for å forstå avvik",
+      "wants": "at rapporten beskriver faktisk drift uten å gjøre teamet til enkel skyldmarkør",
+      "conceals": "hvor raskt kontroll som oppleves urettferdig kan få driften til å rydde historien før den deles",
+      "speech_style": "konkret, rask og situasjonsnær; begynner med hva som faktisk skjedde",
+      "teaches_player": "at datakvalitet også avhenger av sosial tillit mellom kontroll og drift"
+    },
+    {
+      "id": "revisor",
+      "social_function": "ekstern eller uavhengig leser som krever at organisasjonen kan vise hvorfor tall og vurderinger står der",
+      "class_position": "spesialist med høy institusjonell legitimitet, men uten å eie den daglige driften",
+      "status": "høy kontrollstatus",
+      "power_over_player": "kan gjøre svake spor til formelle funn og tvinge fram dokumentasjon som fristen helst ville utsette",
+      "wants": "at vurderinger, periodiseringer og avvik har tydelig evidens og beslutningsspor",
+      "conceals": "at også revisjon prioriterer og at ikke alle spørsmål har samme risiko eller verdi",
+      "speech_style": "nøktern, ordnær og kildeorientert; spør hvem, når, hvorfor og hvor det kan etterprøves",
+      "teaches_player": "forskjellen mellom et plausibelt tall og en etterprøvbar vurdering"
+    },
+    {
+      "id": "markedssjef",
+      "social_function": "intern aktør som lever av å skape fremtidig effekt og derfor ofte har optimistiske premisser",
+      "class_position": "leder med budsjett, synlighet og tilgang til beslutningstakere",
+      "status": "høy prosjektstatus",
+      "power_over_player": "kan levere antakelser som raskt blir prognosepremisser og presse på for å vente med negative konklusjoner",
+      "wants": "at kampanjeeffekter får tid til å materialisere seg før de dømmes",
+      "conceals": "hvor stor del av optimismen som også beskytter eget omdømme og neste budsjett",
+      "speech_style": "energisk, fremoverskuende og sannsynlighetsorientert; snakker om hva som kommer",
+      "teaches_player": "at prognoser fordeler ansvar før fremtiden faktisk har skjedd"
+    },
+    {
+      "id": "innkjoper",
+      "social_function": "kilde til pris-, avtale- og leverandørforklaringer bak varekost",
+      "class_position": "spesialist med kommersiell informasjon og forhandlingsrelasjoner som økonomi ikke eier",
+      "status": "middels formell status, høy informasjonsmakt",
+      "power_over_player": "kan forklare kostnadsavvik eller gjøre dem vanskeligere å tolke hvis avtaleendringer ikke er dokumentert",
+      "wants": "at controlleren forstår timing, prisendringer og leverandørbetingelser før konklusjon",
+      "conceals": "hvor mye som fortsatt er uavklart i forhandlinger og derfor ikke passer i en endelig kommentar",
+      "speech_style": "kommersiell og konkret; skiller mellom listepris, avtale, tidspunkt og faktisk faktura",
+      "teaches_player": "at økonomiske tall er endepunktet for mange relasjoner og beslutninger utenfor regnearket"
+    },
+    {
+      "id": "venn",
+      "social_function": "privat korrektiv til kontrollblikket og krav om evidens",
+      "class_position": "likemann uten institusjonell makt over spilleren",
+      "status": "høy emosjonell betydning, ingen arbeidsrang",
+      "power_over_player": "kan trekke seg unna når nærhet behandles som et problem som skal dokumenteres og lukkes",
+      "wants": "å bli hørt og trodd før opplevelsen hans blir analysert",
+      "conceals": "hvor slitsomt det er å konkurrere med spillerens profesjonelle språk og metodiske sikkerhet",
+      "speech_style": "uformell, direkte og tidvis ironisk; sier raskt når samtalen føles som et møte",
+      "teaches_player": "at privat tillit ikke er lavere evidensstandard, men en annen sosial relasjon"
+    },
+    {
+      "id": "familie",
+      "social_function": "nær relasjon som leser spillerens status og språk utenfra",
+      "class_position": "ordinær by- og arbeidslivsdeltaker uten økonomifaglig institusjonsmakt",
+      "status": "emosjonell nærhet med sterk sosial korrektivkraft",
+      "power_over_player": "kan gjøre profesjonell identitet personlig og synliggjøre når faglig rang skaper avstand",
+      "wants": "et søskenforhold der hun kan spørre og motsi uten å bli undervist",
+      "conceals": "at stolthet og irritasjon kan eksistere samtidig når spillerens status endrer samtaleformen",
+      "speech_style": "hverdagslig, konkret og personlig; ber om hvem og hva når språket blir abstrakt",
+      "teaches_player": "hvordan statusangst og profesjonell maske kan leve videre etter arbeidstid"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "traceability",
+      "meaning": "om forklaringer, vurderinger og rapportlinjer kan spores tilbake til underlag og ansvar",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "trust_drift",
+      "meaning": "om driften opplever controllerens kontroll som hjelp til å forstå eller som overvåking de må beskytte seg mot",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "trust_manager",
+      "meaning": "ledelsens tillit til at spilleren kan levere styringsinformasjon uten å skjule vesentlig usikkerhet",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "relationship_private",
+      "meaning": "hvor godt spilleren klarer å holde profesjonell kontrollmetode fra å bli standardform i nære relasjoner",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "future_risk",
+      "meaning": "akkumulert risiko når raske eller pene løsninger utsetter den egentlige årsaken",
+      "runtime_binding": "existing"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Månedsrapporten åpner med et rødt varekostavvik, og spilleren må hindre at et uferdig tall blir ledergruppens ferdige forklaring.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week1_month_report_before_explanation"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: Hjemme merker spilleren at kontrollblikket allerede teller og kategoriserer det som egentlig skulle vært en rolig privat morgen.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week1_counting_at_home"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 1, afternoon: En liten avstemmingsdifferanse blir første test på om små tall skal lukkes raskt eller brukes til å finne et mønster i vareflyten.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week1_reconciliation_almost_matches"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Jonas reagerer på at nærhet blir møtt med kontrollspørsmål, og privat tillit blir en konkret motvekt til arbeidsdagens beviskrav.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week1_friend_not_controlled"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: Driftens forklaring utfordrer økonomiens første lesning av avviket og viser at et presist tall fortsatt kan ha en sosialt feil årsaksfortelling.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week1_operations_explains_variance"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Driftsleder bestrider en teknisk korrekt, men sosialt blind rapporttekst, og controlleren må skille fakta fra bekvem ansvarsplassering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/controller_conflict.json#controller_conflict_001"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Prognosen må leveres før fremtiden kan være sikker, slik at antakelser og intervaller blir en kamp om hva ledelsen skal oppfatte som styrbart.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week1_forecast_everyone_wants_certain"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "relationship",
+        "summary": "Dag 2, evening: Et privat mønster blir synlig når spilleren begynner å etterspørre årsaksforklaringer i en samtale som ikke er et analyseoppdrag.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week1_pattern_in_conversation"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: Lagerverdi og bokført verdi peker i ulike retninger, og controlleren må tilbake til fysisk vareflyt før en manuell korreksjon får skjule årsaken.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#controller_job_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, lunch: Middagen blir nesten behandlet som et regneark, og spilleren får kjenne hvordan faglig presisjon kan bli sosial avstand når den aldri slås av.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week1_dinner_as_spreadsheet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 3, afternoon: Første uke samles i spørsmålet om tall er fasit eller spor, og valgene begynner å forme hvilken type kontroll andre forventer fra spilleren.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week1_numbers_as_responsibility"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Helgen gir en første mulighet til å la avvikene ligge igjen på jobb, eller fortsette å føre et usynlig kontrollregnskap over eget privatliv.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week1_weekend_without_variance"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Dag 4, morning: Et avvik spilleren tidligere kunne ha lukket raskt kommer tilbake og viser at en pen månedsslutt ikke opphever en uløst rotårsak.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week2_variance_did_not_disappear"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, lunch: Privat prøver spilleren å dokumentere en følelse før den får lov til å være gyldig, og kontrollspråket møter sin menneskelige grense.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week2_documenting_a_feeling"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "conversation",
+        "summary": "Dag 4, afternoon: Driften begynner å holde igjen forklaringer fordi rapportering oppleves som overvåking, og controlleren ser hvordan kontrollkultur påvirker datakvalitet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week2_operations_stop_explaining"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "relationship",
+        "summary": "Dag 4, evening: Jonas sier eksplisitt at han ikke føler seg trodd, slik at relasjonstapet ikke kan bortforklares som et lite kommunikasjonsavvik.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week2_friend_says_you_do_not_believe_me"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Dag 5, morning: Periodisering blir en etisk gråsone når et reelt tap kan flyttes på papiret og samtidig endre hvordan ledelsen vurderer måneden.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week2_periodization_or_polishing"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En leder ber om ro før kvartalsslutt, og controlleren må holde grensen mellom legitim regnskapsvurdering og kosmetisk resultatstyring.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/controller_conflict.json#controller_conflict_002"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, afternoon: Spilleren merker at egen tale blir forhåndsrevidert, som om enhver privat formulering må tåle senere kontroll og sitat.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week2_auditing_own_words"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Jonas setter ord på at ikke alt trenger et kontrollspor, og arbeidets profesjonelle styrke blir samtidig synlig som privat friksjon.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_home_01"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: Revisjonssporet testes på et avvik der beløpet kan forklares, men dokumentasjonen fortsatt er for svak til å overleve personskifte og tid.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week2_audit_trail"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "consequence",
+        "summary": "Dag 6, lunch: Revisor ber om underlaget nå, og rapportfristens egentlige kostnad blir tydelig når beviset for tallet ikke er like ferdig som presentasjonen.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/event/controller_event.json#controller_event_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "relationship",
+        "summary": "Dag 6, afternoon: En samtale uten bevisføring blir et konkret forsøk på å lytte før man klassifiserer, både som privat ferdighet og som korrektiv til kontrollrollen.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week2_conversation_without_evidence"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Jonas gir spilleren en ny sjanse til å høre hele historien før delene testes, og relasjonen husker hvordan den første samtalen ble håndtert.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_home_02"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Dag 7, morning: Andre uke løfter tallene fra rapportering til styringsmakt: det som kategoriseres som avvik avgjør hvilke handlinger organisasjonen ser som nødvendige.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#job_controller_week2_numbers_as_governance"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Controlleren formulerer rapporten som organisasjonsminne og må synliggjøre hva som er kjent, antatt og fortsatt uavklart.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/controller_story.json#controller_story_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, afternoon: Helgen uten revisjonsspor tester om spilleren kan la kontroll være et arbeidsverktøy i stedet for en permanent personlig beredskap.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week2_weekend_without_audit_trail"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "relationship",
+        "summary": "Dag 7, evening: Jonas sier at han trenger å bli møtt som venn, ikke som kilde, og privat tillit får sin egen kontinuitet gjennom sesongen.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_friend_01"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: En ny prognose samler salg, kampanjekostnad og bemanning i ett styringssignal der optimisme har konkrete følger for andre menneskers planer.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#controller_job_002"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: Vennskapet vender tilbake etter tidligere friksjon, og spilleren må vise om innsikten faktisk endrer måten spørsmål stilles på.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_friend_02"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Rolleidentiteten skjerpes: kontroll kan gjøre problemer reparerbare eller lære organisasjonen å skjule dem til rapporten allerede har funnet dem.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/controller_story.json#controller_story_002"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Søsteren reagerer på fagspråket som sosial statusmarkør og ber om en samtale der hun ikke må konkurrere med profesjonell autoritet.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_family_01"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Rapportfristen blir et idealtypisk problem: kvalitet kan ikke maksimeres i det uendelige, men usikkerhet må fortsatt få en synlig eier.",
+        "materialization_refs": [
+          "data/Civication/roleModels/naeringsliv/controller.json#rapportfrist_vs_forklaring"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "task",
+        "summary": "Dag 9, lunch: Manglende underlag viser at et tall kan stemme uten at organisasjonen kan bevise hvorfor, og sporbarhet blir mer enn administrativ pynt.",
+        "materialization_refs": [
+          "data/Civication/roleModels/naeringsliv/controller.json#avstemming_uten_underlag"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "conversation",
+        "summary": "Dag 9, afternoon: Driftens forklaring blir et eget faglig problem fordi mennesker med lavere rapportmakt kan vite mer om årsaken enn den som skriver kommentaren.",
+        "materialization_refs": [
+          "data/Civication/roleModels/naeringsliv/controller.json#driftens_forklaring"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Søsteren kommer tilbake til statusforskjellen i språket og tvinger spilleren til å velge mellom å forklare enkelt og å beskytte faglig rang.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_family_02"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Dag 10, morning: Resultatpynt formuleres som bekvemmelig timing snarere enn åpen manipulasjon, slik at den virkelige etiske gråsonen blir spillbar.",
+        "materialization_refs": [
+          "data/Civication/roleModels/naeringsliv/controller.json#resultatpynt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Tall som fasit eller spor blir en eksplisitt refleksjon over om controlleren avslutter undersøkelsen eller åpner den på riktig sted.",
+        "materialization_refs": [
+          "data/Civication/roleModels/naeringsliv/controller.json#tall_som_fasit_eller_spor"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Kontroll som støtte eller overvåking vurderes gjennom hvordan andre faktisk reagerer: kommer de tidligere med problemer, eller senere med penere forklaringer?",
+        "materialization_refs": [
+          "data/Civication/roleModels/naeringsliv/controller.json#kontroll_som_stotte_eller_overvaking"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "relationship",
+        "summary": "Dag 10, evening: Grensen mellom periodisering og resultatpynt blir koblet til rolleidentitet, fordi metode bare virker når controlleren tåler å være den ubekvemme personen.",
+        "materialization_refs": [
+          "data/Civication/roleModels/naeringsliv/controller.json#periodisering_eller_resultatpynt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: Bilaget uten tilstrekkelig dokumentasjon gjør internkontroll konkret: å holde posten åpen kan være mer profesjonelt enn å få den til å forsvinne fra listen.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/naeringsliv/naeringsliv_administrasjon_og_okonomistyring.json#bilag"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 11, lunch: Et uønsket budsjettavvik tester om ledelsesrapporten skal beskrive styringsproblemet eller beskytte organisasjonen mot å se det for tidlig.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/naeringsliv/naeringsliv_administrasjon_og_okonomistyring.json#budsjett"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 11, afternoon: Prognosen må skille bokførte fakta, estimater og usikkerhet slik at hastighet ikke får endre evidensstatusen til tallene.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/naeringsliv/naeringsliv_administrasjon_og_okonomistyring.json#prognose"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "conversation",
+        "summary": "Dag 11, evening: Ingrid trenger ett tall til førstesiden, og spilleren må gjøre et intervall politisk og organisatorisk brukbart uten å late som usikkerheten er borte.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_pressure_01"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: To datakilder viser ulike tall, og uenigheten blir behandlet som informasjon som må rekonsileres i stedet for som et kosmetisk problem.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/naeringsliv/naeringsliv_administrasjon_og_okonomistyring.json#datakilder"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "decision",
+        "summary": "Dag 12, lunch: En leder ønsker en klassifisering som gir penere resultat, og controllerens uavhengighet blir målt i evnen til å avvise et praktisk formulert press.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/naeringsliv/naeringsliv_administrasjon_og_okonomistyring.json#penere_tall"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 12, afternoon: Det sikre tallet blir sitert som sannhet senere, og spilleren møter konsekvensen av å ha gjort usikkerhet mindre synlig enn beslutningen krevde.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_pressure_02"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Privat øver spilleren på en samtale uten bevisføring og oppdager at det å lytte ferdig også kan gjøre senere spørsmål bedre, ikke svakere.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week2_conversation_without_evidence"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Dag 13, morning: Revisor spør etter grunnen og tidspunktet bak en vurdering, slik at organisasjonens hukommelse ikke kan reduseres til hvem som fortsatt husker saken.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_audit_01"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Driftskonflikten vender tilbake med mer sosial hukommelse: tidligere rapportstil påvirker hvor villig gulvet er til å dele det som ikke passer i modellen.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/conflict/controller_conflict.json#controller_conflict_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Marius viser at samme kontrollavvik gjentar seg i prosessen, og controlleren må velge mellom å lukke saken eller endre systemet som produserer den.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_audit_02"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "social",
+        "summary": "Dag 13, evening: Rapporten som organisasjonsminne vender tilbake når gamle formuleringer brukes som premiss for nye beslutninger ingen av de opprinnelige deltakerne kontrollerer.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/controller_story.json#controller_story_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: Lagerdifferansen brukes som sluttprøve på om spilleren fortsatt leter etter fysisk rotårsak når tempo, erfaring og status gjør en manuell post fristende.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/job/controller_job.json#controller_job_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: Jonas møter spilleren igjen med hukommelse fra tidligere kontrollspørsmål, og privat reparasjon krever en faktisk annen væremåte, ikke en bedre forklaring.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_friend_02"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 14, afternoon: Rolleidentiteten avsluttes med spørsmålet om hvilken organisasjon tallene trener fram: en som lærer tidlig, eller en som ser ryddig ut sent.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/naeringsliv/story/controller_story.json#controller_story_002"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Kvelden samler sesongen hjemme, der spilleren må avgjøre om kontrollblikket kan legges fra seg uten at faglig integritet oppleves som truet.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_home_02"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "deadline_truth",
+      "relationship": "Ingrid og spilleren: beslutningsklarhet uten falsk sikkerhet",
+      "beat_refs": [
+        "1/morning",
+        "2/afternoon",
+        "4/morning",
+        "5/morning",
+        "11/afternoon",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "drift_trust",
+      "relationship": "Driftsleder og spilleren: fra avviksforklaring til kontrollkultur",
+      "beat_refs": [
+        "1/afternoon",
+        "2/morning",
+        "2/lunch",
+        "4/afternoon",
+        "6/afternoon",
+        "7/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "audit_memory",
+      "relationship": "Marius/revisor og spilleren: fra avstemming til organisatorisk hukommelse",
+      "beat_refs": [
+        "1/afternoon",
+        "6/morning",
+        "6/lunch",
+        "10/lunch",
+        "11/morning",
+        "13/morning",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "private_control",
+      "relationship": "Jonas og spilleren: kontrollblikk, tillit og reparasjon hjemme",
+      "beat_refs": [
+        "1/lunch",
+        "1/evening",
+        "2/evening",
+        "5/evening",
+        "6/evening",
+        "7/evening",
+        "8/lunch",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "result_polishing",
+      "relationship": "Controlleren og ledelsessystemet: periodisering, ønsket resultat og faglig uavhengighet",
+      "beat_refs": [
+        "3/morning",
+        "5/morning",
+        "5/lunch",
+        "10/morning",
+        "10/afternoon",
+        "11/lunch",
+        "12/lunch",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "status_identity",
+      "relationship": "Spilleren, familie og rolleidentitet: hva kontrollstatus gjør med selvbilde og språk",
+      "beat_refs": [
+        "3/afternoon",
+        "7/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/evening",
+        "10/evening",
+        "11/evening",
+        "14/lunch"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "control_language_home",
+      "description": "Kontrollspørsmål og krav om dokumentasjon følger spilleren hjem og påvirker om Jonas opplever seg trodd.",
+      "materialization_refs": [
+        "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_home_01",
+        "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_home_02"
+      ]
+    },
+    {
+      "id": "friend_trust",
+      "description": "Vennskapet kan repareres når spilleren endrer samtaleform, ikke bare forklarer hvorfor kontrollblikket finnes.",
+      "materialization_refs": [
+        "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_friend_01",
+        "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_friend_02"
+      ]
+    },
+    {
+      "id": "family_status",
+      "description": "Fagspråk og profesjonell status blir synlig i familien og kan enten skape avstand eller oversettes til vanlig språk.",
+      "materialization_refs": [
+        "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_family_01",
+        "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_family_02"
+      ]
+    },
+    {
+      "id": "weekend_without_variance",
+      "description": "Praksisukene lar spilleren prøve å avslutte arbeidsukens kontrollregnskap før helgen blir en ny rapportflate.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week1_weekend_without_variance",
+        "data/Civication/mailFamilies/naeringsliv/people/controller_people.json#personal_controller_week2_weekend_without_audit_trail"
+      ]
+    },
+    {
+      "id": "identity_pressure",
+      "description": "Behovet for alltid å ha et sikkert svar kan øke status på jobb og samtidig gjøre usikkerhet vanskeligere å tåle privat.",
+      "materialization_refs": [
+        "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_pressure_01",
+        "data/Civication/lifestory/roles/controller/scenes.json#controller_ls_pressure_02"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "unexplained_variance_returns",
+      "setup_ref": "1/morning",
+      "return_ref": "4/morning",
+      "domains": [
+        "job",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "control_changes_disclosure",
+      "setup_ref": "2/lunch",
+      "return_ref": "7/morning",
+      "domains": [
+        "job",
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "certainty_becomes_quote",
+      "setup_ref": "8/morning",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    },
+    {
+      "id": "private_evidence_cost",
+      "setup_ref": "1/evening",
+      "return_ref": "8/lunch",
+      "domains": [
+        "relationship",
+        "psyche"
+      ]
+    },
+    {
+      "id": "audit_trail_becomes_process",
+      "setup_ref": "6/morning",
+      "return_ref": "13/afternoon",
+      "domains": [
+        "job",
+        "narrative"
+      ]
+    },
+    {
+      "id": "polishing_shapes_identity",
+      "setup_ref": "5/morning",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "job",
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/roleModels/naeringsliv/controller.json",
+      "data/Civication/workGrammars/naeringsliv/naeringsliv_administrasjon_og_okonomistyring.json",
+      "data/Civication/mailPlans/naeringsliv/controller_plan.json",
+      "data/Civication/mailFamilies/naeringsliv/job/controller_job.json",
+      "data/Civication/mailFamilies/naeringsliv/people/controller_people.json",
+      "data/Civication/mailFamilies/naeringsliv/conflict/controller_conflict.json",
+      "data/Civication/mailFamilies/naeringsliv/story/controller_story.json",
+      "data/Civication/mailFamilies/naeringsliv/event/controller_event.json",
+      "data/Civication/lifestory/roles/controller/role.json",
+      "data/Civication/lifestory/roles/controller/threads.json",
+      "data/Civication/lifestory/roles/controller/scenes.json"
+    ]
+  }
+}
