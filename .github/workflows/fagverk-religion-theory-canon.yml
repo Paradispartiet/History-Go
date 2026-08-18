@@ -1,0 +1,36 @@
+name: Fagverk Religion theory canon
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/religion/**'
+      - 'data/fagverk/religion/**'
+      - 'scripts/audit-fagverk-religion-theory-canon.mjs'
+      - 'tests/fagverk-religion-theory-canon.test.mjs'
+      - '.github/workflows/fagverk-religion-theory-canon.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/religion/**'
+      - 'data/fagverk/religion/**'
+      - 'scripts/audit-fagverk-religion-theory-canon.mjs'
+      - 'tests/fagverk-religion-theory-canon.test.mjs'
+      - '.github/workflows/fagverk-religion-theory-canon.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  theory-canon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify Religion theory/theorist canon
+        run: |
+          node --check scripts/audit-fagverk-religion-theory-canon.mjs
+          node scripts/audit-fagverk-religion-theory-canon.mjs
+          node --test tests/fagverk-religion-theory-canon.test.mjs
