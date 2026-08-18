@@ -1,0 +1,70 @@
+{
+  "schema": "history_go_fagverk_theory_quality_contract_v1",
+  "version": "1.0.0",
+  "status": "audit_contract",
+  "principles": {
+    "completion_is_not_reopened": true,
+    "theory_names_are_not_trivia": true,
+    "theory_must_be_bound_to_actual_content": true,
+    "rivals_are_required_when_the_field_is_contested": true,
+    "natural_science_is_not_forced_into_a_theorist_name_model": true,
+    "institutional_programme_pages_do_not_count_as_theory_evidence": true
+  },
+  "profiles": {
+    "theorist_rival": {
+      "description": "Humaniora og fortolkende/samfunnsvitenskapelige fag der teorier, navngitte bidragsytere og reelle rivaliserende perspektiver er en del av fagets kunnskapsstruktur.",
+      "minimum": {
+        "structured_units": 4,
+        "named_people_or_works": 4,
+        "rival_or_limit_signals": 2,
+        "content_bindings": 4
+      }
+    },
+    "hybrid": {
+      "description": "Fag som kombinerer teorier, modeller, empiriske rammeverk, profesjonskunnskap eller anvendte forskningsbidrag.",
+      "minimum": {
+        "structured_units": 5,
+        "named_people_or_works": 2,
+        "rival_or_limit_signals": 2,
+        "content_bindings": 4
+      }
+    },
+    "model_evidence": {
+      "description": "Naturvitenskapelige og formelle fag der modeller, lover, mekanismer, paradigmer og gyldighetsområder er viktigere enn et minimumsantall navngitte teoretikere.",
+      "minimum": {
+        "structured_units": 6,
+        "named_people_or_works": 0,
+        "rival_or_limit_signals": 3,
+        "content_bindings": 4
+      }
+    }
+  },
+  "required_theory_fields": [
+    "identity_or_label",
+    "scope",
+    "core_claim_or_mechanism",
+    "evidence_or_observable_basis",
+    "limitations_or_validity_domain",
+    "content_binding"
+  ],
+  "subjects": [
+    {"id":"by","top_level":true,"profile":"hybrid"},
+    {"id":"historie","top_level":true,"profile":"theorist_rival"},
+    {"id":"kunst","top_level":true,"profile":"theorist_rival"},
+    {"id":"litteratur","top_level":true,"profile":"theorist_rival"},
+    {"id":"media","top_level":true,"profile":"theorist_rival"},
+    {"id":"musikk","top_level":true,"profile":"theorist_rival"},
+    {"id":"naeringsliv","top_level":true,"profile":"hybrid"},
+    {"id":"natur","top_level":true,"profile":"model_evidence"},
+    {"id":"politikk","top_level":true,"profile":"theorist_rival"},
+    {"id":"psykologi","top_level":true,"profile":"hybrid"},
+    {"id":"religion","top_level":true,"profile":"theorist_rival"},
+    {"id":"scenekunst","top_level":true,"profile":"theorist_rival"},
+    {"id":"sport","top_level":true,"profile":"hybrid"},
+    {"id":"subkultur","top_level":true,"profile":"theorist_rival"},
+    {"id":"vitenskap","top_level":true,"profile":"model_evidence"},
+    {"id":"filosofi","top_level":true,"profile":"theorist_rival"},
+    {"id":"film_tv","top_level":true,"profile":"theorist_rival"},
+    {"id":"teknologi","top_level":false,"parent_subject":"vitenskap","profile":"hybrid"}
+  ]
+}
