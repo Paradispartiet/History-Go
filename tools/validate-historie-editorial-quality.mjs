@@ -15,11 +15,14 @@ export function validateHistoryEditorialQuality({ root = DEFAULT_ROOT } = {}) {
   const fagkart = readJson(root, 'data/fag/historie/fagkart_historie_canonical_v4_5.json');
   const theories = readJson(root, 'data/fag/historie/theory_objects_historie_canonical_v5_5.json');
   const evidence = readJson(root, 'data/fag/historie/theory_evidence_historie_canonical_v1.json');
+  const editorialTheoryDocument = readJson(root, 'data/fag/historie/editorial_theory_overrides_historie_v1.json');
   const registry = readJson(root, 'data/fagverk/fagverk_registry.json');
   const status = readJson(root, 'data/fagverk/subject_status.json');
 
   assert(profilesDocument.schema === 'history_go_historie_editorial_profiles_v1', 'Feil schema for Historie-fagprofilene');
   assert(profilesDocument.status === 'expanded_and_audited', 'Historie-fagprofilene mangler auditert status');
+  assert(editorialTheoryDocument?.policy?.semantic_identity_source === 'emner_historie_canonical_v4_5.primary_theory_hooks[0]', 'Editorial theory-registryen bevarer ikke canonical semantic identity');
+  assert(editorialTheoryDocument?.policy?.editorial_hooks_do_not_redefine_semantic_identity === true, 'Editorial theory-registryen skiller ikke analysebane fra semantic identity');
   const profiles = list(profilesDocument.profiles);
   assert(profiles.length === 18, 'Det skal finnes atten redaksjonelle fagprofiler');
   assert(new Set(profiles.map((profile) => profile.domain_id)).size === profiles.length, 'Dupliserte fagprofil-id-er');
@@ -53,6 +56,33 @@ export function validateHistoryEditorialQuality({ root = DEFAULT_ROOT } = {}) {
   }
   assert(fagkartHookCount === 230, `Historie-fagkartet skal ha 230 hooks, fant ${fagkartHookCount}`);
 
+  const editorialPathByEmneId = new Map();
+  const resolvedLegacyIds = new Set(list(editorialTheoryDocument.resolved_legacy_question_surface_ids).map((row) => row.legacy_emne_id));
+  for (const blueprintFile of list(editorialTheoryDocument.source_blueprint_files)) {
+    for (const row of list(readJson(root, blueprintFile))) {
+      if (!emneById.has(row.emne_id)) {
+        assert(resolvedLegacyIds.has(row.emne_id), `${blueprintFile}: uavklart legacy editorial emne ${row.emne_id}`);
+        continue;
+      }
+      assert(!editorialPathByEmneId.has(row.emne_id), `${row.emne_id}: duplisert aktiv editorial blueprint`);
+      editorialPathByEmneId.set(row.emne_id, {
+        primary: row.primary_hook_id,
+        secondary: row.secondary_hook_id || null,
+        source: blueprintFile
+      });
+    }
+  }
+  for (const row of list(editorialTheoryDocument.overrides)) {
+    assert(emneById.has(row.emne_id), `Editorial override peker på ukjent emne ${row.emne_id}`);
+    assert(!editorialPathByEmneId.has(row.emne_id), `${row.emne_id}: både blueprint og override skaper uklar editorial precedence`);
+    editorialPathByEmneId.set(row.emne_id, {
+      primary: row.editorial_primary_hook_id,
+      secondary: row.editorial_secondary_hook_id || null,
+      source: 'explicit_override'
+    });
+  }
+  assert(editorialPathByEmneId.size === 30, 'Editorial blueprint + override skal dekke nøyaktig 30 aktive emner');
+
   const generatorOwnedDomains = new Set();
   for (const chapterMeta of registry.subjects.historie.chapters) {
     const chapter = readJson(root, chapterMeta.file);
@@ -64,6 +94,7 @@ export function validateHistoryEditorialQuality({ root = DEFAULT_ROOT } = {}) {
   assert(new Set(profiles.map((profile) => profile.domain_id)).size === generatorOwnedDomains.size, 'Fagprofilene dekker ikke det generator-eide inventaret');
 
   let sectionLensCount = 0;
+  let editorialHookSectionCount = 0;
   let caseAnchorCount = 0;
   let causalStepCount = 0;
   for (const profile of profiles) {
@@ -110,12 +141,26 @@ export function validateHistoryEditorialQuality({ root = DEFAULT_ROOT } = {}) {
     assert(list(chapter.narrativeArchitecture?.causalFramework).length === 4, `${profile.domain_id}: kapittelet mangler årsaksarkitektur`);
     assert(list(chapter.narrativeArchitecture?.caseAnchorIds).length === 3, `${profile.domain_id}: kapittelet mangler stedscaser`);
     assert(brief.editorialRequirements?.editorialProfileRequired === true, `${profile.domain_id}: briefen krever ikke fagprofil`);
+    assert(brief.editorialRequirements?.separateEditorialTheoryHookRequired === true, `${profile.domain_id}: briefen krever ikke separat editorial theory hook`);
     assert(brief.generatedFrom?.editorialProfiles === 'data/fag/historie/editorial_profiles_historie_v1.json', `${profile.domain_id}: briefen sporer ikke fagprofilen`);
+    assert(brief.generatedFrom?.editorialTheoryOverrides === 'data/fag/historie/editorial_theory_overrides_historie_v1.json', `${profile.domain_id}: briefen sporer ikke editorial theory-registryen`);
     const modules = chapter.moduleFiles.map((file) => readJson(root, file));
     assert(modules.every((module, index) => module.editorialIntroduction === profile.module_introductions[index]), `${profile.domain_id}: modulintroduksjon avviker`);
     const sections = modules.flatMap((module) => list(module.sections));
     assert(sections.length === 10, `${profile.domain_id}: kapittelet må ha ti emneseksjoner`);
     for (const section of sections) {
+      const emne = emneById.get(section.emneId);
+      assert(emne, `${profile.domain_id}/${section.emneId}: ukjent canonical emne i materialisert seksjon`);
+      const semanticHookId = list(emne.primary_theory_hooks)[0];
+      const editorialPath = editorialPathByEmneId.get(section.emneId);
+      const expectedEditorialHookId = editorialPath?.primary || semanticHookId;
+      const expectedEditorialSecondaryHookId = editorialPath?.secondary || null;
+      const expectedTheory = theoryByHookId.get(expectedEditorialHookId);
+      assert(section.semanticHookId === semanticHookId, `${profile.domain_id}/${section.emneId}: semanticHookId avviker fra canonical primary identity`);
+      assert(section.editorialHookId === expectedEditorialHookId, `${profile.domain_id}/${section.emneId}: editorialHookId avviker fra kuratert analysebane`);
+      assert((section.editorialSecondaryHookId || null) === expectedEditorialSecondaryHookId, `${profile.domain_id}/${section.emneId}: editorialSecondaryHookId avviker fra kuratert analysebane`);
+      assert(expectedTheory && section.theoryId === expectedTheory.theory_id, `${profile.domain_id}/${section.emneId}: theoryId følger ikke materialisert editorialHookId`);
+      editorialHookSectionCount += 1;
       assert(section.editorialLens === profile.section_lenses[section.emneId], `${profile.domain_id}/${section.emneId}: linsen er ikke materialisert`);
       assert(list(section.paragraphs)[1]?.includes(section.editorialLens), `${profile.domain_id}/${section.emneId}: linsen inngår ikke i brødteksten`);
     }
@@ -127,19 +172,23 @@ export function validateHistoryEditorialQuality({ root = DEFAULT_ROOT } = {}) {
   }
 
   assert(sectionLensCount === 180, 'Historie må ha 180 emnespesifikke redaksjonelle linser');
+  assert(editorialHookSectionCount === 180, 'Historie må verifisere semantic/editorial theory-separasjon i alle 180 generatorseksjoner');
   assert(new Set(profiles.flatMap((profile) => Object.values(profile.section_lenses || {}))).size === sectionLensCount, 'Emnelinsene må være redaksjonelt selvstendige');
   assert(caseAnchorCount === 54, 'Historie må ha 54 kuraterte stedscaser');
   assert(causalStepCount === 72, 'Historie må ha 72 redigerte årsaksledd');
   const statusEntry = status.subjects.find((entry) => entry.id === 'historie');
-  assert(statusEntry?.editorialStatus === 'expanded_and_audited', 'Historie-statusen beskriver ikke kvalitetsutvidelsen');
+  assert(['expanded_and_audited', 'complete'].includes(statusEntry?.editorialStatus), 'Historie-statusen beskriver ikke kvalitetsutvidelsen eller terminal completion');
+  if (statusEntry.editorialStatus === 'complete') {
+    assert(statusEntry.nextGate === 'maintenance_source_refresh_and_place_case_expansion', 'Complete History skal gå direkte til vedlikeholdsgaten');
+  }
 
-  return { profiles: profiles.length, sectionLenses: sectionLensCount, caseAnchors: caseAnchorCount, causalSteps: causalStepCount, debates: profiles.length, primaryHookOwners: primaryOwnerByHook.size };
+  return { profiles: profiles.length, sectionLenses: sectionLensCount, editorialHookSections: editorialHookSectionCount, caseAnchors: caseAnchorCount, causalSteps: causalStepCount, debates: profiles.length, primaryHookOwners: primaryOwnerByHook.size };
 }
 
 function main() {
   try {
     const result = validateHistoryEditorialQuality();
-    console.log(`Historie-redaksjonell kvalitet OK: ${result.profiles} fagprofiler, ${result.sectionLenses} emnelinser, ${result.caseAnchors} stedscaser, ${result.causalSteps} årsaksledd, ${result.debates} tolkningsdebatter og ${result.primaryHookOwners} entydige primary hook-eiere.`);
+    console.log(`Historie-redaksjonell kvalitet OK: ${result.profiles} fagprofiler, ${result.sectionLenses} emnelinser, ${result.editorialHookSections} semantic/editorial-verifiserte seksjoner, ${result.caseAnchors} stedscaser, ${result.causalSteps} årsaksledd, ${result.debates} tolkningsdebatter og ${result.primaryHookOwners} entydige primary hook-eiere.`);
   } catch (error) {
     console.error(`Historie-redaksjonell kvalitet FEIL: ${error.message}`);
     process.exitCode = 1;
