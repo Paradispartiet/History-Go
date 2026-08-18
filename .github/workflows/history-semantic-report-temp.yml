@@ -1,0 +1,115 @@
+name: History semantic mismatch report temporary
+# Temporary diagnosis workflow. Remove before History merge.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/history-semantic-report-temp.yml'
+      - 'data/fag/historie/**'
+      - 'reports/historie-canonical-migration/**'
+
+permissions:
+  contents: read
+
+jobs:
+  semantic-report:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/history-completion-audit'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact History branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Reconcile latest main locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Build exact semantic mismatch report
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/fagverk
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const list = (value) => Array.isArray(value) ? value : [];
+          const unique = (values) => [...new Set(values.filter(Boolean))];
+
+          const emners = list(read('data/fag/historie/emner_historie_canonical_v4_5.json'));
+          const fagkart = read('data/fag/historie/fagkart_historie_canonical_v4_5.json');
+          const theories = list(read('data/fag/historie/theory_objects_historie_canonical_v5_5.json'));
+          const emneById = new Map(emners.map((row) => [row.emne_id, row]));
+          const hookById = new Map();
+          for (const category of list(fagkart.categories)) {
+            for (const hook of list(category.topic_hooks)) hookById.set(hook.id, hook);
+          }
+          const theoryByHook = new Map(theories.map((row) => [row.source_hook_id, row]));
+          const files = {
+            industri: 'reports/historie-canonical-migration/industri-arbeid-question-blueprints.json',
+            velferd: 'reports/historie-canonical-migration/velferd-question-blueprints.json',
+            byhistorie: 'reports/historie-canonical-migration/byhistorie-question-blueprints.json'
+          };
+          const rows = Object.entries(files).flatMap(([family, file]) => list(read(file)).map((row) => ({ ...row, family, file })));
+
+          const unknown_emnes = rows.filter((row) => !row.emne_id || !emneById.has(row.emne_id)).map((row) => ({ family: row.family, emne_id: row.emne_id || null }));
+          const missing_primary_hook_ids = rows.filter((row) => !row.primary_hook_id).map((row) => ({ family: row.family, emne_id: row.emne_id || null }));
+
+          const familiesByEmne = new Map();
+          for (const row of rows) {
+            const families = familiesByEmne.get(row.emne_id) || new Set();
+            families.add(row.family);
+            familiesByEmne.set(row.emne_id, families);
+          }
+          const cross_family_overlaps = [...familiesByEmne.entries()]
+            .filter(([, families]) => families.size > 1)
+            .map(([emne_id, families]) => ({ emne_id, families: [...families].sort() }))
+            .sort((a, b) => a.emne_id.localeCompare(b.emne_id));
+
+          const curated_ownership_mismatches = [];
+          const curated_theory_mismatches = [];
+          for (const row of rows) {
+            for (const hookId of unique([row.primary_hook_id, row.secondary_hook_id])) {
+              const hook = hookById.get(hookId);
+              if (!hook) curated_ownership_mismatches.push({ family: row.family, emne_id: row.emne_id, hook_id: hookId, reason: 'missing_hook' });
+              else if (!list(hook.emne_ids).includes(row.emne_id)) curated_ownership_mismatches.push({ family: row.family, emne_id: row.emne_id, hook_id: hookId, reason: 'hook_missing_emne' });
+              if (!theoryByHook.has(hookId)) curated_theory_mismatches.push({ family: row.family, emne_id: row.emne_id, hook_id: hookId, reason: 'missing_theory' });
+            }
+          }
+
+          const report = {
+            generated_from: process.env.GITHUB_SHA,
+            blueprint_rows: rows.length,
+            unique_blueprint_emnes: new Set(rows.map((row) => row.emne_id)).size,
+            unknown_emnes,
+            missing_primary_hook_ids,
+            cross_family_overlaps,
+            curated_ownership_mismatches,
+            curated_theory_mismatches
+          };
+          fs.writeFileSync('reports/fagverk/history-semantic-diagnosis-temp.json', `${JSON.stringify(report, null, 2)}\n`);
+          console.log(JSON.stringify({
+            blueprint_rows: report.blueprint_rows,
+            unique_blueprint_emnes: report.unique_blueprint_emnes,
+            unknown_emnes: unknown_emnes.length,
+            missing_primary_hook_ids: missing_primary_hook_ids.length,
+            cross_family_overlaps: cross_family_overlaps.length,
+            curated_ownership_mismatches: curated_ownership_mismatches.length,
+            curated_theory_mismatches: curated_theory_mismatches.length
+          }, null, 2));
+          NODE
+
+      - name: Upload semantic mismatch report
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-semantic-diagnosis
+          path: reports/fagverk/history-semantic-diagnosis-temp.json
+          if-no-files-found: error
+          retention-days: 1
