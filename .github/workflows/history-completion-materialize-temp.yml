@@ -8,6 +8,7 @@ on:
       - 'tools/materialize-historie-editorial-chapters.mjs'
       - 'tools/audit-historie-semantic-hook-alignment.mjs'
       - 'data/fag/historie/fagkart_historie_canonical_v4_5.json'
+      - 'data/fag/historie/editorial_theory_overrides_historie_v1.json'
       - '.github/workflows/history-completion-materialize-temp.yml'
 
 permissions:
@@ -24,10 +25,11 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Reconcile latest main
+      - name: Lock starting head and reconcile latest main
         shell: bash
         run: |
           set -euo pipefail
+          echo "INITIAL_HEAD=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch origin main
@@ -38,11 +40,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Reconcile canonical and curated hook ownership
+      - name: Reconcile canonical and active editorial hook ownership
         shell: bash
         run: |
           set -euo pipefail
           node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
           import fs from 'node:fs';
           const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
           const list = (value) => Array.isArray(value) ? value : [];
@@ -51,6 +54,7 @@ jobs:
           const mappingPath = 'data/fag/historie/emnemapping_historie_canonical_v4_5.json';
           const fagkartPath = 'data/fag/historie/fagkart_historie_canonical_v4_5.json';
           const theoryPath = 'data/fag/historie/theory_objects_historie_canonical_v5_5.json';
+          const overridePath = 'data/fag/historie/editorial_theory_overrides_historie_v1.json';
           const blueprintFiles = [
             'reports/historie-canonical-migration/industri-arbeid-question-blueprints.json',
             'reports/historie-canonical-migration/velferd-question-blueprints.json',
@@ -60,62 +64,87 @@ jobs:
           const mappings = list(read(mappingPath));
           const fagkart = read(fagkartPath);
           const theories = list(read(theoryPath));
+          const overrides = read(overridePath);
           const emneById = new Map(emners.map((row) => [row.emne_id, row]));
           const mappingByEmne = new Map(mappings.map((row) => [row.emne_id, row]));
           const theoryByHook = new Map(theories.map((row) => [row.source_hook_id, row]));
+          const resolvedLegacyIds = new Set(list(overrides.resolved_legacy_question_surface_ids).map((row) => row.legacy_emne_id));
           const hookById = new Map();
           for (const category of list(fagkart.categories)) {
             for (const hook of list(category.topic_hooks)) hookById.set(hook.id, hook);
           }
+
+          const addOwnership = (hookId, emneId, kind, additions) => {
+            const hook = hookById.get(hookId);
+            assert.ok(hook, `${kind}/${emneId}: hook ${hookId} finnes ikke i fagkart`);
+            assert.ok(theoryByHook.has(hookId), `${kind}/${emneId}: hook ${hookId} mangler teoriobjekt`);
+            hook.emne_ids = list(hook.emne_ids);
+            if (!hook.emne_ids.includes(emneId)) {
+              hook.emne_ids.push(emneId);
+              additions.push(`${hookId}->${emneId}`);
+            }
+          };
 
           const canonicalAdditions = [];
           for (const emne of emners) {
             const declared = unique([...list(emne.primary_theory_hooks), ...list(emne.secondary_theory_hooks)]);
             const mapped = new Set(list(mappingByEmne.get(emne.emne_id)?.mappings).map((row) => row.topic_hook));
             for (const hookId of declared) {
-              if (!mapped.has(hookId)) throw new Error(`${emne.emne_id}: canonical hook ${hookId} mangler mapping`);
-              const hook = hookById.get(hookId);
-              if (!hook) throw new Error(`${emne.emne_id}: canonical hook ${hookId} finnes ikke i fagkart`);
-              if (!theoryByHook.has(hookId)) throw new Error(`${emne.emne_id}: canonical hook ${hookId} mangler teoriobjekt`);
-              hook.emne_ids = list(hook.emne_ids);
-              if (!hook.emne_ids.includes(emne.emne_id)) {
-                hook.emne_ids.push(emne.emne_id);
-                canonicalAdditions.push(`${hookId}->${emne.emne_id}`);
-              }
+              assert.ok(mapped.has(hookId), `${emne.emne_id}: canonical hook ${hookId} mangler mapping`);
+              addOwnership(hookId, emne.emne_id, 'canonical', canonicalAdditions);
             }
           }
 
           const editorialAdditions = [];
-          let blueprintRows = 0;
+          const unresolvedLegacy = [];
+          let activeBlueprintRows = 0;
+          let resolvedLegacyRows = 0;
+          const seenLegacy = new Set();
           for (const file of blueprintFiles) {
             for (const blueprint of list(read(file))) {
-              blueprintRows += 1;
-              if (!blueprint.emne_id || !emneById.has(blueprint.emne_id)) throw new Error(`${file}: ukjent editorial blueprint-emne ${blueprint.emne_id || 'none'}`);
-              if (!blueprint.primary_hook_id) throw new Error(`${file}/${blueprint.emne_id}: mangler primary_hook_id`);
-              for (const hookId of unique([blueprint.primary_hook_id, blueprint.secondary_hook_id])) {
-                const hook = hookById.get(hookId);
-                if (!hook) throw new Error(`${file}/${blueprint.emne_id}: editorial hook ${hookId} finnes ikke i fagkart`);
-                if (!theoryByHook.has(hookId)) throw new Error(`${file}/${blueprint.emne_id}: editorial hook ${hookId} mangler teoriobjekt`);
-                hook.emne_ids = list(hook.emne_ids);
-                if (!hook.emne_ids.includes(blueprint.emne_id)) {
-                  hook.emne_ids.push(blueprint.emne_id);
-                  editorialAdditions.push(`${hookId}->${blueprint.emne_id}`);
+              assert.ok(blueprint.emne_id, `${file}: blueprint mangler emne_id`);
+              assert.ok(blueprint.primary_hook_id, `${file}/${blueprint.emne_id}: mangler primary_hook_id`);
+              if (emneById.has(blueprint.emne_id)) {
+                activeBlueprintRows += 1;
+                for (const hookId of unique([blueprint.primary_hook_id, blueprint.secondary_hook_id])) {
+                  addOwnership(hookId, blueprint.emne_id, 'active-blueprint', editorialAdditions);
                 }
+              } else if (resolvedLegacyIds.has(blueprint.emne_id)) {
+                resolvedLegacyRows += 1;
+                seenLegacy.add(blueprint.emne_id);
+                for (const hookId of unique([blueprint.primary_hook_id, blueprint.secondary_hook_id])) {
+                  assert.ok(hookById.has(hookId), `${file}/${blueprint.emne_id}: legacy editorial hook ${hookId} finnes ikke`);
+                  assert.ok(theoryByHook.has(hookId), `${file}/${blueprint.emne_id}: legacy editorial hook ${hookId} mangler teoriobjekt`);
+                }
+              } else {
+                unresolvedLegacy.push(`${file}:${blueprint.emne_id}`);
               }
+            }
+          }
+          assert.deepEqual(unresolvedLegacy, [], `Uavklarte legacy blueprint-ID-er: ${unresolvedLegacy.join(', ')}`);
+          assert.deepEqual([...seenLegacy].sort(), [...resolvedLegacyIds].sort(), 'Legacy-resolution registry matcher ikke faktiske stale blueprint-rader');
+
+          const overrideIds = new Set();
+          for (const row of list(overrides.overrides)) {
+            assert.ok(row.emne_id && emneById.has(row.emne_id), `Editorial override peker på ukjent canonical emne ${row.emne_id}`);
+            assert.ok(!overrideIds.has(row.emne_id), `Duplikat editorial override for ${row.emne_id}`);
+            overrideIds.add(row.emne_id);
+            for (const hookId of unique([row.editorial_primary_hook_id, row.editorial_secondary_hook_id])) {
+              addOwnership(hookId, row.emne_id, 'explicit-override', editorialAdditions);
             }
           }
 
           fs.writeFileSync(fagkartPath, `${JSON.stringify(fagkart, null, 2)}\n`);
           console.log(JSON.stringify({
             canonical_hook_ownership_additions: canonicalAdditions.length,
-            canonical_additions: canonicalAdditions,
-            curated_blueprint_rows: blueprintRows,
-            editorial_hook_ownership_additions: editorialAdditions.length,
-            editorial_additions: editorialAdditions
+            active_blueprint_rows: activeBlueprintRows,
+            resolved_legacy_blueprint_rows: resolvedLegacyRows,
+            explicit_override_rows: overrideIds.size,
+            editorial_hook_ownership_additions: editorialAdditions.length
           }, null, 2));
           NODE
 
-      - name: Install semantic/editorial hook separation
+      - name: Install permanent semantic/editorial contract
         shell: bash
         run: |
           set -euo pipefail
@@ -124,11 +153,12 @@ jobs:
           const file = 'tools/materialize-historie-editorial-chapters.mjs';
           let source = fs.readFileSync(file, 'utf8');
 
-          if (!source.includes('const EDITORIAL_BLUEPRINT_FILES = [')) {
+          if (!source.includes("editorial_theory_overrides_historie_v1.json")) {
             const anchor = "const historiographyDocument = readJson('data/fag/historie/historiography_evidence_historie_v1.json');\n";
             if (!source.includes(anchor)) throw new Error('Generator historiography anchor not found');
             const insertion = [
               anchor.trimEnd(),
+              "const editorialTheoryOverridesDocument = readJson('data/fag/historie/editorial_theory_overrides_historie_v1.json');",
               "const EDITORIAL_BLUEPRINT_FILES = [",
               "  'reports/historie-canonical-migration/industri-arbeid-question-blueprints.json',",
               "  'reports/historie-canonical-migration/velferd-question-blueprints.json',",
@@ -136,6 +166,8 @@ jobs:
               "];",
               "const editorialBlueprintByEmneId = new Map(EDITORIAL_BLUEPRINT_FILES",
               "  .flatMap((blueprintFile) => list(readJson(blueprintFile)))",
+              "  .map((row) => [row.emne_id, row]));",
+              "const editorialOverrideByEmneId = new Map(list(editorialTheoryOverridesDocument.overrides)",
               "  .map((row) => [row.emne_id, row]));",
               ''
             ].join('\n');
@@ -163,18 +195,25 @@ jobs:
             'function theoryPackage(category, emne) {',
             '  const semanticHookId = list(emne.primary_theory_hooks)[0];',
             '  if (!semanticHookId) throw new Error(`${category.id}/${emne.emne_id}: mangler canonical primary_theory_hooks`);',
+            '  const editorialOverride = editorialOverrideByEmneId.get(emne.emne_id);',
             '  const editorialBlueprint = editorialBlueprintByEmneId.get(emne.emne_id);',
-            '  const editorialHookId = editorialBlueprint?.primary_hook_id || semanticHookId;',
+            '  const editorialHookId = editorialOverride?.editorial_primary_hook_id || editorialBlueprint?.primary_hook_id || semanticHookId;',
+            '  const editorialSecondaryHookId = editorialOverride?.editorial_secondary_hook_id || editorialBlueprint?.secondary_hook_id || null;',
             '  const hook = hookById.get(editorialHookId);',
             '  if (!hook) throw new Error(`${category.id}/${emne.emne_id}: redaksjonell hook ${editorialHookId} finnes ikke i fagkartet`);',
             '  if (!list(hook.emne_ids).includes(emne.emne_id)) throw new Error(`${editorialHookId}: redaksjonell hook er ikke koblet til ${emne.emne_id}`);',
             '  const theory = theoryByHookId.get(editorialHookId);',
             '  if (!theory) throw new Error(`${editorialHookId}: mangler teoriobjekt`);',
+            '  if (editorialSecondaryHookId) {',
+            '    const secondaryHook = hookById.get(editorialSecondaryHookId);',
+            '    if (!secondaryHook || !list(secondaryHook.emne_ids).includes(emne.emne_id)) throw new Error(`${editorialSecondaryHookId}: sekundær redaksjonell hook er ikke koblet til ${emne.emne_id}`);',
+            '    if (!theoryByHookId.has(editorialSecondaryHookId)) throw new Error(`${editorialSecondaryHookId}: mangler sekundært teoriobjekt`);',
+            '  }',
             '  const theoryEvidence = evidenceByTheoryId.get(theory.theory_id);',
             "  if (!theoryEvidence || theoryEvidence.status !== 'evidence_ready') throw new Error(`${theory.theory_id}: mangler ferdig evidens`);",
             '  const claims = list(theoryEvidence.claim_ids).map((id) => claimById.get(id)).filter(Boolean);',
             '  if (!claims.length) throw new Error(`${theory.theory_id}: mangler claims`);',
-            '  return { emneId: emne.emne_id, semanticHookId, editorialHookId, hook, theory, theoryEvidence, claims };',
+            '  return { emneId: emne.emne_id, semanticHookId, editorialHookId, editorialSecondaryHookId, hook, theory, theoryEvidence, claims };',
             '}',
             ''
           ].join('\n');
@@ -183,10 +222,137 @@ jobs:
           if (!source.includes('    editorialHookId: pack.editorialHookId,')) {
             const anchor = '    semanticHookId: pack.semanticHookId,\n    theoryId: pack.theory.theory_id,';
             if (!source.includes(anchor)) throw new Error('Materialized section semantic hook anchor not found');
-            source = source.replace(anchor, '    semanticHookId: pack.semanticHookId,\n    editorialHookId: pack.editorialHookId,\n    theoryId: pack.theory.theory_id,');
+            source = source.replace(anchor, '    semanticHookId: pack.semanticHookId,\n    editorialHookId: pack.editorialHookId,\n    editorialSecondaryHookId: pack.editorialSecondaryHookId,\n    theoryId: pack.theory.theory_id,');
           }
           fs.writeFileSync(file, source);
           NODE
+
+          cat > tools/audit-historie-semantic-hook-alignment.mjs <<'AUDIT'
+          #!/usr/bin/env node
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { fileURLToPath } from 'node:url';
+
+          const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+          const read = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
+          const list = (value) => Array.isArray(value) ? value : [];
+          const unique = (values) => [...new Set(values.filter(Boolean))];
+          const sorted = (values) => [...values].sort();
+
+          const pensum = read('data/fag/historie/historiepensum_canonical_v4_5.json');
+          const emners = list(read('data/fag/historie/emner_historie_canonical_v4_5.json'));
+          const mappings = list(read('data/fag/historie/emnemapping_historie_canonical_v4_5.json'));
+          const fagkart = read('data/fag/historie/fagkart_historie_canonical_v4_5.json');
+          const theories = list(read('data/fag/historie/theory_objects_historie_canonical_v5_5.json'));
+          const editorial = read('data/fag/historie/editorial_theory_overrides_historie_v1.json');
+          const blueprintFiles = [
+            'reports/historie-canonical-migration/industri-arbeid-question-blueprints.json',
+            'reports/historie-canonical-migration/velferd-question-blueprints.json',
+            'reports/historie-canonical-migration/byhistorie-question-blueprints.json'
+          ];
+
+          assert.equal(emners.length, 230, 'Historie skal ha 230 canonicale emner');
+          assert.equal(new Set(emners.map((row) => row.emne_id)).size, 230, 'Canonicale emne-ID-er skal være unike');
+
+          const emneById = new Map(emners.map((row) => [row.emne_id, row]));
+          const mappingByEmne = new Map(mappings.map((row) => [row.emne_id, row]));
+          const theoryByHook = new Map(theories.map((row) => [row.source_hook_id, row]));
+          const hookById = new Map();
+          for (const category of list(fagkart.categories)) {
+            for (const hook of list(category.topic_hooks)) {
+              assert.ok(!hookById.has(hook.id), `Duplikat fagkart-hook ${hook.id}`);
+              hookById.set(hook.id, hook);
+            }
+          }
+
+          const primarySemanticHooks = [];
+          for (const emne of emners) {
+            const primary = list(emne.primary_theory_hooks);
+            const secondary = list(emne.secondary_theory_hooks);
+            assert.equal(primary.length, 1, `${emne.emne_id}: skal ha nøyaktig én canonical primary semantic hook`);
+            primarySemanticHooks.push(primary[0]);
+            const mapped = new Set(list(mappingByEmne.get(emne.emne_id)?.mappings).map((row) => row.topic_hook));
+            for (const [role, hookId] of [
+              ...primary.map((id) => ['primary', id]),
+              ...secondary.map((id) => ['secondary', id])
+            ]) {
+              const hook = hookById.get(hookId);
+              assert.ok(hook, `${emne.emne_id}: ${role} hook ${hookId} finnes ikke`);
+              assert.ok(list(hook.emne_ids).includes(emne.emne_id), `${emne.emne_id}: ${role} hook ${hookId} mangler canonical ownership`);
+              assert.ok(theoryByHook.has(hookId), `${emne.emne_id}: ${role} hook ${hookId} mangler teoriobjekt`);
+              assert.ok(mapped.has(hookId), `${emne.emne_id}: ${role} hook ${hookId} mangler canonical mapping`);
+            }
+          }
+          assert.equal(new Set(primarySemanticHooks).size, 230, '230/230 canonical primary semantic hooks skal være unike');
+
+          const resolvedLegacyIds = new Set(list(editorial.resolved_legacy_question_surface_ids).map((row) => row.legacy_emne_id));
+          assert.equal(resolvedLegacyIds.size, list(editorial.resolved_legacy_question_surface_ids).length, 'Legacy-resolution IDs skal være unike');
+          const activeBlueprintRows = [];
+          const observedLegacyIds = new Set();
+          const unresolvedLegacy = [];
+          for (const file of blueprintFiles) {
+            for (const row of list(read(file))) {
+              assert.ok(row.emne_id, `${file}: blueprint mangler emne_id`);
+              assert.ok(row.primary_hook_id, `${file}/${row.emne_id}: mangler primary_hook_id`);
+              if (emneById.has(row.emne_id)) {
+                activeBlueprintRows.push({ ...row, file });
+              } else if (resolvedLegacyIds.has(row.emne_id)) {
+                observedLegacyIds.add(row.emne_id);
+                for (const hookId of unique([row.primary_hook_id, row.secondary_hook_id])) {
+                  assert.ok(hookById.has(hookId), `${file}/${row.emne_id}: resolved legacy hook ${hookId} finnes ikke`);
+                  assert.ok(theoryByHook.has(hookId), `${file}/${row.emne_id}: resolved legacy hook ${hookId} mangler teoriobjekt`);
+                }
+              } else {
+                unresolvedLegacy.push(`${file}:${row.emne_id}`);
+              }
+            }
+          }
+          assert.deepEqual(unresolvedLegacy, [], `Uavklarte legacy blueprint-ID-er: ${unresolvedLegacy.join(', ')}`);
+          assert.deepEqual(sorted(observedLegacyIds), sorted(resolvedLegacyIds), 'Alle og bare dokumenterte legacy blueprint-ID-er skal være observert');
+          assert.equal(new Set(activeBlueprintRows.map((row) => row.emne_id)).size, activeBlueprintRows.length, 'Aktive blueprint-emner skal være unike på tvers av filer');
+
+          for (const row of activeBlueprintRows) {
+            for (const hookId of unique([row.primary_hook_id, row.secondary_hook_id])) {
+              const hook = hookById.get(hookId);
+              assert.ok(hook, `${row.file}/${row.emne_id}: editorial hook ${hookId} finnes ikke`);
+              assert.ok(list(hook.emne_ids).includes(row.emne_id), `${row.file}/${row.emne_id}: editorial hook ${hookId} mangler ownership`);
+              assert.ok(theoryByHook.has(hookId), `${row.file}/${row.emne_id}: editorial hook ${hookId} mangler teoriobjekt`);
+            }
+          }
+
+          const overrides = list(editorial.overrides);
+          assert.equal(new Set(overrides.map((row) => row.emne_id)).size, overrides.length, 'Editorial override-emner skal være unike');
+          const activeBlueprintIds = new Set(activeBlueprintRows.map((row) => row.emne_id));
+          for (const row of overrides) {
+            assert.ok(emneById.has(row.emne_id), `Editorial override peker på ukjent canonical emne ${row.emne_id}`);
+            assert.ok(!activeBlueprintIds.has(row.emne_id), `${row.emne_id}: både aktiv blueprint og explicit override skaper uklar editorial precedence`);
+            assert.ok(row.editorial_primary_hook_id, `${row.emne_id}: mangler editorial primary hook`);
+            for (const hookId of unique([row.editorial_primary_hook_id, row.editorial_secondary_hook_id])) {
+              const hook = hookById.get(hookId);
+              assert.ok(hook, `${row.emne_id}: override hook ${hookId} finnes ikke`);
+              assert.ok(list(hook.emne_ids).includes(row.emne_id), `${row.emne_id}: override hook ${hookId} mangler ownership`);
+              assert.ok(theoryByHook.has(hookId), `${row.emne_id}: override hook ${hookId} mangler teoriobjekt`);
+            }
+          }
+
+          const curatedDomains = new Set([
+            'his_byhistorie_stedsendring',
+            'his_industri_arbeid_sosialhistorie',
+            'his_velferd_rett_hverdagsliv'
+          ]);
+          const expectedEditorialEmneIds = new Set(list(pensum.domains)
+            .filter((domain) => curatedDomains.has(domain.domain_id))
+            .flatMap((domain) => list(domain.emne_ids)));
+          assert.equal(expectedEditorialEmneIds.size, 30, 'Tre kuraterte Historie-domener skal dekke 30 aktive emner');
+          const coveredEditorialEmneIds = new Set([
+            ...activeBlueprintRows.map((row) => row.emne_id),
+            ...overrides.map((row) => row.emne_id)
+          ]);
+          assert.deepEqual(sorted(coveredEditorialEmneIds), sorted(expectedEditorialEmneIds), 'Editorial blueprint + override skal dekke nøyaktig 30/30 aktive emner');
+
+          console.log(`Historie semantic/editorial alignment PASS: ${emners.length} canonical emner, ${new Set(primarySemanticHooks).size} unique semantic keys, ${activeBlueprintRows.length} active blueprint rows, ${overrides.length} explicit overrides, ${resolvedLegacyIds.size} resolved legacy question-surface IDs, ${coveredEditorialEmneIds.size}/30 curated editorial paths.`);
+          AUDIT
 
       - name: Validate semantic contracts before materialization
         run: |
@@ -214,6 +380,7 @@ jobs:
         run: |
           set -euo pipefail
           git add \
+            data/fag/historie/editorial_theory_overrides_historie_v1.json \
             data/fag/historie/fagkart_historie_canonical_v4_5.json \
             tools/materialize-historie-editorial-chapters.mjs \
             tools/audit-historie-semantic-hook-alignment.mjs \
@@ -226,5 +393,9 @@ jobs:
             git commit -m 'Separate History semantic identity from editorial theory hooks'
           fi
           git fetch origin "${GITHUB_HEAD_REF}"
-          git rebase "origin/${GITHUB_HEAD_REF}"
+          REMOTE_HEAD="$(git rev-parse "origin/${GITHUB_HEAD_REF}")"
+          if [ "$REMOTE_HEAD" != "$INITIAL_HEAD" ]; then
+            echo "History branch moved during materialization: started $INITIAL_HEAD, remote is $REMOTE_HEAD" >&2
+            exit 1
+          fi
           git push origin "HEAD:${GITHUB_HEAD_REF}"
