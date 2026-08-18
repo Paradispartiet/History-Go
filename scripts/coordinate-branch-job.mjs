@@ -5,6 +5,7 @@ const run = (command, args = []) => execFileSync(command, args, { stdio: 'inheri
 const generatorPath = 'scripts/agent_sprakatlas_research_coverage_v1.py';
 const atlasPath = 'data/leksikon/sprak/norge_atlas_v1.json';
 const testPath = 'tests/place-language-dialect-scope.test.mjs';
+const docsPath = 'docs/SPRAKLEKSIKON.md';
 
 let generator = fs.readFileSync(generatorPath, 'utf8');
 generator = generator.replace(
@@ -19,8 +20,6 @@ fs.writeFileSync(generatorPath, generator);
 
 run('python3', [generatorPath]);
 
-// Den etablerte Språkatlas-kontrakten krever minst to kildebelegg per regionalt mellomnivå.
-// Kompletter nye research-regioner med en uavhengig, relevant fagkilde i stedet for å senke kravet.
 const atlas = JSON.parse(fs.readFileSync(atlasPath, 'utf8'));
 const secondarySources = {
   valdresmal: { label: 'Store norske leksikon – dialekter i Oppland', url: 'https://snl.no/dialekter_i_Oppland' },
@@ -46,7 +45,6 @@ for (const region of atlas.dialect_regions || []) {
 }
 fs.writeFileSync(atlasPath, JSON.stringify(atlas, null, 2) + '\n');
 
-// Python råstreng ga dobbel escaping i tre nye dekningsassertions. Gjør testen semantisk direkte.
 let testSource = fs.readFileSync(testPath, 'utf8');
 testSource = testSource.split('\n').map(line => {
   if (line.includes('Nordisk dialektkorpus-dekningen må være eksplisitt')) {
@@ -61,6 +59,9 @@ testSource = testSource.split('\n').map(line => {
   return line;
 }).join('\n');
 fs.writeFileSync(testPath, testSource);
+
+// Repoets diff-port krever nøyaktig én avsluttende newline, ikke en ekstra blanklinje.
+fs.writeFileSync(docsPath, fs.readFileSync(docsPath, 'utf8').trimEnd() + '\n');
 
 run('python3', ['-m', 'json.tool', atlasPath]);
 run('python3', ['-m', 'json.tool', 'data/leksikon/sprak/atlas_schema_v1.json']);
