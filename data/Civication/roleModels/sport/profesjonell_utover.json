@@ -37,27 +37,91 @@
     ]
   },
   "career_path": {
-    "entry_from": ["Dokumentert idrettsnivå og konkret profesjonell kontrakt eller arbeidsgiverrelasjon."],
-    "progression_to": ["Større sportslig ansvar, ny kontrakt eller annet profesjonelt nivå basert på reelle prestasjoner og avtaler."],
-    "possible_promotions": ["Bedre eller mer ansvarskrevende kontrakt innen samme eller ny klubb eller organisasjon."],
-    "possible_exits": ["Trenerarbeid, støtteapparat, sportslig ledelse, annen jobb eller selvstendig levevei."],
-    "career_risks": ["Skade, prestasjonssvikt, kontraktsbrudd, overbelastning og sammenblanding av arbeidsgiverkrav med beslutninger utenfor eget mandat."]
+    "entry_from": [
+      "Dokumentert idrettsnivå og konkret profesjonell kontrakt eller arbeidsgiverrelasjon."
+    ],
+    "progression_to": [
+      "Større sportslig ansvar, ny kontrakt eller annet profesjonelt nivå basert på reelle prestasjoner og avtaler."
+    ],
+    "possible_promotions": [
+      "Bedre eller mer ansvarskrevende kontrakt innen samme eller ny klubb eller organisasjon."
+    ],
+    "possible_exits": [
+      "Trenerarbeid, støtteapparat, sportslig ledelse, annen jobb eller selvstendig levevei."
+    ],
+    "career_risks": [
+      "Skade, prestasjonssvikt, kontraktsbrudd, overbelastning og sammenblanding av arbeidsgiverkrav med beslutninger utenfor eget mandat."
+    ]
   },
   "required_knowledge": {
-    "education_basis": ["Ingen universell utdanningsvei modelleres; den faktiske idretten, klubben og kontrakten avgjør kvalifikasjonsgrunnlaget."],
-    "skills": ["trening og konkurranseforberedelse", "restitusjon og belastningsstyring", "lag- og støtteapparatsamarbeid", "profesjonell avtaleetterlevelse", "prestasjon under press"],
-    "category_knowledge": ["Idrettens regler, treningsprinsipper, konkurransestruktur, sikkerhet og organisasjonsrammer der relevant."],
-    "history_go_badges": ["sport"],
+    "education_basis": [
+      "Ingen universell utdanningsvei modelleres; den faktiske idretten, klubben og kontrakten avgjør kvalifikasjonsgrunnlaget."
+    ],
+    "skills": [
+      "trening og konkurranseforberedelse",
+      "restitusjon og belastningsstyring",
+      "lag- og støtteapparatsamarbeid",
+      "profesjonell avtaleetterlevelse",
+      "prestasjon under press"
+    ],
+    "category_knowledge": [
+      "Idrettens regler, treningsprinsipper, konkurransestruktur, sikkerhet og organisasjonsrammer der relevant."
+    ],
+    "history_go_badges": [
+      "sport"
+    ],
     "place_connections": [],
     "people_connections": []
   },
   "challenges": [
-    {"id":"belastning_vs_kamp","title":"Belastning før viktig konkurranse","description":"Du kjenner økende belastning samtidig som en viktig konkurranse nærmer seg.","pressure":"prestasjon_vs_forsvarlig_belastning","affects":["performance","health","trust"]},
-    {"id":"kontrakt_vs_uttak","title":"Kontrakt er ikke uttak","description":"Du er profesjonelt ansatt, men er ikke tatt ut til neste konkurranse.","pressure":"arbeidsforhold_vs_sportslig_uttak","affects":["status","trust","performance"]}
+    {
+      "id": "belastning_vs_kamp",
+      "title": "Belastning før viktig konkurranse",
+      "description": "Du kjenner økende belastning samtidig som en viktig konkurranse nærmer seg.",
+      "pressure": "prestasjon_vs_forsvarlig_belastning",
+      "affects": [
+        "performance",
+        "health",
+        "trust"
+      ]
+    },
+    {
+      "id": "kontrakt_vs_uttak",
+      "title": "Kontrakt er ikke uttak",
+      "description": "Du er profesjonelt ansatt, men er ikke tatt ut til neste konkurranse.",
+      "pressure": "arbeidsforhold_vs_sportslig_uttak",
+      "affects": [
+        "status",
+        "trust",
+        "performance"
+      ]
+    }
   ],
   "dilemmas": [
-    {"id":"spille_med_plage","title":"Spille eller melde fra?","setup":"Du har en plage som kan påvirke forsvarlig deltakelse, men laget trenger deg.","choice_axis":"kortsiktig_prestasjon_vs_forsvarlig_oppfolging","consequence_axis":"resultat_vs_helse_og_tillit","mail_hooks":["job","conflict","people"]},
-    {"id":"personlig_merkevare_vs_lag","title":"Personlig profil og lagforpliktelse","setup":"En kommersiell mulighet kolliderer tidsmessig med lagets plan.","choice_axis":"egen_mulighet_vs_lagforpliktelse","consequence_axis":"inntekt_og_synlighet_vs_tillit","mail_hooks":["job","event","conflict"]}
+    {
+      "id": "spille_med_plage",
+      "title": "Spille eller melde fra?",
+      "setup": "Du har en plage som kan påvirke forsvarlig deltakelse, men laget trenger deg.",
+      "choice_axis": "kortsiktig_prestasjon_vs_forsvarlig_oppfolging",
+      "consequence_axis": "resultat_vs_helse_og_tillit",
+      "mail_hooks": [
+        "job",
+        "conflict",
+        "people"
+      ]
+    },
+    {
+      "id": "personlig_merkevare_vs_lag",
+      "title": "Personlig profil og lagforpliktelse",
+      "setup": "En kommersiell mulighet kolliderer tidsmessig med lagets plan.",
+      "choice_axis": "egen_mulighet_vs_lagforpliktelse",
+      "consequence_axis": "inntekt_og_synlighet_vs_tillit",
+      "mail_hooks": [
+        "job",
+        "event",
+        "conflict"
+      ]
+    }
   ],
   "authority_boundaries": {
     "can": [
@@ -76,7 +140,15 @@
   "mail_integration": {
     "role_scope": "sport_utover",
     "mail_profile": "sport_utover",
-    "can_feed_mail_types": ["job","story","conflict","event","people","followup","knowledge"],
+    "can_feed_mail_types": [
+      "job",
+      "story",
+      "conflict",
+      "event",
+      "people",
+      "followup",
+      "knowledge"
+    ],
     "mail_variables": {
       "role_title": "Profesjonell utøver",
       "category": "sport",
@@ -84,19 +156,128 @@
       "ethical_axis": "egen_mulighet_vs_lagforpliktelse",
       "status_axis": "arbeidsforhold_vs_sportslig_uttak"
     },
-    "recommended_mail_families": [],
+    "recommended_mail_families": [
+      "trening_rytme_og_disiplin",
+      "kropp_belastning_og_skade",
+      "lagmiljo_rolle_og_normer",
+      "konkurranse_press_og_resultat",
+      "first_week_praksisfortellinger_sport_utover_job",
+      "first_week_praksisfortellinger_sport_utover_private",
+      "second_week_praksisfortellinger_sport_utover_job",
+      "second_week_praksisfortellinger_sport_utover_private",
+      "uttak_kontrakt_og_mandat",
+      "prestasjon_og_selvbilde",
+      "konkurransedag_og_reise",
+      "belastningsforstaelse"
+    ],
     "role_model_refs_supported": true
   },
   "competence_axes": [
-    {"id":"prestasjonshverdag","label":"Prestasjonshverdag","description":"Gjøre trenings-, konkurranse- og restitusjonsarbeid konsistent over tid."},
-    {"id":"profesjonell_samhandling","label":"Profesjonell samhandling","description":"Samarbeide med lag, trener og støtteapparat innen tydelige roller."},
-    {"id":"grenseforstaelse","label":"Grenseforståelse","description":"Skille arbeid, uttak, helse, status og kommersielle avtaler fra hverandre."}
+    {
+      "id": "prestasjonshverdag",
+      "label": "Prestasjonshverdag",
+      "description": "Gjøre trenings-, konkurranse- og restitusjonsarbeid konsistent over tid."
+    },
+    {
+      "id": "profesjonell_samhandling",
+      "label": "Profesjonell samhandling",
+      "description": "Samarbeide med lag, trener og støtteapparat innen tydelige roller."
+    },
+    {
+      "id": "grenseforstaelse",
+      "label": "Grenseforståelse",
+      "description": "Skille arbeid, uttak, helse, status og kommersielle avtaler fra hverandre."
+    }
   ],
   "ideal_type_problems": [
-    {"id":"overbelastning","label":"Overbelastning","description":"Kortsiktig prestasjonspress utfordrer bærekraftig belastning."},
-    {"id":"uttak_utenfor_kontrakt","label":"Uttak utenfor kontrakten","description":"Ansettelse eller kontrakt forveksles med rett til sportslig uttak eller prestisje."}
+    {
+      "id": "overbelastning",
+      "label": "Overbelastning",
+      "description": "Kortsiktig prestasjonspress utfordrer bærekraftig belastning."
+    },
+    {
+      "id": "uttak_utenfor_kontrakt",
+      "label": "Uttak utenfor kontrakten",
+      "description": "Ansettelse eller kontrakt forveksles med rett til sportslig uttak eller prestisje."
+    }
   ],
   "notes": [
     "Profesjonell utøver er både en livsposisjon og et reelt yrke. Denne rollemodellen brukes bare når den separate career_unlock-porten har materialisert et faktisk arbeidsforhold."
+  ],
+  "related_people": [
+    {
+      "id": "trener_maja",
+      "name": "Maja",
+      "role": "Trener",
+      "function": "Planlegger belastning, konkurranseforberedelse og rollebruk uten å eie utøverens kropp eller selvbilde."
+    },
+    {
+      "id": "fysio_elias",
+      "name": "Elias",
+      "role": "Fysioterapeut",
+      "function": "Gjør smerte, restitusjon og risiko til faglige signaler før de blir prestasjonsstopp."
+    },
+    {
+      "id": "lagkontakt_samir",
+      "name": "Samir",
+      "role": "Lagkontakt",
+      "function": "Bærer garderobens normer og oversetter hva laget faktisk tåler sosialt."
+    },
+    {
+      "id": "lagkamerat_nora",
+      "name": "Nora",
+      "role": "Lagkamerat",
+      "function": "Er både samarbeidspartner og sammenligningsflate for status, spilletid og utvikling."
+    },
+    {
+      "id": "sportslig_leder",
+      "name": "Ragnhild",
+      "role": "Sportslig leder",
+      "function": "Eier kontrakts- og troppsrammer, men kan ikke love prestasjon eller uttak."
+    },
+    {
+      "id": "kontraktansvarlig",
+      "name": "Henrik",
+      "role": "Kontraktansvarlig",
+      "function": "Skiller profesjonell avtale, kommersielle muligheter og sportslig status fra hverandre."
+    },
+    {
+      "id": "venn",
+      "name": "Jonas",
+      "role": "Venn",
+      "function": "Merker når trening, mat, søvn og resultat gjør hele privatlivet til prestasjonsforberedelse."
+    },
+    {
+      "id": "familie",
+      "name": "Søsteren din",
+      "role": "Familie",
+      "function": "Ser både stoltheten og kostnaden ved å gjøre kroppen og resultatene til sosial identitet."
+    }
+  ],
+  "related_places": [
+    {
+      "id": "sport_treningsfelt",
+      "reason": "Daglig treningsflate der rytme, rolle og belastning blir synlig i praksis."
+    },
+    {
+      "id": "sport_styrkerom",
+      "reason": "Kontrollert belastningsflate der progresjon må skilles fra ego og sammenligning."
+    },
+    {
+      "id": "sport_fysiorom",
+      "reason": "Faglig rom for skade, smerte, restitusjon og return-to-play-vurdering."
+    },
+    {
+      "id": "sport_garderobe",
+      "reason": "Sosialt rom der lagkultur, status, humor og normer kan påvirke hva utøveren tør å si."
+    },
+    {
+      "id": "sport_konkurransearena",
+      "reason": "Arena der resultat, offentlig blikk og oppgavefokus kolliderer."
+    },
+    {
+      "id": "sport_reise",
+      "reason": "Arbeidsflate der søvn, mat, logistikk og restitusjon blir del av profesjonell prestasjon."
+    }
   ]
 }

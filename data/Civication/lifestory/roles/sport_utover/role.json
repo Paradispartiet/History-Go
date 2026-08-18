@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "id": "sport_utover",
+  "navn": "Profesjonell utøver",
+  "kjernefantasi": "Du lever av å prestere med kroppen uten å la kontrakt, uttak og resultat bli samme ting — eller la idretten spise hele livet rundt arbeidet.",
+  "arbeidsoppgaver": [
+    "følge trenings- og konkurranseplan",
+    "rapportere belastning og skade tidlig",
+    "samarbeide med trener og støtteapparat",
+    "ivareta kontraktsforpliktelser",
+    "bygge restitusjon som del av arbeidet"
+  ],
+  "personer": [
+    {
+      "id": "trener_maja",
+      "navn": "Maja",
+      "beskrivelse": "Planlegger belastning, konkurranseforberedelse og rollebruk uten å eie utøverens kropp eller selvbilde."
+    },
+    {
+      "id": "fysio_elias",
+      "navn": "Elias",
+      "beskrivelse": "Gjør smerte, restitusjon og risiko til faglige signaler før de blir prestasjonsstopp."
+    },
+    {
+      "id": "lagkontakt_samir",
+      "navn": "Samir",
+      "beskrivelse": "Bærer garderobens normer og oversetter hva laget faktisk tåler sosialt."
+    },
+    {
+      "id": "lagkamerat_nora",
+      "navn": "Nora",
+      "beskrivelse": "Er både samarbeidspartner og sammenligningsflate for status, spilletid og utvikling."
+    },
+    {
+      "id": "sportslig_leder",
+      "navn": "Ragnhild",
+      "beskrivelse": "Eier kontrakts- og troppsrammer, men kan ikke love prestasjon eller uttak."
+    },
+    {
+      "id": "kontraktansvarlig",
+      "navn": "Henrik",
+      "beskrivelse": "Skiller profesjonell avtale, kommersielle muligheter og sportslig status fra hverandre."
+    },
+    {
+      "id": "venn",
+      "navn": "Jonas",
+      "beskrivelse": "Merker når trening, mat, søvn og resultat gjør hele privatlivet til prestasjonsforberedelse."
+    },
+    {
+      "id": "familie",
+      "navn": "Søsteren din",
+      "beskrivelse": "Ser både stoltheten og kostnaden ved å gjøre kroppen og resultatene til sosial identitet."
+    }
+  ],
+  "hovedkonflikter": [
+    "prestasjon vs forsvarlig belastning",
+    "lagrolle vs statusambisjon",
+    "kontrakt vs sportslig uttak",
+    "resultat vs selvbilde",
+    "profesjonell disiplin vs privat liv"
+  ],
+  "endings": [
+    {
+      "id": "baerekraftig_profesjonell",
+      "navn": "Bærekraftig profesjonell",
+      "tekst": "Du lærte å prestere med kroppen som informasjonskilde, laget som samarbeid og kontrakten som ramme. Ambisjonen ble ikke mindre; den ble mulig å bære lenger.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 60
+          }
+        },
+        "flagg": {
+          "sport_rapporterte_belastning": true
+        }
+      },
+      "standard": true
+    },
+    {
+      "id": "presset_for_langt",
+      "navn": "Presset for langt",
+      "tekst": "Du var tilgjengelig, synlig og villig til å presse. Til slutt ble kroppen stedet der alle de utsatte kostnadene samlet seg, og prestasjonen fikk mindre rom enn viljen.",
+      "kriterier": {
+        "meters": {
+          "energi": {
+            "max": 55
+          }
+        },
+        "flagg": {
+          "sport_presset_videre": true
+        }
+      }
+    },
+    {
+      "id": "lagrolle_med_tillit",
+      "navn": "Lagrolle med tillit",
+      "tekst": "Du sluttet å måle verdi bare i uttak og spilletid. Laget visste hva du kunne bidra med, og du visste når en liten rolle fortsatt var profesjonelt viktig.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 56
+          }
+        },
+        "flagg": {
+          "sport_eide_lagrollen": true
+        }
+      }
+    },
+    {
+      "id": "statusjageren",
+      "navn": "Statusjageren",
+      "tekst": "Kontrakt, uttak og offentlig blikk gled sammen. Du trente ikke bare for å prestere, men for å bevise at du fortjente en rang ingen økt kunne garantere.",
+      "kriterier": {
+        "meters": {
+          "synlighet": {
+            "min": 55
+          }
+        },
+        "flagg": {
+          "sport_jaget_status": true
+        }
+      }
+    }
+  ],
+  "startState": {
+    "meters": {
+      "penger": 390,
+      "psyke": 63,
+      "energi": 68,
+      "integritet": 54,
+      "synlighet": 45,
+      "handlingsrom": 50
+    },
+    "relasjoner": {
+      "trener_maja": 54,
+      "fysio_elias": 50,
+      "lagkontakt_samir": 52,
+      "lagkamerat_nora": 52,
+      "sportslig_leder": 46,
+      "kontraktansvarlig": 45,
+      "venn": 61,
+      "familie": 57
+    }
+  },
+  "dagsplan": {
+    "1": [
+      {
+        "klokke": "08:00",
+        "tekst": "Treningsøkt og belastningsstatus"
+      },
+      {
+        "klokke": "15:00",
+        "tekst": "Lagrolle og oppfølging"
+      },
+      {
+        "klokke": "20:00",
+        "tekst": "Restitusjon hjemme"
+      }
+    ],
+    "2": [
+      {
+        "klokke": "09:00",
+        "tekst": "Fysio og treningsplan"
+      },
+      {
+        "klokke": "17:00",
+        "tekst": "Konkurranseforberedelse"
+      }
+    ],
+    "3": [
+      {
+        "klokke": "08:30",
+        "tekst": "Uttak og rolle"
+      },
+      {
+        "klokke": "19:00",
+        "tekst": "Privat etterklang"
+      }
+    ]
+  }
+}

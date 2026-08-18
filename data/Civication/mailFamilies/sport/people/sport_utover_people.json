@@ -1,0 +1,895 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_utover",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "first_week_praksisfortellinger_sport_utover_private",
+      "description": "1. praksisuke for profesjonell Sport-utøver: privat etterklang, identitet og relasjoner.",
+      "mails": [
+        {
+          "id": "sport_utover_week1_private_1",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "venn",
+          "place_id": null,
+          "subject": "Middagen som ble restitusjonsprosjekt",
+          "summary": "Du analyserer måltidet mens Jonas prøver å snakke om noe helt annet. Profesjonell struktur har fulgt deg hjem og gjør vanlig nærhet til en del av treningsplanen.",
+          "situation": [
+            "Du analyserer måltidet mens Jonas prøver å snakke om noe helt annet.",
+            "Profesjonell struktur har fulgt deg hjem og gjør vanlig nærhet til en del av treningsplanen.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_1_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_1_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_1_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_1_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_1_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_1_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_week1_private_2",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "familie",
+          "place_id": null,
+          "subject": "Søsteren spør om kroppen alltid må vurderes",
+          "summary": "Hun merker at du beskriver søvn, vekt og energi som tall før du beskriver hvordan du faktisk har det. Idretten gir språk for kroppen, men språket kan også gjøre kroppen til et evig prosjekt.",
+          "situation": [
+            "Hun merker at du beskriver søvn, vekt og energi som tall før du beskriver hvordan du faktisk har det.",
+            "Idretten gir språk for kroppen, men språket kan også gjøre kroppen til et evig prosjekt.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_2_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_2_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_2_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_2_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_2_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_2_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_week1_private_3",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "venn",
+          "place_id": null,
+          "subject": "Kvelden etter benken",
+          "summary": "Du fikk mindre rolle enn håpet og kjenner behovet for å bevise verdi i morgen. Privatlivet blir stedet der statusangst enten får roe seg eller fortsetter å styre neste økt.",
+          "situation": [
+            "Du fikk mindre rolle enn håpet og kjenner behovet for å bevise verdi i morgen.",
+            "Privatlivet blir stedet der statusangst enten får roe seg eller fortsetter å styre neste økt.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_3_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_3_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_3_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_3_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_3_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_3_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_week1_private_4",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "venn",
+          "place_id": null,
+          "subject": "Vennen som ikke vil konkurrere med kalenderen",
+          "summary": "Jonas foreslår noe spontant, men du ser først risikoen for søvn og restitusjon. Du må sette en grense uten å gjøre vennskapet til et forstyrrende element i prestasjonsplanen.",
+          "situation": [
+            "Jonas foreslår noe spontant, men du ser først risikoen for søvn og restitusjon.",
+            "Du må sette en grense uten å gjøre vennskapet til et forstyrrende element i prestasjonsplanen.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_4_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_4_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_4_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_4_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_4_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_4_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_week1_private_5",
+          "mail_type": "people",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "venn",
+          "place_id": null,
+          "subject": "Helgen uten resultatmåling",
+          "summary": "Telefonen ligger full av statistikk, klipp og kommentarer etter konkurransen. Å logge av kan være restitusjon, men det kan også føles som å miste kontroll på egen utvikling.",
+          "situation": [
+            "Telefonen ligger full av statistikk, klipp og kommentarer etter konkurransen.",
+            "Å logge av kan være restitusjon, men det kan også føles som å miste kontroll på egen utvikling.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_5_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_5_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_5_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_5_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week1_private_5_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week1_private_5_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "sport_utover_week1_private_1_consequence",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        },
+        {
+          "id": "sport_utover_week1_private_2_consequence",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        },
+        {
+          "id": "sport_utover_week1_private_3_consequence",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        },
+        {
+          "id": "sport_utover_week1_private_4_consequence",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        },
+        {
+          "id": "sport_utover_week1_private_5_consequence",
+          "mail_family": "first_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        }
+      ]
+    },
+    {
+      "id": "second_week_praksisfortellinger_sport_utover_private",
+      "description": "2. praksisuke for profesjonell Sport-utøver: privat etterklang, identitet og relasjoner.",
+      "mails": [
+        {
+          "id": "sport_utover_week2_private_1",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "familie",
+          "place_id": null,
+          "subject": "Familien gratulerer kontrakten som om den var uttak",
+          "summary": "De rundt bordet blander profesjonell kontrakt, landslagsstatus og framtidig stjernestatus. Du kan nyte stoltheten uten å bekrefte en status du ikke faktisk har fått.",
+          "situation": [
+            "De rundt bordet blander profesjonell kontrakt, landslagsstatus og framtidig stjernestatus.",
+            "Du kan nyte stoltheten uten å bekrefte en status du ikke faktisk har fått.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_1_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_1_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_1_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_1_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_1_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_1_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_week2_private_2",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "venn",
+          "place_id": null,
+          "subject": "Du sammenligner kroppen med Nora",
+          "summary": "Et bilde fra treningen gjør at du begynner å lese egen kropp som rangering. Sammenligning kan gi retning, men også flytte oppmerksomheten fra funksjon til skam og kontroll.",
+          "situation": [
+            "Et bilde fra treningen gjør at du begynner å lese egen kropp som rangering.",
+            "Sammenligning kan gi retning, men også flytte oppmerksomheten fra funksjon til skam og kontroll.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_2_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_2_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_2_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_2_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_2_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_2_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_week2_private_3",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "familie",
+          "place_id": null,
+          "subject": "Hviledagen som føles som latskap",
+          "summary": "Planen sier fri, men kroppen og hodet vil gjøre noe for å kjenne at du fortsatt er seriøs. Restitusjon blir vanskeligst når arbeidets disiplin må uttrykkes gjennom å la være.",
+          "situation": [
+            "Planen sier fri, men kroppen og hodet vil gjøre noe for å kjenne at du fortsatt er seriøs.",
+            "Restitusjon blir vanskeligst når arbeidets disiplin må uttrykkes gjennom å la være.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_3_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_3_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_3_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_3_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_3_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_3_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_week2_private_4",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "venn",
+          "place_id": null,
+          "subject": "Kommentarfeltet følger deg til sengs",
+          "summary": "En svak prestasjon har blitt offentlig vurdering og du leser én kommentar for mye. Omdømme og resultat kan være reelle, men de trenger ikke få eie natta eller neste dags selvbilde.",
+          "situation": [
+            "En svak prestasjon har blitt offentlig vurdering og du leser én kommentar for mye.",
+            "Omdømme og resultat kan være reelle, men de trenger ikke få eie natta eller neste dags selvbilde.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_4_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_4_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_4_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_4_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_4_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_4_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_week2_private_5",
+          "mail_type": "people",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "planned_only": true,
+          "from": "familie",
+          "place_id": null,
+          "subject": "Helgen der idretten ikke får hele deg",
+          "summary": "To uker med trening, uttak og kropp har gjort det uklart hva som er jobb og hva som er identitet. Du må finne et privat rom som ikke undergraver ambisjonen, men gjør at ambisjonen fortsatt tilhører deg.",
+          "situation": [
+            "To uker med trening, uttak og kropp har gjort det uklart hva som er jobb og hva som er identitet.",
+            "Du må finne et privat rom som ikke undergraver ambisjonen, men gjør at ambisjonen fortsatt tilhører deg.",
+            "Det private valget endrer ikke kampresultatet direkte, men former energi, selvbilde og relasjonen som møter deg etter arbeidstid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det langsiktige og etterprøvbare valget, og si tydelig hvorfor.",
+              "reply": "Jeg velger en løsning som beskytter utvikling, kropp og tillit over tid.",
+              "effects": {
+                "relationship_private": 3,
+                "self_worth": 2,
+                "energy": 1,
+                "recovery": 2,
+                "future_risk": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_5_sustainable"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_5_consequence",
+              "feedback": "Du gjør prestasjon til en prosess som andre kan samarbeide med."
+            },
+            {
+              "id": "B",
+              "label": "Prioriter kortsiktig status, tilgjengelighet eller kontroll selv om kostnaden skyves framover.",
+              "reply": "Jeg prioriterer det som gir mest effekt eller ro akkurat nå.",
+              "effects": {
+                "relationship_private": -3,
+                "self_worth": -2,
+                "energy": -2,
+                "recovery": -1,
+                "future_risk": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_5_short_term"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_5_consequence",
+              "feedback": "Du får en tydeligere gevinst nå, men øker kostnaden som senere valg må bære."
+            },
+            {
+              "id": "C",
+              "label": "Avklar rammen med den andre personen og velg en begrenset mellomløsning.",
+              "reply": "Jeg avklarer mandat, belastning og forventning før vi låser løsningen.",
+              "effects": {
+                "relationship_private": 1,
+                "self_worth": 1,
+                "energy": 0,
+                "recovery": 1,
+                "future_risk": 0
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_week2_private_5_bounded"
+                ]
+              },
+              "triggers_on_choice": "sport_utover_week2_private_5_consequence",
+              "feedback": "Du beholder handlingsrom uten å late som kompromisset fjerner usikkerheten."
+            }
+          ]
+        }
+      ],
+      "threads": [
+        {
+          "id": "sport_utover_week2_private_1_consequence",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        },
+        {
+          "id": "sport_utover_week2_private_2_consequence",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        },
+        {
+          "id": "sport_utover_week2_private_3_consequence",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        },
+        {
+          "id": "sport_utover_week2_private_4_consequence",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        },
+        {
+          "id": "sport_utover_week2_private_5_consequence",
+          "mail_family": "second_week_praksisfortellinger_sport_utover_private",
+          "role_scope": "sport_utover",
+          "mail_type": "people",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message"
+        }
+      ]
+    }
+  ]
+}

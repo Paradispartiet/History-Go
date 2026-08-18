@@ -6,13 +6,13 @@
   "summary": {
     "work_worlds": 89,
     "statuses": {
-      "reference_complete": 4,
+      "reference_complete": 5,
       "playable": 2,
-      "partial": 20,
+      "partial": 19,
       "architecture_only": 63
     },
-    "runtime_gate_pass": 10,
-    "life_story_complete": 12,
+    "runtime_gate_pass": 11,
+    "life_story_complete": 13,
     "component_debt": {
       "entry": {
         "complete": 81,
@@ -30,28 +30,28 @@
         "missing": 8
       },
       "practice_stories": {
-        "complete": 11,
-        "partial": 73,
+        "complete": 12,
+        "partial": 72,
         "missing": 5
       },
       "people": {
-        "complete": 7,
+        "complete": 8,
         "partial": 17,
-        "missing": 65
+        "missing": 64
       },
       "places": {
-        "complete": 10,
+        "complete": 11,
         "partial": 0,
-        "missing": 79
+        "missing": 78
       },
       "mail": {
-        "complete": 11,
-        "partial": 15,
+        "complete": 12,
+        "partial": 14,
         "missing": 63
       },
       "knowledge": {
-        "complete": 22,
-        "partial": 27,
+        "complete": 23,
+        "partial": 26,
         "missing": 40
       },
       "quality_axes": {
@@ -65,8 +65,8 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 13,
-        "partial": 9,
+        "complete": 14,
+        "partial": 8,
         "missing": 67
       },
       "performance": {
@@ -18226,7 +18226,9 @@
       "role_scope": "sport_utover",
       "declared_by": [
         "badgeRoleMappings",
+        "lifeStory",
         "mailPlan",
+        "practiceRegistry",
         "workGrammar"
       ],
       "badge_titles": [
@@ -18243,7 +18245,7 @@
         "sport_profesjonell_utover",
         "sport_utover"
       ],
-      "status": "partial",
+      "status": "reference_complete",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/sport/aktiv_utover.json",
@@ -18255,23 +18257,23 @@
         "mail_families": {
           "job": {
             "path": "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
-            "count": 8
+            "count": 18
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/people/sport_utover_people.json",
+            "count": 10
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/conflict/sport_utover_conflict.json",
+            "count": 2
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/story/sport_utover_story.json",
+            "count": 2
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+            "count": 2
           },
           "micro": {
             "path": null,
@@ -18282,8 +18284,8 @@
             "count": 0
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
+            "count": 2
           },
           "consequence": {
             "path": null,
@@ -18291,9 +18293,19 @@
           }
         },
         "role_tests": [
-          "tests/civication-sport-life-career-split.test.js"
+          "tests/civication-role-world-contract.test.js",
+          "tests/civication-sport-life-career-split.test.js",
+          "tests/civication-sport-utover-role-world.test.js"
         ],
-        "life_story": null
+        "life_story": {
+          "id": "sport_utover",
+          "content_only": false,
+          "paths": [
+            "data/Civication/lifestory/roles/sport_utover/role.json",
+            "data/Civication/lifestory/roles/sport_utover/scenes.json",
+            "data/Civication/lifestory/roles/sport_utover/threads.json"
+          ]
+        }
       },
       "audit": {
         "components": {
@@ -18310,7 +18322,9 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_utover_plan.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-role-world-contract.test.js",
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-utover-role-world.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -18320,48 +18334,73 @@
               "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
               "data/Civication/mailPlans/sport/sport_utover_plan.json",
               "data/Civication/workGrammars/sport/sport_utover.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-role-world-contract.test.js",
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-utover-role-world.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/praksisfortellinger_registry.json",
-              "data/Civication/workGrammars/sport/sport_utover.json"
+              "tests/civication-sport-utover-role-world.test.js"
             ],
-            "note": "5 FWG stories and 0 registered practice week(s)."
+            "note": "2 registered and tested practice weeks."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
-          },
-          "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
-          },
-          "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
-              "data/Civication/mailPlans/sport/sport_utover_plan.json"
-            ],
-            "note": "1/9 standard mail types."
-          },
-          "knowledge": {
-            "level": "partial",
-            "evidence": [
+              "data/Civication/lifestory/roles/sport_utover/role.json",
+              "data/Civication/lifestory/roles/sport_utover/scenes.json",
+              "data/Civication/lifestory/roles/sport_utover/threads.json",
+              "data/Civication/mailFamilies/sport/people/sport_utover_people.json",
               "data/Civication/roleModels/sport/aktiv_utover.json",
               "data/Civication/roleModels/sport/profesjonell_utover.json",
               "data/Civication/workGrammars/sport/sport_utover.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "Named/typed work relationships are used by people mails."
+          },
+          "places": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/lifestory/roles/sport_utover/role.json",
+              "data/Civication/lifestory/roles/sport_utover/scenes.json",
+              "data/Civication/lifestory/roles/sport_utover/threads.json",
+              "data/Civication/roleModels/sport/aktiv_utover.json",
+              "data/Civication/roleModels/sport/profesjonell_utover.json",
+              "data/Civication/workGrammars/sport/sport_utover.json"
+            ],
+            "note": "6 place/working-surface declarations."
+          },
+          "mail": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/sport/conflict/sport_utover_conflict.json",
+              "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+              "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
+              "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
+              "data/Civication/mailFamilies/sport/people/sport_utover_people.json",
+              "data/Civication/mailFamilies/sport/story/sport_utover_story.json",
+              "data/Civication/mailPlans/sport/sport_utover_plan.json",
+              "tests/civication-sport-utover-role-world.test.js"
+            ],
+            "note": "6/9 standard mail types plus tested plan/practice coverage."
+          },
+          "knowledge": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
+              "data/Civication/roleModels/sport/aktiv_utover.json",
+              "data/Civication/roleModels/sport/profesjonell_utover.json",
+              "data/Civication/workGrammars/sport/sport_utover.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
+              "data/Civication/praksisfortellinger_registry.json",
               "data/Civication/roleModels/sport/aktiv_utover.json",
               "data/Civication/roleModels/sport/profesjonell_utover.json",
               "data/Civication/workGrammars/sport/sport_utover.json"
@@ -18378,18 +18417,22 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/sport/sport_utover_plan.json"
+              "tests/civication-role-world-contract.test.js",
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-utover-role-world.test.js"
             ],
-            "note": "Consequence content exists without the full role-specific follow-up proof."
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_utover_plan.json",
               "tests/civication-career-outcomes.test.js",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-role-world-contract.test.js",
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-utover-role-world.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
           },
@@ -18424,26 +18467,32 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "practice_stories",
+          "people",
+          "places",
+          "mail",
+          "knowledge",
           "quality_axes",
           "authority",
+          "consequences",
           "performance",
           "economy",
           "progression",
           "exit"
         ],
         "practice_story_count": 5,
-        "practice_weeks": [],
-        "reference_depth": 5,
-        "life_story_complete": false,
+        "practice_weeks": [
+          "1",
+          "2"
+        ],
+        "reference_depth": 20,
+        "life_story_complete": true,
         "salary": {
           "linked_titles": 1,
           "exact_titles": 1,

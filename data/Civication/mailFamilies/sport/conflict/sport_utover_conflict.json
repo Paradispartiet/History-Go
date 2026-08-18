@@ -1,0 +1,119 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_utover",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "uttak_kontrakt_og_mandat",
+      "description": "Konflikter om mandat, uttak, helse og kontrakt.",
+      "mails": [
+        {
+          "id": "sport_utover_conflict_001",
+          "mail_type": "conflict",
+          "mail_family": "uttak_kontrakt_og_mandat",
+          "role_scope": "sport_utover",
+          "planned_only": true,
+          "from": "sportslig_leder",
+          "place_id": "sport_garderobe",
+          "subject": "Kontrakt er ikke sportslig uttak",
+          "summary": "Ragnhild forklarer at kontrakten består selv om du ikke er i troppen. Du opplever fraværet som statusfall, men uttak ligger i et annet mandat enn arbeidsavtalen. Du må be om prestasjonskriterier uten å gjøre jobben til rett på spilletid.",
+          "situation": [
+            "Ragnhild forklarer at kontrakten består selv om du ikke er i troppen.",
+            "Du opplever fraværet som statusfall, men uttak ligger i et annet mandat enn arbeidsavtalen.",
+            "Du må be om prestasjonskriterier uten å gjøre jobben til rett på spilletid."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Be om konkrete sportslige kriterier og hold kontrakt og uttak adskilt.",
+              "reply": "Be om konkrete sportslige kriterier og hold kontrakt og uttak adskilt.",
+              "effects": {
+                "training_quality": 2,
+                "team_trust": 1,
+                "future_risk": -1,
+                "self_worth": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_conflict_001_responsible"
+                ]
+              },
+              "feedback": "Valget gjør ansvar, usikkerhet og rollegrense tydeligere for de andre."
+            },
+            {
+              "id": "B",
+              "label": "Bruk kontrakten som argument for at du bør ha plass.",
+              "reply": "Bruk kontrakten som argument for at du bør ha plass.",
+              "effects": {
+                "training_quality": -1,
+                "team_trust": -1,
+                "future_risk": 2,
+                "self_worth": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_conflict_001_risk"
+                ]
+              },
+              "feedback": "Valget løser presset raskere, men gjør den senere kostnaden mindre synlig."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_conflict_002",
+          "mail_type": "conflict",
+          "mail_family": "uttak_kontrakt_og_mandat",
+          "role_scope": "sport_utover",
+          "planned_only": true,
+          "from": "fysio_elias",
+          "place_id": "sport_fysiorom",
+          "subject": "Når medisinsk vurdering og lagbehov kolliderer",
+          "summary": "Elias anbefaler redusert belastning mens laget mangler folk. Treneren spør hva du selv tror du tåler, men medisinsk fagmyndighet kan ikke stemmes bort av lojalitet. Konflikten handler om tilgjengelighet nå mot faktisk arbeidsevne senere.",
+          "situation": [
+            "Elias anbefaler redusert belastning mens laget mangler folk.",
+            "Treneren spør hva du selv tror du tåler, men medisinsk fagmyndighet kan ikke stemmes bort av lojalitet.",
+            "Konflikten handler om tilgjengelighet nå mot faktisk arbeidsevne senere."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Følg den faglige rammen og avklar en trygg rolle.",
+              "reply": "Følg den faglige rammen og avklar en trygg rolle.",
+              "effects": {
+                "training_quality": 2,
+                "team_trust": 1,
+                "future_risk": -1,
+                "self_worth": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_conflict_002_responsible"
+                ]
+              },
+              "feedback": "Valget gjør ansvar, usikkerhet og rollegrense tydeligere for de andre."
+            },
+            {
+              "id": "B",
+              "label": "Press for full deltakelse fordi laget trenger deg.",
+              "reply": "Press for full deltakelse fordi laget trenger deg.",
+              "effects": {
+                "training_quality": -1,
+                "team_trust": -1,
+                "future_risk": 2,
+                "self_worth": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_conflict_002_risk"
+                ]
+              },
+              "feedback": "Valget løser presset raskere, men gjør den senere kostnaden mindre synlig."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

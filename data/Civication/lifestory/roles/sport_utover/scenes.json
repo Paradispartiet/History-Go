@@ -1,0 +1,636 @@
+{
+  "version": 1,
+  "rolle": "sport_utover",
+  "scenes": [
+    {
+      "id": "sport_ls_body_01",
+      "threadId": "sport_ls_body",
+      "fase": "morgen",
+      "dag": 1,
+      "visningstype": "intern vurdering",
+      "avsender": "fysio_elias",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Elias spør om plagen før økta",
+      "tekst": "Plagen er liten nok til at du kan skjule den og stor nok til at Elias spør. Nå avgjør du om støtteapparatet får riktig informasjon før belastningen øker.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_rapporterte_belastning": true
+            },
+            "threads": {
+              "sport_ls_body": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "fysio_elias": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_body_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_presset_videre": true
+            },
+            "threads": {
+              "sport_ls_body": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "fysio_elias": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_body_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sport_ls_body_02",
+      "threadId": "sport_ls_body",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "samtale",
+      "avsender": "fysio_elias",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Kroppen husker første valget",
+      "tekst": "Belastningen har utviklet seg. Elias viser deg hvordan den første rapporteringen — eller mangelen på den — påvirket hvor mye handlingsrom dere har nå.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_bygde_kroppstillit": true
+            },
+            "threads": {
+              "sport_ls_body": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "fysio_elias": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_skjulte_belastning": true
+            },
+            "threads": {
+              "sport_ls_body": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "fysio_elias": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        }
+      ]
+    },
+    {
+      "id": "sport_ls_coach_01",
+      "threadId": "sport_ls_coach",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "møte",
+      "avsender": "trener_maja",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Maja gir deg en mindre rolle enn du vil ha",
+      "tekst": "Du har ambisjon om mer ansvar. Maja ber deg eie en smal oppgave i stedet for å bruke økta til å bevise at vurderingen er feil.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_eide_lagrollen": true
+            },
+            "threads": {
+              "sport_ls_coach": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "trener_maja": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_coach_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_jaget_status": true
+            },
+            "threads": {
+              "sport_ls_coach": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "trener_maja": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_coach_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sport_ls_coach_02",
+      "threadId": "sport_ls_coach",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "samtale",
+      "avsender": "trener_maja",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Rollen blir vurdert på nytt",
+      "tekst": "Maja kommer tilbake til hvordan du bar den lille rollen. Samtalen handler nå om tillit og timing, ikke bare om ønsket om mer.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_bygde_trenertillit": true
+            },
+            "threads": {
+              "sport_ls_coach": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "trener_maja": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_gjorde_alt_til_uttak": true
+            },
+            "threads": {
+              "sport_ls_coach": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "trener_maja": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        }
+      ]
+    },
+    {
+      "id": "sport_ls_team_01",
+      "threadId": "sport_ls_team",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "lagkontakt_samir",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Samir ler av smerten som alle andre",
+      "tekst": "Garderoben bruker humor til å gjøre belastning mindre farlig sosialt. Du merker samtidig at noen blir stillere om det de faktisk kjenner.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_utfordret_usunn_norm": true
+            },
+            "threads": {
+              "sport_ls_team": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "lagkontakt_samir": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_team_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_lojal_til_taushet": true
+            },
+            "threads": {
+              "sport_ls_team": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "lagkontakt_samir": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_team_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sport_ls_team_02",
+      "threadId": "sport_ls_team",
+      "fase": "formiddag",
+      "dag": 6,
+      "visningstype": "samtale",
+      "avsender": "lagkamerat_nora",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Nora forteller hva kulturen kostet",
+      "tekst": "Nora sier hun ventet for lenge med å si fra fordi hun ikke ville være den forsiktige. Det gjør den gamle garderobespøken til en faktisk konsekvens.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_bygde_teamtillit": true
+            },
+            "threads": {
+              "sport_ls_team": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "lagkamerat_nora": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_forsvarte_normen": true
+            },
+            "threads": {
+              "sport_ls_team": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "lagkamerat_nora": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        }
+      ]
+    },
+    {
+      "id": "sport_ls_status_01",
+      "threadId": "sport_ls_status",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "melding",
+      "avsender": "sportslig_leder",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Troppen er ute — kontrakten består",
+      "tekst": "Navnet ditt mangler i uttaket. Ragnhild minner om at arbeidsforhold og sportslig uttak er to forskjellige beslutninger, selv om de kjennes som samme statusfall.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_skilt_kontrakt_uttak": true
+            },
+            "threads": {
+              "sport_ls_status": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "sportslig_leder": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_status_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_krevde_uttak": true
+            },
+            "threads": {
+              "sport_ls_status": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "sportslig_leder": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_status_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sport_ls_status_02",
+      "threadId": "sport_ls_status",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "møte",
+      "avsender": "kontraktansvarlig",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Henrik skiller jobb, profil og prestisje",
+      "tekst": "En profilmulighet kommer samtidig som nytt uttak diskuteres. Henrik ber deg holde avtale, sportslig status og kommersiell synlighet som tre forskjellige spor.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_holdt_mandatgrenser": true
+            },
+            "threads": {
+              "sport_ls_status": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "kontraktansvarlig": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_blandet_status_og_avtale": true
+            },
+            "threads": {
+              "sport_ls_status": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "kontraktansvarlig": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        }
+      ]
+    },
+    {
+      "id": "sport_ls_private_01",
+      "threadId": "sport_ls_private",
+      "fase": "kveld",
+      "dag": 1,
+      "visningstype": "privat hendelse",
+      "avsender": "venn",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Jonas vil spise middag uten restitusjonsanalyse",
+      "tekst": "Du begynner å vurdere måltidet, tidspunktet og morgendagens økt mens Jonas prøver å fortelle om sin egen dag. Han spør om dere kan være venner før dere er optimaliseringsprosjekt.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_lot_privatliv_vaere_privat": true
+            },
+            "threads": {
+              "sport_ls_private": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "venn": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_private_02"
+          ]
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_optimaliserte_alt": true
+            },
+            "threads": {
+              "sport_ls_private": {
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "venn": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg.",
+          "laaserOpp": [
+            "sport_ls_private_02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sport_ls_private_02",
+      "threadId": "sport_ls_private",
+      "fase": "kveld",
+      "dag": 6,
+      "visningstype": "samtale",
+      "avsender": "familie",
+      "tilgjengelighet": "laast",
+      "prioritet": 8,
+      "tittel": "Søsteren spør hvem du er på en hviledag",
+      "tekst": "Etter to uker med kropp, uttak og resultat spør søsteren din hva som er igjen når dagens plan sier fri. Spørsmålet handler ikke om å gi opp ambisjonen, men om hvem som eier den.",
+      "valg": [
+        {
+          "id": "A",
+          "tekst": "Si det som faktisk skjer og velg en løsning som tåler at kroppen eller relasjonen har grenser.",
+          "effekter": {
+            "meters": {
+              "integritet": 3,
+              "energi": 1,
+              "psyke": 2
+            },
+            "flagg": {
+              "sport_beholdt_eget_liv": true
+            },
+            "threads": {
+              "sport_ls_private": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "familie": 4
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        },
+        {
+          "id": "B",
+          "tekst": "Press videre eller gjør situasjonen til et spørsmål om status og vilje.",
+          "effekter": {
+            "meters": {
+              "integritet": -2,
+              "energi": -4,
+              "synlighet": 2
+            },
+            "flagg": {
+              "sport_ble_bare_resultat": true
+            },
+            "threads": {
+              "sport_ls_private": {
+                "status": "completed"
+              }
+            },
+            "relasjoner": {
+              "familie": -3
+            }
+          },
+          "konsekvensTekst": "Måten du håndterer dette på blir husket av både kroppen og menneskene rundt deg."
+        }
+      ]
+    }
+  ]
+}
