@@ -1,9 +1,9 @@
 name: Civication By-rådgiver Role World materialize
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/civication-by-radgiver-role-world
+      - main
     paths:
       - data/Civication/roleWorlds/.materialize-by-radgiver
 
@@ -16,12 +16,13 @@ concurrency:
 
 jobs:
   materialize:
+    if: github.event.pull_request.head.ref == 'agent/civication-by-radgiver-role-world'
     runs-on: ubuntu-latest
     steps:
       - name: Check out By-rådgiver branch
         uses: actions/checkout@v4
         with:
-          ref: agent/civication-by-radgiver-role-world
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Set up Node
@@ -90,4 +91,4 @@ jobs:
             exit 1
           fi
           git commit -m "Materialize By-rådgiver Role World"
-          git push origin HEAD:agent/civication-by-radgiver-role-world
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
