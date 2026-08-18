@@ -127,7 +127,7 @@ jobs:
             '  }',
             "  const diagnosticPath = path.join(ROOT, 'reports/fagverk/history-curated-editorial-hook-diagnostics.json');",
             '  fs.mkdirSync(path.dirname(diagnosticPath), { recursive: true });',
-            "  fs.writeFileSync(diagnosticPath, `${JSON.stringify({ generated_by: 'history-completion-materialize-temp', canonical_emner: emners.length, unique_primary_semantic_keys: unique(primaryKeys).length, curated_blueprint_rows: blueprintRows.length, mismatch_count: curatedMismatches.length, mismatches: curatedMismatches }, null, 2)}\\n`);",
+            "  fs.writeFileSync(diagnosticPath, `${JSON.stringify({ generated_by: 'history-completion-materialize-temp', canonical_emners: emners.length, unique_primary_semantic_keys: unique(primaryKeys).length, curated_blueprint_rows: blueprintRows.length, mismatch_count: curatedMismatches.length, mismatches: curatedMismatches }, null, 2)}\\n`);",
             '  assert.deepEqual(curatedMismatches, [], `Kuraterte redaksjonelle History-hooks mangler gyldig hook/mapping/teorikjede: ${curatedMismatches.map((row) => `${row.emne_id}:${row.editorial_hook_id}[${row.reasons.join("+")}]`).join(", ")}`);'
           ].join('\n');
           audit = `${audit.slice(0, curatedStart)}${curatedBlock}${audit.slice(returnStart)}`;
@@ -140,7 +140,7 @@ jobs:
       - name: Validate canonical identity
         run: |
           set -euo pipefail
-          node tools/audit-historie-canonical-emner.mjs --write-report
+          node tools/audit-historie-canonical-emners.mjs --write-report
 
       - name: Validate curated editorial hooks
         run: |
