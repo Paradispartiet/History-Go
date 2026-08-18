@@ -1,7 +1,7 @@
 name: History editorial separation materialize temporary
 # Self-reporting one-shot writer. It either commits the repaired generator/corpus or only a failure report. Delete before merge.
 # Materialization is branch-SHA locked; latest main is reconciled again before final CI and merge.
-# Retriggered after semantic-owner correction on the main-synchronized History head.
+# Use the separate macOS runner pool to avoid the saturated Ubuntu queue.
 
 on:
   push:
@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   materialize:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Check out exact History branch
         uses: actions/checkout@v4
