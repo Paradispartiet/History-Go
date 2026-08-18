@@ -162,10 +162,10 @@ export function auditVitenskapInstitutionsKnowledgePlacesCoverage({ writeReport 
 
   const holistic = auditVitenskapHolisticUniversityBreadthCompletion({ writeReport: false, checkReport: false });
   assert(holistic.subject.completeReady === false && holistic.status === 'blocked', 'Holistic audit må fortsatt blokkere completion etter batch 2');
-  assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount === 63, 'Holistic owned-count skal være 63 etter 14-emners institusjonsbatch');
-  assert(holistic.canonicalInventory.explicitUncoveredEmneCount === 54, 'Holistic uncovered-count skal være 54 etter 14-emners institusjonsbatch');
+  assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount >= 63, 'Holistic owned-count kan ikke regressere under 63 etter institusjonsbatchen');
+  assert(holistic.canonicalInventory.explicitUncoveredEmneCount <= 54, 'Holistic uncovered-count kan ikke regressere over 54 etter institusjonsbatchen');
   const coverageBlocker = holistic.blockers.find((row) => row.id === 'canonical_emne_full_editorial_treatment_gap');
-  assert(coverageBlocker?.count === 54, 'Holistic coverage blocker skal reduseres til 54');
+  assert(coverageBlocker?.count <= 54, 'Holistic coverage blocker kan ikke regressere over 54 etter institusjonsbatchen');
   assert(holistic.qualityReview.status === 'deferred_until_material_blockers_close', 'Holistic quality review skal fortsatt være deferred');
   assert(holistic.technology.passes === true && holistic.technology.topLevelSubject === false, 'Nested Teknologi må forbli grønn og ikke-top-level');
 
@@ -188,9 +188,9 @@ export function auditVitenskapInstitutionsKnowledgePlacesCoverage({ writeReport 
       misconceptionCount: module.misconceptions.length,
       selfCheckCount: module.selfCheck.length,
       holisticOwnedBeforeBatch: 49,
-      holisticOwnedAfterBatch: holistic.canonicalInventory.explicitChapterOwnedEmneCount,
+      holisticOwnedAfterBatch: 63,
       holisticUncoveredBeforeBatch: 68,
-      holisticUncoveredAfterBatch: holistic.canonicalInventory.explicitUncoveredEmneCount
+      holisticUncoveredAfterBatch: 54
     },
     gates: {
       canonicalPrimaryMappingResolved: true,
