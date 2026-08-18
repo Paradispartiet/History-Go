@@ -1,0 +1,105 @@
+{
+  "schema": "history_go_fagverk_editorial_coverage_supplement_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "vitenskap",
+  "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+  "domain_id": "teknologi_data_infrastruktur",
+  "title": "Digital vitenskap, data og teknisk mediering – redaksjonell coverage brief",
+  "purpose": "Materialisere universitetsnær fulltekstdekning for hele den gjenværende canonicale primary-klyngen teknologi_data_infrastruktur. Supplementet analyserer hvordan beregning, datasett, visualisering, protokoller, sensorer, automatisering og teknisk infrastruktur former produksjon, dokumentasjon og vurdering av vitenskapelig evidens. Det skal ikke duplisere Teknologi som selvstendig design-, system- og ingeniørvitenskapelig spesialisering.",
+  "requiredEmneIds": [
+    "em_vit_automatisering",
+    "em_vit_beregning",
+    "em_vit_datasett",
+    "em_vit_datavisualisering",
+    "em_vit_digital_vitenskap",
+    "em_vit_protokoller",
+    "em_vit_sensorer",
+    "em_vit_teknologiens_foringer",
+    "em_vit_teknologisk_presisjon",
+    "em_vit_hist_teknologi",
+    "em_vit_teknologi_innovasjon"
+  ],
+  "requiredCriticalDistinctions": [
+    "komputasjonell reproducerbarhet vs empirisk replikasjon med nye data",
+    "datasett som konstruert og dokumentert evidensgrunnlag vs nøytral avbildning av verden",
+    "rådata vs prosesserte data og avledede resultater",
+    "proveniens vs filnavn eller enkel tidsstempel-historikk",
+    "FAIR/reuse-kvaliteter vs sannhet, representativitet eller fravær av bias",
+    "visualisering som analytisk og kommunikativ transformasjon vs transparent vindu mot data",
+    "protokollstandardisering vs garanti for at en protokoll er optimal i alle kontekster",
+    "sensoroutput vs sporbar måleresultat med kalibrering, modell, enhet og usikkerhet",
+    "automatisering av en analyse vs validering av dens vitenskapelige antakelser",
+    "teknisk presisjon vs målenøyaktighet, validitet og relevans for forskningsspørsmålet",
+    "teknologisk mediering av forskning vs ingeniørfaglig design av teknologien selv",
+    "innovasjon som implementert ny eller forbedret praksis/produkt/prosess vs forskningens epistemiske kvalitet"
+  ],
+  "sourceStrategy": {
+    "minimumNewInspectableSources": 3,
+    "reuseExistingUnit1SourcesWhenClaimSpecific": true,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "noDecorativeSources": true,
+    "priority": [
+      "NIST Research Data Framework v2.0 for research-data lifecycle, provenance, software/instrument context and reproducibility",
+      "W3C PROV-O for explicit provenance entities, activities and agents",
+      "W3C Data on the Web Best Practices for metadata, provenance, standardized machine-readable formats and complementary presentations",
+      "FAIR Guiding Principles for findability, accessibility, interoperability and reuse without converting FAIRness into a truth criterion",
+      "NIST Numerical Reproducibility for software/library/precision/compiler/hardware sensitivity",
+      "NIST metrological traceability guidance for calibrated measurement results and uncertainty chains",
+      "National Academies reproducibility/replicability distinctions",
+      "OECD/Eurostat Oslo Manual for implemented innovation versus R&D"
+    ]
+  },
+  "documentedNewSourceTargets": [
+    {
+      "id": "w3c-prov-o",
+      "publisher": "World Wide Web Consortium",
+      "url": "https://www.w3.org/TR/prov-o/",
+      "use": "formal representation and exchange of provenance through entities, activities, agents and their relations"
+    },
+    {
+      "id": "w3c-data-web-best-practices",
+      "publisher": "World Wide Web Consortium",
+      "url": "https://www.w3.org/TR/dwbp/",
+      "use": "metadata, provenance, standardized machine-readable data formats, dataset coverage and complementary data presentations"
+    },
+    {
+      "id": "fair-guiding-principles-2016",
+      "publisher": "Scientific Data",
+      "url": "https://www.nature.com/articles/sdata201618",
+      "use": "FAIR principles for machine-actionable findability, accessibility, interoperability and reuse of scientific data"
+    }
+  ],
+  "qualityContract": {
+    "editedSectionCount": 6,
+    "substantiveParagraphCount": 18,
+    "explicitCoverageTreatmentCount": 11,
+    "newClaimCount": 11,
+    "minimumMethodLimitsPerSection": 2,
+    "workedExampleCount": 2,
+    "applicationTaskCount": 3,
+    "misconceptionCount": 5,
+    "selfCheckCount": 6,
+    "paragraphClaimTraceRequired": true,
+    "rootAndRegistryOwnershipRequired": true,
+    "holisticOwnedCountAfterMaterialization": 89,
+    "holisticUncoveredCountAfterMaterialization": 28,
+    "subjectCompleteMustRemainFalse": true
+  },
+  "neighborBoundaries": [
+    "Nested Teknologi eier designbegrunnelse, arkitektur, konstruksjon, verifikasjon, validering, feilmodi og ingeniørmessige avveininger for artefakter, programvare og infrastrukturer. Vitenskap-supplementet eier hvordan slike tekniske systemer medierer forskningsdata, måling og evidens.",
+    "Matematikk/statistikk-kapittelet eier matematisk og statistisk modellbehandling. Batch 4 skal analysere computational execution, data lineage, visualisering og teknisk reproducerbarhet uten å gjenta matematikkpensumet.",
+    "Samfunn/makt/etikk-supplementet eier styrings- og ansvarsspørsmål. Batch 4 kan vise teknologiske føringer og usynlige standardvalg, men skal ikke produsere en ny generell teknologietikk.",
+    "Natur eier organisme-, økologi-, geologi- og miljøfaglig substans. Sensorer behandles her som måle- og datakjeder, ikke som et nytt miljøovervåkingskapittel."
+  ],
+  "rejectedShortcuts": [
+    "Å gi de 11 emne-ID-ene chapter ownership uten egen faglig prosa og claimspor.",
+    "Å bruke FAIR som synonym for korrekte, representative eller bias-frie data.",
+    "Å kalle et resultat reproducerbart bare fordi kode kjører på én maskin.",
+    "Å behandle visualisering som nøytral når valg av transformasjon, akser, aggregasjon og skala kan endre hva som blir synlig.",
+    "Å kalle et sensorutslag vitenskapelig presist uten dokumentert kalibrering, enhet, modell og usikkerhet.",
+    "Å forveksle automatisert arbeidsflyt med automatisk faglig validering.",
+    "Å duplisere nested Teknologis egne design-, system-, programvare-, robotikk- eller infrastrukturfag.",
+    "Å kalle Vitenskap complete etter batch 4."
+  ]
+}
