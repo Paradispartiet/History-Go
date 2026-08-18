@@ -43,16 +43,34 @@ jobs:
           fs.writeFileSync(file, JSON.stringify(manifest, null, 2) + '\n');
           NODE
       - name: Materialize national language atlas
-        run: python scripts/agent_build_norge_sprakatlas_v1.py
-      - name: Check generated runtime and tests
+        run: |
+          python -m py_compile scripts/agent_build_norge_sprakatlas_v1.py
+          python scripts/agent_build_norge_sprakatlas_v1.py
+      - name: Check generated runtime and language regressions
         run: |
           node --check js/ui/place-language-layer.js
-          node --test tests/place-language-dialect-scope.test.mjs
+          node --test tests/place-language-dialect-scope.test.mjs tests/place-language-layer.test.mjs
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in [
+              'data/leksikon/sprak/norge_atlas_v1.json',
+              'data/leksikon/sprak/schema_v2.json',
+              'data/leksikon/sprak/manifest.json',
+              'data/leksikon/sprak/places/europe/norway/trondelag/svartlamon_trondheim.json',
+          ]:
+              json.loads(Path(path).read_text(encoding='utf-8'))
+          PY
       - name: Commit generated product files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/places/manifest.json data/leksikon/sprak js/ui/place-language-layer.js css/place-language-layer.css docs/SPRAKLEKSIKON.md tests/place-language-dialect-scope.test.mjs
+          git add data/places/manifest.json \
+                  data/leksikon/sprak \
+                  js/ui/place-language-layer.js \
+                  css/place-language-layer.css \
+                  docs/SPRAKLEKSIKON.md \
+                  tests/place-language-dialect-scope.test.mjs
           if git diff --cached --quiet; then
             exit 0
           fi
