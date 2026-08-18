@@ -140,7 +140,7 @@ jobs:
       - name: Validate canonical identity
         run: |
           set -euo pipefail
-          node tools/audit-historie-canonical-emners.mjs --write-report
+          node tools/audit-historie-canonical-emner.mjs --write-report
 
       - name: Validate curated editorial hooks
         run: |
