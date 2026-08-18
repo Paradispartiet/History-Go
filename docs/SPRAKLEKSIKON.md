@@ -288,3 +288,15 @@ Språkatlaset skal ikke bygges fra eksempellister eller antatte «kjente dialekt
 - Lokale corpus-ankre kan registreres før alle målmerker er ferdig analysert, men skal da ikke få oppdiktede eller arvede lokale kjennetegn.
 - Konkrete lokale målmerker krever lokal eller klart relevant regional kilde.
 - Bymål og flerspråklige steder skal alltid modelleres med intern variasjon; språk som nordsamisk, sørsamisk og kvensk er egne språk og aldri «norske dialekter».
+
+## Lokalt evidensmateriale
+
+Lokale talemålsprofiler har tre modenhetsnivåer:
+
+- `local_research_required`: atlaset kjenner stedet/ankeret, men publiserer ikke konkrete lokale trekk ennå.
+- `documented_seed`: lokalprofilen har dokumentert eksistens og kildegrunnlag, men detaljtrekkene er ikke ferdig materialisert.
+- `evidence_materialized`: konkrete trekk, variasjon og/eller endringer er knyttet til eksplisitte kildebelegg i `feature_evidence`.
+
+Et `feature_evidence`-element skal skille mellom strukturelle trekk, sosial variasjon, språkendring, språkkontakt og korpusgrunnlag. Historiske trekk skal aldri presenteres som om alle nålevende talere bruker dem. Endring skal beskrives som endring, ikke som én ny homogen dialekt. Hver publisert påstand skal ha minst én HTTPS-kilde direkte knyttet til påstanden.
+
+Første evidensmaterialiserte batch omfatter Oslo, Bergen, Stavanger, Trondheim og Tromsø fordi disse har særlig sterke kombinasjoner av direkte bymålsbeskrivelser, korpus/lydmateriale og sosiolingvistisk forskning. Utvalg i senere batcher skal fortsatt styres av dokumentasjonsstyrke, ikke av størrelse eller tilfeldige eksempler.

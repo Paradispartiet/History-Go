@@ -81,7 +81,8 @@
           "profile_status": {
             "enum": [
               "documented_seed",
-              "local_research_required"
+              "local_research_required",
+              "evidence_materialized"
             ]
           },
           "summary": {
@@ -95,9 +96,93 @@
           "sources": {
             "type": "array",
             "minItems": 1
+          },
+          "feature_labels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "evidence_last_verified": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "feature_evidence": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "label",
+                "kind",
+                "claim",
+                "time_scope",
+                "source_urls"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "kind": {
+                  "enum": [
+                    "structural_feature",
+                    "social_variation",
+                    "language_change",
+                    "contact_history",
+                    "corpus_basis"
+                  ]
+                },
+                "claim": {
+                  "type": "string",
+                  "minLength": 20
+                },
+                "time_scope": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source_urls": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "pattern": "^https://"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "allOf": [
+          {
+            "x-history-go-rule": "evidence-materialized",
+            "if": {
+              "properties": {
+                "profile_status": {
+                  "const": "evidence_materialized"
+                }
+              },
+              "required": [
+                "profile_status"
+              ]
+            },
+            "then": {
+              "required": [
+                "feature_labels",
+                "feature_evidence",
+                "evidence_last_verified"
+              ]
+            }
+          }
+        ]
       }
     },
     "research_basis": {
