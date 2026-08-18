@@ -1,3 +1,4 @@
+// Direkte push-trigger for lokal evidensmaterialisering batch 1.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 
