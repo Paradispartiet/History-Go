@@ -6,6 +6,11 @@ on:
       - agent/vitenskap-editorial-coverage-repair-1
     paths:
       - '.github/workflows/vitenskap-methods-models-materialize.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/vitenskap-methods-models-materialize.yml'
   workflow_dispatch:
 
 permissions:
@@ -13,9 +18,14 @@ permissions:
 
 jobs:
   materialize-and-validate:
+    if: github.event_name != 'pull_request' || github.head_ref == 'agent/vitenskap-editorial-coverage-repair-1'
     runs-on: ubuntu-latest
+    env:
+      REPAIR_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -59,4 +69,4 @@ jobs:
           git add -A
           git diff --cached --check
           git commit -m 'Materialize Vitenskap methods and models coverage'
-          git push origin HEAD:${GITHUB_REF_NAME}
+          git push origin HEAD:${REPAIR_BRANCH}
