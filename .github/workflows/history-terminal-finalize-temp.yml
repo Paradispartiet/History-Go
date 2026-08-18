@@ -7,9 +7,9 @@ name: History terminal finalize temporary
 # Retriggered after shared release snapshot writer stabilized at 850afad4.
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/history-completion-audit
+      - main
     paths:
       - '.github/workflows/history-terminal-finalize-temp.yml'
   workflow_dispatch:
