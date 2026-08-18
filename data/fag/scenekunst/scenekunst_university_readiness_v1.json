@@ -1,0 +1,286 @@
+{
+  "schema": "history_go_fagverk_scenekunst_university_readiness_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-18",
+  "subject_id": "scenekunst",
+  "title": "Scenekunst",
+  "status": "breadth_reconciliation_required",
+  "complete_ready": false,
+  "purpose": "Låse en etterprøvbar universitetsnær dekningskontrakt før Scenekunst går fra structure_ready til full kapittelproduksjon. Kontrakten bevarer de fire eksisterende renderer-fagområdene, men krever at manglende historie-, teori-, produksjons-, dokumentasjons-, etikk- og hybridfelt reconciles inn i canonicalt inventar før complete.",
+  "canonical_scope": {
+    "source": "data/categories/category_contract.json",
+    "summary": "Scenekunst omfatter teater, dans, musikal og musikkteater, revy, standup, improvisasjon og sceneinstitusjoner. Levende fremføring er primær; nabofag brukes som broer uten å duplisere deres faglige sannhetskilder.",
+    "no_fixed_completion_quota": true,
+    "completeness_rule": "Faglig heldekning, kildeintegritet og redaksjonell behandling avgjør complete; tellingene brukes som inventar og integritetskontroll, ikke som målkvoter."
+  },
+  "current_inventory": {
+    "domain_count": 4,
+    "emne_count": 8,
+    "method_count": 9,
+    "mapping_count": 8,
+    "hook_count": 0,
+    "registered_chapter_count": 0,
+    "source_files": {
+      "emner": "data/fag/scenekunst/emner_scenekunst_canonical_v1.json",
+      "fagkart": "data/fag/scenekunst/fagkart_scenekunst_canonical_v1.json",
+      "methods": "data/fag/scenekunst/methods_scenekunst_canonical_v1.json",
+      "pensum": "data/fag/scenekunst/scenekunstpensum_canonical_v1.json"
+    }
+  },
+  "benchmark_sources": [
+    {
+      "id": "benchmark_ntnu_drama_teater_bachelor_2026",
+      "publisher": "NTNU",
+      "url": "https://www.ntnu.no/studier/bdrama/laeringsmal",
+      "verified_at": "2026-08-18",
+      "relevance": "Bacheloren kombinerer historisk utvikling og tradisjonsbrudd med nyere dramaturgiske og interaktive former, scenekunstens virkemidler, produksjon og forestillingsanalyse."
+    },
+    {
+      "id": "benchmark_khio_skuespiller_2026",
+      "publisher": "Kunsthøgskolen i Oslo",
+      "url": "https://khio.no/studieprogrammer/basf",
+      "verified_at": "2026-08-18",
+      "relevance": "Skuespillerutdanningen dekker rolle, kropp, stemme, bevegelse, improvisasjon, tekst, teori/metode og kollektivt arbeid på tvers av kunstneriske og scenetekniske profesjoner."
+    },
+    {
+      "id": "benchmark_khio_regi_2026",
+      "publisher": "Kunsthøgskolen i Oslo",
+      "url": "https://khio.no/studies/bare",
+      "verified_at": "2026-08-18",
+      "relevance": "Regiutdanningen dokumenterer regi som selvstendig skapende praksis og kollektiv meningsproduksjon i samarbeid med skuespillere, scenografer og scenetekniske fag."
+    },
+    {
+      "id": "benchmark_khio_master_teater_2026",
+      "publisher": "Kunsthøgskolen i Oslo",
+      "url": "https://khio.no/studieprogrammer/mate",
+      "verified_at": "2026-08-18",
+      "relevance": "Masteren viser universitets- og kunstfaglig bredde gjennom skuespill, regi og operaregi, scenetekst og dramaturgi, med eksplisitt samspill mellom kollektivt arbeid og spesialisering."
+    },
+    {
+      "id": "benchmark_khio_dans_2026",
+      "publisher": "Kunsthøgskolen i Oslo",
+      "url": "https://khio.no/studieprogrammer/mada",
+      "verified_at": "2026-08-18",
+      "relevance": "Master i dans kombinerer utøvende og skapende metode, bevegelsespraksis, prosjekt og forestilling, performance-teori, estetikk og historisk, politisk, etisk og sosial kontekst."
+    },
+    {
+      "id": "benchmark_khio_koreografi_2026",
+      "publisher": "Kunsthøgskolen i Oslo",
+      "url": "https://khio.no/studieprogrammer/mako",
+      "verified_at": "2026-08-18",
+      "relevance": "Koreografimasteren krever kunstnerisk, metodisk, begrepsmessig og kontekstuell fordypning, tverrfaglig samarbeid, dokumentasjon og refleksjon."
+    },
+    {
+      "id": "benchmark_kulturdirektoratet_statistikk_2024",
+      "publisher": "Kulturdirektoratet",
+      "url": "https://www.kulturdirektoratet.no/aktuelt/musikk-og-scenekunststatistikk-2024",
+      "verified_at": "2026-08-18",
+      "relevance": "Offisiell sektorstatistikk dokumenterer aktivitet, publikum og økonomi i offentlig støttede musikk- og scenekunstvirksomheter og gir empirisk grunnlag for institusjons-, arbeids- og offentlighetsanalyse."
+    }
+  ],
+  "neighbor_boundaries": [
+    {
+      "subject_id": "musikk",
+      "relationship": "neighbor_bridge_required",
+      "rule": "Musikk eier selvstendig musikkvitenskapelig analyse. Scenekunst eier iscenesettelse, dramaturgi, utøverarbeid, rom, koreografi og publikumssituasjon i musikal og musikkteater."
+    },
+    {
+      "subject_id": "film_tv",
+      "relationship": "neighbor_bridge_required",
+      "rule": "Film & TV eier audiovisuelle verk, produksjon og resepsjon som skjermmedier. Scenekunst eier den levende eller samtidige fremføringssituasjonen; opptak brukes som dokumentasjon, ikke som erstatning for live-kontekst."
+    },
+    {
+      "subject_id": "kunst",
+      "relationship": "neighbor_bridge_required",
+      "rule": "Kunst eier billedkunst, visuell kunst, design og museal kunstkontekst. Performancekunst og installative sceniske praksiser behandles som grensefelt og må forankres i det konkrete verkets primære praksis."
+    },
+    {
+      "subject_id": "historie",
+      "relationship": "context_bridge_required",
+      "rule": "Historie eier generell periodisering og historisk metode. Scenekunst eier scenekunsthistoriske utviklingslinjer, repertoar, estetiske brudd og rekonstruksjon av forestillingspraksis."
+    },
+    {
+      "subject_id": "politikk",
+      "relationship": "context_bridge_required",
+      "rule": "Politikk eier generell offentlig politikk og forvaltning. Scenekunst kan analysere kulturpolitikk, finansiering, institusjonsmandat og offentlighet når dette forklarer produksjons- og repertoarvilkår."
+    }
+  ],
+  "coverage_families": [
+    {
+      "id": "institutions_repertoire_infrastructure",
+      "label": "Institusjoner, repertoar og scenekunstens infrastruktur",
+      "status": "partial",
+      "existing_emne_ids": [
+        "em_scenekunst_teaterinstitusjon_repertoar"
+      ],
+      "gap": "Dagens emne dekker institusjon og repertoar, men ikke produksjonsøkonomi, arbeidsdeling, turné og festival, finansiering eller kulturpolitisk mandat med tilstrekkelig selvstendighet."
+    },
+    {
+      "id": "history_traditions_performance_theory",
+      "label": "Scenekunsthistorie, tradisjoner og performance-teori",
+      "status": "gap",
+      "existing_emne_ids": [],
+      "gap": "Canonicalt inventar mangler en eksplisitt historisk og teoretisk akse for tradisjon, brudd, modernisme og avantgarde, postdramatisk og nyere performance-orientert praksis."
+    },
+    {
+      "id": "dramaturgy_text_devising",
+      "label": "Dramaturgi, scenetekst og kollektiv skapende prosess",
+      "status": "partial",
+      "existing_emne_ids": [
+        "em_scenekunst_dramaturgi_iscenesettelse"
+      ],
+      "gap": "Dagens emne dekker dramaturgisk organisering, men skiller ikke tydelig tekstbasert dramaturgi, devising, dokumentariske former, adaptasjon og ikke-lineære eller postdramatiske strukturer."
+    },
+    {
+      "id": "acting_role_ensemble",
+      "label": "Skuespill, rolle, nærvær og ensemble",
+      "status": "strong",
+      "existing_emne_ids": [
+        "em_scenekunst_skuespill_rollefortolkning"
+      ],
+      "gap": "Kjernefeltet finnes, men fulltekst må sammenligne flere skuespillertradisjoner og skille rollearbeid, fysisk og performativt nærvær og ensemblepraksis."
+    },
+    {
+      "id": "directing_rehearsal_collaboration",
+      "label": "Regi, prøveprosess og kunstnerisk samarbeid",
+      "status": "partial",
+      "existing_emne_ids": [
+        "em_scenekunst_regi_scenografi"
+      ],
+      "gap": "Regi er slått sammen med scenografi og mangler egen behandling av prøveprosess, kunstnerisk ledelse, samarbeid og forholdet mellom konsept, tekst eller materiale og utøvere."
+    },
+    {
+      "id": "scenography_design_technology",
+      "label": "Scenografi, lys, lyd, kostyme, objekter og sceneteknologi",
+      "status": "partial",
+      "existing_emne_ids": [
+        "em_scenekunst_regi_scenografi"
+      ],
+      "gap": "Eksisterende emne navngir visuell form, men lyd, objekter, kostyme og teknologiske og romlige dramaturgier må få eksplisitt metode- og evidensbehandling."
+    },
+    {
+      "id": "dance_choreography_embodiment",
+      "label": "Dans, koreografi og kroppslig kunnskap",
+      "status": "partial",
+      "existing_emne_ids": [
+        "em_scenekunst_dans_koreografi"
+      ],
+      "gap": "Kjernefeltet finnes, men universitetsbredde krever historisk og kontekstuell koreografiforståelse, skapende metode og eksplisitt skille mellom teknikk, komposisjon og fortolkning."
+    },
+    {
+      "id": "musical_theatre_hybrid_forms",
+      "label": "Musikal, musikkteater og hybride sceniske former",
+      "status": "partial",
+      "existing_emne_ids": [
+        "em_scenekunst_musikal_musikkteater"
+      ],
+      "gap": "Musikal og musikkteater finnes, men hybride former, figur og objekt, nycirkus og intermediale grep trenger en avgrenset grensebehandling uten å absorbere nabofag."
+    },
+    {
+      "id": "live_comedy_improvisation",
+      "label": "Revy, standup, improvisasjon og live-komikk",
+      "status": "strong",
+      "existing_emne_ids": [
+        "em_scenekunst_revy_standup_impro"
+      ],
+      "gap": "Kjernefeltet finnes; fulltekst må skille format, dramaturgi, improvisasjonsgrad, aktualitet, satire og publikumsfeedback."
+    },
+    {
+      "id": "audience_reception_participation_publicness",
+      "label": "Publikum, resepsjon, deltakelse og offentlighet",
+      "status": "partial",
+      "existing_emne_ids": [
+        "em_scenekunst_publikum_fjerde_vegg"
+      ],
+      "gap": "Den fjerde veggen er for smal som eneste publikumsakse; resepsjon, kritikk, publikumsdata, deltakende og immersive formater og offentlighet må skilles."
+    },
+    {
+      "id": "archives_documentation_ephemerality",
+      "label": "Arkiv, dokumentasjon og rekonstruksjon av flyktig kunst",
+      "status": "gap",
+      "existing_emne_ids": [],
+      "gap": "Metodekatalogen har arkivanalyse, men ingen canonicalt emne underviser i hva som kan og ikke kan sluttes fra program, foto, opptak, manus, anmeldelser og institusjonsarkiv."
+    },
+    {
+      "id": "ethics_access_representation_working_conditions",
+      "label": "Etikk, representasjon, tilgjengelighet og arbeidsvilkår",
+      "status": "gap",
+      "existing_emne_ids": [],
+      "gap": "Canonicalt inventar mangler selvstendig behandling av representasjon, makt, tilgjengelighet, samtykke og deltakelse og dokumenterbare arbeids- og produksjonsvilkår."
+    }
+  ],
+  "blocking_gaps": [
+    {
+      "id": "scenekunst_history_theory_missing",
+      "family_id": "history_traditions_performance_theory",
+      "required_action": "reconcile_into_canonical_inventory"
+    },
+    {
+      "id": "production_labor_policy_underdefined",
+      "family_id": "institutions_repertoire_infrastructure",
+      "required_action": "split_or_expand_canonical_topics"
+    },
+    {
+      "id": "directing_and_rehearsal_underdefined",
+      "family_id": "directing_rehearsal_collaboration",
+      "required_action": "split_regi_from_design_and_add_process_scope"
+    },
+    {
+      "id": "design_sound_technology_underdefined",
+      "family_id": "scenography_design_technology",
+      "required_action": "expand_design_and_technology_scope"
+    },
+    {
+      "id": "audience_reception_participation_underdefined",
+      "family_id": "audience_reception_participation_publicness",
+      "required_action": "split_fourth_wall_from_reception_and_participation"
+    },
+    {
+      "id": "archives_documentation_missing",
+      "family_id": "archives_documentation_ephemerality",
+      "required_action": "reconcile_into_canonical_inventory"
+    },
+    {
+      "id": "ethics_access_representation_missing",
+      "family_id": "ethics_access_representation_working_conditions",
+      "required_action": "reconcile_into_canonical_inventory"
+    }
+  ],
+  "reconciliation_plan": {
+    "preserve_renderer_domain_ids": [
+      "institusjon_repertoar",
+      "verk_utover_form",
+      "dans_hybrid_humor",
+      "publikum_offentlighet"
+    ],
+    "rule": "De fire renderer-fagområdene beholdes med mindre en senere gap-audit viser at selve domenegrensene er faglig feil. Bredden utvides primært gjennom nye selvstendige emner, tydeligere metodekoblinger og progresjonsmoduler.",
+    "first_batch_candidate_topics": [
+      "scenekunsthistorie_tradisjoner_brudd",
+      "performance_teori_liveness",
+      "produksjon_arbeid_finansiering",
+      "turne_festival_infrastruktur",
+      "scenetekst_adaptasjon_devising",
+      "regi_proveprosess_samarbeid",
+      "scenografi_lys_lyd_kostyme",
+      "hybrid_intermedial_scenekunst",
+      "resepsjon_kritikk_publikumsdata",
+      "deltakende_immersiv_scenekunst",
+      "arkiv_dokumentasjon_rekonstruksjon",
+      "etikk_tilgjengelighet_representasjon"
+    ]
+  },
+  "completion_requirements": [
+    "all_blocking_breadth_gaps_reconciled",
+    "all_canonical_emners_have_explicit_fulltext_ownership",
+    "all_canonical_methods_used_or_explicitly_justified",
+    "live_performance_and_neighbor_boundaries_preserved",
+    "paragraph_to_claim_trace_complete",
+    "all_used_claims_resolve_to_inspectable_sources",
+    "historical_and_archival_inference_limits_explicit",
+    "audience_and_participation_claims_distinguish_observation_from_effect",
+    "gap_overlap_and_filler_audit_clean",
+    "full_subject_quality_review_at_least_27_of_30_with_no_dimension_below_4",
+    "subject_status_and_release_artifacts_match_materialized_content"
+  ],
+  "next_gate": "canonical_breadth_reconciliation_before_chapter_completion"
+}

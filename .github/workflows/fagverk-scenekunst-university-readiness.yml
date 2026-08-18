@@ -1,0 +1,51 @@
+name: Fagverk Scenekunst university readiness
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/scenekunst/scenekunst_university_readiness_v1.json'
+      - 'data/fag/scenekunst/emner_scenekunst_canonical_v1.json'
+      - 'data/fag/scenekunst/fagkart_scenekunst_canonical_v1.json'
+      - 'data/fag/scenekunst/methods_scenekunst_canonical_v1.json'
+      - 'data/fag/scenekunst/scenekunstpensum_canonical_v1.json'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'scripts/audit-fagverk-scenekunst-university-readiness.mjs'
+      - 'tests/fagverk-scenekunst-university-readiness.test.mjs'
+      - 'reports/fagverk/scenekunst-university-readiness-audit.json'
+      - '.github/workflows/fagverk-scenekunst-university-readiness.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/fag/scenekunst/scenekunst_university_readiness_v1.json'
+      - 'data/fag/scenekunst/emner_scenekunst_canonical_v1.json'
+      - 'data/fag/scenekunst/fagkart_scenekunst_canonical_v1.json'
+      - 'data/fag/scenekunst/methods_scenekunst_canonical_v1.json'
+      - 'data/fag/scenekunst/scenekunstpensum_canonical_v1.json'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'scripts/audit-fagverk-scenekunst-university-readiness.mjs'
+      - 'tests/fagverk-scenekunst-university-readiness.test.mjs'
+      - 'reports/fagverk/scenekunst-university-readiness-audit.json'
+      - '.github/workflows/fagverk-scenekunst-university-readiness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Audit Scenekunst university breadth readiness
+        run: |
+          node --check scripts/audit-fagverk-scenekunst-university-readiness.mjs
+          node scripts/audit-fagverk-scenekunst-university-readiness.mjs
+          node --test tests/fagverk-scenekunst-university-readiness.test.mjs
+      - name: Preserve Scenekunst Phase 3 foundation
+        run: |
+          node scripts/audit-fagverk-scenekunst-phase3.mjs
+          node --test tests/fagverk-scenekunst-phase3.test.mjs
