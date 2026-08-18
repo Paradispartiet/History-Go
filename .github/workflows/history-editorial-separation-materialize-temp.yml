@@ -2,6 +2,11 @@ name: History editorial separation materialize temporary
 # One-shot write workflow. Removes semantic/editorial conflation without changing canonical hook ownership. Delete before merge.
 
 on:
+  push:
+    branches:
+      - agent/history-completion-audit
+    paths:
+      - '.github/workflows/history-editorial-separation-materialize-temp.yml'
   pull_request:
     branches: [main]
     paths:
@@ -14,7 +19,7 @@ permissions:
 
 jobs:
   materialize:
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/history-completion-audit')
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/history-completion-audit')
     runs-on: ubuntu-latest
     steps:
       - name: Check out exact History branch
