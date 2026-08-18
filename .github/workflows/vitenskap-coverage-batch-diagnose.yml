@@ -35,17 +35,23 @@ jobs:
           const owned = new Set(chapters.flatMap((c) => c.emne_ids || []));
           const uncovered = emners.filter((e) => !owned.has(e.emne_id));
           const mappingById = new Map(mappings.map((m) => [m.emne_id, m]));
-          const candidateKeys = ['domain_id','domain','family_id','family','subfield_id','subfield','area_id','area','fagomrade_id','fagomrade','category_id','category','strand_id','strand'];
-          const groups = {};
-          for (const key of candidateKeys) {
-            const counts = {};
-            for (const e of uncovered) {
-              const m = mappingById.get(e.emne_id) || {};
-              const value = e[key] ?? m[key];
-              if (value !== undefined && value !== null) counts[String(value)] = (counts[String(value)] || 0) + 1;
-            }
-            if (Object.keys(counts).length) groups[key] = counts;
-          }
+          const compact = uncovered.map((e) => {
+            const mapping = mappingById.get(e.emne_id) || {};
+            const primary = (mapping.mappings || []).find((m) => m.mapping_tier === 'primary') || (mapping.mappings || [])[0] || {};
+            return {
+              emne_id: e.emne_id,
+              title: e.title,
+              domain: primary.fagkart_kategori || null,
+              primary_hook: primary.topic_hook || null,
+              methods: e.methods || [],
+              recommended_method_ids: primary.recommended_method_ids || [],
+              canonical_thinker_ids: mapping.canonical_thinker_ids || primary.thinker_ids || [],
+              recommended_cases: primary.recommended_oslo_cases || [],
+              definition: e.definition,
+              why_it_matters: e.why_it_matters
+            };
+          });
+          const byDomain = Object.groupBy(compact, (e) => e.domain || 'unmapped');
           const report = {
             generated_from: process.env.GITHUB_SHA,
             summary: {
@@ -54,22 +60,13 @@ jobs:
               uncovered: uncovered.length,
               pensum: pensum.summary || null
             },
-            groups,
-            uncovered: uncovered.map((e) => ({
-              emne_id: e.emne_id,
-              title: e.title,
-              registry_version: e.registry_version,
-              definition: e.definition,
-              why_it_matters: e.why_it_matters,
-              key_questions: e.key_questions,
-              methods: e.methods,
-              mapping: mappingById.get(e.emne_id) || null
-            }))
+            domain_counts: Object.fromEntries(Object.entries(byDomain).map(([key, rows]) => [key, rows.length])),
+            by_domain: byDomain
           };
           fs.mkdirSync('.tmp', { recursive: true });
           fs.writeFileSync('.tmp/vitenskap-coverage-diagnosis.json', JSON.stringify(report, null, 2) + '\n');
           console.log('SUMMARY', JSON.stringify(report.summary));
-          console.log('GROUPS', JSON.stringify(report.groups));
+          console.log('DOMAIN_COUNTS', JSON.stringify(report.domain_counts));
           NODE
       - name: Persist diagnosis on repair branch
         if: github.event_name == 'push'
@@ -77,5 +74,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add .tmp/vitenskap-coverage-diagnosis.json
-          git commit -m 'Persist Vitenskap coverage diagnosis'
+          git commit -m 'Refresh compact Vitenskap coverage diagnosis'
           git push origin HEAD:${GITHUB_REF_NAME}
