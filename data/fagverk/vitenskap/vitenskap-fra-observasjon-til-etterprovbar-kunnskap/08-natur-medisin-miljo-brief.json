@@ -1,0 +1,164 @@
+{
+  "schema": "history_go_fagverk_editorial_coverage_supplement_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "vitenskap",
+  "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+  "domain_id": "natur_medisin_miljo",
+  "title": "Naturvitenskap, medisin og miljø – redaksjonell coverage brief",
+  "purpose": "Materialisere universitetsnær fulltekstdekning for hele den gjenværende canonicale primary-klyngen natur_medisin_miljo. Supplementet behandler hvordan klassifikasjon, epidemiologi, feltarbeid, prøvetaking, geologisk tid, klimaobservasjon, miljøovervåking og systemanalyse produserer og avgrenser vitenskapelig evidens. Det skal ikke duplisere Natur som organismenært, økologisk, geologisk og miljøfaglig fagverk, og heller ikke duplisere Medisin-kapittelets biomedisinske fordypning.",
+  "requiredEmneIds": [
+    "em_vit_biologi_klassifikasjon",
+    "em_vit_epidemiologi",
+    "em_vit_feltarbeid",
+    "em_vit_geologi_tid",
+    "em_vit_klima_maling",
+    "em_vit_miljokunnskap_politikk",
+    "em_vit_miljoovervaking",
+    "em_vit_okologi_system",
+    "em_vit_prover_materialer",
+    "em_vit_systemtenkning",
+    "em_vit_feltarbeid_observasjon",
+    "em_vit_medisin_helse",
+    "em_vit_miljo_okologi_system"
+  ],
+  "requiredMethodIds": [
+    "met_vit_biologihistorisk_analyse",
+    "met_vit_klassifikasjonsanalyse",
+    "met_vit_epidemiologisk_analyse",
+    "met_vit_statistisk_analyse",
+    "met_vit_feltarbeidsanalyse",
+    "met_vit_observasjonsanalyse",
+    "met_vit_geologisk_analyse",
+    "met_vit_tidsskalaanalyse",
+    "met_vit_klimaanalyse",
+    "met_vit_miljopolitisk_kunnskapsanalyse",
+    "met_vit_tillitsanalyse",
+    "met_vit_miljoanalyse",
+    "met_vit_sensoranalyse",
+    "met_vit_okologisk_analyse",
+    "met_vit_systemanalyse",
+    "met_vit_materialanalyse",
+    "met_vit_laboratorieanalyse",
+    "met_vit_kildekritisk_analyse",
+    "met_vit_evidensanalyse",
+    "met_vit_institusjonsanalyse"
+  ],
+  "requiredCriticalDistinctions": [
+    "taksonomisk navn og nomenklaturstabilitet vs hypotesen om biologisk slektskap eller artsavgrensning",
+    "artsforekomstregistrering vs representativt utvalg av et område eller en populasjon",
+    "epidemiologisk assosiasjon vs kausal effekt",
+    "statistisk signifikans vs folkehelsemessig betydning",
+    "feltobservasjon vs standardisert observasjonsdesign med kjent deteksjons- og utvalgsprosess",
+    "prøve som fysisk objekt vs prøvens dokumenterte kontekst, kjede, representativitet og laboratorietransformasjon",
+    "relativ geologisk rekkefølge vs numerisk radiometrisk alder",
+    "måleinstrumentets oppløsning vs sporbar, kvalitetskontrollert klima- eller miljøobservasjon",
+    "enkeltmåling av vær eller miljøtilstand vs tidsserie egnet for klima- eller trendanalyse",
+    "økologisk systemmodell som eksplisitt avgrensning av relasjoner vs komplett avbildning av et økosystem",
+    "systemtenkning som analyse av koblinger, feedback og skala vs påstand om at alt påvirker alt på samme styrke",
+    "medisinsk evidens som kontekstavhengig studiedesign og populasjon vs universelt evidenshierarki uten spørsmålskontekst",
+    "vitenskapelig miljø- og risikokarakterisering vs normativ eller politisk beslutning"
+  ],
+  "sourceStrategy": {
+    "minimumNewInspectableSources": 8,
+    "reuseExistingUnit1SourcesWhenClaimSpecific": true,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "noDecorativeSources": true,
+    "priority": [
+      "NCBI Taxonomy and ICZN for classification/nomenclature boundaries",
+      "GBIF occurrence-data quality guidance for sampling, identification and fitness-for-use limits",
+      "CDC Principles of Epidemiology and Field Epidemiology Manual for population inference, bias, confounding and causal interpretation",
+      "EPA field sampling and measurement quality procedures for documented sampling, quality control and procedure validation",
+      "USGS geologic-time guidance for relative and radiometric time and material-specific dating limits",
+      "WMO Instruments and Methods of Observation plus GCOS/WIGOS for standardized climate/environmental observation networks and quality control",
+      "NIST metrological traceability and Research Data Framework for measurement chains and sample/data provenance",
+      "IPCC uncertainty guidance for calibrated uncertainty communication",
+      "EPA ecological risk-assessment framework for explicit scope, endpoints, conceptual models, uncertainty and the boundary between scientific characterization and decision"
+    ]
+  },
+  "documentedNewSourceTargets": [
+    {
+      "id": "cdc-principles-epidemiology",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson1/section1.html",
+      "use": "epidemiology as systematic population study of distribution and determinants and application to health problems"
+    },
+    {
+      "id": "cdc-field-epidemiology",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/field-epi-manual/php/chapters/analyze-interpret-data.html",
+      "use": "confounding, chance, selection/information bias and interpretation of epidemiologic data"
+    },
+    {
+      "id": "usgs-geologic-time",
+      "publisher": "U.S. Geological Survey",
+      "url": "https://pubs.usgs.gov/gip/geotime/radiometric.html",
+      "use": "radiometric dating, isotope systems, material suitability and relation between relative and numerical geologic time"
+    },
+    {
+      "id": "wmo-imop",
+      "publisher": "World Meteorological Organization",
+      "url": "https://wmo.int/activities/instruments-and-methods-of-observation-programme-imop",
+      "use": "technical standards, documentation and quality control for instruments and observation methods under differing conditions"
+    },
+    {
+      "id": "wmo-gcos",
+      "publisher": "World Meteorological Organization / GCOS partners",
+      "url": "https://wmo.int/activities/global-climate-observing-system-gcos",
+      "use": "systematic long-term observations across atmosphere, land and ocean and Essential Climate Variables"
+    },
+    {
+      "id": "epa-field-sampling",
+      "publisher": "U.S. Environmental Protection Agency",
+      "url": "https://www.epa.gov/quality/field-sampling-and-measurement-procedures-and-procedure-validation",
+      "use": "field sampling and measurement procedures, validation and quality-system context"
+    },
+    {
+      "id": "gbif-occurrence-data-quality",
+      "publisher": "Global Biodiversity Information Facility",
+      "url": "https://docs.gbif.org/course-introduction-to-gbif/en/handling-data-quality.html",
+      "use": "sampling gaps, taxonomic misidentification and fitness-for-use limits in biodiversity occurrence data"
+    },
+    {
+      "id": "epa-ecological-risk",
+      "publisher": "U.S. Environmental Protection Agency",
+      "url": "https://www.epa.gov/risk/conducting-ecological-risk-assessment",
+      "use": "problem formulation, assessment endpoints, conceptual models, analysis plans, uncertainty and transparent separation of scientific characterization from management decisions"
+    }
+  ],
+  "qualityContract": {
+    "editedSectionCount": 7,
+    "substantiveParagraphCount": 21,
+    "explicitCoverageTreatmentCount": 13,
+    "newClaimCount": 13,
+    "minimumNewInspectableSourceCount": 8,
+    "minimumMethodLimitsPerSection": 2,
+    "workedExampleCount": 2,
+    "applicationTaskCount": 3,
+    "misconceptionCount": 5,
+    "selfCheckCount": 6,
+    "paragraphClaimTraceRequired": true,
+    "rootAndRegistryOwnershipRequired": true,
+    "holisticOwnedCountAfterMaterialization": 102,
+    "holisticUncoveredCountAfterMaterialization": 15,
+    "subjectCompleteMustRemainFalse": true
+  },
+  "neighborBoundaries": [
+    "Natur eier organismenær biologi, artskunnskap, økologi, geologi, klima/miljø som faglig objekt og stedsspesifikk naturkunnskap. Batch 5 eier hvordan slike kunnskapsobjekter klassifiseres, observeres, samples, måles og infereres vitenskapelig.",
+    "Medisin-kapittelet eier den selvstendige biomedisinske evidensfordypningen. Batch 5 bruker epidemiologi og medisin/helse til å forklare populasjonsdesign, bias, overførbarhet og evidenskontekst uten å bygge et nytt behandlings- eller klinisk pensum.",
+    "Batch 4 eier digital data/proveniens og sensorer som generell teknisk mediering. Batch 5 kan bruke sensorer i klima- og miljøovervåking, men skal fokusere på observasjonsdesign, kalibrering, nettverk, tidsserier og representativitet.",
+    "Samfunn/makt/etikk-supplementet eier generell ekspertmakt, risiko- og styringsproblematikk. Batch 5 behandler bare skillet mellom vitenskapelig miljøkarakterisering og etterfølgende politiske/normative valg."
+  ],
+  "rejectedShortcuts": [
+    "Å gi de 13 emne-ID-ene chapter ownership uten egen faglig prosa og claimspor.",
+    "Å gjøre artsnavn eller en databaseklassifikasjon til bevis for én bestemt evolusjonær eller økologisk forklaring.",
+    "Å gjøre et stort artsforekomstdatasett til et representativt survey uten å vurdere sampling bias og identifikasjonskvalitet.",
+    "Å tolke epidemiologisk assosiasjon som kausalitet uten vurdering av design, confounding, bias og alternative forklaringer.",
+    "Å bruke én værstasjon eller kort måleserie som direkte klimatrend.",
+    "Å gjøre teknisk sensorpresisjon til miljømessig eller klimatologisk validitet uten kalibrering, nettverksdesign og datakvalitet.",
+    "Å bruke systemtenkning som vag påstand om at alt henger sammen uten eksplisitt systemgrense, variable og relasjoner.",
+    "Å la vitenskapelig risikokarakterisering skjule normative prioriteringer eller beslutningsmyndighet.",
+    "Å duplisere Natur-fagverkets organismenære, økologiske, geologiske eller miljøfaglige substans.",
+    "Å kalle Vitenskap complete etter batch 5."
+  ]
+}
