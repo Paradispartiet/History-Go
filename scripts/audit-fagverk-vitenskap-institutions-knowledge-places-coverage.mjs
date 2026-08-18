@@ -1,0 +1,230 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
+import { auditVitenskapHolisticUniversityBreadthCompletion } from './audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const P = Object.freeze({
+  readiness: 'data/fag/vitenskap/vitenskap_university_readiness_v1.json',
+  emners: 'data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json',
+  mappings: 'data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json',
+  chapter: 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap.json',
+  module: 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json',
+  brief: 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder-brief.json',
+  claims: 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json',
+  registry: 'data/fagverk/fagverk_registry.json',
+  report: 'reports/fagverk/vitenskap-institutions-knowledge-places-coverage-audit.json'
+});
+
+const EXPECTED_EMNES = [
+  'em_vit_arkiv_data_lagring',
+  'em_vit_byens_vitenskapssteder',
+  'em_vit_datainfrastruktur',
+  'em_vit_forskning_industri',
+  'em_vit_innovasjon_teknologi',
+  'em_vit_institusjonell_autoritet',
+  'em_vit_klinisk_evidens',
+  'em_vit_kunnskapsarv',
+  'em_vit_kunnskapsgeografi',
+  'em_vit_medisin_forskning',
+  'em_vit_observasjon_maling',
+  'em_vit_byen_som_kunnskapskart',
+  'em_vit_kjemi_laboratorium',
+  'em_vit_vitenskapshistorie_personer'
+];
+const EXPECTED_NEW_CLAIMS = Array.from({ length: 14 }, (_, i) => `vit1-${33 + i}`);
+const EXPECTED_NEW_SOURCES = [
+  'vit1-19-nasem-integrity',
+  'vit1-20-rcn-research-infrastructure',
+  'vit1-21-oecd-oslo-innovation',
+  'vit1-22-nih-clinical-studies',
+  'vit1-23-nih-clinical-trial-definition',
+  'vit1-24-nb-digital-preservation',
+  'vit1-25-nb-mandate',
+  'vit1-26-nb-research',
+  'vit1-27-unesco-open-science-infrastructure'
+];
+const EXPECTED_CLAIM_USAGE = Object.freeze({
+  'vit1-33': ['vit1-institusjoner-1','vit1-institusjoner-4','vit1-institusjoner-6','vit1-institusjoner-7'],
+  'vit1-34': ['vit1-institusjoner-1'],
+  'vit1-35': ['vit1-institusjoner-2','vit1-institusjoner-5','vit1-institusjoner-6','vit1-institusjoner-7'],
+  'vit1-36': ['vit1-institusjoner-5'],
+  'vit1-37': ['vit1-institusjoner-4','vit1-institusjoner-5'],
+  'vit1-38': ['vit1-institusjoner-4','vit1-institusjoner-7'],
+  'vit1-39': ['vit1-institusjoner-3'],
+  'vit1-40': ['vit1-institusjoner-3'],
+  'vit1-41': ['vit1-institusjoner-6'],
+  'vit1-42': ['vit1-institusjoner-6'],
+  'vit1-43': ['vit1-institusjoner-1','vit1-institusjoner-6'],
+  'vit1-44': ['vit1-institusjoner-7'],
+  'vit1-45': ['vit1-institusjoner-4'],
+  'vit1-46': ['vit1-institusjoner-5']
+});
+
+const abs = (rel) => path.join(ROOT, rel);
+const json = (rel) => JSON.parse(fs.readFileSync(abs(rel), 'utf8'));
+const assert = (condition, message) => { if (!condition) throw new Error(message); };
+const sorted = (values) => [...values].sort();
+const sameSet = (a, b) => Array.isArray(a) && Array.isArray(b) && a.length === b.length && new Set(a).size === a.length && isDeepStrictEqual(sorted(a), sorted(b));
+const flatten = (value) => Array.isArray(value) ? value.flat(Infinity).filter((x) => typeof x === 'string') : [];
+
+export function auditVitenskapInstitutionsKnowledgePlacesCoverage({ writeReport = false, checkReport = true } = {}) {
+  const readiness = json(P.readiness);
+  const emners = json(P.emners);
+  const mappings = json(P.mappings);
+  const chapter = json(P.chapter);
+  const module = json(P.module);
+  const brief = json(P.brief);
+  const claimsDocument = json(P.claims);
+  const registry = json(P.registry);
+  const registryChapter = registry.subjects?.vitenskap?.chapters?.find((row) => row.id === chapter.chapter_id);
+  const canonicalIds = new Set(emners.map((row) => row.emne_id));
+  const mappingById = new Map(mappings.map((row) => [row.emne_id, row]));
+
+  assert(readiness.subject_id === 'vitenskap', 'Coverage audit fikk feil readiness subject');
+  assert(readiness.complete_ready === false, 'Institusjonsbatchen kan ikke gjøre Vitenskap complete');
+  assert(readiness.status === 'breadth_chapters_materialized_final_audit_pending', 'Institusjonsbatchen må forbli i final-audit-pending fase');
+  assert(readiness.next_gate === 'final_holistic_university_breadth_completion_audit', 'Institusjonsbatchen må bevare holistic next gate');
+  assert(module.schema === 'history_go_fagverk_editorial_coverage_supplement_v1', 'Institusjonssupplement har feil schema');
+  assert(module.chapter_id === chapter.chapter_id && module.domain_id === 'institusjoner_laboratorier_kunnskapssteder', 'Institusjonssupplement har feil eier eller domene');
+  assert(brief.schema === 'history_go_fagverk_editorial_coverage_supplement_brief_v1', 'Institusjonsbrief har feil schema');
+  assert(sameSet(brief.requiredEmneIds, EXPECTED_EMNES), 'Institusjonsbrief har feil canonical emnesett');
+  assert(brief.qualityContract?.holisticOwnedCountAfterMaterialization === 63, 'Brief må låse holistic owned til 63 etter batch 2');
+  assert(brief.qualityContract?.holisticUncoveredCountAfterMaterialization === 54, 'Brief må låse holistic blockers til 54 etter batch 2');
+
+  for (const id of EXPECTED_EMNES) {
+    assert(canonicalIds.has(id), `${id} finnes ikke i canonical inventory`);
+    const mapping = mappingById.get(id);
+    const primary = mapping?.mappings?.find((row) => row.mapping_tier === 'primary');
+    assert(primary?.fagkart_kategori === 'institusjoner_laboratorier_kunnskapssteder', `${id} er ikke primary-mapped til institusjoner_laboratorier_kunnskapssteder`);
+  }
+
+  const treatments = module.coverageTreatments || [];
+  assert(treatments.length === 14 && sameSet(treatments.map((row) => row.emne_id), EXPECTED_EMNES), 'Supplement må ha nøyaktig én treatment per canonical batch-emne');
+  assert(treatments.every((row) => typeof row.focus === 'string' && row.focus.length >= 70), 'Coverage treatment mangler substansielt faglig fokus');
+  const sections = module.sections || [];
+  assert(sections.length === 7, 'Institusjonssupplement skal ha syv redigerte seksjoner');
+  assert(new Set(sections.map((row) => row.id)).size === 7, 'Institusjonssupplement har dupliserte seksjons-ID-er');
+  const sectionById = new Map(sections.map((row) => [row.id, row]));
+  for (const treatment of treatments) {
+    const section = sectionById.get(treatment.section_id);
+    assert(section, `${treatment.emne_id} peker til ukjent treatment section`);
+    assert(section.emne_ids?.includes(treatment.emne_id), `${treatment.emne_id} er ikke eksplisitt behandlet i angitt seksjon`);
+  }
+  assert(sameSet(sections.flatMap((row) => row.emne_ids || []), EXPECTED_EMNES), 'Seksjonenes emne-eierskap matcher ikke institusjonsbatchen');
+  assert(sections.every((row) => row.methodLimits?.length >= 2), 'Hver institusjonsseksjon må lære minst to metodebegrensninger');
+  const paragraphs = sections.flatMap((row) => row.paragraphs || []);
+  assert(paragraphs.length === 21, 'Institusjonssupplement skal ha 21 redigerte fagavsnitt');
+  assert(paragraphs.every((text) => typeof text === 'string' && text.length >= 300), 'Alle institusjonsavsnitt må være substansielle');
+  assert(new Set(paragraphs).size === paragraphs.length, 'Institusjonssupplementet gjenbruker identiske avsnitt');
+  assert(sections.every((row) => row.paragraphClaimIds?.length === row.paragraphs?.length), 'Hvert institusjonsavsnitt må ha claim-sporing');
+
+  assert(module.qualityGuard?.noInstitutionalPrestigeTruthShortcut === true, 'Supplementet må blokkere prestige-as-truth shortcut');
+  assert(module.qualityGuard?.noUniversalClinicalDesignHierarchy === true, 'Supplementet må blokkere universell klinisk designstige');
+  assert(module.qualityGuard?.noStorageEqualsPreservationShortcut === true, 'Supplementet må skille lagring fra bevaring');
+  assert(module.qualityGuard?.noProximityEqualsCollaborationShortcut === true, 'Supplementet må skille nærhet fra samarbeid');
+  assert(module.qualityGuard?.technologyRemainsNested === true, 'Supplementet må bevare nested Teknologi');
+  assert(module.qualityGuard?.doesNotClaimSubjectComplete === true, 'Supplementet må blokkere premature complete');
+
+  const sourceById = new Map((claimsDocument.sources || []).map((row) => [row.id, row]));
+  const claimById = new Map((claimsDocument.claims || []).map((row) => [row.id, row]));
+  for (const id of EXPECTED_NEW_SOURCES) {
+    const source = sourceById.get(id);
+    assert(source, `Mangler ny institusjonskilde ${id}`);
+    assert(/^https:\/\//.test(source.url || '') && source.publisher && source.source_location, `${id} er ikke inspiserbar`);
+  }
+  const refsBySection = new Map(sections.map((section) => [section.id, new Set([...flatten(section.paragraphClaimIds), ...flatten(section.keyPointClaimIds)])]));
+  for (const id of EXPECTED_NEW_CLAIMS) {
+    const claim = claimById.get(id);
+    assert(claim?.status === 'verified' && claim.source_ids?.length, `${id} er ikke verified/kildekoblet`);
+    assert(claim.source_ids.every((sourceId) => sourceById.has(sourceId)), `${id} peker til ukjent kilde`);
+    const actualUsage = [...refsBySection.entries()].filter(([, refs]) => refs.has(id)).map(([sectionId]) => sectionId);
+    assert(isDeepStrictEqual(sorted(actualUsage), sorted(EXPECTED_CLAIM_USAGE[id])), `${id} har feil faktisk section-usage`);
+    assert(isDeepStrictEqual(sorted(claim.used_in || []), sorted(EXPECTED_CLAIM_USAGE[id])), `${id} har stale used_in`);
+  }
+  for (const section of sections) assert([...refsBySection.get(section.id)].every((id) => claimById.has(id)), `${section.id} peker til ukjent claim`);
+
+  assert(module.workedExamples?.length === 2 && module.workedExamples.every((row) => row.analysis?.length >= 5), 'Supplementet skal ha to substansielle worked examples');
+  assert(module.applicationTasks?.length === 3 && module.applicationTasks.every((row) => row.prompts?.length >= 4), 'Supplementet skal ha tre anvendelsesoppgaver');
+  assert(module.misconceptions?.length === 5 && module.misconceptions.every((row) => row.claim && row.correction), 'Supplementet skal ha fem eksplisitte misoppfatninger');
+  assert(module.selfCheck?.length === 6 && module.selfCheck.every((row) => row.question && row.answer), 'Supplementet skal ha seks self-checks');
+
+  assert(chapter.moduleFiles?.includes(P.module), 'Chapter root er ikke koblet til institusjonssupplementet');
+  assert(EXPECTED_EMNES.every((id) => chapter.emne_ids?.includes(id)), 'Chapter root eier ikke hele institusjonsbatchen');
+  const supplementMeta = chapter.editorialCoverageSupplements?.find((row) => row.id === 'institusjoner_laboratorier_kunnskapssteder');
+  assert(supplementMeta?.moduleFile === P.module && supplementMeta?.briefFile === P.brief && sameSet(supplementMeta.emne_ids, EXPECTED_EMNES), 'Chapter root mangler eksplisitt institusjonssupplementmetadata');
+  assert(supplementMeta?.explicitFulltextTreatment === true && supplementMeta?.claimTraceRequired === true, 'Chapter root mangler fulltext/claim-sporingsflagg for batch 2');
+  assert(registryChapter && sameSet(registryChapter.emne_ids, chapter.emne_ids), 'Registry/root emne-sett mismatch etter institusjonsmaterialisering');
+  const registrySupplement = registryChapter.editorialCoverageSupplements?.find((row) => row.id === 'institusjoner_laboratorier_kunnskapssteder');
+  assert(registrySupplement?.explicitFulltextTreatment === true && sameSet(registrySupplement.emne_ids, EXPECTED_EMNES), 'Registry mangler eksplisitt fulltext-treatment metadata for batch 2');
+
+  const holistic = auditVitenskapHolisticUniversityBreadthCompletion({ writeReport: false, checkReport: false });
+  assert(holistic.subject.completeReady === false && holistic.status === 'blocked', 'Holistic audit må fortsatt blokkere completion etter batch 2');
+  assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount >= 63, 'Holistic owned-count kan ikke regressere under 63 etter institusjonsbatchen');
+  assert(holistic.canonicalInventory.explicitUncoveredEmneCount <= 54, 'Holistic uncovered-count kan ikke regressere over 54 etter institusjonsbatchen');
+  const coverageBlocker = holistic.blockers.find((row) => row.id === 'canonical_emne_full_editorial_treatment_gap');
+  assert(coverageBlocker?.count <= 54, 'Holistic coverage blocker kan ikke regressere over 54 etter institusjonsbatchen');
+  assert(holistic.qualityReview.status === 'deferred_until_material_blockers_close', 'Holistic quality review skal fortsatt være deferred');
+  assert(holistic.technology.passes === true && holistic.technology.topLevelSubject === false, 'Nested Teknologi må forbli grønn og ikke-top-level');
+
+  const report = {
+    schema: 'history_go_fagverk_vitenskap_institutions_knowledge_places_coverage_audit_v1',
+    version: '1.0.0',
+    status: 'pass',
+    subject: 'vitenskap',
+    chapterId: chapter.chapter_id,
+    domainId: module.domain_id,
+    summary: {
+      canonicalBatchEmneCount: EXPECTED_EMNES.length,
+      coverageTreatmentCount: treatments.length,
+      sectionCount: sections.length,
+      paragraphCount: paragraphs.length,
+      newSourceCount: EXPECTED_NEW_SOURCES.length,
+      newClaimCount: EXPECTED_NEW_CLAIMS.length,
+      workedExampleCount: module.workedExamples.length,
+      applicationTaskCount: module.applicationTasks.length,
+      misconceptionCount: module.misconceptions.length,
+      selfCheckCount: module.selfCheck.length,
+      holisticOwnedBeforeBatch: 49,
+      holisticOwnedAfterBatch: 63,
+      holisticUncoveredBeforeBatch: 68,
+      holisticUncoveredAfterBatch: 54
+    },
+    gates: {
+      canonicalPrimaryMappingResolved: true,
+      everyEmneHasExplicitTreatment: true,
+      substantiveParagraphCoverage: true,
+      paragraphClaimsResolve: true,
+      newSourcesInspectable: true,
+      methodLimitsTaught: true,
+      institutionalAuthorityNotTruthShortcut: true,
+      clinicalDesignNotUniversalHierarchy: true,
+      preservationNotStorageShortcut: true,
+      knowledgeGeographyNotProximityShortcut: true,
+      rootAndRegistryOwnershipMatch: true,
+      historicalUnit1ExtendedMonotonically: true,
+      holisticCoverageReducedByExactly14: true,
+      technologyRemainsNested: true,
+      subjectCompletionStillBlocked: true
+    }
+  };
+  if (writeReport) {
+    fs.mkdirSync(path.dirname(abs(P.report)), { recursive: true });
+    fs.writeFileSync(abs(P.report), `${JSON.stringify(report, null, 2)}\n`);
+  }
+  if (checkReport) assert(isDeepStrictEqual(json(P.report), report), `${P.report} er utdatert`);
+  return report;
+}
+
+if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
+  const args = new Set(process.argv.slice(2));
+  try {
+    const report = auditVitenskapInstitutionsKnowledgePlacesCoverage({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
+    console.log(`Vitenskap institutions coverage ${report.status}: ${report.summary.canonicalBatchEmneCount} emner; holistic ${report.summary.holisticOwnedAfterBatch}/117 owned, ${report.summary.holisticUncoveredAfterBatch} blockers.`);
+  } catch (error) {
+    console.error(error.stack || error.message);
+    process.exitCode = 1;
+  }
+}

@@ -1,21 +1,169 @@
 {
   "version": 2,
   "beskrivelse": "Manifest for Civication Life Story System. Aktive fortellingspakker byttes her, aldri ved å døpe om innholdsfiler. Opptjente jobbroller må være bundet til canonical Badge-tier; systemroller merkes eksplisitt. Content-only-pakker kan bevares uten Badge-binding, men er ikke kilde for jobbtilbud før de får en bevisst canonical plassering.",
-  "shared": {"phaseDefinitions": "data/Civication/lifestory/shared/phaseDefinitions.json"},
-  "life": {"threads": "data/Civication/lifestory/life/threads.json", "scenes": "data/Civication/lifestory/life/scenes.json"},
+  "shared": {
+    "phaseDefinitions": "data/Civication/lifestory/shared/phaseDefinitions.json"
+  },
+  "life": {
+    "threads": "data/Civication/lifestory/life/threads.json",
+    "scenes": "data/Civication/lifestory/life/scenes.json"
+  },
   "roles": {
-    "arealplanlegger": {"role":"data/Civication/lifestory/roles/arealplanlegger/role.json","threads":"data/Civication/lifestory/roles/arealplanlegger/threads.json","scenes":"data/Civication/lifestory/roles/arealplanlegger/scenes.json","role_scope":"by_radgiver_plan","badge_id":"by","badge_titles":["Rådgiver (byutvikling)","Seniorrådgiver (byutvikling)","Arealplanlegger","Byplanlegger"]},
-    "renholder": {"role":"data/Civication/lifestory/roles/renholder/role.json","threads":"data/Civication/lifestory/roles/renholder/threads.json","scenes":"data/Civication/lifestory/roles/renholder/scenes.json","role_scope":"renholder","badge_id":"naeringsliv","badge_titles":["Renholder"]},
-    "ekspeditor": {"role":"data/Civication/lifestory/roles/ekspeditor/role.json","threads":"data/Civication/lifestory/roles/ekspeditor/threads.json","scenes":"data/Civication/lifestory/roles/ekspeditor/scenes.json","role_scope":"ekspeditor","badge_id":"naeringsliv","badge_titles":["Ekspeditør / butikkmedarbeider"]},
-    "psykologi_miljoarbeid": {"role":"data/Civication/lifestory/roles/psykologi_miljoarbeid/role.json","threads":"data/Civication/lifestory/roles/psykologi_miljoarbeid/threads.json","scenes":"data/Civication/lifestory/roles/psykologi_miljoarbeid/scenes.json","role_scope":"psykologi_miljoarbeid","badge_id":"psykologi","badge_titles":["Miljøassistent","Sosialassistent","Aktivitetsleder (omsorgsarbeid)","Miljøarbeider"]},
-    "psykologi_arbeids_og_karriereveiledning": {"role":"data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/role.json","threads":"data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/threads.json","scenes":"data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/scenes.json","role_scope":"psykologi_arbeids_og_karriereveiledning","badge_id":"psykologi","badge_titles":["Veileder","Rådgiver","Seniorrådgiver"]},
-    "psykolog": {"role":"data/Civication/lifestory/roles/psykolog/role.json","threads":"data/Civication/lifestory/roles/psykolog/threads.json","scenes":"data/Civication/lifestory/roles/psykolog/scenes.json","role_scope":"psykolog","badge_id":"psykologi","badge_titles":["Psykolog"]},
-    "spesialistpsykolog": {"role":"data/Civication/lifestory/roles/spesialistpsykolog/role.json","threads":"data/Civication/lifestory/roles/spesialistpsykolog/threads.json","scenes":"data/Civication/lifestory/roles/spesialistpsykolog/scenes.json","role_scope":"spesialistpsykolog","badge_id":"psykologi","badge_titles":["Spesialistpsykolog"]},
-    "fagansvarlig": {"role":"data/Civication/lifestory/roles/fagansvarlig/role.json","threads":"data/Civication/lifestory/roles/fagansvarlig/threads.json","scenes":"data/Civication/lifestory/roles/fagansvarlig/scenes.json","role_scope":"fagansvarlig","badge_id":"psykologi","badge_titles":["Fagansvarlig"]},
-    "klinikkleder": {"role":"data/Civication/lifestory/roles/klinikkleder/role.json","threads":"data/Civication/lifestory/roles/klinikkleder/threads.json","scenes":"data/Civication/lifestory/roles/klinikkleder/scenes.json","role_scope":"klinikkleder","badge_id":"psykologi","badge_titles":["Klinikkleder"]},
-    "forsker_psykologi": {"role":"data/Civication/lifestory/roles/forsker_psykologi/role.json","threads":"data/Civication/lifestory/roles/forsker_psykologi/threads.json","scenes":"data/Civication/lifestory/roles/forsker_psykologi/scenes.json","role_scope":"forsker_psykologi","badge_id":"psykologi","badge_titles":["Forsker (psykologi)"]},
-    "professor_psykologi": {"role":"data/Civication/lifestory/roles/professor_psykologi/role.json","threads":"data/Civication/lifestory/roles/professor_psykologi/threads.json","scenes":"data/Civication/lifestory/roles/professor_psykologi/scenes.json","role_scope":"professor_psykologi","badge_id":"psykologi","badge_titles":["Professor (psykologi)"]},
-    "barnehageassistent": {"role":"data/Civication/lifestory/roles/barnehageassistent/role.json","threads":"data/Civication/lifestory/roles/barnehageassistent/threads.json","scenes":"data/Civication/lifestory/roles/barnehageassistent/scenes.json","role_scope":"barnehageassistent","content_only":true,"legacy_namespace":"sosial_laering","note":"Beholdt som ferdig Life Story-innhold, men er ikke en opptjent jobbrolle før den bindes til en bevisst canonical Badge-tier."},
-    "arbeidsledig": {"role":"data/Civication/lifestory/roles/arbeidsledig/role.json","threads":"data/Civication/lifestory/roles/arbeidsledig/threads.json","scenes":"data/Civication/lifestory/roles/arbeidsledig/scenes.json","system_role":true}
+    "arealplanlegger": {
+      "role": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+      "threads": "data/Civication/lifestory/roles/arealplanlegger/threads.json",
+      "scenes": "data/Civication/lifestory/roles/arealplanlegger/scenes.json",
+      "role_scope": "by_radgiver_plan",
+      "badge_id": "by",
+      "badge_titles": [
+        "Rådgiver (byutvikling)",
+        "Seniorrådgiver (byutvikling)",
+        "Arealplanlegger",
+        "Byplanlegger"
+      ]
+    },
+    "renholder": {
+      "role": "data/Civication/lifestory/roles/renholder/role.json",
+      "threads": "data/Civication/lifestory/roles/renholder/threads.json",
+      "scenes": "data/Civication/lifestory/roles/renholder/scenes.json",
+      "role_scope": "renholder",
+      "badge_id": "naeringsliv",
+      "badge_titles": [
+        "Renholder"
+      ]
+    },
+    "ekspeditor": {
+      "role": "data/Civication/lifestory/roles/ekspeditor/role.json",
+      "threads": "data/Civication/lifestory/roles/ekspeditor/threads.json",
+      "scenes": "data/Civication/lifestory/roles/ekspeditor/scenes.json",
+      "role_scope": "ekspeditor",
+      "badge_id": "naeringsliv",
+      "badge_titles": [
+        "Ekspeditør / butikkmedarbeider"
+      ]
+    },
+    "psykologi_miljoarbeid": {
+      "role": "data/Civication/lifestory/roles/psykologi_miljoarbeid/role.json",
+      "threads": "data/Civication/lifestory/roles/psykologi_miljoarbeid/threads.json",
+      "scenes": "data/Civication/lifestory/roles/psykologi_miljoarbeid/scenes.json",
+      "role_scope": "psykologi_miljoarbeid",
+      "badge_id": "psykologi",
+      "badge_titles": [
+        "Miljøassistent",
+        "Sosialassistent",
+        "Aktivitetsleder (omsorgsarbeid)",
+        "Miljøarbeider"
+      ]
+    },
+    "psykologi_arbeids_og_karriereveiledning": {
+      "role": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/role.json",
+      "threads": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/threads.json",
+      "scenes": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/scenes.json",
+      "role_scope": "psykologi_arbeids_og_karriereveiledning",
+      "badge_id": "psykologi",
+      "badge_titles": [
+        "Veileder",
+        "Rådgiver",
+        "Seniorrådgiver"
+      ]
+    },
+    "psykolog": {
+      "role": "data/Civication/lifestory/roles/psykolog/role.json",
+      "threads": "data/Civication/lifestory/roles/psykolog/threads.json",
+      "scenes": "data/Civication/lifestory/roles/psykolog/scenes.json",
+      "role_scope": "psykolog",
+      "badge_id": "psykologi",
+      "badge_titles": [
+        "Psykolog"
+      ]
+    },
+    "spesialistpsykolog": {
+      "role": "data/Civication/lifestory/roles/spesialistpsykolog/role.json",
+      "threads": "data/Civication/lifestory/roles/spesialistpsykolog/threads.json",
+      "scenes": "data/Civication/lifestory/roles/spesialistpsykolog/scenes.json",
+      "role_scope": "spesialistpsykolog",
+      "badge_id": "psykologi",
+      "badge_titles": [
+        "Spesialistpsykolog"
+      ]
+    },
+    "fagansvarlig": {
+      "role": "data/Civication/lifestory/roles/fagansvarlig/role.json",
+      "threads": "data/Civication/lifestory/roles/fagansvarlig/threads.json",
+      "scenes": "data/Civication/lifestory/roles/fagansvarlig/scenes.json",
+      "role_scope": "fagansvarlig",
+      "badge_id": "psykologi",
+      "badge_titles": [
+        "Fagansvarlig"
+      ]
+    },
+    "klinikkleder": {
+      "role": "data/Civication/lifestory/roles/klinikkleder/role.json",
+      "threads": "data/Civication/lifestory/roles/klinikkleder/threads.json",
+      "scenes": "data/Civication/lifestory/roles/klinikkleder/scenes.json",
+      "role_scope": "klinikkleder",
+      "badge_id": "psykologi",
+      "badge_titles": [
+        "Klinikkleder"
+      ]
+    },
+    "forsker_psykologi": {
+      "role": "data/Civication/lifestory/roles/forsker_psykologi/role.json",
+      "threads": "data/Civication/lifestory/roles/forsker_psykologi/threads.json",
+      "scenes": "data/Civication/lifestory/roles/forsker_psykologi/scenes.json",
+      "role_scope": "forsker_psykologi",
+      "badge_id": "psykologi",
+      "badge_titles": [
+        "Forsker (psykologi)"
+      ]
+    },
+    "professor_psykologi": {
+      "role": "data/Civication/lifestory/roles/professor_psykologi/role.json",
+      "threads": "data/Civication/lifestory/roles/professor_psykologi/threads.json",
+      "scenes": "data/Civication/lifestory/roles/professor_psykologi/scenes.json",
+      "role_scope": "professor_psykologi",
+      "badge_id": "psykologi",
+      "badge_titles": [
+        "Professor (psykologi)"
+      ]
+    },
+    "barnehageassistent": {
+      "role": "data/Civication/lifestory/roles/barnehageassistent/role.json",
+      "threads": "data/Civication/lifestory/roles/barnehageassistent/threads.json",
+      "scenes": "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
+      "role_scope": "barnehageassistent",
+      "content_only": true,
+      "legacy_namespace": "sosial_laering",
+      "note": "Beholdt som ferdig Life Story-innhold, men er ikke en opptjent jobbrolle før den bindes til en bevisst canonical Badge-tier."
+    },
+    "arbeidsledig": {
+      "role": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+      "threads": "data/Civication/lifestory/roles/arbeidsledig/threads.json",
+      "scenes": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+      "system_role": true
+    },
+    "controller": {
+      "role": "data/Civication/lifestory/roles/controller/role.json",
+      "threads": "data/Civication/lifestory/roles/controller/threads.json",
+      "scenes": "data/Civication/lifestory/roles/controller/scenes.json",
+      "role_scope": "controller",
+      "badge_id": "naeringsliv",
+      "badge_titles": [
+        "Controller",
+        "Finansanalytiker",
+        "Økonomi- og finanssjef",
+        "Finansdirektør"
+      ]
+    },
+    "sport_utover": {
+      "role": "data/Civication/lifestory/roles/sport_utover/role.json",
+      "threads": "data/Civication/lifestory/roles/sport_utover/threads.json",
+      "scenes": "data/Civication/lifestory/roles/sport_utover/scenes.json",
+      "role_scope": "sport_utover",
+      "badge_id": "sport",
+      "badge_titles": [
+        "Profesjonell utøver"
+      ]
+    }
   }
 }

@@ -153,10 +153,10 @@ export function auditVitenskapMethodsModelsCoverage({ writeReport = false, check
 
   const holistic = auditVitenskapHolisticUniversityBreadthCompletion({ writeReport: false, checkReport: false });
   assert(holistic.subject.completeReady === false && holistic.status === 'blocked', 'Holistic audit må fortsatt blokkere completion etter batch 1');
-  assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount === 49, 'Holistic owned-count skal være 49 etter 17-emnersbatchen');
-  assert(holistic.canonicalInventory.explicitUncoveredEmneCount === 68, 'Holistic uncovered-count skal være 68 etter 17-emnersbatchen');
+  assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount >= 49, 'Holistic owned-count kan ikke regressere under 49 etter 17-emnersbatchen');
+  assert(holistic.canonicalInventory.explicitUncoveredEmneCount <= 68, 'Holistic uncovered-count kan ikke regressere over 68 etter 17-emnersbatchen');
   const coverageBlocker = holistic.blockers.find((row) => row.id === 'canonical_emne_full_editorial_treatment_gap');
-  assert(coverageBlocker?.count === 68, 'Holistic coverage blocker skal reduseres til 68');
+  assert(coverageBlocker?.count <= 68, 'Holistic coverage blocker kan ikke regressere over 68 etter batch 1');
   assert(holistic.qualityReview.status === 'deferred_until_material_blockers_close', 'Holistic quality review skal fortsatt være deferred');
 
   const report = {
@@ -178,9 +178,9 @@ export function auditVitenskapMethodsModelsCoverage({ writeReport = false, check
       misconceptionCount: module.misconceptions.length,
       selfCheckCount: module.selfCheck.length,
       holisticOwnedBeforeBatch: 32,
-      holisticOwnedAfterBatch: holistic.canonicalInventory.explicitChapterOwnedEmneCount,
+      holisticOwnedAfterBatch: 49,
       holisticUncoveredBeforeBatch: 85,
-      holisticUncoveredAfterBatch: holistic.canonicalInventory.explicitUncoveredEmneCount
+      holisticUncoveredAfterBatch: 68
     },
     gates: {
       canonicalPrimaryMappingResolved: true,

@@ -1,0 +1,119 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_utover",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "konkurransedag_og_reise",
+      "description": "Hendelser der logistikk og konkurranse endrer arbeidsdagen.",
+      "mails": [
+        {
+          "id": "sport_utover_event_001",
+          "mail_type": "event",
+          "mail_family": "konkurransedag_og_reise",
+          "role_scope": "sport_utover",
+          "planned_only": true,
+          "from": "lagkontakt_samir",
+          "place_id": "sport_reise",
+          "subject": "Forsinket reise før konkurranse",
+          "summary": "Reisen blir forsinket og dere ankommer senere enn restitusjonsplanen forutsatte. Mat, søvn og oppvarming må nå prioriteres på nytt i stedet for å gjennomføres som om logistikken var normal. Profesjonalitet testes i justering, ikke i å late som planen fortsatt er intakt.",
+          "situation": [
+            "Reisen blir forsinket og dere ankommer senere enn restitusjonsplanen forutsatte.",
+            "Mat, søvn og oppvarming må nå prioriteres på nytt i stedet for å gjennomføres som om logistikken var normal.",
+            "Profesjonalitet testes i justering, ikke i å late som planen fortsatt er intakt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Juster belastning og forberedelse sammen med støtteapparatet.",
+              "reply": "Juster belastning og forberedelse sammen med støtteapparatet.",
+              "effects": {
+                "training_quality": 2,
+                "team_trust": 1,
+                "future_risk": -1,
+                "self_worth": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_event_001_responsible"
+                ]
+              },
+              "feedback": "Valget gjør ansvar, usikkerhet og rollegrense tydeligere for de andre."
+            },
+            {
+              "id": "B",
+              "label": "Hold opprinnelig plan for å vise at ingenting påvirker deg.",
+              "reply": "Hold opprinnelig plan for å vise at ingenting påvirker deg.",
+              "effects": {
+                "training_quality": -1,
+                "team_trust": -1,
+                "future_risk": 2,
+                "self_worth": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_event_001_risk"
+                ]
+              },
+              "feedback": "Valget løser presset raskere, men gjør den senere kostnaden mindre synlig."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_event_002",
+          "mail_type": "event",
+          "mail_family": "konkurransedag_og_reise",
+          "role_scope": "sport_utover",
+          "planned_only": true,
+          "from": "trener_maja",
+          "place_id": "sport_konkurransearena",
+          "subject": "Uventet plass i startoppstillingen",
+          "summary": "En lagkamerat blir utilgjengelig og du får større rolle med kort varsel. Muligheten du ønsket deg kommer uten den perfekte forberedelsen du hadde forestilt deg. Du må bruke ambisjonen uten å gjøre den nye statusen til krav om å overprestere.",
+          "situation": [
+            "En lagkamerat blir utilgjengelig og du får større rolle med kort varsel.",
+            "Muligheten du ønsket deg kommer uten den perfekte forberedelsen du hadde forestilt deg.",
+            "Du må bruke ambisjonen uten å gjøre den nye statusen til krav om å overprestere."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Forankre deg i oppgaver, kropp og lagplan før start.",
+              "reply": "Forankre deg i oppgaver, kropp og lagplan før start.",
+              "effects": {
+                "training_quality": 2,
+                "team_trust": 1,
+                "future_risk": -1,
+                "self_worth": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_event_002_responsible"
+                ]
+              },
+              "feedback": "Valget gjør ansvar, usikkerhet og rollegrense tydeligere for de andre."
+            },
+            {
+              "id": "B",
+              "label": "Bruk sjansen til å bevise alt på én gang.",
+              "reply": "Bruk sjansen til å bevise alt på én gang.",
+              "effects": {
+                "training_quality": -1,
+                "team_trust": -1,
+                "future_risk": 2,
+                "self_worth": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_event_002_risk"
+                ]
+              },
+              "feedback": "Valget løser presset raskere, men gjør den senere kostnaden mindre synlig."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
