@@ -32,6 +32,34 @@ jobs:
           set -o pipefail
           node scripts/materialize-civication-religion-forskning-pilot.mjs 2>&1 | tee /tmp/religion-forskning-materializer.log
 
+      - name: Append generated Religion audit row on failure
+        if: failure()
+        shell: bash
+        run: |
+          node - <<'NODE' >> /tmp/religion-forskning-materializer.log 2>&1
+          const fs = require('fs');
+          const p = 'data/Civication/careerGameplayMatrix.json';
+          if (!fs.existsSync(p)) {
+            console.log('DIAGNOSTIC: careerGameplayMatrix.json missing after failed materializer');
+            process.exit(0);
+          }
+          const matrix = JSON.parse(fs.readFileSync(p, 'utf8'));
+          const row = matrix.worlds.find((w) => w.key === 'religion/religion_forskning');
+          if (!row) {
+            console.log('DIAGNOSTIC: religion/religion_forskning row missing');
+            process.exit(0);
+          }
+          console.log('DIAGNOSTIC_RELIGION_ROW=' + JSON.stringify({
+            status: row.status,
+            runtime_gate: row.audit?.runtime_gate,
+            missing_components: row.audit?.missing_components,
+            complete_components: row.audit?.complete_components,
+            practice_weeks: row.audit?.practice_weeks,
+            life_story_complete: row.audit?.life_story_complete,
+            components: Object.fromEntries(Object.entries(row.audit?.components || {}).map(([k,v]) => [k, { level: v.level, note: v.note, evidence: v.evidence }]))
+          }, null, 2));
+          NODE
+
       - name: Upload Religion materializer failure log
         if: failure()
         uses: actions/upload-artifact@v4
