@@ -11,7 +11,19 @@ const writeJson = (rel, value) => {
   fs.mkdirSync(path.dirname(full), { recursive: true });
   fs.writeFileSync(full, `${JSON.stringify(value, null, 2)}\n`);
 };
-const run = (args) => execFileSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit' });
+const run = (stage, args) => {
+  const command = [process.execPath, ...args].join(' ');
+  console.log(`::group::Subkultur materializer: ${stage}`);
+  try {
+    execFileSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit' });
+    console.log(`::notice title=Subkultur materializer stage passed::${stage}`);
+  } catch (error) {
+    console.error(`::error title=Subkultur materializer stage failed::${stage} (${command})`);
+    throw error;
+  } finally {
+    console.log('::endgroup::');
+  }
+};
 
 const category = 'subkultur';
 const scope = 'subkultur_arrangementsdrift';
@@ -243,15 +255,15 @@ for (const [type, value] of Object.entries(catalogs)) writeJson(`data/Civication
 const test = `#!/usr/bin/env node\nconst assert=require('node:assert/strict');const fs=require('node:fs');const path=require('node:path');const vm=require('node:vm');\nconst ROOT=path.resolve(__dirname,'..');const read=(r)=>JSON.parse(fs.readFileSync(path.join(ROOT,r),'utf8'));\nfunction storage(){const m=new Map();return{getItem:k=>m.has(k)?m.get(k):null,setItem:(k,v)=>m.set(String(k),String(v)),removeItem:k=>m.delete(k),clear:()=>m.clear()};}\nfunction makeFetch(root){return async(url)=>{const clean=String(url||'').split('?')[0].replace(/^\\/+/, '');const full=path.resolve(root,clean);if(!full.startsWith(root))return{ok:false,status:400,async json(){return null}};try{const body=await fs.promises.readFile(full,'utf8');return{ok:true,status:200,async json(){return JSON.parse(body)}}}catch{return{ok:false,status:404,async json(){return null}}}};}\nfunction load(rel){vm.runInThisContext(fs.readFileSync(path.join(ROOT,rel),'utf8'),{filename:rel});}\n(async()=>{const category='subkultur',scope='subkultur_arrangementsdrift',roleId='subkultur_kulturhusvert';const model=read('data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json'),grammar=read('data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json'),plan=read('data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json'),matrix=read('data/Civication/careerGameplayMatrix.json');const required=grammar.mail_generation_contract.required_mail_types;\nassert.deepEqual(required,['job','people','conflict','event','followup','knowledge','consequence']);assert.deepEqual(plan.sequence.map(s=>s.type),['job','people','conflict','event']);assert.equal(model.related_people.length,4);assert.equal(model.related_places.length,4);assert.ok(model.required_knowledge.concepts.length>=4);assert.ok(model.core_narrative.some(x=>x.includes('Badge-status')));\nconst ids=new Set();for(const type of required){const cat=read('data/Civication/mailFamilies/'+category+'/'+type+'/'+scope+'_'+type+'.json');assert.equal(cat.mail_type,type);const mails=cat.families.flatMap(f=>f.mails||[]);assert.ok(mails.length>=1,type);for(const mail of mails){assert.ok(!ids.has(mail.id),mail.id);ids.add(mail.id);assert.ok(mail.place_id,mail.id);assert.ok(mail.choice_axis&&mail.consequence_axis&&mail.narrative_arc,mail.id);assert.ok(Array.isArray(mail.situation)&&mail.situation.length>=3,mail.id);assert.ok(Array.isArray(mail.choices)&&mail.choices.length>=2,mail.id);for(const c of mail.choices){assert.ok(c.feedback,mail.id+'/'+c.id);assert.ok(c.effects?.stats,mail.id+'/'+c.id);}}}\nglobal.window=global;global.localStorage=storage();global.location={href:'http://localhost/Civication.html'};global.Event=class Event{constructor(type){this.type=type}};global.document={readyState:'complete',addEventListener(){}};global.addEventListener=()=>{};global.dispatchEvent=()=>{};global.fetch=makeFetch(ROOT);global.CivicationCalendar={getPhase:()=> 'morning',setPhase(){},advanceByMinutes(){}};global.HG_CapitalMaintenance={maintain:()=>null};global.HG_Lifestyle={addTags:()=>null};global.CivicationPsyche={getAutonomy:()=>50,updateIntegrity(){},updateVisibility(){},updateEconomicRoom(){},updateTrust(){},checkBurnout(){},processCollapse(){}};\nfor(const s of ['js/Civication/core/civicationState.js','js/Civication/core/civicationEventEngine.js','js/Civication/systems/civicationEventChannels.js','js/Civication/systems/civicationCareerRoleResolver.js','js/Civication/systems/day/dayChoiceDirector.js','js/Civication/systems/day/dayConsequences.js','js/Civication/systems/civicationMailRuntime.js','js/Civication/systems/civicationWorkdayMailBuilder.js','js/Civication/systems/civicationDailyMailBuilder.js','js/Civication/systems/civicationCareerOutcomeRuntime.js'])load(s);\nfor(const title of ['Kulturhusvert','Arrangementscrew','Produksjonsassistent','Kulturmedarbeider']){const active={career_id:category,title};assert.equal(global.CivicationCareerRoleResolver.resolveCareerRoleScope(active),scope,title);}const active={career_id:category,role_id:roleId,title:'Kulturhusvert'};assert.equal(global.CivicationCareerRoleResolver.resolveCareerRoleId(active),roleId);assert.equal(global.CivicationMailRuntime.getPlanPath(active),'data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json');const candidates=await global.CivicationMailRuntime.makeCandidateMailsForActiveRole(active,{});assert.equal(candidates[0]?.id,'subkultur_arrangementsdrift_job_apning');\nconst daily=await global.CivicationDailyMailBuilder.buildQueue(active,{date:'2026-08-18'});const roleItems=daily.items.filter(r=>['forenoon','workday'].includes(r.phase)&&r.event?.role_scope===scope&&r.event?.source_type!=='daily_generated');const types=roleItems.map(r=>r.event.mail_type);assert.deepEqual(types.slice(0,3),['job','knowledge','people']);assert.ok(['conflict','event'].includes(types[3]));assert.deepEqual(types.slice(-2),['followup','consequence']);assert.equal(roleItems.filter(r=>r.event.source_type==='planned').length,1);\nconst finished={role_plan_id:plan.id,step_index:plan.sequence.length,history:plan.sequence.map(s=>({id:'step_'+s.step,source_type:'planned',choice_id:'A'}))};const decide=p=>global.CivicationCareerOutcomeRuntime.decideOutcome(active,plan,finished,p).status;assert.equal(decide({score:3,strikes:0,warning_used:false,stability:'STABLE'}),'PROMOTED');assert.equal(decide({score:1,strikes:0,warning_used:false,stability:'STABLE'}),'STAGNATED');assert.equal(decide({score:-3,strikes:3,warning_used:false,stability:'STABLE'}),'FIRED');\nconst world=matrix.worlds.find(w=>w.key==='subkultur/subkultur_arrangementsdrift');assert.ok(world);assert.equal(world.status,'playable');assert.equal(world.audit.runtime_gate,true);assert.deepEqual(world.audit.missing_components,[]);for(const c of ['day_one','workday_loop','people','places','mail','knowledge','consequences','performance','progression','exit'])assert.equal(world.audit.components[c].level,'complete',c);assert.equal(world.audit.components.practice_stories.level,'partial');assert.equal(world.audit.life_story_complete,false);console.log('civication-subkultur-arrangementsdrift-playability.test.js: PASS');\n})().catch(e=>{console.error(e);process.exit(1)});\n`;
 fs.writeFileSync(j('tests/civication-subkultur-arrangementsdrift-playability.test.js'), test);
 
-run(['scripts/audit-civication-career-gameplay.mjs', '--write']);
-run(['scripts/build-civication-scene-registry.mjs', '--write']);
-run(['scripts/build-civication-scene-registry.mjs', '--check']);
-run(['tests/civication-subkultur-arrangementsdrift-playability.test.js']);
-run(['tests/civication-mail-choice-uniqueness.test.js']);
-run(['tests/civication-religion-forskning-playability.test.js']);
-run(['tests/civication-produksjonsassistent-playability.test.js']);
-run(['tests/civication-avdelingsleder-playability.test.js']);
-run(['tests/civication-role-world-contract.test.js']);
+run('career-audit', ['scripts/audit-civication-career-gameplay.mjs', '--write']);
+run('compiled-scene-registry-build', ['scripts/build-civication-scene-registry.mjs', '--write']);
+run('compiled-scene-registry-check', ['scripts/build-civication-scene-registry.mjs', '--check']);
+run('subkultur-playability', ['tests/civication-subkultur-arrangementsdrift-playability.test.js']);
+run('choice-uniqueness-regression', ['tests/civication-mail-choice-uniqueness.test.js']);
+run('religion-forskning-regression', ['tests/civication-religion-forskning-playability.test.js']);
+run('produksjonsassistent-regression', ['tests/civication-produksjonsassistent-playability.test.js']);
+run('avdelingsleder-regression', ['tests/civication-avdelingsleder-playability.test.js']);
+run('role-world-integrity', ['tests/civication-role-world-contract.test.js']);
 
 const matrix = JSON.parse(fs.readFileSync(j('data/Civication/careerGameplayMatrix.json'), 'utf8'));
 const world = matrix.worlds.find((item) => item.key === 'subkultur/subkultur_arrangementsdrift');

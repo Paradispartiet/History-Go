@@ -649,19 +649,20 @@
   }
   function pickDailyExtra(pool, wantedTypes, usedSourceIds, seed, phaseId, slotId, context) {
     const wantedList = uniqueStrings(wantedTypes);
-    const wanted = new Set(wantedList);
-    if (!wanted.size) return null;
+    if (!wantedList.length) return null;
     const safe = (Array.isArray(pool) ? pool : [])
       .filter((mail) => mailMatchesDailyProgression(mail, context))
       .filter(isActionableSceneCandidate);
-    let candidates = safe.filter((mail) => {
-      const id = norm(mail?.id);
-      return id && !usedSourceIds.has(id) && wanted.has(norm(mail?.mail_type));
-    });
-    const primaryType = wantedList[0];
-    if (CASE_THREAD_TYPES.has(primaryType)) {
-      const primaryCandidates = candidates.filter((mail) => norm(mail?.mail_type) === primaryType);
-      if (primaryCandidates.length) candidates = primaryCandidates;
+    let candidates = [];
+    for (const wantedType of wantedList) {
+      const preferred = safe.filter((mail) => {
+        const id = norm(mail?.id);
+        return id && !usedSourceIds.has(id) && norm(mail?.mail_type) === wantedType;
+      });
+      if (preferred.length) {
+        candidates = preferred;
+        break;
+      }
     }
     if (!candidates.length && !isStrictDailySlot(slotId)) {
       candidates = safe.filter((mail) => {
@@ -687,10 +688,19 @@
         event?.daily_mail_meta?.advances_role_plan === true
       )) || null;
   }
+  function isDailyExtraRebuildRow(row) {
+    const event = row?.event || {};
+    if (event?.go_to_work === true) return false;
+    const sourceType = norm(event?.source_type);
+    if (sourceType === "daily_generated") return true;
+    if (sourceType !== "daily_extra") return false;
+    return norm(row?.selected_by) === "CivicationSceneDirector" ||
+      norm(event?.daily_mail_meta?.selection_owner) === "CivicationSceneDirector";
+  }
   function addExistingSourcesToUsed(runtime, usedSourceIds) {
     for (const row of (Array.isArray(runtime?.items) ? runtime.items : [])) {
       const event = row?.event || {};
-      if (norm(event?.source_type) === "daily_generated") continue;
+      if (isDailyExtraRebuildRow(row)) continue;
       const sourceId = norm(event?.source_mail_id || event?.daily_mail_meta?.source_mail_id);
       if (sourceId) usedSourceIds.add(sourceId);
     }
@@ -800,7 +810,7 @@
       const event = row?.event || {};
       if (!isWorkPhase(phase)) return row;
       if (row?.phase_generator) return row;
-      if (norm(event?.source_type) !== "daily_generated") return row;
+      if (!isDailyExtraRebuildRow(row)) return row;
       if (event?.go_to_work === true) return row;
       const slot = norm(row?.slot || event?.daily_mail_meta?.slot);
       const wanted = preferredTypesForDailySlot(slot);
