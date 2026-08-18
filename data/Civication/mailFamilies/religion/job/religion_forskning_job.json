@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_forskning",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "religion_forskning_problemstilling",
+      "purpose": "Gjøre forskningsspørsmål og hypotese til en avgrenset arbeidsoppgave før data tolkes.",
+      "learning_focus": [
+        "problemstilling",
+        "avgrensning",
+        "sporbarhet"
+      ],
+      "mails": [
+        {
+          "id": "religion_forskning_job_problemstilling",
+          "mail_type": "job",
+          "mail_family": "religion_forskning_problemstilling",
+          "role_scope": "religion_forskning",
+          "phase": "intro",
+          "priority": 130,
+          "from": "Mina, prosjektleder",
+          "people_ref": "mina_prosjektleder",
+          "place_id": "religionsforskningskontoret",
+          "subject": "Hypotesen passer allerede for godt",
+          "summary": "De første notatene støtter prosjektets forventning, men spørsmålet er formulert så bredt at nesten alle funn kan telles som støtte.",
+          "situation": [
+            "Mina ber om et første analyseutkast før lunsj.",
+            "Du ser at hypotesen blander identitet, praksis og institusjon i samme påstand.",
+            "Du må levere framdrift uten å gjøre et uklart spørsmål til et sikkert funn."
+          ],
+          "task_domain": "problemstilling_og_avgrensning",
+          "competency": "analytisk_presisjon",
+          "pressure": "frist_vs_testbarhet",
+          "choice_axis": "avgrense_hypotese_vs_telle_alt_som_stotte",
+          "consequence_axis": "etterprovbar_analyse_vs_bekreftelsesbias",
+          "narrative_arc": "hypotese_som_ma_kunne_feile",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv om spørsmålet slik at hypotesen faktisk kan motbevises",
+              "reply": "Jeg avgrenser påstanden og skriver ned hvilken observasjon som ville tale imot den.",
+              "effect": 1,
+              "tags": [
+                "method",
+                "traceability"
+              ],
+              "feedback": "Du mister litt tempo og får et spørsmål som kan testes i stedet for bekreftes automatisk.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lever den brede hypotesen og la nyansene komme i diskusjonsdelen",
+              "reply": "Jeg beholder spørsmålet som det er og bruker de første funnene som støtte.",
+              "effect": -1,
+              "tags": [
+                "confirmation_bias",
+                "tempo"
+              ],
+              "feedback": "Framdriften ser god ut, men analysen får ingen tydelig grense for hva som ville motsagt den.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "risk": 3,
+                  "trust": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Be Mina godkjenne én smal delpåstand som kan testes først",
+              "reply": "Jeg foreslår en mindre delanalyse med eksplisitt datagrunnlag før vi generaliserer.",
+              "effect": 0,
+              "tags": [
+                "scope",
+                "coordination"
+              ],
+              "feedback": "Du beholder leveransen og gjør usikkerheten synlig for prosjektlederen.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 1,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_forskning",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "religion_forskning_etisk_press",
+      "purpose": "Gjøre forskningsetikk til en konkret konflikt mellom forklaringskraft, formidling og deltakerbeskyttelse.",
+      "learning_focus": [
+        "samtykke",
+        "representasjon",
+        "identifiseringsrisiko"
+      ],
+      "mails": [
+        {
+          "id": "religion_forskning_conflict_formidling",
+          "mail_type": "conflict",
+          "mail_family": "religion_forskning_etisk_press",
+          "role_scope": "religion_forskning",
+          "phase": "mid",
+          "priority": 120,
+          "from": "Oskar, forskningsetisk kontakt",
+          "people_ref": "oskar_forskningsetikk",
+          "place_id": "religionsfeltet_lite_miljo",
+          "subject": "Formidleren vil beholde detaljene som gjør sitatet gjenkjennelig",
+          "summary": "En ekstern formidler mener analysen mister kraft dersom rolle, sted og hendelse tones ned, selv om kombinasjonen kan peke ut deltakeren.",
+          "situation": [
+            "Navnet er fjernet, men miljøet er lite.",
+            "Deltakeren samtykket til intervju, ikke til denne eksponeringsgraden.",
+            "Du må velge mellom en sterkere historie og en mer forsvarlig evidensbruk."
+          ],
+          "task_domain": "forskningsetikk_og_formidling",
+          "competency": "forskningsetikk",
+          "pressure": "forklaringskraft_vs_beskyttelse",
+          "choice_axis": "minimere_identifisering_vs_beholde_dramatisk_detalj",
+          "consequence_axis": "tillit_vs_eksponering",
+          "narrative_arc": "sitatets_etiske_grense",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Fjern de identifiserende detaljene og avgrens hva sitatet kan representere",
+              "reply": "Jeg beholder evidensen, men reduserer konteksten og skriver eksplisitt at dette er én situert erfaring.",
+              "effect": 1,
+              "tags": [
+                "ethics",
+                "privacy"
+              ],
+              "feedback": "Du gir avkall på dramatisk detalj og beskytter både deltakeren og påstandsrekkevidden.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -3,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold detaljene fordi navnet ikke står i teksten",
+              "reply": "Jeg lar sitatet stå; formelt er det anonymisert.",
+              "effect": -1,
+              "tags": [
+                "privacy_risk",
+                "status"
+              ],
+              "feedback": "Formell navnefjerning skjuler ikke indirekte identifisering i et lite miljø.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -3,
+                  "risk": 4
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Pause sitatet og be om ny samtykkeavklaring før publisering",
+              "reply": "Jeg stopper denne delen til vi vet om deltakeren kan og vil godkjenne den konkrete bruken.",
+              "effect": 0,
+              "tags": [
+                "help",
+                "consent"
+              ],
+              "feedback": "Du aksepterer forsinkelse for å få en faktisk etisk avklaring.",
+              "effects": {
+                "stats": {
+                  "trust": 2,
+                  "risk": -2,
+                  "status": -1,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
