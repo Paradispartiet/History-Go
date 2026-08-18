@@ -247,24 +247,26 @@ fersk main
 
 ## 15. Reference-sekvens
 
-Første reference er nå materialisert:
+De to første reference worlds er materialisert:
 
 ```text
 naeringsliv/ekspeditor → role_world_complete
+naeringsliv/renholder  → role_world_complete
 ```
+
+De viser at samme produksjonsmetode kan bære både servicearbeid og usynlig fysisk arbeid uten å kopiere innhold, NPC-er eller konfliktakser.
 
 Neste reference Role World er:
 
 ```text
-naeringsliv/renholder
+by/by_radgiver_plan
 ```
 
-Deretter er planlagt variasjon:
+Deretter:
 
 ```text
-by/by_radgiver_plan
 naeringsliv/controller
 sport/sport_utover
 ```
 
-Poenget med denne rekkefølgen er å bevise metoden på tvers av servicearbeid, usynlig arbeid, forvaltning, tall/kontroll og kropp/prestasjon før bred masseproduksjon.
+Poenget med rekkefølgen er å bevise metoden på tvers av servicearbeid, usynlig arbeid, forvaltning, tall/kontroll og kropp/prestasjon før bred masseproduksjon.

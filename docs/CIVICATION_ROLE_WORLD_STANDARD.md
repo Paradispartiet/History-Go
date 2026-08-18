@@ -296,29 +296,26 @@ Dette er kvalitetskrav, ikke ordmengdekrav.
 
 ## 13. Reference-status og neste produksjon
 
-Første reference Role World er nå materialisert og permanent testet:
+De to første reference Role Worlds er nå materialisert og permanent testet:
 
 ```text
-category: naeringsliv
-role_scope: ekspeditor
-status: role_world_complete
+naeringsliv/ekspeditor → role_world_complete
+naeringsliv/renholder  → role_world_complete
 ```
 
-Ekspeditør er produksjonsreferanse for **metode og struktur**, ikke en mal for hva andre roller skal handle om.
+Ekspeditør og Renholder er strukturreferanser for metoden, ikke innholdsmaler som senere roller skal kopiere. Renholder beviser at standarden også fungerer for usynlig arbeid, kropp/HMS, avvik og privat arbeidslekkasje.
 
 Neste reference Role World er:
 
 ```text
-category: naeringsliv
-role_scope: renholder
+by/by_radgiver_plan
 ```
 
-Renholder skal bruke den samme authoring-prosessen, men utvikle sin egen sosiologiske verden rundt blant annet usynlig arbeid, verdighet, døgnrytme, status, utrygghet og privatliv.
+By-rådgiver skal teste samme authoring-prosess i en kunnskaps- og forvaltningsverden med byråkratisk makt, lokal kunnskap, politisk/administrativt press, faglig integritet og lojalitet oppover/nedover.
 
-Deretter brukes variasjonsrekken:
+Deretter følger:
 
 ```text
-by/by_radgiver_plan
 naeringsliv/controller
 sport/sport_utover
 ```
