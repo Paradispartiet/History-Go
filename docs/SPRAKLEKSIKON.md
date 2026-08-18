@@ -306,3 +306,9 @@ Første evidensmaterialiserte batch omfatter Oslo, Bergen, Stavanger, Trondheim 
 Etter første materialisering skal nye lokale profiler velges etter **dokumentasjonsstyrke**, ikke etter bystørrelse eller en forhåndslaget eksempel-liste. Neste materialiserte profiler er Kristiansand, Valle i Setesdal, Bodø, Narvik og Hammerfest. Utvalget kombinerer bymål, et tydelig dal-/bygdemålsanker og lokale nordnorske profiler med direkte målprøver.
 
 For `evidence_materialized` er minstekravet nå låst til minst **fire synlige målmerker**, **fire strukturerte beleggpunkter** og **to profilkilder**. Hvert beleggpunkts `time_scope` skal gjøre det mulig å skille tradisjonelle beskrivelser, nåtidige opptak og dokumentert språkendring. En kilde som hovedsakelig beskriver tradisjonelt talemål gir ikke tillatelse til å presentere trekket som universelt nåtidsspråk.
+
+## Lokal evidens: regional arv, lokalt korpus og språkkontakt
+
+Lokal materialisering må skille mellom tre ulike typer belegg: **lokalt opptak/korpus**, **regionalt målmerke** og **lokalt dokumentert endring**. Et regionalt trekk kan brukes som ramme for et lokalt anker, men skal ikke merkes som unikt for stedet uten lokalt belegg. Ål er et eksempel: Hallingdal gir den strukturelle rammen, mens NDC og kilder om dagens Buskerud gir lokalt/nyere belegg.
+
+Språkkontakt skal heller ikke gjøre separate språk til dialekttrekk. For norsk talemål i Tana og Hattfjelldal registreres samisk språkkontakt og institusjonell flerspråklighet som kontekst, mens samiske språk fortsatt eies av egne språklag. Den tredje forskningsstyrte gruppen materialiserer Voss, Ål, Hattfjelldal, Sømna og norsk talemål i Tana.
