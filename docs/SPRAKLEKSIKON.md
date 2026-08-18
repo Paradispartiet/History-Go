@@ -277,3 +277,14 @@ Bymål, historiske sosiolekter og multietniske talestiler ligger som egne overle
 Språkatlaset skal være en utforskbar kunnskapsflate, ikke bare en illustrasjon. De fire hovedgruppene i det skjematiske kartet er klikkbare og tastaturnavigerbare. Valg åpner «Utforsk hele Norge» og flytter brukeren til riktig makroregion. Underregionene er egne knapper; når en underregion velges, vises atlasets eksisterende `area_summary` og `feature_labels` som forklaring.
 
 Interaksjonen oppretter ingen nye språkdata og endrer ikke canonical eierskap. Den navigerer bare i `norge_atlas_v1.json`; dialektoppføringer eies fortsatt utelukkende av `placeScope: "area"`.
+
+## Forskningsgrunnlag for Språkatlas Norge
+
+Språkatlaset skal ikke bygges fra eksempellister eller antatte «kjente dialekter». Før en regional eller lokal profil materialiseres skal den ha et eksplisitt dokumentasjonsgrunnlag. Første nasjonale research-pass bruker særlig Nordisk dialektkorpus/NorDiaSyn, LIA norsk, UiTs Nordnorske dialekter og fagartiklene om dialektinndeling i Store norske leksikon.
+
+- Nordisk dialektkorpus v4.0 dokumenterer 111 utvalgte norske målepunkter.
+- LIA norsk inneholder historiske dialektopptak fra 1382 informanter på 227 steder/kommuner.
+- UiTs Nordnorske dialekter gir et finmasket nordnorsk mellomnivå med 13 navngitte dialektgrupper, lokale målmerker og målprøver.
+- Lokale corpus-ankre kan registreres før alle målmerker er ferdig analysert, men skal da ikke få oppdiktede eller arvede lokale kjennetegn.
+- Konkrete lokale målmerker krever lokal eller klart relevant regional kilde.
+- Bymål og flerspråklige steder skal alltid modelleres med intern variasjon; språk som nordsamisk, sørsamisk og kvensk er egne språk og aldri «norske dialekter».
