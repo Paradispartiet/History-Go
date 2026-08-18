@@ -1,0 +1,66 @@
+name: TEMP Språkatlas local evidence Windows
+
+on:
+  push:
+    branches:
+      - agent/sprakatlas-local-evidence-windows-v1
+    paths:
+      - '.github/workflows/temp-sprakatlas-local-evidence-windows.yml'
+      - 'scripts/sprakatlas-local-evidence-batch-1.py'
+      - 'scripts/coordinate-branch-job.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/sprakatlas-local-evidence-windows-v1
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Materialize and validate researched local evidence
+        run: |
+          set -euo pipefail
+          mkdir -p reports/sprakatlas-local-evidence-batch-1
+          python scripts/sprakatlas-local-evidence-batch-1.py \
+            2>&1 | tee reports/sprakatlas-local-evidence-batch-1/materialize.log
+          python -m json.tool data/leksikon/sprak/norge_atlas_v1.json \
+            > reports/sprakatlas-local-evidence-batch-1/atlas-json-check.txt
+          python -m json.tool data/leksikon/sprak/atlas_schema_v1.json \
+            > reports/sprakatlas-local-evidence-batch-1/schema-json-check.txt
+          node --check js/ui/place-language-layer.js \
+            2>&1 | tee reports/sprakatlas-local-evidence-batch-1/runtime-syntax.log
+          node --test tests/place-language-dialect-scope.test.mjs \
+            2>&1 | tee reports/sprakatlas-local-evidence-batch-1/dialect-regression.log
+          node --test tests/place-language-layer.test.mjs \
+            2>&1 | tee reports/sprakatlas-local-evidence-batch-1/language-layer-regression.log
+          git diff --check \
+            2>&1 | tee reports/sprakatlas-local-evidence-batch-1/git-diff-check.log
+
+      - name: Publish only permanent product files
+        run: |
+          set -euo pipefail
+          rm -f scripts/coordinate-branch-job.mjs
+          rm -f scripts/sprakatlas-local-evidence-batch-1.py
+          rm -f .github/workflows/temp-sprakatlas-local-evidence-windows.yml
+          rm -rf reports/sprakatlas-local-evidence-batch-1
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Materialize local Språkatlas evidence batch 1"
+          git pull --rebase origin agent/sprakatlas-local-evidence-windows-v1
+          git push origin HEAD:agent/sprakatlas-local-evidence-windows-v1
