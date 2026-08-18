@@ -1484,9 +1484,9 @@
       "name": "Valle i Setesdal",
       "kind": "local_speech",
       "macro_region_id": "vestlandsk",
-      "profile_status": "documented_seed",
-      "summary": "Valle er kjernen i den klassiske Setesdalsdialekten og et NorDiaSyn-målepunkt.",
-      "variation_note": "Artikkelkilden beskriver først og fremst tradisjonelt talemål; yngre og mer normaliserte talemålsformer må skilles fra dette tidslaget.",
+      "profile_status": "evidence_materialized",
+      "summary": "Valle er kjernen i det klassiske setesdalsmålet og materialiseres her som en lokal profil med eksplisitt skille mellom tradisjonell beskrivelse og nåtidig bruk.",
+      "variation_note": "Hovedkilden beskriver i stor grad det tradisjonelle setesdalsmålet. Trekkene nedenfor skal derfor ikke presenteres som om alle nålevende språkbrukere i Valle bruker dem likt.",
       "sources": [
         {
           "label": "SNL – dialekter i Setesdal",
@@ -1495,13 +1495,73 @@
         {
           "label": "UiO Tekstlab – NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
           "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+        },
+        {
+          "label": "Store norske leksikon – sørleg e-mål",
+          "url": "https://snl.no/s%C3%B8rleg_e-m%C3%A5l"
         }
       ],
       "region_id": "setesdalsmal",
       "feature_labels": [
         "e-infinitiv",
-        "tradisjonell dativ",
-        "eldre bøyningstrekk"
+        "tradisjonelt Setesdalsmål",
+        "a i flertall",
+        "a-presens",
+        "eldre formverk"
+      ],
+      "evidence_last_verified": "2026-08-18",
+      "feature_evidence": [
+        {
+          "id": "valle_core",
+          "label": "Kjerneområde",
+          "kind": "corpus_basis",
+          "claim": "Valle blir uttrykkelig omtalt som kjernen i det klassiske setesdalsmålet, og er derfor et faglig relevant lokalt anker fremfor bare en administrativ plassering.",
+          "time_scope": "dialektologisk områdebeskrivelse",
+          "source_urls": [
+            "https://snl.no/dialekter_i_Setesdal"
+          ]
+        },
+        {
+          "id": "valle_e_inf",
+          "label": "E-infinitiv",
+          "kind": "structural_feature",
+          "claim": "Det klassiske setesdalsmålet som Valle står sentralt i, hører til de sørlige e-målene og har -e i infinitiv og i svake hunkjønnsord i ubestemt entall.",
+          "time_scope": "tradisjonelt Setesdalsmål",
+          "source_urls": [
+            "https://snl.no/dialekter_i_Setesdal"
+          ]
+        },
+        {
+          "id": "valle_a_morph",
+          "label": "A i flertall og presens",
+          "kind": "structural_feature",
+          "claim": "Den tradisjonelle beskrivelsen har -a i flertall av substantiv og -ar i presens av a-verb, samtidig som infinitiven er et e-mål.",
+          "time_scope": "tradisjonelt Setesdalsmål",
+          "source_urls": [
+            "https://snl.no/dialekter_i_Setesdal"
+          ]
+        },
+        {
+          "id": "valle_old_consonants",
+          "label": "Eldre konsonanttrekk",
+          "kind": "structural_feature",
+          "claim": "SNL beskriver Setesdalsområdet som et område som har bevart eldre konsonantforbindelser og særutviklinger; dette registreres her som historisk/regionalt belegg, ikke som et universelt nåtidstrekk i Valle.",
+          "time_scope": "tradisjonell og historisk områdebeskrivelse",
+          "source_urls": [
+            "https://snl.no/s%C3%B8rleg_e-m%C3%A5l",
+            "https://snl.no/dialekter_i_Setesdal"
+          ]
+        },
+        {
+          "id": "valle_scope",
+          "label": "Tradisjonell kildeprofil",
+          "kind": "social_variation",
+          "claim": "Hovedartikkelen presiserer at framstillingen i hovedsak gjelder det tradisjonelle setesdalsmålet; atlaset må derfor holde nåtidig variasjon åpen i stedet for å gjøre eldre trekk absolutte.",
+          "time_scope": "kildeavgrensning for nåtidig bruk",
+          "source_urls": [
+            "https://snl.no/dialekter_i_Setesdal"
+          ]
+        }
       ]
     },
     {
@@ -1529,9 +1589,9 @@
       "name": "Kristiansand",
       "kind": "local_speech",
       "macro_region_id": "vestlandsk",
-      "profile_status": "documented_seed",
-      "summary": "Kristiansand er eksplisitt representert i LIA norsk og skal ha egen by-/lokalprofil.",
-      "variation_note": "Korpusmateriale og regional beskrivelse må brukes før konkrete trekk gjøres til kjennetegn for hele byen.",
+      "profile_status": "evidence_materialized",
+      "summary": "Kristiansand bymål er et dokumentert sørvestlig e-mål på Agderkysten med egne bymålsdrag og tydelig dokumentert endring hos yngre språkbrukere.",
+      "variation_note": "Profilen skiller tradisjonelle bymålstrekk fra nyere utvikling. Kristiansand kommune rommer også talemål som avviker fra sentrumsmålet, blant annet i Søgne, og ingen enkeltform gjelder alle talere.",
       "sources": [
         {
           "label": "UiO Tekstlab – LIA norsk",
@@ -1540,9 +1600,79 @@
         {
           "label": "UiO – LIA norsk brukerveiledning",
           "url": "https://tekstlab.uio.no/brukerveiledninger/LIA%20norsk/index.html"
+        },
+        {
+          "label": "Store norske leksikon – Kristiansand bymål",
+          "url": "https://snl.no/Kristiansand_bym%C3%A5l"
+        },
+        {
+          "label": "Store norske leksikon – sørlandsk",
+          "url": "https://snl.no/s%C3%B8rlandsk"
         }
       ],
-      "region_id": "sorleg_e_mal"
+      "region_id": "sorleg_e_mal",
+      "evidence_last_verified": "2026-08-18",
+      "feature_labels": [
+        "e-infinitiv",
+        "høgtone",
+        "skarre-r",
+        "-ane i bestemt flertall",
+        "blaute konsonanter i endring"
+      ],
+      "feature_evidence": [
+        {
+          "id": "krs_e_mal",
+          "label": "Sørvestlig e-mål",
+          "kind": "structural_feature",
+          "claim": "Kristiansand bymål beskrives som et sørvestlig e-mål, med -e i infinitiv og tydelig avstand til både østligere og vestligere nabomål.",
+          "time_scope": "tradisjonelt og fortsatt strukturelt orienteringsdrag",
+          "source_urls": [
+            "https://snl.no/Kristiansand_bym%C3%A5l",
+            "https://snl.no/s%C3%B8rlandsk"
+          ]
+        },
+        {
+          "id": "krs_hogtone",
+          "label": "Høgtone",
+          "kind": "structural_feature",
+          "claim": "Kristiansandsmålet har høgtone i tonem-1-ord; SNL beskriver et markant toneskille mot lågtoneområdet øst for byen.",
+          "time_scope": "dokumentert bymålsdrag",
+          "source_urls": [
+            "https://snl.no/Kristiansand_bym%C3%A5l"
+          ]
+        },
+        {
+          "id": "krs_skarre_r",
+          "label": "Skarre-r",
+          "kind": "structural_feature",
+          "claim": "Skarre-r inngår i den dokumenterte lydstrukturen i Kristiansand bymål og i det sørlandske kystområdet rundt byen.",
+          "time_scope": "dokumentert bymålsdrag",
+          "source_urls": [
+            "https://snl.no/Kristiansand_bym%C3%A5l",
+            "https://snl.no/s%C3%B8rlandsk"
+          ]
+        },
+        {
+          "id": "krs_blaute_endring",
+          "label": "Blaute konsonanter i retur",
+          "kind": "language_change",
+          "claim": "Tradisjonelle blaute konsonanter b, d og g etter lang vokal er på retur; en ungdomsundersøkelse fra 2016 omtales som tydelig belegg for økt bruk av p, t og k.",
+          "time_scope": "nyere ungdomsspråk sammenlignet med tradisjonelt bymål",
+          "source_urls": [
+            "https://snl.no/Kristiansand_bym%C3%A5l"
+          ]
+        },
+        {
+          "id": "krs_ane_kontinuitet",
+          "label": "-ane holder seg",
+          "kind": "language_change",
+          "claim": "Endingen -ane i bestemt flertall beskrives som bemerkelsesverdig stabil også i ungdomsspråket, selv mens flere andre tradisjonelle trekk svekkes.",
+          "time_scope": "nyere ungdomsspråk og tradisjonelt bymål",
+          "source_urls": [
+            "https://snl.no/Kristiansand_bym%C3%A5l"
+          ]
+        }
+      ]
     },
     {
       "id": "stavanger_local_speech",
@@ -2110,9 +2240,9 @@
       "name": "Bodø",
       "kind": "local_speech",
       "macro_region_id": "nordnorsk",
-      "profile_status": "documented_seed",
-      "summary": "Bodø har et dokumentert bymål som skiller seg fra omkringliggende Saltenmål på flere punkter.",
-      "variation_note": "Bodø må behandles som egen byprofil, samtidig som yngre og eldre talemål kan variere.",
+      "profile_status": "evidence_materialized",
+      "summary": "Bodø har et veldokumentert folkelig bymål med mye felles med Salten, men også tydelige lokale særdrag og målbar generasjonsvariasjon.",
+      "variation_note": "Bodø har både historisk sosial variasjon og forskjeller mellom informanter og aldersgrupper. Profilen gjelder dokumenterte trekk i det folkelige bymålet og må ikke brukes som én norm for alle bodøværinger.",
       "sources": [
         {
           "label": "UiT – Bodø",
@@ -2121,18 +2251,85 @@
         {
           "label": "UiO Tekstlab – NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
           "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+        },
+        {
+          "label": "Store norske leksikon – Bodø bymål",
+          "url": "https://snl.no/Bod%C3%B8_bym%C3%A5l"
         }
       ],
-      "region_id": "saltenmal"
+      "region_id": "saltenmal",
+      "evidence_last_verified": "2026-08-18",
+      "feature_labels": [
+        "apokope",
+        "nullinfinitiv",
+        "æ–mæ–dæ",
+        "nu og ikke",
+        "palatalisering i endring"
+      ],
+      "feature_evidence": [
+        {
+          "id": "bodo_salten_distinct",
+          "label": "Bodø skiller seg fra Salten rundt",
+          "kind": "structural_feature",
+          "claim": "Bodø deler tonefall, apokope og palatalisering med Salten, men skiller seg blant annet gjennom mindre apokope, enklere bøying og egne pronomen- og adverbformer.",
+          "time_scope": "dokumentert bymål sammenlignet med omlandet",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/bodo/",
+            "https://snl.no/Bod%C3%B8_bym%C3%A5l"
+          ]
+        },
+        {
+          "id": "bodo_pron_adv",
+          "label": "æ, mæ, dæ – nu – ikke",
+          "kind": "structural_feature",
+          "claim": "Det folkelige Bodø-bymålet er dokumentert med pronomenformene æ, mæ og dæ, tidsadverbet nu og nektingsadverbet ikke, i kontrast til flere omkringliggende Saltenformer.",
+          "time_scope": "dokumentert bymålsdrag",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/bodo/",
+            "https://snl.no/Bod%C3%B8_bym%C3%A5l"
+          ]
+        },
+        {
+          "id": "bodo_apokope",
+          "label": "Apokope og nullinfinitiv",
+          "kind": "structural_feature",
+          "claim": "Bodø ligger i et sterkt apokopeområde og har i opptakene stort sett apokopert infinitiv, men bymålet har mindre apokope enn mange Saltenmål omkring byen.",
+          "time_scope": "tradisjonelt og moderne opptaksmateriale",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/bodo/",
+            "https://snl.no/Bod%C3%B8_bym%C3%A5l"
+          ]
+        },
+        {
+          "id": "bodo_e_inf_change",
+          "label": "Mer e-infinitiv hos yngre",
+          "kind": "language_change",
+          "claim": "UiT beskriver innslag av e-infinitiv i ScanDiaSyn-opptakene og peker på at dette kan være vanligere hos yngre enn hos eldre informanter.",
+          "time_scope": "yngre sammenlignet med eldre ScanDiaSyn-informanter",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/bodo/"
+          ]
+        },
+        {
+          "id": "bodo_palatal_change",
+          "label": "Palatalisering varierer med alder",
+          "kind": "language_change",
+          "claim": "Palatalisering er ulikt gjennomført i Bodø-opptakene; den eldre kvinnelige informanten har mye, mens den unge kvinnelige informanten knapt har palatalisering.",
+          "time_scope": "yngre sammenlignet med eldre ScanDiaSyn-informanter",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/bodo/"
+          ]
+        }
+      ]
     },
     {
       "id": "narvik_local_speech",
       "name": "Narvik",
       "kind": "local_speech",
       "macro_region_id": "nordnorsk",
-      "profile_status": "documented_seed",
-      "summary": "Narvik har et dokumentert bymål som skiller seg tydelig fra flere omkringliggende Ofoten-mål.",
-      "variation_note": "Lokale generasjonsforskjeller må beholdes; profilen skal ikke representere hele Ofoten.",
+      "profile_status": "evidence_materialized",
+      "summary": "Narvik er et veldokumentert lokalt bymål som skiller seg markant fra flere Ofoten-mål rundt byen og har egne opptak av yngre og eldre språkbrukere.",
+      "variation_note": "Narvikprofilen bygger på både tradisjonell beskrivelse og ScanDiaSyn-opptak. Kontrasten til omlandet er tydelig, men enkeltinformanter og aldersgrupper skal fortsatt kunne variere.",
       "sources": [
         {
           "label": "UiT – Narvik",
@@ -2141,9 +2338,76 @@
         {
           "label": "UiO Tekstlab – NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
           "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+        },
+        {
+          "label": "UiT Nordnorske dialekter – Sør-Troms, Vesterålen og Ofoten",
+          "url": "https://nordnorsk.uit.no/dialekt/08-malet-i-sor-troms-vesteralen-og-ofoten/"
         }
       ],
-      "region_id": "sor_troms_vesteralen_ofoten"
+      "region_id": "sor_troms_vesteralen_ofoten",
+      "evidence_last_verified": "2026-08-18",
+      "feature_labels": [
+        "e-infinitiv",
+        "e-presens",
+        "ikke",
+        "retroflektering",
+        "æ(g) og nu"
+      ],
+      "feature_evidence": [
+        {
+          "id": "narvik_e_mal",
+          "label": "E-mål og lite apokope",
+          "kind": "structural_feature",
+          "claim": "Narvikmålet beskrives som et e-mål med e-infinitiv, e-presens og relativt lite apokope sammenlignet med dialektene omkring Narvik.",
+          "time_scope": "tradisjonell beskrivelse støttet av opptak",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/narvik/",
+            "https://nordnorsk.uit.no/dialekt/08-malet-i-sor-troms-vesteralen-og-ofoten/"
+          ]
+        },
+        {
+          "id": "narvik_ikke",
+          "label": "ikke som lokalt bytrekk",
+          "kind": "structural_feature",
+          "claim": "Nektingsadverbet ikke er et markant tradisjonelt Narvik-trekk i kontrast til ikkje i flere omkringliggende Ofoten-dialekter.",
+          "time_scope": "særlig tydelig i eldre kontrast til omlandet",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/narvik/",
+            "https://nordnorsk.uit.no/dialekt/08-malet-i-sor-troms-vesteralen-og-ofoten/"
+          ]
+        },
+        {
+          "id": "narvik_retroflex",
+          "label": "Retroflektering",
+          "kind": "structural_feature",
+          "claim": "Narvik har tradisjonelt retroflektering eller dental uttale der omkringliggende dialekter kan ha palatalisering av historiske dentaler.",
+          "time_scope": "dokumentert lokalt kontrasttrekk",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/narvik/",
+            "https://nordnorsk.uit.no/dialekt/08-malet-i-sor-troms-vesteralen-og-ofoten/"
+          ]
+        },
+        {
+          "id": "narvik_pron_nu",
+          "label": "æ(g) og nu",
+          "kind": "structural_feature",
+          "claim": "UiTs lokale profil dokumenterer pronomenet æ(g) og tidsadverbet nu sammen med hær/dær som karakteristiske former i Narvikmaterialet.",
+          "time_scope": "opptak av yngre og eldre informanter",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/narvik/"
+          ]
+        },
+        {
+          "id": "narvik_corpus",
+          "label": "Yngre og eldre målprøver",
+          "kind": "corpus_basis",
+          "claim": "UiT har lokale målprøver fra både eldre og yngre Narvik-informanter, slik at profilen kan bygge på faktisk talemålsmateriale og ikke bare regional arv.",
+          "time_scope": "ScanDiaSyn/Nordnorske dialekter",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/narvik/"
+          ]
+        }
+      ]
     },
     {
       "id": "tromso_local_speech",
@@ -2239,9 +2503,9 @@
       "name": "Hammerfest",
       "kind": "local_speech",
       "macro_region_id": "nordnorsk",
-      "profile_status": "documented_seed",
-      "summary": "Hammerfest er et UiT/ScanDiaSyn-dokumentert lokalt talemål i Vestfinnmark.",
-      "variation_note": "Kildene viser generasjonsvariasjon; profilen skal ikke gjøre eldre målmerker obligatoriske for yngre talere.",
+      "profile_status": "evidence_materialized",
+      "summary": "Hammerfest har et UiT/ScanDiaSyn-dokumentert lokalt talemål i Vestfinnmark med konkrete opptak som viser både stabile trekk og generasjonsendring.",
+      "variation_note": "Hammerfestmaterialet viser tydelige forskjeller mellom yngre og eldre informanter. Profilen skiller derfor strukturelle trekk fra endring og skal ikke gjøre kystfinnmarksmål eller Hammerfest til én homogen språkform.",
       "sources": [
         {
           "label": "UiT – Hammerfest",
@@ -2250,9 +2514,86 @@
         {
           "label": "UiO Tekstlab – NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
           "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+        },
+        {
+          "label": "UiT Nordnorske dialekter – Vestfinnmarksmål",
+          "url": "https://nordnorsk.uit.no/dialekt/03-vestfinnmarksmal/"
+        },
+        {
+          "label": "UiT målprøve – Hammerfest eldre mann",
+          "url": "https://nordnorsk.uit.no/malprover/stream/hammerfest-eldre-mann-haveiendom/"
+        },
+        {
+          "label": "UiT målprøve – Hammerfest ung kvinne",
+          "url": "https://nordnorsk.uit.no/malprover/stream/hammerfest-ung-kvinne-skuter/"
         }
       ],
-      "region_id": "vestfinnmarksmal"
+      "region_id": "vestfinnmarksmal",
+      "evidence_last_verified": "2026-08-18",
+      "feature_labels": [
+        "e/a-mål",
+        "e-infinitiv",
+        "æ og demm",
+        "tre kjønn",
+        "palatalisering i endring",
+        "no → nu"
+      ],
+      "feature_evidence": [
+        {
+          "id": "hammerfest_ea",
+          "label": "E/a-mål",
+          "kind": "structural_feature",
+          "claim": "Hammerfestopptakene beskrives som e/a-mål: infinitiv har e-ending, mens svake hunkjønnsord kan ha a-ending med dokumentert variasjon mot e-ending.",
+          "time_scope": "ScanDiaSyn-materiale",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/hammerfest/",
+            "https://nordnorsk.uit.no/dialekt/03-vestfinnmarksmal/"
+          ]
+        },
+        {
+          "id": "hammerfest_pron",
+          "label": "æ, demm og ikke",
+          "kind": "structural_feature",
+          "claim": "Det lokale materialet dokumenterer nektingsadverbet ikke og pronomenformene æ og demm; de konkrete målprøvene gir direkte eksempler på disse formene.",
+          "time_scope": "yngre og eldre opptak",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/hammerfest/",
+            "https://nordnorsk.uit.no/malprover/stream/hammerfest-eldre-mann-haveiendom/",
+            "https://nordnorsk.uit.no/malprover/stream/hammerfest-ung-kvinne-skuter/"
+          ]
+        },
+        {
+          "id": "hammerfest_gender",
+          "label": "Tre grammatiske kjønn",
+          "kind": "structural_feature",
+          "claim": "Både yngre og eldre Hammerfest-informanter er dokumentert med tre grammatiske kjønn, blant annet feminine substantivformer.",
+          "time_scope": "yngre og eldre ScanDiaSyn-informanter",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/hammerfest/"
+          ]
+        },
+        {
+          "id": "hammerfest_palatal",
+          "label": "Palatalisering svekkes hos yngre",
+          "kind": "language_change",
+          "claim": "Palatalisering av historiske lange dentaler er gjennomført hos de eldre informantene, men mindre gjennomført hos de yngre; apokope ser også ut til å være vanligere hos eldre.",
+          "time_scope": "yngre sammenlignet med eldre ScanDiaSyn-informanter",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/hammerfest/"
+          ]
+        },
+        {
+          "id": "hammerfest_no_nu",
+          "label": "Fra no mot nu",
+          "kind": "language_change",
+          "claim": "De eldre Hammerfest-informantene bruker mest no, mens de yngre bruker mest nu, noe UiT presenterer som en tydelig aldersrelatert forskjell i materialet.",
+          "time_scope": "yngre sammenlignet med eldre ScanDiaSyn-informanter",
+          "source_urls": [
+            "https://nordnorsk.uit.no/dialekt/hammerfest/",
+            "https://nordnorsk.uit.no/malprover/stream/hammerfest-ung-kvinne-skuter/"
+          ]
+        }
+      ]
     },
     {
       "id": "kautokeino_norwegian_local_speech",

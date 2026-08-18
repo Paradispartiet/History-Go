@@ -300,3 +300,9 @@ Lokale talemålsprofiler har tre modenhetsnivåer:
 Et `feature_evidence`-element skal skille mellom strukturelle trekk, sosial variasjon, språkendring, språkkontakt og korpusgrunnlag. Historiske trekk skal aldri presenteres som om alle nålevende talere bruker dem. Endring skal beskrives som endring, ikke som én ny homogen dialekt. Hver publisert påstand skal ha minst én HTTPS-kilde direkte knyttet til påstanden.
 
 Første evidensmaterialiserte batch omfatter Oslo, Bergen, Stavanger, Trondheim og Tromsø fordi disse har særlig sterke kombinasjoner av direkte bymålsbeskrivelser, korpus/lydmateriale og sosiolingvistisk forskning. Utvalg i senere batcher skal fortsatt styres av dokumentasjonsstyrke, ikke av størrelse eller tilfeldige eksempler.
+
+## Videre evidensmaterialisering av lokale talemål
+
+Etter første materialisering skal nye lokale profiler velges etter **dokumentasjonsstyrke**, ikke etter bystørrelse eller en forhåndslaget eksempel-liste. Neste materialiserte profiler er Kristiansand, Valle i Setesdal, Bodø, Narvik og Hammerfest. Utvalget kombinerer bymål, et tydelig dal-/bygdemålsanker og lokale nordnorske profiler med direkte målprøver.
+
+For `evidence_materialized` er minstekravet nå låst til minst **fire synlige målmerker**, **fire strukturerte beleggpunkter** og **to profilkilder**. Hvert beleggpunkts `time_scope` skal gjøre det mulig å skille tradisjonelle beskrivelser, nåtidige opptak og dokumentert språkendring. En kilde som hovedsakelig beskriver tradisjonelt talemål gir ikke tillatelse til å presentere trekket som universelt nåtidsspråk.

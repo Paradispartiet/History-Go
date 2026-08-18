@@ -442,3 +442,48 @@ test("Lokale talemålsprofiler materialiserer konkrete påstander med direkte ki
   assert.match(contract, /evidence_materialized/);
   assert.match(contract, /Historiske trekk skal aldri presenteres/i);
 });
+
+
+test("Evidensmaterialiserte lokalprofiler har en generell kvalitetsport og forskningsstyrt andre gruppe", () => {
+  const atlas = json("data/leksikon/sprak/norge_atlas_v1.json");
+  const schema = json("data/leksikon/sprak/atlas_schema_v1.json");
+  const contract = read("docs/SPRAKLEKSIKON.md");
+  const locals = atlas.local_varieties || [];
+  const materialized = locals.filter(row => row.profile_status === "evidence_materialized");
+  assert.ok(materialized.length >= 10, `for få evidensmaterialiserte lokalprofiler: ${materialized.length}`);
+  for (const row of materialized) {
+    assert.match(String(row.evidence_last_verified || ""), /^\d{4}-\d{2}-\d{2}$/, `${row.id}: mangler verifiseringsdato`);
+    assert.ok((row.feature_labels || []).length >= 4, `${row.id}: trenger minst fire synlige målmerker`);
+    assert.ok((row.feature_evidence || []).length >= 4, `${row.id}: trenger minst fire beleggpunkter`);
+    assert.ok((row.sources || []).length >= 2, `${row.id}: trenger minst to profilkilder`);
+    for (const item of row.feature_evidence || []) {
+      assert.ok(text(item.claim).length >= 20, `${row.id}/${item.id}: påstanden er for tynn`);
+      assert.ok(text(item.time_scope), `${row.id}/${item.id}: time_scope mangler`);
+      assert.ok((item.source_urls || []).length >= 1, `${row.id}/${item.id}: direkte kilde mangler`);
+      for (const url of item.source_urls || []) assert.ok(String(url).startsWith("https://"), `${row.id}/${item.id}: kilde må være HTTPS`);
+    }
+  }
+
+  const expected = new Map([
+    ["kristiansand_local_speech", ["e-infinitiv", "høgtone"]],
+    ["valle_setesdal_local_speech", ["e-infinitiv", "tradisjonelt Setesdalsmål"]],
+    ["bodo_local_speech", ["apokope", "nu og ikke"]],
+    ["narvik_local_speech", ["e-infinitiv", "retroflektering"]],
+    ["hammerfest_local_speech", ["e/a-mål", "tre kjønn"]]
+  ]);
+  const byId = new Map(locals.map(row => [row.id, row]));
+  for (const [id, labels] of expected) {
+    const row = byId.get(id);
+    assert.ok(row, `${id}: profil mangler`);
+    assert.equal(row.profile_status, "evidence_materialized", `${id}: skal være evidensmaterialisert`);
+    for (const label of labels) assert.ok((row.feature_labels || []).includes(label), `${id}: mangler ${label}`);
+  }
+
+  const localItem = schema.properties.local_varieties.items;
+  assert.ok(localItem.properties.feature_labels.minItems >= 4);
+  assert.ok(localItem.properties.feature_evidence.minItems >= 4);
+  const rule = (localItem.allOf || []).find(row => row["x-history-go-rule"] === "evidence-materialized");
+  assert.ok(rule?.then?.properties?.sources?.minItems >= 2, "schema må kreve minst to profilkilder for evidence_materialized");
+  assert.match(contract, /dokumentasjonsstyrke/i);
+  assert.match(contract, /tradisjonelt talemål[^\n]*ikke[^\n]*universelt nåtidsspråk/i);
+});
