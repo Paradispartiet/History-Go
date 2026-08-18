@@ -1,0 +1,99 @@
+name: History permanent repair commit temporary
+# Temporary write workflow. Commits only the already-proven semantic/editorial repair and deterministic corpus. Remove before merge.
+
+on:
+  push:
+    branches:
+      - agent/history-completion-audit
+    paths:
+      - '.github/workflows/history-permanent-repair-commit-temp.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact History branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-completion-audit
+          fetch-depth: 0
+
+      - name: Lock head and require current main ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "INITIAL_HEAD=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main agent/history-completion-audit
+          git merge-base --is-ancestor origin/main HEAD || {
+            echo 'History branch does not contain current main; refusing repair push.' >&2
+            exit 1
+          }
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Reuse proven ownership and semantic contract repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby -ryaml <<'RUBY'
+          document = YAML.load_file('.github/workflows/history-completion-materialize-temp.yml')
+          steps = document.fetch('jobs').fetch('materialize').fetch('steps')
+          wanted = {
+            'Reconcile canonical and active editorial hook ownership' => '/tmp/history-ownership.sh',
+            'Install permanent semantic/editorial contract' => '/tmp/history-contract.sh'
+          }
+          wanted.each do |name, target|
+            step = steps.find { |row| row['name'] == name }
+            raise "Missing proven repair step: #{name}" unless step && step['run']
+            File.write(target, step['run'])
+          end
+          RUBY
+          bash /tmp/history-ownership.sh
+          bash /tmp/history-contract.sh
+
+      - name: Validate repaired semantic contract
+        run: |
+          set -euo pipefail
+          node tools/audit-historie-canonical-emner.mjs --write-report
+          node tools/audit-historie-semantic-hook-alignment.mjs
+
+      - name: Materialize repaired History corpus
+        run: node tools/materialize-historie-editorial-chapters.mjs
+
+      - name: Verify deterministic corpus
+        run: node tools/materialize-historie-editorial-chapters.mjs --check
+
+      - name: Commit permanent repair state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add \
+            data/fag/historie/editorial_theory_overrides_historie_v1.json \
+            data/fag/historie/fagkart_historie_canonical_v4_5.json \
+            tools/materialize-historie-editorial-chapters.mjs \
+            tools/audit-historie-semantic-hook-alignment.mjs \
+            reports/fagverk/historie-canonical-emne-identity-audit.json \
+            reports/fagverk/historie-completion-gap-report.json \
+            data/fagverk/historie \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json
+          if git diff --cached --quiet; then
+            echo 'No repair changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Materialize permanent History semantic and editorial repair'
+          git fetch origin agent/history-completion-audit
+          remote_head="$(git rev-parse origin/agent/history-completion-audit)"
+          if [ "$remote_head" != "$INITIAL_HEAD" ]; then
+            echo "History branch moved during repair: started $INITIAL_HEAD, remote is $remote_head" >&2
+            exit 1
+          fi
+          git push origin HEAD:agent/history-completion-audit
