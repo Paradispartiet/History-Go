@@ -1,0 +1,82 @@
+name: History semantic split diagnose temporary
+# Temporary isolation workflow. Remove before History merge.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/audit-historie-canonical-emner.mjs'
+      - 'tools/audit-historie-semantic-hook-alignment.mjs'
+      - 'data/fag/historie/**'
+      - '.github/workflows/history-semantic-split-diagnose-temp.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/history-completion-audit')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out History branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || 'agent/history-completion-audit' }}
+          fetch-depth: 0
+
+      - name: Reconcile latest main locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Reconcile canonical hook ownership locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const list = (value) => Array.isArray(value) ? value : [];
+          const emners = read('data/fag/historie/emner_historie_canonical_v4_5.json');
+          const mappings = read('data/fag/historie/emnemapping_historie_canonical_v4_5.json');
+          const fagkartPath = 'data/fag/historie/fagkart_historie_canonical_v4_5.json';
+          const fagkart = read(fagkartPath);
+          const mappingByEmne = new Map(mappings.map((row) => [row.emne_id, row]));
+          const hookById = new Map();
+          for (const category of list(fagkart.categories)) {
+            for (const hook of list(category.topic_hooks)) hookById.set(hook.id, hook);
+          }
+          const additions = [];
+          for (const emne of emners) {
+            const declared = [...new Set([...list(emne.primary_theory_hooks), ...list(emne.secondary_theory_hooks)])];
+            const mapped = new Set(list(mappingByEmne.get(emne.emne_id)?.mappings).map((row) => row.topic_hook));
+            for (const hookId of declared) {
+              if (!mapped.has(hookId)) throw new Error(`${emne.emne_id}: canonical hook ${hookId} mangler mapping`);
+              const hook = hookById.get(hookId);
+              if (!hook) throw new Error(`${emne.emne_id}: canonical hook ${hookId} finnes ikke i fagkart`);
+              hook.emne_ids = list(hook.emne_ids);
+              if (!hook.emne_ids.includes(emne.emne_id)) {
+                hook.emne_ids.push(emne.emne_id);
+                additions.push(`${hookId}->${emne.emne_id}`);
+              }
+            }
+          }
+          fs.writeFileSync(fagkartPath, `${JSON.stringify(fagkart, null, 2)}\n`);
+          console.log(JSON.stringify({ additions: additions.length, rows: additions }, null, 2));
+          NODE
+
+      - name: Audit canonical emne identity
+        run: node tools/audit-historie-canonical-emner.mjs --write-report
+
+      - name: Audit semantic hook alignment
+        run: node tools/audit-historie-semantic-hook-alignment.mjs
