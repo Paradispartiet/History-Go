@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://history-go.local/schemas/sprakatlas-norge-v1.json",
+  "title": "History Go Språkatlas Norge v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "title",
+    "verified_at",
+    "scope",
+    "macro_regions",
+    "dialect_regions",
+    "language_status_layers"
+  ],
+  "properties": {
+    "schema": {
+      "const": "history_go_language_atlas_v1"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verified_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "scope": {
+      "const": "Norge"
+    },
+    "macro_regions": {
+      "type": "array",
+      "minItems": 4
+    },
+    "dialect_regions": {
+      "type": "array",
+      "minItems": 10
+    },
+    "urban_overlays": {
+      "type": "array"
+    },
+    "language_status_layers": {
+      "type": "array",
+      "minItems": 6
+    }
+  },
+  "additionalProperties": true
+}

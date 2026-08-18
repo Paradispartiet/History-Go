@@ -231,3 +231,75 @@ test("dokumentasjon og checklist skiller Språkleksikon fra det områdebundne di
   assert.match(checklist, /dialektinnhold[^\n]*kun[^\n]*område-Place/i);
   assert.match(checklist, /enkeltsted[^\n]*Språkleksikon[^\n]*ikke[^\n]*dialekt/i);
 });
+
+
+test("Språkatlas Norge dekker hele dialektlandskapet uten å gjøre språkgrenser eller mennesker absolutte", () => {
+  const atlas = json("data/leksikon/sprak/norge_atlas_v1.json");
+  assert.equal(atlas.schema, "history_go_language_atlas_v1");
+  assert.equal(atlas.scope, "Norge");
+
+  const macroIds = new Set((atlas.macro_regions || []).map(row => text(row.id)));
+  assert.deepEqual(macroIds, new Set(["austlandsk", "vestlandsk", "trondersk", "nordnorsk"]));
+
+  const regionIds = new Set((atlas.dialect_regions || []).map(row => text(row.id)));
+  for (const required of [
+    "vikvaersk", "midtostlandsk", "opplandsmal", "midlandsmal",
+    "sorleg_e_mal", "sorleg_ea_mal", "sorvestlandsk_a_mal", "nordvestlandsk_e_mal",
+    "inntrondersk", "uttrondersk", "nordland", "troms", "finnmark"
+  ]) assert.ok(regionIds.has(required), `Språkatlaset mangler ${required}`);
+
+  for (const region of atlas.dialect_regions || []) {
+    assert.ok(macroIds.has(text(region.macro_region_id)), `${region.id}: ukjent hovedgruppe`);
+    assert.ok(text(region.area_summary), `${region.id}: mangler geografisk/faglig avgrensing`);
+    assert.ok(Array.isArray(region.sources) && region.sources.length >= 2, `${region.id}: trenger flere kildebelegg`);
+    for (const source of region.sources) assert.match(String(source?.url || ""), /^https:\/\//, `${region.id}: kilde må være HTTPS`);
+  }
+
+  const languageIds = new Set((atlas.language_status_layers || []).map(row => text(row.id)));
+  for (const required of ["nordsamisk", "lulesamisk", "sorsamisk", "pitesamisk", "umesamisk", "skoltesamisk", "kvensk", "romani", "romanes"]) {
+    assert.ok(languageIds.has(required), `Atlaset mangler separat språkstatus for ${required}`);
+  }
+  for (const language of atlas.language_status_layers || []) {
+    assert.equal(language.kind, "language", `${language.id}: urfolks-/minoritetsspråk må modelleres som språk`);
+    assert.equal(language.not_norwegian_dialect, true, `${language.id}: må eksplisitt være skilt fra norsk dialektinndeling`);
+  }
+
+  assert.match(String(atlas.notes || ""), /ikke et kart over faste språkgrenser/i);
+  assert.ok((atlas.editorial_principles || []).some(value => /(?:ikke|aldri).*alle|alle.*(?:ikke|aldri)/i.test(String(value))), "Atlaset må avvise generalisering fra område til alle beboere");
+});
+
+test("Place-artikler kobler seg til Språkatlas Norge uten å lage en ny PlaceCard-runding", () => {
+  const expected = new Map([
+    ["frogner", ["austlandsk", "midtostlandsk"]],
+    ["sagene", ["austlandsk", "midtostlandsk"]],
+    ["vaalerenga", ["austlandsk", "midtostlandsk"]],
+    ["holmlia", ["austlandsk", "midtostlandsk"]],
+    ["etnesjoen_tettstad", ["vestlandsk", "sorvestlandsk_a_mal"]],
+    ["svartlamon_trondheim", ["trondersk"]]
+  ]);
+  for (const [placeId, regionIds] of expected) {
+    const relative = languageManifest.place_files?.[placeId];
+    assert.ok(relative, `${placeId}: må være registrert i Språkleksikon-manifestet`);
+    const article = json(relative);
+    assert.deepEqual(article.atlas_region_ids, regionIds, `${placeId}: feil atlaskobling`);
+  }
+
+  const places = loadPlacesById();
+  assert.equal(places.get("svartlamon_trondheim")?.placeScope, "area", "Trondheim-piloten må fortsatt være area-eid");
+  const trondheim = json(languageManifest.place_files.svartlamon_trondheim);
+  assert.ok((trondheim.entries || []).length >= 4, "Trondheim-piloten skal ha reelt språkinnhold");
+  for (const entry of trondheim.entries || []) {
+    assert.equal(entry.layer, "dialect");
+    assert.ok(Array.isArray(entry.sources) && entry.sources.length >= 2, `${entry.id}: trenger flere kildebelegg`);
+  }
+
+  const runtime = read("js/ui/place-language-layer.js");
+  const css = read("css/place-language-layer.css");
+  assert.match(runtime, /ATLAS_PATH\s*=\s*["']data\/leksikon\/sprak\/norge_atlas_v1\.json["']/);
+  assert.match(runtime, /function\s+renderLanguageAtlas\s*\(/);
+  assert.match(runtime, /Språkatlas Norge/);
+  assert.match(runtime, /hg-language-atlas-map/);
+  assert.match(runtime, /Egne språk – ikke norske dialekter/);
+  assert.match(css, /hg-language-atlas-map-region/);
+  assert.doesNotMatch(runtime, /data-place-tab=["']atlas["']/i);
+});
