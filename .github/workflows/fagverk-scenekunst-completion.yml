@@ -42,12 +42,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Verify Scenekunst holistic completion
+      - name: Verify Scenekunst holistic completion and scholarly source quality
         run: |
           node --check scripts/audit-fagverk-scenekunst-completion.mjs
           node --check scripts/materialize-fagverk-scenekunst-completion.mjs
           node scripts/audit-fagverk-scenekunst-completion.mjs
           node --test tests/fagverk-scenekunst-completion.test.mjs
+          node --check scripts/audit-fagverk-scenekunst-scholarly-sources.mjs
+          node scripts/audit-fagverk-scenekunst-scholarly-sources.mjs
+          node --test tests/fagverk-scenekunst-scholarly-sources.test.mjs
       - name: Preserve university breadth and Phase 3 contracts
         run: |
           node --check scripts/audit-fagverk-scenekunst-university-readiness.mjs
