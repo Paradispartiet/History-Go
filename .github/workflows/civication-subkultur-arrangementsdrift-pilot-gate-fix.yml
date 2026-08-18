@@ -39,11 +39,10 @@ jobs:
           exec(compile(body, '<materializer-runtime-patch>', 'exec'))
           PY
 
-      - name: Repair separated life-position career audit and register role model
+      - name: Reapply verified separated life-position career tier repair
         shell: bash
         run: |
           python - <<'PY'
-          import json
           from pathlib import Path
 
           audit = Path('scripts/audit-civication-career-gameplay.mjs')
@@ -54,7 +53,37 @@ jobs:
               audit.write_text(text.replace(old, new, 1))
           elif new not in text:
               raise SystemExit('career gameplay tier-resolution target not found')
+          PY
 
+      - name: Verify generic SceneDirector regression
+        run: node tests/civication-scene-director-daily-catalog.test.js
+
+      - name: Persist verified gate repairs
+        id: persist
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            scripts/audit-civication-career-gameplay.mjs \
+            js/Civication/systems/civicationWorkdayMailBuilder.js \
+            tests/civication-scene-director-daily-catalog.test.js
+          if git diff --cached --quiet; then
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Persist verified Civication gate repairs"
+            git push origin HEAD:${{ github.head_ref }}
+            echo "committed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Register Subkultur role model for materialization
+        if: steps.persist.outputs.committed != 'true'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
           manifest_path = Path('data/Civication/roleModels/manifest.json')
           manifest = json.loads(manifest_path.read_text())
           rel = 'data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json'
@@ -65,23 +94,64 @@ jobs:
               manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
           PY
 
-      - name: Verify generic SceneDirector regression
-        run: node tests/civication-scene-director-daily-catalog.test.js
+      - name: Instrument materializer stages
+        if: steps.persist.outputs.committed != 'true'
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
 
-      - name: Materialize and verify playable Subkultur pilot
+          script = Path('scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs')
+          text = script.read_text()
+          old = "const run = (args) => execFileSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit' });"
+          new = """const runStage = (stage, args) => {
+  console.log(`\\n=== MATERIALIZER STAGE START: ${stage} ===`);
+  try {
+    execFileSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit' });
+    console.log(`=== MATERIALIZER STAGE PASS: ${stage} ===`);
+  } catch (error) {
+    console.error(`=== MATERIALIZER STAGE FAIL: ${stage} ===`);
+    throw error;
+  }
+};"""
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit('materializer run helper target not found')
+
+          replacements = [
+            ("run(['scripts/audit-civication-career-gameplay.mjs', '--write']);", "runStage('career-audit', ['scripts/audit-civication-career-gameplay.mjs', '--write']);"),
+            ("run(['scripts/build-civication-scene-registry.mjs', '--write']);", "runStage('compiled-scene-registry-build', ['scripts/build-civication-scene-registry.mjs', '--write']);"),
+            ("run(['scripts/build-civication-scene-registry.mjs', '--check']);", "runStage('compiled-scene-registry-check', ['scripts/build-civication-scene-registry.mjs', '--check']);"),
+            ("run(['tests/civication-subkultur-arrangementsdrift-playability.test.js']);", "runStage('subkultur-playability', ['tests/civication-subkultur-arrangementsdrift-playability.test.js']);"),
+            ("run(['tests/civication-mail-choice-uniqueness.test.js']);", "runStage('mail-choice-uniqueness-regression', ['tests/civication-mail-choice-uniqueness.test.js']);"),
+            ("run(['tests/civication-religion-forskning-playability.test.js']);", "runStage('religion-forskning-regression', ['tests/civication-religion-forskning-playability.test.js']);"),
+            ("run(['tests/civication-produksjonsassistent-playability.test.js']);", "runStage('produksjonsassistent-regression', ['tests/civication-produksjonsassistent-playability.test.js']);"),
+            ("run(['tests/civication-avdelingsleder-playability.test.js']);", "runStage('avdelingsleder-regression', ['tests/civication-avdelingsleder-playability.test.js']);"),
+            ("run(['tests/civication-role-world-contract.test.js']);", "runStage('role-world-integrity', ['tests/civication-role-world-contract.test.js']);"),
+          ]
+          for before, after in replacements:
+              if before in text:
+                  text = text.replace(before, after, 1)
+              elif after not in text:
+                  raise SystemExit(f'materializer stage target not found: {before}')
+          script.write_text(text)
+          PY
+
+      - name: Materialize and identify first failing stage
+        if: steps.persist.outputs.committed != 'true'
         run: node scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs
 
       - name: Commit verified permanent outputs only
+        if: steps.persist.outputs.committed != 'true'
         shell: bash
         run: |
           set -euo pipefail
+          git checkout -- scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
-            scripts/audit-civication-career-gameplay.mjs \
             data/Civication/roleModels/manifest.json \
-            js/Civication/systems/civicationWorkdayMailBuilder.js \
-            tests/civication-scene-director-daily-catalog.test.js \
             data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json \
             data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json \
             data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json \
