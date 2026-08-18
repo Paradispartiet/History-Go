@@ -46,6 +46,16 @@ jobs:
         run: |
           python -m py_compile scripts/agent_build_norge_sprakatlas_v1.py
           python scripts/agent_build_norge_sprakatlas_v1.py
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('tests/place-language-dialect-scope.test.mjs')
+          text = path.read_text(encoding='utf-8')
+          before = r'/aldri.*alle|alle.*aldri/i'
+          after = r'/(?:ikke|aldri).*alle|alle.*(?:ikke|aldri)/i'
+          if before not in text:
+              raise SystemExit('Atlas anti-stereotype assertion pattern not found')
+          path.write_text(text.replace(before, after), encoding='utf-8')
+          PY
       - name: Check generated runtime and language regressions
         run: |
           node --check js/ui/place-language-layer.js
