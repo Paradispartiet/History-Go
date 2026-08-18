@@ -1,6 +1,6 @@
 name: Vitenskap methods and models coverage materialize
 
-# Retriggered after making the historical Unit 1 source/claim assertions monotone.
+# Temporary one-shot materializer for the first substantive editorial coverage batch.
 on:
   push:
     branches:
@@ -41,15 +41,12 @@ jobs:
           node --test tests/fagverk-vitenskap-methods-models-coverage.test.mjs
           node --test tests/fagverk-vitenskap-unit1.test.mjs
           node --test tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs
-      - name: Validate shared Vitenskap and nested Technology gates
+      - name: Validate shared Vitenskap and nested Teknologi gates
         run: |
-          node --test tests/fagverk-vitenskap-audit.test.mjs
-          node --test tests/fagverk-science-engine.test.mjs
-          node --test tests/fagverk-release-builder.test.mjs
-          node --test tests/fagverk-subject-registry.test.mjs
-          node --test tests/fagverk-technology-readiness.test.mjs
-          node --test tests/fagverk-technology-frontend-schema.test.mjs
-          node --test tests/fagverk-technology-phase1-to4-audit.test.mjs
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node --test tests/fagverk-general-engine.test.mjs
+          node --test tests/fagverk-release-manifest.test.mjs
+          node --test tests/vitenskap-teknologi-category-contract.test.mjs
       - name: Verify deterministic rerun
         run: |
           node scripts/materialize-vitenskap-methods-models-coverage-batch.mjs
