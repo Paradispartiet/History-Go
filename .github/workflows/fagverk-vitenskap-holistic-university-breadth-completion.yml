@@ -9,10 +9,13 @@ on:
       - 'data/fagverk/fagverk_release.json'
       - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json'
+      - 'reports/fagverk/vitenskap-holistic-quality-review-audit.json'
       - 'reports/fagverk/vitenskap-*-coverage-audit.json'
       - 'scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs'
+      - 'scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs'
       - 'scripts/audit-fagverk-vitenskap-*-coverage.mjs'
       - 'tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs'
+      - 'tests/fagverk-vitenskap-holistic-quality-review.test.mjs'
       - 'tests/fagverk-vitenskap-*-coverage.test.mjs'
       - '.github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml'
   push:
@@ -24,10 +27,13 @@ on:
       - 'data/fagverk/fagverk_release.json'
       - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json'
+      - 'reports/fagverk/vitenskap-holistic-quality-review-audit.json'
       - 'reports/fagverk/vitenskap-*-coverage-audit.json'
       - 'scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs'
+      - 'scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs'
       - 'scripts/audit-fagverk-vitenskap-*-coverage.mjs'
       - 'tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs'
+      - 'tests/fagverk-vitenskap-holistic-quality-review.test.mjs'
       - 'tests/fagverk-vitenskap-*-coverage.test.mjs'
       - '.github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml'
   workflow_dispatch:
@@ -45,6 +51,13 @@ jobs:
           node --check scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs
           node scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs
           node --test tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs
+      - name: Verify explicit holistic quality review when material prerequisites are closed
+        run: |
+          if [ -f data/fag/vitenskap/vitenskap_holistic_quality_review_v1.json ]; then
+            node --check scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs
+            node scripts/audit-fagverk-vitenskap-holistic-quality-review.mjs
+            node --test tests/fagverk-vitenskap-holistic-quality-review.test.mjs
+          fi
       - name: Preserve substantive editorial coverage gates
         run: |
           node --test tests/fagverk-vitenskap-methods-models-coverage.test.mjs

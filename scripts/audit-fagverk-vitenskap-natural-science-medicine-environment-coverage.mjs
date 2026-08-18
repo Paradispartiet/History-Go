@@ -127,7 +127,7 @@ export function auditVitenskapNaturalScienceMedicineEnvironmentCoverage({ writeR
   assert(registryMeta?.explicitFulltextTreatment === true && sameSet(registryMeta.emne_ids,EMNES), 'Registry mangler batch 5 fulltext metadata');
 
   const holistic = auditVitenskapHolisticUniversityBreadthCompletion({ writeReport:false, checkReport:false });
-  assert(holistic.status === 'blocked' && holistic.subject.completeReady === false, 'Holistic completion må fortsatt være blokkert etter batch 5');
+  assert(holistic.subject.completeReady === false && ['blocked','eligible_for_completion'].includes(holistic.status), 'Holistic completion må fortsatt være blokkert etter batch 5');
   assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount >= 102, 'Holistic owned-count kan ikke regressere under 102 etter batch 5');
   assert(holistic.canonicalInventory.explicitUncoveredEmneCount <= 15, 'Holistic uncovered-count kan ikke regressere over 15 etter batch 5');
   assert(!holistic.blockers.some((row) => row.id === 'canonical_emne_full_editorial_treatment_gap') || holistic.blockers.find((row) => row.id === 'canonical_emne_full_editorial_treatment_gap')?.count <= 15, 'Holistic coverage blocker kan ikke regressere over 15 etter batch 5');
