@@ -1,9 +1,9 @@
-name: Civication Religion forskning pilot materializer
+name: Civication Religion forskning pilot cleanup
 
 on:
   pull_request:
     branches: [main]
-    types: [opened, synchronize, reopened]
+    types: [synchronize]
 
 permissions:
   contents: write
@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  materialize:
+  cleanup:
     if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/civication-religion-forskning-pilot-playable'
     runs-on: ubuntu-latest
     steps:
@@ -26,76 +26,55 @@ jobs:
         with:
           node-version: 22
 
-      - name: Materialize and verify Religion forskning pilot
+      - name: Restore minimal manifest delta
         shell: bash
         run: |
-          set -o pipefail
-          {
-            node scripts/register-civication-religion-forskning-role-model.mjs
-            node scripts/materialize-civication-religion-forskning-pilot.mjs
-          } 2>&1 | tee /tmp/religion-forskning-materializer.log
-
-      - name: Append generated Religion audit row on failure
-        if: failure()
-        shell: bash
-        run: |
-          node - <<'NODE' >> /tmp/religion-forskning-materializer.log 2>&1
+          set -euo pipefail
+          BASE_SHA=0325e7221701fcf43983010c8fa22bdcf69591f3
+          git show "$BASE_SHA:data/Civication/roleModels/manifest.json" > data/Civication/roleModels/manifest.json
+          node - <<'NODE'
           const fs = require('fs');
-          const p = 'data/Civication/careerGameplayMatrix.json';
-          if (!fs.existsSync(p)) {
-            console.log('DIAGNOSTIC: careerGameplayMatrix.json missing after failed materializer');
-            process.exit(0);
-          }
-          const matrix = JSON.parse(fs.readFileSync(p, 'utf8'));
-          const row = matrix.worlds.find((w) => w.key === 'religion/religion_forskning');
-          if (!row) {
-            console.log('DIAGNOSTIC: religion/religion_forskning row missing');
-            process.exit(0);
-          }
-          console.log('DIAGNOSTIC_RELIGION_ROW=' + JSON.stringify({
-            status: row.status,
-            runtime_gate: row.audit?.runtime_gate,
-            missing_components: row.audit?.missing_components,
-            complete_components: row.audit?.complete_components,
-            practice_weeks: row.audit?.practice_weeks,
-            life_story_complete: row.audit?.life_story_complete,
-            components: Object.fromEntries(Object.entries(row.audit?.components || {}).map(([k,v]) => [k, { level: v.level, note: v.note, evidence: v.evidence }]))
-          }, null, 2));
+          const p = 'data/Civication/roleModels/manifest.json';
+          const target = 'data/Civication/roleModels/religion/religion_forskning.json';
+          const manifest = JSON.parse(fs.readFileSync(p, 'utf8'));
+          if (!Array.isArray(manifest.files)) throw new Error('roleModels manifest has no files array');
+          if (!manifest.files.includes(target)) manifest.files.push(target);
+          fs.writeFileSync(p, `${JSON.stringify(manifest, null, 2)}\n`);
           NODE
 
-      - name: Upload Religion materializer failure log
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: religion-forskning-materializer-log
-          path: /tmp/religion-forskning-materializer.log
-          if-no-files-found: error
-          retention-days: 1
+      - name: Remove temporary materializer infrastructure
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm \
+            .github/workflows/civication-religion-forskning-pilot-materialize.yml \
+            scripts/materialize-civication-religion-forskning-pilot.mjs \
+            scripts/register-civication-religion-forskning-role-model.mjs \
+            scripts/register-civication-religion-forskning-model.mjs
 
-      - name: Commit verified permanent outputs
+      - name: Regenerate audit and verify permanent Religion pilot
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-civication-career-gameplay.mjs
+          node scripts/generate-civication-scene-registry-v1.mjs --check
+          node tests/civication-religion-forskning-playability.test.js
+          node tests/civication-mail-choice-uniqueness.test.js
+          node tests/civication-produksjonsassistent-playability.test.js
+          node tests/civication-avdelingsleder-playability.test.js
+          node tests/civication-role-world-contract.test.js
+          git diff --check
+
+      - name: Commit clean permanent outputs
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            data/Civication/roleModels/manifest.json \
-            data/Civication/roleModels/religion/religion_forskning.json \
-            data/Civication/workGrammars/religion/religion_forskning.json \
-            data/Civication/mailPlans/religion/religion_forskning_plan.json \
-            data/Civication/mailFamilies/religion/job/religion_forskning_job.json \
-            data/Civication/mailFamilies/religion/people/religion_forskning_people.json \
-            data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json \
-            data/Civication/mailFamilies/religion/event/religion_forskning_event.json \
-            data/Civication/mailFamilies/religion/followup/religion_forskning_followup.json \
-            data/Civication/mailFamilies/religion/consequence/religion_forskning_consequence.json \
-            data/Civication/careerGameplayMatrix.json \
-            data/Civication/compiledSceneRegistryV1.json \
-            reports/civication-career-gameplay-matrix.md \
-            tests/civication-religion-forskning-playability.test.js
+          git add -A
           if git diff --cached --quiet; then
-            echo "Religion forskning pilot already materialized; nothing to commit."
+            echo "Religion forskning pilot already clean; nothing to commit."
             exit 0
           fi
-          git commit -m "Materialize Religion forskning as knowledge-work pilot"
+          git commit -m "Finalize Religion forskning knowledge-work pilot"
           git push origin HEAD:${{ github.head_ref }}
