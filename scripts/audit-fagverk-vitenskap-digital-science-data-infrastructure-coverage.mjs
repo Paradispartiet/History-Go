@@ -120,9 +120,9 @@ export function auditVitenskapDigitalScienceDataInfrastructureCoverage({ writeRe
 
   const holistic = auditVitenskapHolisticUniversityBreadthCompletion({ writeReport:false, checkReport:false });
   assert(holistic.status === 'blocked' && holistic.subject.completeReady === false, 'Holistic completion må fortsatt være blokkert');
-  assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount === 89, 'Holistic owned-count skal være 89 etter batch 4');
-  assert(holistic.canonicalInventory.explicitUncoveredEmneCount === 28, 'Holistic uncovered-count skal være 28 etter batch 4');
-  assert(holistic.blockers.find((row) => row.id === 'canonical_emne_full_editorial_treatment_gap')?.count === 28, 'Holistic coverage blocker skal være 28');
+  assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount >= 89, 'Holistic owned-count kan ikke regressere under 89 etter batch 4');
+  assert(holistic.canonicalInventory.explicitUncoveredEmneCount <= 28, 'Holistic uncovered-count kan ikke regressere over 28 etter batch 4');
+  assert(holistic.blockers.find((row) => row.id === 'canonical_emne_full_editorial_treatment_gap')?.count <= 28, 'Holistic coverage blocker kan ikke regressere over 28 etter batch 4');
   assert(holistic.qualityReview.status === 'deferred_until_material_blockers_close', 'Holistic final review må fortsatt være deferred');
   assert(holistic.evidence.allClaimsResolve === true, 'Holistic claim/source gate må forbli grønn');
   assert(holistic.evidence.methodsWithLimitsChapterCount === holistic.evidence.chapterCount, 'Alle Vitenskap-kapitler må fortsatt lære metodebegrensninger');
