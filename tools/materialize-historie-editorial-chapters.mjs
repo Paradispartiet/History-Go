@@ -43,6 +43,7 @@ const editorialProfilesDocument = readJson('data/fag/historie/editorial_profiles
 const historiographyDocument = readJson('data/fag/historie/historiography_evidence_historie_v1.json');
 const registry = readJson('data/fagverk/fagverk_registry.json');
 const status = readJson('data/fagverk/subject_status.json');
+const editorialTheoryDocument = readJson('data/fag/historie/editorial_theory_overrides_historie_v1.json');
 
 const emneById = new Map(emner.map((item) => [item.emne_id, item]));
 const theoryByHookId = new Map(theories.map((item) => [item.source_hook_id, item]));
@@ -52,6 +53,30 @@ const sourceById = new Map(sourceRegistry.sources.map((item) => [item.source_id,
 const editorialProfileByDomainId = new Map(editorialProfilesDocument.profiles.map((item) => [item.domain_id, item]));
 const historiographyCoverageByDomainId = new Map(historiographyDocument.coverage.map((item) => [item.domain_id, item]));
 const historiographySourceById = new Map(historiographyDocument.sources.map((item) => [item.source_id, item]));
+const hookById = new Map();
+for (const category of list(fagkart.categories)) {
+  for (const hook of list(category.topic_hooks)) {
+    if (hookById.has(hook.id)) throw new Error(`Duplisert History hook-id ${hook.id}`);
+    hookById.set(hook.id, hook);
+  }
+}
+const editorialOverrideByEmneId = new Map(list(editorialTheoryDocument.overrides).map((row) => [row.emne_id, row]));
+const resolvedLegacyEditorialIds = new Set(list(editorialTheoryDocument.resolved_legacy_question_surface_ids).map((row) => row.legacy_emne_id));
+const editorialBlueprintByEmneId = new Map();
+for (const blueprintFile of list(editorialTheoryDocument.source_blueprint_files)) {
+  for (const row of list(readJson(blueprintFile))) {
+    if (!emneById.has(row.emne_id)) {
+      if (!resolvedLegacyEditorialIds.has(row.emne_id)) throw new Error(`${blueprintFile}: uavklart legacy editorial emne ${row.emne_id}`);
+      continue;
+    }
+    if (editorialBlueprintByEmneId.has(row.emne_id)) throw new Error(`${row.emne_id}: duplisert aktiv editorial blueprint`);
+    editorialBlueprintByEmneId.set(row.emne_id, row);
+  }
+}
+for (const emneId of editorialOverrideByEmneId.keys()) {
+  if (!emneById.has(emneId)) throw new Error(`Editorial override peker på ukjent emne ${emneId}`);
+  if (editorialBlueprintByEmneId.has(emneId)) throw new Error(`${emneId}: både blueprint og override skaper uklar editorial precedence`);
+}
 const conceptsByEmneId = new Map();
 for (const concept of concepts) {
   for (const emneId of list(concept.source_emne_ids)) {
@@ -77,16 +102,29 @@ function isGeneratorOwnedChapter(chapterRow) {
 function theoryPackage(category, emne) {
   const semanticHookId = list(emne.primary_theory_hooks)[0];
   if (!semanticHookId) throw new Error(`${category.id}/${emne.emne_id}: mangler primary_theory_hooks`);
-  const hook = list(category.topic_hooks).find((item) => item.id === semanticHookId);
-  if (!hook) throw new Error(`${category.id}/${emne.emne_id}: semantisk hook ${semanticHookId} finnes ikke i fagkartkategorien`);
-  if (!list(hook.emne_ids).includes(emne.emne_id)) throw new Error(`${semanticHookId}: hooken er ikke koblet til ${emne.emne_id}`);
-  const theory = theoryByHookId.get(semanticHookId);
-  if (!theory) throw new Error(`${semanticHookId}: mangler teoriobjekt`);
+  if (!list(category.topic_hooks).some((item) => item.id === semanticHookId)) throw new Error(`${category.id}/${emne.emne_id}: semantisk hook ${semanticHookId} finnes ikke i fagkartkategorien`);
+  const semanticHook = hookById.get(semanticHookId);
+  if (!semanticHook) throw new Error(`${semanticHookId}: mangler canonical hook`);
+  if (!list(semanticHook.emne_ids).includes(emne.emne_id)) throw new Error(`${semanticHookId}: mangler canonical primary association for ${emne.emne_id}`);
+
+  const override = editorialOverrideByEmneId.get(emne.emne_id);
+  const blueprint = editorialBlueprintByEmneId.get(emne.emne_id);
+  if (override && blueprint) throw new Error(`${emne.emne_id}: både override og blueprint er aktive`);
+  const editorialHookId = override?.editorial_primary_hook_id || blueprint?.primary_hook_id || semanticHookId;
+  const editorialSecondaryHookId = override?.editorial_secondary_hook_id || blueprint?.secondary_hook_id || null;
+  const hook = hookById.get(editorialHookId);
+  if (!hook) throw new Error(`${category.id}/${emne.emne_id}: editorial hook ${editorialHookId} finnes ikke`);
+  const theory = theoryByHookId.get(editorialHookId);
+  if (!theory) throw new Error(`${editorialHookId}: mangler teoriobjekt`);
+  if (editorialSecondaryHookId) {
+    if (!hookById.has(editorialSecondaryHookId)) throw new Error(`${editorialSecondaryHookId}: editorial secondary hook finnes ikke`);
+    if (!theoryByHookId.has(editorialSecondaryHookId)) throw new Error(`${editorialSecondaryHookId}: editorial secondary hook mangler teoriobjekt`);
+  }
   const theoryEvidence = evidenceByTheoryId.get(theory.theory_id);
   if (!theoryEvidence || theoryEvidence.status !== 'evidence_ready') throw new Error(`${theory.theory_id}: mangler ferdig evidens`);
   const claims = list(theoryEvidence.claim_ids).map((id) => claimById.get(id)).filter(Boolean);
   if (!claims.length) throw new Error(`${theory.theory_id}: mangler claims`);
-  return { emneId: emne.emne_id, semanticHookId, hook, theory, theoryEvidence, claims };
+  return { emneId: emne.emne_id, semanticHookId, editorialHookId, editorialSecondaryHookId, semanticHook, hook, theory, theoryEvidence, claims };
 }
 
 function claimParagraph(claim, emne) {
@@ -155,6 +193,8 @@ function sectionFor(category, emne, index, editorialProfile) {
     id: slug(emne.emne_id.replace(/^em_his_/, '')),
     emneId: emne.emne_id,
     semanticHookId: pack.semanticHookId,
+    editorialHookId: pack.editorialHookId,
+    editorialSecondaryHookId: pack.editorialSecondaryHookId,
     theoryId: pack.theory.theory_id,
     title: `${index + 1}. ${emne.title}`,
     paragraphs,
@@ -211,7 +251,7 @@ function buildChapter(domain) {
   if (domainEmner.some((item) => !item)) throw new Error(`${domain.domain_id}: mangler emne`);
   const sections = domainEmner.map((emne, index) => sectionFor(category, emne, index, editorialProfile));
   const packages = sections.map((section) => section._pack);
-  const theoryIds = packages.map((pack) => pack.theory.theory_id);
+  const theoryIds = unique(packages.map((pack) => pack.theory.theory_id));
   const allClaimIds = unique(packages.flatMap((pack) => pack.theoryEvidence.claim_ids));
   const allSourceIds = unique(packages.flatMap((pack) => pack.theoryEvidence.source_ids));
   const allConcepts = unique(domainEmner.flatMap((emne) => list(conceptsByEmneId.get(emne.emne_id)).map((item) => item.concept_id)))
@@ -343,6 +383,7 @@ function buildChapter(domain) {
       historiographicalDebateRequired: true,
       academicHistoriographyEvidenceRequired: true,
       semanticPrimaryHookRequired: true,
+      separateEditorialTheoryHookRequired: true,
       causalFrameworkRequired: true,
       minimumCaseAnchors: 3
     },
@@ -362,6 +403,7 @@ function buildChapter(domain) {
       claims: 'data/fag/historie/claims_historie_canonical_v1.json',
       sources: 'data/fag/historie/sources_historie_canonical_v1.json',
       editorialProfiles: 'data/fag/historie/editorial_profiles_historie_v1.json',
+      editorialTheoryOverrides: 'data/fag/historie/editorial_theory_overrides_historie_v1.json',
       historiographyEvidence: 'data/fag/historie/historiography_evidence_historie_v1.json'
     }
   };
@@ -387,7 +429,7 @@ registry.subjects.historie.chapters = pensum.domains.map((domain) => (
   generatedRowByDomainId.get(domain.domain_id) || chapterRowByDomainId.get(domain.domain_id)
 ));
 registry.subjects.historie.description = 'Et sammenhengende, kildekritisk læreverk om historisk tid, perioder, samfunn, aktører, institusjoner, steder, begreper og fortolkninger fra forhistorie til samtid.';
-registry.subjects.historie.canonicalModel.note = 'Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier fem håndbygde kapitler og atten generator-eide kapitler med semantisk låste primærhooks, håndredigerte fagprofiler, emnelinser, årsakskjeder, tolkningsuenighet, akademisk historiografi-evidens og stedscaser.';
+registry.subjects.historie.canonicalModel.note = 'Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier fem håndbygde kapitler og atten generator-eide kapitler med semantisk låste primærhooks, separat kuraterte editorial theory hooks, håndredigerte fagprofiler, emnelinser, årsakskjeder, tolkningsuenighet, akademisk historiografi-evidens og stedscaser.';
 const statusEntry = status.subjects.find((item) => item.id === 'historie');
 statusEntry.editorialStatus = 'expanded_and_audited';
 statusEntry.nextGate = 'source_refresh_and_case_expansion';

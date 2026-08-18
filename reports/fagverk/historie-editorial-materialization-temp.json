@@ -1,11 +1,9 @@
 {
   "schema": "history_go_historie_editorial_materialization_temp_v1",
-  "generated_from_head": "001bb4a14598a8898ac85fd658ac154d42245b60",
+  "generated_from_head": "253e665e63a14a7b31f501e26c9c9aa14fc1f06c",
   "observed_main": "99db81c3e86b6826df0293d0476c5f42997cad78",
-  "status": "FAIL",
-  "failed_checks": [
-    "shared_history_audit"
-  ],
+  "status": "PASS",
+  "failed_checks": [],
   "checks": [
     {
       "id": "patch_generator",
@@ -43,11 +41,18 @@
       "stderr": ""
     },
     {
+      "id": "refresh_subject_audit",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie-fagverk OK: 23 fagområder, 23 kapitler og 0 gjenstående kapitteldomener.",
+      "stderr": ""
+    },
+    {
       "id": "shared_history_audit",
-      "status": "FAIL",
-      "exit_code": 1,
-      "stdout": "",
-      "stderr": "Historie-fagverk FEIL: reports/fagverk/historie-subject-audit.json er utdatert"
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie-fagverk OK: 23 fagområder, 23 kapitler og 0 gjenstående kapitteldomener.",
+      "stderr": ""
     }
   ]
 }
