@@ -1,0 +1,57 @@
+name: History semantic preflight PR temporary
+# Read-only static diagnostics. Delete before merge.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/history-semantic-preflight-pr-temp.yml'
+      - 'tools/diagnose-historie-semantic-preflight-temp.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR merge
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Semantic gate — policy and inventory
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs policy
+
+      - name: Semantic gate — primary ownership
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs primary
+
+      - name: Semantic gate — secondary mapping
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs secondary
+
+      - name: Semantic gate — legacy partition
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs legacy
+
+      - name: Semantic gate — active blueprint uniqueness
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs active-unique
+
+      - name: Semantic gate — byhistorie editorial hooks
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs blueprint-file byhistorie
+
+      - name: Semantic gate — industri editorial hooks
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs blueprint-file industri-arbeid
+
+      - name: Semantic gate — velferd editorial hooks
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs blueprint-file velferd
+
+      - name: Semantic gate — overrides
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs overrides
+
+      - name: Semantic gate — curated 30 of 30 coverage
+        run: node tools/diagnose-historie-semantic-preflight-temp.mjs coverage
+
+      - name: Semantic gate — permanent audit
+        run: node tools/audit-historie-semantic-hook-alignment.mjs
