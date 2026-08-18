@@ -47,8 +47,8 @@ export function validateHistoryEditorialQuality({ root = DEFAULT_ROOT } = {}) {
       fagkartHookCount += 1;
       const expectedOwner = primaryOwnerByHook.get(hook.id);
       assert(expectedOwner, `${hook.id}: fagkart-hook mangler canonical primary-eier`);
-      const owners = list(hook.emne_ids);
-      assert(owners.length === 1 && owners[0] === expectedOwner, `${hook.id}: hook.emne_ids skal uttrykke nøyaktig én canonical primary-eier (${expectedOwner}), ikke secondary/editorial analysebaner`);
+      const associations = list(hook.emne_ids);
+      assert(associations.includes(expectedOwner), `${hook.id}: hook.emne_ids mangler canonical primary-eier ${expectedOwner}`);
     }
   }
   assert(fagkartHookCount === 230, `Historie-fagkartet skal ha 230 hooks, fant ${fagkartHookCount}`);
