@@ -1,0 +1,39 @@
+name: Fagverk theory quality baseline
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/**'
+      - 'data/fagverk/**'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'scripts/audit-fagverk-theory-quality.mjs'
+      - 'tests/fagverk-theory-quality.test.mjs'
+      - '.github/workflows/fagverk-theory-quality.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/fag/**'
+      - 'data/fagverk/**'
+      - 'reports/fagverk/fagverk-theory-quality-audit.json'
+      - 'scripts/audit-fagverk-theory-quality.mjs'
+      - 'tests/fagverk-theory-quality.test.mjs'
+      - '.github/workflows/fagverk-theory-quality.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify cross-Fagverk theory quality baseline
+        run: |
+          node --check scripts/audit-fagverk-theory-quality.mjs
+          node scripts/audit-fagverk-theory-quality.mjs
+          node --test tests/fagverk-theory-quality.test.mjs
