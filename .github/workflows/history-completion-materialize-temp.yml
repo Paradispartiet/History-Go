@@ -154,19 +154,126 @@ jobs:
           fs.writeFileSync(generatorPath, generator);
           NODE
 
+      - name: Write semantic hook diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/fagverk
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
+          const list = (value) => Array.isArray(value) ? value : [];
+          const unique = (values) => [...new Set(values.filter(Boolean))];
+          const blueprintFiles = [
+            'reports/historie-canonical-migration/industri-arbeid-question-blueprints.json',
+            'reports/historie-canonical-migration/velferd-question-blueprints.json',
+            'reports/historie-canonical-migration/byhistorie-question-blueprints.json'
+          ];
+          const emners = list(readJson('data/fag/historie/emner_historie_canonical_v4_5.json'));
+          const mappings = list(readJson('data/fag/historie/emnemapping_historie_canonical_v4_5.json'));
+          const fagkart = readJson('data/fag/historie/fagkart_historie_canonical_v4_5.json');
+          const theories = list(readJson('data/fag/historie/theory_objects_historie_canonical_v5_5.json'));
+          const hookById = new Map();
+          for (const category of list(fagkart.categories)) {
+            for (const hook of list(category.topic_hooks)) hookById.set(hook.id, hook);
+          }
+          const theoryByHookId = new Map(theories.map((theory) => [theory.source_hook_id, theory]));
+          const mappingByEmne = new Map(mappings.map((mapping) => [mapping.emne_id, mapping]));
+          const emneById = new Map(emners.map((emne) => [emne.emne_id, emne]));
+
+          const canonical = [];
+          const primaryKeys = [];
+          for (const emne of emners) {
+            const primary = list(emne.primary_theory_hooks);
+            if (primary.length !== 1) {
+              canonical.push({ emne_id: emne.emne_id, role: 'primary', hook_id: null, reasons: [`primary_hook_count_${primary.length}`] });
+              continue;
+            }
+            const primaryHookId = primary[0];
+            primaryKeys.push(primaryHookId);
+            const mapped = new Set(list(mappingByEmne.get(emne.emne_id)?.mappings).map((row) => row.topic_hook));
+            const inspect = (hookId, role) => {
+              const hook = hookById.get(hookId);
+              const reasons = [];
+              if (!hook) reasons.push('missing_hook');
+              if (hook && !list(hook.emne_ids).includes(emne.emne_id)) reasons.push('hook_missing_emne');
+              if (!theoryByHookId.has(hookId)) reasons.push('missing_theory');
+              if (!mapped.has(hookId)) reasons.push('missing_mapping');
+              if (role === 'secondary' && hookId === primaryHookId) reasons.push('same_as_primary');
+              if (reasons.length) canonical.push({ emne_id: emne.emne_id, role, hook_id: hookId, reasons });
+            };
+            inspect(primaryHookId, 'primary');
+            for (const secondary of list(emne.secondary_theory_hooks)) inspect(secondary, 'secondary');
+          }
+
+          const curated = [];
+          const blueprintRows = blueprintFiles.flatMap((file) => list(readJson(file)).map((row) => ({ ...row, blueprint_file: file })));
+          for (const blueprint of blueprintRows) {
+            if (!emneById.has(blueprint.emne_id)) {
+              curated.push({ emne_id: blueprint.emne_id, editorial_hook_id: blueprint.primary_hook_id || null, blueprint_file: blueprint.blueprint_file, reasons: ['unknown_emne'] });
+              continue;
+            }
+            for (const hookId of unique([blueprint.primary_hook_id, blueprint.secondary_hook_id])) {
+              const hook = hookById.get(hookId);
+              const reasons = [];
+              if (!hook) reasons.push('missing_hook');
+              if (hook && !list(hook.emne_ids).includes(blueprint.emne_id)) reasons.push('hook_missing_emne');
+              if (!theoryByHookId.has(hookId)) reasons.push('missing_theory');
+              if (reasons.length) curated.push({ emne_id: blueprint.emne_id, editorial_hook_id: hookId, blueprint_file: blueprint.blueprint_file, reasons });
+            }
+          }
+
+          const report = {
+            schema_version: 'history_semantic_hook_diagnostics_v1',
+            canonical_emners: emners.length,
+            unique_primary_semantic_keys: unique(primaryKeys).length,
+            canonical_mismatches: canonical,
+            curated_blueprint_rows: blueprintRows.length,
+            curated_editorial_mismatches: curated,
+            total_mismatches: canonical.length + curated.length
+          };
+          fs.writeFileSync('reports/fagverk/history-semantic-hook-diagnostics.json', `${JSON.stringify(report, null, 2)}\n`);
+          console.log(JSON.stringify(report, null, 2));
+          NODE
+
       - name: Validate canonical and semantic contracts
+        id: semantic_validation
+        continue-on-error: true
         run: |
           set -euo pipefail
           node tools/audit-historie-canonical-emner.mjs --write-report
           node tools/audit-historie-semantic-hook-alignment.mjs
 
+      - name: Persist semantic diagnostics
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add reports/fagverk/history-semantic-hook-diagnostics.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record History semantic hook diagnostics'
+            git fetch origin "${GITHUB_HEAD_REF}"
+            git rebase "origin/${GITHUB_HEAD_REF}"
+            git push origin "HEAD:${GITHUB_HEAD_REF}"
+          fi
+
+      - name: Stop on semantic contract mismatch
+        if: steps.semantic_validation.outcome != 'success'
+        run: |
+          echo 'History semantic contract remains red; inspect reports/fagverk/history-semantic-hook-diagnostics.json'
+          exit 1
+
       - name: Materialize repaired History prose
+        if: steps.semantic_validation.outcome == 'success'
         run: node tools/materialize-historie-editorial-chapters.mjs
 
       - name: Verify deterministic materialization
+        if: steps.semantic_validation.outcome == 'success'
         run: node tools/materialize-historie-editorial-chapters.mjs --check
 
       - name: Validate repaired History completion gates
+        if: steps.semantic_validation.outcome == 'success'
         run: |
           set -euo pipefail
           node tools/audit-historie-semantic-hook-alignment.mjs
@@ -176,6 +283,7 @@ jobs:
           node scripts/audit-fagverk-historie.mjs
 
       - name: Commit permanent hook policy and materialized History corpus
+        if: steps.semantic_validation.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
