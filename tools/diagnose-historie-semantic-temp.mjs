@@ -25,6 +25,7 @@ const blueprintFiles = {
   byhistorie: 'reports/historie-canonical-migration/byhistorie-question-blueprints.json'
 };
 const blueprints = Object.fromEntries(Object.entries(blueprintFiles).map(([family, file]) => [family, list(read(file))]));
+const blueprintRows = Object.entries(blueprints).flatMap(([family, items]) => items.map((row) => ({ ...row, family })));
 
 const fail = (phase, rows) => {
   if (!rows.length) {
@@ -59,17 +60,24 @@ const canonicalRows = (role, dimension) => {
   return rows;
 };
 
-const blueprintStructure = () => {
-  const rows = Object.entries(blueprints).flatMap(([family, items]) => items.map((row) => ({ ...row, family })));
-  const mismatches = [];
-  const seen = new Map();
-  for (const row of rows) {
-    if (!row.emne_id || !emneById.has(row.emne_id)) mismatches.push({ family: row.family, emne_id: row.emne_id || null, reason: 'unknown_emne' });
-    if (!row.primary_hook_id) mismatches.push({ family: row.family, emne_id: row.emne_id, reason: 'missing_primary_hook_id' });
-    if (seen.has(row.emne_id)) mismatches.push({ family: row.family, emne_id: row.emne_id, reason: `duplicate_emne_with_${seen.get(row.emne_id)}` });
-    else seen.set(row.emne_id, row.family);
+const blueprintKnownEmne = () => blueprintRows
+  .filter((row) => !row.emne_id || !emneById.has(row.emne_id))
+  .map((row) => ({ family: row.family, emne_id: row.emne_id || null, reason: 'unknown_emne' }));
+
+const blueprintPrimaryPresent = () => blueprintRows
+  .filter((row) => !row.primary_hook_id)
+  .map((row) => ({ family: row.family, emne_id: row.emne_id || null, reason: 'missing_primary_hook_id' }));
+
+const blueprintCrossFamilyOverlap = () => {
+  const familiesByEmne = new Map();
+  for (const row of blueprintRows) {
+    const families = familiesByEmne.get(row.emne_id) || new Set();
+    families.add(row.family);
+    familiesByEmne.set(row.emne_id, families);
   }
-  return mismatches;
+  return [...familiesByEmne.entries()]
+    .filter(([, families]) => families.size > 1)
+    .map(([emne_id, families]) => ({ emne_id, families: [...families].sort(), reason: 'cross_family_editorial_lenses' }));
 };
 
 const curatedRows = (family, dimension) => {
@@ -96,7 +104,9 @@ else if (phase === 'primary-mapping') fail(phase, canonicalRows('primary', 'mapp
 else if (phase === 'secondary-ownership') fail(phase, canonicalRows('secondary', 'ownership'));
 else if (phase === 'secondary-theory') fail(phase, canonicalRows('secondary', 'theory'));
 else if (phase === 'secondary-mapping') fail(phase, canonicalRows('secondary', 'mapping'));
-else if (phase === 'blueprint-structure') fail(phase, blueprintStructure());
+else if (phase === 'blueprint-known-emne') fail(phase, blueprintKnownEmne());
+else if (phase === 'blueprint-primary-present') fail(phase, blueprintPrimaryPresent());
+else if (phase === 'blueprint-cross-family-overlap') fail(phase, blueprintCrossFamilyOverlap());
 else {
   const match = /^(byhistorie|industri|velferd)-(ownership|theory)$/.exec(phase);
   assert.ok(match, `Unknown phase ${phase}`);
