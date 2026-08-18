@@ -6,6 +6,11 @@ on:
       - agent/vitenskap-editorial-coverage-repair-5
     paths:
       - '.github/workflows/vitenskap-coverage-batch5-diagnose.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/vitenskap-coverage-batch5-diagnose.yml'
 
 permissions:
   contents: write
@@ -16,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/vitenskap-editorial-coverage-repair-5
+          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -52,9 +57,10 @@ jobs:
           const report = { generated_from: process.env.GITHUB_SHA, owned_before: owned.size, blocker_count_before: rows.length, group_counts, groups };
           fs.mkdirSync('.tmp', { recursive: true });
           fs.writeFileSync('.tmp/vitenskap-coverage-batch5.json', JSON.stringify(report, null, 2) + '\n');
-          console.log(JSON.stringify({ owned_before: owned.size, blockers_before: rows.length, group_counts }));
+          console.log(JSON.stringify(report, null, 2));
           NODE
       - name: Persist batch 5 diagnosis
+        if: github.event_name == 'push'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
