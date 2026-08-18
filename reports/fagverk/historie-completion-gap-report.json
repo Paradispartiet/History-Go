@@ -2,7 +2,7 @@
   "schema": "history_go_history_completion_gap_report_v1",
   "version": "1.0.0",
   "subject_id": "historie",
-  "status": "repair_in_progress",
+  "status": "resolved_completion_gaps",
   "audit_basis": {
     "locked_start_main": "4dae14238d3f582164ea0d34faa1296dd9b9c28a",
     "scope_rule": "Bare dokumenterte completion-gap repareres. De 23 canonicale kapitlene og fagområdene utvides ikke vilkårlig.",
@@ -46,7 +46,7 @@
         "period": "langt_1800_tall",
         "sample": "data/fagverk/historie/industri_arbeid_sosialhistorie/01-grunnlag.json",
         "review_status": "reviewed",
-        "finding": "Systematisk generatorrepetisjon ble funnet, og emnet Arbeiderbevegelse og folkedannelse ble materialisert med fabrikkorganiserings-teori i strid med den kuraterte migrasjons-blueprinten."
+        "finding": "Systematisk generatorrepetisjon ble funnet, og emnet Arbeiderbevegelse og folkedannelse ble materialisert med fabrikkorganiserings-teori i strid med den kuraterte redaksjonelle analyselinsen."
       },
       {
         "period": "forste_verdenskrig_og_mellomkrig",
@@ -92,8 +92,8 @@
     {
       "id": "gap_history_semantic_primary_hook_order",
       "severity": "completion_blocker",
-      "finding": "Canonical primary_theory_hooks var i minst ett dokumentert tilfelle semantisk feilordnet: Arbeiderbevegelse og folkedannelse pekte på fabrikkorganisering, mens den eksisterende kuraterte blueprinten angir organisering, streik og forhandling som primary_hook_id.",
-      "repair": "Alle emner med eksplisitt kuratert primary_hook_id/secondary_hook_id i de tre eksisterende migrasjons-blueprintene reconciles mot canonical emnedata før rematerialisering. Alle 230 emner beholder samtidig én unik primær semantisk nøkkel med gyldig hook-, mapping- og teoriobjektkjede.",
+      "finding": "Completion-reparasjonen avdekket at canonical semantic identity og kuraterte editorial theory hooks var blitt behandlet som samme kontrakt. Det ga dokumenterte tilfeller der en unik canonical primærhook var gyldig som stabil identitet, men feil som redaksjonell forklaringslinse; samtidig inneholdt byhistorie-blueprinten sju pensjonerte question-surface-emne-ID-er som ikke skulle gjenopplives som canonicale identiteter.",
+      "repair": "Canonical semantic identity forblir låst til hvert emnes unike primary_theory_hooks[0]. Et separat editorial theory-lag velger kuratert primary/secondary hook uten å endre semantic key. Industri og velferd bruker aktive blueprint-rader; sju aktuelle byhistorie-emner har eksplisitte reviewede overrides, og de sju pensjonerte byhistorie question-surface-ID-ene er eksplisitt resolved som legacy. Den permanente semantic-alignment-porten krever 230 unike semantic keys, gyldig hook/theory/mapping, 30/30 aktive curated editorial paths og 0 uavklarte legacy-rader.",
       "verification": "tools/audit-historie-semantic-hook-alignment.mjs"
     },
     {
@@ -107,15 +107,15 @@
   "resolved_gaps": [
     "gap_history_generated_prose_formula",
     "gap_history_historiography_academic_authority",
+    "gap_history_semantic_primary_hook_order",
     "gap_history_source_location_and_low_authority_guard"
   ],
-  "open_blockers": [
-    "gap_history_semantic_primary_hook_order"
-  ],
+  "open_blockers": [],
   "non_gaps": [
     "Ingen ny 24. canonical fagområde er nødvendig for completion.",
     "Ingen ny generell hovedperiode er nødvendig; 9/9 er allerede covered.",
     "De 26 legacy id/title-driftsradene er dokumenterte kompatibilitets-ID-er og har 0 uløste identity blockers; de skal ikke omdøpes uten referansemigrasjon.",
+    "De sju pensjonerte byhistorie question-surface-ID-ene er redaksjonelle legacy-rader, ikke parallelle canonicale emner.",
     "Completion betyr ikke at alle mulige regionale case, arkivfunn eller forskningsnisjer er uttømt."
   ]
 }
