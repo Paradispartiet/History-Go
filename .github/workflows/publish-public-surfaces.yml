@@ -1,0 +1,198 @@
+name: Publish History Go public surfaces
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Publish the selected ref to preview or production
+        type: choice
+        options: [preview, production]
+        default: preview
+
+permissions:
+  contents: read
+
+concurrency:
+  group: history-go-public-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PUBLIC_DEPLOY_TOKEN: ${{ secrets.PUBLIC_DEPLOY_TOKEN }}
+      SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      SOURCE_REF: ${{ github.event.pull_request.head.ref || github.ref_name }}
+      MANUAL_TARGET: ${{ inputs.target }}
+    steps:
+      - name: Checkout exact source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies and build browser runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build:web
+      - name: Stage deploy-only browser runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf public-artifact
+          mkdir -p public-artifact
+          root_files=(
+            Civication.html emner.html fagverk-forside.html fagverk-sted.html fagverk.html
+            index.html knowledge-profile.html knowledge.html knowledge.js knowledge_by.html
+            manifest.json merke.html notater.html profile.html sw.js
+          )
+          for file in "${root_files[@]}"; do
+            test -f "$file"
+            cp "$file" public-artifact/
+          done
+          runtime_dirs=(assets bilder css data dist games js knowledge merker subpages)
+          for dir in "${runtime_dirs[@]}"; do
+            if [[ -d "$dir" ]]; then mkdir -p "public-artifact/$dir"; cp -a "$dir/." "public-artifact/$dir/"; fi
+          done
+          find public-artifact -type f \( \
+            -name '*.ts' -o -name '*.tsx' -o -name '*.map' -o -name '*.md' -o \
+            -name '*.markdown' -o -name '*.mjs' -o -name '*.cjs' -o -name '*.py' -o -name '*.sh' \
+          \) -delete
+          find public-artifact -type d \( -name '__tests__' -o -name tests -o -name test \) -prune -exec rm -rf {} +
+          touch public-artifact/.nojekyll
+      - name: Enforce public-runtime boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f public-artifact/index.html
+          test -f public-artifact/sw.js
+          test -f public-artifact/data/places/places_index.json
+          forbidden=(
+            AGENTS.md CLAUDE.md DOCS.md README.md TYPESCRIPT_MIGRATION.md package.json package-lock.json render.yaml
+            backend build docs reports schemas scripts supabase tests tools AHA BACKLOG README .github .devcontainer
+          )
+          for path in "${forbidden[@]}"; do test ! -e "public-artifact/$path"; done
+          python - <<'PY'
+          import pathlib,re
+          out=pathlib.Path('public-artifact')
+          sw=(out/'sw.js').read_text('utf-8')
+          m=re.search(r'const\s+PRECACHE_URLS\s*=\s*\[(.*?)\];',sw,re.S)
+          if not m: raise SystemExit('PRECACHE_URLS not found')
+          vals=re.findall(r'["\']([^"\']+)["\']',m.group(1))
+          missing=[]
+          for value in vals:
+              if value in ('./','/') or value.startswith(('http://','https://','data:','//')): continue
+              rel=value[2:] if value.startswith('./') else value
+              if not (out/rel).exists(): missing.append(rel)
+          if missing:
+              raise SystemExit('Missing precache files: '+', '.join(missing))
+          print(f'Precache verified: {len(vals)} entries')
+          PY
+      - name: Prepare target-specific artifact
+        id: prepare
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode=production
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then mode=preview; fi
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then mode="${MANUAL_TARGET:-preview}"; fi
+          if [[ "$mode" == "preview" ]]; then
+            python - <<'PY'
+          from pathlib import Path
+          exts={'.html','.js','.css','.json','.svg','.txt','.webmanifest'}
+          for p in Path('public-artifact').rglob('*'):
+              if not p.is_file() or p.suffix.lower() not in exts: continue
+              try: text=p.read_text('utf-8')
+              except UnicodeDecodeError: continue
+              new=text.replace('/History-Go/','/History-Go-preview/')
+              if new != text: p.write_text(new,'utf-8')
+          PY
+            public_url='https://paradispartiet.github.io/History-Go-preview/'
+          else
+            public_url='https://paradispartiet.github.io/History-Go/'
+          fi
+          printf '%s\n' "$SOURCE_SHA" > public-artifact/source-sha.txt
+          printf '%s\n' "$SOURCE_REF" > public-artifact/source-ref.txt
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "public_url=$public_url" >> "$GITHUB_OUTPUT"
+      - name: Check publisher credential
+        id: credential
+        shell: bash
+        run: |
+          if [[ -n "${PUBLIC_DEPLOY_TOKEN:-}" ]]; then
+            echo 'enabled=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'enabled=false' >> "$GITHUB_OUTPUT"
+            echo 'PUBLIC_DEPLOY_TOKEN is not configured; verified build completed but publishing is skipped.'
+          fi
+      - name: Publish preview snapshot
+        if: steps.credential.outputs.enabled == 'true' && steps.prepare.outputs.mode == 'preview'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.PUBLIC_DEPLOY_TOKEN }}
+        run: |
+          set -euo pipefail
+          repo='Paradispartiet/History-Go-preview'
+          cd public-artifact
+          git init -b publish
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${repo}.git"
+          git add .
+          git commit -m "preview: ${SOURCE_REF} ${SOURCE_SHA}"
+          git push --force origin HEAD:site
+          cd ..
+          gh api --method POST "repos/${repo}/dispatches" -f event_type=publish-preview -f "client_payload[source_sha]=${SOURCE_SHA}"
+      - name: Publish production snapshot
+        if: steps.credential.outputs.enabled == 'true' && steps.prepare.outputs.mode == 'production'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.PUBLIC_DEPLOY_TOKEN }}
+        run: |
+          set -euo pipefail
+          repo='Paradispartiet/Paradispartiet.github.io'
+          git clone --filter=blob:none --no-checkout "https://x-access-token:${GH_TOKEN}@github.com/${repo}.git" target
+          git -C target sparse-checkout init --cone
+          git -C target sparse-checkout set History-Go
+          git -C target checkout main
+          rm -rf target/History-Go
+          mkdir -p target/History-Go
+          cp -a public-artifact/. target/History-Go/
+          git -C target config user.name 'github-actions[bot]'
+          git -C target config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C target add -A History-Go
+          git -C target commit -m "deploy: History Go ${SOURCE_SHA}" || true
+          for attempt in 1 2 3 4 5; do
+            if git -C target push origin HEAD:main; then exit 0; fi
+            git -C target fetch origin main
+            git -C target rebase origin/main
+            sleep $((attempt * 3))
+          done
+          exit 1
+      - name: Verify published revision
+        if: steps.credential.outputs.enabled == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          marker="${{ steps.prepare.outputs.public_url }}source-sha.txt"
+          for i in $(seq 1 90); do
+            actual="$(curl --location --fail --silent --max-time 20 "$marker" 2>/dev/null || true)"
+            if [[ "$actual" == "$SOURCE_SHA" ]]; then
+              echo "Published $SOURCE_REF at ${{ steps.prepare.outputs.public_url }}"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Published revision did not become visible: $marker" >&2
+          exit 1
