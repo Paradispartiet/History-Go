@@ -1,0 +1,57 @@
+name: Civication Religion forskning pilot materializer
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: civication-religion-forskning-pilot-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/civication-religion-forskning-pilot-playable'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Materialize and verify Religion forskning pilot
+        run: node scripts/materialize-civication-religion-forskning-pilot.mjs
+
+      - name: Commit verified permanent outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/Civication/roleModels/religion/religion_forskning.json \
+            data/Civication/workGrammars/religion/religion_forskning.json \
+            data/Civication/mailPlans/religion/religion_forskning_plan.json \
+            data/Civication/mailFamilies/religion/job/religion_forskning_job.json \
+            data/Civication/mailFamilies/religion/people/religion_forskning_people.json \
+            data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json \
+            data/Civication/mailFamilies/religion/event/religion_forskning_event.json \
+            data/Civication/mailFamilies/religion/followup/religion_forskning_followup.json \
+            data/Civication/mailFamilies/religion/consequence/religion_forskning_consequence.json \
+            data/Civication/careerGameplayMatrix.json \
+            data/Civication/compiledSceneRegistryV1.json \
+            reports/civication-career-gameplay-matrix.md \
+            tests/civication-religion-forskning-playability.test.js
+          if git diff --cached --quiet; then
+            echo "Religion forskning pilot already materialized; nothing to commit."
+            exit 0
+          fi
+          git commit -m "Materialize Religion forskning as knowledge-work pilot"
+          git push origin HEAD:${{ github.head_ref }}
