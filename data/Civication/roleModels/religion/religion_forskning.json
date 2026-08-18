@@ -1,16 +1,203 @@
 {
-  "schema":"civication_role_model_v1","version":2,
-  "source":{"badge_file":"data/badges/religion.json","badge_id":"religion","evidence":"data/Civication/religionCareerLifeEvidence.json"},
-  "category":"religion","role_scope":"religion_forskning","role_id":"religion_forskning","title":"Religion – forskning",
-  "core_narrative":["Religionsforskning undersøker tekster, praksiser, historie, institusjoner og levd religion med eksplisitt metode, kildekritikk, forskningsetikk og refleksivitet."],
-  "work_life":{"daily_work":["formulere forskbare spørsmål","arbeide med tekster, arkiv, intervjuer, observasjon eller andre data","analysere og dokumentere metodevalg","skrive, fagfellevurdere og formidle resultater"],"responsibilities":["skille data fra tolkning","gjøre metode og begrensninger etterprøvbare","ivareta samtykke, personvern og kontekst ved feltarbeid","unngå å gjøre enkeltinformanter representative for hele tradisjoner"],"work_environment":["universitet, forskningsinstitutt, museum eller annet kunnskapsmiljø"],"status_position":["akademisk autoritet følger kvalifikasjon, metode og institusjonell rolle; ikke Badge-poeng"]},
-  "career_path":{"entry_from":["relevant akademisk kvalifikasjon og ansettelse eller prosjekt"],"progression_to":["mer selvstendig forskningsansvar, seniornivå eller separat fagledelse"],"possible_promotions":["prosjektansvar, seniorforsker eller forskningsledelse etter formell vurdering"],"possible_exits":["undervisning, rådgivning, kulturarv eller formidling"],"career_risks":["metodesvakhet, overgeneralisering, bekreftelsesbias eller uetisk feltarbeid"]},
-  "required_knowledge":{"education_basis":["religionsvitenskap eller relevant historisk/samfunnsvitenskapelig/humanistisk forskning, metode og forskningsetikk"],"skills":["kildekritikk","metodedesign","analyse","feltetikk","akademisk skriving"],"category_knowledge":["religionshistorie, teori og metode, levd religion, tekst og materialitet, samfunn og politikk"],"history_go_badges":["religion"],"place_connections":[],"people_connections":[]},
-  "knowledge_bridge":{"contract":"civication_career_knowledge_bridge_v1","role_key":"religion/religion_forskning","path":"data/Civication/careerKnowledgeBridge.json","gameplay_policy":"pinned_contract_live_enrichment"},
-  "authority_boundaries":{"can":["gjøre faglige analyser innen dokumentert metode","kritisk vurdere kilder og tidligere forskning","rapportere usikkerhet og alternative forklaringer"],"cannot":["utlede enkeltpersoners tro fra gruppetilhørighet alene","behandle teologiske sannhetspåstander som empirisk bevist bare fordi aktører fremmer dem","bryte samtykke eller konfidensialitet for en bedre historie","bruke forskertittel uten den kvalifikasjons- og arbeidskonteksten jobben krever"]},
-  "challenges":[{"id":"refleksivitet","title":"Egen posisjon påvirker feltet","description":"Forskerens spørsmål, tilgang og kategorier påvirker hva som blir synlig.","pressure":"nærhet_vs_analytisk_distanse","affects":["quality","trust"]}],
-  "dilemmas":[{"id":"sitat_som_identifiserer","title":"Godt sitat, høy identifiseringsrisiko","setup":"Et sitat bærer analysen, men kan gjøre en sårbar deltaker gjenkjennelig.","choice_axis":"detalj_vs_beskyttelse","consequence_axis":"forklaringskraft_vs_forskningsetikk","mail_hooks":["job","story","conflict"]}],
-  "competence_axes":[{"id":"metode","label":"Metode"},{"id":"kildekritikk","label":"Kildekritikk"},{"id":"forskningsetikk","label":"Forskningsetikk"},{"id":"refleksivitet","label":"Refleksivitet"},{"id":"analytisk_presisjon","label":"Analytisk presisjon"}],
-  "ideal_type_problems":[{"id":"informant_lik_tradisjon","label":"Én informant gjøres til hele tradisjonen"},{"id":"teologi_lik_empiri","label":"Teologisk påstand blandes med empirisk funn"}],
-  "notes":["Deler arbeidsverden mellom Religionshistoriker, Religionsviter, Forsker og Seniorforsker."]
+  "schema": "civication_role_model_v1",
+  "version": 2,
+  "source": {
+    "badge_file": "data/badges/religion.json",
+    "badge_id": "religion",
+    "evidence": "data/Civication/religionCareerLifeEvidence.json"
+  },
+  "category": "religion",
+  "role_scope": "religion_forskning",
+  "role_id": "religion_forskning",
+  "title": "Religion – forskning",
+  "core_narrative": [
+    "Religionsforskning undersøker tekster, praksiser, historie, institusjoner og levd religion med eksplisitt metode, kildekritikk, forskningsetikk og refleksivitet."
+  ],
+  "work_life": {
+    "daily_work": [
+      "formulere forskbare spørsmål",
+      "arbeide med tekster, arkiv, intervjuer, observasjon eller andre data",
+      "analysere og dokumentere metodevalg",
+      "skrive, fagfellevurdere og formidle resultater"
+    ],
+    "responsibilities": [
+      "skille data fra tolkning",
+      "gjøre metode og begrensninger etterprøvbare",
+      "ivareta samtykke, personvern og kontekst ved feltarbeid",
+      "unngå å gjøre enkeltinformanter representative for hele tradisjoner"
+    ],
+    "work_environment": [
+      "universitet, forskningsinstitutt, museum eller annet kunnskapsmiljø"
+    ],
+    "status_position": [
+      "akademisk autoritet følger kvalifikasjon, metode og institusjonell rolle; ikke Badge-poeng"
+    ]
+  },
+  "career_path": {
+    "entry_from": [
+      "relevant akademisk kvalifikasjon og ansettelse eller prosjekt"
+    ],
+    "progression_to": [
+      "mer selvstendig forskningsansvar, seniornivå eller separat fagledelse"
+    ],
+    "possible_promotions": [
+      "prosjektansvar, seniorforsker eller forskningsledelse etter formell vurdering"
+    ],
+    "possible_exits": [
+      "undervisning, rådgivning, kulturarv eller formidling"
+    ],
+    "career_risks": [
+      "metodesvakhet, overgeneralisering, bekreftelsesbias eller uetisk feltarbeid"
+    ]
+  },
+  "required_knowledge": {
+    "education_basis": [
+      "religionsvitenskap eller relevant historisk/samfunnsvitenskapelig/humanistisk forskning, metode og forskningsetikk"
+    ],
+    "skills": [
+      "kildekritikk",
+      "metodedesign",
+      "analyse",
+      "feltetikk",
+      "akademisk skriving"
+    ],
+    "category_knowledge": [
+      "religionshistorie, teori og metode, levd religion, tekst og materialitet, samfunn og politikk"
+    ],
+    "history_go_badges": [
+      "religion"
+    ],
+    "place_connections": [],
+    "people_connections": [],
+    "concepts": [
+      "operasjonalisering og påstandsrekkevidde",
+      "proveniens og arkivstillhet",
+      "samtykke, konfidensialitet og indirekte identifisering",
+      "posisjonalitet og alternative forklaringer"
+    ]
+  },
+  "knowledge_bridge": {
+    "contract": "civication_career_knowledge_bridge_v1",
+    "role_key": "religion/religion_forskning",
+    "path": "data/Civication/careerKnowledgeBridge.json",
+    "gameplay_policy": "pinned_contract_live_enrichment"
+  },
+  "authority_boundaries": {
+    "can": [
+      "gjøre faglige analyser innen dokumentert metode",
+      "kritisk vurdere kilder og tidligere forskning",
+      "rapportere usikkerhet og alternative forklaringer"
+    ],
+    "cannot": [
+      "utlede enkeltpersoners tro fra gruppetilhørighet alene",
+      "behandle teologiske sannhetspåstander som empirisk bevist bare fordi aktører fremmer dem",
+      "bryte samtykke eller konfidensialitet for en bedre historie",
+      "bruke forskertittel uten den kvalifikasjons- og arbeidskonteksten jobben krever"
+    ]
+  },
+  "challenges": [
+    {
+      "id": "refleksivitet",
+      "title": "Egen posisjon påvirker feltet",
+      "description": "Forskerens spørsmål, tilgang og kategorier påvirker hva som blir synlig.",
+      "pressure": "nærhet_vs_analytisk_distanse",
+      "affects": [
+        "quality",
+        "trust"
+      ]
+    }
+  ],
+  "dilemmas": [
+    {
+      "id": "sitat_som_identifiserer",
+      "title": "Godt sitat, høy identifiseringsrisiko",
+      "setup": "Et sitat bærer analysen, men kan gjøre en sårbar deltaker gjenkjennelig.",
+      "choice_axis": "detalj_vs_beskyttelse",
+      "consequence_axis": "forklaringskraft_vs_forskningsetikk",
+      "mail_hooks": [
+        "job",
+        "story",
+        "conflict"
+      ]
+    }
+  ],
+  "competence_axes": [
+    {
+      "id": "metode",
+      "label": "Metode"
+    },
+    {
+      "id": "kildekritikk",
+      "label": "Kildekritikk"
+    },
+    {
+      "id": "forskningsetikk",
+      "label": "Forskningsetikk"
+    },
+    {
+      "id": "refleksivitet",
+      "label": "Refleksivitet"
+    },
+    {
+      "id": "analytisk_presisjon",
+      "label": "Analytisk presisjon"
+    }
+  ],
+  "ideal_type_problems": [
+    {
+      "id": "informant_lik_tradisjon",
+      "label": "Én informant gjøres til hele tradisjonen"
+    },
+    {
+      "id": "teologi_lik_empiri",
+      "label": "Teologisk påstand blandes med empirisk funn"
+    }
+  ],
+  "notes": [
+    "Deler arbeidsverden mellom Religionshistoriker, Religionsviter, Forsker og Seniorforsker."
+  ],
+  "related_people": [
+    {
+      "id": "mina_prosjektleder",
+      "name": "Mina",
+      "role": "Prosjektleder",
+      "function": "Holder problemstilling, leveranse og metodekrav sammen uten å eie forskerens konklusjon."
+    },
+    {
+      "id": "oskar_forskningsetikk",
+      "name": "Oskar",
+      "role": "Forskningsetisk kontakt",
+      "function": "Vurderer samtykke, konfidensialitet og identifiseringsrisiko når datagrunnlaget involverer mennesker."
+    },
+    {
+      "id": "lea_arkivar",
+      "name": "Lea",
+      "role": "Arkivar",
+      "function": "Gjør proveniens, bevaringslogikk og arkivets blindsoner synlige før fravær blir tolket som historisk fravær."
+    },
+    {
+      "id": "sara_metodekollega",
+      "name": "Sara",
+      "role": "Metodekollega",
+      "function": "Motleser operasjonalisering, alternative forklaringer og påstandsrekkevidde før analysen låses."
+    }
+  ],
+  "related_places": [
+    {
+      "id": "religionsforskningskontoret",
+      "reason": "Arbeidsflate for problemstilling, kodebok, analyse, skriving og prosjektbeslutninger."
+    },
+    {
+      "id": "religionsfeltet_lite_miljo",
+      "reason": "Feltarbeidsflate der samtykke, relasjon og indirekte identifisering må vurderes konkret."
+    },
+    {
+      "id": "religionshistorisk_arkiv",
+      "reason": "Kildeflate der proveniens, arkivstillhet og negativ evidens må behandles metodisk."
+    },
+    {
+      "id": "religion_metodeverksted",
+      "reason": "Kollegial arbeidsflate for motlesning, metodekritikk og alternative forklaringer."
+    }
+  ]
 }
