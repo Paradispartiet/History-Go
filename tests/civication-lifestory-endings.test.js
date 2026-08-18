@@ -53,6 +53,7 @@ const FORVENTET = {
   renholder: { foerste: "fagstolt", siste: "usynlig_forbigaatt" },
   ekspeditor: { foerste: "trygg_paa_gulvet", siste: "mistet_tilliten" },
   arealplanlegger: { foerste: "faglig_sterk", siste: "politisk_lydig" },
+  controller: { foerste: "sporbar_styring", siste: "hard_kontroll" },
   barnehageassistent: { foerste: "trygg_voksen", siste: "drift_foran_barn" },
   psykologi_miljoarbeid: { foerste: "presis_og_trygg", siste: "for_lukket" },
   psykologi_arbeids_og_karriereveiledning: { foerste: "selvstendig_og_opplyst", siste: "systemet_styrte" },

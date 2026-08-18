@@ -247,23 +247,18 @@ fersk main
 
 ## 15. Reference-sekvens
 
-De tre første reference worlds er materialisert:
+De fire første reference worlds er materialisert:
 
 ```text
 naeringsliv/ekspeditor → role_world_complete
 naeringsliv/renholder  → role_world_complete
 by/by_radgiver_plan     → role_world_complete
+naeringsliv/controller  → role_world_complete
 ```
 
-De viser at samme produksjonsmetode kan bære servicearbeid, usynlig fysisk arbeid og kommunal kunnskaps-/forvaltningsmakt uten å kopiere innhold, NPC-er eller konfliktakser.
+De viser at samme produksjonsmetode kan bære servicearbeid, usynlig fysisk arbeid, kommunal kunnskaps-/forvaltningsmakt og økonomisk tall-/kontrollarbeid uten å kopiere innhold, NPC-er eller konfliktakser.
 
 Neste reference Role World er:
-
-```text
-naeringsliv/controller
-```
-
-Deretter:
 
 ```text
 sport/sport_utover

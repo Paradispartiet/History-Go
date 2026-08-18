@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "id": "controller",
+  "navn": "Controller",
+  "kjernefantasi": "Du gjør driftens urolige virkelighet lesbar i tall uten å la rapporten bli penere enn det den faktisk kan bevise.",
+  "arbeidsoppgaver": [
+    "forklare avvik mellom budsjett, prognose og faktisk resultat",
+    "avstemme kontoer og finne rotårsaken bak differanser",
+    "bygge prognoser med synlige forutsetninger og usikkerhet",
+    "samle revisjonsspor og dokumentasjon som tåler etterprøving",
+    "oversette driftens erfaringer til styringsinformasjon uten å gjøre mennesker til avvik"
+  ],
+  "personer": [
+    {
+      "id": "ingrid_okonomisjef",
+      "navn": "Ingrid, økonomisjefen",
+      "beskrivelse": "Setter rapportfrister og trenger tall ledelsen kan bruke, men vet at for mye usikkerhet kan gjøre møtet vanskelig."
+    },
+    {
+      "id": "marius_regnskap",
+      "navn": "Marius i regnskap",
+      "beskrivelse": "Eier mye av underlaget og ser hvor ofte et tilsynelatende lite avvik skjuler et svakt spor."
+    },
+    {
+      "id": "driftsleder",
+      "navn": "Elin, driftslederen",
+      "beskrivelse": "Kjenner gulvet og nekter å la økonomispråk gjøre praktiske årsaker om til skyld."
+    },
+    {
+      "id": "revisor",
+      "navn": "Revisoren",
+      "beskrivelse": "Spør ikke om tallet ser rimelig ut, men om organisasjonen kan vise hvorfor det står der."
+    },
+    {
+      "id": "markedssjef",
+      "navn": "Markedssjefen",
+      "beskrivelse": "Lever med usikre kampanjeeffekter og har sterke grunner til å tro at neste uke blir bedre."
+    },
+    {
+      "id": "innkjoper",
+      "navn": "Innkjøperen",
+      "beskrivelse": "Ser leverandørpriser, avtaler og timing som rapporten bare viser som kostnad."
+    },
+    {
+      "id": "venn",
+      "navn": "Jonas",
+      "beskrivelse": "Merker når du begynner å kreve dokumentasjon, presisjon og forklaringer også av mennesker som bare vil bli trodd."
+    },
+    {
+      "id": "familie",
+      "navn": "Søsteren din",
+      "beskrivelse": "Er stolt av at du har ansvar, men reagerer når du snakker om familieliv som om det var et avviksnotat."
+    }
+  ],
+  "hovedkonflikter": [
+    "sporbarhet vs rapportfrist",
+    "styringsinformasjon vs ønsket resultat",
+    "økonomisk kontroll vs driftstillit",
+    "presisjon vs falsk sikkerhet",
+    "profesjonelt kontrollblikk vs privat tillit"
+  ],
+  "endings": [
+    {
+      "id": "sporbar_styring",
+      "navn": "Sporbar styring",
+      "tekst": "Du lærte å gjøre usikkerhet tydelig uten å gjøre rapportene ubrukelige. Tallene dine ble et sted organisasjonen kunne undersøke problemer, ikke skjule dem.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 66
+          },
+          "handlingsrom": {
+            "min": 48
+          }
+        },
+        "flagg": {
+          "controller_skrev_forbehold": true
+        }
+      },
+      "standard": true
+    },
+    {
+      "id": "hard_kontroll",
+      "navn": "Hard kontroll",
+      "tekst": "Rapportene ble stramme og folk sluttet å overraske deg. De sluttet også å fortelle deg ting før de hadde rukket å rydde dem bort.",
+      "kriterier": {
+        "meters": {
+          "synlighet": {
+            "min": 58
+          },
+          "psyke": {
+            "max": 54
+          }
+        },
+        "flagg": {
+          "controller_presset_bevis": true
+        }
+      }
+    },
+    {
+      "id": "pen_rapport",
+      "navn": "Den pene rapporten",
+      "tekst": "Du traff fristene og ga ledelsen et rolig bilde. Senere oppdaget du at noen av de viktigste problemene var blitt roligere på papiret enn i virkeligheten.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "max": 48
+          }
+        },
+        "flagg": {
+          "controller_valgte_ro": true
+        }
+      }
+    },
+    {
+      "id": "tillit_som_kontroll",
+      "navn": "Tillit som kontroll",
+      "tekst": "Du gjorde kontrollen mer krevende, ikke mindre: folk måtte dokumentere, men de kunne også si at de ikke visste. Det gjorde avvikene tidligere og læringen bedre.",
+      "kriterier": {
+        "meters": {
+          "integritet": {
+            "min": 60
+          },
+          "psyke": {
+            "min": 56
+          }
+        },
+        "flagg": {
+          "controller_lyttet_for_konklusjon": true
+        }
+      }
+    }
+  ],
+  "startState": {
+    "meters": {
+      "penger": 430,
+      "psyke": 62,
+      "energi": 67,
+      "integritet": 54,
+      "synlighet": 47,
+      "handlingsrom": 50
+    },
+    "relasjoner": {
+      "ingrid_okonomisjef": 52,
+      "marius_regnskap": 56,
+      "driftsleder": 48,
+      "revisor": 45,
+      "markedssjef": 44,
+      "innkjoper": 48,
+      "venn": 61,
+      "familie": 56
+    }
+  },
+  "dagsplan": {
+    "1": [
+      {
+        "klokke": "08:15",
+        "tekst": "Månedsrapport og avvik"
+      },
+      {
+        "klokke": "13:00",
+        "tekst": "Driftsforklaring"
+      },
+      {
+        "klokke": "17:30",
+        "tekst": "Forsøke å legge fra seg tallene"
+      }
+    ],
+    "2": [
+      {
+        "klokke": "09:00",
+        "tekst": "Avstemming og prognose"
+      },
+      {
+        "klokke": "14:00",
+        "tekst": "Lederforberedelse"
+      }
+    ],
+    "3": [
+      {
+        "klokke": "08:30",
+        "tekst": "Revisjonsspor"
+      },
+      {
+        "klokke": "15:00",
+        "tekst": "Periodisering og etikk"
+      }
+    ]
+  }
+}
