@@ -10,19 +10,22 @@ const P={
   canon:'data/fag/TV_og_Film/theory_objects_film_tv_canonical_v1.json',
   scholarly:'data/fag/TV_og_Film/film_tv_theory_scholarly_registry_v1.json',
   overrides:'data/fag/TV_og_Film/film_tv_theory_scholarly_overrides_v1.json',
-  registry:'data/fagverk/fagverk_registry.json'
+  registry:'data/fagverk/fagverk_registry.json',
+  holistic:'reports/fagverk/film-tv-holistic-completion-v1-audit.json'
 };
 const ACADEMIC=new Set(['peer_reviewed_scholarship','scholarly_book']);
 
 export function auditFilmTvTheoryCanon(){
- const canon=json(P.canon),sch=json(P.scholarly),overrides=json(P.overrides),registry=json(P.registry);const chapters=registry.subjects?.film_tv?.chapters||[];
+ const canon=json(P.canon),sch=json(P.scholarly),overrides=json(P.overrides),registry=json(P.registry),holistic=json(P.holistic);const chapters=registry.subjects?.film_tv?.chapters||[];
  assert(canon.schema==='history_go_film_tv_theory_objects_v1'&&canon.status==='canonical','Ugyldig Film & TV theory canon');
  assert(sch.schema==='history_go_film_tv_theory_scholarly_registry_v1'&&sch.status==='canonical','Ugyldig Film & TV scholarly theory registry');
  assert(overrides.schema==='history_go_film_tv_theory_scholarly_overrides_v1'&&overrides.status==='canonical','Ugyldig Film & TV scholarly override registry');
+ assert(holistic.schema==='history_go_film_tv_holistic_completion_audit_v1'&&holistic.status==='complete','Film & TV holistic completion må være canonical complete');
+ assert(holistic.summary?.canonical_domain_count===10&&holistic.summary?.canonical_emne_count===192,'Film & TV holistic completion må eie 10 domener / 192 emner');
  assert(/provenance, ikke trivia/.test(canon.production_rule),'Film & TV theory canon må blokkere navnetrivia');
  const domainData=new Map();
- for(const ch of chapters){const domain=ch.primary_domain_id||ch.primaryDomainId;assert(domain&&ch.claimsFile,`Kapittel mangler domain/claims: ${ch.id}`);if(!domainData.has(domain))domainData.set(domain,{emnes:new Set(),sources:new Map(),usedSources:new Set()});const d=domainData.get(domain);for(const id of ch.emne_ids||[])d.emnes.add(id);const ledger=json(ch.claimsFile);for(const s of ledger.sources||[])d.sources.set(s.id,s);for(const c of ledger.claims||[])for(const id of c.source_ids||[])d.usedSources.add(id);}
- assert(domainData.size===10,'Film & TV theory canon krever eksakt 10 canonicale domener');const allEmnes=new Set([...domainData.values()].flatMap(d=>[...d.emnes]));assert(allEmnes.size===192,'Film & TV canonical domain-eierskap skal fortsatt være 192 emner');
+ for(const ch of chapters){const domain=ch.primary_domain_id||ch.primaryDomainId;assert(domain&&ch.claimsFile,`Kapittel mangler domain/claims: ${ch.id}`);if(!domainData.has(domain))domainData.set(domain,{sources:new Map(),usedSources:new Set()});const d=domainData.get(domain);const ledger=json(ch.claimsFile);for(const s of ledger.sources||[])d.sources.set(s.id,s);for(const c of ledger.claims||[])for(const id of c.source_ids||[])d.usedSources.add(id);}
+ assert(domainData.size===holistic.summary.canonical_domain_count,'Film & TV theory canon må dekke de 10 canonicale domenene som holistic-auditen eier');
  const overrideById=new Map();
  for(const o of overrides.overrides||[]){assert(o.id&&!overrideById.has(o.id),`Duplikat scholarly override: ${o.id}`);overrideById.set(o.id,o);}
  const theoristWorkOverrideByKey=new Map();
@@ -41,6 +44,6 @@ export function auditFilmTvTheoryCanon(){
  }
  assert(usedWorkOverrides.size===theoristWorkOverrideByKey.size,`Ubrukte theorist work overrides: ${[...theoristWorkOverrideByKey.keys()].filter(k=>!usedWorkOverrides.has(k)).join(', ')}`);
  for(const domain of domainData.keys())assert(counts[domain]===2,`Film & TV theory canon krever eksakt to teoriobjekter i ${domain}, fant ${counts[domain]||0}`);assert(usedSch.size===schById.size,`Ubrukte scholarly theory sources: ${[...schById.keys()].filter(id=>!usedSch.has(id)).join(', ')}`);assert(people.size>=25,`Film & TV theory canon krever minst 25 unike forskere/teoretikere, fant ${people.size}`);assert(works.size>=20,`Film & TV theory canon krever minst 20 unike verk/bidrag, fant ${works.size}`);
- return {status:'strong_theory_canon',domainCount:domainData.size,canonicalEmneCount:allEmnes.size,theoryObjectCount:canon.theory_objects.length,scholarlySourceCount:schById.size,uniquePeopleCount:people.size,uniqueWorkCount:works.size,scholarlyOverrideCount:overrideById.size,theoristWorkOverrideCount:theoristWorkOverrideByKey.size};
+ return {status:'strong_theory_canon',domainCount:holistic.summary.canonical_domain_count,canonicalEmneCount:holistic.summary.canonical_emne_count,theoryObjectCount:canon.theory_objects.length,scholarlySourceCount:schById.size,uniquePeopleCount:people.size,uniqueWorkCount:works.size,scholarlyOverrideCount:overrideById.size,theoristWorkOverrideCount:theoristWorkOverrideByKey.size};
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){try{console.log(JSON.stringify(auditFilmTvTheoryCanon(),null,2));}catch(e){console.error(`Film & TV theory canon FEIL: ${e.message}`);process.exitCode=1;}}
