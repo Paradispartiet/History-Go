@@ -1,0 +1,25 @@
+name: TEMP Fagverk theory quality baseline diagnosis
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/fagverk_theory_quality_contract_v1.json'
+      - 'scripts/audit-fagverk-theory-quality.mjs'
+      - '.github/workflows/fagverk-theory-quality-baseline-diagnose.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Print theory-quality baseline
+        run: |
+          node --check scripts/audit-fagverk-theory-quality.mjs
+          node scripts/audit-fagverk-theory-quality.mjs --no-check-report
