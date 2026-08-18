@@ -1,0 +1,183 @@
+{
+  "schema": "history_go_historie_terminal_final_gates_temp_v1",
+  "generated_from_head": "b118ec791ea9406223f7034c071a8c011ef32f4a",
+  "observed_main": "99db81c3e86b6826df0293d0476c5f42997cad78",
+  "terminal_status_staged": "complete",
+  "terminal_next_gate_staged": "maintenance_source_refresh_and_place_case_expansion",
+  "status": "FAIL",
+  "failed_checks": [
+    "subject_inventory",
+    "general_engine",
+    "editorial_materialization_deterministic",
+    "source_authority",
+    "holistic_completion",
+    "test_subject_inventory",
+    "test_general_engine",
+    "test_editorial_quality",
+    "test_completion",
+    "test_shared_history"
+  ],
+  "checks": [
+    {
+      "id": "subject_inventory",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Fagverk inventar FEIL: reports/fagverk/subject-baseline.json er utdatert. Kjør node scripts/audit-fagverk-subject-inventory.mjs --write-report"
+    },
+    {
+      "id": "general_engine",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Fagverk fase 1 FEIL: reports/fagverk/general-engine-audit.json er utdatert. Kjør node scripts/audit-fagverk-general-engine.mjs --write-report"
+    },
+    {
+      "id": "curriculum_architecture",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie-pensumarkitektur OK: 9 perioder (9 dekket, 0 delvise, 0 mangler), 14 tematiske spor, 6 metodemoduler og 6 geografiske stier.",
+      "stderr": ""
+    },
+    {
+      "id": "period_modules",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie-periodemoduler OK: 3 moduler, 21 enheter, 18 kilder og 9 stedscaser.",
+      "stderr": ""
+    },
+    {
+      "id": "period_modules_deterministic",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie-periodemoduler deterministiske: 3 moduler, 21 enheter.",
+      "stderr": ""
+    },
+    {
+      "id": "canonical_identity",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie-emneidentitet OK: 230 emner, 26 dokumenterte legacy-id-er og 0 uløste blokkere.",
+      "stderr": ""
+    },
+    {
+      "id": "semantic_alignment",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"canonical_emners\": 230,\n  \"unique_primary_semantic_keys\": 230,\n  \"canonical_hook_mismatches\": 0,\n  \"active_curated_blueprint_rows\": 23,\n  \"explicit_editorial_overrides\": 7,\n  \"resolved_legacy_question_surface_ids\": 7,\n  \"curated_editorial_hook_mismatches\": 0,\n  \"curated_editorial_coverage\": 30,\n  \"canonical_identity_preserved\": true,\n  \"editorial_layer_separate_from_ownership\": true,\n  \"blueprint_files\": [\n    \"reports/historie-canonical-migration/byhistorie-question-blueprints.json\",\n    \"reports/historie-canonical-migration/industri-arbeid-question-blueprints.json\",\n    \"reports/historie-canonical-migration/velferd-question-blueprints.json\"\n  ]\n}",
+      "stderr": ""
+    },
+    {
+      "id": "editorial_quality",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie-redaksjonell kvalitet OK: 18 fagprofiler, 180 emnelinser, 180 semantic/editorial-verifiserte seksjoner, 54 stedscaser, 72 årsaksledd, 18 tolkningsdebatter og 230 entydige primary hook-eiere.",
+      "stderr": ""
+    },
+    {
+      "id": "editorial_materialization_deterministic",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "file:///Users/runner/work/History-Go/History-Go/tools/materialize-historie-editorial-chapters.mjs:443\n  throw new Error(`Historie-kapitlene avviker fra deterministisk materialisering:\\n- ${mismatches.join('\\n- ')}`);\n        ^\n\nError: Historie-kapitlene avviker fra deterministisk materialisering:\n- data/fagverk/subject_status.json\n    at file:///Users/runner/work/History-Go/History-Go/tools/materialize-historie-editorial-chapters.mjs:443:9\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)\n\nNode.js v20.20.2"
+    },
+    {
+      "id": "shared_history_audit",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie-fagverk OK: 23 fagområder, 23 kapitler og 0 gjenstående kapitteldomener.",
+      "stderr": ""
+    },
+    {
+      "id": "universal_coverage",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie universal coverage: COMPLETE\nCoverage cells: 58 covered, 0 partial, 0 missing.\nProduction: 11 passed, 0 gaps.\nLegacy internal readiness: FREEZE_READY; false-complete conflict=false.",
+      "stderr": ""
+    },
+    {
+      "id": "source_authority",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "node:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: data/fagverk/historie/middelalder_kirke_kongemakt/01-makt-lov-og-skrift.json/byens-makttopografi: paragraphTraceTypes må dekke alle avsnitt\n\n0 !== 3\n\n    at collectMaterializedClaimIds (file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-source-authority.mjs:82:16)\n    at auditHistorySourceAuthority (file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-source-authority.mjs:158:28)\n    at file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-source-authority.mjs:199:18\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 0,\n  expected: 3,\n  operator: 'strictEqual'\n}\n\nNode.js v20.20.2"
+    },
+    {
+      "id": "holistic_completion",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "node:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: data/fagverk/historie/historisk_tid_periodisering.json: for lite substansiell prosa (8244 tegn)\n    at auditFulltextChapter (file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-completion.mjs:94:10)\n    at auditHistoryCompletion (file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-completion.mjs:167:21)\n    at file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-completion.mjs:216:30\n    at ModuleJob.run (node:internal/modules/esm/module_job:325:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:606:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '=='\n}\n\nNode.js v20.20.2"
+    },
+    {
+      "id": "release_manifest_deterministic",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Verified Fagverk release a9edd0ae6e1c2877621296ee3b2f76324ec18f3ff1d815137b7841e2dbb08d6c: 18 packages, 159 chapters.",
+      "stderr": ""
+    },
+    {
+      "id": "test_subject_inventory",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "iles:\n          pensum: 'scenekunst/scenekunstpensum_canonical_v1.json'\n          emner: 'scenekunst/emner_scenekunst_canonical_v1.json'\n          fagkart: 'scenekunst/fagkart_scenekunst_canonical_v1.json'\n          methods: 'scenekunst/methods_scenekunst_canonical_v1.json'\n        optionalManifestFields:\n          0: 'supersetQuizMal'\n          1: 'status'\n          2: 'quizStandard'\n          3: 'quizQuestionSchema'\n        navigationStatus: 'materialized'\n        assessmentStatus: 'audited'\n        editorialStatus: 'structure_ready'\n        pilot: false\n        specializations:\n      12:\n        id: 'sport'\n        schemaFamily: 'standard_canonical'\n        coreFiles:\n          pensum: 'sport/sportpensum_canonical_v4_5.json'\n          emner: 'sport/emner_sport_canonical_v4_5.json'\n          fagkart: 'sport/fagkart_sport_canonical_v4_5.json'\n          methods: 'sport/methods_sport_canonical_v4_5.json'\n        optionalManifestFields:\n          0: 'supersetQuizMal'\n          1: 'knowledgePolicy'\n          2: 'knowledgeUnitSchema'\n          3: 'knowledgeArchitecture'\n          4: 'quizStandard'\n          5: 'quizQuestionSchema'\n          6: 'emneMappings'\n        navigationStatus: 'materialized'\n        assessmentStatus: 'audited'\n        editorialStatus: 'complete'\n        pilot: false\n        specializations:\n      13:\n        id: 'subkultur'\n        schemaFamily: 'standard_canonical'\n        coreFiles:\n          pensum: 'subkultur/subkulturpensum_canonical_v4_5.json'\n          emner: 'subkultur/emner_subkultur_canonical_v4_5.json'\n          fagkart: 'subkultur/fagkart_subkultur_canonical_v4_5.json'\n          methods: 'subkultur/methods_subkultur_canonical_v4_5.json'\n        optionalManifestFields:\n          0: 'supersetQuizMal'\n          1: 'quizStandard'\n          2: 'quizQuestionSchema'\n          3: 'quizPackageSchema'\n          4: 'subjectPathwaySchema'\n          5: 'subjectPathwayPackage'\n          6: 'runtimeManifest'\n        navigationStatus: 'materialized'\n        assessmentStatus: 'audited'\n        editorialStatus: 'complete'\n        pilot: false\n        specializations:\n      14:\n        id: 'vitenskap'\n        schemaFamily: 'standard_canonical'\n        coreFiles:\n          pensum: 'vitenskap/vitenskappensum_canonical_v4_6.json'\n          emner: 'vitenskap/emner_vitenskap_canonical_v4_6.json'\n          fagkart: 'vitenskap/fagkart_vitenskap_canonical_v4_6.json'\n          methods: 'vitenskap/methods_vitenskap_canonical_v4_6.json'\n        optionalManifestFields:\n          0: 'supersetQuizMal'\n          1: 'quizStandard'\n          2: 'quizQuestionSchema'\n          3: 'specializations'\n        navigationStatus: 'materialized'\n        assessmentStatus: 'audited'\n        editorialStatus: 'chapters_in_progress'\n        pilot: true\n        specializations:\n          0:\n            id: 'teknologi'\n            schemaFamily: 'technology_scientific_v2_4'\n            coreFiles:\n              pensum: 'teknologi/teknologipensum_canonical_v3.json'\n              emner: 'teknologi/emner_teknologi_canonical_v3.json'\n              fagkart: 'teknologi/fagkart_teknologi_canonical_v3.json'\n              methods: 'teknologi/methods_teknologi_canonical_v3.json'\n            optionalManifestFields:\n              0: 'supersetQuizMal'\n              1: 'quizStandard'\n              2: 'quizQuestionSchema'\n              3: 'scientificPackage'\n              4: 'quizPackageSchema'\n              5: 'subjectPathwaySchema'\n              6: 'subjectPathwayPackage'\n              7: 'canonicalModelVersion'\n              8: 'universalCoverage'\n              9: 'geographicProduction'\n            pilot: true\n      15:\n        id: 'filosofi'\n        schemaFamily: 'foundation_v1'\n        coreFiles:\n          pensum: 'filosofi/filosofipensum_canonical_v1.json'\n          emner: 'filosofi/emner_filosofi_canonical_v1.json'\n          fagkart: 'filosofi/fagkart_filosofi_canonical_v1.json'\n          methods: 'filosofi/methods_filosofi_canonical_v1.json'\n        optionalManifestFields:\n          0: 'supersetQuizMal'\n          1: 'status'\n          2: 'quizStandard'\n          3: 'quizQuestionSchema'\n        navigationStatus: 'materialized'\n        assessmentStatus: 'audited'\n        editorialStatus: 'complete'\n        pilot: false\n        specializations:\n      16:\n        id: 'film_tv'\n        schemaFamily: 'standard_canonical'\n        coreFiles:\n          pensum: 'TV_og_Film/film_tvpensum_canonical_v4_5.json'\n          emner: 'TV_og_Film/emner_film_tv_canonical_v4_5.json'\n          fagkart: 'TV_og_Film/fagkart_film_tv_canonical_v4_5.json'\n          methods: 'TV_og_Film/methods_film_tv_canonical_v4_5.json'\n        optionalManifestFields:\n          0: 'supersetQuizMal'\n          1: 'quizStandard'\n          2: 'quizQuestionSchema'\n          3: 'emneMappings'\n        navigationStatus: 'materialized'\n        assessmentStatus: 'audited'\n        editorialStatus: 'complete'\n        pilot: false\n        specializations:\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///Users/runner/work/History-Go/History-Go/tests/fagverk-subject-inventory.test.mjs:167:10)\n    Test.runInAsyncScope (node:async_hooks:206:9)\n    Test.run (node:internal/test_runner/test:796:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:526:18)\n    Test.postRun (node:internal/test_runner/test:889:19)\n    Test.run (node:internal/test_runner/test:835:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)\n  ...\n# Subtest: Musikk deklarerer vitenskapelig pakke uten å opprette ny schemafamilie\nok 5 - Musikk deklarerer vitenskapelig pakke uten å opprette ny schemafamilie\n  ---\n  duration_ms: 0.620708\n  ...\n# Subtest: pilotsettet dekker fire schemafamilier uten å gjøre Teknologi til toppfag\nok 6 - pilotsettet dekker fire schemafamilier uten å gjøre Teknologi til toppfag\n  ---\n  duration_ms: 0.385375\n  ...\n1..6\n# tests 6\n# suites 0\n# pass 3\n# fail 3\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 155.473833",
+      "stderr": ""
+    },
+    {
+      "id": "test_general_engine",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "TAP version 13\n# Subtest: generell motor normaliserer forklarte begreper uten Politikk-avhengighet\nok 1 - generell motor normaliserer forklarte begreper uten Politikk-avhengighet\n  ---\n  duration_ms: 2.150375\n  ...\n# Subtest: canonical subject-resolver er streng og bruker aldri alias eller fallback\nok 2 - canonical subject-resolver er streng og bruker aldri alias eller fallback\n  ---\n  duration_ms: 0.299084\n  ...\n# Subtest: manifest-resolver holder required kjernefiler innenfor data/fag\nok 3 - manifest-resolver holder required kjernefiler innenfor data/fag\n  ---\n  duration_ms: 0.271916\n  ...\n# Subtest: standard canonical adapter bruker pensumdomener og canonicale id-er\nok 4 - standard canonical adapter bruker pensumdomener og canonicale id-er\n  ---\n  duration_ms: 0.300042\n  ...\n# Subtest: foundation-adapter henter fagområder fra fagkart uten å gjøre kursmoduler til renderer\nok 5 - foundation-adapter henter fagområder fra fagkart uten å gjøre kursmoduler til renderer\n  ---\n  duration_ms: 0.652416\n  ...\n# Subtest: by-adapter leser emnekoblinger i nested topic hooks\nok 6 - by-adapter leser emnekoblinger i nested topic hooks\n  ---\n  duration_ms: 0.196\n  ...\n# Subtest: nested Teknologi-spesialisering bruker vitenskapelig fagkart og focus-koblinger\nok 7 - nested Teknologi-spesialisering bruker vitenskapelig fagkart og focus-koblinger\n  ---\n  duration_ms: 0.308542\n  ...\n# Subtest: kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder\nok 8 - kapittelhydrering normaliserer pedagogiske felter og laster claims-kilder\n  ---\n  duration_ms: 0.642333\n  ...\n# Subtest: alle tolv Næringsliv-kapitler hydrerer renderbare eksempler, misoppfatninger og canonicale kilder\nok 9 - alle tolv Næringsliv-kapitler hydrerer renderbare eksempler, misoppfatninger og canonicale kilder\n  ---\n  duration_ms: 10.269459\n  ...\n# Subtest: materialisert fagside og committed fase-1-rapport passerer full audit\nnot ok 10 - materialisert fagside og committed fase-1-rapport passerer full audit\n  ---\n  duration_ms: 178.609209\n  location: '/Users/runner/work/History-Go/History-Go/tests/fagverk-general-engine.test.mjs:213:1'\n  failureType: 'testCodeFailure'\n  error: 'reports/fagverk/general-engine-audit.json er utdatert. Kjør node scripts/audit-fagverk-general-engine.mjs --write-report'\n  code: 'ERR_TEST_FAILURE'\n  stack: |-\n    assert (file:///Users/runner/work/History-Go/History-Go/scripts/audit-fagverk-general-engine.mjs:37:25)\n    auditRepository (file:///Users/runner/work/History-Go/History-Go/scripts/audit-fagverk-general-engine.mjs:350:5)\n    TestContext.<anonymous> (file:///Users/runner/work/History-Go/History-Go/tests/fagverk-general-engine.test.mjs:214:18)\n    Test.runInAsyncScope (node:async_hooks:206:9)\n    Test.run (node:internal/test_runner/test:796:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:526:18)\n    Test.postRun (node:internal/test_runner/test:889:19)\n    Test.run (node:internal/test_runner/test:835:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)\n  ...\n1..10\n# tests 10\n# suites 0\n# pass 9\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 252.572791",
+      "stderr": ""
+    },
+    {
+      "id": "test_curriculum_architecture",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "TAP version 13\n# Subtest: universitetsnær Historie-arkitektur validerer uten å endre canonicalt inventar\nok 1 - universitetsnær Historie-arkitektur validerer uten å endre canonicalt inventar\n  ---\n  duration_ms: 13.559792\n  ...\n# Subtest: de tre tidligere oversiktsgapene er lukket med egne periodemoduler\nok 2 - de tre tidligere oversiktsgapene er lukket med egne periodemoduler\n  ---\n  duration_ms: 0.6975\n  ...\n# Subtest: alle pedagogiske lag har forklarende tekst, læringsmål og nøkkelspørsmål\nok 3 - alle pedagogiske lag har forklarende tekst, læringsmål og nøkkelspørsmål\n  ---\n  duration_ms: 0.378958\n  ...\n# Subtest: faste ti-kvoter er compatibility-data og ikke ny kurateringsregel\nok 4 - faste ti-kvoter er compatibility-data og ikke ny kurateringsregel\n  ---\n  duration_ms: 0.287875\n  ...\n# Subtest: standardmodellen bevarer den valgfrie pensumarkitekturen\nok 5 - standardmodellen bevarer den valgfrie pensumarkitekturen\n  ---\n  duration_ms: 1.949125\n  ...\n# Subtest: Historie-siden bruker studieløpet som hovedoversikt og registeret som sekundærlag\nok 6 - Historie-siden bruker studieløpet som hovedoversikt og registeret som sekundærlag\n  ---\n  duration_ms: 0.435667\n  ...\n1..6\n# tests 6\n# suites 0\n# pass 6\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 69.020959",
+      "stderr": ""
+    },
+    {
+      "id": "test_period_modules",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "TAP version 13\n# Subtest: de tre tidligere Historie-gapene har variable, evidensklare periodemoduler\nok 1 - de tre tidligere Historie-gapene har variable, evidensklare periodemoduler\n  ---\n  duration_ms: 4.929833\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 45.896625",
+      "stderr": ""
+    },
+    {
+      "id": "test_canonical_identity",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "TAP version 13\n# Subtest: 230 Historie-emner har unik brukeridentitet og stabil semantisk kobling\nok 1 - 230 Historie-emner har unik brukeridentitet og stabil semantisk kobling\n  ---\n  duration_ms: 28.017417\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 72.932",
+      "stderr": ""
+    },
+    {
+      "id": "test_curriculum_rendering",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "TAP version 13\n# Subtest: Historie-oversikten renderer studieløpet og skjuler det flate registeret\nok 1 - Historie-oversikten renderer studieløpet og skjuler det flate registeret\n  ---\n  duration_ms: 265.301792\n  ...\n# Subtest: et redaksjonelt Historie-kapittel viser årsakskjede, tolkningsuenighet og stedscaser\nok 2 - et redaksjonelt Historie-kapittel viser årsakskjede, tolkningsuenighet og stedscaser\n  ---\n  duration_ms: 98.37375\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 925.238833",
+      "stderr": ""
+    },
+    {
+      "id": "test_editorial_quality",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "TAP version 13\n# Subtest: atten Historie-kapitler har håndredigert fagprofil og emnelinser\nnot ok 1 - atten Historie-kapitler har håndredigert fagprofil og emnelinser\n  ---\n  duration_ms: 42.728333\n  location: '/Users/runner/work/History-Go/History-Go/tests/historie-editorial-quality.test.mjs:5:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        caseAnchors: 54,\n        causalSteps: 72,\n        debates: 18,\n    +   editorialHookSections: 180,\n    +   primaryHookOwners: 230,\n        profiles: 18,\n        sectionLenses: 180\n      }\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    profiles: 18\n    sectionLenses: 180\n    caseAnchors: 54\n    causalSteps: 72\n    debates: 18\n  actual:\n    profiles: 18\n    sectionLenses: 180\n    editorialHookSections: 180\n    caseAnchors: 54\n    causalSteps: 72\n    debates: 18\n    primaryHookOwners: 230\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///Users/runner/work/History-Go/History-Go/tests/historie-editorial-quality.test.mjs:7:10)\n    Test.runInAsyncScope (node:async_hooks:206:9)\n    Test.run (node:internal/test_runner/test:796:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:526:18)\n    node:internal/test_runner/harness:255:12\n    node:internal/process/task_queues:140:7\n    AsyncResource.runInAsyncScope (node:async_hooks:206:9)\n    AsyncResource.runMicrotask (node:internal/process/task_queues:137:8)\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 0\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 91.327083",
+      "stderr": ""
+    },
+    {
+      "id": "test_completion",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "TAP version 13\n# Subtest: Historie semantic hook alignment is canonical and curated blueprints are reconciled\nnot ok 1 - Historie semantic hook alignment is canonical and curated blueprints are reconciled\n  ---\n  duration_ms: 24.205583\n  location: '/Users/runner/work/History-Go/History-Go/tests/historie-completion.test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    undefined !== 230\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 230\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///Users/runner/work/History-Go/History-Go/tests/historie-completion.test.mjs:14:10)\n    Test.runInAsyncScope (node:async_hooks:206:9)\n    Test.run (node:internal/test_runner/test:796:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:526:18)\n    node:internal/test_runner/harness:255:12\n    node:internal/process/task_queues:140:7\n    AsyncResource.runInAsyncScope (node:async_hooks:206:9)\n    AsyncResource.runMicrotask (node:internal/process/task_queues:137:8)\n  ...\n# Subtest: Historie source authority and evidence are completion-grade\nnot ok 2 - Historie source authority and evidence are completion-grade\n  ---\n  duration_ms: 56.01975\n  location: '/Users/runner/work/History-Go/History-Go/tests/historie-completion.test.mjs:20:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    data/fagverk/historie/middelalder_kirke_kongemakt/01-makt-lov-og-skrift.json/byens-makttopografi: paragraphTraceTypes må dekke alle avsnitt\n    \n    0 !== 3\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 3\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    collectMaterializedClaimIds (file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-source-authority.mjs:82:16)\n    auditHistorySourceAuthority (file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-source-authority.mjs:158:28)\n    TestContext.<anonymous> (file:///Users/runner/work/History-Go/History-Go/tests/historie-completion.test.mjs:21:18)\n    Test.runInAsyncScope (node:async_hooks:206:9)\n    Test.run (node:internal/test_runner/test:796:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:526:18)\n    Test.postRun (node:internal/test_runner/test:889:19)\n    Test.run (node:internal/test_runner/test:835:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)\n  ...\n# Subtest: Historie holistic completion contract remains closed and terminal\nnot ok 3 - Historie holistic completion contract remains closed and terminal\n  ---\n  duration_ms: 10.71575\n  location: '/Users/runner/work/History-Go/History-Go/tests/historie-completion.test.mjs:29:1'\n  failureType: 'testCodeFailure'\n  error: 'data/fagverk/historie/historisk_tid_periodisering.json: for lite substansiell prosa (8244 tegn)'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    auditFulltextChapter (file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-completion.mjs:94:10)\n    auditHistoryCompletion (file:///Users/runner/work/History-Go/History-Go/tools/audit-historie-completion.mjs:167:21)\n    TestContext.<anonymous> (file:///Users/runner/work/History-Go/History-Go/tests/historie-completion.test.mjs:30:18)\n    Test.runInAsyncScope (node:async_hooks:206:9)\n    Test.run (node:internal/test_runner/test:796:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:526:18)\n    Test.postRun (node:internal/test_runner/test:889:19)\n    Test.run (node:internal/test_runner/test:835:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:526:7)\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 0\n# fail 3\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 139.010625",
+      "stderr": ""
+    },
+    {
+      "id": "test_shared_history",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "TAP version 13\n# Subtest: Historie er materialisert, redaksjonelt utvidet og auditert\nnot ok 1 - Historie er materialisert, redaksjonelt utvidet og auditert\n  ---\n  duration_ms: 85.175833\n  location: '/Users/runner/work/History-Go/History-Go/tests/fagverk-historie.test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    + actual - expected\n    \n    + 'complete'\n    - 'expanded_and_audited'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 'expanded_and_audited'\n  actual: 'complete'\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///Users/runner/work/History-Go/History-Go/tests/fagverk-historie.test.mjs:16:10)\n    Test.runInAsyncScope (node:async_hooks:206:9)\n    Test.run (node:internal/test_runner/test:796:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:526:18)\n    node:internal/test_runner/harness:255:12\n    node:internal/process/task_queues:140:7\n    AsyncResource.runInAsyncScope (node:async_hooks:206:9)\n    AsyncResource.runMicrotask (node:internal/process/task_queues:137:8)\n  ...\n# Subtest: alle 23 Historie-kapitlene oppfyller kapittel- og evidensporten\nok 2 - alle 23 Historie-kapitlene oppfyller kapittel- og evidensporten\n  ---\n  duration_ms: 85.719792\n  ...\n# Subtest: generator-eide kapitler skiller analytisk tekst fra claim-støttet evidens\nok 3 - generator-eide kapitler skiller analytisk tekst fra claim-støttet evidens\n  ---\n  duration_ms: 11.110583\n  ...\n# Subtest: generator-eide moduler viser alle konsepter fra seksjonenes faktiske emner\nok 4 - generator-eide moduler viser alle konsepter fra seksjonenes faktiske emner\n  ---\n  duration_ms: 16.925792\n  ...\n# Subtest: kapittelproduksjon rapporterer full universell evidensdekning\nok 5 - kapittelproduksjon rapporterer full universell evidensdekning\n  ---\n  duration_ms: 77.932792\n  ...\n# Subtest: teori-evidensregisteret bevarer alle stedskoblinger for fler-steds-claims\nok 6 - teori-evidensregisteret bevarer alle stedskoblinger for fler-steds-claims\n  ---\n  duration_ms: 4.349917\n  ...\n# Subtest: vitenskapsteorier har minst to cases koblet til teoriens eget emne\nok 7 - vitenskapsteorier har minst to cases koblet til teoriens eget emne\n  ---\n  duration_ms: 5.471041\n  ...\n# Subtest: Børsen og Tollboden har reell kildesammenligning på tvers av kildetyper\nok 8 - Børsen og Tollboden har reell kildesammenligning på tvers av kildetyper\n  ---\n  duration_ms: 3.967542\n  ...\n# Subtest: Domkirken og Trefoldighetskirken har uavhengige kildefamilier\nok 9 - Domkirken og Trefoldighetskirken har uavhengige kildefamilier\n  ---\n  duration_ms: 3.429625\n  ...\n# Subtest: Teknisk Museum og Kjeller/FFI har uavhengige kildefamilier\nok 10 - Teknisk Museum og Kjeller/FFI har uavhengige kildefamilier\n  ---\n  duration_ms: 4.443083\n  ...\n# Subtest: 1814-kapittelets pedagogiske kort følger renderer-kontrakten\nok 11 - 1814-kapittelets pedagogiske kort følger renderer-kontrakten\n  ---\n  duration_ms: 0.385333\n  ...\n# Subtest: Historie-auditen avviser renderer-lister som ikke er arrays\nok 12 - Historie-auditen avviser renderer-lister som ikke er arrays\n  ---\n  duration_ms: 0.279959\n  ...\n1..12\n# tests 12\n# suites 0\n# pass 11\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 349.805125",
+      "stderr": ""
+    }
+  ]
+}
