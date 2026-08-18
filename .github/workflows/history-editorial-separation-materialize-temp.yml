@@ -1,6 +1,5 @@
 name: History editorial separation materialize temporary
-# One-shot write workflow. Removes semantic/editorial conflation without changing canonical hook ownership. Delete before merge.
-# Retriggered after correcting the primary hook association contract.
+# Self-reporting one-shot writer. It either commits the repaired generator/corpus or only a failure report. Delete before merge.
 
 on:
   push:
@@ -8,11 +7,6 @@ on:
       - agent/history-completion-audit
     paths:
       - '.github/workflows/history-editorial-separation-materialize-temp.yml'
-  pull_request:
-    branches: [main]
-    paths:
-      - '.github/workflows/history-editorial-separation-materialize-temp.yml'
-      - 'tools/audit-historie-semantic-hook-alignment.mjs'
   workflow_dispatch:
 
 permissions:
@@ -20,7 +14,6 @@ permissions:
 
 jobs:
   materialize:
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/history-completion-audit')
     runs-on: ubuntu-latest
     steps:
       - name: Check out exact History branch
@@ -47,153 +40,88 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install permanent editorial separation in generator
+      - name: Run materialization stages and record exact result
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p reports/fagverk
           python3 <<'PY'
-          from pathlib import Path
+          import json
+          import os
+          import subprocess
 
-          file = Path('tools/materialize-historie-editorial-chapters.mjs')
-          source = file.read_text()
+          stages = [
+              ('patch_generator', ['python3', 'tools/patch-historie-editorial-separation-temp.py']),
+              ('semantic_alignment', ['node', 'tools/audit-historie-semantic-hook-alignment.mjs']),
+              ('materialize_corpus', ['node', 'tools/materialize-historie-editorial-chapters.mjs']),
+              ('deterministic_replay', ['node', 'tools/materialize-historie-editorial-chapters.mjs', '--check']),
+              ('editorial_quality', ['node', 'tools/validate-historie-editorial-quality.mjs']),
+              ('shared_history_audit', ['node', 'scripts/audit-fagverk-historie.mjs']),
+          ]
+          results = []
+          blocked = False
+          for stage_id, command in stages:
+              if blocked:
+                  results.append({'id': stage_id, 'status': 'SKIPPED', 'exit_code': None, 'stdout': '', 'stderr': 'blocked by earlier failure'})
+                  continue
+              run = subprocess.run(command, text=True, capture_output=True)
+              results.append({
+                  'id': stage_id,
+                  'status': 'PASS' if run.returncode == 0 else 'FAIL',
+                  'exit_code': run.returncode,
+                  'stdout': run.stdout.strip(),
+                  'stderr': run.stderr.strip(),
+              })
+              if run.returncode != 0:
+                  blocked = True
 
-          read_anchor = "const status = readJson('data/fagverk/subject_status.json');\n"
-          read_insert = read_anchor + "const editorialTheoryDocument = readJson('data/fag/historie/editorial_theory_overrides_historie_v1.json');\n"
-          if "const editorialTheoryDocument =" not in source:
-              if read_anchor not in source:
-                  raise SystemExit('materializer status read anchor missing')
-              source = source.replace(read_anchor, read_insert, 1)
-
-          map_anchor = "const historiographySourceById = new Map(historiographyDocument.sources.map((item) => [item.source_id, item]));\n"
-          map_insert = map_anchor + """const hookById = new Map();
-          for (const category of list(fagkart.categories)) {
-            for (const hook of list(category.topic_hooks)) {
-              if (hookById.has(hook.id)) throw new Error(`Duplisert History hook-id ${hook.id}`);
-              hookById.set(hook.id, hook);
-            }
+          failed = [row['id'] for row in results if row['status'] == 'FAIL']
+          report = {
+              'schema': 'history_go_historie_editorial_materialization_temp_v1',
+              'generated_from_head': os.environ.get('INITIAL_HEAD'),
+              'status': 'FAIL' if failed else 'PASS',
+              'failed_checks': failed,
+              'checks': results,
           }
-          const editorialOverrideByEmneId = new Map(list(editorialTheoryDocument.overrides).map((row) => [row.emne_id, row]));
-          const resolvedLegacyEditorialIds = new Set(list(editorialTheoryDocument.resolved_legacy_question_surface_ids).map((row) => row.legacy_emne_id));
-          const editorialBlueprintByEmneId = new Map();
-          for (const blueprintFile of list(editorialTheoryDocument.source_blueprint_files)) {
-            for (const row of list(readJson(blueprintFile))) {
-              if (!emneById.has(row.emne_id)) {
-                if (!resolvedLegacyEditorialIds.has(row.emne_id)) throw new Error(`${blueprintFile}: uavklart legacy editorial emne ${row.emne_id}`);
-                continue;
-              }
-              if (editorialBlueprintByEmneId.has(row.emne_id)) throw new Error(`${row.emne_id}: duplisert aktiv editorial blueprint`);
-              editorialBlueprintByEmneId.set(row.emne_id, row);
-            }
-          }
-          for (const emneId of editorialOverrideByEmneId.keys()) {
-            if (!emneById.has(emneId)) throw new Error(`Editorial override peker på ukjent emne ${emneId}`);
-            if (editorialBlueprintByEmneId.has(emneId)) throw new Error(`${emneId}: både blueprint og override skaper uklar editorial precedence`);
-          }
-          """
-          if "const editorialOverrideByEmneId =" not in source:
-              if map_anchor not in source:
-                  raise SystemExit('materializer map anchor missing')
-              source = source.replace(map_anchor, map_insert, 1)
-
-          start = source.find('function theoryPackage(category, emne) {')
-          end = source.find('\nfunction claimParagraph', start)
-          if start < 0 or end < 0:
-              raise SystemExit('materializer theoryPackage boundaries missing')
-          replacement = r'''function theoryPackage(category, emne) {
-            const semanticHookId = list(emne.primary_theory_hooks)[0];
-            if (!semanticHookId) throw new Error(`${category.id}/${emne.emne_id}: mangler primary_theory_hooks`);
-            if (!list(category.topic_hooks).some((item) => item.id === semanticHookId)) throw new Error(`${category.id}/${emne.emne_id}: semantisk hook ${semanticHookId} finnes ikke i fagkartkategorien`);
-            const semanticHook = hookById.get(semanticHookId);
-            if (!semanticHook) throw new Error(`${semanticHookId}: mangler canonical hook`);
-            if (!list(semanticHook.emne_ids).includes(emne.emne_id)) throw new Error(`${semanticHookId}: mangler canonical primary ownership for ${emne.emne_id}`);
-
-            const override = editorialOverrideByEmneId.get(emne.emne_id);
-            const blueprint = editorialBlueprintByEmneId.get(emne.emne_id);
-            if (override && blueprint) throw new Error(`${emne.emne_id}: både override og blueprint er aktive`);
-            const editorialHookId = override?.editorial_primary_hook_id || blueprint?.primary_hook_id || semanticHookId;
-            const editorialSecondaryHookId = override?.editorial_secondary_hook_id || blueprint?.secondary_hook_id || null;
-            const hook = hookById.get(editorialHookId);
-            if (!hook) throw new Error(`${category.id}/${emne.emne_id}: editorial hook ${editorialHookId} finnes ikke`);
-            const theory = theoryByHookId.get(editorialHookId);
-            if (!theory) throw new Error(`${editorialHookId}: mangler teoriobjekt`);
-            if (editorialSecondaryHookId) {
-              if (!hookById.has(editorialSecondaryHookId)) throw new Error(`${editorialSecondaryHookId}: editorial secondary hook finnes ikke`);
-              if (!theoryByHookId.has(editorialSecondaryHookId)) throw new Error(`${editorialSecondaryHookId}: editorial secondary hook mangler teoriobjekt`);
-            }
-            const theoryEvidence = evidenceByTheoryId.get(theory.theory_id);
-            if (!theoryEvidence || theoryEvidence.status !== 'evidence_ready') throw new Error(`${theory.theory_id}: mangler ferdig evidens`);
-            const claims = list(theoryEvidence.claim_ids).map((id) => claimById.get(id)).filter(Boolean);
-            if (!claims.length) throw new Error(`${theory.theory_id}: mangler claims`);
-            return { emneId: emne.emne_id, semanticHookId, editorialHookId, editorialSecondaryHookId, semanticHook, hook, theory, theoryEvidence, claims };
-          }
-          '''
-          source = source[:start] + replacement + source[end:]
-
-          field_anchor = "    semanticHookId: pack.semanticHookId,\n    theoryId: pack.theory.theory_id,"
-          field_replacement = "    semanticHookId: pack.semanticHookId,\n    editorialHookId: pack.editorialHookId,\n    editorialSecondaryHookId: pack.editorialSecondaryHookId,\n    theoryId: pack.theory.theory_id,"
-          if '    editorialHookId: pack.editorialHookId,' not in source:
-              if field_anchor not in source:
-                  raise SystemExit('materialized section semantic hook anchor missing')
-              source = source.replace(field_anchor, field_replacement, 1)
-
-          source = source.replace(
-              '  const theoryIds = packages.map((pack) => pack.theory.theory_id);',
-              '  const theoryIds = unique(packages.map((pack) => pack.theory.theory_id));',
-              1
-          )
-          source = source.replace(
-              "      semanticPrimaryHookRequired: true,\n      causalFrameworkRequired: true,",
-              "      semanticPrimaryHookRequired: true,\n      separateEditorialTheoryHookRequired: true,\n      causalFrameworkRequired: true,",
-              1
-          )
-          source = source.replace(
-              "      editorialProfiles: 'data/fag/historie/editorial_profiles_historie_v1.json',\n      historiographyEvidence:",
-              "      editorialProfiles: 'data/fag/historie/editorial_profiles_historie_v1.json',\n      editorialTheoryOverrides: 'data/fag/historie/editorial_theory_overrides_historie_v1.json',\n      historiographyEvidence:",
-              1
-          )
-          source = source.replace(
-              'atten generator-eide kapitler med semantisk låste primærhooks, håndredigerte fagprofiler',
-              'atten generator-eide kapitler med semantisk låste primærhooks, separat kuraterte editorial theory hooks, håndredigerte fagprofiler',
-              1
-          )
-
-          file.write_text(source)
+          with open('reports/fagverk/historie-editorial-materialization-temp.json', 'w') as handle:
+              json.dump(report, handle, indent=2, ensure_ascii=False)
+              handle.write('\n')
+          print(json.dumps({'status': report['status'], 'failed_checks': failed}, ensure_ascii=False))
           PY
 
-      - name: Validate semantic contract
-        run: |
-          set -euo pipefail
-          node --check tools/materialize-historie-editorial-chapters.mjs
-          node --check tools/audit-historie-semantic-hook-alignment.mjs
-          node tools/audit-historie-semantic-hook-alignment.mjs
-
-      - name: Materialize repaired History corpus
-        run: node tools/materialize-historie-editorial-chapters.mjs
-
-      - name: Verify deterministic materialization
-        run: node tools/materialize-historie-editorial-chapters.mjs --check
-
-      - name: Validate repaired editorial corpus
-        run: |
-          set -euo pipefail
-          node tools/audit-historie-semantic-hook-alignment.mjs
-          node tools/validate-historie-editorial-quality.mjs
-          node scripts/audit-fagverk-historie.mjs
-
-      - name: Commit generator and materialized corpus
+      - name: Commit repaired corpus or diagnostic report
         shell: bash
         run: |
           set -euo pipefail
-          git add \
-            tools/materialize-historie-editorial-chapters.mjs \
-            data/fagverk/historie \
-            data/fagverk/fagverk_registry.json \
-            data/fagverk/subject_status.json
+          status="$(python3 - <<'PY'
+          import json
+          print(json.load(open('reports/fagverk/historie-editorial-materialization-temp.json'))['status'])
+          PY
+          )"
+
+          if [ "$status" = 'PASS' ]; then
+            git add \
+              tools/materialize-historie-editorial-chapters.mjs \
+              data/fagverk/historie \
+              data/fagverk/fagverk_registry.json \
+              data/fagverk/subject_status.json \
+              reports/fagverk/historie-editorial-materialization-temp.json
+            message='Separate History semantic identity from editorial theory selection'
+          else
+            git restore --source="$INITIAL_HEAD" --worktree --staged -- \
+              tools/materialize-historie-editorial-chapters.mjs \
+              data/fagverk/historie \
+              data/fagverk/fagverk_registry.json \
+              data/fagverk/subject_status.json || true
+            git add reports/fagverk/historie-editorial-materialization-temp.json
+            message='Record History editorial materialization diagnosis'
+          fi
+
           if git diff --cached --quiet; then
-            echo 'No materialized changes to commit.'
+            echo 'No materialization/report changes to commit.'
             exit 0
           fi
-          git commit -m 'Separate History semantic identity from editorial theory selection'
+          git commit -m "$message"
           git fetch origin agent/history-completion-audit
           remote_head="$(git rev-parse origin/agent/history-completion-audit)"
           if [ "$remote_head" != "$INITIAL_HEAD" ]; then
