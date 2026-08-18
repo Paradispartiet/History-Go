@@ -1,0 +1,56 @@
+name: Fagverk Scenekunst holistic completion
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/scenekunst/**'
+      - 'data/fagverk/scenekunst/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'data/fagverk/subject_status.json'
+      - 'reports/fagverk/scenekunst-*.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'scripts/audit-fagverk-scenekunst-*.mjs'
+      - 'tests/fagverk-scenekunst-*.test.mjs'
+      - '.github/workflows/fagverk-scenekunst-*.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/fag/scenekunst/**'
+      - 'data/fagverk/scenekunst/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fagverk/fagverk_release.json'
+      - 'data/fagverk/subject_status.json'
+      - 'reports/fagverk/scenekunst-*.json'
+      - 'reports/fagverk/general-engine-audit.json'
+      - 'scripts/audit-fagverk-scenekunst-*.mjs'
+      - 'tests/fagverk-scenekunst-*.test.mjs'
+      - '.github/workflows/fagverk-scenekunst-*.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  completion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate holistic Scenekunst completion
+        run: |
+          node --check scripts/audit-fagverk-scenekunst-completion.mjs
+          node scripts/audit-fagverk-scenekunst-completion.mjs
+          node --test tests/fagverk-scenekunst-completion.test.mjs
+      - name: Preserve breadth and Phase 3 foundation
+        run: |
+          node scripts/audit-fagverk-scenekunst-university-readiness.mjs
+          node --test tests/fagverk-scenekunst-university-readiness.test.mjs
+          node scripts/audit-fagverk-scenekunst-phase3.mjs
+          node --test tests/fagverk-scenekunst-phase3.test.mjs
+      - name: Verify shared deterministic manifests
+        run: |
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
