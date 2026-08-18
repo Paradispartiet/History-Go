@@ -478,3 +478,59 @@ body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-ov
 body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-overlays article{display:grid;gap:5px;padding:10px;border:1px solid rgba(255,255,255,.07);border-radius:14px}
 body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-overlays article.is-active{border-color:rgba(246,200,0,.34);background:rgba(246,200,0,.05)}
 body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-overlays article strong{color:rgba(255,255,255,.88);font-size:12px}
+
+/* Språkatlas interaktiv navigasjon v1. */
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-map-region{
+  appearance:none;
+  font:inherit;
+  cursor:pointer;
+}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-map-region:focus-visible,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-regions button:focus-visible{
+  outline:2px solid rgba(255,225,104,.95);
+  outline-offset:2px;
+}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-map-region[aria-pressed="true"],
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-macro.is-user-focused{
+  border-color:rgba(246,200,0,.72);
+  background:rgba(246,200,0,.12);
+  box-shadow:0 0 0 1px rgba(246,200,0,.09) inset;
+}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-regions button{
+  appearance:none;
+  padding:5px 7px;
+  border:1px solid rgba(255,255,255,.075);
+  border-radius:999px;
+  background:transparent;
+  color:rgba(255,255,255,.58);
+  font:inherit;
+  font-size:10px;
+  cursor:pointer;
+}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-regions button.is-active,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-regions button[aria-pressed="true"],
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-regions button.is-user-focused{
+  border-color:rgba(246,200,0,.46);
+  background:rgba(246,200,0,.1);
+  color:#ffe168;
+}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-selection{
+  display:grid;
+  gap:5px;
+  padding:10px 12px;
+  border:1px solid rgba(246,200,0,.22);
+  border-radius:14px;
+  background:rgba(246,200,0,.055);
+}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-selection[hidden]{display:none}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-selection>span{
+  color:rgba(255,225,104,.72);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-selection>strong{color:#fff;font-size:13px}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-selection>p{margin:0;color:rgba(255,255,255,.67);font-size:11px;line-height:1.5}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-selection>div{display:flex;flex-wrap:wrap;gap:6px}
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-selection>div>span{padding:4px 6px;border:1px solid rgba(255,255,255,.08);border-radius:999px;color:rgba(255,255,255,.58);font-size:9px}
