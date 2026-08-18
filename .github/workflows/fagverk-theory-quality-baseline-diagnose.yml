@@ -19,6 +19,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Identify active Musikk JSON parse failures
+        run: |
+          while IFS= read -r -d '' file; do
+            node -e "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'))" "$file" || { echo "INVALID_JSON=$file"; exit 1; }
+          done < <(find data/fag/musikk data/fagverk/musikk -type f -name '*.json' ! -path '*/arkiv/*' ! -path '*/archive/*' -print0)
       - name: Print tightened theory-quality baseline
         run: |
           node --check scripts/audit-fagverk-theory-quality.mjs
