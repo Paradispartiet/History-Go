@@ -1,0 +1,104 @@
+name: Civication Subkultur arrangementsdrift pilot gate fix
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: civication-subkultur-arrangementsdrift-gate-fix-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/civication-subkultur-arrangementsdrift-pilot-playable'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Reapply verified daily-slot repair
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('.github/workflows/civication-subkultur-arrangementsdrift-pilot-materialize.yml').read_text()
+          marker = "          python - <<'PY'\n"
+          start = text.index(marker) + len(marker)
+          end = text.index("\n          PY", start)
+          body = "\n".join(line[10:] if line.startswith("          ") else line for line in text[start:end].splitlines())
+          exec(compile(body, '<materializer-runtime-patch>', 'exec'))
+          PY
+
+      - name: Repair separated life-position career audit and register role model
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          audit = Path('scripts/audit-civication-career-gameplay.mjs')
+          text = audit.read_text()
+          old = """  const badge = badges.get(world.category);\n  const tierRows = world.badge_titles.map((title) => {\n    const index = (badge?.tiers || []).findIndex((tier) => String(tier.label || '') === title);\n    const tier = index >= 0 ? badge.tiers[index] : null;\n    const contract = tier?.career_unlock || tier?.career_offer || null;\n"""
+          new = """  const badge = badges.get(world.category);\n  const badgeTiers = badge?.tiers || [];\n  const tierRows = world.badge_titles.map((title) => {\n    let index = badgeTiers.findIndex((tier) => String(tier.label || '') === title);\n    if (index < 0) {\n      index = badgeTiers.findIndex((tier) => {\n        const candidate = tier?.career_unlock || tier?.career_offer || null;\n        return String(candidate?.title || '') === title &&\n          (!candidate?.role_scope || String(candidate.role_scope) === world.role_scope);\n      });\n    }\n    const tier = index >= 0 ? badgeTiers[index] : null;\n    const contract = tier?.career_unlock || tier?.career_offer || null;\n"""
+          if old in text:
+              audit.write_text(text.replace(old, new, 1))
+          elif new not in text:
+              raise SystemExit('career gameplay tier-resolution target not found')
+
+          manifest_path = Path('data/Civication/roleModels/manifest.json')
+          manifest = json.loads(manifest_path.read_text())
+          rel = 'data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json'
+          files = manifest.setdefault('files', [])
+          if rel not in files:
+              files.append(rel)
+              files.sort()
+              manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+          PY
+
+      - name: Verify generic SceneDirector regression
+        run: node tests/civication-scene-director-daily-catalog.test.js
+
+      - name: Materialize and verify playable Subkultur pilot
+        run: node scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs
+
+      - name: Commit verified permanent outputs only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            scripts/audit-civication-career-gameplay.mjs \
+            data/Civication/roleModels/manifest.json \
+            js/Civication/systems/civicationWorkdayMailBuilder.js \
+            tests/civication-scene-director-daily-catalog.test.js \
+            data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json \
+            data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json \
+            data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json \
+            data/Civication/mailFamilies/subkultur/job/subkultur_arrangementsdrift_job.json \
+            data/Civication/mailFamilies/subkultur/people/subkultur_arrangementsdrift_people.json \
+            data/Civication/mailFamilies/subkultur/conflict/subkultur_arrangementsdrift_conflict.json \
+            data/Civication/mailFamilies/subkultur/event/subkultur_arrangementsdrift_event.json \
+            data/Civication/mailFamilies/subkultur/followup/subkultur_arrangementsdrift_followup.json \
+            data/Civication/mailFamilies/subkultur/knowledge/subkultur_arrangementsdrift_knowledge.json \
+            data/Civication/mailFamilies/subkultur/consequence/subkultur_arrangementsdrift_consequence.json \
+            data/Civication/careerGameplayMatrix.json \
+            data/Civication/compiledSceneRegistryV1.json \
+            reports/civication-career-gameplay-matrix.md \
+            tests/civication-subkultur-arrangementsdrift-playability.test.js
+          if git diff --cached --quiet; then
+            echo "Subkultur pilot already materialized and verified."
+            exit 0
+          fi
+          git commit -m "Materialize playable Subkultur arrangementsdrift pilot"
+          git push origin HEAD:${{ github.head_ref }}
