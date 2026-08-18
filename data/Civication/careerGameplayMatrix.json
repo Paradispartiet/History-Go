@@ -6,9 +6,9 @@
   "summary": {
     "work_worlds": 89,
     "statuses": {
-      "reference_complete": 1,
+      "reference_complete": 2,
       "playable": 4,
-      "partial": 21,
+      "partial": 20,
       "architecture_only": 63
     },
     "runtime_gate_pass": 10,
@@ -40,9 +40,9 @@
         "missing": 65
       },
       "places": {
-        "complete": 9,
+        "complete": 10,
         "partial": 0,
-        "missing": 80
+        "missing": 79
       },
       "mail": {
         "complete": 11,
@@ -8390,13 +8390,12 @@
       ],
       "role_ids": [
         "ekspeditor",
-        "naer_ekspeditor",
-        "naeringsliv_ekspeditor_butikkmedarbeider"
+        "naer_ekspeditor"
       ],
-      "status": "partial",
+      "status": "reference_complete",
       "artifacts": {
         "role_models": [
-          "data/Civication/roleModels/naeringsliv/ekspeditor_butikkmedarbeider.json"
+          "data/Civication/roleModels/naeringsliv/ekspeditor.json"
         ],
         "work_grammar": null,
         "shared_work_grammars": [
@@ -8453,6 +8452,7 @@
           "tests/civication-career-role-resolver.test.js",
           "tests/civication-ekspeditor-brand-flow.test.js",
           "tests/civication-ekspeditor-first-week-praksisfortellinger.test.js",
+          "tests/civication-ekspeditor-role-world.test.js",
           "tests/civication-ekspeditor-second-week-praksisfortellinger.test.js",
           "tests/civication-ekspeditor-two-week-flow.test.js",
           "tests/civication-ekspeditor-ui-flow.test.js",
@@ -8468,7 +8468,8 @@
           "tests/civication-naeringsliv-life-career-split.test.js",
           "tests/civication-praksisfortellinger-cross-role.test.js",
           "tests/civication-private-phase-profile-bridge.test.js",
-          "tests/civication-renholder-role-package.test.js"
+          "tests/civication-renholder-role-package.test.js",
+          "tests/civication-role-world-contract.test.js"
         ],
         "life_story": {
           "id": "ekspeditor",
@@ -8506,6 +8507,7 @@
               "tests/civication-career-role-resolver.test.js",
               "tests/civication-ekspeditor-brand-flow.test.js",
               "tests/civication-ekspeditor-first-week-praksisfortellinger.test.js",
+              "tests/civication-ekspeditor-role-world.test.js",
               "tests/civication-ekspeditor-second-week-praksisfortellinger.test.js",
               "tests/civication-ekspeditor-two-week-flow.test.js",
               "tests/civication-ekspeditor-ui-flow.test.js",
@@ -8521,7 +8523,8 @@
               "tests/civication-naeringsliv-life-career-split.test.js",
               "tests/civication-praksisfortellinger-cross-role.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
-              "tests/civication-renholder-role-package.test.js"
+              "tests/civication-renholder-role-package.test.js",
+              "tests/civication-role-world-contract.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -8542,6 +8545,7 @@
               "tests/civication-career-role-resolver.test.js",
               "tests/civication-ekspeditor-brand-flow.test.js",
               "tests/civication-ekspeditor-first-week-praksisfortellinger.test.js",
+              "tests/civication-ekspeditor-role-world.test.js",
               "tests/civication-ekspeditor-second-week-praksisfortellinger.test.js",
               "tests/civication-ekspeditor-two-week-flow.test.js",
               "tests/civication-ekspeditor-ui-flow.test.js",
@@ -8557,7 +8561,8 @@
               "tests/civication-naeringsliv-life-career-split.test.js",
               "tests/civication-praksisfortellinger-cross-role.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
-              "tests/civication-renholder-role-package.test.js"
+              "tests/civication-renholder-role-package.test.js",
+              "tests/civication-role-world-contract.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
@@ -8578,15 +8583,21 @@
               "data/Civication/lifestory/roles/ekspeditor/scenes.json",
               "data/Civication/lifestory/roles/ekspeditor/threads.json",
               "data/Civication/mailFamilies/naeringsliv/people/ekspeditor_people.json",
-              "data/Civication/roleModels/naeringsliv/ekspeditor_butikkmedarbeider.json",
+              "data/Civication/roleModels/naeringsliv/ekspeditor.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_handel_og_kundeservice.json"
             ],
             "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/lifestory/roles/ekspeditor/role.json",
+              "data/Civication/lifestory/roles/ekspeditor/scenes.json",
+              "data/Civication/lifestory/roles/ekspeditor/threads.json",
+              "data/Civication/roleModels/naeringsliv/ekspeditor.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_handel_og_kundeservice.json"
+            ],
+            "note": "2 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
@@ -8607,7 +8618,7 @@
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
-              "data/Civication/roleModels/naeringsliv/ekspeditor_butikkmedarbeider.json",
+              "data/Civication/roleModels/naeringsliv/ekspeditor.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_handel_og_kundeservice.json"
             ],
             "note": "Knowledge content is connected to a mail or job-gate surface."
@@ -8616,7 +8627,7 @@
             "level": "complete",
             "evidence": [
               "data/Civication/praksisfortellinger_registry.json",
-              "data/Civication/roleModels/naeringsliv/ekspeditor_butikkmedarbeider.json",
+              "data/Civication/roleModels/naeringsliv/ekspeditor.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_handel_og_kundeservice.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -8624,7 +8635,7 @@
           "authority": {
             "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/ekspeditor_butikkmedarbeider.json",
+              "data/Civication/roleModels/naeringsliv/ekspeditor.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_handel_og_kundeservice.json"
             ],
             "note": "Explicit authority boundary exists."
@@ -8643,6 +8654,7 @@
               "tests/civication-career-role-resolver.test.js",
               "tests/civication-ekspeditor-brand-flow.test.js",
               "tests/civication-ekspeditor-first-week-praksisfortellinger.test.js",
+              "tests/civication-ekspeditor-role-world.test.js",
               "tests/civication-ekspeditor-second-week-praksisfortellinger.test.js",
               "tests/civication-ekspeditor-two-week-flow.test.js",
               "tests/civication-ekspeditor-ui-flow.test.js",
@@ -8658,7 +8670,8 @@
               "tests/civication-naeringsliv-life-career-split.test.js",
               "tests/civication-praksisfortellinger-cross-role.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
-              "tests/civication-renholder-role-package.test.js"
+              "tests/civication-renholder-role-package.test.js",
+              "tests/civication-role-world-contract.test.js"
             ],
             "note": "Later consequence/follow-up path is role-tested."
           },
@@ -8678,6 +8691,7 @@
               "tests/civication-career-role-resolver.test.js",
               "tests/civication-ekspeditor-brand-flow.test.js",
               "tests/civication-ekspeditor-first-week-praksisfortellinger.test.js",
+              "tests/civication-ekspeditor-role-world.test.js",
               "tests/civication-ekspeditor-second-week-praksisfortellinger.test.js",
               "tests/civication-ekspeditor-two-week-flow.test.js",
               "tests/civication-ekspeditor-ui-flow.test.js",
@@ -8693,7 +8707,8 @@
               "tests/civication-naeringsliv-life-career-split.test.js",
               "tests/civication-praksisfortellinger-cross-role.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
-              "tests/civication-renholder-role-package.test.js"
+              "tests/civication-renholder-role-package.test.js",
+              "tests/civication-role-world-contract.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
           },
@@ -8710,7 +8725,7 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json",
-              "data/Civication/roleModels/naeringsliv/ekspeditor_butikkmedarbeider.json",
+              "data/Civication/roleModels/naeringsliv/ekspeditor.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_handel_og_kundeservice.json",
               "tests/civication-career-outcomes.test.js"
             ],
@@ -8720,22 +8735,21 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/ekspeditor_plan.json",
-              "data/Civication/roleModels/naeringsliv/ekspeditor_butikkmedarbeider.json",
+              "data/Civication/roleModels/naeringsliv/ekspeditor.json",
               "tests/civication-career-outcomes.test.js"
             ],
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
         "runtime_gate": true,
-        "missing_components": [
-          "places"
-        ],
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
           "people",
+          "places",
           "mail",
           "knowledge",
           "quality_axes",
@@ -10662,6 +10676,7 @@
           "tests/civication-renholder-first-week-praksisfortellinger.test.js",
           "tests/civication-renholder-mail-plan.test.js",
           "tests/civication-renholder-role-package.test.js",
+          "tests/civication-renholder-role-world.test.js",
           "tests/civication-renholder-second-week-praksisfortellinger.test.js",
           "tests/civication-renholder-two-week-flow.test.js",
           "tests/civication-semantic-playthrough-gate.test.js",
@@ -10705,6 +10720,7 @@
               "tests/civication-renholder-first-week-praksisfortellinger.test.js",
               "tests/civication-renholder-mail-plan.test.js",
               "tests/civication-renholder-role-package.test.js",
+              "tests/civication-renholder-role-world.test.js",
               "tests/civication-renholder-second-week-praksisfortellinger.test.js",
               "tests/civication-renholder-two-week-flow.test.js",
               "tests/civication-semantic-playthrough-gate.test.js",
@@ -10731,6 +10747,7 @@
               "tests/civication-renholder-first-week-praksisfortellinger.test.js",
               "tests/civication-renholder-mail-plan.test.js",
               "tests/civication-renholder-role-package.test.js",
+              "tests/civication-renholder-role-world.test.js",
               "tests/civication-renholder-second-week-praksisfortellinger.test.js",
               "tests/civication-renholder-two-week-flow.test.js",
               "tests/civication-semantic-playthrough-gate.test.js",
@@ -10770,7 +10787,7 @@
               "data/Civication/roleModels/naeringsliv/renholder.json",
               "data/Civication/workGrammars/naeringsliv/renholder.json"
             ],
-            "note": "18 place/working-surface declarations."
+            "note": "26 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
@@ -10835,6 +10852,7 @@
               "tests/civication-renholder-first-week-praksisfortellinger.test.js",
               "tests/civication-renholder-mail-plan.test.js",
               "tests/civication-renholder-role-package.test.js",
+              "tests/civication-renholder-role-world.test.js",
               "tests/civication-renholder-second-week-praksisfortellinger.test.js",
               "tests/civication-renholder-two-week-flow.test.js",
               "tests/civication-semantic-playthrough-gate.test.js",
@@ -10860,6 +10878,7 @@
               "tests/civication-renholder-first-week-praksisfortellinger.test.js",
               "tests/civication-renholder-mail-plan.test.js",
               "tests/civication-renholder-role-package.test.js",
+              "tests/civication-renholder-role-world.test.js",
               "tests/civication-renholder-second-week-praksisfortellinger.test.js",
               "tests/civication-renholder-two-week-flow.test.js",
               "tests/civication-semantic-playthrough-gate.test.js",

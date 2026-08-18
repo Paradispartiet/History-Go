@@ -30,6 +30,11 @@ const EXPECTED_METHODS = [
   'met_vit_fagfelleanalyse',
   'met_vit_feilkildeanalyse'
 ];
+const CORE_MODULE_FILES = [
+  'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/01-grunnlag.json',
+  'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/02-fordypning.json',
+  'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/03-anvendelse.json'
+];
 const BREADTH_FAMILIES = [
   'mathematics_formal_sciences',
   'physics_astronomy',
@@ -92,9 +97,14 @@ export function auditVitenskapUnit1() {
   assert(chapter.editorialStatus === 'chapter_ready', 'Unit 1 er ikke chapter_ready');
   assert(chapter.claimTraceRequired === true, 'Unit 1 mangler bindende claim-sporing');
   assert(chapter.primary_domain_id === 'institusjoner_laboratorier_kunnskapssteder', 'Unit 1 har feil primary domain');
-  assert(sameSet(chapter.emne_ids || [], EXPECTED_EMNES), 'Kapittelroot har feil emnesett');
-  assert(sameSet(chapter.method_ids || [], EXPECTED_METHODS), 'Kapittelroot har feil metodesett');
-  assert(Array.isArray(chapter.moduleFiles) && chapter.moduleFiles.length === 3, 'Unit 1 skal ha tre redigerte moduler');
+  assert(EXPECTED_EMNES.every((id) => chapter.emne_ids?.includes(id)), 'Kapittelroot mangler historisk Unit 1-emnekjerne');
+  assert(new Set(chapter.emne_ids || []).size === (chapter.emne_ids || []).length, 'Kapittelroot har dupliserte emne-ID-er');
+  assert((chapter.emne_ids || []).every((id) => emneById.has(id)), 'Kapittelroot peker til ukjent canonicalt emne');
+  assert(EXPECTED_METHODS.every((id) => chapter.method_ids?.includes(id)), 'Kapittelroot mangler historisk Unit 1-metodekjerne');
+  assert(new Set(chapter.method_ids || []).size === (chapter.method_ids || []).length, 'Kapittelroot har dupliserte metode-ID-er');
+  assert((chapter.method_ids || []).every((id) => methodIds.has(id)), 'Kapittelroot peker til ukjent canonical metode');
+  assert(Array.isArray(chapter.moduleFiles) && chapter.moduleFiles.length >= 3, 'Unit 1 må bevare minst tre redigerte kjernemoduler');
+  assert(CORE_MODULE_FILES.every((file) => chapter.moduleFiles.includes(file)), 'Unit 1 mangler en historisk kjernemodul');
   assert(chapter.briefFile === P.brief && chapter.claimsFile === P.claims, 'Kapittelroot peker ikke til canonical brief/claims');
   assert(chapter.qualityGuard?.structuralCoverageGapsReconciled === true, 'Unit 1 må eksplisitt erkjenne at v4.6 har reconcilet de strukturelle breddegapene');
   assert(chapter.qualityGuard?.breadthEditorialBlockersRemainOpen === true, 'Unit 1 må eksplisitt bevare at breadth completion krever videre redaksjonelt arbeid');
@@ -121,19 +131,24 @@ export function auditVitenskapUnit1() {
   assert(rejectedDetails.some((text) => text.includes('åpenhet') || text.includes('åpne persondata') || text.includes('personvern')), 'Brief må eksplisitt avgrense åpen vitenskap mot legitime tilgangsgrenser');
 
   const modules = chapter.moduleFiles.map(json);
+  const coreModules = CORE_MODULE_FILES.map(json);
+  const coreSections = coreModules.flatMap((module) => module.sections || []);
+  assert(coreSections.length === 9, 'Unit 1 skal bevare ni historiske kjerneseksjoner');
+  const coreParagraphs = coreSections.flatMap((section) => section.paragraphs || []);
+  assert(coreParagraphs.length === 27, 'Unit 1 skal bevare 27 historiske kjerneavsnitt');
   const sections = modules.flatMap((module) => module.sections || []);
-  assert(sections.length === 9, 'Unit 1 skal ha ni redigerte seksjoner');
+  assert(sections.length >= 9, 'Unit 1 kan ikke miste redigerte seksjoner ved senere coverage-utvidelser');
   assert(new Set(sections.map((s) => s.id)).size === sections.length, 'Unit 1 har dupliserte seksjons-ID-er');
   const paragraphs = sections.flatMap((section) => section.paragraphs || []);
-  assert(paragraphs.length === 27, 'Unit 1 skal ha 27 redigerte fagavsnitt');
+  assert(paragraphs.length >= 27, 'Unit 1 kan ikke miste redigerte fagavsnitt ved senere coverage-utvidelser');
   assert(paragraphs.every((p) => typeof p === 'string' && p.length >= 220), 'Alle Unit 1-avsnitt skal være substansielle');
   assert(new Set(paragraphs).size === paragraphs.length, 'Unit 1 gjenbruker identisk avsnittstekst');
   assert(sections.every((section) => section.paragraphClaimIds?.length === section.paragraphs?.length), 'Hvert fagavsnitt må ha claim-sporing');
 
   const sources = claimsDocument.sources || [];
   const claims = claimsDocument.claims || [];
-  assert(sources.length === 10, 'Unit 1 skal ha ti inspiserbare eksterne kilder');
-  assert(claims.length === 18, 'Unit 1 skal ha atten verifiserte claims');
+  assert(sources.length >= 10, 'Unit 1 kan ikke miste de ti inspiserbare eksterne kjernekildene');
+  assert(claims.length >= 18, 'Unit 1 kan ikke miste de atten verifiserte kjerneclaimsene');
   const sourceIds = new Set(sources.map((row) => row.id));
   const claimIds = new Set(claims.map((row) => row.id));
   assert(sourceIds.size === sources.length, 'Unit 1 har dupliserte source-ID-er');
@@ -162,10 +177,10 @@ export function auditVitenskapUnit1() {
   const applicationTasks = modules.flatMap((module) => module.applicationTasks || []);
   const selfCheck = modules.flatMap((module) => module.selfCheck || []);
   const misconceptions = modules.flatMap((module) => module.misconceptions || []);
-  assert(workedExamples.length === 2 && workedExamples.every((row) => row.analysis?.length >= 4), 'Unit 1 skal ha to substansielle worked examples');
-  assert(applicationTasks.length === 4 && applicationTasks.every((row) => row.prompts?.length >= 3), 'Unit 1 skal ha fire anvendelsesoppgaver');
-  assert(selfCheck.length === 6 && selfCheck.every((row) => row.question && row.answer), 'Unit 1 skal ha seks self-check-spørsmål');
-  assert(misconceptions.length === 4 && misconceptions.every((row) => row.claim && row.correction), 'Unit 1 skal ha fire eksplisitte misoppfatninger');
+  assert(workedExamples.length >= 2 && workedExamples.every((row) => row.analysis?.length >= 4), 'Unit 1 skal bevare minst to substansielle worked examples');
+  assert(applicationTasks.length >= 4 && applicationTasks.every((row) => row.prompts?.length >= 3), 'Unit 1 skal bevare minst fire anvendelsesoppgaver');
+  assert(selfCheck.length >= 6 && selfCheck.every((row) => row.question && row.answer), 'Unit 1 skal bevare minst seks self-check-spørsmål');
+  assert(misconceptions.length >= 4 && misconceptions.every((row) => row.claim && row.correction), 'Unit 1 skal bevare minst fire eksplisitte misoppfatninger');
   assert(chapter.diagnosticQuestions.some((row) => /reproducibility/i.test(row.question) && /replicability/i.test(row.question)), 'Unit 1 mangler eksplisitt reproducibility/replicability-skille');
 
   return {
@@ -198,7 +213,9 @@ export function auditVitenskapUnit1() {
       technologyRemainsNested: true,
       peerReviewTruthShortcutBlocked: true,
       calibrationTraceabilityShortcutBlocked: true,
-      reproducibilityReplicationDistinctionPresent: true
+      reproducibilityReplicationDistinctionPresent: true,
+      originalCoreContractPreserved: true,
+      laterEditorialCoverageExtensionsAllowed: true
     }
   };
 }

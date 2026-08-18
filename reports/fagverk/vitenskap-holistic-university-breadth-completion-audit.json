@@ -1,0 +1,207 @@
+{
+  "schema": "history_go_fagverk_vitenskap_holistic_university_breadth_completion_audit_v1",
+  "version": "1.1.0",
+  "status": "blocked",
+  "generatedFrom": {
+    "readiness": "data/fag/vitenskap/vitenskap_university_readiness_v1.json",
+    "status": "data/fagverk/subject_status.json",
+    "registry": "data/fagverk/fagverk_registry.json",
+    "release": "data/fagverk/fagverk_release.json",
+    "pensum": "data/fag/vitenskap/vitenskappensum_canonical_v4_6.json",
+    "emners": "data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json",
+    "methods": "data/fag/vitenskap/methods_vitenskap_canonical_v4_6.json",
+    "mappings": "data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json",
+    "technologyIndex": "data/fag/teknologi/teknologi_scientific_v2/index.json",
+    "qualityReview": "data/fag/vitenskap/vitenskap_holistic_quality_review_v1.json",
+    "report": "reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json"
+  },
+  "subject": {
+    "id": "vitenskap",
+    "completionState": "pending_final_audit",
+    "readinessStatus": "breadth_chapters_materialized_final_audit_pending",
+    "completeReady": false,
+    "editorialStatus": "chapters_in_progress",
+    "nextGate": "final_holistic_university_breadth_completion_audit"
+  },
+  "canonicalInventory": {
+    "domainCount": 6,
+    "emneCount": 117,
+    "methodCount": 84,
+    "mappingCount": 117,
+    "hookCount": 64,
+    "explicitChapterOwnedEmneCount": 49,
+    "explicitUncoveredEmneCount": 68,
+    "legacyEmneCount": 93,
+    "oldGenericQuestionSetEmneCount": 89,
+    "missingLegacyKeyQuestionEmneCount": 4,
+    "largestLegacyQuestionTemplateReuse": 89,
+    "uncoveredWithLegacyTemplateMetadata": 68
+  },
+  "chapters": {
+    "count": 5,
+    "summaries": [
+      {
+        "id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+        "emneCount": 25,
+        "moduleCount": 4,
+        "sectionCount": 16,
+        "paragraphCount": 48,
+        "claimCount": 32,
+        "sourceCount": 18
+      },
+      {
+        "id": "vitenskap-matematisk-bevis-struktur-og-modell",
+        "emneCount": 5,
+        "moduleCount": 3,
+        "sectionCount": 9,
+        "paragraphCount": 27,
+        "claimCount": 18,
+        "sourceCount": 10
+      },
+      {
+        "id": "vitenskap-fysikk-fra-bevegelse-til-kosmos",
+        "emneCount": 8,
+        "moduleCount": 3,
+        "sectionCount": 9,
+        "paragraphCount": 27,
+        "claimCount": 20,
+        "sourceCount": 12
+      },
+      {
+        "id": "vitenskap-kjemi-fra-atomstruktur-til-materialegenskap",
+        "emneCount": 6,
+        "moduleCount": 3,
+        "sectionCount": 9,
+        "paragraphCount": 27,
+        "claimCount": 20,
+        "sourceCount": 12
+      },
+      {
+        "id": "vitenskap-medisin-fra-mekanisme-til-folkehelse",
+        "emneCount": 5,
+        "moduleCount": 3,
+        "sectionCount": 9,
+        "paragraphCount": 27,
+        "claimCount": 20,
+        "sourceCount": 12
+      }
+    ],
+    "totalParagraphCount": 156,
+    "totalClaimCount": 110,
+    "totalSourceCount": 64
+  },
+  "evidence": {
+    "allClaimsResolve": true,
+    "methodsWithLimitsChapterCount": 5,
+    "chapterCount": 5,
+    "fillerClean": true,
+    "globalUniqueSectionIds": 52,
+    "globalUniqueClaimIds": 110,
+    "globalUniqueSourceIds": 64
+  },
+  "originality": {
+    "exactDuplicateParagraphCount": 0,
+    "maxCrossChapterFiveGramJaccard": 0.0214,
+    "threshold": 0.42,
+    "mostSimilarPair": {
+      "a": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap/vit1-grunnlag-1/1",
+      "b": "vitenskap-matematisk-bevis-struktur-og-modell/vit2-grunnlag-3/1"
+    }
+  },
+  "neighborBoundaries": [
+    {
+      "subject_id": "natur",
+      "relationship": "neighbor_bridge_required",
+      "rule": "Natur & miljø eier den organismenære, økologiske, geologiske og miljøfaglige fordypningen. Vitenskap skal forklare naturvitenskapelige teorier, målinger, modeller, eksperimenter og evidenskjeder uten å kopiere Natur-kapitlene."
+    },
+    {
+      "subject_id": "filosofi",
+      "relationship": "neighbor_bridge_required",
+      "rule": "Filosofi eier den selvstendige filosofiske argumentasjonen om kunnskap, sannhet og vitenskapsfilosofi. Vitenskap skal bruke slike skiller i konkret forskningspraksis uten å duplisere Filosofi-artiklene."
+    },
+    {
+      "subject_id": "teknologi",
+      "relationship": "nested_specialization",
+      "rule": "Teknologi forblir canonical nested spesialisering under vitenskap med eget 12-områders scientific package, men uten eget toppfag, toppmerke eller separat canonical rute."
+    }
+  ],
+  "technology": {
+    "passes": true,
+    "canonicalParentSubject": "vitenskap",
+    "topLevelSubject": false,
+    "areaCount": 12,
+    "topicCount": 48,
+    "methodCount": 35,
+    "hookCount": 36
+  },
+  "blockers": [
+    {
+      "id": "canonical_emne_full_editorial_treatment_gap",
+      "count": 68,
+      "detail": "68 av 117 canonicale emner mangler eksplisitt eierskap i en fulltekst-/chapter-ready redaksjonell enhet.",
+      "sampleEmneIds": [
+        "em_vit_arkiv_data_lagring",
+        "em_vit_automatisering",
+        "em_vit_beregning",
+        "em_vit_biologi_klassifikasjon",
+        "em_vit_byens_vitenskapssteder",
+        "em_vit_datainfrastruktur",
+        "em_vit_datasett",
+        "em_vit_datavisualisering",
+        "em_vit_digital_vitenskap",
+        "em_vit_doxa_maling",
+        "em_vit_ekspertmakt",
+        "em_vit_epidemiologi",
+        "em_vit_faglig_konflikt",
+        "em_vit_feltarbeid",
+        "em_vit_forklaring_arsak",
+        "em_vit_forskning_industri",
+        "em_vit_forskning_politikk",
+        "em_vit_forskningsansvar",
+        "em_vit_forskningsfinansiering",
+        "em_vit_geologi_tid"
+      ]
+    },
+    {
+      "id": "uncovered_legacy_emners_retain_template_metadata_only",
+      "count": 68,
+      "detail": "Udekkede v4.5-emner har fortsatt generisk eller manglende key-question-metadata og kan derfor ikke brukes som erstatning for full editorial treatment."
+    },
+    {
+      "id": "full_subject_quality_review_deferred",
+      "detail": "27/30-review skal ikke scores før materielle completion-blockers er lukket."
+    }
+  ],
+  "completionRequirements": {
+    "all_blocking_coverage_gaps_reconciled_into_canonical_inventory_or_explicitly_justified_elsewhere": true,
+    "neighbor_boundaries_resolved_without_duplicate_subject_truth": true,
+    "all_included_relevant_emners_have_full_editorial_treatment": false,
+    "all_claims_resolve_to_inspectable_sources_supporting_the_specific_claim": true,
+    "methods_are_taught_with_material_limits_and_uncertainty": true,
+    "technology_remains_nested_and_its_existing_scientific_quality_gates_stay_green": true,
+    "gap_overlap_and_filler_audit_has_no_material_findings": true,
+    "cross_chapter_editorial_originality_review_passes": true,
+    "full_subject_quality_review_scores_at_least_27_of_30_with_no_dimension_below_4": false,
+    "subject_status_and_release_artifacts_match_actual_materialized_content": true
+  },
+  "qualityReview": {
+    "status": "deferred_until_material_blockers_close",
+    "file": "data/fag/vitenskap/vitenskap_holistic_quality_review_v1.json",
+    "scores": null,
+    "totalScore": null,
+    "passes": false
+  },
+  "gates": {
+    "structuralCoverageGapsResolved": true,
+    "neighborBoundariesResolvedWithoutDuplicateSubjectTruth": true,
+    "canonicalEmnersEditoriallyTreated": false,
+    "allClaimsResolveToInspectableSupportingSources": true,
+    "methodsTeachLimitsAndUncertainty": true,
+    "technologyRemainsNested": true,
+    "gapOverlapAndFillerAuditClean": true,
+    "crossChapterEditorialOriginalityPasses": true,
+    "fullSubjectQualityReviewPasses": false,
+    "registryReleaseAndStatusStateConsistent": true,
+    "eligibleForCompletion": false
+  }
+}

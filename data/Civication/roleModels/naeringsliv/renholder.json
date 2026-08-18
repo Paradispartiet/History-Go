@@ -72,13 +72,33 @@
       "Soneforståelse, hygieneblikk, kjemikaliebruk, avviksmelding, prioritering og kroppslig selvregulering."
     ],
     "category_knowledge": [
-      "For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Renhold som del av drift, arbeidsmiljø, service, smittevern og den usynlige infrastrukturen som gjør institusjoner brukbare."
     ],
     "history_go_badges": [
       "naeringsliv"
     ],
-    "place_connections": [],
-    "people_connections": []
+    "place_connections": [
+      "inngangsparti",
+      "toalett_sone",
+      "møterom",
+      "fellesareal",
+      "avfallsrom",
+      "renholdsrom",
+      "garderobe",
+      "driftskontor"
+    ],
+    "people_connections": [
+      "kari_driftsleder",
+      "amina_erfaren_renholder",
+      "leo_ny_vikar",
+      "sindre_kontoransatt",
+      "elin_leder",
+      "mira_elev",
+      "ole_verneombud",
+      "tove_kantine_drift",
+      "jan_vaktmester",
+      "grete_skadet_kollega"
+    ]
   },
   "challenges": [
     {
@@ -86,22 +106,14 @@
       "title": "Hygiene mot tidsbudsjett",
       "description": "Planen kan være kortere enn rommets faktiske behov, og synlig finish kan skjule hygienerisiko.",
       "pressure": "hygiene_vs_tidsbudsjett",
-      "affects": [
-        "quality",
-        "health",
-        "trust"
-      ]
+      "affects": ["quality", "health", "trust"]
     },
     {
       "id": "hms_vs_produksjonspress",
       "title": "HMS mot produksjonspress",
       "description": "Tempo kan gjøre kroppen til buffer, men slitasje og feil kjemikaliebruk svekker kvaliteten over tid.",
       "pressure": "hms_vs_produksjonspress",
-      "affects": [
-        "health",
-        "stability",
-        "output"
-      ]
+      "affects": ["health", "stability", "output"]
     }
   ],
   "dilemmas": [
@@ -111,9 +123,7 @@
       "setup": "Rommet kan se klart ut før alle berøringspunkter er tatt, men brukerne stoler på mer enn overflaten.",
       "choice_axis": "synlig_resultat_vs_usynlig_arbeid",
       "consequence_axis": "inntrykk_vs_trygghet",
-      "mail_hooks": [
-        "job"
-      ]
+      "mail_hooks": ["job", "conflict", "story", "consequence"]
     },
     {
       "id": "taus_slitasje_vs_verdig_grense",
@@ -121,20 +131,44 @@
       "setup": "Du kan vaske etter avbrytelser uten å si noe, eller sette en rolig grense for sone, kropp og standard.",
       "choice_axis": "verdighet_vs_lav_status",
       "consequence_axis": "fred_nå_vs_bærekraftig_kvalitet",
-      "mail_hooks": [
-        "people",
-        "job"
-      ]
+      "mail_hooks": ["people", "conflict", "followup", "consequence"]
     }
   ],
-  "related_people": [],
-  "related_places": [],
+  "related_people": [
+    "kari_driftsleder",
+    "amina_erfaren_renholder",
+    "leo_ny_vikar",
+    "sindre_kontoransatt",
+    "elin_leder",
+    "mira_elev",
+    "ole_verneombud",
+    "tove_kantine_drift",
+    "jan_vaktmester",
+    "grete_skadet_kollega"
+  ],
+  "related_places": [
+    "inngangsparti",
+    "toalett_sone",
+    "møterom",
+    "fellesareal",
+    "avfallsrom",
+    "renholdsrom",
+    "garderobe",
+    "driftskontor"
+  ],
   "mail_integration": {
     "role_scope": "renholder",
     "mail_profile": "naer_renholder",
     "can_feed_mail_types": [
       "job",
-      "people"
+      "people",
+      "conflict",
+      "story",
+      "event",
+      "micro",
+      "followup",
+      "knowledge",
+      "consequence"
     ],
     "mail_variables": {
       "role_title": "Renholder",
@@ -175,7 +209,7 @@
     "renhold_status_og_belastning"
   ],
   "notes": [
-    "Ny grunnrollepakke uten Praksisfortellinger uke 1/uke 2."
+    "Praksisfortellinger uke 1 og uke 2, Life Story og full mailtype-pakke er canonicalt materialisert; Role World-provenance skal peke tilbake til disse governed kildene."
   ],
   "role_key": "renholder",
   "main_case": {
@@ -183,56 +217,16 @@
     "premise": "Du starter en dag i et bygg der møterom, toaletter, inngangsparti og fellesarealer må være klare før brukerne kommer. Samtidig mangler en kollega, en søppellekkasje oppstår, en leder vil ha synlige resultater, og et usynlig hygieneproblem er viktigere enn det folk legger merke til."
   },
   "person_map": [
-    {
-      "person_id": "kari_driftsleder",
-      "role": "driftsleder",
-      "place_id": "inngangsparti"
-    },
-    {
-      "person_id": "amina_erfaren_renholder",
-      "role": "erfaren renholder",
-      "place_id": "toalett_sone"
-    },
-    {
-      "person_id": "leo_ny_vikar",
-      "role": "ny vikar",
-      "place_id": "møterom"
-    },
-    {
-      "person_id": "sindre_kontoransatt",
-      "role": "kontoransatt som klager",
-      "place_id": "fellesareal"
-    },
-    {
-      "person_id": "elin_leder",
-      "role": "leder med representativt press",
-      "place_id": "avfallsrom"
-    },
-    {
-      "person_id": "mira_elev",
-      "role": "bruker/elev/beboer",
-      "place_id": "renholdsrom"
-    },
-    {
-      "person_id": "ole_verneombud",
-      "role": "verneombud",
-      "place_id": "garderobe"
-    },
-    {
-      "person_id": "tove_kantine_drift",
-      "role": "kantine/drift-kontakt",
-      "place_id": "driftskontor"
-    },
-    {
-      "person_id": "jan_vaktmester",
-      "role": "byggdrift/vaktmester",
-      "place_id": "inngangsparti"
-    },
-    {
-      "person_id": "grete_skadet_kollega",
-      "role": "kollega med slitasje/skade",
-      "place_id": "toalett_sone"
-    }
+    {"person_id":"kari_driftsleder","role":"driftsleder","place_id":"inngangsparti"},
+    {"person_id":"amina_erfaren_renholder","role":"erfaren renholder","place_id":"toalett_sone"},
+    {"person_id":"leo_ny_vikar","role":"ny vikar","place_id":"møterom"},
+    {"person_id":"sindre_kontoransatt","role":"kontoransatt som klager","place_id":"fellesareal"},
+    {"person_id":"elin_leder","role":"leder med representativt press","place_id":"avfallsrom"},
+    {"person_id":"mira_elev","role":"bruker/elev/beboer","place_id":"renholdsrom"},
+    {"person_id":"ole_verneombud","role":"verneombud","place_id":"garderobe"},
+    {"person_id":"tove_kantine_drift","role":"kantine/drift-kontakt","place_id":"driftskontor"},
+    {"person_id":"jan_vaktmester","role":"byggdrift/vaktmester","place_id":"inngangsparti"},
+    {"person_id":"grete_skadet_kollega","role":"kollega med slitasje/skade","place_id":"toalett_sone"}
   ],
   "conflict_map": [
     "synlig_renhet_vs_faktisk_hygiene",
