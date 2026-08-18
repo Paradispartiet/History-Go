@@ -7,6 +7,7 @@ on:
     paths:
       - 'tools/audit-historie-canonical-emner.mjs'
       - 'tools/audit-historie-semantic-hook-alignment.mjs'
+      - 'tools/diagnose-historie-semantic-temp.mjs'
       - 'data/fag/historie/**'
       - '.github/workflows/history-semantic-split-diagnose-temp.yml'
   workflow_dispatch:
@@ -15,9 +16,27 @@ permissions:
   contents: read
 
 jobs:
-  diagnose:
+  semantic-diagnose:
     if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/history-completion-audit')
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        phase:
+          - primary-ownership
+          - primary-theory
+          - primary-mapping
+          - secondary-ownership
+          - secondary-theory
+          - secondary-mapping
+          - blueprint-structure
+          - byhistorie-ownership
+          - byhistorie-theory
+          - industri-ownership
+          - industri-theory
+          - velferd-ownership
+          - velferd-theory
+    name: semantic-diagnose (${{ matrix.phase }})
     steps:
       - name: Check out History branch
         uses: actions/checkout@v4
@@ -56,7 +75,6 @@ jobs:
           for (const category of list(fagkart.categories)) {
             for (const hook of list(category.topic_hooks)) hookById.set(hook.id, hook);
           }
-          const additions = [];
           for (const emne of emners) {
             const declared = [...new Set([...list(emne.primary_theory_hooks), ...list(emne.secondary_theory_hooks)])];
             const mapped = new Set(list(mappingByEmne.get(emne.emne_id)?.mappings).map((row) => row.topic_hook));
@@ -65,18 +83,11 @@ jobs:
               const hook = hookById.get(hookId);
               if (!hook) throw new Error(`${emne.emne_id}: canonical hook ${hookId} finnes ikke i fagkart`);
               hook.emne_ids = list(hook.emne_ids);
-              if (!hook.emne_ids.includes(emne.emne_id)) {
-                hook.emne_ids.push(emne.emne_id);
-                additions.push(`${hookId}->${emne.emne_id}`);
-              }
+              if (!hook.emne_ids.includes(emne.emne_id)) hook.emne_ids.push(emne.emne_id);
             }
           }
           fs.writeFileSync(fagkartPath, `${JSON.stringify(fagkart, null, 2)}\n`);
-          console.log(JSON.stringify({ additions: additions.length, rows: additions }, null, 2));
           NODE
 
-      - name: Audit canonical emne identity
-        run: node tools/audit-historie-canonical-emner.mjs --write-report
-
-      - name: Audit semantic hook alignment
-        run: node tools/audit-historie-semantic-hook-alignment.mjs
+      - name: Diagnose ${{ matrix.phase }}
+        run: node tools/diagnose-historie-semantic-temp.mjs '${{ matrix.phase }}'
