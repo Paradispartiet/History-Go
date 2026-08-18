@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Reconcile canonical hook ownership
+      - name: Reconcile canonical and curated hook ownership
         shell: bash
         run: |
           set -euo pipefail
@@ -46,34 +46,73 @@ jobs:
           import fs from 'node:fs';
           const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
           const list = (value) => Array.isArray(value) ? value : [];
+          const unique = (values) => [...new Set(values.filter(Boolean))];
           const emnePath = 'data/fag/historie/emner_historie_canonical_v4_5.json';
           const mappingPath = 'data/fag/historie/emnemapping_historie_canonical_v4_5.json';
           const fagkartPath = 'data/fag/historie/fagkart_historie_canonical_v4_5.json';
-          const emners = read(emnePath);
-          const mappings = read(mappingPath);
+          const theoryPath = 'data/fag/historie/theory_objects_historie_canonical_v5_5.json';
+          const blueprintFiles = [
+            'reports/historie-canonical-migration/industri-arbeid-question-blueprints.json',
+            'reports/historie-canonical-migration/velferd-question-blueprints.json',
+            'reports/historie-canonical-migration/byhistorie-question-blueprints.json'
+          ];
+          const emners = list(read(emnePath));
+          const mappings = list(read(mappingPath));
           const fagkart = read(fagkartPath);
+          const theories = list(read(theoryPath));
+          const emneById = new Map(emners.map((row) => [row.emne_id, row]));
           const mappingByEmne = new Map(mappings.map((row) => [row.emne_id, row]));
+          const theoryByHook = new Map(theories.map((row) => [row.source_hook_id, row]));
           const hookById = new Map();
           for (const category of list(fagkart.categories)) {
             for (const hook of list(category.topic_hooks)) hookById.set(hook.id, hook);
           }
-          const additions = [];
+
+          const canonicalAdditions = [];
           for (const emne of emners) {
-            const declared = [...new Set([...list(emne.primary_theory_hooks), ...list(emne.secondary_theory_hooks)])];
+            const declared = unique([...list(emne.primary_theory_hooks), ...list(emne.secondary_theory_hooks)]);
             const mapped = new Set(list(mappingByEmne.get(emne.emne_id)?.mappings).map((row) => row.topic_hook));
             for (const hookId of declared) {
               if (!mapped.has(hookId)) throw new Error(`${emne.emne_id}: canonical hook ${hookId} mangler mapping`);
               const hook = hookById.get(hookId);
               if (!hook) throw new Error(`${emne.emne_id}: canonical hook ${hookId} finnes ikke i fagkart`);
+              if (!theoryByHook.has(hookId)) throw new Error(`${emne.emne_id}: canonical hook ${hookId} mangler teoriobjekt`);
               hook.emne_ids = list(hook.emne_ids);
               if (!hook.emne_ids.includes(emne.emne_id)) {
                 hook.emne_ids.push(emne.emne_id);
-                additions.push(`${hookId}->${emne.emne_id}`);
+                canonicalAdditions.push(`${hookId}->${emne.emne_id}`);
               }
             }
           }
+
+          const editorialAdditions = [];
+          let blueprintRows = 0;
+          for (const file of blueprintFiles) {
+            for (const blueprint of list(read(file))) {
+              blueprintRows += 1;
+              if (!blueprint.emne_id || !emneById.has(blueprint.emne_id)) throw new Error(`${file}: ukjent editorial blueprint-emne ${blueprint.emne_id || 'none'}`);
+              if (!blueprint.primary_hook_id) throw new Error(`${file}/${blueprint.emne_id}: mangler primary_hook_id`);
+              for (const hookId of unique([blueprint.primary_hook_id, blueprint.secondary_hook_id])) {
+                const hook = hookById.get(hookId);
+                if (!hook) throw new Error(`${file}/${blueprint.emne_id}: editorial hook ${hookId} finnes ikke i fagkart`);
+                if (!theoryByHook.has(hookId)) throw new Error(`${file}/${blueprint.emne_id}: editorial hook ${hookId} mangler teoriobjekt`);
+                hook.emne_ids = list(hook.emne_ids);
+                if (!hook.emne_ids.includes(blueprint.emne_id)) {
+                  hook.emne_ids.push(blueprint.emne_id);
+                  editorialAdditions.push(`${hookId}->${blueprint.emne_id}`);
+                }
+              }
+            }
+          }
+
           fs.writeFileSync(fagkartPath, `${JSON.stringify(fagkart, null, 2)}\n`);
-          console.log(JSON.stringify({ canonical_hook_ownership_additions: additions.length, additions }, null, 2));
+          console.log(JSON.stringify({
+            canonical_hook_ownership_additions: canonicalAdditions.length,
+            canonical_additions: canonicalAdditions,
+            curated_blueprint_rows: blueprintRows,
+            editorial_hook_ownership_additions: editorialAdditions.length,
+            editorial_additions: editorialAdditions
+          }, null, 2));
           NODE
 
       - name: Install semantic/editorial hook separation
