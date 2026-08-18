@@ -1,0 +1,104 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_forskning",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "religion_forskning_forsinket_konsekvens",
+      "purpose": "Vise at tidlige metodevalg får en senere kostnad i fagfellevurdering, tillit og omarbeiding.",
+      "learning_focus": [
+        "sen_konsekvens",
+        "fagfellevurdering",
+        "reparasjon"
+      ],
+      "mails": [
+        {
+          "id": "religion_forskning_consequence_fagfelle",
+          "mail_type": "consequence",
+          "mail_family": "religion_forskning_forsinket_konsekvens",
+          "role_scope": "religion_forskning",
+          "phase": "workday",
+          "priority": 106,
+          "from": "Sara, metodekollega",
+          "people_ref": "sara_metodekollega",
+          "place_id": "religion_metodeverksted",
+          "subject": "Fagfellen spør hvor den alternative forklaringen ble testet",
+          "summary": "Et utkast kommer tilbake med ett presist spørsmål: analysen nevner rivalforklaringen, men viser ikke hva som faktisk skiller den fra hovedforklaringen.",
+          "situation": [
+            "Konsekvensen kommer etter at den første leveransen føltes ferdig.",
+            "Du kan reparere analysen åpent eller forsøke å skrive deg rundt hullet.",
+            "Valget påvirker både tidsbruk og hvordan kolleger vurderer forskningsarbeidets sporbarhet."
+          ],
+          "task_domain": "fagfellevurdering_og_reparasjon",
+          "competency": "refleksivitet",
+          "pressure": "kritikk_er_synlig",
+          "choice_axis": "apen_metodereparasjon_vs_retori_sk_skjuling",
+          "consequence_axis": "langsiktig_tillit_vs_kortsiktig_fasade",
+          "narrative_arc": "rivalforklaring_returnerer",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Legg inn den manglende rivaltesten og skriv eksplisitt hva resultatet endrer",
+              "reply": "Jeg reparerer analysen med den testen vi burde ha dokumentert tidligere.",
+              "effect": 1,
+              "tags": [
+                "repair",
+                "peer_review"
+              ],
+              "feedback": "Omarbeidingen koster tid og gjør argumentet sterkere fordi leseren kan se hvor det kunne ha feilet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "status": -1,
+                  "risk": -2,
+                  "energy": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Omskriv diskusjonen slik at rivalforklaringen framstår mindre relevant uten ny test",
+              "reply": "Jeg strammer argumentasjonen i teksten i stedet for å åpne analysen igjen.",
+              "effect": -1,
+              "tags": [
+                "deflection",
+                "risk"
+              ],
+              "feedback": "Du beskytter tempoet og gjør sporbarheten svakere akkurat der fagfellen ba om bevis.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Svar fagfellen at testen mangler og avgrens konklusjonen til det dataene faktisk bærer",
+              "reply": "Jeg gjør mangelen eksplisitt og reduserer påstandsrekkevidden dersom testen ikke kan gjennomføres nå.",
+              "effect": 0,
+              "tags": [
+                "transparency",
+                "scope"
+              ],
+              "feedback": "Du reduserer ambisjonen i teksten uten å late som evidensen er sterkere enn den er.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 2,
+                  "status": -1,
+                  "risk": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

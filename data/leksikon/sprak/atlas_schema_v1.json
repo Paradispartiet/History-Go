@@ -10,7 +10,8 @@
     "scope",
     "macro_regions",
     "dialect_regions",
-    "language_status_layers"
+    "language_status_layers",
+    "local_varieties"
   ],
   "properties": {
     "schema": {
@@ -41,6 +42,61 @@
     "language_status_layers": {
       "type": "array",
       "minItems": 6
+    },
+    "local_varieties": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "macro_region_id",
+          "profile_status",
+          "summary",
+          "variation_note"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "const": "local_speech"
+          },
+          "macro_region_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "region_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "profile_status": {
+            "enum": [
+              "documented_seed",
+              "local_research_required"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "variation_note": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sources": {
+            "type": "array"
+          }
+        },
+        "additionalProperties": true
+      }
     }
   },
   "additionalProperties": true

@@ -92,7 +92,13 @@
     "data/Civication/mailFamilies/naeringsliv/followup/renholder_followup.json",
     "data/Civication/mailFamilies/naeringsliv/knowledge/renholder_knowledge.json",
     "data/Civication/mailFamilies/naeringsliv/consequence/renholder_consequence.json",
+    "data/Civication/mailFamilies/religion/job/religion_forskning_job.json",
+    "data/Civication/mailFamilies/religion/people/religion_forskning_people.json",
+    "data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json",
+    "data/Civication/mailFamilies/religion/event/religion_forskning_event.json",
+    "data/Civication/mailFamilies/religion/followup/religion_forskning_followup.json",
     "data/Civication/mailFamilies/religion/knowledge/religion_forskning_knowledge.json",
+    "data/Civication/mailFamilies/religion/consequence/religion_forskning_consequence.json",
     "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
     "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
     "data/Civication/mailFamilies/sosial_laering/story/barnehageassistent_story.json",
@@ -113451,6 +113457,805 @@
       "category": "religion",
       "compatibility_projection": {
         "category": "religion",
+        "choice_axis": "minimere_identifisering_vs_beholde_dramatisk_detalj",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -3,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gir avkall på dramatisk detalj og beskytter både deltakeren og påstandsrekkevidden.",
+            "id": "A",
+            "label": "Fjern de identifiserende detaljene og avgrens hva sitatet kan representere",
+            "reply": "Jeg beholder evidensen, men reduserer konteksten og skriver eksplisitt at dette er én situert erfaring.",
+            "tags": [
+              "ethics",
+              "privacy"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 4,
+                "status": 1,
+                "trust": -3
+              }
+            },
+            "feedback": "Formell navnefjerning skjuler ikke indirekte identifisering i et lite miljø.",
+            "id": "B",
+            "label": "Behold detaljene fordi navnet ikke står i teksten",
+            "reply": "Jeg lar sitatet stå; formelt er det anonymisert.",
+            "tags": [
+              "privacy_risk",
+              "status"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "risk": -2,
+                "status": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du aksepterer forsinkelse for å få en faktisk etisk avklaring.",
+            "id": "C",
+            "label": "Pause sitatet og be om ny samtykkeavklaring før publisering",
+            "reply": "Jeg stopper denne delen til vi vet om deltakeren kan og vil godkjenne den konkrete bruken.",
+            "tags": [
+              "help",
+              "consent"
+            ]
+          }
+        ],
+        "competency": "forskningsetikk",
+        "consequence_axis": "tillit_vs_eksponering",
+        "from": "Oskar, forskningsetisk kontakt",
+        "id": "religion_forskning_conflict_formidling",
+        "mail_family": "religion_forskning_etisk_press",
+        "mail_type": "conflict",
+        "narrative_arc": "sitatets_etiske_grense",
+        "people_ref": "oskar_forskningsetikk",
+        "phase": "mid",
+        "place_id": "religionsfeltet_lite_miljo",
+        "pressure": "forklaringskraft_vs_beskyttelse",
+        "priority": 120,
+        "role_scope": "religion_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Navnet er fjernet, men miljøet er lite.",
+          "Deltakeren samtykket til intervju, ikke til denne eksponeringsgraden.",
+          "Du må velge mellom en sterkere historie og en mer forsvarlig evidensbruk."
+        ],
+        "subject": "Formidleren vil beholde detaljene som gjør sitatet gjenkjennelig",
+        "summary": "En ekstern formidler mener analysen mister kraft dersom rolle, sted og hendelse tones ned, selv om kombinasjonen kan peke ut deltakeren.",
+        "task_domain": "forskningsetikk_og_formidling"
+      },
+      "id": "religion_forskning_conflict_formidling",
+      "mail_type": "conflict",
+      "role_scope": "religion_forskning",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gir avkall på dramatisk detalj og beskytter både deltakeren og påstandsrekkevidden.",
+            "id": "A",
+            "label": "Fjern de identifiserende detaljene og avgrens hva sitatet kan representere",
+            "reply": "Jeg beholder evidensen, men reduserer konteksten og skriver eksplisitt at dette er én situert erfaring."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Formell navnefjerning skjuler ikke indirekte identifisering i et lite miljø.",
+            "id": "B",
+            "label": "Behold detaljene fordi navnet ikke står i teksten",
+            "reply": "Jeg lar sitatet stå; formelt er det anonymisert."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du aksepterer forsinkelse for å få en faktisk etisk avklaring.",
+            "id": "C",
+            "label": "Pause sitatet og be om ny samtykkeavklaring før publisering",
+            "reply": "Jeg stopper denne delen til vi vet om deltakeren kan og vil godkjenne den konkrete bruken."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Navnet er fjernet, men miljøet er lite.",
+            "Deltakeren samtykket til intervju, ikke til denne eksponeringsgraden.",
+            "Du må velge mellom en sterkere historie og en mer forsvarlig evidensbruk."
+          ],
+          "subject": "Formidleren vil beholde detaljene som gjør sitatet gjenkjennelig",
+          "summary": "En ekstern formidler mener analysen mister kraft dersom rolle, sted og hendelse tones ned, selv om kombinasjonen kan peke ut deltakeren."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_forskning_conflict_formidling",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "religionsfeltet_lite_miljo",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_forskning_conflict_formidling",
+          "source_path": "data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_forskning.mail.religion_forskning_conflict_formidling",
+        "version": 1
+      },
+      "source_hash": "c7a3975494d32ed82ad3ffe46b61e874c7b805039983d6fe2859bd2b5d757c73",
+      "source_path": "data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "apen_metodereparasjon_vs_retori_sk_skjuling",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 2,
+                "risk": -2,
+                "status": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Omarbeidingen koster tid og gjør argumentet sterkere fordi leseren kan se hvor det kunne ha feilet.",
+            "id": "A",
+            "label": "Legg inn den manglende rivaltesten og skriv eksplisitt hva resultatet endrer",
+            "reply": "Jeg reparerer analysen med den testen vi burde ha dokumentert tidligere.",
+            "tags": [
+              "repair",
+              "peer_review"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du beskytter tempoet og gjør sporbarheten svakere akkurat der fagfellen ba om bevis.",
+            "id": "B",
+            "label": "Omskriv diskusjonen slik at rivalforklaringen framstår mindre relevant uten ny test",
+            "reply": "Jeg strammer argumentasjonen i teksten i stedet for å åpne analysen igjen.",
+            "tags": [
+              "deflection",
+              "risk"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "quality": 1,
+                "risk": -1,
+                "status": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du reduserer ambisjonen i teksten uten å late som evidensen er sterkere enn den er.",
+            "id": "C",
+            "label": "Svar fagfellen at testen mangler og avgrens konklusjonen til det dataene faktisk bærer",
+            "reply": "Jeg gjør mangelen eksplisitt og reduserer påstandsrekkevidden dersom testen ikke kan gjennomføres nå.",
+            "tags": [
+              "transparency",
+              "scope"
+            ]
+          }
+        ],
+        "competency": "refleksivitet",
+        "consequence_axis": "langsiktig_tillit_vs_kortsiktig_fasade",
+        "from": "Sara, metodekollega",
+        "id": "religion_forskning_consequence_fagfelle",
+        "mail_family": "religion_forskning_forsinket_konsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "rivalforklaring_returnerer",
+        "people_ref": "sara_metodekollega",
+        "phase": "workday",
+        "place_id": "religion_metodeverksted",
+        "pressure": "kritikk_er_synlig",
+        "priority": 106,
+        "role_scope": "religion_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/consequence/religion_forskning_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Konsekvensen kommer etter at den første leveransen føltes ferdig.",
+          "Du kan reparere analysen åpent eller forsøke å skrive deg rundt hullet.",
+          "Valget påvirker både tidsbruk og hvordan kolleger vurderer forskningsarbeidets sporbarhet."
+        ],
+        "subject": "Fagfellen spør hvor den alternative forklaringen ble testet",
+        "summary": "Et utkast kommer tilbake med ett presist spørsmål: analysen nevner rivalforklaringen, men viser ikke hva som faktisk skiller den fra hovedforklaringen.",
+        "task_domain": "fagfellevurdering_og_reparasjon"
+      },
+      "id": "religion_forskning_consequence_fagfelle",
+      "mail_type": "consequence",
+      "role_scope": "religion_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Omarbeidingen koster tid og gjør argumentet sterkere fordi leseren kan se hvor det kunne ha feilet.",
+            "id": "A",
+            "label": "Legg inn den manglende rivaltesten og skriv eksplisitt hva resultatet endrer",
+            "reply": "Jeg reparerer analysen med den testen vi burde ha dokumentert tidligere."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beskytter tempoet og gjør sporbarheten svakere akkurat der fagfellen ba om bevis.",
+            "id": "B",
+            "label": "Omskriv diskusjonen slik at rivalforklaringen framstår mindre relevant uten ny test",
+            "reply": "Jeg strammer argumentasjonen i teksten i stedet for å åpne analysen igjen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du reduserer ambisjonen i teksten uten å late som evidensen er sterkere enn den er.",
+            "id": "C",
+            "label": "Svar fagfellen at testen mangler og avgrens konklusjonen til det dataene faktisk bærer",
+            "reply": "Jeg gjør mangelen eksplisitt og reduserer påstandsrekkevidden dersom testen ikke kan gjennomføres nå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Konsekvensen kommer etter at den første leveransen føltes ferdig.",
+            "Du kan reparere analysen åpent eller forsøke å skrive deg rundt hullet.",
+            "Valget påvirker både tidsbruk og hvordan kolleger vurderer forskningsarbeidets sporbarhet."
+          ],
+          "subject": "Fagfellen spør hvor den alternative forklaringen ble testet",
+          "summary": "Et utkast kommer tilbake med ett presist spørsmål: analysen nevner rivalforklaringen, men viser ikke hva som faktisk skiller den fra hovedforklaringen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_forskning_consequence_fagfelle",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "religion_metodeverksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_forskning_consequence_fagfelle",
+          "source_path": "data/Civication/mailFamilies/religion/consequence/religion_forskning_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_forskning.mail.religion_forskning_consequence_fagfelle",
+        "version": 1
+      },
+      "source_hash": "be8edc793c0e0a7d2b82f64cc4b3cbd88bd5a2463ab35f05e3e733e5d3962583",
+      "source_path": "data/Civication/mailFamilies/religion/consequence/religion_forskning_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "revidere_rekkevidde_vs_forsvare_tidlig_tekst",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "status": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør endringen sporbar uten å overdrive hva den nye kilden alene beviser.",
+            "id": "A",
+            "label": "Revider konklusjonen fra fravær til dokumentert usikkerhet og legg mappen inn som motkilde",
+            "reply": "Jeg korrigerer teksten og viser både det gamle kildefraværet og det nye sporet.",
+            "tags": [
+              "source_criticism",
+              "repair"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Konsistensen i teksten bevares ved å gjøre motkilden mindre enn den er.",
+            "id": "B",
+            "label": "Behold hovedkonklusjonen og omtale mappen som et enkelt avvik",
+            "reply": "Jeg lar den opprinnelige konklusjonen stå og nevner funnet i en fotnote.",
+            "tags": [
+              "defensiveness",
+              "bias"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 1,
+                "risk": -1,
+                "trust": 1
+              }
+            },
+            "feedback": "Du kjøper mer sikkerhet med tid og gjør arkivets struktur til en del av spørsmålet.",
+            "id": "C",
+            "label": "Stans konklusjonen og be Lea kartlegge om mappen inngår i en større, oversett samling",
+            "reply": "Jeg utsetter rekkevidden av konklusjonen til vi vet om dette er ett spor eller en systematisk blindsone.",
+            "tags": [
+              "archive",
+              "help"
+            ]
+          }
+        ],
+        "competency": "kildekritikk",
+        "consequence_axis": "sporbar_korrigering_vs_falsk_konsistens",
+        "from": "Lea, arkivar",
+        "id": "religion_forskning_event_motkilde",
+        "mail_family": "religion_forskning_kildehendelse",
+        "mail_type": "event",
+        "narrative_arc": "arkivstillhet_brytes",
+        "people_ref": "lea_arkivar",
+        "phase": "mid",
+        "place_id": "religionshistorisk_arkiv",
+        "pressure": "ny_kilde_vs_tidlig_konklusjon",
+        "priority": 118,
+        "role_scope": "religion_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/event/religion_forskning_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Funnet er lite, men direkte relevant.",
+          "Det beviser ikke hvor utbredt praksisen var.",
+          "Du må korrigere en for sterk konklusjon uten å gjøre ett nytt dokument til hele historien."
+        ],
+        "subject": "Lea finner en mappe som motsier arkivstillheten",
+        "summary": "En ny katalogisert mappe inneholder spor etter praksisen prosjektet nettopp vurderte som fraværende.",
+        "task_domain": "historisk_kildekritikk"
+      },
+      "id": "religion_forskning_event_motkilde",
+      "mail_type": "event",
+      "role_scope": "religion_forskning",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør endringen sporbar uten å overdrive hva den nye kilden alene beviser.",
+            "id": "A",
+            "label": "Revider konklusjonen fra fravær til dokumentert usikkerhet og legg mappen inn som motkilde",
+            "reply": "Jeg korrigerer teksten og viser både det gamle kildefraværet og det nye sporet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Konsistensen i teksten bevares ved å gjøre motkilden mindre enn den er.",
+            "id": "B",
+            "label": "Behold hovedkonklusjonen og omtale mappen som et enkelt avvik",
+            "reply": "Jeg lar den opprinnelige konklusjonen stå og nevner funnet i en fotnote."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du kjøper mer sikkerhet med tid og gjør arkivets struktur til en del av spørsmålet.",
+            "id": "C",
+            "label": "Stans konklusjonen og be Lea kartlegge om mappen inngår i en større, oversett samling",
+            "reply": "Jeg utsetter rekkevidden av konklusjonen til vi vet om dette er ett spor eller en systematisk blindsone."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Funnet er lite, men direkte relevant.",
+            "Det beviser ikke hvor utbredt praksisen var.",
+            "Du må korrigere en for sterk konklusjon uten å gjøre ett nytt dokument til hele historien."
+          ],
+          "subject": "Lea finner en mappe som motsier arkivstillheten",
+          "summary": "En ny katalogisert mappe inneholder spor etter praksisen prosjektet nettopp vurderte som fraværende."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_forskning_event_motkilde",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "religionshistorisk_arkiv",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_forskning_event_motkilde",
+          "source_path": "data/Civication/mailFamilies/religion/event/religion_forskning_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_forskning.mail.religion_forskning_event_motkilde",
+        "version": 1
+      },
+      "source_hash": "48adae236ef04b3e312c19cf26247cccaf487f0d1bbd86e81ac0cd7be8558abb",
+      "source_path": "data/Civication/mailFamilies/religion/event/religion_forskning_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "rette_felt_na_vs_skyve_feilen_videre",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Den lille reparasjonen hindrer at samme kategorifeil blir dyrere senere.",
+            "id": "A",
+            "label": "Splitt feltet nå og dokumenter migreringen i kodeboken",
+            "reply": "Jeg skiller praksis fra medlemskap og noterer hvordan de eksisterende radene håndteres.",
+            "tags": [
+              "followup",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1
+              }
+            },
+            "feedback": "Rapporten får arve en tvetydighet som datamodellen fortsatt ikke kan skille.",
+            "id": "B",
+            "label": "La feltet stå fordi forskjellen kan forklares i rapporten",
+            "reply": "Jeg beholder variabelen og skriver en forklarende note til senere.",
+            "tags": [
+              "delay",
+              "category_risk"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "status": -1,
+                "trust": 1
+              }
+            },
+            "feedback": "Du reduserer risikoen for en ny feil, men betaler med litt framdrift.",
+            "id": "C",
+            "label": "Frys nye registreringer og la Sara motlese feltdefinisjonen før dere endrer eksisterende data",
+            "reply": "Jeg stopper ny koding kort og får definisjonen kvalitetssikret før migreringen.",
+            "tags": [
+              "help",
+              "method"
+            ]
+          }
+        ],
+        "competency": "analytisk_presisjon",
+        "consequence_axis": "sporbarhet_vs_omarbeiding",
+        "from": "Mina, prosjektleder",
+        "id": "religion_forskning_followup_kodebok",
+        "mail_family": "religion_forskning_metodeoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "kodebok_repareres",
+        "people_ref": "mina_prosjektleder",
+        "phase": "workday",
+        "place_id": "religionsforskningskontoret",
+        "pressure": "liten_reparasjon_vs_ny_tvetydighet",
+        "priority": 112,
+        "role_scope": "religion_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/followup/religion_forskning_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Teamet kan rette feltet nå uten å kode alt på nytt.",
+          "Lar dere det stå, følger tvetydigheten inn i analysen.",
+          "Oppfølgingen tester om den tidlige metodekritikken faktisk endret arbeidsmåten."
+        ],
+        "subject": "Kodeboken er revidert — én variabel er fortsatt for bred",
+        "summary": "Etter morgenens avgrensning er kodeboken bedre, men feltet for religiøs deltakelse blander egenrapportert praksis med organisasjonsmedlemskap.",
+        "task_domain": "begrepsoperasjonalisering"
+      },
+      "id": "religion_forskning_followup_kodebok",
+      "mail_type": "followup",
+      "role_scope": "religion_forskning",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Den lille reparasjonen hindrer at samme kategorifeil blir dyrere senere.",
+            "id": "A",
+            "label": "Splitt feltet nå og dokumenter migreringen i kodeboken",
+            "reply": "Jeg skiller praksis fra medlemskap og noterer hvordan de eksisterende radene håndteres."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Rapporten får arve en tvetydighet som datamodellen fortsatt ikke kan skille.",
+            "id": "B",
+            "label": "La feltet stå fordi forskjellen kan forklares i rapporten",
+            "reply": "Jeg beholder variabelen og skriver en forklarende note til senere."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du reduserer risikoen for en ny feil, men betaler med litt framdrift.",
+            "id": "C",
+            "label": "Frys nye registreringer og la Sara motlese feltdefinisjonen før dere endrer eksisterende data",
+            "reply": "Jeg stopper ny koding kort og får definisjonen kvalitetssikret før migreringen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Teamet kan rette feltet nå uten å kode alt på nytt.",
+            "Lar dere det stå, følger tvetydigheten inn i analysen.",
+            "Oppfølgingen tester om den tidlige metodekritikken faktisk endret arbeidsmåten."
+          ],
+          "subject": "Kodeboken er revidert — én variabel er fortsatt for bred",
+          "summary": "Etter morgenens avgrensning er kodeboken bedre, men feltet for religiøs deltakelse blander egenrapportert praksis med organisasjonsmedlemskap."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_forskning_followup_kodebok",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "religionsforskningskontoret",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_forskning_followup_kodebok",
+          "source_path": "data/Civication/mailFamilies/religion/followup/religion_forskning_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_forskning.mail.religion_forskning_followup_kodebok",
+        "version": 1
+      },
+      "source_hash": "ffb83a0bd0d270de492d73d37c0eeeeaead045b367a40a4242a7b101db1f24fb",
+      "source_path": "data/Civication/mailFamilies/religion/followup/religion_forskning_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "avgrense_hypotese_vs_telle_alt_som_stotte",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Du mister litt tempo og får et spørsmål som kan testes i stedet for bekreftes automatisk.",
+            "id": "A",
+            "label": "Skriv om spørsmålet slik at hypotesen faktisk kan motbevises",
+            "reply": "Jeg avgrenser påstanden og skriver ned hvilken observasjon som ville tale imot den.",
+            "tags": [
+              "method",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -1
+              }
+            },
+            "feedback": "Framdriften ser god ut, men analysen får ingen tydelig grense for hva som ville motsagt den.",
+            "id": "B",
+            "label": "Lever den brede hypotesen og la nyansene komme i diskusjonsdelen",
+            "reply": "Jeg beholder spørsmålet som det er og bruker de første funnene som støtte.",
+            "tags": [
+              "confirmation_bias",
+              "tempo"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "trust": 1
+              }
+            },
+            "feedback": "Du beholder leveransen og gjør usikkerheten synlig for prosjektlederen.",
+            "id": "C",
+            "label": "Be Mina godkjenne én smal delpåstand som kan testes først",
+            "reply": "Jeg foreslår en mindre delanalyse med eksplisitt datagrunnlag før vi generaliserer.",
+            "tags": [
+              "scope",
+              "coordination"
+            ]
+          }
+        ],
+        "competency": "analytisk_presisjon",
+        "consequence_axis": "etterprovbar_analyse_vs_bekreftelsesbias",
+        "from": "Mina, prosjektleder",
+        "id": "religion_forskning_job_problemstilling",
+        "mail_family": "religion_forskning_problemstilling",
+        "mail_type": "job",
+        "narrative_arc": "hypotese_som_ma_kunne_feile",
+        "people_ref": "mina_prosjektleder",
+        "phase": "intro",
+        "place_id": "religionsforskningskontoret",
+        "pressure": "frist_vs_testbarhet",
+        "priority": 130,
+        "role_scope": "religion_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/job/religion_forskning_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Mina ber om et første analyseutkast før lunsj.",
+          "Du ser at hypotesen blander identitet, praksis og institusjon i samme påstand.",
+          "Du må levere framdrift uten å gjøre et uklart spørsmål til et sikkert funn."
+        ],
+        "subject": "Hypotesen passer allerede for godt",
+        "summary": "De første notatene støtter prosjektets forventning, men spørsmålet er formulert så bredt at nesten alle funn kan telles som støtte.",
+        "task_domain": "problemstilling_og_avgrensning"
+      },
+      "id": "religion_forskning_job_problemstilling",
+      "mail_type": "job",
+      "role_scope": "religion_forskning",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du mister litt tempo og får et spørsmål som kan testes i stedet for bekreftes automatisk.",
+            "id": "A",
+            "label": "Skriv om spørsmålet slik at hypotesen faktisk kan motbevises",
+            "reply": "Jeg avgrenser påstanden og skriver ned hvilken observasjon som ville tale imot den."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Framdriften ser god ut, men analysen får ingen tydelig grense for hva som ville motsagt den.",
+            "id": "B",
+            "label": "Lever den brede hypotesen og la nyansene komme i diskusjonsdelen",
+            "reply": "Jeg beholder spørsmålet som det er og bruker de første funnene som støtte."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du beholder leveransen og gjør usikkerheten synlig for prosjektlederen.",
+            "id": "C",
+            "label": "Be Mina godkjenne én smal delpåstand som kan testes først",
+            "reply": "Jeg foreslår en mindre delanalyse med eksplisitt datagrunnlag før vi generaliserer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Mina ber om et første analyseutkast før lunsj.",
+            "Du ser at hypotesen blander identitet, praksis og institusjon i samme påstand.",
+            "Du må levere framdrift uten å gjøre et uklart spørsmål til et sikkert funn."
+          ],
+          "subject": "Hypotesen passer allerede for godt",
+          "summary": "De første notatene støtter prosjektets forventning, men spørsmålet er formulert så bredt at nesten alle funn kan telles som støtte."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_forskning_job_problemstilling",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "religionsforskningskontoret",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_forskning_job_problemstilling",
+          "source_path": "data/Civication/mailFamilies/religion/job/religion_forskning_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_forskning.mail.religion_forskning_job_problemstilling",
+        "version": 1
+      },
+      "source_hash": "ea40c86b06ee9e1a239bdaf15a5826170733bee2ff8d26d02ce5ef2c48742afa",
+      "source_path": "data/Civication/mailFamilies/religion/job/religion_forskning_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
         "choice_axis": "eksplisitt_operasjonalisering_vs_bekvem_sammenslaing",
         "choices": [
           {
@@ -114043,6 +114848,165 @@
       },
       "source_hash": "5291661159b031cabb990d55dd8fdd82c20b611865da6e1719fe55862ebe787f",
       "source_path": "data/Civication/mailFamilies/religion/knowledge/religion_forskning_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "religion",
+      "compatibility_projection": {
+        "category": "religion",
+        "choice_axis": "teste_rival_vs_parkere_innvending",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Analysen blir mer krevende og mer robust fordi den må overleve et reelt alternativ.",
+            "id": "A",
+            "label": "Legg Saras rivalforklaring inn i analysen og test hva dataene faktisk skiller",
+            "reply": "Jeg gjør rivalforklaringen eksplisitt og undersøker hvilke observasjoner som skiller den fra min.",
+            "tags": [
+              "method",
+              "rival"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -1
+              }
+            },
+            "feedback": "Du har teknisk sett nevnt usikkerheten uten å la den få påvirke konklusjonen.",
+            "id": "B",
+            "label": "Noter innvendingen som begrensning uten å endre analysen",
+            "reply": "Jeg nevner alternativet i sluttteksten, men lar hovedanalysen stå.",
+            "tags": [
+              "shortcut",
+              "bias"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "trust": 1
+              }
+            },
+            "feedback": "Du bruker kollegial kritikk aktivt uten å late som hele analysen kan gjøres på nytt på én dag.",
+            "id": "C",
+            "label": "Be Sara velge ett avgjørende kontrollspørsmål dere kan teste i dag",
+            "reply": "Vi velger én konkret rivaltest som er mulig innen dagens tidsramme.",
+            "tags": [
+              "help",
+              "scope"
+            ]
+          }
+        ],
+        "competency": "refleksivitet",
+        "consequence_axis": "robusthet_vs_selvbekreftelse",
+        "from": "Sara, metodekollega",
+        "id": "religion_forskning_people_motlesning",
+        "mail_family": "religion_forskning_metodekollega",
+        "mail_type": "people",
+        "narrative_arc": "kollegial_motstand",
+        "people_ref": "sara_metodekollega",
+        "phase": "early",
+        "place_id": "religion_metodeverksted",
+        "pressure": "egen_forklaring_vs_rival",
+        "priority": 122,
+        "role_scope": "religion_forskning",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/religion/people/religion_forskning_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Hun ber ikke om at hypotesen forkastes.",
+          "Hun ber deg vise hvilke data som skiller forklaringene.",
+          "Fristen gjør det fristende å omtale innvendingen som en senere begrensning."
+        ],
+        "subject": "Sara finner en alternativ forklaring du ikke har kodet",
+        "summary": "Sara peker på at mønsteret du kaller religiøs praksis også kan følge alder, organisasjonstype eller intervjusituasjon.",
+        "task_domain": "metodekritikk"
+      },
+      "id": "religion_forskning_people_motlesning",
+      "mail_type": "people",
+      "role_scope": "religion_forskning",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Analysen blir mer krevende og mer robust fordi den må overleve et reelt alternativ.",
+            "id": "A",
+            "label": "Legg Saras rivalforklaring inn i analysen og test hva dataene faktisk skiller",
+            "reply": "Jeg gjør rivalforklaringen eksplisitt og undersøker hvilke observasjoner som skiller den fra min."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du har teknisk sett nevnt usikkerheten uten å la den få påvirke konklusjonen.",
+            "id": "B",
+            "label": "Noter innvendingen som begrensning uten å endre analysen",
+            "reply": "Jeg nevner alternativet i sluttteksten, men lar hovedanalysen stå."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du bruker kollegial kritikk aktivt uten å late som hele analysen kan gjøres på nytt på én dag.",
+            "id": "C",
+            "label": "Be Sara velge ett avgjørende kontrollspørsmål dere kan teste i dag",
+            "reply": "Vi velger én konkret rivaltest som er mulig innen dagens tidsramme."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Hun ber ikke om at hypotesen forkastes.",
+            "Hun ber deg vise hvilke data som skiller forklaringene.",
+            "Fristen gjør det fristende å omtale innvendingen som en senere begrensning."
+          ],
+          "subject": "Sara finner en alternativ forklaring du ikke har kodet",
+          "summary": "Sara peker på at mønsteret du kaller religiøs praksis også kan følge alder, organisasjonstype eller intervjusituasjon."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "religion_forskning_people_motlesning",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "religion_metodeverksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "religion_forskning_people_motlesning",
+          "source_path": "data/Civication/mailFamilies/religion/people/religion_forskning_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "religion_forskning.mail.religion_forskning_people_motlesning",
+        "version": 1
+      },
+      "source_hash": "00f393d2241cd85d537f78f5de6b3b06917400bf276edafd431cf7fbd4df39b1",
+      "source_path": "data/Civication/mailFamilies/religion/people/religion_forskning_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -134741,7 +135705,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "7dfca2dcd0257242c008d5f833037858e0d7c1c67326ac8a23e18176df3ceaa7",
+  "registry_hash": "08f313552e77a517f60beae0a806e2efdc51bbe8d5ddb4f66c9f203d372008c8",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -135503,9 +136467,15 @@
       "renholder_consequence_008"
     ],
     "religion/religion_forskning": [
+      "religion_forskning_job_problemstilling",
+      "religion_forskning_people_motlesning",
+      "religion_forskning_conflict_formidling",
+      "religion_forskning_event_motkilde",
+      "religion_forskning_followup_kodebok",
       "religion_forskning_knowledge_analytisk_kategori",
       "religion_forskning_knowledge_sitat_og_samtykke",
-      "religion_forskning_knowledge_arkivstillhet"
+      "religion_forskning_knowledge_arkivstillhet",
+      "religion_forskning_consequence_fagfelle"
     ],
     "sosial_laering/barnehageassistent": [
       "sosial_laering_barnehageassistent_job_001",
@@ -135698,11 +136668,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 112,
+    "compiled_source_file_count": 118,
     "ignored_source_file_count": 1,
-    "input_file_count": 113,
+    "input_file_count": 119,
     "role_count": 26,
-    "scene_count": 875,
+    "scene_count": 881,
     "shadowed_duplicate_count": 0
   },
   "version": 1
