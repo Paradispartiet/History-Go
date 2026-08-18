@@ -1,0 +1,241 @@
+name: Civication Subkultur arrangementsdrift helper materializer
+
+on:
+  push:
+    branches:
+      - agent/civication-subkultur-arrangementsdrift-pilot-helper
+
+permissions:
+  contents: write
+
+concurrency:
+  group: civication-subkultur-arrangementsdrift-helper
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply permanent daily-slot priority and rebuild regression
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old_lines, new_lines, marker):
+              text = path.read_text()
+              old = "\n".join(old_lines) + "\n"
+              new = "\n".join(new_lines) + "\n"
+              if old in text:
+                  path.write_text(text.replace(old, new, 1))
+                  return
+              if new not in text:
+                  raise SystemExit(f"{marker} target not found")
+
+          runtime = Path('js/Civication/systems/civicationWorkdayMailBuilder.js')
+          replace_once(runtime, [
+              '  function pickDailyExtra(pool, wantedTypes, usedSourceIds, seed, phaseId, slotId, context) {',
+              '    const wantedList = uniqueStrings(wantedTypes);',
+              '    const wanted = new Set(wantedList);',
+              '    if (!wanted.size) return null;',
+              '    const safe = (Array.isArray(pool) ? pool : [])',
+              '      .filter((mail) => mailMatchesDailyProgression(mail, context))',
+              '      .filter(isActionableSceneCandidate);',
+              '    let candidates = safe.filter((mail) => {',
+              '      const id = norm(mail?.id);',
+              '      return id && !usedSourceIds.has(id) && wanted.has(norm(mail?.mail_type));',
+              '    });',
+              '    const primaryType = wantedList[0];',
+              '    if (CASE_THREAD_TYPES.has(primaryType)) {',
+              '      const primaryCandidates = candidates.filter((mail) => norm(mail?.mail_type) === primaryType);',
+              '      if (primaryCandidates.length) candidates = primaryCandidates;',
+              '    }',
+              '    if (!candidates.length && !isStrictDailySlot(slotId)) {',
+              '      candidates = safe.filter((mail) => {',
+              '        const id = norm(mail?.id);',
+              '        return id && !usedSourceIds.has(id);',
+              '      });',
+              '    }',
+              '    candidates.sort((a, b) => {',
+              '      const phase = norm(phaseId);',
+              '      const aPhase = norm(a?.phase) === phase ? 500000 : 0;',
+              '      const bPhase = norm(b?.phase) === phase ? 500000 : 0;',
+              '      return (bPhase + seededScore(seed, b)) - (aPhase + seededScore(seed, a));',
+              '    });',
+              '    const selected = candidates[0] || null;',
+              '    if (selected) usedSourceIds.add(norm(selected.id));',
+              '    return selected;',
+              '  }',
+          ], [
+              '  function pickDailyExtra(pool, wantedTypes, usedSourceIds, seed, phaseId, slotId, context) {',
+              '    const wantedList = uniqueStrings(wantedTypes);',
+              '    if (!wantedList.length) return null;',
+              '    const safe = (Array.isArray(pool) ? pool : [])',
+              '      .filter((mail) => mailMatchesDailyProgression(mail, context))',
+              '      .filter(isActionableSceneCandidate);',
+              '    let candidates = [];',
+              '    for (const wantedType of wantedList) {',
+              '      const preferred = safe.filter((mail) => {',
+              '        const id = norm(mail?.id);',
+              '        return id && !usedSourceIds.has(id) && norm(mail?.mail_type) === wantedType;',
+              '      });',
+              '      if (preferred.length) {',
+              '        candidates = preferred;',
+              '        break;',
+              '      }',
+              '    }',
+              '    if (!candidates.length && !isStrictDailySlot(slotId)) {',
+              '      candidates = safe.filter((mail) => {',
+              '        const id = norm(mail?.id);',
+              '        return id && !usedSourceIds.has(id);',
+              '      });',
+              '    }',
+              '    candidates.sort((a, b) => {',
+              '      const phase = norm(phaseId);',
+              '      const aPhase = norm(a?.phase) === phase ? 500000 : 0;',
+              '      const bPhase = norm(b?.phase) === phase ? 500000 : 0;',
+              '      return (bPhase + seededScore(seed, b)) - (aPhase + seededScore(seed, a));',
+              '    });',
+              '    const selected = candidates[0] || null;',
+              '    if (selected) usedSourceIds.add(norm(selected.id));',
+              '    return selected;',
+              '  }',
+          ], 'pickDailyExtra')
+
+          replace_once(runtime, [
+              '  function addExistingSourcesToUsed(runtime, usedSourceIds) {',
+              '    for (const row of (Array.isArray(runtime?.items) ? runtime.items : [])) {',
+              '      const event = row?.event || {};',
+              '      if (norm(event?.source_type) === "daily_generated") continue;',
+              '      const sourceId = norm(event?.source_mail_id || event?.daily_mail_meta?.source_mail_id);',
+              '      if (sourceId) usedSourceIds.add(sourceId);',
+              '    }',
+              '  }',
+          ], [
+              '  function isDailyExtraRebuildRow(row) {',
+              '    const event = row?.event || {};',
+              '    if (event?.go_to_work === true) return false;',
+              '    const sourceType = norm(event?.source_type);',
+              '    if (sourceType === "daily_generated") return true;',
+              '    if (sourceType !== "daily_extra") return false;',
+              '    return norm(row?.selected_by) === "CivicationSceneDirector" ||',
+              '      norm(event?.daily_mail_meta?.selection_owner) === "CivicationSceneDirector";',
+              '  }',
+              '  function addExistingSourcesToUsed(runtime, usedSourceIds) {',
+              '    for (const row of (Array.isArray(runtime?.items) ? runtime.items : [])) {',
+              '      const event = row?.event || {};',
+              '      if (isDailyExtraRebuildRow(row)) continue;',
+              '      const sourceId = norm(event?.source_mail_id || event?.daily_mail_meta?.source_mail_id);',
+              '      if (sourceId) usedSourceIds.add(sourceId);',
+              '    }',
+              '  }',
+          ], 'addExistingSourcesToUsed')
+
+          replace_once(runtime, [
+              '      if (row?.phase_generator) return row;',
+              '      if (norm(event?.source_type) !== "daily_generated") return row;',
+              '      if (event?.go_to_work === true) return row;',
+          ], [
+              '      if (row?.phase_generator) return row;',
+              '      if (!isDailyExtraRebuildRow(row)) return row;',
+              '      if (event?.go_to_work === true) return row;',
+          ], 'populateDailyExtraSlots rebuild guard')
+
+          test = Path('tests/civication-scene-director-daily-catalog.test.js')
+          replace_once(test, [
+              '  "data/Civication/mailFamilies/fixture/micro/fixture_role_micro.json": catalog("micro", [',
+              '    mail("micro_one", "micro", "micro_ops"),',
+              '    mail("micro_two", "micro", "micro_choice")',
+              '  ]),',
+          ], [
+              '  "data/Civication/mailFamilies/fixture/micro/fixture_role_micro.json": catalog("micro", [',
+              '    mail("micro_one", "micro", "micro_choice")',
+              '  ]),',
+              '  "data/Civication/mailFamilies/fixture/knowledge/fixture_role_knowledge.json": catalog("knowledge", [',
+              '    mail("knowledge_one", "knowledge", "knowledge_ops")',
+              '  ]),',
+          ], 'knowledge fixture')
+
+          replace_once(test, [
+              '    rows.push(row("forenoon", "operational_mail", generated("g_operational")));',
+              '    rows.push(row("forenoon", "people_ping", generated("g_people")));',
+              '    rows.push(row("forenoon", "small_choice", generated("g_small")));',
+          ], [
+              '    rows.push(row("forenoon", "small_choice", generated("g_small")));',
+              '    rows.push(row("forenoon", "operational_mail", generated("g_operational")));',
+              '    rows.push(row("forenoon", "people_ping", generated("g_people")));',
+          ], 'daily row order fixture')
+
+          replace_once(test, [
+              '  assert.deepEqual(',
+              '    extras.map((runtimeRow) => runtimeRow.event.mail_type).sort(),',
+              '    ["conflict", "consequence", "followup", "job", "micro", "micro", "people"].sort()',
+              '  );',
+          ], [
+              '  assert.deepEqual(',
+              '    extras.map((runtimeRow) => runtimeRow.event.mail_type).sort(),',
+              '    ["conflict", "consequence", "followup", "job", "knowledge", "micro", "people"].sort()',
+              '  );',
+              '  const operational = runtime.items.find((runtimeRow) => runtimeRow.slot === "operational_mail");',
+              '  const peoplePing = runtime.items.find((runtimeRow) => runtimeRow.slot === "people_ping");',
+              '  assert.equal(operational.event.mail_type, "knowledge", "operational_mail skal velge knowledge foran job når tidligere prioritet er utilgjengelig");',
+              '  assert.equal(peoplePing.event.mail_type, "people", "people_ping skal velge people når people finnes");',
+              '',
+              '  const rebuilt = await windowObject.CivicationSceneDirector.populateDailyExtraSlots(active, state, runtime);',
+              '  const rebuiltExtras = rebuilt.items.filter((runtimeRow) => runtimeRow.event.source_type === "daily_extra");',
+              '  const rebuiltOperational = rebuilt.items.find((runtimeRow) => runtimeRow.slot === "operational_mail");',
+              '  const rebuiltPeoplePing = rebuilt.items.find((runtimeRow) => runtimeRow.slot === "people_ping");',
+              '  assert.equal(rebuiltOperational.event.mail_type, "knowledge", "rebuild skal ikke reservere knowledge-kilden som slotten selv skal erstatte");',
+              '  assert.equal(rebuiltPeoplePing.event.mail_type, "people", "rebuild skal ikke reservere people-kilden som slotten selv skal erstatte");',
+              '  assert.equal(',
+              '    new Set(rebuiltExtras.map((runtimeRow) => runtimeRow.event.source_mail_id)).size,',
+              '    rebuiltExtras.length,',
+              '    "rebuild skal bevare no-duplicate source-ID-garantien"',
+              '  );',
+          ], 'daily catalog regression assertions')
+          PY
+
+      - name: Verify generic SceneDirector daily-slot regression
+        run: node tests/civication-scene-director-daily-catalog.test.js
+
+      - name: Materialize and verify Subkultur arrangementsdrift pilot
+        run: node scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs
+
+      - name: Commit verified permanent outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            js/Civication/systems/civicationWorkdayMailBuilder.js \
+            tests/civication-scene-director-daily-catalog.test.js \
+            data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json \
+            data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json \
+            data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json \
+            data/Civication/mailFamilies/subkultur/job/subkultur_arrangementsdrift_job.json \
+            data/Civication/mailFamilies/subkultur/people/subkultur_arrangementsdrift_people.json \
+            data/Civication/mailFamilies/subkultur/conflict/subkultur_arrangementsdrift_conflict.json \
+            data/Civication/mailFamilies/subkultur/event/subkultur_arrangementsdrift_event.json \
+            data/Civication/mailFamilies/subkultur/followup/subkultur_arrangementsdrift_followup.json \
+            data/Civication/mailFamilies/subkultur/knowledge/subkultur_arrangementsdrift_knowledge.json \
+            data/Civication/mailFamilies/subkultur/consequence/subkultur_arrangementsdrift_consequence.json \
+            data/Civication/careerGameplayMatrix.json \
+            data/Civication/compiledSceneRegistryV1.json \
+            reports/civication-career-gameplay-matrix.md \
+            tests/civication-subkultur-arrangementsdrift-playability.test.js
+          if git diff --cached --quiet; then
+            echo "Subkultur arrangementsdrift pilot already materialized; nothing to commit."
+            exit 0
+          fi
+          git commit -m "Fix Civication daily slot selection and materialize Subkultur pilot"
+          git push origin HEAD:${{ github.ref_name }}
