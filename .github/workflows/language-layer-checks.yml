@@ -5,9 +5,12 @@ on:
     paths:
       - 'data/leksikon/sprak/**'
       - 'js/ui/place-language-layer.js'
+      - 'js/ui/place-language-local-varieties.js'
       - 'js/ui/place-popup-direct-tabs.js'
       - 'css/place-language-layer.css'
+      - 'css/place-language-local-varieties.css'
       - 'css/place-popup-tabs.css'
+      - 'index.html'
       - 'js/config.js'
       - 'js/knowledgePage.js'
       - 'AHA/docs/AHA_HISTORYGO_IMPORT.md'
@@ -17,6 +20,7 @@ on:
       - 'data/leksikon/README_LEKSIKON.md'
       - 'tests/place-language-layer.test.mjs'
       - 'tests/place-language-dialect-scope.test.mjs'
+      - 'tests/place-language-local-varieties.test.mjs'
       - 'tests/place-popup-direct-tabs.test.mjs'
       - 'tests/knowledge-browser-e2e.test.mjs'
       - '.github/workflows/language-layer-checks.yml'
@@ -41,10 +45,11 @@ jobs:
       - name: Check language and direct-tab runtime syntax
         run: |
           node --check js/ui/place-language-layer.js
+          node --check js/ui/place-language-local-varieties.js
           node --check js/ui/place-popup-direct-tabs.js
 
       - name: Check Knowledge collection syntax
         run: node --check js/knowledgePage.js
 
       - name: Test language data, dialect checklist and direct-tab contract
-        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/place-popup-direct-tabs.test.mjs
+        run: node --test tests/place-language-layer.test.mjs tests/place-language-dialect-scope.test.mjs tests/place-language-local-varieties.test.mjs tests/place-popup-direct-tabs.test.mjs
