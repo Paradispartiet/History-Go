@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_scenekunst_phase3_audit_v1",
-  "version": "1.0.0",
-  "status": "scenekunst_phase_3_structure_ready",
+  "version": "1.1.0",
+  "status": "scenekunst_phase_3_foundation_preserved_after_breadth_reconciliation",
   "generatedFrom": {
     "core": "js/fagverk-subject-core.js",
     "categories": "data/categories/category_contract.json",
@@ -12,6 +12,7 @@
     "registry": "data/fagverk/fagverk_registry.json",
     "badge": "data/badges/scenekunst.json",
     "badgePage": "data/fag/scenekunst/merke_scenekunst.html",
+    "readiness": "data/fag/scenekunst/scenekunst_university_readiness_v1.json",
     "report": "reports/fagverk/scenekunst-phase3-audit.json"
   },
   "subject": {
@@ -26,30 +27,13 @@
     "subjectPage": "fagverk.html?subject=scenekunst",
     "badgePage": "data/fag/scenekunst/merke_scenekunst.html"
   },
-  "summary": {
-    "domainCount": 4,
-    "emneCount": 8,
-    "methodCount": 9,
-    "mappingCount": 8,
-    "hookCount": 0,
-    "courseModuleCount": 3,
-    "registeredChapterCount": 0
-  },
-  "canonicalDomainOrder": [
-    "institusjon_repertoar",
-    "verk_utover_form",
-    "dans_hybrid_humor",
-    "publikum_offentlighet"
-  ],
-  "domainEmneCounts": {
-    "institusjon_repertoar": 1,
-    "verk_utover_form": 3,
-    "dans_hybrid_humor": 3,
-    "publikum_offentlighet": 1
-  },
+  "summary": {"domainCount":4,"emneCount":20,"methodCount":14,"mappingCount":20,"hookCount":0,"courseModuleCount":5,"registeredChapterCount":0},
+  "canonicalDomainOrder": ["institusjon_repertoar","verk_utover_form","dans_hybrid_humor","publikum_offentlighet"],
+  "domainEmneCounts": {"institusjon_repertoar":5,"verk_utover_form":6,"dans_hybrid_humor":4,"publikum_offentlighet":5},
   "gates": {
     "manifestFirstSourcesResolved": true,
     "foundationAdapterExercised": true,
+    "foundationIdsPreserved": true,
     "fagkartOwnsRendererDomains": true,
     "courseModulesRemainProgressionOnly": true,
     "allActiveEmnersMapped": true,
@@ -59,6 +43,7 @@
     "badgeAndSubjectRoutesDistinct": true,
     "assessmentStatusAudited": true,
     "editorialStatusStructureReady": true,
+    "breadthInventoryReconciled": true,
     "chapterClaimsNotOverstated": true
   }
 }

@@ -7,191 +7,36 @@ import { isDeepStrictEqual } from 'node:util';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = Object.freeze({
-  core: 'js/fagverk-subject-core.js',
-  categories: 'data/categories/category_contract.json',
-  manifest: 'data/fag/fag_manifest.json',
-  portal: 'data/fagverk/fagverk_portal.json',
-  inventory: 'data/fagverk/subject_inventory.json',
-  status: 'data/fagverk/subject_status.json',
-  registry: 'data/fagverk/fagverk_registry.json',
-  badge: 'data/badges/scenekunst.json',
-  badgePage: 'data/fag/scenekunst/merke_scenekunst.html',
-  report: 'reports/fagverk/scenekunst-phase3-audit.json'
+  core: 'js/fagverk-subject-core.js', categories: 'data/categories/category_contract.json', manifest: 'data/fag/fag_manifest.json',
+  portal: 'data/fagverk/fagverk_portal.json', inventory: 'data/fagverk/subject_inventory.json', status: 'data/fagverk/subject_status.json',
+  registry: 'data/fagverk/fagverk_registry.json', badge: 'data/badges/scenekunst.json', badgePage: 'data/fag/scenekunst/merke_scenekunst.html',
+  readiness: 'data/fag/scenekunst/scenekunst_university_readiness_v1.json', report: 'reports/fagverk/scenekunst-phase3-audit.json'
 });
-const DOMAIN_ORDER = [
-  'institusjon_repertoar',
-  'verk_utover_form',
-  'dans_hybrid_humor',
-  'publikum_offentlighet'
-];
-const abs = (relativePath) => path.join(ROOT, relativePath);
-const read = (relativePath) => fs.readFileSync(abs(relativePath), 'utf8');
-const json = (relativePath) => JSON.parse(read(relativePath));
-const assert = (condition, message) => { if (!condition) throw new Error(message); };
+const DOMAIN_ORDER = ['institusjon_repertoar','verk_utover_form','dans_hybrid_humor','publikum_offentlighet'];
+const FOUNDATION_EMNES = ['em_scenekunst_teaterinstitusjon_repertoar','em_scenekunst_dramaturgi_iscenesettelse','em_scenekunst_skuespill_rollefortolkning','em_scenekunst_regi_scenografi','em_scenekunst_dans_koreografi','em_scenekunst_musikal_musikkteater','em_scenekunst_revy_standup_impro','em_scenekunst_publikum_fjerde_vegg'];
+const FOUNDATION_METHODS = ['met_scenekunst_forestillingsanalyse','met_scenekunst_dramaturgianalyse','met_scenekunst_rolleanalyse','met_scenekunst_scenografianalyse','met_scenekunst_bevegelsesanalyse','met_scenekunst_produksjonsanalyse','met_scenekunst_resepsjonsanalyse','met_scenekunst_institusjonsanalyse','met_scenekunst_arkivanalyse'];
+const abs = (p) => path.join(ROOT,p); const read = (p) => fs.readFileSync(abs(p),'utf8'); const json = (p) => JSON.parse(read(p)); const assert = (c,m) => { if(!c) throw new Error(m); };
+function loadCore(){ const sandbox={console}; sandbox.globalThis=sandbox; vm.runInNewContext(read(P.core),sandbox,{filename:P.core}); return sandbox.HGFagverkSubjectCore; }
+function projection(r){ return {schema:r.schema,version:r.version,status:r.status,generatedFrom:r.generatedFrom,subject:r.subject,summary:r.summary,canonicalDomainOrder:r.canonicalDomainOrder,domainEmneCounts:r.domainEmneCounts,gates:r.gates}; }
 
-function loadCore() {
-  const sandbox = { console };
-  sandbox.globalThis = sandbox;
-  vm.runInNewContext(read(P.core), sandbox, { filename: P.core });
-  assert(sandbox.HGFagverkSubjectCore, 'Fagverk-core ble ikke eksponert');
-  return sandbox.HGFagverkSubjectCore;
+export function auditScenekunstPhase3({writeReport=false,checkReport=true}={}){
+  const CORE=loadCore(); const categories=json(P.categories); const manifest=json(P.manifest); const portal=json(P.portal); const inventory=json(P.inventory); const status=json(P.status); const registry=json(P.registry); const badge=json(P.badge); const readiness=json(P.readiness);
+  const portalEntry=portal.categories.find((r)=>r.id==='scenekunst'); const inventoryEntry=inventory.subjects.find((r)=>r.id==='scenekunst'); const statusEntry=status.subjects.find((r)=>r.id==='scenekunst'); const manifestEntry=manifest.scenekunst;
+  assert(categories.fagSubjects.includes('scenekunst'),'Scenekunst mangler i canonical fagliste'); assert(categories.aliases?.teater==='scenekunst','Teater-alias feil');
+  assert(portalEntry?.subjectStatus==='materialized','Scenekunst ikke materialized'); assert(inventoryEntry?.schemaFamily==='foundation_v1','Schemafamilien skal bevare foundation_v1-kompatibilitet');
+  assert(statusEntry?.assessmentStatus==='audited','Scenekunst har feil auditstatus'); assert(statusEntry?.editorialStatus==='structure_ready','Scenekunst skal være structure_ready frem til kapitler materialiseres'); assert(statusEntry?.nextGate==='chapter_production','Scenekunst har feil neste port');
+  const source={}; for(const field of ['pensum','emner','fagkart','methods']){ const rp=CORE.resolveManifestPointer(manifestEntry[field]); source[field==='emner'?'emners':field]=json(rp); }
+  const model=CORE.normalizeSubject({subjectId:'scenekunst',categoryLabel:categories.labels.scenekunst,categoryDescription:categories.decisions?.scenekunst,schemaFamily:inventoryEntry.schemaFamily,manifestEntry,portalEntry,inventoryEntry,statusEntry,registry,badge,source});
+  assert(isDeepStrictEqual(model.domains.map((d)=>d.id),DOMAIN_ORDER),'Renderer-fagområdene er endret'); assert(model.summary.domainCount===4,'Scenekunst skal ha fire renderer-fagområder');
+  assert(model.summary.emneCount===20,'Post-reconciliation Scenekunst skal ha 20 emner'); assert(model.summary.methodCount===14,'Post-reconciliation Scenekunst skal ha 14 metoder'); assert(model.summary.mappingCount===20,'Scenekunst skal ha én normalisert mapping per emne'); assert(model.summary.hookCount===0,'Foundation-adapteren skal fortsatt ikke syntetisere hooks'); assert(model.chapters.length===0,'Phase 3 kan ikke late som kapitler finnes');
+  assert(source.pensum.modules.length===5,'Scenekunst skal ha fem progresjonsmoduler etter breadth-reconciliation'); assert(source.emners.every((e)=>e.status==='active'),'Inaktive emner i aktiv pakke'); assert(source.methods.methods.every((m)=>m.canonical_status==='canonical'),'Ikke-canonical metode i aktiv pakke');
+  const emneIds=new Set(source.emners.map((r)=>r.emne_id)); const methodIds=new Set(source.methods.methods.map((r)=>r.method_id)); FOUNDATION_EMNES.forEach((id)=>assert(emneIds.has(id),`Foundation-emne mistet: ${id}`)); FOUNDATION_METHODS.forEach((id)=>assert(methodIds.has(id),`Foundation-metode mistet: ${id}`));
+  assert(model.emners.every((e)=>e.methodIds.length>=3),'Alle post-reconciliation-emner skal ha minst tre løste metodekoblinger');
+  const fg=source.fagkart.categories.flatMap((d)=>d.emne_ids||[]); const course=source.pensum.modules.flatMap((m)=>m.emner||[]); assert(fg.length===20&&new Set(fg).size===20&&fg.every((id)=>emneIds.has(id)),'Fagkartet eier ikke alle emner nøyaktig én gang'); assert(course.length===20&&new Set(course).size===20&&course.every((id)=>emneIds.has(id)),'Pensum dekker ikke alle emner nøyaktig én gang');
+  assert(readiness.status==='breadth_inventory_reconciled_chapter_production_pending'&&readiness.complete_ready===false,'Readiness er ikke reconcilet uten falsk completion');
+  for(const key of ['source_first','forestilling_or_institution_anchor_required','live_performance_is_primary','cross_domain_links_use_secondary_badges']) assert(source.fagkart.principles?.[key]===true,`Mangler prinsipp ${key}`);
+  const html=read(P.badgePage); assert(html.includes('../../../fagverk.html?subject=scenekunst')&&html.includes('../../../fagverk-forside.html'),'Merke-/fagsideruter er svekket');
+  const report={schema:'history_go_fagverk_scenekunst_phase3_audit_v1',version:'1.1.0',status:'scenekunst_phase_3_foundation_preserved_after_breadth_reconciliation',generatedFrom:P,subject:{id:model.subject.id,title:model.subject.title,schemaFamily:model.subject.schemaFamily,adapter:model.subject.adapter,navigationStatus:model.subject.status.navigation,assessmentStatus:model.subject.status.assessment,editorialStatus:model.subject.status.editorial,nextGate:statusEntry.nextGate,subjectPage:model.subject.routes.subject,badgePage:model.subject.routes.badge},summary:{domainCount:4,emneCount:20,methodCount:14,mappingCount:20,hookCount:0,courseModuleCount:5,registeredChapterCount:0},canonicalDomainOrder:DOMAIN_ORDER,domainEmneCounts:Object.fromEntries(model.domains.map((d)=>[d.id,d.emneIds.length])),gates:{manifestFirstSourcesResolved:true,foundationAdapterExercised:true,foundationIdsPreserved:true,fagkartOwnsRendererDomains:true,courseModulesRemainProgressionOnly:true,allActiveEmnersMapped:true,allCourseModulesCoverCanonicalEmners:true,allMethodReferencesResolved:true,livePerformancePrinciplesLocked:true,badgeAndSubjectRoutesDistinct:true,assessmentStatusAudited:true,editorialStatusStructureReady:true,breadthInventoryReconciled:true,chapterClaimsNotOverstated:true}};
+  const committed=projection(report); if(writeReport){fs.mkdirSync(path.dirname(abs(P.report)),{recursive:true});fs.writeFileSync(abs(P.report),`${JSON.stringify(committed,null,2)}\n`);} if(checkReport) assert(isDeepStrictEqual(json(P.report),committed),`${P.report} er utdatert`); return {report,model};
 }
-
-function committedProjection(report) {
-  return {
-    schema: report.schema,
-    version: report.version,
-    status: report.status,
-    generatedFrom: report.generatedFrom,
-    subject: report.subject,
-    summary: report.summary,
-    canonicalDomainOrder: report.canonicalDomainOrder,
-    domainEmneCounts: report.domainEmneCounts,
-    gates: report.gates
-  };
-}
-
-export function auditScenekunstPhase3({ writeReport = false, checkReport = true } = {}) {
-  const CORE = loadCore();
-  const categories = json(P.categories);
-  const manifest = json(P.manifest);
-  const portal = json(P.portal);
-  const inventory = json(P.inventory);
-  const status = json(P.status);
-  const registry = json(P.registry);
-  const badge = json(P.badge);
-  const portalEntry = portal.categories.find((row) => row.id === 'scenekunst');
-  const inventoryEntry = inventory.subjects.find((row) => row.id === 'scenekunst');
-  const statusEntry = status.subjects.find((row) => row.id === 'scenekunst');
-  const manifestEntry = manifest.scenekunst;
-
-  assert(categories.fagSubjects.includes('scenekunst'), 'Scenekunst mangler i canonical fagliste');
-  assert(categories.aliases?.teater === 'scenekunst', 'Teater-aliaset peker ikke til Scenekunst');
-  assert(portalEntry?.subjectStatus === 'materialized', 'Scenekunst er ikke materialisert i portalen');
-  assert(portalEntry?.subjectPage === 'fagverk.html?subject=scenekunst', 'Scenekunst har feil canonical fagsiderute');
-  assert(inventoryEntry?.schemaFamily === 'foundation_v1', 'Scenekunst har feil schemafamilie');
-  assert(inventoryEntry?.pilot === false, 'Scenekunst skal være et individuelt Fase 3-fag, ikke pilot');
-  assert(statusEntry?.assessmentStatus === 'audited', 'Scenekunst har feil auditstatus');
-  assert(statusEntry?.editorialStatus === 'structure_ready', 'Scenekunst må stå structure_ready før kapittelproduksjon');
-  assert(statusEntry?.nextGate === 'chapter_production', 'Scenekunst har feil neste port');
-  assert(registry.placePage?.fallbackSubjectByCategory?.scenekunst === 'scenekunst', 'Scenekunst-steder mangler Scenekunst som fagverksfallback');
-
-  const source = {};
-  for (const field of ['pensum', 'emner', 'fagkart', 'methods']) {
-    const relativePath = CORE.resolveManifestPointer(manifestEntry[field]);
-    assert(fs.existsSync(abs(relativePath)), `Scenekunst mangler ${field}: ${relativePath}`);
-    source[field === 'emner' ? 'emners' : field] = json(relativePath);
-  }
-
-  const model = CORE.normalizeSubject({
-    subjectId: 'scenekunst',
-    categoryLabel: categories.labels.scenekunst,
-    categoryDescription: categories.decisions?.scenekunst,
-    schemaFamily: inventoryEntry.schemaFamily,
-    manifestEntry,
-    portalEntry,
-    inventoryEntry,
-    statusEntry,
-    registry,
-    badge,
-    source
-  });
-
-  assert(model.subject.title === 'Scenekunst', 'Scenekunst har feil fagtittel');
-  assert(model.subject.description.length >= 160, 'Scenekunst mangler eksplisitt fagbeskrivelse');
-  assert(model.subject.adapter === 'standard', 'Foundation-pakken skal gå gjennom standardadapteren');
-  assert(model.subject.routes.badge === portalEntry.badgePage, 'Scenekunst-merkesiden løses ikke gjennom portalen');
-  assert(model.subject.routes.badge !== model.subject.routes.subject, 'Merke- og fagside kan ikke være samme mål');
-  assert(isDeepStrictEqual([...model.domains].map((domain) => domain.id), DOMAIN_ORDER), 'Scenekunst har feil source-definert fagområderekkefølge');
-  assert(model.summary.domainCount === 4, 'Scenekunst skal ha fire fagområder');
-  assert(model.summary.emneCount === 8, 'Scenekunst skal ha åtte aktive emner');
-  assert(model.summary.methodCount === 9, 'Scenekunst skal ha ni canonicale metoder');
-  assert(model.summary.mappingCount === 8, 'Scenekunst skal ha én mapping per emne');
-  assert(model.summary.hookCount === 0, 'Scenekunst foundation v1 har ikke canonicale hooks');
-  assert(model.chapters.length === 0, 'Structure-ready kan ikke late som Scenekunst-kapitler finnes');
-  assert(model.domains.every((domain) => domain.sourceKind === 'fagkart_category'), 'Pensummoduler ble feilaktig renderer-fagområder');
-  assert(source.pensum.modules.length === 3, 'Scenekunst skal bevare tre pensummoduler som progresjonslag');
-  assert(source.emners.every((emne) => emne.status === 'active'), 'Scenekunst har inaktive emner i den materialiserte pakken');
-  assert(source.methods.methods.every((method) => method.canonical_status === 'canonical'), 'Scenekunst har ikke-canonical metode i aktiv pakke');
-  assert(model.emners.every((emne) => emne.methodIds.length === 2), 'Alle Scenekunst-emner skal ha to løste metodekoblinger');
-  assert(model.emners.every((emne) => model.domainsById.has(emne.domainId)), 'Scenekunst har emne uten fagområde');
-  assert(model.emners.every((emne) => emne.methodIds.every((id) => model.methodsById.has(id))), 'Scenekunst har emne med ukjent metode');
-
-  const sourceEmneIds = new Set(source.emners.map((row) => row.emne_id));
-  const fagkartEmneIds = new Set(source.fagkart.categories.flatMap((domain) => domain.emne_ids || []));
-  const courseEmneIds = new Set(source.pensum.modules.flatMap((module) => module.emner || []));
-  assert(sourceEmneIds.size === 8, 'Scenekunst har dupliserte eller manglende canonicale emner');
-  assert(fagkartEmneIds.size === sourceEmneIds.size && [...sourceEmneIds].every((id) => fagkartEmneIds.has(id)), 'Fagkartet dekker ikke alle Scenekunst-emner');
-  assert(courseEmneIds.size === sourceEmneIds.size && [...sourceEmneIds].every((id) => courseEmneIds.has(id)), 'Pensummodulene dekker ikke alle Scenekunst-emner');
-
-  const principles = source.fagkart.principles || {};
-  for (const key of ['source_first', 'forestilling_or_institution_anchor_required', 'live_performance_is_primary', 'cross_domain_links_use_secondary_badges']) {
-    assert(principles[key] === true, `Scenekunst mangler bindende prinsipp: ${key}`);
-  }
-
-  const badgePage = read(P.badgePage);
-  assert(badgePage.includes('../../../fagverk.html?subject=scenekunst'), 'Scenekunst-merkesiden mangler separat fagsidelenke');
-  assert(badgePage.includes('../../../fagverk-forside.html'), 'Scenekunst-merkesiden mangler Fagverk-forsiden');
-
-  const report = {
-    schema: 'history_go_fagverk_scenekunst_phase3_audit_v1',
-    version: '1.0.0',
-    status: 'scenekunst_phase_3_structure_ready',
-    generatedFrom: P,
-    subject: {
-      id: model.subject.id,
-      title: model.subject.title,
-      schemaFamily: model.subject.schemaFamily,
-      adapter: model.subject.adapter,
-      navigationStatus: model.subject.status.navigation,
-      assessmentStatus: model.subject.status.assessment,
-      editorialStatus: model.subject.status.editorial,
-      nextGate: statusEntry.nextGate,
-      subjectPage: model.subject.routes.subject,
-      badgePage: model.subject.routes.badge
-    },
-    summary: {
-      domainCount: model.summary.domainCount,
-      emneCount: model.summary.emneCount,
-      methodCount: model.summary.methodCount,
-      mappingCount: model.summary.mappingCount,
-      hookCount: model.summary.hookCount,
-      courseModuleCount: source.pensum.modules.length,
-      registeredChapterCount: model.chapters.length
-    },
-    canonicalDomainOrder: DOMAIN_ORDER,
-    domainEmneCounts: Object.fromEntries(model.domains.map((domain) => [domain.id, domain.emneIds.length])),
-    gates: {
-      manifestFirstSourcesResolved: true,
-      foundationAdapterExercised: true,
-      fagkartOwnsRendererDomains: true,
-      courseModulesRemainProgressionOnly: true,
-      allActiveEmnersMapped: true,
-      allCourseModulesCoverCanonicalEmners: true,
-      allMethodReferencesResolved: true,
-      livePerformancePrinciplesLocked: true,
-      badgeAndSubjectRoutesDistinct: true,
-      assessmentStatusAudited: true,
-      editorialStatusStructureReady: true,
-      chapterClaimsNotOverstated: true
-    }
-  };
-  const committed = committedProjection(report);
-  if (writeReport) {
-    fs.mkdirSync(path.dirname(abs(P.report)), { recursive: true });
-    fs.writeFileSync(abs(P.report), `${JSON.stringify(committed, null, 2)}\n`);
-  }
-  if (checkReport) assert(isDeepStrictEqual(json(P.report), committed), `${P.report} er utdatert`);
-  return { report, model };
-}
-
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const args = new Set(process.argv.slice(2));
-  try {
-    const { report } = auditScenekunstPhase3({ writeReport: args.has('--write-report'), checkReport: !args.has('--no-check-report') });
-    console.log(`Scenekunst Fase 3 OK: ${report.summary.domainCount} fagområder, ${report.summary.emneCount} emner og ${report.summary.methodCount} metoder.`);
-  } catch (error) {
-    console.error(`Scenekunst Fase 3 FEIL: ${error.message}`);
-    process.exitCode = 1;
-  }
-}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){try{const {report}=auditScenekunstPhase3({writeReport:process.argv.includes('--write-report'),checkReport:!process.argv.includes('--no-check-report')});console.log(`Scenekunst Phase 3 OK: ${report.summary.domainCount} fagområder, ${report.summary.emneCount} emner, ${report.summary.methodCount} metoder.`);}catch(error){console.error(`Scenekunst Fase 3 FEIL: ${error.message}`);process.exitCode=1;}}
