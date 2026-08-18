@@ -4,8 +4,11 @@
   "verified_at": "2026-08-18",
   "scope": "Norge",
   "mode": "schematic_reference_map",
-  "notes": "Kartet er en faglig navigasjonsflate, ikke et kart over faste språkgrenser. Dialekttrekk følger isoglosser, glidende overganger, generasjoner og sosiale miljøer. Et områdeanker sier aldri hvordan alle som bor der snakker.",
+  "notes": "Atlaset er en faglig navigasjonsflate, ikke et kart over faste språkgrenser. De fire hovedområdene er svært grove dialektologiske orienteringsområder, ikke dialektnavn og ikke talemålsprofiler. Faktiske profiler skal ligge på regionalt og særlig lokalt nivå. Dialektgrenser er glidende, og ett sted kan romme flere samtidige talemålsvarianter etter blant annet alder, sosialt miljø, mobilitet og språkkontakt.",
   "editorial_principles": [
+    "Austlandsk, vestlandsk, trøndersk og nordnorsk er grove orienteringsområder, ikke enkeltstående dialekter.",
+    "Lokale talemål og bytalemål skal være egne profiler når dokumentasjonen finnes; de skal ikke arve konkrete trekk ukritisk fra et hovedområde.",
+    "En by eller kommune er heller ikke automatisk ett ensartet talemål. Intern geografisk, sosial, aldersmessig og kontaktbasert variasjon skal kunne modelleres eksplisitt.",
     "De fire hovedgruppene brukes som grov nasjonal orientering: austlandsk, vestlandsk, trøndersk og nordnorsk.",
     "Underregionene er pedagogiske soner og skal ikke behandles som administrative grenser eller som uttømmende lokale dialekter.",
     "Stedseierskap betyr dokumentert relevans, ikke at et ord eller trekk er unikt for stedet.",
@@ -601,6 +604,141 @@
     {
       "label": "Språkrådet – nasjonale minoritetsspråk",
       "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/nasjonale-minoritetssprak/"
+    }
+  ],
+  "local_varieties": [
+    {
+      "id": "oslo_local_speech",
+      "name": "Oslo",
+      "kind": "local_speech",
+      "macro_region_id": "austlandsk",
+      "region_id": "midtostlandsk",
+      "profile_status": "documented_seed",
+      "summary": "Oslo må behandles som et eget bytalemålsområde med intern variasjon, ikke som synonym for østlandsk. Historiske øst-/vestvarianter, sosiale mønstre og nyere talemålspraksiser må kunne vises som egne lag.",
+      "variation_note": "Én Oslo-profil skal ikke antyde at hele byen snakker likt.",
+      "sources": [
+        {
+          "label": "Språkrådet – språk i Oslo",
+          "url": "https://sprakradet.no/spraksporsmal-og-svar/er-spraket-i-oslo-dialekt-eller-bokmal/"
+        },
+        {
+          "label": "UiO Tekstlab – NoTa/TAUS Oslo",
+          "url": "https://tekstlab.uio.no/nota/oslo/"
+        }
+      ]
+    },
+    {
+      "id": "fredrikstad_local_speech",
+      "name": "Fredrikstad",
+      "kind": "local_speech",
+      "macro_region_id": "austlandsk",
+      "region_id": "vikvaersk",
+      "profile_status": "local_research_required",
+      "summary": "Fredrikstad skal ha en egen lokal talemålsprofil og skal ikke presenteres som det samme som Oslo, Lillehammer eller hele Østlandet.",
+      "variation_note": "Konkrete språkdrag holdes tilbake til lokal korpus- eller arkivdokumentasjon er knyttet til profilen.",
+      "sources": [
+        {
+          "label": "UiO Tekstlab – LIA norsk",
+          "url": "https://tekstlab.uio.no/LIA/norsk/"
+        }
+      ]
+    },
+    {
+      "id": "lillehammer_local_speech",
+      "name": "Lillehammer",
+      "kind": "local_speech",
+      "macro_region_id": "austlandsk",
+      "region_id": "opplandsmal",
+      "profile_status": "local_research_required",
+      "summary": "Lillehammer skal ha en egen lokal talemålsprofil og skal ikke reduseres til en generell østlandsk etikett.",
+      "variation_note": "Konkrete språkdrag holdes tilbake til lokal korpus- eller arkivdokumentasjon er knyttet til profilen.",
+      "sources": [
+        {
+          "label": "UiO Tekstlab – LIA norsk",
+          "url": "https://tekstlab.uio.no/LIA/norsk/"
+        }
+      ]
+    },
+    {
+      "id": "arendal_local_speech",
+      "name": "Arendal",
+      "kind": "local_speech",
+      "macro_region_id": "vestlandsk",
+      "region_id": "sorleg_e_mal",
+      "profile_status": "local_research_required",
+      "summary": "Arendal skal ha en egen lokal talemålsprofil. Den skal ikke slås sammen med Kristiansand eller presenteres som én generell sør- eller vestlandsk dialekt.",
+      "variation_note": "Konkrete språkdrag holdes tilbake til lokal dokumentasjon er knyttet til profilen.",
+      "sources": [
+        {
+          "label": "UiO Tekstlab – LIA norsk",
+          "url": "https://tekstlab.uio.no/LIA/norsk/"
+        }
+      ]
+    },
+    {
+      "id": "kristiansand_local_speech",
+      "name": "Kristiansand",
+      "kind": "local_speech",
+      "macro_region_id": "vestlandsk",
+      "region_id": "sorleg_e_mal",
+      "profile_status": "documented_seed",
+      "summary": "Kristiansand skal ha en egen lokal talemålsprofil, adskilt fra Arendal og andre sørlandske talemål.",
+      "variation_note": "LIA norsk har eksplisitt Kristiansand-materiale; konkrete trekk skal fortsatt hentes fra selve materialet før de publiseres som lokale kjennetegn.",
+      "sources": [
+        {
+          "label": "UiO Tekstlab – LIA norsk brukerveiledning",
+          "url": "https://tekstlab.uio.no/brukerveiledninger/LIA%20norsk/index.html"
+        }
+      ]
+    },
+    {
+      "id": "stavanger_local_speech",
+      "name": "Stavanger",
+      "kind": "local_speech",
+      "macro_region_id": "vestlandsk",
+      "profile_status": "documented_seed",
+      "summary": "Stavanger skal ha en egen bytalemålsprofil, ikke arve en generell «vestlandsk dialekt».",
+      "variation_note": "UiB har egne talemåls- og dialektendringsressurser for Stavanger; intern og historisk variasjon må bevares.",
+      "sources": [
+        {
+          "label": "UiB – sosiolingvistikk og språkendring",
+          "url": "https://www4.uib.no/forskning/forskergrupper/forskergruppa-sosiolingvistikk-og-sprakendring"
+        }
+      ]
+    },
+    {
+      "id": "haugesund_local_speech",
+      "name": "Haugesund",
+      "kind": "local_speech",
+      "macro_region_id": "vestlandsk",
+      "profile_status": "local_research_required",
+      "summary": "Haugesund skal ha en egen lokal talemålsprofil og skal ikke slås sammen med Stavanger eller Bergen.",
+      "variation_note": "Konkrete språkdrag holdes tilbake til lokal dokumentasjon er knyttet til profilen.",
+      "sources": [
+        {
+          "label": "UiB – Målføresamlinga",
+          "url": "https://www.uib.no/lle/51977/m%C3%A5lf%C3%B8resamlinga"
+        }
+      ]
+    },
+    {
+      "id": "bergen_local_speech",
+      "name": "Bergen",
+      "kind": "local_speech",
+      "macro_region_id": "vestlandsk",
+      "profile_status": "documented_seed",
+      "summary": "Bergen skal ha en egen bytalemålsprofil. Bergensk har både særtrekk og intern variasjon og skal ikke behandles som synonymt med talemålet ellers på Vestlandet.",
+      "variation_note": "UiB dokumenterer både bergensk som bymål og flere bergensvarieteter; profilen må kunne romme intern variasjon.",
+      "sources": [
+        {
+          "label": "UiB – sosiolingvistikk og språkendring",
+          "url": "https://www4.uib.no/forskning/forskergrupper/forskergruppa-sosiolingvistikk-og-sprakendring"
+        },
+        {
+          "label": "UiB – Målføresamlinga",
+          "url": "https://www.uib.no/lle/51977/m%C3%A5lf%C3%B8resamlinga"
+        }
+      ]
     }
   ]
 }

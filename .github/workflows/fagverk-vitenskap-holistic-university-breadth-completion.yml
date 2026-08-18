@@ -9,8 +9,11 @@ on:
       - 'data/fagverk/fagverk_release.json'
       - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json'
+      - 'reports/fagverk/vitenskap-*-coverage-audit.json'
       - 'scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs'
+      - 'scripts/audit-fagverk-vitenskap-*-coverage.mjs'
       - 'tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs'
+      - 'tests/fagverk-vitenskap-*-coverage.test.mjs'
       - '.github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml'
   push:
     branches: [main]
@@ -21,8 +24,11 @@ on:
       - 'data/fagverk/fagverk_release.json'
       - 'data/fagverk/subject_status.json'
       - 'reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json'
+      - 'reports/fagverk/vitenskap-*-coverage-audit.json'
       - 'scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs'
+      - 'scripts/audit-fagverk-vitenskap-*-coverage.mjs'
       - 'tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs'
+      - 'tests/fagverk-vitenskap-*-coverage.test.mjs'
       - '.github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml'
   workflow_dispatch:
 
@@ -39,6 +45,11 @@ jobs:
           node --check scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs
           node scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs
           node --test tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs
+      - name: Preserve substantive editorial coverage gates
+        run: |
+          node --test tests/fagverk-vitenskap-methods-models-coverage.test.mjs
+          node --test tests/fagverk-vitenskap-institutions-knowledge-places-coverage.test.mjs
+          node --test tests/fagverk-vitenskap-society-power-ethics-coverage.test.mjs
       - name: Preserve existing Vitenskap progression gates
         run: |
           node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs
