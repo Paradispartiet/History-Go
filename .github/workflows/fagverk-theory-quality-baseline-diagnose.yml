@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Print theory-quality baseline
+      - name: Print tightened theory-quality baseline
         run: |
           node --check scripts/audit-fagverk-theory-quality.mjs
-          node scripts/audit-fagverk-theory-quality.mjs --no-check-report
+          node scripts/audit-fagverk-theory-quality.mjs --no-check-report --diagnostic
