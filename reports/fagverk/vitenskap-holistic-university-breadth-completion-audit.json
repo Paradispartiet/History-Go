@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_vitenskap_holistic_university_breadth_completion_audit_v1",
   "version": "1.1.0",
-  "status": "blocked",
+  "status": "eligible_for_completion",
   "generatedFrom": {
     "readiness": "data/fag/vitenskap/vitenskap_university_readiness_v1.json",
     "status": "data/fagverk/subject_status.json",
@@ -134,12 +134,7 @@
     "methodCount": 35,
     "hookCount": 36
   },
-  "blockers": [
-    {
-      "id": "full_subject_quality_review_missing",
-      "detail": "Krever eksplisitt review i data/fag/vitenskap/vitenskap_holistic_quality_review_v1.json."
-    }
-  ],
+  "blockers": [],
   "completionRequirements": {
     "all_blocking_coverage_gaps_reconciled_into_canonical_inventory_or_explicitly_justified_elsewhere": true,
     "neighbor_boundaries_resolved_without_duplicate_subject_truth": true,
@@ -149,15 +144,22 @@
     "technology_remains_nested_and_its_existing_scientific_quality_gates_stay_green": true,
     "gap_overlap_and_filler_audit_has_no_material_findings": true,
     "cross_chapter_editorial_originality_review_passes": true,
-    "full_subject_quality_review_scores_at_least_27_of_30_with_no_dimension_below_4": false,
+    "full_subject_quality_review_scores_at_least_27_of_30_with_no_dimension_below_4": true,
     "subject_status_and_release_artifacts_match_actual_materialized_content": true
   },
   "qualityReview": {
-    "status": "missing_required_review",
+    "status": "pass",
     "file": "data/fag/vitenskap/vitenskap_holistic_quality_review_v1.json",
-    "scores": null,
-    "totalScore": null,
-    "passes": false
+    "scores": {
+      "correctness_evidence": 5,
+      "coverage_completion": 5,
+      "editorial_quality": 4,
+      "technical_integrity": 5,
+      "safety_responsibility": 5,
+      "maintainability_auditability": 4
+    },
+    "totalScore": 28,
+    "passes": true
   },
   "gates": {
     "structuralCoverageGapsResolved": true,
@@ -168,8 +170,8 @@
     "technologyRemainsNested": true,
     "gapOverlapAndFillerAuditClean": true,
     "crossChapterEditorialOriginalityPasses": true,
-    "fullSubjectQualityReviewPasses": false,
+    "fullSubjectQualityReviewPasses": true,
     "registryReleaseAndStatusStateConsistent": true,
-    "eligibleForCompletion": false
+    "eligibleForCompletion": true
   }
 }
