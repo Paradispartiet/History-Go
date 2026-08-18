@@ -1,6 +1,6 @@
 name: History sync main temporary
 # Temporary branch synchronization helper. Remove before History merge.
-# Retriggered after main advanced to 30894c606d8d13be1b915673962e0c49895051cb.
+# Uses macOS runner pool; auto-resolves only fagverk_release.json and hard-stops on any other conflict.
 
 on:
   push:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Check out History branch
         uses: actions/checkout@v4
@@ -37,9 +37,9 @@ jobs:
           if git merge --no-edit origin/main; then
             echo 'Merged main cleanly.'
           else
-            mapfile -t conflicts < <(git diff --name-only --diff-filter=U)
-            printf 'Conflicts:\n%s\n' "${conflicts[*]}"
-            if [ "${#conflicts[@]}" -ne 1 ] || [ "${conflicts[0]}" != 'data/fagverk/fagverk_release.json' ]; then
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            printf 'Conflicts:\n%s\n' "$conflicts"
+            if [ "$conflicts" != 'data/fagverk/fagverk_release.json' ]; then
               echo 'Unexpected conflict set; refusing automatic resolution.' >&2
               exit 1
             fi
