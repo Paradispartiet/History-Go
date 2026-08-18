@@ -1,0 +1,50 @@
+name: Agent Språkatlas research coverage v1
+
+on:
+  push:
+    branches:
+      - agent/sprakatlas-research-coverage-v1
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: agent/sprakatlas-research-coverage-v1
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Materialize researched atlas coverage
+        run: python3 scripts/agent_sprakatlas_research_coverage_v1.py
+
+      - name: Validate atlas and language contracts
+        run: |
+          python3 -m json.tool data/leksikon/sprak/norge_atlas_v1.json >/dev/null
+          python3 -m json.tool data/leksikon/sprak/atlas_schema_v1.json >/dev/null
+          node --check js/ui/place-language-layer.js
+          node --test tests/place-language-dialect-scope.test.mjs
+          node --test tests/place-language-layer.test.mjs
+          git diff --check
+
+      - name: Commit permanent product files only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/agent-sprakatlas-research-coverage-v1.yml scripts/agent_sprakatlas_research_coverage_v1.py
+          git add data/leksikon/sprak/norge_atlas_v1.json \
+                  data/leksikon/sprak/atlas_schema_v1.json \
+                  docs/SPRAKLEKSIKON.md \
+                  tests/place-language-dialect-scope.test.mjs
+          git diff --cached --quiet && exit 0
+          git commit -m 'Utvid Språkatlas med forskningsbasert nasjonal dekning'
+          git push origin HEAD:agent/sprakatlas-research-coverage-v1
