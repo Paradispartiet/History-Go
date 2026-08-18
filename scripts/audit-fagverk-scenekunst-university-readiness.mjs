@@ -38,7 +38,7 @@ export function auditScenekunstUniversityReadiness({ writeReport = false, checkR
   assert(fagkart.categories.length === 4, 'Renderer-fagområdene skal forbli fire');
   assert(methods.methods.length === 14 && unique(methods.methods.map((row) => row.method_id)), 'Canonical Scenekunst skal ha 14 unike metoder');
   assert(pensum.modules.length === 5, 'Post-reconciliation-pensum skal ha fem progresjonsmoduler');
-  assert((registry.subjects?.scenekunst?.chapters || []).length === 0, 'Kapittelproduksjon skal fortsatt være separat fra inventory-reconciliation');
+  assert([0,4].includes((registry.subjects?.scenekunst?.chapters || []).length), 'Readiness-kontrakten tillater bare pre-production eller den låste firekapittel-completion');
 
   const emneIds = new Set(emner.map((row) => row.emne_id));
   const methodIds = new Set(methods.methods.map((row) => row.method_id));
