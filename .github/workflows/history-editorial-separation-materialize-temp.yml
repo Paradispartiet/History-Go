@@ -1,6 +1,6 @@
 name: History editorial separation materialize temporary
 # Self-reporting one-shot writer. It either commits the repaired generator/corpus or only a failure report. Delete before merge.
-# Retrigger after canonical-owner semantics were corrected: hook.emne_ids expresses associations, while primary_theory_hooks[0] owns semantic identity.
+# Materialization is branch-SHA locked; latest main is reconciled again before final CI and merge.
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
           ref: agent/history-completion-audit
           fetch-depth: 0
 
-      - name: Lock head and current main
+      - name: Lock History head and observe current main
         shell: bash
         run: |
           set -euo pipefail
@@ -31,10 +31,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git fetch origin main agent/history-completion-audit
-          git merge-base --is-ancestor origin/main HEAD || {
-            echo 'History branch does not contain current main; refusing materialization.' >&2
-            exit 1
-          }
+          echo "OBSERVED_MAIN=$(git rev-parse origin/main)" >> "$GITHUB_ENV"
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -80,6 +77,7 @@ jobs:
           report = {
               'schema': 'history_go_historie_editorial_materialization_temp_v1',
               'generated_from_head': os.environ.get('INITIAL_HEAD'),
+              'observed_main': os.environ.get('OBSERVED_MAIN'),
               'status': 'FAIL' if failed else 'PASS',
               'failed_checks': failed,
               'checks': results,
