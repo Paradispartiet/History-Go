@@ -107,6 +107,7 @@
   );
   ROLE_SCOPE_BY_ROLE_ID.renholder = 'renholder';
   ROLE_SCOPE_BY_ROLE_ID.barnehageassistent = 'barnehageassistent';
+  ROLE_SCOPE_BY_ROLE_ID.sport_profesjonell_utover = 'sport_utover';
 
   const NAERINGSLIV_ROLE_SCOPE_BY_TITLE = {
     arbeider: 'arbeider', ekspeditor: 'ekspeditor', butikkmedarbeider: 'ekspeditor', ekspeditor_butikkmedarbeider: 'ekspeditor',
