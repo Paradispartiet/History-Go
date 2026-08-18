@@ -1,0 +1,187 @@
+name: History terminal finalize temporary
+# One-shot terminal gate. It stages complete only in the runner, proves every permanent History/shared gate,
+# and pushes terminal status only if the branch still contains current main. Delete before merge.
+
+on:
+  push:
+    branches:
+      - agent/history-completion-audit
+    paths:
+      - '.github/workflows/history-terminal-finalize-temp.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: macos-latest
+    steps:
+      - name: Check out exact History branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/history-completion-audit
+          fetch-depth: 0
+
+      - name: Lock branch and current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "INITIAL_HEAD=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main agent/history-completion-audit
+          observed_main="$(git rev-parse origin/main)"
+          echo "OBSERVED_MAIN=$observed_main" >> "$GITHUB_ENV"
+          git merge-base --is-ancestor origin/main HEAD || {
+            echo 'History branch does not contain current main; refusing terminalization.' >&2
+            exit 1
+          }
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Stage terminal History status in runner only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('data/fagverk/subject_status.json')
+          document = json.loads(path.read_text())
+          row = next(item for item in document['subjects'] if item['id'] == 'historie')
+          row['editorialStatus'] = 'complete'
+          row['nextGate'] = 'maintenance_source_refresh_and_place_case_expansion'
+          row['note'] = (
+              'Historie er redaksjonelt complete etter helhetlig vitenskapelig slutt-audit: '
+              '23/23 canonicale fagområder, 23/23 fullverdige kapitler, 230/230 canonicale emner eid nøyaktig én gang '
+              'og 9/9 dekkede hovedperioder. De 18 generator-eide kapitlene er deterministisk materialisert med '
+              '180 semantic/editorial-verifiserte emneseksjoner, separat canonical identity og kuratert theory-lane, '
+              '54 stedscaser, 72 redigerte årsaksledd og 18 tolkningsdebatter. Completion-gaprapporten har 0 åpne blokkere, '
+              'og permanente porter låser kildeautoritet, akademisk historiografi, paragraph-to-claim-spor, semantic identity, '
+              'editorial theory alignment og shared Fagverk-regresjoner. Videre arbeid er vedlikehold, kildeoppdatering og '
+              'utvidelse med nye stedscase under de samme portene.'
+          )
+          path.write_text(json.dumps(document, indent=2, ensure_ascii=False) + '\n')
+          PY
+          node scripts/audit-fagverk-historie.mjs --write-report
+          node scripts/build-fagverk-release-manifest.mjs
+
+      - name: Run permanent terminal gates and record exact result
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reports/fagverk
+          python3 <<'PY'
+          import json
+          import os
+          import subprocess
+
+          stages = [
+              ('subject_inventory', ['node', 'scripts/audit-fagverk-subject-inventory.mjs']),
+              ('general_engine', ['node', 'scripts/audit-fagverk-general-engine.mjs']),
+              ('curriculum_architecture', ['node', 'tools/validate-historie-curriculum-architecture.mjs']),
+              ('period_modules', ['node', 'tools/validate-historie-period-modules.mjs']),
+              ('period_modules_deterministic', ['node', 'tools/materialize-historie-period-modules.mjs', '--check']),
+              ('canonical_identity', ['node', 'tools/audit-historie-canonical-emner.mjs']),
+              ('semantic_alignment', ['node', 'tools/audit-historie-semantic-hook-alignment.mjs']),
+              ('editorial_quality', ['node', 'tools/validate-historie-editorial-quality.mjs']),
+              ('editorial_materialization_deterministic', ['node', 'tools/materialize-historie-editorial-chapters.mjs', '--check']),
+              ('shared_history_audit', ['node', 'scripts/audit-fagverk-historie.mjs']),
+              ('universal_coverage', ['node', 'tools/audit-historie-universal-coverage.mjs']),
+              ('source_authority', ['node', 'tools/audit-historie-source-authority.mjs']),
+              ('holistic_completion', ['node', 'tools/audit-historie-completion.mjs']),
+              ('release_manifest_deterministic', ['node', 'scripts/build-fagverk-release-manifest.mjs', '--check']),
+              ('test_subject_inventory', ['node', '--test', 'tests/fagverk-subject-inventory.test.mjs']),
+              ('test_general_engine', ['node', '--test', 'tests/fagverk-general-engine.test.mjs']),
+              ('test_curriculum_architecture', ['node', '--test', 'tests/historie-curriculum-architecture.test.mjs']),
+              ('test_period_modules', ['node', '--test', 'tests/historie-period-modules.test.mjs']),
+              ('test_canonical_identity', ['node', '--test', 'tests/historie-canonical-emne-identity.test.mjs']),
+              ('test_curriculum_rendering', ['node', '--test', 'tests/historie-curriculum-rendering.test.mjs']),
+              ('test_editorial_quality', ['node', '--test', 'tests/historie-editorial-quality.test.mjs']),
+              ('test_completion', ['node', '--test', 'tests/historie-completion.test.mjs']),
+              ('test_shared_history', ['node', '--test', 'tests/fagverk-historie.test.mjs']),
+          ]
+          results = []
+          failed = []
+          for stage_id, command in stages:
+              run = subprocess.run(command, text=True, capture_output=True)
+              row = {
+                  'id': stage_id,
+                  'status': 'PASS' if run.returncode == 0 else 'FAIL',
+                  'exit_code': run.returncode,
+                  'stdout': run.stdout.strip()[-6000:],
+                  'stderr': run.stderr.strip()[-6000:],
+              }
+              results.append(row)
+              if run.returncode != 0:
+                  failed.append(stage_id)
+
+          report = {
+              'schema': 'history_go_historie_terminal_final_gates_temp_v1',
+              'generated_from_head': os.environ.get('INITIAL_HEAD'),
+              'observed_main': os.environ.get('OBSERVED_MAIN'),
+              'terminal_status_staged': 'complete',
+              'terminal_next_gate_staged': 'maintenance_source_refresh_and_place_case_expansion',
+              'status': 'PASS' if not failed else 'FAIL',
+              'failed_checks': failed,
+              'checks': results,
+          }
+          with open('reports/fagverk/historie-terminal-final-gates-temp.json', 'w') as handle:
+              json.dump(report, handle, indent=2, ensure_ascii=False)
+              handle.write('\n')
+          print(json.dumps({'status': report['status'], 'failed_checks': failed}, ensure_ascii=False))
+          PY
+
+      - name: Commit terminal state only after all gates pass
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(python3 - <<'PY'
+          import json
+          print(json.load(open('reports/fagverk/historie-terminal-final-gates-temp.json'))['status'])
+          PY
+          )"
+
+          if [ "$status" = 'PASS' ]; then
+            git add \
+              data/fagverk/subject_status.json \
+              data/fagverk/fagverk_release.json \
+              reports/fagverk/historie-subject-audit.json \
+              reports/fagverk/historie-terminal-final-gates-temp.json
+            message='Close History after permanent scientific completion gates'
+          else
+            git restore --source="$INITIAL_HEAD" --worktree --staged -- \
+              data/fagverk/subject_status.json \
+              data/fagverk/fagverk_release.json \
+              reports/fagverk/historie-subject-audit.json || true
+            git add reports/fagverk/historie-terminal-final-gates-temp.json
+            message='Record History terminal gate diagnosis'
+          fi
+
+          git fetch origin main agent/history-completion-audit
+          remote_head="$(git rev-parse origin/agent/history-completion-audit)"
+          current_main="$(git rev-parse origin/main)"
+          if [ "$remote_head" != "$INITIAL_HEAD" ]; then
+            echo "History branch moved during terminal gate: started $INITIAL_HEAD, remote is $remote_head" >&2
+            exit 1
+          fi
+          git merge-base --is-ancestor "$current_main" "$INITIAL_HEAD" || {
+            echo "main advanced during terminal gate to $current_main; refusing stale terminal push" >&2
+            exit 1
+          }
+
+          if git diff --cached --quiet; then
+            echo 'No terminal/report changes to commit.'
+            exit 0
+          fi
+          git commit -m "$message"
+          git push origin HEAD:agent/history-completion-audit
