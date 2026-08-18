@@ -56,10 +56,14 @@ jobs:
               raise SystemExit('Atlas anti-stereotype assertion pattern not found')
           path.write_text(text.replace(before, after), encoding='utf-8')
           PY
-      - name: Check generated runtime and language regressions
+      - name: Check generated runtime syntax
+        run: node --check js/ui/place-language-layer.js
+      - name: Run dialect scope regressions
+        run: node --test tests/place-language-dialect-scope.test.mjs
+      - name: Run general language regressions
+        run: node --test tests/place-language-layer.test.mjs
+      - name: Validate generated JSON
         run: |
-          node --check js/ui/place-language-layer.js
-          node --test tests/place-language-dialect-scope.test.mjs tests/place-language-layer.test.mjs
           python - <<'PY'
           import json
           from pathlib import Path
