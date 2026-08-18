@@ -5,15 +5,17 @@ Sist kontrollert: **2026-08-18**
 
 ## 1. Formål
 
-Role World er den manglende broen mellom Civications tekniske Scene Pipeline og visjonen om at en rolle skal oppleves som **en liten sosial serie**, ikke som en samling jobbtitler eller enkeltstående beslutningsmailer.
+Role World er broen mellom Civications tekniske Scene Pipeline og visjonen om at en rolle skal oppleves som **en liten sosial serie**, ikke som en samling jobbtitler eller enkeltstående beslutningsmailer.
 
 Standarden oppretter **ingen ny runtime**. Den bestemmer hva slags liv authored innhold må beskrive før en rolle kan kalles `role_world_complete`.
 
-Canonical maskinregler:
+Canonical kontrakter og produksjonsfiler:
 
 - [`../data/Civication/roleWorldPolicy.json`](../data/Civication/roleWorldPolicy.json)
 - [`../data/Civication/roleWorldV1.schema.json`](../data/Civication/roleWorldV1.schema.json)
 - [`../data/Civication/roleWorldThemeBank.json`](../data/Civication/roleWorldThemeBank.json)
+- [`../data/Civication/roleWorldAuthoringChecklist.json`](../data/Civication/roleWorldAuthoringChecklist.json)
+- [`CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md`](CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md)
 - [`../data/Civication/roleWorlds/index.json`](../data/Civication/roleWorlds/index.json)
 - [`../tests/civication-role-world-contract.test.js`](../tests/civication-role-world-contract.test.js)
 
@@ -34,7 +36,7 @@ Role World skal lese og påvirke et liv som kan bestå av:
 - ytelser / arbeidsevne der systemet faktisk har data
 - omdømme / status
 
-Dette betyr ikke at Role World eier disse systemene. Det er kontekst og konsekvensflater.
+Role World eier ikke disse systemene. De er kontekst og konsekvensflater.
 
 Levevei er allerede implementert. Role World skal kunne åpne eller påvirke livelihood opportunities gjennom eksisterende EventEngine-/Min dag-kjeder, ikke lage en ny inntektsmotor.
 
@@ -100,9 +102,9 @@ Eksempel for Ekspeditør:
 servicearbeid som underordnet makt
 ```
 
-Mulige delakser kan være fremmedgjøring, klasse, emosjonelt arbeid, forbruk, statusangst, sosial maske og ambisjon/stagnasjon.
+Mulige delakser er fremmedgjøring, klasse, emosjonelt arbeid, forbruk, statusangst, sosial maske og ambisjon/stagnasjon.
 
-Andre roller skal ha sine egne problemer; de skal ikke kopiere Ekspeditør-malen mekanisk.
+Andre roller skal ha sine egne problemer; de skal ikke kopiere Ekspeditør-innholdet mekanisk.
 
 ## 4. Film/Story Theme Bank
 
@@ -145,7 +147,7 @@ Hver viktig recurring NPC-type skal minst beskrive:
 - talemåte / kommunikativ stil
 - hva personen lærer spilleren om verden
 
-I tillegg bør authored innhold kunne beskrive relasjon, frykt, lojalitet, motsetninger og hvordan personen endres over sesongen.
+I tillegg bør authored innhold beskrive relasjon, frykt, lojalitet, motsetninger og hvordan personen endres gjennom sesongen.
 
 Arketypen er et produksjonsverktøy, ikke en unnskyldning for karikatur. NPC-er skal få motsetninger og menneskelig egeninteresse.
 
@@ -187,7 +189,7 @@ kveld        private_consequence: valget får personlig etterklang
 
 «5–10 meldingsutvekslinger» betyr ikke at hver scene trenger ti klikk.
 
-En **primær relasjonell tråd** skal kunne utvikle seg over omtrent 5–10 beats/scener/meldinger. Tråden kan hoppe mellom work/private/social og flere dager.
+En **primær relasjonell tråd** skal utvikle seg over omtrent 5–10 beats/scener/meldinger. Tråden kan hoppe mellom work/private/social og flere dager.
 
 Eksempelstruktur:
 
@@ -257,7 +259,7 @@ Den tekniske grunnkjeden er allerede bevist av 4H-D og skal ikke bygges på nytt
 
 `reference_complete` i Career Gameplay Matrix betyr at den eksisterende 15-komponents jobbløkken, Life Story og praksisdybden er bevist.
 
-Det er en verdifull status, men den betyr ikke «fylt Role World».
+Det er en verdifull status, men `reference_complete` er **ikke det samme som Role World-completion**.
 
 ### Role World status
 
@@ -292,22 +294,65 @@ Den blokkerende porten skal kreve minst:
 
 Dette er kvalitetskrav, ikke ordmengdekrav.
 
-## 13. Første reference Role World
+## 13. Reference-status og neste produksjon
 
-Første produksjon er:
+Første reference Role World er nå materialisert og permanent testet:
 
 ```text
 category: naeringsliv
 role_scope: ekspeditor
+status: role_world_complete
 ```
 
-Ekspeditør har allerede byggesteiner som `service_mask`, personer, praksissituasjoner, private beats og choice flags. De skal gjenbrukes og reconciles — ikke produseres på nytt bare for å fylle en ny mappe.
+Ekspeditør er produksjonsreferanse for **metode og struktur**, ikke en mal for hva andre roller skal handle om.
 
-Målet er å materialisere en full rollebibel og 14-dagers sosial dramaturgi inn i den eksisterende Scene Pipeline.
+Neste reference Role World er:
 
-Når Ekspeditør består, blir den produksjonsreferanse for senere verdener som Renholder, Controller, By-rådgiver og Sport-utøver.
+```text
+category: naeringsliv
+role_scope: renholder
+```
 
-## 14. Forbud mot completion-teater
+Renholder skal bruke den samme authoring-prosessen, men utvikle sin egen sosiologiske verden rundt blant annet usynlig arbeid, verdighet, døgnrytme, status, utrygghet og privatliv.
+
+Deretter brukes variasjonsrekken:
+
+```text
+by/by_radgiver_plan
+naeringsliv/controller
+sport/sport_utover
+```
+
+Målet er å bevise standarden på tvers av servicearbeid, usynlig arbeid, forvaltning, tall/kontroll og kropp/prestasjon før bred masseproduksjon.
+
+## 14. Canonical authoring workflow
+
+Den praktiske produksjonsoppskriften er canonical i:
+
+- [`CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md`](CIVICATION_ROLE_WORLD_AUTHORING_GUIDE.md)
+- [`../data/Civication/roleWorldAuthoringChecklist.json`](../data/Civication/roleWorldAuthoringChecklist.json)
+
+Kortform:
+
+```text
+lock scope
+→ inventory existing sources
+→ sociological world bible
+→ NPC grammar + slow axes
+→ 14×4 season grid
+→ 5–10-beat primary threads
+→ private aftermath + delayed consequences
+→ materialize through existing sources
+→ register + permanent tests
+→ generators
+→ clean final branch
+→ full CI
+→ SHA-locked merge
+```
+
+Hvert beat skal ha reell provenance. Hvis substansen ikke finnes, skal den først skrives i en eksisterende governed sourcefamilie; Role World-filen alene er ikke spillbart innhold.
+
+## 15. Forbud mot completion-teater
 
 Ingen rolle skal kalles `role_world_complete` fordi den har mange filer, mange ord eller mange mailer.
 
