@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_claim_registry_v1",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "subject_id": "vitenskap",
   "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
   "verified_at": "2026-08-18",
@@ -300,6 +300,30 @@
       "publisher": "The Norwegian National Research Ethics Committees",
       "type": "national-general-research-ethics-guidance",
       "source_location": "Principles and sections on quest for truth, academic freedom, quality, fairness, integrity and commissioned research, including the warning against undue sponsor influence on method, implementation or publication"
+    },
+    {
+      "id": "vit1-38-w3c-prov-o",
+      "label": "W3C – PROV-O: The PROV Ontology",
+      "url": "https://www.w3.org/TR/prov-o/",
+      "publisher": "World Wide Web Consortium",
+      "type": "web-provenance-recommendation",
+      "source_location": "Abstract and ontology overview defining a W3C Recommendation for representing and interchanging provenance information through entities, activities, agents and typed relations"
+    },
+    {
+      "id": "vit1-39-w3c-data-web",
+      "label": "W3C – Data on the Web Best Practices",
+      "url": "https://www.w3.org/TR/dwbp/",
+      "publisher": "World Wide Web Consortium",
+      "type": "data-publication-recommendation",
+      "source_location": "Best Practices summary and sections on metadata, provenance, standardized machine-readable formats, dataset coverage and complementary presentations for comprehension, reuse, trust and interoperability"
+    },
+    {
+      "id": "vit1-40-fair-principles",
+      "label": "Wilkinson et al. – FAIR Guiding Principles for scientific data management and stewardship",
+      "url": "https://www.nature.com/articles/sdata201618",
+      "publisher": "Scientific Data",
+      "type": "open-science-data-principles",
+      "source_location": "Abstract and FAIR Guiding Principles defining Findable, Accessible, Interoperable and Reusable characteristics for data and metadata, with emphasis on machine actionability and stewardship"
     }
   ],
   "claims": [
@@ -480,7 +504,8 @@
       "classification": "synthesis",
       "status": "verified",
       "used_in": [
-        "vit1-fordypning-1"
+        "vit1-fordypning-1",
+        "vit1-digital-3"
       ]
     },
     {
@@ -506,7 +531,9 @@
       "status": "verified",
       "used_in": [
         "vit1-fordypning-3",
-        "vit1-anvendelse-1"
+        "vit1-anvendelse-1",
+        "vit1-digital-4",
+        "vit1-digital-5"
       ]
     },
     {
@@ -573,7 +600,8 @@
       "classification": "methodological-synthesis",
       "status": "verified",
       "used_in": [
-        "vit1-metoder-1"
+        "vit1-metoder-1",
+        "vit1-digital-6"
       ]
     },
     {
@@ -1097,6 +1125,147 @@
       "status": "verified",
       "used_in": [
         "vit1-samfunn-7"
+      ]
+    },
+    {
+      "id": "vit1-62",
+      "claim": "National Academies skiller komputasjonell reproducerbarhet, der samme inputdata, beregningssteg, metoder, kode og analysebetingelser brukes på nytt, fra replikasjon der nye data brukes for å undersøke det samme vitenskapelige spørsmålet.",
+      "source_ids": [
+        "vit1-06-nasem-reproducibility"
+      ],
+      "classification": "computational-reproducibility-boundary",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-1"
+      ]
+    },
+    {
+      "id": "vit1-63",
+      "claim": "NISTs Numerical Reproducibility-prosjekt dokumenterer at bibliotekversjoner, floating-point-presisjon, compiler-valg og CPU/GPU-arkitektur kan skape numeriske forskjeller, slik at utførelsesmiljøet kan være en del av den vitenskapelige reproducerbarhetsbeskrivelsen.",
+      "source_ids": [
+        "vit1-16-nist-numerical-reproducibility"
+      ],
+      "classification": "numerical-environment-sensitivity",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-1"
+      ]
+    },
+    {
+      "id": "vit1-64",
+      "claim": "Automatisert utførelse kan gjøre de samme beregningsstegene konsekvente, men NIH-rigor og National Academies-reproduksjonsrammer krever fortsatt vurdering av design, metode, analyse og fortolkning; konsistent kjøring validerer derfor ikke automatisk de faglige antakelsene.",
+      "source_ids": [
+        "vit1-07-nih-rigor",
+        "vit1-06-nasem-reproducibility"
+      ],
+      "classification": "automation-validation-boundary",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-1"
+      ]
+    },
+    {
+      "id": "vit1-65",
+      "claim": "NIST Research Data Framework organiserer forskningsdata gjennom en livssyklus som inkluderer generering eller innhenting, prosessering og analyse, deling og gjenbruk samt bevaring eller kassasjon, og framhever dokumentasjon av programvare, instrumenter, parametre og prosesseringskontekst.",
+      "source_ids": [
+        "vit1-15-nist-rdaf"
+      ],
+      "classification": "research-data-lifecycle",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-2"
+      ]
+    },
+    {
+      "id": "vit1-66",
+      "claim": "W3C PROV-O representerer provenance gjennom entiteter, aktiviteter og agenter med relasjoner mellom dem, mens NIST RDaF beskriver provenance som en historisk, attribuert og dokumentert oversikt over hvordan data ble generert, innhentet og prosessert.",
+      "source_ids": [
+        "vit1-38-w3c-prov-o",
+        "vit1-15-nist-rdaf"
+      ],
+      "classification": "data-provenance",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-2"
+      ]
+    },
+    {
+      "id": "vit1-67",
+      "claim": "FAIR-prinsippene beskriver findability, accessibility, interoperability og reusability for data og metadata, og W3C anbefaler metadata, provenance og standardiserte maskinlesbare formater; disse egenskapene forbedrer gjenbruk og gransking, men er ikke i seg selv kriterier for empirisk sannhet eller representativitet.",
+      "source_ids": [
+        "vit1-40-fair-principles",
+        "vit1-39-w3c-data-web"
+      ],
+      "classification": "fair-data-quality-boundary",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-2"
+      ]
+    },
+    {
+      "id": "vit1-68",
+      "claim": "W3C anbefaler komplementære datapresentasjoner for å støtte menneskelig forståelse, mens NISTs statistiske metodehåndbok bruker grafiske teknikker og residualanalyse som analytiske verktøy; visualisering er dermed en dokumenterbar transformasjon og diagnostisk praksis, ikke et nøytralt vindu mot rådata.",
+      "source_ids": [
+        "vit1-39-w3c-data-web",
+        "vit1-11-nist-stat-handbook",
+        "vit1-13-nist-model-validation"
+      ],
+      "classification": "data-visualization-analysis",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-3"
+      ]
+    },
+    {
+      "id": "vit1-69",
+      "claim": "NIH scientific rigor omfatter robust design, metodikk, analyse, fortolkning og rapportering, og NIST RDaF framhever dokumentasjon av metoder, instrumenter, programvare og parametre; protokoller styrker etterprøvbarhet når både planlagte trinn, versjoner og faktiske avvik registreres.",
+      "source_ids": [
+        "vit1-07-nih-rigor",
+        "vit1-15-nist-rdaf"
+      ],
+      "classification": "protocol-documentation",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-4"
+      ]
+    },
+    {
+      "id": "vit1-70",
+      "claim": "NIST definerer metrologisk sporbarhet som en egenskap ved et måleresultat gjennom en dokumentert ubrutt kalibreringskjede der hvert ledd bidrar til måleusikkerheten, og understreker at sporbarhet ikke er en iboende egenskap ved instrumentet eller laboratoriet alene.",
+      "source_ids": [
+        "vit1-04-nist-traceability-policy",
+        "vit1-05-nist-traceability-faq"
+      ],
+      "classification": "sensor-measurement-traceability",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-5"
+      ]
+    },
+    {
+      "id": "vit1-71",
+      "claim": "NIST viser at software- og hardwarevalg kan påvirke numerisk output, og Forskningsrådet regner blant annet data/e-infrastruktur, lagring, programvare og nettverk som forskningsinfrastruktur; tekniske valg er derfor relevante metodebetingelser når de påvirker hva som kan observeres, beregnes eller rekonstrueres.",
+      "source_ids": [
+        "vit1-16-nist-numerical-reproducibility",
+        "vit1-20-rcn-research-infrastructure"
+      ],
+      "classification": "technical-mediation-of-science",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-6"
+      ]
+    },
+    {
+      "id": "vit1-72",
+      "claim": "OECD/Eurostat Oslo Manual definerer innovasjon gjennom nye eller forbedrede produkter eller prosesser som er gjort tilgjengelige eller tatt i bruk og skiller innovasjonsmåling fra FoU; innovasjonsstatus er derfor ikke et automatisk mål på vitenskapelig evidenskvalitet.",
+      "source_ids": [
+        "vit1-21-oecd-oslo-innovation",
+        "vit1-02-oecd-oslo-rd"
+      ],
+      "classification": "innovation-rd-boundary",
+      "status": "verified",
+      "used_in": [
+        "vit1-digital-6"
       ]
     }
   ]
