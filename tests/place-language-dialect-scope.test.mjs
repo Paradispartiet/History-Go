@@ -348,3 +348,51 @@ test("Språkatlaset behandler hovedområder som orientering og lokale talemål s
   assert.match(contract, /hovedområder er ikke dialekter/i);
   assert.match(contract, /Konkrete lokale språkdrag skal ikke arves automatisk/i);
 });
+
+
+test("Språkatlas research coverage er nasjonal og kildebåret", () => {
+  const atlas = json("data/leksikon/sprak/norge_atlas_v1.json");
+  assert.ok(atlas.research_basis, "atlaset må dokumentere research-grunnlaget");
+  assert.ok((atlas.research_basis.methodology || []).length >= 4);
+  const coverage = (atlas.research_basis.source_coverage || []).map(row => `${row.id} ${row.coverage}`).join(" ");
+  assert.ok(coverage.includes("ndc_v4") && coverage.includes("111"), "Nordisk dialektkorpus-dekningen må være eksplisitt");
+  assert.ok(coverage.includes("lia_norsk") && coverage.includes("227"), "LIA-dekningen må være eksplisitt");
+  assert.ok(coverage.includes("uit_nordnorsk") && coverage.includes("13"), "UiTs nordnorske mellomnivå må være eksplisitt");
+
+  const regions = new Set((atlas.dialect_regions || []).map(row => text(row.id)));
+  for (const id of [
+    "hallingmal", "valdresmal", "gudbrandsdalsmal", "osterdalsmal",
+    "setesdalsmal", "jaermal", "ryfylkemal", "sunnmorsmal", "romsdalsmal",
+    "fosenmal", "nordmorsmal", "indre_namdalsmal", "ytre_namdalsmal",
+    "austfinnmarksmal", "indre_finnmarksmal", "vestfinnmarksmal", "nordtromsmal",
+    "midttromsmal", "senjamal", "indre_tromsmal", "sor_troms_vesteralen_ofoten",
+    "lofotmal", "saltenmal", "ranamal", "vefsnmal", "bronnoymal"
+  ]) assert.ok(regions.has(id), `mangler forskningsbasert mellomnivå ${id}`);
+
+  const locals = atlas.local_varieties || [];
+  assert.ok(locals.length >= 40, `for få lokale research-ankre: ${locals.length}`);
+  const perMacro = new Map();
+  for (const row of locals) {
+    perMacro.set(row.macro_region_id, (perMacro.get(row.macro_region_id) || 0) + 1);
+    assert.ok(Array.isArray(row.sources) && row.sources.length >= 1, `${row.id}: lokal profil mangler kilde`);
+    for (const source of row.sources) assert.ok(String(source?.url || "").startsWith("https://"), `${row.id}: kilden må være HTTPS`);
+    assert.ok(text(row.variation_note), `${row.id}: variasjonsavgrensning mangler`);
+  }
+  for (const macro of ["austlandsk", "vestlandsk", "trondersk", "nordnorsk"]) {
+    assert.ok((perMacro.get(macro) || 0) >= 8, `${macro}: utilstrekkelig lokal research-dekning`);
+  }
+
+  const localIds = new Set(locals.map(row => text(row.id)));
+  for (const id of [
+    "aal_local_speech", "vang_valdres_local_speech", "lom_local_speech", "trysil_local_speech",
+    "valle_setesdal_local_speech", "suldal_local_speech", "voss_local_speech", "aandalsnes_local_speech",
+    "trondheim_local_speech", "surnadal_local_speech", "bodo_local_speech", "narvik_local_speech",
+    "tromso_local_speech", "hammerfest_local_speech", "senja_local_speech", "soemna_local_speech"
+  ]) assert.ok(localIds.has(id), `mangler lokalt research-anker ${id}`);
+
+  for (const id of ["kautokeino_norwegian_local_speech", "kirkenes_norwegian_local_speech", "tana_norwegian_local_speech", "hattfjelldal_local_speech"]) {
+    const row = locals.find(item => item.id === id);
+    assert.ok(row, `${id}: flerspråklig profil mangler`);
+    assert.match(`${row.summary} ${row.variation_note}`, /eget språk|egne språk|språklig område|språkområde/i, `${id}: minoritetsspråk må skilles eksplisitt fra norsk dialekt`);
+  }
+});

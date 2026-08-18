@@ -1,8 +1,8 @@
 # Coordinate evidence audit
 
-Generert: 2026-08-11T17:20:45.462Z
+Generert: 2026-08-18T07:02:28.082Z
 
-Aktive steder: 1499
+Aktive steder: 1501
 
 | placeId | evidence file | status | decision | problems |
 |---|---|---|---|---|
