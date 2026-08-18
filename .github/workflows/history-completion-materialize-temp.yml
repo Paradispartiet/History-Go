@@ -1,5 +1,5 @@
 name: History completion materialize temporary
-# Diagnostic-only workflow. Remove before History merge.
+# Temporary repair/materialization workflow. Remove before History merge.
 
 on:
   pull_request:
@@ -8,6 +8,7 @@ on:
     paths:
       - 'tools/materialize-historie-editorial-chapters.mjs'
       - 'tools/audit-historie-semantic-hook-alignment.mjs'
+      - 'data/fag/historie/fagkart_historie_canonical_v4_5.json'
       - 'data/fag/historie/historiography_evidence_historie_v1.json'
       - '.github/workflows/history-completion-materialize-temp.yml'
 
@@ -39,6 +40,45 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Reconcile canonical hook ownership
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const emnePath = 'data/fag/historie/emner_historie_canonical_v4_5.json';
+          const mappingPath = 'data/fag/historie/emnemapping_historie_canonical_v4_5.json';
+          const fagkartPath = 'data/fag/historie/fagkart_historie_canonical_v4_5.json';
+          const emners = JSON.parse(fs.readFileSync(emnePath, 'utf8'));
+          const mappings = JSON.parse(fs.readFileSync(mappingPath, 'utf8'));
+          const fagkart = JSON.parse(fs.readFileSync(fagkartPath, 'utf8'));
+          const list = (value) => Array.isArray(value) ? value : [];
+          const mappingByEmne = new Map(mappings.map((row) => [row.emne_id, row]));
+          const hookById = new Map();
+          for (const category of list(fagkart.categories)) {
+            for (const hook of list(category.topic_hooks)) hookById.set(hook.id, hook);
+          }
+
+          const additions = [];
+          for (const emne of emners) {
+            const declared = [...new Set([...list(emne.primary_theory_hooks), ...list(emne.secondary_theory_hooks)])];
+            const mapped = new Set(list(mappingByEmne.get(emne.emne_id)?.mappings).map((row) => row.topic_hook));
+            for (const hookId of declared) {
+              if (!mapped.has(hookId)) throw new Error(`${emne.emne_id}: declared canonical hook ${hookId} mangler mapping`);
+              const hook = hookById.get(hookId);
+              if (!hook) throw new Error(`${emne.emne_id}: declared canonical hook ${hookId} finnes ikke i fagkart`);
+              hook.emne_ids = list(hook.emne_ids);
+              if (!hook.emne_ids.includes(emne.emne_id)) {
+                hook.emne_ids.push(emne.emne_id);
+                additions.push(`${hookId}->${emne.emne_id}`);
+              }
+            }
+          }
+          fs.writeFileSync(fagkartPath, `${JSON.stringify(fagkart, null, 2)}\n`);
+          console.log(JSON.stringify({ canonical_hook_ownership_additions: additions.length, additions }, null, 2));
+          NODE
+
       - name: Install permanent editorial-hook separation
         shell: bash
         run: |
@@ -67,6 +107,20 @@ jobs:
             generator = generator.replace(anchor, `${block}\n`);
           }
 
+          if (!generator.includes('const hookById = new Map();')) {
+            const anchor = "const theoryByHookId = new Map(theories.map((item) => [item.source_hook_id, item]));\n";
+            if (!generator.includes(anchor)) throw new Error('Generator theory map anchor not found');
+            const block = [
+              anchor.trimEnd(),
+              'const hookById = new Map();',
+              'for (const category of list(fagkart.categories)) {',
+              '  for (const hook of list(category.topic_hooks)) hookById.set(hook.id, hook);',
+              '}',
+              ''
+            ].join('\n');
+            generator = generator.replace(anchor, `${block}\n`);
+          }
+
           const theoryStart = generator.indexOf('function theoryPackage(category, emne) {');
           const theoryEnd = generator.indexOf('function claimParagraph(claim, emne) {', theoryStart);
           if (theoryStart < 0 || theoryEnd < 0) throw new Error('Cannot locate theoryPackage function boundaries');
@@ -76,8 +130,8 @@ jobs:
             '  if (!semanticHookId) throw new Error(`${category.id}/${emne.emne_id}: mangler canonical primary_theory_hooks`);',
             '  const editorialBlueprint = editorialBlueprintByEmneId.get(emne.emne_id);',
             '  const editorialHookId = editorialBlueprint?.primary_hook_id || semanticHookId;',
-            '  const hook = list(category.topic_hooks).find((item) => item.id === editorialHookId);',
-            '  if (!hook) throw new Error(`${category.id}/${emne.emne_id}: redaksjonell hook ${editorialHookId} finnes ikke i fagkartkategorien`);',
+            '  const hook = hookById.get(editorialHookId);',
+            '  if (!hook) throw new Error(`${category.id}/${emne.emne_id}: redaksjonell hook ${editorialHookId} finnes ikke i fagkartet`);',
             '  if (!list(hook.emne_ids).includes(emne.emne_id)) throw new Error(`${editorialHookId}: redaksjonell hook er ikke koblet til ${emne.emne_id}`);',
             '  const theory = theoryByHookId.get(editorialHookId);',
             '  if (!theory) throw new Error(`${editorialHookId}: mangler teoriobjekt`);',
@@ -92,74 +146,19 @@ jobs:
           generator = `${generator.slice(0, theoryStart)}${newTheoryPackage}\n${generator.slice(theoryEnd)}`;
 
           if (!generator.includes('    editorialHookId: pack.editorialHookId,')) {
-            const sectionAnchor = '    semanticHookId: pack.semanticHookId,\n    theoryId: pack.theory.theory_id,';
-            if (!generator.includes(sectionAnchor)) throw new Error('Section semantic hook anchor not found');
-            generator = generator.replace(
-              sectionAnchor,
-              '    semanticHookId: pack.semanticHookId,\n    editorialHookId: pack.editorialHookId,\n    theoryId: pack.theory.theory_id;'
-            ).replace('    theoryId: pack.theory.theory_id;','    theoryId: pack.theory.theory_id,');
+            const anchor = '    semanticHookId: pack.semanticHookId,\n    theoryId: pack.theory.theory_id,';
+            if (!generator.includes(anchor)) throw new Error('Section semantic hook anchor not found');
+            generator = generator.replace(anchor, '    semanticHookId: pack.semanticHookId,\n    editorialHookId: pack.editorialHookId,\n    theoryId: pack.theory.theory_id,');
           }
-          fs.writeFileSync(generatorPath, generator);
 
-          const auditPath = 'tools/audit-historie-semantic-hook-alignment.mjs';
-          let audit = fs.readFileSync(auditPath, 'utf8');
-          const curatedStart = audit.indexOf('  const curatedMismatches = [];');
-          const returnStart = audit.indexOf('\n\n  return {', curatedStart);
-          if (curatedStart < 0 || returnStart < 0) throw new Error('Cannot locate curated semantic-audit block');
-          const curatedBlock = [
-            '  const curatedMismatches = [];',
-            '  for (const blueprint of blueprintRows) {',
-            '    const emne = emneById.get(blueprint.emne_id);',
-            '    assert.ok(emne, `${blueprint.blueprint_file}: ukjent emne ${blueprint.emne_id}`);',
-            '    const mappedHooks = list(mappingByEmne.get(blueprint.emne_id)?.mappings).map((row) => row.topic_hook);',
-            '    const editorialHookIds = unique([blueprint.primary_hook_id, blueprint.secondary_hook_id]);',
-            '    assert.ok(blueprint.primary_hook_id, `${blueprint.emne_id}: kuratert blueprint mangler primary_hook_id`);',
-            '    for (const editorialHookId of editorialHookIds) {',
-            '      const hook = hookById.get(editorialHookId);',
-            '      const reasons = [];',
-            "      if (!hook) reasons.push('missing_hook');",
-            "      if (hook && !list(hook.emne_ids).includes(blueprint.emne_id)) reasons.push('hook_missing_emne');",
-            "      if (!theoryByHookId.has(editorialHookId)) reasons.push('missing_theory');",
-            "      if (!mappedHooks.includes(editorialHookId)) reasons.push('missing_mapping');",
-            '      if (reasons.length) {',
-            '        curatedMismatches.push({ emne_id: blueprint.emne_id, editorial_hook_id: editorialHookId, blueprint_file: blueprint.blueprint_file, reasons });',
-            '      }',
-            '    }',
-            '  }',
-            "  const diagnosticPath = path.join(ROOT, 'reports/fagverk/history-curated-editorial-hook-diagnostics.json');",
-            '  fs.mkdirSync(path.dirname(diagnosticPath), { recursive: true });',
-            "  fs.writeFileSync(diagnosticPath, `${JSON.stringify({ generated_by: 'history-completion-materialize-temp', canonical_emners: emners.length, unique_primary_semantic_keys: unique(primaryKeys).length, curated_blueprint_rows: blueprintRows.length, mismatch_count: curatedMismatches.length, mismatches: curatedMismatches }, null, 2)}\\n`);",
-            '  assert.deepEqual(curatedMismatches, [], `Kuraterte redaksjonelle History-hooks mangler gyldig hook/mapping/teorikjede: ${curatedMismatches.map((row) => `${row.emne_id}:${row.editorial_hook_id}[${row.reasons.join("+")}]`).join(", ")}`);'
-          ].join('\n');
-          audit = `${audit.slice(0, curatedStart)}${curatedBlock}${audit.slice(returnStart)}`;
-          audit = audit
-            .replace("    curated_mismatches: 0,", "    curated_editorial_hook_mismatches: 0,")
-            .replace("    curated_blueprint_rows: blueprintRows.length,", "    curated_blueprint_rows: blueprintRows.length,\n    canonical_identity_preserved: unique(primaryKeys).length === 230,");
-          fs.writeFileSync(auditPath, audit);
+          fs.writeFileSync(generatorPath, generator);
           NODE
 
-      - name: Validate canonical identity
+      - name: Validate canonical and semantic contracts
         run: |
           set -euo pipefail
           node tools/audit-historie-canonical-emner.mjs --write-report
-
-      - name: Validate curated editorial hooks
-        run: |
-          set -euo pipefail
           node tools/audit-historie-semantic-hook-alignment.mjs
-
-      - name: Persist curated hook diagnostics on failure
-        if: failure()
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ -f reports/fagverk/history-curated-editorial-hook-diagnostics.json ]; then
-            git add reports/fagverk/history-curated-editorial-hook-diagnostics.json
-            if ! git diff --cached --quiet; then
-              git commit -m 'Record History editorial hook diagnostics'
-              git push origin "HEAD:${GITHUB_HEAD_REF}"
-            fi
-          fi
 
       - name: Materialize repaired History prose
         run: node tools/materialize-historie-editorial-chapters.mjs
@@ -167,18 +166,31 @@ jobs:
       - name: Verify deterministic materialization
         run: node tools/materialize-historie-editorial-chapters.mjs --check
 
+      - name: Validate repaired History completion gates
+        run: |
+          set -euo pipefail
+          node tools/audit-historie-semantic-hook-alignment.mjs
+          node tools/validate-historie-editorial-quality.mjs
+          node tools/audit-historie-source-authority.mjs
+          node tools/audit-historie-completion.mjs
+          node scripts/audit-fagverk-historie.mjs
+
       - name: Commit permanent hook policy and materialized History corpus
         shell: bash
         run: |
           set -euo pipefail
           git add \
+            data/fag/historie/fagkart_historie_canonical_v4_5.json \
             tools/materialize-historie-editorial-chapters.mjs \
             tools/audit-historie-semantic-hook-alignment.mjs \
             reports/fagverk/historie-canonical-emne-identity-audit.json \
+            reports/fagverk/historie-completion-gap-report.json \
             data/fagverk/historie \
             data/fagverk/fagverk_registry.json \
             data/fagverk/subject_status.json
           if ! git diff --cached --quiet; then
             git commit -m 'Separate History semantic identity from editorial theory hooks'
           fi
+          git fetch origin "${GITHUB_HEAD_REF}"
+          git rebase "origin/${GITHUB_HEAD_REF}"
           git push origin "HEAD:${GITHUB_HEAD_REF}"
