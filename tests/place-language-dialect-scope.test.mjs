@@ -487,3 +487,42 @@ test("Evidensmaterialiserte lokalprofiler har en generell kvalitetsport og forsk
   assert.match(contract, /dokumentasjonsstyrke/i);
   assert.match(contract, /tradisjonelt talemål[^\n]*ikke[^\n]*universelt nåtidsspråk/i);
 });
+
+
+test("Lokal evidens skiller regional ramme, direkte korpus og separate språk", () => {
+  const atlas = json("data/leksikon/sprak/norge_atlas_v1.json");
+  const contract = read("docs/SPRAKLEKSIKON.md");
+  const locals = atlas.local_varieties || [];
+  const materialized = locals.filter(row => row.profile_status === "evidence_materialized");
+  assert.ok(materialized.length >= 15, `for få evidensmaterialiserte lokalprofiler: ${materialized.length}`);
+
+  const expected = new Map([
+    ["voss_local_speech", ["a-infinitiv", "vossa-u", "skarre-r i framgang"]],
+    ["aal_local_speech", ["kløyvd infinitiv", "NDC-opptak fra Ål", "dativ i tilbakegang"]],
+    ["hattfjelldal_local_speech", ["apokope i infinitiv", "delt hunkjønn", "sørsamisk er eget språk"]],
+    ["soemna_local_speech", ["kløyvd/nullinfinitiv", "delt hunkjønn", "ungdomsvariasjon"]],
+    ["tana_norwegian_local_speech", ["e-infinitiv", "presens -r hos yngre", "samiske språk er egne språk"]]
+  ]);
+  const byId = new Map(locals.map(row => [row.id, row]));
+  for (const [id, labels] of expected) {
+    const row = byId.get(id);
+    assert.ok(row, `${id}: profil mangler`);
+    assert.equal(row.profile_status, "evidence_materialized", `${id}: skal være evidensmaterialisert`);
+    assert.ok((row.sources || []).length >= 2, `${id}: trenger minst to profilkilder`);
+    assert.ok((row.feature_evidence || []).length >= 4, `${id}: trenger minst fire beleggpunkter`);
+    for (const label of labels) assert.ok((row.feature_labels || []).includes(label), `${id}: mangler ${label}`);
+  }
+
+  const aal = byId.get("aal_local_speech");
+  assert.ok((aal.feature_evidence || []).some(item => item.kind === "corpus_basis" && /Ål/.test(item.claim)), "Ål må ha direkte korpusbelegg");
+  assert.match(`${aal.summary} ${aal.variation_note}`, /regional|Hallingdal/i, "Ål må skille regional ramme fra lokale påstander");
+
+  for (const id of ["hattfjelldal_local_speech", "tana_norwegian_local_speech"]) {
+    const row = byId.get(id);
+    assert.match(`${row.summary} ${row.variation_note}`, /eget språk|egne språk|separat/i, `${id}: samiske språk må holdes separate fra norsk dialekt`);
+    assert.ok((row.feature_evidence || []).some(item => item.kind === "contact_history"), `${id}: dokumentert språkkontaktkontekst mangler`);
+  }
+
+  assert.match(contract, /regionalt målmerke/i);
+  assert.match(contract, /separate språk[^\n]*dialekttrekk/i);
+});
