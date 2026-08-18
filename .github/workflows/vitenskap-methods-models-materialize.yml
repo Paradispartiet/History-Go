@@ -30,6 +30,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Make temporary materializer replay-safe
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'scripts/materialize-vitenskap-methods-models-coverage-batch.mjs';
+          const before = `const oldCoreEmnes = [...chapter.emne_ids];
+          for (const id of EXPECTED_BATCH) if (!chapter.emne_ids.includes(id)) chapter.emne_ids.push(id);
+          assert(chapter.emne_ids.length === oldCoreEmnes.length + EXPECTED_BATCH.length, 'Chapter emne extension has unexpected size');
+          assert(new Set(chapter.emne_ids).size === chapter.emne_ids.length, 'Chapter emne IDs are not unique');`;
+          const after = `const existingBatchCount = EXPECTED_BATCH.filter((id) => chapter.emne_ids.includes(id)).length;
+          assert(existingBatchCount === 0 || existingBatchCount === EXPECTED_BATCH.length, \`Chapter has partial methods/models coverage state: \${existingBatchCount}/17\`);
+          for (const id of EXPECTED_BATCH) if (!chapter.emne_ids.includes(id)) chapter.emne_ids.push(id);
+          assert(EXPECTED_BATCH.every((id) => chapter.emne_ids.includes(id)), 'Chapter is missing a methods/models batch emne after materialization');
+          assert(new Set(chapter.emne_ids).size === chapter.emne_ids.length, 'Chapter emne IDs are not unique');`;
+          const text = fs.readFileSync(file, 'utf8');
+          if (!text.includes(after)) {
+            if (!text.includes(before)) throw new Error('Replay-safety patch target not found');
+            fs.writeFileSync(file, text.replace(before, after));
+          }
+          NODE
       - name: Materialize canonical methods/models coverage
         run: node scripts/materialize-vitenskap-methods-models-coverage-batch.mjs
       - name: Regenerate holistic and batch reports
