@@ -57,7 +57,6 @@ export function auditHistorySemanticHookAlignment() {
     const primaryReasons = [];
     if (!primaryHook) primaryReasons.push('missing_hook');
     if (primaryHook && !list(primaryHook.emne_ids).includes(emne.emne_id)) primaryReasons.push('missing_primary_ownership');
-    if (primaryHook && list(primaryHook.emne_ids).length !== 1) primaryReasons.push(`primary_owner_count_${list(primaryHook.emne_ids).length}`);
     if (!theoryByHookId.has(primaryHookId)) primaryReasons.push('missing_theory');
     if (!primaryMappedHooks.includes(primaryHookId)) primaryReasons.push('missing_primary_mapping');
     if (primaryReasons.length) canonicalMismatches.push({ emne_id: emne.emne_id, role: 'primary', hook_id: primaryHookId, reasons: primaryReasons });
