@@ -48,6 +48,29 @@ jobs:
           python scripts/agent_build_norge_sprakatlas_v1.py
           python - <<'PY'
           from pathlib import Path
+
+          def normalize_generated_block(path_value, marker):
+              path = Path(path_value)
+              text = path.read_text(encoding='utf-8')
+              start = text.find(marker)
+              if start < 0:
+                  raise SystemExit(f'Generated atlas block not found in {path_value}')
+              text = text[:start] + text[start:].replace(r'\n', '\n')
+              path.write_text(text, encoding='utf-8')
+
+          normalize_generated_block(
+              'js/ui/place-language-layer.js',
+              r'\n  function atlasIds(article, field)'
+          )
+          normalize_generated_block(
+              'css/place-language-layer.css',
+              r'\n\n/* Språkatlas Norge:'
+          )
+          normalize_generated_block(
+              'tests/place-language-dialect-scope.test.mjs',
+              r'\n\ntest("Språkatlas Norge dekker hele dialektlandskapet'
+          )
+
           path = Path('tests/place-language-dialect-scope.test.mjs')
           text = path.read_text(encoding='utf-8')
           before = r'/aldri.*alle|alle.*aldri/i'
