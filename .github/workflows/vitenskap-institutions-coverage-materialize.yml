@@ -51,12 +51,14 @@ jobs:
           NODE
       - name: Materialize canonical institutions coverage
         run: node scripts/materialize-vitenskap-institutions-knowledge-places-coverage-batch.mjs
-      - name: Extend reciprocal usage for reused Unit 1 claims
+      - name: Bind reused Unit 1 claims reciprocally to actual new prose
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          const file = 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json';
-          const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const claimsFile = 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json';
+          const moduleFile = 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/05-institusjoner-laboratorier-kunnskapssteder.json';
+          const claimsDoc = JSON.parse(fs.readFileSync(claimsFile, 'utf8'));
+          const module = JSON.parse(fs.readFileSync(moduleFile, 'utf8'));
           const additions = {
             'vit1-01': ['vit1-institusjoner-6'],
             'vit1-05': ['vit1-institusjoner-2'],
@@ -66,11 +68,17 @@ jobs:
             'vit1-09': ['vit1-institusjoner-5']
           };
           for (const [id, sectionIds] of Object.entries(additions)) {
-            const claim = doc.claims.find((row) => row.id === id);
+            const claim = claimsDoc.claims.find((row) => row.id === id);
             if (!claim) throw new Error(`Missing reused claim ${id}`);
             claim.used_in = [...new Set([...(claim.used_in || []), ...sectionIds])];
           }
-          fs.writeFileSync(file, `${JSON.stringify(doc, null, 2)}\n`);
+          const innovationSection = module.sections.find((row) => row.id === 'vit1-institusjoner-6');
+          if (!innovationSection) throw new Error('Missing vit1-institusjoner-6');
+          if (!innovationSection.paragraphClaimIds?.[0]?.includes('vit1-01')) {
+            innovationSection.paragraphClaimIds[0].push('vit1-01');
+          }
+          fs.writeFileSync(claimsFile, `${JSON.stringify(claimsDoc, null, 2)}\n`);
+          fs.writeFileSync(moduleFile, `${JSON.stringify(module, null, 2)}\n`);
           NODE
       - name: Regenerate permanent reports and release projection
         run: |
