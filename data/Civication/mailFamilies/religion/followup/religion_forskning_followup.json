@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_forskning",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "religion_forskning_metodeoppfolging",
+      "purpose": "Følge opp tidligere metodevalg før arbeidsdagen avsluttes.",
+      "learning_focus": [
+        "oppfolging",
+        "kodebok",
+        "sporbarhet"
+      ],
+      "mails": [
+        {
+          "id": "religion_forskning_followup_kodebok",
+          "mail_type": "followup",
+          "mail_family": "religion_forskning_metodeoppfolging",
+          "role_scope": "religion_forskning",
+          "phase": "workday",
+          "priority": 112,
+          "from": "Mina, prosjektleder",
+          "people_ref": "mina_prosjektleder",
+          "place_id": "religionsforskningskontoret",
+          "subject": "Kodeboken er revidert — én variabel er fortsatt for bred",
+          "summary": "Etter morgenens avgrensning er kodeboken bedre, men feltet for religiøs deltakelse blander egenrapportert praksis med organisasjonsmedlemskap.",
+          "situation": [
+            "Teamet kan rette feltet nå uten å kode alt på nytt.",
+            "Lar dere det stå, følger tvetydigheten inn i analysen.",
+            "Oppfølgingen tester om den tidlige metodekritikken faktisk endret arbeidsmåten."
+          ],
+          "task_domain": "begrepsoperasjonalisering",
+          "competency": "analytisk_presisjon",
+          "pressure": "liten_reparasjon_vs_ny_tvetydighet",
+          "choice_axis": "rette_felt_na_vs_skyve_feilen_videre",
+          "consequence_axis": "sporbarhet_vs_omarbeiding",
+          "narrative_arc": "kodebok_repareres",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Splitt feltet nå og dokumenter migreringen i kodeboken",
+              "reply": "Jeg skiller praksis fra medlemskap og noterer hvordan de eksisterende radene håndteres.",
+              "effect": 1,
+              "tags": [
+                "followup",
+                "traceability"
+              ],
+              "feedback": "Den lille reparasjonen hindrer at samme kategorifeil blir dyrere senere.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "La feltet stå fordi forskjellen kan forklares i rapporten",
+              "reply": "Jeg beholder variabelen og skriver en forklarende note til senere.",
+              "effect": -1,
+              "tags": [
+                "delay",
+                "category_risk"
+              ],
+              "feedback": "Rapporten får arve en tvetydighet som datamodellen fortsatt ikke kan skille.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "risk": 2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Frys nye registreringer og la Sara motlese feltdefinisjonen før dere endrer eksisterende data",
+              "reply": "Jeg stopper ny koding kort og får definisjonen kvalitetssikret før migreringen.",
+              "effect": 0,
+              "tags": [
+                "help",
+                "method"
+              ],
+              "feedback": "Du reduserer risikoen for en ny feil, men betaler med litt framdrift.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 1,
+                  "status": -1,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

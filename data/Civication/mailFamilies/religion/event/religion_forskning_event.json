@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_forskning",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "religion_forskning_kildehendelse",
+      "purpose": "La nye kilder endre graden av sikkerhet uten at én oppdagelse får overskrive hele analysen.",
+      "learning_focus": [
+        "arkiv",
+        "negativ evidens",
+        "revisjon"
+      ],
+      "mails": [
+        {
+          "id": "religion_forskning_event_motkilde",
+          "mail_type": "event",
+          "mail_family": "religion_forskning_kildehendelse",
+          "role_scope": "religion_forskning",
+          "phase": "mid",
+          "priority": 118,
+          "from": "Lea, arkivar",
+          "people_ref": "lea_arkivar",
+          "place_id": "religionshistorisk_arkiv",
+          "subject": "Lea finner en mappe som motsier arkivstillheten",
+          "summary": "En ny katalogisert mappe inneholder spor etter praksisen prosjektet nettopp vurderte som fraværende.",
+          "situation": [
+            "Funnet er lite, men direkte relevant.",
+            "Det beviser ikke hvor utbredt praksisen var.",
+            "Du må korrigere en for sterk konklusjon uten å gjøre ett nytt dokument til hele historien."
+          ],
+          "task_domain": "historisk_kildekritikk",
+          "competency": "kildekritikk",
+          "pressure": "ny_kilde_vs_tidlig_konklusjon",
+          "choice_axis": "revidere_rekkevidde_vs_forsvare_tidlig_tekst",
+          "consequence_axis": "sporbar_korrigering_vs_falsk_konsistens",
+          "narrative_arc": "arkivstillhet_brytes",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Revider konklusjonen fra fravær til dokumentert usikkerhet og legg mappen inn som motkilde",
+              "reply": "Jeg korrigerer teksten og viser både det gamle kildefraværet og det nye sporet.",
+              "effect": 1,
+              "tags": [
+                "source_criticism",
+                "repair"
+              ],
+              "feedback": "Du gjør endringen sporbar uten å overdrive hva den nye kilden alene beviser.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "status": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold hovedkonklusjonen og omtale mappen som et enkelt avvik",
+              "reply": "Jeg lar den opprinnelige konklusjonen stå og nevner funnet i en fotnote.",
+              "effect": -1,
+              "tags": [
+                "defensiveness",
+                "bias"
+              ],
+              "feedback": "Konsistensen i teksten bevares ved å gjøre motkilden mindre enn den er.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Stans konklusjonen og be Lea kartlegge om mappen inngår i en større, oversett samling",
+              "reply": "Jeg utsetter rekkevidden av konklusjonen til vi vet om dette er ett spor eller en systematisk blindsone.",
+              "effect": 0,
+              "tags": [
+                "archive",
+                "help"
+              ],
+              "feedback": "Du kjøper mer sikkerhet med tid og gjør arkivets struktur til en del av spørsmålet.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 1,
+                  "energy": -2,
+                  "risk": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
