@@ -1,6 +1,7 @@
 name: History terminal finalize temporary
 # One-shot terminal gate. Repairs only diagnosed permanent contract bugs in the runner, stages complete,
 # proves every permanent History/shared gate, and pushes only if current main is still contained. Delete before merge.
+# Retriggered after delayed temporary diagnostic writer drained from the branch.
 
 on:
   push:
