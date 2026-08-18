@@ -1,0 +1,63 @@
+name: Vitenskap coverage batch 5 diagnose
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-editorial-coverage-repair-5
+    paths:
+      - '.github/workflows/vitenskap-coverage-batch5-diagnose.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vitenskap-editorial-coverage-repair-5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Derive remaining canonical primary-domain blockers
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const emners = read('data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json');
+          const mappings = read('data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json');
+          const registry = read('data/fagverk/fagverk_registry.json');
+          const chapters = registry.subjects.vitenskap.chapters || [];
+          const owned = new Set(chapters.flatMap((c) => c.emne_ids || []));
+          const mappingById = new Map(mappings.map((m) => [m.emne_id, m]));
+          const rows = emners.filter((e) => !owned.has(e.emne_id)).map((e) => {
+            const mapping = mappingById.get(e.emne_id) || {};
+            const primary = (mapping.mappings || []).find((m) => m.mapping_tier === 'primary') || (mapping.mappings || [])[0] || {};
+            return {
+              emne_id: e.emne_id,
+              title: e.title,
+              domain: primary.fagkart_kategori || null,
+              primary_hook: primary.topic_hook || null,
+              methods: e.methods || [],
+              recommended_method_ids: primary.recommended_method_ids || []
+            };
+          });
+          if (rows.length !== 28) throw new Error(`Expected 28 remaining blockers, got ${rows.length}`);
+          const groups = {};
+          for (const row of rows) (groups[row.domain || '__missing__'] ||= []).push(row);
+          const group_counts = Object.fromEntries(Object.entries(groups).map(([key, value]) => [key, value.length]).sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0])));
+          if (group_counts.natur_medisin_miljo !== 13) throw new Error(`Expected natur_medisin_miljo=13, got ${group_counts.natur_medisin_miljo}`);
+          if (group_counts.paradigmer_teorier_sannhet !== 15) throw new Error(`Expected paradigmer_teorier_sannhet=15, got ${group_counts.paradigmer_teorier_sannhet}`);
+          const report = { generated_from: process.env.GITHUB_SHA, owned_before: owned.size, blocker_count_before: rows.length, group_counts, groups };
+          fs.mkdirSync('.tmp', { recursive: true });
+          fs.writeFileSync('.tmp/vitenskap-coverage-batch5.json', JSON.stringify(report, null, 2) + '\n');
+          console.log(JSON.stringify({ owned_before: owned.size, blockers_before: rows.length, group_counts }));
+          NODE
+      - name: Persist batch 5 diagnosis
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .tmp/vitenskap-coverage-batch5.json
+          git commit -m 'Refresh Vitenskap batch 5 diagnosis'
+          git push origin HEAD:agent/vitenskap-editorial-coverage-repair-5
