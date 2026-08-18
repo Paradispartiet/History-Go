@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_claim_registry_v1",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "subject_id": "vitenskap",
   "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
   "verified_at": "2026-08-18",
@@ -388,6 +388,78 @@
       "publisher": "U.S. Environmental Protection Agency",
       "type": "official-ecological-risk-framework",
       "source_location": "EPA framework describing planning and problem formulation, assessment endpoints, conceptual models, analysis plans, exposure/effects analysis, risk characterization and explicit treatment of assumptions and uncertainties before risk-management decisions."
+    },
+    {
+      "id": "vit1-49-sep-models-science",
+      "label": "Stanford Encyclopedia of Philosophy – Models in Science",
+      "url": "https://plato.stanford.edu/entries/models-science/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "type": "scholarly-philosophy-reference",
+      "source_location": "Entry sections on scientific representation, idealized and exploratory models, cognitive functions of models, relations between models and theory, and the limits of carrying model properties to target systems."
+    },
+    {
+      "id": "vit1-50-sep-scientific-explanation",
+      "label": "Stanford Encyclopedia of Philosophy – 20th Century Theories of Scientific Explanation",
+      "url": "https://plato.stanford.edu/entries/scientific-explanation-20th/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "type": "scholarly-philosophy-reference",
+      "source_location": "Entry survey of major twentieth-century accounts of scientific explanation, including covering-law, statistical and relevance-oriented approaches and their limitations."
+    },
+    {
+      "id": "vit1-51-sep-causation-manipulability",
+      "label": "Stanford Encyclopedia of Philosophy – Causation and Manipulability",
+      "url": "https://plato.stanford.edu/entries/causation-mani/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "type": "scholarly-philosophy-reference",
+      "source_location": "Sections on interventions, structural equations, counterfactuals, scope conditions and criticisms of interventionist/manipulability approaches to causal claims."
+    },
+    {
+      "id": "vit1-52-sep-scientific-objectivity",
+      "label": "Stanford Encyclopedia of Philosophy – Scientific Objectivity",
+      "url": "https://plato.stanford.edu/entries/scientific-objectivity/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "type": "scholarly-philosophy-reference",
+      "source_location": "Entry sections distinguishing objectivity as faithfulness to facts, value-related ideals, freedom from personal bias, measurement/statistics practices and community-level practices."
+    },
+    {
+      "id": "vit1-53-sep-theory-observation",
+      "label": "Stanford Encyclopedia of Philosophy – Theory and Observation in Science",
+      "url": "https://plato.stanford.edu/entries/science-theory-observation/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "type": "scholarly-philosophy-reference",
+      "source_location": "Entry on relations between theory and observation, theory-ladenness, instruments, data and the ways empirical and theoretical commitments interact without making observation arbitrary."
+    },
+    {
+      "id": "vit1-54-sep-thomas-kuhn",
+      "label": "Stanford Encyclopedia of Philosophy – Thomas Kuhn",
+      "url": "https://plato.stanford.edu/entries/thomas-kuhn/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "type": "scholarly-philosophy-reference",
+      "source_location": "Entry on paradigms, normal science, anomalies, crisis, scientific revolutions, incommensurability, theory choice and later developments in Kuhn’s account."
+    },
+    {
+      "id": "vit1-55-sep-scientific-revolutions",
+      "label": "Stanford Encyclopedia of Philosophy – Scientific Revolutions",
+      "url": "https://plato.stanford.edu/entries/scientific-revolutions/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "type": "scholarly-history-philosophy-reference",
+      "source_location": "Entry on contested criteria for scientific revolutions, continuity and discontinuity, Kuhnian and alternative accounts, and the historiographical risks of treating every major change as a revolution."
+    },
+    {
+      "id": "vit1-56-sep-social-dimensions",
+      "label": "Stanford Encyclopedia of Philosophy – The Social Dimensions of Scientific Knowledge",
+      "url": "https://plato.stanford.edu/entries/scientific-knowledge-social/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "type": "scholarly-philosophy-of-science-reference",
+      "source_location": "Entry on social organization of inquiry, epistemic division of labour, institutions, communities, values and how social arrangements can have epistemic consequences without reducing evidential assessment to sociology."
+    },
+    {
+      "id": "vit1-57-sep-scientific-progress",
+      "label": "Stanford Encyclopedia of Philosophy – Scientific Progress",
+      "url": "https://plato.stanford.edu/entries/scientific-progress/",
+      "publisher": "Stanford Encyclopedia of Philosophy",
+      "type": "scholarly-philosophy-of-science-reference",
+      "source_location": "Entry on competing accounts of scientific progress, including truth-related, problem-solving and other epistemic conceptions, and the relation of progress to realism, instrumentalism and fallibilism."
     }
   ],
   "claims": [
@@ -1497,6 +1569,199 @@
       "status": "verified",
       "used_in": [
         "vit1-natur-7"
+      ]
+    },
+    {
+      "id": "vit1-86",
+      "claim": "Scientific models are selective representations and epistemic tools that may idealize or deliberately distort aspects of a target system; their adequacy must therefore be assessed relative to target, purpose and the particular inference drawn rather than by asking whether the model is a literal copy of reality.",
+      "source_ids": [
+        "vit1-49-sep-models-science"
+      ],
+      "classification": "model-representation-idealization",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-1"
+      ]
+    },
+    {
+      "id": "vit1-87",
+      "claim": "Model validation can test fit, residual structure and performance in a specified domain, while philosophical analysis of models asks what relation licenses inference from model to target; strong scientific model criticism therefore requires both technical diagnostics and explicit representational scope.",
+      "source_ids": [
+        "vit1-13-nist-model-validation",
+        "vit1-49-sep-models-science"
+      ],
+      "classification": "model-validation-representation-boundary",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-1"
+      ]
+    },
+    {
+      "id": "vit1-88",
+      "claim": "Accounts of scientific explanation distinguish explanatory achievements from mere description or prediction and have proposed different structures for explanatory relevance; the explanatory force of a scientific account must therefore be evaluated against the kind of why-question, laws, mechanisms or relevance relations it purports to supply.",
+      "source_ids": [
+        "vit1-50-sep-scientific-explanation"
+      ],
+      "classification": "scientific-explanation-structure",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-2"
+      ]
+    },
+    {
+      "id": "vit1-89",
+      "claim": "Interventionist approaches clarify many causal claims by asking how an outcome would change under an appropriately defined intervention and by making counterfactual and structural assumptions explicit, while also recognizing scope limits for poorly defined or conceptually unmanipulable candidate causes.",
+      "source_ids": [
+        "vit1-51-sep-causation-manipulability"
+      ],
+      "classification": "causal-intervention-scope",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-2"
+      ]
+    },
+    {
+      "id": "vit1-90",
+      "claim": "Scientific objectivity is not a single perspective-free condition but a family of ideals concerning facts, values, personal bias, measurement, statistical evidence, reproducibility and community practices; a concrete study should therefore specify which objectivity risks its procedures are designed to control.",
+      "source_ids": [
+        "vit1-52-sep-scientific-objectivity"
+      ],
+      "classification": "objectivity-multiple-control-ideals",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-3"
+      ]
+    },
+    {
+      "id": "vit1-91",
+      "claim": "Scientific observation is shaped by concepts, instruments and background commitments, and objectivity can be strengthened through practices that expose and criticize such choices; theory-ladenness and perspectival selection therefore motivate robustness checks and alternative operationalizations rather than the conclusion that observations are arbitrary.",
+      "source_ids": [
+        "vit1-52-sep-scientific-objectivity",
+        "vit1-53-sep-theory-observation"
+      ],
+      "classification": "perspective-theory-ladenness-control",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-3"
+      ]
+    },
+    {
+      "id": "vit1-92",
+      "claim": "Observation and measurement depend on theoretical and practical background assumptions about instruments, classifications and what counts as a relevant signal; because these assumptions can be challenged through calibration, alternative operationalizations and new observations, stable scientific conventions should be treated as revisable working commitments rather than unquestionable truths.",
+      "source_ids": [
+        "vit1-53-sep-theory-observation",
+        "vit1-04-nist-traceability-policy"
+      ],
+      "classification": "measurement-background-assumptions",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-4"
+      ]
+    },
+    {
+      "id": "vit1-93",
+      "claim": "Scientific inquiry often learns about targets through indirect indicators, data models and theoretical interpretation rather than direct unaided observation; indirect observability therefore creates an additional validation problem about how the indicator or representation bears on the target, not an automatic boundary between scientific and unscientific phenomena.",
+      "source_ids": [
+        "vit1-49-sep-models-science",
+        "vit1-53-sep-theory-observation"
+      ],
+      "classification": "indirect-observation-validation",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-4"
+      ]
+    },
+    {
+      "id": "vit1-94",
+      "claim": "Kuhn’s account connects paradigms and normal science with shared exemplars, problems and standards and treats revolutions as deeper changes in scientific frameworks, while later historical and philosophical work disputes how sharp or uniform such breaks are; paradigm or revolution language therefore requires evidence of broad change rather than a single novel result.",
+      "source_ids": [
+        "vit1-54-sep-thomas-kuhn",
+        "vit1-55-sep-scientific-revolutions"
+      ],
+      "classification": "paradigm-revolution-change",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-5"
+      ]
+    },
+    {
+      "id": "vit1-95",
+      "claim": "Scientific disagreement can concern evidence, models, concepts, standards or theory choice, and Kuhnian conflict is only one possible structure of disagreement; analyzing a controversy requires identifying the claims and shared or disputed standards before treating persistent disagreement as evidence of a paradigm crisis.",
+      "source_ids": [
+        "vit1-54-sep-thomas-kuhn",
+        "vit1-55-sep-scientific-revolutions"
+      ],
+      "classification": "scientific-disagreement-structure",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-5"
+      ]
+    },
+    {
+      "id": "vit1-96",
+      "claim": "Philosophy of science distinguishes questions about representation, explanation, causation and objectivity that can function as concrete checks on scientific inference; in Vitenskap these distinctions are used to calibrate what data and models support rather than to replace empirical analysis with an independent philosophy curriculum.",
+      "source_ids": [
+        "vit1-49-sep-models-science",
+        "vit1-50-sep-scientific-explanation",
+        "vit1-52-sep-scientific-objectivity"
+      ],
+      "classification": "philosophy-of-science-practice-boundary",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-6"
+      ]
+    },
+    {
+      "id": "vit1-97",
+      "claim": "Fallible scientific knowledge can remain strongly warranted when evidence converges and the limits of observation, models and extrapolation are specified; scientific progress can be understood through several epistemic dimensions, so acknowledging local knowledge limits does not imply that all alternatives are equally supported.",
+      "source_ids": [
+        "vit1-53-sep-theory-observation",
+        "vit1-57-sep-scientific-progress"
+      ],
+      "classification": "knowledge-limits-fallible-progress",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-6"
+      ]
+    },
+    {
+      "id": "vit1-98",
+      "claim": "Modern scientific knowledge is socially organized through division of cognitive labour, institutions and communities, and these arrangements can affect which problems are pursued and how criticism is distributed; social organization is therefore epistemically relevant without itself deciding whether a particular empirical claim is true.",
+      "source_ids": [
+        "vit1-56-sep-social-dimensions"
+      ],
+      "classification": "social-organization-epistemic-effects",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-7"
+      ]
+    },
+    {
+      "id": "vit1-99",
+      "claim": "Social mechanisms such as critical interaction, access, incentives and institutional roles can strengthen or weaken error detection, while research integrity also depends on organizational conditions; analyzing scientific truth-production should therefore trace how social arrangements affect evidential controls without reducing evidence to authority or power.",
+      "source_ids": [
+        "vit1-56-sep-social-dimensions",
+        "vit1-19-nasem-integrity"
+      ],
+      "classification": "truth-production-social-controls",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-7"
+      ]
+    },
+    {
+      "id": "vit1-100",
+      "claim": "Measurement traceability, model validation and empirical adequacy support different parts of an evidential chain, while philosophical accounts distinguish model usefulness and scientific progress from stronger claims of literal truth; scientific conclusions should therefore state whether evidence establishes a measurement result, local model adequacy, robust explanation or a stronger realist interpretation.",
+      "source_ids": [
+        "vit1-04-nist-traceability-policy",
+        "vit1-13-nist-model-validation",
+        "vit1-49-sep-models-science",
+        "vit1-57-sep-scientific-progress"
+      ],
+      "classification": "truth-measurement-model-progress-levels",
+      "status": "verified",
+      "used_in": [
+        "vit1-paradigme-8"
       ]
     }
   ]
