@@ -158,6 +158,6 @@ assert.equal(careerWorld.status, 'reference_complete');
 assert.equal(careerWorld.audit.complete_components.length, 15);
 assert.equal(careerWorld.audit.missing_components.length, 0);
 assert.equal(careerWorld.audit.life_story_complete, true);
-assert.deepEqual(careerWorld.audit.practice_weeks, [1, 2]);
+assert.deepEqual(careerWorld.audit.practice_weeks, ['1', '2']);
 
 console.log('civication-renholder-role-world.test.js: PASS');
