@@ -1,0 +1,37 @@
+name: TEMP Religion theory canon diagnosis
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/religion/**'
+      - 'data/fagverk/religion/**'
+      - '.github/workflows/religion-theory-canon-diagnose.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Print scholarly anchors and theory claims by Religion area
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const readiness=JSON.parse(fs.readFileSync('data/fag/religion/religion_university_readiness_v1.json','utf8'));
+          const files=JSON.parse(fs.readFileSync('data/fag/religion/kilder_religion_canonical_v1.json','utf8')).source_documents;
+          for(const file of files){
+            const d=JSON.parse(fs.readFileSync(file,'utf8'));
+            const area=d.area_id;
+            const required=readiness.university_core_matrix.find(x=>x.area_id===area);
+            console.log(`\n=== ${area} :: ${required?.label||''} ===`);
+            console.log(`TOPICS=${JSON.stringify(required?.current_anchors||[])}`);
+            for(const s of d.sources||[]) console.log(`SOURCE ${s.id} | ${s.author||s.creators||''} | ${s.title||''} | ${s.type||''}`);
+            for(const c of d.claims||[]) if(/theory|interpret|explan|framework|model|method|comparison|historiograph|secular|ritual|lived|cognitive|material|authority|identity/i.test(`${c.kind||''} ${c.claim||''}`)) console.log(`CLAIM ${c.id} | ${c.kind||''} | ${c.topic_id||''} | ${c.source_ids?.join(',')||''} | ${c.claim||''}`);
+          }
+          NODE
