@@ -27,7 +27,19 @@ jobs:
           node-version: 20
 
       - name: Materialize and verify Sport-utøver Role World
-        run: node scripts/materialize-civication-sport-utover-role-world.mjs
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/materialize-civication-sport-utover-role-world.mjs 2>&1 | tee /tmp/sport-utover-materializer.log
+
+      - name: Upload materializer failure log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sport-utover-materializer-log
+          path: /tmp/sport-utover-materializer.log
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Commit verified permanent outputs
         shell: bash
