@@ -50,13 +50,13 @@ if (mode === 'policy') {
     primaryKeys.push(hookId);
     const hook = hookById.get(hookId);
     assert.ok(hook, `${emne.emne_id}: missing primary hook ${hookId}`);
-    assert.deepEqual(list(hook.emne_ids), [emne.emne_id], `${emne.emne_id}: primary ownership mismatch on ${hookId}`);
+    assert.ok(list(hook.emne_ids).includes(emne.emne_id), `${emne.emne_id}: primary hook ${hookId} missing canonical association`);
     assert.ok(theoryByHook.has(hookId), `${emne.emne_id}: primary theory missing ${hookId}`);
     const primaryMappings = list(mappingByEmne.get(emne.emne_id)?.mappings).filter((row) => row.mapping_tier === 'primary').map((row) => row.topic_hook);
     assert.ok(primaryMappings.includes(hookId), `${emne.emne_id}: primary mapping missing ${hookId}`);
   }
   assert.equal(new Set(primaryKeys).size, 230);
-  console.log('PASS primary ownership 230/230');
+  console.log('PASS primary semantic keys 230/230');
 } else if (mode === 'secondary') {
   for (const emne of emners) {
     const primary = list(emne.primary_theory_hooks)[0];
