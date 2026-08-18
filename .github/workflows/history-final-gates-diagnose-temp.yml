@@ -1,0 +1,97 @@
+name: History final gates diagnose temporary
+# Temporary read-only diagnostic. Remove before History merge.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/history-final-gates-diagnose-temp.yml'
+      - 'data/fagverk/fagverk_release.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/history-completion-audit')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact History branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || 'agent/history-completion-audit' }}
+          fetch-depth: 0
+
+      - name: Reconcile latest main in runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          git merge --no-edit origin/main
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Reuse proven semantic repair preparation
+        shell: bash
+        run: |
+          set -euo pipefail
+          ruby -ryaml <<'RUBY'
+          document = YAML.load_file('.github/workflows/history-completion-materialize-temp.yml')
+          steps = document.fetch('jobs').fetch('materialize').fetch('steps')
+          wanted = {
+            'Reconcile canonical and active editorial hook ownership' => '/tmp/history-ownership.sh',
+            'Install permanent semantic/editorial contract' => '/tmp/history-contract.sh'
+          }
+          wanted.each do |name, target|
+            step = steps.find { |row| row['name'] == name }
+            raise "Missing preparation step: #{name}" unless step && step['run']
+            File.write(target, step['run'])
+          end
+          RUBY
+          bash /tmp/history-ownership.sh
+          bash /tmp/history-contract.sh
+
+      - name: Validate semantic contract before materialization
+        run: |
+          set -euo pipefail
+          node tools/audit-historie-canonical-emner.mjs --write-report
+          node tools/audit-historie-semantic-hook-alignment.mjs
+
+      - name: Materialize repaired History prose in runner
+        id: materialize
+        run: node tools/materialize-historie-editorial-chapters.mjs
+
+      - name: Verify deterministic History materialization
+        id: deterministic
+        run: node tools/materialize-historie-editorial-chapters.mjs --check
+
+      - name: Final gate — semantic alignment
+        id: final_semantic
+        if: ${{ always() && steps.materialize.outcome == 'success' && steps.deterministic.outcome == 'success' }}
+        run: node tools/audit-historie-semantic-hook-alignment.mjs
+
+      - name: Final gate — editorial prose quality
+        id: final_prose
+        if: ${{ always() && steps.materialize.outcome == 'success' && steps.deterministic.outcome == 'success' }}
+        run: node tools/validate-historie-editorial-quality.mjs
+
+      - name: Final gate — source authority
+        id: final_source
+        if: ${{ always() && steps.materialize.outcome == 'success' && steps.deterministic.outcome == 'success' }}
+        run: node tools/audit-historie-source-authority.mjs
+
+      - name: Final gate — holistic completion
+        id: final_completion
+        if: ${{ always() && steps.materialize.outcome == 'success' && steps.deterministic.outcome == 'success' }}
+        run: node tools/audit-historie-completion.mjs
+
+      - name: Final gate — shared Fagverk History
+        id: final_shared
+        if: ${{ always() && steps.materialize.outcome == 'success' && steps.deterministic.outcome == 'success' }}
+        run: node scripts/audit-fagverk-historie.mjs
