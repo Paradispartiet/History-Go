@@ -1,0 +1,77 @@
+{
+  "schema": "history_go_fagverk_vitenskap_holistic_quality_review_v1",
+  "version": "1.0.0",
+  "subject_id": "vitenskap",
+  "reviewed_at": "2026-08-18",
+  "reviewed_against_main": "01668fd61a5e748b60067fff98f86d738e14b665",
+  "dimensions": [
+    "correctness_evidence",
+    "coverage_completion",
+    "editorial_quality",
+    "technical_integrity",
+    "safety_responsibility",
+    "maintainability_auditability"
+  ],
+  "scores": {
+    "correctness_evidence": 5,
+    "coverage_completion": 5,
+    "editorial_quality": 4,
+    "technical_integrity": 5,
+    "safety_responsibility": 5,
+    "maintainability_auditability": 4
+  },
+  "total_score": 28,
+  "minimum_total_required": 27,
+  "minimum_dimension_required": 4,
+  "decision": "pass_for_completion_eligibility",
+  "evidence": {
+    "correctness_evidence": [
+      "Holistic audit resolves all 178 verified claim IDs reciprocally to 103 inspectable source records with publisher, URL and source_location.",
+      "All five chapters preserve claim-level tracing and every claim used by fulltext resolves to a known source; no orphan claim/source references remain.",
+      "The source base combines official measurement, research-policy, public-health and standards sources with claim-specific scholarly philosophy-of-science references where the final paradigms/theories coverage requires them.",
+      "Methodological distinctions are encoded as substantive checks rather than decorative source lists: model validation versus representation, association versus causation, analytical versus clinical validation, measurement traceability, uncertainty and model/domain limits."
+    ],
+    "coverage_completion": [
+      "Canonical inventory is 117 emner, 117 mappings and 84 methods across six domains; explicit fulltext ownership is 117/117 with zero uncovered emner.",
+      "Five registered chapters contain 261 substantive paragraphs, 178 claims and 103 sources; all chapter roots, registry records and release projection agree on the materialized chapter inventory.",
+      "Neighbor boundaries are explicit for Natur, Filosofi and nested Teknologi, preventing duplicate subject truth while preserving required bridges.",
+      "Nested Teknologi remains green as a 12-area / 48-topic / 35-method / 36-hook specialization under Vitenskap."
+    ],
+    "editorial_quality": [
+      "Holistic originality audit finds zero exact duplicate paragraphs across the five chapters and a maximum cross-chapter five-gram Jaccard similarity of 0.0214 against a 0.42 threshold.",
+      "All chapters teach material limitations and uncertainty; coverage supplements include worked examples, application tasks, misconceptions and self-checks rather than only expository prose.",
+      "Score is 4 rather than 5 because legacy v4.5 inventory metadata still contains 89 emner sharing one generic key-question set and four emner with missing key_questions. The new fulltext treatments make this non-blocking editorial metadata debt, but it should be repaired during maintenance rather than hidden by a cosmetic completion patch."
+    ],
+    "technical_integrity": [
+      "Canonical IDs are globally unique across sections, claims and sources; no canonical emne is owned by more than one Vitenskap chapter.",
+      "Registry, readiness inventory and deterministic release projection agree on five materialized chapters with no missing chapter files.",
+      "Coverage batches are protected by permanent audits, reciprocal used_in checks, deterministic regeneration checks and monotone predecessor gates.",
+      "Gap/filler and cross-chapter originality gates are green, and nested Teknologi's existing validation chain remains green."
+    ],
+    "safety_responsibility": [
+      "Medicine/biomedicine/public-health gates explicitly enforce model-to-human translation limits, biomarker-versus-diagnosis, analytical-versus-clinical validation, statistical-versus-clinical importance, benefit-versus-harms, association-versus-causation and no individual medical advice.",
+      "Society/power/ethics coverage explicitly blocks expert-authority-as-truth, funding-equals-bias, uncertainty-equals-ignorance, standards-equal-truth and simple deficit-model communication shortcuts.",
+      "Environmental coverage separates scientific risk characterization from normative/political decisions and carries uncertainty, representativeness and measurement-network limits into interpretation.",
+      "Neighbor boundaries reduce the risk of presenting philosophical, political, natural-science or engineering specialization as interchangeable with Vitenskap's evidence-practice scope."
+    ],
+    "maintainability_auditability": [
+      "The subject has a permanent holistic audit plus permanent per-batch and per-chapter gates, deterministic release generation, explicit source locations and reciprocal claim usage.",
+      "The completion architecture separates coverage, holistic review and final readiness/status reconciliation, preventing a single metadata flag from silently making the subject complete.",
+      "Score is 4 rather than 5 because legacy generic/missing key-question metadata remains technical editorial debt and several predecessor gates required monotonicity repairs as the subject advanced through stages. These are auditable and non-blocking but should be simplified during maintenance."
+    ]
+  },
+  "residual_non_blocking_maintenance_items": [
+    {
+      "id": "legacy_key_question_metadata_refresh",
+      "priority": "medium",
+      "scope": "93 legacy v4.5 emner",
+      "detail": "Replace the old repeated generic key-question template and add missing key_questions only when editors can derive genuinely topic-specific questions from the now-materialized fulltext. Do not perform a synthetic uniqueness rewrite merely to improve metadata metrics."
+    },
+    {
+      "id": "coverage_gate_simplification",
+      "priority": "low",
+      "detail": "After completion is canonical, consolidate historical phase-specific monotonicity logic where possible while retaining regression guarantees and batch provenance."
+    }
+  ],
+  "review_conclusion": "The canonical Vitenskap corpus meets the 27/30 holistic quality threshold with no dimension below 4. The remaining legacy key-question metadata debt is visible, bounded and non-blocking because all 117 canonical emner now have explicit substantive editorial treatment. This review authorizes completion eligibility only; it does not itself set complete_ready or final subject status."
+}

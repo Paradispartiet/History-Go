@@ -166,7 +166,7 @@ export function auditVitenskapSocietyPowerEthicsCoverage({ writeReport = false, 
   assert(registrySupplement?.explicitFulltextTreatment === true && sameSet(registrySupplement.emne_ids, EXPECTED_EMNES), 'Registry mangler eksplisitt fulltext-treatment metadata for batch 3');
 
   const holistic = auditVitenskapHolisticUniversityBreadthCompletion({ writeReport: false, checkReport: false });
-  assert(holistic.subject.completeReady === false && holistic.status === 'blocked', 'Holistic audit må fortsatt blokkere completion etter batch 3');
+  assert(holistic.subject.completeReady === false && ['blocked','eligible_for_completion'].includes(holistic.status), 'Holistic audit må fortsatt blokkere completion etter batch 3');
   assert(holistic.canonicalInventory.explicitChapterOwnedEmneCount >= 78, 'Holistic owned-count kan ikke regressere under 78 etter batch 3');
   assert(holistic.canonicalInventory.explicitUncoveredEmneCount <= 39, 'Holistic uncovered-count kan ikke regressere over 39 etter batch 3');
   const coverageBlocker = holistic.blockers.find((row) => row.id === 'canonical_emne_full_editorial_treatment_gap');
