@@ -3,214 +3,49 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const CONTRACT = 'data/fag/fagverk_theory_quality_contract_v1.json';
-const STATUS = 'data/fagverk/subject_status.json';
-const REPORT = 'reports/fagverk/fagverk-theory-quality-audit.json';
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
+const STATUS='data/fagverk/subject_status.json';
+const REPORT='reports/fagverk/fagverk-theory-quality-audit.json';
+const EXCLUDED=new Set(['data/fag/musikk/emnergvb_musikk.json']);
+const ARCHIVE=/(^|\/)(arkiv|archive)(\/|$)/i;
+const THEORY=new Set(['theories','teorier','theory_hooks','theoryHooks','topic_hooks','topicHooks','theory_lane','theory_lanes','theoryLane','theoryLanes','theory_objects','theoryObjects','models','modeller','frameworks','rammeverk','paradigms','paradigmer','laws','lover','principles','prinsipper']);
+const PEOPLE=new Set(['thinkers','theorists','theoreticians','teoretikere','debate_thinkers','debateThinkers','researchers','forskere','scholars']);
+const WORKS=new Set(['works','verk','work_refs','workRefs','primary_works','primaryWorks','key_works','keyWorks']);
+const BINDINGS=new Set(['emne_id','emne_ids','claim_id','claim_ids','used_in','topic_hook_id','topic_hook_ids','theory_ref','theory_refs','paragraphClaimIds','paragraph_claim_ids']);
+const RIVAL=/(rival|alternativ|competing|debate|motperspektiv|counter|contested)/i;
+const LIMIT=/(limitation|begrens|assumption|forutset|validity|gyldighet|scope|misuse|caveat|forbehold)/i;
+const THEORY_TEXT=/\b(teori|theory|modell|model|paradigm|rammeverk|framework|skole|school|retning|perspektiv)\b/gi;
+const abs=p=>path.join(ROOT,p), exists=p=>fs.existsSync(abs(p)), json=p=>JSON.parse(fs.readFileSync(abs(p),'utf8')), assert=(ok,msg)=>{if(!ok)throw new Error(msg);};
 
-const abs = (p) => path.join(ROOT, p);
-const readJson = (p) => JSON.parse(fs.readFileSync(abs(p), 'utf8'));
-const exists = (p) => fs.existsSync(abs(p));
-const assert = (ok, msg) => { if (!ok) throw new Error(msg); };
-
-const THEORY_KEYS = new Set([
-  'theories','teorier','theory_hooks','theoryHooks','topic_hooks','topicHooks',
-  'theory_lane','theory_lanes','theoryLane','theoryLanes','theory_objects','theoryObjects',
-  'models','modeller','frameworks','rammeverk','paradigms','paradigmer','laws','lover','principles','prinsipper'
-]);
-const PEOPLE_KEYS = new Set([
-  'thinkers','theorists','theoreticians','teoretikere','debate_thinkers','debateThinkers',
-  'researchers','forskere','scholars'
-]);
-const WORK_KEYS = new Set(['works','verk','work_refs','workRefs','primary_works','primaryWorks','key_works','keyWorks']);
-const BINDING_KEYS = new Set([
-  'emne_id','emne_ids','claim_id','claim_ids','used_in','topic_hook_id','topic_hook_ids',
-  'theory_ref','theory_refs','paragraphClaimIds','paragraph_claim_ids'
-]);
-const RIVAL_KEY = /(rival|alternativ|competing|debate|motperspektiv|counter|contested)/i;
-const LIMIT_KEY = /(limitation|begrens|assumption|forutset|validity|gyldighet|scope|misuse|caveat|forbehold)/i;
-const THEORY_TEXT = /\b(teori|theory|modell|model|paradigm|rammeverk|framework|skole|school|retning|perspektiv)\b/gi;
-const ARCHIVE_SEGMENT = /(^|\/)(arkiv|archive)(\/|$)/i;
-
-function filesUnder(rel) {
-  if (!exists(rel) || ARCHIVE_SEGMENT.test(rel)) return [];
-  const full = abs(rel);
-  const stat = fs.statSync(full);
-  if (stat.isFile()) return full.endsWith('.json') ? [rel] : [];
-  const out = [];
-  for (const entry of fs.readdirSync(full, { withFileTypes: true })) {
-    const child = path.posix.join(rel, entry.name);
-    if (ARCHIVE_SEGMENT.test(child)) continue;
-    if (entry.isDirectory()) out.push(...filesUnder(child));
-    else if (entry.isFile() && entry.name.endsWith('.json')) out.push(child);
-  }
-  return out;
+function walk(rel){
+ if(!exists(rel)||ARCHIVE.test(rel)||EXCLUDED.has(rel)) return [];
+ const st=fs.statSync(abs(rel)); if(st.isFile()) return rel.endsWith('.json')?[rel]:[];
+ return fs.readdirSync(abs(rel),{withFileTypes:true}).flatMap(e=>walk(path.posix.join(rel,e.name)));
 }
-
-function unitCount(value) {
-  if (Array.isArray(value)) return value.length;
-  if (value && typeof value === 'object') {
-    const keys = Object.keys(value);
-    if (!keys.length) return 0;
-    const objectMap = keys.every((k) => value[k] && typeof value[k] === 'object');
-    return objectMap ? keys.length : 1;
-  }
-  return value == null || value === '' ? 0 : 1;
+function count(v){if(Array.isArray(v))return v.length;if(v&&typeof v==='object'){const ks=Object.keys(v);return ks.length&&ks.every(k=>v[k]&&typeof v[k]==='object')?ks.length:(ks.length?1:0);}return v==null||v===''?0:1;}
+function inspect(v,m,k=''){
+ if(THEORY.has(k))m.structuredUnits+=count(v); if(PEOPLE.has(k))m.namedPeople+=count(v); if(WORKS.has(k))m.works+=count(v); if(BINDINGS.has(k))m.contentBindings+=count(v);
+ if(RIVAL.test(k))m.rivalSignals+=Math.max(1,count(v)); if(LIMIT.test(k))m.limitSignals+=Math.max(1,count(v));
+ if(typeof v==='string'){m.theoryTextMentions+=(v.match(THEORY_TEXT)||[]).length;return;} if(Array.isArray(v)){v.forEach(x=>inspect(x,m,k));return;} if(v&&typeof v==='object')Object.entries(v).forEach(([x,y])=>inspect(y,m,x));
 }
-
-function inspect(value, metrics, key = '') {
-  if (THEORY_KEYS.has(key)) metrics.structuredUnits += unitCount(value);
-  if (PEOPLE_KEYS.has(key)) metrics.namedPeople += unitCount(value);
-  if (WORK_KEYS.has(key)) metrics.works += unitCount(value);
-  if (BINDING_KEYS.has(key)) metrics.contentBindings += unitCount(value);
-  if (RIVAL_KEY.test(key)) metrics.rivalSignals += Math.max(1, unitCount(value));
-  if (LIMIT_KEY.test(key)) metrics.limitSignals += Math.max(1, unitCount(value));
-
-  if (typeof value === 'string') {
-    const hits = value.match(THEORY_TEXT);
-    if (hits) metrics.theoryTextMentions += hits.length;
-    return;
-  }
-  if (Array.isArray(value)) {
-    for (const item of value) inspect(item, metrics, key);
-    return;
-  }
-  if (value && typeof value === 'object') {
-    for (const [k, v] of Object.entries(value)) inspect(v, metrics, k);
-  }
+function scan(id){
+ const files=[...new Set([`data/fag/${id}`,`data/fag/${id}.json`,`data/fagverk/${id}`,`data/fagverk/${id}.json`].flatMap(walk))].sort();
+ const m={filesScanned:files.length,structuredUnits:0,namedPeople:0,works:0,contentBindings:0,rivalSignals:0,limitSignals:0,theoryTextMentions:0}, parseFailures=[];
+ for(const f of files){try{inspect(json(f),m);}catch(e){parseFailures.push({file:f,error:String(e.message||e)});}}
+ m.namedPeopleOrWorks=m.namedPeople+m.works;m.rivalOrLimitSignals=m.rivalSignals+m.limitSignals;return {m,parseFailures};
 }
+function classify(m,p){const n=p.minimum;if(m.structuredUnits>=n.structured_units&&m.namedPeopleOrWorks>=n.named_people_or_works&&m.rivalOrLimitSignals>=n.rival_or_limit_signals&&m.contentBindings>=n.content_bindings)return 'strong_structured_evidence';if(m.structuredUnits>=Math.max(1,Math.ceil(n.structured_units/2))&&(n.named_people_or_works===0||m.namedPeopleOrWorks>=1)&&m.contentBindings>=1)return 'partial_structured_evidence';if(m.theoryTextMentions>=10&&m.contentBindings>=1)return 'unstructured_theory_evidence';return 'theory_quality_gap';}
+function missing(m,p){const n=p.minimum,o=[];if(m.structuredUnits<n.structured_units)o.push('structured_units');if(m.namedPeopleOrWorks<n.named_people_or_works)o.push('named_people_or_works');if(m.rivalOrLimitSignals<n.rival_or_limit_signals)o.push('rival_or_limit_signals');if(m.contentBindings<n.content_bindings)o.push('content_bindings');return o;}
 
-function scanSubject(subjectId) {
-  const roots = [
-    `data/fag/${subjectId}`,
-    `data/fag/${subjectId}.json`,
-    `data/fagverk/${subjectId}`,
-    `data/fagverk/${subjectId}.json`
-  ];
-  const files = [...new Set(roots.flatMap(filesUnder))].sort();
-  const metrics = {
-    filesScanned: files.length,
-    structuredUnits: 0,
-    namedPeople: 0,
-    works: 0,
-    contentBindings: 0,
-    rivalSignals: 0,
-    limitSignals: 0,
-    theoryTextMentions: 0
-  };
-  const parseFailures = [];
-  for (const file of files) {
-    try { inspect(readJson(file), metrics); }
-    catch (error) { parseFailures.push({ file, error: String(error.message || error) }); }
-  }
-  metrics.namedPeopleOrWorks = metrics.namedPeople + metrics.works;
-  metrics.rivalOrLimitSignals = metrics.rivalSignals + metrics.limitSignals;
-  return { files, metrics, parseFailures };
+export function auditFagverkTheoryQuality({writeReport=false,checkReport=true,includeDiagnostics=false}={}){
+ const contract=json(CONTRACT), status=json(STATUS); assert(contract.schema==='history_go_fagverk_theory_quality_contract_v1','Ugyldig theory-quality contract'); assert(contract.subjects.length===18,'Theory-quality contract skal dekke 17 toppfag + Teknologi nested');
+ const a=status.subjects.map(s=>s.id).sort(),b=contract.subjects.filter(s=>s.top_level).map(s=>s.id).sort();assert(JSON.stringify(a)===JSON.stringify(b),'Theory-quality contract matcher ikke canonical subject_status');
+ const sb=new Map(status.subjects.map(s=>[s.id,s])), diagnostics={};
+ const subjects=contract.subjects.map(e=>{const p=contract.profiles[e.profile];assert(p,`Ukjent profile ${e.profile}`);const s=scan(e.id);diagnostics[e.id]={metrics:s.m,parseFailures:s.parseFailures};const baseline=classify(s.m,p), editorialStatus=sb.get(e.id)?.editorialStatus||'nested_specialization';return {id:e.id,topLevel:e.top_level,parentSubject:e.parent_subject||null,profile:e.profile,editorialStatus,baseline,repairPriority:baseline==='strong_structured_evidence'?'none':(['complete','expanded_and_audited'].includes(editorialStatus)?'high':'medium'),missingSignals:missing(s.m,p),parseFailureCount:s.parseFailures.length};});
+ assert(subjects.every(s=>s.parseFailureCount===0),`Aktive theory-quality inputs har parsefeil: ${subjects.filter(s=>s.parseFailureCount).map(s=>s.id).join(', ')}`);
+ const keys=['strong_structured_evidence','partial_structured_evidence','unstructured_theory_evidence','theory_quality_gap'];
+ const report={schema:'history_go_fagverk_theory_quality_audit_v1',version:'1.0.0',status:'baseline_only_not_completion_gate',scope:{topLevelSubjects:17,nestedSpecializations:1,totalAudited:18},rules:{noCompletionStatusChanges:true,strongRequiresStructuredTheoryOrModels:true,contestedFieldsRequireRivalOrLimitSignals:true,namedPeopleRequiredOnlyByProfile:true,actualContentBindingRequired:true,archivedCopiesExcluded:true,genericContributorsDoNotCountAsTheorists:true,knownNoncanonicalPlaceholdersExcluded:[...EXCLUDED]},summary:Object.fromEntries(keys.map(k=>[k,subjects.filter(s=>s.baseline===k).length])),repairQueue:subjects.filter(s=>s.baseline!=='strong_structured_evidence').map(s=>s.id),subjects};
+ if(writeReport){fs.mkdirSync(path.dirname(abs(REPORT)),{recursive:true});fs.writeFileSync(abs(REPORT),`${JSON.stringify(report,null,2)}\n`);}if(checkReport){assert(exists(REPORT),`${REPORT} mangler`);assert(JSON.stringify(json(REPORT))===JSON.stringify(report),`${REPORT} er utdatert`);}return includeDiagnostics?{...report,diagnostics}:report;
 }
-
-function classify(metrics, profile) {
-  const min = profile.minimum;
-  const strong = metrics.structuredUnits >= min.structured_units &&
-    metrics.namedPeopleOrWorks >= min.named_people_or_works &&
-    metrics.rivalOrLimitSignals >= min.rival_or_limit_signals &&
-    metrics.contentBindings >= min.content_bindings;
-  if (strong) return 'strong_structured_evidence';
-  const partialStructured = metrics.structuredUnits >= Math.max(1, Math.ceil(min.structured_units / 2));
-  const partialPeople = min.named_people_or_works === 0 || metrics.namedPeopleOrWorks >= 1;
-  if (partialStructured && partialPeople && metrics.contentBindings >= 1) return 'partial_structured_evidence';
-  if (metrics.theoryTextMentions >= 10 && metrics.contentBindings >= 1) return 'unstructured_theory_evidence';
-  return 'theory_quality_gap';
-}
-
-function missingSignals(metrics, profile) {
-  const min = profile.minimum;
-  const missing = [];
-  if (metrics.structuredUnits < min.structured_units) missing.push('structured_units');
-  if (metrics.namedPeopleOrWorks < min.named_people_or_works) missing.push('named_people_or_works');
-  if (metrics.rivalOrLimitSignals < min.rival_or_limit_signals) missing.push('rival_or_limit_signals');
-  if (metrics.contentBindings < min.content_bindings) missing.push('content_bindings');
-  return missing;
-}
-
-function stableSubject(entry, statusById, scan, profile) {
-  const baseline = classify(scan.metrics, profile);
-  const editorialStatus = statusById.get(entry.id)?.editorialStatus || 'nested_specialization';
-  return {
-    id: entry.id,
-    topLevel: entry.top_level,
-    parentSubject: entry.parent_subject || null,
-    profile: entry.profile,
-    editorialStatus,
-    baseline,
-    repairPriority: baseline === 'strong_structured_evidence' ? 'none' : (editorialStatus === 'complete' || editorialStatus === 'expanded_and_audited' ? 'high' : 'medium'),
-    missingSignals: missingSignals(scan.metrics, profile),
-    parseFailureCount: scan.parseFailures.length
-  };
-}
-
-export function auditFagverkTheoryQuality({ writeReport = false, checkReport = true, includeDiagnostics = false } = {}) {
-  const contract = readJson(CONTRACT);
-  const status = readJson(STATUS);
-  assert(contract.schema === 'history_go_fagverk_theory_quality_contract_v1', 'Ugyldig theory-quality contract');
-  assert(contract.subjects.length === 18, 'Theory-quality contract skal dekke 17 toppfag + Teknologi nested');
-  const topIds = status.subjects.map((s) => s.id).sort();
-  const contractTopIds = contract.subjects.filter((s) => s.top_level).map((s) => s.id).sort();
-  assert(JSON.stringify(topIds) === JSON.stringify(contractTopIds), 'Theory-quality contract matcher ikke canonical subject_status');
-
-  const statusById = new Map(status.subjects.map((s) => [s.id, s]));
-  const diagnostics = {};
-  const subjects = contract.subjects.map((entry) => {
-    const profile = contract.profiles[entry.profile];
-    assert(profile, `Ukjent theory-quality profile: ${entry.profile}`);
-    const scan = scanSubject(entry.id);
-    diagnostics[entry.id] = { metrics: scan.metrics, parseFailures: scan.parseFailures };
-    return stableSubject(entry, statusById, scan, profile);
-  });
-
-  const statuses = ['strong_structured_evidence','partial_structured_evidence','unstructured_theory_evidence','theory_quality_gap'];
-  const counts = Object.fromEntries(statuses.map((k) => [k, subjects.filter((s) => s.baseline === k).length]));
-  const report = {
-    schema: 'history_go_fagverk_theory_quality_audit_v1',
-    version: '1.0.0',
-    status: 'baseline_only_not_completion_gate',
-    scope: { topLevelSubjects: 17, nestedSpecializations: 1, totalAudited: 18 },
-    rules: {
-      noCompletionStatusChanges: true,
-      strongRequiresStructuredTheoryOrModels: true,
-      contestedFieldsRequireRivalOrLimitSignals: true,
-      namedPeopleRequiredOnlyByProfile: true,
-      actualContentBindingRequired: true,
-      archivedCopiesExcluded: true,
-      genericContributorsDoNotCountAsTheorists: true
-    },
-    summary: counts,
-    repairQueue: subjects.filter((s) => s.baseline !== 'strong_structured_evidence').map((s) => s.id),
-    subjects
-  };
-
-  assert(subjects.every((s) => s.parseFailureCount === 0), `Aktive theory-quality inputs har parsefeil: ${subjects.filter((s) => s.parseFailureCount).map((s) => s.id).join(', ')}`);
-  if (writeReport) {
-    fs.mkdirSync(path.dirname(abs(REPORT)), { recursive: true });
-    fs.writeFileSync(abs(REPORT), `${JSON.stringify(report, null, 2)}\n`);
-  }
-  if (checkReport) {
-    assert(exists(REPORT), `${REPORT} mangler`);
-    assert(JSON.stringify(readJson(REPORT)) === JSON.stringify(report), `${REPORT} er utdatert; kjør audit med --write-report`);
-  }
-  return includeDiagnostics ? { ...report, diagnostics } : report;
-}
-
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const args = new Set(process.argv.slice(2));
-  try {
-    const report = auditFagverkTheoryQuality({
-      writeReport: args.has('--write-report'),
-      checkReport: !args.has('--no-check-report'),
-      includeDiagnostics: args.has('--diagnostic')
-    });
-    console.log(JSON.stringify(report, null, 2));
-  } catch (error) {
-    console.error(`Fagverk theory quality FEIL: ${error.message}`);
-    process.exitCode = 1;
-  }
-}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){const args=new Set(process.argv.slice(2));try{console.log(JSON.stringify(auditFagverkTheoryQuality({writeReport:args.has('--write-report'),checkReport:!args.has('--no-check-report'),includeDiagnostics:args.has('--diagnostic')}),null,2));}catch(e){console.error(`Fagverk theory quality FEIL: ${e.message}`);process.exitCode=1;}}
