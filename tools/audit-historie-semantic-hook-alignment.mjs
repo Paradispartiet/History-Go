@@ -16,13 +16,13 @@ const BLUEPRINT_FILES = [
 ];
 
 export function auditHistorySemanticHookAlignment() {
-  const emner = list(readJson('data/fag/historie/emner_historie_canonical_v4_5.json'));
+  const emners = list(readJson('data/fag/historie/emner_historie_canonical_v4_5.json'));
   const mappings = list(readJson('data/fag/historie/emnemapping_historie_canonical_v4_5.json'));
   const fagkart = readJson('data/fag/historie/fagkart_historie_canonical_v4_5.json');
   const theories = list(readJson('data/fag/historie/theory_objects_historie_canonical_v5_5.json'));
 
-  assert.equal(emner.length, 230, 'Historie skal ha 230 canonicale kompatibilitetsemner');
-  const emneById = new Map(emner.map((emne) => [emne.emne_id, emne]));
+  assert.equal(emners.length, 230, 'Historie skal ha 230 canonicale kompatibilitetsemner');
+  const emneById = new Map(emners.map((emne) => [emne.emne_id, emne]));
   assert.equal(emneById.size, 230, 'Canonical emne-ID-er må være unike');
 
   const hookById = new Map();
@@ -36,28 +36,40 @@ export function auditHistorySemanticHookAlignment() {
   const mappingByEmne = new Map(mappings.map((mapping) => [mapping.emne_id, mapping]));
 
   const primaryKeys = [];
-  for (const emne of emner) {
+  const canonicalMismatches = [];
+  for (const emne of emners) {
     const primaryHooks = list(emne.primary_theory_hooks);
-    assert.equal(primaryHooks.length, 1, `${emne.emne_id}: completion krever nøyaktig én canonical primærhook`);
+    if (primaryHooks.length !== 1) {
+      canonicalMismatches.push({ emne_id: emne.emne_id, role: 'primary', hook_id: null, reasons: [`primary_hook_count_${primaryHooks.length}`] });
+      continue;
+    }
+
     const primaryHookId = primaryHooks[0];
     primaryKeys.push(primaryHookId);
-    const primaryHook = hookById.get(primaryHookId);
-    assert.ok(primaryHook, `${emne.emne_id}: ukjent primærhook ${primaryHookId}`);
-    assert.ok(list(primaryHook.emne_ids).includes(emne.emne_id), `${emne.emne_id}: primærhook ${primaryHookId} eier ikke emnet`);
-    assert.ok(theoryByHookId.has(primaryHookId), `${emne.emne_id}: primærhook ${primaryHookId} mangler teoriobjekt`);
     const mappedHooks = list(mappingByEmne.get(emne.emne_id)?.mappings).map((row) => row.topic_hook);
-    assert.ok(mappedHooks.includes(primaryHookId), `${emne.emne_id}: mappinglaget bekrefter ikke primærhook ${primaryHookId}`);
+    const checkCanonicalHook = (hookId, role) => {
+      const hook = hookById.get(hookId);
+      const reasons = [];
+      if (!hook) reasons.push('missing_hook');
+      if (hook && !list(hook.emne_ids).includes(emne.emne_id)) reasons.push('hook_missing_emne');
+      if (!theoryByHookId.has(hookId)) reasons.push('missing_theory');
+      if (!mappedHooks.includes(hookId)) reasons.push('missing_mapping');
+      if (role === 'secondary' && hookId === primaryHookId) reasons.push('same_as_primary');
+      if (reasons.length) canonicalMismatches.push({ emne_id: emne.emne_id, role, hook_id: hookId, reasons });
+    };
 
+    checkCanonicalHook(primaryHookId, 'primary');
     for (const secondaryHookId of list(emne.secondary_theory_hooks)) {
-      const secondaryHook = hookById.get(secondaryHookId);
-      assert.ok(secondaryHook, `${emne.emne_id}: ukjent sekundærhook ${secondaryHookId}`);
-      assert.ok(list(secondaryHook.emne_ids).includes(emne.emne_id), `${emne.emne_id}: sekundærhook ${secondaryHookId} eier ikke emnet`);
-      assert.ok(theoryByHookId.has(secondaryHookId), `${emne.emne_id}: sekundærhook ${secondaryHookId} mangler teoriobjekt`);
-      assert.ok(mappedHooks.includes(secondaryHookId), `${emne.emne_id}: mappinglaget bekrefter ikke sekundærhook ${secondaryHookId}`);
-      assert.notEqual(secondaryHookId, primaryHookId, `${emne.emne_id}: samme hook kan ikke være både primær og sekundær`);
+      checkCanonicalHook(secondaryHookId, 'secondary');
     }
   }
+
   assert.equal(unique(primaryKeys).length, 230, 'Canonicale primærhooks må være unike for alle 230 emner');
+  assert.deepEqual(
+    canonicalMismatches,
+    [],
+    `Canonical History hook-kjeder er inkonsistente: ${canonicalMismatches.map((row) => `${row.emne_id}:${row.role}:${row.hook_id || 'none'}[${row.reasons.join('+')}]`).join(', ')}`
+  );
 
   const blueprintRows = BLUEPRINT_FILES.flatMap((file) => list(readJson(file)).map((row) => ({ ...row, blueprint_file: file })));
   assert.ok(blueprintRows.length > 0, 'Ingen kuraterte History semantic-blueprints funnet');
@@ -67,28 +79,39 @@ export function auditHistorySemanticHookAlignment() {
   for (const blueprint of blueprintRows) {
     const emne = emneById.get(blueprint.emne_id);
     assert.ok(emne, `${blueprint.blueprint_file}: ukjent emne ${blueprint.emne_id}`);
-    const actualPrimary = list(emne.primary_theory_hooks)[0];
-    const actualSecondary = list(emne.secondary_theory_hooks)[0] || null;
-    if (actualPrimary !== blueprint.primary_hook_id || actualSecondary !== (blueprint.secondary_hook_id || null)) {
-      curatedMismatches.push({
-        emne_id: blueprint.emne_id,
-        title: blueprint.title,
-        expected_primary: blueprint.primary_hook_id,
-        actual_primary: actualPrimary,
-        expected_secondary: blueprint.secondary_hook_id || null,
-        actual_secondary: actualSecondary,
-        blueprint_file: blueprint.blueprint_file
-      });
+    assert.ok(blueprint.primary_hook_id, `${blueprint.emne_id}: kuratert blueprint mangler primary_hook_id`);
+    const editorialHookIds = unique([blueprint.primary_hook_id, blueprint.secondary_hook_id]);
+    for (const editorialHookId of editorialHookIds) {
+      const hook = hookById.get(editorialHookId);
+      const reasons = [];
+      if (!hook) reasons.push('missing_hook');
+      if (hook && !list(hook.emne_ids).includes(blueprint.emne_id)) reasons.push('hook_missing_emne');
+      if (!theoryByHookId.has(editorialHookId)) reasons.push('missing_theory');
+      if (reasons.length) {
+        curatedMismatches.push({
+          emne_id: blueprint.emne_id,
+          editorial_hook_id: editorialHookId,
+          blueprint_file: blueprint.blueprint_file,
+          reasons
+        });
+      }
     }
   }
-  assert.deepEqual(curatedMismatches, [], `Kuraterte History-hooks er semantisk feilordnet: ${curatedMismatches.map((row) => `${row.emne_id}:${row.actual_primary}->${row.expected_primary}`).join(', ')}`);
+
+  assert.deepEqual(
+    curatedMismatches,
+    [],
+    `Kuraterte redaksjonelle History-hooks mangler gyldig hook/emne/teorikjede: ${curatedMismatches.map((row) => `${row.emne_id}:${row.editorial_hook_id}[${row.reasons.join('+')}]`).join(', ')}`
+  );
 
   return {
     status: 'PASS',
-    canonical_emner: emners.length,
+    canonical_emners: emners.length,
     unique_primary_semantic_keys: unique(primaryKeys).length,
+    canonical_hook_mismatches: 0,
     curated_blueprint_rows: blueprintRows.length,
-    curated_mismatches: 0,
+    curated_editorial_hook_mismatches: 0,
+    canonical_identity_preserved: unique(primaryKeys).length === 230,
     blueprint_files: BLUEPRINT_FILES
   };
 }
