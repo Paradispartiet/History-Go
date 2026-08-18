@@ -31,6 +31,28 @@ export function validateHistoryEditorialQuality({ root = DEFAULT_ROOT } = {}) {
   const theoryByHookId = new Map(theories.map((theory) => [theory.source_hook_id, theory]));
   const evidenceByTheoryId = new Map(evidence.entries.map((entry) => [entry.theory_id, entry]));
   const chapterByDomainId = new Map(registry.subjects.historie.chapters.map((chapter) => [chapter.primary_domain_id, chapter]));
+
+  const primaryOwnerByHook = new Map();
+  for (const emne of emners) {
+    const primaryHooks = list(emne.primary_theory_hooks);
+    assert(primaryHooks.length === 1, `${emne.emne_id}: skal ha nøyaktig én canonical primary hook`);
+    const hookId = primaryHooks[0];
+    assert(!primaryOwnerByHook.has(hookId), `${hookId}: canonical primary hook brukes av flere emner`);
+    primaryOwnerByHook.set(hookId, emne.emne_id);
+  }
+  assert(primaryOwnerByHook.size === 230, 'Historie skal ha 230 unike canonical primary hooks');
+  let fagkartHookCount = 0;
+  for (const category of list(fagkart.categories)) {
+    for (const hook of list(category.topic_hooks)) {
+      fagkartHookCount += 1;
+      const expectedOwner = primaryOwnerByHook.get(hook.id);
+      assert(expectedOwner, `${hook.id}: fagkart-hook mangler canonical primary-eier`);
+      const owners = list(hook.emne_ids);
+      assert(owners.length === 1 && owners[0] === expectedOwner, `${hook.id}: hook.emne_ids skal uttrykke nøyaktig én canonical primary-eier (${expectedOwner}), ikke secondary/editorial analysebaner`);
+    }
+  }
+  assert(fagkartHookCount === 230, `Historie-fagkartet skal ha 230 hooks, fant ${fagkartHookCount}`);
+
   const generatorOwnedDomains = new Set();
   for (const chapterMeta of registry.subjects.historie.chapters) {
     const chapter = readJson(root, chapterMeta.file);
@@ -111,13 +133,13 @@ export function validateHistoryEditorialQuality({ root = DEFAULT_ROOT } = {}) {
   const statusEntry = status.subjects.find((entry) => entry.id === 'historie');
   assert(statusEntry?.editorialStatus === 'expanded_and_audited', 'Historie-statusen beskriver ikke kvalitetsutvidelsen');
 
-  return { profiles: profiles.length, sectionLenses: sectionLensCount, caseAnchors: caseAnchorCount, causalSteps: causalStepCount, debates: profiles.length };
+  return { profiles: profiles.length, sectionLenses: sectionLensCount, caseAnchors: caseAnchorCount, causalSteps: causalStepCount, debates: profiles.length, primaryHookOwners: primaryOwnerByHook.size };
 }
 
 function main() {
   try {
     const result = validateHistoryEditorialQuality();
-    console.log(`Historie-redaksjonell kvalitet OK: ${result.profiles} fagprofiler, ${result.sectionLenses} emnelinser, ${result.caseAnchors} stedscaser, ${result.causalSteps} årsaksledd og ${result.debates} tolkningsdebatter.`);
+    console.log(`Historie-redaksjonell kvalitet OK: ${result.profiles} fagprofiler, ${result.sectionLenses} emnelinser, ${result.caseAnchors} stedscaser, ${result.causalSteps} årsaksledd, ${result.debates} tolkningsdebatter og ${result.primaryHookOwners} entydige primary hook-eiere.`);
   } catch (error) {
     console.error(`Historie-redaksjonell kvalitet FEIL: ${error.message}`);
     process.exitCode = 1;
