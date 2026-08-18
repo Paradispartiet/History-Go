@@ -37,11 +37,20 @@ test('portal, assessment og redaksjonell status er ferdigstilt atomisk', () => {
   assert.equal(report.runtime.chapter_files, 40);
 });
 
-test('Subkultur-materialiseringen bevarer redaksjonell status for andre fag', () => {
+test('Subkultur-materialiseringen nedgraderer ikke modne nabofag', () => {
   const status = JSON.parse(fs.readFileSync('data/fagverk/subject_status.json', 'utf8'));
   for (const id of ['historie', 'politikk']) {
     const subject = status.subjects.find((entry) => entry.id === id);
-    assert.equal(subject?.editorialStatus, 'expanded_and_audited');
-    assert.equal(subject?.nextGate, 'source_refresh_and_case_expansion');
+    assert.ok(subject, `subject_status mangler ${id}`);
+    assert.equal(subject.navigationStatus, 'materialized');
+    assert.equal(subject.assessmentStatus, 'audited');
+    assert.ok(
+      ['complete', 'expanded_and_audited'].includes(subject.editorialStatus),
+      `${id} er blitt redaksjonelt nedgradert av Subkultur-materialiseringen`
+    );
+    assert.ok(
+      /maintenance|source_refresh|case_expansion/.test(subject.nextGate || ''),
+      `${id} peker tilbake til produksjon etter Subkultur-materialisering`
+    );
   }
 });
