@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: 22
 
-      - name: Apply permanent daily-slot priority and rebuild regression
+      - name: Apply proven permanent Civication repairs and stage instrumentation
         shell: bash
         run: |
           python - <<'PY'
@@ -203,10 +203,98 @@ jobs:
               '    "rebuild skal bevare no-duplicate source-ID-garantien"',
               '  );',
           ], 'daily catalog regression assertions')
+
+          audit = Path('scripts/audit-civication-career-gameplay.mjs')
+          replace_once(audit, [
+              '  const badge = badges.get(world.category);',
+              '  const tierRows = world.badge_titles.map((title) => {',
+              "    const index = (badge?.tiers || []).findIndex((tier) => String(tier.label || '') === title);",
+              '    const tier = index >= 0 ? badge.tiers[index] : null;',
+              '    const contract = tier?.career_unlock || tier?.career_offer || null;',
+          ], [
+              '  const badge = badges.get(world.category);',
+              '  const badgeTiers = badge?.tiers || [];',
+              '  const tierRows = world.badge_titles.map((title) => {',
+              "    let index = badgeTiers.findIndex((tier) => String(tier.label || '') === title);",
+              '    if (index < 0) {',
+              '      index = badgeTiers.findIndex((tier) => {',
+              '        const candidate = tier?.career_unlock || tier?.career_offer || null;',
+              "        return String(candidate?.title || '') === title &&",
+              '          (!candidate?.role_scope || String(candidate.role_scope) === world.role_scope);',
+              '      });',
+              '    }',
+              '    const tier = index >= 0 ? badgeTiers[index] : null;',
+              '    const contract = tier?.career_unlock || tier?.career_offer || null;',
+          ], 'career gameplay tier resolution')
+
+          materializer = Path('scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs')
+          replace_once(materializer, [
+              "const run = (args) => execFileSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit' });",
+          ], [
+              'const run = (stage, args) => {',
+              "  const command = [process.execPath, ...args].join(' ');",
+              '  console.log(`::group::Subkultur materializer: ${stage}`);',
+              '  try {',
+              "    execFileSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit' });",
+              '    console.log(`::notice title=Subkultur materializer stage passed::${stage}`);',
+              '  } catch (error) {',
+              '    console.error(`::error title=Subkultur materializer stage failed::${stage} (${command})`);',
+              '    throw error;',
+              '  } finally {',
+              "    console.log('::endgroup::');",
+              '  }',
+              '};',
+          ], 'materializer run helper')
+
+          replace_once(materializer, [
+              "run(['scripts/audit-civication-career-gameplay.mjs', '--write']);",
+              "run(['scripts/build-civication-scene-registry.mjs', '--write']);",
+              "run(['scripts/build-civication-scene-registry.mjs', '--check']);",
+              "run(['tests/civication-subkultur-arrangementsdrift-playability.test.js']);",
+              "run(['tests/civication-mail-choice-uniqueness.test.js']);",
+              "run(['tests/civication-religion-forskning-playability.test.js']);",
+              "run(['tests/civication-produksjonsassistent-playability.test.js']);",
+              "run(['tests/civication-avdelingsleder-playability.test.js']);",
+              "run(['tests/civication-role-world-contract.test.js']);",
+          ], [
+              "run('career-audit', ['scripts/audit-civication-career-gameplay.mjs', '--write']);",
+              "run('compiled-scene-registry-build', ['scripts/build-civication-scene-registry.mjs', '--write']);",
+              "run('compiled-scene-registry-check', ['scripts/build-civication-scene-registry.mjs', '--check']);",
+              "run('subkultur-playability', ['tests/civication-subkultur-arrangementsdrift-playability.test.js']);",
+              "run('choice-uniqueness-regression', ['tests/civication-mail-choice-uniqueness.test.js']);",
+              "run('religion-forskning-regression', ['tests/civication-religion-forskning-playability.test.js']);",
+              "run('produksjonsassistent-regression', ['tests/civication-produksjonsassistent-playability.test.js']);",
+              "run('avdelingsleder-regression', ['tests/civication-avdelingsleder-playability.test.js']);",
+              "run('role-world-integrity', ['tests/civication-role-world-contract.test.js']);",
+          ], 'materializer stage calls')
           PY
 
-      - name: Verify generic SceneDirector daily-slot regression
-        run: node tests/civication-scene-director-daily-catalog.test.js
+      - name: Verify proven repairs before materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/audit-civication-career-gameplay.mjs
+          node --check scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs
+          node tests/civication-scene-director-daily-catalog.test.js
+          git diff --check
+
+      - name: Commit proven permanent repairs before materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            scripts/audit-civication-career-gameplay.mjs \
+            js/Civication/systems/civicationWorkdayMailBuilder.js \
+            tests/civication-scene-director-daily-catalog.test.js \
+            scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs
+          if git diff --cached --quiet; then
+            echo "Proven Civication repairs already permanent."
+          else
+            git commit -m "Fix Civication career tier and daily slot selection"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
 
       - name: Materialize and verify Subkultur arrangementsdrift pilot
         run: node scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs
@@ -218,8 +306,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
-            js/Civication/systems/civicationWorkdayMailBuilder.js \
-            tests/civication-scene-director-daily-catalog.test.js \
             data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json \
             data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json \
             data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json \
@@ -238,5 +324,5 @@ jobs:
             echo "Subkultur arrangementsdrift pilot already materialized; nothing to commit."
             exit 0
           fi
-          git commit -m "Fix Civication daily slot selection and materialize Subkultur pilot"
+          git commit -m "Materialize playable Subkultur arrangementsdrift pilot"
           git push origin HEAD:${{ github.head_ref }}
