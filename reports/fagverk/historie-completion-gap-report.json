@@ -1,0 +1,121 @@
+{
+  "schema": "history_go_history_completion_gap_report_v1",
+  "version": "1.0.0",
+  "subject_id": "historie",
+  "status": "resolved_completion_gaps",
+  "audit_basis": {
+    "locked_start_main": "4dae14238d3f582164ea0d34faa1296dd9b9c28a",
+    "scope_rule": "Bare dokumenterte completion-gap repareres. De 23 canonicale kapitlene og fagområdene utvides ikke vilkårlig.",
+    "structural_findings": {
+      "canonical_domains": 23,
+      "registered_chapters": 23,
+      "canonical_compatibility_emner": 230,
+      "covered_main_periods": 9,
+      "legacy_id_title_drifts_documented": 26,
+      "unresolved_identity_blockers_before_quality_repair": 0
+    }
+  },
+  "prose_review": {
+    "method": "Faktisk prosa ble lest på tvers av alle ni hovedperioder, ikke bare registry- og count-metadata. Reviewet vurderte teleologi, anakronisme, geografisk/nasjonal sentrering, årsak versus kronologi, historiografisk uenighet, kildebruk og gjenbrukte tekstmaler.",
+    "period_samples": [
+      {
+        "period": "forhistorie",
+        "sample": "data/fagverk/historie/forhistorie_arkeologi/01-grunnlag.json",
+        "review_status": "reviewed",
+        "finding": "Materielle spor, kronologi og tolkningsusikkerhet er eksplisitte, men generatorformen var repetitiv og evidens ble samlet i store claim-blokker."
+      },
+      {
+        "period": "antikken",
+        "sample": "data/fag/historie/period_modules_historie_v1.json#pm_his_antikken",
+        "review_status": "reviewed",
+        "finding": "Periodemodulen motarbeider eksplisitt en lineær Hellas/Roma-til-moderne-Europa-fortelling og bruker flere geografiske periodiseringer."
+      },
+      {
+        "period": "middelalder",
+        "sample": "data/fagverk/historie/middelalder_kirke_kongemakt/03-pest-kontaktsoner-og-anvendelse.json",
+        "review_status": "reviewed",
+        "finding": "Håndbygget fulltekst skiller epidemi, kontaktsoner, institusjoner og kildegrenser og viste ikke behov for ny kapittelproduksjon."
+      },
+      {
+        "period": "tidlig_moderne",
+        "sample": "data/fag/historie/period_modules_historie_v1.json#pm_his_early_modern",
+        "review_status": "reviewed",
+        "finding": "Slaveri, stat, religion og offentlighet behandles som sammensatte forløp; 1814 brukes ikke som et teleologisk endepunkt for hele perioden."
+      },
+      {
+        "period": "langt_1800_tall",
+        "sample": "data/fagverk/historie/industri_arbeid_sosialhistorie/01-grunnlag.json",
+        "review_status": "reviewed",
+        "finding": "Systematisk generatorrepetisjon ble funnet, og emnet Arbeiderbevegelse og folkedannelse ble materialisert med fabrikkorganiserings-teori i strid med den kuraterte redaksjonelle analyselinsen."
+      },
+      {
+        "period": "forste_verdenskrig_og_mellomkrig",
+        "sample": "data/fagverk/historie/forste_verdenskrig_mellomkrig/01-grunnlag.json",
+        "review_status": "reviewed",
+        "finding": "Kapitlet avviser at 1914 var uunngåelig og skiller struktur, beslutning og utløsende hendelse, men den gamle generatorformen dupliserte definisjonsprosa og samlet flere claims i ett evidensavsnitt."
+      },
+      {
+        "period": "andre_verdenskrig",
+        "sample": "data/fagverk/historie/krig_okkupasjon_motstand/01-grunnlag.json",
+        "review_status": "reviewed",
+        "finding": "Kapitlet skiller okkupasjon, kontroll, motstand og ettertid, men den gamle materialiseringen gjenbrukte samme teoriramme og evidensblokk på tvers av ulike emner."
+      },
+      {
+        "period": "kald_krig_og_etterkrig",
+        "sample": "data/fagverk/historie/kald_krig_etterkrig/01-grunnlag.json",
+        "review_status": "reviewed",
+        "finding": "Prosaen avviser et rent supermaktssjakkbrett og synliggjør småstatlig/lokal handlekraft, men den gamle generatorformen hadde samme repetisjonsproblem som andre generator-eide kapitler."
+      },
+      {
+        "period": "samtid_etter_1991",
+        "sample": "data/fag/historie/period_modules_historie_v1.json#pm_his_post_1991",
+        "review_status": "reviewed",
+        "finding": "1991 behandles ikke som universelt nullpunkt; samtidshistorien beholder kildeusikkerhet, regionale forskjeller og åpne utviklingsbaner."
+      }
+    ]
+  },
+  "documented_gaps": [
+    {
+      "id": "gap_history_generated_prose_formula",
+      "severity": "completion_blocker",
+      "finding": "18 generator-eide kapitler brukte en fast fireleddet seksjonsform med emnedefinisjon, why-it-matters/lens, teori/limitation og én sammenlimt claim/rationale-blokk. Dette ga synlig repetisjon og for svak paragraph-to-claim-sporbarhet.",
+      "repair": "Materialisereren er endret til semantisk oppdelte analyse-, claim- og synteseavsnitt, med nøyaktig ett claim per claim_supported-avsnitt og alternative tolkninger/diskonfirmeringsvilkår i syntesen.",
+      "verification": "tools/audit-historie-completion.mjs"
+    },
+    {
+      "id": "gap_history_historiography_academic_authority",
+      "severity": "completion_blocker",
+      "finding": "De håndredigerte årsakskjedene og historiografiske debattene i generator-eide kapitler hadde ikke et eget, eksplisitt lag med akademisk sekundærlitteratur og source_location.",
+      "repair": "data/fag/historie/historiography_evidence_historie_v1.json legger inn delt historiefaglig metodekilde og domenespesifikk akademisk sekundærlitteratur for alle 18 generator-eide fagprofiler, med authority, limitations og source_location.",
+      "verification": "tools/audit-historie-source-authority.mjs"
+    },
+    {
+      "id": "gap_history_semantic_primary_hook_order",
+      "severity": "completion_blocker",
+      "finding": "Completion-reparasjonen avdekket at canonical semantic identity og kuraterte editorial theory hooks var blitt behandlet som samme kontrakt. Det ga dokumenterte tilfeller der en unik canonical primærhook var gyldig som stabil identitet, men feil som redaksjonell forklaringslinse; samtidig inneholdt byhistorie-blueprinten sju pensjonerte question-surface-emne-ID-er som ikke skulle gjenopplives som canonicale identiteter.",
+      "repair": "Canonical semantic identity forblir låst til hvert emnes unike primary_theory_hooks[0]. Et separat editorial theory-lag velger kuratert primary/secondary hook uten å endre semantic key. Industri og velferd bruker aktive blueprint-rader; sju aktuelle byhistorie-emner har eksplisitte reviewede overrides, og de sju pensjonerte byhistorie question-surface-ID-ene er eksplisitt resolved som legacy. Den permanente semantic-alignment-porten krever 230 unike semantic keys, gyldig hook/theory/mapping, 30/30 aktive curated editorial paths og 0 uavklarte legacy-rader.",
+      "verification": "tools/audit-historie-semantic-hook-alignment.mjs"
+    },
+    {
+      "id": "gap_history_source_location_and_low_authority_guard",
+      "severity": "completion_blocker",
+      "finding": "Completion manglet en samlet port som beviser at fulltekstclaims ikke bæres bare av Wikipedia/Wikimedia/generiske webkilder, og at faktisk brukte canonicale kilder har provenance, limitations, quality-vurdering og konkret source_location.",
+      "repair": "Ny source-authority-port samler source_location fra History-evidenslaget og krever minst én ikke-lavautoritet-kilde for hvert fulltekstclaim samt provenance/limitations/quality/source_location for alle brukte kilder.",
+      "verification": "tools/audit-historie-source-authority.mjs"
+    }
+  ],
+  "resolved_gaps": [
+    "gap_history_generated_prose_formula",
+    "gap_history_historiography_academic_authority",
+    "gap_history_semantic_primary_hook_order",
+    "gap_history_source_location_and_low_authority_guard"
+  ],
+  "open_blockers": [],
+  "non_gaps": [
+    "Ingen ny 24. canonical fagområde er nødvendig for completion.",
+    "Ingen ny generell hovedperiode er nødvendig; 9/9 er allerede covered.",
+    "De 26 legacy id/title-driftsradene er dokumenterte kompatibilitets-ID-er og har 0 uløste identity blockers; de skal ikke omdøpes uten referansemigrasjon.",
+    "De sju pensjonerte byhistorie question-surface-ID-ene er redaksjonelle legacy-rader, ikke parallelle canonicale emner.",
+    "Completion betyr ikke at alle mulige regionale case, arkivfunn eller forskningsnisjer er uttømt."
+  ]
+}

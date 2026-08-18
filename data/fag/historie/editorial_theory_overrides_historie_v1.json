@@ -1,0 +1,117 @@
+{
+  "schema": "history_go_historie_editorial_theory_overrides_v1",
+  "version": "1.0.0",
+  "subject_id": "historie",
+  "status": "canonical_editorial_layer",
+  "policy": {
+    "semantic_identity_source": "emner_historie_canonical_v4_5.primary_theory_hooks[0]",
+    "editorial_theory_source_order": [
+      "explicit_override",
+      "active_curated_blueprint",
+      "canonical_semantic_hook"
+    ],
+    "editorial_hooks_may_repeat": true,
+    "editorial_hooks_do_not_redefine_semantic_identity": true,
+    "legacy_question_surface_ids_must_not_materialize_as_emne_ids": true
+  },
+  "source_blueprint_files": [
+    "reports/historie-canonical-migration/byhistorie-question-blueprints.json",
+    "reports/historie-canonical-migration/industri-arbeid-question-blueprints.json",
+    "reports/historie-canonical-migration/velferd-question-blueprints.json"
+  ],
+  "overrides": [
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_bydannelse_og_urban_morfologi",
+      "current_title": "Eiendom, boligregimer og tomtemarkeder",
+      "editorial_primary_hook_id": "his_regulering_plan_ekspropriasjon",
+      "editorial_secondary_hook_id": "his_gentrifisering_verdi_befolkning",
+      "rationale": "Den redaksjonelle linsen følger tomtegrenser, eierskap og finansiering. Reguleringsteorien modellerer eiendomsrett, finansiering, vedtak og gjennomføring; gentrifiseringsbanen gir en separat verdi- og befolkningskontroll."
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_sentrum_periferi_og_byutvidelse",
+      "current_title": "Klasse, segregasjon og offentlige rom",
+      "editorial_primary_hook_id": "his_offentlig_rom_tilgang_konflikt",
+      "editorial_secondary_hook_id": "his_gentrifisering_verdi_befolkning",
+      "rationale": "Den redaksjonelle linsen kobler bosted, klasse og offentlig rom til transport, tjenester og representasjon. Offentlig-rom-teorien skiller formell åpenhet fra faktisk sosial tilgang; gentrifiseringsbanen kan teste verdi- og befolkningsendring uten å gjøre den til automatisk årsak."
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_infrastruktur_mobilitet_og_tekniske_systemer",
+      "current_title": "Sanering, byfornyelse og modernisme",
+      "editorial_primary_hook_id": "his_sanering_riving_fortrengning",
+      "editorial_secondary_hook_id": "his_byfornyelse_bolig_standard",
+      "rationale": "Den redaksjonelle linsen krever at modernismens helse-, trafikk- og styringsproblemer rekonstrueres før løsningen vurderes. Saneringsteorien modellerer problemdefinisjon, moderniseringsargument, riving og fordelingsvirkning; byfornyelsesbanen kontrollerer rehabilitering, boligstandard og tilgjengelighet."
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_eiendom_boligregimer_og_tomtemarkeder",
+      "current_title": "Gentrifisering, ombruk og bevaring",
+      "editorial_primary_hook_id": "his_gentrifisering_verdi_befolkning",
+      "editorial_secondary_hook_id": "his_bevaring_ombruk_kulturmiljo",
+      "rationale": "Emnet må skille reinvestering, verdi- og befolkningsendring fra ren fysisk ombruk. Gentrifiseringsbanen er derfor primær, mens bevaringsbanen tester materiell kontinuitet, ny bruk og kulturmiljø."
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_klasse_segregasjon_og_offentlige_rom",
+      "current_title": "Kommunal styring og urban politisk økonomi",
+      "editorial_primary_hook_id": "his_regulering_plan_ekspropriasjon",
+      "editorial_secondary_hook_id": "his_gentrifisering_verdi_befolkning",
+      "rationale": "Den redaksjonelle linsen følger kommunens plan-, budsjett- og eierskapsverktøy gjennom gjennomføringskjeden. Reguleringsteorien dekker vedtak, eiendomsrett, finansiering og implementering; gentrifiseringsbanen tester kapitalisering og fordelingsvirkninger."
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_sanering_byfornyelse_og_modernisme",
+      "current_title": "Gatenett, tomtestruktur og tekniske infrastrukturer",
+      "editorial_primary_hook_id": "his_gatenett_tomtestruktur_infrastruktur",
+      "editorial_secondary_hook_id": "his_byutvidelse_grense_innlemmelse",
+      "rationale": "Den redaksjonelle linsen bruker kartlag til å følge gatenett, tomter, vann, avløp og transport som varige strukturer. Gatenettsteorien er direkte forklaringsramme; byutvidelsesbanen gir en separat kontroll av grense og urban integrasjon."
+    },
+    {
+      "emne_id": "em_his_byhistorie_stedsendring_gentrifisering_ombruk_og_bevaring",
+      "current_title": "Offentlig rom, tilgang og konflikt",
+      "editorial_primary_hook_id": "his_offentlig_rom_tilgang_konflikt",
+      "editorial_secondary_hook_id": "his_bevaring_ombruk_kulturmiljo",
+      "rationale": "Den redaksjonelle linsen måler offentlighet gjennom faktisk adgang, bruk, opphold og konflikt. Offentlig-rom-teorien er derfor primær, mens bevaringsbanen tester hvordan vern og ombruk kan endre tilgjengelighet."
+    }
+  ],
+  "resolved_legacy_question_surface_ids": [
+    {
+      "legacy_emne_id": "em_his_gatenett_tomtestruktur_infrastruktur",
+      "domain_id": "his_byhistorie_stedsendring",
+      "resolution": "retired_question_surface_identity",
+      "note": "Beholdes kun i historisk blueprint-materiale; aktiv canonical analyse av gatenett styres av explicit override for em_his_byhistorie_stedsendring_sanering_byfornyelse_og_modernisme."
+    },
+    {
+      "legacy_emne_id": "em_his_regulering_plan_ekspropriasjon",
+      "domain_id": "his_byhistorie_stedsendring",
+      "resolution": "retired_question_surface_identity",
+      "note": "Beholdes kun som kilde til editorial hook-profil; reguleringsrammen brukes eksplisitt av aktive canonicale emner gjennom override-registryen."
+    },
+    {
+      "legacy_emne_id": "em_his_naring_funksjonsskifte",
+      "domain_id": "his_byhistorie_stedsendring",
+      "resolution": "retired_question_surface_identity",
+      "note": "Beholdes kun i historisk blueprint-materiale og kan ikke materialiseres som canonical emne-ID."
+    },
+    {
+      "legacy_emne_id": "em_his_industrihavn_transformasjon",
+      "domain_id": "his_byhistorie_stedsendring",
+      "resolution": "retired_question_surface_identity",
+      "note": "Beholdes kun i historisk blueprint-materiale og kan ikke materialiseres som canonical emne-ID."
+    },
+    {
+      "legacy_emne_id": "em_his_gentrifisering_verdi_befolkning",
+      "domain_id": "his_byhistorie_stedsendring",
+      "resolution": "retired_question_surface_identity",
+      "note": "Beholdes som editorial hook-profil; aktiv gentrifiseringsanalyse bindes til canonicale emner gjennom override-registryen."
+    },
+    {
+      "legacy_emne_id": "em_his_offentlig_rom_tilgang_konflikt",
+      "domain_id": "his_byhistorie_stedsendring",
+      "resolution": "retired_question_surface_identity",
+      "note": "Beholdes som editorial hook-profil; aktiv offentlig-rom-analyse bindes til canonicale emner gjennom override-registryen."
+    },
+    {
+      "legacy_emne_id": "em_his_stedsnavn_fortelling_tilhorighet",
+      "domain_id": "his_byhistorie_stedsendring",
+      "resolution": "retired_question_surface_identity",
+      "note": "Beholdes kun i historisk blueprint-materiale og kan ikke materialiseres som canonical emne-ID."
+    }
+  ]
+}

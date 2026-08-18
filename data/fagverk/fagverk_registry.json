@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "3.11.0",
+  "version": "3.12.0",
   "updatedAt": "2026-08-18",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -752,7 +752,22 @@
             "em_vit_systemtenkning",
             "em_vit_feltarbeid_observasjon",
             "em_vit_medisin_helse",
-            "em_vit_miljo_okologi_system"
+            "em_vit_miljo_okologi_system",
+            "em_vit_doxa_maling",
+            "em_vit_faglig_konflikt",
+            "em_vit_forklaring_arsak",
+            "em_vit_ikke_malbare_fenomener",
+            "em_vit_kausalitet",
+            "em_vit_kunnskapens_grenser",
+            "em_vit_kunnskapssosiologi",
+            "em_vit_objektivitet",
+            "em_vit_paradigmeskifte",
+            "em_vit_perspektiv_blindsoner",
+            "em_vit_sannhetsproduksjon",
+            "em_vit_teori_modell",
+            "em_vit_vitenskapelige_revolusjoner",
+            "em_vit_vitenskapsfilosofi",
+            "em_vit_sannhet_maling_modeller"
           ],
           "claimsFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json",
           "briefFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/brief.json",
@@ -878,6 +893,32 @@
               "explicitFulltextTreatment": true,
               "claimTraceRequired": true,
               "boundary": "Natur retains organism-near biology, ecology, geology and environmental subject-matter depth; this Vitenskap supplement owns classification, observation, sampling, measurement, inference and evidence-chain methods."
+            },
+            {
+              "id": "paradigmer_teorier_sannhet",
+              "domain_id": "paradigmer_teorier_sannhet",
+              "moduleFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet.json",
+              "briefFile": "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/09-paradigmer-teorier-sannhet-brief.json",
+              "emne_ids": [
+                "em_vit_doxa_maling",
+                "em_vit_faglig_konflikt",
+                "em_vit_forklaring_arsak",
+                "em_vit_ikke_malbare_fenomener",
+                "em_vit_kausalitet",
+                "em_vit_kunnskapens_grenser",
+                "em_vit_kunnskapssosiologi",
+                "em_vit_objektivitet",
+                "em_vit_paradigmeskifte",
+                "em_vit_perspektiv_blindsoner",
+                "em_vit_sannhetsproduksjon",
+                "em_vit_teori_modell",
+                "em_vit_vitenskapelige_revolusjoner",
+                "em_vit_vitenskapsfilosofi",
+                "em_vit_sannhet_maling_modeller"
+              ],
+              "explicitFulltextTreatment": true,
+              "claimTraceRequired": true,
+              "boundary": "Filosofi retains independent philosophical argumentation, philosophy history and broad epistemological depth; this Vitenskap supplement uses theory, explanation, causation, objectivity, paradigms and social-knowledge distinctions only as controls on concrete scientific evidence practice."
             }
           ]
         },
@@ -1384,7 +1425,7 @@
       "canonicalModel": {
         "runtimeManifest": "data/fag/fag_manifest.json#historie",
         "sourceOfTruth": true,
-        "note": "Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier fem håndbygde kapitler og atten deterministiske kapitler med håndredigerte fagprofiler, emnelinser, årsakskjeder, tolkningsuenighet og stedscaser."
+        "note": "Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier fem håndbygde kapitler og atten generator-eide kapitler med semantisk låste primærhooks, separat kuraterte editorial theory hooks, håndredigerte fagprofiler, emnelinser, årsakskjeder, tolkningsuenighet, akademisk historiografi-evidens og stedscaser."
       },
       "chapters": [
         {

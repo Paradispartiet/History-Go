@@ -1,10 +1,10 @@
 # Place coordinate quality gate
 
-Generert: 2026-08-18T08:32:22.289Z
+Generert: 2026-08-11T17:20:55.670Z
 
 ## Oppsummering
-- Aktive filer validert: **1451**
-- Antall steder validert: **1451**
+- Aktive filer validert: **1449**
+- Antall steder validert: **1449**
 - Harde feil: **0**
 - Varsler: **600**
 - Coordinate review candidates: **737** signaler fordelt på **639** steder
@@ -1467,8 +1467,6 @@ Koordinater med `coordStatus=verified` eller `coordStatus=semantic_anchor` skal 
 - data/places/vitenskap/oslo/places_vitenskap/sintef_minalab.json
 - data/places/vitenskap/oslo/places_vitenskap/stk_pex_kabeltarnet.json
 - data/places/vitenskap/oslo/places_vitenskap/tandbergs_radiofabrikk_kjelsas.json
-- data/places/by/oslo/places/frogner.json
-- data/places/by/oslo/places/holmlia.json
 
 ## Harde feil
 - Ingen

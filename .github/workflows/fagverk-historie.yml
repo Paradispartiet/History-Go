@@ -23,6 +23,9 @@ on:
       - 'tools/validate-historie-period-modules.mjs'
       - 'tools/materialize-historie-period-modules.mjs'
       - 'tools/audit-historie-canonical-emner.mjs'
+      - 'tools/audit-historie-semantic-hook-alignment.mjs'
+      - 'tools/audit-historie-source-authority.mjs'
+      - 'tools/audit-historie-completion.mjs'
       - 'tools/validate-historie-editorial-quality.mjs'
       - 'tools/materialize-historie-editorial-chapters.mjs'
       - 'package.json'
@@ -34,8 +37,10 @@ on:
       - 'tests/historie-canonical-emne-identity.test.mjs'
       - 'tests/historie-curriculum-rendering.test.mjs'
       - 'tests/historie-editorial-quality.test.mjs'
+      - 'tests/historie-completion.test.mjs'
       - 'docs/HISTORY_CURRICULUM_ARCHITECTURE_V1.md'
       - 'reports/fagverk/**'
+      - 'reports/historie-canonical-migration/**'
       - 'reports/historie-universal-coverage/**'
       - '.github/workflows/fagverk-historie.yml'
   workflow_dispatch:
@@ -62,6 +67,9 @@ jobs:
           node --check tools/validate-historie-period-modules.mjs
           node --check tools/materialize-historie-period-modules.mjs
           node --check tools/audit-historie-canonical-emner.mjs
+          node --check tools/audit-historie-semantic-hook-alignment.mjs
+          node --check tools/audit-historie-source-authority.mjs
+          node --check tools/audit-historie-completion.mjs
           node --check tools/validate-historie-editorial-quality.mjs
           node --check tools/materialize-historie-editorial-chapters.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
@@ -70,10 +78,13 @@ jobs:
           node tools/validate-historie-period-modules.mjs
           node tools/materialize-historie-period-modules.mjs --check
           node tools/audit-historie-canonical-emner.mjs
+          node tools/audit-historie-semantic-hook-alignment.mjs
           node tools/validate-historie-editorial-quality.mjs
           node tools/materialize-historie-editorial-chapters.mjs --check
           node scripts/audit-fagverk-historie.mjs
           node tools/audit-historie-universal-coverage.mjs
+          node tools/audit-historie-source-authority.mjs
+          node tools/audit-historie-completion.mjs
       - name: Validate Fagverk and Historie contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
@@ -83,4 +94,5 @@ jobs:
           node --test tests/historie-canonical-emne-identity.test.mjs
           node --test tests/historie-curriculum-rendering.test.mjs
           node --test tests/historie-editorial-quality.test.mjs
+          node --test tests/historie-completion.test.mjs
           node --test tests/fagverk-historie.test.mjs
