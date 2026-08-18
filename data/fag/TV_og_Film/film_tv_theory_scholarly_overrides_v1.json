@@ -1,0 +1,37 @@
+{
+  "schema": "history_go_film_tv_theory_scholarly_overrides_v1",
+  "version": "1.0.0",
+  "subject_id": "film_tv",
+  "status": "canonical",
+  "reason": "Keep concrete claim anchors in their existing ledgers without pretending that the shared source-authority classifier recognizes every scholarly publication shape. Explicit overrides are limited to verified academic provenance and do not change claim-source classifications.",
+  "overrides": [
+    {
+      "id": "sch_ftv_kuhn_schmidt_narration",
+      "authors": ["Markus Kuhn", "Johann N. Schmidt"],
+      "title": "Narration in Film",
+      "publisher": "Universität Hamburg / the living handbook of narratology",
+      "url": "https://www-archiv.fdm.uni-hamburg.de/lhn/node/64.html",
+      "source_authority_class": "scholarly_book",
+      "source_location": "Scholarly university handbook entry on audiovisual narration, visual and verbal instances, camera, editing and sound. The existing ftvnvg01-lhn-film-narration registration remains the concrete claim anchor; this override records the academic provenance without altering the shared source-authority classifier.",
+      "domain_ids": ["fortelling_sjanger_serialitet_format"]
+    },
+    {
+      "id": "sch_ftv_jenkins_transmedia",
+      "authors": ["Henry Jenkins"],
+      "title": "Convergence Culture: Where Old and New Media Collide",
+      "publisher": "NYU Press",
+      "url": "https://nyupress.org/9780814743072/convergence-culture/",
+      "source_authority_class": "scholarly_book",
+      "source_location": "Academic monograph used as the scholarly framework for convergence and coordinated cross-media circulation. The existing ftvsfa06-jenkins-transmedia claim source remains the concrete transmedia-definition anchor in the seriality/adaptation ledger and is not upgraded to scholarly-book status.",
+      "domain_ids": ["fortelling_sjanger_serialitet_format"]
+    }
+  ],
+  "theorist_work_overrides": [
+    {
+      "theory_id": "theory_ftv_seriality_transmedia_storyworld",
+      "name": "Henry Jenkins",
+      "works": ["Convergence Culture: Where Old and New Media Collide"],
+      "reason": "The theory object's concrete claim anchor remains Transmedia Storytelling 101, while scholarly provenance is carried by the academic monograph."
+    }
+  ]
+}
