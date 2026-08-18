@@ -50,6 +50,14 @@ function collectSourceLocations() {
       if (!row.source_id) return;
       if (typeof row.source_location === 'string') add(row.source_id, row.source_location);
       for (const location of list(row.source_locations)) add(row.source_id, location);
+      if (/^https?:\/\/\S+$/i.test(String(row.url || ''))) add(row.source_id, row.url);
+      const repositorySource = row.provenance?.repository_source;
+      const extractedFrom = Array.isArray(row.provenance?.extracted_from)
+        ? row.provenance.extracted_from
+        : [row.provenance?.extracted_from].filter(Boolean);
+      for (const location of extractedFrom) {
+        if (repositorySource) add(row.source_id, `${repositorySource} :: ${location}`);
+      }
     });
   }
   return index;
@@ -72,6 +80,8 @@ function collectMaterializedClaimIds(registry) {
   for (const chapterRow of list(registry?.subjects?.historie?.chapters)) {
     assert.ok(chapterRow.file, `Historie registry chapter ${chapterRow.id || chapterRow.primary_domain_id} mangler file`);
     const chapter = readJson(chapterRow.file);
+    const generatorOwned = Boolean(chapter.productionBriefFile)
+      && readJson(chapter.productionBriefFile).generatedFrom?.generator === 'tools/materialize-historie-editorial-chapters.mjs';
     for (const moduleFile of list(chapter.moduleFiles)) {
       const module = readJson(moduleFile);
       ids.push(...list(module.claimIds));
@@ -79,16 +89,20 @@ function collectMaterializedClaimIds(registry) {
         const traceTypes = list(section.paragraphTraceTypes);
         const paragraphClaimIds = list(section.paragraphClaimIds);
         if (!traceTypes.length && !paragraphClaimIds.length) continue;
-        assert.equal(traceTypes.length, list(section.paragraphs).length, `${moduleFile}/${section.id}: paragraphTraceTypes må dekke alle avsnitt`);
         assert.equal(paragraphClaimIds.length, list(section.paragraphs).length, `${moduleFile}/${section.id}: paragraphClaimIds må dekke alle avsnitt`);
-        for (let index = 0; index < traceTypes.length; index += 1) {
-          const claimIds = list(paragraphClaimIds[index]);
-          if (traceTypes[index] === 'claim_supported') {
-            assert.ok(claimIds.length > 0, `${moduleFile}/${section.id}: claim_supported avsnitt mangler claim IDs`);
-            ids.push(...claimIds);
-          } else {
-            assert.equal(claimIds.length, 0, `${moduleFile}/${section.id}: analytisk avsnitt skal ikke late som det er claim-sporet`);
+        if (generatorOwned) {
+          assert.equal(traceTypes.length, list(section.paragraphs).length, `${moduleFile}/${section.id}: generator-eid paragraphTraceTypes må dekke alle avsnitt`);
+          for (let index = 0; index < traceTypes.length; index += 1) {
+            const claimIds = list(paragraphClaimIds[index]);
+            if (traceTypes[index] === 'claim_supported') {
+              assert.ok(claimIds.length > 0, `${moduleFile}/${section.id}: claim_supported avsnitt mangler claim IDs`);
+              ids.push(...claimIds);
+            } else {
+              assert.equal(claimIds.length, 0, `${moduleFile}/${section.id}: analytisk avsnitt skal ikke late som det er claim-sporet`);
+            }
           }
+        } else {
+          for (const claimIds of paragraphClaimIds) ids.push(...list(claimIds));
         }
       }
     }

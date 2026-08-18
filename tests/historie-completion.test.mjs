@@ -11,10 +11,14 @@ const readJson = (path) => JSON.parse(fs.readFileSync(path, 'utf8'));
 test('Historie semantic hook alignment is canonical and curated blueprints are reconciled', () => {
   const result = auditHistorySemanticHookAlignment();
   assert.equal(result.status, 'PASS');
-  assert.equal(result.canonical_emner, 230);
+  assert.equal(result.canonical_emners, 230);
   assert.equal(result.unique_primary_semantic_keys, 230);
-  assert.equal(result.curated_mismatches, 0);
-  assert.ok(result.curated_blueprint_rows > 0);
+  assert.equal(result.canonical_hook_mismatches, 0);
+  assert.equal(result.curated_editorial_hook_mismatches, 0);
+  assert.ok(result.active_curated_blueprint_rows > 0);
+  assert.equal(result.curated_editorial_coverage, 30);
+  assert.equal(result.canonical_identity_preserved, true);
+  assert.equal(result.editorial_layer_separate_from_ownership, true);
 });
 
 test('Historie source authority and evidence are completion-grade', () => {

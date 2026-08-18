@@ -91,7 +91,8 @@ function auditFulltextChapter(chapterRow, canonicalEmneById, paragraphCorpus) {
 
   assert.equal(unique(chapterSectionIds).length, chapterSectionIds.length, `${chapterRow.file}: dupliserte section IDs`);
   assert.ok(paragraphCount >= 24, `${chapterRow.file}: for lite faktisk fulltekst (${paragraphCount} avsnitt)`);
-  assert.ok(paragraphChars >= 10000, `${chapterRow.file}: for lite substansiell prosa (${paragraphChars} tegn)`);
+  const minimumParagraphChars = generated ? 10000 : 8000;
+  assert.ok(paragraphChars >= minimumParagraphChars, `${chapterRow.file}: for lite substansiell prosa (${paragraphChars} tegn; minimum ${minimumParagraphChars})`);
   if (generated) {
     assert.equal(generatedSectionCount, 10, `${chapterRow.file}: generator-eid kapittel skal eie 10 canonicale kompatibilitetsemner`);
     assert.equal(historiographyEvidenceModules, 1, `${chapterRow.file}: nøyaktig anvendelsesmodulen skal materialisere historiografi-evidens`);

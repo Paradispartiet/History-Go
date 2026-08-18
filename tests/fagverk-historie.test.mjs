@@ -8,12 +8,12 @@ import { assertHistoryRendererContract, auditHistorySubject } from '../scripts/a
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), 'utf8'));
 
-test('Historie er materialisert, redaksjonelt utvidet og auditert', () => {
+test('Historie er materialisert, redaksjonelt complete og auditert', () => {
   const { report } = auditHistorySubject();
   assert.equal(report.subject.id, 'historie');
   assert.equal(report.subject.adapter, 'standard');
   assert.equal(report.subject.assessmentStatus, 'audited');
-  assert.equal(report.subject.editorialStatus, 'expanded_and_audited');
+  assert.equal(report.subject.editorialStatus, 'complete');
   assert.deepEqual(report.summary, {
     domainCount: 23,
     emneCount: 230,

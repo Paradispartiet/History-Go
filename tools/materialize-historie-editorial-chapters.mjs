@@ -154,7 +154,9 @@ function sectionFor(category, emne, index, editorialProfile) {
 
   const definition = normalize(emne.definition);
   const theoryDefinition = normalize(pack.theory.definition);
-  const distinctTheoryDefinition = theoryDefinition && theoryDefinition !== definition ? theoryDefinition : '';
+  const distinctTheoryDefinition = theoryDefinition && theoryDefinition !== definition
+    ? (theoryDefinition.startsWith(`${definition} `) ? theoryDefinition.slice(definition.length).trim() : theoryDefinition)
+    : '';
   const interpretiveParts = [
     distinctTheoryDefinition,
     list(emne.key_questions)[0] ? `Analysen testes mot spørsmålet: ${normalize(list(emne.key_questions)[0])}` : '',
@@ -163,6 +165,7 @@ function sectionFor(category, emne, index, editorialProfile) {
   ].filter(Boolean);
   const evidenceParagraphs = pack.claims.map((claim) => claimParagraph(claim, emne));
   const synthesisParts = [
+    `I tolkningen av ${emne.title.toLocaleLowerCase('nb-NO')} er den redaksjonelle avgrensningen «${normalize(editorialLens)}».`,
     normalize(pack.theoryEvidence.rationale),
     alternative ? `En alternativ tolkning som må prøves er: ${normalize(alternative)}` : '',
     disconfirmation ? `Forklaringen må svekkes eller revideres dersom: ${normalize(disconfirmation)}` : ''
@@ -431,9 +434,15 @@ registry.subjects.historie.chapters = pensum.domains.map((domain) => (
 registry.subjects.historie.description = 'Et sammenhengende, kildekritisk læreverk om historisk tid, perioder, samfunn, aktører, institusjoner, steder, begreper og fortolkninger fra forhistorie til samtid.';
 registry.subjects.historie.canonicalModel.note = 'Fagområder, emner, begreper, metoder, claims og teori-evidens leses fra canonical Historie-data. Registryet eier fem håndbygde kapitler og atten generator-eide kapitler med semantisk låste primærhooks, separat kuraterte editorial theory hooks, håndredigerte fagprofiler, emnelinser, årsakskjeder, tolkningsuenighet, akademisk historiografi-evidens og stedscaser.';
 const statusEntry = status.subjects.find((item) => item.id === 'historie');
-statusEntry.editorialStatus = 'expanded_and_audited';
-statusEntry.nextGate = 'source_refresh_and_case_expansion';
-statusEntry.note = 'Historie har 23 av 23 canonicale fagområder, 23 fullverdige kapitler og 9 av 9 dekkede hovedperioder. De tre tidligere kronologiske gapene har egne evidensklare moduler med 21 læringsenheter, 18 kilder og 9 stedscaser. De 230 stabile kompatibilitetsemnene har unike titler, definisjoner og semantiske nøkler; 26 legacy-id-er er eksplisitt låst til riktig primærhook uten uløste identitetsblokkere. Completion-sporet kvalitetssikrer nå generatorprosa, akademisk historiografi-evidens og kildeautoritet før terminal status.';
+if (statusEntry.editorialStatus === 'complete') {
+  if (statusEntry.nextGate !== 'maintenance_source_refresh_and_place_case_expansion') {
+    throw new Error('Complete History må beholde maintenance_source_refresh_and_place_case_expansion som terminal nextGate');
+  }
+} else {
+  statusEntry.editorialStatus = 'expanded_and_audited';
+  statusEntry.nextGate = 'source_refresh_and_case_expansion';
+  statusEntry.note = 'Historie har 23 av 23 canonicale fagområder, 23 fullverdige kapitler og 9 av 9 dekkede hovedperioder. De tre tidligere kronologiske gapene har egne evidensklare moduler med 21 læringsenheter, 18 kilder og 9 stedscaser. De 230 stabile kompatibilitetsemnene har unike titler, definisjoner og semantiske nøkler; 26 legacy-id-er er eksplisitt låst til riktig primærhook uten uløste identitetsblokkere. Completion-sporet kvalitetssikrer nå generatorprosa, akademisk historiografi-evidens og kildeautoritet før terminal status.';
+}
 status.version ||= '2.19.0';
 status.updatedAt ||= '2026-08-04';
 writeJson('data/fagverk/fagverk_registry.json', registry);
