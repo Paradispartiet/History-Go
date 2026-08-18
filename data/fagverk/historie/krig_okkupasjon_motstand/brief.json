@@ -30,8 +30,8 @@
   ],
   "requiredTheoryEvidenceIds": [
     "theory_his_okkupasjon_byrom_kontroll",
-    "theory_his_okkupasjon_byrom_kontroll",
-    "theory_his_okkupasjon_byrom_kontroll",
+    "theory_his_krig_okkupasjon_okkupasjon_og_motstand",
+    "theory_his_krig_okkupasjon_rettsoppgjor_og_etterkrig",
     "theory_his_krig_okkupasjon_okkupasjon_samarbeid_tilpasning_og_motstand",
     "theory_his_krig_okkupasjon_propaganda_sensur_og_informasjonskontroll",
     "theory_his_krig_okkupasjon_fangenskap_vold_og_forfolgelse",
@@ -39,6 +39,10 @@
     "theory_his_krig_okkupasjon_krigsminne_veteraner_og_ettervirkninger",
     "theory_his_krig_okkupasjon_motstand_samarbeid_tilpasning_og_grasoner",
     "theory_his_krig_okkupasjon_kald_krig_beredskap_og_sikkerhetsstat"
+  ],
+  "requiredHistoriographySourceIds": [
+    "hist_method_gaddis_2002",
+    "hist_occupation_mazower_2008"
   ],
   "editorialRequirements": {
     "minimumSectionCount": 10,
@@ -50,11 +54,15 @@
     "sourceLimitationsRequired": true,
     "editorialProfileRequired": true,
     "historiographicalDebateRequired": true,
+    "academicHistoriographyEvidenceRequired": true,
+    "semanticPrimaryHookRequired": true,
+    "separateEditorialTheoryHookRequired": true,
     "causalFrameworkRequired": true,
     "minimumCaseAnchors": 3
   },
   "evidenceBoundary": [
     "Kapittelet bruker bare claims og kilder som allerede er registrert i Historie-fagets canonicale evidenslag.",
+    "Akademisk sekundærlitteratur underbygger historiografisk og kausal orientering, men erstatter ikke claim-spesifikke primær-, arkiv- eller casekilder.",
     "Stedscasene dokumenterer anvendelse og variasjon, men gjør ikke lokale funn universelle.",
     "Hver forklaring skal skille dokumentert påstand, analytisk tolkning, alternativ forklaring og kildebegrensning."
   ],
@@ -67,6 +75,8 @@
     "evidence": "data/fag/historie/theory_evidence_historie_canonical_v1.json",
     "claims": "data/fag/historie/claims_historie_canonical_v1.json",
     "sources": "data/fag/historie/sources_historie_canonical_v1.json",
-    "editorialProfiles": "data/fag/historie/editorial_profiles_historie_v1.json"
+    "editorialProfiles": "data/fag/historie/editorial_profiles_historie_v1.json",
+    "editorialTheoryOverrides": "data/fag/historie/editorial_theory_overrides_historie_v1.json",
+    "historiographyEvidence": "data/fag/historie/historiography_evidence_historie_v1.json"
   }
 }

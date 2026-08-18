@@ -51,11 +51,12 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
   for (const id of ['by', 'kunst', 'litteratur', 'musikk', 'naeringsliv', 'natur', 'subkultur']) {
     assert.equal(s.subjects.find((x) => x.id === id).editorialStatus, 'complete');
   }
-  for (const id of ['historie', 'politikk']) {
-    const subject = s.subjects.find((x) => x.id === id);
-    assert.equal(subject.editorialStatus, 'expanded_and_audited');
-    assert.equal(subject.nextGate, 'source_refresh_and_case_expansion');
-  }
+  const historie = s.subjects.find((x) => x.id === 'historie');
+  assert.equal(historie.editorialStatus, 'complete');
+  assert.equal(historie.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
+  const politikk = s.subjects.find((x) => x.id === 'politikk');
+  assert.equal(politikk.editorialStatus, 'expanded_and_audited');
+  assert.equal(politikk.nextGate, 'source_refresh_and_case_expansion');
   for (const id of ['litteratur', 'naeringsliv', 'subkultur']) {
     assert.equal(s.subjects.find((x) => x.id === id).nextGate, 'maintenance_and_source_refresh');
   }
