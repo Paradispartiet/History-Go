@@ -6,8 +6,8 @@
   "summary": {
     "work_worlds": 89,
     "statuses": {
-      "reference_complete": 2,
-      "playable": 4,
+      "reference_complete": 3,
+      "playable": 3,
       "partial": 20,
       "architecture_only": 63
     },
@@ -30,8 +30,8 @@
         "missing": 8
       },
       "practice_stories": {
-        "complete": 10,
-        "partial": 74,
+        "complete": 11,
+        "partial": 73,
         "missing": 5
       },
       "people": {
@@ -863,6 +863,7 @@
         "badgeRoleMappings",
         "lifeStory",
         "mailPlan",
+        "practiceRegistry",
         "workGrammar"
       ],
       "badge_titles": [
@@ -876,7 +877,7 @@
         "by_arealplanlegger",
         "by_radgiver_plan"
       ],
-      "status": "playable",
+      "status": "reference_complete",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/by/arealplanlegger.json"
@@ -887,11 +888,11 @@
         "mail_families": {
           "job": {
             "path": "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
-            "count": 12
+            "count": 24
           },
           "people": {
             "path": "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json",
-            "count": 10
+            "count": 22
           },
           "conflict": {
             "path": "data/Civication/mailFamilies/by/conflict/by_radgiver_plan_conflict.json",
@@ -926,6 +927,7 @@
           "tests/civication-answer-prefetch.test.js",
           "tests/civication-arealplanlegger-mail-plan.test.js",
           "tests/civication-by-career-architecture.test.js",
+          "tests/civication-by-radgiver-role-world.test.js",
           "tests/civication-career-gameplay-matrix.test.js",
           "tests/civication-compiled-scene-registry-parity.test.js",
           "tests/civication-day-workday-split.test.js",
@@ -939,6 +941,7 @@
           "tests/civication-reference-role-playability.test.js",
           "tests/civication-reference-roles-choice-contract.test.js",
           "tests/civication-role-pack-depth.test.js",
+          "tests/civication-role-world-contract.test.js",
           "tests/civication-semantic-playthrough-gate.test.js",
           "tests/civication-task-gate-inline.test.js",
           "tests/civication-test-mode-ui.test.js",
@@ -973,6 +976,7 @@
               "tests/civication-answer-prefetch.test.js",
               "tests/civication-arealplanlegger-mail-plan.test.js",
               "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-radgiver-role-world.test.js",
               "tests/civication-career-gameplay-matrix.test.js",
               "tests/civication-compiled-scene-registry-parity.test.js",
               "tests/civication-day-workday-split.test.js",
@@ -986,6 +990,7 @@
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-role-pack-depth.test.js",
+              "tests/civication-role-world-contract.test.js",
               "tests/civication-semantic-playthrough-gate.test.js",
               "tests/civication-task-gate-inline.test.js",
               "tests/civication-test-mode-ui.test.js",
@@ -1003,6 +1008,7 @@
               "tests/civication-answer-prefetch.test.js",
               "tests/civication-arealplanlegger-mail-plan.test.js",
               "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-radgiver-role-world.test.js",
               "tests/civication-career-gameplay-matrix.test.js",
               "tests/civication-compiled-scene-registry-parity.test.js",
               "tests/civication-day-workday-split.test.js",
@@ -1016,6 +1022,7 @@
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-role-pack-depth.test.js",
+              "tests/civication-role-world-contract.test.js",
               "tests/civication-semantic-playthrough-gate.test.js",
               "tests/civication-task-gate-inline.test.js",
               "tests/civication-test-mode-ui.test.js",
@@ -1025,12 +1032,12 @@
             "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/praksisfortellinger_registry.json",
-              "data/Civication/workGrammars/by/by_radgiver_plan.json"
+              "tests/civication-by-radgiver-role-world.test.js"
             ],
-            "note": "8 FWG stories and 0 registered practice week(s)."
+            "note": "2 registered and tested practice weeks."
           },
           "people": {
             "level": "complete",
@@ -1067,7 +1074,8 @@
               "data/Civication/mailFamilies/by/micro/by_radgiver_plan_micro.json",
               "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json",
               "data/Civication/mailFamilies/by/story/by_radgiver_plan_story.json",
-              "data/Civication/mailPlans/by/by_radgiver_plan_plan.json"
+              "data/Civication/mailPlans/by/by_radgiver_plan_plan.json",
+              "tests/civication-by-radgiver-role-world.test.js"
             ],
             "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
@@ -1084,6 +1092,7 @@
           "quality_axes": {
             "level": "complete",
             "evidence": [
+              "data/Civication/praksisfortellinger_registry.json",
               "data/Civication/roleModels/by/arealplanlegger.json",
               "data/Civication/workGrammars/by/by_radgiver_plan.json"
             ],
@@ -1105,6 +1114,7 @@
               "tests/civication-answer-prefetch.test.js",
               "tests/civication-arealplanlegger-mail-plan.test.js",
               "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-radgiver-role-world.test.js",
               "tests/civication-career-gameplay-matrix.test.js",
               "tests/civication-compiled-scene-registry-parity.test.js",
               "tests/civication-day-workday-split.test.js",
@@ -1118,6 +1128,7 @@
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-role-pack-depth.test.js",
+              "tests/civication-role-world-contract.test.js",
               "tests/civication-semantic-playthrough-gate.test.js",
               "tests/civication-task-gate-inline.test.js",
               "tests/civication-test-mode-ui.test.js",
@@ -1133,6 +1144,7 @@
               "tests/civication-answer-prefetch.test.js",
               "tests/civication-arealplanlegger-mail-plan.test.js",
               "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-radgiver-role-world.test.js",
               "tests/civication-career-gameplay-matrix.test.js",
               "tests/civication-career-outcomes.test.js",
               "tests/civication-compiled-scene-registry-parity.test.js",
@@ -1147,6 +1159,7 @@
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-role-pack-depth.test.js",
+              "tests/civication-role-world-contract.test.js",
               "tests/civication-semantic-playthrough-gate.test.js",
               "tests/civication-task-gate-inline.test.js",
               "tests/civication-test-mode-ui.test.js",
@@ -1190,6 +1203,7 @@
           "entry",
           "day_one",
           "workday_loop",
+          "practice_stories",
           "people",
           "places",
           "mail",
@@ -1203,8 +1217,11 @@
           "exit"
         ],
         "practice_story_count": 8,
-        "practice_weeks": [],
-        "reference_depth": 8,
+        "practice_weeks": [
+          "1",
+          "2"
+        ],
+        "reference_depth": 20,
         "life_story_complete": true,
         "salary": {
           "linked_titles": 4,

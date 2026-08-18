@@ -39,9 +39,13 @@ assert.deepEqual(policy.second_reference_world, index.second_reference_world);
 assert.equal(policy.second_reference_world.status, 'role_world_complete');
 assert.ok(String(policy.second_reference_world.role_scope || '').trim());
 assert.notEqual(policy.second_reference_world.role_scope, policy.first_reference_world.role_scope);
+assert.deepEqual(policy.third_reference_world, index.third_reference_world);
+assert.equal(policy.third_reference_world.status, 'role_world_complete');
+assert.equal(policy.third_reference_world.category, 'by');
+assert.equal(policy.third_reference_world.role_scope, 'by_radgiver_plan');
 assert.ok(String(policy.next_reference_world.category || '').trim());
 assert.ok(String(policy.next_reference_world.role_scope || '').trim());
-assert.notEqual(policy.next_reference_world.role_scope, policy.second_reference_world.role_scope);
+assert.notEqual(policy.next_reference_world.role_scope, policy.third_reference_world.role_scope);
 assert.equal(policy.season_contract.days, 14);
 assert.deepEqual(policy.season_contract.day_phases, ['morning', 'lunch', 'afternoon', 'evening']);
 assert.equal(policy.season_contract.required_unique_coverage_slots_for_complete, 56);
@@ -168,7 +172,7 @@ assert.match(roleMailDoc, /Mail er delivery/);
 assert.doesNotMatch(roleMailDoc, /Dette er autoritativ jobbmailflyt/);
 
 const completeWorlds = index.roles.filter((entry) => entry.status === 'role_world_complete');
-assert.equal(completeWorlds.length, 2, 'The second Role World production wave must expose exactly two completed reference worlds');
+assert.equal(completeWorlds.length, 3, 'The third Role World production wave must expose exactly three completed reference worlds');
 assert.deepEqual(referenceIdentity(completeWorlds[0]), {
   category: 'naeringsliv',
   role_scope: 'ekspeditor',
@@ -176,5 +180,11 @@ assert.deepEqual(referenceIdentity(completeWorlds[0]), {
 }, 'Ekspeditor must remain the first completed Role World');
 assert.deepEqual(referenceIdentity(completeWorlds[0]), index.first_reference_world);
 assert.deepEqual(referenceIdentity(completeWorlds[1]), index.second_reference_world);
+assert.deepEqual(referenceIdentity(completeWorlds[2]), {
+  category: 'by',
+  role_scope: 'by_radgiver_plan',
+  status: 'role_world_complete'
+}, 'By-rådgiver must be the third completed Role World');
+assert.deepEqual(referenceIdentity(completeWorlds[2]), index.third_reference_world);
 
 console.log('Civication Role World contract: OK');
