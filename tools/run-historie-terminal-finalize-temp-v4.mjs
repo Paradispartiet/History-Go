@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// Explicit one-shot retrigger after terminal audit reduced to stale semantic result-key assertions.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
