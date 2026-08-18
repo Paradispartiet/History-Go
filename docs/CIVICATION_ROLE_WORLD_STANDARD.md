@@ -296,27 +296,27 @@ Dette er kvalitetskrav, ikke ordmengdekrav.
 
 ## 13. Reference-status og neste produksjon
 
-De to første reference Role Worlds er nå materialisert og permanent testet:
+De tre første reference Role Worlds er nå materialisert og permanent testet:
 
 ```text
 naeringsliv/ekspeditor → role_world_complete
 naeringsliv/renholder  → role_world_complete
+by/by_radgiver_plan     → role_world_complete
 ```
 
-Ekspeditør og Renholder er strukturreferanser for metoden, ikke innholdsmaler som senere roller skal kopiere. Renholder beviser at standarden også fungerer for usynlig arbeid, kropp/HMS, avvik og privat arbeidslekkasje.
+Ekspeditør, Renholder og By-rådgiver er strukturreferanser for metoden, ikke innholdsmaler som senere roller skal kopiere. By-rådgiver beviser at standarden også fungerer i en kunnskaps- og forvaltningsverden der byråkratisk makt, lokal kunnskap, planjuss, politisk lesbarhet og lojalitet oppover/nedover må holdes fra hverandre uten å miste sammenheng.
 
 Neste reference Role World er:
 
 ```text
-by/by_radgiver_plan
+naeringsliv/controller
 ```
 
-By-rådgiver skal teste samme authoring-prosess i en kunnskaps- og forvaltningsverden med byråkratisk makt, lokal kunnskap, politisk/administrativt press, faglig integritet og lojalitet oppover/nedover.
+Controller skal teste samme authoring-prosess i en tall- og kontrollverden der målinger, avvik, budsjett, styringsinformasjon og organisatorisk lojalitet kan gjøre virkeligheten mer lesbar — eller skjule det tallene ikke fanger.
 
 Deretter følger:
 
 ```text
-naeringsliv/controller
 sport/sport_utover
 ```
 

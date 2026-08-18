@@ -37,7 +37,10 @@
           ],
           "task_domain": "stedsanalyse",
           "competency": "målbildekritikk",
-          "learning_focus": ["stedsanalyse", "målbildekritikk"],
+          "learning_focus": [
+            "stedsanalyse",
+            "målbildekritikk"
+          ],
           "pressure": "visjon_vs_observasjon",
           "choice_axis": "vise_friksjon_vs_stotte_malbildet",
           "consequence_axis": "presis_analyse_vs_glatt_fortelling",
@@ -219,7 +222,10 @@
           ],
           "task_domain": "fortetting",
           "competency": "kvalitativ_arealavveiing",
-          "learning_focus": ["fortetting", "kvalitativ_arealavveiing"],
+          "learning_focus": [
+            "fortetting",
+            "kvalitativ_arealavveiing"
+          ],
           "pressure": "boligmaal_vs_hverdagskvalitet",
           "choice_axis": "beskytte_pusterom_vs_stotte_fortetting",
           "consequence_axis": "langsiktig_bykvalitet_vs_maloppnaelse",
@@ -284,7 +290,10 @@
           ],
           "task_domain": "medvirkningsanalyse",
           "competency": "planfaglig_oversettelse",
-          "learning_focus": ["medvirkningsanalyse", "planfaglig_oversettelse"],
+          "learning_focus": [
+            "medvirkningsanalyse",
+            "planfaglig_oversettelse"
+          ],
           "pressure": "motstand_vs_kunnskap",
           "choice_axis": "oversette_mønster_vs_registrere_motstand",
           "consequence_axis": "planforbedring_vs_prosessro",
@@ -407,7 +416,10 @@
           ],
           "task_domain": "bykvalitet",
           "competency": "kvalitetsvern",
-          "learning_focus": ["bykvalitet", "kvalitetsvern"],
+          "learning_focus": [
+            "bykvalitet",
+            "kvalitetsvern"
+          ],
           "pressure": "gjennomføring_vs_byliv",
           "choice_axis": "holde_kvalitetskrav_vs_myke_opp",
           "consequence_axis": "langsiktig_bykvalitet_vs_realisering",
@@ -813,6 +825,932 @@
               "frist_for_utvalg"
             ]
           }
+        }
+      ]
+    },
+    {
+      "id": "first_week_praksisfortellinger_by_radgiver_job",
+      "purpose": "Fem arbeidsfortellinger som gjør Lillebekk uke 1 til en praksisuke for lokal kunnskap, forventningsstyring, planjuss, klima og politisk lesbarhet.",
+      "learning_focus": [
+        "lokal_kunnskap",
+        "traceability",
+        "juridisk_presisjon",
+        "politisk_lesbarhet"
+      ],
+      "mails": [
+        {
+          "id": "by_radgiver_week1_kartet_tier",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "early",
+          "priority": 68,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "hanne_beboer",
+          "sender": "hanne_beboer",
+          "person_id": "hanne_beboer",
+          "place_id": "skolevei_lillebekk",
+          "subject": "Kartet tier om skoleveien",
+          "summary": "Plankartet er formelt ryddig, men den faktiske skoleveien finnes ikke i grunnlaget.",
+          "purpose": "Plankartet er formelt ryddig, men den faktiske skoleveien finnes ikke i grunnlaget.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Kartet viser en regulert ganglinje.",
+            "Hanne dokumenterer at barn bruker en snarvei over planområdet hver morgen.",
+            "Du må avgjøre om lokal bruk er relevant nok til å endre saksgrunnlaget."
+          ],
+          "task_domain": "medvirkningsanalyse",
+          "task_kind": "job",
+          "competency": "lokal_kunnskap",
+          "learning_focus": [
+            "medvirkningsanalyse",
+            "lokal_kunnskap"
+          ],
+          "pressure": "kart_vs_levd_nabolag",
+          "choice_axis": "dokumentere_lokal_bruk_vs_holde_formelt_grunnlag",
+          "consequence_axis": "kunnskapsgevinst_vs_fremdrift",
+          "narrative_arc": "Lillebekk uke 1: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta skoleveien inn som dokumentert planpremiss",
+              "reply": "Ta skoleveien inn som dokumentert planpremiss.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "integrity": 2,
+                  "local_knowledge": 3,
+                  "traceability": 2
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "kart_vs_levd_nabolag",
+                  "medvirkningsanalyse"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week1_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Hold deg til det formelle kartgrunnlaget",
+              "reply": "Hold deg til det formelle kartgrunnlaget.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "integrity": -1,
+                  "local_knowledge": -2,
+                  "traceability": -1
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        },
+        {
+          "id": "by_radgiver_week1_utbygger_signal",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "early",
+          "priority": 67,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ivar_utbygger",
+          "sender": "ivar_utbygger",
+          "person_id": "ivar_utbygger",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Utbyggeren vil ha et signal",
+          "summary": "Ivar ber om et tidlig signal om høyde og parkering før faggrunnlaget er ferdig.",
+          "purpose": "Ivar ber om et tidlig signal om høyde og parkering før faggrunnlaget er ferdig.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Finansieringen krever rask avklaring.",
+            "Høyde, parkering og skolevei er fortsatt under utredning.",
+            "Et muntlig signal kan bli brukt som prosjektpremiss."
+          ],
+          "task_domain": "utbyggerdialog",
+          "task_kind": "job",
+          "competency": "offentlig_integritet",
+          "learning_focus": [
+            "utbyggerdialog",
+            "offentlig_integritet"
+          ],
+          "pressure": "tempo_vs_uavhengig_prosess",
+          "choice_axis": "skriftlig_forbehold_vs_uformelt_signal",
+          "consequence_axis": "forutsigbarhet_vs_forventningsrisiko",
+          "narrative_arc": "Lillebekk uke 1: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Svar skriftlig med tydelige forbehold",
+              "reply": "Svar skriftlig med tydelige forbehold.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "integrity": 3,
+                  "traceability": 3,
+                  "manager_trust": 1
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "tempo_vs_uavhengig_prosess",
+                  "utbyggerdialog"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week1_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Gi et muntlig signal for å holde framdrift",
+              "reply": "Gi et muntlig signal for å holde framdrift.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "integrity": -2,
+                  "traceability": -3,
+                  "manager_trust": 1
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        },
+        {
+          "id": "by_radgiver_week1_rekkefolgekrav",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "mid",
+          "priority": 66,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora_planjuss",
+          "sender": "nora_planjuss",
+          "person_id": "nora_planjuss",
+          "place_id": "politisk_utvalg_moterom",
+          "subject": "Rekkefølgekravet må faktisk virke",
+          "summary": "Et foreslått krav nevner skolevei og overvann, men sikrer ikke at tiltakene er løst før byggestart.",
+          "purpose": "Et foreslått krav nevner skolevei og overvann, men sikrer ikke at tiltakene er løst før byggestart.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Bestemmelsen har gode intensjoner.",
+            "Tidspunktet for oppfyllelse er uklart.",
+            "Hvis kravet er for mykt, flyttes risikoen til gjennomføringen."
+          ],
+          "task_domain": "planbestemmelser",
+          "task_kind": "job",
+          "competency": "juridisk_presisjon",
+          "learning_focus": [
+            "planbestemmelser",
+            "juridisk_presisjon"
+          ],
+          "pressure": "tempo_vs_etterprovbarhet",
+          "choice_axis": "presist_krav_vs_fleksibel_tekst",
+          "consequence_axis": "gjennomforbarhet_vs_senere_konflikt",
+          "narrative_arc": "Lillebekk uke 1: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv kravet slik at tidspunkt og ansvar kan etterprøves",
+              "reply": "Skriv kravet slik at tidspunkt og ansvar kan etterprøves.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "legal_precision": 3,
+                  "traceability": 2,
+                  "integrity": 2
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "tempo_vs_etterprovbarhet",
+                  "planbestemmelser"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week1_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Behold en fleksibel formulering og avklar senere",
+              "reply": "Behold en fleksibel formulering og avklar senere.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "legal_precision": -2,
+                  "traceability": -1
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        },
+        {
+          "id": "by_radgiver_week1_grontdrag_flomvei",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "advanced",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "signe_byokolog",
+          "sender": "signe_byokolog",
+          "person_id": "signe_byokolog",
+          "place_id": "grontdrag_lillebekk",
+          "subject": "Restarealet er også en flomvei",
+          "summary": "Signe viser at grøntdraget har en kritisk overvannsfunksjon i tillegg til natur- og oppholdskvalitet.",
+          "purpose": "Signe viser at grøntdraget har en kritisk overvannsfunksjon i tillegg til natur- og oppholdskvalitet.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Utbygger ønsker mer byggeareal.",
+            "Overvannskartet viser vannvei gjennom grøntdraget.",
+            "En kompensasjon et annet sted erstatter ikke nødvendigvis funksjonen her."
+          ],
+          "task_domain": "konsekvensvurdering",
+          "task_kind": "job",
+          "competency": "klima_og_gronnstruktur",
+          "learning_focus": [
+            "konsekvensvurdering",
+            "klima_og_gronnstruktur"
+          ],
+          "pressure": "utnyttelse_vs_robusthet",
+          "choice_axis": "bevare_funksjon_vs_maksimere_utnyttelse",
+          "consequence_axis": "robusthet_vs_kortsiktig_volum",
+          "narrative_arc": "Lillebekk uke 1: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør flomfunksjonen til eksplisitt premiss",
+              "reply": "Gjør flomfunksjonen til eksplisitt premiss.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "integrity": 2,
+                  "local_knowledge": 1,
+                  "traceability": 2
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "utnyttelse_vs_robusthet",
+                  "konsekvensvurdering"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week1_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Behandle grøntdraget som avbøtbart restareal",
+              "reply": "Behandle grøntdraget som avbøtbart restareal.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "integrity": -2,
+                  "traceability": -1
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        },
+        {
+          "id": "by_radgiver_week1_politisk_lesbarhet",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "mastery",
+          "priority": 64,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "maja_utvalgssekretaer",
+          "sender": "maja_utvalgssekretaer",
+          "person_id": "maja_utvalgssekretaer",
+          "place_id": "politisk_utvalg_moterom",
+          "subject": "Utvalget må se hva det faktisk velger",
+          "summary": "Maja trenger et kort beslutningsgrunnlag som skiller lovkrav, faglig anbefaling og politiske alternativer.",
+          "purpose": "Maja trenger et kort beslutningsgrunnlag som skiller lovkrav, faglig anbefaling og politiske alternativer.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Saken er omfattende.",
+            "Politikerne trenger tydelige alternativer.",
+            "Forenkling må ikke skjule usikkerhet eller gjøre fag til politikk."
+          ],
+          "task_domain": "saksframstilling",
+          "task_kind": "job",
+          "competency": "politisk_lesbarhet",
+          "learning_focus": [
+            "saksframstilling",
+            "politisk_lesbarhet"
+          ],
+          "pressure": "forenkling_vs_presisjon",
+          "choice_axis": "vise_alternativer_vs_gi_enkel_konklusjon",
+          "consequence_axis": "lesbarhet_vs_skjult_styring",
+          "narrative_arc": "Lillebekk uke 1: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Vis premisser, usikkerhet og reelle alternativer",
+              "reply": "Vis premisser, usikkerhet og reelle alternativer.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "political_readability": 3,
+                  "legal_precision": 1,
+                  "integrity": 2
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "forenkling_vs_presisjon",
+                  "saksframstilling"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week1_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Skriv én tydelig konklusjon og ton ned forbehold",
+              "reply": "Skriv én tydelig konklusjon og ton ned forbehold.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "political_readability": 1,
+                  "integrity": -2
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        }
+      ],
+      "threads": [
+        {
+          "id": "by_radgiver_week1_job_followup",
+          "mail_type": "job",
+          "mail_family": "first_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Uke 1: senere følge av valgene",
+          "summary": "Et tidligere valg kommer tilbake og gjør faglig spor, relasjon eller kapasitet synlig i neste del av forløpet.",
+          "situation": [
+            "Et tidligere valg er registrert.",
+            "Konsekvensen kan nå leses i saken eller relasjonen."
+          ],
+          "choices": []
+        }
+      ]
+    },
+    {
+      "id": "second_week_praksisfortellinger_by_radgiver_job",
+      "purpose": "Fem arbeidsfortellinger som gjør Lillebekk uke 2 til en praksisuke for kapasitet, medvirkning, fortetting, mandatgrense og endelig beslutningsgrunnlag.",
+      "learning_focus": [
+        "gjennomforbarhet",
+        "lokal_kunnskap",
+        "juridisk_presisjon",
+        "politisk_lesbarhet"
+      ],
+      "mails": [
+        {
+          "id": "by_radgiver_week2_kapasitetsgap",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "early",
+          "priority": 68,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_plansjef",
+          "sender": "elin_plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Boligvolumet mangler dokumentert kapasitet",
+          "summary": "Boligmålet er politisk ønsket, men skole, vei og VA er ikke dokumentert for volumet.",
+          "purpose": "Boligmålet er politisk ønsket, men skole, vei og VA er ikke dokumentert for volumet.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Planen leverer på bolig.",
+            "Kapasitetsgrunnlaget er ufullstendig.",
+            "Hvis usikkerheten skjules, blir gjennomføringen et senere problem."
+          ],
+          "task_domain": "infrastruktur",
+          "task_kind": "job",
+          "competency": "gjennomforbarhet",
+          "learning_focus": [
+            "infrastruktur",
+            "gjennomforbarhet"
+          ],
+          "pressure": "boligmal_vs_gjennomforbarhet",
+          "choice_axis": "vise_kapasitetsgap_vs_holde_volum",
+          "consequence_axis": "realistisk_plan_vs_senere_svik",
+          "narrative_arc": "Lillebekk uke 2: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør kapasitetsgapet eksplisitt og vis alternativer",
+              "reply": "Gjør kapasitetsgapet eksplisitt og vis alternativer.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "integrity": 3,
+                  "traceability": 2,
+                  "manager_trust": 2
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "boligmal_vs_gjennomforbarhet",
+                  "infrastruktur"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week2_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Hold boligvolumet og merk kapasitet som senere avklaring",
+              "reply": "Hold boligvolumet og merk kapasitet som senere avklaring.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "integrity": -2,
+                  "traceability": -1,
+                  "manager_trust": 1
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        },
+        {
+          "id": "by_radgiver_week2_nabomail_ett_poeng",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "early",
+          "priority": 67,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "hanne_beboer",
+          "sender": "hanne_beboer",
+          "person_id": "hanne_beboer",
+          "place_id": "skolevei_lillebekk",
+          "subject": "Den irriterende nabomailen har ett sant punkt",
+          "summary": "Et langt innspill er polemisk, men dokumenterer en kryssing som mangler i analysen.",
+          "purpose": "Et langt innspill er polemisk, men dokumenterer en kryssing som mangler i analysen.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Mailen er vanskelig å lese.",
+            "Ett punkt kan endre trafikksikkerhetsvurderingen.",
+            "Medvirkning må vurderes på relevans, ikke tone."
+          ],
+          "task_domain": "medvirkningsanalyse",
+          "task_kind": "job",
+          "competency": "lokal_kunnskap",
+          "learning_focus": [
+            "medvirkningsanalyse",
+            "lokal_kunnskap"
+          ],
+          "pressure": "stoy_vs_lokalkunnskap",
+          "choice_axis": "trekke_ut_evidens_vs_avvise_form",
+          "consequence_axis": "kunnskap_vs_prosessfriksjon",
+          "narrative_arc": "Lillebekk uke 2: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Trekk ut det dokumenterbare poenget og spor det i saken",
+              "reply": "Trekk ut det dokumenterbare poenget og spor det i saken.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "local_knowledge": 3,
+                  "integrity": 2,
+                  "traceability": 2
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "stoy_vs_lokalkunnskap",
+                  "medvirkningsanalyse"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week2_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Be om et kortere innspill før du vurderer noe",
+              "reply": "Be om et kortere innspill før du vurderer noe.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "local_knowledge": -2,
+                  "integrity": -1
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        },
+        {
+          "id": "by_radgiver_week2_fortetting_pusterom",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "mid",
+          "priority": 66,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "signe_byokolog",
+          "sender": "signe_byokolog",
+          "person_id": "signe_byokolog",
+          "place_id": "oslo_planomrade_indre_by",
+          "subject": "Fortettingen spiser områdets eneste pusterom",
+          "summary": "Flere boliger gir måloppnåelse, men bygger ned et lite sted med sol, benk og avstand fra trafikken.",
+          "purpose": "Flere boliger gir måloppnåelse, men bygger ned et lite sted med sol, benk og avstand fra trafikken.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Boligtallet øker.",
+            "Det lille byrommet er vanskelig å telle i KPI-er.",
+            "Funksjonen kan være større enn arealet."
+          ],
+          "task_domain": "arealavveiing",
+          "task_kind": "job",
+          "competency": "kvalitativ_arealvurdering",
+          "learning_focus": [
+            "arealavveiing",
+            "kvalitativ_arealvurdering"
+          ],
+          "pressure": "boligmaal_vs_hverdagskvalitet",
+          "choice_axis": "bevare_pusterom_vs_maksimere_bolig",
+          "consequence_axis": "langsiktig_bykvalitet_vs_kvantitativt_maal",
+          "narrative_arc": "Lillebekk uke 2: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beskriv funksjonen og anbefal at den bevares",
+              "reply": "Beskriv funksjonen og anbefal at den bevares.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "integrity": 2,
+                  "local_knowledge": 2,
+                  "political_readability": 1
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "boligmaal_vs_hverdagskvalitet",
+                  "arealavveiing"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week2_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Støtt fortettingen med avbøtende kvalitetskrav",
+              "reply": "Støtt fortettingen med avbøtende kvalitetskrav.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "integrity": -1,
+                  "local_knowledge": -1
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        },
+        {
+          "id": "by_radgiver_week2_juridisk_grense",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "advanced",
+          "priority": 65,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora_planjuss",
+          "sender": "nora_planjuss",
+          "person_id": "nora_planjuss",
+          "place_id": "politisk_utvalg_moterom",
+          "subject": "Hva er lov, hva er fag og hva er politikk",
+          "summary": "Nora ber deg skille tydelig mellom juridiske krav, faglig anbefaling og politisk valg før saken sendes.",
+          "purpose": "Nora ber deg skille tydelig mellom juridiske krav, faglig anbefaling og politisk valg før saken sendes.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Noen forhold er bindende.",
+            "Andre er faglig skjønn.",
+            "Politikerne må se hvilket rom de faktisk har."
+          ],
+          "task_domain": "mandatavklaring",
+          "task_kind": "job",
+          "competency": "juridisk_presisjon",
+          "learning_focus": [
+            "mandatavklaring",
+            "juridisk_presisjon"
+          ],
+          "pressure": "fag_vs_politikk",
+          "choice_axis": "trekke_grense_vs_glatte_over",
+          "consequence_axis": "etterprovbarhet_vs_skjult_makt",
+          "narrative_arc": "Lillebekk uke 2: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv mandatgrensen eksplisitt i saksframlegget",
+              "reply": "Skriv mandatgrensen eksplisitt i saksframlegget.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "legal_precision": 3,
+                  "political_readability": 3,
+                  "integrity": 3
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "fag_vs_politikk",
+                  "mandatavklaring"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week2_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Bruk én samlet anbefaling uten å skille nivåene",
+              "reply": "Bruk én samlet anbefaling uten å skille nivåene.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "legal_precision": -2,
+                  "political_readability": -1,
+                  "integrity": -2
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        },
+        {
+          "id": "by_radgiver_week2_send_saken_videre",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "phase": "mastery",
+          "priority": 64,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "maja_utvalgssekretaer",
+          "sender": "maja_utvalgssekretaer",
+          "person_id": "maja_utvalgssekretaer",
+          "place_id": "politisk_utvalg_moterom",
+          "subject": "Saken sendes videre med et synlig faglig spor",
+          "summary": "Lillebekk-saken skal til politisk behandling; kilder, forbehold og alternativer må være lesbare for andre enn dem som skrev dem.",
+          "purpose": "Lillebekk-saken skal til politisk behandling; kilder, forbehold og alternativer må være lesbare for andre enn dem som skrev dem.",
+          "stakes": "Valget blir del av det faglige sporet og kan endre hvordan Lillebekk-saken leses senere.",
+          "situation": [
+            "Skolevei, grøntdrag, kapasitet og juss er dokumentert.",
+            "Det finnes fortsatt reell usikkerhet.",
+            "Spilleren eier kvaliteten på premissene, ikke det politiske utfallet."
+          ],
+          "task_domain": "saksframstilling",
+          "task_kind": "job",
+          "competency": "politisk_lesbarhet",
+          "learning_focus": [
+            "saksframstilling",
+            "politisk_lesbarhet"
+          ],
+          "pressure": "frist_vs_etterprovbarhet",
+          "choice_axis": "bevare_spor_vs_polere_saken",
+          "consequence_axis": "legitimitet_vs_kortsiktig_ro",
+          "narrative_arc": "Lillebekk uke 2: rådgiveren må gjøre makt, kunnskap og konsekvenser sporbare før saken går videre.",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Send saken med kilder, forbehold og sammenlignbare alternativer",
+              "reply": "Send saken med kilder, forbehold og sammenlignbare alternativer.",
+              "effect": 1,
+              "effects": {
+                "score_delta": 1,
+                "quality_axes": {
+                  "political_readability": 4,
+                  "traceability": 4,
+                  "integrity": 3,
+                  "manager_trust": 2
+                }
+              },
+              "tags": [
+                "integrity",
+                "traceability"
+              ],
+              "feedback": "Du gjør premisset tydeligere og etterprøvbart.",
+              "next_bias": {
+                "tags": [
+                  "frist_vs_etterprovbarhet",
+                  "saksframstilling"
+                ],
+                "weight": 1
+              },
+              "triggers_on_choice": "by_radgiver_week2_job_followup"
+            },
+            {
+              "id": "B",
+              "label": "Poler saken til én ren anbefaling før fristen",
+              "reply": "Poler saken til én ren anbefaling før fristen.",
+              "effect": 0,
+              "effects": {
+                "score_delta": 0,
+                "quality_axes": {
+                  "political_readability": 1,
+                  "traceability": -2,
+                  "integrity": -1
+                }
+              },
+              "tags": [
+                "pressure",
+                "risk"
+              ],
+              "feedback": "Du vinner framdrift nå, men gjør et senere premiss svakere."
+            }
+          ],
+          "planned_only": true
+        }
+      ],
+      "threads": [
+        {
+          "id": "by_radgiver_week2_job_followup",
+          "mail_type": "job",
+          "mail_family": "second_week_praksisfortellinger_by_radgiver_job",
+          "role_scope": "by_radgiver_plan",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Uke 2: senere følge av valgene",
+          "summary": "Et tidligere valg kommer tilbake og gjør faglig spor, relasjon eller kapasitet synlig i neste del av forløpet.",
+          "situation": [
+            "Et tidligere valg er registrert.",
+            "Konsekvensen kan nå leses i saken eller relasjonen."
+          ],
+          "choices": []
         }
       ]
     }

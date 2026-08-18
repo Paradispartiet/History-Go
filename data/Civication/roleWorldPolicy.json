@@ -26,18 +26,48 @@
     "not_equivalent_to": "role_world_complete",
     "reason": "reference_complete beviser 15 career-komponenter, Life Story, praksisdybde og to uker, men ikke den strengere sosiale serie-/Role World-standarden."
   },
-  "role_world_statuses": ["role_world_not_started", "role_world_in_production", "role_world_complete"],
+  "role_world_statuses": [
+    "role_world_not_started",
+    "role_world_in_production",
+    "role_world_complete"
+  ],
   "player_life_context_axes": [
-    "badge_progression", "life_position", "formal_work_status", "livelihood", "economy_capital", "psyche",
-    "relationships_network", "housing_life_situation", "benefits_work_ability_when_available", "reputation_status"
+    "badge_progression",
+    "life_position",
+    "formal_work_status",
+    "livelihood",
+    "economy_capital",
+    "psyche",
+    "relationships_network",
+    "housing_life_situation",
+    "benefits_work_ability_when_available",
+    "reputation_status"
   ],
   "season_contract": {
     "days": 14,
-    "day_phases": ["morning", "lunch", "afternoon", "evening"],
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
     "required_unique_coverage_slots_for_complete": 56,
     "coverage_is_dramaturgical_not_decision_quota": true,
-    "allowed_beat_types": ["info", "conversation", "relationship", "social", "task", "decision", "consequence", "private_consequence"],
-    "active_strategic_decisions_per_day_target": {"min": 1, "max": 2, "hard_gate": false}
+    "allowed_beat_types": [
+      "info",
+      "conversation",
+      "relationship",
+      "social",
+      "task",
+      "decision",
+      "consequence",
+      "private_consequence"
+    ],
+    "active_strategic_decisions_per_day_target": {
+      "min": 1,
+      "max": 2,
+      "hard_gate": false
+    }
   },
   "thread_contract": {
     "primary_relational_threads_required": true,
@@ -45,8 +75,29 @@
     "primary_thread_beats_max": 10,
     "interpretation": "5–10 gjelder utvikling over beats/scener/meldinger, ikke antall klikk i én scene."
   },
-  "npc_required_fields": ["id", "social_function", "class_position", "status", "power_over_player", "wants", "conceals", "speech_style", "teaches_player"],
-  "required_editorial_sections": ["sociological_core", "theme_ids", "social_environments", "recurring_people_archetypes", "slow_axes", "season", "primary_threads", "private_aftermath", "delayed_consequences", "materialization"],
+  "npc_required_fields": [
+    "id",
+    "social_function",
+    "class_position",
+    "status",
+    "power_over_player",
+    "wants",
+    "conceals",
+    "speech_style",
+    "teaches_player"
+  ],
+  "required_editorial_sections": [
+    "sociological_core",
+    "theme_ids",
+    "social_environments",
+    "recurring_people_archetypes",
+    "slow_axes",
+    "season",
+    "primary_threads",
+    "private_aftermath",
+    "delayed_consequences",
+    "materialization"
+  ],
   "theme_rules": {
     "editorial_only": true,
     "theme_ids_may_be_gameplay_state": false,
@@ -57,7 +108,16 @@
     "reconstruct_specific_scene_forbidden": true
   },
   "materialization": {
-    "allowed_existing_sources": ["roleModel", "workGrammar", "mailPlan", "mailFamilies", "private", "life", "social", "narrative"],
+    "allowed_existing_sources": [
+      "roleModel",
+      "workGrammar",
+      "mailPlan",
+      "mailFamilies",
+      "private",
+      "life",
+      "social",
+      "narrative"
+    ],
     "must_compile_or_adapt_to_civication_scene_v1": true,
     "raw_mailfamilies_runtime_fallback_allowed": false,
     "role_storylet_runtime_fallback_allowed": false,
@@ -73,8 +133,26 @@
     "materialization_refs_required": true,
     "no_new_runtime_true": true
   },
-  "first_reference_world": {"category": "naeringsliv", "role_scope": "ekspeditor", "status": "role_world_complete"},
-  "second_reference_world": {"category": "naeringsliv", "role_scope": "renholder", "status": "role_world_complete"},
-  "next_reference_world": {"category": "by", "role_scope": "by_radgiver_plan"},
-  "later_reference_candidates": ["naeringsliv/controller", "sport/sport_utover"]
+  "first_reference_world": {
+    "category": "naeringsliv",
+    "role_scope": "ekspeditor",
+    "status": "role_world_complete"
+  },
+  "second_reference_world": {
+    "category": "naeringsliv",
+    "role_scope": "renholder",
+    "status": "role_world_complete"
+  },
+  "next_reference_world": {
+    "category": "naeringsliv",
+    "role_scope": "controller"
+  },
+  "later_reference_candidates": [
+    "sport/sport_utover"
+  ],
+  "third_reference_world": {
+    "category": "by",
+    "role_scope": "by_radgiver_plan",
+    "status": "role_world_complete"
+  }
 }
