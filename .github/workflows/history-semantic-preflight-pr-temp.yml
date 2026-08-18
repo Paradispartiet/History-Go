@@ -7,7 +7,7 @@ on:
       - agent/history-completion-audit
     paths:
       - '.github/workflows/history-semantic-preflight-pr-temp.yml'
-      - 'tools/run-historie-terminal-finalize-temp-v2.mjs'
+      - 'tools/run-historie-terminal-finalize-temp-v3.mjs'
 
 concurrency:
   group: history-terminal-one-shot
@@ -36,4 +36,4 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Run locked History terminal gate
-        run: node tools/run-historie-terminal-finalize-temp-v2.mjs
+        run: node tools/run-historie-terminal-finalize-temp-v3.mjs
