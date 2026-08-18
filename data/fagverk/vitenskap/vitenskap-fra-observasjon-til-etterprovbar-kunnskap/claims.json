@@ -1,9 +1,9 @@
 {
   "schema": "history_go_fagverk_claim_registry_v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "subject_id": "vitenskap",
   "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
-  "verified_at": "2026-08-17",
+  "verified_at": "2026-08-18",
   "sources": [
     {
       "id": "vit1-01-oecd-frascati",
@@ -84,152 +84,491 @@
       "publisher": "National Institutes of Health",
       "type": "research-policy-programme",
       "source_location": "2026 programme overview on independent replication, standardising and sharing data, open availability of findings and infrastructure for replication and reproducibility science"
+    },
+    {
+      "id": "vit1-11-nist-stat-handbook",
+      "label": "NIST/SEMATECH – e-Handbook of Statistical Methods",
+      "url": "https://www.itl.nist.gov/div898/handbook/",
+      "publisher": "National Institute of Standards and Technology",
+      "type": "official-statistical-methods-handbook",
+      "source_location": "Handbook index and the Process Modeling and Process Improvement chapters covering exploratory analysis, statistical modelling, experimental design and diagnostics"
+    },
+    {
+      "id": "vit1-12-nist-experimental-design",
+      "label": "NIST/SEMATECH – What is experimental design?",
+      "url": "https://www.itl.nist.gov/div898/handbook/pri/section1/pri11.htm",
+      "publisher": "National Institute of Standards and Technology",
+      "type": "official-experimental-design-guidance",
+      "source_location": "Process Improvement section 5.1.1 defining experimental design through deliberate changes to process factors and observation of response variables for valid and objective conclusions"
+    },
+    {
+      "id": "vit1-13-nist-model-validation",
+      "label": "NIST/SEMATECH – Model Validation",
+      "url": "https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd44.htm",
+      "publisher": "National Institute of Standards and Technology",
+      "type": "official-statistical-model-validation-guidance",
+      "source_location": "Process Modeling section 4.4 on model validation, especially residual analysis and the warning that summary statistics such as R-squared are not sufficient by themselves"
+    },
+    {
+      "id": "vit1-14-nist-model-building",
+      "label": "NIST/SEMATECH – Model Building",
+      "url": "https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm",
+      "publisher": "National Institute of Standards and Technology",
+      "type": "official-statistical-model-building-guidance",
+      "source_location": "Process Modeling section 4.1 describing iterative model selection, parameter estimation and assessment/validation using data, assumptions and subject-matter knowledge"
+    },
+    {
+      "id": "vit1-15-nist-rdaf",
+      "label": "NIST – Research Data Framework (RDaF), version 2.0",
+      "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/1500-18/NIST.SP.1500-18r2.html",
+      "publisher": "National Institute of Standards and Technology",
+      "type": "official-research-data-framework",
+      "source_location": "Research Data Lifecycle and documentation material covering data provenance and documentation of instruments, software, methods, parameters, calibration and processing context"
+    },
+    {
+      "id": "vit1-16-nist-numerical-reproducibility",
+      "label": "NIST – Numerical Reproducibility",
+      "url": "https://www.nist.gov/programs-projects/numerical-reproducibility",
+      "publisher": "National Institute of Standards and Technology",
+      "type": "official-computational-reproducibility-project",
+      "source_location": "Project overview identifying numerical differences associated with library versions, floating-point precision, compiler choices and CPU/GPU architectures"
+    },
+    {
+      "id": "vit1-17-ncbi-taxonomy-help",
+      "label": "NCBI – Taxonomy Help",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK53758/",
+      "publisher": "National Center for Biotechnology Information",
+      "type": "official-scientific-taxonomy-documentation",
+      "source_location": "NCBI Taxonomy documentation describing curated organism names, classifications/lineages and their use with molecular sequence data"
+    },
+    {
+      "id": "vit1-18-iczn-preamble",
+      "label": "International Code of Zoological Nomenclature – Preamble",
+      "url": "https://code.iczn.org/preamble/",
+      "publisher": "International Commission on Zoological Nomenclature",
+      "type": "international-nomenclature-code",
+      "source_location": "Preamble explaining the objective of stability and universality in scientific animal names while stating that the Code does not restrict freedom of taxonomic thought or actions"
     }
   ],
   "claims": [
     {
       "id": "vit1-01",
       "claim": "OECDs Frascati-rammeverk er en internasjonalt anerkjent metodikk for å definere, klassifisere og samle sammenlignbare data om forskning og utvikling.",
-      "source_ids": ["vit1-01-oecd-frascati"],
+      "source_ids": [
+        "vit1-01-oecd-frascati"
+      ],
       "classification": "institusjonell-metode",
       "status": "verified",
-      "used_in": ["vit1-grunnlag-1"]
+      "used_in": [
+        "vit1-grunnlag-1"
+      ]
     },
     {
       "id": "vit1-02",
       "claim": "I OECDs operasjonalisering må FoU være ny, kreativ, ha et usikkert utfall, være systematisk og være overførbar og/eller reproducerbar.",
-      "source_ids": ["vit1-02-oecd-oslo-rd"],
+      "source_ids": [
+        "vit1-02-oecd-oslo-rd"
+      ],
       "classification": "metodedefinisjon",
       "status": "verified",
-      "used_in": ["vit1-grunnlag-1"]
+      "used_in": [
+        "vit1-grunnlag-1"
+      ]
     },
     {
       "id": "vit1-03",
       "claim": "EU-kommisjonen definerer forskningsinfrastruktur som fasiliteter som tilbyr ressurser og tjenester forskningsmiljøer trenger for å utføre forskning og fremme innovasjon.",
-      "source_ids": ["vit1-03-ec-research-infrastructure"],
+      "source_ids": [
+        "vit1-03-ec-research-infrastructure"
+      ],
       "classification": "institusjonell-definisjon",
       "status": "verified",
-      "used_in": ["vit1-grunnlag-1", "vit1-anvendelse-1"]
+      "used_in": [
+        "vit1-grunnlag-1",
+        "vit1-anvendelse-1"
+      ]
     },
     {
       "id": "vit1-04",
       "claim": "Forskningsinfrastruktur kan omfatte store instrumenter, samlinger og arkiver, vitenskapelige datainfrastrukturer, datasystemer og kommunikasjonsnettverk; den er derfor mer enn en fysisk laboratoriebygning.",
-      "source_ids": ["vit1-03-ec-research-infrastructure"],
+      "source_ids": [
+        "vit1-03-ec-research-infrastructure"
+      ],
       "classification": "institusjonell-definisjon",
       "status": "verified",
-      "used_in": ["vit1-grunnlag-1", "vit1-anvendelse-1"]
+      "used_in": [
+        "vit1-grunnlag-1",
+        "vit1-anvendelse-1"
+      ]
     },
     {
       "id": "vit1-05",
       "claim": "NISTs definisjon av metrologisk sporbarhet krever at et måleresultat kan knyttes til en referanse gjennom en dokumentert ubrutt kjede av kalibreringer, der hvert ledd bidrar til måleusikkerheten.",
-      "source_ids": ["vit1-04-nist-traceability-policy", "vit1-05-nist-traceability-faq"],
+      "source_ids": [
+        "vit1-04-nist-traceability-policy",
+        "vit1-05-nist-traceability-faq"
+      ],
       "classification": "metrologi",
       "status": "verified",
-      "used_in": ["vit1-grunnlag-2", "vit1-grunnlag-3", "vit1-anvendelse-2"]
+      "used_in": [
+        "vit1-grunnlag-2",
+        "vit1-grunnlag-3",
+        "vit1-anvendelse-2"
+      ]
     },
     {
       "id": "vit1-06",
       "claim": "Metrologisk sporbarhet er ifølge NIST en egenskap ved måleresultatet, ikke ved instrumentet, laboratoriet eller kalibreringssertifikatet isolert.",
-      "source_ids": ["vit1-05-nist-traceability-faq"],
+      "source_ids": [
+        "vit1-05-nist-traceability-faq"
+      ],
       "classification": "metrologi",
       "status": "verified",
-      "used_in": ["vit1-grunnlag-2", "vit1-anvendelse-2"]
+      "used_in": [
+        "vit1-grunnlag-2",
+        "vit1-anvendelse-2"
+      ]
     },
     {
       "id": "vit1-07",
       "claim": "At et instrument er kalibrert er ikke alene nok til å gjøre senere måleresultater sporbare; selve målekjeden, referansene og usikkerheten må dokumenteres.",
-      "source_ids": ["vit1-04-nist-traceability-policy", "vit1-05-nist-traceability-faq"],
+      "source_ids": [
+        "vit1-04-nist-traceability-policy",
+        "vit1-05-nist-traceability-faq"
+      ],
       "classification": "metrologi",
       "status": "verified",
-      "used_in": ["vit1-grunnlag-2", "vit1-grunnlag-3", "vit1-anvendelse-2"]
+      "used_in": [
+        "vit1-grunnlag-2",
+        "vit1-grunnlag-3",
+        "vit1-anvendelse-2"
+      ]
     },
     {
       "id": "vit1-08",
       "claim": "NIST behandler et måleresultat som en målt verdi sammen med dokumentert måleusikkerhet; usikkerheten er derfor del av resultatet, ikke bare en fotnote til det.",
-      "source_ids": ["vit1-05-nist-traceability-faq"],
+      "source_ids": [
+        "vit1-05-nist-traceability-faq"
+      ],
       "classification": "metrologi",
       "status": "verified",
-      "used_in": ["vit1-grunnlag-2", "vit1-grunnlag-3", "vit1-anvendelse-2"]
+      "used_in": [
+        "vit1-grunnlag-2",
+        "vit1-grunnlag-3",
+        "vit1-anvendelse-2"
+      ]
     },
     {
       "id": "vit1-09",
       "claim": "National Academies definerer reproducibility som å oppnå konsistente beregningsresultater med de samme dataene, beregningstrinnene, metodene, koden og analysebetingelsene.",
-      "source_ids": ["vit1-06-nasem-reproducibility"],
+      "source_ids": [
+        "vit1-06-nasem-reproducibility"
+      ],
       "classification": "metodedefinisjon",
       "status": "verified",
-      "used_in": ["vit1-fordypning-1", "vit1-fordypning-2", "vit1-anvendelse-3"]
+      "used_in": [
+        "vit1-fordypning-1",
+        "vit1-fordypning-2",
+        "vit1-anvendelse-3"
+      ]
     },
     {
       "id": "vit1-10",
       "claim": "National Academies definerer replicability som konsistente resultater på tvers av studier som undersøker samme vitenskapelige spørsmål med egne nye data.",
-      "source_ids": ["vit1-06-nasem-reproducibility"],
+      "source_ids": [
+        "vit1-06-nasem-reproducibility"
+      ],
       "classification": "metodedefinisjon",
       "status": "verified",
-      "used_in": ["vit1-fordypning-1", "vit1-fordypning-2", "vit1-anvendelse-3"]
+      "used_in": [
+        "vit1-fordypning-1",
+        "vit1-fordypning-2",
+        "vit1-anvendelse-3"
+      ]
     },
     {
       "id": "vit1-11",
       "claim": "Uenighet mellom studier betyr ikke automatisk at én studie må forkastes; forskjeller kan skyldes blant annet instrumenter, design, kontekst eller andre forhold som må undersøkes.",
-      "source_ids": ["vit1-06-nasem-reproducibility"],
+      "source_ids": [
+        "vit1-06-nasem-reproducibility"
+      ],
       "classification": "metodebegrensning",
       "status": "verified",
-      "used_in": ["vit1-fordypning-2", "vit1-anvendelse-3"]
+      "used_in": [
+        "vit1-fordypning-2",
+        "vit1-anvendelse-3"
+      ]
     },
     {
       "id": "vit1-12",
       "claim": "NIH definerer vitenskapelig rigor som streng anvendelse av vitenskapelig metode for å sikre robust og minst mulig skjev eksperimentell design, metodikk, analyse, fortolkning og rapportering.",
-      "source_ids": ["vit1-07-nih-rigor"],
+      "source_ids": [
+        "vit1-07-nih-rigor"
+      ],
       "classification": "forskningskvalitet",
       "status": "verified",
-      "used_in": ["vit1-fordypning-1", "vit1-fordypning-3"]
+      "used_in": [
+        "vit1-fordypning-1",
+        "vit1-fordypning-3"
+      ]
     },
     {
       "id": "vit1-13",
       "claim": "NIHs fagfellevurdering av søknader vurderer vitenskapelig og teknisk kvalitet gjennom en prosess som uttrykkelig skal være rettferdig og objektiv; den er en evaluering av foreslått forskning, ikke en senere replikasjon av resultater.",
-      "source_ids": ["vit1-08-nih-peer-review", "vit1-06-nasem-reproducibility"],
+      "source_ids": [
+        "vit1-08-nih-peer-review",
+        "vit1-06-nasem-reproducibility"
+      ],
       "classification": "synthesis",
       "status": "verified",
-      "used_in": ["vit1-fordypning-1"]
+      "used_in": [
+        "vit1-fordypning-1"
+      ]
     },
     {
       "id": "vit1-14",
       "claim": "UNESCOs Recommendation on Open Science løfter transparens, granskning, kritikk og reproducerbarhet fram som prinsipper som skal styrke rigor i vitenskapelige resultater.",
-      "source_ids": ["vit1-09-unesco-open-science"],
+      "source_ids": [
+        "vit1-09-unesco-open-science"
+      ],
       "classification": "open-science-policy",
       "status": "verified",
-      "used_in": ["vit1-fordypning-3", "vit1-anvendelse-1"]
+      "used_in": [
+        "vit1-fordypning-3",
+        "vit1-anvendelse-1"
+      ]
     },
     {
       "id": "vit1-15",
       "claim": "UNESCO beskriver åpen vitenskap som så åpen som mulig, men åpner for legitime begrensninger blant annet for personvern, konfidensialitet, immaterielle rettigheter og sensitiv kunnskap.",
-      "source_ids": ["vit1-09-unesco-open-science"],
+      "source_ids": [
+        "vit1-09-unesco-open-science"
+      ],
       "classification": "open-science-boundary",
       "status": "verified",
-      "used_in": ["vit1-fordypning-3", "vit1-anvendelse-1"]
+      "used_in": [
+        "vit1-fordypning-3",
+        "vit1-anvendelse-1"
+      ]
     },
     {
       "id": "vit1-16",
       "claim": "National Academies framstiller reprodusering og replikasjon som kontrollformer som kan øke tilliten til robustheten i et kunnskapsgrunnlag, uten at vitenskap dermed blir absolutt sikker.",
-      "source_ids": ["vit1-06-nasem-reproducibility"],
+      "source_ids": [
+        "vit1-06-nasem-reproducibility"
+      ],
       "classification": "evidenssyntese",
       "status": "verified",
-      "used_in": ["vit1-anvendelse-1", "vit1-anvendelse-3"]
+      "used_in": [
+        "vit1-anvendelse-1",
+        "vit1-anvendelse-3"
+      ]
     },
     {
       "id": "vit1-17",
       "claim": "NIH har i 2026 eksplisitt løftet fram uavhengig replikasjon, standardisering og deling av data og varig infrastruktur for replikasjons- og reproducerbarhetsarbeid som egne tiltak.",
-      "source_ids": ["vit1-10-nih-replication-2026"],
+      "source_ids": [
+        "vit1-10-nih-replication-2026"
+      ],
       "classification": "current-research-policy",
       "status": "verified",
-      "used_in": ["vit1-fordypning-2"]
+      "used_in": [
+        "vit1-fordypning-2"
+      ]
     },
     {
       "id": "vit1-18",
       "claim": "For dette kapittelet behandles institusjonell tillit som begrunnet når leseren kan følge den relevante kjeden av metode, måling, usikkerhet, faglig kritikk, dokumentasjon og uavhengig kontroll; institusjonsnavnet alene er ikke tilstrekkelig evidens for en konkret påstand.",
-      "source_ids": ["vit1-04-nist-traceability-policy", "vit1-06-nasem-reproducibility", "vit1-09-unesco-open-science"],
+      "source_ids": [
+        "vit1-04-nist-traceability-policy",
+        "vit1-06-nasem-reproducibility",
+        "vit1-09-unesco-open-science"
+      ],
       "classification": "editorial-synthesis",
       "status": "verified",
-      "used_in": ["vit1-grunnlag-1", "vit1-grunnlag-3", "vit1-fordypning-3", "vit1-anvendelse-1"]
+      "used_in": [
+        "vit1-grunnlag-1",
+        "vit1-grunnlag-3",
+        "vit1-fordypning-3",
+        "vit1-anvendelse-1"
+      ]
+    },
+    {
+      "id": "vit1-19",
+      "claim": "NIST beskriver eksperimentdesign som planlagt endring av én eller flere faktorer og observasjon av virkningen på responsvariabler for å trekke gyldige og objektive konklusjoner om prosessen eller systemet som studeres.",
+      "source_ids": [
+        "vit1-12-nist-experimental-design"
+      ],
+      "classification": "experimental-design",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-1"
+      ]
+    },
+    {
+      "id": "vit1-20",
+      "claim": "Styrken i empirisk evidens avhenger av hvordan design, måling og analyse knytter observerte data til den konkrete påstanden og til relevante alternative forklaringer; rigor krever derfor mer enn at data eksisterer.",
+      "source_ids": [
+        "vit1-12-nist-experimental-design",
+        "vit1-07-nih-rigor"
+      ],
+      "classification": "methodological-synthesis",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-1"
+      ]
+    },
+    {
+      "id": "vit1-21",
+      "claim": "NISTs metrologiveiledning skiller den dokumenterte sporbarheten til et konkret måleresultat fra instrumentets kalibreringsstatus og krever at referansekjede og måleusikkerhet følger resultatet.",
+      "source_ids": [
+        "vit1-04-nist-traceability-policy",
+        "vit1-05-nist-traceability-faq"
+      ],
+      "classification": "metrology-distinction",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-2"
+      ]
+    },
+    {
+      "id": "vit1-22",
+      "claim": "Måleusikkerhet og identifiserte feilkilder må vurderes i forhold til størrelsen på effekten eller forskjellen som skal tolkes; flere desimaler alene etablerer ikke sterkere evidens.",
+      "source_ids": [
+        "vit1-05-nist-traceability-faq",
+        "vit1-11-nist-stat-handbook"
+      ],
+      "classification": "measurement-uncertainty",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-2"
+      ]
+    },
+    {
+      "id": "vit1-23",
+      "claim": "NISTs statistikkhåndbok organiserer statistisk analyse rundt dataenes struktur, prosessmodellering og eksperimentdesign, slik at estimater og sannsynlighetsutsagn må leses sammen med datagenererende prosess og modellforutsetninger.",
+      "source_ids": [
+        "vit1-11-nist-stat-handbook"
+      ],
+      "classification": "statistical-inference",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-3"
+      ]
+    },
+    {
+      "id": "vit1-24",
+      "claim": "NISTs modellvalideringsveiledning understreker at høy R-squared eller andre sammendragsmål ikke alene er tilstrekkelig til å validere en modell; residualer og andre diagnostiske kontroller må undersøkes.",
+      "source_ids": [
+        "vit1-13-nist-model-validation"
+      ],
+      "classification": "model-validation",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-3"
+      ]
+    },
+    {
+      "id": "vit1-25",
+      "claim": "NIST beskriver statistisk modellbygging som en iterativ prosess der modellvalg, tilpasning og validering kombinerer data, antakelser og fagkunnskap; modellen må derfor vurderes som en formålsbundet representasjon.",
+      "source_ids": [
+        "vit1-14-nist-model-building",
+        "vit1-13-nist-model-validation"
+      ],
+      "classification": "model-building",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-4"
+      ]
+    },
+    {
+      "id": "vit1-26",
+      "claim": "At en beregning eller simulering er numerisk eller implementasjonsmessig konsistent etablerer ikke alene empirisk modelladekvathet; modellens antakelser, validering mot relevante data og følsomhet for implementasjonsvalg må vurderes separat.",
+      "source_ids": [
+        "vit1-13-nist-model-validation",
+        "vit1-16-nist-numerical-reproducibility"
+      ],
+      "classification": "verification-validation-synthesis",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-4"
+      ]
+    },
+    {
+      "id": "vit1-27",
+      "claim": "NCBI Taxonomy er et kuratert operasjonelt system der organismenavn og klassifikasjoner brukes til å organisere og koble biologiske sekvensdata, og illustrerer hvordan kategorier fungerer som vitenskapelig datainfrastruktur.",
+      "source_ids": [
+        "vit1-17-ncbi-taxonomy-help"
+      ],
+      "classification": "classification-infrastructure",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-5"
+      ]
+    },
+    {
+      "id": "vit1-28",
+      "claim": "ICZN skiller nomenklaturens mål om stabile og universelle zoologiske navn fra selve taksonomiske tenkningen ved uttrykkelig å ikke begrense forskeres frihet til taxonomic thought or actions.",
+      "source_ids": [
+        "vit1-17-ncbi-taxonomy-help",
+        "vit1-18-iczn-preamble"
+      ],
+      "classification": "nomenclature-taxonomy-boundary",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-5"
+      ]
+    },
+    {
+      "id": "vit1-29",
+      "claim": "NIST Research Data Framework behandler dokumentasjon av dataenes proveniens sammen med instrumenter, programvare, metoder, parametre, kalibrering og prosesseringskontekst som deler av en granskbar forskningsdata-livssyklus.",
+      "source_ids": [
+        "vit1-15-nist-rdaf"
+      ],
+      "classification": "research-data-provenance",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-6"
+      ]
+    },
+    {
+      "id": "vit1-30",
+      "claim": "NISTs Numerical Reproducibility-prosjekt dokumenterer at bibliotekversjoner, flyttallspresisjon, kompilatorvalg og CPU/GPU-arkitektur kan påvirke numerisk reproducerbarhet, slik at kjøremiljøet kan være et materiell metodetrinn.",
+      "source_ids": [
+        "vit1-16-nist-numerical-reproducibility"
+      ],
+      "classification": "numerical-reproducibility",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-6"
+      ]
+    },
+    {
+      "id": "vit1-31",
+      "claim": "Uavhengig kontroll, reanalyse og replikasjon kan gi konvergerende støtte til et kunnskapsgrunnlag uten å kreve identiske resultater eller enstemmighet; avvik må lokaliseres i design, data, måling, analyse eller fortolkning.",
+      "source_ids": [
+        "vit1-06-nasem-reproducibility",
+        "vit1-08-nih-peer-review"
+      ],
+      "classification": "consensus-and-critical-control-synthesis",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-1",
+        "vit1-metoder-7"
+      ]
+    },
+    {
+      "id": "vit1-32",
+      "claim": "Standardiserte metoder og vitenskapelig rigor skal gjøre arbeid mer sammenlignbart og kontrollert, men gyldigheten av en konkret slutning krever fortsatt kritikk av design, måling, analyse, feilkilder og bruksområde.",
+      "source_ids": [
+        "vit1-11-nist-stat-handbook",
+        "vit1-07-nih-rigor"
+      ],
+      "classification": "standardization-method-critique-synthesis",
+      "status": "verified",
+      "used_in": [
+        "vit1-metoder-7"
+      ]
     }
   ]
 }

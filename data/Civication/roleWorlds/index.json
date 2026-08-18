@@ -1,13 +1,42 @@
 {
   "schema": "civication_role_world_index_v1",
   "version": 1,
-  "status": "standard_ready_no_role_worlds_materialized",
+  "status": "three_reference_worlds_materialized",
   "effective_date": "2026-08-18",
-  "roles": [],
+  "roles": [
+    {
+      "category": "naeringsliv",
+      "role_scope": "ekspeditor",
+      "status": "role_world_complete",
+      "path": "data/Civication/roleWorlds/naeringsliv/ekspeditor.json"
+    },
+    {
+      "category": "naeringsliv",
+      "role_scope": "renholder",
+      "status": "role_world_complete",
+      "path": "data/Civication/roleWorlds/naeringsliv/renholder.json"
+    },
+    {
+      "category": "by",
+      "role_scope": "by_radgiver_plan",
+      "status": "role_world_complete",
+      "path": "data/Civication/roleWorlds/by/by_radgiver_plan.json"
+    }
+  ],
   "first_reference_world": {
     "category": "naeringsliv",
     "role_scope": "ekspeditor",
-    "next_status": "role_world_in_production"
+    "status": "role_world_complete"
   },
-  "note": "Career Gameplay Matrix-status som reference_complete er ikke Role World-completion. Ingen rolle er role_world_complete før en registrert civication_role_world_v1-fil består den permanente Role World-porten."
+  "second_reference_world": {
+    "category": "naeringsliv",
+    "role_scope": "renholder",
+    "status": "role_world_complete"
+  },
+  "note": "Role World-completion er strengere enn Career Gameplay Matrix-status. Ekspeditør, Renholder og By-rådgiver er de tre første registrerte reference worlds og må hver beholde 14-dagers dekning, sosiale relasjoner, privat etterklang, forsinkede konsekvenser og reell materialiseringsprovenance.",
+  "third_reference_world": {
+    "category": "by",
+    "role_scope": "by_radgiver_plan",
+    "status": "role_world_complete"
+  }
 }

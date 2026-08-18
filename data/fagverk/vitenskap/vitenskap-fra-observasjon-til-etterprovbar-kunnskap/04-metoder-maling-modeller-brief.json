@@ -1,0 +1,135 @@
+{
+  "schema": "history_go_fagverk_editorial_coverage_supplement_brief_v1",
+  "version": "1.0.0",
+  "subject_id": "vitenskap",
+  "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+  "domain_id": "metoder_maling_modeller",
+  "title": "Metoder, måling og modeller – redaksjonell coverage brief",
+  "purpose": "Materialisere eksplisitt universitetsnær fulltekstdekning for hele den canonicale primary-mapping-klyngen metoder_maling_modeller, med claimsporet evidens, metodebegrensninger, diagnostiske skiller og anvendelse. Supplementet utvider Unit 1 monotont og endrer ikke Vitenskap til complete.",
+  "requiredEmneIds": [
+    "em_vit_abstraksjon_forenkling",
+    "em_vit_algoritmer_data",
+    "em_vit_eksperiment_variabler",
+    "em_vit_empiri_evidens",
+    "em_vit_hypotese_observasjon",
+    "em_vit_kalibrering_presisjon",
+    "em_vit_kategorisering",
+    "em_vit_klassifikasjon_taksonomi",
+    "em_vit_konsensus_uenighet",
+    "em_vit_kontroll_replikasjon",
+    "em_vit_metodekritikk",
+    "em_vit_modeller_simulering",
+    "em_vit_standardisering",
+    "em_vit_statistikk_sannsynlighet",
+    "em_vit_usikkerhet_feilkilder",
+    "em_vit_eksperiment_maling",
+    "em_vit_matematikk_modellering"
+  ],
+  "requiredCriticalDistinctions": [
+    "hypotese vs observasjon",
+    "empiriske data vs evidens for en bestemt påstand",
+    "faktor/manipulasjon vs responsvariabel",
+    "kontrollbetingelse vs gjentakelse vs uavhengig replikasjon",
+    "presisjon vs nøyaktighet vs metrologisk sporbarhet",
+    "måleusikkerhet vs målefeil som enkel feilmargin",
+    "statistisk signifikans vs substansiell eller praktisk betydning",
+    "modelltilpasning vs modellvalidering",
+    "matematisk/beregningsmessig korrekthet vs empirisk adekvathet",
+    "verifikasjon av implementasjon vs validering mot observasjoner og bruksformål",
+    "kategori/kodeverk vs naturlig eller forklarende vitenskapelig gruppe",
+    "nomenklatur vs taksonomisk teori og klassifikasjon",
+    "algoritmisk korrekthet vs datakvalitet og målvariabel",
+    "standardisering vs metodisk gyldighet",
+    "konsensus vs enstemmighet",
+    "metodekritikk vs generell mistillit til forskning"
+  ],
+  "sourceStrategy": {
+    "priority": [
+      "NIST/SEMATECH Engineering Statistics Handbook for experimental design, statistical modelling and model validation",
+      "NIST metrology guidance already registered in Unit 1 for calibration, traceability and uncertainty",
+      "NIST Research Data Framework for instruments, software, methods, parameters and data provenance",
+      "NIST Numerical Reproducibility for software/library/compiler/precision/hardware dependence",
+      "NCBI Taxonomy Help as an operational scientific classification infrastructure case",
+      "International Code of Zoological Nomenclature preamble for the boundary between nomenclatural stability and taxonomic freedom",
+      "National Academies and NIH sources already registered in Unit 1 for reproducibility, replication, rigor and critical control"
+    ],
+    "minimumNewInspectableSources": 8,
+    "claimLevelTrace": true,
+    "sourceLocationsRequired": true,
+    "noDecorativeSources": true,
+    "reuseExistingUnit1SourcesWhenClaimSpecific": true
+  },
+  "documentedSourceTargets": [
+    {
+      "id": "nist-stat-handbook",
+      "publisher": "National Institute of Standards and Technology",
+      "url": "https://www.itl.nist.gov/div898/handbook/",
+      "use": "statistical methods, process modelling, design of experiments and diagnostics"
+    },
+    {
+      "id": "nist-experimental-design",
+      "publisher": "National Institute of Standards and Technology",
+      "url": "https://www.itl.nist.gov/div898/handbook/pri/section1/pri11.htm",
+      "use": "planned variation of factors and observation of responses"
+    },
+    {
+      "id": "nist-model-validation",
+      "publisher": "National Institute of Standards and Technology",
+      "url": "https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd44.htm",
+      "use": "model validation and why summary fit statistics alone are insufficient"
+    },
+    {
+      "id": "nist-model-building",
+      "publisher": "National Institute of Standards and Technology",
+      "url": "https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd41.htm",
+      "use": "iterative model selection, fitting and validation"
+    },
+    {
+      "id": "nist-rdaf",
+      "publisher": "National Institute of Standards and Technology",
+      "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/1500-18/NIST.SP.1500-18r2.html",
+      "use": "research-data documentation, software, instruments, parameters and provenance"
+    },
+    {
+      "id": "nist-numerical-reproducibility",
+      "publisher": "National Institute of Standards and Technology",
+      "url": "https://www.nist.gov/programs-projects/numerical-reproducibility",
+      "use": "numerical dependence on libraries, precision, compilers and hardware"
+    },
+    {
+      "id": "ncbi-taxonomy-help",
+      "publisher": "National Center for Biotechnology Information",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK53758/",
+      "use": "curated taxonomy names/classifications linked to molecular data as an operational classification case"
+    },
+    {
+      "id": "iczn-preamble",
+      "publisher": "International Commission on Zoological Nomenclature",
+      "url": "https://code.iczn.org/preamble/",
+      "use": "nomenclatural stability without restricting taxonomic thought or action"
+    }
+  ],
+  "qualityContract": {
+    "editedSectionCount": 7,
+    "substantiveParagraphCount": 21,
+    "explicitCoverageTreatmentCount": 17,
+    "newClaimCount": 14,
+    "minimumMethodLimitsPerSection": 2,
+    "workedExampleCount": 2,
+    "applicationTaskCount": 3,
+    "misconceptionCount": 5,
+    "selfCheckCount": 6,
+    "paragraphClaimTraceRequired": true,
+    "rootAndRegistryOwnershipRequired": true,
+    "holisticOwnedCountAfterMaterialization": 49,
+    "holisticUncoveredCountAfterMaterialization": 68,
+    "subjectCompleteMustRemainFalse": true
+  },
+  "rejectedShortcuts": [
+    "Å legge de 17 emne-ID-ene i registry uten egen faglig behandling.",
+    "Å bruke den gamle v4.5-templatebeskrivelsen som fulltekstbevis.",
+    "Å presentere én universell lineær vitenskapelig metode som dekker alle fag.",
+    "Å behandle statistisk signifikans, høy R², kalibrering, standardisering, fagfellevurdering eller konsensus som selvstendige sannhetsstempler.",
+    "Å kalle Vitenskap complete etter denne ene coverage-batchen."
+  ]
+}

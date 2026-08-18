@@ -1,0 +1,1090 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_radgiver_plan",
+  "title": "By-rådgiver — linjen som flytter byen",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å utøve byråkratisk makt uten å gjøre faglig skjønn til skjult politikk",
+    "description": "By-rådgiveren arbeider i skjæringspunktet mellom kart, regler, lokal kunnskap, utbyggerinteresser, klima, infrastruktur og politiske valg. Hver formulering og linje kan fordele verdi, risiko og handlingsrom. Rollegenren undersøker hvordan administrasjonen kan gjøre premisser og konsekvenser etterprøvbare uten å late som faglige vurderinger er politiske vedtak, og uten å redusere lokal erfaring til støy eller politiske mål til tekniske fakta."
+  },
+  "theme_ids": [
+    "bureaucratic_power",
+    "local_knowledge_vs_system",
+    "loyalty_up_down",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "Lillebekk-sakens digitale plankart, bestemmelser og saksmappe der små formuleringer kan flytte reell risiko og verdi",
+    "befaring, skolevei og grøntdrag der faktisk bruk, overvann og hverdagsliv kan motsi det formelle kartgrunnlaget",
+    "interne planmøter der saksflyt, juridisk presisjon, kapasitet og faglig integritet må prioriteres under tidspress",
+    "utbyggerdialog og medvirkning der ressurser, tilgang, lokal kunnskap og forventninger møter hverandre asymmetrisk",
+    "politisk saksforberedelse der komplekse faglige premisser må bli korte og lesbare uten at administrasjonen skjult velger for politikerne",
+    "hjem, vennskap og familie der fagspråk, status og kontrollbehov kan følge med etter at saken er lukket"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "elin_plansjef",
+      "social_function": "linjeleder som oversetter politiske frister, saksmengde og faglige krav til prioritering i planavdelingen",
+      "class_position": "kommunal mellomleder med administrativt ansvar oppover og personal-/leveranseansvar nedover",
+      "status": "høy formell status i spillerens arbeidshverdag",
+      "power_over_player": "fordeler saker, setter tidsfrister, vurderer selvstendighet og kan beskytte eller eksponere spillerens faglige handlingsrom",
+      "wants": "at Lillebekk-saken blir politisk behandlingsklar uten at avdelingen mister kontroll på lovlighet, framdrift eller tillit",
+      "conceals": "hvor ofte hun selv må forenkle uenighet oppover for å holde saksflyten og hvor sårbar hun er for politisk kritikk av forsinkelser",
+      "speech_style": "kort, presis og prosessorientert; spør hva som faktisk må avklares før neste frist",
+      "teaches_player": "forskjellen mellom lojalitet til leder, lojalitet til fag og ansvar for å gjøre reell usikkerhet synlig"
+    },
+    {
+      "id": "ivar_utbygger",
+      "social_function": "forslagsstillerrepresentant som trenger forutsigbarhet, avklaringer og investerbar framdrift",
+      "class_position": "privat profesjonell aktør med økonomiske ressurser, spesialiststøtte og høy tilgang til administrasjonen",
+      "status": "ingen formell myndighet over spilleren, men betydelig situasjonell og økonomisk påvirkningskraft",
+      "power_over_player": "kan eskalere til ledelse og politikk, sitere uformelle signaler og gjøre administrativ uklarhet kostbar",
+      "wants": "tidlige og stabile signaler om høyde, volum, parkering og rekkefølge slik at prosjektet kan finansieres og prosjekteres",
+      "conceals": "hvor mye et tilsynelatende lite signal brukes internt som premiss for økonomiske beslutninger før planen er vedtatt",
+      "speech_style": "vennlig, rask og løsningsorientert; gjør ofte usikkerhet om til spørsmål som inviterer til ja eller nei",
+      "teaches_player": "hvordan uformell forutsigbarhet kan bli forventning og hvorfor skriftlig spor er del av faglig integritet"
+    },
+    {
+      "id": "hanne_beboer",
+      "social_function": "berørt beboer og lokal kunnskapsbærer som ser hverdagsbruk kartgrunnlaget ikke alltid viser",
+      "class_position": "innbygger uten institusjonell planmakt, men med medvirkningsrett, lokalkunnskap og mulig politisk gjennomslag",
+      "status": "lav formell status i planprosessen, men høy evidensverdi når hun dokumenterer faktisk bruk",
+      "power_over_player": "kan tilføre avgjørende kunnskap, mobilisere andre og gjøre oversette forhold politisk synlige",
+      "wants": "at skolevei, støy, skygge og hverdagsbruk blir behandlet som faktiske premisser og ikke bare som motstand mot utvikling",
+      "conceals": "egen mistillit til om administrasjonen virkelig leser innspill og hvor raskt frustrasjon kan bli en offentlig konflikt",
+      "speech_style": "detaljert, konkret og tidvis sint; blander sterke meninger med observasjoner som kan være planfaglig avgjørende",
+      "teaches_player": "å skille form fra evidens og bruke medvirkning som kunnskapskilde uten å gjøre alle ønsker til vedtak"
+    },
+    {
+      "id": "signe_byokolog",
+      "social_function": "intern fagperson som gjør grønnstruktur, overvann og økologiske funksjoner lesbare i arealvalgene",
+      "class_position": "kommunal spesialist uten beslutningsmyndighet over plansaken, men med høy faglig legitimitet",
+      "status": "sideordnet faglig autoritet",
+      "power_over_player": "kan dokumentere at restareal har funksjoner som gjør en enkel fortettingslogikk faglig uforsvarlig",
+      "wants": "at grøntdragets natur-, oppholds- og overvannsfunksjon blir vurdert før arealet reduseres eller kompenseres bort",
+      "conceals": "frustrasjon over at natur- og klimatema ofte kommer sent når prosjektets geometri allerede er sosialt og økonomisk låst",
+      "speech_style": "rolig, konkret og stedsspesifikk; peker på funksjon framfor symbolsk grønnfarge",
+      "teaches_player": "at grønnstruktur kan være teknisk og sosial infrastruktur samtidig og må inn i beslutningsgrunnlaget tidlig"
+    },
+    {
+      "id": "nora_planjuss",
+      "social_function": "planjurist som skiller lovkrav, planfaglig skjønn, administrativ anbefaling og politisk beslutning",
+      "class_position": "kommunal spesialist med juridisk autoritet, men uten politisk vedtaksmyndighet",
+      "status": "høy faglig sideautoritet i spørsmål om hjemmel, prosess og etterprøvbarhet",
+      "power_over_player": "kan stoppe formuleringer som ikke holder juridisk og gjøre uklare løfter til eksplisitt risiko",
+      "wants": "at bestemmelser, rekkefølgekrav og saksframstilling tåler innsyn, klage og senere gjennomføring",
+      "conceals": "hvor ofte hun ser problemer som kunne vært unngått dersom juridisk presisjon var invitert inn tidligere",
+      "speech_style": "nøktern, ordnær og lite imponert av gode intensjoner uten presis virkning",
+      "teaches_player": "at presise grenser ikke er byråkratisk pynt, men vern mot at makt utøves gjennom uklare forventninger"
+    },
+    {
+      "id": "maja_utvalgssekretaer",
+      "social_function": "bindeledd mot politisk behandling som trenger et kort, sammenlignbart og etterprøvbart beslutningsgrunnlag",
+      "class_position": "administrativ nøkkelrolle tett på den politiske beslutningsarenaen",
+      "status": "høy prosessuell status uten å eie det politiske valget",
+      "power_over_player": "kan avvise ulesbare saksframlegg, presse fram tydelige alternativer og påvirke hva politikerne faktisk rekker å forstå",
+      "wants": "at utvalget ser hva som er premiss, usikkerhet og reelt politisk valg før møtet",
+      "conceals": "hvor mye dårlig struktur i administrasjonens tekst kan styre debatten gjennom hva som blir lett eller vanskelig å få øye på",
+      "speech_style": "kort, redigerende og konsekvensorientert; spør hva utvalget faktisk skal velge mellom",
+      "teaches_player": "politisk lesbarhet uten å skjule usikkerhet eller gjøre faglige vurderinger om til politiske vedtak"
+    },
+    {
+      "id": "venn",
+      "social_function": "Jonas, privat venn som merker når sakslogikk og profesjonelt språk følger spilleren ut av kontoret",
+      "class_position": "privat likemann uten arbeidsplassmyndighet",
+      "status": "emosjonell nærhet uten profesjonell rang",
+      "power_over_player": "kan utfordre rollemaske, statusbehov og tendensen til å behandle samtaler som avklaringsmøter",
+      "wants": "at spilleren kan være til stede som venn og snakke om byen uten å gjøre hvert gatehjørne til en plansak",
+      "conceals": "bekymring for at jobben gir spilleren både identitet og et behov for å ha rett også privat",
+      "speech_style": "uformell, ertende og direkte; merker raskt når vanlig samtale blir saksframlegg",
+      "teaches_player": "at faglig blikk kan være verdifullt uten å få eie hele privatlivet eller alle samtaler om byen"
+    },
+    {
+      "id": "familie",
+      "social_function": "søsteren som kobler planleggingens abstrakte språk til bolig, økonomi, hverdagsliv og hvem byen oppleves å være for",
+      "class_position": "privat nær relasjon og ordinær bybruker uten institusjonell planmakt",
+      "status": "emosjonell nærhet og sosial korrektivkraft",
+      "power_over_player": "kan gjøre profesjonelle formuleringer personlige og minne spilleren på at planpremisser treffer faktiske liv",
+      "wants": "et søskenforhold der spilleren kan forklare uten å undervise og lytte uten å gjøre familiens erfaring til datagrunnlag",
+      "conceals": "at hun både er stolt av spillerens rolle og skeptisk til hvor mye status og fagspråk endrer måten de snakker sammen på",
+      "speech_style": "hverdagslig, konkret og personlig; avbryter abstrakte ord med spørsmål om hvem, hvor og hva det faktisk betyr",
+      "teaches_player": "hvordan byråkratisk makt, status og faglig identitet leses utenfra av mennesker som lever med resultatene"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "integrity",
+      "meaning": "om spilleren bevarer faglig integritet når tempo, ledelse, utbygger og politisk lesbarhet trekker i ulike retninger",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "manager_trust",
+      "meaning": "Elins tillit til at spilleren kan håndtere usikkerhet, prioritering og eskalering uten å skjule problemer eller delegere alt oppover",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "local_knowledge_weight",
+      "meaning": "hvor mye faktisk bruk og medvirkningskunnskap får endre det formelle saksgrunnlaget når den er relevant og dokumenterbar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "traceability",
+      "meaning": "om signaler, forbehold, kilder, innspill og prioriteringer får et skriftlig spor som senere kan etterprøves",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "political_readability",
+      "meaning": "evnen til å gjøre alternativer, usikkerhet og konsekvenser forståelige for politisk behandling uten skjult styring",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "legal_precision",
+      "meaning": "om bestemmelser, rekkefølgekrav og mandatgrenser er presise nok til å virke også etter at saken forlater skrivebordet",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "relationship_private",
+      "meaning": "om venner og familie fortsatt møter spilleren som person og ikke som planfaglig autoritet eller saksbehandler",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "status_anxiety",
+      "meaning": "presset etter å framstå kompetent, rask og politisk lesbar når uenighet og usikkerhet blir synlig for andre",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Plankartet ser ryddig ut, men skoleveien som faktisk brukes mangler; spilleren må bestemme hva som teller som gyldig kunnskap i saken.",
+        "thread_ids": [
+          "lokalkunnskap_system",
+          "elin_mandat"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#skolevei_01_melding",
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week1_kartet_tier"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Hanne gjør den faktiske skoleveien konkret med hverdagsbruk og observasjoner; lokal erfaring må oversettes til et spor andre kan etterprøve.",
+        "thread_ids": [
+          "lokalkunnskap_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#skolevei_02_kartlegging",
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#kartet_tier"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Elin vil ha framdrift i Lillebekk, men ny kunnskap øker utredningsbehovet; spilleren må eie både mandat, kapasitet og faglig integritet.",
+        "thread_ids": [
+          "elin_mandat",
+          "lokalkunnskap_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#plansjef_01_reaksjon"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Jonas merker at spilleren beskriver gatene som problemkart over middag; den profesjonelle lesemåten får sitt første tydelige private ekko.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_jonas_spor"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Ivar ber om et tidlig signal om høyde og parkering før faggrunnlaget er ferdig; et uformelt svar kan senere bli behandlet som en forventning.",
+        "thread_ids": [
+          "utbygger_forventning",
+          "elin_mandat"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#utbygger_01_press",
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week1_utbygger_signal"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Nora skiller det som faktisk er avklart fra det som fortsatt er åpent, og viser hvorfor juridisk presisjon også er styring av forventninger.",
+        "thread_ids": [
+          "utbygger_forventning",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#utbygger_signal"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Skoleveien og utbyggerens tidsplan kolliderer direkte; spilleren må avgjøre om lokal kunnskap skal utløse dokumentasjon eller absorberes som forsinkelse.",
+        "thread_ids": [
+          "lokalkunnskap_system",
+          "utbygger_forventning"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#skolevei_02_utbygger"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "En vanlig samtale med Jonas blir stadig omformulert til premisser og alternativer; spilleren må oppdage når sakslogikken har tatt over privat språk.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_hjemmet_som_saksmappe"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Et rekkefølgekrav ser ryddig ut, men sikrer ikke skolevei og overvann før byggestart; gode intensjoner må bli konkrete og etterprøvbare vilkår.",
+        "thread_ids": [
+          "politisk_lesbarhet",
+          "grontdrag_klima"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#svakt_rekkefolgekrav",
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week1_rekkefolgekrav"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Maja spør hva utvalget egentlig kan velge dersom gjennomføringspremissene fortsatt er uavklarte; prosess og politisk handlingsrom kobles sammen.",
+        "thread_ids": [
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_areal_people_politikk_001"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Elin vil unngå forsinkelse mens Nora peker på at et svakt krav bare flytter konflikten fram i tid; lojalitet oppover møter faglig presisjon.",
+        "thread_ids": [
+          "elin_mandat",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#plansjef_01_reaksjon_sliten"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Søsteren spør hvorfor én setning i et dokument kan bety så mye; spilleren må forklare byråkratisk makt uten å bruke yrkesstatus som fasit.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_middagen_uten_notat"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Signe viser at grøntdraget som tegnes som restareal også fungerer som flomvei; natur, teknisk robusthet og arealverdi blir samme planproblem.",
+        "thread_ids": [
+          "grontdrag_klima",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#grontdrag_flomvei",
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week1_grontdrag_flomvei"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Befaringen gjør grøntdraget til både ganglinje, oppholdssted og overvannsrom; kartets enkle flate får flere samtidige sosiale og tekniske funksjoner.",
+        "thread_ids": [
+          "grontdrag_klima",
+          "lokalkunnskap_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_job_areal_001"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Ivar foreslår kompensasjon et annet sted mens Signe peker på funksjonen som forsvinner her og nå; spilleren må skille erstatning fra faktisk stedstap.",
+        "thread_ids": [
+          "grontdrag_klima",
+          "utbygger_forventning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_job_areal_002"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Jonas ber spilleren slutte å inspisere uterommet de sitter i og bare være der; faglig oppmerksomhet må kunne skrus av uten å foraktes.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_soster_om_byen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "En lang og sint nabomail inneholder ett dokumenterbart poeng om støy og kryssing; spilleren må skille frustrasjonens form fra kunnskapens relevans.",
+        "thread_ids": [
+          "lokalkunnskap_system",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#nabomail_01_lang",
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week2_nabomail_ett_poeng"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Hanne viser forskjellen mellom den formelle ganglinjen og ruten barn faktisk bruker; medvirkning blir en test av systemets evne til å lære.",
+        "thread_ids": [
+          "lokalkunnskap_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_areal_people_nabo_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Elin spør hvor mye tid én innbygger skal få når fristen nærmer seg; spilleren må begrunne relevans og metode uten å gjøre medvirkning grenseløs.",
+        "thread_ids": [
+          "elin_mandat",
+          "lokalkunnskap_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_job_medv_001"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Spilleren sorterer argumenter i hodet hjemme og svarer Jonas som om han var en part i saken; relasjonen viser kostnaden ved permanent analysemodus.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_helg_uten_lillebekk"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Boligvolumet er politisk ønsket, men skole, vei og VA mangler dokumentert kapasitet; gjennomførbarhet må behandles før den blir et senere driftsproblem.",
+        "thread_ids": [
+          "elin_mandat",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#kapasitetsgap",
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week2_kapasitetsgap"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Elin spør hvor mye usikker kapasitet faktisk skal blokkere framdriften; spilleren må skille legitim styringsambisjon fra premisser som ennå ikke finnes.",
+        "thread_ids": [
+          "elin_mandat"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#plansjef_01_reaksjon"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Maja trenger politiske alternativer som viser både boliggevinst og infrastrukturrisiko; forenkling må gjøre konsekvensene tydeligere, ikke mindre sanne.",
+        "thread_ids": [
+          "politisk_lesbarhet",
+          "elin_mandat"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#politisk_lesbarhet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Familien snakker om boligpriser og hvem byen bygges for; spilleren må delta som søsken og byborger uten å bruke den kommunale rollen som autoritet.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_familie_hvem_eier_byen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "En liten linje på kartet flytter sol, trafikk, eiendomsverdi og grønnstruktur samtidig; planleggingens tekniske tegn blir synlig som sosial fordeling.",
+        "thread_ids": [
+          "politisk_lesbarhet",
+          "grontdrag_klima"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#linjen_pa_kartet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Signe og Ivar leser den samme linjen som henholdsvis tap av robusthet og tap av utbyggingsverdi; spilleren må holde begge konsekvensene lesbare.",
+        "thread_ids": [
+          "grontdrag_klima",
+          "utbygger_forventning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_areal_people_utbygger_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Elin ber om én anbefaling selv om flere alternativer er faglig forsvarlige; rådgiverrollen testes på å anbefale uten å skjule reelle politiske valg.",
+        "thread_ids": [
+          "elin_mandat",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#politisk_01_avklaring"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Jonas spør hvem som egentlig bestemmer byen; spilleren må forklare egen påvirkning uten å framstille administrasjonen som enten maktesløs eller allmektig.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_jonas_utbyggerprat"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Forslaget gir flere boliger, men bygger ned det eneste solrike og rolige offentlige pusterommet; måloppnåelse i tall møter hverdagskvalitet.",
+        "thread_ids": [
+          "lokalkunnskap_system",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week2_fortetting_pusterom",
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_job_areal_002"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Hanne beskriver pusterommet som del av den daglige ruten, ikke ubrukt restareal; lokal praksis utfordrer kategoriene i planmaterialet.",
+        "thread_ids": [
+          "lokalkunnskap_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#nabomailen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Ivar tilbyr kvalitetskrav i første etasje som avbøting; spilleren må vurdere om tiltaket faktisk erstatter stedets funksjon eller bare ser kompenserende ut.",
+        "thread_ids": [
+          "utbygger_forventning",
+          "lokalkunnskap_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_job_areal_001"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Søsteren reagerer når spilleren omtaler et lite byrom som ineffektiv arealbruk; fagspråket avslører hvilke verdier som lett blir usynlige.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_boligprat_hjemme"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "decision",
+        "summary": "Utvalgslederen spør hva som er lovkrav, hva som er faglig vurdering og hva som faktisk er politikk; spilleren må trekke en presis mandatgrense.",
+        "thread_ids": [
+          "politisk_lesbarhet",
+          "elin_mandat"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#politisk_01_avklaring",
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week2_juridisk_grense"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Nora kvalitetssikrer mandatgrensen og viser hvor lett en administrativ anbefaling kan omtales som nødvendighet eller et politisk ønske som faglig faktum.",
+        "thread_ids": [
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#kvalitetssikring"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Maja vil ha et kort saksframlegg som fortsatt viser usikkerhet og alternativer; politisk lesbarhet blir et håndverk i å komprimere uten å styre skjult.",
+        "thread_ids": [
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#politisk_lesbarhet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Etter møtet sitter statuspresset i kroppen og spilleren vurderer om hver formulering var smart nok; privatlivet møter embetsrollens behov for kontroll og anerkjennelse.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_sliten_etter_utvalg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Formuleringen «akseptabel risiko» flytter seg fra fagnotat til saksframlegg; spilleren ser hvordan ordvalg kan bli styringsmakt når dokumentet skifter publikum.",
+        "thread_ids": [
+          "politisk_lesbarhet",
+          "elin_mandat"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#planprosess"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Elin vil ha en strammere tekst, men kilder og forbehold må fortsatt være synlige; effektiv saksflyt møter kravet om sporbar faglig begrunnelse.",
+        "thread_ids": [
+          "elin_mandat",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_job_sted_002"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "relationship",
+        "summary": "Hanne spør hvor innspillet hennes faktisk ble av; spilleren må kunne vise sporet fra lokal observasjon til vurdering, endring eller begrunnet avvisning.",
+        "thread_ids": [
+          "lokalkunnskap_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#skolevei_02_politisk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Jonas bruker ordet «premiss» tilbake som en spøk og gjør profesjonell maske synlig; spilleren får velge mellom å le med eller forsvare rollen.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_jonas_spor"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Skoleveien returnerer som eksplisitt premiss fordi den tidligere ble dokumentert; lokal kunnskap får konsekvens gjennom sporbarhet, ikke gjennom høyest stemme.",
+        "thread_ids": [
+          "lokalkunnskap_system",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#dag2_skolevei_eskalert"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "consequence",
+        "summary": "Ivar viser til et tidligere muntlig signal som om det var avklaring; forventningsmakten i tidlig dialog blir synlig når økonomiske beslutninger allerede er tatt.",
+        "thread_ids": [
+          "utbygger_forventning",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week1_utbygger_signal"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "relationship",
+        "summary": "Elin spør om saken faktisk er bedre eller bare mer komplisert; spilleren må vise at ny kunnskap kan være framdrift når den endrer et svakt premiss.",
+        "thread_ids": [
+          "elin_mandat",
+          "lokalkunnskap_system"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#dag2_plansjef_gjenaapner"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Spilleren vil åpne saksloggen én gang til hjemme, men kan la usikkerheten vente til neste arbeidsdag; kontrollbehovet får en konkret privat grense.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_helg_med_usikkerhet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Fristen for politisk utvalg nærmer seg og ikke alt er like ferdig; spilleren må prioritere hva som må avklares og hva som skal merkes som reell usikkerhet.",
+        "thread_ids": [
+          "elin_mandat",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week1_politisk_lesbarhet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "decision",
+        "summary": "Signe ber om at grøntdragets flomfunksjon ikke tones ned, mens Elin vil unngå forsinkelse for ett tema; tidligere kartvalg blir nå et styringsvalg.",
+        "thread_ids": [
+          "grontdrag_klima",
+          "elin_mandat"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#grontdrag_flomvei"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Maja trenger sammenlignbare alternativer før utsending; spilleren må komprimere juss, klima, skolevei og kapasitet uten å gjøre politiske valg til tekniske fakta.",
+        "thread_ids": [
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week2_send_saken_videre"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Søsteren inviterer til en helt vanlig kveld mens fristen ligger i hodet; spilleren må la privat tid være noe annet enn reservekapasitet for kontoret.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_familie_hvem_eier_byen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Det endelige fagsporet samler skolevei, grøntdrag, kapasitet, juss og medvirkning slik at senere lesere kan se hva som var kjent da anbefalingen ble skrevet.",
+        "thread_ids": [
+          "politisk_lesbarhet",
+          "lokalkunnskap_system",
+          "grontdrag_klima"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week2_send_saken_videre",
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#kvalitetssikring"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "decision",
+        "summary": "Elin utfordrer et forbehold fordi det kan skape politisk uro; spilleren må velge om teksten skal være behageligere eller mer presis om det som faktisk er usikkert.",
+        "thread_ids": [
+          "elin_mandat",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_job_sted_001"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Maja bekrefter at utvalget nå kan se hvilke valg som er politiske og hvilke premisser administrasjonen står for; mandatgrensen blir selve beslutningskvaliteten.",
+        "thread_ids": [
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/arealplanlegger/scenes.json#dag2_skolevei_fortsett"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Etter utsending er kroppen fortsatt i saksmodus selv om dokumentet er lukket; profesjonell avslutning og mental avslutning viser seg å være to forskjellige ting.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_sliten_etter_utvalg"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Utfallet er ikke spillerens å kontrollere, men dokumentasjonen gjør det mulig å etterprøve hvordan skolevei, klima, kapasitet og juss ble veid før beslutningen.",
+        "thread_ids": [
+          "politisk_lesbarhet",
+          "elin_mandat"
+        ],
+        "materialization_refs": [
+          "data/Civication/workGrammars/by/by_radgiver_plan.json#planprosess"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Hanne og Ivar reagerer forskjellig på samme prosess; spilleren må møte både skuffelse og tilfredshet uten å omskrive det faglige sporet for sosial status.",
+        "thread_ids": [
+          "lokalkunnskap_system",
+          "utbygger_forventning"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_areal_people_nabo_001",
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_areal_people_utbygger_001"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Elin vurderer rådgiverens bidrag som evnen til å gjøre premisser, usikkerhet og konsekvenser sporbare, ikke som evnen til å vinne det politiske utfallet.",
+        "thread_ids": [
+          "elin_mandat",
+          "politisk_lesbarhet"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json#by_radgiver_week2_send_saken_videre"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Spilleren går gjennom byen uten å rangere hvert hjørne og kan beholde faglig stolthet uten å eie alle utfall; arbeidsblikket får en bærekraftig privat grense.",
+        "thread_ids": [
+          "privat_fagblikk"
+        ],
+        "materialization_refs": [
+          "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_helg_med_usikkerhet"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "lokalkunnskap_system",
+      "relationship": "Hanne og saken / lokal kunnskap mot formelt kart- og saksgrunnlag",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "2/afternoon",
+        "5/morning",
+        "5/lunch",
+        "8/lunch",
+        "10/afternoon",
+        "11/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "elin_mandat",
+      "relationship": "Elin / framdrift, lederlojalitet, faglig mandat og administrativt handlingsrom",
+      "beat_refs": [
+        "1/afternoon",
+        "2/morning",
+        "3/afternoon",
+        "5/afternoon",
+        "6/lunch",
+        "7/afternoon",
+        "11/afternoon",
+        "13/lunch",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "utbygger_forventning",
+      "relationship": "Ivar / forutsigbarhet, uformelle signaler og forventningsmakt",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "4/afternoon",
+        "7/lunch",
+        "8/afternoon",
+        "11/lunch",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "grontdrag_klima",
+      "relationship": "Signe og Lillebekk / grønnstruktur som sosial, økologisk og teknisk infrastruktur",
+      "beat_refs": [
+        "3/morning",
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "7/morning",
+        "7/lunch",
+        "12/lunch",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "politisk_lesbarhet",
+      "relationship": "Nora og Maja / juridisk presisjon, fag-politikk-grense og lesbart beslutningsgrunnlag",
+      "beat_refs": [
+        "3/lunch",
+        "6/afternoon",
+        "7/afternoon",
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "10/morning",
+        "12/afternoon",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "privat_fagblikk",
+      "relationship": "Jonas, søsteren og privatlivet / status, fagspråk, kontrollbehov og evnen til å legge byen fra seg",
+      "beat_refs": [
+        "1/evening",
+        "3/evening",
+        "5/evening",
+        "7/evening",
+        "9/evening",
+        "11/evening",
+        "12/evening",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "fagsprak_hjem",
+      "description": "Premiss-, risiko- og prosesspråk kan gjøre private samtaler til små saksframlegg; spilleren må kunne forklare uten å behandle venner som parter.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_jonas_spor",
+        "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_jonas_utbyggerprat"
+      ]
+    },
+    {
+      "id": "byen_som_arbeidsobjekt",
+      "description": "Gater og byrom kan fortsette å framstå som analyseobjekter etter jobb; privat nærvær krever at fagblikket kan være tilgjengelig uten å være konstant aktivt.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_hjemmet_som_saksmappe",
+        "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_helg_med_usikkerhet"
+      ]
+    },
+    {
+      "id": "status_i_familien",
+      "description": "Kommunal rådgiverstatus kan gi både stolthet og asymmetri i familiesamtaler om bolig og by; spilleren må skille kunnskap fra sosial autoritet.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_middagen_uten_notat",
+        "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_familie_hvem_eier_byen"
+      ]
+    },
+    {
+      "id": "frist_som_reservekapasitet",
+      "description": "Politiske frister kan gjøre kvelden til usynlig reservekapasitet; sesongen må vise at profesjonell lojalitet også krever grenser for restitusjon.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week1_helg_uten_lillebekk",
+        "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_sliten_etter_utvalg"
+      ]
+    },
+    {
+      "id": "usikkerhet_uten_kontroll",
+      "description": "Når saken er sendt videre kan spilleren ikke kontrollere utfallet; privat bærekraft handler om å tåle usikkerhet uten å åpne loggen eller omskrive saken hjemme.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json#by_radgiver_week2_helg_med_usikkerhet",
+        "data/Civication/lifestory/roles/arealplanlegger/scenes.json#politisk_01_avklaring"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "skolevei_blir_premiss",
+      "setup_ref": "1/morning",
+      "return_ref": "11/morning",
+      "domains": [
+        "job",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "uformelt_signal_blir_forventning",
+      "setup_ref": "2/morning",
+      "return_ref": "11/lunch",
+      "domains": [
+        "job",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "rekkefolgekrav_blir_gjennomforing",
+      "setup_ref": "3/morning",
+      "return_ref": "13/morning",
+      "domains": [
+        "job",
+        "narrative"
+      ]
+    },
+    {
+      "id": "grontdrag_blir_infrastruktur",
+      "setup_ref": "4/morning",
+      "return_ref": "12/lunch",
+      "domains": [
+        "job",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "mandatgrense_blir_beslutningsgrunnlag",
+      "setup_ref": "9/morning",
+      "return_ref": "13/afternoon",
+      "domains": [
+        "job",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "fagblikk_faar_privat_grense",
+      "setup_ref": "1/evening",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "psyche",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/roleModels/by/by_radgiver_plan.json",
+      "data/Civication/workGrammars/by/by_radgiver_plan.json",
+      "data/Civication/mailPlans/by/by_radgiver_plan_plan.json",
+      "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
+      "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json",
+      "data/Civication/lifestory/roles/arealplanlegger/role.json",
+      "data/Civication/lifestory/roles/arealplanlegger/threads.json",
+      "data/Civication/lifestory/roles/arealplanlegger/scenes.json",
+      "data/Civication/praksisfortellinger_registry.json"
+    ]
+  }
+}
