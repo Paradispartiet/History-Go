@@ -134,7 +134,8 @@ export function auditVitenskapMethodsModelsCoverage({ writeReport = false, check
     assert(claim.source_ids.every((sourceId) => sourceById.has(sourceId)), `${id} peker til ukjent kilde`);
     const actualUsage = [...refsBySection.entries()].filter(([, refs]) => refs.has(id)).map(([sectionId]) => sectionId);
     assert(isDeepStrictEqual(sorted(actualUsage), sorted(EXPECTED_CLAIM_USAGE[id])), `${id} har feil faktisk section-usage`);
-    assert(isDeepStrictEqual(sorted(claim.used_in || []), sorted(EXPECTED_CLAIM_USAGE[id])), `${id} har stale used_in`);
+    const usedIn = new Set(claim.used_in || []);
+    assert(EXPECTED_CLAIM_USAGE[id].every((sectionId) => usedIn.has(sectionId)), `${id} mangler historisk used_in`);
   }
   for (const section of sections) assert([...refsBySection.get(section.id)].every((id) => claimById.has(id)), `${section.id} peker til ukjent claim`);
 

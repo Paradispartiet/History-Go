@@ -1,0 +1,202 @@
+{
+  "schema": "history_go_fagverk_editorial_coverage_supplement_v1",
+  "version": "1.0.0",
+  "subject_id": "vitenskap",
+  "chapter_id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
+  "domain_id": "teknologi_data_infrastruktur",
+  "title": "Digital vitenskap, data og teknisk mediering: når evidens går gjennom kode, sensorer og infrastrukturer",
+  "purpose": "Gi eksplisitt universitetsnær behandling av hvordan beregning, automatisering, datasett, visualisering, protokoller, sensorer og teknisk infrastruktur inngår i vitenskapelige evidenskjeder. Modulen analyserer hva forskeren må dokumentere og kontrollere for at teknisk mediert evidens skal kunne vurderes, uten å overta nested Teknologis design-, system- og ingeniørfaglige læreplan.",
+  "coverageTreatments": [
+    {"emne_id":"em_vit_automatisering","section_id":"vit1-digital-1","focus":"Automatisering som utførelse av spesifiserte forskningsoperasjoner, med eksplisitt skille mellom repeterbar kjøring og validering av faglige antakelser."},
+    {"emne_id":"em_vit_beregning","section_id":"vit1-digital-1","focus":"Beregning som vitenskapelig transformasjon av input gjennom kode, algoritmer, bibliotek, numerisk presisjon og maskinmiljø som må dokumenteres for reproducerbarhet."},
+    {"emne_id":"em_vit_datasett","section_id":"vit1-digital-2","focus":"Datasett som selekterte, strukturerte og prosesserte evidensobjekter med definert populasjon, variabler, versjon, proveniens og begrensninger."},
+    {"emne_id":"em_vit_datavisualisering","section_id":"vit1-digital-3","focus":"Visualisering som analytisk transformasjon der akser, skala, aggregasjon, binning og grafisk koding påvirker hvilke mønstre og usikkerheter som blir synlige."},
+    {"emne_id":"em_vit_digital_vitenskap","section_id":"vit1-digital-2","focus":"Digital vitenskap som forskningspraksis avhengig av maskinlesbare data, metadata, programvare, identifikatorer, tilgang og dokumentert gjenbrukskontekst."},
+    {"emne_id":"em_vit_protokoller","section_id":"vit1-digital-4","focus":"Protokoller som eksplisitte handlings- og dokumentasjonsregler som reduserer frihetsgrader og gjør avvik synlige, uten å garantere at designet passer alle forskningsspørsmål."},
+    {"emne_id":"em_vit_sensorer","section_id":"vit1-digital-5","focus":"Sensorer som deler av målekjeder der output først blir vitenskapelig tolkbar gjennom kalibrering, enheter, responsmodell, miljøbetingelser og måleusikkerhet."},
+    {"emne_id":"em_vit_teknologiens_foringer","section_id":"vit1-digital-6","focus":"Teknologiske føringer som konsekvenser av hva instrumenter, formater, programvare og plattformer gjør lett, vanskelig, synlig eller usynlig i forskningsarbeidet."},
+    {"emne_id":"em_vit_teknologisk_presisjon","section_id":"vit1-digital-5","focus":"Teknisk oppløsning og repeterbar output skilt fra metrologisk sporbarhet, måleusikkerhet, validitet og relevans for fenomenet som undersøkes."},
+    {"emne_id":"em_vit_hist_teknologi","section_id":"vit1-digital-6","focus":"Teknologiske skift i vitenskapshistorien analysert som endringer i observasjons-, lagrings-, beregnings- og delingskapasitet uten en uunngåelig framskrittsfortelling."},
+    {"emne_id":"em_vit_teknologi_innovasjon","section_id":"vit1-digital-6","focus":"Innovasjon skilt fra forskning: implementerte nye eller forbedrede produkter/prosesser kan bygge på forskning, men innovasjonsstatus er ikke et epistemisk kvalitetsstempel."}
+  ],
+  "sections": [
+    {
+      "id": "vit1-digital-1",
+      "title": "Beregning og automatisering: samme kode er ikke nødvendigvis samme resultat",
+      "emne_ids": ["em_vit_beregning","em_vit_automatisering"],
+      "paragraphs": [
+        "Komputasjonell vitenskap gjør algoritmer, kode og numeriske representasjoner til deler av evidenskjeden. National Academies skiller reproducerbarhet, der samme data og beregningssteg brukes på nytt, fra replikasjon med nye data. For en beregningsanalyse betyr dette at forskeren ikke bare må lagre sluttfilen, men også identifisere input, kodeversjon, parametre, avhengigheter og rekkefølgen på transformasjonene. Ellers kan et tilsynelatende eksakt tall være umulig å rekonstruere eller granske.",
+        "NISTs arbeid med numerical reproducibility viser hvorfor miljøet er faglig relevant: bibliotekversjoner, floating-point-presisjon, compiler-valg og CPU/GPU-arkitektur kan gi numeriske forskjeller. Slike forskjeller er ikke automatisk vitenskapelig betydningsfulle, men de må testes mot toleranser og konklusjonens robusthet. En god analyse spør derfor både om resultatet kan gjenskapes bit-for-bit og om den vitenskapelige slutningen står fast når rimelige numeriske og tekniske variasjoner introduseres.",
+        "Automatisering reduserer manuelt arbeid og kan gjøre en workflow konsekvent, men den automatiserer bare de reglene som er implementert. En pipeline kan derfor gjennomføre den samme feilaktige filtreringen tusen ganger med perfekt repeterbarhet. Vitenskapelig kontroll krever testdata, inspeksjon av mellomresultater, dokumenterte feilhåndteringer og vurdering av om automatiserte beslutninger faktisk representerer forskningsspørsmålet. Automatisering er et middel for kontrollert utførelse, ikke en erstatning for modellkritikk eller faglig validering."
+      ],
+      "paragraphClaimIds": [["vit1-62"],["vit1-63"],["vit1-64"]],
+      "keyPoints": [
+        "Komputasjonell reproducerbarhet krever dokumentasjon av data, kode, parametre, avhengigheter og utførelsesmiljø.",
+        "Automatisert gjentakelse kan være helt konsistent og samtidig systematisk feil dersom reglene eller inputene er feil."
+      ],
+      "keyPointClaimIds": [["vit1-62","vit1-63"],["vit1-64"]],
+      "methodLimits": [
+        "Bit-for-bit-reproduksjon er sterk dokumentasjon av utførelsen, men validerer ikke automatisk modellantakelser eller datakvalitet.",
+        "Forskjeller mellom hardware eller biblioteker kan være numerisk målbare uten å være store nok til å endre den faglige konklusjonen; betydningen må vurderes eksplisitt."
+      ]
+    },
+    {
+      "id": "vit1-digital-2",
+      "title": "Datasett, proveniens og digital vitenskap: data har en historie",
+      "emne_ids": ["em_vit_datasett","em_vit_digital_vitenskap"],
+      "paragraphs": [
+        "Et datasett er ikke bare en samling observerte verdier. NIST Research Data Framework beskriver forskningsdata gjennom en livssyklus som omfatter planlegging, generering eller innhenting, prosessering og analyse, deling og gjenbruk samt bevaring eller kassasjon. Mellom rå observasjon og analyseklar tabell kan det ligge kalibrering, filtrering, imputering, klassifisering, kobling og aggregering. Hvert trinn kan endre hvilke spørsmål dataene kan svare på, og må derfor dokumenteres som del av evidensen.",
+        "Proveniens gjør denne historien eksplisitt. W3C PROV-O representerer provenance gjennom entiteter, aktiviteter og agenter og relasjonene mellom dem, mens NIST RDaF beskriver proveniens som en dokumentert historie over hvor, når, hvordan og av hvem et dataobjekt ble generert, innhentet eller prosessert. Dette er mer enn et filnavn eller en dato: en forsker må kunne knytte en avledet fil til input, transformasjon, programvare, ansvarlig aktør og versjon dersom andre skal kunne etterprøve data lineage.",
+        "Digital vitenskap er derfor også infrastruktur for gjenbruk. FAIR-prinsippene retter oppmerksomheten mot at data og metadata skal være findable, accessible, interoperable og reusable, og W3Cs data-praksis anbefaler metadata, provenance og maskinlesbare standardformater. Men FAIRness er ikke et sannhetsstempel. Et godt indeksert og interoperabelt datasett kan fortsatt være skjevt, dårlig målt eller uegnet for et nytt formål. Reuse krever både teknisk tilgjengelighet og ny faglig vurdering av fitness for purpose."
+      ],
+      "paragraphClaimIds": [["vit1-65"],["vit1-66"],["vit1-67"]],
+      "keyPoints": [
+        "Datasett må forstås gjennom hvordan de er generert, transformert, dokumentert og avgrenset.",
+        "Proveniens og FAIR-praksis forbedrer gransking og gjenbruk, men erstatter ikke vurdering av representativitet, validitet eller bias."
+      ],
+      "keyPointClaimIds": [["vit1-65","vit1-66"],["vit1-67"]],
+      "methodLimits": [
+        "Full data lineage kan være kostbar eller delvis umulig for historiske og eksternt innsamlede data; mangler må oppgis framfor rekonstrueres som om de var sikre.",
+        "Interoperabilitet mellom formater og vocabularies løser syntaktiske og semantiske problemer, men garanterer ikke at to datasett måler samme konstrukt på sammenlignbar måte."
+      ]
+    },
+    {
+      "id": "vit1-digital-3",
+      "title": "Datavisualisering: analytisk instrument, ikke pynt",
+      "emne_ids": ["em_vit_datavisualisering"],
+      "paragraphs": [
+        "Visualisering er en transformasjon fra data til en grafisk representasjon. Valg av variabler, skala, normalisering, binning, aggregasjon og grafisk encoding bestemmer hvilke mønstre som blir synlige. W3C Data on the Web Best Practices anbefaler komplementære presentasjoner fordi de kan hjelpe mennesker å forstå og utforske data, men den samme fleksibiliteten gjør at visualisering må behandles som en analytisk beslutning. Figuren skal kunne spores tilbake til data og transformasjonene som produserte den.",
+        "En graf kan være numerisk korrekt og likevel gi en dårlig faglig framstilling. Avkuttet akse kan forstørre små forskjeller; store bins kan skjule heterogenitet; en gjennomsnittslinje kan skjule multimodale fordelinger; en kartprojeksjon eller fargeskala kan endre hvilke romlige mønstre øyet prioriterer. Derfor bør visualiseringsanalyse sammenholde figuren med tabulerte summeringer, alternative skalaer og datafordelingen når konklusjonen er følsom for representasjonsvalget.",
+        "Visualisering kan også brukes som diagnostikk, ikke bare kommunikasjon. NISTs statistikkhåndbok bruker grafiske teknikker og residualanalyse for å undersøke struktur, avvik og modelltilpasning. En god figur kan avsløre ikke-linearitet, outliers eller heteroskedastisitet som et enkelt sammendragstall skjuler. Men en visuelt slående struktur er fortsatt en observasjon som må følges av passende analyse; menneskelig mønstergjenkjenning kan både oppdage signaler og overtolke tilfeldige former."
+      ],
+      "paragraphClaimIds": [["vit1-68"],["vit1-68"],["vit1-68","vit1-13"]],
+      "keyPoints": [
+        "Visualisering må dokumenteres som en transformasjon med valg som kan påvirke tolkningen.",
+        "Grafisk diagnostikk kan avdekke struktur som sammendragstall skjuler, men visuell overbevisning er ikke alene et statistisk bevis."
+      ],
+      "keyPointClaimIds": [["vit1-68"],["vit1-68","vit1-13"]],
+      "methodLimits": [
+        "Alternative visualiseringer kan redusere representasjonsblindhet, men de eliminerer ikke behovet for modell- og usikkerhetsanalyse.",
+        "Hva som er lett å oppfatte visuelt varierer med design og publikum; estetisk klarhet er ikke det samme som inferensiell gyldighet."
+      ]
+    },
+    {
+      "id": "vit1-digital-4",
+      "title": "Protokoller: standardiser handlingen, dokumenter avviket",
+      "emne_ids": ["em_vit_protokoller"],
+      "paragraphs": [
+        "En forskningsprotokoll gjør en prosedyre eksplisitt før eller under gjennomføringen: hvilke prøver som tas, hvordan instrumentet brukes, hvilke terskler som gjelder, hvordan data lagres og hvilke avvik som krever handling. NIH beskriver scientific rigor gjennom robust og unbiased design, methodology, analysis, interpretation and reporting. Protokoller kan redusere uformelle frihetsgrader og gjøre sammenligning mulig, men bare dersom de er detaljerte nok til å gjennomføres og avvik faktisk registreres.",
+        "Standardisering må samtidig passe formålet. En protokoll utviklet for ett instrument, materiale eller populasjon kan være dårlig egnet i en annen kontekst. Derfor er det viktig å skille kjernekrav fra lokale parametre og dokumentere versjon, utstyr, software, kalibrering og eventuelle deviations. NIST RDaF framhever dokumentasjon av metoder, instrumenter, programvare og parametre nettopp fordi en datafil uten denne konteksten kan være vanskelig å tolke eller reprodusere.",
+        "Avvik er ikke bare støy som bør skjules. Et systematisk avvik kan være evidens for at protokollen ikke dekker en relevant variasjon, at instrumentet har endret seg eller at en antakelse bryter sammen. God protokollstyring registrerer derfor både hva som var planlagt og hva som faktisk skjedde. Først da kan senere analyser skille et biologisk eller fysisk signal fra en endring i prosedyren."
+      ],
+      "paragraphClaimIds": [["vit1-69"],["vit1-69","vit1-15"],["vit1-69"]],
+      "keyPoints": [
+        "Protokoller reduserer skjulte frihetsgrader når trinn, parametre, versjoner og avvik dokumenteres.",
+        "Et protokollavvik kan være viktig evidens og må ikke automatisk skjules som et administrativt problem."
+      ],
+      "keyPointClaimIds": [["vit1-69"],["vit1-69"]],
+      "methodLimits": [
+        "Sterk standardisering kan forbedre sammenlignbarhet, men kan også gjøre en metode mindre sensitiv for legitime lokale forskjeller.",
+        "En detaljert protokoll viser hva som skulle gjøres, men dokumentasjon av faktisk utførelse og avvik er nødvendig for å vite hva som skjedde."
+      ]
+    },
+    {
+      "id": "vit1-digital-5",
+      "title": "Sensorer og teknologisk presisjon: et tall trenger en målekjede",
+      "emne_ids": ["em_vit_sensorer","em_vit_teknologisk_presisjon"],
+      "paragraphs": [
+        "En sensor omsetter et fysisk, kjemisk eller biologisk fenomen til et signal som senere blir et måleresultat. Mellom fenomen og tall ligger responsfunksjon, sampling, signalbehandling, enhet, kalibrering og ofte miljøkorreksjoner. NISTs traceability-policy beskriver metrologisk sporbarhet som en egenskap ved et måleresultat gjennom en dokumentert ubrutt kalibreringskjede der hvert ledd bidrar til måleusikkerheten. Sensorens datablad eller digitale oppløsning er derfor ikke nok til å etablere sporbarhet.",
+        "Teknologisk presisjon må også skilles fra validitet. Et instrument kan produsere svært repeterbare tall med mange desimaler og samtidig måle feil konstrukt, være feilkalibrert eller ha systematisk drift. NIST understreker at traceability gjelder resultatet og den dokumenterte kjeden, ikke bare instrumentets merke eller laboratoriets navn. Forskeren må derfor koble teknisk oppløsning til referanser, kalibrering, uncertainty budget og forskningsspørsmålets krav.",
+        "Sensorer produserer dessuten tids- og romlig strukturerte data som kan påvirkes av plassering, responstid, missingness og vedlikehold. En større sensorflåte gir flere observasjoner, men ikke automatisk bedre dekning. Samplingdesign og metadata må vise hva nettet faktisk representerer. Dette er grensen mot Natur-kapitlene: Vitenskap analyserer målekjeden og evidensens betingelser; selve økologiske, klimatiske eller biologiske fenomenet forblir Natur-fagets substans."
+      ],
+      "paragraphClaimIds": [["vit1-70"],["vit1-70"],["vit1-70","vit1-15"]],
+      "keyPoints": [
+        "Et sensorutslag blir et vurderbart måleresultat gjennom dokumentert kalibrering, modell, enhet og usikkerhet.",
+        "Flere desimaler eller flere sensorer betyr ikke automatisk høyere validitet eller bedre representativitet."
+      ],
+      "keyPointClaimIds": [["vit1-70"],["vit1-70"]],
+      "methodLimits": [
+        "Metrologisk sporbarhet styrker sammenlignbarheten til måleresultatet, men avgjør ikke om målemodellen representerer riktig vitenskapelig konstrukt.",
+        "Kalibrering på ett tidspunkt fanger ikke nødvendigvis drift, fouling, plasseringseffekter eller endrede miljøbetingelser gjennom hele studien."
+      ]
+    },
+    {
+      "id": "vit1-digital-6",
+      "title": "Teknologiske føringer, skift og innovasjon: verktøy åpner og lukker spørsmål",
+      "emne_ids": ["em_vit_teknologiens_foringer","em_vit_hist_teknologi","em_vit_teknologi_innovasjon"],
+      "paragraphs": [
+        "Vitenskapelige verktøy har affordances og begrensninger: en database gjør noen koblinger enkle, et filformat bevarer bestemte felter, et instrument er sensitivt i et bestemt område, og en programvarepakke tilbyr enkelte modeller som standardvalg. NISTs numerical-reproducibility-arbeid viser at selv under samme analyse kan software- og hardwarevalg påvirke numerisk output. Teknologiske føringer bør derfor synliggjøres som deler av metodebeskrivelsen, ikke behandles som nøytrale bakgrunnsdetaljer.",
+        "Teknologiske skift kan endre hvilke vitenskapelige spørsmål som er praktisk mulige. Storskala instrumenter, data/e-infrastruktur, lagring, nettverk og programvare er eksplisitt del av moderne forskningsinfrastruktur hos både EU og Forskningsrådet. Historisk analyse bør undersøke hvilke nye observasjoner, hastigheter eller skalaer infrastrukturen muliggjorde, men unngå å fortelle en enkel historie der nyere teknologi alltid gir bedre kunnskap. Nye systemer kan også introdusere nye avhengigheter, kostnader, blindsoner og standarder.",
+        "Innovasjon er enda et skille. OECD/Eurostat Oslo Manual klassifiserer innovasjon som nye eller forbedrede produkter eller prosesser som er gjort tilgjengelige eller tatt i bruk, og skiller dette analytisk fra FoU-aktivitet. Forskning kan bidra til innovasjon, og innovasjon kan gi forskning nye verktøy, men et kommersielt eller administrativt vellykket system er ikke dermed epistemisk validert for ethvert forskningsformål. Vitenskapelig bruk krever fortsatt dokumentasjon av ytelse, bias, uncertainty og fitness for purpose."
+      ],
+      "paragraphClaimIds": [["vit1-71"],["vit1-71","vit1-20"],["vit1-72"]],
+      "keyPoints": [
+        "Teknologiske valg er metodevalg når de påvirker hvilke data, modeller eller numeriske resultater forskeren kan produsere.",
+        "Innovasjon beskriver implementert nyhet eller forbedring; den må ikke brukes som et automatisk kvalitetsstempel for vitenskapelig evidens."
+      ],
+      "keyPointClaimIds": [["vit1-71"],["vit1-72"]],
+      "methodLimits": [
+        "Å identifisere en teknologisk føring viser ikke alene hvor stor effekten er på en bestemt konklusjon; sensitiviteten må testes eller begrunnes.",
+        "Historiske sammenhenger mellom nye instrumenter og vitenskapelige endringer er ofte flerkausale; tilgang til teknologi må ikke forveksles med en enkel årsak til kunnskapsendring."
+      ]
+    }
+  ],
+  "workedExamples": [
+    {
+      "id": "vit1-digital-ex-1",
+      "title": "Samme analyse, nytt bibliotek",
+      "scenario": "Et publisert beregningsresultat kan gjenskapes på den opprinnelige containeren, men en nyere programvarestack gir små numeriske avvik som påvirker noen klassifikasjoner nær terskelen.",
+      "analysis": [
+        "Lås original data-, kode-, dependency- og parameter-versjon.",
+        "Kjør både original og ny stack og kvantifiser hvor i pipeline differansen oppstår.",
+        "Skill numerisk differanse fra vitenskapelig meningsfull differanse ved å teste klassifikasjonens robusthet rundt terskelen.",
+        "Dokumenter compiler, bibliotek, precision og hardware der de påvirker resultatet.",
+        "Rapporter om hovedkonklusjonen er robust, og hvilke delresultater som er miljøfølsomme."
+      ]
+    },
+    {
+      "id": "vit1-digital-ex-2",
+      "title": "Fra sensorsignal til påstand",
+      "scenario": "Et nettverk av sensorer viser en tydelig gradient gjennom byen, men instrumentene har ulik alder, vedlikeholdshistorikk og plassering.",
+      "analysis": [
+        "Kartlegg kalibrering, referanser, enheter og uncertainty for hvert instrument.",
+        "Kontroller metadata om plassering, responstid, drift, missingness og vedlikehold.",
+        "Undersøk om gradienten består etter korreksjoner og når usikre sensorer holdes utenfor.",
+        "Skill sensorens tekniske oppløsning fra samplingnettets representativitet.",
+        "Formuler påstanden på det nivået målekjeden og dekningen faktisk støtter."
+      ]
+    }
+  ],
+  "applicationTasks": [
+    {"id":"vit1-digital-task-1","title":"Reproduser en liten beregningsanalyse","prompts":["Finn et åpent datasett og en enkel scriptet analyse.","Registrer data-, kode-, dependency- og parameter-versjoner.","Kjør i to miljøer eller versjoner og sammenlign output.","Forklar hvilke forskjeller som er tekniske og hvilke som kunne endret den faglige konklusjonen."]},
+    {"id":"vit1-digital-task-2","title":"Lag provenance for en figur","prompts":["Velg en publisert eller selvlaget figur.","Spor den bakover til datasett, filtrering, transformasjon, aggregasjon og visualiseringskode.","Identifiser minst ett valg som kunne gitt en annen, men fortsatt legitim presentasjon.","Skriv provenance slik at en annen person kan rekonstruere figuren uten muntlig hjelp."]},
+    {"id":"vit1-digital-task-3","title":"Auditér en sensorbasert måling","prompts":["Finn instrumentets spesifikasjon og kalibreringsinformasjon.","Skill oppløsning, precision, accuracy/uncertainty og traceability.","Kartlegg plassering, tidsdekning og relevante miljøbetingelser.","Formuler én påstand dataene støtter og én som krever mer informasjon."]}
+  ],
+  "misconceptions": [
+    {"claim":"Når den samme koden kjører to ganger, er funnet replikert.","correction":"Det kan vise komputasjonell reproducerbarhet; replikasjon krever normalt nye data som undersøker det samme vitenskapelige spørsmålet."},
+    {"claim":"FAIR-data er data av høy vitenskapelig kvalitet.","correction":"FAIR beskriver egenskaper for å finne, få tilgang til, koble og gjenbruke data; validitet, representativitet og bias må vurderes separat."},
+    {"claim":"En graf viser bare dataene slik de er.","correction":"Visualisering innebærer transformasjons- og designvalg som påvirker hvilke mønstre og usikkerheter som blir synlige."},
+    {"claim":"En sensor med mange desimaler måler svært presist.","correction":"Digital oppløsning er ikke det samme som metrologisk sporbarhet, usikkerhet eller validitet."},
+    {"claim":"Automatisering fjerner menneskelige feil og gjør analysen objektiv.","correction":"Automatisering kan redusere tilfeldig variasjon i utførelse, men kan også gjenta samme modell-, data- eller kodefeil konsekvent."
+    }
+  ],
+  "selfCheck": [
+    {"question":"Hva må dokumenteres for komputasjonell reproducerbarhet?","answer":"Minst inputdata, kode, parametre, avhengigheter og relevant utførelsesmiljø, slik at transformasjonene kan gjenskapes og granskes."},
+    {"question":"Hva tilfører provenance utover et filnavn?","answer":"En knyttet historie over hvilke entiteter, aktiviteter og aktører som genererte eller endret dataobjektet og hvordan avledede resultater henger sammen med input."},
+    {"question":"Hvorfor er FAIRness ikke et sannhetskriterium?","answer":"Fordi data kan være teknisk godt dokumentert og gjenbrukbart, men fortsatt ha målefeil, seleksjonsbias eller dårlig fitness for et nytt spørsmål."},
+    {"question":"Hva er den viktigste forskjellen mellom digital oppløsning og metrologisk kvalitet?","answer":"Oppløsning beskriver hvor fint output kan representeres; metrologisk kvalitet krever blant annet kalibrering, traceability og vurdert uncertainty for måleresultatet."},
+    {"question":"Hvorfor kan en standardisert protokoll fortsatt gi dårlig evidens?","answer":"Protokollen kan være dårlig tilpasset spørsmålet eller konteksten, og konsekvent utførelse kan derfor reprodusere en systematisk feil."},
+    {"question":"Hvor går grensen mot nested Teknologi?","answer":"Vitenskap analyserer hvordan tekniske systemer medierer data, måling og evidens; Teknologi eier design, arkitektur, konstruksjon, verifikasjon og ingeniørmessige systemavveininger."
+    }
+  ],
+  "qualityGuard": {
+    "noAutomationEqualsValidationShortcut": true,
+    "noFairEqualsTruthShortcut": true,
+    "noVisualizationEqualsRawDataShortcut": true,
+    "noResolutionEqualsTraceabilityShortcut": true,
+    "noInnovationEqualsEvidenceQualityShortcut": true,
+    "technologyDesignBoundaryPreserved": true,
+    "natureBoundaryPreserved": true,
+    "doesNotClaimSubjectComplete": true
+  }
+}
