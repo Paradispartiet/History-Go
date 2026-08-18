@@ -8,11 +8,12 @@ const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
 const STATUS='data/fagverk/subject_status.json';
 const REPORT='reports/fagverk/fagverk-theory-quality-audit.json';
 const EXCLUDED=new Set(['data/fag/musikk/emnergvb_musikk.json']);
+const SUBJECT_ROOT_ALIASES={film_tv:['data/fag/TV_og_Film']};
 const ARCHIVE=/(^|\/)(arkiv|archive)(\/|$)/i;
 const THEORY=new Set(['theories','teorier','theory_hooks','theoryHooks','topic_hooks','topicHooks','theory_lane','theory_lanes','theoryLane','theoryLanes','theory_objects','theoryObjects','models','modeller','frameworks','rammeverk','paradigms','paradigmer','laws','lover','principles','prinsipper']);
 const PEOPLE=new Set(['thinkers','theorists','theoreticians','teoretikere','debate_thinkers','debateThinkers','researchers','forskere','scholars']);
 const WORKS=new Set(['works','verk','work_refs','workRefs','primary_works','primaryWorks','key_works','keyWorks']);
-const BINDINGS=new Set(['emne_id','emne_ids','claim_id','claim_ids','used_in','topic_hook_id','topic_hook_ids','theory_ref','theory_refs','paragraphClaimIds','paragraph_claim_ids']);
+const BINDINGS=new Set(['emne_id','emne_ids','claim_id','claim_ids','used_in','topic_hook_id','topic_hook_ids','theory_ref','theory_refs','paragraphClaimIds','paragraph_claim_ids','claim_source_ids','scholarly_refs']);
 const RIVAL=/(rival|alternativ|competing|debate|motperspektiv|counter|contested)/i;
 const LIMIT=/(limitation|begrens|assumption|forutset|validity|gyldighet|scope|misuse|caveat|forbehold)/i;
 const THEORY_TEXT=/\b(teori|theory|modell|model|paradigm|rammeverk|framework|skole|school|retning|perspektiv)\b/gi;
@@ -30,7 +31,8 @@ function inspect(v,m,k=''){
  if(typeof v==='string'){m.theoryTextMentions+=(v.match(THEORY_TEXT)||[]).length;return;} if(Array.isArray(v)){v.forEach(x=>inspect(x,m,k));return;} if(v&&typeof v==='object')Object.entries(v).forEach(([x,y])=>inspect(y,m,x));
 }
 function scan(id){
- const files=[...new Set([`data/fag/${id}`,`data/fag/${id}.json`,`data/fagverk/${id}`,`data/fagverk/${id}.json`].flatMap(walk))].sort();
+ const roots=[`data/fag/${id}`,`data/fag/${id}.json`,`data/fagverk/${id}`,`data/fagverk/${id}.json`,...(SUBJECT_ROOT_ALIASES[id]||[])];
+ const files=[...new Set(roots.flatMap(walk))].sort();
  const m={filesScanned:files.length,structuredUnits:0,namedPeople:0,works:0,contentBindings:0,rivalSignals:0,limitSignals:0,theoryTextMentions:0}, parseFailures=[];
  for(const f of files){try{inspect(json(f),m);}catch(e){parseFailures.push({file:f,error:String(e.message||e)});}}
  m.namedPeopleOrWorks=m.namedPeople+m.works;m.rivalOrLimitSignals=m.rivalSignals+m.limitSignals;return {m,parseFailures};
