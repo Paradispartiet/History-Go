@@ -17,7 +17,9 @@
   },
   "outcome_rules": {
     "fired": {
-      "stability_values": ["FIRED"],
+      "stability_values": [
+        "FIRED"
+      ],
       "strikes_gte": 3,
       "score_lte": -3
     },
@@ -30,7 +32,11 @@
     "stagnated": {
       "autonomy_delta": -10,
       "stability": "STAGNATED",
-      "add_branch_flags": ["career_stagnated", "sport_resultatpress_loop", "evening_pressure"]
+      "add_branch_flags": [
+        "career_stagnated",
+        "sport_resultatpress_loop",
+        "evening_pressure"
+      ]
     }
   },
   "sequence": [
@@ -39,64 +45,341 @@
       "type": "job",
       "phase": "intro",
       "step_goal": "Etablere at utvikling bygger på rytme og disiplin, ikke bare motivasjon.",
-      "allowed_families": ["trening_rytme_og_disiplin"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "trening_rytme_og_disiplin"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 2,
       "type": "job",
       "phase": "intro",
       "step_goal": "La spilleren møte første kroppssignal og valget mellom ambisjon og belastningsstyring.",
-      "allowed_families": ["kropp_belastning_og_skade"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kropp_belastning_og_skade"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 3,
       "type": "job",
       "phase": "early",
       "step_goal": "Introdusere lagrolle og normer som del av utøverutviklingen.",
-      "allowed_families": ["lagmiljo_rolle_og_normer"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "lagmiljo_rolle_og_normer"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 4,
       "type": "job",
       "phase": "early",
       "step_goal": "Vise hvordan konkurransepress kan skjerpe eller forvrenge utviklingen.",
-      "allowed_families": ["konkurranse_press_og_resultat"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "konkurranse_press_og_resultat"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 5,
       "type": "job",
       "phase": "mid",
       "step_goal": "Teste om spilleren holder utviklingsrytme når framgang ikke synes tydelig ennå.",
-      "allowed_families": ["trening_rytme_og_disiplin", "konkurranse_press_og_resultat"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "trening_rytme_og_disiplin",
+        "konkurranse_press_og_resultat"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 6,
       "type": "job",
       "phase": "mid",
       "step_goal": "La kropp, spilletid og lagmiljø trekke i ulike retninger.",
-      "allowed_families": ["kropp_belastning_og_skade", "lagmiljo_rolle_og_normer"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "kropp_belastning_og_skade",
+        "lagmiljo_rolle_og_normer"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 7,
       "type": "job",
       "phase": "advanced",
       "step_goal": "La resultatpress true både kropp, rolle og læring.",
-      "allowed_families": ["konkurranse_press_og_resultat", "kropp_belastning_og_skade"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "konkurranse_press_og_resultat",
+        "kropp_belastning_og_skade"
+      ],
+      "fallback_types": [
+        "job"
+      ]
     },
     {
       "step": 8,
       "type": "job",
       "phase": "mastery",
       "step_goal": "Avrunde rollen: moden utøverutvikling holder prestasjon, kropp, lag og selvbilde sammen.",
-      "allowed_families": ["trening_rytme_og_disiplin", "lagmiljo_rolle_og_normer", "konkurranse_press_og_resultat"],
-      "fallback_types": ["job"]
+      "allowed_families": [
+        "trening_rytme_og_disiplin",
+        "lagmiljo_rolle_og_normer",
+        "konkurranse_press_og_resultat"
+      ],
+      "fallback_types": [
+        "job"
+      ]
+    },
+    {
+      "step": 9,
+      "type": "job",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 10,
+      "type": "people",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 11,
+      "type": "job",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 12,
+      "type": "people",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 13,
+      "type": "job",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 14,
+      "type": "people",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 15,
+      "type": "job",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 16,
+      "type": "people",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 17,
+      "type": "job",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 18,
+      "type": "people",
+      "phase": "practice_week_1",
+      "step_goal": "Praksisuke 1, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "first_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 19,
+      "type": "job",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 20,
+      "type": "people",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 21,
+      "type": "job",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 22,
+      "type": "people",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 23,
+      "type": "job",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 24,
+      "type": "people",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 25,
+      "type": "job",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 26,
+      "type": "people",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 27,
+      "type": "job",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, arbeid: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_job"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 28,
+      "type": "people",
+      "phase": "practice_week_2",
+      "step_goal": "Praksisuke 2, privat: bygg kontinuitet mellom kropp, prestasjon, lag og identitet.",
+      "allowed_families": [
+        "second_week_praksisfortellinger_sport_utover_private"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 29,
+      "type": "conflict",
+      "phase": "deepening",
+      "step_goal": "Skille profesjonell kontrakt, sportslig uttak og medisinsk mandat under press.",
+      "allowed_families": [
+        "uttak_kontrakt_og_mandat"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 30,
+      "type": "story",
+      "phase": "deepening",
+      "step_goal": "La prestasjonsidentiteten møte et liv der jobb er reell uten at stjernestatus er garantert.",
+      "allowed_families": [
+        "prestasjon_og_selvbilde"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 31,
+      "type": "event",
+      "phase": "deepening",
+      "step_goal": "Teste profesjonell tilpasning når reise eller rolle endrer konkurransedagen.",
+      "allowed_families": [
+        "konkurransedag_og_reise"
+      ],
+      "fallback_types": []
+    },
+    {
+      "step": 32,
+      "type": "knowledge",
+      "phase": "mastery",
+      "step_goal": "Bruke belastnings- og prestasjonskunnskap uten å gjøre ett signal til fasit.",
+      "allowed_families": [
+        "belastningsforstaelse"
+      ],
+      "fallback_types": []
     }
   ]
 }

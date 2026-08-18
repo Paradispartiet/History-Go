@@ -253,3 +253,18 @@ En oppføring er klar når:
 6. den ikke dupliserer en eksisterende canonical oppføring uten relasjonsgrunn;
 7. eventuell Knowledge-fagkobling peker til et faktisk canonical Subject;
 8. språk-auditen passerer.
+
+
+## Språkatlas Norge v1
+
+Språkleksikonet har et nasjonalt, skjematisk språkatlas i `data/leksikon/sprak/norge_atlas_v1.json`. Atlaset bruker fire grove hovedgrupper – **austlandsk, vestlandsk, trøndersk og nordnorsk** – og deler dem videre i pedagogiske soner. Dette er navigasjon og faglig kontekst, ikke polygoner som påstår at en dialekt stopper ved en kommunegrense. Dialektgrenser er glidende, og målmerker krysser regioninndelingene.
+
+Place-artikler kan peke inn i atlaset med `atlas_region_ids` og `atlas_overlay_ids`. Det endrer **ikke** eierskapsregelen: konkrete oppføringer med `layer: "dialect"` må fortsatt eies av et canonical Place med `placeScope: "area"`. Et områdeanker betyr dokumentert relevans, aldri at alle beboere snakker slik eller at formen er unik på stedet.
+
+Bymål, historiske sosiolekter og multietniske talestiler ligger som egne overlegg. Samiske språk og de nasjonale minoritetsspråkene kvensk, romani og romanes ligger i et separat språkstatuslag og skal aldri behandles som norske dialekter.
+
+### Interaktiv atlasnavigasjon
+
+Språkatlaset skal være en utforskbar kunnskapsflate, ikke bare en illustrasjon. De fire hovedgruppene i det skjematiske kartet er klikkbare og tastaturnavigerbare. Valg åpner «Utforsk hele Norge» og flytter brukeren til riktig makroregion. Underregionene er egne knapper; når en underregion velges, vises atlasets eksisterende `area_summary` og `feature_labels` som forklaring.
+
+Interaksjonen oppretter ingen nye språkdata og endrer ikke canonical eierskap. Den navigerer bare i `norge_atlas_v1.json`; dialektoppføringer eies fortsatt utelukkende av `placeScope: "area"`.

@@ -1,0 +1,119 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_utover",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "belastningsforstaelse",
+      "description": "Kunnskapsmailer som gjør belastning, prestasjon og uttak handlingsrelevant.",
+      "mails": [
+        {
+          "id": "sport_utover_knowledge_001",
+          "mail_type": "knowledge",
+          "mail_family": "belastningsforstaelse",
+          "role_scope": "sport_utover",
+          "planned_only": true,
+          "from": "fysio_elias",
+          "place_id": "sport_fysiorom",
+          "subject": "Belastning er mer enn hvor hard økta føles",
+          "summary": "Elias viser sammenhengen mellom treningsbelastning, søvn, reise og tidligere arbeid. Ett enkelt tall kan ikke avgjøre om du er klar; vurderingen må kombinere kroppssignal, historikk og faglig oppfølging. Kunnskapen skal brukes til å stille bedre spørsmål, ikke til å diagnostisere deg selv.",
+          "situation": [
+            "Elias viser sammenhengen mellom treningsbelastning, søvn, reise og tidligere arbeid.",
+            "Ett enkelt tall kan ikke avgjøre om du er klar; vurderingen må kombinere kroppssignal, historikk og faglig oppfølging.",
+            "Kunnskapen skal brukes til å stille bedre spørsmål, ikke til å diagnostisere deg selv."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk loggen som samtalegrunnlag med trener og fysio.",
+              "reply": "Bruk loggen som samtalegrunnlag med trener og fysio.",
+              "effects": {
+                "training_quality": 2,
+                "team_trust": 1,
+                "future_risk": -1,
+                "self_worth": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_knowledge_001_responsible"
+                ]
+              },
+              "feedback": "Valget gjør ansvar, usikkerhet og rollegrense tydeligere for de andre."
+            },
+            {
+              "id": "B",
+              "label": "Bruk ett tall som fasit for at du kan trene fullt.",
+              "reply": "Bruk ett tall som fasit for at du kan trene fullt.",
+              "effects": {
+                "training_quality": -1,
+                "team_trust": -1,
+                "future_risk": 2,
+                "self_worth": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_knowledge_001_risk"
+                ]
+              },
+              "feedback": "Valget løser presset raskere, men gjør den senere kostnaden mindre synlig."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_knowledge_002",
+          "mail_type": "knowledge",
+          "mail_family": "belastningsforstaelse",
+          "role_scope": "sport_utover",
+          "planned_only": true,
+          "from": "trener_maja",
+          "place_id": "sport_treningsfelt",
+          "subject": "Prestasjon, resultat og uttak er tre forskjellige signaler",
+          "summary": "Maja ber deg skille hva du faktisk gjorde, hva tavla viste og hva trenerteamet senere velger. Prestasjon kan forbedres i et tap, resultat kan være godt med svak prosess, og uttak inkluderer forhold du ikke eier. Å skille signalene gjør læring mer presis og status mindre forvirrende.",
+          "situation": [
+            "Maja ber deg skille hva du faktisk gjorde, hva tavla viste og hva trenerteamet senere velger.",
+            "Prestasjon kan forbedres i et tap, resultat kan være godt med svak prosess, og uttak inkluderer forhold du ikke eier.",
+            "Å skille signalene gjør læring mer presis og status mindre forvirrende."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv tre separate vurderinger: prestasjon, resultat og uttak.",
+              "reply": "Skriv tre separate vurderinger: prestasjon, resultat og uttak.",
+              "effects": {
+                "training_quality": 2,
+                "team_trust": 1,
+                "future_risk": -1,
+                "self_worth": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_knowledge_002_responsible"
+                ]
+              },
+              "feedback": "Valget gjør ansvar, usikkerhet og rollegrense tydeligere for de andre."
+            },
+            {
+              "id": "B",
+              "label": "Slå dem sammen til én konklusjon om hvor god du er.",
+              "reply": "Slå dem sammen til én konklusjon om hvor god du er.",
+              "effects": {
+                "training_quality": -1,
+                "team_trust": -1,
+                "future_risk": 2,
+                "self_worth": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_knowledge_002_risk"
+                ]
+              },
+              "feedback": "Valget løser presset raskere, men gjør den senere kostnaden mindre synlig."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

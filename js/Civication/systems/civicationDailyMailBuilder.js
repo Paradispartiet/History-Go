@@ -485,6 +485,10 @@
     if (!id) return false;
     if (context?.used_ids?.has?.(id)) return false;
     if (id === norm(context?.planned_primary_id)) return false;
+    // Some authored packages are intentionally reachable only through the role plan.
+    // They may live in normal mail-family catalogs for SceneCatalog/MailRuntime, but
+    // must never be sampled as daily_extra before or beside their planned step.
+    if (mail?.planned_only === true) return false;
 
     const text = progressionText(mail);
     const week = extractProgressionWeek(mail);

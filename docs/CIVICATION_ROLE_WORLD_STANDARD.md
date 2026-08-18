@@ -296,31 +296,19 @@ Dette er kvalitetskrav, ikke ordmengdekrav.
 
 ## 13. Reference-status og neste produksjon
 
-De to første reference Role Worlds er nå materialisert og permanent testet:
+De fem reference Role Worlds i proof-bølgen er nå materialisert og permanent testet:
 
 ```text
 naeringsliv/ekspeditor → role_world_complete
 naeringsliv/renholder  → role_world_complete
+by/by_radgiver_plan     → role_world_complete
+naeringsliv/controller  → role_world_complete
+sport/sport_utover       → role_world_complete
 ```
 
-Ekspeditør og Renholder er strukturreferanser for metoden, ikke innholdsmaler som senere roller skal kopiere. Renholder beviser at standarden også fungerer for usynlig arbeid, kropp/HMS, avvik og privat arbeidslekkasje.
+Ekspeditør, Renholder, By-rådgiver, Controller og Sport-utøver er strukturreferanser for metoden, ikke innholdsmaler. Sport-utøver beviser at standarden også fungerer i en kropp-/prestasjonshverdag der helse, lag, kontrakt, uttak, omdømme og privat identitet må holdes sammen uten å bli samme statusmål.
 
-Neste reference Role World er:
-
-```text
-by/by_radgiver_plan
-```
-
-By-rådgiver skal teste samme authoring-prosess i en kunnskaps- og forvaltningsverden med byråkratisk makt, lokal kunnskap, politisk/administrativt press, faglig integritet og lojalitet oppover/nedover.
-
-Deretter følger:
-
-```text
-naeringsliv/controller
-sport/sport_utover
-```
-
-Målet er å bevise standarden på tvers av servicearbeid, usynlig arbeid, forvaltning, tall/kontroll og kropp/prestasjon før bred masseproduksjon.
+**Reference wave complete.** Proof-bølgen dekker nå servicearbeid, usynlig arbeid, forvaltning, tall/kontroll og kropp/prestasjon. Neste bredere produksjonsrolle skal velges eksplisitt i en ny rollout-policy, ikke arves som en skjult `next_reference_world`.
 
 ## 14. Canonical authoring workflow
 

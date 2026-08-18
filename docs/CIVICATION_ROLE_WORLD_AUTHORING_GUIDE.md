@@ -247,26 +247,18 @@ fersk main
 
 ## 15. Reference-sekvens
 
-De to første reference worlds er materialisert:
+De fem reference worlds i proof-bølgen er materialisert:
 
 ```text
 naeringsliv/ekspeditor → role_world_complete
 naeringsliv/renholder  → role_world_complete
+by/by_radgiver_plan     → role_world_complete
+naeringsliv/controller  → role_world_complete
+sport/sport_utover       → role_world_complete
 ```
 
-De viser at samme produksjonsmetode kan bære både servicearbeid og usynlig fysisk arbeid uten å kopiere innhold, NPC-er eller konfliktakser.
+De viser at samme produksjonsmetode kan bære servicearbeid, usynlig fysisk arbeid, kommunal kunnskaps-/forvaltningsmakt, økonomisk tall-/kontrollarbeid og kropp-/prestasjonsarbeid uten å kopiere innhold, NPC-er eller konfliktakser.
 
-Neste reference Role World er:
-
-```text
-by/by_radgiver_plan
-```
-
-Deretter:
-
-```text
-naeringsliv/controller
-sport/sport_utover
-```
+**Reference wave complete.** Videre breddeproduksjon skal velges eksplisitt gjennom rollout-prioritering; checklisten har derfor ingen implicit neste rolle.
 
 Poenget med rekkefølgen er å bevise metoden på tvers av servicearbeid, usynlig arbeid, forvaltning, tall/kontroll og kropp/prestasjon før bred masseproduksjon.

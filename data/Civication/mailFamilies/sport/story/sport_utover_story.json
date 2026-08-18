@@ -1,0 +1,119 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_utover",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "prestasjon_og_selvbilde",
+      "description": "Fortellinger om resultat, identitet og profesjonell status.",
+      "mails": [
+        {
+          "id": "sport_utover_story_001",
+          "mail_type": "story",
+          "mail_family": "prestasjon_og_selvbilde",
+          "role_scope": "sport_utover",
+          "planned_only": true,
+          "from": "lagkamerat_nora",
+          "place_id": "sport_konkurransearena",
+          "subject": "Når resultatet blir biografi",
+          "summary": "Et dårlig resultat blir raskt omtalt som tegn på hvem du er som utøver. Du merker at analysen av prestasjonen glir over i dom over karakter, talent og framtid. Rollen krever at du tar resultatet alvorlig uten å gjøre det til hele identiteten.",
+          "situation": [
+            "Et dårlig resultat blir raskt omtalt som tegn på hvem du er som utøver.",
+            "Du merker at analysen av prestasjonen glir over i dom over karakter, talent og framtid.",
+            "Rollen krever at du tar resultatet alvorlig uten å gjøre det til hele identiteten."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill prestasjonsanalyse fra menneskeverd og velg ett konkret læringspunkt.",
+              "reply": "Skill prestasjonsanalyse fra menneskeverd og velg ett konkret læringspunkt.",
+              "effects": {
+                "training_quality": 2,
+                "team_trust": 1,
+                "future_risk": -1,
+                "self_worth": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_story_001_responsible"
+                ]
+              },
+              "feedback": "Valget gjør ansvar, usikkerhet og rollegrense tydeligere for de andre."
+            },
+            {
+              "id": "B",
+              "label": "Bruk skuffelsen som bevis på at du må endre alt.",
+              "reply": "Bruk skuffelsen som bevis på at du må endre alt.",
+              "effects": {
+                "training_quality": -1,
+                "team_trust": -1,
+                "future_risk": 2,
+                "self_worth": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_story_001_risk"
+                ]
+              },
+              "feedback": "Valget løser presset raskere, men gjør den senere kostnaden mindre synlig."
+            }
+          ]
+        },
+        {
+          "id": "sport_utover_story_002",
+          "mail_type": "story",
+          "mail_family": "prestasjon_og_selvbilde",
+          "role_scope": "sport_utover",
+          "planned_only": true,
+          "from": "trener_maja",
+          "place_id": "sport_treningsfelt",
+          "subject": "Profesjonell uten å være stjerne",
+          "summary": "Du lever av idretten, men er verken landslagsutøver eller offentlig stjerne. Det profesjonelle arbeidet er fullt reelt også når den symbolske statusen er lavere enn drømmen. Du må bestemme om karrieren skal måles i faktisk arbeid eller i rang du ikke kontrollerer.",
+          "situation": [
+            "Du lever av idretten, men er verken landslagsutøver eller offentlig stjerne.",
+            "Det profesjonelle arbeidet er fullt reelt også når den symbolske statusen er lavere enn drømmen.",
+            "Du må bestemme om karrieren skal måles i faktisk arbeid eller i rang du ikke kontrollerer."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bygg stolthet i det profesjonelle arbeidet du faktisk utfører.",
+              "reply": "Bygg stolthet i det profesjonelle arbeidet du faktisk utfører.",
+              "effects": {
+                "training_quality": 2,
+                "team_trust": 1,
+                "future_risk": -1,
+                "self_worth": 1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_story_002_responsible"
+                ]
+              },
+              "feedback": "Valget gjør ansvar, usikkerhet og rollegrense tydeligere for de andre."
+            },
+            {
+              "id": "B",
+              "label": "La manglende status gjøre alt annet til mellomstasjon.",
+              "reply": "La manglende status gjøre alt annet til mellomstasjon.",
+              "effects": {
+                "training_quality": -1,
+                "team_trust": -1,
+                "future_risk": 2,
+                "self_worth": -1
+              },
+              "next_bias": {
+                "set_flags": [
+                  "sport_utover_story_002_risk"
+                ]
+              },
+              "feedback": "Valget løser presset raskere, men gjør den senere kostnaden mindre synlig."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

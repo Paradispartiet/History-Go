@@ -1,0 +1,865 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "sport",
+  "role_scope": "sport_utover",
+  "title": "Sport-utøver — kroppen som arbeid, status og grense",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "Å leve av prestasjon uten å gjøre kroppen, uttaket og resultatet til én samlet dom over egen verdi.",
+    "description": "Den profesjonelle utøveren arbeider i et system der kroppen både er arbeidsredskap og sårbarhet, treneren fordeler sportslig handlingsrom, laget skaper normer og tilhørighet, og resultater blir offentlig status. Rollesesongen undersøker hvordan ambisjon kan være sterk uten å spise restitusjon, relasjoner eller evnen til å skille kontrakt fra uttak og menneskeverd fra prestasjon."
+  },
+  "theme_ids": [
+    "body_discipline",
+    "shame_reputation",
+    "precarity",
+    "ambition_stagnation"
+  ],
+  "social_environments": [
+    "treningsfeltet der repetisjon, trenerblikk og sammenligning gjør utvikling sosialt synlig",
+    "fysio- og styrkerommet der smerte, belastning og retur til full deltakelse må oversettes til faglige valg",
+    "garderoben der humor, status og laglojalitet kan avgjøre hva utøvere tør å si om kropp og usikkerhet",
+    "konkurransearenaen der prestasjon blir resultat, publikum og omdømme samtidig",
+    "reise- og kontraktsflaten der logistikk, profesjonelle avtaler og sportslig uttak må holdes fra hverandre",
+    "hjem og vennskap der mat, søvn, kropp og status kan gjøre hele livet til prestasjonsforberedelse"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "trener_maja",
+      "social_function": "sportslig leder i den daglige prestasjonsprosessen",
+      "class_position": "profesjonell fagperson med formell makt over treningsplan og rollebruk",
+      "status": "høy sportslig status",
+      "power_over_player": "fordeler oppgaver, belastning og konkurranserolle innen sitt mandat",
+      "wants": "at spilleren utvikler seg stabilt og kan brukes i laget over tid",
+      "conceals": "hvor ofte hun må velge lagets kortsiktige behov mot enkeltutøverens langsiktige utvikling",
+      "speech_style": "kort, konkret og oppgaveorientert; spør hva kroppen og prestasjonen faktisk viser",
+      "teaches_player": "at ambisjon trenger rammer og at trenerens vurdering ikke er en dom over menneskeverd"
+    },
+    {
+      "id": "fysio_elias",
+      "social_function": "medisinsk/fysisk støtte som gjør kroppssignaler handlingsrelevante",
+      "class_position": "spesialist med faglig autoritet over helseoppfølging, men ikke sportslig status",
+      "status": "høy faglig status",
+      "power_over_player": "kan begrense eller anbefale belastning og gjøre skjulte signaler vanskelige å ignorere",
+      "wants": "at skader forebygges og at spilleren rapporterer nok til forsvarlig oppfølging",
+      "conceals": "frustrasjonen over at helseinfo ofte blir forhandlet som om den bare var motivasjon",
+      "speech_style": "rolig, presis og kroppsnær; skiller smerte, funksjon, risiko og usikkerhet",
+      "teaches_player": "at tøffhet ikke gir myndighet til å overstyre kropp eller faglig risiko"
+    },
+    {
+      "id": "lagkontakt_samir",
+      "social_function": "bærer av garderobekultur og uformelle normer",
+      "class_position": "lagmedlem med sosial kapital mer enn formell myndighet",
+      "status": "høy uformell status",
+      "power_over_player": "kan gjøre en norm trygg å utfordre eller kostbar å bryte",
+      "wants": "at laget holder sammen og at problemer ikke eksploderer midt i konkurranseperioden",
+      "conceals": "hvor mye han selv bruker humor for å slippe å vise usikkerhet",
+      "speech_style": "uformell, lojal og ironisk; tester grenser gjennom små kommentarer",
+      "teaches_player": "at lagkultur kan beskytte mennesker eller lære dem å skjule det laget trenger å vite"
+    },
+    {
+      "id": "lagkamerat_nora",
+      "social_function": "nær sammenligningsflate, samarbeidspartner og konkurrent om rolle",
+      "class_position": "profesjonell likemann med lignende kontraktsstatus",
+      "status": "sideordnet status med skiftende sportslig rang",
+      "power_over_player": "kan støtte, utfordre eller forsterke sammenligning og skam",
+      "wants": "å få rettferdig rolle og et lagmiljø der hun kan utvikle seg uten å skjule svakhet",
+      "conceals": "egen frykt for å miste plass hvis hun viser for mye belastning eller tvil",
+      "speech_style": "direkte og erfaringsnær; snakker om hva som faktisk skjedde i økta",
+      "teaches_player": "at samarbeid og konkurranse kan eksistere samtidig uten at alt må bli rangering"
+    },
+    {
+      "id": "sportslig_leder",
+      "social_function": "eier kontrakts- og troppsrammer over trenerens daglige arbeid",
+      "class_position": "leder med organisatorisk og økonomisk myndighet",
+      "status": "høy formell status",
+      "power_over_player": "kan påvirke kontrakt, framtidig arbeid og sportslig ramme, men ikke garantere prestasjon",
+      "wants": "at klubben får pålitelig prestasjon og profesjonell atferd innen avtalene",
+      "conceals": "hvor ofte sportslige og økonomiske hensyn trekker i ulike retninger",
+      "speech_style": "formell, avklarende og knapp; skiller hva som er avtalt fra hva som ønskes",
+      "teaches_player": "at ansettelse, uttak og prestisje er forskjellige institusjonelle beslutninger"
+    },
+    {
+      "id": "kontraktansvarlig",
+      "social_function": "skiller arbeidsavtale, profilaktivitet og kommersiell mulighet fra Badge-status",
+      "class_position": "administrativ/kommersiell spesialist med tilgang til avtaleinformasjon",
+      "status": "middels formell status, høy avtalemakt",
+      "power_over_player": "kan si hva en avtale faktisk tillater og stoppe selvoppfunnet inntekt eller forpliktelse",
+      "wants": "at utøverens eksterne aktiviteter er avklart og etterprøvbare",
+      "conceals": "hvor mye kommersiell verdi som også avhenger av offentlig status spilleren ikke kontrollerer",
+      "speech_style": "ordnær og konkret; spør alltid hvilken avtale og hvilken part som faktisk har lovet noe",
+      "teaches_player": "at profesjonell frihet bygges av reelle avtaler, ikke av forestilt stjernestatus"
+    },
+    {
+      "id": "venn",
+      "social_function": "privat relasjon som nekter å bli støtteapparat",
+      "class_position": "likemann uten sportslig myndighet",
+      "status": "høy emosjonell betydning",
+      "power_over_player": "kan trekke seg unna når alt sosialt må optimaliseres for prestasjon",
+      "wants": "å beholde et vennskap der idretten er viktig, men ikke eneste tema",
+      "conceals": "bekymringen for at spilleren bare er tilgjengelig når kalenderen tillater det",
+      "speech_style": "uformell og direkte; gjør narr av overoptimalisering når den tar over samtalen",
+      "teaches_player": "at restitusjon også kan bety et liv som ikke hele tiden handler om å restituere"
+    },
+    {
+      "id": "familie",
+      "social_function": "nær relasjon som speiler status, stolthet og kropp uten profesjonelt filter",
+      "class_position": "familierelasjon uten institusjonell sportsmakt",
+      "status": "emosjonell og biografisk status",
+      "power_over_player": "kan gjøre offentlig prestasjon personlig og minne spilleren på identitet før kontrakten",
+      "wants": "at spilleren lykkes uten å forsvinne inn i rollen",
+      "conceals": "at stolthet over status kan bidra til akkurat det presset hun samtidig er redd for",
+      "speech_style": "konkret, varm og tidvis grenseløs; blander minner, kropp og framtidsdrømmer",
+      "teaches_player": "at statusangst også produseres av kjærlighet, forventning og andres stolthet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "body_strain",
+      "meaning": "akkumulert kroppslig kostnad når belastning og restitusjon ikke holdes sammen",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "coach_trust",
+      "meaning": "trenerens tillit til at spilleren kan rapportere ærlig og bære rolle uten å gjøre alt til statuskamp",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "team_trust",
+      "meaning": "lagets tillit til at spilleren kan være både ambisiøs og trygg å dele usikkerhet med",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "self_worth",
+      "meaning": "hvor sterkt eget menneskeverd blir koblet til resultat, uttak og offentlig rang",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "relationship_private",
+      "meaning": "om vennskap og familie får et rom som ikke bare er støttefunksjon for prestasjon",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "public_reputation",
+      "meaning": "den redaksjonelle utviklingen i hvordan offentlig vurdering og status former spilleren uten å late som et nytt runtimefelt finnes",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Første dagen etablerer at profesjonalitet betyr å følge rytme og rapportere kroppen før behovet for å imponere får styre økta. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week1_job_1"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 1, lunch: Første dagen etablerer at profesjonalitet betyr å følge rytme og rapportere kroppen før behovet for å imponere får styre økta. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week1_job_2"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Første dagen etablerer at profesjonalitet betyr å følge rytme og rapportere kroppen før behovet for å imponere får styre økta. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week1_job_3"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Første dagen etablerer at profesjonalitet betyr å følge rytme og rapportere kroppen før behovet for å imponere får styre økta. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week1_job_4"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: Lagrollen blir mindre enn ambisjonen samtidig som kontrakt, uttak og sosial rang begynner å gli sammen i spillerens eget blikk. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week1_job_5"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Lagrollen blir mindre enn ambisjonen samtidig som kontrakt, uttak og sosial rang begynner å gli sammen i spillerens eget blikk. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week1_private_1"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Lagrollen blir mindre enn ambisjonen samtidig som kontrakt, uttak og sosial rang begynner å gli sammen i spillerens eget blikk. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week1_private_2"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "relationship",
+        "summary": "Dag 2, evening: Lagrollen blir mindre enn ambisjonen samtidig som kontrakt, uttak og sosial rang begynner å gli sammen i spillerens eget blikk. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week1_private_3"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Dag 3, morning: Et svakt resultat utfordrer selvbildet, mens analyse og privat etterklang viser at tavla bare beskriver én del av prestasjonen. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week1_private_4"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 3, lunch: Et svakt resultat utfordrer selvbildet, mens analyse og privat etterklang viser at tavla bare beskriver én del av prestasjonen. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week1_private_5"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 3, afternoon: Et svakt resultat utfordrer selvbildet, mens analyse og privat etterklang viser at tavla bare beskriver én del av prestasjonen. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week2_job_1"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Et svakt resultat utfordrer selvbildet, mens analyse og privat etterklang viser at tavla bare beskriver én del av prestasjonen. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week2_job_2"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En liten belastning kommer tilbake og gjør det tydelig at tidlige signaler enten skapte handlingsrom eller ble gjeld i kroppen. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week2_job_3"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 4, lunch: En liten belastning kommer tilbake og gjør det tydelig at tidlige signaler enten skapte handlingsrom eller ble gjeld i kroppen. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week2_job_4"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 4, afternoon: En liten belastning kommer tilbake og gjør det tydelig at tidlige signaler enten skapte handlingsrom eller ble gjeld i kroppen. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_week2_job_5"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En liten belastning kommer tilbake og gjør det tydelig at tidlige signaler enten skapte handlingsrom eller ble gjeld i kroppen. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week2_private_1"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 5, morning: Trenerens tillit og spillerens statusbehov møtes når mer ansvar faktisk blir mulig, men bare dersom den tidligere rollen ble båret godt. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week2_private_2"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Trenerens tillit og spillerens statusbehov møtes når mer ansvar faktisk blir mulig, men bare dersom den tidligere rollen ble båret godt. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week2_private_3"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Trenerens tillit og spillerens statusbehov møtes når mer ansvar faktisk blir mulig, men bare dersom den tidligere rollen ble båret godt. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week2_private_4"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Trenerens tillit og spillerens statusbehov møtes når mer ansvar faktisk blir mulig, men bare dersom den tidligere rollen ble båret godt. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week2_private_5"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Dag 6, morning: Garderobekultur, medisinsk informasjon og vennskap viser at taushet kan se ut som lojalitet helt til noen andre betaler kostnaden. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_job_trening_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: Garderobekultur, medisinsk informasjon og vennskap viser at taushet kan se ut som lojalitet helt til noen andre betaler kostnaden. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_job_trening_002"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "social",
+        "summary": "Dag 6, afternoon: Garderobekultur, medisinsk informasjon og vennskap viser at taushet kan se ut som lojalitet helt til noen andre betaler kostnaden. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_job_kropp_001"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Garderobekultur, medisinsk informasjon og vennskap viser at taushet kan se ut som lojalitet helt til noen andre betaler kostnaden. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_job_kropp_002"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: Reise og restitusjon bryter idealplanen, og utøveren må vise om disiplin betyr rigid gjennomføring eller presis tilpasning. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_job_lag_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Reise og restitusjon bryter idealplanen, og utøveren må vise om disiplin betyr rigid gjennomføring eller presis tilpasning. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_job_lag_002"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Reise og restitusjon bryter idealplanen, og utøveren må vise om disiplin betyr rigid gjennomføring eller presis tilpasning. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_job_konk_001"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Reise og restitusjon bryter idealplanen, og utøveren må vise om disiplin betyr rigid gjennomføring eller presis tilpasning. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/job/sport_utover_job.json#sport_utover_job_konk_002"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: En kommersiell mulighet gjør synlighet og kontraktsgrenser konkrete samtidig som privatlivet merker hvor mye idretten allerede eier. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_body_01"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 8, lunch: En kommersiell mulighet gjør synlighet og kontraktsgrenser konkrete samtidig som privatlivet merker hvor mye idretten allerede eier. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_body_02"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: En kommersiell mulighet gjør synlighet og kontraktsgrenser konkrete samtidig som privatlivet merker hvor mye idretten allerede eier. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_coach_01"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "relationship",
+        "summary": "Dag 8, evening: En kommersiell mulighet gjør synlighet og kontraktsgrenser konkrete samtidig som privatlivet merker hvor mye idretten allerede eier. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_coach_02"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 9, morning: Kampen der kroppen har mindre margin tvinger fram et valg mellom kortsiktig tilgjengelighet og muligheten til å være tilgjengelig senere. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_team_01"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 9, lunch: Kampen der kroppen har mindre margin tvinger fram et valg mellom kortsiktig tilgjengelighet og muligheten til å være tilgjengelig senere. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_team_02"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Kampen der kroppen har mindre margin tvinger fram et valg mellom kortsiktig tilgjengelighet og muligheten til å være tilgjengelig senere. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_status_01"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Kampen der kroppen har mindre margin tvinger fram et valg mellom kortsiktig tilgjengelighet og muligheten til å være tilgjengelig senere. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_status_02"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Prestasjon, resultat og uttak skilles fra hverandre, slik at læring kan fortsette uten at statusangst blir skjult som treningsanalyse. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_private_01"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Prestasjon, resultat og uttak skilles fra hverandre, slik at læring kan fortsette uten at statusangst blir skjult som treningsanalyse. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_private_02"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "task",
+        "summary": "Dag 10, afternoon: Prestasjon, resultat og uttak skilles fra hverandre, slik at læring kan fortsette uten at statusangst blir skjult som treningsanalyse. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_utover_conflict.json#sport_utover_conflict_001"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Prestasjon, resultat og uttak skilles fra hverandre, slik at læring kan fortsette uten at statusangst blir skjult som treningsanalyse. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/conflict/sport_utover_conflict.json#sport_utover_conflict_002"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: En uventet konkurranserolle gir spilleren mer synlighet og tester om oppgavefokus overlever når muligheten til å bevise alt plutselig kommer. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_utover_story.json#sport_utover_story_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 11, lunch: En uventet konkurranserolle gir spilleren mer synlighet og tester om oppgavefokus overlever når muligheten til å bevise alt plutselig kommer. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/story/sport_utover_story.json#sport_utover_story_002"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En uventet konkurranserolle gir spilleren mer synlighet og tester om oppgavefokus overlever når muligheten til å bevise alt plutselig kommer. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_utover_event.json#sport_utover_event_001"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En uventet konkurranserolle gir spilleren mer synlighet og tester om oppgavefokus overlever når muligheten til å bevise alt plutselig kommer. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/event/sport_utover_event.json#sport_utover_event_002"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "consequence",
+        "summary": "Dag 12, morning: Offentlig vurdering og sammenligning gjør omdømme til en kroppslig belastning som må håndteres uten å late som kommentarer er irrelevante. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json#sport_utover_knowledge_001"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 12, lunch: Offentlig vurdering og sammenligning gjør omdømme til en kroppslig belastning som må håndteres uten å late som kommentarer er irrelevante. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json#sport_utover_knowledge_002"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Offentlig vurdering og sammenligning gjør omdømme til en kroppslig belastning som må håndteres uten å late som kommentarer er irrelevante. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/sport/sport_utover.json#uttak_utenfor_kontrakt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Offentlig vurdering og sammenligning gjør omdømme til en kroppslig belastning som må håndteres uten å late som kommentarer er irrelevante. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/sport/sport_utover.json#belastning_for_kamp"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Støtteapparatet samler to ukers signaler og viser hvilke valg som bygde tillit, hvilke som økte risiko og hvilke som bare så profesjonelle ut. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/sport/sport_utover.json#reise_og_restitusjon"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Støtteapparatet samler to ukers signaler og viser hvilke valg som bygde tillit, hvilke som økte risiko og hvilke som bare så profesjonelle ut. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/sport/sport_utover.json#kommersiell_kollisjon"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 13, afternoon: Støtteapparatet samler to ukers signaler og viser hvilke valg som bygde tillit, hvilke som økte risiko og hvilke som bare så profesjonelle ut. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/workGrammars/sport/sport_utover.json#resultatpress"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "relationship",
+        "summary": "Dag 13, evening: Støtteapparatet samler to ukers signaler og viser hvilke valg som bygde tillit, hvilke som økte risiko og hvilke som bare så profesjonelle ut. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/roleModels/sport/profesjonell_utover.json#belastning_vs_kamp"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: Siste dag spør hva slags profesjonell utøver spilleren har blitt: en som kan bære ambisjon, kropp, lag og eget liv samtidig, eller en som blir spist av resultatet. Morgenen setter den profesjonelle rammen gjennom plan, kropp eller kontrakt før dagens statuskamp begynner.",
+        "materialization_refs": [
+          "data/Civication/roleModels/sport/profesjonell_utover.json#kontrakt_vs_uttak"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: Siste dag spør hva slags profesjonell utøver spilleren har blitt: en som kan bære ambisjon, kropp, lag og eget liv samtidig, eller en som blir spist av resultatet. Midt på dagen lar en relasjon eller sosial norm tolke det som skjedde, slik at prestasjon aldri bare blir individuell.",
+        "materialization_refs": [
+          "data/Civication/roleModels/sport/profesjonell_utover.json#spille_med_plage"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "consequence",
+        "summary": "Dag 14, afternoon: Siste dag spør hva slags profesjonell utøver spilleren har blitt: en som kan bære ambisjon, kropp, lag og eget liv samtidig, eller en som blir spist av resultatet. Ettermiddagen gjør konflikten handlingsnær gjennom trening, uttak, konkurranse eller støtteapparatets konkrete vurdering.",
+        "materialization_refs": [
+          "data/Civication/roleModels/sport/profesjonell_utover.json#personlig_merkevare_vs_lag"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Siste dag spør hva slags profesjonell utøver spilleren har blitt: en som kan bære ambisjon, kropp, lag og eget liv samtidig, eller en som blir spist av resultatet. Kvelden lar arbeidet lekke hjem i selvbilde, vennskap, familie eller restitusjon, og gjør neste dag avhengig av mer enn resultatet.",
+        "materialization_refs": [
+          "data/Civication/roleModels/sport/profesjonell_utover.json#overbelastning"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "body_as_work",
+      "relationship": "Elias og spilleren: kroppssignal, belastning og langsiktig arbeidsevne",
+      "beat_refs": [
+        "1/morning",
+        "2/afternoon",
+        "4/morning",
+        "6/afternoon",
+        "9/morning",
+        "12/afternoon",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "coach_ambition",
+      "relationship": "Maja og spilleren: ambisjon, rolle og tillit gjennom to uker",
+      "beat_refs": [
+        "1/lunch",
+        "2/morning",
+        "5/morning",
+        "7/afternoon",
+        "10/morning",
+        "11/afternoon",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "team_norms",
+      "relationship": "Samir/Nora og spilleren: tilhørighet, sammenligning og hva laget tør å si",
+      "beat_refs": [
+        "2/lunch",
+        "3/lunch",
+        "6/lunch",
+        "8/lunch",
+        "10/lunch",
+        "12/lunch",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "contract_status",
+      "relationship": "Sportslig ledelse og spilleren: kontrakt, uttak og prestisje som separate spor",
+      "beat_refs": [
+        "2/evening",
+        "5/afternoon",
+        "8/afternoon",
+        "10/afternoon",
+        "11/morning",
+        "13/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "private_identity",
+      "relationship": "Venn/familie og spilleren: når prestasjonslogikken følger hjem",
+      "beat_refs": [
+        "1/evening",
+        "3/evening",
+        "4/evening",
+        "6/evening",
+        "8/evening",
+        "12/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "result_reputation",
+      "relationship": "Spilleren og det offentlige resultatblikket: læring, skam og selvbilde",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "7/morning",
+        "9/afternoon",
+        "10/evening",
+        "12/morning",
+        "13/afternoon",
+        "14/afternoon"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "meal_not_metric",
+      "description": "Mat og restitusjon kan bli så profesjonalisert at en middag med en venn oppleves som et avvik fra planen.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week1_private_1",
+        "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_private_01"
+      ]
+    },
+    {
+      "id": "bench_status_home",
+      "description": "Mindre rolle eller manglende uttak følger hjem som statusangst og kan gjøre neste treningsdag til et bevisprosjekt.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week1_private_3",
+        "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_status_01"
+      ]
+    },
+    {
+      "id": "body_comparison",
+      "description": "Sammenligning med lagkamerater kan flytte oppmerksomhet fra kroppens funksjon til skam og sosial rang.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week2_private_2",
+        "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_team_02"
+      ]
+    },
+    {
+      "id": "public_comments_night",
+      "description": "Offentlig vurdering kan bli en nattlig belastning som påvirker søvn, selvbilde og neste dags prestasjonsrom.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week2_private_4",
+        "data/Civication/mailFamilies/sport/story/sport_utover_story.json#sport_utover_story_001"
+      ]
+    },
+    {
+      "id": "life_beyond_result",
+      "description": "Et privat rom uten prestasjonskrav blir ikke motsetning til ambisjon, men en måte å bevare hvem som faktisk eier den.",
+      "materialization_refs": [
+        "data/Civication/mailFamilies/sport/people/sport_utover_people.json#sport_utover_week2_private_5",
+        "data/Civication/lifestory/roles/sport_utover/scenes.json#sport_ls_private_02"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "small_pain_returns",
+      "setup_ref": "1/morning",
+      "return_ref": "4/morning",
+      "domains": [
+        "job",
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "role_becomes_trust",
+      "setup_ref": "1/lunch",
+      "return_ref": "5/morning",
+      "domains": [
+        "job",
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "silence_costs_team",
+      "setup_ref": "2/lunch",
+      "return_ref": "6/lunch",
+      "domains": [
+        "job",
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "contract_not_selection",
+      "setup_ref": "2/evening",
+      "return_ref": "10/afternoon",
+      "domains": [
+        "job",
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "result_enters_home",
+      "setup_ref": "3/morning",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "psyche",
+        "reputation"
+      ]
+    },
+    {
+      "id": "identity_after_season",
+      "setup_ref": "8/evening",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "psyche",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/roleModels/sport/profesjonell_utover.json",
+      "data/Civication/workGrammars/sport/sport_utover.json",
+      "data/Civication/mailPlans/sport/sport_utover_plan.json",
+      "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
+      "data/Civication/mailFamilies/sport/people/sport_utover_people.json",
+      "data/Civication/mailFamilies/sport/conflict/sport_utover_conflict.json",
+      "data/Civication/mailFamilies/sport/story/sport_utover_story.json",
+      "data/Civication/mailFamilies/sport/event/sport_utover_event.json",
+      "data/Civication/mailFamilies/sport/knowledge/sport_utover_knowledge.json",
+      "data/Civication/lifestory/roles/sport_utover/role.json",
+      "data/Civication/lifestory/roles/sport_utover/threads.json",
+      "data/Civication/lifestory/roles/sport_utover/scenes.json"
+    ]
+  }
+}
