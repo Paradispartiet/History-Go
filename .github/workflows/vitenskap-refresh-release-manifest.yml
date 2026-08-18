@@ -1,0 +1,43 @@
+name: Vitenskap refresh release manifest
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-editorial-coverage-repair-1
+    paths:
+      - '.github/workflows/vitenskap-refresh-release-manifest.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      REPAIR_BRANCH: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Regenerate canonical Fagverk release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify deterministic release manifest
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-release-manifest.test.mjs
+          node --test tests/fagverk-vitenskap-methods-models-coverage.test.mjs
+          node --test tests/fagverk-vitenskap-unit1.test.mjs
+          node --test tests/fagverk-vitenskap-holistic-university-breadth-completion.test.mjs
+      - name: Remove one-shot workflow
+        run: rm -f .github/workflows/vitenskap-refresh-release-manifest.yml
+      - name: Commit refreshed release projection
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Refresh Fagverk release after Vitenskap coverage'
+          git push origin HEAD:${REPAIR_BRANCH}
