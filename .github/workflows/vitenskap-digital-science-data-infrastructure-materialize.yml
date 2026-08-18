@@ -35,6 +35,24 @@ jobs:
           node -e "JSON.parse(require('fs').readFileSync('data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur.json','utf8')); JSON.parse(require('fs').readFileSync('data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/07-teknologi-data-infrastruktur-brief.json','utf8'))"
       - name: Materialize canonical digital science data infrastructure coverage
         run: node scripts/materialize-vitenskap-digital-science-data-infrastructure-coverage-batch.mjs
+      - name: Bind reused Unit 1 claims reciprocally to Batch 4 prose
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json';
+          const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const additions = {
+            'vit1-13': ['vit1-digital-3'],
+            'vit1-15': ['vit1-digital-4', 'vit1-digital-5'],
+            'vit1-20': ['vit1-digital-6']
+          };
+          for (const [id, sectionIds] of Object.entries(additions)) {
+            const claim = doc.claims.find((row) => row.id === id);
+            if (!claim) throw new Error(`Missing reused claim ${id}`);
+            claim.used_in = [...new Set([...(claim.used_in || []), ...sectionIds])];
+          }
+          fs.writeFileSync(file, `${JSON.stringify(doc, null, 2)}\n`);
+          NODE
       - name: Regenerate permanent reports and release projection
         run: |
           node scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs --write-report --no-check-report
