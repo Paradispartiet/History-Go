@@ -1,0 +1,53 @@
+{
+  "schema": "history_go_historie_editorial_materialization_temp_v1",
+  "generated_from_head": "415bd66649d3fa485789bc1a9dad72ce6d046782",
+  "observed_main": "99db81c3e86b6826df0293d0476c5f42997cad78",
+  "status": "FAIL",
+  "failed_checks": [
+    "shared_history_audit"
+  ],
+  "checks": [
+    {
+      "id": "patch_generator",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "History editorial separation patch installed",
+      "stderr": ""
+    },
+    {
+      "id": "semantic_alignment",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"canonical_emners\": 230,\n  \"unique_primary_semantic_keys\": 230,\n  \"canonical_hook_mismatches\": 0,\n  \"active_curated_blueprint_rows\": 23,\n  \"explicit_editorial_overrides\": 7,\n  \"resolved_legacy_question_surface_ids\": 7,\n  \"curated_editorial_hook_mismatches\": 0,\n  \"curated_editorial_coverage\": 30,\n  \"canonical_identity_preserved\": true,\n  \"editorial_layer_separate_from_ownership\": true,\n  \"blueprint_files\": [\n    \"reports/historie-canonical-migration/byhistorie-question-blueprints.json\",\n    \"reports/historie-canonical-migration/industri-arbeid-question-blueprints.json\",\n    \"reports/historie-canonical-migration/velferd-question-blueprints.json\"\n  ]\n}",
+      "stderr": ""
+    },
+    {
+      "id": "materialize_corpus",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Materialiserte 18 generator-eide Historie-kapitler. Totalt: 23.",
+      "stderr": ""
+    },
+    {
+      "id": "deterministic_replay",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Kontrollerte 18 generator-eide Historie-kapitler. Totalt: 23.",
+      "stderr": ""
+    },
+    {
+      "id": "editorial_quality",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "Historie-redaksjonell kvalitet OK: 18 fagprofiler, 180 emnelinser, 54 stedscaser, 72 årsaksledd, 18 tolkningsdebatter og 230 entydige primary hook-eiere.",
+      "stderr": ""
+    },
+    {
+      "id": "shared_history_audit",
+      "status": "FAIL",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Historie-fagverk FEIL: reports/fagverk/historie-subject-audit.json er utdatert"
+    }
+  ]
+}
