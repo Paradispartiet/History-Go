@@ -129,10 +129,14 @@ jobs:
           fs.writeFileSync(auditPath, audit);
           NODE
 
-      - name: Validate canonical identity and curated editorial hooks
+      - name: Validate canonical identity
         run: |
           set -euo pipefail
           node tools/audit-historie-canonical-emner.mjs --write-report
+
+      - name: Validate curated editorial hooks
+        run: |
+          set -euo pipefail
           node tools/audit-historie-semantic-hook-alignment.mjs
 
       - name: Materialize repaired History prose
