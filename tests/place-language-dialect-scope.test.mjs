@@ -303,3 +303,22 @@ test("Place-artikler kobler seg til Språkatlas Norge uten å lage en ny PlaceCa
   assert.match(css, /hg-language-atlas-map-region/);
   assert.doesNotMatch(runtime, /data-place-tab=["']atlas["']/i);
 });
+
+test("Språkatlaset er klikkbart og tastaturnavigerbart uten å endre canonical eierskap", () => {
+  const runtime = read("js/ui/place-language-layer.js");
+  const css = read("css/place-language-layer.css");
+  const contract = read("docs/SPRAKLEKSIKON.md");
+
+  assert.match(runtime, /data-atlas-focus=/);
+  assert.match(runtime, /data-atlas-region=/);
+  assert.match(runtime, /role="group"/);
+  assert.match(runtime, /function\s+activateAtlasSelection\s*\(/);
+  assert.match(runtime, /details\.open\s*=\s*true/);
+  assert.match(runtime, /scrollIntoView/);
+  assert.match(runtime, /data-atlas-selection-summary/);
+  assert.match(runtime, /aria-pressed/);
+  assert.match(css, /hg-language-atlas-regions button/);
+  assert.match(css, /focus-visible/);
+  assert.match(contract, /Interaktiv atlasnavigasjon/);
+  assert.match(contract, /oppretter ingen nye språkdata/i);
+});
