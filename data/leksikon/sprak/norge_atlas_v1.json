@@ -1,0 +1,606 @@
+{
+  "schema": "history_go_language_atlas_v1",
+  "title": "Språkatlas Norge",
+  "verified_at": "2026-08-18",
+  "scope": "Norge",
+  "mode": "schematic_reference_map",
+  "notes": "Kartet er en faglig navigasjonsflate, ikke et kart over faste språkgrenser. Dialekttrekk følger isoglosser, glidende overganger, generasjoner og sosiale miljøer. Et områdeanker sier aldri hvordan alle som bor der snakker.",
+  "editorial_principles": [
+    "De fire hovedgruppene brukes som grov nasjonal orientering: austlandsk, vestlandsk, trøndersk og nordnorsk.",
+    "Underregionene er pedagogiske soner og skal ikke behandles som administrative grenser eller som uttømmende lokale dialekter.",
+    "Stedseierskap betyr dokumentert relevans, ikke at et ord eller trekk er unikt for stedet.",
+    "Sosiolekter, bymål og multietniske talestiler legges som egne overlegg og skal ikke gjøres til egenskaper ved alle beboere.",
+    "Samiske språk og nasjonale minoritetsspråk er egne språk og skal aldri plasseres som norske dialekter."
+  ],
+  "macro_regions": [
+    {
+      "id": "austlandsk",
+      "name": "Austlandsk",
+      "map_label": "Østlandsk",
+      "summary": "Dialekter på Østlandet. Jamvektsloven, kløyvd infinitiv, lågtone og tjukk l er sentrale historiske målmerker, men ikke alle trekk finnes overalt.",
+      "feature_labels": [
+        "jamvekt",
+        "kløyvd infinitiv",
+        "lågtone",
+        "tjukk l"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – østlandsk",
+          "url": "https://snl.no/%C3%B8stlandsk"
+        },
+        {
+          "label": "Store norske leksikon – inndeling av dialekter i Noreg",
+          "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+        },
+        {
+          "label": "Store norske leksikon – dialektgrenser",
+          "url": "https://snl.no/dialektgrenser"
+        }
+      ]
+    },
+    {
+      "id": "vestlandsk",
+      "name": "Vestlandsk",
+      "map_label": "Vestlandsk",
+      "summary": "Dialekter fra Agder gjennom Vestlandet til Romsdal. Området mangler jamvektssystemet og har flere a-, e- og e/a-mål; høgtone er et viktig overordnet trekk.",
+      "feature_labels": [
+        "høgtone",
+        "a-/e-infinitiv",
+        "uten jamvektssystem",
+        "stor kyst–innlandsvariasjon"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – vestlandsk",
+          "url": "https://snl.no/vestlandsk"
+        },
+        {
+          "label": "Store norske leksikon – inndeling av dialekter i Noreg",
+          "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+        },
+        {
+          "label": "Store norske leksikon – dialektgrenser",
+          "url": "https://snl.no/dialektgrenser"
+        }
+      ]
+    },
+    {
+      "id": "trondersk",
+      "name": "Trøndersk",
+      "map_label": "Trøndersk",
+      "summary": "Dialekter i Trøndelag, på Nordmøre og i det meste av Bindal. Jamvekt, apokope, tjukk l og ofte palatalisering er sentrale trekk, med stor forskjell mellom indre og ytre mål.",
+      "feature_labels": [
+        "jamvekt",
+        "apokope",
+        "tjukk l",
+        "palatalisering"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – trøndersk",
+          "url": "https://snl.no/tr%C3%B8ndersk"
+        },
+        {
+          "label": "Store norske leksikon – inndeling av dialekter i Noreg",
+          "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+        },
+        {
+          "label": "Store norske leksikon – dialektgrenser",
+          "url": "https://snl.no/dialektgrenser"
+        }
+      ]
+    },
+    {
+      "id": "nordnorsk",
+      "name": "Nordnorsk",
+      "map_label": "Nordnorsk",
+      "summary": "Dialekter i Nordland, Troms og Finnmark. Nordnorsk har som hovedregel ikke jamvektssystemet, har høgtone og viser omfattende variasjon i apokope, pronomen, palatalisering og kontakt med andre språk.",
+      "feature_labels": [
+        "høgtone",
+        "apokope",
+        "ikke jamvektssystem",
+        "språkkontakt"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – nordnorsk",
+          "url": "https://snl.no/nordnorsk"
+        },
+        {
+          "label": "Store norske leksikon – inndeling av dialekter i Noreg",
+          "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+        },
+        {
+          "label": "Store norske leksikon – dialektgrenser",
+          "url": "https://snl.no/dialektgrenser"
+        }
+      ]
+    }
+  ],
+  "dialect_regions": [
+    {
+      "id": "vikvaersk",
+      "macro_region_id": "austlandsk",
+      "name": "Vikværsk",
+      "area_summary": "Østfold, Vestfold og Grenland, med enkelte bredere avgrensninger i faglitteraturen.",
+      "feature_labels": [
+        "-ær i tradisjonelt flertall",
+        "tjukk l",
+        "jamvekt i store deler av området"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – vikværsk",
+          "url": "https://snl.no/vikv%C3%A6rsk"
+        },
+        {
+          "label": "Store norske leksikon – dialekter i Østfold",
+          "url": "https://snl.no/dialekter_i_%C3%98stfold"
+        }
+      ]
+    },
+    {
+      "id": "midtostlandsk",
+      "macro_region_id": "austlandsk",
+      "name": "Midtøstlandsk",
+      "area_summary": "Oslo, Akershus, Ringerike og områdene rundt indre Oslofjord i den vanlige dialektologiske inndelingen.",
+      "feature_labels": [
+        "kløyvd infinitiv",
+        "tjukk l",
+        "tostava bestemt flertall som gutta"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – midtøstlandsk",
+          "url": "https://snl.no/midt%C3%B8stlandsk"
+        },
+        {
+          "label": "Store norske leksikon – dialekter i Akershus",
+          "url": "https://snl.no/dialekter_i_Akershus"
+        }
+      ]
+    },
+    {
+      "id": "opplandsmal",
+      "macro_region_id": "austlandsk",
+      "name": "Opplandsmål",
+      "area_summary": "Indre deler av Østlandet nord for det midtøstlandske området, med betydelig lokal variasjon.",
+      "feature_labels": [
+        "jamvekt",
+        "palatalisering i flere områder",
+        "dativ i tradisjonelle mål"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – østlandsk",
+          "url": "https://snl.no/%C3%B8stlandsk"
+        },
+        {
+          "label": "Store norske leksikon – dialekter i Oppland",
+          "url": "https://snl.no/dialekter_i_Oppland"
+        }
+      ]
+    },
+    {
+      "id": "midlandsmal",
+      "macro_region_id": "austlandsk",
+      "name": "Midlandsmål",
+      "area_summary": "Vestlige østlandske fjelldaler fra Telemark i sør til Nord-Gudbrandsdal i nord.",
+      "feature_labels": [
+        "fullvokaler",
+        "eldre bøyningstrekk",
+        "stor dalvariasjon"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – midlandsmål",
+          "url": "https://snl.no/midlandsm%C3%A5l"
+        },
+        {
+          "label": "Store norske leksikon – dialekter i Telemark",
+          "url": "https://snl.no/dialekter_i_Telemark"
+        }
+      ]
+    },
+    {
+      "id": "sorleg_e_mal",
+      "macro_region_id": "vestlandsk",
+      "name": "Sørleg e-mål",
+      "area_summary": "Sørvest-Telemark, gamle Aust-Agder og vestover til Mandal.",
+      "feature_labels": [
+        "-e i infinitiv",
+        "-e i svake hunkjønnsord",
+        "kyst–innlandsforskjeller"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – sørleg e-mål",
+          "url": "https://snl.no/s%C3%B8rleg_e-m%C3%A5l"
+        },
+        {
+          "label": "Store norske leksikon – dialekter på Agder",
+          "url": "https://snl.no/dialekter_p%C3%A5_Agder"
+        }
+      ]
+    },
+    {
+      "id": "sorleg_ea_mal",
+      "macro_region_id": "vestlandsk",
+      "name": "Sørleg e/a-mål",
+      "area_summary": "Et tradisjonelt overgangsområde omkring Lindesnes og Lista.",
+      "feature_labels": [
+        "-e i infinitiv",
+        "-a i svake hunkjønnsord",
+        "overgangssone"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – sørleg e/a-mål",
+          "url": "https://snl.no/s%C3%B8rleg_e/a-m%C3%A5l"
+        },
+        {
+          "label": "Store norske leksikon – dialekter på Agder",
+          "url": "https://snl.no/dialekter_p%C3%A5_Agder"
+        }
+      ]
+    },
+    {
+      "id": "sorvestlandsk_a_mal",
+      "macro_region_id": "vestlandsk",
+      "name": "Sørvestlandsk a-mål",
+      "area_summary": "Fra vestre Agder gjennom Rogaland og store deler av Hordaland til indre Sogn.",
+      "feature_labels": [
+        "-a i infinitiv",
+        "-a i svake hunkjønnsord",
+        "blaute konsonanter i deler av sørkysten"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – sørvestlandsk a-mål",
+          "url": "https://snl.no/s%C3%B8rvestlandsk_a-m%C3%A5l"
+        },
+        {
+          "label": "Store norske leksikon – dialekter på Jæren",
+          "url": "https://snl.no/dialekter_p%C3%A5_J%C3%A6ren"
+        }
+      ]
+    },
+    {
+      "id": "nordvestlandsk_e_mal",
+      "macro_region_id": "vestlandsk",
+      "name": "Nordvestlandsk e-mål",
+      "area_summary": "Fra Ytre Sogn nordover gjennom Sunnfjord, Nordfjord og Sunnmøre til og med Romsdal.",
+      "feature_labels": [
+        "-e i infinitiv",
+        "palatalisering i flere områder",
+        "høgtone"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – nordvestlandsk e-mål",
+          "url": "https://snl.no/nordvestlandsk_e-m%C3%A5l"
+        },
+        {
+          "label": "Store norske leksikon – dialekter i Møre og Romsdal",
+          "url": "https://snl.no/dialekter_i_M%C3%B8re_og_Romsdal"
+        }
+      ]
+    },
+    {
+      "id": "inntrondersk",
+      "macro_region_id": "trondersk",
+      "name": "Inntrøndersk",
+      "area_summary": "Indre trøndermål, særlig dal- og fjordbygder i det indre Trøndelag.",
+      "feature_labels": [
+        "utjamning i jamvektsord",
+        "vårrå/låvvå-typer",
+        "dativ i tradisjonelle mål"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – trøndersk",
+          "url": "https://snl.no/tr%C3%B8ndersk"
+        },
+        {
+          "label": "Store norske leksikon – dialekter i Sør-Trøndelag",
+          "url": "https://snl.no/dialekter_i_S%C3%B8r-Tr%C3%B8ndelag"
+        }
+      ]
+    },
+    {
+      "id": "uttrondersk",
+      "macro_region_id": "trondersk",
+      "name": "Uttrøndersk",
+      "area_summary": "Ytre trøndermål, inkludert fosenmål og nordmørsmål som viktige underområder.",
+      "feature_labels": [
+        "tiljamning",
+        "værra/vækka-typer",
+        "apokope"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – trøndersk",
+          "url": "https://snl.no/tr%C3%B8ndersk"
+        },
+        {
+          "label": "Store norske leksikon – dialekter på Nordmøre",
+          "url": "https://snl.no/Dialekter_p%C3%A5_Nordm%C3%B8re"
+        }
+      ]
+    },
+    {
+      "id": "nordland",
+      "macro_region_id": "nordnorsk",
+      "name": "Nordland",
+      "area_summary": "Nordnorske mål i Nordland. Sør-Helgeland har enkelte overgangstrekk mot trøndersk, mens resten av fylket viser stor intern variasjon.",
+      "feature_labels": [
+        "apokope i mange områder",
+        "høgtone",
+        "overgang mot trøndersk i sør"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – nordnorsk",
+          "url": "https://snl.no/nordnorsk"
+        },
+        {
+          "label": "Store norske leksikon – inndeling av dialekter i Noreg",
+          "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+        }
+      ]
+    },
+    {
+      "id": "troms",
+      "macro_region_id": "nordnorsk",
+      "name": "Troms",
+      "area_summary": "Tromsmålet strekker seg fra grensa mot Nordland til Loppa, med tydelige kyst–innlandsforskjeller og flere kontaktområder.",
+      "feature_labels": [
+        "æ/e-variasjon",
+        "dåkker/dæm",
+        "palatalisering",
+        "språkkontakt"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – dialekter og språk i Troms",
+          "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Troms"
+        },
+        {
+          "label": "Store norske leksikon – nordnorsk",
+          "url": "https://snl.no/nordnorsk"
+        }
+      ]
+    },
+    {
+      "id": "finnmark",
+      "macro_region_id": "nordnorsk",
+      "name": "Finnmark",
+      "area_summary": "Finnmarksmål med store kyst-, fjord- og innlandsforskjeller og historisk kontakt med samiske språk og kvensk/finsk.",
+      "feature_labels": [
+        "æ/mæ/dæ i mange områder",
+        "høgtone",
+        "kontakt med samisk og kvensk",
+        "stor lokal variasjon"
+      ],
+      "sources": [
+        {
+          "label": "Store norske leksikon – dialekter og språk i Finnmark",
+          "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Finnmark"
+        },
+        {
+          "label": "Store norske leksikon – nordnorsk",
+          "url": "https://snl.no/nordnorsk"
+        }
+      ]
+    }
+  ],
+  "urban_overlays": [
+    {
+      "id": "oslo_folkemal",
+      "name": "Tradisjonelt Oslo-folkemål",
+      "summary": "Historisk folkemålsvariant i Oslo, særlig forbundet med arbeiderstrøk, men ikke avgrenset til én bydel.",
+      "sources": [
+        {
+          "label": "Store norske leksikon – dialekter og språk i Oslo",
+          "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+        },
+        {
+          "label": "Språkrådet – språket i Oslo",
+          "url": "https://sprakradet.no/spraksporsmal-og-svar/er-spraket-i-oslo-dialekt-eller-bokmal/"
+        }
+      ]
+    },
+    {
+      "id": "oslo_vestkant_historisk",
+      "name": "Historisk vestkantmål / dannet dagligtale",
+      "summary": "Historisk riksmålsnær Oslo-variant med vestlig sosial og geografisk tyngde, i dag med langt mer flytende grenser.",
+      "sources": [
+        {
+          "label": "Store norske leksikon – dialekter og språk i Oslo",
+          "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+        },
+        {
+          "label": "Språkrådet – språket i Oslo",
+          "url": "https://sprakradet.no/spraksporsmal-og-svar/er-spraket-i-oslo-dialekt-eller-bokmal/"
+        }
+      ]
+    },
+    {
+      "id": "oslo_multietnisk_norsk",
+      "name": "Multietnisk norsk i Oslo",
+      "summary": "Kontaktbaserte talestiler og repertoarer i flerspråklige miljøer. Dette er ikke en «Holmlia-dialekt» og ikke en språkform alle i bestemte bydeler bruker.",
+      "sources": [
+        {
+          "label": "Store norske leksikon – dialekter og språk i Oslo",
+          "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+        },
+        {
+          "label": "Store norske leksikon – sosiolekt",
+          "url": "https://snl.no/sosiolekt"
+        }
+      ]
+    },
+    {
+      "id": "trondheim_bymal",
+      "name": "Trondheim bymål",
+      "summary": "Et klart trøndersk bymål med trekk fra omliggende bygdemål og historiske sosiale variasjoner mellom folkelig og mer standardnære register.",
+      "sources": [
+        {
+          "label": "Store norske leksikon – Trondheim bymål",
+          "url": "https://snl.no/Trondheim_bym%C3%A5l"
+        },
+        {
+          "label": "Store norske leksikon – trøndersk",
+          "url": "https://snl.no/tr%C3%B8ndersk"
+        }
+      ]
+    }
+  ],
+  "language_status_layers": [
+    {
+      "id": "nordsamisk",
+      "name": "Nordsamisk",
+      "kind": "language",
+      "group": "urfolksspråk",
+      "status": "aktivt i Norge",
+      "not_norwegian_dialect": true,
+      "sources": [
+        {
+          "label": "Språkrådet – samiske språk",
+          "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+        }
+      ]
+    },
+    {
+      "id": "lulesamisk",
+      "name": "Lulesamisk",
+      "kind": "language",
+      "group": "urfolksspråk",
+      "status": "aktivt i Norge",
+      "not_norwegian_dialect": true,
+      "sources": [
+        {
+          "label": "Språkrådet – samiske språk",
+          "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+        }
+      ]
+    },
+    {
+      "id": "sorsamisk",
+      "name": "Sørsamisk",
+      "kind": "language",
+      "group": "urfolksspråk",
+      "status": "aktivt i Norge",
+      "not_norwegian_dialect": true,
+      "sources": [
+        {
+          "label": "Språkrådet – samiske språk",
+          "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+        }
+      ]
+    },
+    {
+      "id": "pitesamisk",
+      "name": "Pitesamisk",
+      "kind": "language",
+      "group": "urfolksspråk",
+      "status": "tradisjonelt språkområde / revitalisering",
+      "not_norwegian_dialect": true,
+      "sources": [
+        {
+          "label": "Språkrådet – samiske språk",
+          "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+        }
+      ]
+    },
+    {
+      "id": "umesamisk",
+      "name": "Umesamisk",
+      "kind": "language",
+      "group": "urfolksspråk",
+      "status": "tradisjonelt språkområde / revitalisering",
+      "not_norwegian_dialect": true,
+      "sources": [
+        {
+          "label": "Språkrådet – samiske språk",
+          "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+        }
+      ]
+    },
+    {
+      "id": "skoltesamisk",
+      "name": "Skoltesamisk",
+      "kind": "language",
+      "group": "urfolksspråk",
+      "status": "tradisjonelt språkområde / revitalisering",
+      "not_norwegian_dialect": true,
+      "sources": [
+        {
+          "label": "Språkrådet – samiske språk",
+          "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+        }
+      ]
+    },
+    {
+      "id": "kvensk",
+      "name": "Kvensk",
+      "kind": "language",
+      "group": "nasjonalt minoritetsspråk",
+      "status": "vernet og fremmet etter språkloven",
+      "not_norwegian_dialect": true,
+      "sources": [
+        {
+          "label": "Språkrådet – nasjonale minoritetsspråk",
+          "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/nasjonale-minoritetssprak/"
+        }
+      ]
+    },
+    {
+      "id": "romani",
+      "name": "Romani",
+      "kind": "language",
+      "group": "nasjonalt minoritetsspråk",
+      "status": "vernet og fremmet etter språkloven",
+      "not_norwegian_dialect": true,
+      "sources": [
+        {
+          "label": "Språkrådet – nasjonale minoritetsspråk",
+          "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/nasjonale-minoritetssprak/"
+        }
+      ]
+    },
+    {
+      "id": "romanes",
+      "name": "Romanes",
+      "kind": "language",
+      "group": "nasjonalt minoritetsspråk",
+      "status": "vernet og fremmet etter språkloven",
+      "not_norwegian_dialect": true,
+      "sources": [
+        {
+          "label": "Språkrådet – nasjonale minoritetsspråk",
+          "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/nasjonale-minoritetssprak/"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Store norske leksikon – inndeling av dialekter i Noreg",
+      "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+    },
+    {
+      "label": "Store norske leksikon – dialektgrenser",
+      "url": "https://snl.no/dialektgrenser"
+    },
+    {
+      "label": "Språkrådet – samiske språk",
+      "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+    },
+    {
+      "label": "Språkrådet – nasjonale minoritetsspråk",
+      "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/nasjonale-minoritetssprak/"
+    }
+  ]
+}
