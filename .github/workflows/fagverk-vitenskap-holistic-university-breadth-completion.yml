@@ -52,6 +52,7 @@ jobs:
           node --test tests/fagverk-vitenskap-society-power-ethics-coverage.test.mjs
           node --test tests/fagverk-vitenskap-digital-science-data-infrastructure-coverage.test.mjs
           node --test tests/fagverk-vitenskap-natural-science-medicine-environment-coverage.test.mjs
+          node --test tests/fagverk-vitenskap-paradigms-theories-truth-coverage.test.mjs
       - name: Preserve existing Vitenskap progression gates
         run: |
           node scripts/audit-fagverk-vitenskap-breadth-reconciliation.mjs

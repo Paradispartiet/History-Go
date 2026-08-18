@@ -29,25 +29,25 @@
     "methodCount": 84,
     "mappingCount": 117,
     "hookCount": 64,
-    "explicitChapterOwnedEmneCount": 102,
-    "explicitUncoveredEmneCount": 15,
+    "explicitChapterOwnedEmneCount": 117,
+    "explicitUncoveredEmneCount": 0,
     "legacyEmneCount": 93,
     "oldGenericQuestionSetEmneCount": 89,
     "missingLegacyKeyQuestionEmneCount": 4,
     "largestLegacyQuestionTemplateReuse": 89,
-    "uncoveredWithLegacyTemplateMetadata": 15
+    "uncoveredWithLegacyTemplateMetadata": 0
   },
   "chapters": {
     "count": 5,
     "summaries": [
       {
         "id": "vitenskap-fra-observasjon-til-etterprovbar-kunnskap",
-        "emneCount": 78,
-        "moduleCount": 8,
-        "sectionCount": 43,
-        "paragraphCount": 129,
-        "claimCount": 85,
-        "sourceCount": 48
+        "emneCount": 93,
+        "moduleCount": 9,
+        "sectionCount": 51,
+        "paragraphCount": 153,
+        "claimCount": 100,
+        "sourceCount": 57
       },
       {
         "id": "vitenskap-matematisk-bevis-struktur-og-modell",
@@ -86,18 +86,18 @@
         "sourceCount": 12
       }
     ],
-    "totalParagraphCount": 237,
-    "totalClaimCount": 163,
-    "totalSourceCount": 94
+    "totalParagraphCount": 261,
+    "totalClaimCount": 178,
+    "totalSourceCount": 103
   },
   "evidence": {
     "allClaimsResolve": true,
     "methodsWithLimitsChapterCount": 5,
     "chapterCount": 5,
     "fillerClean": true,
-    "globalUniqueSectionIds": 79,
-    "globalUniqueClaimIds": 163,
-    "globalUniqueSourceIds": 94
+    "globalUniqueSectionIds": 87,
+    "globalUniqueClaimIds": 178,
+    "globalUniqueSourceIds": 103
   },
   "originality": {
     "exactDuplicateParagraphCount": 0,
@@ -136,41 +136,14 @@
   },
   "blockers": [
     {
-      "id": "canonical_emne_full_editorial_treatment_gap",
-      "count": 15,
-      "detail": "15 av 117 canonicale emner mangler eksplisitt eierskap i en fulltekst-/chapter-ready redaksjonell enhet.",
-      "sampleEmneIds": [
-        "em_vit_doxa_maling",
-        "em_vit_faglig_konflikt",
-        "em_vit_forklaring_arsak",
-        "em_vit_ikke_malbare_fenomener",
-        "em_vit_kausalitet",
-        "em_vit_kunnskapens_grenser",
-        "em_vit_kunnskapssosiologi",
-        "em_vit_objektivitet",
-        "em_vit_paradigmeskifte",
-        "em_vit_perspektiv_blindsoner",
-        "em_vit_sannhetsproduksjon",
-        "em_vit_teori_modell",
-        "em_vit_vitenskapelige_revolusjoner",
-        "em_vit_vitenskapsfilosofi",
-        "em_vit_sannhet_maling_modeller"
-      ]
-    },
-    {
-      "id": "uncovered_legacy_emners_retain_template_metadata_only",
-      "count": 15,
-      "detail": "Udekkede v4.5-emner har fortsatt generisk eller manglende key-question-metadata og kan derfor ikke brukes som erstatning for full editorial treatment."
-    },
-    {
-      "id": "full_subject_quality_review_deferred",
-      "detail": "27/30-review skal ikke scores før materielle completion-blockers er lukket."
+      "id": "full_subject_quality_review_missing",
+      "detail": "Krever eksplisitt review i data/fag/vitenskap/vitenskap_holistic_quality_review_v1.json."
     }
   ],
   "completionRequirements": {
     "all_blocking_coverage_gaps_reconciled_into_canonical_inventory_or_explicitly_justified_elsewhere": true,
     "neighbor_boundaries_resolved_without_duplicate_subject_truth": true,
-    "all_included_relevant_emners_have_full_editorial_treatment": false,
+    "all_included_relevant_emners_have_full_editorial_treatment": true,
     "all_claims_resolve_to_inspectable_sources_supporting_the_specific_claim": true,
     "methods_are_taught_with_material_limits_and_uncertainty": true,
     "technology_remains_nested_and_its_existing_scientific_quality_gates_stay_green": true,
@@ -180,7 +153,7 @@
     "subject_status_and_release_artifacts_match_actual_materialized_content": true
   },
   "qualityReview": {
-    "status": "deferred_until_material_blockers_close",
+    "status": "missing_required_review",
     "file": "data/fag/vitenskap/vitenskap_holistic_quality_review_v1.json",
     "scores": null,
     "totalScore": null,
@@ -189,7 +162,7 @@
   "gates": {
     "structuralCoverageGapsResolved": true,
     "neighborBoundariesResolvedWithoutDuplicateSubjectTruth": true,
-    "canonicalEmnersEditoriallyTreated": false,
+    "canonicalEmnersEditoriallyTreated": true,
     "allClaimsResolveToInspectableSupportingSources": true,
     "methodsTeachLimitsAndUncertainty": true,
     "technologyRemainsNested": true,
