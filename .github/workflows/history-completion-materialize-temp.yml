@@ -115,12 +115,20 @@ jobs:
             '    assert.ok(blueprint.primary_hook_id, `${blueprint.emne_id}: kuratert blueprint mangler primary_hook_id`);',
             '    for (const editorialHookId of editorialHookIds) {',
             '      const hook = hookById.get(editorialHookId);',
-            '      if (!hook || !list(hook.emne_ids).includes(blueprint.emne_id) || !theoryByHookId.has(editorialHookId) || !mappedHooks.includes(editorialHookId)) {',
-            '        curatedMismatches.push({ emne_id: blueprint.emne_id, editorial_hook_id: editorialHookId, blueprint_file: blueprint.blueprint_file });',
+            '      const reasons = [];',
+            "      if (!hook) reasons.push('missing_hook');",
+            "      if (hook && !list(hook.emne_ids).includes(blueprint.emne_id)) reasons.push('hook_missing_emne');",
+            "      if (!theoryByHookId.has(editorialHookId)) reasons.push('missing_theory');",
+            "      if (!mappedHooks.includes(editorialHookId)) reasons.push('missing_mapping');",
+            '      if (reasons.length) {',
+            '        curatedMismatches.push({ emne_id: blueprint.emne_id, editorial_hook_id: editorialHookId, blueprint_file: blueprint.blueprint_file, reasons });',
             '      }',
             '    }',
             '  }',
-            '  assert.deepEqual(curatedMismatches, [], `Kuraterte redaksjonelle History-hooks mangler gyldig hook/mapping/teorikjede: ${curatedMismatches.map((row) => `${row.emne_id}:${row.editorial_hook_id}`).join(", ")}`);'
+            "  const diagnosticPath = path.join(ROOT, 'reports/fagverk/history-curated-editorial-hook-diagnostics.json');",
+            '  fs.mkdirSync(path.dirname(diagnosticPath), { recursive: true });',
+            "  fs.writeFileSync(diagnosticPath, `${JSON.stringify({ generated_by: 'history-completion-materialize-temp', canonical_emner: emners.length, unique_primary_semantic_keys: unique(primaryKeys).length, curated_blueprint_rows: blueprintRows.length, mismatch_count: curatedMismatches.length, mismatches: curatedMismatches }, null, 2)}\\n`);",
+            '  assert.deepEqual(curatedMismatches, [], `Kuraterte redaksjonelle History-hooks mangler gyldig hook/mapping/teorikjede: ${curatedMismatches.map((row) => `${row.emne_id}:${row.editorial_hook_id}[${row.reasons.join("+")}]`).join(", ")}`);'
           ].join('\n');
           audit = `${audit.slice(0, curatedStart)}${curatedBlock}${audit.slice(returnStart)}`;
           audit = audit
@@ -138,6 +146,19 @@ jobs:
         run: |
           set -euo pipefail
           node tools/audit-historie-semantic-hook-alignment.mjs
+
+      - name: Persist curated hook diagnostics on failure
+        if: failure()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f reports/fagverk/history-curated-editorial-hook-diagnostics.json ]; then
+            git add reports/fagverk/history-curated-editorial-hook-diagnostics.json
+            if ! git diff --cached --quiet; then
+              git commit -m 'Record History editorial hook diagnostics'
+              git push origin "HEAD:${GITHUB_HEAD_REF}"
+            fi
+          fi
 
       - name: Materialize repaired History prose
         run: node tools/materialize-historie-editorial-chapters.mjs
