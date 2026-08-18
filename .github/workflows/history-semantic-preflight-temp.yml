@@ -1,5 +1,5 @@
 name: History semantic preflight temporary
-# Diagnostic only. No repository writes. Delete before merge.
+# Diagnostic writer only. Writes a temporary PASS/FAIL report, never fagdata. Delete before merge.
 
 on:
   push:
@@ -10,179 +10,99 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   diagnose:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out History branch
+      - name: Check out exact History branch
         uses: actions/checkout@v4
         with:
           ref: agent/history-completion-audit
+          fetch-depth: 0
+
+      - name: Lock branch and current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "INITIAL_HEAD=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin main agent/history-completion-audit
+          git merge-base --is-ancestor origin/main HEAD || {
+            echo 'History branch does not contain current main; refusing diagnostic write.' >&2
+            exit 1
+          }
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Write semantic diagnostic helper
+      - name: Build semantic preflight report
         shell: bash
         run: |
-          cat > /tmp/history-semantic-preflight.mjs <<'NODE'
-          import assert from 'node:assert/strict';
+          set -euo pipefail
+          mkdir -p reports/fagverk
+          node --input-type=module <<'NODE'
           import fs from 'node:fs';
+          import { spawnSync } from 'node:child_process';
 
-          const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
-          const list = (value) => Array.isArray(value) ? value : [];
-          const unique = (values) => [...new Set(values.filter(Boolean))];
-          const sorted = (values) => [...values].sort();
+          const checks = [
+            ['policy', ['policy']],
+            ['primary_ownership', ['primary']],
+            ['secondary_mapping', ['secondary']],
+            ['legacy_partition', ['legacy']],
+            ['active_blueprint_uniqueness', ['active-unique']],
+            ['byhistorie_editorial_hooks', ['blueprint-file', 'byhistorie']],
+            ['industri_editorial_hooks', ['blueprint-file', 'industri-arbeid']],
+            ['velferd_editorial_hooks', ['blueprint-file', 'velferd']],
+            ['overrides', ['overrides']],
+            ['curated_30_of_30', ['coverage']],
+            ['permanent_audit', null]
+          ];
 
-          const pensum = read('data/fag/historie/historiepensum_canonical_v4_5.json');
-          const emners = list(read('data/fag/historie/emner_historie_canonical_v4_5.json'));
-          const mappings = list(read('data/fag/historie/emnemapping_historie_canonical_v4_5.json'));
-          const fagkart = read('data/fag/historie/fagkart_historie_canonical_v4_5.json');
-          const theories = list(read('data/fag/historie/theory_objects_historie_canonical_v5_5.json'));
-          const editorial = read('data/fag/historie/editorial_theory_overrides_historie_v1.json');
-
-          const emneById = new Map(emners.map((row) => [row.emne_id, row]));
-          const mappingByEmne = new Map(mappings.map((row) => [row.emne_id, row]));
-          const theoryByHook = new Map(theories.map((row) => [row.source_hook_id, row]));
-          const hookById = new Map();
-          for (const category of list(fagkart.categories)) {
-            for (const hook of list(category.topic_hooks)) {
-              assert.ok(!hookById.has(hook.id), `duplicate hook ${hook.id}`);
-              hookById.set(hook.id, hook);
-            }
+          const results = [];
+          for (const [id, args] of checks) {
+            const commandArgs = args
+              ? ['tools/diagnose-historie-semantic-preflight-temp.mjs', ...args]
+              : ['tools/audit-historie-semantic-hook-alignment.mjs'];
+            const run = spawnSync(process.execPath, commandArgs, { encoding: 'utf8' });
+            results.push({
+              id,
+              status: run.status === 0 ? 'PASS' : 'FAIL',
+              exit_code: run.status,
+              stdout: (run.stdout || '').trim(),
+              stderr: (run.stderr || '').trim()
+            });
           }
-
-          const blueprintRows = list(editorial.source_blueprint_files).flatMap((file) =>
-            list(read(file)).map((row) => ({ ...row, blueprint_file: file }))
-          );
-          const resolvedLegacyIds = new Set(list(editorial.resolved_legacy_question_surface_ids).map((row) => row.legacy_emne_id));
-          const activeBlueprintRows = blueprintRows.filter((row) => emneById.has(row.emne_id));
-          const mode = process.argv[2];
-
-          if (mode === 'policy') {
-            assert.equal(editorial?.policy?.semantic_identity_source, 'emner_historie_canonical_v4_5.primary_theory_hooks[0]');
-            assert.equal(editorial?.policy?.editorial_hooks_do_not_redefine_semantic_identity, true);
-            assert.equal(editorial?.policy?.editorial_hooks_may_repeat, true);
-            assert.equal(emners.length, 230);
-            assert.equal(emneById.size, 230);
-            assert.equal(mappingByEmne.size, 230);
-            assert.equal(list(editorial.source_blueprint_files).length, 3);
-            console.log('PASS policy/inventory');
-          } else if (mode === 'primary') {
-            const primaryKeys = [];
-            for (const emne of emners) {
-              const primary = list(emne.primary_theory_hooks);
-              assert.equal(primary.length, 1, `${emne.emne_id}: primary count ${primary.length}`);
-              const hookId = primary[0];
-              primaryKeys.push(hookId);
-              const hook = hookById.get(hookId);
-              assert.ok(hook, `${emne.emne_id}: missing primary hook ${hookId}`);
-              assert.deepEqual(list(hook.emne_ids), [emne.emne_id], `${emne.emne_id}: primary ownership mismatch on ${hookId}`);
-              assert.ok(theoryByHook.has(hookId), `${emne.emne_id}: primary theory missing ${hookId}`);
-              const primaryMappings = list(mappingByEmne.get(emne.emne_id)?.mappings).filter((row) => row.mapping_tier === 'primary').map((row) => row.topic_hook);
-              assert.ok(primaryMappings.includes(hookId), `${emne.emne_id}: primary mapping missing ${hookId}`);
-            }
-            assert.equal(new Set(primaryKeys).size, 230);
-            console.log('PASS primary ownership 230/230');
-          } else if (mode === 'secondary') {
-            for (const emne of emners) {
-              const primary = list(emne.primary_theory_hooks)[0];
-              const secondaryMappings = list(mappingByEmne.get(emne.emne_id)?.mappings).filter((row) => row.mapping_tier === 'secondary').map((row) => row.topic_hook);
-              for (const hookId of list(emne.secondary_theory_hooks)) {
-                assert.notEqual(hookId, primary, `${emne.emne_id}: secondary equals primary ${hookId}`);
-                assert.ok(hookById.has(hookId), `${emne.emne_id}: missing secondary hook ${hookId}`);
-                assert.ok(theoryByHook.has(hookId), `${emne.emne_id}: missing secondary theory ${hookId}`);
-                assert.ok(secondaryMappings.includes(hookId), `${emne.emne_id}: secondary mapping missing ${hookId}`);
-              }
-            }
-            console.log('PASS secondary mapping lanes');
-          } else if (mode === 'legacy') {
-            const observed = new Set();
-            const unresolved = [];
-            for (const row of blueprintRows) {
-              if (emneById.has(row.emne_id)) continue;
-              if (resolvedLegacyIds.has(row.emne_id)) observed.add(row.emne_id);
-              else unresolved.push(`${row.blueprint_file}:${row.emne_id}`);
-            }
-            assert.deepEqual(unresolved, []);
-            assert.deepEqual(sorted(observed), sorted(resolvedLegacyIds));
-            assert.equal(resolvedLegacyIds.size, 7);
-            console.log('PASS legacy partition 7/7');
-          } else if (mode === 'active-unique') {
-            assert.equal(new Set(activeBlueprintRows.map((row) => row.emne_id)).size, activeBlueprintRows.length);
-            console.log(`PASS active blueprint uniqueness ${activeBlueprintRows.length}`);
-          } else if (mode === 'blueprint-file') {
-            const needle = process.argv[3];
-            const rows = activeBlueprintRows.filter((row) => row.blueprint_file.includes(needle));
-            assert.ok(rows.length > 0, `no active rows for ${needle}`);
-            for (const row of rows) {
-              assert.ok(row.primary_hook_id, `${row.emne_id}: missing editorial primary hook`);
-              for (const hookId of unique([row.primary_hook_id, row.secondary_hook_id])) {
-                assert.ok(hookById.has(hookId), `${row.emne_id}: editorial hook missing ${hookId}`);
-                assert.ok(theoryByHook.has(hookId), `${row.emne_id}: editorial theory missing ${hookId}`);
-              }
-            }
-            console.log(`PASS ${needle} editorial hooks ${rows.length}`);
-          } else if (mode === 'overrides') {
-            const overrides = list(editorial.overrides);
-            assert.equal(new Set(overrides.map((row) => row.emne_id)).size, overrides.length);
-            const activeIds = new Set(activeBlueprintRows.map((row) => row.emne_id));
-            for (const row of overrides) {
-              assert.ok(emneById.has(row.emne_id), `${row.emne_id}: override noncanonical`);
-              assert.ok(!activeIds.has(row.emne_id), `${row.emne_id}: blueprint/override overlap`);
-              assert.ok(row.editorial_primary_hook_id, `${row.emne_id}: missing override primary`);
-              for (const hookId of unique([row.editorial_primary_hook_id, row.editorial_secondary_hook_id])) {
-                assert.ok(hookById.has(hookId), `${row.emne_id}: override hook missing ${hookId}`);
-                assert.ok(theoryByHook.has(hookId), `${row.emne_id}: override theory missing ${hookId}`);
-              }
-            }
-            assert.equal(overrides.length, 7);
-            console.log('PASS overrides 7/7');
-          } else if (mode === 'coverage') {
-            const curatedDomains = new Set(['his_byhistorie_stedsendring','his_industri_arbeid_sosialhistorie','his_velferd_rett_hverdagsliv']);
-            const expected = new Set(list(pensum.domains).filter((domain) => curatedDomains.has(domain.domain_id)).flatMap((domain) => list(domain.emne_ids)));
-            const covered = new Set([...activeBlueprintRows.map((row) => row.emne_id), ...list(editorial.overrides).map((row) => row.emne_id)]);
-            assert.equal(expected.size, 30);
-            assert.deepEqual(sorted(covered), sorted(expected));
-            console.log(`PASS curated coverage ${covered.size}/30`);
-          } else {
-            throw new Error(`unknown diagnostic mode ${mode}`);
-          }
+          const failed = results.filter((row) => row.status === 'FAIL');
+          const report = {
+            schema: 'history_go_historie_semantic_preflight_temp_v1',
+            generated_from_head: process.env.INITIAL_HEAD,
+            status: failed.length ? 'FAIL' : 'PASS',
+            failed_checks: failed.map((row) => row.id),
+            checks: results
+          };
+          fs.writeFileSync('reports/fagverk/historie-semantic-preflight-temp.json', JSON.stringify(report, null, 2) + '\n');
+          console.log(JSON.stringify({ status: report.status, failed_checks: report.failed_checks }, null, 2));
           NODE
 
-      - name: Semantic gate — policy and inventory
-        run: node /tmp/history-semantic-preflight.mjs policy
-
-      - name: Semantic gate — primary ownership
-        run: node /tmp/history-semantic-preflight.mjs primary
-
-      - name: Semantic gate — secondary mapping
-        run: node /tmp/history-semantic-preflight.mjs secondary
-
-      - name: Semantic gate — legacy partition
-        run: node /tmp/history-semantic-preflight.mjs legacy
-
-      - name: Semantic gate — active blueprint uniqueness
-        run: node /tmp/history-semantic-preflight.mjs active-unique
-
-      - name: Semantic gate — byhistorie editorial hooks
-        run: node /tmp/history-semantic-preflight.mjs blueprint-file byhistorie
-
-      - name: Semantic gate — industri editorial hooks
-        run: node /tmp/history-semantic-preflight.mjs blueprint-file industri-arbeid
-
-      - name: Semantic gate — velferd editorial hooks
-        run: node /tmp/history-semantic-preflight.mjs blueprint-file velferd
-
-      - name: Semantic gate — overrides
-        run: node /tmp/history-semantic-preflight.mjs overrides
-
-      - name: Semantic gate — curated 30 of 30 coverage
-        run: node /tmp/history-semantic-preflight.mjs coverage
-
-      - name: Semantic gate — permanent audit
-        run: node tools/audit-historie-semantic-hook-alignment.mjs
+      - name: Commit diagnostic report only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add reports/fagverk/historie-semantic-preflight-temp.json
+          if git diff --cached --quiet; then
+            echo 'Diagnostic report unchanged.'
+            exit 0
+          fi
+          git commit -m 'Record History semantic preflight diagnosis'
+          git fetch origin agent/history-completion-audit
+          remote_head="$(git rev-parse origin/agent/history-completion-audit)"
+          if [ "$remote_head" != "$INITIAL_HEAD" ]; then
+            echo "History branch moved during diagnosis: started $INITIAL_HEAD, remote is $remote_head" >&2
+            exit 1
+          fi
+          git push origin HEAD:agent/history-completion-audit
