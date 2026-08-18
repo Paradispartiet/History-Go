@@ -51,6 +51,27 @@ jobs:
           NODE
       - name: Materialize canonical institutions coverage
         run: node scripts/materialize-vitenskap-institutions-knowledge-places-coverage-batch.mjs
+      - name: Extend reciprocal usage for reused Unit 1 claims
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json';
+          const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const additions = {
+            'vit1-01': ['vit1-institusjoner-6'],
+            'vit1-05': ['vit1-institusjoner-2'],
+            'vit1-06': ['vit1-institusjoner-2'],
+            'vit1-07': ['vit1-institusjoner-3'],
+            'vit1-08': ['vit1-institusjoner-2'],
+            'vit1-09': ['vit1-institusjoner-5']
+          };
+          for (const [id, sectionIds] of Object.entries(additions)) {
+            const claim = doc.claims.find((row) => row.id === id);
+            if (!claim) throw new Error(`Missing reused claim ${id}`);
+            claim.used_in = [...new Set([...(claim.used_in || []), ...sectionIds])];
+          }
+          fs.writeFileSync(file, `${JSON.stringify(doc, null, 2)}\n`);
+          NODE
       - name: Regenerate permanent reports and release projection
         run: |
           node scripts/audit-fagverk-vitenskap-holistic-university-breadth-completion.mjs --write-report --no-check-report
