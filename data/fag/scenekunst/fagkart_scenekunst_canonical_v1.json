@@ -3,49 +3,71 @@
   "subject_title": "Scenekunst",
   "scope": "global_med_lokale_stedsankre",
   "type": "fagkart",
-  "version": "1.0",
-  "updated_at": "2026-07-21",
+  "version": "2.0",
+  "updated_at": "2026-08-18",
   "principles": {
     "source_first": true,
     "forestilling_or_institution_anchor_required": true,
     "live_performance_is_primary": true,
-    "cross_domain_links_use_secondary_badges": true
+    "cross_domain_links_use_secondary_badges": true,
+    "university_breadth_reconciled": true,
+    "no_fixed_completion_quota": true
   },
   "categories": [
     {
       "id": "institusjon_repertoar",
-      "title": "Institusjoner og repertoar",
-      "definition": "Teatre, kompanier, scener, ledelse, repertoar og scenekunstens infrastruktur.",
-      "emne_ids": ["em_scenekunst_teaterinstitusjon_repertoar"],
-      "best_place_types": ["teater", "scene", "kompani", "produksjonshus"]
+      "title": "Institusjoner, historie, repertoar og infrastruktur",
+      "definition": "Sceneinstitusjoner, historiske utviklingslinjer, repertoar, produksjonsvilkår, turné, festivaler og arkivspor som gjør levende scenekunst mulig og etterprøvbar.",
+      "emne_ids": [
+        "em_scenekunst_teaterinstitusjon_repertoar",
+        "em_scenekunst_scenekunsthistorie_tradisjoner_brudd",
+        "em_scenekunst_produksjon_arbeid_finansiering",
+        "em_scenekunst_turne_festival_infrastruktur",
+        "em_scenekunst_arkiv_dokumentasjon_rekonstruksjon"
+      ],
+      "method_ids": ["met_scenekunst_institusjonsanalyse", "met_scenekunst_produksjonsanalyse", "met_scenekunst_arkivanalyse", "met_scenekunst_historisk_kildekritikk"],
+      "best_place_types": ["teater", "scene", "kompani", "produksjonshus", "festivalsted"]
     },
     {
       "id": "verk_utover_form",
-      "title": "Dramaturgi, utøver og scenisk form",
-      "definition": "Hvordan tekst, rolle, regi, scenografi, lys og rytme blir en levende forestilling.",
+      "title": "Dramaturgi, utøver, regi og scenisk form",
+      "definition": "Hvordan tekst og annet materiale, utøvere, regi, prøveprosess, scenografi, lys, lyd, kostyme og teknikk utvikles og organiseres som levende forestilling.",
       "emne_ids": [
         "em_scenekunst_dramaturgi_iscenesettelse",
         "em_scenekunst_skuespill_rollefortolkning",
-        "em_scenekunst_regi_scenografi"
+        "em_scenekunst_regi_scenografi",
+        "em_scenekunst_scenetekst_adaptasjon_devising",
+        "em_scenekunst_regi_proveprosess_samarbeid",
+        "em_scenekunst_scenografi_lys_lyd_kostyme"
       ],
-      "best_place_types": ["teater", "scene", "øvingsrom", "verksted"]
+      "method_ids": ["met_scenekunst_forestillingsanalyse", "met_scenekunst_dramaturgianalyse", "met_scenekunst_rolleanalyse", "met_scenekunst_scenografianalyse", "met_scenekunst_proveprosessanalyse", "met_scenekunst_scenetekst_devisinganalyse", "met_scenekunst_sceneteknisk_dramaturgianalyse"],
+      "best_place_types": ["teater", "scene", "øvingsrom", "verksted", "produksjonshus"]
     },
     {
       "id": "dans_hybrid_humor",
-      "title": "Dans, musikkteater og live-humor",
-      "definition": "Sceniske former der bevegelse, musikk, komikk og direkte publikumskontakt er sentrale.",
+      "title": "Dans, musikkteater, hybridformer og live-humor",
+      "definition": "Sceniske former der bevegelse, musikk, komikk, objekter, medier og direkte publikumskontakt organiseres som levende eller eksplisitt performativ praksis.",
       "emne_ids": [
         "em_scenekunst_dans_koreografi",
         "em_scenekunst_musikal_musikkteater",
-        "em_scenekunst_revy_standup_impro"
+        "em_scenekunst_revy_standup_impro",
+        "em_scenekunst_hybrid_intermedial_scenekunst"
       ],
-      "best_place_types": ["dansescene", "musikalscene", "revyteater", "humorscene"]
+      "method_ids": ["met_scenekunst_bevegelsesanalyse", "met_scenekunst_forestillingsanalyse", "met_scenekunst_dramaturgianalyse", "met_scenekunst_sceneteknisk_dramaturgianalyse"],
+      "best_place_types": ["dansescene", "musikalscene", "revyteater", "humorscene", "festivalsted"]
     },
     {
       "id": "publikum_offentlighet",
-      "title": "Publikum og offentlighet",
-      "definition": "Hvordan scenekunst etablerer, utfordrer og bruker forholdet mellom scene, sal og samfunn.",
-      "emne_ids": ["em_scenekunst_publikum_fjerde_vegg"],
+      "title": "Publikum, performance, resepsjon og offentlighet",
+      "definition": "Hvordan levende og medierte nærvær, scene–sal-relasjoner, kritikk, publikumsdata, deltakelse, tilgjengelighet, etikk og representasjon former scenekunstens offentlige situasjon.",
+      "emne_ids": [
+        "em_scenekunst_publikum_fjerde_vegg",
+        "em_scenekunst_performance_teori_liveness",
+        "em_scenekunst_resepsjon_kritikk_publikumsdata",
+        "em_scenekunst_deltakende_immersiv_scenekunst",
+        "em_scenekunst_etikk_tilgjengelighet_representasjon"
+      ],
+      "method_ids": ["met_scenekunst_resepsjonsanalyse", "met_scenekunst_forestillingsanalyse", "met_scenekunst_deltakelses_etisk_analyse", "met_scenekunst_historisk_kildekritikk"],
       "best_place_types": ["teater", "scene", "festivalsted", "offentlig_rom"]
     }
   ]

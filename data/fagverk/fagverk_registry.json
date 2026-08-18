@@ -1,6 +1,6 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "3.12.0",
+  "version": "3.13.0",
   "updatedAt": "2026-08-18",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
@@ -2992,9 +2992,96 @@
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
-        "note": "Scenekunstfagets fire fagkart-eide områder eier rendererstrukturen. De tre pensummodulene er progresjonslag, ikke parallelle fagområder. Alle åtte aktive emner og ni canonicale metoder løses gjennom foundation v1-adapteren. Ingen kapitler registreres før fulltekst, claims og inspectable kilder er produsert."
+        "note": "Fire renderer-fagområder eier 20 canonicale emner. Completion-auditen bekrefter fire fulltekstkapitler, paragraph-to-claim-spor, 14 brukte canonicale metoder, inspectable kilder og eksplisitte nabofaggrenser."
       },
-      "chapters": []
+      "chapters": [
+        {
+          "id": "institusjon-historie-produksjonsfelt",
+          "title": "Institusjon, historie og produksjonsfelt",
+          "subtitle": "Repertoar, arbeid, turné og arkiv som dokumenterbare systemer rundt den levende forestillingen",
+          "file": "data/fagverk/scenekunst/institusjon-historie-produksjonsfelt.json",
+          "primary_domain_id": "institusjon_repertoar",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_scenekunst_teaterinstitusjon_repertoar",
+            "em_scenekunst_scenekunsthistorie_tradisjoner_brudd",
+            "em_scenekunst_produksjon_arbeid_finansiering",
+            "em_scenekunst_turne_festival_infrastruktur",
+            "em_scenekunst_arkiv_dokumentasjon_rekonstruksjon"
+          ],
+          "claimsFile": "data/fagverk/scenekunst/institusjon-historie-produksjonsfelt/claims.json",
+          "briefFile": "data/fagverk/scenekunst/institusjon-historie-produksjonsfelt/brief.json"
+        },
+        {
+          "id": "dramaturgi-utover-regi-scenisk-form",
+          "title": "Dramaturgi, utøver, regi og scenisk form",
+          "subtitle": "Fra scenetekst og prøveprosess til kropp, rom, lys, lyd og teknisk dramaturgi",
+          "file": "data/fagverk/scenekunst/dramaturgi-utover-regi-scenisk-form.json",
+          "primary_domain_id": "verk_utover_form",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_scenekunst_dramaturgi_iscenesettelse",
+            "em_scenekunst_skuespill_rollefortolkning",
+            "em_scenekunst_regi_scenografi",
+            "em_scenekunst_scenetekst_adaptasjon_devising",
+            "em_scenekunst_regi_proveprosess_samarbeid",
+            "em_scenekunst_scenografi_lys_lyd_kostyme"
+          ],
+          "claimsFile": "data/fagverk/scenekunst/dramaturgi-utover-regi-scenisk-form/claims.json",
+          "briefFile": "data/fagverk/scenekunst/dramaturgi-utover-regi-scenisk-form/brief.json"
+        },
+        {
+          "id": "dans-musikkteater-komikk-hybridformer",
+          "title": "Dans, musikkteater, komikk og hybride former",
+          "subtitle": "Kropp, musikk, live-humor og intermedialitet analysert uten å viske ut nabofaggrensene",
+          "file": "data/fagverk/scenekunst/dans-musikkteater-komikk-hybridformer.json",
+          "primary_domain_id": "dans_hybrid_humor",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_scenekunst_dans_koreografi",
+            "em_scenekunst_musikal_musikkteater",
+            "em_scenekunst_revy_standup_impro",
+            "em_scenekunst_hybrid_intermedial_scenekunst"
+          ],
+          "claimsFile": "data/fagverk/scenekunst/dans-musikkteater-komikk-hybridformer/claims.json",
+          "briefFile": "data/fagverk/scenekunst/dans-musikkteater-komikk-hybridformer/brief.json"
+        },
+        {
+          "id": "publikum-resepsjon-deltakelse-etikk",
+          "title": "Publikum, resepsjon, deltakelse og etikk",
+          "subtitle": "Fra fjerde vegg og liveness til publikumsdata, samtykke, representasjon og universell utforming",
+          "file": "data/fagverk/scenekunst/publikum-resepsjon-deltakelse-etikk.json",
+          "primary_domain_id": "publikum_offentlighet",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_scenekunst_publikum_fjerde_vegg",
+            "em_scenekunst_performance_teori_liveness",
+            "em_scenekunst_resepsjon_kritikk_publikumsdata",
+            "em_scenekunst_deltakende_immersiv_scenekunst",
+            "em_scenekunst_etikk_tilgjengelighet_representasjon"
+          ],
+          "claimsFile": "data/fagverk/scenekunst/publikum-resepsjon-deltakelse-etikk/claims.json",
+          "briefFile": "data/fagverk/scenekunst/publikum-resepsjon-deltakelse-etikk/brief.json"
+        }
+      ],
+      "editorialPlan": {
+        "targetChapterCount": 4,
+        "completionRequirements": [
+          "all_canonical_domains_covered",
+          "all_canonical_emners_covered_exactly_once",
+          "all_canonical_methods_used",
+          "paragraph_claim_trace_complete",
+          "all_used_claims_verified",
+          "inspectable_sources_with_concrete_locators",
+          "substantial_independent_text_per_emne",
+          "no_duplicate_or_generic_paragraph_templates",
+          "neighbor_boundaries_preserved",
+          "archive_statistics_reception_limits_explicit",
+          "ethics_representation_accessibility_substantive",
+          "holistic_quality_review_at_least_27_of_30"
+        ],
+        "nextGate": "maintenance_source_refresh_and_place_case_expansion"
+      }
     },
     "sport": {
       "title": "Sport & lek",

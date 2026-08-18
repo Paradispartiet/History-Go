@@ -1,69 +1,123 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "subject_id": "scenekunst",
-  "purpose": "Metodekatalog for kildebasert analyse av forestillinger, sceneinstitusjoner og produksjonspraksis.",
+  "purpose": "Metodekatalog for kildebasert analyse av forestillinger, sceneinstitusjoner, kunstneriske prosesser, publikum og scenekunsthistoriske spor.",
   "methods": [
     {
       "method_id": "met_scenekunst_forestillingsanalyse",
       "title": "Forestillingsanalyse",
-      "description": "Analyse av en dokumentert forestilling som helhet: handling, utøvere, rom, lyd, lys, rytme og publikumssituasjon.",
+      "description": "Systematisk analyse av en dokumentert forestilling som helhet: handling eller materiale, utøvere, rom, lyd, lys, rytme, mediering og publikumssituasjon.",
       "data_forms": ["forestillingsopptak", "program", "anmeldelse", "feltnotat"],
+      "limitations": ["Et opptak erstatter ikke den opprinnelige live-situasjonen.", "Observasjon av sceniske valg beviser ikke kunstnerens intensjon."],
       "canonical_status": "canonical"
     },
     {
       "method_id": "met_scenekunst_dramaturgianalyse",
       "title": "Dramaturgianalyse",
-      "description": "Analyse av hvordan tid, konflikt, rekkefølge, vendepunkt og scenisk rytme organiserer forestillingen.",
-      "data_forms": ["manus", "libretto", "forestilling", "regibok"],
+      "description": "Analyse av hvordan tid, rekkefølge, konflikt, informasjon, gjentakelse, vendepunkt, rytme og scenisk materiale organiserer et forløp.",
+      "data_forms": ["manus", "libretto", "forestilling", "regibok", "arbeidsmateriale"],
+      "limitations": ["Lineær handlingsanalyse passer ikke alle sceniske former."],
       "canonical_status": "canonical"
     },
     {
       "method_id": "met_scenekunst_rolleanalyse",
       "title": "Rolle- og skuespilleranalyse",
-      "description": "Analyse av hvordan kropp, stemme, timing og relasjoner skaper en rollefortolkning.",
-      "data_forms": ["forestillingsopptak", "intervju", "anmeldelse"],
+      "description": "Analyse av hvordan kropp, stemme, timing, handling, relasjoner og nærvær skaper rolle, figur eller annen scenisk tilstedeværelse.",
+      "data_forms": ["forestillingsopptak", "intervju", "anmeldelse", "prøvedokumentasjon"],
+      "limitations": ["Indre motivasjon kan ikke utledes sikkert fra ytre uttrykk alene."],
       "canonical_status": "canonical"
     },
     {
       "method_id": "met_scenekunst_scenografianalyse",
       "title": "Scenografi- og formanalyse",
-      "description": "Analyse av scenografi, kostyme, lys, rekvisitter og romlige valg.",
-      "data_forms": ["foto", "scenografisk skisse", "program", "opptak"],
+      "description": "Analyse av scenografi, kostyme, rekvisitter, materialitet, lys og romlige valg som deler av forestillingens form.",
+      "data_forms": ["foto", "scenografisk skisse", "program", "opptak", "modell"],
+      "limitations": ["Dokumentasjonsfoto kan fordreie skala, lys og publikumsblikk."],
       "canonical_status": "canonical"
     },
     {
       "method_id": "met_scenekunst_bevegelsesanalyse",
       "title": "Bevegelses- og koreografianalyse",
-      "description": "Analyse av kropp, bevegelsesmønster, rytme, rom og samspill i dans og fysisk teater.",
-      "data_forms": ["opptak", "koreografisk notat", "feltnotat"],
+      "description": "Analyse av kropp, bevegelsesmønster, rytme, rom, kraft, relasjon og komposisjon i dans og fysisk scenekunst.",
+      "data_forms": ["opptak", "koreografisk notat", "feltnotat", "prøvemateriale"],
+      "limitations": ["Bevegelsesbeskrivelse må skilles fra fortolkning av kulturell eller emosjonell betydning."],
       "canonical_status": "canonical"
     },
     {
       "method_id": "met_scenekunst_produksjonsanalyse",
       "title": "Produksjonsanalyse",
-      "description": "Analyse av hvordan regi, prøver, teknikk, økonomi, arbeidsdeling og institusjon gjør forestillingen mulig.",
-      "data_forms": ["produksjonsplan", "intervju", "arkiv", "kreditering"],
+      "description": "Analyse av hvordan kunstneriske, tekniske, administrative og økonomiske ressurser, arbeidsdeling, tidsplan og institusjonelle rammer gjør produksjonen mulig.",
+      "data_forms": ["produksjonsplan", "budsjett", "intervju", "arkiv", "kreditering", "årsrapport"],
+      "limitations": ["Ressurser og økonomiske resultater er ikke mål på kunstnerisk kvalitet."],
       "canonical_status": "canonical"
     },
     {
       "method_id": "met_scenekunst_resepsjonsanalyse",
       "title": "Publikums- og resepsjonsanalyse",
-      "description": "Analyse av publikumsrolle, anmeldelser, mottakelse, deltakelse og historisk etterliv.",
-      "data_forms": ["anmeldelser", "publikumsdata", "debatt", "feltnotat"],
+      "description": "Analyse av anmeldelser, publikumsdata, debatt, deltakelse og historisk mottakelse med eksplisitt skille mellom kvalitative spor og aggregerte mål.",
+      "data_forms": ["anmeldelser", "publikumsdata", "debatt", "feltnotat", "spørreundersøkelse"],
+      "limitations": ["Én anmeldelse er ikke representativ for publikum.", "Besøkstall måler oppmøte, ikke opplevelse eller kvalitet."],
       "canonical_status": "canonical"
     },
     {
       "method_id": "met_scenekunst_institusjonsanalyse",
       "title": "Sceneinstitusjonsanalyse",
-      "description": "Analyse av teaterets eller kompaniets mandat, repertoar, ledelse, finansiering og plass i offentligheten.",
-      "data_forms": ["årsrapport", "repertoararkiv", "institusjonshistorie"],
+      "description": "Analyse av institusjonens mandat, repertoar, ledelse, finansiering, arbeidsformer, publikum og plass i offentligheten over tid.",
+      "data_forms": ["årsrapport", "repertoararkiv", "vedtekter", "institusjonshistorie", "statistikk"],
+      "limitations": ["Offisielle mål og selvbeskrivelser må kontrolleres mot faktisk aktivitet og uavhengige kilder."],
       "canonical_status": "canonical"
     },
     {
       "method_id": "met_scenekunst_arkivanalyse",
       "title": "Scenekunsthistorisk arkivanalyse",
-      "description": "Kritisk bruk av programmer, fotografier, manus, rollelister og institusjonsarkiv for å rekonstruere tidligere scenepraksis.",
-      "data_forms": ["program", "foto", "manus", "rolleliste", "arkiv"],
+      "description": "Kritisk bruk av programmer, fotografier, manus, rollelister, regibøker og institusjonsarkiv for å rekonstruere tidligere scenepraksis.",
+      "data_forms": ["program", "foto", "manus", "rolleliste", "arkiv", "korrespondanse"],
+      "limitations": ["Arkiv bevarer selektive spor og må ikke behandles som en fullstendig kopi av hendelsen."],
+      "canonical_status": "canonical"
+    },
+    {
+      "method_id": "met_scenekunst_historisk_kildekritikk",
+      "title": "Scenekunsthistorisk kildekritikk",
+      "description": "Sammenligning av samtidige og senere kilder for å vurdere proveniens, tidsavstand, formål, representativitet og hva som faktisk kan hevdes om en tidligere forestilling eller praksis.",
+      "data_forms": ["arkivkatalog", "program", "anmeldelse", "foto", "opptak", "memoar", "forskningspublikasjon"],
+      "procedure": ["identifiser kilde og proveniens", "skill samtidige spor fra senere fortolkninger", "sammenlign uavhengige kilder", "avgrens slutningen til det materialet faktisk bærer"],
+      "limitations": ["Fravær i et arkiv er ikke automatisk bevis for fravær i praksis."],
+      "canonical_status": "canonical"
+    },
+    {
+      "method_id": "met_scenekunst_proveprosessanalyse",
+      "title": "Prøveprosessanalyse",
+      "description": "Analyse av hvordan ideer, materiale og sceniske valg utvikles gjennom prøver, tilbakemelding, improvisasjon, omskriving og samarbeid frem mot eller mellom forestillinger.",
+      "data_forms": ["prøvedagbok", "regibok", "arbeidsvideo", "intervju", "versjonshistorikk", "produksjonsnotat"],
+      "procedure": ["etabler tidslinje", "identifiser dokumenterte endringer", "koble endringer til kilder", "skill deltakernes etterforklaringer fra samtidige spor"],
+      "limitations": ["Et sluttprodukt kan ikke alene rekonstruere hvem som foreslo eller eide et valg."],
+      "canonical_status": "canonical"
+    },
+    {
+      "method_id": "met_scenekunst_scenetekst_devisinganalyse",
+      "title": "Scenetekst-, adaptasjons- og devisinganalyse",
+      "description": "Analyse av forholdet mellom kildemateriale, manus eller libretto, kollektivt utviklet materiale og den realiserte forestillingen.",
+      "data_forms": ["manusversjoner", "libretto", "kildetekst", "devisingnotat", "prøvedokumentasjon", "forestilling"],
+      "procedure": ["identifiser kildemateriale", "sammenlign versjoner", "spor utelatelser og tillegg", "koble endringer til dramaturgisk funksjon"],
+      "limitations": ["Tekstlig endring alene forklarer ikke hvordan scenisk mening oppstår i fremføringen."],
+      "canonical_status": "canonical"
+    },
+    {
+      "method_id": "met_scenekunst_sceneteknisk_dramaturgianalyse",
+      "title": "Sceneteknisk dramaturgianalyse",
+      "description": "Analyse av hvordan lys, lyd, video, maskineri, objekter, kostyme og tekniske systemer inngår i forestillingens tidslige, romlige og dramaturgiske organisering.",
+      "data_forms": ["lysplan", "lydplan", "teknisk rider", "cue-liste", "scenografisk dokumentasjon", "opptak"],
+      "procedure": ["kartlegg tekniske elementer", "spor cues og endringer", "koble dem til scenisk handling", "skille observerbar funksjon fra påstått intensjon"],
+      "limitations": ["Teknisk kompleksitet er ikke i seg selv estetisk kvalitet."],
+      "canonical_status": "canonical"
+    },
+    {
+      "method_id": "met_scenekunst_deltakelses_etisk_analyse",
+      "title": "Deltakelses-, tilgangs- og etikkanalyse",
+      "description": "Analyse av publikums og medvirkendes handlingsrom, samtykke, tilgjengelighet, representasjon, maktasymmetrier og mulige barrierer i konkrete scenekunstpraksiser.",
+      "data_forms": ["publikumsinformasjon", "tilgjengelighetsinformasjon", "observasjon", "intervju", "policy", "lovtekst", "produksjonsprotokoll"],
+      "procedure": ["identifiser berørte grupper", "kartlegg konkret handlingsrom og barrierer", "kontroller eksplisitte regler og rettigheter", "skill normativ vurdering fra empirisk observasjon"],
+      "limitations": ["Representasjon på scenen beviser ikke hvordan alle publikummere opplever den.", "Etisk analyse krever kontekst og kan ikke reduseres til telling alene."],
       "canonical_status": "canonical"
     }
   ]
