@@ -396,3 +396,49 @@ test("Språkatlas research coverage er nasjonal og kildebåret", () => {
     assert.match(`${row.summary} ${row.variation_note}`, /eget språk|egne språk|språklig område|språkområde/i, `${id}: minoritetsspråk må skilles eksplisitt fra norsk dialekt`);
   }
 });
+
+
+test("Lokale talemålsprofiler materialiserer konkrete påstander med direkte kildebelegg", () => {
+  const atlas = json("data/leksikon/sprak/norge_atlas_v1.json");
+  const schema = json("data/leksikon/sprak/atlas_schema_v1.json");
+  const runtime = read("js/ui/place-language-layer.js");
+  const contract = read("docs/SPRAKLEKSIKON.md");
+  const materializedIds = [
+    "oslo_local_speech",
+    "bergen_local_speech",
+    "stavanger_local_speech",
+    "trondheim_local_speech",
+    "tromso_local_speech"
+  ];
+  const locals = new Map((atlas.local_varieties || []).map(row => [row.id, row]));
+  for (const id of materializedIds) {
+    const row = locals.get(id);
+    assert.ok(row, id + ": lokalprofil mangler");
+    assert.equal(row.profile_status, "evidence_materialized", id + ": skal være evidensmaterialisert");
+    assert.match(String(row.evidence_last_verified || ""), /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok((row.feature_labels || []).length >= 4, id + ": for få synlige målmerkelapper");
+    assert.ok((row.feature_evidence || []).length >= 4, id + ": for få beleggpunkter");
+    assert.ok((row.sources || []).length >= 2, id + ": evidensmaterialisert profil trenger minst to profilkilder");
+    for (const item of row.feature_evidence || []) {
+      assert.ok(text(item.label), id + "/" + item.id + ": label mangler");
+      assert.ok(text(item.claim).length >= 20, id + "/" + item.id + ": påstanden er for tynn");
+      assert.ok(["structural_feature", "social_variation", "language_change", "contact_history", "corpus_basis"].includes(item.kind), id + "/" + item.id + ": ukjent evidenstype");
+      assert.ok((item.source_urls || []).length >= 1, id + "/" + item.id + ": mangler direkte kilde");
+      for (const url of item.source_urls || []) assert.ok(String(url).startsWith("https://"), id + "/" + item.id + ": kilde må være HTTPS");
+    }
+  }
+
+  assert.ok(locals.get("oslo_local_speech").feature_labels.includes("kløyvd infinitiv"));
+  assert.ok(locals.get("bergen_local_speech").feature_labels.includes("to grammatiske kjønn"));
+  assert.ok(locals.get("stavanger_local_speech").feature_labels.includes("skarre-r"));
+  assert.ok(locals.get("trondheim_local_speech").feature_labels.includes("jamvekt og apokope"));
+  assert.ok(locals.get("tromso_local_speech").feature_labels.includes("e/a-mål"));
+
+  assert.ok(schema.properties.local_varieties.items.properties.profile_status.enum.includes("evidence_materialized"));
+  assert.ok(schema.properties.local_varieties.items.properties.feature_evidence);
+  assert.match(runtime, /Dokumentert profil/);
+  assert.match(runtime, /data-atlas-selection-evidence/);
+  assert.match(runtime, /Dokumenterte målmerker og endringer/);
+  assert.match(contract, /evidence_materialized/);
+  assert.match(contract, /Historiske trekk skal aldri presenteres/i);
+});
