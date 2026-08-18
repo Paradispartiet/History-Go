@@ -483,10 +483,11 @@
           <strong data-atlas-selection-title></strong>
           <p data-atlas-selection-summary></p>
           <div data-atlas-selection-features></div>
+          <div class="hg-language-atlas-evidence" data-atlas-selection-evidence hidden></div>
         </div>
         <details class="hg-language-atlas-details">
           <summary>Utforsk lokale talemål og regioner</summary>
-          ${localVarieties.length ? `<section class="hg-language-atlas-local"><h3>Lokale talemål</h3><p>Dette er atlasets viktigste nivå. En by kan samtidig romme flere varianter; en lokal profil er derfor et startpunkt, ikke en påstand om at alle snakker likt.</p><div>${localVarieties.map(row => `<button type="button" data-atlas-local="${esc(row?.id)}" data-atlas-macro-id="${esc(row?.macro_region_id)}" data-atlas-region-id="${esc(row?.region_id || "")}" aria-pressed="false"><strong>${esc(row?.name)}</strong><span>${row?.profile_status === "local_research_required" ? "Lokal research gjenstår" : "Lokal profil"}</span></button>`).join("")}</div></section>` : ""}
+          ${localVarieties.length ? `<section class="hg-language-atlas-local"><h3>Lokale talemål</h3><p>Dette er atlasets viktigste nivå. En by kan samtidig romme flere varianter; en lokal profil er derfor et startpunkt, ikke en påstand om at alle snakker likt.</p><div>${localVarieties.map(row => `<button type="button" data-atlas-local="${esc(row?.id)}" data-atlas-macro-id="${esc(row?.macro_region_id)}" data-atlas-region-id="${esc(row?.region_id || "")}" aria-pressed="false"><strong>${esc(row?.name)}</strong><span>${row?.profile_status === "local_research_required" ? "Lokal research gjenstår" : row?.profile_status === "evidence_materialized" ? "Dokumentert profil" : "Lokal profil"}</span></button>`).join("")}</div></section>` : ""}
           <div class="hg-language-atlas-grid"><div class="hg-language-atlas-grid-label"><strong>Grove dialektologiske områder</strong><span>Orientering – ikke enkeltstående dialekter</span></div>${macros.map(macro => renderAtlasMacroCard(macro, atlas, activeIds)).join("")}</div>
           ${overlays.length ? `<section class="hg-language-atlas-overlays"><h3>Bymål og sosiale språkoverlegg</h3><div>${overlays.map(row => `<article class="${activeIds.has(text(row?.id)) ? "is-active" : ""}"><strong>${esc(row?.name)}</strong><p>${esc(row?.summary)}</p>${sourceLinks({ sources: row?.sources })}</article>`).join("")}</div></section>` : ""}
           ${languageLayers.length ? `<section class="hg-language-atlas-languages"><h3>Egne språk – ikke norske dialekter</h3><p>Urfolksspråk og nasjonale minoritetsspråk vises separat slik at atlaset ikke gjør dem til undergrupper av norsk.</p><div>${languageLayers.map(row => `<span><strong>${esc(row?.name)}</strong>${row?.status ? ` · ${esc(row.status)}` : ""}</span>`).join("")}</div></section>` : ""}
@@ -643,9 +644,18 @@
       const title = selection.querySelector("[data-atlas-selection-title]");
       const summary = selection.querySelector("[data-atlas-selection-summary]");
       const features = selection.querySelector("[data-atlas-selection-features]");
+      const evidence = selection.querySelector("[data-atlas-selection-evidence]");
       if (title) title.textContent = text(item?.name || macro?.name);
       if (summary) summary.textContent = [text(local?.summary || region?.area_summary || item?.summary || macro?.summary), text(local?.variation_note)].filter(Boolean).join(" ");
       if (features) features.innerHTML = list(item?.feature_labels).map(label => `<span>${esc(label)}</span>`).join("");
+      if (evidence instanceof HTMLElement) {
+        const rows = list(local?.feature_evidence);
+        evidence.hidden = !rows.length;
+        evidence.innerHTML = rows.length ? `<strong>Dokumenterte målmerker og endringer</strong><ul>${rows.map(row => {
+          const links = list(row?.source_urls).map(url => safeHttpsUrl(url)).filter(Boolean);
+          return `<li><span>${esc(row?.label || row?.claim)}</span><p>${esc(row?.claim)}</p>${links.length ? `<div>${links.map((url, index) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Kilde${links.length > 1 ? ` ${index + 1}` : ""} ↗</a>`).join("")}</div>` : ""}</li>`;
+        }).join("")}</ul>` : "";
+      }
       selection.hidden = false;
     }
 
