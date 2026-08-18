@@ -102,7 +102,8 @@
             "items": {
               "type": "string",
               "minLength": 1
-            }
+            },
+            "minItems": 4
           },
           "evidence_last_verified": {
             "type": "string",
@@ -110,7 +111,7 @@
           },
           "feature_evidence": {
             "type": "array",
-            "minItems": 3,
+            "minItems": 4,
             "items": {
               "type": "object",
               "required": [
@@ -179,7 +180,18 @@
                 "feature_labels",
                 "feature_evidence",
                 "evidence_last_verified"
-              ]
+              ],
+              "properties": {
+                "sources": {
+                  "minItems": 2
+                },
+                "feature_labels": {
+                  "minItems": 4
+                },
+                "feature_evidence": {
+                  "minItems": 4
+                }
+              }
             }
           }
         ]

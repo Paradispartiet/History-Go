@@ -1,0 +1,3289 @@
+Materialized local speech evidence: kristiansand_local_speech, valle_setesdal_local_speech, bodo_local_speech, narvik_local_speech, hammerfest_local_speech
+{
+    "schema": "history_go_language_atlas_v1",
+    "title": "Spr\u00e5katlas Norge",
+    "verified_at": "2026-08-18",
+    "scope": "Norge",
+    "mode": "schematic_reference_map",
+    "notes": "Atlaset er en faglig navigasjonsflate, ikke et kart over faste spr\u00e5kgrenser. De fire hovedomr\u00e5dene er sv\u00e6rt grove dialektologiske orienteringsomr\u00e5der, ikke dialektnavn og ikke talem\u00e5lsprofiler. Faktiske profiler skal ligge p\u00e5 regionalt og s\u00e6rlig lokalt niv\u00e5. Dialektgrenser er glidende, og ett sted kan romme flere samtidige talem\u00e5lsvarianter etter blant annet alder, sosialt milj\u00f8, mobilitet og spr\u00e5kkontakt.",
+    "editorial_principles": [
+        "Austlandsk, vestlandsk, tr\u00f8ndersk og nordnorsk er grove orienteringsomr\u00e5der, ikke enkeltst\u00e5ende dialekter.",
+        "Lokale talem\u00e5l og bytalem\u00e5l skal v\u00e6re egne profiler n\u00e5r dokumentasjonen finnes; de skal ikke arve konkrete trekk ukritisk fra et hovedomr\u00e5de.",
+        "En by eller kommune er heller ikke automatisk ett ensartet talem\u00e5l. Intern geografisk, sosial, aldersmessig og kontaktbasert variasjon skal kunne modelleres eksplisitt.",
+        "De fire hovedgruppene brukes som grov nasjonal orientering: austlandsk, vestlandsk, tr\u00f8ndersk og nordnorsk.",
+        "Underregionene er pedagogiske soner og skal ikke behandles som administrative grenser eller som utt\u00f8mmende lokale dialekter.",
+        "Stedseierskap betyr dokumentert relevans, ikke at et ord eller trekk er unikt for stedet.",
+        "Sosiolekter, bym\u00e5l og multietniske talestiler legges som egne overlegg og skal ikke gj\u00f8res til egenskaper ved alle beboere.",
+        "Samiske spr\u00e5k og nasjonale minoritetsspr\u00e5k er egne spr\u00e5k og skal aldri plasseres som norske dialekter."
+    ],
+    "macro_regions": [
+        {
+            "id": "austlandsk",
+            "name": "Austlandsk",
+            "map_label": "\u00d8stlandsk",
+            "summary": "Dialekter p\u00e5 \u00d8stlandet. Jamvektsloven, kl\u00f8yvd infinitiv, l\u00e5gtone og tjukk l er sentrale historiske m\u00e5lmerker, men ikke alle trekk finnes overalt.",
+            "feature_labels": [
+                "jamvekt",
+                "kl\u00f8yvd infinitiv",
+                "l\u00e5gtone",
+                "tjukk l"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 \u00f8stlandsk",
+                    "url": "https://snl.no/%C3%B8stlandsk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 inndeling av dialekter i Noreg",
+                    "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialektgrenser",
+                    "url": "https://snl.no/dialektgrenser"
+                }
+            ]
+        },
+        {
+            "id": "vestlandsk",
+            "name": "Vestlandsk",
+            "map_label": "Vestlandsk",
+            "summary": "Dialekter fra Agder gjennom Vestlandet til Romsdal. Omr\u00e5det mangler jamvektssystemet og har flere a-, e- og e/a-m\u00e5l; h\u00f8gtone er et viktig overordnet trekk.",
+            "feature_labels": [
+                "h\u00f8gtone",
+                "a-/e-infinitiv",
+                "uten jamvektssystem",
+                "stor kyst\u2013innlandsvariasjon"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 vestlandsk",
+                    "url": "https://snl.no/vestlandsk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 inndeling av dialekter i Noreg",
+                    "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialektgrenser",
+                    "url": "https://snl.no/dialektgrenser"
+                }
+            ]
+        },
+        {
+            "id": "trondersk",
+            "name": "Tr\u00f8ndersk",
+            "map_label": "Tr\u00f8ndersk",
+            "summary": "Dialekter i Tr\u00f8ndelag, p\u00e5 Nordm\u00f8re og i det meste av Bindal. Jamvekt, apokope, tjukk l og ofte palatalisering er sentrale trekk, med stor forskjell mellom indre og ytre m\u00e5l.",
+            "feature_labels": [
+                "jamvekt",
+                "apokope",
+                "tjukk l",
+                "palatalisering"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 tr\u00f8ndersk",
+                    "url": "https://snl.no/tr%C3%B8ndersk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 inndeling av dialekter i Noreg",
+                    "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialektgrenser",
+                    "url": "https://snl.no/dialektgrenser"
+                }
+            ]
+        },
+        {
+            "id": "nordnorsk",
+            "name": "Nordnorsk",
+            "map_label": "Nordnorsk",
+            "summary": "Dialekter i Nordland, Troms og Finnmark. Nordnorsk har som hovedregel ikke jamvektssystemet, har h\u00f8gtone og viser omfattende variasjon i apokope, pronomen, palatalisering og kontakt med andre spr\u00e5k.",
+            "feature_labels": [
+                "h\u00f8gtone",
+                "apokope",
+                "ikke jamvektssystem",
+                "spr\u00e5kkontakt"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 nordnorsk",
+                    "url": "https://snl.no/nordnorsk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 inndeling av dialekter i Noreg",
+                    "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialektgrenser",
+                    "url": "https://snl.no/dialektgrenser"
+                }
+            ]
+        }
+    ],
+    "dialect_regions": [
+        {
+            "id": "vikvaersk",
+            "macro_region_id": "austlandsk",
+            "name": "Vikv\u00e6rsk",
+            "area_summary": "\u00d8stfold, Vestfold og Grenland, med enkelte bredere avgrensninger i faglitteraturen.",
+            "feature_labels": [
+                "-\u00e6r i tradisjonelt flertall",
+                "tjukk l",
+                "jamvekt i store deler av omr\u00e5det"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 vikv\u00e6rsk",
+                    "url": "https://snl.no/vikv%C3%A6rsk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i \u00d8stfold",
+                    "url": "https://snl.no/dialekter_i_%C3%98stfold"
+                }
+            ]
+        },
+        {
+            "id": "midtostlandsk",
+            "macro_region_id": "austlandsk",
+            "name": "Midt\u00f8stlandsk",
+            "area_summary": "Oslo, Akershus, Ringerike og omr\u00e5dene rundt indre Oslofjord i den vanlige dialektologiske inndelingen.",
+            "feature_labels": [
+                "kl\u00f8yvd infinitiv",
+                "tjukk l",
+                "tostava bestemt flertall som gutta"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 midt\u00f8stlandsk",
+                    "url": "https://snl.no/midt%C3%B8stlandsk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i Akershus",
+                    "url": "https://snl.no/dialekter_i_Akershus"
+                }
+            ]
+        },
+        {
+            "id": "opplandsmal",
+            "macro_region_id": "austlandsk",
+            "name": "Opplandsm\u00e5l",
+            "area_summary": "Indre deler av \u00d8stlandet nord for det midt\u00f8stlandske omr\u00e5det, med betydelig lokal variasjon.",
+            "feature_labels": [
+                "jamvekt",
+                "palatalisering i flere omr\u00e5der",
+                "dativ i tradisjonelle m\u00e5l"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 \u00f8stlandsk",
+                    "url": "https://snl.no/%C3%B8stlandsk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i Oppland",
+                    "url": "https://snl.no/dialekter_i_Oppland"
+                }
+            ]
+        },
+        {
+            "id": "midlandsmal",
+            "macro_region_id": "austlandsk",
+            "name": "Midlandsm\u00e5l",
+            "area_summary": "Vestlige \u00f8stlandske fjelldaler fra Telemark i s\u00f8r til Nord-Gudbrandsdal i nord.",
+            "feature_labels": [
+                "fullvokaler",
+                "eldre b\u00f8yningstrekk",
+                "stor dalvariasjon"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 midlandsm\u00e5l",
+                    "url": "https://snl.no/midlandsm%C3%A5l"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i Telemark",
+                    "url": "https://snl.no/dialekter_i_Telemark"
+                }
+            ]
+        },
+        {
+            "id": "sorleg_e_mal",
+            "macro_region_id": "vestlandsk",
+            "name": "S\u00f8rleg e-m\u00e5l",
+            "area_summary": "S\u00f8rvest-Telemark, gamle Aust-Agder og vestover til Mandal.",
+            "feature_labels": [
+                "-e i infinitiv",
+                "-e i svake hunkj\u00f8nnsord",
+                "kyst\u2013innlandsforskjeller"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 s\u00f8rleg e-m\u00e5l",
+                    "url": "https://snl.no/s%C3%B8rleg_e-m%C3%A5l"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter p\u00e5 Agder",
+                    "url": "https://snl.no/dialekter_p%C3%A5_Agder"
+                }
+            ]
+        },
+        {
+            "id": "sorleg_ea_mal",
+            "macro_region_id": "vestlandsk",
+            "name": "S\u00f8rleg e/a-m\u00e5l",
+            "area_summary": "Et tradisjonelt overgangsomr\u00e5de omkring Lindesnes og Lista.",
+            "feature_labels": [
+                "-e i infinitiv",
+                "-a i svake hunkj\u00f8nnsord",
+                "overgangssone"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 s\u00f8rleg e/a-m\u00e5l",
+                    "url": "https://snl.no/s%C3%B8rleg_e/a-m%C3%A5l"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter p\u00e5 Agder",
+                    "url": "https://snl.no/dialekter_p%C3%A5_Agder"
+                }
+            ]
+        },
+        {
+            "id": "sorvestlandsk_a_mal",
+            "macro_region_id": "vestlandsk",
+            "name": "S\u00f8rvestlandsk a-m\u00e5l",
+            "area_summary": "Fra vestre Agder gjennom Rogaland og store deler av Hordaland til indre Sogn.",
+            "feature_labels": [
+                "-a i infinitiv",
+                "-a i svake hunkj\u00f8nnsord",
+                "blaute konsonanter i deler av s\u00f8rkysten"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 s\u00f8rvestlandsk a-m\u00e5l",
+                    "url": "https://snl.no/s%C3%B8rvestlandsk_a-m%C3%A5l"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter p\u00e5 J\u00e6ren",
+                    "url": "https://snl.no/dialekter_p%C3%A5_J%C3%A6ren"
+                }
+            ]
+        },
+        {
+            "id": "nordvestlandsk_e_mal",
+            "macro_region_id": "vestlandsk",
+            "name": "Nordvestlandsk e-m\u00e5l",
+            "area_summary": "Fra Ytre Sogn nordover gjennom Sunnfjord, Nordfjord og Sunnm\u00f8re til og med Romsdal.",
+            "feature_labels": [
+                "-e i infinitiv",
+                "palatalisering i flere omr\u00e5der",
+                "h\u00f8gtone"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 nordvestlandsk e-m\u00e5l",
+                    "url": "https://snl.no/nordvestlandsk_e-m%C3%A5l"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i M\u00f8re og Romsdal",
+                    "url": "https://snl.no/dialekter_i_M%C3%B8re_og_Romsdal"
+                }
+            ]
+        },
+        {
+            "id": "inntrondersk",
+            "macro_region_id": "trondersk",
+            "name": "Inntr\u00f8ndersk",
+            "area_summary": "Indre tr\u00f8nderm\u00e5l, s\u00e6rlig dal- og fjordbygder i det indre Tr\u00f8ndelag.",
+            "feature_labels": [
+                "utjamning i jamvektsord",
+                "v\u00e5rr\u00e5/l\u00e5vv\u00e5-typer",
+                "dativ i tradisjonelle m\u00e5l"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 tr\u00f8ndersk",
+                    "url": "https://snl.no/tr%C3%B8ndersk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i S\u00f8r-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_S%C3%B8r-Tr%C3%B8ndelag"
+                }
+            ]
+        },
+        {
+            "id": "uttrondersk",
+            "macro_region_id": "trondersk",
+            "name": "Uttr\u00f8ndersk",
+            "area_summary": "Ytre tr\u00f8nderm\u00e5l, inkludert fosenm\u00e5l og nordm\u00f8rsm\u00e5l som viktige underomr\u00e5der.",
+            "feature_labels": [
+                "tiljamning",
+                "v\u00e6rra/v\u00e6kka-typer",
+                "apokope"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 tr\u00f8ndersk",
+                    "url": "https://snl.no/tr%C3%B8ndersk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter p\u00e5 Nordm\u00f8re",
+                    "url": "https://snl.no/Dialekter_p%C3%A5_Nordm%C3%B8re"
+                }
+            ]
+        },
+        {
+            "id": "nordland",
+            "macro_region_id": "nordnorsk",
+            "name": "Nordland",
+            "area_summary": "Nordnorske m\u00e5l i Nordland. S\u00f8r-Helgeland har enkelte overgangstrekk mot tr\u00f8ndersk, mens resten av fylket viser stor intern variasjon.",
+            "feature_labels": [
+                "apokope i mange omr\u00e5der",
+                "h\u00f8gtone",
+                "overgang mot tr\u00f8ndersk i s\u00f8r"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 nordnorsk",
+                    "url": "https://snl.no/nordnorsk"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 inndeling av dialekter i Noreg",
+                    "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+                }
+            ]
+        },
+        {
+            "id": "troms",
+            "macro_region_id": "nordnorsk",
+            "name": "Troms",
+            "area_summary": "Tromsm\u00e5let strekker seg fra grensa mot Nordland til Loppa, med tydelige kyst\u2013innlandsforskjeller og flere kontaktomr\u00e5der.",
+            "feature_labels": [
+                "\u00e6/e-variasjon",
+                "d\u00e5kker/d\u00e6m",
+                "palatalisering",
+                "spr\u00e5kkontakt"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Troms",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Troms"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 nordnorsk",
+                    "url": "https://snl.no/nordnorsk"
+                }
+            ]
+        },
+        {
+            "id": "finnmark",
+            "macro_region_id": "nordnorsk",
+            "name": "Finnmark",
+            "area_summary": "Finnmarksm\u00e5l med store kyst-, fjord- og innlandsforskjeller og historisk kontakt med samiske spr\u00e5k og kvensk/finsk.",
+            "feature_labels": [
+                "\u00e6/m\u00e6/d\u00e6 i mange omr\u00e5der",
+                "h\u00f8gtone",
+                "kontakt med samisk og kvensk",
+                "stor lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Finnmark",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Finnmark"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 nordnorsk",
+                    "url": "https://snl.no/nordnorsk"
+                }
+            ]
+        },
+        {
+            "id": "hallingmal",
+            "macro_region_id": "austlandsk",
+            "parent_region_id": "midlandsmal",
+            "name": "Hallingm\u00e5l",
+            "area_summary": "Hallingdal. Et midlandsm\u00e5l med tydelig intern og historisk variasjon.",
+            "feature_labels": [
+                "midlandsm\u00e5l",
+                "kl\u00f8yvd infinitiv",
+                "lokal dalvariasjon"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Hallingdal",
+                    "url": "https://snl.no/dialekter_i_Hallingdal"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "valdresmal",
+            "macro_region_id": "austlandsk",
+            "parent_region_id": "midlandsmal",
+            "name": "Valdresm\u00e5l",
+            "area_summary": "Valdres. H\u00f8rer til det midlandske m\u00e5lomr\u00e5det og har flere fellestrekk med Hallingdal, men er ikke samme talem\u00e5l.",
+            "feature_labels": [
+                "midlandsm\u00e5l",
+                "lokal dalvariasjon"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Valdres",
+                    "url": "https://snl.no/dialekter_i_Valdres"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i Oppland",
+                    "url": "https://snl.no/dialekter_i_Oppland"
+                }
+            ]
+        },
+        {
+            "id": "gudbrandsdalsmal",
+            "macro_region_id": "austlandsk",
+            "parent_region_id": "midlandsmal",
+            "name": "Gudbrandsdalsm\u00e5l",
+            "area_summary": "Gudbrandsdalen. Et langt dalf\u00f8re med lokale forskjeller mellom s\u00f8r-, midt- og norddalen.",
+            "feature_labels": [
+                "jamvekt",
+                "kl\u00f8yvd infinitiv",
+                "lokal dalvariasjon"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Gudbrandsdalen",
+                    "url": "https://snl.no/dialekter_i_Gudbrandsdalen"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "osterdalsmal",
+            "macro_region_id": "austlandsk",
+            "parent_region_id": "opplandsmal",
+            "name": "\u00d8sterdalsm\u00e5l",
+            "area_summary": "\u00d8sterdalen fra Elverum nordover, med Rendalen, Engerdal og Trysil; omr\u00e5det har markert intern variasjon og kontakt mot tr\u00f8ndersk og svensk.",
+            "feature_labels": [
+                "jamvekt",
+                "regional variasjon",
+                "grensekontakt"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i \u00d8sterdalen",
+                    "url": "https://snl.no/dialekter_i_%C3%98sterdalen"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "setesdalsmal",
+            "macro_region_id": "vestlandsk",
+            "parent_region_id": "sorleg_e_mal",
+            "name": "Setesdalsm\u00e5l",
+            "area_summary": "Indre Setesdal. Et s\u00e6rpreget s\u00f8rleg e-m\u00e5l med sterk lokal kontinuitet og tydelig forskjell fra ytre Agder.",
+            "feature_labels": [
+                "e-infinitiv",
+                "eldre b\u00f8yningstrekk",
+                "lokal dalvariasjon"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Setesdal",
+                    "url": "https://snl.no/dialekter_i_Setesdal"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "jaermal",
+            "macro_region_id": "vestlandsk",
+            "parent_region_id": "sorvestlandsk_a_mal",
+            "name": "J\u00e6rm\u00e5l",
+            "area_summary": "J\u00e6ren. Rogalandsk a-m\u00e5lsomr\u00e5de som m\u00e5 skilles fra Ryfylke og Stavanger bym\u00e5l.",
+            "feature_labels": [
+                "a-m\u00e5l",
+                "j\u00e6rsk regional variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Rogaland",
+                    "url": "https://snl.no/dialekter_i_Rogaland"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "ryfylkemal",
+            "macro_region_id": "vestlandsk",
+            "parent_region_id": "sorvestlandsk_a_mal",
+            "name": "Ryfylkem\u00e5l",
+            "area_summary": "Ryfylke. Fjord- og innlandsm\u00e5l med interne forskjeller, blant annet en tydelig s\u00e6rstilling for Suldal.",
+            "feature_labels": [
+                "a-m\u00e5l",
+                "fjord\u2013innlandsvariasjon"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Rogaland",
+                    "url": "https://snl.no/dialekter_i_Rogaland"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "hardangermal",
+            "macro_region_id": "vestlandsk",
+            "parent_region_id": "sorvestlandsk_a_mal",
+            "name": "Hardangerm\u00e5l",
+            "area_summary": "Hardanger. Et vestlandsk a-m\u00e5lsomr\u00e5de som ikke skal sl\u00e5s sammen med Bergen eller hele Hordaland.",
+            "feature_labels": [
+                "a-m\u00e5l",
+                "indre vestlandsm\u00e5l"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Hordaland",
+                    "url": "https://snl.no/dialekter_i_Hordaland"
+                },
+                {
+                    "label": "SNL \u2013 a-m\u00e5l",
+                    "url": "https://snl.no/a-m%C3%A5l"
+                }
+            ]
+        },
+        {
+            "id": "sognamal",
+            "macro_region_id": "vestlandsk",
+            "name": "Sognam\u00e5l",
+            "area_summary": "Sogn har stor forskjell mellom indre og ytre omr\u00e5der og ligger ved m\u00f8tet mellom vestlandske a- og e-m\u00e5l.",
+            "feature_labels": [
+                "indre\u2013ytre variasjon",
+                "a-/e-m\u00e5lsgrense"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Sogn og Fjordane",
+                    "url": "https://snl.no/dialekter_i_Sogn_og_Fjordane"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "sunnmorsmal",
+            "macro_region_id": "vestlandsk",
+            "parent_region_id": "nordvestlandsk_e_mal",
+            "name": "Sunnm\u00f8rsm\u00e5l",
+            "area_summary": "Sunnm\u00f8re. Nordvestlandsk e-m\u00e5l med lokal kyst- og fjordvariasjon.",
+            "feature_labels": [
+                "e-m\u00e5l",
+                "nordvestlandsk",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i M\u00f8re og Romsdal",
+                    "url": "https://snl.no/dialekter_i_M%C3%B8re_og_Romsdal"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "romsdalsmal",
+            "macro_region_id": "vestlandsk",
+            "parent_region_id": "nordvestlandsk_e_mal",
+            "name": "Romsdalsm\u00e5l",
+            "area_summary": "Romsdal. Nordvestlandsk e-m\u00e5l med enkelte \u00f8stnorske innslag; skal skilles fra b\u00e5de Sunnm\u00f8re og Nordm\u00f8re.",
+            "feature_labels": [
+                "e-m\u00e5l",
+                "nordvestlandsk",
+                "kontaktstrekk"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Romsdal",
+                    "url": "https://snl.no/dialekter_i_Romsdal"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "fosenmal",
+            "macro_region_id": "trondersk",
+            "parent_region_id": "uttrondersk",
+            "name": "Fosenm\u00e5l",
+            "area_summary": "Ytre tr\u00f8nderm\u00e5l p\u00e5 Fosen. Tiljamning er viktigere som skille mot de indre m\u00e5lene enn \u00e9n enkelt \u00abtr\u00f8ndersk\u00bb profil.",
+            "feature_labels": [
+                "uttr\u00f8ndersk",
+                "tiljamning"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i S\u00f8r-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_S%C3%B8r-Tr%C3%B8ndelag"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "nordmorsmal",
+            "macro_region_id": "trondersk",
+            "parent_region_id": "uttrondersk",
+            "name": "Nordm\u00f8rsm\u00e5l",
+            "area_summary": "Nordm\u00f8re. Spr\u00e5klig tr\u00f8ndersk omr\u00e5de nord i M\u00f8re og Romsdal, tydelig skilt fra Romsdal.",
+            "feature_labels": [
+                "tr\u00f8ndersk",
+                "jamvekt",
+                "uttr\u00f8ndersk overgang"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter p\u00e5 Nordm\u00f8re",
+                    "url": "https://snl.no/Dialekter_p%C3%A5_Nordm%C3%B8re"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ]
+        },
+        {
+            "id": "indre_namdalsmal",
+            "macro_region_id": "trondersk",
+            "parent_region_id": "inntrondersk",
+            "name": "Indre namdalsm\u00e5l",
+            "area_summary": "Indre Namdalen som nordlig grein av inntr\u00f8ndersk, med egne jamningsm\u00f8nstre.",
+            "feature_labels": [
+                "inntr\u00f8ndersk",
+                "jamning"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialektgrenser",
+                    "url": "https://snl.no/dialektgrenser"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Nord-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_Nord-Tr%C3%B8ndelag"
+                }
+            ]
+        },
+        {
+            "id": "ytre_namdalsmal",
+            "macro_region_id": "trondersk",
+            "parent_region_id": "uttrondersk",
+            "name": "Ytre namdalsm\u00e5l",
+            "area_summary": "Ytre Namdalen h\u00f8rer til de ytre tr\u00f8nderm\u00e5lene og har intern nord\u2013s\u00f8r-variasjon.",
+            "feature_labels": [
+                "uttr\u00f8ndersk",
+                "tiljamning",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialektgrenser",
+                    "url": "https://snl.no/dialektgrenser"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Nord-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_Nord-Tr%C3%B8ndelag"
+                }
+            ]
+        },
+        {
+            "id": "austfinnmarksmal",
+            "macro_region_id": "nordnorsk",
+            "name": "Austfinnmarksm\u00e5l",
+            "area_summary": "\u00d8stlige Finnmark, blant annet S\u00f8r-Varanger og Vard\u00f8.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Finnmark",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Finnmark"
+                }
+            ]
+        },
+        {
+            "id": "indre_finnmarksmal",
+            "macro_region_id": "nordnorsk",
+            "name": "Indre finnmarksm\u00e5l",
+            "area_summary": "Indre Finnmark, blant annet Kautokeino, Lakselv og Tana.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Finnmark",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Finnmark"
+                }
+            ]
+        },
+        {
+            "id": "vestfinnmarksmal",
+            "macro_region_id": "nordnorsk",
+            "name": "Vestfinnmarksm\u00e5l",
+            "area_summary": "Vestlige Finnmark, blant annet Hammerfest og Kj\u00f8llefjord.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Finnmark",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Finnmark"
+                }
+            ]
+        },
+        {
+            "id": "nordtromsmal",
+            "macro_region_id": "nordnorsk",
+            "name": "Nordtromsm\u00e5l",
+            "area_summary": "Nord-Troms, blant annet Kv\u00e6nangen, Manndalen, Nordreisa og Vann\u00f8ya.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Troms",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Troms"
+                }
+            ]
+        },
+        {
+            "id": "midttromsmal",
+            "macro_region_id": "nordnorsk",
+            "name": "Midttromsm\u00e5l",
+            "area_summary": "Midt-Troms, blant annet Botnhamn, Mefjordv\u00e6r og Troms\u00f8.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Troms",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Troms"
+                }
+            ]
+        },
+        {
+            "id": "senjamal",
+            "macro_region_id": "nordnorsk",
+            "name": "Senjam\u00e5l",
+            "area_summary": "Senja-omr\u00e5det med flere dokumenterte lokale m\u00e5lepunkter og egen ordsamling.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Troms",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Troms"
+                }
+            ]
+        },
+        {
+            "id": "indre_tromsmal",
+            "macro_region_id": "nordnorsk",
+            "name": "Indre tromsm\u00e5l",
+            "area_summary": "Indre Troms, med dokumentert m\u00e5lepunkt i Kirkesdalen/M\u00e5lselv.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Troms",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Troms"
+                }
+            ]
+        },
+        {
+            "id": "sor_troms_vesteralen_ofoten",
+            "macro_region_id": "nordnorsk",
+            "name": "S\u00f8r-Troms, Vester\u00e5len og Ofoten",
+            "area_summary": "Regional gruppe med blant annet Kv\u00e6fjord, Myre, Narvik og Ballangen.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 nordnorsk",
+                    "url": "https://snl.no/nordnorsk"
+                }
+            ]
+        },
+        {
+            "id": "lofotmal",
+            "macro_region_id": "nordnorsk",
+            "name": "Lofotm\u00e5l",
+            "area_summary": "Lofoten, blant annet Borge og Stamsund.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i Nordland",
+                    "url": "https://snl.no/dialekter_i_Nordland"
+                }
+            ]
+        },
+        {
+            "id": "saltenmal",
+            "macro_region_id": "nordnorsk",
+            "name": "Saltenm\u00e5l",
+            "area_summary": "Salten, blant annet Beiarn, Bod\u00f8 og Steigen; Bod\u00f8 bym\u00e5l har samtidig egen lokal profil.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i Nordland",
+                    "url": "https://snl.no/dialekter_i_Nordland"
+                }
+            ]
+        },
+        {
+            "id": "ranamal",
+            "macro_region_id": "nordnorsk",
+            "name": "Ranam\u00e5l",
+            "area_summary": "Rana-omr\u00e5det, blant annet Mo i Rana og Selfors.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i Nordland",
+                    "url": "https://snl.no/dialekter_i_Nordland"
+                }
+            ]
+        },
+        {
+            "id": "vefsnmal",
+            "macro_region_id": "nordnorsk",
+            "name": "Vefsnm\u00e5l",
+            "area_summary": "Vefsn/Helgeland, blant annet Hattfjelldal, Her\u00f8y og Alstahaug.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i Nordland",
+                    "url": "https://snl.no/dialekter_i_Nordland"
+                }
+            ]
+        },
+        {
+            "id": "bronnoymal",
+            "macro_region_id": "nordnorsk",
+            "name": "Br\u00f8nn\u00f8ym\u00e5l",
+            "area_summary": "S\u00f8r-Helgeland, blant annet Br\u00f8nn\u00f8ysund og S\u00f8mna.",
+            "feature_labels": [
+                "UiT-dokumentert regionalgruppe",
+                "lokal variasjon"
+            ],
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter i Nordland",
+                    "url": "https://snl.no/dialekter_i_Nordland"
+                }
+            ]
+        }
+    ],
+    "urban_overlays": [
+        {
+            "id": "oslo_folkemal",
+            "name": "Tradisjonelt Oslo-folkem\u00e5l",
+            "summary": "Historisk folkem\u00e5lsvariant i Oslo, s\u00e6rlig forbundet med arbeiderstr\u00f8k, men ikke avgrenset til \u00e9n bydel.",
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Oslo",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+                },
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 spr\u00e5ket i Oslo",
+                    "url": "https://sprakradet.no/spraksporsmal-og-svar/er-spraket-i-oslo-dialekt-eller-bokmal/"
+                }
+            ]
+        },
+        {
+            "id": "oslo_vestkant_historisk",
+            "name": "Historisk vestkantm\u00e5l / dannet dagligtale",
+            "summary": "Historisk riksm\u00e5lsn\u00e6r Oslo-variant med vestlig sosial og geografisk tyngde, i dag med langt mer flytende grenser.",
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Oslo",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+                },
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 spr\u00e5ket i Oslo",
+                    "url": "https://sprakradet.no/spraksporsmal-og-svar/er-spraket-i-oslo-dialekt-eller-bokmal/"
+                }
+            ]
+        },
+        {
+            "id": "oslo_multietnisk_norsk",
+            "name": "Multietnisk norsk i Oslo",
+            "summary": "Kontaktbaserte talestiler og repertoarer i flerspr\u00e5klige milj\u00f8er. Dette er ikke en \u00abHolmlia-dialekt\u00bb og ikke en spr\u00e5kform alle i bestemte bydeler bruker.",
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Oslo",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 sosiolekt",
+                    "url": "https://snl.no/sosiolekt"
+                }
+            ]
+        },
+        {
+            "id": "trondheim_bymal",
+            "name": "Trondheim bym\u00e5l",
+            "summary": "Et klart tr\u00f8ndersk bym\u00e5l med trekk fra omliggende bygdem\u00e5l og historiske sosiale variasjoner mellom folkelig og mer standardn\u00e6re register.",
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 Trondheim bym\u00e5l",
+                    "url": "https://snl.no/Trondheim_bym%C3%A5l"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 tr\u00f8ndersk",
+                    "url": "https://snl.no/tr%C3%B8ndersk"
+                }
+            ]
+        }
+    ],
+    "language_status_layers": [
+        {
+            "id": "nordsamisk",
+            "name": "Nordsamisk",
+            "kind": "language",
+            "group": "urfolksspr\u00e5k",
+            "status": "aktivt i Norge",
+            "not_norwegian_dialect": true,
+            "sources": [
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 samiske spr\u00e5k",
+                    "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+                }
+            ]
+        },
+        {
+            "id": "lulesamisk",
+            "name": "Lulesamisk",
+            "kind": "language",
+            "group": "urfolksspr\u00e5k",
+            "status": "aktivt i Norge",
+            "not_norwegian_dialect": true,
+            "sources": [
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 samiske spr\u00e5k",
+                    "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+                }
+            ]
+        },
+        {
+            "id": "sorsamisk",
+            "name": "S\u00f8rsamisk",
+            "kind": "language",
+            "group": "urfolksspr\u00e5k",
+            "status": "aktivt i Norge",
+            "not_norwegian_dialect": true,
+            "sources": [
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 samiske spr\u00e5k",
+                    "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+                }
+            ]
+        },
+        {
+            "id": "pitesamisk",
+            "name": "Pitesamisk",
+            "kind": "language",
+            "group": "urfolksspr\u00e5k",
+            "status": "tradisjonelt spr\u00e5komr\u00e5de / revitalisering",
+            "not_norwegian_dialect": true,
+            "sources": [
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 samiske spr\u00e5k",
+                    "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+                }
+            ]
+        },
+        {
+            "id": "umesamisk",
+            "name": "Umesamisk",
+            "kind": "language",
+            "group": "urfolksspr\u00e5k",
+            "status": "tradisjonelt spr\u00e5komr\u00e5de / revitalisering",
+            "not_norwegian_dialect": true,
+            "sources": [
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 samiske spr\u00e5k",
+                    "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+                }
+            ]
+        },
+        {
+            "id": "skoltesamisk",
+            "name": "Skoltesamisk",
+            "kind": "language",
+            "group": "urfolksspr\u00e5k",
+            "status": "tradisjonelt spr\u00e5komr\u00e5de / revitalisering",
+            "not_norwegian_dialect": true,
+            "sources": [
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 samiske spr\u00e5k",
+                    "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+                }
+            ]
+        },
+        {
+            "id": "kvensk",
+            "name": "Kvensk",
+            "kind": "language",
+            "group": "nasjonalt minoritetsspr\u00e5k",
+            "status": "vernet og fremmet etter spr\u00e5kloven",
+            "not_norwegian_dialect": true,
+            "sources": [
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 nasjonale minoritetsspr\u00e5k",
+                    "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/nasjonale-minoritetssprak/"
+                }
+            ]
+        },
+        {
+            "id": "romani",
+            "name": "Romani",
+            "kind": "language",
+            "group": "nasjonalt minoritetsspr\u00e5k",
+            "status": "vernet og fremmet etter spr\u00e5kloven",
+            "not_norwegian_dialect": true,
+            "sources": [
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 nasjonale minoritetsspr\u00e5k",
+                    "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/nasjonale-minoritetssprak/"
+                }
+            ]
+        },
+        {
+            "id": "romanes",
+            "name": "Romanes",
+            "kind": "language",
+            "group": "nasjonalt minoritetsspr\u00e5k",
+            "status": "vernet og fremmet etter spr\u00e5kloven",
+            "not_norwegian_dialect": true,
+            "sources": [
+                {
+                    "label": "Spr\u00e5kr\u00e5det \u2013 nasjonale minoritetsspr\u00e5k",
+                    "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/nasjonale-minoritetssprak/"
+                }
+            ]
+        }
+    ],
+    "sources": [
+        {
+            "label": "Store norske leksikon \u2013 inndeling av dialekter i Noreg",
+            "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+        },
+        {
+            "label": "Store norske leksikon \u2013 dialektgrenser",
+            "url": "https://snl.no/dialektgrenser"
+        },
+        {
+            "label": "Spr\u00e5kr\u00e5det \u2013 samiske spr\u00e5k",
+            "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/samiske-sprak/"
+        },
+        {
+            "label": "Spr\u00e5kr\u00e5det \u2013 nasjonale minoritetsspr\u00e5k",
+            "url": "https://sprakradet.no/spraklova/urfolkssprak-og-nasjonale-minoritetssprak/nasjonale-minoritetssprak/"
+        }
+    ],
+    "local_varieties": [
+        {
+            "id": "oslo_local_speech",
+            "name": "Oslo",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "evidence_materialized",
+            "summary": "Oslo er et eget bytalem\u00e5lsomr\u00e5de med omfattende dokumentasjon av sosial og geografisk variasjon.",
+            "variation_note": "NoTa og TAUS viser at Oslo ikke kan reduseres til \u00e9n \u00f8st-/vestprofil eller ett \u00aboslom\u00e5l\u00bb.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NoTa-Oslo",
+                    "url": "https://tekstlab.uio.no/nota/"
+                },
+                {
+                    "label": "UiO \u2013 TAUS brukerveiledning",
+                    "url": "https://tekstlab.uio.no/brukerveiledninger/taus/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Oslo",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 TAUS",
+                    "url": "https://tekstlab.uio.no/nota/taus/"
+                }
+            ],
+            "region_id": "midtostlandsk",
+            "evidence_last_verified": "2026-08-18",
+            "feature_labels": [
+                "kl\u00f8yvd infinitiv",
+                "tjukk l",
+                "sosial og geografisk variasjon",
+                "p\u00e5g\u00e5ende spr\u00e5kendring"
+            ],
+            "feature_evidence": [
+                {
+                    "id": "oslo_folkemaal_jamvekt",
+                    "label": "Kl\u00f8yvd infinitiv i tradisjonelt folkem\u00e5l",
+                    "kind": "structural_feature",
+                    "claim": "Den tradisjonelle folkem\u00e5lsvarianten i Oslo f\u00f8lger jamvektsm\u00f8nster med kl\u00f8yvd infinitiv, med a-ending i jamvektsord og e-ending i andre infinitiver.",
+                    "time_scope": "traditional",
+                    "source_urls": [
+                        "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+                    ]
+                },
+                {
+                    "id": "oslo_tjukk_l",
+                    "label": "Tjukk l som tradisjonelt \u00f8stlandsk trekk",
+                    "kind": "structural_feature",
+                    "claim": "Tjukk l er dokumentert som et tradisjonelt trekk i det folkelige Oslo-m\u00e5let, sammen med andre \u00f8stlandske lyd- og b\u00f8yningstrekk.",
+                    "time_scope": "traditional",
+                    "source_urls": [
+                        "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+                    ]
+                },
+                {
+                    "id": "oslo_varieteter_register",
+                    "label": "Flere varieteter og registerveksling",
+                    "kind": "social_variation",
+                    "claim": "Oslo har historisk hatt en folkem\u00e5lsvariant og en riksm\u00e5lsn\u00e6r variant, og spr\u00e5kbrukere kan veksle mellom trekk etter situasjon, samtalepartner og sosial betydning.",
+                    "time_scope": "historical_and_contemporary",
+                    "source_urls": [
+                        "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo",
+                        "https://tekstlab.uio.no/nota/taus/",
+                        "https://tekstlab.uio.no/nota/"
+                    ]
+                },
+                {
+                    "id": "oslo_endring_yngre",
+                    "label": "Tradisjonelle \u00f8stkanttrekk er p\u00e5 vikende front",
+                    "kind": "language_change",
+                    "claim": "I nyere Oslo-m\u00e5l er blant annet f\u00f8rstestavingstrykk, tjukk l fra historisk rd og a-ending i enkelte jamvektsinfinitiver mindre brukt blant yngre enn i eldre \u00f8stkantm\u00e5l.",
+                    "time_scope": "ongoing_change",
+                    "source_urls": [
+                        "https://snl.no/dialekter_og_spr%C3%A5k_i_Oslo"
+                    ]
+                },
+                {
+                    "id": "oslo_realtime_corpora",
+                    "label": "Korpusgrunnlag fra to perioder",
+                    "kind": "corpus_basis",
+                    "claim": "TAUS dokumenterer Oslo-talem\u00e5l fra 1971\u201373, mens NoTa-Oslo dokumenterer et sosialt og geografisk bredt Oslo-materiale fra 2004\u201306, slik at endring og variasjon kan unders\u00f8kes mot to tidsperioder.",
+                    "time_scope": "corpus_basis",
+                    "source_urls": [
+                        "https://tekstlab.uio.no/nota/taus/",
+                        "https://tekstlab.uio.no/nota/"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "fredrikstad_local_speech",
+            "name": "Fredrikstad",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Fredrikstad er et eget NorDiaSyn-m\u00e5lepunkt i det vikv\u00e6rske \u00d8stfold-omr\u00e5det.",
+            "variation_note": "Konkrete lokale trekk skal hentes fra m\u00e5lepunktet og lokale kilder, ikke kopieres fra hele \u00d8stfold.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i \u00d8stfold",
+                    "url": "https://snl.no/dialekter_i_%C3%98stfold"
+                }
+            ],
+            "region_id": "vikvaersk"
+        },
+        {
+            "id": "aremark_local_speech",
+            "name": "Aremark",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Aremark er et eget NorDiaSyn-m\u00e5lepunkt i \u00d8stfold.",
+            "variation_note": "Profilen er et corpus-anker; konkrete trekk m\u00e5 dokumenteres lokalt f\u00f8r de vises som Aremark-kjennetegn.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i \u00d8stfold",
+                    "url": "https://snl.no/dialekter_i_%C3%98stfold"
+                }
+            ],
+            "region_id": "vikvaersk"
+        },
+        {
+            "id": "enebakk_local_speech",
+            "name": "Enebakk",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Enebakk er et eget NorDiaSyn-m\u00e5lepunkt i det midt\u00f8stlandske Akershus-omr\u00e5det.",
+            "variation_note": "Akershus har sterk dialektendring og Oslo-p\u00e5virkning; profilen m\u00e5 derfor romme generasjons- og tettstedsforskjeller.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Akershus",
+                    "url": "https://snl.no/dialekter_i_Akershus"
+                }
+            ],
+            "region_id": "midtostlandsk"
+        },
+        {
+            "id": "aal_local_speech",
+            "name": "\u00c5l",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "documented_seed",
+            "summary": "\u00c5l er et dokumentert NorDiaSyn-m\u00e5lepunkt i Hallingdal.",
+            "variation_note": "Hallingdal har lokale forskjeller; \u00c5l skal ikke gj\u00f8res til representant for hele dalen.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Hallingdal",
+                    "url": "https://snl.no/dialekter_i_Hallingdal"
+                }
+            ],
+            "region_id": "hallingmal"
+        },
+        {
+            "id": "vang_valdres_local_speech",
+            "name": "Vang i Valdres",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "documented_seed",
+            "summary": "Vang er et dokumentert NorDiaSyn-m\u00e5lepunkt i Valdres.",
+            "variation_note": "Valdresm\u00e5l har fellestrekk med Hallingdal, men Vang-profilen m\u00e5 bygge p\u00e5 lokale data.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Valdres",
+                    "url": "https://snl.no/dialekter_i_Valdres"
+                }
+            ],
+            "region_id": "valdresmal"
+        },
+        {
+            "id": "lom_local_speech",
+            "name": "Lom",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "documented_seed",
+            "summary": "Lom er et NorDiaSyn-m\u00e5lepunkt i Gudbrandsdalen.",
+            "variation_note": "Gudbrandsdalen er lang og internt variert; Lom skal ikke arve alle trekk fra hele dalf\u00f8ret.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Gudbrandsdalen",
+                    "url": "https://snl.no/dialekter_i_Gudbrandsdalen"
+                }
+            ],
+            "region_id": "gudbrandsdalsmal"
+        },
+        {
+            "id": "lillehammer_local_speech",
+            "name": "Lillehammer",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Lillehammer skal ha egen lokal talem\u00e5lsprofil i overgangslandskapet mellom by/tettsted og opplandske dialekter.",
+            "variation_note": "Konkrete trekk holdes tilbake til lokalt korpus- eller forskningsbelegg er knyttet til profilen.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 LIA norsk",
+                    "url": "https://tekstlab.uio.no/LIA/norsk/"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Oppland",
+                    "url": "https://snl.no/dialekter_i_Oppland"
+                }
+            ],
+            "region_id": "opplandsmal"
+        },
+        {
+            "id": "trysil_local_speech",
+            "name": "Trysil",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "documented_seed",
+            "summary": "Trysil er dokumentert b\u00e5de som NorDiaSyn-m\u00e5lepunkt og som del av \u00d8sterdalsm\u00e5lene.",
+            "variation_note": "\u00d8sterdalen er internt variert og har kontakt mot svenske m\u00e5l; lokale trekk m\u00e5 merkes med kilde og tidslag.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i \u00d8sterdalen",
+                    "url": "https://snl.no/dialekter_i_%C3%98sterdalen"
+                }
+            ],
+            "region_id": "osterdalsmal"
+        },
+        {
+            "id": "vinje_local_speech",
+            "name": "Vinje",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Vinje er et eget NorDiaSyn-m\u00e5lepunkt i Telemark.",
+            "variation_note": "Vest-Telemark har sterke lokale s\u00e6rtrekk; profilen skal ikke generaliseres til hele Telemark.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Telemark",
+                    "url": "https://snl.no/dialekter_i_Telemark"
+                }
+            ],
+            "region_id": "midlandsmal"
+        },
+        {
+            "id": "tinn_local_speech",
+            "name": "Tinn",
+            "kind": "local_speech",
+            "macro_region_id": "austlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Tinn er et eget NorDiaSyn-m\u00e5lepunkt i Telemark.",
+            "variation_note": "Profilen er et corpus-anker; konkrete trekk publiseres etter lokal analyse.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Telemark",
+                    "url": "https://snl.no/dialekter_i_Telemark"
+                }
+            ],
+            "region_id": "midlandsmal"
+        },
+        {
+            "id": "valle_setesdal_local_speech",
+            "name": "Valle i Setesdal",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "evidence_materialized",
+            "summary": "Valle er kjernen i det klassiske setesdalsm\u00e5let og materialiseres her som en lokal profil med eksplisitt skille mellom tradisjonell beskrivelse og n\u00e5tidig bruk.",
+            "variation_note": "Hovedkilden beskriver i stor grad det tradisjonelle setesdalsm\u00e5let. Trekkene nedenfor skal derfor ikke presenteres som om alle n\u00e5levende spr\u00e5kbrukere i Valle bruker dem likt.",
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Setesdal",
+                    "url": "https://snl.no/dialekter_i_Setesdal"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 s\u00f8rleg e-m\u00e5l",
+                    "url": "https://snl.no/s%C3%B8rleg_e-m%C3%A5l"
+                }
+            ],
+            "region_id": "setesdalsmal",
+            "feature_labels": [
+                "e-infinitiv",
+                "tradisjonelt Setesdalsm\u00e5l",
+                "a i flertall",
+                "a-presens",
+                "eldre formverk"
+            ],
+            "evidence_last_verified": "2026-08-18",
+            "feature_evidence": [
+                {
+                    "id": "valle_core",
+                    "label": "Kjerneomr\u00e5de",
+                    "kind": "corpus_basis",
+                    "claim": "Valle blir uttrykkelig omtalt som kjernen i det klassiske setesdalsm\u00e5let, og er derfor et faglig relevant lokalt anker fremfor bare en administrativ plassering.",
+                    "time_scope": "dialektologisk omr\u00e5debeskrivelse",
+                    "source_urls": [
+                        "https://snl.no/dialekter_i_Setesdal"
+                    ]
+                },
+                {
+                    "id": "valle_e_inf",
+                    "label": "E-infinitiv",
+                    "kind": "structural_feature",
+                    "claim": "Det klassiske setesdalsm\u00e5let som Valle st\u00e5r sentralt i, h\u00f8rer til de s\u00f8rlige e-m\u00e5lene og har -e i infinitiv og i svake hunkj\u00f8nnsord i ubestemt entall.",
+                    "time_scope": "tradisjonelt Setesdalsm\u00e5l",
+                    "source_urls": [
+                        "https://snl.no/dialekter_i_Setesdal"
+                    ]
+                },
+                {
+                    "id": "valle_a_morph",
+                    "label": "A i flertall og presens",
+                    "kind": "structural_feature",
+                    "claim": "Den tradisjonelle beskrivelsen har -a i flertall av substantiv og -ar i presens av a-verb, samtidig som infinitiven er et e-m\u00e5l.",
+                    "time_scope": "tradisjonelt Setesdalsm\u00e5l",
+                    "source_urls": [
+                        "https://snl.no/dialekter_i_Setesdal"
+                    ]
+                },
+                {
+                    "id": "valle_old_consonants",
+                    "label": "Eldre konsonanttrekk",
+                    "kind": "structural_feature",
+                    "claim": "SNL beskriver Setesdalsomr\u00e5det som et omr\u00e5de som har bevart eldre konsonantforbindelser og s\u00e6rutviklinger; dette registreres her som historisk/regionalt belegg, ikke som et universelt n\u00e5tidstrekk i Valle.",
+                    "time_scope": "tradisjonell og historisk omr\u00e5debeskrivelse",
+                    "source_urls": [
+                        "https://snl.no/s%C3%B8rleg_e-m%C3%A5l",
+                        "https://snl.no/dialekter_i_Setesdal"
+                    ]
+                },
+                {
+                    "id": "valle_scope",
+                    "label": "Tradisjonell kildeprofil",
+                    "kind": "social_variation",
+                    "claim": "Hovedartikkelen presiserer at framstillingen i hovedsak gjelder det tradisjonelle setesdalsm\u00e5let; atlaset m\u00e5 derfor holde n\u00e5tidig variasjon \u00e5pen i stedet for \u00e5 gj\u00f8re eldre trekk absolutte.",
+                    "time_scope": "kildeavgrensning for n\u00e5tidig bruk",
+                    "source_urls": [
+                        "https://snl.no/dialekter_i_Setesdal"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "arendal_local_speech",
+            "name": "Arendal",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Arendal skal ha en egen lokal profil innen s\u00f8rlandske e-m\u00e5l.",
+            "variation_note": "Arendal skal ikke sl\u00e5s sammen med Kristiansand; konkrete lokale m\u00e5lmerker krever egen dokumentasjon.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 LIA norsk",
+                    "url": "https://tekstlab.uio.no/LIA/norsk/"
+                },
+                {
+                    "label": "SNL \u2013 dialekter p\u00e5 Agder",
+                    "url": "https://snl.no/dialekter_p%C3%A5_Agder"
+                }
+            ],
+            "region_id": "sorleg_e_mal"
+        },
+        {
+            "id": "kristiansand_local_speech",
+            "name": "Kristiansand",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "evidence_materialized",
+            "summary": "Kristiansand bym\u00e5l er et dokumentert s\u00f8rvestlig e-m\u00e5l p\u00e5 Agderkysten med egne bym\u00e5lsdrag og tydelig dokumentert endring hos yngre spr\u00e5kbrukere.",
+            "variation_note": "Profilen skiller tradisjonelle bym\u00e5lstrekk fra nyere utvikling. Kristiansand kommune rommer ogs\u00e5 talem\u00e5l som avviker fra sentrumsm\u00e5let, blant annet i S\u00f8gne, og ingen enkeltform gjelder alle talere.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 LIA norsk",
+                    "url": "https://tekstlab.uio.no/LIA/norsk/"
+                },
+                {
+                    "label": "UiO \u2013 LIA norsk brukerveiledning",
+                    "url": "https://tekstlab.uio.no/brukerveiledninger/LIA%20norsk/index.html"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 Kristiansand bym\u00e5l",
+                    "url": "https://snl.no/Kristiansand_bym%C3%A5l"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 s\u00f8rlandsk",
+                    "url": "https://snl.no/s%C3%B8rlandsk"
+                }
+            ],
+            "region_id": "sorleg_e_mal",
+            "evidence_last_verified": "2026-08-18",
+            "feature_labels": [
+                "e-infinitiv",
+                "h\u00f8gtone",
+                "skarre-r",
+                "-ane i bestemt flertall",
+                "blaute konsonanter i endring"
+            ],
+            "feature_evidence": [
+                {
+                    "id": "krs_e_mal",
+                    "label": "S\u00f8rvestlig e-m\u00e5l",
+                    "kind": "structural_feature",
+                    "claim": "Kristiansand bym\u00e5l beskrives som et s\u00f8rvestlig e-m\u00e5l, med -e i infinitiv og tydelig avstand til b\u00e5de \u00f8stligere og vestligere nabom\u00e5l.",
+                    "time_scope": "tradisjonelt og fortsatt strukturelt orienteringsdrag",
+                    "source_urls": [
+                        "https://snl.no/Kristiansand_bym%C3%A5l",
+                        "https://snl.no/s%C3%B8rlandsk"
+                    ]
+                },
+                {
+                    "id": "krs_hogtone",
+                    "label": "H\u00f8gtone",
+                    "kind": "structural_feature",
+                    "claim": "Kristiansandsm\u00e5let har h\u00f8gtone i tonem-1-ord; SNL beskriver et markant toneskille mot l\u00e5gtoneomr\u00e5det \u00f8st for byen.",
+                    "time_scope": "dokumentert bym\u00e5lsdrag",
+                    "source_urls": [
+                        "https://snl.no/Kristiansand_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "krs_skarre_r",
+                    "label": "Skarre-r",
+                    "kind": "structural_feature",
+                    "claim": "Skarre-r inng\u00e5r i den dokumenterte lydstrukturen i Kristiansand bym\u00e5l og i det s\u00f8rlandske kystomr\u00e5det rundt byen.",
+                    "time_scope": "dokumentert bym\u00e5lsdrag",
+                    "source_urls": [
+                        "https://snl.no/Kristiansand_bym%C3%A5l",
+                        "https://snl.no/s%C3%B8rlandsk"
+                    ]
+                },
+                {
+                    "id": "krs_blaute_endring",
+                    "label": "Blaute konsonanter i retur",
+                    "kind": "language_change",
+                    "claim": "Tradisjonelle blaute konsonanter b, d og g etter lang vokal er p\u00e5 retur; en ungdomsunders\u00f8kelse fra 2016 omtales som tydelig belegg for \u00f8kt bruk av p, t og k.",
+                    "time_scope": "nyere ungdomsspr\u00e5k sammenlignet med tradisjonelt bym\u00e5l",
+                    "source_urls": [
+                        "https://snl.no/Kristiansand_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "krs_ane_kontinuitet",
+                    "label": "-ane holder seg",
+                    "kind": "language_change",
+                    "claim": "Endingen -ane i bestemt flertall beskrives som bemerkelsesverdig stabil ogs\u00e5 i ungdomsspr\u00e5ket, selv mens flere andre tradisjonelle trekk svekkes.",
+                    "time_scope": "nyere ungdomsspr\u00e5k og tradisjonelt bym\u00e5l",
+                    "source_urls": [
+                        "https://snl.no/Kristiansand_bym%C3%A5l"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "stavanger_local_speech",
+            "name": "Stavanger",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "evidence_materialized",
+            "summary": "Stavanger har et dokumentert eget bym\u00e5l og er ogs\u00e5 representert i talem\u00e5lskorpus.",
+            "variation_note": "Bym\u00e5let har historisk flere sosiale varianter og skal ikke reduseres til \u00abrogalandsk\u00bb.",
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 Stavanger bym\u00e5l",
+                    "url": "https://snl.no/Stavanger_bym%C3%A5l"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiB \u2013 Sosiolingvistikk og spr\u00e5kendring",
+                    "url": "https://www4.uib.no/forskning/forskergrupper/forskergruppa-sosiolingvistikk-og-sprakendring"
+                },
+                {
+                    "label": "UiB CLARINO \u2013 Talebanken",
+                    "url": "https://clarino.uib.no/corpuscle-classic/corpus-list"
+                }
+            ],
+            "region_id": "sorvestlandsk_a_mal",
+            "evidence_last_verified": "2026-08-18",
+            "feature_labels": [
+                "-a i tradisjonell infinitiv",
+                "skarre-r",
+                "tre grammatiske kj\u00f8nn",
+                "endring hos yngre"
+            ],
+            "feature_evidence": [
+                {
+                    "id": "stavanger_a_infinitiv",
+                    "label": "-a i tradisjonell infinitiv",
+                    "kind": "structural_feature",
+                    "claim": "Det tradisjonelle folkem\u00e5let i Stavanger har a-infinitiv, som \u00e5 lesa og \u00e5 skriva, og st\u00e5r dialektgeografisk mellom s\u00f8r- og nordrogalandske talem\u00e5l.",
+                    "time_scope": "traditional",
+                    "source_urls": [
+                        "https://snl.no/Stavanger_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "stavanger_skarre_r",
+                    "label": "Skarre-r",
+                    "kind": "structural_feature",
+                    "claim": "Skarre-r er gjennomf\u00f8rt i det tradisjonelle folkelige stavangerm\u00e5let.",
+                    "time_scope": "traditional_and_contemporary",
+                    "source_urls": [
+                        "https://snl.no/Stavanger_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "stavanger_tre_kjonn",
+                    "label": "Tre grammatiske kj\u00f8nn",
+                    "kind": "structural_feature",
+                    "claim": "Stavanger bym\u00e5l har tre grammatiske kj\u00f8nn og tradisjonell r-ending i ubestemt flertall av substantiv.",
+                    "time_scope": "traditional_and_contemporary",
+                    "source_urls": [
+                        "https://snl.no/Stavanger_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "stavanger_sosial_variasjon",
+                    "label": "Folkem\u00e5l og h\u00f8yere talem\u00e5l",
+                    "kind": "social_variation",
+                    "claim": "Stavanger har historisk hatt tydelig sosial variasjon mellom folkem\u00e5let og en h\u00f8yere, mer riksm\u00e5lsn\u00e6r stavangersk talem\u00e5lsvariant; dette skillet er svakere i yngre spr\u00e5kbruk.",
+                    "time_scope": "historical_and_contemporary",
+                    "source_urls": [
+                        "https://snl.no/Stavanger_bym%C3%A5l",
+                        "https://www4.uib.no/forskning/forskergrupper/forskergruppa-sosiolingvistikk-og-sprakendring"
+                    ]
+                },
+                {
+                    "id": "stavanger_endring_yngre",
+                    "label": "E-infinitiv og harde konsonanter \u00f8ker hos yngre",
+                    "kind": "language_change",
+                    "claim": "Nyere beskrivelser dokumenterer at e-infinitiv kommer inn hos yngre Stavanger-talere, og at tradisjonelle bl\u00f8te konsonanter er p\u00e5 retur.",
+                    "time_scope": "ongoing_change",
+                    "source_urls": [
+                        "https://snl.no/Stavanger_bym%C3%A5l",
+                        "https://www4.uib.no/forskning/forskergrupper/forskergruppa-sosiolingvistikk-og-sprakendring"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "time_jaeren_local_speech",
+            "name": "Time/J\u00e6ren",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Time er et NorDiaSyn-m\u00e5lepunkt p\u00e5 J\u00e6ren.",
+            "variation_note": "J\u00e6rm\u00e5l m\u00e5 skilles fra Stavanger og Ryfylke; lokale trekk skal bindes til m\u00e5lepunkt eller lokal fagkilde.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Rogaland",
+                    "url": "https://snl.no/dialekter_i_Rogaland"
+                }
+            ],
+            "region_id": "jaermal"
+        },
+        {
+            "id": "suldal_local_speech",
+            "name": "Suldal",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "documented_seed",
+            "summary": "Suldal har en dokumentert s\u00e6rstilling innen Ryfylke og er eget NorDiaSyn-m\u00e5lepunkt.",
+            "variation_note": "Suldal skal ikke arve en generell Ryfylke-profil n\u00e5r kildene beskriver lokale avvik.",
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Rogaland",
+                    "url": "https://snl.no/dialekter_i_Rogaland"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                }
+            ],
+            "region_id": "ryfylkemal"
+        },
+        {
+            "id": "voss_local_speech",
+            "name": "Voss",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Voss er et NorDiaSyn-m\u00e5lepunkt i det s\u00f8rvestlandske a-m\u00e5lsomr\u00e5det.",
+            "variation_note": "Konkrete Voss-trekk skal dokumenteres lokalt og ikke kopieres fra Hardanger eller Hordaland generelt.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 a-m\u00e5l",
+                    "url": "https://snl.no/a-m%C3%A5l"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Hordaland",
+                    "url": "https://snl.no/dialekter_i_Hordaland"
+                }
+            ],
+            "region_id": "sorvestlandsk_a_mal"
+        },
+        {
+            "id": "bergen_local_speech",
+            "name": "Bergen",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "evidence_materialized",
+            "summary": "Bergen har et eget, historisk godt dokumentert bym\u00e5l som skiller seg tydelig fra bygdem\u00e5lene rundt.",
+            "variation_note": "Bergen har intern sosial og historisk variasjon; \u00e9n profil skal ikke beskrive alle bergensere.",
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 Bergen bym\u00e5l",
+                    "url": "https://snl.no/Bergen_bym%C3%A5l"
+                },
+                {
+                    "label": "UiB \u2013 M\u00e5lf\u00f8resamlinga",
+                    "url": "https://www.uib.no/lle/51977/m%C3%A5lf%C3%B8resamlinga"
+                },
+                {
+                    "label": "UiB \u2013 Sosiolingvistikk og spr\u00e5kendring",
+                    "url": "https://www4.uib.no/forskning/forskergrupper/forskergruppa-sosiolingvistikk-og-sprakendring"
+                },
+                {
+                    "label": "UiB CLARINO \u2013 Talebanken",
+                    "url": "https://clarino.uib.no/corpuscle-classic/corpus-list"
+                }
+            ],
+            "evidence_last_verified": "2026-08-18",
+            "feature_labels": [
+                "-\u00e6 i infinitiv",
+                "to grammatiske kj\u00f8nn",
+                "garpegenitiv",
+                "intern og generasjonell variasjon"
+            ],
+            "feature_evidence": [
+                {
+                    "id": "bergen_ae_infinitiv",
+                    "label": "-\u00e6 i infinitiv",
+                    "kind": "structural_feature",
+                    "claim": "Tradisjonelt Bergen bym\u00e5l har infinitivending p\u00e5 -\u00e6, i kontrast til a-infinitiv i mange av bygdem\u00e5lene rundt byen.",
+                    "time_scope": "traditional",
+                    "source_urls": [
+                        "https://snl.no/Bergen_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "bergen_to_kjonn",
+                    "label": "To grammatiske kj\u00f8nn",
+                    "kind": "structural_feature",
+                    "claim": "Bergensdialekten har tradisjonelt to grammatiske kj\u00f8nn i substantivb\u00f8yingen, der tidligere hunkj\u00f8nnsord m\u00f8nstrer sammen med hankj\u00f8nn.",
+                    "time_scope": "traditional_and_contemporary",
+                    "source_urls": [
+                        "https://snl.no/Bergen_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "bergen_garpegenitiv",
+                    "label": "Sin-konstruksjon / garpegenitiv",
+                    "kind": "contact_history",
+                    "claim": "Sin-konstruksjonen i genitiv er et dokumentert trekk i bergensk med historisk forbindelse til langvarig nedertysk spr\u00e5kkontakt.",
+                    "time_scope": "historical_contact",
+                    "source_urls": [
+                        "https://snl.no/Bergen_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "bergen_intern_variasjon",
+                    "label": "Intern variasjon i byen",
+                    "kind": "social_variation",
+                    "claim": "Forskningen ved UiB dokumenterer intern variasjon mellom bergenske varieteter, blant annet gjennom studier av Bergenhus og Fana, og viser at ett Bergen ikke er \u00e9n homogen talem\u00e5lsprofil.",
+                    "time_scope": "contemporary_variation",
+                    "source_urls": [
+                        "https://www4.uib.no/forskning/forskergrupper/forskergruppa-sosiolingvistikk-og-sprakendring",
+                        "https://clarino.uib.no/corpuscle-classic/corpus-list"
+                    ]
+                },
+                {
+                    "id": "bergen_kje_sje_eg_jeg",
+                    "label": "Generasjonell endring i uttale og pronomenvalg",
+                    "kind": "language_change",
+                    "claim": "UiB beskriver nyere bergensk endring blant annet gjennom sammenfall mellom tradisjonell kje-lyd og sje-lyd hos yngre, samt variasjon mellom eg og jeg.",
+                    "time_scope": "ongoing_change",
+                    "source_urls": [
+                        "https://www4.uib.no/forskning/forskergrupper/forskergruppa-sosiolingvistikk-og-sprakendring"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "luster_local_speech",
+            "name": "Luster",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Luster er et NorDiaSyn-m\u00e5lepunkt i Sogn.",
+            "variation_note": "Sogn har sterke indre\u2013ytre forskjeller; Luster-profilen skal utvikles fra lokale data.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Sogn og Fjordane",
+                    "url": "https://snl.no/dialekter_i_Sogn_og_Fjordane"
+                }
+            ],
+            "region_id": "sognamal"
+        },
+        {
+            "id": "joelster_local_speech",
+            "name": "J\u00f8lster",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "local_research_required",
+            "summary": "J\u00f8lster er et NorDiaSyn-m\u00e5lepunkt i det tidligere Sogn og Fjordane.",
+            "variation_note": "Profilen er et corpus-anker; konkrete m\u00e5lmerker krever lokal dokumentasjon.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Sogn og Fjordane",
+                    "url": "https://snl.no/dialekter_i_Sogn_og_Fjordane"
+                }
+            ],
+            "region_id": "nordvestlandsk_e_mal"
+        },
+        {
+            "id": "volda_local_speech",
+            "name": "Volda",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Volda er et NorDiaSyn-m\u00e5lepunkt p\u00e5 Sunnm\u00f8re.",
+            "variation_note": "Sunnm\u00f8re har lokal variasjon; Volda skal v\u00e6re en egen profil, ikke en kopi av hele Sunnm\u00f8re.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i M\u00f8re og Romsdal",
+                    "url": "https://snl.no/dialekter_i_M%C3%B8re_og_Romsdal"
+                }
+            ],
+            "region_id": "sunnmorsmal"
+        },
+        {
+            "id": "aandalsnes_local_speech",
+            "name": "\u00c5ndalsnes/Rauma",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "documented_seed",
+            "summary": "Rauma/\u00c5ndalsnes er et NorDiaSyn-m\u00e5lepunkt i Romsdal.",
+            "variation_note": "Romsdalsm\u00e5l skiller seg fra b\u00e5de Sunnm\u00f8re og Nordm\u00f8re; lokale trekk m\u00e5 kildebindes.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Romsdal",
+                    "url": "https://snl.no/dialekter_i_Romsdal"
+                }
+            ],
+            "region_id": "romsdalsmal"
+        },
+        {
+            "id": "haugesund_local_speech",
+            "name": "Haugesund",
+            "kind": "local_speech",
+            "macro_region_id": "vestlandsk",
+            "profile_status": "local_research_required",
+            "summary": "Haugesund skal ha egen lokal talem\u00e5lsprofil i det nordlige Rogaland/Haugalandet.",
+            "variation_note": "Konkrete spr\u00e5kdrag holdes tilbake til lokal dokumentasjon er koblet direkte til profilen.",
+            "sources": [
+                {
+                    "label": "SNL \u2013 dialekter i Rogaland",
+                    "url": "https://snl.no/dialekter_i_Rogaland"
+                },
+                {
+                    "label": "UiB \u2013 M\u00e5lf\u00f8resamlinga",
+                    "url": "https://www.uib.no/lle/51977/m%C3%A5lf%C3%B8resamlinga"
+                }
+            ]
+        },
+        {
+            "id": "trondheim_local_speech",
+            "name": "Trondheim",
+            "kind": "local_speech",
+            "macro_region_id": "trondersk",
+            "profile_status": "evidence_materialized",
+            "summary": "Trondheim har et dokumentert eget bym\u00e5l med tr\u00f8ndersk grunnlag og historisk sosial variasjon.",
+            "variation_note": "Tradisjonell \u00abbrei\u00bb og mer normalisert tale er historiske/sosiale lag, ikke faste kategorier for alle innbyggere.",
+            "sources": [
+                {
+                    "label": "Store norske leksikon \u2013 Trondheim bym\u00e5l",
+                    "url": "https://snl.no/Trondheim_bym%C3%A5l"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "NTNU \u2013 Nordavinden og sola, Trondheim",
+                    "url": "https://www.hf.ntnu.no/nos/dialect.php?t=09"
+                }
+            ],
+            "region_id": "uttrondersk",
+            "evidence_last_verified": "2026-08-18",
+            "feature_labels": [
+                "jamvekt og apokope",
+                "tjukk l",
+                "palatalisering",
+                "sosial variasjon i endring"
+            ],
+            "feature_evidence": [
+                {
+                    "id": "trondheim_jamvekt_apokope",
+                    "label": "Jamvekt og apokope",
+                    "kind": "structural_feature",
+                    "claim": "Det folkelige Trondheim bym\u00e5let er et tr\u00f8ndersk jamvektsm\u00e5l der enkelte infinitiver beholder vokal mens andre har apokope.",
+                    "time_scope": "traditional_and_contemporary",
+                    "source_urls": [
+                        "https://snl.no/Trondheim_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "trondheim_tjukk_l_palatalisering",
+                    "label": "Tjukk l og palatalisering",
+                    "kind": "structural_feature",
+                    "claim": "Tjukk l og palatalisering av historiske n- og l-lyder er sentrale dokumenterte trekk i Trondheim bym\u00e5l.",
+                    "time_scope": "traditional_and_contemporary",
+                    "source_urls": [
+                        "https://snl.no/Trondheim_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "trondheim_fin_brei",
+                    "label": "Historisk \u00abfin-\u00bb og folkelig tr\u00f8ndersk",
+                    "kind": "social_variation",
+                    "claim": "Trondheim har historisk hatt sosialt markerte talem\u00e5lsvarianter ofte omtalt som \u00abfintr\u00f8ndersk\u00bb og \u00abbreitr\u00f8ndersk\u00bb, men grensene mellom dem er ikke lenger homogene eller faste.",
+                    "time_scope": "historical_and_contemporary",
+                    "source_urls": [
+                        "https://snl.no/Trondheim_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "trondheim_prestisjeendring",
+                    "label": "Prestisjehierarkiet er i endring",
+                    "kind": "language_change",
+                    "claim": "Den riksm\u00e5lsn\u00e6re \u00abfintr\u00f8nderske\u00bb varieteten har mistet terreng og prestisje, mens folkelig Trondheimsm\u00e5l st\u00e5r sterkere blant unge enn tidligere.",
+                    "time_scope": "ongoing_change",
+                    "source_urls": [
+                        "https://snl.no/Trondheim_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "trondheim_lydprove",
+                    "label": "Direkte dialektpr\u00f8ve",
+                    "kind": "corpus_basis",
+                    "claim": "NTNUs Nordavinden og sola-base har lyd, IPA/XSAMPA og ortografisk transkripsjon fra en informant som selv beskriver talem\u00e5let som Trondheim bym\u00e5l.",
+                    "time_scope": "corpus_basis",
+                    "source_urls": [
+                        "https://www.hf.ntnu.no/nos/dialect.php?t=09"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "oppdal_local_speech",
+            "name": "Oppdal",
+            "kind": "local_speech",
+            "macro_region_id": "trondersk",
+            "profile_status": "local_research_required",
+            "summary": "Oppdal er et dokumentert NorDiaSyn/NORMS-m\u00e5lepunkt ved den s\u00f8rlige kanten av inntr\u00f8ndersk.",
+            "variation_note": "Lokale trekk skal ikke uten videre generaliseres til R\u00f8ros, Trondheim eller Fosen.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i S\u00f8r-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_S%C3%B8r-Tr%C3%B8ndelag"
+                }
+            ],
+            "region_id": "inntrondersk"
+        },
+        {
+            "id": "roeros_local_speech",
+            "name": "R\u00f8ros",
+            "kind": "local_speech",
+            "macro_region_id": "trondersk",
+            "profile_status": "local_research_required",
+            "summary": "R\u00f8ros er et eget NorDiaSyn-m\u00e5lepunkt i inntr\u00f8ndersk omr\u00e5de.",
+            "variation_note": "R\u00f8ros har kontaktflater mot \u00f8stlandske og svenske m\u00e5l; konkrete trekk m\u00e5 knyttes til lokal kilde.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i S\u00f8r-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_S%C3%B8r-Tr%C3%B8ndelag"
+                }
+            ],
+            "region_id": "inntrondersk"
+        },
+        {
+            "id": "selbu_local_speech",
+            "name": "Selbu",
+            "kind": "local_speech",
+            "macro_region_id": "trondersk",
+            "profile_status": "local_research_required",
+            "summary": "Selbu er et eget NorDiaSyn-m\u00e5lepunkt i Tr\u00f8ndelag.",
+            "variation_note": "Profilen er et corpus-anker; m\u00e5lmerker publiseres f\u00f8rst etter lokal analyse.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i S\u00f8r-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_S%C3%B8r-Tr%C3%B8ndelag"
+                }
+            ],
+            "region_id": "inntrondersk"
+        },
+        {
+            "id": "inderoey_local_speech",
+            "name": "Inder\u00f8y",
+            "kind": "local_speech",
+            "macro_region_id": "trondersk",
+            "profile_status": "local_research_required",
+            "summary": "Inder\u00f8y er et eget NorDiaSyn-m\u00e5lepunkt i tidligere Nord-Tr\u00f8ndelag.",
+            "variation_note": "Profilen skal skille lokalt talem\u00e5l fra b\u00e5de Trondheim og Namdalen.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Nord-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_Nord-Tr%C3%B8ndelag"
+                }
+            ],
+            "region_id": "inntrondersk"
+        },
+        {
+            "id": "namdalen_local_speech",
+            "name": "Namdalen",
+            "kind": "local_speech",
+            "macro_region_id": "trondersk",
+            "profile_status": "local_research_required",
+            "summary": "Namdalen er dokumentert som NorDiaSyn-m\u00e5lepunkt og har et viktig skille mellom indre og ytre talem\u00e5l.",
+            "variation_note": "Namdalen skal ikke presenteres som \u00e9n homogen dialekt; atlaset har derfor egne regionale underlag for indre og ytre Namdal.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i Nord-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_Nord-Tr%C3%B8ndelag"
+                }
+            ]
+        },
+        {
+            "id": "bjugn_fosen_local_speech",
+            "name": "Bjugn/Fosen",
+            "kind": "local_speech",
+            "macro_region_id": "trondersk",
+            "profile_status": "local_research_required",
+            "summary": "Bjugn er et NORMS-m\u00e5lepunkt i Fosen-omr\u00e5det.",
+            "variation_note": "Fosenprofilen representerer et lokalt anker i uttr\u00f8ndersk, ikke alle ytre tr\u00f8nderm\u00e5l.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter i S\u00f8r-Tr\u00f8ndelag",
+                    "url": "https://snl.no/dialekter_i_S%C3%B8r-Tr%C3%B8ndelag"
+                }
+            ],
+            "region_id": "fosenmal"
+        },
+        {
+            "id": "surnadal_local_speech",
+            "name": "Surnadal",
+            "kind": "local_speech",
+            "macro_region_id": "trondersk",
+            "profile_status": "documented_seed",
+            "summary": "Surnadal er et dokumentert m\u00e5lepunkt p\u00e5 Nordm\u00f8re, et omr\u00e5de som dialektologisk regnes til tr\u00f8ndersk.",
+            "variation_note": "Nordm\u00f8re skal ikke sl\u00e5s sammen med Romsdal selv om begge ligger i samme fylke.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "SNL \u2013 dialekter p\u00e5 Nordm\u00f8re",
+                    "url": "https://snl.no/Dialekter_p%C3%A5_Nordm%C3%B8re"
+                }
+            ],
+            "region_id": "nordmorsmal"
+        },
+        {
+            "id": "bodo_local_speech",
+            "name": "Bod\u00f8",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "evidence_materialized",
+            "summary": "Bod\u00f8 har et veldokumentert folkelig bym\u00e5l med mye felles med Salten, men ogs\u00e5 tydelige lokale s\u00e6rdrag og m\u00e5lbar generasjonsvariasjon.",
+            "variation_note": "Bod\u00f8 har b\u00e5de historisk sosial variasjon og forskjeller mellom informanter og aldersgrupper. Profilen gjelder dokumenterte trekk i det folkelige bym\u00e5let og m\u00e5 ikke brukes som \u00e9n norm for alle bod\u00f8v\u00e6ringer.",
+            "sources": [
+                {
+                    "label": "UiT \u2013 Bod\u00f8",
+                    "url": "https://nordnorsk.uit.no/dialekt/bodo/"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 Bod\u00f8 bym\u00e5l",
+                    "url": "https://snl.no/Bod%C3%B8_bym%C3%A5l"
+                }
+            ],
+            "region_id": "saltenmal",
+            "evidence_last_verified": "2026-08-18",
+            "feature_labels": [
+                "apokope",
+                "nullinfinitiv",
+                "\u00e6\u2013m\u00e6\u2013d\u00e6",
+                "nu og ikke",
+                "palatalisering i endring"
+            ],
+            "feature_evidence": [
+                {
+                    "id": "bodo_salten_distinct",
+                    "label": "Bod\u00f8 skiller seg fra Salten rundt",
+                    "kind": "structural_feature",
+                    "claim": "Bod\u00f8 deler tonefall, apokope og palatalisering med Salten, men skiller seg blant annet gjennom mindre apokope, enklere b\u00f8ying og egne pronomen- og adverbformer.",
+                    "time_scope": "dokumentert bym\u00e5l sammenlignet med omlandet",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/bodo/",
+                        "https://snl.no/Bod%C3%B8_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "bodo_pron_adv",
+                    "label": "\u00e6, m\u00e6, d\u00e6 \u2013 nu \u2013 ikke",
+                    "kind": "structural_feature",
+                    "claim": "Det folkelige Bod\u00f8-bym\u00e5let er dokumentert med pronomenformene \u00e6, m\u00e6 og d\u00e6, tidsadverbet nu og nektingsadverbet ikke, i kontrast til flere omkringliggende Saltenformer.",
+                    "time_scope": "dokumentert bym\u00e5lsdrag",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/bodo/",
+                        "https://snl.no/Bod%C3%B8_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "bodo_apokope",
+                    "label": "Apokope og nullinfinitiv",
+                    "kind": "structural_feature",
+                    "claim": "Bod\u00f8 ligger i et sterkt apokopeomr\u00e5de og har i opptakene stort sett apokopert infinitiv, men bym\u00e5let har mindre apokope enn mange Saltenm\u00e5l omkring byen.",
+                    "time_scope": "tradisjonelt og moderne opptaksmateriale",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/bodo/",
+                        "https://snl.no/Bod%C3%B8_bym%C3%A5l"
+                    ]
+                },
+                {
+                    "id": "bodo_e_inf_change",
+                    "label": "Mer e-infinitiv hos yngre",
+                    "kind": "language_change",
+                    "claim": "UiT beskriver innslag av e-infinitiv i ScanDiaSyn-opptakene og peker p\u00e5 at dette kan v\u00e6re vanligere hos yngre enn hos eldre informanter.",
+                    "time_scope": "yngre sammenlignet med eldre ScanDiaSyn-informanter",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/bodo/"
+                    ]
+                },
+                {
+                    "id": "bodo_palatal_change",
+                    "label": "Palatalisering varierer med alder",
+                    "kind": "language_change",
+                    "claim": "Palatalisering er ulikt gjennomf\u00f8rt i Bod\u00f8-opptakene; den eldre kvinnelige informanten har mye, mens den unge kvinnelige informanten knapt har palatalisering.",
+                    "time_scope": "yngre sammenlignet med eldre ScanDiaSyn-informanter",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/bodo/"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "narvik_local_speech",
+            "name": "Narvik",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "evidence_materialized",
+            "summary": "Narvik er et veldokumentert lokalt bym\u00e5l som skiller seg markant fra flere Ofoten-m\u00e5l rundt byen og har egne opptak av yngre og eldre spr\u00e5kbrukere.",
+            "variation_note": "Narvikprofilen bygger p\u00e5 b\u00e5de tradisjonell beskrivelse og ScanDiaSyn-opptak. Kontrasten til omlandet er tydelig, men enkeltinformanter og aldersgrupper skal fortsatt kunne variere.",
+            "sources": [
+                {
+                    "label": "UiT \u2013 Narvik",
+                    "url": "https://nordnorsk.uit.no/dialekt/narvik/"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT Nordnorske dialekter \u2013 S\u00f8r-Troms, Vester\u00e5len og Ofoten",
+                    "url": "https://nordnorsk.uit.no/dialekt/08-malet-i-sor-troms-vesteralen-og-ofoten/"
+                }
+            ],
+            "region_id": "sor_troms_vesteralen_ofoten",
+            "evidence_last_verified": "2026-08-18",
+            "feature_labels": [
+                "e-infinitiv",
+                "e-presens",
+                "ikke",
+                "retroflektering",
+                "\u00e6(g) og nu"
+            ],
+            "feature_evidence": [
+                {
+                    "id": "narvik_e_mal",
+                    "label": "E-m\u00e5l og lite apokope",
+                    "kind": "structural_feature",
+                    "claim": "Narvikm\u00e5let beskrives som et e-m\u00e5l med e-infinitiv, e-presens og relativt lite apokope sammenlignet med dialektene omkring Narvik.",
+                    "time_scope": "tradisjonell beskrivelse st\u00f8ttet av opptak",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/narvik/",
+                        "https://nordnorsk.uit.no/dialekt/08-malet-i-sor-troms-vesteralen-og-ofoten/"
+                    ]
+                },
+                {
+                    "id": "narvik_ikke",
+                    "label": "ikke som lokalt bytrekk",
+                    "kind": "structural_feature",
+                    "claim": "Nektingsadverbet ikke er et markant tradisjonelt Narvik-trekk i kontrast til ikkje i flere omkringliggende Ofoten-dialekter.",
+                    "time_scope": "s\u00e6rlig tydelig i eldre kontrast til omlandet",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/narvik/",
+                        "https://nordnorsk.uit.no/dialekt/08-malet-i-sor-troms-vesteralen-og-ofoten/"
+                    ]
+                },
+                {
+                    "id": "narvik_retroflex",
+                    "label": "Retroflektering",
+                    "kind": "structural_feature",
+                    "claim": "Narvik har tradisjonelt retroflektering eller dental uttale der omkringliggende dialekter kan ha palatalisering av historiske dentaler.",
+                    "time_scope": "dokumentert lokalt kontrasttrekk",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/narvik/",
+                        "https://nordnorsk.uit.no/dialekt/08-malet-i-sor-troms-vesteralen-og-ofoten/"
+                    ]
+                },
+                {
+                    "id": "narvik_pron_nu",
+                    "label": "\u00e6(g) og nu",
+                    "kind": "structural_feature",
+                    "claim": "UiTs lokale profil dokumenterer pronomenet \u00e6(g) og tidsadverbet nu sammen med h\u00e6r/d\u00e6r som karakteristiske former i Narvikmaterialet.",
+                    "time_scope": "opptak av yngre og eldre informanter",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/narvik/"
+                    ]
+                },
+                {
+                    "id": "narvik_corpus",
+                    "label": "Yngre og eldre m\u00e5lpr\u00f8ver",
+                    "kind": "corpus_basis",
+                    "claim": "UiT har lokale m\u00e5lpr\u00f8ver fra b\u00e5de eldre og yngre Narvik-informanter, slik at profilen kan bygge p\u00e5 faktisk talem\u00e5lsmateriale og ikke bare regional arv.",
+                    "time_scope": "ScanDiaSyn/Nordnorske dialekter",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/narvik/"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "tromso_local_speech",
+            "name": "Troms\u00f8",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "evidence_materialized",
+            "summary": "Troms\u00f8 har et dokumentert bym\u00e5l og er samtidig et sterkt dialektm\u00f8te- og spr\u00e5kkontaktmilj\u00f8.",
+            "variation_note": "Tradisjonelt bym\u00e5l, nyere talem\u00e5l og andre norske dialekter i byen m\u00e5 kunne eksistere side om side.",
+            "sources": [
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter: Troms\u00f8",
+                    "url": "https://nordnorsk.uit.no/dialekt/tromso/"
+                },
+                {
+                    "label": "SNL \u2013 Troms\u00f8 bym\u00e5l",
+                    "url": "https://snl.no/Troms%C3%B8_bym%C3%A5l"
+                },
+                {
+                    "label": "UiT \u2013 Troms\u00f8 m\u00e5lmerker og m\u00e5lpr\u00f8ver",
+                    "url": "https://nordnorsk.uit.no/kommuner/troms/tromso/"
+                },
+                {
+                    "label": "Store norske leksikon \u2013 dialekter og spr\u00e5k i Troms",
+                    "url": "https://snl.no/dialekter_og_spr%C3%A5k_i_Troms"
+                }
+            ],
+            "region_id": "midttromsmal",
+            "evidence_last_verified": "2026-08-18",
+            "feature_labels": [
+                "e/a-m\u00e5l",
+                "ikkje og \u00e6(g)",
+                "no/nu-variasjon",
+                "spr\u00e5kkontakt og endring"
+            ],
+            "feature_evidence": [
+                {
+                    "id": "tromso_ea_mal",
+                    "label": "E/a-m\u00e5l",
+                    "kind": "structural_feature",
+                    "claim": "Tradisjonell Troms\u00f8-dialekt er et e/a-m\u00e5l, med e-ending i infinitiv og a-ending i ubestemt entall av svake hunkj\u00f8nnsord.",
+                    "time_scope": "traditional_and_contemporary",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/tromso/",
+                        "https://nordnorsk.uit.no/kommuner/troms/tromso/"
+                    ]
+                },
+                {
+                    "id": "tromso_ikkje_aeg",
+                    "label": "Ikkje og \u00e6(g)",
+                    "kind": "structural_feature",
+                    "claim": "UiTs materiale registrerer tradisjonelt blant annet nektingsadverbet ikkje og f\u00f8rstepersonspronomenet \u00e6(g) i Troms\u00f8.",
+                    "time_scope": "traditional_and_contemporary",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/kommuner/troms/tromso/"
+                    ]
+                },
+                {
+                    "id": "tromso_no_nu",
+                    "label": "Variasjon mellom no og nu",
+                    "kind": "social_variation",
+                    "claim": "B\u00e5de eldre og yngre informanter i UiT-materialet varierer mellom tidsadverbene no og nu; variasjonen skal derfor ikke reduseres til \u00e9n obligatorisk lokal form.",
+                    "time_scope": "contemporary_variation",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/tromso/"
+                    ]
+                },
+                {
+                    "id": "tromso_ikke_endring",
+                    "label": "\u00d8kende bruk av ikke blant ungdom",
+                    "kind": "language_change",
+                    "claim": "UiTs oversikt viser til forskning der formen ikke brukes mer av ungdom enn av eldre Troms\u00f8-talere, selv om ikkje fortsatt er dokumentert i korpusmaterialet.",
+                    "time_scope": "ongoing_change",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/tromso/"
+                    ]
+                },
+                {
+                    "id": "tromso_smeltedigel",
+                    "label": "Dialektm\u00f8te og spr\u00e5kkontakt",
+                    "kind": "contact_history",
+                    "claim": "Troms\u00f8 beskrives som et sterkt dialektm\u00f8te- og spr\u00e5kkontaktmilj\u00f8, s\u00e6rlig som f\u00f8lge av omfattende tilflytting siden 1980-\u00e5rene.",
+                    "time_scope": "contemporary_contact",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/tromso/",
+                        "https://snl.no/dialekter_og_spr%C3%A5k_i_Troms"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "hammerfest_local_speech",
+            "name": "Hammerfest",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "evidence_materialized",
+            "summary": "Hammerfest har et UiT/ScanDiaSyn-dokumentert lokalt talem\u00e5l i Vestfinnmark med konkrete opptak som viser b\u00e5de stabile trekk og generasjonsendring.",
+            "variation_note": "Hammerfestmaterialet viser tydelige forskjeller mellom yngre og eldre informanter. Profilen skiller derfor strukturelle trekk fra endring og skal ikke gj\u00f8re kystfinnmarksm\u00e5l eller Hammerfest til \u00e9n homogen spr\u00e5kform.",
+            "sources": [
+                {
+                    "label": "UiT \u2013 Hammerfest",
+                    "url": "https://nordnorsk.uit.no/dialekt/hammerfest/"
+                },
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT Nordnorske dialekter \u2013 Vestfinnmarksm\u00e5l",
+                    "url": "https://nordnorsk.uit.no/dialekt/03-vestfinnmarksmal/"
+                },
+                {
+                    "label": "UiT m\u00e5lpr\u00f8ve \u2013 Hammerfest eldre mann",
+                    "url": "https://nordnorsk.uit.no/malprover/stream/hammerfest-eldre-mann-haveiendom/"
+                },
+                {
+                    "label": "UiT m\u00e5lpr\u00f8ve \u2013 Hammerfest ung kvinne",
+                    "url": "https://nordnorsk.uit.no/malprover/stream/hammerfest-ung-kvinne-skuter/"
+                }
+            ],
+            "region_id": "vestfinnmarksmal",
+            "evidence_last_verified": "2026-08-18",
+            "feature_labels": [
+                "e/a-m\u00e5l",
+                "e-infinitiv",
+                "\u00e6 og demm",
+                "tre kj\u00f8nn",
+                "palatalisering i endring",
+                "no \u2192 nu"
+            ],
+            "feature_evidence": [
+                {
+                    "id": "hammerfest_ea",
+                    "label": "E/a-m\u00e5l",
+                    "kind": "structural_feature",
+                    "claim": "Hammerfestopptakene beskrives som e/a-m\u00e5l: infinitiv har e-ending, mens svake hunkj\u00f8nnsord kan ha a-ending med dokumentert variasjon mot e-ending.",
+                    "time_scope": "ScanDiaSyn-materiale",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/hammerfest/",
+                        "https://nordnorsk.uit.no/dialekt/03-vestfinnmarksmal/"
+                    ]
+                },
+                {
+                    "id": "hammerfest_pron",
+                    "label": "\u00e6, demm og ikke",
+                    "kind": "structural_feature",
+                    "claim": "Det lokale materialet dokumenterer nektingsadverbet ikke og pronomenformene \u00e6 og demm; de konkrete m\u00e5lpr\u00f8vene gir direkte eksempler p\u00e5 disse formene.",
+                    "time_scope": "yngre og eldre opptak",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/hammerfest/",
+                        "https://nordnorsk.uit.no/malprover/stream/hammerfest-eldre-mann-haveiendom/",
+                        "https://nordnorsk.uit.no/malprover/stream/hammerfest-ung-kvinne-skuter/"
+                    ]
+                },
+                {
+                    "id": "hammerfest_gender",
+                    "label": "Tre grammatiske kj\u00f8nn",
+                    "kind": "structural_feature",
+                    "claim": "B\u00e5de yngre og eldre Hammerfest-informanter er dokumentert med tre grammatiske kj\u00f8nn, blant annet feminine substantivformer.",
+                    "time_scope": "yngre og eldre ScanDiaSyn-informanter",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/hammerfest/"
+                    ]
+                },
+                {
+                    "id": "hammerfest_palatal",
+                    "label": "Palatalisering svekkes hos yngre",
+                    "kind": "language_change",
+                    "claim": "Palatalisering av historiske lange dentaler er gjennomf\u00f8rt hos de eldre informantene, men mindre gjennomf\u00f8rt hos de yngre; apokope ser ogs\u00e5 ut til \u00e5 v\u00e6re vanligere hos eldre.",
+                    "time_scope": "yngre sammenlignet med eldre ScanDiaSyn-informanter",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/hammerfest/"
+                    ]
+                },
+                {
+                    "id": "hammerfest_no_nu",
+                    "label": "Fra no mot nu",
+                    "kind": "language_change",
+                    "claim": "De eldre Hammerfest-informantene bruker mest no, mens de yngre bruker mest nu, noe UiT presenterer som en tydelig aldersrelatert forskjell i materialet.",
+                    "time_scope": "yngre sammenlignet med eldre ScanDiaSyn-informanter",
+                    "source_urls": [
+                        "https://nordnorsk.uit.no/dialekt/hammerfest/",
+                        "https://nordnorsk.uit.no/malprover/stream/hammerfest-ung-kvinne-skuter/"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "kautokeino_norwegian_local_speech",
+            "name": "Kautokeino \u2013 norsk talem\u00e5l",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "local_research_required",
+            "summary": "Kautokeino er et dokumentert m\u00e5lepunkt for norsk talem\u00e5l i et sterkt flerspr\u00e5klig omr\u00e5de.",
+            "variation_note": "Denne profilen gjelder norsk talem\u00e5l. Nordsamisk er et eget spr\u00e5k og skal aldri behandles som norsk dialekt.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            ],
+            "region_id": "indre_finnmarksmal"
+        },
+        {
+            "id": "kirkenes_norwegian_local_speech",
+            "name": "Kirkenes/S\u00f8r-Varanger \u2013 norsk talem\u00e5l",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "local_research_required",
+            "summary": "S\u00f8r-Varanger/Kirkenes er dokumentert i UiTs austfinnmarksgruppe og i dialektkorpuset.",
+            "variation_note": "Profilen gjelder norsk talem\u00e5l i et historisk flerspr\u00e5klig omr\u00e5de; samiske spr\u00e5k og kvensk/finsk er egne spr\u00e5k og skal ikke modelleres som norsk dialekt.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            ],
+            "region_id": "austfinnmarksmal"
+        },
+        {
+            "id": "tana_norwegian_local_speech",
+            "name": "Tana \u2013 norsk talem\u00e5l",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "local_research_required",
+            "summary": "Tana er et dokumentert m\u00e5lepunkt i UiTs indre finnmarksgruppe.",
+            "variation_note": "Profilen gjelder norsk talem\u00e5l; samiske spr\u00e5k er egne spr\u00e5k og modelleres separat.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            ],
+            "region_id": "indre_finnmarksmal"
+        },
+        {
+            "id": "kvaenangen_norwegian_local_speech",
+            "name": "Kv\u00e6nangen \u2013 norsk talem\u00e5l",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "local_research_required",
+            "summary": "Kv\u00e6nangen er et dokumentert NorDiaSyn-m\u00e5lepunkt i Nord-Troms.",
+            "variation_note": "Omr\u00e5det har langvarig norsk, samisk og kvensk spr\u00e5kkontakt; profilen m\u00e5 ikke gj\u00f8re kontaktbakgrunn til ett ensartet talem\u00e5l.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            ],
+            "region_id": "nordtromsmal"
+        },
+        {
+            "id": "senja_local_speech",
+            "name": "Senja",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "documented_seed",
+            "summary": "Senja har en egen UiT-dialektgruppe med flere lokale m\u00e5lepunkter og en egen ordsamling.",
+            "variation_note": "Senjam\u00e5l er selv internt variert; Mefjordv\u00e6r, Botnhamn, Medby og Stonglandseidet skal kunne skilles videre.",
+            "sources": [
+                {
+                    "label": "UiT \u2013 Senja",
+                    "url": "https://nordnorsk.uit.no/dialekt/senja/"
+                },
+                {
+                    "label": "UiT \u2013 dialektord fra Senja",
+                    "url": "https://nordnorsk.uit.no/ordlister/dialektord-fra-senja/"
+                }
+            ],
+            "region_id": "senjamal"
+        },
+        {
+            "id": "kvaefjord_local_speech",
+            "name": "Kv\u00e6fjord",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "local_research_required",
+            "summary": "Kv\u00e6fjord er et dokumentert m\u00e5lepunkt i gruppen S\u00f8r-Troms, Vester\u00e5len og Ofoten.",
+            "variation_note": "Profilen er lokalt anker; konkrete trekk m\u00e5 hentes fra m\u00e5lpr\u00f8vene og ikke generaliseres til hele regionen.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            ],
+            "region_id": "sor_troms_vesteralen_ofoten"
+        },
+        {
+            "id": "stamsund_local_speech",
+            "name": "Stamsund/Lofoten",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "local_research_required",
+            "summary": "Stamsund er et dokumentert m\u00e5lepunkt i Lofotm\u00e5l-gruppen.",
+            "variation_note": "Lofoten har lokal variasjon; Stamsund skal v\u00e6re et m\u00e5lepunkt, ikke en fasit for alle \u00f8yene.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            ],
+            "region_id": "lofotmal"
+        },
+        {
+            "id": "mo_i_rana_local_speech",
+            "name": "Mo i Rana",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "local_research_required",
+            "summary": "Mo i Rana er et dokumentert m\u00e5lepunkt i Rana-omr\u00e5det.",
+            "variation_note": "By- og industristedsp\u00e5virkning m\u00e5 kunne skilles fra eldre regionalt talem\u00e5l.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            ],
+            "region_id": "ranamal"
+        },
+        {
+            "id": "hattfjelldal_local_speech",
+            "name": "Hattfjelldal",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "local_research_required",
+            "summary": "Hattfjelldal er et dokumentert m\u00e5lepunkt i UiTs Vefsnm\u00e5l-gruppe.",
+            "variation_note": "Omr\u00e5det ligger ogs\u00e5 i et s\u00f8rsamisk spr\u00e5komr\u00e5de; s\u00f8rsamisk skal behandles som eget spr\u00e5k.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            ],
+            "region_id": "vefsnmal"
+        },
+        {
+            "id": "soemna_local_speech",
+            "name": "S\u00f8mna",
+            "kind": "local_speech",
+            "macro_region_id": "nordnorsk",
+            "profile_status": "local_research_required",
+            "summary": "S\u00f8mna er et dokumentert m\u00e5lepunkt i Br\u00f8nn\u00f8ym\u00e5l-gruppen s\u00f8r p\u00e5 Helgeland.",
+            "variation_note": "S\u00f8r-Helgeland ligger n\u00e6r den tr\u00f8nderske dialektgrensen; lokale trekk m\u00e5 kildebindes og ikke gj\u00f8res absolutte.",
+            "sources": [
+                {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn/Nordisk dialektkorpus, opptakssteder",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/opptakssteder.pdf"
+                },
+                {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            ],
+            "region_id": "bronnoymal"
+        }
+    ],
+    "research_basis": {
+        "verified_at": "2026-08-18",
+        "methodology": [
+            "De fire nasjonale hovedgruppene brukes bare som grov orientering; regionale og lokale profiler er den konkrete atlasenheten.",
+            "Et lokalt talem\u00e5l kan opprettes som corpus-anker n\u00e5r stedet er dokumentert i et talem\u00e5lskorpus, men konkrete m\u00e5lmerker publiseres ikke uten egen lokal eller regional fagkilde.",
+            "Bym\u00e5l og tettstedstalem\u00e5l behandles som internt variable. Sosial, geografisk, aldersmessig og kontaktbasert variasjon skal ikke jevnes ut til \u00e9n stereotyp profil.",
+            "Samiske spr\u00e5k, kvensk og andre minoritetsspr\u00e5k modelleres som spr\u00e5k, ikke som norske dialekter; norske talem\u00e5lsprofiler i flerspr\u00e5klige omr\u00e5der skal si dette eksplisitt."
+        ],
+        "source_coverage": [
+            {
+                "id": "ndc_v4",
+                "kind": "spoken_corpus",
+                "coverage": "111 utvalgte m\u00e5lepunkter i Norge i Nordisk dialektkorpus v4.0",
+                "source": {
+                    "label": "UiO Tekstlab \u2013 NorDiaSyn datainnsamling",
+                    "url": "https://tekstlab.uio.no/nota/NorDiaSyn/datainnsamling.html"
+                }
+            },
+            {
+                "id": "lia_norsk",
+                "kind": "historical_spoken_corpus",
+                "coverage": "1382 informanter fra 227 steder/kommuner og om lag 3,5 millioner ord",
+                "source": {
+                    "label": "UiO Tekstlab \u2013 LIA norsk",
+                    "url": "https://tekstlab.uio.no/LIA/norsk/"
+                }
+            },
+            {
+                "id": "dialektordlister",
+                "kind": "derived_wordlists",
+                "coverage": "automatisk genererte ordlister fra et stort antall norske dialekter basert p\u00e5 eldre universitetsopptak",
+                "source": {
+                    "label": "UiO Tekstlab \u2013 dialektordlister",
+                    "url": "https://tekstlab.uio.no/dialektord"
+                }
+            },
+            {
+                "id": "uit_nordnorsk",
+                "kind": "regional_dialect_atlas",
+                "coverage": "13 navngitte nordnorske dialektgrupper med lokale m\u00e5lmerker og m\u00e5lpr\u00f8ver",
+                "source": {
+                    "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                    "url": "https://nordnorsk.uit.no/dialekt/"
+                }
+            }
+        ],
+        "baseline_sources": [
+            {
+                "label": "Store norske leksikon \u2013 dialekter i Noreg",
+                "url": "https://snl.no/dialekter_i_Noreg"
+            },
+            {
+                "label": "Store norske leksikon \u2013 inndeling av dialekter i Noreg",
+                "url": "https://snl.no/dialekter_i_Noreg_-_inndeling"
+            },
+            {
+                "label": "UiO Tekstlab \u2013 NorDiaSyn datainnsamling",
+                "url": "https://tekstlab.uio.no/nota/NorDiaSyn/datainnsamling.html"
+            },
+            {
+                "label": "UiO Tekstlab \u2013 LIA norsk",
+                "url": "https://tekstlab.uio.no/LIA/norsk/"
+            },
+            {
+                "label": "UiT \u2013 Nordnorske dialekter, dialektoversikt",
+                "url": "https://nordnorsk.uit.no/dialekt/"
+            }
+        ],
+        "local_evidence_batches": [
+            {
+                "id": "local_evidence_batch_1",
+                "verified_at": "2026-08-18",
+                "profile_ids": [
+                    "oslo_local_speech",
+                    "bergen_local_speech",
+                    "stavanger_local_speech",
+                    "trondheim_local_speech",
+                    "tromso_local_speech"
+                ],
+                "rule": "Konkrete lokale trekk publiseres bare n\u00e5r p\u00e5standen har eksplisitt kildebelegg; historisk trekk, samtidssituasjon og endring holdes fra hverandre."
+            }
+        ]
+    }
+}
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://history-go.local/schemas/sprakatlas-norge-v1.json",
+    "title": "History Go Spr\u00e5katlas Norge v1",
+    "type": "object",
+    "required": [
+        "schema",
+        "title",
+        "verified_at",
+        "scope",
+        "macro_regions",
+        "dialect_regions",
+        "language_status_layers",
+        "local_varieties",
+        "research_basis"
+    ],
+    "properties": {
+        "schema": {
+            "const": "history_go_language_atlas_v1"
+        },
+        "title": {
+            "type": "string",
+            "minLength": 1
+        },
+        "verified_at": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "scope": {
+            "const": "Norge"
+        },
+        "macro_regions": {
+            "type": "array",
+            "minItems": 4
+        },
+        "dialect_regions": {
+            "type": "array",
+            "minItems": 25
+        },
+        "urban_overlays": {
+            "type": "array"
+        },
+        "language_status_layers": {
+            "type": "array",
+            "minItems": 6
+        },
+        "local_varieties": {
+            "type": "array",
+            "minItems": 40,
+            "items": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "name",
+                    "kind",
+                    "macro_region_id",
+                    "profile_status",
+                    "summary",
+                    "variation_note"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "kind": {
+                        "const": "local_speech"
+                    },
+                    "macro_region_id": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "region_id": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "profile_status": {
+                        "enum": [
+                            "documented_seed",
+                            "local_research_required",
+                            "evidence_materialized"
+                        ]
+                    },
+                    "summary": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "variation_note": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "sources": {
+                        "type": "array",
+                        "minItems": 1
+                    },
+                    "feature_labels": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "minItems": 4
+                    },
+                    "evidence_last_verified": {
+                        "type": "string",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                    },
+                    "feature_evidence": {
+                        "type": "array",
+                        "minItems": 4,
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "label",
+                                "kind",
+                                "claim",
+                                "time_scope",
+                                "source_urls"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "label": {
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "kind": {
+                                    "enum": [
+                                        "structural_feature",
+                                        "social_variation",
+                                        "language_change",
+                                        "contact_history",
+                                        "corpus_basis"
+                                    ]
+                                },
+                                "claim": {
+                                    "type": "string",
+                                    "minLength": 20
+                                },
+                                "time_scope": {
+                                    "type": "string",
+                                    "minLength": 1
+                                },
+                                "source_urls": {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": {
+                                        "type": "string",
+                                        "pattern": "^https://"
+                                    }
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    }
+                },
+                "additionalProperties": true,
+                "allOf": [
+                    {
+                        "x-history-go-rule": "evidence-materialized",
+                        "if": {
+                            "properties": {
+                                "profile_status": {
+                                    "const": "evidence_materialized"
+                                }
+                            },
+                            "required": [
+                                "profile_status"
+                            ]
+                        },
+                        "then": {
+                            "required": [
+                                "feature_labels",
+                                "feature_evidence",
+                                "evidence_last_verified"
+                            ],
+                            "properties": {
+                                "sources": {
+                                    "minItems": 2
+                                },
+                                "feature_labels": {
+                                    "minItems": 4
+                                },
+                                "feature_evidence": {
+                                    "minItems": 4
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "research_basis": {
+            "type": "object",
+            "required": [
+                "verified_at",
+                "methodology",
+                "source_coverage",
+                "baseline_sources"
+            ],
+            "properties": {
+                "verified_at": {
+                    "type": "string",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                },
+                "methodology": {
+                    "type": "array",
+                    "minItems": 4
+                },
+                "source_coverage": {
+                    "type": "array",
+                    "minItems": 4
+                },
+                "baseline_sources": {
+                    "type": "array",
+                    "minItems": 5
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": true
+}
+TAP version 13
+# Subtest: schemaet skiller eksplisitt mellom vanlig språk og dialektlag
+ok 1 - schemaet skiller eksplisitt mellom vanlig språk og dialektlag
+  ---
+  duration_ms: 1.800224
+  type: 'test'
+  ...
+# Subtest: dialektinnhold kan bare eies av canonical area-Places
+ok 2 - dialektinnhold kan bare eies av canonical area-Places
+  ---
+  duration_ms: 94.097259
+  type: 'test'
+  ...
+# Subtest: Etne-piloten er et reelt, eksplisitt area-eid dialektlag
+ok 3 - Etne-piloten er et reelt, eksplisitt area-eid dialektlag
+  ---
+  duration_ms: 80.434453
+  type: 'test'
+  ...
+# Subtest: Sagene-utvidelsen er et reelt area-eid og kildebelagt oslomål-lag
+ok 4 - Sagene-utvidelsen er et reelt area-eid og kildebelagt oslomål-lag
+  ---
+  duration_ms: 67.344409
+  type: 'test'
+  ...
+# Subtest: Oslo-atlaset skiller historisk øst/vest og multietnisk norsk uten bydelsstereotypier
+ok 5 - Oslo-atlaset skiller historisk øst/vest og multietnisk norsk uten bydelsstereotypier
+  ---
+  duration_ms: 65.453019
+  type: 'test'
+  ...
+# Subtest: enkelt-Places kan ha Språkleksikon uten å bli dialekt-eiere
+ok 6 - enkelt-Places kan ha Språkleksikon uten å bli dialekt-eiere
+  ---
+  duration_ms: 63.512583
+  type: 'test'
+  ...
+# Subtest: runtime nekter dialektlag på ikke-area Places og beholder laget i Knowledge-metadata
+ok 7 - runtime nekter dialektlag på ikke-area Places og beholder laget i Knowledge-metadata
+  ---
+  duration_ms: 1.298177
+  type: 'test'
+  ...
+# Subtest: områdeeid dialektlag fremheves uten å bli en egen PlaceCard-runding
+ok 8 - områdeeid dialektlag fremheves uten å bli en egen PlaceCard-runding
+  ---
+  duration_ms: 0.509738
+  type: 'test'
+  ...
+# Subtest: dokumentasjon og checklist skiller Språkleksikon fra det områdebundne dialektlaget
+ok 9 - dokumentasjon og checklist skiller Språkleksikon fra det områdebundne dialektlaget
+  ---
+  duration_ms: 1.186769
+  type: 'test'
+  ...
+# Subtest: Språkatlas Norge dekker hele dialektlandskapet uten å gjøre språkgrenser eller mennesker absolutte
+ok 10 - Språkatlas Norge dekker hele dialektlandskapet uten å gjøre språkgrenser eller mennesker absolutte
+  ---
+  duration_ms: 1.913935
+  type: 'test'
+  ...
+# Subtest: Place-artikler kobler seg til Språkatlas Norge uten å lage en ny PlaceCard-runding
+ok 11 - Place-artikler kobler seg til Språkatlas Norge uten å lage en ny PlaceCard-runding
+  ---
+  duration_ms: 56.804421
+  type: 'test'
+  ...
+# Subtest: Språkatlaset er klikkbart og tastaturnavigerbart uten å endre canonical eierskap
+ok 12 - Språkatlaset er klikkbart og tastaturnavigerbart uten å endre canonical eierskap
+  ---
+  duration_ms: 0.619173
+  type: 'test'
+  ...
+# Subtest: Språkatlaset behandler hovedområder som orientering og lokale talemål som eget nivå
+ok 13 - Språkatlaset behandler hovedområder som orientering og lokale talemål som eget nivå
+  ---
+  duration_ms: 1.416586
+  type: 'test'
+  ...
+# Subtest: Språkatlas research coverage er nasjonal og kildebåret
+ok 14 - Språkatlas research coverage er nasjonal og kildebåret
+  ---
+  duration_ms: 1.33339
+  type: 'test'
+  ...
+# Subtest: Lokale talemålsprofiler materialiserer konkrete påstander med direkte kildebelegg
+ok 15 - Lokale talemålsprofiler materialiserer konkrete påstander med direkte kildebelegg
+  ---
+  duration_ms: 1.436656
+  type: 'test'
+  ...
+# Subtest: Evidensmaterialiserte lokalprofiler har en generell kvalitetsport og forskningsstyrt andre gruppe
+ok 16 - Evidensmaterialiserte lokalprofiler har en generell kvalitetsport og forskningsstyrt andre gruppe
+  ---
+  duration_ms: 1.454883
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 530.016595
+TAP version 13
+# Subtest: Språkleksikon-manifestet bruker v2 og peker på schema
+ok 1 - Språkleksikon-manifestet bruker v2 og peker på schema
+  ---
+  duration_ms: 1.955618
+  type: 'test'
+  ...
+# Subtest: alle stedsspråkfiler har stabil identitet og gyldig grunnstruktur
+ok 2 - alle stedsspråkfiler har stabil identitet og gyldig grunnstruktur
+  ---
+  duration_ms: 2.033004
+  type: 'test'
+  ...
+# Subtest: språkflaten bruker canonical Knowledge V2-lager og en samlingsfasett, ikke et falskt fag
+ok 3 - språkflaten bruker canonical Knowledge V2-lager og en samlingsfasett, ikke et falskt fag
+  ---
+  duration_ms: 0.660777
+  type: 'test'
+  ...
+# Subtest: Knowledge-siden viser Språk som samling uten å legge Språk inn som Subject
+ok 4 - Knowledge-siden viser Språk som samling uten å legge Språk inn som Subject
+  ---
+  duration_ms: 0.376658
+  type: 'test'
+  ...
+# Subtest: legacy-arrangementer blir ikke løftet som språkinnhold
+ok 5 - legacy-arrangementer blir ikke løftet som språkinnhold
+  ---
+  duration_ms: 0.646324
+  type: 'test'
+  ...
+# Subtest: språkflaten lastes etter både Knowledge V2 og popup-loaderen
+ok 6 - språkflaten lastes etter både Knowledge V2 og popup-loaderen
+  ---
+  duration_ms: 0.197488
+  type: 'test'
+  ...
+# Subtest: AHA-importgrensen inkluderer hele Knowledge V2 og dermed språkfasetten
+ok 7 - AHA-importgrensen inkluderer hele Knowledge V2 og dermed språkfasetten
+  ---
+  duration_ms: 0.463398
+  type: 'test'
+  ...
+# Subtest: Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny runding
+ok 8 - Språkleksikon-dokumentasjonen låser valgfri språkfane og ingen ny runding
+  ---
+  duration_ms: 0.354635
+  type: 'test'
+  ...
+# Subtest: place-produksjon låser dialektlaget til område-Places
+ok 9 - place-produksjon låser dialektlaget til område-Places
+  ---
+  duration_ms: 1.607323
+  type: 'test'
+  ...
+# Subtest: områdeeierskap bruker canonical placeScope, ikke koordinatrollen
+ok 10 - områdeeierskap bruker canonical placeScope, ikke koordinatrollen
+  ---
+  duration_ms: 1.308573
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 82.96672
