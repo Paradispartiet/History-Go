@@ -322,3 +322,29 @@ test("Språkatlaset er klikkbart og tastaturnavigerbart uten å endre canonical 
   assert.match(contract, /Interaktiv atlasnavigasjon/);
   assert.match(contract, /oppretter ingen nye språkdata/i);
 });
+
+
+test("Språkatlaset behandler hovedområder som orientering og lokale talemål som eget nivå", () => {
+  const atlas = json("data/leksikon/sprak/norge_atlas_v1.json");
+  const runtime = read("js/ui/place-language-layer.js");
+  const contract = read("docs/SPRAKLEKSIKON.md");
+
+  assert.match(atlas.notes, /hovedområdene[^.]*ikke dialektnavn/i);
+  assert.ok(Array.isArray(atlas.local_varieties));
+  const byName = new Map(atlas.local_varieties.map(row => [row.name, row]));
+  for (const name of ["Oslo", "Fredrikstad", "Lillehammer", "Arendal", "Kristiansand", "Stavanger", "Haugesund", "Bergen"]) {
+    assert.ok(byName.has(name), `mangler lokal talemålsprofil for ${name}`);
+    assert.equal(byName.get(name).kind, "local_speech");
+    assert.ok(text(byName.get(name).variation_note), `${name}: lokal profil må eksplisitt bevare intern variasjon`);
+  }
+  assert.notEqual(byName.get("Arendal").id, byName.get("Kristiansand").id);
+  assert.notEqual(byName.get("Stavanger").id, byName.get("Haugesund").id);
+  assert.notEqual(byName.get("Haugesund").id, byName.get("Bergen").id);
+
+  assert.match(runtime, /data-atlas-local=/);
+  assert.match(runtime, /Lokale talemål/);
+  assert.match(runtime, /grove orienteringsområder, ikke dialekter/i);
+  assert.match(runtime, /local_research_required/);
+  assert.match(contract, /hovedområder er ikke dialekter/i);
+  assert.match(contract, /Konkrete lokale språkdrag skal ikke arves automatisk/i);
+});

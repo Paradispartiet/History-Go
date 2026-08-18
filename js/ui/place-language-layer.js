@@ -456,6 +456,7 @@
     const regions = list(atlas?.dialect_regions);
     const overlays = list(atlas?.urban_overlays);
     const languageLayers = list(atlas?.language_status_layers);
+    const localVarieties = list(atlas?.local_varieties);
     const activeNames = [
       ...macros.filter(row => activeIds.has(text(row?.id))),
       ...regions.filter(row => activeIds.has(text(row?.id))),
@@ -467,10 +468,10 @@
       <section class="hg-language-atlas" data-language-atlas>
         <header class="hg-language-atlas-head">
           <div class="hg-language-kicker">Språkatlas Norge</div>
-          <strong>Fra lokale språkspor til hele dialektlandskapet</strong>
-          <p>Skjematisk oversikt. Dialektgrenser er glidende, og et områdeanker beskriver aldri alle som bor der.</p>
+          <strong>Fra lokale talemål til større dialektområder</strong>
+          <p>De store feltene er grove orienteringsområder, ikke dialekter. Utforsk lokale talemål under dem; grensene er glidende, og ingen stedsprofil beskriver alle som bor der.</p>
         </header>
-        <div class="hg-language-atlas-map" role="group" aria-label="Utforsk de fire norske hovedgruppene">
+        <div class="hg-language-atlas-map" role="group" aria-label="Grove dialektologiske hovedområder – velg for orientering">
           ${mapBlock("nordnorsk", "Nordnorsk", "is-north")}
           ${mapBlock("trondersk", "Trøndersk", "is-trondelag")}
           ${mapBlock("vestlandsk", "Vestlandsk", "is-west")}
@@ -484,8 +485,9 @@
           <div data-atlas-selection-features></div>
         </div>
         <details class="hg-language-atlas-details">
-          <summary>Utforsk hele Norge</summary>
-          <div class="hg-language-atlas-grid">${macros.map(macro => renderAtlasMacroCard(macro, atlas, activeIds)).join("")}</div>
+          <summary>Utforsk lokale talemål og regioner</summary>
+          ${localVarieties.length ? `<section class="hg-language-atlas-local"><h3>Lokale talemål</h3><p>Dette er atlasets viktigste nivå. En by kan samtidig romme flere varianter; en lokal profil er derfor et startpunkt, ikke en påstand om at alle snakker likt.</p><div>${localVarieties.map(row => `<button type="button" data-atlas-local="${esc(row?.id)}" data-atlas-macro-id="${esc(row?.macro_region_id)}" data-atlas-region-id="${esc(row?.region_id || "")}" aria-pressed="false"><strong>${esc(row?.name)}</strong><span>${row?.profile_status === "local_research_required" ? "Lokal research gjenstår" : "Lokal profil"}</span></button>`).join("")}</div></section>` : ""}
+          <div class="hg-language-atlas-grid"><div class="hg-language-atlas-grid-label"><strong>Grove dialektologiske områder</strong><span>Orientering – ikke enkeltstående dialekter</span></div>${macros.map(macro => renderAtlasMacroCard(macro, atlas, activeIds)).join("")}</div>
           ${overlays.length ? `<section class="hg-language-atlas-overlays"><h3>Bymål og sosiale språkoverlegg</h3><div>${overlays.map(row => `<article class="${activeIds.has(text(row?.id)) ? "is-active" : ""}"><strong>${esc(row?.name)}</strong><p>${esc(row?.summary)}</p>${sourceLinks({ sources: row?.sources })}</article>`).join("")}</div></section>` : ""}
           ${languageLayers.length ? `<section class="hg-language-atlas-languages"><h3>Egne språk – ikke norske dialekter</h3><p>Urfolksspråk og nasjonale minoritetsspråk vises separat slik at atlaset ikke gjør dem til undergrupper av norsk.</p><div>${languageLayers.map(row => `<span><strong>${esc(row?.name)}</strong>${row?.status ? ` · ${esc(row.status)}` : ""}</span>`).join("")}</div></section>` : ""}
         </details>
@@ -614,18 +616,20 @@
 
     const regions = list(atlas?.dialect_regions);
     const macros = list(atlas?.macro_regions);
-    const region = regions.find(row => text(row?.id) === id) || null;
-    const macroId = text(macroHint || region?.macro_region_id || id);
+    const locals = list(atlas?.local_varieties);
+    const local = locals.find(row => text(row?.id) === id) || null;
+    const region = regions.find(row => text(row?.id) === id) || (local ? regions.find(row => text(row?.id) === text(local?.region_id)) || null : null);
+    const macroId = text(macroHint || local?.macro_region_id || region?.macro_region_id || id);
     const macro = macros.find(row => text(row?.id) === macroId) || null;
-    const item = region || macro;
+    const item = local || (regions.find(row => text(row?.id) === id) || null) || macro;
     if (!item || !macro) return;
 
     const details = panel.querySelector(".hg-language-atlas-details");
     if (details) details.open = true;
 
-    panel.querySelectorAll("[data-atlas-focus],[data-atlas-region]").forEach(button => {
-      const buttonId = text(button.getAttribute("data-atlas-region") || button.getAttribute("data-atlas-focus"));
-      const macroButtonSelected = Boolean(region) && button.hasAttribute("data-atlas-focus") && buttonId === macroId;
+    panel.querySelectorAll("[data-atlas-focus],[data-atlas-region],[data-atlas-local]").forEach(button => {
+      const buttonId = text(button.getAttribute("data-atlas-local") || button.getAttribute("data-atlas-region") || button.getAttribute("data-atlas-focus"));
+      const macroButtonSelected = Boolean(region || local) && button.hasAttribute("data-atlas-focus") && buttonId === macroId;
       button.setAttribute("aria-pressed", buttonId === id || macroButtonSelected ? "true" : "false");
     });
 
@@ -640,7 +644,7 @@
       const summary = selection.querySelector("[data-atlas-selection-summary]");
       const features = selection.querySelector("[data-atlas-selection-features]");
       if (title) title.textContent = text(item?.name || macro?.name);
-      if (summary) summary.textContent = text(region?.area_summary || item?.summary || macro?.summary);
+      if (summary) summary.textContent = [text(local?.summary || region?.area_summary || item?.summary || macro?.summary), text(local?.variation_note)].filter(Boolean).join(" ");
       if (features) features.innerHTML = list(item?.feature_labels).map(label => `<span>${esc(label)}</span>`).join("");
       selection.hidden = false;
     }
@@ -667,6 +671,17 @@
           atlas,
           atlasRegion.getAttribute("data-atlas-region"),
           atlasRegion.getAttribute("data-atlas-macro-id")
+        );
+        return;
+      }
+
+      const atlasLocal = target?.closest("[data-atlas-local]");
+      if (atlasLocal && atlas) {
+        activateAtlasSelection(
+          panel,
+          atlas,
+          atlasLocal.getAttribute("data-atlas-local"),
+          atlasLocal.getAttribute("data-atlas-macro-id")
         );
         return;
       }

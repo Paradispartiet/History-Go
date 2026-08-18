@@ -257,6 +257,15 @@ En oppføring er klar når:
 
 ## Språkatlas Norge v1
 
+### Viktig presisering: hovedområder er ikke dialekter
+
+`austlandsk`, `vestlandsk`, `trøndersk` og `nordnorsk` er **grove dialektologiske orienteringsområder**. De skal aldri presenteres som om hver av dem var én dialekt. Den faktiske utforskningen skal gå videre til regionale soner og særlig til **lokale talemål/bytalemål**.
+
+Atlaset har derfor `local_varieties` som et eget canonical nivå. Lokale profiler kan finnes for byer, bygder og andre dokumenterte talemålsmiljøer. En lokal profil betyr heller ikke at alle på stedet snakker likt: intern variasjon etter geografi, alder, sosialt miljø, mobilitet og språkkontakt skal kunne modelleres som egne lag. Konkrete lokale språkdrag skal ikke arves automatisk fra makroområdet; de krever lokale kilder.
+
+Første profiler er Oslo, Fredrikstad, Lillehammer, Arendal, Kristiansand, Stavanger, Haugesund og Bergen. Profiler uten tilstrekkelig lokal detaljdokumentasjon står som `local_research_required` og skal **ikke** fylles med gjetninger.
+
+
 Språkleksikonet har et nasjonalt, skjematisk språkatlas i `data/leksikon/sprak/norge_atlas_v1.json`. Atlaset bruker fire grove hovedgrupper – **austlandsk, vestlandsk, trøndersk og nordnorsk** – og deler dem videre i pedagogiske soner. Dette er navigasjon og faglig kontekst, ikke polygoner som påstår at en dialekt stopper ved en kommunegrense. Dialektgrenser er glidende, og målmerker krysser regioninndelingene.
 
 Place-artikler kan peke inn i atlaset med `atlas_region_ids` og `atlas_overlay_ids`. Det endrer **ikke** eierskapsregelen: konkrete oppføringer med `layer: "dialect"` må fortsatt eies av et canonical Place med `placeScope: "area"`. Et områdeanker betyr dokumentert relevans, aldri at alle beboere snakker slik eller at formen er unik på stedet.
