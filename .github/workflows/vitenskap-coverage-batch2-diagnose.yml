@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Materialize institutions and knowledge places inventory
+      - name: Materialize compact institutions and knowledge places inventory
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
@@ -41,10 +41,7 @@ jobs:
               methods: e.methods || [],
               recommended_method_ids: primary.recommended_method_ids || [],
               canonical_thinker_ids: mapping.canonical_thinker_ids || primary.thinker_ids || [],
-              recommended_cases: primary.recommended_oslo_cases || [],
-              definition: e.definition,
-              why_it_matters: e.why_it_matters,
-              key_questions: e.key_questions || []
+              recommended_cases: primary.recommended_oslo_cases || []
             };
           }).filter((row) => row.domain === 'institusjoner_laboratorier_kunnskapssteder');
           if (rows.length !== 14) throw new Error(`Expected 14 institution/knowledge-place blockers, got ${rows.length}`);
@@ -53,10 +50,10 @@ jobs:
           fs.writeFileSync('.tmp/vitenskap-coverage-batch2.json', JSON.stringify(report, null, 2) + '\n');
           console.log(JSON.stringify({ owned_before: owned.size, blockers_before: emners.length - owned.size, batch_size: rows.length }));
           NODE
-      - name: Persist diagnosis
+      - name: Persist compact diagnosis
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add .tmp/vitenskap-coverage-batch2.json
-          git commit -m 'Materialize Vitenskap batch 2 diagnosis'
+          git commit -m 'Refresh compact Vitenskap batch 2 diagnosis'
           git push origin HEAD:${GITHUB_REF_NAME}
