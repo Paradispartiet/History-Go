@@ -1,0 +1,68 @@
+name: Vitenskap coverage batch 3 diagnose
+
+on:
+  push:
+    branches:
+      - agent/vitenskap-editorial-coverage-repair-3
+    paths:
+      - '.github/workflows/vitenskap-coverage-batch3-diagnose.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Materialize remaining primary-domain inventory
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const emners = read('data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json');
+          const mappings = read('data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json');
+          const registry = read('data/fagverk/fagverk_registry.json');
+          const chapters = registry.subjects.vitenskap.chapters || [];
+          const owned = new Set(chapters.flatMap((c) => c.emne_ids || []));
+          const mappingById = new Map(mappings.map((m) => [m.emne_id, m]));
+          const rows = emners.filter((e) => !owned.has(e.emne_id)).map((e) => {
+            const mapping = mappingById.get(e.emne_id) || {};
+            const primary = (mapping.mappings || []).find((m) => m.mapping_tier === 'primary') || (mapping.mappings || [])[0] || {};
+            return {
+              emne_id: e.emne_id,
+              title: e.title,
+              domain: primary.fagkart_kategori || null,
+              primary_hook: primary.topic_hook || null,
+              methods: e.methods || [],
+              recommended_method_ids: primary.recommended_method_ids || []
+            };
+          });
+          if (rows.length !== 54) throw new Error(`Expected 54 remaining blockers, got ${rows.length}`);
+          const groups = {};
+          for (const row of rows) {
+            const key = row.domain || '__missing__';
+            (groups[key] ||= []).push(row);
+          }
+          const group_counts = Object.fromEntries(Object.entries(groups).map(([key, value]) => [key, value.length]).sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0])));
+          const report = {
+            generated_from: process.env.GITHUB_SHA,
+            owned_before: owned.size,
+            blocker_count_before: rows.length,
+            group_counts,
+            groups
+          };
+          fs.mkdirSync('.tmp', { recursive: true });
+          fs.writeFileSync('.tmp/vitenskap-coverage-batch3.json', JSON.stringify(report, null, 2) + '\n');
+          console.log(JSON.stringify({ owned_before: owned.size, blockers_before: rows.length, group_counts }));
+          NODE
+      - name: Persist batch 3 diagnosis
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .tmp/vitenskap-coverage-batch3.json
+          git commit -m 'Refresh Vitenskap batch 3 diagnosis'
+          git push origin HEAD:${GITHUB_REF_NAME}
