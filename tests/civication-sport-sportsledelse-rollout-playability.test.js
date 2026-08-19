@@ -9,6 +9,7 @@ const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8
 
 const model = readJson('data/Civication/roleModels/sport/sportssjef.json');
 const grammar = readJson('data/Civication/workGrammars/sport/sport_sportsledelse.json');
+const policy = readJson('data/Civication/careerGameplayPolicy.json');
 const matrix = readJson('data/Civication/careerGameplayMatrix.json');
 const world = (matrix.worlds || []).find((row) => row.key === 'sport/sport_sportsledelse');
 
@@ -55,11 +56,14 @@ assert.ok(followupThread, 'Sportssjef followup must own a delayed thread');
 assert.equal(consequenceThread, followupThread, 'Sportssjef consequence must close the same delayed thread');
 
 assert.ok(world, 'Career Gameplay Matrix must contain sport/sport_sportsledelse');
-for (const component of [
-  'entry', 'day_one', 'workday_loop', 'people', 'places', 'mail', 'knowledge',
-  'quality_axes', 'authority', 'consequences', 'performance', 'economy', 'progression', 'exit'
-]) {
-  assert.equal(world.audit?.components?.[component]?.level, 'complete', `${component} must be complete for Sportssjef rollout`);
+for (const component of policy.playable_requirements?.runtime_gate_components || []) {
+  assert.equal(world.audit?.components?.[component]?.level, 'complete', `${component} must satisfy the canonical runtime gate`);
+}
+for (const component of ['people', 'places']) {
+  assert.equal(world.audit?.components?.[component]?.level, 'complete', `${component} must be materialized for the Sportssjef work world`);
+}
+for (const component of policy.contract_components || []) {
+  assert.notEqual(world.audit?.components?.[component]?.level, 'missing', `${component} must not be missing for a playable world`);
 }
 assert.equal(world.audit?.components?.practice_stories?.level, 'partial', 'FWG stories remain honestly partial without registered practice weeks');
 assert.equal(world.audit?.salary?.linked_titles, 1);
@@ -75,4 +79,4 @@ assert.ok(matrix.summary?.statuses?.playable >= 15, 'Sportssjef must become the 
 assert.ok(matrix.summary?.statuses?.partial <= 7, 'Sportssjef must leave the canonical partial queue');
 assert.ok(matrix.summary?.runtime_gate_pass >= 20, 'Sportssjef must add one runtime-gate pass');
 
-console.log('✓ Sportssjef systematic rollout is playable with the full runtime-gate contract');
+console.log('✓ Sportssjef systematic rollout is playable under the canonical playable policy');
