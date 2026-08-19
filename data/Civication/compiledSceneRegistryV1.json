@@ -102,9 +102,14 @@
     "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
     "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_intro_v2.json",
     "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json",
+    "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json",
     "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json",
     "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json",
     "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json",
+    "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json",
+    "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json",
+    "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json",
+    "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json",
     "data/Civication/mailFamilies/naeringsliv/job/formann_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/formann_people.json",
     "data/Civication/mailFamilies/naeringsliv/story/formann_story.json",
@@ -72438,6 +72443,131 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "vise_beslutningsspor_og_reelt_rom_vs_glatte_over_bindingen",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør tidligere valg etterprøvbare og lar styret prioritere på grunnlag av det kapitalrommet som faktisk finnes.",
+            "id": "A",
+            "label": "Vis beslutningssporet, dagens covenantbuffer og hvilke alternativer styret faktisk har",
+            "reply": "Jeg viser hvordan finansieringsvalget slo ut, dagens covenantbuffer og hvilke alternativer som fortsatt ligger innenfor styrets reelle handlingsrom.",
+            "tags": [
+              "consequence",
+              "board_trust",
+              "capital_flexibility"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du beskytter momentet, men gjør det vanskeligere for styret å skille ny risiko fra konsekvensen av et gammelt kapitalvalg.",
+            "id": "B",
+            "label": "Fokuser på dagens investeringsmulighet og ton ned hvor mye tidligere vilkår begrenser valget",
+            "reply": "Jeg fokuserer på den nye investeringsmuligheten og holder de tidligere finansieringsvilkårene i bakgrunnen så vi ikke låser diskusjonen.",
+            "tags": [
+              "narrative_bias",
+              "board_trust_risk"
+            ]
+          }
+        ],
+        "competency": "strategisk_risiko",
+        "consequence_axis": "styretillit_og_prioritering_vs_tillitsrabatt",
+        "cooldown": 3,
+        "from": "styreleder",
+        "id": "finansdirektor_consequence_refinansiering_001",
+        "mail_family": "forsinket_refinansieringskonsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "Finansdirektøren ser at kapitalvilkår blir organisasjonens fremtidige handlingsrom, ikke bare finansielle fotnoter.",
+        "person_id": "styreleder",
+        "phase": "day_end",
+        "place_id": "oslo_bors",
+        "pressure": "forklare_tidligere_valg_vs_beskytte_status",
+        "priority": 66,
+        "purpose": "Vise at vilkår som virket tekniske i term sheetet senere blir konkrete grenser for styrets mulighet til å handle.",
+        "repeatable": false,
+        "role_scope": "finansdirektor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "styreleder",
+        "situation": [
+          "Finansieringen er satt i sammenheng med faktisk utvikling etter beslutningen.",
+          "Et nytt investerings- eller beredskapsbehov konkurrerer om samme kapitalrom.",
+          "Styret trenger å se hvilke begrensninger som kommer fra markedet, og hvilke som følger av det tidligere finansieringsvalget."
+        ],
+        "stage": "mastery",
+        "stakes": "Styret må nå prioritere med det kapitalrommet som faktisk ble kjøpt. Sporbar analyse og riktig mandat kan bevare tillit selv når rommet er stramt; en for rask binding gjør begrensningene vanskeligere å forklare og håndtere.",
+        "subject": "Noen uker senere avgjør refinansieringsvalget hvor mye kapitalrom styret faktisk har",
+        "summary": "Et nytt investeringsbehov oppstår samtidig som den valgte finansieringen nå viser sin fulle effekt på covenantbuffer og strategisk fleksibilitet.",
+        "task_domain": "forsinket_refinansieringskonsekvens",
+        "task_kind": "consequence",
+        "thread_key": "finansdirektor.case.refinansiering_og_covenant"
+      },
+      "id": "finansdirektor_consequence_refinansiering_001",
+      "mail_type": "consequence",
+      "role_scope": "finansdirektor",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør tidligere valg etterprøvbare og lar styret prioritere på grunnlag av det kapitalrommet som faktisk finnes.",
+            "id": "A",
+            "label": "Vis beslutningssporet, dagens covenantbuffer og hvilke alternativer styret faktisk har",
+            "reply": "Jeg viser hvordan finansieringsvalget slo ut, dagens covenantbuffer og hvilke alternativer som fortsatt ligger innenfor styrets reelle handlingsrom."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beskytter momentet, men gjør det vanskeligere for styret å skille ny risiko fra konsekvensen av et gammelt kapitalvalg.",
+            "id": "B",
+            "label": "Fokuser på dagens investeringsmulighet og ton ned hvor mye tidligere vilkår begrenser valget",
+            "reply": "Jeg fokuserer på den nye investeringsmuligheten og holder de tidligere finansieringsvilkårene i bakgrunnen så vi ikke låser diskusjonen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Finansieringen er satt i sammenheng med faktisk utvikling etter beslutningen.",
+            "Et nytt investerings- eller beredskapsbehov konkurrerer om samme kapitalrom.",
+            "Styret trenger å se hvilke begrensninger som kommer fra markedet, og hvilke som følger av det tidligere finansieringsvalget."
+          ],
+          "subject": "Noen uker senere avgjør refinansieringsvalget hvor mye kapitalrom styret faktisk har",
+          "summary": "Et nytt investeringsbehov oppstår samtidig som den valgte finansieringen nå viser sin fulle effekt på covenantbuffer og strategisk fleksibilitet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansdirektor_consequence_refinansiering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_bors",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansdirektor_consequence_refinansiering_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansdirektor.case.refinansiering_og_covenant",
+        "version": 1
+      },
+      "source_hash": "8d756c79836a011b7c64c1eee0a91564cef39cd49c627e0a4eb691c2cfb7c857",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "oppdatere_modell_vs_beholde_budskap",
         "choices": [
           {
@@ -72670,6 +72800,131 @@
       },
       "source_hash": "34e412c8ad6e6a527d2f01277154530d739ba2d8fe76403cec5b469b05d12818",
       "source_path": "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "sammenligne_eskalere_og_forhandle_vs_akseptere_for_tempo",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du behandler term sheetet som et beslutningsgrunnlag, ikke som en avtale som allerede må forsvares.",
+            "id": "A",
+            "label": "Sammenlign total kostnad og covenant, forhandle avvikene og løft beslutningen til styret",
+            "reply": "Jeg sammenligner samlet kapitalpris og covenant mot mandatet, forhandler de vesentlige avvikene og løfter valget til styret før binding.",
+            "tags": [
+              "followup",
+              "refinancing",
+              "governance"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du kjøper sikkerhet i dag ved å gjøre fremtidig handlingsrom dyrere før styret har fått eie hele tradeoffen.",
+            "id": "B",
+            "label": "Anbefal aksept nå for å sikre finansieringen og ta fleksibiliteten senere",
+            "reply": "Jeg anbefaler at vi sikrer finansieringen nå og håndterer den reduserte fleksibiliteten når kapitalen er på plass.",
+            "tags": [
+              "refinancing_pressure",
+              "governance_risk"
+            ]
+          }
+        ],
+        "competency": "finansiering_og_bank",
+        "consequence_axis": "kapitalfleksibilitet_og_tillit_vs_dyr_binding",
+        "cooldown": 2,
+        "from": "bankkontakt",
+        "id": "finansdirektor_followup_refinansiering_001",
+        "mail_family": "refinansiering_etter_term_sheet",
+        "mail_type": "followup",
+        "narrative_arc": "Finansdirektøren lærer at et tilgjengelig lån ikke er det samme som en ansvarlig kapitalstruktur.",
+        "person_id": "bankkontakt",
+        "phase": "morning",
+        "place_id": "bankplassen",
+        "pressure": "finansieringssikkerhet_vs_strategisk_fleksibilitet",
+        "priority": 64,
+        "purpose": "Teste om finansdirektøren sammenligner total finansieringsrisiko og eskalerer beslutningen til riktig nivå før selskapet binder seg.",
+        "repeatable": false,
+        "role_scope": "finansdirektor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "bankkontakt",
+        "situation": [
+          "Likviditetsbehovet er reelt, men ikke akutt samme dag.",
+          "Term sheetet avviker på flere punkter fra første prisingssignal.",
+          "Finansdirektøren kan forhandle og anbefale, men styret må eie vesentlige endringer i kapitalstruktur og risikoramme."
+        ],
+        "stage": "advanced",
+        "stakes": "Et raskt ja kan sikre finansieringen og bevare transaksjonstempoet, men låse selskapet til mindre strategisk frihet. En eksplisitt sammenligning kan koste tid, men gjør styrets reelle tradeoff synlig.",
+        "subject": "Term sheetet er klart, men fleksibiliteten koster mer enn første signal",
+        "summary": "Banken sender et refinansieringsutkast der rentemarginen, covenant og begrensninger på utdeling/investering samlet gjør kapitalen dyrere enn første indikasjon.",
+        "task_domain": "refinansiering_og_term_sheet",
+        "task_kind": "followup",
+        "thread_key": "finansdirektor.case.refinansiering_og_covenant"
+      },
+      "id": "finansdirektor_followup_refinansiering_001",
+      "mail_type": "followup",
+      "role_scope": "finansdirektor",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du behandler term sheetet som et beslutningsgrunnlag, ikke som en avtale som allerede må forsvares.",
+            "id": "A",
+            "label": "Sammenlign total kostnad og covenant, forhandle avvikene og løft beslutningen til styret",
+            "reply": "Jeg sammenligner samlet kapitalpris og covenant mot mandatet, forhandler de vesentlige avvikene og løfter valget til styret før binding."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du kjøper sikkerhet i dag ved å gjøre fremtidig handlingsrom dyrere før styret har fått eie hele tradeoffen.",
+            "id": "B",
+            "label": "Anbefal aksept nå for å sikre finansieringen og ta fleksibiliteten senere",
+            "reply": "Jeg anbefaler at vi sikrer finansieringen nå og håndterer den reduserte fleksibiliteten når kapitalen er på plass."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Likviditetsbehovet er reelt, men ikke akutt samme dag.",
+            "Term sheetet avviker på flere punkter fra første prisingssignal.",
+            "Finansdirektøren kan forhandle og anbefale, men styret må eie vesentlige endringer i kapitalstruktur og risikoramme."
+          ],
+          "subject": "Term sheetet er klart, men fleksibiliteten koster mer enn første signal",
+          "summary": "Banken sender et refinansieringsutkast der rentemarginen, covenant og begrensninger på utdeling/investering samlet gjør kapitalen dyrere enn første indikasjon."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansdirektor_followup_refinansiering_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bankplassen",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansdirektor_followup_refinansiering_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansdirektor.case.refinansiering_og_covenant",
+        "version": 1
+      },
+      "source_hash": "58b6822f6ec6ec85d7c38d3347d1cd7b2d2b8e03f3aefca00abc1713ab6775d9",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -73157,6 +73412,378 @@
       },
       "source_hash": "c08eef07983d7df8e7cb92c724847a41211e28408fe90f62f4d549a31d222dc1",
       "source_path": "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "vurdere_kostnad_covenant_utvanning_og_fleksibilitet_vs_velge_pa_enkelt_nokkeltall",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør kapitalvalget etterprøvbart på de dimensjonene som faktisk påvirker selskapets fremtidige frihet.",
+            "id": "A",
+            "label": "Sammenlign rente, covenant, utvanning, refinansieringsrisiko og fleksibilitet samlet",
+            "reply": "Jeg sammenligner finansieringsalternativene på direkte pris, covenant, utvanning, refinansieringsrisiko og strategisk fleksibilitet.",
+            "tags": [
+              "knowledge",
+              "capital_structure",
+              "refinancing"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du forenkler sammenligningen, men gjør flere av de viktigste kostnadene usynlige akkurat når kapitalstrukturen blir valgt.",
+            "id": "B",
+            "label": "Prioriter alternativet med lavest direkte finansieringskostnad og håndter resten senere",
+            "reply": "Jeg prioriterer alternativet med lavest direkte kostnad og behandler fleksibilitet og eiermessige konsekvenser som sekundære hensyn.",
+            "tags": [
+              "single_metric",
+              "capital_risk"
+            ]
+          }
+        ],
+        "competency": "kapitalstruktur",
+        "consequence_axis": "robust_kapitalstrategi_vs_skjult_fremtidig_pris",
+        "cooldown": 2,
+        "from": "eierrepresentant",
+        "id": "finansdirektor_knowledge_kapitalstruktur_001",
+        "mail_family": "kapitalstruktur_og_refinansieringskunnskap",
+        "mail_type": "knowledge",
+        "narrative_arc": "Finansdirektøren lærer å beskrive kapitalens reelle pris som både penger, kontroll, risiko og fremtidig handlingsrom.",
+        "person_id": "eierrepresentant",
+        "phase": "lunch",
+        "place_id": "oslo_bors",
+        "pressure": "enkel_pris_vs_total_kapitalrisiko",
+        "priority": 52,
+        "purpose": "Knytte finansdirektørens kapitalansvar til eksplisitt kunnskap om at finansieringspris består av mer enn nominell rente eller eierandel.",
+        "repeatable": false,
+        "role_scope": "finansdirektor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "eierrepresentant",
+        "situation": [
+          "Gjeld kan bevare eierskap, men øker faste krav og covenantpress.",
+          "Egenkapital kan øke robusthet, men endrer eierskap og avkastningskrav.",
+          "Refinansieringsrisiko og strategisk fleksibilitet påvirker verdien av begge alternativer over tid."
+        ],
+        "stage": "early",
+        "stakes": "Hvis bare direkte pris sammenlignes, kan selskapet velge finansiering som ser billig ut, men gjør neste nedtur eller investering vanskeligere. En samlet vurdering synliggjør hvem som bærer risiko og hvor mye frihet som kjøpes eller selges.",
+        "subject": "Den billigste kapitalen på papiret kan være den dyreste hvis den fjerner handlingsrom",
+        "summary": "Eierrepresentanten ber om en forklaring på hvorfor rente, covenant, utvanning og fleksibilitet må vurderes samlet når selskapet velger mellom gjeld og egenkapital.",
+        "task_domain": "kapitalstrukturkunnskap",
+        "task_kind": "knowledge"
+      },
+      "id": "finansdirektor_knowledge_kapitalstruktur_001",
+      "mail_type": "knowledge",
+      "role_scope": "finansdirektor",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør kapitalvalget etterprøvbart på de dimensjonene som faktisk påvirker selskapets fremtidige frihet.",
+            "id": "A",
+            "label": "Sammenlign rente, covenant, utvanning, refinansieringsrisiko og fleksibilitet samlet",
+            "reply": "Jeg sammenligner finansieringsalternativene på direkte pris, covenant, utvanning, refinansieringsrisiko og strategisk fleksibilitet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du forenkler sammenligningen, men gjør flere av de viktigste kostnadene usynlige akkurat når kapitalstrukturen blir valgt.",
+            "id": "B",
+            "label": "Prioriter alternativet med lavest direkte finansieringskostnad og håndter resten senere",
+            "reply": "Jeg prioriterer alternativet med lavest direkte kostnad og behandler fleksibilitet og eiermessige konsekvenser som sekundære hensyn."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Gjeld kan bevare eierskap, men øker faste krav og covenantpress.",
+            "Egenkapital kan øke robusthet, men endrer eierskap og avkastningskrav.",
+            "Refinansieringsrisiko og strategisk fleksibilitet påvirker verdien av begge alternativer over tid."
+          ],
+          "subject": "Den billigste kapitalen på papiret kan være den dyreste hvis den fjerner handlingsrom",
+          "summary": "Eierrepresentanten ber om en forklaring på hvorfor rente, covenant, utvanning og fleksibilitet må vurderes samlet når selskapet velger mellom gjeld og egenkapital."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansdirektor_knowledge_kapitalstruktur_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_bors",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansdirektor_knowledge_kapitalstruktur_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansdirektor.mail.finansdirektor_knowledge_kapitalstruktur_001",
+        "version": 1
+      },
+      "source_hash": "d2f636c5564e72a8993b53abdf9b9c104da4cfde61212bb4de86bf072ed3612b",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "oppdatere_buffer_vs_beholde_gammel_forutsetning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør en liten markedsendring synlig før flere små avvik rekker å bli én stor overraskelse.",
+            "id": "A",
+            "label": "Oppdater rente, covenantbuffer og styrets handlingsrom i modellen nå",
+            "reply": "Jeg oppdaterer prisingsforutsetningen, covenantbufferen og effekten på handlingsrommet før neste beslutning.",
+            "tags": [
+              "micro",
+              "covenant",
+              "model_update"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Strategien er den samme, men beslutningsgrunnlaget er blitt litt mindre sant enn markedet du faktisk skal finansiere i.",
+            "id": "B",
+            "label": "Behold modellen og håndter renteendringen muntlig siden strategien er uendret",
+            "reply": "Jeg beholder modellen foreløpig og forklarer renteendringen muntlig siden hovedstrategien fortsatt er den samme.",
+            "tags": [
+              "stale_model",
+              "capital_risk"
+            ]
+          }
+        ],
+        "competency": "finansiering_og_bank",
+        "consequence_axis": "tidlig_presisjon_vs_akkumulert_modellrisiko",
+        "cooldown": 1,
+        "from": "bankkontakt",
+        "id": "finansdirektor_micro_covenant_001",
+        "mail_family": "mikro_covenantbuffer",
+        "mail_type": "micro",
+        "narrative_arc": "Finansdirektøren lærer at kapitalrommet må måles på nytt når markedet flytter forutsetningene, også før endringen blir dramatisk.",
+        "person_id": "bankkontakt",
+        "phase": "afternoon",
+        "place_id": "bankplassen",
+        "pressure": "modellro_vs_markedsoppdatering",
+        "priority": 44,
+        "purpose": "Teste om finansdirektøren oppdaterer sensitivitet og handlingsrom når én ekstern variabel flytter seg.",
+        "repeatable": true,
+        "role_scope": "finansdirektor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "bankkontakt",
+        "situation": [
+          "Det er ikke covenantbrudd.",
+          "Renteendringen er liten nok til å virke håndterbar isolert.",
+          "Styrepakken bruker fortsatt forrige prisingsforutsetning."
+        ],
+        "stage": "stable",
+        "stakes": "Å la den gamle modellen stå bevarer flyten. En rask oppdatering kan vise at styrets finansieringsrom er litt smalere enn sist kommunisert.",
+        "subject": "Én rentejustering gjør covenantbufferen mindre enn i styrepakken",
+        "summary": "Bankkontakten sender et oppdatert prisingssignal som ikke endrer strategien alene, men reduserer marginen i refinansieringsmodellen.",
+        "task_domain": "mikro_covenantbuffer",
+        "task_kind": "micro"
+      },
+      "id": "finansdirektor_micro_covenant_001",
+      "mail_type": "micro",
+      "role_scope": "finansdirektor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør en liten markedsendring synlig før flere små avvik rekker å bli én stor overraskelse.",
+            "id": "A",
+            "label": "Oppdater rente, covenantbuffer og styrets handlingsrom i modellen nå",
+            "reply": "Jeg oppdaterer prisingsforutsetningen, covenantbufferen og effekten på handlingsrommet før neste beslutning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Strategien er den samme, men beslutningsgrunnlaget er blitt litt mindre sant enn markedet du faktisk skal finansiere i.",
+            "id": "B",
+            "label": "Behold modellen og håndter renteendringen muntlig siden strategien er uendret",
+            "reply": "Jeg beholder modellen foreløpig og forklarer renteendringen muntlig siden hovedstrategien fortsatt er den samme."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det er ikke covenantbrudd.",
+            "Renteendringen er liten nok til å virke håndterbar isolert.",
+            "Styrepakken bruker fortsatt forrige prisingsforutsetning."
+          ],
+          "subject": "Én rentejustering gjør covenantbufferen mindre enn i styrepakken",
+          "summary": "Bankkontakten sender et oppdatert prisingssignal som ikke endrer strategien alene, men reduserer marginen i refinansieringsmodellen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansdirektor_micro_covenant_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bankplassen",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansdirektor_micro_covenant_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansdirektor.mail.finansdirektor_micro_covenant_001",
+        "version": 1
+      },
+      "source_hash": "39300566ddfd6a1da40491675a04271fe6e5bba8d0c533e2e51321b70f820193",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "betinget_anbefaling_vs_kategorisk_lovnad",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gir styret et råd de kan bruke uten å gjøre uavklart finansiering om til et løfte.",
+            "id": "A",
+            "label": "Gi en betinget anbefaling med eksplisitte vilkår, downside og beslutningsgrense",
+            "reply": "Jeg anbefaler retningen betinget av de definerte vilkårene, viser downside-effekten og markerer hva styret fortsatt må beslutte.",
+            "tags": [
+              "people",
+              "governance",
+              "capital_integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du øker tempoet, men gjør styrets forventning mer bindende før kapitalprisen og risikorammen er ferdig dokumentert.",
+            "id": "B",
+            "label": "Gi én tydelig finansieringsretning nå og håndter vilkårene når de er endelige",
+            "reply": "Jeg gir styret én tydelig retning nå og tar eventuelle justeringer når de endelige vilkårene foreligger.",
+            "tags": [
+              "premature_commitment",
+              "governance_risk"
+            ]
+          }
+        ],
+        "competency": "styre_og_eierkommunikasjon",
+        "consequence_axis": "styretillit_og_fullmakt_vs_falsk_sikkerhet",
+        "cooldown": 2,
+        "from": "styreleder",
+        "id": "finansdirektor_people_styreleder_001",
+        "mail_family": "styrets_finansielle_tillit",
+        "mail_type": "people",
+        "narrative_arc": "Finansdirektøren lærer å være tydelig om retning samtidig som usikkerhet og beslutningsmyndighet forblir synlig.",
+        "person_id": "styreleder",
+        "phase": "morning",
+        "place_id": "oslo_bors",
+        "pressure": "styretempo_vs_finansiell_klarhet",
+        "priority": 61,
+        "purpose": "Teste om finansdirektøren kan gi et tydelig råd uten å late som uavklarte finansieringsvilkår allerede er besluttet.",
+        "repeatable": false,
+        "role_scope": "finansdirektor",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json",
+        "scene_catalog_version": 1,
+        "sender": "styreleder",
+        "situation": [
+          "Styret må snart velge retning for vekstfinansieringen.",
+          "Bankdialogen er positiv, men endelige vilkår foreligger ikke.",
+          "Du kan anbefale og avgrense, men kan ikke binde selskapet til finansiering uten riktig fullmakt."
+        ],
+        "stage": "stable",
+        "stakes": "Et kategorisk råd kan gi styret tempo, men skjule at kapitalprisen og risikorammen fortsatt kan flytte seg. Et betinget råd bevarer beslutningskraft uten å overskride faglig eller formell myndighet.",
+        "subject": "Styreleder vil ha en klar finansieringsanbefaling før vilkårene er endelige",
+        "summary": "Styreleder trenger retning før et møte med eierne, men de endelige bankvilkårene og covenantmarginen er fortsatt under avklaring.",
+        "task_domain": "styrekommunikasjon_og_finansieringsrad",
+        "task_kind": "people"
+      },
+      "id": "finansdirektor_people_styreleder_001",
+      "mail_type": "people",
+      "role_scope": "finansdirektor",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gir styret et råd de kan bruke uten å gjøre uavklart finansiering om til et løfte.",
+            "id": "A",
+            "label": "Gi en betinget anbefaling med eksplisitte vilkår, downside og beslutningsgrense",
+            "reply": "Jeg anbefaler retningen betinget av de definerte vilkårene, viser downside-effekten og markerer hva styret fortsatt må beslutte."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du øker tempoet, men gjør styrets forventning mer bindende før kapitalprisen og risikorammen er ferdig dokumentert.",
+            "id": "B",
+            "label": "Gi én tydelig finansieringsretning nå og håndter vilkårene når de er endelige",
+            "reply": "Jeg gir styret én tydelig retning nå og tar eventuelle justeringer når de endelige vilkårene foreligger."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Styret må snart velge retning for vekstfinansieringen.",
+            "Bankdialogen er positiv, men endelige vilkår foreligger ikke.",
+            "Du kan anbefale og avgrense, men kan ikke binde selskapet til finansiering uten riktig fullmakt."
+          ],
+          "subject": "Styreleder vil ha en klar finansieringsanbefaling før vilkårene er endelige",
+          "summary": "Styreleder trenger retning før et møte med eierne, men de endelige bankvilkårene og covenantmarginen er fortsatt under avklaring."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansdirektor_people_styreleder_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_bors",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansdirektor_people_styreleder_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansdirektor.mail.finansdirektor_people_styreleder_001",
+        "version": 1
+      },
+      "source_hash": "5faf85228cf045d857b8613352f35dc8749e5aa57bbc85974b89947b426337cf",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -146175,7 +146802,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "0fc3fd75300a33631b0bd88a7b14cd3635304d8128438caf3533347726c12f30",
+  "registry_hash": "ac84c2e10e865da7b4eb3775c5d76bff4936178e730d2e18510753332097d03a",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -146702,11 +147329,16 @@
       "finansdirektor_intro_v2_002",
       "finansdirektor_job_001",
       "finansdirektor_job_002",
+      "finansdirektor_people_styreleder_001",
       "finansdirektor_story_001",
       "finansdirektor_conflict_001",
       "finansdirektor_conflict_002",
       "finansdirektor_event_001",
-      "finansdirektor_event_002"
+      "finansdirektor_event_002",
+      "finansdirektor_micro_covenant_001",
+      "finansdirektor_followup_refinansiering_001",
+      "finansdirektor_knowledge_kapitalstruktur_001",
+      "finansdirektor_consequence_refinansiering_001"
     ],
     "naeringsliv/formann": [
       "job_formann_week1_first_shift_board",
@@ -147220,11 +147852,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 196,
+    "compiled_source_file_count": 201,
     "ignored_source_file_count": 1,
-    "input_file_count": 197,
+    "input_file_count": 202,
     "role_count": 28,
-    "scene_count": 959,
+    "scene_count": 964,
     "shadowed_duplicate_count": 0
   },
   "version": 1
