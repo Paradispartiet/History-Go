@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_arkitekt",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "revisjon_og_etterkontroll",
+      "purpose": "Gjør tidligere arkitektvalg etterprøvbare i en senere prosjektfase.",
+      "learning_focus": ["revisjon", "etterkontroll"],
+      "mails": [
+        {
+          "id": "by_arkitekt_followup_inngang_001",
+          "mail_type": "followup",
+          "mail_family": "revisjon_og_etterkontroll",
+          "role_scope": "by_arkitekt",
+          "phase": "afternoon",
+          "priority": 64,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "bylivsansvarlig_sara",
+          "sender": "bylivsansvarlig_sara",
+          "person_id": "bylivsansvarlig_sara",
+          "place_id": "befaring_og_gateplan",
+          "subject": "Den reviderte inngangen virker — men hjørnet er fortsatt passivt",
+          "summary": "Etter revisjonen er hovedinngangen blitt tydeligere, mens hjørnet fortsatt mangler aktivitet og oppholdskvalitet.",
+          "purpose": "Avgjør om den første forbedringen skal regnes som nok eller utløse en ny, avgrenset revisjon.",
+          "stakes": "Valget påvirker om prosjektet lærer av tidligere beslutninger eller bare lukker avvik når ett målepunkt blir bedre.",
+          "situation": [
+            "Ganglinjen fungerer bedre etter forrige endring.",
+            "Sara viser samtidig at hjørnet fortsatt oppleves som bakside i den travleste delen av gateplanet.",
+            "Du må skille mellom et løst inngangsproblem og et fortsatt uløst byromsproblem."
+          ],
+          "task_domain": "forsteetasje_og_byliv",
+          "task_kind": "followup",
+          "competency": "byliv_og_gateplan",
+          "learning_focus": ["etterkontroll", "byliv", "avgrenset_revisjon"],
+          "pressure": "lukke_sak_vs_folge_effekt",
+          "choice_axis": "akseptere_forbedring_vs_revidere_hjornet",
+          "consequence_axis": "fremdrift_vs_langsiktig_byromskvalitet",
+          "narrative_arc": "En god revisjon løser ett problem og kan samtidig gjøre det neste synligere.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Åpne en avgrenset revisjon av hjørnet",
+              "reply": "Jeg beholder den nye inngangen og åpner en avgrenset revisjon av hjørnets program og overgang til gaten.",
+              "effect": 1,
+              "tags": ["etterkontroll", "ny_revisjon"],
+              "feedback": "Du skiller mellom det som faktisk er løst og det som fortsatt krever arbeid."
+            },
+            {
+              "id": "B",
+              "label": "Lukk inngangssporet og registrer hjørnet som senere risiko",
+              "reply": "Jeg lukker inngangssporet, men registrerer det passive hjørnet som en eksplisitt risiko til neste prosjektgjennomgang.",
+              "effect": 0,
+              "tags": ["risikologg", "fremdrift"],
+              "feedback": "Du beskytter fremdriften uten å late som den gjenværende svakheten er borte."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
