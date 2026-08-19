@@ -1,0 +1,74 @@
+name: TEMP Civication career model ownership reconcile
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tests/civication-career-rolemodel-ownership.test.js'
+      - '.github/workflows/civication-career-model-ownership-reconcile.yml'
+      - 'scripts/audit-civication-career-gameplay.mjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-civication-career-model-ownership-reconcile
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-career-model-ownership-reconciliation
+          fetch-depth: 0
+
+      - name: Lock baseline lineage
+        run: git merge-base --is-ancestor 3e1a815a66b3f11ade1e6e2fa70527a891bbbb32 HEAD
+
+      - name: Remove stale Fagarbeider to Arbeider audit alias
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/audit-civication-career-gameplay.mjs')
+          s = p.read_text()
+          needle = "  ['naeringsliv/fagarbeider', 'arbeider'],\n"
+          if needle not in s:
+              raise SystemExit('expected stale Fagarbeider alias not found')
+          p.write_text(s.replace(needle, '', 1))
+          PY
+
+      - name: Regenerate Career Gameplay Matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+
+      - name: Verify generated matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --check
+
+      - name: Verify distinct roleModel ownership
+        run: node tests/civication-career-rolemodel-ownership.test.js
+
+      - name: Install repository dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify complete Civication suite
+        run: npm run test:civication
+
+      - name: Diff hygiene
+        run: git diff --check
+
+      - name: Commit permanent reconciliation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add scripts/audit-civication-career-gameplay.mjs data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
+          if git diff --cached --quiet; then
+            echo 'No reconciliation changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Reconcile Arbeider and Fagarbeider model ownership'
+          git push origin HEAD:agent/civication-career-model-ownership-reconciliation
