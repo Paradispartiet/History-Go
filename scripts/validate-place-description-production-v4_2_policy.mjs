@@ -1,20 +1,72 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 import { validateRepository } from './validate-place-description-production-v4_2.mjs';
 
 export const LENGTH_POLICY_REVISION = '4.2.1-source-led-length';
+export const PR_SCOPE_POLICY_REVISION = '4.2.1-canonical-place-onboarding-index';
 
 const WORD_COUNT_ONLY_CODES = new Set([
   'desc_outside_normal_range',
   'popup_below_minimum',
   'popup_above_maximum'
 ]);
+const GENERATED_INDEX_ISSUE_CODE = 'generated_index_in_description_pr';
+const PLACE_PREFIX = 'data/places/';
+const PACKET_PREFIX = 'data/places/production/';
+const RULES_PREFIX = 'data/places/regler/';
+const PLACE_MANIFEST_PATH = 'data/places/manifest.json';
+
+function isGeneratedPlaceIndexPath(file) {
+  return /(?:^|\/)(?:places_index|places-index)\.json$/u.test(String(file ?? '')) || String(file ?? '').includes('/generated/');
+}
+
+function isCanonicalPlaceSourceFile(file) {
+  const value = String(file ?? '');
+  return value.startsWith(PLACE_PREFIX)
+    && value.endsWith('.json')
+    && !value.startsWith(PACKET_PREFIX)
+    && !value.startsWith(RULES_PREFIX)
+    && value !== PLACE_MANIFEST_PATH
+    && !isGeneratedPlaceIndexPath(value);
+}
+
+function normalizeChangedEntries(entries) {
+  return (Array.isArray(entries) ? entries : [])
+    .map((entry) => ({
+      status: String(entry?.status ?? '').trim(),
+      file: String(entry?.file ?? '').trim()
+    }))
+    .filter((entry) => entry.status && entry.file);
+}
+
+function readChangedEntries(base, head) {
+  if (!base) return [];
+  try {
+    const output = execFileSync('git', ['diff', '--name-status', `${base}...${head || 'HEAD'}`], {
+      cwd: process.cwd(),
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe']
+    }).trim();
+    if (!output) return [];
+    return output.split(/\r?\n/gu).map((line) => {
+      const parts = line.split('\t');
+      return {
+        status: parts[0] ?? '',
+        file: parts.at(-1) ?? ''
+      };
+    });
+  } catch {
+    return [];
+  }
+}
 
 /**
  * Canonical 4.2.1 policy: word counts are editorial guidance, never blocking
  * validation gates. All structural, source, claim, review, quiz, similarity,
- * temporal, metadata and PR-isolation errors remain blocking.
+ * temporal, metadata and PR-isolation errors remain blocking. The one scoped
+ * PR exception for canonical Place onboarding is applied separately below.
  */
 export function applySourceLedLengthPolicy(report) {
   const issues = Array.isArray(report?.issues) ? report.issues : [];
@@ -33,6 +85,47 @@ export function applySourceLedLengthPolicy(report) {
       decisionRule: 'source_availability_place_complexity_identity_scope_and_documented_time_layers',
       removedWordCountIssueCount: removedWordCountIssues.length,
       removedWordCountIssues
+    },
+    errorCount: blockingIssues.length,
+    issues: blockingIssues
+  };
+}
+
+/**
+ * A new canonical Place must be allowed to commit the synchronized manifest
+ * and generated place index in the same PR. This does not relax the isolation
+ * rule for ordinary description-only work: the exception requires at least one
+ * newly added canonical Place source plus both manifest and generated-index
+ * changes. Other PR-isolation findings remain blocking.
+ */
+export function applyCanonicalPlaceOnboardingScopePolicy(report, changedEntries = []) {
+  const entries = normalizeChangedEntries(changedEntries);
+  const addedPlaceFiles = entries
+    .filter((entry) => entry.status.startsWith('A') && isCanonicalPlaceSourceFile(entry.file))
+    .map((entry) => entry.file);
+  const manifestChanged = entries.some((entry) => entry.file === PLACE_MANIFEST_PATH);
+  const generatedIndexesChanged = entries
+    .filter((entry) => isGeneratedPlaceIndexPath(entry.file))
+    .map((entry) => entry.file);
+  const canonicalOnboarding = addedPlaceFiles.length > 0 && manifestChanged && generatedIndexesChanged.length > 0;
+
+  if (!canonicalOnboarding) return report;
+
+  const issues = Array.isArray(report?.issues) ? report.issues : [];
+  const removedIssues = issues.filter((issue) => String(issue?.code ?? '') === GENERATED_INDEX_ISSUE_CODE);
+  if (removedIssues.length === 0) return report;
+
+  const blockingIssues = issues.filter((issue) => String(issue?.code ?? '') !== GENERATED_INDEX_ISSUE_CODE);
+  return {
+    ...report,
+    prScopePolicy: {
+      revision: PR_SCOPE_POLICY_REVISION,
+      canonicalPlaceOnboarding: true,
+      addedPlaceFiles,
+      manifestChanged: true,
+      generatedIndexesChanged,
+      removedGeneratedIndexIssueCount: removedIssues.length,
+      removedGeneratedIndexIssues: removedIssues
     },
     errorCount: blockingIssues.length,
     issues: blockingIssues
@@ -82,12 +175,18 @@ function main() {
     head: options.head,
     reportPath: ''
   });
-  const report = applySourceLedLengthPolicy(raw);
+  const lengthAdjusted = applySourceLedLengthPolicy(raw);
+  const report = options.changed
+    ? applyCanonicalPlaceOnboardingScopePolicy(lengthAdjusted, readChangedEntries(options.base, options.head))
+    : lengthAdjusted;
   writeReport(options.reportPath, report);
 
   console.log(`Place description v4.2.1: ${report.packetCount} pakker, ${report.readyPacketCount} ready, ${report.errorCount} blokkerende feil`);
   if (report.lengthPolicy.removedWordCountIssueCount) {
     console.log(`- ${report.lengthPolicy.removedWordCountIssueCount} ordtallsfunn ble behandlet som redaksjonell veiledning.`);
+  }
+  if (report.prScopePolicy?.removedGeneratedIndexIssueCount) {
+    console.log(`- ${report.prScopePolicy.removedGeneratedIndexIssueCount} generert indeks-funn ble tillatt for canonical Place-onboarding.`);
   }
   for (const issue of report.issues.slice(0, 100)) console.error(`- ${issue.code}: ${issue.message}`);
   if (report.issues.length > 100) console.error(`- ... ${report.issues.length - 100} flere feil`);
