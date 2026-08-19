@@ -23,11 +23,16 @@ function buildActualProseBindings(chapters){
   for(const ch of chapters){
     const domain=ch.primary_domain_id||ch.primaryDomainId;
     assert(domain&&ch.claimsFile,`Kapittel mangler domain/claims: ${ch.id}`);
-    assert(Array.isArray(ch.moduleFiles)&&ch.moduleFiles.length>=1,`Kapittel mangler moduleFiles for prose-proof: ${ch.id}`);
+    const chapterFile=`data/fagverk/film_tv/${ch.id}.json`;
+    assert(fs.existsSync(abs(chapterFile)),`Canonical Film & TV chapter file mangler for prose-proof: ${chapterFile}`);
+    const chapter=json(chapterFile);
+    assert((chapter.primary_domain_id||chapter.primaryDomainId)===domain,`Chapter/domain mismatch i prose-proof: ${ch.id}`);
+    assert(chapter.claimsFile===ch.claimsFile,`Chapter/registry claims mismatch i prose-proof: ${ch.id}`);
+    assert(Array.isArray(chapter.moduleFiles)&&chapter.moduleFiles.length>=1,`Kapittel mangler moduleFiles for prose-proof: ${ch.id}`);
     const ledger=json(ch.claimsFile);
     const claimById=new Map((ledger.claims||[]).map(c=>[c.id,c]));
 
-    for(const moduleFile of ch.moduleFiles){
+    for(const moduleFile of chapter.moduleFiles){
       assert(fs.existsSync(abs(moduleFile)),`Film & TV prose-module mangler: ${moduleFile}`);
       const module=json(moduleFile);
       assert(Array.isArray(module.sections)&&module.sections.length>=1,`Film & TV prose-module mangler sections: ${moduleFile}`);
