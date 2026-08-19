@@ -32,34 +32,49 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-      - name: Materialize canonical projections
+      - name: Materialize canonical projections with captured diagnostics
         run: |
-          set -euo pipefail
-          node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_before='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
-          node scripts/build-civication-scene-registry.mjs --write
-          node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_after_builder='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
-          node scripts/audit-civication-career-gameplay.mjs --write
-          node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_after_audit='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
-          node tests/civication-sport-trener-rollout-playability.test.js
-          git diff --check
+          set +e
+          mkdir -p reports
+          {
+            echo "start_sha=${{ github.event.pull_request.head.sha || github.sha }}"
+            echo "node=$(node --version)"
+            node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_before='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
+            node scripts/build-civication-scene-registry.mjs --write
+            node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_after_builder='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
+            node scripts/audit-civication-career-gameplay.mjs --write
+            node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_after_audit='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
+            node tests/civication-sport-trener-rollout-playability.test.js
+            git diff --check
+          } > reports/temp-sport-trener-materializer-diagnostic.txt 2>&1
+          status=$?
+          echo "$status" > .sport-trener-materializer-status
+          cat reports/temp-sport-trener-materializer-diagnostic.txt
+          echo "materializer_status=$status"
+          exit 0
 
-      - name: Commit generated projections only
+      - name: Commit diagnostic and successful projections
         env:
           START_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
         run: |
           set -euo pipefail
+          status="$(cat .sport-trener-materializer-status)"
           remote_sha="$(git ls-remote origin "refs/heads/${BRANCH_NAME}" | cut -f1)"
           if [ "$remote_sha" != "$START_SHA" ]; then
-            echo "Branch moved from ${START_SHA} to ${remote_sha}; refusing stale materialization."
+            echo "Branch moved from ${START_SHA} to ${remote_sha}; refusing stale diagnostic/materialization."
             exit 1
           fi
-          git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
-          if git diff --cached --quiet; then
-            echo "No projection changes to commit."
-            exit 0
+          git add reports/temp-sport-trener-materializer-diagnostic.txt
+          if [ "$status" = "0" ]; then
+            git add data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Materialize Sport trainer rollout projections"
-          git push origin "HEAD:${BRANCH_NAME}"
+          if git diff --cached --quiet; then
+            echo "No diagnostic or projection changes to commit."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Capture Sport trainer materializer result"
+            git push origin "HEAD:${BRANCH_NAME}"
+          fi
+          exit "$status"
