@@ -7,7 +7,7 @@ on:
     paths:
       - '.github/workflows/temp-civication-sport-trener-materialize.yml'
       - 'data/Civication/roleModels/sport/trener.json'
-      - 'data/Civication/mailFamilies/sport/people/sport_trener_people.json'
+      - 'data/Civication/mailFamilies/sport/**'
       - 'tests/civication-sport-trener-rollout-playability.test.js'
   pull_request:
     branches:
@@ -15,7 +15,7 @@ on:
     paths:
       - '.github/workflows/temp-civication-sport-trener-materialize.yml'
       - 'data/Civication/roleModels/sport/trener.json'
-      - 'data/Civication/mailFamilies/sport/people/sport_trener_people.json'
+      - 'data/Civication/mailFamilies/sport/**'
       - 'tests/civication-sport-trener-rollout-playability.test.js'
 
 permissions:
@@ -36,17 +36,16 @@ jobs:
         run: |
           set +e
           mkdir -p reports
-          {
+          (
+            set -euo pipefail
             echo "start_sha=${{ github.event.pull_request.head.sha || github.sha }}"
             echo "node=$(node --version)"
-            node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_before='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
+            node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people='+JSON.stringify({families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
             node scripts/build-civication-scene-registry.mjs --write
-            node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_after_builder='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
             node scripts/audit-civication-career-gameplay.mjs --write
-            node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_after_audit='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
             node tests/civication-sport-trener-rollout-playability.test.js
             git diff --check
-          } > reports/temp-sport-trener-materializer-diagnostic.txt 2>&1
+          ) > reports/temp-sport-trener-materializer-diagnostic.txt 2>&1
           status=$?
           echo "$status" > .sport-trener-materializer-status
           cat reports/temp-sport-trener-materializer-diagnostic.txt
