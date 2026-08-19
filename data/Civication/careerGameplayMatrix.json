@@ -37,14 +37,14 @@
         "missing": 5
       },
       "people": {
-        "complete": 15,
+        "complete": 16,
         "partial": 16,
-        "missing": 57
+        "missing": 56
       },
       "places": {
-        "complete": 23,
+        "complete": 24,
         "partial": 0,
-        "missing": 65
+        "missing": 64
       },
       "mail": {
         "complete": 21,
@@ -18069,8 +18069,8 @@
             "count": 8
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/people/sport_trener_people.json",
+            "count": 1
           },
           "conflict": {
             "path": null,
@@ -18103,7 +18103,8 @@
         },
         "role_tests": [
           "tests/civication-sport-life-career-split.test.js",
-          "tests/civication-sport-sportsledelse-rollout-playability.test.js"
+          "tests/civication-sport-sportsledelse-rollout-playability.test.js",
+          "tests/civication-sport-trener-rollout-playability.test.js"
         ],
         "life_story": null
       },
@@ -18123,7 +18124,8 @@
             "evidence": [
               "data/Civication/mailPlans/sport/sport_trener_plan.json",
               "tests/civication-sport-life-career-split.test.js",
-              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js",
+              "tests/civication-sport-trener-rollout-playability.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -18134,7 +18136,8 @@
               "data/Civication/mailPlans/sport/sport_trener_plan.json",
               "data/Civication/workGrammars/sport/sport_trener.json",
               "tests/civication-sport-life-career-split.test.js",
-              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js",
+              "tests/civication-sport-trener-rollout-playability.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
@@ -18147,22 +18150,32 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/sport/people/sport_trener_people.json",
+              "data/Civication/roleModels/sport/hovedtrener.json",
+              "data/Civication/roleModels/sport/trener.json",
+              "data/Civication/workGrammars/sport/sport_trener.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/sport/hovedtrener.json",
+              "data/Civication/roleModels/sport/trener.json",
+              "data/Civication/workGrammars/sport/sport_trener.json"
+            ],
+            "note": "6 place/working-surface declarations."
           },
           "mail": {
             "level": "partial",
             "evidence": [
               "data/Civication/mailFamilies/sport/job/sport_trener_job.json",
+              "data/Civication/mailFamilies/sport/people/sport_trener_people.json",
               "data/Civication/mailPlans/sport/sport_trener_plan.json"
             ],
-            "note": "1/9 standard mail types."
+            "note": "2/9 standard mail types."
           },
           "knowledge": {
             "level": "partial",
@@ -18204,7 +18217,8 @@
               "data/Civication/mailPlans/sport/sport_trener_plan.json",
               "tests/civication-career-outcomes.test.js",
               "tests/civication-sport-life-career-split.test.js",
-              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js",
+              "tests/civication-sport-trener-rollout-playability.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
           },
@@ -18240,14 +18254,13 @@
           }
         },
         "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "people",
+          "places",
           "quality_axes",
           "authority",
           "performance",
