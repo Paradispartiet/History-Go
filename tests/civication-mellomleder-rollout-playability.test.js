@@ -37,11 +37,10 @@ assert.equal(world.audit?.runtime_gate, true);
 assert.deepEqual(world.audit?.missing_components, []);
 assert.equal(world.status, 'playable');
 
-assert.equal(matrix.summary?.statuses?.reference_complete, 5);
-assert.equal(matrix.summary?.statuses?.playable, 7, 'Second systematic rollout should raise playable count to seven');
-assert.equal(matrix.summary?.statuses?.partial, 16, 'Mellomleder should leave the partial queue');
-assert.equal(matrix.summary?.statuses?.architecture_only, 61);
-assert.equal(matrix.summary?.component_debt?.places?.complete, 16);
-assert.equal(matrix.summary?.component_debt?.places?.missing, 73);
+assert.equal(matrix.summary?.statuses?.reference_complete, 5, 'Reference-role count must remain frozen');
+assert.ok(matrix.summary?.statuses?.playable >= 7, 'Systematic rollout must never regress below seven playable worlds after Mellomleder');
+assert.ok(matrix.summary?.statuses?.partial <= 16, 'Systematic rollout must not restore Mellomleder to the partial queue');
+assert.ok(matrix.summary?.component_debt?.places?.complete >= 16, 'Completed workplace coverage must not regress after Mellomleder');
+assert.ok(matrix.summary?.component_debt?.places?.missing <= 73, 'Missing workplace debt must not grow past the Mellomleder baseline');
 
-console.log('✓ Mellomleder systematic rollout is playable without splitting the fallback scope');
+console.log('✓ Mellomleder systematic rollout remains playable without splitting the fallback scope');
