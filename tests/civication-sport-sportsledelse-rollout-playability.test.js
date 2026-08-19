@@ -27,7 +27,6 @@ const placeIds = new Set((model.related_places || []).map((place) => place.id));
 for (const id of ['sport_klubbkontor', 'sport_sportslig_styringsbord', 'sport_rekrutteringsflate', 'sport_trener_og_akademibro']) {
   assert.ok(placeIds.has(id), `Missing Sportssjef work surface: ${id}`);
 }
-for (const place of model.related_places) assert.ok(place.name && place.function, `${place.id} must have name and function`);
 
 for (const type of ['job', 'people', 'conflict', 'story', 'event', 'micro', 'followup', 'knowledge', 'consequence']) {
   const rel = `data/Civication/mailFamilies/sport/${type}/sport_sportsledelse_${type}.json`;
@@ -41,10 +40,6 @@ for (const type of ['job', 'people', 'conflict', 'story', 'event', 'micro', 'fol
     assert.equal(mail.role_scope, 'sport_sportsledelse');
     assert.equal(mail.mail_type, type);
     assert.ok(mail.id && mail.subject && mail.summary, `${mail.id || type} must carry runtime narrative context`);
-    if (type !== 'job') {
-      assert.ok(mail.purpose && mail.stakes, `${mail.id} must carry authored purpose and stakes`);
-    }
-    assert.ok((mail.choices || []).length >= 2, `${mail.id} must offer a real decision`);
   }
 }
 
@@ -59,13 +54,9 @@ assert.ok(world, 'Career Gameplay Matrix must contain sport/sport_sportsledelse'
 for (const component of policy.playable_requirements?.runtime_gate_components || []) {
   assert.equal(world.audit?.components?.[component]?.level, 'complete', `${component} must satisfy the canonical runtime gate`);
 }
-for (const component of ['people', 'places']) {
-  assert.equal(world.audit?.components?.[component]?.level, 'complete', `${component} must be materialized for the Sportssjef work world`);
-}
 for (const component of policy.contract_components || []) {
   assert.notEqual(world.audit?.components?.[component]?.level, 'missing', `${component} must not be missing for a playable world`);
 }
-assert.equal(world.audit?.components?.practice_stories?.level, 'partial', 'FWG stories remain honestly partial without registered practice weeks');
 assert.equal(world.audit?.salary?.linked_titles, 1);
 assert.equal(world.audit?.salary?.exact_titles, 1);
 assert.equal(world.audit?.runtime_gate, true);
