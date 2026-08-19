@@ -1,9 +1,9 @@
 # History GO — canonical kontrakt for Fagverket og alle fagsider
 
-Status: **canonical og bindende fagverkskontrakt v7**
+Status: **canonical og bindende fagverkskontrakt v8**
 Eier: `fagverk_subject_page_architecture` og `fagverk_subject_page_production`
 Gjelder: alle canonicale fag i `data/categories/category_contract.json`
-Sist kontrollert: **2026-08-11**
+Sist kontrollert: **2026-08-19**
 
 Dette er den **eneste samlede kontrakten** for hvordan History GO bygger, materialiserer, kvalitetssikrer og ferdigstiller fagsidene i Fagverket.
 
@@ -14,8 +14,9 @@ Dokumentet eier:
 - den normaliserte runtime-modellen som alle fag skal vises gjennom;
 - produksjonsrekkefølgen fra planlagt fag til fullverdig læreverk;
 - statusbetydningene for teknisk materialisering og redaksjonell ferdigstillelse;
-- kvalitetskravene til fagområder, emner, metoder, kapitler, progresjon, steder, kilder og QA;
+- kvalitetskravene til fagområder, emner, teorier/modeller, metoder, kapitler, progresjon, steder, kilder og QA;
 - heldekningsregelen som krever alle faglig relevante emner uten forhåndsbestemte tallkvoter;
+- teori-, teoretiker- og modellintegritet per canonicalt hovedfelt;
 - PR- og batchreglene for å ferdigstille alle fagsidene uten parallelle systemer.
 
 Dokumentet eier **ikke** selve fagdefinisjonene, pensuminnholdet, quizreglene, Knowledge-lagringen, kategori-ID-ene eller faktapåstandene. Disse eies av kildene som er listet nedenfor.
@@ -54,7 +55,7 @@ Arbeid med Fagverket skal starte i denne rekkefølgen:
 1. [`documentation_registry.json`](./documentation_registry.json) — dokumentstatus, canonicalt eierskap og prioritet.
 2. [`FACTUALITY_CONTRACT.md`](./FACTUALITY_CONTRACT.md) — faktisitet, inspectable kilder, påstandssporing og forbud mot gjetting.
 3. [`DOMAIN_CONTRACT.md`](./DOMAIN_CONTRACT.md) og [`../data/categories/category_contract.json`](../data/categories/category_contract.json) — canonical fag-ID-er, rekkefølge, visningsnavn og kategoriavgrensning.
-4. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — én universell fagmodell per fag og separate geografiske produksjonslag.
+4. [`SUBJECT_FILE_CONTRACT.md`](./SUBJECT_FILE_CONTRACT.md) — én universell fagmodell per fag og separate geografiske produksjonslag. Den tverrfaglige maskinstandarden for teori-/modellintegritet ligger i [`../data/fag/fagverk_theory_quality_contract_v1.json`](../data/fag/fagverk_theory_quality_contract_v1.json).
 5. **Dette dokumentet** — fagsidearkitektur, materialisering, status, produksjonsrekkefølge og ferdigkrav.
 6. [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md) — den smale navigasjonskontrakten for portal, merkesider, fagsider, dypkoblinger og stedssider.
 7. [`../README/README.pensum.md`](../README/README.pensum.md) — forholdet mellom merke, fagkart, emner, quiz, Knowledge, learning log og pensumprogresjon.
@@ -158,6 +159,7 @@ Rolle:
 | Canonical fag-ID-er, rekkefølge og labels | `data/categories/category_contract.json` |
 | Fagets aktive filpekere | `data/fag/fag_manifest.json` |
 | Universell fagstruktur | fagets `pensum`, `emner`, `fagkart`, `methods` og tilhørende canonical filer |
+| Teori-, teoretiker- og modellkvalitet | `data/fag/fagverk_theory_quality_contract_v1.json`, subject-spesifikke theory/model-registre og permanent global audit |
 | Merkenavn, bilde, ikon, nivåer og undermerker | `data/badges/<subject_id>.json` og aktive badgekilder |
 | Fagverkportalens navigasjonsmål | `data/fagverk/fagverk_portal.json` |
 | Ferdigskrevne lærekapitler | `data/fagverk/fagverk_registry.json` og `data/fagverk/<subject_id>/<chapter_id>.json` |
@@ -246,6 +248,44 @@ Før `complete` må fagets dekningsgrunnlag dokumentere:
 7. at påstander, eksempler og metodebruk har tilstrekkelig inspectable evidens for innholdet de bærer.
 
 Det finnes ikke ett universelt emnetall som kan bevise disse punktene. Den maskinlesbare dekningsrapporten skal derfor rapportere faktiske tall og konkrete hull, mens pass/fail avgjøres av dokumentert dekning og integritet.
+
+### 5.2 Teori-, teoretiker- og modellkvalitet
+
+Teori-/modellkvalitet er et eget heldekningslag under denne kontrakten og `SUBJECT_FILE_CONTRACT.md`. Den maskinlesbare standarden er `data/fag/fagverk_theory_quality_contract_v1.json`.
+
+Fagtyper skal vurderes forskjellig:
+
+- **humaniora og teori-/fortolkningstunge samfunnsfag** skal ha relevante teorier/skoler, sentrale teoretikere eller forskere der tradisjonen krever det, konkrete verk/forskningsbidrag, rivaliserende perspektiver og faktisk bruk i prosa;
+- **naturvitenskap og formelle fag** skal primært vurderes etter modeller, lover, mekanismer, paradigmer, evidens, forutsetninger og gyldighetsområder; forskernavn kreves bare når de er faglig meningsfulle;
+- **teknologi, profesjonsfag og hybride fag** skal bruke teorier, modeller, standarder, empiriske rammeverk og sentrale forskningsbidrag med eksplisitte anvendelsesgrenser.
+
+Det finnes ingen felles kvote som «fire teoretikere per emne». For hvert canonicalt hovedfelt kreves i stedet et faglig bærende teori-/modellgrunnlag. Et omstridt felt skal ha minst én reell rival, alternativ forklaring eller rivaliserende lesning når dette finnes i fagtradisjonen.
+
+Et teori-/modellobjekt skal minst kunne dokumentere:
+
+- identitet eller label;
+- canonicalt hovedfelt og relevante emner/claims;
+- `scope`;
+- kjernepåstand eller mekanisme;
+- forutsetninger når de er relevante;
+- evidens- eller observasjonsgrunnlag;
+- hva teorien/modellen forklarer eller tolker;
+- begrensninger eller gyldighetsområde;
+- rival/alternativ når feltet er omstridt;
+- konkrete verk eller forskningsbidrag for navngitte personer;
+- faglig passende scholarly sources;
+- faktisk binding til canonical prosa eller claims.
+
+Følgende er **ikke** tilstrekkelig teori-/modellbevis:
+
+- en navneliste med Bourdieu, Foucault, Darwin eller andre personer uten konkret faglig binding;
+- aggregate tellergrenser for hele faget uten hovedfelt-for-hovedfelt-evidens;
+- samme generiske teorisett gjentatt på tvers av urelaterte hovedfelt;
+- teori som bare finnes i metadata eller quiz, men ikke i faktisk fagtekst/claims;
+- en universitets-, kurs- eller programside som eneste dokumentasjon for selve teorien;
+- spørsmål av typen «hvem mente X?» som hovedform for teoriundervisning.
+
+Eksisterende `complete`-status skal ikke åpnes bare fordi denne porten innføres. Et fag skal repareres eller statusvurderes på nytt bare når den strengere auditen avdekker en faktisk substansiell kvalitetsfeil.
 
 `popkultur`/`populaerkultur` er ikke en egen toppkategori når kategorikontrakten behandler feltet som underfelt eller legacy-alias. Fagsidemotoren skal ikke gjeninnføre avviklede toppdomener gjennom lokal hardkoding.
 
@@ -577,9 +617,10 @@ Et fag kan først settes til `complete` når alle krav til `structure_ready` er 
 9. quiz- og Knowledge-koblinger bruker eksisterende kontrakter og ID-er;
 10. full fag-, link-, schema-, TypeScript-, browser- og dokumentasjonsaudit passerer;
 11. det finnes ingen uavklarte duplikater, døde ruter, ukjente ID-er eller lokale fagkopier;
-12. statusregisteret og dekningsrapporten er synkronisert med faktisk materialisert innhold og rapporterer tall som inventar, ikke som målkvoter.
+12. statusregisteret og dekningsrapporten er synkronisert med faktisk materialisert innhold og rapporterer tall som inventar, ikke som målkvoter;
+13. den permanente teori-/teoretiker-/modellintegritetsporten viser at hvert canonicalt hovedfelt har relevant faglig grunnlag, at omstridte felt har reell rival/alternativ der relevant, at navngitte personer er bundet til reelle verk/bidrag, og at teori/modell er brukt i faktisk prosa eller claims med faglig passende scholarly sources.
 
-`complete` er en streng publiseringsstatus, ikke en fremdriftsmarkør.
+`complete` er en streng publiseringsstatus, ikke en fremdriftsmarkør. Innføring eller skjerping av teoriintegritetsporten skal ikke alene degradere et allerede `complete` fag; en statusendring krever et dokumentert substansielt kvalitetsgap.
 
 ---
 
@@ -737,6 +778,25 @@ Kapittel: <chapter_id>
 [ ] Kapittelet har nødvendig omfang uten fyllstoff eller kunstig oppsplitting
 ```
 
+### 14.1 Teori-, teoretiker- og modellkvalitetsprogram
+
+Dette arbeidskortet er bindende for det tverrfaglige kvalitetsprogrammet. Det skal gjennomføres **audit først, reparasjon etterpå**, uten å produsere ferdige fag på nytt.
+
+```text
+[ ] 1. Felles standard er låst etter fagtype: theorist/rival, hybrid eller model/evidence; ingen kunstig universell teoretikerkvote.
+[ ] 2. Én read-only cross-Fagverk audit måler alle canonicale fag og hovedfelt uten å skrive faginnhold.
+[ ] 3. Minimumskrav er kvalitative: bærende teori/modell, evidens, begrensninger, reell rival der relevant og faktisk innholdsbinding; mange navn alene teller ikke.
+[ ] 4. Baseline er kjørt på alle fag før reparasjon og skiller mellom allerede sterk struktur, ustrukturert eksisterende evidens og reelle faglige hull.
+[ ] 5. Reparasjoner gjøres fag for fag i avgrensede PR-er; canonicale emner/kapitler beholdes og prosa omskrives bare ved faktisk teorimangel.
+[ ] 6. Hver teori/modell følger fast kvalitetsmal: identitet, hovedfelt, scope, mekanisme/kjernepåstand, forutsetninger, evidens, hva den forklarer/tolker, begrensninger, rival/alternativ, verk/bidrag, scholarly sources og faktisk emne/claim/prosabinding.
+[ ] 7. Permanent integritetsport feiler på pynteteori, manglende verk/bidrag, generisk teoripadding, manglende rival i omstridte felt, metadata-/quiz-only teori og akademisk utilstrekkelig provenance.
+[ ] 8. Teorinavn brukes ikke som trivia; teori brukes til forklaring, tolkning, mekanismetesting, sammenligning eller avgrensning.
+[ ] 9. Etter fagvise reparasjoner kobler én liten reconciliation-PR subject-auditer til den globale porten og den permanente maskinlesbare rapporten.
+[ ] 10. Programmet er først ferdig når alle canonicale hovedfelt består, alle relevante rivaler/provenance/bindings er dokumentert og den globale read-only porten er grønn på main.
+```
+
+En baseline som bare sier `18/18 strong_structured_evidence` etter aggregerte fagtall er ikke alene bevis for punkt 10. Sluttporten skal være hovedfelt-for-hovedfelt og må bevise den konkrete teori-/modell- og innholdsbindingen.
+
 ---
 
 ## 15. PR- og batchregel
@@ -825,11 +885,27 @@ Fagverk-workflowen skal etter hvert håndheve minst:
 - ingen fast emne-, kapittel-, modul-, seksjons-, claim-, kilde- eller oppgavekvote brukes som redaksjonelt ferdigbevis;
 - emnedefinisjoner og begrepslister er ikke håndkopiert som parallelle sannheter.
 
-### 16.5 Dokumentasjon
+### 16.5 Teori-, teoretiker- og modellintegritet
+
+Den globale porten skal være read-only og hovedfelt-for-hovedfelt. Den skal minst feile når:
+
+- et canonicalt hovedfelt mangler relevant bærende teori, modell, mekanisme, lov, paradigme eller rammeverk;
+- et omstridt felt mangler reell rival, alternativ forklaring eller rivaliserende lesning der dette er faglig relevant;
+- en navngitt teoretiker/forsker ikke kan bindes til et konkret verk eller forskningsbidrag og scholarly source;
+- teori/modell bare finnes i metadata eller quiz, men ikke i faktisk prosa/claims;
+- samme generiske teorisett brukes til å fylle flere urelaterte hovedfelt;
+- teori-/modellobjektet mangler `scope`, evidensgrunnlag eller eksplisitt begrensning/gyldighetsområde;
+- en universitets-, kurs- eller programside er eneste dokumentasjon for selve teorien;
+- aggregerte fagtall brukes som erstatning for konkret hovedfeltsevidens.
+
+Porten skal rapportere grønt/gult/rødt per fag **og per canonicalt hovedfelt**, samt konkrete manglende signaler og hvilken teori-/modellbinding som eventuelt bærer pass. Subject-spesifikke strengere porter beholdes og kobles inn i den globale reconciliation-porten; de skal ikke svekkes for å passe et felles minsteformat.
+
+### 16.6 Dokumentasjon
 
 - dette dokumentet finnes og beholder canonical status;
 - navigasjonsdokumentet peker hit for full produksjonsarkitektur;
 - dokumentasjonskartet og den korte repo-inngangen peker hit;
+- `SUBJECT_FILE_CONTRACT.md` og `data/fag/fagverk_theory_quality_contract_v1.json` uttrykker samme teori-/modellintegritetsgrense;
 - alle eksplisitte dokument- og datareferanser i denne kontrakten finnes;
 - politikkspesifikk implementasjonsstatus kan ikke igjen bli omtalt som kontrakt for alle fag.
 
@@ -863,7 +939,8 @@ Fagverksprogrammet kan først omtales som ferdig når:
 7. ingen kategori har en parallell HTML-, data- eller progresjonsarkitektur;
 8. alle navigation-, data-, content-, TypeScript-, browser-, link- og dokumentasjonsporter er grønne;
 9. teknisk og redaksjonell status er maskinlesbar, etterprøvbar og synkronisert;
-10. portalens **Åpne faget** leder til et reelt læreverk for hvert canonicalt fag.
+10. portalens **Åpne faget** leder til et reelt læreverk for hvert canonicalt fag;
+11. den globale teori-/teoretiker-/modellintegritetsporten er grønn på `main` med konkret hovedfelt-for-hovedfelt-evidens, tom reell reparasjonskø og uten å bruke aggregerte tellergrenser som sluttbevis.
 
 ---
 
