@@ -53,7 +53,13 @@ for (const key of referenceKeys) {
   assert.equal(world.status, 'reference_complete', `${key} must remain reference_complete`);
 }
 
-assert.equal(matrix.summary.work_worlds, 89);
+assert.equal(matrix.summary.discovered_worlds, 89, 'Discovery inventory remains complete across canonical and support namespaces');
+assert.equal(matrix.summary.work_worlds, 88, 'Only canonical runtime categories count as career work worlds');
+assert.equal(matrix.summary.support_worlds, 1, 'Exactly one discovered legacy support world is excluded from career rollout');
+const barnehageSupport = (matrix.support_worlds || []).find(candidate => candidate.key === 'sosial_laering/barnehageassistent');
+assert.ok(barnehageSupport, 'Barnehageassistent remains discoverable as legacy support content');
+assert.equal(barnehageSupport.career_status, 'not_applicable');
+assert.equal(barnehageSupport.content_only_life_story, true);
 assert.equal(matrix.summary.statuses.reference_complete, 5);
 assert.ok(matrix.summary.statuses.partial > 0 || matrix.summary.statuses.architecture_only > 0,
   'systematic rollout must still have real remaining work; closure must not fake global completion');
