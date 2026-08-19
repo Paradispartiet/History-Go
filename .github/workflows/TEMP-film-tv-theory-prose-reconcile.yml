@@ -27,11 +27,11 @@ jobs:
           node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
           node scripts/audit-fagverk-theory-integrity.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
-      - name: Commit generated reconciliation and self-clean
+      - name: Commit generated reconciliation
         run: |
-          rm .github/workflows/TEMP-film-tv-theory-prose-reconcile.yml
-          git add reports/fagverk/fagverk-theory-integrity-audit.json .github/workflows/TEMP-film-tv-theory-prose-reconcile.yml
+          git add reports/fagverk/fagverk-theory-integrity-audit.json
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git diff --cached --quiet && exit 0
           git commit -m "reconcile(fagverk): materialize Film TV strict proof"
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
