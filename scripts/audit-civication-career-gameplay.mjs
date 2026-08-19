@@ -17,7 +17,6 @@ const roleAliases = new Map([
   ['by/saksbehandler_plan_bygg', 'by_saksbehandler'],
   ['by/studentassistent', 'by_assistent'],
   ['naeringsliv/ekspeditor_butikkmedarbeider', 'ekspeditor'],
-  ['naeringsliv/fagarbeider', 'arbeider'],
   ['naeringsliv/formann_arbeidsleder', 'formann'],
   ['naeringsliv/kapitalforvalter', 'mellomleder'],
   ['naeringsliv/okonomi_og_administrasjonsmedarbeider', 'administrasjonsmedarbeider'],
