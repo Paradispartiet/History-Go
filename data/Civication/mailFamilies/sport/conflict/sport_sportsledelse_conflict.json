@@ -1,0 +1,15 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"sport","role_scope":"sport_sportsledelse","mail_type":"conflict",
+  "families":[{"id":"resultatpress_og_mandat","purpose":"Tester sportslig ledelse når resultatpress kolliderer med begrunnet ansvar og fullmakt.","learning_focus":["treneroppfolging","mandat","resultatpress"],"mails":[{
+    "id":"sport_sports_conflict_trener_001","mail_type":"conflict","mail_family":"resultatpress_og_mandat","role_scope":"sport_sportsledelse","phase":"afternoon","priority":68,"cooldown":2,"repeatable":false,"stage":"stable_warning",
+    "from":"styreleder_karin","sender":"styreleder_karin","person_id":"styreleder_karin","place_id":"sport_sportslig_styringsbord",
+    "subject":"Styret vil ha trenergrep før evalueringen er ferdig","summary":"Karin ber om en synlig reaksjon etter nye poengtap, men trenerbildet består fortsatt av skader, stallbalanse og noen reelle metodiske problemer.",
+    "purpose":"Teste om sportssjefen skiller resultatpress fra dokumentert beslutningsgrunnlag.","stakes":"Et raskt trenergrep kan gi ro; et begrunnet evalueringsspor kan se tregere ut, men beskytter klubbens styring og arbeidsgiveransvar.",
+    "situation":["Resultatene er svake og supporterne krever handling.","Treneren har både forhold som taler til hans fordel og faglige problemer som må vurderes.","Styreleder vil vite om du anbefaler et grep nå."],
+    "task_domain":"trenerbeslutning","task_kind":"conflict","competency":"begrunnet_ledelse","pressure":"symbolsk_handling_vs_evaluering","choice_axis":"fullfor_evaluering_vs_anbefale_raskt_grep","consequence_axis":"langsiktig_tillit_vs_kortsiktig_ro","narrative_arc":"Sportssjefen lærer at resultatpress ikke gjør et svakt beslutningsgrunnlag sterkere.",
+    "choices":[
+      {"id":"A","label":"Fullfør den avtalte evalueringen og vis hvilke funn som faktisk kan bære et trenergrep","reply":"Jeg fullfører evalueringen med tydelige kriterier og legger fram hvilke funn som faktisk kan bære en trenerbeslutning.","effect":1,"tags":["evaluation","authority","trust"],"feedback":"Styret får et tregere, men mer robust grunnlag som skiller resultatstøy fra faktisk treneransvar."},
+      {"id":"B","label":"Anbefal et raskt trenergrep for å gjenopprette handlingskraft","reply":"Jeg anbefaler et raskt trenergrep for å vise at klubben reagerer på utviklingen.","effect":-1,"tags":["panic","coach","risk"],"feedback":"Presset kan falle kort, men klubben har gjort en stor beslutning før kriteriene er ferdig vurdert."}
+    ]
+  }]}]
+}

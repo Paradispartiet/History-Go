@@ -526,3 +526,69 @@ test("Lokal evidens skiller regional ramme, direkte korpus og separate språk", 
   assert.match(contract, /regionalt målmerke/i);
   assert.match(contract, /separate språk[^\n]*dialekttrekk/i);
 });
+
+// SPRÅKATLAS → PLACES V1
+test("Språkatlas kobler bare eksplisitte talemåls-Places til lokale profiler", () => {
+  const atlas = json("data/leksikon/sprak/norge_atlas_v1.json");
+  const schema = json("data/leksikon/sprak/schema_v2.json");
+  const places = loadPlacesById();
+  const localsByName = new Map((atlas.local_varieties || []).map(row => [text(row.name), row]));
+  assert.equal(schema.properties.atlas_local_ids.type, "array");
+  assert.match(schema.properties.atlas_local_ids.description, /navigasjonsrelasjon.*aldri.*eierskap/i);
+
+  const expectedNew = new Map([
+    ["bergen", "Bergen"],
+    ["valle_setesdal", "Valle i Setesdal"],
+    ["narvik", "Narvik"],
+    ["aal", "Ål"]
+  ]);
+  for (const [placeId, profileName] of expectedNew) {
+    const place = places.get(placeId);
+    assert.ok(place, `${placeId}: canonical Place mangler`);
+    assert.equal(place.placeScope, "area", `${placeId}: talemålsankeret må være placeScope=area`);
+    const relative = languageManifest.place_files?.[placeId];
+    assert.ok(relative, `${placeId}: språkfil mangler i manifest`);
+    const article = json(relative);
+    const profile = localsByName.get(profileName);
+    assert.ok(profile && profile.profile_status === "evidence_materialized", `${profileName}: trenger evidensmaterialisert atlasprofil`);
+    assert.deepEqual(article.atlas_local_ids, [profile.id], `${placeId}: feil lokal atlasprofil`);
+    assert.equal((article.entries || []).length, 0, `${placeId}: lokale atlasbelegg skal ikke dupliseres som Place-entries`);
+    assert.ok((profile.feature_evidence || []).length >= 4, `${profileName}: atlasprofilen må eie de konkrete beleggpunktene`);
+  }
+
+  const explicitExisting = new Map([
+    ["frogner", "oslo_local_speech"],
+    ["holmlia", "oslo_local_speech"],
+    ["sagene", "oslo_local_speech"],
+    ["vaalerenga", "oslo_local_speech"],
+    ["svartlamon_trondheim", "trondheim_local_speech"]
+  ]);
+  for (const [placeId, localId] of explicitExisting) {
+    assert.deepEqual(json(languageManifest.place_files[placeId]).atlas_local_ids, [localId]);
+  }
+
+  for (const placeId of ["bislett_stadion", "gronland_basarene", "karl_johan", "regjeringskvartalet", "tinghuset", "torggata"]) {
+    assert.equal(json(languageManifest.place_files[placeId]).atlas_local_ids, undefined, `${placeId}: generisk språkinnhold skal ikke feilmerkes som oslomål`);
+  }
+});
+
+test("Språkatlas → Places bruker canonical manifest og sentral kartnavigasjon også for atlas-only Places", () => {
+  const runtime = read("js/ui/place-language-layer.js");
+  const css = read("css/place-language-layer.css");
+  const contract = read("docs/SPRAKLEKSIKON.md");
+
+  assert.match(runtime, /loadAtlasPlaceLinks/);
+  assert.match(runtime, /manifest\?\.place_files/);
+  assert.match(runtime, /kind === "local"\) return row\.localIds\.includes\(id\)/);
+  assert.match(runtime, /data-atlas-selection-places/);
+  assert.match(runtime, /data-atlas-open-place/);
+  assert.match(runtime, /HGMapView\?\.openPlace/);
+  assert.doesNotMatch(runtime, /fallbackPlace[\s\S]{0,160}openPlaceCard/);
+  assert.match(runtime, /if \(!entries\.length && !atlasTarget\) return/);
+  assert.match(runtime, /Dokumentert talemålsprofil/);
+  assert.match(runtime, /Se talemålet i Språkatlas/);
+  assert.match(runtime, /ikke en fullstendig oversikt over hvor talemålet finnes/i);
+  assert.match(css, /hg-language-atlas-place-links/);
+  assert.match(contract, /lokale profiler matches bare via eksplisitt.*atlas_local_ids/i);
+});
+// /SPRÅKATLAS → PLACES V1

@@ -1,0 +1,42 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "lager_og_driftsmedarbeider",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "lager_drift_feilens_etterliv",
+      "description": "Historier som viser hvordan små lagerfeil lever videre gjennom plukk, levering og telling.",
+      "learning_focus": ["feilens_etterliv", "telling", "årsak", "læring"],
+      "mails": [
+        {
+          "id": "story_lager_drift_difference_returns",
+          "mail_type": "story",
+          "mail_family": "lager_drift_feilens_etterliv",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "story_message",
+          "phase": "mid",
+          "priority": 79,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Differansen som kom tilbake",
+          "summary": "En gammel lokasjonsfeil dukker opp igjen som feilplukk og lagerdifferanse.",
+          "situation": [
+            "Fra drift: Butikken fikk feil variant, og tellingen viser samtidig én vare for lite på systemlokasjonen.",
+            "Fra System: Forrige uke ble samme varenummer midlertidig flyttet etter plassmangel. Etterregistrering kan ikke dokumenteres."
+          ],
+          "choices": [
+            {"id":"A","label":"Spore kjeden fra mottak til feilplukk","reply":"Jeg følger varebevegelsen bakover, dokumenterer sannsynlig årsak og retter både fysisk plassering og systemspor.","effects":{"traceability":3,"process_quality":3,"future_risk":-2,"stress":1},"next_bias":{"set_flags":["lager_drift_traces_error_chain"]},"triggers_on_choice":"lager_drift_traces_error_chain","feedback":"Feilen blir til læring fordi du finner hvordan den flyttet seg, ikke bare hvor den endte."},
+            {"id":"B","label":"Rette beholdningen og gå videre","reply":"Jeg korrigerer beholdningen til fysisk telling og sørger for at riktig vare sendes nå.","effects":{"flow":2,"accuracy":1,"traceability":-1,"future_risk":1},"next_bias":{"set_flags":["lager_drift_corrects_without_root_cause"]},"triggers_on_choice":"lager_drift_corrects_without_root_cause","feedback":"Dagens tall stemmer bedre. Årsaken som skapte forskjellen kan fortsatt gjøre det igjen."},
+            {"id":"C","label":"Forklare differansen som vanlig svinn","reply":"Jeg registrerer differansen som svinn og avslutter saken.","effects":{"flow":2,"traceability":-3,"future_risk":3,"stagnation":1},"next_bias":{"set_flags":["lager_drift_labels_unknown_as_shrinkage"]},"triggers_on_choice":"lager_drift_labels_unknown_as_shrinkage","feedback":"Et navn på differansen er ikke det samme som en forklaring."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

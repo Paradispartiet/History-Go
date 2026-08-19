@@ -1,0 +1,17 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"by","role_scope":"by_saksbehandler","mail_type":"followup",
+  "families":[{"id":"saksoppfolging","purpose":"Viser hvordan tidlig dokumentasjons- og skjønnsarbeid får betydning når saken utvikler seg.","learning_focus":["oppfolging","begrunnelse","journal"],"mails":[{
+    "id":"by_saksbehandler_followup_hoyde_001","mail_type":"followup","mail_family":"saksoppfolging","role_scope":"by_saksbehandler","thread_key":"by_saksbehandler.case.hoyde_nabovirkning_og_klage","phase":"afternoon","priority":66,"cooldown":2,"repeatable":false,"stage":"advanced",
+    "from":"anne_planseksjon","sender":"anne_planseksjon","person_id":"anne_planseksjon","place_id":"nabomerknads_og_vedtaksgrunnlag",
+    "subject":"Det nye snittet endrer høydevirkningen som naboen beskrev",
+    "summary":"Søker har sendt det manglende snittet, og det viser at volumet faktisk ligger nærmere nabomerknadens beskrivelse enn det opprinnelige materialet antydet.",
+    "purpose":"Teste om saksbehandleren oppdaterer vurderingen åpent når nytt faktum endrer et sentralt premiss.",
+    "stakes":"Å holde den første vurderingen stabil sparer arbeid; å revidere tydelig beskytter saken mot at nytt faktum behandles som ubehagelig støy.",
+    "situation":["Det manglende snittet er nå levert.","Høyden mot bakgården framstår større enn den første tegningspakken gjorde tydelig.","Nabomerknaden om lys og innsyn får derfor et sterkere faktisk grunnlag."],
+    "task_domain":"oppdatert_faktum","task_kind":"followup","competency":"revisjon_av_vurderingsgrunnlag","pressure":"stabil_sak_vs_nytt_faktum","choice_axis":"revidere_apent_vs_minimere_endring","consequence_axis":"tillit_vs_saksflyt","narrative_arc":"Saksbehandleren lærer at et robust saksgrunnlag må kunne endres når bedre faktum kommer inn.",
+    "choices":[
+      {"id":"A","label":"Revider faktum- og skjønnsdelen og vis eksplisitt hva det nye snittet endrer","reply":"Jeg oppdaterer vurderingen og viser hvilke tidligere antakelser det nye snittet erstatter og hvordan det påvirker nabovirkningen.","effect":1,"tags":["followup","new_evidence","reasoning"],"feedback":"Saken blir mer arbeid nå, men beslutningsgrunnlaget viser tydelig hvorfor vurderingen utviklet seg."},
+      {"id":"B","label":"Legg snittet til saken og juster bare konklusjonen der det er nødvendig","reply":"Jeg legger det nye snittet til saken og justerer konklusjonen uten å skrive om hele vurderingssporet.","effect":-1,"tags":["shortcut","risk"],"feedback":"Saken går raskere videre, men senere lesere får vanskeligere for å se hvorfor vurderingen endret seg."}
+    ]
+  }]}]
+}

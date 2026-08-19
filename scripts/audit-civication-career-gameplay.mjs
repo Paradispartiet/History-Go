@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const POLICY_PATH = 'data/Civication/careerGameplayPolicy.json';
+const CATEGORY_CONTRACT_PATH = 'data/categories/category_contract.json';
 const MATRIX_PATH = 'data/Civication/careerGameplayMatrix.json';
 const REPORT_PATH = 'reports/civication-career-gameplay-matrix.md';
 const MAIL_TYPES = ['job', 'people', 'conflict', 'story', 'event', 'micro', 'followup', 'knowledge', 'consequence'];
@@ -17,7 +18,6 @@ const roleAliases = new Map([
   ['by/saksbehandler_plan_bygg', 'by_saksbehandler'],
   ['by/studentassistent', 'by_assistent'],
   ['naeringsliv/ekspeditor_butikkmedarbeider', 'ekspeditor'],
-  ['naeringsliv/fagarbeider', 'arbeider'],
   ['naeringsliv/formann_arbeidsleder', 'formann'],
   ['naeringsliv/kapitalforvalter', 'mellomleder'],
   ['naeringsliv/okonomi_og_administrasjonsmedarbeider', 'administrasjonsmedarbeider'],
@@ -95,6 +95,9 @@ function applyOverlays(badges) {
 }
 
 const policy = readJson(POLICY_PATH);
+const categoryContract = readJson(CATEGORY_CONTRACT_PATH);
+const canonicalCategories = new Set(categoryContract.runtimeCategories || []);
+if (!canonicalCategories.size) throw new Error('Category contract exposes no canonical runtime categories.');
 const contractComponents = policy.contract_components || [];
 const worlds = new Map();
 function upsert(category, roleScope, source, extra = {}) {
@@ -307,9 +310,17 @@ for (const world of worlds.values()) {
   const hasNegativeOutcome = outcomeKeys.some((key) => /fire|risk|stagn|fail|collapse/i.test(key));
 
   const badge = badges.get(world.category);
+  const badgeTiers = badge?.tiers || [];
   const tierRows = world.badge_titles.map((title) => {
-    const index = (badge?.tiers || []).findIndex((tier) => String(tier.label || '') === title);
-    const tier = index >= 0 ? badge.tiers[index] : null;
+    let index = badgeTiers.findIndex((tier) => String(tier.label || '') === title);
+    if (index < 0) {
+      index = badgeTiers.findIndex((tier) => {
+        const candidate = tier?.career_unlock || tier?.career_offer || null;
+        return String(candidate?.title || '') === title &&
+          (!candidate?.role_scope || String(candidate.role_scope) === world.role_scope);
+      });
+    }
+    const tier = index >= 0 ? badgeTiers[index] : null;
     const contract = tier?.career_unlock || tier?.career_offer || null;
     const audit = careerPolicies.get(`${world.category}/${title}`) || null;
     const policyName = String(contract?.policy || audit?.offer_policy || '');
@@ -424,13 +435,29 @@ for (const world of worlds.values()) {
   };
 }
 
-const sortedWorlds = [...worlds.values()].sort((a, b) => a.category.localeCompare(b.category) || a.role_scope.localeCompare(b.role_scope));
-const duplicateKeys = sortedWorlds.map((world) => world.key).filter((key, index, all) => all.indexOf(key) !== index);
+const auditedWorlds = [...worlds.values()].sort((a, b) => a.category.localeCompare(b.category) || a.role_scope.localeCompare(b.role_scope));
+const duplicateKeys = auditedWorlds.map((world) => world.key).filter((key, index, all) => all.indexOf(key) !== index);
 if (duplicateKeys.length) throw new Error(`Duplicate work worlds: ${uniq(duplicateKeys).join(', ')}`);
+
+const supportWorlds = auditedWorlds.filter((world) => !canonicalCategories.has(world.category));
+const sortedWorlds = auditedWorlds.filter((world) => canonicalCategories.has(world.category));
+for (const world of supportWorlds) {
+  if (world.declared_by.includes('badgeRoleMappings')) throw new Error(`${world.key}: noncanonical category cannot own a Badge career mapping`);
+}
 for (const world of sortedWorlds) {
   if (world.status === 'playable' && !world.audit.runtime_gate) throw new Error(`${world.key}: playable without runtime gate`);
   if (world.status === 'reference_complete' && (!world.audit.runtime_gate || !world.audit.life_story_complete || world.audit.complete_components.length !== contractComponents.length)) throw new Error(`${world.key}: invalid reference_complete classification`);
 }
+const supportRows = supportWorlds.map((world) => ({
+  key: world.key,
+  category: world.category,
+  role_scope: world.role_scope,
+  declared_by: world.declared_by,
+  role_ids: world.role_ids,
+  career_status: 'not_applicable',
+  reason: world.artifacts.life_story?.content_only ? 'content_only_legacy_namespace' : 'noncanonical_category',
+  content_only_life_story: Boolean(world.artifacts.life_story?.content_only)
+}));
 
 const counts = Object.fromEntries((policy.status_order || []).map((status) => [status, sortedWorlds.filter((world) => world.status === status).length]));
 const componentDebt = Object.fromEntries(contractComponents.map((name) => [name, {
@@ -444,19 +471,24 @@ const matrix = {
   generated_by: 'scripts/audit-civication-career-gameplay.mjs',
   policy: POLICY_PATH,
   summary: {
+    discovered_worlds: auditedWorlds.length,
     work_worlds: sortedWorlds.length,
+    support_worlds: supportRows.length,
     statuses: counts,
     runtime_gate_pass: sortedWorlds.filter((world) => world.audit.runtime_gate).length,
     life_story_complete: sortedWorlds.filter((world) => world.audit.life_story_complete).length,
     component_debt: componentDebt
   },
-  worlds: sortedWorlds
+  worlds: sortedWorlds,
+  support_worlds: supportRows
 };
 
 function esc(value) { return String(value ?? '—').replaceAll('|', '\\|').replaceAll('\n', '<br>'); }
 function mdReport() {
   const lines = ['# Civication Career Gameplay Matrix', '', 'Generated by `node scripts/audit-civication-career-gameplay.mjs --write`. Canonical intent lives in `data/Civication/careerGameplayPolicy.json`.', '', '## Summary', ''];
-  lines.push(`- Work worlds: **${matrix.summary.work_worlds}**`);
+  lines.push(`- Discovered work/support worlds: **${matrix.summary.discovered_worlds}**`);
+  lines.push(`- Canonical career work worlds: **${matrix.summary.work_worlds}**`);
+  lines.push(`- Noncanonical support worlds excluded from rollout: **${matrix.summary.support_worlds}**`);
   for (const status of policy.status_order || []) lines.push(`- ${status}: **${counts[status] || 0}**`);
   lines.push(`- Runtime gameplay gate passed: **${matrix.summary.runtime_gate_pass}**`);
   lines.push(`- Active Life Story bindings: **${matrix.summary.life_story_complete}**`);
@@ -477,12 +509,16 @@ function mdReport() {
     const world = worlds.get(key);
     lines.push(`| ${esc(key)} | ${esc(world?.status || 'missing')} | ${world?.audit?.runtime_gate ? 'pass' : 'fail'} | ${world?.audit?.complete_components?.length || 0}/${contractComponents.length} | ${esc(world?.audit?.practice_weeks?.join(', ') || '—')} | ${world?.audit?.life_story_complete ? 'ja' : 'nei'} |`);
   }
+  lines.push('', '## Noncanonical support worlds', '', '| work world | career status | reason | content-only Life Story |', '| --- | --- | --- | --- |');
+  for (const world of supportRows) {
+    lines.push(`| ${esc(world.key)} | ${world.career_status} | ${esc(world.reason)} | ${world.content_only_life_story ? 'ja' : 'nei'} |`);
+  }
   lines.push('', '## Global matrix', '', '| category | role_scope | status | gate | roleModel | FWG | plan | mail types | complete | partial | missing | Life Story |', '| --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- |');
   for (const world of sortedWorlds) {
     const levels = contractComponents.map((name) => world.audit.components[name].level);
     lines.push(`| ${esc(world.category)} | ${esc(world.role_scope)} | ${world.status} | ${world.audit.runtime_gate ? 'pass' : 'fail'} | ${world.artifacts.role_models.length ? 'ja' : 'nei'} | ${world.artifacts.work_grammar || world.artifacts.shared_work_grammars.length ? 'ja' : 'nei'} | ${world.artifacts.mail_plan ? 'ja' : 'nei'} | ${Object.values(world.artifacts.mail_families).filter((item) => item.count > 0).length}/${MAIL_TYPES.length} | ${levels.filter((level) => level === 'complete').length} | ${levels.filter((level) => level === 'partial').length} | ${esc(world.audit.missing_components.join(', ') || '—')} | ${world.audit.life_story_complete ? 'ja' : 'nei'} |`);
   }
-  lines.push('', '## Interpretation', '', '- `architecture_only` is not an error: it names work worlds that have been designed but cannot yet drive a workday.', '- `partial` is intentionally broad and includes strong content packages whose full offer/day/consequence/salary path is not yet proven.', '- Only the generated status may be used in planning. A Badge tier, roleModel or FWG must not be called playable on its own.', '');
+  lines.push('', '## Interpretation', '', '- `architecture_only` is not an error: it names work worlds that have been designed but cannot yet drive a workday.', '- `partial` is intentionally broad and includes strong content packages whose full offer/day/consequence/salary path is not yet proven.', '- Noncanonical namespaces are retained as support content but are excluded from career statuses and rollout planning.', '- Only the generated status may be used in planning. A Badge tier, roleModel or FWG must not be called playable on its own.', '');
   return lines.join('\n');
 }
 
@@ -494,7 +530,7 @@ if (write && check) throw new Error('Choose either --write or --check.');
 if (write) {
   fs.writeFileSync(abs(MATRIX_PATH), matrixText);
   fs.writeFileSync(abs(REPORT_PATH), reportText);
-  console.log(`Wrote ${sortedWorlds.length} work worlds to ${MATRIX_PATH} and ${REPORT_PATH}.`);
+  console.log(`Wrote ${sortedWorlds.length} canonical career worlds and ${supportRows.length} support worlds to ${MATRIX_PATH} and ${REPORT_PATH}.`);
 } else if (check) {
   for (const [rel, expected] of [[MATRIX_PATH, matrixText], [REPORT_PATH, reportText]]) {
     if (!exists(rel) || fs.readFileSync(abs(rel), 'utf8') !== expected) {
@@ -502,7 +538,7 @@ if (write) {
       process.exit(1);
     }
   }
-  console.log(`Career Gameplay Matrix check passed: ${sortedWorlds.length} work worlds; ${counts.reference_complete || 0} reference_complete; ${counts.playable || 0} playable; ${counts.partial || 0} partial; ${counts.architecture_only || 0} architecture_only.`);
+  console.log(`Career Gameplay Matrix check passed: ${sortedWorlds.length} canonical career worlds; ${supportRows.length} support worlds; ${counts.reference_complete || 0} reference_complete; ${counts.playable || 0} playable; ${counts.partial || 0} partial; ${counts.architecture_only || 0} architecture_only.`);
 } else {
   console.log(JSON.stringify(matrix.summary, null, 2));
 }

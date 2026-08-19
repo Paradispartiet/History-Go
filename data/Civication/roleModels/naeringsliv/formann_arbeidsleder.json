@@ -1,6 +1,6 @@
 {
   "schema": "civication_role_model_v1",
-  "version": 1,
+  "version": 2,
   "source": {
     "badge_file": "data/badges.json",
     "badge_id": "naeringsliv",
@@ -13,20 +13,36 @@
   "role_id": "naeringsliv_formann_arbeidsleder",
   "title": "Formann / arbeidsleder",
   "core_narrative": [
-    "I Civication er Formann / arbeidsleder en praktisk rolle i Næringsliv & industri der valg former tillit, handlingsrom og status."
+    "I Civication er Formann / arbeidsleder en praktisk rolle i Næringsliv & industri der valg former tillit, handlingsrom og status.",
+    "Rollen står tett på selve arbeidet: planer må oversettes til bemanning, rekkefølge, sikkerhet og konkrete prioriteringer mens produksjonen eller driften pågår.",
+    "Arbeidslederens kvalitet blir synlig i hvordan avvik oppdages, arbeid fordeles, faglige grenser respekteres og skiftet leveres videre til neste lag."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til industri, handel og markeder."
+      "Fordeler arbeid og rekkefølge ved skiftstart, og justerer planen når bemanning, materiell eller fremdrift endrer seg.",
+      "Følger arbeidet ute i produksjons- eller driftsområdet og skiller mellom små avvik som kan løses lokalt og forhold som må eskaleres.",
+      "Samler observasjoner om kvalitet, sikkerhet og tempo før de blir til dokumenterte avvik eller endret arbeidsplan.",
+      "Gjennomfører korte overleveringer slik at neste skift kjenner status, risiko, restarbeid og beslutninger som allerede er tatt."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Balansere kvalitet, tempo og samhandling i rollen.",
+      "Sørge for at arbeid fordeles innenfor kompetanse, sikkerhetskrav og faktisk kapasitet.",
+      "Stoppe eller eskalere arbeid når risiko, kvalitet eller mandat gjør lokal improvisasjon uforsvarlig.",
+      "Dokumentere relevante avvik og gi neste skift et sannferdig bilde av situasjonen."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen.",
+      "Arbeidsdagen veksler mellom fysisk arbeidsområde, korte koordineringspunkter, avviksoppfølging og skiftoverlevering. Beslutninger tas nær arbeidet og får raskt praktiske konsekvenser."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Rollen vurderes både på faglig presisjon og sosial legitimitet.",
+      "Formannen har operativt koordineringsansvar, men kan ikke sette til side sikkerhetskrav, faglige myndighetsgrenser eller virksomhetens formelle eskaleringslinjer."
+    ],
+    "workplaces": [
+      "produksjons_og_arbeidsomrade",
+      "arbeidslederpunkt",
+      "hms_og_avvikspunkt",
+      "skift_og_overleveringsrom"
     ]
   },
   "career_path": {
@@ -51,7 +67,8 @@
       "Grunnforståelse for fagfeltet og institusjonene i kategorien."
     ],
     "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
+      "Prioritering, kommunikasjon og situasjonsforståelse.",
+      "Skiftplanlegging, avviksforståelse, sikker eskalering og presis overlevering."
     ],
     "category_knowledge": [
       "For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
@@ -90,7 +107,28 @@
     }
   ],
   "related_people": [],
-  "related_places": [],
+  "related_places": [
+    {
+      "id": "produksjons_og_arbeidsomrade",
+      "name": "Produksjons- og arbeidsområdet",
+      "function": "Her følger arbeidslederen faktisk arbeid, bemanning, fremdrift og kvalitet, og ser konsekvensene av prioriteringene mens arbeidet pågår."
+    },
+    {
+      "id": "arbeidslederpunkt",
+      "name": "Arbeidslederpunktet",
+      "function": "Kort koordineringsflate for arbeidsfordeling, rekkefølge, bemanningsendringer og raske avklaringer med fagarbeidere og andre skiftroller."
+    },
+    {
+      "id": "hms_og_avvikspunkt",
+      "name": "HMS- og avvikspunktet",
+      "function": "Arbeidsflaten for å registrere risiko, kvalitetsavvik, stans, tiltak og saker som må eskaleres fremfor å løses uformelt."
+    },
+    {
+      "id": "skift_og_overleveringsrom",
+      "name": "Skift- og overleveringsrommet",
+      "function": "Her samles status, restarbeid, risiko og beslutninger før neste skift overtar, slik at viktige forhold ikke forsvinner mellom lagene."
+    }
+  ],
   "mail_integration": {
     "role_scope": "formann_arbeidsleder",
     "mail_profile": "naeringsliv_formann_arbeidsleder",
@@ -115,6 +153,7 @@
   "competence_axes": [],
   "ideal_type_problems": [],
   "notes": [
-    "Basert på badges.json: naeringsliv / Formann / arbeidsleder."
+    "Basert på badges.json: naeringsliv / Formann / arbeidsleder.",
+    "Systematic rollout: konkrete arbeidsflater er eksplisitt materialisert for å knytte den allerede testede arbeidsdagen til et fysisk/operativt work-world-lag."
   ]
 }

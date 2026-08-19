@@ -1,0 +1,17 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"by","role_scope":"by_saksbehandler","mail_type":"consequence",
+  "families":[{"id":"forsinkede_sakskonsekvenser","purpose":"Gjør verdien av et tydelig faktum- og begrunnelsesspor synlig når saken senere utfordres.","learning_focus":["klage","etterprovbarhet","tillit"],"mails":[{
+    "id":"by_saksbehandler_consequence_klage_001","mail_type":"consequence","mail_family":"forsinkede_sakskonsekvenser","role_scope":"by_saksbehandler","thread_key":"by_saksbehandler.case.hoyde_nabovirkning_og_klage","phase":"day_end","priority":62,"cooldown":3,"repeatable":false,"stage":"mastery",
+    "from":"juridisk_rådgiver_erik","sender":"juridisk_rådgiver_erik","person_id":"juridisk_rådgiver_erik","place_id":"nabomerknads_og_vedtaksgrunnlag",
+    "subject":"Klagen tester om vurderingen faktisk kan etterprøves",
+    "summary":"Vedtaket er påklaget, og Erik trenger å se om journalen viser hvilket faktum, hvilken hjemmel og hvilket skjønn som bar avgjørelsen da nytt snitt kom inn.",
+    "purpose":"Vis at tidligere saksopplysning og revisjon påvirker hvor robust saken er når en part utfordrer beslutningen senere.",
+    "stakes":"Et sammenhengende spor gjør klagebehandlingen presis; et fragmentert spor tvinger forvaltningen til å rekonstruere begrunnelsen i ettertid.",
+    "situation":["Klagen peker på lys, innsyn og ulik behandling.","Det nye snittet kom inn før vedtaket og endret faktumgrunnlaget.","Nå må journalen vise både hva som endret seg og hvorfor konklusjonen likevel ble den den ble."],
+    "task_domain":"klage_og_etterprovbarhet","task_kind":"consequence","competency":"beslutningssporbarhet","pressure":"etterprovbar_sak_vs_rekonstruksjon","choice_axis":"bruke_sammenhengende_spor_vs_bygge_begrunnelse_panytt","consequence_axis":"tillit_og_rettssikkerhet_vs_kostbar_usikkerhet","narrative_arc":"Saksbehandleren ser at tydelig dokumentasjon ikke bare er arkivarbeid; den bestemmer hvor godt en senere klage kan kontrolleres.",
+    "choices":[
+      {"id":"A","label":"Bygg klagesvaret direkte fra det dokumenterte sporet mellom faktum, hjemmel, merknad og skjønn","reply":"Jeg viser klagebehandleren det sammenhengende sporet fra opprinnelig mangel via nytt snitt til den endelige begrunnelsen.","effect":1,"tags":["consequence","appeal","traceability"],"feedback":"Saken kan kontrolleres på det grunnlaget beslutningen faktisk ble tatt på."},
+      {"id":"B","label":"Skriv et nytt samlet klagesvar som forklarer vurderingen tydeligere enn originalen","reply":"Jeg skriver et nytt samlet klagesvar som forklarer vurderingen fra bunnen av med dagens oversikt.","effect":0,"tags":["reconstruction","appeal"],"feedback":"Klagen får et svar, men forskjellen mellom opprinnelig begrunnelse og senere rekonstruksjon blir større."}
+    ]
+  }]}]
+}

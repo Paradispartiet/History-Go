@@ -1,120 +1,178 @@
 {
   "schema": "civication_role_model_v1",
-  "version": 1,
+  "version": 2,
   "source": {
-    "badge_file": "data/badges.json",
+    "badge_file": "data/badges/by.json",
     "badge_id": "by",
     "badge_name": "By & arkitektur",
     "tier_label": "Studentassistent",
-    "tier_threshold": 1
+    "tier_threshold": 5
   },
   "category": "by",
   "role_scope": "studentassistent",
   "role_id": "by_studentassistent",
   "title": "Studentassistent",
   "core_narrative": [
-    "I Civication er Studentassistent en praktisk rolle i By & arkitektur der valg former tillit, handlingsrom og status."
+    "By-assistenten gjør kart, befaringer, innspill og små observasjoner presise nok til at de kan brukes som beslutningsgrunnlag uten å bli overtolket.",
+    "Rollen lærer spilleren at teknisk støttearbeid også er faglig arbeid: et uklart kartlag, et faktisk bruksmønster eller et vanskelig innspill kan endre premissene for en hel sak.",
+    "Godt assistentarbeid skiller observasjon fra konklusjon, holder kildene sporbare og løfter usikkerhet til ansvarlig fagperson før den blir skjult i et ryddig dokument."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til klassisk arkitektur, modernisme."
+      "Kontrollerer kart- og datagrunnlag mot bilder, befaring og andre kilder før materialet brukes videre.",
+      "Gjennomfører befaringer og dokumenterer bevegelse, opphold, konfliktpunkter og annen faktisk bruk uten å late som én observasjon er hele sannheten.",
+      "Sorterer medvirkningsinnspill og skiller tone, enkelterfaring og gjentakende mønstre.",
+      "Sammenstiller stedsnotater og overleverer usikkerhet, avvik og åpne spørsmål til planlegger eller arkitekt."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Bevare sporbarhet mellom observasjon, kilde og senere sammendrag.",
+      "Gjøre grunnlagsusikkerhet synlig før den blir et skjult planpremiss.",
+      "Registrere innspill presist uten å love resultat eller erstatte ansvarlig fagpersons vurdering.",
+      "Stoppe og eskalere når kilder motsier hverandre eller en observasjon kan ha betydning for sikkerhet, tilgjengelighet eller rettferdig behandling."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For den som forstår byens rytme – hvordan rom, struktur og mennesker former hverandre. Arkitektur er frosset musikk."
+      "Arbeidet veksler mellom kart- og dokumentflater, korte interne avklaringer, befaring i byrommet og sortering av innspill.",
+      "Små feil kan forplante seg: en uriktig kartkant kan bli premiss, en oversett snarvei kan gi feil stedsanalyse, og et for grovt sammendrag kan gjøre flere like erfaringer usynlige."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Assistenten bygger tillit gjennom presis dokumentasjon, gode spørsmål og tydelige grenser for hva eget materiale faktisk viser.",
+      "Rollen kan samle, kontrollere, beskrive og foreslå videre undersøkelse, men kan ikke fatte plan- eller byggesaksvedtak, gi bindende lovtolkning eller love utfall til eksterne aktører."
+    ],
+    "workplaces": [
+      "oslo_sentrum_byrom",
+      "kart_og_grunnlagsbord",
+      "befaring_og_observasjonsflate",
+      "medvirknings_og_notatbord"
     ]
   },
   "career_path": {
     "entry_from": [
-      "Tidligere tier i samme badge-kategori."
+      "Student-, praktikant- eller prosjektstøttearbeid med avgrensede oppgaver innen kart, befaring, dokumentasjon og medvirkning."
     ],
     "progression_to": [
-      "Neste tier i samme badge-kategori."
+      "Mer selvstendig prosjektmedarbeiderarbeid, saksbehandling, planlegging, arkitektur eller annen byutviklingsfaglig rolle."
     ],
     "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
+      "Ansvar for større grunnlagspakker, mer selvstendige analyser og koordinering av avgrensede leveranser."
     ],
     "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
+      "Skifte til plan, byggesak, arkitektur, prosjektledelse, GIS/data eller annen steds- og byutviklingsrettet spesialisering."
     ],
     "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
+      "Tap av tillit dersom usikkerhet skjules for å levere raskere eller materialet fremstilles sikrere enn kildene tillater.",
+      "Feil beslutningsgrunnlag dersom observasjoner, innspill eller kartdata glattes ut før ansvarlig fagperson får se dem."
     ]
   },
   "required_knowledge": {
     "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
+      "Grunnleggende forståelse for kart, sted, byrom, planprosess, medvirkning, kildekritikk og dokumentasjon."
     ],
     "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
+      "Kartlesing, grunnlagskontroll, befaring, observasjon, notatteknikk, mønsterlesning, kildehenvisning og tydelig overlevering."
     ],
     "category_knowledge": [
-      "For den som forstår byens rytme – hvordan rom, struktur og mennesker former hverandre. Arkitektur er frosset musikk."
+      "Hvordan kart, fysisk sted, faktisk bruk og medvirkningsdata kan støtte eller motsi hverandre i byutviklingsarbeid."
     ],
-    "history_go_badges": [
-      "by"
+    "history_go_badges": ["by"],
+    "place_connections": ["oslo_sentrum_byrom", "befaring_og_observasjonsflate"],
+    "people_connections": ["ingrid_byplan", "jonas_arkitekt", "maria_medvirkning"]
+  },
+  "authority_boundary": {
+    "may": [
+      "samle og kontrollere kart-, dokument- og observasjonsgrunnlag innen tildelt oppgave",
+      "registrere avvik, usikkerhet og medvirkningsinnspill og be om faglig avklaring",
+      "foreslå ny befaring eller kontroll når grunnlaget ikke stemmer med stedet",
+      "sammenstille notater så lenge kilder, usikkerhet og ansvarlig beslutningseier er tydelige"
     ],
-    "place_connections": [],
-    "people_connections": []
+    "may_not": [
+      "fatte formelle plan- eller byggesaksvedtak",
+      "gi bindende lovtolkning eller love utbyggingsutfall uten mandat",
+      "endre faglige konklusjoner eller skjule kildemotstrid for å få raskere fremdrift",
+      "framstille egne observasjoner som endelig faglig vurdering når de krever ansvarlig planlegger eller arkitekt"
+    ]
   },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
+      "id": "ryddig_grunnlag_vs_sant_sted",
+      "title": "Ryddig grunnlag mot sant sted",
+      "description": "Kart og sammendrag blir enklere når avvik glattes ut, men mer nyttige når usikkerheten følger materialet videre.",
+      "pressure": "ryddig_grunnlag_vs_sant_sted",
+      "affects": ["trust", "quality", "risk"]
+    },
+    {
+      "id": "observasjon_vs_overtolkning",
+      "title": "Observasjon mot overtolkning",
+      "description": "En god observasjon kan endre saken, men blir svak dersom assistenten gjør den til en konklusjon uten nok grunnlag.",
+      "pressure": "observasjon_vs_overtolkning",
+      "affects": ["quality", "status", "fairness"]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
+      "id": "tempo_vs_sporbarhet",
+      "title": "Tempo mot sporbarhet",
+      "setup": "Du kan levere et ryddig grunnlag raskt, eller bruke tid på å gjøre avvik, kilder og usikkerhet synlige før andre bygger videre på materialet.",
+      "choice_axis": "tempo_vs_sporbarhet",
+      "consequence_axis": "kort_flyt_vs_langsiktig_tillit",
+      "mail_hooks": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"]
     }
   ],
-  "related_people": [],
-  "related_places": [],
-  "mail_integration": {
-    "role_scope": "studentassistent",
-    "mail_profile": "by_studentassistent",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
-    "mail_variables": {
-      "role_title": "Studentassistent",
-      "category": "by",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+  "related_people": [
+    {
+      "id": "ingrid_byplan",
+      "name": "Ingrid",
+      "function": "Byplanlegger som bestiller kart- og stedsgrunnlag og forventer at usikkerhet er synlig før materialet brukes som premiss."
     },
-    "recommended_mail_families": [],
+    {
+      "id": "jonas_arkitekt",
+      "name": "Jonas",
+      "function": "Arkitekt som bruker befaring og byromsobservasjon til å teste om tegnet funksjon stemmer med faktisk bruk."
+    },
+    {
+      "id": "maria_medvirkning",
+      "name": "Maria",
+      "function": "Medvirkningsansvarlig som hjelper assistenten å skille enkelthistorier, tone og gjentakende mønstre uten å gjøre stemmene usynlige."
+    }
+  ],
+  "related_places": [
+    {
+      "id": "oslo_sentrum_byrom",
+      "name": "Sentrum byrom",
+      "function": "Felles stedsflate der kart, befaring, ganglinjer, opphold og innspill kan kontrolleres mot hverandre."
+    },
+    {
+      "id": "kart_og_grunnlagsbord",
+      "name": "Kart- og grunnlagsbordet",
+      "function": "Arbeidsflate for å sammenholde kartlag, dokumentversjoner, kilder og usikkerhet før materialet sendes videre."
+    },
+    {
+      "id": "befaring_og_observasjonsflate",
+      "name": "Befaring og observasjonsflate",
+      "function": "Stedlig arbeidsflate for å registrere bevegelse, opphold, konfliktpunkter og forhold som ikke finnes i det digitale grunnlaget."
+    },
+    {
+      "id": "medvirknings_og_notatbord",
+      "name": "Medvirknings- og notatbordet",
+      "function": "Arbeidsflate for å sortere innspill, bevare kilder og bygge et stedsnotat uten å love eller overtolke resultatet."
+    }
+  ],
+  "mail_integration": {
+    "role_scope": "by_assistent",
+    "mail_profile": "by_assistent",
+    "can_feed_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "mail_variables": {
+      "role_title": "By-assistent",
+      "category": "by",
+      "main_pressure": "ryddig_grunnlag_vs_sant_sted",
+      "ethical_axis": "observasjon_vs_overtolkning",
+      "status_axis": "tempo_vs_sporbarhet"
+    },
+    "recommended_mail_families": ["kart_og_grunnlag", "befaring_og_observasjon", "medvirkning_og_innspill", "rom_og_bruk"],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
+  "competence_axes": ["kartforståelse", "grunnlagskontroll", "stedlig_observasjon", "medvirkning", "sporbarhet", "faglig_overlevering"],
+  "ideal_type_problems": ["ryddig_grunnlag_vs_sant_sted", "observasjon_vs_overtolkning", "tempo_vs_sporbarhet"],
   "notes": [
-    "Basert på badges.json: by / Studentassistent."
+    "Bygger videre på eksisterende by_assistent-FWG og 8 authored jobbmails; rollouten materialiserer relasjoner, arbeidsflater og manglende mail-/konsekvenskjede uten nye Badge-titler eller lønnsregler."
   ]
 }

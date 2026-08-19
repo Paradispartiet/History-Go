@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "administrasjonsmedarbeider",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "administrasjonsmedarbeider_systemfrist",
+      "description": "Hendelser der systemsvikt eller fristpress tester om administrasjonen bevarer sporbarhet mens normal arbeidsflyt er forstyrret.",
+      "learning_focus": ["frist", "systemavvik", "beredskap", "sporbarhet"],
+      "mails": [
+        {
+          "id": "event_administrasjonsmedarbeider_system_down_before_deadline",
+          "mail_type": "event",
+          "mail_family": "administrasjonsmedarbeider_systemfrist",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "event_message",
+          "phase": "advanced",
+          "priority": 84,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Systemet er nede før fristen",
+          "summary": "Registreringssystemet stanser mens en rapporteringsfrist nærmer seg, og arbeidet må fortsette uten å miste kilde og kontrollspor.",
+          "situation": [
+            "Fra System: Registreringsløsningen er utilgjengelig. Estimert gjenoppretting er ukjent.",
+            "Fra Ingrid: Fristen står. Vi trenger en midlertidig arbeidsmåte som gjør det mulig å rekonstruere hva som ble mottatt, kontrollert og godkjent når systemet er tilbake."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Opprette kontrollert midlertidig logg",
+              "reply": "Jeg oppretter en tidsstemplet midlertidig logg med kilde, eier, kontrollstatus og vedlegg, og avtaler hvordan alt skal rekonsilieres etterpå.",
+              "effects": {"traceability": 4, "deadline_met": 2, "process_quality": 3, "stress": 2},
+              "next_bias": {"set_flags": ["administrasjonsmedarbeider_controlled_offline_log"]},
+              "triggers_on_choice": "administrasjonsmedarbeider_controlled_offline_log",
+              "feedback": "Beredskap betyr ikke å late som systemet virker. Du bygger et spor som kan føres tilbake når det gjør det."
+            },
+            {
+              "id": "B",
+              "label": "Samle dokumentene og registrere senere",
+              "reply": "Jeg samler dokumentene i én mappe og registrerer dem når systemet er tilbake.",
+              "effects": {"deadline_met": 0, "traceability": 1, "future_risk": 1, "stress": -1},
+              "next_bias": {"set_flags": ["administrasjonsmedarbeider_waits_for_system"]},
+              "triggers_on_choice": "administrasjonsmedarbeider_waits_for_system",
+              "feedback": "Du bevarer grunnlaget, men frist og behandlingsstatus blir vanskeligere å rekonstruere hvis køen vokser."
+            },
+            {
+              "id": "C",
+              "label": "Sende det viktigste manuelt uten full logg",
+              "reply": "Jeg sender de viktigste tallene manuelt og dokumenterer resten senere.",
+              "effects": {"deadline_met": 3, "traceability": -3, "future_risk": 3, "documentation_quality": -2},
+              "next_bias": {"set_flags": ["administrasjonsmedarbeider_manual_without_trace"]},
+              "triggers_on_choice": "administrasjonsmedarbeider_manual_without_trace",
+              "feedback": "Fristen kan reddes, men du har gjort etterkontrollen avhengig av hukommelse akkurat når systemet svikter."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

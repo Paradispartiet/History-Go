@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "styringsmikrokontroll",
+      "purpose": "Trener små kontroller som holder risiko og beslutninger sporbare.",
+      "learning_focus": ["beslutningslogg", "forutsetninger"],
+      "mails": [
+        {
+          "id": "by_prosjektleder_micro_beslutningslogg_001",
+          "mail_type": "micro",
+          "mail_family": "styringsmikrokontroll",
+          "role_scope": "by_prosjektleder",
+          "phase": "forenoon",
+          "priority": 54,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "early",
+          "from": "prosjektkoordinator_amin",
+          "sender": "prosjektkoordinator_amin",
+          "person_id": "prosjektkoordinator_amin",
+          "place_id": "risiko_budsjett_og_beslutningslogg",
+          "subject": "Beslutningen står i referatet, men forutsetningen mangler",
+          "summary": "En tidligere beslutning er registrert uten den kostnadsforutsetningen som gjorde valget forsvarlig.",
+          "purpose": "Velg om prosjektlederen bruker noen minutter på å gjenopprette beslutningssporet før flere bygger videre på det.",
+          "stakes": "Uten forutsetningen kan en senere endring se ut som avvik fra beslutningen i stedet for en legitim reaksjon på endret grunnlag.",
+          "situation": [
+            "Referatet sier hva som ble valgt.",
+            "Det sier ikke hvilken kostnadsramme og avhengighet valget bygde på.",
+            "Du kan fortsatt legge inn koblingen mens dokumentasjonen er fersk."
+          ],
+          "task_domain": "beslutningsspor",
+          "task_kind": "micro",
+          "competency": "beslutningssporbarhet",
+          "pressure": "smakontroll_vs_framdrift",
+          "choice_axis": "komplettere_spor_vs_gå_videre",
+          "consequence_axis": "etterprovbarhet_vs_tempo",
+          "narrative_arc": "Prosjektlederen lærer at beslutningsspor bygges gjennom små kontroller før hukommelsen blir styringssystemet.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Legg inn forutsetningen og lenk den til beslutningen nå",
+              "reply": "Jeg kompletterer beslutningsloggen med kostnadsforutsetning, avhengighet og hvem som eide avgjørelsen.",
+              "effect": 1,
+              "tags": ["decision_log", "traceability"],
+              "feedback": "Senere endringer kan vurderes mot det beslutningen faktisk bygde på."
+            },
+            {
+              "id": "B",
+              "label": "La referatet stå og dokumenter detaljene hvis spørsmålet kommer senere",
+              "reply": "Jeg lar referatet stå og tar fram detaljene senere dersom beslutningen blir utfordret.",
+              "effect": 0,
+              "tags": ["delay", "risk"],
+              "feedback": "Du sparer tid, men gjør styringssporet mer avhengig av hukommelse og gamle e-poster."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

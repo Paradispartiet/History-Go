@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_arkitekt",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "faglige_relasjoner",
+      "purpose": "Gjør arkitektens faglige relasjoner operative i prosjektvalgene.",
+      "learning_focus": ["byliv", "tverrfaglig_dialog"],
+      "mails": [
+        {
+          "id": "by_arkitekt_people_sara_001",
+          "mail_type": "people",
+          "mail_family": "faglige_relasjoner",
+          "role_scope": "by_arkitekt",
+          "phase": "morning",
+          "priority": 72,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "bylivsansvarlig_sara",
+          "sender": "bylivsansvarlig_sara",
+          "person_id": "bylivsansvarlig_sara",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Sara ser en svakhet i førsteetasjen",
+          "summary": "Bylivsansvarlig Sara mener den ryddige fasaden gir en uklar inngang og et passivt gatehjørne.",
+          "purpose": "Velg hvordan arkitektens formgrep skal testes mot faktisk bruk før neste leveranse.",
+          "stakes": "Valget påvirker bylivskvalitet, faglig tillit og hvor dyrt det blir å revidere senere.",
+          "situation": [
+            "Fasaden er blitt roligere etter siste revisjon, men hovedinngangen leses svakere fra fortauet.",
+            "Sara peker på at hjørnet mangler et tydelig hverdagsprogram og at ganglinjen krysser møbleringssonen.",
+            "Du må velge om grepet skal forsvares, testes eller justeres før prosjektet låses videre."
+          ],
+          "task_domain": "forsteetasje_og_byliv",
+          "task_kind": "people",
+          "competency": "byliv_og_gateplan",
+          "learning_focus": ["inngang", "ganglinjer", "byliv"],
+          "pressure": "form_vs_bruk",
+          "choice_axis": "forsvare_grep_vs_teste_bruk",
+          "consequence_axis": "ren_form_vs_lesbar_hverdag",
+          "narrative_arc": "Et tydelig arkitektonisk grep må bevise at det også fungerer fra fortauet.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Test inngang og ganglinje i ny gateplansskisse",
+              "reply": "Jeg tester inngang, hjørne og ganglinje i en ny gateplansskisse før vi låser fasaden.",
+              "effect": 1,
+              "tags": ["test_bruk", "stedstilpasning"],
+              "feedback": "Du beholder ideen åpen for revisjon og gjør Saras innvending målbar i prosjektet."
+            },
+            {
+              "id": "B",
+              "label": "Behold fasadegrepet og tydeliggjør inngangen med detaljering",
+              "reply": "Jeg beholder hovedgrepet, men utvikler inngang og hjørne slik at de blir mer lesbare fra gaten.",
+              "effect": 0,
+              "tags": ["behold_grep", "detaljering"],
+              "feedback": "Prosjektet beholder retningen, men du tar på deg risikoen for at detaljeringen faktisk løser et romlig problem."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

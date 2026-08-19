@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "risikooppfolging",
+      "purpose": "Viser hvordan en tidlig varslet risiko blir til konkret styringsarbeid senere.",
+      "learning_focus": ["oppfolging", "scenario", "kvalitetsvern"],
+      "mails": [
+        {
+          "id": "by_prosjektleder_followup_kostnad_001",
+          "mail_type": "followup",
+          "mail_family": "risikooppfolging",
+          "role_scope": "by_prosjektleder",
+          "thread_key": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet",
+          "phase": "afternoon",
+          "priority": 66,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "advanced",
+          "from": "okonomi_sigrid",
+          "sender": "okonomi_sigrid",
+          "person_id": "okonomi_sigrid",
+          "place_id": "risiko_budsjett_og_beslutningslogg",
+          "subject": "Kostnadsrisikoen er blitt større, og kvalitetene står først i kuttlisten",
+          "summary": "Det tidlige risikoscenarioet er nå mer sannsynlig, og grøntdrag, medvirkning og gatekvalitet foreslås redusert for å beskytte datoen.",
+          "purpose": "Teste om prosjektlederen bruker det tidligere risikosporet til å replanlegge åpent i stedet for å gjøre kvalitet til skjult reserve.",
+          "stakes": "Et raskt kvalitetskutt beskytter tidsplanen; åpen replanlegging kan flytte tid, omfang eller ressurs, men gjør konsekvensen beslutningsbar.",
+          "situation": [
+            "Sigrids oppdaterte estimat bekrefter at grunnarbeidet blir dyrere enn hovedscenarioet.",
+            "Teamet har allerede pekt ut kvaliteter som kan reduseres uten å endre den formelle milepælen.",
+            "Det tidlige risikonotatet viser at denne konsekvensen var kjent som mulighet."
+          ],
+          "task_domain": "risikooppfolging",
+          "task_kind": "followup",
+          "competency": "replanlegging",
+          "pressure": "dato_vs_synlig_kvalitetskonsekvens",
+          "choice_axis": "replanlegge_apent_vs_kutte_stille",
+          "consequence_axis": "styrbarhet_vs_skjult_kvalitetstap",
+          "narrative_arc": "Tidlig risikovarsling får verdi først når prosjektet faktisk bruker den til å beskytte handlingsrommet senere.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Løft scenarioet som styringssak med alternativer for tid, omfang, ressurs og kvalitet",
+              "reply": "Jeg bruker risikonotatet til å vise hvilke alternativer vi faktisk har og hva hvert alternativ koster i tid, omfang, ressurs og bykvalitet.",
+              "effect": 1,
+              "tags": ["followup", "risk", "replanning"],
+              "feedback": "Kostnadsøkningen blir en eksplisitt beslutning i stedet for et stille kvalitetskutt."
+            },
+            {
+              "id": "B",
+              "label": "Be teamet finne kvalitetskutt som holder datoen uten ny styringssak",
+              "reply": "Jeg ber teamet finne avgrensede kvalitetskutt som holder dato og budsjett innenfor styringsrammen.",
+              "effect": -1,
+              "tags": ["quality_cut", "schedule", "risk"],
+              "feedback": "Milepælen beskyttes, men det som tidligere var en varslet risiko blir nå et skjult prioriteringsvalg."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

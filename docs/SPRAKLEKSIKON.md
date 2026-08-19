@@ -312,3 +312,31 @@ For `evidence_materialized` er minstekravet nå låst til minst **fire synlige m
 Lokal materialisering må skille mellom tre ulike typer belegg: **lokalt opptak/korpus**, **regionalt målmerke** og **lokalt dokumentert endring**. Et regionalt trekk kan brukes som ramme for et lokalt anker, men skal ikke merkes som unikt for stedet uten lokalt belegg. Ål er et eksempel: Hallingdal gir den strukturelle rammen, mens NDC og kilder om dagens Buskerud gir lokalt/nyere belegg.
 
 Språkkontakt skal heller ikke gjøre separate språk til dialekttrekk. For norsk talemål i Tana og Hattfjelldal registreres samisk språkkontakt og institusjonell flerspråklighet som kontekst, mens samiske språk fortsatt eies av egne språklag. Den tredje forskningsstyrte gruppen materialiserer Voss, Ål, Hattfjelldal, Sømna og norsk talemål i Tana.
+
+<!-- SPRÅKATLAS_PLACES_V1_START -->
+## Språkatlas → Places v1
+
+Språkatlaset og PlaceCard bruker samme canonical språkdata. `atlas_local_ids` i en språkfil er bare en presis navigasjonsrelasjon til en lokal atlasprofil; feltet gjør aldri et enkelt-Place til dialekteier. Dialektinnhold følger fortsatt regelen `placeScope: "area"`. Konkrete `feature_evidence`-påstander eies av atlasprofilen og skal ikke kopieres inn i Place-filen.
+
+Når en atlasprofil eller region velges, viser runtime **«Utforsk steder med dokumenterte språkspor»**. Listen bygges fra `data/leksikon/sprak/manifest.json`, språkfilene og runtime `window.PLACES`. Den er derfor aldri en fullstendig oversikt over hvor talemålet finnes. Lokale profiler matches bare via eksplisitt `atlas_local_ids`; runtime får ikke gjette en lokal profil bare fordi et Place ligger i samme brede dialektregion.
+
+Fra et Place med en eksplisitt lokal atlasrelasjon vises **«Se talemålet i Språkatlas»**. Navigasjon til et annet Place går gjennom `HGMapView.openPlace()`, slik at kartet flyttes ferdig før PlaceCard åpnes. Et område-Place kan ha tom `entries`-liste når all konkret talemålsevidens allerede ligger canonical i `local_varieties[].feature_evidence`; Språk-fanen skal likevel vise atlasprofilen.
+
+### Dekningsaudit per 19. august 2026
+
+- Lokale atlasprofiler totalt: **46**.
+- Canonical språk-Places med eksplisitt lokal atlaslenke: **9**.
+- Lokale atlasprofiler som har minst ett eksplisitt Place-spor: **6** – Oslo, Bergen, Trondheim, Valle i Setesdal, Narvik og Ål.
+- Nye canonical område-Places i denne leveransen: **Bergen, Valle i Setesdal, Narvik og Ål**.
+- `evidence_materialized`: **15: Bergen, Bodø, Hammerfest, Hattfjelldal, Kristiansand, Narvik, Oslo, Stavanger, Sømna, Tana – norsk talemål, Tromsø, Trondheim, Valle i Setesdal, Voss, Ål**.
+- `documented_seed`: **7: Lom, Senja, Suldal, Surnadal, Trysil, Vang i Valdres, Åndalsnes/Rauma**.
+- `local_research_required`: **24: Aremark, Arendal, Bjugn/Fosen, Enebakk, Fredrikstad, Haugesund, Inderøy, Jølster, Kautokeino – norsk talemål, Kirkenes/Sør-Varanger – norsk talemål, Kvæfjord, Kvænangen – norsk talemål, Lillehammer, Luster, Mo i Rana, Namdalen, Oppdal, Røros, Selbu, Stamsund/Lofoten, Time/Jæren, Tinn, Vinje, Volda**.
+
+### Forskningsprioritet etter gap
+
+1. `local_research_required` – høyest prioritet: ingen lokal profil oppgraderes uten direkte kildebelegg.
+2. `documented_seed` – neste prioritet: eksisterende lokal dokumentasjon materialiseres til konkrete, kildebundne trekk.
+3. `evidence_materialized` – vedlikehold og produktkobling; nye Places kan kobles uten å kopiere evidensen.
+
+Tomtilstanden er fortsatt bevisst for profiler uten canonical språk-Place-kobling: produktet skal si at History Go **ennå ikke har et kildebelagt Place-spor der**, ikke finne på region-infererte steder.
+<!-- SPRÅKATLAS_PLACES_V1_END -->

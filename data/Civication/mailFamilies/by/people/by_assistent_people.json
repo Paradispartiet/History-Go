@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_assistent",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "faglige_relasjoner",
+      "purpose": "Gjør assistentens veiledning og faglige overlevering operative.",
+      "learning_focus": ["grunnlagskontroll", "veiledning"],
+      "mails": [
+        {
+          "id": "by_assistent_people_ingrid_001",
+          "mail_type": "people",
+          "mail_family": "faglige_relasjoner",
+          "role_scope": "by_assistent",
+          "phase": "morning",
+          "priority": 72,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "ingrid_byplan",
+          "sender": "ingrid_byplan",
+          "person_id": "ingrid_byplan",
+          "place_id": "kart_og_grunnlagsbord",
+          "subject": "Ingrid spør hva du faktisk vet om kartavviket",
+          "summary": "Byplanlegger Ingrid vil vite om den uklare kanten er et reelt stedsavvik eller bare en forskjell mellom datakilder.",
+          "purpose": "Trene assistenten i å skille observasjon, kildeavvik og faglig konklusjon i overleveringen.",
+          "stakes": "Et for sikkert svar kan bli et falskt premiss; et presist usikkerhetssvar kan utløse riktig kontroll.",
+          "situation": [
+            "Tre kartlag viser kanten litt forskjellig.",
+            "Befaringsbildene tyder på at bruken heller ikke følger den reneste linjen.",
+            "Ingrid trenger et kort svar før hun avgjør om saken må undersøkes mer."
+          ],
+          "task_domain": "grunnlagsoverlevering",
+          "task_kind": "people",
+          "competency": "sporbar_faglig_overlevering",
+          "pressure": "sikkert_svar_vs_presis_usikkerhet",
+          "choice_axis": "konkludere_tidlig_vs_skille_funn_og_tolkning",
+          "consequence_axis": "tempo_vs_tillit",
+          "narrative_arc": "Assistenten lærer å være nyttig uten å late som støttearbeidet allerede er en faglig avgjørelse.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill kartavvik, stedsobservasjon og det som fortsatt må avklares",
+              "reply": "Jeg skiller kartavviket fra stedsobservasjonen og markerer hva som fortsatt må avklares.",
+              "effect": 1,
+              "tags": ["traceability", "uncertainty", "handover"],
+              "feedback": "Ingrid får et grunnlag hun kan kontrollere videre uten at usikkerheten er skjult."
+            },
+            {
+              "id": "B",
+              "label": "Gi det mest sannsynlige svaret så saken kan gå videre",
+              "reply": "Jeg gir det mest sannsynlige svaret og foreslår at vi korrigerer senere hvis det viser seg nødvendig.",
+              "effect": -1,
+              "tags": ["shortcut", "risk"],
+              "feedback": "Saken går raskere videre, men gjetningen kan nå se ut som et kontrollert premiss."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

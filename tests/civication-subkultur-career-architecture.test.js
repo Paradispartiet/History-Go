@@ -60,20 +60,23 @@ for (const [lifeLabel, threshold, jobTitle, policy, quals, salaryTier, scope] of
 for (const [scope, titles] of Object.entries(evidence.canonical_decision.work_worlds)) {
   const model = readJson(`data/Civication/roleModels/subkultur/${scope}.json`);
   const grammar = readJson(`data/Civication/workGrammars/subkultur/${scope}.json`);
-  assert.strictEqual(model.version, 2, `${scope}: roleModel v2`);
+  assert.strictEqual(model.schema, 'civication_role_model_v2', `${scope}: roleModel schema v2`);
+  assert.ok(Number(model.version) >= 2, `${scope}: roleModel revision v2+`);
   assert.strictEqual(model.role_scope, scope);
   assert.deepStrictEqual(model.badge_titles, titles);
   assert.ok(model.competence_axes.length >= 6, `${scope}: competence axes`);
   assert.ok(model.ideal_type_problems.length >= 5, `${scope}: ideal problems`);
   assert.ok(model.authority_boundaries.cannot.length >= 4, `${scope}: authority boundary`);
-  assert.strictEqual(grammar.version, 2, `${scope}: FWG v2`);
+  assert.strictEqual(grammar.schema, 'civication_work_grammar_v2', `${scope}: FWG schema v2`);
+  assert.ok(Number(grammar.version) >= 2, `${scope}: FWG revision v2+`);
   assert.strictEqual(grammar.role_scope, scope);
   assert.deepStrictEqual(grammar.badge_binding.badge_titles, titles);
   assert.ok(grammar.task_families.length >= 5, `${scope}: task families`);
   assert.ok(grammar.work_loops.length >= 2, `${scope}: loops`);
   assert.ok(grammar.practice_stories.length >= 5, `${scope}: practice stories`);
   assert.ok(grammar.quality_axes.length >= 6, `${scope}: quality axes`);
-  assert.ok(grammar.authority_boundary.may_not.length >= 4, `${scope}: may_not`);
+  const forbiddenActions = grammar.authority_boundary?.may_not ?? grammar.authority_boundary?.cannot;
+  assert.ok(Array.isArray(forbiddenActions) && forbiddenActions.length >= 4, `${scope}: authority boundary prohibitions`);
 }
 
 const pushes = [];
@@ -137,10 +140,11 @@ async function runtimeIntegration() {
     assert.strictEqual(resolved.strategy,'canonical_role_scope',`${jobTitle}: shared canonical model wins`);
     assert.strictEqual(resolved.path,`data/Civication/roleModels/subkultur/${scope}.json`);
     const model = await window.CivicationRoleModelRuntime.loadRoleModel({career_id:'subkultur',title:jobTitle});
-    assert.strictEqual(model.version,2);
+    assert.strictEqual(model.schema,'civication_role_model_v2');
+    assert.ok(Number(model.version) >= 2);
   }
 }
 
 runtimeIntegration().then(()=>{
-  console.log('civication Subkultur career architecture ok: 11 life positions / 11 separate jobs / 5 v2 work worlds / economy 4-7-13');
+  console.log('civication Subkultur career architecture ok: 11 life positions / 11 separate jobs / 5 v2-schema work worlds / economy 4-7-13');
 }).catch(error=>{console.error(error);process.exit(1);});

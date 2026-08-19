@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "administrasjonsmedarbeider",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "administrasjonsmedarbeider_virksomhetshukommelse",
+      "description": "Historier om administrasjon som virksomhetens hukommelse: versjoner, spor og åpne punkter avgjør hva organisasjonen senere tror skjedde.",
+      "learning_focus": ["arkiv", "versjonskontroll", "sporbarhet", "organisatorisk_hukommelse"],
+      "mails": [
+        {
+          "id": "story_administrasjonsmedarbeider_which_version_became_truth",
+          "mail_type": "story",
+          "mail_family": "administrasjonsmedarbeider_virksomhetshukommelse",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "story_message",
+          "phase": "mid",
+          "priority": 78,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Versjonen som ble sannheten",
+          "summary": "To dokumentversjoner beskriver samme beslutning forskjellig, og den eldste har blitt brukt videre.",
+          "situation": [
+            "Fra Ingrid: Vi har to versjoner av samme beslutningsnotat. Den gamle ble liggende først i søk og er brukt i to senere saker.",
+            "Fra System: Nyeste fil har korrekt beløp og ansvarlig. Gammel fil mangler endringsmarkering og ligger som 'gjeldende'."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sikre gjeldende versjon og dokumentere berørte saker",
+              "reply": "Jeg markerer korrekt versjon som gjeldende, sperrer den gamle som utgått og dokumenterer hvilke senere saker som må kontrolleres.",
+              "effects": {"documentation_quality": 3, "traceability": 3, "process_quality": 2, "stress": 1},
+              "next_bias": {"set_flags": ["administrasjonsmedarbeider_repairs_version_history"]},
+              "triggers_on_choice": "administrasjonsmedarbeider_repairs_version_history",
+              "feedback": "Du retter ikke bare filen; du reparerer sporet av hva organisasjonen trodde var sant."
+            },
+            {
+              "id": "B",
+              "label": "Erstatte filen og varsle kort",
+              "reply": "Jeg legger riktig fil øverst og sender en kort melding om at den gamle ikke skal brukes.",
+              "effects": {"documentation_quality": 1, "traceability": 0, "deadline_met": 1, "future_risk": 1},
+              "next_bias": {"set_flags": ["administrasjonsmedarbeider_replaces_without_full_trace"]},
+              "triggers_on_choice": "administrasjonsmedarbeider_replaces_without_full_trace",
+              "feedback": "Fremover blir det bedre, men du vet fortsatt ikke sikkert hvor den gamle versjonen allerede har satt spor."
+            },
+            {
+              "id": "C",
+              "label": "La begge ligge og stole på filnavnet",
+              "reply": "Jeg lar begge dokumentene ligge og legger dato tydeligere i filnavnet.",
+              "effects": {"future_risk": 3, "traceability": -2, "process_quality": -1, "stagnation": 1},
+              "next_bias": {"set_flags": ["administrasjonsmedarbeider_leaves_competing_truths"]},
+              "triggers_on_choice": "administrasjonsmedarbeider_leaves_competing_truths",
+              "feedback": "To sannheter i samme arkiv er fortsatt to sannheter, selv med penere filnavn."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

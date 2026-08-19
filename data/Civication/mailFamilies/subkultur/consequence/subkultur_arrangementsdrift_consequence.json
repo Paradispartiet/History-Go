@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_arrangementsdrift",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "subkultur_arrangementsdrift_forsinket_konsekvens",
+      "purpose": "Vise hvordan små driftsvalg kommer tilbake som tillits-, sikkerhets- og bemanningskostnad.",
+      "learning_focus": [
+        "sen_konsekvens",
+        "reparasjon",
+        "læring"
+      ],
+      "mails": [
+        {
+          "id": "subkultur_arrangementsdrift_consequence_neste_vakt",
+          "mail_type": "consequence",
+          "mail_family": "subkultur_arrangementsdrift_forsinket_konsekvens",
+          "role_scope": "subkultur_arrangementsdrift",
+          "phase": "workday",
+          "priority": 106,
+          "from": "Ida, arrangementsansvarlig",
+          "people_ref": "ida_arrangementsansvarlig",
+          "place_id": "kulturarena_backstage_checkpoint",
+          "subject": "Neste vakt møter samme unntak — men ingen kan vise hvem som godkjente det",
+          "summary": "En person viser til «avtalen fra sist» for backstage-adgang. Vaktskiftet finner ingen logg, og to frivillige husker hendelsen forskjellig.",
+          "situation": [
+            "Konsekvensen kommer etter at den første kvelden føltes ferdig.",
+            "Du kan reparere praksisen ved å gjøre unntak og ansvar sporbare.",
+            "Eller du kan lene deg på miljøhukommelsen og gjøre samme konflikt personavhengig enda en gang."
+          ],
+          "task_domain": "forsinket_adgangskonsekvens",
+          "competency": "avvik_og_vaktskifte",
+          "pressure": "relasjonspress_vs_dokumentert_mandat",
+          "choice_axis": "reparer_regel_og_logg_vs_gjenta_uformelt_unntak",
+          "consequence_axis": "langsiktig_tillit_vs_portvaktgjeld",
+          "narrative_arc": "doren_returnerer",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stans det uverifiserte unntaket og innfør at alle gjestelisteendringer får ansvarlig navn og vaktnotat",
+              "reply": "Jeg reparerer systemet: ingen ny adgangsendring uten synlig eier og spor.",
+              "effect": 1,
+              "tags": [
+                "repair",
+                "traceability"
+              ],
+              "feedback": "Du gjør tidligere uklarhet synlig og reduserer sjansen for at neste vakt må forhandle samme regel på nytt.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -3,
+                  "status": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Godta «samme som sist» fordi personen åpenbart har vært backstage før",
+              "reply": "Jeg bruker historikken som nok bevis og unngår ny konflikt.",
+              "effect": -1,
+              "tags": [
+                "precedent",
+                "hidden_gate"
+              ],
+              "feedback": "Et ulogget unntak blir gjort til varig presedens uten at noen kan vise mandatet.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 4
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "La Ida avgjøre denne personen nå og legg bare den nye avgjørelsen inn i vaktnotatet",
+              "reply": "Jeg løser dagens adgang riktig, men avgrenser reparasjonen til det vi faktisk kan dokumentere nå.",
+              "effect": 0,
+              "tags": [
+                "escalation",
+                "limited_repair"
+              ],
+              "feedback": "Dagens sak blir sporbar, mens eldre praksis fortsatt må ryddes senere.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 1,
+                  "risk": -1,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

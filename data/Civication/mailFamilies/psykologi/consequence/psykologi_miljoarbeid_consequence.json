@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_miljoarbeid",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "psykologi_miljoarbeid_forsinket_konsekvens",
+      "purpose": "Vise hvordan språk, grenser og eskaleringsvalg former neste vakt og personens tillit senere.",
+      "learning_focus": [
+        "sen_konsekvens",
+        "stigma",
+        "reparasjon"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_miljoarbeid_consequence_neste_vakt",
+          "mail_type": "consequence",
+          "mail_family": "psykologi_miljoarbeid_forsinket_konsekvens",
+          "role_scope": "psykologi_miljoarbeid",
+          "phase": "workday",
+          "priority": 108,
+          "from": "Mari, teamleder",
+          "people_ref": "mari_teamleder",
+          "place_id": "bofellesskap_vaktrom",
+          "subject": "Neste vakt møtte Elias som «ustabil» — nå vil han ikke snakke med teamet",
+          "summary": "Et tidligere tolkningsord har vandret gjennom overleveringen og påvirket relasjonen. Konsekvensen kommer etter at den opprinnelige vakten føltes ferdig.",
+          "situation": [
+            "Elias reagerer på at flere ansatte møter ham med ekstra kontroll og færre valg.",
+            "Ingen enkeltperson mente å stemple ham, men språket har blitt gjentatt som om det var et faktum.",
+            "Du kan reparere både dokumentasjonen og arbeidsmåten uten å late som tillit kommer tilbake med én unnskyldning."
+          ],
+          "task_domain": "forsinket_dokumentasjonskonsekvens",
+          "competency": "reparasjon_og_overlevering",
+          "pressure": "forsvar_av_tidligere_praksis_vs_reparasjon",
+          "choice_axis": "korriger_spor_og_praksis_vs_normaliser_merkelappen",
+          "consequence_axis": "langsiktig_tillit_og_autonomi_vs_stigma_og_kontroll",
+          "narrative_arc": "notatet_returnerer",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Korriger overleveringen med observerbare fakta, ta opp språkpraksisen i teamet og forklar Elias hva dere endrer",
+              "reply": "Jeg reparerer både notatet og måten vi bruker slike ord på framover.",
+              "effect": 1,
+              "tags": [
+                "repair",
+                "anti_stigma"
+              ],
+              "feedback": "Du kan ikke slette effekten, men gjør feilen sporbar og reduserer sjansen for at den gjentas.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 2,
+                  "risk": -3,
+                  "status": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forklar at «ustabil» bare var internt fagspråk og at teamet må få bruke korte begreper",
+              "reply": "Det var ikke ment som et stempel; vi trenger et praktisk språk internt.",
+              "effect": -1,
+              "tags": [
+                "defensiveness",
+                "stigma"
+              ],
+              "feedback": "Du beskytter tempoet i dokumentasjonen, men gjør personens erfaring av kontroll til et kommunikasjonsproblem.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -3,
+                  "trust": -4,
+                  "risk": 3
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Fjern ordet fra det siste notatet, men la eldre overleveringer stå urørt",
+              "reply": "Jeg rydder det vi skriver nå uten å åpne hele historikken.",
+              "effect": 0,
+              "tags": [
+                "limited_repair",
+                "documentation"
+              ],
+              "feedback": "Dagens spor blir bedre, mens eldre språk fortsatt kan påvirke hvordan teamet leser personen.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 0,
+                  "risk": -1,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

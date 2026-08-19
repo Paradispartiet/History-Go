@@ -1,6 +1,6 @@
 {
   "schema": "civication_role_model_v1",
-  "version": 1,
+  "version": 2,
   "source": {
     "badge_file": "data/badges.json",
     "badge_id": "naeringsliv",
@@ -13,48 +13,65 @@
   "role_id": "naeringsliv_okonomi_og_administrasjonsmedarbeider",
   "title": "Økonomi- og administrasjonsmedarbeider",
   "core_narrative": [
-    "I Civication er Økonomi- og administrasjonsmedarbeider en praktisk rolle i Næringsliv & industri der valg former tillit, handlingsrom og status."
+    "Administrasjonsmedarbeideren gjør virksomhetens løse bilag, frister, beskjeder og systemspor etterprøvbare nok til at andre kan handle på dem.",
+    "Rollen handler mindre om å fylle felt enn om å bevare sammenhengen mellom grunnlag, ansvar, registrering, avvik og oppfølging.",
+    "God administrasjon gjør feil og usikkerhet synlig; den bruker ikke systemets ryddighet til å skjule at virkeligheten fortsatt er uavklart."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til industri, handel og markeder."
+      "Tar imot bilag, bestillinger, frister og henvendelser og avklarer hvem som eier saken og hvilket grunnlag som faktisk finnes.",
+      "Kontrollerer registreringer mot dokumentasjon og kilder før tall, kategorier eller status sendes videre.",
+      "Følger opp manglende svar og systemavvik uten å gjøre midlertidige løsninger til permanent skjult gjeld.",
+      "Rydder versjoner, dokumenterer neste steg og overleverer åpne punkter med tydelig eier, frist og usikkerhet."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Bevare sporbarhet mellom grunnlag, registrering, ansvar og beslutning.",
+      "Skille dokumenterte fakta fra antakelser, midlertidige konteringer og uavklarte opplysninger.",
+      "Purre og koordinere uten å overta fagansvar eller godkjenningsmyndighet som ligger hos andre.",
+      "Løfte gjentatte feil som mulig prosess- eller systemproblem i stedet for bare å reparere hvert tilfelle manuelt."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Arbeidsdagen beveger seg mellom innboks og mottak, registreringssystemer, dokumentarkiv, avklaringer med drift/økonomi og korte friststyrte overleveringer.",
+      "Små feil kan være billige å rette tidlig, men dyre dersom de mister eier, versjon eller forklaring og blir stående som tilsynelatende ferdige data."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Tillit bygges gjennom presisjon, ryddige overganger og evnen til å gjøre uavklarte forhold synlige uten å skape unødig friksjon.",
+      "Rollen kan kontrollere grunnlag, etterspørre dokumentasjon og eskalere avvik, men kan ikke godkjenne uten fullmakt eller presentere antakelser som bokførte fakta."
+    ],
+    "workplaces": [
+      "innboks_og_mottaksflate",
+      "registrerings_og_kontrollflate",
+      "arkiv_og_versjonsflate",
+      "frist_og_oppfolgingsbord"
     ]
   },
   "career_path": {
     "entry_from": [
-      "Tidligere tier i samme badge-kategori."
+      "Innledende administrativt arbeid med avgrensede registrerings-, service- eller dokumentasjonsoppgaver."
     ],
     "progression_to": [
-      "Neste tier i samme badge-kategori."
+      "Mer selvstendig administrasjon, økonomioppfølging, intern kontroll eller koordinering."
     ],
     "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
+      "Ansvar for mer komplekse prosesser, kontrollspor eller koordinerende administrasjon."
     ],
     "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
+      "Skifte til økonomi, innkjøp, HR, prosjektstøtte eller annen administrativ spesialisering."
     ],
     "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
+      "Tap av tillit dersom uavklart grunnlag behandles som avklart for å få saken ut av innboksen.",
+      "At uformelt prosesseierskap glir over i beslutninger rollen ikke har mandat til å ta."
     ]
   },
   "required_knowledge": {
     "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
+      "Grunnleggende forståelse for dokumentasjon, administrative prosesser, økonomiske grunnlag og intern kontroll."
     ],
     "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
+      "Registrering, kildekontroll, sporbar dokumentasjon, fristoppfølging, versjonskontroll og tydelig administrativ kommunikasjon."
     ],
     "category_knowledge": [
-      "For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Hvordan bilag, budsjett, dokumentasjon og intern kontroll binder sammen drift, økonomi og ansvar."
     ],
     "history_go_badges": [
       "naeringsliv"
@@ -62,35 +79,71 @@
     "place_connections": [],
     "people_connections": []
   },
+  "authority_boundary": {
+    "may": [
+      "kontrollere grunnlag og registrering",
+      "etterspørre dokumentasjon og avklaringer",
+      "holde en sak åpen når grunnlaget ikke er tilstrekkelig",
+      "eskalere kontroll- og prosessavvik"
+    ],
+    "may_not": [
+      "godkjenne uten fullmakt",
+      "endre eller klassifisere tall for å skjule et avvik",
+      "presentere antakelser som dokumenterte fakta",
+      "overta fagansvar bare fordi rollen koordinerer prosessen"
+    ]
+  },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
+      "id": "frist_vs_sporbarhet",
+      "title": "Frist mot sporbarhet",
+      "description": "Saken kan lukkes raskt hvis et uklart felt eller manglende grunnlag får en praktisk antakelse, men da flyttes usikkerheten inn i systemet.",
+      "pressure": "frist_vs_sporbarhet",
       "affects": [
         "trust",
-        "status",
+        "documentation_quality",
         "risk"
       ]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
+      "id": "rydde_selv_vs_synliggjore_ansvar",
+      "title": "Rydde selv eller synliggjøre ansvar",
+      "setup": "Du kan få saken ferdig ved å gjette en sannsynlig eier eller kategori, eller holde den åpen og gjøre manglende ansvar synlig.",
+      "choice_axis": "hurtig_lukking_vs_sporbar_avklaring",
+      "consequence_axis": "kortsiktig_flyt_vs_langsiktig_tillit",
       "mail_hooks": [
         "job",
         "conflict",
-        "story"
+        "story",
+        "event"
       ]
     }
   ],
   "related_people": [],
-  "related_places": [],
+  "related_places": [
+    {
+      "id": "innboks_og_mottaksflate",
+      "name": "Innboks- og mottaksflaten",
+      "function": "Her kommer bilag, frister, bestillinger og henvendelser inn og må få riktig eier, prioritet og neste steg før de blir til skjult kø."
+    },
+    {
+      "id": "registrerings_og_kontrollflate",
+      "name": "Registrerings- og kontrollflaten",
+      "function": "Her sammenholdes felter, beløp, kategorier og status med faktisk grunnlag før informasjonen blir gjort til virksomhetsdata."
+    },
+    {
+      "id": "arkiv_og_versjonsflate",
+      "name": "Arkiv- og versjonsflaten",
+      "function": "Her avgjøres hva som er gjeldende dokumentasjon, hva som er utgått, og hvordan endringer skal spores slik at organisasjonen ikke husker feil."
+    },
+    {
+      "id": "frist_og_oppfolgingsbord",
+      "name": "Frist- og oppfølgingsbordet",
+      "function": "Her samles åpne punkter, eiere, frister, avhengigheter og usikkerhet slik at oppfølging ikke forveksles med å overta andres ansvar."
+    }
+  ],
   "mail_integration": {
     "role_scope": "okonomi_og_administrasjonsmedarbeider",
     "mail_profile": "naeringsliv_okonomi_og_administrasjonsmedarbeider",
@@ -105,16 +158,32 @@
     "mail_variables": {
       "role_title": "Økonomi- og administrasjonsmedarbeider",
       "category": "naeringsliv",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
+      "main_pressure": "frist_vs_sporbarhet",
+      "ethical_axis": "hurtig_lukking_vs_sporbar_avklaring",
       "status_axis": "tillit_vs_risiko"
     },
-    "recommended_mail_families": [],
+    "recommended_mail_families": [
+      "administrasjonsmedarbeider_dokumentasjonskonflikt",
+      "administrasjonsmedarbeider_virksomhetshukommelse",
+      "administrasjonsmedarbeider_systemfrist"
+    ],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
+  "competence_axes": [
+    "sporbarhet",
+    "dokumentasjonskvalitet",
+    "friststyring",
+    "internkontroll",
+    "prosessforståelse",
+    "kommunikasjon"
+  ],
+  "ideal_type_problems": [
+    "frist_vs_sporbarhet",
+    "mål_vs_reelle_tall",
+    "service_vs_kontroll"
+  ],
   "notes": [
-    "Basert på badges.json: naeringsliv / Økonomi- og administrasjonsmedarbeider."
+    "Basert på eksisterende Administrasjonsmedarbeider-plan og delt FWG for administrasjon og økonomistyring.",
+    "Systematic rollout: konkrete arbeidsflater er materialisert uten å endre den etablerte to-ukers praksisplanen."
   ]
 }

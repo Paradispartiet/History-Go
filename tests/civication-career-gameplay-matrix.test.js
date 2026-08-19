@@ -6,6 +6,7 @@ const { execFileSync } = require('child_process');
 
 const root = path.resolve(__dirname, '..');
 const policy = JSON.parse(fs.readFileSync(path.join(root, 'data/Civication/careerGameplayPolicy.json'), 'utf8'));
+const categoryContract = JSON.parse(fs.readFileSync(path.join(root, 'data/categories/category_contract.json'), 'utf8'));
 const matrix = JSON.parse(fs.readFileSync(path.join(root, 'data/Civication/careerGameplayMatrix.json'), 'utf8'));
 
 execFileSync(process.execPath, ['scripts/audit-civication-career-gameplay.mjs', '--check'], { cwd: root, stdio: 'pipe' });
@@ -15,6 +16,17 @@ assert.deepStrictEqual(Object.keys(matrix.summary.statuses), policy.status_order
 assert(matrix.summary.work_worlds >= 80, 'global matrix covers work worlds, not a small hand-picked sample');
 assert.strictEqual(matrix.worlds.length, matrix.summary.work_worlds, 'summary count matches work-world rows');
 assert.strictEqual(new Set(matrix.worlds.map((world) => world.key)).size, matrix.worlds.length, 'one row per category/role_scope');
+
+const canonicalCategories = new Set(categoryContract.runtimeCategories || []);
+assert(matrix.worlds.every((world) => canonicalCategories.has(world.category)), 'career matrix contains only canonical runtime categories');
+assert(Array.isArray(matrix.support_worlds), 'matrix exposes noncanonical support worlds separately');
+assert.strictEqual(matrix.summary.support_worlds, matrix.support_worlds.length, 'support-world summary matches support rows');
+assert(!matrix.worlds.some((world) => world.key === 'sosial_laering/barnehageassistent'), 'legacy sosial_laering is excluded from canonical career rollout');
+const barnehageSupport = matrix.support_worlds.find((world) => world.key === 'sosial_laering/barnehageassistent');
+assert(barnehageSupport, 'Barnehageassistent remains visible as support content');
+assert.strictEqual(barnehageSupport.career_status, 'not_applicable', 'Barnehageassistent does not receive a fabricated career status');
+assert.strictEqual(barnehageSupport.reason, 'content_only_legacy_namespace', 'Barnehageassistent authority follows its content-only Life Story binding');
+assert.strictEqual(barnehageSupport.content_only_life_story, true, 'Barnehageassistent remains content-only');
 
 for (const world of matrix.worlds) {
   assert.deepStrictEqual(Object.keys(world.audit.components), policy.contract_components, `${world.key} has the full 15-component contract`);
@@ -43,4 +55,4 @@ assert.strictEqual(renholder.status, 'reference_complete', 'Renholder is the fir
 assert.strictEqual(renholder.audit.components.authority.level, 'complete', 'Renholder authority boundary is machine-auditable');
 assert.strictEqual(renholder.audit.complete_components.length, policy.contract_components.length, 'Renholder completes all 15 contract components');
 
-console.log(`PASS: Career Gameplay Matrix v1 covers ${matrix.worlds.length} canonical work worlds with a deterministic 15-component gate.`);
+console.log(`PASS: Career Gameplay Matrix v1 covers ${matrix.worlds.length} canonical career worlds and ${matrix.support_worlds.length} support worlds with a deterministic 15-component gate.`);

@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_assistent",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "grunnlagskonflikter",
+      "purpose": "La assistenten håndtere motstridende kilder uten å velge den mest praktiske sannheten.",
+      "learning_focus": ["kildekritikk", "sporbarhet"],
+      "mails": [
+        {
+          "id": "by_assistent_conflict_kart_befaring_001",
+          "mail_type": "conflict",
+          "mail_family": "grunnlagskonflikter",
+          "role_scope": "by_assistent",
+          "phase": "afternoon",
+          "priority": 68,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "jonas_arkitekt",
+          "sender": "jonas_arkitekt",
+          "person_id": "jonas_arkitekt",
+          "place_id": "befaring_og_observasjonsflate",
+          "subject": "Kartet og befaringen kan ikke begge være helt riktige",
+          "summary": "Jonas peker på at den tegnede oppholdssonen brukes som gjennomgang, mens kartgrunnlaget fortsatt behandler den som rolig areal.",
+          "purpose": "Teste om assistenten bevarer konflikten som et faglig avvik i stedet for å glatte den ut.",
+          "stakes": "Hvis konflikten skjules, kan neste løsning bygge på feil funksjonsforståelse.",
+          "situation": [
+            "Kartet viser én funksjon.",
+            "Befaringen viser et stabilt annet bruksmønster.",
+            "Jonas trenger et notat som kan brukes i neste prosjektgjennomgang."
+          ],
+          "task_domain": "kart_mot_sted",
+          "task_kind": "conflict",
+          "competency": "grunnlagskritikk",
+          "pressure": "dokumentro_vs_stedsfunn",
+          "choice_axis": "bevare_konflikt_vs_velge_en_kilde",
+          "consequence_axis": "sporbarhet_vs_falsk_enighet",
+          "narrative_arc": "Assistenten lærer at en uløst motsetning kan være viktigere enn et ryddig sammendrag.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Registrer konflikten og foreslå ny kontroll før premisset låses",
+              "reply": "Jeg registrerer konflikten mellom kart og faktisk bruk og foreslår ny kontroll før vi låser premisset.",
+              "effect": 1,
+              "tags": ["conflict", "evidence", "escalation"],
+              "feedback": "Uenigheten blir synlig og kan undersøkes før den blir til en skjult feil."
+            },
+            {
+              "id": "B",
+              "label": "La kartgrunnlaget være styrende siden det er den formelle kilden",
+              "reply": "Jeg lar kartgrunnlaget være styrende og omtaler observasjonen som et mulig avvik.",
+              "effect": -1,
+              "tags": ["formal_source", "risk"],
+              "feedback": "Dokumentet blir ryddig, men stedet får mindre makt til å korrigere grunnlaget."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -4,90 +4,92 @@
   "generated_by": "scripts/audit-civication-career-gameplay.mjs",
   "policy": "data/Civication/careerGameplayPolicy.json",
   "summary": {
-    "work_worlds": 89,
+    "discovered_worlds": 89,
+    "work_worlds": 88,
+    "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 3,
-      "partial": 18,
-      "architecture_only": 63
+      "playable": 15,
+      "partial": 7,
+      "architecture_only": 61
     },
-    "runtime_gate_pass": 12,
+    "runtime_gate_pass": 20,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
-        "complete": 81,
-        "partial": 8,
-        "missing": 0
+        "complete": 85,
+        "partial": 2,
+        "missing": 1
       },
       "day_one": {
-        "complete": 22,
+        "complete": 23,
         "partial": 4,
-        "missing": 63
+        "missing": 61
       },
       "workday_loop": {
-        "complete": 21,
-        "partial": 60,
-        "missing": 8
+        "complete": 22,
+        "partial": 59,
+        "missing": 7
       },
       "practice_stories": {
         "complete": 12,
-        "partial": 72,
+        "partial": 71,
         "missing": 5
       },
       "people": {
-        "complete": 9,
-        "partial": 17,
-        "missing": 63
+        "complete": 15,
+        "partial": 16,
+        "missing": 57
       },
       "places": {
-        "complete": 12,
+        "complete": 23,
         "partial": 0,
-        "missing": 77
+        "missing": 65
       },
       "mail": {
-        "complete": 13,
-        "partial": 13,
-        "missing": 63
+        "complete": 21,
+        "partial": 6,
+        "missing": 61
       },
       "knowledge": {
-        "complete": 23,
-        "partial": 26,
+        "complete": 25,
+        "partial": 23,
         "missing": 40
       },
       "quality_axes": {
-        "complete": 87,
-        "partial": 2,
+        "complete": 85,
+        "partial": 3,
         "missing": 0
       },
       "authority": {
         "complete": 80,
-        "partial": 9,
-        "missing": 0
+        "partial": 7,
+        "missing": 1
       },
       "consequences": {
-        "complete": 15,
-        "partial": 8,
-        "missing": 66
+        "complete": 21,
+        "partial": 3,
+        "missing": 64
       },
       "performance": {
-        "complete": 18,
+        "complete": 19,
         "partial": 5,
-        "missing": 66
+        "missing": 64
       },
       "economy": {
-        "complete": 81,
-        "partial": 8,
+        "complete": 85,
+        "partial": 3,
         "missing": 0
       },
       "progression": {
         "complete": 18,
-        "partial": 19,
-        "missing": 52
+        "partial": 20,
+        "missing": 50
       },
       "exit": {
-        "complete": 17,
+        "complete": 18,
         "partial": 20,
-        "missing": 52
+        "missing": 50
       }
     }
   },
@@ -109,7 +111,7 @@
       "role_ids": [
         "by_arkitekt"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/by/arkitekt.json"
@@ -123,39 +125,40 @@
             "count": 8
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/conflict/by_arkitekt_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/story/by_arkitekt_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/event/by_arkitekt_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/micro/by_arkitekt_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
+          "tests/civication-by-arkitekt-rollout-playability.test.js",
           "tests/civication-by-career-architecture.test.js",
           "tests/civication-role-pack-depth.test.js"
         ],
@@ -176,6 +179,7 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_arkitekt_plan.json",
+              "tests/civication-by-arkitekt-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js",
               "tests/civication-role-pack-depth.test.js"
             ],
@@ -187,6 +191,7 @@
               "data/Civication/mailFamilies/by/job/by_arkitekt_job.json",
               "data/Civication/mailPlans/by/by_arkitekt_plan.json",
               "data/Civication/workGrammars/by/by_arkitekt.json",
+              "tests/civication-by-arkitekt-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js",
               "tests/civication-role-pack-depth.test.js"
             ],
@@ -201,27 +206,43 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+              "data/Civication/roleModels/by/arkitekt.json",
+              "data/Civication/workGrammars/by/by_arkitekt.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/by/arkitekt.json",
+              "data/Civication/workGrammars/by/by_arkitekt.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/by/conflict/by_arkitekt_conflict.json",
+              "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
+              "data/Civication/mailFamilies/by/event/by_arkitekt_event.json",
+              "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
               "data/Civication/mailFamilies/by/job/by_arkitekt_job.json",
+              "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
+              "data/Civication/mailFamilies/by/micro/by_arkitekt_micro.json",
+              "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+              "data/Civication/mailFamilies/by/story/by_arkitekt_story.json",
               "data/Civication/mailPlans/by/by_arkitekt_plan.json"
             ],
-            "note": "1/9 standard mail types."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
               "data/Civication/roleModels/by/arkitekt.json",
               "data/Civication/workGrammars/by/by_arkitekt.json"
             ],
@@ -244,16 +265,21 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/by/by_arkitekt_plan.json"
+              "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
+              "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
+              "tests/civication-by-arkitekt-rollout-playability.test.js",
+              "tests/civication-by-career-architecture.test.js",
+              "tests/civication-role-pack-depth.test.js"
             ],
-            "note": "Consequence content exists without the full role-specific follow-up proof."
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_arkitekt_plan.json",
+              "tests/civication-by-arkitekt-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js",
               "tests/civication-career-outcomes.test.js",
               "tests/civication-role-pack-depth.test.js"
@@ -289,18 +315,19 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "people",
+          "places",
+          "mail",
           "knowledge",
           "quality_axes",
           "authority",
+          "consequences",
           "performance",
           "economy",
           "progression",
@@ -363,7 +390,7 @@
         "by_assistent",
         "by_studentassistent"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/by/studentassistent.json"
@@ -377,39 +404,40 @@
             "count": 8
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/story/by_assistent_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
+          "tests/civication-by-assistent-rollout-playability.test.js",
           "tests/civication-by-career-architecture.test.js"
         ],
         "life_story": null
@@ -429,6 +457,7 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_assistent_plan.json",
+              "tests/civication-by-assistent-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
@@ -439,6 +468,7 @@
               "data/Civication/mailFamilies/by/job/by_assistent_job.json",
               "data/Civication/mailPlans/by/by_assistent_plan.json",
               "data/Civication/workGrammars/by/by_assistent.json",
+              "tests/civication-by-assistent-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
@@ -452,27 +482,43 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+              "data/Civication/roleModels/by/studentassistent.json",
+              "data/Civication/workGrammars/by/by_assistent.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/by/studentassistent.json",
+              "data/Civication/workGrammars/by/by_assistent.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+              "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+              "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+              "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
               "data/Civication/mailFamilies/by/job/by_assistent_job.json",
+              "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+              "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+              "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+              "data/Civication/mailFamilies/by/story/by_assistent_story.json",
               "data/Civication/mailPlans/by/by_assistent_plan.json"
             ],
-            "note": "1/9 standard mail types."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
               "data/Civication/roleModels/by/studentassistent.json",
               "data/Civication/workGrammars/by/by_assistent.json"
             ],
@@ -495,16 +541,20 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/by/by_assistent_plan.json"
+              "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+              "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+              "tests/civication-by-assistent-rollout-playability.test.js",
+              "tests/civication-by-career-architecture.test.js"
             ],
-            "note": "Consequence content exists without the full role-specific follow-up proof."
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_assistent_plan.json",
+              "tests/civication-by-assistent-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js",
               "tests/civication-career-outcomes.test.js"
             ],
@@ -539,18 +589,19 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "people",
+          "places",
+          "mail",
           "knowledge",
           "quality_axes",
           "authority",
+          "consequences",
           "performance",
           "economy",
           "progression",
@@ -614,7 +665,7 @@
         "by_prosjektleder",
         "by_prosjektleder_byutvikling"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/by/prosjektleder_byutvikling.json"
@@ -628,40 +679,41 @@
             "count": 8
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
-          "tests/civication-by-career-architecture.test.js"
+          "tests/civication-by-career-architecture.test.js",
+          "tests/civication-by-prosjektleder-rollout-playability.test.js"
         ],
         "life_story": null
       },
@@ -680,7 +732,8 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_prosjektleder_plan.json",
-              "tests/civication-by-career-architecture.test.js"
+              "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-prosjektleder-rollout-playability.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -690,7 +743,8 @@
               "data/Civication/mailFamilies/by/job/by_prosjektleder_job.json",
               "data/Civication/mailPlans/by/by_prosjektleder_plan.json",
               "data/Civication/workGrammars/by/by_prosjektleder.json",
-              "tests/civication-by-career-architecture.test.js"
+              "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-prosjektleder-rollout-playability.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
@@ -703,27 +757,43 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+              "data/Civication/roleModels/by/prosjektleder_byutvikling.json",
+              "data/Civication/workGrammars/by/by_prosjektleder.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/by/prosjektleder_byutvikling.json",
+              "data/Civication/workGrammars/by/by_prosjektleder.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+              "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
+              "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+              "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
               "data/Civication/mailFamilies/by/job/by_prosjektleder_job.json",
+              "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+              "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+              "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+              "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
               "data/Civication/mailPlans/by/by_prosjektleder_plan.json"
             ],
-            "note": "1/9 standard mail types."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
               "data/Civication/roleModels/by/prosjektleder_byutvikling.json",
               "data/Civication/workGrammars/by/by_prosjektleder.json"
             ],
@@ -746,17 +816,21 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/by/by_prosjektleder_plan.json"
+              "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
+              "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+              "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-prosjektleder-rollout-playability.test.js"
             ],
-            "note": "Consequence content exists without the full role-specific follow-up proof."
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_prosjektleder_plan.json",
               "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-prosjektleder-rollout-playability.test.js",
               "tests/civication-career-outcomes.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
@@ -790,18 +864,19 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "people",
+          "places",
+          "mail",
           "knowledge",
           "quality_axes",
           "authority",
+          "consequences",
           "performance",
           "economy",
           "progression",
@@ -936,8 +1011,10 @@
           "tests/civication-mail-thread-dedupe.test.js",
           "tests/civication-no-evening-work-gate.test.js",
           "tests/civication-phase-bundle.test.js",
+          "tests/civication-pilot-wave-closure.test.js",
           "tests/civication-private-phase-mailers.test.js",
           "tests/civication-private-phase-profile-bridge.test.js",
+          "tests/civication-psykologi-miljoarbeid-playability.test.js",
           "tests/civication-reference-role-playability.test.js",
           "tests/civication-reference-roles-choice-contract.test.js",
           "tests/civication-role-pack-depth.test.js",
@@ -985,8 +1062,10 @@
               "tests/civication-mail-thread-dedupe.test.js",
               "tests/civication-no-evening-work-gate.test.js",
               "tests/civication-phase-bundle.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
               "tests/civication-private-phase-mailers.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-role-pack-depth.test.js",
@@ -1017,8 +1096,10 @@
               "tests/civication-mail-thread-dedupe.test.js",
               "tests/civication-no-evening-work-gate.test.js",
               "tests/civication-phase-bundle.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
               "tests/civication-private-phase-mailers.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-role-pack-depth.test.js",
@@ -1123,8 +1204,10 @@
               "tests/civication-mail-thread-dedupe.test.js",
               "tests/civication-no-evening-work-gate.test.js",
               "tests/civication-phase-bundle.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
               "tests/civication-private-phase-mailers.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-role-pack-depth.test.js",
@@ -1154,8 +1237,10 @@
               "tests/civication-mail-thread-dedupe.test.js",
               "tests/civication-no-evening-work-gate.test.js",
               "tests/civication-phase-bundle.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
               "tests/civication-private-phase-mailers.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-role-pack-depth.test.js",
@@ -1284,7 +1369,7 @@
         "by_saksbehandler",
         "by_saksbehandler_plan_bygg"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/by/saksbehandler_plan_bygg.json"
@@ -1298,40 +1383,41 @@
             "count": 8
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
-          "tests/civication-by-career-architecture.test.js"
+          "tests/civication-by-career-architecture.test.js",
+          "tests/civication-by-saksbehandler-rollout-playability.test.js"
         ],
         "life_story": null
       },
@@ -1350,7 +1436,8 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_saksbehandler_plan.json",
-              "tests/civication-by-career-architecture.test.js"
+              "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-saksbehandler-rollout-playability.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -1360,7 +1447,8 @@
               "data/Civication/mailFamilies/by/job/by_saksbehandler_job.json",
               "data/Civication/mailPlans/by/by_saksbehandler_plan.json",
               "data/Civication/workGrammars/by/by_saksbehandler.json",
-              "tests/civication-by-career-architecture.test.js"
+              "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-saksbehandler-rollout-playability.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
@@ -1373,27 +1461,43 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+              "data/Civication/roleModels/by/saksbehandler_plan_bygg.json",
+              "data/Civication/workGrammars/by/by_saksbehandler.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/by/saksbehandler_plan_bygg.json",
+              "data/Civication/workGrammars/by/by_saksbehandler.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+              "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+              "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+              "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
               "data/Civication/mailFamilies/by/job/by_saksbehandler_job.json",
+              "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+              "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+              "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+              "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
               "data/Civication/mailPlans/by/by_saksbehandler_plan.json"
             ],
-            "note": "1/9 standard mail types."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
               "data/Civication/roleModels/by/saksbehandler_plan_bygg.json",
               "data/Civication/workGrammars/by/by_saksbehandler.json"
             ],
@@ -1416,17 +1520,21 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/by/by_saksbehandler_plan.json"
+              "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+              "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+              "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-saksbehandler-rollout-playability.test.js"
             ],
-            "note": "Consequence content exists without the full role-specific follow-up proof."
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_saksbehandler_plan.json",
               "tests/civication-by-career-architecture.test.js",
+              "tests/civication-by-saksbehandler-rollout-playability.test.js",
               "tests/civication-career-outcomes.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
@@ -1460,18 +1568,19 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "people",
+          "places",
+          "mail",
           "knowledge",
           "quality_axes",
           "authority",
+          "consequences",
           "performance",
           "economy",
           "progression",
@@ -1976,6 +2085,7 @@
           "tests/civication-life-position-career-split.test.js",
           "tests/civication-music-life-career-split.test.js",
           "tests/civication-scenekunst-life-career-split.test.js",
+          "tests/civication-subkultur-arrangementsdrift-playability.test.js",
           "tests/civication-subkultur-career-architecture.test.js"
         ],
         "life_story": null
@@ -2002,6 +2112,7 @@
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
@@ -2019,6 +2130,7 @@
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
@@ -2099,6 +2211,7 @@
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
             ],
             "note": "Later consequence/follow-up path is role-tested."
@@ -2115,6 +2228,7 @@
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
@@ -7113,7 +7227,7 @@
         "naer_administrasjonsmedarbeider",
         "naeringsliv_okonomi_og_administrasjonsmedarbeider"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/okonomi_og_administrasjonsmedarbeider.json"
@@ -7133,16 +7247,16 @@
             "count": 42
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json",
+            "count": 1
           },
           "micro": {
             "path": null,
@@ -7163,6 +7277,7 @@
         },
         "role_tests": [
           "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+          "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
           "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
           "tests/civication-compiled-scene-registry-parity.test.js",
@@ -7187,6 +7302,7 @@
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/administrasjonsmedarbeider_plan.json",
               "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-compiled-scene-registry-parity.test.js",
@@ -7202,6 +7318,7 @@
               "data/Civication/mailPlans/naeringsliv/administrasjonsmedarbeider_plan.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_administrasjon_og_okonomistyring.json",
               "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-compiled-scene-registry-parity.test.js",
@@ -7230,18 +7347,27 @@
             "note": "People content exists on only one side of the content/runtime boundary."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/okonomi_og_administrasjonsmedarbeider.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_administrasjon_og_okonomistyring.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json",
+              "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json",
               "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json",
               "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json",
-              "data/Civication/mailPlans/naeringsliv/administrasjonsmedarbeider_plan.json"
+              "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
+              "data/Civication/mailPlans/naeringsliv/administrasjonsmedarbeider_plan.json",
+              "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js"
             ],
-            "note": "2/9 standard mail types."
+            "note": "5/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
@@ -7273,6 +7399,7 @@
             "level": "complete",
             "evidence": [
               "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-compiled-scene-registry-parity.test.js",
@@ -7286,6 +7413,7 @@
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/administrasjonsmedarbeider_plan.json",
               "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-career-outcomes.test.js",
@@ -7324,15 +7452,15 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
+          "places",
+          "mail",
           "knowledge",
           "quality_axes",
           "authority",
@@ -7375,19 +7503,14 @@
         "mailPlan",
         "practiceRegistry"
       ],
-      "badge_titles": [
-        "Fagarbeider"
-      ],
+      "badge_titles": [],
       "role_ids": [
         "arbeider",
-        "naer_arbeider",
-        "naeringsliv_fagarbeider"
+        "naer_arbeider"
       ],
       "status": "partial",
       "artifacts": {
-        "role_models": [
-          "data/Civication/roleModels/naeringsliv/fagarbeider.json"
-        ],
+        "role_models": [],
         "work_grammar": null,
         "shared_work_grammars": [],
         "mail_plan": "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
@@ -7431,12 +7554,15 @@
         },
         "role_tests": [
           "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+          "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
           "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
           "tests/civication-career-outcome-reachability.test.js",
           "tests/civication-career-outcome-view-model.test.js",
+          "tests/civication-career-rolemodel-ownership.test.js",
           "tests/civication-controller-two-week-flow.test.js",
           "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+          "tests/civication-fagarbeider-rollout-playability.test.js",
           "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-fagarbeider-two-week-flow.test.js",
           "tests/civication-first-week-praksisfortellinger.test.js",
@@ -7444,6 +7570,7 @@
           "tests/civication-job-eligibility.test.js",
           "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
           "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+          "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
           "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
           "tests/civication-mellomleder-two-week-flow.test.js",
@@ -7457,25 +7584,24 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json",
-              "data/Civication/badgeRoleMappings.json",
-              "tests/civication-job-offer-eligibility-ui.test.js"
-            ],
-            "note": "1 linked career title(s) have an offer policy and gate."
+            "level": "missing",
+            "evidence": [],
+            "note": "No canonical career title binding."
           },
           "day_one": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
               "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-first-week-praksisfortellinger.test.js",
@@ -7483,6 +7609,7 @@
               "tests/civication-job-eligibility.test.js",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
@@ -7499,12 +7626,15 @@
               "data/Civication/mailFamilies/naeringsliv/job/arbeider_job.json",
               "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
               "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-first-week-praksisfortellinger.test.js",
@@ -7512,6 +7642,7 @@
               "tests/civication-job-eligibility.test.js",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
@@ -7535,8 +7666,7 @@
           "people": {
             "level": "partial",
             "evidence": [
-              "data/Civication/mailFamilies/naeringsliv/people/arbeider_people.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
+              "data/Civication/mailFamilies/naeringsliv/people/arbeider_people.json"
             ],
             "note": "People content exists on only one side of the content/runtime boundary."
           },
@@ -7561,38 +7691,35 @@
             "note": "5/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/jobKnowledgeRequirements.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
-            ],
-            "note": "Knowledge content is connected to a mail or job-gate surface."
-          },
-          "quality_axes": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/praksisfortellinger_registry.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
-            ],
-            "note": "Quality/competence axes are declared and connected to choice/consequence fields."
-          },
-          "authority": {
             "level": "partial",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
+              "data/Civication/jobKnowledgeRequirements.json"
             ],
-            "note": "Role content exists, but authority is not an explicit machine-auditable boundary."
+            "note": "Knowledge exists, but its gameplay application is incomplete."
+          },
+          "quality_axes": {
+            "level": "partial",
+            "evidence": [],
+            "note": "Quality axes exist without a complete choice/consequence binding."
+          },
+          "authority": {
+            "level": "missing",
+            "evidence": [],
+            "note": "No authority/mandate model."
           },
           "consequences": {
             "level": "complete",
             "evidence": [
               "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-first-week-praksisfortellinger.test.js",
@@ -7600,6 +7727,7 @@
               "tests/civication-job-eligibility.test.js",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
@@ -7615,13 +7743,16 @@
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
               "tests/civication-administrasjonsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-administrasjonsmedarbeider-rollout-playability.test.js",
               "tests/civication-administrasjonsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
               "tests/civication-career-outcomes.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-first-week-praksisfortellinger.test.js",
@@ -7629,6 +7760,7 @@
               "tests/civication-job-eligibility.test.js",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
@@ -7640,50 +7772,40 @@
             "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
-            "level": "complete",
+            "level": "partial",
             "evidence": [
-              "data/badges/index.json",
-              "data/Civication/hg_careers.json",
-              "tests/civication-economy-snapshot.test.js"
+              "data/Civication/hg_careers.json"
             ],
-            "note": "Exact salary exists for all 1 linked career title(s)."
+            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
           },
           "progression": {
-            "level": "complete",
+            "level": "partial",
             "evidence": [
-              "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
-              "tests/civication-career-outcomes.test.js"
+              "data/Civication/mailPlans/naeringsliv/arbeider_plan.json"
             ],
-            "note": "Career path and positive runtime outcome are both present."
+            "note": "Progression exists as content or outcome, not a complete transition path."
           },
           "exit": {
-            "level": "complete",
+            "level": "partial",
             "evidence": [
-              "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
-              "tests/civication-career-outcomes.test.js"
+              "data/Civication/mailPlans/naeringsliv/arbeider_plan.json"
             ],
-            "note": "Exit destinations and negative runtime outcome are both present."
+            "note": "Exit exists as content or outcome, not a complete transition path."
           }
         },
-        "runtime_gate": true,
+        "runtime_gate": false,
         "missing_components": [
-          "places"
+          "entry",
+          "places",
+          "authority"
         ],
         "complete_components": [
-          "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
           "mail",
-          "knowledge",
-          "quality_axes",
           "consequences",
-          "performance",
-          "economy",
-          "progression",
-          "exit"
+          "performance"
         ],
         "practice_story_count": 0,
         "practice_weeks": [
@@ -7693,19 +7815,9 @@
         "reference_depth": 20,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 1,
-          "exact_titles": 1,
-          "rows": [
-            {
-              "title": "Fagarbeider",
-              "tier_index": 5,
-              "offer_policy": "qualification_required",
-              "entry_valid": true,
-              "gate_explicit": true,
-              "salary_key": "1",
-              "salary_defined": true
-            }
-          ]
+          "linked_titles": 0,
+          "exact_titles": 0,
+          "rows": []
         }
       }
     },
@@ -8131,6 +8243,8 @@
           "tests/civication-day-phase-single-owner.test.js",
           "tests/civication-day-roll-new-day.test.js",
           "tests/civication-naeringsliv-life-career-split.test.js",
+          "tests/civication-pilot-wave-closure.test.js",
+          "tests/civication-psykologi-miljoarbeid-playability.test.js",
           "tests/civication-renholder-role-package.test.js",
           "tests/civication-role-world-contract.test.js",
           "tests/civication-test-mode-ui.test.js",
@@ -8172,6 +8286,8 @@
               "tests/civication-day-phase-single-owner.test.js",
               "tests/civication-day-roll-new-day.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-renholder-role-package.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-test-mode-ui.test.js",
@@ -8198,6 +8314,8 @@
               "tests/civication-day-phase-single-owner.test.js",
               "tests/civication-day-roll-new-day.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-renholder-role-package.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-test-mode-ui.test.js",
@@ -8303,6 +8421,8 @@
               "tests/civication-day-phase-single-owner.test.js",
               "tests/civication-day-roll-new-day.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-renholder-role-package.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-test-mode-ui.test.js",
@@ -8326,6 +8446,8 @@
               "tests/civication-day-phase-single-owner.test.js",
               "tests/civication-day-roll-new-day.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-renholder-role-package.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-test-mode-ui.test.js",
@@ -8526,8 +8648,10 @@
           "tests/civication-lifestory-shell-role-bridge.test.js",
           "tests/civication-mail-loop.test.js",
           "tests/civication-naeringsliv-life-career-split.test.js",
+          "tests/civication-pilot-wave-closure.test.js",
           "tests/civication-praksisfortellinger-cross-role.test.js",
           "tests/civication-private-phase-profile-bridge.test.js",
+          "tests/civication-psykologi-miljoarbeid-playability.test.js",
           "tests/civication-renholder-role-package.test.js",
           "tests/civication-role-world-contract.test.js"
         ],
@@ -8581,8 +8705,10 @@
               "tests/civication-lifestory-shell-role-bridge.test.js",
               "tests/civication-mail-loop.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
               "tests/civication-praksisfortellinger-cross-role.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-renholder-role-package.test.js",
               "tests/civication-role-world-contract.test.js"
             ],
@@ -8619,8 +8745,10 @@
               "tests/civication-lifestory-shell-role-bridge.test.js",
               "tests/civication-mail-loop.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
               "tests/civication-praksisfortellinger-cross-role.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-renholder-role-package.test.js",
               "tests/civication-role-world-contract.test.js"
             ],
@@ -8728,8 +8856,10 @@
               "tests/civication-lifestory-shell-role-bridge.test.js",
               "tests/civication-mail-loop.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
               "tests/civication-praksisfortellinger-cross-role.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-renholder-role-package.test.js",
               "tests/civication-role-world-contract.test.js"
             ],
@@ -8765,8 +8895,10 @@
               "tests/civication-lifestory-shell-role-bridge.test.js",
               "tests/civication-mail-loop.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
               "tests/civication-praksisfortellinger-cross-role.test.js",
               "tests/civication-private-phase-profile-bridge.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-renholder-role-package.test.js",
               "tests/civication-role-world-contract.test.js"
             ],
@@ -8859,11 +8991,14 @@
       ],
       "role_ids": [
         "fagarbeider",
-        "naer_fagarbeider"
+        "naer_fagarbeider",
+        "naeringsliv_fagarbeider"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
-        "role_models": [],
+        "role_models": [
+          "data/Civication/roleModels/naeringsliv/fagarbeider.json"
+        ],
         "work_grammar": null,
         "shared_work_grammars": [
           "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
@@ -8911,8 +9046,10 @@
           "tests/civication-brand-employer-bridge.test.js",
           "tests/civication-career-outcome-reachability.test.js",
           "tests/civication-career-role-resolver.test.js",
+          "tests/civication-career-rolemodel-ownership.test.js",
           "tests/civication-day-phase-ui-reentry-lock.test.js",
           "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+          "tests/civication-fagarbeider-rollout-playability.test.js",
           "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-fagarbeider-two-week-flow.test.js",
           "tests/civication-inbox-channels.test.js",
@@ -8941,8 +9078,10 @@
               "tests/civication-brand-employer-bridge.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-role-resolver.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-day-phase-ui-reentry-lock.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-inbox-channels.test.js",
@@ -8962,8 +9101,10 @@
               "tests/civication-brand-employer-bridge.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-role-resolver.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-day-phase-ui-reentry-lock.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-inbox-channels.test.js",
@@ -8988,14 +9129,18 @@
             "level": "partial",
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
             ],
             "note": "People content exists on only one side of the content/runtime boundary."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
@@ -9013,17 +9158,19 @@
             "note": "5/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
               "data/Civication/praksisfortellinger_registry.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -9031,6 +9178,7 @@
           "authority": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
             ],
             "note": "Explicit authority boundary exists."
@@ -9041,8 +9189,10 @@
               "tests/civication-brand-employer-bridge.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-role-resolver.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-day-phase-ui-reentry-lock.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-inbox-channels.test.js",
@@ -9071,28 +9221,33 @@
             "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "partial",
+            "evidence": [
+              "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
+            ],
+            "note": "Progression exists as content or outcome, not a complete transition path."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "partial",
+            "evidence": [
+              "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
+            ],
+            "note": "Exit exists as content or outcome, not a complete transition path."
           }
         },
         "runtime_gate": true,
-        "missing_components": [
-          "places",
-          "progression",
-          "exit"
-        ],
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
+          "places",
           "mail",
+          "knowledge",
           "quality_axes",
           "authority",
           "consequences",
@@ -9565,7 +9720,7 @@
         "naer_formann",
         "naeringsliv_formann_arbeidsleder"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/formann_arbeidsleder.json"
@@ -9616,6 +9771,7 @@
         "role_tests": [
           "tests/civication-career-outcome-reachability.test.js",
           "tests/civication-formann-first-week-praksisfortellinger.test.js",
+          "tests/civication-formann-rollout-playability.test.js",
           "tests/civication-formann-second-week-praksisfortellinger.test.js",
           "tests/civication-formann-two-week-flow.test.js",
           "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9641,6 +9797,7 @@
               "data/Civication/mailPlans/naeringsliv/formann_plan.json",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-formann-first-week-praksisfortellinger.test.js",
+              "tests/civication-formann-rollout-playability.test.js",
               "tests/civication-formann-second-week-praksisfortellinger.test.js",
               "tests/civication-formann-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9657,6 +9814,7 @@
               "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-formann-first-week-praksisfortellinger.test.js",
+              "tests/civication-formann-rollout-playability.test.js",
               "tests/civication-formann-second-week-praksisfortellinger.test.js",
               "tests/civication-formann-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9685,9 +9843,12 @@
             "note": "People content exists on only one side of the content/runtime boundary."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/formann_arbeidsleder.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
@@ -9735,6 +9896,7 @@
             "evidence": [
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-formann-first-week-praksisfortellinger.test.js",
+              "tests/civication-formann-rollout-playability.test.js",
               "tests/civication-formann-second-week-praksisfortellinger.test.js",
               "tests/civication-formann-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9750,6 +9912,7 @@
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcomes.test.js",
               "tests/civication-formann-first-week-praksisfortellinger.test.js",
+              "tests/civication-formann-rollout-playability.test.js",
               "tests/civication-formann-second-week-praksisfortellinger.test.js",
               "tests/civication-formann-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9788,14 +9951,13 @@
           }
         },
         "runtime_gate": true,
-        "missing_components": [
-          "places"
-        ],
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
+          "places",
           "mail",
           "knowledge",
           "quality_axes",
@@ -9856,7 +10018,7 @@
         "lager_og_driftsmedarbeider",
         "naer_lager_og_driftsmedarbeider"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/lager_og_driftsmedarbeider.json"
@@ -9876,16 +10038,16 @@
             "count": 29
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/conflict/lager_og_driftsmedarbeider_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/story/lager_og_driftsmedarbeider_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/event/lager_og_driftsmedarbeider_event.json",
+            "count": 1
           },
           "micro": {
             "path": null,
@@ -9907,6 +10069,7 @@
         "role_tests": [
           "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
           "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+          "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
           "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
           "tests/civication-lifestory-shell-role-bridge.test.js",
@@ -9932,6 +10095,7 @@
               "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
@@ -9948,6 +10112,7 @@
               "data/Civication/workGrammars/naeringsliv/naeringsliv_logistikk_og_drift.json",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
@@ -9976,18 +10141,27 @@
             "note": "People content exists on only one side of the content/runtime boundary."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/lager_og_driftsmedarbeider.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_logistikk_og_drift.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/conflict/lager_og_driftsmedarbeider_conflict.json",
+              "data/Civication/mailFamilies/naeringsliv/event/lager_og_driftsmedarbeider_event.json",
               "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json",
               "data/Civication/mailFamilies/naeringsliv/people/lager_og_driftsmedarbeider_people.json",
-              "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json"
+              "data/Civication/mailFamilies/naeringsliv/story/lager_og_driftsmedarbeider_story.json",
+              "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
+              "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js"
             ],
-            "note": "2/9 standard mail types."
+            "note": "5/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
@@ -10020,6 +10194,7 @@
             "evidence": [
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
@@ -10063,15 +10238,15 @@
             "note": "Exit exists as content or outcome, not a complete transition path."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
+          "places",
+          "mail",
           "knowledge",
           "quality_axes",
           "authority",
@@ -10127,7 +10302,7 @@
         "naer_mellomleder",
         "naeringsliv_kapitalforvalter"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/kapitalforvalter.json"
@@ -10179,6 +10354,7 @@
         "role_tests": [
           "tests/civication-job-offer-eligibility-ui.test.js",
           "tests/civication-mellomleder-first-week-praksisfortellinger.test.js",
+          "tests/civication-mellomleder-rollout-playability.test.js",
           "tests/civication-mellomleder-second-week-praksisfortellinger.test.js",
           "tests/civication-mellomleder-two-week-flow.test.js",
           "tests/civication-naeringsliv-life-career-split.test.js",
@@ -10203,6 +10379,7 @@
               "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
               "tests/civication-job-offer-eligibility-ui.test.js",
               "tests/civication-mellomleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-mellomleder-rollout-playability.test.js",
               "tests/civication-mellomleder-second-week-praksisfortellinger.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -10219,6 +10396,7 @@
               "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json",
               "tests/civication-job-offer-eligibility-ui.test.js",
               "tests/civication-mellomleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-mellomleder-rollout-playability.test.js",
               "tests/civication-mellomleder-second-week-praksisfortellinger.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -10247,9 +10425,13 @@
             "note": "People content exists on only one side of the content/runtime boundary."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/kapitalforvalter.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_finans_og_kapitalforvaltning.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
@@ -10300,6 +10482,7 @@
             "evidence": [
               "tests/civication-job-offer-eligibility-ui.test.js",
               "tests/civication-mellomleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-mellomleder-rollout-playability.test.js",
               "tests/civication-mellomleder-second-week-praksisfortellinger.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -10344,14 +10527,13 @@
           }
         },
         "runtime_gate": true,
-        "missing_components": [
-          "places"
-        ],
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
+          "places",
           "mail",
           "knowledge",
           "quality_axes",
@@ -10731,6 +10913,8 @@
           "tests/civication-lifestory-renholder.test.js",
           "tests/civication-lifestory-shell-role-bridge.test.js",
           "tests/civication-naeringsliv-life-career-split.test.js",
+          "tests/civication-pilot-wave-closure.test.js",
+          "tests/civication-psykologi-miljoarbeid-playability.test.js",
           "tests/civication-reference-role-playability.test.js",
           "tests/civication-reference-roles-choice-contract.test.js",
           "tests/civication-renholder-first-week-praksisfortellinger.test.js",
@@ -10775,6 +10959,8 @@
               "tests/civication-lifestory-renholder.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-renholder-first-week-praksisfortellinger.test.js",
@@ -10802,6 +10988,8 @@
               "tests/civication-lifestory-renholder.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-renholder-first-week-praksisfortellinger.test.js",
@@ -10907,6 +11095,8 @@
               "tests/civication-lifestory-renholder.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-renholder-first-week-praksisfortellinger.test.js",
@@ -10933,6 +11123,8 @@
               "tests/civication-lifestory-renholder.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-reference-role-playability.test.js",
               "tests/civication-reference-roles-choice-contract.test.js",
               "tests/civication-renholder-first-week-praksisfortellinger.test.js",
@@ -14041,6 +14233,7 @@
           "tests/civication-psychology-clinical-career-ladder.test.js",
           "tests/civication-psychology-entry-career-ladder.test.js",
           "tests/civication-psychology-guidance-career-ladder.test.js",
+          "tests/civication-psykologi-miljoarbeid-playability.test.js",
           "tests/civication-social-encounters.test.js"
         ],
         "life_story": {
@@ -14463,6 +14656,7 @@
       "declared_by": [
         "badgeRoleMappings",
         "lifeStory",
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -14478,7 +14672,7 @@
         "psykologi_miljoassistent",
         "psykologi_sosialassistent"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/psykologi/analytiker.json",
@@ -14489,49 +14683,50 @@
         ],
         "work_grammar": "data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/psykologi/psykologi_miljoarbeid_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
+            "count": 1
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/conflict/psykologi_miljoarbeid_conflict.json",
+            "count": 1
           },
           "story": {
             "path": null,
             "count": 0
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/event/psykologi_miljoarbeid_event.json",
+            "count": 1
           },
           "micro": {
             "path": null,
             "count": 0
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/followup/psykologi_miljoarbeid_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/knowledge/psykologi_miljoarbeid_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/psykologi/consequence/psykologi_miljoarbeid_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
           "tests/civication-badge-career-matrix.test.js",
           "tests/civication-psychology-career-contract.test.js",
-          "tests/civication-psychology-entry-career-ladder.test.js"
+          "tests/civication-psychology-entry-career-ladder.test.js",
+          "tests/civication-psykologi-miljoarbeid-playability.test.js"
         ],
         "life_story": {
           "id": "psykologi_miljoarbeid",
@@ -14555,14 +14750,28 @@
             "note": "4 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/psykologi/psykologi_miljoarbeid_plan.json",
+              "tests/civication-badge-career-matrix.test.js",
+              "tests/civication-psychology-career-contract.test.js",
+              "tests/civication-psychology-entry-career-ladder.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No repeatable work loop."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
+              "data/Civication/mailPlans/psykologi/psykologi_miljoarbeid_plan.json",
+              "data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json",
+              "tests/civication-badge-career-matrix.test.js",
+              "tests/civication-psychology-career-contract.test.js",
+              "tests/civication-psychology-entry-career-ladder.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js"
+            ],
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -14573,7 +14782,23 @@
             "note": "4 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "partial",
+            "level": "complete",
+            "evidence": [
+              "data/Civication/lifestory/roles/psykologi_miljoarbeid/role.json",
+              "data/Civication/lifestory/roles/psykologi_miljoarbeid/scenes.json",
+              "data/Civication/lifestory/roles/psykologi_miljoarbeid/threads.json",
+              "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
+              "data/Civication/roleModels/psykologi/analytiker.json",
+              "data/Civication/roleModels/psykologi/atferdsobservator.json",
+              "data/Civication/roleModels/psykologi/psykologi_miljoarbeid.json",
+              "data/Civication/roleModels/psykologi/samtalepartner.json",
+              "data/Civication/roleModels/psykologi/titter.json",
+              "data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
+          },
+          "places": {
+            "level": "complete",
             "evidence": [
               "data/Civication/lifestory/roles/psykologi_miljoarbeid/role.json",
               "data/Civication/lifestory/roles/psykologi_miljoarbeid/scenes.json",
@@ -14585,21 +14810,26 @@
               "data/Civication/roleModels/psykologi/titter.json",
               "data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json"
             ],
-            "note": "People content exists on only one side of the content/runtime boundary."
-          },
-          "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "note": "4 place/working-surface declarations."
           },
           "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/psykologi/conflict/psykologi_miljoarbeid_conflict.json",
+              "data/Civication/mailFamilies/psykologi/consequence/psykologi_miljoarbeid_consequence.json",
+              "data/Civication/mailFamilies/psykologi/event/psykologi_miljoarbeid_event.json",
+              "data/Civication/mailFamilies/psykologi/followup/psykologi_miljoarbeid_followup.json",
+              "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
+              "data/Civication/mailFamilies/psykologi/knowledge/psykologi_miljoarbeid_knowledge.json",
+              "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
+              "data/Civication/mailPlans/psykologi/psykologi_miljoarbeid_plan.json"
+            ],
+            "note": "7/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/psykologi/knowledge/psykologi_miljoarbeid_knowledge.json",
               "data/Civication/roleModels/psykologi/analytiker.json",
               "data/Civication/roleModels/psykologi/atferdsobservator.json",
               "data/Civication/roleModels/psykologi/psykologi_miljoarbeid.json",
@@ -14607,7 +14837,7 @@
               "data/Civication/roleModels/psykologi/titter.json",
               "data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
@@ -14634,14 +14864,28 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/psykologi/consequence/psykologi_miljoarbeid_consequence.json",
+              "data/Civication/mailFamilies/psykologi/followup/psykologi_miljoarbeid_followup.json",
+              "tests/civication-badge-career-matrix.test.js",
+              "tests/civication-psychology-career-contract.test.js",
+              "tests/civication-psychology-entry-career-ladder.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/psykologi/psykologi_miljoarbeid_plan.json",
+              "tests/civication-badge-career-matrix.test.js",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-psychology-career-contract.test.js",
+              "tests/civication-psychology-entry-career-ladder.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -14653,43 +14897,50 @@
             "note": "Exact salary exists for all 4 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailPlans/psykologi/psykologi_miljoarbeid_plan.json",
               "data/Civication/roleModels/psykologi/analytiker.json",
               "data/Civication/roleModels/psykologi/atferdsobservator.json",
               "data/Civication/roleModels/psykologi/psykologi_miljoarbeid.json",
               "data/Civication/roleModels/psykologi/samtalepartner.json",
               "data/Civication/roleModels/psykologi/titter.json",
-              "data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json"
+              "data/Civication/workGrammars/psykologi/psykologi_miljoarbeid.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailPlans/psykologi/psykologi_miljoarbeid_plan.json",
               "data/Civication/roleModels/psykologi/analytiker.json",
               "data/Civication/roleModels/psykologi/atferdsobservator.json",
               "data/Civication/roleModels/psykologi/psykologi_miljoarbeid.json",
               "data/Civication/roleModels/psykologi/samtalepartner.json",
-              "data/Civication/roleModels/psykologi/titter.json"
+              "data/Civication/roleModels/psykologi/titter.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "day_one",
-          "workday_loop",
-          "places",
-          "mail",
-          "consequences",
-          "performance"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
+          "day_one",
+          "workday_loop",
+          "people",
+          "places",
+          "mail",
+          "knowledge",
           "quality_axes",
           "authority",
-          "economy"
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 4,
         "practice_weeks": [],
@@ -17119,274 +17370,6 @@
       }
     },
     {
-      "key": "sosial_laering/barnehageassistent",
-      "category": "sosial_laering",
-      "role_scope": "barnehageassistent",
-      "declared_by": [
-        "lifeStoryContentOnly",
-        "mailPlan",
-        "workGrammar"
-      ],
-      "badge_titles": [
-        "Observatør / Guide (nærmeste eksisterende omsorgs- og læringsakse)"
-      ],
-      "role_ids": [
-        "barnehageassistent",
-        "sosial_laering_barnehageassistent"
-      ],
-      "status": "partial",
-      "artifacts": {
-        "role_models": [
-          "data/Civication/roleModels/sosial_laering/barnehageassistent.json"
-        ],
-        "work_grammar": "data/Civication/workGrammars/sosial_laering/barnehageassistent.json",
-        "shared_work_grammars": [],
-        "mail_plan": "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-        "mail_families": {
-          "job": {
-            "path": "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
-            "count": 14
-          },
-          "people": {
-            "path": "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
-            "count": 11
-          },
-          "conflict": {
-            "path": "data/Civication/mailFamilies/sosial_laering/conflict/barnehageassistent_conflict.json",
-            "count": 8
-          },
-          "story": {
-            "path": "data/Civication/mailFamilies/sosial_laering/story/barnehageassistent_story.json",
-            "count": 6
-          },
-          "event": {
-            "path": "data/Civication/mailFamilies/sosial_laering/event/barnehageassistent_event.json",
-            "count": 4
-          },
-          "micro": {
-            "path": "data/Civication/mailFamilies/sosial_laering/micro/barnehageassistent_micro.json",
-            "count": 16
-          },
-          "followup": {
-            "path": "data/Civication/mailFamilies/sosial_laering/followup/barnehageassistent_followup.json",
-            "count": 8
-          },
-          "knowledge": {
-            "path": "data/Civication/mailFamilies/sosial_laering/knowledge/barnehageassistent_knowledge.json",
-            "count": 8
-          },
-          "consequence": {
-            "path": "data/Civication/mailFamilies/sosial_laering/consequence/barnehageassistent_consequence.json",
-            "count": 8
-          }
-        },
-        "role_tests": [
-          "tests/civication-barnehageassistent-mail-plan.test.js",
-          "tests/civication-lifestory-barnehageassistent.test.js",
-          "tests/civication-test-mode-ui.test.js",
-          "tests/civication-work-grammar-story-simulation.test.js"
-        ],
-        "life_story": {
-          "id": "barnehageassistent",
-          "content_only": true,
-          "paths": [
-            "data/Civication/lifestory/roles/barnehageassistent/role.json",
-            "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
-            "data/Civication/lifestory/roles/barnehageassistent/threads.json"
-          ]
-        }
-      },
-      "audit": {
-        "components": {
-          "entry": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
-            ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
-          },
-          "day_one": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "tests/civication-barnehageassistent-mail-plan.test.js",
-              "tests/civication-lifestory-barnehageassistent.test.js",
-              "tests/civication-test-mode-ui.test.js",
-              "tests/civication-work-grammar-story-simulation.test.js"
-            ],
-            "note": "Role plan and role-specific test prove a first playable day."
-          },
-          "workday_loop": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json",
-              "tests/civication-barnehageassistent-mail-plan.test.js",
-              "tests/civication-lifestory-barnehageassistent.test.js",
-              "tests/civication-test-mode-ui.test.js",
-              "tests/civication-work-grammar-story-simulation.test.js"
-            ],
-            "note": "Repeatable work content is connected to a tested plan."
-          },
-          "practice_stories": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/praksisfortellinger_registry.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "16 FWG stories and 0 registered practice week(s)."
-          },
-          "people": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/lifestory/roles/barnehageassistent/role.json",
-              "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
-              "data/Civication/lifestory/roles/barnehageassistent/threads.json",
-              "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Named/typed work relationships are used by people mails."
-          },
-          "places": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/lifestory/roles/barnehageassistent/role.json",
-              "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
-              "data/Civication/lifestory/roles/barnehageassistent/threads.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "33 place/working-surface declarations."
-          },
-          "mail": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailFamilies/sosial_laering/conflict/barnehageassistent_conflict.json",
-              "data/Civication/mailFamilies/sosial_laering/consequence/barnehageassistent_consequence.json",
-              "data/Civication/mailFamilies/sosial_laering/event/barnehageassistent_event.json",
-              "data/Civication/mailFamilies/sosial_laering/followup/barnehageassistent_followup.json",
-              "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
-              "data/Civication/mailFamilies/sosial_laering/knowledge/barnehageassistent_knowledge.json",
-              "data/Civication/mailFamilies/sosial_laering/micro/barnehageassistent_micro.json",
-              "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
-              "data/Civication/mailFamilies/sosial_laering/story/barnehageassistent_story.json",
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json"
-            ],
-            "note": "9/9 standard mail types plus tested plan/practice coverage."
-          },
-          "knowledge": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailFamilies/sosial_laering/knowledge/barnehageassistent_knowledge.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Knowledge content is connected to a mail or job-gate surface."
-          },
-          "quality_axes": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Quality/competence axes are declared and connected to choice/consequence fields."
-          },
-          "authority": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Role content exists, but authority is not an explicit machine-auditable boundary."
-          },
-          "consequences": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailFamilies/sosial_laering/consequence/barnehageassistent_consequence.json",
-              "data/Civication/mailFamilies/sosial_laering/followup/barnehageassistent_followup.json",
-              "tests/civication-barnehageassistent-mail-plan.test.js",
-              "tests/civication-lifestory-barnehageassistent.test.js",
-              "tests/civication-test-mode-ui.test.js",
-              "tests/civication-work-grammar-story-simulation.test.js"
-            ],
-            "note": "Later consequence/follow-up path is role-tested."
-          },
-          "performance": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "tests/civication-barnehageassistent-mail-plan.test.js",
-              "tests/civication-career-outcomes.test.js",
-              "tests/civication-lifestory-barnehageassistent.test.js",
-              "tests/civication-test-mode-ui.test.js",
-              "tests/civication-work-grammar-story-simulation.test.js"
-            ],
-            "note": "Positive and negative outcomes are defined and role-tested."
-          },
-          "economy": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/hg_careers.json"
-            ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
-          },
-          "progression": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json",
-              "tests/civication-career-outcomes.test.js"
-            ],
-            "note": "Career path and positive runtime outcome are both present."
-          },
-          "exit": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
-          }
-        },
-        "runtime_gate": false,
-        "missing_components": [],
-        "complete_components": [
-          "day_one",
-          "workday_loop",
-          "people",
-          "places",
-          "mail",
-          "knowledge",
-          "quality_axes",
-          "consequences",
-          "performance",
-          "progression"
-        ],
-        "practice_story_count": 16,
-        "practice_weeks": [],
-        "reference_depth": 16,
-        "life_story_complete": false,
-        "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
-          "rows": [
-            {
-              "title": "Observatør / Guide (nærmeste eksisterende omsorgs- og læringsakse)",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
-              "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
-            }
-          ]
-        }
-      }
-    },
-    {
       "key": "sport/sport_kaptein",
       "category": "sport",
       "role_scope": "sport_kaptein",
@@ -17817,7 +17800,7 @@
         "sport_sportsledelse",
         "sport_sportssjef"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/sport/sportssjef.json"
@@ -17831,40 +17814,41 @@
             "count": 8
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
-          "tests/civication-sport-life-career-split.test.js"
+          "tests/civication-sport-life-career-split.test.js",
+          "tests/civication-sport-sportsledelse-rollout-playability.test.js"
         ],
         "life_story": null
       },
@@ -17883,7 +17867,8 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -17893,7 +17878,8 @@
               "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
               "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json",
               "data/Civication/workGrammars/sport/sport_sportsledelse.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
@@ -17906,30 +17892,46 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+              "data/Civication/roleModels/sport/sportssjef.json",
+              "data/Civication/workGrammars/sport/sport_sportsledelse.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
-          },
-          "mail": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
-              "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json"
-            ],
-            "note": "1/9 standard mail types."
-          },
-          "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/roleModels/sport/sportssjef.json",
               "data/Civication/workGrammars/sport/sport_sportsledelse.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "8 place/working-surface declarations."
+          },
+          "mail": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+              "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+              "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+              "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+              "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
+              "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+              "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+              "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+              "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+              "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
+          },
+          "knowledge": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+              "data/Civication/roleModels/sport/sportssjef.json",
+              "data/Civication/workGrammars/sport/sport_sportsledelse.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
@@ -17948,18 +17950,22 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json"
+              "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+              "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
-            "note": "Consequence content exists without the full role-specific follow-up proof."
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json",
               "tests/civication-career-outcomes.test.js",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
           },
@@ -17992,17 +17998,19 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "people",
+          "places",
+          "mail",
+          "knowledge",
           "quality_axes",
           "authority",
+          "consequences",
           "performance",
           "economy",
           "progression",
@@ -18094,7 +18102,8 @@
           }
         },
         "role_tests": [
-          "tests/civication-sport-life-career-split.test.js"
+          "tests/civication-sport-life-career-split.test.js",
+          "tests/civication-sport-sportsledelse-rollout-playability.test.js"
         ],
         "life_story": null
       },
@@ -18113,7 +18122,8 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_trener_plan.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -18123,7 +18133,8 @@
               "data/Civication/mailFamilies/sport/job/sport_trener_job.json",
               "data/Civication/mailPlans/sport/sport_trener_plan.json",
               "data/Civication/workGrammars/sport/sport_trener.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
@@ -18192,7 +18203,8 @@
             "evidence": [
               "data/Civication/mailPlans/sport/sport_trener_plan.json",
               "tests/civication-career-outcomes.test.js",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
           },
@@ -18346,6 +18358,8 @@
           }
         },
         "role_tests": [
+          "tests/civication-pilot-wave-closure.test.js",
+          "tests/civication-psykologi-miljoarbeid-playability.test.js",
           "tests/civication-role-world-contract.test.js",
           "tests/civication-sport-life-career-split.test.js",
           "tests/civication-sport-utover-role-world.test.js"
@@ -18375,6 +18389,8 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_utover_plan.json",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-sport-life-career-split.test.js",
               "tests/civication-sport-utover-role-world.test.js"
@@ -18387,6 +18403,8 @@
               "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
               "data/Civication/mailPlans/sport/sport_utover_plan.json",
               "data/Civication/workGrammars/sport/sport_utover.json",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-sport-life-career-split.test.js",
               "tests/civication-sport-utover-role-world.test.js"
@@ -18472,6 +18490,8 @@
           "consequences": {
             "level": "complete",
             "evidence": [
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-sport-life-career-split.test.js",
               "tests/civication-sport-utover-role-world.test.js"
@@ -18483,6 +18503,8 @@
             "evidence": [
               "data/Civication/mailPlans/sport/sport_utover_plan.json",
               "tests/civication-career-outcomes.test.js",
+              "tests/civication-pilot-wave-closure.test.js",
+              "tests/civication-psykologi-miljoarbeid-playability.test.js",
               "tests/civication-role-world-contract.test.js",
               "tests/civication-sport-life-career-split.test.js",
               "tests/civication-sport-utover-role-world.test.js"
@@ -18622,6 +18644,7 @@
       "category": "subkultur",
       "role_scope": "subkultur_arrangementsdrift",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -18636,57 +18659,59 @@
         "subkultur_kulturmedarbeider",
         "subkultur_produksjonsassistent"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/subkultur/deltaker.json",
           "data/Civication/roleModels/subkultur/gatesmart.json",
           "data/Civication/roleModels/subkultur/hakkekylling.json",
-          "data/Civication/roleModels/subkultur/observor.json"
+          "data/Civication/roleModels/subkultur/observor.json",
+          "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json"
         ],
         "work_grammar": "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/job/subkultur_arrangementsdrift_job.json",
+            "count": 1
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/people/subkultur_arrangementsdrift_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/conflict/subkultur_arrangementsdrift_conflict.json",
+            "count": 1
           },
           "story": {
             "path": null,
             "count": 0
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/event/subkultur_arrangementsdrift_event.json",
+            "count": 1
           },
           "micro": {
             "path": null,
             "count": 0
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/followup/subkultur_arrangementsdrift_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/knowledge/subkultur_arrangementsdrift_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/consequence/subkultur_arrangementsdrift_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
           "tests/civication-life-position-career-split.test.js",
+          "tests/civication-subkultur-arrangementsdrift-playability.test.js",
           "tests/civication-subkultur-career-architecture.test.js"
         ],
         "life_story": null
@@ -18694,23 +18719,35 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "4 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
+              "data/Civication/mailFamilies/subkultur/job/subkultur_arrangementsdrift_job.json",
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -18721,30 +18758,56 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/people/subkultur_arrangementsdrift_people.json",
+              "data/Civication/roleModels/subkultur/deltaker.json",
+              "data/Civication/roleModels/subkultur/gatesmart.json",
+              "data/Civication/roleModels/subkultur/hakkekylling.json",
+              "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
-          },
-          "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
-          },
-          "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/roleModels/subkultur/deltaker.json",
               "data/Civication/roleModels/subkultur/gatesmart.json",
               "data/Civication/roleModels/subkultur/hakkekylling.json",
               "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
               "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "8 place/working-surface declarations."
+          },
+          "mail": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/conflict/subkultur_arrangementsdrift_conflict.json",
+              "data/Civication/mailFamilies/subkultur/consequence/subkultur_arrangementsdrift_consequence.json",
+              "data/Civication/mailFamilies/subkultur/event/subkultur_arrangementsdrift_event.json",
+              "data/Civication/mailFamilies/subkultur/followup/subkultur_arrangementsdrift_followup.json",
+              "data/Civication/mailFamilies/subkultur/job/subkultur_arrangementsdrift_job.json",
+              "data/Civication/mailFamilies/subkultur/knowledge/subkultur_arrangementsdrift_knowledge.json",
+              "data/Civication/mailFamilies/subkultur/people/subkultur_arrangementsdrift_people.json",
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json"
+            ],
+            "note": "7/9 standard mail types plus tested plan/practice coverage."
+          },
+          "knowledge": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/knowledge/subkultur_arrangementsdrift_knowledge.json",
+              "data/Civication/roleModels/subkultur/deltaker.json",
+              "data/Civication/roleModels/subkultur/gatesmart.json",
+              "data/Civication/roleModels/subkultur/hakkekylling.json",
+              "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
@@ -18753,6 +18816,7 @@
               "data/Civication/roleModels/subkultur/gatesmart.json",
               "data/Civication/roleModels/subkultur/hakkekylling.json",
               "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
               "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -18764,96 +18828,131 @@
               "data/Civication/roleModels/subkultur/gatesmart.json",
               "data/Civication/roleModels/subkultur/hakkekylling.json",
               "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
               "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
             ],
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/consequence/subkultur_arrangementsdrift_consequence.json",
+              "data/Civication/mailFamilies/subkultur/followup/subkultur_arrangementsdrift_followup.json",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 4 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "data/Civication/roleModels/subkultur/deltaker.json",
+              "data/Civication/roleModels/subkultur/gatesmart.json",
+              "data/Civication/roleModels/subkultur/hakkekylling.json",
+              "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "data/Civication/roleModels/subkultur/deltaker.json",
+              "data/Civication/roleModels/subkultur/gatesmart.json",
+              "data/Civication/roleModels/subkultur/hakkekylling.json",
+              "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
+          "knowledge",
+          "quality_axes",
+          "authority",
           "consequences",
           "performance",
+          "economy",
           "progression",
           "exit"
-        ],
-        "complete_components": [
-          "quality_axes",
-          "authority"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 4,
+          "exact_titles": 4,
           "rows": [
             {
               "title": "Arrangementscrew",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 2,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "1",
+              "salary_defined": true
             },
             {
               "title": "Kulturhusvert",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 1,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "1",
+              "salary_defined": true
             },
             {
               "title": "Kulturmedarbeider",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 4,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "1",
+              "salary_defined": true
             },
             {
               "title": "Produksjonsassistent",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 3,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "1",
+              "salary_defined": true
             }
           ]
         }
@@ -18927,11 +19026,13 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "1 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
             "level": "missing",
@@ -19003,11 +19104,13 @@
             "note": "No performance evaluation."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
             "level": "missing",
@@ -19032,25 +19135,27 @@
           "exit"
         ],
         "complete_components": [
+          "entry",
           "quality_axes",
-          "authority"
+          "authority",
+          "economy"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 1,
+          "exact_titles": 1,
           "rows": [
             {
               "title": "Daglig leder (kulturarena)",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 11,
+              "offer_policy": "appointment_required",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "3",
+              "salary_defined": true
             }
           ]
         }
@@ -19127,11 +19232,13 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "2 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
             "level": "missing",
@@ -19206,11 +19313,13 @@
             "note": "No performance evaluation."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 2 linked career title(s)."
           },
           "progression": {
             "level": "missing",
@@ -19235,34 +19344,36 @@
           "exit"
         ],
         "complete_components": [
+          "entry",
           "quality_axes",
-          "authority"
+          "authority",
+          "economy"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 2,
+          "exact_titles": 2,
           "rows": [
             {
               "title": "Produsent",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 8,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "3",
+              "salary_defined": true
             },
             {
               "title": "Prosjektleder (kulturarrangement)",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 9,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "3",
+              "salary_defined": true
             }
           ]
         }
@@ -19336,11 +19447,13 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "1 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
             "level": "missing",
@@ -19412,11 +19525,13 @@
             "note": "No performance evaluation."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
             "level": "missing",
@@ -19441,25 +19556,27 @@
           "exit"
         ],
         "complete_components": [
+          "entry",
           "quality_axes",
-          "authority"
+          "authority",
+          "economy"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 1,
+          "exact_titles": 1,
           "rows": [
             {
               "title": "Produksjonsleder",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 10,
+              "offer_policy": "appointment_required",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "3",
+              "salary_defined": true
             }
           ]
         }
@@ -19539,11 +19656,13 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "3 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
             "level": "missing",
@@ -19621,11 +19740,13 @@
             "note": "No performance evaluation."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 3 linked career title(s)."
           },
           "progression": {
             "level": "missing",
@@ -19650,43 +19771,45 @@
           "exit"
         ],
         "complete_components": [
+          "entry",
           "quality_axes",
-          "authority"
+          "authority",
+          "economy"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 3,
+          "exact_titles": 3,
           "rows": [
             {
               "title": "Arrangementsplanlegger",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 5,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "2",
+              "salary_defined": true
             },
             {
               "title": "Booking- og innholdskoordinator",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 7,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "2",
+              "salary_defined": true
             },
             {
               "title": "Kulturkonsulent",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 6,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "2",
+              "salary_defined": true
             }
           ]
         }
@@ -20937,6 +21060,25 @@
           ]
         }
       }
+    }
+  ],
+  "support_worlds": [
+    {
+      "key": "sosial_laering/barnehageassistent",
+      "category": "sosial_laering",
+      "role_scope": "barnehageassistent",
+      "declared_by": [
+        "lifeStoryContentOnly",
+        "mailPlan",
+        "workGrammar"
+      ],
+      "role_ids": [
+        "barnehageassistent",
+        "sosial_laering_barnehageassistent"
+      ],
+      "career_status": "not_applicable",
+      "reason": "content_only_legacy_namespace",
+      "content_only_life_story": true
     }
   ]
 }

@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "styringsforstaelse",
+      "purpose": "Gjør risikostyring og mandat eksplisitt som faglig kunnskap.",
+      "learning_focus": ["risiko", "mandat", "scenario"],
+      "mails": [
+        {
+          "id": "by_prosjektleder_knowledge_risiko_001",
+          "mail_type": "knowledge",
+          "mail_family": "styringsforstaelse",
+          "role_scope": "by_prosjektleder",
+          "phase": "lunch",
+          "priority": 52,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "early",
+          "from": "okonomi_sigrid",
+          "sender": "okonomi_sigrid",
+          "person_id": "okonomi_sigrid",
+          "place_id": "risiko_budsjett_og_beslutningslogg",
+          "subject": "Risiko trenger ikke være sikker for å være styringsrelevant",
+          "summary": "Sigrid ber deg forklare hvorfor en usikker kostnadsøkning bør inn i styringsbildet før den er endelig beregnet.",
+          "purpose": "Knytter praktisk varsling til prinsippet om at risiko beskrives som sannsynlighet, konsekvens og forutsetning — ikke som ferdig bevist hendelse.",
+          "stakes": "Venter prosjektet på sikkerhet, kan handlingsrommet være borte når risikoen blir bekreftet.",
+          "situation": [
+            "Kostnadsøkningen er ikke bekreftet.",
+            "Konsekvensen kan bli betydelig dersom den treffer sent.",
+            "Styringen trenger derfor både usikkerheten og hva prosjektet kan gjøre dersom den materialiserer seg."
+          ],
+          "task_domain": "risikoforstaelse",
+          "task_kind": "knowledge",
+          "competency": "risikostyring",
+          "pressure": "sikkerhet_vs_tidlig_handlingsrom",
+          "choice_axis": "varsle_scenario_vs_vente_pa_fasit",
+          "consequence_axis": "beredskap_vs_rapportro",
+          "narrative_arc": "Prosjektlederen lærer at god risikostyring handler om å bevare valg før usikkerheten blir en hendelse.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Beskriv sannsynlighet, konsekvens, forutsetning og mulig tiltak nå",
+              "reply": "Jeg legger risikoen inn med sannsynlighet, konsekvens, hvilke forutsetninger den bygger på og hvilke tiltak som finnes.",
+              "effect": 1,
+              "tags": ["knowledge", "risk", "scenario"],
+              "feedback": "Styringen kan forberede seg uten å late som usikkerheten allerede er fakta."
+            },
+            {
+              "id": "B",
+              "label": "Vent til estimatet er bedre før risikoen løftes formelt",
+              "reply": "Jeg følger utviklingen, men venter med formell varsling til estimatet er mer robust.",
+              "effect": 0,
+              "tags": ["certainty", "delay"],
+              "feedback": "Rapporten blir roligere, men prosjektet kan miste tid til å påvirke konsekvensen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

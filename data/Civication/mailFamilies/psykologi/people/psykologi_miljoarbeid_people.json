@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_miljoarbeid",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "psykologi_miljoarbeid_autonomi",
+      "purpose": "Støtte mestring uten at hjelp blir overtakelse.",
+      "learning_focus": [
+        "autonomi",
+        "motivasjon",
+        "relasjon"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_miljoarbeid_people_autonomi",
+          "mail_type": "people",
+          "mail_family": "psykologi_miljoarbeid_autonomi",
+          "role_scope": "psykologi_miljoarbeid",
+          "phase": "workday",
+          "priority": 128,
+          "from": "Nora, erfaren kollega",
+          "people_ref": "nora_erfaren_kollega",
+          "place_id": "aktivitetstilbud_verksted",
+          "subject": "Elias vil avlyse verkstedet — og bussen går om ti minutter",
+          "summary": "Planen sier aktivitet, men Elias sier nei. Nora foreslår at dere bare får ham av gårde før tiden renner ut.",
+          "situation": [
+            "Elias har tidligere ønsket aktiviteten og pleier å være fornøyd når han først kommer fram.",
+            "I dag sier han tydelig at han ikke vil dra, men forklarer lite.",
+            "Du må støtte uten å gjøre tidspress eller egen vurdering av «hva som er best» til skjult tvang."
+          ],
+          "task_domain": "autonomi_og_hverdagsstotte",
+          "competency": "motiverende_stotte",
+          "pressure": "effektivitet_vs_autonomi",
+          "choice_axis": "utforsk_og_tilpass_vs_press_gjennom",
+          "consequence_axis": "mestring_og_tillit_vs_avhengighet_og_motstand",
+          "narrative_arc": "aktiviteten_ingen_vil_pa",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Spør hva som gjør dagen annerledes, tilby et mindre alternativ og la Elias velge mellom reelle muligheter",
+              "reply": "Jeg vil forstå motstanden og bevare valget hans, ikke bare få planen gjennomført.",
+              "effect": 1,
+              "tags": [
+                "autonomy",
+                "motivation"
+              ],
+              "feedback": "Du gjør målet fleksibelt nok til at støtte fortsatt kan bygge mestring.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -1,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si at dere allerede har bestemt dette og få ham med før bussen går",
+              "reply": "Planen må gjennomføres; vi kan snakke om motstanden etterpå.",
+              "effect": -1,
+              "tags": [
+                "pressure",
+                "compliance"
+              ],
+              "feedback": "Dagen blir effektiv, men etterlevelse blir forvekslet med motivasjon og tilliten svekkes.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -3,
+                  "risk": 2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Avlys hele aktiviteten uten å spørre mer",
+              "reply": "Jeg tar nei-et bokstavelig og lar ham være i fred i dag.",
+              "effect": 0,
+              "tags": [
+                "respect",
+                "underexplored"
+              ],
+              "feedback": "Du unngår press, men mister muligheten til å forstå om et lite hinder kunne vært løst på hans premisser.",
+              "effects": {
+                "stats": {
+                  "quality": 0,
+                  "trust": 1,
+                  "energy": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

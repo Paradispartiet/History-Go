@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_arrangementsdrift",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "subkultur_arrangementsdrift_riggavvik",
+      "purpose": "Håndtere teknisk tidspress uten å late som kompetanse kan improviseres.",
+      "learning_focus": [
+        "rigg",
+        "opplæring",
+        "sikkerhet"
+      ],
+      "mails": [
+        {
+          "id": "subkultur_arrangementsdrift_event_rigg",
+          "mail_type": "event",
+          "mail_family": "subkultur_arrangementsdrift_riggavvik",
+          "role_scope": "subkultur_arrangementsdrift",
+          "phase": "mid",
+          "priority": 116,
+          "from": "Thomas, teknisk ansvarlig",
+          "people_ref": "thomas_teknisk_ansvarlig",
+          "place_id": "kulturarena_scene_rigg",
+          "subject": "En motorisert rigg må flyttes — Thomas er bundet i fem minutter",
+          "summary": "En kabelvei står feil og hindrer sikker publikumsåpning. En erfaren frivillig sier knappen er enkel og foreslår at du bare flytter riggen litt.",
+          "situation": [
+            "Du er ikke opplært på den motoriserte riggen.",
+            "Åpningstid nærmer seg og området kan ikke brukes slik det står.",
+            "Valget er ikke mellom å bry seg eller ikke, men mellom sikker eskalering og falsk kompetanse under tidspress."
+          ],
+          "task_domain": "rigg_og_sikkerhet",
+          "competency": "sikkerhetsforstaelse",
+          "pressure": "frist_vs_kompetansegrense",
+          "choice_axis": "stopp_og_eskaler_vs_improvisert_teknikk",
+          "consequence_axis": "sikker_framdrift_vs_hendelsesrisiko",
+          "narrative_arc": "ukjent_utstyr",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Sperr området midlertidig og vent på Thomas før den motoriserte riggen flyttes",
+              "reply": "Jeg holder åpningen i den sonen til opplært ansvarlig tar selve bevegelsen.",
+              "effect": 1,
+              "tags": [
+                "safety",
+                "escalation"
+              ],
+              "feedback": "Framdriften blir synlig forsinket, men kompetansegrensen holder når risikoen er størst.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -3,
+                  "status": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Flytt riggen noen centimeter selv fordi frivilligen sier kontrollen er enkel",
+              "reply": "Jeg tar den raske tekniske snarveien for å holde åpningstiden.",
+              "effect": -1,
+              "tags": [
+                "unsafe",
+                "shortcut"
+              ],
+              "feedback": "Enkel betjening er ikke det samme som opplæring eller oversikt over last og klempunkter.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "risk": 4,
+                  "trust": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Flytt publikumsruten bort fra sonen og be Thomas prioritere riggen når han er ledig",
+              "reply": "Jeg løser flyten midlertidig uten å røre utstyret jeg ikke er opplært på.",
+              "effect": 0,
+              "tags": [
+                "reroute",
+                "safety"
+              ],
+              "feedback": "Du holder deler av arenaen i gang, men skaper mer arbeid i kø- og skiltplanen.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "risk": -2,
+                  "energy": -2,
+                  "trust": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
