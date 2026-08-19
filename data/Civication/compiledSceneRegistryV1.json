@@ -1,6 +1,14 @@
 {
   "compiled_source_files": [
     "data/Civication/mailFamilies/by/job/by_arkitekt_job.json",
+    "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+    "data/Civication/mailFamilies/by/story/by_arkitekt_story.json",
+    "data/Civication/mailFamilies/by/conflict/by_arkitekt_conflict.json",
+    "data/Civication/mailFamilies/by/event/by_arkitekt_event.json",
+    "data/Civication/mailFamilies/by/micro/by_arkitekt_micro.json",
+    "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
+    "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
+    "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
     "data/Civication/mailFamilies/by/job/by_assistent_job.json",
     "data/Civication/mailFamilies/by/job/by_prosjektleder_job.json",
     "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
@@ -141,6 +149,518 @@
   ],
   "compiler_version": 1,
   "entries": [
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "bevare_signatur_vs_revidere_premiss",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du skiller mellom prosjektets idé og én bestemt detaljløsning.",
+            "id": "A",
+            "label": "Revider inngangsgrepet og dokumenter hva som må bevares",
+            "reply": "Jeg reviderer inngangen, men låser de romlige kvalitetene som faktisk bærer prosjektets idé.",
+            "tags": [
+              "revisjon",
+              "robust_bruk"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du holder mandatgrensen tydelig, men fremdriften avhenger av at avklaringen faktisk kommer.",
+            "id": "B",
+            "label": "Be om tverrfaglig avklaring før du endrer hovedgrepet",
+            "reply": "Jeg synliggjør konflikten og ber om en tverrfaglig avklaring før vi endrer hovedgrepet.",
+            "tags": [
+              "eskalering",
+              "faglig_spor"
+            ]
+          }
+        ],
+        "competency": "tilgjengelighet",
+        "consequence_axis": "identitet_vs_robust_bruk",
+        "cooldown": 2,
+        "from": "atelierleder_nora",
+        "id": "by_arkitekt_conflict_nora_001",
+        "learning_focus": [
+          "myndighetsgrense",
+          "tilgjengelighet",
+          "designrevisjon"
+        ],
+        "mail_family": "signatur_og_krav",
+        "mail_type": "conflict",
+        "narrative_arc": "Prosjektets tydeligste grep må tåle at virkeligheten presser tilbake.",
+        "person_id": "atelierleder_nora",
+        "phase": "forenoon",
+        "place_id": "atelier_og_modellbord",
+        "pressure": "signatur_vs_brukbarhet",
+        "priority": 76,
+        "purpose": "Velg om signaturen skal beskyttes, revideres eller løftes til en tydelig faglig avklaring.",
+        "repeatable": false,
+        "role_scope": "by_arkitekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/conflict/by_arkitekt_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "atelierleder_nora",
+        "situation": [
+          "Modellen ser sterk ut fra gaten, men nivåforskjell og dørplassering gir en svakere hverdagsløsning.",
+          "Nora ber deg unngå en løsning som gjør hovedgrepet generisk.",
+          "Du kan ikke late som konflikten er løst bare fordi illustrasjonen fungerer."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker prosjektidentitet, brukbarhet og tilliten til at arkitektteamet håndterer krav uten å skjule konflikten.",
+        "subject": "Det markante inngangsgrepet tåler ikke alle premissene",
+        "summary": "Atelierleder Nora vil bevare prosjektets signatur, men den siste inngangsløsningen gjør tilgjengelighet og intern logistikk vanskeligere.",
+        "task_domain": "signatur_og_stedstilpasning",
+        "task_kind": "conflict"
+      },
+      "id": "by_arkitekt_conflict_nora_001",
+      "mail_type": "conflict",
+      "role_scope": "by_arkitekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du skiller mellom prosjektets idé og én bestemt detaljløsning.",
+            "id": "A",
+            "label": "Revider inngangsgrepet og dokumenter hva som må bevares",
+            "reply": "Jeg reviderer inngangen, men låser de romlige kvalitetene som faktisk bærer prosjektets idé."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du holder mandatgrensen tydelig, men fremdriften avhenger av at avklaringen faktisk kommer.",
+            "id": "B",
+            "label": "Be om tverrfaglig avklaring før du endrer hovedgrepet",
+            "reply": "Jeg synliggjør konflikten og ber om en tverrfaglig avklaring før vi endrer hovedgrepet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Modellen ser sterk ut fra gaten, men nivåforskjell og dørplassering gir en svakere hverdagsløsning.",
+            "Nora ber deg unngå en løsning som gjør hovedgrepet generisk.",
+            "Du kan ikke late som konflikten er løst bare fordi illustrasjonen fungerer."
+          ],
+          "subject": "Det markante inngangsgrepet tåler ikke alle premissene",
+          "summary": "Atelierleder Nora vil bevare prosjektets signatur, men den siste inngangsløsningen gjør tilgjengelighet og intern logistikk vanskeligere."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_arkitekt_conflict_nora_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "atelier_og_modellbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_arkitekt_conflict_nora_001",
+          "source_path": "data/Civication/mailFamilies/by/conflict/by_arkitekt_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_arkitekt.mail.by_arkitekt_conflict_nora_001",
+        "version": 1
+      },
+      "source_hash": "2cec11f9d49a0ffd92395f39ca6e946172041c1c67d9667ab21e647269606590",
+      "source_path": "data/Civication/mailFamilies/by/conflict/by_arkitekt_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "forsvare_tidligere_valg_vs_korrigere_konsekvens",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du taper litt kortsiktig prestisje, men gjør prosjektet og beslutningssporet sannere.",
+            "id": "A",
+            "label": "Ta eierskap til konsekvensen og foreslå konkret korreksjon",
+            "reply": "Jeg dokumenterer hva som ikke virker og foreslår en konkret revisjon av hjørne og gateplan.",
+            "tags": [
+              "ansvar",
+              "korrigering"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du skjuler ikke svakheten, men prosjektet velger å leve med konsekvensen.",
+            "id": "B",
+            "label": "Behold løsningen og registrer rest-risikoen eksplisitt",
+            "reply": "Jeg anbefaler å beholde løsningen, men registrerer den dokumenterte byromssvakheten som en eksplisitt rest-risiko.",
+            "tags": [
+              "rest_risiko",
+              "faglig_forbehold"
+            ]
+          }
+        ],
+        "competency": "stedstilpasning",
+        "consequence_axis": "kort_status_vs_langsiktig_tillit",
+        "cooldown": 3,
+        "from": "atelierleder_nora",
+        "id": "by_arkitekt_consequence_gateplan_001",
+        "learning_focus": [
+          "ettervirkning",
+          "faglig_ansvar",
+          "revisjon"
+        ],
+        "mail_family": "senere_romlige_konsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "Arkitektens tidligere valg kommer tilbake som et konkret spørsmål om bruk og ansvar.",
+        "person_id": "atelierleder_nora",
+        "phase": "day_end",
+        "place_id": "oslo_arkitektur_byrom",
+        "pressure": "prestisje_vs_korreksjon",
+        "priority": 74,
+        "purpose": "Bestem hvordan en negativ følge av et tidligere designvalg skal håndteres uten å skjule ansvaret i en ny presentasjon.",
+        "repeatable": false,
+        "role_scope": "by_arkitekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "atelierleder_nora",
+        "situation": [
+          "Den formale ideen er fortsatt tydelig i modellen.",
+          "Samtidig viser gjennomgangen at inngang, opphold og hjørne ikke støtter den bybruken prosjektet selv har argumentert for.",
+          "Du må velge mellom en reell korreksjon og en tydelig akseptert rest-risiko."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker faglig tillit, prosjektets læring og kostnaden ved å korrigere sent.",
+        "subject": "Gateplanet ble ryddigere på tegning — og svakere i bruk",
+        "summary": "Den lukkede hjørneløsningen ga en renere komposisjon, men prosjektgjennomgangen viser mindre aktivitet og dårligere kobling til gaten.",
+        "task_domain": "forsteetasje_og_byliv",
+        "task_kind": "consequence"
+      },
+      "id": "by_arkitekt_consequence_gateplan_001",
+      "mail_type": "consequence",
+      "role_scope": "by_arkitekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du taper litt kortsiktig prestisje, men gjør prosjektet og beslutningssporet sannere.",
+            "id": "A",
+            "label": "Ta eierskap til konsekvensen og foreslå konkret korreksjon",
+            "reply": "Jeg dokumenterer hva som ikke virker og foreslår en konkret revisjon av hjørne og gateplan."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du skjuler ikke svakheten, men prosjektet velger å leve med konsekvensen.",
+            "id": "B",
+            "label": "Behold løsningen og registrer rest-risikoen eksplisitt",
+            "reply": "Jeg anbefaler å beholde løsningen, men registrerer den dokumenterte byromssvakheten som en eksplisitt rest-risiko."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den formale ideen er fortsatt tydelig i modellen.",
+            "Samtidig viser gjennomgangen at inngang, opphold og hjørne ikke støtter den bybruken prosjektet selv har argumentert for.",
+            "Du må velge mellom en reell korreksjon og en tydelig akseptert rest-risiko."
+          ],
+          "subject": "Gateplanet ble ryddigere på tegning — og svakere i bruk",
+          "summary": "Den lukkede hjørneløsningen ga en renere komposisjon, men prosjektgjennomgangen viser mindre aktivitet og dårligere kobling til gaten."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_arkitekt_consequence_gateplan_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_arkitektur_byrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_arkitekt_consequence_gateplan_001",
+          "source_path": "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_arkitekt.mail.by_arkitekt_consequence_gateplan_001",
+        "version": 1
+      },
+      "source_hash": "8230b1c0f864b3afa41c2d1f8a0a9c3b9eb21cbacb7506a945560cf6dca3df3d",
+      "source_path": "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "lokal_fiks_vs_grensesnittanalyse",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør ett premiss eksplisitt og gir resten av teamet et tydelig utgangspunkt.",
+            "id": "A",
+            "label": "Lås ganglinjen først og koordiner de andre funksjonene rundt den",
+            "reply": "Jeg låser hovedganglinjen som premiss og koordinerer levering og opphold rundt den.",
+            "tags": [
+              "prioritering",
+              "ganglinje"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du bruker mer tid nå, men reduserer risikoen for at én lokal løsning flytter problemet videre.",
+            "id": "B",
+            "label": "Åpne hjørnet som samlet grensesnitt før noe låses",
+            "reply": "Jeg åpner hele hjørnet som et samlet grensesnitt og ber de berørte fagene teste alternativer sammen.",
+            "tags": [
+              "grensesnitt",
+              "samordnet_revisjon"
+            ]
+          }
+        ],
+        "competency": "tverrfaglig_koordinering",
+        "consequence_axis": "rask_leveranse_vs_robust_koordinering",
+        "cooldown": 2,
+        "from": "atelierleder_nora",
+        "id": "by_arkitekt_event_modell_001",
+        "learning_focus": [
+          "grensesnitt",
+          "prioritering",
+          "modell"
+        ],
+        "mail_family": "modellgjennomgang",
+        "mail_type": "event",
+        "narrative_arc": "Modellen gjør det vanskelig å skjule at tre gode delvalg ikke nødvendigvis fungerer sammen.",
+        "person_id": "atelierleder_nora",
+        "phase": "afternoon",
+        "place_id": "atelier_og_modellbord",
+        "pressure": "fremdrift_vs_sammenheng",
+        "priority": 68,
+        "purpose": "Prioriter hva som må løses først uten å late som alle konfliktene kan glattes ut i én detalj.",
+        "repeatable": false,
+        "role_scope": "by_arkitekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/event/by_arkitekt_event.json",
+        "scene_catalog_version": 1,
+        "sender": "atelierleder_nora",
+        "situation": [
+          "Den nye modellen viser at varelevering krysser hovedstrømmen til inngangen.",
+          "Samtidig blir oppholdsarealet ved hjørnet mindre enn teamet trodde i plan.",
+          "Neste leveranse er nær, så rekkefølgen på avklaringene betyr noe."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker prosjektets lesbarhet, drift og evnen til å koordinere reelle grensesnitt.",
+        "subject": "Modellgjennomgangen avdekker tre problemer samtidig",
+        "summary": "I den felles modellen kolliderer inngang, varelevering og oppholdsareal på samme hjørne.",
+        "task_domain": "rom_og_program",
+        "task_kind": "event"
+      },
+      "id": "by_arkitekt_event_modell_001",
+      "mail_type": "event",
+      "role_scope": "by_arkitekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør ett premiss eksplisitt og gir resten av teamet et tydelig utgangspunkt.",
+            "id": "A",
+            "label": "Lås ganglinjen først og koordiner de andre funksjonene rundt den",
+            "reply": "Jeg låser hovedganglinjen som premiss og koordinerer levering og opphold rundt den."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du bruker mer tid nå, men reduserer risikoen for at én lokal løsning flytter problemet videre.",
+            "id": "B",
+            "label": "Åpne hjørnet som samlet grensesnitt før noe låses",
+            "reply": "Jeg åpner hele hjørnet som et samlet grensesnitt og ber de berørte fagene teste alternativer sammen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den nye modellen viser at varelevering krysser hovedstrømmen til inngangen.",
+            "Samtidig blir oppholdsarealet ved hjørnet mindre enn teamet trodde i plan.",
+            "Neste leveranse er nær, så rekkefølgen på avklaringene betyr noe."
+          ],
+          "subject": "Modellgjennomgangen avdekker tre problemer samtidig",
+          "summary": "I den felles modellen kolliderer inngang, varelevering og oppholdsareal på samme hjørne."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_arkitekt_event_modell_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "atelier_og_modellbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_arkitekt_event_modell_001",
+          "source_path": "data/Civication/mailFamilies/by/event/by_arkitekt_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_arkitekt.mail.by_arkitekt_event_modell_001",
+        "version": 1
+      },
+      "source_hash": "78d2f23b66afda1078b13ed032205fe537edfd9733a08609c30ee691f06530f6",
+      "source_path": "data/Civication/mailFamilies/by/event/by_arkitekt_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "akseptere_forbedring_vs_revidere_hjornet",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du skiller mellom det som faktisk er løst og det som fortsatt krever arbeid.",
+            "id": "A",
+            "label": "Åpne en avgrenset revisjon av hjørnet",
+            "reply": "Jeg beholder den nye inngangen og åpner en avgrenset revisjon av hjørnets program og overgang til gaten.",
+            "tags": [
+              "etterkontroll",
+              "ny_revisjon"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du beskytter fremdriften uten å late som den gjenværende svakheten er borte.",
+            "id": "B",
+            "label": "Lukk inngangssporet og registrer hjørnet som senere risiko",
+            "reply": "Jeg lukker inngangssporet, men registrerer det passive hjørnet som en eksplisitt risiko til neste prosjektgjennomgang.",
+            "tags": [
+              "risikologg",
+              "fremdrift"
+            ]
+          }
+        ],
+        "competency": "byliv_og_gateplan",
+        "consequence_axis": "fremdrift_vs_langsiktig_byromskvalitet",
+        "cooldown": 2,
+        "from": "bylivsansvarlig_sara",
+        "id": "by_arkitekt_followup_inngang_001",
+        "learning_focus": [
+          "etterkontroll",
+          "byliv",
+          "avgrenset_revisjon"
+        ],
+        "mail_family": "revisjon_og_etterkontroll",
+        "mail_type": "followup",
+        "narrative_arc": "En god revisjon løser ett problem og kan samtidig gjøre det neste synligere.",
+        "person_id": "bylivsansvarlig_sara",
+        "phase": "afternoon",
+        "place_id": "befaring_og_gateplan",
+        "pressure": "lukke_sak_vs_folge_effekt",
+        "priority": 64,
+        "purpose": "Avgjør om den første forbedringen skal regnes som nok eller utløse en ny, avgrenset revisjon.",
+        "repeatable": false,
+        "role_scope": "by_arkitekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "bylivsansvarlig_sara",
+        "situation": [
+          "Ganglinjen fungerer bedre etter forrige endring.",
+          "Sara viser samtidig at hjørnet fortsatt oppleves som bakside i den travleste delen av gateplanet.",
+          "Du må skille mellom et løst inngangsproblem og et fortsatt uløst byromsproblem."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker om prosjektet lærer av tidligere beslutninger eller bare lukker avvik når ett målepunkt blir bedre.",
+        "subject": "Den reviderte inngangen virker — men hjørnet er fortsatt passivt",
+        "summary": "Etter revisjonen er hovedinngangen blitt tydeligere, mens hjørnet fortsatt mangler aktivitet og oppholdskvalitet.",
+        "task_domain": "forsteetasje_og_byliv",
+        "task_kind": "followup"
+      },
+      "id": "by_arkitekt_followup_inngang_001",
+      "mail_type": "followup",
+      "role_scope": "by_arkitekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du skiller mellom det som faktisk er løst og det som fortsatt krever arbeid.",
+            "id": "A",
+            "label": "Åpne en avgrenset revisjon av hjørnet",
+            "reply": "Jeg beholder den nye inngangen og åpner en avgrenset revisjon av hjørnets program og overgang til gaten."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du beskytter fremdriften uten å late som den gjenværende svakheten er borte.",
+            "id": "B",
+            "label": "Lukk inngangssporet og registrer hjørnet som senere risiko",
+            "reply": "Jeg lukker inngangssporet, men registrerer det passive hjørnet som en eksplisitt risiko til neste prosjektgjennomgang."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ganglinjen fungerer bedre etter forrige endring.",
+            "Sara viser samtidig at hjørnet fortsatt oppleves som bakside i den travleste delen av gateplanet.",
+            "Du må skille mellom et løst inngangsproblem og et fortsatt uløst byromsproblem."
+          ],
+          "subject": "Den reviderte inngangen virker — men hjørnet er fortsatt passivt",
+          "summary": "Etter revisjonen er hovedinngangen blitt tydeligere, mens hjørnet fortsatt mangler aktivitet og oppholdskvalitet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_arkitekt_followup_inngang_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "befaring_og_gateplan",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_arkitekt_followup_inngang_001",
+          "source_path": "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_arkitekt.mail.by_arkitekt_followup_inngang_001",
+        "version": 1
+      },
+      "source_hash": "2406d23f80c9ed10f1d07d8443fe4a0c8fd4eb6e3e023a875310499a3c0e0824",
+      "source_path": "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
     {
       "category": "by",
       "compatibility_projection": {
@@ -1109,6 +1629,515 @@
       },
       "source_hash": "3594451ae221b412d8494b63cb6e535612e654ba5fd662487a65c89b2a79b50e",
       "source_path": "data/Civication/mailFamilies/by/job/by_arkitekt_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "beholde_innvendig_logikk_vs_revidere_gateplan",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Observasjonen blir omsatt til en kontrollerbar arkitektfaglig hypotese.",
+            "id": "A",
+            "label": "Revider gateplanet mot den observerte bevegelsen",
+            "reply": "Jeg bruker befaringen som premiss og reviderer inngang, opphold og overgangssoner samlet.",
+            "tags": [
+              "stedlig_evidens",
+              "gateplan"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du gjør avviket eksplisitt; begrunnelsen kan senere prøves mot faktisk bruk.",
+            "id": "B",
+            "label": "Behold planen, men dokumenter hvorfor observasjonen ikke skal styre",
+            "reply": "Jeg beholder planlogikken, men dokumenterer hvorfor den observerte bevegelsen ikke bør være styrende for denne løsningen.",
+            "tags": [
+              "begrunnelse",
+              "faglig_forbehold"
+            ]
+          }
+        ],
+        "competency": "stedstilpasning",
+        "consequence_axis": "tegningens_orden_vs_stedets_bruk",
+        "cooldown": 2,
+        "from": "bylivsansvarlig_sara",
+        "id": "by_arkitekt_knowledge_gateplan_001",
+        "learning_focus": [
+          "observasjon",
+          "sekvens",
+          "overgangssoner"
+        ],
+        "mail_family": "sted_og_romlig_evidens",
+        "mail_type": "knowledge",
+        "person_id": "bylivsansvarlig_sara",
+        "phase": "lunch",
+        "place_id": "oslo_arkitektur_byrom",
+        "pressure": "diagram_vs_stedlig_evidens",
+        "priority": 58,
+        "purpose": "Bruk romlig kunnskap som beslutningsgrunnlag i stedet for å behandle gateplanet som en illustrasjon av fasaden.",
+        "repeatable": false,
+        "role_scope": "by_arkitekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "bylivsansvarlig_sara",
+        "situation": [
+          "Befaringen viser at folk beveger seg diagonalt gjennom hjørnet og stopper der fasaden nå er mest lukket.",
+          "Tegningen organiserer førsteetasjen etter innvendige akser som ikke følger denne bevegelsen.",
+          "Du må velge hvordan observasjonen skal brukes i neste versjon."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker om prosjektets bylivsargument kan spores til konkrete romlige forhold.",
+        "subject": "Gateplanet bør leses som en sekvens, ikke bare som fasade",
+        "summary": "Sara ber deg bruke observasjonene fra gateplanet til å kontrollere hvordan inngang, opphold og overgang mellom offentlig og privat rom faktisk henger sammen.",
+        "task_domain": "sted_og_gateplan",
+        "task_kind": "knowledge"
+      },
+      "id": "by_arkitekt_knowledge_gateplan_001",
+      "mail_type": "knowledge",
+      "role_scope": "by_arkitekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Observasjonen blir omsatt til en kontrollerbar arkitektfaglig hypotese.",
+            "id": "A",
+            "label": "Revider gateplanet mot den observerte bevegelsen",
+            "reply": "Jeg bruker befaringen som premiss og reviderer inngang, opphold og overgangssoner samlet."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du gjør avviket eksplisitt; begrunnelsen kan senere prøves mot faktisk bruk.",
+            "id": "B",
+            "label": "Behold planen, men dokumenter hvorfor observasjonen ikke skal styre",
+            "reply": "Jeg beholder planlogikken, men dokumenterer hvorfor den observerte bevegelsen ikke bør være styrende for denne løsningen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Befaringen viser at folk beveger seg diagonalt gjennom hjørnet og stopper der fasaden nå er mest lukket.",
+            "Tegningen organiserer førsteetasjen etter innvendige akser som ikke følger denne bevegelsen.",
+            "Du må velge hvordan observasjonen skal brukes i neste versjon."
+          ],
+          "subject": "Gateplanet bør leses som en sekvens, ikke bare som fasade",
+          "summary": "Sara ber deg bruke observasjonene fra gateplanet til å kontrollere hvordan inngang, opphold og overgang mellom offentlig og privat rom faktisk henger sammen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_arkitekt_knowledge_gateplan_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_arkitektur_byrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_arkitekt_knowledge_gateplan_001",
+          "source_path": "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_arkitekt.mail.by_arkitekt_knowledge_gateplan_001",
+        "version": 1
+      },
+      "source_hash": "1e2085fbee6756a5f18862d6791b972624e423b6c80c9f6c9e79a3c7400b8b9e",
+      "source_path": "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "beholde_dorplassering_vs_korrigere_ganglinje",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Den lille endringen blir begrunnet og mindre sannsynlig å bli reversert tilfeldig.",
+            "id": "A",
+            "label": "Flytt døren tilbake og dokumenter hvorfor",
+            "reply": "Jeg korrigerer dørplasseringen og noterer ganglinjen som premiss for neste revisjon.",
+            "tags": [
+              "korrigering",
+              "sporbarhet"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du prøver en mindre inngripende løsning, men må fortsatt bevise at ganglinjen fungerer.",
+            "id": "B",
+            "label": "Behold plasseringen og test annen slagretning",
+            "reply": "Jeg beholder plasseringen foreløpig og tester om slagretningen kan løse konflikten uten ny planendring.",
+            "tags": [
+              "alternativ_test",
+              "detalj"
+            ]
+          }
+        ],
+        "competency": "rom_og_program",
+        "consequence_axis": "lokal_enkelhet_vs_hverdagsflyt",
+        "cooldown": 1,
+        "from": "prosjekterende_mikkel",
+        "id": "by_arkitekt_micro_dor_001",
+        "learning_focus": [
+          "inngang",
+          "detalj"
+        ],
+        "mail_family": "små_romlige_korreksjoner",
+        "mail_type": "micro",
+        "person_id": "prosjekterende_mikkel",
+        "phase": "forenoon",
+        "place_id": "befaring_og_gateplan",
+        "pressure": "ryddig_tegning_vs_robust_bruk",
+        "priority": 48,
+        "purpose": "Ta et raskt, men sporbar valg før detaljen kopieres videre.",
+        "repeatable": false,
+        "role_scope": "by_arkitekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/micro/by_arkitekt_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "prosjekterende_mikkel",
+        "situation": [
+          "Døren er flyttet for å rydde veggflaten.",
+          "På befaring ser du at dørslaget nå griper inn i ganglinjen.",
+          "Detaljen kan fortsatt endres uten å åpne hele planløsningen."
+        ],
+        "stage": "stable",
+        "stakes": "En liten korreksjon nå kan hindre at samme konflikt bygges inn i flere tegninger.",
+        "subject": "Døren stjeler den viktigste ganglinjen",
+        "summary": "En liten dørrevisjon legger dørslaget inn i den tydeligste bevegelseslinjen ved inngangen.",
+        "task_domain": "detalj_og_bruk",
+        "task_kind": "micro"
+      },
+      "id": "by_arkitekt_micro_dor_001",
+      "mail_type": "micro",
+      "role_scope": "by_arkitekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Den lille endringen blir begrunnet og mindre sannsynlig å bli reversert tilfeldig.",
+            "id": "A",
+            "label": "Flytt døren tilbake og dokumenter hvorfor",
+            "reply": "Jeg korrigerer dørplasseringen og noterer ganglinjen som premiss for neste revisjon."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du prøver en mindre inngripende løsning, men må fortsatt bevise at ganglinjen fungerer.",
+            "id": "B",
+            "label": "Behold plasseringen og test annen slagretning",
+            "reply": "Jeg beholder plasseringen foreløpig og tester om slagretningen kan løse konflikten uten ny planendring."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Døren er flyttet for å rydde veggflaten.",
+            "På befaring ser du at dørslaget nå griper inn i ganglinjen.",
+            "Detaljen kan fortsatt endres uten å åpne hele planløsningen."
+          ],
+          "subject": "Døren stjeler den viktigste ganglinjen",
+          "summary": "En liten dørrevisjon legger dørslaget inn i den tydeligste bevegelseslinjen ved inngangen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_arkitekt_micro_dor_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "befaring_og_gateplan",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_arkitekt_micro_dor_001",
+          "source_path": "data/Civication/mailFamilies/by/micro/by_arkitekt_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_arkitekt.mail.by_arkitekt_micro_dor_001",
+        "version": 1
+      },
+      "source_hash": "2fc8f92e829d47bd7f36a429ad61dd640df9bab936980343c3462df558207733",
+      "source_path": "data/Civication/mailFamilies/by/micro/by_arkitekt_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "forsvare_grep_vs_teste_bruk",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du beholder ideen åpen for revisjon og gjør Saras innvending målbar i prosjektet.",
+            "id": "A",
+            "label": "Test inngang og ganglinje i ny gateplansskisse",
+            "reply": "Jeg tester inngang, hjørne og ganglinje i en ny gateplansskisse før vi låser fasaden.",
+            "tags": [
+              "test_bruk",
+              "stedstilpasning"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Prosjektet beholder retningen, men du tar på deg risikoen for at detaljeringen faktisk løser et romlig problem.",
+            "id": "B",
+            "label": "Behold fasadegrepet og tydeliggjør inngangen med detaljering",
+            "reply": "Jeg beholder hovedgrepet, men utvikler inngang og hjørne slik at de blir mer lesbare fra gaten.",
+            "tags": [
+              "behold_grep",
+              "detaljering"
+            ]
+          }
+        ],
+        "competency": "byliv_og_gateplan",
+        "consequence_axis": "ren_form_vs_lesbar_hverdag",
+        "cooldown": 1,
+        "from": "bylivsansvarlig_sara",
+        "id": "by_arkitekt_people_sara_001",
+        "learning_focus": [
+          "inngang",
+          "ganglinjer",
+          "byliv"
+        ],
+        "mail_family": "faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "Et tydelig arkitektonisk grep må bevise at det også fungerer fra fortauet.",
+        "person_id": "bylivsansvarlig_sara",
+        "phase": "morning",
+        "place_id": "oslo_arkitektur_byrom",
+        "pressure": "form_vs_bruk",
+        "priority": 72,
+        "purpose": "Velg hvordan arkitektens formgrep skal testes mot faktisk bruk før neste leveranse.",
+        "repeatable": false,
+        "role_scope": "by_arkitekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+        "scene_catalog_version": 1,
+        "sender": "bylivsansvarlig_sara",
+        "situation": [
+          "Fasaden er blitt roligere etter siste revisjon, men hovedinngangen leses svakere fra fortauet.",
+          "Sara peker på at hjørnet mangler et tydelig hverdagsprogram og at ganglinjen krysser møbleringssonen.",
+          "Du må velge om grepet skal forsvares, testes eller justeres før prosjektet låses videre."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker bylivskvalitet, faglig tillit og hvor dyrt det blir å revidere senere.",
+        "subject": "Sara ser en svakhet i førsteetasjen",
+        "summary": "Bylivsansvarlig Sara mener den ryddige fasaden gir en uklar inngang og et passivt gatehjørne.",
+        "task_domain": "forsteetasje_og_byliv",
+        "task_kind": "people"
+      },
+      "id": "by_arkitekt_people_sara_001",
+      "mail_type": "people",
+      "role_scope": "by_arkitekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beholder ideen åpen for revisjon og gjør Saras innvending målbar i prosjektet.",
+            "id": "A",
+            "label": "Test inngang og ganglinje i ny gateplansskisse",
+            "reply": "Jeg tester inngang, hjørne og ganglinje i en ny gateplansskisse før vi låser fasaden."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Prosjektet beholder retningen, men du tar på deg risikoen for at detaljeringen faktisk løser et romlig problem.",
+            "id": "B",
+            "label": "Behold fasadegrepet og tydeliggjør inngangen med detaljering",
+            "reply": "Jeg beholder hovedgrepet, men utvikler inngang og hjørne slik at de blir mer lesbare fra gaten."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fasaden er blitt roligere etter siste revisjon, men hovedinngangen leses svakere fra fortauet.",
+            "Sara peker på at hjørnet mangler et tydelig hverdagsprogram og at ganglinjen krysser møbleringssonen.",
+            "Du må velge om grepet skal forsvares, testes eller justeres før prosjektet låses videre."
+          ],
+          "subject": "Sara ser en svakhet i førsteetasjen",
+          "summary": "Bylivsansvarlig Sara mener den ryddige fasaden gir en uklar inngang og et passivt gatehjørne."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_arkitekt_people_sara_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_arkitektur_byrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_arkitekt_people_sara_001",
+          "source_path": "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_arkitekt.mail.by_arkitekt_people_sara_001",
+        "version": 1
+      },
+      "source_hash": "050ad1688699bffb369b09bf8bd075185a56b20a677c7c9c8bb166796319f783",
+      "source_path": "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "beholde_materiale_vs_revidere_detalj",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du lar testen endre detaljen uten å forkaste hele materialstrategien.",
+            "id": "A",
+            "label": "Behold materialet, men bygg om den utsatte detaljen",
+            "reply": "Jeg beholder materialideen, men reviderer sokkel og overgang der testen viser reell svakhet.",
+            "tags": [
+              "detaljrevisjon",
+              "varighet"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du øker arbeidsmengden nå, men gjør varighet til et eksplisitt beslutningskriterium.",
+            "id": "B",
+            "label": "Åpne materialvalget på nytt før neste leveranse",
+            "reply": "Jeg åpner materialvalget på nytt og sammenligner alternativer mot samme brukstest.",
+            "tags": [
+              "materialvalg",
+              "ny_test"
+            ]
+          }
+        ],
+        "competency": "materialitet_og_varighet",
+        "consequence_axis": "visuell_konsistens_vs_robust_varighet",
+        "cooldown": 2,
+        "from": "prosjekterende_mikkel",
+        "id": "by_arkitekt_story_mikkel_001",
+        "learning_focus": [
+          "slitasje",
+          "detalj",
+          "vedlikehold"
+        ],
+        "mail_family": "materialitet_og_tid",
+        "mail_type": "story",
+        "narrative_arc": "Et materialvalg får først mening når det møter tid, berøring og vedlikehold.",
+        "person_id": "prosjekterende_mikkel",
+        "phase": "afternoon",
+        "place_id": "material_og_detaljrom",
+        "pressure": "materialide_vs_hverdagsbruk",
+        "priority": 66,
+        "purpose": "Avgjør om materialvalget skal forsvares, justeres eller brukes som grunnlag for en større detaljrevisjon.",
+        "repeatable": false,
+        "role_scope": "by_arkitekt",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/story/by_arkitekt_story.json",
+        "scene_catalog_version": 1,
+        "sender": "prosjekterende_mikkel",
+        "situation": [
+          "Materialprøven har fått slag, smuss og fukt på de mest utsatte flatene.",
+          "Overgangen mot sokkel ser svakere ut enn på visualiseringen.",
+          "Du må behandle dette som kunnskap om bygget, ikke som et kosmetisk problem i prøverommet."
+        ],
+        "stage": "stable",
+        "stakes": "Valget påvirker varighet, vedlikehold og om prosjektets materialidé overlever hverdagsbruk.",
+        "subject": "Materialprøven ser annerledes ut etter hard bruk",
+        "summary": "Mikkel viser at materialet som fungerte i presentasjonen får tydelige merker og krevende overganger når detaljen testes fysisk.",
+        "task_domain": "materialitet_og_varighet",
+        "task_kind": "story"
+      },
+      "id": "by_arkitekt_story_mikkel_001",
+      "mail_type": "story",
+      "role_scope": "by_arkitekt",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du lar testen endre detaljen uten å forkaste hele materialstrategien.",
+            "id": "A",
+            "label": "Behold materialet, men bygg om den utsatte detaljen",
+            "reply": "Jeg beholder materialideen, men reviderer sokkel og overgang der testen viser reell svakhet."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du øker arbeidsmengden nå, men gjør varighet til et eksplisitt beslutningskriterium.",
+            "id": "B",
+            "label": "Åpne materialvalget på nytt før neste leveranse",
+            "reply": "Jeg åpner materialvalget på nytt og sammenligner alternativer mot samme brukstest."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Materialprøven har fått slag, smuss og fukt på de mest utsatte flatene.",
+            "Overgangen mot sokkel ser svakere ut enn på visualiseringen.",
+            "Du må behandle dette som kunnskap om bygget, ikke som et kosmetisk problem i prøverommet."
+          ],
+          "subject": "Materialprøven ser annerledes ut etter hard bruk",
+          "summary": "Mikkel viser at materialet som fungerte i presentasjonen får tydelige merker og krevende overganger når detaljen testes fysisk."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_arkitekt_story_mikkel_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "material_og_detaljrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_arkitekt_story_mikkel_001",
+          "source_path": "data/Civication/mailFamilies/by/story/by_arkitekt_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_arkitekt.mail.by_arkitekt_story_mikkel_001",
+        "version": 1
+      },
+      "source_hash": "3e869004d47d0adc60c2e86fab4b987492a8999f059907b3f079f8e00c18a088",
+      "source_path": "data/Civication/mailFamilies/by/story/by_arkitekt_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -138870,7 +139899,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "0465650c826454c7e8b50a9c507095840e4f24516b6570808baeb3ccdeb9caf3",
+  "registry_hash": "0c79b8c59d55d95cfbb2610c2c132bb881c24730793125e7ba07f0e6d055b2fb",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -138880,7 +139909,15 @@
       "by_arkitekt_job_material_001",
       "by_arkitekt_job_material_002",
       "by_arkitekt_job_signatur_001",
-      "by_arkitekt_job_signatur_002"
+      "by_arkitekt_job_signatur_002",
+      "by_arkitekt_people_sara_001",
+      "by_arkitekt_story_mikkel_001",
+      "by_arkitekt_conflict_nora_001",
+      "by_arkitekt_event_modell_001",
+      "by_arkitekt_micro_dor_001",
+      "by_arkitekt_followup_inngang_001",
+      "by_arkitekt_knowledge_gateplan_001",
+      "by_arkitekt_consequence_gateplan_001"
     ],
     "by/by_assistent": [
       "by_assistent_job_kart_001",
@@ -139857,11 +140894,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 138,
+    "compiled_source_file_count": 146,
     "ignored_source_file_count": 1,
-    "input_file_count": 139,
+    "input_file_count": 147,
     "role_count": 28,
-    "scene_count": 901,
+    "scene_count": 909,
     "shadowed_duplicate_count": 0
   },
   "version": 1
