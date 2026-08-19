@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_assistent",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "mikrokontroll",
+      "purpose": "Trener små, raske kvalitetskontroller før materiale sendes videre.",
+      "learning_focus": ["kildespor", "observasjonsdisiplin"],
+      "mails": [
+        {
+          "id": "by_assistent_micro_kildespor_001",
+          "mail_type": "micro",
+          "mail_family": "mikrokontroll",
+          "role_scope": "by_assistent",
+          "phase": "forenoon",
+          "priority": 54,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "early",
+          "from": "ingrid_byplan",
+          "sender": "ingrid_byplan",
+          "person_id": "ingrid_byplan",
+          "place_id": "kart_og_grunnlagsbord",
+          "subject": "Kan du merke hvilken kilde hver kartkant kommer fra?",
+          "summary": "To nesten like kartlag er blandet i samme arbeidsfil, og senere lesere vil ikke se hvilket lag som ligger bak hver vurdering.",
+          "purpose": "Velg om assistenten bruker noen minutter på eksplisitt kildespor før arbeidet fortsetter.",
+          "stakes": "Et manglende kildespor er lite nå, men dyrt å rekonstruere når saken senere blir utfordret.",
+          "situation": [
+            "Arbeidsfilen ser ryddig ut.",
+            "Men lagene har ulik dato og litt ulik geometri.",
+            "Du kan fortsatt merke dem uten å bygge analysen på nytt."
+          ],
+          "task_domain": "kildespor",
+          "task_kind": "micro",
+          "competency": "sporbarhet",
+          "pressure": "minutter_na_vs_timer_senere",
+          "choice_axis": "merke_kilder_vs_fortsette",
+          "consequence_axis": "etterprovbarhet_vs_tempo",
+          "narrative_arc": "Assistenten lærer at god sporbarhet ofte bygges gjennom små valg før de blir store problemer.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Merk lag, dato og avvik før du fortsetter",
+              "reply": "Jeg merker kilde, dato og avvik på lagene før jeg fortsetter analysen.",
+              "effect": 1,
+              "tags": ["traceability", "quality"],
+              "feedback": "Neste leser kan se nøyaktig hva vurderingen bygger på."
+            },
+            {
+              "id": "B",
+              "label": "Fortsett nå og dokumenter kildene ved levering",
+              "reply": "Jeg fortsetter nå og dokumenterer kildene samlet når notatet er ferdig.",
+              "effect": 0,
+              "tags": ["delay", "risk"],
+              "feedback": "Du sparer noen minutter, men gjør kildesporet vanskeligere å rekonstruere senere."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
