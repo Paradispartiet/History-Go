@@ -4,13 +4,16 @@ on:
   push:
     branches:
       - agent/sprakatlas-places-v2-documented-coverage
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   validate-and-finalize:
-    if: ${{ !contains(github.event.head_commit.message, '[sprakatlas-v2-finalized]') }}
+    if: ${{ github.event_name == 'pull_request' || !contains(github.event.head_commit.message, '[sprakatlas-v2-finalized]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
