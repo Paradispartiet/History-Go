@@ -10,6 +10,14 @@
     "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
     "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
     "data/Civication/mailFamilies/by/job/by_assistent_job.json",
+    "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+    "data/Civication/mailFamilies/by/story/by_assistent_story.json",
+    "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+    "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+    "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+    "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+    "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+    "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
     "data/Civication/mailFamilies/by/job/by_prosjektleder_job.json",
     "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
     "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json",
@@ -2144,6 +2152,504 @@
       "category": "by",
       "compatibility_projection": {
         "category": "by",
+        "choice_axis": "bevare_konflikt_vs_velge_en_kilde",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Uenigheten blir synlig og kan undersøkes før den blir til en skjult feil.",
+            "id": "A",
+            "label": "Registrer konflikten og foreslå ny kontroll før premisset låses",
+            "reply": "Jeg registrerer konflikten mellom kart og faktisk bruk og foreslår ny kontroll før vi låser premisset.",
+            "tags": [
+              "conflict",
+              "evidence",
+              "escalation"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Dokumentet blir ryddig, men stedet får mindre makt til å korrigere grunnlaget.",
+            "id": "B",
+            "label": "La kartgrunnlaget være styrende siden det er den formelle kilden",
+            "reply": "Jeg lar kartgrunnlaget være styrende og omtaler observasjonen som et mulig avvik.",
+            "tags": [
+              "formal_source",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "grunnlagskritikk",
+        "consequence_axis": "sporbarhet_vs_falsk_enighet",
+        "cooldown": 2,
+        "from": "jonas_arkitekt",
+        "id": "by_assistent_conflict_kart_befaring_001",
+        "mail_family": "grunnlagskonflikter",
+        "mail_type": "conflict",
+        "narrative_arc": "Assistenten lærer at en uløst motsetning kan være viktigere enn et ryddig sammendrag.",
+        "person_id": "jonas_arkitekt",
+        "phase": "afternoon",
+        "place_id": "befaring_og_observasjonsflate",
+        "pressure": "dokumentro_vs_stedsfunn",
+        "priority": 68,
+        "purpose": "Teste om assistenten bevarer konflikten som et faglig avvik i stedet for å glatte den ut.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "jonas_arkitekt",
+        "situation": [
+          "Kartet viser én funksjon.",
+          "Befaringen viser et stabilt annet bruksmønster.",
+          "Jonas trenger et notat som kan brukes i neste prosjektgjennomgang."
+        ],
+        "stage": "stable_warning",
+        "stakes": "Hvis konflikten skjules, kan neste løsning bygge på feil funksjonsforståelse.",
+        "subject": "Kartet og befaringen kan ikke begge være helt riktige",
+        "summary": "Jonas peker på at den tegnede oppholdssonen brukes som gjennomgang, mens kartgrunnlaget fortsatt behandler den som rolig areal.",
+        "task_domain": "kart_mot_sted",
+        "task_kind": "conflict"
+      },
+      "id": "by_assistent_conflict_kart_befaring_001",
+      "mail_type": "conflict",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Uenigheten blir synlig og kan undersøkes før den blir til en skjult feil.",
+            "id": "A",
+            "label": "Registrer konflikten og foreslå ny kontroll før premisset låses",
+            "reply": "Jeg registrerer konflikten mellom kart og faktisk bruk og foreslår ny kontroll før vi låser premisset."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dokumentet blir ryddig, men stedet får mindre makt til å korrigere grunnlaget.",
+            "id": "B",
+            "label": "La kartgrunnlaget være styrende siden det er den formelle kilden",
+            "reply": "Jeg lar kartgrunnlaget være styrende og omtaler observasjonen som et mulig avvik."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kartet viser én funksjon.",
+            "Befaringen viser et stabilt annet bruksmønster.",
+            "Jonas trenger et notat som kan brukes i neste prosjektgjennomgang."
+          ],
+          "subject": "Kartet og befaringen kan ikke begge være helt riktige",
+          "summary": "Jonas peker på at den tegnede oppholdssonen brukes som gjennomgang, mens kartgrunnlaget fortsatt behandler den som rolig areal."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_conflict_kart_befaring_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "befaring_og_observasjonsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_conflict_kart_befaring_001",
+          "source_path": "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_conflict_kart_befaring_001",
+        "version": 1
+      },
+      "source_hash": "36183da97054b239f68b31cf4298dea1aff41b52571da6d734d4fd3aaf0018f5",
+      "source_path": "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "bruke_dokumentert_spor_vs_star_revidere_bredt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Det tidligere støttearbeidet gjør en senere faglig beslutning mer presis og mindre kostbar.",
+            "id": "A",
+            "label": "Bruk det dokumenterte sporet til å avgrense nøyaktig hva som må kontrolleres og revideres",
+            "reply": "Jeg samler kartkilder, befaring og usikkerhetsnotat slik at Jonas kan avgrense revisjonen til det premisset som faktisk er svakt.",
+            "tags": [
+              "consequence",
+              "precision",
+              "trust"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du beskytter kvaliteten, men den manglende sikkerheten koster prosjektet mer tid og arbeid.",
+            "id": "B",
+            "label": "Anbefal ny bred kontroll siden det gamle sporet ikke er sikkert nok",
+            "reply": "Jeg anbefaler at vi kontrollerer området bredt på nytt før designet låses videre.",
+            "tags": [
+              "recheck",
+              "cost"
+            ]
+          }
+        ],
+        "competency": "etterprovbarhet",
+        "consequence_axis": "tillit_og_presisjon_vs_kostbar_usikkerhet",
+        "cooldown": 3,
+        "from": "jonas_arkitekt",
+        "id": "by_assistent_consequence_grunnlag_001",
+        "mail_family": "forsinkede_folgevirkninger",
+        "mail_type": "consequence",
+        "narrative_arc": "Assistenten ser at små dokumentasjonsvalg kan styre kostnad, kvalitet og tillit lenge etter at støtteoppgaven er avsluttet.",
+        "person_id": "jonas_arkitekt",
+        "phase": "day_end",
+        "place_id": "oslo_sentrum_byrom",
+        "pressure": "lokal_revisjon_vs_stor_omarbeiding",
+        "priority": 62,
+        "purpose": "Vis at assistentens tidligere arbeid får reell følgevirkning når andre fag bruker grunnlaget senere.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "jonas_arkitekt",
+        "situation": [
+          "Designteamet har brukt kartkanten som premiss for inngang og ganglinje.",
+          "Befaringsmaterialet viser et mer komplekst sted.",
+          "Nå må prosjektet vite om det gamle grunnlaget kan forsvares eller må korrigeres."
+        ],
+        "stage": "mastery",
+        "stakes": "Et etterprøvbart spor kan avgrense revisjonen; et uklart spor kan tvinge frem ny befaring og større omarbeiding.",
+        "subject": "Det gamle avviket avgjør om prosjektet må tegnes om",
+        "summary": "Jonas oppdager at neste designvalg avhenger av om den gamle kartkanten var feil, utilstrekkelig eller bare brukt til et annet formål.",
+        "task_domain": "forsinket_grunnlagskonsekvens",
+        "task_kind": "consequence",
+        "thread_key": "by_assistent.case.kartavvik_og_stedsbruk"
+      },
+      "id": "by_assistent_consequence_grunnlag_001",
+      "mail_type": "consequence",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Det tidligere støttearbeidet gjør en senere faglig beslutning mer presis og mindre kostbar.",
+            "id": "A",
+            "label": "Bruk det dokumenterte sporet til å avgrense nøyaktig hva som må kontrolleres og revideres",
+            "reply": "Jeg samler kartkilder, befaring og usikkerhetsnotat slik at Jonas kan avgrense revisjonen til det premisset som faktisk er svakt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du beskytter kvaliteten, men den manglende sikkerheten koster prosjektet mer tid og arbeid.",
+            "id": "B",
+            "label": "Anbefal ny bred kontroll siden det gamle sporet ikke er sikkert nok",
+            "reply": "Jeg anbefaler at vi kontrollerer området bredt på nytt før designet låses videre."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Designteamet har brukt kartkanten som premiss for inngang og ganglinje.",
+            "Befaringsmaterialet viser et mer komplekst sted.",
+            "Nå må prosjektet vite om det gamle grunnlaget kan forsvares eller må korrigeres."
+          ],
+          "subject": "Det gamle avviket avgjør om prosjektet må tegnes om",
+          "summary": "Jonas oppdager at neste designvalg avhenger av om den gamle kartkanten var feil, utilstrekkelig eller bare brukt til et annet formål."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_consequence_grunnlag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_sentrum_byrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_consequence_grunnlag_001",
+          "source_path": "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.case.kartavvik_og_stedsbruk",
+        "version": 1
+      },
+      "source_hash": "38edc3f6dea35f7e525b3bbbb6c2b5d68651bb886c0457ce9c3137b30f15c5f4",
+      "source_path": "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "observere_rett_tid_vs_anta_fra_dagtid",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du samler data på det tidspunktet innspillene faktisk handler om.",
+            "id": "A",
+            "label": "Gjennomfør en kort kveldsbefaring med tydelig observasjonsspørsmål",
+            "reply": "Jeg gjennomfører en kort kveldsbefaring for å teste ganglinje, lys og opplevd oversikt på riktig tidspunkt.",
+            "tags": [
+              "fieldwork",
+              "timing",
+              "evidence"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du unngår å late som du vet mer enn du gjør, men saken får mindre direkte evidens.",
+            "id": "B",
+            "label": "Bruk dagens materiale og marker kveldsforhold som usikkert",
+            "reply": "Jeg bruker dagens materiale, men markerer tydelig at kveldsforholdene ikke er observert.",
+            "tags": [
+              "uncertainty",
+              "scope"
+            ]
+          }
+        ],
+        "competency": "observasjonsdesign",
+        "consequence_axis": "evidens_vs_effektivitet",
+        "cooldown": 3,
+        "from": "maria_medvirkning",
+        "id": "by_assistent_event_kveldsbefaring_001",
+        "mail_family": "befaring_og_medvirkning",
+        "mail_type": "event",
+        "narrative_arc": "Assistenten lærer at stedlig observasjon må skje når fenomenet faktisk oppstår.",
+        "person_id": "maria_medvirkning",
+        "phase": "afternoon",
+        "place_id": "oslo_sentrum_byrom",
+        "pressure": "tilgjengelig_grunnlag_vs_relevant_grunnlag",
+        "priority": 60,
+        "purpose": "Velg om assistenten skal samle ny stedlig evidens eller nøye seg med eksisterende beskrivelser.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+        "scene_catalog_version": 1,
+        "sender": "maria_medvirkning",
+        "situation": [
+          "Innspillene beskriver utrygghet om kvelden.",
+          "Dagens bilder viser lysanlegget, men ikke hvordan stedet oppleves når omgivelsene er mørke.",
+          "Maria kan bli med på en kort, avgrenset befaring."
+        ],
+        "stage": "advanced",
+        "stakes": "Ny observasjon kan styrke eller avkrefte mønsteret; uten den kan analysen bli basert på antakelser om tidspunktet som faktisk er problemet.",
+        "subject": "En kort kveldsbefaring kan teste trygghetsinnspillene",
+        "summary": "Flere innspill gjelder den samme mørke ganglinjen, men dagens befaring sier lite om hvordan stedet virker etter arbeidstid.",
+        "task_domain": "tidsavhengig_befaring",
+        "task_kind": "event"
+      },
+      "id": "by_assistent_event_kveldsbefaring_001",
+      "mail_type": "event",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du samler data på det tidspunktet innspillene faktisk handler om.",
+            "id": "A",
+            "label": "Gjennomfør en kort kveldsbefaring med tydelig observasjonsspørsmål",
+            "reply": "Jeg gjennomfører en kort kveldsbefaring for å teste ganglinje, lys og opplevd oversikt på riktig tidspunkt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du unngår å late som du vet mer enn du gjør, men saken får mindre direkte evidens.",
+            "id": "B",
+            "label": "Bruk dagens materiale og marker kveldsforhold som usikkert",
+            "reply": "Jeg bruker dagens materiale, men markerer tydelig at kveldsforholdene ikke er observert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Innspillene beskriver utrygghet om kvelden.",
+            "Dagens bilder viser lysanlegget, men ikke hvordan stedet oppleves når omgivelsene er mørke.",
+            "Maria kan bli med på en kort, avgrenset befaring."
+          ],
+          "subject": "En kort kveldsbefaring kan teste trygghetsinnspillene",
+          "summary": "Flere innspill gjelder den samme mørke ganglinjen, men dagens befaring sier lite om hvordan stedet virker etter arbeidstid."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_event_kveldsbefaring_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_sentrum_byrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_event_kveldsbefaring_001",
+          "source_path": "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_event_kveldsbefaring_001",
+        "version": 1
+      },
+      "source_hash": "1b16df48879d81620f1ceed6bec0d90d384e95dd5e910040b57cc573e3ccacd4",
+      "source_path": "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "hente_kilder_vs_stole_pa_hukommelse",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Teamet kan revidere akkurat det premisset som er svakt uten å åpne hele saken på nytt.",
+            "id": "A",
+            "label": "Hent frem kilde, dato, befaring og den åpne usikkerheten før skissen vurderes",
+            "reply": "Jeg henter frem hele kildesporet og viser nøyaktig hva som var observert, hva som var kartavvik og hva som ikke ble avklart.",
+            "tags": [
+              "followup",
+              "traceability",
+              "revision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du sparer tid nå, men gjør det vanskeligere å vite om revisjonen faktisk svarer på den opprinnelige usikkerheten.",
+            "id": "B",
+            "label": "Forklar fra hukommelsen hva avviket handlet om og gå videre",
+            "reply": "Jeg forklarer fra hukommelsen at kanten var usikker og foreslår en rask justering.",
+            "tags": [
+              "memory",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "sporbar_faglig_overlevering",
+        "consequence_axis": "presis_revisjon_vs_ny_usikkerhet",
+        "cooldown": 2,
+        "from": "ingrid_byplan",
+        "id": "by_assistent_followup_kartavvik_001",
+        "mail_family": "grunnlagsoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Et lite kildespor fra tidligere blir nå forskjellen mellom presis oppfølging og dyr rekonstruksjon.",
+        "person_id": "ingrid_byplan",
+        "phase": "afternoon",
+        "place_id": "kart_og_grunnlagsbord",
+        "pressure": "rekonstruksjon_vs_dokumentert_spor",
+        "priority": 66,
+        "purpose": "Teste om assistentens tidligere kildespor og usikkerhet kan brukes operativt når saken går videre.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "ingrid_byplan",
+        "situation": [
+          "Neste leveranse viser kanten som om den var avklart.",
+          "Du husker at kartlag og befaring ikke var helt enige.",
+          "Ingrid trenger dokumentasjonen før hun bestemmer om skissen må revideres."
+        ],
+        "stage": "advanced",
+        "stakes": "God dokumentasjon gjør revisjonen liten og presis; svak dokumentasjon tvinger teamet til å rekonstruere hva som skjedde.",
+        "subject": "Kartavviket dukker opp igjen i neste leveranse",
+        "summary": "En ny skisse bruker den samme kanten som premiss, og Ingrid ber deg hente frem hva dere faktisk dokumenterte tidligere.",
+        "task_domain": "grunnlagsoppfolging",
+        "task_kind": "followup",
+        "thread_key": "by_assistent.case.kartavvik_og_stedsbruk"
+      },
+      "id": "by_assistent_followup_kartavvik_001",
+      "mail_type": "followup",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Teamet kan revidere akkurat det premisset som er svakt uten å åpne hele saken på nytt.",
+            "id": "A",
+            "label": "Hent frem kilde, dato, befaring og den åpne usikkerheten før skissen vurderes",
+            "reply": "Jeg henter frem hele kildesporet og viser nøyaktig hva som var observert, hva som var kartavvik og hva som ikke ble avklart."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du sparer tid nå, men gjør det vanskeligere å vite om revisjonen faktisk svarer på den opprinnelige usikkerheten.",
+            "id": "B",
+            "label": "Forklar fra hukommelsen hva avviket handlet om og gå videre",
+            "reply": "Jeg forklarer fra hukommelsen at kanten var usikker og foreslår en rask justering."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Neste leveranse viser kanten som om den var avklart.",
+            "Du husker at kartlag og befaring ikke var helt enige.",
+            "Ingrid trenger dokumentasjonen før hun bestemmer om skissen må revideres."
+          ],
+          "subject": "Kartavviket dukker opp igjen i neste leveranse",
+          "summary": "En ny skisse bruker den samme kanten som premiss, og Ingrid ber deg hente frem hva dere faktisk dokumenterte tidligere."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_followup_kartavvik_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kart_og_grunnlagsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_followup_kartavvik_001",
+          "source_path": "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.case.kartavvik_og_stedsbruk",
+        "version": 1
+      },
+      "source_hash": "e27c53b593e86cfa4962a5d97fea472d1755b98478e1dc1e6d468e115309cc26",
+      "source_path": "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
         "choice_axis": "notere_bruksmønster_vs_beskrive_form",
         "choices": [
           {
@@ -3110,6 +3616,501 @@
       },
       "source_hash": "58e747723d3dde172c35f021ec5308830bd3753356b2cc37dc1cc85c3aef908a",
       "source_path": "data/Civication/mailFamilies/by/job/by_assistent_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "modell_som_fasit_vs_modell_som_kilde",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du bruker kartet presist uten å gi modellen mer sikkerhet enn den har.",
+            "id": "A",
+            "label": "Behandle kartet som én kilde som må forstås sammen med sted og formål",
+            "reply": "Jeg behandler kartet som en sterk kilde, men vurderer hva laget er laget for og tester det mot stedet når saken krever det.",
+            "tags": [
+              "knowledge",
+              "map",
+              "source_criticism"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Tilnærmingen er effektiv, men kan overse at kartet er korrekt for sitt formål og likevel utilstrekkelig for ditt.",
+            "id": "B",
+            "label": "Bruk offisielt kart som utgangspunkt og avvik bare når feilen er tydelig",
+            "reply": "Jeg bruker offisielt kart som utgangspunkt og avviker bare når befaringen viser en klar feil.",
+            "tags": [
+              "formal_data",
+              "conservative"
+            ]
+          }
+        ],
+        "competency": "grunnlagskritikk",
+        "consequence_axis": "kritisk_forstaelse_vs_falsk_sikkerhet",
+        "cooldown": 2,
+        "from": "jonas_arkitekt",
+        "id": "by_assistent_knowledge_kart_sted_001",
+        "mail_family": "grunnlagsforstaelse",
+        "mail_type": "knowledge",
+        "narrative_arc": "Assistenten forstår hvorfor kildekritikk også gjelder tekniske og offisielle kartdata.",
+        "person_id": "jonas_arkitekt",
+        "phase": "lunch",
+        "place_id": "oslo_sentrum_byrom",
+        "pressure": "formell_data_vs_stedlig_evidens",
+        "priority": 52,
+        "purpose": "Gjør grunnlagskritikken eksplisitt som faglig kunnskap, ikke bare en arbeidsvane.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "jonas_arkitekt",
+        "situation": [
+          "Kartdata er nødvendige for å arbeide systematisk.",
+          "Samtidig er hvert lag laget for et bestemt formål, tidspunkt og presisjonsnivå.",
+          "Befaring og bruk kan derfor korrigere hva kartet betyr i den konkrete saken."
+        ],
+        "stage": "early",
+        "stakes": "Hvis kartet behandles som fasit, kan modellen skjule forhold som er viktige for senere plan- og designvalg.",
+        "subject": "Kartet er en modell av stedet, ikke stedet selv",
+        "summary": "Jonas ber deg forklare hvorfor en offisiell kartlinje fortsatt må testes mot faktisk bruk og befaring.",
+        "task_domain": "kartforstaelse",
+        "task_kind": "knowledge"
+      },
+      "id": "by_assistent_knowledge_kart_sted_001",
+      "mail_type": "knowledge",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker kartet presist uten å gi modellen mer sikkerhet enn den har.",
+            "id": "A",
+            "label": "Behandle kartet som én kilde som må forstås sammen med sted og formål",
+            "reply": "Jeg behandler kartet som en sterk kilde, men vurderer hva laget er laget for og tester det mot stedet når saken krever det."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Tilnærmingen er effektiv, men kan overse at kartet er korrekt for sitt formål og likevel utilstrekkelig for ditt.",
+            "id": "B",
+            "label": "Bruk offisielt kart som utgangspunkt og avvik bare når feilen er tydelig",
+            "reply": "Jeg bruker offisielt kart som utgangspunkt og avviker bare når befaringen viser en klar feil."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kartdata er nødvendige for å arbeide systematisk.",
+            "Samtidig er hvert lag laget for et bestemt formål, tidspunkt og presisjonsnivå.",
+            "Befaring og bruk kan derfor korrigere hva kartet betyr i den konkrete saken."
+          ],
+          "subject": "Kartet er en modell av stedet, ikke stedet selv",
+          "summary": "Jonas ber deg forklare hvorfor en offisiell kartlinje fortsatt må testes mot faktisk bruk og befaring."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_knowledge_kart_sted_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_sentrum_byrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_knowledge_kart_sted_001",
+          "source_path": "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_knowledge_kart_sted_001",
+        "version": 1
+      },
+      "source_hash": "892618aa649a9143c80fc9697dc0150288324a47735a79c896f4ecdb2a4294f1",
+      "source_path": "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "merke_kilder_vs_fortsette",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Neste leser kan se nøyaktig hva vurderingen bygger på.",
+            "id": "A",
+            "label": "Merk lag, dato og avvik før du fortsetter",
+            "reply": "Jeg merker kilde, dato og avvik på lagene før jeg fortsetter analysen.",
+            "tags": [
+              "traceability",
+              "quality"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du sparer noen minutter, men gjør kildesporet vanskeligere å rekonstruere senere.",
+            "id": "B",
+            "label": "Fortsett nå og dokumenter kildene ved levering",
+            "reply": "Jeg fortsetter nå og dokumenterer kildene samlet når notatet er ferdig.",
+            "tags": [
+              "delay",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "sporbarhet",
+        "consequence_axis": "etterprovbarhet_vs_tempo",
+        "cooldown": 1,
+        "from": "ingrid_byplan",
+        "id": "by_assistent_micro_kildespor_001",
+        "mail_family": "mikrokontroll",
+        "mail_type": "micro",
+        "narrative_arc": "Assistenten lærer at god sporbarhet ofte bygges gjennom små valg før de blir store problemer.",
+        "person_id": "ingrid_byplan",
+        "phase": "forenoon",
+        "place_id": "kart_og_grunnlagsbord",
+        "pressure": "minutter_na_vs_timer_senere",
+        "priority": 54,
+        "purpose": "Velg om assistenten bruker noen minutter på eksplisitt kildespor før arbeidet fortsetter.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "ingrid_byplan",
+        "situation": [
+          "Arbeidsfilen ser ryddig ut.",
+          "Men lagene har ulik dato og litt ulik geometri.",
+          "Du kan fortsatt merke dem uten å bygge analysen på nytt."
+        ],
+        "stage": "early",
+        "stakes": "Et manglende kildespor er lite nå, men dyrt å rekonstruere når saken senere blir utfordret.",
+        "subject": "Kan du merke hvilken kilde hver kartkant kommer fra?",
+        "summary": "To nesten like kartlag er blandet i samme arbeidsfil, og senere lesere vil ikke se hvilket lag som ligger bak hver vurdering.",
+        "task_domain": "kildespor",
+        "task_kind": "micro"
+      },
+      "id": "by_assistent_micro_kildespor_001",
+      "mail_type": "micro",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste leser kan se nøyaktig hva vurderingen bygger på.",
+            "id": "A",
+            "label": "Merk lag, dato og avvik før du fortsetter",
+            "reply": "Jeg merker kilde, dato og avvik på lagene før jeg fortsetter analysen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du sparer noen minutter, men gjør kildesporet vanskeligere å rekonstruere senere.",
+            "id": "B",
+            "label": "Fortsett nå og dokumenter kildene ved levering",
+            "reply": "Jeg fortsetter nå og dokumenterer kildene samlet når notatet er ferdig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arbeidsfilen ser ryddig ut.",
+            "Men lagene har ulik dato og litt ulik geometri.",
+            "Du kan fortsatt merke dem uten å bygge analysen på nytt."
+          ],
+          "subject": "Kan du merke hvilken kilde hver kartkant kommer fra?",
+          "summary": "To nesten like kartlag er blandet i samme arbeidsfil, og senere lesere vil ikke se hvilket lag som ligger bak hver vurdering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_micro_kildespor_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kart_og_grunnlagsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_micro_kildespor_001",
+          "source_path": "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_micro_kildespor_001",
+        "version": 1
+      },
+      "source_hash": "4d8fe56c56f9ff9eee664fdb2ee4a02156fcb541f7c995a785152c13d6ea1689",
+      "source_path": "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "konkludere_tidlig_vs_skille_funn_og_tolkning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Ingrid får et grunnlag hun kan kontrollere videre uten at usikkerheten er skjult.",
+            "id": "A",
+            "label": "Skill kartavvik, stedsobservasjon og det som fortsatt må avklares",
+            "reply": "Jeg skiller kartavviket fra stedsobservasjonen og markerer hva som fortsatt må avklares.",
+            "tags": [
+              "traceability",
+              "uncertainty",
+              "handover"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Saken går raskere videre, men gjetningen kan nå se ut som et kontrollert premiss.",
+            "id": "B",
+            "label": "Gi det mest sannsynlige svaret så saken kan gå videre",
+            "reply": "Jeg gir det mest sannsynlige svaret og foreslår at vi korrigerer senere hvis det viser seg nødvendig.",
+            "tags": [
+              "shortcut",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "sporbar_faglig_overlevering",
+        "consequence_axis": "tempo_vs_tillit",
+        "cooldown": 1,
+        "from": "ingrid_byplan",
+        "id": "by_assistent_people_ingrid_001",
+        "mail_family": "faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "Assistenten lærer å være nyttig uten å late som støttearbeidet allerede er en faglig avgjørelse.",
+        "person_id": "ingrid_byplan",
+        "phase": "morning",
+        "place_id": "kart_og_grunnlagsbord",
+        "pressure": "sikkert_svar_vs_presis_usikkerhet",
+        "priority": 72,
+        "purpose": "Trene assistenten i å skille observasjon, kildeavvik og faglig konklusjon i overleveringen.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+        "scene_catalog_version": 1,
+        "sender": "ingrid_byplan",
+        "situation": [
+          "Tre kartlag viser kanten litt forskjellig.",
+          "Befaringsbildene tyder på at bruken heller ikke følger den reneste linjen.",
+          "Ingrid trenger et kort svar før hun avgjør om saken må undersøkes mer."
+        ],
+        "stage": "stable",
+        "stakes": "Et for sikkert svar kan bli et falskt premiss; et presist usikkerhetssvar kan utløse riktig kontroll.",
+        "subject": "Ingrid spør hva du faktisk vet om kartavviket",
+        "summary": "Byplanlegger Ingrid vil vite om den uklare kanten er et reelt stedsavvik eller bare en forskjell mellom datakilder.",
+        "task_domain": "grunnlagsoverlevering",
+        "task_kind": "people"
+      },
+      "id": "by_assistent_people_ingrid_001",
+      "mail_type": "people",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Ingrid får et grunnlag hun kan kontrollere videre uten at usikkerheten er skjult.",
+            "id": "A",
+            "label": "Skill kartavvik, stedsobservasjon og det som fortsatt må avklares",
+            "reply": "Jeg skiller kartavviket fra stedsobservasjonen og markerer hva som fortsatt må avklares."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken går raskere videre, men gjetningen kan nå se ut som et kontrollert premiss.",
+            "id": "B",
+            "label": "Gi det mest sannsynlige svaret så saken kan gå videre",
+            "reply": "Jeg gir det mest sannsynlige svaret og foreslår at vi korrigerer senere hvis det viser seg nødvendig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Tre kartlag viser kanten litt forskjellig.",
+            "Befaringsbildene tyder på at bruken heller ikke følger den reneste linjen.",
+            "Ingrid trenger et kort svar før hun avgjør om saken må undersøkes mer."
+          ],
+          "subject": "Ingrid spør hva du faktisk vet om kartavviket",
+          "summary": "Byplanlegger Ingrid vil vite om den uklare kanten er et reelt stedsavvik eller bare en forskjell mellom datakilder."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_people_ingrid_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kart_og_grunnlagsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_people_ingrid_001",
+          "source_path": "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_people_ingrid_001",
+        "version": 1
+      },
+      "source_hash": "79eb153bf00a3fa4a60e0f5b37b5aa915c413b0f76a7d1729f2a9d4dc69540b5",
+      "source_path": "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "bevare_sammenheng_vs_flat_oppsummering",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Notatet blir både lesbart og etterprøvbart nok til at andre kan bygge videre på det.",
+            "id": "A",
+            "label": "Skriv sammenhengen tydelig og behold usikkerheten der den finnes",
+            "reply": "Jeg skriver hvordan kart, befaring og innspill henger sammen og markerer det som fortsatt er usikkert.",
+            "tags": [
+              "mastery",
+              "synthesis",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Leveransen blir rask å lese, men noe av sammenhengen mellom funnene forsvinner.",
+            "id": "B",
+            "label": "Lag en kort punktliste med de viktigste funnene",
+            "reply": "Jeg lager en kort punktliste med de viktigste funnene og lar detaljene ligge i vedleggene.",
+            "tags": [
+              "summary",
+              "compression"
+            ]
+          }
+        ],
+        "competency": "sammenstilt_stedsforstaelse",
+        "consequence_axis": "læring_vs_rapportro",
+        "cooldown": 2,
+        "from": "maria_medvirkning",
+        "id": "by_assistent_story_stedsnotat_001",
+        "mail_family": "stedsforstaelse",
+        "mail_type": "story",
+        "narrative_arc": "Assistenten går fra støtteoppgaver til å forstå hvorfor små observasjoner kan endre en hel stedsanalyse.",
+        "person_id": "maria_medvirkning",
+        "phase": "evening",
+        "place_id": "medvirknings_og_notatbord",
+        "pressure": "lesbarhet_vs_faglig_motstand",
+        "priority": 64,
+        "purpose": "La assistenten velge om sluttproduktet skal bevare sammenhengen og usikkerheten eller reduseres til en pen punktliste.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/story/by_assistent_story.json",
+        "scene_catalog_version": 1,
+        "sender": "maria_medvirkning",
+        "situation": [
+          "Kartgrunnlaget var mindre sikkert enn det så ut.",
+          "Befaringen viste hvordan folk faktisk beveger seg og oppholder seg.",
+          "Innspillene ga flere uavhengige beskrivelser av samme utrygghet."
+        ],
+        "stage": "mastery",
+        "stakes": "Notatet kan bli et reelt beslutningsgrunnlag eller bare en ryddig oppsummering som mister det viktigste mønsteret.",
+        "subject": "Det lille notatet begynner å forklare hele stedet",
+        "summary": "Kartavviket, snarveien, oppholdet og flere innspill peker nå mot samme konflikt mellom planlagt funksjon og faktisk bruk.",
+        "task_domain": "stedsnotat",
+        "task_kind": "story"
+      },
+      "id": "by_assistent_story_stedsnotat_001",
+      "mail_type": "story",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Notatet blir både lesbart og etterprøvbart nok til at andre kan bygge videre på det.",
+            "id": "A",
+            "label": "Skriv sammenhengen tydelig og behold usikkerheten der den finnes",
+            "reply": "Jeg skriver hvordan kart, befaring og innspill henger sammen og markerer det som fortsatt er usikkert."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Leveransen blir rask å lese, men noe av sammenhengen mellom funnene forsvinner.",
+            "id": "B",
+            "label": "Lag en kort punktliste med de viktigste funnene",
+            "reply": "Jeg lager en kort punktliste med de viktigste funnene og lar detaljene ligge i vedleggene."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kartgrunnlaget var mindre sikkert enn det så ut.",
+            "Befaringen viste hvordan folk faktisk beveger seg og oppholder seg.",
+            "Innspillene ga flere uavhengige beskrivelser av samme utrygghet."
+          ],
+          "subject": "Det lille notatet begynner å forklare hele stedet",
+          "summary": "Kartavviket, snarveien, oppholdet og flere innspill peker nå mot samme konflikt mellom planlagt funksjon og faktisk bruk."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_story_stedsnotat_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "medvirknings_og_notatbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_story_stedsnotat_001",
+          "source_path": "data/Civication/mailFamilies/by/story/by_assistent_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_story_stedsnotat_001",
+        "version": 1
+      },
+      "source_hash": "5e411b37f4db23f7e044b8416c2f851471b97676597a49542c00528fd80ca8e7",
+      "source_path": "data/Civication/mailFamilies/by/story/by_assistent_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -139899,7 +140900,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "0c79b8c59d55d95cfbb2610c2c132bb881c24730793125e7ba07f0e6d055b2fb",
+  "registry_hash": "ae01872def0b6238c2fb5c3a7122f011d163ab19f8f117d38df0dc5596d5b5a6",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -139927,7 +140928,15 @@
       "by_assistent_job_medvirkning_001",
       "by_assistent_job_medvirkning_002",
       "by_assistent_job_rom_001",
-      "by_assistent_job_rom_002"
+      "by_assistent_job_rom_002",
+      "by_assistent_people_ingrid_001",
+      "by_assistent_story_stedsnotat_001",
+      "by_assistent_conflict_kart_befaring_001",
+      "by_assistent_event_kveldsbefaring_001",
+      "by_assistent_micro_kildespor_001",
+      "by_assistent_followup_kartavvik_001",
+      "by_assistent_knowledge_kart_sted_001",
+      "by_assistent_consequence_grunnlag_001"
     ],
     "by/by_prosjektleder": [
       "by_prosjekt_job_mandat_001",
@@ -140894,11 +141903,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 146,
+    "compiled_source_file_count": 154,
     "ignored_source_file_count": 1,
-    "input_file_count": 147,
+    "input_file_count": 155,
     "role_count": 28,
-    "scene_count": 909,
+    "scene_count": 917,
     "shadowed_duplicate_count": 0
   },
   "version": 1
