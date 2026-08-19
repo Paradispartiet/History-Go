@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_arkitekt",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "senere_romlige_konsekvenser",
+      "purpose": "Lar et tidligere arkitektvalg gi en tydelig senere konsekvens.",
+      "learning_focus": ["konsekvens", "byliv"],
+      "mails": [
+        {
+          "id": "by_arkitekt_consequence_gateplan_001",
+          "mail_type": "consequence",
+          "mail_family": "senere_romlige_konsekvenser",
+          "role_scope": "by_arkitekt",
+          "phase": "day_end",
+          "priority": 74,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "atelierleder_nora",
+          "sender": "atelierleder_nora",
+          "person_id": "atelierleder_nora",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Gateplanet ble ryddigere på tegning — og svakere i bruk",
+          "summary": "Den lukkede hjørneløsningen ga en renere komposisjon, men prosjektgjennomgangen viser mindre aktivitet og dårligere kobling til gaten.",
+          "purpose": "Bestem hvordan en negativ følge av et tidligere designvalg skal håndteres uten å skjule ansvaret i en ny presentasjon.",
+          "stakes": "Valget påvirker faglig tillit, prosjektets læring og kostnaden ved å korrigere sent.",
+          "situation": [
+            "Den formale ideen er fortsatt tydelig i modellen.",
+            "Samtidig viser gjennomgangen at inngang, opphold og hjørne ikke støtter den bybruken prosjektet selv har argumentert for.",
+            "Du må velge mellom en reell korreksjon og en tydelig akseptert rest-risiko."
+          ],
+          "task_domain": "forsteetasje_og_byliv",
+          "task_kind": "consequence",
+          "competency": "stedstilpasning",
+          "learning_focus": ["ettervirkning", "faglig_ansvar", "revisjon"],
+          "pressure": "prestisje_vs_korreksjon",
+          "choice_axis": "forsvare_tidligere_valg_vs_korrigere_konsekvens",
+          "consequence_axis": "kort_status_vs_langsiktig_tillit",
+          "narrative_arc": "Arkitektens tidligere valg kommer tilbake som et konkret spørsmål om bruk og ansvar.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Ta eierskap til konsekvensen og foreslå konkret korreksjon",
+              "reply": "Jeg dokumenterer hva som ikke virker og foreslår en konkret revisjon av hjørne og gateplan.",
+              "effect": 1,
+              "tags": ["ansvar", "korrigering"],
+              "feedback": "Du taper litt kortsiktig prestisje, men gjør prosjektet og beslutningssporet sannere."
+            },
+            {
+              "id": "B",
+              "label": "Behold løsningen og registrer rest-risikoen eksplisitt",
+              "reply": "Jeg anbefaler å beholde løsningen, men registrerer den dokumenterte byromssvakheten som en eksplisitt rest-risiko.",
+              "effect": 0,
+              "tags": ["rest_risiko", "faglig_forbehold"],
+              "feedback": "Du skjuler ikke svakheten, men prosjektet velger å leve med konsekvensen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

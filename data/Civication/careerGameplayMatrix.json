@@ -9,11 +9,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 10,
-      "partial": 12,
+      "playable": 11,
+      "partial": 11,
       "architecture_only": 61
     },
-    "runtime_gate_pass": 15,
+    "runtime_gate_pass": 16,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -37,18 +37,18 @@
         "missing": 5
       },
       "people": {
-        "complete": 10,
+        "complete": 11,
         "partial": 16,
-        "missing": 62
+        "missing": 61
       },
       "places": {
-        "complete": 18,
+        "complete": 19,
         "partial": 0,
-        "missing": 70
+        "missing": 69
       },
       "mail": {
-        "complete": 16,
-        "partial": 11,
+        "complete": 17,
+        "partial": 10,
         "missing": 61
       },
       "knowledge": {
@@ -67,8 +67,8 @@
         "missing": 1
       },
       "consequences": {
-        "complete": 16,
-        "partial": 8,
+        "complete": 17,
+        "partial": 7,
         "missing": 64
       },
       "performance": {
@@ -111,7 +111,7 @@
       "role_ids": [
         "by_arkitekt"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/by/arkitekt.json"
@@ -125,39 +125,40 @@
             "count": 8
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/conflict/by_arkitekt_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/story/by_arkitekt_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/event/by_arkitekt_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/micro/by_arkitekt_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
+          "tests/civication-by-arkitekt-rollout-playability.test.js",
           "tests/civication-by-career-architecture.test.js",
           "tests/civication-role-pack-depth.test.js"
         ],
@@ -178,6 +179,7 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_arkitekt_plan.json",
+              "tests/civication-by-arkitekt-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js",
               "tests/civication-role-pack-depth.test.js"
             ],
@@ -189,6 +191,7 @@
               "data/Civication/mailFamilies/by/job/by_arkitekt_job.json",
               "data/Civication/mailPlans/by/by_arkitekt_plan.json",
               "data/Civication/workGrammars/by/by_arkitekt.json",
+              "tests/civication-by-arkitekt-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js",
               "tests/civication-role-pack-depth.test.js"
             ],
@@ -203,27 +206,43 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+              "data/Civication/roleModels/by/arkitekt.json",
+              "data/Civication/workGrammars/by/by_arkitekt.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/by/arkitekt.json",
+              "data/Civication/workGrammars/by/by_arkitekt.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/by/conflict/by_arkitekt_conflict.json",
+              "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
+              "data/Civication/mailFamilies/by/event/by_arkitekt_event.json",
+              "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
               "data/Civication/mailFamilies/by/job/by_arkitekt_job.json",
+              "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
+              "data/Civication/mailFamilies/by/micro/by_arkitekt_micro.json",
+              "data/Civication/mailFamilies/by/people/by_arkitekt_people.json",
+              "data/Civication/mailFamilies/by/story/by_arkitekt_story.json",
               "data/Civication/mailPlans/by/by_arkitekt_plan.json"
             ],
-            "note": "1/9 standard mail types."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
               "data/Civication/roleModels/by/arkitekt.json",
               "data/Civication/workGrammars/by/by_arkitekt.json"
             ],
@@ -246,16 +265,21 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/by/by_arkitekt_plan.json"
+              "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
+              "data/Civication/mailFamilies/by/followup/by_arkitekt_followup.json",
+              "tests/civication-by-arkitekt-rollout-playability.test.js",
+              "tests/civication-by-career-architecture.test.js",
+              "tests/civication-role-pack-depth.test.js"
             ],
-            "note": "Consequence content exists without the full role-specific follow-up proof."
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_arkitekt_plan.json",
+              "tests/civication-by-arkitekt-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js",
               "tests/civication-career-outcomes.test.js",
               "tests/civication-role-pack-depth.test.js"
@@ -291,18 +315,19 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "people",
+          "places",
+          "mail",
           "knowledge",
           "quality_axes",
           "authority",
+          "consequences",
           "performance",
           "economy",
           "progression",

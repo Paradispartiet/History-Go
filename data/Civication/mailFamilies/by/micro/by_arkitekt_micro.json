@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_arkitekt",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "små_romlige_korreksjoner",
+      "purpose": "Lar små arkitektvalg få målbar betydning i arbeidsdagen.",
+      "learning_focus": ["detalj", "ganglinje"],
+      "mails": [
+        {
+          "id": "by_arkitekt_micro_dor_001",
+          "mail_type": "micro",
+          "mail_family": "små_romlige_korreksjoner",
+          "role_scope": "by_arkitekt",
+          "phase": "forenoon",
+          "priority": 48,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "prosjekterende_mikkel",
+          "sender": "prosjekterende_mikkel",
+          "person_id": "prosjekterende_mikkel",
+          "place_id": "befaring_og_gateplan",
+          "subject": "Døren stjeler den viktigste ganglinjen",
+          "summary": "En liten dørrevisjon legger dørslaget inn i den tydeligste bevegelseslinjen ved inngangen.",
+          "purpose": "Ta et raskt, men sporbar valg før detaljen kopieres videre.",
+          "stakes": "En liten korreksjon nå kan hindre at samme konflikt bygges inn i flere tegninger.",
+          "situation": [
+            "Døren er flyttet for å rydde veggflaten.",
+            "På befaring ser du at dørslaget nå griper inn i ganglinjen.",
+            "Detaljen kan fortsatt endres uten å åpne hele planløsningen."
+          ],
+          "task_domain": "detalj_og_bruk",
+          "task_kind": "micro",
+          "competency": "rom_og_program",
+          "learning_focus": ["inngang", "detalj"],
+          "pressure": "ryddig_tegning_vs_robust_bruk",
+          "choice_axis": "beholde_dorplassering_vs_korrigere_ganglinje",
+          "consequence_axis": "lokal_enkelhet_vs_hverdagsflyt",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Flytt døren tilbake og dokumenter hvorfor",
+              "reply": "Jeg korrigerer dørplasseringen og noterer ganglinjen som premiss for neste revisjon.",
+              "effect": 1,
+              "tags": ["korrigering", "sporbarhet"],
+              "feedback": "Den lille endringen blir begrunnet og mindre sannsynlig å bli reversert tilfeldig."
+            },
+            {
+              "id": "B",
+              "label": "Behold plasseringen og test annen slagretning",
+              "reply": "Jeg beholder plasseringen foreløpig og tester om slagretningen kan løse konflikten uten ny planendring.",
+              "effect": 0,
+              "tags": ["alternativ_test", "detalj"],
+              "feedback": "Du prøver en mindre inngripende løsning, men må fortsatt bevise at ganglinjen fungerer."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

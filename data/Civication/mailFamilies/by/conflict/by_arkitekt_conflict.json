@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_arkitekt",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "signatur_og_krav",
+      "purpose": "Setter arkitektonisk signatur opp mot brukbarhet og dokumenterte krav.",
+      "learning_focus": ["tilgjengelighet", "faglig_integritet"],
+      "mails": [
+        {
+          "id": "by_arkitekt_conflict_nora_001",
+          "mail_type": "conflict",
+          "mail_family": "signatur_og_krav",
+          "role_scope": "by_arkitekt",
+          "phase": "forenoon",
+          "priority": 76,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "atelierleder_nora",
+          "sender": "atelierleder_nora",
+          "person_id": "atelierleder_nora",
+          "place_id": "atelier_og_modellbord",
+          "subject": "Det markante inngangsgrepet tåler ikke alle premissene",
+          "summary": "Atelierleder Nora vil bevare prosjektets signatur, men den siste inngangsløsningen gjør tilgjengelighet og intern logistikk vanskeligere.",
+          "purpose": "Velg om signaturen skal beskyttes, revideres eller løftes til en tydelig faglig avklaring.",
+          "stakes": "Valget påvirker prosjektidentitet, brukbarhet og tilliten til at arkitektteamet håndterer krav uten å skjule konflikten.",
+          "situation": [
+            "Modellen ser sterk ut fra gaten, men nivåforskjell og dørplassering gir en svakere hverdagsløsning.",
+            "Nora ber deg unngå en løsning som gjør hovedgrepet generisk.",
+            "Du kan ikke late som konflikten er løst bare fordi illustrasjonen fungerer."
+          ],
+          "task_domain": "signatur_og_stedstilpasning",
+          "task_kind": "conflict",
+          "competency": "tilgjengelighet",
+          "learning_focus": ["myndighetsgrense", "tilgjengelighet", "designrevisjon"],
+          "pressure": "signatur_vs_brukbarhet",
+          "choice_axis": "bevare_signatur_vs_revidere_premiss",
+          "consequence_axis": "identitet_vs_robust_bruk",
+          "narrative_arc": "Prosjektets tydeligste grep må tåle at virkeligheten presser tilbake.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Revider inngangsgrepet og dokumenter hva som må bevares",
+              "reply": "Jeg reviderer inngangen, men låser de romlige kvalitetene som faktisk bærer prosjektets idé.",
+              "effect": 1,
+              "tags": ["revisjon", "robust_bruk"],
+              "feedback": "Du skiller mellom prosjektets idé og én bestemt detaljløsning."
+            },
+            {
+              "id": "B",
+              "label": "Be om tverrfaglig avklaring før du endrer hovedgrepet",
+              "reply": "Jeg synliggjør konflikten og ber om en tverrfaglig avklaring før vi endrer hovedgrepet.",
+              "effect": 0,
+              "tags": ["eskalering", "faglig_spor"],
+              "feedback": "Du holder mandatgrensen tydelig, men fremdriften avhenger av at avklaringen faktisk kommer."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
