@@ -63,6 +63,15 @@
         "minLength": 1
       },
       "uniqueItems": true
+    },
+    "atlas_local_ids": {
+      "type": "array",
+      "description": "Eksplisitte lokale Språkatlas-profiler som språkfilen kan navigere til. Feltet er bare en navigasjonsrelasjon og gir aldri et Place eierskap til dialektlaget.",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
     }
   },
   "$defs": {
