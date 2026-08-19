@@ -1,0 +1,65 @@
+name: TEMP Civication Psykologi miljoarbeid materialize
+
+on:
+  push:
+    branches:
+      - agent/civication-psykologi-miljoarbeid-pilot-playable
+    paths:
+      - '.materialize-psykologi-miljoarbeid'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-civication-psykologi-miljoarbeid
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-psykologi-miljoarbeid-pilot-playable
+          fetch-depth: 0
+
+      - name: Lock expected baseline lineage
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor 709f79794a93ebd4ba9705540fd39cf77b436634 HEAD
+
+      - name: Materialize authored pilot sources
+        run: node scripts/materialize-civication-psykologi-miljoarbeid-pilot.mjs
+
+      - name: Regenerate Career Gameplay Matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+
+      - name: Regenerate compiled scene registry
+        run: node scripts/build-civication-scene-registry.mjs
+
+      - name: Check compiled scene registry
+        run: node scripts/build-civication-scene-registry.mjs --check
+
+      - name: Verify Psykologi pilot
+        run: node tests/civication-psykologi-miljoarbeid-playability.test.js
+
+      - name: Verify complete Civication suite
+        run: npm run test:civication
+
+      - name: Diff hygiene
+        run: git diff --check
+
+      - name: Commit materialized permanent files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/Civication reports/civication-career-gameplay-matrix.md tests/civication-psykologi-miljoarbeid-playability.test.js
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Materialize Psykologi miljoarbeid as human-work pilot'
+          git push origin HEAD:agent/civication-psykologi-miljoarbeid-pilot-playable
