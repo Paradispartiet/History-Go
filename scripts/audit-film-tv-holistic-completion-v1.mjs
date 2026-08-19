@@ -398,7 +398,7 @@ export function buildFilmTvHolisticCompletionV1() {
   };
 
   registry.version = maxVersion(registry.version, '3.04.0');
-  registry.updatedAt = '2026-08-17';
+  if (!registry.updatedAt || registry.updatedAt < '2026-08-17') registry.updatedAt = '2026-08-17';
   subject.canonicalModel.note = 'Film & TV er complete etter én holistisk sluttport for den variable 192-emne-canonen: to bevarte anchor-kapitler dekker 38 canonicale emner og 15 faglig avgrensede fulltekstenheter dekker de resterende 154. Porten krever eksakt chapter/brief-eierskap uten hull, duplikater eller overlapp, paragraph→claim-spor, globalt unike claim- og section-id-er, metode- og domenedekning samt verifiserte claims med inspectable kilder i alle 17 kapitler. De 15 nye planenhetene må i tillegg ha eksakt section→emne-eierskap og eksplisitt godkjent verifikasjonsresolution. De to reauditerte legacy-anchorene beholdes på sitt dokumenterte schema uten å late som de har module/section emne-felt de aldri har hatt.';
   subject.canonicalModel.completionAudit = P.report;
   subject.editorialPlan = {
@@ -424,7 +424,7 @@ export function buildFilmTvHolisticCompletionV1() {
   subject.note = 'Film & TV er redaksjonelt complete etter én reconcilet 192-emne-helhetsaudit: 17 kapitler totalt, der to navngitte legacy-anchor-kapitler dekker 38 emner og 15 produserte planenheter dekker de resterende 154. Sluttporten låser chapter/brief-eierskap, section→emne-eierskap for de 15 nye enhetene, paragraph→claim-spor, global claim/section-unikhet, metode- og domenedekning og inspectable kildeevidens. Videre arbeid er vedlikehold, kildeoppdatering og stedscaseutvidelse.';
 
   status.version = maxVersion(status.version, '1.97.0');
-  status.updatedAt = '2026-08-17';
+  if (!status.updatedAt || status.updatedAt < '2026-08-17') status.updatedAt = '2026-08-17';
   filmStatus.editorialStatus = 'complete';
   filmStatus.nextGate = FINAL_GATE;
   filmStatus.note = 'Film & TV er complete etter reconcilet helhetsaudit: alle 192 canonicale emner er dekket nøyaktig én gang som 38 emner i to bevarte legacy-anchor-kapitler + 154 emner i 15 fullproduserte planenheter. Sluttporten krever 17 unike kapittel- og filregistreringer, eksakt chapter/brief-eierskap, exact section→emne-eierskap for de 15 nye enhetene, paragraph→claim-spor, globalt unike claim- og section-id-er, metode- og domenedekning samt verifiserte, kildebundne claims med inspectable kilder. Videre arbeid er vedlikehold, kildeoppdatering og stedscaseutvidelse.';
