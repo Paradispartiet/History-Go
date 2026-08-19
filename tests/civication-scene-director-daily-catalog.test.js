@@ -74,8 +74,10 @@ const catalogs = {
     mail("job_extra", "job", "job_extra")
   ]),
   "data/Civication/mailFamilies/fixture/micro/fixture_role_micro.json": catalog("micro", [
-    mail("micro_one", "micro", "micro_ops"),
-    mail("micro_two", "micro", "micro_choice")
+    mail("micro_one", "micro", "micro_choice")
+  ]),
+  "data/Civication/mailFamilies/fixture/knowledge/fixture_role_knowledge.json": catalog("knowledge", [
+    mail("knowledge_one", "knowledge", "knowledge_ops")
   ]),
   "data/Civication/mailFamilies/fixture/people/fixture_role_people.json": catalog("people", [
     mail("people_one", "people", "people_ping")
@@ -233,9 +235,9 @@ const dailyBuilder = {
         }
       }));
     }
+    rows.push(row("forenoon", "small_choice", generated("g_small")));
     rows.push(row("forenoon", "operational_mail", generated("g_operational")));
     rows.push(row("forenoon", "people_ping", generated("g_people")));
-    rows.push(row("forenoon", "small_choice", generated("g_small")));
     rows.push(row("workday", "main_delivery", generated("g_main")));
     rows.push(row("workday", "conflict_or_event", generated("g_conflict")));
     rows.push(row("workday", "analysis_followup", generated("g_followup")));
@@ -295,7 +297,23 @@ windowObject.CivicationDailyMailBuilder = dailyBuilder;
   assert.equal(runtime.items[0].event.id, "primary_job");
   assert.deepEqual(
     extras.map((runtimeRow) => runtimeRow.event.mail_type).sort(),
-    ["conflict", "consequence", "followup", "job", "micro", "micro", "people"].sort()
+    ["conflict", "consequence", "followup", "job", "knowledge", "micro", "people"].sort()
+  );
+  const operational = runtime.items.find((runtimeRow) => runtimeRow.slot === "operational_mail");
+  const peoplePing = runtime.items.find((runtimeRow) => runtimeRow.slot === "people_ping");
+  assert.equal(operational.event.mail_type, "knowledge", "operational_mail skal velge knowledge foran job når tidligere prioritet er utilgjengelig");
+  assert.equal(peoplePing.event.mail_type, "people", "people_ping skal velge people når people finnes");
+
+  const rebuilt = await windowObject.CivicationSceneDirector.populateDailyExtraSlots(active, state, runtime);
+  const rebuiltExtras = rebuilt.items.filter((runtimeRow) => runtimeRow.event.source_type === "daily_extra");
+  const rebuiltOperational = rebuilt.items.find((runtimeRow) => runtimeRow.slot === "operational_mail");
+  const rebuiltPeoplePing = rebuilt.items.find((runtimeRow) => runtimeRow.slot === "people_ping");
+  assert.equal(rebuiltOperational.event.mail_type, "knowledge", "rebuild skal ikke reservere knowledge-kilden som slotten selv skal erstatte");
+  assert.equal(rebuiltPeoplePing.event.mail_type, "people", "rebuild skal ikke reservere people-kilden som slotten selv skal erstatte");
+  assert.equal(
+    new Set(rebuiltExtras.map((runtimeRow) => runtimeRow.event.source_mail_id)).size,
+    rebuiltExtras.length,
+    "rebuild skal bevare no-duplicate source-ID-garantien"
   );
 
   const microPath = "data/Civication/mailFamilies/fixture/micro/fixture_role_micro.json";

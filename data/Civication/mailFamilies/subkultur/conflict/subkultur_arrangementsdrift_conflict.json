@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_arrangementsdrift",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "subkultur_arrangementsdrift_adgangspress",
+      "purpose": "Teste like adgangsregler når miljøstatus og vennskap presser på.",
+      "learning_focus": [
+        "adgang",
+        "akkreditering",
+        "likebehandling"
+      ],
+      "mails": [
+        {
+          "id": "subkultur_arrangementsdrift_conflict_backstage",
+          "mail_type": "conflict",
+          "mail_family": "subkultur_arrangementsdrift_adgangspress",
+          "role_scope": "subkultur_arrangementsdrift",
+          "phase": "mid",
+          "priority": 118,
+          "from": "Ida, arrangementsansvarlig",
+          "people_ref": "ida_arrangementsansvarlig",
+          "place_id": "kulturarena_backstage_checkpoint",
+          "subject": "En kjent profil forventer backstage fordi «alle her kjenner meg»",
+          "summary": "Personen står ikke på akkrediteringslisten, men kjenner både artist og flere i crewet og peker på sin status i miljøet.",
+          "situation": [
+            "Køen bak personen hører diskusjonen.",
+            "Et muntlig unntak er enkelt nå og vanskelig å forklare likt senere.",
+            "Du må skille sosial anerkjennelse fra den faktiske backstage-rollen arrangementet har avtalt."
+          ],
+          "task_domain": "adgang_og_akkreditering",
+          "competency": "vertskap_og_service",
+          "pressure": "miljostatus_vs_synlig_regel",
+          "choice_axis": "akkreditering_vs_skjult_saertilgang",
+          "consequence_axis": "likebehandling_vs_portvaktkultur",
+          "narrative_arc": "backstage",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hold personen ved checkpointet og be Ida bekrefte eventuell gjestelisteendring før adgang",
+              "reply": "Jeg behandler statusen som irrelevant til ansvarlig faktisk endrer listen.",
+              "effect": 1,
+              "tags": [
+                "access",
+                "mandate"
+              ],
+              "feedback": "Regelen er synlig, og et reelt unntak kan fortsatt dokumenteres av riktig ansvarlig.",
+              "effects": {
+                "stats": {
+                  "trust": 2,
+                  "quality": 1,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Slipp personen inn fordi crewet åpenbart kjenner vedkommende",
+              "reply": "Jeg bruker miljøkunnskapen som uformell akkreditering.",
+              "effect": -1,
+              "tags": [
+                "status",
+                "hidden_gate"
+              ],
+              "feedback": "Du løser én sosial situasjon ved å gjøre adgangsregelen usynlig og personavhengig.",
+              "effects": {
+                "stats": {
+                  "status": 2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Tilby å hente artisten ut til foajeen mens backstage-adgangen forblir uendret",
+              "reply": "Jeg løser kontaktbehovet uten å late som bekjentskap er akkreditering.",
+              "effect": 0,
+              "tags": [
+                "deescalation",
+                "boundary"
+              ],
+              "feedback": "Konflikten dempes og grensen står, men du binder tid til en mellomløsning.",
+              "effects": {
+                "stats": {
+                  "trust": 1,
+                  "quality": 1,
+                  "energy": -2,
+                  "risk": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

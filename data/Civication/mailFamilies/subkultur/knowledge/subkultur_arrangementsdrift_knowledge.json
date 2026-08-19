@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_arrangementsdrift",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "subkultur_arrangementsdrift_kunnskap_i_bruk",
+      "purpose": "Gjøre adgang, tilgjengelighet og sikkerhetsgrenser til konkrete driftsvalg.",
+      "learning_focus": [
+        "tilgjengelighet",
+        "kompetansegrense",
+        "likebehandling"
+      ],
+      "mails": [
+        {
+          "id": "subkultur_arrangementsdrift_knowledge_tilgjengelighet",
+          "mail_type": "knowledge",
+          "mail_family": "subkultur_arrangementsdrift_kunnskap_i_bruk",
+          "role_scope": "subkultur_arrangementsdrift",
+          "phase": "forenoon",
+          "priority": 126,
+          "from": "Leonora, publikums- og tilgjengelighetsansvarlig",
+          "people_ref": "leonora_publikumsvert",
+          "place_id": "kulturarena_hovedinngang",
+          "subject": "Den tilgjengelige inngangen finnes — men krever at gjesten kjenner huset",
+          "summary": "Trinnfri rute går via en sidedør som er lovlig og fysisk brukbar, men skiltet fra hovedkøen peker ikke dit og døren ser ut som personalinngang.",
+          "situation": [
+            "Teknisk sett har arenaen en tilgjengelig inngang.",
+            "I praksis må gjesten vite at den finnes eller spørre foran køen.",
+            "Du må vurdere tilgjengelighet som faktisk brukbar publikumsflyt, ikke bare som en dør på plantegningen."
+          ],
+          "task_domain": "tilgjengelig_publikumslogistikk",
+          "competency": "publikumsflyt",
+          "pressure": "formell_losning_vs_faktisk_brukbarhet",
+          "choice_axis": "selvforklarende_rute_vs_hjelp_pa_foresporsel",
+          "consequence_axis": "verdig_tilgang_vs_avhengighet_av_innsidekunnskap",
+          "narrative_arc": "publikumsavvik",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Merk trinnfri rute fra hovedkøen og brief alle inngangsverter på samme forklaring",
+              "reply": "Jeg gjør den tilgjengelige ruten synlig før noen må be om særbehandling.",
+              "effect": 1,
+              "tags": [
+                "accessibility",
+                "knowledge"
+              ],
+              "feedback": "Tilgjengeligheten blir en del av ordinær drift i stedet for en skjult spesialløsning.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold sidedøren som den er og hjelp gjester som selv spør etter trinnfri inngang",
+              "reply": "Løsningen finnes allerede; vi responderer når behovet kommer.",
+              "effect": -1,
+              "tags": [
+                "reactive",
+                "accessibility_gap"
+              ],
+              "feedback": "Arenaen flytter informasjonsbyrden over på gjesten og gjør erfaringen avhengig av hvem som står i døren.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Plasser én synlig vert ved hovedkøen som aktivt tilbyr ruteinformasjon til alle",
+              "reply": "Jeg gjør informasjonen tilgjengelig uten å endre skiltingen midt i åpningen.",
+              "effect": 0,
+              "tags": [
+                "service",
+                "temporary_fix"
+              ],
+              "feedback": "Det fungerer i denne vakten, men løsningen er fortsatt avhengig av bemanning og må inn i overleveringen.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 1,
+                  "risk": -1,
+                  "energy": -2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

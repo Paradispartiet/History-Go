@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_arrangementsdrift",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "subkultur_arrangementsdrift_crew",
+      "purpose": "Fordele belastning og pauser før lojalitet blir til skjult gratisarbeid.",
+      "learning_focus": [
+        "crew",
+        "pauser",
+        "rettferdighet"
+      ],
+      "mails": [
+        {
+          "id": "subkultur_arrangementsdrift_people_vaktfordeling",
+          "mail_type": "people",
+          "mail_family": "subkultur_arrangementsdrift_crew",
+          "role_scope": "subkultur_arrangementsdrift",
+          "phase": "early",
+          "priority": 122,
+          "from": "Maja, frivilligkoordinator",
+          "people_ref": "maja_frivilligkoordinator",
+          "place_id": "kulturarena_foaje",
+          "subject": "Samme to frivillige har fått de tyngste postene igjen",
+          "summary": "To erfarne frivillige kan arenaen best og har derfor endt med riggnær post, garderoberykk og sen nedrigg tre arrangementer på rad.",
+          "situation": [
+            "Maja sier de fortsatt sier ja når de blir spurt.",
+            "Den nye crewgruppen trenger mer støtte hvis belastningen skal fordeles.",
+            "Du må velge om erfaring skal brukes som permanent ekstrabelastning eller som kapasitet til å lære opp flere."
+          ],
+          "task_domain": "crew_og_frivilligflyt",
+          "competency": "frivillig_og_crew_samarbeid",
+          "pressure": "erfaring_vs_slitasje",
+          "choice_axis": "fordele_kompetanse_vs_belonne_lojalitet_med_mer_arbeid",
+          "consequence_axis": "baerekraftig_crew_vs_frafall",
+          "narrative_arc": "frivillig_slitasje",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Flytt én tungpost til nytt crew og gi den erfarne frivillige en tydelig mentorrolle med pause",
+              "reply": "Jeg bruker erfaring til opplæring i stedet for å gjøre den til permanent ekstravakt.",
+              "effect": 1,
+              "tags": [
+                "crew",
+                "fairness"
+              ],
+              "feedback": "Kompetansen sprer seg og belastningen blir synligere fordelt.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 2,
+                  "risk": -1,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Be de to erfarne ta hele tungvakten én kveld til fordi de alltid får det til",
+              "reply": "Vi trenger sikker levering i kveld; de nye kan lære neste gang.",
+              "effect": -1,
+              "tags": [
+                "shortcut",
+                "burnout"
+              ],
+              "feedback": "Kvelden kan flyte, men systemet belønner lojalitet med mer slitasje og gjør kompetansen sårbar.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "trust": -2,
+                  "risk": 2,
+                  "energy": 1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Kort ned alle poster og roter crew oftere selv om hvert vaktskifte krever mer briefing",
+              "reply": "Jeg fordeler belastningen bredere og aksepterer mer overleveringsarbeid.",
+              "effect": 0,
+              "tags": [
+                "rotation",
+                "handover"
+              ],
+              "feedback": "Belastningen jevnes ut, men flere vaktskifter øker behovet for presise briefer.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 1,
+                  "risk": -1,
+                  "energy": -2
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
