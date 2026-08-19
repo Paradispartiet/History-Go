@@ -13,7 +13,7 @@ test('generic scanner findings cannot be promoted directly to content repair', (
 test('existing strict subject theory gates remain authoritative and pass', () => {
   const report = auditFagverkTheoryReconciliation();
   assert.deepEqual(report.strictSubjectGateFailures, []);
-  for (const id of ['film_tv','filosofi','religion','scenekunst','subkultur']) {
+  for (const id of ['film_tv','filosofi','historie','religion','scenekunst','subkultur']) {
     assert.equal(report.strictSubjectGates[id]?.status, 'pass', `${id} strict theory gate failed`);
   }
 });
@@ -31,6 +31,15 @@ test('Film & TV and Philosophy have strict field-integrity evidence', () => {
   assert.equal(philosophy?.reconciliationClass, 'strict_integrity_validated');
   assert.equal(film?.substantiveGapProven, false);
   assert.equal(philosophy?.substantiveGapProven, false);
+});
+
+test('History has strong existing generated-chapter theory evidence but keeps five hand-built chapters open for reconciliation', () => {
+  const report = auditFagverkTheoryReconciliation();
+  const history = report.subjects.find((subject) => subject.id === 'historie');
+  assert.equal(history?.strictGate?.status, 'pass');
+  assert.match(history?.strictGate?.proseBindingStatus || '', /18_generator_chapters_validated_5_handbuilt_chapters_pending/);
+  assert.equal(history?.reconciliationClass, 'handbuilt_chapter_theory_reconciliation_required');
+  assert.equal(history?.substantiveGapProven, false);
 });
 
 test('Religion, Scenekunst and Subkultur are reconciliation work, not proven content gaps', () => {
