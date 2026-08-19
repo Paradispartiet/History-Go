@@ -123,9 +123,14 @@
     "data/Civication/mailFamilies/naeringsliv/event/mellomleder_event.json",
     "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_intro_v2.json",
     "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json",
+    "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
     "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json",
     "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json",
     "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json",
+    "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json",
+    "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
+    "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json",
+    "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
     "data/Civication/mailFamilies/naeringsliv/job/renholder_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/renholder_people.json",
     "data/Civication/mailFamilies/naeringsliv/story/renholder_story.json",
@@ -96221,6 +96226,131 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "vise_endringsspor_og_fullmakt_vs_selge_en_beroligende_forklaring",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Bankdialogen bygger på sporbarhet og reell fullmakt, noe som bevarer flere muligheter.",
+            "id": "A",
+            "label": "Vis endringssporet, tiltakene og hvilket beslutningsnivå som eier neste steg",
+            "reply": "Jeg viser hvordan prognosen utviklet seg, hvilke tiltak som er vurdert og hvem som må beslutte neste steg.",
+            "tags": [
+              "consequence",
+              "trust",
+              "governance"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du forsøker å beskytte fortellingen, men gjør bankens vurdering mer avhengig av tillit du ikke lenger dokumenterer like godt.",
+            "id": "B",
+            "label": "Fokuser på at hovedplanen fortsatt kan nås og be om fleksibilitet uten å dvele ved tidligere avvik",
+            "reply": "Jeg fokuserer på at hovedplanen fortsatt kan nås og ber om fleksibilitet uten å legge for stor vekt på tidligere avvik.",
+            "tags": [
+              "narrative_bias",
+              "trust_risk"
+            ]
+          }
+        ],
+        "competency": "risikokommunikasjon",
+        "consequence_axis": "finansiell_fleksibilitet_vs_tillitsrabatt",
+        "cooldown": 3,
+        "from": "bankkontakt",
+        "id": "okonomi_og_finanssjef_consequence_covenant_001",
+        "mail_family": "forsinket_covenantkonsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "Økonomisjefen ser at åpenhet før krisen kan bli konkret finansielt handlingsrom senere.",
+        "person_id": "bankkontakt",
+        "phase": "day_end",
+        "place_id": "bankplassen",
+        "pressure": "bevare_fortellingen_vs_bevare_tilliten",
+        "priority": 62,
+        "purpose": "Vise at tidlig risikokommunikasjon får forsinkede konsekvenser for tillit og tilgjengelige alternativer.",
+        "repeatable": false,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "bankkontakt",
+        "situation": [
+          "Det opprinnelige risikosignalet kan nå sammenlignes med faktisk utvikling.",
+          "Virksomheten trenger et tiltak som krever bankens eller styrets medvirkning.",
+          "Beslutningen må bygge på dokumentert prognose og riktig fullmakt, ikke på økonomisjefens løfte alene."
+        ],
+        "stage": "mastery",
+        "stakes": "Banken vurderer ikke bare tallene, men også hvor tidlig og presist risikoen ble kommunisert. Det påvirker hvor mye fleksibilitet som fortsatt finnes.",
+        "subject": "Noen uker senere avgjør tidligere åpenhet hvor mye fleksibilitet banken vil gi",
+        "summary": "Utviklingen ble svakere enn baseprognosen, og virksomheten trenger å justere finansierings- eller betalingsplanen før marginen mot covenant blir for liten.",
+        "task_domain": "forsinket_covenantkonsekvens",
+        "task_kind": "consequence",
+        "thread_key": "okonomi_og_finanssjef.case.likviditet_og_covenant"
+      },
+      "id": "okonomi_og_finanssjef_consequence_covenant_001",
+      "mail_type": "consequence",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Bankdialogen bygger på sporbarhet og reell fullmakt, noe som bevarer flere muligheter.",
+            "id": "A",
+            "label": "Vis endringssporet, tiltakene og hvilket beslutningsnivå som eier neste steg",
+            "reply": "Jeg viser hvordan prognosen utviklet seg, hvilke tiltak som er vurdert og hvem som må beslutte neste steg."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du forsøker å beskytte fortellingen, men gjør bankens vurdering mer avhengig av tillit du ikke lenger dokumenterer like godt.",
+            "id": "B",
+            "label": "Fokuser på at hovedplanen fortsatt kan nås og be om fleksibilitet uten å dvele ved tidligere avvik",
+            "reply": "Jeg fokuserer på at hovedplanen fortsatt kan nås og ber om fleksibilitet uten å legge for stor vekt på tidligere avvik."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det opprinnelige risikosignalet kan nå sammenlignes med faktisk utvikling.",
+            "Virksomheten trenger et tiltak som krever bankens eller styrets medvirkning.",
+            "Beslutningen må bygge på dokumentert prognose og riktig fullmakt, ikke på økonomisjefens løfte alene."
+          ],
+          "subject": "Noen uker senere avgjør tidligere åpenhet hvor mye fleksibilitet banken vil gi",
+          "summary": "Utviklingen ble svakere enn baseprognosen, og virksomheten trenger å justere finansierings- eller betalingsplanen før marginen mot covenant blir for liten."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "okonomi_og_finanssjef_consequence_covenant_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bankplassen",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "okonomi_og_finanssjef_consequence_covenant_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "okonomi_og_finanssjef.case.likviditet_og_covenant",
+        "version": 1
+      },
+      "source_hash": "f014a04980539708676a3f706411ff61ae85f6b24796116b7b6a5b079a8c3442",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "kontantdisiplin_vs_resultatro",
         "choices": [
           {
@@ -96453,6 +96583,131 @@
       },
       "source_hash": "de99a4b73486c0ae16dd2815474278727d8290f838a82ab4bda1000398456dc8",
       "source_path": "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "oppdatere_og_eskalere_vs_minimere_endringen",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du bruker åpenhet til å bevare flere reelle alternativer før risikoen blir akutt.",
+            "id": "A",
+            "label": "Del oppdatert prognose, vis driverne og eskaler nødvendige tiltak til riktig beslutningsnivå",
+            "reply": "Jeg deler den oppdaterte prognosen, viser driverne og løfter tiltak som krever høyere fullmakt til riktig beslutningsnivå.",
+            "tags": [
+              "followup",
+              "covenant",
+              "governance"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du beholder ro nå, men reduserer tiden og tilliten som kan være nødvendig hvis utviklingen fortsetter.",
+            "id": "B",
+            "label": "Beskriv endringen som midlertidig og vent med større eskalering til marginen blir kritisk",
+            "reply": "Jeg beskriver endringen som midlertidig og venter med større eskalering til vi vet om marginen faktisk blir kritisk.",
+            "tags": [
+              "delay",
+              "covenant_risk"
+            ]
+          }
+        ],
+        "competency": "likviditetsstyring",
+        "consequence_axis": "banktillit_og_handlingsrom_vs_sen_risikoreaksjon",
+        "cooldown": 2,
+        "from": "bankkontakt",
+        "id": "okonomi_og_finanssjef_followup_covenant_001",
+        "mail_family": "covenant_og_tidlig_oppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Økonomisjefen lærer at tidlig covenant-oppfølging handler om å bevare valg før et mulig brudd låser dem.",
+        "person_id": "bankkontakt",
+        "phase": "morning",
+        "place_id": "bankplassen",
+        "pressure": "tidlig_apenhet_vs_kortsiktig_ro",
+        "priority": 60,
+        "purpose": "Teste om økonomisjefen følger et kjent risikosignal med oppdatert analyse, riktig fullmakt og tidlig kommunikasjon.",
+        "repeatable": false,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "bankkontakt",
+        "situation": [
+          "Covenant er ikke brutt, men marginen har falt tydelig.",
+          "Prognosen er dokumentert og forklares av flere reelle drivere.",
+          "Tiltak kan kreve beslutning fra daglig leder eller styre og skal derfor ikke improviseres av økonomisjefen alene."
+        ],
+        "stage": "advanced",
+        "stakes": "En glatt oppdatering kan unngå uro, men svekker tilliten hvis banken senere oppdager at handlingsrommet var smalere. Tidlig åpenhet kan koste komfort, men gir flere tiltaksmuligheter.",
+        "subject": "Den nye prognosen gjør marginen mot lånevilkåret mindre enn sist",
+        "summary": "Bankkontakten ber om oppdatert prognose og forklaring fordi ny likviditets- og resultatbane reduserer marginen mot et sentralt covenant.",
+        "task_domain": "covenant_oppfolging",
+        "task_kind": "followup",
+        "thread_key": "okonomi_og_finanssjef.case.likviditet_og_covenant"
+      },
+      "id": "okonomi_og_finanssjef_followup_covenant_001",
+      "mail_type": "followup",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker åpenhet til å bevare flere reelle alternativer før risikoen blir akutt.",
+            "id": "A",
+            "label": "Del oppdatert prognose, vis driverne og eskaler nødvendige tiltak til riktig beslutningsnivå",
+            "reply": "Jeg deler den oppdaterte prognosen, viser driverne og løfter tiltak som krever høyere fullmakt til riktig beslutningsnivå."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beholder ro nå, men reduserer tiden og tilliten som kan være nødvendig hvis utviklingen fortsetter.",
+            "id": "B",
+            "label": "Beskriv endringen som midlertidig og vent med større eskalering til marginen blir kritisk",
+            "reply": "Jeg beskriver endringen som midlertidig og venter med større eskalering til vi vet om marginen faktisk blir kritisk."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Covenant er ikke brutt, men marginen har falt tydelig.",
+            "Prognosen er dokumentert og forklares av flere reelle drivere.",
+            "Tiltak kan kreve beslutning fra daglig leder eller styre og skal derfor ikke improviseres av økonomisjefen alene."
+          ],
+          "subject": "Den nye prognosen gjør marginen mot lånevilkåret mindre enn sist",
+          "summary": "Bankkontakten ber om oppdatert prognose og forklaring fordi ny likviditets- og resultatbane reduserer marginen mot et sentralt covenant."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "okonomi_og_finanssjef_followup_covenant_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bankplassen",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "okonomi_og_finanssjef_followup_covenant_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "okonomi_og_finanssjef.case.likviditet_og_covenant",
+        "version": 1
+      },
+      "source_hash": "2c2e2f62f104381cd17ad42c4b3ec8911b904055127d7e9a7c5a48cd2117b0ed",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -97056,6 +97311,378 @@
       },
       "source_hash": "cff8ebf778cb63e486cb50ccdfc2cf021cbd7ca15d93f99562a951c5fe447499",
       "source_path": "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "skille_resultat_likviditet_og_vilkar_vs_la_resultatet_dominere",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du unngår å gjøre ett pent nøkkeltall til hele bildet av virksomhetens økonomiske handlingsrom.",
+            "id": "A",
+            "label": "Skill resultat, kontantstrøm og covenant og bruk hvert mål til riktig beslutning",
+            "reply": "Jeg skiller resultat, kontantstrøm og covenant og bruker dem som ulike, sammenhengende styringssignaler.",
+            "tags": [
+              "knowledge",
+              "liquidity",
+              "covenant"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du venter på et sent signal og gjør det vanskeligere å styre arbeidskapital og finansieringsrisiko tidlig.",
+            "id": "B",
+            "label": "La resultatprognosen være hovedsignalet så lenge covenant ikke er brutt",
+            "reply": "Jeg lar resultatprognosen være hovedsignalet så lenge vi ikke faktisk har brutt et lånevilkår.",
+            "tags": [
+              "false_security",
+              "late_signal"
+            ]
+          }
+        ],
+        "competency": "likviditetsstyring",
+        "consequence_axis": "presis_styring_vs_falsk_trygghet",
+        "cooldown": 2,
+        "from": "ingrid_controller",
+        "id": "okonomi_og_finanssjef_knowledge_likviditet_001",
+        "mail_family": "resultat_likviditet_og_covenant",
+        "mail_type": "knowledge",
+        "narrative_arc": "Økonomisjefen lærer hvorfor økonomisk kontroll krever flere sammenhengende styringssignaler.",
+        "person_id": "ingrid_controller",
+        "phase": "lunch",
+        "place_id": "barcode",
+        "pressure": "ett_nokkeltall_vs_flere_styringssignaler",
+        "priority": 49,
+        "purpose": "Knytte økonomisjefens likviditetsansvar til eksplisitt fagkunnskap om forskjellige styringsmål.",
+        "repeatable": false,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "ingrid_controller",
+        "situation": [
+          "Resultat måler periodiserte inntekter og kostnader.",
+          "Likviditet handler om når kontanter faktisk kommer inn og går ut.",
+          "Arbeidskapital og lånevilkår kan begrense handlingsrommet selv før resultatet ser svakt ut."
+        ],
+        "stage": "early",
+        "stakes": "Hvis målene blandes, kan et pent resultat skjule reell betalings- eller finansieringsrisiko. Når de skilles, blir tiltakene mer presise.",
+        "subject": "Et positivt resultat betyr ikke at kontantene er tilgjengelige når regningen forfaller",
+        "summary": "Ingrid ber deg forklare hvorfor resultatprognose, kontantstrøm, arbeidskapital og covenant kan peke i ulike retninger samtidig.",
+        "task_domain": "finansiell_styringskunnskap",
+        "task_kind": "knowledge"
+      },
+      "id": "okonomi_og_finanssjef_knowledge_likviditet_001",
+      "mail_type": "knowledge",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du unngår å gjøre ett pent nøkkeltall til hele bildet av virksomhetens økonomiske handlingsrom.",
+            "id": "A",
+            "label": "Skill resultat, kontantstrøm og covenant og bruk hvert mål til riktig beslutning",
+            "reply": "Jeg skiller resultat, kontantstrøm og covenant og bruker dem som ulike, sammenhengende styringssignaler."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du venter på et sent signal og gjør det vanskeligere å styre arbeidskapital og finansieringsrisiko tidlig.",
+            "id": "B",
+            "label": "La resultatprognosen være hovedsignalet så lenge covenant ikke er brutt",
+            "reply": "Jeg lar resultatprognosen være hovedsignalet så lenge vi ikke faktisk har brutt et lånevilkår."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Resultat måler periodiserte inntekter og kostnader.",
+            "Likviditet handler om når kontanter faktisk kommer inn og går ut.",
+            "Arbeidskapital og lånevilkår kan begrense handlingsrommet selv før resultatet ser svakt ut."
+          ],
+          "subject": "Et positivt resultat betyr ikke at kontantene er tilgjengelige når regningen forfaller",
+          "summary": "Ingrid ber deg forklare hvorfor resultatprognose, kontantstrøm, arbeidskapital og covenant kan peke i ulike retninger samtidig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "okonomi_og_finanssjef_knowledge_likviditet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "barcode",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "okonomi_og_finanssjef_knowledge_likviditet_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "okonomi_og_finanssjef.mail.okonomi_og_finanssjef_knowledge_likviditet_001",
+        "version": 1
+      },
+      "source_hash": "2c940d5accc5eee785a305ac8b6db692af2e9309f75b1190803a500a1e7ac241",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "oppdatere_likviditetsbildet_vs_stole_pa_resultatprognosen",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør den flyttede innbetalingen til et tidlig styringssignal i stedet for en senere krise.",
+            "id": "A",
+            "label": "Oppdater likviditetsbildet og prioriter betalingene mot faktisk rom",
+            "reply": "Jeg oppdaterer likviditetsbildet nå og prioriterer de kommende betalingene mot faktisk kontantrom.",
+            "tags": [
+              "micro",
+              "liquidity",
+              "control"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Resultatet ser stabilt ut, men du lar betalingsrommet bli mindre synlig akkurat når det trenger styring.",
+            "id": "B",
+            "label": "Behold planen siden resultatprognosen fortsatt er i rute",
+            "reply": "Jeg beholder planen foreløpig siden resultatprognosen fortsatt er i rute.",
+            "tags": [
+              "cash_risk",
+              "result_bias"
+            ]
+          }
+        ],
+        "competency": "likviditetsstyring",
+        "consequence_axis": "tidlig_handlingsrom_vs_sen_overraskelse",
+        "cooldown": 1,
+        "from": "ingrid_controller",
+        "id": "okonomi_og_finanssjef_micro_likviditet_001",
+        "mail_family": "mikrokontroll_av_likviditet",
+        "mail_type": "micro",
+        "narrative_arc": "Økonomisjefen lærer å se betalingsrom før resultatfortellingen blir falsk trygghet.",
+        "person_id": "ingrid_controller",
+        "phase": "afternoon",
+        "place_id": "barcode",
+        "pressure": "resultatro_vs_kontantdisiplin",
+        "priority": 42,
+        "purpose": "Teste om økonomisjefen reagerer på kontantstrøm som eget styringssignal i stedet for å lene seg på resultatprognosen.",
+        "repeatable": true,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "ingrid_controller",
+        "situation": [
+          "Resultatprognosen er uendret.",
+          "En stor forventet innbetaling er utsatt.",
+          "Flere betalinger og investeringer ligger i samme periode."
+        ],
+        "stage": "stable",
+        "stakes": "Å vente beholder planflyten. En rask likviditetskontroll kan avdekke behov for prioritering før betalingsrommet blir kritisk.",
+        "subject": "Resultatet er i rute, men én stor innbetaling har flyttet seg",
+        "summary": "Ingrid viser at resultatprognosen fortsatt ser grei ut, mens en utsatt kundeinnbetaling gjør neste ukes likviditetsrom betydelig strammere.",
+        "task_domain": "mikro_likviditetskontroll",
+        "task_kind": "micro"
+      },
+      "id": "okonomi_og_finanssjef_micro_likviditet_001",
+      "mail_type": "micro",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør den flyttede innbetalingen til et tidlig styringssignal i stedet for en senere krise.",
+            "id": "A",
+            "label": "Oppdater likviditetsbildet og prioriter betalingene mot faktisk rom",
+            "reply": "Jeg oppdaterer likviditetsbildet nå og prioriterer de kommende betalingene mot faktisk kontantrom."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Resultatet ser stabilt ut, men du lar betalingsrommet bli mindre synlig akkurat når det trenger styring.",
+            "id": "B",
+            "label": "Behold planen siden resultatprognosen fortsatt er i rute",
+            "reply": "Jeg beholder planen foreløpig siden resultatprognosen fortsatt er i rute."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Resultatprognosen er uendret.",
+            "En stor forventet innbetaling er utsatt.",
+            "Flere betalinger og investeringer ligger i samme periode."
+          ],
+          "subject": "Resultatet er i rute, men én stor innbetaling har flyttet seg",
+          "summary": "Ingrid viser at resultatprognosen fortsatt ser grei ut, mens en utsatt kundeinnbetaling gjør neste ukes likviditetsrom betydelig strammere."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "okonomi_og_finanssjef_micro_likviditet_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "barcode",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "okonomi_og_finanssjef_micro_likviditet_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "okonomi_og_finanssjef.mail.okonomi_og_finanssjef_micro_likviditet_001",
+        "version": 1
+      },
+      "source_hash": "69b58fa15c25169903707e003f6b0f9515c3e25d835712e02ec95a31bdf1afc2",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "stotte_dokumentert_funn_vs_dempe_avviket",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Teamet ser at faglig presisjon faktisk beskyttes når den blir vanskelig.",
+            "id": "A",
+            "label": "Støtt Ingrid og løft avviket tydelig med dokumentert effekt",
+            "reply": "Jeg støtter funnet og løfter både avviket og konsekvensen tydelig i ledergrunnlaget.",
+            "tags": [
+              "people",
+              "integrity",
+              "team"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du kjøper ro oppover, men gjør økonomifunksjonens faglige standard avhengig av mottakerens komfort.",
+            "id": "B",
+            "label": "Be Ingrid tone funnet ned til et mulig justeringspunkt",
+            "reply": "Jeg ber Ingrid presentere dette som et mulig justeringspunkt så vi ikke undergraver planen unødig.",
+            "tags": [
+              "political_calm",
+              "integrity_risk"
+            ]
+          }
+        ],
+        "competency": "okonomiledelse",
+        "consequence_axis": "teamtillit_vs_politisk_ro",
+        "cooldown": 2,
+        "from": "ingrid_controller",
+        "id": "okonomi_og_finanssjef_people_ingrid_001",
+        "mail_family": "teamets_faglige_tillit",
+        "mail_type": "people",
+        "narrative_arc": "Økonomisjefen lærer at kontrollmiljøet også formes av hva lederen gjør når medarbeidere finner ubehagelige fakta.",
+        "person_id": "ingrid_controller",
+        "phase": "morning",
+        "place_id": "barcode",
+        "pressure": "lederro_vs_faglig_lojalitet",
+        "priority": 58,
+        "purpose": "Teste om økonomisjefen beskytter teamets faglige kvalitet når et korrekt funn er politisk ubehagelig.",
+        "repeatable": false,
+        "role_scope": "okonomi_og_finanssjef",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
+        "scene_catalog_version": 1,
+        "sender": "ingrid_controller",
+        "situation": [
+          "Avviket er dokumentert og påvirker hovedscenariet.",
+          "Ledergruppen har allerede brukt den gamle planen internt.",
+          "Ingrid trenger en tydelig lederbeslutning om hvordan funnet skal stå i den neste rapporten."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis du demper funnet, beskytter du møteroen men lærer teamet at presisjon er forhandlingsbar. Hvis du støtter Ingrid, må du selv eie konflikten oppover.",
+        "subject": "Ingrid vil vite om hun skal stå ved avviket når ledergruppen presser tilbake",
+        "summary": "Controller Ingrid har dokumentert et avvik i vekstplanens forutsetninger, men har fått signaler om at funnet skaper unødig uro.",
+        "task_domain": "teamledelse_og_faglig_tillit",
+        "task_kind": "people"
+      },
+      "id": "okonomi_og_finanssjef_people_ingrid_001",
+      "mail_type": "people",
+      "role_scope": "okonomi_og_finanssjef",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Teamet ser at faglig presisjon faktisk beskyttes når den blir vanskelig.",
+            "id": "A",
+            "label": "Støtt Ingrid og løft avviket tydelig med dokumentert effekt",
+            "reply": "Jeg støtter funnet og løfter både avviket og konsekvensen tydelig i ledergrunnlaget."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du kjøper ro oppover, men gjør økonomifunksjonens faglige standard avhengig av mottakerens komfort.",
+            "id": "B",
+            "label": "Be Ingrid tone funnet ned til et mulig justeringspunkt",
+            "reply": "Jeg ber Ingrid presentere dette som et mulig justeringspunkt så vi ikke undergraver planen unødig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Avviket er dokumentert og påvirker hovedscenariet.",
+            "Ledergruppen har allerede brukt den gamle planen internt.",
+            "Ingrid trenger en tydelig lederbeslutning om hvordan funnet skal stå i den neste rapporten."
+          ],
+          "subject": "Ingrid vil vite om hun skal stå ved avviket når ledergruppen presser tilbake",
+          "summary": "Controller Ingrid har dokumentert et avvik i vekstplanens forutsetninger, men har fått signaler om at funnet skaper unødig uro."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "okonomi_og_finanssjef_people_ingrid_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "barcode",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "okonomi_og_finanssjef_people_ingrid_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "okonomi_og_finanssjef.mail.okonomi_og_finanssjef_people_ingrid_001",
+        "version": 1
+      },
+      "source_hash": "cba71f50c8a2b9dff4a7e6c346fe65b563ce9274ef0be64b095e7c71113f77de",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -145548,7 +146175,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "4aa5b07706507af676f6680978a8c2e2e4968bd83052926bd01696635cec0f2a",
+  "registry_hash": "0fc3fd75300a33631b0bd88a7b14cd3635304d8128438caf3533347726c12f30",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -146241,11 +146868,16 @@
       "okonomi_og_finanssjef_job_001",
       "okonomi_og_finanssjef_job_002",
       "okonomi_og_finanssjef_job_003",
+      "okonomi_og_finanssjef_people_ingrid_001",
       "okonomi_og_finanssjef_story_001",
       "okonomi_og_finanssjef_conflict_001",
       "okonomi_og_finanssjef_conflict_002",
       "okonomi_og_finanssjef_event_001",
-      "okonomi_og_finanssjef_event_002"
+      "okonomi_og_finanssjef_event_002",
+      "okonomi_og_finanssjef_micro_likviditet_001",
+      "okonomi_og_finanssjef_followup_covenant_001",
+      "okonomi_og_finanssjef_knowledge_likviditet_001",
+      "okonomi_og_finanssjef_consequence_covenant_001"
     ],
     "naeringsliv/renholder": [
       "job_renholder_week1_room_looked_clean",
@@ -146588,11 +147220,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 191,
+    "compiled_source_file_count": 196,
     "ignored_source_file_count": 1,
-    "input_file_count": 192,
+    "input_file_count": 197,
     "role_count": 28,
-    "scene_count": 954,
+    "scene_count": 959,
     "shadowed_duplicate_count": 0
   },
   "version": 1
