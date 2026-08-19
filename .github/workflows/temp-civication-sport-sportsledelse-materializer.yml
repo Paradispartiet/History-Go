@@ -30,11 +30,91 @@ jobs:
           node scripts/build-civication-scene-registry.mjs --write
           node scripts/audit-civication-career-gameplay.mjs --write
 
-      - name: Verify focused rollout gates
+      - name: Probe Sportssjef identity anchors
+        run: |
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const model = require('./data/Civication/roleModels/sport/sportssjef.json');
+          const grammar = require('./data/Civication/workGrammars/sport/sport_sportsledelse.json');
+          assert.equal(model.category, 'sport');
+          assert.equal(model.role_scope, 'sport_sportsledelse');
+          assert.equal(model.role_id, 'sport_sportssjef');
+          assert.equal(grammar.category, 'sport');
+          assert.equal(grammar.role_scope, 'sport_sportsledelse');
+          const people = new Set((model.related_people || []).map((person) => person.id));
+          for (const id of ['styreleder_karin', 'daglig_leder_morten', 'speidersjef_jonas']) assert.ok(people.has(id), id);
+          const places = new Set((model.related_places || []).map((place) => place.id));
+          for (const id of ['sport_klubbkontor', 'sport_sportslig_styringsbord', 'sport_rekrutteringsflate', 'sport_trener_og_akademibro']) assert.ok(places.has(id), id);
+          NODE
+
+      - name: Probe Sportssjef mail catalogs
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const assert = require('node:assert/strict');
+          const types = ['job', 'people', 'conflict', 'story', 'event', 'micro', 'followup', 'knowledge', 'consequence'];
+          for (const type of types) {
+            const path = `data/Civication/mailFamilies/sport/${type}/sport_sportsledelse_${type}.json`;
+            const catalog = JSON.parse(fs.readFileSync(path, 'utf8'));
+            assert.equal(catalog.category, 'sport', `${type}: category`);
+            assert.equal(catalog.role_scope, 'sport_sportsledelse', `${type}: role_scope`);
+            assert.equal(catalog.mail_type, type, `${type}: mail_type`);
+            const mails = (catalog.families || []).flatMap((family) => family.mails || []);
+            assert.ok(mails.length >= 1, `${type}: authored mail`);
+            for (const mail of mails) {
+              assert.equal(mail.role_scope, 'sport_sportsledelse', `${type}/${mail.id}: role_scope`);
+              assert.equal(mail.mail_type, type, `${type}/${mail.id}: mail_type`);
+              assert.ok(mail.id && mail.subject && mail.summary, `${type}/${mail.id || 'missing-id'}: narrative context`);
+            }
+          }
+          NODE
+
+      - name: Probe Sportssjef delayed consequence thread
+        run: |
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const followup = require('./data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json');
+          const consequence = require('./data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json');
+          const followupThread = followup.families?.[0]?.mails?.[0]?.thread_key;
+          const consequenceThread = consequence.families?.[0]?.mails?.[0]?.thread_key;
+          assert.ok(followupThread, 'followup thread');
+          assert.equal(consequenceThread, followupThread, 'consequence closes delayed thread');
+          NODE
+
+      - name: Probe Sportssjef generated matrix contract
+        run: |
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const policy = require('./data/Civication/careerGameplayPolicy.json');
+          const matrix = require('./data/Civication/careerGameplayMatrix.json');
+          const world = (matrix.worlds || []).find((row) => row.key === 'sport/sport_sportsledelse');
+          assert.ok(world, 'matrix world');
+          for (const component of policy.playable_requirements?.runtime_gate_components || []) {
+            assert.equal(world.audit?.components?.[component]?.level, 'complete', `${component}: runtime gate`);
+          }
+          for (const component of policy.contract_components || []) {
+            assert.notEqual(world.audit?.components?.[component]?.level, 'missing', `${component}: not missing`);
+          }
+          assert.equal(world.audit?.salary?.linked_titles, 1, 'linked salary titles');
+          assert.equal(world.audit?.salary?.exact_titles, 1, 'exact salary titles');
+          assert.equal(world.audit?.runtime_gate, true, 'runtime gate');
+          assert.deepEqual(world.audit?.missing_components, [], 'missing components');
+          assert.equal(world.status, 'playable', 'world status');
+          assert.equal(matrix.summary?.work_worlds, 88, 'work worlds');
+          assert.equal(matrix.summary?.support_worlds, 1, 'support worlds');
+          assert.equal(matrix.summary?.statuses?.reference_complete, 5, 'reference complete');
+          assert.ok(matrix.summary?.statuses?.playable >= 15, 'playable count');
+          assert.ok(matrix.summary?.statuses?.partial <= 7, 'partial count');
+          assert.ok(matrix.summary?.runtime_gate_pass >= 20, 'runtime gate count');
+          NODE
+
+      - name: Verify focused Sportssjef rollout test
+        run: node tests/civication-sport-sportsledelse-rollout-playability.test.js
+
+      - name: Verify shared Civication rollout gates
         run: |
           node scripts/build-civication-scene-registry.mjs --check
           node scripts/audit-civication-career-gameplay.mjs --check
-          node tests/civication-sport-sportsledelse-rollout-playability.test.js
           node tests/civication-career-gameplay-matrix.test.js
           node tests/civication-compiled-scene-registry.test.js
           node tests/civication-compiled-scene-registry-parity.test.js
