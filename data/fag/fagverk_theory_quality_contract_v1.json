@@ -1,14 +1,24 @@
 {
   "schema": "history_go_fagverk_theory_quality_contract_v1",
-  "version": "1.0.0",
-  "status": "audit_contract",
+  "version": "1.1.0",
+  "status": "integrity_gate_contract",
+  "documentation_owners": [
+    "docs/FAGVERK.md",
+    "docs/SUBJECT_FILE_CONTRACT.md"
+  ],
   "principles": {
-    "completion_is_not_reopened": true,
+    "completion_is_not_reopened_without_substantive_gap": true,
     "theory_names_are_not_trivia": true,
     "theory_must_be_bound_to_actual_content": true,
+    "theory_metadata_without_prose_or_claim_binding_fails": true,
     "rivals_are_required_when_the_field_is_contested": true,
     "natural_science_is_not_forced_into_a_theorist_name_model": true,
-    "institutional_programme_pages_do_not_count_as_theory_evidence": true
+    "institutional_programme_pages_do_not_count_as_theory_evidence": true,
+    "aggregate_counts_are_not_final_integrity_proof": true,
+    "each_canonical_major_field_requires_relevant_theory_or_model_grounding": true,
+    "named_people_require_concrete_work_or_research_contribution": true,
+    "quality_is_qualitative_before_numeric": true,
+    "repair_existing_content_before_rewriting_subjects": true
   },
   "profiles": {
     "theorist_rival": {
@@ -18,6 +28,13 @@
         "named_people_or_works": 4,
         "rival_or_limit_signals": 2,
         "content_bindings": 4
+      },
+      "final_integrity": {
+        "major_field_grounding_required": true,
+        "named_people_expected_where_tradition_requires": true,
+        "concrete_work_or_contribution_required_for_named_people": true,
+        "rival_required_when_contested": true,
+        "interpretive_consequence_required": true
       }
     },
     "hybrid": {
@@ -27,6 +44,13 @@
         "named_people_or_works": 2,
         "rival_or_limit_signals": 2,
         "content_bindings": 4
+      },
+      "final_integrity": {
+        "major_field_grounding_required": true,
+        "named_people_expected_only_when_substantive": true,
+        "concrete_work_or_contribution_required_for_named_people": true,
+        "rival_or_alternative_required_when_contested": true,
+        "evidence_level_and_application_limits_required": true
       }
     },
     "model_evidence": {
@@ -36,6 +60,13 @@
         "named_people_or_works": 0,
         "rival_or_limit_signals": 3,
         "content_bindings": 4
+      },
+      "final_integrity": {
+        "major_field_grounding_required": true,
+        "named_people_expected_only_when_scientifically_meaningful": true,
+        "model_assumptions_required": true,
+        "validity_domain_required": true,
+        "alternative_model_or_boundary_required_when_relevant": true
       }
     }
   },
@@ -47,6 +78,94 @@
     "limitations_or_validity_domain",
     "content_binding"
   ],
+  "final_integrity_fields": [
+    "identity_or_label",
+    "major_field_binding",
+    "scope",
+    "core_claim_or_mechanism",
+    "assumptions_or_preconditions",
+    "evidence_or_observable_basis",
+    "what_it_explains_or_interprets",
+    "limitations_or_validity_domain",
+    "rival_or_alternative_when_relevant",
+    "scholarly_sources",
+    "canonical_emne_or_claim_binding",
+    "prose_usage_evidence"
+  ],
+  "programme_checklist": [
+    {
+      "step": 1,
+      "id": "shared_standard",
+      "requirement": "Lås én felles teori-/modellstandard som varierer med fagtype og aldri tvinger alle fag inn i samme teoretikerkvote."
+    },
+    {
+      "step": 2,
+      "id": "read_only_cross_audit",
+      "requirement": "Kjør én read-only cross-Fagverk audit som måler fag og canonicale hovedfelt uten å skrive faginnhold."
+    },
+    {
+      "step": 3,
+      "id": "qualitative_minimum",
+      "requirement": "Bestått kvalitet avgjøres av bærende teori/modell, evidens, begrensninger, rivaler og faktisk bruk; mange navn alene teller ikke."
+    },
+    {
+      "step": 4,
+      "id": "all_subject_baseline",
+      "requirement": "Kjør baseline på alle canonicale fag før reparasjon og skill mellom sterk struktur, ustrukturert eksisterende evidens og reelle faglige hull."
+    },
+    {
+      "step": 5,
+      "id": "subject_by_subject_repair",
+      "requirement": "Reparer ett fag om gangen i avgrensede PR-er; behold canonicale emner og kapitler og skriv bare om prosa når en substansiell teorimangel krever det."
+    },
+    {
+      "step": 6,
+      "id": "fixed_theory_template",
+      "requirement": "Hver teori/modell skal ha identitet, fagområde, scope, mekanisme/kjernepåstand, forutsetninger, evidens, styrke, begrensninger, rival/alternativ, verk/bidrag, kilder og faktisk innholdsbinding."
+    },
+    {
+      "step": 7,
+      "id": "permanent_integrity_gate",
+      "requirement": "Permanent port skal feile på pynteteori, manglende verk/bidrag, generisk gjenbruk på tvers av hovedfelt, manglende rival i omstridte felt og teori som bare finnes i metadata/quiz."
+    },
+    {
+      "step": 8,
+      "id": "no_name_trivia",
+      "requirement": "Teori skal brukes til forklaring, tolkning, mekanismetesting, sammenligning eller avgrensning; hvem-som-mente-hva skal ikke være hovedformen."
+    },
+    {
+      "step": 9,
+      "id": "final_reconciliation",
+      "requirement": "Etter fagvise reparasjoner skal én liten reconciliation-PR koble subject-auditer til global port og permanent maskinlesbar rapport."
+    },
+    {
+      "step": 10,
+      "id": "strict_main_gate",
+      "requirement": "Programmet er først ferdig når alle canonicale hovedfelt har relevant teori/modellgrunnlag, omstridte felt har reell rival/alternativ, provenance og kilder er faglig passende, faktisk prosa/claim-binding er bevist og global read-only port er grønn på main."
+    }
+  ],
+  "final_gate": {
+    "mode": "per_major_field_not_aggregate",
+    "required": [
+      "all_canonical_major_fields_resolved",
+      "bearing_theory_or_model_per_major_field",
+      "rival_or_alternative_for_contested_fields",
+      "named_people_bound_to_real_work_or_contribution_when_used",
+      "theory_or_model_bound_to_canonical_topics_or_claims",
+      "substantive_prose_usage",
+      "academically_appropriate_sources",
+      "explicit_limitations_or_validity_domain",
+      "no_generic_cross_field_theory_padding",
+      "no_metadata_only_or_quiz_only_theory"
+    ],
+    "forbidden_shortcuts": [
+      "aggregate_count_only",
+      "name_list_only",
+      "generic_contributor_as_theorist",
+      "institutional_programme_page_as_only_theory_source",
+      "completion_status_change_without_substantive_quality_reason"
+    ]
+  },
   "subjects": [
     {"id":"by","top_level":true,"profile":"hybrid"},
     {"id":"historie","top_level":true,"profile":"theorist_rival"},
