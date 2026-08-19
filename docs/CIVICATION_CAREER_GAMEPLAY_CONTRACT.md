@@ -1,7 +1,7 @@
 # Civication Career Gameplay Contract
 
 Status: **canonical career-gameplay-kontrakt**  
-Sist reconcilet: **2026-08-18**
+Sist reconcilet: **2026-08-19**
 
 ## Formål
 
@@ -14,7 +14,7 @@ Denne kontrakten måler om en arbeidsverden har en sammenhengende jobbgameplay-l
 
 ## Canonical arbeidsverdener
 
-Arbeidsverdener oppdages som unionen av deklarasjoner i:
+Arbeids-/støtteverdener oppdages som unionen av deklarasjoner i:
 
 - `data/Civication/workGrammars/`
 - `data/Civication/badgeRoleMappings.json`
@@ -22,7 +22,9 @@ Arbeidsverdener oppdages som unionen av deklarasjoner i:
 - `data/Civication/praksisfortellinger_registry.json`
 - `data/Civication/lifestory/manifest.json`
 
-En roleModel-fil alene oppretter ikke en ny arbeidsverden.
+Deretter gjelder en bindende authority-grense: bare kategorier som finnes i `data/categories/category_contract.json` → `runtimeCategories` kan inngå i den canonicale Career Gameplay Matrixen, få `reference_complete` / `playable` / `partial` / `architecture_only` og telle i rollout-køen. Oppdaget innhold under et ikke-canonical namespace bevares i en separat `support_worlds`-liste med `career_status: not_applicable`; det skal ikke gis oppdiktet Badge-binding, jobbtilbud eller lønn for å passere career-gaten.
+
+En roleModel-fil alene oppretter ikke en ny arbeidsverden. `content_only` Life Story-pakker under legacy namespaces er støtteinnhold inntil de eventuelt får en eksplisitt, separat og canonical plassering.
 
 ## De 15 career-komponentene
 
@@ -61,7 +63,7 @@ Auditen skal være konservativ.
 - `partial`: noe spillinnhold/runtime finnes, men gameplay-gaten er ikke bevist.
 - `architecture_only`: modell/FWG/deklarasjon finnes uten tilstrekkelig faktisk arbeidsdaggameplay.
 
-Disse er beregnede **career-gameplay-statuser**.
+Disse er beregnede **career-gameplay-statuser** og gjelder bare canonicale runtimekategorier. `support_worlds` har eksplisitt `career_status: not_applicable` og skal ikke rangeres mot `partial`/`architecture_only` i rollout-planlegging.
 
 ## Viktig: `reference_complete` er ikke «fylt rolleverden»
 
@@ -92,6 +94,8 @@ uten selvmotsigelse.
 - regenerere matrisen deterministisk i minnet;
 - kontrollere checked-in JSON/Markdown;
 - avvise ukjente komponenter og dupliserte arbeidsverdener;
+- avvise ikke-canonical kategorier fra career-status og rollout, samtidig som de kan beholdes eksplisitt som støtteinnhold;
+- avvise noncanonical `badgeRoleMappings`;
 - avvise `playable` uten komplett runtime-kjerne;
 - avvise `reference_complete` uten 15 komponenter, Life Story, praksisdybde og to uker.
 
