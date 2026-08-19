@@ -15,6 +15,55 @@ const P={
 };
 const ACADEMIC=new Set(['peer_reviewed_scholarship','scholarly_book']);
 
+function buildActualProseBindings(chapters){
+  const byDomainSource=new Map();
+  let proseParagraphCount=0;
+  let paragraphClaimBindingCount=0;
+
+  for(const ch of chapters){
+    const domain=ch.primary_domain_id||ch.primaryDomainId;
+    assert(domain&&ch.claimsFile,`Kapittel mangler domain/claims: ${ch.id}`);
+    assert(Array.isArray(ch.moduleFiles)&&ch.moduleFiles.length>=1,`Kapittel mangler moduleFiles for prose-proof: ${ch.id}`);
+    const ledger=json(ch.claimsFile);
+    const claimById=new Map((ledger.claims||[]).map(c=>[c.id,c]));
+
+    for(const moduleFile of ch.moduleFiles){
+      assert(fs.existsSync(abs(moduleFile)),`Film & TV prose-module mangler: ${moduleFile}`);
+      const module=json(moduleFile);
+      assert(Array.isArray(module.sections)&&module.sections.length>=1,`Film & TV prose-module mangler sections: ${moduleFile}`);
+
+      for(const section of module.sections){
+        const paragraphs=section.paragraphs||[];
+        const paragraphClaimIds=section.paragraphClaimIds||[];
+        assert(paragraphs.length===paragraphClaimIds.length,`paragraphClaimIds matcher ikke paragraphs: ${moduleFile}/${section.id}`);
+
+        paragraphs.forEach((paragraph,index)=>{
+          assert(typeof paragraph==='string'&&paragraph.trim().length>=80,`For tynt prose-avsnitt: ${moduleFile}/${section.id}/${index}`);
+          const claimIds=paragraphClaimIds[index]||[];
+          assert(Array.isArray(claimIds)&&claimIds.length>=1,`Prose-avsnitt mangler claim-binding: ${moduleFile}/${section.id}/${index}`);
+          proseParagraphCount++;
+
+          for(const claimId of claimIds){
+            const claim=claimById.get(claimId);
+            assert(claim,`Prose peker til ukjent claim: ${moduleFile}/${section.id}/${claimId}`);
+            assert((claim.used_in||[]).includes(section.id),`Claim used_in mangler prose-section: ${claimId}/${section.id}`);
+            assert(claim.source_ids?.length>=1,`Prose-claim mangler source_ids: ${claimId}`);
+            paragraphClaimBindingCount++;
+
+            for(const sourceId of claim.source_ids){
+              const key=`${domain}::${sourceId}`;
+              if(!byDomainSource.has(key))byDomainSource.set(key,[]);
+              byDomainSource.get(key).push({chapter_id:ch.id,module_file:moduleFile,section_id:section.id,paragraph_index:index,claim_id:claimId});
+            }
+          }
+        });
+      }
+    }
+  }
+
+  return {byDomainSource,proseParagraphCount,paragraphClaimBindingCount};
+}
+
 export function auditFilmTvTheoryCanon(){
  const canon=json(P.canon),sch=json(P.scholarly),overrides=json(P.overrides),registry=json(P.registry),holistic=json(P.holistic);const chapters=registry.subjects?.film_tv?.chapters||[];
  assert(canon.schema==='history_go_film_tv_theory_objects_v1'&&canon.status==='canonical','Ugyldig Film & TV theory canon');
@@ -26,6 +75,7 @@ export function auditFilmTvTheoryCanon(){
  const domainData=new Map();
  for(const ch of chapters){const domain=ch.primary_domain_id||ch.primaryDomainId;assert(domain&&ch.claimsFile,`Kapittel mangler domain/claims: ${ch.id}`);if(!domainData.has(domain))domainData.set(domain,{sources:new Map(),usedSources:new Set()});const d=domainData.get(domain);const ledger=json(ch.claimsFile);for(const s of ledger.sources||[])d.sources.set(s.id,s);for(const c of ledger.claims||[])for(const id of c.source_ids||[])d.usedSources.add(id);}
  assert(domainData.size===holistic.summary.canonical_domain_count,'Film & TV theory canon må dekke de 10 canonicale domenene som holistic-auditen eier');
+ const proseProof=buildActualProseBindings(chapters);
  const overrideById=new Map();
  for(const o of overrides.overrides||[]){assert(o.id&&!overrideById.has(o.id),`Duplikat scholarly override: ${o.id}`);overrideById.set(o.id,o);}
  const theoristWorkOverrideByKey=new Map();
@@ -37,13 +87,14 @@ export function auditFilmTvTheoryCanon(){
  }
  assert([...overrideById.keys()].every(id=>sch.sources.some(s=>s.id===id)),'Scholarly override peker til ukjent registry-id');
  assert(existingAuthorityFailures.length===0,`Existing theory sources er ikke akademisk klassifisert: ${JSON.stringify(existingAuthorityFailures)}`);
- assert(canon.theory_objects.length===20,'Film & TV theory canon skal ha 20 teoriobjekter = 2 per domene');const counts={},people=new Set(),works=new Set(),usedSch=new Set(),usedWorkOverrides=new Set();
- for(const t of canon.theory_objects){assert(domainData.has(t.domain_id),`Ukjent theory domain ${t.domain_id}`);counts[t.domain_id]=(counts[t.domain_id]||0)+1;assert(t.id&&t.label&&t.scope?.length>=100&&t.core_claim_or_mechanism?.length>=120&&t.evidence_or_observable_basis?.length>=80,`For tynt theory object: ${t.id}`);assert(t.limitations?.length>=2&&t.rival_or_alternative?.length>=120,`Mangler begrensninger/rival: ${t.id}`);assert(t.claim_source_ids?.length>=1,`Mangler claim-source binding: ${t.id}`);const d=domainData.get(t.domain_id);for(const sid of t.claim_source_ids){assert(d.sources.has(sid),`Theory claim source finnes ikke i riktig domene: ${t.id}/${sid}`);assert(d.usedSources.has(sid),`Theory claim source er ikke faktisk brukt av claim: ${t.id}/${sid}`);}
+ assert(canon.theory_objects.length===20,'Film & TV theory canon skal ha 20 teoriobjekter = 2 per domene');const counts={},people=new Set(),works=new Set(),usedSch=new Set(),usedWorkOverrides=new Set();let theoryObjectsWithProseBinding=0,theoryClaimSourceCount=0,theoryClaimSourcesWithProseBinding=0,proseBindingCount=0;
+ for(const t of canon.theory_objects){assert(domainData.has(t.domain_id),`Ukjent theory domain ${t.domain_id}`);counts[t.domain_id]=(counts[t.domain_id]||0)+1;assert(t.id&&t.label&&t.scope?.length>=100&&t.core_claim_or_mechanism?.length>=120&&t.evidence_or_observable_basis?.length>=80,`For tynt theory object: ${t.id}`);assert(t.limitations?.length>=2&&t.rival_or_alternative?.length>=120,`Mangler begrensninger/rival: ${t.id}`);assert(t.claim_source_ids?.length>=1,`Mangler claim-source binding: ${t.id}`);const d=domainData.get(t.domain_id);let objectProseBindings=0;for(const sid of t.claim_source_ids){theoryClaimSourceCount++;assert(d.sources.has(sid),`Theory claim source finnes ikke i riktig domene: ${t.id}/${sid}`);assert(d.usedSources.has(sid),`Theory claim source er ikke faktisk brukt av claim: ${t.id}/${sid}`);const bindings=proseProof.byDomainSource.get(`${t.domain_id}::${sid}`)||[];assert(bindings.length>=1,`Theory claim source mangler faktisk prose-binding: ${t.id}/${sid}`);theoryClaimSourcesWithProseBinding++;objectProseBindings+=bindings.length;}
+   assert(objectProseBindings>=1,`Theory object mangler faktisk prose-binding: ${t.id}`);theoryObjectsWithProseBinding++;proseBindingCount+=objectProseBindings;
    assert(t.scholarly_refs?.length>=1,`Mangler scholarly ref: ${t.id}`);for(const sid of t.scholarly_refs){const s=schById.get(sid);assert(s,`Ukjent scholarly ref ${sid}`);assert(s.domain_ids.includes(t.domain_id),`Scholarly ref er ikke godkjent for theory domain: ${t.id}/${sid}`);usedSch.add(sid);}
    assert(t.theorists?.length>=1,`Theory object mangler navngitt forsker/teoretiker: ${t.id}`);for(const p of t.theorists){const key=`${t.id}::${p.name}`,workOverride=theoristWorkOverrideByKey.get(key),effectiveWorks=workOverride?.works||p.works;if(workOverride)usedWorkOverrides.add(key);assert(p.name&&effectiveWorks?.length>=1&&p.scholarly_refs?.length>=1,`Tynn theorist provenance i ${t.id}`);people.add(p.name);effectiveWorks.forEach(w=>works.add(w));for(const rid of p.scholarly_refs){const s=schById.get(rid);assert(s&&t.scholarly_refs.includes(rid),`Theorist scholarly ref er ikke del av theory object: ${p.name}/${rid}`);assert(s.authors.includes(p.name),`Theorist-navn finnes ikke i scholarly source metadata: ${p.name}/${rid}`);assert(effectiveWorks.includes(s.title),`Theorist-verk matcher ikke scholarly source: ${p.name}/${rid}`);}}
  }
  assert(usedWorkOverrides.size===theoristWorkOverrideByKey.size,`Ubrukte theorist work overrides: ${[...theoristWorkOverrideByKey.keys()].filter(k=>!usedWorkOverrides.has(k)).join(', ')}`);
- for(const domain of domainData.keys())assert(counts[domain]===2,`Film & TV theory canon krever eksakt to teoriobjekter i ${domain}, fant ${counts[domain]||0}`);assert(usedSch.size===schById.size,`Ubrukte scholarly theory sources: ${[...schById.keys()].filter(id=>!usedSch.has(id)).join(', ')}`);assert(people.size>=25,`Film & TV theory canon krever minst 25 unike forskere/teoretikere, fant ${people.size}`);assert(works.size>=20,`Film & TV theory canon krever minst 20 unike verk/bidrag, fant ${works.size}`);
- return {status:'strong_theory_canon',domainCount:holistic.summary.canonical_domain_count,canonicalEmneCount:holistic.summary.canonical_emne_count,theoryObjectCount:canon.theory_objects.length,scholarlySourceCount:schById.size,uniquePeopleCount:people.size,uniqueWorkCount:works.size,scholarlyOverrideCount:overrideById.size,theoristWorkOverrideCount:theoristWorkOverrideByKey.size};
+ for(const domain of domainData.keys())assert(counts[domain]===2,`Film & TV theory canon krever eksakt to teoriobjekter i ${domain}, fant ${counts[domain]||0}`);assert(usedSch.size===schById.size,`Ubrukte scholarly theory sources: ${[...schById.keys()].filter(id=>!usedSch.has(id)).join(', ')}`);assert(people.size>=25,`Film & TV theory canon krever minst 25 unike forskere/teoretikere, fant ${people.size}`);assert(works.size>=20,`Film & TV theory canon krever minst 20 unike verk/bidrag, fant ${works.size}`);assert(theoryObjectsWithProseBinding===canon.theory_objects.length,'Alle Film & TV theory objects må ha faktisk prose-binding');assert(theoryClaimSourcesWithProseBinding===theoryClaimSourceCount,'Alle Film & TV theory claim sources må være brukt i faktisk prosa');
+ return {status:'strong_theory_canon',domainCount:holistic.summary.canonical_domain_count,canonicalEmneCount:holistic.summary.canonical_emne_count,theoryObjectCount:canon.theory_objects.length,scholarlySourceCount:schById.size,uniquePeopleCount:people.size,uniqueWorkCount:works.size,scholarlyOverrideCount:overrideById.size,theoristWorkOverrideCount:theoristWorkOverrideByKey.size,theoryObjectsWithProseBinding,theoryClaimSourceCount,theoryClaimSourcesWithProseBinding,proseBindingCount,proseParagraphCount:proseProof.proseParagraphCount,paragraphClaimBindingCount:proseProof.paragraphClaimBindingCount};
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){try{console.log(JSON.stringify(auditFilmTvTheoryCanon(),null,2));}catch(e){console.error(`Film & TV theory canon FEIL: ${e.message}`);process.exitCode=1;}}
