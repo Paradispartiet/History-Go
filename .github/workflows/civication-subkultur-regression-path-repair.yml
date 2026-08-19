@@ -1,0 +1,81 @@
+name: TEMP Civication Subkultur regression path repair
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: civication-subkultur-regression-path-repair-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  repair:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'agent/civication-subkultur-arrangementsdrift-pilot-playable'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Repair only the stale Produksjonsassistent regression path
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs'
+          old='tests/civication-produksjonsassistent-playability.test.js'
+          new='tests/civication-film-tv-produksjonsassistent-playability.test.js'
+
+          old_count="$(grep -Foc "$old" "$script" || true)"
+          new_count="$(grep -Foc "$new" "$script" || true)"
+          if [[ "$old_count" == '0' && "$new_count" == '1' ]]; then
+            echo 'Canonical Produksjonsassistent regression path is already repaired.'
+            exit 0
+          fi
+          if [[ "$old_count" != '1' || "$new_count" != '0' ]]; then
+            echo "Refusing ambiguous repair: old_count=$old_count new_count=$new_count" >&2
+            exit 1
+          fi
+
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs')
+          old = 'tests/civication-produksjonsassistent-playability.test.js'
+          new = 'tests/civication-film-tv-produksjonsassistent-playability.test.js'
+          text = p.read_text()
+          if text.count(old) != 1 or new in text:
+              raise SystemExit('Refusing ambiguous path replacement')
+          p.write_text(text.replace(old, new))
+          PY
+
+          node --check "$script"
+          test -f "$new"
+          test -f tests/civication-avdelingsleder-playability.test.js
+          git diff --check
+          git diff --exit-code -- . ':!scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs'
+          git diff -- "$script"
+
+      - name: Commit the verified one-line repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='scripts/materialize-civication-subkultur-arrangementsdrift-pilot.mjs'
+          if git diff --quiet -- "$script"; then
+            echo 'No repair commit needed.'
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$script"
+          test "$(git diff --cached --name-only | wc -l)" -eq 1
+          test "$(git diff --cached --name-only)" = "$script"
+          git commit -m "Fix Civication regression test path"
+          git push origin HEAD:${{ github.head_ref }}
