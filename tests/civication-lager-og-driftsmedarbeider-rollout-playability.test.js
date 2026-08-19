@@ -54,10 +54,11 @@ assert.equal(world.status, 'playable');
 
 assert.equal(matrix.summary?.statuses?.reference_complete, 5, 'Reference-role count must remain frozen');
 assert.ok(matrix.summary?.statuses?.playable >= 10, 'Rollout must never regress below ten playable worlds after Lager/drift');
-assert.ok(matrix.summary?.statuses?.partial <= 13, 'Lager/drift must leave the partial queue');
+assert.ok(matrix.summary?.statuses?.partial <= 12, 'Canonical partial queue must not reintroduce noncanonical support worlds');
 assert.ok(matrix.summary?.runtime_gate_pass >= 15, 'Runtime-gate coverage must not regress after Lager/drift');
-assert.ok(matrix.summary?.component_debt?.places?.complete >= 19);
+assert.ok(matrix.summary?.component_debt?.places?.complete >= 18, 'Canonical place coverage must retain Lager/drift after support-world reconciliation');
 assert.ok(matrix.summary?.component_debt?.places?.missing <= 70);
-assert.ok(matrix.summary?.component_debt?.mail?.complete >= 17);
+assert.ok(matrix.summary?.component_debt?.mail?.complete >= 16, 'Canonical mail coverage must retain Lager/drift after support-world reconciliation');
+assert.equal(matrix.summary?.support_worlds, 1, 'Legacy support worlds must be counted outside canonical component debt');
 
 console.log('✓ Lager- og driftsmedarbeider systematic rollout is playable');
