@@ -1,0 +1,105 @@
+name: tmp Språkatlas Places v2 materialize
+
+on:
+  push:
+    branches:
+      - agent/sprakatlas-places-v2-documented-coverage
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: ${{ !contains(github.event.head_commit.message, '[sprakatlas-v2-materialized]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p reports/sprakatlas-places-v2
+          npm ci 2>&1 | tee reports/sprakatlas-places-v2/npm-ci.log
+
+      - name: Materialize documented coverage
+        shell: bash
+        run: |
+          set -o pipefail
+          node scripts/tmp-materialize-sprakatlas-places-v2.mjs 2>&1 | tee reports/sprakatlas-places-v2/materialize.log
+
+      - name: Build indexes and run focused gates
+        id: gates
+        shell: bash
+        run: |
+          set -u
+          REPORT_DIR=reports/sprakatlas-places-v2
+          STATUS_FILE="$REPORT_DIR/statuses.env"
+          : > "$STATUS_FILE"
+
+          run_gate() {
+            local name="$1"
+            shift
+            set +e
+            "$@" 2>&1 | tee "$REPORT_DIR/${name}.log"
+            local code=${PIPESTATUS[0]}
+            set -e
+            printf '%s=%s\n' "$name" "$code" >> "$STATUS_FILE"
+          }
+
+          set -e
+          run_gate places_index_build npm run places:index:build
+          run_gate language_scope node --test tests/place-language-dialect-scope.test.mjs
+          run_gate production_v42 node scripts/validate-place-description-production-v4_2.mjs
+          run_gate manifest_sync npm run audit:places-split-manifest-sync
+          run_gate places_index_check npm run places:index:check
+          run_gate coordinate_quality npm run places:coords:quality
+          run_gate coordinate_intake npm run places:coords:intake
+          run_gate coordinate_evidence npm run places:coords:evidence:audit
+          run_gate place_emner npm run places:emner:check
+
+          node <<'NODE'
+          const fs = require('fs');
+          const dir = 'reports/sprakatlas-places-v2';
+          const rows = Object.fromEntries(fs.readFileSync(`${dir}/statuses.env`, 'utf8')
+            .trim().split(/\n+/).filter(Boolean).map(line => {
+              const index = line.indexOf('=');
+              return [line.slice(0, index), Number(line.slice(index + 1))];
+            }));
+          fs.writeFileSync(`${dir}/gate-status.json`, JSON.stringify({ generatedAt: new Date().toISOString(), gates: rows }, null, 2) + '\n');
+          NODE
+
+      - name: Remove one-time machinery and persist result
+        shell: bash
+        run: |
+          set -e
+          rm -f scripts/tmp-materialize-sprakatlas-places-v2.mjs
+          rm -f .github/workflows/tmp-sprakatlas-places-v2-materialize.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs tests reports/sprakatlas-places-v2
+          git add -u scripts/tmp-materialize-sprakatlas-places-v2.mjs .github/workflows/tmp-sprakatlas-places-v2-materialize.yml
+          git status --short
+          git commit -m "Materialize Språkatlas documented coverage [sprakatlas-v2-materialized]"
+          git push origin HEAD:agent/sprakatlas-places-v2-documented-coverage
+
+      - name: Fail run if a focused gate failed
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('reports/sprakatlas-places-v2/gate-status.json', 'utf8'));
+          const failed = Object.entries(report.gates).filter(([, code]) => code !== 0);
+          if (failed.length) {
+            console.error('Focused gates failed:', failed);
+            process.exit(1);
+          }
+          console.log('All focused Språkatlas → Places v2 gates passed.');
+          NODE
