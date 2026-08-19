@@ -23,6 +23,7 @@ type PlaceRow = JsonObject & {
   frontImage?: unknown;
   hidden?: unknown;
   stub?: unknown;
+  placeScope?: unknown;
   groundhopper?: unknown;
   locatorType?: unknown;
   sourceProvider?: unknown;
@@ -72,6 +73,7 @@ const LIGHT_FIELDS: LightField[] = [
   'frontImage',
   'hidden',
   'stub',
+  'placeScope',
   'groundhopper',
   'locatorType',
   'sourceProvider',

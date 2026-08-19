@@ -16,6 +16,7 @@
   const articleCache = new Map();
   let manifestPromise = null;
   let atlasPromise = null;
+  let atlasPlaceIndexPromise = null;
 
   const text = value => String(value == null ? "" : value).trim();
   const list = value => Array.isArray(value) ? value : [];
@@ -201,6 +202,29 @@
       .then(response => response.ok ? response.json() : null)
       .catch(() => null);
     return atlasPromise;
+  }
+
+  async function loadAtlasPlaceIndex() {
+    if (atlasPlaceIndexPromise) return atlasPlaceIndexPromise;
+    atlasPlaceIndexPromise = (async () => {
+      const manifest = await loadManifest();
+      const index = new Map();
+      for (const placeId of Object.keys(manifest?.place_files || {})) {
+        const loaded = await loadForPlace(placeId);
+        if (!loaded?.article) continue;
+        const localIds = unique(loaded.article?.atlas_local_ids);
+        if (!localIds.length) continue;
+        const runtimePlace = list(global.PLACES).find(row => text(row?.id) === placeId);
+        const placeName = text(runtimePlace?.name || loaded.article?.title?.replace(/^Språkleksikon:\s*/i, "") || placeId);
+        for (const localId of localIds) {
+          const rows = index.get(localId) || [];
+          if (!rows.some(row => row.placeId === placeId)) rows.push({ placeId, placeName });
+          index.set(localId, rows);
+        }
+      }
+      return index;
+    })().catch(() => new Map());
+    return atlasPlaceIndexPromise;
   }
 
   async function loadForPlace(placeId) {
@@ -446,7 +470,7 @@
     `;
   }
 
-  function renderLanguageAtlas(article, atlas) {
+  function renderLanguageAtlas(article, atlas, atlasPlaceIndex = new Map()) {
     const macros = list(atlas?.macro_regions);
     if (!macros.length) return "";
     const activeIds = new Set([
@@ -484,6 +508,7 @@
           <p data-atlas-selection-summary></p>
           <div data-atlas-selection-features></div>
           <div class="hg-language-atlas-evidence" data-atlas-selection-evidence hidden></div>
+          <div class="hg-language-atlas-place-links" data-atlas-selection-places hidden></div>
         </div>
         <details class="hg-language-atlas-details">
           <summary>Utforsk lokale talemål og regioner</summary>
@@ -496,6 +521,18 @@
     `;
   }
 
+  function renderAtlasJumpLinks(article, atlas) {
+    const ids = atlasIds(article, "atlas_local_ids");
+    if (!ids.length) return "";
+    const locals = list(atlas?.local_varieties);
+    const buttons = ids.map(id => {
+      const profile = locals.find(row => text(row?.id) === id);
+      if (!profile) return "";
+      return `<button type="button" data-atlas-jump-local="${esc(id)}">Se talemålet i Språkatlas${ids.length > 1 ? `: ${esc(profile?.name)}` : ""}</button>`;
+    }).filter(Boolean).join("");
+    return buttons ? `<nav class="hg-language-atlas-jump" aria-label="Naviger til Språkatlas">${buttons}</nav>` : "";
+  }
+
   function countByType(entries) {
     const counts = new Map();
     entries.forEach(entry => {
@@ -505,7 +542,7 @@
     return counts;
   }
 
-  function renderLanguagePanel(place, article, atlas = null) {
+  function renderLanguagePanel(place, article, atlas = null, atlasPlaceIndex = new Map()) {
     const entries = list(article?.entries).filter(entry => isAllowedLanguageEntry(entry, article, place));
     const dialectEntries = entries.filter(entry => isDialectEntry(entry, article));
     const counts = countByType(entries);
@@ -537,7 +574,8 @@
             <p>Disse språksporene er kildebelagt som del av talemålet i området. Et ord kan også finnes i andre dialektområder; lokal attestasjon betyr ikke at formen er unik her.</p>
           </section>
         ` : ""}
-        ${renderLanguageAtlas(article, atlas)}
+        ${renderAtlasJumpLinks(article, atlas)}
+        ${renderLanguageAtlas(article, atlas, atlasPlaceIndex)}
         ${filters ? `<nav class="hg-language-filters" aria-label="Filtrer Språkleksikon"><button type="button" data-language-filter="all" aria-pressed="true">Alle <span>${entries.length}</span></button>${filters}</nav>` : ""}
         <div class="hg-language-list">${entries.map(entry => entryCard(entry, article)).join("")}</div>
       </div>
@@ -611,7 +649,7 @@
     about.prepend(teaser);
   }
 
-  function activateAtlasSelection(panel, atlas, itemId, macroHint = "") {
+  function activateAtlasSelection(panel, atlas, itemId, macroHint = "", atlasPlaceIndex = new Map()) {
     const id = text(itemId);
     if (!id || !atlas) return;
 
@@ -656,21 +694,54 @@
           return `<li><span>${esc(row?.label || row?.claim)}</span><p>${esc(row?.claim)}</p>${links.length ? `<div>${links.map((url, index) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Kilde${links.length > 1 ? ` ${index + 1}` : ""} ↗</a>`).join("")}</div>` : ""}</li>`;
         }).join("")}</ul>` : "";
       }
+      const places = panel.querySelector("[data-atlas-selection-places]");
+      if (places instanceof HTMLElement) {
+        if (!local) {
+          places.hidden = true;
+          places.innerHTML = "";
+        } else {
+          const linked = list(atlasPlaceIndex?.get?.(id));
+          places.hidden = false;
+          places.innerHTML = `
+            <strong>Utforsk steder med dokumenterte språkspor</strong>
+            <p>Dette er steder der History Go har dokumenterte språkspor. Listen er ikke komplett og er ikke et kart over hvor talemålet finnes.</p>
+            ${linked.length
+              ? `<div>${linked.map(row => `<button type="button" data-atlas-open-place="${esc(row.placeId)}">${esc(row.placeName)}</button>`).join("")}</div>`
+              : `<p class="hg-language-atlas-place-empty">History Go har foreløpig ingen dokumenterte Place-spor knyttet direkte til denne profilen.</p>`}
+          `;
+        }
+      }
       selection.hidden = false;
     }
 
     macroCard?.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
   }
 
-  function bindLanguagePanel(panel, place, article, sourceFile, atlas = null) {
+  function bindLanguagePanel(panel, place, article, sourceFile, atlas = null, atlasPlaceIndex = new Map()) {
     if (panel.dataset.hgLanguageBound === "1") return;
     panel.dataset.hgLanguageBound = "1";
 
     panel.addEventListener("click", event => {
       const target = event.target instanceof Element ? event.target : null;
+      const openAtlasPlace = target?.closest("[data-atlas-open-place]");
+      if (openAtlasPlace) {
+        const placeId = text(openAtlasPlace.getAttribute("data-atlas-open-place"));
+        const opened = placeId && global.HGMapView?.openPlace?.(placeId);
+        if (!opened) global.showToast?.("Kunne ikke åpne stedet fra Språkatlas.");
+        return;
+      }
+
+      const atlasJump = target?.closest("[data-atlas-jump-local]");
+      if (atlasJump && atlas) {
+        const localId = atlasJump.getAttribute("data-atlas-jump-local");
+        activateAtlasSelection(panel, atlas, localId, "", atlasPlaceIndex);
+        panel.querySelector("[data-atlas-selection]")?.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
+        return;
+      }
+
       const atlasFocus = target?.closest("[data-atlas-focus]");
       if (atlasFocus && atlas) {
-        activateAtlasSelection(panel, atlas, atlasFocus.getAttribute("data-atlas-focus"));
+        activateAtlasSelection(panel, atlas, atlasFocus.getAttribute("data-atlas-focus"), "", atlasPlaceIndex);
         return;
       }
 
@@ -680,7 +751,8 @@
           panel,
           atlas,
           atlasRegion.getAttribute("data-atlas-region"),
-          atlasRegion.getAttribute("data-atlas-macro-id")
+          atlasRegion.getAttribute("data-atlas-macro-id"),
+          atlasPlaceIndex
         );
         return;
       }
@@ -691,7 +763,8 @@
           panel,
           atlas,
           atlasLocal.getAttribute("data-atlas-local"),
-          atlasLocal.getAttribute("data-atlas-macro-id")
+          atlasLocal.getAttribute("data-atlas-macro-id"),
+          atlasPlaceIndex
         );
         return;
       }
@@ -743,7 +816,7 @@
     if (!loaded) return;
     const entries = list(loaded.article?.entries).filter(entry => isAllowedLanguageEntry(entry, loaded.article, place));
     if (!entries.length) return;
-    const atlas = await loadAtlas();
+    const [atlas, atlasPlaceIndex] = await Promise.all([loadAtlas(), loadAtlasPlaceIndex()]);
 
     const popup = document.querySelector(".hg-popup.place-popup-v2");
     const tabsArticle = popup?.querySelector('.hg-place-popup-v2[data-hg-place-tabs="1"]');
@@ -782,8 +855,8 @@
       panelWrap.insertBefore(panel, morePanel || null);
     }
 
-    panel.innerHTML = renderLanguagePanel(place, loaded.article, atlas);
-    bindLanguagePanel(panel, place, loaded.article, loaded.sourceFile, atlas);
+    panel.innerHTML = renderLanguagePanel(place, loaded.article, atlas, atlasPlaceIndex);
+    bindLanguagePanel(panel, place, loaded.article, loaded.sourceFile, atlas, atlasPlaceIndex);
     addLanguageTeaser(tabsArticle, entries, tablist, panelWrap, loaded.article);
     tabsArticle.dataset.hgLanguageLayer = "1";
 
@@ -821,6 +894,7 @@
   global.HGLanguageLayer = {
     loadForPlace,
     loadAtlas,
+    loadAtlasPlaceIndex,
     canonicalType,
     isLanguageEntry,
     isDialectEntry,

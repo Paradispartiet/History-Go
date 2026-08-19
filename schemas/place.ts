@@ -110,6 +110,8 @@ export interface Place {
   emne_ids?: string[];
   hidden?: boolean;
   stub?: boolean;
+  /** Area-level owner for spatial knowledge layers such as dialect; omitted for ordinary POIs. */
+  placeScope?: string;
   sport_profile?: PlaceSportProfile;
   quiz_profile?: Record<string, unknown>;
   nature_profile?: PlaceNatureProfile;

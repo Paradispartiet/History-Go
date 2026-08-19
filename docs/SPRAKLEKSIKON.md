@@ -312,3 +312,23 @@ For `evidence_materialized` er minstekravet nå låst til minst **fire synlige m
 Lokal materialisering må skille mellom tre ulike typer belegg: **lokalt opptak/korpus**, **regionalt målmerke** og **lokalt dokumentert endring**. Et regionalt trekk kan brukes som ramme for et lokalt anker, men skal ikke merkes som unikt for stedet uten lokalt belegg. Ål er et eksempel: Hallingdal gir den strukturelle rammen, mens NDC og kilder om dagens Buskerud gir lokalt/nyere belegg.
 
 Språkkontakt skal heller ikke gjøre separate språk til dialekttrekk. For norsk talemål i Tana og Hattfjelldal registreres samisk språkkontakt og institusjonell flerspråklighet som kontekst, mens samiske språk fortsatt eies av egne språklag. Den tredje forskningsstyrte gruppen materialiserer Voss, Ål, Hattfjelldal, Sømna og norsk talemål i Tana.
+
+## Språkatlas → Steder v1
+
+Språkatlas og canonical Places er nå koblet uten en parallell sted-/dialektdatabase. Relasjonen eies av den eksisterende stedbundne språkfilen gjennom `atlas_local_ids`; runtime bygger en navigasjonsindeks fra `data/leksikon/sprak/manifest.json` og disse artiklene.
+
+- Fra en lokal talemålsprofil kan brukeren åpne **steder med dokumenterte språkspor** direkte via den eksisterende `HGMapView.openPlace()`-flyten. Kartet fullfører flyttingen før PlaceCard åpnes.
+- Listen er uttrykkelig **ikke komplett** og skal ikke tolkes som et utbredelseskart for talemålet.
+- Fra et område-Place med `atlas_local_ids` kan brukeren gå tilbake med **«Se talemålet i Språkatlas»**.
+- `layer: "dialect"` eies fortsatt bare av `placeScope: "area"`. Enkelt-Places kan ha Språkleksikon, men blir ikke dialekteiere av denne navigasjonen.
+- `places_index.json` bevarer nå `placeScope`, slik at områdeeierskapet ikke går tapt i normal kart-runtime.
+
+### Dekningsaudit for lokale talemålsprofiler
+
+Audit mot canonical `local_varieties` 2026-08-19:
+
+- `evidence_materialized`: **15** — Bergen, Bodø, Hammerfest, Hattfjelldal, Kristiansand, Narvik, Oslo, Stavanger, Sømna, Tana – norsk talemål, Tromsø, Trondheim, Valle i Setesdal, Voss, Ål
+- `documented_seed`: **7** — Lom, Senja, Suldal, Surnadal, Trysil, Vang i Valdres, Åndalsnes/Rauma
+- `local_research_required`: **24** — Aremark, Arendal, Bjugn/Fosen, Enebakk, Fredrikstad, Haugesund, Inderøy, Jølster, Kautokeino – norsk talemål, Kirkenes/Sør-Varanger – norsk talemål, Kvæfjord, Kvænangen – norsk talemål, Lillehammer, Luster, Mo i Rana, Namdalen, Oppdal, Røros, Selbu, Stamsund/Lofoten, Time/Jæren, Tinn, Vinje, Volda
+
+Statusaudit er en lesning av atlasets canonical profiler, ikke en ny database. Nye lokale profiler skal fortsatt materialiseres etter kildekvalitet og direkte lokalt belegg; geografisk balanse alene er ikke grunn til å oppgradere en profil.
