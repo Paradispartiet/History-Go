@@ -44,7 +44,7 @@ jobs:
         run: node scripts/audit-civication-career-gameplay.mjs --write
 
       - name: Regenerate compiled scene registry
-        run: node scripts/build-civication-scene-registry.mjs
+        run: node scripts/build-civication-scene-registry.mjs --write
 
       - name: Check compiled scene registry
         run: node scripts/build-civication-scene-registry.mjs --check
