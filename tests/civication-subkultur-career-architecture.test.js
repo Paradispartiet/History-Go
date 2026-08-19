@@ -75,7 +75,8 @@ for (const [scope, titles] of Object.entries(evidence.canonical_decision.work_wo
   assert.ok(grammar.work_loops.length >= 2, `${scope}: loops`);
   assert.ok(grammar.practice_stories.length >= 5, `${scope}: practice stories`);
   assert.ok(grammar.quality_axes.length >= 6, `${scope}: quality axes`);
-  assert.ok(grammar.authority_boundary.may_not.length >= 4, `${scope}: may_not`);
+  const forbiddenActions = grammar.authority_boundary?.may_not ?? grammar.authority_boundary?.cannot;
+  assert.ok(Array.isArray(forbiddenActions) && forbiddenActions.length >= 4, `${scope}: authority boundary prohibitions`);
 }
 
 const pushes = [];
