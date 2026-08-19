@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_arkitekt",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "sted_og_romlig_evidens",
+      "purpose": "Kobler arkitektfaglig kunnskap til et konkret prosjektvalg.",
+      "learning_focus": ["stedstilpasning", "romlig_analyse"],
+      "mails": [
+        {
+          "id": "by_arkitekt_knowledge_gateplan_001",
+          "mail_type": "knowledge",
+          "mail_family": "sted_og_romlig_evidens",
+          "role_scope": "by_arkitekt",
+          "phase": "lunch",
+          "priority": 58,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "bylivsansvarlig_sara",
+          "sender": "bylivsansvarlig_sara",
+          "person_id": "bylivsansvarlig_sara",
+          "place_id": "oslo_arkitektur_byrom",
+          "subject": "Gateplanet bør leses som en sekvens, ikke bare som fasade",
+          "summary": "Sara ber deg bruke observasjonene fra gateplanet til å kontrollere hvordan inngang, opphold og overgang mellom offentlig og privat rom faktisk henger sammen.",
+          "purpose": "Bruk romlig kunnskap som beslutningsgrunnlag i stedet for å behandle gateplanet som en illustrasjon av fasaden.",
+          "stakes": "Valget påvirker om prosjektets bylivsargument kan spores til konkrete romlige forhold.",
+          "situation": [
+            "Befaringen viser at folk beveger seg diagonalt gjennom hjørnet og stopper der fasaden nå er mest lukket.",
+            "Tegningen organiserer førsteetasjen etter innvendige akser som ikke følger denne bevegelsen.",
+            "Du må velge hvordan observasjonen skal brukes i neste versjon."
+          ],
+          "task_domain": "sted_og_gateplan",
+          "task_kind": "knowledge",
+          "competency": "stedstilpasning",
+          "learning_focus": ["observasjon", "sekvens", "overgangssoner"],
+          "pressure": "diagram_vs_stedlig_evidens",
+          "choice_axis": "beholde_innvendig_logikk_vs_revidere_gateplan",
+          "consequence_axis": "tegningens_orden_vs_stedets_bruk",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Revider gateplanet mot den observerte bevegelsen",
+              "reply": "Jeg bruker befaringen som premiss og reviderer inngang, opphold og overgangssoner samlet.",
+              "effect": 1,
+              "tags": ["stedlig_evidens", "gateplan"],
+              "feedback": "Observasjonen blir omsatt til en kontrollerbar arkitektfaglig hypotese."
+            },
+            {
+              "id": "B",
+              "label": "Behold planen, men dokumenter hvorfor observasjonen ikke skal styre",
+              "reply": "Jeg beholder planlogikken, men dokumenterer hvorfor den observerte bevegelsen ikke bør være styrende for denne løsningen.",
+              "effect": 0,
+              "tags": ["begrunnelse", "faglig_forbehold"],
+              "feedback": "Du gjør avviket eksplisitt; begrunnelsen kan senere prøves mot faktisk bruk."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
