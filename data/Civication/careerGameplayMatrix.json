@@ -7,8 +7,8 @@
     "work_worlds": 89,
     "statuses": {
       "reference_complete": 5,
-      "playable": 7,
-      "partial": 16,
+      "playable": 8,
+      "partial": 15,
       "architecture_only": 61
     },
     "runtime_gate_pass": 13,
@@ -40,9 +40,9 @@
         "missing": 62
       },
       "places": {
-        "complete": 16,
+        "complete": 17,
         "partial": 0,
-        "missing": 73
+        "missing": 72
       },
       "mail": {
         "complete": 15,
@@ -7448,6 +7448,7 @@
           "tests/civication-career-rolemodel-ownership.test.js",
           "tests/civication-controller-two-week-flow.test.js",
           "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+          "tests/civication-fagarbeider-rollout-playability.test.js",
           "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-fagarbeider-two-week-flow.test.js",
           "tests/civication-first-week-praksisfortellinger.test.js",
@@ -7484,6 +7485,7 @@
               "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-first-week-praksisfortellinger.test.js",
@@ -7514,6 +7516,7 @@
               "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-first-week-praksisfortellinger.test.js",
@@ -7596,6 +7599,7 @@
               "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-first-week-praksisfortellinger.test.js",
@@ -7626,6 +7630,7 @@
               "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-first-week-praksisfortellinger.test.js",
@@ -8866,7 +8871,7 @@
         "naer_fagarbeider",
         "naeringsliv_fagarbeider"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/fagarbeider.json"
@@ -8921,6 +8926,7 @@
           "tests/civication-career-rolemodel-ownership.test.js",
           "tests/civication-day-phase-ui-reentry-lock.test.js",
           "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+          "tests/civication-fagarbeider-rollout-playability.test.js",
           "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-fagarbeider-two-week-flow.test.js",
           "tests/civication-inbox-channels.test.js",
@@ -8952,6 +8958,7 @@
               "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-day-phase-ui-reentry-lock.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-inbox-channels.test.js",
@@ -8974,6 +8981,7 @@
               "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-day-phase-ui-reentry-lock.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-inbox-channels.test.js",
@@ -9004,9 +9012,12 @@
             "note": "People content exists on only one side of the content/runtime boundary."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
@@ -9058,6 +9069,7 @@
               "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-day-phase-ui-reentry-lock.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-two-week-flow.test.js",
               "tests/civication-inbox-channels.test.js",
@@ -9104,14 +9116,13 @@
           }
         },
         "runtime_gate": true,
-        "missing_components": [
-          "places"
-        ],
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
+          "places",
           "mail",
           "knowledge",
           "quality_axes",

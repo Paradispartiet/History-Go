@@ -1,6 +1,6 @@
 {
   "schema": "civication_role_model_v1",
-  "version": 1,
+  "version": 2,
   "source": {
     "badge_file": "data/badges.json",
     "badge_id": "naeringsliv",
@@ -13,48 +13,67 @@
   "role_id": "naeringsliv_fagarbeider",
   "title": "Fagarbeider",
   "core_narrative": [
-    "I Civication er Fagarbeider en praktisk rolle i Næringsliv & industri der valg former tillit, handlingsrom og status."
+    "Fagarbeiderrollen bygger autoritet gjennom utført arbeid: standard, verktøy, materialer, kvalitet og sikkerhet må henge sammen i praksis.",
+    "Spilleren møter presset mellom tempo og faglig standard, og må gjøre taus kunnskap synlig nok til at andre kan lære, kontrollere og overta arbeidet sikkert.",
+    "Rollen kan stoppe eget arbeid ved relevant risiko og rapportere avvik, men faglig tyngde er ikke det samme som full formell myndighet."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til industri, handel og markeder."
+      "Leser oppdrag, arbeidsgrunnlag og standard før utførelse, og avklarer kritiske uklarheter fremfor å gjette.",
+      "Velger og kontrollerer verktøy, utstyr og materialer, utfører arbeidet innen egen kompetanse og følger med på tegn til feil eller unormal drift.",
+      "Kontrollerer eget og relevant overlevert arbeid mot faglig standard, dokumenterer avvik og skiller mellom korrigering som kan gjøres lokalt og forhold som må eskaleres.",
+      "Overleverer status, restarbeid, risiko og læring til kolleger eller neste skift, og lærer bort praktiske vurderinger uten å gjøre snarveier til skjult norm."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Levere arbeid som oppfyller relevant standard og kvalitetskrav, også når tempo eller kunde-/produksjonspress trekker i motsatt retning.",
+      "Bruke verktøy, utstyr og materialer innenfor kompetanse, instrukser og sikkerhetskrav.",
+      "Stanser eget arbeid ved relevant risiko og gjør avvik synlige i stedet for å skjule dem i neste ledd.",
+      "Gjøre nødvendig taus kunnskap overførbar gjennom forklaring, dokumentasjon og trygg opplæring."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Arbeidet foregår tett på materialer, verktøy, drift og mennesker, der små faglige valg raskt kan få følger for kvalitet, sikkerhet, fremdrift og kropp.",
+      "Hverdagen veksler mellom oppdrag/befaring, konkret utførelse, kontroll og avvik, og overlevering eller opplæring."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Faglig status kommer av pålitelig utførelse, presis dømmekraft og evnen til å holde standard når snarveier er fristende.",
+      "Rollen kan være mentor og faglig referansepunkt uten å få automatisk personal-, budsjett- eller godkjenningsmyndighet."
+    ],
+    "workplaces": [
+      "oppdrags_og_befaringsflate",
+      "fag_og_utstyrsplass",
+      "kvalitets_og_avvikspunkt",
+      "overleverings_og_opplaeringsflate"
     ]
   },
   "career_path": {
     "entry_from": [
-      "Tidligere tier i samme badge-kategori."
+      "Praktisk arbeid eller opplæringsløp der grunnleggende arbeidsflyt, sikkerhet og fagstandard er etablert."
     ],
     "progression_to": [
-      "Neste tier i samme badge-kategori."
+      "Mer selvstendig fagansvar, opplæring, kvalitetsansvar eller gulvnær koordinering."
     ],
     "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
+      "Mentor-/opplæringsansvar, kvalitetsansvar eller overgang til arbeidslederrolle når mandat og kompetanse følger med."
     ],
     "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
+      "Skifte til nærliggende fagspesialisering, vedlikehold, kvalitet eller annen praktisk rolle.",
+      "Velge bort lederløp og beholde en sterk faglig spesialistposisjon."
     ],
     "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
+      "Faglig tillit svekkes dersom snarveier, skjulte avvik eller arbeid utenfor kompetanse blir en vane.",
+      "Uformelt ansvar kan vokse raskere enn formelt mandat og skape risiko dersom spilleren overtar beslutninger som tilhører andre funksjoner."
     ]
   },
   "required_knowledge": {
     "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
+      "Praktisk fagkompetanse, relevante standarder/instrukser og forståelse for sikker utførelse og kvalitetskontroll."
     ],
     "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
+      "Standardisert arbeid, verktøy- og utstyrsbruk, kvalitetskontroll, grunnleggende feilsøking, avviksdokumentasjon og sikker overlevering.",
+      "Evne til å forklare praktiske vurderinger og lære bort arbeid uten å skjule kompetansegrenser."
     ],
     "category_knowledge": [
-      "For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Hvordan praktisk fagarbeid kobler produksjon, vedlikehold, kvalitet, HMS og dokumentasjon."
     ],
     "history_go_badges": [
       "naeringsliv"
@@ -62,35 +81,71 @@
     "place_connections": [],
     "people_connections": []
   },
+  "authority_boundary": {
+    "may": [
+      "utføre arbeid innen dokumentert eller etablert kompetanse",
+      "stanse eget arbeid ved relevant risiko",
+      "rapportere avvik og be om faglig avklaring",
+      "lære bort arbeidsmåter innen eget faglige mandat"
+    ],
+    "may_not": [
+      "arbeide utenfor nødvendig kompetanse",
+      "omgå sikkerhetssperrer eller påkrevde kontrollsteg",
+      "selvgodkjenne alvorlige avvik uten rett kontrollfunksjon",
+      "skjule feil for å beskytte tempo, kolleger eller egen status"
+    ]
+  },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
+      "id": "tempo_vs_standard",
+      "title": "Tempo mot faglig standard",
+      "description": "Arbeidet kan leveres raskere dersom et kontroll- eller sikkerhetstrinn hoppes over, men risikoen flyttes videre til mennesker, utstyr eller neste ledd.",
+      "pressure": "tempo_vs_kvalitet",
       "affects": [
         "trust",
-        "status",
+        "quality",
         "risk"
       ]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
+      "id": "ansvar_uten_full_myndighet",
+      "title": "Ansvar uten full myndighet",
+      "setup": "Du ser et faglig problem andre helst vil løse med en kjent snarvei. Du må velge mellom å la det passere, dokumentere og korrigere innen eget mandat, eller eskalere når grensen er nådd.",
+      "choice_axis": "snarvei_vs_faglig_integritet",
+      "consequence_axis": "kortsiktig_flyt_vs_langsiktig_tillit",
       "mail_hooks": [
         "job",
         "conflict",
-        "story"
+        "story",
+        "event"
       ]
     }
   ],
   "related_people": [],
-  "related_places": [],
+  "related_places": [
+    {
+      "id": "oppdrags_og_befaringsflate",
+      "name": "Oppdrags- og befaringsflaten",
+      "function": "Her tolkes arbeidsgrunnlag, tilstand, kundebehov og kritiske uklarheter før utførelse, slik at spilleren ikke starter på et feil eller utrygt premiss."
+    },
+    {
+      "id": "fag_og_utstyrsplass",
+      "name": "Fag- og utstyrsplassen",
+      "function": "Arbeidsflaten for verktøy, utstyr, materialer og selve utførelsen, der kompetansegrense, ergonomi, vedlikehold og sikker bruk blir konkrete valg."
+    },
+    {
+      "id": "kvalitets_og_avvikspunkt",
+      "name": "Kvalitets- og avvikspunktet",
+      "function": "Her kontrolleres resultat mot standard, feil spores, korrigering dokumenteres og alvorlige avvik løftes til riktig kontroll- eller beslutningsnivå."
+    },
+    {
+      "id": "overleverings_og_opplaeringsflate",
+      "name": "Overleverings- og opplæringsflaten",
+      "function": "Her gjøres taus kunnskap eksplisitt gjennom sikker overlevering, forklaring og opplæring, med tydelig status på restarbeid, risiko og hva som fortsatt må kontrolleres."
+    }
+  ],
   "mail_integration": {
     "role_scope": "fagarbeider",
     "mail_profile": "naeringsliv_fagarbeider",
@@ -105,16 +160,28 @@
     "mail_variables": {
       "role_title": "Fagarbeider",
       "category": "naeringsliv",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+      "main_pressure": "tempo_vs_kvalitet",
+      "ethical_axis": "snarvei_vs_faglig_integritet",
+      "status_axis": "faglig_tillit_vs_risiko"
     },
     "recommended_mail_families": [],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
+  "competence_axes": [
+    "fagkompetanse",
+    "kvalitet",
+    "HMS",
+    "prosessforstaelse",
+    "feilsoking",
+    "dokumentasjon"
+  ],
+  "ideal_type_problems": [
+    "produksjon_vs_HMS",
+    "tempo_vs_kvalitet",
+    "selvstendighet_vs_kompetansegrense"
+  ],
   "notes": [
-    "Basert på badges.json: naeringsliv / Fagarbeider."
+    "Basert på den canonicale Fagarbeider-tittelen, eksisterende to-ukers praksisflyt og naeringsliv_fag_og_produksjon FWG.",
+    "Systematic rollout: konkrete arbeidsflater er materialisert uten å endre runtime scope, plan eller mailfamilier."
   ]
 }
