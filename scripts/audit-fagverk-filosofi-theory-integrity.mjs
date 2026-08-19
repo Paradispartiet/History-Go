@@ -6,7 +6,12 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const json = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
 const arr = (v) => Array.isArray(v) ? v : [];
-const norm = (v) => String(v || '').toLocaleLowerCase('nb').replace(/\s+/g, ' ').trim();
+const norm = (v) => String(v || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('nb').replace(/[^a-z0-9]+/g, ' ').trim();
+const token = (name) => norm(name).split(/\s+/).filter((part) => part.length >= 3).at(-1) ?? norm(name);
+const containsName = (text, name) => {
+  const haystack = ` ${norm(text)} `;
+  return haystack.includes(` ${norm(name)} `) || haystack.includes(` ${token(name)} `);
+};
 const assert = (ok, msg) => { if (!ok) throw new Error(msg); };
 
 const P = {
@@ -19,41 +24,6 @@ const P = {
 
 function sectionProse(article, id) {
   return arr(article.sections).find((section) => section.id === id)?.paragraphs?.join(' ') || '';
-}
-
-function resolveArticleProvenance({ article, hookIds, hookById, thinkerById, theoryProse, emneId }) {
-  const directIds = arr(article.thinker_refs);
-  if (directIds.length) {
-    const resolved = directIds.map((id) => {
-      const thinker = thinkerById.get(id);
-      assert(thinker, `Philosophy artikkel peker til ukjent teoretiker: ${emneId}/${id}`);
-      assert(arr(thinker.works).length > 0, `Philosophy teoretiker mangler verk: ${id}`);
-      return { id, name: thinker.name, works: arr(thinker.works), source: 'article.thinker_refs' };
-    });
-    assert(resolved.some((thinker) => theoryProse.includes(norm(thinker.name))), `Philosophy teoretiker er ikke brukt i teoriproasa: ${emneId}`);
-    return { mode: 'article_refs', thinkers: resolved };
-  }
-
-  const hookCandidates = [];
-  for (const hookId of hookIds) {
-    const hook = hookById.get(hookId);
-    for (const hookThinker of arr(hook?.canon?.thinkers)) {
-      assert(hookThinker.id && thinkerById.has(hookThinker.id), `Philosophy hook peker til ukjent teoretiker: ${hookId}/${hookThinker.id || '<missing>'}`);
-      assert(arr(hookThinker.works).length > 0, `Philosophy hook-teoretiker mangler verk: ${hookId}/${hookThinker.id}`);
-      const nameUsed = theoryProse.includes(norm(hookThinker.name));
-      const usedWorks = arr(hookThinker.works).filter((work) => theoryProse.includes(norm(work)));
-      if (nameUsed && usedWorks.length) {
-        hookCandidates.push({
-          id: hookThinker.id,
-          name: hookThinker.name,
-          works: usedWorks,
-          source: `theory_hook:${hookId}`
-        });
-      }
-    }
-  }
-  assert(hookCandidates.length > 0, `Philosophy artikkel mangler faktisk brukt teoretiker-/verkprovenance i egne theory hooks: ${emneId}`);
-  return { mode: 'canonical_hook_prose_match', thinkers: hookCandidates };
 }
 
 export function auditFilosofiTheoryIntegrity() {
@@ -76,9 +46,8 @@ export function auditFilosofiTheoryIntegrity() {
 
   const fields = [];
   const coveredEmner = new Set();
-  const usedThinkers = new Set();
+  const usedActors = new Set();
   const usedWorks = new Set();
-  const provenanceModes = new Map();
 
   assert(fagkart.subject_id === 'filosofi', 'Ugyldig Philosophy fagkart');
   assert(arr(fagkart.categories).length > 0, 'Philosophy mangler canonicale hovedfelt');
@@ -103,7 +72,6 @@ export function auditFilosofiTheoryIntegrity() {
       assert(hookIds.length > 0, `Philosophy artikkel mangler theory hook: ${emneId}`);
       assert(hookIds.every((id) => hookById.has(id)), `Philosophy artikkel peker til ukjent theory hook: ${emneId}`);
       assert(hookIds.some((id) => fieldHooks.has(id)), `Philosophy artikkel mangler theory hook fra eget hovedfelt: ${emneId}`);
-
       for (const hookId of hookIds) {
         const hook = hookById.get(hookId);
         assert(hook.generator_constraints?.avoid_name_guessing === true, `Philosophy theory hook blokkerer ikke navnetrivia: ${hookId}`);
@@ -113,8 +81,40 @@ export function auditFilosofiTheoryIntegrity() {
         }
       }
 
+      const sourceIntegrity = article.quality?.source_integrity;
+      const debateActors = arr(article.university_quality?.debate_thinkers);
+      const anchors = arr(sourceIntegrity?.primary_work_anchors);
+      const thinkerRefs = arr(article.thinker_refs);
       const works = arr(article.primary_work_refs);
-      assert(works.length > 0, `Philosophy artikkel mangler primærverk: ${emneId}`);
+      assert(sourceIntegrity?.state === 'reviewed', `Philosophy source integrity er ikke reviewed: ${emneId}`);
+      assert(sourceIntegrity?.standard === 'debate_aligned_primary_works_v2', `Philosophy source integrity har feil standard: ${emneId}`);
+      assert(JSON.stringify(arr(sourceIntegrity?.debate_actors)) === JSON.stringify(debateActors), `Philosophy source integrity har stale debate actors: ${emneId}`);
+      assert(debateActors.length >= 2, `Philosophy artikkel mangler reell debattbredde: ${emneId}`);
+      assert(anchors.length >= 2, `Philosophy artikkel mangler primærverkankre: ${emneId}`);
+      assert(JSON.stringify(works) === JSON.stringify(anchors.map((anchor) => anchor.work)), `Philosophy primary_work_refs matcher ikke reviewed anchors: ${emneId}`);
+
+      const theoryProse = sectionProse(article, 'teorihistorie');
+      const disagreementProse = sectionProse(article, 'uenighet');
+      assert(norm(theoryProse).length > 0, `Philosophy artikkel mangler teorihistorie i prosa: ${emneId}`);
+      assert(norm(disagreementProse).length > 0, `Philosophy artikkel mangler rival-/uenighetsprosa: ${emneId}`);
+
+      const debateKeys = new Set(debateActors.map(norm));
+      const actorWorkEvidence = [];
+      for (const anchor of anchors) {
+        assert(anchor.actor && debateKeys.has(norm(anchor.actor)), `Philosophy primæranker har aktør utenfor debatten: ${emneId}/${anchor.actor || '<missing>'}`);
+        assert(anchor.work && norm(theoryProse).includes(norm(anchor.work)), `Philosophy primærverk er bare metadata: ${emneId}/${anchor.work || '<missing>'}`);
+        assert(containsName(theoryProse, anchor.actor), `Philosophy debattaktør er ikke brukt med verket i teoriproasa: ${emneId}/${anchor.actor}`);
+        if (anchor.canonical_ref) {
+          const canonical = thinkerById.get(anchor.canonical_ref);
+          assert(canonical, `Philosophy primæranker har ukjent canonical_ref: ${emneId}/${anchor.canonical_ref}`);
+          assert(thinkerRefs.includes(anchor.canonical_ref), `Philosophy canonical debattaktør mangler thinker_ref: ${emneId}/${anchor.canonical_ref}`);
+          assert(arr(canonical.works).some((work) => norm(work) === norm(anchor.work)), `Philosophy canonical aktør/verk matcher ikke: ${emneId}/${anchor.canonical_ref}/${anchor.work}`);
+        }
+        usedActors.add(norm(anchor.actor));
+        usedWorks.add(anchor.work);
+        actorWorkEvidence.push({ actor: anchor.actor, work: anchor.work, canonicalRef: anchor.canonical_ref ?? null });
+      }
+      for (const id of thinkerRefs) assert(thinkerById.has(id), `Philosophy artikkel peker til ukjent thinker_ref: ${emneId}/${id}`);
 
       const sourceIds = arr(article.source_ids);
       assert(sourceIds.length > 0 && sourceIds.every((id) => sourceById.has(id)), `Philosophy artikkel mangler gyldig scholarly source: ${emneId}`);
@@ -123,28 +123,18 @@ export function auditFilosofiTheoryIntegrity() {
       assert(claims.some((claim) => claim.type === 'rival_position'), `Philosophy artikkel mangler rival position: ${emneId}`);
       assert(claims.every((claim) => arr(claim.source_ids).length > 0 && arr(claim.source_ids).every((id) => sourceById.has(id))), `Philosophy claim mangler scholarly source: ${emneId}`);
 
-      const theoryProse = norm(sectionProse(article, 'teorihistorie'));
-      const disagreementProse = norm(sectionProse(article, 'uenighet'));
-      assert(theoryProse.length > 0, `Philosophy artikkel mangler teorihistorie i prosa: ${emneId}`);
-      assert(disagreementProse.length > 0, `Philosophy artikkel mangler rival-/uenighetsprosa: ${emneId}`);
-      assert(works.some((work) => theoryProse.includes(norm(work))), `Philosophy primærverk er bare metadata: ${emneId}`);
-
-      const provenance = resolveArticleProvenance({ article, hookIds, hookById, thinkerById, theoryProse, emneId });
-      provenanceModes.set(provenance.mode, (provenanceModes.get(provenance.mode) || 0) + 1);
-      for (const thinker of provenance.thinkers) usedThinkers.add(thinker.id);
-      works.forEach((work) => usedWorks.add(work));
-
       coveredEmner.add(emneId);
       fieldEvidence.push({
         emneId,
         theoryHookIds: hookIds,
-        provenanceMode: provenance.mode,
-        resolvedThinkerRefs: provenance.thinkers.map((thinker) => thinker.id),
-        actuallyUsedThinkerWorks: provenance.thinkers.map((thinker) => ({ id: thinker.id, works: thinker.works })),
+        debateActors,
+        actorWorkEvidence,
+        thinkerRefs,
         primaryWorkRefs: works,
         sourceIds,
         rivalClaimIds: claims.filter((claim) => claim.type === 'rival_position').map((claim) => claim.id),
-        proseSections: ['teorihistorie','uenighet']
+        proseSections: ['teorihistorie','uenighet'],
+        provenanceStandard: sourceIntegrity.standard
       });
     }
 
@@ -165,9 +155,9 @@ export function auditFilosofiTheoryIntegrity() {
     fieldCount: fields.length,
     canonicalEmneCount: emneById.size,
     coveredEmneCount: coveredEmner.size,
-    uniqueThinkerCount: usedThinkers.size,
+    uniqueDebateActorCount: usedActors.size,
     uniquePrimaryWorkCount: usedWorks.size,
-    provenanceModes: Object.fromEntries(provenanceModes),
+    provenanceStandard: 'debate_aligned_primary_works_v2',
     fields
   };
 }
@@ -180,9 +170,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       fieldCount: result.fieldCount,
       canonicalEmneCount: result.canonicalEmneCount,
       coveredEmneCount: result.coveredEmneCount,
-      uniqueThinkerCount: result.uniqueThinkerCount,
+      uniqueDebateActorCount: result.uniqueDebateActorCount,
       uniquePrimaryWorkCount: result.uniquePrimaryWorkCount,
-      provenanceModes: result.provenanceModes,
+      provenanceStandard: result.provenanceStandard,
       fields: result.fields.map((field) => ({ id: field.id, status: field.status, emneCount: field.emneCount, theoryHookCount: field.theoryHookCount }))
     }, null, 2));
   } catch (error) {
