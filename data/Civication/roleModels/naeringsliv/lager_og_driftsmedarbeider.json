@@ -1,6 +1,6 @@
 {
   "schema": "civication_role_model_v1",
-  "version": 1,
+  "version": 2,
   "source": {
     "badge_file": "data/badges.json",
     "badge_id": "naeringsliv",
@@ -13,55 +13,83 @@
   "role_id": "naer_lager_og_driftsmedarbeider",
   "title": "Lager- og driftsmedarbeider",
   "core_narrative": [
-    "I Civication er Lager- og driftsmedarbeider en praktisk næringslivsrolle der spilleren lærer at fysisk vareflyt, systemregistrering, avvik og HMS må stemme før resten av driften kan stole på lageret."
+    "Lager- og driftsmedarbeideren holder fysisk vareflyt og digital sporbarhet samlet slik at resten av virksomheten kan stole på hvor varen er, hva som har skjedd og hva som fortsatt er uavklart.",
+    "Rollen trener skillet mellom lokal fart og robust flyt: en snarvei kan redde noen minutter nå og samtidig skape feilplukk, differanser eller sikkerhetsrisiko i neste ledd.",
+    "God drift gjør avvik og nestenulykker synlige tidlig, uten å gjøre dem til personlige skyldsaker eller skjule dem for å beskytte tempoet."
   ],
   "work_life": {
     "daily_work": [
-      "Tar imot varer, kontrollerer kolli og følgeseddel, plasserer varer, plukker og pakker ordre, teller lager og registrerer bevegelser i system."
+      "Tar imot varer og kontrollerer kolli, følgeseddel, skade og lokasjon før varen slippes videre.",
+      "Plukker og pakker mot ordre, kontrollerer varen mot systemet og stopper når identitet, antall eller lokasjon ikke stemmer.",
+      "Teller lager, sporer differanser og dokumenterer avvik slik at feilen kan følges tilbake til mottak, flytting, plukk eller registrering.",
+      "Holder gangsoner, hjelpemidler og arbeidsmåter innen HMS-krav og overleverer restarbeid, risiko og åpne avvik til neste ledd eller skift."
     ],
     "responsibilities": [
-      "Holde vareflyt og sporbarhet sammen under tempo, driftspress og fysisk belastning.",
-      "Melde avvik tidlig nok til at små feil ikke flyttes videre til butikk, drift, kunde, økonomi eller transport."
+      "Holde fysisk vare og systemstatus konsistente nok til at butikk, drift, transport og økonomi kan stole på lagerinformasjonen.",
+      "Melde avvik før de flyttes videre som tilsynelatende riktige varer, tall eller leveranser.",
+      "Prioritere sikker arbeidsflyt og ergonomi selv når kø, transport eller andre ledd presser på for mer tempo.",
+      "Skille mellom korrigering innen eget mandat og forhold som krever arbeidsleder, HMS-ansvar eller annen faglig eskalering."
     ],
     "work_environment": [
-      "Arbeidsmiljøet er konkret, fysisk og tidsstyrt, med korte avklaringer mellom lager, drift, butikk, transport og økonomi."
+      "Arbeidet foregår mellom varemottak, lagerlokasjoner, plukk/pakk, systemterminaler og overleveringspunkter, med korte tidsvinduer og fysisk belastning.",
+      "Feil får et etterliv: en feil lokasjon kan bli feilplukk, en uregistrert bevegelse kan bli lagerdifferanse, og en blokkert gang kan bli nestenulykke."
     ],
     "status_position": [
-      "Rollen blir ofte usynlig når alt flyter, men svært synlig når feilplukk, differanser eller HMS-brudd stopper andre ledd."
+      "Rollen er ofte usynlig når vareflyten virker, men bygger tillit gjennom stabil sporbarhet, presise avvik og sikker gjennomføring.",
+      "Medarbeideren kan stoppe eget arbeid ved risiko og rapportere avvik, men kan ikke omgå sikkerhet, endre lagergrunnlag uten spor eller ta formell godkjenningsmyndighet som tilhører andre."
+    ],
+    "workplaces": [
+      "varemottak_og_kollikontroll",
+      "plukk_pakk_og_systemflate",
+      "telling_og_avvikspunkt",
+      "hms_og_overleveringsflate"
     ]
   },
   "career_path": {
     "entry_from": [
-      "Tidligere tier i samme badge-kategori."
+      "Innledende lager-, logistikk- eller driftsarbeid med avgrensede mottaks-, plukk- eller registreringsoppgaver."
     ],
     "progression_to": [
-      "Neste tier i samme badge-kategori."
+      "Mer selvstendig driftsansvar, lagerkoordinering, fag-/kvalitetsarbeid eller arbeidsledelse."
     ],
     "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
+      "Ansvar for større vareflyt, opplæring, avviksoppfølging eller skiftkoordinering."
     ],
     "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
+      "Skifte til logistikk, innkjøp, transport, vedlikehold eller annen driftsnær spesialisering."
     ],
     "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
+      "Tap av tillit dersom snarveier gjør systemet mindre sant enn det fysiske lageret.",
+      "Belastning eller sikkerhetshendelser dersom kroppen og gangsonene brukes som buffer for produksjonspress."
     ]
   },
   "required_knowledge": {
     "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
+      "Grunnleggende forståelse for vareflyt, lagerregistrering, avvik, ergonomi og HMS."
     ],
     "skills": [
-      "Mottakskontroll, plukk/pakk, lagerplassering, avviksmelding, enkel systemregistrering, telling, HMS og prioritering under press."
+      "Mottakskontroll, plukk/pakk, lagerplassering, systemregistrering, telling, avvikssporing, sikker bruk av hjelpemidler og tydelig overlevering."
     ],
     "category_knowledge": [
-      "For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Hvordan fysisk vareflyt, systemdata og intern kontroll kobler lageret til butikk, transport, økonomi og kunde."
     ],
-    "history_go_badges": [
-      "naeringsliv"
-    ],
+    "history_go_badges": ["naeringsliv"],
     "place_connections": [],
     "people_connections": []
+  },
+  "authority_boundary": {
+    "may": [
+      "kontrollere mottak, plukk og lagerstatus innen eget arbeid",
+      "stanse eget arbeid ved relevant sikkerhetsrisiko",
+      "registrere og rapportere lager- og kvalitetsavvik",
+      "be om avklaring når fysisk vare og system ikke stemmer"
+    ],
+    "may_not": [
+      "omgå sikkerhetssperrer eller bruke utrygge snarveier for å holde tempo",
+      "endre lagerstatus uten spor for å få differansen til å forsvinne",
+      "skjule skade, feilplukk eller nestenulykke for å beskytte egen eller lagets status",
+      "selvgodkjenne forhold som krever arbeidsleder, HMS-ansvar eller annen formell kontroll"
+    ]
   },
   "challenges": [
     {
@@ -69,22 +97,14 @@
       "title": "Tempo mot nøyaktighet",
       "description": "Driften venter på varen, men små feil i mottak, plukk eller registrering blir større når de flyttes videre.",
       "pressure": "tempo_vs_noyaktighet",
-      "affects": [
-        "trust",
-        "flow",
-        "risk"
-      ]
+      "affects": ["trust", "flow", "risk"]
     },
     {
       "id": "sikkerhet_vs_produksjonspress",
       "title": "Sikkerhet mot produksjonspress",
-      "description": "Fysisk arbeid kan gjøres raskere på kort sikt, men HMS svikter hvis kroppen blir den skjulte bufferen.",
+      "description": "Fysisk arbeid kan gjøres raskere på kort sikt, men HMS svikter hvis kroppen eller arbeidsområdet blir den skjulte bufferen.",
       "pressure": "sikkerhet_vs_produksjonspress",
-      "affects": [
-        "stability",
-        "health",
-        "output"
-      ]
+      "affects": ["stability", "health", "output"]
     }
   ],
   "dilemmas": [
@@ -94,36 +114,36 @@
       "setup": "Du kan hjelpe køen ved å slippe varen raskt videre, eller stoppe lenge nok til at system, fysisk lager og avvik stemmer.",
       "choice_axis": "flyt_vs_sporbarhet",
       "consequence_axis": "lokal_flyt_vs_langsiktig_tillit",
-      "mail_hooks": [
-        "job",
-        "people"
-      ]
-    },
-    {
-      "id": "hjelpe_laget_vs_folge_systemet",
-      "title": "Hjelpe laget eller følge systemet",
-      "setup": "En erfaren kollega viser en snarvei som hjelper nå, men som gjør vareflyten mindre sporbar senere.",
-      "choice_axis": "hjelpe_laget_vs_folge_systemet",
-      "consequence_axis": "sosial_tillit_vs_sporbar_risiko",
-      "mail_hooks": [
-        "people",
-        "job"
-      ]
+      "mail_hooks": ["job", "conflict", "story", "event", "people"]
     }
   ],
   "related_people": [],
-  "related_places": [],
+  "related_places": [
+    {
+      "id": "varemottak_og_kollikontroll",
+      "name": "Varemottak og kollikontroll",
+      "function": "Her sammenholdes fysisk leveranse, følgeseddel, skade, antall og mottaksstatus før varen får en lagerposisjon."
+    },
+    {
+      "id": "plukk_pakk_og_systemflate",
+      "name": "Plukk-, pakk- og systemflaten",
+      "function": "Her kobles ordre, fysisk vare og registrert lokasjon sammen; uklar identitet eller differanse må avklares før varen sendes videre."
+    },
+    {
+      "id": "telling_og_avvikspunkt",
+      "name": "Telling- og avvikspunktet",
+      "function": "Her spores lagerdifferanser, feilplukk og skader tilbake til mulige hendelser, og korrigeringer dokumenteres i stedet for å skjule avviket."
+    },
+    {
+      "id": "hms_og_overleveringsflate",
+      "name": "HMS- og overleveringsflaten",
+      "function": "Her gjøres gangsoner, hjelpemidler, nestenulykker, restarbeid og åpne risikoer synlige før neste person eller skift overtar."
+    }
+  ],
   "mail_integration": {
     "role_scope": "lager_og_driftsmedarbeider",
     "mail_profile": "naer_lager_og_driftsmedarbeider",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
+    "can_feed_mail_types": ["job", "story", "conflict", "event", "people", "faction_choice"],
     "mail_variables": {
       "role_title": "Lager- og driftsmedarbeider",
       "category": "naeringsliv",
@@ -138,22 +158,10 @@
     ],
     "role_model_refs_supported": true
   },
-  "competence_axes": [
-    "vareflyt",
-    "mottak",
-    "plukk_pakk",
-    "avvik",
-    "systemregistrering",
-    "HMS",
-    "fysisk_arbeid_og_driftsansvar"
-  ],
-  "ideal_type_problems": [
-    "tempoarbeideren som holder flyt ved å skjule risiko",
-    "snarveisarbeideren som hjelper laget og svekker sporbarheten",
-    "avviksbyggeren som gjør feil synlige uten å gjøre dem til skyld"
-  ],
+  "competence_axes": ["vareflyt", "mottak", "plukk_pakk", "avvik", "systemregistrering", "HMS", "fysisk_arbeid_og_driftsansvar"],
+  "ideal_type_problems": ["tempo_vs_noyaktighet", "flyt_vs_sporbarhet", "sikkerhet_vs_produksjonspress"],
   "notes": [
-    "Basert på badges.json: naeringsliv / Lager- og driftsmedarbeider.",
-    "Oppdatert med grunnkoblinger til egen rollepakke, uten Praksisfortellinger uke 1/uke 2."
+    "Basert på eksisterende to-ukers Lager- og driftsmedarbeider-plan og canonical Praksisfortellinger-registrering.",
+    "Systematic rollout: konkrete arbeidsflater er materialisert uten å endre den etablerte 20-stegs praksisplanen."
   ]
 }
