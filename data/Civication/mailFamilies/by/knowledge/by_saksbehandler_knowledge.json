@@ -1,0 +1,17 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"by","role_scope":"by_saksbehandler","mail_type":"knowledge",
+  "families":[{"id":"forvaltningsforstaelse","purpose":"Gjør likebehandling og skjønn eksplisitt som faglig kunnskap.","learning_focus":["likebehandling","skjonn","begrunnelse"],"mails":[{
+    "id":"by_saksbehandler_knowledge_likebehandling_001","mail_type":"knowledge","mail_family":"forvaltningsforstaelse","role_scope":"by_saksbehandler","phase":"lunch","priority":52,"cooldown":2,"repeatable":false,"stage":"early",
+    "from":"juridisk_rådgiver_erik","sender":"juridisk_rådgiver_erik","person_id":"juridisk_rådgiver_erik","place_id":"regel_og_skjonnsvurdering",
+    "subject":"Likebehandling betyr ikke at ulike faktiske forhold må gi samme resultat",
+    "summary":"Erik ber deg forklare hvorfor to saker med samme regel og tall fortsatt kan vurderes forskjellig når relevante stedlige forhold er ulike.",
+    "purpose":"Knytter den praktiske sammenligningen av saker til prinsippet om saklig, begrunnet likebehandling.",
+    "stakes":"Mekanisk likhet er enkel å vise; reell likebehandling krever at relevante likheter og forskjeller dokumenteres eksplisitt.",
+    "situation":["Begge saker bruker samme hjemmel.","Den ene ligger mot et åpent byrom, den andre mot en trang skolevei.","Forskjellen kan bare bære et ulikt resultat dersom den er relevant og synlig i begrunnelsen."],
+    "task_domain":"forvaltningsforstaelse","task_kind":"knowledge","competency":"likebehandling","pressure":"identisk_resultat_vs_saklig_forskjell","choice_axis":"begrunne_relevant_forskjell_vs_mekanisk_likhet","consequence_axis":"rettferdighet_vs_formalisme","narrative_arc":"Saksbehandleren forstår at likebehandling handler om konsistente kriterier, ikke om å ignorere relevante forskjeller.",
+    "choices":[
+      {"id":"A","label":"Sammenlign relevante faktiske og rettslige forhold og begrunn forskjellen eksplisitt","reply":"Jeg viser hva som er likt, hva som faktisk er forskjellig, og hvorfor den forskjellen er relevant for vurderingen.","effect":1,"tags":["knowledge","fairness","reasoning"],"feedback":"Et eventuelt ulikt resultat får et synlig og kontrollerbart saklig grunnlag."},
+      {"id":"B","label":"Hold samme resultat når regel og hovedtall er like","reply":"Jeg holder samme resultat når hjemmel og hovedtall er like for å sikre forutsigbar praksis.","effect":0,"tags":["consistency","formalism"],"feedback":"Praksisen blir enkel å forklare, men kan bli blind for faktiske forskjeller som regelverket forutsetter at du vurderer."}
+    ]
+  }]}]
+}
