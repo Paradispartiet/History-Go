@@ -18,27 +18,23 @@ test('existing strict subject theory gates remain authoritative and pass', () =>
   }
 });
 
-test('Film & TV and Philosophy have strict field-integrity evidence', () => {
+test('Film & TV, Philosophy and History have strict field-integrity evidence', () => {
   const report = auditFagverkTheoryReconciliation();
   const byId = new Map(report.subjects.map((subject) => [subject.id, subject]));
   const film = byId.get('film_tv');
   const philosophy = byId.get('filosofi');
+  const history = byId.get('historie');
   assert.equal(film?.genericDiagnosticStatus, 'green');
   assert.equal(film?.strictGate?.status, 'pass');
   assert.equal(film?.reconciliationClass, 'strict_integrity_validated');
   assert.equal(philosophy?.strictGate?.status, 'pass');
   assert.equal(philosophy?.strictGate?.proseBindingStatus, 'prose_and_claim_binding_validated');
   assert.equal(philosophy?.reconciliationClass, 'strict_integrity_validated');
+  assert.equal(history?.strictGate?.status, 'pass');
+  assert.equal(history?.strictGate?.proseBindingStatus, '23_of_23_fields_validated_across_18_generated_and_5_handbuilt_chapters');
+  assert.equal(history?.reconciliationClass, 'strict_integrity_validated');
   assert.equal(film?.substantiveGapProven, false);
   assert.equal(philosophy?.substantiveGapProven, false);
-});
-
-test('History has strong existing generated-chapter theory evidence but keeps five hand-built chapters open for reconciliation', () => {
-  const report = auditFagverkTheoryReconciliation();
-  const history = report.subjects.find((subject) => subject.id === 'historie');
-  assert.equal(history?.strictGate?.status, 'pass');
-  assert.match(history?.strictGate?.proseBindingStatus || '', /18_generator_chapters_validated_5_handbuilt_chapters_pending/);
-  assert.equal(history?.reconciliationClass, 'handbuilt_chapter_theory_reconciliation_required');
   assert.equal(history?.substantiveGapProven, false);
 });
 
