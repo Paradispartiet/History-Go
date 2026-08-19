@@ -2,11 +2,11 @@
 
 Status: **canonical og bindende fagfilkontrakt**  
 Eier: History GO fagdata og kunnskapsarkitektur  
-Sist kontrollert: **2026-08-11**
+Sist kontrollert: **2026-08-19**
 
 Denne kontrakten definerer skillet mellom universell fagstruktur og geografisk innholdsproduksjon. Den gjelder alle fag, ikke bare Historie.
 
-Materialisering, felles renderer, adaptere, status, produksjonsrekkefølge og ferdigkrav for alle fagsider eies av [`FAGVERK.md`](./FAGVERK.md). Navigasjonsadresser og sideroller eies av [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md). Denne filen eier fagdataarkitekturen og skal ikke brukes som konkurrerende fagsidekontrakt.
+Materialisering, felles renderer, adaptere, status, produksjonsrekkefølge og ferdigkrav for alle fagsider eies av [`FAGVERK.md`](./FAGVERK.md). Navigasjonsadresser og sideroller eies av [`FAGVERK_NAVIGATION.md`](./FAGVERK_NAVIGATION.md). Den maskinlesbare tverrfaglige standarden for teori-, teoretiker- og modellkvalitet ligger i [`../data/fag/fagverk_theory_quality_contract_v1.json`](../data/fag/fagverk_theory_quality_contract_v1.json). Denne filen eier fagdataarkitekturen og skal ikke brukes som konkurrerende fagsidekontrakt.
 
 ## 1. Kjerneprinsipp
 
@@ -91,6 +91,30 @@ Universell fagdekning måles mot faglig relevans, ikke mot et forhåndsbestemt a
 
 En heldekningsvurdering skal dokumentere fagets avgrensning, kandidatgrunnlaget, inkluderte og utelatte emner, sammenslåinger, oppsplittinger, nabofagplasseringer, udekkede gap og mulig fyllstoff. Et emne skal inkluderes fordi det bærer en selvstendig og relevant faglig problemstilling, ikke fordi en modul eller et fagområde mangler ett objekt for å nå et tall.
 
+### 6.1 Teori-, teoretiker- og modellintegritet
+
+Teori-/modellbredde er en del av universell fagdekning og skal vurderes **kvalitativt per canonicalt hovedfelt**, ikke som en samlet navne- eller objektkvote for hele faget.
+
+Den bindende maskinstandarden er `data/fag/fagverk_theory_quality_contract_v1.json`. Følgende regler gjelder alle universelle fagpakker:
+
+- hvert canonicalt hovedfelt skal ha minst ett faglig bærende teori-, modell-, mekanisme-, lov-, paradigme- eller rammeverkgrunnlag som passer fagtypen;
+- et omstridt hovedfelt skal ha en reell rival, alternativ forklaring eller rivaliserende lesning der fagtradisjonen faktisk har dette;
+- teori skal være bundet til canonicale emner, claims eller annen faktisk fagtekst; metadata, quiz eller en navneliste alene teller ikke;
+- en navngitt teoretiker eller forsker teller bare når personen er knyttet til et konkret verk eller forskningsbidrag og faglig passende scholarly source;
+- samme generiske teorisett skal ikke brukes som pynt på tvers av urelaterte hovedfelt;
+- en universitets-, kurs- eller programside kan ikke være eneste dokumentasjon for selve teorien eller modellen;
+- alle teori-/modellobjekter skal ha `scope`, kjernepåstand eller mekanisme, evidens-/observasjonsgrunnlag og eksplisitte begrensninger eller gyldighetsområde;
+- der profilen krever det, skal objektet også dokumentere forutsetninger, hva det forklarer eller tolker godt, rival/alternativ, sentrale verk/bidrag og faktisk bruk i prosa;
+- teori skal brukes til å forklare et fenomen, tolke et verk, teste en mekanisme, sammenligne forklaringer eller avgrense en slutning; spørsmål av typen «hvem mente X?» skal ikke være hovedformen for læring.
+
+Fagtypene behandles forskjellig:
+
+- **humaniora og teori-/fortolkningstunge samfunnsfag:** teorier, skoler, sentrale teoretikere/forskere, verk, rivaliserende perspektiver og tolkningskonsekvens;
+- **naturvitenskap og formelle fag:** modeller, lover, mekanismer, paradigmer, forutsetninger og gyldighetsområder; forskernavn bare der de bærer reell faglig provenance;
+- **teknologi, profesjonsfag og anvendte/sammensatte fag:** teorier, modeller, standarder, empiriske rammeverk og sentrale forskningsbidrag med eksplisitt evidensnivå og anvendelsesbegrensning.
+
+En fagpakke kan ikke bestå endelig teoriintegritet fordi den har mange navn eller fordi aggregerte tellergrenser er nådd. Sluttporten skal kunne vise **hvilket hovedfelt**, **hvilket teori-/modellobjekt**, **hvilke kilder** og **hvilken faktisk innholdsbinding** som bærer godkjenningen.
+
 ### Geografisk produksjonsdekning
 
 Måler om et område har nok dokumenterte steder, personer, claims, kilder, cases og quizer til å realisere den universelle fagmodellen.
@@ -137,7 +161,7 @@ Før en ny fagfil eller geografisk variant opprettes:
 4. Oppdater geografisk profil, case, claim, kilde, sted, person eller quiz dersom mangelen er lokal.
 5. Ikke kopier hele fagpakker for å få lokal dekning.
 6. Registrer aktive filer i riktig manifest.
-7. Kjør relevante fag-, Knowledge-, quiz- og dokumentasjonsporter.
+7. Kjør relevante fag-, theory-integritets-, Knowledge-, quiz- og dokumentasjonsporter.
 8. Følg `docs/FAGVERK.md` når endringen materialiserer eller ferdigstiller en fagside.
 
 Ved universelle fagendringer skal arbeidet i tillegg spørre:
@@ -147,8 +171,9 @@ Ved universelle fagendringer skal arbeidet i tillegg spørre:
 - Er objektet selvstendig, eller bør det være et underpunkt eller en relasjon?
 - Skaper endringen reell dekning, eller bare høyere telling?
 - Hvilke dokumenterte hull står fortsatt igjen etter endringen?
+- Hvilket canonicalt hovedfelt og hvilken faktisk prosa/claim-binding bærer eventuell ny teori eller modell?
 
-Ingen universell fagpakke kan erklæres komplett bare fordi den har nådd et tidligere forventet antall områder, emner, kapitler eller andre innholdsenheter.
+Ingen universell fagpakke kan erklæres komplett bare fordi den har nådd et tidligere forventet antall områder, emner, teorier, modeller, kapitler eller andre innholdsenheter.
 
 ## 11. Beslutningstest
 
