@@ -37,6 +37,14 @@
     "data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json",
     "data/Civication/mailFamilies/by/consequence/by_radgiver_plan_consequence.json",
     "data/Civication/mailFamilies/by/job/by_saksbehandler_job.json",
+    "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+    "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
+    "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+    "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+    "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+    "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+    "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+    "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
     "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
     "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
     "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
@@ -21302,6 +21310,505 @@
       "category": "by",
       "compatibility_projection": {
         "category": "by",
+        "choice_axis": "begrunne_forskjell_vs_kopiere_resultat",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Forskjellen blir etterprøvbar i stedet for å se tilfeldig ut.",
+            "id": "A",
+            "label": "Bruk den gamle saken som sammenligning og begrunn hvorfor skoleveien er relevant forskjell",
+            "reply": "Jeg sammenligner sakene eksplisitt og begrunner hvorfor skoleveien gjør virkningsbildet annerledes.",
+            "tags": [
+              "fairness",
+              "law",
+              "place"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Resultatet ser konsistent ut, men den relevante stedlige forskjellen forsvinner fra vurderingen.",
+            "id": "B",
+            "label": "Følg tidligere praksis for å unngå ulik behandling",
+            "reply": "Jeg følger den tidligere saken siden mål og hjemmel er de samme.",
+            "tags": [
+              "precedent",
+              "formalism",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "begrunnet_skjonn",
+        "consequence_axis": "reell_likebehandling_vs_mekanisk_likhet",
+        "cooldown": 2,
+        "from": "juridisk_rådgiver_erik",
+        "id": "by_saksbehandler_conflict_likebehandling_001",
+        "mail_family": "regel_og_stedskonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "Saksbehandleren lærer at konsistens krever sammenligning av relevante forskjeller, ikke bare samme tall.",
+        "person_id": "juridisk_rådgiver_erik",
+        "phase": "afternoon",
+        "place_id": "regel_og_skjonnsvurdering",
+        "pressure": "presedens_vs_stedlig_forskjell",
+        "priority": 68,
+        "purpose": "Teste om saksbehandleren bruker tidligere praksis som sammenligning uten å kopiere resultatet.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "juridisk_rådgiver_erik",
+        "situation": [
+          "Den tidligere saken har samme volum og regelgrunnlag.",
+          "Dagens tiltak ligger ved en trang skolevei med et annet trafikkbilde.",
+          "Erik ber deg vise hva likebehandling faktisk krever her."
+        ],
+        "stage": "stable_warning",
+        "stakes": "Identisk resultat ser konsekvent ut; begrunnet forskjell kan være mer rettferdig, men krever et tydeligere skjønnsspor.",
+        "subject": "En tidligere tillatelse ligner, men skoleveien gjør saken annerledes",
+        "summary": "Tiltakshaver viser til en tidligere sak med samme mål og hjemmel, men dagens sted har en trang skolevei som den gamle saken ikke hadde.",
+        "task_domain": "likebehandling",
+        "task_kind": "conflict"
+      },
+      "id": "by_saksbehandler_conflict_likebehandling_001",
+      "mail_type": "conflict",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Forskjellen blir etterprøvbar i stedet for å se tilfeldig ut.",
+            "id": "A",
+            "label": "Bruk den gamle saken som sammenligning og begrunn hvorfor skoleveien er relevant forskjell",
+            "reply": "Jeg sammenligner sakene eksplisitt og begrunner hvorfor skoleveien gjør virkningsbildet annerledes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Resultatet ser konsistent ut, men den relevante stedlige forskjellen forsvinner fra vurderingen.",
+            "id": "B",
+            "label": "Følg tidligere praksis for å unngå ulik behandling",
+            "reply": "Jeg følger den tidligere saken siden mål og hjemmel er de samme."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den tidligere saken har samme volum og regelgrunnlag.",
+            "Dagens tiltak ligger ved en trang skolevei med et annet trafikkbilde.",
+            "Erik ber deg vise hva likebehandling faktisk krever her."
+          ],
+          "subject": "En tidligere tillatelse ligner, men skoleveien gjør saken annerledes",
+          "summary": "Tiltakshaver viser til en tidligere sak med samme mål og hjemmel, men dagens sted har en trang skolevei som den gamle saken ikke hadde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_conflict_likebehandling_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "regel_og_skjonnsvurdering",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_conflict_likebehandling_001",
+          "source_path": "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_conflict_likebehandling_001",
+        "version": 1
+      },
+      "source_hash": "7d438e90147d31326b2d28d5057e50a2fcc712e36a7d03b90ebfbf613be110e9",
+      "source_path": "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "bruke_sammenhengende_spor_vs_bygge_begrunnelse_panytt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Saken kan kontrolleres på det grunnlaget beslutningen faktisk ble tatt på.",
+            "id": "A",
+            "label": "Bygg klagesvaret direkte fra det dokumenterte sporet mellom faktum, hjemmel, merknad og skjønn",
+            "reply": "Jeg viser klagebehandleren det sammenhengende sporet fra opprinnelig mangel via nytt snitt til den endelige begrunnelsen.",
+            "tags": [
+              "consequence",
+              "appeal",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Klagen får et svar, men forskjellen mellom opprinnelig begrunnelse og senere rekonstruksjon blir større.",
+            "id": "B",
+            "label": "Skriv et nytt samlet klagesvar som forklarer vurderingen tydeligere enn originalen",
+            "reply": "Jeg skriver et nytt samlet klagesvar som forklarer vurderingen fra bunnen av med dagens oversikt.",
+            "tags": [
+              "reconstruction",
+              "appeal"
+            ]
+          }
+        ],
+        "competency": "beslutningssporbarhet",
+        "consequence_axis": "tillit_og_rettssikkerhet_vs_kostbar_usikkerhet",
+        "cooldown": 3,
+        "from": "juridisk_rådgiver_erik",
+        "id": "by_saksbehandler_consequence_klage_001",
+        "mail_family": "forsinkede_sakskonsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "Saksbehandleren ser at tydelig dokumentasjon ikke bare er arkivarbeid; den bestemmer hvor godt en senere klage kan kontrolleres.",
+        "person_id": "juridisk_rådgiver_erik",
+        "phase": "day_end",
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "pressure": "etterprovbar_sak_vs_rekonstruksjon",
+        "priority": 62,
+        "purpose": "Vis at tidligere saksopplysning og revisjon påvirker hvor robust saken er når en part utfordrer beslutningen senere.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "juridisk_rådgiver_erik",
+        "situation": [
+          "Klagen peker på lys, innsyn og ulik behandling.",
+          "Det nye snittet kom inn før vedtaket og endret faktumgrunnlaget.",
+          "Nå må journalen vise både hva som endret seg og hvorfor konklusjonen likevel ble den den ble."
+        ],
+        "stage": "mastery",
+        "stakes": "Et sammenhengende spor gjør klagebehandlingen presis; et fragmentert spor tvinger forvaltningen til å rekonstruere begrunnelsen i ettertid.",
+        "subject": "Klagen tester om vurderingen faktisk kan etterprøves",
+        "summary": "Vedtaket er påklaget, og Erik trenger å se om journalen viser hvilket faktum, hvilken hjemmel og hvilket skjønn som bar avgjørelsen da nytt snitt kom inn.",
+        "task_domain": "klage_og_etterprovbarhet",
+        "task_kind": "consequence",
+        "thread_key": "by_saksbehandler.case.hoyde_nabovirkning_og_klage"
+      },
+      "id": "by_saksbehandler_consequence_klage_001",
+      "mail_type": "consequence",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Saken kan kontrolleres på det grunnlaget beslutningen faktisk ble tatt på.",
+            "id": "A",
+            "label": "Bygg klagesvaret direkte fra det dokumenterte sporet mellom faktum, hjemmel, merknad og skjønn",
+            "reply": "Jeg viser klagebehandleren det sammenhengende sporet fra opprinnelig mangel via nytt snitt til den endelige begrunnelsen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Klagen får et svar, men forskjellen mellom opprinnelig begrunnelse og senere rekonstruksjon blir større.",
+            "id": "B",
+            "label": "Skriv et nytt samlet klagesvar som forklarer vurderingen tydeligere enn originalen",
+            "reply": "Jeg skriver et nytt samlet klagesvar som forklarer vurderingen fra bunnen av med dagens oversikt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Klagen peker på lys, innsyn og ulik behandling.",
+            "Det nye snittet kom inn før vedtaket og endret faktumgrunnlaget.",
+            "Nå må journalen vise både hva som endret seg og hvorfor konklusjonen likevel ble den den ble."
+          ],
+          "subject": "Klagen tester om vurderingen faktisk kan etterprøves",
+          "summary": "Vedtaket er påklaget, og Erik trenger å se om journalen viser hvilket faktum, hvilken hjemmel og hvilket skjønn som bar avgjørelsen da nytt snitt kom inn."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_consequence_klage_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_consequence_klage_001",
+          "source_path": "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.case.hoyde_nabovirkning_og_klage",
+        "version": 1
+      },
+      "source_hash": "75380d1ff61be4a57893328696a23504025ffc240c669a7ad1554558bf0d795f",
+      "source_path": "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "befare_vs_vurdere_fra_papir",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Merknadene får et konkret stedlig grunnlag som kan vurderes saklig.",
+            "id": "A",
+            "label": "Gjennomfør en avgrenset befaring og dokumenter hva passasjen faktisk brukes til",
+            "reply": "Jeg gjennomfører en kort befaring med spørsmål om bevegelse, levering, oversikt og konfliktpunkt.",
+            "tags": [
+              "fieldwork",
+              "evidence",
+              "place"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du holder flyt og skjuler ikke usikkerheten, men får mindre direkte evidens om stedet.",
+            "id": "B",
+            "label": "Bruk kart og skriftlige merknader for å holde saksfristen",
+            "reply": "Jeg bruker kartet og merknadene som foreligger og markerer den stedlige usikkerheten i notatet.",
+            "tags": [
+              "deadline",
+              "uncertainty"
+            ]
+          }
+        ],
+        "competency": "stedlig_saksopplysning",
+        "consequence_axis": "presisjon_vs_tempo",
+        "cooldown": 3,
+        "from": "maria_medvirkning",
+        "id": "by_saksbehandler_event_befaring_001",
+        "mail_family": "stedlig_saksopplysning",
+        "mail_type": "event",
+        "narrative_arc": "Saksbehandleren lærer at en kort stedskontroll kan gjøre skriftlige merknader mer vurderbare uten å gjøre naboene til beslutningstakere.",
+        "person_id": "maria_medvirkning",
+        "phase": "afternoon",
+        "place_id": "oslo_byggesak_sentrum",
+        "pressure": "frist_vs_relevant_evidens",
+        "priority": 60,
+        "purpose": "Teste om saksbehandleren samler relevant stedlig evidens før vurderingen låses.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+        "scene_catalog_version": 1,
+        "sender": "maria_medvirkning",
+        "situation": [
+          "Tre naboer bruker ulikt språk.",
+          "Kartet viser en smal felles passasje.",
+          "Maria foreslår en avgrenset befaring for å teste om konfliktene faktisk møtes der."
+        ],
+        "stage": "advanced",
+        "stakes": "Befaring bruker tid, men kan gjøre merknadene til et presist vurderingstema i stedet for tre løse påstander.",
+        "subject": "En kort befaring kan avklare om tre merknader beskriver samme passasje",
+        "summary": "Støy, trygghet og varelevering ser ut som tre ulike nabomerknader, men kartet antyder at alle gjelder samme smale passasje.",
+        "task_domain": "befaring",
+        "task_kind": "event"
+      },
+      "id": "by_saksbehandler_event_befaring_001",
+      "mail_type": "event",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Merknadene får et konkret stedlig grunnlag som kan vurderes saklig.",
+            "id": "A",
+            "label": "Gjennomfør en avgrenset befaring og dokumenter hva passasjen faktisk brukes til",
+            "reply": "Jeg gjennomfører en kort befaring med spørsmål om bevegelse, levering, oversikt og konfliktpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du holder flyt og skjuler ikke usikkerheten, men får mindre direkte evidens om stedet.",
+            "id": "B",
+            "label": "Bruk kart og skriftlige merknader for å holde saksfristen",
+            "reply": "Jeg bruker kartet og merknadene som foreligger og markerer den stedlige usikkerheten i notatet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Tre naboer bruker ulikt språk.",
+            "Kartet viser en smal felles passasje.",
+            "Maria foreslår en avgrenset befaring for å teste om konfliktene faktisk møtes der."
+          ],
+          "subject": "En kort befaring kan avklare om tre merknader beskriver samme passasje",
+          "summary": "Støy, trygghet og varelevering ser ut som tre ulike nabomerknader, men kartet antyder at alle gjelder samme smale passasje."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_event_befaring_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_byggesak_sentrum",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_event_befaring_001",
+          "source_path": "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_event_befaring_001",
+        "version": 1
+      },
+      "source_hash": "76899841790085a1933253b20886770f5c34b5073b655bc0f2f1f853b1214499",
+      "source_path": "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "revidere_apent_vs_minimere_endring",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Saken blir mer arbeid nå, men beslutningsgrunnlaget viser tydelig hvorfor vurderingen utviklet seg.",
+            "id": "A",
+            "label": "Revider faktum- og skjønnsdelen og vis eksplisitt hva det nye snittet endrer",
+            "reply": "Jeg oppdaterer vurderingen og viser hvilke tidligere antakelser det nye snittet erstatter og hvordan det påvirker nabovirkningen.",
+            "tags": [
+              "followup",
+              "new_evidence",
+              "reasoning"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Saken går raskere videre, men senere lesere får vanskeligere for å se hvorfor vurderingen endret seg.",
+            "id": "B",
+            "label": "Legg snittet til saken og juster bare konklusjonen der det er nødvendig",
+            "reply": "Jeg legger det nye snittet til saken og justerer konklusjonen uten å skrive om hele vurderingssporet.",
+            "tags": [
+              "shortcut",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "revisjon_av_vurderingsgrunnlag",
+        "consequence_axis": "tillit_vs_saksflyt",
+        "cooldown": 2,
+        "from": "anne_planseksjon",
+        "id": "by_saksbehandler_followup_hoyde_001",
+        "mail_family": "saksoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Saksbehandleren lærer at et robust saksgrunnlag må kunne endres når bedre faktum kommer inn.",
+        "person_id": "anne_planseksjon",
+        "phase": "afternoon",
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "pressure": "stabil_sak_vs_nytt_faktum",
+        "priority": 66,
+        "purpose": "Teste om saksbehandleren oppdaterer vurderingen åpent når nytt faktum endrer et sentralt premiss.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "anne_planseksjon",
+        "situation": [
+          "Det manglende snittet er nå levert.",
+          "Høyden mot bakgården framstår større enn den første tegningspakken gjorde tydelig.",
+          "Nabomerknaden om lys og innsyn får derfor et sterkere faktisk grunnlag."
+        ],
+        "stage": "advanced",
+        "stakes": "Å holde den første vurderingen stabil sparer arbeid; å revidere tydelig beskytter saken mot at nytt faktum behandles som ubehagelig støy.",
+        "subject": "Det nye snittet endrer høydevirkningen som naboen beskrev",
+        "summary": "Søker har sendt det manglende snittet, og det viser at volumet faktisk ligger nærmere nabomerknadens beskrivelse enn det opprinnelige materialet antydet.",
+        "task_domain": "oppdatert_faktum",
+        "task_kind": "followup",
+        "thread_key": "by_saksbehandler.case.hoyde_nabovirkning_og_klage"
+      },
+      "id": "by_saksbehandler_followup_hoyde_001",
+      "mail_type": "followup",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Saken blir mer arbeid nå, men beslutningsgrunnlaget viser tydelig hvorfor vurderingen utviklet seg.",
+            "id": "A",
+            "label": "Revider faktum- og skjønnsdelen og vis eksplisitt hva det nye snittet endrer",
+            "reply": "Jeg oppdaterer vurderingen og viser hvilke tidligere antakelser det nye snittet erstatter og hvordan det påvirker nabovirkningen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken går raskere videre, men senere lesere får vanskeligere for å se hvorfor vurderingen endret seg.",
+            "id": "B",
+            "label": "Legg snittet til saken og juster bare konklusjonen der det er nødvendig",
+            "reply": "Jeg legger det nye snittet til saken og justerer konklusjonen uten å skrive om hele vurderingssporet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det manglende snittet er nå levert.",
+            "Høyden mot bakgården framstår større enn den første tegningspakken gjorde tydelig.",
+            "Nabomerknaden om lys og innsyn får derfor et sterkere faktisk grunnlag."
+          ],
+          "subject": "Det nye snittet endrer høydevirkningen som naboen beskrev",
+          "summary": "Søker har sendt det manglende snittet, og det viser at volumet faktisk ligger nærmere nabomerknadens beskrivelse enn det opprinnelige materialet antydet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_followup_hoyde_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_followup_hoyde_001",
+          "source_path": "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.case.hoyde_nabovirkning_og_klage",
+        "version": 1
+      },
+      "source_hash": "64fc3477305f65b2599f1bfb0c37c8e572d9e943970cef847fe3c0086bff9dd7",
+      "source_path": "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
         "choice_axis": "be_om_mangel_vs_sende_videre",
         "choices": [
           {
@@ -22264,6 +22771,502 @@
       },
       "source_hash": "2b35ef1782179948bd85c592fe1ae07a6a8266d87960b6b001b592e7fcd67186",
       "source_path": "data/Civication/mailFamilies/by/job/by_saksbehandler_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "begrunne_relevant_forskjell_vs_mekanisk_likhet",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Et eventuelt ulikt resultat får et synlig og kontrollerbart saklig grunnlag.",
+            "id": "A",
+            "label": "Sammenlign relevante faktiske og rettslige forhold og begrunn forskjellen eksplisitt",
+            "reply": "Jeg viser hva som er likt, hva som faktisk er forskjellig, og hvorfor den forskjellen er relevant for vurderingen.",
+            "tags": [
+              "knowledge",
+              "fairness",
+              "reasoning"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Praksisen blir enkel å forklare, men kan bli blind for faktiske forskjeller som regelverket forutsetter at du vurderer.",
+            "id": "B",
+            "label": "Hold samme resultat når regel og hovedtall er like",
+            "reply": "Jeg holder samme resultat når hjemmel og hovedtall er like for å sikre forutsigbar praksis.",
+            "tags": [
+              "consistency",
+              "formalism"
+            ]
+          }
+        ],
+        "competency": "likebehandling",
+        "consequence_axis": "rettferdighet_vs_formalisme",
+        "cooldown": 2,
+        "from": "juridisk_rådgiver_erik",
+        "id": "by_saksbehandler_knowledge_likebehandling_001",
+        "mail_family": "forvaltningsforstaelse",
+        "mail_type": "knowledge",
+        "narrative_arc": "Saksbehandleren forstår at likebehandling handler om konsistente kriterier, ikke om å ignorere relevante forskjeller.",
+        "person_id": "juridisk_rådgiver_erik",
+        "phase": "lunch",
+        "place_id": "regel_og_skjonnsvurdering",
+        "pressure": "identisk_resultat_vs_saklig_forskjell",
+        "priority": 52,
+        "purpose": "Knytter den praktiske sammenligningen av saker til prinsippet om saklig, begrunnet likebehandling.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "juridisk_rådgiver_erik",
+        "situation": [
+          "Begge saker bruker samme hjemmel.",
+          "Den ene ligger mot et åpent byrom, den andre mot en trang skolevei.",
+          "Forskjellen kan bare bære et ulikt resultat dersom den er relevant og synlig i begrunnelsen."
+        ],
+        "stage": "early",
+        "stakes": "Mekanisk likhet er enkel å vise; reell likebehandling krever at relevante likheter og forskjeller dokumenteres eksplisitt.",
+        "subject": "Likebehandling betyr ikke at ulike faktiske forhold må gi samme resultat",
+        "summary": "Erik ber deg forklare hvorfor to saker med samme regel og tall fortsatt kan vurderes forskjellig når relevante stedlige forhold er ulike.",
+        "task_domain": "forvaltningsforstaelse",
+        "task_kind": "knowledge"
+      },
+      "id": "by_saksbehandler_knowledge_likebehandling_001",
+      "mail_type": "knowledge",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Et eventuelt ulikt resultat får et synlig og kontrollerbart saklig grunnlag.",
+            "id": "A",
+            "label": "Sammenlign relevante faktiske og rettslige forhold og begrunn forskjellen eksplisitt",
+            "reply": "Jeg viser hva som er likt, hva som faktisk er forskjellig, og hvorfor den forskjellen er relevant for vurderingen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Praksisen blir enkel å forklare, men kan bli blind for faktiske forskjeller som regelverket forutsetter at du vurderer.",
+            "id": "B",
+            "label": "Hold samme resultat når regel og hovedtall er like",
+            "reply": "Jeg holder samme resultat når hjemmel og hovedtall er like for å sikre forutsigbar praksis."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Begge saker bruker samme hjemmel.",
+            "Den ene ligger mot et åpent byrom, den andre mot en trang skolevei.",
+            "Forskjellen kan bare bære et ulikt resultat dersom den er relevant og synlig i begrunnelsen."
+          ],
+          "subject": "Likebehandling betyr ikke at ulike faktiske forhold må gi samme resultat",
+          "summary": "Erik ber deg forklare hvorfor to saker med samme regel og tall fortsatt kan vurderes forskjellig når relevante stedlige forhold er ulike."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_knowledge_likebehandling_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "regel_og_skjonnsvurdering",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_knowledge_likebehandling_001",
+          "source_path": "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_knowledge_likebehandling_001",
+        "version": 1
+      },
+      "source_hash": "5166a10fd3788ffdf205d9911c112f4bfc984b41d8d575f336f3f0b0268d4326",
+      "source_path": "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "lenke_kilde_vs_fortsette",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Senere lesere kan se nøyaktig hvilket faktum vurderingen bygde på.",
+            "id": "A",
+            "label": "Lenk vurderingspunktet til korrekt tegningsversjon og dato",
+            "reply": "Jeg legger inn tegningsnummer og dato ved høydevurderingen før jeg fortsetter.",
+            "tags": [
+              "traceability",
+              "journal",
+              "quality"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du sparer noen minutter nå, men gjør det enklere å miste koblingen mellom vurdering og kilde.",
+            "id": "B",
+            "label": "Fortsett og rydd versjonsreferansene ved ferdigstilling",
+            "reply": "Jeg fortsetter vurderingen og rydder alle dokumentreferansene samlet ved ferdigstilling.",
+            "tags": [
+              "delay",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "sporbarhet",
+        "consequence_axis": "journalspor_vs_tempo",
+        "cooldown": 1,
+        "from": "anne_planseksjon",
+        "id": "by_saksbehandler_micro_kildespor_001",
+        "mail_family": "saksbehandlingskontroll",
+        "mail_type": "micro",
+        "narrative_arc": "Saksbehandleren lærer at en robust begrunnelse også trenger et robust spor tilbake til faktum.",
+        "person_id": "anne_planseksjon",
+        "phase": "forenoon",
+        "place_id": "saksinntak_og_dokumentasjonsbord",
+        "pressure": "minutter_na_vs_etterprovbarhet_senere",
+        "priority": 54,
+        "purpose": "Teste om saksbehandleren sikrer kildespor før vurderingen brukes videre.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "anne_planseksjon",
+        "situation": [
+          "Notatet viser riktig høyde slik du leser saken nå.",
+          "Tre tegningsversjoner finnes i journalen.",
+          "Det tar kort tid å knytte vurderingen til korrekt versjon før du går videre."
+        ],
+        "stage": "early",
+        "stakes": "Et lite manglende spor kan bli vanskelig å rekonstruere dersom søker endrer tegningen eller avgjørelsen senere påklages.",
+        "subject": "Vurderingsnotatet viser tallet, men ikke hvilken tegning det kommer fra",
+        "summary": "Høyden står i notatet, men kildeversjonen mangler og søker har sendt flere tegningssett.",
+        "task_domain": "kildespor",
+        "task_kind": "micro"
+      },
+      "id": "by_saksbehandler_micro_kildespor_001",
+      "mail_type": "micro",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Senere lesere kan se nøyaktig hvilket faktum vurderingen bygde på.",
+            "id": "A",
+            "label": "Lenk vurderingspunktet til korrekt tegningsversjon og dato",
+            "reply": "Jeg legger inn tegningsnummer og dato ved høydevurderingen før jeg fortsetter."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du sparer noen minutter nå, men gjør det enklere å miste koblingen mellom vurdering og kilde.",
+            "id": "B",
+            "label": "Fortsett og rydd versjonsreferansene ved ferdigstilling",
+            "reply": "Jeg fortsetter vurderingen og rydder alle dokumentreferansene samlet ved ferdigstilling."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Notatet viser riktig høyde slik du leser saken nå.",
+            "Tre tegningsversjoner finnes i journalen.",
+            "Det tar kort tid å knytte vurderingen til korrekt versjon før du går videre."
+          ],
+          "subject": "Vurderingsnotatet viser tallet, men ikke hvilken tegning det kommer fra",
+          "summary": "Høyden står i notatet, men kildeversjonen mangler og søker har sendt flere tegningssett."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_micro_kildespor_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "saksinntak_og_dokumentasjonsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_micro_kildespor_001",
+          "source_path": "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_micro_kildespor_001",
+        "version": 1
+      },
+      "source_hash": "a771ca3ad6ee7afb6a76545042b8b18f11f63d41d8eb3e41aa745c7df4acebc2",
+      "source_path": "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "be_om_presisering_vs_sende_videre",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Saken bruker mer tid nå, men blir vurderbar på et tydelig grunnlag.",
+            "id": "A",
+            "label": "Be om presisering og forklar hvilket vurderingspunkt den trengs for",
+            "reply": "Jeg ber om et presist snitt og forklarer at det er nødvendig for å vurdere høyde og virkning mot fortauet.",
+            "tags": [
+              "documentation",
+              "quality",
+              "rights"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Flyten holdes, men et manglende premiss følger saken videre som skjult gjeld.",
+            "id": "B",
+            "label": "La saken gå videre og ta forbehold i vurderingsnotatet",
+            "reply": "Jeg lar saken gå videre og markerer usikkerheten i vurderingsnotatet.",
+            "tags": [
+              "tempo",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "saksopplysning",
+        "consequence_axis": "rettssikkerhet_vs_saksflyt",
+        "cooldown": 1,
+        "from": "anne_planseksjon",
+        "id": "by_saksbehandler_people_anne_001",
+        "mail_family": "faglige_saksrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "Saksbehandleren lærer at kompletthet må måles mot vurderingsspørsmålet, ikke bare vedleggslisten.",
+        "person_id": "anne_planseksjon",
+        "phase": "morning",
+        "place_id": "saksinntak_og_dokumentasjonsbord",
+        "pressure": "komplett_liste_vs_vurderbart_grunnlag",
+        "priority": 72,
+        "purpose": "Trene skillet mellom administrativ kompletthet og faktisk vurderbarhet.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+        "scene_catalog_version": 1,
+        "sender": "anne_planseksjon",
+        "situation": [
+          "Vedleggslisten ser komplett ut.",
+          "Det avgjørende snittet gjør likevel høyde og terrengforhold vanskelige å lese.",
+          "Anne vil vite om du mener saken faktisk kan realitetsbehandles."
+        ],
+        "stage": "stable",
+        "stakes": "Saken kan gå raskt videre på papir, men en skjult mangel kan gjøre hele vurderingen svak senere.",
+        "subject": "Anne spør om saken er komplett eller bare ser komplett ut",
+        "summary": "Søknaden har alle vanlige vedlegg, men snittet som viser virkningen mot fortauet er fortsatt uklart.",
+        "task_domain": "vurderbarhet",
+        "task_kind": "people"
+      },
+      "id": "by_saksbehandler_people_anne_001",
+      "mail_type": "people",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Saken bruker mer tid nå, men blir vurderbar på et tydelig grunnlag.",
+            "id": "A",
+            "label": "Be om presisering og forklar hvilket vurderingspunkt den trengs for",
+            "reply": "Jeg ber om et presist snitt og forklarer at det er nødvendig for å vurdere høyde og virkning mot fortauet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Flyten holdes, men et manglende premiss følger saken videre som skjult gjeld.",
+            "id": "B",
+            "label": "La saken gå videre og ta forbehold i vurderingsnotatet",
+            "reply": "Jeg lar saken gå videre og markerer usikkerheten i vurderingsnotatet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Vedleggslisten ser komplett ut.",
+            "Det avgjørende snittet gjør likevel høyde og terrengforhold vanskelige å lese.",
+            "Anne vil vite om du mener saken faktisk kan realitetsbehandles."
+          ],
+          "subject": "Anne spør om saken er komplett eller bare ser komplett ut",
+          "summary": "Søknaden har alle vanlige vedlegg, men snittet som viser virkningen mot fortauet er fortsatt uklart."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_people_anne_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "saksinntak_og_dokumentasjonsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_people_anne_001",
+          "source_path": "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_people_anne_001",
+        "version": 1
+      },
+      "source_hash": "12b292b0ccad2068620faaa3879a41336caa8897bc3649024fcf64232a471635",
+      "source_path": "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "samle_begrunnelse_vs_kort_notat",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Saken blir lettere å forstå, kontrollere og overta for andre.",
+            "id": "A",
+            "label": "Skriv regel, faktum, stedlig virkning, merknader og skjønn som én tydelig begrunnelseskjede",
+            "reply": "Jeg skriver en begrunnelse der hjemmel, faktum, stedlig virkning, relevante merknader og skjønn kobles eksplisitt.",
+            "tags": [
+              "reasoning",
+              "rights",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Teksten kan holde formelt, men gjør mindre av vurderingsarbeidet synlig.",
+            "id": "B",
+            "label": "Skriv korteste begrunnelse som dekker det formelle vurderingspunktet",
+            "reply": "Jeg skriver en kort begrunnelse som dekker regel og konklusjon og holder detaljene i underlaget.",
+            "tags": [
+              "minimum",
+              "tempo"
+            ]
+          }
+        ],
+        "competency": "begrunnet_forvaltning",
+        "consequence_axis": "rettssikkerhet_vs_kort_flyt",
+        "cooldown": 2,
+        "from": "anne_planseksjon",
+        "id": "by_saksbehandler_story_vedtaksgrunnlag_001",
+        "mail_family": "begrunnet_forvaltning",
+        "mail_type": "story",
+        "narrative_arc": "Saksbehandleren går fra å behandle punkter til å skrive en begrunnelse som viser hvordan hele saken henger sammen.",
+        "person_id": "anne_planseksjon",
+        "phase": "evening",
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "pressure": "minimumstekst_vs_etterprovbarhet",
+        "priority": 64,
+        "purpose": "La saksbehandleren velge mellom et minimumsnotat og et robust, etterprøvbart beslutningsgrunnlag.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
+        "scene_catalog_version": 1,
+        "sender": "anne_planseksjon",
+        "situation": [
+          "Dokumentasjonen er nå komplett nok.",
+          "Nabomerknadene peker på en konkret stedlig virkning.",
+          "Regelgrunnlaget åpner for skjønn som må begrunnes."
+        ],
+        "stage": "mastery",
+        "stakes": "Kort tekst holder fristen; tydelig sammenheng gjør saken mer forståelig og robust ved klage og senere gjenlesning.",
+        "subject": "Vedtaksgrunnlaget må vise hvorfor regel, sted og merknader henger sammen",
+        "summary": "Saken er ferdig utredet, men et godt vedtaksgrunnlag må gjøre både hjemmel, stedlig virkning, nabomerknader og skjønn lesbare i samme begrunnelse.",
+        "task_domain": "vedtaksgrunnlag",
+        "task_kind": "story"
+      },
+      "id": "by_saksbehandler_story_vedtaksgrunnlag_001",
+      "mail_type": "story",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Saken blir lettere å forstå, kontrollere og overta for andre.",
+            "id": "A",
+            "label": "Skriv regel, faktum, stedlig virkning, merknader og skjønn som én tydelig begrunnelseskjede",
+            "reply": "Jeg skriver en begrunnelse der hjemmel, faktum, stedlig virkning, relevante merknader og skjønn kobles eksplisitt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Teksten kan holde formelt, men gjør mindre av vurderingsarbeidet synlig.",
+            "id": "B",
+            "label": "Skriv korteste begrunnelse som dekker det formelle vurderingspunktet",
+            "reply": "Jeg skriver en kort begrunnelse som dekker regel og konklusjon og holder detaljene i underlaget."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Dokumentasjonen er nå komplett nok.",
+            "Nabomerknadene peker på en konkret stedlig virkning.",
+            "Regelgrunnlaget åpner for skjønn som må begrunnes."
+          ],
+          "subject": "Vedtaksgrunnlaget må vise hvorfor regel, sted og merknader henger sammen",
+          "summary": "Saken er ferdig utredet, men et godt vedtaksgrunnlag må gjøre både hjemmel, stedlig virkning, nabomerknader og skjønn lesbare i samme begrunnelse."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_story_vedtaksgrunnlag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_story_vedtaksgrunnlag_001",
+          "source_path": "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_story_vedtaksgrunnlag_001",
+        "version": 1
+      },
+      "source_hash": "ce37cf2491edc2c1e5b3c5eb94ba63a49099b0051573ad9e3e7b97c209d777ed",
+      "source_path": "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -141902,7 +142905,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "f081fb74c44365bfbeb213dedc2f4e2d485761f0cef0039420a06dc197690971",
+  "registry_hash": "c692343c3e2c2a80948e4f15e7e6c7b3ad345308f53611192405fbf25f4c7b34",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -142068,7 +143071,15 @@
       "by_saks_job_regel_001",
       "by_saks_job_regel_002",
       "by_saks_job_frist_001",
-      "by_saks_job_frist_002"
+      "by_saks_job_frist_002",
+      "by_saksbehandler_people_anne_001",
+      "by_saksbehandler_story_vedtaksgrunnlag_001",
+      "by_saksbehandler_conflict_likebehandling_001",
+      "by_saksbehandler_event_befaring_001",
+      "by_saksbehandler_micro_kildespor_001",
+      "by_saksbehandler_followup_hoyde_001",
+      "by_saksbehandler_knowledge_likebehandling_001",
+      "by_saksbehandler_consequence_klage_001"
     ],
     "film_tv/produksjonsassistent": [
       "film_tv_pa_job_to_call_sheet",
@@ -142913,11 +143924,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 162,
+    "compiled_source_file_count": 170,
     "ignored_source_file_count": 1,
-    "input_file_count": 163,
+    "input_file_count": 171,
     "role_count": 28,
-    "scene_count": 925,
+    "scene_count": 933,
     "shadowed_duplicate_count": 0
   },
   "version": 1
