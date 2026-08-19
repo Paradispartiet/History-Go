@@ -7,11 +7,11 @@
     "work_worlds": 89,
     "statuses": {
       "reference_complete": 5,
-      "playable": 9,
-      "partial": 14,
+      "playable": 10,
+      "partial": 13,
       "architecture_only": 61
     },
-    "runtime_gate_pass": 14,
+    "runtime_gate_pass": 15,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -40,13 +40,13 @@
         "missing": 62
       },
       "places": {
-        "complete": 18,
+        "complete": 19,
         "partial": 0,
-        "missing": 71
+        "missing": 70
       },
       "mail": {
-        "complete": 16,
-        "partial": 12,
+        "complete": 17,
+        "partial": 11,
         "missing": 61
       },
       "knowledge": {
@@ -7471,6 +7471,7 @@
           "tests/civication-job-eligibility.test.js",
           "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
           "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+          "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
           "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
           "tests/civication-mellomleder-two-week-flow.test.js",
@@ -7509,6 +7510,7 @@
               "tests/civication-job-eligibility.test.js",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
@@ -7541,6 +7543,7 @@
               "tests/civication-job-eligibility.test.js",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
@@ -7625,6 +7628,7 @@
               "tests/civication-job-eligibility.test.js",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
@@ -7657,6 +7661,7 @@
               "tests/civication-job-eligibility.test.js",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
@@ -9914,7 +9919,7 @@
         "lager_og_driftsmedarbeider",
         "naer_lager_og_driftsmedarbeider"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/lager_og_driftsmedarbeider.json"
@@ -9934,16 +9939,16 @@
             "count": 29
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/conflict/lager_og_driftsmedarbeider_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/story/lager_og_driftsmedarbeider_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/event/lager_og_driftsmedarbeider_event.json",
+            "count": 1
           },
           "micro": {
             "path": null,
@@ -9965,6 +9970,7 @@
         "role_tests": [
           "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
           "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+          "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
           "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
           "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
           "tests/civication-lifestory-shell-role-bridge.test.js",
@@ -9990,6 +9996,7 @@
               "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
@@ -10006,6 +10013,7 @@
               "data/Civication/workGrammars/naeringsliv/naeringsliv_logistikk_og_drift.json",
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
@@ -10034,18 +10042,27 @@
             "note": "People content exists on only one side of the content/runtime boundary."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/lager_og_driftsmedarbeider.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_logistikk_og_drift.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/conflict/lager_og_driftsmedarbeider_conflict.json",
+              "data/Civication/mailFamilies/naeringsliv/event/lager_og_driftsmedarbeider_event.json",
               "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json",
               "data/Civication/mailFamilies/naeringsliv/people/lager_og_driftsmedarbeider_people.json",
-              "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json"
+              "data/Civication/mailFamilies/naeringsliv/story/lager_og_driftsmedarbeider_story.json",
+              "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
+              "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js"
             ],
-            "note": "2/9 standard mail types."
+            "note": "5/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
@@ -10078,6 +10095,7 @@
             "evidence": [
               "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
               "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
               "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
               "tests/civication-lifestory-shell-role-bridge.test.js",
@@ -10121,15 +10139,15 @@
             "note": "Exit exists as content or outcome, not a complete transition path."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
+          "places",
+          "mail",
           "knowledge",
           "quality_axes",
           "authority",

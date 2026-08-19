@@ -75,6 +75,9 @@
     "data/Civication/mailFamilies/naeringsliv/event/formann_event.json",
     "data/Civication/mailFamilies/naeringsliv/job/lager_og_driftsmedarbeider_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/lager_og_driftsmedarbeider_people.json",
+    "data/Civication/mailFamilies/naeringsliv/story/lager_og_driftsmedarbeider_story.json",
+    "data/Civication/mailFamilies/naeringsliv/conflict/lager_og_driftsmedarbeider_conflict.json",
+    "data/Civication/mailFamilies/naeringsliv/event/lager_og_driftsmedarbeider_event.json",
     "data/Civication/mailFamilies/naeringsliv/job/mellomleder_intro_v2.json",
     "data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/mellomleder_people.json",
@@ -77131,6 +77134,313 @@
       "compatibility_projection": {
         "category": "naeringsliv",
         "channel": "job",
+        "choices": [
+          {
+            "effects": {
+              "flow": 1,
+              "future_risk": -2,
+              "traceability": 3,
+              "trust_colleague": -1
+            },
+            "feedback": "Køen mister noen sekunder, men neste ledd slipper å lete etter en pall systemet fortsatt tror står et annet sted.",
+            "id": "A",
+            "label": "Registrere flyttingen før pallen går",
+            "next_bias": {
+              "set_flags": [
+                "lager_drift_records_move_first"
+              ]
+            },
+            "reply": "Jeg tar skanningen nå og flytter pallen når systemet viser riktig lokasjon.",
+            "triggers_on_choice": "lager_drift_records_move_first"
+          },
+          {
+            "effects": {
+              "flow": 2,
+              "future_risk": 1,
+              "stress": 1,
+              "traceability": 1
+            },
+            "feedback": "Dette kan holde flyt hvis etterregistreringen faktisk skjer før oppmerksomheten flyttes videre.",
+            "id": "B",
+            "label": "Flytte og registrere umiddelbart etterpå",
+            "next_bias": {
+              "set_flags": [
+                "lager_drift_move_then_register"
+              ]
+            },
+            "reply": "Jeg flytter den for å åpne området og registrerer bevegelsen før jeg tar neste oppgave.",
+            "triggers_on_choice": "lager_drift_move_then_register"
+          },
+          {
+            "effects": {
+              "flow": 3,
+              "future_risk": 3,
+              "stagnation": 1,
+              "traceability": -3
+            },
+            "feedback": "Lageret flyter lokalt, men du har laget en fysisk sannhet systemet ikke kjenner.",
+            "id": "C",
+            "label": "Flytte uten spor og stole på hukommelsen",
+            "next_bias": {
+              "set_flags": [
+                "lager_drift_untracked_move"
+              ]
+            },
+            "reply": "Jeg flytter pallen nå. Vi husker hvor den står.",
+            "triggers_on_choice": "lager_drift_untracked_move"
+          }
+        ],
+        "cooldown": 0,
+        "id": "conflict_lager_drift_move_without_scan",
+        "mail_class": "job_message",
+        "mail_family": "lager_drift_snarveipress",
+        "mail_type": "conflict",
+        "messageChannel": "job",
+        "phase": "mid",
+        "priority": 83,
+        "repeatable": false,
+        "role_scope": "lager_og_driftsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/conflict/lager_og_driftsmedarbeider_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Fra kollega: Vi vet hvor den skal. Flytt pallen nå, så registrerer vi etterpå.",
+          "Fra System: Nåværende lokasjon er eneste spor som knytter pallen til mottaket."
+        ],
+        "stage": "stable",
+        "subject": "Bare flytt den uten skann",
+        "summary": "En erfaren kollega vil flytte en pall uten registrering for å få køen unna."
+      },
+      "id": "conflict_lager_drift_move_without_scan",
+      "mail_type": "conflict",
+      "role_scope": "lager_og_driftsmedarbeider",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Køen mister noen sekunder, men neste ledd slipper å lete etter en pall systemet fortsatt tror står et annet sted.",
+            "id": "A",
+            "label": "Registrere flyttingen før pallen går",
+            "reply": "Jeg tar skanningen nå og flytter pallen når systemet viser riktig lokasjon."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Dette kan holde flyt hvis etterregistreringen faktisk skjer før oppmerksomheten flyttes videre.",
+            "id": "B",
+            "label": "Flytte og registrere umiddelbart etterpå",
+            "reply": "Jeg flytter den for å åpne området og registrerer bevegelsen før jeg tar neste oppgave."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Lageret flyter lokalt, men du har laget en fysisk sannhet systemet ikke kjenner.",
+            "id": "C",
+            "label": "Flytte uten spor og stole på hukommelsen",
+            "reply": "Jeg flytter pallen nå. Vi husker hvor den står."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fra kollega: Vi vet hvor den skal. Flytt pallen nå, så registrerer vi etterpå.",
+            "Fra System: Nåværende lokasjon er eneste spor som knytter pallen til mottaket."
+          ],
+          "subject": "Bare flytt den uten skann",
+          "summary": "En erfaren kollega vil flytte en pall uten registrering for å få køen unna."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "conflict_lager_drift_move_without_scan",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "conflict_lager_drift_move_without_scan",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/conflict/lager_og_driftsmedarbeider_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "lager_og_driftsmedarbeider.mail.conflict_lager_drift_move_without_scan",
+        "version": 1
+      },
+      "source_hash": "af71d09d423db99a6e1c9055f0bad978879d415c02a345e977d58dca94ccd9d0",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/conflict/lager_og_driftsmedarbeider_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "channel": "job",
+        "choices": [
+          {
+            "effects": {
+              "flow": -1,
+              "future_risk": -3,
+              "process_quality": 3,
+              "safety": 4,
+              "traceability": 3
+            },
+            "feedback": "Du behandler nestenulykken som informasjon om systemet, ikke som en forsinkelse som skal gjemmes.",
+            "id": "A",
+            "label": "Stoppe området, sikre det og registrere nestenulykken",
+            "next_bias": {
+              "set_flags": [
+                "lager_drift_secures_and_reports_near_miss"
+              ]
+            },
+            "reply": "Jeg stopper trafikken i sonen, sikrer pallen, registrerer nestenulykken og avklarer hvorfor plasseringen oppstod før normal flyt åpnes igjen.",
+            "triggers_on_choice": "lager_drift_secures_and_reports_near_miss"
+          },
+          {
+            "effects": {
+              "flow": 2,
+              "future_risk": 0,
+              "safety": 2,
+              "stress": 1,
+              "traceability": 1
+            },
+            "feedback": "Det kan være forsvarlig hvis registreringen faktisk skjer før hendelsen forsvinner inn i neste kø.",
+            "id": "B",
+            "label": "Rydde sonen raskt og registrere hendelsen etterpå",
+            "next_bias": {
+              "set_flags": [
+                "lager_drift_clears_then_reports_near_miss"
+              ]
+            },
+            "reply": "Jeg sikrer passasjen og får pallen inn på trygg plass, åpner flyten igjen og registrerer nestenulykken før neste oppgave.",
+            "triggers_on_choice": "lager_drift_clears_then_reports_near_miss"
+          },
+          {
+            "effects": {
+              "flow": 3,
+              "future_risk": 4,
+              "safety": -3,
+              "stagnation": 1,
+              "traceability": -3
+            },
+            "feedback": "Passasjen er åpen igjen, men årsaken til nestenulykken er fortsatt en del av arbeidsflyten.",
+            "id": "C",
+            "label": "Flytte pallen og fortsette uten registrering",
+            "next_bias": {
+              "set_flags": [
+                "lager_drift_hides_near_miss"
+              ]
+            },
+            "reply": "Jeg flytter pallen ut av veien og fortsetter. Ingen ble skadet, så vi trenger ikke gjøre mer ut av det.",
+            "triggers_on_choice": "lager_drift_hides_near_miss"
+          }
+        ],
+        "cooldown": 0,
+        "id": "event_lager_drift_near_miss_blocks_flow",
+        "mail_class": "event_message",
+        "mail_family": "lager_drift_hms_hendelse",
+        "mail_type": "event",
+        "messageChannel": "job",
+        "phase": "advanced",
+        "priority": 85,
+        "repeatable": false,
+        "role_scope": "lager_og_driftsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/event/lager_og_driftsmedarbeider_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Fra drift: En pallejekk måtte bråstoppe fordi en pall stakk ut i gangsonen. Ingen ble skadet, men det var nært.",
+          "Fra transport: Vi venter på to paller og køen bygger seg. Kan dere bare få åpnet passasjen først?",
+          "Fra System: Ingen registrert personskade. Nestenulykke: ikke registrert. Midlertidig blokkering av gang: ja."
+        ],
+        "stage": "stable",
+        "subject": "Nestenulykken som stopper flyten",
+        "summary": "En pall og et hjelpemiddel skaper en nestenulykke i en gang samtidig som transport og plukk bygger kø."
+      },
+      "id": "event_lager_drift_near_miss_blocks_flow",
+      "mail_type": "event",
+      "role_scope": "lager_og_driftsmedarbeider",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du behandler nestenulykken som informasjon om systemet, ikke som en forsinkelse som skal gjemmes.",
+            "id": "A",
+            "label": "Stoppe området, sikre det og registrere nestenulykken",
+            "reply": "Jeg stopper trafikken i sonen, sikrer pallen, registrerer nestenulykken og avklarer hvorfor plasseringen oppstod før normal flyt åpnes igjen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Det kan være forsvarlig hvis registreringen faktisk skjer før hendelsen forsvinner inn i neste kø.",
+            "id": "B",
+            "label": "Rydde sonen raskt og registrere hendelsen etterpå",
+            "reply": "Jeg sikrer passasjen og får pallen inn på trygg plass, åpner flyten igjen og registrerer nestenulykken før neste oppgave."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Passasjen er åpen igjen, men årsaken til nestenulykken er fortsatt en del av arbeidsflyten.",
+            "id": "C",
+            "label": "Flytte pallen og fortsette uten registrering",
+            "reply": "Jeg flytter pallen ut av veien og fortsetter. Ingen ble skadet, så vi trenger ikke gjøre mer ut av det."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fra drift: En pallejekk måtte bråstoppe fordi en pall stakk ut i gangsonen. Ingen ble skadet, men det var nært.",
+            "Fra transport: Vi venter på to paller og køen bygger seg. Kan dere bare få åpnet passasjen først?",
+            "Fra System: Ingen registrert personskade. Nestenulykke: ikke registrert. Midlertidig blokkering av gang: ja."
+          ],
+          "subject": "Nestenulykken som stopper flyten",
+          "summary": "En pall og et hjelpemiddel skaper en nestenulykke i en gang samtidig som transport og plukk bygger kø."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "event_lager_drift_near_miss_blocks_flow",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "event_lager_drift_near_miss_blocks_flow",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/event/lager_og_driftsmedarbeider_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "lager_og_driftsmedarbeider.mail.event_lager_drift_near_miss_blocks_flow",
+        "version": 1
+      },
+      "source_hash": "9cff02d97a574ac257a31b9f2d18fb879fc639f69ff3d729771228181204c065",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/event/lager_og_driftsmedarbeider_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "channel": "job",
         "choice_axis": "tempo_vs_sporbarhet",
         "choices": [
           {
@@ -82168,6 +82478,157 @@
       },
       "source_hash": "133a5cb96b7da5b4cc0aff35540078e527805fcec2274f7aa538155df19f75e3",
       "source_path": "data/Civication/mailFamilies/naeringsliv/people/lager_og_driftsmedarbeider_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "channel": "job",
+        "choices": [
+          {
+            "effects": {
+              "future_risk": -2,
+              "process_quality": 3,
+              "stress": 1,
+              "traceability": 3
+            },
+            "feedback": "Feilen blir til læring fordi du finner hvordan den flyttet seg, ikke bare hvor den endte.",
+            "id": "A",
+            "label": "Spore kjeden fra mottak til feilplukk",
+            "next_bias": {
+              "set_flags": [
+                "lager_drift_traces_error_chain"
+              ]
+            },
+            "reply": "Jeg følger varebevegelsen bakover, dokumenterer sannsynlig årsak og retter både fysisk plassering og systemspor.",
+            "triggers_on_choice": "lager_drift_traces_error_chain"
+          },
+          {
+            "effects": {
+              "accuracy": 1,
+              "flow": 2,
+              "future_risk": 1,
+              "traceability": -1
+            },
+            "feedback": "Dagens tall stemmer bedre. Årsaken som skapte forskjellen kan fortsatt gjøre det igjen.",
+            "id": "B",
+            "label": "Rette beholdningen og gå videre",
+            "next_bias": {
+              "set_flags": [
+                "lager_drift_corrects_without_root_cause"
+              ]
+            },
+            "reply": "Jeg korrigerer beholdningen til fysisk telling og sørger for at riktig vare sendes nå.",
+            "triggers_on_choice": "lager_drift_corrects_without_root_cause"
+          },
+          {
+            "effects": {
+              "flow": 2,
+              "future_risk": 3,
+              "stagnation": 1,
+              "traceability": -3
+            },
+            "feedback": "Et navn på differansen er ikke det samme som en forklaring.",
+            "id": "C",
+            "label": "Forklare differansen som vanlig svinn",
+            "next_bias": {
+              "set_flags": [
+                "lager_drift_labels_unknown_as_shrinkage"
+              ]
+            },
+            "reply": "Jeg registrerer differansen som svinn og avslutter saken.",
+            "triggers_on_choice": "lager_drift_labels_unknown_as_shrinkage"
+          }
+        ],
+        "cooldown": 0,
+        "id": "story_lager_drift_difference_returns",
+        "mail_class": "story_message",
+        "mail_family": "lager_drift_feilens_etterliv",
+        "mail_type": "story",
+        "messageChannel": "job",
+        "phase": "mid",
+        "priority": 79,
+        "repeatable": false,
+        "role_scope": "lager_og_driftsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/story/lager_og_driftsmedarbeider_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Fra drift: Butikken fikk feil variant, og tellingen viser samtidig én vare for lite på systemlokasjonen.",
+          "Fra System: Forrige uke ble samme varenummer midlertidig flyttet etter plassmangel. Etterregistrering kan ikke dokumenteres."
+        ],
+        "stage": "stable",
+        "subject": "Differansen som kom tilbake",
+        "summary": "En gammel lokasjonsfeil dukker opp igjen som feilplukk og lagerdifferanse."
+      },
+      "id": "story_lager_drift_difference_returns",
+      "mail_type": "story",
+      "role_scope": "lager_og_driftsmedarbeider",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Feilen blir til læring fordi du finner hvordan den flyttet seg, ikke bare hvor den endte.",
+            "id": "A",
+            "label": "Spore kjeden fra mottak til feilplukk",
+            "reply": "Jeg følger varebevegelsen bakover, dokumenterer sannsynlig årsak og retter både fysisk plassering og systemspor."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Dagens tall stemmer bedre. Årsaken som skapte forskjellen kan fortsatt gjøre det igjen.",
+            "id": "B",
+            "label": "Rette beholdningen og gå videre",
+            "reply": "Jeg korrigerer beholdningen til fysisk telling og sørger for at riktig vare sendes nå."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Et navn på differansen er ikke det samme som en forklaring.",
+            "id": "C",
+            "label": "Forklare differansen som vanlig svinn",
+            "reply": "Jeg registrerer differansen som svinn og avslutter saken."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fra drift: Butikken fikk feil variant, og tellingen viser samtidig én vare for lite på systemlokasjonen.",
+            "Fra System: Forrige uke ble samme varenummer midlertidig flyttet etter plassmangel. Etterregistrering kan ikke dokumenteres."
+          ],
+          "subject": "Differansen som kom tilbake",
+          "summary": "En gammel lokasjonsfeil dukker opp igjen som feilplukk og lagerdifferanse."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "story_lager_drift_difference_returns",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "story_lager_drift_difference_returns",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/story/lager_og_driftsmedarbeider_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "lager_og_driftsmedarbeider.mail.story_lager_drift_difference_returns",
+        "version": 1
+      },
+      "source_hash": "de043d288920f12c8f83223f105b8b2f195cd32539c6996604126ac02b92ae84",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/story/lager_og_driftsmedarbeider_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -138409,7 +138870,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "85fde37c15c726a27c7d4bad4fc39d393651daf39c9cc66f64f0fa2df3352ea7",
+  "registry_hash": "0465650c826454c7e8b50a9c507095840e4f24516b6570808baeb3ccdeb9caf3",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -138990,7 +139451,10 @@
       "personal_lager_og_driftsmedarbeider_week2_body_speaks_again",
       "personal_lager_og_driftsmedarbeider_week2_weekend_without_warehouse_responsibility",
       "lager_people_belastning_001",
-      "lager_people_snarvei_002"
+      "lager_people_snarvei_002",
+      "story_lager_drift_difference_returns",
+      "conflict_lager_drift_move_without_scan",
+      "event_lager_drift_near_miss_blocks_flow"
     ],
     "naeringsliv/mellomleder": [
       "mellomleder_intro_v2_001",
@@ -139393,11 +139857,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 135,
+    "compiled_source_file_count": 138,
     "ignored_source_file_count": 1,
-    "input_file_count": 136,
+    "input_file_count": 139,
     "role_count": 28,
-    "scene_count": 898,
+    "scene_count": 901,
     "shadowed_duplicate_count": 0
   },
   "version": 1
