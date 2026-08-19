@@ -590,3 +590,84 @@ body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-gr
   flex-wrap: wrap;
   gap: 8px;
 }
+
+/* SPRÅKATLAS → PLACES V1 */
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-teaser-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-current button{
+  margin-left:8px;
+  padding:5px 9px;
+  border:1px solid rgba(246,200,0,.42);
+  border-radius:999px;
+  background:rgba(246,200,0,.11);
+  color:#ffe168;
+  font:inherit;
+  font-size:11px;
+  font-weight:850;
+  cursor:pointer;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-links{
+  display:grid;
+  gap:9px;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-links > strong{
+  color:#fff;
+  font-size:13px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-links > p{
+  margin:0;
+  color:rgba(255,255,255,.64);
+  font-size:11px;
+  line-height:1.45;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:8px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-list button,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-list .is-current{
+  display:grid;
+  gap:3px;
+  min-height:52px;
+  padding:9px 10px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:13px;
+  background:rgba(255,255,255,.045);
+  color:#fff;
+  text-align:left;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-list button{
+  font:inherit;
+  cursor:pointer;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-list button:hover,
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-list button:focus-visible{
+  border-color:rgba(246,200,0,.56);
+  background:rgba(246,200,0,.09);
+  outline:none;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-list small{
+  color:rgba(255,255,255,.58);
+  font-size:10px;
+}
+
+body.hg-app .hg-place-popup-v2[data-hg-language-layer="1"] .hg-language-atlas-place-list .is-current{
+  border-color:rgba(246,200,0,.32);
+}
+/* /SPRÅKATLAS → PLACES V1 */
