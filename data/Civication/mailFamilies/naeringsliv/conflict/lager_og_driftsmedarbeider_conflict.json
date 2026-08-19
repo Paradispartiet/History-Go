@@ -1,0 +1,42 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "lager_og_driftsmedarbeider",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "lager_drift_snarveipress",
+      "description": "Konflikter der kollegialt press og kø utfordrer sporbar vareflyt.",
+      "learning_focus": ["sporbarhet", "kollegialt_press", "avvik", "vareflyt"],
+      "mails": [
+        {
+          "id": "conflict_lager_drift_move_without_scan",
+          "mail_type": "conflict",
+          "mail_family": "lager_drift_snarveipress",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 83,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Bare flytt den uten skann",
+          "summary": "En erfaren kollega vil flytte en pall uten registrering for å få køen unna.",
+          "situation": [
+            "Fra kollega: Vi vet hvor den skal. Flytt pallen nå, så registrerer vi etterpå.",
+            "Fra System: Nåværende lokasjon er eneste spor som knytter pallen til mottaket."
+          ],
+          "choices": [
+            {"id":"A","label":"Registrere flyttingen før pallen går","reply":"Jeg tar skanningen nå og flytter pallen når systemet viser riktig lokasjon.","effects":{"traceability":3,"flow":1,"trust_colleague":-1,"future_risk":-2},"next_bias":{"set_flags":["lager_drift_records_move_first"]},"triggers_on_choice":"lager_drift_records_move_first","feedback":"Køen mister noen sekunder, men neste ledd slipper å lete etter en pall systemet fortsatt tror står et annet sted."},
+            {"id":"B","label":"Flytte og registrere umiddelbart etterpå","reply":"Jeg flytter den for å åpne området og registrerer bevegelsen før jeg tar neste oppgave.","effects":{"flow":2,"traceability":1,"future_risk":1,"stress":1},"next_bias":{"set_flags":["lager_drift_move_then_register"]},"triggers_on_choice":"lager_drift_move_then_register","feedback":"Dette kan holde flyt hvis etterregistreringen faktisk skjer før oppmerksomheten flyttes videre."},
+            {"id":"C","label":"Flytte uten spor og stole på hukommelsen","reply":"Jeg flytter pallen nå. Vi husker hvor den står.","effects":{"flow":3,"traceability":-3,"future_risk":3,"stagnation":1},"next_bias":{"set_flags":["lager_drift_untracked_move"]},"triggers_on_choice":"lager_drift_untracked_move","feedback":"Lageret flyter lokalt, men du har laget en fysisk sannhet systemet ikke kjenner."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
