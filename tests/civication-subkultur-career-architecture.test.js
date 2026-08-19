@@ -67,7 +67,8 @@ for (const [scope, titles] of Object.entries(evidence.canonical_decision.work_wo
   assert.ok(model.competence_axes.length >= 6, `${scope}: competence axes`);
   assert.ok(model.ideal_type_problems.length >= 5, `${scope}: ideal problems`);
   assert.ok(model.authority_boundaries.cannot.length >= 4, `${scope}: authority boundary`);
-  assert.strictEqual(grammar.version, 2, `${scope}: FWG v2`);
+  assert.strictEqual(grammar.schema, 'civication_work_grammar_v2', `${scope}: FWG schema v2`);
+  assert.ok(Number(grammar.version) >= 2, `${scope}: FWG revision v2+`);
   assert.strictEqual(grammar.role_scope, scope);
   assert.deepStrictEqual(grammar.badge_binding.badge_titles, titles);
   assert.ok(grammar.task_families.length >= 5, `${scope}: task families`);
