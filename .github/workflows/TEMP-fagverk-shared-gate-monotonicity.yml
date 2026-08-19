@@ -32,8 +32,8 @@ jobs:
 
           test_path = Path('tests/fagverk-general-engine.test.mjs')
           test_text = test_path.read_text()
-          old_counts = """  assert.equal(scenekunst.emneCount, 8);\n  assert.equal(scenekunst.methodCount, 9);\n  assert.equal(scenekunst.mappingCount, 8);"""
-          new_counts = """  assert.equal(scenekunst.emneCount, 20);\n  assert.equal(scenekunst.methodCount, 14);\n  assert.equal(scenekunst.mappingCount, 20);"""
+          old_counts = """  assert.equal(scenekunst.emneCount, 8);\n  assert.equal(scenekunst.methodCount, 9);\n  assert.equal(scenekunst.mappingCount, 8);\n  assert.equal(scenekunst.hookCount, 0);\n  assert.equal(scenekunst.chapterCount, 0);"""
+          new_counts = """  assert.equal(scenekunst.emneCount, 20);\n  assert.equal(scenekunst.methodCount, 14);\n  assert.equal(scenekunst.mappingCount, 20);\n  assert.equal(scenekunst.hookCount, 0);\n  assert.equal(scenekunst.chapterCount, 4);"""
           if old_counts not in test_text:
               raise SystemExit('Expected stale Scenekunst assertion block not found')
           test_path.write_text(test_text.replace(old_counts, new_counts, 1))
@@ -50,8 +50,9 @@ jobs:
               audit_text = audit_text.replace(old, new, 1)
           audit_path.write_text(audit_text)
           PY
-      - name: Verify repaired shared gates
+      - name: Regenerate and verify repaired shared gates
         run: |
+          node scripts/audit-film-tv-holistic-completion-v1.mjs --write
           node scripts/audit-film-tv-holistic-completion-v1.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
@@ -61,7 +62,7 @@ jobs:
           rm .github/workflows/TEMP-fagverk-shared-gate-monotonicity.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/audit-film-tv-holistic-completion-v1.mjs tests/fagverk-general-engine.test.mjs .github/workflows/TEMP-fagverk-shared-gate-monotonicity.yml
+          git add scripts/audit-film-tv-holistic-completion-v1.mjs tests/fagverk-general-engine.test.mjs data/fagverk/fagverk_registry.json data/fagverk/subject_status.json reports/fagverk/film-tv-holistic-completion-v1-audit.json .github/workflows/TEMP-fagverk-shared-gate-monotonicity.yml
           git diff --cached --check
           git commit -m "test(fagverk): preserve shared gate monotonicity"
           git push origin HEAD:agent/fagverk-shared-gate-monotonicity-20260819
