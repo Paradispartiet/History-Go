@@ -7,8 +7,8 @@
     "work_worlds": 89,
     "statuses": {
       "reference_complete": 5,
-      "playable": 6,
-      "partial": 17,
+      "playable": 7,
+      "partial": 16,
       "architecture_only": 61
     },
     "runtime_gate_pass": 14,
@@ -40,9 +40,9 @@
         "missing": 62
       },
       "places": {
-        "complete": 15,
+        "complete": 16,
         "partial": 0,
-        "missing": 74
+        "missing": 73
       },
       "mail": {
         "complete": 15,
@@ -10169,7 +10169,7 @@
         "naer_mellomleder",
         "naeringsliv_kapitalforvalter"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/kapitalforvalter.json"
@@ -10221,6 +10221,7 @@
         "role_tests": [
           "tests/civication-job-offer-eligibility-ui.test.js",
           "tests/civication-mellomleder-first-week-praksisfortellinger.test.js",
+          "tests/civication-mellomleder-rollout-playability.test.js",
           "tests/civication-mellomleder-second-week-praksisfortellinger.test.js",
           "tests/civication-mellomleder-two-week-flow.test.js",
           "tests/civication-naeringsliv-life-career-split.test.js",
@@ -10245,6 +10246,7 @@
               "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
               "tests/civication-job-offer-eligibility-ui.test.js",
               "tests/civication-mellomleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-mellomleder-rollout-playability.test.js",
               "tests/civication-mellomleder-second-week-praksisfortellinger.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -10261,6 +10263,7 @@
               "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json",
               "tests/civication-job-offer-eligibility-ui.test.js",
               "tests/civication-mellomleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-mellomleder-rollout-playability.test.js",
               "tests/civication-mellomleder-second-week-praksisfortellinger.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -10289,9 +10292,13 @@
             "note": "People content exists on only one side of the content/runtime boundary."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/kapitalforvalter.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_finans_og_kapitalforvaltning.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
@@ -10342,6 +10349,7 @@
             "evidence": [
               "tests/civication-job-offer-eligibility-ui.test.js",
               "tests/civication-mellomleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-mellomleder-rollout-playability.test.js",
               "tests/civication-mellomleder-second-week-praksisfortellinger.test.js",
               "tests/civication-mellomleder-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -10386,14 +10394,13 @@
           }
         },
         "runtime_gate": true,
-        "missing_components": [
-          "places"
-        ],
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
+          "places",
           "mail",
           "knowledge",
           "quality_axes",
