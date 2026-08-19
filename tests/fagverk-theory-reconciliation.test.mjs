@@ -10,21 +10,27 @@ test('generic scanner findings cannot be promoted directly to content repair', (
   assert.deepEqual(report.contentRepairQueue, []);
 });
 
-test('the four post-baseline subject gates remain authoritative and pass', () => {
+test('existing strict subject theory gates remain authoritative and pass', () => {
   const report = auditFagverkTheoryReconciliation();
   assert.deepEqual(report.strictSubjectGateFailures, []);
-  for (const id of ['film_tv','religion','scenekunst','subkultur']) {
+  for (const id of ['film_tv','filosofi','religion','scenekunst','subkultur']) {
     assert.equal(report.strictSubjectGates[id]?.status, 'pass', `${id} strict theory gate failed`);
   }
 });
 
-test('Film & TV is the first strict field-integrity validated subject', () => {
+test('Film & TV and Philosophy have strict field-integrity evidence', () => {
   const report = auditFagverkTheoryReconciliation();
-  const film = report.subjects.find((subject) => subject.id === 'film_tv');
+  const byId = new Map(report.subjects.map((subject) => [subject.id, subject]));
+  const film = byId.get('film_tv');
+  const philosophy = byId.get('filosofi');
   assert.equal(film?.genericDiagnosticStatus, 'green');
   assert.equal(film?.strictGate?.status, 'pass');
   assert.equal(film?.reconciliationClass, 'strict_integrity_validated');
+  assert.equal(philosophy?.strictGate?.status, 'pass');
+  assert.equal(philosophy?.strictGate?.proseBindingStatus, 'prose_and_claim_binding_validated');
+  assert.equal(philosophy?.reconciliationClass, 'strict_integrity_validated');
   assert.equal(film?.substantiveGapProven, false);
+  assert.equal(philosophy?.substantiveGapProven, false);
 });
 
 test('Religion, Scenekunst and Subkultur are reconciliation work, not proven content gaps', () => {
