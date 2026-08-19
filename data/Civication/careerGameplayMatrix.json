@@ -11,13 +11,13 @@
       "partial": 16,
       "architecture_only": 61
     },
-    "runtime_gate_pass": 14,
+    "runtime_gate_pass": 13,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
-        "complete": 86,
+        "complete": 85,
         "partial": 3,
-        "missing": 0
+        "missing": 1
       },
       "day_one": {
         "complete": 24,
@@ -55,14 +55,14 @@
         "missing": 40
       },
       "quality_axes": {
-        "complete": 87,
-        "partial": 2,
+        "complete": 86,
+        "partial": 3,
         "missing": 0
       },
       "authority": {
         "complete": 80,
-        "partial": 9,
-        "missing": 0
+        "partial": 8,
+        "missing": 1
       },
       "consequences": {
         "complete": 17,
@@ -75,19 +75,19 @@
         "missing": 64
       },
       "economy": {
-        "complete": 86,
-        "partial": 3,
+        "complete": 85,
+        "partial": 4,
         "missing": 0
       },
       "progression": {
-        "complete": 20,
-        "partial": 18,
-        "missing": 51
+        "complete": 19,
+        "partial": 20,
+        "missing": 50
       },
       "exit": {
-        "complete": 19,
-        "partial": 19,
-        "missing": 51
+        "complete": 18,
+        "partial": 21,
+        "missing": 50
       }
     }
   },
@@ -7390,19 +7390,14 @@
         "mailPlan",
         "practiceRegistry"
       ],
-      "badge_titles": [
-        "Fagarbeider"
-      ],
+      "badge_titles": [],
       "role_ids": [
         "arbeider",
-        "naer_arbeider",
-        "naeringsliv_fagarbeider"
+        "naer_arbeider"
       ],
       "status": "partial",
       "artifacts": {
-        "role_models": [
-          "data/Civication/roleModels/naeringsliv/fagarbeider.json"
-        ],
+        "role_models": [],
         "work_grammar": null,
         "shared_work_grammars": [],
         "mail_plan": "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
@@ -7450,6 +7445,7 @@
           "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
           "tests/civication-career-outcome-reachability.test.js",
           "tests/civication-career-outcome-view-model.test.js",
+          "tests/civication-career-rolemodel-ownership.test.js",
           "tests/civication-controller-two-week-flow.test.js",
           "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
           "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
@@ -7472,13 +7468,9 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json",
-              "data/Civication/badgeRoleMappings.json",
-              "tests/civication-job-offer-eligibility-ui.test.js"
-            ],
-            "note": "1 linked career title(s) have an offer policy and gate."
+            "level": "missing",
+            "evidence": [],
+            "note": "No canonical career title binding."
           },
           "day_one": {
             "level": "complete",
@@ -7489,6 +7481,7 @@
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
@@ -7518,6 +7511,7 @@
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
@@ -7550,8 +7544,7 @@
           "people": {
             "level": "partial",
             "evidence": [
-              "data/Civication/mailFamilies/naeringsliv/people/arbeider_people.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
+              "data/Civication/mailFamilies/naeringsliv/people/arbeider_people.json"
             ],
             "note": "People content exists on only one side of the content/runtime boundary."
           },
@@ -7576,27 +7569,21 @@
             "note": "5/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/jobKnowledgeRequirements.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
-            ],
-            "note": "Knowledge content is connected to a mail or job-gate surface."
-          },
-          "quality_axes": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/praksisfortellinger_registry.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
-            ],
-            "note": "Quality/competence axes are declared and connected to choice/consequence fields."
-          },
-          "authority": {
             "level": "partial",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
+              "data/Civication/jobKnowledgeRequirements.json"
             ],
-            "note": "Role content exists, but authority is not an explicit machine-auditable boundary."
+            "note": "Knowledge exists, but its gameplay application is incomplete."
+          },
+          "quality_axes": {
+            "level": "partial",
+            "evidence": [],
+            "note": "Quality axes exist without a complete choice/consequence binding."
+          },
+          "authority": {
+            "level": "missing",
+            "evidence": [],
+            "note": "No authority/mandate model."
           },
           "consequences": {
             "level": "complete",
@@ -7606,6 +7593,7 @@
               "tests/civication-administrasjonsmedarbeider-two-week-flow.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
@@ -7635,6 +7623,7 @@
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcome-view-model.test.js",
               "tests/civication-career-outcomes.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-controller-two-week-flow.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
@@ -7655,50 +7644,40 @@
             "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
-            "level": "complete",
+            "level": "partial",
             "evidence": [
-              "data/badges/index.json",
-              "data/Civication/hg_careers.json",
-              "tests/civication-economy-snapshot.test.js"
+              "data/Civication/hg_careers.json"
             ],
-            "note": "Exact salary exists for all 1 linked career title(s)."
+            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
           },
           "progression": {
-            "level": "complete",
+            "level": "partial",
             "evidence": [
-              "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
-              "tests/civication-career-outcomes.test.js"
+              "data/Civication/mailPlans/naeringsliv/arbeider_plan.json"
             ],
-            "note": "Career path and positive runtime outcome are both present."
+            "note": "Progression exists as content or outcome, not a complete transition path."
           },
           "exit": {
-            "level": "complete",
+            "level": "partial",
             "evidence": [
-              "data/Civication/mailPlans/naeringsliv/arbeider_plan.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
-              "tests/civication-career-outcomes.test.js"
+              "data/Civication/mailPlans/naeringsliv/arbeider_plan.json"
             ],
-            "note": "Exit destinations and negative runtime outcome are both present."
+            "note": "Exit exists as content or outcome, not a complete transition path."
           }
         },
-        "runtime_gate": true,
+        "runtime_gate": false,
         "missing_components": [
-          "places"
+          "entry",
+          "places",
+          "authority"
         ],
         "complete_components": [
-          "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
           "mail",
-          "knowledge",
-          "quality_axes",
           "consequences",
-          "performance",
-          "economy",
-          "progression",
-          "exit"
+          "performance"
         ],
         "practice_story_count": 0,
         "practice_weeks": [
@@ -7708,19 +7687,9 @@
         "reference_depth": 20,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 1,
-          "exact_titles": 1,
-          "rows": [
-            {
-              "title": "Fagarbeider",
-              "tier_index": 5,
-              "offer_policy": "qualification_required",
-              "entry_valid": true,
-              "gate_explicit": true,
-              "salary_key": "1",
-              "salary_defined": true
-            }
-          ]
+          "linked_titles": 0,
+          "exact_titles": 0,
+          "rows": []
         }
       }
     },
@@ -8894,11 +8863,14 @@
       ],
       "role_ids": [
         "fagarbeider",
-        "naer_fagarbeider"
+        "naer_fagarbeider",
+        "naeringsliv_fagarbeider"
       ],
       "status": "partial",
       "artifacts": {
-        "role_models": [],
+        "role_models": [
+          "data/Civication/roleModels/naeringsliv/fagarbeider.json"
+        ],
         "work_grammar": null,
         "shared_work_grammars": [
           "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
@@ -8946,6 +8918,7 @@
           "tests/civication-brand-employer-bridge.test.js",
           "tests/civication-career-outcome-reachability.test.js",
           "tests/civication-career-role-resolver.test.js",
+          "tests/civication-career-rolemodel-ownership.test.js",
           "tests/civication-day-phase-ui-reentry-lock.test.js",
           "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
           "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
@@ -8976,6 +8949,7 @@
               "tests/civication-brand-employer-bridge.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-role-resolver.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-day-phase-ui-reentry-lock.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
@@ -8997,6 +8971,7 @@
               "tests/civication-brand-employer-bridge.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-role-resolver.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-day-phase-ui-reentry-lock.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
@@ -9023,6 +8998,7 @@
             "level": "partial",
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/people/fagarbeider_people.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
             ],
             "note": "People content exists on only one side of the content/runtime boundary."
@@ -9048,17 +9024,19 @@
             "note": "5/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
               "data/Civication/praksisfortellinger_registry.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -9066,6 +9044,7 @@
           "authority": {
             "level": "complete",
             "evidence": [
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
             ],
             "note": "Explicit authority boundary exists."
@@ -9076,6 +9055,7 @@
               "tests/civication-brand-employer-bridge.test.js",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-role-resolver.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
               "tests/civication-day-phase-ui-reentry-lock.test.js",
               "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
               "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
@@ -9106,21 +9086,26 @@
             "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "partial",
+            "evidence": [
+              "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
+            ],
+            "note": "Progression exists as content or outcome, not a complete transition path."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "partial",
+            "evidence": [
+              "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
+            ],
+            "note": "Exit exists as content or outcome, not a complete transition path."
           }
         },
         "runtime_gate": true,
         "missing_components": [
-          "places",
-          "progression",
-          "exit"
+          "places"
         ],
         "complete_components": [
           "entry",
@@ -9128,6 +9113,7 @@
           "workday_loop",
           "practice_stories",
           "mail",
+          "knowledge",
           "quality_axes",
           "authority",
           "consequences",
