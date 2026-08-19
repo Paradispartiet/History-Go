@@ -29,24 +29,16 @@ const STRICT_KEYS=[
   'structured_scope_mechanism',
   'limitations',
   'rival_or_alternative',
+  'person_work_binding',
   'scholarly_source_quality',
   'claim_or_content_binding',
   'actual_prose_binding',
   'anti_trivia_rule',
   'universal_subject_scope'
 ];
-
-function allVerified(dimensions,profile){
-  const keys=[...STRICT_KEYS];
-  if(profile!=='model_evidence')keys.push('person_work_binding');
-  return keys.every(k=>dimensions?.[k]==='verified');
-}
-
-function evidenceGaps(dimensions,profile){
-  const keys=[...STRICT_KEYS];
-  if(profile!=='model_evidence')keys.push('person_work_binding');
-  return keys.filter(k=>dimensions?.[k]!=='verified');
-}
+const satisfied=value=>value==='verified'||String(value||'').startsWith('not_applicable_');
+const allVerified=dimensions=>STRICT_KEYS.every(k=>satisfied(dimensions?.[k]));
+const evidenceGaps=dimensions=>STRICT_KEYS.filter(k=>!satisfied(dimensions?.[k]));
 
 export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}={}){
   const contract=json(CONTRACT), evidence=json(EVIDENCE);
@@ -55,6 +47,7 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   assert(evidence.rules?.baseline_strong_is_not_strict_proof===true,'Integrity manifest må skille baseline fra strict proof');
   assert(evidence.rules?.missing_proof_is_not_content_gap===true,'Integrity manifest må blokkere falsk content-gap-inferens');
   assert(evidence.rules?.strict_proof_requires_actual_prose_binding===true,'Strict proof må kreve faktisk prosa-binding');
+  assert(evidence.rules?.not_applicable_must_be_explicit===true,'Ikke-relevante strict-dimensjoner må markeres eksplisitt');
 
   const baseline=auditFagverkTheoryQuality({checkReport:true});
   assert(baseline.status==='baseline_only_not_completion_gate','Global theory baseline må forbli eksplisitt baseline-only');
@@ -69,12 +62,10 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
     adapterById.set(adapter.subject_id,adapter);
   }
 
-  const runnerResults={};
   for(const [id,runner] of Object.entries(RUNNERS)){
     assert(adapterById.has(id),`Permanent subject gate mangler evidence adapter: ${id}`);
     const result=runner();
     assert(/^strong_theory_(canon|attribution)$/.test(result.status),`Subject theory gate er ikke sterk: ${id}/${result.status}`);
-    runnerResults[id]=result.status;
   }
 
   const historyAdapter=adapterById.get('historie');
@@ -89,10 +80,10 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
     const b=baselineById.get(entry.id);assert(b,`Baseline mangler fag: ${entry.id}`);
     const adapter=adapterById.get(entry.id)||null;
     const dimensions=adapter?.existing_gate_proves||{};
-    const gaps=evidenceGaps(dimensions,entry.profile);
+    const gaps=evidenceGaps(dimensions);
     let integrityStatus='baseline_only_strict_proof_missing';
     if(adapter?.proof_scope==='partial_evidence_pilot')integrityStatus='partial_strict_evidence';
-    else if(adapter?.proof_scope==='structured_subject_gate')integrityStatus=allVerified(dimensions,entry.profile)?'strictly_proven':'structured_subject_gate_not_strict';
+    else if(adapter?.proof_scope==='structured_subject_gate')integrityStatus=allVerified(dimensions)?'strictly_proven':'structured_subject_gate_not_strict';
     return {
       id:entry.id,
       topLevel:entry.top_level,
@@ -120,7 +111,8 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
       actualProseBindingRequiredForStrictProof:true,
       contestedFieldsRequireRealRival:true,
       personBoundTheoryRequiresWorkContribution:true,
-      academicallyAppropriateSourcesRequired:true
+      academicallyAppropriateSourcesRequired:true,
+      explicitNotApplicableAllowed:true
     },
     summary:{
       strictly_proven:counts('strictly_proven'),
