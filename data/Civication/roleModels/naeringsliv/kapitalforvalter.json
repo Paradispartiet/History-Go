@@ -1,6 +1,6 @@
 {
   "schema": "civication_role_model_v1",
-  "version": 1,
+  "version": 2,
   "source": {
     "badge_file": "data/badges.json",
     "badge_id": "naeringsliv",
@@ -13,48 +13,67 @@
   "role_id": "naeringsliv_kapitalforvalter",
   "title": "Kapitalforvalter",
   "core_narrative": [
-    "I Civication er Kapitalforvalter en praktisk rolle i Næringsliv & industri der valg former tillit, handlingsrom og status."
+    "Kapitalforvalter-modellen fungerer i dagens Civication som en av de canonicale modellene bak den samlede mellomleder-scope-en for strategisk ledelse og eierskap.",
+    "Arbeidet består av å oversette mellom tall, mennesker, kapasitet, risiko og beslutninger uten å late som rapporten er hele virkeligheten.",
+    "Spilleren må kunne følge en sak fra analyse og rapportering via leder- eller eierbeslutning til faktisk kapasitets- og driftskonsekvens."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til industri, handel og markeder."
+      "Går gjennom nøkkeltall, prognoser, avvik og kapasitetsdata før prioriteringer løftes til beslutning.",
+      "Sammenholder rapporterte resultater med informasjon fra drift, ansatte og andre ledere for å finne hvor tallene skjuler reell friksjon.",
+      "Forbereder beslutningsgrunnlag om ressursbruk, risiko, investering, bemanning eller forbedringstiltak.",
+      "Følger opp vedtak og kontrollerer om tiltakene faktisk virker i organisasjonen, ikke bare i neste rapport."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Skille mellom analyse, anbefaling og beslutningsmyndighet.",
+      "Synliggjøre usikkerhet og risiko når tallgrunnlaget er svakere enn beslutningspresset tilsier.",
+      "Koble strategiske valg til faktisk kapasitet, arbeidsmiljø og gjennomføringsevne.",
+      "Dokumentere beslutningsgrunnlag og sørge for at viktige forutsetninger ikke forsvinner i rapporteringskjeden."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Arbeidsdagen veksler mellom analyseflater, korte ledermøter, rapporteringsfrister og samtaler der ulike nivåer beskriver den samme situasjonen forskjellig.",
+      "Mellomleder-scope-en er bevisst en samlet fallback for strategiske og eierpregede titler; arbeidsflatene beskriver derfor felles beslutningsarbeid uten å late som alle titlene har identisk fagmandat."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Rollen får innflytelse ved å gjøre kompliserte forhold beslutningsbare uten å skjule vesentlig risiko eller menneskelig kostnad.",
+      "Mandatet varierer mellom titlene i fallback-scope-en: spilleren kan analysere, anbefale, koordinere og følge opp, men formell investerings-, eier- eller konsernmyndighet følger den konkrete stillingen og kan ikke antas av scope-en alene."
+    ],
+    "workplaces": [
+      "analyse_og_rapporteringsflate",
+      "strategi_og_beslutningsrom",
+      "drift_og_kapasitetsgjennomgang",
+      "risiko_og_oppfolgingsbord"
     ]
   },
   "career_path": {
     "entry_from": [
-      "Tidligere tier i samme badge-kategori."
+      "Tidligere tier eller leder-/fagrolle med ansvar for analyse, drift eller koordinering."
     ],
     "progression_to": [
-      "Neste tier i samme badge-kategori."
+      "Neste strategiske, eierpregede eller konsernrettede tier i samme badge-kategori."
     ],
     "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
+      "Større beslutningsrom, budsjettansvar, porteføljeansvar eller strategisk koordinering."
     ],
     "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
+      "Skifte til mer avgrenset fag-, drifts- eller prosjektrolle når strategisk ansvar ikke passer.",
+      "Overgang til særskilt kapital-, eierskaps- eller konsernrolle dersom slike scopes senere materialiseres."
     ],
     "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
+      "Å gjøre styringssignaler penere enn virkeligheten og dermed flytte risiko nedover i organisasjonen.",
+      "Å forveksle tilgang til beslutningsrom med mandat til å overstyre faglige, juridiske eller operative grenser."
     ]
   },
   "required_knowledge": {
     "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
+      "Grunnforståelse for virksomhetsstyring, organisasjon, økonomi, risiko og institusjonene i kategorien."
     ],
     "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
+      "Prioritering, kommunikasjon og situasjonsforståelse.",
+      "Analyse, rapportering, kapasitetsvurdering, risikovurdering og beslutningsoppfølging."
     ],
     "category_knowledge": [
-      "For dem som ser verdien i arbeidets historie – fra fabrikkpiper til gründere som forandret byen."
+      "Næringsliv, drift, kapital, eierskap og organisasjonsstyring som ulike, men sammenkoblede beslutningsflater."
     ],
     "history_go_badges": [
       "naeringsliv"
@@ -64,14 +83,15 @@
   },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
+      "id": "rapport_vs_virkelighet",
+      "title": "Rapporten mot virkeligheten",
+      "description": "Tallene peker én vei, mens kapasitet, folk eller drift viser en annen risiko.",
+      "pressure": "styringsro_vs_reell_forklaring",
       "affects": [
         "trust",
         "status",
-        "risk"
+        "risk",
+        "decision_quality"
       ]
     }
   ],
@@ -79,9 +99,9 @@
     {
       "id": "lojalitetsdilemma",
       "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
+      "setup": "Du må velge mellom å gi beslutningstakerne et ryddig styringssignal og å vise friksjonen som kan gjøre tiltaket vanskeligere å selge, men tryggere å gjennomføre.",
+      "choice_axis": "politisk_ro_vs_sannferdig_styring",
+      "consequence_axis": "kortsiktig_status_vs_langsiktig_tillit",
       "mail_hooks": [
         "job",
         "conflict",
@@ -90,7 +110,28 @@
     }
   ],
   "related_people": [],
-  "related_places": [],
+  "related_places": [
+    {
+      "id": "analyse_og_rapporteringsflate",
+      "name": "Analyse- og rapporteringsflaten",
+      "function": "Her sammenstilles nøkkeltall, prognoser, avvik, forutsetninger og usikkerhet før informasjonen blir til et styringssignal."
+    },
+    {
+      "id": "strategi_og_beslutningsrom",
+      "name": "Strategi- og beslutningsrommet",
+      "function": "Møteflaten der anbefalinger utfordres, prioriteringer forhandles og det avklares hvem som faktisk har mandat til å beslutte."
+    },
+    {
+      "id": "drift_og_kapasitetsgjennomgang",
+      "name": "Drift- og kapasitetsgjennomgangen",
+      "function": "Arbeidsflaten som kobler rapporten tilbake til bemanning, leveranse, arbeidsmiljø og gjennomføringsevne før tiltak låses."
+    },
+    {
+      "id": "risiko_og_oppfolgingsbord",
+      "name": "Risiko- og oppfølgingsbordet",
+      "function": "Her dokumenteres forutsetninger, risiko, ansvar, frister og tegn på om vedtatte tiltak faktisk virker eller må korrigeres."
+    }
+  ],
   "mail_integration": {
     "role_scope": "kapitalforvalter",
     "mail_profile": "naeringsliv_kapitalforvalter",
@@ -105,8 +146,8 @@
     "mail_variables": {
       "role_title": "Kapitalforvalter",
       "category": "naeringsliv",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
+      "main_pressure": "styringsro_vs_reell_forklaring",
+      "ethical_axis": "analyse_vs_beslutningsmakt",
       "status_axis": "tillit_vs_risiko"
     },
     "recommended_mail_families": [],
@@ -115,6 +156,7 @@
   "competence_axes": [],
   "ideal_type_problems": [],
   "notes": [
-    "Basert på badges.json: naeringsliv / Kapitalforvalter."
+    "Basert på badges.json: naeringsliv / Kapitalforvalter.",
+    "Systematic rollout: modellen brukes av dagens canonicale mellomleder-fallback og materialiserer felles strategiske arbeidsflater uten å opprette en ny kapital- eller eierskapsrolle."
   ]
 }

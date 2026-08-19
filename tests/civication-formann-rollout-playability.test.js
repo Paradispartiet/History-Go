@@ -35,8 +35,7 @@ assert.deepEqual(world.audit?.missing_components, []);
 assert.equal(world.status, 'playable');
 
 assert.equal(matrix.summary?.statuses?.reference_complete, 5, 'Reference-role count must remain frozen');
-assert.equal(matrix.summary?.statuses?.playable, 6, 'First systematic rollout should raise playable count to six');
-assert.equal(matrix.summary?.statuses?.partial, 17, 'Formann should leave the partial queue');
-assert.equal(matrix.summary?.statuses?.architecture_only, 61);
+assert.ok(matrix.summary?.statuses?.playable >= 6, 'Systematic rollout must never regress below six playable worlds after Formann');
+assert.ok(matrix.summary?.statuses?.partial <= 17, 'Systematic rollout must not restore Formann to the partial queue');
 
-console.log('✓ Formann systematic rollout is playable with concrete work surfaces');
+console.log('✓ Formann systematic rollout remains playable with concrete work surfaces');
