@@ -4,15 +4,12 @@ on:
   push:
     branches:
       - agent/civication-barnehageassistent-authority-reconciliation
-  pull_request:
-    branches:
-      - main
 
 permissions:
   contents: write
 
 jobs:
-  reconcile:
+  materialize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -21,161 +18,20 @@ jobs:
           ref: agent/civication-barnehageassistent-authority-reconciliation
           fetch-depth: 0
 
-      - name: Reconcile canonical career-world authority
-        shell: bash
+      - name: Regenerate authority projections
         run: |
-          python3 - <<'PY'
-          from pathlib import Path
-
-          p = Path('scripts/audit-civication-career-gameplay.mjs')
-          s = p.read_text()
-          s = s.replace(
-              "const POLICY_PATH = 'data/Civication/careerGameplayPolicy.json';\nconst MATRIX_PATH = 'data/Civication/careerGameplayMatrix.json';",
-              "const POLICY_PATH = 'data/Civication/careerGameplayPolicy.json';\nconst CATEGORY_CONTRACT_PATH = 'data/categories/category_contract.json';\nconst MATRIX_PATH = 'data/Civication/careerGameplayMatrix.json';"
-          )
-          s = s.replace(
-              "const policy = readJson(POLICY_PATH);\nconst contractComponents = policy.contract_components || [];",
-              "const policy = readJson(POLICY_PATH);\nconst categoryContract = readJson(CATEGORY_CONTRACT_PATH);\nconst canonicalCategories = new Set(categoryContract.runtimeCategories || []);\nif (!canonicalCategories.size) throw new Error('Category contract exposes no canonical runtime categories.');\nconst contractComponents = policy.contract_components || [];"
-          )
-          old = """const sortedWorlds = [...worlds.values()].sort((a, b) => a.category.localeCompare(b.category) || a.role_scope.localeCompare(b.role_scope));
-const duplicateKeys = sortedWorlds.map((world) => world.key).filter((key, index, all) => all.indexOf(key) !== index);
-if (duplicateKeys.length) throw new Error(`Duplicate work worlds: ${uniq(duplicateKeys).join(', ')}`);
-for (const world of sortedWorlds) {
-  if (world.status === 'playable' && !world.audit.runtime_gate) throw new Error(`${world.key}: playable without runtime gate`);
-  if (world.status === 'reference_complete' && (!world.audit.runtime_gate || !world.audit.life_story_complete || world.audit.complete_components.length !== contractComponents.length)) throw new Error(`${world.key}: invalid reference_complete classification`);
-}
-
-const counts = Object.fromEntries((policy.status_order || []).map((status) => [status, sortedWorlds.filter((world) => world.status === status).length]));"""
-          new = """const auditedWorlds = [...worlds.values()].sort((a, b) => a.category.localeCompare(b.category) || a.role_scope.localeCompare(b.role_scope));
-const duplicateKeys = auditedWorlds.map((world) => world.key).filter((key, index, all) => all.indexOf(key) !== index);
-if (duplicateKeys.length) throw new Error(`Duplicate work worlds: ${uniq(duplicateKeys).join(', ')}`);
-
-const supportWorlds = auditedWorlds.filter((world) => !canonicalCategories.has(world.category));
-const sortedWorlds = auditedWorlds.filter((world) => canonicalCategories.has(world.category));
-for (const world of supportWorlds) {
-  if (world.declared_by.includes('badgeRoleMappings')) throw new Error(`${world.key}: noncanonical category cannot own a Badge career mapping`);
-}
-for (const world of sortedWorlds) {
-  if (world.status === 'playable' && !world.audit.runtime_gate) throw new Error(`${world.key}: playable without runtime gate`);
-  if (world.status === 'reference_complete' && (!world.audit.runtime_gate || !world.audit.life_story_complete || world.audit.complete_components.length !== contractComponents.length)) throw new Error(`${world.key}: invalid reference_complete classification`);
-}
-const supportRows = supportWorlds.map((world) => ({
-  key: world.key,
-  category: world.category,
-  role_scope: world.role_scope,
-  declared_by: world.declared_by,
-  role_ids: world.role_ids,
-  career_status: 'not_applicable',
-  reason: world.artifacts.life_story?.content_only ? 'content_only_legacy_namespace' : 'noncanonical_category',
-  content_only_life_story: Boolean(world.artifacts.life_story?.content_only)
-}));
-
-const counts = Object.fromEntries((policy.status_order || []).map((status) => [status, sortedWorlds.filter((world) => world.status === status).length]));"""
-          if old not in s:
-              raise SystemExit('Could not find sortedWorlds authority block')
-          s = s.replace(old, new)
-          s = s.replace(
-              "summary: {\n    work_worlds: sortedWorlds.length,\n    statuses: counts,",
-              "summary: {\n    discovered_worlds: auditedWorlds.length,\n    work_worlds: sortedWorlds.length,\n    support_worlds: supportRows.length,\n    statuses: counts,"
-          )
-          s = s.replace(
-              "  },\n  worlds: sortedWorlds\n};",
-              "  },\n  worlds: sortedWorlds,\n  support_worlds: supportRows\n};"
-          )
-          s = s.replace(
-              "  lines.push(`- Work worlds: **${matrix.summary.work_worlds}**`);",
-              "  lines.push(`- Discovered work/support worlds: **${matrix.summary.discovered_worlds}**`);\n  lines.push(`- Canonical career work worlds: **${matrix.summary.work_worlds}**`);\n  lines.push(`- Noncanonical support worlds excluded from rollout: **${matrix.summary.support_worlds}**`);"
-          )
-          marker = "  lines.push('', '## Global matrix', '', '| category | role_scope | status | gate | roleModel | FWG | plan | mail types | complete | partial | missing | Life Story |', '| --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- |');"
-          insert = """  lines.push('', '## Noncanonical support worlds', '', '| work world | career status | reason | content-only Life Story |', '| --- | --- | --- | --- |');
-  for (const world of supportRows) {
-    lines.push(`| ${esc(world.key)} | ${world.career_status} | ${esc(world.reason)} | ${world.content_only_life_story ? 'ja' : 'nei'} |`);
-  }
-  lines.push('', '## Global matrix', '', '| category | role_scope | status | gate | roleModel | FWG | plan | mail types | complete | partial | missing | Life Story |', '| --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- |');"""
-          if marker not in s:
-              raise SystemExit('Could not find report Global matrix marker')
-          s = s.replace(marker, insert)
-          s = s.replace(
-              "'- Only the generated status may be used in planning. A Badge tier, roleModel or FWG must not be called playable on its own.'",
-              "'- Noncanonical namespaces are retained as support content but are excluded from career statuses and rollout planning.', '- Only the generated status may be used in planning. A Badge tier, roleModel or FWG must not be called playable on its own.'"
-          )
-          s = s.replace(
-              "console.log(`Wrote ${sortedWorlds.length} work worlds to ${MATRIX_PATH} and ${REPORT_PATH}.`);",
-              "console.log(`Wrote ${sortedWorlds.length} canonical career worlds and ${supportRows.length} support worlds to ${MATRIX_PATH} and ${REPORT_PATH}.`);"
-          )
-          s = s.replace(
-              "console.log(`Career Gameplay Matrix check passed: ${sortedWorlds.length} work worlds; ${counts.reference_complete || 0} reference_complete; ${counts.playable || 0} playable; ${counts.partial || 0} partial; ${counts.architecture_only || 0} architecture_only.`);",
-              "console.log(`Career Gameplay Matrix check passed: ${sortedWorlds.length} canonical career worlds; ${supportRows.length} support worlds; ${counts.reference_complete || 0} reference_complete; ${counts.playable || 0} playable; ${counts.partial || 0} partial; ${counts.architecture_only || 0} architecture_only.`);"
-          )
-          p.write_text(s)
-
-          p = Path('tests/civication-career-gameplay-matrix.test.js')
-          s = p.read_text()
-          s = s.replace(
-              "const policy = JSON.parse(fs.readFileSync(path.join(root, 'data/Civication/careerGameplayPolicy.json'), 'utf8'));\nconst matrix = JSON.parse",
-              "const policy = JSON.parse(fs.readFileSync(path.join(root, 'data/Civication/careerGameplayPolicy.json'), 'utf8'));\nconst categoryContract = JSON.parse(fs.readFileSync(path.join(root, 'data/categories/category_contract.json'), 'utf8'));\nconst matrix = JSON.parse"
-          )
-          anchor = "assert.strictEqual(new Set(matrix.worlds.map((world) => world.key)).size, matrix.worlds.length, 'one row per category/role_scope');\n"
-          addition = """assert.strictEqual(new Set(matrix.worlds.map((world) => world.key)).size, matrix.worlds.length, 'one row per category/role_scope');
-const canonicalCategories = new Set(categoryContract.runtimeCategories || []);
-assert(matrix.worlds.every((world) => canonicalCategories.has(world.category)), 'career matrix contains only canonical runtime categories');
-assert(Array.isArray(matrix.support_worlds), 'matrix exposes noncanonical support worlds separately');
-assert.strictEqual(matrix.summary.support_worlds, matrix.support_worlds.length, 'support-world summary matches support rows');
-assert(!matrix.worlds.some((world) => world.key === 'sosial_laering/barnehageassistent'), 'legacy sosial_laering is excluded from canonical career rollout');
-const barnehageSupport = matrix.support_worlds.find((world) => world.key === 'sosial_laering/barnehageassistent');
-assert(barnehageSupport, 'Barnehageassistent remains visible as support content');
-assert.strictEqual(barnehageSupport.career_status, 'not_applicable', 'Barnehageassistent does not receive a fabricated career status');
-assert.strictEqual(barnehageSupport.reason, 'content_only_legacy_namespace', 'Barnehageassistent authority follows its content-only Life Story binding');
-assert.strictEqual(barnehageSupport.content_only_life_story, true, 'Barnehageassistent remains content-only');
-"""
-          if anchor not in s:
-              raise SystemExit('Could not find matrix uniqueness test anchor')
-          s = s.replace(anchor, addition)
-          p.write_text(s)
-
-          p = Path('docs/CIVICATION_CAREER_GAMEPLAY_CONTRACT.md')
-          s = p.read_text()
-          old = """Arbeidsverdener oppdages som unionen av deklarasjoner i:
-
-- `data/Civication/workGrammars/`
-- `data/Civication/badgeRoleMappings.json`
-- `data/Civication/mailPlans/`
-- `data/Civication/praksisfortellinger_registry.json`
-- `data/Civication/lifestory/manifest.json`
-
-En roleModel-fil alene oppretter ikke en ny arbeidsverden.
-"""
-          new = """Arbeids-/støtteverdener oppdages som unionen av deklarasjoner i:
-
-- `data/Civication/workGrammars/`
-- `data/Civication/badgeRoleMappings.json`
-- `data/Civication/mailPlans/`
-- `data/Civication/praksisfortellinger_registry.json`
-- `data/Civication/lifestory/manifest.json`
-
-Deretter gjelder en bindende authority-grense: bare kategorier som finnes i `data/categories/category_contract.json` → `runtimeCategories` kan inngå i den canonicale Career Gameplay Matrixen, få `reference_complete` / `playable` / `partial` / `architecture_only` og telle i rollout-køen. Oppdaget innhold under et ikke-canonical namespace bevares i en separat `support_worlds`-liste med `career_status: not_applicable`; det skal ikke gis oppdiktet Badge-binding, jobbtilbud eller lønn for å passere career-gaten.
-
-En roleModel-fil alene oppretter ikke en ny arbeidsverden. `content_only` Life Story-pakker under legacy namespaces er støtteinnhold inntil de eventuelt får en eksplisitt, separat og canonical plassering.
-"""
-          if old not in s:
-              raise SystemExit('Could not find career contract discovery section')
-          s = s.replace(old, new)
-          p.write_text(s)
-          PY
-
-      - name: Regenerate and verify authority projections
-        run: |
+          node --check scripts/audit-civication-career-gameplay.mjs
           node scripts/audit-civication-career-gameplay.mjs --write
           node tests/civication-career-gameplay-matrix.test.js
           node scripts/audit-category-governance.mjs
-          node --check scripts/audit-civication-career-gameplay.mjs
 
-      - name: Commit permanent reconciliation and remove materializer
+      - name: Commit projections and remove temporary workflow
         shell: bash
         run: |
           rm .github/workflows/temp-civication-authority-reconciliation.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/audit-civication-career-gameplay.mjs tests/civication-career-gameplay-matrix.test.js docs/CIVICATION_CAREER_GAMEPLAY_CONTRACT.md data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md .github/workflows/temp-civication-authority-reconciliation.yml
-          git commit -m "Reconcile canonical Civication career-world authority"
+          git add data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md .github/workflows/temp-civication-authority-reconciliation.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Materialize Civication career authority reconciliation"
           git push origin HEAD:agent/civication-barnehageassistent-authority-reconciliation
