@@ -1,34 +1,6 @@
-start_sha=36a072b3e55a9649235d4c3f103228d4b579b7d4
+start_sha=dbf40f7a397d3f029cf20c7109b9e0aad4c0750e
 node=v22.23.2
-trainer_people_before={"keys":["schema","version","category","role_scope","mail_type","families"],"families":1,"family_mails":[1]}
-[CivicationSceneRegistry] {"schema":"compiled_scene_registry_v1","version":1,"registry_hash":"cd83a9f759959cfd7b021f878b327650548b9df883d5af94b18c5374e7b8908d","scenes":942,"roles":28,"compiled_source_files":179,"ignored_source_files":1,"shadowed_duplicates":0,"legacy_fallback_files":8,"wrote":"data/Civication/compiledSceneRegistryV1.json","checked":null}
-trainer_people_after_builder={"keys":["schema","version","category","role_scope","mail_type","families"],"families":1,"family_mails":[1]}
+trainer_people={"families":1,"family_mails":[1]}
+[CivicationSceneRegistry] {"schema":"compiled_scene_registry_v1","version":1,"registry_hash":"9e7fa753630b4c7864145c681c79d89cd5af656c2260b89412d08bb740669bba","scenes":949,"roles":28,"compiled_source_files":186,"ignored_source_files":1,"shadowed_duplicates":0,"legacy_fallback_files":8,"wrote":"data/Civication/compiledSceneRegistryV1.json","checked":null}
 Wrote 88 canonical career worlds and 1 support worlds to data/Civication/careerGameplayMatrix.json and reports/civication-career-gameplay-matrix.md.
-trainer_people_after_audit={"keys":["schema","version","category","role_scope","mail_type","families"],"families":1,"family_mails":[1]}
-node:assert:150
-  throw new AssertionError(obj);
-  ^
-
-AssertionError [ERR_ASSERTION]: mail must satisfy the canonical runtime gate
-+ actual - expected
-
-+ 'partial'
-- 'complete'
-
-    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/tests/civication-sport-trener-rollout-playability.test.js:47:10)
-    at Module._compile (node:internal/modules/cjs/loader:1781:14)
-    at Object..js (node:internal/modules/cjs/loader:1913:10)
-    at Module.load (node:internal/modules/cjs/loader:1505:32)
-    at Function._load (node:internal/modules/cjs/loader:1309:12)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
-    at node:internal/main/run_main_module:36:49 {
-  generatedMessage: false,
-  code: 'ERR_ASSERTION',
-  actual: 'partial',
-  expected: 'complete',
-  operator: 'strictEqual',
-  diff: 'simple'
-}
-
-Node.js v22.23.2
+✓ Sport trainer systematic rollout is playable under the canonical playable policy
