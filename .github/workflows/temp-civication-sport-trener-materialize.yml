@@ -35,8 +35,11 @@ jobs:
       - name: Materialize canonical projections
         run: |
           set -euo pipefail
+          node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_before='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
           node scripts/build-civication-scene-registry.mjs --write
+          node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_after_builder='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
           node scripts/audit-civication-career-gameplay.mjs --write
+          node -e "const x=require('./data/Civication/mailFamilies/sport/people/sport_trener_people.json'); console.log('trainer_people_after_audit='+JSON.stringify({keys:Object.keys(x),families:Array.isArray(x.families)?x.families.length:null,family_mails:Array.isArray(x.families)?x.families.map(f=>Array.isArray(f.mails)?f.mails.length:null):null}))"
           node tests/civication-sport-trener-rollout-playability.test.js
           git diff --check
 
