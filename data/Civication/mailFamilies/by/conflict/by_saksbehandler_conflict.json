@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_saksbehandler",
+  "mail_type": "conflict",
+  "families": [{
+    "id": "regel_og_stedskonflikt",
+    "purpose": "Lar saksbehandleren håndtere konflikt mellom lik praksis og relevante stedlige forskjeller.",
+    "learning_focus": ["likebehandling", "begrunnet_skjonn"],
+    "mails": [{
+      "id": "by_saksbehandler_conflict_likebehandling_001",
+      "mail_type": "conflict",
+      "mail_family": "regel_og_stedskonflikt",
+      "role_scope": "by_saksbehandler",
+      "phase": "afternoon",
+      "priority": 68,
+      "cooldown": 2,
+      "repeatable": false,
+      "stage": "stable_warning",
+      "from": "juridisk_rådgiver_erik",
+      "sender": "juridisk_rådgiver_erik",
+      "person_id": "juridisk_rådgiver_erik",
+      "place_id": "regel_og_skjonnsvurdering",
+      "subject": "En tidligere tillatelse ligner, men skoleveien gjør saken annerledes",
+      "summary": "Tiltakshaver viser til en tidligere sak med samme mål og hjemmel, men dagens sted har en trang skolevei som den gamle saken ikke hadde.",
+      "purpose": "Teste om saksbehandleren bruker tidligere praksis som sammenligning uten å kopiere resultatet.",
+      "stakes": "Identisk resultat ser konsekvent ut; begrunnet forskjell kan være mer rettferdig, men krever et tydeligere skjønnsspor.",
+      "situation": ["Den tidligere saken har samme volum og regelgrunnlag.", "Dagens tiltak ligger ved en trang skolevei med et annet trafikkbilde.", "Erik ber deg vise hva likebehandling faktisk krever her."],
+      "task_domain": "likebehandling",
+      "task_kind": "conflict",
+      "competency": "begrunnet_skjonn",
+      "pressure": "presedens_vs_stedlig_forskjell",
+      "choice_axis": "begrunne_forskjell_vs_kopiere_resultat",
+      "consequence_axis": "reell_likebehandling_vs_mekanisk_likhet",
+      "narrative_arc": "Saksbehandleren lærer at konsistens krever sammenligning av relevante forskjeller, ikke bare samme tall.",
+      "choices": [
+        {"id":"A","label":"Bruk den gamle saken som sammenligning og begrunn hvorfor skoleveien er relevant forskjell","reply":"Jeg sammenligner sakene eksplisitt og begrunner hvorfor skoleveien gjør virkningsbildet annerledes.","effect":1,"tags":["fairness","law","place"],"feedback":"Forskjellen blir etterprøvbar i stedet for å se tilfeldig ut."},
+        {"id":"B","label":"Følg tidligere praksis for å unngå ulik behandling","reply":"Jeg følger den tidligere saken siden mål og hjemmel er de samme.","effect":-1,"tags":["precedent","formalism","risk"],"feedback":"Resultatet ser konsistent ut, men den relevante stedlige forskjellen forsvinner fra vurderingen."}
+      ]
+    }]
+  }]
+}
