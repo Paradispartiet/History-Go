@@ -1,5 +1,5 @@
 name: TEMP Civication Sportssjef materializer
-# diagnostic retry: preserve the same probes on a fresh runner
+# diagnostic retry: isolate the exact shared rollout gate
 
 on:
   push:
@@ -55,8 +55,8 @@ jobs:
           const assert = require('node:assert/strict');
           const types = ['job', 'people', 'conflict', 'story', 'event', 'micro', 'followup', 'knowledge', 'consequence'];
           for (const type of types) {
-            const path = `data/Civication/mailFamilies/sport/${type}/sport_sportsledelse_${type}.json`;
-            const catalog = JSON.parse(fs.readFileSync(path, 'utf8'));
+            const file = `data/Civication/mailFamilies/sport/${type}/sport_sportsledelse_${type}.json`;
+            const catalog = JSON.parse(fs.readFileSync(file, 'utf8'));
             assert.equal(catalog.category, 'sport', `${type}: category`);
             assert.equal(catalog.role_scope, 'sport_sportsledelse', `${type}: role_scope`);
             assert.equal(catalog.mail_type, type, `${type}: mail_type`);
@@ -112,15 +112,26 @@ jobs:
       - name: Verify focused Sportssjef rollout test
         run: node tests/civication-sport-sportsledelse-rollout-playability.test.js
 
-      - name: Verify shared Civication rollout gates
-        run: |
-          node scripts/build-civication-scene-registry.mjs --check
-          node scripts/audit-civication-career-gameplay.mjs --check
-          node tests/civication-career-gameplay-matrix.test.js
-          node tests/civication-compiled-scene-registry.test.js
-          node tests/civication-compiled-scene-registry-parity.test.js
-          node tests/civication-mail-choice-uniqueness.test.js
-          node tests/civication-sport-life-career-split.test.js
+      - name: Check compiled scene registry projection
+        run: node scripts/build-civication-scene-registry.mjs --check
+
+      - name: Check career gameplay audit projection
+        run: node scripts/audit-civication-career-gameplay.mjs --check
+
+      - name: Test career gameplay matrix
+        run: node tests/civication-career-gameplay-matrix.test.js
+
+      - name: Test compiled scene registry
+        run: node tests/civication-compiled-scene-registry.test.js
+
+      - name: Test compiled scene registry parity
+        run: node tests/civication-compiled-scene-registry-parity.test.js
+
+      - name: Test mail choice uniqueness
+        run: node tests/civication-mail-choice-uniqueness.test.js
+
+      - name: Test sport life career split
+        run: node tests/civication-sport-life-career-split.test.js
 
       - name: Commit projections and remove temporary workflow
         shell: bash
