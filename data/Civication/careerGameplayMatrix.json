@@ -4,11 +4,13 @@
   "generated_by": "scripts/audit-civication-career-gameplay.mjs",
   "policy": "data/Civication/careerGameplayPolicy.json",
   "summary": {
-    "work_worlds": 89,
+    "discovered_worlds": 89,
+    "work_worlds": 88,
+    "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
       "playable": 10,
-      "partial": 13,
+      "partial": 12,
       "architecture_only": 61
     },
     "runtime_gate_pass": 15,
@@ -16,77 +18,77 @@
     "component_debt": {
       "entry": {
         "complete": 85,
-        "partial": 3,
+        "partial": 2,
         "missing": 1
       },
       "day_one": {
-        "complete": 24,
+        "complete": 23,
         "partial": 4,
         "missing": 61
       },
       "workday_loop": {
-        "complete": 23,
+        "complete": 22,
         "partial": 59,
         "missing": 7
       },
       "practice_stories": {
         "complete": 12,
-        "partial": 72,
+        "partial": 71,
         "missing": 5
       },
       "people": {
-        "complete": 11,
+        "complete": 10,
         "partial": 16,
         "missing": 62
       },
       "places": {
-        "complete": 19,
+        "complete": 18,
         "partial": 0,
         "missing": 70
       },
       "mail": {
-        "complete": 17,
+        "complete": 16,
         "partial": 11,
         "missing": 61
       },
       "knowledge": {
-        "complete": 25,
+        "complete": 24,
         "partial": 24,
         "missing": 40
       },
       "quality_axes": {
-        "complete": 86,
+        "complete": 85,
         "partial": 3,
         "missing": 0
       },
       "authority": {
         "complete": 80,
-        "partial": 8,
+        "partial": 7,
         "missing": 1
       },
       "consequences": {
-        "complete": 17,
+        "complete": 16,
         "partial": 8,
         "missing": 64
       },
       "performance": {
-        "complete": 20,
+        "complete": 19,
         "partial": 5,
         "missing": 64
       },
       "economy": {
         "complete": 85,
-        "partial": 4,
+        "partial": 3,
         "missing": 0
       },
       "progression": {
-        "complete": 19,
+        "complete": 18,
         "partial": 20,
         "missing": 50
       },
       "exit": {
         "complete": 18,
-        "partial": 21,
+        "partial": 20,
         "missing": 50
       }
     }
@@ -17271,274 +17273,6 @@
       }
     },
     {
-      "key": "sosial_laering/barnehageassistent",
-      "category": "sosial_laering",
-      "role_scope": "barnehageassistent",
-      "declared_by": [
-        "lifeStoryContentOnly",
-        "mailPlan",
-        "workGrammar"
-      ],
-      "badge_titles": [
-        "Observatør / Guide (nærmeste eksisterende omsorgs- og læringsakse)"
-      ],
-      "role_ids": [
-        "barnehageassistent",
-        "sosial_laering_barnehageassistent"
-      ],
-      "status": "partial",
-      "artifacts": {
-        "role_models": [
-          "data/Civication/roleModels/sosial_laering/barnehageassistent.json"
-        ],
-        "work_grammar": "data/Civication/workGrammars/sosial_laering/barnehageassistent.json",
-        "shared_work_grammars": [],
-        "mail_plan": "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-        "mail_families": {
-          "job": {
-            "path": "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
-            "count": 14
-          },
-          "people": {
-            "path": "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
-            "count": 11
-          },
-          "conflict": {
-            "path": "data/Civication/mailFamilies/sosial_laering/conflict/barnehageassistent_conflict.json",
-            "count": 8
-          },
-          "story": {
-            "path": "data/Civication/mailFamilies/sosial_laering/story/barnehageassistent_story.json",
-            "count": 6
-          },
-          "event": {
-            "path": "data/Civication/mailFamilies/sosial_laering/event/barnehageassistent_event.json",
-            "count": 4
-          },
-          "micro": {
-            "path": "data/Civication/mailFamilies/sosial_laering/micro/barnehageassistent_micro.json",
-            "count": 16
-          },
-          "followup": {
-            "path": "data/Civication/mailFamilies/sosial_laering/followup/barnehageassistent_followup.json",
-            "count": 8
-          },
-          "knowledge": {
-            "path": "data/Civication/mailFamilies/sosial_laering/knowledge/barnehageassistent_knowledge.json",
-            "count": 8
-          },
-          "consequence": {
-            "path": "data/Civication/mailFamilies/sosial_laering/consequence/barnehageassistent_consequence.json",
-            "count": 8
-          }
-        },
-        "role_tests": [
-          "tests/civication-barnehageassistent-mail-plan.test.js",
-          "tests/civication-lifestory-barnehageassistent.test.js",
-          "tests/civication-test-mode-ui.test.js",
-          "tests/civication-work-grammar-story-simulation.test.js"
-        ],
-        "life_story": {
-          "id": "barnehageassistent",
-          "content_only": true,
-          "paths": [
-            "data/Civication/lifestory/roles/barnehageassistent/role.json",
-            "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
-            "data/Civication/lifestory/roles/barnehageassistent/threads.json"
-          ]
-        }
-      },
-      "audit": {
-        "components": {
-          "entry": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
-            ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
-          },
-          "day_one": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "tests/civication-barnehageassistent-mail-plan.test.js",
-              "tests/civication-lifestory-barnehageassistent.test.js",
-              "tests/civication-test-mode-ui.test.js",
-              "tests/civication-work-grammar-story-simulation.test.js"
-            ],
-            "note": "Role plan and role-specific test prove a first playable day."
-          },
-          "workday_loop": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json",
-              "tests/civication-barnehageassistent-mail-plan.test.js",
-              "tests/civication-lifestory-barnehageassistent.test.js",
-              "tests/civication-test-mode-ui.test.js",
-              "tests/civication-work-grammar-story-simulation.test.js"
-            ],
-            "note": "Repeatable work content is connected to a tested plan."
-          },
-          "practice_stories": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/praksisfortellinger_registry.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "16 FWG stories and 0 registered practice week(s)."
-          },
-          "people": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/lifestory/roles/barnehageassistent/role.json",
-              "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
-              "data/Civication/lifestory/roles/barnehageassistent/threads.json",
-              "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Named/typed work relationships are used by people mails."
-          },
-          "places": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/lifestory/roles/barnehageassistent/role.json",
-              "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
-              "data/Civication/lifestory/roles/barnehageassistent/threads.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "33 place/working-surface declarations."
-          },
-          "mail": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailFamilies/sosial_laering/conflict/barnehageassistent_conflict.json",
-              "data/Civication/mailFamilies/sosial_laering/consequence/barnehageassistent_consequence.json",
-              "data/Civication/mailFamilies/sosial_laering/event/barnehageassistent_event.json",
-              "data/Civication/mailFamilies/sosial_laering/followup/barnehageassistent_followup.json",
-              "data/Civication/mailFamilies/sosial_laering/job/barnehageassistent_job.json",
-              "data/Civication/mailFamilies/sosial_laering/knowledge/barnehageassistent_knowledge.json",
-              "data/Civication/mailFamilies/sosial_laering/micro/barnehageassistent_micro.json",
-              "data/Civication/mailFamilies/sosial_laering/people/barnehageassistent_people.json",
-              "data/Civication/mailFamilies/sosial_laering/story/barnehageassistent_story.json",
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json"
-            ],
-            "note": "9/9 standard mail types plus tested plan/practice coverage."
-          },
-          "knowledge": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailFamilies/sosial_laering/knowledge/barnehageassistent_knowledge.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Knowledge content is connected to a mail or job-gate surface."
-          },
-          "quality_axes": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Quality/competence axes are declared and connected to choice/consequence fields."
-          },
-          "authority": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Role content exists, but authority is not an explicit machine-auditable boundary."
-          },
-          "consequences": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailFamilies/sosial_laering/consequence/barnehageassistent_consequence.json",
-              "data/Civication/mailFamilies/sosial_laering/followup/barnehageassistent_followup.json",
-              "tests/civication-barnehageassistent-mail-plan.test.js",
-              "tests/civication-lifestory-barnehageassistent.test.js",
-              "tests/civication-test-mode-ui.test.js",
-              "tests/civication-work-grammar-story-simulation.test.js"
-            ],
-            "note": "Later consequence/follow-up path is role-tested."
-          },
-          "performance": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "tests/civication-barnehageassistent-mail-plan.test.js",
-              "tests/civication-career-outcomes.test.js",
-              "tests/civication-lifestory-barnehageassistent.test.js",
-              "tests/civication-test-mode-ui.test.js",
-              "tests/civication-work-grammar-story-simulation.test.js"
-            ],
-            "note": "Positive and negative outcomes are defined and role-tested."
-          },
-          "economy": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/hg_careers.json"
-            ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
-          },
-          "progression": {
-            "level": "complete",
-            "evidence": [
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json",
-              "data/Civication/workGrammars/sosial_laering/barnehageassistent.json",
-              "tests/civication-career-outcomes.test.js"
-            ],
-            "note": "Career path and positive runtime outcome are both present."
-          },
-          "exit": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/mailPlans/sosial_laering/barnehageassistent_plan.json",
-              "data/Civication/roleModels/sosial_laering/barnehageassistent.json"
-            ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
-          }
-        },
-        "runtime_gate": false,
-        "missing_components": [],
-        "complete_components": [
-          "day_one",
-          "workday_loop",
-          "people",
-          "places",
-          "mail",
-          "knowledge",
-          "quality_axes",
-          "consequences",
-          "performance",
-          "progression"
-        ],
-        "practice_story_count": 16,
-        "practice_weeks": [],
-        "reference_depth": 16,
-        "life_story_complete": false,
-        "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
-          "rows": [
-            {
-              "title": "Observatør / Guide (nærmeste eksisterende omsorgs- og læringsakse)",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
-              "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
-            }
-          ]
-        }
-      }
-    },
-    {
       "key": "sport/sport_kaptein",
       "category": "sport",
       "role_scope": "sport_kaptein",
@@ -21200,6 +20934,25 @@
           ]
         }
       }
+    }
+  ],
+  "support_worlds": [
+    {
+      "key": "sosial_laering/barnehageassistent",
+      "category": "sosial_laering",
+      "role_scope": "barnehageassistent",
+      "declared_by": [
+        "lifeStoryContentOnly",
+        "mailPlan",
+        "workGrammar"
+      ],
+      "role_ids": [
+        "barnehageassistent",
+        "sosial_laering_barnehageassistent"
+      ],
+      "career_status": "not_applicable",
+      "reason": "content_only_legacy_namespace",
+      "content_only_life_story": true
     }
   ]
 }
