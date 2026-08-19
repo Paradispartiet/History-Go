@@ -1,0 +1,135 @@
+{
+  "schema": "history_go_fagverk_theory_integrity_evidence_v1",
+  "version": "1.0.0",
+  "status": "audit_only",
+  "purpose": "Document what existing permanent subject gates actually prove. Missing proof is not classified as a content defect.",
+  "rules": {
+    "baseline_strong_is_not_strict_proof": true,
+    "missing_proof_is_not_content_gap": true,
+    "strict_proof_requires_actual_prose_binding": true,
+    "strict_proof_requires_real_rival_when_contested": true,
+    "strict_proof_requires_person_work_binding_when_profile_requires_people": true,
+    "strict_proof_requires_academically_appropriate_sources": true,
+    "completion_status_is_read_only": true
+  },
+  "evidence_adapters": [
+    {
+      "subject_id": "film_tv",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "scripts/audit-fagverk-film-tv-theory-canon.mjs",
+      "test": "tests/fagverk-film-tv-theory-canon.test.mjs",
+      "workflow": ".github/workflows/fagverk-film-tv-theory-canon.yml",
+      "evidence_files": [
+        "data/fag/TV_og_Film/theory_objects_film_tv_canonical_v1.json",
+        "data/fag/TV_og_Film/film_tv_theory_scholarly_registry_v1.json",
+        "reports/fagverk/film-tv-holistic-completion-v1-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "not_verified_by_current_gate",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
+    },
+    {
+      "subject_id": "religion",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "scripts/audit-fagverk-religion-theory-canon.mjs",
+      "test": "tests/fagverk-religion-theory-canon.test.mjs",
+      "workflow": ".github/workflows/fagverk-religion-theory-canon.yml",
+      "evidence_files": [
+        "data/fag/religion/theory_objects_religion_canonical_v1.json",
+        "data/fag/religion/religion_university_readiness_v1.json",
+        "data/fag/religion/kilder_religion_canonical_v1.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "not_verified_by_current_gate",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "not_verified_by_current_gate",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
+    },
+    {
+      "subject_id": "scenekunst",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "scripts/audit-fagverk-scenekunst-theory-canon.mjs",
+      "test": "tests/fagverk-scenekunst-theory-canon.test.mjs",
+      "workflow": ".github/workflows/fagverk-scenekunst-completion.yml",
+      "evidence_files": [
+        "data/fag/scenekunst/theory_objects_scenekunst_canonical_v1.json",
+        "data/fag/scenekunst/scenekunst_scholarly_source_review_v1.json",
+        "data/fag/scenekunst/emner_scenekunst_canonical_v1.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "not_verified_by_current_gate",
+        "canonical_emne_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "not_verified_by_current_gate",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "not_verified_by_current_gate",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
+    },
+    {
+      "subject_id": "subkultur",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "scripts/audit-subkultur-theory-attribution-v1.mjs",
+      "test": "tests/subkultur-theory-attribution-v1.test.mjs",
+      "workflow": ".github/workflows/fagverk-subkultur-theory-attribution.yml",
+      "evidence_files": [
+        "data/fag/subkultur/theory_objects_subkultur_canonical_v1.json",
+        "data/fag/subkultur/theory_attribution_subkultur_canonical_v1.json",
+        "data/fag/subkultur/sources_subkultur_canonical_v1.json",
+        "data/fag/subkultur/subkulturpensum_canonical_v4_5.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "not_verified_by_current_gate",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "not_verified_by_current_gate",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
+    },
+    {
+      "subject_id": "historie",
+      "proof_scope": "partial_evidence_pilot",
+      "audit_script": "tools/validate-historie-theory-evidence.mjs",
+      "evidence_files": [
+        "data/fag/historie/theory_evidence_historie_contract_v1.json",
+        "data/fag/historie/theory_evidence_historie_canonical_v1.json",
+        "reports/historie-theory-evidence/history-theory-evidence-foundation-v1.json"
+      ],
+      "existing_gate_proves": {
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified_at_claim_and_entry_level",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "not_verified_by_current_gate",
+        "person_work_binding": "not_verified_by_current_gate",
+        "scholarly_source_quality": "not_verified_by_current_gate",
+        "universal_subject_scope": "explicitly_provisional_not_universal"
+      }
+    }
+  ]
+}
