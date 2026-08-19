@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_arrangementsdrift",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "subkultur_arrangementsdrift_apning",
+      "purpose": "Åpne arenaen med sikker, tilgjengelig og lik publikumsflyt.",
+      "learning_focus": [
+        "åpning",
+        "adgang",
+        "tilgjengelighet"
+      ],
+      "mails": [
+        {
+          "id": "subkultur_arrangementsdrift_job_apning",
+          "mail_type": "job",
+          "mail_family": "subkultur_arrangementsdrift_apning",
+          "role_scope": "subkultur_arrangementsdrift",
+          "phase": "intro",
+          "priority": 130,
+          "from": "Ida, arrangementsansvarlig",
+          "people_ref": "ida_arrangementsansvarlig",
+          "place_id": "kulturarena_hovedinngang",
+          "subject": "Dørene åpner om tjue minutter — køskiltet mangler én regel",
+          "summary": "Gjesteliste, ordinær kø og tilgjengelig inngang er klare, men skiltet forklarer ikke hvor ledsager og forhåndsavklarte behov skal henvende seg.",
+          "situation": [
+            "Køen vokser allerede utenfor døren.",
+            "Et uklart skilt kan sende publikum fram og tilbake akkurat når trykket øker.",
+            "Du må velge mellom rask åpning og en liten avklaring som gjør reglene synlige før første gjest går inn."
+          ],
+          "task_domain": "apning_og_publikumsflyt",
+          "competency": "publikumsflyt",
+          "pressure": "apningstid_vs_tydelighet",
+          "choice_axis": "synlig_flyt_vs_improvisert_forklaring",
+          "consequence_axis": "tilgjengelighet_og_likebehandling_vs_kofriksjon",
+          "narrative_arc": "doren_som_felles_regel",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Oppdater inngangsskiltet med ledsagerpunkt og tydelig kødeling før dørene åpner",
+              "reply": "Jeg bruker fem minutter på én synlig inngangsregel som alle kan følge.",
+              "effect": 1,
+              "tags": [
+                "access",
+                "clarity"
+              ],
+              "feedback": "Åpningen blir litt strammere tidsmessig, men publikum får samme informasjon før presset begynner.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Åpne nå og la hver vert forklare tilgjengelig inngang muntlig etter behov",
+              "reply": "Vi tar detaljene i døren så køen begynner å bevege seg.",
+              "effect": -1,
+              "tags": [
+                "tempo",
+                "access_risk"
+              ],
+              "feedback": "Tempoet øker, men samme behov kan få ulike svar og publikum må avsløre behovet sitt midt i køen.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -1,
+                  "risk": 2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Be Leonora plassere en midlertidig vert ved kødelingen mens skiltet ferdigstilles",
+              "reply": "Jeg deler oppgaven: én vert gjør regelen synlig mens jeg får resten av åpningen klar.",
+              "effect": 0,
+              "tags": [
+                "coordination",
+                "access"
+              ],
+              "feedback": "Du kjøper både flyt og tydelighet, men binder en ekstra person akkurat i oppstarten.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 1,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

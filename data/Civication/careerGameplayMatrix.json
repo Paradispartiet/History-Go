@@ -7,26 +7,26 @@
     "work_worlds": 89,
     "statuses": {
       "reference_complete": 5,
-      "playable": 3,
+      "playable": 4,
       "partial": 18,
-      "architecture_only": 63
+      "architecture_only": 62
     },
-    "runtime_gate_pass": 12,
+    "runtime_gate_pass": 13,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
-        "complete": 81,
-        "partial": 8,
+        "complete": 86,
+        "partial": 3,
         "missing": 0
       },
       "day_one": {
-        "complete": 22,
+        "complete": 23,
         "partial": 4,
-        "missing": 63
+        "missing": 62
       },
       "workday_loop": {
-        "complete": 21,
-        "partial": 60,
+        "complete": 22,
+        "partial": 59,
         "missing": 8
       },
       "practice_stories": {
@@ -35,23 +35,23 @@
         "missing": 5
       },
       "people": {
-        "complete": 9,
+        "complete": 10,
         "partial": 17,
-        "missing": 63
+        "missing": 62
       },
       "places": {
-        "complete": 12,
+        "complete": 13,
         "partial": 0,
-        "missing": 77
+        "missing": 76
       },
       "mail": {
-        "complete": 13,
+        "complete": 14,
         "partial": 13,
-        "missing": 63
+        "missing": 62
       },
       "knowledge": {
-        "complete": 23,
-        "partial": 26,
+        "complete": 24,
+        "partial": 25,
         "missing": 40
       },
       "quality_axes": {
@@ -65,29 +65,29 @@
         "missing": 0
       },
       "consequences": {
-        "complete": 15,
+        "complete": 16,
         "partial": 8,
-        "missing": 66
+        "missing": 65
       },
       "performance": {
-        "complete": 18,
+        "complete": 19,
         "partial": 5,
-        "missing": 66
+        "missing": 65
       },
       "economy": {
-        "complete": 81,
-        "partial": 8,
+        "complete": 86,
+        "partial": 3,
         "missing": 0
       },
       "progression": {
-        "complete": 18,
+        "complete": 19,
         "partial": 19,
-        "missing": 52
+        "missing": 51
       },
       "exit": {
-        "complete": 17,
+        "complete": 18,
         "partial": 20,
-        "missing": 52
+        "missing": 51
       }
     }
   },
@@ -1976,6 +1976,7 @@
           "tests/civication-life-position-career-split.test.js",
           "tests/civication-music-life-career-split.test.js",
           "tests/civication-scenekunst-life-career-split.test.js",
+          "tests/civication-subkultur-arrangementsdrift-playability.test.js",
           "tests/civication-subkultur-career-architecture.test.js"
         ],
         "life_story": null
@@ -2002,6 +2003,7 @@
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
@@ -2019,6 +2021,7 @@
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
@@ -2099,6 +2102,7 @@
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
             ],
             "note": "Later consequence/follow-up path is role-tested."
@@ -2115,6 +2119,7 @@
               "tests/civication-life-position-career-split.test.js",
               "tests/civication-music-life-career-split.test.js",
               "tests/civication-scenekunst-life-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
               "tests/civication-subkultur-career-architecture.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
@@ -18622,6 +18627,7 @@
       "category": "subkultur",
       "role_scope": "subkultur_arrangementsdrift",
       "declared_by": [
+        "mailPlan",
         "workGrammar"
       ],
       "badge_titles": [
@@ -18636,57 +18642,59 @@
         "subkultur_kulturmedarbeider",
         "subkultur_produksjonsassistent"
       ],
-      "status": "architecture_only",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/subkultur/deltaker.json",
           "data/Civication/roleModels/subkultur/gatesmart.json",
           "data/Civication/roleModels/subkultur/hakkekylling.json",
-          "data/Civication/roleModels/subkultur/observor.json"
+          "data/Civication/roleModels/subkultur/observor.json",
+          "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json"
         ],
         "work_grammar": "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json",
         "shared_work_grammars": [],
-        "mail_plan": null,
+        "mail_plan": "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
         "mail_families": {
           "job": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/job/subkultur_arrangementsdrift_job.json",
+            "count": 1
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/people/subkultur_arrangementsdrift_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/conflict/subkultur_arrangementsdrift_conflict.json",
+            "count": 1
           },
           "story": {
             "path": null,
             "count": 0
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/event/subkultur_arrangementsdrift_event.json",
+            "count": 1
           },
           "micro": {
             "path": null,
             "count": 0
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/followup/subkultur_arrangementsdrift_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/knowledge/subkultur_arrangementsdrift_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/subkultur/consequence/subkultur_arrangementsdrift_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
           "tests/civication-life-position-career-split.test.js",
+          "tests/civication-subkultur-arrangementsdrift-playability.test.js",
           "tests/civication-subkultur-career-architecture.test.js"
         ],
         "life_story": null
@@ -18694,23 +18702,35 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "4 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No day-one structure."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
+            ],
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
+              "data/Civication/mailFamilies/subkultur/job/subkultur_arrangementsdrift_job.json",
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
             "level": "partial",
@@ -18721,30 +18741,56 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/people/subkultur_arrangementsdrift_people.json",
+              "data/Civication/roleModels/subkultur/deltaker.json",
+              "data/Civication/roleModels/subkultur/gatesmart.json",
+              "data/Civication/roleModels/subkultur/hakkekylling.json",
+              "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
-          },
-          "mail": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No role mail/event generation."
-          },
-          "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/roleModels/subkultur/deltaker.json",
               "data/Civication/roleModels/subkultur/gatesmart.json",
               "data/Civication/roleModels/subkultur/hakkekylling.json",
               "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
               "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "8 place/working-surface declarations."
+          },
+          "mail": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/conflict/subkultur_arrangementsdrift_conflict.json",
+              "data/Civication/mailFamilies/subkultur/consequence/subkultur_arrangementsdrift_consequence.json",
+              "data/Civication/mailFamilies/subkultur/event/subkultur_arrangementsdrift_event.json",
+              "data/Civication/mailFamilies/subkultur/followup/subkultur_arrangementsdrift_followup.json",
+              "data/Civication/mailFamilies/subkultur/job/subkultur_arrangementsdrift_job.json",
+              "data/Civication/mailFamilies/subkultur/knowledge/subkultur_arrangementsdrift_knowledge.json",
+              "data/Civication/mailFamilies/subkultur/people/subkultur_arrangementsdrift_people.json",
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json"
+            ],
+            "note": "7/9 standard mail types plus tested plan/practice coverage."
+          },
+          "knowledge": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/knowledge/subkultur_arrangementsdrift_knowledge.json",
+              "data/Civication/roleModels/subkultur/deltaker.json",
+              "data/Civication/roleModels/subkultur/gatesmart.json",
+              "data/Civication/roleModels/subkultur/hakkekylling.json",
+              "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
@@ -18753,6 +18799,7 @@
               "data/Civication/roleModels/subkultur/gatesmart.json",
               "data/Civication/roleModels/subkultur/hakkekylling.json",
               "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
               "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
@@ -18764,96 +18811,131 @@
               "data/Civication/roleModels/subkultur/gatesmart.json",
               "data/Civication/roleModels/subkultur/hakkekylling.json",
               "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
               "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json"
             ],
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/subkultur/consequence/subkultur_arrangementsdrift_consequence.json",
+              "data/Civication/mailFamilies/subkultur/followup/subkultur_arrangementsdrift_followup.json",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-life-position-career-split.test.js",
+              "tests/civication-subkultur-arrangementsdrift-playability.test.js",
+              "tests/civication-subkultur-career-architecture.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 4 linked career title(s)."
           },
           "progression": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No progression path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "data/Civication/roleModels/subkultur/deltaker.json",
+              "data/Civication/roleModels/subkultur/gatesmart.json",
+              "data/Civication/roleModels/subkultur/hakkekylling.json",
+              "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+              "data/Civication/workGrammars/subkultur/subkultur_arrangementsdrift.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No exit/job-change path."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/subkultur/subkultur_arrangementsdrift_plan.json",
+              "data/Civication/roleModels/subkultur/deltaker.json",
+              "data/Civication/roleModels/subkultur/gatesmart.json",
+              "data/Civication/roleModels/subkultur/hakkekylling.json",
+              "data/Civication/roleModels/subkultur/observor.json",
+              "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+              "tests/civication-career-outcomes.test.js"
+            ],
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
+        "runtime_gate": true,
+        "missing_components": [],
+        "complete_components": [
+          "entry",
           "day_one",
+          "workday_loop",
           "people",
           "places",
           "mail",
+          "knowledge",
+          "quality_axes",
+          "authority",
           "consequences",
           "performance",
+          "economy",
           "progression",
           "exit"
-        ],
-        "complete_components": [
-          "quality_axes",
-          "authority"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 4,
+          "exact_titles": 4,
           "rows": [
             {
               "title": "Arrangementscrew",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 2,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "1",
+              "salary_defined": true
             },
             {
               "title": "Kulturhusvert",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 1,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "1",
+              "salary_defined": true
             },
             {
               "title": "Kulturmedarbeider",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 4,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "1",
+              "salary_defined": true
             },
             {
               "title": "Produksjonsassistent",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 3,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "1",
+              "salary_defined": true
             }
           ]
         }
@@ -18927,11 +19009,13 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "1 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
             "level": "missing",
@@ -19003,11 +19087,13 @@
             "note": "No performance evaluation."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
             "level": "missing",
@@ -19032,25 +19118,27 @@
           "exit"
         ],
         "complete_components": [
+          "entry",
           "quality_axes",
-          "authority"
+          "authority",
+          "economy"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 1,
+          "exact_titles": 1,
           "rows": [
             {
               "title": "Daglig leder (kulturarena)",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 11,
+              "offer_policy": "appointment_required",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "3",
+              "salary_defined": true
             }
           ]
         }
@@ -19127,11 +19215,13 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "2 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
             "level": "missing",
@@ -19206,11 +19296,13 @@
             "note": "No performance evaluation."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 2 linked career title(s)."
           },
           "progression": {
             "level": "missing",
@@ -19235,34 +19327,36 @@
           "exit"
         ],
         "complete_components": [
+          "entry",
           "quality_axes",
-          "authority"
+          "authority",
+          "economy"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 2,
+          "exact_titles": 2,
           "rows": [
             {
               "title": "Produsent",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 8,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "3",
+              "salary_defined": true
             },
             {
               "title": "Prosjektleder (kulturarrangement)",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 9,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "3",
+              "salary_defined": true
             }
           ]
         }
@@ -19336,11 +19430,13 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "1 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
             "level": "missing",
@@ -19412,11 +19508,13 @@
             "note": "No performance evaluation."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
             "level": "missing",
@@ -19441,25 +19539,27 @@
           "exit"
         ],
         "complete_components": [
+          "entry",
           "quality_axes",
-          "authority"
+          "authority",
+          "economy"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 1,
+          "exact_titles": 1,
           "rows": [
             {
               "title": "Produksjonsleder",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 10,
+              "offer_policy": "appointment_required",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "3",
+              "salary_defined": true
             }
           ]
         }
@@ -19539,11 +19639,13 @@
       "audit": {
         "components": {
           "entry": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/badgeCareerAuditPolicy.json"
+              "data/Civication/badgeCareerAuditPolicy.json",
+              "data/Civication/badgeRoleMappings.json",
+              "tests/civication-job-offer-eligibility-ui.test.js"
             ],
-            "note": "Badge binding exists, but a complete offer/gate path is not proven for every linked title."
+            "note": "3 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
             "level": "missing",
@@ -19621,11 +19723,13 @@
             "note": "No performance evaluation."
           },
           "economy": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/hg_careers.json"
+              "data/badges/index.json",
+              "data/Civication/hg_careers.json",
+              "tests/civication-economy-snapshot.test.js"
             ],
-            "note": "Category salary exists, but 0 linked title(s) lack an exact salary entry."
+            "note": "Exact salary exists for all 3 linked career title(s)."
           },
           "progression": {
             "level": "missing",
@@ -19650,43 +19754,45 @@
           "exit"
         ],
         "complete_components": [
+          "entry",
           "quality_axes",
-          "authority"
+          "authority",
+          "economy"
         ],
         "practice_story_count": 5,
         "practice_weeks": [],
         "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
-          "linked_titles": 0,
-          "exact_titles": 0,
+          "linked_titles": 3,
+          "exact_titles": 3,
           "rows": [
             {
               "title": "Arrangementsplanlegger",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 5,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "2",
+              "salary_defined": true
             },
             {
               "title": "Booking- og innholdskoordinator",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 7,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "2",
+              "salary_defined": true
             },
             {
               "title": "Kulturkonsulent",
-              "tier_index": null,
-              "offer_policy": null,
-              "entry_valid": false,
+              "tier_index": 6,
+              "offer_policy": "direct",
+              "entry_valid": true,
               "gate_explicit": true,
-              "salary_key": null,
-              "salary_defined": false
+              "salary_key": "2",
+              "salary_defined": true
             }
           ]
         }

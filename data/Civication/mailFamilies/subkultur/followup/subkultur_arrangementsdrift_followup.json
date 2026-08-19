@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_arrangementsdrift",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "subkultur_arrangementsdrift_overlevering",
+      "purpose": "Følge opp dagens små avvik før neste vakt arver dem som rykter.",
+      "learning_focus": [
+        "overlevering",
+        "avvik",
+        "sporbarhet"
+      ],
+      "mails": [
+        {
+          "id": "subkultur_arrangementsdrift_followup_overlevering",
+          "mail_type": "followup",
+          "mail_family": "subkultur_arrangementsdrift_overlevering",
+          "role_scope": "subkultur_arrangementsdrift",
+          "phase": "workday",
+          "priority": 112,
+          "from": "Leonora, publikums- og tilgjengelighetsansvarlig",
+          "people_ref": "leonora_publikumsvert",
+          "place_id": "kulturarena_foaje",
+          "subject": "Tre små publikumsavvik ligger bare i muntlige beskjeder",
+          "summary": "Kødelingen ble endret, én dør var tung for rullestol og backstage-checkpointet fikk en muntlig gjestelisteavklaring. Ingen av delene står ennå i vaktoverleveringen.",
+          "situation": [
+            "Neste vakt kommer inn om få minutter.",
+            "Hver hendelse virker liten isolert.",
+            "Sammen avgjør de om neste team møter samme problemer med kontekst eller starter fra null."
+          ],
+          "task_domain": "avvik_og_overlevering",
+          "competency": "avvik_og_vaktskifte",
+          "pressure": "slutten_pa_vakten_vs_sporbarhet",
+          "choice_axis": "kort_logg_na_vs_muntlig_hukommelse",
+          "consequence_axis": "laering_og_kontinuitet_vs_gjentakelse",
+          "narrative_arc": "avvik_som_returnerer",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv tre korte avvik med tiltak, ansvar og hva neste vakt skal kontrollere",
+              "reply": "Jeg gjør hvert avvik lite nok til å lese og presist nok til å handle på.",
+              "effect": 1,
+              "tags": [
+                "handover",
+                "traceability"
+              ],
+              "feedback": "Neste vakt får en arbeidsbar overlevering i stedet for løse minner.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Gi neste vakt en rask muntlig oppsummering og gå fordi skiftet er over",
+              "reply": "Jeg forklarer det viktigste ved døren; de spør hvis noe er uklart.",
+              "effect": -1,
+              "tags": [
+                "oral_only",
+                "handover_risk"
+              ],
+              "feedback": "Informasjonen blir personavhengig og mister ansvar, tidspunkt og hva som faktisk ble endret.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "risk": 2,
+                  "trust": -1
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Logg bare tilgjengelighetsavviket og la adgang og kø være muntlige driftsdetaljer",
+              "reply": "Jeg prioriterer det mest alvorlige og lar resten følge crewets hukommelse.",
+              "effect": 0,
+              "tags": [
+                "partial_log",
+                "prioritization"
+              ],
+              "feedback": "Du sikrer én viktig sak, men de andre mønstrene blir fortsatt vanskelige å oppdage over tid.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 0,
+                  "risk": 1,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
