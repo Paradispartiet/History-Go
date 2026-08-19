@@ -6,12 +6,18 @@ import { auditScenekunstTheoryCanon } from './audit-fagverk-scenekunst-theory-ca
 import { auditSubkulturTheoryAttribution } from './audit-subkultur-theory-attribution-v1.mjs';
 import { auditReligionTheoryCanon } from './audit-fagverk-religion-theory-canon.mjs';
 import { auditFilmTvTheoryCanon } from './audit-fagverk-film-tv-theory-canon.mjs';
+import { auditFilosofiTheoryIntegrity } from './audit-fagverk-filosofi-theory-integrity.mjs';
 
 const STRICT_GATES = {
   film_tv: {
     run: auditFilmTvTheoryCanon,
     capabilities: ['major_field_theory_objects','scope_core_evidence_limits','rivals','named_people_and_works','scholarly_provenance','actual_claim_source_binding'],
     proseBindingStatus: 'claim_binding_validated'
+  },
+  filosofi: {
+    run: auditFilosofiTheoryIntegrity,
+    capabilities: ['canonical_20_field_coverage','article_theory_hooks','named_people_and_primary_works','scholarly_claim_sources','rival_claims','actual_theory_and_disagreement_prose'],
+    proseBindingStatus: 'prose_and_claim_binding_validated'
   },
   religion: {
     run: auditReligionTheoryCanon,
@@ -53,6 +59,9 @@ export function auditFagverkTheoryReconciliation() {
     if (subject.id === 'film_tv' && strict?.status === 'pass' && subject.status === 'green') {
       reconciliationClass = 'strict_integrity_validated';
       nextAction = 'regression_only';
+    } else if (subject.id === 'filosofi' && strict?.status === 'pass') {
+      reconciliationClass = 'strict_integrity_validated';
+      nextAction = 'wire_subject_gate_into_final_global_reconciliation';
     } else if (subject.id === 'religion' && strict?.status === 'pass') {
       reconciliationClass = 'field_inventory_and_evidence_adapter_required';
       nextAction = 'use_religion_12_area_canon_in_global_gate';
@@ -84,7 +93,7 @@ export function auditFagverkTheoryReconciliation() {
 
   return {
     schema: 'history_go_fagverk_theory_reconciliation_v1',
-    version: '1.0.0',
+    version: '1.1.0',
     status: strictFailures.length ? 'strict_subject_gate_failure' : 'evidence_reconciliation_in_progress',
     rules: {
       genericScannerFailureIsNotContentGap: true,
