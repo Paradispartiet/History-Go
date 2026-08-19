@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_arkitekt",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "materialitet_og_tid",
+      "purpose": "Lar et tidligere designvalg få et konkret faglig etterliv.",
+      "learning_focus": ["materialitet", "varighet"],
+      "mails": [
+        {
+          "id": "by_arkitekt_story_mikkel_001",
+          "mail_type": "story",
+          "mail_family": "materialitet_og_tid",
+          "role_scope": "by_arkitekt",
+          "phase": "afternoon",
+          "priority": 66,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "prosjekterende_mikkel",
+          "sender": "prosjekterende_mikkel",
+          "person_id": "prosjekterende_mikkel",
+          "place_id": "material_og_detaljrom",
+          "subject": "Materialprøven ser annerledes ut etter hard bruk",
+          "summary": "Mikkel viser at materialet som fungerte i presentasjonen får tydelige merker og krevende overganger når detaljen testes fysisk.",
+          "purpose": "Avgjør om materialvalget skal forsvares, justeres eller brukes som grunnlag for en større detaljrevisjon.",
+          "stakes": "Valget påvirker varighet, vedlikehold og om prosjektets materialidé overlever hverdagsbruk.",
+          "situation": [
+            "Materialprøven har fått slag, smuss og fukt på de mest utsatte flatene.",
+            "Overgangen mot sokkel ser svakere ut enn på visualiseringen.",
+            "Du må behandle dette som kunnskap om bygget, ikke som et kosmetisk problem i prøverommet."
+          ],
+          "task_domain": "materialitet_og_varighet",
+          "task_kind": "story",
+          "competency": "materialitet_og_varighet",
+          "learning_focus": ["slitasje", "detalj", "vedlikehold"],
+          "pressure": "materialide_vs_hverdagsbruk",
+          "choice_axis": "beholde_materiale_vs_revidere_detalj",
+          "consequence_axis": "visuell_konsistens_vs_robust_varighet",
+          "narrative_arc": "Et materialvalg får først mening når det møter tid, berøring og vedlikehold.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Behold materialet, men bygg om den utsatte detaljen",
+              "reply": "Jeg beholder materialideen, men reviderer sokkel og overgang der testen viser reell svakhet.",
+              "effect": 1,
+              "tags": ["detaljrevisjon", "varighet"],
+              "feedback": "Du lar testen endre detaljen uten å forkaste hele materialstrategien."
+            },
+            {
+              "id": "B",
+              "label": "Åpne materialvalget på nytt før neste leveranse",
+              "reply": "Jeg åpner materialvalget på nytt og sammenligner alternativer mot samme brukstest.",
+              "effect": 0,
+              "tags": ["materialvalg", "ny_test"],
+              "feedback": "Du øker arbeidsmengden nå, men gjør varighet til et eksplisitt beslutningskriterium."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
