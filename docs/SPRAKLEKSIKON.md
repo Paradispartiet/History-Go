@@ -340,3 +340,15 @@ Fra et Place med en eksplisitt lokal atlasrelasjon vises **«Se talemålet i Spr
 
 Tomtilstanden er fortsatt bevisst for profiler uten canonical språk-Place-kobling: produktet skal si at History Go **ennå ikke har et kildebelagt Place-spor der**, ikke finne på region-infererte steder.
 <!-- SPRÅKATLAS_PLACES_V1_END -->
+
+<!-- SPRÅKATLAS_PLACES_V2_DOCUMENTED_COVERAGE_START -->
+## Språkatlas → Steder v2 – documented coverage
+
+Denne produktfasen utvider Place-koblingen uten å starte en ny forskningsrunde. Regelen er evidensstyrt: en lokal profil får eksplisitt Place-spor når profilen allerede er `evidence_materialized`. `documented_seed` og `local_research_required` blir stående i forskningskø og skal ikke få konstruerte Place-koblinger bare for å øke dekningsgraden.
+
+Etter denne materialiseringen har alle de **15** evidensmaterialiserte lokale talemålsprofilene minst ett eksplisitt canonical Place-spor. De ni nye område-Places er **Kristiansand, Stavanger, Voss, Bodø, Tromsø, Hammerfest, Tana, Hattfjelldal og Sømna**. Sammen med v1 gir dette **18 canonical språk-Places med eksplisitt lokal atlaslenke**, fordelt på alle 15 ferdig evidensmaterialiserte profiler.
+
+Koblingen er fortsatt en navigasjonsrelasjon via `atlas_local_ids`. De konkrete talemålsbeleggene eies av `local_varieties[].feature_evidence` i Språkatlaset og kopieres ikke til Place-filene. Alle nye eiere er `placeScope: "area"`; geografisk area-anchor skal aldri tolkes som en hard dialektgrense.
+
+De **7** profilene på `documented_seed` – Lom, Senja, Suldal, Surnadal, Trysil, Vang i Valdres og Åndalsnes/Rauma – er med hensikt ikke koblet i denne fasen. Først når detaljbelegget er materialisert, kan de gå inn i samme produktflyt.
+<!-- SPRÅKATLAS_PLACES_V2_DOCUMENTED_COVERAGE_END -->
