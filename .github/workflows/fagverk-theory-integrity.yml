@@ -8,6 +8,7 @@ on:
       - 'docs/FAGVERK.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
+      - 'scripts/report-fagverk-theory-integrity-summary.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -20,6 +21,7 @@ on:
       - 'docs/FAGVERK.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
+      - 'scripts/report-fagverk-theory-integrity-summary.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
@@ -39,6 +41,7 @@ jobs:
       - name: Verify Fagverk theory integrity reconciliation
         run: |
           node --check scripts/audit-fagverk-theory-integrity.mjs
-          node scripts/audit-fagverk-theory-integrity.mjs
+          node --check scripts/report-fagverk-theory-integrity-summary.mjs
+          node scripts/report-fagverk-theory-integrity-summary.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
           node --test tests/fagverk-documentation-contract.test.mjs
