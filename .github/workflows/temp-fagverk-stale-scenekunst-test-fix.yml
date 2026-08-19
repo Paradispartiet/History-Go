@@ -1,0 +1,46 @@
+name: TEMP repair stale Scenekunst subject-status assertion
+
+on:
+  push:
+    branches:
+      - agent/fagverk-theory-integrity-audit
+    paths:
+      - '.github/workflows/temp-fagverk-stale-scenekunst-test-fix.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/fagverk-theory-integrity-audit
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Repair stale assertion, verify, and self-clean
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tests/fagverk-subject-inventory.test.mjs')
+          s = p.read_text()
+          old = """  const scenekunst = s.subjects.find((x) => x.id === 'scenekunst');\n  assert.equal(scenekunst.editorialStatus, 'structure_ready');\n  assert.equal(scenekunst.nextGate, 'chapter_production');\n"""
+          new = """  const scenekunst = s.subjects.find((x) => x.id === 'scenekunst');\n  assert.equal(scenekunst.editorialStatus, 'complete');\n  assert.equal(scenekunst.nextGate, 'maintenance_source_refresh_and_place_case_expansion');\n"""
+          if s.count(old) != 1:
+              raise SystemExit('Expected exactly one stale Scenekunst assertion block')
+          p.write_text(s.replace(old, new))
+          PY
+          node --test tests/fagverk-subject-inventory.test.mjs
+          node scripts/audit-fagverk-theory-integrity.mjs
+          node --test tests/fagverk-theory-integrity.test.mjs
+          git rm .github/workflows/temp-fagverk-stale-scenekunst-test-fix.yml
+          git add tests/fagverk-subject-inventory.test.mjs
+          git diff --cached --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Reconcile Scenekunst subject status regression"
+          git push origin HEAD:agent/fagverk-theory-integrity-audit
