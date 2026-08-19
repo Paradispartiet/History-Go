@@ -1,0 +1,48 @@
+name: Devcontainer GitHub CLI bootstrap
+
+on:
+  pull_request:
+    paths:
+      - '.devcontainer/**'
+      - '.github/workflows/devcontainer-gh-bootstrap.yml'
+  push:
+    branches: [main]
+    paths:
+      - '.devcontainer/**'
+      - '.github/workflows/devcontainer-gh-bootstrap.yml'
+
+jobs:
+  verify-gh-bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate repair script syntax
+        run: bash -n .devcontainer/ensure-gh.sh
+
+      - name: Lock devcontainer GitHub CLI contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const config = JSON.parse(fs.readFileSync('.devcontainer/devcontainer.json', 'utf8'));
+          const feature = 'ghcr.io/devcontainers/features/github-cli:1';
+          const repair = 'bash .devcontainer/ensure-gh.sh';
+          if (!config.features || !Object.prototype.hasOwnProperty.call(config.features, feature)) {
+            throw new Error(`Missing required devcontainer feature: ${feature}`);
+          }
+          for (const key of ['postCreateCommand', 'postStartCommand', 'postAttachCommand']) {
+            if (config[key] !== repair) {
+              throw new Error(`${key} must remain ${JSON.stringify(repair)}`);
+            }
+          }
+          NODE
+
+      - name: Verify GitHub CLI is usable
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash .devcontainer/ensure-gh.sh
+          command -v gh
+          gh --version
