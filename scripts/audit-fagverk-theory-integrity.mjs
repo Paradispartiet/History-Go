@@ -1,0 +1,147 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { auditFagverkTheoryQuality } from './audit-fagverk-theory-quality.mjs';
+import { auditFilmTvTheoryCanon } from './audit-fagverk-film-tv-theory-canon.mjs';
+import { auditReligionTheoryCanon } from './audit-fagverk-religion-theory-canon.mjs';
+import { auditScenekunstTheoryCanon } from './audit-fagverk-scenekunst-theory-canon.mjs';
+import { auditSubkulturTheoryAttribution } from './audit-subkultur-theory-attribution-v1.mjs';
+
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
+const EVIDENCE='data/fag/fagverk_theory_integrity_evidence_v1.json';
+const REPORT='reports/fagverk/fagverk-theory-integrity-audit.json';
+const abs=p=>path.join(ROOT,p);
+const exists=p=>fs.existsSync(abs(p));
+const json=p=>JSON.parse(fs.readFileSync(abs(p),'utf8'));
+const assert=(ok,msg)=>{if(!ok)throw new Error(msg);};
+
+const RUNNERS={
+  film_tv:()=>auditFilmTvTheoryCanon(),
+  religion:()=>auditReligionTheoryCanon(),
+  scenekunst:()=>auditScenekunstTheoryCanon(),
+  subkultur:()=>auditSubkulturTheoryAttribution()
+};
+
+const STRICT_KEYS=[
+  'canonical_field_coverage',
+  'structured_scope_mechanism',
+  'limitations',
+  'rival_or_alternative',
+  'scholarly_source_quality',
+  'claim_or_content_binding',
+  'actual_prose_binding',
+  'anti_trivia_rule',
+  'universal_subject_scope'
+];
+
+function allVerified(dimensions,profile){
+  const keys=[...STRICT_KEYS];
+  if(profile!=='model_evidence')keys.push('person_work_binding');
+  return keys.every(k=>dimensions?.[k]==='verified');
+}
+
+function evidenceGaps(dimensions,profile){
+  const keys=[...STRICT_KEYS];
+  if(profile!=='model_evidence')keys.push('person_work_binding');
+  return keys.filter(k=>dimensions?.[k]!=='verified');
+}
+
+export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}={}){
+  const contract=json(CONTRACT), evidence=json(EVIDENCE);
+  assert(contract.schema==='history_go_fagverk_theory_quality_contract_v1','Ugyldig theory-quality contract');
+  assert(evidence.schema==='history_go_fagverk_theory_integrity_evidence_v1','Ugyldig theory-integrity evidence manifest');
+  assert(evidence.rules?.baseline_strong_is_not_strict_proof===true,'Integrity manifest må skille baseline fra strict proof');
+  assert(evidence.rules?.missing_proof_is_not_content_gap===true,'Integrity manifest må blokkere falsk content-gap-inferens');
+  assert(evidence.rules?.strict_proof_requires_actual_prose_binding===true,'Strict proof må kreve faktisk prosa-binding');
+
+  const baseline=auditFagverkTheoryQuality({checkReport:true});
+  assert(baseline.status==='baseline_only_not_completion_gate','Global theory baseline må forbli eksplisitt baseline-only');
+  assert(baseline.summary?.strong_structured_evidence===18,'Strict integrity audit forventer låst 18/18 baseline før strengere klassifisering');
+
+  const contractIds=new Set(contract.subjects.map(s=>s.id));
+  const adapterById=new Map();
+  for(const adapter of evidence.evidence_adapters||[]){
+    assert(contractIds.has(adapter.subject_id),`Evidence adapter peker til ukjent fag: ${adapter.subject_id}`);
+    assert(!adapterById.has(adapter.subject_id),`Duplikat evidence adapter: ${adapter.subject_id}`);
+    for(const p of [adapter.audit_script,adapter.test,adapter.workflow,...(adapter.evidence_files||[])].filter(Boolean))assert(exists(p),`Evidence path mangler for ${adapter.subject_id}: ${p}`);
+    adapterById.set(adapter.subject_id,adapter);
+  }
+
+  const runnerResults={};
+  for(const [id,runner] of Object.entries(RUNNERS)){
+    assert(adapterById.has(id),`Permanent subject gate mangler evidence adapter: ${id}`);
+    const result=runner();
+    assert(/^strong_theory_(canon|attribution)$/.test(result.status),`Subject theory gate er ikke sterk: ${id}/${result.status}`);
+    runnerResults[id]=result.status;
+  }
+
+  const historyAdapter=adapterById.get('historie');
+  assert(historyAdapter?.proof_scope==='partial_evidence_pilot','Historie må registreres som eksplisitt pilot inntil universalitetsgrensen er løst');
+  const historyReport=json('reports/historie-theory-evidence/history-theory-evidence-foundation-v1.json');
+  assert(historyReport.status==='PASSED','Historie theory evidence pilot må være grønn');
+  assert((historyReport.entries||[]).length>0,'Historie theory evidence pilot er tom');
+  assert((historyReport.entries||[]).every(e=>e.universalization_status==='provisional_not_universal'),'Historie-piloten skal ikke feiltolkes som universell teoriport');
+
+  const baselineById=new Map(baseline.subjects.map(s=>[s.id,s]));
+  const subjects=contract.subjects.map(entry=>{
+    const b=baselineById.get(entry.id);assert(b,`Baseline mangler fag: ${entry.id}`);
+    const adapter=adapterById.get(entry.id)||null;
+    const dimensions=adapter?.existing_gate_proves||{};
+    const gaps=evidenceGaps(dimensions,entry.profile);
+    let integrityStatus='baseline_only_strict_proof_missing';
+    if(adapter?.proof_scope==='partial_evidence_pilot')integrityStatus='partial_strict_evidence';
+    else if(adapter?.proof_scope==='structured_subject_gate')integrityStatus=allVerified(dimensions,entry.profile)?'strictly_proven':'structured_subject_gate_not_strict';
+    return {
+      id:entry.id,
+      topLevel:entry.top_level,
+      parentSubject:entry.parent_subject||null,
+      profile:entry.profile,
+      editorialStatus:b.editorialStatus,
+      baseline:b.baseline,
+      integrityStatus,
+      evidenceAdapter:adapter?adapter.proof_scope:null,
+      missingStrictProof:gaps,
+      substantiveContentGap:false
+    };
+  });
+
+  const counts=status=>subjects.filter(s=>s.integrityStatus===status).length;
+  const report={
+    schema:'history_go_fagverk_theory_integrity_audit_v1',
+    version:'1.0.0',
+    status:'strict_audit_open_evidence_gaps',
+    scope:{topLevelSubjects:17,nestedSpecializations:1,totalAudited:18},
+    rules:{
+      baselineStrongDoesNotEqualStrictProof:true,
+      missingProofDoesNotEqualContentGap:true,
+      completionStatusReadOnly:true,
+      actualProseBindingRequiredForStrictProof:true,
+      contestedFieldsRequireRealRival:true,
+      personBoundTheoryRequiresWorkContribution:true,
+      academicallyAppropriateSourcesRequired:true
+    },
+    summary:{
+      strictly_proven:counts('strictly_proven'),
+      structured_subject_gate_not_strict:counts('structured_subject_gate_not_strict'),
+      partial_strict_evidence:counts('partial_strict_evidence'),
+      baseline_only_strict_proof_missing:counts('baseline_only_strict_proof_missing'),
+      substantive_content_gaps_proven:subjects.filter(s=>s.substantiveContentGap).length
+    },
+    strictCompletionGateReady:subjects.every(s=>s.integrityStatus==='strictly_proven'),
+    proofReconciliationQueue:subjects.filter(s=>s.integrityStatus!=='strictly_proven').map(s=>s.id),
+    contentRepairQueue:subjects.filter(s=>s.substantiveContentGap).map(s=>s.id),
+    subjects
+  };
+
+  if(writeReport){fs.mkdirSync(path.dirname(abs(REPORT)),{recursive:true});fs.writeFileSync(abs(REPORT),`${JSON.stringify(report,null,2)}\n`);}
+  if(checkReport){assert(exists(REPORT),`${REPORT} mangler`);assert(JSON.stringify(json(REPORT))===JSON.stringify(report),`${REPORT} er utdatert`);}
+  return report;
+}
+
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+  const args=new Set(process.argv.slice(2));
+  try{console.log(JSON.stringify(auditFagverkTheoryIntegrity({writeReport:args.has('--write-report'),checkReport:!args.has('--no-check-report')}),null,2));}
+  catch(e){console.error(`Fagverk theory integrity FEIL: ${e.message}`);process.exitCode=1;}
+}
