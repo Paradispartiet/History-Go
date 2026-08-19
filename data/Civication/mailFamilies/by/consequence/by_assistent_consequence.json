@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_assistent",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "forsinkede_folgevirkninger",
+      "purpose": "Gjør effekten av presis eller svak grunnlagsføring synlig senere i prosjektet.",
+      "learning_focus": ["konsekvens", "sporbarhet"],
+      "mails": [
+        {
+          "id": "by_assistent_consequence_grunnlag_001",
+          "mail_type": "consequence",
+          "mail_family": "forsinkede_folgevirkninger",
+          "role_scope": "by_assistent",
+          "thread_key": "by_assistent.case.kartavvik_og_stedsbruk",
+          "phase": "day_end",
+          "priority": 62,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "mastery",
+          "from": "jonas_arkitekt",
+          "sender": "jonas_arkitekt",
+          "person_id": "jonas_arkitekt",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "Det gamle avviket avgjør om prosjektet må tegnes om",
+          "summary": "Jonas oppdager at neste designvalg avhenger av om den gamle kartkanten var feil, utilstrekkelig eller bare brukt til et annet formål.",
+          "purpose": "Vis at assistentens tidligere arbeid får reell følgevirkning når andre fag bruker grunnlaget senere.",
+          "stakes": "Et etterprøvbart spor kan avgrense revisjonen; et uklart spor kan tvinge frem ny befaring og større omarbeiding.",
+          "situation": [
+            "Designteamet har brukt kartkanten som premiss for inngang og ganglinje.",
+            "Befaringsmaterialet viser et mer komplekst sted.",
+            "Nå må prosjektet vite om det gamle grunnlaget kan forsvares eller må korrigeres."
+          ],
+          "task_domain": "forsinket_grunnlagskonsekvens",
+          "task_kind": "consequence",
+          "competency": "etterprovbarhet",
+          "pressure": "lokal_revisjon_vs_stor_omarbeiding",
+          "choice_axis": "bruke_dokumentert_spor_vs_star_revidere_bredt",
+          "consequence_axis": "tillit_og_presisjon_vs_kostbar_usikkerhet",
+          "narrative_arc": "Assistenten ser at små dokumentasjonsvalg kan styre kostnad, kvalitet og tillit lenge etter at støtteoppgaven er avsluttet.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bruk det dokumenterte sporet til å avgrense nøyaktig hva som må kontrolleres og revideres",
+              "reply": "Jeg samler kartkilder, befaring og usikkerhetsnotat slik at Jonas kan avgrense revisjonen til det premisset som faktisk er svakt.",
+              "effect": 1,
+              "tags": ["consequence", "precision", "trust"],
+              "feedback": "Det tidligere støttearbeidet gjør en senere faglig beslutning mer presis og mindre kostbar."
+            },
+            {
+              "id": "B",
+              "label": "Anbefal ny bred kontroll siden det gamle sporet ikke er sikkert nok",
+              "reply": "Jeg anbefaler at vi kontrollerer området bredt på nytt før designet låses videre.",
+              "effect": 0,
+              "tags": ["recheck", "cost"],
+              "feedback": "Du beskytter kvaliteten, men den manglende sikkerheten koster prosjektet mer tid og arbeid."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

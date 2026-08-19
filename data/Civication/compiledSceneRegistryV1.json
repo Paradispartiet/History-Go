@@ -10,7 +10,23 @@
     "data/Civication/mailFamilies/by/knowledge/by_arkitekt_knowledge.json",
     "data/Civication/mailFamilies/by/consequence/by_arkitekt_consequence.json",
     "data/Civication/mailFamilies/by/job/by_assistent_job.json",
+    "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+    "data/Civication/mailFamilies/by/story/by_assistent_story.json",
+    "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+    "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+    "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+    "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+    "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+    "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
     "data/Civication/mailFamilies/by/job/by_prosjektleder_job.json",
+    "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+    "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
+    "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+    "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+    "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+    "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+    "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+    "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
     "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
     "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json",
     "data/Civication/mailFamilies/by/story/by_radgiver_plan_story.json",
@@ -21,6 +37,14 @@
     "data/Civication/mailFamilies/by/knowledge/by_radgiver_plan_knowledge.json",
     "data/Civication/mailFamilies/by/consequence/by_radgiver_plan_consequence.json",
     "data/Civication/mailFamilies/by/job/by_saksbehandler_job.json",
+    "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+    "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
+    "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+    "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+    "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+    "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+    "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+    "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
     "data/Civication/mailFamilies/film_tv/job/produksjonsassistent_job.json",
     "data/Civication/mailFamilies/film_tv/people/produksjonsassistent_people.json",
     "data/Civication/mailFamilies/film_tv/conflict/produksjonsassistent_conflict.json",
@@ -132,6 +156,14 @@
     "data/Civication/mailFamilies/sport/job/sport_kaptein_job.json",
     "data/Civication/mailFamilies/sport/job/sport_legende_job.json",
     "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
+    "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+    "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+    "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+    "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+    "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+    "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+    "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+    "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
     "data/Civication/mailFamilies/sport/job/sport_trener_job.json",
     "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
     "data/Civication/mailFamilies/sport/people/sport_utover_people.json",
@@ -2144,6 +2176,504 @@
       "category": "by",
       "compatibility_projection": {
         "category": "by",
+        "choice_axis": "bevare_konflikt_vs_velge_en_kilde",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Uenigheten blir synlig og kan undersøkes før den blir til en skjult feil.",
+            "id": "A",
+            "label": "Registrer konflikten og foreslå ny kontroll før premisset låses",
+            "reply": "Jeg registrerer konflikten mellom kart og faktisk bruk og foreslår ny kontroll før vi låser premisset.",
+            "tags": [
+              "conflict",
+              "evidence",
+              "escalation"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Dokumentet blir ryddig, men stedet får mindre makt til å korrigere grunnlaget.",
+            "id": "B",
+            "label": "La kartgrunnlaget være styrende siden det er den formelle kilden",
+            "reply": "Jeg lar kartgrunnlaget være styrende og omtaler observasjonen som et mulig avvik.",
+            "tags": [
+              "formal_source",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "grunnlagskritikk",
+        "consequence_axis": "sporbarhet_vs_falsk_enighet",
+        "cooldown": 2,
+        "from": "jonas_arkitekt",
+        "id": "by_assistent_conflict_kart_befaring_001",
+        "mail_family": "grunnlagskonflikter",
+        "mail_type": "conflict",
+        "narrative_arc": "Assistenten lærer at en uløst motsetning kan være viktigere enn et ryddig sammendrag.",
+        "person_id": "jonas_arkitekt",
+        "phase": "afternoon",
+        "place_id": "befaring_og_observasjonsflate",
+        "pressure": "dokumentro_vs_stedsfunn",
+        "priority": 68,
+        "purpose": "Teste om assistenten bevarer konflikten som et faglig avvik i stedet for å glatte den ut.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "jonas_arkitekt",
+        "situation": [
+          "Kartet viser én funksjon.",
+          "Befaringen viser et stabilt annet bruksmønster.",
+          "Jonas trenger et notat som kan brukes i neste prosjektgjennomgang."
+        ],
+        "stage": "stable_warning",
+        "stakes": "Hvis konflikten skjules, kan neste løsning bygge på feil funksjonsforståelse.",
+        "subject": "Kartet og befaringen kan ikke begge være helt riktige",
+        "summary": "Jonas peker på at den tegnede oppholdssonen brukes som gjennomgang, mens kartgrunnlaget fortsatt behandler den som rolig areal.",
+        "task_domain": "kart_mot_sted",
+        "task_kind": "conflict"
+      },
+      "id": "by_assistent_conflict_kart_befaring_001",
+      "mail_type": "conflict",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Uenigheten blir synlig og kan undersøkes før den blir til en skjult feil.",
+            "id": "A",
+            "label": "Registrer konflikten og foreslå ny kontroll før premisset låses",
+            "reply": "Jeg registrerer konflikten mellom kart og faktisk bruk og foreslår ny kontroll før vi låser premisset."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dokumentet blir ryddig, men stedet får mindre makt til å korrigere grunnlaget.",
+            "id": "B",
+            "label": "La kartgrunnlaget være styrende siden det er den formelle kilden",
+            "reply": "Jeg lar kartgrunnlaget være styrende og omtaler observasjonen som et mulig avvik."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kartet viser én funksjon.",
+            "Befaringen viser et stabilt annet bruksmønster.",
+            "Jonas trenger et notat som kan brukes i neste prosjektgjennomgang."
+          ],
+          "subject": "Kartet og befaringen kan ikke begge være helt riktige",
+          "summary": "Jonas peker på at den tegnede oppholdssonen brukes som gjennomgang, mens kartgrunnlaget fortsatt behandler den som rolig areal."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_conflict_kart_befaring_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "befaring_og_observasjonsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_conflict_kart_befaring_001",
+          "source_path": "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_conflict_kart_befaring_001",
+        "version": 1
+      },
+      "source_hash": "36183da97054b239f68b31cf4298dea1aff41b52571da6d734d4fd3aaf0018f5",
+      "source_path": "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "bruke_dokumentert_spor_vs_star_revidere_bredt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Det tidligere støttearbeidet gjør en senere faglig beslutning mer presis og mindre kostbar.",
+            "id": "A",
+            "label": "Bruk det dokumenterte sporet til å avgrense nøyaktig hva som må kontrolleres og revideres",
+            "reply": "Jeg samler kartkilder, befaring og usikkerhetsnotat slik at Jonas kan avgrense revisjonen til det premisset som faktisk er svakt.",
+            "tags": [
+              "consequence",
+              "precision",
+              "trust"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du beskytter kvaliteten, men den manglende sikkerheten koster prosjektet mer tid og arbeid.",
+            "id": "B",
+            "label": "Anbefal ny bred kontroll siden det gamle sporet ikke er sikkert nok",
+            "reply": "Jeg anbefaler at vi kontrollerer området bredt på nytt før designet låses videre.",
+            "tags": [
+              "recheck",
+              "cost"
+            ]
+          }
+        ],
+        "competency": "etterprovbarhet",
+        "consequence_axis": "tillit_og_presisjon_vs_kostbar_usikkerhet",
+        "cooldown": 3,
+        "from": "jonas_arkitekt",
+        "id": "by_assistent_consequence_grunnlag_001",
+        "mail_family": "forsinkede_folgevirkninger",
+        "mail_type": "consequence",
+        "narrative_arc": "Assistenten ser at små dokumentasjonsvalg kan styre kostnad, kvalitet og tillit lenge etter at støtteoppgaven er avsluttet.",
+        "person_id": "jonas_arkitekt",
+        "phase": "day_end",
+        "place_id": "oslo_sentrum_byrom",
+        "pressure": "lokal_revisjon_vs_stor_omarbeiding",
+        "priority": 62,
+        "purpose": "Vis at assistentens tidligere arbeid får reell følgevirkning når andre fag bruker grunnlaget senere.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "jonas_arkitekt",
+        "situation": [
+          "Designteamet har brukt kartkanten som premiss for inngang og ganglinje.",
+          "Befaringsmaterialet viser et mer komplekst sted.",
+          "Nå må prosjektet vite om det gamle grunnlaget kan forsvares eller må korrigeres."
+        ],
+        "stage": "mastery",
+        "stakes": "Et etterprøvbart spor kan avgrense revisjonen; et uklart spor kan tvinge frem ny befaring og større omarbeiding.",
+        "subject": "Det gamle avviket avgjør om prosjektet må tegnes om",
+        "summary": "Jonas oppdager at neste designvalg avhenger av om den gamle kartkanten var feil, utilstrekkelig eller bare brukt til et annet formål.",
+        "task_domain": "forsinket_grunnlagskonsekvens",
+        "task_kind": "consequence",
+        "thread_key": "by_assistent.case.kartavvik_og_stedsbruk"
+      },
+      "id": "by_assistent_consequence_grunnlag_001",
+      "mail_type": "consequence",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Det tidligere støttearbeidet gjør en senere faglig beslutning mer presis og mindre kostbar.",
+            "id": "A",
+            "label": "Bruk det dokumenterte sporet til å avgrense nøyaktig hva som må kontrolleres og revideres",
+            "reply": "Jeg samler kartkilder, befaring og usikkerhetsnotat slik at Jonas kan avgrense revisjonen til det premisset som faktisk er svakt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du beskytter kvaliteten, men den manglende sikkerheten koster prosjektet mer tid og arbeid.",
+            "id": "B",
+            "label": "Anbefal ny bred kontroll siden det gamle sporet ikke er sikkert nok",
+            "reply": "Jeg anbefaler at vi kontrollerer området bredt på nytt før designet låses videre."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Designteamet har brukt kartkanten som premiss for inngang og ganglinje.",
+            "Befaringsmaterialet viser et mer komplekst sted.",
+            "Nå må prosjektet vite om det gamle grunnlaget kan forsvares eller må korrigeres."
+          ],
+          "subject": "Det gamle avviket avgjør om prosjektet må tegnes om",
+          "summary": "Jonas oppdager at neste designvalg avhenger av om den gamle kartkanten var feil, utilstrekkelig eller bare brukt til et annet formål."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_consequence_grunnlag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_sentrum_byrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_consequence_grunnlag_001",
+          "source_path": "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.case.kartavvik_og_stedsbruk",
+        "version": 1
+      },
+      "source_hash": "38edc3f6dea35f7e525b3bbbb6c2b5d68651bb886c0457ce9c3137b30f15c5f4",
+      "source_path": "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "observere_rett_tid_vs_anta_fra_dagtid",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du samler data på det tidspunktet innspillene faktisk handler om.",
+            "id": "A",
+            "label": "Gjennomfør en kort kveldsbefaring med tydelig observasjonsspørsmål",
+            "reply": "Jeg gjennomfører en kort kveldsbefaring for å teste ganglinje, lys og opplevd oversikt på riktig tidspunkt.",
+            "tags": [
+              "fieldwork",
+              "timing",
+              "evidence"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du unngår å late som du vet mer enn du gjør, men saken får mindre direkte evidens.",
+            "id": "B",
+            "label": "Bruk dagens materiale og marker kveldsforhold som usikkert",
+            "reply": "Jeg bruker dagens materiale, men markerer tydelig at kveldsforholdene ikke er observert.",
+            "tags": [
+              "uncertainty",
+              "scope"
+            ]
+          }
+        ],
+        "competency": "observasjonsdesign",
+        "consequence_axis": "evidens_vs_effektivitet",
+        "cooldown": 3,
+        "from": "maria_medvirkning",
+        "id": "by_assistent_event_kveldsbefaring_001",
+        "mail_family": "befaring_og_medvirkning",
+        "mail_type": "event",
+        "narrative_arc": "Assistenten lærer at stedlig observasjon må skje når fenomenet faktisk oppstår.",
+        "person_id": "maria_medvirkning",
+        "phase": "afternoon",
+        "place_id": "oslo_sentrum_byrom",
+        "pressure": "tilgjengelig_grunnlag_vs_relevant_grunnlag",
+        "priority": 60,
+        "purpose": "Velg om assistenten skal samle ny stedlig evidens eller nøye seg med eksisterende beskrivelser.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+        "scene_catalog_version": 1,
+        "sender": "maria_medvirkning",
+        "situation": [
+          "Innspillene beskriver utrygghet om kvelden.",
+          "Dagens bilder viser lysanlegget, men ikke hvordan stedet oppleves når omgivelsene er mørke.",
+          "Maria kan bli med på en kort, avgrenset befaring."
+        ],
+        "stage": "advanced",
+        "stakes": "Ny observasjon kan styrke eller avkrefte mønsteret; uten den kan analysen bli basert på antakelser om tidspunktet som faktisk er problemet.",
+        "subject": "En kort kveldsbefaring kan teste trygghetsinnspillene",
+        "summary": "Flere innspill gjelder den samme mørke ganglinjen, men dagens befaring sier lite om hvordan stedet virker etter arbeidstid.",
+        "task_domain": "tidsavhengig_befaring",
+        "task_kind": "event"
+      },
+      "id": "by_assistent_event_kveldsbefaring_001",
+      "mail_type": "event",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du samler data på det tidspunktet innspillene faktisk handler om.",
+            "id": "A",
+            "label": "Gjennomfør en kort kveldsbefaring med tydelig observasjonsspørsmål",
+            "reply": "Jeg gjennomfører en kort kveldsbefaring for å teste ganglinje, lys og opplevd oversikt på riktig tidspunkt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du unngår å late som du vet mer enn du gjør, men saken får mindre direkte evidens.",
+            "id": "B",
+            "label": "Bruk dagens materiale og marker kveldsforhold som usikkert",
+            "reply": "Jeg bruker dagens materiale, men markerer tydelig at kveldsforholdene ikke er observert."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Innspillene beskriver utrygghet om kvelden.",
+            "Dagens bilder viser lysanlegget, men ikke hvordan stedet oppleves når omgivelsene er mørke.",
+            "Maria kan bli med på en kort, avgrenset befaring."
+          ],
+          "subject": "En kort kveldsbefaring kan teste trygghetsinnspillene",
+          "summary": "Flere innspill gjelder den samme mørke ganglinjen, men dagens befaring sier lite om hvordan stedet virker etter arbeidstid."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_event_kveldsbefaring_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_sentrum_byrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_event_kveldsbefaring_001",
+          "source_path": "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_event_kveldsbefaring_001",
+        "version": 1
+      },
+      "source_hash": "1b16df48879d81620f1ceed6bec0d90d384e95dd5e910040b57cc573e3ccacd4",
+      "source_path": "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "hente_kilder_vs_stole_pa_hukommelse",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Teamet kan revidere akkurat det premisset som er svakt uten å åpne hele saken på nytt.",
+            "id": "A",
+            "label": "Hent frem kilde, dato, befaring og den åpne usikkerheten før skissen vurderes",
+            "reply": "Jeg henter frem hele kildesporet og viser nøyaktig hva som var observert, hva som var kartavvik og hva som ikke ble avklart.",
+            "tags": [
+              "followup",
+              "traceability",
+              "revision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du sparer tid nå, men gjør det vanskeligere å vite om revisjonen faktisk svarer på den opprinnelige usikkerheten.",
+            "id": "B",
+            "label": "Forklar fra hukommelsen hva avviket handlet om og gå videre",
+            "reply": "Jeg forklarer fra hukommelsen at kanten var usikker og foreslår en rask justering.",
+            "tags": [
+              "memory",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "sporbar_faglig_overlevering",
+        "consequence_axis": "presis_revisjon_vs_ny_usikkerhet",
+        "cooldown": 2,
+        "from": "ingrid_byplan",
+        "id": "by_assistent_followup_kartavvik_001",
+        "mail_family": "grunnlagsoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Et lite kildespor fra tidligere blir nå forskjellen mellom presis oppfølging og dyr rekonstruksjon.",
+        "person_id": "ingrid_byplan",
+        "phase": "afternoon",
+        "place_id": "kart_og_grunnlagsbord",
+        "pressure": "rekonstruksjon_vs_dokumentert_spor",
+        "priority": 66,
+        "purpose": "Teste om assistentens tidligere kildespor og usikkerhet kan brukes operativt når saken går videre.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "ingrid_byplan",
+        "situation": [
+          "Neste leveranse viser kanten som om den var avklart.",
+          "Du husker at kartlag og befaring ikke var helt enige.",
+          "Ingrid trenger dokumentasjonen før hun bestemmer om skissen må revideres."
+        ],
+        "stage": "advanced",
+        "stakes": "God dokumentasjon gjør revisjonen liten og presis; svak dokumentasjon tvinger teamet til å rekonstruere hva som skjedde.",
+        "subject": "Kartavviket dukker opp igjen i neste leveranse",
+        "summary": "En ny skisse bruker den samme kanten som premiss, og Ingrid ber deg hente frem hva dere faktisk dokumenterte tidligere.",
+        "task_domain": "grunnlagsoppfolging",
+        "task_kind": "followup",
+        "thread_key": "by_assistent.case.kartavvik_og_stedsbruk"
+      },
+      "id": "by_assistent_followup_kartavvik_001",
+      "mail_type": "followup",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Teamet kan revidere akkurat det premisset som er svakt uten å åpne hele saken på nytt.",
+            "id": "A",
+            "label": "Hent frem kilde, dato, befaring og den åpne usikkerheten før skissen vurderes",
+            "reply": "Jeg henter frem hele kildesporet og viser nøyaktig hva som var observert, hva som var kartavvik og hva som ikke ble avklart."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du sparer tid nå, men gjør det vanskeligere å vite om revisjonen faktisk svarer på den opprinnelige usikkerheten.",
+            "id": "B",
+            "label": "Forklar fra hukommelsen hva avviket handlet om og gå videre",
+            "reply": "Jeg forklarer fra hukommelsen at kanten var usikker og foreslår en rask justering."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Neste leveranse viser kanten som om den var avklart.",
+            "Du husker at kartlag og befaring ikke var helt enige.",
+            "Ingrid trenger dokumentasjonen før hun bestemmer om skissen må revideres."
+          ],
+          "subject": "Kartavviket dukker opp igjen i neste leveranse",
+          "summary": "En ny skisse bruker den samme kanten som premiss, og Ingrid ber deg hente frem hva dere faktisk dokumenterte tidligere."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_followup_kartavvik_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kart_og_grunnlagsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_followup_kartavvik_001",
+          "source_path": "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.case.kartavvik_og_stedsbruk",
+        "version": 1
+      },
+      "source_hash": "e27c53b593e86cfa4962a5d97fea472d1755b98478e1dc1e6d468e115309cc26",
+      "source_path": "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
         "choice_axis": "notere_bruksmønster_vs_beskrive_form",
         "choices": [
           {
@@ -3116,6 +3646,1000 @@
       "category": "by",
       "compatibility_projection": {
         "category": "by",
+        "choice_axis": "modell_som_fasit_vs_modell_som_kilde",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du bruker kartet presist uten å gi modellen mer sikkerhet enn den har.",
+            "id": "A",
+            "label": "Behandle kartet som én kilde som må forstås sammen med sted og formål",
+            "reply": "Jeg behandler kartet som en sterk kilde, men vurderer hva laget er laget for og tester det mot stedet når saken krever det.",
+            "tags": [
+              "knowledge",
+              "map",
+              "source_criticism"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Tilnærmingen er effektiv, men kan overse at kartet er korrekt for sitt formål og likevel utilstrekkelig for ditt.",
+            "id": "B",
+            "label": "Bruk offisielt kart som utgangspunkt og avvik bare når feilen er tydelig",
+            "reply": "Jeg bruker offisielt kart som utgangspunkt og avviker bare når befaringen viser en klar feil.",
+            "tags": [
+              "formal_data",
+              "conservative"
+            ]
+          }
+        ],
+        "competency": "grunnlagskritikk",
+        "consequence_axis": "kritisk_forstaelse_vs_falsk_sikkerhet",
+        "cooldown": 2,
+        "from": "jonas_arkitekt",
+        "id": "by_assistent_knowledge_kart_sted_001",
+        "mail_family": "grunnlagsforstaelse",
+        "mail_type": "knowledge",
+        "narrative_arc": "Assistenten forstår hvorfor kildekritikk også gjelder tekniske og offisielle kartdata.",
+        "person_id": "jonas_arkitekt",
+        "phase": "lunch",
+        "place_id": "oslo_sentrum_byrom",
+        "pressure": "formell_data_vs_stedlig_evidens",
+        "priority": 52,
+        "purpose": "Gjør grunnlagskritikken eksplisitt som faglig kunnskap, ikke bare en arbeidsvane.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "jonas_arkitekt",
+        "situation": [
+          "Kartdata er nødvendige for å arbeide systematisk.",
+          "Samtidig er hvert lag laget for et bestemt formål, tidspunkt og presisjonsnivå.",
+          "Befaring og bruk kan derfor korrigere hva kartet betyr i den konkrete saken."
+        ],
+        "stage": "early",
+        "stakes": "Hvis kartet behandles som fasit, kan modellen skjule forhold som er viktige for senere plan- og designvalg.",
+        "subject": "Kartet er en modell av stedet, ikke stedet selv",
+        "summary": "Jonas ber deg forklare hvorfor en offisiell kartlinje fortsatt må testes mot faktisk bruk og befaring.",
+        "task_domain": "kartforstaelse",
+        "task_kind": "knowledge"
+      },
+      "id": "by_assistent_knowledge_kart_sted_001",
+      "mail_type": "knowledge",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker kartet presist uten å gi modellen mer sikkerhet enn den har.",
+            "id": "A",
+            "label": "Behandle kartet som én kilde som må forstås sammen med sted og formål",
+            "reply": "Jeg behandler kartet som en sterk kilde, men vurderer hva laget er laget for og tester det mot stedet når saken krever det."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Tilnærmingen er effektiv, men kan overse at kartet er korrekt for sitt formål og likevel utilstrekkelig for ditt.",
+            "id": "B",
+            "label": "Bruk offisielt kart som utgangspunkt og avvik bare når feilen er tydelig",
+            "reply": "Jeg bruker offisielt kart som utgangspunkt og avviker bare når befaringen viser en klar feil."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kartdata er nødvendige for å arbeide systematisk.",
+            "Samtidig er hvert lag laget for et bestemt formål, tidspunkt og presisjonsnivå.",
+            "Befaring og bruk kan derfor korrigere hva kartet betyr i den konkrete saken."
+          ],
+          "subject": "Kartet er en modell av stedet, ikke stedet selv",
+          "summary": "Jonas ber deg forklare hvorfor en offisiell kartlinje fortsatt må testes mot faktisk bruk og befaring."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_knowledge_kart_sted_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_sentrum_byrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_knowledge_kart_sted_001",
+          "source_path": "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_knowledge_kart_sted_001",
+        "version": 1
+      },
+      "source_hash": "892618aa649a9143c80fc9697dc0150288324a47735a79c896f4ecdb2a4294f1",
+      "source_path": "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "merke_kilder_vs_fortsette",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Neste leser kan se nøyaktig hva vurderingen bygger på.",
+            "id": "A",
+            "label": "Merk lag, dato og avvik før du fortsetter",
+            "reply": "Jeg merker kilde, dato og avvik på lagene før jeg fortsetter analysen.",
+            "tags": [
+              "traceability",
+              "quality"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du sparer noen minutter, men gjør kildesporet vanskeligere å rekonstruere senere.",
+            "id": "B",
+            "label": "Fortsett nå og dokumenter kildene ved levering",
+            "reply": "Jeg fortsetter nå og dokumenterer kildene samlet når notatet er ferdig.",
+            "tags": [
+              "delay",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "sporbarhet",
+        "consequence_axis": "etterprovbarhet_vs_tempo",
+        "cooldown": 1,
+        "from": "ingrid_byplan",
+        "id": "by_assistent_micro_kildespor_001",
+        "mail_family": "mikrokontroll",
+        "mail_type": "micro",
+        "narrative_arc": "Assistenten lærer at god sporbarhet ofte bygges gjennom små valg før de blir store problemer.",
+        "person_id": "ingrid_byplan",
+        "phase": "forenoon",
+        "place_id": "kart_og_grunnlagsbord",
+        "pressure": "minutter_na_vs_timer_senere",
+        "priority": 54,
+        "purpose": "Velg om assistenten bruker noen minutter på eksplisitt kildespor før arbeidet fortsetter.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "ingrid_byplan",
+        "situation": [
+          "Arbeidsfilen ser ryddig ut.",
+          "Men lagene har ulik dato og litt ulik geometri.",
+          "Du kan fortsatt merke dem uten å bygge analysen på nytt."
+        ],
+        "stage": "early",
+        "stakes": "Et manglende kildespor er lite nå, men dyrt å rekonstruere når saken senere blir utfordret.",
+        "subject": "Kan du merke hvilken kilde hver kartkant kommer fra?",
+        "summary": "To nesten like kartlag er blandet i samme arbeidsfil, og senere lesere vil ikke se hvilket lag som ligger bak hver vurdering.",
+        "task_domain": "kildespor",
+        "task_kind": "micro"
+      },
+      "id": "by_assistent_micro_kildespor_001",
+      "mail_type": "micro",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste leser kan se nøyaktig hva vurderingen bygger på.",
+            "id": "A",
+            "label": "Merk lag, dato og avvik før du fortsetter",
+            "reply": "Jeg merker kilde, dato og avvik på lagene før jeg fortsetter analysen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du sparer noen minutter, men gjør kildesporet vanskeligere å rekonstruere senere.",
+            "id": "B",
+            "label": "Fortsett nå og dokumenter kildene ved levering",
+            "reply": "Jeg fortsetter nå og dokumenterer kildene samlet når notatet er ferdig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Arbeidsfilen ser ryddig ut.",
+            "Men lagene har ulik dato og litt ulik geometri.",
+            "Du kan fortsatt merke dem uten å bygge analysen på nytt."
+          ],
+          "subject": "Kan du merke hvilken kilde hver kartkant kommer fra?",
+          "summary": "To nesten like kartlag er blandet i samme arbeidsfil, og senere lesere vil ikke se hvilket lag som ligger bak hver vurdering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_micro_kildespor_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kart_og_grunnlagsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_micro_kildespor_001",
+          "source_path": "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_micro_kildespor_001",
+        "version": 1
+      },
+      "source_hash": "4d8fe56c56f9ff9eee664fdb2ee4a02156fcb541f7c995a785152c13d6ea1689",
+      "source_path": "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "konkludere_tidlig_vs_skille_funn_og_tolkning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Ingrid får et grunnlag hun kan kontrollere videre uten at usikkerheten er skjult.",
+            "id": "A",
+            "label": "Skill kartavvik, stedsobservasjon og det som fortsatt må avklares",
+            "reply": "Jeg skiller kartavviket fra stedsobservasjonen og markerer hva som fortsatt må avklares.",
+            "tags": [
+              "traceability",
+              "uncertainty",
+              "handover"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Saken går raskere videre, men gjetningen kan nå se ut som et kontrollert premiss.",
+            "id": "B",
+            "label": "Gi det mest sannsynlige svaret så saken kan gå videre",
+            "reply": "Jeg gir det mest sannsynlige svaret og foreslår at vi korrigerer senere hvis det viser seg nødvendig.",
+            "tags": [
+              "shortcut",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "sporbar_faglig_overlevering",
+        "consequence_axis": "tempo_vs_tillit",
+        "cooldown": 1,
+        "from": "ingrid_byplan",
+        "id": "by_assistent_people_ingrid_001",
+        "mail_family": "faglige_relasjoner",
+        "mail_type": "people",
+        "narrative_arc": "Assistenten lærer å være nyttig uten å late som støttearbeidet allerede er en faglig avgjørelse.",
+        "person_id": "ingrid_byplan",
+        "phase": "morning",
+        "place_id": "kart_og_grunnlagsbord",
+        "pressure": "sikkert_svar_vs_presis_usikkerhet",
+        "priority": 72,
+        "purpose": "Trene assistenten i å skille observasjon, kildeavvik og faglig konklusjon i overleveringen.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+        "scene_catalog_version": 1,
+        "sender": "ingrid_byplan",
+        "situation": [
+          "Tre kartlag viser kanten litt forskjellig.",
+          "Befaringsbildene tyder på at bruken heller ikke følger den reneste linjen.",
+          "Ingrid trenger et kort svar før hun avgjør om saken må undersøkes mer."
+        ],
+        "stage": "stable",
+        "stakes": "Et for sikkert svar kan bli et falskt premiss; et presist usikkerhetssvar kan utløse riktig kontroll.",
+        "subject": "Ingrid spør hva du faktisk vet om kartavviket",
+        "summary": "Byplanlegger Ingrid vil vite om den uklare kanten er et reelt stedsavvik eller bare en forskjell mellom datakilder.",
+        "task_domain": "grunnlagsoverlevering",
+        "task_kind": "people"
+      },
+      "id": "by_assistent_people_ingrid_001",
+      "mail_type": "people",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Ingrid får et grunnlag hun kan kontrollere videre uten at usikkerheten er skjult.",
+            "id": "A",
+            "label": "Skill kartavvik, stedsobservasjon og det som fortsatt må avklares",
+            "reply": "Jeg skiller kartavviket fra stedsobservasjonen og markerer hva som fortsatt må avklares."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken går raskere videre, men gjetningen kan nå se ut som et kontrollert premiss.",
+            "id": "B",
+            "label": "Gi det mest sannsynlige svaret så saken kan gå videre",
+            "reply": "Jeg gir det mest sannsynlige svaret og foreslår at vi korrigerer senere hvis det viser seg nødvendig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Tre kartlag viser kanten litt forskjellig.",
+            "Befaringsbildene tyder på at bruken heller ikke følger den reneste linjen.",
+            "Ingrid trenger et kort svar før hun avgjør om saken må undersøkes mer."
+          ],
+          "subject": "Ingrid spør hva du faktisk vet om kartavviket",
+          "summary": "Byplanlegger Ingrid vil vite om den uklare kanten er et reelt stedsavvik eller bare en forskjell mellom datakilder."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_people_ingrid_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "kart_og_grunnlagsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_people_ingrid_001",
+          "source_path": "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_people_ingrid_001",
+        "version": 1
+      },
+      "source_hash": "79eb153bf00a3fa4a60e0f5b37b5aa915c413b0f76a7d1729f2a9d4dc69540b5",
+      "source_path": "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "bevare_sammenheng_vs_flat_oppsummering",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Notatet blir både lesbart og etterprøvbart nok til at andre kan bygge videre på det.",
+            "id": "A",
+            "label": "Skriv sammenhengen tydelig og behold usikkerheten der den finnes",
+            "reply": "Jeg skriver hvordan kart, befaring og innspill henger sammen og markerer det som fortsatt er usikkert.",
+            "tags": [
+              "mastery",
+              "synthesis",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Leveransen blir rask å lese, men noe av sammenhengen mellom funnene forsvinner.",
+            "id": "B",
+            "label": "Lag en kort punktliste med de viktigste funnene",
+            "reply": "Jeg lager en kort punktliste med de viktigste funnene og lar detaljene ligge i vedleggene.",
+            "tags": [
+              "summary",
+              "compression"
+            ]
+          }
+        ],
+        "competency": "sammenstilt_stedsforstaelse",
+        "consequence_axis": "læring_vs_rapportro",
+        "cooldown": 2,
+        "from": "maria_medvirkning",
+        "id": "by_assistent_story_stedsnotat_001",
+        "mail_family": "stedsforstaelse",
+        "mail_type": "story",
+        "narrative_arc": "Assistenten går fra støtteoppgaver til å forstå hvorfor små observasjoner kan endre en hel stedsanalyse.",
+        "person_id": "maria_medvirkning",
+        "phase": "evening",
+        "place_id": "medvirknings_og_notatbord",
+        "pressure": "lesbarhet_vs_faglig_motstand",
+        "priority": 64,
+        "purpose": "La assistenten velge om sluttproduktet skal bevare sammenhengen og usikkerheten eller reduseres til en pen punktliste.",
+        "repeatable": false,
+        "role_scope": "by_assistent",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/story/by_assistent_story.json",
+        "scene_catalog_version": 1,
+        "sender": "maria_medvirkning",
+        "situation": [
+          "Kartgrunnlaget var mindre sikkert enn det så ut.",
+          "Befaringen viste hvordan folk faktisk beveger seg og oppholder seg.",
+          "Innspillene ga flere uavhengige beskrivelser av samme utrygghet."
+        ],
+        "stage": "mastery",
+        "stakes": "Notatet kan bli et reelt beslutningsgrunnlag eller bare en ryddig oppsummering som mister det viktigste mønsteret.",
+        "subject": "Det lille notatet begynner å forklare hele stedet",
+        "summary": "Kartavviket, snarveien, oppholdet og flere innspill peker nå mot samme konflikt mellom planlagt funksjon og faktisk bruk.",
+        "task_domain": "stedsnotat",
+        "task_kind": "story"
+      },
+      "id": "by_assistent_story_stedsnotat_001",
+      "mail_type": "story",
+      "role_scope": "by_assistent",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Notatet blir både lesbart og etterprøvbart nok til at andre kan bygge videre på det.",
+            "id": "A",
+            "label": "Skriv sammenhengen tydelig og behold usikkerheten der den finnes",
+            "reply": "Jeg skriver hvordan kart, befaring og innspill henger sammen og markerer det som fortsatt er usikkert."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Leveransen blir rask å lese, men noe av sammenhengen mellom funnene forsvinner.",
+            "id": "B",
+            "label": "Lag en kort punktliste med de viktigste funnene",
+            "reply": "Jeg lager en kort punktliste med de viktigste funnene og lar detaljene ligge i vedleggene."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kartgrunnlaget var mindre sikkert enn det så ut.",
+            "Befaringen viste hvordan folk faktisk beveger seg og oppholder seg.",
+            "Innspillene ga flere uavhengige beskrivelser av samme utrygghet."
+          ],
+          "subject": "Det lille notatet begynner å forklare hele stedet",
+          "summary": "Kartavviket, snarveien, oppholdet og flere innspill peker nå mot samme konflikt mellom planlagt funksjon og faktisk bruk."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_assistent_story_stedsnotat_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "medvirknings_og_notatbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_assistent_story_stedsnotat_001",
+          "source_path": "data/Civication/mailFamilies/by/story/by_assistent_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_assistent.mail.by_assistent_story_stedsnotat_001",
+        "version": 1
+      },
+      "source_hash": "5e411b37f4db23f7e044b8416c2f851471b97676597a49542c00528fd80ca8e7",
+      "source_path": "data/Civication/mailFamilies/by/story/by_assistent_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "eskalere_til_eier_vs_prosjektbestemme",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Milepælen blir mer utsatt, men ansvar og beslutningsspor forblir legitime.",
+            "id": "A",
+            "label": "Stopp beslutningen, navngi manglende eier og eskaler med frist",
+            "reply": "Jeg stopper prosjektbeslutningen, dokumenterer hvilken myndighet som mangler og eskalerer til riktig eier med tydelig frist.",
+            "tags": [
+              "authority",
+              "escalation",
+              "governance"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Prosjektet holder fart, men den midlertidige løsningen kan allerede ha bundet andre før riktig eier har besluttet.",
+            "id": "B",
+            "label": "Velg en midlertidig løsning og be om formell bekreftelse etterpå",
+            "reply": "Jeg lar prosjektet velge en midlertidig løsning og sender den til formell bekreftelse etterpå.",
+            "tags": [
+              "mandate_drift",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "mandatvern",
+        "consequence_axis": "lovlig_styring_vs_kortsiktig_framdrift",
+        "cooldown": 2,
+        "from": "prosjektkoordinator_amin",
+        "id": "by_prosjektleder_conflict_ansvar_001",
+        "mail_family": "mandat_og_avhengighetskonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "Prosjektlederen lærer at en uløst avhengighet ikke gir prosjektet mer myndighet.",
+        "person_id": "prosjektkoordinator_amin",
+        "phase": "afternoon",
+        "place_id": "koordinerings_og_avhengighetsrom",
+        "pressure": "milepal_vs_formelt_ansvar",
+        "priority": 68,
+        "purpose": "Teste om prosjektlederen stopper mandatglidning og får beslutningen til riktig eier.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "prosjektkoordinator_amin",
+        "situation": [
+          "Trafikkføringen må avklares før neste leveranse.",
+          "Fagmiljøene peker på hverandre og ingen har bekreftet formelt eierskap.",
+          "Prosjektgruppen mener løsningen er å velge det minst dårlige alternativet selv."
+        ],
+        "stage": "stable_warning",
+        "stakes": "Å bestemme selv kan redde datoen, men gjør prosjektet ansvarlig for en beslutning det ikke har myndighet til å fatte.",
+        "subject": "Ingen eier trafikkavklaringen, og prosjektet begynner å bestemme selv",
+        "summary": "En kritisk avhengighet mangler tydelig eier, og prosjektgruppen foreslår å ta en midlertidig beslutning for å holde milepælen.",
+        "task_domain": "ansvarsavklaring",
+        "task_kind": "conflict"
+      },
+      "id": "by_prosjektleder_conflict_ansvar_001",
+      "mail_type": "conflict",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Milepælen blir mer utsatt, men ansvar og beslutningsspor forblir legitime.",
+            "id": "A",
+            "label": "Stopp beslutningen, navngi manglende eier og eskaler med frist",
+            "reply": "Jeg stopper prosjektbeslutningen, dokumenterer hvilken myndighet som mangler og eskalerer til riktig eier med tydelig frist."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Prosjektet holder fart, men den midlertidige løsningen kan allerede ha bundet andre før riktig eier har besluttet.",
+            "id": "B",
+            "label": "Velg en midlertidig løsning og be om formell bekreftelse etterpå",
+            "reply": "Jeg lar prosjektet velge en midlertidig løsning og sender den til formell bekreftelse etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Trafikkføringen må avklares før neste leveranse.",
+            "Fagmiljøene peker på hverandre og ingen har bekreftet formelt eierskap.",
+            "Prosjektgruppen mener løsningen er å velge det minst dårlige alternativet selv."
+          ],
+          "subject": "Ingen eier trafikkavklaringen, og prosjektet begynner å bestemme selv",
+          "summary": "En kritisk avhengighet mangler tydelig eier, og prosjektgruppen foreslår å ta en midlertidig beslutning for å holde milepælen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_conflict_ansvar_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "koordinerings_og_avhengighetsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_conflict_ansvar_001",
+          "source_path": "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_conflict_ansvar_001",
+        "version": 1
+      },
+      "source_hash": "b9d1f084b4c2f6b75a49a5cad8b9d42f8054d888785dabb2f5b78c663f40ecbf",
+      "source_path": "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "bruke_sporet_vs_star_forklare_panytt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Endringen framstår som styrt respons på nytt grunnlag, ikke som plutselig tap av kontroll.",
+            "id": "A",
+            "label": "Knytt den nye beslutningen direkte til tidligere risiko, endret forutsetning og synlige alternativer",
+            "reply": "Jeg viser sammenhengen fra tidlig risiko via nytt estimat til dagens alternativer, slik at beslutningen kan etterprøves.",
+            "tags": [
+              "consequence",
+              "governance",
+              "trust"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Beslutningen kan tas, men sammenhengen mellom tidligere varsling og dagens valg blir mindre synlig.",
+            "id": "B",
+            "label": "Presenter den nye anbefalingen som oppdatert prosjektstatus uten hele historikken",
+            "reply": "Jeg presenterer den nye anbefalingen kort som oppdatert prosjektstatus og holder historikken i underlaget.",
+            "tags": [
+              "summary",
+              "history"
+            ]
+          }
+        ],
+        "competency": "beslutningssporbarhet",
+        "consequence_axis": "styring_og_tillit_vs_kostbar_usikkerhet",
+        "cooldown": 3,
+        "from": "kommunalsjef_lena",
+        "id": "by_prosjektleder_consequence_kostnad_001",
+        "mail_family": "forsinkede_styringskonsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "Prosjektlederen ser at tidlig risikosynlighet og beslutningsspor kan bevare tillit når planen senere må endres.",
+        "person_id": "kommunalsjef_lena",
+        "phase": "day_end",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "kontrollert_revisjon_vs_tap_av_tillit",
+        "priority": 62,
+        "purpose": "Vis at prosjektlederens tidligere dokumentasjon påvirker om en vanskelig endring blir oppfattet som styrt revisjon eller som kontrolltap.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "kommunalsjef_lena",
+        "situation": [
+          "Kostnadsforutsetningen er endret.",
+          "Prosjektets tidligere risikonotat beskrev denne muligheten og hvilke kvaliteter som var utsatt.",
+          "Ledelsen skal nå beslutte om tid, omfang eller ressurs skal endres."
+        ],
+        "stage": "mastery",
+        "stakes": "Et sammenhengende spor beskytter tillit og gjør ny beslutning presis; et svakt spor gjør samme endring vanskeligere å legitimere og dyrere å avklare.",
+        "subject": "Styringen kan nå se hvorfor prosjektet må velge annerledes",
+        "summary": "Den opprinnelige kostnadsrisikoen, senere estimat og beslutningssporet gjør det mulig å forklare hvorfor tid, omfang eller kvalitet må endres.",
+        "task_domain": "forsinket_styringskonsekvens",
+        "task_kind": "consequence",
+        "thread_key": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet"
+      },
+      "id": "by_prosjektleder_consequence_kostnad_001",
+      "mail_type": "consequence",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Endringen framstår som styrt respons på nytt grunnlag, ikke som plutselig tap av kontroll.",
+            "id": "A",
+            "label": "Knytt den nye beslutningen direkte til tidligere risiko, endret forutsetning og synlige alternativer",
+            "reply": "Jeg viser sammenhengen fra tidlig risiko via nytt estimat til dagens alternativer, slik at beslutningen kan etterprøves."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Beslutningen kan tas, men sammenhengen mellom tidligere varsling og dagens valg blir mindre synlig.",
+            "id": "B",
+            "label": "Presenter den nye anbefalingen som oppdatert prosjektstatus uten hele historikken",
+            "reply": "Jeg presenterer den nye anbefalingen kort som oppdatert prosjektstatus og holder historikken i underlaget."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kostnadsforutsetningen er endret.",
+            "Prosjektets tidligere risikonotat beskrev denne muligheten og hvilke kvaliteter som var utsatt.",
+            "Ledelsen skal nå beslutte om tid, omfang eller ressurs skal endres."
+          ],
+          "subject": "Styringen kan nå se hvorfor prosjektet må velge annerledes",
+          "summary": "Den opprinnelige kostnadsrisikoen, senere estimat og beslutningssporet gjør det mulig å forklare hvorfor tid, omfang eller kvalitet må endres."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_consequence_kostnad_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_consequence_kostnad_001",
+          "source_path": "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet",
+        "version": 1
+      },
+      "source_hash": "73dbbe4d0aee2cfe777c7c1cc4ef61d7f869166e3eb52bed252d12656831740b",
+      "source_path": "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "navngi_eier_vs_fordele_flere_oppgaver",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Møtet blir mindre generelt og avhengigheten får en styrbar vei videre.",
+            "id": "A",
+            "label": "Avslutt møtet med navngitt beslutningseier, nødvendig grunnlag og frist",
+            "reply": "Jeg avslutter møtet med en eksplisitt beslutningseier, hvilket grunnlag som mangler og en frist for avgjørelsen.",
+            "tags": [
+              "coordination",
+              "ownership",
+              "decision"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Mer arbeid blir gjort, men selve spørsmålet om hvem som kan beslutte er fortsatt åpent.",
+            "id": "B",
+            "label": "Fordel nye fagoppgaver og sett opp et nytt koordineringsmøte",
+            "reply": "Jeg fordeler de manglende fagoppgavene og setter opp et nytt møte når alle har mer grunnlag.",
+            "tags": [
+              "meeting",
+              "workload"
+            ]
+          }
+        ],
+        "competency": "avhengighetsstyring",
+        "consequence_axis": "styrbarhet_vs_aktivitet",
+        "cooldown": 3,
+        "from": "prosjektkoordinator_amin",
+        "id": "by_prosjektleder_event_avhengighetsmote_001",
+        "mail_family": "tverrfaglige_beslutningspunkt",
+        "mail_type": "event",
+        "narrative_arc": "Prosjektlederen lærer at koordinering først virker når ansvar og beslutningsrett blir eksplisitt.",
+        "person_id": "prosjektkoordinator_amin",
+        "phase": "afternoon",
+        "place_id": "koordinerings_og_avhengighetsrom",
+        "pressure": "moteaktivitet_vs_beslutningseierskap",
+        "priority": 60,
+        "purpose": "Teste om prosjektlederen bruker møtet til å etablere ansvar og beslutningspunkt, ikke bare til informasjonsdeling.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+        "scene_catalog_version": 1,
+        "sender": "prosjektkoordinator_amin",
+        "situation": [
+          "Alle fag har forberedt status.",
+          "Ingen bestrider at avhengigheten er kritisk.",
+          "Likevel er det uklart hvem som har mandat til å ta den avgjørende beslutningen."
+        ],
+        "stage": "advanced",
+        "stakes": "Et godt møte kan redusere avhengighetsrisiko; et hyggelig møte uten eier skyver den samme blokkeringen videre.",
+        "subject": "Fire fag møter opp, men beslutningen mangler fortsatt eier",
+        "summary": "Transport, VA, miljø og prosjektet er samlet, men møtet risikerer å ende med nye oppgaver uten at den kritiske avhengigheten får en beslutningseier.",
+        "task_domain": "tverrfaglig_beslutningspunkt",
+        "task_kind": "event"
+      },
+      "id": "by_prosjektleder_event_avhengighetsmote_001",
+      "mail_type": "event",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Møtet blir mindre generelt og avhengigheten får en styrbar vei videre.",
+            "id": "A",
+            "label": "Avslutt møtet med navngitt beslutningseier, nødvendig grunnlag og frist",
+            "reply": "Jeg avslutter møtet med en eksplisitt beslutningseier, hvilket grunnlag som mangler og en frist for avgjørelsen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Mer arbeid blir gjort, men selve spørsmålet om hvem som kan beslutte er fortsatt åpent.",
+            "id": "B",
+            "label": "Fordel nye fagoppgaver og sett opp et nytt koordineringsmøte",
+            "reply": "Jeg fordeler de manglende fagoppgavene og setter opp et nytt møte når alle har mer grunnlag."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Alle fag har forberedt status.",
+            "Ingen bestrider at avhengigheten er kritisk.",
+            "Likevel er det uklart hvem som har mandat til å ta den avgjørende beslutningen."
+          ],
+          "subject": "Fire fag møter opp, men beslutningen mangler fortsatt eier",
+          "summary": "Transport, VA, miljø og prosjektet er samlet, men møtet risikerer å ende med nye oppgaver uten at den kritiske avhengigheten får en beslutningseier."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_event_avhengighetsmote_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "koordinerings_og_avhengighetsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_event_avhengighetsmote_001",
+          "source_path": "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_event_avhengighetsmote_001",
+        "version": 1
+      },
+      "source_hash": "22e44f8c807cbea3a5edde36b1da75e8528a51cf74eda2d60bee39840829d272",
+      "source_path": "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "replanlegge_apent_vs_kutte_stille",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Kostnadsøkningen blir en eksplisitt beslutning i stedet for et stille kvalitetskutt.",
+            "id": "A",
+            "label": "Løft scenarioet som styringssak med alternativer for tid, omfang, ressurs og kvalitet",
+            "reply": "Jeg bruker risikonotatet til å vise hvilke alternativer vi faktisk har og hva hvert alternativ koster i tid, omfang, ressurs og bykvalitet.",
+            "tags": [
+              "followup",
+              "risk",
+              "replanning"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Milepælen beskyttes, men det som tidligere var en varslet risiko blir nå et skjult prioriteringsvalg.",
+            "id": "B",
+            "label": "Be teamet finne kvalitetskutt som holder datoen uten ny styringssak",
+            "reply": "Jeg ber teamet finne avgrensede kvalitetskutt som holder dato og budsjett innenfor styringsrammen.",
+            "tags": [
+              "quality_cut",
+              "schedule",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "replanlegging",
+        "consequence_axis": "styrbarhet_vs_skjult_kvalitetstap",
+        "cooldown": 2,
+        "from": "okonomi_sigrid",
+        "id": "by_prosjektleder_followup_kostnad_001",
+        "mail_family": "risikooppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Tidlig risikovarsling får verdi først når prosjektet faktisk bruker den til å beskytte handlingsrommet senere.",
+        "person_id": "okonomi_sigrid",
+        "phase": "afternoon",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "dato_vs_synlig_kvalitetskonsekvens",
+        "priority": 66,
+        "purpose": "Teste om prosjektlederen bruker det tidligere risikosporet til å replanlegge åpent i stedet for å gjøre kvalitet til skjult reserve.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "okonomi_sigrid",
+        "situation": [
+          "Sigrids oppdaterte estimat bekrefter at grunnarbeidet blir dyrere enn hovedscenarioet.",
+          "Teamet har allerede pekt ut kvaliteter som kan reduseres uten å endre den formelle milepælen.",
+          "Det tidlige risikonotatet viser at denne konsekvensen var kjent som mulighet."
+        ],
+        "stage": "advanced",
+        "stakes": "Et raskt kvalitetskutt beskytter tidsplanen; åpen replanlegging kan flytte tid, omfang eller ressurs, men gjør konsekvensen beslutningsbar.",
+        "subject": "Kostnadsrisikoen er blitt større, og kvalitetene står først i kuttlisten",
+        "summary": "Det tidlige risikoscenarioet er nå mer sannsynlig, og grøntdrag, medvirkning og gatekvalitet foreslås redusert for å beskytte datoen.",
+        "task_domain": "risikooppfolging",
+        "task_kind": "followup",
+        "thread_key": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet"
+      },
+      "id": "by_prosjektleder_followup_kostnad_001",
+      "mail_type": "followup",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Kostnadsøkningen blir en eksplisitt beslutning i stedet for et stille kvalitetskutt.",
+            "id": "A",
+            "label": "Løft scenarioet som styringssak med alternativer for tid, omfang, ressurs og kvalitet",
+            "reply": "Jeg bruker risikonotatet til å vise hvilke alternativer vi faktisk har og hva hvert alternativ koster i tid, omfang, ressurs og bykvalitet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Milepælen beskyttes, men det som tidligere var en varslet risiko blir nå et skjult prioriteringsvalg.",
+            "id": "B",
+            "label": "Be teamet finne kvalitetskutt som holder datoen uten ny styringssak",
+            "reply": "Jeg ber teamet finne avgrensede kvalitetskutt som holder dato og budsjett innenfor styringsrammen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Sigrids oppdaterte estimat bekrefter at grunnarbeidet blir dyrere enn hovedscenarioet.",
+            "Teamet har allerede pekt ut kvaliteter som kan reduseres uten å endre den formelle milepælen.",
+            "Det tidlige risikonotatet viser at denne konsekvensen var kjent som mulighet."
+          ],
+          "subject": "Kostnadsrisikoen er blitt større, og kvalitetene står først i kuttlisten",
+          "summary": "Det tidlige risikoscenarioet er nå mer sannsynlig, og grøntdrag, medvirkning og gatekvalitet foreslås redusert for å beskytte datoen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_followup_kostnad_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_followup_kostnad_001",
+          "source_path": "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet",
+        "version": 1
+      },
+      "source_hash": "5e60f6f7aeb413f9998bd8eda0b64185d3baa71bd0edd48bb4860805809a63ff",
+      "source_path": "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
         "choice_axis": "plassere_ansvar_vs_forlenge_dialog",
         "choices": [
           {
@@ -4080,6 +5604,501 @@
       },
       "source_hash": "8d64518a8b8ac3b05728dd46c1e2b1c2cf4eba4b538b854fa9fc68ad33928fb9",
       "source_path": "data/Civication/mailFamilies/by/job/by_prosjektleder_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "varsle_scenario_vs_vente_pa_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Styringen kan forberede seg uten å late som usikkerheten allerede er fakta.",
+            "id": "A",
+            "label": "Beskriv sannsynlighet, konsekvens, forutsetning og mulig tiltak nå",
+            "reply": "Jeg legger risikoen inn med sannsynlighet, konsekvens, hvilke forutsetninger den bygger på og hvilke tiltak som finnes.",
+            "tags": [
+              "knowledge",
+              "risk",
+              "scenario"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Rapporten blir roligere, men prosjektet kan miste tid til å påvirke konsekvensen.",
+            "id": "B",
+            "label": "Vent til estimatet er bedre før risikoen løftes formelt",
+            "reply": "Jeg følger utviklingen, men venter med formell varsling til estimatet er mer robust.",
+            "tags": [
+              "certainty",
+              "delay"
+            ]
+          }
+        ],
+        "competency": "risikostyring",
+        "consequence_axis": "beredskap_vs_rapportro",
+        "cooldown": 2,
+        "from": "okonomi_sigrid",
+        "id": "by_prosjektleder_knowledge_risiko_001",
+        "mail_family": "styringsforstaelse",
+        "mail_type": "knowledge",
+        "narrative_arc": "Prosjektlederen lærer at god risikostyring handler om å bevare valg før usikkerheten blir en hendelse.",
+        "person_id": "okonomi_sigrid",
+        "phase": "lunch",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "sikkerhet_vs_tidlig_handlingsrom",
+        "priority": 52,
+        "purpose": "Knytter praktisk varsling til prinsippet om at risiko beskrives som sannsynlighet, konsekvens og forutsetning — ikke som ferdig bevist hendelse.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "okonomi_sigrid",
+        "situation": [
+          "Kostnadsøkningen er ikke bekreftet.",
+          "Konsekvensen kan bli betydelig dersom den treffer sent.",
+          "Styringen trenger derfor både usikkerheten og hva prosjektet kan gjøre dersom den materialiserer seg."
+        ],
+        "stage": "early",
+        "stakes": "Venter prosjektet på sikkerhet, kan handlingsrommet være borte når risikoen blir bekreftet.",
+        "subject": "Risiko trenger ikke være sikker for å være styringsrelevant",
+        "summary": "Sigrid ber deg forklare hvorfor en usikker kostnadsøkning bør inn i styringsbildet før den er endelig beregnet.",
+        "task_domain": "risikoforstaelse",
+        "task_kind": "knowledge"
+      },
+      "id": "by_prosjektleder_knowledge_risiko_001",
+      "mail_type": "knowledge",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Styringen kan forberede seg uten å late som usikkerheten allerede er fakta.",
+            "id": "A",
+            "label": "Beskriv sannsynlighet, konsekvens, forutsetning og mulig tiltak nå",
+            "reply": "Jeg legger risikoen inn med sannsynlighet, konsekvens, hvilke forutsetninger den bygger på og hvilke tiltak som finnes."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Rapporten blir roligere, men prosjektet kan miste tid til å påvirke konsekvensen.",
+            "id": "B",
+            "label": "Vent til estimatet er bedre før risikoen løftes formelt",
+            "reply": "Jeg følger utviklingen, men venter med formell varsling til estimatet er mer robust."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kostnadsøkningen er ikke bekreftet.",
+            "Konsekvensen kan bli betydelig dersom den treffer sent.",
+            "Styringen trenger derfor både usikkerheten og hva prosjektet kan gjøre dersom den materialiserer seg."
+          ],
+          "subject": "Risiko trenger ikke være sikker for å være styringsrelevant",
+          "summary": "Sigrid ber deg forklare hvorfor en usikker kostnadsøkning bør inn i styringsbildet før den er endelig beregnet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_knowledge_risiko_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_knowledge_risiko_001",
+          "source_path": "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_knowledge_risiko_001",
+        "version": 1
+      },
+      "source_hash": "13fe34efd6e490cf494a1e69aa9e2ac75ffde01e352b7c87f36fbb8bf09a082c",
+      "source_path": "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "komplettere_spor_vs_gå_videre",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Senere endringer kan vurderes mot det beslutningen faktisk bygde på.",
+            "id": "A",
+            "label": "Legg inn forutsetningen og lenk den til beslutningen nå",
+            "reply": "Jeg kompletterer beslutningsloggen med kostnadsforutsetning, avhengighet og hvem som eide avgjørelsen.",
+            "tags": [
+              "decision_log",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du sparer tid, men gjør styringssporet mer avhengig av hukommelse og gamle e-poster.",
+            "id": "B",
+            "label": "La referatet stå og dokumenter detaljene hvis spørsmålet kommer senere",
+            "reply": "Jeg lar referatet stå og tar fram detaljene senere dersom beslutningen blir utfordret.",
+            "tags": [
+              "delay",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "beslutningssporbarhet",
+        "consequence_axis": "etterprovbarhet_vs_tempo",
+        "cooldown": 1,
+        "from": "prosjektkoordinator_amin",
+        "id": "by_prosjektleder_micro_beslutningslogg_001",
+        "mail_family": "styringsmikrokontroll",
+        "mail_type": "micro",
+        "narrative_arc": "Prosjektlederen lærer at beslutningsspor bygges gjennom små kontroller før hukommelsen blir styringssystemet.",
+        "person_id": "prosjektkoordinator_amin",
+        "phase": "forenoon",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "smakontroll_vs_framdrift",
+        "priority": 54,
+        "purpose": "Velg om prosjektlederen bruker noen minutter på å gjenopprette beslutningssporet før flere bygger videre på det.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "prosjektkoordinator_amin",
+        "situation": [
+          "Referatet sier hva som ble valgt.",
+          "Det sier ikke hvilken kostnadsramme og avhengighet valget bygde på.",
+          "Du kan fortsatt legge inn koblingen mens dokumentasjonen er fersk."
+        ],
+        "stage": "early",
+        "stakes": "Uten forutsetningen kan en senere endring se ut som avvik fra beslutningen i stedet for en legitim reaksjon på endret grunnlag.",
+        "subject": "Beslutningen står i referatet, men forutsetningen mangler",
+        "summary": "En tidligere beslutning er registrert uten den kostnadsforutsetningen som gjorde valget forsvarlig.",
+        "task_domain": "beslutningsspor",
+        "task_kind": "micro"
+      },
+      "id": "by_prosjektleder_micro_beslutningslogg_001",
+      "mail_type": "micro",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Senere endringer kan vurderes mot det beslutningen faktisk bygde på.",
+            "id": "A",
+            "label": "Legg inn forutsetningen og lenk den til beslutningen nå",
+            "reply": "Jeg kompletterer beslutningsloggen med kostnadsforutsetning, avhengighet og hvem som eide avgjørelsen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du sparer tid, men gjør styringssporet mer avhengig av hukommelse og gamle e-poster.",
+            "id": "B",
+            "label": "La referatet stå og dokumenter detaljene hvis spørsmålet kommer senere",
+            "reply": "Jeg lar referatet stå og tar fram detaljene senere dersom beslutningen blir utfordret."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Referatet sier hva som ble valgt.",
+            "Det sier ikke hvilken kostnadsramme og avhengighet valget bygde på.",
+            "Du kan fortsatt legge inn koblingen mens dokumentasjonen er fersk."
+          ],
+          "subject": "Beslutningen står i referatet, men forutsetningen mangler",
+          "summary": "En tidligere beslutning er registrert uten den kostnadsforutsetningen som gjorde valget forsvarlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_micro_beslutningslogg_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_micro_beslutningslogg_001",
+          "source_path": "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_micro_beslutningslogg_001",
+        "version": 1
+      },
+      "source_hash": "15192ae47d2a6cbf62bd14de4e89b947d7034192ab2a0911d0bf9270ae07c14b",
+      "source_path": "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "love_dato_vs_scenario_med_vilkar",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Lena får et styringssignal som kan oppdateres uten at prosjektet later som usikkerheten er borte.",
+            "id": "A",
+            "label": "Gi et hovedscenario med dato, forutsetninger og risikointervall",
+            "reply": "Jeg gir et hovedscenario med dato og viser hvilke avhengigheter som må holde for at den skal være realistisk.",
+            "tags": [
+              "scenario",
+              "risk",
+              "governance"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Rapporten blir enklere, men prosjektet begynner å eie en dato det ikke fullt ut styrer.",
+            "id": "B",
+            "label": "Sett en styringsdato og håndter avvik dersom de oppstår",
+            "reply": "Jeg setter en tydelig styringsdato og varsler senere dersom avhengighetene faktisk gir utslag.",
+            "tags": [
+              "deadline",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "risikosynlig_rapportering",
+        "consequence_axis": "rapportro_vs_styrbarhet",
+        "cooldown": 1,
+        "from": "kommunalsjef_lena",
+        "id": "by_prosjektleder_people_lena_001",
+        "mail_family": "styringsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "Prosjektlederen lærer å være tydelig oppover uten å skjule hva prosjektet faktisk ikke kontrollerer.",
+        "person_id": "kommunalsjef_lena",
+        "phase": "morning",
+        "place_id": "mandat_og_programbord",
+        "pressure": "enkel_dato_vs_reelle_forutsetninger",
+        "priority": 72,
+        "purpose": "Trene prosjektlederen i å gi nyttig ledelsesinformasjon uten å konvertere usikkerhet til falsk sikkerhet.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+        "scene_catalog_version": 1,
+        "sender": "kommunalsjef_lena",
+        "situation": [
+          "Ledelsen trenger å kommunisere framdrift videre.",
+          "To kritiske avhengigheter har fortsatt eksterne eiere.",
+          "Kostnadsbildet kan endre omfanget hvis grunnarbeidet blir dyrere enn antatt."
+        ],
+        "stage": "stable",
+        "stakes": "En fast dato gir ro nå, men kan bli et løfte prosjektet ikke kontrollerer; et scenario gir mindre enkelhet, men bedre styring.",
+        "subject": "Lena vil ha én dato, men premissene er fortsatt i bevegelse",
+        "summary": "Kommunalsjef Lena trenger en styringsdato før flere tekniske og økonomiske avhengigheter er avklart.",
+        "task_domain": "styringsdialog",
+        "task_kind": "people"
+      },
+      "id": "by_prosjektleder_people_lena_001",
+      "mail_type": "people",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Lena får et styringssignal som kan oppdateres uten at prosjektet later som usikkerheten er borte.",
+            "id": "A",
+            "label": "Gi et hovedscenario med dato, forutsetninger og risikointervall",
+            "reply": "Jeg gir et hovedscenario med dato og viser hvilke avhengigheter som må holde for at den skal være realistisk."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Rapporten blir enklere, men prosjektet begynner å eie en dato det ikke fullt ut styrer.",
+            "id": "B",
+            "label": "Sett en styringsdato og håndter avvik dersom de oppstår",
+            "reply": "Jeg setter en tydelig styringsdato og varsler senere dersom avhengighetene faktisk gir utslag."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ledelsen trenger å kommunisere framdrift videre.",
+            "To kritiske avhengigheter har fortsatt eksterne eiere.",
+            "Kostnadsbildet kan endre omfanget hvis grunnarbeidet blir dyrere enn antatt."
+          ],
+          "subject": "Lena vil ha én dato, men premissene er fortsatt i bevegelse",
+          "summary": "Kommunalsjef Lena trenger en styringsdato før flere tekniske og økonomiske avhengigheter er avklart."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_people_lena_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "mandat_og_programbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_people_lena_001",
+          "source_path": "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_people_lena_001",
+        "version": 1
+      },
+      "source_hash": "0688115a1a7a5654f8f28a24f14b2ab0dda1b52f1a413f39bbbb500c8822be19",
+      "source_path": "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "vise_alternativer_vs_selge_en_losning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Ledelsen får et beslutningsgrunnlag som gjør uenigheten synlig uten å gjøre den ubrukelig.",
+            "id": "A",
+            "label": "Vis alternativer, forutsetninger, risiko og hva hvert valg gjør med bykvaliteten",
+            "reply": "Jeg lager styringssaken slik at hvert alternativ viser ansvar, kostnad, framdrift, risiko og konsekvens for bykvalitet.",
+            "tags": [
+              "decision",
+              "transparency",
+              "quality"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Saken blir enklere å lese, men noen av avveiingene blir mindre synlige i selve beslutningsøyeblikket.",
+            "id": "B",
+            "label": "Anbefal ett hovedalternativ og legg detaljert risiko i vedlegg",
+            "reply": "Jeg anbefaler ett hovedalternativ og legger den detaljerte risikoen i vedlegg for å holde saken kort.",
+            "tags": [
+              "recommendation",
+              "compression"
+            ]
+          }
+        ],
+        "competency": "beslutningsgrunnlag",
+        "consequence_axis": "beslutningskvalitet_vs_kommunikasjonsro",
+        "cooldown": 2,
+        "from": "kommunalsjef_lena",
+        "id": "by_prosjektleder_story_styringssak_001",
+        "mail_family": "styringsmilepaeler",
+        "mail_type": "story",
+        "narrative_arc": "Prosjektlederen går fra å rapportere framdrift til å gjøre komplekse avveiinger beslutningsbare.",
+        "person_id": "kommunalsjef_lena",
+        "phase": "evening",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "enkel_anbefaling_vs_reelle_alternativer",
+        "priority": 64,
+        "purpose": "La prosjektlederen velge om styringssaken skal synliggjøre alternativer og konsekvenser eller bare anbefale én vei videre.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
+        "scene_catalog_version": 1,
+        "sender": "kommunalsjef_lena",
+        "situation": [
+          "Prosjektet kan holde opprinnelig omfang hvis to usikre forutsetninger løser seg.",
+          "Et mindre omfang beskytter datoen, men svekker enkelte bykvaliteter.",
+          "Ledelsen må vite hvilke valg den faktisk eier."
+        ],
+        "stage": "mastery",
+        "stakes": "En tydelig anbefaling er enkel å kommunisere; et reelt beslutningsgrunnlag gjør kostnad, risiko og bykvalitet mer etterprøvbart.",
+        "subject": "Styringssaken må vise hva prosjektet faktisk trenger beslutning om",
+        "summary": "Mandat, kostnadsrisiko og to eksterne avhengigheter er nå tydelige nok til at ledelsen kan ta reelle valg i stedet for å få en statusrapport.",
+        "task_domain": "styringssak",
+        "task_kind": "story"
+      },
+      "id": "by_prosjektleder_story_styringssak_001",
+      "mail_type": "story",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Ledelsen får et beslutningsgrunnlag som gjør uenigheten synlig uten å gjøre den ubrukelig.",
+            "id": "A",
+            "label": "Vis alternativer, forutsetninger, risiko og hva hvert valg gjør med bykvaliteten",
+            "reply": "Jeg lager styringssaken slik at hvert alternativ viser ansvar, kostnad, framdrift, risiko og konsekvens for bykvalitet."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Saken blir enklere å lese, men noen av avveiingene blir mindre synlige i selve beslutningsøyeblikket.",
+            "id": "B",
+            "label": "Anbefal ett hovedalternativ og legg detaljert risiko i vedlegg",
+            "reply": "Jeg anbefaler ett hovedalternativ og legger den detaljerte risikoen i vedlegg for å holde saken kort."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Prosjektet kan holde opprinnelig omfang hvis to usikre forutsetninger løser seg.",
+            "Et mindre omfang beskytter datoen, men svekker enkelte bykvaliteter.",
+            "Ledelsen må vite hvilke valg den faktisk eier."
+          ],
+          "subject": "Styringssaken må vise hva prosjektet faktisk trenger beslutning om",
+          "summary": "Mandat, kostnadsrisiko og to eksterne avhengigheter er nå tydelige nok til at ledelsen kan ta reelle valg i stedet for å få en statusrapport."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_story_styringssak_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_story_styringssak_001",
+          "source_path": "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_story_styringssak_001",
+        "version": 1
+      },
+      "source_hash": "bb403ea1019631926054cd43c75af435e618761e99dc480ee04c9b1de6d1b8d9",
+      "source_path": "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -19299,6 +21318,505 @@
       "category": "by",
       "compatibility_projection": {
         "category": "by",
+        "choice_axis": "begrunne_forskjell_vs_kopiere_resultat",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Forskjellen blir etterprøvbar i stedet for å se tilfeldig ut.",
+            "id": "A",
+            "label": "Bruk den gamle saken som sammenligning og begrunn hvorfor skoleveien er relevant forskjell",
+            "reply": "Jeg sammenligner sakene eksplisitt og begrunner hvorfor skoleveien gjør virkningsbildet annerledes.",
+            "tags": [
+              "fairness",
+              "law",
+              "place"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Resultatet ser konsistent ut, men den relevante stedlige forskjellen forsvinner fra vurderingen.",
+            "id": "B",
+            "label": "Følg tidligere praksis for å unngå ulik behandling",
+            "reply": "Jeg følger den tidligere saken siden mål og hjemmel er de samme.",
+            "tags": [
+              "precedent",
+              "formalism",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "begrunnet_skjonn",
+        "consequence_axis": "reell_likebehandling_vs_mekanisk_likhet",
+        "cooldown": 2,
+        "from": "juridisk_rådgiver_erik",
+        "id": "by_saksbehandler_conflict_likebehandling_001",
+        "mail_family": "regel_og_stedskonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "Saksbehandleren lærer at konsistens krever sammenligning av relevante forskjeller, ikke bare samme tall.",
+        "person_id": "juridisk_rådgiver_erik",
+        "phase": "afternoon",
+        "place_id": "regel_og_skjonnsvurdering",
+        "pressure": "presedens_vs_stedlig_forskjell",
+        "priority": 68,
+        "purpose": "Teste om saksbehandleren bruker tidligere praksis som sammenligning uten å kopiere resultatet.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "juridisk_rådgiver_erik",
+        "situation": [
+          "Den tidligere saken har samme volum og regelgrunnlag.",
+          "Dagens tiltak ligger ved en trang skolevei med et annet trafikkbilde.",
+          "Erik ber deg vise hva likebehandling faktisk krever her."
+        ],
+        "stage": "stable_warning",
+        "stakes": "Identisk resultat ser konsekvent ut; begrunnet forskjell kan være mer rettferdig, men krever et tydeligere skjønnsspor.",
+        "subject": "En tidligere tillatelse ligner, men skoleveien gjør saken annerledes",
+        "summary": "Tiltakshaver viser til en tidligere sak med samme mål og hjemmel, men dagens sted har en trang skolevei som den gamle saken ikke hadde.",
+        "task_domain": "likebehandling",
+        "task_kind": "conflict"
+      },
+      "id": "by_saksbehandler_conflict_likebehandling_001",
+      "mail_type": "conflict",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Forskjellen blir etterprøvbar i stedet for å se tilfeldig ut.",
+            "id": "A",
+            "label": "Bruk den gamle saken som sammenligning og begrunn hvorfor skoleveien er relevant forskjell",
+            "reply": "Jeg sammenligner sakene eksplisitt og begrunner hvorfor skoleveien gjør virkningsbildet annerledes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Resultatet ser konsistent ut, men den relevante stedlige forskjellen forsvinner fra vurderingen.",
+            "id": "B",
+            "label": "Følg tidligere praksis for å unngå ulik behandling",
+            "reply": "Jeg følger den tidligere saken siden mål og hjemmel er de samme."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den tidligere saken har samme volum og regelgrunnlag.",
+            "Dagens tiltak ligger ved en trang skolevei med et annet trafikkbilde.",
+            "Erik ber deg vise hva likebehandling faktisk krever her."
+          ],
+          "subject": "En tidligere tillatelse ligner, men skoleveien gjør saken annerledes",
+          "summary": "Tiltakshaver viser til en tidligere sak med samme mål og hjemmel, men dagens sted har en trang skolevei som den gamle saken ikke hadde."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_conflict_likebehandling_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "regel_og_skjonnsvurdering",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_conflict_likebehandling_001",
+          "source_path": "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_conflict_likebehandling_001",
+        "version": 1
+      },
+      "source_hash": "7d438e90147d31326b2d28d5057e50a2fcc712e36a7d03b90ebfbf613be110e9",
+      "source_path": "data/Civication/mailFamilies/by/conflict/by_saksbehandler_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "bruke_sammenhengende_spor_vs_bygge_begrunnelse_panytt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Saken kan kontrolleres på det grunnlaget beslutningen faktisk ble tatt på.",
+            "id": "A",
+            "label": "Bygg klagesvaret direkte fra det dokumenterte sporet mellom faktum, hjemmel, merknad og skjønn",
+            "reply": "Jeg viser klagebehandleren det sammenhengende sporet fra opprinnelig mangel via nytt snitt til den endelige begrunnelsen.",
+            "tags": [
+              "consequence",
+              "appeal",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Klagen får et svar, men forskjellen mellom opprinnelig begrunnelse og senere rekonstruksjon blir større.",
+            "id": "B",
+            "label": "Skriv et nytt samlet klagesvar som forklarer vurderingen tydeligere enn originalen",
+            "reply": "Jeg skriver et nytt samlet klagesvar som forklarer vurderingen fra bunnen av med dagens oversikt.",
+            "tags": [
+              "reconstruction",
+              "appeal"
+            ]
+          }
+        ],
+        "competency": "beslutningssporbarhet",
+        "consequence_axis": "tillit_og_rettssikkerhet_vs_kostbar_usikkerhet",
+        "cooldown": 3,
+        "from": "juridisk_rådgiver_erik",
+        "id": "by_saksbehandler_consequence_klage_001",
+        "mail_family": "forsinkede_sakskonsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "Saksbehandleren ser at tydelig dokumentasjon ikke bare er arkivarbeid; den bestemmer hvor godt en senere klage kan kontrolleres.",
+        "person_id": "juridisk_rådgiver_erik",
+        "phase": "day_end",
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "pressure": "etterprovbar_sak_vs_rekonstruksjon",
+        "priority": 62,
+        "purpose": "Vis at tidligere saksopplysning og revisjon påvirker hvor robust saken er når en part utfordrer beslutningen senere.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "juridisk_rådgiver_erik",
+        "situation": [
+          "Klagen peker på lys, innsyn og ulik behandling.",
+          "Det nye snittet kom inn før vedtaket og endret faktumgrunnlaget.",
+          "Nå må journalen vise både hva som endret seg og hvorfor konklusjonen likevel ble den den ble."
+        ],
+        "stage": "mastery",
+        "stakes": "Et sammenhengende spor gjør klagebehandlingen presis; et fragmentert spor tvinger forvaltningen til å rekonstruere begrunnelsen i ettertid.",
+        "subject": "Klagen tester om vurderingen faktisk kan etterprøves",
+        "summary": "Vedtaket er påklaget, og Erik trenger å se om journalen viser hvilket faktum, hvilken hjemmel og hvilket skjønn som bar avgjørelsen da nytt snitt kom inn.",
+        "task_domain": "klage_og_etterprovbarhet",
+        "task_kind": "consequence",
+        "thread_key": "by_saksbehandler.case.hoyde_nabovirkning_og_klage"
+      },
+      "id": "by_saksbehandler_consequence_klage_001",
+      "mail_type": "consequence",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Saken kan kontrolleres på det grunnlaget beslutningen faktisk ble tatt på.",
+            "id": "A",
+            "label": "Bygg klagesvaret direkte fra det dokumenterte sporet mellom faktum, hjemmel, merknad og skjønn",
+            "reply": "Jeg viser klagebehandleren det sammenhengende sporet fra opprinnelig mangel via nytt snitt til den endelige begrunnelsen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Klagen får et svar, men forskjellen mellom opprinnelig begrunnelse og senere rekonstruksjon blir større.",
+            "id": "B",
+            "label": "Skriv et nytt samlet klagesvar som forklarer vurderingen tydeligere enn originalen",
+            "reply": "Jeg skriver et nytt samlet klagesvar som forklarer vurderingen fra bunnen av med dagens oversikt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Klagen peker på lys, innsyn og ulik behandling.",
+            "Det nye snittet kom inn før vedtaket og endret faktumgrunnlaget.",
+            "Nå må journalen vise både hva som endret seg og hvorfor konklusjonen likevel ble den den ble."
+          ],
+          "subject": "Klagen tester om vurderingen faktisk kan etterprøves",
+          "summary": "Vedtaket er påklaget, og Erik trenger å se om journalen viser hvilket faktum, hvilken hjemmel og hvilket skjønn som bar avgjørelsen da nytt snitt kom inn."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_consequence_klage_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_consequence_klage_001",
+          "source_path": "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.case.hoyde_nabovirkning_og_klage",
+        "version": 1
+      },
+      "source_hash": "75380d1ff61be4a57893328696a23504025ffc240c669a7ad1554558bf0d795f",
+      "source_path": "data/Civication/mailFamilies/by/consequence/by_saksbehandler_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "befare_vs_vurdere_fra_papir",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Merknadene får et konkret stedlig grunnlag som kan vurderes saklig.",
+            "id": "A",
+            "label": "Gjennomfør en avgrenset befaring og dokumenter hva passasjen faktisk brukes til",
+            "reply": "Jeg gjennomfører en kort befaring med spørsmål om bevegelse, levering, oversikt og konfliktpunkt.",
+            "tags": [
+              "fieldwork",
+              "evidence",
+              "place"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du holder flyt og skjuler ikke usikkerheten, men får mindre direkte evidens om stedet.",
+            "id": "B",
+            "label": "Bruk kart og skriftlige merknader for å holde saksfristen",
+            "reply": "Jeg bruker kartet og merknadene som foreligger og markerer den stedlige usikkerheten i notatet.",
+            "tags": [
+              "deadline",
+              "uncertainty"
+            ]
+          }
+        ],
+        "competency": "stedlig_saksopplysning",
+        "consequence_axis": "presisjon_vs_tempo",
+        "cooldown": 3,
+        "from": "maria_medvirkning",
+        "id": "by_saksbehandler_event_befaring_001",
+        "mail_family": "stedlig_saksopplysning",
+        "mail_type": "event",
+        "narrative_arc": "Saksbehandleren lærer at en kort stedskontroll kan gjøre skriftlige merknader mer vurderbare uten å gjøre naboene til beslutningstakere.",
+        "person_id": "maria_medvirkning",
+        "phase": "afternoon",
+        "place_id": "oslo_byggesak_sentrum",
+        "pressure": "frist_vs_relevant_evidens",
+        "priority": 60,
+        "purpose": "Teste om saksbehandleren samler relevant stedlig evidens før vurderingen låses.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+        "scene_catalog_version": 1,
+        "sender": "maria_medvirkning",
+        "situation": [
+          "Tre naboer bruker ulikt språk.",
+          "Kartet viser en smal felles passasje.",
+          "Maria foreslår en avgrenset befaring for å teste om konfliktene faktisk møtes der."
+        ],
+        "stage": "advanced",
+        "stakes": "Befaring bruker tid, men kan gjøre merknadene til et presist vurderingstema i stedet for tre løse påstander.",
+        "subject": "En kort befaring kan avklare om tre merknader beskriver samme passasje",
+        "summary": "Støy, trygghet og varelevering ser ut som tre ulike nabomerknader, men kartet antyder at alle gjelder samme smale passasje.",
+        "task_domain": "befaring",
+        "task_kind": "event"
+      },
+      "id": "by_saksbehandler_event_befaring_001",
+      "mail_type": "event",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Merknadene får et konkret stedlig grunnlag som kan vurderes saklig.",
+            "id": "A",
+            "label": "Gjennomfør en avgrenset befaring og dokumenter hva passasjen faktisk brukes til",
+            "reply": "Jeg gjennomfører en kort befaring med spørsmål om bevegelse, levering, oversikt og konfliktpunkt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du holder flyt og skjuler ikke usikkerheten, men får mindre direkte evidens om stedet.",
+            "id": "B",
+            "label": "Bruk kart og skriftlige merknader for å holde saksfristen",
+            "reply": "Jeg bruker kartet og merknadene som foreligger og markerer den stedlige usikkerheten i notatet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Tre naboer bruker ulikt språk.",
+            "Kartet viser en smal felles passasje.",
+            "Maria foreslår en avgrenset befaring for å teste om konfliktene faktisk møtes der."
+          ],
+          "subject": "En kort befaring kan avklare om tre merknader beskriver samme passasje",
+          "summary": "Støy, trygghet og varelevering ser ut som tre ulike nabomerknader, men kartet antyder at alle gjelder samme smale passasje."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_event_befaring_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_byggesak_sentrum",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_event_befaring_001",
+          "source_path": "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_event_befaring_001",
+        "version": 1
+      },
+      "source_hash": "76899841790085a1933253b20886770f5c34b5073b655bc0f2f1f853b1214499",
+      "source_path": "data/Civication/mailFamilies/by/event/by_saksbehandler_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "revidere_apent_vs_minimere_endring",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Saken blir mer arbeid nå, men beslutningsgrunnlaget viser tydelig hvorfor vurderingen utviklet seg.",
+            "id": "A",
+            "label": "Revider faktum- og skjønnsdelen og vis eksplisitt hva det nye snittet endrer",
+            "reply": "Jeg oppdaterer vurderingen og viser hvilke tidligere antakelser det nye snittet erstatter og hvordan det påvirker nabovirkningen.",
+            "tags": [
+              "followup",
+              "new_evidence",
+              "reasoning"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Saken går raskere videre, men senere lesere får vanskeligere for å se hvorfor vurderingen endret seg.",
+            "id": "B",
+            "label": "Legg snittet til saken og juster bare konklusjonen der det er nødvendig",
+            "reply": "Jeg legger det nye snittet til saken og justerer konklusjonen uten å skrive om hele vurderingssporet.",
+            "tags": [
+              "shortcut",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "revisjon_av_vurderingsgrunnlag",
+        "consequence_axis": "tillit_vs_saksflyt",
+        "cooldown": 2,
+        "from": "anne_planseksjon",
+        "id": "by_saksbehandler_followup_hoyde_001",
+        "mail_family": "saksoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Saksbehandleren lærer at et robust saksgrunnlag må kunne endres når bedre faktum kommer inn.",
+        "person_id": "anne_planseksjon",
+        "phase": "afternoon",
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "pressure": "stabil_sak_vs_nytt_faktum",
+        "priority": 66,
+        "purpose": "Teste om saksbehandleren oppdaterer vurderingen åpent når nytt faktum endrer et sentralt premiss.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "anne_planseksjon",
+        "situation": [
+          "Det manglende snittet er nå levert.",
+          "Høyden mot bakgården framstår større enn den første tegningspakken gjorde tydelig.",
+          "Nabomerknaden om lys og innsyn får derfor et sterkere faktisk grunnlag."
+        ],
+        "stage": "advanced",
+        "stakes": "Å holde den første vurderingen stabil sparer arbeid; å revidere tydelig beskytter saken mot at nytt faktum behandles som ubehagelig støy.",
+        "subject": "Det nye snittet endrer høydevirkningen som naboen beskrev",
+        "summary": "Søker har sendt det manglende snittet, og det viser at volumet faktisk ligger nærmere nabomerknadens beskrivelse enn det opprinnelige materialet antydet.",
+        "task_domain": "oppdatert_faktum",
+        "task_kind": "followup",
+        "thread_key": "by_saksbehandler.case.hoyde_nabovirkning_og_klage"
+      },
+      "id": "by_saksbehandler_followup_hoyde_001",
+      "mail_type": "followup",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Saken blir mer arbeid nå, men beslutningsgrunnlaget viser tydelig hvorfor vurderingen utviklet seg.",
+            "id": "A",
+            "label": "Revider faktum- og skjønnsdelen og vis eksplisitt hva det nye snittet endrer",
+            "reply": "Jeg oppdaterer vurderingen og viser hvilke tidligere antakelser det nye snittet erstatter og hvordan det påvirker nabovirkningen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Saken går raskere videre, men senere lesere får vanskeligere for å se hvorfor vurderingen endret seg.",
+            "id": "B",
+            "label": "Legg snittet til saken og juster bare konklusjonen der det er nødvendig",
+            "reply": "Jeg legger det nye snittet til saken og justerer konklusjonen uten å skrive om hele vurderingssporet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det manglende snittet er nå levert.",
+            "Høyden mot bakgården framstår større enn den første tegningspakken gjorde tydelig.",
+            "Nabomerknaden om lys og innsyn får derfor et sterkere faktisk grunnlag."
+          ],
+          "subject": "Det nye snittet endrer høydevirkningen som naboen beskrev",
+          "summary": "Søker har sendt det manglende snittet, og det viser at volumet faktisk ligger nærmere nabomerknadens beskrivelse enn det opprinnelige materialet antydet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_followup_hoyde_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_followup_hoyde_001",
+          "source_path": "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.case.hoyde_nabovirkning_og_klage",
+        "version": 1
+      },
+      "source_hash": "64fc3477305f65b2599f1bfb0c37c8e572d9e943970cef847fe3c0086bff9dd7",
+      "source_path": "data/Civication/mailFamilies/by/followup/by_saksbehandler_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
         "choice_axis": "be_om_mangel_vs_sende_videre",
         "choices": [
           {
@@ -20261,6 +22779,502 @@
       },
       "source_hash": "2b35ef1782179948bd85c592fe1ae07a6a8266d87960b6b001b592e7fcd67186",
       "source_path": "data/Civication/mailFamilies/by/job/by_saksbehandler_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "begrunne_relevant_forskjell_vs_mekanisk_likhet",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Et eventuelt ulikt resultat får et synlig og kontrollerbart saklig grunnlag.",
+            "id": "A",
+            "label": "Sammenlign relevante faktiske og rettslige forhold og begrunn forskjellen eksplisitt",
+            "reply": "Jeg viser hva som er likt, hva som faktisk er forskjellig, og hvorfor den forskjellen er relevant for vurderingen.",
+            "tags": [
+              "knowledge",
+              "fairness",
+              "reasoning"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Praksisen blir enkel å forklare, men kan bli blind for faktiske forskjeller som regelverket forutsetter at du vurderer.",
+            "id": "B",
+            "label": "Hold samme resultat når regel og hovedtall er like",
+            "reply": "Jeg holder samme resultat når hjemmel og hovedtall er like for å sikre forutsigbar praksis.",
+            "tags": [
+              "consistency",
+              "formalism"
+            ]
+          }
+        ],
+        "competency": "likebehandling",
+        "consequence_axis": "rettferdighet_vs_formalisme",
+        "cooldown": 2,
+        "from": "juridisk_rådgiver_erik",
+        "id": "by_saksbehandler_knowledge_likebehandling_001",
+        "mail_family": "forvaltningsforstaelse",
+        "mail_type": "knowledge",
+        "narrative_arc": "Saksbehandleren forstår at likebehandling handler om konsistente kriterier, ikke om å ignorere relevante forskjeller.",
+        "person_id": "juridisk_rådgiver_erik",
+        "phase": "lunch",
+        "place_id": "regel_og_skjonnsvurdering",
+        "pressure": "identisk_resultat_vs_saklig_forskjell",
+        "priority": 52,
+        "purpose": "Knytter den praktiske sammenligningen av saker til prinsippet om saklig, begrunnet likebehandling.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "juridisk_rådgiver_erik",
+        "situation": [
+          "Begge saker bruker samme hjemmel.",
+          "Den ene ligger mot et åpent byrom, den andre mot en trang skolevei.",
+          "Forskjellen kan bare bære et ulikt resultat dersom den er relevant og synlig i begrunnelsen."
+        ],
+        "stage": "early",
+        "stakes": "Mekanisk likhet er enkel å vise; reell likebehandling krever at relevante likheter og forskjeller dokumenteres eksplisitt.",
+        "subject": "Likebehandling betyr ikke at ulike faktiske forhold må gi samme resultat",
+        "summary": "Erik ber deg forklare hvorfor to saker med samme regel og tall fortsatt kan vurderes forskjellig når relevante stedlige forhold er ulike.",
+        "task_domain": "forvaltningsforstaelse",
+        "task_kind": "knowledge"
+      },
+      "id": "by_saksbehandler_knowledge_likebehandling_001",
+      "mail_type": "knowledge",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Et eventuelt ulikt resultat får et synlig og kontrollerbart saklig grunnlag.",
+            "id": "A",
+            "label": "Sammenlign relevante faktiske og rettslige forhold og begrunn forskjellen eksplisitt",
+            "reply": "Jeg viser hva som er likt, hva som faktisk er forskjellig, og hvorfor den forskjellen er relevant for vurderingen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Praksisen blir enkel å forklare, men kan bli blind for faktiske forskjeller som regelverket forutsetter at du vurderer.",
+            "id": "B",
+            "label": "Hold samme resultat når regel og hovedtall er like",
+            "reply": "Jeg holder samme resultat når hjemmel og hovedtall er like for å sikre forutsigbar praksis."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Begge saker bruker samme hjemmel.",
+            "Den ene ligger mot et åpent byrom, den andre mot en trang skolevei.",
+            "Forskjellen kan bare bære et ulikt resultat dersom den er relevant og synlig i begrunnelsen."
+          ],
+          "subject": "Likebehandling betyr ikke at ulike faktiske forhold må gi samme resultat",
+          "summary": "Erik ber deg forklare hvorfor to saker med samme regel og tall fortsatt kan vurderes forskjellig når relevante stedlige forhold er ulike."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_knowledge_likebehandling_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "regel_og_skjonnsvurdering",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_knowledge_likebehandling_001",
+          "source_path": "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_knowledge_likebehandling_001",
+        "version": 1
+      },
+      "source_hash": "5166a10fd3788ffdf205d9911c112f4bfc984b41d8d575f336f3f0b0268d4326",
+      "source_path": "data/Civication/mailFamilies/by/knowledge/by_saksbehandler_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "lenke_kilde_vs_fortsette",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Senere lesere kan se nøyaktig hvilket faktum vurderingen bygde på.",
+            "id": "A",
+            "label": "Lenk vurderingspunktet til korrekt tegningsversjon og dato",
+            "reply": "Jeg legger inn tegningsnummer og dato ved høydevurderingen før jeg fortsetter.",
+            "tags": [
+              "traceability",
+              "journal",
+              "quality"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du sparer noen minutter nå, men gjør det enklere å miste koblingen mellom vurdering og kilde.",
+            "id": "B",
+            "label": "Fortsett og rydd versjonsreferansene ved ferdigstilling",
+            "reply": "Jeg fortsetter vurderingen og rydder alle dokumentreferansene samlet ved ferdigstilling.",
+            "tags": [
+              "delay",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "sporbarhet",
+        "consequence_axis": "journalspor_vs_tempo",
+        "cooldown": 1,
+        "from": "anne_planseksjon",
+        "id": "by_saksbehandler_micro_kildespor_001",
+        "mail_family": "saksbehandlingskontroll",
+        "mail_type": "micro",
+        "narrative_arc": "Saksbehandleren lærer at en robust begrunnelse også trenger et robust spor tilbake til faktum.",
+        "person_id": "anne_planseksjon",
+        "phase": "forenoon",
+        "place_id": "saksinntak_og_dokumentasjonsbord",
+        "pressure": "minutter_na_vs_etterprovbarhet_senere",
+        "priority": 54,
+        "purpose": "Teste om saksbehandleren sikrer kildespor før vurderingen brukes videre.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "anne_planseksjon",
+        "situation": [
+          "Notatet viser riktig høyde slik du leser saken nå.",
+          "Tre tegningsversjoner finnes i journalen.",
+          "Det tar kort tid å knytte vurderingen til korrekt versjon før du går videre."
+        ],
+        "stage": "early",
+        "stakes": "Et lite manglende spor kan bli vanskelig å rekonstruere dersom søker endrer tegningen eller avgjørelsen senere påklages.",
+        "subject": "Vurderingsnotatet viser tallet, men ikke hvilken tegning det kommer fra",
+        "summary": "Høyden står i notatet, men kildeversjonen mangler og søker har sendt flere tegningssett.",
+        "task_domain": "kildespor",
+        "task_kind": "micro"
+      },
+      "id": "by_saksbehandler_micro_kildespor_001",
+      "mail_type": "micro",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Senere lesere kan se nøyaktig hvilket faktum vurderingen bygde på.",
+            "id": "A",
+            "label": "Lenk vurderingspunktet til korrekt tegningsversjon og dato",
+            "reply": "Jeg legger inn tegningsnummer og dato ved høydevurderingen før jeg fortsetter."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du sparer noen minutter nå, men gjør det enklere å miste koblingen mellom vurdering og kilde.",
+            "id": "B",
+            "label": "Fortsett og rydd versjonsreferansene ved ferdigstilling",
+            "reply": "Jeg fortsetter vurderingen og rydder alle dokumentreferansene samlet ved ferdigstilling."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Notatet viser riktig høyde slik du leser saken nå.",
+            "Tre tegningsversjoner finnes i journalen.",
+            "Det tar kort tid å knytte vurderingen til korrekt versjon før du går videre."
+          ],
+          "subject": "Vurderingsnotatet viser tallet, men ikke hvilken tegning det kommer fra",
+          "summary": "Høyden står i notatet, men kildeversjonen mangler og søker har sendt flere tegningssett."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_micro_kildespor_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "saksinntak_og_dokumentasjonsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_micro_kildespor_001",
+          "source_path": "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_micro_kildespor_001",
+        "version": 1
+      },
+      "source_hash": "a771ca3ad6ee7afb6a76545042b8b18f11f63d41d8eb3e41aa745c7df4acebc2",
+      "source_path": "data/Civication/mailFamilies/by/micro/by_saksbehandler_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "be_om_presisering_vs_sende_videre",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Saken bruker mer tid nå, men blir vurderbar på et tydelig grunnlag.",
+            "id": "A",
+            "label": "Be om presisering og forklar hvilket vurderingspunkt den trengs for",
+            "reply": "Jeg ber om et presist snitt og forklarer at det er nødvendig for å vurdere høyde og virkning mot fortauet.",
+            "tags": [
+              "documentation",
+              "quality",
+              "rights"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Flyten holdes, men et manglende premiss følger saken videre som skjult gjeld.",
+            "id": "B",
+            "label": "La saken gå videre og ta forbehold i vurderingsnotatet",
+            "reply": "Jeg lar saken gå videre og markerer usikkerheten i vurderingsnotatet.",
+            "tags": [
+              "tempo",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "saksopplysning",
+        "consequence_axis": "rettssikkerhet_vs_saksflyt",
+        "cooldown": 1,
+        "from": "anne_planseksjon",
+        "id": "by_saksbehandler_people_anne_001",
+        "mail_family": "faglige_saksrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "Saksbehandleren lærer at kompletthet må måles mot vurderingsspørsmålet, ikke bare vedleggslisten.",
+        "person_id": "anne_planseksjon",
+        "phase": "morning",
+        "place_id": "saksinntak_og_dokumentasjonsbord",
+        "pressure": "komplett_liste_vs_vurderbart_grunnlag",
+        "priority": 72,
+        "purpose": "Trene skillet mellom administrativ kompletthet og faktisk vurderbarhet.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+        "scene_catalog_version": 1,
+        "sender": "anne_planseksjon",
+        "situation": [
+          "Vedleggslisten ser komplett ut.",
+          "Det avgjørende snittet gjør likevel høyde og terrengforhold vanskelige å lese.",
+          "Anne vil vite om du mener saken faktisk kan realitetsbehandles."
+        ],
+        "stage": "stable",
+        "stakes": "Saken kan gå raskt videre på papir, men en skjult mangel kan gjøre hele vurderingen svak senere.",
+        "subject": "Anne spør om saken er komplett eller bare ser komplett ut",
+        "summary": "Søknaden har alle vanlige vedlegg, men snittet som viser virkningen mot fortauet er fortsatt uklart.",
+        "task_domain": "vurderbarhet",
+        "task_kind": "people"
+      },
+      "id": "by_saksbehandler_people_anne_001",
+      "mail_type": "people",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Saken bruker mer tid nå, men blir vurderbar på et tydelig grunnlag.",
+            "id": "A",
+            "label": "Be om presisering og forklar hvilket vurderingspunkt den trengs for",
+            "reply": "Jeg ber om et presist snitt og forklarer at det er nødvendig for å vurdere høyde og virkning mot fortauet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Flyten holdes, men et manglende premiss følger saken videre som skjult gjeld.",
+            "id": "B",
+            "label": "La saken gå videre og ta forbehold i vurderingsnotatet",
+            "reply": "Jeg lar saken gå videre og markerer usikkerheten i vurderingsnotatet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Vedleggslisten ser komplett ut.",
+            "Det avgjørende snittet gjør likevel høyde og terrengforhold vanskelige å lese.",
+            "Anne vil vite om du mener saken faktisk kan realitetsbehandles."
+          ],
+          "subject": "Anne spør om saken er komplett eller bare ser komplett ut",
+          "summary": "Søknaden har alle vanlige vedlegg, men snittet som viser virkningen mot fortauet er fortsatt uklart."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_people_anne_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "saksinntak_og_dokumentasjonsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_people_anne_001",
+          "source_path": "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_people_anne_001",
+        "version": 1
+      },
+      "source_hash": "12b292b0ccad2068620faaa3879a41336caa8897bc3649024fcf64232a471635",
+      "source_path": "data/Civication/mailFamilies/by/people/by_saksbehandler_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "samle_begrunnelse_vs_kort_notat",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Saken blir lettere å forstå, kontrollere og overta for andre.",
+            "id": "A",
+            "label": "Skriv regel, faktum, stedlig virkning, merknader og skjønn som én tydelig begrunnelseskjede",
+            "reply": "Jeg skriver en begrunnelse der hjemmel, faktum, stedlig virkning, relevante merknader og skjønn kobles eksplisitt.",
+            "tags": [
+              "reasoning",
+              "rights",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Teksten kan holde formelt, men gjør mindre av vurderingsarbeidet synlig.",
+            "id": "B",
+            "label": "Skriv korteste begrunnelse som dekker det formelle vurderingspunktet",
+            "reply": "Jeg skriver en kort begrunnelse som dekker regel og konklusjon og holder detaljene i underlaget.",
+            "tags": [
+              "minimum",
+              "tempo"
+            ]
+          }
+        ],
+        "competency": "begrunnet_forvaltning",
+        "consequence_axis": "rettssikkerhet_vs_kort_flyt",
+        "cooldown": 2,
+        "from": "anne_planseksjon",
+        "id": "by_saksbehandler_story_vedtaksgrunnlag_001",
+        "mail_family": "begrunnet_forvaltning",
+        "mail_type": "story",
+        "narrative_arc": "Saksbehandleren går fra å behandle punkter til å skrive en begrunnelse som viser hvordan hele saken henger sammen.",
+        "person_id": "anne_planseksjon",
+        "phase": "evening",
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "pressure": "minimumstekst_vs_etterprovbarhet",
+        "priority": 64,
+        "purpose": "La saksbehandleren velge mellom et minimumsnotat og et robust, etterprøvbart beslutningsgrunnlag.",
+        "repeatable": false,
+        "role_scope": "by_saksbehandler",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
+        "scene_catalog_version": 1,
+        "sender": "anne_planseksjon",
+        "situation": [
+          "Dokumentasjonen er nå komplett nok.",
+          "Nabomerknadene peker på en konkret stedlig virkning.",
+          "Regelgrunnlaget åpner for skjønn som må begrunnes."
+        ],
+        "stage": "mastery",
+        "stakes": "Kort tekst holder fristen; tydelig sammenheng gjør saken mer forståelig og robust ved klage og senere gjenlesning.",
+        "subject": "Vedtaksgrunnlaget må vise hvorfor regel, sted og merknader henger sammen",
+        "summary": "Saken er ferdig utredet, men et godt vedtaksgrunnlag må gjøre både hjemmel, stedlig virkning, nabomerknader og skjønn lesbare i samme begrunnelse.",
+        "task_domain": "vedtaksgrunnlag",
+        "task_kind": "story"
+      },
+      "id": "by_saksbehandler_story_vedtaksgrunnlag_001",
+      "mail_type": "story",
+      "role_scope": "by_saksbehandler",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Saken blir lettere å forstå, kontrollere og overta for andre.",
+            "id": "A",
+            "label": "Skriv regel, faktum, stedlig virkning, merknader og skjønn som én tydelig begrunnelseskjede",
+            "reply": "Jeg skriver en begrunnelse der hjemmel, faktum, stedlig virkning, relevante merknader og skjønn kobles eksplisitt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Teksten kan holde formelt, men gjør mindre av vurderingsarbeidet synlig.",
+            "id": "B",
+            "label": "Skriv korteste begrunnelse som dekker det formelle vurderingspunktet",
+            "reply": "Jeg skriver en kort begrunnelse som dekker regel og konklusjon og holder detaljene i underlaget."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Dokumentasjonen er nå komplett nok.",
+            "Nabomerknadene peker på en konkret stedlig virkning.",
+            "Regelgrunnlaget åpner for skjønn som må begrunnes."
+          ],
+          "subject": "Vedtaksgrunnlaget må vise hvorfor regel, sted og merknader henger sammen",
+          "summary": "Saken er ferdig utredet, men et godt vedtaksgrunnlag må gjøre både hjemmel, stedlig virkning, nabomerknader og skjønn lesbare i samme begrunnelse."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_saksbehandler_story_vedtaksgrunnlag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "nabomerknads_og_vedtaksgrunnlag",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_saksbehandler_story_vedtaksgrunnlag_001",
+          "source_path": "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_saksbehandler.mail.by_saksbehandler_story_vedtaksgrunnlag_001",
+        "version": 1
+      },
+      "source_hash": "ce37cf2491edc2c1e5b3c5eb94ba63a49099b0051573ad9e3e7b97c209d777ed",
+      "source_path": "data/Civication/mailFamilies/by/story/by_saksbehandler_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -131728,6 +134742,508 @@
       "category": "sport",
       "compatibility_projection": {
         "category": "sport",
+        "choice_axis": "fullfor_evaluering_vs_anbefale_raskt_grep",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Styret får et tregere, men mer robust grunnlag som skiller resultatstøy fra faktisk treneransvar.",
+            "id": "A",
+            "label": "Fullfør den avtalte evalueringen og vis hvilke funn som faktisk kan bære et trenergrep",
+            "reply": "Jeg fullfører evalueringen med tydelige kriterier og legger fram hvilke funn som faktisk kan bære en trenerbeslutning.",
+            "tags": [
+              "evaluation",
+              "authority",
+              "trust"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Presset kan falle kort, men klubben har gjort en stor beslutning før kriteriene er ferdig vurdert.",
+            "id": "B",
+            "label": "Anbefal et raskt trenergrep for å gjenopprette handlingskraft",
+            "reply": "Jeg anbefaler et raskt trenergrep for å vise at klubben reagerer på utviklingen.",
+            "tags": [
+              "panic",
+              "coach",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "begrunnet_ledelse",
+        "consequence_axis": "langsiktig_tillit_vs_kortsiktig_ro",
+        "cooldown": 2,
+        "from": "styreleder_karin",
+        "id": "sport_sports_conflict_trener_001",
+        "mail_family": "resultatpress_og_mandat",
+        "mail_type": "conflict",
+        "narrative_arc": "Sportssjefen lærer at resultatpress ikke gjør et svakt beslutningsgrunnlag sterkere.",
+        "person_id": "styreleder_karin",
+        "phase": "afternoon",
+        "place_id": "sport_sportslig_styringsbord",
+        "pressure": "symbolsk_handling_vs_evaluering",
+        "priority": 68,
+        "purpose": "Teste om sportssjefen skiller resultatpress fra dokumentert beslutningsgrunnlag.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "styreleder_karin",
+        "situation": [
+          "Resultatene er svake og supporterne krever handling.",
+          "Treneren har både forhold som taler til hans fordel og faglige problemer som må vurderes.",
+          "Styreleder vil vite om du anbefaler et grep nå."
+        ],
+        "stage": "stable_warning",
+        "stakes": "Et raskt trenergrep kan gi ro; et begrunnet evalueringsspor kan se tregere ut, men beskytter klubbens styring og arbeidsgiveransvar.",
+        "subject": "Styret vil ha trenergrep før evalueringen er ferdig",
+        "summary": "Karin ber om en synlig reaksjon etter nye poengtap, men trenerbildet består fortsatt av skader, stallbalanse og noen reelle metodiske problemer.",
+        "task_domain": "trenerbeslutning",
+        "task_kind": "conflict"
+      },
+      "id": "sport_sports_conflict_trener_001",
+      "mail_type": "conflict",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Styret får et tregere, men mer robust grunnlag som skiller resultatstøy fra faktisk treneransvar.",
+            "id": "A",
+            "label": "Fullfør den avtalte evalueringen og vis hvilke funn som faktisk kan bære et trenergrep",
+            "reply": "Jeg fullfører evalueringen med tydelige kriterier og legger fram hvilke funn som faktisk kan bære en trenerbeslutning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Presset kan falle kort, men klubben har gjort en stor beslutning før kriteriene er ferdig vurdert.",
+            "id": "B",
+            "label": "Anbefal et raskt trenergrep for å gjenopprette handlingskraft",
+            "reply": "Jeg anbefaler et raskt trenergrep for å vise at klubben reagerer på utviklingen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Resultatene er svake og supporterne krever handling.",
+            "Treneren har både forhold som taler til hans fordel og faglige problemer som må vurderes.",
+            "Styreleder vil vite om du anbefaler et grep nå."
+          ],
+          "subject": "Styret vil ha trenergrep før evalueringen er ferdig",
+          "summary": "Karin ber om en synlig reaksjon etter nye poengtap, men trenerbildet består fortsatt av skader, stallbalanse og noen reelle metodiske problemer."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_conflict_trener_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_sportslig_styringsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_conflict_trener_001",
+          "source_path": "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_conflict_trener_001",
+        "version": 1
+      },
+      "source_hash": "497904bc663ec4b283f2b1edc124db4bf70b94fc925037a6a578da53604ce73e",
+      "source_path": "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "bruke_beslutningsspor_vs_evaluere_signering_isolert",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Klubben lærer av hele beslutningen, både gevinsten og alternativkostnaden.",
+            "id": "A",
+            "label": "Knytt dagens budsjett- og akademisituasjon til det tidligere valget og juster neste rekrutteringsramme",
+            "reply": "Jeg viser hvilke deler av dagens stall-, budsjett- og utviklingssituasjon som følger av det tidligere valget og justerer rammen før neste vindu.",
+            "tags": [
+              "consequence",
+              "strategy",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du kan løse hvert problem, men mister noe av læringen om hvordan klubbmodellen skaper dem sammen.",
+            "id": "B",
+            "label": "Vurder profilspilleren som en sportslig suksess og løs dagens kapasitetsproblemer separat",
+            "reply": "Jeg vurderer signeringen som sportslig vellykket og behandler dagens budsjett- og akademiproblemer som egne saker.",
+            "tags": [
+              "result",
+              "separation"
+            ]
+          }
+        ],
+        "competency": "strategisk_sammenstilling",
+        "consequence_axis": "strategisk_laring_vs_gjentakelsesrisiko",
+        "cooldown": 3,
+        "from": "daglig_leder_morten",
+        "id": "sport_sports_consequence_profil_001",
+        "mail_family": "forsinkede_sportslige_konsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "Sportssjefen ser at en sportslig vellykket signering fortsatt kan ha en pris som må forstås før neste valg.",
+        "person_id": "daglig_leder_morten",
+        "phase": "day_end",
+        "place_id": "sport_sportslig_styringsbord",
+        "pressure": "enkeltresultat_vs_systemeffekt",
+        "priority": 62,
+        "purpose": "Vis at sportslig ledelse vurderes på beslutningssporet over tid, ikke bare om én signering lykkes isolert.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "daglig_leder_morten",
+        "situation": [
+          "Profilspilleren har levert sportslig.",
+          "Lønnsrommet er strammere enn før.",
+          "Akademiveien må nå repareres eller omdefineres før neste store rekrutteringsvalg."
+        ],
+        "stage": "mastery",
+        "stakes": "Et tydelig spor gjør det mulig å endre modellen presist; uten spor blir konsekvensen lett forklart som tilfeldige nye problemer.",
+        "subject": "Neste vindu viser hva det forrige valget faktisk kostet",
+        "summary": "Klubben går inn i et nytt overgangsvindu med mindre lønnsrom, en sterk profil i laget og to utviklingsspillere som trenger en tydeligere vei.",
+        "task_domain": "forsinket_rekrutteringskonsekvens",
+        "task_kind": "consequence",
+        "thread_key": "sport_sportsledelse.case.profilrekruttering_og_klubbmodell"
+      },
+      "id": "sport_sports_consequence_profil_001",
+      "mail_type": "consequence",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Klubben lærer av hele beslutningen, både gevinsten og alternativkostnaden.",
+            "id": "A",
+            "label": "Knytt dagens budsjett- og akademisituasjon til det tidligere valget og juster neste rekrutteringsramme",
+            "reply": "Jeg viser hvilke deler av dagens stall-, budsjett- og utviklingssituasjon som følger av det tidligere valget og justerer rammen før neste vindu."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du kan løse hvert problem, men mister noe av læringen om hvordan klubbmodellen skaper dem sammen.",
+            "id": "B",
+            "label": "Vurder profilspilleren som en sportslig suksess og løs dagens kapasitetsproblemer separat",
+            "reply": "Jeg vurderer signeringen som sportslig vellykket og behandler dagens budsjett- og akademiproblemer som egne saker."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Profilspilleren har levert sportslig.",
+            "Lønnsrommet er strammere enn før.",
+            "Akademiveien må nå repareres eller omdefineres før neste store rekrutteringsvalg."
+          ],
+          "subject": "Neste vindu viser hva det forrige valget faktisk kostet",
+          "summary": "Klubben går inn i et nytt overgangsvindu med mindre lønnsrom, en sterk profil i laget og to utviklingsspillere som trenger en tydeligere vei."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_consequence_profil_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_sportslig_styringsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_consequence_profil_001",
+          "source_path": "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.case.profilrekruttering_og_klubbmodell",
+        "version": 1
+      },
+      "source_hash": "20b19add31a377289c9083802c6c784e18645bf58cffcda6a64ffb78cdd377e3",
+      "source_path": "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "endre_case_vs_signere_raskt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Klubben kan miste førstevalget, men rekrutteringen forblir et strategisk valg i stedet for en tidsfristreaksjon.",
+            "id": "A",
+            "label": "Be Jonas bygge et alternativ som holder både sportslig behov, budsjett og utviklingsvei innenfor modellen",
+            "reply": "Jeg ber om et rekrutteringsalternativ som løser behovet uten å blokkere budsjett og de prioriterte utviklingssporene.",
+            "tags": [
+              "recruitment",
+              "budget",
+              "academy"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du får et sterkt kort raskt, men flytter kostnaden til stallbalanse, akademivei og senere budsjettvalg.",
+            "id": "B",
+            "label": "Gå videre med profilspilleren og håndter stallkonsekvensene etter vinduet",
+            "reply": "Jeg går videre med profilspilleren mens muligheten finnes og håndterer spilletid og budsjettjusteringer etterpå.",
+            "tags": [
+              "market",
+              "urgency",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "rekrutteringsdommekraft",
+        "consequence_axis": "langsiktig_baerekraft_vs_umiddelbar_forsterkning",
+        "cooldown": 3,
+        "from": "speidersjef_jonas",
+        "id": "sport_sports_event_vindu_001",
+        "mail_family": "rekrutteringsvindu_og_styring",
+        "mail_type": "event",
+        "narrative_arc": "Sportssjefen lærer at tidsfrist ikke fjerner alternativkostnaden i et spillerkjøp.",
+        "person_id": "speidersjef_jonas",
+        "phase": "afternoon",
+        "place_id": "sport_rekrutteringsflate",
+        "pressure": "markedstid_vs_klubbmodell",
+        "priority": 60,
+        "purpose": "Teste om sportssjefen holder strategi, alternativkostnad og fullmakt samlet når tidsvinduet presser.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+        "scene_catalog_version": 1,
+        "sender": "speidersjef_jonas",
+        "situation": [
+          "Spilleren er tilgjengelig bare i et kort vindu.",
+          "Speiderapparatet mener kvaliteten er høy.",
+          "Kostnaden og rollen i stallen kolliderer med to prioriterte utviklingsspor."
+        ],
+        "stage": "advanced",
+        "stakes": "Et raskt ja kan styrke laget nå; et nei eller en ny struktur beskytter klubbmodellen, men kan koste sportslig på kort sikt.",
+        "subject": "Markedet lukker snart, men profilspilleren passer ikke hele modellen",
+        "summary": "Jonas har funnet en sterk spiller som kan hjelpe laget raskt, men pris, alder og spilletid vil presse både budsjett og utviklingsveien til klubbens unge spillere.",
+        "task_domain": "rekrutteringsvindu",
+        "task_kind": "event"
+      },
+      "id": "sport_sports_event_vindu_001",
+      "mail_type": "event",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Klubben kan miste førstevalget, men rekrutteringen forblir et strategisk valg i stedet for en tidsfristreaksjon.",
+            "id": "A",
+            "label": "Be Jonas bygge et alternativ som holder både sportslig behov, budsjett og utviklingsvei innenfor modellen",
+            "reply": "Jeg ber om et rekrutteringsalternativ som løser behovet uten å blokkere budsjett og de prioriterte utviklingssporene."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du får et sterkt kort raskt, men flytter kostnaden til stallbalanse, akademivei og senere budsjettvalg.",
+            "id": "B",
+            "label": "Gå videre med profilspilleren og håndter stallkonsekvensene etter vinduet",
+            "reply": "Jeg går videre med profilspilleren mens muligheten finnes og håndterer spilletid og budsjettjusteringer etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Spilleren er tilgjengelig bare i et kort vindu.",
+            "Speiderapparatet mener kvaliteten er høy.",
+            "Kostnaden og rollen i stallen kolliderer med to prioriterte utviklingsspor."
+          ],
+          "subject": "Markedet lukker snart, men profilspilleren passer ikke hele modellen",
+          "summary": "Jonas har funnet en sterk spiller som kan hjelpe laget raskt, men pris, alder og spilletid vil presse både budsjett og utviklingsveien til klubbens unge spillere."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_event_vindu_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_rekrutteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_event_vindu_001",
+          "source_path": "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_event_vindu_001",
+        "version": 1
+      },
+      "source_hash": "c836b9a4f9cf4aca3a21c209d22f4a185a82dc5568f66e1845a6d29bc9af235a",
+      "source_path": "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "rebalansere_modell_vs_lappe_nytt_problem",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Klubben bruker konsekvensen til å korrigere modellen før neste beslutning.",
+            "id": "A",
+            "label": "Revider stall- og utviklingsplanen samlet og gjør alternativkostnaden eksplisitt før neste vindu",
+            "reply": "Jeg samler stallrolle, spilletid, akademivei og lønnsrom i en revidert plan før vi gjør et nytt markedsgrep.",
+            "tags": [
+              "followup",
+              "squad",
+              "academy",
+              "budget"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du avlaster symptomene, men lærer mindre om hvorfor modellen skapte dem.",
+            "id": "B",
+            "label": "Løs de to unge spillernes situasjon separat og behold rekrutteringsmodellen uendret",
+            "reply": "Jeg finner individuelle utlåns- eller spilletidsløsninger for de unge spillerne og lar rekrutteringsmodellen stå.",
+            "tags": [
+              "patch",
+              "academy",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "spillerlogistisk_helhetsblikk",
+        "consequence_axis": "strategisk_laring_vs_gjentatt_kortsiktighet",
+        "cooldown": 2,
+        "from": "speidersjef_jonas",
+        "id": "sport_sports_followup_profil_001",
+        "mail_family": "rekrutteringsoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Et tidligere rekrutteringsvalg blir synlig som systemeffekt i stall, akademi og økonomi.",
+        "person_id": "speidersjef_jonas",
+        "phase": "afternoon",
+        "place_id": "sport_rekrutteringsflate",
+        "pressure": "kortsiktig_losning_vs_laring_av_tidligere_valg",
+        "priority": 66,
+        "purpose": "Teste om sportssjefen følger opp den tidligere alternativkostnaden som en del av klubbmodellen i stedet for å behandle den som et nytt isolert problem.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "speidersjef_jonas",
+        "situation": [
+          "Førstelaget har fått mer kvalitet.",
+          "To unge spillere får mindre relevant spilletid enn utviklingsplanen forutsatte.",
+          "Lønnsrommet gjør neste overgangsvindu mindre fleksibelt."
+        ],
+        "stage": "advanced",
+        "stakes": "En rask ny signering eller utlån kan avlaste nå, men kan forsterke en rekrutteringslogikk som allerede presser budsjett og utviklingsvei.",
+        "subject": "Profilvalget kommer tilbake som et stallproblem",
+        "summary": "Noen måneder etter rekrutteringsvalget er sportslig kvalitet høy, men spilletid, lønnsrom og veien for to unge spillere er blitt trangere enn planlagt.",
+        "task_domain": "rekrutteringsoppfolging",
+        "task_kind": "followup",
+        "thread_key": "sport_sportsledelse.case.profilrekruttering_og_klubbmodell"
+      },
+      "id": "sport_sports_followup_profil_001",
+      "mail_type": "followup",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Klubben bruker konsekvensen til å korrigere modellen før neste beslutning.",
+            "id": "A",
+            "label": "Revider stall- og utviklingsplanen samlet og gjør alternativkostnaden eksplisitt før neste vindu",
+            "reply": "Jeg samler stallrolle, spilletid, akademivei og lønnsrom i en revidert plan før vi gjør et nytt markedsgrep."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du avlaster symptomene, men lærer mindre om hvorfor modellen skapte dem.",
+            "id": "B",
+            "label": "Løs de to unge spillernes situasjon separat og behold rekrutteringsmodellen uendret",
+            "reply": "Jeg finner individuelle utlåns- eller spilletidsløsninger for de unge spillerne og lar rekrutteringsmodellen stå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Førstelaget har fått mer kvalitet.",
+            "To unge spillere får mindre relevant spilletid enn utviklingsplanen forutsatte.",
+            "Lønnsrommet gjør neste overgangsvindu mindre fleksibelt."
+          ],
+          "subject": "Profilvalget kommer tilbake som et stallproblem",
+          "summary": "Noen måneder etter rekrutteringsvalget er sportslig kvalitet høy, men spilletid, lønnsrom og veien for to unge spillere er blitt trangere enn planlagt."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_followup_profil_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_rekrutteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_followup_profil_001",
+          "source_path": "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.case.profilrekruttering_og_klubbmodell",
+        "version": 1
+      },
+      "source_hash": "6f880b5559b76c9fb62783b1dccaee19c69a9665267b2ebce9056d8188ea2848",
+      "source_path": "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
         "choice_axis": "lage_matchingsplan_vs_utsette_talentbruk",
         "choices": [
           {
@@ -132692,6 +136208,504 @@
       },
       "source_hash": "39233e998ba4f68d67d15dad39c599002fc6f1bcc02d9fdc9b5d81c02f58dd5e",
       "source_path": "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "vurdere_alternativkostnad_vs_vurdere_kvalitet_alene",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Rekrutteringscaset blir et klubbvalg med synlige alternativkostnader, ikke bare en spillerkarakter.",
+            "id": "A",
+            "label": "Vurder kvalitet, kostnad, stallrolle og hva signeringen fortrenger før anbefalingen",
+            "reply": "Jeg vurderer spillerens kvalitet sammen med kostnad, stallrolle og hvilke utviklings- og budsjettvalg signeringen fortrenger.",
+            "tags": [
+              "knowledge",
+              "recruitment",
+              "opportunity_cost"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du løser det akutte sportslige behovet, men flytter alternativkostnaden ut av selve beslutningen.",
+            "id": "B",
+            "label": "Prioriter sportslig kvalitet og håndter ressurskonsekvensene i neste planrunde",
+            "reply": "Jeg prioriterer den dokumenterte sportslige kvaliteten nå og håndterer budsjett- og utviklingskonsekvensene i neste planrunde.",
+            "tags": [
+              "quality",
+              "short_term"
+            ]
+          }
+        ],
+        "competency": "rekrutteringsdommekraft",
+        "consequence_axis": "strategisk_baerekraft_vs_snever_optimering",
+        "cooldown": 2,
+        "from": "speidersjef_jonas",
+        "id": "sport_sports_knowledge_alternativkostnad_001",
+        "mail_family": "sportslig_styringsforstaelse",
+        "mail_type": "knowledge",
+        "narrative_arc": "Sportssjefen lærer at rekruttering er ressursallokering over tid, ikke bare vurdering av enkeltspillere.",
+        "person_id": "speidersjef_jonas",
+        "phase": "lunch",
+        "place_id": "sport_rekrutteringsflate",
+        "pressure": "enkeltspiller_vs_klubbhelhet",
+        "priority": 52,
+        "purpose": "Knytter rekrutteringsarbeidet til prinsippet om alternativkostnad og strategisk helhet.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "speidersjef_jonas",
+        "situation": [
+          "Spilleren er dokumentert god nok.",
+          "Kontrakten bruker en betydelig del av den tilgjengelige rammen.",
+          "Samme rolle er planlagt for to unge spillere klubben sier den vil utvikle."
+        ],
+        "stage": "early",
+        "stakes": "Hvis bare spillerkvalitet måles, blir kostnaden i andre utviklingsspor usynlig til etter at kontrakten er inngått.",
+        "subject": "En god signering kan fortsatt være et dårlig klubbvalg",
+        "summary": "Jonas ber deg forklare hvorfor spillerens kvalitet alene ikke avgjør om klubben bør signere når budsjett, spilletid og akademivei også endres.",
+        "task_domain": "rekrutteringsforstaelse",
+        "task_kind": "knowledge"
+      },
+      "id": "sport_sports_knowledge_alternativkostnad_001",
+      "mail_type": "knowledge",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Rekrutteringscaset blir et klubbvalg med synlige alternativkostnader, ikke bare en spillerkarakter.",
+            "id": "A",
+            "label": "Vurder kvalitet, kostnad, stallrolle og hva signeringen fortrenger før anbefalingen",
+            "reply": "Jeg vurderer spillerens kvalitet sammen med kostnad, stallrolle og hvilke utviklings- og budsjettvalg signeringen fortrenger."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du løser det akutte sportslige behovet, men flytter alternativkostnaden ut av selve beslutningen.",
+            "id": "B",
+            "label": "Prioriter sportslig kvalitet og håndter ressurskonsekvensene i neste planrunde",
+            "reply": "Jeg prioriterer den dokumenterte sportslige kvaliteten nå og håndterer budsjett- og utviklingskonsekvensene i neste planrunde."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Spilleren er dokumentert god nok.",
+            "Kontrakten bruker en betydelig del av den tilgjengelige rammen.",
+            "Samme rolle er planlagt for to unge spillere klubben sier den vil utvikle."
+          ],
+          "subject": "En god signering kan fortsatt være et dårlig klubbvalg",
+          "summary": "Jonas ber deg forklare hvorfor spillerens kvalitet alene ikke avgjør om klubben bør signere når budsjett, spilletid og akademivei også endres."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_knowledge_alternativkostnad_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_rekrutteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_knowledge_alternativkostnad_001",
+          "source_path": "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_knowledge_alternativkostnad_001",
+        "version": 1
+      },
+      "source_hash": "147e995b56d7e9dae329fba9dce2e299c45130ae36d8b0116eda142958c90048",
+      "source_path": "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "bekrefte_fullmakt_vs_gi_signal",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Forhandlingen mister litt fart, men klubbens beslutningslinje forblir tydelig.",
+            "id": "A",
+            "label": "Bekreft signatur- og budsjettrammen før du gir et bindende signal",
+            "reply": "Jeg avklarer signaturrett og økonomisk fullmakt før jeg gir motparten et bindende tilbud.",
+            "tags": [
+              "authority",
+              "contract",
+              "control"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du holder momentet, men klubben kan allerede oppfattes som bundet før riktig fullmakt er kontrollert.",
+            "id": "B",
+            "label": "Gi et tydelig muntlig signal og formaliser fullmakten rett etterpå",
+            "reply": "Jeg gir et tydelig muntlig signal om at vi går videre og formaliserer fullmakten umiddelbart etterpå.",
+            "tags": [
+              "promise",
+              "mandate_drift",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "styringsmandat",
+        "consequence_axis": "legitim_beslutning_vs_fullmaktsglidning",
+        "cooldown": 1,
+        "from": "daglig_leder_morten",
+        "id": "sport_sports_micro_fullmakt_001",
+        "mail_family": "fullmaktsmikrokontroll",
+        "mail_type": "micro",
+        "narrative_arc": "Sportssjefen lærer at et sportslig ja og et bindende klubbtilbud ikke er det samme.",
+        "person_id": "daglig_leder_morten",
+        "phase": "forenoon",
+        "place_id": "sport_rekrutteringsflate",
+        "pressure": "forhandlingstempo_vs_formell_fullmakt",
+        "priority": 54,
+        "purpose": "Teste om sportssjefen stopper et bindende løfte til riktig fullmakt er dokumentert.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "daglig_leder_morten",
+        "situation": [
+          "Det sportslige caset er ferdig vurdert.",
+          "Beløpet ligger nær godkjent ramme.",
+          "Det er fortsatt uklart om din fullmakt dekker det konkrete tilbudet."
+        ],
+        "stage": "early",
+        "stakes": "Noen minutters avklaring kan koste tempo, men et løfte uten fullmakt kan binde klubben sosialt eller økonomisk før riktig beslutning er tatt.",
+        "subject": "Tilbudet er nesten klart, men hvem kan faktisk signere?",
+        "summary": "En sportslig forhandling er moden nok til at motparten forventer et konkret svar, men signaturrett og økonomisk fullmakt må fortsatt bekreftes.",
+        "task_domain": "fullmaktskontroll",
+        "task_kind": "micro"
+      },
+      "id": "sport_sports_micro_fullmakt_001",
+      "mail_type": "micro",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Forhandlingen mister litt fart, men klubbens beslutningslinje forblir tydelig.",
+            "id": "A",
+            "label": "Bekreft signatur- og budsjettrammen før du gir et bindende signal",
+            "reply": "Jeg avklarer signaturrett og økonomisk fullmakt før jeg gir motparten et bindende tilbud."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du holder momentet, men klubben kan allerede oppfattes som bundet før riktig fullmakt er kontrollert.",
+            "id": "B",
+            "label": "Gi et tydelig muntlig signal og formaliser fullmakten rett etterpå",
+            "reply": "Jeg gir et tydelig muntlig signal om at vi går videre og formaliserer fullmakten umiddelbart etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det sportslige caset er ferdig vurdert.",
+            "Beløpet ligger nær godkjent ramme.",
+            "Det er fortsatt uklart om din fullmakt dekker det konkrete tilbudet."
+          ],
+          "subject": "Tilbudet er nesten klart, men hvem kan faktisk signere?",
+          "summary": "En sportslig forhandling er moden nok til at motparten forventer et konkret svar, men signaturrett og økonomisk fullmakt må fortsatt bekreftes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_micro_fullmakt_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_rekrutteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_micro_fullmakt_001",
+          "source_path": "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_micro_fullmakt_001",
+        "version": 1
+      },
+      "source_hash": "e7d548363cceadc64d5e38aae603e638c85e0536721f6f7656ae7d864a6d7969",
+      "source_path": "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "avgrense_og_anbefale_vs_love_handling",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Karin får både retning og et tydelig beslutningskart uten at sportssjefens mandat blåses opp av resultatpresset.",
+            "id": "A",
+            "label": "Skill umiddelbare sportslige grep fra beslutninger som krever styre- eller arbeidsgiverfullmakt",
+            "reply": "Jeg viser hvilke sportslige grep jeg kan gjennomføre innen mandatet nå, og hvilke større valg som må forankres hos riktig beslutningseier.",
+            "tags": [
+              "strategy",
+              "authority",
+              "trust"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Styret får et raskt signal, men klubben kan nå oppfatte anbefalingen som en beslutning før riktig fullmakt er avklart.",
+            "id": "B",
+            "label": "Lov et tydelig sportslig grep og avklar fullmakten etter møtet",
+            "reply": "Jeg lover et tydelig grep for å vise handlekraft og avklarer de formelle rammene etterpå.",
+            "tags": [
+              "pressure",
+              "mandate_drift",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "styringsmandat",
+        "consequence_axis": "langsiktig_tillit_vs_kortsiktig_ro",
+        "cooldown": 2,
+        "from": "styreleder_karin",
+        "id": "sport_sports_people_karin_001",
+        "mail_family": "sportslig_styringsdialog",
+        "mail_type": "people",
+        "narrative_arc": "Sportssjefen lærer at tydelig ledelse også innebærer å gjøre grensene for egen myndighet tydelige.",
+        "person_id": "styreleder_karin",
+        "phase": "morning",
+        "place_id": "sport_klubbkontor",
+        "pressure": "resultatpress_vs_mandatklarhet",
+        "priority": 64,
+        "purpose": "Teste om sportssjefen kan gi klar retning uten å gjøre resultatpress til ny fullmakt.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+        "scene_catalog_version": 1,
+        "sender": "styreleder_karin",
+        "situation": [
+          "Klubbstrategien er fortsatt vedtatt og langsiktig.",
+          "Tre tap har gjort styret mer utålmodig.",
+          "Karin ber deg skille det du kan gjøre nå fra det som må tilbake til riktig beslutningsnivå."
+        ],
+        "stage": "stable",
+        "stakes": "Et raskt løfte kan roe styret, men binde klubben før økonomi, treneransvar eller kontraktsmyndighet er avklart.",
+        "subject": "Karin vil vite hva strategien faktisk betyr etter tre tap",
+        "summary": "Styreleder Karin ber om et tydelig sportslig svar, men hun trenger også å vite hvilke grep som ligger innen sportssjefens mandat og hvilke som krever styre- eller arbeidsgiverbeslutning.",
+        "task_domain": "sportslig_styringsdialog",
+        "task_kind": "people"
+      },
+      "id": "sport_sports_people_karin_001",
+      "mail_type": "people",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Karin får både retning og et tydelig beslutningskart uten at sportssjefens mandat blåses opp av resultatpresset.",
+            "id": "A",
+            "label": "Skill umiddelbare sportslige grep fra beslutninger som krever styre- eller arbeidsgiverfullmakt",
+            "reply": "Jeg viser hvilke sportslige grep jeg kan gjennomføre innen mandatet nå, og hvilke større valg som må forankres hos riktig beslutningseier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Styret får et raskt signal, men klubben kan nå oppfatte anbefalingen som en beslutning før riktig fullmakt er avklart.",
+            "id": "B",
+            "label": "Lov et tydelig sportslig grep og avklar fullmakten etter møtet",
+            "reply": "Jeg lover et tydelig grep for å vise handlekraft og avklarer de formelle rammene etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Klubbstrategien er fortsatt vedtatt og langsiktig.",
+            "Tre tap har gjort styret mer utålmodig.",
+            "Karin ber deg skille det du kan gjøre nå fra det som må tilbake til riktig beslutningsnivå."
+          ],
+          "subject": "Karin vil vite hva strategien faktisk betyr etter tre tap",
+          "summary": "Styreleder Karin ber om et tydelig sportslig svar, men hun trenger også å vite hvilke grep som ligger innen sportssjefens mandat og hvilke som krever styre- eller arbeidsgiverbeslutning."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_people_karin_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_klubbkontor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_people_karin_001",
+          "source_path": "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_people_karin_001",
+        "version": 1
+      },
+      "source_hash": "0973bd7d0020fdc3626ec7ba69e8d2ba02be34d4826fdf5aeeb55e0ee5db306a",
+      "source_path": "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "vise_beslutningsspor_vs_rapportere_resultat",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Ledelsen får et bilde som kan brukes til å forbedre modellen, ikke bare forklare tabellen.",
+            "id": "A",
+            "label": "Koble trener-, rekrutterings- og akademivalgene til de vedtatte sportslige prinsippene",
+            "reply": "Jeg viser hvordan treneroppfølging, spillerlogistikk og akademibruk faktisk fulgte eller avvek fra klubbstrategien.",
+            "tags": [
+              "strategy",
+              "learning",
+              "governance"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Rapporten blir enkel å kommunisere, men svakere som test av om klubbstrategien faktisk styrte arbeidet.",
+            "id": "B",
+            "label": "Hold evalueringen til resultater, nøkkeltall og de største enkelthendelsene",
+            "reply": "Jeg holder evalueringen til resultater, nøkkeltall og de største enkelthendelsene for å gjøre den tydelig.",
+            "tags": [
+              "results",
+              "summary"
+            ]
+          }
+        ],
+        "competency": "strategisk_sammenstilling",
+        "consequence_axis": "strategisk_laring_vs_kortsiktig_forklaring",
+        "cooldown": 3,
+        "from": "daglig_leder_morten",
+        "id": "sport_sports_story_halvaar_001",
+        "mail_family": "sportslig_retning_som_praksis",
+        "mail_type": "story",
+        "narrative_arc": "Sportssjefen går fra enkeltvalg til å kunne vise hvordan en klubbmodell faktisk blir til over tid.",
+        "person_id": "daglig_leder_morten",
+        "phase": "evening",
+        "place_id": "sport_sportslig_styringsbord",
+        "pressure": "tabell_vs_modell",
+        "priority": 64,
+        "purpose": "La sportssjefen vise sammenhengen mellom langsiktig modell og konkrete beslutninger.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+        "scene_catalog_version": 1,
+        "sender": "daglig_leder_morten",
+        "situation": [
+          "Klubben har både gode og svake resultater bak seg.",
+          "Flere enkeltbeslutninger kan nå vurderes samlet.",
+          "Morten trenger et grunnlag for neste halvårs ressurs- og prioriteringsvalg."
+        ],
+        "stage": "mastery",
+        "stakes": "En resultatrapport er lett å lese; et strategisk spor viser om klubben faktisk bygget den modellen den sa den ville ha.",
+        "subject": "Halvåret viser om klubbstrategien faktisk styrte valgene",
+        "summary": "Treneroppfølging, rekruttering og akademibruk peker nå i samme eller ulike retninger, og Morten ber om et sportslig bilde som tåler mer enn tabellplasseringen.",
+        "task_domain": "sportslig_halvaarsvurdering",
+        "task_kind": "story"
+      },
+      "id": "sport_sports_story_halvaar_001",
+      "mail_type": "story",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Ledelsen får et bilde som kan brukes til å forbedre modellen, ikke bare forklare tabellen.",
+            "id": "A",
+            "label": "Koble trener-, rekrutterings- og akademivalgene til de vedtatte sportslige prinsippene",
+            "reply": "Jeg viser hvordan treneroppfølging, spillerlogistikk og akademibruk faktisk fulgte eller avvek fra klubbstrategien."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Rapporten blir enkel å kommunisere, men svakere som test av om klubbstrategien faktisk styrte arbeidet.",
+            "id": "B",
+            "label": "Hold evalueringen til resultater, nøkkeltall og de største enkelthendelsene",
+            "reply": "Jeg holder evalueringen til resultater, nøkkeltall og de største enkelthendelsene for å gjøre den tydelig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Klubben har både gode og svake resultater bak seg.",
+            "Flere enkeltbeslutninger kan nå vurderes samlet.",
+            "Morten trenger et grunnlag for neste halvårs ressurs- og prioriteringsvalg."
+          ],
+          "subject": "Halvåret viser om klubbstrategien faktisk styrte valgene",
+          "summary": "Treneroppfølging, rekruttering og akademibruk peker nå i samme eller ulike retninger, og Morten ber om et sportslig bilde som tåler mer enn tabellplasseringen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_story_halvaar_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_sportslig_styringsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_story_halvaar_001",
+          "source_path": "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_story_halvaar_001",
+        "version": 1
+      },
+      "source_hash": "fe7859db95acbcf1d4acc8fcc72fa1f57f8435cae6b18f894521262b58b0dbd0",
+      "source_path": "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -139899,7 +143913,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "0c79b8c59d55d95cfbb2610c2c132bb881c24730793125e7ba07f0e6d055b2fb",
+  "registry_hash": "3ce7f80234dc61a3c17980af22166bdb82ee7252846d218cf45eda9954665a5b",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -139927,7 +143941,15 @@
       "by_assistent_job_medvirkning_001",
       "by_assistent_job_medvirkning_002",
       "by_assistent_job_rom_001",
-      "by_assistent_job_rom_002"
+      "by_assistent_job_rom_002",
+      "by_assistent_people_ingrid_001",
+      "by_assistent_story_stedsnotat_001",
+      "by_assistent_conflict_kart_befaring_001",
+      "by_assistent_event_kveldsbefaring_001",
+      "by_assistent_micro_kildespor_001",
+      "by_assistent_followup_kartavvik_001",
+      "by_assistent_knowledge_kart_sted_001",
+      "by_assistent_consequence_grunnlag_001"
     ],
     "by/by_prosjektleder": [
       "by_prosjekt_job_mandat_001",
@@ -139937,7 +143959,15 @@
       "by_prosjekt_job_risiko_001",
       "by_prosjekt_job_risiko_002",
       "by_prosjekt_job_kvalitet_001",
-      "by_prosjekt_job_kvalitet_002"
+      "by_prosjekt_job_kvalitet_002",
+      "by_prosjektleder_people_lena_001",
+      "by_prosjektleder_story_styringssak_001",
+      "by_prosjektleder_conflict_ansvar_001",
+      "by_prosjektleder_event_avhengighetsmote_001",
+      "by_prosjektleder_micro_beslutningslogg_001",
+      "by_prosjektleder_followup_kostnad_001",
+      "by_prosjektleder_knowledge_risiko_001",
+      "by_prosjektleder_consequence_kostnad_001"
     ],
     "by/by_radgiver_plan": [
       "by_radgiver_job_sted_001",
@@ -140049,7 +144079,15 @@
       "by_saks_job_regel_001",
       "by_saks_job_regel_002",
       "by_saks_job_frist_001",
-      "by_saks_job_frist_002"
+      "by_saks_job_frist_002",
+      "by_saksbehandler_people_anne_001",
+      "by_saksbehandler_story_vedtaksgrunnlag_001",
+      "by_saksbehandler_conflict_likebehandling_001",
+      "by_saksbehandler_event_befaring_001",
+      "by_saksbehandler_micro_kildespor_001",
+      "by_saksbehandler_followup_hoyde_001",
+      "by_saksbehandler_knowledge_likebehandling_001",
+      "by_saksbehandler_consequence_klage_001"
     ],
     "film_tv/produksjonsassistent": [
       "film_tv_pa_job_to_call_sheet",
@@ -140807,7 +144845,15 @@
       "sport_sports_job_log_001",
       "sport_sports_job_log_002",
       "sport_sports_job_akad_001",
-      "sport_sports_job_akad_002"
+      "sport_sports_job_akad_002",
+      "sport_sports_people_karin_001",
+      "sport_sports_story_halvaar_001",
+      "sport_sports_conflict_trener_001",
+      "sport_sports_event_vindu_001",
+      "sport_sports_micro_fullmakt_001",
+      "sport_sports_followup_profil_001",
+      "sport_sports_knowledge_alternativkostnad_001",
+      "sport_sports_consequence_profil_001"
     ],
     "sport/sport_trener": [
       "sport_trener_job_okt_001",
@@ -140894,11 +144940,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 146,
+    "compiled_source_file_count": 178,
     "ignored_source_file_count": 1,
-    "input_file_count": 147,
+    "input_file_count": 179,
     "role_count": 28,
-    "scene_count": 909,
+    "scene_count": 941,
     "shadowed_duplicate_count": 0
   },
   "version": 1

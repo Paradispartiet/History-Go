@@ -1,120 +1,178 @@
 {
   "schema": "civication_role_model_v1",
-  "version": 1,
+  "version": 2,
   "source": {
-    "badge_file": "data/badges.json",
+    "badge_file": "data/badges/by.json",
     "badge_id": "by",
     "badge_name": "By & arkitektur",
     "tier_label": "Saksbehandler (plan/bygg)",
-    "tier_threshold": 20
+    "tier_threshold": 25
   },
   "category": "by",
   "role_scope": "saksbehandler_plan_bygg",
   "role_id": "by_saksbehandler_plan_bygg",
   "title": "Saksbehandler (plan/bygg)",
   "core_narrative": [
-    "I Civication er Saksbehandler (plan/bygg) en praktisk rolle i By & arkitektur der valg former tillit, handlingsrom og status."
+    "By-saksbehandleren gjør søknader, regler, nabomerknader og stedlige virkninger lesbare sammen slik at beslutningen kan være både lovlig og begrunnet.",
+    "Rollen lærer spilleren at dokumentasjonskontroll ikke er tom formalitet: manglende høyde, snitt eller planstatus kan være akkurat det som avgjør hvordan et tiltak virker på gata eller for naboene.",
+    "God saksbehandling skiller relevante hensyn fra støy, begrunner skjønn uten å gjøre likebehandling mekanisk og holder et spor som tåler klage, gjenlesning og ny saksbehandler."
   ],
   "work_life": {
     "daily_work": [
-      "Løser oppgaver knyttet til klassisk arkitektur, modernisme."
+      "Registrerer og kontrollerer søknader, planstatus, vedlegg og dokumentasjonsmangler før realitetsbehandling.",
+      "Anvender regler og planbestemmelser på konkrete tiltak og synliggjør når saken krever begrunnet skjønn fremfor ren tallkontroll.",
+      "Leser nabomerknader saklig og kobler relevante erfaringer til sted, lys, trafikk, innsyn, trygghet og andre vurderingstema.",
+      "Forbereder vedtaksgrunnlag, vilkår, journal og oppfølging slik at hjemmel, faktum, skjønn og begrunnelse kan etterprøves."
     ],
     "responsibilities": [
-      "Balansere kvalitet, tempo og samhandling i rollen."
+      "Sørge for at saken er tilstrekkelig opplyst før avgjørende vurderinger gjøres.",
+      "Skille lovkrav, planbestemmelser, faktisk grunnlag og skjønn og vise hvordan de henger sammen i begrunnelsen.",
+      "Behandle like saker konsistent samtidig som relevante faktiske og stedlige forskjeller dokumenteres.",
+      "Holde frister og saksflyt uten å skjule vesentlige mangler eller hoppe over lovpålagte prosesser."
     ],
     "work_environment": [
-      "Arbeidsmiljøet preges av kategoriens retning: For den som forstår byens rytme – hvordan rom, struktur og mennesker former hverandre. Arkitektur er frosset musikk."
+      "Arbeidet foregår mellom søknads- og journalsystem, kart og planer, faglige avklaringer, nabomerknader og konkrete steder i byen.",
+      "Saksbehandleren står ofte mellom ønsket om rask avklaring og kravet om at avgjørelsen skal være forståelig, lik, lovlig og robust dersom den blir utfordret."
     ],
     "status_position": [
-      "Rollen vurderes både på faglig presisjon og sosial legitimitet."
+      "Rollen bygger tillit når søker, nabo, kollega og klageinstans kan se hvilket faktum og hvilke regler vurderingen faktisk bygger på.",
+      "Saksbehandleren kan utrede, kommunisere mangler, anvende regler og forberede beslutning innen mandat, men kan ikke love tillatelse, forskjellsbehandle uten saklig grunn eller skjule vesentlige opplysninger."
+    ],
+    "workplaces": [
+      "oslo_byggesak_sentrum",
+      "saksinntak_og_dokumentasjonsbord",
+      "regel_og_skjonnsvurdering",
+      "nabomerknads_og_vedtaksgrunnlag"
     ]
   },
   "career_path": {
     "entry_from": [
-      "Tidligere tier i samme badge-kategori."
+      "Administrativt eller faglig saksarbeid med grunnleggende ansvar for dokumentasjon, planstatus og forvaltningskommunikasjon."
     ],
     "progression_to": [
-      "Neste tier i samme badge-kategori."
+      "Mer selvstendig saksbehandling, rådgiverarbeid, plan/bygg-spesialisering eller faglig koordinering."
     ],
     "possible_promotions": [
-      "Ansvar for større beslutninger og koordinering."
+      "Ansvar for mer komplekse saker, fagkontroll, veiledning av kolleger eller større skjønns- og klagesaker."
     ],
     "possible_exits": [
-      "Skifte til nærliggende kategori eller spesialisering."
+      "Skifte til planlegging, juridisk rådgivning, byggesak, byutviklingsrådgivning eller annen offentlig forvaltning."
     ],
     "career_risks": [
-      "Tap av tillit ved feilprioritering under press."
+      "Tap av tillit dersom fristpress eller produksjonsmål gjør vurderingen mindre opplyst enn begrunnelsen gir inntrykk av.",
+      "Ulik praksis dersom tidligere saker kopieres uten å kontrollere relevant rettslig og faktisk forskjell."
     ]
   },
   "required_knowledge": {
     "education_basis": [
-      "Grunnforståelse for fagfeltet og institusjonene i kategorien."
+      "Grunnleggende forståelse for plan- og byggesaksprosess, forvaltningsrett, dokumentasjonskrav, skjønn, likebehandling og begrunnelse."
     ],
     "skills": [
-      "Prioritering, kommunikasjon og situasjonsforståelse."
+      "Saksinntak, kompletthetskontroll, regelanvendelse, faktumutredning, nabomerknadsbehandling, skjønnsbegrunnelse, journalføring og tydelig forvaltningskommunikasjon."
     ],
     "category_knowledge": [
-      "For den som forstår byens rytme – hvordan rom, struktur og mennesker former hverandre. Arkitektur er frosset musikk."
+      "Hvordan regelverk, planer og byggesaksgrunnlag møter konkrete byrom, naboer og stedlige virkninger."
     ],
-    "history_go_badges": [
-      "by"
+    "history_go_badges": ["by"],
+    "place_connections": ["oslo_byggesak_sentrum", "nabomerknads_og_vedtaksgrunnlag"],
+    "people_connections": ["anne_planseksjon", "maria_medvirkning", "juridisk_rådgiver_erik"]
+  },
+  "authority_boundary": {
+    "may": [
+      "kontrollere dokumentasjon, planstatus og relevant faktisk grunnlag innen tildelt sak",
+      "be om manglende opplysninger og forklare hvorfor de er nødvendige for vurderingen",
+      "anvende regler og utøve delegert faglig skjønn når hjemmel og mandat åpner for det",
+      "forberede vedtaksgrunnlag, vilkår, journal og faglig begrunnelse for riktig beslutningseier"
     ],
-    "place_connections": [],
-    "people_connections": []
+    "may_not": [
+      "forskjellsbehandle like saker uten saklig og dokumentert grunn",
+      "hoppe over lovpålagte prosesser eller skjule vesentlige opplysninger for å holde frist",
+      "love tillatelse, dispensasjon eller bestemt vedtaksutfall før riktig avgjørelse er tatt",
+      "tolke bort klare plan- eller lovkrav fordi tiltaket virker praktisk eller rimelig"
+    ]
   },
   "challenges": [
     {
-      "id": "operativt_press",
-      "title": "Operativt press",
-      "description": "Flere krav må løses samtidig med begrenset tid.",
-      "pressure": "tid_vs_kvalitet",
-      "affects": [
-        "trust",
-        "status",
-        "risk"
-      ]
+      "id": "frist_vs_saksopplysning",
+      "title": "Frist mot saksopplysning",
+      "description": "Saksflyt og frister kan presse vurderingen før relevante faktiske eller stedlige forhold er tilstrekkelig belyst.",
+      "pressure": "frist_vs_saksopplysning",
+      "affects": ["trust", "quality", "risk"]
+    },
+    {
+      "id": "mekanisk_likhet_vs_reell_likebehandling",
+      "title": "Mekanisk likhet mot reell likebehandling",
+      "description": "To saker kan ha samme tall og regelgrunnlag, men ulike stedlige virkninger som må beskrives for at forskjellig resultat skal være saklig.",
+      "pressure": "mekanisk_likhet_vs_reell_likebehandling",
+      "affects": ["fairness", "legitimacy", "quality"]
     }
   ],
   "dilemmas": [
     {
-      "id": "lojalitetsdilemma",
-      "title": "Lojalitet under press",
-      "setup": "Du må velge mellom formell linje og relasjonell løsning i en konkret sak.",
-      "choice_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "consequence_axis": "tillit_vs_risiko",
-      "mail_hooks": [
-        "job",
-        "conflict",
-        "story"
-      ]
+      "id": "formell_ryddighet_vs_stedlig_sannhet",
+      "title": "Formell ryddighet mot stedlig sannhet",
+      "setup": "Du kan behandle dokumentasjonsmangel, nabomerknad og regelpunkt hver for seg, eller vise at de faktisk beskriver samme virkning på stedet.",
+      "choice_axis": "formell_ryddighet_vs_stedlig_sammenheng",
+      "consequence_axis": "administrativ_flyt_vs_begrunnet_rettferdighet",
+      "mail_hooks": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"]
     }
   ],
-  "related_people": [],
-  "related_places": [],
+  "related_people": [
+    {
+      "id": "anne_planseksjon",
+      "name": "Anne",
+      "function": "Erfaren kollega i plan-/byggesaksseksjonen som følger saksflyt, kompletthet, frist og kvalitet i vurderingsgrunnlaget."
+    },
+    {
+      "id": "maria_medvirkning",
+      "name": "Maria",
+      "function": "Medvirkningsfaglig kollega som hjelper saksbehandleren å skille tone fra relevant stedlig erfaring og se mønstre på tvers av merknader."
+    },
+    {
+      "id": "juridisk_rådgiver_erik",
+      "name": "Erik",
+      "function": "Juridisk rådgiver som utfordrer mekanisk regelbruk og krever at hjemmel, skjønn, likebehandling og faktiske forskjeller blir eksplisitte."
+    }
+  ],
+  "related_places": [
+    {
+      "id": "oslo_byggesak_sentrum",
+      "name": "Byggesak sentrum",
+      "function": "Felles saks- og stedsflate der dokumentasjon, planstatus, nabomerknader og konkret byvirkning møtes."
+    },
+    {
+      "id": "saksinntak_og_dokumentasjonsbord",
+      "name": "Saksinntak- og dokumentasjonsbordet",
+      "function": "Arbeidsflate for kompletthetskontroll, planstatus, mangler og vurdering av om saken faktisk er opplyst nok til å gå videre."
+    },
+    {
+      "id": "regel_og_skjonnsvurdering",
+      "name": "Regel- og skjønnsvurderingen",
+      "function": "Arbeidsflate for hjemmel, sammenlignbare saker, relevante forskjeller og begrunnelse av skjønn."
+    },
+    {
+      "id": "nabomerknads_og_vedtaksgrunnlag",
+      "name": "Nabomerknads- og vedtaksgrunnlaget",
+      "function": "Arbeidsflate for å koble merknader, faktiske virkninger, vilkår, beslutningsgrunnlag og journalført begrunnelse."
+    }
+  ],
   "mail_integration": {
-    "role_scope": "saksbehandler_plan_bygg",
-    "mail_profile": "by_saksbehandler_plan_bygg",
-    "can_feed_mail_types": [
-      "job",
-      "story",
-      "conflict",
-      "event",
-      "people",
-      "faction_choice"
-    ],
+    "role_scope": "by_saksbehandler",
+    "mail_profile": "by_saksbehandler",
+    "can_feed_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
     "mail_variables": {
       "role_title": "Saksbehandler (plan/bygg)",
       "category": "by",
-      "main_pressure": "tid_vs_kvalitet",
-      "ethical_axis": "lojalitet_oppover_vs_lojalitet_nedover",
-      "status_axis": "tillit_vs_risiko"
+      "main_pressure": "frist_vs_saksopplysning",
+      "ethical_axis": "likebehandling_vs_stedlig_forskjell",
+      "status_axis": "rettssikkerhet_vs_saksflyt"
     },
-    "recommended_mail_families": [],
+    "recommended_mail_families": ["dokumentasjon_og_mangler", "nabomerknader_og_sted", "regelverk_og_skjonn", "frist_og_forvaltning"],
     "role_model_refs_supported": true
   },
-  "competence_axes": [],
-  "ideal_type_problems": [],
+  "competence_axes": ["lovlighet", "saksopplysning", "begrunnet_skjonn", "likebehandling", "sporbarhet", "forstaelig_kommunikasjon"],
+  "ideal_type_problems": ["frist_vs_saksopplysning", "mekanisk_likhet_vs_reell_likebehandling", "formell_ryddighet_vs_stedlig_sannhet"],
   "notes": [
-    "Basert på badges.json: by / Saksbehandler (plan/bygg)."
+    "Bygger videre på eksisterende by_saksbehandler-FWG og 8 authored jobbmails; rollouten materialiserer relasjoner, arbeidsflater og manglende mail-/konsekvenskjede uten nye Badge-titler eller lønnsregler."
   ]
 }

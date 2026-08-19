@@ -1,0 +1,17 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"by","role_scope":"by_saksbehandler","mail_type":"event",
+  "families":[{"id":"stedlig_saksopplysning","purpose":"Gjør befaring og konkret stedskontroll til del av saksopplysningen.","learning_focus":["befaring","saksopplysning"],"mails":[{
+    "id":"by_saksbehandler_event_befaring_001","mail_type":"event","mail_family":"stedlig_saksopplysning","role_scope":"by_saksbehandler","phase":"afternoon","priority":60,"cooldown":3,"repeatable":false,"stage":"advanced",
+    "from":"maria_medvirkning","sender":"maria_medvirkning","person_id":"maria_medvirkning","place_id":"oslo_byggesak_sentrum",
+    "subject":"En kort befaring kan avklare om tre merknader beskriver samme passasje",
+    "summary":"Støy, trygghet og varelevering ser ut som tre ulike nabomerknader, men kartet antyder at alle gjelder samme smale passasje.",
+    "purpose":"Teste om saksbehandleren samler relevant stedlig evidens før vurderingen låses.",
+    "stakes":"Befaring bruker tid, men kan gjøre merknadene til et presist vurderingstema i stedet for tre løse påstander.",
+    "situation":["Tre naboer bruker ulikt språk.","Kartet viser en smal felles passasje.","Maria foreslår en avgrenset befaring for å teste om konfliktene faktisk møtes der."],
+    "task_domain":"befaring","task_kind":"event","competency":"stedlig_saksopplysning","pressure":"frist_vs_relevant_evidens","choice_axis":"befare_vs_vurdere_fra_papir","consequence_axis":"presisjon_vs_tempo","narrative_arc":"Saksbehandleren lærer at en kort stedskontroll kan gjøre skriftlige merknader mer vurderbare uten å gjøre naboene til beslutningstakere.",
+    "choices":[
+      {"id":"A","label":"Gjennomfør en avgrenset befaring og dokumenter hva passasjen faktisk brukes til","reply":"Jeg gjennomfører en kort befaring med spørsmål om bevegelse, levering, oversikt og konfliktpunkt.","effect":1,"tags":["fieldwork","evidence","place"],"feedback":"Merknadene får et konkret stedlig grunnlag som kan vurderes saklig."},
+      {"id":"B","label":"Bruk kart og skriftlige merknader for å holde saksfristen","reply":"Jeg bruker kartet og merknadene som foreligger og markerer den stedlige usikkerheten i notatet.","effect":0,"tags":["deadline","uncertainty"],"feedback":"Du holder flyt og skjuler ikke usikkerheten, men får mindre direkte evidens om stedet."}
+    ]
+  }]}]
+}

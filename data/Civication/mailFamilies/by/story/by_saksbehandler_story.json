@@ -1,0 +1,17 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"by","role_scope":"by_saksbehandler","mail_type":"story",
+  "families":[{"id":"begrunnet_forvaltning","purpose":"Samler regel, sted, nabo og begrunnelse til en synlig saksbehandlingsmilepæl.","learning_focus":["begrunnelse","stedlig_sammenheng"],"mails":[{
+    "id":"by_saksbehandler_story_vedtaksgrunnlag_001","mail_type":"story","mail_family":"begrunnet_forvaltning","role_scope":"by_saksbehandler","phase":"evening","priority":64,"cooldown":2,"repeatable":false,"stage":"mastery",
+    "from":"anne_planseksjon","sender":"anne_planseksjon","person_id":"anne_planseksjon","place_id":"nabomerknads_og_vedtaksgrunnlag",
+    "subject":"Vedtaksgrunnlaget må vise hvorfor regel, sted og merknader henger sammen",
+    "summary":"Saken er ferdig utredet, men et godt vedtaksgrunnlag må gjøre både hjemmel, stedlig virkning, nabomerknader og skjønn lesbare i samme begrunnelse.",
+    "purpose":"La saksbehandleren velge mellom et minimumsnotat og et robust, etterprøvbart beslutningsgrunnlag.",
+    "stakes":"Kort tekst holder fristen; tydelig sammenheng gjør saken mer forståelig og robust ved klage og senere gjenlesning.",
+    "situation":["Dokumentasjonen er nå komplett nok.","Nabomerknadene peker på en konkret stedlig virkning.","Regelgrunnlaget åpner for skjønn som må begrunnes."],
+    "task_domain":"vedtaksgrunnlag","task_kind":"story","competency":"begrunnet_forvaltning","pressure":"minimumstekst_vs_etterprovbarhet","choice_axis":"samle_begrunnelse_vs_kort_notat","consequence_axis":"rettssikkerhet_vs_kort_flyt","narrative_arc":"Saksbehandleren går fra å behandle punkter til å skrive en begrunnelse som viser hvordan hele saken henger sammen.",
+    "choices":[
+      {"id":"A","label":"Skriv regel, faktum, stedlig virkning, merknader og skjønn som én tydelig begrunnelseskjede","reply":"Jeg skriver en begrunnelse der hjemmel, faktum, stedlig virkning, relevante merknader og skjønn kobles eksplisitt.","effect":1,"tags":["reasoning","rights","traceability"],"feedback":"Saken blir lettere å forstå, kontrollere og overta for andre."},
+      {"id":"B","label":"Skriv korteste begrunnelse som dekker det formelle vurderingspunktet","reply":"Jeg skriver en kort begrunnelse som dekker regel og konklusjon og holder detaljene i underlaget.","effect":0,"tags":["minimum","tempo"],"feedback":"Teksten kan holde formelt, men gjør mindre av vurderingsarbeidet synlig."}
+    ]
+  }]}]
+}

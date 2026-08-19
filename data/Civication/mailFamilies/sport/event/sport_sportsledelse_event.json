@@ -1,0 +1,15 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"sport","role_scope":"sport_sportsledelse","mail_type":"event",
+  "families":[{"id":"rekrutteringsvindu_og_styring","purpose":"Gjør tidsavgrenset rekrutteringspress til en sportslig styringssituasjon.","learning_focus":["rekruttering","budsjett","fullmakt"],"mails":[{
+    "id":"sport_sports_event_vindu_001","mail_type":"event","mail_family":"rekrutteringsvindu_og_styring","role_scope":"sport_sportsledelse","phase":"afternoon","priority":60,"cooldown":3,"repeatable":false,"stage":"advanced",
+    "from":"speidersjef_jonas","sender":"speidersjef_jonas","person_id":"speidersjef_jonas","place_id":"sport_rekrutteringsflate",
+    "subject":"Markedet lukker snart, men profilspilleren passer ikke hele modellen","summary":"Jonas har funnet en sterk spiller som kan hjelpe laget raskt, men pris, alder og spilletid vil presse både budsjett og utviklingsveien til klubbens unge spillere.",
+    "purpose":"Teste om sportssjefen holder strategi, alternativkostnad og fullmakt samlet når tidsvinduet presser.","stakes":"Et raskt ja kan styrke laget nå; et nei eller en ny struktur beskytter klubbmodellen, men kan koste sportslig på kort sikt.",
+    "situation":["Spilleren er tilgjengelig bare i et kort vindu.","Speiderapparatet mener kvaliteten er høy.","Kostnaden og rollen i stallen kolliderer med to prioriterte utviklingsspor."],
+    "task_domain":"rekrutteringsvindu","task_kind":"event","competency":"rekrutteringsdommekraft","pressure":"markedstid_vs_klubbmodell","choice_axis":"endre_case_vs_signere_raskt","consequence_axis":"langsiktig_baerekraft_vs_umiddelbar_forsterkning","narrative_arc":"Sportssjefen lærer at tidsfrist ikke fjerner alternativkostnaden i et spillerkjøp.",
+    "choices":[
+      {"id":"A","label":"Be Jonas bygge et alternativ som holder både sportslig behov, budsjett og utviklingsvei innenfor modellen","reply":"Jeg ber om et rekrutteringsalternativ som løser behovet uten å blokkere budsjett og de prioriterte utviklingssporene.","effect":1,"tags":["recruitment","budget","academy"],"feedback":"Klubben kan miste førstevalget, men rekrutteringen forblir et strategisk valg i stedet for en tidsfristreaksjon."},
+      {"id":"B","label":"Gå videre med profilspilleren og håndter stallkonsekvensene etter vinduet","reply":"Jeg går videre med profilspilleren mens muligheten finnes og håndterer spilletid og budsjettjusteringer etterpå.","effect":-1,"tags":["market","urgency","risk"],"feedback":"Du får et sterkt kort raskt, men flytter kostnaden til stallbalanse, akademivei og senere budsjettvalg."}
+    ]
+  }]}]
+}

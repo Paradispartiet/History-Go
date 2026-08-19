@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_assistent",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "grunnlagsforstaelse",
+      "purpose": "Knytter assistentens praktiske arbeid til eksplisitt faglig forståelse av kart, sted og observasjon.",
+      "learning_focus": ["kart_er_modell", "observasjon_er_utvalg"],
+      "mails": [
+        {
+          "id": "by_assistent_knowledge_kart_sted_001",
+          "mail_type": "knowledge",
+          "mail_family": "grunnlagsforstaelse",
+          "role_scope": "by_assistent",
+          "phase": "lunch",
+          "priority": 52,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "early",
+          "from": "jonas_arkitekt",
+          "sender": "jonas_arkitekt",
+          "person_id": "jonas_arkitekt",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "Kartet er en modell av stedet, ikke stedet selv",
+          "summary": "Jonas ber deg forklare hvorfor en offisiell kartlinje fortsatt må testes mot faktisk bruk og befaring.",
+          "purpose": "Gjør grunnlagskritikken eksplisitt som faglig kunnskap, ikke bare en arbeidsvane.",
+          "stakes": "Hvis kartet behandles som fasit, kan modellen skjule forhold som er viktige for senere plan- og designvalg.",
+          "situation": [
+            "Kartdata er nødvendige for å arbeide systematisk.",
+            "Samtidig er hvert lag laget for et bestemt formål, tidspunkt og presisjonsnivå.",
+            "Befaring og bruk kan derfor korrigere hva kartet betyr i den konkrete saken."
+          ],
+          "task_domain": "kartforstaelse",
+          "task_kind": "knowledge",
+          "competency": "grunnlagskritikk",
+          "pressure": "formell_data_vs_stedlig_evidens",
+          "choice_axis": "modell_som_fasit_vs_modell_som_kilde",
+          "consequence_axis": "kritisk_forstaelse_vs_falsk_sikkerhet",
+          "narrative_arc": "Assistenten forstår hvorfor kildekritikk også gjelder tekniske og offisielle kartdata.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Behandle kartet som én kilde som må forstås sammen med sted og formål",
+              "reply": "Jeg behandler kartet som en sterk kilde, men vurderer hva laget er laget for og tester det mot stedet når saken krever det.",
+              "effect": 1,
+              "tags": ["knowledge", "map", "source_criticism"],
+              "feedback": "Du bruker kartet presist uten å gi modellen mer sikkerhet enn den har."
+            },
+            {
+              "id": "B",
+              "label": "Bruk offisielt kart som utgangspunkt og avvik bare når feilen er tydelig",
+              "reply": "Jeg bruker offisielt kart som utgangspunkt og avviker bare når befaringen viser en klar feil.",
+              "effect": 0,
+              "tags": ["formal_data", "conservative"],
+              "feedback": "Tilnærmingen er effektiv, men kan overse at kartet er korrekt for sitt formål og likevel utilstrekkelig for ditt."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

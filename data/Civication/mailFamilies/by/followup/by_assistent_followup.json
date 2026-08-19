@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_assistent",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "grunnlagsoppfolging",
+      "purpose": "Viser hvordan et tidlig valg om usikkerhet får arbeid senere i saken.",
+      "learning_focus": ["oppfolging", "sporbarhet"],
+      "mails": [
+        {
+          "id": "by_assistent_followup_kartavvik_001",
+          "mail_type": "followup",
+          "mail_family": "grunnlagsoppfolging",
+          "role_scope": "by_assistent",
+          "thread_key": "by_assistent.case.kartavvik_og_stedsbruk",
+          "phase": "afternoon",
+          "priority": 66,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "advanced",
+          "from": "ingrid_byplan",
+          "sender": "ingrid_byplan",
+          "person_id": "ingrid_byplan",
+          "place_id": "kart_og_grunnlagsbord",
+          "subject": "Kartavviket dukker opp igjen i neste leveranse",
+          "summary": "En ny skisse bruker den samme kanten som premiss, og Ingrid ber deg hente frem hva dere faktisk dokumenterte tidligere.",
+          "purpose": "Teste om assistentens tidligere kildespor og usikkerhet kan brukes operativt når saken går videre.",
+          "stakes": "God dokumentasjon gjør revisjonen liten og presis; svak dokumentasjon tvinger teamet til å rekonstruere hva som skjedde.",
+          "situation": [
+            "Neste leveranse viser kanten som om den var avklart.",
+            "Du husker at kartlag og befaring ikke var helt enige.",
+            "Ingrid trenger dokumentasjonen før hun bestemmer om skissen må revideres."
+          ],
+          "task_domain": "grunnlagsoppfolging",
+          "task_kind": "followup",
+          "competency": "sporbar_faglig_overlevering",
+          "pressure": "rekonstruksjon_vs_dokumentert_spor",
+          "choice_axis": "hente_kilder_vs_stole_pa_hukommelse",
+          "consequence_axis": "presis_revisjon_vs_ny_usikkerhet",
+          "narrative_arc": "Et lite kildespor fra tidligere blir nå forskjellen mellom presis oppfølging og dyr rekonstruksjon.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Hent frem kilde, dato, befaring og den åpne usikkerheten før skissen vurderes",
+              "reply": "Jeg henter frem hele kildesporet og viser nøyaktig hva som var observert, hva som var kartavvik og hva som ikke ble avklart.",
+              "effect": 1,
+              "tags": ["followup", "traceability", "revision"],
+              "feedback": "Teamet kan revidere akkurat det premisset som er svakt uten å åpne hele saken på nytt."
+            },
+            {
+              "id": "B",
+              "label": "Forklar fra hukommelsen hva avviket handlet om og gå videre",
+              "reply": "Jeg forklarer fra hukommelsen at kanten var usikker og foreslår en rask justering.",
+              "effect": -1,
+              "tags": ["memory", "risk"],
+              "feedback": "Du sparer tid nå, men gjør det vanskeligere å vite om revisjonen faktisk svarer på den opprinnelige usikkerheten."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

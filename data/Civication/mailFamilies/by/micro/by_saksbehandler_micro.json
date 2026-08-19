@@ -1,0 +1,17 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"by","role_scope":"by_saksbehandler","mail_type":"micro",
+  "families":[{"id":"saksbehandlingskontroll","purpose":"Trener små kontroller som holder faktum og hjemmel sporbare.","learning_focus":["journal","kildespor"],"mails":[{
+    "id":"by_saksbehandler_micro_kildespor_001","mail_type":"micro","mail_family":"saksbehandlingskontroll","role_scope":"by_saksbehandler","phase":"forenoon","priority":54,"cooldown":1,"repeatable":false,"stage":"early",
+    "from":"anne_planseksjon","sender":"anne_planseksjon","person_id":"anne_planseksjon","place_id":"saksinntak_og_dokumentasjonsbord",
+    "subject":"Vurderingsnotatet viser tallet, men ikke hvilken tegning det kommer fra",
+    "summary":"Høyden står i notatet, men kildeversjonen mangler og søker har sendt flere tegningssett.",
+    "purpose":"Teste om saksbehandleren sikrer kildespor før vurderingen brukes videre.",
+    "stakes":"Et lite manglende spor kan bli vanskelig å rekonstruere dersom søker endrer tegningen eller avgjørelsen senere påklages.",
+    "situation":["Notatet viser riktig høyde slik du leser saken nå.","Tre tegningsversjoner finnes i journalen.","Det tar kort tid å knytte vurderingen til korrekt versjon før du går videre."],
+    "task_domain":"kildespor","task_kind":"micro","competency":"sporbarhet","pressure":"minutter_na_vs_etterprovbarhet_senere","choice_axis":"lenke_kilde_vs_fortsette","consequence_axis":"journalspor_vs_tempo","narrative_arc":"Saksbehandleren lærer at en robust begrunnelse også trenger et robust spor tilbake til faktum.",
+    "choices":[
+      {"id":"A","label":"Lenk vurderingspunktet til korrekt tegningsversjon og dato","reply":"Jeg legger inn tegningsnummer og dato ved høydevurderingen før jeg fortsetter.","effect":1,"tags":["traceability","journal","quality"],"feedback":"Senere lesere kan se nøyaktig hvilket faktum vurderingen bygde på."},
+      {"id":"B","label":"Fortsett og rydd versjonsreferansene ved ferdigstilling","reply":"Jeg fortsetter vurderingen og rydder alle dokumentreferansene samlet ved ferdigstilling.","effect":0,"tags":["delay","risk"],"feedback":"Du sparer noen minutter nå, men gjør det enklere å miste koblingen mellom vurdering og kilde."}
+    ]
+  }]}]
+}

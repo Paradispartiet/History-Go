@@ -270,11 +270,11 @@ test('materialisert fagside og committed fase-1-rapport passerer full audit', ()
   assert.equal(scenekunst.schemaFamily, 'foundation_v1');
   assert.equal(scenekunst.adapter, 'standard');
   assert.equal(scenekunst.domainCount, 4);
-  assert.equal(scenekunst.emneCount, 8);
-  assert.equal(scenekunst.methodCount, 9);
-  assert.equal(scenekunst.mappingCount, 8);
+  assert.equal(scenekunst.emneCount, 20);
+  assert.equal(scenekunst.methodCount, 14);
+  assert.equal(scenekunst.mappingCount, 20);
   assert.equal(scenekunst.hookCount, 0);
-  assert.equal(scenekunst.chapterCount, 0);
+  assert.equal(scenekunst.chapterCount, 4);
   const sport = result.materializedRows.find((row) => row.id === 'sport');
   assert.ok(sport);
   assert.equal(sport.schemaFamily, 'standard_canonical');
