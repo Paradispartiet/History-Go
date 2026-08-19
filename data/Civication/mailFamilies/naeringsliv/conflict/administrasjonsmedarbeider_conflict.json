@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "administrasjonsmedarbeider",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "administrasjonsmedarbeider_dokumentasjonskonflikt",
+      "description": "Konflikter der frist, service og kollegial lojalitet presser sporbar dokumentasjon.",
+      "learning_focus": ["sporbarhet", "fullmakt", "avvik", "ansvar"],
+      "mails": [
+        {
+          "id": "conflict_administrasjonsmedarbeider_close_without_owner",
+          "mail_type": "conflict",
+          "mail_family": "administrasjonsmedarbeider_dokumentasjonskonflikt",
+          "role_scope": "administrasjonsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "phase": "mid",
+          "priority": 82,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Kan du bare lukke den?",
+          "summary": "En kollega vil at et uklart bilag skal få sannsynlig eier slik at måneden kan lukkes.",
+          "situation": [
+            "Fra Marius, økonomi: Vi mangler fortsatt bekreftet eier på bilaget. Det er sannsynligvis drift. Kan du sette det der og lukke saken før rapporteringen?",
+            "Fra Ingrid, kontorleder: Hvis grunnlaget mangler, må det være synlig hvem som skal avklare. En praktisk antakelse er ikke det samme som dokumentasjon."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Holde posten åpen og navngi avklaringsansvar",
+              "reply": "Jeg lar posten stå åpen, dokumenterer hva vi vet og mangler, og setter konkret eier og frist på avklaringen.",
+              "effects": {"traceability": 3, "documentation_quality": 3, "deadline_pressure": 1, "trust_economy": 1},
+              "next_bias": {"set_flags": ["administrasjonsmedarbeider_keeps_uncertainty_visible"]},
+              "triggers_on_choice": "administrasjonsmedarbeider_keeps_uncertainty_visible",
+              "feedback": "Usikkerheten blir stående der den hører hjemme: i saken, ikke skjult i et pent ferdigfelt."
+            },
+            {
+              "id": "B",
+              "label": "Bruke midlertidig kode med eksplisitt kontrollfrist",
+              "reply": "Jeg bruker midlertidig kode, merker den tydelig og legger inn kontrollfrist og ansvarlig for endelig avklaring.",
+              "effects": {"traceability": 2, "deadline_met": 1, "future_risk": 0, "process_quality": 1},
+              "next_bias": {"set_flags": ["administrasjonsmedarbeider_uses_controlled_temporary_code"]},
+              "triggers_on_choice": "administrasjonsmedarbeider_uses_controlled_temporary_code",
+              "feedback": "Midlertidig kan være forsvarlig når det er synlig, tidsavgrenset og faktisk eies av noen."
+            },
+            {
+              "id": "C",
+              "label": "Sette sannsynlig eier og lukke saken",
+              "reply": "Jeg setter drift som eier og lukker saken slik at rapporteringen blir ferdig.",
+              "effects": {"deadline_met": 2, "traceability": -3, "future_risk": 3, "stagnation": 1},
+              "next_bias": {"set_flags": ["administrasjonsmedarbeider_hides_uncertainty_in_system"]},
+              "triggers_on_choice": "administrasjonsmedarbeider_hides_uncertainty_in_system",
+              "feedback": "Rapporten blir ryddigere. Virkeligheten blir ikke mer avklart av den grunn."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
