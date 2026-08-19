@@ -1,0 +1,65 @@
+{
+  "schema":"civication_mail_family_catalog_v1",
+  "version":1,
+  "category":"sport",
+  "role_scope":"sport_sportsledelse",
+  "mail_type":"people",
+  "families":[
+    {
+      "id":"sportslig_styringsdialog",
+      "purpose":"Gjør de eksisterende styringsrelasjonene operative uten å produsere en ny sportslig dramaturgi.",
+      "learning_focus":["sportslig_strategi","mandat","styringsdialog"],
+      "mails":[
+        {
+          "id":"sport_sports_people_karin_001",
+          "mail_type":"people",
+          "mail_family":"sportslig_styringsdialog",
+          "role_scope":"sport_sportsledelse",
+          "phase":"morning",
+          "priority":64,
+          "cooldown":2,
+          "repeatable":false,
+          "stage":"stable",
+          "from":"styreleder_karin",
+          "sender":"styreleder_karin",
+          "person_id":"styreleder_karin",
+          "place_id":"sport_klubbkontor",
+          "subject":"Karin vil vite hva strategien faktisk betyr etter tre tap",
+          "summary":"Styreleder Karin ber om et tydelig sportslig svar, men hun trenger også å vite hvilke grep som ligger innen sportssjefens mandat og hvilke som krever styre- eller arbeidsgiverbeslutning.",
+          "purpose":"Teste om sportssjefen kan gi klar retning uten å gjøre resultatpress til ny fullmakt.",
+          "stakes":"Et raskt løfte kan roe styret, men binde klubben før økonomi, treneransvar eller kontraktsmyndighet er avklart.",
+          "situation":[
+            "Klubbstrategien er fortsatt vedtatt og langsiktig.",
+            "Tre tap har gjort styret mer utålmodig.",
+            "Karin ber deg skille det du kan gjøre nå fra det som må tilbake til riktig beslutningsnivå."
+          ],
+          "task_domain":"sportslig_styringsdialog",
+          "task_kind":"people",
+          "competency":"styringsmandat",
+          "pressure":"resultatpress_vs_mandatklarhet",
+          "choice_axis":"avgrense_og_anbefale_vs_love_handling",
+          "consequence_axis":"langsiktig_tillit_vs_kortsiktig_ro",
+          "narrative_arc":"Sportssjefen lærer at tydelig ledelse også innebærer å gjøre grensene for egen myndighet tydelige.",
+          "choices":[
+            {
+              "id":"A",
+              "label":"Skill umiddelbare sportslige grep fra beslutninger som krever styre- eller arbeidsgiverfullmakt",
+              "reply":"Jeg viser hvilke sportslige grep jeg kan gjennomføre innen mandatet nå, og hvilke større valg som må forankres hos riktig beslutningseier.",
+              "effect":1,
+              "tags":["strategy","authority","trust"],
+              "feedback":"Karin får både retning og et tydelig beslutningskart uten at sportssjefens mandat blåses opp av resultatpresset."
+            },
+            {
+              "id":"B",
+              "label":"Lov et tydelig sportslig grep og avklar fullmakten etter møtet",
+              "reply":"Jeg lover et tydelig grep for å vise handlekraft og avklarer de formelle rammene etterpå.",
+              "effect":-1,
+              "tags":["pressure","mandate_drift","risk"],
+              "feedback":"Styret får et raskt signal, men klubben kan nå oppfatte anbefalingen som en beslutning før riktig fullmakt er avklart."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

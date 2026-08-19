@@ -1,0 +1,15 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"sport","role_scope":"sport_sportsledelse","mail_type":"followup",
+  "families":[{"id":"rekrutteringsoppfolging","purpose":"Viser hvordan et tidligere spillerlogistisk valg virker på stall, akademi og budsjett senere.","learning_focus":["oppfolging","stallbalanse","akademivei"],"mails":[{
+    "id":"sport_sports_followup_profil_001","mail_type":"followup","mail_family":"rekrutteringsoppfolging","role_scope":"sport_sportsledelse","thread_key":"sport_sportsledelse.case.profilrekruttering_og_klubbmodell","phase":"afternoon","priority":66,"cooldown":2,"repeatable":false,"stage":"advanced",
+    "from":"speidersjef_jonas","sender":"speidersjef_jonas","person_id":"speidersjef_jonas","place_id":"sport_rekrutteringsflate",
+    "subject":"Profilvalget kommer tilbake som et stallproblem","summary":"Noen måneder etter rekrutteringsvalget er sportslig kvalitet høy, men spilletid, lønnsrom og veien for to unge spillere er blitt trangere enn planlagt.",
+    "purpose":"Teste om sportssjefen følger opp den tidligere alternativkostnaden som en del av klubbmodellen i stedet for å behandle den som et nytt isolert problem.","stakes":"En rask ny signering eller utlån kan avlaste nå, men kan forsterke en rekrutteringslogikk som allerede presser budsjett og utviklingsvei.",
+    "situation":["Førstelaget har fått mer kvalitet.","To unge spillere får mindre relevant spilletid enn utviklingsplanen forutsatte.","Lønnsrommet gjør neste overgangsvindu mindre fleksibelt."],
+    "task_domain":"rekrutteringsoppfolging","task_kind":"followup","competency":"spillerlogistisk_helhetsblikk","pressure":"kortsiktig_losning_vs_laring_av_tidligere_valg","choice_axis":"rebalansere_modell_vs_lappe_nytt_problem","consequence_axis":"strategisk_laring_vs_gjentatt_kortsiktighet","narrative_arc":"Et tidligere rekrutteringsvalg blir synlig som systemeffekt i stall, akademi og økonomi.",
+    "choices":[
+      {"id":"A","label":"Revider stall- og utviklingsplanen samlet og gjør alternativkostnaden eksplisitt før neste vindu","reply":"Jeg samler stallrolle, spilletid, akademivei og lønnsrom i en revidert plan før vi gjør et nytt markedsgrep.","effect":1,"tags":["followup","squad","academy","budget"],"feedback":"Klubben bruker konsekvensen til å korrigere modellen før neste beslutning."},
+      {"id":"B","label":"Løs de to unge spillernes situasjon separat og behold rekrutteringsmodellen uendret","reply":"Jeg finner individuelle utlåns- eller spilletidsløsninger for de unge spillerne og lar rekrutteringsmodellen stå.","effect":-1,"tags":["patch","academy","risk"],"feedback":"Du avlaster symptomene, men lærer mindre om hvorfor modellen skapte dem."}
+    ]
+  }]}]
+}

@@ -1,0 +1,15 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"sport","role_scope":"sport_sportsledelse","mail_type":"micro",
+  "families":[{"id":"fullmaktsmikrokontroll","purpose":"Trener små fullmaktskontroller før sportslige anbefalinger blir bindende løfter.","learning_focus":["fullmakt","sporbarhet"],"mails":[{
+    "id":"sport_sports_micro_fullmakt_001","mail_type":"micro","mail_family":"fullmaktsmikrokontroll","role_scope":"sport_sportsledelse","phase":"forenoon","priority":54,"cooldown":1,"repeatable":false,"stage":"early",
+    "from":"daglig_leder_morten","sender":"daglig_leder_morten","person_id":"daglig_leder_morten","place_id":"sport_rekrutteringsflate",
+    "subject":"Tilbudet er nesten klart, men hvem kan faktisk signere?","summary":"En sportslig forhandling er moden nok til at motparten forventer et konkret svar, men signaturrett og økonomisk fullmakt må fortsatt bekreftes.",
+    "purpose":"Teste om sportssjefen stopper et bindende løfte til riktig fullmakt er dokumentert.","stakes":"Noen minutters avklaring kan koste tempo, men et løfte uten fullmakt kan binde klubben sosialt eller økonomisk før riktig beslutning er tatt.",
+    "situation":["Det sportslige caset er ferdig vurdert.","Beløpet ligger nær godkjent ramme.","Det er fortsatt uklart om din fullmakt dekker det konkrete tilbudet."],
+    "task_domain":"fullmaktskontroll","task_kind":"micro","competency":"styringsmandat","pressure":"forhandlingstempo_vs_formell_fullmakt","choice_axis":"bekrefte_fullmakt_vs_gi_signal","consequence_axis":"legitim_beslutning_vs_fullmaktsglidning","narrative_arc":"Sportssjefen lærer at et sportslig ja og et bindende klubbtilbud ikke er det samme.",
+    "choices":[
+      {"id":"A","label":"Bekreft signatur- og budsjettrammen før du gir et bindende signal","reply":"Jeg avklarer signaturrett og økonomisk fullmakt før jeg gir motparten et bindende tilbud.","effect":1,"tags":["authority","contract","control"],"feedback":"Forhandlingen mister litt fart, men klubbens beslutningslinje forblir tydelig."},
+      {"id":"B","label":"Gi et tydelig muntlig signal og formaliser fullmakten rett etterpå","reply":"Jeg gir et tydelig muntlig signal om at vi går videre og formaliserer fullmakten umiddelbart etterpå.","effect":-1,"tags":["promise","mandate_drift","risk"],"feedback":"Du holder momentet, men klubben kan allerede oppfattes som bundet før riktig fullmakt er kontrollert."}
+    ]
+  }]}]
+}

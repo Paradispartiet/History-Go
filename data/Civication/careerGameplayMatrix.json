@@ -9,11 +9,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 14,
-      "partial": 8,
+      "playable": 15,
+      "partial": 7,
       "architecture_only": 61
     },
-    "runtime_gate_pass": 19,
+    "runtime_gate_pass": 20,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -37,23 +37,23 @@
         "missing": 5
       },
       "people": {
-        "complete": 14,
+        "complete": 15,
         "partial": 16,
-        "missing": 58
+        "missing": 57
       },
       "places": {
-        "complete": 22,
+        "complete": 23,
         "partial": 0,
-        "missing": 66
+        "missing": 65
       },
       "mail": {
-        "complete": 20,
-        "partial": 7,
+        "complete": 21,
+        "partial": 6,
         "missing": 61
       },
       "knowledge": {
-        "complete": 24,
-        "partial": 24,
+        "complete": 25,
+        "partial": 23,
         "missing": 40
       },
       "quality_axes": {
@@ -67,8 +67,8 @@
         "missing": 1
       },
       "consequences": {
-        "complete": 20,
-        "partial": 4,
+        "complete": 21,
+        "partial": 3,
         "missing": 64
       },
       "performance": {
@@ -17800,7 +17800,7 @@
         "sport_sportsledelse",
         "sport_sportssjef"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/sport/sportssjef.json"
@@ -17814,40 +17814,41 @@
             "count": 8
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
-          "tests/civication-sport-life-career-split.test.js"
+          "tests/civication-sport-life-career-split.test.js",
+          "tests/civication-sport-sportsledelse-rollout-playability.test.js"
         ],
         "life_story": null
       },
@@ -17866,7 +17867,8 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -17876,7 +17878,8 @@
               "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
               "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json",
               "data/Civication/workGrammars/sport/sport_sportsledelse.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
@@ -17889,30 +17892,46 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+              "data/Civication/roleModels/sport/sportssjef.json",
+              "data/Civication/workGrammars/sport/sport_sportsledelse.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
-          },
-          "mail": {
-            "level": "partial",
-            "evidence": [
-              "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
-              "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json"
-            ],
-            "note": "1/9 standard mail types."
-          },
-          "knowledge": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/roleModels/sport/sportssjef.json",
               "data/Civication/workGrammars/sport/sport_sportsledelse.json"
             ],
-            "note": "Knowledge exists, but its gameplay application is incomplete."
+            "note": "8 place/working-surface declarations."
+          },
+          "mail": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+              "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+              "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+              "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+              "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
+              "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+              "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+              "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+              "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+              "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json"
+            ],
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
+          },
+          "knowledge": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+              "data/Civication/roleModels/sport/sportssjef.json",
+              "data/Civication/workGrammars/sport/sport_sportsledelse.json"
+            ],
+            "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
@@ -17931,18 +17950,22 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json"
+              "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+              "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
-            "note": "Consequence content exists without the full role-specific follow-up proof."
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_sportsledelse_plan.json",
               "tests/civication-career-outcomes.test.js",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
           },
@@ -17975,17 +17998,19 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "people",
+          "places",
+          "mail",
+          "knowledge",
           "quality_axes",
           "authority",
+          "consequences",
           "performance",
           "economy",
           "progression",
@@ -18077,7 +18102,8 @@
           }
         },
         "role_tests": [
-          "tests/civication-sport-life-career-split.test.js"
+          "tests/civication-sport-life-career-split.test.js",
+          "tests/civication-sport-sportsledelse-rollout-playability.test.js"
         ],
         "life_story": null
       },
@@ -18096,7 +18122,8 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/sport/sport_trener_plan.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
@@ -18106,7 +18133,8 @@
               "data/Civication/mailFamilies/sport/job/sport_trener_job.json",
               "data/Civication/mailPlans/sport/sport_trener_plan.json",
               "data/Civication/workGrammars/sport/sport_trener.json",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
           },
@@ -18175,7 +18203,8 @@
             "evidence": [
               "data/Civication/mailPlans/sport/sport_trener_plan.json",
               "tests/civication-career-outcomes.test.js",
-              "tests/civication-sport-life-career-split.test.js"
+              "tests/civication-sport-life-career-split.test.js",
+              "tests/civication-sport-sportsledelse-rollout-playability.test.js"
             ],
             "note": "Positive and negative outcomes are defined and role-tested."
           },
