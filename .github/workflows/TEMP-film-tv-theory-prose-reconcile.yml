@@ -19,14 +19,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Materialize and verify Film TV strict proof
-        run: |
-          node --check scripts/audit-fagverk-film-tv-theory-canon.mjs
-          node scripts/audit-fagverk-film-tv-theory-canon.mjs
-          node --test tests/fagverk-film-tv-theory-canon.test.mjs
-          node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
-          node scripts/audit-fagverk-theory-integrity.mjs
-          node --test tests/fagverk-theory-integrity.test.mjs
+      - name: Syntax check Film TV theory audit
+        run: node --check scripts/audit-fagverk-film-tv-theory-canon.mjs
+      - name: Run Film TV theory audit
+        run: node scripts/audit-fagverk-film-tv-theory-canon.mjs
+      - name: Test Film TV theory canon
+        run: node --test tests/fagverk-film-tv-theory-canon.test.mjs
+      - name: Write global theory integrity report
+        run: node scripts/audit-fagverk-theory-integrity.mjs --write-report --no-check-report
+      - name: Verify global theory integrity audit
+        run: node scripts/audit-fagverk-theory-integrity.mjs
+      - name: Test global theory integrity
+        run: node --test tests/fagverk-theory-integrity.test.mjs
       - name: Commit generated reconciliation
         run: |
           git add reports/fagverk/fagverk-theory-integrity-audit.json
