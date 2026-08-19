@@ -9,11 +9,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 16,
-      "partial": 6,
+      "playable": 19,
+      "partial": 3,
       "architecture_only": 61
     },
-    "runtime_gate_pass": 21,
+    "runtime_gate_pass": 24,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -22,23 +22,23 @@
         "missing": 1
       },
       "day_one": {
-        "complete": 23,
-        "partial": 4,
+        "complete": 25,
+        "partial": 2,
         "missing": 61
       },
       "workday_loop": {
-        "complete": 22,
-        "partial": 59,
+        "complete": 25,
+        "partial": 56,
         "missing": 7
       },
       "practice_stories": {
         "complete": 12,
-        "partial": 71,
-        "missing": 5
+        "partial": 74,
+        "missing": 2
       },
       "people": {
-        "complete": 16,
-        "partial": 16,
+        "complete": 19,
+        "partial": 13,
         "missing": 56
       },
       "places": {
@@ -47,8 +47,8 @@
         "missing": 64
       },
       "mail": {
-        "complete": 22,
-        "partial": 5,
+        "complete": 25,
+        "partial": 2,
         "missing": 61
       },
       "knowledge": {
@@ -62,19 +62,19 @@
         "missing": 0
       },
       "authority": {
-        "complete": 80,
-        "partial": 7,
+        "complete": 83,
+        "partial": 4,
         "missing": 1
       },
       "consequences": {
-        "complete": 22,
+        "complete": 25,
         "partial": 2,
-        "missing": 64
+        "missing": 61
       },
       "performance": {
-        "complete": 19,
+        "complete": 22,
         "partial": 5,
-        "missing": 64
+        "missing": 61
       },
       "economy": {
         "complete": 85,
@@ -82,13 +82,13 @@
         "missing": 0
       },
       "progression": {
-        "complete": 18,
-        "partial": 20,
+        "complete": 21,
+        "partial": 17,
         "missing": 50
       },
       "exit": {
-        "complete": 18,
-        "partial": 20,
+        "complete": 21,
+        "partial": 17,
         "missing": 50
       }
     }
@@ -9282,7 +9282,9 @@
       "category": "naeringsliv",
       "role_scope": "finansanalytiker",
       "declared_by": [
-        "mailPlan"
+        "mailPlan",
+        "sharedWorkGrammar",
+        "workGrammar"
       ],
       "badge_titles": [
         "Finansanalytiker"
@@ -9290,13 +9292,15 @@
       "role_ids": [
         "naer_finansanalytiker"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/finansanalytiker.json"
         ],
-        "work_grammar": null,
-        "shared_work_grammars": [],
+        "work_grammar": "data/Civication/workGrammars/naeringsliv/finansanalytiker.json",
+        "shared_work_grammars": [
+          "data/Civication/workGrammars/naeringsliv/naeringsliv_finans_og_kapitalforvaltning.json"
+        ],
         "mail_plan": "data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json",
         "mail_families": {
           "job": {
@@ -9304,8 +9308,8 @@
             "count": 3
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
+            "count": 1
           },
           "conflict": {
             "path": "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json",
@@ -9320,23 +9324,24 @@
             "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
+          "tests/civication-naeringsliv-finansanalytiker-rollout-playability.test.js",
           "tests/civication-naeringsliv-life-career-split.test.js"
         ],
         "life_story": null
@@ -9356,79 +9361,108 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json",
+              "tests/civication-naeringsliv-finansanalytiker-rollout-playability.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json",
-              "data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json"
+              "data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json",
+              "data/Civication/workGrammars/naeringsliv/finansanalytiker.json",
+              "tests/civication-naeringsliv-finansanalytiker-rollout-playability.test.js",
+              "tests/civication-naeringsliv-life-career-split.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No structured practice stories."
-          },
-          "people": {
             "level": "partial",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/finansanalytiker.json"
+              "data/Civication/praksisfortellinger_registry.json",
+              "data/Civication/workGrammars/naeringsliv/finansanalytiker.json"
             ],
-            "note": "People content exists on only one side of the content/runtime boundary."
+            "note": "5 FWG stories and 0 registered practice week(s)."
+          },
+          "people": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
+              "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+              "data/Civication/workGrammars/naeringsliv/finansanalytiker.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
             "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/finansanalytiker.json"
+              "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+              "data/Civication/workGrammars/naeringsliv/finansanalytiker.json"
             ],
             "note": "3 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json",
+              "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
               "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json",
+              "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
               "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json",
+              "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json",
+              "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json",
+              "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
               "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json",
               "data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json"
             ],
-            "note": "4/9 standard mail types."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
-              "data/Civication/roleModels/naeringsliv/finansanalytiker.json"
+              "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json",
+              "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+              "data/Civication/workGrammars/naeringsliv/finansanalytiker.json"
             ],
             "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/finansanalytiker.json"
+              "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+              "data/Civication/workGrammars/naeringsliv/finansanalytiker.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
           },
           "authority": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/finansanalytiker.json"
+              "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+              "data/Civication/workGrammars/naeringsliv/finansanalytiker.json"
             ],
-            "note": "Role content exists, but authority is not an explicit machine-auditable boundary."
+            "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
+              "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
+              "tests/civication-naeringsliv-finansanalytiker-rollout-playability.test.js",
+              "tests/civication-naeringsliv-life-career-split.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-naeringsliv-finansanalytiker-rollout-playability.test.js",
+              "tests/civication-naeringsliv-life-career-split.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -9440,39 +9474,46 @@
             "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json",
-              "data/Civication/roleModels/naeringsliv/finansanalytiker.json"
+              "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+              "data/Civication/workGrammars/naeringsliv/finansanalytiker.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/finansanalytiker_plan.json",
-              "data/Civication/roleModels/naeringsliv/finansanalytiker.json"
+              "data/Civication/roleModels/naeringsliv/finansanalytiker.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "practice_stories",
-          "consequences",
-          "performance"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
+          "workday_loop",
+          "people",
           "places",
+          "mail",
           "knowledge",
           "quality_axes",
-          "economy"
+          "authority",
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
-        "practice_story_count": 0,
+        "practice_story_count": 5,
         "practice_weeks": [],
-        "reference_depth": 0,
+        "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
           "linked_titles": 1,
@@ -9496,7 +9537,9 @@
       "category": "naeringsliv",
       "role_scope": "finansdirektor",
       "declared_by": [
-        "mailPlan"
+        "mailPlan",
+        "sharedWorkGrammar",
+        "workGrammar"
       ],
       "badge_titles": [
         "Finansdirektør"
@@ -9504,13 +9547,15 @@
       "role_ids": [
         "naer_finansdirektor"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/finansdirektor.json"
         ],
-        "work_grammar": null,
-        "shared_work_grammars": [],
+        "work_grammar": "data/Civication/workGrammars/naeringsliv/finansdirektor.json",
+        "shared_work_grammars": [
+          "data/Civication/workGrammars/naeringsliv/naeringsliv_finansiell_ledelse.json"
+        ],
         "mail_plan": "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json",
         "mail_families": {
           "job": {
@@ -9518,8 +9563,8 @@
             "count": 2
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json",
+            "count": 1
           },
           "conflict": {
             "path": "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json",
@@ -9534,23 +9579,25 @@
             "count": 2
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json",
+            "count": 1
           }
         },
-        "role_tests": [],
+        "role_tests": [
+          "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
+        ],
         "life_story": null
       },
       "audit": {
@@ -9565,81 +9612,107 @@
             "note": "1 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json"
+              "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json",
+              "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
             ],
-            "note": "Day-one structure exists without a complete role-specific runtime proof."
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json",
-              "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json"
+              "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json",
+              "data/Civication/workGrammars/naeringsliv/finansdirektor.json",
+              "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No structured practice stories."
-          },
-          "people": {
             "level": "partial",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/finansdirektor.json"
+              "data/Civication/praksisfortellinger_registry.json",
+              "data/Civication/workGrammars/naeringsliv/finansdirektor.json"
             ],
-            "note": "People content exists on only one side of the content/runtime boundary."
+            "note": "5 FWG stories and 0 registered practice week(s)."
+          },
+          "people": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json",
+              "data/Civication/roleModels/naeringsliv/finansdirektor.json",
+              "data/Civication/workGrammars/naeringsliv/finansdirektor.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
             "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/finansdirektor.json"
+              "data/Civication/roleModels/naeringsliv/finansdirektor.json",
+              "data/Civication/workGrammars/naeringsliv/finansdirektor.json"
             ],
             "note": "3 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/conflict/finansdirektor_conflict.json",
+              "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json",
               "data/Civication/mailFamilies/naeringsliv/event/finansdirektor_event.json",
+              "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json",
               "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json",
+              "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json",
+              "data/Civication/mailFamilies/naeringsliv/micro/finansdirektor_micro.json",
+              "data/Civication/mailFamilies/naeringsliv/people/finansdirektor_people.json",
               "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json",
               "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json"
             ],
-            "note": "4/9 standard mail types."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
-              "data/Civication/roleModels/naeringsliv/finansdirektor.json"
+              "data/Civication/mailFamilies/naeringsliv/knowledge/finansdirektor_knowledge.json",
+              "data/Civication/roleModels/naeringsliv/finansdirektor.json",
+              "data/Civication/workGrammars/naeringsliv/finansdirektor.json"
             ],
             "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/finansdirektor.json"
+              "data/Civication/roleModels/naeringsliv/finansdirektor.json",
+              "data/Civication/workGrammars/naeringsliv/finansdirektor.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
           },
           "authority": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/finansdirektor.json"
+              "data/Civication/roleModels/naeringsliv/finansdirektor.json",
+              "data/Civication/workGrammars/naeringsliv/finansdirektor.json"
             ],
-            "note": "Role content exists, but authority is not an explicit machine-auditable boundary."
+            "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/consequence/finansdirektor_consequence.json",
+              "data/Civication/mailFamilies/naeringsliv/followup/finansdirektor_followup.json",
+              "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-naeringsliv-finansdirektor-rollout-playability.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -9651,38 +9724,46 @@
             "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json",
-              "data/Civication/roleModels/naeringsliv/finansdirektor.json"
+              "data/Civication/roleModels/naeringsliv/finansdirektor.json",
+              "data/Civication/workGrammars/naeringsliv/finansdirektor.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/finansdirektor_plan.json",
-              "data/Civication/roleModels/naeringsliv/finansdirektor.json"
+              "data/Civication/roleModels/naeringsliv/finansdirektor.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "practice_stories",
-          "consequences",
-          "performance"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
+          "day_one",
+          "workday_loop",
+          "people",
           "places",
+          "mail",
           "knowledge",
           "quality_axes",
-          "economy"
+          "authority",
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
-        "practice_story_count": 0,
+        "practice_story_count": 5,
         "practice_weeks": [],
-        "reference_depth": 0,
+        "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
           "linked_titles": 1,
@@ -10633,7 +10714,8 @@
       "category": "naeringsliv",
       "role_scope": "okonomi_og_finanssjef",
       "declared_by": [
-        "mailPlan"
+        "mailPlan",
+        "workGrammar"
       ],
       "badge_titles": [
         "Økonomi- og finanssjef"
@@ -10641,12 +10723,12 @@
       "role_ids": [
         "naer_okonomi_og_finanssjef"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json"
         ],
-        "work_grammar": null,
+        "work_grammar": "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json",
         "shared_work_grammars": [],
         "mail_plan": "data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json",
         "mail_families": {
@@ -10655,8 +10737,8 @@
             "count": 3
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
+            "count": 1
           },
           "conflict": {
             "path": "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json",
@@ -10671,23 +10753,25 @@
             "count": 2
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
+            "count": 1
           }
         },
-        "role_tests": [],
+        "role_tests": [
+          "tests/civication-naeringsliv-okonomi-og-finanssjef-rollout-playability.test.js"
+        ],
         "life_story": null
       },
       "audit": {
@@ -10702,81 +10786,107 @@
             "note": "1 linked career title(s) have an offer policy and gate."
           },
           "day_one": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json"
+              "data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json",
+              "tests/civication-naeringsliv-okonomi-og-finanssjef-rollout-playability.test.js"
             ],
-            "note": "Day-one structure exists without a complete role-specific runtime proof."
+            "note": "Role plan and role-specific test prove a first playable day."
           },
           "workday_loop": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json",
-              "data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json"
+              "data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json",
+              "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json",
+              "tests/civication-naeringsliv-okonomi-og-finanssjef-rollout-playability.test.js"
             ],
-            "note": "Work-loop content exists, but the complete repeatable runtime path is not proven."
+            "note": "Repeatable work content is connected to a tested plan."
           },
           "practice_stories": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No structured practice stories."
-          },
-          "people": {
             "level": "partial",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json"
+              "data/Civication/praksisfortellinger_registry.json",
+              "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json"
             ],
-            "note": "People content exists on only one side of the content/runtime boundary."
+            "note": "5 FWG stories and 0 registered practice week(s)."
+          },
+          "people": {
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
+              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+              "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
             "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json"
+              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+              "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json"
             ],
             "note": "3 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailFamilies/naeringsliv/conflict/okonomi_og_finanssjef_conflict.json",
+              "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
               "data/Civication/mailFamilies/naeringsliv/event/okonomi_og_finanssjef_event.json",
+              "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
               "data/Civication/mailFamilies/naeringsliv/job/okonomi_og_finanssjef_job.json",
+              "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json",
+              "data/Civication/mailFamilies/naeringsliv/micro/okonomi_og_finanssjef_micro.json",
+              "data/Civication/mailFamilies/naeringsliv/people/okonomi_og_finanssjef_people.json",
               "data/Civication/mailFamilies/naeringsliv/story/okonomi_og_finanssjef_story.json",
               "data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json"
             ],
-            "note": "4/9 standard mail types."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
-              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json"
+              "data/Civication/mailFamilies/naeringsliv/knowledge/okonomi_og_finanssjef_knowledge.json",
+              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+              "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json"
             ],
             "note": "Knowledge content is connected to a mail or job-gate surface."
           },
           "quality_axes": {
             "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json"
+              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+              "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json"
             ],
             "note": "Quality/competence axes are declared and connected to choice/consequence fields."
           },
           "authority": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json"
+              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+              "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json"
             ],
-            "note": "Role content exists, but authority is not an explicit machine-auditable boundary."
+            "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No consequence model."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/naeringsliv/consequence/okonomi_og_finanssjef_consequence.json",
+              "data/Civication/mailFamilies/naeringsliv/followup/okonomi_og_finanssjef_followup.json",
+              "tests/civication-naeringsliv-okonomi-og-finanssjef-rollout-playability.test.js"
+            ],
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No performance evaluation."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-naeringsliv-okonomi-og-finanssjef-rollout-playability.test.js"
+            ],
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -10788,38 +10898,46 @@
             "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json",
-              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json"
+              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+              "data/Civication/workGrammars/naeringsliv/okonomi_og_finanssjef.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/okonomi_og_finanssjef_plan.json",
-              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json"
+              "data/Civication/roleModels/naeringsliv/okonomi_og_finanssjef.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "practice_stories",
-          "consequences",
-          "performance"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
+          "day_one",
+          "workday_loop",
+          "people",
           "places",
+          "mail",
           "knowledge",
           "quality_axes",
-          "economy"
+          "authority",
+          "consequences",
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
-        "practice_story_count": 0,
+        "practice_story_count": 5,
         "practice_weeks": [],
-        "reference_depth": 0,
+        "reference_depth": 5,
         "life_story_complete": false,
         "salary": {
           "linked_titles": 1,

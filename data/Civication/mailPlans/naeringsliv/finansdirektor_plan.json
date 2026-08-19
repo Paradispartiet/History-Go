@@ -16,6 +16,24 @@
       "Når er et oppkjøp strategisk verdi, og når er det prestisje forkledd som vekst?"
     ]
   },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "finansdirektor_kapitalpress_loop", "evening_pressure"]
+    }
+  },
   "sequence": [
     {
       "step": 1,
