@@ -22,6 +22,9 @@
     "data/Civication/mailFamilies/film_tv/consequence/produksjonsassistent_consequence.json",
     "data/Civication/mailFamilies/naeringsliv/job/administrasjonsmedarbeider_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json",
+    "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
+    "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json",
+    "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json",
     "data/Civication/mailFamilies/naeringsliv/job/arbeider_intro_v2.json",
     "data/Civication/mailFamilies/naeringsliv/job/arbeider_job.json",
     "data/Civication/mailFamilies/naeringsliv/people/arbeider_people.json",
@@ -20200,6 +20203,308 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "channel": "job",
+        "choices": [
+          {
+            "effects": {
+              "deadline_pressure": 1,
+              "documentation_quality": 3,
+              "traceability": 3,
+              "trust_economy": 1
+            },
+            "feedback": "Usikkerheten blir stående der den hører hjemme: i saken, ikke skjult i et pent ferdigfelt.",
+            "id": "A",
+            "label": "Holde posten åpen og navngi avklaringsansvar",
+            "next_bias": {
+              "set_flags": [
+                "administrasjonsmedarbeider_keeps_uncertainty_visible"
+              ]
+            },
+            "reply": "Jeg lar posten stå åpen, dokumenterer hva vi vet og mangler, og setter konkret eier og frist på avklaringen.",
+            "triggers_on_choice": "administrasjonsmedarbeider_keeps_uncertainty_visible"
+          },
+          {
+            "effects": {
+              "deadline_met": 1,
+              "future_risk": 0,
+              "process_quality": 1,
+              "traceability": 2
+            },
+            "feedback": "Midlertidig kan være forsvarlig når det er synlig, tidsavgrenset og faktisk eies av noen.",
+            "id": "B",
+            "label": "Bruke midlertidig kode med eksplisitt kontrollfrist",
+            "next_bias": {
+              "set_flags": [
+                "administrasjonsmedarbeider_uses_controlled_temporary_code"
+              ]
+            },
+            "reply": "Jeg bruker midlertidig kode, merker den tydelig og legger inn kontrollfrist og ansvarlig for endelig avklaring.",
+            "triggers_on_choice": "administrasjonsmedarbeider_uses_controlled_temporary_code"
+          },
+          {
+            "effects": {
+              "deadline_met": 2,
+              "future_risk": 3,
+              "stagnation": 1,
+              "traceability": -3
+            },
+            "feedback": "Rapporten blir ryddigere. Virkeligheten blir ikke mer avklart av den grunn.",
+            "id": "C",
+            "label": "Sette sannsynlig eier og lukke saken",
+            "next_bias": {
+              "set_flags": [
+                "administrasjonsmedarbeider_hides_uncertainty_in_system"
+              ]
+            },
+            "reply": "Jeg setter drift som eier og lukker saken slik at rapporteringen blir ferdig.",
+            "triggers_on_choice": "administrasjonsmedarbeider_hides_uncertainty_in_system"
+          }
+        ],
+        "cooldown": 0,
+        "id": "conflict_administrasjonsmedarbeider_close_without_owner",
+        "mail_class": "job_message",
+        "mail_family": "administrasjonsmedarbeider_dokumentasjonskonflikt",
+        "mail_type": "conflict",
+        "messageChannel": "job",
+        "phase": "mid",
+        "priority": 82,
+        "repeatable": false,
+        "role_scope": "administrasjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Fra Marius, økonomi: Vi mangler fortsatt bekreftet eier på bilaget. Det er sannsynligvis drift. Kan du sette det der og lukke saken før rapporteringen?",
+          "Fra Ingrid, kontorleder: Hvis grunnlaget mangler, må det være synlig hvem som skal avklare. En praktisk antakelse er ikke det samme som dokumentasjon."
+        ],
+        "stage": "stable",
+        "subject": "Kan du bare lukke den?",
+        "summary": "En kollega vil at et uklart bilag skal få sannsynlig eier slik at måneden kan lukkes."
+      },
+      "id": "conflict_administrasjonsmedarbeider_close_without_owner",
+      "mail_type": "conflict",
+      "role_scope": "administrasjonsmedarbeider",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Usikkerheten blir stående der den hører hjemme: i saken, ikke skjult i et pent ferdigfelt.",
+            "id": "A",
+            "label": "Holde posten åpen og navngi avklaringsansvar",
+            "reply": "Jeg lar posten stå åpen, dokumenterer hva vi vet og mangler, og setter konkret eier og frist på avklaringen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Midlertidig kan være forsvarlig når det er synlig, tidsavgrenset og faktisk eies av noen.",
+            "id": "B",
+            "label": "Bruke midlertidig kode med eksplisitt kontrollfrist",
+            "reply": "Jeg bruker midlertidig kode, merker den tydelig og legger inn kontrollfrist og ansvarlig for endelig avklaring."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Rapporten blir ryddigere. Virkeligheten blir ikke mer avklart av den grunn.",
+            "id": "C",
+            "label": "Sette sannsynlig eier og lukke saken",
+            "reply": "Jeg setter drift som eier og lukker saken slik at rapporteringen blir ferdig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fra Marius, økonomi: Vi mangler fortsatt bekreftet eier på bilaget. Det er sannsynligvis drift. Kan du sette det der og lukke saken før rapporteringen?",
+            "Fra Ingrid, kontorleder: Hvis grunnlaget mangler, må det være synlig hvem som skal avklare. En praktisk antakelse er ikke det samme som dokumentasjon."
+          ],
+          "subject": "Kan du bare lukke den?",
+          "summary": "En kollega vil at et uklart bilag skal få sannsynlig eier slik at måneden kan lukkes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "conflict_administrasjonsmedarbeider_close_without_owner",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "conflict_administrasjonsmedarbeider_close_without_owner",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "administrasjonsmedarbeider.mail.conflict_administrasjonsmedarbeider_close_without_owner",
+        "version": 1
+      },
+      "source_hash": "573de56b9661eaf6bbe97fea75e7da22bccc9f1ee21f3d2514a00d5a240d3351",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "channel": "job",
+        "choices": [
+          {
+            "effects": {
+              "deadline_met": 2,
+              "process_quality": 3,
+              "stress": 2,
+              "traceability": 4
+            },
+            "feedback": "Beredskap betyr ikke å late som systemet virker. Du bygger et spor som kan føres tilbake når det gjør det.",
+            "id": "A",
+            "label": "Opprette kontrollert midlertidig logg",
+            "next_bias": {
+              "set_flags": [
+                "administrasjonsmedarbeider_controlled_offline_log"
+              ]
+            },
+            "reply": "Jeg oppretter en tidsstemplet midlertidig logg med kilde, eier, kontrollstatus og vedlegg, og avtaler hvordan alt skal rekonsilieres etterpå.",
+            "triggers_on_choice": "administrasjonsmedarbeider_controlled_offline_log"
+          },
+          {
+            "effects": {
+              "deadline_met": 0,
+              "future_risk": 1,
+              "stress": -1,
+              "traceability": 1
+            },
+            "feedback": "Du bevarer grunnlaget, men frist og behandlingsstatus blir vanskeligere å rekonstruere hvis køen vokser.",
+            "id": "B",
+            "label": "Samle dokumentene og registrere senere",
+            "next_bias": {
+              "set_flags": [
+                "administrasjonsmedarbeider_waits_for_system"
+              ]
+            },
+            "reply": "Jeg samler dokumentene i én mappe og registrerer dem når systemet er tilbake.",
+            "triggers_on_choice": "administrasjonsmedarbeider_waits_for_system"
+          },
+          {
+            "effects": {
+              "deadline_met": 3,
+              "documentation_quality": -2,
+              "future_risk": 3,
+              "traceability": -3
+            },
+            "feedback": "Fristen kan reddes, men du har gjort etterkontrollen avhengig av hukommelse akkurat når systemet svikter.",
+            "id": "C",
+            "label": "Sende det viktigste manuelt uten full logg",
+            "next_bias": {
+              "set_flags": [
+                "administrasjonsmedarbeider_manual_without_trace"
+              ]
+            },
+            "reply": "Jeg sender de viktigste tallene manuelt og dokumenterer resten senere.",
+            "triggers_on_choice": "administrasjonsmedarbeider_manual_without_trace"
+          }
+        ],
+        "cooldown": 0,
+        "id": "event_administrasjonsmedarbeider_system_down_before_deadline",
+        "mail_class": "event_message",
+        "mail_family": "administrasjonsmedarbeider_systemfrist",
+        "mail_type": "event",
+        "messageChannel": "job",
+        "phase": "advanced",
+        "priority": 84,
+        "repeatable": false,
+        "role_scope": "administrasjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Fra System: Registreringsløsningen er utilgjengelig. Estimert gjenoppretting er ukjent.",
+          "Fra Ingrid: Fristen står. Vi trenger en midlertidig arbeidsmåte som gjør det mulig å rekonstruere hva som ble mottatt, kontrollert og godkjent når systemet er tilbake."
+        ],
+        "stage": "stable",
+        "subject": "Systemet er nede før fristen",
+        "summary": "Registreringssystemet stanser mens en rapporteringsfrist nærmer seg, og arbeidet må fortsette uten å miste kilde og kontrollspor."
+      },
+      "id": "event_administrasjonsmedarbeider_system_down_before_deadline",
+      "mail_type": "event",
+      "role_scope": "administrasjonsmedarbeider",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Beredskap betyr ikke å late som systemet virker. Du bygger et spor som kan føres tilbake når det gjør det.",
+            "id": "A",
+            "label": "Opprette kontrollert midlertidig logg",
+            "reply": "Jeg oppretter en tidsstemplet midlertidig logg med kilde, eier, kontrollstatus og vedlegg, og avtaler hvordan alt skal rekonsilieres etterpå."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du bevarer grunnlaget, men frist og behandlingsstatus blir vanskeligere å rekonstruere hvis køen vokser.",
+            "id": "B",
+            "label": "Samle dokumentene og registrere senere",
+            "reply": "Jeg samler dokumentene i én mappe og registrerer dem når systemet er tilbake."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Fristen kan reddes, men du har gjort etterkontrollen avhengig av hukommelse akkurat når systemet svikter.",
+            "id": "C",
+            "label": "Sende det viktigste manuelt uten full logg",
+            "reply": "Jeg sender de viktigste tallene manuelt og dokumenterer resten senere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fra System: Registreringsløsningen er utilgjengelig. Estimert gjenoppretting er ukjent.",
+            "Fra Ingrid: Fristen står. Vi trenger en midlertidig arbeidsmåte som gjør det mulig å rekonstruere hva som ble mottatt, kontrollert og godkjent når systemet er tilbake."
+          ],
+          "subject": "Systemet er nede før fristen",
+          "summary": "Registreringssystemet stanser mens en rapporteringsfrist nærmer seg, og arbeidet må fortsette uten å miste kilde og kontrollspor."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "event_administrasjonsmedarbeider_system_down_before_deadline",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "event_administrasjonsmedarbeider_system_down_before_deadline",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "administrasjonsmedarbeider.mail.event_administrasjonsmedarbeider_system_down_before_deadline",
+        "version": 1
+      },
+      "source_hash": "6a29f9fd5c49a425b0740020e2dbf1d9b308f13f82987a2c864931e514581bcd",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "synliggjøre_mønster_vs_rydde_stille",
         "choices": [
           {
@@ -24381,6 +24686,157 @@
       },
       "source_hash": "90dfb2d5a34fd9733540b7aacf8c9fa8e23e3bf96e4ceee45e2ab40ca4a71f56",
       "source_path": "data/Civication/mailFamilies/naeringsliv/people/administrasjonsmedarbeider_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "channel": "job",
+        "choices": [
+          {
+            "effects": {
+              "documentation_quality": 3,
+              "process_quality": 2,
+              "stress": 1,
+              "traceability": 3
+            },
+            "feedback": "Du retter ikke bare filen; du reparerer sporet av hva organisasjonen trodde var sant.",
+            "id": "A",
+            "label": "Sikre gjeldende versjon og dokumentere berørte saker",
+            "next_bias": {
+              "set_flags": [
+                "administrasjonsmedarbeider_repairs_version_history"
+              ]
+            },
+            "reply": "Jeg markerer korrekt versjon som gjeldende, sperrer den gamle som utgått og dokumenterer hvilke senere saker som må kontrolleres.",
+            "triggers_on_choice": "administrasjonsmedarbeider_repairs_version_history"
+          },
+          {
+            "effects": {
+              "deadline_met": 1,
+              "documentation_quality": 1,
+              "future_risk": 1,
+              "traceability": 0
+            },
+            "feedback": "Fremover blir det bedre, men du vet fortsatt ikke sikkert hvor den gamle versjonen allerede har satt spor.",
+            "id": "B",
+            "label": "Erstatte filen og varsle kort",
+            "next_bias": {
+              "set_flags": [
+                "administrasjonsmedarbeider_replaces_without_full_trace"
+              ]
+            },
+            "reply": "Jeg legger riktig fil øverst og sender en kort melding om at den gamle ikke skal brukes.",
+            "triggers_on_choice": "administrasjonsmedarbeider_replaces_without_full_trace"
+          },
+          {
+            "effects": {
+              "future_risk": 3,
+              "process_quality": -1,
+              "stagnation": 1,
+              "traceability": -2
+            },
+            "feedback": "To sannheter i samme arkiv er fortsatt to sannheter, selv med penere filnavn.",
+            "id": "C",
+            "label": "La begge ligge og stole på filnavnet",
+            "next_bias": {
+              "set_flags": [
+                "administrasjonsmedarbeider_leaves_competing_truths"
+              ]
+            },
+            "reply": "Jeg lar begge dokumentene ligge og legger dato tydeligere i filnavnet.",
+            "triggers_on_choice": "administrasjonsmedarbeider_leaves_competing_truths"
+          }
+        ],
+        "cooldown": 0,
+        "id": "story_administrasjonsmedarbeider_which_version_became_truth",
+        "mail_class": "story_message",
+        "mail_family": "administrasjonsmedarbeider_virksomhetshukommelse",
+        "mail_type": "story",
+        "messageChannel": "job",
+        "phase": "mid",
+        "priority": 78,
+        "repeatable": false,
+        "role_scope": "administrasjonsmedarbeider",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Fra Ingrid: Vi har to versjoner av samme beslutningsnotat. Den gamle ble liggende først i søk og er brukt i to senere saker.",
+          "Fra System: Nyeste fil har korrekt beløp og ansvarlig. Gammel fil mangler endringsmarkering og ligger som 'gjeldende'."
+        ],
+        "stage": "stable",
+        "subject": "Versjonen som ble sannheten",
+        "summary": "To dokumentversjoner beskriver samme beslutning forskjellig, og den eldste har blitt brukt videre."
+      },
+      "id": "story_administrasjonsmedarbeider_which_version_became_truth",
+      "mail_type": "story",
+      "role_scope": "administrasjonsmedarbeider",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du retter ikke bare filen; du reparerer sporet av hva organisasjonen trodde var sant.",
+            "id": "A",
+            "label": "Sikre gjeldende versjon og dokumentere berørte saker",
+            "reply": "Jeg markerer korrekt versjon som gjeldende, sperrer den gamle som utgått og dokumenterer hvilke senere saker som må kontrolleres."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Fremover blir det bedre, men du vet fortsatt ikke sikkert hvor den gamle versjonen allerede har satt spor.",
+            "id": "B",
+            "label": "Erstatte filen og varsle kort",
+            "reply": "Jeg legger riktig fil øverst og sender en kort melding om at den gamle ikke skal brukes."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "To sannheter i samme arkiv er fortsatt to sannheter, selv med penere filnavn.",
+            "id": "C",
+            "label": "La begge ligge og stole på filnavnet",
+            "reply": "Jeg lar begge dokumentene ligge og legger dato tydeligere i filnavnet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Fra Ingrid: Vi har to versjoner av samme beslutningsnotat. Den gamle ble liggende først i søk og er brukt i to senere saker.",
+            "Fra System: Nyeste fil har korrekt beløp og ansvarlig. Gammel fil mangler endringsmarkering og ligger som 'gjeldende'."
+          ],
+          "subject": "Versjonen som ble sannheten",
+          "summary": "To dokumentversjoner beskriver samme beslutning forskjellig, og den eldste har blitt brukt videre."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "story_administrasjonsmedarbeider_which_version_became_truth",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "story_administrasjonsmedarbeider_which_version_became_truth",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "administrasjonsmedarbeider.mail.story_administrasjonsmedarbeider_which_version_became_truth",
+        "version": 1
+      },
+      "source_hash": "bf81466e6246241df679041114dadb46ddf00d9bf10d3e90d07bba598aa95b43",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -137953,7 +138409,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "fcaa9aacf30db0b0b97e0119d494a63651649379d3d9ea6dc441e8674ae9acf6",
+  "registry_hash": "85fde37c15c726a27c7d4bad4fc39d393651daf39c9cc66f64f0fa2df3352ea7",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -138134,7 +138590,10 @@
       "personal_administrasjonsmedarbeider_week2_friend_no_status_update",
       "personal_administrasjonsmedarbeider_week2_love_as_routine",
       "personal_administrasjonsmedarbeider_week2_conversation_without_minutes",
-      "personal_administrasjonsmedarbeider_week2_weekend_without_followup"
+      "personal_administrasjonsmedarbeider_week2_weekend_without_followup",
+      "story_administrasjonsmedarbeider_which_version_became_truth",
+      "conflict_administrasjonsmedarbeider_close_without_owner",
+      "event_administrasjonsmedarbeider_system_down_before_deadline"
     ],
     "naeringsliv/arbeider": [
       "job_first_week_unowned_task",
@@ -138934,11 +139393,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 132,
+    "compiled_source_file_count": 135,
     "ignored_source_file_count": 1,
-    "input_file_count": 133,
+    "input_file_count": 136,
     "role_count": 28,
-    "scene_count": 895,
+    "scene_count": 898,
     "shadowed_duplicate_count": 0
   },
   "version": 1
