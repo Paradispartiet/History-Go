@@ -92,9 +92,14 @@
     "data/Civication/mailFamilies/naeringsliv/event/fagarbeider_event.json",
     "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_intro_v2.json",
     "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json",
+    "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
     "data/Civication/mailFamilies/naeringsliv/story/finansanalytiker_story.json",
     "data/Civication/mailFamilies/naeringsliv/conflict/finansanalytiker_conflict.json",
     "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json",
+    "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json",
+    "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
+    "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json",
+    "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
     "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_intro_v2.json",
     "data/Civication/mailFamilies/naeringsliv/job/finansdirektor_job.json",
     "data/Civication/mailFamilies/naeringsliv/story/finansdirektor_story.json",
@@ -70607,6 +70612,131 @@
       "category": "naeringsliv",
       "compatibility_projection": {
         "category": "naeringsliv",
+        "choice_axis": "vise_endringsspor_og_nedside_vs_behandle_som_teknisk_oppdatering",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Beslutningen kan nå ta høyde for både oppside og den risikoen premissendringen gjorde synlig.",
+            "id": "A",
+            "label": "Vis endringssporet og la komiteen vurdere caset mot det nye risikobildet",
+            "reply": "Jeg viser hva som endret seg fra første notat og lar komiteen vurdere caset mot det nye nedsidescenariet.",
+            "tags": [
+              "consequence",
+              "risk",
+              "traceability"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du bevarer fortellingen, men gjør en beslutningsrelevant endring mindre synlig enn den er.",
+            "id": "B",
+            "label": "Presenter oppdateringen som teknisk siden hovedcaset fortsatt er attraktivt",
+            "reply": "Jeg presenterer dette som en teknisk modelloppdatering siden hovedcaset fortsatt er attraktivt.",
+            "tags": [
+              "narrative_bias",
+              "risk_hidden"
+            ]
+          }
+        ],
+        "competency": "risikoformidling",
+        "consequence_axis": "ansvarlig_kapitalbeslutning_vs_skjult_premissendring",
+        "cooldown": 3,
+        "from": "elin_portefoljeansvarlig",
+        "id": "finansanalytiker_consequence_premiss_001",
+        "mail_family": "forsinket_effekt_av_endret_premiss",
+        "mail_type": "consequence",
+        "narrative_arc": "Analytikeren ser at sporbare premissendringer kan endre kapitalbeslutningen selv når hovedfortellingen fortsatt ser attraktiv ut.",
+        "person_id": "elin_portefoljeansvarlig",
+        "phase": "day_end",
+        "place_id": "oslo_bors",
+        "pressure": "beholde_investeringsfortellingen_vs_oppdatere_risikobildet",
+        "priority": 62,
+        "purpose": "Vise at metodeintegritet ikke bare handler om ryddige modeller, men om hvilke kapitalvalg andre tar senere.",
+        "repeatable": false,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "elin_portefoljeansvarlig",
+        "situation": [
+          "Det opprinnelige notatet kan sammenlignes med den reviderte modellen.",
+          "Nøkkelantakelsen endrer først og fremst nedsiderisikoen.",
+          "Komiteen skal ta stilling til om caset fortsatt passer mandatet."
+        ],
+        "stage": "mastery",
+        "stakes": "Du kan behandle forskjellen som en mindre modelloppdatering, eller bruke den til å gjøre beslutningssporet og risikobildet eksplisitt før kapital bindes.",
+        "subject": "Komiteen ser nå hva den endrede forutsetningen gjorde med nedsiden",
+        "summary": "Den reviderte analysen viser at oppsiden fortsatt finnes, men at nedsiden og sannsynlighetsbildet er annerledes enn i det opprinnelige notatet.",
+        "task_domain": "forsinket_analyseeffekt",
+        "task_kind": "consequence",
+        "thread_key": "finansanalytiker.case.premiss_og_anbefaling"
+      },
+      "id": "finansanalytiker_consequence_premiss_001",
+      "mail_type": "consequence",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Beslutningen kan nå ta høyde for både oppside og den risikoen premissendringen gjorde synlig.",
+            "id": "A",
+            "label": "Vis endringssporet og la komiteen vurdere caset mot det nye risikobildet",
+            "reply": "Jeg viser hva som endret seg fra første notat og lar komiteen vurdere caset mot det nye nedsidescenariet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du bevarer fortellingen, men gjør en beslutningsrelevant endring mindre synlig enn den er.",
+            "id": "B",
+            "label": "Presenter oppdateringen som teknisk siden hovedcaset fortsatt er attraktivt",
+            "reply": "Jeg presenterer dette som en teknisk modelloppdatering siden hovedcaset fortsatt er attraktivt."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det opprinnelige notatet kan sammenlignes med den reviderte modellen.",
+            "Nøkkelantakelsen endrer først og fremst nedsiderisikoen.",
+            "Komiteen skal ta stilling til om caset fortsatt passer mandatet."
+          ],
+          "subject": "Komiteen ser nå hva den endrede forutsetningen gjorde med nedsiden",
+          "summary": "Den reviderte analysen viser at oppsiden fortsatt finnes, men at nedsiden og sannsynlighetsbildet er annerledes enn i det opprinnelige notatet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansanalytiker_consequence_premiss_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_bors",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansanalytiker_consequence_premiss_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansanalytiker.case.premiss_og_anbefaling",
+        "version": 1
+      },
+      "source_hash": "283711b70388e5422aaf7ecd45d4d1f5abd8df741d2774be86dfc22abf9b5ab7",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/consequence/finansanalytiker_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
         "choice_axis": "oppdatere_case_vs_fortsette_plan",
         "choices": [
           {
@@ -70719,6 +70849,131 @@
       },
       "source_hash": "cfa9698c3046a984d353c1dfda2d1c9f7bc2db660008774198fe12c48d342711",
       "source_path": "data/Civication/mailFamilies/naeringsliv/event/finansanalytiker_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "revidere_modell_og_anbefaling_vs_la_notatet_sta",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Den gamle analysen blir et sporbart utgangspunkt, ikke en konklusjon du må forsvare for enhver pris.",
+            "id": "A",
+            "label": "Oppdater modellen, vis hva som endret seg og revider anbefalingen hvis nødvendig",
+            "reply": "Jeg oppdaterer modellen, viser hvilket premiss som endret seg og reviderer anbefalingen hvis effekten er vesentlig.",
+            "tags": [
+              "followup",
+              "revision",
+              "integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du unngår uro nå, men lar kjent ny informasjon være frakoblet beslutningsgrunnlaget.",
+            "id": "B",
+            "label": "La notatet stå til neste ordinære oppdatering",
+            "reply": "Jeg lar notatet stå til neste ordinære oppdatering siden beslutningen allerede er i prosess.",
+            "tags": [
+              "anchoring",
+              "stale_analysis"
+            ]
+          }
+        ],
+        "competency": "risikoformidling",
+        "consequence_axis": "oppdatert_beslutningsgrunnlag_vs_ankring_i_gammel_konklusjon",
+        "cooldown": 2,
+        "from": "elin_portefoljeansvarlig",
+        "id": "finansanalytiker_followup_premiss_001",
+        "mail_family": "anbefaling_og_senere_databrudd",
+        "mail_type": "followup",
+        "narrative_arc": "Analytikeren lærer at ansvar for analysen fortsetter når premissene endrer seg.",
+        "person_id": "elin_portefoljeansvarlig",
+        "phase": "morning",
+        "place_id": "oslo_bors",
+        "pressure": "eget_tidligere_standpunkt_vs_nytt_premiss",
+        "priority": 60,
+        "purpose": "Teste om analytikeren følger anbefalingen etter levering og oppdaterer premissene før gammel konklusjon får leve videre.",
+        "repeatable": false,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "elin_portefoljeansvarlig",
+        "situation": [
+          "Notatet ditt er allerede delt.",
+          "Ny informasjon treffer en nøkkelantakelse i basecaset.",
+          "Elin trenger å vite om anbefalingen fortsatt står på samme grunnlag."
+        ],
+        "stage": "advanced",
+        "stakes": "Å la notatet stå sparer arbeid, men gjør en kjent endring usynlig. Å revidere analysen kan svekke din tidligere anbefaling, men beskytter beslutningsgrunnlaget.",
+        "subject": "En sentral forutsetning fra notatet ditt har endret seg",
+        "summary": "Elin peker på ny markedsinformasjon som svekker basecaset i et notat som allerede ligger til grunn for videre vurdering.",
+        "task_domain": "anbefalingsoppfolging",
+        "task_kind": "followup",
+        "thread_key": "finansanalytiker.case.premiss_og_anbefaling"
+      },
+      "id": "finansanalytiker_followup_premiss_001",
+      "mail_type": "followup",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Den gamle analysen blir et sporbart utgangspunkt, ikke en konklusjon du må forsvare for enhver pris.",
+            "id": "A",
+            "label": "Oppdater modellen, vis hva som endret seg og revider anbefalingen hvis nødvendig",
+            "reply": "Jeg oppdaterer modellen, viser hvilket premiss som endret seg og reviderer anbefalingen hvis effekten er vesentlig."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du unngår uro nå, men lar kjent ny informasjon være frakoblet beslutningsgrunnlaget.",
+            "id": "B",
+            "label": "La notatet stå til neste ordinære oppdatering",
+            "reply": "Jeg lar notatet stå til neste ordinære oppdatering siden beslutningen allerede er i prosess."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Notatet ditt er allerede delt.",
+            "Ny informasjon treffer en nøkkelantakelse i basecaset.",
+            "Elin trenger å vite om anbefalingen fortsatt står på samme grunnlag."
+          ],
+          "subject": "En sentral forutsetning fra notatet ditt har endret seg",
+          "summary": "Elin peker på ny markedsinformasjon som svekker basecaset i et notat som allerede ligger til grunn for videre vurdering."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansanalytiker_followup_premiss_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oslo_bors",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansanalytiker_followup_premiss_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansanalytiker.case.premiss_og_anbefaling",
+        "version": 1
+      },
+      "source_hash": "d3114da3ac17e8e67186328fe2ab0ecbaf59f7da9460a6334b42e8314f48de85",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/followup/finansanalytiker_followup.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -71328,6 +71583,378 @@
       },
       "source_hash": "26f11c2040ee4435e3161e5c198331914752cbf01503996bb3497ed8aa67f81b",
       "source_path": "data/Civication/mailFamilies/naeringsliv/job/finansanalytiker_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "merke_kildetype_og_usikkerhet_vs_presentere_tallene_likt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Modellen blir litt mindre glatt og mye mer sannferdig om hva den faktisk vet.",
+            "id": "A",
+            "label": "Merk hvert tall som historikk, guiding eller eget estimat og vis usikkerheten",
+            "reply": "Jeg merker kildetypen og viser hvilke deler av verdsettelsen som bygger på egne eller eksterne forventninger.",
+            "tags": [
+              "knowledge",
+              "source",
+              "uncertainty"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Regnearket ser ryddig ut, men forskjellen mellom observasjon og forventning forsvinner.",
+            "id": "B",
+            "label": "Bruk samme format fordi alle tallene inngår i den samme modellen",
+            "reply": "Jeg bruker samme format siden alle tallene uansett inngår i verdsettelsen.",
+            "tags": [
+              "false_precision",
+              "source_blur"
+            ]
+          }
+        ],
+        "competency": "datakritikk",
+        "consequence_axis": "metodeklarhet_vs_falsk_presisjon",
+        "cooldown": 2,
+        "from": "theo_senioranalytiker",
+        "id": "finansanalytiker_knowledge_kildetype_001",
+        "mail_family": "antakelse_fakta_og_scenario",
+        "mail_type": "knowledge",
+        "narrative_arc": "Analytikeren lærer at tall først blir sammenlignbare når opprinnelse og usikkerhet er synlig.",
+        "person_id": "theo_senioranalytiker",
+        "phase": "lunch",
+        "place_id": "bankplassen",
+        "pressure": "modellens_ryddighet_vs_reell_kildeulikhet",
+        "priority": 48,
+        "purpose": "Knytte finansmodellen til eksplisitt kunnskap om kildetype og usikkerhet.",
+        "repeatable": false,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "theo_senioranalytiker",
+        "situation": [
+          "Ett tall kommer fra rapportert historikk.",
+          "Ett kommer fra ledelsens guiding.",
+          "Ett er ditt eget scenarioestimat."
+        ],
+        "stage": "early",
+        "stakes": "Når kildetypene blandes, ser modellen mer presis ut enn datagrunnlaget er. Når de skilles, blir usikkerheten synlig og anvendelig.",
+        "subject": "Historikk, guiding og ditt eget estimat kan ikke være samme type tall",
+        "summary": "Theo ber deg forklare hvordan tre tall i modellen skal klassifiseres før de brukes i samme verdsettelseslinje.",
+        "task_domain": "kildeklassifisering",
+        "task_kind": "knowledge"
+      },
+      "id": "finansanalytiker_knowledge_kildetype_001",
+      "mail_type": "knowledge",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Modellen blir litt mindre glatt og mye mer sannferdig om hva den faktisk vet.",
+            "id": "A",
+            "label": "Merk hvert tall som historikk, guiding eller eget estimat og vis usikkerheten",
+            "reply": "Jeg merker kildetypen og viser hvilke deler av verdsettelsen som bygger på egne eller eksterne forventninger."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Regnearket ser ryddig ut, men forskjellen mellom observasjon og forventning forsvinner.",
+            "id": "B",
+            "label": "Bruk samme format fordi alle tallene inngår i den samme modellen",
+            "reply": "Jeg bruker samme format siden alle tallene uansett inngår i verdsettelsen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ett tall kommer fra rapportert historikk.",
+            "Ett kommer fra ledelsens guiding.",
+            "Ett er ditt eget scenarioestimat."
+          ],
+          "subject": "Historikk, guiding og ditt eget estimat kan ikke være samme type tall",
+          "summary": "Theo ber deg forklare hvordan tre tall i modellen skal klassifiseres før de brukes i samme verdsettelseslinje."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansanalytiker_knowledge_kildetype_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bankplassen",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansanalytiker_knowledge_kildetype_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansanalytiker.mail.finansanalytiker_knowledge_kildetype_001",
+        "version": 1
+      },
+      "source_hash": "6fb3d682d4a36566580c9273047ffa786b5b32eb5d4e6cff479f6ef0ccbb50b5",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/knowledge/finansanalytiker_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "merke_og_sensitivitetsteste_vs_la_antakelsen_sta_implisitt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Modellen viser nå både tallet og hvor sårbar konklusjonen er for det.",
+            "id": "A",
+            "label": "Merk antakelsen og kjør en rask sensitivitet før du går videre",
+            "reply": "Jeg merker antakelsen og kjører en sensitivitet så effekten blir synlig.",
+            "tags": [
+              "micro",
+              "assumption",
+              "sensitivity"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du beholder tempoet, men lar modellrisikoen vokse usynlig gjennom resten av analysen.",
+            "id": "B",
+            "label": "La antakelsen stå og dokumenter den senere hvis den blir viktig",
+            "reply": "Jeg lar antakelsen stå og dokumenterer den senere hvis den blir viktig.",
+            "tags": [
+              "implicit_assumption",
+              "model_risk"
+            ]
+          }
+        ],
+        "competency": "finansiell_modellering",
+        "consequence_axis": "sporbarhet_vs_skjult_modellrisiko",
+        "cooldown": 1,
+        "from": "theo_senioranalytiker",
+        "id": "finansanalytiker_micro_antakelse_001",
+        "mail_family": "mikrokontroll_av_antakelser",
+        "mail_type": "micro",
+        "narrative_arc": "Analytikeren lærer at små modellvalg må være synlige fordi de kan flytte store beslutninger.",
+        "person_id": "theo_senioranalytiker",
+        "phase": "afternoon",
+        "place_id": "barcode",
+        "pressure": "modelltempo_vs_synlig_antakelse",
+        "priority": 40,
+        "purpose": "Teste om analytikeren gjør små antakelser eksplisitte før de blir store konklusjoner.",
+        "repeatable": true,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "theo_senioranalytiker",
+        "situation": [
+          "Marginantakelsen er ikke rapportert historikk.",
+          "Den påvirker flere senere beregninger.",
+          "Du kan teste effekten uten å stoppe hele analysen."
+        ],
+        "stage": "stable",
+        "stakes": "Lar du cellen stå, beholder du tempoet. Merker og sensitivitetstester du den, blir modellen litt tyngre men langt mer forståelig.",
+        "subject": "Én marginantakelse flytter hele verdsettelsen",
+        "summary": "En marginforutsetning ser liten ut i arket, men påvirker både kontantstrøm, multippel og anbefalt verdi.",
+        "task_domain": "antakelseskontroll",
+        "task_kind": "micro"
+      },
+      "id": "finansanalytiker_micro_antakelse_001",
+      "mail_type": "micro",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Modellen viser nå både tallet og hvor sårbar konklusjonen er for det.",
+            "id": "A",
+            "label": "Merk antakelsen og kjør en rask sensitivitet før du går videre",
+            "reply": "Jeg merker antakelsen og kjører en sensitivitet så effekten blir synlig."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beholder tempoet, men lar modellrisikoen vokse usynlig gjennom resten av analysen.",
+            "id": "B",
+            "label": "La antakelsen stå og dokumenter den senere hvis den blir viktig",
+            "reply": "Jeg lar antakelsen stå og dokumenterer den senere hvis den blir viktig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Marginantakelsen er ikke rapportert historikk.",
+            "Den påvirker flere senere beregninger.",
+            "Du kan teste effekten uten å stoppe hele analysen."
+          ],
+          "subject": "Én marginantakelse flytter hele verdsettelsen",
+          "summary": "En marginforutsetning ser liten ut i arket, men påvirker både kontantstrøm, multippel og anbefalt verdi."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansanalytiker_micro_antakelse_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "barcode",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansanalytiker_micro_antakelse_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansanalytiker.mail.finansanalytiker_micro_antakelse_001",
+        "version": 1
+      },
+      "source_hash": "870892c962729bba11a294a27141c1a6e4b6ea08758007846ffa03cd1c0e6af5",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/micro/finansanalytiker_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "naeringsliv",
+      "compatibility_projection": {
+        "category": "naeringsliv",
+        "choice_axis": "lase_kilde_og_versjon_vs_svare_fra_siste_synlige_tall",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Theo får et svar som kan etterprøves, ikke bare et tall som passer tidsplanen.",
+            "id": "A",
+            "label": "Lås modellversjon, kilde og endring før tallet går videre",
+            "reply": "Jeg låser modellversjon, kilde og endringsspor før vi bruker tallet i anbefalingen.",
+            "tags": [
+              "people",
+              "version_control",
+              "integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du sparer tid nå, men gjør presentasjonen avhengig av en kilde du ennå ikke har låst.",
+            "id": "B",
+            "label": "Bruk tallet i den siste presentasjonen og rydd versjonene etter møtet",
+            "reply": "Jeg bruker tallet som står i siste presentasjon og rydder modellversjonene etter møtet.",
+            "tags": [
+              "speed",
+              "version_risk"
+            ]
+          }
+        ],
+        "competency": "datakritikk",
+        "consequence_axis": "faglig_tillit_vs_feil_beslutningsgrunnlag",
+        "cooldown": 2,
+        "from": "theo_senioranalytiker",
+        "id": "finansanalytiker_people_theo_001",
+        "mail_family": "analytiker_senior_og_metodepress",
+        "mail_type": "people",
+        "narrative_arc": "Analytikeren lærer at faglig tillit bygges gjennom sporbarhet også når svaret haster.",
+        "person_id": "theo_senioranalytiker",
+        "phase": "morning",
+        "place_id": "barcode",
+        "pressure": "presentasjonstempo_vs_sporbarhet",
+        "priority": 58,
+        "purpose": "Teste om analytikeren beskytter metode og sporbarhet når en senior trenger et raskt svar.",
+        "repeatable": false,
+        "role_scope": "finansanalytiker",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
+        "scene_catalog_version": 1,
+        "sender": "theo_senioranalytiker",
+        "situation": [
+          "To modellversjoner ligger åpne etter en sen oppdatering.",
+          "Presentasjonen peker på et nøkkeltall som avviker mellom versjonene.",
+          "Theo ber deg avklare hvilken forutsetning komiteen faktisk vil se."
+        ],
+        "stage": "stable",
+        "stakes": "Et raskt svar holder flyten, men kan gjøre en gammel forutsetning til beslutningsgrunnlag. Versjonskontroll koster tid, men gjør anbefalingen etterprøvbar.",
+        "subject": "Theo vil vite hvilken modellversjon som faktisk ligger bak anbefalingen",
+        "summary": "Senioranalytiker Theo ser at presentasjonen bruker et tall som kan komme fra en eldre modellversjon og ber deg låse kilde og endringsspor før anbefalingen går videre.",
+        "task_domain": "modellversjon_og_seniorreview",
+        "task_kind": "people"
+      },
+      "id": "finansanalytiker_people_theo_001",
+      "mail_type": "people",
+      "role_scope": "finansanalytiker",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Theo får et svar som kan etterprøves, ikke bare et tall som passer tidsplanen.",
+            "id": "A",
+            "label": "Lås modellversjon, kilde og endring før tallet går videre",
+            "reply": "Jeg låser modellversjon, kilde og endringsspor før vi bruker tallet i anbefalingen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du sparer tid nå, men gjør presentasjonen avhengig av en kilde du ennå ikke har låst.",
+            "id": "B",
+            "label": "Bruk tallet i den siste presentasjonen og rydd versjonene etter møtet",
+            "reply": "Jeg bruker tallet som står i siste presentasjon og rydder modellversjonene etter møtet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "To modellversjoner ligger åpne etter en sen oppdatering.",
+            "Presentasjonen peker på et nøkkeltall som avviker mellom versjonene.",
+            "Theo ber deg avklare hvilken forutsetning komiteen faktisk vil se."
+          ],
+          "subject": "Theo vil vite hvilken modellversjon som faktisk ligger bak anbefalingen",
+          "summary": "Senioranalytiker Theo ser at presentasjonen bruker et tall som kan komme fra en eldre modellversjon og ber deg låse kilde og endringsspor før anbefalingen går videre."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "finansanalytiker_people_theo_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "barcode",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "finansanalytiker_people_theo_001",
+          "source_path": "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "finansanalytiker.mail.finansanalytiker_people_theo_001",
+        "version": 1
+      },
+      "source_hash": "6bd233e434770fe342451429de0a63d5c4c80b25e658c89a706e1c97b07b5c0f",
+      "source_path": "data/Civication/mailFamilies/naeringsliv/people/finansanalytiker_people.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -144921,7 +145548,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "9e7fa753630b4c7864145c681c79d89cd5af656c2260b89412d08bb740669bba",
+  "registry_hash": "4aa5b07706507af676f6680978a8c2e2e4968bd83052926bd01696635cec0f2a",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -145432,11 +146059,16 @@
       "finansanalytiker_job_001",
       "finansanalytiker_job_002",
       "finansanalytiker_job_003",
+      "finansanalytiker_people_theo_001",
       "finansanalytiker_story_001",
       "finansanalytiker_story_002",
       "finansanalytiker_conflict_001",
       "finansanalytiker_conflict_002",
-      "finansanalytiker_event_001"
+      "finansanalytiker_event_001",
+      "finansanalytiker_micro_antakelse_001",
+      "finansanalytiker_followup_premiss_001",
+      "finansanalytiker_knowledge_kildetype_001",
+      "finansanalytiker_consequence_premiss_001"
     ],
     "naeringsliv/finansdirektor": [
       "finansdirektor_intro_v2_001",
@@ -145956,11 +146588,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 186,
+    "compiled_source_file_count": 191,
     "ignored_source_file_count": 1,
-    "input_file_count": 187,
+    "input_file_count": 192,
     "role_count": 28,
-    "scene_count": 949,
+    "scene_count": 954,
     "shadowed_duplicate_count": 0
   },
   "version": 1
