@@ -156,6 +156,14 @@
     "data/Civication/mailFamilies/sport/job/sport_kaptein_job.json",
     "data/Civication/mailFamilies/sport/job/sport_legende_job.json",
     "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
+    "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+    "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+    "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+    "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+    "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+    "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+    "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+    "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
     "data/Civication/mailFamilies/sport/job/sport_trener_job.json",
     "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
     "data/Civication/mailFamilies/sport/people/sport_utover_people.json",
@@ -134734,6 +134742,508 @@
       "category": "sport",
       "compatibility_projection": {
         "category": "sport",
+        "choice_axis": "fullfor_evaluering_vs_anbefale_raskt_grep",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Styret får et tregere, men mer robust grunnlag som skiller resultatstøy fra faktisk treneransvar.",
+            "id": "A",
+            "label": "Fullfør den avtalte evalueringen og vis hvilke funn som faktisk kan bære et trenergrep",
+            "reply": "Jeg fullfører evalueringen med tydelige kriterier og legger fram hvilke funn som faktisk kan bære en trenerbeslutning.",
+            "tags": [
+              "evaluation",
+              "authority",
+              "trust"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Presset kan falle kort, men klubben har gjort en stor beslutning før kriteriene er ferdig vurdert.",
+            "id": "B",
+            "label": "Anbefal et raskt trenergrep for å gjenopprette handlingskraft",
+            "reply": "Jeg anbefaler et raskt trenergrep for å vise at klubben reagerer på utviklingen.",
+            "tags": [
+              "panic",
+              "coach",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "begrunnet_ledelse",
+        "consequence_axis": "langsiktig_tillit_vs_kortsiktig_ro",
+        "cooldown": 2,
+        "from": "styreleder_karin",
+        "id": "sport_sports_conflict_trener_001",
+        "mail_family": "resultatpress_og_mandat",
+        "mail_type": "conflict",
+        "narrative_arc": "Sportssjefen lærer at resultatpress ikke gjør et svakt beslutningsgrunnlag sterkere.",
+        "person_id": "styreleder_karin",
+        "phase": "afternoon",
+        "place_id": "sport_sportslig_styringsbord",
+        "pressure": "symbolsk_handling_vs_evaluering",
+        "priority": 68,
+        "purpose": "Teste om sportssjefen skiller resultatpress fra dokumentert beslutningsgrunnlag.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "styreleder_karin",
+        "situation": [
+          "Resultatene er svake og supporterne krever handling.",
+          "Treneren har både forhold som taler til hans fordel og faglige problemer som må vurderes.",
+          "Styreleder vil vite om du anbefaler et grep nå."
+        ],
+        "stage": "stable_warning",
+        "stakes": "Et raskt trenergrep kan gi ro; et begrunnet evalueringsspor kan se tregere ut, men beskytter klubbens styring og arbeidsgiveransvar.",
+        "subject": "Styret vil ha trenergrep før evalueringen er ferdig",
+        "summary": "Karin ber om en synlig reaksjon etter nye poengtap, men trenerbildet består fortsatt av skader, stallbalanse og noen reelle metodiske problemer.",
+        "task_domain": "trenerbeslutning",
+        "task_kind": "conflict"
+      },
+      "id": "sport_sports_conflict_trener_001",
+      "mail_type": "conflict",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Styret får et tregere, men mer robust grunnlag som skiller resultatstøy fra faktisk treneransvar.",
+            "id": "A",
+            "label": "Fullfør den avtalte evalueringen og vis hvilke funn som faktisk kan bære et trenergrep",
+            "reply": "Jeg fullfører evalueringen med tydelige kriterier og legger fram hvilke funn som faktisk kan bære en trenerbeslutning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Presset kan falle kort, men klubben har gjort en stor beslutning før kriteriene er ferdig vurdert.",
+            "id": "B",
+            "label": "Anbefal et raskt trenergrep for å gjenopprette handlingskraft",
+            "reply": "Jeg anbefaler et raskt trenergrep for å vise at klubben reagerer på utviklingen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Resultatene er svake og supporterne krever handling.",
+            "Treneren har både forhold som taler til hans fordel og faglige problemer som må vurderes.",
+            "Styreleder vil vite om du anbefaler et grep nå."
+          ],
+          "subject": "Styret vil ha trenergrep før evalueringen er ferdig",
+          "summary": "Karin ber om en synlig reaksjon etter nye poengtap, men trenerbildet består fortsatt av skader, stallbalanse og noen reelle metodiske problemer."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_conflict_trener_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_sportslig_styringsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_conflict_trener_001",
+          "source_path": "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_conflict_trener_001",
+        "version": 1
+      },
+      "source_hash": "497904bc663ec4b283f2b1edc124db4bf70b94fc925037a6a578da53604ce73e",
+      "source_path": "data/Civication/mailFamilies/sport/conflict/sport_sportsledelse_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "bruke_beslutningsspor_vs_evaluere_signering_isolert",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Klubben lærer av hele beslutningen, både gevinsten og alternativkostnaden.",
+            "id": "A",
+            "label": "Knytt dagens budsjett- og akademisituasjon til det tidligere valget og juster neste rekrutteringsramme",
+            "reply": "Jeg viser hvilke deler av dagens stall-, budsjett- og utviklingssituasjon som følger av det tidligere valget og justerer rammen før neste vindu.",
+            "tags": [
+              "consequence",
+              "strategy",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du kan løse hvert problem, men mister noe av læringen om hvordan klubbmodellen skaper dem sammen.",
+            "id": "B",
+            "label": "Vurder profilspilleren som en sportslig suksess og løs dagens kapasitetsproblemer separat",
+            "reply": "Jeg vurderer signeringen som sportslig vellykket og behandler dagens budsjett- og akademiproblemer som egne saker.",
+            "tags": [
+              "result",
+              "separation"
+            ]
+          }
+        ],
+        "competency": "strategisk_sammenstilling",
+        "consequence_axis": "strategisk_laring_vs_gjentakelsesrisiko",
+        "cooldown": 3,
+        "from": "daglig_leder_morten",
+        "id": "sport_sports_consequence_profil_001",
+        "mail_family": "forsinkede_sportslige_konsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "Sportssjefen ser at en sportslig vellykket signering fortsatt kan ha en pris som må forstås før neste valg.",
+        "person_id": "daglig_leder_morten",
+        "phase": "day_end",
+        "place_id": "sport_sportslig_styringsbord",
+        "pressure": "enkeltresultat_vs_systemeffekt",
+        "priority": 62,
+        "purpose": "Vis at sportslig ledelse vurderes på beslutningssporet over tid, ikke bare om én signering lykkes isolert.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "daglig_leder_morten",
+        "situation": [
+          "Profilspilleren har levert sportslig.",
+          "Lønnsrommet er strammere enn før.",
+          "Akademiveien må nå repareres eller omdefineres før neste store rekrutteringsvalg."
+        ],
+        "stage": "mastery",
+        "stakes": "Et tydelig spor gjør det mulig å endre modellen presist; uten spor blir konsekvensen lett forklart som tilfeldige nye problemer.",
+        "subject": "Neste vindu viser hva det forrige valget faktisk kostet",
+        "summary": "Klubben går inn i et nytt overgangsvindu med mindre lønnsrom, en sterk profil i laget og to utviklingsspillere som trenger en tydeligere vei.",
+        "task_domain": "forsinket_rekrutteringskonsekvens",
+        "task_kind": "consequence",
+        "thread_key": "sport_sportsledelse.case.profilrekruttering_og_klubbmodell"
+      },
+      "id": "sport_sports_consequence_profil_001",
+      "mail_type": "consequence",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Klubben lærer av hele beslutningen, både gevinsten og alternativkostnaden.",
+            "id": "A",
+            "label": "Knytt dagens budsjett- og akademisituasjon til det tidligere valget og juster neste rekrutteringsramme",
+            "reply": "Jeg viser hvilke deler av dagens stall-, budsjett- og utviklingssituasjon som følger av det tidligere valget og justerer rammen før neste vindu."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du kan løse hvert problem, men mister noe av læringen om hvordan klubbmodellen skaper dem sammen.",
+            "id": "B",
+            "label": "Vurder profilspilleren som en sportslig suksess og løs dagens kapasitetsproblemer separat",
+            "reply": "Jeg vurderer signeringen som sportslig vellykket og behandler dagens budsjett- og akademiproblemer som egne saker."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Profilspilleren har levert sportslig.",
+            "Lønnsrommet er strammere enn før.",
+            "Akademiveien må nå repareres eller omdefineres før neste store rekrutteringsvalg."
+          ],
+          "subject": "Neste vindu viser hva det forrige valget faktisk kostet",
+          "summary": "Klubben går inn i et nytt overgangsvindu med mindre lønnsrom, en sterk profil i laget og to utviklingsspillere som trenger en tydeligere vei."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_consequence_profil_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_sportslig_styringsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_consequence_profil_001",
+          "source_path": "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.case.profilrekruttering_og_klubbmodell",
+        "version": 1
+      },
+      "source_hash": "20b19add31a377289c9083802c6c784e18645bf58cffcda6a64ffb78cdd377e3",
+      "source_path": "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "endre_case_vs_signere_raskt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Klubben kan miste førstevalget, men rekrutteringen forblir et strategisk valg i stedet for en tidsfristreaksjon.",
+            "id": "A",
+            "label": "Be Jonas bygge et alternativ som holder både sportslig behov, budsjett og utviklingsvei innenfor modellen",
+            "reply": "Jeg ber om et rekrutteringsalternativ som løser behovet uten å blokkere budsjett og de prioriterte utviklingssporene.",
+            "tags": [
+              "recruitment",
+              "budget",
+              "academy"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du får et sterkt kort raskt, men flytter kostnaden til stallbalanse, akademivei og senere budsjettvalg.",
+            "id": "B",
+            "label": "Gå videre med profilspilleren og håndter stallkonsekvensene etter vinduet",
+            "reply": "Jeg går videre med profilspilleren mens muligheten finnes og håndterer spilletid og budsjettjusteringer etterpå.",
+            "tags": [
+              "market",
+              "urgency",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "rekrutteringsdommekraft",
+        "consequence_axis": "langsiktig_baerekraft_vs_umiddelbar_forsterkning",
+        "cooldown": 3,
+        "from": "speidersjef_jonas",
+        "id": "sport_sports_event_vindu_001",
+        "mail_family": "rekrutteringsvindu_og_styring",
+        "mail_type": "event",
+        "narrative_arc": "Sportssjefen lærer at tidsfrist ikke fjerner alternativkostnaden i et spillerkjøp.",
+        "person_id": "speidersjef_jonas",
+        "phase": "afternoon",
+        "place_id": "sport_rekrutteringsflate",
+        "pressure": "markedstid_vs_klubbmodell",
+        "priority": 60,
+        "purpose": "Teste om sportssjefen holder strategi, alternativkostnad og fullmakt samlet når tidsvinduet presser.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+        "scene_catalog_version": 1,
+        "sender": "speidersjef_jonas",
+        "situation": [
+          "Spilleren er tilgjengelig bare i et kort vindu.",
+          "Speiderapparatet mener kvaliteten er høy.",
+          "Kostnaden og rollen i stallen kolliderer med to prioriterte utviklingsspor."
+        ],
+        "stage": "advanced",
+        "stakes": "Et raskt ja kan styrke laget nå; et nei eller en ny struktur beskytter klubbmodellen, men kan koste sportslig på kort sikt.",
+        "subject": "Markedet lukker snart, men profilspilleren passer ikke hele modellen",
+        "summary": "Jonas har funnet en sterk spiller som kan hjelpe laget raskt, men pris, alder og spilletid vil presse både budsjett og utviklingsveien til klubbens unge spillere.",
+        "task_domain": "rekrutteringsvindu",
+        "task_kind": "event"
+      },
+      "id": "sport_sports_event_vindu_001",
+      "mail_type": "event",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Klubben kan miste førstevalget, men rekrutteringen forblir et strategisk valg i stedet for en tidsfristreaksjon.",
+            "id": "A",
+            "label": "Be Jonas bygge et alternativ som holder både sportslig behov, budsjett og utviklingsvei innenfor modellen",
+            "reply": "Jeg ber om et rekrutteringsalternativ som løser behovet uten å blokkere budsjett og de prioriterte utviklingssporene."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du får et sterkt kort raskt, men flytter kostnaden til stallbalanse, akademivei og senere budsjettvalg.",
+            "id": "B",
+            "label": "Gå videre med profilspilleren og håndter stallkonsekvensene etter vinduet",
+            "reply": "Jeg går videre med profilspilleren mens muligheten finnes og håndterer spilletid og budsjettjusteringer etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Spilleren er tilgjengelig bare i et kort vindu.",
+            "Speiderapparatet mener kvaliteten er høy.",
+            "Kostnaden og rollen i stallen kolliderer med to prioriterte utviklingsspor."
+          ],
+          "subject": "Markedet lukker snart, men profilspilleren passer ikke hele modellen",
+          "summary": "Jonas har funnet en sterk spiller som kan hjelpe laget raskt, men pris, alder og spilletid vil presse både budsjett og utviklingsveien til klubbens unge spillere."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_event_vindu_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_rekrutteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_event_vindu_001",
+          "source_path": "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_event_vindu_001",
+        "version": 1
+      },
+      "source_hash": "c836b9a4f9cf4aca3a21c209d22f4a185a82dc5568f66e1845a6d29bc9af235a",
+      "source_path": "data/Civication/mailFamilies/sport/event/sport_sportsledelse_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "rebalansere_modell_vs_lappe_nytt_problem",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Klubben bruker konsekvensen til å korrigere modellen før neste beslutning.",
+            "id": "A",
+            "label": "Revider stall- og utviklingsplanen samlet og gjør alternativkostnaden eksplisitt før neste vindu",
+            "reply": "Jeg samler stallrolle, spilletid, akademivei og lønnsrom i en revidert plan før vi gjør et nytt markedsgrep.",
+            "tags": [
+              "followup",
+              "squad",
+              "academy",
+              "budget"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du avlaster symptomene, men lærer mindre om hvorfor modellen skapte dem.",
+            "id": "B",
+            "label": "Løs de to unge spillernes situasjon separat og behold rekrutteringsmodellen uendret",
+            "reply": "Jeg finner individuelle utlåns- eller spilletidsløsninger for de unge spillerne og lar rekrutteringsmodellen stå.",
+            "tags": [
+              "patch",
+              "academy",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "spillerlogistisk_helhetsblikk",
+        "consequence_axis": "strategisk_laring_vs_gjentatt_kortsiktighet",
+        "cooldown": 2,
+        "from": "speidersjef_jonas",
+        "id": "sport_sports_followup_profil_001",
+        "mail_family": "rekrutteringsoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Et tidligere rekrutteringsvalg blir synlig som systemeffekt i stall, akademi og økonomi.",
+        "person_id": "speidersjef_jonas",
+        "phase": "afternoon",
+        "place_id": "sport_rekrutteringsflate",
+        "pressure": "kortsiktig_losning_vs_laring_av_tidligere_valg",
+        "priority": 66,
+        "purpose": "Teste om sportssjefen følger opp den tidligere alternativkostnaden som en del av klubbmodellen i stedet for å behandle den som et nytt isolert problem.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "speidersjef_jonas",
+        "situation": [
+          "Førstelaget har fått mer kvalitet.",
+          "To unge spillere får mindre relevant spilletid enn utviklingsplanen forutsatte.",
+          "Lønnsrommet gjør neste overgangsvindu mindre fleksibelt."
+        ],
+        "stage": "advanced",
+        "stakes": "En rask ny signering eller utlån kan avlaste nå, men kan forsterke en rekrutteringslogikk som allerede presser budsjett og utviklingsvei.",
+        "subject": "Profilvalget kommer tilbake som et stallproblem",
+        "summary": "Noen måneder etter rekrutteringsvalget er sportslig kvalitet høy, men spilletid, lønnsrom og veien for to unge spillere er blitt trangere enn planlagt.",
+        "task_domain": "rekrutteringsoppfolging",
+        "task_kind": "followup",
+        "thread_key": "sport_sportsledelse.case.profilrekruttering_og_klubbmodell"
+      },
+      "id": "sport_sports_followup_profil_001",
+      "mail_type": "followup",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Klubben bruker konsekvensen til å korrigere modellen før neste beslutning.",
+            "id": "A",
+            "label": "Revider stall- og utviklingsplanen samlet og gjør alternativkostnaden eksplisitt før neste vindu",
+            "reply": "Jeg samler stallrolle, spilletid, akademivei og lønnsrom i en revidert plan før vi gjør et nytt markedsgrep."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du avlaster symptomene, men lærer mindre om hvorfor modellen skapte dem.",
+            "id": "B",
+            "label": "Løs de to unge spillernes situasjon separat og behold rekrutteringsmodellen uendret",
+            "reply": "Jeg finner individuelle utlåns- eller spilletidsløsninger for de unge spillerne og lar rekrutteringsmodellen stå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Førstelaget har fått mer kvalitet.",
+            "To unge spillere får mindre relevant spilletid enn utviklingsplanen forutsatte.",
+            "Lønnsrommet gjør neste overgangsvindu mindre fleksibelt."
+          ],
+          "subject": "Profilvalget kommer tilbake som et stallproblem",
+          "summary": "Noen måneder etter rekrutteringsvalget er sportslig kvalitet høy, men spilletid, lønnsrom og veien for to unge spillere er blitt trangere enn planlagt."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_followup_profil_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_rekrutteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_followup_profil_001",
+          "source_path": "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.case.profilrekruttering_og_klubbmodell",
+        "version": 1
+      },
+      "source_hash": "6f880b5559b76c9fb62783b1dccaee19c69a9665267b2ebce9056d8188ea2848",
+      "source_path": "data/Civication/mailFamilies/sport/followup/sport_sportsledelse_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
         "choice_axis": "lage_matchingsplan_vs_utsette_talentbruk",
         "choices": [
           {
@@ -135698,6 +136208,504 @@
       },
       "source_hash": "39233e998ba4f68d67d15dad39c599002fc6f1bcc02d9fdc9b5d81c02f58dd5e",
       "source_path": "data/Civication/mailFamilies/sport/job/sport_sportsledelse_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "vurdere_alternativkostnad_vs_vurdere_kvalitet_alene",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Rekrutteringscaset blir et klubbvalg med synlige alternativkostnader, ikke bare en spillerkarakter.",
+            "id": "A",
+            "label": "Vurder kvalitet, kostnad, stallrolle og hva signeringen fortrenger før anbefalingen",
+            "reply": "Jeg vurderer spillerens kvalitet sammen med kostnad, stallrolle og hvilke utviklings- og budsjettvalg signeringen fortrenger.",
+            "tags": [
+              "knowledge",
+              "recruitment",
+              "opportunity_cost"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du løser det akutte sportslige behovet, men flytter alternativkostnaden ut av selve beslutningen.",
+            "id": "B",
+            "label": "Prioriter sportslig kvalitet og håndter ressurskonsekvensene i neste planrunde",
+            "reply": "Jeg prioriterer den dokumenterte sportslige kvaliteten nå og håndterer budsjett- og utviklingskonsekvensene i neste planrunde.",
+            "tags": [
+              "quality",
+              "short_term"
+            ]
+          }
+        ],
+        "competency": "rekrutteringsdommekraft",
+        "consequence_axis": "strategisk_baerekraft_vs_snever_optimering",
+        "cooldown": 2,
+        "from": "speidersjef_jonas",
+        "id": "sport_sports_knowledge_alternativkostnad_001",
+        "mail_family": "sportslig_styringsforstaelse",
+        "mail_type": "knowledge",
+        "narrative_arc": "Sportssjefen lærer at rekruttering er ressursallokering over tid, ikke bare vurdering av enkeltspillere.",
+        "person_id": "speidersjef_jonas",
+        "phase": "lunch",
+        "place_id": "sport_rekrutteringsflate",
+        "pressure": "enkeltspiller_vs_klubbhelhet",
+        "priority": 52,
+        "purpose": "Knytter rekrutteringsarbeidet til prinsippet om alternativkostnad og strategisk helhet.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "speidersjef_jonas",
+        "situation": [
+          "Spilleren er dokumentert god nok.",
+          "Kontrakten bruker en betydelig del av den tilgjengelige rammen.",
+          "Samme rolle er planlagt for to unge spillere klubben sier den vil utvikle."
+        ],
+        "stage": "early",
+        "stakes": "Hvis bare spillerkvalitet måles, blir kostnaden i andre utviklingsspor usynlig til etter at kontrakten er inngått.",
+        "subject": "En god signering kan fortsatt være et dårlig klubbvalg",
+        "summary": "Jonas ber deg forklare hvorfor spillerens kvalitet alene ikke avgjør om klubben bør signere når budsjett, spilletid og akademivei også endres.",
+        "task_domain": "rekrutteringsforstaelse",
+        "task_kind": "knowledge"
+      },
+      "id": "sport_sports_knowledge_alternativkostnad_001",
+      "mail_type": "knowledge",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Rekrutteringscaset blir et klubbvalg med synlige alternativkostnader, ikke bare en spillerkarakter.",
+            "id": "A",
+            "label": "Vurder kvalitet, kostnad, stallrolle og hva signeringen fortrenger før anbefalingen",
+            "reply": "Jeg vurderer spillerens kvalitet sammen med kostnad, stallrolle og hvilke utviklings- og budsjettvalg signeringen fortrenger."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du løser det akutte sportslige behovet, men flytter alternativkostnaden ut av selve beslutningen.",
+            "id": "B",
+            "label": "Prioriter sportslig kvalitet og håndter ressurskonsekvensene i neste planrunde",
+            "reply": "Jeg prioriterer den dokumenterte sportslige kvaliteten nå og håndterer budsjett- og utviklingskonsekvensene i neste planrunde."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Spilleren er dokumentert god nok.",
+            "Kontrakten bruker en betydelig del av den tilgjengelige rammen.",
+            "Samme rolle er planlagt for to unge spillere klubben sier den vil utvikle."
+          ],
+          "subject": "En god signering kan fortsatt være et dårlig klubbvalg",
+          "summary": "Jonas ber deg forklare hvorfor spillerens kvalitet alene ikke avgjør om klubben bør signere når budsjett, spilletid og akademivei også endres."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_knowledge_alternativkostnad_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_rekrutteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_knowledge_alternativkostnad_001",
+          "source_path": "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_knowledge_alternativkostnad_001",
+        "version": 1
+      },
+      "source_hash": "147e995b56d7e9dae329fba9dce2e299c45130ae36d8b0116eda142958c90048",
+      "source_path": "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "bekrefte_fullmakt_vs_gi_signal",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Forhandlingen mister litt fart, men klubbens beslutningslinje forblir tydelig.",
+            "id": "A",
+            "label": "Bekreft signatur- og budsjettrammen før du gir et bindende signal",
+            "reply": "Jeg avklarer signaturrett og økonomisk fullmakt før jeg gir motparten et bindende tilbud.",
+            "tags": [
+              "authority",
+              "contract",
+              "control"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du holder momentet, men klubben kan allerede oppfattes som bundet før riktig fullmakt er kontrollert.",
+            "id": "B",
+            "label": "Gi et tydelig muntlig signal og formaliser fullmakten rett etterpå",
+            "reply": "Jeg gir et tydelig muntlig signal om at vi går videre og formaliserer fullmakten umiddelbart etterpå.",
+            "tags": [
+              "promise",
+              "mandate_drift",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "styringsmandat",
+        "consequence_axis": "legitim_beslutning_vs_fullmaktsglidning",
+        "cooldown": 1,
+        "from": "daglig_leder_morten",
+        "id": "sport_sports_micro_fullmakt_001",
+        "mail_family": "fullmaktsmikrokontroll",
+        "mail_type": "micro",
+        "narrative_arc": "Sportssjefen lærer at et sportslig ja og et bindende klubbtilbud ikke er det samme.",
+        "person_id": "daglig_leder_morten",
+        "phase": "forenoon",
+        "place_id": "sport_rekrutteringsflate",
+        "pressure": "forhandlingstempo_vs_formell_fullmakt",
+        "priority": 54,
+        "purpose": "Teste om sportssjefen stopper et bindende løfte til riktig fullmakt er dokumentert.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "daglig_leder_morten",
+        "situation": [
+          "Det sportslige caset er ferdig vurdert.",
+          "Beløpet ligger nær godkjent ramme.",
+          "Det er fortsatt uklart om din fullmakt dekker det konkrete tilbudet."
+        ],
+        "stage": "early",
+        "stakes": "Noen minutters avklaring kan koste tempo, men et løfte uten fullmakt kan binde klubben sosialt eller økonomisk før riktig beslutning er tatt.",
+        "subject": "Tilbudet er nesten klart, men hvem kan faktisk signere?",
+        "summary": "En sportslig forhandling er moden nok til at motparten forventer et konkret svar, men signaturrett og økonomisk fullmakt må fortsatt bekreftes.",
+        "task_domain": "fullmaktskontroll",
+        "task_kind": "micro"
+      },
+      "id": "sport_sports_micro_fullmakt_001",
+      "mail_type": "micro",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Forhandlingen mister litt fart, men klubbens beslutningslinje forblir tydelig.",
+            "id": "A",
+            "label": "Bekreft signatur- og budsjettrammen før du gir et bindende signal",
+            "reply": "Jeg avklarer signaturrett og økonomisk fullmakt før jeg gir motparten et bindende tilbud."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du holder momentet, men klubben kan allerede oppfattes som bundet før riktig fullmakt er kontrollert.",
+            "id": "B",
+            "label": "Gi et tydelig muntlig signal og formaliser fullmakten rett etterpå",
+            "reply": "Jeg gir et tydelig muntlig signal om at vi går videre og formaliserer fullmakten umiddelbart etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Det sportslige caset er ferdig vurdert.",
+            "Beløpet ligger nær godkjent ramme.",
+            "Det er fortsatt uklart om din fullmakt dekker det konkrete tilbudet."
+          ],
+          "subject": "Tilbudet er nesten klart, men hvem kan faktisk signere?",
+          "summary": "En sportslig forhandling er moden nok til at motparten forventer et konkret svar, men signaturrett og økonomisk fullmakt må fortsatt bekreftes."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_micro_fullmakt_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_rekrutteringsflate",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_micro_fullmakt_001",
+          "source_path": "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_micro_fullmakt_001",
+        "version": 1
+      },
+      "source_hash": "e7d548363cceadc64d5e38aae603e638c85e0536721f6f7656ae7d864a6d7969",
+      "source_path": "data/Civication/mailFamilies/sport/micro/sport_sportsledelse_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "avgrense_og_anbefale_vs_love_handling",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Karin får både retning og et tydelig beslutningskart uten at sportssjefens mandat blåses opp av resultatpresset.",
+            "id": "A",
+            "label": "Skill umiddelbare sportslige grep fra beslutninger som krever styre- eller arbeidsgiverfullmakt",
+            "reply": "Jeg viser hvilke sportslige grep jeg kan gjennomføre innen mandatet nå, og hvilke større valg som må forankres hos riktig beslutningseier.",
+            "tags": [
+              "strategy",
+              "authority",
+              "trust"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Styret får et raskt signal, men klubben kan nå oppfatte anbefalingen som en beslutning før riktig fullmakt er avklart.",
+            "id": "B",
+            "label": "Lov et tydelig sportslig grep og avklar fullmakten etter møtet",
+            "reply": "Jeg lover et tydelig grep for å vise handlekraft og avklarer de formelle rammene etterpå.",
+            "tags": [
+              "pressure",
+              "mandate_drift",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "styringsmandat",
+        "consequence_axis": "langsiktig_tillit_vs_kortsiktig_ro",
+        "cooldown": 2,
+        "from": "styreleder_karin",
+        "id": "sport_sports_people_karin_001",
+        "mail_family": "sportslig_styringsdialog",
+        "mail_type": "people",
+        "narrative_arc": "Sportssjefen lærer at tydelig ledelse også innebærer å gjøre grensene for egen myndighet tydelige.",
+        "person_id": "styreleder_karin",
+        "phase": "morning",
+        "place_id": "sport_klubbkontor",
+        "pressure": "resultatpress_vs_mandatklarhet",
+        "priority": 64,
+        "purpose": "Teste om sportssjefen kan gi klar retning uten å gjøre resultatpress til ny fullmakt.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+        "scene_catalog_version": 1,
+        "sender": "styreleder_karin",
+        "situation": [
+          "Klubbstrategien er fortsatt vedtatt og langsiktig.",
+          "Tre tap har gjort styret mer utålmodig.",
+          "Karin ber deg skille det du kan gjøre nå fra det som må tilbake til riktig beslutningsnivå."
+        ],
+        "stage": "stable",
+        "stakes": "Et raskt løfte kan roe styret, men binde klubben før økonomi, treneransvar eller kontraktsmyndighet er avklart.",
+        "subject": "Karin vil vite hva strategien faktisk betyr etter tre tap",
+        "summary": "Styreleder Karin ber om et tydelig sportslig svar, men hun trenger også å vite hvilke grep som ligger innen sportssjefens mandat og hvilke som krever styre- eller arbeidsgiverbeslutning.",
+        "task_domain": "sportslig_styringsdialog",
+        "task_kind": "people"
+      },
+      "id": "sport_sports_people_karin_001",
+      "mail_type": "people",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Karin får både retning og et tydelig beslutningskart uten at sportssjefens mandat blåses opp av resultatpresset.",
+            "id": "A",
+            "label": "Skill umiddelbare sportslige grep fra beslutninger som krever styre- eller arbeidsgiverfullmakt",
+            "reply": "Jeg viser hvilke sportslige grep jeg kan gjennomføre innen mandatet nå, og hvilke større valg som må forankres hos riktig beslutningseier."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Styret får et raskt signal, men klubben kan nå oppfatte anbefalingen som en beslutning før riktig fullmakt er avklart.",
+            "id": "B",
+            "label": "Lov et tydelig sportslig grep og avklar fullmakten etter møtet",
+            "reply": "Jeg lover et tydelig grep for å vise handlekraft og avklarer de formelle rammene etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Klubbstrategien er fortsatt vedtatt og langsiktig.",
+            "Tre tap har gjort styret mer utålmodig.",
+            "Karin ber deg skille det du kan gjøre nå fra det som må tilbake til riktig beslutningsnivå."
+          ],
+          "subject": "Karin vil vite hva strategien faktisk betyr etter tre tap",
+          "summary": "Styreleder Karin ber om et tydelig sportslig svar, men hun trenger også å vite hvilke grep som ligger innen sportssjefens mandat og hvilke som krever styre- eller arbeidsgiverbeslutning."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_people_karin_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_klubbkontor",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_people_karin_001",
+          "source_path": "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_people_karin_001",
+        "version": 1
+      },
+      "source_hash": "0973bd7d0020fdc3626ec7ba69e8d2ba02be34d4826fdf5aeeb55e0ee5db306a",
+      "source_path": "data/Civication/mailFamilies/sport/people/sport_sportsledelse_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "vise_beslutningsspor_vs_rapportere_resultat",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Ledelsen får et bilde som kan brukes til å forbedre modellen, ikke bare forklare tabellen.",
+            "id": "A",
+            "label": "Koble trener-, rekrutterings- og akademivalgene til de vedtatte sportslige prinsippene",
+            "reply": "Jeg viser hvordan treneroppfølging, spillerlogistikk og akademibruk faktisk fulgte eller avvek fra klubbstrategien.",
+            "tags": [
+              "strategy",
+              "learning",
+              "governance"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Rapporten blir enkel å kommunisere, men svakere som test av om klubbstrategien faktisk styrte arbeidet.",
+            "id": "B",
+            "label": "Hold evalueringen til resultater, nøkkeltall og de største enkelthendelsene",
+            "reply": "Jeg holder evalueringen til resultater, nøkkeltall og de største enkelthendelsene for å gjøre den tydelig.",
+            "tags": [
+              "results",
+              "summary"
+            ]
+          }
+        ],
+        "competency": "strategisk_sammenstilling",
+        "consequence_axis": "strategisk_laring_vs_kortsiktig_forklaring",
+        "cooldown": 3,
+        "from": "daglig_leder_morten",
+        "id": "sport_sports_story_halvaar_001",
+        "mail_family": "sportslig_retning_som_praksis",
+        "mail_type": "story",
+        "narrative_arc": "Sportssjefen går fra enkeltvalg til å kunne vise hvordan en klubbmodell faktisk blir til over tid.",
+        "person_id": "daglig_leder_morten",
+        "phase": "evening",
+        "place_id": "sport_sportslig_styringsbord",
+        "pressure": "tabell_vs_modell",
+        "priority": 64,
+        "purpose": "La sportssjefen vise sammenhengen mellom langsiktig modell og konkrete beslutninger.",
+        "repeatable": false,
+        "role_scope": "sport_sportsledelse",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+        "scene_catalog_version": 1,
+        "sender": "daglig_leder_morten",
+        "situation": [
+          "Klubben har både gode og svake resultater bak seg.",
+          "Flere enkeltbeslutninger kan nå vurderes samlet.",
+          "Morten trenger et grunnlag for neste halvårs ressurs- og prioriteringsvalg."
+        ],
+        "stage": "mastery",
+        "stakes": "En resultatrapport er lett å lese; et strategisk spor viser om klubben faktisk bygget den modellen den sa den ville ha.",
+        "subject": "Halvåret viser om klubbstrategien faktisk styrte valgene",
+        "summary": "Treneroppfølging, rekruttering og akademibruk peker nå i samme eller ulike retninger, og Morten ber om et sportslig bilde som tåler mer enn tabellplasseringen.",
+        "task_domain": "sportslig_halvaarsvurdering",
+        "task_kind": "story"
+      },
+      "id": "sport_sports_story_halvaar_001",
+      "mail_type": "story",
+      "role_scope": "sport_sportsledelse",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Ledelsen får et bilde som kan brukes til å forbedre modellen, ikke bare forklare tabellen.",
+            "id": "A",
+            "label": "Koble trener-, rekrutterings- og akademivalgene til de vedtatte sportslige prinsippene",
+            "reply": "Jeg viser hvordan treneroppfølging, spillerlogistikk og akademibruk faktisk fulgte eller avvek fra klubbstrategien."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Rapporten blir enkel å kommunisere, men svakere som test av om klubbstrategien faktisk styrte arbeidet.",
+            "id": "B",
+            "label": "Hold evalueringen til resultater, nøkkeltall og de største enkelthendelsene",
+            "reply": "Jeg holder evalueringen til resultater, nøkkeltall og de største enkelthendelsene for å gjøre den tydelig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Klubben har både gode og svake resultater bak seg.",
+            "Flere enkeltbeslutninger kan nå vurderes samlet.",
+            "Morten trenger et grunnlag for neste halvårs ressurs- og prioriteringsvalg."
+          ],
+          "subject": "Halvåret viser om klubbstrategien faktisk styrte valgene",
+          "summary": "Treneroppfølging, rekruttering og akademibruk peker nå i samme eller ulike retninger, og Morten ber om et sportslig bilde som tåler mer enn tabellplasseringen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_sports_story_halvaar_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_sportslig_styringsbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_sports_story_halvaar_001",
+          "source_path": "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_sportsledelse.mail.sport_sports_story_halvaar_001",
+        "version": 1
+      },
+      "source_hash": "fe7859db95acbcf1d4acc8fcc72fa1f57f8435cae6b18f894521262b58b0dbd0",
+      "source_path": "data/Civication/mailFamilies/sport/story/sport_sportsledelse_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -142905,7 +143913,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "c692343c3e2c2a80948e4f15e7e6c7b3ad345308f53611192405fbf25f4c7b34",
+  "registry_hash": "3ce7f80234dc61a3c17980af22166bdb82ee7252846d218cf45eda9954665a5b",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -143837,7 +144845,15 @@
       "sport_sports_job_log_001",
       "sport_sports_job_log_002",
       "sport_sports_job_akad_001",
-      "sport_sports_job_akad_002"
+      "sport_sports_job_akad_002",
+      "sport_sports_people_karin_001",
+      "sport_sports_story_halvaar_001",
+      "sport_sports_conflict_trener_001",
+      "sport_sports_event_vindu_001",
+      "sport_sports_micro_fullmakt_001",
+      "sport_sports_followup_profil_001",
+      "sport_sports_knowledge_alternativkostnad_001",
+      "sport_sports_consequence_profil_001"
     ],
     "sport/sport_trener": [
       "sport_trener_job_okt_001",
@@ -143924,11 +144940,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 170,
+    "compiled_source_file_count": 178,
     "ignored_source_file_count": 1,
-    "input_file_count": 171,
+    "input_file_count": 179,
     "role_count": 28,
-    "scene_count": 933,
+    "scene_count": 941,
     "shadowed_duplicate_count": 0
   },
   "version": 1
