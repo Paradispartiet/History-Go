@@ -43,6 +43,20 @@ const evidenceGaps=dimensions=>STRICT_KEYS.filter(k=>!satisfied(dimensions?.[k])
 export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}={}){
   const contract=json(CONTRACT), evidence=json(EVIDENCE);
   assert(contract.schema==='history_go_fagverk_theory_quality_contract_v1','Ugyldig theory-quality contract');
+  assert(contract.version==='1.1.0','Strict theory-integrity krever theory-quality contract v1.1.0');
+  assert(contract.status==='integrity_gate_contract','Theory-quality contract må være løftet fra baseline til integrity-gate contract');
+  assert(contract.final_gate?.mode==='per_major_field_not_aggregate','Strict theory-integrity må måles per canonicalt hovedfelt');
+  assert(Array.isArray(contract.programme_checklist)&&contract.programme_checklist.length===10,'Theory-quality-programmet skal ha eksakt 10 bindende programsteg');
+  assert(contract.programme_checklist.every((step,index)=>step.step===index+1),'Theory-quality-programmets steg skal være sekvensielle 1–10');
+  assert(contract.programme_checklist.at(-1)?.id==='strict_main_gate','Siste programsteg skal være strict main-gate');
+  assert(contract.principles?.aggregate_counts_are_not_final_integrity_proof===true,'Aggregerte tellergrenser kan ikke være sluttbevis');
+  assert(contract.principles?.each_canonical_major_field_requires_relevant_theory_or_model_grounding===true,'Hvert canonicalt hovedfelt må ha relevant teori-/modellgrunnlag');
+  assert(contract.principles?.named_people_require_concrete_work_or_research_contribution===true,'Navngitte personer må bindes til reelt verk/bidrag');
+  assert(contract.principles?.theory_metadata_without_prose_or_claim_binding_fails===true,'Metadata-only teori må feile strict gate');
+  assert((contract.final_integrity_fields||[]).includes('prose_usage_evidence'),'Final integrity-mal må kreve faktisk prosaevidens');
+  assert((contract.final_integrity_fields||[]).includes('major_field_binding'),'Final integrity-mal må kreve hovedfeltbinding');
+  assert((contract.final_gate?.required||[]).includes('academically_appropriate_sources'),'Final gate må kreve faglig passende scholarly sources');
+  assert((contract.final_gate?.forbidden_shortcuts||[]).includes('aggregate_count_only'),'Final gate må eksplisitt forby aggregate-count-only');
   assert(evidence.schema==='history_go_fagverk_theory_integrity_evidence_v1','Ugyldig theory-integrity evidence manifest');
   assert(evidence.rules?.baseline_strong_is_not_strict_proof===true,'Integrity manifest må skille baseline fra strict proof');
   assert(evidence.rules?.missing_proof_is_not_content_gap===true,'Integrity manifest må blokkere falsk content-gap-inferens');
