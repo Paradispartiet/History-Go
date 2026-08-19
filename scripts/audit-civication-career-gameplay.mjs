@@ -307,9 +307,17 @@ for (const world of worlds.values()) {
   const hasNegativeOutcome = outcomeKeys.some((key) => /fire|risk|stagn|fail|collapse/i.test(key));
 
   const badge = badges.get(world.category);
+  const badgeTiers = badge?.tiers || [];
   const tierRows = world.badge_titles.map((title) => {
-    const index = (badge?.tiers || []).findIndex((tier) => String(tier.label || '') === title);
-    const tier = index >= 0 ? badge.tiers[index] : null;
+    let index = badgeTiers.findIndex((tier) => String(tier.label || '') === title);
+    if (index < 0) {
+      index = badgeTiers.findIndex((tier) => {
+        const candidate = tier?.career_unlock || tier?.career_offer || null;
+        return String(candidate?.title || '') === title &&
+          (!candidate?.role_scope || String(candidate.role_scope) === world.role_scope);
+      });
+    }
+    const tier = index >= 0 ? badgeTiers[index] : null;
     const contract = tier?.career_unlock || tier?.career_offer || null;
     const audit = careerPolicies.get(`${world.category}/${title}`) || null;
     const policyName = String(contract?.policy || audit?.offer_policy || '');
