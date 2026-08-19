@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_saksbehandler",
+  "mail_type": "people",
+  "families": [{
+    "id": "faglige_saksrelasjoner",
+    "purpose": "Gjør veiledning, kvalitet og frist til operative relasjoner i saksbehandlingen.",
+    "learning_focus": ["saksopplysning", "veiledning"],
+    "mails": [{
+      "id": "by_saksbehandler_people_anne_001",
+      "mail_type": "people",
+      "mail_family": "faglige_saksrelasjoner",
+      "role_scope": "by_saksbehandler",
+      "phase": "morning",
+      "priority": 72,
+      "cooldown": 1,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "anne_planseksjon",
+      "sender": "anne_planseksjon",
+      "person_id": "anne_planseksjon",
+      "place_id": "saksinntak_og_dokumentasjonsbord",
+      "subject": "Anne spør om saken er komplett eller bare ser komplett ut",
+      "summary": "Søknaden har alle vanlige vedlegg, men snittet som viser virkningen mot fortauet er fortsatt uklart.",
+      "purpose": "Trene skillet mellom administrativ kompletthet og faktisk vurderbarhet.",
+      "stakes": "Saken kan gå raskt videre på papir, men en skjult mangel kan gjøre hele vurderingen svak senere.",
+      "situation": ["Vedleggslisten ser komplett ut.", "Det avgjørende snittet gjør likevel høyde og terrengforhold vanskelige å lese.", "Anne vil vite om du mener saken faktisk kan realitetsbehandles."],
+      "task_domain": "vurderbarhet",
+      "task_kind": "people",
+      "competency": "saksopplysning",
+      "pressure": "komplett_liste_vs_vurderbart_grunnlag",
+      "choice_axis": "be_om_presisering_vs_sende_videre",
+      "consequence_axis": "rettssikkerhet_vs_saksflyt",
+      "narrative_arc": "Saksbehandleren lærer at kompletthet må måles mot vurderingsspørsmålet, ikke bare vedleggslisten.",
+      "choices": [
+        {"id":"A","label":"Be om presisering og forklar hvilket vurderingspunkt den trengs for","reply":"Jeg ber om et presist snitt og forklarer at det er nødvendig for å vurdere høyde og virkning mot fortauet.","effect":1,"tags":["documentation","quality","rights"],"feedback":"Saken bruker mer tid nå, men blir vurderbar på et tydelig grunnlag."},
+        {"id":"B","label":"La saken gå videre og ta forbehold i vurderingsnotatet","reply":"Jeg lar saken gå videre og markerer usikkerheten i vurderingsnotatet.","effect":-1,"tags":["tempo","risk"],"feedback":"Flyten holdes, men et manglende premiss følger saken videre som skjult gjeld."}
+      ]
+    }]
+  }]
+}
