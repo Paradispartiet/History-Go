@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "styringsrelasjoner",
+      "purpose": "Gjør mandat- og styringsrelasjonene operative i prosjektledelsen.",
+      "learning_focus": ["mandat", "styringsdialog"],
+      "mails": [
+        {
+          "id": "by_prosjektleder_people_lena_001",
+          "mail_type": "people",
+          "mail_family": "styringsrelasjoner",
+          "role_scope": "by_prosjektleder",
+          "phase": "morning",
+          "priority": 72,
+          "cooldown": 1,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "kommunalsjef_lena",
+          "sender": "kommunalsjef_lena",
+          "person_id": "kommunalsjef_lena",
+          "place_id": "mandat_og_programbord",
+          "subject": "Lena vil ha én dato, men premissene er fortsatt i bevegelse",
+          "summary": "Kommunalsjef Lena trenger en styringsdato før flere tekniske og økonomiske avhengigheter er avklart.",
+          "purpose": "Trene prosjektlederen i å gi nyttig ledelsesinformasjon uten å konvertere usikkerhet til falsk sikkerhet.",
+          "stakes": "En fast dato gir ro nå, men kan bli et løfte prosjektet ikke kontrollerer; et scenario gir mindre enkelhet, men bedre styring.",
+          "situation": [
+            "Ledelsen trenger å kommunisere framdrift videre.",
+            "To kritiske avhengigheter har fortsatt eksterne eiere.",
+            "Kostnadsbildet kan endre omfanget hvis grunnarbeidet blir dyrere enn antatt."
+          ],
+          "task_domain": "styringsdialog",
+          "task_kind": "people",
+          "competency": "risikosynlig_rapportering",
+          "pressure": "enkel_dato_vs_reelle_forutsetninger",
+          "choice_axis": "love_dato_vs_scenario_med_vilkar",
+          "consequence_axis": "rapportro_vs_styrbarhet",
+          "narrative_arc": "Prosjektlederen lærer å være tydelig oppover uten å skjule hva prosjektet faktisk ikke kontrollerer.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gi et hovedscenario med dato, forutsetninger og risikointervall",
+              "reply": "Jeg gir et hovedscenario med dato og viser hvilke avhengigheter som må holde for at den skal være realistisk.",
+              "effect": 1,
+              "tags": ["scenario", "risk", "governance"],
+              "feedback": "Lena får et styringssignal som kan oppdateres uten at prosjektet later som usikkerheten er borte."
+            },
+            {
+              "id": "B",
+              "label": "Sett en styringsdato og håndter avvik dersom de oppstår",
+              "reply": "Jeg setter en tydelig styringsdato og varsler senere dersom avhengighetene faktisk gir utslag.",
+              "effect": -1,
+              "tags": ["deadline", "risk"],
+              "feedback": "Rapporten blir enklere, men prosjektet begynner å eie en dato det ikke fullt ut styrer."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
