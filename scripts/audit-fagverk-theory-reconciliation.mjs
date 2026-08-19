@@ -7,7 +7,7 @@ import { auditSubkulturTheoryAttribution } from './audit-subkultur-theory-attrib
 import { auditReligionTheoryCanon } from './audit-fagverk-religion-theory-canon.mjs';
 import { auditFilmTvTheoryCanon } from './audit-fagverk-film-tv-theory-canon.mjs';
 import { auditFilosofiTheoryIntegrity } from './audit-fagverk-filosofi-theory-integrity.mjs';
-import { auditHistoryCompletion } from '../tools/audit-historie-completion.mjs';
+import { auditHistorieTheoryIntegrity } from './audit-fagverk-historie-theory-integrity.mjs';
 
 const STRICT_GATES = {
   film_tv: {
@@ -21,9 +21,9 @@ const STRICT_GATES = {
     proseBindingStatus: 'prose_and_claim_binding_validated'
   },
   historie: {
-    run: auditHistoryCompletion,
-    capabilities: ['canonical_23_field_ownership','canonical_primary_theory_hooks','explicit_theory_id_for_18_generator_chapters','paragraph_claim_trace','historiography_evidence','source_authority'],
-    proseBindingStatus: '18_generator_chapters_validated_5_handbuilt_chapters_pending_explicit_theory_reconciliation'
+    run: auditHistorieTheoryIntegrity,
+    capabilities: ['canonical_23_field_ownership','canonical_primary_theory_hooks','18_generator_chapter_theory_ids','5_handbuilt_chapter_theory_evidence_ids','paragraph_or_claim_trace','historiography_evidence','scholarly_sources','source_limitations','alternative_interpretations','actual_canonical_thinker_usage'],
+    proseBindingStatus: '23_of_23_fields_validated_across_18_generated_and_5_handbuilt_chapters'
   },
   religion: {
     run: auditReligionTheoryCanon,
@@ -69,8 +69,8 @@ export function auditFagverkTheoryReconciliation() {
       reconciliationClass = 'strict_integrity_validated';
       nextAction = 'wire_subject_gate_into_final_global_reconciliation';
     } else if (subject.id === 'historie' && strict?.status === 'pass') {
-      reconciliationClass = 'handbuilt_chapter_theory_reconciliation_required';
-      nextAction = 'verify_theory_provenance_and_actual_prose_or_claim_binding_in_5_handbuilt_chapters';
+      reconciliationClass = 'strict_integrity_validated';
+      nextAction = 'wire_subject_gate_into_final_global_reconciliation';
     } else if (subject.id === 'religion' && strict?.status === 'pass') {
       reconciliationClass = 'field_inventory_and_evidence_adapter_required';
       nextAction = 'use_religion_12_area_canon_in_global_gate';
@@ -102,7 +102,7 @@ export function auditFagverkTheoryReconciliation() {
 
   return {
     schema: 'history_go_fagverk_theory_reconciliation_v1',
-    version: '1.2.0',
+    version: '1.3.0',
     status: strictFailures.length ? 'strict_subject_gate_failure' : 'evidence_reconciliation_in_progress',
     rules: {
       genericScannerFailureIsNotContentGap: true,
