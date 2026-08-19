@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "mandat_og_avhengighetskonflikt",
+      "purpose": "Lar prosjektlederen håndtere ansvarskonflikt uten å la prosjektet overta myndighet det ikke har.",
+      "learning_focus": ["mandat", "eskalering", "avhengigheter"],
+      "mails": [
+        {
+          "id": "by_prosjektleder_conflict_ansvar_001",
+          "mail_type": "conflict",
+          "mail_family": "mandat_og_avhengighetskonflikt",
+          "role_scope": "by_prosjektleder",
+          "phase": "afternoon",
+          "priority": 68,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable_warning",
+          "from": "prosjektkoordinator_amin",
+          "sender": "prosjektkoordinator_amin",
+          "person_id": "prosjektkoordinator_amin",
+          "place_id": "koordinerings_og_avhengighetsrom",
+          "subject": "Ingen eier trafikkavklaringen, og prosjektet begynner å bestemme selv",
+          "summary": "En kritisk avhengighet mangler tydelig eier, og prosjektgruppen foreslår å ta en midlertidig beslutning for å holde milepælen.",
+          "purpose": "Teste om prosjektlederen stopper mandatglidning og får beslutningen til riktig eier.",
+          "stakes": "Å bestemme selv kan redde datoen, men gjør prosjektet ansvarlig for en beslutning det ikke har myndighet til å fatte.",
+          "situation": [
+            "Trafikkføringen må avklares før neste leveranse.",
+            "Fagmiljøene peker på hverandre og ingen har bekreftet formelt eierskap.",
+            "Prosjektgruppen mener løsningen er å velge det minst dårlige alternativet selv."
+          ],
+          "task_domain": "ansvarsavklaring",
+          "task_kind": "conflict",
+          "competency": "mandatvern",
+          "pressure": "milepal_vs_formelt_ansvar",
+          "choice_axis": "eskalere_til_eier_vs_prosjektbestemme",
+          "consequence_axis": "lovlig_styring_vs_kortsiktig_framdrift",
+          "narrative_arc": "Prosjektlederen lærer at en uløst avhengighet ikke gir prosjektet mer myndighet.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stopp beslutningen, navngi manglende eier og eskaler med frist",
+              "reply": "Jeg stopper prosjektbeslutningen, dokumenterer hvilken myndighet som mangler og eskalerer til riktig eier med tydelig frist.",
+              "effect": 1,
+              "tags": ["authority", "escalation", "governance"],
+              "feedback": "Milepælen blir mer utsatt, men ansvar og beslutningsspor forblir legitime."
+            },
+            {
+              "id": "B",
+              "label": "Velg en midlertidig løsning og be om formell bekreftelse etterpå",
+              "reply": "Jeg lar prosjektet velge en midlertidig løsning og sender den til formell bekreftelse etterpå.",
+              "effect": -1,
+              "tags": ["mandate_drift", "risk"],
+              "feedback": "Prosjektet holder fart, men den midlertidige løsningen kan allerede ha bundet andre før riktig eier har besluttet."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
