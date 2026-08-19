@@ -90,7 +90,7 @@ test('Auditerte fag har dokumentert og statusriktig fremdrift gjennom den genere
 
   const scenekunst = s.subjects.find((x) => x.id === 'scenekunst');
   assert.equal(scenekunst.editorialStatus, 'complete');
-  assert.equal(scenekunst.nextGate, 'maintenance_source_refresh_and_chapter10_monitoring');
+  assert.equal(scenekunst.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
 
   const vitenskap = s.subjects.find((x) => x.id === 'vitenskap');
   const vitenskapReadiness = readJson('data/fag/vitenskap/vitenskap_university_readiness_v1.json');
