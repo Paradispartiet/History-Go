@@ -1,0 +1,65 @@
+{
+  "schema":"civication_mail_family_catalog_v1",
+  "version":1,
+  "category":"sport",
+  "role_scope":"sport_trener",
+  "mail_type":"people",
+  "families":[
+    {
+      "id":"trenerstab_og_rolleavklaring",
+      "purpose":"Gjør eksisterende trenerstabsrelasjoner operative uten å produsere en ny trenerdramaturgi.",
+      "learning_focus":["rolleforklaring","tillit","trenermandat"],
+      "mails":[
+        {
+          "id":"sport_trener_people_lina_001",
+          "mail_type":"people",
+          "mail_family":"trenerstab_og_rolleavklaring",
+          "role_scope":"sport_trener",
+          "phase":"morning",
+          "priority":61,
+          "cooldown":2,
+          "repeatable":false,
+          "stage":"stable",
+          "from":"assistenttrener_lina",
+          "sender":"assistenttrener_lina",
+          "person_id":"assistenttrener_lina",
+          "place_id":"sport_garderobe",
+          "subject":"Lina vil avklare hvordan uttaket skal forklares før garderoben fyller tomrommet",
+          "summary":"Assistenttrener Lina mener det sportslige uttaket kan forsvares, men ser at spilleren vil tolke stillheten som en dom over egen verdi dersom rolle og utviklingsvei ikke forklares presist.",
+          "purpose":"Teste om treneren kan stå i et sportslig valg samtidig som relasjonen og læringsveien blir ivaretatt.",
+          "stakes":"En kort beskjed er effektiv, men kan gjøre et begrunnet uttak til et tillitsproblem. En tydelig rolleforklaring tar mer tid, men holder standard, verdighet og utvikling sammen.",
+          "situation":[
+            "Uttaket er allerede gjort på sportslig grunnlag.",
+            "Spilleren som mister startplassen har trent godt og kommer til å lese beslutningen som et signal om egen verdi.",
+            "Lina ber deg avklare hva spilleren skal få vite før resten av garderoben begynner å tolke beslutningen."
+          ],
+          "task_domain":"trenerstab_og_rolleavklaring",
+          "task_kind":"people",
+          "competency":"observasjon_feedback",
+          "pressure":"prestasjonsvalg_vs_tillit",
+          "choice_axis":"forklare_rolle_og_utviklingsvei_vs_la_uttaket_tale",
+          "consequence_axis":"tillit_og_laring_vs_effektivitet_og_tolkning",
+          "narrative_arc":"Treneren lærer at et sportslig riktig uttak fortsatt må ledes som en menneskelig og pedagogisk beslutning.",
+          "choices":[
+            {
+              "id":"A",
+              "label":"Forklar rollen, begrunnelsen og den konkrete utviklingsveien før uttaket blir garderobesnakk",
+              "reply":"Jeg tar samtalen før resten av gruppa fyller tomrommet: rolle, begrunnelse og hva spilleren konkret kan jobbe med videre.",
+              "effect":1,
+              "tags":["selection","trust","development","coaching"],
+              "feedback":"Du beholder den sportslige beslutningen og gjør samtidig forventningene tydelige nok til at spilleren kan lære av den."
+            },
+            {
+              "id":"B",
+              "label":"Hold beskjeden kort og la neste trening vise hva som kreves",
+              "reply":"Jeg holder beskjeden kort. Uttaket står, og neste trening får vise hva som kreves for å endre rollen.",
+              "effect":-1,
+              "tags":["selection","ambiguity","trust_risk"],
+              "feedback":"Beslutningen er effektivt kommunisert, men spilleren og garderoben blir stående med mer tolkning enn læringsretning."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

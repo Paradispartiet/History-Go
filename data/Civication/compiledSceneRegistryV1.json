@@ -165,6 +165,14 @@
     "data/Civication/mailFamilies/sport/knowledge/sport_sportsledelse_knowledge.json",
     "data/Civication/mailFamilies/sport/consequence/sport_sportsledelse_consequence.json",
     "data/Civication/mailFamilies/sport/job/sport_trener_job.json",
+    "data/Civication/mailFamilies/sport/people/sport_trener_people.json",
+    "data/Civication/mailFamilies/sport/story/sport_trener_story.json",
+    "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json",
+    "data/Civication/mailFamilies/sport/event/sport_trener_event.json",
+    "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json",
+    "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json",
+    "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json",
+    "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json",
     "data/Civication/mailFamilies/sport/job/sport_utover_job.json",
     "data/Civication/mailFamilies/sport/people/sport_utover_people.json",
     "data/Civication/mailFamilies/sport/story/sport_utover_story.json",
@@ -136712,6 +136720,507 @@
       "category": "sport",
       "compatibility_projection": {
         "category": "sport",
+        "choice_axis": "holde_dokumenterte_kriterier_vs_dempe_press_med_profilvalg",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du beskytter sammenhengen mellom mandat, observasjon og sportslig beslutning.",
+            "id": "A",
+            "label": "Hold kriteriene, dokumenter observasjonene og forklar rollen tydelig",
+            "reply": "Jeg holder kriteriene, dokumenterer observasjonene og forklarer rollen før statuspresset får definere uttaket.",
+            "tags": [
+              "selection",
+              "integrity",
+              "evidence",
+              "trust"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Presset avtar, men kriteriene blir mindre troverdige neste gang du viser til dem.",
+            "id": "B",
+            "label": "Sett profilen inn for å dempe presset rundt laget",
+            "reply": "Jeg setter profilen inn denne gangen for å få ro rundt laget.",
+            "tags": [
+              "status_pressure",
+              "selection",
+              "compromise"
+            ]
+          }
+        ],
+        "competency": "uttaksintegritet",
+        "consequence_axis": "tillit_til_standard_vs_kortsiktig_ro",
+        "cooldown": 2,
+        "from": "sportslig_koordinator_ida",
+        "id": "sport_trener_conflict_uttak_001",
+        "mail_family": "uttakspress_og_begrunnet_vurdering",
+        "mail_type": "conflict",
+        "narrative_arc": "Treneren lærer at uttaksmyndighet bare er troverdig når kriteriene tåler press og kan forklares.",
+        "person_id": "sportslig_koordinator_ida",
+        "phase": "afternoon",
+        "place_id": "sport_garderobe",
+        "pressure": "statuspress_vs_begrunnet_vurdering",
+        "priority": 60,
+        "purpose": "Teste om treneren holder uttakskriteriene stabile når statuspresset blir synlig.",
+        "repeatable": false,
+        "role_scope": "sport_trener",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "sportslig_koordinator_ida",
+        "situation": [
+          "Profilen har høy status og det er tydelig press rundt uttaket.",
+          "Trenings- og kampobservasjonene støtter fortsatt det opprinnelige sportslige valget.",
+          "Ida ber deg avklare beslutningen før presset blir en uformell styringsmekanisme."
+        ],
+        "stage": "advanced",
+        "stakes": "Gir du etter, får du kortsiktig ro, men svekker sammenhengen mellom observasjon, kriterier og rolle. Holder du vurderingen, må den kunne forklares og dokumenteres.",
+        "subject": "Profilpresset øker, men observasjonene peker fortsatt en annen vei",
+        "summary": "Ida sier at omgivelsene forventer en profil i startlaget, mens de dokumenterte sportslige kriteriene fortsatt peker mot et annet uttak.",
+        "task_domain": "uttak_under_press",
+        "task_kind": "conflict"
+      },
+      "id": "sport_trener_conflict_uttak_001",
+      "mail_type": "conflict",
+      "role_scope": "sport_trener",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beskytter sammenhengen mellom mandat, observasjon og sportslig beslutning.",
+            "id": "A",
+            "label": "Hold kriteriene, dokumenter observasjonene og forklar rollen tydelig",
+            "reply": "Jeg holder kriteriene, dokumenterer observasjonene og forklarer rollen før statuspresset får definere uttaket."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Presset avtar, men kriteriene blir mindre troverdige neste gang du viser til dem.",
+            "id": "B",
+            "label": "Sett profilen inn for å dempe presset rundt laget",
+            "reply": "Jeg setter profilen inn denne gangen for å få ro rundt laget."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Profilen har høy status og det er tydelig press rundt uttaket.",
+            "Trenings- og kampobservasjonene støtter fortsatt det opprinnelige sportslige valget.",
+            "Ida ber deg avklare beslutningen før presset blir en uformell styringsmekanisme."
+          ],
+          "subject": "Profilpresset øker, men observasjonene peker fortsatt en annen vei",
+          "summary": "Ida sier at omgivelsene forventer en profil i startlaget, mens de dokumenterte sportslige kriteriene fortsatt peker mot et annet uttak."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_trener_conflict_uttak_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_garderobe",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_trener_conflict_uttak_001",
+          "source_path": "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_trener.mail.sport_trener_conflict_uttak_001",
+        "version": 1
+      },
+      "source_hash": "85c1701d5c7e456a01919b8fa7e54cfebf88f860049b5c7ad3933b921a729851",
+      "source_path": "data/Civication/mailFamilies/sport/conflict/sport_trener_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "bruke_observasjoner_og_riktig_avklaring_vs_ga_rett_til_normalplan",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Den tidligere faggrensen blir til bedre læring og mer presis progresjon.",
+            "id": "A",
+            "label": "Bruk observasjonene og den avklarte rammen til å planlegge neste progresjon sammen med riktig fagperson",
+            "reply": "Jeg bruker observasjonene fra øktene og den avklarte rammen når neste progresjonstrinn planlegges med riktig fagperson.",
+            "tags": [
+              "consequence",
+              "progression",
+              "mandate"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du lar et godt korttidsresultat erstatte den systematiske progresjonen som gjorde resultatet mulig.",
+            "id": "B",
+            "label": "Gå tilbake til normal plan fordi uka har gått bra",
+            "reply": "Jeg går tilbake til normal plan nå som uka har gått bra.",
+            "tags": [
+              "normalization",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "belastningsstyring",
+        "consequence_axis": "baerekraftig_progresjon_vs_for_tidlig_normalisering",
+        "cooldown": 3,
+        "from": "spillerutvikler_amina",
+        "id": "sport_trener_consequence_belastning_001",
+        "mail_family": "forsinkede_belastningskonsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "Treneren ser at rolleavklaring og belastningsstyring gir et bedre utviklingsspor over tid.",
+        "person_id": "spillerutvikler_amina",
+        "phase": "day_end",
+        "place_id": "sport_garderobe",
+        "pressure": "god_uke_vs_systematisk_progresjon",
+        "priority": 61,
+        "purpose": "Vise at korrekt rolle- og belastningsoppfølging skaper bedre beslutninger senere, ikke bare mindre risiko i øyeblikket.",
+        "repeatable": false,
+        "role_scope": "sport_trener",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "spillerutvikler_amina",
+        "situation": [
+          "Spilleren har gjennomført flere tilpassede økter uten nytt avbrudd.",
+          "Trenerteamet har konkrete observasjoner av belastning og prestasjon.",
+          "Neste progresjonstrinn må fortsatt samordnes med den avklarte faglige rammen."
+        ],
+        "stage": "mastery",
+        "stakes": "En god uke kan friste til å gå rett tilbake til normal plan. Bruker du observasjonene og den avklarte prosessen, kan progresjonen justeres uten å hoppe over faggrensen.",
+        "subject": "Noen dager senere viser belastningssporet hvorfor den tydelige faggrensen var nyttig",
+        "summary": "Spilleren har fulgt den avklarte rammen, fortsatt å delta i utviklingsarbeidet og gitt et tydeligere observasjonsgrunnlag for neste progresjon.",
+        "task_domain": "forsinket_belastningskonsekvens",
+        "task_kind": "consequence",
+        "thread_key": "sport_trener.case.belastning_og_faggrense"
+      },
+      "id": "sport_trener_consequence_belastning_001",
+      "mail_type": "consequence",
+      "role_scope": "sport_trener",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Den tidligere faggrensen blir til bedre læring og mer presis progresjon.",
+            "id": "A",
+            "label": "Bruk observasjonene og den avklarte rammen til å planlegge neste progresjon sammen med riktig fagperson",
+            "reply": "Jeg bruker observasjonene fra øktene og den avklarte rammen når neste progresjonstrinn planlegges med riktig fagperson."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du lar et godt korttidsresultat erstatte den systematiske progresjonen som gjorde resultatet mulig.",
+            "id": "B",
+            "label": "Gå tilbake til normal plan fordi uka har gått bra",
+            "reply": "Jeg går tilbake til normal plan nå som uka har gått bra."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Spilleren har gjennomført flere tilpassede økter uten nytt avbrudd.",
+            "Trenerteamet har konkrete observasjoner av belastning og prestasjon.",
+            "Neste progresjonstrinn må fortsatt samordnes med den avklarte faglige rammen."
+          ],
+          "subject": "Noen dager senere viser belastningssporet hvorfor den tydelige faggrensen var nyttig",
+          "summary": "Spilleren har fulgt den avklarte rammen, fortsatt å delta i utviklingsarbeidet og gitt et tydeligere observasjonsgrunnlag for neste progresjon."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_trener_consequence_belastning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_garderobe",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_trener_consequence_belastning_001",
+          "source_path": "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_trener.case.belastning_og_faggrense",
+        "version": 1
+      },
+      "source_hash": "d52e0d3a2bb8b19a69bd814a431fa9a72778a11492fe7f65be3940ed95cd0764",
+      "source_path": "data/Civication/mailFamilies/sport/consequence/sport_trener_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "tilpasse_rolle_innen_rammen_vs_beholde_originalplan",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du beholder treneransvaret og respekterer samtidig faggrensen.",
+            "id": "A",
+            "label": "Tilpass oppvarming og rollebruk innen den avklarte belastningsrammen",
+            "reply": "Jeg tilpasser oppvarming og rollebruk innen den avklarte rammen og lar den sportslige planen følge den.",
+            "tags": [
+              "load",
+              "mandate",
+              "adaptation"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør en avklart ramme om til en ny prøving som trenerrollen ikke trenger å eie.",
+            "id": "B",
+            "label": "Behold originalplanen for å unngå uro og juster først hvis spilleren reagerer",
+            "reply": "Jeg beholder originalplanen og justerer først hvis spilleren reagerer underveis.",
+            "tags": [
+              "load_risk",
+              "plan",
+              "boundary"
+            ]
+          }
+        ],
+        "competency": "belastningsstyring",
+        "consequence_axis": "forsvarlig_deltakelse_vs_unodig_risiko",
+        "cooldown": 2,
+        "from": "spillerutvikler_amina",
+        "id": "sport_trener_event_kampdag_001",
+        "mail_family": "kampdag_og_uventet_belastning",
+        "mail_type": "event",
+        "narrative_arc": "Treneren lærer å gjøre sportslige tilpasninger innen andres faglige rammer i stedet for å gjøre rammen til sin egen vurdering.",
+        "person_id": "spillerutvikler_amina",
+        "phase": "morning",
+        "place_id": "sport_konkurransearena",
+        "pressure": "kampplan_vs_avklart_belastningsramme",
+        "priority": 59,
+        "purpose": "Teste om treneren kan tilpasse sportslig bruk innen en faglig avklart ramme uten å overta helsemyndighet.",
+        "repeatable": false,
+        "role_scope": "sport_trener",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/event/sport_trener_event.json",
+        "scene_catalog_version": 1,
+        "sender": "spillerutvikler_amina",
+        "situation": [
+          "Spilleren er tilgjengelig innen en tydelig avklart belastningsramme.",
+          "Den opprinnelige kampplanen forutsatte mer løps- og minutbelastning.",
+          "Du må endre treneraktiviteten uten å diagnostisere eller reforhandle den faglige avklaringen selv."
+        ],
+        "stage": "stable_warning",
+        "stakes": "Holder du originalplanen, slipper laget endring. Tilpasser du, må du endre rolle og oppvarming, men respekterer den faktiske rammen.",
+        "subject": "Kampdagen starter med en belastningsramme som er strammere enn planen",
+        "summary": "Amina gir deg en avklart ramme for en spiller som kan delta, men med mindre belastning enn kampplanen opprinnelig forutsatte.",
+        "task_domain": "kampdag_belastning",
+        "task_kind": "event"
+      },
+      "id": "sport_trener_event_kampdag_001",
+      "mail_type": "event",
+      "role_scope": "sport_trener",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beholder treneransvaret og respekterer samtidig faggrensen.",
+            "id": "A",
+            "label": "Tilpass oppvarming og rollebruk innen den avklarte belastningsrammen",
+            "reply": "Jeg tilpasser oppvarming og rollebruk innen den avklarte rammen og lar den sportslige planen følge den."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en avklart ramme om til en ny prøving som trenerrollen ikke trenger å eie.",
+            "id": "B",
+            "label": "Behold originalplanen for å unngå uro og juster først hvis spilleren reagerer",
+            "reply": "Jeg beholder originalplanen og justerer først hvis spilleren reagerer underveis."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Spilleren er tilgjengelig innen en tydelig avklart belastningsramme.",
+            "Den opprinnelige kampplanen forutsatte mer løps- og minutbelastning.",
+            "Du må endre treneraktiviteten uten å diagnostisere eller reforhandle den faglige avklaringen selv."
+          ],
+          "subject": "Kampdagen starter med en belastningsramme som er strammere enn planen",
+          "summary": "Amina gir deg en avklart ramme for en spiller som kan delta, men med mindre belastning enn kampplanen opprinnelig forutsatte."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_trener_event_kampdag_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_konkurransearena",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_trener_event_kampdag_001",
+          "source_path": "data/Civication/mailFamilies/sport/event/sport_trener_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_trener.mail.sport_trener_event_kampdag_001",
+        "version": 1
+      },
+      "source_hash": "f8da1c27cfa3fd25bf34ebd8a109a3cf6fed11dd5fbbe42c7de221b038e9b19c",
+      "source_path": "data/Civication/mailFamilies/sport/event/sport_trener_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "bygge_okta_innen_rammen_vs_prove_normal_belastning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Avklaringen blir en fungerende del av trenerarbeidet og gir bedre observasjoner til neste vurdering.",
+            "id": "A",
+            "label": "Bygg økta innen den avklarte rammen og gjør progresjonen observerbar",
+            "reply": "Jeg bygger økta innen den avklarte rammen og registrerer hva spilleren faktisk tåler og mestrer.",
+            "tags": [
+              "followup",
+              "load",
+              "progression"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du bytter en avklart ramme mot en ny prøve som ikke gir bedre rolleavklaring.",
+            "id": "B",
+            "label": "La spilleren prøve normal belastning og stopp bare hvis problemet kommer tilbake",
+            "reply": "Jeg lar spilleren prøve normal belastning og stopper bare hvis problemet kommer tilbake.",
+            "tags": [
+              "load_risk",
+              "normalization"
+            ]
+          }
+        ],
+        "competency": "belastningsstyring",
+        "consequence_axis": "kontrollert_progresjon_vs_tilbakefallsrisiko",
+        "cooldown": 2,
+        "from": "spillerutvikler_amina",
+        "id": "sport_trener_followup_belastning_001",
+        "mail_family": "belastningsoppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Treneren oppdager at en faggrense først virker når den blir oversatt til konkret treningspraksis.",
+        "person_id": "spillerutvikler_amina",
+        "phase": "morning",
+        "place_id": "sport_treningsfelt",
+        "pressure": "normalisering_vs_faktisk_oppfolging",
+        "priority": 58,
+        "purpose": "Teste om treneren følger en faglig avklaring gjennom praktisk øktdesign i stedet for å la den forsvinne når hverdagen starter.",
+        "repeatable": false,
+        "role_scope": "sport_trener",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "spillerutvikler_amina",
+        "situation": [
+          "Belastningsrammen er allerede avklart av riktig fagperson.",
+          "Spilleren ønsker å være mest mulig med i den vanlige økta.",
+          "Du må gjøre rammen operativ gjennom øvelsesvalg, rolle og volum."
+        ],
+        "stage": "advanced",
+        "stakes": "En normal økt er enklest for gruppa, men gjør avklaringen symbolsk. En tilpasset økt krever planlegging, men holder utvikling og sikkerhet sammen.",
+        "subject": "Belastningsvalget fra sist må nå bli synlig i dagens økt",
+        "summary": "Amina minner om den avklarte belastningsrammen fra forrige situasjon; dagens økt må bygges slik at spilleren faktisk kan følge den.",
+        "task_domain": "belastningsoppfolging",
+        "task_kind": "followup",
+        "thread_key": "sport_trener.case.belastning_og_faggrense"
+      },
+      "id": "sport_trener_followup_belastning_001",
+      "mail_type": "followup",
+      "role_scope": "sport_trener",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Avklaringen blir en fungerende del av trenerarbeidet og gir bedre observasjoner til neste vurdering.",
+            "id": "A",
+            "label": "Bygg økta innen den avklarte rammen og gjør progresjonen observerbar",
+            "reply": "Jeg bygger økta innen den avklarte rammen og registrerer hva spilleren faktisk tåler og mestrer."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du bytter en avklart ramme mot en ny prøve som ikke gir bedre rolleavklaring.",
+            "id": "B",
+            "label": "La spilleren prøve normal belastning og stopp bare hvis problemet kommer tilbake",
+            "reply": "Jeg lar spilleren prøve normal belastning og stopper bare hvis problemet kommer tilbake."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Belastningsrammen er allerede avklart av riktig fagperson.",
+            "Spilleren ønsker å være mest mulig med i den vanlige økta.",
+            "Du må gjøre rammen operativ gjennom øvelsesvalg, rolle og volum."
+          ],
+          "subject": "Belastningsvalget fra sist må nå bli synlig i dagens økt",
+          "summary": "Amina minner om den avklarte belastningsrammen fra forrige situasjon; dagens økt må bygges slik at spilleren faktisk kan følge den."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_trener_followup_belastning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_treningsfelt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_trener_followup_belastning_001",
+          "source_path": "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_trener.case.belastning_og_faggrense",
+        "version": 1
+      },
+      "source_hash": "3a0813a4409336ac47568286335e083aec7490887651c7d9600f1b1dea3da1dc",
+      "source_path": "data/Civication/mailFamilies/sport/followup/sport_trener_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
         "choice_axis": "forenkle_prinsipper_vs_gi_full_plan",
         "choices": [
           {
@@ -137674,6 +138183,505 @@
       },
       "source_hash": "c08bc14edd372a20c14b94afe5917ca2994a93871a5ac0b86dab5c3639748889",
       "source_path": "data/Civication/mailFamilies/sport/job/sport_trener_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "observere_tilpasse_og_eskalere_vs_tolke_tilstanden_selv",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du bruker trenerkompetansen fullt ut uten å gjøre observasjonen til en diagnose.",
+            "id": "A",
+            "label": "Beskriv observasjonen, tilpass aktiviteten og eskaler avklaringen til riktig fagperson",
+            "reply": "Jeg beskriver det jeg faktisk observerer, tilpasser aktiviteten og sender selve avklaringen til riktig fagperson.",
+            "tags": [
+              "knowledge",
+              "mandate",
+              "load"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør en trenerobservasjon om til en helsefaglig konklusjon du ikke trenger å eie.",
+            "id": "B",
+            "label": "Tolk det som en mindre plage og fortsett så lenge spilleren selv ønsker det",
+            "reply": "Jeg tolker det som en mindre plage og lar spilleren fortsette så lenge det kjennes greit.",
+            "tags": [
+              "boundary_risk",
+              "assumption"
+            ]
+          }
+        ],
+        "competency": "trenermandat",
+        "consequence_axis": "mandatklarhet_vs_rolleoverskridelse",
+        "cooldown": 2,
+        "from": "spillerutvikler_amina",
+        "id": "sport_trener_knowledge_faggrense_001",
+        "mail_family": "trenerkunnskap_om_belastning_og_mandat",
+        "mail_type": "knowledge",
+        "narrative_arc": "Treneren lærer at tydelig faggrense ikke betyr passivitet; den gjør det mulig å handle presist på riktig nivå.",
+        "person_id": "spillerutvikler_amina",
+        "phase": "lunch",
+        "place_id": "sport_treningsfelt",
+        "pressure": "handlebehov_vs_faggrense",
+        "priority": 50,
+        "purpose": "Knytte trenerens belastningsstyring til en eksplisitt faggrense.",
+        "repeatable": false,
+        "role_scope": "sport_trener",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "spillerutvikler_amina",
+        "situation": [
+          "Du ser at en spiller beveger seg annerledes og tåler mindre belastning enn vanlig.",
+          "Du kan beskrive observasjonen og justere treneraktiviteten.",
+          "Årsak, diagnose og medisinsk behandling ligger utenfor trenermandatet."
+        ],
+        "stage": "early",
+        "stakes": "Hvis observasjon blir behandlet som diagnose, kan treneren gå utenfor mandatet. Hvis alt skyves videre, mister treneren ansvar for de sportslige tilpasningene som faktisk ligger i rollen.",
+        "subject": "Du kan observere og tilpasse belastning uten å stille en diagnose",
+        "summary": "Amina ber deg skille mellom det treneren faktisk ser i aktivitet, det du kan endre i økta, og det som må avklares av riktig fagperson.",
+        "task_domain": "trenermandat_og_belastning",
+        "task_kind": "knowledge"
+      },
+      "id": "sport_trener_knowledge_faggrense_001",
+      "mail_type": "knowledge",
+      "role_scope": "sport_trener",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker trenerkompetansen fullt ut uten å gjøre observasjonen til en diagnose.",
+            "id": "A",
+            "label": "Beskriv observasjonen, tilpass aktiviteten og eskaler avklaringen til riktig fagperson",
+            "reply": "Jeg beskriver det jeg faktisk observerer, tilpasser aktiviteten og sender selve avklaringen til riktig fagperson."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en trenerobservasjon om til en helsefaglig konklusjon du ikke trenger å eie.",
+            "id": "B",
+            "label": "Tolk det som en mindre plage og fortsett så lenge spilleren selv ønsker det",
+            "reply": "Jeg tolker det som en mindre plage og lar spilleren fortsette så lenge det kjennes greit."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Du ser at en spiller beveger seg annerledes og tåler mindre belastning enn vanlig.",
+            "Du kan beskrive observasjonen og justere treneraktiviteten.",
+            "Årsak, diagnose og medisinsk behandling ligger utenfor trenermandatet."
+          ],
+          "subject": "Du kan observere og tilpasse belastning uten å stille en diagnose",
+          "summary": "Amina ber deg skille mellom det treneren faktisk ser i aktivitet, det du kan endre i økta, og det som må avklares av riktig fagperson."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_trener_knowledge_faggrense_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_treningsfelt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_trener_knowledge_faggrense_001",
+          "source_path": "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_trener.mail.sport_trener_knowledge_faggrense_001",
+        "version": 1
+      },
+      "source_hash": "0491c7f3452f4037b0c893a68b62b99e90ad9cf7de7455a5a91ed24dc852a150",
+      "source_path": "data/Civication/mailFamilies/sport/knowledge/sport_trener_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "ett_handlingsnaert_signal_vs_lang_felles_stopp",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Feedbacken blir kort nok til å brukes og presis nok til å endre neste handling.",
+            "id": "A",
+            "label": "Gi ett konkret signal spilleren kan bruke i neste repetisjon",
+            "reply": "Jeg gir ett konkret signal spilleren kan bruke med en gang og lar øvelsen fortsette.",
+            "tags": [
+              "feedback",
+              "learning",
+              "flow"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Forklaringen blir tydelig, men du bruker hele gruppas flyt på et problem som kunne vært løst mer presist.",
+            "id": "B",
+            "label": "Stopp hele gruppa og forklar feilen grundig",
+            "reply": "Jeg stopper hele gruppa og forklarer feilen grundig før vi fortsetter.",
+            "tags": [
+              "explanation",
+              "pause"
+            ]
+          }
+        ],
+        "competency": "observasjon_feedback",
+        "consequence_axis": "anvendelig_laring_vs_avbrutt_flyt",
+        "cooldown": 1,
+        "from": "assistenttrener_lina",
+        "id": "sport_trener_micro_feedback_001",
+        "mail_family": "mikrofeedback_i_okta",
+        "mail_type": "micro",
+        "narrative_arc": "Treneren lærer å gjøre observasjon om til den minste beskjeden som faktisk hjelper neste forsøk.",
+        "person_id": "assistenttrener_lina",
+        "phase": "afternoon",
+        "place_id": "sport_treningsfelt",
+        "pressure": "forklaringsbehov_vs_ovelsesflyt",
+        "priority": 42,
+        "purpose": "Teste om treneren kan gi presis mikrofeedback som endrer neste handling uten å overforklare.",
+        "repeatable": true,
+        "role_scope": "sport_trener",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "assistenttrener_lina",
+        "situation": [
+          "Spilleren gjentar samme feil i en ellers velfungerende øvelse.",
+          "Du har nok observasjon til å peke ut ett tydelig neste grep.",
+          "Resten av gruppa lærer best hvis økta får fortsette."
+        ],
+        "stage": "stable",
+        "stakes": "Stopper du alle, får du maksimal forklaring men bryter flyten. Gir du ett konkret signal, må du velge det viktigste.",
+        "subject": "Samme feil kommer igjen — spilleren trenger én brukbar beskjed",
+        "summary": "Lina ser at en spiller gjentar samme beslutningsfeil, men hele gruppa er i god flyt og trenger ikke en lang stopp.",
+        "task_domain": "mikrofeedback",
+        "task_kind": "micro"
+      },
+      "id": "sport_trener_micro_feedback_001",
+      "mail_type": "micro",
+      "role_scope": "sport_trener",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Feedbacken blir kort nok til å brukes og presis nok til å endre neste handling.",
+            "id": "A",
+            "label": "Gi ett konkret signal spilleren kan bruke i neste repetisjon",
+            "reply": "Jeg gir ett konkret signal spilleren kan bruke med en gang og lar øvelsen fortsette."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Forklaringen blir tydelig, men du bruker hele gruppas flyt på et problem som kunne vært løst mer presist.",
+            "id": "B",
+            "label": "Stopp hele gruppa og forklar feilen grundig",
+            "reply": "Jeg stopper hele gruppa og forklarer feilen grundig før vi fortsetter."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Spilleren gjentar samme feil i en ellers velfungerende øvelse.",
+            "Du har nok observasjon til å peke ut ett tydelig neste grep.",
+            "Resten av gruppa lærer best hvis økta får fortsette."
+          ],
+          "subject": "Samme feil kommer igjen — spilleren trenger én brukbar beskjed",
+          "summary": "Lina ser at en spiller gjentar samme beslutningsfeil, men hele gruppa er i god flyt og trenger ikke en lang stopp."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_trener_micro_feedback_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_treningsfelt",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_trener_micro_feedback_001",
+          "source_path": "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_trener.mail.sport_trener_micro_feedback_001",
+        "version": 1
+      },
+      "source_hash": "ae52637a09e266882c61a712f56e09fa09b847211e2e40caab3ac6c3520784af",
+      "source_path": "data/Civication/mailFamilies/sport/micro/sport_trener_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "forklare_rolle_og_utviklingsvei_vs_la_uttaket_tale",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du beholder den sportslige beslutningen og gjør samtidig forventningene tydelige nok til at spilleren kan lære av den.",
+            "id": "A",
+            "label": "Forklar rollen, begrunnelsen og den konkrete utviklingsveien før uttaket blir garderobesnakk",
+            "reply": "Jeg tar samtalen før resten av gruppa fyller tomrommet: rolle, begrunnelse og hva spilleren konkret kan jobbe med videre.",
+            "tags": [
+              "selection",
+              "trust",
+              "development",
+              "coaching"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Beslutningen er effektivt kommunisert, men spilleren og garderoben blir stående med mer tolkning enn læringsretning.",
+            "id": "B",
+            "label": "Hold beskjeden kort og la neste trening vise hva som kreves",
+            "reply": "Jeg holder beskjeden kort. Uttaket står, og neste trening får vise hva som kreves for å endre rollen.",
+            "tags": [
+              "selection",
+              "ambiguity",
+              "trust_risk"
+            ]
+          }
+        ],
+        "competency": "observasjon_feedback",
+        "consequence_axis": "tillit_og_laring_vs_effektivitet_og_tolkning",
+        "cooldown": 2,
+        "from": "assistenttrener_lina",
+        "id": "sport_trener_people_lina_001",
+        "mail_family": "trenerstab_og_rolleavklaring",
+        "mail_type": "people",
+        "narrative_arc": "Treneren lærer at et sportslig riktig uttak fortsatt må ledes som en menneskelig og pedagogisk beslutning.",
+        "person_id": "assistenttrener_lina",
+        "phase": "morning",
+        "place_id": "sport_garderobe",
+        "pressure": "prestasjonsvalg_vs_tillit",
+        "priority": 61,
+        "purpose": "Teste om treneren kan stå i et sportslig valg samtidig som relasjonen og læringsveien blir ivaretatt.",
+        "repeatable": false,
+        "role_scope": "sport_trener",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/people/sport_trener_people.json",
+        "scene_catalog_version": 1,
+        "sender": "assistenttrener_lina",
+        "situation": [
+          "Uttaket er allerede gjort på sportslig grunnlag.",
+          "Spilleren som mister startplassen har trent godt og kommer til å lese beslutningen som et signal om egen verdi.",
+          "Lina ber deg avklare hva spilleren skal få vite før resten av garderoben begynner å tolke beslutningen."
+        ],
+        "stage": "stable",
+        "stakes": "En kort beskjed er effektiv, men kan gjøre et begrunnet uttak til et tillitsproblem. En tydelig rolleforklaring tar mer tid, men holder standard, verdighet og utvikling sammen.",
+        "subject": "Lina vil avklare hvordan uttaket skal forklares før garderoben fyller tomrommet",
+        "summary": "Assistenttrener Lina mener det sportslige uttaket kan forsvares, men ser at spilleren vil tolke stillheten som en dom over egen verdi dersom rolle og utviklingsvei ikke forklares presist.",
+        "task_domain": "trenerstab_og_rolleavklaring",
+        "task_kind": "people"
+      },
+      "id": "sport_trener_people_lina_001",
+      "mail_type": "people",
+      "role_scope": "sport_trener",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beholder den sportslige beslutningen og gjør samtidig forventningene tydelige nok til at spilleren kan lære av den.",
+            "id": "A",
+            "label": "Forklar rollen, begrunnelsen og den konkrete utviklingsveien før uttaket blir garderobesnakk",
+            "reply": "Jeg tar samtalen før resten av gruppa fyller tomrommet: rolle, begrunnelse og hva spilleren konkret kan jobbe med videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Beslutningen er effektivt kommunisert, men spilleren og garderoben blir stående med mer tolkning enn læringsretning.",
+            "id": "B",
+            "label": "Hold beskjeden kort og la neste trening vise hva som kreves",
+            "reply": "Jeg holder beskjeden kort. Uttaket står, og neste trening får vise hva som kreves for å endre rollen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Uttaket er allerede gjort på sportslig grunnlag.",
+            "Spilleren som mister startplassen har trent godt og kommer til å lese beslutningen som et signal om egen verdi.",
+            "Lina ber deg avklare hva spilleren skal få vite før resten av garderoben begynner å tolke beslutningen."
+          ],
+          "subject": "Lina vil avklare hvordan uttaket skal forklares før garderoben fyller tomrommet",
+          "summary": "Assistenttrener Lina mener det sportslige uttaket kan forsvares, men ser at spilleren vil tolke stillheten som en dom over egen verdi dersom rolle og utviklingsvei ikke forklares presist."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_trener_people_lina_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_garderobe",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_trener_people_lina_001",
+          "source_path": "data/Civication/mailFamilies/sport/people/sport_trener_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_trener.mail.sport_trener_people_lina_001",
+        "version": 1
+      },
+      "source_hash": "239ab978e8f16cfd38013abc8acb5f7e28f02b9d230994e6935ff71bcf38f1dd",
+      "source_path": "data/Civication/mailFamilies/sport/people/sport_trener_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "sport",
+      "compatibility_projection": {
+        "category": "sport",
+        "choice_axis": "justere_pa_evidens_vs_nullstille_planen",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du behandler resultatet som informasjon, ikke som ordre om å rive hele planen.",
+            "id": "A",
+            "label": "Behold det som virker og juster bare de svake områdene observasjonene støtter",
+            "reply": "Jeg beholder det som virker og justerer bare områdene vi faktisk kan dokumentere som svake.",
+            "tags": [
+              "evaluation",
+              "evidence",
+              "stability"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du viser handlekraft, men mister muligheten til å lære hvilke deler av arbeidet som faktisk var på vei frem.",
+            "id": "B",
+            "label": "Nullstill planen for å vise at laget reagerer på tapsrekken",
+            "reply": "Jeg nullstiller planen og gjør store endringer for å vise en tydelig reaksjon.",
+            "tags": [
+              "panic",
+              "results",
+              "reset"
+            ]
+          }
+        ],
+        "competency": "trenerdommekraft",
+        "consequence_axis": "lare_over_tid_vs_panikkendring",
+        "cooldown": 3,
+        "from": "analyseansvarlig_noah",
+        "id": "sport_trener_story_resultatkrise_001",
+        "mail_family": "resultatkrise_og_trenerdommekraft",
+        "mail_type": "story",
+        "narrative_arc": "Resultatkrisen lærer treneren å endre det som faktisk er svakt uten å rive ned det som virker.",
+        "person_id": "analyseansvarlig_noah",
+        "phase": "evening",
+        "place_id": "sport_konkurransearena",
+        "pressure": "resultatstoy_vs_stabile_prestasjonssignaler",
+        "priority": 54,
+        "purpose": "Teste om treneren kan evaluere resultat og prestasjon separat nok til å unngå panikkendringer.",
+        "repeatable": false,
+        "role_scope": "sport_trener",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/sport/story/sport_trener_story.json",
+        "scene_catalog_version": 1,
+        "sender": "analyseansvarlig_noah",
+        "situation": [
+          "Laget har tapt tre kamper på rad.",
+          "Noen nøkkelsignaler i kampbildet er stabile eller bedre enn før.",
+          "Omgivelsene forventer en synlig reaksjon fra trenerteamet."
+        ],
+        "stage": "advanced",
+        "stakes": "En total omlegging signaliserer handlekraft, men kan ødelegge utvikling som faktisk virker. En selektiv justering krever at du tåler resultatpresset.",
+        "subject": "Tre tap ser ut som krise, men noen prestasjonssignaler er faktisk bedre",
+        "summary": "Noah viser at resultatene er svake, mens flere av lagets avtalte prestasjonssignaler er stabile eller i bedring.",
+        "task_domain": "resultatevaluering",
+        "task_kind": "story"
+      },
+      "id": "sport_trener_story_resultatkrise_001",
+      "mail_type": "story",
+      "role_scope": "sport_trener",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du behandler resultatet som informasjon, ikke som ordre om å rive hele planen.",
+            "id": "A",
+            "label": "Behold det som virker og juster bare de svake områdene observasjonene støtter",
+            "reply": "Jeg beholder det som virker og justerer bare områdene vi faktisk kan dokumentere som svake."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du viser handlekraft, men mister muligheten til å lære hvilke deler av arbeidet som faktisk var på vei frem.",
+            "id": "B",
+            "label": "Nullstill planen for å vise at laget reagerer på tapsrekken",
+            "reply": "Jeg nullstiller planen og gjør store endringer for å vise en tydelig reaksjon."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Laget har tapt tre kamper på rad.",
+            "Noen nøkkelsignaler i kampbildet er stabile eller bedre enn før.",
+            "Omgivelsene forventer en synlig reaksjon fra trenerteamet."
+          ],
+          "subject": "Tre tap ser ut som krise, men noen prestasjonssignaler er faktisk bedre",
+          "summary": "Noah viser at resultatene er svake, mens flere av lagets avtalte prestasjonssignaler er stabile eller i bedring."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "sport_trener_story_resultatkrise_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "sport_konkurransearena",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "sport_trener_story_resultatkrise_001",
+          "source_path": "data/Civication/mailFamilies/sport/story/sport_trener_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "sport_trener.mail.sport_trener_story_resultatkrise_001",
+        "version": 1
+      },
+      "source_hash": "9fea5791998db9bb13c888c9721daa1998dcc998e083b0ef46d41299fc620799",
+      "source_path": "data/Civication/mailFamilies/sport/story/sport_trener_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -143913,7 +144921,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "3ce7f80234dc61a3c17980af22166bdb82ee7252846d218cf45eda9954665a5b",
+  "registry_hash": "9e7fa753630b4c7864145c681c79d89cd5af656c2260b89412d08bb740669bba",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -144863,7 +145871,15 @@
       "sport_trener_job_kamp_001",
       "sport_trener_job_kamp_002",
       "sport_trener_job_omsorg_001",
-      "sport_trener_job_omsorg_002"
+      "sport_trener_job_omsorg_002",
+      "sport_trener_people_lina_001",
+      "sport_trener_story_resultatkrise_001",
+      "sport_trener_conflict_uttak_001",
+      "sport_trener_event_kampdag_001",
+      "sport_trener_micro_feedback_001",
+      "sport_trener_followup_belastning_001",
+      "sport_trener_knowledge_faggrense_001",
+      "sport_trener_consequence_belastning_001"
     ],
     "sport/sport_utover": [
       "sport_utover_job_trening_001",
@@ -144940,11 +145956,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 178,
+    "compiled_source_file_count": 186,
     "ignored_source_file_count": 1,
-    "input_file_count": 179,
+    "input_file_count": 187,
     "role_count": 28,
-    "scene_count": 941,
+    "scene_count": 949,
     "shadowed_duplicate_count": 0
   },
   "version": 1
