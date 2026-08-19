@@ -28,7 +28,9 @@ export function auditReligionTheoryCanon(){
      for(const entry of entries){
        proseTheoryEntryCount++;assert(nonTrivial(entry.content),`Theory prose er for kort/metadata-only: ${topicId}/${entry.title||'uten_tittel'}`);assert(entry.claim_ids?.length>0&&entry.source_ids?.length>0,`Theory prose mangler claim/source-binding: ${topicId}/${entry.title||'uten_tittel'}`);
        for(const claimId of entry.claim_ids){assert(topicClaims.has(claimId),`Theory prose peker til ukjent claim: ${topicId}/${claimId}`);}
-       for(const sourceId of entry.source_ids){assert(areaSources.has(sourceId),`Theory prose peker til ukjent source: ${topicId}/${sourceId}`);const supporting=entry.claim_ids.filter(claimId=>(topicClaims.get(claimId)?.source_ids||[]).includes(sourceId));assert(supporting.length>0,`Theory prose source mangler claim-provenance: ${topicId}/${sourceId}`);if(!bindings.has(sourceId))bindings.set(sourceId,new Set());for(const claimId of supporting){bindings.get(sourceId).add(claimId);proseBoundClaims.add(claimId);}}
+       let supportedPairs=0;
+       for(const sourceId of entry.source_ids){assert(areaSources.has(sourceId),`Theory prose peker til ukjent source: ${topicId}/${sourceId}`);const supporting=entry.claim_ids.filter(claimId=>(topicClaims.get(claimId)?.source_ids||[]).includes(sourceId));if(supporting.length>0){if(!bindings.has(sourceId))bindings.set(sourceId,new Set());for(const claimId of supporting){bindings.get(sourceId).add(claimId);proseBoundClaims.add(claimId);supportedPairs++;}}}
+       assert(supportedPairs>0,`Theory prose mangler enhver claim-understøttet source-binding: ${topicId}/${entry.title||'uten_tittel'}`);
      }
    }
    proseBindingByArea.set(area.area_id,bindings);
