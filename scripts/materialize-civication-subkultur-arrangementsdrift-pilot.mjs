@@ -261,7 +261,7 @@ run('compiled-scene-registry-check', ['scripts/build-civication-scene-registry.m
 run('subkultur-playability', ['tests/civication-subkultur-arrangementsdrift-playability.test.js']);
 run('choice-uniqueness-regression', ['tests/civication-mail-choice-uniqueness.test.js']);
 run('religion-forskning-regression', ['tests/civication-religion-forskning-playability.test.js']);
-run('produksjonsassistent-regression', ['tests/civication-produksjonsassistent-playability.test.js']);
+run('produksjonsassistent-regression', ['tests/civication-film-tv-produksjonsassistent-playability.test.js']);
 run('avdelingsleder-regression', ['tests/civication-avdelingsleder-playability.test.js']);
 run('role-world-integrity', ['tests/civication-role-world-contract.test.js']);
 
