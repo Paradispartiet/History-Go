@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "lager_og_driftsmedarbeider",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "lager_drift_hms_hendelse",
+      "description": "Hendelser der nestenulykke, fysisk risiko og kø tester om sikkerhet behandles som en del av vareflyten.",
+      "learning_focus": ["HMS", "nestenulykke", "beredskap", "sikker_flyt"],
+      "mails": [
+        {
+          "id": "event_lager_drift_near_miss_blocks_flow",
+          "mail_type": "event",
+          "mail_family": "lager_drift_hms_hendelse",
+          "role_scope": "lager_og_driftsmedarbeider",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "event_message",
+          "phase": "advanced",
+          "priority": 85,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "subject": "Nestenulykken som stopper flyten",
+          "summary": "En pall og et hjelpemiddel skaper en nestenulykke i en gang samtidig som transport og plukk bygger kø.",
+          "situation": [
+            "Fra drift: En pallejekk måtte bråstoppe fordi en pall stakk ut i gangsonen. Ingen ble skadet, men det var nært.",
+            "Fra transport: Vi venter på to paller og køen bygger seg. Kan dere bare få åpnet passasjen først?",
+            "Fra System: Ingen registrert personskade. Nestenulykke: ikke registrert. Midlertidig blokkering av gang: ja."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Stoppe området, sikre det og registrere nestenulykken",
+              "reply": "Jeg stopper trafikken i sonen, sikrer pallen, registrerer nestenulykken og avklarer hvorfor plasseringen oppstod før normal flyt åpnes igjen.",
+              "effects": {"safety": 4, "traceability": 3, "process_quality": 3, "flow": -1, "future_risk": -3},
+              "next_bias": {"set_flags": ["lager_drift_secures_and_reports_near_miss"]},
+              "triggers_on_choice": "lager_drift_secures_and_reports_near_miss",
+              "feedback": "Du behandler nestenulykken som informasjon om systemet, ikke som en forsinkelse som skal gjemmes."
+            },
+            {
+              "id": "B",
+              "label": "Rydde sonen raskt og registrere hendelsen etterpå",
+              "reply": "Jeg sikrer passasjen og får pallen inn på trygg plass, åpner flyten igjen og registrerer nestenulykken før neste oppgave.",
+              "effects": {"safety": 2, "flow": 2, "traceability": 1, "future_risk": 0, "stress": 1},
+              "next_bias": {"set_flags": ["lager_drift_clears_then_reports_near_miss"]},
+              "triggers_on_choice": "lager_drift_clears_then_reports_near_miss",
+              "feedback": "Det kan være forsvarlig hvis registreringen faktisk skjer før hendelsen forsvinner inn i neste kø."
+            },
+            {
+              "id": "C",
+              "label": "Flytte pallen og fortsette uten registrering",
+              "reply": "Jeg flytter pallen ut av veien og fortsetter. Ingen ble skadet, så vi trenger ikke gjøre mer ut av det.",
+              "effects": {"flow": 3, "safety": -3, "traceability": -3, "future_risk": 4, "stagnation": 1},
+              "next_bias": {"set_flags": ["lager_drift_hides_near_miss"]},
+              "triggers_on_choice": "lager_drift_hides_near_miss",
+              "feedback": "Passasjen er åpen igjen, men årsaken til nestenulykken er fortsatt en del av arbeidsflyten."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
