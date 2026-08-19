@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_miljoarbeid",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "psykologi_miljoarbeid_fortrolighet",
+      "purpose": "Holde relasjon og sikkerhet samtidig når en fortrolig samtale krever faglig eskalering.",
+      "learning_focus": [
+        "profesjonelle_grenser",
+        "fortrolighet",
+        "sikker_eskalering"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_miljoarbeid_conflict_fortrolighet",
+          "mail_type": "conflict",
+          "mail_family": "psykologi_miljoarbeid_fortrolighet",
+          "role_scope": "psykologi_miljoarbeid",
+          "phase": "workday",
+          "priority": 126,
+          "from": "Elias",
+          "people_ref": "elias_bruker",
+          "place_id": "oppfolging_samtalerom",
+          "subject": "«Du må love at dette blir mellom oss»",
+          "summary": "Elias forteller noe som gjør deg alvorlig bekymret for sikkerheten hans, men ber deg love full hemmeligholdelse før han sier mer.",
+          "situation": [
+            "Relasjonen er bygget på at du lytter uten å dømme.",
+            "Samtidig kan du ikke love å bære alvorlig sikkerhetsbekymring alene.",
+            "Hvordan du forklarer grensen kan avgjøre om eskalering oppleves som svik eller profesjonell omsorg."
+          ],
+          "task_domain": "relasjon_og_grensesetting",
+          "competency": "sikker_eskalering",
+          "pressure": "tillit_vs_sikkerhetsansvar",
+          "choice_axis": "tydelig_grense_og_delt_ansvar_vs_umandatert_hemmelighold",
+          "consequence_axis": "langsiktig_tillit_og_sikkerhet_vs_rolleglidning",
+          "narrative_arc": "samtalen_blir_for_tung",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Si at du vil lytte, men at du ikke kan love hemmelighold dersom sikkerhet gjør at riktig fagperson må inn",
+              "reply": "Jeg blir i samtalen med deg, og jeg skal være tydelig om hva jeg eventuelt må dele og med hvem.",
+              "effect": 1,
+              "tags": [
+                "boundary",
+                "safety"
+              ],
+              "feedback": "Du beskytter både relasjonen og ansvarslinjen ved å gjøre grensen synlig før du handler.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -3,
+                  "integrity": 2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Lov at ingenting går videre for å få hele historien",
+              "reply": "Du kan stole på meg; dette blir mellom oss.",
+              "effect": -1,
+              "tags": [
+                "secrecy",
+                "role_drift"
+              ],
+              "feedback": "Du får kanskje mer informasjon, men tar på deg et ansvar rollen ikke kan holde dersom risikoen er alvorlig.",
+              "effects": {
+                "stats": {
+                  "trust": 1,
+                  "quality": -3,
+                  "risk": 4,
+                  "integrity": -3
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Avbryt og si at slike temaer bare kan tas med psykologen",
+              "reply": "Dette er ikke mitt fagområde, så du må vente til fagkontakten er tilgjengelig.",
+              "effect": 0,
+              "tags": [
+                "boundary",
+                "withdrawal"
+              ],
+              "feedback": "Du unngår rolleglidning, men en for brå avvisning kan gjøre det vanskeligere å få fram viktig sikkerhetsinformasjon.",
+              "effects": {
+                "stats": {
+                  "quality": 0,
+                  "trust": -2,
+                  "risk": 1,
+                  "integrity": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

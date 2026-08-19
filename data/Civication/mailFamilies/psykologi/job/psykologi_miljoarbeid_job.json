@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_miljoarbeid",
+  "mail_type": "job",
+  "families": [
+    {
+      "id": "psykologi_miljoarbeid_vaktstart",
+      "purpose": "Starte vakten med presis overlevering uten å gjøre antakelser til kliniske fakta.",
+      "learning_focus": [
+        "observasjon",
+        "overlevering",
+        "presisjon"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_miljoarbeid_job_vaktstart",
+          "mail_type": "job",
+          "mail_family": "psykologi_miljoarbeid_vaktstart",
+          "role_scope": "psykologi_miljoarbeid",
+          "phase": "intro",
+          "priority": 140,
+          "from": "Mari, teamleder",
+          "people_ref": "mari_teamleder",
+          "place_id": "bofellesskap_vaktrom",
+          "subject": "Overleveringen sier «deprimert» — men notatet beskriver bare tre avlyste frokoster",
+          "summary": "Du starter vakten med et sterkt tolkningsord og få observerbare detaljer. Neste team trenger fakta de faktisk kan handle på.",
+          "situation": [
+            "Tre morgener med avlyst frokost er en reell endring som må tas på alvor.",
+            "Ordet «deprimert» går lenger enn det miljøarbeiderrollen kan konkludere med.",
+            "Du må gjøre overleveringen presis nok til at bekymringen verken bagatelliseres eller blir til en ubegrunnet diagnose."
+          ],
+          "task_domain": "vaktstart_og_observasjon",
+          "competency": "konkret_observasjon",
+          "pressure": "tempo_vs_presisjon",
+          "choice_axis": "observerbart_sprak_vs_diagnostisk_tolkning",
+          "consequence_axis": "etterprovbar_oppfolging_vs_stempling",
+          "narrative_arc": "det_du_saa",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv om overleveringen til konkrete hendelser, spør åpent ved første møte og marker hva teamet skal følge med på",
+              "reply": "Jeg beholder bekymringen, men skiller tydelig mellom det vi så og det vi ikke vet.",
+              "effect": 1,
+              "tags": [
+                "observation",
+                "precision"
+              ],
+              "feedback": "Neste vakt får et etterprøvbart utgangspunkt uten at usikkerhet blir skjult.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2,
+                  "energy": -1
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "La «deprimert» stå fordi ordet gjør at alle skjønner alvoret raskere",
+              "reply": "Jeg beholder merkelappen så teamet reagerer med en gang.",
+              "effect": -1,
+              "tags": [
+                "label",
+                "authority_risk"
+              ],
+              "feedback": "Bekymringen blir synlig, men en klinisk tolkning får status som faktum uten mandat eller grunnlag.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 3
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Fjern tolkningsordet, men vent med videre oppfølging til du selv har sett personen",
+              "reply": "Jeg rydder språket og samler mer observasjon før jeg konkluderer om behovet.",
+              "effect": 0,
+              "tags": [
+                "caution",
+                "observation"
+              ],
+              "feedback": "Språket blir bedre, men viktig bekymring kan bli liggende hvis du venter for lenge med å dele den.",
+              "effects": {
+                "stats": {
+                  "quality": 1,
+                  "trust": 0,
+                  "risk": 0,
+                  "energy": -1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

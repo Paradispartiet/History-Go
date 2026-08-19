@@ -92,6 +92,13 @@
     "data/Civication/mailFamilies/naeringsliv/followup/renholder_followup.json",
     "data/Civication/mailFamilies/naeringsliv/knowledge/renholder_knowledge.json",
     "data/Civication/mailFamilies/naeringsliv/consequence/renholder_consequence.json",
+    "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
+    "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
+    "data/Civication/mailFamilies/psykologi/conflict/psykologi_miljoarbeid_conflict.json",
+    "data/Civication/mailFamilies/psykologi/event/psykologi_miljoarbeid_event.json",
+    "data/Civication/mailFamilies/psykologi/followup/psykologi_miljoarbeid_followup.json",
+    "data/Civication/mailFamilies/psykologi/knowledge/psykologi_miljoarbeid_knowledge.json",
+    "data/Civication/mailFamilies/psykologi/consequence/psykologi_miljoarbeid_consequence.json",
     "data/Civication/mailFamilies/religion/job/religion_forskning_job.json",
     "data/Civication/mailFamilies/religion/people/religion_forskning_people.json",
     "data/Civication/mailFamilies/religion/conflict/religion_forskning_conflict.json",
@@ -113461,6 +113468,1122 @@
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "tydelig_grense_og_delt_ansvar_vs_umandatert_hemmelighold",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "integrity": 2,
+                "quality": 2,
+                "risk": -3,
+                "trust": 1
+              }
+            },
+            "feedback": "Du beskytter både relasjonen og ansvarslinjen ved å gjøre grensen synlig før du handler.",
+            "id": "A",
+            "label": "Si at du vil lytte, men at du ikke kan love hemmelighold dersom sikkerhet gjør at riktig fagperson må inn",
+            "reply": "Jeg blir i samtalen med deg, og jeg skal være tydelig om hva jeg eventuelt må dele og med hvem.",
+            "tags": [
+              "boundary",
+              "safety"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "integrity": -3,
+                "quality": -3,
+                "risk": 4,
+                "trust": 1
+              }
+            },
+            "feedback": "Du får kanskje mer informasjon, men tar på deg et ansvar rollen ikke kan holde dersom risikoen er alvorlig.",
+            "id": "B",
+            "label": "Lov at ingenting går videre for å få hele historien",
+            "reply": "Du kan stole på meg; dette blir mellom oss.",
+            "tags": [
+              "secrecy",
+              "role_drift"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "integrity": 1,
+                "quality": 0,
+                "risk": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du unngår rolleglidning, men en for brå avvisning kan gjøre det vanskeligere å få fram viktig sikkerhetsinformasjon.",
+            "id": "C",
+            "label": "Avbryt og si at slike temaer bare kan tas med psykologen",
+            "reply": "Dette er ikke mitt fagområde, så du må vente til fagkontakten er tilgjengelig.",
+            "tags": [
+              "boundary",
+              "withdrawal"
+            ]
+          }
+        ],
+        "competency": "sikker_eskalering",
+        "consequence_axis": "langsiktig_tillit_og_sikkerhet_vs_rolleglidning",
+        "from": "Elias",
+        "id": "psykologi_miljoarbeid_conflict_fortrolighet",
+        "mail_family": "psykologi_miljoarbeid_fortrolighet",
+        "mail_type": "conflict",
+        "narrative_arc": "samtalen_blir_for_tung",
+        "people_ref": "elias_bruker",
+        "phase": "workday",
+        "place_id": "oppfolging_samtalerom",
+        "pressure": "tillit_vs_sikkerhetsansvar",
+        "priority": 126,
+        "role_scope": "psykologi_miljoarbeid",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/conflict/psykologi_miljoarbeid_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Relasjonen er bygget på at du lytter uten å dømme.",
+          "Samtidig kan du ikke love å bære alvorlig sikkerhetsbekymring alene.",
+          "Hvordan du forklarer grensen kan avgjøre om eskalering oppleves som svik eller profesjonell omsorg."
+        ],
+        "subject": "«Du må love at dette blir mellom oss»",
+        "summary": "Elias forteller noe som gjør deg alvorlig bekymret for sikkerheten hans, men ber deg love full hemmeligholdelse før han sier mer.",
+        "task_domain": "relasjon_og_grensesetting"
+      },
+      "id": "psykologi_miljoarbeid_conflict_fortrolighet",
+      "mail_type": "conflict",
+      "role_scope": "psykologi_miljoarbeid",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du beskytter både relasjonen og ansvarslinjen ved å gjøre grensen synlig før du handler.",
+            "id": "A",
+            "label": "Si at du vil lytte, men at du ikke kan love hemmelighold dersom sikkerhet gjør at riktig fagperson må inn",
+            "reply": "Jeg blir i samtalen med deg, og jeg skal være tydelig om hva jeg eventuelt må dele og med hvem."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du får kanskje mer informasjon, men tar på deg et ansvar rollen ikke kan holde dersom risikoen er alvorlig.",
+            "id": "B",
+            "label": "Lov at ingenting går videre for å få hele historien",
+            "reply": "Du kan stole på meg; dette blir mellom oss."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du unngår rolleglidning, men en for brå avvisning kan gjøre det vanskeligere å få fram viktig sikkerhetsinformasjon.",
+            "id": "C",
+            "label": "Avbryt og si at slike temaer bare kan tas med psykologen",
+            "reply": "Dette er ikke mitt fagområde, så du må vente til fagkontakten er tilgjengelig."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Relasjonen er bygget på at du lytter uten å dømme.",
+            "Samtidig kan du ikke love å bære alvorlig sikkerhetsbekymring alene.",
+            "Hvordan du forklarer grensen kan avgjøre om eskalering oppleves som svik eller profesjonell omsorg."
+          ],
+          "subject": "«Du må love at dette blir mellom oss»",
+          "summary": "Elias forteller noe som gjør deg alvorlig bekymret for sikkerheten hans, men ber deg love full hemmeligholdelse før han sier mer."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_miljoarbeid_conflict_fortrolighet",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oppfolging_samtalerom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_miljoarbeid_conflict_fortrolighet",
+          "source_path": "data/Civication/mailFamilies/psykologi/conflict/psykologi_miljoarbeid_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_miljoarbeid.mail.psykologi_miljoarbeid_conflict_fortrolighet",
+        "version": 1
+      },
+      "source_hash": "0f7d9ff9598794aee86b9f46a6ac3b72952e4b52da3839c9eb43e0f0094d3ed5",
+      "source_path": "data/Civication/mailFamilies/psykologi/conflict/psykologi_miljoarbeid_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "korriger_spor_og_praksis_vs_normaliser_merkelappen",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -3,
+                "status": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du kan ikke slette effekten, men gjør feilen sporbar og reduserer sjansen for at den gjentas.",
+            "id": "A",
+            "label": "Korriger overleveringen med observerbare fakta, ta opp språkpraksisen i teamet og forklar Elias hva dere endrer",
+            "reply": "Jeg reparerer både notatet og måten vi bruker slike ord på framover.",
+            "tags": [
+              "repair",
+              "anti_stigma"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -3,
+                "risk": 3,
+                "status": 1,
+                "trust": -4
+              }
+            },
+            "feedback": "Du beskytter tempoet i dokumentasjonen, men gjør personens erfaring av kontroll til et kommunikasjonsproblem.",
+            "id": "B",
+            "label": "Forklar at «ustabil» bare var internt fagspråk og at teamet må få bruke korte begreper",
+            "reply": "Det var ikke ment som et stempel; vi trenger et praktisk språk internt.",
+            "tags": [
+              "defensiveness",
+              "stigma"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "risk": -1,
+                "trust": 0
+              }
+            },
+            "feedback": "Dagens spor blir bedre, mens eldre språk fortsatt kan påvirke hvordan teamet leser personen.",
+            "id": "C",
+            "label": "Fjern ordet fra det siste notatet, men la eldre overleveringer stå urørt",
+            "reply": "Jeg rydder det vi skriver nå uten å åpne hele historikken.",
+            "tags": [
+              "limited_repair",
+              "documentation"
+            ]
+          }
+        ],
+        "competency": "reparasjon_og_overlevering",
+        "consequence_axis": "langsiktig_tillit_og_autonomi_vs_stigma_og_kontroll",
+        "from": "Mari, teamleder",
+        "id": "psykologi_miljoarbeid_consequence_neste_vakt",
+        "mail_family": "psykologi_miljoarbeid_forsinket_konsekvens",
+        "mail_type": "consequence",
+        "narrative_arc": "notatet_returnerer",
+        "people_ref": "mari_teamleder",
+        "phase": "workday",
+        "place_id": "bofellesskap_vaktrom",
+        "pressure": "forsvar_av_tidligere_praksis_vs_reparasjon",
+        "priority": 108,
+        "role_scope": "psykologi_miljoarbeid",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/consequence/psykologi_miljoarbeid_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Elias reagerer på at flere ansatte møter ham med ekstra kontroll og færre valg.",
+          "Ingen enkeltperson mente å stemple ham, men språket har blitt gjentatt som om det var et faktum.",
+          "Du kan reparere både dokumentasjonen og arbeidsmåten uten å late som tillit kommer tilbake med én unnskyldning."
+        ],
+        "subject": "Neste vakt møtte Elias som «ustabil» — nå vil han ikke snakke med teamet",
+        "summary": "Et tidligere tolkningsord har vandret gjennom overleveringen og påvirket relasjonen. Konsekvensen kommer etter at den opprinnelige vakten føltes ferdig.",
+        "task_domain": "forsinket_dokumentasjonskonsekvens"
+      },
+      "id": "psykologi_miljoarbeid_consequence_neste_vakt",
+      "mail_type": "consequence",
+      "role_scope": "psykologi_miljoarbeid",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du kan ikke slette effekten, men gjør feilen sporbar og reduserer sjansen for at den gjentas.",
+            "id": "A",
+            "label": "Korriger overleveringen med observerbare fakta, ta opp språkpraksisen i teamet og forklar Elias hva dere endrer",
+            "reply": "Jeg reparerer både notatet og måten vi bruker slike ord på framover."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du beskytter tempoet i dokumentasjonen, men gjør personens erfaring av kontroll til et kommunikasjonsproblem.",
+            "id": "B",
+            "label": "Forklar at «ustabil» bare var internt fagspråk og at teamet må få bruke korte begreper",
+            "reply": "Det var ikke ment som et stempel; vi trenger et praktisk språk internt."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Dagens spor blir bedre, mens eldre språk fortsatt kan påvirke hvordan teamet leser personen.",
+            "id": "C",
+            "label": "Fjern ordet fra det siste notatet, men la eldre overleveringer stå urørt",
+            "reply": "Jeg rydder det vi skriver nå uten å åpne hele historikken."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Elias reagerer på at flere ansatte møter ham med ekstra kontroll og færre valg.",
+            "Ingen enkeltperson mente å stemple ham, men språket har blitt gjentatt som om det var et faktum.",
+            "Du kan reparere både dokumentasjonen og arbeidsmåten uten å late som tillit kommer tilbake med én unnskyldning."
+          ],
+          "subject": "Neste vakt møtte Elias som «ustabil» — nå vil han ikke snakke med teamet",
+          "summary": "Et tidligere tolkningsord har vandret gjennom overleveringen og påvirket relasjonen. Konsekvensen kommer etter at den opprinnelige vakten føltes ferdig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_miljoarbeid_consequence_neste_vakt",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bofellesskap_vaktrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_miljoarbeid_consequence_neste_vakt",
+          "source_path": "data/Civication/mailFamilies/psykologi/consequence/psykologi_miljoarbeid_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_miljoarbeid.mail.psykologi_miljoarbeid_consequence_neste_vakt",
+        "version": 1
+      },
+      "source_hash": "92b0505d4f8ba7227078954a3b5983f9b7793eb06ae6b0098a37c86629802b64",
+      "source_path": "data/Civication/mailFamilies/psykologi/consequence/psykologi_miljoarbeid_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "reguler_miljo_og_eskaler_vs_forklar_og_behandle_selv",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -2,
+                "quality": 2,
+                "risk": -4,
+                "trust": 1
+              }
+            },
+            "feedback": "Du bruker egen kompetanse fullt uten å overskride klinisk myndighet.",
+            "id": "A",
+            "label": "Senk stimuli, skap fysisk avstand, få andre ut av situasjonen og kontakt ansvarlig fagperson etter sikkerhetsrutinen",
+            "reply": "Jeg håndterer miljøet og sikkerheten nå, og lar riktig fagperson eie vurderingen videre.",
+            "tags": [
+              "deescalation",
+              "escalation"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "integrity": -3,
+                "quality": -4,
+                "risk": 5,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Du gjør en usikker tolkning til klinisk forklaring samtidig som situasjonen fortsatt er uavklart.",
+            "id": "B",
+            "label": "Forklar at reaksjonen sannsynligvis er angst og prøv en terapeutisk samtale på stedet",
+            "reply": "Jeg tror jeg vet hva dette er; jeg roer personen ved å behandle årsaken direkte.",
+            "tags": [
+              "diagnosis",
+              "authority_breach"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "energy": 1,
+                "quality": 0,
+                "risk": 0,
+                "trust": 0
+              }
+            },
+            "feedback": "Du beskytter myndighetsgrensen, men bruker mindre av egen deeskaleringskompetanse enn situasjonen tillater.",
+            "id": "C",
+            "label": "Be teamleder ta hele situasjonen mens du trekker deg ut",
+            "reply": "Jeg vil ikke risikere å gå utenfor rollen, så jeg overlater alt til leder.",
+            "tags": [
+              "escalation",
+              "underuse"
+            ]
+          }
+        ],
+        "competency": "deeskalering",
+        "consequence_axis": "sikkerhet_og_rollepresisjon_vs_eskalert_risiko",
+        "from": "Mari, teamleder",
+        "id": "psykologi_miljoarbeid_event_eskalering",
+        "mail_family": "psykologi_miljoarbeid_eskalering",
+        "mail_type": "event",
+        "narrative_arc": "fellesrommet",
+        "people_ref": "mari_teamleder",
+        "phase": "workday",
+        "place_id": "bofellesskap_fellesrom",
+        "pressure": "handlepress_vs_myndighetsgrense",
+        "priority": 124,
+        "role_scope": "psykologi_miljoarbeid",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/event/psykologi_miljoarbeid_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "To personer står tett, stemmenivået stiger og resten av gruppa følger med.",
+          "Du har mandat til å roe rammen, skape avstand og hente hjelp.",
+          "Du har ikke mandat til å diagnostisere reaksjonen eller improvisere behandling midt i hendelsen."
+        ],
+        "subject": "Stemmen stiger i fellesrommet — og flere begynner å samle seg",
+        "summary": "En uenighet eskalerer raskt. Du kan påvirke miljøet nå, men årsak og videre tiltak krever mer enn en rask psykologisk forklaring.",
+        "task_domain": "deeskalering_og_sikker_eskalering"
+      },
+      "id": "psykologi_miljoarbeid_event_eskalering",
+      "mail_type": "event",
+      "role_scope": "psykologi_miljoarbeid",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker egen kompetanse fullt uten å overskride klinisk myndighet.",
+            "id": "A",
+            "label": "Senk stimuli, skap fysisk avstand, få andre ut av situasjonen og kontakt ansvarlig fagperson etter sikkerhetsrutinen",
+            "reply": "Jeg håndterer miljøet og sikkerheten nå, og lar riktig fagperson eie vurderingen videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en usikker tolkning til klinisk forklaring samtidig som situasjonen fortsatt er uavklart.",
+            "id": "B",
+            "label": "Forklar at reaksjonen sannsynligvis er angst og prøv en terapeutisk samtale på stedet",
+            "reply": "Jeg tror jeg vet hva dette er; jeg roer personen ved å behandle årsaken direkte."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du beskytter myndighetsgrensen, men bruker mindre av egen deeskaleringskompetanse enn situasjonen tillater.",
+            "id": "C",
+            "label": "Be teamleder ta hele situasjonen mens du trekker deg ut",
+            "reply": "Jeg vil ikke risikere å gå utenfor rollen, så jeg overlater alt til leder."
+          }
+        ],
+        "content": {
+          "situation": [
+            "To personer står tett, stemmenivået stiger og resten av gruppa følger med.",
+            "Du har mandat til å roe rammen, skape avstand og hente hjelp.",
+            "Du har ikke mandat til å diagnostisere reaksjonen eller improvisere behandling midt i hendelsen."
+          ],
+          "subject": "Stemmen stiger i fellesrommet — og flere begynner å samle seg",
+          "summary": "En uenighet eskalerer raskt. Du kan påvirke miljøet nå, men årsak og videre tiltak krever mer enn en rask psykologisk forklaring."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_miljoarbeid_event_eskalering",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bofellesskap_fellesrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_miljoarbeid_event_eskalering",
+          "source_path": "data/Civication/mailFamilies/psykologi/event/psykologi_miljoarbeid_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_miljoarbeid.mail.psykologi_miljoarbeid_event_eskalering",
+        "version": 1
+      },
+      "source_hash": "37ea426eaaf2b870afa61c6b29a9ed8cbcb57508ffbc737554737a7d6b2eac77",
+      "source_path": "data/Civication/mailFamilies/psykologi/event/psykologi_miljoarbeid_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "del_konkret_evidens_vs_selg_egen_forklaring",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Fagkontakten får et sterkt grunnlag og myndighetsgrensen blir en ressurs, ikke et hinder.",
+            "id": "A",
+            "label": "Gi en kort tidslinje med observerbare hendelser, Elias sine egne ord og hva som endret seg etter deeskaleringen",
+            "reply": "Jeg gir deg det jeg faktisk vet, og markerer tydelig hva jeg ikke kan konkludere om.",
+            "tags": [
+              "handover",
+              "evidence"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "integrity": -2,
+                "quality": -3,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Situasjonskunnskap blir blandet med en behandlingskonklusjon du ikke eier.",
+            "id": "B",
+            "label": "Si at du tror dette er et tydelig angstproblem og anbefal hva behandlingen bør bli",
+            "reply": "Jeg var der og mener årsaken er ganske klar.",
+            "tags": [
+              "diagnosis",
+              "authority_breach"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "quality": 0,
+                "risk": 0,
+                "trust": -1
+              }
+            },
+            "feedback": "Du unngår overtolkning, men holder tilbake nyttig kontekst som bare førstelinjen har.",
+            "id": "C",
+            "label": "Si bare at fagkontakten får lese journalen fordi du ikke vil påvirke vurderingen",
+            "reply": "Alt står skrevet; jeg vil ikke legge føringer.",
+            "tags": [
+              "distance",
+              "lost_context"
+            ]
+          }
+        ],
+        "competency": "samarbeid_og_eskalering",
+        "consequence_axis": "tverrfaglig_kvalitet_vs_rolleuklarhet",
+        "from": "Sigrid, psykologfaglig kontakt",
+        "id": "psykologi_miljoarbeid_followup_fagkontakt",
+        "mail_family": "psykologi_miljoarbeid_faglig_oppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "samtalen_returnerer",
+        "people_ref": "sigrid_psykolog_fagkontakt",
+        "phase": "workday",
+        "place_id": "oppfolging_samtalerom",
+        "pressure": "situasjonskunnskap_vs_klinisk_ansvar",
+        "priority": 112,
+        "role_scope": "psykologi_miljoarbeid",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/followup/psykologi_miljoarbeid_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Du satt nærmest hendelsen og har detaljer fagkontakten ikke har.",
+          "Verdien din ligger i konkrete observasjoner, kontekst og hva personen selv uttrykte.",
+          "En god overlevering gjør faggrensen produktiv i stedet for å gjøre førstelinjen enten taus eller pseudo-klinisk."
+        ],
+        "subject": "Før jeg vurderer videre: hva så du, hva sa Elias selv, og hva endret seg etterpå?",
+        "summary": "Fagkontakten følger opp hendelsen og trenger førstelinjens situasjonskunnskap uten at den presenteres som klinisk konklusjon.",
+        "task_domain": "faglig_oppfolging"
+      },
+      "id": "psykologi_miljoarbeid_followup_fagkontakt",
+      "mail_type": "followup",
+      "role_scope": "psykologi_miljoarbeid",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Fagkontakten får et sterkt grunnlag og myndighetsgrensen blir en ressurs, ikke et hinder.",
+            "id": "A",
+            "label": "Gi en kort tidslinje med observerbare hendelser, Elias sine egne ord og hva som endret seg etter deeskaleringen",
+            "reply": "Jeg gir deg det jeg faktisk vet, og markerer tydelig hva jeg ikke kan konkludere om."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Situasjonskunnskap blir blandet med en behandlingskonklusjon du ikke eier.",
+            "id": "B",
+            "label": "Si at du tror dette er et tydelig angstproblem og anbefal hva behandlingen bør bli",
+            "reply": "Jeg var der og mener årsaken er ganske klar."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du unngår overtolkning, men holder tilbake nyttig kontekst som bare førstelinjen har.",
+            "id": "C",
+            "label": "Si bare at fagkontakten får lese journalen fordi du ikke vil påvirke vurderingen",
+            "reply": "Alt står skrevet; jeg vil ikke legge føringer."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Du satt nærmest hendelsen og har detaljer fagkontakten ikke har.",
+            "Verdien din ligger i konkrete observasjoner, kontekst og hva personen selv uttrykte.",
+            "En god overlevering gjør faggrensen produktiv i stedet for å gjøre førstelinjen enten taus eller pseudo-klinisk."
+          ],
+          "subject": "Før jeg vurderer videre: hva så du, hva sa Elias selv, og hva endret seg etterpå?",
+          "summary": "Fagkontakten følger opp hendelsen og trenger førstelinjens situasjonskunnskap uten at den presenteres som klinisk konklusjon."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_miljoarbeid_followup_fagkontakt",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "oppfolging_samtalerom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_miljoarbeid_followup_fagkontakt",
+          "source_path": "data/Civication/mailFamilies/psykologi/followup/psykologi_miljoarbeid_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_miljoarbeid.mail.psykologi_miljoarbeid_followup_fagkontakt",
+        "version": 1
+      },
+      "source_hash": "53d1dc5fea457481312d2e5f4d0f8068eaa2bfc26b0b99749542f92f0a505eed",
+      "source_path": "data/Civication/mailFamilies/psykologi/followup/psykologi_miljoarbeid_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "observerbart_sprak_vs_diagnostisk_tolkning",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -2,
+                "trust": 2
+              }
+            },
+            "feedback": "Neste vakt får et etterprøvbart utgangspunkt uten at usikkerhet blir skjult.",
+            "id": "A",
+            "label": "Skriv om overleveringen til konkrete hendelser, spør åpent ved første møte og marker hva teamet skal følge med på",
+            "reply": "Jeg beholder bekymringen, men skiller tydelig mellom det vi så og det vi ikke vet.",
+            "tags": [
+              "observation",
+              "precision"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 3,
+                "status": 1,
+                "trust": -2
+              }
+            },
+            "feedback": "Bekymringen blir synlig, men en klinisk tolkning får status som faktum uten mandat eller grunnlag.",
+            "id": "B",
+            "label": "La «deprimert» stå fordi ordet gjør at alle skjønner alvoret raskere",
+            "reply": "Jeg beholder merkelappen så teamet reagerer med en gang.",
+            "tags": [
+              "label",
+              "authority_risk"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 1,
+                "risk": 0,
+                "trust": 0
+              }
+            },
+            "feedback": "Språket blir bedre, men viktig bekymring kan bli liggende hvis du venter for lenge med å dele den.",
+            "id": "C",
+            "label": "Fjern tolkningsordet, men vent med videre oppfølging til du selv har sett personen",
+            "reply": "Jeg rydder språket og samler mer observasjon før jeg konkluderer om behovet.",
+            "tags": [
+              "caution",
+              "observation"
+            ]
+          }
+        ],
+        "competency": "konkret_observasjon",
+        "consequence_axis": "etterprovbar_oppfolging_vs_stempling",
+        "from": "Mari, teamleder",
+        "id": "psykologi_miljoarbeid_job_vaktstart",
+        "mail_family": "psykologi_miljoarbeid_vaktstart",
+        "mail_type": "job",
+        "narrative_arc": "det_du_saa",
+        "people_ref": "mari_teamleder",
+        "phase": "intro",
+        "place_id": "bofellesskap_vaktrom",
+        "pressure": "tempo_vs_presisjon",
+        "priority": 140,
+        "role_scope": "psykologi_miljoarbeid",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Tre morgener med avlyst frokost er en reell endring som må tas på alvor.",
+          "Ordet «deprimert» går lenger enn det miljøarbeiderrollen kan konkludere med.",
+          "Du må gjøre overleveringen presis nok til at bekymringen verken bagatelliseres eller blir til en ubegrunnet diagnose."
+        ],
+        "subject": "Overleveringen sier «deprimert» — men notatet beskriver bare tre avlyste frokoster",
+        "summary": "Du starter vakten med et sterkt tolkningsord og få observerbare detaljer. Neste team trenger fakta de faktisk kan handle på.",
+        "task_domain": "vaktstart_og_observasjon"
+      },
+      "id": "psykologi_miljoarbeid_job_vaktstart",
+      "mail_type": "job",
+      "role_scope": "psykologi_miljoarbeid",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Neste vakt får et etterprøvbart utgangspunkt uten at usikkerhet blir skjult.",
+            "id": "A",
+            "label": "Skriv om overleveringen til konkrete hendelser, spør åpent ved første møte og marker hva teamet skal følge med på",
+            "reply": "Jeg beholder bekymringen, men skiller tydelig mellom det vi så og det vi ikke vet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Bekymringen blir synlig, men en klinisk tolkning får status som faktum uten mandat eller grunnlag.",
+            "id": "B",
+            "label": "La «deprimert» stå fordi ordet gjør at alle skjønner alvoret raskere",
+            "reply": "Jeg beholder merkelappen så teamet reagerer med en gang."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Språket blir bedre, men viktig bekymring kan bli liggende hvis du venter for lenge med å dele den.",
+            "id": "C",
+            "label": "Fjern tolkningsordet, men vent med videre oppfølging til du selv har sett personen",
+            "reply": "Jeg rydder språket og samler mer observasjon før jeg konkluderer om behovet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Tre morgener med avlyst frokost er en reell endring som må tas på alvor.",
+            "Ordet «deprimert» går lenger enn det miljøarbeiderrollen kan konkludere med.",
+            "Du må gjøre overleveringen presis nok til at bekymringen verken bagatelliseres eller blir til en ubegrunnet diagnose."
+          ],
+          "subject": "Overleveringen sier «deprimert» — men notatet beskriver bare tre avlyste frokoster",
+          "summary": "Du starter vakten med et sterkt tolkningsord og få observerbare detaljer. Neste team trenger fakta de faktisk kan handle på."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_miljoarbeid_job_vaktstart",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bofellesskap_vaktrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_miljoarbeid_job_vaktstart",
+          "source_path": "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_miljoarbeid.mail.psykologi_miljoarbeid_job_vaktstart",
+        "version": 1
+      },
+      "source_hash": "5c29eb1985d22d3437438fe1c4dd213dc98676509cdb1c51140d060892e33ff4",
+      "source_path": "data/Civication/mailFamilies/psykologi/job/psykologi_miljoarbeid_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "beskriv_hendelse_og_kontekst_vs_personmerkelapp",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "quality": 3,
+                "risk": -2,
+                "trust": 1
+              }
+            },
+            "feedback": "Notatet blir lengre, men langt mer nyttig for både miljøarbeid og faglig vurdering.",
+            "id": "A",
+            "label": "Skriv hva som ble sagt og gjort, hva som skjedde rett før, og hva som roet situasjonen",
+            "reply": "Jeg dokumenterer hendelsen slik at andre kan vurdere den uten å arve min tolkning.",
+            "tags": [
+              "documentation",
+              "observation"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "trust": -2
+              }
+            },
+            "feedback": "Forbeholdet hjelper litt, men merkelappen fortsetter å organisere hvordan andre leser hendelsen.",
+            "id": "B",
+            "label": "Behold «aggressiv» og legg til at dette er din vurdering",
+            "reply": "Jeg markerer at det er min vurdering, så ordet kan stå.",
+            "tags": [
+              "label",
+              "stigma"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "quality": 0,
+                "risk": 1,
+                "trust": 0
+              }
+            },
+            "feedback": "Du unngår stigma, men gjør dokumentasjonen for tynn til å støtte læring og oppfølging.",
+            "id": "C",
+            "label": "Fjern alle vurderingsord og skriv bare tidspunktet for hendelsen",
+            "reply": "Jeg unngår tolkning helt og noterer bare når det skjedde.",
+            "tags": [
+              "minimalism",
+              "missing_context"
+            ]
+          }
+        ],
+        "competency": "noytral_dokumentasjon",
+        "consequence_axis": "felles_faglig_grunnlag_vs_stigma",
+        "from": "Sigrid, psykologfaglig kontakt",
+        "id": "psykologi_miljoarbeid_knowledge_dokumentasjon",
+        "mail_family": "psykologi_miljoarbeid_dokumentasjon",
+        "mail_type": "knowledge",
+        "narrative_arc": "notatet_som_stempler",
+        "people_ref": "sigrid_psykolog_fagkontakt",
+        "phase": "workday",
+        "place_id": "bofellesskap_vaktrom",
+        "pressure": "korthet_vs_etterprovbarhet",
+        "priority": 132,
+        "role_scope": "psykologi_miljoarbeid",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/knowledge/psykologi_miljoarbeid_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Ord som «aggressiv», «manipulerende» eller «deprimert» kan virke presise fordi de er korte.",
+          "Men de kan samle mange ulike hendelser under én merkelapp og forme hvordan neste vakt møter personen.",
+          "Oppgaven er å gjøre notatet mer faglig ved å beskrive atferd, situasjon og respons konkret."
+        ],
+        "subject": "Hva er forskjellen på «aggressiv» og det du faktisk observerte?",
+        "summary": "Fagkontakten ber deg rydde et notat slik at neste vakt kan skille hendelse, kontekst og tolkning.",
+        "task_domain": "dokumentasjon_og_overlevering"
+      },
+      "id": "psykologi_miljoarbeid_knowledge_dokumentasjon",
+      "mail_type": "knowledge",
+      "role_scope": "psykologi_miljoarbeid",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Notatet blir lengre, men langt mer nyttig for både miljøarbeid og faglig vurdering.",
+            "id": "A",
+            "label": "Skriv hva som ble sagt og gjort, hva som skjedde rett før, og hva som roet situasjonen",
+            "reply": "Jeg dokumenterer hendelsen slik at andre kan vurdere den uten å arve min tolkning."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Forbeholdet hjelper litt, men merkelappen fortsetter å organisere hvordan andre leser hendelsen.",
+            "id": "B",
+            "label": "Behold «aggressiv» og legg til at dette er din vurdering",
+            "reply": "Jeg markerer at det er min vurdering, så ordet kan stå."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du unngår stigma, men gjør dokumentasjonen for tynn til å støtte læring og oppfølging.",
+            "id": "C",
+            "label": "Fjern alle vurderingsord og skriv bare tidspunktet for hendelsen",
+            "reply": "Jeg unngår tolkning helt og noterer bare når det skjedde."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ord som «aggressiv», «manipulerende» eller «deprimert» kan virke presise fordi de er korte.",
+            "Men de kan samle mange ulike hendelser under én merkelapp og forme hvordan neste vakt møter personen.",
+            "Oppgaven er å gjøre notatet mer faglig ved å beskrive atferd, situasjon og respons konkret."
+          ],
+          "subject": "Hva er forskjellen på «aggressiv» og det du faktisk observerte?",
+          "summary": "Fagkontakten ber deg rydde et notat slik at neste vakt kan skille hendelse, kontekst og tolkning."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_miljoarbeid_knowledge_dokumentasjon",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "bofellesskap_vaktrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_miljoarbeid_knowledge_dokumentasjon",
+          "source_path": "data/Civication/mailFamilies/psykologi/knowledge/psykologi_miljoarbeid_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_miljoarbeid.mail.psykologi_miljoarbeid_knowledge_dokumentasjon",
+        "version": 1
+      },
+      "source_hash": "9bc4e42090a1b31c70d4f578dd8de7f5457d5033e0b5085b3102538f4a0879e2",
+      "source_path": "data/Civication/mailFamilies/psykologi/knowledge/psykologi_miljoarbeid_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "psykologi",
+      "compatibility_projection": {
+        "category": "psykologi",
+        "choice_axis": "utforsk_og_tilpass_vs_press_gjennom",
+        "choices": [
+          {
+            "effect": 1,
+            "effects": {
+              "stats": {
+                "energy": -1,
+                "quality": 2,
+                "risk": -1,
+                "trust": 2
+              }
+            },
+            "feedback": "Du gjør målet fleksibelt nok til at støtte fortsatt kan bygge mestring.",
+            "id": "A",
+            "label": "Spør hva som gjør dagen annerledes, tilby et mindre alternativ og la Elias velge mellom reelle muligheter",
+            "reply": "Jeg vil forstå motstanden og bevare valget hans, ikke bare få planen gjennomført.",
+            "tags": [
+              "autonomy",
+              "motivation"
+            ]
+          },
+          {
+            "effect": -1,
+            "effects": {
+              "stats": {
+                "quality": -2,
+                "risk": 2,
+                "status": 1,
+                "trust": -3
+              }
+            },
+            "feedback": "Dagen blir effektiv, men etterlevelse blir forvekslet med motivasjon og tilliten svekkes.",
+            "id": "B",
+            "label": "Si at dere allerede har bestemt dette og få ham med før bussen går",
+            "reply": "Planen må gjennomføres; vi kan snakke om motstanden etterpå.",
+            "tags": [
+              "pressure",
+              "compliance"
+            ]
+          },
+          {
+            "effect": 0,
+            "effects": {
+              "stats": {
+                "energy": 0,
+                "quality": 0,
+                "trust": 1
+              }
+            },
+            "feedback": "Du unngår press, men mister muligheten til å forstå om et lite hinder kunne vært løst på hans premisser.",
+            "id": "C",
+            "label": "Avlys hele aktiviteten uten å spørre mer",
+            "reply": "Jeg tar nei-et bokstavelig og lar ham være i fred i dag.",
+            "tags": [
+              "respect",
+              "underexplored"
+            ]
+          }
+        ],
+        "competency": "motiverende_stotte",
+        "consequence_axis": "mestring_og_tillit_vs_avhengighet_og_motstand",
+        "from": "Nora, erfaren kollega",
+        "id": "psykologi_miljoarbeid_people_autonomi",
+        "mail_family": "psykologi_miljoarbeid_autonomi",
+        "mail_type": "people",
+        "narrative_arc": "aktiviteten_ingen_vil_pa",
+        "people_ref": "nora_erfaren_kollega",
+        "phase": "workday",
+        "place_id": "aktivitetstilbud_verksted",
+        "pressure": "effektivitet_vs_autonomi",
+        "priority": 128,
+        "role_scope": "psykologi_miljoarbeid",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Elias har tidligere ønsket aktiviteten og pleier å være fornøyd når han først kommer fram.",
+          "I dag sier han tydelig at han ikke vil dra, men forklarer lite.",
+          "Du må støtte uten å gjøre tidspress eller egen vurdering av «hva som er best» til skjult tvang."
+        ],
+        "subject": "Elias vil avlyse verkstedet — og bussen går om ti minutter",
+        "summary": "Planen sier aktivitet, men Elias sier nei. Nora foreslår at dere bare får ham av gårde før tiden renner ut.",
+        "task_domain": "autonomi_og_hverdagsstotte"
+      },
+      "id": "psykologi_miljoarbeid_people_autonomi",
+      "mail_type": "people",
+      "role_scope": "psykologi_miljoarbeid",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør målet fleksibelt nok til at støtte fortsatt kan bygge mestring.",
+            "id": "A",
+            "label": "Spør hva som gjør dagen annerledes, tilby et mindre alternativ og la Elias velge mellom reelle muligheter",
+            "reply": "Jeg vil forstå motstanden og bevare valget hans, ikke bare få planen gjennomført."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Dagen blir effektiv, men etterlevelse blir forvekslet med motivasjon og tilliten svekkes.",
+            "id": "B",
+            "label": "Si at dere allerede har bestemt dette og få ham med før bussen går",
+            "reply": "Planen må gjennomføres; vi kan snakke om motstanden etterpå."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du unngår press, men mister muligheten til å forstå om et lite hinder kunne vært løst på hans premisser.",
+            "id": "C",
+            "label": "Avlys hele aktiviteten uten å spørre mer",
+            "reply": "Jeg tar nei-et bokstavelig og lar ham være i fred i dag."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Elias har tidligere ønsket aktiviteten og pleier å være fornøyd når han først kommer fram.",
+            "I dag sier han tydelig at han ikke vil dra, men forklarer lite.",
+            "Du må støtte uten å gjøre tidspress eller egen vurdering av «hva som er best» til skjult tvang."
+          ],
+          "subject": "Elias vil avlyse verkstedet — og bussen går om ti minutter",
+          "summary": "Planen sier aktivitet, men Elias sier nei. Nora foreslår at dere bare får ham av gårde før tiden renner ut."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "psykologi_miljoarbeid_people_autonomi",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "aktivitetstilbud_verksted",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "psykologi_miljoarbeid_people_autonomi",
+          "source_path": "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "psykologi_miljoarbeid.mail.psykologi_miljoarbeid_people_autonomi",
+        "version": 1
+      },
+      "source_hash": "a16ebc24ce5accf613eda87bacd80ff9c41d9269da09698a48b1fe4f51d16c4a",
+      "source_path": "data/Civication/mailFamilies/psykologi/people/psykologi_miljoarbeid_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
       "category": "religion",
       "compatibility_projection": {
         "category": "religion",
@@ -136830,7 +137953,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "84a2139bed406de372977c3136a4d8e5685920ceabc91fa1fe849a3fef99c362",
+  "registry_hash": "fcaa9aacf30db0b0b97e0119d494a63651649379d3d9ea6dc441e8674ae9acf6",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -137591,6 +138714,15 @@
       "renholder_consequence_007",
       "renholder_consequence_008"
     ],
+    "psykologi/psykologi_miljoarbeid": [
+      "psykologi_miljoarbeid_job_vaktstart",
+      "psykologi_miljoarbeid_people_autonomi",
+      "psykologi_miljoarbeid_conflict_fortrolighet",
+      "psykologi_miljoarbeid_event_eskalering",
+      "psykologi_miljoarbeid_followup_fagkontakt",
+      "psykologi_miljoarbeid_knowledge_dokumentasjon",
+      "psykologi_miljoarbeid_consequence_neste_vakt"
+    ],
     "religion/religion_forskning": [
       "religion_forskning_job_problemstilling",
       "religion_forskning_people_motlesning",
@@ -137802,11 +138934,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 125,
+    "compiled_source_file_count": 132,
     "ignored_source_file_count": 1,
-    "input_file_count": 126,
-    "role_count": 27,
-    "scene_count": 888,
+    "input_file_count": 133,
+    "role_count": 28,
+    "scene_count": 895,
     "shadowed_duplicate_count": 0
   },
   "version": 1
