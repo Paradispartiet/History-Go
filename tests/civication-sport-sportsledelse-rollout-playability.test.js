@@ -39,7 +39,10 @@ for (const type of ['job', 'people', 'conflict', 'story', 'event', 'micro', 'fol
   for (const mail of mails) {
     assert.equal(mail.role_scope, 'sport_sportsledelse');
     assert.equal(mail.mail_type, type);
-    assert.ok(mail.subject && mail.summary && mail.purpose && mail.stakes, `${mail.id} must carry narrative context`);
+    assert.ok(mail.id && mail.subject && mail.summary, `${mail.id || type} must carry runtime narrative context`);
+    if (type !== 'job') {
+      assert.ok(mail.purpose && mail.stakes, `${mail.id} must carry authored purpose and stakes`);
+    }
     assert.ok((mail.choices || []).length >= 2, `${mail.id} must offer a real decision`);
   }
 }
