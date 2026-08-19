@@ -1,0 +1,15 @@
+{
+  "schema":"civication_mail_family_catalog_v1","version":1,"category":"sport","role_scope":"sport_sportsledelse","mail_type":"knowledge",
+  "families":[{"id":"sportslig_styringsforstaelse","purpose":"Gjør alternativkostnad og mandat eksplisitt som sportslig lederkunnskap.","learning_focus":["alternativkostnad","klubbmodell","mandat"],"mails":[{
+    "id":"sport_sports_knowledge_alternativkostnad_001","mail_type":"knowledge","mail_family":"sportslig_styringsforstaelse","role_scope":"sport_sportsledelse","phase":"lunch","priority":52,"cooldown":2,"repeatable":false,"stage":"early",
+    "from":"speidersjef_jonas","sender":"speidersjef_jonas","person_id":"speidersjef_jonas","place_id":"sport_rekrutteringsflate",
+    "subject":"En god signering kan fortsatt være et dårlig klubbvalg","summary":"Jonas ber deg forklare hvorfor spillerens kvalitet alene ikke avgjør om klubben bør signere når budsjett, spilletid og akademivei også endres.",
+    "purpose":"Knytter rekrutteringsarbeidet til prinsippet om alternativkostnad og strategisk helhet.","stakes":"Hvis bare spillerkvalitet måles, blir kostnaden i andre utviklingsspor usynlig til etter at kontrakten er inngått.",
+    "situation":["Spilleren er dokumentert god nok.","Kontrakten bruker en betydelig del av den tilgjengelige rammen.","Samme rolle er planlagt for to unge spillere klubben sier den vil utvikle."],
+    "task_domain":"rekrutteringsforstaelse","task_kind":"knowledge","competency":"rekrutteringsdommekraft","pressure":"enkeltspiller_vs_klubbhelhet","choice_axis":"vurdere_alternativkostnad_vs_vurdere_kvalitet_alene","consequence_axis":"strategisk_baerekraft_vs_snever_optimering","narrative_arc":"Sportssjefen lærer at rekruttering er ressursallokering over tid, ikke bare vurdering av enkeltspillere.",
+    "choices":[
+      {"id":"A","label":"Vurder kvalitet, kostnad, stallrolle og hva signeringen fortrenger før anbefalingen","reply":"Jeg vurderer spillerens kvalitet sammen med kostnad, stallrolle og hvilke utviklings- og budsjettvalg signeringen fortrenger.","effect":1,"tags":["knowledge","recruitment","opportunity_cost"],"feedback":"Rekrutteringscaset blir et klubbvalg med synlige alternativkostnader, ikke bare en spillerkarakter."},
+      {"id":"B","label":"Prioriter sportslig kvalitet og håndter ressurskonsekvensene i neste planrunde","reply":"Jeg prioriterer den dokumenterte sportslige kvaliteten nå og håndterer budsjett- og utviklingskonsekvensene i neste planrunde.","effect":0,"tags":["quality","short_term"],"feedback":"Du løser det akutte sportslige behovet, men flytter alternativkostnaden ut av selve beslutningen."}
+    ]
+  }]}]
+}
