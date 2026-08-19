@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "tverrfaglige_beslutningspunkt",
+      "purpose": "Gjør avhengigheter og beslutningseierskap konkrete i et felles styringspunkt.",
+      "learning_focus": ["koordinering", "beslutningseierskap"],
+      "mails": [
+        {
+          "id": "by_prosjektleder_event_avhengighetsmote_001",
+          "mail_type": "event",
+          "mail_family": "tverrfaglige_beslutningspunkt",
+          "role_scope": "by_prosjektleder",
+          "phase": "afternoon",
+          "priority": 60,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "advanced",
+          "from": "prosjektkoordinator_amin",
+          "sender": "prosjektkoordinator_amin",
+          "person_id": "prosjektkoordinator_amin",
+          "place_id": "koordinerings_og_avhengighetsrom",
+          "subject": "Fire fag møter opp, men beslutningen mangler fortsatt eier",
+          "summary": "Transport, VA, miljø og prosjektet er samlet, men møtet risikerer å ende med nye oppgaver uten at den kritiske avhengigheten får en beslutningseier.",
+          "purpose": "Teste om prosjektlederen bruker møtet til å etablere ansvar og beslutningspunkt, ikke bare til informasjonsdeling.",
+          "stakes": "Et godt møte kan redusere avhengighetsrisiko; et hyggelig møte uten eier skyver den samme blokkeringen videre.",
+          "situation": [
+            "Alle fag har forberedt status.",
+            "Ingen bestrider at avhengigheten er kritisk.",
+            "Likevel er det uklart hvem som har mandat til å ta den avgjørende beslutningen."
+          ],
+          "task_domain": "tverrfaglig_beslutningspunkt",
+          "task_kind": "event",
+          "competency": "avhengighetsstyring",
+          "pressure": "moteaktivitet_vs_beslutningseierskap",
+          "choice_axis": "navngi_eier_vs_fordele_flere_oppgaver",
+          "consequence_axis": "styrbarhet_vs_aktivitet",
+          "narrative_arc": "Prosjektlederen lærer at koordinering først virker når ansvar og beslutningsrett blir eksplisitt.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avslutt møtet med navngitt beslutningseier, nødvendig grunnlag og frist",
+              "reply": "Jeg avslutter møtet med en eksplisitt beslutningseier, hvilket grunnlag som mangler og en frist for avgjørelsen.",
+              "effect": 1,
+              "tags": ["coordination", "ownership", "decision"],
+              "feedback": "Møtet blir mindre generelt og avhengigheten får en styrbar vei videre."
+            },
+            {
+              "id": "B",
+              "label": "Fordel nye fagoppgaver og sett opp et nytt koordineringsmøte",
+              "reply": "Jeg fordeler de manglende fagoppgavene og setter opp et nytt møte når alle har mer grunnlag.",
+              "effect": 0,
+              "tags": ["meeting", "workload"],
+              "feedback": "Mer arbeid blir gjort, men selve spørsmålet om hvem som kan beslutte er fortsatt åpent."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

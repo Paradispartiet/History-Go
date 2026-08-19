@@ -19,6 +19,14 @@
     "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
     "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
     "data/Civication/mailFamilies/by/job/by_prosjektleder_job.json",
+    "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+    "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
+    "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+    "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+    "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+    "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+    "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+    "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
     "data/Civication/mailFamilies/by/job/by_radgiver_plan_job.json",
     "data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json",
     "data/Civication/mailFamilies/by/story/by_radgiver_plan_story.json",
@@ -4117,6 +4125,505 @@
       "category": "by",
       "compatibility_projection": {
         "category": "by",
+        "choice_axis": "eskalere_til_eier_vs_prosjektbestemme",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Milepælen blir mer utsatt, men ansvar og beslutningsspor forblir legitime.",
+            "id": "A",
+            "label": "Stopp beslutningen, navngi manglende eier og eskaler med frist",
+            "reply": "Jeg stopper prosjektbeslutningen, dokumenterer hvilken myndighet som mangler og eskalerer til riktig eier med tydelig frist.",
+            "tags": [
+              "authority",
+              "escalation",
+              "governance"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Prosjektet holder fart, men den midlertidige løsningen kan allerede ha bundet andre før riktig eier har besluttet.",
+            "id": "B",
+            "label": "Velg en midlertidig løsning og be om formell bekreftelse etterpå",
+            "reply": "Jeg lar prosjektet velge en midlertidig løsning og sender den til formell bekreftelse etterpå.",
+            "tags": [
+              "mandate_drift",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "mandatvern",
+        "consequence_axis": "lovlig_styring_vs_kortsiktig_framdrift",
+        "cooldown": 2,
+        "from": "prosjektkoordinator_amin",
+        "id": "by_prosjektleder_conflict_ansvar_001",
+        "mail_family": "mandat_og_avhengighetskonflikt",
+        "mail_type": "conflict",
+        "narrative_arc": "Prosjektlederen lærer at en uløst avhengighet ikke gir prosjektet mer myndighet.",
+        "person_id": "prosjektkoordinator_amin",
+        "phase": "afternoon",
+        "place_id": "koordinerings_og_avhengighetsrom",
+        "pressure": "milepal_vs_formelt_ansvar",
+        "priority": 68,
+        "purpose": "Teste om prosjektlederen stopper mandatglidning og får beslutningen til riktig eier.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+        "scene_catalog_version": 1,
+        "sender": "prosjektkoordinator_amin",
+        "situation": [
+          "Trafikkføringen må avklares før neste leveranse.",
+          "Fagmiljøene peker på hverandre og ingen har bekreftet formelt eierskap.",
+          "Prosjektgruppen mener løsningen er å velge det minst dårlige alternativet selv."
+        ],
+        "stage": "stable_warning",
+        "stakes": "Å bestemme selv kan redde datoen, men gjør prosjektet ansvarlig for en beslutning det ikke har myndighet til å fatte.",
+        "subject": "Ingen eier trafikkavklaringen, og prosjektet begynner å bestemme selv",
+        "summary": "En kritisk avhengighet mangler tydelig eier, og prosjektgruppen foreslår å ta en midlertidig beslutning for å holde milepælen.",
+        "task_domain": "ansvarsavklaring",
+        "task_kind": "conflict"
+      },
+      "id": "by_prosjektleder_conflict_ansvar_001",
+      "mail_type": "conflict",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Milepælen blir mer utsatt, men ansvar og beslutningsspor forblir legitime.",
+            "id": "A",
+            "label": "Stopp beslutningen, navngi manglende eier og eskaler med frist",
+            "reply": "Jeg stopper prosjektbeslutningen, dokumenterer hvilken myndighet som mangler og eskalerer til riktig eier med tydelig frist."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Prosjektet holder fart, men den midlertidige løsningen kan allerede ha bundet andre før riktig eier har besluttet.",
+            "id": "B",
+            "label": "Velg en midlertidig løsning og be om formell bekreftelse etterpå",
+            "reply": "Jeg lar prosjektet velge en midlertidig løsning og sender den til formell bekreftelse etterpå."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Trafikkføringen må avklares før neste leveranse.",
+            "Fagmiljøene peker på hverandre og ingen har bekreftet formelt eierskap.",
+            "Prosjektgruppen mener løsningen er å velge det minst dårlige alternativet selv."
+          ],
+          "subject": "Ingen eier trafikkavklaringen, og prosjektet begynner å bestemme selv",
+          "summary": "En kritisk avhengighet mangler tydelig eier, og prosjektgruppen foreslår å ta en midlertidig beslutning for å holde milepælen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_conflict_ansvar_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "koordinerings_og_avhengighetsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_conflict_ansvar_001",
+          "source_path": "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_conflict_ansvar_001",
+        "version": 1
+      },
+      "source_hash": "b9d1f084b4c2f6b75a49a5cad8b9d42f8054d888785dabb2f5b78c663f40ecbf",
+      "source_path": "data/Civication/mailFamilies/by/conflict/by_prosjektleder_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "bruke_sporet_vs_star_forklare_panytt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Endringen framstår som styrt respons på nytt grunnlag, ikke som plutselig tap av kontroll.",
+            "id": "A",
+            "label": "Knytt den nye beslutningen direkte til tidligere risiko, endret forutsetning og synlige alternativer",
+            "reply": "Jeg viser sammenhengen fra tidlig risiko via nytt estimat til dagens alternativer, slik at beslutningen kan etterprøves.",
+            "tags": [
+              "consequence",
+              "governance",
+              "trust"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Beslutningen kan tas, men sammenhengen mellom tidligere varsling og dagens valg blir mindre synlig.",
+            "id": "B",
+            "label": "Presenter den nye anbefalingen som oppdatert prosjektstatus uten hele historikken",
+            "reply": "Jeg presenterer den nye anbefalingen kort som oppdatert prosjektstatus og holder historikken i underlaget.",
+            "tags": [
+              "summary",
+              "history"
+            ]
+          }
+        ],
+        "competency": "beslutningssporbarhet",
+        "consequence_axis": "styring_og_tillit_vs_kostbar_usikkerhet",
+        "cooldown": 3,
+        "from": "kommunalsjef_lena",
+        "id": "by_prosjektleder_consequence_kostnad_001",
+        "mail_family": "forsinkede_styringskonsekvenser",
+        "mail_type": "consequence",
+        "narrative_arc": "Prosjektlederen ser at tidlig risikosynlighet og beslutningsspor kan bevare tillit når planen senere må endres.",
+        "person_id": "kommunalsjef_lena",
+        "phase": "day_end",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "kontrollert_revisjon_vs_tap_av_tillit",
+        "priority": 62,
+        "purpose": "Vis at prosjektlederens tidligere dokumentasjon påvirker om en vanskelig endring blir oppfattet som styrt revisjon eller som kontrolltap.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
+        "scene_catalog_version": 1,
+        "sender": "kommunalsjef_lena",
+        "situation": [
+          "Kostnadsforutsetningen er endret.",
+          "Prosjektets tidligere risikonotat beskrev denne muligheten og hvilke kvaliteter som var utsatt.",
+          "Ledelsen skal nå beslutte om tid, omfang eller ressurs skal endres."
+        ],
+        "stage": "mastery",
+        "stakes": "Et sammenhengende spor beskytter tillit og gjør ny beslutning presis; et svakt spor gjør samme endring vanskeligere å legitimere og dyrere å avklare.",
+        "subject": "Styringen kan nå se hvorfor prosjektet må velge annerledes",
+        "summary": "Den opprinnelige kostnadsrisikoen, senere estimat og beslutningssporet gjør det mulig å forklare hvorfor tid, omfang eller kvalitet må endres.",
+        "task_domain": "forsinket_styringskonsekvens",
+        "task_kind": "consequence",
+        "thread_key": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet"
+      },
+      "id": "by_prosjektleder_consequence_kostnad_001",
+      "mail_type": "consequence",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Endringen framstår som styrt respons på nytt grunnlag, ikke som plutselig tap av kontroll.",
+            "id": "A",
+            "label": "Knytt den nye beslutningen direkte til tidligere risiko, endret forutsetning og synlige alternativer",
+            "reply": "Jeg viser sammenhengen fra tidlig risiko via nytt estimat til dagens alternativer, slik at beslutningen kan etterprøves."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Beslutningen kan tas, men sammenhengen mellom tidligere varsling og dagens valg blir mindre synlig.",
+            "id": "B",
+            "label": "Presenter den nye anbefalingen som oppdatert prosjektstatus uten hele historikken",
+            "reply": "Jeg presenterer den nye anbefalingen kort som oppdatert prosjektstatus og holder historikken i underlaget."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kostnadsforutsetningen er endret.",
+            "Prosjektets tidligere risikonotat beskrev denne muligheten og hvilke kvaliteter som var utsatt.",
+            "Ledelsen skal nå beslutte om tid, omfang eller ressurs skal endres."
+          ],
+          "subject": "Styringen kan nå se hvorfor prosjektet må velge annerledes",
+          "summary": "Den opprinnelige kostnadsrisikoen, senere estimat og beslutningssporet gjør det mulig å forklare hvorfor tid, omfang eller kvalitet må endres."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_consequence_kostnad_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_consequence_kostnad_001",
+          "source_path": "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet",
+        "version": 1
+      },
+      "source_hash": "73dbbe4d0aee2cfe777c7c1cc4ef61d7f869166e3eb52bed252d12656831740b",
+      "source_path": "data/Civication/mailFamilies/by/consequence/by_prosjektleder_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "navngi_eier_vs_fordele_flere_oppgaver",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Møtet blir mindre generelt og avhengigheten får en styrbar vei videre.",
+            "id": "A",
+            "label": "Avslutt møtet med navngitt beslutningseier, nødvendig grunnlag og frist",
+            "reply": "Jeg avslutter møtet med en eksplisitt beslutningseier, hvilket grunnlag som mangler og en frist for avgjørelsen.",
+            "tags": [
+              "coordination",
+              "ownership",
+              "decision"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Mer arbeid blir gjort, men selve spørsmålet om hvem som kan beslutte er fortsatt åpent.",
+            "id": "B",
+            "label": "Fordel nye fagoppgaver og sett opp et nytt koordineringsmøte",
+            "reply": "Jeg fordeler de manglende fagoppgavene og setter opp et nytt møte når alle har mer grunnlag.",
+            "tags": [
+              "meeting",
+              "workload"
+            ]
+          }
+        ],
+        "competency": "avhengighetsstyring",
+        "consequence_axis": "styrbarhet_vs_aktivitet",
+        "cooldown": 3,
+        "from": "prosjektkoordinator_amin",
+        "id": "by_prosjektleder_event_avhengighetsmote_001",
+        "mail_family": "tverrfaglige_beslutningspunkt",
+        "mail_type": "event",
+        "narrative_arc": "Prosjektlederen lærer at koordinering først virker når ansvar og beslutningsrett blir eksplisitt.",
+        "person_id": "prosjektkoordinator_amin",
+        "phase": "afternoon",
+        "place_id": "koordinerings_og_avhengighetsrom",
+        "pressure": "moteaktivitet_vs_beslutningseierskap",
+        "priority": 60,
+        "purpose": "Teste om prosjektlederen bruker møtet til å etablere ansvar og beslutningspunkt, ikke bare til informasjonsdeling.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+        "scene_catalog_version": 1,
+        "sender": "prosjektkoordinator_amin",
+        "situation": [
+          "Alle fag har forberedt status.",
+          "Ingen bestrider at avhengigheten er kritisk.",
+          "Likevel er det uklart hvem som har mandat til å ta den avgjørende beslutningen."
+        ],
+        "stage": "advanced",
+        "stakes": "Et godt møte kan redusere avhengighetsrisiko; et hyggelig møte uten eier skyver den samme blokkeringen videre.",
+        "subject": "Fire fag møter opp, men beslutningen mangler fortsatt eier",
+        "summary": "Transport, VA, miljø og prosjektet er samlet, men møtet risikerer å ende med nye oppgaver uten at den kritiske avhengigheten får en beslutningseier.",
+        "task_domain": "tverrfaglig_beslutningspunkt",
+        "task_kind": "event"
+      },
+      "id": "by_prosjektleder_event_avhengighetsmote_001",
+      "mail_type": "event",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Møtet blir mindre generelt og avhengigheten får en styrbar vei videre.",
+            "id": "A",
+            "label": "Avslutt møtet med navngitt beslutningseier, nødvendig grunnlag og frist",
+            "reply": "Jeg avslutter møtet med en eksplisitt beslutningseier, hvilket grunnlag som mangler og en frist for avgjørelsen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Mer arbeid blir gjort, men selve spørsmålet om hvem som kan beslutte er fortsatt åpent.",
+            "id": "B",
+            "label": "Fordel nye fagoppgaver og sett opp et nytt koordineringsmøte",
+            "reply": "Jeg fordeler de manglende fagoppgavene og setter opp et nytt møte når alle har mer grunnlag."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Alle fag har forberedt status.",
+            "Ingen bestrider at avhengigheten er kritisk.",
+            "Likevel er det uklart hvem som har mandat til å ta den avgjørende beslutningen."
+          ],
+          "subject": "Fire fag møter opp, men beslutningen mangler fortsatt eier",
+          "summary": "Transport, VA, miljø og prosjektet er samlet, men møtet risikerer å ende med nye oppgaver uten at den kritiske avhengigheten får en beslutningseier."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_event_avhengighetsmote_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "koordinerings_og_avhengighetsrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_event_avhengighetsmote_001",
+          "source_path": "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_event_avhengighetsmote_001",
+        "version": 1
+      },
+      "source_hash": "22e44f8c807cbea3a5edde36b1da75e8528a51cf74eda2d60bee39840829d272",
+      "source_path": "data/Civication/mailFamilies/by/event/by_prosjektleder_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "replanlegge_apent_vs_kutte_stille",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Kostnadsøkningen blir en eksplisitt beslutning i stedet for et stille kvalitetskutt.",
+            "id": "A",
+            "label": "Løft scenarioet som styringssak med alternativer for tid, omfang, ressurs og kvalitet",
+            "reply": "Jeg bruker risikonotatet til å vise hvilke alternativer vi faktisk har og hva hvert alternativ koster i tid, omfang, ressurs og bykvalitet.",
+            "tags": [
+              "followup",
+              "risk",
+              "replanning"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Milepælen beskyttes, men det som tidligere var en varslet risiko blir nå et skjult prioriteringsvalg.",
+            "id": "B",
+            "label": "Be teamet finne kvalitetskutt som holder datoen uten ny styringssak",
+            "reply": "Jeg ber teamet finne avgrensede kvalitetskutt som holder dato og budsjett innenfor styringsrammen.",
+            "tags": [
+              "quality_cut",
+              "schedule",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "replanlegging",
+        "consequence_axis": "styrbarhet_vs_skjult_kvalitetstap",
+        "cooldown": 2,
+        "from": "okonomi_sigrid",
+        "id": "by_prosjektleder_followup_kostnad_001",
+        "mail_family": "risikooppfolging",
+        "mail_type": "followup",
+        "narrative_arc": "Tidlig risikovarsling får verdi først når prosjektet faktisk bruker den til å beskytte handlingsrommet senere.",
+        "person_id": "okonomi_sigrid",
+        "phase": "afternoon",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "dato_vs_synlig_kvalitetskonsekvens",
+        "priority": 66,
+        "purpose": "Teste om prosjektlederen bruker det tidligere risikosporet til å replanlegge åpent i stedet for å gjøre kvalitet til skjult reserve.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+        "scene_catalog_version": 1,
+        "sender": "okonomi_sigrid",
+        "situation": [
+          "Sigrids oppdaterte estimat bekrefter at grunnarbeidet blir dyrere enn hovedscenarioet.",
+          "Teamet har allerede pekt ut kvaliteter som kan reduseres uten å endre den formelle milepælen.",
+          "Det tidlige risikonotatet viser at denne konsekvensen var kjent som mulighet."
+        ],
+        "stage": "advanced",
+        "stakes": "Et raskt kvalitetskutt beskytter tidsplanen; åpen replanlegging kan flytte tid, omfang eller ressurs, men gjør konsekvensen beslutningsbar.",
+        "subject": "Kostnadsrisikoen er blitt større, og kvalitetene står først i kuttlisten",
+        "summary": "Det tidlige risikoscenarioet er nå mer sannsynlig, og grøntdrag, medvirkning og gatekvalitet foreslås redusert for å beskytte datoen.",
+        "task_domain": "risikooppfolging",
+        "task_kind": "followup",
+        "thread_key": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet"
+      },
+      "id": "by_prosjektleder_followup_kostnad_001",
+      "mail_type": "followup",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Kostnadsøkningen blir en eksplisitt beslutning i stedet for et stille kvalitetskutt.",
+            "id": "A",
+            "label": "Løft scenarioet som styringssak med alternativer for tid, omfang, ressurs og kvalitet",
+            "reply": "Jeg bruker risikonotatet til å vise hvilke alternativer vi faktisk har og hva hvert alternativ koster i tid, omfang, ressurs og bykvalitet."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Milepælen beskyttes, men det som tidligere var en varslet risiko blir nå et skjult prioriteringsvalg.",
+            "id": "B",
+            "label": "Be teamet finne kvalitetskutt som holder datoen uten ny styringssak",
+            "reply": "Jeg ber teamet finne avgrensede kvalitetskutt som holder dato og budsjett innenfor styringsrammen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Sigrids oppdaterte estimat bekrefter at grunnarbeidet blir dyrere enn hovedscenarioet.",
+            "Teamet har allerede pekt ut kvaliteter som kan reduseres uten å endre den formelle milepælen.",
+            "Det tidlige risikonotatet viser at denne konsekvensen var kjent som mulighet."
+          ],
+          "subject": "Kostnadsrisikoen er blitt større, og kvalitetene står først i kuttlisten",
+          "summary": "Det tidlige risikoscenarioet er nå mer sannsynlig, og grøntdrag, medvirkning og gatekvalitet foreslås redusert for å beskytte datoen."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_followup_kostnad_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_followup_kostnad_001",
+          "source_path": "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet",
+        "version": 1
+      },
+      "source_hash": "5e60f6f7aeb413f9998bd8eda0b64185d3baa71bd0edd48bb4860805809a63ff",
+      "source_path": "data/Civication/mailFamilies/by/followup/by_prosjektleder_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
         "choice_axis": "plassere_ansvar_vs_forlenge_dialog",
         "choices": [
           {
@@ -5081,6 +5588,501 @@
       },
       "source_hash": "8d64518a8b8ac3b05728dd46c1e2b1c2cf4eba4b538b854fa9fc68ad33928fb9",
       "source_path": "data/Civication/mailFamilies/by/job/by_prosjektleder_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "varsle_scenario_vs_vente_pa_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Styringen kan forberede seg uten å late som usikkerheten allerede er fakta.",
+            "id": "A",
+            "label": "Beskriv sannsynlighet, konsekvens, forutsetning og mulig tiltak nå",
+            "reply": "Jeg legger risikoen inn med sannsynlighet, konsekvens, hvilke forutsetninger den bygger på og hvilke tiltak som finnes.",
+            "tags": [
+              "knowledge",
+              "risk",
+              "scenario"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Rapporten blir roligere, men prosjektet kan miste tid til å påvirke konsekvensen.",
+            "id": "B",
+            "label": "Vent til estimatet er bedre før risikoen løftes formelt",
+            "reply": "Jeg følger utviklingen, men venter med formell varsling til estimatet er mer robust.",
+            "tags": [
+              "certainty",
+              "delay"
+            ]
+          }
+        ],
+        "competency": "risikostyring",
+        "consequence_axis": "beredskap_vs_rapportro",
+        "cooldown": 2,
+        "from": "okonomi_sigrid",
+        "id": "by_prosjektleder_knowledge_risiko_001",
+        "mail_family": "styringsforstaelse",
+        "mail_type": "knowledge",
+        "narrative_arc": "Prosjektlederen lærer at god risikostyring handler om å bevare valg før usikkerheten blir en hendelse.",
+        "person_id": "okonomi_sigrid",
+        "phase": "lunch",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "sikkerhet_vs_tidlig_handlingsrom",
+        "priority": 52,
+        "purpose": "Knytter praktisk varsling til prinsippet om at risiko beskrives som sannsynlighet, konsekvens og forutsetning — ikke som ferdig bevist hendelse.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+        "scene_catalog_version": 1,
+        "sender": "okonomi_sigrid",
+        "situation": [
+          "Kostnadsøkningen er ikke bekreftet.",
+          "Konsekvensen kan bli betydelig dersom den treffer sent.",
+          "Styringen trenger derfor både usikkerheten og hva prosjektet kan gjøre dersom den materialiserer seg."
+        ],
+        "stage": "early",
+        "stakes": "Venter prosjektet på sikkerhet, kan handlingsrommet være borte når risikoen blir bekreftet.",
+        "subject": "Risiko trenger ikke være sikker for å være styringsrelevant",
+        "summary": "Sigrid ber deg forklare hvorfor en usikker kostnadsøkning bør inn i styringsbildet før den er endelig beregnet.",
+        "task_domain": "risikoforstaelse",
+        "task_kind": "knowledge"
+      },
+      "id": "by_prosjektleder_knowledge_risiko_001",
+      "mail_type": "knowledge",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Styringen kan forberede seg uten å late som usikkerheten allerede er fakta.",
+            "id": "A",
+            "label": "Beskriv sannsynlighet, konsekvens, forutsetning og mulig tiltak nå",
+            "reply": "Jeg legger risikoen inn med sannsynlighet, konsekvens, hvilke forutsetninger den bygger på og hvilke tiltak som finnes."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Rapporten blir roligere, men prosjektet kan miste tid til å påvirke konsekvensen.",
+            "id": "B",
+            "label": "Vent til estimatet er bedre før risikoen løftes formelt",
+            "reply": "Jeg følger utviklingen, men venter med formell varsling til estimatet er mer robust."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Kostnadsøkningen er ikke bekreftet.",
+            "Konsekvensen kan bli betydelig dersom den treffer sent.",
+            "Styringen trenger derfor både usikkerheten og hva prosjektet kan gjøre dersom den materialiserer seg."
+          ],
+          "subject": "Risiko trenger ikke være sikker for å være styringsrelevant",
+          "summary": "Sigrid ber deg forklare hvorfor en usikker kostnadsøkning bør inn i styringsbildet før den er endelig beregnet."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_knowledge_risiko_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_knowledge_risiko_001",
+          "source_path": "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_knowledge_risiko_001",
+        "version": 1
+      },
+      "source_hash": "13fe34efd6e490cf494a1e69aa9e2ac75ffde01e352b7c87f36fbb8bf09a082c",
+      "source_path": "data/Civication/mailFamilies/by/knowledge/by_prosjektleder_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "komplettere_spor_vs_gå_videre",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Senere endringer kan vurderes mot det beslutningen faktisk bygde på.",
+            "id": "A",
+            "label": "Legg inn forutsetningen og lenk den til beslutningen nå",
+            "reply": "Jeg kompletterer beslutningsloggen med kostnadsforutsetning, avhengighet og hvem som eide avgjørelsen.",
+            "tags": [
+              "decision_log",
+              "traceability"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Du sparer tid, men gjør styringssporet mer avhengig av hukommelse og gamle e-poster.",
+            "id": "B",
+            "label": "La referatet stå og dokumenter detaljene hvis spørsmålet kommer senere",
+            "reply": "Jeg lar referatet stå og tar fram detaljene senere dersom beslutningen blir utfordret.",
+            "tags": [
+              "delay",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "beslutningssporbarhet",
+        "consequence_axis": "etterprovbarhet_vs_tempo",
+        "cooldown": 1,
+        "from": "prosjektkoordinator_amin",
+        "id": "by_prosjektleder_micro_beslutningslogg_001",
+        "mail_family": "styringsmikrokontroll",
+        "mail_type": "micro",
+        "narrative_arc": "Prosjektlederen lærer at beslutningsspor bygges gjennom små kontroller før hukommelsen blir styringssystemet.",
+        "person_id": "prosjektkoordinator_amin",
+        "phase": "forenoon",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "smakontroll_vs_framdrift",
+        "priority": 54,
+        "purpose": "Velg om prosjektlederen bruker noen minutter på å gjenopprette beslutningssporet før flere bygger videre på det.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+        "scene_catalog_version": 1,
+        "sender": "prosjektkoordinator_amin",
+        "situation": [
+          "Referatet sier hva som ble valgt.",
+          "Det sier ikke hvilken kostnadsramme og avhengighet valget bygde på.",
+          "Du kan fortsatt legge inn koblingen mens dokumentasjonen er fersk."
+        ],
+        "stage": "early",
+        "stakes": "Uten forutsetningen kan en senere endring se ut som avvik fra beslutningen i stedet for en legitim reaksjon på endret grunnlag.",
+        "subject": "Beslutningen står i referatet, men forutsetningen mangler",
+        "summary": "En tidligere beslutning er registrert uten den kostnadsforutsetningen som gjorde valget forsvarlig.",
+        "task_domain": "beslutningsspor",
+        "task_kind": "micro"
+      },
+      "id": "by_prosjektleder_micro_beslutningslogg_001",
+      "mail_type": "micro",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Senere endringer kan vurderes mot det beslutningen faktisk bygde på.",
+            "id": "A",
+            "label": "Legg inn forutsetningen og lenk den til beslutningen nå",
+            "reply": "Jeg kompletterer beslutningsloggen med kostnadsforutsetning, avhengighet og hvem som eide avgjørelsen."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Du sparer tid, men gjør styringssporet mer avhengig av hukommelse og gamle e-poster.",
+            "id": "B",
+            "label": "La referatet stå og dokumenter detaljene hvis spørsmålet kommer senere",
+            "reply": "Jeg lar referatet stå og tar fram detaljene senere dersom beslutningen blir utfordret."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Referatet sier hva som ble valgt.",
+            "Det sier ikke hvilken kostnadsramme og avhengighet valget bygde på.",
+            "Du kan fortsatt legge inn koblingen mens dokumentasjonen er fersk."
+          ],
+          "subject": "Beslutningen står i referatet, men forutsetningen mangler",
+          "summary": "En tidligere beslutning er registrert uten den kostnadsforutsetningen som gjorde valget forsvarlig."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_micro_beslutningslogg_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_micro_beslutningslogg_001",
+          "source_path": "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_micro_beslutningslogg_001",
+        "version": 1
+      },
+      "source_hash": "15192ae47d2a6cbf62bd14de4e89b947d7034192ab2a0911d0bf9270ae07c14b",
+      "source_path": "data/Civication/mailFamilies/by/micro/by_prosjektleder_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "love_dato_vs_scenario_med_vilkar",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Lena får et styringssignal som kan oppdateres uten at prosjektet later som usikkerheten er borte.",
+            "id": "A",
+            "label": "Gi et hovedscenario med dato, forutsetninger og risikointervall",
+            "reply": "Jeg gir et hovedscenario med dato og viser hvilke avhengigheter som må holde for at den skal være realistisk.",
+            "tags": [
+              "scenario",
+              "risk",
+              "governance"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Rapporten blir enklere, men prosjektet begynner å eie en dato det ikke fullt ut styrer.",
+            "id": "B",
+            "label": "Sett en styringsdato og håndter avvik dersom de oppstår",
+            "reply": "Jeg setter en tydelig styringsdato og varsler senere dersom avhengighetene faktisk gir utslag.",
+            "tags": [
+              "deadline",
+              "risk"
+            ]
+          }
+        ],
+        "competency": "risikosynlig_rapportering",
+        "consequence_axis": "rapportro_vs_styrbarhet",
+        "cooldown": 1,
+        "from": "kommunalsjef_lena",
+        "id": "by_prosjektleder_people_lena_001",
+        "mail_family": "styringsrelasjoner",
+        "mail_type": "people",
+        "narrative_arc": "Prosjektlederen lærer å være tydelig oppover uten å skjule hva prosjektet faktisk ikke kontrollerer.",
+        "person_id": "kommunalsjef_lena",
+        "phase": "morning",
+        "place_id": "mandat_og_programbord",
+        "pressure": "enkel_dato_vs_reelle_forutsetninger",
+        "priority": 72,
+        "purpose": "Trene prosjektlederen i å gi nyttig ledelsesinformasjon uten å konvertere usikkerhet til falsk sikkerhet.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+        "scene_catalog_version": 1,
+        "sender": "kommunalsjef_lena",
+        "situation": [
+          "Ledelsen trenger å kommunisere framdrift videre.",
+          "To kritiske avhengigheter har fortsatt eksterne eiere.",
+          "Kostnadsbildet kan endre omfanget hvis grunnarbeidet blir dyrere enn antatt."
+        ],
+        "stage": "stable",
+        "stakes": "En fast dato gir ro nå, men kan bli et løfte prosjektet ikke kontrollerer; et scenario gir mindre enkelhet, men bedre styring.",
+        "subject": "Lena vil ha én dato, men premissene er fortsatt i bevegelse",
+        "summary": "Kommunalsjef Lena trenger en styringsdato før flere tekniske og økonomiske avhengigheter er avklart.",
+        "task_domain": "styringsdialog",
+        "task_kind": "people"
+      },
+      "id": "by_prosjektleder_people_lena_001",
+      "mail_type": "people",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "any",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Lena får et styringssignal som kan oppdateres uten at prosjektet later som usikkerheten er borte.",
+            "id": "A",
+            "label": "Gi et hovedscenario med dato, forutsetninger og risikointervall",
+            "reply": "Jeg gir et hovedscenario med dato og viser hvilke avhengigheter som må holde for at den skal være realistisk."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Rapporten blir enklere, men prosjektet begynner å eie en dato det ikke fullt ut styrer.",
+            "id": "B",
+            "label": "Sett en styringsdato og håndter avvik dersom de oppstår",
+            "reply": "Jeg setter en tydelig styringsdato og varsler senere dersom avhengighetene faktisk gir utslag."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Ledelsen trenger å kommunisere framdrift videre.",
+            "To kritiske avhengigheter har fortsatt eksterne eiere.",
+            "Kostnadsbildet kan endre omfanget hvis grunnarbeidet blir dyrere enn antatt."
+          ],
+          "subject": "Lena vil ha én dato, men premissene er fortsatt i bevegelse",
+          "summary": "Kommunalsjef Lena trenger en styringsdato før flere tekniske og økonomiske avhengigheter er avklart."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_people_lena_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "mandat_og_programbord",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_people_lena_001",
+          "source_path": "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_people_lena_001",
+        "version": 1
+      },
+      "source_hash": "0688115a1a7a5654f8f28a24f14b2ab0dda1b52f1a413f39bbbb500c8822be19",
+      "source_path": "data/Civication/mailFamilies/by/people/by_prosjektleder_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "by",
+      "compatibility_projection": {
+        "category": "by",
+        "choice_axis": "vise_alternativer_vs_selge_en_losning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Ledelsen får et beslutningsgrunnlag som gjør uenigheten synlig uten å gjøre den ubrukelig.",
+            "id": "A",
+            "label": "Vis alternativer, forutsetninger, risiko og hva hvert valg gjør med bykvaliteten",
+            "reply": "Jeg lager styringssaken slik at hvert alternativ viser ansvar, kostnad, framdrift, risiko og konsekvens for bykvalitet.",
+            "tags": [
+              "decision",
+              "transparency",
+              "quality"
+            ]
+          },
+          {
+            "effect": 0,
+            "feedback": "Saken blir enklere å lese, men noen av avveiingene blir mindre synlige i selve beslutningsøyeblikket.",
+            "id": "B",
+            "label": "Anbefal ett hovedalternativ og legg detaljert risiko i vedlegg",
+            "reply": "Jeg anbefaler ett hovedalternativ og legger den detaljerte risikoen i vedlegg for å holde saken kort.",
+            "tags": [
+              "recommendation",
+              "compression"
+            ]
+          }
+        ],
+        "competency": "beslutningsgrunnlag",
+        "consequence_axis": "beslutningskvalitet_vs_kommunikasjonsro",
+        "cooldown": 2,
+        "from": "kommunalsjef_lena",
+        "id": "by_prosjektleder_story_styringssak_001",
+        "mail_family": "styringsmilepaeler",
+        "mail_type": "story",
+        "narrative_arc": "Prosjektlederen går fra å rapportere framdrift til å gjøre komplekse avveiinger beslutningsbare.",
+        "person_id": "kommunalsjef_lena",
+        "phase": "evening",
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "pressure": "enkel_anbefaling_vs_reelle_alternativer",
+        "priority": 64,
+        "purpose": "La prosjektlederen velge om styringssaken skal synliggjøre alternativer og konsekvenser eller bare anbefale én vei videre.",
+        "repeatable": false,
+        "role_scope": "by_prosjektleder",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
+        "scene_catalog_version": 1,
+        "sender": "kommunalsjef_lena",
+        "situation": [
+          "Prosjektet kan holde opprinnelig omfang hvis to usikre forutsetninger løser seg.",
+          "Et mindre omfang beskytter datoen, men svekker enkelte bykvaliteter.",
+          "Ledelsen må vite hvilke valg den faktisk eier."
+        ],
+        "stage": "mastery",
+        "stakes": "En tydelig anbefaling er enkel å kommunisere; et reelt beslutningsgrunnlag gjør kostnad, risiko og bykvalitet mer etterprøvbart.",
+        "subject": "Styringssaken må vise hva prosjektet faktisk trenger beslutning om",
+        "summary": "Mandat, kostnadsrisiko og to eksterne avhengigheter er nå tydelige nok til at ledelsen kan ta reelle valg i stedet for å få en statusrapport.",
+        "task_domain": "styringssak",
+        "task_kind": "story"
+      },
+      "id": "by_prosjektleder_story_styringssak_001",
+      "mail_type": "story",
+      "role_scope": "by_prosjektleder",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Ledelsen får et beslutningsgrunnlag som gjør uenigheten synlig uten å gjøre den ubrukelig.",
+            "id": "A",
+            "label": "Vis alternativer, forutsetninger, risiko og hva hvert valg gjør med bykvaliteten",
+            "reply": "Jeg lager styringssaken slik at hvert alternativ viser ansvar, kostnad, framdrift, risiko og konsekvens for bykvalitet."
+          },
+          {
+            "effects": {
+              "score_delta": 0
+            },
+            "feedback": "Saken blir enklere å lese, men noen av avveiingene blir mindre synlige i selve beslutningsøyeblikket.",
+            "id": "B",
+            "label": "Anbefal ett hovedalternativ og legg detaljert risiko i vedlegg",
+            "reply": "Jeg anbefaler ett hovedalternativ og legger den detaljerte risikoen i vedlegg for å holde saken kort."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Prosjektet kan holde opprinnelig omfang hvis to usikre forutsetninger løser seg.",
+            "Et mindre omfang beskytter datoen, men svekker enkelte bykvaliteter.",
+            "Ledelsen må vite hvilke valg den faktisk eier."
+          ],
+          "subject": "Styringssaken må vise hva prosjektet faktisk trenger beslutning om",
+          "summary": "Mandat, kostnadsrisiko og to eksterne avhengigheter er nå tydelige nok til at ledelsen kan ta reelle valg i stedet for å få en statusrapport."
+        },
+        "day_phase": "any",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "by_prosjektleder_story_styringssak_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "risiko_budsjett_og_beslutningslogg",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "by_prosjektleder_story_styringssak_001",
+          "source_path": "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "by_prosjektleder.mail.by_prosjektleder_story_styringssak_001",
+        "version": 1
+      },
+      "source_hash": "bb403ea1019631926054cd43c75af435e618761e99dc480ee04c9b1de6d1b8d9",
+      "source_path": "data/Civication/mailFamilies/by/story/by_prosjektleder_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -140900,7 +141902,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "ae01872def0b6238c2fb5c3a7122f011d163ab19f8f117d38df0dc5596d5b5a6",
+  "registry_hash": "f081fb74c44365bfbeb213dedc2f4e2d485761f0cef0039420a06dc197690971",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -140946,7 +141948,15 @@
       "by_prosjekt_job_risiko_001",
       "by_prosjekt_job_risiko_002",
       "by_prosjekt_job_kvalitet_001",
-      "by_prosjekt_job_kvalitet_002"
+      "by_prosjekt_job_kvalitet_002",
+      "by_prosjektleder_people_lena_001",
+      "by_prosjektleder_story_styringssak_001",
+      "by_prosjektleder_conflict_ansvar_001",
+      "by_prosjektleder_event_avhengighetsmote_001",
+      "by_prosjektleder_micro_beslutningslogg_001",
+      "by_prosjektleder_followup_kostnad_001",
+      "by_prosjektleder_knowledge_risiko_001",
+      "by_prosjektleder_consequence_kostnad_001"
     ],
     "by/by_radgiver_plan": [
       "by_radgiver_job_sted_001",
@@ -141903,11 +142913,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 154,
+    "compiled_source_file_count": 162,
     "ignored_source_file_count": 1,
-    "input_file_count": 155,
+    "input_file_count": 163,
     "role_count": 28,
-    "scene_count": 917,
+    "scene_count": 925,
     "shadowed_duplicate_count": 0
   },
   "version": 1

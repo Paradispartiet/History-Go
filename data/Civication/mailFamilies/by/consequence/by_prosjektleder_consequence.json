@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "forsinkede_styringskonsekvenser",
+      "purpose": "Gjør konsekvensen av tidlig eller sen risikostyring synlig i prosjektets senere handlingsrom.",
+      "learning_focus": ["konsekvens", "handlingsrom", "tillit"],
+      "mails": [
+        {
+          "id": "by_prosjektleder_consequence_kostnad_001",
+          "mail_type": "consequence",
+          "mail_family": "forsinkede_styringskonsekvenser",
+          "role_scope": "by_prosjektleder",
+          "thread_key": "by_prosjektleder.case.kostnadsrisiko_og_kvalitet",
+          "phase": "day_end",
+          "priority": 62,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "mastery",
+          "from": "kommunalsjef_lena",
+          "sender": "kommunalsjef_lena",
+          "person_id": "kommunalsjef_lena",
+          "place_id": "risiko_budsjett_og_beslutningslogg",
+          "subject": "Styringen kan nå se hvorfor prosjektet må velge annerledes",
+          "summary": "Den opprinnelige kostnadsrisikoen, senere estimat og beslutningssporet gjør det mulig å forklare hvorfor tid, omfang eller kvalitet må endres.",
+          "purpose": "Vis at prosjektlederens tidligere dokumentasjon påvirker om en vanskelig endring blir oppfattet som styrt revisjon eller som kontrolltap.",
+          "stakes": "Et sammenhengende spor beskytter tillit og gjør ny beslutning presis; et svakt spor gjør samme endring vanskeligere å legitimere og dyrere å avklare.",
+          "situation": [
+            "Kostnadsforutsetningen er endret.",
+            "Prosjektets tidligere risikonotat beskrev denne muligheten og hvilke kvaliteter som var utsatt.",
+            "Ledelsen skal nå beslutte om tid, omfang eller ressurs skal endres."
+          ],
+          "task_domain": "forsinket_styringskonsekvens",
+          "task_kind": "consequence",
+          "competency": "beslutningssporbarhet",
+          "pressure": "kontrollert_revisjon_vs_tap_av_tillit",
+          "choice_axis": "bruke_sporet_vs_star_forklare_panytt",
+          "consequence_axis": "styring_og_tillit_vs_kostbar_usikkerhet",
+          "narrative_arc": "Prosjektlederen ser at tidlig risikosynlighet og beslutningsspor kan bevare tillit når planen senere må endres.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Knytt den nye beslutningen direkte til tidligere risiko, endret forutsetning og synlige alternativer",
+              "reply": "Jeg viser sammenhengen fra tidlig risiko via nytt estimat til dagens alternativer, slik at beslutningen kan etterprøves.",
+              "effect": 1,
+              "tags": ["consequence", "governance", "trust"],
+              "feedback": "Endringen framstår som styrt respons på nytt grunnlag, ikke som plutselig tap av kontroll."
+            },
+            {
+              "id": "B",
+              "label": "Presenter den nye anbefalingen som oppdatert prosjektstatus uten hele historikken",
+              "reply": "Jeg presenterer den nye anbefalingen kort som oppdatert prosjektstatus og holder historikken i underlaget.",
+              "effect": 0,
+              "tags": ["summary", "history"],
+              "feedback": "Beslutningen kan tas, men sammenhengen mellom tidligere varsling og dagens valg blir mindre synlig."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
