@@ -5,7 +5,12 @@ import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 
 const root = process.cwd();
-const source = execFileSync("git", ["show", "HEAD^:scripts/coordinate-branch-job.mjs"], { cwd: root, encoding: "utf8" });
+let source = execFileSync(
+  "git",
+  ["show", "8843fef59ff49b7ad91d94265f13c57fb7ed0cdf:scripts/coordinate-branch-job.mjs"],
+  { cwd: root, encoding: "utf8" }
+);
+
 const startMarker = 'tests = appendUnique(tests, "Språkatlas → Steder bruker canonical språkfiler", `';
 const endMarker = 'writeText("tests/place-language-dialect-scope.test.mjs", tests);';
 const start = source.indexOf(startMarker);
@@ -62,6 +67,7 @@ const lines = [
   '  "test(\\\"Språkatlas og PlaceCard har toveis navigasjon med ufullstendighetsvern\\\", () => {",',
   '  "  const runtime = read(\\\"js/ui/place-language-layer.js\\\");",',
   '  "  const buildIndex = read(\\\"tools/build_places_index.mts\\\");",',
+  '  "  const checkIndex = read(\\\"tools/check_places_index_sync.mts\\\");",',
   '  "  const placeType = read(\\\"schemas/place.ts\\\");",',
   '  "  assert.match(runtime, /function\\\\s+loadAtlasPlaceIndex\\\\s*\\\\(/);",',
   '  "  assert.match(runtime, /data-atlas-open-place/);",',
@@ -72,16 +78,37 @@ const lines = [
   '  "  assert.match(runtime, /Listen er ikke komplett/);",',
   '  "  assert.match(runtime, /ikke et kart over hvor talemålet finnes/);",',
   '  "  assert.match(buildIndex, /\\\'placeScope\\\'/, \\\"places_index må bevare area-eierskap i runtime\\\");",',
+  '  "  assert.match(checkIndex, /\\\'placeScope\\\'/, \\\"places_index checker må bruke samme area-eierskapskontrakt\\\");",',
   '  "  assert.match(placeType, /placeScope\\\\?:\\\\s*string/);",',
   '  "});",',
   '  ""',
   '].join("\\n"));',
   ''
 ];
-const safeTestBlock = lines.join("\n");
-const fixed = source.slice(0, start) + safeTestBlock + source.slice(end);
+source = source.slice(0, start) + lines.join("\n") + source.slice(end);
+
+const insertionNeedle = 'writeText("tools/build_places_index.mts", buildIndex);';
+const checkerPatch = [
+  insertionNeedle,
+  '',
+  'let checkIndex = readText("tools/check_places_index_sync.mts");',
+  'checkIndex = replaceOnce(checkIndex,',
+  '  "  stub?: unknown;\\n  groundhopper?: unknown;",',
+  '  "  stub?: unknown;\\n  placeScope?: unknown;\\n  groundhopper?: unknown;",',
+  '  "place index checker PlaceRow placeScope"',
+  ');',
+  'checkIndex = replaceOnce(checkIndex,',
+  '  "  \'stub\',\\n  \'groundhopper\',",',
+  '  "  \'stub\',\\n  \'placeScope\',\\n  \'groundhopper\',",',
+  '  "place index checker LIGHT_FIELDS placeScope"',
+  ');',
+  'writeText("tools/check_places_index_sync.mts", checkIndex);'
+].join("\n");
+if (!source.includes(insertionNeedle)) throw new Error("Could not locate build_places_index write for checker patch");
+source = source.replace(insertionNeedle, checkerPatch);
+
 const tempPath = path.join(root, "scripts", ".sprakatlas-place-links-generated.mjs");
-fs.writeFileSync(tempPath, fixed, "utf8");
+fs.writeFileSync(tempPath, source, "utf8");
 try {
   await import(pathToFileURL(tempPath).href + "?run=" + Date.now());
 } finally {
