@@ -6,6 +6,13 @@ on:
       - agent/civication-psykologi-miljoarbeid-pilot-playable
     paths:
       - '.materialize-psykologi-miljoarbeid'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.materialize-psykologi-miljoarbeid'
+      - '.github/workflows/civication-psykologi-miljoarbeid-materialize.yml'
+      - 'scripts/materialize-civication-psykologi-miljoarbeid-pilot.mjs'
 
 permissions:
   contents: write
@@ -16,6 +23,7 @@ concurrency:
 
 jobs:
   materialize:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
