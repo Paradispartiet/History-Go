@@ -1,0 +1,73 @@
+name: TEMP Civication Administrasjonsmedarbeider rollout materialize
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/Civication/roleModels/naeringsliv/okonomi_og_administrasjonsmedarbeider.json'
+      - 'data/Civication/mailFamilies/naeringsliv/conflict/administrasjonsmedarbeider_conflict.json'
+      - 'data/Civication/mailFamilies/naeringsliv/story/administrasjonsmedarbeider_story.json'
+      - 'data/Civication/mailFamilies/naeringsliv/event/administrasjonsmedarbeider_event.json'
+      - 'tests/civication-administrasjonsmedarbeider-rollout-playability.test.js'
+      - '.github/workflows/civication-administrasjonsmedarbeider-rollout-materialize.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-civication-administrasjonsmedarbeider-rollout
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/civication-rollout-administrasjonsmedarbeider-playable
+          fetch-depth: 0
+
+      - name: Lock rollout baseline lineage
+        run: git merge-base --is-ancestor 17d82741a578929655f8c58a96e66f28bf709b30 HEAD
+
+      - name: Regenerate Career Gameplay Matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --write
+
+      - name: Regenerate compiled scene registry
+        run: node scripts/build-civication-scene-registry.mjs --write
+
+      - name: Verify generated matrix
+        run: node scripts/audit-civication-career-gameplay.mjs --check
+
+      - name: Verify compiled scene registry
+        run: node scripts/build-civication-scene-registry.mjs --check
+
+      - name: Verify Administrasjonsmedarbeider rollout target
+        run: node tests/civication-administrasjonsmedarbeider-rollout-playability.test.js
+
+      - name: Verify roleModel ownership remains distinct
+        run: node tests/civication-career-rolemodel-ownership.test.js
+
+      - name: Install repository dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify complete Civication suite
+        run: npm run test:civication
+
+      - name: Diff hygiene
+        run: git diff --check
+
+      - name: Commit generated rollout artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/Civication/careerGameplayMatrix.json data/Civication/compiledSceneRegistryV1.json reports/civication-career-gameplay-matrix.md
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Regenerate Civication artifacts for Administrasjonsmedarbeider rollout'
+          git push origin HEAD:agent/civication-rollout-administrasjonsmedarbeider-playable
