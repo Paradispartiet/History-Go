@@ -1,0 +1,44 @@
+name: Fagverk theory integrity reconciliation
+
+on:
+  pull_request:
+    paths:
+      - 'data/fag/**'
+      - 'data/fagverk/**'
+      - 'docs/FAGVERK.md'
+      - 'docs/SUBJECT_FILE_CONTRACT.md'
+      - 'scripts/audit-fagverk-theory-integrity.mjs'
+      - 'tests/fagverk-theory-integrity.test.mjs'
+      - 'tests/fagverk-documentation-contract.test.mjs'
+      - '.github/workflows/fagverk-theory-integrity.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/fag/**'
+      - 'data/fagverk/**'
+      - 'docs/FAGVERK.md'
+      - 'docs/SUBJECT_FILE_CONTRACT.md'
+      - 'scripts/audit-fagverk-theory-integrity.mjs'
+      - 'tests/fagverk-theory-integrity.test.mjs'
+      - 'tests/fagverk-documentation-contract.test.mjs'
+      - '.github/workflows/fagverk-theory-integrity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify Fagverk theory integrity reconciliation
+        run: |
+          node --check scripts/audit-fagverk-theory-integrity.mjs
+          node scripts/audit-fagverk-theory-integrity.mjs
+          node --test tests/fagverk-theory-integrity.test.mjs
+          node --test tests/fagverk-documentation-contract.test.mjs
