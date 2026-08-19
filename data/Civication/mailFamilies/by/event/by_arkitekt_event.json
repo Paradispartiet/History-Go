@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_arkitekt",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "modellgjennomgang",
+      "purpose": "Tester prosjektet i en felles gjennomgang der flere hensyn blir synlige samtidig.",
+      "learning_focus": ["modellkritikk", "prioritering"],
+      "mails": [
+        {
+          "id": "by_arkitekt_event_modell_001",
+          "mail_type": "event",
+          "mail_family": "modellgjennomgang",
+          "role_scope": "by_arkitekt",
+          "phase": "afternoon",
+          "priority": 68,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "atelierleder_nora",
+          "sender": "atelierleder_nora",
+          "person_id": "atelierleder_nora",
+          "place_id": "atelier_og_modellbord",
+          "subject": "Modellgjennomgangen avdekker tre problemer samtidig",
+          "summary": "I den felles modellen kolliderer inngang, varelevering og oppholdsareal på samme hjørne.",
+          "purpose": "Prioriter hva som må løses først uten å late som alle konfliktene kan glattes ut i én detalj.",
+          "stakes": "Valget påvirker prosjektets lesbarhet, drift og evnen til å koordinere reelle grensesnitt.",
+          "situation": [
+            "Den nye modellen viser at varelevering krysser hovedstrømmen til inngangen.",
+            "Samtidig blir oppholdsarealet ved hjørnet mindre enn teamet trodde i plan.",
+            "Neste leveranse er nær, så rekkefølgen på avklaringene betyr noe."
+          ],
+          "task_domain": "rom_og_program",
+          "task_kind": "event",
+          "competency": "tverrfaglig_koordinering",
+          "learning_focus": ["grensesnitt", "prioritering", "modell"],
+          "pressure": "fremdrift_vs_sammenheng",
+          "choice_axis": "lokal_fiks_vs_grensesnittanalyse",
+          "consequence_axis": "rask_leveranse_vs_robust_koordinering",
+          "narrative_arc": "Modellen gjør det vanskelig å skjule at tre gode delvalg ikke nødvendigvis fungerer sammen.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lås ganglinjen først og koordiner de andre funksjonene rundt den",
+              "reply": "Jeg låser hovedganglinjen som premiss og koordinerer levering og opphold rundt den.",
+              "effect": 1,
+              "tags": ["prioritering", "ganglinje"],
+              "feedback": "Du gjør ett premiss eksplisitt og gir resten av teamet et tydelig utgangspunkt."
+            },
+            {
+              "id": "B",
+              "label": "Åpne hjørnet som samlet grensesnitt før noe låses",
+              "reply": "Jeg åpner hele hjørnet som et samlet grensesnitt og ber de berørte fagene teste alternativer sammen.",
+              "effect": 0,
+              "tags": ["grensesnitt", "samordnet_revisjon"],
+              "feedback": "Du bruker mer tid nå, men reduserer risikoen for at én lokal løsning flytter problemet videre."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
