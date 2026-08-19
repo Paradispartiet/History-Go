@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_assistent",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "befaring_og_medvirkning",
+      "purpose": "Gjør en konkret stedsaktivitet til del av arbeidsflyten.",
+      "learning_focus": ["befaring", "medvirkning"],
+      "mails": [
+        {
+          "id": "by_assistent_event_kveldsbefaring_001",
+          "mail_type": "event",
+          "mail_family": "befaring_og_medvirkning",
+          "role_scope": "by_assistent",
+          "phase": "afternoon",
+          "priority": 60,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "advanced",
+          "from": "maria_medvirkning",
+          "sender": "maria_medvirkning",
+          "person_id": "maria_medvirkning",
+          "place_id": "oslo_sentrum_byrom",
+          "subject": "En kort kveldsbefaring kan teste trygghetsinnspillene",
+          "summary": "Flere innspill gjelder den samme mørke ganglinjen, men dagens befaring sier lite om hvordan stedet virker etter arbeidstid.",
+          "purpose": "Velg om assistenten skal samle ny stedlig evidens eller nøye seg med eksisterende beskrivelser.",
+          "stakes": "Ny observasjon kan styrke eller avkrefte mønsteret; uten den kan analysen bli basert på antakelser om tidspunktet som faktisk er problemet.",
+          "situation": [
+            "Innspillene beskriver utrygghet om kvelden.",
+            "Dagens bilder viser lysanlegget, men ikke hvordan stedet oppleves når omgivelsene er mørke.",
+            "Maria kan bli med på en kort, avgrenset befaring."
+          ],
+          "task_domain": "tidsavhengig_befaring",
+          "task_kind": "event",
+          "competency": "observasjonsdesign",
+          "pressure": "tilgjengelig_grunnlag_vs_relevant_grunnlag",
+          "choice_axis": "observere_rett_tid_vs_anta_fra_dagtid",
+          "consequence_axis": "evidens_vs_effektivitet",
+          "narrative_arc": "Assistenten lærer at stedlig observasjon må skje når fenomenet faktisk oppstår.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjennomfør en kort kveldsbefaring med tydelig observasjonsspørsmål",
+              "reply": "Jeg gjennomfører en kort kveldsbefaring for å teste ganglinje, lys og opplevd oversikt på riktig tidspunkt.",
+              "effect": 1,
+              "tags": ["fieldwork", "timing", "evidence"],
+              "feedback": "Du samler data på det tidspunktet innspillene faktisk handler om."
+            },
+            {
+              "id": "B",
+              "label": "Bruk dagens materiale og marker kveldsforhold som usikkert",
+              "reply": "Jeg bruker dagens materiale, men markerer tydelig at kveldsforholdene ikke er observert.",
+              "effect": 0,
+              "tags": ["uncertainty", "scope"],
+              "feedback": "Du unngår å late som du vet mer enn du gjør, men saken får mindre direkte evidens."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

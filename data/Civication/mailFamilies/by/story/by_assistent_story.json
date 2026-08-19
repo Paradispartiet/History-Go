@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_assistent",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "stedsforstaelse",
+      "purpose": "Samler kart, befaring og innspill til en synlig læringsmilepæl.",
+      "learning_focus": ["stedsanalyse", "sammenstilling"],
+      "mails": [
+        {
+          "id": "by_assistent_story_stedsnotat_001",
+          "mail_type": "story",
+          "mail_family": "stedsforstaelse",
+          "role_scope": "by_assistent",
+          "phase": "evening",
+          "priority": 64,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "mastery",
+          "from": "maria_medvirkning",
+          "sender": "maria_medvirkning",
+          "person_id": "maria_medvirkning",
+          "place_id": "medvirknings_og_notatbord",
+          "subject": "Det lille notatet begynner å forklare hele stedet",
+          "summary": "Kartavviket, snarveien, oppholdet og flere innspill peker nå mot samme konflikt mellom planlagt funksjon og faktisk bruk.",
+          "purpose": "La assistenten velge om sluttproduktet skal bevare sammenhengen og usikkerheten eller reduseres til en pen punktliste.",
+          "stakes": "Notatet kan bli et reelt beslutningsgrunnlag eller bare en ryddig oppsummering som mister det viktigste mønsteret.",
+          "situation": [
+            "Kartgrunnlaget var mindre sikkert enn det så ut.",
+            "Befaringen viste hvordan folk faktisk beveger seg og oppholder seg.",
+            "Innspillene ga flere uavhengige beskrivelser av samme utrygghet."
+          ],
+          "task_domain": "stedsnotat",
+          "task_kind": "story",
+          "competency": "sammenstilt_stedsforstaelse",
+          "pressure": "lesbarhet_vs_faglig_motstand",
+          "choice_axis": "bevare_sammenheng_vs_flat_oppsummering",
+          "consequence_axis": "læring_vs_rapportro",
+          "narrative_arc": "Assistenten går fra støtteoppgaver til å forstå hvorfor små observasjoner kan endre en hel stedsanalyse.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv sammenhengen tydelig og behold usikkerheten der den finnes",
+              "reply": "Jeg skriver hvordan kart, befaring og innspill henger sammen og markerer det som fortsatt er usikkert.",
+              "effect": 1,
+              "tags": ["mastery", "synthesis", "traceability"],
+              "feedback": "Notatet blir både lesbart og etterprøvbart nok til at andre kan bygge videre på det."
+            },
+            {
+              "id": "B",
+              "label": "Lag en kort punktliste med de viktigste funnene",
+              "reply": "Jeg lager en kort punktliste med de viktigste funnene og lar detaljene ligge i vedleggene.",
+              "effect": 0,
+              "tags": ["summary", "compression"],
+              "feedback": "Leveransen blir rask å lese, men noe av sammenhengen mellom funnene forsvinner."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

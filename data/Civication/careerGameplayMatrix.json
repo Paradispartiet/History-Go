@@ -9,11 +9,11 @@
     "support_worlds": 1,
     "statuses": {
       "reference_complete": 5,
-      "playable": 11,
-      "partial": 11,
+      "playable": 12,
+      "partial": 10,
       "architecture_only": 61
     },
-    "runtime_gate_pass": 16,
+    "runtime_gate_pass": 17,
     "life_story_complete": 13,
     "component_debt": {
       "entry": {
@@ -37,18 +37,18 @@
         "missing": 5
       },
       "people": {
-        "complete": 11,
+        "complete": 12,
         "partial": 16,
-        "missing": 61
+        "missing": 60
       },
       "places": {
-        "complete": 19,
+        "complete": 20,
         "partial": 0,
-        "missing": 69
+        "missing": 68
       },
       "mail": {
-        "complete": 17,
-        "partial": 10,
+        "complete": 18,
+        "partial": 9,
         "missing": 61
       },
       "knowledge": {
@@ -67,8 +67,8 @@
         "missing": 1
       },
       "consequences": {
-        "complete": 17,
-        "partial": 7,
+        "complete": 18,
+        "partial": 6,
         "missing": 64
       },
       "performance": {
@@ -390,7 +390,7 @@
         "by_assistent",
         "by_studentassistent"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/by/studentassistent.json"
@@ -404,39 +404,40 @@
             "count": 8
           },
           "people": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+            "count": 1
           },
           "conflict": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+            "count": 1
           },
           "story": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/story/by_assistent_story.json",
+            "count": 1
           },
           "event": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+            "count": 1
           },
           "micro": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+            "count": 1
           },
           "followup": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+            "count": 1
           },
           "knowledge": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+            "count": 1
           },
           "consequence": {
-            "path": null,
-            "count": 0
+            "path": "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+            "count": 1
           }
         },
         "role_tests": [
+          "tests/civication-by-assistent-rollout-playability.test.js",
           "tests/civication-by-career-architecture.test.js"
         ],
         "life_story": null
@@ -456,6 +457,7 @@
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_assistent_plan.json",
+              "tests/civication-by-assistent-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js"
             ],
             "note": "Role plan and role-specific test prove a first playable day."
@@ -466,6 +468,7 @@
               "data/Civication/mailFamilies/by/job/by_assistent_job.json",
               "data/Civication/mailPlans/by/by_assistent_plan.json",
               "data/Civication/workGrammars/by/by_assistent.json",
+              "tests/civication-by-assistent-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js"
             ],
             "note": "Repeatable work content is connected to a tested plan."
@@ -479,27 +482,43 @@
             "note": "5 FWG stories and 0 registered practice week(s)."
           },
           "people": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No work-world people layer."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+              "data/Civication/roleModels/by/studentassistent.json",
+              "data/Civication/workGrammars/by/by_assistent.json"
+            ],
+            "note": "Named/typed work relationships are used by people mails."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/by/studentassistent.json",
+              "data/Civication/workGrammars/by/by_assistent.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
+              "data/Civication/mailFamilies/by/conflict/by_assistent_conflict.json",
+              "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+              "data/Civication/mailFamilies/by/event/by_assistent_event.json",
+              "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
               "data/Civication/mailFamilies/by/job/by_assistent_job.json",
+              "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
+              "data/Civication/mailFamilies/by/micro/by_assistent_micro.json",
+              "data/Civication/mailFamilies/by/people/by_assistent_people.json",
+              "data/Civication/mailFamilies/by/story/by_assistent_story.json",
               "data/Civication/mailPlans/by/by_assistent_plan.json"
             ],
-            "note": "1/9 standard mail types."
+            "note": "9/9 standard mail types plus tested plan/practice coverage."
           },
           "knowledge": {
             "level": "complete",
             "evidence": [
               "data/Civication/jobKnowledgeRequirements.json",
+              "data/Civication/mailFamilies/by/knowledge/by_assistent_knowledge.json",
               "data/Civication/roleModels/by/studentassistent.json",
               "data/Civication/workGrammars/by/by_assistent.json"
             ],
@@ -522,16 +541,20 @@
             "note": "Explicit authority boundary exists."
           },
           "consequences": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
-              "data/Civication/mailPlans/by/by_assistent_plan.json"
+              "data/Civication/mailFamilies/by/consequence/by_assistent_consequence.json",
+              "data/Civication/mailFamilies/by/followup/by_assistent_followup.json",
+              "tests/civication-by-assistent-rollout-playability.test.js",
+              "tests/civication-by-career-architecture.test.js"
             ],
-            "note": "Consequence content exists without the full role-specific follow-up proof."
+            "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
             "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/by/by_assistent_plan.json",
+              "tests/civication-by-assistent-rollout-playability.test.js",
               "tests/civication-by-career-architecture.test.js",
               "tests/civication-career-outcomes.test.js"
             ],
@@ -566,18 +589,19 @@
             "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
-        "runtime_gate": false,
-        "missing_components": [
-          "people",
-          "places"
-        ],
+        "runtime_gate": true,
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
+          "people",
+          "places",
+          "mail",
           "knowledge",
           "quality_axes",
           "authority",
+          "consequences",
           "performance",
           "economy",
           "progression",
