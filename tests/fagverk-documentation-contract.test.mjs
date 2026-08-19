@@ -12,6 +12,7 @@ const MASTER = 'docs/FAGVERK.md';
 const NAVIGATION = 'docs/FAGVERK_NAVIGATION.md';
 const PLACE_DESIGN = 'docs/FAGVERK_PLACE_DESIGN.md';
 const DOCUMENTATION_REGISTRY = 'docs/documentation_registry.json';
+const THEORY_CONTRACT = 'data/fag/fagverk_theory_quality_contract_v1.json';
 
 const requiredReferences = [
   DOCUMENTATION_REGISTRY,
@@ -19,6 +20,7 @@ const requiredReferences = [
   'docs/DOMAIN_CONTRACT.md',
   'data/categories/category_contract.json',
   'docs/SUBJECT_FILE_CONTRACT.md',
+  THEORY_CONTRACT,
   NAVIGATION,
   'README/README.pensum.md',
   'README/fagstrukturREADME.md',
@@ -54,7 +56,7 @@ function markdownMentionsPath(markdown, relativePath) {
 test('FAGVERK.md is the explicit canonical all-subject production contract', () => {
   const master = read(MASTER);
 
-  assert.match(master, /canonical og bindende fagverkskontrakt v7/i);
+  assert.match(master, /canonical og bindende fagverkskontrakt v8/i);
   assert.match(master, /eneste samlede kontrakten/i);
   assert.match(master, /én felles fagsidemotor/i);
   assert.match(master, /fagverk\.html\?subject=<subject_id>/);
@@ -64,6 +66,10 @@ test('FAGVERK.md is the explicit canonical all-subject production contract', () 
   assert.match(master, /Krav til `complete`/);
   assert.match(master, /Fase 1 — generell fagsidemotor/);
   assert.match(master, /Fase 2 — fire representativt ulike piloter/);
+  assert.match(master, /Teori-, teoretiker- og modellkvalitet/);
+  assert.match(master, /Teori-, teoretiker- og modellkvalitetsprogram/);
+  assert.match(master, /hovedfelt-for-hovedfelt/i);
+  assert.match(master, /permanent integritetsport/i);
   assert.doesNotMatch(master, /Status: canonical politikk-integrasjon/i);
 });
 
@@ -128,6 +134,28 @@ test('documentation registry gives the fagverk contracts explicit and unique rol
   const fagverkIndex = registry.priority_order.indexOf(MASTER);
   assert.ok(subjectIndex >= 0);
   assert.equal(fagverkIndex, subjectIndex + 1);
+});
+
+test('theory integrity is a canonical layer of existing Fagverk contracts', () => {
+  const master = read(MASTER);
+  const subjectContract = read('docs/SUBJECT_FILE_CONTRACT.md');
+  const theory = readJson(THEORY_CONTRACT);
+
+  assert.equal(theory.schema, 'history_go_fagverk_theory_quality_contract_v1');
+  assert.equal(theory.version, '1.1.0');
+  assert.equal(theory.status, 'integrity_gate_contract');
+  assert.deepEqual(theory.documentation_owners, [MASTER, 'docs/SUBJECT_FILE_CONTRACT.md']);
+  assert.equal(theory.programme_checklist.length, 10);
+  assert.deepEqual(theory.programme_checklist.map((item) => item.step), [1,2,3,4,5,6,7,8,9,10]);
+  assert.equal(theory.final_gate.mode, 'per_major_field_not_aggregate');
+  assert.equal(theory.principles.aggregate_counts_are_not_final_integrity_proof, true);
+  assert.equal(theory.principles.each_canonical_major_field_requires_relevant_theory_or_model_grounding, true);
+  assert.equal(theory.principles.named_people_require_concrete_work_or_research_contribution, true);
+  assert.equal(theory.subjects.length, 18);
+
+  assert.match(master, /18\/18 strong_structured_evidence.*ikke alene bevis/i);
+  assert.match(subjectContract, /aggregert|aggregerte|samlet navne- eller objektkvote/i);
+  assert.match(subjectContract, /metadata, quiz eller en navneliste alene teller ikke/i);
 });
 
 test('navigation remains narrow and delegates production architecture to FAGVERK.md', () => {
