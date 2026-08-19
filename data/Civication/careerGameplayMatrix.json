@@ -7,8 +7,8 @@
     "work_worlds": 89,
     "statuses": {
       "reference_complete": 5,
-      "playable": 5,
-      "partial": 18,
+      "playable": 6,
+      "partial": 17,
       "architecture_only": 61
     },
     "runtime_gate_pass": 14,
@@ -40,9 +40,9 @@
         "missing": 62
       },
       "places": {
-        "complete": 14,
+        "complete": 15,
         "partial": 0,
-        "missing": 75
+        "missing": 74
       },
       "mail": {
         "complete": 15,
@@ -9600,7 +9600,7 @@
         "naer_formann",
         "naeringsliv_formann_arbeidsleder"
       ],
-      "status": "partial",
+      "status": "playable",
       "artifacts": {
         "role_models": [
           "data/Civication/roleModels/naeringsliv/formann_arbeidsleder.json"
@@ -9651,6 +9651,7 @@
         "role_tests": [
           "tests/civication-career-outcome-reachability.test.js",
           "tests/civication-formann-first-week-praksisfortellinger.test.js",
+          "tests/civication-formann-rollout-playability.test.js",
           "tests/civication-formann-second-week-praksisfortellinger.test.js",
           "tests/civication-formann-two-week-flow.test.js",
           "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9676,6 +9677,7 @@
               "data/Civication/mailPlans/naeringsliv/formann_plan.json",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-formann-first-week-praksisfortellinger.test.js",
+              "tests/civication-formann-rollout-playability.test.js",
               "tests/civication-formann-second-week-praksisfortellinger.test.js",
               "tests/civication-formann-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9692,6 +9694,7 @@
               "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json",
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-formann-first-week-praksisfortellinger.test.js",
+              "tests/civication-formann-rollout-playability.test.js",
               "tests/civication-formann-second-week-praksisfortellinger.test.js",
               "tests/civication-formann-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9720,9 +9723,12 @@
             "note": "People content exists on only one side of the content/runtime boundary."
           },
           "places": {
-            "level": "missing",
-            "evidence": [],
-            "note": "No concrete workplace or work surface declaration."
+            "level": "complete",
+            "evidence": [
+              "data/Civication/roleModels/naeringsliv/formann_arbeidsleder.json",
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_operativ_ledelse.json"
+            ],
+            "note": "8 place/working-surface declarations."
           },
           "mail": {
             "level": "complete",
@@ -9770,6 +9776,7 @@
             "evidence": [
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-formann-first-week-praksisfortellinger.test.js",
+              "tests/civication-formann-rollout-playability.test.js",
               "tests/civication-formann-second-week-praksisfortellinger.test.js",
               "tests/civication-formann-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9785,6 +9792,7 @@
               "tests/civication-career-outcome-reachability.test.js",
               "tests/civication-career-outcomes.test.js",
               "tests/civication-formann-first-week-praksisfortellinger.test.js",
+              "tests/civication-formann-rollout-playability.test.js",
               "tests/civication-formann-second-week-praksisfortellinger.test.js",
               "tests/civication-formann-two-week-flow.test.js",
               "tests/civication-naeringsliv-life-career-split.test.js",
@@ -9823,14 +9831,13 @@
           }
         },
         "runtime_gate": true,
-        "missing_components": [
-          "places"
-        ],
+        "missing_components": [],
         "complete_components": [
           "entry",
           "day_one",
           "workday_loop",
           "practice_stories",
+          "places",
           "mail",
           "knowledge",
           "quality_axes",
