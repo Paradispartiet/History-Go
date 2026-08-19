@@ -8,8 +8,10 @@ on:
       - 'docs/FAGVERK.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
+      - 'scripts/audit-fagverk-theory-reconciliation.mjs'
       - 'scripts/report-fagverk-theory-integrity-summary.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
+      - 'tests/fagverk-theory-reconciliation.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
   push:
@@ -21,8 +23,10 @@ on:
       - 'docs/FAGVERK.md'
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
+      - 'scripts/audit-fagverk-theory-reconciliation.mjs'
       - 'scripts/report-fagverk-theory-integrity-summary.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
+      - 'tests/fagverk-theory-reconciliation.test.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - '.github/workflows/fagverk-theory-integrity.yml'
   workflow_dispatch:
@@ -41,7 +45,10 @@ jobs:
       - name: Verify Fagverk theory integrity reconciliation
         run: |
           node --check scripts/audit-fagverk-theory-integrity.mjs
+          node --check scripts/audit-fagverk-theory-reconciliation.mjs
           node --check scripts/report-fagverk-theory-integrity-summary.mjs
           node scripts/report-fagverk-theory-integrity-summary.mjs
+          node scripts/audit-fagverk-theory-reconciliation.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
+          node --test tests/fagverk-theory-reconciliation.test.mjs
           node --test tests/fagverk-documentation-contract.test.mjs
