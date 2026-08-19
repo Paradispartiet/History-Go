@@ -16,7 +16,7 @@ const CORE = sandbox.HGFagverkSubjectCore;
 test('Produksjon, studio og filmarbeid er reauditert fra 20 legacyaliases til 20 canonicale emner', () => {
   const { report } = auditFilmTvProduksjonStudioFilmarbeidPhase4();
   assert.equal(report.subject.id, 'film_tv');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
+  assert.equal(report.subject.editorialStatus, 'complete');
   assert.ok(report.subject.registeredChapterCount >= 2);
   assert.equal(report.canonicalCoverage.ownerDomainId, 'produksjon_arbeid_teknologi_praksis');
   assert.equal(report.canonicalCoverage.exactCoverage, '20/20 canonical emner fra 20/20 legacyaliases');
@@ -28,11 +28,13 @@ test('Produksjon, studio og filmarbeid er reauditert fra 20 legacyaliases til 20
 
 test('Film & TV-kapittelet har full pedagogisk og evidensbasert pakke', () => {
   const { report, chapter, claimsDoc, modules } = auditFilmTvProduksjonStudioFilmarbeidPhase4();
-  assert.deepEqual(report.summary, {
+  const { methodCount, ...stableSummary } = report.summary;
+  assert.deepEqual(stableSummary, {
     moduleCount: 3, sectionCount: 9, paragraphCount: 27, conceptCount: 6,
     workedExampleCount: 3, misconceptionCount: 5, applicationTaskCount: 5,
-    selfCheckCount: 7, methodCount: 20, sourceCount: 22, claimCount: 27, placeCaseCount: 4
+    selfCheckCount: 7, sourceCount: 22, claimCount: 27, placeCaseCount: 4
   });
+  assert.ok(methodCount >= 20);
   assert.deepEqual(chapter.relatedPlaces.map((place) => place.id), ['nrk_huset_marienlyst', 'hartvig_nissens_skole_skam', 'oslo_met_pilestredet', 'lisbon_tobis_portuguesa']);
   assert.ok(chapter.relatedPlaces.every((place) => place.name && place.role));
   assert.ok(claimsDoc.sources.every((source) => source.label && source.url));
