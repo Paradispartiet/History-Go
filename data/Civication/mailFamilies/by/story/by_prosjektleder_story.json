@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "by",
+  "role_scope": "by_prosjektleder",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "styringsmilepaeler",
+      "purpose": "Samler mandat, risiko og ansvar til en synlig prosjektledermilepæl.",
+      "learning_focus": ["styring", "beslutningsgrunnlag"],
+      "mails": [
+        {
+          "id": "by_prosjektleder_story_styringssak_001",
+          "mail_type": "story",
+          "mail_family": "styringsmilepaeler",
+          "role_scope": "by_prosjektleder",
+          "phase": "evening",
+          "priority": 64,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "mastery",
+          "from": "kommunalsjef_lena",
+          "sender": "kommunalsjef_lena",
+          "person_id": "kommunalsjef_lena",
+          "place_id": "risiko_budsjett_og_beslutningslogg",
+          "subject": "Styringssaken må vise hva prosjektet faktisk trenger beslutning om",
+          "summary": "Mandat, kostnadsrisiko og to eksterne avhengigheter er nå tydelige nok til at ledelsen kan ta reelle valg i stedet for å få en statusrapport.",
+          "purpose": "La prosjektlederen velge om styringssaken skal synliggjøre alternativer og konsekvenser eller bare anbefale én vei videre.",
+          "stakes": "En tydelig anbefaling er enkel å kommunisere; et reelt beslutningsgrunnlag gjør kostnad, risiko og bykvalitet mer etterprøvbart.",
+          "situation": [
+            "Prosjektet kan holde opprinnelig omfang hvis to usikre forutsetninger løser seg.",
+            "Et mindre omfang beskytter datoen, men svekker enkelte bykvaliteter.",
+            "Ledelsen må vite hvilke valg den faktisk eier."
+          ],
+          "task_domain": "styringssak",
+          "task_kind": "story",
+          "competency": "beslutningsgrunnlag",
+          "pressure": "enkel_anbefaling_vs_reelle_alternativer",
+          "choice_axis": "vise_alternativer_vs_selge_en_losning",
+          "consequence_axis": "beslutningskvalitet_vs_kommunikasjonsro",
+          "narrative_arc": "Prosjektlederen går fra å rapportere framdrift til å gjøre komplekse avveiinger beslutningsbare.",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Vis alternativer, forutsetninger, risiko og hva hvert valg gjør med bykvaliteten",
+              "reply": "Jeg lager styringssaken slik at hvert alternativ viser ansvar, kostnad, framdrift, risiko og konsekvens for bykvalitet.",
+              "effect": 1,
+              "tags": ["decision", "transparency", "quality"],
+              "feedback": "Ledelsen får et beslutningsgrunnlag som gjør uenigheten synlig uten å gjøre den ubrukelig."
+            },
+            {
+              "id": "B",
+              "label": "Anbefal ett hovedalternativ og legg detaljert risiko i vedlegg",
+              "reply": "Jeg anbefaler ett hovedalternativ og legger den detaljerte risikoen i vedlegg for å holde saken kort.",
+              "effect": 0,
+              "tags": ["recommendation", "compression"],
+              "feedback": "Saken blir enklere å lese, men noen av avveiingene blir mindre synlige i selve beslutningsøyeblikket."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
