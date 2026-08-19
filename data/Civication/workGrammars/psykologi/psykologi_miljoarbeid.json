@@ -1,6 +1,6 @@
 {
   "schema": "civication_work_grammar_v1",
-  "version": 1,
+  "version": 2,
   "category": "psykologi",
   "role_scope": "psykologi_miljoarbeid",
   "role_id": "psykologi_miljoarbeider",
@@ -210,13 +210,34 @@
       "title": "Det du så",
       "story_type": "knowledge",
       "premise": "En tydelig endring i hverdagen må dokumenteres uten at du gjør observasjonen til diagnose.",
-      "people": ["bruker", "teamleder"],
-      "work_knowledge": ["observasjon", "atferd", "psykisk_helse"],
-      "conflict_axes": ["observasjon_vs_tolkning"],
-      "mail_types": ["job", "knowledge", "followup"],
+      "people": [
+        "bruker",
+        "teamleder"
+      ],
+      "work_knowledge": [
+        "observasjon",
+        "atferd",
+        "psykisk_helse"
+      ],
+      "conflict_axes": [
+        "observasjon_vs_tolkning"
+      ],
+      "mail_types": [
+        "job",
+        "knowledge",
+        "followup"
+      ],
       "thread_potential": true,
-      "possible_choices": ["beskrive konkret", "sette en merkelapp", "spørre åpent og følge med"],
-      "possible_followups": ["fagkontakt ber om konkrete eksempler", "merkelappen påvirker neste vakt", "et mønster blir tydeligere"],
+      "possible_choices": [
+        "beskrive konkret",
+        "sette en merkelapp",
+        "spørre åpent og følge med"
+      ],
+      "possible_followups": [
+        "fagkontakt ber om konkrete eksempler",
+        "merkelappen påvirker neste vakt",
+        "et mønster blir tydeligere"
+      ],
       "learning_point": "En presis observasjon er mer nyttig enn en diagnose du ikke har grunnlag eller myndighet til å stille."
     },
     {
@@ -224,13 +245,33 @@
       "title": "Samtalen blir for tung",
       "story_type": "conflict",
       "premise": "En fortrolig samtale inneholder en alvorlig bekymring som ikke kan bli mellom dere to.",
-      "people": ["bruker", "psykolog_fagkontakt"],
-      "work_knowledge": ["profesjonelle_grenser", "psykisk_helse"],
-      "conflict_axes": ["tillit_vs_sikker_eskalering"],
-      "mail_types": ["people", "conflict", "consequence"],
+      "people": [
+        "bruker",
+        "psykolog_fagkontakt"
+      ],
+      "work_knowledge": [
+        "profesjonelle_grenser",
+        "psykisk_helse"
+      ],
+      "conflict_axes": [
+        "tillit_vs_sikker_eskalering"
+      ],
+      "mail_types": [
+        "people",
+        "conflict",
+        "consequence"
+      ],
       "thread_potential": true,
-      "possible_choices": ["forklare grensen og eskalere", "love hemmelighold", "trekke seg unna"],
-      "possible_followups": ["relasjonen tåler en tydelig grense", "fagkontakt overtar vurderingen", "tilliten skades av en skjult eskalering"],
+      "possible_choices": [
+        "forklare grensen og eskalere",
+        "love hemmelighold",
+        "trekke seg unna"
+      ],
+      "possible_followups": [
+        "relasjonen tåler en tydelig grense",
+        "fagkontakt overtar vurderingen",
+        "tilliten skades av en skjult eskalering"
+      ],
       "learning_point": "Tillit betyr ikke at en førstelinjerolle skal bære klinisk eller sikkerhetsmessig ansvar alene."
     },
     {
@@ -238,13 +279,34 @@
       "title": "Aktiviteten ingen vil på",
       "story_type": "relationship",
       "premise": "Planen sier aktivitet, men motivasjon kan ikke presses fram uten kostnad.",
-      "people": ["bruker", "erfaren_kollega"],
-      "work_knowledge": ["motivasjon", "autonomi", "gruppeprosesser"],
-      "conflict_axes": ["motivasjon_vs_press"],
-      "mail_types": ["job", "people", "story"],
+      "people": [
+        "bruker",
+        "erfaren_kollega"
+      ],
+      "work_knowledge": [
+        "motivasjon",
+        "autonomi",
+        "gruppeprosesser"
+      ],
+      "conflict_axes": [
+        "motivasjon_vs_press"
+      ],
+      "mail_types": [
+        "job",
+        "people",
+        "story"
+      ],
       "thread_potential": true,
-      "possible_choices": ["utforske motstand", "presse gjennom", "tilpasse aktiviteten"],
-      "possible_followups": ["personen deltar på egne premisser", "motstanden øker", "teamet diskuterer hva målet egentlig var"],
+      "possible_choices": [
+        "utforske motstand",
+        "presse gjennom",
+        "tilpasse aktiviteten"
+      ],
+      "possible_followups": [
+        "personen deltar på egne premisser",
+        "motstanden øker",
+        "teamet diskuterer hva målet egentlig var"
+      ],
       "learning_point": "Motivasjon er ikke det samme som etterlevelse."
     },
     {
@@ -252,14 +314,101 @@
       "title": "Notatet som stempler",
       "story_type": "identity",
       "premise": "Et kort notat kan enten beskrive en situasjon eller feste en merkelapp til en person.",
-      "people": ["teamleder", "erfaren_kollega"],
-      "work_knowledge": ["observasjon", "stigma"],
-      "conflict_axes": ["presisjon_vs_stigma"],
-      "mail_types": ["knowledge", "job", "followup"],
+      "people": [
+        "teamleder",
+        "erfaren_kollega"
+      ],
+      "work_knowledge": [
+        "observasjon",
+        "stigma"
+      ],
+      "conflict_axes": [
+        "presisjon_vs_stigma"
+      ],
+      "mail_types": [
+        "knowledge",
+        "job",
+        "followup"
+      ],
       "thread_potential": true,
-      "possible_choices": ["skrive hendelsen konkret", "kopiere kollegaens merkelapp", "be om faglig avklaring"],
-      "possible_followups": ["neste vakt møter personen annerledes", "teamleder ber om presisering", "journalteksten blir stående som sannhet"],
+      "possible_choices": [
+        "skrive hendelsen konkret",
+        "kopiere kollegaens merkelapp",
+        "be om faglig avklaring"
+      ],
+      "possible_followups": [
+        "neste vakt møter personen annerledes",
+        "teamleder ber om presisering",
+        "journalteksten blir stående som sannhet"
+      ],
       "learning_point": "Dokumentasjon former hvordan andre ser personen; observerbart språk er en faglig handling."
     }
-  ]
+  ],
+  "task_families": [
+    "vaktstart_og_observasjon",
+    "autonomi_og_hverdagsstotte",
+    "relasjon_og_grensesetting",
+    "deeskalering_og_sikker_eskalering",
+    "dokumentasjon_og_overlevering"
+  ],
+  "work_loops": [
+    {
+      "id": "miljoarbeidsvakt",
+      "steps": [
+        "les_overlevering_uten_diagnoseantakelser",
+        "avklar_personens_egne_mal_og_dagens_rammer",
+        "stott_aktivitet_uten_a_ta_over",
+        "observer_og_deeskaler_konkret",
+        "dokumenter_og_eskaler_til_riktig_fagperson"
+      ]
+    },
+    {
+      "id": "presisjon_og_grense",
+      "steps": [
+        "skill_observasjon_fra_tolkning",
+        "sjekk_autonomi_og_samtykke",
+        "hold_profesjonell_grense",
+        "vurder_sikkerhetsbehov",
+        "overlever_sporbart"
+      ]
+    }
+  ],
+  "place_grammar": [
+    {
+      "id": "bofellesskap_fellesrom",
+      "label": "Fellesrom i bofellesskap",
+      "function": "hverdagsstotte_og_gruppeobservasjon"
+    },
+    {
+      "id": "bofellesskap_vaktrom",
+      "label": "Vaktrom og dokumentasjonsflate",
+      "function": "overlevering_og_noktern_dokumentasjon"
+    },
+    {
+      "id": "aktivitetstilbud_verksted",
+      "label": "Kommunalt aktivitetstilbud",
+      "function": "motivasjon_og_autonomi_i_praksis"
+    },
+    {
+      "id": "oppfolging_samtalerom",
+      "label": "Skjermet samtalerom",
+      "function": "fortrolighet_grense_og_eskalering"
+    }
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": [
+      "job",
+      "people",
+      "conflict",
+      "event",
+      "followup",
+      "knowledge",
+      "consequence"
+    ],
+    "required_axes": [
+      "choice_axis",
+      "consequence_axis",
+      "narrative_arc"
+    ]
+  }
 }

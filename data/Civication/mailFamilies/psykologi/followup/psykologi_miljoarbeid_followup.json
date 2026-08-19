@@ -1,0 +1,102 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_miljoarbeid",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "psykologi_miljoarbeid_faglig_oppfolging",
+      "purpose": "Følge opp eskalering med presise observasjoner, brukerperspektiv og tydelig ansvarsdeling.",
+      "learning_focus": [
+        "oppfolging",
+        "fagkontakt",
+        "ansvarsdeling"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_miljoarbeid_followup_fagkontakt",
+          "mail_type": "followup",
+          "mail_family": "psykologi_miljoarbeid_faglig_oppfolging",
+          "role_scope": "psykologi_miljoarbeid",
+          "phase": "workday",
+          "priority": 112,
+          "from": "Sigrid, psykologfaglig kontakt",
+          "people_ref": "sigrid_psykolog_fagkontakt",
+          "place_id": "oppfolging_samtalerom",
+          "subject": "Før jeg vurderer videre: hva så du, hva sa Elias selv, og hva endret seg etterpå?",
+          "summary": "Fagkontakten følger opp hendelsen og trenger førstelinjens situasjonskunnskap uten at den presenteres som klinisk konklusjon.",
+          "situation": [
+            "Du satt nærmest hendelsen og har detaljer fagkontakten ikke har.",
+            "Verdien din ligger i konkrete observasjoner, kontekst og hva personen selv uttrykte.",
+            "En god overlevering gjør faggrensen produktiv i stedet for å gjøre førstelinjen enten taus eller pseudo-klinisk."
+          ],
+          "task_domain": "faglig_oppfolging",
+          "competency": "samarbeid_og_eskalering",
+          "pressure": "situasjonskunnskap_vs_klinisk_ansvar",
+          "choice_axis": "del_konkret_evidens_vs_selg_egen_forklaring",
+          "consequence_axis": "tverrfaglig_kvalitet_vs_rolleuklarhet",
+          "narrative_arc": "samtalen_returnerer",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gi en kort tidslinje med observerbare hendelser, Elias sine egne ord og hva som endret seg etter deeskaleringen",
+              "reply": "Jeg gir deg det jeg faktisk vet, og markerer tydelig hva jeg ikke kan konkludere om.",
+              "effect": 1,
+              "tags": [
+                "handover",
+                "evidence"
+              ],
+              "feedback": "Fagkontakten får et sterkt grunnlag og myndighetsgrensen blir en ressurs, ikke et hinder.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 2,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Si at du tror dette er et tydelig angstproblem og anbefal hva behandlingen bør bli",
+              "reply": "Jeg var der og mener årsaken er ganske klar.",
+              "effect": -1,
+              "tags": [
+                "diagnosis",
+                "authority_breach"
+              ],
+              "feedback": "Situasjonskunnskap blir blandet med en behandlingskonklusjon du ikke eier.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -3,
+                  "trust": -2,
+                  "risk": 3,
+                  "integrity": -2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Si bare at fagkontakten får lese journalen fordi du ikke vil påvirke vurderingen",
+              "reply": "Alt står skrevet; jeg vil ikke legge føringer.",
+              "effect": 0,
+              "tags": [
+                "distance",
+                "lost_context"
+              ],
+              "feedback": "Du unngår overtolkning, men holder tilbake nyttig kontekst som bare førstelinjen har.",
+              "effects": {
+                "stats": {
+                  "quality": 0,
+                  "trust": -1,
+                  "risk": 0
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

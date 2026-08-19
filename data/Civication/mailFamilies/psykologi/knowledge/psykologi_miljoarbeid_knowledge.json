@@ -1,0 +1,100 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_miljoarbeid",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "psykologi_miljoarbeid_dokumentasjon",
+      "purpose": "Bruke psykologisk kunnskap til bedre observasjon uten å skrive skjulte diagnoser.",
+      "learning_focus": [
+        "observasjon",
+        "stigma",
+        "dokumentasjon"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_miljoarbeid_knowledge_dokumentasjon",
+          "mail_type": "knowledge",
+          "mail_family": "psykologi_miljoarbeid_dokumentasjon",
+          "role_scope": "psykologi_miljoarbeid",
+          "phase": "workday",
+          "priority": 132,
+          "from": "Sigrid, psykologfaglig kontakt",
+          "people_ref": "sigrid_psykolog_fagkontakt",
+          "place_id": "bofellesskap_vaktrom",
+          "subject": "Hva er forskjellen på «aggressiv» og det du faktisk observerte?",
+          "summary": "Fagkontakten ber deg rydde et notat slik at neste vakt kan skille hendelse, kontekst og tolkning.",
+          "situation": [
+            "Ord som «aggressiv», «manipulerende» eller «deprimert» kan virke presise fordi de er korte.",
+            "Men de kan samle mange ulike hendelser under én merkelapp og forme hvordan neste vakt møter personen.",
+            "Oppgaven er å gjøre notatet mer faglig ved å beskrive atferd, situasjon og respons konkret."
+          ],
+          "task_domain": "dokumentasjon_og_overlevering",
+          "competency": "noytral_dokumentasjon",
+          "pressure": "korthet_vs_etterprovbarhet",
+          "choice_axis": "beskriv_hendelse_og_kontekst_vs_personmerkelapp",
+          "consequence_axis": "felles_faglig_grunnlag_vs_stigma",
+          "narrative_arc": "notatet_som_stempler",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skriv hva som ble sagt og gjort, hva som skjedde rett før, og hva som roet situasjonen",
+              "reply": "Jeg dokumenterer hendelsen slik at andre kan vurdere den uten å arve min tolkning.",
+              "effect": 1,
+              "tags": [
+                "documentation",
+                "observation"
+              ],
+              "feedback": "Notatet blir lengre, men langt mer nyttig for både miljøarbeid og faglig vurdering.",
+              "effects": {
+                "stats": {
+                  "quality": 3,
+                  "trust": 1,
+                  "risk": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Behold «aggressiv» og legg til at dette er din vurdering",
+              "reply": "Jeg markerer at det er min vurdering, så ordet kan stå.",
+              "effect": -1,
+              "tags": [
+                "label",
+                "stigma"
+              ],
+              "feedback": "Forbeholdet hjelper litt, men merkelappen fortsetter å organisere hvordan andre leser hendelsen.",
+              "effects": {
+                "stats": {
+                  "quality": -2,
+                  "trust": -2,
+                  "risk": 2
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Fjern alle vurderingsord og skriv bare tidspunktet for hendelsen",
+              "reply": "Jeg unngår tolkning helt og noterer bare når det skjedde.",
+              "effect": 0,
+              "tags": [
+                "minimalism",
+                "missing_context"
+              ],
+              "feedback": "Du unngår stigma, men gjør dokumentasjonen for tynn til å støtte læring og oppfølging.",
+              "effects": {
+                "stats": {
+                  "quality": 0,
+                  "trust": 0,
+                  "risk": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

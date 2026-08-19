@@ -1,0 +1,104 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_miljoarbeid",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "psykologi_miljoarbeid_eskalering",
+      "purpose": "Deeskalere en akutt situasjon innen egen rolle og hente riktig ansvar når klinisk vurdering trengs.",
+      "learning_focus": [
+        "deeskalering",
+        "sikkerhet",
+        "myndighetsgrense"
+      ],
+      "mails": [
+        {
+          "id": "psykologi_miljoarbeid_event_eskalering",
+          "mail_type": "event",
+          "mail_family": "psykologi_miljoarbeid_eskalering",
+          "role_scope": "psykologi_miljoarbeid",
+          "phase": "workday",
+          "priority": 124,
+          "from": "Mari, teamleder",
+          "people_ref": "mari_teamleder",
+          "place_id": "bofellesskap_fellesrom",
+          "subject": "Stemmen stiger i fellesrommet — og flere begynner å samle seg",
+          "summary": "En uenighet eskalerer raskt. Du kan påvirke miljøet nå, men årsak og videre tiltak krever mer enn en rask psykologisk forklaring.",
+          "situation": [
+            "To personer står tett, stemmenivået stiger og resten av gruppa følger med.",
+            "Du har mandat til å roe rammen, skape avstand og hente hjelp.",
+            "Du har ikke mandat til å diagnostisere reaksjonen eller improvisere behandling midt i hendelsen."
+          ],
+          "task_domain": "deeskalering_og_sikker_eskalering",
+          "competency": "deeskalering",
+          "pressure": "handlepress_vs_myndighetsgrense",
+          "choice_axis": "reguler_miljo_og_eskaler_vs_forklar_og_behandle_selv",
+          "consequence_axis": "sikkerhet_og_rollepresisjon_vs_eskalert_risiko",
+          "narrative_arc": "fellesrommet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Senk stimuli, skap fysisk avstand, få andre ut av situasjonen og kontakt ansvarlig fagperson etter sikkerhetsrutinen",
+              "reply": "Jeg håndterer miljøet og sikkerheten nå, og lar riktig fagperson eie vurderingen videre.",
+              "effect": 1,
+              "tags": [
+                "deescalation",
+                "escalation"
+              ],
+              "feedback": "Du bruker egen kompetanse fullt uten å overskride klinisk myndighet.",
+              "effects": {
+                "stats": {
+                  "quality": 2,
+                  "trust": 1,
+                  "risk": -4,
+                  "energy": -2
+                }
+              }
+            },
+            {
+              "id": "B",
+              "label": "Forklar at reaksjonen sannsynligvis er angst og prøv en terapeutisk samtale på stedet",
+              "reply": "Jeg tror jeg vet hva dette er; jeg roer personen ved å behandle årsaken direkte.",
+              "effect": -1,
+              "tags": [
+                "diagnosis",
+                "authority_breach"
+              ],
+              "feedback": "Du gjør en usikker tolkning til klinisk forklaring samtidig som situasjonen fortsatt er uavklart.",
+              "effects": {
+                "stats": {
+                  "status": 1,
+                  "quality": -4,
+                  "trust": -2,
+                  "risk": 5,
+                  "integrity": -3
+                }
+              }
+            },
+            {
+              "id": "C",
+              "label": "Be teamleder ta hele situasjonen mens du trekker deg ut",
+              "reply": "Jeg vil ikke risikere å gå utenfor rollen, så jeg overlater alt til leder.",
+              "effect": 0,
+              "tags": [
+                "escalation",
+                "underuse"
+              ],
+              "feedback": "Du beskytter myndighetsgrensen, men bruker mindre av egen deeskaleringskompetanse enn situasjonen tillater.",
+              "effects": {
+                "stats": {
+                  "quality": 0,
+                  "trust": 0,
+                  "risk": 0,
+                  "energy": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
