@@ -9,6 +9,7 @@ on:
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-reconciliation.mjs'
+      - 'scripts/audit-fagverk-filosofi-theory-integrity.mjs'
       - 'scripts/report-fagverk-theory-integrity-summary.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - 'tests/fagverk-theory-reconciliation.test.mjs'
@@ -24,6 +25,7 @@ on:
       - 'docs/SUBJECT_FILE_CONTRACT.md'
       - 'scripts/audit-fagverk-theory-integrity.mjs'
       - 'scripts/audit-fagverk-theory-reconciliation.mjs'
+      - 'scripts/audit-fagverk-filosofi-theory-integrity.mjs'
       - 'scripts/report-fagverk-theory-integrity-summary.mjs'
       - 'tests/fagverk-theory-integrity.test.mjs'
       - 'tests/fagverk-theory-reconciliation.test.mjs'
@@ -46,8 +48,10 @@ jobs:
         run: |
           node --check scripts/audit-fagverk-theory-integrity.mjs
           node --check scripts/audit-fagverk-theory-reconciliation.mjs
+          node --check scripts/audit-fagverk-filosofi-theory-integrity.mjs
           node --check scripts/report-fagverk-theory-integrity-summary.mjs
           node scripts/report-fagverk-theory-integrity-summary.mjs
+          node scripts/audit-fagverk-filosofi-theory-integrity.mjs
           node scripts/audit-fagverk-theory-reconciliation.mjs
           node --test tests/fagverk-theory-integrity.test.mjs
           node --test tests/fagverk-theory-reconciliation.test.mjs
