@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "feilversjon_korrigering_og_laring",
+      "purpose": "Gjøre versjonshåndteringen konsekvensbærende for senere feilrisiko, tillit og arbeidsflyt.",
+      "learning_focus": ["konsekvens", "læring", "kontrollpunkt"],
+      "mails": [
+        {
+          "id": "litteratur_redaksjonsmedarbeider_consequence_versjon_001",
+          "mail_type": "consequence",
+          "mail_family": "feilversjon_korrigering_og_laring",
+          "role_scope": "redaksjonsmedarbeider",
+          "thread_key": "litteratur_redaksjonsmedarbeider_versjon_001",
+          "phase": "mastery",
+          "day_phase": "day_end",
+          "priority": 92,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ansvarlig bokredaktør",
+          "people_ref": "litteratur_ansvarlig_redaktor",
+          "place_id": "litteratur_versjonsarkiv",
+          "subject": "Avviket viser om versjonssystemet virker",
+          "summary": "Etterkontrollen viser om feilversjonen er trukket tilbake overalt og om neste manuslevering har fått et tydeligere kontrollpunkt.",
+          "purpose": "Koble et tidligere versjonsvalg til dokumentert redaksjonell læring.",
+          "stakes": "Uten et korrigert arbeidsmønster blir dagens redning bare flaks, og samme feil kan gjenta seg under neste frist.",
+          "situation": [
+            "Mottakerlisten kan sammenholdes med bekreftede erstatninger.",
+            "Avviket kan spores til at filnavn ble brukt i stedet for godkjenningsreferanse.",
+            "Neste manus går inn i produksjon den kommende uken."
+          ],
+          "task_domain": "etterkontroll_og_laring",
+          "task_kind": "consequence",
+          "competency": "redaksjonell_integritet",
+          "pressure": "lukke_saken_raskt",
+          "choice_axis": "dokumentert_laring_vs_defensiv_lukking",
+          "consequence_axis": "lavere_gjentakelsesrisiko_vs_samme_systemsvakhet",
+          "narrative_arc": "fra_feilversjon_til_forbedret_redaksjonell_hukommelse",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Dokumenter årsaken og endre kontrollpunktet",
+              "reply": "Jeg knytter alle produksjonsleveranser til en godkjenningsreferanse, dokumenterer hva avviket traff og viser hvem som bekrefter neste versjonslås.",
+              "effect": 1,
+              "tags": ["learning", "control_point", "accountability"],
+              "feedback": "Feilen blir til en etterprøvbar forbedring i stedet for en muntlig advarsel."
+            },
+            {
+              "id": "B",
+              "label": "Lukk fordi ingen offentlig feil oppstod",
+              "reply": "Vi fanget filen før utgivelse, så en kort beskjed om å være mer oppmerksom neste gang er tilstrekkelig.",
+              "effect": -1,
+              "tags": ["defensiveness", "repeat_risk"],
+              "feedback": "Du lar arbeidsmåten som skapte feilen stå uendret."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

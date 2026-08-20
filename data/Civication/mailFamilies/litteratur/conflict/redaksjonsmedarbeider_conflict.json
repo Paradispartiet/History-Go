@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "mail_type": "conflict",
+  "families": [
+    {
+      "id": "sen_endring_og_mandat",
+      "purpose": "Teste redaksjonell koordinering når en legitim forfatterendring kolliderer med produksjonsplanen.",
+      "learning_focus": ["forfatterautonomi", "konsekvenssynlighet", "eskalering"],
+      "mails": [
+        {
+          "id": "litteratur_redaksjonsmedarbeider_conflict_endring_001",
+          "mail_type": "conflict",
+          "mail_family": "sen_endring_og_mandat",
+          "role_scope": "redaksjonsmedarbeider",
+          "phase": "early",
+          "day_phase": "workday",
+          "priority": 105,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Produksjonskoordinatoren",
+          "people_ref": "litteratur_produksjonskoordinator",
+          "place_id": "litteratur_manusdesk",
+          "subject": "Den sene endringen treffer satsen",
+          "summary": "Forfatteren vil flytte et helt kapittel etter at satsen er startet, mens produksjonen ber om enten avslag eller umiddelbar godkjenning.",
+          "purpose": "Teste om medarbeideren synliggjør både tekstlig eierskap, produksjonskostnad og korrekt beslutningseier.",
+          "stakes": "Å avvise endringen beskytter planen ved å overstyre forfatteren; å sende den rett inn skjuler konsekvensene og beslutningsansvaret.",
+          "situation": [
+            "Endringen påvirker sidereferanser og innholdsfortegnelse.",
+            "Forfatteren har forklart hvorfor flyttingen er viktig for verkets struktur.",
+            "Ansvarlig redaktør har ikke vurdert endringen eller den nye tidsplanen."
+          ],
+          "task_domain": "sen_manusendring",
+          "task_kind": "conflict",
+          "competency": "redaksjonell_koordinering",
+          "pressure": "frist_og_omarbeid",
+          "choice_axis": "sporbar_avklaring_vs_skjult_overstyring",
+          "consequence_axis": "tekstlig_integritet_og_realistisk_plan_vs_tillitstap",
+          "narrative_arc": "fra_sen_endring_til_avklart_tekst_og_produksjonsvalg",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lag konsekvensoversikt og løft beslutningen",
+              "reply": "Jeg logger endringen, ber produksjonen beskrive hvilke leveranser som påvirkes og legger både tekstbegrunnelsen og tidskonsekvensen fram for ansvarlig redaktør.",
+              "effect": 1,
+              "tags": ["author_autonomy", "escalation", "planning"],
+              "feedback": "Beslutningen kan tas av riktig rolle på et felles og synlig grunnlag."
+            },
+            {
+              "id": "B",
+              "label": "Avvis endringen for å holde fristen",
+              "reply": "Satsen har startet, så vi kan ikke flytte kapitlet. Forfatteren må beholde den godkjente strukturen.",
+              "effect": -1,
+              "tags": ["hidden_authority", "schedule_pressure"],
+              "feedback": "Du gjør produksjonsplanen til en redaksjonell avgjørelse du ikke eier."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

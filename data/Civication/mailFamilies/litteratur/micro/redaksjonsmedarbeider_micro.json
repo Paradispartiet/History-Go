@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "siste_sporbarhetskontroll",
+      "purpose": "Fange små metadataavvik som kan avsløre at ulike produksjonsledd bruker ulike beslutningsgrunnlag.",
+      "learning_focus": ["metadata", "siste_kontroll", "presis_eskalering"],
+      "mails": [
+        {
+          "id": "litteratur_redaksjonsmedarbeider_micro_undertittel_001",
+          "mail_type": "micro",
+          "mail_family": "siste_sporbarhetskontroll",
+          "role_scope": "redaksjonsmedarbeider",
+          "phase": "advanced",
+          "day_phase": "afternoon",
+          "priority": 78,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Produksjonskoordinatoren",
+          "people_ref": "litteratur_produksjonskoordinator",
+          "place_id": "litteratur_versjonsarkiv",
+          "subject": "To undertitler i samme leveranse",
+          "summary": "Omslagsarket og bokmetadataene viser ulike undertitler, mens beslutningsloggen bare dokumenterer den ene.",
+          "purpose": "Teste om medarbeideren bruker et lite avvik til å avklare autoritativ formulering før distribusjon.",
+          "stakes": "Hvis én variant velges ut fra filrekkefølge, kan omslag, katalogdata og bokblokk bli inkonsistente.",
+          "situation": [
+            "Omslagsarket bruker undertittelen fra et tidligere møte.",
+            "Metadataarket bruker en nyere formulering.",
+            "Bare den eldre formuleringen har en eksplisitt godkjenningsreferanse."
+          ],
+          "task_domain": "metadata_og_filkontroll",
+          "task_kind": "micro",
+          "competency": "redaksjonell_presisjon",
+          "pressure": "siste_kontroll",
+          "choice_axis": "sporbar_formulering_vs_antatt_nyeste_metadata",
+          "consequence_axis": "konsistent_utgivelse_vs_synlig_metadatafeil",
+          "narrative_arc": "fra_lite_metadataavvik_til_felles_godkjent_formulering",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Marker avviket og be om én godkjent formulering",
+              "reply": "Jeg holder begge flater tilbake til ansvarlig redaktør har bekreftet undertittelen, og oppdaterer deretter omslag, metadata og logg samlet.",
+              "effect": 1,
+              "tags": ["metadata", "approval", "consistency"],
+              "feedback": "Et lite avvik stoppes før det blir tre ulike offentlige versjoner."
+            },
+            {
+              "id": "B",
+              "label": "Bruk den nyeste metadatafilen",
+              "reply": "Metadataarket er sist endret, så jeg bruker den formuleringen også på omslaget.",
+              "effect": -1,
+              "tags": ["timestamp_assumption", "metadata_risk"],
+              "feedback": "Du gjør endringstidspunkt til godkjenning og overskriver det eneste dokumenterte beslutningssporet."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

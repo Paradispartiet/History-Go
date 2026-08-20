@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "rolleavklaring_og_felles_status",
+      "purpose": "Gjøre status og beslutningsmyndighet tydelig mellom forfatter, redaktør og produksjon.",
+      "learning_focus": ["presis_kommunikasjon", "mandatklarhet", "koordinering"],
+      "mails": [
+        {
+          "id": "litteratur_redaksjonsmedarbeider_people_status_001",
+          "mail_type": "people",
+          "mail_family": "rolleavklaring_og_felles_status",
+          "role_scope": "redaksjonsmedarbeider",
+          "phase": "early",
+          "day_phase": "forenoon",
+          "priority": 95,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Forfatteren",
+          "people_ref": "litteratur_forfatter",
+          "place_id": "litteratur_manusdesk",
+          "subject": "Er den nye slutten godkjent?",
+          "summary": "Forfatteren trenger en rask status, men ansvarlig redaktør har bare bekreftet mottak og ikke tatt stilling til den nye slutten.",
+          "purpose": "Teste om medarbeideren skiller mottak, vurdering og beslutning i kommunikasjonen.",
+          "stakes": "Et vennlig, men upresist ja kan bli tolket som redaksjonell godkjenning og flytte produksjonen uten mandat.",
+          "situation": [
+            "Den nye slutten er registrert i versjonsloggen.",
+            "Redaktøren har bekreftet mottak, men ikke vurdering.",
+            "Forfatteren må vite om korrekturen skal vente."
+          ],
+          "task_domain": "forfatterkontakt_og_status",
+          "task_kind": "people",
+          "competency": "mandatklarhet",
+          "pressure": "forventning_om_raskt_svar",
+          "choice_axis": "presis_status_vs_beroligende_overlofte",
+          "consequence_axis": "felles_forstaelse_vs_falsk_godkjenning",
+          "narrative_arc": "fra_statussporsmal_til_tydelig_beslutningslinje",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Bekreft mottak og navngi hvem som beslutter",
+              "reply": "Slutten er mottatt og loggført, men ikke godkjent ennå. Ansvarlig redaktør vurderer den; korrekturen venter til vi har en eksplisitt beslutning.",
+              "effect": 1,
+              "tags": ["clarity", "mandate", "author_contact"],
+              "feedback": "Forfatteren får en brukbar status uten at du overtar redaktørens myndighet."
+            },
+            {
+              "id": "B",
+              "label": "Si at den ser grei ut",
+              "reply": "Den ser grei ut fra min side, så korrekturen kan begynne mens redaktøren ser nærmere på den.",
+              "effect": -1,
+              "tags": ["overpromise", "authority_risk"],
+              "feedback": "Din foreløpige vurdering kan nå fungere som en godkjenning du ikke har mandat til å gi."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

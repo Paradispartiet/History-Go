@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "sporbarhet_som_redaksjonell_praksis",
+      "purpose": "Avrunde arbeidsbuen med redaksjonell kvalitet som et resultat av koordinering, avgrenset mandat og felles tekstgrunnlag.",
+      "learning_focus": ["redaksjonell_integritet", "koordinering", "profesjonell_praksis"],
+      "mails": [
+        {
+          "id": "litteratur_redaksjonsmedarbeider_story_arbeidsdag_001",
+          "mail_type": "story",
+          "mail_family": "sporbarhet_som_redaksjonell_praksis",
+          "role_scope": "redaksjonsmedarbeider",
+          "phase": "climax",
+          "day_phase": "day_end",
+          "priority": 90,
+          "cooldown": 5,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Ansvarlig bokredaktør",
+          "people_ref": "litteratur_ansvarlig_redaktor",
+          "place_id": "litteratur_produksjonsmote",
+          "subject": "Dagen da alle arbeidet på samme bok",
+          "summary": "Redaksjon, forfatter, korrektur og produksjon avslutter dagen med samme manusversjon, avklarte åpne spørsmål og et synlig beslutningsspor.",
+          "purpose": "Knytte de enkelte kontrollene sammen til en troverdig redaksjonell yrkespraksis.",
+          "stakes": "Rollen lykkes ikke ved å gjøre flest mulig endringer selv, men ved å holde tekst, ansvar og leveranser konsistente uten å skjule usikkerhet.",
+          "situation": [
+            "Den godkjente manusversjonen er entydig merket og distribuert.",
+            "Åpne rettighets- og tekstspørsmål har navngitte beslutningseiere.",
+            "Produksjonsplanen viser både ny frist og hva som fortsatt må kontrolleres."
+          ],
+          "task_domain": "yrkespraksis_og_redaksjonell_integritet",
+          "task_kind": "story",
+          "competency": "redaksjonell_integritet",
+          "pressure": "synlig_produksjonsresultat",
+          "choice_axis": "sporbar_samhandling_vs_usynlig_brannslukking",
+          "consequence_axis": "tillit_og_baerekraftig_flyt_vs_personavhengig_feilretting",
+          "narrative_arc": "fra_enkelte_kontroller_til_sammenhengende_redaksjonell_praksis",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Gjør det felles beslutningssporet til resultatet",
+              "reply": "Dagens resultat er at alle vet hvilken tekst som gjelder, hva som er uavklart og hvem som beslutter neste steg.",
+              "effect": 1,
+              "tags": ["professional_practice", "shared_status", "integrity"],
+              "feedback": "Du beskriver kvalitet som en arbeidsform teamet kan gjenta og kontrollere."
+            },
+            {
+              "id": "B",
+              "label": "Fremhev hvor mange problemer du løste alene",
+              "reply": "Jeg fikk reddet leveransen ved å ordne de fleste feilene selv før noen andre trengte å se dem.",
+              "effect": -1,
+              "tags": ["hidden_work", "single_point_failure"],
+              "feedback": "Du gjør systemkvalitet avhengig av usynlig individuell brannslukking."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
