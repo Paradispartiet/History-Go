@@ -1,0 +1,29 @@
+name: TEMP Politikk theory integrity probe
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate existing Politikk quality layers
+        run: |
+          node --check tools/probe-politikk-theory-integrity.mjs
+          node scripts/audit-politikk-subject-quality.mjs
+          node scripts/audit-politikk-thinker-integrity.mjs
+      - name: Run read-only 13-field strict probe
+        run: node tools/probe-politikk-theory-integrity.mjs
+      - name: Upload diagnostic evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: politikk-theory-integrity-probe
+          path: /tmp/politikk-theory-integrity-probe.json
