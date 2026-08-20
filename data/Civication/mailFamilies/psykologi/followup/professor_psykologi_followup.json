@@ -1,0 +1,44 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "mail_type": "followup",
+  "families": [{
+    "id": "reanalyse_og_programendring",
+    "purpose": "La en kritisk reanalyse få faktisk konsekvens for forskningsprogrammet når den tåler reproduksjon og metodisk gjennomgang.",
+    "learning_focus": ["reanalyse", "forskningsledelse", "korrigerbarhet"],
+    "mails": [{
+      "id": "psykologi_professor_psykologi_followup_programkritikk_001",
+      "mail_type": "followup",
+      "mail_family": "reanalyse_og_programendring",
+      "role_scope": "professor_psykologi",
+      "phase": "mastery",
+      "day_phase": "afternoon",
+      "priority": 134,
+      "cooldown": 4,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Den yngre forskeren",
+      "people_ref": "psykologi_professor_psykologi_yngre_forsker",
+      "place_id": "psykologi_professor_psykologi_fagmiljo",
+      "subject": "Reanalysen holder etter reproduksjon",
+      "summary": "En uavhengig gjennomgang i gruppen reproduserer hovedtrekket i den kritiske reanalysen: den etablerte forklaringen er mer usikker enn programmet tidligere har kommunisert.",
+      "purpose": "Teste om professoren lar robust kritikk endre programprioritering, kommunikasjon og hvem som får faglig plass i neste steg.",
+      "stakes": "Å ignorere en reprodusert utfordring beskytter kortsiktig kontinuitet, men gjør programmet mindre korrigerbart; å forkaste hele programmet ville gå lenger enn evidensen bærer.",
+      "situation": ["Reproduksjonen bekrefter svakere effekt og større usikkerhet, men ikke at all tidligere forskning er ugyldig.", "Den yngre forskeren har dokumentert analysevalg og begrensninger åpent.", "Neste søknad og seminarprogram kan oppdateres før de låses."],
+      "task_domain": "programrevisjon",
+      "task_kind": "followup",
+      "competency": "forskningsledelse",
+      "pressure": "kontinuitet_og_omdomme",
+      "choice_axis": "oppdater_program_og_krediter_kritikk_vs_minimer_avviket",
+      "consequence_axis": "korrigerbar_kunnskap_vs_institusjonalisert_statusforsvar",
+      "narrative_arc": "fra_reprodusert_kritikk_til_programendring",
+      "thread_key": "psykologi_professor_psykologi_programkritikk_001",
+      "choices": [
+        {"id": "A", "label": "Oppdater programmet og gi kritikken synlig plass", "reply": "Vi justerer hovedpåstanden, prioriterer en studie som skiller forklaringene bedre, og lar reanalysen presenteres som en del av programmets korreksjon — med tydelig kreditering.", "effect": 1, "tags": ["program_revision", "credit", "self_correction"], "feedback": "Du lar kritikken endre både kunnskapsstatus og arbeidsprogram uten å overdrive hva den beviser.", "effects": {"stats": {"quality": 3, "trust": 3, "risk": -2, "status": 1}}},
+        {"id": "B", "label": "Nevn usikkerheten, men behold programmet uendret", "reply": "Vi kan legge inn en begrensningssetning, men det er for tidlig å endre søknader, seminarer eller prioriteringer rundt én reanalyse.", "effect": -1, "tags": ["symbolic_correction", "status_quo_bias"], "feedback": "Du anerkjenner avviket språklig, men beskytter programmet mot den praktiske konsekvensen av evidensen.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}

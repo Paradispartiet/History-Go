@@ -1,0 +1,44 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "mail_type": "consequence",
+  "families": [{
+    "id": "kritikkultur_som_senere_konsekvens",
+    "purpose": "Synliggjøre hvordan professorens respons på kritikk påvirker senere åpenhet, rekruttering og kvalitet i forskningsmiljøet.",
+    "learning_focus": ["akademisk_kultur", "faglig_makt", "langsiktig_konsekvens"],
+    "mails": [{
+      "id": "psykologi_professor_psykologi_consequence_programkritikk_001",
+      "mail_type": "consequence",
+      "mail_family": "kritikkultur_som_senere_konsekvens",
+      "role_scope": "professor_psykologi",
+      "phase": "climax",
+      "day_phase": "day_end",
+      "priority": 132,
+      "cooldown": 5,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Instituttlederen",
+      "people_ref": "psykologi_professor_psykologi_instituttleder",
+      "place_id": "psykologi_professor_psykologi_fagmiljo",
+      "subject": "Miljøet må tåle at seniorene blir korrigert",
+      "summary": "Instituttlederen ber om en oppfølging etter at programkritikken har vist hvor avhengig forskningskulturen er av at yngre forskere faktisk kan utfordre etablerte seniorer.",
+      "purpose": "Teste om professoren bygger en varig struktur for kritikk i stedet for å behandle saken som et enkeltstående personspørsmål.",
+      "stakes": "Et miljø som bare er åpent når senioren selv inviterer til det, er fortsatt sårbart; en tung kontrollstruktur kan samtidig gjøre vanlig faglig uenighet unødvendig byråkratisk.",
+      "situation": ["Reanalysen er nå vurdert som faglig relevant og har ført til en avgrenset programjustering.", "Flere yngre forskere sier at terskelen for å ta opp uenighet avhenger av hvem som leder møtet.", "Instituttlederen kan støtte strukturelle tiltak, men professoren må selv endre praksis i eget fagmiljø."],
+      "task_domain": "kritikkultur_og_forskningsledelse",
+      "task_kind": "consequence",
+      "competency": "akademisk_kultur",
+      "pressure": "personlig_tillit_vs_systemstruktur",
+      "choice_axis": "bygg_fast_kritikkstruktur_vs_stol_pa_egen_apenhet",
+      "consequence_axis": "lavere_kritikkostnad_vs_personavhengig_kultur",
+      "narrative_arc": "fra_enkeltsak_til_varig_kritikkultur",
+      "thread_key": "psykologi_professor_psykologi_programkritikk_001",
+      "choices": [
+        {"id": "A", "label": "Bygg faste rom for uenighet og uavhengig vurdering", "reply": "Vi legger inn faste reanalyse- og kritikkmøter, tydeliggjør at programstatus ikke avgjør taletid, og sørger for uavhengig støtte når habilitet eller veiledningsmakt gjør vanlig uenighet vanskelig.", "effect": 1, "tags": ["critique_structure", "independence", "academic_culture"], "feedback": "Du gjør åpenhet mindre avhengig av professorens personlige stil og mer til en egenskap ved miljøet.", "effects": {"stats": {"quality": 3, "trust": 3, "risk": -2, "status": 1}}},
+        {"id": "B", "label": "Be gruppen si fra direkte til deg", "reply": "Døren min er åpen, og alle vet at de kan komme til meg hvis de er uenige. Vi trenger ikke flere strukturer rundt vanlig faglig diskusjon.", "effect": -1, "tags": ["person_dependent_culture", "power_blindness"], "feedback": "Du gjør kritikkens trygghet avhengig av samme seniorrelasjon som skaper kostnaden ved å kritisere.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -2, "risk": 2}}}
+      ]
+    }]
+  }]
+}

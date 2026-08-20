@@ -1,0 +1,43 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "mail_type": "job",
+  "families": [{
+    "id": "kreditering_for_soknad",
+    "purpose": "Avklare intellektuelt bidrag, rolle og kreditering før en kandidatidé blir en del av professorens søknad.",
+    "learning_focus": ["kreditering", "veiledningsmakt", "forskningsintegritet"],
+    "mails": [{
+      "id": "psykologi_professor_psykologi_job_kreditering_001",
+      "mail_type": "job",
+      "mail_family": "kreditering_for_soknad",
+      "role_scope": "professor_psykologi",
+      "phase": "intro",
+      "day_phase": "morning",
+      "priority": 150,
+      "cooldown": 2,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Ph.d.-kandidaten",
+      "people_ref": "psykologi_professor_psykologi_phd_kandidat",
+      "place_id": "psykologi_professor_psykologi_veiledningsrom",
+      "subject": "Ideen fra avhandlingen passer inn i søknaden",
+      "summary": "En ph.d.-kandidat har utviklet en idé og et analytisk grep som kan bli sentralt i en stor søknad professoren leder.",
+      "purpose": "Teste om professoren avklarer bidrag og kreditering før hierarki, tidspress og prosjektstruktur gjør eierskapet uklart.",
+      "stakes": "Uavklart bruk kan gi søknaden fart, men svekke kandidatens faglige eierskap og gjøre senere forfatterskap og ansvar konfliktfylt.",
+      "situation": ["Ideen oppsto i kandidatens avhandlingsarbeid og er dokumentert i tidligere veiledningsnotater.", "Professoren leder søknaden, men lederrollen avgjør ikke hvem som har skapt det faglige bidraget.", "Det er fortsatt tid til å avklare medvirkning, ansvar og kreditering før teksten låses."],
+      "task_domain": "kreditering_og_soknad",
+      "task_kind": "job",
+      "competency": "forskningsintegritet",
+      "pressure": "soknadsfrist_og_hierarki",
+      "choice_axis": "avklart_bidrag_og_kreditering_vs_hierarkisk_absorpsjon",
+      "consequence_axis": "faglig_eierskap_vs_tillitsbrudd",
+      "narrative_arc": "fra_god_ide_til_etterprovbar_bidragsavtale",
+      "choices": [
+        {"id": "A", "label": "Avklar bidrag og rolle før teksten bygges videre", "reply": "Vi dokumenterer hva som er ditt bidrag, hvilken rolle du ønsker i prosjektet og hvordan kreditering og eventuelt forfatterskap skal vurderes før ideen går inn i søknaden.", "effect": 1, "tags": ["credit", "mentorship", "research_integrity"], "feedback": "Du gjør maktforholdet synlig før prosjektlogikken kan gjøre kandidatens bidrag vanskelig å spore.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "energy": -1}}},
+        {"id": "B", "label": "Bruk ideen som gruppens og avklar senere", "reply": "Dette er innenfor prosjektets tema, så jeg bygger ideen inn nå og så finner vi en passende takk eller rolle hvis søknaden går gjennom.", "effect": -1, "tags": ["credit_capture", "hierarchy", "integrity_risk"], "feedback": "Du lar tidsfrist og senioritet definere eierskap før kandidatens bidrag er avklart.", "effects": {"stats": {"status": 1, "quality": -2, "trust": -3, "risk": 2}}}
+      ]
+    }]
+  }]
+}
