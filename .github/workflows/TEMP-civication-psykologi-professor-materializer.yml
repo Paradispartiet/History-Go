@@ -1,0 +1,45 @@
+name: TEMP Civication Psychology professor materializer
+
+on:
+  push:
+    branches:
+      - agent/civication-psykologi-professor-rollout
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out rollout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/civication-psykologi-professor-rollout
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Regenerate canonical Civication projections
+        run: |
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/build-civication-scene-registry.mjs --write
+
+      - name: Commit canonical projections
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/Civication/careerGameplayMatrix.json data/Civication/compiledSceneRegistryV1.json reports/civication-career-gameplay-matrix.md
+          if git diff --cached --quiet; then
+            echo "Canonical projections already synchronized"
+            exit 0
+          fi
+          git commit -m "Regenerate Psychology professor rollout projections"
+          git push origin HEAD:agent/civication-psykologi-professor-rollout
