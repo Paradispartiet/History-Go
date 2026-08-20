@@ -3,7 +3,7 @@
 Status: **canonical**  
 Eier: `factuality_and_source_verification_contract`  
 Gjelder: alle brukerrettede fakta i History GO  
-Sist kontrollert: **2026-07-27**
+Sist kontrollert: **2026-08-20**
 
 ## 1. Absolutt grunnregel
 
@@ -69,6 +69,14 @@ Dette betyr:
 - en kilde skal ikke strekkes lenger enn den faktisk sier.
 
 `popupDesc`, `desc`, quizforklaringer og stories kan skrive sammen flere verifiserte fakta, men de kan ikke legge til nye detaljer gjennom språklig utfylling.
+
+### 4.1 Virkelige personer som People- og oppgavemål
+
+Virkelige historiske og offentlige personer kan være førsteklasses `People` i History GO og kildeforankrede profil-, kunnskaps-, quiz- og oppgavemål i Civication. Det endrer ikke faktakravet: identitet, profesjon, kronologi, verk, steder og andre påstander skal bygge på inspectable kilder og canonical People-data.
+
+En virkelig person-record er **ikke** en fri NPC-persona. History GO og Civication skal derfor ikke opptre i personens navn med oppdiktet direkte dialog, e-post eller meldinger, private tanker eller motiver, fiktive relasjoner eller løpende NPC-drama. Slike narrative funksjoner skal legges til fiktive eller tydelig fiksjonaliserte karakterer som holdes adskilt fra factual People-data.
+
+Faglig eller narrativ kontekst kan ikke utvide en persons dokumenterte profesjon. En person blir for eksempel ikke psykolog bare fordi vedkommende brukes i et psykologi-forløp. Tilsvarende skal person–sted-koblinger være kildebeviste og aldri utledes bare fordi et sted er tematisk relevant.
 
 ## 5. Forbudte produksjonsmåter
 
