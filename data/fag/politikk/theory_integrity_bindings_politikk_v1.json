@@ -1,0 +1,231 @@
+{
+  "schema": "history_go_politikk_theory_integrity_bindings_v1",
+  "version": "1.0.0",
+  "status": "proof_selection_only",
+  "subject_id": "politikk",
+  "profile": "theorist_rival",
+  "completion_status_read_only": true,
+  "content_mutation": false,
+  "purpose": "Read-only theory-grounding bridge for canonical Politikk fields where existing chapter prose, claims, rivals, limitations and applied sources are already complete, but person-to-work provenance is not represented explicitly enough inside the field claim registry for strict machine proof.",
+  "rules": {
+    "canonical_emne_thinker_binding_required": true,
+    "named_work_required": true,
+    "scholarly_source_required": true,
+    "existing_claim_traced_prose_remains_authoritative": true,
+    "names_alone_do_not_count_as_theory_evidence": true,
+    "content_rewrite_forbidden": true,
+    "completion_status_read_only": true
+  },
+  "scholarly_sources": [
+    {
+      "id": "politikk-lipsky-street-level-bureaucracy",
+      "authors": ["Michael Lipsky"],
+      "title": "Street-Level Bureaucracy",
+      "publisher": "Russell Sage Foundation",
+      "url": "https://www.russellsage.org/publications/book/street-level-bureaucracy",
+      "source_authority_class": "scholarly_book"
+    },
+    {
+      "id": "politikk-rawls-theory-justice",
+      "authors": ["John Rawls"],
+      "title": "A Theory of Justice",
+      "publisher": "Harvard University Press",
+      "url": "https://www.hup.harvard.edu/books/9780674000780",
+      "source_authority_class": "scholarly_book"
+    },
+    {
+      "id": "politikk-crenshaw-demarginalizing",
+      "authors": ["Kimberlé Crenshaw"],
+      "title": "Demarginalizing the Intersection of Race and Sex",
+      "publisher": "University of Chicago Legal Forum",
+      "url": "https://chicagounbound.uchicago.edu/uclf/vol1989/iss1/8/",
+      "source_authority_class": "scholarly_article"
+    },
+    {
+      "id": "politikk-goffman-presentation-self",
+      "authors": ["Erving Goffman"],
+      "title": "The Presentation of Self in Everyday Life",
+      "publisher": "Vintage / Penguin Random House",
+      "url": "https://www.penguinrandomhouse.com/books/61106/the-presentation-of-self-in-everyday-life-by-erving-goffman/",
+      "source_authority_class": "scholarly_book"
+    },
+    {
+      "id": "politikk-pierson-path-dependence",
+      "authors": ["Paul Pierson"],
+      "title": "Increasing Returns, Path Dependence, and the Study of Politics",
+      "publisher": "American Political Science Review / Cambridge University Press",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/AC2137B913363E33D97FC5CEC17CC75D/S0003055400221059a.pdf/increasing-returns-path-dependence-and-the-study-of-politics.pdf",
+      "source_authority_class": "peer_reviewed_article"
+    },
+    {
+      "id": "politikk-dahl-polyarchy",
+      "authors": ["Robert A. Dahl"],
+      "title": "Polyarchy",
+      "publisher": "Yale University Press",
+      "url": "https://yalebooks.yale.edu/book/9780300015652/polyarchy/",
+      "source_authority_class": "scholarly_book"
+    },
+    {
+      "id": "politikk-strom-minority-government",
+      "authors": ["Kaare Strøm"],
+      "title": "Minority Government and Majority Rule",
+      "publisher": "Cambridge University Press",
+      "url": "https://assets.cambridge.org/97805213/74316/sample/9780521374316ws.pdf",
+      "source_authority_class": "scholarly_book"
+    },
+    {
+      "id": "politikk-mouffe-agonistics",
+      "authors": ["Chantal Mouffe"],
+      "title": "Agonistics: Thinking the World Politically",
+      "publisher": "Verso",
+      "url": "https://www.versobooks.com/products/2322-agonistics",
+      "source_authority_class": "scholarly_book"
+    },
+    {
+      "id": "politikk-tarrow-tilly-dynamics-contention",
+      "authors": ["Doug McAdam", "Sidney Tarrow", "Charles Tilly"],
+      "title": "Dynamics of Contention",
+      "publisher": "Cambridge University Press",
+      "url": "https://sociology.stanford.edu/publications/dynamics-contention",
+      "source_authority_class": "scholarly_book"
+    }
+  ],
+  "fields": [
+    {
+      "domain_id": "styring_institusjoner_forvaltning",
+      "theory_groundings": [
+        {
+          "thinker_id": "michael_lipsky",
+          "work": "Street-Level Bureaucracy",
+          "scholarly_source_id": "politikk-lipsky-street-level-bureaucracy",
+          "contribution": "Frontlinjeansattes skjønn under ressurs-, regel- og saksmengdepress forklarer hvorfor formelt vedtatt politikk kan få et annet praktisk innhold i møte med innbyggere."
+        },
+        {
+          "thinker_id": "john_rawls",
+          "work": "A Theory of Justice",
+          "scholarly_source_id": "politikk-rawls-theory-justice",
+          "contribution": "Rettferdighetsprinsipper gir en eksplisitt normativ målestokk for å vurdere administrative ordninger, likebehandling og fordeling av institusjonelle byrder og goder."
+        }
+      ]
+    },
+    {
+      "domain_id": "rett_lov_rettssikkerhet",
+      "theory_groundings": [
+        {
+          "thinker_id": "kimberle_crenshaw",
+          "work": "Demarginalizing the Intersection of Race and Sex",
+          "scholarly_source_id": "politikk-crenshaw-demarginalizing",
+          "contribution": "Interseksjonalitetskritikken viser hvordan enkeltaksemodeller kan skjule rettslige og institusjonelle virkninger for personer som befinner seg i flere overlappende kategorier."
+        },
+        {
+          "thinker_id": "john_rawls",
+          "work": "A Theory of Justice",
+          "scholarly_source_id": "politikk-rawls-theory-justice",
+          "contribution": "Rawls gir en normativ kontrast mellom grunnleggende friheter, institusjonell rettferdighet og fordelingshensyn som kan holdes adskilt fra rent positiv rett."
+        }
+      ]
+    },
+    {
+      "domain_id": "fordeling_velferd_ulikhet",
+      "theory_groundings": [
+        {
+          "thinker_id": "john_rawls",
+          "work": "A Theory of Justice",
+          "scholarly_source_id": "politikk-rawls-theory-justice",
+          "contribution": "Rawls skiller grunnleggende friheter, fair muligheter og fordelingsprinsipper og gjør det mulig å analysere ulikhet med en eksplisitt normativ standard fremfor å lese fordelingsmål som selvbegrunnende."
+        },
+        {
+          "thinker_id": "michael_lipsky",
+          "work": "Street-Level Bureaucracy",
+          "scholarly_source_id": "politikk-lipsky-street-level-bureaucracy",
+          "contribution": "Lipsky synliggjør hvordan skjønn og kapasitetsbegrensninger i førstelinjen påvirker faktisk tilgang til velferdstjenester og dermed den implementerte fordelingen av offentlige goder."
+        }
+      ]
+    },
+    {
+      "domain_id": "konflikt_makt_sivilsamfunn",
+      "theory_groundings": [
+        {
+          "thinker_id": "chantal_mouffe",
+          "work": "Agonistics: Thinking the World Politically",
+          "scholarly_source_id": "politikk-mouffe-agonistics",
+          "contribution": "Mouffes skille mellom antagonisme og agonisme gjør politisk konflikt analyserbar som strid mellom legitime motstandere uten å redusere uenighet til enten konsensus eller fiendskap."
+        },
+        {
+          "thinker_id": "charles_tilly",
+          "work": "Dynamics of Contention",
+          "scholarly_source_id": "politikk-tarrow-tilly-dynamics-contention",
+          "contribution": "Tillys mekanismeorienterte contentious-politics-ramme flytter analysen fra statiske bevegelsestyper til mobilisering, samhandling, eskalering og institusjonelle prosesser over tid."
+        }
+      ]
+    },
+    {
+      "domain_id": "normer_identitet_hverdagsliv",
+      "theory_groundings": [
+        {
+          "thinker_id": "erving_goffman",
+          "work": "The Presentation of Self in Everyday Life",
+          "scholarly_source_id": "politikk-goffman-presentation-self",
+          "contribution": "Goffmans dramaturgiske analyse viser hvordan roller, situasjoner og inntrykksstyring organiserer hverdagslig sosial samhandling uten at identitet behandles som en fast egenskap."
+        },
+        {
+          "thinker_id": "john_rawls",
+          "work": "A Theory of Justice",
+          "scholarly_source_id": "politikk-rawls-theory-justice",
+          "contribution": "Rawls gir et normativt språk for like grunnfriheter og rettferdige institusjoner som kan kontrasteres med observerte normer, identitetskategorier og hverdagslige fordelingsvirkninger."
+        }
+      ]
+    },
+    {
+      "domain_id": "komparativ_politikk_regimer_institusjoner",
+      "theory_groundings": [
+        {
+          "thinker_id": "paul_pierson",
+          "work": "Increasing Returns, Path Dependence, and the Study of Politics",
+          "scholarly_source_id": "politikk-pierson-path-dependence",
+          "contribution": "Pierson viser hvordan increasing returns, timing og sekvenser kan gjøre institusjonelle utviklingsbaner selvforsterkende og begrense senere reformalternativer."
+        },
+        {
+          "thinker_id": "robert_dahl",
+          "work": "Polyarchy",
+          "scholarly_source_id": "politikk-dahl-polyarchy",
+          "contribution": "Dahls konkurranse- og deltakelsesdimensjoner gir et komparativt institusjonelt rammeverk som ikke reduserer demokrati til ett binært regimemerke."
+        }
+      ]
+    },
+    {
+      "domain_id": "valg_partier_velgeratferd",
+      "theory_groundings": [
+        {
+          "thinker_id": "robert_dahl",
+          "work": "Polyarchy",
+          "scholarly_source_id": "politikk-dahl-polyarchy",
+          "contribution": "Dahls polyarkibegrep knytter reell konkurranse, opposisjon og deltakelse til institusjonelle vilkår og gir en demokratisk referanseramme for valg- og partisystemanalyse."
+        },
+        {
+          "thinker_id": "kaare_strom",
+          "work": "Minority Government and Majority Rule",
+          "scholarly_source_id": "politikk-strom-minority-government",
+          "contribution": "Strøm viser hvordan parlamentariske insentiver, støtteforhold og forhandlingsmuligheter gjør mindretallsregjering til et strategisk institusjonelt utfall fremfor et avvik fra flertallsstyre."
+        }
+      ]
+    },
+    {
+      "domain_id": "offentlig_politikk_beslutning_implementering",
+      "theory_groundings": [
+        {
+          "thinker_id": "michael_lipsky",
+          "work": "Street-Level Bureaucracy",
+          "scholarly_source_id": "politikk-lipsky-street-level-bureaucracy",
+          "contribution": "Lipsky forklarer hvordan implementering formes gjennom frontlinjeskjønn under praktiske begrensninger, slik at vedtak og faktisk tjenestepraksis må analyseres som ulike ledd."
+        },
+        {
+          "thinker_id": "paul_pierson",
+          "work": "Increasing Returns, Path Dependence, and the Study of Politics",
+          "scholarly_source_id": "politikk-pierson-path-dependence",
+          "contribution": "Pierson gjør timing, sekvens og selvforsterkende institusjonelle effekter relevante for å forklare hvorfor politikk ofte blir vanskelig å reversere selv når nye alternativer finnes."
+        }
+      ]
+    }
+  ]
+}
