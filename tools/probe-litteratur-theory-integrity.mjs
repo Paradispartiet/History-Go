@@ -15,7 +15,7 @@ const unique=xs=>[...new Set(xs.filter(Boolean))];
 const ALT=/\b(?:alternativ\p{L}*|rivaliser\p{L}*|konkurrer\p{L}*|motles\p{L}*|motmodell\p{L}*|kontrast\p{L}*|annen forklaring|andre forklaringer|sammenlign\p{L}*|vs\.?|spenning\p{L}*|uenig\p{L}*|motstrid\p{L}*)/iu;
 const LIMIT=/\b(?:inferensgrense\p{L}*|kildegrense\p{L}*|begrens\p{L}*|kan ikke|ikke alene|ikke automatisk|usikker\p{L}*|forbehold\p{L}*|avgrens\p{L}*|rekkevidde\p{L}*|krever [^.?!]*kilde|uten [^.?!]*data|ikke dokumenter\p{L}*)/iu;
 const THEORY=/\b(?:teori\p{L}*|modell\p{L}*|perspektiv\p{L}*|kritikk\p{L}*|analyse\p{L}*|hermeneut\p{L}*|formalisme\p{L}*|struktural\p{L}*|semiot\p{L}*|narratolog\p{L}*|resepsjon\p{L}*|diskurs\p{L}*|dekonstruksjon\p{L}*|psykoanal\p{L}*|fenomenolog\p{L}*|marxis\p{L}*|feminis\p{L}*|queer\p{L}*|postkolon\p{L}*|dekolon\p{L}*|okokrit\p{L}*|kognitiv\p{L}*|empirisk\p{L}*|intertekst\p{L}*|paratekst\p{L}*)/iu;
-const ACADEMIC=/(university|universitet|cambridge|oxford|routledge|wiley|blackwell|springer|palgrave|harvard|yale|columbia|johns hopkins|uchicago|press|museum|archive|arkiv|library|bibliotek|institute|institutt|foundation|forskn)/iu;
+const ACADEMIC=/(university|universitet|cambridge|oxford|routledge|wiley|blackwell|springer|palgrave|harvard|yale|columbia|johns hopkins|uchicago|press|museum|archive|arkiv|library|bibliotek|institute|institutt|foundation|forskn|association for the study of literature and environment|intergovernmental panel on climate change|united nations|national archives)/iu;
 const PERSON_CONTRIB=/\b([A-ZÆØÅ][\p{L}.'’-]{2,})(?:s|’s|')\s+(begrep|teori|modell|metode|analyse|lesning|bidrag|skille|diskursanalyse|supplementanalyse|segmentering|narratologi|poetikk|kritikk)\b/u;
 
 function loadArea(area){
