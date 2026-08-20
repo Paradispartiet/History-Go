@@ -1,0 +1,64 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "mail_type": "story",
+  "families": [
+    {
+      "id": "kurator_programhistorie",
+      "purpose": "Knytte et historisk verk til dokumentert kontekst uten å gjøre dagens vurdering til fortidens egen stemme.",
+      "learning_focus": ["kontekstpresisjon", "filmhistorie", "formidling"],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "id": "film_tv_kurator_story_kontekst_001",
+          "mail_type": "story",
+          "mail_family": "kurator_programhistorie",
+          "phase": "afternoon",
+          "priority": 70,
+          "cooldown": 6,
+          "from": "Filmarkivaren",
+          "people_ref": "film_tv_arkivar",
+          "subject": "Introduksjonen blander verkets samtid og vår vurdering",
+          "summary": "Utkastet til introduksjon beskriver et kontroversielt historisk trekk som om samtidens publikum vurderte det på samme måte som vi gjør i dag.",
+          "purpose": "Teste historisk presisjon i kuratorisk kontekst.",
+          "stakes": "En elegant, men anakronistisk introduksjon kan gjøre publikums forståelse dårligere.",
+          "situation": [
+            "Arkivmaterialet dokumenterer flere samtidige reaksjoner, ikke én enhetlig respons.",
+            "Dagens etiske vurdering er viktig, men er ikke det samme som historisk beskrivelse.",
+            "Introduksjonen skal være kort nok til en faktisk visning."
+          ],
+          "task_domain": "kontekst_og_formidling",
+          "task_kind": "story",
+          "competency": "kontekstpresisjon",
+          "pressure": "forenkling",
+          "choice_axis": "historisk_skille_vs_samtidsgjoring",
+          "consequence_axis": "forstaelse_vs_anakronisme",
+          "narrative_arc": "fra_verk_til_historisk_kontekst",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill samtid, dokumentasjon og dagens vurdering",
+              "reply": "Jeg skriver om slik at vi først beskriver hva kildene viser om samtiden, og deretter markerer vår nåværende vurdering.",
+              "effect": 1,
+              "tags": ["history", "context", "precision"],
+              "feedback": "Du beholder både den etiske vurderingen og den historiske forskjellen."
+            },
+            {
+              "id": "B",
+              "label": "Behold den tydeligste moralske formuleringen",
+              "reply": "Publikum trenger en klar inngang, så vi lar dagens vurdering stå som hovedforklaring.",
+              "effect": -1,
+              "tags": ["presentism", "simplification"],
+              "feedback": "Du gjør teksten enklere, men historisk svakere."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

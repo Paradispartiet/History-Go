@@ -1,0 +1,64 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "film_tv",
+  "role_scope": "kurator_film_tv",
+  "mail_type": "micro",
+  "families": [
+    {
+      "id": "kurator_mikrovalg",
+      "purpose": "Trene små, hyppige kuratoriske valg som holder programdata og begrunnelser konsistente.",
+      "learning_focus": ["presisjon", "metadata", "sporbarhet"],
+      "mails": [
+        {
+          "role_scope": "kurator_film_tv",
+          "place_id": "cinemateket_oslo",
+          "repeatable": false,
+          "stage": "stable",
+          "id": "film_tv_kurator_micro_metadata_001",
+          "mail_type": "micro",
+          "mail_family": "kurator_mikrovalg",
+          "phase": "forenoon",
+          "priority": 55,
+          "cooldown": 2,
+          "from": "Filmarkivaren",
+          "people_ref": "film_tv_arkivar",
+          "subject": "To versjoner av samme film står i programarket",
+          "summary": "Programarket blander restaureringsår og opprinnelig premiereår, slik at formidlingen ser ut til å beskrive to forskjellige verk.",
+          "purpose": "Teste om spilleren rydder metadata før feilen sprer seg.",
+          "stakes": "En liten metadatafeil kan forplante seg til programtekst, nettside og introduksjon.",
+          "situation": [
+            "Verket har originalt premiereår og et senere restaureringsår.",
+            "Begge årstallene er relevante, men betyr ulike ting.",
+            "Programarket brukes av flere personer senere i dagen."
+          ],
+          "task_domain": "programdata_og_sporbarhet",
+          "task_kind": "micro",
+          "competency": "verkforstaelse",
+          "pressure": "småfeil_under_tidspress",
+          "choice_axis": "presiser_metadata_vs_la_det_sta",
+          "consequence_axis": "sporbarhet_vs_feilspredning",
+          "narrative_arc": "fra_liten_uklarhet_til_ren_programdata",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Skill premiere og restaurering eksplisitt",
+              "reply": "Jeg retter feltene og skriver hvilken versjon vi faktisk skal vise.",
+              "effect": 1,
+              "tags": ["metadata", "archive", "precision"],
+              "feedback": "Du stopper en liten uklarhet før den blir en offentlig feil."
+            },
+            {
+              "id": "B",
+              "label": "La årstallet stå til programteksten er ferdig",
+              "reply": "Alle skjønner hvilken film vi mener; vi kan rydde metadata senere.",
+              "effect": -1,
+              "tags": ["metadata_risk", "delay"],
+              "feedback": "Du sparer et minutt nå og gjør neste arbeidsledd mer usikkert."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
