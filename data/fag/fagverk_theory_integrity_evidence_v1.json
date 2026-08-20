@@ -384,6 +384,36 @@
         "anti_trivia_rule": "verified",
         "universal_subject_scope": "verified"
       }
+    },
+    {
+      "subject_id": "vitenskap",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-vitenskap-theory-integrity.mjs",
+      "test": "tests/vitenskap-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-vitenskap-holistic-university-breadth-completion.yml",
+      "evidence_files": [
+        "data/fag/vitenskap/vitenskappensum_canonical_v4_6.json",
+        "data/fag/vitenskap/emner_vitenskap_canonical_v4_6.json",
+        "data/fag/vitenskap/emnemapping_vitenskap_canonical_v4_6.json",
+        "data/fag/vitenskap/theory_integrity_bindings_vitenskap_v1.json",
+        "data/fagverk/fagverk_registry.json",
+        "data/fagverk/vitenskap/vitenskap-fra-observasjon-til-etterprovbar-kunnskap/claims.json",
+        "reports/fagverk/vitenskap-holistic-university-breadth-completion-audit.json",
+        "reports/fagverk/vitenskap-holistic-quality-review-audit.json",
+        "reports/fagverk/vitenskap-theory-integrity-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "not_applicable_model_evidence_profile",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
     }
   ]
 }
