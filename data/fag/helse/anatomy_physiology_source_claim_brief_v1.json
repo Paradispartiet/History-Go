@@ -1,0 +1,745 @@
+{
+  "schema": "history_go_health_anatomy_physiology_source_claim_brief_v1",
+  "version": "1.0.0",
+  "updated_at": "2026-08-21",
+  "status": "source_claim_brief_complete_full_chapter_next",
+  "subject_id": "helse",
+  "planned_unit_id": "anatomi-fysiologi-struktur-funksjon-og-regulering",
+  "future_chapter_id": "anatomi-fysiologi-struktur-funksjon-og-regulering",
+  "runtime_registration": {
+    "registered": false,
+    "allowed_before_full_chapter_gate": false
+  },
+  "scope": {
+    "title": "Anatomi og fysiologi: struktur, funksjon og regulering",
+    "primary_domain_id": "anatomi_fysiologi",
+    "canonical_emne_id": "em_helse_anatomi_fysiologi",
+    "ownership": "Helse eier menneskekroppens struktur–funksjon og integrerte fysiologi; Vitenskap er sekundær for generell måle- og modellmetode, Natur for komparativ biologi og Utdanning for didaktikk.",
+    "included": [
+      "standardisert anatomisk språk og organisasjonsnivå",
+      "struktur–funksjon, membraner, gradienter, massebalanse og homeostase",
+      "nerve–muskel, sirkulasjon–respirasjon, nyre og endokrin integrasjon"
+    ],
+    "excluded": [
+      "individuell diagnose, bilde-, prøve- eller symptomtolkning",
+      "personlig prognose, triage eller behandlingsanbefaling",
+      "patofysiologi som hovedtema, som eies av neste domene"
+    ]
+  },
+  "source_policy": {
+    "authoritative_terminology_and_professional_society_frameworks_first": true,
+    "peer_reviewed_or_reviewed_biomedical_sources": true,
+    "structure_function_claims_require_mechanism_and_boundary": true,
+    "normal_range_is_not_individual_diagnosis": true,
+    "planned_claim_is_not_verified_claim": true,
+    "fulltext_requires_paragraph_level_claim_trace": true,
+    "no_individual_medical_advice": true
+  },
+  "sources": [
+    {
+      "id": "hap01-ifaa-fipat-ta2",
+      "publisher": "International Federation of Associations of Anatomists / FIPAT",
+      "title": "Terminologia Anatomica, second edition",
+      "url": "https://libraries.dal.ca/Fipat/ta2.html",
+      "type": "international-anatomical-terminology-primary-source",
+      "evidence_role": "international-anatomical-terminology-primary-source",
+      "source_location": "Official TA2 index and tables: standardized Latin anatomical terms, hierarchical identifiers and approved international nomenclature.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap02-openstax-structural-organization",
+      "publisher": "OpenStax, Rice University",
+      "title": "Anatomy and Physiology 2e – 1.2 Structural Organization of the Human Body",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-2-structural-organization-of-the-human-body",
+      "type": "peer-reviewed-open-textbook",
+      "evidence_role": "peer-reviewed-open-textbook",
+      "source_location": "Section 1.2: chemical, cellular, tissue, organ, organ-system and organism levels; systems are interdependent rather than isolated layers.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap03-openstax-anatomical-terminology",
+      "publisher": "OpenStax, Rice University",
+      "title": "Anatomy and Physiology 2e – 1.6 Anatomical Terminology",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-6-anatomical-terminology",
+      "type": "peer-reviewed-open-textbook",
+      "evidence_role": "peer-reviewed-open-textbook",
+      "source_location": "Section 1.6: anatomical position, directional terms, planes, sections and body cavities; terms depend on an explicit reference frame.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap04-aps-core-concepts",
+      "publisher": "American Physiological Society",
+      "title": "Core Concepts of Physiology Learning Module",
+      "url": "https://www.physiology.org/professional-development/career/cpe/teaching-integrative-physiology/core-concepts",
+      "type": "professional-society-curriculum-framework",
+      "evidence_role": "professional-society-curriculum-framework",
+      "source_location": "Fourteen vetted cross-system concepts including structure–function, gradients, mass balance, homeostasis, communication, integration and adaptation.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap05-michael-core-concepts-2020",
+      "publisher": "American Physiological Society / Advances in Physiology Education",
+      "title": "Another look at the core concepts of physiology: revisions and resources",
+      "url": "https://journals.physiology.org/doi/full/10.1152/advan.00114.2020",
+      "type": "peer-reviewed-physiology-education-research",
+      "evidence_role": "peer-reviewed-physiology-education-research",
+      "source_location": "Revised consensus framework and concept definitions for structure–function, flow down gradients, mass balance, homeostasis and cell communication.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap06-openstax-cell-membrane",
+      "publisher": "OpenStax, Rice University",
+      "title": "Anatomy and Physiology 2e – 3.1 The Cell Membrane",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/3-1-the-cell-membrane",
+      "type": "peer-reviewed-open-textbook",
+      "evidence_role": "peer-reviewed-open-textbook",
+      "source_location": "Section 3.1: phospholipid bilayer, selective permeability, channels, carriers, diffusion, osmosis and active transport.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap07-openstax-homeostasis",
+      "publisher": "OpenStax, Rice University",
+      "title": "Anatomy and Physiology 2e – 1.5 Homeostasis",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/1-5-homeostasis",
+      "type": "peer-reviewed-open-textbook",
+      "evidence_role": "peer-reviewed-open-textbook",
+      "source_location": "Section 1.5: controlled variables, ranges, sensors, control centres, effectors and negative versus positive feedback.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap08-ncbi-muscle-contraction",
+      "publisher": "National Library of Medicine / StatPearls",
+      "title": "Physiology, Muscle Contraction",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK537140/",
+      "type": "reviewed-biomedical-reference",
+      "evidence_role": "reviewed-biomedical-reference",
+      "source_location": "Excitation–contraction coupling: membrane depolarization, T tubules, calcium release, actin–myosin interaction, ATP dependence and relaxation.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap09-openstax-nervous-system",
+      "publisher": "OpenStax, Rice University",
+      "title": "Anatomy and Physiology 2e – 12.1 Basic Structure and Function of the Nervous System",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/12-1-basic-structure-and-function-of-the-nervous-system",
+      "type": "peer-reviewed-open-textbook",
+      "evidence_role": "peer-reviewed-open-textbook",
+      "source_location": "Section 12.1: central and peripheral organization, sensory input, integration, motor output and functional divisions.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap10-ncbi-circulatory-oxygen",
+      "publisher": "National Center for Biotechnology Information",
+      "title": "The Circulatory System and Oxygen Transport",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK54112/",
+      "type": "scholarly-monograph-chapter",
+      "evidence_role": "scholarly-monograph-chapter",
+      "source_location": "Chapters on convection and diffusion of oxygen, blood flow, microcirculation and the coupled roles of cardiovascular transport and tissue metabolism.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap11-ncbi-pulmonary-vq",
+      "publisher": "National Library of Medicine / StatPearls",
+      "title": "Physiology, Pulmonary Ventilation and Perfusion",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK539907/",
+      "type": "reviewed-biomedical-reference",
+      "evidence_role": "reviewed-biomedical-reference",
+      "source_location": "Ventilation, perfusion, regional variation and V/Q matching as conditions for pulmonary gas exchange.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap12-ncbi-renal-flow-filtration",
+      "publisher": "National Library of Medicine / StatPearls",
+      "title": "Physiology, Renal Blood Flow and Filtration",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482248/",
+      "type": "reviewed-biomedical-reference",
+      "evidence_role": "reviewed-biomedical-reference",
+      "source_location": "Renal blood flow, glomerular filtration, autoregulation and the kidney’s relation to fluid, electrolyte and haemodynamic regulation.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap13-openstax-urinary-homeostasis",
+      "publisher": "OpenStax, Rice University",
+      "title": "Anatomy and Physiology 2e – 25.10 The Urinary System and Homeostasis",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/25-10-the-urinary-system-and-homeostasis",
+      "type": "peer-reviewed-open-textbook",
+      "evidence_role": "peer-reviewed-open-textbook",
+      "source_location": "Section 25.10: water, electrolytes, acid–base regulation, waste removal and endocrine interactions of the urinary system.",
+      "retrieval_status": "verified_2026-08-21"
+    },
+    {
+      "id": "hap14-ncbi-endocrine-principles",
+      "publisher": "National Center for Biotechnology Information",
+      "title": "Principles of Endocrinology",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK20/",
+      "type": "scholarly-textbook-chapter",
+      "evidence_role": "scholarly-textbook-chapter",
+      "source_location": "Hormone secretion, receptors, axes, pulsatility and negative feedback; control architectures vary by gland and physiological state.",
+      "retrieval_status": "verified_2026-08-21"
+    }
+  ],
+  "decision_scenarios": [
+    {
+      "id": "scenario-anatomisk-snitt",
+      "title": "Fra tredimensjonal struktur til anatomisk snitt",
+      "purpose": "Øve på posisjon, plan, retning og representasjonsgrense uten å tolke et klinisk bilde.",
+      "source_ids": [
+        "hap01-ifaa-fipat-ta2",
+        "hap02-openstax-structural-organization",
+        "hap03-openstax-anatomical-terminology"
+      ]
+    },
+    {
+      "id": "scenario-feedback-diagram",
+      "title": "Et feedbackdiagram med uklar regulert variabel",
+      "purpose": "Identifisere variabel, sensor, signal, effektor, forstyrrelse og stoppbetingelse.",
+      "source_ids": [
+        "hap04-aps-core-concepts",
+        "hap05-michael-core-concepts-2020",
+        "hap07-openstax-homeostasis"
+      ]
+    },
+    {
+      "id": "scenario-membrantransport",
+      "title": "To rom skilt av en selektiv membran",
+      "purpose": "Skille gradient, permeabilitet, fluks og energikobling uten dose- eller behandlingsråd.",
+      "source_ids": [
+        "hap04-aps-core-concepts",
+        "hap05-michael-core-concepts-2020",
+        "hap06-openstax-cell-membrane"
+      ]
+    },
+    {
+      "id": "scenario-nerve-muskel",
+      "title": "Fra membransignal til muskelkraft",
+      "purpose": "Spore eksitasjon–kontraksjonskobling og skille cellemekanisme fra helkroppsfunksjon.",
+      "source_ids": [
+        "hap06-openstax-cell-membrane",
+        "hap08-ncbi-muscle-contraction",
+        "hap09-openstax-nervous-system"
+      ]
+    },
+    {
+      "id": "scenario-oksygentransport",
+      "title": "Oksygenets transportkjede",
+      "purpose": "Skille ventilasjon, diffusjon, perfusjon, blodtransport og vevsforbruk.",
+      "source_ids": [
+        "hap04-aps-core-concepts",
+        "hap10-ncbi-circulatory-oxygen",
+        "hap11-ncbi-pulmonary-vq"
+      ]
+    },
+    {
+      "id": "scenario-integrert-regulering",
+      "title": "Integrert væske- og trykkregulering",
+      "purpose": "Kartlegge nyre-, kar-, nerve- og hormonsignaler som generelle systemledd, ikke individuell vurdering.",
+      "source_ids": [
+        "hap07-openstax-homeostasis",
+        "hap12-ncbi-renal-flow-filtration",
+        "hap13-openstax-urinary-homeostasis",
+        "hap14-ncbi-endocrine-principles"
+      ]
+    }
+  ],
+  "topic_briefs": [
+    {
+      "id": "anatomisk-sprak-og-referanserammer",
+      "title": "Anatomisk språk, posisjon, plan og variabilitet",
+      "canonical_emne_id": "em_helse_anatomi_fysiologi",
+      "method_ids": [
+        "met_helse_mekanisme_modell"
+      ],
+      "source_ids": [
+        "hap01-ifaa-fipat-ta2",
+        "hap02-openstax-structural-organization",
+        "hap03-openstax-anatomical-terminology"
+      ],
+      "boundary": "Generell struktur–funksjon og regulering; ingen tolkning av symptomer, prøver, bilder eller behandling for en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hap-01-01",
+          "claim_focus": "skille standardisert anatomisk term fra påstand om normalvariant eller sykdom",
+          "source_ids": [
+            "hap01-ifaa-fipat-ta2",
+            "hap02-openstax-structural-organization",
+            "hap03-openstax-anatomical-terminology"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-01-02",
+          "claim_focus": "bruke anatomisk posisjon som eksplisitt referanseramme for retning",
+          "source_ids": [
+            "hap01-ifaa-fipat-ta2",
+            "hap02-openstax-structural-organization",
+            "hap03-openstax-anatomical-terminology"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-01-03",
+          "claim_focus": "skille plan og snitt fra den tredimensjonale strukturen som representeres",
+          "source_ids": [
+            "hap01-ifaa-fipat-ta2",
+            "hap02-openstax-structural-organization",
+            "hap03-openstax-anatomical-terminology"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-01-04",
+          "claim_focus": "forklare hvorfor terminologisk standardisering støtter kommunikasjon uten å fjerne biologisk variasjon",
+          "source_ids": [
+            "hap01-ifaa-fipat-ta2",
+            "hap02-openstax-structural-organization",
+            "hap03-openstax-anatomical-terminology"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "organisasjonsniva-og-struktur-funksjon",
+      "title": "Organisasjonsnivå, vev og struktur–funksjon",
+      "canonical_emne_id": "em_helse_anatomi_fysiologi",
+      "method_ids": [
+        "met_helse_mekanisme_modell"
+      ],
+      "source_ids": [
+        "hap02-openstax-structural-organization",
+        "hap04-aps-core-concepts",
+        "hap05-michael-core-concepts-2020"
+      ],
+      "boundary": "Generell struktur–funksjon og regulering; ingen tolkning av symptomer, prøver, bilder eller behandling for en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hap-02-01",
+          "claim_focus": "skille celle, vev, organ, organsystem og organisme uten å gjøre nivåene uavhengige",
+          "source_ids": [
+            "hap02-openstax-structural-organization",
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-02-02",
+          "claim_focus": "forklare struktur–funksjon som prøvbar relasjon og ikke formålsforklaring",
+          "source_ids": [
+            "hap02-openstax-structural-organization",
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-02-03",
+          "claim_focus": "vise at samme struktur kan bidra til flere funksjoner og samme funksjon kreve flere strukturer",
+          "source_ids": [
+            "hap02-openstax-structural-organization",
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-02-04",
+          "claim_focus": "avgrense anatomisk beskrivelse fra fysiologisk mekanisme og klinisk tolkning",
+          "source_ids": [
+            "hap02-openstax-structural-organization",
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "membraner-gradienter-og-massebalanse",
+      "title": "Membraner, gradienter, transport og massebalanse",
+      "canonical_emne_id": "em_helse_anatomi_fysiologi",
+      "method_ids": [
+        "met_helse_mekanisme_modell"
+      ],
+      "source_ids": [
+        "hap04-aps-core-concepts",
+        "hap05-michael-core-concepts-2020",
+        "hap06-openstax-cell-membrane"
+      ],
+      "boundary": "Generell struktur–funksjon og regulering; ingen tolkning av symptomer, prøver, bilder eller behandling for en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hap-03-01",
+          "claim_focus": "skille konsentrasjonsgradient, elektrisk gradient og samlet elektrokjemisk drivkraft",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020",
+            "hap06-openstax-cell-membrane"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-03-02",
+          "claim_focus": "skille passiv transport fra energikoblet aktiv transport",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020",
+            "hap06-openstax-cell-membrane"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-03-03",
+          "claim_focus": "bruke massebalanse til å skille tilførsel, produksjon, lagring, forbruk og utskillelse",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020",
+            "hap06-openstax-cell-membrane"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-03-04",
+          "claim_focus": "forklare at membranpermeabilitet og transportøraktivitet bestemmer fluks sammen med drivkraft",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020",
+            "hap06-openstax-cell-membrane"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "homeostase-feedback-og-adaptasjon",
+      "title": "Homeostase, feedback, regulering og adaptasjon",
+      "canonical_emne_id": "em_helse_anatomi_fysiologi",
+      "method_ids": [
+        "met_helse_mekanisme_modell"
+      ],
+      "source_ids": [
+        "hap04-aps-core-concepts",
+        "hap05-michael-core-concepts-2020",
+        "hap07-openstax-homeostasis"
+      ],
+      "boundary": "Generell struktur–funksjon og regulering; ingen tolkning av symptomer, prøver, bilder eller behandling for en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hap-04-01",
+          "claim_focus": "skille regulert variabel fra sensor, kontrollsignal og effektor",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020",
+            "hap07-openstax-homeostasis"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-04-02",
+          "claim_focus": "forklare negativ feedback uten å anta at alle verdier holdes konstante",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020",
+            "hap07-openstax-homeostasis"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-04-03",
+          "claim_focus": "skille positiv feedback med stoppbetingelse fra generell ustabilitet",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020",
+            "hap07-openstax-homeostasis"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-04-04",
+          "claim_focus": "skille akutt regulering, akklimatisering og langsiktig adaptasjon",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap05-michael-core-concepts-2020",
+            "hap07-openstax-homeostasis"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "nerve-muskel-og-eksitabelt-vev",
+      "title": "Nerve, muskel og eksitabelt vev",
+      "canonical_emne_id": "em_helse_anatomi_fysiologi",
+      "method_ids": [
+        "met_helse_mekanisme_modell"
+      ],
+      "source_ids": [
+        "hap05-michael-core-concepts-2020",
+        "hap06-openstax-cell-membrane",
+        "hap08-ncbi-muscle-contraction",
+        "hap09-openstax-nervous-system"
+      ],
+      "boundary": "Generell struktur–funksjon og regulering; ingen tolkning av symptomer, prøver, bilder eller behandling for en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hap-05-01",
+          "claim_focus": "koble ioneselektiv membran og spenningsendring uten å gjøre aksjonspotensial til stofftransport alene",
+          "source_ids": [
+            "hap05-michael-core-concepts-2020",
+            "hap06-openstax-cell-membrane",
+            "hap08-ncbi-muscle-contraction",
+            "hap09-openstax-nervous-system"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-05-02",
+          "claim_focus": "skille sensorisk input, integrasjon og motorisk output som funksjonelle ledd",
+          "source_ids": [
+            "hap05-michael-core-concepts-2020",
+            "hap06-openstax-cell-membrane",
+            "hap08-ncbi-muscle-contraction",
+            "hap09-openstax-nervous-system"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-05-03",
+          "claim_focus": "forklare eksitasjon–kontraksjonskobling fra membransignal via kalsium til kraftutvikling",
+          "source_ids": [
+            "hap05-michael-core-concepts-2020",
+            "hap06-openstax-cell-membrane",
+            "hap08-ncbi-muscle-contraction",
+            "hap09-openstax-nervous-system"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-05-04",
+          "claim_focus": "skille mekanisme for kontraksjon fra målt kraft, bevegelse og funksjon i hele organismen",
+          "source_ids": [
+            "hap05-michael-core-concepts-2020",
+            "hap06-openstax-cell-membrane",
+            "hap08-ncbi-muscle-contraction",
+            "hap09-openstax-nervous-system"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "sirkulasjon-respirasjon-og-oksygentransport",
+      "title": "Sirkulasjon, respirasjon og oksygentransport",
+      "canonical_emne_id": "em_helse_anatomi_fysiologi",
+      "method_ids": [
+        "met_helse_mekanisme_modell"
+      ],
+      "source_ids": [
+        "hap04-aps-core-concepts",
+        "hap10-ncbi-circulatory-oxygen",
+        "hap11-ncbi-pulmonary-vq"
+      ],
+      "boundary": "Generell struktur–funksjon og regulering; ingen tolkning av symptomer, prøver, bilder eller behandling for en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hap-06-01",
+          "claim_focus": "skille ventilasjon, diffusjon, perfusjon og blodets oksygentransport",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap10-ncbi-circulatory-oxygen",
+            "hap11-ncbi-pulmonary-vq"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-06-02",
+          "claim_focus": "forklare at konveksjon og diffusjon virker på ulike ledd i transportkjeden",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap10-ncbi-circulatory-oxygen",
+            "hap11-ncbi-pulmonary-vq"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-06-03",
+          "claim_focus": "vise hvorfor ventilasjon og perfusjon må vurderes regionalt og samlet",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap10-ncbi-circulatory-oxygen",
+            "hap11-ncbi-pulmonary-vq"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-06-04",
+          "claim_focus": "skille oksygentilførsel til vev fra cellenes faktiske oksygenforbruk",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap10-ncbi-circulatory-oxygen",
+            "hap11-ncbi-pulmonary-vq"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "nyre-vaeske-elektrolytt-og-syre-base",
+      "title": "Nyre, væske, elektrolytt og syre–base",
+      "canonical_emne_id": "em_helse_anatomi_fysiologi",
+      "method_ids": [
+        "met_helse_mekanisme_modell"
+      ],
+      "source_ids": [
+        "hap04-aps-core-concepts",
+        "hap12-ncbi-renal-flow-filtration",
+        "hap13-openstax-urinary-homeostasis"
+      ],
+      "boundary": "Generell struktur–funksjon og regulering; ingen tolkning av symptomer, prøver, bilder eller behandling for en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hap-07-01",
+          "claim_focus": "skille renal blodstrøm, glomerulær filtrasjon, tubulær transport og endelig utskillelse",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap12-ncbi-renal-flow-filtration",
+            "hap13-openstax-urinary-homeostasis"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-07-02",
+          "claim_focus": "bruke massebalanse på vann og elektrolytter uten å gjøre plasmakonsentrasjon til direkte mål på totalmengde",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap12-ncbi-renal-flow-filtration",
+            "hap13-openstax-urinary-homeostasis"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-07-03",
+          "claim_focus": "forklare nyrenes bidrag til syre–base-regulering sammen med respirasjon og buffere",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap12-ncbi-renal-flow-filtration",
+            "hap13-openstax-urinary-homeostasis"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-07-04",
+          "claim_focus": "vise at filtrasjonsmål og homeostatisk funksjon ikke er samme variabel",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap12-ncbi-renal-flow-filtration",
+            "hap13-openstax-urinary-homeostasis"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    },
+    {
+      "id": "endokrin-integrasjon-og-systemgrenser",
+      "title": "Endokrin regulering, integrasjon og systemgrenser",
+      "canonical_emne_id": "em_helse_anatomi_fysiologi",
+      "method_ids": [
+        "met_helse_mekanisme_modell"
+      ],
+      "source_ids": [
+        "hap04-aps-core-concepts",
+        "hap07-openstax-homeostasis",
+        "hap09-openstax-nervous-system",
+        "hap14-ncbi-endocrine-principles"
+      ],
+      "boundary": "Generell struktur–funksjon og regulering; ingen tolkning av symptomer, prøver, bilder eller behandling for en konkret person.",
+      "planned_claims": [
+        {
+          "id": "hap-08-01",
+          "claim_focus": "skille hormon, reseptor, målvev og fysiologisk respons",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap07-openstax-homeostasis",
+            "hap09-openstax-nervous-system",
+            "hap14-ncbi-endocrine-principles"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-08-02",
+          "claim_focus": "forklare negativ feedback i en akse uten å anta identisk arkitektur for alle hormonsystemer",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap07-openstax-homeostasis",
+            "hap09-openstax-nervous-system",
+            "hap14-ncbi-endocrine-principles"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-08-03",
+          "claim_focus": "sammenholde nevral og endokrin regulering med ulike tidsforløp og distribusjon",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap07-openstax-homeostasis",
+            "hap09-openstax-nervous-system",
+            "hap14-ncbi-endocrine-principles"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        },
+        {
+          "id": "hap-08-04",
+          "claim_focus": "vise at organsystemer er analytiske inndelinger mens fysiologisk regulering krysser systemgrenser",
+          "source_ids": [
+            "hap04-aps-core-concepts",
+            "hap07-openstax-homeostasis",
+            "hap09-openstax-nervous-system",
+            "hap14-ncbi-endocrine-principles"
+          ],
+          "status": "planned_requires_fulltext_verification"
+        }
+      ]
+    }
+  ],
+  "proposed_module_order": [
+    {
+      "id": "anatomisk-sprak-og-struktur",
+      "topic_ids": [
+        "anatomisk-sprak-og-referanserammer",
+        "organisasjonsniva-og-struktur-funksjon"
+      ]
+    },
+    {
+      "id": "transport-og-homeostase",
+      "topic_ids": [
+        "membraner-gradienter-og-massebalanse",
+        "homeostase-feedback-og-adaptasjon"
+      ]
+    },
+    {
+      "id": "eksitabelt-vev-og-oksygentransport",
+      "topic_ids": [
+        "nerve-muskel-og-eksitabelt-vev",
+        "sirkulasjon-respirasjon-og-oksygentransport"
+      ]
+    },
+    {
+      "id": "nyre-endokrin-og-integrasjon",
+      "topic_ids": [
+        "nyre-vaeske-elektrolytt-og-syre-base",
+        "endokrin-integrasjon-og-systemgrenser"
+      ]
+    }
+  ],
+  "production_requirements": {
+    "minimum_verified_claims": 32,
+    "every_planned_claim_must_be_verified_rewritten_or_rejected": true,
+    "every_used_source_must_support_at_least_one_final_claim": true,
+    "paragraph_claim_trace_required": true,
+    "terminology_mechanism_measurement_and_clinical_inference_must_remain_distinct": true,
+    "numeric_examples_require_units_reference_frame_and_uncertainty": true,
+    "no_person_specific_scenario": true,
+    "clinical_safety_contract_is_blocking": true,
+    "chapter_registration_only_after_fulltext_claim_source_audit": true
+  },
+  "next_gate": "produce_full_chapter_claims_and_inspectable_sources_for_anatomi_fysiologi"
+}

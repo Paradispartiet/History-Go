@@ -11,7 +11,7 @@
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.14.0",
     "updated_at": "2026-08-21",
-    "content_sha256": "aa4229e8ceab67a9d4b8aa2695e9d62a17c96296dd5e45c55d2e6a2d447c5585"
+    "content_sha256": "778ea9aff76c02dc00627a2497c1a081bc7e3503e9d9c5150ef79446ec5fc56e"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "1ec13e535696f236f17a5e7c3f6e5362594cc56a4f5078a72ae769e1f960c3a8"
+    "content_sha256": "9cbf2d7cc808789c4f9b166a354ee128aeedddc428dd8006db7c1d71e53ce02e"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 16,
     "chapter_count": 164,
     "module_file_count": 397,
-    "package_file_count": 222,
+    "package_file_count": 223,
     "chapter_referenced_file_count": 758,
-    "referenced_file_count": 934,
+    "referenced_file_count": 935,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -1033,10 +1033,22 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 10,
+      "package_file_count": 11,
       "required_package_file_count": 4,
-      "optional_package_file_count": 6,
+      "optional_package_file_count": 7,
       "package_files": [
+        {
+          "path": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json",
+          "required": false,
+          "fields": [
+            "sourceClaimBriefs"
+          ],
+          "key_paths": [
+            "sourceClaimBriefs[1]"
+          ],
+          "exists": true,
+          "content_sha256": "d605812d16c44c40aa012990192c27ea1478fde4a04e14a40e4337e42e30c16f"
+        },
         {
           "path": "data/fag/helse/clinical_safety_contract_helse_v1.json",
           "required": false,
@@ -1158,20 +1170,20 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "97def0c81180a0229bf80cf4a58b1f7bf5712faf7edd3f13400f2138c37c2ab7",
+      "package_content_sha256": "12dd524f8af42bb2b5484e27f77ef6a517da8b3ff6325a3304e95d2de923ef29",
       "chapter_count": 1,
       "module_file_count": 4,
       "brief_file_count": 1,
       "claims_file_count": 1,
       "chapter_referenced_file_count": 7,
       "chapter_content_sha256": "7ec57b73412098d7aae205cb7c3fe2a79126087e9b2a337c1f6db85030b32bf8",
-      "referenced_file_count": 16,
+      "referenced_file_count": 17,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "c9fc82a4daae0551ef0df289134c7be8dd3feb499fbc272be27cb0d14689d4be",
-      "content_sha256": "9be9705af16eb7500e315a6dc59eb89923f0a9a4f605320118c36a5113550b6b",
+      "structure_sha256": "aeeb2b8351ee9d13382f5adeddd2eb8133ec92e31a7b6fcc6923057bad898282",
+      "content_sha256": "189844a69c669bfda79789453c8ee0667688306ab18a41c1bc14996667580b23",
       "chapters": [
         {
           "chapter_id": "medisinsk-etikk-evidens-og-ansvarlig-beslutning",
@@ -5161,5 +5173,5 @@
       ]
     }
   },
-  "release_sha256": "a0adc5e7e76da1ef87e02305a3e9815c503946a5ee1e2ee8897565a7b31ae0d6"
+  "release_sha256": "6085a78a8073d6deea24b944da6d80b5a7ca0233758f7c6a5264a0203debaffe"
 }

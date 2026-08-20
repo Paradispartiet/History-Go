@@ -4134,12 +4134,13 @@
         "schemaFamily": "foundation_v1",
         "sourceOfTruth": true,
         "firstSourceClaimBrief": "data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json",
-        "note": "Første source-first-enhet er fulltekstmaterialisert med 8 seksjoner, 32 claimsporede avsnitt, 32 verifiserte claims, 14 inspiserbare autoritative kilder og blokkerende klinisk sikkerhetsaudit. Dette er én av 12 domener og ikke faglig sluttføring.",
-        "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json"
+        "note": "To source-first-enheter er dokumentert: medisinsk etikk/evidens er fulltekstmaterialisert, mens anatomi/fysiologi har 14 inspiserte terminologi-, profesjons-, lærebok- og biomedisinske kilder, 8 faglige spor, 6 ikke-individualiserende scenarioer og 32 claimplaner. Anatomi/fysiologi er ikke registrert som kapittel.",
+        "firstFulltextChapter": "data/fagverk/helse/medisinsk-etikk-evidens-og-ansvarlig-beslutning.json",
+        "secondSourceClaimBrief": "data/fag/helse/anatomy_physiology_source_claim_brief_v1.json"
       },
       "editorialPlan": {
         "targetDomainCount": 12,
-        "completedSourceBriefCount": 1,
+        "completedSourceBriefCount": 2,
         "registeredChapterCount": 1,
         "completionRequirements": [
           "all_canonical_domains_covered",
@@ -4148,7 +4149,7 @@
           "fulltext_and_assessment_audits_green",
           "strict_theory_integrity_green"
         ],
-        "nextGate": "produce_next_domain_source_brief_after_medical_ethics_evidence_fulltext"
+        "nextGate": "produce_full_chapter_claims_and_inspectable_sources_for_anatomi_fysiologi"
       },
       "chapters": [
         {

@@ -23,8 +23,8 @@ test('første Helse-source brief bevarer historisk planstatus etter kontrollert 
     [healthStatus.navigationStatus, healthStatus.assessmentStatus, healthStatus.editorialStatus],
     ['materialized', 'audited', 'chapters_in_progress']
   );
-  assert.equal(healthStatus.nextGate, 'medical_ethics_evidence_full_chapter_complete_next_domain_source_brief');
-  assert.deepEqual(manifest.helse.sourceClaimBriefs, ['data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json']);
+  assert.equal(healthStatus.nextGate, 'anatomy_physiology_source_brief_complete_full_chapter_production');
+  assert.ok(manifest.helse.sourceClaimBriefs.includes('data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json'));
   assert.ok(inventory.subjects.find((row) => row.id === 'helse').optionalManifestFields.includes('sourceClaimBriefs'));
 });
 
