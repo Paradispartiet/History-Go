@@ -13,6 +13,7 @@ const model = readJson('data/Civication/roleModels/naeringsliv/fagarbeider.json'
 const mappings = readJson('data/Civication/badgeRoleMappings.json');
 const bridge = read('js/Civication/mailPlanBridge.js');
 const report = read('reports/civication-career-gameplay-matrix.md');
+const matrix = readJson('data/Civication/careerGameplayMatrix.json');
 
 assert.equal(model.category, 'naeringsliv');
 assert.equal(model.role_scope, 'fagarbeider');
@@ -28,11 +29,16 @@ assert.ok(!auditSource.includes("['naeringsliv/fagarbeider', 'arbeider']"), 'Car
 
 const rows = report.split(/\r?\n/).filter((line) => line.startsWith('| naeringsliv | '));
 const parse = (line) => line.split('|').slice(1, -1).map((cell) => cell.trim());
-const arbeider = parse(rows.find((line) => line.startsWith('| naeringsliv | arbeider |')) || '');
 const fagarbeider = parse(rows.find((line) => line.startsWith('| naeringsliv | fagarbeider |')) || '');
-assert.equal(arbeider[1], 'arbeider');
+const arbeiderWorld = matrix.worlds.find((world) => world.key === 'naeringsliv/arbeider');
+const arbeiderExclusion = (matrix.noncareer_worlds || []).find((world) => world.key === 'naeringsliv/arbeider');
+assert.ok(arbeiderWorld, 'Arbeider remains discoverable as canonical-category content');
+assert.equal(arbeiderWorld.status, 'not_applicable', 'Arbeider must not inherit a fabricated career status');
+assert.deepEqual(arbeiderWorld.artifacts.role_models, [], 'Arbeider must not receive Fagarbeider roleModel evidence');
+assert.ok(arbeiderExclusion, 'Arbeider must be explicitly career-excluded after ownership reconciliation');
+assert.equal(arbeiderExclusion.classification, 'unbound_legacy_role');
+assert.ok(!rows.some((line) => line.startsWith('| naeringsliv | arbeider |')), 'Arbeider must not remain in the career rollout table');
 assert.equal(fagarbeider[1], 'fagarbeider');
-assert.equal(arbeider[4], 'nei', 'Arbeider must not receive Fagarbeider roleModel evidence');
 assert.equal(fagarbeider[4], 'ja', 'Fagarbeider must own its own roleModel evidence');
 
 console.log('✓ Arbeider and Fagarbeider have distinct canonical roleModel ownership');

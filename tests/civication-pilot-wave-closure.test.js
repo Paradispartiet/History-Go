@@ -54,7 +54,9 @@ for (const key of referenceKeys) {
 }
 
 assert.equal(matrix.summary.discovered_worlds, 89, 'Discovery inventory remains complete across canonical and support namespaces');
-assert.equal(matrix.summary.work_worlds, 88, 'Only canonical runtime categories count as career work worlds');
+assert.equal(matrix.summary.work_worlds, 88, 'Canonical runtime-category discovery inventory remains stable');
+assert.equal(matrix.summary.career_worlds, 85, 'Three canonical non-career worlds are excluded from career rollout');
+assert.equal(matrix.summary.noncareer_worlds, 3, 'Explicit non-career reconciliation remains visible');
 assert.equal(matrix.summary.support_worlds, 1, 'Exactly one discovered legacy support world is excluded from career rollout');
 const barnehageSupport = (matrix.support_worlds || []).find(candidate => candidate.key === 'sosial_laering/barnehageassistent');
 assert.ok(barnehageSupport, 'Barnehageassistent remains discoverable as legacy support content');

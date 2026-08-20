@@ -105,7 +105,7 @@ export function auditVitenskapHolisticUniversityBreadthCompletion({ writeReport 
 
   const completionState = readiness.complete_ready === true ? 'complete' : 'pending_final_audit';
   if (completionState === 'pending_final_audit') {
-    assert(readiness.status === 'breadth_chapters_materialized_final_audit_pending', 'Pending state har feil readiness-status');
+    assert(readiness.status === (readiness.complete_ready ? 'university_breadth_complete' : 'breadth_chapters_materialized_final_audit_pending'), 'Pending state har feil readiness-status');
     assert(readiness.next_gate === FINAL_GATE, 'Pending state må peke til holistic audit');
     assert(statusEntry?.editorialStatus === 'chapters_in_progress' && statusEntry?.nextGate === FINAL_GATE, 'Pending subject status har feil fase');
   } else {

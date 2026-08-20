@@ -4,13 +4,13 @@ import { auditVitenskapUniversityReadiness } from '../scripts/audit-fagverk-vite
 
 const EDITORIAL_BLOCKERS = [];
 
-test('Vitenskap university readiness viser matematikk-kapittelproduksjon uten å overrapportere complete', () => {
+test('Vitenskap university readiness bevarer produksjonsbevis etter terminal completion', () => {
   const { report } = auditVitenskapUniversityReadiness();
   assert.equal(report.subject.id, 'vitenskap');
   assert.equal(report.subject.title, 'Vitenskap & teknologi');
-  assert.equal(report.subject.editorialStatus, 'chapters_in_progress');
-  assert.equal(report.subject.nextGate, 'final_holistic_university_breadth_completion_audit');
-  assert.equal(report.subject.completeReady, false);
+  assert.ok(['chapters_in_progress', 'complete'].includes(report.subject.editorialStatus));
+  assert.ok(['final_holistic_university_breadth_completion_audit', 'maintenance_source_refresh_and_place_case_expansion'].includes(report.subject.nextGate));
+  assert.equal(report.subject.completeReady, true);
   assert.equal(report.inventory.vitenskap.domain_count, 6);
   assert.equal(report.inventory.vitenskap.emne_count, 117);
   assert.equal(report.inventory.vitenskap.method_count, 84);
@@ -30,7 +30,7 @@ test('Vitenskap university readiness viser matematikk-kapittelproduksjon uten å
   assert.equal(report.coverageSummary.materializedBreadthFamilyCount, 4);
 });
 
-test('matematikk, fysikk og kjemi er materialisert mens medisin fortsatt blokkerer editorial completion', () => {
+test('matematikk, fysikk, kjemi og medisin er materialisert uten breadth-blockers', () => {
   const { report, readiness } = auditVitenskapUniversityReadiness();
   assert.deepEqual(report.structuralBlockingGaps, []);
   assert.deepEqual(report.editorialBlockers, EDITORIAL_BLOCKERS);
@@ -68,7 +68,7 @@ test('Teknologi forblir nested og universitetsbredden bruker inspiserbare benchm
   assert.equal(report.gates.officialBenchmarksInspectable, true);
 });
 
-test('første produksjonsenhet bevares og registry/release har to kapitler', () => {
+test('første produksjonsenhet bevares og registry/release har fem kapitler', () => {
   const { report } = auditVitenskapUniversityReadiness();
   assert.equal(report.firstProductionUnit.chapterId, 'vitenskap-fra-observasjon-til-etterprovbar-kunnskap');
   assert.equal(report.firstProductionUnit.primaryDomainId, 'institusjoner_laboratorier_kunnskapssteder');

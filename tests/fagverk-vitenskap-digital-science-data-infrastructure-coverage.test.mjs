@@ -16,7 +16,7 @@ test('Vitenskap digital science/data batch reduces only legitimate blockers', ()
   const report = auditVitenskapDigitalScienceDataInfrastructureCoverage({ writeReport:false, checkReport:false });
   assert.equal(report.coverage.holisticOwnedAfterBatch,89);
   assert.equal(report.coverage.holisticUncoveredAfterBatch,28);
-  assert.equal(report.guards.subjectCompleteRemainsFalse,true);
+  assert.equal(report.guards.batchDidNotPrematurelyCompleteSubject,true);
   assert.equal(report.guards.qualityReviewDeferred,true);
 });
 

@@ -44,8 +44,8 @@ export function auditVitenskapHolisticQualityReview({ writeReport = false, check
   assert(DIMENSIONS.every((id) => scores[id] >= readiness.quality_contract.minimum_dimension_score), 'Quality review har dimensjon under minimum');
   assert(review.decision === 'pass_for_completion_eligibility', 'Quality review må være eksplisitt completion-eligibility review');
 
-  assert(holistic.subject.completeReady === false, 'Quality-review PR kan ikke flippe complete_ready');
-  assert(holistic.status === 'eligible_for_completion', 'Bestått review skal gjøre holistic eligible_for_completion');
+  assert(holistic.subject.completeReady === (holistic.status === 'complete_and_holistically_audited'), 'Holistic status og complete_ready er ikke konsistente');
+  assert(['eligible_for_completion', 'complete_and_holistically_audited'].includes(holistic.status), 'Bestått review skal være completion-eligible eller ferdig reconcilet');
   assert(holistic.qualityReview.status === 'pass' && holistic.qualityReview.passes === true, 'Holistic audit må validere review som pass');
   assert(holistic.gates.eligibleForCompletion === true, 'Alle ti completion requirements må være grønne etter review');
   assert(holistic.blockers.length === 0, 'Bestått quality review skal fjerne siste holistic blocker');
