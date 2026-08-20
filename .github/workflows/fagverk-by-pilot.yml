@@ -16,10 +16,12 @@ on:
       - 'scripts/audit-fagverk-subject-inventory.mjs'
       - 'scripts/audit-fagverk-general-engine.mjs'
       - 'scripts/audit-fagverk-by-pilot.mjs'
+      - 'tools/audit-by-theory-integrity.mjs'
       - 'scripts/build-fagverk-release-manifest.mjs'
       - 'tests/fagverk-subject-inventory.test.mjs'
       - 'tests/fagverk-general-engine.test.mjs'
       - 'tests/fagverk-by-pilot.test.mjs'
+      - 'tests/by-theory-integrity.test.mjs'
       - 'tests/fagverk-release-manifest.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-by-pilot.yml'
@@ -30,7 +32,9 @@ on:
       - 'data/badges/by.json'
       - 'data/fagverk/**'
       - 'scripts/audit-fagverk-by-pilot.mjs'
+      - 'tools/audit-by-theory-integrity.mjs'
       - 'tests/fagverk-by-pilot.test.mjs'
+      - 'tests/by-theory-integrity.test.mjs'
       - 'reports/fagverk/**'
       - '.github/workflows/fagverk-by-pilot.yml'
   workflow_dispatch:
@@ -50,13 +54,16 @@ jobs:
       - name: Validate syntax and deterministic reports
         run: |
           node --check scripts/audit-fagverk-by-pilot.mjs
+          node --check tools/audit-by-theory-integrity.mjs
           node scripts/audit-fagverk-subject-inventory.mjs
           node scripts/audit-fagverk-general-engine.mjs
           node scripts/audit-fagverk-by-pilot.mjs
+          node tools/audit-by-theory-integrity.mjs
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Validate Fagverk and By contracts
         run: |
           node --test tests/fagverk-subject-inventory.test.mjs
           node --test tests/fagverk-general-engine.test.mjs
           node --test tests/fagverk-by-pilot.test.mjs
+          node --test tests/by-theory-integrity.test.mjs
           node --test tests/fagverk-release-manifest.test.mjs
