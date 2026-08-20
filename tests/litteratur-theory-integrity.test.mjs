@@ -9,6 +9,8 @@ test('Litteratur strict theory integrity proves all 28 canonical major fields wi
   assert.equal(r.proof_scope,'per_canonical_major_field');
   assert.equal(r.completion_status_read_only,true);
   assert.equal(r.content_rewrite_required,false);
+  assert.equal(r.rules.fixed_theorist_quota_forbidden,true);
+  assert.equal(r.rules.named_people_require_claim_bound_work_or_research_contribution,true);
   assert.equal(r.summary.canonicalMajorFields,28);
   assert.equal(r.summary.fieldsStrictlyProven,28);
   assert.equal(r.summary.expandedFullFieldAreas,18);
