@@ -3,74 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Mitt minnekammer | History Go</title>
-  <meta name="description" content="Ditt personlige minnekammer i History Go, der kunnskap fra steder, personer, emner, historier og quiz settes i faglig sammenheng.">
-
-  <script>
-    (function () {
-      const params = new URLSearchParams(location.search);
-      if (params.has("subject") || params.get("view") === "v2") return;
-      try {
-        const referrer = new URL(document.referrer);
-        if (referrer.origin === location.origin && /\/profile\.html$/.test(referrer.pathname)) {
-          location.replace("knowledge-profile.html");
-        }
-      } catch {}
-    })();
-  </script>
-
+  <title>Kunnskapen min | History Go</title>
+  <meta name="description" content="Kunnskapen i Min samling: fag, emner, begreper, språkspor, kilder og provenance.">
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/knowledge-v2.css">
   <link rel="stylesheet" href="css/knowledge-badge-logos.css">
-  <style>
-    .kv2-side-stack { display: grid; gap: 14px; }
-  </style>
+  <link rel="stylesheet" href="css/personal-collection-v1.css">
 </head>
 <body class="knowledge-v2-page">
   <header class="kv2-appbar">
-    <a class="kv2-brand" href="index.html" aria-label="Til kartet">
-      <img src="bilder/logo_historygo.PNG" alt="History Go">
-    </a>
+    <a class="kv2-brand" href="profile.html" aria-label="Til Min samling"><img src="bilder/logo_historygo.PNG" alt="History Go"></a>
     <nav class="kv2-appbar-actions" aria-label="Hovednavigasjon">
+      <a href="profile.html" class="kv2-icon-link" aria-label="Min samling" title="Min samling">◎</a>
       <a href="index.html" class="kv2-icon-link" aria-label="Kart" title="Kart">⌖</a>
-      <a href="profile.html" class="kv2-icon-link" aria-label="Profil" title="Profil">◎</a>
     </nav>
   </header>
 
   <main class="knowledge-v2-shell">
     <section class="kv2-hero" aria-labelledby="knowledgeTitle">
       <div class="kv2-hero-copy">
-        <span class="kv2-eyebrow">Mitt minnekammer</span>
-        <h1 id="knowledgeTitle">Det du kan.<br>I sammenheng.</h1>
-        <p>Kunnskapen kommer fra steder, personer, emner, historier og quiz. Quizene samler og formidler stoffet, prøver deg og viser hva du har lest og mestret. Minnekammeret setter alt inn i fag, begreper, terminologi og sammenhenger.</p>
+        <span class="kv2-eyebrow"><a href="profile.html" style="text-decoration:none">Min samling</a> · Kunnskap</span>
+        <h1 id="knowledgeTitle">Kunnskapen din.<br>I sammenheng.</h1>
+        <p>Her finner du kunnskapen du faktisk har samlet og lært i History Go. Hver enhet beholder fag, sted, kilde og annen canonical provenance når den finnes.</p>
+        <div class="collection-home-actions">
+          <a class="collection-action" href="profile.html">← Min samling</a>
+          <button class="collection-action primary" type="button" data-knowledge-aha>Utforsk med AHA</button>
+        </div>
       </div>
       <section id="knowledgeSummary" class="kv2-summary" aria-label="Kunnskapsoversikt"></section>
     </section>
 
     <section class="kv2-toolbar" aria-label="Finn og velg kunnskap">
-      <label class="kv2-search" for="knowledgeSearch">
-        <span aria-hidden="true">⌕</span>
-        <input id="knowledgeSearch" type="search" placeholder="Søk i minnekammeret" autocomplete="off">
-      </label>
-      <nav id="knowledgeSubjectNav" class="kv2-subject-nav" aria-label="Velg fagfelt"></nav>
+      <label class="kv2-search" for="knowledgeSearch"><span aria-hidden="true">⌕</span><input id="knowledgeSearch" type="search" placeholder="Søk i kunnskapen din" autocomplete="off"></label>
+      <nav id="knowledgeSubjectNav" class="kv2-subject-nav" aria-label="Velg fag eller samling"></nav>
     </section>
 
-    <p id="knowledgeLoading" class="kv2-status">Bygger minnekammeret …</p>
+    <p id="knowledgeLoading" class="kv2-status">Bygger kunnskapssamlingen …</p>
     <p id="knowledgeError" class="kv2-status kv2-status-error" hidden></p>
     <div id="knowledgeContent" aria-live="polite"></div>
   </main>
 
-  <footer class="kv2-footer">
-    <a href="profile.html">Profil</a>
-    <span aria-hidden="true">·</span>
-    <a href="knowledge-profile.html">Klassisk kunnskapsprofil</a>
-    <span aria-hidden="true">·</span>
-    <a href="index.html">Kart</a>
-  </footer>
+  <footer class="kv2-footer"><a href="profile.html">Min samling</a><span aria-hidden="true">·</span><a href="index.html">Kart</a></footer>
 
   <script src="js/learningLog.js"></script>
+  <script src="js/aha.js"></script>
+  <script src="js/profileIdentity.js"></script>
   <script src="dist/web/knowledge.js"></script>
   <script src="dist/web/hgInsights.js"></script>
   <script src="js/dataHub.js"></script>
