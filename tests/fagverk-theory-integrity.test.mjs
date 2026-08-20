@@ -2,23 +2,23 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { auditFagverkTheoryIntegrity } from '../scripts/audit-fagverk-theory-integrity.mjs';
 
-test('strict theory integrity audit dekker 17 toppfag og Teknologi nested', () => {
+test('strict theory integrity audit dekker 19 toppfag og Teknologi nested', () => {
   const r=auditFagverkTheoryIntegrity();
-  assert.equal(r.scope.topLevelSubjects,17);
+  assert.equal(r.scope.topLevelSubjects,19);
   assert.equal(r.scope.nestedSpecializations,1);
-  assert.equal(r.scope.totalAudited,18);
-  assert.equal(r.subjects.length,18);
-  assert.ok(r.subjects.every(s=>s.baseline==='strong_structured_evidence'));
+  assert.equal(r.scope.totalAudited,20);
+  assert.equal(r.subjects.length,20);
 });
 
-test('baseline strong blir ikke feilaktig oppgradert uten strict proof', () => {
+test('historisk 18/18 strict bevares uten å feilmerke de nye fagene', () => {
   const r=auditFagverkTheoryIntegrity();
-  assert.equal(r.status,'strict_audit_complete');
-  assert.equal(r.strictCompletionGateReady,true);
+  assert.equal(r.status,'strict_audit_open_evidence_gaps');
+  assert.equal(r.strictCompletionGateReady,false);
   assert.equal(r.summary.strictly_proven,18);
   assert.equal(r.summary.structured_subject_gate_not_strict,0);
   assert.equal(r.summary.partial_strict_evidence,0);
-  assert.equal(r.summary.baseline_only_strict_proof_missing,0);
+  assert.equal(r.summary.baseline_only_strict_proof_missing,2);
+  assert.deepEqual(r.expansionProductionQueue,['helse','utdanning']);
 });
 
 test('manglende strict proof blir ikke feiltolket som innholdshull', () => {
@@ -39,7 +39,7 @@ test('alle 18 subject-gates, inkludert Filosofi og nested Teknologi, er field-le
   }
 });
 
-test('completion-status er read-only og proof-køen er tom', () => {
+test('completion-status er read-only og bare expansion-køen er åpen', () => {
   const r=auditFagverkTheoryIntegrity();
   assert.equal(r.rules.completionStatusReadOnly,true);
   assert.deepEqual(r.proofReconciliationQueue,[]);

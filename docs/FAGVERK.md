@@ -1,9 +1,9 @@
 # History GO — canonical kontrakt for Fagverket og alle fagsider
 
-Status: **canonical og bindende fagverkskontrakt v8**
+Status: **canonical og bindende fagverkskontrakt v9**
 Eier: `fagverk_subject_page_architecture` og `fagverk_subject_page_production`
 Gjelder: alle canonicale fag i `data/categories/category_contract.json`
-Sist kontrollert: **2026-08-19**
+Sist kontrollert: **2026-08-20**
 
 Dette er den **eneste samlede kontrakten** for hvordan History GO bygger, materialiserer, kvalitetssikrer og ferdigstiller fagsidene i Fagverket.
 
@@ -27,7 +27,7 @@ Dokumentet eier **ikke** selve fagdefinisjonene, pensuminnholdet, quizreglene, K
 
 > **History GO skal ha én felles fagsidemotor, én normalisert runtime-modell og én manifest-resolvert canonical fagpakke per fag.**
 
-Det skal ikke bygges én separat teknisk fagside per kategori, og politikksiden skal ikke kopieres og omskrives sytten ganger.
+Det skal ikke bygges én separat teknisk fagside per kategori, og politikksiden skal ikke kopieres og omskrives nitten ganger.
 
 Alle fag åpnes gjennom samme sidekontrakt:
 
@@ -193,6 +193,8 @@ naeringsliv
 natur
 politikk
 psykologi
+helse
+utdanning
 religion
 scenekunst
 sport
@@ -205,6 +207,10 @@ film_tv
 Teknologi er ikke et eget toppfag. Den komplette fagpakken registreres som `vitenskap.specializations.teknologi` og skal vises som en spesialisering inne i Vitenskap & teknologi.
 
 Denne listen er en kontrollert baseline, ikke en ny kategori-sannhetskilde. Ved endring gjelder `category_contract.json`, kategori-auditen og fagmanifestet.
+
+Det utvidede målbildet er **19 toppfag + Teknologi som nested spesialisering = 20 auditerte enheter**. Den historiske sluttbaselinen på 17 toppfag + Teknologi = 18/18 strict skal bevares som et etterprøvbart resultat, men kan ikke brukes til å påstå at de to nye fagene allerede er ferdige.
+
+Seks underkategorier er eksplisitt canonicale i `category_contract.json`: Natur → Geografi, Språk & litteratur → Språk & lingvistikk, Politikk & samfunn → Juss & rettsvitenskap, Politikk & samfunn → Sosiologi & antropologi, Helse & medisin → Medisin & helsevitenskap og Skole & utdanning → Pedagogikk & utdanningsvitenskap. Tverrfaglige emner skal ha én canonical eier og eksplisitte secondary bindings; hele fagfelt skal ikke dupliseres.
 
 ### 5.1 Faglig heldekning uten tallkvoter
 
@@ -860,7 +866,7 @@ Det er ikke fremdrift å:
 - skrive generiske introduksjoner uten kilder;
 - øke coverage-tall ved å senke kravene;
 - nå et forventet tall ved å splitte, slå sammen eller gjenta innhold uten faglig grunn;
-- erklære theory-quality ferdig fordi en baselineklassifisering er 18/18 sterk når strict hovedfelt-proof fortsatt mangler.
+- bruke den historiske 18/18-baselinen som ferdigbevis for 19+1-utvidelsen når Helse og Utdanning fortsatt mangler produksjon og strict hovedfelt-proof.
 
 ---
 
@@ -916,7 +922,7 @@ Fagverk-workflowen skal etter hvert håndheve minst:
 
 Den globale read-only theory-integrity-porten skal:
 
-- dekke 17 canonicale toppfag + Teknologi som nested spesialisering;
+- dekke 19 canonicale toppfag + Teknologi som nested spesialisering;
 - beholde baseline og strict proof som forskjellige nivåer;
 - måle hvert canonicalt hovedfelt, ikke bare fagets totalsummer;
 - kreve bærende teori/modellgrunnlag, relevante rivaler/alternativer og eksplisitte begrensninger/gyldighetsområder;
@@ -933,16 +939,9 @@ Den globale read-only theory-integrity-porten skal:
 
 ## 17. Nåværende baseline
 
-Ved innføringen av denne kontrakten er:
+Per 2026-08-20 er den historiske 17+1-leveransen bevist med **18/18 `strictly_proven`**. Utvidelsesprogrammet har deretter etablert to nye canonicale toppfag, `helse` og `utdanning`, med kjernefilene pensum, emner, fagkart og methods. Begge står ærlig som `planned` / `pending` / `not_started` og har ingen fulltekst- eller strict-completion-status.
 
-- fagverkforsiden materialisert;
-- merke- og fagsider skilt som produktroller;
-- politikk teknisk materialisert som fagside;
-- de øvrige fagene fortsatt `planned` i portalregisteret;
-- politikkens runtime delvis fagspesifikk;
-- bare et begrenset antall fullverdige lærekapitler materialisert.
-
-Dette er en tidsbundet baseline. Gjeldende navigasjonsstatus leses alltid fra `data/fagverk/fagverk_portal.json`, og redaksjonell status skal leses fra det maskinregisteret som etableres i fase 0.
+Gjeldende utvidelsesstatus skal derfor uttrykkes som **19 toppfag + én nested Teknologi-spesialisering, 18/20 strictly proven, to expansion-production-fag og null content-repair-fag**. `reports/fagverk/fagverk-expansion-19-plus-1-reconciliation-v1.json` eier den første reuse/move/secondary-link/gap-auditen. Gjeldende navigasjonsstatus leses alltid fra `data/fagverk/fagverk_portal.json`, redaksjonell status fra `data/fagverk/subject_status.json`, og strict-status fra den deterministiske theory-integrity-rapporten.
 
 ---
 
@@ -961,6 +960,7 @@ Fagverksprogrammet kan først omtales som ferdig når:
 9. teknisk og redaksjonell status er maskinlesbar, etterprøvbar og synkronisert;
 10. portalens **Åpne faget** leder til et reelt læreverk for hvert canonicalt fag;
 11. den permanente theory-integrity-porten har strict hovedfelt-for-hovedfelt-proof for alle canonicale fagprofiler, tom proof-reconciliation-kø og er grønn på `main`.
+12. alle 19 toppfag er materialized og audited, 20/20 enheter inkludert Teknologi er `strictly_proven`, alle seks ekspansjonsunderkategoriene er reelt produsert og re-proven, og proof-, expansion-production- og content-repair-køene er tomme.
 
 ---
 

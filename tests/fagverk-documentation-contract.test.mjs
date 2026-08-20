@@ -56,7 +56,7 @@ function markdownMentionsPath(markdown, relativePath) {
 test('FAGVERK.md is the explicit canonical all-subject production contract', () => {
   const master = read(MASTER);
 
-  assert.match(master, /canonical og bindende fagverkskontrakt v8/i);
+  assert.match(master, /canonical og bindende fagverkskontrakt v9/i);
   assert.match(master, /eneste samlede kontrakten/i);
   assert.match(master, /én felles fagsidemotor/i);
   assert.match(master, /fagverk\.html\?subject=<subject_id>/);
@@ -91,7 +91,7 @@ test('theory quality is qualitative per major field and cannot pass on aggregate
   const subjectContract = read('docs/SUBJECT_FILE_CONTRACT.md');
   const theoryContract = readJson(THEORY_QUALITY_CONTRACT);
 
-  assert.equal(theoryContract.version, '1.1.0');
+  assert.equal(theoryContract.version, '1.2.0');
   assert.equal(theoryContract.status, 'integrity_gate_contract');
   assert.equal(theoryContract.final_gate?.mode, 'per_major_field_not_aggregate');
   assert.equal(theoryContract.programme_checklist?.length, 10);

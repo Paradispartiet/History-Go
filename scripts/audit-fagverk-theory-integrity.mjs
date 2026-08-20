@@ -72,7 +72,7 @@ const strongRunnerStatus=status=>status==='STRICTLY_PROVEN'||/^strong_theory_(ca
 export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}={}){
   const contract=json(CONTRACT), evidence=json(EVIDENCE);
   assert(contract.schema==='history_go_fagverk_theory_quality_contract_v1','Ugyldig theory-quality contract');
-  assert(contract.version==='1.1.0','Strict theory-integrity krever theory-quality contract v1.1.0');
+  assert(contract.version==='1.2.0','Strict theory-integrity krever theory-quality contract v1.2.0');
   assert(contract.status==='integrity_gate_contract','Theory-quality contract må være løftet fra baseline til integrity-gate contract');
   assert(contract.final_gate?.mode==='per_major_field_not_aggregate','Strict theory-integrity må måles per canonicalt hovedfelt');
   assert(Array.isArray(contract.programme_checklist)&&contract.programme_checklist.length===10,'Theory-quality-programmet skal ha eksakt 10 bindende programsteg');
@@ -182,7 +182,7 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
     schema:'history_go_fagverk_theory_integrity_audit_v1',
     version:'1.0.0',
     status:subjects.every(s=>s.integrityStatus==='strictly_proven')?'strict_audit_complete':'strict_audit_open_evidence_gaps',
-    scope:{topLevelSubjects:17,nestedSpecializations:1,totalAudited:18},
+    scope:{topLevelSubjects:19,nestedSpecializations:1,totalAudited:20},
     rules:{
       baselineStrongDoesNotEqualStrictProof:true,
       missingProofDoesNotEqualContentGap:true,
@@ -201,7 +201,7 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
       substantive_content_gaps_proven:subjects.filter(s=>s.substantiveContentGap).length
     },
     strictCompletionGateReady:subjects.every(s=>s.integrityStatus==='strictly_proven'),
-    proofReconciliationQueue:subjects.filter(s=>s.integrityStatus!=='strictly_proven').map(s=>s.id),
+    historicalBaseline:{topLevelSubjects:17,nestedSpecializations:1,totalAudited:18,strictlyProven:18},proofReconciliationQueue:subjects.filter(s=>s.integrityStatus!=='strictly_proven'&&s.editorialStatus!=='not_started').map(s=>s.id),expansionProductionQueue:subjects.filter(s=>s.editorialStatus==='not_started').map(s=>s.id),
     contentRepairQueue:subjects.filter(s=>s.substantiveContentGap).map(s=>s.id),
     subjects
   };

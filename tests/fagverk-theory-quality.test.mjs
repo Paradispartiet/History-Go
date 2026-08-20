@@ -8,22 +8,21 @@ const STRONG_FLOOR = new Set([
   'filosofi','film_tv','teknologi'
 ]);
 
-test('Fagverk theory baseline dekker 17 toppfag og Teknologi nested', () => {
+test('Fagverk theory baseline dekker 19 toppfag og Teknologi nested', () => {
   const r = auditFagverkTheoryQuality();
-  assert.equal(r.scope.topLevelSubjects, 17);
+  assert.equal(r.scope.topLevelSubjects, 19);
   assert.equal(r.scope.nestedSpecializations, 1);
-  assert.equal(r.scope.totalAudited, 18);
-  assert.equal(r.subjects.length, 18);
+  assert.equal(r.scope.totalAudited, 20);
+  assert.equal(r.subjects.length, 20);
 });
 
-test('alle 18 theory/model-profiler er låst sterke', () => {
+test('den historiske 18/18-baselinen forblir sterk under 19+1-utvidelsen', () => {
   const r = auditFagverkTheoryQuality();
   const byId = new Map(r.subjects.map(s => [s.id, s]));
   for (const id of STRONG_FLOOR) assert.equal(byId.get(id)?.baseline, 'strong_structured_evidence', `${id} har theory-quality-regresjon`);
   assert.equal(r.summary.strong_structured_evidence, 18);
-  assert.equal(r.summary.partial_structured_evidence, 0);
-  assert.equal(r.summary.unstructured_theory_evidence, 0);
-  assert.equal(r.summary.theory_quality_gap, 0);
+  assert.equal(r.historicalBaseline.strongStructuredEvidence, 18);
+  assert.deepEqual(r.expansionProductionQueue, ['helse', 'utdanning']);
 });
 
 test('reparasjonskø er tom og completion-status forblir urørt', () => {

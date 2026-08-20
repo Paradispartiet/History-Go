@@ -1,0 +1,45 @@
+{
+  "version": "1.1",
+  "status": "canonical_category_profile",
+  "type": "category_quiz_profile",
+  "categoryId": "helse",
+  "title": "Helse & medisin",
+  "governance": {
+    "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+    "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+    "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
+    "authority": "category_content_only",
+    "may_override_global_rules": false,
+    "safety_contract": "data/fag/helse/clinical_safety_contract_helse_v1.json"
+  },
+  "required_emne_prefix": "em_helse_",
+  "content_priorities": [
+    "anatomi, fysiologi og regulerte kroppsfunksjoner",
+    "sykdomsmekanismer, forebygging og behandling som generell fagkunnskap",
+    "folkehelse, epidemiologi og sosial ulikhet i helse",
+    "helsetjenester, evidens, usikkerhet og medisinsk etikk"
+  ],
+  "essential_concepts": [
+    "homeostase",
+    "patofysiologi",
+    "risikofaktor",
+    "prevalens",
+    "kausalitet",
+    "klinisk evidens",
+    "forebygging",
+    "informert samtykke"
+  ],
+  "preferred_source_types": [
+    "fagfellevurdert medisinsk og helsefaglig forskning",
+    "systematiske kunnskapsoppsummeringer og evidensbaserte retningslinjer",
+    "offentlig helsestatistikk og metodebeskrivelser",
+    "universitetslærebøker og medisinske oppslagsverk"
+  ],
+  "category_rules": [
+    "Bruk spørsmål om generell fagkunnskap, aldri om hva en bestemt person bør diagnostiseres med eller gjøre.",
+    "Skill assosiasjon, risiko og årsak, og synliggjør relevant usikkerhet.",
+    "Bruk bare emne_id som finnes i kategoriens canonicale emnefil.",
+    "La sikkerhetskontrakten avgrense innholdet uten å overstyre globale quizregler."
+  ],
+  "forbidden_question_modes": ["individual_diagnosis", "individual_prognosis", "individual_treatment_advice"]
+}

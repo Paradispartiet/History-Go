@@ -47,9 +47,11 @@ const CATEGORY_LIST: CategoryDefinition[] = [
   { id: "by", name: "By & arkitektur", icon: "🏙️", color: "#A1917E", secondaryColor: "#3C3731", scope: "runtime_domain" },
   { id: "politikk", name: "Politikk & samfunn", icon: "🏛️", color: "#103E71", secondaryColor: "#114A84", scope: "runtime_domain" },
   { id: "subkultur", name: "Subkultur", icon: "🧷", color: "#292625", secondaryColor: "#E78847", scope: "runtime_domain" },
-  { id: "litteratur", name: "Litteratur", icon: "📚", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain" },
+  { id: "litteratur", name: "Språk & litteratur", icon: "📚", color: "#E1BE70", secondaryColor: "#C0964A", scope: "runtime_domain", aliases: ["Litteratur"] },
   { id: "naeringsliv", name: "Økonomi og næringsliv", icon: "🏭", color: "#0E3290", secondaryColor: "#AFB0B0", scope: "runtime_domain", aliases: ["Næringsliv", "Næringsliv & industri", "Økonomi", "Økonomi & næringsliv"] },
   { id: "psykologi", name: "Psykologi", icon: "🧠", color: "#06d6a0", scope: "runtime_domain" },
+  { id: "helse", name: "Helse & medisin", icon: "⚕️", color: "#0B7A75", secondaryColor: "#073B4C", scope: "runtime_domain", aliases: ["Helse", "Medisin", "Medicine", "Health"] },
+  { id: "utdanning", name: "Skole & utdanning", icon: "🎓", color: "#8A5A00", secondaryColor: "#3D2C0F", scope: "runtime_domain", aliases: ["Skole", "Utdanning", "Education"] },
   { id: "film_tv", name: "Film & TV", icon: "🎞️", color: "#6c757d", scope: "runtime_domain" },
   { id: "media", name: "Medier", icon: "🗞️", color: "#22B8B5", secondaryColor: "#123B4A", scope: "runtime_domain" },
 ];
@@ -74,7 +76,12 @@ const CATEGORY_ID_ALIASES: Readonly<Record<string, string>> = Object.freeze({
   technology: "vitenskap",
   tech: "vitenskap",
   it: "vitenskap",
-  informasjonsteknologi: "vitenskap"
+  informasjonsteknologi: "vitenskap",
+  health: "helse",
+  medicine: "helse",
+  medisin: "helse",
+  education: "utdanning",
+  skole: "utdanning"
 });
 
 function canonicalCategoryId(value: unknown): string {

@@ -142,8 +142,8 @@ for (const badgePath of index.files || []) {
   });
 }
 
-assert.strictEqual(index.files.length, 17, 'closeout skal dekke 17 canonical badges');
-assert.strictEqual(tierCount, 266, 'closeout skal dekke alle 266 canonical tiers');
+assert.strictEqual(index.files.length, 19, 'closeout skal dekke 19 canonical badges');
+assert.strictEqual(tierCount, 274, 'closeout skal dekke alle 274 canonical tiers');
 
 const generatorOutput = execFileSync(
   process.execPath,
@@ -156,4 +156,4 @@ assert.match(generatorOutput, /0 gated runtime gates remain audit debt/,
   `matrix-generator rapporterer fortsatt gate-gjeld: ${generatorOutput.trim()}`);
 
 assert.deepStrictEqual(debts, [], `Badge Career closeout har ${debts.length} gjeldspunkter:\n${debts.join('\n')}`);
-console.log(`civication badge career closeout ok: ${tierCount} tiers / 17 badges / ${replaceCount} resolved life-position rows / ${careerContractCount} career contracts / 0 debt`);
+console.log(`civication badge career closeout ok: ${tierCount} tiers / 19 badges / ${replaceCount} resolved life-position rows / ${careerContractCount} career contracts / 0 debt`);

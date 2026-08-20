@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "status": "baseline_only_not_completion_gate",
   "scope": {
-    "topLevelSubjects": 17,
+    "topLevelSubjects": 19,
     "nestedSpecializations": 1,
-    "totalAudited": 18
+    "totalAudited": 20
   },
   "rules": {
     "noCompletionStatusChanges": true,
@@ -23,9 +23,19 @@
     "strong_structured_evidence": 18,
     "partial_structured_evidence": 0,
     "unstructured_theory_evidence": 0,
-    "theory_quality_gap": 0
+    "theory_quality_gap": 2
+  },
+  "historicalBaseline": {
+    "topLevelSubjects": 17,
+    "nestedSpecializations": 1,
+    "totalAudited": 18,
+    "strongStructuredEvidence": 18
   },
   "repairQueue": [],
+  "expansionProductionQueue": [
+    "helse",
+    "utdanning"
+  ],
   "subjects": [
     {
       "id": "by",
@@ -135,6 +145,34 @@
       "baseline": "strong_structured_evidence",
       "repairPriority": "none",
       "missingSignals": [],
+      "parseFailureCount": 0
+    },
+    {
+      "id": "helse",
+      "topLevel": true,
+      "parentSubject": null,
+      "profile": "hybrid",
+      "editorialStatus": "not_started",
+      "baseline": "theory_quality_gap",
+      "repairPriority": "medium",
+      "missingSignals": [
+        "structured_units",
+        "named_people_or_works"
+      ],
+      "parseFailureCount": 0
+    },
+    {
+      "id": "utdanning",
+      "topLevel": true,
+      "parentSubject": null,
+      "profile": "theorist_rival",
+      "editorialStatus": "not_started",
+      "baseline": "theory_quality_gap",
+      "repairPriority": "medium",
+      "missingSignals": [
+        "structured_units",
+        "named_people_or_works"
+      ],
       "parseFailureCount": 0
     },
     {

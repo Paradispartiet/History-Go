@@ -17,7 +17,7 @@ for (const rel of index.files || []) {
   for (const badge of list) if (badge?.id) badges.set(String(badge.id), badge);
 }
 
-assert.strictEqual(badges.size, 17, 'Badge Career Matrix skal dekke alle 17 canonical badges');
+assert.strictEqual(badges.size, 19, 'Badge Career Matrix skal dekke alle 19 canonical badges');
 let tierCount = 0;
 for (const [badgeId, badge] of badges) {
   const policyRows = policy.badges?.[badgeId];
@@ -44,14 +44,14 @@ for (const [badgeId, badge] of badges) {
       `${badgeId}: policy har foreldet/ukjent tittel ${row[0]}`);
   }
 }
-assert.strictEqual(tierCount, 266, 'Auditen skal være låst til dagens 266 canonical tiers');
+assert.strictEqual(tierCount, 274, 'Auditen skal være låst til dagens 274 canonical tiers');
 
 const generatorOutput = execFileSync(
   process.execPath,
   [path.join(ROOT, 'scripts/civication-badge-career-matrix.mjs'), '--check'],
   { cwd: ROOT, encoding: 'utf8' }
 );
-assert.match(generatorOutput, /266 tiers across 17 badges/,
+assert.match(generatorOutput, /274 tiers across 19 badges/,
   'Badge Career Matrix-generatoren må kunne lese og validere dagens canonical kilder');
 
 const psychology = badges.get('psykologi');

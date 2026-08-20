@@ -1,0 +1,110 @@
+{
+  "schema": "history_go_fagverk_expansion_reconciliation_v1",
+  "version": "1.0.0",
+  "status": "authority_audit_complete_foundation_only",
+  "audited_main_sha": "2ab7e737d1c5f0109f5e5259c88d7dfd20ccae53",
+  "rules": {
+    "no_content_deleted": true,
+    "no_existing_completion_reopened": true,
+    "one_canonical_owner_per_topic": true,
+    "secondary_bindings_before_duplication": true,
+    "foundation_does_not_equal_completion": true
+  },
+  "historical_baseline": {
+    "top_level_subjects": 17,
+    "nested_specializations": 1,
+    "strictly_proven": 18
+  },
+  "expanded_target": {
+    "top_level_subjects": 19,
+    "nested_specializations": 1,
+    "total_audited_target": 20,
+    "strictly_proven_at_foundation": 18,
+    "expansion_production_queue": ["helse", "utdanning"]
+  },
+  "findings": [
+    {
+      "target": "helse/medisin_helsevitenskap",
+      "primary_classification": "reuse_and_move_later",
+      "evidence": [
+        "data/fag/fagkart.json#helse_livsvitenskap",
+        "data/fag/vitenskap/vitenskappensum_canonical_v4_6.json#natur_medisin_miljo",
+        "data/fagverk/vitenskap/vitenskap-medisin-fra-mekanisme-til-folkehelse.json"
+      ],
+      "secondary_links": [
+        "data/fagverk/psykologi/psykisk-helse-institusjoner-og-behandling.json",
+        "data/fagverk/sport/inkludering-helse-lek-samfunn.json",
+        "data/fagverk/by/klima-helse-varme-vann-tilgjengelighet.json"
+      ],
+      "new_production_required": [
+        "anatomi_og_fysiologi", "sykdomslaere_og_patofysiologi", "klinisk_bredde",
+        "mikrobiologi_og_infeksjon", "farmakologi", "ernaering_og_metabolisme",
+        "rehabilitering_og_funksjon", "helsetjenester_og_helseokonomi"
+      ]
+    },
+    {
+      "target": "utdanning/pedagogikk_utdanningsvitenskap",
+      "primary_classification": "reuse_secondary_link_and_new_production",
+      "evidence": [
+        "data/fag/fagkart.json#samfunnsvitenskap/pedagogikk",
+        "data/fag/psykologi/psykologipensum_canonical_v4_5.json#utvikling_oppvekst_laring",
+        "data/fag/litteratur/litteraturvitenskap_canonical_v1/foundation_texts/barne_ungdoms_didaktisk_litteratur.json",
+        "data/fagverk/sport/articles/em_sport_trener_pedagogikk.json"
+      ],
+      "secondary_links": ["psykologi/laering_og_utvikling", "politikk/utdanningspolitikk", "historie/utdanningshistorie"],
+      "new_production_required": [
+        "didaktisk_bredde", "barnehage_og_tidlig_laering", "grunnskole",
+        "videregaende_og_yrkesfag", "hoyere_utdanning", "vurdering_og_maling",
+        "spesialpedagogikk", "inkludering", "skoleledelse", "laererprofesjon"
+      ]
+    },
+    {
+      "target": "natur/geografi",
+      "primary_classification": "reuse_and_expand",
+      "evidence": [
+        "data/fag/fagkart.json#samfunnsvitenskap/geografi",
+        "data/fag/natur/naturpensum_canonical_v4_5.json#geologi_landskap_tid",
+        "data/fag/natur/emner_natur_canonical_v4_5.json#em_natur_biogeografi_historisk_utbredelse_mangfold"
+      ],
+      "new_production_required": ["samfunnsgeografi", "befolkningsgeografi", "kulturgeografi", "okonomisk_geografi", "politisk_geografi", "kartografi_og_gis"]
+    },
+    {
+      "target": "litteratur/sprak_lingvistikk",
+      "primary_classification": "reuse_and_expand",
+      "evidence": [
+        "data/fag/fagkart.json#humaniora/sprak_lingvistikk",
+        "data/fag/litteratur/litteraturpensum_canonical_v4_5.json#sprak_makt_identitet"
+      ],
+      "new_production_required": ["fonetikk_og_fonologi", "morfologi", "syntaks", "semantikk", "pragmatikk", "historisk_lingvistikk", "sprakendring", "dialektologi"]
+    },
+    {
+      "target": "politikk/juss_rettsvitenskap",
+      "primary_classification": "reuse_and_expand",
+      "evidence": [
+        "data/fag/politikk/politikkpensum_canonical_v4_5.json#rett_lov_rettssikkerhet",
+        "data/fag/politikk/emner_politikk_canonical_v4_5.json#em_pol_domstoler_rettspraksis"
+      ],
+      "new_production_required": ["rettsteori_og_rettskilder", "statsrett", "forvaltningsrett", "strafferett", "privatrett", "arbeidsrett", "folkerett", "eu_eos_rett"]
+    },
+    {
+      "target": "politikk/sosiologi_antropologi",
+      "primary_classification": "reuse_secondary_link_and_expand",
+      "evidence": [
+        "data/fag/fagkart.json#samfunnsvitenskap/sosiologi",
+        "data/fag/fagkart.json#samfunnsvitenskap/sosialantropologi",
+        "data/fag/politikk/politikkpensum_canonical_v4_5.json#normer_identitet_hverdagsliv",
+        "data/fag/politikk/politikkpensum_canonical_v4_5.json#fordeling_velferd_ulikhet"
+      ],
+      "new_production_required": ["sosial_struktur", "institusjoner", "familie_og_livslop", "arbeid_og_organisasjoner", "ritual_og_symbol", "sosiale_nettverk", "etnografi_og_feltarbeid"]
+    }
+  ],
+  "ownership_examples": [
+    { "topic": "psykisk_helse", "primary": "helse", "secondary": ["psykologi"] },
+    { "topic": "laering_og_hukommelse", "primary": "psykologi", "secondary": ["utdanning"] },
+    { "topic": "utdanningspolitikk", "primary": "utdanning", "secondary": ["politikk"] },
+    { "topic": "helsepolitikk", "primary": "helse", "secondary": ["politikk"] },
+    { "topic": "urbangeografi", "primary": "natur", "secondary": ["by"] },
+    { "topic": "rettshistorie", "primary": "politikk", "secondary": ["historie"] },
+    { "topic": "sosiolingvistikk", "primary": "litteratur", "secondary": ["politikk", "by"] }
+  ]
+}

@@ -1,6 +1,6 @@
 # Civication — helhetsaudit av Badge-liv, jobber og alternative livsløp
 
-Auditdato: 2026-08-13.
+Auditdato: 2026-08-20.
 
 ## Grunnmodell
 
@@ -15,7 +15,7 @@ Modellen er derfor delt i fire lag:
 
 Badge-poeng kan åpne livsvalg, men skal aldri automatisk tildele identitet, jobb, politisk verv, trosidentitet, autorisasjon, levevei eller lønn.
 
-## Audit av alle 17 Badges
+## Audit av alle 19 Badges
 
 | Badge | Dagens form | Nye parallelle livsposisjoner | Jobb-/realismearbeid |
 | --- | --- | --- | --- |
@@ -36,6 +36,8 @@ Badge-poeng kan åpne livsvalg, men skal aldri automatisk tildele identitet, job
 | **Film & TV** | Liv/status i begge ender, jobber i midten | Kinogjenger, Filmnerd, Seriesluker, Filmklubbmenneske, Festivalgjenger | Produksjonsassistent/manus/regi/serieskaper kan være jobb. Prisvinner, gjennomslag, stjerne og ikon er status/omdømme/levevei og skal ikke behandles som stillinger. |
 | **Medier** | Medieforbruk og offentlig status blandet med journalistjobb | Nyhetsjunkie, Podkastsluker, Kommentarfeltveteran, Medievaktbikkje, Debattant | Journalistikk/redaksjon er jobb. Medieprofil, stjerne, dagsordensetter og offentlighetsmakt trenger omdømme-/maktmekanikk, ikke bare karrierelønn. |
 | **Psykologi** | Formell karrierestige ferdig og godt gated | Psykologientusiast, Selvgransker, Mønsterjeger, Vaneeksperimentør, Relasjonsbygger | Behold dagens jobbarkitektur. Livsposisjonene må aldri antyde diagnose, behandling eller psykologmyndighet. |
+| **Helse & medisin** | Ny fagverksgrunnmur, uten profesjonsstige | Helseutforsker, Evidensleser, Folkehelseblikk, Omsorgsetiker | Ingen klinisk autoritet, diagnostikk, behandlingsrolle eller helsejobb følger av Badge-poeng. Profesjoner forblir stengt til egne kvalifikasjons-, autorisasjons- og arbeidsgiverkontrakter finnes. |
+| **Skole & utdanning** | Ny fagverksgrunnmur, uten profesjonsstige | Læringsutforsker, Klasseromsobservatør, Didaktisk tenker, Utdanningskritiker | Ingen lærer-, skoleleder- eller annen profesjonsmyndighet følger av Badge-poeng. Jobbspor forblir stengt til kvalifikasjons-, ansettelses- og institusjonskontrakter finnes. |
 
 ## Hva som gjør livsposisjonene levende
 
@@ -56,7 +58,7 @@ Videre levende konsekvenser bør komme fra:
 
 ### 1. Life Position Engine — materialisert
 
-Katalogen gir alle Badges alternative livsvalg og runtime kan kombinere dem med formell jobb.
+Katalogen gir alle 19 Badges alternative livsvalg og runtime kan kombinere dem med formell jobb. De nye Helse- og Utdanningsstiene er eksplisitt ikke-profesjonsgivende.
 
 ### 2. Levevei / livelihood — materialisert som runtime-kontrakt
 

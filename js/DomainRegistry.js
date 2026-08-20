@@ -5,20 +5,21 @@
 (function () {
   const CANONICAL = [
     "by", "historie", "kunst", "litteratur", "media", "musikk",
-    "naeringsliv", "natur", "politikk", "psykologi", "religion",
+    "naeringsliv", "natur", "politikk", "psykologi", "helse", "utdanning", "religion",
     "scenekunst", "sport", "subkultur", "vitenskap",
     "filosofi", "film_tv"
   ];
 
   const RUNTIME_CATEGORY_IDS = [
     "by", "historie", "kunst", "litteratur", "media", "musikk",
-    "naeringsliv", "natur", "politikk", "psykologi", "religion",
+    "naeringsliv", "natur", "politikk", "psykologi", "helse", "utdanning", "religion",
     "scenekunst", "sport", "subkultur", "vitenskap",
     "filosofi", "film_tv"
   ];
 
   const ALIASES = {
-    "populaerkultur": "popkultur",
+    "popkultur": "media",
+    "populaerkultur": "media",
     "philosophy": "filosofi",
     "sci": "vitenskap",
     "science": "vitenskap",
@@ -33,12 +34,18 @@
     "film": "film_tv",
     "tv": "film_tv",
     "journalistikk": "media",
+    "health": "helse",
+    "medicine": "helse",
+    "medisin": "helse",
+    "education": "utdanning",
+    "skole": "utdanning",
     "history": "historie",
     "city": "by"
   };
 
   const RUNTIME_ALIASES = {
-    "popkultur": "populaerkultur",
+    "popkultur": "media",
+    "populaerkultur": "media",
     "philosophy": "filosofi",
     "science": "vitenskap",
     "sci": "vitenskap",
@@ -52,7 +59,12 @@
     "theater": "scenekunst",
     "film": "film_tv",
     "tv": "film_tv",
-    "journalistikk": "media"
+    "journalistikk": "media",
+    "health": "helse",
+    "medicine": "helse",
+    "medisin": "helse",
+    "education": "utdanning",
+    "skole": "utdanning"
   };
 
   const FILES = {
