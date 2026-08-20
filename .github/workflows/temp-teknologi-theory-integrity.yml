@@ -1,0 +1,45 @@
+name: TEMP Teknologi strict theory reconciliation
+
+on:
+  push:
+    branches:
+      - agent/fagverk-teknologi-theory-integrity-proof-20260820
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate permanent Technology auditor syntax
+        run: |
+          node --check tools/audit-teknologi-theory-integrity.mjs
+          node --check tools/temp-reconcile-teknologi-theory-integrity.mjs
+      - name: Materialize and validate final 18-of-18 reconciliation
+        run: node tools/temp-reconcile-teknologi-theory-integrity.mjs
+      - name: Verify clean generated tree
+        run: |
+          git diff --check
+          git status --short
+      - name: Upload final permanent tree
+        uses: actions/upload-artifact@v4
+        with:
+          name: teknologi-theory-integrity-final-tree
+          path: |
+            tools/audit-teknologi-theory-integrity.mjs
+            tests/teknologi-theory-integrity.test.mjs
+            data/fag/teknologi/theory_integrity_bindings_teknologi_v1.json
+            reports/fagverk/teknologi-theory-integrity-audit.json
+            .github/workflows/teknologi-scientific-quality.yml
+            data/fag/fagverk_theory_integrity_evidence_v1.json
+            scripts/audit-fagverk-theory-integrity.mjs
+            tests/fagverk-theory-integrity.test.mjs
+            .github/workflows/fagverk-theory-integrity.yml
+            reports/fagverk/fagverk-theory-integrity-audit.json
+          if-no-files-found: error
