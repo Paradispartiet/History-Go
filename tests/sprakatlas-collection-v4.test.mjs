@@ -44,7 +44,9 @@ test("v4 writes only to canonical Knowledge V2 and does not invent a language st
   assert.match(runtime, /const KNOWLEDGE_KEY = "hg_knowledge_entries_v2"/);
   assert.match(runtime, /HGKnowledgeV2\?\.getEntries/);
   assert.match(runtime, /localStorage\?\.setItem\(KNOWLEDGE_KEY/);
-  assert.doesNotMatch(runtime, /language_collection|dialect_collection|sprakatlas_collection|atlas_collection/i);
+  const storageCalls = [...runtime.matchAll(/localStorage\?\.(?:getItem|setItem)\(([^,)]+)/g)]
+    .map(match => match[1].trim());
+  assert.deepEqual([...new Set(storageCalls)], ["KNOWLEDGE_KEY"]);
   assert.match(runtime, /collection_kind: COLLECTION_KIND/);
   assert.match(runtime, /const COLLECTION_KIND = "language"/);
 });
