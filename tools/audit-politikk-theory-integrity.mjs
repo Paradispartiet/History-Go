@@ -50,7 +50,8 @@ function validateSidecar(domainId,thinkerIds,bindings,thinkerRegistry){
     assert(norm(source.title)===norm(object.work),`${domainId}: verk og scholarly source title er usynkrone for ${object.thinker_id}`);
     const canonicalName=thinkerRegistry[object.thinker_id];
     assert(canonicalName,`${object.thinker_id}: mangler canonicalt visningsnavn`);
-    assert((source.authors||[]).some(author=>norm(author)===norm(canonicalName)),`${source.id}: scholarly source binder ikke canonical person ${canonicalName}`);
+    const canonicalSurname=displaySurname(canonicalName);
+    assert((source.authors||[]).some(author=>norm(author)===norm(canonicalName)||displaySurname(author)===canonicalSurname),`${source.id}: scholarly source binder ikke canonical person ${canonicalName}`);
   }
   return objects;
 }
