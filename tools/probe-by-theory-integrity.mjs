@@ -128,7 +128,7 @@ const domains = (fagkart.categories || []).map(domain => {
   const usedSources = sources.filter(source => usedSourceIds.has(source.id));
   const authoritativeUsedSources = usedSources.filter(source =>
     /^https:\/\//.test(text(source.url)) &&
-    AUTHORITATIVE_CLAIM_SOURCE_TYPE_RE.test([source.type, source.publisher, source.title].map(text).join(' '))
+    AUTHORITATIVE_CLAIM_SOURCE_TYPE_RE.test([source.source_type, source.type, source.publisher, source.title].map(text).join(' '))
   );
 
   const hookCandidates = hooks.map(hook => {
@@ -168,7 +168,7 @@ const domains = (fagkart.categories || []).map(domain => {
     verifiedUsedClaimCount: verifiedUsedClaims.length,
     usedSourceCount: usedSources.length,
     authoritativeUsedSourceCount: authoritativeUsedSources.length,
-    authoritativeSourceTypes: [...new Set(authoritativeUsedSources.map(source => text(source.type)).filter(Boolean))].sort(),
+    authoritativeSourceTypes: [...new Set(authoritativeUsedSources.map(source => text(source.source_type || source.type)).filter(Boolean))].sort(),
     limitationSignalCount,
     alternativeSignalCount,
     bearingHookCount: hookCandidates.filter(hook => hook.bearingHook).length,
@@ -203,7 +203,7 @@ const ready = row => row.structuredUnitsReady && row.namedPeopleOrWorksReady && 
 
 const result = {
   schema: 'history_go_by_theory_integrity_probe_v1',
-  version: '1.1.0',
+  version: '1.1.1',
   mode: 'read_only_diagnostic',
   sourceModel: {
     theoryGrounding: 'Canonical thinker work + substantive contribution metadata; institutional programme pages never serve as theory evidence.',
