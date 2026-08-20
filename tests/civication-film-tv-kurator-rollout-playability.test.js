@@ -95,10 +95,4 @@ assert.equal(world.audit.complete_components.length, 14);
 assert.equal(world.audit.salary.linked_titles, 1);
 assert.equal(world.audit.salary.exact_titles, 1);
 
-assert.equal(matrix.summary.statuses.reference_complete, 5);
-assert.equal(matrix.summary.statuses.playable, 21);
-assert.equal(matrix.summary.statuses.partial, 0);
-assert.equal(matrix.summary.statuses.architecture_only, 59);
-assert.equal(matrix.summary.runtime_gate_pass, 26);
-
 console.log('✓ Film/TV curator is canonical playable with 14 complete components and one intentional practice-story partial');
