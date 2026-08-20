@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "mail_type": "consequence",
+  "families": [
+    {
+      "id": "strukturmemo_eksperiment_og_laring",
+      "purpose": "Gjøre strukturvalget konsekvensbærende ved å sammenholde det avtalte forsøket med tekstlige kriterier, forfatterens prosjekt og neste beslutning.",
+      "learning_focus": ["konsekvens", "redaksjonell_læring", "beslutningsspor"],
+      "mails": [
+        {
+          "id": "litteratur_redaktor_bok_consequence_struktur_001",
+          "mail_type": "consequence",
+          "mail_family": "strukturmemo_eksperiment_og_laring",
+          "role_scope": "redaktor_bok",
+          "thread_key": "litteratur_redaktor_bok_struktur_001",
+          "phase": "mastery",
+          "day_phase": "day_end",
+          "priority": 124,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Redaksjonssjefen",
+          "people_ref": "litteratur_redaksjonssjef",
+          "place_id": "litteratur_redaktor_forfattermote",
+          "subject": "Hva lærte strukturprøven – og hva beviser den ikke?",
+          "summary": "Den omskrevne scenen gjør hovedpersonens valg tydeligere, men én prøveleser opplever fortsatt at relasjonens vendepunkt kommer sent.",
+          "purpose": "Teste om redaktøren bruker blandet resultat til en presis neste beslutning i stedet for å erklære sin opprinnelige løsning bekreftet.",
+          "stakes": "Hvis prøven overtolkes, kan prosjektet gå inn i en stor omskriving på falskt sikkert grunnlag; hvis resultatet avvises, forsvinner reell læring.",
+          "situation": [
+            "To prøvelesere forstår hovedpersonens valg etter den nye scenen.",
+            "Relasjonsbuen oppleves fortsatt forskjellig av leserne.",
+            "Det avtalte kriteriet skilte mellom orientering, relasjon og tempo."
+          ],
+          "task_domain": "etterkontroll_og_redaksjonell_laring",
+          "task_kind": "consequence",
+          "competency": "helhetsdømmekraft",
+          "pressure": "lukke_strukturvalget",
+          "choice_axis": "proporsjonal_tolkning_vs_bekreftelsesbias",
+          "consequence_axis": "presist_neste_steg_vs_unodvendig_full_omskriving",
+          "narrative_arc": "fra_blandet_proveresultat_til_avgrenset_redaksjonell_beslutning",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Behold forbedringen og avgrens neste spørsmål",
+              "reply": "Prøven styrker orienteringen, men avgjør ikke relasjonsbuen. Jeg dokumenterer det skillet og anbefaler at neste vurdering bare undersøker vendepunktet før større strukturendringer besluttes.",
+              "effect": 1,
+              "tags": ["proportional_inference", "learning", "bounded_decision"],
+              "feedback": "Du bruker det prøven faktisk viser og lar det uavklarte spørsmålet stå synlig."
+            },
+            {
+              "id": "B",
+              "label": "Bruk forbedringen som bevis for full omskriving",
+              "reply": "Prøven viser at strukturretningen fungerer, så vi bør nå gjennomføre den i hele midtpartiet.",
+              "effect": -1,
+              "tags": ["confirmation_bias", "overgeneralization"],
+              "feedback": "Du generaliserer fra ett forbedret kriterium og overser at relasjonsproblemet fortsatt er uavklart."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

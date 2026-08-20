@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "mail_type": "knowledge",
+  "families": [
+    {
+      "id": "tekstbelegg_og_vurderingsgrunnlag",
+      "purpose": "Gjøre nærlesing til en etterprøvbar arbeidsmetode ved å skille tekstfunn, tolkning, usikkerhet og anbefaling.",
+      "learning_focus": ["tekstbelegg", "tolkningsusikkerhet", "redaksjonell_argumentasjon"],
+      "mails": [
+        {
+          "id": "litteratur_redaktor_bok_knowledge_motiv_001",
+          "mail_type": "knowledge",
+          "mail_family": "tekstbelegg_og_vurderingsgrunnlag",
+          "role_scope": "redaktor_bok",
+          "phase": "mid",
+          "day_phase": "workday",
+          "priority": 122,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Forfatteren",
+          "people_ref": "litteratur_redaktor_forfatter",
+          "place_id": "litteratur_redaktor_manusrom",
+          "subject": "Du kaller motivet inkonsekvent – hvor ser du bruddet?",
+          "summary": "Redaktøren har skrevet at et gjentatt vannmotiv mister funksjonen i siste del, men notatet viser ikke hvilke tekststeder eller alternative lesninger vurderingen bygger på.",
+          "purpose": "Teste om redaktøren kan gjøre en litterær vurdering sporbar uten å late som tolkningen er objektiv eller endelig.",
+          "stakes": "Uten tekstbelegg blir vurderingen vanskelig å bruke og umulig å utfordre; med for skråsikkert belegg kan en legitim alternativ lesning stenges ute.",
+          "situation": [
+            "Motivet forbindes tidlig med fare og senere med omsorg.",
+            "Skiftet kan være en tilsiktet utvikling eller et uavklart brudd.",
+            "Forfatteren ber om et grunnlag som kan brukes i neste manusversjon."
+          ],
+          "task_domain": "nærlesing_og_redaksjonell_argumentasjon",
+          "task_kind": "knowledge",
+          "competency": "manusvurdering",
+          "pressure": "krav_om_faglig_begrunnelse",
+          "choice_axis": "tekstbelegg_med_alternativ_lesning_vs_autoritativ_tolkning",
+          "consequence_axis": "brukbar_felles_analyse_vs_smakskonflikt",
+          "narrative_arc": "fra_udokumentert_motivkritikk_til_etterprovbar_tolkningshypotese",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Vis tekststedene og navngi usikkerheten",
+              "reply": "Jeg viser hvor motivets kobling skifter, forklarer hvorfor jeg leser det som et mulig brudd og noterer at det også kan være en villet utvikling vi må prøve mot helheten.",
+              "effect": 1,
+              "tags": ["close_reading", "interpretive_uncertainty", "evidence"],
+              "feedback": "Forfatteren kan undersøke vurderingen, utfordre den og bruke den uten at redaktørens lesning blir fremstilt som fasit."
+            },
+            {
+              "id": "B",
+              "label": "Forklar at motivet objektivt skifter betydning",
+              "reply": "Det er tydelig i teksten at motivet ikke lenger henger sammen, så siste del bør tilpasses den opprinnelige funksjonen.",
+              "effect": -1,
+              "tags": ["false_objectivity", "interpretive_overreach"],
+              "feedback": "Du gjør en tolkning til et faktum og bestiller endring før den alternative lesningen er prøvd."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
