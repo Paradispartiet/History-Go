@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "mail_type": "event",
+  "families": [
+    {
+      "id": "provelesning_og_reprioritering",
+      "purpose": "Teste om ny leserevidens fører til en kontrollert ny hypotese i stedet for et panisk tillegg av lokale rettelser.",
+      "learning_focus": ["prøvelesning", "helhetsdømmekraft", "prioritering"],
+      "mails": [
+        {
+          "id": "litteratur_redaktor_bok_event_provelesning_001",
+          "mail_type": "event",
+          "mail_family": "provelesning_og_reprioritering",
+          "role_scope": "redaktor_bok",
+          "phase": "mid",
+          "day_phase": "afternoon",
+          "priority": 128,
+          "cooldown": 3,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Redaksjonssjefen",
+          "people_ref": "litteratur_redaksjonssjef",
+          "place_id": "litteratur_redaktor_utgivelsesrad",
+          "subject": "Prøveleserne mister samme relasjon på ulike steder",
+          "summary": "En sen prøvelesning viser at flere lesere feiltolker hovedpersonens relasjon, men de peker på ulike enkeltkapitler som årsak.",
+          "purpose": "Teste om redaktøren undersøker et mønster på tvers av teksten før det bestilles en rekke usammenhengende forklaringer.",
+          "stakes": "Lokale presiseringer kan gjøre manuset tydeligere setning for setning, men samtidig ødelegge den tilsiktede tvetydigheten uten å løse relasjonens utvikling.",
+          "situation": [
+            "Tre prøvelesere beskriver samme misforståelse av relasjonens status.",
+            "Ingen enkelt scene forklarer hele mønsteret.",
+            "Produksjonsplanen har rom for én avgrenset redaksjonell runde før ny vurdering."
+          ],
+          "task_domain": "provelesning_og_manusdiagnose",
+          "task_kind": "event",
+          "competency": "manusvurdering",
+          "pressure": "sen_leserevidens",
+          "choice_axis": "mønsterdiagnose_vs_lokal_overforklaring",
+          "consequence_axis": "målrettet_strukturprøve_vs_utvannet_tvetydighet",
+          "narrative_arc": "fra_sprikende_leserreaksjoner_til_testbar_hypotese_om_relasjonsbuen",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kartlegg relasjonsbuen før ny redigering",
+              "reply": "Jeg sammenholder scenene der relasjonen endrer status, formulerer en hypotese om hvilket vendepunkt som mangler og avtaler én strukturprøve med forfatteren.",
+              "effect": 1,
+              "tags": ["reader_evidence", "pattern_diagnosis", "bounded_revision"],
+              "feedback": "Prøvelesningen blir brukt som evidens for et mønster, ikke som tre ferdige redigeringsordrer."
+            },
+            {
+              "id": "B",
+              "label": "Legg inn forklaringer ved hvert stoppunkt",
+              "reply": "Jeg markerer alle stedene leserne snublet og ber forfatteren tydeliggjøre relasjonen i hver av scenene.",
+              "effect": -1,
+              "tags": ["local_patch", "overexplanation"],
+              "feedback": "Du behandler symptomene hver for seg og risikerer å fjerne tvetydighet uten å forstå utviklingsbuen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

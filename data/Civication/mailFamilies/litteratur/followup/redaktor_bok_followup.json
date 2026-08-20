@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "strukturmemo_eksperiment_og_laring",
+      "purpose": "Følge en stor redaksjonell uenighet videre som et avgrenset og reversibelt teksteksperiment med eksplisitte vurderingskriterier.",
+      "learning_focus": ["oppfølging", "forfatterautonomi", "reversibel_utvikling"],
+      "mails": [
+        {
+          "id": "litteratur_redaktor_bok_followup_struktur_001",
+          "mail_type": "followup",
+          "mail_family": "strukturmemo_eksperiment_og_laring",
+          "role_scope": "redaktor_bok",
+          "thread_key": "litteratur_redaktor_bok_struktur_001",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 126,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Forfatteren",
+          "people_ref": "litteratur_redaktor_forfatter",
+          "place_id": "litteratur_redaktor_forfattermote",
+          "subject": "Jeg vil prøve én scene før vi flytter hele midtpartiet",
+          "summary": "Etter uenigheten om struktur foreslår forfatteren å omskrive én nøkkelscene for å teste om hovedpersonens valg blir tydeligere uten at to kapitler fjernes.",
+          "purpose": "Teste om redaktøren gjør prøvearbeidet avgrenset, evaluerbart og tydelig adskilt fra en allerede besluttet full omskriving.",
+          "stakes": "Uten kriterier kan både redaktør og forfatter lese prøven som bekreftelse på sitt opprinnelige standpunkt og gjøre mer arbeid uten felles læring.",
+          "situation": [
+            "Prøvescenen ligger før punktet der flere lesere mister fremdriften.",
+            "Forfatteren vil beholde relasjonskapitlene dersom scenen løser orienteringen.",
+            "Redaksjonsplanen gir rom for én prøve før omfanget må besluttes."
+          ],
+          "task_domain": "strukturutvikling_og_oppfolging",
+          "task_kind": "followup",
+          "competency": "forfatterdialog",
+          "pressure": "behov_for_fremdrift_etter_uenighet",
+          "choice_axis": "avgrenset_felles_prove_vs_skjult_full_omskriving",
+          "consequence_axis": "dokumentert_laring_vs_merarbeid_uten_felles_kriterier",
+          "narrative_arc": "fra_strukturuenighet_til_reversibelt_og_evaluerbart_tekstforsok",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Avtal hva prøven skal vise",
+              "reply": "Vi tester scenen isolert og vurderer om hovedpersonens valg blir forståelig, om relasjonsbuen bevares og om midtpartiets tempo faktisk endres før vi beslutter større inngrep.",
+              "effect": 1,
+              "tags": ["bounded_experiment", "shared_criteria", "author_autonomy"],
+              "feedback": "Prøven kan gi felles kunnskap uten å gjøre en full omskriving til skjult premiss."
+            },
+            {
+              "id": "B",
+              "label": "Godta prøven som første del av omskrivingen",
+              "reply": "Det er en god start; når scenen er skrevet om, kan vi bruke samme retning på resten av midtpartiet.",
+              "effect": -1,
+              "tags": ["hidden_commitment", "scope_creep"],
+              "feedback": "Du gjør et reversibelt forsøk til første etappe i løsningen forfatteren nettopp ønsket å prøve et alternativ til."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

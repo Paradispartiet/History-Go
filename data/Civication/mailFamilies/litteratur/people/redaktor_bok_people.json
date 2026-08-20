@@ -1,0 +1,65 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "mail_type": "people",
+  "families": [
+    {
+      "id": "forfatterdialog_om_struktur",
+      "purpose": "Gjøre et stort strukturproblem forståelig for forfatteren uten å foreskrive én tekstlig løsning.",
+      "learning_focus": ["forfatterdialog", "forfatterautonomi", "redaksjonell_begrunnelse"],
+      "mails": [
+        {
+          "id": "litteratur_redaktor_bok_people_struktur_001",
+          "mail_type": "people",
+          "mail_family": "forfatterdialog_om_struktur",
+          "role_scope": "redaktor_bok",
+          "phase": "early",
+          "day_phase": "forenoon",
+          "priority": 125,
+          "cooldown": 2,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Forfatteren",
+          "people_ref": "litteratur_redaktor_forfatter",
+          "place_id": "litteratur_redaktor_forfattermote",
+          "subject": "Mener du at hele midtpartiet må skrives om?",
+          "summary": "Forfatteren oppfatter redaktørens strukturkritikk som et ferdig krav om å fjerne to kapitler, selv om vurderingsnotatet bare beskrev et tapt spenningsforløp.",
+          "purpose": "Teste om redaktøren skiller observert problem, mulig løsning og faktisk beslutningsstatus i samtalen.",
+          "stakes": "Hvis redaktøren forsvarer sin første løsning som eneste vei, kan forfatteren enten adlyde uten eierskap eller avvise et reelt strukturproblem.",
+          "situation": [
+            "De to kapitlene utdyper en relasjon som er viktig for slutten.",
+            "Fremdriften stopper fordi hovedpersonen ikke tar et nytt valg i midtpartiet.",
+            "Forfatteren har en alternativ idé, men tror den allerede er avvist."
+          ],
+          "task_domain": "forfatterdialog_og_strukturutvikling",
+          "task_kind": "people",
+          "competency": "forfatterdialog",
+          "pressure": "mistillit_etter_stor_tilbakemelding",
+          "choice_axis": "felles_problemforstaelse_vs_losningsmakt",
+          "consequence_axis": "forfattereierskap_og_bedre_tekst_vs_lydig_eller_lost_motstand",
+          "narrative_arc": "fra_opplevd_omskrivingskrav_til_avtalt_utforsking_av_strukturproblemet",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Trekk løsningen tilbake og avklar problemet",
+              "reply": "Nei, kapitlene er ikke besluttet fjernet. Jeg ser at fremdriften mister et handlingsvalg; la oss prøve din alternative idé og vurdere om den løser det uten å miste relasjonen.",
+              "effect": 1,
+              "tags": ["author_autonomy", "clarification", "shared_problem"],
+              "feedback": "Forfatteren får eierskap til løsningen, mens det dokumenterte strukturproblemet fortsatt tas på alvor."
+            },
+            {
+              "id": "B",
+              "label": "Forsvar kuttet som nødvendig",
+              "reply": "Jeg mener fortsatt at kapitlene må ut; det er den tydeligste måten å få fremdrift på.",
+              "effect": -1,
+              "tags": ["solution_authority", "author_voice_risk"],
+              "feedback": "Du gjør den raskeste redaksjonelle løsningen til et krav og lukker forfatterens mulighet til å løse problemet innenfra."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

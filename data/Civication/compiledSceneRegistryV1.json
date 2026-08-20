@@ -70,6 +70,15 @@
     "data/Civication/mailFamilies/litteratur/followup/redaksjonsmedarbeider_followup.json",
     "data/Civication/mailFamilies/litteratur/knowledge/redaksjonsmedarbeider_knowledge.json",
     "data/Civication/mailFamilies/litteratur/consequence/redaksjonsmedarbeider_consequence.json",
+    "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json",
+    "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json",
+    "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json",
+    "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json",
+    "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json",
+    "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json",
+    "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json",
+    "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json",
+    "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json",
     "data/Civication/mailFamilies/media/job/media_redaksjon_job.json",
     "data/Civication/mailFamilies/media/people/media_redaksjon_people.json",
     "data/Civication/mailFamilies/media/story/media_redaksjon_story.json",
@@ -26529,6 +26538,1124 @@
       },
       "source_hash": "7d4f3d85fa41af83ec6298e060e3f33bd7d8e0c30509528a19edadab122e6225",
       "source_path": "data/Civication/mailFamilies/litteratur/story/redaksjonsmedarbeider_story.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "apen_avveiing_vs_markedsargument_som_fasit",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du tar markedskunnskapen på alvor uten å kamuflere et forlagsvalg som litterær nødvendighet.",
+            "id": "A",
+            "label": "Legg risiko og verkets prosjekt side ved side",
+            "reply": "Jeg beskriver posisjoneringsrisikoen som usikker, viser hva en lukket slutt vil endre i verket og ber redaksjonssjefen ta porteføljevalget på det samlede grunnlaget.",
+            "tags": [
+              "portfolio_judgment",
+              "market_uncertainty",
+              "mandate"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør en usikker markedsantakelse til et tekstkrav og skjuler hvem som faktisk velger risikoen.",
+            "id": "B",
+            "label": "Be forfatteren skrive en tydelig forsoning",
+            "reply": "For å nå leserne trenger boken en klarere slutt, så jeg gjør forsoningen til neste redaksjonelle krav.",
+            "tags": [
+              "market_as_truth",
+              "author_project_risk"
+            ]
+          }
+        ],
+        "competency": "portefoljedømmekraft",
+        "consequence_axis": "informert_portefoljevalg_vs_skjult_omforming_av_verket",
+        "cooldown": 3,
+        "day_phase": "workday",
+        "from": "Markedsansvarlig",
+        "id": "litteratur_redaktor_bok_conflict_slutt_001",
+        "mail_family": "markedspress_og_litteraer_integritet",
+        "mail_type": "conflict",
+        "narrative_arc": "fra_krav_om_entydighet_til_synlig_litteraer_og_kommersiell_avveiing",
+        "people_ref": "litteratur_markedsansvarlig",
+        "phase": "early",
+        "place_id": "litteratur_redaktor_utgivelsesrad",
+        "pressure": "presentasjon_og_salgsforventning",
+        "priority": 135,
+        "purpose": "Teste om redaktøren skiller en reell salgsrisiko fra en påstand om at teksten litterært må endres.",
+        "repeatable": false,
+        "role_scope": "redaktor_bok",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Den åpne slutten følger manusets etablerte usikkerhet om hovedpersonens motiv.",
+          "Sammenlignbare titler har gitt blandede, ikke entydige, markedssignaler.",
+          "Redaksjonssjefen eier den endelige portefølje- og publiseringsbeslutningen."
+        ],
+        "stage": "stable",
+        "stakes": "Å avvise markedskunnskap beskytter ikke nødvendigvis boken, men å gjøre prognosen til tekstfaglig fasit kan bryte verkets grunnleggende prosjekt.",
+        "subject": "Kan slutten bli mer entydig før presentasjonen?",
+        "summary": "Markedsansvarlig mener den åpne slutten vil gjøre boken vanskeligere å posisjonere og ber redaktøren få forfatteren til å skrive en tydelig forsoning.",
+        "task_domain": "marked_og_redaksjonell_retning",
+        "task_kind": "conflict"
+      },
+      "id": "litteratur_redaktor_bok_conflict_slutt_001",
+      "mail_type": "conflict",
+      "role_scope": "redaktor_bok",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du tar markedskunnskapen på alvor uten å kamuflere et forlagsvalg som litterær nødvendighet.",
+            "id": "A",
+            "label": "Legg risiko og verkets prosjekt side ved side",
+            "reply": "Jeg beskriver posisjoneringsrisikoen som usikker, viser hva en lukket slutt vil endre i verket og ber redaksjonssjefen ta porteføljevalget på det samlede grunnlaget."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en usikker markedsantakelse til et tekstkrav og skjuler hvem som faktisk velger risikoen.",
+            "id": "B",
+            "label": "Be forfatteren skrive en tydelig forsoning",
+            "reply": "For å nå leserne trenger boken en klarere slutt, så jeg gjør forsoningen til neste redaksjonelle krav."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Den åpne slutten følger manusets etablerte usikkerhet om hovedpersonens motiv.",
+            "Sammenlignbare titler har gitt blandede, ikke entydige, markedssignaler.",
+            "Redaksjonssjefen eier den endelige portefølje- og publiseringsbeslutningen."
+          ],
+          "subject": "Kan slutten bli mer entydig før presentasjonen?",
+          "summary": "Markedsansvarlig mener den åpne slutten vil gjøre boken vanskeligere å posisjonere og ber redaktøren få forfatteren til å skrive en tydelig forsoning."
+        },
+        "day_phase": "workday",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaktor_bok_conflict_slutt_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_redaktor_utgivelsesrad",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaktor_bok_conflict_slutt_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "conflict",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaktor_bok.mail.litteratur_redaktor_bok_conflict_slutt_001",
+        "version": 1
+      },
+      "source_hash": "31f54934137758d4e532152de1399ebfd2b76cda3820cf5b6c56758d1dad2eac",
+      "source_path": "data/Civication/mailFamilies/litteratur/conflict/redaktor_bok_conflict.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "proporsjonal_tolkning_vs_bekreftelsesbias",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du bruker det prøven faktisk viser og lar det uavklarte spørsmålet stå synlig.",
+            "id": "A",
+            "label": "Behold forbedringen og avgrens neste spørsmål",
+            "reply": "Prøven styrker orienteringen, men avgjør ikke relasjonsbuen. Jeg dokumenterer det skillet og anbefaler at neste vurdering bare undersøker vendepunktet før større strukturendringer besluttes.",
+            "tags": [
+              "proportional_inference",
+              "learning",
+              "bounded_decision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du generaliserer fra ett forbedret kriterium og overser at relasjonsproblemet fortsatt er uavklart.",
+            "id": "B",
+            "label": "Bruk forbedringen som bevis for full omskriving",
+            "reply": "Prøven viser at strukturretningen fungerer, så vi bør nå gjennomføre den i hele midtpartiet.",
+            "tags": [
+              "confirmation_bias",
+              "overgeneralization"
+            ]
+          }
+        ],
+        "competency": "helhetsdømmekraft",
+        "consequence_axis": "presist_neste_steg_vs_unodvendig_full_omskriving",
+        "cooldown": 4,
+        "day_phase": "day_end",
+        "from": "Redaksjonssjefen",
+        "id": "litteratur_redaktor_bok_consequence_struktur_001",
+        "mail_family": "strukturmemo_eksperiment_og_laring",
+        "mail_type": "consequence",
+        "narrative_arc": "fra_blandet_proveresultat_til_avgrenset_redaksjonell_beslutning",
+        "people_ref": "litteratur_redaksjonssjef",
+        "phase": "mastery",
+        "place_id": "litteratur_redaktor_forfattermote",
+        "pressure": "lukke_strukturvalget",
+        "priority": 124,
+        "purpose": "Teste om redaktøren bruker blandet resultat til en presis neste beslutning i stedet for å erklære sin opprinnelige løsning bekreftet.",
+        "repeatable": false,
+        "role_scope": "redaktor_bok",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "To prøvelesere forstår hovedpersonens valg etter den nye scenen.",
+          "Relasjonsbuen oppleves fortsatt forskjellig av leserne.",
+          "Det avtalte kriteriet skilte mellom orientering, relasjon og tempo."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis prøven overtolkes, kan prosjektet gå inn i en stor omskriving på falskt sikkert grunnlag; hvis resultatet avvises, forsvinner reell læring.",
+        "subject": "Hva lærte strukturprøven – og hva beviser den ikke?",
+        "summary": "Den omskrevne scenen gjør hovedpersonens valg tydeligere, men én prøveleser opplever fortsatt at relasjonens vendepunkt kommer sent.",
+        "task_domain": "etterkontroll_og_redaksjonell_laring",
+        "task_kind": "consequence",
+        "thread_key": "litteratur_redaktor_bok_struktur_001"
+      },
+      "id": "litteratur_redaktor_bok_consequence_struktur_001",
+      "mail_type": "consequence",
+      "role_scope": "redaktor_bok",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du bruker det prøven faktisk viser og lar det uavklarte spørsmålet stå synlig.",
+            "id": "A",
+            "label": "Behold forbedringen og avgrens neste spørsmål",
+            "reply": "Prøven styrker orienteringen, men avgjør ikke relasjonsbuen. Jeg dokumenterer det skillet og anbefaler at neste vurdering bare undersøker vendepunktet før større strukturendringer besluttes."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du generaliserer fra ett forbedret kriterium og overser at relasjonsproblemet fortsatt er uavklart.",
+            "id": "B",
+            "label": "Bruk forbedringen som bevis for full omskriving",
+            "reply": "Prøven viser at strukturretningen fungerer, så vi bør nå gjennomføre den i hele midtpartiet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "To prøvelesere forstår hovedpersonens valg etter den nye scenen.",
+            "Relasjonsbuen oppleves fortsatt forskjellig av leserne.",
+            "Det avtalte kriteriet skilte mellom orientering, relasjon og tempo."
+          ],
+          "subject": "Hva lærte strukturprøven – og hva beviser den ikke?",
+          "summary": "Den omskrevne scenen gjør hovedpersonens valg tydeligere, men én prøveleser opplever fortsatt at relasjonens vendepunkt kommer sent."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaktor_bok_consequence_struktur_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_redaktor_forfattermote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaktor_bok_consequence_struktur_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "litteratur_redaktor_bok_struktur_001",
+        "version": 1
+      },
+      "source_hash": "8bd9051bccc14c175ffca8ea5dedb7fdebbc92cafd363fa1c9d1ddc55e13c999",
+      "source_path": "data/Civication/mailFamilies/litteratur/consequence/redaktor_bok_consequence.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "mønsterdiagnose_vs_lokal_overforklaring",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Prøvelesningen blir brukt som evidens for et mønster, ikke som tre ferdige redigeringsordrer.",
+            "id": "A",
+            "label": "Kartlegg relasjonsbuen før ny redigering",
+            "reply": "Jeg sammenholder scenene der relasjonen endrer status, formulerer en hypotese om hvilket vendepunkt som mangler og avtaler én strukturprøve med forfatteren.",
+            "tags": [
+              "reader_evidence",
+              "pattern_diagnosis",
+              "bounded_revision"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du behandler symptomene hver for seg og risikerer å fjerne tvetydighet uten å forstå utviklingsbuen.",
+            "id": "B",
+            "label": "Legg inn forklaringer ved hvert stoppunkt",
+            "reply": "Jeg markerer alle stedene leserne snublet og ber forfatteren tydeliggjøre relasjonen i hver av scenene.",
+            "tags": [
+              "local_patch",
+              "overexplanation"
+            ]
+          }
+        ],
+        "competency": "manusvurdering",
+        "consequence_axis": "målrettet_strukturprøve_vs_utvannet_tvetydighet",
+        "cooldown": 3,
+        "day_phase": "afternoon",
+        "from": "Redaksjonssjefen",
+        "id": "litteratur_redaktor_bok_event_provelesning_001",
+        "mail_family": "provelesning_og_reprioritering",
+        "mail_type": "event",
+        "narrative_arc": "fra_sprikende_leserreaksjoner_til_testbar_hypotese_om_relasjonsbuen",
+        "people_ref": "litteratur_redaksjonssjef",
+        "phase": "mid",
+        "place_id": "litteratur_redaktor_utgivelsesrad",
+        "pressure": "sen_leserevidens",
+        "priority": 128,
+        "purpose": "Teste om redaktøren undersøker et mønster på tvers av teksten før det bestilles en rekke usammenhengende forklaringer.",
+        "repeatable": false,
+        "role_scope": "redaktor_bok",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Tre prøvelesere beskriver samme misforståelse av relasjonens status.",
+          "Ingen enkelt scene forklarer hele mønsteret.",
+          "Produksjonsplanen har rom for én avgrenset redaksjonell runde før ny vurdering."
+        ],
+        "stage": "stable",
+        "stakes": "Lokale presiseringer kan gjøre manuset tydeligere setning for setning, men samtidig ødelegge den tilsiktede tvetydigheten uten å løse relasjonens utvikling.",
+        "subject": "Prøveleserne mister samme relasjon på ulike steder",
+        "summary": "En sen prøvelesning viser at flere lesere feiltolker hovedpersonens relasjon, men de peker på ulike enkeltkapitler som årsak.",
+        "task_domain": "provelesning_og_manusdiagnose",
+        "task_kind": "event"
+      },
+      "id": "litteratur_redaktor_bok_event_provelesning_001",
+      "mail_type": "event",
+      "role_scope": "redaktor_bok",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Prøvelesningen blir brukt som evidens for et mønster, ikke som tre ferdige redigeringsordrer.",
+            "id": "A",
+            "label": "Kartlegg relasjonsbuen før ny redigering",
+            "reply": "Jeg sammenholder scenene der relasjonen endrer status, formulerer en hypotese om hvilket vendepunkt som mangler og avtaler én strukturprøve med forfatteren."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du behandler symptomene hver for seg og risikerer å fjerne tvetydighet uten å forstå utviklingsbuen.",
+            "id": "B",
+            "label": "Legg inn forklaringer ved hvert stoppunkt",
+            "reply": "Jeg markerer alle stedene leserne snublet og ber forfatteren tydeliggjøre relasjonen i hver av scenene."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Tre prøvelesere beskriver samme misforståelse av relasjonens status.",
+            "Ingen enkelt scene forklarer hele mønsteret.",
+            "Produksjonsplanen har rom for én avgrenset redaksjonell runde før ny vurdering."
+          ],
+          "subject": "Prøveleserne mister samme relasjon på ulike steder",
+          "summary": "En sen prøvelesning viser at flere lesere feiltolker hovedpersonens relasjon, men de peker på ulike enkeltkapitler som årsak."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaktor_bok_event_provelesning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_redaktor_utgivelsesrad",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaktor_bok_event_provelesning_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaktor_bok.mail.litteratur_redaktor_bok_event_provelesning_001",
+        "version": 1
+      },
+      "source_hash": "de34e1ae3eba7311e5586d830a19ef990734cb8c341c4fc4b333c5f2cc260e06",
+      "source_path": "data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "avgrenset_felles_prove_vs_skjult_full_omskriving",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Prøven kan gi felles kunnskap uten å gjøre en full omskriving til skjult premiss.",
+            "id": "A",
+            "label": "Avtal hva prøven skal vise",
+            "reply": "Vi tester scenen isolert og vurderer om hovedpersonens valg blir forståelig, om relasjonsbuen bevares og om midtpartiets tempo faktisk endres før vi beslutter større inngrep.",
+            "tags": [
+              "bounded_experiment",
+              "shared_criteria",
+              "author_autonomy"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør et reversibelt forsøk til første etappe i løsningen forfatteren nettopp ønsket å prøve et alternativ til.",
+            "id": "B",
+            "label": "Godta prøven som første del av omskrivingen",
+            "reply": "Det er en god start; når scenen er skrevet om, kan vi bruke samme retning på resten av midtpartiet.",
+            "tags": [
+              "hidden_commitment",
+              "scope_creep"
+            ]
+          }
+        ],
+        "competency": "forfatterdialog",
+        "consequence_axis": "dokumentert_laring_vs_merarbeid_uten_felles_kriterier",
+        "cooldown": 4,
+        "day_phase": "evening",
+        "from": "Forfatteren",
+        "id": "litteratur_redaktor_bok_followup_struktur_001",
+        "mail_family": "strukturmemo_eksperiment_og_laring",
+        "mail_type": "followup",
+        "narrative_arc": "fra_strukturuenighet_til_reversibelt_og_evaluerbart_tekstforsok",
+        "people_ref": "litteratur_redaktor_forfatter",
+        "phase": "mastery",
+        "place_id": "litteratur_redaktor_forfattermote",
+        "pressure": "behov_for_fremdrift_etter_uenighet",
+        "priority": 126,
+        "purpose": "Teste om redaktøren gjør prøvearbeidet avgrenset, evaluerbart og tydelig adskilt fra en allerede besluttet full omskriving.",
+        "repeatable": false,
+        "role_scope": "redaktor_bok",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Prøvescenen ligger før punktet der flere lesere mister fremdriften.",
+          "Forfatteren vil beholde relasjonskapitlene dersom scenen løser orienteringen.",
+          "Redaksjonsplanen gir rom for én prøve før omfanget må besluttes."
+        ],
+        "stage": "stable",
+        "stakes": "Uten kriterier kan både redaktør og forfatter lese prøven som bekreftelse på sitt opprinnelige standpunkt og gjøre mer arbeid uten felles læring.",
+        "subject": "Jeg vil prøve én scene før vi flytter hele midtpartiet",
+        "summary": "Etter uenigheten om struktur foreslår forfatteren å omskrive én nøkkelscene for å teste om hovedpersonens valg blir tydeligere uten at to kapitler fjernes.",
+        "task_domain": "strukturutvikling_og_oppfolging",
+        "task_kind": "followup",
+        "thread_key": "litteratur_redaktor_bok_struktur_001"
+      },
+      "id": "litteratur_redaktor_bok_followup_struktur_001",
+      "mail_type": "followup",
+      "role_scope": "redaktor_bok",
+      "scene": {
+        "arc_stage": "mastery",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Prøven kan gi felles kunnskap uten å gjøre en full omskriving til skjult premiss.",
+            "id": "A",
+            "label": "Avtal hva prøven skal vise",
+            "reply": "Vi tester scenen isolert og vurderer om hovedpersonens valg blir forståelig, om relasjonsbuen bevares og om midtpartiets tempo faktisk endres før vi beslutter større inngrep."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør et reversibelt forsøk til første etappe i løsningen forfatteren nettopp ønsket å prøve et alternativ til.",
+            "id": "B",
+            "label": "Godta prøven som første del av omskrivingen",
+            "reply": "Det er en god start; når scenen er skrevet om, kan vi bruke samme retning på resten av midtpartiet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Prøvescenen ligger før punktet der flere lesere mister fremdriften.",
+            "Forfatteren vil beholde relasjonskapitlene dersom scenen løser orienteringen.",
+            "Redaksjonsplanen gir rom for én prøve før omfanget må besluttes."
+          ],
+          "subject": "Jeg vil prøve én scene før vi flytter hele midtpartiet",
+          "summary": "Etter uenigheten om struktur foreslår forfatteren å omskrive én nøkkelscene for å teste om hovedpersonens valg blir tydeligere uten at to kapitler fjernes."
+        },
+        "day_phase": "evening",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaktor_bok_followup_struktur_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_redaktor_forfattermote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaktor_bok_followup_struktur_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "consequence",
+        "schema": "civication_scene_v1",
+        "thread_id": "litteratur_redaktor_bok_struktur_001",
+        "version": 1
+      },
+      "source_hash": "f20f8b2c21d375fb67d5618180b112858549fb2c2a2e21a445d9a760816d642d",
+      "source_path": "data/Civication/mailFamilies/litteratur/followup/redaktor_bok_followup.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "etterprovbar_problemforstaelse_vs_forhastet_losning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør problemet etterprøvbart og holder løsningen åpen til forfatterens prosjekt er tydeligere avklart.",
+            "id": "A",
+            "label": "Beskriv mønsteret og prøv flere forklaringer",
+            "reply": "Jeg dokumenterer hvor orienteringen svikter, hva skiftet senere løser og hvilke alternative grep som kan testes uten å forklare bort fortellerstemmen.",
+            "tags": [
+              "textual_evidence",
+              "hypothesis",
+              "editorial_judgment"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør én mulig løsning til fasit før du har vist at den bevarer det manuset faktisk forsøker å oppnå.",
+            "id": "B",
+            "label": "Krev at perspektivskiftet flyttes frem",
+            "reply": "Leseren må forstå premisset tidligere, så jeg gjør et tidlig perspektivskifte til hovedkravet i notatet.",
+            "tags": [
+              "premature_solution",
+              "editorial_taste"
+            ]
+          }
+        ],
+        "competency": "manusvurdering",
+        "consequence_axis": "presis_utviklingsretning_vs_smakstyrt_omskriving",
+        "cooldown": 2,
+        "day_phase": "morning",
+        "from": "Redaksjonssjefen",
+        "id": "litteratur_redaktor_bok_job_helhetslesing_001",
+        "mail_family": "helhetslesing_og_redaksjonell_prioritering",
+        "mail_type": "job",
+        "narrative_arc": "fra_sammensatt_forsteinntrykk_til_prioritert_redaksjonelt_sporsmal",
+        "people_ref": "litteratur_redaksjonssjef",
+        "phase": "intro",
+        "place_id": "litteratur_redaktor_manusrom",
+        "pressure": "rask_portefoljevurdering",
+        "priority": 150,
+        "purpose": "Teste om redaktøren prioriterer et dokumentert helhetsproblem før lokale inngrep og markedskonklusjoner.",
+        "repeatable": false,
+        "role_scope": "redaktor_bok",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Perspektivskiftet forklarer tidligere tvetydigheter når det først kommer.",
+          "Tre prøvelesere har stoppet på ulike steder før skiftet, men av forskjellige grunner.",
+          "Manuset har en konsekvent stil som kan svekkes av omfattende forklaringstekst."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis førsteinntrykk, tekstfunn og anbefaling blandes sammen, kan redaktørens smak fremstå som en nødvendig løsning og styre hele prosjektet for tidlig.",
+        "subject": "Vurderingsnotatet må skille funn fra løsning",
+        "summary": "Et særpreget manus har en sterk fortellerstemme, men skifter perspektiv så sent at leseren mangler nødvendig orientering gjennom store deler av teksten.",
+        "task_domain": "helhetsvurdering_av_manus",
+        "task_kind": "job"
+      },
+      "id": "litteratur_redaktor_bok_job_helhetslesing_001",
+      "mail_type": "job",
+      "role_scope": "redaktor_bok",
+      "scene": {
+        "arc_stage": "intro",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør problemet etterprøvbart og holder løsningen åpen til forfatterens prosjekt er tydeligere avklart.",
+            "id": "A",
+            "label": "Beskriv mønsteret og prøv flere forklaringer",
+            "reply": "Jeg dokumenterer hvor orienteringen svikter, hva skiftet senere løser og hvilke alternative grep som kan testes uten å forklare bort fortellerstemmen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør én mulig løsning til fasit før du har vist at den bevarer det manuset faktisk forsøker å oppnå.",
+            "id": "B",
+            "label": "Krev at perspektivskiftet flyttes frem",
+            "reply": "Leseren må forstå premisset tidligere, så jeg gjør et tidlig perspektivskifte til hovedkravet i notatet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Perspektivskiftet forklarer tidligere tvetydigheter når det først kommer.",
+            "Tre prøvelesere har stoppet på ulike steder før skiftet, men av forskjellige grunner.",
+            "Manuset har en konsekvent stil som kan svekkes av omfattende forklaringstekst."
+          ],
+          "subject": "Vurderingsnotatet må skille funn fra løsning",
+          "summary": "Et særpreget manus har en sterk fortellerstemme, men skifter perspektiv så sent at leseren mangler nødvendig orientering gjennom store deler av teksten."
+        },
+        "day_phase": "morning",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaktor_bok_job_helhetslesing_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_redaktor_manusrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaktor_bok_job_helhetslesing_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaktor_bok.mail.litteratur_redaktor_bok_job_helhetslesing_001",
+        "version": 1
+      },
+      "source_hash": "2bbe0aafc3eb81d0ae2f80ebf837afd5d9e80f12d739cb6f6b5f525d0e9aad46",
+      "source_path": "data/Civication/mailFamilies/litteratur/job/redaktor_bok_job.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "tekstbelegg_med_alternativ_lesning_vs_autoritativ_tolkning",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Forfatteren kan undersøke vurderingen, utfordre den og bruke den uten at redaktørens lesning blir fremstilt som fasit.",
+            "id": "A",
+            "label": "Vis tekststedene og navngi usikkerheten",
+            "reply": "Jeg viser hvor motivets kobling skifter, forklarer hvorfor jeg leser det som et mulig brudd og noterer at det også kan være en villet utvikling vi må prøve mot helheten.",
+            "tags": [
+              "close_reading",
+              "interpretive_uncertainty",
+              "evidence"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør en tolkning til et faktum og bestiller endring før den alternative lesningen er prøvd.",
+            "id": "B",
+            "label": "Forklar at motivet objektivt skifter betydning",
+            "reply": "Det er tydelig i teksten at motivet ikke lenger henger sammen, så siste del bør tilpasses den opprinnelige funksjonen.",
+            "tags": [
+              "false_objectivity",
+              "interpretive_overreach"
+            ]
+          }
+        ],
+        "competency": "manusvurdering",
+        "consequence_axis": "brukbar_felles_analyse_vs_smakskonflikt",
+        "cooldown": 3,
+        "day_phase": "workday",
+        "from": "Forfatteren",
+        "id": "litteratur_redaktor_bok_knowledge_motiv_001",
+        "mail_family": "tekstbelegg_og_vurderingsgrunnlag",
+        "mail_type": "knowledge",
+        "narrative_arc": "fra_udokumentert_motivkritikk_til_etterprovbar_tolkningshypotese",
+        "people_ref": "litteratur_redaktor_forfatter",
+        "phase": "mid",
+        "place_id": "litteratur_redaktor_manusrom",
+        "pressure": "krav_om_faglig_begrunnelse",
+        "priority": 122,
+        "purpose": "Teste om redaktøren kan gjøre en litterær vurdering sporbar uten å late som tolkningen er objektiv eller endelig.",
+        "repeatable": false,
+        "role_scope": "redaktor_bok",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Motivet forbindes tidlig med fare og senere med omsorg.",
+          "Skiftet kan være en tilsiktet utvikling eller et uavklart brudd.",
+          "Forfatteren ber om et grunnlag som kan brukes i neste manusversjon."
+        ],
+        "stage": "stable",
+        "stakes": "Uten tekstbelegg blir vurderingen vanskelig å bruke og umulig å utfordre; med for skråsikkert belegg kan en legitim alternativ lesning stenges ute.",
+        "subject": "Du kaller motivet inkonsekvent – hvor ser du bruddet?",
+        "summary": "Redaktøren har skrevet at et gjentatt vannmotiv mister funksjonen i siste del, men notatet viser ikke hvilke tekststeder eller alternative lesninger vurderingen bygger på.",
+        "task_domain": "nærlesing_og_redaksjonell_argumentasjon",
+        "task_kind": "knowledge"
+      },
+      "id": "litteratur_redaktor_bok_knowledge_motiv_001",
+      "mail_type": "knowledge",
+      "role_scope": "redaktor_bok",
+      "scene": {
+        "arc_stage": "mid",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Forfatteren kan undersøke vurderingen, utfordre den og bruke den uten at redaktørens lesning blir fremstilt som fasit.",
+            "id": "A",
+            "label": "Vis tekststedene og navngi usikkerheten",
+            "reply": "Jeg viser hvor motivets kobling skifter, forklarer hvorfor jeg leser det som et mulig brudd og noterer at det også kan være en villet utvikling vi må prøve mot helheten."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør en tolkning til et faktum og bestiller endring før den alternative lesningen er prøvd.",
+            "id": "B",
+            "label": "Forklar at motivet objektivt skifter betydning",
+            "reply": "Det er tydelig i teksten at motivet ikke lenger henger sammen, så siste del bør tilpasses den opprinnelige funksjonen."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Motivet forbindes tidlig med fare og senere med omsorg.",
+            "Skiftet kan være en tilsiktet utvikling eller et uavklart brudd.",
+            "Forfatteren ber om et grunnlag som kan brukes i neste manusversjon."
+          ],
+          "subject": "Du kaller motivet inkonsekvent – hvor ser du bruddet?",
+          "summary": "Redaktøren har skrevet at et gjentatt vannmotiv mister funksjonen i siste del, men notatet viser ikke hvilke tekststeder eller alternative lesninger vurderingen bygger på."
+        },
+        "day_phase": "workday",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaktor_bok_knowledge_motiv_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_redaktor_manusrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaktor_bok_knowledge_motiv_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "knowledge",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaktor_bok.mail.litteratur_redaktor_bok_knowledge_motiv_001",
+        "version": 1
+      },
+      "source_hash": "8885ee2a776fd1b54e88c6811bb3d97bd6aca97222eff8d04906619bf2420234",
+      "source_path": "data/Civication/mailFamilies/litteratur/knowledge/redaktor_bok_knowledge.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "funksjonell_nærlesing_vs_automatisk_standardisering",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Du gjør redigeringen reversibel og prøver om det språklige avviket faktisk bærer mening.",
+            "id": "A",
+            "label": "Tilbakestill et utvalg og sammenlign funksjonen",
+            "reply": "Jeg tilbakestiller endringene i ett representativt avsnitt og vurderer rytme, forståelighet og fortellerfunksjon med forfatteren før mønsteret redigeres videre.",
+            "tags": [
+              "close_reading",
+              "voice",
+              "reversible_test"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du bruker én norm for flyt og overser at ujevnheten kan være en del av fortellerens form.",
+            "id": "B",
+            "label": "Behold sammenslåingene for jevn flyt",
+            "reply": "Rytmen er mer profesjonell og lesbar nå, så jeg lar endringene stå gjennom hele partiet.",
+            "tags": [
+              "style_normalization",
+              "voice_loss"
+            ]
+          }
+        ],
+        "competency": "manusvurdering",
+        "consequence_axis": "bevart_fortellerfunksjon_vs_glattet_særpreg",
+        "cooldown": 2,
+        "day_phase": "afternoon",
+        "from": "Forfatteren",
+        "id": "litteratur_redaktor_bok_micro_stemme_001",
+        "mail_family": "stemme_og_lokal_redigering",
+        "mail_type": "micro",
+        "narrative_arc": "fra_liten_språkendring_til_synlig_forståelse_av_rytme_som_mening",
+        "people_ref": "litteratur_redaktor_forfatter",
+        "phase": "advanced",
+        "place_id": "litteratur_redaktor_manusrom",
+        "pressure": "effektiv_språkvask",
+        "priority": 108,
+        "purpose": "Teste om redaktøren gransker en lokal forbedring som mulig meningsbærende tap før endringen skaleres.",
+        "repeatable": false,
+        "role_scope": "redaktor_bok",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "De korte setningene følger en tydelig økning gjennom tre kapitler.",
+          "Sammenslåingene gjør hvert avsnitt lettere å lese isolert.",
+          "Forfatteren sier rytmen var bevisst, men har ikke forklart funksjonen tidligere."
+        ],
+        "stage": "stable",
+        "stakes": "En grammatisk glattere tekst kan bli litterært svakere dersom rytmen bar informasjon om fortellerens tilstand.",
+        "subject": "Alle de korte setningene er blitt bundet sammen",
+        "summary": "I detaljredigeringen har flere korte setninger blitt slått sammen for bedre flyt, men mønsteret var sterkest i kapitlene der fortelleren mister kontroll.",
+        "task_domain": "nærlesing_og_stemmekontroll",
+        "task_kind": "micro"
+      },
+      "id": "litteratur_redaktor_bok_micro_stemme_001",
+      "mail_type": "micro",
+      "role_scope": "redaktor_bok",
+      "scene": {
+        "arc_stage": "advanced",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Du gjør redigeringen reversibel og prøver om det språklige avviket faktisk bærer mening.",
+            "id": "A",
+            "label": "Tilbakestill et utvalg og sammenlign funksjonen",
+            "reply": "Jeg tilbakestiller endringene i ett representativt avsnitt og vurderer rytme, forståelighet og fortellerfunksjon med forfatteren før mønsteret redigeres videre."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du bruker én norm for flyt og overser at ujevnheten kan være en del av fortellerens form.",
+            "id": "B",
+            "label": "Behold sammenslåingene for jevn flyt",
+            "reply": "Rytmen er mer profesjonell og lesbar nå, så jeg lar endringene stå gjennom hele partiet."
+          }
+        ],
+        "content": {
+          "situation": [
+            "De korte setningene følger en tydelig økning gjennom tre kapitler.",
+            "Sammenslåingene gjør hvert avsnitt lettere å lese isolert.",
+            "Forfatteren sier rytmen var bevisst, men har ikke forklart funksjonen tidligere."
+          ],
+          "subject": "Alle de korte setningene er blitt bundet sammen",
+          "summary": "I detaljredigeringen har flere korte setninger blitt slått sammen for bedre flyt, men mønsteret var sterkest i kapitlene der fortelleren mister kontroll."
+        },
+        "day_phase": "afternoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaktor_bok_micro_stemme_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_redaktor_manusrom",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaktor_bok_micro_stemme_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "task",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaktor_bok.mail.litteratur_redaktor_bok_micro_stemme_001",
+        "version": 1
+      },
+      "source_hash": "4d49b4a46280a917e5a3a8b3e0b0f24f2eda44d3dddf158e96d8fadefb994e73",
+      "source_path": "data/Civication/mailFamilies/litteratur/micro/redaktor_bok_micro.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "felles_problemforstaelse_vs_losningsmakt",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Forfatteren får eierskap til løsningen, mens det dokumenterte strukturproblemet fortsatt tas på alvor.",
+            "id": "A",
+            "label": "Trekk løsningen tilbake og avklar problemet",
+            "reply": "Nei, kapitlene er ikke besluttet fjernet. Jeg ser at fremdriften mister et handlingsvalg; la oss prøve din alternative idé og vurdere om den løser det uten å miste relasjonen.",
+            "tags": [
+              "author_autonomy",
+              "clarification",
+              "shared_problem"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du gjør den raskeste redaksjonelle løsningen til et krav og lukker forfatterens mulighet til å løse problemet innenfra.",
+            "id": "B",
+            "label": "Forsvar kuttet som nødvendig",
+            "reply": "Jeg mener fortsatt at kapitlene må ut; det er den tydeligste måten å få fremdrift på.",
+            "tags": [
+              "solution_authority",
+              "author_voice_risk"
+            ]
+          }
+        ],
+        "competency": "forfatterdialog",
+        "consequence_axis": "forfattereierskap_og_bedre_tekst_vs_lydig_eller_lost_motstand",
+        "cooldown": 2,
+        "day_phase": "forenoon",
+        "from": "Forfatteren",
+        "id": "litteratur_redaktor_bok_people_struktur_001",
+        "mail_family": "forfatterdialog_om_struktur",
+        "mail_type": "people",
+        "narrative_arc": "fra_opplevd_omskrivingskrav_til_avtalt_utforsking_av_strukturproblemet",
+        "people_ref": "litteratur_redaktor_forfatter",
+        "phase": "early",
+        "place_id": "litteratur_redaktor_forfattermote",
+        "pressure": "mistillit_etter_stor_tilbakemelding",
+        "priority": 125,
+        "purpose": "Teste om redaktøren skiller observert problem, mulig løsning og faktisk beslutningsstatus i samtalen.",
+        "repeatable": false,
+        "role_scope": "redaktor_bok",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "De to kapitlene utdyper en relasjon som er viktig for slutten.",
+          "Fremdriften stopper fordi hovedpersonen ikke tar et nytt valg i midtpartiet.",
+          "Forfatteren har en alternativ idé, men tror den allerede er avvist."
+        ],
+        "stage": "stable",
+        "stakes": "Hvis redaktøren forsvarer sin første løsning som eneste vei, kan forfatteren enten adlyde uten eierskap eller avvise et reelt strukturproblem.",
+        "subject": "Mener du at hele midtpartiet må skrives om?",
+        "summary": "Forfatteren oppfatter redaktørens strukturkritikk som et ferdig krav om å fjerne to kapitler, selv om vurderingsnotatet bare beskrev et tapt spenningsforløp.",
+        "task_domain": "forfatterdialog_og_strukturutvikling",
+        "task_kind": "people"
+      },
+      "id": "litteratur_redaktor_bok_people_struktur_001",
+      "mail_type": "people",
+      "role_scope": "redaktor_bok",
+      "scene": {
+        "arc_stage": "early",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Forfatteren får eierskap til løsningen, mens det dokumenterte strukturproblemet fortsatt tas på alvor.",
+            "id": "A",
+            "label": "Trekk løsningen tilbake og avklar problemet",
+            "reply": "Nei, kapitlene er ikke besluttet fjernet. Jeg ser at fremdriften mister et handlingsvalg; la oss prøve din alternative idé og vurdere om den løser det uten å miste relasjonen."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du gjør den raskeste redaksjonelle løsningen til et krav og lukker forfatterens mulighet til å løse problemet innenfra.",
+            "id": "B",
+            "label": "Forsvar kuttet som nødvendig",
+            "reply": "Jeg mener fortsatt at kapitlene må ut; det er den tydeligste måten å få fremdrift på."
+          }
+        ],
+        "content": {
+          "situation": [
+            "De to kapitlene utdyper en relasjon som er viktig for slutten.",
+            "Fremdriften stopper fordi hovedpersonen ikke tar et nytt valg i midtpartiet.",
+            "Forfatteren har en alternativ idé, men tror den allerede er avvist."
+          ],
+          "subject": "Mener du at hele midtpartiet må skrives om?",
+          "summary": "Forfatteren oppfatter redaktørens strukturkritikk som et ferdig krav om å fjerne to kapitler, selv om vurderingsnotatet bare beskrev et tapt spenningsforløp."
+        },
+        "day_phase": "forenoon",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaktor_bok_people_struktur_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_redaktor_forfattermote",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaktor_bok_people_struktur_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "relationship",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaktor_bok.mail.litteratur_redaktor_bok_people_struktur_001",
+        "version": 1
+      },
+      "source_hash": "48e5b101ccf82a0241a76d554fce17deb119e499434a10b9b2b96b3a98c5ec24",
+      "source_path": "data/Civication/mailFamilies/litteratur/people/redaktor_bok_people.json",
+      "source_schema": "civication_mail_family_catalog_v1"
+    },
+    {
+      "category": "litteratur",
+      "compatibility_projection": {
+        "category": "litteratur",
+        "choice_axis": "begrunnet_anbefaling_med_usikkerhet_vs_skråsikker_smak",
+        "choices": [
+          {
+            "effect": 1,
+            "feedback": "Anbefalingen er tydelig nok til handling og ærlig nok til at andre kan etterprøve beslutningsgrunnlaget.",
+            "id": "A",
+            "label": "Anbefal et avgrenset utviklingssteg",
+            "reply": "Jeg anbefaler én strukturprøve før endelig porteføljevalg. Notatet viser hva prøven skal undersøke, hva som må bevares og hvilke litterære, målgruppe- og produksjonsusikkerheter som fortsatt står åpne.",
+            "tags": [
+              "bounded_next_step",
+              "uncertainty",
+              "editorial_integrity"
+            ]
+          },
+          {
+            "effect": -1,
+            "feedback": "Du skjuler både alternative løsninger og usikkerheten bak en personlig redaksjonell fasit.",
+            "id": "B",
+            "label": "Anbefal full omskriving som eneste vei",
+            "reply": "Prosjektet bør bare gå videre dersom forfatteren følger strukturretningen jeg har skissert og gjør slutten tydeligere.",
+            "tags": [
+              "editorial_overreach",
+              "false_certainty"
+            ]
+          }
+        ],
+        "competency": "helhetsdømmekraft",
+        "consequence_axis": "etterprovbart_neste_steg_vs_skjult_beslutningsmakt",
+        "cooldown": 5,
+        "day_phase": "day_end",
+        "from": "Redaksjonssjefen",
+        "id": "litteratur_redaktor_bok_story_retning_001",
+        "mail_family": "begrunnet_redaksjonell_retning",
+        "mail_type": "story",
+        "narrative_arc": "fra_spredte_vurderinger_til_sammenhengende_redaksjonell_retning",
+        "people_ref": "litteratur_redaksjonssjef",
+        "phase": "climax",
+        "place_id": "litteratur_redaktor_utgivelsesrad",
+        "pressure": "behov_for_entydig_beslutning",
+        "priority": 120,
+        "purpose": "Knytte dagens vurderinger sammen til troverdig redaksjonell yrkespraksis fremfor en serie isolerte tekstinngrep.",
+        "repeatable": false,
+        "role_scope": "redaktor_bok",
+        "scene_catalog_source_path": "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json",
+        "scene_catalog_version": 1,
+        "situation": [
+          "Manusets særpreg og sentrale strukturproblem er dokumentert med konkrete tekststeder.",
+          "Forfatteren har akseptert et avgrenset strukturprøvearbeid, men ikke en full omskriving.",
+          "Målgruppe- og produksjonsrisiko er synliggjort med eksplisitt usikkerhet."
+        ],
+        "stage": "stable",
+        "stakes": "En vag anbefaling flytter skjulte antakelser videre; en skråsikker anbefaling kan gjøre redaktørens foretrukne versjon til en beslutning uten riktig mandat.",
+        "subject": "Hva er den redaksjonelle anbefalingen nå?",
+        "summary": "Etter helhetslesing, forfatterdialog, prøvelesning og markedssamtale skal redaktøren anbefale neste prosjektfase uten å late som all usikkerhet er borte.",
+        "task_domain": "redaksjonell_anbefaling_og_portefolje",
+        "task_kind": "story"
+      },
+      "id": "litteratur_redaktor_bok_story_retning_001",
+      "mail_type": "story",
+      "role_scope": "redaktor_bok",
+      "scene": {
+        "arc_stage": "climax",
+        "choices": [
+          {
+            "effects": {
+              "score_delta": 1
+            },
+            "feedback": "Anbefalingen er tydelig nok til handling og ærlig nok til at andre kan etterprøve beslutningsgrunnlaget.",
+            "id": "A",
+            "label": "Anbefal et avgrenset utviklingssteg",
+            "reply": "Jeg anbefaler én strukturprøve før endelig porteføljevalg. Notatet viser hva prøven skal undersøke, hva som må bevares og hvilke litterære, målgruppe- og produksjonsusikkerheter som fortsatt står åpne."
+          },
+          {
+            "effects": {
+              "score_delta": -1
+            },
+            "feedback": "Du skjuler både alternative løsninger og usikkerheten bak en personlig redaksjonell fasit.",
+            "id": "B",
+            "label": "Anbefal full omskriving som eneste vei",
+            "reply": "Prosjektet bør bare gå videre dersom forfatteren følger strukturretningen jeg har skissert og gjør slutten tydeligere."
+          }
+        ],
+        "content": {
+          "situation": [
+            "Manusets særpreg og sentrale strukturproblem er dokumentert med konkrete tekststeder.",
+            "Forfatteren har akseptert et avgrenset strukturprøvearbeid, men ikke en full omskriving.",
+            "Målgruppe- og produksjonsrisiko er synliggjort med eksplisitt usikkerhet."
+          ],
+          "subject": "Hva er den redaksjonelle anbefalingen nå?",
+          "summary": "Etter helhetslesing, forfatterdialog, prøvelesning og markedssamtale skal redaktøren anbefale neste prosjektfase uten å late som all usikkerhet er borte."
+        },
+        "day_phase": "day_end",
+        "delivery": "mail",
+        "domain": "work",
+        "effects": {},
+        "id": "litteratur_redaktor_bok_story_retning_001",
+        "interaction_mode": "decision",
+        "knowledge_contract": {
+          "frozen_fields": [],
+          "mode": "none",
+          "source_refs": [],
+          "version": 1
+        },
+        "place_id": "litteratur_redaktor_utgivelsesrad",
+        "provenance": {
+          "adapter": "mail_family",
+          "compiled_at_build": true,
+          "source_id": "litteratur_redaktor_bok_story_retning_001",
+          "source_path": "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json",
+          "source_schema": "civication_mail_family_catalog_v1"
+        },
+        "scene_kind": "milestone",
+        "schema": "civication_scene_v1",
+        "thread_id": "redaktor_bok.mail.litteratur_redaktor_bok_story_retning_001",
+        "version": 1
+      },
+      "source_hash": "e6a00988817f81bd63cc14b4282a16caa7a1bf9320351ee20b51786b63ee5ded",
+      "source_path": "data/Civication/mailFamilies/litteratur/story/redaktor_bok_story.json",
       "source_schema": "civication_mail_family_catalog_v1"
     },
     {
@@ -151288,7 +152415,7 @@
     "file_count": 8,
     "root": "data/Civication/jobbmails"
   },
-  "registry_hash": "f2c3a2d2385d50e52782e448192f8d6290eecf391fea7cf8582814d9d1ebc10a",
+  "registry_hash": "678ef126f0378bf18c57759f170cc531ca61d5d1150724c746e7bcabd1b3d2ea",
   "role_index": {
     "by/by_arkitekt": [
       "by_arkitekt_job_volum_001",
@@ -151494,6 +152621,17 @@
       "litteratur_redaksjonsmedarbeider_followup_versjon_001",
       "litteratur_redaksjonsmedarbeider_knowledge_rettighet_001",
       "litteratur_redaksjonsmedarbeider_consequence_versjon_001"
+    ],
+    "litteratur/redaktor_bok": [
+      "litteratur_redaktor_bok_job_helhetslesing_001",
+      "litteratur_redaktor_bok_people_struktur_001",
+      "litteratur_redaktor_bok_story_retning_001",
+      "litteratur_redaktor_bok_conflict_slutt_001",
+      "litteratur_redaktor_bok_event_provelesning_001",
+      "litteratur_redaktor_bok_micro_stemme_001",
+      "litteratur_redaktor_bok_followup_struktur_001",
+      "litteratur_redaktor_bok_knowledge_motiv_001",
+      "litteratur_redaktor_bok_consequence_struktur_001"
     ],
     "media/media_redaksjon": [
       "media_redaksjon_job_verifisering_001",
@@ -152382,11 +153520,11 @@
   "shadowed_duplicates": [],
   "source_root": "data/Civication/mailFamilies",
   "stats": {
-    "compiled_source_file_count": 237,
+    "compiled_source_file_count": 246,
     "ignored_source_file_count": 1,
-    "input_file_count": 238,
-    "role_count": 32,
-    "scene_count": 1000,
+    "input_file_count": 247,
+    "role_count": 33,
+    "scene_count": 1009,
     "shadowed_duplicate_count": 0
   },
   "version": 1

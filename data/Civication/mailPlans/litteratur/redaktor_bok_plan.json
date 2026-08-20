@@ -1,0 +1,103 @@
+{
+  "schema": "civication_mail_plan_v1",
+  "version": 1,
+  "id": "litteratur_redaktor_bok_v1",
+  "category": "litteratur",
+  "role_scope": "redaktor_bok",
+  "title": "Redaktør for bokprosjekt",
+  "description": "Dramaturgisk plan fra helhetsvurdering av et særpreget manus til en begrunnet redaksjonell retning, forfatterdialog og etterprøvbar utgivelsesbeslutning.",
+  "arc": {
+    "from": "En bokredaktør som ser mange mulige inngrep, men må finne hvilke problemer som faktisk er avgjørende for verkets prosjekt.",
+    "to": "En bokredaktør som kan gjøre litterær kvalitet, usikkerhet, forfatterautonomi, målgruppe og produksjonsrammer synlige uten å gjøre egen smak til fasit.",
+    "core_questions": [
+      "Hva prøver manuset å være, og hvilke tekstlige funn støtter den lesningen?",
+      "Hvilke problemer må løses før detaljredigering gir mening?",
+      "Når er en redaksjonell anbefaling et råd, og når er den et krav eller en beslutning?",
+      "Hvordan dokumenteres uenighet slik at forfatterens prosjekt og forlagets reelle rammer fortsatt er synlige?"
+    ]
+  },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": ["FIRED"],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -10,
+      "stability": "STAGNATED",
+      "add_branch_flags": ["career_stagnated", "litteratur_redaktor_smakssvikt", "editorial_portfolio_pressure"]
+    }
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "type": "job",
+      "phase": "intro",
+      "step_goal": "Skille tekstlige funn, tolkningshypoteser og redaksjonelle anbefalinger i den første helhetsvurderingen.",
+      "allowed_families": ["helhetslesing_og_redaksjonell_prioritering"],
+      "fallback_types": ["knowledge", "people", "micro"]
+    },
+    {
+      "step": 2,
+      "type": "people",
+      "phase": "early",
+      "step_goal": "Prøve et stort strukturproblem med forfatteren uten å foreskrive én løsning eller overta tekstens stemme.",
+      "allowed_families": ["forfatterdialog_om_struktur"],
+      "fallback_types": ["job", "conflict", "knowledge"]
+    },
+    {
+      "step": 3,
+      "type": "conflict",
+      "phase": "early",
+      "step_goal": "Håndtere markedspress ved å skille målgruppeevidens fra smak og synliggjøre hvem som eier utgivelsesvalget.",
+      "allowed_families": ["markedspress_og_litteraer_integritet"],
+      "fallback_types": ["people", "event", "job"]
+    },
+    {
+      "step": 4,
+      "type": "knowledge",
+      "phase": "mid",
+      "step_goal": "Bruke manusets egne mønstre som grunnlag for redaksjonell argumentasjon, med eksplisitt usikkerhet og alternative lesninger.",
+      "allowed_families": ["tekstbelegg_og_vurderingsgrunnlag"],
+      "fallback_types": ["micro", "people", "job"]
+    },
+    {
+      "step": 5,
+      "type": "event",
+      "phase": "mid",
+      "step_goal": "Reprioritere redaksjonsløpet når en ekstern prøvelesning avdekker et mønster som ikke kan løses med lokal språkvask.",
+      "allowed_families": ["provelesning_og_reprioritering"],
+      "fallback_types": ["job", "conflict", "people"]
+    },
+    {
+      "step": 6,
+      "type": "micro",
+      "phase": "advanced",
+      "step_goal": "Oppdage når en liten, konsekvent språkendring er i ferd med å standardisere bort fortellerstemmens særpreg.",
+      "allowed_families": ["stemme_og_lokal_redigering"],
+      "fallback_types": ["knowledge", "job", "people"]
+    },
+    {
+      "step": 7,
+      "type": "followup",
+      "phase": "mastery",
+      "step_goal": "Følge et omstridt strukturmemo videre til et avtalt eksperiment med tydelig ansvar, avgrensning og vurderingspunkt.",
+      "allowed_families": ["strukturmemo_eksperiment_og_laring"],
+      "fallback_types": ["consequence", "people", "story"]
+    },
+    {
+      "step": 8,
+      "type": "story",
+      "phase": "climax",
+      "step_goal": "Avrunde arbeidsbuen med en etterprøvbar redaksjonell anbefaling som bevarer både verkets prosjekt og usikkerheten i beslutningen.",
+      "allowed_families": ["begrunnet_redaksjonell_retning"],
+      "fallback_types": ["consequence", "event", "knowledge"]
+    }
+  ]
+}
