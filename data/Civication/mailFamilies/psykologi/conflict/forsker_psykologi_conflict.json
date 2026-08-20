@@ -1,0 +1,44 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "forsker_psykologi",
+  "mail_type": "conflict",
+  "families": [{
+    "id": "sterkere_resultat_etter_data",
+    "purpose": "Skille et metodisk plausibelt, men post hoc analysefunn fra den forhåndsdefinerte hovedanalysen når prosjektet trenger en sterk historie.",
+    "learning_focus": ["HARKing", "forskningsintegritet", "selektiv_rapportering"],
+    "mails": [{
+      "id": "psykologi_forsker_psykologi_conflict_sterkere_resultat_001",
+      "mail_type": "conflict",
+      "mail_family": "sterkere_resultat_etter_data",
+      "role_scope": "forsker_psykologi",
+      "phase": "early",
+      "day_phase": "midday",
+      "priority": 144,
+      "cooldown": 4,
+      "repeatable": false,
+      "stage": "stable",
+      "from": "Prosjektlederen",
+      "people_ref": "psykologi_forsker_psykologi_prosjektleder",
+      "place_id": "psykologi_forsker_psykologi_prosjektmote",
+      "subject": "Denne analysen gir endelig den tydelige effekten",
+      "summary": "Et alternativt analysegrep som ble prøvd etter at hovedresultatet var kjent, gir en sterkere effekt og passer prosjektets forventede fortelling bedre.",
+      "purpose": "Teste om forskeren bevarer skillet mellom planlagt og utforskende analyse når et post hoc resultat er mer attraktivt.",
+      "stakes": "Hvis analysehistorikken omskrives, kan leseren feilaktig behandle et utforskende funn som en forhåndsdefinert test.",
+      "situation": ["Den opprinnelige hovedanalysen er allerede gjennomført og dokumentert.", "Det alternative grepet er faglig mulig, men ble valgt etter at resultatmønsteret var kjent.", "Prosjektlederen eier framdrift og leveranse, ikke retten til å omskrive evidenshistorikken."],
+      "thread_key": "psykologi_forsker_psykologi_analyseintegritet_001",
+      "task_domain": "analyse_og_rapportering",
+      "task_kind": "conflict",
+      "competency": "forskningsintegritet",
+      "pressure": "resultatpress",
+      "choice_axis": "apen_utforskning_vs_etterrasjonalisert_hovedanalyse",
+      "consequence_axis": "sporbart_funn_vs_overdrevet_evidens",
+      "narrative_arc": "fra_attraktivt_post_hoc_funn_til_korrekt_evidensstatus",
+      "choices": [
+        {"id": "A", "label": "Behold hovedanalysen og merk den nye som utforskende", "reply": "Vi rapporterer hovedanalysen som planlagt og viser det nye funnet separat som utforskende, med tidspunktet og begrunnelsen for analysevalget synlig.", "effect": 1, "tags": ["research_integrity", "exploratory_label", "traceability"], "feedback": "Du lar det interessante funnet leve videre uten å gi det en evidensstatus det ikke har opptjent.", "effects": {"stats": {"quality": 2, "trust": 2, "risk": -2, "status": 0}}},
+        {"id": "B", "label": "Gjør den sterke analysen til hovedanalysen", "reply": "Metoden er faglig forsvarlig, så vi kan presentere den som hovedsporet uten å fremheve når valget ble gjort.", "effect": -1, "tags": ["harking", "selective_reporting", "result_pressure"], "feedback": "Du gjør et post hoc valg usynlig og får evidensen til å se mer forhåndsdefinert ut enn den var.", "effects": {"stats": {"status": 2, "quality": -3, "trust": -3, "risk": 3}}}
+      ]
+    }]
+  }]
+}
