@@ -8,17 +8,25 @@ on:
       - 'scripts/build-civication-scenario-people-index.mts'
       - 'data/Civication/scenarioPeople/overrides.json'
       - '.github/workflows/TEMP-civication-scenario-people-materialize.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'scripts/build-civication-scenario-people-index.mts'
+      - 'data/Civication/scenarioPeople/overrides.json'
+      - '.github/workflows/TEMP-civication-scenario-people-materialize.yml'
 
 permissions:
   contents: write
 
 jobs:
   materialize:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: agent/civication-scenario-people-catalog
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || 'agent/civication-scenario-people-catalog' }}
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -38,4 +46,4 @@ jobs:
             exit 0
           fi
           git commit -m 'Materialize Civication scenario People catalog'
-          git push origin HEAD:agent/civication-scenario-people-catalog
+          git push origin HEAD:${{ github.event.pull_request.head.ref || 'agent/civication-scenario-people-catalog' }}
