@@ -1,0 +1,30 @@
+name: TEMP Litteratur theory integrity probe
+
+on:
+  push:
+    branches:
+      - agent/fagverk-litteratur-theory-integrity-proof-20260820
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate read-only probe
+        run: |
+          node --check tools/probe-litteratur-theory-integrity.mjs
+          node --test tests/litteratur-theory-integrity-probe-smoke.test.mjs
+          node tools/probe-litteratur-theory-integrity.mjs | tee /tmp/litteratur-theory-integrity-probe.json
+      - name: Upload probe result
+        uses: actions/upload-artifact@v4
+        with:
+          name: litteratur-theory-integrity-probe
+          path: /tmp/litteratur-theory-integrity-probe.json
