@@ -21,12 +21,30 @@ const canonicalCategories = new Set(categoryContract.runtimeCategories || []);
 assert(matrix.worlds.every((world) => canonicalCategories.has(world.category)), 'career matrix contains only canonical runtime categories');
 assert(Array.isArray(matrix.support_worlds), 'matrix exposes noncanonical support worlds separately');
 assert.strictEqual(matrix.summary.support_worlds, matrix.support_worlds.length, 'support-world summary matches support rows');
+assert(Array.isArray(matrix.noncareer_worlds), 'matrix exposes canonical non-career worlds separately');
+assert.strictEqual(matrix.summary.noncareer_worlds, matrix.noncareer_worlds.length, 'noncareer summary matches noncareer rows');
+assert.strictEqual(matrix.summary.career_worlds, matrix.summary.work_worlds - matrix.summary.noncareer_worlds, 'career-world count excludes only explicit canonical non-career worlds');
+assert.strictEqual(Object.values(matrix.summary.statuses).reduce((sum, value) => sum + value, 0), matrix.summary.career_worlds, 'career status counts cover exactly the rollout-eligible career worlds');
 assert(!matrix.worlds.some((world) => world.key === 'sosial_laering/barnehageassistent'), 'legacy sosial_laering is excluded from canonical career rollout');
 const barnehageSupport = matrix.support_worlds.find((world) => world.key === 'sosial_laering/barnehageassistent');
 assert(barnehageSupport, 'Barnehageassistent remains visible as support content');
 assert.strictEqual(barnehageSupport.career_status, 'not_applicable', 'Barnehageassistent does not receive a fabricated career status');
 assert.strictEqual(barnehageSupport.reason, 'content_only_legacy_namespace', 'Barnehageassistent authority follows its content-only Life Story binding');
 assert.strictEqual(barnehageSupport.content_only_life_story, true, 'Barnehageassistent remains content-only');
+
+for (const [key, classification] of [
+  ['naeringsliv/arbeider', 'unbound_legacy_role'],
+  ['sport/sport_kaptein', 'life_position_not_job'],
+  ['sport/sport_legende', 'life_position_not_job']
+]) {
+  const world = matrix.worlds.find((candidate) => candidate.key === key);
+  const excluded = matrix.noncareer_worlds.find((candidate) => candidate.key === key);
+  assert(world, `${key} remains in the canonical-category discovery inventory`);
+  assert(excluded, `${key} is explicit canonical non-career content`);
+  assert.strictEqual(world.status, 'not_applicable', `${key} must not receive a fabricated career status`);
+  assert.strictEqual(excluded.career_status, 'not_applicable');
+  assert.strictEqual(excluded.classification, classification);
+}
 
 for (const world of matrix.worlds) {
   assert.deepStrictEqual(Object.keys(world.audit.components), policy.contract_components, `${world.key} has the full 15-component contract`);

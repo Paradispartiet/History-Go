@@ -99,7 +99,7 @@
     "required_pilot_status": "playable",
     "freeze_pilot_set": true,
     "next_phase": "systematic_rollout",
-    "rollout_rule": "Prioriter eksisterende partial og architecture_only work worlds etter dokumentert komponentgjeld; ikke opprett nye pilot- eller reference-bølger som erstatning for systematisk utrulling."
+    "rollout_rule": "Prioriter eksisterende partial og architecture_only career-eligible work worlds etter dokumentert komponentgjeld. Policy-eide career_exclusions er innhold uten career-status og skal ikke få oppdiktet jobbtilbud, lønn eller Badge-binding for å komme inn i rollout-køen."
   },
   "reference_requirements": {
     "minimum_practice_story_count": 12,
@@ -118,5 +118,39 @@
     ],
     "allow_partial_non_runtime_components": true,
     "forbid_missing_components": true
-  }
+  },
+  "career_exclusions": [
+    {
+      "category": "naeringsliv",
+      "role_scope": "arbeider",
+      "classification": "unbound_legacy_role",
+      "reason": "Arbeider-innholdet beholdes, men #5109 fjernet den feilaktige Fagarbeider-jobb-, rollemodell- og lønnseierskapen. Rollen har ingen egen canonical Badge career title og skal derfor ikke stå som career-rollout-gjeld.",
+      "authority_refs": [
+        "tests/civication-career-rolemodel-ownership.test.js",
+        "data/Civication/badgeRoleMappings.json"
+      ]
+    },
+    {
+      "category": "sport",
+      "role_scope": "sport_kaptein",
+      "classification": "life_position_not_job",
+      "reason": "Kaptein er canonical Sport life_position, employment-independent og uttrykkelig ikke et jobbtilbud eller eget lønnsbånd.",
+      "authority_refs": [
+        "tests/civication-sport-life-career-split.test.js",
+        "data/Civication/sportCareerLifeEvidence.json",
+        "data/badges/sport.json"
+      ]
+    },
+    {
+      "category": "sport",
+      "role_scope": "sport_legende",
+      "classification": "life_position_not_job",
+      "reason": "Olympisk Mester, Idrettsstjerne og Idrettslegende er canonical Sport life/status tiers, employment-independent og uttrykkelig ikke jobbtilbud eller lønnsbånd.",
+      "authority_refs": [
+        "tests/civication-sport-life-career-split.test.js",
+        "data/Civication/sportCareerLifeEvidence.json",
+        "data/badges/sport.json"
+      ]
+    }
+  ]
 }
