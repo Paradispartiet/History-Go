@@ -31,9 +31,22 @@ jobs:
       - name: Commit exact permanent reconciliation and remove TEMP
         env:
           HEAD_BRANCH: ${{ github.head_ref }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          tar -cf /tmp/naeringsliv-permanent.tar \
+            data/fag/fagverk_theory_integrity_evidence_v1.json \
+            scripts/audit-fagverk-theory-integrity.mjs \
+            tests/fagverk-theory-integrity.test.mjs \
+            .github/workflows/fagverk-theory-integrity.yml \
+            .github/workflows/naeringsliv-subject-quality.yml \
+            reports/fagverk/fagverk-theory-integrity-audit.json
+          git fetch origin "+refs/heads/${HEAD_BRANCH}:refs/remotes/origin/${HEAD_BRANCH}"
+          git fetch origin "${BASE_SHA}"
+          git checkout -B finalize "refs/remotes/origin/${HEAD_BRANCH}"
+          git merge --no-ff --no-commit "${BASE_SHA}"
+          tar -xf /tmp/naeringsliv-permanent.tar
           git add -- \
             data/fag/fagverk_theory_integrity_evidence_v1.json \
             scripts/audit-fagverk-theory-integrity.mjs \
@@ -47,4 +60,4 @@ jobs:
             tools/temp-reconcile-naeringsliv-theory-integrity.mjs
           git diff --cached --check
           git commit -m "Finalize Næringsliv strict theory integrity reconciliation"
-          git push origin HEAD:${HEAD_BRANCH}
+          git push origin HEAD:"refs/heads/${HEAD_BRANCH}"
