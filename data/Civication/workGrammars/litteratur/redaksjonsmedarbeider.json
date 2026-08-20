@@ -28,6 +28,48 @@
     "koordiner forfatter, redaktør og produksjonsledd",
     "kontroller at beslutninger og endringer er sporbare før levering"
   ],
+  "actor_grammar": [
+    {
+      "id": "litteratur_ansvarlig_redaktor",
+      "role": "ansvarlig bokredaktør",
+      "function": "eier redaksjonelle beslutninger som går utover medarbeiderens operative mandat"
+    },
+    {
+      "id": "litteratur_forfatter",
+      "role": "forfatter",
+      "function": "eier teksten og skal møte et tydelig, konsistent og dokumentert redaksjonelt løp"
+    },
+    {
+      "id": "litteratur_produksjonskoordinator",
+      "role": "produksjonskoordinator",
+      "function": "planlegger sats, korrektur og levering på grunnlag av godkjent versjon og avklart frist"
+    },
+    {
+      "id": "litteratur_korrekturleser",
+      "role": "korrekturleser",
+      "function": "rapporterer tekstlige avvik uten å overta redaktørens eller forfatterens beslutningsmyndighet"
+    }
+  ],
+  "place_grammar": [
+    {
+      "place_id": "litteratur_manusdesk",
+      "kind": "fictionalized_work_surface",
+      "function": "operativ arbeidsflate for mottak, oppgavefordeling og fristavklaring i en forlagsredaksjon",
+      "mail_types": ["job", "people", "conflict", "story"]
+    },
+    {
+      "place_id": "litteratur_versjonsarkiv",
+      "kind": "fictionalized_work_surface",
+      "function": "tilgangsstyrt arbeidsflate for manusversjoner, endringslogg og beslutningsspor",
+      "mail_types": ["knowledge", "micro", "followup", "consequence"]
+    },
+    {
+      "place_id": "litteratur_produksjonsmote",
+      "kind": "fictionalized_work_surface",
+      "function": "koordinert arbeidsflate mellom redaksjon, korrektur og produksjon før levering",
+      "mail_types": ["event", "people", "story"]
+    }
+  ],
   "practice_stories": [
     {"id":"feil_versjon","title":"Feil versjon","problem":"En eldre manusversjon er sendt videre.","good_practice":"Stans videreflyt, identifiser korrekt versjon og dokumenter hva som må erstattes."},
     {"id":"sen_endring","title":"Sen endring","problem":"Forfatteren sender en viktig endring etter at produksjonen har startet.","good_practice":"Synliggjør konsekvensene, avklar beslutningsmyndighet og oppdater alle berørte med samme versjonsgrunnlag."},
@@ -35,5 +77,10 @@
     {"id":"sensitivt_manus","title":"Sensitivt manus","problem":"Et upublisert manus inneholder opplysninger som ikke bør spres internt uten behov.","good_practice":"Del bare med relevante roller og behold et tydelig ansvarsspor."},
     {"id":"presset_frist","title":"Presset frist","problem":"Tempoet gjør at kontrollsteg foreslås hoppet over.","good_practice":"Skilj mellom reell forenkling og skjult kvalitetsrisiko, og dokumenter avviket."}
   ],
-  "quality_axes": ["versjonssporbarhet", "redaksjonell_presisjon", "konfidensialitet", "friststyring", "mandatklarhet"]
+  "quality_axes": ["versjonssporbarhet", "redaksjonell_presisjon", "konfidensialitet", "friststyring", "mandatklarhet"],
+  "mail_generation_contract": {
+    "required_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "required_axes": ["choice_axis", "consequence_axis", "narrative_arc"],
+    "work_surface_policy": "fictionalized_work_surfaces_are_not_claims_about_specific_employers"
+  }
 }

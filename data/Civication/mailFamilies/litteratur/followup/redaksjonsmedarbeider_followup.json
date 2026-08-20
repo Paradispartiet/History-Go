@@ -1,0 +1,66 @@
+{
+  "schema": "civication_mail_family_catalog_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "redaksjonsmedarbeider",
+  "mail_type": "followup",
+  "families": [
+    {
+      "id": "feilversjon_korrigering_og_laring",
+      "purpose": "Følge en stoppet feilversjon videre med presis korrigering og varsling til alle berørte produksjonsledd.",
+      "learning_focus": ["korrigering", "ansvarsspor", "mottakerkontroll"],
+      "mails": [
+        {
+          "id": "litteratur_redaksjonsmedarbeider_followup_versjon_001",
+          "mail_type": "followup",
+          "mail_family": "feilversjon_korrigering_og_laring",
+          "role_scope": "redaksjonsmedarbeider",
+          "thread_key": "litteratur_redaksjonsmedarbeider_versjon_001",
+          "phase": "mastery",
+          "day_phase": "evening",
+          "priority": 94,
+          "cooldown": 4,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "Produksjonskoordinatoren",
+          "people_ref": "litteratur_produksjonskoordinator",
+          "place_id": "litteratur_versjonsarkiv",
+          "subject": "Feilversjonen ble stoppet – hvem fikk den?",
+          "summary": "En eldre manusfil ble sendt til sats, men stanset før ferdig levering. Nå må alle kopier, mottakere og avledede filer identifiseres.",
+          "purpose": "Teste om korrigeringen dekker hele distribusjonssporet og ikke bare den sentrale filen.",
+          "stakes": "Hvis bare hovedfilen erstattes, kan korrektur, omslagstekst eller eksterne leveranser fortsatt bygge på den feilaktige versjonen.",
+          "situation": [
+            "Produksjonen har bekreftet at hovedfilen er stoppet.",
+            "E-postloggen viser at korrekturleser og omslagsarbeid også mottok utdrag.",
+            "Det finnes ennå ingen samlet oversikt over avledede filer."
+          ],
+          "task_domain": "korrigering_og_distribusjonsspor",
+          "task_kind": "followup",
+          "competency": "versjonssporbarhet",
+          "pressure": "rask_lukking",
+          "choice_axis": "full_mottakerkontroll_vs_minimal_filerstatning",
+          "consequence_axis": "helhetlig_korrigering_vs_restfeil_i_produksjonen",
+          "narrative_arc": "fra_stoppet_feilfil_til_kontrollert_korrigeringsspor",
+          "choices": [
+            {
+              "id": "A",
+              "label": "Kartlegg mottakere og erstatt alle avledede filer",
+              "reply": "Jeg samler mottakerlisten, markerer feilversjonen som trukket tilbake og får bekreftet at hver avledet fil enten er erstattet eller kontrollert mot korrekt manus.",
+              "effect": 1,
+              "tags": ["recall", "recipient_control", "traceability"],
+              "feedback": "Korrigeringen følger versjonen gjennom hele produksjonskjeden."
+            },
+            {
+              "id": "B",
+              "label": "Erstatt hovedfilen og lukk avviket",
+              "reply": "Hovedfilen er nå riktig, så vi kan lukke avviket og be de andre bruke siste vedlegg.",
+              "effect": -1,
+              "tags": ["partial_fix", "residual_risk"],
+              "feedback": "Du mangler bevis for at alle mottakere og avledede filer faktisk er korrigert."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

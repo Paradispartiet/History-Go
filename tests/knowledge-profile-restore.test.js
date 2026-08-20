@@ -52,20 +52,27 @@ test("Knowledge subject badges expose canonical image references", () => {
   }
 });
 
-test("classic Knowledge profile remains available alongside V2", () => {
-  const overview = read("knowledge.html");
-  const classic = read("knowledge-profile.html");
+test("canonical Knowledge page preserves V2 while the old URL redirects", () => {
+  const knowledge = read("knowledge.html");
+  const compatibilityRedirect = read("knowledge-profile.html");
+  const runtime = read("js/knowledgePage.js");
 
-  assert.match(overview, /location\.replace\("knowledge-profile\.html"\)/);
-  assert.match(overview, /params\.get\("view"\) === "v2"/);
-  assert.match(overview, /js\/knowledgeBadgeLogos\.js/);
+  assert.match(knowledge, /<title>Kunnskapen min \| History Go<\/title>/);
+  assert.match(knowledge, /id="knowledgeSummary"/);
+  assert.match(knowledge, /id="knowledgeSearch"/);
+  assert.match(knowledge, /id="knowledgeSubjectNav"/);
+  assert.match(knowledge, /id="knowledgeContent"/);
+  assert.match(knowledge, /js\/knowledgePage\.js/);
+  assert.match(knowledge, /js\/knowledgeBadgeLogos\.js/);
 
-  assert.match(classic, /Din kunnskapsprofil/);
-  assert.match(classic, /bilder\/logo_historygo\.PNG/);
-  assert.doesNotMatch(classic, /bilder\/ui\/historygo_logo\.PNG/);
-  assert.match(classic, /id="conceptCloud"/);
-  assert.match(classic, /id="emneDekningSection"/);
-  assert.match(classic, /id="filterCategory"/);
-  assert.match(classic, /id="knowledgeContainer"/);
-  assert.match(classic, /js\/knowledgeProfileClassic\.js/);
+  assert.match(runtime, /Kursstatus/);
+  assert.match(runtime, /kv2-empty-emners/);
+  assert.match(runtime, /unresolvedEntries/);
+  assert.match(runtime, /collectionHref\(LANGUAGE_COLLECTION_ID\)/);
+
+  assert.match(compatibilityRedirect, /new URL\("knowledge\.html", location\.href\)/);
+  assert.match(compatibilityRedirect, /target\.search = location\.search/);
+  assert.match(compatibilityRedirect, /target\.hash = location\.hash/);
+  assert.match(compatibilityRedirect, /location\.replace\(target\.href\)/);
+  assert.doesNotMatch(compatibilityRedirect, /js\/knowledgeProfileClassic\.js/);
 });
