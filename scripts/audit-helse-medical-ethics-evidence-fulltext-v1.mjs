@@ -42,10 +42,10 @@ export function audit({ writeReport = false } = {}) {
   assert(safety.status === 'blocking' && chapter.safetyContractFile === P.safety && brief.safety.individualDiagnosis === false && brief.safety.individualTreatmentAdvice === false, 'Klinisk sikkerhetskontrakt må blokkere individråd');
   assert(chapter.lead.includes('aldri individuell diagnose') && !paragraphs.some((text) => /du bør|din diagnose|din behandling|ring 113/iu.test(text)), 'Fullteksten må være generell og ikke-individualiserende');
   const reg = registry.subjects.helse; const subjectStatus = status.subjects.find((row) => row.id === 'helse'); const portalRow = portal.categories.find((row) => row.id === 'helse');
-  assert(manifest.helse.chapters?.includes(P.chapter) && reg.chapters.length === 1 && reg.chapters[0].file === P.chapter, 'Kapittelet må være registrert én gang');
+  assert(manifest.helse.chapters?.includes(P.chapter) && reg.chapters.filter((row) => row.id === CHAPTER_ID && row.file === P.chapter).length === 1, 'Kapittelet må være registrert én gang');
   assert(subjectStatus.navigationStatus === 'materialized' && subjectStatus.assessmentStatus === 'audited' && subjectStatus.editorialStatus === 'chapters_in_progress', 'Helse skal være materialized/audited/chapters_in_progress');
   assert(portalRow.subjectPage === 'fagverk.html?subject=helse' && portalRow.subjectStatus === 'materialized', 'Portalen skal eksponere materialisert Helse');
-  assert(reg.editorialPlan.targetDomainCount === 12 && reg.editorialPlan.registeredChapterCount === 1 && subjectStatus.editorialStatus !== 'complete', 'Én av tolv domener kan ikke gi complete');
+  assert(reg.editorialPlan.targetDomainCount === 12 && reg.editorialPlan.registeredChapterCount >= 1 && reg.editorialPlan.registeredChapterCount < 12 && subjectStatus.editorialStatus !== 'complete', 'Ufullført domeneproduksjon kan ikke gi complete');
   const report = {
     schema: 'history_go_health_medical_ethics_evidence_fulltext_audit_v1', version: '1.0.0', updated_at: '2026-08-21', status: 'pass',
     conclusion: 'high_quality_fulltext_unit_complete_subject_not_scientifically_complete', subject_id: 'helse', chapter_id: CHAPTER_ID,

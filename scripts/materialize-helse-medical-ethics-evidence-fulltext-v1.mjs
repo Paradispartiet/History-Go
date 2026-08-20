@@ -9,6 +9,7 @@ const CHAPTER_DIR = `data/fagverk/helse/${CHAPTER_ID}`;
 const INPUT_GATE = 'medical_ethics_evidence_source_brief_complete_full_chapter_production';
 const OUTPUT_GATE = 'medical_ethics_evidence_full_chapter_complete_next_domain_source_brief';
 const NEXT_SOURCE_GATE = 'anatomy_physiology_source_brief_complete_full_chapter_production';
+const NEXT_FULLTEXT_GATE = 'anatomy_physiology_full_chapter_complete_next_domain_source_brief';
 const P = Object.freeze({
   sourceBrief: 'data/fag/helse/medical_ethics_evidence_source_claim_brief_v1.json',
   safety: 'data/fag/helse/clinical_safety_contract_helse_v1.json',
@@ -92,8 +93,8 @@ function build() {
   const registry = read(P.registry); const inventory = read(P.inventory); const status = read(P.status);
   const portal = read(P.portal); const pensum = read(P.pensum); const emner = read(P.emner); const methods = read(P.methods);
   const healthStatus = status.subjects.find((row) => row.id === 'helse');
-  assert([INPUT_GATE, OUTPUT_GATE, NEXT_SOURCE_GATE].includes(healthStatus.nextGate), `Feil input gate: ${healthStatus.nextGate}`);
-  const metadataHasProgressed = healthStatus.nextGate === NEXT_SOURCE_GATE;
+  assert([INPUT_GATE, OUTPUT_GATE, NEXT_SOURCE_GATE, NEXT_FULLTEXT_GATE].includes(healthStatus.nextGate), `Feil input gate: ${healthStatus.nextGate}`);
+  const metadataHasProgressed = [NEXT_SOURCE_GATE, NEXT_FULLTEXT_GATE].includes(healthStatus.nextGate);
   assert(sourceBrief.runtime_registration.registered === false, 'Source brief må være uregistrert før fulltekst');
   assert(safety.status === 'blocking' && safety.forbidden.length >= 4, 'Klinisk sikkerhetskontrakt mangler');
   const topics = sourceBrief.topic_briefs; const planned = topics.flatMap((topic) => topic.planned_claims);
