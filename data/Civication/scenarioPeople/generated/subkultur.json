@@ -1,0 +1,4239 @@
+{
+  "schema": "civication_scenario_people_category_v1",
+  "version": 1,
+  "category": "subkultur",
+  "generated_by": "scripts/build-civication-scenario-people-index.mts",
+  "sources": [
+    "data/Civication/historyPeople_index.json",
+    "data/Civication/roleModels/manifest.json",
+    "data/Civication/scenarioPeople/overrides.json",
+    "data/fag/**/theory_integrity_bindings*.json"
+  ],
+  "semantics": {
+    "direct": "Kun eksplisitt kuratert direkte rolleeksempel.",
+    "strong": "Sterk scenariorelevans; innebærer ikke nødvendigvis identisk yrkesrolle.",
+    "contextual": "Samme faglige kontekst; kunnskaps-/oppgavekandidat, ikke rollelikhet eller NPC-persona."
+  },
+  "people_available_in_category": 37,
+  "cross_category_existing_references": [],
+  "missing_people_candidates": [
+    {
+      "id": "ida_arrangementsansvarlig",
+      "name": "ida_arrangementsansvarlig",
+      "category": "subkultur",
+      "reason": "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen.",
+      "source": "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+      "scenario_roles": [
+        "subkultur_kulturhusvert"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "leonora_publikumsvert",
+      "name": "leonora_publikumsvert",
+      "category": "subkultur",
+      "reason": "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen.",
+      "source": "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+      "scenario_roles": [
+        "subkultur_kulturhusvert"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "maja_frivilligkoordinator",
+      "name": "maja_frivilligkoordinator",
+      "category": "subkultur",
+      "reason": "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen.",
+      "source": "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+      "scenario_roles": [
+        "subkultur_kulturhusvert"
+      ],
+      "verification_required": true
+    },
+    {
+      "id": "thomas_teknisk_ansvarlig",
+      "name": "thomas_teknisk_ansvarlig",
+      "category": "subkultur",
+      "reason": "Eksplisitt people-reference i roleModel finnes ikke i History Go People-indeksen.",
+      "source": "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+      "scenario_roles": [
+        "subkultur_kulturhusvert"
+      ],
+      "verification_required": true
+    }
+  ],
+  "roles": [
+    {
+      "role_id": "subkultur_arrangementscrew",
+      "role_scope": "subkultur_arrangementsdrift",
+      "title": "Arrangementscrew",
+      "source": "data/Civication/roleModels/subkultur/deltaker.json",
+      "match_tokens": [
+        "arrangementscrew",
+        "arrangementsdrift"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_arrangementsplanlegger",
+      "role_scope": "subkultur_program_og_koordinering",
+      "title": "Arrangementsplanlegger",
+      "source": "data/Civication/roleModels/subkultur/crew.json",
+      "match_tokens": [
+        "arrangementsplanlegger",
+        "koordinering",
+        "program"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_booking_innholdskoordinator",
+      "role_scope": "subkultur_program_og_koordinering",
+      "title": "Booking- og innholdskoordinator",
+      "source": "data/Civication/roleModels/subkultur/dandy.json",
+      "match_tokens": [
+        "booking",
+        "innholdskoordinator",
+        "koordinering",
+        "program"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_kulturarena_ledelse",
+      "role_scope": "subkultur_kulturarena_ledelse",
+      "title": "Daglig leder (kulturarena)",
+      "source": "data/Civication/roleModels/subkultur/legend.json",
+      "match_tokens": [
+        "daglig",
+        "kulturarena",
+        "ledelse"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_kulturhusvert",
+      "role_scope": "subkultur_arrangementsdrift",
+      "title": "Kulturhusvert",
+      "source": "data/Civication/roleModels/subkultur/observor.json",
+      "match_tokens": [
+        "arrangementsdrift",
+        "kulturhusvert"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_kulturhusvert",
+      "role_scope": "subkultur_arrangementsdrift",
+      "title": "Arrangementsdrift og publikumsvert",
+      "source": "data/Civication/roleModels/subkultur/subkultur_arrangementsdrift.json",
+      "match_tokens": [
+        "arrangementsdrift",
+        "publikumsvert"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_kulturkonsulent",
+      "role_scope": "subkultur_program_og_koordinering",
+      "title": "Kulturkonsulent",
+      "source": "data/Civication/roleModels/subkultur/gangster.json",
+      "match_tokens": [
+        "koordinering",
+        "kulturkonsulent",
+        "program"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_kulturmedarbeider",
+      "role_scope": "subkultur_arrangementsdrift",
+      "title": "Kulturmedarbeider",
+      "source": "data/Civication/roleModels/subkultur/gatesmart.json",
+      "match_tokens": [
+        "arrangementsdrift",
+        "kulturmedarbeider"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_produksjonsassistent",
+      "role_scope": "subkultur_arrangementsdrift",
+      "title": "Produksjonsassistent",
+      "source": "data/Civication/roleModels/subkultur/hakkekylling.json",
+      "match_tokens": [
+        "arrangementsdrift",
+        "produksjonsassistent"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_produksjonsledelse",
+      "role_scope": "subkultur_produksjonsledelse",
+      "title": "Produksjonsleder",
+      "source": "data/Civication/roleModels/subkultur/undergrunnsikon.json",
+      "match_tokens": [
+        "produksjonsledelse",
+        "produksjonsleder"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_produsent",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "title": "Produsent",
+      "source": "data/Civication/roleModels/subkultur/kultfigur.json",
+      "match_tokens": [
+        "produksjon",
+        "produsent",
+        "prosjekt"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "strong",
+          "reason": "Automatisk teksttreff på rolleterm(er): prosjekt. Strong betyr scenariorelevans, ikke dokumentert identisk stilling.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "strong",
+          "reason": "Automatisk teksttreff på rolleterm(er): produsent. Strong betyr scenariorelevans, ikke dokumentert identisk stilling.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    },
+    {
+      "role_id": "subkultur_prosjektleder_kulturarrangement",
+      "role_scope": "subkultur_produksjon_og_prosjekt",
+      "title": "Prosjektleder (kulturarrangement)",
+      "source": "data/Civication/roleModels/subkultur/trendsetter.json",
+      "match_tokens": [
+        "kulturarrangement",
+        "produksjon",
+        "prosjekt",
+        "prosjektleder"
+      ],
+      "existing_place_people": [
+        {
+          "person_id": "andreas_sollund",
+          "name": "Andreas Sollund",
+          "fit": "strong",
+          "reason": "Automatisk teksttreff på rolleterm(er): prosjekt, prosjektleder. Strong betyr scenariorelevans, ikke dokumentert identisk stilling.",
+          "person_category": "subkultur",
+          "place_id": "house_of_nerds",
+          "year": 2019
+        },
+        {
+          "person_id": "anne_rita_andal",
+          "name": "Anne Rita Andal",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "attila_horvath",
+          "name": "Attila Horvath",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "blitz_miljoet",
+          "name": "Blitz-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "blitzhuset_miljoet",
+          "name": "Blitzhuset-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "brenneriveien_ingens_gate_miljoet",
+          "name": "Brenneriveien / Ingens gate-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "brenneriveien_ingens_gate",
+          "year": 1990
+        },
+        {
+          "person_id": "bror_wyller",
+          "name": "Bror Wyller",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "christian_engfelt",
+          "name": "Christian Engfelt",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2024
+        },
+        {
+          "person_id": "club_7_miljoet",
+          "name": "Club 7-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "dj_marfox",
+          "name": "DJ Marfox",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 2010
+        },
+        {
+          "person_id": "gamlebyen_sport_og_fritid_miljoet",
+          "name": "Gamlebyen Sport og Fritid-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "gamlebyen_sport_og_fritid",
+          "year": 1999
+        },
+        {
+          "person_id": "gateavisa_miljoet",
+          "name": "Gateavisa-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata",
+          "year": 1970
+        },
+        {
+          "person_id": "hausmania_miljoet",
+          "name": "Hausmania-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "hausmania",
+          "year": 1999
+        },
+        {
+          "person_id": "hege_vadstein",
+          "name": "Hege Vadstein",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "helvete_neseblod_miljoet",
+          "name": "Helvete / Neseblod-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "hermann_stene",
+          "name": "Hermann Stene",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2020
+        },
+        {
+          "person_id": "kafe_haerverk_miljoet",
+          "name": "Kafé Hærverk-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "kafe_haerverk",
+          "year": 2017
+        },
+        {
+          "person_id": "kate_naess",
+          "name": "Kate Næss",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1963
+        },
+        {
+          "person_id": "last_train_miljoet",
+          "name": "Last Train-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "last_train_oslo",
+          "year": 1984
+        },
+        {
+          "person_id": "manuel_reis_fragil",
+          "name": "Manuel Reis",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_bairro_alto",
+          "year": 1982
+        },
+        {
+          "person_id": "mir_grunerlokka_lufthavn_miljoet",
+          "name": "MIR / Grünerløkka Lufthavn-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "mir_grunerlokka_lufthavn",
+          "year": 2000
+        },
+        {
+          "person_id": "natxo_checa",
+          "name": "Natxo Checa",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "lisbon_galeria_ze_dos_bois",
+          "year": 1994
+        },
+        {
+          "person_id": "oslo_graffiti_miljoet",
+          "name": "Oslo graffiti-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_pride_skeive_dager",
+          "name": "Oslo Pride / Skeive dager",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "radhusplassen",
+          "year": 1974
+        },
+        {
+          "person_id": "oslo_skateboardmiljoet",
+          "name": "Oslo skateboardmiljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vulkan_industriomrade",
+          "year": 1980
+        },
+        {
+          "person_id": "oslo_skatehall_miljoet",
+          "name": "Oslo Skatehall-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "oslo_skatehall",
+          "year": 2017
+        },
+        {
+          "person_id": "oystein_euronymous_aarseth",
+          "name": "Øystein “Euronymous” Aarseth",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "helvete_neseblod_records",
+          "year": 1991
+        },
+        {
+          "person_id": "paul_brady",
+          "name": "Paul Brady",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 2007
+        },
+        {
+          "person_id": "radi_orakel",
+          "name": "RadiOrakel",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "youngstorget",
+          "year": 1982
+        },
+        {
+          "person_id": "rock_in_miljoet",
+          "name": "Rock In-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "rock_in_oslo",
+          "year": 1990
+        },
+        {
+          "person_id": "skur13_miljoet",
+          "name": "Skur 13-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "skur13",
+          "year": 2013
+        },
+        {
+          "person_id": "sossen_krohg",
+          "name": "Sossen Krohg",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "club_7_vika",
+          "year": 1966
+        },
+        {
+          "person_id": "stein_lillevolden",
+          "name": "Stein Lillevolden",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "blitzhuset",
+          "year": 1982
+        },
+        {
+          "person_id": "sub_scene_miljoet",
+          "name": "Sub Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "sub_scene",
+          "year": 2002
+        },
+        {
+          "person_id": "torggata_blad_miljoet",
+          "name": "Torggata Blad-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "torggata_blad",
+          "year": 1990
+        },
+        {
+          "person_id": "vaterland_bar_scene_miljoet",
+          "name": "Vaterland Bar & Scene-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "vaterland_bar_scene",
+          "year": 2016
+        },
+        {
+          "person_id": "xray_ungdomskulturhus_miljoet",
+          "name": "X-Ray Ungdomskulturhus-miljøet",
+          "fit": "contextual",
+          "reason": "Samme canonicale fagkategori; kontekstuell kunnskaps-/oppgavekandidat uten påstand om identisk yrkesrolle.",
+          "person_category": "subkultur",
+          "place_id": "xray_ungdomskulturhus",
+          "year": 1994
+        }
+      ],
+      "existing_other_people": [],
+      "excluded_people": []
+    }
+  ]
+}
