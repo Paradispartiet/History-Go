@@ -14,16 +14,8 @@ const readIf=p=>fs.existsSync(abs(p))?json(p):null;
 const scholarlyType=t=>/(forskn|fagfelle|akadem|universit|vitenskap|monografi|bok|journal|oppslagsverk)/i.test(text(t));
 const limitationSignal=s=>/(begrens|kan ikke|ikke (?:alene|automatisk|nødvendigvis|bevise)|usikker|rekkevidd|forbehold|blindson|inferens|varsom)/i.test(s);
 const rivalSignal=s=>/(motargument|alternativ|rival|konkurrer|uenighet|kritikk|konflikt|skiller|sammenlign|derimot|på den ene siden|på den andre siden)/i.test(s);
-const flattenStrings=value=>{
-  const out=[];
-  const walk=v=>{if(typeof v==='string')out.push(v);else if(Array.isArray(v))v.forEach(walk);else if(v&&typeof v==='object')Object.values(v).forEach(walk);};
-  walk(value);return out;
-};
-const claimRefs=value=>{
-  const out=[];
-  const walk=v=>{if(Array.isArray(v))return v.forEach(walk);if(!v||typeof v!=='object')return;for(const [k,x] of Object.entries(v)){if(['paragraphClaimIds','keyPointClaimIds','claimIds'].includes(k)&&Array.isArray(x))out.push(...x.flat(Infinity).map(text));else walk(x);}};
-  walk(value);return out.filter(Boolean);
-};
+const flattenStrings=value=>{const out=[];const walk=v=>{if(typeof v==='string')out.push(v);else if(Array.isArray(v))v.forEach(walk);else if(v&&typeof v==='object')Object.values(v).forEach(walk);};walk(value);return out;};
+const claimRefs=value=>{const out=[];const walk=v=>{if(Array.isArray(v))return v.forEach(walk);if(!v||typeof v!=='object')return;for(const [k,x] of Object.entries(v)){if(['paragraphClaimIds','keyPointClaimIds','claimIds'].includes(k)&&Array.isArray(x))out.push(...x.flat(Infinity).map(text));else walk(x);}};walk(value);return out.filter(Boolean);};
 
 const quality=auditPolitikkQuality({checkReport:true});
 const thinkersAudit=auditPolitikkThinkerIntegrity({checkReport:true});
@@ -31,7 +23,8 @@ const pensum=json('data/fag/politikk/politikkpensum_canonical_v4_5.json');
 const emner=json('data/fag/politikk/emner_politikk_canonical_v4_5.json');
 const fagkart=json('data/fag/politikk/fagkart_politikk_canonical_v4_5.json');
 const registry=json('data/fagverk/fagverk_registry.json');
-const thinkerNames=Object.values(json('data/fag/politikk/politikk_thinker_names.json').thinkers||{});
+const thinkerRegistry=json('data/fag/politikk/politikk_thinker_names.json').thinkers||{};
+const thinkerNames=Object.values(thinkerRegistry);
 const thinkerSurnames=[...new Set(thinkerNames.map(n=>norm(n).split(/\s+/).at(-1).replace(/[^\p{L}-]/gu,'')).filter(s=>s.length>=4))];
 const chapters=registry.subjects?.politikk?.chapters||[];
 const categories=fagkart.categories||[];
@@ -49,12 +42,9 @@ for(const domain of pensum.domains||[]){
   const claims=claimsDoc?.claims||[];
   const sources=claimsDoc?.sources||[];
   const usedClaimIds=new Set(claimRefs(modules));
-  const sourceById=new Map(sources.map(s=>[s.id,s]));
   const scholarlySources=sources.filter(s=>scholarlyType(s.type)||scholarlyType(s.publisher));
-  const namedWorkSources=scholarlySources.filter(s=>{
-    const label=norm(s.label);
-    return /[-–—:]/.test(s.label||'') && thinkerSurnames.some(sn=>label.includes(sn));
-  });
+  const allNamedWorkCandidates=sources.filter(s=>{const label=norm(s.label);return /[-–—:]/.test(s.label||'')&&thinkerSurnames.some(sn=>label.includes(sn));});
+  const namedWorkSources=allNamedWorkCandidates.filter(s=>scholarlyType(s.type)||scholarlyType(s.publisher));
   const proseBoundScholarlyClaims=claims.filter(c=>usedClaimIds.has(c.id)&&(c.source_ids||[]).some(id=>scholarlySources.some(s=>s.id===id)));
   const verifiedUsedClaims=claims.filter(c=>c.status==='verified'&&usedClaimIds.has(c.id));
   const fieldEmners=(domain.emne_ids||[]).map(id=>byEmne.get(id)).filter(Boolean);
@@ -63,50 +53,26 @@ for(const domain of pensum.domains||[]){
   const fieldMeta=flattenStrings(fieldEmners).join(' ');
   const category=categories.find(c=>[c.id,c.domain_id,c.category_id,c.key].includes(domainId))||categories.find(c=>norm(c.title||c.name)===norm(domain.title||domain.name));
   const hooks=category?.topic_hooks||[];
-  const constrainedHooks=hooks.filter(h=>{
-    const g=h.generator_constraints||{};
-    return Object.values(g).some(v=>v===true)||Object.keys(g).length>=2;
-  });
-  const checks={
-    registeredChapter:Boolean(chapterRow&&base&&modules.length===3&&claimsDoc),
-    exactEmneCoverage:fieldEmners.length===(domain.emne_ids||[]).length&&fieldEmners.length>0,
-    structuredThinkerBinding:thinkerIds.length>=2,
-    namedPersonWorkBinding:namedWorkSources.length>=2,
-    verifiedClaimBinding:verifiedUsedClaims.length>=20,
-    scholarlyProseBinding:proseBoundScholarlyClaims.length>=2,
-    academicallyAppropriateSources:scholarlySources.length>=2,
-    rivalOrAlternative:rivalSignal(`${prose} ${fieldMeta}`),
-    limitationsOrAlternatives:limitationSignal(`${prose} ${fieldMeta}`),
-    antiTriviaOrSourceFirst:hooks.length>0&&constrainedHooks.length===hooks.length
-  };
+  const constrainedHooks=hooks.filter(h=>{const g=h.generator_constraints||{};return Object.values(g).some(v=>v===true)||Object.keys(g).length>=2;});
+  const checks={registeredChapter:Boolean(chapterRow&&base&&modules.length===3&&claimsDoc),exactEmneCoverage:fieldEmners.length===(domain.emne_ids||[]).length&&fieldEmners.length>0,structuredThinkerBinding:thinkerIds.length>=2,namedPersonWorkBinding:namedWorkSources.length>=2,verifiedClaimBinding:verifiedUsedClaims.length>=20,scholarlyProseBinding:proseBoundScholarlyClaims.length>=2,academicallyAppropriateSources:scholarlySources.length>=2,rivalOrAlternative:rivalSignal(`${prose} ${fieldMeta}`),limitationsOrAlternatives:limitationSignal(`${prose} ${fieldMeta}`),antiTriviaOrSourceFirst:hooks.length>0&&constrainedHooks.length===hooks.length};
   resultFields.push({
-    domainId,
-    chapterId,
-    emneCount:fieldEmners.length,
+    domainId,chapterId,emneCount:fieldEmners.length,
     thinkerCount:thinkerIds.length,
-    hookCount:hooks.length,
-    constrainedHookCount:constrainedHooks.length,
+    thinkerNames:thinkerIds.map(id=>thinkerRegistry[id]||id),
+    hookCount:hooks.length,constrainedHookCount:constrainedHooks.length,
     sourceCount:sources.length,
+    sourceTypes:[...new Set(sources.map(s=>text(s.type)).filter(Boolean))],
     scholarlySourceCount:scholarlySources.length,
+    scholarlySourceLabels:scholarlySources.map(s=>s.label),
     namedWorkSourceCount:namedWorkSources.length,
-    verifiedUsedClaimCount:verifiedUsedClaims.length,
-    proseBoundScholarlyClaimCount:proseBoundScholarlyClaims.length,
-    limitationSignal:checks.limitationsOrAlternatives,
-    rivalSignal:checks.rivalOrAlternative,
-    checks,
-    strictCandidate:Object.values(checks).every(Boolean),
-    missingStrictProof:Object.entries(checks).filter(([,v])=>!v).map(([k])=>k)
+    namedWorkSourceLabels:namedWorkSources.map(s=>s.label),
+    allNamedWorkCandidates:allNamedWorkCandidates.map(s=>({label:s.label,type:s.type,publisher:s.publisher,url:s.url})),
+    verifiedUsedClaimCount:verifiedUsedClaims.length,proseBoundScholarlyClaimCount:proseBoundScholarlyClaims.length,
+    limitationSignal:checks.limitationsOrAlternatives,rivalSignal:checks.rivalOrAlternative,
+    checks,strictCandidate:Object.values(checks).every(Boolean),missingStrictProof:Object.entries(checks).filter(([,v])=>!v).map(([k])=>k)
   });
 }
 
-const report={
-  schema:'history_go_politikk_theory_integrity_probe_v1',
-  status:'diagnostic_only',
-  completion_status_read_only:true,
-  content_rewrite_required:false,
-  existingQuality:{subjectQualityStatus:quality.status,thinkerIntegrityStatus:thinkersAudit.status,domains:quality.summary.domainCount,emners:quality.summary.emneCount,methods:quality.summary.methodCount,hooks:quality.summary.hookCount},
-  summary:{canonicalMajorFields:resultFields.length,strictCandidates:resultFields.filter(f=>f.strictCandidate).length,fieldsNeedingProofReconciliation:resultFields.filter(f=>!f.strictCandidate).map(f=>f.domainId),substantiveContentGapsProven:0},
-  fields:resultFields
-};
+const report={schema:'history_go_politikk_theory_integrity_probe_v1',status:'diagnostic_only',completion_status_read_only:true,content_rewrite_required:false,existingQuality:{subjectQualityStatus:quality.status,thinkerIntegrityStatus:thinkersAudit.status,domains:quality.summary.domainCount,emners:quality.summary.emneCount,methods:quality.summary.methodCount,hooks:quality.summary.hookCount},summary:{canonicalMajorFields:resultFields.length,strictCandidates:resultFields.filter(f=>f.strictCandidate).length,fieldsNeedingProofReconciliation:resultFields.filter(f=>!f.strictCandidate).map(f=>f.domainId),substantiveContentGapsProven:0},fields:resultFields};
 fs.writeFileSync('/tmp/politikk-theory-integrity-probe.json',`${JSON.stringify(report,null,2)}\n`);
 console.log(JSON.stringify(report,null,2));
