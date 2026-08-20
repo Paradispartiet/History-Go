@@ -9,9 +9,9 @@ test('Vitenskap holistic audit er inventar- og fasekonsistent', () => {
   assert.equal(report.canonicalInventory.methodCount, 84);
   assert.equal(report.canonicalInventory.mappingCount, 117);
   assert.equal(report.canonicalInventory.hookCount, 64);
-  assert.equal(report.subject.completeReady, false);
-  assert.equal(report.subject.nextGate, 'final_holistic_university_breadth_completion_audit');
-  assert.ok(['blocked', 'eligible_for_completion'].includes(report.status));
+  assert.equal(report.subject.completeReady, true);
+  assert.equal(report.subject.nextGate, 'maintenance_source_refresh_and_place_case_expansion');
+  assert.equal(report.status, 'complete_and_holistically_audited');
 });
 
 test('Vitenskap kan ikke bli completion-eligible uten eksplisitt editorial treatment for canonicale emner', () => {

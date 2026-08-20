@@ -13,7 +13,7 @@ test('Vitenskap natural science medicine environment coverage stays substantive 
   assert.equal(report.coverage.newInspectableSourceCount, 8);
   assert.equal(report.coverage.holisticOwnedAfterBatch, 102);
   assert.equal(report.coverage.holisticUncoveredAfterBatch, 15);
-  assert.equal(report.guards.subjectCompleteRemainsFalse, true);
+  assert.equal(report.guards.batchDidNotPrematurelyCompleteSubject, true);
   assert.equal(report.guards.allClaimsResolve, true);
   assert.equal(report.guards.natureBoundaryPreserved, true);
   assert.equal(report.guards.technologyRemainsNested, true);

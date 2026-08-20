@@ -33,6 +33,6 @@ test('Vitenskap methods/models batch reduserer holistic blocker 85 til 68 uten c
   assert.equal(report.summary.holisticUncoveredBeforeBatch, 85);
   assert.equal(report.summary.holisticUncoveredAfterBatch, 68);
   assert.equal(report.gates.holisticCoverageReducedByExactly17, true);
-  assert.equal(report.gates.subjectCompletionStillBlocked, true);
+  assert.equal(report.gates.batchDidNotPrematurelyCompleteSubject, true);
   assert.equal(report.gates.historicalUnit1ExtendedMonotonically, true);
 });

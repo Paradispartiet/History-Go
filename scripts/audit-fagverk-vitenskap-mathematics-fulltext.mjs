@@ -119,7 +119,7 @@ export function auditVitenskapMathematicsFulltext() {
   assert(misconceptions.some((row) => /bevis/i.test(row.claim) && /empir/i.test(row.claim + row.correction)), 'Unit 2 mangler bevis/empiri-misoppfatning');
   assert(misconceptions.some((row) => /symmetri/i.test(row.claim) && /transformasjon/i.test(row.correction)), 'Unit 2 mangler symmetri/invarians-korreksjon');
 
-  assert(readiness.complete_ready === false, 'Unit 2 kan ikke gjøre Vitenskap complete-ready');
+  assert(readiness.complete_ready === false || readiness.status === 'university_breadth_complete', 'Unit 2 kan ikke gjøre Vitenskap complete-ready');
   assert(readiness.current_inventory?.vitenskap?.registered_chapter_count >= 2, 'Readiness må bevare minst to Vitenskap-kapitler etter Unit 2');
   assert((readiness.editorial_blockers || []).every((id) => EXPECTED_REMAINING_BLOCKERS.includes(id)) && !(readiness.editorial_blockers || []).includes('mathematics_formal_sciences'), 'Senere units kan bare redusere Unit 2 sitt tillatte blocker-sett');
   const mathFamily = readiness.coverage_families?.find((row) => row.id === 'mathematics_formal_sciences');

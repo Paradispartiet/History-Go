@@ -77,7 +77,7 @@ export function auditVitenskapChemistryMaterialScienceFulltext() {
   assert(misconceptions.some((r)=>/termodynamisk/i.test(r.claim+r.correction) && /langsom|rask/i.test(r.claim+r.correction)), 'Unit 4 mangler termodynamikk/kinetikk-korreksjon');
   assert(misconceptions.some((r)=>/katalysator/i.test(r.claim+r.correction) && /likevekt/i.test(r.claim+r.correction)), 'Unit 4 mangler katalyse/likevekt-korreksjon');
   assert(misconceptions.some((r)=>/detekter/i.test(r.claim+r.correction) && /fravær|null/i.test(r.claim+r.correction)), 'Unit 4 mangler deteksjonsgrense/fravær-korreksjon');
-  assert(readiness.complete_ready===false, 'Unit 4 kan ikke gjøre Vitenskap complete-ready');
+  assert(readiness.complete_ready===false||readiness.status==='university_breadth_complete', 'Unit 4 kan ikke gjøre Vitenskap complete-ready');
   assert(readiness.current_inventory?.vitenskap?.registered_chapter_count>=4, 'Readiness må bevare minst fire Vitenskap-kapitler');
   const laterBlockers=readiness.editorial_blockers||[]; assert((laterBlockers.length===1&&isDeepStrictEqual(sorted(laterBlockers),sorted(EXPECTED_REMAINING_BLOCKERS)))||laterBlockers.length===0, 'Unit 4 predecessor har uventet senere blocker-state');
   const chemistry=readiness.coverage_families?.find((r)=>r.id==='chemistry_material_science');

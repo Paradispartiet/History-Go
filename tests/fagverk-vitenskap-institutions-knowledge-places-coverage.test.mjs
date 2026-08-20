@@ -37,7 +37,7 @@ test('Vitenskap institutions batch reduserer holistic blocker 68 til 54 uten com
   assert.equal(report.summary.holisticUncoveredAfterBatch, 54);
   assert.equal(report.gates.holisticCoverageReducedByExactly14, true);
   assert.equal(report.gates.technologyRemainsNested, true);
-  assert.equal(report.gates.subjectCompletionStillBlocked, true);
+  assert.equal(report.gates.batchDidNotPrematurelyCompleteSubject, true);
   assert.equal(report.gates.historicalUnit1ExtendedMonotonically, true);
   assert.equal(report.gates.rootAndRegistryOwnershipMatch, true);
 });
