@@ -195,6 +195,32 @@
         "anti_trivia_rule": "verified",
         "universal_subject_scope": "verified"
       }
+    },
+    {
+      "subject_id": "media",
+      "proof_scope": "structured_subject_gate",
+      "audit_script": "tools/audit-media-theory-integrity.mjs",
+      "test": "tests/media-theory-integrity.test.mjs",
+      "workflow": ".github/workflows/fagverk-media-complete.yml",
+      "evidence_files": [
+        "data/fag/media/fagkart_media_canonical_v4_5.json",
+        "data/fag/media/theory_integrity_bindings_media_v1.json",
+        "data/fagverk/fagverk_registry.json",
+        "reports/fagverk/media-complete-audit.json",
+        "reports/fagverk/media-theory-integrity-audit.json"
+      ],
+      "existing_gate_proves": {
+        "canonical_field_coverage": "verified",
+        "structured_scope_mechanism": "verified",
+        "limitations": "verified",
+        "rival_or_alternative": "verified",
+        "person_work_binding": "verified",
+        "scholarly_source_quality": "verified",
+        "claim_or_content_binding": "verified",
+        "actual_prose_binding": "verified",
+        "anti_trivia_rule": "verified",
+        "universal_subject_scope": "verified"
+      }
     }
   ]
 }
