@@ -4,9 +4,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/TEMP-historie-theory-gap-diagnostic.yml'
-      - 'data/fag/historie/**'
-      - 'data/fagverk/historie/**'
-      - 'data/fagverk/fagverk_registry.json'
+      - 'data/fag/**'
+      - 'data/fagverk/**'
       - 'tools/audit-historie-theory-integrity.mjs'
   workflow_dispatch:
 
@@ -18,47 +17,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Derive all scholarly-field and canonical thinker attribution gaps
+      - name: Harvest existing canonical thinker work metadata
         run: |
           node <<'NODE'
-          const fs=require('fs');
+          const fs=require('fs'),path=require('path');
           const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
           const A=v=>Array.isArray(v)?v:[];
-          const norm=v=>String(v||'').toLowerCase().replace(/\s+/g,' ').trim();
-          const isAcademic=s=>['academic_monograph','academic_secondary_monograph','peer_reviewed_journal_article'].includes(s?.source_type);
-          const isInlineAcademic=s=>['scholarly_book','academic_monograph','academic_secondary_monograph','peer_reviewed_journal_article'].includes(s?.type||s?.source_type);
-          const theories=read('data/fag/historie/theory_objects_historie_canonical_v5_5.json');
           const pensum=read('data/fag/historie/historiepensum_canonical_v4_5.json');
-          const attribution=read('data/fag/historie/theory_attribution_historie_canonical_v1.json');
-          const historiography=read('data/fag/historie/historiography_evidence_historie_v1.json');
-          const registry=read('data/fagverk/fagverk_registry.json');
-          const histById=new Map(A(historiography.sources).map(s=>[s.source_id,s]));
-          const histByField=new Map(A(historiography.coverage).map(c=>[c.domain_id,c]));
-          const scholarly=[];
-          for(const row of A(registry?.subjects?.historie?.chapters)){
-            const chapter=read(row.file);
-            const ids=new Set(A(chapter.narrativeArchitecture?.historiographyEvidenceSourceIds));
-            for(const id of A(histByField.get(row.primary_domain_id)?.source_ids))ids.add(id);
-            const inline=new Map();
-            let limitationCount=0;
-            for(const modulePath of A(chapter.moduleFiles)){
-              const module=read(modulePath);
-              for(const id of A(module.historiographyEvidence?.sourceIds))ids.add(id);
-              limitationCount+=A(module.sourceLimitations).filter(v=>norm(v).length>=45).length;
-              for(const s of A(module.sources))if(isInlineAcademic(s))inline.set(`${norm(s.label||s.title)}|${s.url||''}`,s);
-            }
-            const canonical=[...ids].map(id=>histById.get(id)).filter(Boolean).filter(isAcademic);
-            scholarly.push({field:row.primary_domain_id,canonical:canonical.length,inline:inline.size,total:canonical.length+inline.size,inline_limitations:limitationCount,inline_sources:[...inline.values()].map(s=>s.label||s.title)});
-          }
-          const usedThinkers=[...new Set(theories.flatMap(t=>A(t.thinker_ids)))].sort();
-          const canonicalByField=A(pensum.domains).map(d=>({field:d.domain_id,thinkers:A(d.canonical_thinker_ids),norwegian:A(d.norwegian_thinker_ids)}));
-          const canonicalThinkers=[...new Set(canonicalByField.flatMap(d=>d.thinkers))].sort();
-          const attributed=new Set(A(attribution.thinkers).map(t=>t.thinker_id));
-          const missingCanonical=canonicalThinkers.filter(id=>!attributed.has(id));
-          console.log('SCHOLARLY_FIELD_GAPS='+JSON.stringify(scholarly.filter(r=>r.total<2)));
-          console.log('SCHOLARLY_FIELD_MATRIX='+JSON.stringify(scholarly));
-          console.log('ALL_THEORY_METADATA_THINKERS_COUNT='+usedThinkers.length);
-          console.log('CANONICAL_THINKERS_BY_FIELD='+JSON.stringify(canonicalByField));
-          console.log('CANONICAL_THINKERS_COUNT='+canonicalThinkers.length);
-          console.log('MISSING_CANONICAL_THINKERS='+JSON.stringify(missingCanonical));
+          const ids=[...new Set(A(pensum.domains).flatMap(d=>A(d.canonical_thinker_ids)))].sort();
+          const wanted=new Set(ids),hits=new Map(ids.map(id=>[id,[]]));
+          const roots=['data/fag','data/fagverk'];
+          function walk(dir){if(!fs.existsSync(dir))return[];let out=[];for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())out=out.concat(walk(p));else if(e.isFile()&&e.name.endsWith('.json'))out.push(p);}return out;}
+          function visit(v,file){if(Array.isArray(v)){for(const x of v)visit(x,file);return;}if(!v||typeof v!=='object')return;const id=v.thinker_id||v.id; if(wanted.has(id)){const works=A(v.works).map(w=>typeof w==='string'?w:(w?.title||w?.name)).filter(Boolean);const name=v.name||v.label||null;const why=v.why||v.contribution||v.role||null;if(name||works.length||why)hits.get(id).push({file,name,works,why});}for(const x of Object.values(v))visit(x,file);}
+          for(const file of roots.flatMap(walk)){let doc;try{doc=read(file);}catch{continue;}visit(doc,file);}
+          const found=ids.filter(id=>hits.get(id).some(h=>h.name&&h.works.length));
+          const partial=ids.filter(id=>!found.includes(id)&&hits.get(id).length);
+          const missing=ids.filter(id=>!hits.get(id).length);
+          console.log('CANONICAL_THINKERS_COUNT='+ids.length);
+          console.log('EXISTING_NAME_WORK_COUNT='+found.length);
+          console.log('EXISTING_NAME_WORK='+JSON.stringify(Object.fromEntries(found.map(id=>[id,hits.get(id)]))));
+          console.log('PARTIAL_EXISTING='+JSON.stringify(Object.fromEntries(partial.map(id=>[id,hits.get(id)]))));
+          console.log('NO_EXISTING_METADATA='+JSON.stringify(missing));
           NODE
