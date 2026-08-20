@@ -1,0 +1,42 @@
+name: TEMP Film TV holistic projection compatibility
+on:
+  push:
+    branches:
+      - agent/film-tv-generated-determinism-repair
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Make holistic reader projection-shape compatible
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/audit-film-tv-holistic-completion-v1.mjs')
+          s = p.read_text()
+          old = """        const trace = section.paragraphClaimIds[index];\n        assert(Array.isArray(trace) && trace.length > 0, `${registryRow.id}/${section.id}: fagavsnitt ${index + 1} mangler claimspor`);"""
+          new = """        const rawTrace = section.paragraphClaimIds[index];\n        const trace = Array.isArray(rawTrace) ? rawTrace : (typeof rawTrace === 'string' && rawTrace.length > 0 ? [rawTrace] : []);\n        assert(trace.length > 0, `${registryRow.id}/${section.id}: fagavsnitt ${index + 1} mangler claimspor`);"""
+          if s.count(old) != 1:
+              raise SystemExit(f'expected exactly one target, found {s.count(old)}')
+          p.write_text(s.replace(old, new))
+          PY
+      - name: Verify focused Film/TV holistic compatibility
+        run: |
+          node scripts/audit-film-tv-holistic-completion-v1.mjs
+          node --test tests/film-tv-holistic-completion-v1.test.mjs
+      - name: Commit compatibility fix and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/audit-film-tv-holistic-completion-v1.mjs
+          rm .github/workflows/temp-film-tv-holistic-projection-compat.yml
+          git add .github/workflows/temp-film-tv-holistic-projection-compat.yml
+          git commit -m "fix(film-tv): read holistic claim projections"
+          git push origin HEAD:${GITHUB_REF_NAME}
