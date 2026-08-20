@@ -8,6 +8,7 @@ import { auditReligionTheoryCanon } from './audit-fagverk-religion-theory-canon.
 import { auditScenekunstTheoryCanon } from './audit-fagverk-scenekunst-theory-canon.mjs';
 import { auditSubkulturTheoryAttribution } from './audit-subkultur-theory-attribution-v1.mjs';
 import { auditHistoryTheoryIntegrity } from '../tools/audit-historie-theory-integrity.mjs';
+import { auditByTheoryIntegrity } from '../tools/audit-by-theory-integrity.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const CONTRACT='data/fag/fagverk_theory_quality_contract_v1.json';
@@ -23,7 +24,8 @@ const RUNNERS={
   religion:()=>auditReligionTheoryCanon(),
   scenekunst:()=>auditScenekunstTheoryCanon(),
   subkultur:()=>auditSubkulturTheoryAttribution(),
-  historie:()=>auditHistoryTheoryIntegrity()
+  historie:()=>auditHistoryTheoryIntegrity(),
+  by:()=>auditByTheoryIntegrity()
 };
 
 const STRICT_KEYS=[
@@ -88,6 +90,9 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const historyAdapter=adapterById.get('historie');
   assert(historyAdapter?.proof_scope==='structured_subject_gate','Historie må bruke permanent structured subject gate etter 23-felts reconciliation');
   assert(allVerified(historyAdapter?.existing_gate_proves),'Historie structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const byAdapter=adapterById.get('by');
+  assert(byAdapter?.proof_scope==='structured_subject_gate','By må bruke permanent structured subject gate etter 12-felts reconciliation');
+  assert(allVerified(byAdapter?.existing_gate_proves),'By structured subject gate må dokumentere alle strict proof-dimensjoner');
 
   const baselineById=new Map(baseline.subjects.map(s=>[s.id,s]));
   const subjects=contract.subjects.map(entry=>{
