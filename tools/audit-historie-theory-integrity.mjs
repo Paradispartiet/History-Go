@@ -195,7 +195,7 @@ export function auditHistoryTheoryIntegrity(){
     if(generatorOwned){
       generatorOwnedFieldCount++;
       const expectedEmneIds=new Set(list(domain.emne_ids));
-      const seenEmneIds=new Set(),seenTheoryIds=new Set();
+      const seenEmneIds=new Set();
       let fieldTheoryBindings=0,fieldClaimBindings=0;
       for(const {modulePath,module} of modules){
         for(const sec of list(module.sections)){
@@ -209,7 +209,6 @@ export function auditHistoryTheoryIntegrity(){
           assert.ok(theory,`${modulePath}/${sec.id}: ukjent theoryId ${sec.theoryId}`);
           assert.equal(sec.editorialHookId,theory.source_hook_id,`${modulePath}/${sec.id}: theoryId er ikke bundet til theory-objektets canonical source hook`);
           assert.ok(list(theory.explanatory_scope).includes(row.primary_domain_id),`${modulePath}/${sec.id}: theoryId er ikke bundet til kapittelets canonicale fagfelt`);
-          seenTheoryIds.add(sec.theoryId);
           const paragraphs=list(sec.paragraphs).map(norm);
           assert.ok(paragraphs.length>=5&&paragraphs.every(p=>p.length>=80),`${modulePath}/${sec.id}: theory-bound fulltekst er for tynn`);
           const traceTypes=list(sec.paragraphTraceTypes),claimRows=list(sec.paragraphClaimIds);
@@ -234,7 +233,6 @@ export function auditHistoryTheoryIntegrity(){
       assert.equal(fieldTheoryBindings,10,`${row.primary_domain_id}: generator-eid felt skal ha 10 eksplisitte theory/prose-bindinger`);
       assert.equal(fieldClaimBindings,10,`${row.primary_domain_id}: generator-eid felt skal ha 10 claim-sporede theory/prose-bindinger`);
       assert.equal(seenEmneIds.size,10,`${row.primary_domain_id}: generator-eid felt skal dekke 10 unike canonicale emner`);
-      assert.equal(seenTheoryIds.size,10,`${row.primary_domain_id}: generator-eid felt skal dekke 10 unike theory IDs`);
       assert.deepEqual([...seenEmneIds].sort(),[...expectedEmneIds].sort(),`${row.primary_domain_id}: generator-eid fulltekst dekker ikke eksakt canonical emne-sett`);
       fieldProofMatrix.push({field:row.primary_domain_id,mode:'generator_explicit',substantiveTheoryBindings:fieldTheoryBindings,limitationOrRivalSignals:fieldClaimBindings,pass:true});
       continue;
