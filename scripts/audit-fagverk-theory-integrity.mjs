@@ -11,6 +11,7 @@ import { auditHistoryTheoryIntegrity } from '../tools/audit-historie-theory-inte
 import { auditByTheoryIntegrity } from '../tools/audit-by-theory-integrity.mjs';
 import { auditKunstTheoryIntegrity } from '../tools/audit-kunst-theory-integrity.mjs';
 import { auditMediaTheoryIntegrity } from '../tools/audit-media-theory-integrity.mjs';
+import { auditMusikkTheoryIntegrity } from '../tools/audit-musikk-theory-integrity.mjs';
 import { auditLitteraturTheoryIntegrity } from '../tools/audit-litteratur-theory-integrity.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -31,6 +32,7 @@ const RUNNERS={
   by:()=>auditByTheoryIntegrity(),
   kunst:()=>auditKunstTheoryIntegrity(),
   media:()=>auditMediaTheoryIntegrity(),
+  musikk:()=>auditMusikkTheoryIntegrity(),
   litteratur:()=>auditLitteraturTheoryIntegrity()
 };
 
@@ -105,6 +107,9 @@ export function auditFagverkTheoryIntegrity({writeReport=false,checkReport=true}
   const mediaAdapter=adapterById.get('media');
   assert(mediaAdapter?.proof_scope==='structured_subject_gate','Media må bruke permanent structured subject gate etter 6-felts reconciliation');
   assert(allVerified(mediaAdapter?.existing_gate_proves),'Media structured subject gate må dokumentere alle strict proof-dimensjoner');
+  const musikkAdapter=adapterById.get('musikk');
+  assert(musikkAdapter?.proof_scope==='structured_subject_gate','Musikk må bruke permanent structured subject gate etter 8-felts reconciliation');
+  assert(allVerified(musikkAdapter?.existing_gate_proves),'Musikk structured subject gate må dokumentere alle strict proof-dimensjoner');
   const litteraturAdapter=adapterById.get('litteratur');
   assert(litteraturAdapter?.proof_scope==='structured_subject_gate','Litteratur må bruke permanent structured subject gate etter 28-felts reconciliation');
   assert(allVerified(litteraturAdapter?.existing_gate_proves),'Litteratur structured subject gate må dokumentere alle strict proof-dimensjoner');
