@@ -1,10 +1,85 @@
 {
-  "schema":"civication_work_grammar_v1","version":1,"category":"psykologi","role_scope":"professor_psykologi","role_id":"psykologi_professor_psykologi","title":"Professor (psykologi)",
-  "badge_binding":{"badge_category":"psykologi","badge_id":"psykologi","badge_name":"Psykologi","tier_label":"Professor (psykologi)","tier_threshold":380,"badge_titles":["Professor (psykologi)"],"progression_from":["Forsker (psykologi)"],"progression_to":[]},
-  "evidence":{"registry":"data/Civication/psychologyAcademicCareerEvidence.json","source_refs":["uh_forskrift_professor","uib_professor_reglement","uib_psychology_professor_profile"]},
-  "fag_bindings":{"primary_subjects":["psykologi"],"category_files":["data/Civication/roleModels/psykologi/professor_psykologi.json"],"required_concepts":["forskningsintegritet","akademisk_frihet","utdanningskvalitet","veiledning","kreditering","faglig_makt","vitenskapsteori"],"methods":["forskningsprogramutvikling","fagfellevurdering","universitetsundervisning","veiledning","sakkyndig_vurdering","forskningsledelse"]},
-  "work_identity":{"one_sentence":"Professoren bygger et fagmiljø som både produserer ny kunnskap og lærer studenter og forskere å utfordre den.","hidden_responsibility":"Å bruke høy faglig status til å åpne kritikk, fordele kreditering rettferdig og beskytte kvalitet når finansiering og kapasitet presser.","status_tension":"Jo sterkere navnet ditt er i feltet, desto dyrere kan det bli for andre å si at du tar feil.","core_pressure":"status_vs_apen_kritikk","work_rhythm":["lede forskning og søknader","skrive og vurdere forskning","undervise","veilede studenter og forskere","utvikle emner og utdanningskvalitet","bygge samarbeid og fagmiljø"]},
-  "authority_boundary":{"may":["drive og lede forskning innen faglig mandat","undervise og veilede i høyere utdanning","vurdere faglig arbeid når rollen krever det","bygge fagmiljø og utdanningskvalitet"],"may_not":["framstille professortittel som psykologautorisasjon","diagnostisere eller behandle bare i kraft av akademisk stilling","bruke senioritet som erstatning for argument eller data","ta eierskap til studenters eller yngre forskeres ideer uten korrekt kreditering","framstille publikasjonsvolum alene som professorkompetanse"],"escalate_when":["habilitet eller interessekonflikt påvirker vurdering","en kandidat trenger uavhengig støtte utenfor veiledningsrelasjonen","forskningsintegritet eller kreditering er omstridt","ressursprioritering krever formell institusjonsbeslutning"]},
-  "story_world":{"simulation_promise":"Du opplever hvordan akademisk senioritet kan brukes til å bygge kritisk kapasitet eller til å gjøre et helt miljø mer forsiktig rundt deg.","everyday_world":"Forskning, søknader, undervisning, veiledning, bedømmelser og fagmøter konkurrerer om samme kalender.","hidden_complexity":"De vanskeligste interessekonfliktene ser ofte ut som produktivitet: flere artikler, større søknader, raskere kandidatprogresjon.","recurring_situations":["en studentidé passer inn i din søknad","en stor frist kolliderer med undervisningsbehov","yngre forsker utfordrer din teori","forfatterskap er uklart","et emne er populært men pedagogisk svakt"],"small_story_seeds":["en masterstudent formulerer ideen prosjektgruppen manglet","en kritisk reanalyse kommer fra din egen postdoktor","du kan spare en uke ved å gi kandidaten svaret i stedet for å veilede"],"relationship_web":[{"who":"phd_kandidat","relation":"kandidaten du veileder","wants":"faglig utvikling og eierskap","creates":"makt- og veiledningsansvar","tension":"framdrift_vs_selvstendighet"},{"who":"student","relation":"student i emnet","wants":"undervisning som faktisk fremmer læring","creates":"utdanningsansvar","tension":"forskningsfrist_vs_undervisningskvalitet"},{"who":"kollega","relation":"yngre forsker","wants":"kritikk vurdert på argumentet","creates":"test av akademisk kultur","tension":"status_vs_kritikk"}],"knowledge_in_practice":[{"concept":"kreditering","practical_scene":"studentens idé blir sentral i søknaden","what_player_must_notice":"hierarki avgjør ikke intellektuelt eierskap","bad_misread":"veilederrollen gjør ideen til gruppens","good_use":"avklar bidrag, rolle og kreditering tidlig"},{"concept":"utdanningskvalitet","practical_scene":"søknadsfristen kolliderer med et emne som trenger redesign","what_player_must_notice":"undervisning er en kjerneoppgave, ikke resttid","bad_misread":"forskning må alltid komme først","good_use":"prioriter og deleger slik at begge oppgaver får reell kvalitet"}]},
-  "practice_stories":[{"id":"studentens_ide","title":"Studentens idé","setup":"En studentidé kan bli kjernen i den nye søknaden.","decision":"Avklar kreditering og medvirkning eller absorber ideen i gruppens prosjekt.","learning":"Mentorskap gir ansvar, ikke eierskap."},{"id":"kritikk_av_teorien","title":"Kritikk av teorien","setup":"En yngre forsker finner data som utfordrer ditt etablerte program.","decision":"Inviter reanalyse eller bruk statusen til å avgrense kritikken.","learning":"Et sterkt fagmiljø må kunne korrigere seniorene."},{"id":"undervisning_eller_soknad","title":"Undervisning eller søknad","setup":"En stor søknad og et svakt emne trenger deg samme uke.","decision":"Bygg en reell prioritering eller la undervisningen bli resttid.","learning":"Utdanningskvalitet er del av professorkompetansen."},{"id":"veiledning_eller_fasit","title":"Veiledning eller fasit","setup":"Kandidaten kan spare uker hvis du bare gir den analytiske løsningen.","decision":"Veiled fram til selvstendig valg eller gi svaret.","learning":"God veiledning bygger forskerens egen dømmekraft."}]
+  "schema": "civication_work_grammar_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "professor_psykologi",
+  "role_id": "psykologi_professor_psykologi",
+  "title": "Professor (psykologi)",
+  "badge_binding": {
+    "badge_category": "psykologi",
+    "badge_id": "psykologi",
+    "badge_name": "Psykologi",
+    "tier_label": "Professor (psykologi)",
+    "tier_threshold": 380,
+    "badge_titles": ["Professor (psykologi)"],
+    "progression_from": ["Forsker (psykologi)"],
+    "progression_to": []
+  },
+  "evidence": {
+    "registry": "data/Civication/psychologyAcademicCareerEvidence.json",
+    "source_refs": ["uh_forskrift_professor", "uib_professor_reglement", "uib_psychology_professor_profile"]
+  },
+  "fag_bindings": {
+    "primary_subjects": ["psykologi"],
+    "category_files": ["data/Civication/roleModels/psykologi/professor_psykologi.json"],
+    "required_concepts": ["forskningsintegritet", "akademisk_frihet", "utdanningskvalitet", "veiledning", "kreditering", "faglig_makt", "vitenskapsteori"],
+    "methods": ["forskningsprogramutvikling", "fagfellevurdering", "universitetsundervisning", "veiledning", "sakkyndig_vurdering", "forskningsledelse"]
+  },
+  "work_identity": {
+    "one_sentence": "Professoren bygger et fagmiljø som både produserer ny kunnskap og lærer studenter og forskere å utfordre den.",
+    "hidden_responsibility": "Å bruke høy faglig status til å åpne kritikk, fordele kreditering rettferdig og beskytte kvalitet når finansiering og kapasitet presser.",
+    "status_tension": "Jo sterkere navnet ditt er i feltet, desto dyrere kan det bli for andre å si at du tar feil.",
+    "core_pressure": "status_vs_apen_kritikk",
+    "work_rhythm": ["lede forskning og søknader", "skrive og vurdere forskning", "undervise", "veilede studenter og forskere", "utvikle emner og utdanningskvalitet", "bygge samarbeid og fagmiljø"]
+  },
+  "authority_boundary": {
+    "may": ["drive og lede forskning innen faglig mandat", "undervise og veilede i høyere utdanning", "vurdere faglig arbeid når rollen krever det", "bygge fagmiljø og utdanningskvalitet"],
+    "may_not": ["framstille professortittel som psykologautorisasjon", "diagnostisere eller behandle bare i kraft av akademisk stilling", "bruke senioritet som erstatning for argument eller data", "ta eierskap til studenters eller yngre forskeres ideer uten korrekt kreditering", "framstille publikasjonsvolum alene som professorkompetanse"],
+    "escalate_when": ["habilitet eller interessekonflikt påvirker vurdering", "en kandidat trenger uavhengig støtte utenfor veiledningsrelasjonen", "forskningsintegritet eller kreditering er omstridt", "ressursprioritering krever formell institusjonsbeslutning"]
+  },
+  "story_world": {
+    "simulation_promise": "Du opplever hvordan akademisk senioritet kan brukes til å bygge kritisk kapasitet eller til å gjøre et helt miljø mer forsiktig rundt deg.",
+    "everyday_world": "Forskning, søknader, undervisning, veiledning, bedømmelser og fagmøter konkurrerer om samme kalender.",
+    "hidden_complexity": "De vanskeligste interessekonfliktene ser ofte ut som produktivitet: flere artikler, større søknader, raskere kandidatprogresjon.",
+    "recurring_situations": ["en studentidé passer inn i din søknad", "en stor frist kolliderer med undervisningsbehov", "yngre forsker utfordrer din teori", "forfatterskap er uklart", "et emne er populært men pedagogisk svakt"],
+    "small_story_seeds": ["en masterstudent formulerer ideen prosjektgruppen manglet", "en kritisk reanalyse kommer fra din egen postdoktor", "du kan spare en uke ved å gi kandidaten svaret i stedet for å veilede"],
+    "relationship_web": [
+      {"who": "phd_kandidat", "relation": "kandidaten du veileder", "wants": "faglig utvikling og eierskap", "creates": "makt- og veiledningsansvar", "tension": "framdrift_vs_selvstendighet"},
+      {"who": "student", "relation": "student i emnet", "wants": "undervisning som faktisk fremmer læring", "creates": "utdanningsansvar", "tension": "forskningsfrist_vs_undervisningskvalitet"},
+      {"who": "kollega", "relation": "yngre forsker", "wants": "kritikk vurdert på argumentet", "creates": "test av akademisk kultur", "tension": "status_vs_kritikk"}
+    ],
+    "knowledge_in_practice": [
+      {"concept": "kreditering", "practical_scene": "studentens idé blir sentral i søknaden", "what_player_must_notice": "hierarki avgjør ikke intellektuelt eierskap", "bad_misread": "veilederrollen gjør ideen til gruppens", "good_use": "avklar bidrag, rolle og kreditering tidlig"},
+      {"concept": "utdanningskvalitet", "practical_scene": "søknadsfristen kolliderer med et emne som trenger redesign", "what_player_must_notice": "undervisning er en kjerneoppgave, ikke resttid", "bad_misread": "forskning må alltid komme først", "good_use": "prioriter og deleger slik at begge oppgaver får reell kvalitet"}
+    ]
+  },
+  "actor_grammar": [
+    {"id": "psykologi_professor_psykologi_phd_kandidat", "role": "ph.d.-kandidat", "function": "utvikler selvstendig forskerdømmekraft og skal beholde reelt eierskap til egne ideer og metodevalg"},
+    {"id": "psykologi_professor_psykologi_yngre_forsker", "role": "yngre forsker", "function": "tester om fagmiljøet tåler kritikk av professorens eget forskningsprogram"},
+    {"id": "psykologi_professor_psykologi_undervisningskoordinator", "role": "undervisningskoordinator", "function": "synliggjør læringsdata, studentbehov og kapasitetskonsekvenser når forskning og undervisning konkurrerer"},
+    {"id": "psykologi_professor_psykologi_instituttleder", "role": "instituttleder", "function": "eier formelle ressurs- og prioriteringsbeslutninger som ikke følger automatisk av professortittelen"}
+  ],
+  "work_loops": [
+    "avgrense forsknings- og undervisningsoppgaver etter kvalitet, mandat og faktisk kapasitet",
+    "veilede ved å stille krav til begrunnelse og dokumentasjon uten å overta kandidatens faglige valg",
+    "fordele kreditering og ansvar etter dokumenterte bidrag fremfor akademisk rang",
+    "invitere kritikk og reanalyse av eget forskningsprogram og la funn endre prioriteringer",
+    "følge opp undervisnings- og forskningskvalitet med flere datakilder før tiltak eller konklusjon"
+  ],
+  "place_grammar": [
+    {"place_id": "psykologi_professor_psykologi_fagmiljo", "kind": "fictionalized_work_surface", "function": "arbeidsflate for forskningsmøter, reanalyse, programprioritering og åpen faglig kritikk", "mail_types": ["job", "conflict", "followup", "consequence", "story"]},
+    {"place_id": "psykologi_professor_psykologi_veiledningsrom", "kind": "fictionalized_work_surface", "function": "avgrenset veiledningsflate for kandidatens selvstendige valg, kreditering, habilitet og faglig utvikling", "mail_types": ["people", "knowledge", "conflict"]},
+    {"place_id": "psykologi_professor_psykologi_undervisningsverksted", "kind": "fictionalized_work_surface", "function": "arbeidsflate der læringsmål, studentdata, undervisningsdesign, kapasitet og søknadsfrister vurderes samlet", "mail_types": ["event", "micro", "story"]}
+  ],
+  "mail_generation_contract": {
+    "required_mail_types": ["job", "people", "conflict", "story", "event", "micro", "followup", "knowledge", "consequence"],
+    "required_axes": ["choice_axis", "consequence_axis", "narrative_arc"],
+    "work_surface_policy": "fictionalized_work_surfaces_are_not_claims_about_specific_employers"
+  },
+  "practice_stories": [
+    {"id": "studentens_ide", "title": "Studentens idé", "setup": "En studentidé kan bli kjernen i den nye søknaden.", "decision": "Avklar kreditering og medvirkning eller absorber ideen i gruppens prosjekt.", "learning": "Mentorskap gir ansvar, ikke eierskap."},
+    {"id": "kritikk_av_teorien", "title": "Kritikk av teorien", "setup": "En yngre forsker finner data som utfordrer ditt etablerte program.", "decision": "Inviter reanalyse eller bruk statusen til å avgrense kritikken.", "learning": "Et sterkt fagmiljø må kunne korrigere seniorene."},
+    {"id": "undervisning_eller_soknad", "title": "Undervisning eller søknad", "setup": "En stor søknad og et svakt emne trenger deg samme uke.", "decision": "Bygg en reell prioritering eller la undervisningen bli resttid.", "learning": "Utdanningskvalitet er del av professorkompetansen."},
+    {"id": "veiledning_eller_fasit", "title": "Veiledning eller fasit", "setup": "Kandidaten kan spare uker hvis du bare gir den analytiske løsningen.", "decision": "Veiled fram til selvstendig valg eller gi svaret.", "learning": "God veiledning bygger forskerens egen dømmekraft."}
+  ]
 }
